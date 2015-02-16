@@ -1,0 +1,116 @@
+body {
+        font-family:Arial;
+}
+
+.red {
+	color:red;
+}
+
+.green {
+	color:green;
+}
+
+.network {
+        border:1px solid;
+        padding-top:5px;
+        padding-left:5px;
+}
+
+.tableft {
+        text-align:right;
+        width:50px;
+	display:inline-block;
+}
+
+.menu {
+        float:left;
+        width:9%;
+	height:100%;
+	text-align:center;
+}
+
+.content {
+        border:1px solid;
+        float:left;
+        width:90%;
+        height:100%;
+	padding:3px;
+}
+
+.header {
+        float:left;
+        width:99%;
+	text-align:center;
+}
+
+textarea {
+        width:699px;
+        height:499px;
+}
+
+input.button {
+        width:80%;
+        border:1px solid;
+}
+
+.footer {
+        text-align:center;
+        width:100%;
+        float:left;
+}
+
+input[type=text],input[type=password] {
+	border:1px solid;
+}
+
+input[type=button],input[type=submit] {
+	border:1px solid;
+	border-radius:15px;
+}
+
+input[type=button]:hover {
+	font-weight:bold;
+}
+input[type=submit]:hover {
+	font-weight:bold;
+}
+
+.infoheader {
+	font-size:18px;
+	font-weight:bold;
+	width:100%;
+	text-align:center;
+	margin-top:10px;
+	border-bottom:1px solid;
+}
+
+.infobox {
+	width:100%;
+}
+
+#intinfo {
+	width:48%;
+	padding-left:10px;
+	border-right:1px solid;
+	float:left;
+}
+
+#wifiinfo {
+	width:48%;
+	padding-left:10px;
+	float:left;
+}
+
+.intheader {
+	font-size:14px;
+	text-align:center;
+	font-weight:bold;
+	width:100%;
+}
+
+.intfooter {
+	width:100%;
+	border-top:1px solid;
+	float:left;
+	text-align:center;
+}
