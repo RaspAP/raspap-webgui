@@ -6,14 +6,10 @@
 	margin-right: 5px;
 }
 
-#page-wrapper {
-	margin: 0 0 0 200px;
-}
-
-.sidebar {
+/*.sidebar {
 	margin-top: 35px;
 	width: 200px;
-}
+}*/
 
 .panel-primary {
 	border-color: #c61931;
