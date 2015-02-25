@@ -1,0 +1,43 @@
+.page-header {
+	margin: 20px 0 20px;
+}
+
+.page-header .logo {
+	margin-right: 5px;
+}
+
+#page-wrapper {
+	margin: 0 0 0 200px;
+}
+
+.sidebar {
+	margin-top: 35px;
+	width: 200px;
+}
+
+.panel-primary {
+	border-color: #c61931;
+}
+
+.panel-primary>.panel-heading {
+	border-color: #c61931;
+	background-color: #c61931;
+}
+
+.panel-footer {
+	background-color: #f2f1f0;
+}
+
+.panel-body.wireless {
+	margin-bottom: 20px;
+}
+
+.btn-primary.btn-outline {
+	color: #c61931;
+	border-color: #c61931;
+}
+
+.btn-primary:hover {
+	background-color: #c61931;
+	border-color: #c61931;
+}
