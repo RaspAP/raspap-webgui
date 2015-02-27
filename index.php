@@ -36,13 +36,10 @@ define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_OPENVPN_ENABLED', false );
 define('RASPI_TORPROXY_ENABLED', false );
 
-ini_set('display_errors', 'off');
-
 include_once( 'includes/functions.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
-
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +74,7 @@ $page = $_GET['page'];
     <!-- Custom CSS -->
     <link href="dist/css/custom.css" rel="stylesheet">
 
-    <link rel="shortcut icon" type="image/png" href="../img/favicon.png?v=2.0">
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
