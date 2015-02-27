@@ -32,9 +32,11 @@ define('RASPI_OPENVPN_CLIENT_CONFIG', '/etc/openvpn/client.conf');
 define('RASPI_OPENVPN_SERVER_CONFIG', '/etc/openvpn/server.conf');
 define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 
-// Optional services, set to false to disable.
-define('RASPI_OPENVPN_ENABLED', true );
-define('RASPI_TORPROXY_ENABLED', true );
+// Optional services, set to true to enable.
+define('RASPI_OPENVPN_ENABLED', false );
+define('RASPI_TORPROXY_ENABLED', false );
+
+ini_set('display_errors', 'off');
 
 include_once( 'includes/functions.php' );
 
@@ -95,7 +97,7 @@ $page = $_GET['page'];
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	            </button>
-	            <a class="navbar-brand" href="index.html">Raspi Wifi Portal v1.0</a>
+	            <a class="navbar-brand" href="index.html">RaspAP Wifi Portal v1.0</a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -136,7 +138,7 @@ $page = $_GET['page'];
 		    <div class="row">
 		        <div class="col-lg-12">
 		            <h1 class="page-header">
-		                <img class="logo" src="img/Raspi-PBG001.png" width="45" height="45">Raspbian <small>WiFi Configuration Portal</small>
+		                <img class="logo" src="img/raspAP-logo.png" width="45" height="45">RaspAP <small>WiFi Configuration Portal</small>
 		            </h1>
 		        </div>
 		    </div><!-- /.row -->
@@ -171,6 +173,9 @@ $page = $_GET['page'];
 			?>
 	    </div><!-- /#page-wrapper --> 
     </div><!-- /#wrapper -->
+
+    <!-- RaspAP JavaScript -->
+    <script src="dist/js/functions.js"></script>
 
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
