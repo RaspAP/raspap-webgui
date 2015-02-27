@@ -4,7 +4,7 @@ A simple, responsive web interface to control wifi, hostapd and related services
 
 This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/IronSummitMedia/startbootstrap-sb-admin-2), a Bootstrap based admin theme :smile:
 
-We'd be curious to hear about how you use this with your own Pi-powered access points. Ping us on Twitter and ([**@billzimmerman**](https://twitter.com/billzimmerman)) and ([**@SirLagz**](https://twitter.com/SirLagz)). Until then, here's a screenshot:
+We'd be curious to hear about how you use this with your own Pi-powered access points. Ping us on Twitter ([**@billzimmerman**](https://twitter.com/billzimmerman)) and ([**@SirLagz**](https://twitter.com/SirLagz)). Until then, here's a screenshot:
 
 ![](http://i.imgur.com/c09ZTQS.png)
 
