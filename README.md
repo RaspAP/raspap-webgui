@@ -2,6 +2,8 @@
 # `$ raspap-webgui` [![Release 1.0](https://img.shields.io/badge/Release-1.0-green.svg)](https://github.com/billz/raspap-webgui/releases)
 A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
+This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/IronSummitMedia/startbootstrap-sb-admin-2), a Bootstrap based admin theme :smile:
+
 We'd be curious to hear about how you use this with your own Pi-powered access points. Ping us on Twitter and ([**@billzimmerman**](https://twitter.com/billzimmerman)) and ([**@SirLagz**](https://twitter.com/SirLagz)). Until then, here's a screenshot:
 
 ![](http://i.imgur.com/c09ZTQS.png)
@@ -27,7 +29,12 @@ So what I have done is added the www-data user to the sudoers file, but with res
 Add the following to the end of  `/etc/sudoers`: 
 
 ```sh
-www-data ALL=(ALL) NOPASSWD:/sbin/ifdown wlan0,/sbin/ifup wlan0,/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf,/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf,/sbin/wpa_cli scan_results,/sbin/wpa_cli scan,/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf,/etc/init.d/hostapd start,/etc/init.d/hostapd stop,/etc/init.d/dnsmasq start,/etc/init.d/dnsmasq stop,/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf
+www-data ALL=(ALL) NOPASSWD:/sbin/ifdown wlan0,/sbin/ifup wlan0,/bin/cat
+/etc/wpa_supplicant/wpa_supplicant.conf,/bin/cp /tmp/wifidata 
+/etc/wpa_supplicant/wpa_supplicant.conf,/sbin/wpa_cli scan_results,
+/sbin/wpa_cli scan,/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf,
+/etc/init.d/hostapd start,/etc/init.d/hostapd stop,/etc/init.d/dnsmasq start,
+/etc/init.d/dnsmasq stop,/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf
 ```
 ## How to contribute
 
