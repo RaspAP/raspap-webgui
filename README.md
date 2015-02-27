@@ -36,6 +36,19 @@ www-data ALL=(ALL) NOPASSWD:/sbin/ifdown wlan0,/sbin/ifup wlan0,/bin/cat
 /etc/init.d/hostapd start,/etc/init.d/hostapd stop,/etc/init.d/dnsmasq start,
 /etc/init.d/dnsmasq stop,/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf
 ```
+
+Once those modifications are done, git clone the files to `/var/www`.
+```sh
+sudo git clone https://github.com/billz/raspap-webgui /var/www
+```
+Set the files ownership to `www-data` user.
+```sh
+sudo chown -R www-data:www-data /var/www
+```
+Reboot and it should be up and running!
+```sh
+sudo reboot
+```
 ## How to contribute
 
 1. File an issue in the repository, using the bug tracker, describing the
