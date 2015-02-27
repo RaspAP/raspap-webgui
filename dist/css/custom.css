@@ -6,11 +6,6 @@
 	margin-right: 5px;
 }
 
-/*.sidebar {
-	margin-top: 35px;
-	width: 200px;
-}*/
-
 .panel-primary {
 	border-color: #c61931;
 }
@@ -22,10 +17,6 @@
 
 .panel-footer {
 	background-color: #f2f1f0;
-}
-
-.panel-body.wireless {
-	margin-bottom: 20px;
 }
 
 .btn-primary.btn-outline {
