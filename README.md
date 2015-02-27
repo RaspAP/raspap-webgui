@@ -23,9 +23,8 @@ After that, enable PHP for lighttpd and restart it for the settings to take effe
 sudo lighty-enable-mod fastcgi-php
 /etc/init.d/lighttpd restart
 ```
-Now, comes the fun part.
-For security reasons, the www-data user which lighttpd runs under is not allowed to start or stop daemons, or run commands like ifdown and ifup, all of which we want our page to do.
-So what I have done is added the www-data user to the sudoers file, but with restrictions on what commands the user can run.
+Now comes the fun part. For security reasons, the `www-data` user which lighttpd runs under is not allowed to start or stop daemons, or run commands like ifdown and ifup, all of which we want our page to do.
+So what I have done is added the `www-data` user to the sudoers file, but with restrictions on what commands the user can run.
 Add the following to the end of  `/etc/sudoers`: 
 
 ```sh
