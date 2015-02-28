@@ -164,7 +164,6 @@ function DisplayDashboard(){
 	                    <div class="col-md-6">
 	                        <div class="panel panel-default">
 		                        <div class="panel-body">
-
 		                        <h4>Interface Information</h4>
 		                        Interface Name : wlan0<br />
 								IP Address : <?php echo $strIPAddress ?><br />
@@ -176,7 +175,6 @@ function DisplayDashboard(){
 								Received Bytes : <?php echo $strRxBytes ?><br /><br />
 								Transferred Packets : <?php echo $strTxPackets ?><br />
 								Transferred Bytes : <?php echo $strTxBytes ?><br />
-
 								</div><!-- /.panel-body -->
 							</div><!-- /.panel-default -->
 	                    </div><!-- /.col-md-6 -->
@@ -227,7 +225,7 @@ function DisplayDashboard(){
 		        </div><!-- /.panel-default -->
 		    </div><!-- /.col-lg-12 -->
 		</div><!-- /.row -->
-		<?php 
+	<?php 
 }
 
 /**
@@ -270,8 +268,6 @@ update_config=1
 								}
 							}
 						}
-						var_dump($config);
-
 						exec( "echo '$config' > /tmp/wifidata", $return );
 						system( 'sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval );
 						if( $returnval == 0 ) {
@@ -346,7 +342,7 @@ update_config=1
 						echo $output;
 					}
 					?>
-				<script type="text/Javascript">UpdateNetworks(this)</script>
+					<script type="text/Javascript">UpdateNetworks(this)</script>
 				</form>
 				</div><!-- ./ Panel body -->
 		    </div><!-- /.panel-primary -->
@@ -523,11 +519,11 @@ function DisplayHostAPDConfig(){
 				};
 				?>
 				</form>
-		</div><!-- ./ Panel body -->
-    </div><!-- /.panel-primary -->
-    <div class="panel-footer"> Information provided by hostapd</div>
-</div><!-- /.col-lg-12 -->
-</div><!-- /.row -->
+			</div><!-- ./ Panel body -->
+	    </div><!-- /.panel-primary -->
+	    <div class="panel-footer"> Information provided by hostapd</div>
+	</div><!-- /.col-lg-12 -->
+	</div><!-- /.row -->
 <?php 
 }
 
@@ -658,7 +654,7 @@ function DisplayDHCPConfig() {
 								<th>IP Address</th>
 								<th>Host name</th>
 								<th>Client ID</th>
-								</tr>
+							</tr>
 						</thead>
 						<tbody>
 							<tr>
