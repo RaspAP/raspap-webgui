@@ -10,13 +10,23 @@ We'd be curious to hear about how you use this with your own Pi-powered access p
 
 ## Contents
 
+ - [Prerequisites](#prerequisites)
  - [Installation](#installation)
  - [How to contribute](#how-to-contribute)
+
+## Prerequisites
+You need to install some extra software in order for the Raspberry Pi to act as a WiFi router and access point. If all you're interested in is configuring your RPi as a client on an existing WiFi network, you can skip this step. 
+
+There are many guides available to help you select a WiFi adapter, install a compatible driver, configure HostAPD and so on. The details are outside the scope of this project, although I've had consistently good results with the [**Edimax Wireless 802.11b/g/n nano USB adapter**](http://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_n150/ew-7811un) – it's small, cheap and easy to work with.
+
+To configure your RPi as a WiFi router, either of these resources will get you started on the right track: 
+* [**How To : Use The Raspberry Pi As A Wireless Access Point/Router Part 1**](http://sirlagz.net/2012/08/09/how-to-use-the-raspberry-pi-as-a-wireless-access-pointrouter-part-1/)
+* [**How-To: Turn a Raspberry Pi into a WiFi router**](http://raspberrypihq.com/how-to-turn-a-raspberry-pi-into-a-wifi-router/) (uses isc-dhcp-server instead of dnsmasq)
 
 ## Installation
 Start off by installing lighttpd and php5.
 ```sh
-$ apt-get install lighttpd php5-cgi
+$ sudo apt-get install lighttpd php5-cgi
 ```
 After that, enable PHP for lighttpd and restart it for the settings to take effect.
 ```sh
