@@ -12,7 +12,7 @@ We'd be curious to hear about how you use this with your own Pi-powered access p
 
  - [Prerequisites](#prerequisites)
  - [Installation](#installation)
- - [Optional services](#optional)
+ - [Optional services](#optional-services)
  - [How to contribute](#how-to-contribute)
  - [License](#license)
 
