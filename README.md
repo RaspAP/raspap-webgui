@@ -7,6 +7,7 @@ This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/scr
 We'd be curious to hear about how you use this with your own Pi-powered access points. Ping us on Twitter ([**@billzimmerman**](https://twitter.com/billzimmerman) and [**@SirLagz**](https://twitter.com/SirLagz)). Until then, here are some screenshots:
 
 ![](http://i.imgur.com/c09ZTQS.png)
+![](http://i.imgur.com/661O9Fx.png)
 ![](http://i.imgur.com/n0P3KXl.png)
 ## Contents
 
