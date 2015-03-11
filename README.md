@@ -72,7 +72,7 @@ OpenVPN and TOR are two additional services that run perfectly well on the RPi, 
 define('RASPI_OPENVPN_ENABLED', false );
 define('RASPI_TORPROXY_ENABLED', false );
 ```
-Please note that these are simply UI's only for now. If there's enough demand I'll complete the funtionality for these optional admin screens.
+Please note that these are only UI's for now. If there's enough interest I'll complete the funtionality for these optional admin screens.
 
 ## How to contribute
 
