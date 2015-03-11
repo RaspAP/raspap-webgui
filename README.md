@@ -4,24 +4,28 @@ A simple, responsive web interface to control wifi, hostapd and related services
 
 This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/IronSummitMedia/startbootstrap-sb-admin-2), a Bootstrap based admin theme :smile:
 
-We'd be curious to hear about how you use this with your own Pi-powered access points. Ping us on Twitter ([**@billzimmerman**](https://twitter.com/billzimmerman) and [**@SirLagz**](https://twitter.com/SirLagz)). Until then, here's a screenshot:
+We'd be curious to hear about how you use this with your own Pi-powered access points. Ping us on Twitter ([**@billzimmerman**](https://twitter.com/billzimmerman) and [**@SirLagz**](https://twitter.com/SirLagz)). Until then, here's some screenshots:
 
 ![](http://i.imgur.com/c09ZTQS.png)
-
+![](http://i.imgur.com/n0P3KXl.png)
 ## Contents
 
  - [Prerequisites](#prerequisites)
  - [Installation](#installation)
+ - [Optional services](#optional)
  - [How to contribute](#how-to-contribute)
+ - [License](#license)
 
 ## Prerequisites
 You need to install some extra software in order for the Raspberry Pi to act as a WiFi router and access point. If all you're interested in is configuring your RPi as a client on an existing WiFi network, you can skip this step. 
 
 There are many guides available to help you select a WiFi adapter, install a compatible driver, configure HostAPD and so on. The details are outside the scope of this project, although I've had consistently good results with the [**Edimax Wireless 802.11b/g/n nano USB adapter**](http://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_n150/ew-7811un) – it's small, cheap and easy to work with.
 
-To configure your RPi as a WiFi router, either of these resources will get you started on the right track: 
+To configure your RPi as a WiFi router, either of these resources will start you on the right track: 
 * [**How To : Use The Raspberry Pi As A Wireless Access Point/Router Part 1**](http://sirlagz.net/2012/08/09/how-to-use-the-raspberry-pi-as-a-wireless-access-pointrouter-part-1/)
 * [**How-To: Turn a Raspberry Pi into a WiFi router**](http://raspberrypihq.com/how-to-turn-a-raspberry-pi-into-a-wifi-router/) (uses isc-dhcp-server instead of dnsmasq)
+
+After you complete the intial setup, you'll be able to administer these services using the web UI.
 
 ## Installation
 Start off by installing lighttpd and php5.
@@ -58,6 +62,17 @@ Reboot and it should be up and running!
 ```sh
 sudo reboot
 ```
+
+## Optional services
+OpenVPN and TOR are two additional services that run perfectly well on the RPi, and are a nice way to extend the usefulness of your WiFi router. I've started on interfaces to administer these services. Not everyone will need them, so for the moment they are disabled by default. You can enable them by changing these options in `index.php`:
+
+```sh
+// Optional services, set to true to enable.
+define('RASPI_OPENVPN_ENABLED', false );
+define('RASPI_TORPROXY_ENABLED', false );
+```
+Please note that these are simply UI's only for now. If there's enough demand I'll complete the funtionality for these optional admin screens.
+
 ## How to contribute
 
 1. File an issue in the repository, using the bug tracker, describing the
