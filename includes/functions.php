@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
 *
@@ -348,7 +348,7 @@ update_config=1
 		    </div><!-- /.panel-primary -->
 		</div><!-- /.col-lg-12 -->
 	</div><!-- /.row -->
-<?
+<?php
 }
 
 /**
