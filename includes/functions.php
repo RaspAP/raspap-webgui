@@ -988,12 +988,12 @@ function DisplayTorProxyConfig(){
 */
 function SaveHostAPDConfig(){
 	if( isset($_POST['SaveHostAPDSettings']) ) {
-		$config = 'driver=nl80211
-		ctrl_interface='. RASPI_HOSTAPD_CTRL_INTERFACE .'
-		ctrl_interface_group=0
-		beacon_int=100
-		auth_algs=1
-		wpa_key_mgmt=WPA-PSK';
+		$config = 'driver=nl80211'.PHP_EOL
+			.'ctrl_interface='.RASPI_HOSTAPD_CTRL_INTERFACE.PHP_EOL
+			.'ctrl_interface_group=0'.PHP_EOL
+			.'beacon_int=100'.PHP_EOL
+			.'auth_algs=1'.PHP_EOL
+			.'wpa_key_mgmt=WPA-PSK'.PHP_EOL;
 
 		$config .= "interface=".$_POST['interface'].PHP_EOL;
 		$config .= "ssid=".$_POST['ssid'].PHP_EOL;
