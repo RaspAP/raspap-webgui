@@ -59,10 +59,18 @@ Set the files ownership to `www-data` user.
 ```sh
 sudo chown -R www-data:www-data /var/www
 ```
+Move the RaspAP configuration file to the correct location
+```sh
+sudo mkdir /etc/raspad
+sudo mv /var/www/raspad.php /etc/raspad/
+sudo chown -R www-data:www-data /etc/raspad
+```
 Reboot and it should be up and running!
 ```sh
 sudo reboot
 ```
+
+The default username is 'admin' and the default password is 'secret'.
 
 ## Optional services
 OpenVPN and TOR are two additional services that run perfectly well on the RPi, and are a nice way to extend the usefulness of your WiFi router. I've started on interfaces to administer these services. Not everyone will need them, so for the moment they are disabled by default. You can enable them by changing these options in `index.php`:
