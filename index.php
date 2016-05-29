@@ -20,6 +20,9 @@
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
 
+define('RASPI_CONFIG', '/etc/raspap');
+define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
+
 // Constants for configuration file paths.
 // These are typical for default RPi installs. Modify if needed.
 define('RASPI_DNSMASQ_CONFIG', '/etc/dnsmasq.conf');
@@ -36,6 +39,9 @@ define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_OPENVPN_ENABLED', false );
 define('RASPI_TORPROXY_ENABLED', false );
 
+include_once( RASPI_CONFIG.'/raspap.php' );
+include_once( 'includes/authenticate.php' );
+include_once( 'includes/admin.php' );
 include_once( 'includes/functions.php' );
 
 $output = $return = 0;
@@ -94,7 +100,7 @@ $page = $_GET['page'];
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	            </button>
-	            <a class="navbar-brand" href="index.html">RaspAP Wifi Portal v1.0</a>
+	            <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.0</a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -124,6 +130,9 @@ $page = $_GET['page'];
 	                        <a href="index.php?page=torproxy_conf"><i class="fa fa-eye-slash fa-fw"></i> Configure TOR proxy</a>
 	                    </li>
 	                	<?php endif; ?>
+	                    <li>
+	                        <a href="index.php?page=admin_conf"><i class="fa fa-dashboard fa-fw"></i> Configure RaspAP</a>
+	                    </li>
 	                </ul>
 	            </div><!-- /.navbar-collapse -->
 	        </div><!-- /.navbar-default -->
@@ -160,6 +169,9 @@ $page = $_GET['page'];
 					break;
 				case "torproxy_conf":
 					DisplayTorProxyConfig();
+					break;
+				case "admin_conf":
+					DisplayRaspAPConfig($config['admin_user'], $config['admin_pass']);
 					break;
 				case "save_hostapd_conf":
 					SaveHostAPDConfig();
