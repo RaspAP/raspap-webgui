@@ -409,7 +409,7 @@ function DisplayHostAPDConfig(){
 						<label for="code">Interface</label>
 						<select class="form-control" name="interface">
 						<?php
-							exec("cat /proc/net/dev | tail -n -3 | awk -F :\  ' { print $1 } ' | tr -d ' '", $interfaces);
+							exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
 							foreach( $interfaces as $int ) {
 								$select = '';
 								if( $int == $arrConfig['interface'] ) {
@@ -586,7 +586,7 @@ function DisplayDHCPConfig() {
 				<label for="code">Interface</label>
 				<select class="form-control" name="interface">
 				<?php 
-				exec( "cat /proc/net/dev | tail -n -3 | awk -F :\  ' { print $1 } ' | tr -d ' '", $interfaces );
+				exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
 				
 				foreach( $interfaces as $int ) {
 					$select = '';
