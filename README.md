@@ -61,9 +61,9 @@ sudo chown -R www-data:www-data /var/www
 ```
 Move the RaspAP configuration file to the correct location
 ```sh
-sudo mkdir /etc/raspad
-sudo mv /var/www/raspad.php /etc/raspad/
-sudo chown -R www-data:www-data /etc/raspad
+sudo mkdir /etc/raspap
+sudo mv /var/www/raspap.php /etc/raspap/
+sudo chown -R www-data:www-data /etc/raspap
 ```
 Reboot and it should be up and running!
 ```sh
