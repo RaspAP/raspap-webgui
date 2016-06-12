@@ -28,3 +28,8 @@
 	background-color: #c61931;
 	border-color: #c61931;
 }
+
+.info-item {
+	width: 160px;
+	float: left;
+}
