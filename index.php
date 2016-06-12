@@ -133,6 +133,9 @@ $page = $_GET['page'];
 	                    <li>
 	                        <a href="index.php?page=admin_conf"><i class="fa fa-dashboard fa-fw"></i> Configure RaspAP</a>
 	                    </li>
+	                    <li>
+	                        <a href="index.php?page=system_info"><i class="fa fa-circle fa-fw"></i> System</a>
+	                    </li>
 	                </ul>
 	            </div><!-- /.navbar-collapse -->
 	        </div><!-- /.navbar-default -->
@@ -175,6 +178,9 @@ $page = $_GET['page'];
 					break;
 				case "save_hostapd_conf":
 					SaveHostAPDConfig();
+					break;
+				case "system_info":
+					DisplaySystem();
 					break;
 				default:
 					DisplayDashboard();
