@@ -1,8 +1,8 @@
 ![](http://i.imgur.com/xeKD93p.png)
-# `$ raspap-webgui` [![Release 1.0](https://img.shields.io/badge/Release-1.0-green.svg)](https://github.com/billz/raspap-webgui/releases)
+# `$ raspap-webgui` [![Release 1.1](https://img.shields.io/badge/Release-1.1-green.svg)](https://github.com/billz/raspap-webgui/releases)
 A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
-This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/IronSummitMedia/startbootstrap-sb-admin-2), a Bootstrap based admin theme :smile:
+This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/IronSummitMedia/startbootstrap-sb-admin-2), a Bootstrap based admin theme.
 
 We'd be curious to hear about how you use this with your own Pi-powered access points. Ping us on Twitter ([**@billzimmerman**](https://twitter.com/billzimmerman) and [**@SirLagz**](https://twitter.com/SirLagz)). Until then, here are some screenshots:
 
@@ -23,7 +23,7 @@ You need to install some extra software in order for the Raspberry Pi to act as 
 There are many guides available to help you select a WiFi adapter, install a compatible driver, configure HostAPD and so on. The details are outside the scope of this project, although I've had consistently good results with the [**Edimax Wireless 802.11b/g/n nano USB adapter**](http://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_n150/ew-7811un) – it's small, cheap and easy to work with.
 
 To configure your RPi as a WiFi router, either of these resources will start you on the right track: 
-* [**How To : Use The Raspberry Pi As A Wireless Access Point/Router Part 1**](http://sirlagz.net/2012/08/09/how-to-use-the-raspberry-pi-as-a-wireless-access-pointrouter-part-1/)
+* [**How-To: Use The Raspberry Pi As A Wireless Access Point/Router Part 1**](http://sirlagz.net/2012/08/09/how-to-use-the-raspberry-pi-as-a-wireless-access-pointrouter-part-1/)
 * [**How-To: Turn a Raspberry Pi into a WiFi router**](http://raspberrypihq.com/how-to-turn-a-raspberry-pi-into-a-wifi-router/) (uses isc-dhcp-server instead of dnsmasq)
 
 After you complete the intial setup, you'll be able to administer these services using the web UI.
