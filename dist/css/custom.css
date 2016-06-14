@@ -11,8 +11,8 @@
 }
 
 .panel-primary>.panel-heading {
-	border-color: #c61931;
-	background-color: #c61931;
+	border-color: #d8224c;
+	background-color: #d8224c;
 }
 
 .panel-footer {
@@ -30,6 +30,6 @@
 }
 
 .info-item {
-	width: 160px;
+	width: 140px;
 	float: left;
 }
