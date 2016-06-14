@@ -1027,7 +1027,7 @@ function DisplaySystem(){
 	<div class="row">
 	<div class="col-lg-12">
 	<div class="panel panel-primary">
-	<div class="panel-heading"><i class="fa fa-circle fa-fw"></i> System</div>
+	<div class="panel-heading"><i class="fa fa-cube fa-fw"></i> System</div>
 	<div class="panel-body">
 
 		<?php
