@@ -100,7 +100,7 @@ $page = $_GET['page'];
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	            </button>
-	            <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.0</a>
+	            <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.1</a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -131,10 +131,10 @@ $page = $_GET['page'];
 	                    </li>
 	                	<?php endif; ?>
 	                    <li>
-	                        <a href="index.php?page=admin_conf"><i class="fa fa-dashboard fa-fw"></i> Configure RaspAP</a>
+	                        <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> Configure Auth</a>
 	                    </li>
 	                    <li>
-	                        <a href="index.php?page=system_info"><i class="fa fa-circle fa-fw"></i> System</a>
+	                        <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> System</a>
 	                    </li>
 	                </ul>
 	            </div><!-- /.navbar-collapse -->
@@ -147,7 +147,7 @@ $page = $_GET['page'];
 		    <div class="row">
 		        <div class="col-lg-12">
 		            <h1 class="page-header">
-		                <img class="logo" src="img/raspAP-logo.png" width="45" height="45">RaspAP <small>WiFi Configuration Portal</small>
+		                <img class="logo" src="img/raspAP-logo.png" width="45" height="45">RaspAP
 		            </h1>
 		        </div>
 		    </div><!-- /.row -->
@@ -173,8 +173,8 @@ $page = $_GET['page'];
 				case "torproxy_conf":
 					DisplayTorProxyConfig();
 					break;
-				case "admin_conf":
-					DisplayRaspAPConfig($config['admin_user'], $config['admin_pass']);
+				case "auth_conf":
+					DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
 					break;
 				case "save_hostapd_conf":
 					SaveHostAPDConfig();
