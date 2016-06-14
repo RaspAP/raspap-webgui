@@ -10,13 +10,11 @@
  * php5-cgi (I have version 5.4.4-12 installed via apt)
  * along with their supporting packages, php5 will also need to be enabled.
  * 
- * LICENSE: TODO
- *
  * @author     Lawrence Yau <sirlagz@gmail.comm>
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
- * @license    TBD
- * @version    1.0
- * @link       https://github.com/
+ * @license    GNU General Public License, version 3 (GPL-3.0)
+ * @version    1.1
+ * @link       https://github.com/billz/raspap-webgui
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
 
