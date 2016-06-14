@@ -10,7 +10,7 @@ function Status($message, $level='success', $dismissable=true) {
 	return $status;
 }
 
-function DisplayRaspAPConfig($username, $password){
+function DisplayAuthConfig($username, $password){
   $status = '';
   if (isset($_POST['UpdateAdminPassword'])) {
 		if (password_verify($_POST['oldpass'], $password)) {
@@ -38,7 +38,7 @@ function DisplayRaspAPConfig($username, $password){
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-primary">
-				<div class="panel-heading"><i class="fa fa-dashboard fa-fw"></i>RaspAP Configuration</div>
+				<div class="panel-heading"><i class="fa fa-lock fa-fw"></i>Configure Auth</div>
 				<div class="panel-body">
 					<p><?php echo $status; ?></p>
 					<form role="form" action="/?page=admin_conf" method="POST">
