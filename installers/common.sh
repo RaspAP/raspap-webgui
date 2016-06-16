@@ -48,7 +48,7 @@ function install_dependencies() {
 function enable_php_lighttpd() {
     install_log "Enabling PHP for lighttpd"
 
-    sudo lighty-enable-mod fastcgi-php || install_error "Unable to enable fastcgi-php for lighttpd"
+    sudo lighty-enable-mod fastcgi-php || install_error "Cannot enable fastcgi-php for lighttpd"
     sudo /etc/init.d/lighttpd restart || install_error "Unable to restart lighttpd"
 }
 
