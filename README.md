@@ -12,7 +12,8 @@ We'd be curious to hear about how you use this with your own Pi-powered access p
 ## Contents
 
  - [Prerequisites](#prerequisites)
- - [Installation](#installation)
+ - [Quick installer](#quick-installer)
+ - [Manual installation](#manual-installation)
  - [Optional services](#optional-services)
  - [How to contribute](#how-to-contribute)
  - [License](#license)
@@ -28,7 +29,14 @@ To configure your RPi as a WiFi router, either of these resources will start you
 
 After you complete the intial setup, you'll be able to administer these services using the web UI.
 
-## Installation
+## Quick installer
+Install RaspAP from your RaspberryPi's shell prompt:
+```sh
+$ wget -q https://git.io/voEUQ -O /tmp/raspap && bash /tmp/raspap
+```
+The installer will complete the steps in the manual installation (below) for you.
+
+## Manual installation
 Start off by installing lighttpd and php5.
 ```sh
 $ sudo apt-get install lighttpd php5-cgi
