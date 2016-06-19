@@ -21,9 +21,10 @@ function GetDistString( $input,$string,$offset,$separator ) {
 function ParseConfig( $arrConfig ) {
 	$config = array();
 	foreach( $arrConfig as $line ) {
-		if( $line[0] != "#" ) {
+		$line = trim($line);
+		if( $line != "" && $line[0] != "#" ) {
 			$arrLine = explode( "=",$line );
-			$config[$arrLine[0]] = $arrLine[1];
+			$config[$arrLine[0]] = ( count($arrLine) > 1 ? $arrLine[1] : true );
 		}
 	}
 	return $config;
