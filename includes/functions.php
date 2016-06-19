@@ -110,7 +110,7 @@ function DisplayDashboard(){
 	$strRxPackets = $result[1];
 	preg_match( '/TX packets:(\d+)/',$strWlan0,$result );
 	$strTxPackets = $result[1];
-	preg_match( '//RX bytes:(\d+)/i',$strWlan0,$result );
+	preg_match( '/RX bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result );
 	$strRxBytes = $result[1];
 	preg_match( '/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result );
 	$strTxBytes = $result[1];
