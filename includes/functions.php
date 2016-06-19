@@ -677,7 +677,7 @@ function DisplayDHCPConfig() {
 				</div><!-- /.table-responsive -->
 			</div><!-- /.panel-body -->
 			</div><!-- /.panel -->
-		</div><!-- /.col-lg-6 -->'
+		</div><!-- /.col-lg-6 -->
 		<?php 
 		if( isset( $_POST['savedhcpdsettings'] ) ) {
 			$config = 'interface='.$_POST['interface'].'
