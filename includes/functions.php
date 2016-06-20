@@ -21,9 +21,10 @@ function GetDistString( $input,$string,$offset,$separator ) {
 function ParseConfig( $arrConfig ) {
 	$config = array();
 	foreach( $arrConfig as $line ) {
-		if( $line[0] != "#" ) {
+		$line = trim($line);
+		if( $line != "" && $line[0] != "#" ) {
 			$arrLine = explode( "=",$line );
-			$config[$arrLine[0]] = $arrLine[1];
+			$config[$arrLine[0]] = ( count($arrLine) > 1 ? $arrLine[1] : true );
 		}
 	}
 	return $config;
@@ -110,7 +111,7 @@ function DisplayDashboard(){
 	$strRxPackets = $result[1];
 	preg_match( '/TX packets:(\d+)/',$strWlan0,$result );
 	$strTxPackets = $result[1];
-	preg_match( '//RX bytes:(\d+)/i',$strWlan0,$result );
+	preg_match( '/RX bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result );
 	$strRxBytes = $result[1];
 	preg_match( '/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result );
 	$strTxBytes = $result[1];
@@ -236,7 +237,7 @@ function DisplayDashboard(){
 *
 */
 function DisplayWPAConfig(){
-
+	$status = '';
 	?>
 	<div class="row">
 		<div class="col-lg-12">
@@ -677,7 +678,7 @@ function DisplayDHCPConfig() {
 				</div><!-- /.table-responsive -->
 			</div><!-- /.panel-body -->
 			</div><!-- /.panel -->
-		</div><!-- /.col-lg-6 -->'
+		</div><!-- /.col-lg-6 -->
 		<?php 
 		if( isset( $_POST['savedhcpdsettings'] ) ) {
 			$config = 'interface='.$_POST['interface'].'
