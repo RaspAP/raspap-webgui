@@ -2,6 +2,26 @@
 
 /**
 *
+* Add CSRF Token to form
+*
+*/
+function CSRFToken() {
+?>
+<input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>" />
+<?php
+}
+
+/**
+*
+* Validate CSRF Token
+*
+*/
+function CSRFValidate() {
+  return hash_equals($_POST['csrf_token'], $_SESSION['csrf_token']);
+}
+
+/**
+*
 * @param string $input
 * @param string $string
 * @param int $offset
