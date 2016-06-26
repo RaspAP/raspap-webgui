@@ -11,10 +11,10 @@ function Status($message, $level='success', $dismissable=true) {
 }
 
 function DisplayAuthConfig($username, $password){
-  $status = '';
-  if (isset($_POST['UpdateAdminPassword'])) {
-    if (CSRFValidate()) {
-      if (password_verify($_POST['oldpass'], $password)) {
+	$status = '';
+	if (isset($_POST['UpdateAdminPassword'])) {
+		if (CSRFValidate()) {
+			if (password_verify($_POST['oldpass'], $password)) {
 				$new_username=trim($_POST['username']);
 				if ($_POST['newpass'] != $_POST['newpassagain']) {
 					$status = Status('New passwords do not match', 'danger');
@@ -35,7 +35,7 @@ function DisplayAuthConfig($username, $password){
 				$status = Status('Old password does not match', 'danger');
 			}
     } else {
-      // Log something
+			error_log('CSRF violation');
     }
   }
 ?>
@@ -45,8 +45,8 @@ function DisplayAuthConfig($username, $password){
 				<div class="panel-heading"><i class="fa fa-lock fa-fw"></i>Configure Auth</div>
 				<div class="panel-body">
 					<p><?php echo $status; ?></p>
-					<form role="form" action="/?page=admin_conf" method="POST">
-            <?php CSRFToken() ?>
+					<form role="form" action="/?page=auth_conf" method="POST">
+						<?php CSRFToken() ?>
 						<div class="row">
 							<div class="form-group col-md-4">
 								<label for="username">Username</label>

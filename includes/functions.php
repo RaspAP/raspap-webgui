@@ -7,7 +7,7 @@
 */
 function CSRFToken() {
 ?>
-<input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>" />
+<input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
 <?php
 }
 
