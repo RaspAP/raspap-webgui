@@ -11,28 +11,32 @@ function Status($message, $level='success', $dismissable=true) {
 }
 
 function DisplayAuthConfig($username, $password){
-  $status = '';
-  if (isset($_POST['UpdateAdminPassword'])) {
-		if (password_verify($_POST['oldpass'], $password)) {
-			$new_username=trim($_POST['username']);
-			if ($_POST['newpass'] != $_POST['newpassagain']) {
-				$status = Status('New passwords do not match', 'danger');
-			} else if ($new_username == '') {
-				$status = Status('Username must not be empty', 'danger');
-			} else {
-				if ($auth_file = fopen(RASPI_ADMIN_DETAILS, 'w')) {
-					fwrite($auth_file, $new_username.PHP_EOL);
-					fwrite($auth_file, password_hash($_POST['newpass'], PASSWORD_BCRYPT).PHP_EOL);
-					fclose($auth_file);
-					$username = $new_username;
-					$status = Status('Admin password updated');
+	$status = '';
+	if (isset($_POST['UpdateAdminPassword'])) {
+		if (CSRFValidate()) {
+			if (password_verify($_POST['oldpass'], $password)) {
+				$new_username=trim($_POST['username']);
+				if ($_POST['newpass'] != $_POST['newpassagain']) {
+					$status = Status('New passwords do not match', 'danger');
+				} else if ($new_username == '') {
+					$status = Status('Username must not be empty', 'danger');
 				} else {
-					$status = Status('Failed to update admin password', 'danger');
+					if ($auth_file = fopen(RASPI_ADMIN_DETAILS, 'w')) {
+						fwrite($auth_file, $new_username.PHP_EOL);
+						fwrite($auth_file, password_hash($_POST['newpass'], PASSWORD_BCRYPT).PHP_EOL);
+						fclose($auth_file);
+						$username = $new_username;
+						$status = Status('Admin password updated');
+					} else {
+						$status = Status('Failed to update admin password', 'danger');
+					}
 				}
+			} else {
+				$status = Status('Old password does not match', 'danger');
 			}
-		} else {
-			$status = Status('Old password does not match', 'danger');
-		}
+    } else {
+			error_log('CSRF violation');
+    }
   }
 ?>
 	<div class="row">
@@ -42,6 +46,7 @@ function DisplayAuthConfig($username, $password){
 				<div class="panel-body">
 					<p><?php echo $status; ?></p>
 					<form role="form" action="/?page=auth_conf" method="POST">
+						<?php CSRFToken() ?>
 						<div class="row">
 							<div class="form-group col-md-4">
 								<label for="username">Username</label>
