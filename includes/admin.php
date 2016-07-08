@@ -1,38 +1,30 @@
 <?php
 
-function Status($message, $level='success', $dismissable=true) {
-	$status = '<div class="alert alert-'.$level;
-	if ($dismissable) $status .= ' alert-dismissable';
-	$status .= '">'.$message;
-	if ($dismissable) $status .= '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>';
-	$status .= '</div>';
-
-	return $status;
-}
+include_once( 'includes/status_messages.php' );
 
 function DisplayAuthConfig($username, $password){
-	$status = '';
+	$status = new StatusMessages();
 	if (isset($_POST['UpdateAdminPassword'])) {
 		if (CSRFValidate()) {
 			if (password_verify($_POST['oldpass'], $password)) {
 				$new_username=trim($_POST['username']);
 				if ($_POST['newpass'] != $_POST['newpassagain']) {
-					$status = Status('New passwords do not match', 'danger');
+					$status->addMessage('New passwords do not match', 'danger');
 				} else if ($new_username == '') {
-					$status = Status('Username must not be empty', 'danger');
+					$status->addMessage('Username must not be empty', 'danger');
 				} else {
 					if ($auth_file = fopen(RASPI_ADMIN_DETAILS, 'w')) {
 						fwrite($auth_file, $new_username.PHP_EOL);
 						fwrite($auth_file, password_hash($_POST['newpass'], PASSWORD_BCRYPT).PHP_EOL);
 						fclose($auth_file);
 						$username = $new_username;
-						$status = Status('Admin password updated');
+						$status->addMessage('Admin password updated');
 					} else {
-						$status = Status('Failed to update admin password', 'danger');
+						$status->addMessage('Failed to update admin password', 'danger');
 					}
 				}
 			} else {
-				$status = Status('Old password does not match', 'danger');
+				$status->addMessage('Old password does not match', 'danger');
 			}
     } else {
 			error_log('CSRF violation');
@@ -44,7 +36,7 @@ function DisplayAuthConfig($username, $password){
 			<div class="panel panel-primary">
 				<div class="panel-heading"><i class="fa fa-lock fa-fw"></i>Configure Auth</div>
 				<div class="panel-body">
-					<p><?php echo $status; ?></p>
+					<p><?php $status->showMessages(); ?></p>
 					<form role="form" action="/?page=auth_conf" method="POST">
 						<?php CSRFToken() ?>
 						<div class="row">
