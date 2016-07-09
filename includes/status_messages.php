@@ -15,8 +15,8 @@ class StatusMessages {
   public function showMessages($clear = true) {
     foreach($this->messages as $message) {
       echo $message;
-		}
-		if ( $clear ) $this->messages = array();
-	}
+    }
+    if ( $clear ) $this->messages = array();
+  }
 }
 ?>
