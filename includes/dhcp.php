@@ -36,11 +36,18 @@ function DisplayDHCPConfig() {
         $status->addMessage('dnsmasq already running', 'info');
       } else {
         $line = system('sudo /etc/init.d/dnsmasq start',$return);
-        exec( 'pidof dnsmasq | wc -l',$dnsmasq );
-        if ($dnsmasq[0] == 0) {
+        $n_tries = 0;
+        while ($n_tries < 5) {
+          exec( 'pidof dnsmasq | wc -l',$dnsmasq );
+          if (end($dnsmasq) > 0) break;
+          sleep(1);
+          $n_tries += 1;
+        }
+        if (end($dnsmasq) == 0) {
           $status->addMessage('Failed to start dnsmasq', 'danger');
         } else {
           $status->addMessage('Successfully started dnsmasq', 'success');
+          $dnsmasq_state = true;
         }
       }
     } else {
@@ -50,9 +57,16 @@ function DisplayDHCPConfig() {
     if (CSRFValidate()) {
       if ($dnsmasq_state) {
         $line = system('sudo /etc/init.d/dnsmasq stop',$return);
-        exec( 'pidof dnsmasq | wc -l',$dnsmasq );
-        if ($dnsmasq[0] == 0) {
+        $n_tries = 0;
+        while ($n_tries < 5) {
+          exec( 'pidof dnsmasq | wc -l',$dnsmasq );
+          if (end($dnsmasq) == 0) break;
+          sleep(1);
+          $n_tries += 1;
+        }
+        if (end($dnsmasq) == 0) {
           $status->addMessage('Successfully stopped dnsmasq', 'success');
+          $dnsmasq_state = false;
         } else {
           $status->addMessage('Failed to stop dnsmasq', 'danger');
         }
