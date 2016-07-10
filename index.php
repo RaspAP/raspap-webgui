@@ -38,9 +38,10 @@ define('RASPI_OPENVPN_ENABLED', false );
 define('RASPI_TORPROXY_ENABLED', false );
 
 include_once( RASPI_CONFIG.'/raspap.php' );
+include_once( 'includes/functions.php' );
 include_once( 'includes/authenticate.php' );
 include_once( 'includes/admin.php' );
-include_once( 'includes/functions.php' );
+include_once( 'includes/dhcp.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
