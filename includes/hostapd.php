@@ -175,3 +175,79 @@ function DisplayHostAPDConfig(){
 <?php 
 }
 ?>
+<?php
+
+/**
+*
+*
+*/
+function SaveHostAPDConfig(){
+  if( isset($_POST['SaveHostAPDSettings']) ) {
+    $config = 'driver=nl80211'.PHP_EOL
+      .'ctrl_interface='.RASPI_HOSTAPD_CTRL_INTERFACE.PHP_EOL
+      .'ctrl_interface_group=0'.PHP_EOL
+      .'beacon_int=100'.PHP_EOL
+      .'auth_algs=1'.PHP_EOL
+      .'wpa_key_mgmt=WPA-PSK'.PHP_EOL;
+
+    $config .= "interface=".$_POST['interface'].PHP_EOL;
+    $config .= "ssid=".$_POST['ssid'].PHP_EOL;
+    $config .= "hw_mode=".$_POST['hw_mode'].PHP_EOL;
+    $config .= "channel=".$_POST['channel'].PHP_EOL;
+    $config .= "wpa=".$_POST['wpa'].PHP_EOL;
+    $config .='wpa_passphrase='.$_POST['wpa_passphrase'].PHP_EOL;
+    $config .="wpa_pairwise=".$_POST['wpa_pairwise'].PHP_EOL;
+    $config .="country_code=".$_POST['country_code'];
+
+    exec( "echo '$config' > /tmp/hostapddata", $return );
+    system( "sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $return );
+    
+      if( $return == 0 ) {
+      echo "Wifi Hotspot settings saved";
+    } else {
+      echo "Wifi Hotspot settings failed to be saved";
+    }
+  } elseif( isset($_POST['SaveOpenVPNSettings']) ) {
+    // TODO
+  } elseif( isset($_POST['SaveTORProxySettings']) ) {
+    // TODO
+  } elseif( isset($_POST['StartHotspot']) ) {
+    echo "Attempting to start hotspot";
+    exec( 'sudo /etc/init.d/hostapd start', $return );
+    foreach( $return as $line ) {
+      echo $line."<br />";
+    }
+  } elseif( isset($_POST['StopHotspot']) ) {
+    echo "Attempting to stop hotspot";
+    exec( 'sudo /etc/init.d/hostapd stop', $return );
+    foreach( $return as $line ) {
+      echo $line."<br />";
+    }
+  } elseif( isset($_POST['StartOpenVPN']) ) {
+    echo "Attempting to start openvpn";
+    exec( 'sudo /etc/init.d/openvpn start', $return );
+    foreach( $return as $line ) {
+      echo $line."<br />";
+    }
+  } elseif( isset($_POST['StopOpenVPN']) ) {
+    echo "Attempting to stop openvpn";
+    exec( 'sudo /etc/init.d/openvpn stop', $return );
+    foreach( $return as $line ) {
+      echo $line."<br />";
+    }
+  } elseif( isset($_POST['StartTOR']) ) {
+    echo "Attempting to start TOR";
+    exec( 'sudo /etc/init.d/tor start', $return );
+    foreach( $return as $line ) {
+      echo $line."<br />";
+    }
+  } elseif( isset($_POST['StopTOR']) ) {
+    echo "Attempting to stop TOR";
+    exec( 'sudo /etc/init.d/tor stop', $return );
+    foreach( $return as $line ) {
+      echo $line."<br />";
+    }
+  }
+}
+?>
+
