@@ -59,8 +59,8 @@ $csrf_token = $_SESSION['csrf_token'];
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -96,106 +96,106 @@ $csrf_token = $_SESSION['csrf_token'];
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
-<body>
+  </head>
+  <body>
 
-	<div id="wrapper">
-		<!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	                <span class="sr-only">Toggle navigation</span>
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	            </button>
-	            <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.1</a>
-			</div>
-			<!-- /.navbar-header -->
+    <div id="wrapper">
+      <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.1</a>
+        </div>
+        <!-- /.navbar-header -->
 
-			<!-- Navigation -->      
-	        <div class="navbar-default sidebar" role="navigation">
-	            <div class="sidebar-nav navbar-collapse">
-	                <ul class="nav" id="side-menu">
-	                    <li>
-	                        <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-	                    </li>
-	                    <li>
-	                        <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> Configure client</a>
-	                    </li>
-	                    <li>
-	                        <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure hotspot</a>
-	                    </li>
-	                    <li>
-	                        <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP</a>
-	                    </li>
-	                    <?php if ( RASPI_OPENVPN_ENABLED ) : ?>
-	                    <li>
-	                        <a href="index.php?page=openvpn_conf"><i class="fa fa-lock fa-fw"></i> Configure OpenVPN</a>
-	                    </li>
-	                	<?php endif; ?>
-	                	<?php if ( RASPI_TORPROXY_ENABLED ) : ?>
-	                    <li>
-	                        <a href="index.php?page=torproxy_conf"><i class="fa fa-eye-slash fa-fw"></i> Configure TOR proxy</a>
-	                    </li>
-	                	<?php endif; ?>
-	                    <li>
-	                        <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> Configure Auth</a>
-	                    </li>
-	                    <li>
-	                        <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> System</a>
-	                    </li>
-	                </ul>
-	            </div><!-- /.navbar-collapse -->
-	        </div><!-- /.navbar-default -->
-	    </nav>
-       
-	    <div id="page-wrapper">
+        <!-- Navigation -->
+        <div class="navbar-default sidebar" role="navigation">
+          <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+              <li>
+                <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+              </li>
+              <li>
+                <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> Configure client</a>
+              </li>
+              <li>
+                <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure hotspot</a>
+              </li>
+              <li>
+                <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP</a>
+              </li>
+              <?php if ( RASPI_OPENVPN_ENABLED ) : ?>
+              <li>
+                <a href="index.php?page=openvpn_conf"><i class="fa fa-lock fa-fw"></i> Configure OpenVPN</a>
+              </li>
+              <?php endif; ?>
+              <?php if ( RASPI_TORPROXY_ENABLED ) : ?>
+              <li>
+                 <a href="index.php?page=torproxy_conf"><i class="fa fa-eye-slash fa-fw"></i> Configure TOR proxy</a>
+              </li>
+              <?php endif; ?>
+              <li>
+                <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> Configure Auth</a>
+              </li>
+              <li>
+                 <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> System</a>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.navbar-default -->
+      </nav>
 
-		    <!-- Page Heading -->
-		    <div class="row">
-		        <div class="col-lg-12">
-		            <h1 class="page-header">
-		                <img class="logo" src="img/raspAP-logo.png" width="45" height="45">RaspAP
-		            </h1>
-		        </div>
-		    </div><!-- /.row -->
+      <div id="page-wrapper">
 
-			<?php 
-			// handle page actions
-			switch( $page ) {
-				case "wlan0_info":
-					DisplayDashboard();
-					break;
-				case "dhcpd_conf":
-					DisplayDHCPConfig();
-					break;
-				case "wpa_conf":
-					DisplayWPAConfig();
-					break;
-				case "hostapd_conf":
-					DisplayHostAPDConfig();
-					break;
-				case "openvpn_conf":
-					DisplayOpenVPNConfig();
-					break;
-				case "torproxy_conf":
-					DisplayTorProxyConfig();
-					break;
-				case "auth_conf":
-					DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
-					break;
-				case "save_hostapd_conf":
-					SaveHostAPDConfig();
-					break;
-				case "system_info":
-					DisplaySystem();
-					break;
-				default:
-					DisplayDashboard();
-				}
-			?>
-	    </div><!-- /#page-wrapper --> 
+        <!-- Page Heading -->
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="page-header">
+              <img class="logo" src="img/raspAP-logo.png" width="45" height="45">RaspAP
+            </h1>
+          </div>
+        </div><!-- /.row -->
+
+        <?php 
+        // handle page actions
+        switch( $page ) {
+          case "wlan0_info":
+            DisplayDashboard();
+            break;
+          case "dhcpd_conf":
+            DisplayDHCPConfig();
+            break;
+          case "wpa_conf":
+            DisplayWPAConfig();
+            break;
+          case "hostapd_conf":
+            DisplayHostAPDConfig();
+            break;
+          case "openvpn_conf":
+            DisplayOpenVPNConfig();
+            break;
+          case "torproxy_conf":
+            DisplayTorProxyConfig();
+            break;
+          case "auth_conf":
+            DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
+            break;
+          case "save_hostapd_conf":
+            SaveHostAPDConfig();
+            break;
+          case "system_info":
+            DisplaySystem();
+            break;
+          default:
+            DisplayDashboard();
+        }
+        ?>
+      </div><!-- /#page-wrapper --> 
     </div><!-- /#wrapper -->
 
     <!-- RaspAP JavaScript -->
@@ -217,5 +217,5 @@ $csrf_token = $_SESSION['csrf_token'];
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
-</body>
+  </body>
 </html>
