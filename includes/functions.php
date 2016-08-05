@@ -21,6 +21,35 @@ function CSRFValidate() {
 }
 
 /**
+* Test whether array is associative
+*/
+function isAssoc($arr) {
+  return array_keys($arr) !== range(0, count($arr) - 1);
+}
+
+/**
+*
+* Display a selector field for a form. Arguments are:
+*   $name:     Field name
+*   $options:  Array of options
+*   $selected: Selected option (optional)
+*       If $options is an associative array this should be the key
+*
+*/
+function SelectorOptions($name, $options, $selected = null) {
+  echo "<select class=\"form-control\" name=\"$name\">";
+  foreach ( $options as $opt => $label) {
+    $select = '';
+    $key = isAssoc($options) ? $opt : $label;
+    if( $key == $selected ) {
+      $select = " selected";
+    }
+    echo "<option value=\"$key\"$select>$label</options>";
+  }
+  echo "</select>";
+}
+
+/**
 *
 * @param string $input
 * @param string $string
