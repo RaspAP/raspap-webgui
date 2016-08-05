@@ -10,32 +10,16 @@ function DisplayHostAPDConfig(){
 
   $status = new StatusMessages();
 
+  $arrConfig = array();
+  $arrChannel = array('a','b','g');
+  $arrSecurity = array( 1 => 'WPA', 2 => 'WPA2',3=> 'WPA+WPA2');
+  $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
+  exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
+
+
   if( isset($_POST['SaveHostAPDSettings']) ) {
     if (CSRFValidate()) {
-      $config = 'driver=nl80211'.PHP_EOL
-        .'ctrl_interface='.RASPI_HOSTAPD_CTRL_INTERFACE.PHP_EOL
-        .'ctrl_interface_group=0'.PHP_EOL
-        .'beacon_int=100'.PHP_EOL
-        .'auth_algs=1'.PHP_EOL
-        .'wpa_key_mgmt=WPA-PSK'.PHP_EOL;
-
-      $config .= "interface=".$_POST['interface'].PHP_EOL;
-      $config .= "ssid=".$_POST['ssid'].PHP_EOL;
-      $config .= "hw_mode=".$_POST['hw_mode'].PHP_EOL;
-      $config .= "channel=".$_POST['channel'].PHP_EOL;
-      $config .= "wpa=".$_POST['wpa'].PHP_EOL;
-      $config .='wpa_passphrase='.$_POST['wpa_passphrase'].PHP_EOL;
-      $config .="wpa_pairwise=".$_POST['wpa_pairwise'].PHP_EOL;
-      $config .="country_code=".$_POST['country_code'];
-
-      exec( "echo '$config' > /tmp/hostapddata", $return );
-      system( "sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $return );
-
-      if( $return == 0 ) {
-        $status->addMessage('Wifi Hotspot settings saved', 'success');
-      } else {
-        $status->addMessage('Wifi Hotspot settings failed to be saved', 'danger');
-      }
+      SaveHostAPDConfig($arrSecurity, $arrEncType, $arrChannel, $interfaces, $status);
     } else {
       error_log('CSRF violation');
     }
@@ -70,11 +54,6 @@ function DisplayHostAPDConfig(){
     $status->addMessage('HostAPD is running', 'success');
   }
 
-  $arrConfig = array();
-  $arrChannel = array('a','b','g');
-  $arrSecurity = array( 1 => 'WPA', 2 => 'WPA2',3=> 'WPA+WPA2');
-  $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
-
   foreach( $return as $a ) {
     if( $a[0] != "#" ) {
       $arrLine = explode( "=",$a) ;
@@ -84,7 +63,7 @@ function DisplayHostAPDConfig(){
   ?>
   <div class="row">
     <div class="col-lg-12">
-      <div class="panel panel-primary">           
+      <div class="panel panel-primary">
         <div class="panel-heading"><i class="fa fa-dot-circle-o fa-fw"></i> Configure hotspot</div>
         <!-- /.panel-heading -->
         <div class="panel-body">
@@ -107,7 +86,6 @@ function DisplayHostAPDConfig(){
                   <div class="form-group col-md-4">
                     <label for="code">Interface</label>
                     <?php
-                      exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
                       SelectorOptions('interface', $interfaces, $arrConfig['interface']);
                     ?>
                   </div>
@@ -142,20 +120,6 @@ function DisplayHostAPDConfig(){
                 <div class="row">
                   <div class="form-group col-md-4">
                     <label for="code">Encryption Type</label>
-                    <?php
-                      /*
-                      * NB, the original tests $arrConfig['wpa_pairwise'] against
-                      * the value in the $arrEncType array rather than the key. I
-                      * think there must be something wrong in the case of
-                      * 'TKIP CCMP' => 'TKIP+CCMP' but I am not yet sure what
-                      * exactly is correct.
-                      * At I read it, 'TKIP CCMP' would get written to the
-                      * hostapd.conf file when it is saved but the correct option
-                      * would only be selected if it reads 'TKIP+CCMP'. This is
-                      * clearly broken.
-                      * Now it is consistent, albeit possibly still broken.
-                      */
-                    ?>
                     <?php SelectorOptions('wpa_pairwise', $arrEncType, $arrConfig['wpa_pairwise']); ?>
                   </div>
                 </div>
@@ -191,44 +155,73 @@ function DisplayHostAPDConfig(){
   </div><!-- /.row -->
 <?php 
 }
-?>
-<?php
 
-/**
-*
-* NB This function is also used for TOR and VPN so don't completely delete
-*
-*/
-function SaveHostAPDConfig(){
-  if( isset($_POST['SaveOpenVPNSettings']) ) {
-    // TODO
-  } elseif( isset($_POST['SaveTORProxySettings']) ) {
-    // TODO
-  } elseif( isset($_POST['StartOpenVPN']) ) {
-    echo "Attempting to start openvpn";
-    exec( 'sudo /etc/init.d/openvpn start', $return );
-    foreach( $return as $line ) {
-      echo $line."<br />";
-    }
-  } elseif( isset($_POST['StopOpenVPN']) ) {
-    echo "Attempting to stop openvpn";
-    exec( 'sudo /etc/init.d/openvpn stop', $return );
-    foreach( $return as $line ) {
-      echo $line."<br />";
-    }
-  } elseif( isset($_POST['StartTOR']) ) {
-    echo "Attempting to start TOR";
-    exec( 'sudo /etc/init.d/tor start', $return );
-    foreach( $return as $line ) {
-      echo $line."<br />";
-    }
-  } elseif( isset($_POST['StopTOR']) ) {
-    echo "Attempting to stop TOR";
-    exec( 'sudo /etc/init.d/tor stop', $return );
-    foreach( $return as $line ) {
-      echo $line."<br />";
+function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status) {
+  // It should not be possible to send bad data for these fields so clearly
+  // someone is up to something if they fail. Fail silently.
+  if (!(array_key_exists($_POST['wpa'], $wpa_array) && array_key_exists($_POST['wpa_pairwise'], $enc_types) && in_array($_POST['hw_mode'], $modes))) {
+    error_log("Attempting to set hostapd config with wpa='".$_POST['wpa']."', wpa_pairwise='".$_POST['wpa_pairwise']."' and hw_mode='".$_POST['hw_mode']."'");
+    return false;
+  }
+  if ((!filter_var($_POST['channel'], FILTER_VALIDATE_INT)) || intval($_POST['channel']) < 1 || intval($_POST['channel']) > 14) {
+    error_log("Attempting to set channel to '".$_POST['channel']."'");
+    return false;
+  }
+
+  $good_input = true;
+
+  // Verify input
+  if (strlen($_POST['ssid']) == 0 || strlen($_POST['ssid']) > 32) {
+    // Not sure of all the restrictions of SSID
+    $status->addMessage('SSID must be between 1 and 32 characters', 'danger');
+    $good_input = false;
+  }
+  if (strlen($_POST['wpa_passphrase']) < 8 || strlen($_POST['wpa_passphrase']) > 63) {
+    $status->addMessage('WPA passphrase must be between 8 and 63 characters', 'danger');
+    $good_input = false;
+  }
+  if (! in_array($_POST['interface'], $interfaces)) {
+    // The user is probably up to something here but it may also be a
+    // genuine error.
+    $status->addMessage('Unknown interface '.$_POST['interface'], 'danger');
+    $good_input = false;
+  }
+  if (strlen($_POST['country_code']) != 0 && strlen($_POST['country_code']) != 2) {
+    $status->addMessage('Country code must be blank or two characters', 'danger');
+    $good_input = false;
+  }
+
+  if ($good_input) {
+    if ($tmp_file = fopen('/tmp/hostapddata', 'w')) {
+      // Fixed values
+      fwrite($tmp_file, 'driver=nl80211'.PHP_EOL);
+      fwrite($tmp_file, 'ctrl_interface='.RASPI_HOSTAPD_CTRL_INTERFACE.PHP_EOL);
+      fwrite($tmp_file, 'ctrl_interface_group=0'.PHP_EOL);
+      fwrite($tmp_file, 'beacon_int=100'.PHP_EOL);
+      fwrite($tmp_file, 'auth_algs=1'.PHP_EOL);
+      fwrite($tmp_file, 'wpa_key_mgmt=WPA-PSK'.PHP_EOL);
+
+      fwrite($tmp_file, 'ssid='.$_POST['ssid'].PHP_EOL);
+      fwrite($tmp_file, 'channel='.$_POST['channel'].PHP_EOL);
+      fwrite($tmp_file, 'hw_mode='.$_POST['hw_mode'].PHP_EOL);
+      fwrite($tmp_file, 'wpa_passphrase='.$_POST['wpa_passphrase'].PHP_EOL);
+      fwrite($tmp_file, 'interface='.$_POST['interface'].PHP_EOL);
+      fwrite($tmp_file, 'wpa='.$_POST['wpa'].PHP_EOL);
+      fwrite($tmp_file, 'wpa_pairwise='.$_POST['wpa_pairwise'].PHP_EOL);
+      fwrite($tmp_file, 'country_code='.$_POST['country_code'].PHP_EOL);
+      fclose($tmp_file);
+
+      system( "sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $return );
+      if( $return == 0 ) {
+        $status->addMessage('Wifi Hotspot settings saved', 'success');
+      } else {
+        $status->addMessage('Unable to save wifi hotspot settings', 'danger');
+      }
+    } else {
+      $status->addMessage('Unable to save wifi hotspot settings', 'danger');
+      return false;
     }
   }
+  return true;
 }
 ?>
-

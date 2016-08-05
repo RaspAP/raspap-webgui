@@ -187,7 +187,7 @@ $csrf_token = $_SESSION['csrf_token'];
             DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
             break;
           case "save_hostapd_conf":
-            SaveHostAPDConfig();
+            SaveTORAndVPNConfig();
             break;
           case "system_info":
             DisplaySystem();

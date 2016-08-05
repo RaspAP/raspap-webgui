@@ -14,7 +14,7 @@ function DisplayAuthConfig($username, $password){
           $status->addMessage('Username must not be empty', 'danger');
         } else {
           if ($auth_file = fopen(RASPI_ADMIN_DETAILS, 'w')) {
-          fwrite($auth_file, $new_username.PHP_EOL);
+            fwrite($auth_file, $new_username.PHP_EOL);
             fwrite($auth_file, password_hash($_POST['newpass'], PASSWORD_BCRYPT).PHP_EOL);
             fclose($auth_file);
             $username = $new_username;
