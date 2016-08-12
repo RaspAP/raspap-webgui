@@ -17,16 +17,24 @@ update_config=1
     for( $x = 0; $x < $networks; $x++ ) {
       $network = '';
       $ssid = escapeshellarg( $_POST['ssid'.$x] );
-      $protocol = escapeshellarg( $_POST['protocol'.$x] );
-      $psk = escapeshellarg( $_POST['psk'.$x] );
+      $protocol = $_POST['protocol'.$x];
+      if ($protocol === 'Open') {
+        $config .= "network={".PHP_EOL;
+        $config .= "\tssid=\"".$ssid."\"".PHP_EOL;
+        $config .= "\tkey_mgmt=NONE".PHP_EOL;
+        $config .= "}".PHP_EOL;
+      } else {
+        $psk = escapeshellarg( $_POST['psk'.$x] );
 
-      if ( strlen($psk) >2 ) {  
-        exec( 'wpa_passphrase '.$ssid. ' ' . $psk,$network );
-        foreach($network as $b) {
-          $config .= "$b
+        if ( strlen($psk) >2 ) {  
+          exec( 'wpa_passphrase '.$ssid. ' ' . $psk,$network );
+          foreach($network as $b) {
+            $config .= "$b
 ";
+          }
         }
       }
+      error_log($config);
     }
     exec( "echo '$config' > /tmp/wifidata", $return );
     system( 'sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval );
@@ -57,25 +65,66 @@ update_config=1
     echo '</tbody></table>';
   }
 
-  // default action, output configured network(s)
-  exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $supplicant_return);
-  $ssid = array();
-  $psk = array();
+//  // default action, output configured network(s)
+//  exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $supplicant_return);
+//  $ssid = array();
+//  $psk = array();
+//
+//  foreach($supplicant_return as $a) {
+//    if(preg_match('/SSID/i',$a)) {
+//      $arrssid = explode("=",$a);
+//      $ssid[] = str_replace('"','',$arrssid[1]);
+//    }
+//    if(preg_match('/psk/i',$a)) {
+//      $arrpsk = explode("=",$a);
+//      $psk[] = str_replace('"','',$arrpsk[1]);
+//    }
+//  }
+//
+//  $numSSIDs = count($ssid);
 
-  foreach($supplicant_return as $a) {
-    if(preg_match('/SSID/i',$a)) {
-      $arrssid = explode("=",$a);
-      $ssid[] = str_replace('"','',$arrssid[1]);
-    }
-    if(preg_match('/psk/i',$a)) {
-      $arrpsk = explode("=",$a);
-      $psk[] = str_replace('"','',$arrpsk[1]);
+
+
+
+  // Find currently configured networks$
+  exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
+
+  $known_networks = array();
+  $network_id = null;
+
+  foreach($known_return as $line) {
+    error_log($line);
+    if (preg_match('/network\s*=/', $line)) {
+      $known_networks[] = array();
+      $network_id = count($known_networks) - 1;
+    } elseif ($network_id !== null) {
+      if (preg_match('/^\s*}\s*$/', $line)) {
+        $network_id = null;
+      } elseif ($lineArr = preg_split('/\s*=\s*/', trim($line))) {
+        switch(strtolower($lineArr[0])) {
+          case 'ssid':
+            $known_networks[$network_id]['ssid'] = trim($lineArr[1], '"');
+            break;
+          case 'psk':
+            if (array_key_exists('passphrase', $known_networks[$network_id])) {
+              break;
+            }
+          case '#psk':
+            $known_networks[$network_id]['protocol'] = 'WPA';
+          case 'wep_key0': // Untested
+            $known_networks[$network_id]['passphrase'] = trim($lineArr[1], '"');
+            break;
+          case 'key_mgmt':
+            if (! array_key_exists('passphrase', $known_networks[$network_id]) &&$lineArr[1] === 'NONE') {
+              $known_networks[$network_id]['protocol'] = 'Open';
+              $known_networks[$network_id]['passphrase'] = '(Open)';
+            }
+            break;
+        }
+      }
     }
   }
-
-  $numSSIDs = count($ssid);
-  ?>
-
+?>
 
   <div class="row">
     <div class="col-lg-12">
@@ -132,7 +181,7 @@ update_config=1
               <form method="POST" action="?page=wpa_conf" id="wpa_conf_form">
                 <input type="hidden" id="Networks" name="Networks" />
                 <div class="network" id="networkbox">
-                <?php for ($ssids = 0; $ssids < $numSSIDs; $ssids++) { ?>
+                <?php for ($ssids = 0; $ssids < count($known_networks); $ssids++) { ?>
                   <div id="Networkbox<?php echo $ssids ?>" class="NetworkBoxes">
                     <div class="row">
                       <div class="form-group col-md-4">
@@ -142,15 +191,23 @@ update_config=1
                   <div class="row">
                     <div class="form-group col-md-4">
                       <label for="code" id="lssid0">SSID</label>
-                      <input type="text" class="form-control" id="ssid0" name="ssid<?php echo $ssids ?>" value="<?php echo $ssid[$ssids] ?>" onkeyup="CheckSSID(this)" />
+                      <input type="text" class="form-control" id="ssid0" name="ssid<?php echo $ssids ?>" value="<?php echo $known_networks[$ssids]['ssid'] ?>" onkeyup="CheckSSID(this)" />
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-4">
-                      <label for="code" id="lpsk0">PSK</label>
-                      <input type="password" class="form-control" id="psk0" name="psk<?php echo $ssids ?>" value="<?php echo $psk[$ssids] ?>" onkeyup="CheckPSK(this)" />
+                      <label for="code" id="lpsk0">Protocol</label>
+                      <input type="text" class="form-control" id="protocol0" name="protocol<?php echo $ssids ?>" value="<?php echo $known_networks[$ssids]['protocol'] ?>" />
                     </div>
                   </div>
+                <?php if ($known_networks[$ssids]['protocol'] !== 'Open') { ?>
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                      <label for="code" id="lpsk0">PSK</label>
+                      <input type="text" class="form-control" id="psk0" name="psk<?php echo $ssids ?>" value="<?php echo $known_networks[$ssids]['passphrase'] ?>" onkeyup="CheckPSK(this)" />
+                    </div>
+                  </div>
+                <?php } ?>
                   <div class="row">
                     <div class="form-group col-md-4">
                       <input type="button" class="btn btn-outline btn-primary" value="Delete" onClick="DeleteNetwork('<?php echo $ssids?>')" />
