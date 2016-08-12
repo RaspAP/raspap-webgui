@@ -85,18 +85,12 @@ function ParseConfig( $arrConfig ) {
 * @return $channel
 */
 function ConvertToChannel( $freq ) {
-
-	$base = 2412;
-	$channel = 1;
-	for( $x = 0; $x < 13; $x++ ) {
-		if( $freq != $base ) {
-			$base = $base + 5;
-			$channel++;
-		} else {
-			return $channel;
-		}
-	}
-	return "Invalid Channel";
+  $channel = ($freq - 2407)/5;
+  if ($channel > 0 && $channel < 14) {
+    return $channel;
+  } else {
+    return 'Invalid Channel';
+  }
 }
 
 /**
@@ -105,36 +99,28 @@ function ConvertToChannel( $freq ) {
 * @return string
 */
 function ConvertToSecurity( $security ) {
-	
-	switch( $security ) {
-		case "[WPA2-PSK-CCMP][ESS]":
-			return "WPA2-PSK (AES)";
-			break;
-		case "[WPA2-PSK-TKIP][ESS]":
-			return "WPA2-PSK (TKIP)";
-			break;
-		case "[WPA2-PSK-CCMP][WPS][ESS]":
-			return "WPA/WPA2-PSK (TKIP/AES)";
-			break;
-		case "[WPA2-PSK-TKIP+CCMP][WPS][ESS]":
-			return "WPA2-PSK (TKIP/AES) with WPS";
-			break;
-		case "[WPA-PSK-TKIP+CCMP][WPS][ESS]":
-			return "WPA-PSK (TKIP/AES) with WPS";
-			break;
-		case "[WPA-PSK-TKIP][WPA2-PSK-CCMP][WPS][ESS]":
-			return "WPA/WPA2-PSK (TKIP/AES)";
-			break;
-		case "[WPA-PSK-TKIP+CCMP][WPA2-PSK-TKIP+CCMP][ESS]":
-			return "WPA/WPA2-PSK (TKIP/AES)";
-			break;
-		case "[WPA-PSK-TKIP][ESS]":
-			return "WPA-PSK (TKIP)";
-			break;
-		case "[WEP][ESS]":
-			return "WEP";
-			break;
-	}
+  $options = array();
+  preg_match_all('/\[([^\]]+)\]/s', $security, $matches);
+  foreach($matches[1] as $match) {
+    if (preg_match('/^(WPA\d?)/', $match, $protocol_match)) {
+      $protocol = $protocol_match[1];
+      $matchArr = explode('-', $match);
+      if (count($matchArr) > 2) {
+        $options[] = $protocol . ' ('. $matchArr[2] .')';
+      } else {
+        $options[] = $protocol;
+      }
+    }
+  }
+
+  if (count($options) === 0) {
+    // This could also be WEP but wpa_supplicant doesn't have a way to determine
+    // this.
+    // And you shouldn't be using WEP these days anyway.
+    return 'Open';
+  } else {
+    return implode('<br />', $options);
+  }
 }
 
 /**
