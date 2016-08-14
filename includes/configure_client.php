@@ -174,14 +174,14 @@ function DisplayWPAConfig(){
               <?php if ($network['protocol'] === 'Open') { ?>
                 <td><input type="hidden" name="passphrase<?php echo $index ?>" value="" />---</td>
               <?php } else { ?>
-                <td><input type="text" class="form-control" name="passphrase<?php echo $index ?>" value="<?php echo $network['passphrase'] ?>" />
+                <td><input type="text" class="form-control" name="passphrase<?php echo $index ?>" value="<?php echo $network['passphrase'] ?>" onKeyUp="CheckPSK(this, 'update<?php echo $index?>')" />
               <?php } ?>
                 <td>
                   <div class="btn-group btn-block">
                   <?php if ($network['configured']) { ?>
-                    <input type="submit" class="col-md-6 btn btn-warning" value="Update" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> />
+                    <input type="submit" class="col-md-6 btn btn-warning" value="Update" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> />
                   <?php } else { ?>
-                    <input type="submit" class="col-md-6 btn btn-info" value="Add" name="update<?php echo $index ?>" />
+                    <input type="submit" class="col-md-6 btn btn-info" value="Add" id="update<?php echo $index ?>" name="update<?php echo $index ?>" <?php echo ($network['protocol'] === 'Open' ? '' : ' disabled')?> />
                   <?php } ?>
                     <input type="submit" class="col-md-6 btn btn-danger" value="Delete" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> />
                   </div>
@@ -192,7 +192,7 @@ function DisplayWPAConfig(){
             </table>
           </form>
         </div><!-- ./ Panel body -->
-        <div class="panel-footer"><strong>Note,</strong> WEP access points will appear as 'Open'. RaspAP does not currently support connecting to WEP.</div>
+        <div class="panel-footer"><strong>Note,</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP.</div>
       </div><!-- /.panel-primary -->
     </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
