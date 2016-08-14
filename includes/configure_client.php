@@ -8,120 +8,126 @@ function DisplayWPAConfig(){
   $status = new StatusMessages();
   $scanned_networks = array();
 
-  if( isset($_POST['SaveWPAPSKSettings']) ) {
-
-    $config = 'ctrl_interface=DIR='. RASPI_WPA_CTRL_INTERFACE .' GROUP=netdev
-update_config=1
-';
-    $networks = $_POST['Networks'];
-    for( $x = 0; $x < $networks; $x++ ) {
-      $network = '';
-      $ssid = escapeshellarg( $_POST['ssid'.$x] );
-      $protocol = $_POST['protocol'.$x];
-      if ($protocol === 'Open') {
-        $config .= "network={".PHP_EOL;
-        $config .= "\tssid=\"".$ssid."\"".PHP_EOL;
-        $config .= "\tkey_mgmt=NONE".PHP_EOL;
-        $config .= "}".PHP_EOL;
-      } else {
-        $psk = escapeshellarg( $_POST['psk'.$x] );
-
-        if ( strlen($psk) >2 ) {  
-          exec( 'wpa_passphrase '.$ssid. ' ' . $psk,$network );
-          foreach($network as $b) {
-            $config .= "$b
-";
-          }
-        }
-      }
-      error_log($config);
-    }
-    exec( "echo '$config' > /tmp/wifidata", $return );
-    system( 'sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval );
-    if( $returnval == 0 ) {
-      $status->addMessage('Wifi settings updated successfully', 'success');
-    } else {
-      $status->addMessage('Wifi settings failed to be updated', 'danger');
-    }
-  } elseif( isset($_POST['Scan']) ) {
-    $return = '';
-    exec( 'sudo wpa_cli scan',$return );
-    sleep(3);
-    exec( 'sudo wpa_cli scan_results',$return );
-    for( $shift = 0; $shift < 4; $shift++ ) {
-      array_shift($return);
-    }
-    // display output
-    foreach( $return as $network ) {
-      $arrNetwork = preg_split("/[\t]+/",$network);
-      $scanned_networks[] = array(
-        'bssid' => $arrNetwork[0],
-        'channel' => ConvertToChannel($arrNetwork[1]),
-        'signal' => $arrNetwork[2] . " dBm",
-        'security' => ConvertToSecurity($arrNetwork[3]),
-        'ssid' => $arrNetwork[4]
-      );
-    }
-    echo '</tbody></table>';
-  }
-
-//  // default action, output configured network(s)
-//  exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $supplicant_return);
-//  $ssid = array();
-//  $psk = array();
-//
-//  foreach($supplicant_return as $a) {
-//    if(preg_match('/SSID/i',$a)) {
-//      $arrssid = explode("=",$a);
-//      $ssid[] = str_replace('"','',$arrssid[1]);
-//    }
-//    if(preg_match('/psk/i',$a)) {
-//      $arrpsk = explode("=",$a);
-//      $psk[] = str_replace('"','',$arrpsk[1]);
-//    }
-//  }
-//
-//  $numSSIDs = count($ssid);
-
-
-
-
-  // Find currently configured networks$
+  // Find currently configured networks
   exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
 
-  $known_networks = array();
-  $network_id = null;
+  $network = null;
+  $ssid = null;
 
   foreach($known_return as $line) {
-    error_log($line);
     if (preg_match('/network\s*=/', $line)) {
-      $known_networks[] = array();
-      $network_id = count($known_networks) - 1;
-    } elseif ($network_id !== null) {
+      $network = array('visible' => false, 'configured' => true);
+    } elseif ($network !== null) {
       if (preg_match('/^\s*}\s*$/', $line)) {
-        $network_id = null;
+        $networks[$ssid] = $network;
+        $network = null;
+        $ssid = null;
       } elseif ($lineArr = preg_split('/\s*=\s*/', trim($line))) {
         switch(strtolower($lineArr[0])) {
           case 'ssid':
-            $known_networks[$network_id]['ssid'] = trim($lineArr[1], '"');
+            $ssid = trim($lineArr[1], '"');
             break;
           case 'psk':
-            if (array_key_exists('passphrase', $known_networks[$network_id])) {
+            if (array_key_exists('passphrase', $network)) {
               break;
             }
           case '#psk':
-            $known_networks[$network_id]['protocol'] = 'WPA';
+            $network['protocol'] = 'WPA';
           case 'wep_key0': // Untested
-            $known_networks[$network_id]['passphrase'] = trim($lineArr[1], '"');
+            $network['passphrase'] = trim($lineArr[1], '"');
             break;
           case 'key_mgmt':
-            if (! array_key_exists('passphrase', $known_networks[$network_id]) &&$lineArr[1] === 'NONE') {
-              $known_networks[$network_id]['protocol'] = 'Open';
-              $known_networks[$network_id]['passphrase'] = '(Open)';
+            if (! array_key_exists('passphrase', $network) && $lineArr[1] === 'NONE') {
+              $network['protocol'] = 'Open';
             }
             break;
         }
       }
+    }
+  }
+
+  if ( isset($_POST['client_settings']) && CSRFValidate() ) {
+    $tmp_networks = $networks;
+    if ($wpa_file = fopen('/tmp/wifidata', 'w')) {
+      fwrite($wpa_file, 'ctrl_interface=DIR=' . RASPI_WPA_CTRL_INTERFACE . ' GROUP=netdev' . PHP_EOL);
+      fwrite($wpa_file, 'update_config=1' . PHP_EOL);
+
+      foreach(array_keys($_POST) as $post) {
+        if (preg_match('/delete(\d+)/', $post, $post_match)) {
+          unset($tmp_networks[$_POST['ssid' . $post_match[1]]]);
+        } elseif (preg_match('/update(\d+)/', $post, $post_match)) {
+          // NB, at the moment, the value of protocol from the form may
+          // contain HTML line breaks
+          $tmp_networks[$_POST['ssid' . $post_match[1]]] = array(
+            'protocol' => ( $_POST['protocol' . $post_match[1]] === 'Open' ? 'Open' : 'WPA' ),
+            'passphrase' => $_POST['passphrase' . $post_match[1]],
+            'configured' => true
+          );
+        }
+      }
+
+      $ok = true;
+      foreach($tmp_networks as $ssid => $network) {
+        if ($network['protocol'] === 'Open') {
+          fwrite($wpa_file, "network={".PHP_EOL);
+          fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+          fwrite($wpa_file, "\tkey_mgmt=NONE".PHP_EOL);
+          fwrite($wpa_file, "}".PHP_EOL);
+        } else {
+          if (strlen($network['passphrase']) >=8 && strlen($network['passphrase']) <= 63) {
+            exec( 'wpa_passphrase '.escapeshellarg($ssid). ' ' . escapeshellarg($network['passphrase']),$wpa_passphrase );
+            foreach($wpa_passphrase as $line) {
+              fwrite($wpa_file, $line.PHP_EOL);
+            }
+          } else {
+            $status->addMessage('WPA passphrase must be between 8 and 63 characters', 'danger');
+            $ok = false;
+
+          }
+        }
+
+      }
+
+      if ($ok) {
+        system( 'sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval );
+        if( $returnval == 0 ) {
+          exec('sudo wpa_cli reconfigure', $reconfigure_out, $reconfigure_return );
+          if ($reconfigure_return == 0) {
+            $status->addMessage('Wifi settings updated successfully', 'success');
+            $networks = $tmp_networks;
+          } else {
+            $status->addMessage('Wifi settings updated but cannot restart (cannon execute "wpa_cli reconfigure")', 'danger');
+          }
+        } else {
+          $status->addMessage('Wifi settings failed to be updated', 'danger');
+        }
+      }
+    } else {
+      $status->addMessage('Failed to updated wifi settings', 'danger');
+    }
+  }
+
+  exec( 'sudo wpa_cli scan' );
+  sleep(3);
+  exec( 'sudo wpa_cli scan_results',$scan_return );
+  for( $shift = 0; $shift < 2; $shift++ ) {
+    array_shift($scan_return);
+  }
+  // display output
+  foreach( $scan_return as $network ) {
+    $arrNetwork = preg_split("/[\t]+/",$network);
+    if (array_key_exists($arrNetwork[4], $networks)) {
+      $networks[$arrNetwork[4]]['visible'] = true;
+      $networks[$arrNetwork[4]]['channel'] = ConvertToChannel($arrNetwork[1]);
+      // TODO What if the security has changed?
+    } else {
+      $networks[$arrNetwork[4]] = array(
+        'configured' => false,
+        'protocol' => ConvertToSecurity($arrNetwork[3]),
+        'channel' => ConvertToChannel($arrNetwork[1]),
+        'passphrase' => '',
+        'visible' => true
+      );
     }
   }
 ?>
@@ -134,98 +140,59 @@ update_config=1
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
           <h4>Client settings</h4>
-          <div class="row">
-            <div class="col-lg-12">
 
-              <form method="POST" action="?page=wpa_conf" id="wpa_conf_form">
-                <input type="hidden" id="Networks" name="Networks" />
-                <div class="network" id="networkbox"></div>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <input type="submit" class="btn btn-primary" value="Scan for networks" name="Scan" />
-                    <input type="button" class="btn btn-primary" value="Add network" onClick="AddNetwork();" />
-                    <input type="submit" class="btn btn-primary" value="Save" name="SaveWPAPSKSettings" onmouseover="UpdateNetworks(this)" id="Save" disabled />
+          <form method="POST" action="?page=wpa_conf" name="wpa_conf_form">
+            <?php CSRFToken() ?>
+            <input type="hidden" name="client_settings" ?>
+            <table class="table table-responsive table-striped">
+              <tr>
+                <th></th>
+                <th>SSID</th>
+                <th>Channel</th>
+                <th>Security</th>
+                <th>Passphrase</th>
+                <th></th>
+              </tr>
+            <?php $index = 0; ?>
+            <?php foreach ($networks as $ssid => $network) { ?>
+              <tr>
+              <?php if ($network['configured']) { ?>
+                <td><i class="fa fa-check-circle fa-fw"></i></td>
+              <?php } else { ?>
+                <td></td>
+              <?php } ?>
+                <td>
+                  <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo $ssid ?>" />
+                  <?php echo $ssid ?>
+                </td>
+              <?php if ($network['visible']) { ?>
+                <td><?php echo $network['channel'] ?></td>
+              <?php } else { ?>
+                <td><span class="label label-warning">X</span></td>
+              <?php } ?>
+                <td><input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo $network['protocol'] ?>" /><?php echo $network['protocol'] ?></td>
+              <?php if ($network['protocol'] === 'Open') { ?>
+                <td><input type="hidden" name="passphrase<?php echo $index ?>" value="" />---</td>
+              <?php } else { ?>
+                <td><input type="text" class="form-control" name="passphrase<?php echo $index ?>" value="<?php echo $network['passphrase'] ?>" />
+              <?php } ?>
+                <td>
+                  <div class="btn-group btn-block">
+                  <?php if ($network['configured']) { ?>
+                    <input type="submit" class="col-md-6 btn btn-warning" value="Update" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> />
+                  <?php } else { ?>
+                    <input type="submit" class="col-md-6 btn btn-info" value="Add" name="update<?php echo $index ?>" />
+                  <?php } ?>
+                    <input type="submit" class="col-md-6 btn btn-danger" value="Delete" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> />
                   </div>
-                </div>
-                <h4>Networks found</h4>
-                <div class="table-responsive">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>SSID</th>
-                        <th>Channel</th>
-                        <th>Signal</th>
-                        <th>Security</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach( $scanned_networks as $network ) { ?>
-                      <tr>
-                        <td><input type="button" class="btn btn-outline btn-primary" value="Connect" onClick="AddScanned('<?php echo $network['ssid'] ?>',<?php echo ($network['security'] === 'Open' ? 'true' : 'false')?>)" /></td>
-                        <td><strong><?php echo $network['ssid'] ?></strong></td>
-                        <td><?php echo $network['channel'] ?></td>
-                        <td><?php echo $network['signal'] ?></td>
-                        <td><?php echo $network['security'] ?></td>
-                      </tr>
-                    <?php } ?>
-                    </tbody>
-                  </table>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-12">
-              <form method="POST" action="?page=wpa_conf" id="wpa_conf_form">
-                <input type="hidden" id="Networks" name="Networks" />
-                <div class="network" id="networkbox">
-                <?php for ($ssids = 0; $ssids < count($known_networks); $ssids++) { ?>
-                  <div id="Networkbox<?php echo $ssids ?>" class="NetworkBoxes">
-                    <div class="row">
-                      <div class="form-group col-md-4">
-                        <label for="code">Network <?php echo $ssids ?></label>
-                      </div>
-                    </div>
-                  <div class="row">
-                    <div class="form-group col-md-4">
-                      <label for="code" id="lssid0">SSID</label>
-                      <input type="text" class="form-control" id="ssid0" name="ssid<?php echo $ssids ?>" value="<?php echo $known_networks[$ssids]['ssid'] ?>" onkeyup="CheckSSID(this)" />
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-md-4">
-                      <label for="code" id="lpsk0">Protocol</label>
-                      <input type="text" class="form-control" id="protocol0" name="protocol<?php echo $ssids ?>" value="<?php echo $known_networks[$ssids]['protocol'] ?>" />
-                    </div>
-                  </div>
-                <?php if ($known_networks[$ssids]['protocol'] !== 'Open') { ?>
-                  <div class="row">
-                    <div class="form-group col-md-4">
-                      <label for="code" id="lpsk0">PSK</label>
-                      <input type="text" class="form-control" id="psk0" name="psk<?php echo $ssids ?>" value="<?php echo $known_networks[$ssids]['passphrase'] ?>" onkeyup="CheckPSK(this)" />
-                    </div>
-                  </div>
-                <?php } ?>
-                  <div class="row">
-                    <div class="form-group col-md-4">
-                      <input type="button" class="btn btn-outline btn-primary" value="Delete" onClick="DeleteNetwork('<?php echo $ssids?>')" />
-                    </div>
-                  </div>
-                <?php } ?>
-                </div><!-- /#Networkbox -->
-            <div class="row">
-              <div class="col-lg-6">
-                <input type="submit" class="btn btn-primary" value="Scan for networks" name="Scan" />
-                <input type="button" class="btn btn-primary" value="Add network" onClick="AddNetwork();" />
-                <input type="submit" class="btn btn-primary" value="Save" name="SaveWPAPSKSettings" onmouseover="UpdateNetworks(this)" id="Save" disabled />
-              </form>
-              </div>
-            </div>
-            <script type="text/Javascript">UpdateNetworks(this)</script>
-          </div>
+                </td>
+              </tr>
+              <?php $index += 1; ?>
+            <?php } ?>
+            </table>
+          </form>
         </div><!-- ./ Panel body -->
+        <div class="panel-footer"><strong>Note,</strong> WEP access points will appear as 'Open'. RaspAP does not currently support connecting to WEP.</div>
       </div><!-- /.panel-primary -->
     </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->

@@ -17,7 +17,12 @@ function CSRFToken() {
 *
 */
 function CSRFValidate() {
-  return hash_equals($_POST['csrf_token'], $_SESSION['csrf_token']);
+  if ( hash_equals($_POST['csrf_token'], $_SESSION['csrf_token']) ) {
+    return true;
+  } else {
+    error_log('CSRF violation');
+    return false;
+  }
 }
 
 /**
