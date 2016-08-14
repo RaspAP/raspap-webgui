@@ -16,7 +16,7 @@ function DisplayWPAConfig(){
 
   foreach($known_return as $line) {
     if (preg_match('/network\s*=/', $line)) {
-      $network = array('visible' => false, 'configured' => true);
+      $network = array('visible' => false, 'configured' => true, 'connected' => false);
     } elseif ($network !== null) {
       if (preg_match('/^\s*}\s*$/', $line)) {
         $networks[$ssid] = $network;
@@ -126,8 +126,16 @@ function DisplayWPAConfig(){
         'protocol' => ConvertToSecurity($arrNetwork[3]),
         'channel' => ConvertToChannel($arrNetwork[1]),
         'passphrase' => '',
-        'visible' => true
+        'visible' => true,
+        'connected' => false
       );
+    }
+  }
+
+  exec( 'iwconfig wlan0', $iwconfig_return );
+  foreach ($iwconfig_return as $line) {
+    if (preg_match( '/ESSID:\"(.+)\"/i',$line,$iwconfig_ssid )) {
+      $networks[$iwconfig_ssid[1]]['connected'] = true;
     }
   }
 ?>
@@ -156,11 +164,14 @@ function DisplayWPAConfig(){
             <?php $index = 0; ?>
             <?php foreach ($networks as $ssid => $network) { ?>
               <tr>
-              <?php if ($network['configured']) { ?>
-                <td><i class="fa fa-check-circle fa-fw"></i></td>
-              <?php } else { ?>
-                <td></td>
-              <?php } ?>
+                <td>
+                <?php if ($network['configured']) { ?>
+                <i class="fa fa-check-circle fa-fw"></i>
+                <?php } ?>
+                <?php if ($network['connected']) { ?>
+                <i class="fa fa-exchange fa-fw"></i>
+                <?php } ?>
+                </td>
                 <td>
                   <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo $ssid ?>" />
                   <?php echo $ssid ?>
