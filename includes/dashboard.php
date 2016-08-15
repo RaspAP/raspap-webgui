@@ -33,13 +33,13 @@ function DisplayDashboard(){
   $strSSID = str_replace( '"','',$result[1] );
   preg_match( '/Access Point: ([0-9a-f:]+)/i',$strWlan0,$result );
   $strBSSID = $result[1];
-  preg_match( '/Bit Rate=([0-9]+ Mb\/s)/i',$strWlan0,$result );
+  preg_match( '/Bit Rate=([0-9\.]+ Mb\/s)/i',$strWlan0,$result );
   $strBitrate = $result[1];
   preg_match( '/Tx-Power=([0-9]+ dBm)/i',$strWlan0,$result );
   $strTxPower = $result[1];
   preg_match( '/Link Quality=([0-9]+)/i',$strWlan0,$result );
   $strLinkQuality = $result[1];
-  preg_match( '/Signal Level=([0-9]+)/i',$strWlan0,$result );
+  preg_match( '/Signal level=(-?[0-9]+ dBm)/i',$strWlan0,$result );
   $strSignalLevel = $result[1];
   preg_match('/Frequency:(\d+.\d+ GHz)/i',$strWlan0,$result);
   $strFrequency = $result[1];
@@ -99,6 +99,7 @@ function DisplayDashboard(){
           <div class="info-item">Connected To</div>   <?php echo $strSSID ?></br>
           <div class="info-item">AP Mac Address</div> <?php echo $strBSSID ?></br>
           <div class="info-item">Bitrate</div>        <?php echo $strBitrate ?></br>
+          <div class="info-item">Signal Level</div>        <?php echo $strSignalLevel ?></br>
           <div class="info-item">Transmit Power</div> <?php echo $strTxPower ?></br>
           <div class="info-item">Frequency</div>      <?php echo $strFrequency ?></br></br>
           <div class="info-item">Link Quality</div>
@@ -108,15 +109,7 @@ function DisplayDashboard(){
               aria-valuenow="<?php echo $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
               style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
             </div>
-            </div>
-          <div class="info-item">Signal Level</div>
-            <div class="progress">
-            <div class="progress-bar progress-bar-info progress-bar-striped active"
-              role="progressbar"
-              aria-valuenow="<?php echo $strSignalLevel ?>" aria-valuemin="0" aria-valuemax="100"
-              style="width: <?php echo $strSignalLevel ?>%;"><?php echo $strSignalLevel ?>%
-            </div>
-            </div>
+          </div>
         </div><!-- /.panel-body -->
         </div><!-- /.panel-default -->
                         </div><!-- /.col-md-6 -->
