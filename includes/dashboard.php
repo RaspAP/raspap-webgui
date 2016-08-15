@@ -6,6 +6,8 @@
 */
 function DisplayDashboard(){
 
+  $status = new StatusMessages();
+
   exec( 'ifconfig wlan0', $return );
   exec( 'iwconfig wlan0', $return );
 
@@ -43,12 +45,10 @@ function DisplayDashboard(){
   $strFrequency = $result[1];
 
   if(strpos( $strWlan0, "UP" ) !== false && strpos( $strWlan0, "RUNNING" ) !== false ) {
-    $status = '<div class="alert alert-success alert-dismissable">Interface is up
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>';
+    $status->addMessage('Interface is up', 'success');
     $wlan0up = true;
   } else {
-    $status =  '<div class="alert alert-warning alert-dismissable">Interface is down
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>';
+    $status->addMessage('Interface is down', 'warning');
   }
 
   if( isset($_POST['ifdown_wlan0']) ) {
@@ -72,7 +72,7 @@ function DisplayDashboard(){
           <div class="panel panel-primary">
             <div class="panel-heading"><i class="fa fa-dashboard fa-fw"></i> Dashboard   </div>
               <div class="panel-body">
-                <p><?php echo $status; ?></p>
+                <p><?php $status->showMessages(); ?></p>
                   <div class="row">
                         <div class="col-md-6">
                         <div class="panel panel-default">
