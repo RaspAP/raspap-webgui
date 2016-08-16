@@ -44,6 +44,8 @@ include_once( 'includes/authenticate.php' );
 include_once( 'includes/admin.php' );
 include_once( 'includes/dhcp.php' );
 include_once( 'includes/hostapd.php' );
+include_once( 'includes/system.php' );
+include_once( 'includes/configure_client.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
