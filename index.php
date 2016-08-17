@@ -39,6 +39,7 @@ define('RASPI_TORPROXY_ENABLED', false );
 
 include_once( RASPI_CONFIG.'/raspap.php' );
 include_once( 'includes/functions.php' );
+include_once( 'includes/dashboard.php' );
 include_once( 'includes/authenticate.php' );
 include_once( 'includes/admin.php' );
 include_once( 'includes/dhcp.php' );
