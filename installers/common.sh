@@ -1,6 +1,15 @@
 raspap_dir="/etc/raspap"
 raspap_user="www-data"
-webroot_dir="/var/www"
+version=`cat /etc/debian_version`
+
+# Determine version and set default home location for lighttpd 
+if [ $version == "8.0" ]; then
+    echo -n "Raspian verison is 8.0 Jessie"
+    webroot_dir="/var/www/html"
+elif [ $version == "7.8" ]; then
+    echo -n "Raspian version is 7.8 Wheezy"
+    webroot_dir="/var/www"
+fi
 
 # Outputs a RaspAP INSTALL log line
 function install_log() {
