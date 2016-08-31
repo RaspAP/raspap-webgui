@@ -56,7 +56,7 @@ www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli reconfigure
 ```
 
 Once those modifications are done, git clone the files to `/var/www/html`.
-'''Note,''' for older versions of Raspbian (before Jessie, May 2016) use
+**Note,** for older versions of Raspbian (before Jessie, May 2016) use
 `var/www` instead.
 ```sh
 sudo rm -rf /var/www/html
