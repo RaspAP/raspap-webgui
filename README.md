@@ -55,18 +55,21 @@ www-data ALL=(ALL) NOPASSWD:/sbin/ifdown wlan0,/sbin/ifup wlan0,/bin/cat /etc/wp
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli reconfigure
 ```
 
-Once those modifications are done, git clone the files to `/var/www`.
+Once those modifications are done, git clone the files to `/var/www/html`.
+**Note,** for older versions of Raspbian (before Jessie, May 2016) use
+`/var/www` instead.
 ```sh
-sudo git clone https://github.com/billz/raspap-webgui /var/www
+sudo rm -rf /var/www/html
+sudo git clone https://github.com/billz/raspap-webgui /var/www/html
 ```
 Set the files ownership to `www-data` user.
 ```sh
-sudo chown -R www-data:www-data /var/www
+sudo chown -R www-data:www-data /var/www/html
 ```
 Move the RaspAP configuration file to the correct location
 ```sh
 sudo mkdir /etc/raspap
-sudo mv /var/www/raspap.php /etc/raspap/
+sudo mv /var/www/html/raspap.php /etc/raspap/
 sudo chown -R www-data:www-data /etc/raspap
 ```
 Reboot and it should be up and running!
