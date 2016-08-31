@@ -2,7 +2,7 @@
 # `$ raspap-webgui` [![Release 1.1](https://img.shields.io/badge/Release-1.1-green.svg)](https://github.com/billz/raspap-webgui/releases)
 A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
-This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/IronSummitMedia/startbootstrap-sb-admin-2), a Bootstrap based admin theme.
+This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme.
 
 We'd be curious to hear about how you use this with your own Pi-powered access points. Ping us on Twitter ([**@billzimmerman**](https://twitter.com/billzimmerman) and [**@SirLagz**](https://twitter.com/SirLagz)). Until then, here are some screenshots:
 
@@ -52,20 +52,24 @@ Add the following to the end of  `/etc/sudoers`:
 
 ```sh
 www-data ALL=(ALL) NOPASSWD:/sbin/ifdown wlan0,/sbin/ifup wlan0,/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf,/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf,/sbin/wpa_cli scan_results, /sbin/wpa_cli scan,/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf, /etc/init.d/hostapd start,/etc/init.d/hostapd stop,/etc/init.d/dnsmasq start, /etc/init.d/dnsmasq stop,/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf, /sbin/shutdown -h now, /sbin/reboot
+www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli reconfigure
 ```
 
-Once those modifications are done, git clone the files to `/var/www`.
+Once those modifications are done, git clone the files to `/var/www/html`.
+**Note,** for older versions of Raspbian (before Jessie, May 2016) use
+`/var/www` instead.
 ```sh
-sudo git clone https://github.com/billz/raspap-webgui /var/www
+sudo rm -rf /var/www/html
+sudo git clone https://github.com/billz/raspap-webgui /var/www/html
 ```
 Set the files ownership to `www-data` user.
 ```sh
-sudo chown -R www-data:www-data /var/www
+sudo chown -R www-data:www-data /var/www/html
 ```
 Move the RaspAP configuration file to the correct location
 ```sh
 sudo mkdir /etc/raspap
-sudo mv /var/www/raspap.php /etc/raspap/
+sudo mv /var/www/html/raspap.php /etc/raspap/
 sudo chown -R www-data:www-data /etc/raspap
 ```
 Reboot and it should be up and running!
