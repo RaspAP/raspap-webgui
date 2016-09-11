@@ -67,7 +67,7 @@ function DisplayHostAPDConfig(){
         <div class="panel-heading"><i class="fa fa-dot-circle-o fa-fw"></i> Configure hotspot</div>
         <!-- /.panel-heading -->
         <div class="panel-body">
-          <form role="form" action="/?page=hostapd_conf" method="POST">
+          <form role="form" action="?page=hostapd_conf" method="POST">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
               <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
