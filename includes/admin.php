@@ -37,7 +37,7 @@ function DisplayAuthConfig($username, $password){
         <div class="panel-heading"><i class="fa fa-lock fa-fw"></i>Configure Auth</div>
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
-          <form role="form" action="/?page=auth_conf" method="POST">
+          <form role="form" action="?page=auth_conf" method="POST">
             <?php CSRFToken() ?>
             <div class="row">
               <div class="form-group col-md-4">
