@@ -4,10 +4,10 @@ version=`cat /etc/debian_version`
 
 # Determine version and set default home location for lighttpd 
 if [ $version == "8.0" ]; then
-    echo -n "Raspian verison is 8.0 Jessie"
+    echo "Raspian verison is 8.0 Jessie"
     webroot_dir="/var/www/html"
 elif [ $version == "7.8" ]; then
-    echo -n "Raspian version is 7.8 Wheezy"
+    echo "Raspian version is 7.8 Wheezy"
     webroot_dir="/var/www"
 fi
 
@@ -102,12 +102,31 @@ function move_config_file() {
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
 }
 
+# Add a single entry to the sudoers file
+function sudo_add() {
+  sudo bash -c "echo \"www-data ALL=(ALL) NOPASSWD:$1\" | (EDITOR=\"tee -a\" visudo)" \
+        || install_error "Unable to patch /etc/sudoers"
+}
+
 # Adds www-data user to the sudoers file with restrictions on what the user can execute
 function patch_system_files() {
-    install_log "Patching system sudoers file"
     # patch /etc/sudoers file
-    sudo bash -c 'echo "www-data ALL=(ALL) NOPASSWD:/sbin/ifdown wlan0,/sbin/ifup wlan0,/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf,/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf,/sbin/wpa_cli scan_results, /sbin/wpa_cli scan,/sbin/wpa_cli reconfigure,/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf, /etc/init.d/hostapd start,/etc/init.d/hostapd stop,/etc/init.d/dnsmasq start, /etc/init.d/dnsmasq stop,/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf, /sbin/shutdown -h now, /sbin/reboot" | (EDITOR="tee -a" visudo)' \
-        || install_error "Unable to patch /etc/sudoers"
+    install_log "Patching system sudoers file"
+    sudo_add '/sbin/ifdown wlan0'
+    sudo_add '/sbin/ifup wlan0'
+    sudo_add '/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf'
+    sudo_add '/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf'
+    sudo_add '/sbin/wpa_cli scan_results'
+    sudo_add '/sbin/wpa_cli scan'
+    sudo_add '/sbin/wpa_cli reconfigure'
+    sudo_add '/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf'
+    sudo_add '/etc/init.d/hostapd start'
+    sudo_add '/etc/init.d/hostapd stop'
+    sudo_add '/etc/init.d/dnsmasq start'
+    sudo_add '/etc/init.d/dnsmasq stop'
+    sudo_add '/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf'
+    sudo_add '/sbin/shutdown -h now'
+    sudo_add '/sbin/reboot'
 }
 
 function install_complete() {
