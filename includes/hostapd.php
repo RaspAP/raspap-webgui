@@ -26,7 +26,7 @@ function DisplayHostAPDConfig(){
   } elseif( isset($_POST['StartHotspot']) ) {
     if (CSRFValidate()) {
       $status->addMessage('Attempting to start hotspot', 'info');
-      exec( 'sudo /etc/init.d/hostapd start', $return );
+      exec( 'sudo service hostapd start', $return );
       foreach( $return as $line ) {
         $status->addMessage($line, 'info');
       }
@@ -36,7 +36,7 @@ function DisplayHostAPDConfig(){
   } elseif( isset($_POST['StopHotspot']) ) {
     if (CSRFValidate()) {
       $status->addMessage('Attempting to stop hotspot', 'info');
-      exec( 'sudo /etc/init.d/hostapd stop', $return );
+      exec( 'sudo service hostapd stop', $return );
       foreach( $return as $line ) {
         $status->addMessage($line, 'info');
       }

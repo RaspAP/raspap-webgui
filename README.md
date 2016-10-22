@@ -40,11 +40,12 @@ The installer will complete the steps in the manual installation (below) for you
 Start off by installing lighttpd, php5 and hostapd.
 ```sh
 $ sudo apt-get install lighttpd php5-cgi hostapd
+$ sudo apt-get install rfkill zd1211-firmware hostap-utils iw dnsmasq
 ```
 After that, enable PHP for lighttpd and restart it for the settings to take effect.
 ```sh
 sudo lighty-enable-mod fastcgi-php
-sudo /etc/init.d/lighttpd restart
+sudo service lighttpd restart
 ```
 Now comes the fun part. For security reasons, the `www-data` user which lighttpd runs under is not allowed to start or stop daemons, or run commands like ifdown and ifup, all of which we want our page to do.
 So what I have done is added the `www-data` user to the sudoers file, but with restrictions on what commands the user can run.
@@ -59,10 +60,10 @@ www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli scan_results
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli scan
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli reconfigure
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf
-www-data ALL=(ALL) NOPASSWD:/etc/init.d/hostapd start
-www-data ALL=(ALL) NOPASSWD:/etc/init.d/hostapd stop
-www-data ALL=(ALL) NOPASSWD:/etc/init.d/dnsmasq start
-www-data ALL=(ALL) NOPASSWD:/etc/init.d/dnsmasq stop
+www-data ALL=(ALL) NOPASSWD:service hostapd start
+www-data ALL=(ALL) NOPASSWD:service hostapd stop
+www-data ALL=(ALL) NOPASSWD:service dnsmasq start
+www-data ALL=(ALL) NOPASSWD:service dnsmasq stop
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf
 www-data ALL=(ALL) NOPASSWD:/sbin/shutdown -h now
 www-data ALL=(ALL) NOPASSWD:/sbin/reboot
