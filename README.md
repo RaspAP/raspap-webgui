@@ -37,10 +37,9 @@ $ wget -q https://git.io/voEUQ -O /tmp/raspap && bash /tmp/raspap
 The installer will complete the steps in the manual installation (below) for you.
 
 ## Manual installation
-Start off by installing lighttpd, php5 and hostapd.
+Start off by installing lighttpd, php5, hostapd and dnsmasq.
 ```sh
-$ sudo apt-get install lighttpd php5-cgi hostapd
-$ sudo apt-get install rfkill zd1211-firmware hostap-utils iw dnsmasq
+$ sudo apt-get install lighttpd php5-cgi hostapd dnsmasq
 ```
 After that, enable PHP for lighttpd and restart it for the settings to take effect.
 ```sh
