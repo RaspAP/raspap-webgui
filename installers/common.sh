@@ -152,7 +152,7 @@ function install_complete() {
         echo "Installation aborted."
         exit 0
     fi
-    sudo shutdown -h now || install_error "Unable to execute shutdown"
+    sudo shutdown -r now || install_error "Unable to execute shutdown"
 }
 
 function install_raspap() {
