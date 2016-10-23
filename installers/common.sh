@@ -110,8 +110,10 @@ function default_configuration() {
     if [ -f /etc/default/hostapd ]; then
         sudo mv /etc/default/hostapd /tmp/default_hostapd.old || install_error "Unable to remove old /etc/default/hostapd file"
     fi
-    sudo echo DAEMON_CONF=$raspap_dir/hostapd.conf > /etc/default/hostapd || install_error "Unable to write new /etc/default/hostapd file"
-    sudo mv $webroot_dir/config/hostapd.conf $raspap_dir/hostapd.conf || install_error "Unable to move hostapd configuration file"
+    sudo mv $webroot_dir/config/default_hostapd /etc/default/hostapd || install_error "Unable to move hostapd defaults file"
+    sudo mv $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
+    sudo mv $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
+    sudo mv $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
 }
 
 # Add a single entry to the sudoers file
