@@ -58,7 +58,7 @@ function enable_php_lighttpd() {
     install_log "Enabling PHP for lighttpd"
 
     sudo lighty-enable-mod fastcgi-php || install_error "Cannot enable fastcgi-php for lighttpd"
-    sudo service lighttpd restart || install_error "Unable to restart lighttpd"
+    sudo /etc/init.d/lighttpd restart || install_error "Unable to restart lighttpd"
 }
 
 # Verifies existence and permissions of RaspAP directory
@@ -134,10 +134,10 @@ function patch_system_files() {
     sudo_add '/sbin/wpa_cli scan'
     sudo_add '/sbin/wpa_cli reconfigure'
     sudo_add '/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf'
-    sudo_add '/usr/sbin/service hostapd start'
-    sudo_add '/usr/sbin/service hostapd stop'
-    sudo_add '/usr/sbin/service dnsmasq start'
-    sudo_add '/usr/sbin/service dnsmasq stop'
+    sudo_add '/etc/init.d/hostapd start'
+    sudo_add '/etc/init.d/hostapd stop'
+    sudo_add '/etc/init.d/dnsmasq start'
+    sudo_add '/etc/init.d/dnsmasq stop'
     sudo_add '/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf'
     sudo_add '/sbin/shutdown -h now'
     sudo_add '/sbin/reboot'

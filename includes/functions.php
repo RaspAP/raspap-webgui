@@ -412,25 +412,25 @@ function SaveTORAndVPNConfig(){
     // TODO
   } elseif( isset($_POST['StartOpenVPN']) ) {
     echo "Attempting to start openvpn";
-    exec( 'sudo service openvpn start', $return );
+    exec( 'sudo /etc/init.d/openvpn start', $return );
     foreach( $return as $line ) {
       echo $line."<br />";
     }
   } elseif( isset($_POST['StopOpenVPN']) ) {
     echo "Attempting to stop openvpn";
-    exec( 'sudo service openvpn stop', $return );
+    exec( 'sudo /etc/init.d/openvpn stop', $return );
     foreach( $return as $line ) {
       echo $line."<br />";
     }
   } elseif( isset($_POST['StartTOR']) ) {
     echo "Attempting to start TOR";
-    exec( 'sudo service tor start', $return );
+    exec( 'sudo /etc/init.d/tor start', $return );
     foreach( $return as $line ) {
       echo $line."<br />";
     }
   } elseif( isset($_POST['StopTOR']) ) {
     echo "Attempting to stop TOR";
-    exec( 'sudo service tor stop', $return );
+    exec( 'sudo /etc/init.d/tor stop', $return );
     foreach( $return as $line ) {
       echo $line."<br />";
     }
