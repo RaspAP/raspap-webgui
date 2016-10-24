@@ -36,15 +36,22 @@ $ wget -q https://git.io/voEUQ -O /tmp/raspap && bash /tmp/raspap
 ```
 The installer will complete the steps in the manual installation (below) for you.
 
+After the reboot at the end of the installation the wireless network will be
+configured as an access point as follows:
+* IP address: 10.3.141.1
+* DHCP range: 10.3.141.50 to 10.3.141.255
+* SSID: `raspi-webgui`
+* Password: ChangeMe
+
 ## Manual installation
-Start off by installing lighttpd and php5.
+Start off by installing lighttpd, php5, hostapd and dnsmasq.
 ```sh
-$ sudo apt-get install lighttpd php5-cgi
+$ sudo apt-get install lighttpd php5-cgi hostapd dnsmasq
 ```
 After that, enable PHP for lighttpd and restart it for the settings to take effect.
 ```sh
 sudo lighty-enable-mod fastcgi-php
-sudo /etc/init.d/lighttpd restart
+sudo service lighttpd restart
 ```
 Now comes the fun part. For security reasons, the `www-data` user which lighttpd runs under is not allowed to start or stop daemons, or run commands like ifdown and ifup, all of which we want our page to do.
 So what I have done is added the `www-data` user to the sudoers file, but with restrictions on what commands the user can run.
