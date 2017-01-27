@@ -6,7 +6,7 @@ version=`sed 's/\..*//' /etc/debian_version`
 if [ $version -ge 8 ]; then
     echo "Raspian verison is 8.0 or later"
     webroot_dir="/var/www/html"
-elif; then
+else
     echo "Raspian version is earlier than 8.0"
     webroot_dir="/var/www"
 fi
