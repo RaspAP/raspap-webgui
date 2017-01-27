@@ -1,13 +1,13 @@
 raspap_dir="/etc/raspap"
 raspap_user="www-data"
-version=`cat /etc/debian_version`
+version=`sed 's/\..*//' /etc/debian_version`
 
 # Determine version and set default home location for lighttpd 
-if [ $version == "8.0" ]; then
-    echo "Raspian verison is 8.0 Jessie"
+if [ $version -ge 8 ]; then
+    echo "Raspian verison is 8.0 or later"
     webroot_dir="/var/www/html"
-elif [ $version == "7.8" ]; then
-    echo "Raspian version is 7.8 Wheezy"
+elif; then
+    echo "Raspian version is earlier than 8.0"
     webroot_dir="/var/www"
 fi
 
@@ -27,11 +27,13 @@ function install_error() {
 
 function config_installation() {
     install_log "Configure installation"
-    echo -n "Install directory [${raspap_dir}]: "
-    read input
-    if [ ! -z "$input" ]; then
-        raspap_dir="$input"
-    fi
+    # This causes confusion. For the moment fix the default.
+    #echo -n "Install directory [${raspap_dir}]: "
+    #read input
+    #if [ ! -z "$input" ]; then
+    #    raspap_dir="$input"
+    #fi
+    echo "Install directory: ${raspap_dir}"
 
     echo -n "Complete installation with these values? [y/N]: "
     read answer
@@ -75,7 +77,7 @@ function create_raspap_directories() {
 # Fetches latest files from github to webroot
 function download_latest_files() {
     if [ -d "$webroot_dir" ]; then
-        sudo mv $webroot_dir /tmp/old_webroot || install_error "Unable to remove old webroot directory"
+        sudo mv $webroot_dir $webroot.old || install_error "Unable to remove old webroot directory"
     fi
 
     install_log "Cloning latest files from github"
