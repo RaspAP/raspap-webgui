@@ -151,7 +151,7 @@ function DisplayDHCPConfig() {
       </div>
       <div class="col-xs-2 col-sm-2">
         <label for="code">Interval</label>
-        <select name="RangeLeaseTimeUnits" class="form-control" ><option value="m" <?php echo $mselected; ?>>Minutes</option><option value="h" <?php echo $hselected; ?>>Hours</option><option value="d" <?php echo $dselected; ?>>Days</option><option value="infinite">Infinite</option></select> 
+        <select name="RangeLeaseTimeUnits" class="form-control" ><option value="m" <?php echo $mselected; ?>>Minute(s)</option><option value="h" <?php echo $hselected; ?>>Hour(s)</option><option value="d" <?php echo $dselected; ?>>Day(s)</option><option value="infinite">Infinite</option></select> 
       </div>
     </div>
 
