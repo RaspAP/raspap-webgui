@@ -1,0 +1,35 @@
+.page-header {
+	margin: 20px 0 20px;
+}
+
+.page-header .logo {
+	margin-right: 5px;
+}
+
+.panel-primary {
+	border-color: #c61931;
+}
+
+.panel-primary>.panel-heading {
+	border-color: #d8224c;
+	background-color: #d8224c;
+}
+
+.panel-footer {
+	background-color: #f2f1f0;
+}
+
+.btn-primary.btn-outline {
+	color: #c61931;
+	border-color: #c61931;
+}
+
+.btn-primary:hover {
+	background-color: #c61931;
+	border-color: #c61931;
+}
+
+.info-item {
+	width: 140px;
+	float: left;
+}
