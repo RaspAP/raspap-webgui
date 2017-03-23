@@ -51,15 +51,6 @@ $output = $return = 0;
 $page = $_GET['page'];
 
 session_start();
-
-//if (empty($_SESSION['csrf_token'])) {
-//    if (function_exists('mcrypt_create_iv')) {
-//        $_SESSION['csrf_token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
-//    } else {
-//        $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(32));
-//    }
-//}
-//$csrf_token = $_SESSION['csrf_token'];
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +97,7 @@ session_start();
 
     <div id="wrapper">
       <!-- Navigation -->
-      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+      <!-- <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0"> -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -114,7 +105,7 @@ session_start();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.1</a>
+          <!-- <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.1</a> -->
         </div>
         <!-- /.navbar-header -->
 
