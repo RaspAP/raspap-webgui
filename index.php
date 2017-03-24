@@ -97,19 +97,6 @@ session_start();
 
     <div id="wrapper">
       <!-- Navigation -->
-      <!-- <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0"> -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <!-- <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.1</a> -->
-        </div>
-        <!-- /.navbar-header -->
-
-        <!-- Navigation -->
         <div class="navbar-default sidebar" role="navigation">
           <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
@@ -141,15 +128,6 @@ session_start();
       </nav>
 
       <div id="page-wrapper">
-
-        <!-- Page Heading -->
-        <div class="row">
-          <div class="col-lg-12">
-            <h1 class="page-header">
-              <img class="logo" src="img/raspAP-logo.png" width="45" height="45">RaspAP
-            </h1>
-          </div>
-        </div><!-- /.row -->
 
         <?php 
         // handle page actions

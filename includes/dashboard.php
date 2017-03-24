@@ -29,7 +29,7 @@ function DisplayDashboard(){
   $strRxBytes = $result[1];
   preg_match( '/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result );
   $strTxBytes = $result[1];
-  preg_match( '/ESSID:\"([a-zA-Z0-9\s]+)\"/i',$strWlan0,$result );
+  preg_match( '/ESSID:\"(.+)\"/i',$strWlan0,$result );
   $strSSID = str_replace( '"','',$result[1] );
   preg_match( '/Access Point: ([0-9a-f:]+)/i',$strWlan0,$result );
   $strBSSID = $result[1];
@@ -88,13 +88,13 @@ function DisplayDashboard(){
           <div class="info-item">Received Bytes</div>      <?php echo $strRxBytes ?></br></br>
           <div class="info-item">Transferred Packets</div> <?php echo $strTxPackets ?></br>
           <div class="info-item">Transferred Bytes</div>   <?php echo $strTxBytes ?></br>
-        </div><!-- /.panel-body -->
-        </div><!-- /.panel-default -->
-                        </div><!-- /.col-md-6 -->
+        <!-- </div><!-- /.panel-body -->
+        <!-- </div><!-- /.panel-default -->
+                      <!--  </div><!-- /.col-md-6 -->
 
-        <div class="col-md-6">
-                    <div class="panel panel-default">
-              <div class="panel-body wireless">
+        <!-- <div class="col-md-6"> -->
+        <!--            <div class="panel panel-default"> -->
+        <!--      <div class="panel-body wireless"> -->
                             <h4>Wireless Information</h4>
           <div class="info-item">Connected To</div>   <?php echo $strSSID ?></br>
           <div class="info-item">AP Mac Address</div> <?php echo $strBSSID ?></br>
