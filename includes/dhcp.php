@@ -27,7 +27,6 @@ function DisplayDHCPConfig() {
   $dnsmasq_state = ($dnsmasq[0] > 0);
 
   if( isset( $_POST['startdhcpd'] ) ) {
-    if (CSRFValidate()) {
       if ($dnsmasq_state) {
         $status->addMessage('dnsmasq already running', 'info');
       } else {
@@ -39,11 +38,7 @@ function DisplayDHCPConfig() {
           $status->addMessage('Failed to start dnsmasq', 'danger');
         }
       }
-    } else {
-      error_log('CSRF violation');
-    }
   } elseif( isset($_POST['stopdhcpd'] ) ) {
-    if (CSRFValidate()) {
       if ($dnsmasq_state) {
         exec('sudo /etc/init.d/dnsmasq stop', $dnsmasq, $return);
         if ($return == 0) {
@@ -55,9 +50,6 @@ function DisplayDHCPConfig() {
       } else {
         $status->addMessage('dnsmasq already stopped', 'info');
       }
-    } else {
-      error_log('CSRF violation');
-    }
   } else {
     if( $dnsmasq_state ) {
       $status->addMessage('Dnsmasq is running', 'success');
@@ -107,7 +99,6 @@ function DisplayDHCPConfig() {
     <div class="tab-pane fade in active" id="server-settings">
     <h4>DHCP server settings</h4>
     <form method="POST" action="?page=dhcpd_conf">
-    <?php CSRFToken() ?>
     <div class="row">
       <div class="form-group col-md-4">
         <label for="code">Interface</label>

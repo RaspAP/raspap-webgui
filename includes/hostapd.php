@@ -69,7 +69,6 @@ function DisplayHostAPDConfig(){
               <div class="tab-pane fade in active" id="basic">
 
                 <h4>Basic settings</h4>
-                <?php CSRFToken() ?>
                 <div class="row">
                   <div class="form-group col-md-4">
                     <label for="code">Interface</label>
