@@ -68,10 +68,10 @@ function DisplayDashboard(){
 
               <?php
                 if(strpos( $strWlan0, "UP" ) !== false && strpos( $strWlan0, "RUNNING" ) !== false ) {
-                  $status->addMessage('Interface is up', 'success');
+                  $status->addMessage('wlan0 is up', 'success');
                   $wlan0up = true;
                 } else {
-                  $status->addMessage('Interface is down', 'warning');
+                  $status->addMessage('wlan0 is down', 'warning');
                 }
                ?>
 
@@ -84,11 +84,11 @@ function DisplayDashboard(){
           <div class="info-item">Interface Name</div> wlan0</br>
           <div class="info-item">IP Address</div>     <?php echo $strIPAddress ?></br>
           <div class="info-item">Subnet Mask</div>    <?php echo $strNetMask ?></br>
-          <div class="info-item">Mac Address</div>    <?php echo $strHWAddress ?></br></br>
+          <div class="info-item">Mac Address</div>    <?php echo $strHWAddress ?></br>
 
                       <h4>Interface Statistics</h4>
           <div class="info-item">Received Packets</div>    <?php echo $strRxPackets ?></br>
-          <div class="info-item">Received Bytes</div>      <?php echo $strRxBytes ?></br></br>
+          <div class="info-item">Received Bytes</div>      <?php echo $strRxBytes ?></br>
           <div class="info-item">Transferred Packets</div> <?php echo $strTxPackets ?></br>
           <div class="info-item">Transferred Bytes</div>   <?php echo $strTxBytes ?></br>
 
