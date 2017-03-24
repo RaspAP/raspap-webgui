@@ -44,13 +44,6 @@ function DisplayDashboard(){
   preg_match('/Frequency:(\d+.\d+ GHz)/i',$strWlan0,$result);
   $strFrequency = $result[1];
 
-  if(strpos( $strWlan0, "UP" ) !== false && strpos( $strWlan0, "RUNNING" ) !== false ) {
-    $status->addMessage('Interface is up', 'success');
-    $wlan0up = true;
-  } else {
-    $status->addMessage('Interface is down', 'warning');
-  }
-
   if( isset($_POST['ifdown_wlan0']) ) {
     exec( 'ifconfig wlan0 | grep -i running | wc -l',$test );
     if($test[0] == 1) {
@@ -72,11 +65,21 @@ function DisplayDashboard(){
           <div class="panel panel-primary">
             <div class="panel-heading"><i class="fa fa-dashboard fa-fw"></i> Dashboard   </div>
               <div class="panel-body">
-                <p><?php $status->showMessages(); ?></p>
+
+              <?php
+                if(strpos( $strWlan0, "UP" ) !== false && strpos( $strWlan0, "RUNNING" ) !== false ) {
+                  $status->addMessage('Interface is up', 'success');
+                  $wlan0up = true;
+                } else {
+                  $status->addMessage('Interface is down', 'warning');
+                }
+               ?>
+
                   <div class="row">
                         <div class="col-md-6">
                         <div class="panel panel-default">
                   <div class="panel-body">
+                      <?php $status->showMessages(); ?>
                       <h4>Interface Information</h4>
           <div class="info-item">Interface Name</div> wlan0</br>
           <div class="info-item">IP Address</div>     <?php echo $strIPAddress ?></br>
@@ -103,7 +106,7 @@ function DisplayDashboard(){
               aria-valuenow="<?php echo $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
               style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
             </div>
-          </div>
+            </div>
                     <?php if ( !$wlan0up ) {
                       echo '<input type="submit" class="btn btn-success" value="Start wlan0" name="ifup_wlan0" />';
                     } else {
@@ -112,7 +115,7 @@ function DisplayDashboard(){
               ?>
         </div><!-- /.panel-body -->
         </div><!-- /.panel-default -->
-                        </div><!-- /.col-md-6 -->
+        </div><!-- /.col-md-6 -->
       </div><!-- /.row -->
 
                   <div class="col-lg-12">
