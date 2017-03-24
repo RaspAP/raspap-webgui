@@ -29,7 +29,7 @@ function DisplayDashboard(){
   $strRxBytes = $result[1];
   preg_match( '/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result );
   $strTxBytes = $result[1];
-  preg_match( '/ESSID:\"([a-zA-Z0-9\s]+)\"/i',$strWlan0,$result );
+  preg_match( '/ESSID:\"(.+)\"/i',$strWlan0,$result );
   $strSSID = str_replace( '"','',$result[1] );
   preg_match( '/Access Point: ([0-9a-f:]+)/i',$strWlan0,$result );
   $strBSSID = $result[1];
