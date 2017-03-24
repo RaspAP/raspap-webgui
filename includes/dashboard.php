@@ -88,13 +88,7 @@ function DisplayDashboard(){
           <div class="info-item">Received Bytes</div>      <?php echo $strRxBytes ?></br></br>
           <div class="info-item">Transferred Packets</div> <?php echo $strTxPackets ?></br>
           <div class="info-item">Transferred Bytes</div>   <?php echo $strTxBytes ?></br>
-        <!-- </div><!-- /.panel-body -->
-        <!-- </div><!-- /.panel-default -->
-                      <!--  </div><!-- /.col-md-6 -->
 
-        <!-- <div class="col-md-6"> -->
-        <!--            <div class="panel panel-default"> -->
-        <!--      <div class="panel-body wireless"> -->
                             <h4>Wireless Information</h4>
           <div class="info-item">Connected To</div>   <?php echo $strSSID ?></br>
           <div class="info-item">AP Mac Address</div> <?php echo $strBSSID ?></br>
@@ -110,6 +104,12 @@ function DisplayDashboard(){
               style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
             </div>
           </div>
+                    <?php if ( !$wlan0up ) {
+                      echo '<input type="submit" class="btn btn-success" value="Start wlan0" name="ifup_wlan0" />';
+                    } else {
+                echo '<input type="submit" class="btn btn-warning" value="Stop wlan0" name="ifdown_wlan0" />';
+              }
+              ?>
         </div><!-- /.panel-body -->
         </div><!-- /.panel-default -->
                         </div><!-- /.col-md-6 -->
@@ -118,12 +118,7 @@ function DisplayDashboard(){
                   <div class="col-lg-12">
                  <div class="row">
                     <form action="?page=wlan0_info" method="POST">
-                    <?php if ( !$wlan0up ) {
-                      echo '<input type="submit" class="btn btn-success" value="Start wlan0" name="ifup_wlan0" />';
-                    } else {
-                echo '<input type="submit" class="btn btn-warning" value="Stop wlan0" name="ifdown_wlan0" />';
-              }
-              ?>
+
               <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
               </form>
             </div>
@@ -136,5 +131,4 @@ function DisplayDashboard(){
     </div><!-- /.row -->
   <?php 
 }
-
 ?>
