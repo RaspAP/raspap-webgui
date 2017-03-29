@@ -61,76 +61,119 @@ function DisplayDashboard(){
   }
   ?>
   <div class="row">
-      <div class="col-lg-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading"><i class="fa fa-dashboard fa-fw"></i> Dashboard   </div>
-              <div class="panel-body">
+    <div class="col-lg-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading"><i class="fa fa-dashboard fa-fw"></i> Dashboard   </div>
+        <div class="panel-body">
 
-              <?php
-                if(strpos( $strWlan0, "UP" ) !== false && strpos( $strWlan0, "RUNNING" ) !== false ) {
-                  $status->addMessage('wlan0 is up', 'success');
-                  $wlan0up = true;
+          <?php
+          if(strpos( $strWlan0, "UP" ) !== false && strpos( $strWlan0, "RUNNING" ) !== false ) {
+            $status->addMessage('wlan0 is up', 'success');
+            $wlan0up = true;
+          } else {
+            $status->addMessage('wlan0 is down', 'warning');
+          }
+          ?>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <?php $status->showMessages(); ?>
+                  <h4>Interface Information</h4>
+                  <div class="info-item">Interface Name</div> wlan0</br>
+                  <div class="info-item">IP Address</div>     <?php echo $strIPAddress ?></br>
+                  <div class="info-item">Subnet Mask</div>    <?php echo $strNetMask ?></br>
+
+                  <div class="info-item">Mac Address</div>    <?php echo $strHWAddress ?></br>
+                  <h4>Interface Statistics</h4>
+                  <div class="info-item">Received Packets</div>    <?php echo $strRxPackets ?></br>
+                  <div class="info-item">Received Bytes</div>      <?php echo $strRxBytes ?></br>
+                  <div class="info-item">Transferred Packets</div> <?php echo $strTxPackets ?></br>
+                  <div class="info-item">Transferred Bytes</div>   <?php echo $strTxBytes ?></br>
+
+                  <h4>Wireless Information</h4>
+                  <div class="info-item">Connected To</div>   <?php echo $strSSID ?></br>
+                  <div class="info-item">AP Mac Address</div> <?php echo $strBSSID ?></br>
+                  <div class="info-item">Bitrate</div>        <?php echo $strBitrate ?></br>
+                  <div class="info-item">Signal Level</div>        <?php echo $strSignalLevel ?></br>
+                  <div class="info-item">Transmit Power</div> <?php echo $strTxPower ?></br>
+                  <div class="info-item">Frequency</div>      <?php echo $strFrequency ?></br></br>
+                  <div class="info-item">Link Quality</div>
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped active"
+                    role="progressbar"
+                    aria-valuenow="<?php echo $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
+                    style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
+                  </div>
+                </div>
+                <?php if ( !$wlan0up ) {
+                  echo '<input type="submit" class="btn btn-success" value="Start wlan0" name="ifup_wlan0" />';
                 } else {
-                  $status->addMessage('wlan0 is down', 'warning');
+                  echo '<input type="submit" class="btn btn-warning" value="Stop wlan0" name="ifdown_wlan0" />';
                 }
-               ?>
+                ?>
+              </div><!-- /.panel-body -->
+            </div><!-- /.panel-default -->
+          </div><!-- /.col-md-6 -->
+        </div><!-- /.row -->
 
-                  <div class="row">
-                        <div class="col-md-6">
-                        <div class="panel panel-default">
-                  <div class="panel-body">
-                      <?php $status->showMessages(); ?>
-                      <h4>Interface Information</h4>
-          <div class="info-item">Interface Name</div> wlan0</br>
-          <div class="info-item">IP Address</div>     <?php echo $strIPAddress ?></br>
-          <div class="info-item">Subnet Mask</div>    <?php echo $strNetMask ?></br>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <?php $status->showMessages(); ?>
+                <h4>Interface Information</h4>
+                <div class="info-item">Interface Name</div> wlan0</br>
+                <div class="info-item">IP Address</div>     <?php echo $strIPAddress ?></br>
+                <div class="info-item">Subnet Mask</div>    <?php echo $strNetMask ?></br>
 
-          <div class="info-item">Mac Address</div>    <?php echo $strHWAddress ?></br>
-                      <h4>Interface Statistics</h4>
-          <div class="info-item">Received Packets</div>    <?php echo $strRxPackets ?></br>
-          <div class="info-item">Received Bytes</div>      <?php echo $strRxBytes ?></br>
-          <div class="info-item">Transferred Packets</div> <?php echo $strTxPackets ?></br>
-          <div class="info-item">Transferred Bytes</div>   <?php echo $strTxBytes ?></br>
+                <div class="info-item">Mac Address</div>    <?php echo $strHWAddress ?></br>
+                <h4>Interface Statistics</h4>
+                <div class="info-item">Received Packets</div>    <?php echo $strRxPackets ?></br>
+                <div class="info-item">Received Bytes</div>      <?php echo $strRxBytes ?></br>
+                <div class="info-item">Transferred Packets</div> <?php echo $strTxPackets ?></br>
+                <div class="info-item">Transferred Bytes</div>   <?php echo $strTxBytes ?></br>
 
-                            <h4>Wireless Information</h4>
-          <div class="info-item">Connected To</div>   <?php echo $strSSID ?></br>
-          <div class="info-item">AP Mac Address</div> <?php echo $strBSSID ?></br>
-          <div class="info-item">Bitrate</div>        <?php echo $strBitrate ?></br>
-          <div class="info-item">Signal Level</div>        <?php echo $strSignalLevel ?></br>
-          <div class="info-item">Transmit Power</div> <?php echo $strTxPower ?></br>
-          <div class="info-item">Frequency</div>      <?php echo $strFrequency ?></br></br>
-          <div class="info-item">Link Quality</div>
-            <div class="progress">
-            <div class="progress-bar progress-bar-info progress-bar-striped active"
-              role="progressbar"
-              aria-valuenow="<?php echo $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
-              style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
-            </div>
-            </div>
-                    <?php if ( !$wlan0up ) {
-                      echo '<input type="submit" class="btn btn-success" value="Start wlan0" name="ifup_wlan0" />';
-                    } else {
+                <h4>Wireless Information</h4>
+                <div class="info-item">Connected To</div>   <?php echo $strSSID ?></br>
+                <div class="info-item">AP Mac Address</div> <?php echo $strBSSID ?></br>
+                <div class="info-item">Bitrate</div>        <?php echo $strBitrate ?></br>
+                <div class="info-item">Signal Level</div>        <?php echo $strSignalLevel ?></br>
+                <div class="info-item">Transmit Power</div> <?php echo $strTxPower ?></br>
+                <div class="info-item">Frequency</div>      <?php echo $strFrequency ?></br></br>
+                <div class="info-item">Link Quality</div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-info progress-bar-striped active"
+                  role="progressbar"
+                  aria-valuenow="<?php echo $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
+                  style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
+                </div>
+              </div>
+              <?php if ( !$wlan0up ) {
+                echo '<input type="submit" class="btn btn-success" value="Start wlan0" name="ifup_wlan0" />';
+              } else {
                 echo '<input type="submit" class="btn btn-warning" value="Stop wlan0" name="ifdown_wlan0" />';
               }
               ?>
-        </div><!-- /.panel-body -->
-        </div><!-- /.panel-default -->
+            </div><!-- /.panel-body -->
+          </div><!-- /.panel-default -->
         </div><!-- /.col-md-6 -->
       </div><!-- /.row -->
 
-                  <div class="col-lg-12">
-                 <div class="row">
-                    <form action="?page=wlan0_info" method="POST">
+        <div class="col-lg-12">
+          <div class="row">
+            <form action="?page=wlan0_info" method="POST">
               <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
-              </form>
-            </div>
-              </div>
+            </form>
+          </div>
+        </div>
 
-                </div><!-- /.panel-body -->
-                <div class="panel-footer">Information provided by ifconfig and iwconfig</div>
-            </div><!-- /.panel-default -->
-        </div><!-- /.col-lg-12 -->
-    </div><!-- /.row -->
-  <?php 
+      </div><!-- /.panel-body -->
+      <div class="panel-footer">Information provided by ifconfig and iwconfig</div>
+    </div><!-- /.panel-default -->
+  </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+<?php
 }
 ?>
