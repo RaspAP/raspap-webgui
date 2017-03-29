@@ -84,8 +84,8 @@ function DisplayDashboard(){
           <div class="info-item">Interface Name</div> wlan0</br>
           <div class="info-item">IP Address</div>     <?php echo $strIPAddress ?></br>
           <div class="info-item">Subnet Mask</div>    <?php echo $strNetMask ?></br>
-          <div class="info-item">Mac Address</div>    <?php echo $strHWAddress ?></br>
 
+          <div class="info-item">Mac Address</div>    <?php echo $strHWAddress ?></br>
                       <h4>Interface Statistics</h4>
           <div class="info-item">Received Packets</div>    <?php echo $strRxPackets ?></br>
           <div class="info-item">Received Bytes</div>      <?php echo $strRxBytes ?></br>
@@ -121,7 +121,6 @@ function DisplayDashboard(){
                   <div class="col-lg-12">
                  <div class="row">
                     <form action="?page=wlan0_info" method="POST">
-
               <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
               </form>
             </div>
