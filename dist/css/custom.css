@@ -33,3 +33,8 @@
 	width: 140px;
 	float: left;
 }
+
+.equal {
+  display: flex;
+  flex-wrap: wrap;
+}
