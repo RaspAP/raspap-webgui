@@ -60,7 +60,7 @@ function DisplayDashboard(){
     }
   }
   ?>
-  <div class="row">
+  <div class="row row-flex row-flex-wrap">
     <div class="col-lg-12">
       <div class="panel panel-primary">
         <div class="panel-heading"><i class="fa fa-dashboard fa-fw"></i> Dashboard   </div>
@@ -75,7 +75,7 @@ function DisplayDashboard(){
           }
           ?>
 
-          <div class="row equal">
+          <div class="row row-flex row-flex-wrap">
             <div class="col-md-6">
               <div class="panel panel-default">
                 <div class="panel-body">
