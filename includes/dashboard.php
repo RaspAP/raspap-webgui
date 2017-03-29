@@ -60,7 +60,7 @@ function DisplayDashboard(){
     }
   }
   ?>
-  <div class="row row-flex row-flex-wrap">
+  <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-primary">
         <div class="panel-heading"><i class="fa fa-dashboard fa-fw"></i> Dashboard   </div>
@@ -81,7 +81,7 @@ function DisplayDashboard(){
                 <div class="panel-body">
                   <?php $status->showMessages(); ?>
                   <h4>Interface Information</h4>
-                  <div class="info-item">Interface Name</div> wlan0</br>
+                  <div class="info-item">Interface Name: wlan0</div></br>
                   <div class="info-item">IP Address: <?php echo $strIPAddress ?></div></br>
                   <div class="info-item">Subnet Mask: <?php echo $strNetMask ?></div></br>
 
@@ -131,7 +131,7 @@ function DisplayDashboard(){
               <div class="panel-body">
                 <?php $status->showMessages(); ?>
                 <h4>Interface Information</h4>
-                <div class="info-item">Interface Name</div> wlan0</br>
+                <div class="info-item">Interface Name: wlan0</div></br>
                 <div class="info-item">IP Address: <?php echo $strIPAddress ?></div></br>
                 <div class="info-item">Subnet Mask: <?php echo $strNetMask ?></div></br>
 
