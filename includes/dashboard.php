@@ -118,6 +118,15 @@ function DisplayDashboard(){
           </div><!-- /.col-md-6 -->
         </div><!-- /.row -->
 
+        <?php
+        if(strpos( $strWlan0, "UP" ) !== false && strpos( $strWlan0, "RUNNING" ) !== false ) {
+          $status->addMessage('wlan0 is up', 'success');
+          $wlan0up = true;
+        } else {
+          $status->addMessage('wlan0 is down', 'warning');
+        }
+        ?>
+        
         <div class="row">
           <div class="col-md-6">
             <div class="panel panel-default">
