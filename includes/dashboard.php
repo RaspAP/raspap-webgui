@@ -144,21 +144,6 @@ function DisplayDashboard(){
                 <div class="info-item">Transferred Packets</div> <?php echo $strTxPackets ?></br>
                 <div class="info-item">Transferred Bytes</div>   <?php echo $strTxBytes ?></br>
 
-                <h4>Wireless Information</h4>
-                <div class="info-item">Connected To</div>   <?php echo $strSSID ?></br>
-                <div class="info-item">AP Mac Address</div> <?php echo $strBSSID ?></br>
-                <div class="info-item">Bitrate</div>        <?php echo $strBitrate ?></br>
-                <div class="info-item">Signal Level</div>        <?php echo $strSignalLevel ?></br>
-                <div class="info-item">Transmit Power</div> <?php echo $strTxPower ?></br>
-                <div class="info-item">Frequency</div>      <?php echo $strFrequency ?></br></br>
-                <div class="info-item">Link Quality</div>
-                <div class="progress">
-                  <div class="progress-bar progress-bar-info progress-bar-striped active"
-                  role="progressbar"
-                  aria-valuenow="<?php echo $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
-                  style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
-                </div>
-              </div>
               <?php if ( !$wlan0up ) {
                 echo '<input type="submit" class="btn btn-success" value="Start wlan0" name="ifup_wlan0" />';
               } else {
