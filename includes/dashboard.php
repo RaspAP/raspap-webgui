@@ -140,7 +140,7 @@ function DisplayDashboard(){
                 <div class="info-item">Received Packets: <?php echo $strRxPackets ?></div></br>
                 <div class="info-item">Received Bytes: <?php echo $strRxBytes ?></div></br>
                 <div class="info-item">Transferred Packets: <?php echo $strTxPackets ?></div></br>
-                <div class="info-item">Transferred Bytes: <?php echo $strTxBytes ?></div></br>
+                <div class="info-item">Transferred Bytes: <?php echo $strTxBytes ?></div></br></br>
 
               <?php if ( !$wlan0up ) {
                 echo '<input type="submit" class="btn btn-success" value="Start wlan0" name="ifup_wlan0" />';
