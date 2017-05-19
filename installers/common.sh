@@ -4,22 +4,40 @@ version=`sed 's/\..*//' /etc/debian_version`
 
 # Determine version and set default home location for lighttpd 
 if [ $version -ge 8 ]; then
-    echo "Raspian verison is 8.0 or later"
+    version_msg="Raspian version 8.0 or later"
     webroot_dir="/var/www/html"
 else
-    echo "Raspian version is earlier than 8.0"
+    version_msg="Raspian version earlier than 8.0"
     webroot_dir="/var/www"
 fi
 
-# Outputs a RaspAP INSTALL log line
+# Outputs a RaspAP Install log line
 function install_log() {
-    echo -e "\033[1;32mRaspAP INSTALL: $*\033[m"
+    echo -e "\033[1;32mRaspAP Install: $*\033[m"
 }
 
-# Outputs a RaspAP INSTALL ERROR log line and exits with status code 1
+# Outputs a RaspAP Install Error log line and exits with status code 1
 function install_error() {
-    echo -e "\033[1;37;41mRaspAP INSTALL ERROR: $*\033[m"
+    echo -e "\033[1;37;41mRaspAP Install Error: $*\033[m"
     exit 1
+}
+
+# Outputs a welcome message
+function display_welcome() {
+    raspberry='\033[0;35m'
+    green='\033[1;32m'
+
+    echo -e "${raspberry}\n"
+    echo -e " 888888ba                              .d888888   888888ba" 
+    echo -e " 88     8b                            d8     88   88     8b" 
+    echo -e "a88aaaa8P' .d8888b. .d8888b. 88d888b. 88aaaaa88a a88aaaa8P" 
+    echo -e " 88    8b. 88    88 Y8ooooo. 88    88 88     88   88" 
+    echo -e " 88     88 88.  .88       88 88.  .88 88     88   88" 
+    echo -e " dP     dP  88888P8  88888P  88Y888P  88     88   dP" 
+    echo -e "                             88"                             
+    echo -e "                             dP"                             
+    echo -e "${green}"
+    echo -e "The Quick Installer will guide you through a few easy steps\n\n"
 }
 
 ### NOTE: all the below functions are overloadable for system-specific installs
@@ -27,14 +45,9 @@ function install_error() {
 
 function config_installation() {
     install_log "Configure installation"
-    # This causes confusion. For the moment fix the default.
-    #echo -n "Install directory [${raspap_dir}]: "
-    #read input
-    #if [ ! -z "$input" ]; then
-    #    raspap_dir="$input"
-    #fi
+    echo "Detected ${version_msg}" 
     echo "Install directory: ${raspap_dir}"
-
+    echo "Lighttpd directory: ${webroot_dir}"
     echo -n "Complete installation with these values? [y/N]: "
     read answer
     if [[ $answer != "y" ]]; then
@@ -159,6 +172,7 @@ function install_complete() {
 }
 
 function install_raspap() {
+    display_welcome
     config_installation
     update_system_packages
     install_dependencies
