@@ -28,7 +28,7 @@ function RPiVersion() {
     'a21041' => 'a21041',
     '900092' => 'PiZero 1.2',
     '900093' => 'PiZero 1.3',
-    '9000C1' => 'PiZero W',
+    '9000c1' => 'PiZero W',
     'a02082' => 'Pi 3 Model B',
     'a22082' => 'Pi 3 Model B'
   );
