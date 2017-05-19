@@ -134,7 +134,7 @@ function DisplayWPAConfig(){
 
   exec( 'iwconfig wlan0', $iwconfig_return );
   foreach ($iwconfig_return as $line) {
-    if (preg_match( '/ESSID:\"(.+)\"/i',$line,$iwconfig_ssid )) {
+    if (preg_match( '/ESSID:\"([^"]+)\"/i',$line,$iwconfig_ssid )) {
       $networks[$iwconfig_ssid[1]]['connected'] = true;
     }
   }
@@ -173,7 +173,7 @@ function DisplayWPAConfig(){
                 <?php } ?>
                 </td>
                 <td>
-                  <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo $ssid ?>" />
+                  <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo htmlentities($ssid) ?>" />
                   <?php echo $ssid ?>
                 </td>
               <?php if ($network['visible']) { ?>
