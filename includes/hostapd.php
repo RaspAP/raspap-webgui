@@ -399,9 +399,8 @@ function DisplayHostAPDConfig(){
 		      }
 		  </script>
                 </div>
-              </div>
-            </div><!-- ./ Panel body -->
-
+              </div><!-- /.panel-body -->
+            </div><!-- /.panel-primary -->
             <input type="submit" class="btn btn-outline btn-primary" name="SaveHostAPDSettings" value="Save settings" />
             <?php
               if($hostapdstatus[0] == 0) {
@@ -411,7 +410,7 @@ function DisplayHostAPDConfig(){
               };
             ?>
           </form>
-        </div><!-- /.panel-primary -->
+        </div></div><!-- /.panel-primary -->
       <div class="panel-footer"> Information provided by hostapd</div>
     </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
