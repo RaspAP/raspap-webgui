@@ -18,31 +18,19 @@ function DisplayHostAPDConfig(){
 
 
   if( isset($_POST['SaveHostAPDSettings']) ) {
-    if (CSRFValidate()) {
-      SaveHostAPDConfig($arrSecurity, $arrEncType, $arrChannel, $interfaces, $status);
-    } else {
-      error_log('CSRF violation');
-    }
+    SaveHostAPDConfig($arrSecurity, $arrEncType, $arrChannel, $interfaces, $status);
   } elseif( isset($_POST['StartHotspot']) ) {
-    if (CSRFValidate()) {
       $status->addMessage('Attempting to start hotspot', 'info');
       exec( 'sudo /etc/init.d/hostapd start', $return );
       foreach( $return as $line ) {
         $status->addMessage($line, 'info');
       }
-    } else {
-      error_log('CSRF violation');
-    }
   } elseif( isset($_POST['StopHotspot']) ) {
-    if (CSRFValidate()) {
       $status->addMessage('Attempting to stop hotspot', 'info');
       exec( 'sudo /etc/init.d/hostapd stop', $return );
       foreach( $return as $line ) {
         $status->addMessage($line, 'info');
       }
-    } else {
-      error_log('CSRF violation');
-    }
   }
 
   exec( 'cat '. RASPI_HOSTAPD_CONFIG, $return );
@@ -81,7 +69,6 @@ function DisplayHostAPDConfig(){
                 <div class="tab-pane fade in active" id="basic">
 
                 <h4>Basic settings</h4>
-                <?php CSRFToken() ?>
                 <div class="row">
                   <div class="form-group col-md-4">
                     <label for="code">Interface</label>

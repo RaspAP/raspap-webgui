@@ -46,7 +46,7 @@ function DisplayWPAConfig(){
     }
   }
 
-  if ( isset($_POST['client_settings']) && CSRFValidate() ) {
+  if ( isset($_POST['client_settings']) ) {
     $tmp_networks = $networks;
     if ($wpa_file = fopen('/tmp/wifidata', 'w')) {
       fwrite($wpa_file, 'ctrl_interface=DIR=' . RASPI_WPA_CTRL_INTERFACE . ' GROUP=netdev' . PHP_EOL);
@@ -152,7 +152,6 @@ function DisplayWPAConfig(){
           <h4>Client settings</h4>
 
           <form method="POST" action="?page=wpa_conf" name="wpa_conf_form">
-            <?php CSRFToken() ?>
             <input type="hidden" name="client_settings" ?>
             <table class="table table-responsive table-striped">
               <tr>
