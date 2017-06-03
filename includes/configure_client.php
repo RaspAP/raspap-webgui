@@ -75,7 +75,9 @@ function DisplayWPAConfig(){
           fwrite($wpa_file, "}".PHP_EOL);
         } else {
           if (strlen($network['passphrase']) >=8 && strlen($network['passphrase']) <= 63) {
-            exec( 'wpa_passphrase '.escapeshellarg($ssid). ' ' . escapeshellarg($network['passphrase']),$wpa_passphrase );
+	    unset($wpa_passphrase);
+            unset($line);
+	    exec( 'wpa_passphrase '.escapeshellarg($ssid). ' ' . escapeshellarg($network['passphrase']),$wpa_passphrase );
             foreach($wpa_passphrase as $line) {
               fwrite($wpa_file, $line.PHP_EOL);
             }
