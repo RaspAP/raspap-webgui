@@ -46,9 +46,9 @@ configured as an access point as follows:
 * Password: ChangeMe
 
 ## Manual installation
-Start off by installing lighttpd, php5, hostapd and dnsmasq.
+Start off by installing git, lighttpd, php5, hostapd and dnsmasq.
 ```sh
-$ sudo apt-get install lighttpd php5-cgi hostapd dnsmasq
+$ sudo apt-get install git lighttpd php5-cgi hostapd dnsmasq
 ```
 After that, enable PHP for lighttpd and restart it for the settings to take effect.
 ```sh
