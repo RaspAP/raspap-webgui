@@ -204,15 +204,17 @@ function DisplayWPAConfig(){
                 </td>
               </tr>
 		<tr>
+		<td colspan=6>
           <div class="info-item">Link Quality</div>
+		<?php $strLinkQuality = $network[signal]; ?>
             <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped active"
               role="progressbar"
-              aria-valuenow="<?php echo $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
-              style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
+              aria-valuenow="<?php echo 100 + $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
+              style="width: <?php echo 100 + $strLinkQuality ?>%;"><?php echo 100 + $strLinkQuality ?>%
             </div>
           </div>
-		<?php echo $network[signal]; ?>
+		</td>
 		</tr>
               <?php $index += 1; ?>
             <?php } ?>
