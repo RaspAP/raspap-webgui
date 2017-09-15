@@ -127,6 +127,7 @@ function DisplayWPAConfig(){
         'configured' => false,
         'protocol' => ConvertToSecurity($arrNetwork[3]),
         'channel' => ConvertToChannel($arrNetwork[1]),
+	'signal' => $arrNetwork[2],
         'passphrase' => '',
         'visible' => true,
         'connected' => false
@@ -202,6 +203,17 @@ function DisplayWPAConfig(){
                   </div>
                 </td>
               </tr>
+		<tr>
+          <div class="info-item">Link Quality</div>
+            <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped active"
+              role="progressbar"
+              aria-valuenow="<?php echo $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
+              style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
+            </div>
+          </div>
+		<?php echo $network[signal]; ?>
+		</tr>
               <?php $index += 1; ?>
             <?php } ?>
             </table>
