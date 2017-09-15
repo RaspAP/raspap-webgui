@@ -203,9 +203,10 @@ function DisplayWPAConfig(){
                   </div>
                 </td>
               </tr>
-		<tr>
-		<td colspan=6>
-          <div class="info-item">Link Quality</div>
+		<tr styl="height:20px;">
+		<td colspan=2 />
+		<td colspan=4>
+          <div class="info-item" style="width:80px;">Link Quality</div>
 		<?php $strLinkQuality = $network[signal]; ?>
             <div class="progress">
             <div class="progress-bar progress-bar-info progress-bar-striped active"
