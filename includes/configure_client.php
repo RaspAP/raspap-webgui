@@ -204,6 +204,9 @@ function DisplayWPAConfig(){
             <?php } ?>
             </table>
           </form>
+	<div class="btn-group btn-block">
+	<a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;" class="col-md-6-btn btn-info" id="update">Rescan</a>
+	</div>
         </div><!-- ./ Panel body -->
         <div class="panel-footer"><strong>Note,</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP.</div>
       </div><!-- /.panel-primary -->
