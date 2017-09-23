@@ -127,6 +127,7 @@ function DisplayWPAConfig(){
         'configured' => false,
         'protocol' => ConvertToSecurity($arrNetwork[3]),
         'channel' => ConvertToChannel($arrNetwork[1]),
+	'signal' => $arrNetwork[2],
         'passphrase' => '',
         'visible' => true,
         'connected' => false
@@ -150,7 +151,9 @@ function DisplayWPAConfig(){
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
           <h4>Client settings</h4>
-
+	<div class="btn-group btn-block">
+	<a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-6-btn btn-info" id="update">Rescan</a>
+	</div>
           <form method="POST" action="?page=wpa_conf" name="wpa_conf_form">
             <?php CSRFToken() ?>
             <input type="hidden" name="client_settings" ?>
@@ -200,6 +203,20 @@ function DisplayWPAConfig(){
                   </div>
                 </td>
               </tr>
+		<tr styl="height:20px;">
+		<td colspan=2 />
+		<td colspan=4>
+          <div class="info-item" style="width:80px;">Link Quality</div>
+		<?php $strLinkQuality = $network[signal]; ?>
+            <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped active"
+              role="progressbar"
+              aria-valuenow="<?php echo 100 + $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
+              style="width: <?php echo 100 + $strLinkQuality ?>%;"><?php echo 100 + $strLinkQuality ?>%
+            </div>
+          </div>
+		</td>
+		</tr>
               <?php $index += 1; ?>
             <?php } ?>
             </table>
