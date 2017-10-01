@@ -81,7 +81,7 @@ function enable_php_lighttpd() {
 function create_raspap_directories() {
     install_log "Creating RaspAP directories"
     if [ -d "$raspap_dir" ]; then
-        sudo mv $raspap_dir $raspap_dir.original || install_error "Unable to move old '$raspap_dir' out of the way"
+        sudo mv $raspap_dir "$raspap_dir.`date +%F-%R`" || install_error "Unable to move old '$raspap_dir' out of the way"
     fi
     sudo mkdir -p "$raspap_dir" || install_error "Unable to create directory '$raspap_dir'"
     # Create a directory for existing file backups.
@@ -93,7 +93,7 @@ function create_raspap_directories() {
 # Fetches latest files from github to webroot
 function download_latest_files() {
     if [ -d "$webroot_dir" ]; then
-        sudo mv $webroot_dir "$webroot_dir.old" || install_error "Unable to remove old webroot directory"
+        sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || install_error "Unable to remove old webroot directory"
     fi
 
     install_log "Cloning latest files from github"
