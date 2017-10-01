@@ -72,7 +72,8 @@ function install_dependencies() {
 function enable_php_lighttpd() {
     install_log "Enabling PHP for lighttpd"
 
-    sudo lighty-enable-mod fastcgi-php || install_error "Cannot enable fastcgi-php for lighttpd"
+    sudo lighty-enable-mod fastcgi-php
+    if [ $? -eq 2 ]; then echo already enabled; else install_error "Cannot enable fastcgi-php for lighttpd"; fi
     sudo /etc/init.d/lighttpd restart || install_error "Unable to restart lighttpd"
 }
 
@@ -92,7 +93,7 @@ function create_raspap_directories() {
 # Fetches latest files from github to webroot
 function download_latest_files() {
     if [ -d "$webroot_dir" ]; then
-        sudo mv $webroot_dir $webroot.old || install_error "Unable to remove old webroot directory"
+        sudo mv $webroot_dir "$webroot_dir.old" || install_error "Unable to remove old webroot directory"
     fi
 
     install_log "Cloning latest files from github"
