@@ -114,11 +114,23 @@ function change_file_ownership() {
 # Check for existing /etc/network/interfaces and /etc/hostapd/hostapd.conf files
 function check_for_old_configs() {
     if [ -f /etc/network/interfaces ]; then
-        sudo mv /etc/network/interfaces "$raspap_dir/backups"
+        sudo mv /etc/network/interfaces "$raspap_dir/backups/interfaces.`date +%F-%R`"
+        ln -s "$raspap_dir/backups/interfaces.`date +%F-%R`" "$raspap_dir/backups/interfaces"
     fi
 
     if [ -f /etc/hostapd/hostapd.conf ]; then
-        sudo mv /etc/hostapd/hostapd.conf "$raspap_dir/backups"
+        sudo mv /etc/hostapd/hostapd.conf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`"
+        ln -s "$raspap_dir/backups/hostapd.conf.`date +%F-%R`" "$raspap_dir/backups/hostapd.conf"
+    fi
+
+    if [ -f /etc/dnsmasq.conf ]; then
+        sudo mv /etc/dnsmasq.conf "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`"
+        ln -s "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`" "$raspap_dir/backups/dnsmasq.conf"
+    fi
+
+    if [ -f /etc/dhcpcd.conf ]; then
+        sudo mv /etc/dhcpcd.conf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`"
+        ln -s "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`" "$raspap_dir/backups/dhcpcd.conf"
     fi
 }
 
@@ -154,28 +166,43 @@ function sudo_add() {
 
 # Adds www-data user to the sudoers file with restrictions on what the user can execute
 function patch_system_files() {
-    # patch /etc/sudoers file
-    install_log "Patching system sudoers file"
-    sudo_add '/sbin/ifdown wlan0'
-    sudo_add '/sbin/ifup wlan0'
-    sudo_add '/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf'
-    sudo_add '/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf'
-    sudo_add '/sbin/wpa_cli scan_results'
-    sudo_add '/sbin/wpa_cli scan'
-    sudo_add '/sbin/wpa_cli reconfigure'
-    sudo_add '/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf'
-    sudo_add '/etc/init.d/hostapd start'
-    sudo_add '/etc/init.d/hostapd stop'
-    sudo_add '/etc/init.d/dnsmasq start'
-    sudo_add '/etc/init.d/dnsmasq stop'
-    sudo_add '/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf'
-    sudo_add '/sbin/shutdown -h now'
-    sudo_add '/sbin/reboot'
+    # Set commands array
+    cmds=(
+      '/sbin/ifdown wlan0'
+      '/sbin/ifup wlan0'
+      '/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf'
+      '/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf'
+      '/sbin/wpa_cli scan_results'
+      '/sbin/wpa_cli scan'
+      '/sbin/wpa_cli reconfigure'
+      '/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf'
+      '/etc/init.d/hostapd start'
+      '/etc/init.d/hostapd stop'
+      '/etc/init.d/dnsmasq start'
+      '/etc/init.d/dnsmasq stop'
+      '/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf'
+      '/sbin/shutdown -h now'
+      '/sbin/reboot'
+    )
+
+    # Check if sudoers needs patchin
+    if [ $(sudo grep -c www-data /etc/sudoers) -ne 15 ]; then
+        # Sudoers file has incorrect number of commands. Wiping them out.
+        install_log "Cleaning sudoers file"
+        sudo sed -i '/www-data/d' /etc/sudoers
+        install_log "Patching system sudoers file"
+        # patch /etc/sudoers file
+        for cmd in "${cmds[@]}"; do
+            sudo_add $cmd
+        done
+    else
+        install_log "Sudoers file already patched"
+    fi
 }
 
 function install_complete() {
     install_log "Installation completed!"
-    
+
     echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
     read answer
     if [[ $answer != "y" ]]; then
