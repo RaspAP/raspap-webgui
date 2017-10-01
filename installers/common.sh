@@ -83,6 +83,8 @@ function create_raspap_directories() {
         sudo mv $raspap_dir $raspap_dir.original || install_error "Unable to move old '$raspap_dir' out of the way"
     fi
     sudo mkdir -p "$raspap_dir" || install_error "Unable to create directory '$raspap_dir'"
+    # Create a directory for existing file backups.
+    sudo mkdir -p "$raspap_dir/backups"
 
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
 }
@@ -106,6 +108,17 @@ function change_file_ownership() {
 
     install_log "Changing file ownership in web root directory"
     sudo chown -R $raspap_user:$raspap_user "$webroot_dir" || install_error "Unable to change file ownership for '$webroot_dir'"
+}
+
+# Check for existing /etc/network/interfaces and /etc/hostapd/hostapd.conf files
+function check_for_old_configs() {
+    if [ -f /etc/network/interfaces ]; then
+        sudo mv /etc/network/interfaces "$raspap_dir/backups"
+    fi
+
+    if [ -f /etc/hostapd/hostapd.conf ]; then
+        sudo mv /etc/hostapd/hostapd.conf "$raspap_dir/backups"
+    fi
 }
 
 # Move configuration file to the correct location
@@ -178,6 +191,7 @@ function install_raspap() {
     install_dependencies
     enable_php_lighttpd
     create_raspap_directories
+    check_for_old_configs
     download_latest_files
     change_file_ownership
     move_config_file

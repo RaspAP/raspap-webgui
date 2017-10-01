@@ -15,19 +15,19 @@ function DisplayDashboard(){
   $strWlan0 = preg_replace( '/\s\s+/', ' ', $strWlan0 );
 
   // Parse results from ifconfig/iwconfig
-  preg_match( '/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result );
+  preg_match( '/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result ) || $result[1] = 'No MAC Address Found';
   $strHWAddress = $result[1];
-  preg_match( '/inet addr:([0-9.]+)/i',$strWlan0,$result );
+  preg_match( '/inet addr:([0-9.]+)/i',$strWlan0,$result ) || $result[1] = 'No IP Address Found';
   $strIPAddress = $result[1];
-  preg_match( '/Mask:([0-9.]+)/i',$strWlan0,$result );
+  preg_match( '/Mask:([0-9.]+)/i',$strWlan0,$result ) || $result[1] = 'No Subnet Mask Found';
   $strNetMask = $result[1];
-  preg_match( '/RX packets:(\d+)/',$strWlan0,$result );
+  preg_match( '/RX packets:(\d+)/',$strWlan0,$result ) || $result[1] = 'No Data';
   $strRxPackets = $result[1];
-  preg_match( '/TX packets:(\d+)/',$strWlan0,$result );
+  preg_match( '/TX packets:(\d+)/',$strWlan0,$result ) || $result[1] = 'No Data';
   $strTxPackets = $result[1];
-  preg_match( '/RX bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result );
+  preg_match( '/RX bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result ) || $result[1] = 'No Data';
   $strRxBytes = $result[1];
-  preg_match( '/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result );
+  preg_match( '/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result ) || $result[1] = 'No Data';
   $strTxBytes = $result[1];
   preg_match( '/ESSID:\"([a-zA-Z0-9\s]+)\"/i',$strWlan0,$result );
   $strSSID = str_replace( '"','',$result[1] );
