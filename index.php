@@ -19,7 +19,11 @@
  */
 
 define('RASPI_CONFIG', '/etc/raspap');
-define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
+if(file_exists(RASPI_CONFIG.'/raspap.auth')) {
+    define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
+} else {
+    define('RASPI_ADMIN_DETAILS','');
+}
 
 // Constants for configuration file paths.
 // These are typical for default RPi installs. Modify if needed.

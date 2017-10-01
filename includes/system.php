@@ -65,6 +65,7 @@ function DisplaySystem(){
   if ($minutes != 0) { $uptime .= $minutes . ' minute' . (($minutes > 1)? 's ':' '); }
 
   // mem used
+  $memused_status = "primary";
   exec("free -m | awk '/Mem:/ { total=$2 } /buffers\/cache/ { used=$3 } END { print used/total*100}'", $memarray);
   $memused = floor($memarray[0]);
   if     ($memused > 90) { $memused_status = "danger";  }

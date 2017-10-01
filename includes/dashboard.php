@@ -29,19 +29,19 @@ function DisplayDashboard(){
   $strRxBytes = $result[1];
   preg_match( '/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result ) || $result[1] = 'No Data';
   $strTxBytes = $result[1];
-  preg_match( '/ESSID:\"([a-zA-Z0-9\s]+)\"/i',$strWlan0,$result );
+  preg_match( '/ESSID:\"([a-zA-Z0-9\s]+)\"/i',$strWlan0,$result ) || $result[1] = 'Not connected';
   $strSSID = str_replace( '"','',$result[1] );
-  preg_match( '/Access Point: ([0-9a-f:]+)/i',$strWlan0,$result );
+  preg_match( '/Access Point: ([0-9a-f:]+)/i',$strWlan0,$result ) || $result[1] = '';
   $strBSSID = $result[1];
-  preg_match( '/Bit Rate=([0-9\.]+ Mb\/s)/i',$strWlan0,$result );
+  preg_match( '/Bit Rate=([0-9\.]+ Mb\/s)/i',$strWlan0,$result ) || $result[1] = '';
   $strBitrate = $result[1];
-  preg_match( '/Tx-Power=([0-9]+ dBm)/i',$strWlan0,$result );
+  preg_match( '/Tx-Power=([0-9]+ dBm)/i',$strWlan0,$result ) || $result[1] = '';
   $strTxPower = $result[1];
-  preg_match( '/Link Quality=([0-9]+)/i',$strWlan0,$result );
+  preg_match( '/Link Quality=([0-9]+)/i',$strWlan0,$result ) || $result[1] = '';
   $strLinkQuality = $result[1];
-  preg_match( '/Signal level=(-?[0-9]+ dBm)/i',$strWlan0,$result );
+  preg_match( '/Signal level=(-?[0-9]+ dBm)/i',$strWlan0,$result ) || $result[1] = '';
   $strSignalLevel = $result[1];
-  preg_match('/Frequency:(\d+.\d+ GHz)/i',$strWlan0,$result);
+  preg_match('/Frequency:(\d+.\d+ GHz)/i',$strWlan0,$result) || $result[1] = '';
   $strFrequency = $result[1];
 
   if(strpos( $strWlan0, "UP" ) !== false && strpos( $strWlan0, "RUNNING" ) !== false ) {

@@ -78,6 +78,10 @@ function DisplayDHCPConfig() {
   $RangeMask = $arrRange[2];
   preg_match( '/([0-9]*)([a-z])/i', $arrRange[3], $arrRangeLeaseTime );
 
+  $hselected = '';
+  $mselected = '';
+  $dselected = '';
+
   switch( $arrRangeLeaseTime[2] ) {
     case "h":
       $hselected = " selected";
