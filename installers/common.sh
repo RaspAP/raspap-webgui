@@ -183,6 +183,8 @@ function patch_system_files() {
       '/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf'
       '/sbin/shutdown -h now'
       '/sbin/reboot'
+      '/sbin/ip link set wlan0 down'
+      '/sbin/ip link set wlan0 up'
     )
 
     # Check if sudoers needs patchin
