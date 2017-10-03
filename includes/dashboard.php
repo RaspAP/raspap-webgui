@@ -27,7 +27,6 @@ function DisplayDashboard(){
   foreach($result[1] as $netmask) {
     $strNetMask .= long2ip(-1 << (32 -(int)$netmask))." ";
   }
-  //$strNetMask = long2ip(-1 << (32 - (int)$result[1][0]));
   preg_match( '/RX packets:(\d+)/',$strWlan0,$result ) || $result[1] = 'No Data';
   $strRxPackets = $result[1];
   preg_match( '/TX packets:(\d+)/',$strWlan0,$result ) || $result[1] = 'No Data';
