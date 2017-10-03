@@ -81,7 +81,7 @@ function remove_raspap_directories() {
         install_error "RaspAP Installation directory not found. Exiting!"
     fi
 
-    sudo rm -rf "$webroot_dir/*"
+    sudo rm -rf "$webroot_dir"/*
     sudo rm -rf "$raspap_dir"
 
 }
