@@ -54,14 +54,14 @@ function DisplayDashboard(){
   if( isset($_POST['ifdown_wlan0']) ) {
     exec( 'ifconfig wlan0 | grep -i running | wc -l',$test );
     if($test[0] == 1) {
-      exec( 'sudo ifdown wlan0',$return );
+      exec( 'sudo ip link set wlan0 down',$return );
     } else {
       echo 'Interface already down';
     }
   } elseif( isset($_POST['ifup_wlan0']) ) {
     exec( 'ifconfig wlan0 | grep -i running | wc -l',$test );
     if($test[0] == 0) {
-      exec( 'sudo ifup wlan0',$return );
+      exec( 'sudo ip link set wlan0 up',$return );
     } else {
       echo 'Interface already up';
     }
@@ -134,7 +134,7 @@ function DisplayDashboard(){
             </div><!-- /.panel-default -->
         </div><!-- /.col-lg-12 -->
     </div><!-- /.row -->
-  <?php 
+  <?php
 }
 
 ?>
