@@ -8,19 +8,28 @@ function DisplayDashboard(){
 
   $status = new StatusMessages();
 
-  exec( 'ifconfig wlan0', $return );
+  exec( 'ip a s wlan0', $return );
   exec( 'iwconfig wlan0', $return );
 
   $strWlan0 = implode( " ", $return );
   $strWlan0 = preg_replace( '/\s\s+/', ' ', $strWlan0 );
 
+  var_dump($strWlan0);
+
   // Parse results from ifconfig/iwconfig
-  preg_match( '/HWaddr ([0-9a-f:]+)/i',$strWlan0,$result ) || $result[1] = 'No MAC Address Found';
+  preg_match( '/link\/ether ([0-9a-f:]+)/i',$strWlan0,$result ) || $result[1] = 'No MAC Address Found';
   $strHWAddress = $result[1];
-  preg_match( '/inet addr:([0-9.]+)/i',$strWlan0,$result ) || $result[1] = 'No IP Address Found';
-  $strIPAddress = $result[1];
-  preg_match( '/Mask:([0-9.]+)/i',$strWlan0,$result ) || $result[1] = 'No Subnet Mask Found';
-  $strNetMask = $result[1];
+  preg_match_all( '/inet ([0-9.]+)/i',$strWlan0,$result ) || $result[1] = 'No IP Address Found';
+  $strIPAddress = '';
+  foreach($result[1] as $ip) {
+      $strIPAddress .= $ip." ";
+  }
+  preg_match_all( '/[0-9.]+\/([0-3][0-9])/i',$strWlan0,$result ) || $result[1] = 'No Subnet Mask Found';
+  $strNetMask = '';
+  foreach($result[1] as $netmask) {
+    $strNetMask .= long2ip(-1 << (32 -(int)$netmask))." ";
+  }
+  //$strNetMask = long2ip(-1 << (32 - (int)$result[1][0]));
   preg_match( '/RX packets:(\d+)/',$strWlan0,$result ) || $result[1] = 'No Data';
   $strRxPackets = $result[1];
   preg_match( '/TX packets:(\d+)/',$strWlan0,$result ) || $result[1] = 'No Data';
@@ -44,7 +53,7 @@ function DisplayDashboard(){
   preg_match('/Frequency:(\d+.\d+ GHz)/i',$strWlan0,$result) || $result[1] = '';
   $strFrequency = $result[1];
 
-  if(strpos( $strWlan0, "UP" ) !== false && strpos( $strWlan0, "RUNNING" ) !== false ) {
+  if(strpos( $strWlan0, "UP" ) !== false) {
     $status->addMessage('Interface is up', 'success');
     $wlan0up = true;
   } else {
