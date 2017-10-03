@@ -10,7 +10,7 @@
  * php5-cgi (I have version 5.4.4-12 installed via apt)
  * along with their supporting packages, php5 will also need to be enabled.
  * 
- * @author     Lawrence Yau <sirlagz@gmail.comm>
+ * @author     Lawrence Yau <sirlagz@gmail.com>
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
  * @license    GNU General Public License, version 3 (GPL-3.0)
  * @version    1.1
