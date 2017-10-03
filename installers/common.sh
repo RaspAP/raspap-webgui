@@ -185,6 +185,7 @@ function patch_system_files() {
       '/sbin/reboot'
       '/sbin/ip link set wlan0 down'
       '/sbin/ip link set wlan0 up'
+      '/sbin/ip -s a f label wlan0'
     )
 
     # Check if sudoers needs patchin

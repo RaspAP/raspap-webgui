@@ -68,6 +68,7 @@ function DisplayDashboard(){
     exec( 'ifconfig wlan0 | grep -i running | wc -l',$test );
     if($test[0] == 0) {
       exec( 'sudo ip link set wlan0 up',$return );
+      exec( 'sudo ip -s a f label wlan0',$return);
     } else {
       echo 'Interface already up';
     }
