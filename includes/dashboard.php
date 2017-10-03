@@ -44,7 +44,7 @@ function DisplayDashboard(){
   preg_match('/Frequency:(\d+.\d+ GHz)/i',$strWlan0,$result) || $result[1] = '';
   $strFrequency = $result[1];
 
-  if(strpos( $strWlan0, "UP" ) !== false && strpos( $strWlan0, "RUNNING" ) !== false ) {
+  if(strpos( $strWlan0, "UP" ) !== false) { // && strpos( $strWlan0, "RUNNING" ) !== false ) {
     $status->addMessage('Interface is up', 'success');
     $wlan0up = true;
   } else {
