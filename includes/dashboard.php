@@ -14,8 +14,6 @@ function DisplayDashboard(){
   $strWlan0 = implode( " ", $return );
   $strWlan0 = preg_replace( '/\s\s+/', ' ', $strWlan0 );
 
-  var_dump($strWlan0);
-
   // Parse results from ifconfig/iwconfig
   preg_match( '/link\/ether ([0-9a-f:]+)/i',$strWlan0,$result ) || $result[1] = 'No MAC Address Found';
   $strHWAddress = $result[1];
