@@ -114,23 +114,23 @@ function change_file_ownership() {
 # Check for existing /etc/network/interfaces and /etc/hostapd/hostapd.conf files
 function check_for_old_configs() {
     if [ -f /etc/network/interfaces ]; then
-        sudo mv /etc/network/interfaces "$raspap_dir/backups/interfaces.`date +%F-%R`"
-        ln -s "$raspap_dir/backups/interfaces.`date +%F-%R`" "$raspap_dir/backups/interfaces"
+        sudo cp /etc/network/interfaces "$raspap_dir/backups/interfaces.`date +%F-%R`"
+        sudo ln -sf "$raspap_dir/backups/interfaces.`date +%F-%R`" "$raspap_dir/backups/interfaces"
     fi
 
     if [ -f /etc/hostapd/hostapd.conf ]; then
-        sudo mv /etc/hostapd/hostapd.conf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`"
-        ln -s "$raspap_dir/backups/hostapd.conf.`date +%F-%R`" "$raspap_dir/backups/hostapd.conf"
+        sudo cp /etc/hostapd/hostapd.conf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`"
+        sudo ln -sf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`" "$raspap_dir/backups/hostapd.conf"
     fi
 
     if [ -f /etc/dnsmasq.conf ]; then
-        sudo mv /etc/dnsmasq.conf "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`"
-        ln -s "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`" "$raspap_dir/backups/dnsmasq.conf"
+        sudo cp /etc/dnsmasq.conf "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`"
+        sudo ln -sf "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`" "$raspap_dir/backups/dnsmasq.conf"
     fi
 
     if [ -f /etc/dhcpcd.conf ]; then
-        sudo mv /etc/dhcpcd.conf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`"
-        ln -s "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`" "$raspap_dir/backups/dhcpcd.conf"
+        sudo cp /etc/dhcpcd.conf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`"
+        sudo ln -sf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`" "$raspap_dir/backups/dhcpcd.conf"
     fi
 }
 
