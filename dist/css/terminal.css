@@ -1,0 +1,168 @@
+html * {
+    font-family: Courier New, Andale Mono, monospace;
+    font-size: 10pt;
+    color: #33ff00;
+}
+
+#page-wrapper {
+    padding: 0 20px;
+    border-left: 1px solid #33ff00;
+}
+
+.nav>li>a {
+    font-size: 10pt;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #000;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #33ff00;
+    cursor: default;
+    background-color: #000;
+    border: 1px solid #33ff00;
+    border-bottom-color: #33ff00;
+}
+
+.nav-tabs>li>a,.nav-tabs>li>a:hover {
+    border: 1px solid #33ff00;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #33ff00;
+}
+
+.navbar-default {
+    border-color: #33ff00;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+    color: #33ff00;
+}
+
+.logo {
+    visibility: collapse;
+    width: 0px;
+}
+
+a:focus, a:hover {
+    color: #33ff00;
+}
+
+.panel-primary {
+    border-color: #33ff00;
+}
+
+.panel-primary>.panel-heading {
+    border-color: #33ff00;
+    background-color: #33ff00;
+    color: #000;
+    font-size: 12pt;
+}
+
+.panel-primary>.panel-heading .fa {
+    color: #000;
+}
+
+.panel {
+    margin-bottom: 20px;
+    border: 1px solid #33ff00;
+    border-radius: 0px;
+}
+
+.page-header {
+    font-size: 24pt;
+    margin: 10px 0 20px;
+    border-bottom: 1px solid #33ff00;
+}
+
+#wrapper,#page-wrapper,.panel-body,.nav>li>a,.navbar-default {
+    background-color: #000;
+}
+
+.panel-footer {
+    background-color: #000;
+    border-top: 1px solid #33ff00;
+}
+
+.sidebar ul li a.active,.sidebar ul li a.hover {
+    background-color: #000;
+}
+
+.sidebar ul li {
+    border-bottom: 1px solid #33ff00;
+}
+
+.btn-primary.btn-outline,.btn-warning {
+    color: #33ff00;
+    border-color: #33ff00;
+}
+
+.btn-primary:hover,.btn-primary:focus,.btn-warning:hover,.btn-warning:focus,.btn-primary:active {
+    color: #33ff00;
+    background-color: #000;
+    border-color: #33ff00;
+}
+
+.btn-primary.btn-outline:hover,.btn-success, .btn-success.btn-outline:hover, .btn-info.btn-outline:hover, .btn-warning.btn-outline:hover, .btn-danger.btn-outline:hover {
+    color: #33ff00;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    background-color: #000;
+    border-top: 1px solid #000;
+}
+
+.btn-info, .btn-info:hover, .btn-info[disabled], .btn-danger.disabled, .btn-danger.disabled.active, .btn-danger.disabled.focus, .btn-danger.disabled:active, .btn-danger.disabled:focus, .btn-danger.disabled:hover, .btn-danger[disabled], .btn-danger[disabled].active, .btn-danger[disabled].focus, .btn-danger[disabled]:active, .btn-danger[disabled]:focus, .btn-danger[disabled]:hover, fieldset[disabled] .btn-danger, fieldset[disabled] .btn-danger.active, fieldset[disabled] .btn-danger.focus, fieldset[disabled] .btn-danger:active, fieldset[disabled] .btn-danger:focus, fieldset[disabled] .btn-danger:hover, .btn-info:hover {
+    background-color: #000;
+    border-color: #33ff00;
+    color: #33ff00;
+}
+
+.btn {
+    background-color: #000;
+    border-radius: 0px;
+}
+
+.alert {
+    border-radius: 0px;
+}
+
+.alert-success,.alert-warning,.alert-ifo,.alert-dismissable {
+    color: #33ff00;
+    background-color: #000;
+    border-color: #33ff00;
+    border: 1px dashed;
+}
+
+.close {
+    font-size: 18px;
+    font-weight: normal;
+    text-shadow: 0 0px 0 #000;
+    opacity: 1;
+}
+
+.form-control, .form-control:focus {
+    color: #33ff00;
+    background-color: #000;
+    border: 1px solid #33ff00;
+    border-radius: 0px;
+    transition: unset;
+}
+
+.progress {
+    background-color: #000;
+    border-radius: 0px;
+}
+
+.progress-bar {
+    color: #000;
+}
+
+.info-item {
+    width: 140px;
+    float: left;
+}
+
+

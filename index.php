@@ -50,6 +50,7 @@ include_once( 'includes/dhcp.php' );
 include_once( 'includes/hostapd.php' );
 include_once( 'includes/system.php' );
 include_once( 'includes/configure_client.php' );
+include_once( 'includes/themes.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
@@ -63,6 +64,12 @@ if (empty($_SESSION['csrf_token'])) {
     }
 }
 $csrf_token = $_SESSION['csrf_token'];
+
+if(!isset($_COOKIE['theme'])) {
+    $theme_url = "dist/css/custom.css";
+} else {
+    $theme_url = $_COOKIE['theme'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -95,7 +102,7 @@ $csrf_token = $_SESSION['csrf_token'];
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
-    <link href="dist/css/custom.css" rel="stylesheet">
+    <link href="<?php echo $theme_url; ?>" title="main" rel="stylesheet">
 
     <link rel="shortcut icon" type="image/png" href="../img/favicon.png">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -151,6 +158,9 @@ $csrf_token = $_SESSION['csrf_token'];
                 <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> Configure Auth</a>
               </li>
               <li>
+                <a href="index.php?page=theme_conf"><i class="fa fa-wrench fa-fw"></i> Change Theme</a>
+              </li>
+              <li>
                  <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> System</a>
               </li>
             </ul>
@@ -195,6 +205,9 @@ $csrf_token = $_SESSION['csrf_token'];
             break;
           case "save_hostapd_conf":
             SaveTORAndVPNConfig();
+            break;
+          case "theme_conf":
+            DisplayThemeConfig();
             break;
           case "system_info":
             DisplaySystem();
