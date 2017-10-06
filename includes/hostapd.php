@@ -136,7 +136,7 @@ function DisplayHostAPDConfig(){
                   <div class="form-group col-md-4">
                   <label for="code">Country Code</label>
                   <input type="hidden" id="selected_country" value="<?php echo $arrConfig['country_code'] ?>">
-                  <select  class="form-control"  id="countries" name="country_code"  style="background-color: #c0ffc0;">
+                  <select  class="form-control"  id="countries" name="country_code">
                     <option value="AF">Afghanistan</option>
                     <option value="AX">Åland Islands</option>
                     <option value="AL">Albania</option>
