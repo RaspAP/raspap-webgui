@@ -41,6 +41,18 @@ html * {
     color: #33ff00;
 }
 
+.navbar-default .navbar-toggle {
+    border-color: #33ff00;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #33ff00;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #000;
+}
+
 .logo {
     visibility: collapse;
     width: 0px;
