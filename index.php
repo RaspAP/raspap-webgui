@@ -66,10 +66,11 @@ if (empty($_SESSION['csrf_token'])) {
 $csrf_token = $_SESSION['csrf_token'];
 
 if(!isset($_COOKIE['theme'])) {
-    $theme_url = "dist/css/custom.css";
+    $theme = "custom.css";
 } else {
-    $theme_url = $_COOKIE['theme'];
+    $theme = $_COOKIE['theme'];
 }
+$theme_url = 'dist/css/' . $theme;
 ?>
 
 <!DOCTYPE html>

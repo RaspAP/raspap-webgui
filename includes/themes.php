@@ -5,6 +5,22 @@
 */
 function DisplayThemeConfig(){
 
+  $cselected = '';
+  $hselected = '';
+  $tselected = '';
+
+  switch( $_COOKIE['theme'] ) {
+    case "custom.css":
+      $cselected = "selected";
+      break;
+    case "hackernews.css":
+      $hselected = "selected";
+      break;
+    case "terminal.css":
+      $tselected = "selected";
+      break;
+  }
+
   ?>
   <div class="row">
   <div class="col-lg-12">
@@ -20,10 +36,10 @@ function DisplayThemeConfig(){
   <div class="row">
           <div class="form-group col-md-6">
             <label for="code">Select a theme</label>  
-              <select class="form-control" id="theme-select">Select a Theme</a>
-                <option value="default" class="theme-link">RaspAP (default)</option>
-                <option value="hackernews" class="theme-link">HackerNews</option>
-                <option value="terminal" class="theme-link">Terminal</option>
+              <select class="form-control" id="theme-select">Select a Theme
+                <option value="default" class="theme-link" <?php echo $cselected; ?>>RaspAP (default)</option>
+                <option value="hackernews" class="theme-link"<?php echo $hselected; ?>>HackerNews</option>
+                <option value="terminal" class="theme-link" <?php echo $tselected; ?>>Terminal</option>
               </select>
           </div>
         </div>

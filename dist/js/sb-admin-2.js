@@ -6,7 +6,7 @@ $(function() {
 });
 
 function set_theme(theme) {
-    $('link[title="main"]').attr('href', theme);
+    $('link[title="main"]').attr('href', 'dist/css/' + theme);
 
     // persist selected theme in cookie 
     setCookie('theme',theme,90);
@@ -20,9 +20,9 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 var themes = {
-    "default": "dist/css/custom.css",
-    "hackernews" : "dist/css/hackernews.css",
-    "terminal" : "dist/css/terminal.css",
+    "default": "custom.css",
+    "hackernews" : "hackernews.css",
+    "terminal" : "terminal.css",
 }
 
 //Loads the correct sidebar on window load,
