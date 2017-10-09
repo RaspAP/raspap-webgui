@@ -128,6 +128,11 @@ a:focus, a:hover {
     border-top: 1px solid #000;
 }
 
+.table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #33ff00;
+}
+
 .btn-info, .btn-info:hover, .btn-info[disabled], .btn-danger.disabled, .btn-danger.disabled.active, .btn-danger.disabled.focus, .btn-danger.disabled:active, .btn-danger.disabled:focus, .btn-danger.disabled:hover, .btn-danger[disabled], .btn-danger[disabled].active, .btn-danger[disabled].focus, .btn-danger[disabled]:active, .btn-danger[disabled]:focus, .btn-danger[disabled]:hover, fieldset[disabled] .btn-danger, fieldset[disabled] .btn-danger.active, fieldset[disabled] .btn-danger.focus, fieldset[disabled] .btn-danger:active, fieldset[disabled] .btn-danger:focus, fieldset[disabled] .btn-danger:hover, .btn-info:hover {
     background-color: #000;
     border-color: #33ff00;
