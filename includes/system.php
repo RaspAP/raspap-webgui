@@ -81,6 +81,13 @@ function DisplaySystem(){
   elseif ($cpuload >  0) { $cpuload_status = "success"; }
 
   ?>
+  <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active systemtab"><a href="#system" aria-controls="system" role="tab" data-toggle="tab">System</a></li>
+      <li role="presentation" class="consoletab"><a href="#console" aria-controls="console" role="tab" data-toggle="tab">Console</a></li>
+  </ul>
+
+  <div class="systemtabcontent tab-content">
+      <div role="tabpanel" class="tab-pane active" id="system">
   <div class="row">
   <div class="col-lg-12">
   <div class="panel panel-primary">
@@ -137,6 +144,12 @@ function DisplaySystem(){
   </div><!-- /.panel-primary -->
   </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
+
+      </div>
+      <div role="tabpanel" class="tab-pane" id="console">
+      <iframe src="includes/webconsole.php" class="webconsole"></iframe>
+      </div>
+  </div>
   <?php
 }
 ?>

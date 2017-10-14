@@ -33,3 +33,17 @@
 	width: 140px;
 	float: left;
 }
+
+.webconsole {
+	width:100%;
+	height:100%;
+}
+
+#console {
+	height:500px;
+}
+
+.systemtabcontent {
+	height:100%;
+        min-height:500px;
+}
