@@ -13,7 +13,7 @@
  * @author     Lawrence Yau <sirlagz@gmail.com>
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
  * @license    GNU General Public License, version 3 (GPL-3.0)
- * @version    1.1
+ * @version    1.2.2
  * @link       https://github.com/billz/raspap-webgui
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
@@ -117,7 +117,7 @@ $csrf_token = $_SESSION['csrf_token'];
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.1</a>
+          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.2.2</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -135,7 +135,7 @@ $csrf_token = $_SESSION['csrf_token'];
                 <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure hotspot</a>
               </li>
               <li>
-                <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP</a>
+                <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP Server</a>
               </li>
               <?php if ( RASPI_OPENVPN_ENABLED ) : ?>
               <li>

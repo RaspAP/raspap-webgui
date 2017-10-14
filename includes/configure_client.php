@@ -151,7 +151,7 @@ function DisplayWPAConfig(){
           <p><?php $status->showMessages(); ?></p>
           <h4>Client settings</h4>
 	<div class="btn-group btn-block">
-	<a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-6-btn btn-info" id="update">Rescan</a>
+	<a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update">Rescan</a>
 	</div>
           <form method="POST" action="?page=wpa_conf" name="wpa_conf_form">
             <?php CSRFToken() ?>
