@@ -132,6 +132,11 @@ function check_for_old_configs() {
         sudo cp /etc/dhcpcd.conf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`"
         sudo ln -sf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`" "$raspap_dir/backups/dhcpcd.conf"
     fi
+
+    if [ -f /etc/rc.local ]; then
+        sudo cp /etc/rc.local "$raspap_dir/backups/rc.local.`date +%F-%R`"
+        sudo ln -sf "$raspap_dir/backups/rc.local.`date +%F-%R`" "$raspap_dir/backups/rc.local"
+    fi
 }
 
 # Move configuration file to the correct location
@@ -155,7 +160,24 @@ function default_configuration() {
     sudo mv $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
     sudo mv $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
     sudo mv $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
-    sudo mv $webroot_dir/config/rc.local /etc/rc.local || install_error "Unable to move rc.local file"
+    #sudo mv $webroot_dir/config/rc.local /etc/rc.local || install_error "Unable to move rc.local file"
+    # Generate required lines for Rasp AP to place into rc.local file.
+    # #RASPAP is for removal script
+
+    lines=(
+      'echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP'
+      'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
+    )
+
+
+    for line in "${lines[@]}"; do
+        if grep "$line" /etc/rc.local > /dev/null; then
+            echo "$line: Line already added"
+        else
+	    sed -i "s/exit 0/$line\nexit0/" /etc/rc.local
+            echo "Adding line $line"
+        fi
+    done
 }
 
 # Add a single entry to the sudoers file
