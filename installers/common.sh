@@ -160,7 +160,6 @@ function default_configuration() {
     sudo mv $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
     sudo mv $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
     sudo mv $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
-    #sudo mv $webroot_dir/config/rc.local /etc/rc.local || install_error "Unable to move rc.local file"
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script
 

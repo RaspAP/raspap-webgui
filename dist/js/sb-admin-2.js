@@ -1,8 +1,29 @@
 $(function() {
-
-    $('#side-menu').metisMenu();
-
+    $('#theme-select').change(function() {
+        var theme = themes[$( "#theme-select" ).val() ]; 
+        set_theme(theme);
+   });
 });
+
+function set_theme(theme) {
+    $('link[title="main"]').attr('href', 'dist/css/' + theme);
+
+    // persist selected theme in cookie 
+    setCookie('theme',theme,90);
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+var themes = {
+    "default": "custom.css",
+    "hackernews" : "hackernews.css",
+    "terminal" : "terminal.css",
+}
 
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
@@ -34,3 +55,4 @@ $(function() {
         element.addClass('active');
     }
 });
+
