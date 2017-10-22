@@ -13,7 +13,7 @@
  * @author     Lawrence Yau <sirlagz@gmail.com>
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
  * @license    GNU General Public License, version 3 (GPL-3.0)
- * @version    1.2.2
+ * @version    1.2.3
  * @link       https://github.com/billz/raspap-webgui
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
@@ -50,6 +50,7 @@ include_once( 'includes/dhcp.php' );
 include_once( 'includes/hostapd.php' );
 include_once( 'includes/system.php' );
 include_once( 'includes/configure_client.php' );
+include_once( 'includes/networking.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
@@ -117,7 +118,7 @@ $csrf_token = $_SESSION['csrf_token'];
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.2.2</a>
+          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.2.3</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -129,10 +130,13 @@ $csrf_token = $_SESSION['csrf_token'];
                 <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
               </li>
               <li>
-                <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> Configure client</a>
+                <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> Configure WiFi Client</a>
               </li>
               <li>
-                <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure hotspot</a>
+                <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure Hotspot</a>
+              </li>
+              <li>
+                <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> Configure Networking</a>
               </li>
               <li>
                 <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP Server</a>
@@ -180,6 +184,9 @@ $csrf_token = $_SESSION['csrf_token'];
             break;
           case "wpa_conf":
             DisplayWPAConfig();
+            break;
+          case "network_conf":
+            DisplayNetworkingConfig();
             break;
           case "hostapd_conf":
             DisplayHostAPDConfig();
