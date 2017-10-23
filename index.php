@@ -146,7 +146,7 @@ $theme_url = 'dist/css/' . $theme;
                 <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?></a>
               </li>
               <li>
-                <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP Server"); ?></a>
+                <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP"); ?></a>
               </li>
               <?php if ( RASPI_OPENVPN_ENABLED ) : ?>
               <li>
