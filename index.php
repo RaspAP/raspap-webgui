@@ -43,6 +43,10 @@ define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_OPENVPN_ENABLED', false );
 define('RASPI_TORPROXY_ENABLED', false );
 
+// Locale settings
+define('LOCALE_ROOT', 'locale');
+define('LOCALE_DOMAIN', 'messages'); 
+
 include_once( RASPI_CONFIG.'/raspap.php' );
 include_once( 'includes/locale.php');
 include_once( 'includes/functions.php' );
