@@ -36,8 +36,8 @@ msgstr "Configure client"
 msgid "Configure hotspot"
 msgstr "Configure hotspot"
 
-msgid "Configure DHCP"
-msgstr "Configure DHCP"
+msgid "Configure DHCP Server"
+msgstr "Configure DHCP Server"
 
 msgid "Configure OpenVPN"
 msgstr "Configure OpenVPN"
@@ -196,6 +196,12 @@ msgstr "Client ID"
 msgid "Information provided by Dnsmasq"
 msgstr "Information provided by Dnsmasq"
 
+msgid "Stop dnsmasq"
+msgstr "Stop dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "Start dnsmasq"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Basic"
@@ -252,4 +258,9 @@ msgstr "Theme settings"
 
 msgid "Select a theme"
 msgstr "Select a theme"
+
+#: common form controls
+msgid "Save settings"
+msgstr "Save settings"
+
 
