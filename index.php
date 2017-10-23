@@ -44,6 +44,7 @@ define('RASPI_OPENVPN_ENABLED', false );
 define('RASPI_TORPROXY_ENABLED', false );
 
 include_once( RASPI_CONFIG.'/raspap.php' );
+include_once( 'includes/locale.php');
 include_once( 'includes/functions.php' );
 include_once( 'includes/dashboard.php' );
 include_once( 'includes/authenticate.php' );
@@ -84,7 +85,7 @@ $theme_url = 'dist/css/' . $theme;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Raspbian WiFi Configuration Portal</title>
+    <title><?php echo _("Raspbian WiFi Configuration Portal"); ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -127,7 +128,7 @@ $theme_url = 'dist/css/' . $theme;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.2.2</a>
+          <a class="navbar-brand" href="index.php"><?php echo _("RaspAP Wifi Portal v1.2.2"); ?></a>
         </div>
         <!-- /.navbar-header -->
 
@@ -136,35 +137,35 @@ $theme_url = 'dist/css/' . $theme;
           <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
               <li>
-                <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> <?php echo _("Dashboard"); ?></a>
               </li>
               <li>
-                <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> Configure client</a>
+                <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> <?php echo _("Configure client"); ?></a>
               </li>
               <li>
-                <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure hotspot</a>
+                <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?></a>
               </li>
               <li>
-                <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP Server</a>
+                <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP Server"); ?></a>
               </li>
               <?php if ( RASPI_OPENVPN_ENABLED ) : ?>
               <li>
-                <a href="index.php?page=openvpn_conf"><i class="fa fa-lock fa-fw"></i> Configure OpenVPN</a>
+                <a href="index.php?page=openvpn_conf"><i class="fa fa-lock fa-fw"></i> <?php echo _("Configure OpenVPN"); ?></a>
               </li>
               <?php endif; ?>
               <?php if ( RASPI_TORPROXY_ENABLED ) : ?>
               <li>
-                 <a href="index.php?page=torproxy_conf"><i class="fa fa-eye-slash fa-fw"></i> Configure TOR proxy</a>
+                 <a href="index.php?page=torproxy_conf"><i class="fa fa-eye-slash fa-fw"></i> <?php echo _("Configure TOR proxy"); ?></a>
               </li>
               <?php endif; ?>
               <li>
-                <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> Configure Auth</a>
+                <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> <?php echo _("Configure Auth"); ?></a>
               </li>
               <li>
-                <a href="index.php?page=theme_conf"><i class="fa fa-wrench fa-fw"></i> Change Theme</a>
+                <a href="index.php?page=theme_conf"><i class="fa fa-wrench fa-fw"></i> <?php echo _("Change Theme"); ?></a>
               </li>
               <li>
-                 <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> System</a>
+                 <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
               </li>
             </ul>
           </div><!-- /.navbar-collapse -->
