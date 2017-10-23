@@ -1,0 +1,255 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR billzimmerman@gmail.com, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2017-10-23 9:50+0000\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "RaspAP Wifi Configuration Portal"
+
+msgid "Toggle navigation"
+msgstr "Toggle navigation"
+
+msgid "RaspAP Wifi Portal v1.2.1"
+msgstr "RaspAP Wifi Portal v1.2.1"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Configure client"
+msgstr "Configure client"
+
+msgid "Configure hotspot"
+msgstr "Configure hotspot"
+
+msgid "Configure DHCP"
+msgstr "Configure DHCP"
+
+msgid "Configure OpenVPN"
+msgstr "Configure OpenVPN"
+
+msgid "Configure TOR proxy"
+msgstr "Configure TOR proxy"
+
+msgid "Configure Auth"
+msgstr "Configure Auth"
+
+msgid "Change Theme"
+msgstr "Change Theme"
+
+msgid "System"
+msgstr "System"
+
+#: includes/admin.php
+msgid "New passwords do not match"
+msgstr "New passwords do not match"
+
+msgid "Username must not be empty"
+msgstr "Username must not be empty"
+
+msgid "Admin password updated"
+msgstr "Admin password updated"
+
+msgid "Failed to update admin password"
+msgstr "Failed to update admin password"
+
+msgid "Old password does not match"
+msgstr "Old password does not match"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Old password"
+msgstr "Old password"
+
+msgid "New password"
+msgstr "New password"
+
+msgid "Repeat new password"
+msgstr "Repeat new password"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "Client settings"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "Channel"
+
+msgid "Security"
+msgstr "Security"
+
+msgid "Passphrase"
+msgstr "Passphrase"
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "Interface Information"
+
+msgid "Interface Name"
+msgstr "Interface Name"
+
+msgid "IP Address"
+msgstr "IP Address"
+
+msgid "Subnet Mask"
+msgstr "Subnet Mask"
+
+msgid "Mac Address"
+msgstr "Mac Address"
+
+msgid "Interface Statistics"
+msgstr "Interface Statistics"
+
+msgid "Received Packets"
+msgstr "Received Packets"
+
+msgid "Received Bytes"
+msgstr "Received Bytes"
+
+msgid "Transferred Packets"
+msgstr "Transferred Packets"
+
+msgid "Transferred Bytes"
+msgstr "Transferred Bytes"
+
+msgid "Wireless Information"
+msgstr "Wireless Information"
+
+msgid "Connected To"
+msgstr "Connected To"
+
+msgid "AP Mac Address"
+msgstr "AP Mac Address"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Signal Level"
+msgstr "Signal Level"
+
+msgid "Transmit Power"
+msgstr "Transmit Power"
+
+msgid "Frequency"
+msgstr "Frequency"
+
+msgid "Link Quality"
+msgstr "Link Quality"
+
+msgid "Information provided by ifconfig and iwconfig"
+msgstr "Information provided by ifconfig and iwconfig"
+
+#: includes/dhcp.php
+msgid "Server settings"
+msgstr "Server settings"
+
+msgid "Client list"
+msgstr "Client list"
+
+msgid "Starting IP Address"
+msgstr "Starting IP Address"
+
+msgid "Ending IP Address"
+msgstr "Ending IP Address"
+
+msgid "Lease Time"
+msgstr "Lease Time"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Active DHCP leases"
+msgstr "Active DHCP leases"
+
+msgid "Expire time"
+msgstr "Expire time"
+
+msgid "MAC Address"
+msgstr "MAC Address"
+
+msgid "Host name"
+msgstr "Host name"
+
+msgid "Client ID"
+msgstr "Client ID"
+
+msgid "Information provided by Dnsmasq"
+msgstr "Information provided by Dnsmasq"
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "Basic"
+
+msgid "Advanced"
+msgstr "Advanced"
+
+msgid "Basic settings"
+msgstr "Basic settings"
+
+msgid "Wireless Mode"
+msgstr "Wireless Mode"
+
+msgid "Security settings"
+msgstr "Security settings"
+
+msgid "Security type"
+msgstr "Security type"
+
+msgid "Encryption Type"
+msgstr "Encryption Type"
+
+msgid "PSK"
+msgstr "PSK"
+
+msgid "Advanced settings"
+msgstr "Advanced settings"
+
+msgid "Country Code"
+msgstr "Country Code"
+
+msgid "Information provided by hostapd"
+msgstr "Information provided by hostapd"
+
+#: includes/system.php
+msgid "Hostname"
+msgstr "Hostname"
+
+msgid "Pi Revision"
+msgstr "Pi Revision"
+
+msgid "Uptime"
+msgstr "Uptime"
+
+msgid "Memory Used"
+msgstr "Memory Used"
+
+msgid "CPU Load"
+msgstr "CPU Load"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "Theme settings"
+
+msgid "Select a theme"
+msgstr "Select a theme"
+
