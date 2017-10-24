@@ -1,15 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR billzimmerman@gmail.com, 2017.
+# RaspAP Portable Object file
+# Project home: https://github.com/billz/raspap-webgui
+# Licensed under the GNU General Public License v3.0
+# This file is distributed under the same license as the RaspAP package
+# FIRST AUTHOR billzimmerman@gmail.com, 2017
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.2.1\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2017-10-23 9:50+0000\n"
+"PO-Revision-Date: 2017-10-24 9:50+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -22,7 +23,7 @@ msgid "RaspAP Wifi Configuration Portal"
 msgstr "RaspAP Wifi Portail de Configuration"
 
 msgid "Toggle navigation"
-msgstr "Toggle navigation"
+msgstr "Basculer la navigation"
 
 msgid "RaspAP Wifi Portal v1.2.1"
 msgstr "RaspAP Wifi Portal v1.2.1"
@@ -46,7 +47,7 @@ msgid "Configure TOR proxy"
 msgstr "Configurer le proxy TOR"
 
 msgid "Configure Auth"
-msgstr "Configurer l'authentification"
+msgstr "Configurer l'auth"
 
 msgid "Change Theme"
 msgstr "Change le thème"
@@ -97,6 +98,27 @@ msgstr "Sécurité"
 
 msgid "Passphrase"
 msgstr "Phrase secrète"
+
+msgid "Wifi settings updated successfully"
+msgstr "Paramètres Wifi mis à jour avec succès"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "Les paramètres Wifi sont mis à jour mais ne peuvent pas redémarrer (impossible d'exécuter 'wpa_cli reconfigure')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Les paramètres Wifi n'ont pas été mis à jour"
+
+msgid "Failed to updated wifi settings"
+msgstr "N'a pas mis à jour les paramètres wifi"
+
+msgid "Update"
+msgstr "Mettre à jour"
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Delete"
+msgstr "Effacer"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Remarque:</strong> Les points d'accès WEP apparaissent comme 'ouverts'. RaspAP ne prend actuellement pas en charge la connexion à WEP"
@@ -159,6 +181,30 @@ msgstr "Qualité de lien"
 msgid "Information provided by ifconfig and iwconfig"
 msgstr "Informations fournies par ifconfig et iwconfig"
 
+msgid "No MAC Address Found"
+msgstr "Aucune adresse MAC trouvée"
+
+msgid "No IP Address Found"
+msgstr "Aucune adresse IP trouvée"
+
+msgid "No Subnet Mask Found"
+msgstr "Aucun masque de sous-réseau trouvé"
+
+msgid "No Data"
+msgstr "Pas de données"
+
+msgid "Not connected"
+msgstr "Pas connecté"
+
+msgid "Interface is up"
+msgstr "L'interface est en place"
+
+msgid "Interface is down"
+msgstr "L'interface est en panne"
+
+msgid "Interface already down"
+msgstr "Interface déjà en bas"
+
 #: includes/dhcp.php
 msgid "Server settings"
 msgstr "Paramètres du serveur"
@@ -197,10 +243,34 @@ msgid "Information provided by Dnsmasq"
 msgstr "Informations fournies par Dnsmasq"
 
 msgid "Stop dnsmasq"
-msgstr "Stop dnsmasq"
+msgstr "Arrêtez dnsmasq"
 
 msgid "Start dnsmasq"
 msgstr "Commencer dnsmasq"
+
+msgid "dnsmasq already running"
+msgstr "Dnsmasq déjà en cours d'exécution"
+
+msgid "Successfully started dnsmasq"
+msgstr "Lancé avec succès dnsmasq"
+
+msgid "Failed to start dnsmasq"
+msgstr "N'a pas démarrage de Dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Arrêté avec succès dnsmasq"
+
+msgid "Failed to stop dnsmasq"
+msgstr "N'a pas arrêté dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq déjà arrêté"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq est en cours d'exécution"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq ne fonctionne pas"
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -262,3 +332,7 @@ msgstr "Sélectionnez un thème"
 #: common form controls
 msgid "Save settings"
 msgstr "Enregistrer les paramètres"
+
+msgid "Refresh"
+msgstr "Recharger"
+
