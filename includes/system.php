@@ -89,11 +89,11 @@ function DisplaySystem(){
 
     <?php
     if (isset($_POST['system_reboot'])) {
-      echo '<div class="alert alert-warning">System Rebooting Now!</div>';
+      echo '<div class="alert alert-warning">' . _("System Rebooting Now!") . '</div>';
       $result = shell_exec("sudo /sbin/reboot");
     }
     if (isset($_POST['system_shutdown'])) {
-      echo '<div class="alert alert-warning">System Shutting Down Now!</div>';
+      echo '<div class="alert alert-warning">' . _("System Shutting Down Now!") . '</div>';
       $result = shell_exec("sudo /sbin/shutdown -h now");
     }
     ?>
