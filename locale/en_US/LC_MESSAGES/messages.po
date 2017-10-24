@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.2.1\n"
-"Report-Msgid-Bugs-To: billzimmerman@gmail.com\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
 "PO-Revision-Date: 2017-10-24 9:50+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
@@ -108,8 +108,8 @@ msgstr "Wifi settings updated but cannot restart (cannon execute 'wpa_cli reconf
 msgid "Wifi settings failed to be updated"
 msgstr "Wifi settings failed to be updated"
 
-msgid "Failed to updated wifi settings"
-msgstr "Failed to updated wifi settings"
+msgid "Failed to update wifi settings"
+msgstr "Failed to update wifi settings"
 
 msgid "Update"
 msgstr "Update"
