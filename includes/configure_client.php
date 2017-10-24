@@ -105,7 +105,7 @@ function DisplayWPAConfig(){
         }
       }
     } else {
-      $status->addMessage('Failed to updated wifi settings', 'danger');
+      $status->addMessage('Failed to update wifi settings', 'danger');
     }
   }
 
