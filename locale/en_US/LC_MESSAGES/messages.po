@@ -1,15 +1,16 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR billzimmerman@gmail.com, 2017.
+# RaspAP Portable Object file
+# Project home: https://github.com/billz/raspap-webgui
+# Licensed under the GNU General Public License v3.0
+# This file is distributed under the same license as the RaspAP package
+# FIRST AUTHOR billzimmerman@gmail.com, 2017
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.2.1\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: billzimmerman@gmail.com\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2017-10-23 9:50+0000\n"
+"PO-Revision-Date: 2017-10-24 9:50+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -98,6 +99,27 @@ msgstr "Security"
 msgid "Passphrase"
 msgstr "Passphrase"
 
+msgid "Wifi settings updated successfully"
+msgstr "Wifi settings updated successfully"
+
+msgid "Wifi settings updated but cannot restart (cannon execute 'wpa_cli reconfigure')"
+msgstr "Wifi settings updated but cannot restart (cannon execute 'wpa_cli reconfigure')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Wifi settings failed to be updated"
+
+msgid "Failed to updated wifi settings"
+msgstr "Failed to updated wifi settings"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Delete"
+msgstr "Delete"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 
@@ -159,6 +181,30 @@ msgstr "Link Quality"
 msgid "Information provided by ifconfig and iwconfig"
 msgstr "Information provided by ifconfig and iwconfig"
 
+msgid "No MAC Address Found"
+msgstr "No MAC Address Found"
+
+msgid "No IP Address Found"
+msgstr "No IP Address Found"
+
+msgid "No Subnet Mask Found"
+msgstr "No Subnet Mask Found"
+
+msgid "No Data"
+msgstr "No Data"
+
+msgid "Not connected"
+msgstr "Not connected"
+
+msgid "Interface is up"
+msgstr "Interface is up"
+
+msgid "Interface is down"
+msgstr "Interface is down"
+
+msgid "Interface already down"
+msgstr "Interface already down"
+
 #: includes/dhcp.php
 msgid "Server settings"
 msgstr "Server settings"
@@ -201,6 +247,33 @@ msgstr "Stop dnsmasq"
 
 msgid "Start dnsmasq"
 msgstr "Start dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Dnsmasq configuration updated successfully"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq already running"
+
+msgid "Successfully started dnsmasq"
+msgstr "Successfully started dnsmasq"
+
+msgid "Failed to start dnsmasq"
+msgstr "Failed to start dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Successfully stopped dnsmasq"
+
+msgid "Failed to stop dnsmasq"
+msgstr "Failed to stop dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq already stopped"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq is running"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq is not running"
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -263,4 +336,6 @@ msgstr "Select a theme"
 msgid "Save settings"
 msgstr "Save settings"
 
+msgid "Refresh"
+msgstr "Refresh"
 
