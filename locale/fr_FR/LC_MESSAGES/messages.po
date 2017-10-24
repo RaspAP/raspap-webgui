@@ -111,6 +111,9 @@ msgstr "Les paramètres Wifi n'ont pas été mis à jour"
 msgid "Failed to updated wifi settings"
 msgstr "N'a pas mis à jour les paramètres wifi"
 
+msgid "Rescan"
+msgstr "Rescan"
+
 msgid "Update"
 msgstr "Mettre à jour"
 
@@ -204,6 +207,12 @@ msgstr "L'interface est en panne"
 
 msgid "Interface already down"
 msgstr "Interface déjà en bas"
+
+msgid "Start wlan0"
+msgstr "Commencer wlan0"
+
+msgid "Stop wlan0"
+msgstr "Arrêtez wlan0"
 
 #: includes/dhcp.php
 msgid "Server settings"
@@ -306,6 +315,42 @@ msgstr "Le code du pays"
 msgid "Information provided by hostapd"
 msgstr "Informations fournies par hostapd"
 
+msgid "Attempting to start hotspot"
+msgstr "Essayez de démarrer le hotspot"
+
+msgid "Attempting to stop hotspot"
+msgstr "Tentative d'arrêt du hotspot"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD n'est pas en cours d'exécution"
+
+msgid "HostAPD is running"
+msgstr "HostAPD est en cours d'exécution"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "Le SSID doit avoir entre 1 et 32 caractères"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "La phrase d'authentification WPA doit comporter entre 8 et 63 caractères"
+
+msgid "Unknown interface"
+msgstr "Interface inconnue"
+
+msgid "Country code must be blank or two characters"
+msgstr "Le code du pays doit être vide ou deux caractères"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Paramètres de hotspot WI-FI enregistrés"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "Impossible d'enregistrer le réglage du hotspot Wi-Fi"
+
+msgid "Start hotspot"
+msgstr "Démarrer le point d'accès"
+
+msgid "Stop hotspot"
+msgstr "Arrêté hotspot"
+
 #: includes/system.php
 msgid "Hostname"
 msgstr "Nom d'hôte"
@@ -321,6 +366,18 @@ msgstr "Mémoire utilisée"
 
 msgid "CPU Load"
 msgstr "Charge du processeur"
+
+msgid "Reboot"
+msgstr "Redémarrer"
+
+msgid "Shutdown"
+msgstr "Fermer"
+
+msgid "System Rebooting Now!"
+msgstr "Système de redémarrage maintenant!"
+
+msgid "System Shutting Down Now!"
+msgstr "Système de fermeture maintenant!"
 
 #: includes/themes.php
 msgid "Theme settings"
