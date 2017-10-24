@@ -67,7 +67,7 @@ function DisplayAuthConfig($username, $password){
                 <input type="password" class="form-control" name="newpassagain"/>
               </div>
             </div>
-            <input type="submit" class="btn btn-outline btn-primary" name="UpdateAdminPassword" value="Save settings" />
+            <input type="submit" class="btn btn-outline btn-primary" name="UpdateAdminPassword" value="<?php echo _("Save settings"); ?>" />
           </form>
         </div><!-- /.panel-body -->
       </div><!-- /.panel-default -->
