@@ -149,9 +149,9 @@ function DisplayWPAConfig(){
         <!-- /.panel-heading -->
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
-          <h4>Client settings</h4>
+          <h4><?php echo _("Client settings"); ?></h4>
 	<div class="btn-group btn-block">
-	<a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update">Rescan</a>
+	<a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update"><?php echo _("Rescan"); ?></a>
 	</div>
           <form method="POST" action="?page=wpa_conf" name="wpa_conf_form">
             <?php CSRFToken() ?>
@@ -194,11 +194,11 @@ function DisplayWPAConfig(){
                 <td>
                   <div class="btn-group btn-block">
                   <?php if ($network['configured']) { ?>
-                    <input type="submit" class="col-md-6 btn btn-warning" value="Update" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> />
+                    <input type="submit" class="col-md-6 btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> />
                   <?php } else { ?>
-                    <input type="submit" class="col-md-6 btn btn-info" value="Add" id="update<?php echo $index ?>" name="update<?php echo $index ?>" <?php echo ($network['protocol'] === 'Open' ? '' : ' disabled')?> />
+                    <input type="submit" class="col-md-6 btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" <?php echo ($network['protocol'] === 'Open' ? '' : ' disabled')?> />
                   <?php } ?>
-                    <input type="submit" class="col-md-6 btn btn-danger" value="Delete" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> />
+                    <input type="submit" class="col-md-6 btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> />
                   </div>
                 </td>
               </tr>
