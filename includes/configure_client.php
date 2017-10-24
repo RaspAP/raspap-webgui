@@ -145,7 +145,7 @@ function DisplayWPAConfig(){
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-primary">           
-        <div class="panel-heading"><i class="fa fa-signal fa-fw"></i> Configure client</div>
+        <div class="panel-heading"><i class="fa fa-signal fa-fw"></i> <?php echo _("Configure client"); ?></div>
         <!-- /.panel-heading -->
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
@@ -159,10 +159,10 @@ function DisplayWPAConfig(){
             <table class="table table-responsive table-striped">
               <tr>
                 <th></th>
-                <th>SSID</th>
-                <th>Channel</th>
-                <th>Security</th>
-                <th>Passphrase</th>
+                <th><?php echo _("SSID"); ?></th>
+                <th><?php echo _("Channel"); ?></th>
+                <th><?php echo _("Security"); ?></th>
+                <th><?php echo _("Passphrase"); ?></th>
                 <th></th>
               </tr>
             <?php $index = 0; ?>
@@ -207,7 +207,7 @@ function DisplayWPAConfig(){
             </table>
           </form>
         </div><!-- ./ Panel body -->
-        <div class="panel-footer"><strong>Note,</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP.</div>
+        <div class="panel-footer"><?php echo _("<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"); ?></div>
       </div><!-- /.panel-primary -->
     </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
