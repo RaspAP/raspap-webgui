@@ -111,6 +111,9 @@ msgstr "Wifi settings failed to be updated"
 msgid "Failed to update wifi settings"
 msgstr "Failed to update wifi settings"
 
+msgid "Rescan"
+msgstr "Rescan"
+
 msgid "Update"
 msgstr "Update"
 
@@ -204,6 +207,12 @@ msgstr "Interface is down"
 
 msgid "Interface already down"
 msgstr "Interface already down"
+
+msgid "Start wlan0"
+msgstr "Start wlan0"
+
+msgid "Stop wlan0"
+msgstr "Stop wlan0"
 
 #: includes/dhcp.php
 msgid "Server settings"
@@ -309,6 +318,42 @@ msgstr "Country Code"
 msgid "Information provided by hostapd"
 msgstr "Information provided by hostapd"
 
+msgid "Attempting to start hotspot"
+msgstr "Attempting to start hotspot"
+
+msgid "Attempting to stop hotspot"
+msgstr "Attempting to stop hotspot"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD is not running"
+
+msgid "HostAPD is running"
+msgstr "HostAPD is running"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID must be between 1 and 32 characters"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "WPA passphrase must be between 8 and 63 characters"
+
+msgid "Unknown interface"
+msgstr "Unknown interface"
+
+msgid "Country code must be blank or two characters"
+msgstr "Country code must be blank or two characters"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Wifi Hotspot settings saved"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "Unable to save wifi hotspot settings"
+
+msgid "Start hotspot"
+msgstr "Start hotspot"
+
+msgid "Stop hotspot"
+msgstr "Stop hotspot"
+
 #: includes/system.php
 msgid "Hostname"
 msgstr "Hostname"
@@ -324,6 +369,18 @@ msgstr "Memory Used"
 
 msgid "CPU Load"
 msgstr "CPU Load"
+
+msgid "Reboot"
+msgstr "Reboot"
+
+msgid "Shutdown"
+msgstr "Shutdown"
+
+msgid "System Rebooting Now!"
+msgstr "System Rebooting Now!"
+
+msgid "System Shutting Down Now!"
+msgstr "System Shutting Down Now!"
 
 #: includes/themes.php
 msgid "Theme settings"
