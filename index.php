@@ -13,7 +13,7 @@
  * @author     Lawrence Yau <sirlagz@gmail.com>
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
  * @license    GNU General Public License, version 3 (GPL-3.0)
- * @version    1.2.3
+ * @version    1.3.0
  * @link       https://github.com/billz/raspap-webgui
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
@@ -104,7 +104,7 @@ $theme_url = 'dist/css/' . $theme;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.2.3</a>
+          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.3.0</a>
         </div>
         <!-- /.navbar-header -->
 
