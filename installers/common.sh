@@ -84,10 +84,18 @@ function create_raspap_directories() {
         sudo mv $raspap_dir "$raspap_dir.`date +%F-%R`" || install_error "Unable to move old '$raspap_dir' out of the way"
     fi
     sudo mkdir -p "$raspap_dir" || install_error "Unable to create directory '$raspap_dir'"
+
     # Create a directory for existing file backups.
     sudo mkdir -p "$raspap_dir/backups"
 
+    # Create a directory to store networking configs
+    sudo mkdir -p "$raspap_dir/networking"
+    # Copy existing dhcpcd.conf to use as base config
+    cat /etc/dhcpcd.conf > "$raspap_dir/networking/defaults"
+
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
+
+
 }
 
 # Fetches latest files from github to webroot

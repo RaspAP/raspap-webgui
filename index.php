@@ -17,15 +17,10 @@
  * @link       https://github.com/billz/raspap-webgui
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
-
+/*
 define('RASPI_CONFIG', '/etc/raspap');
+define('RASPI_CONFIG_NETWORKING',RASPI_CONFIG.'/networking');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
-
-//if(file_exists(RASPI_CONFIG.'/raspap.auth')) {
-//    define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
-//} else {
-//    define('RASPI_ADMIN_DETAILS','');
-//}
 
 // Constants for configuration file paths.
 // These are typical for default RPi installs. Modify if needed.
@@ -42,7 +37,9 @@ define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 // Optional services, set to true to enable.
 define('RASPI_OPENVPN_ENABLED', false );
 define('RASPI_TORPROXY_ENABLED', false );
+*/
 
+include_once( 'includes/config.php' );
 include_once( RASPI_CONFIG.'/raspap.php' );
 include_once( 'includes/functions.php' );
 include_once( 'includes/dashboard.php' );
@@ -248,5 +245,8 @@ $theme_url = 'dist/css/' . $theme;
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+
+    <!-- Custom RaspAP JS -->
+    <script src="js/custom.js"></script>
   </body>
 </html>
