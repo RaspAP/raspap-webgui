@@ -73,10 +73,11 @@ function enable_php_lighttpd() {
     install_log "Enabling PHP for lighttpd"
 
     sudo lighty-enable-mod fastcgi-php
-    if [ $? -eq 2 ]
+    ERR=$?
+    if [ $ERR -eq 2 ]
     then
         echo '  [already enabled]'
-    elif [ $? -ne 0 ]
+    elif [ $ERR -ne 0 ]
     then
         install_error "Cannot enable fastcgi-php for lighttpd"
     fi
