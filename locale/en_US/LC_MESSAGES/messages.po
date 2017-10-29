@@ -102,8 +102,8 @@ msgstr "Passphrase"
 msgid "Wifi settings updated successfully"
 msgstr "Wifi settings updated successfully"
 
-msgid "Wifi settings updated but cannot restart (cannon execute 'wpa_cli reconfigure')"
-msgstr "Wifi settings updated but cannot restart (cannon execute 'wpa_cli reconfigure')"
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
 msgstr "Wifi settings failed to be updated"
