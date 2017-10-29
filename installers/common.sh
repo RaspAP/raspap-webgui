@@ -222,6 +222,7 @@ function patch_system_files() {
       '/sbin/ip link set wlan0 down'
       '/sbin/ip link set wlan0 up'
       '/sbin/ip -s a f label wlan0'
+      '/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf'
     )
 
     # Check if sudoers needs patchin

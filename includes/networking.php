@@ -26,6 +26,7 @@ function DisplayNetworkingConfig(){
                 <i class="fa fa-sitemap fa-fw"></i> Configure Networking
             </div>
             <div class="panel panel-body">
+                <div id="msgNetworking"></div>
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"><a href="#summary" aria-controls="summary" role="tab" data-toggle="tab">Summary</a></li>
                     <?php
