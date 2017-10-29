@@ -121,8 +121,13 @@ $theme_url = 'dist/css/' . $theme;
               <li>
                 <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure Hotspot</a>
               </li>
-              <li>
-                <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> Configure Networking</a>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Networking <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> Configure Networking</a>
+                    </li>
+                </ul>
               </li>
               <li>
                 <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP Server</a>

@@ -49,7 +49,7 @@ function loadCurrentSettings(strInterface) {
                 //console.log(i2+":"+v2);
                 switch(i2) {
                     case "static":
-                        if(v2 == 1) {
+                        if(v2 == 'true') {
                             $('#'+int+'-static').click();
                         }
                     break;
