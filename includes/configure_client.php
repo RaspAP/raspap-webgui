@@ -98,7 +98,7 @@ function DisplayWPAConfig(){
             $status->addMessage('Wifi settings updated successfully', 'success');
             $networks = $tmp_networks;
           } else {
-            $status->addMessage('Wifi settings updated but cannot restart (cannon execute "wpa_cli reconfigure")', 'danger');
+            $status->addMessage('Wifi settings updated but cannot restart (cannot execute "wpa_cli reconfigure")', 'danger');
           }
         } else {
           $status->addMessage('Wifi settings failed to be updated', 'danger');
