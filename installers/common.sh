@@ -97,6 +97,12 @@ function create_raspap_directories() {
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
 }
 
+# Generate logging enable/disable files for hostapd
+function create_logging_scripts() {
+    sudo mkdir /etc/raspap/hostapd
+    sudo mv /var/www/html/installers/*log.sh /etc/rasp/hostapd
+}
+
 # Fetches latest files from github to webroot
 function download_latest_files() {
     if [ -d "$webroot_dir" ]; then
