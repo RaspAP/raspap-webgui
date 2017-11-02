@@ -134,14 +134,19 @@ function DisplayHostAPDConfig(){
                 </div>
               </div>
               <div class="tab-pane fade" id="logoutput">
-                <?php
-                    if($arrHostapdConf['LogEnable'] == 1) {
-                        $log = file_get_contents('/tmp/hostapd.log');
-                        echo 'Logfile contents:<br /><textarea class="logoutput">'.$log.'</textarea>';
-                    } else {
-                        echo "Logfile output not enabled";
-                    }
-                ?>
+                <h4>Logfile output</h4>
+                  <div class="row">
+                    <div class="form-group col-md-8">
+                      <?php
+                          if($arrHostapdConf['LogEnable'] == 1) {
+                              $log = file_get_contents('/tmp/hostapd.log');
+                              echo '<br /><textarea class="logoutput">'.$log.'</textarea>';
+                          } else {
+                              echo "<br />Logfile output not enabled";
+                          }
+                      ?>
+                   </div>
+                </div>
               </div>
               <div class="tab-pane fade" id="advanced">
                 <h4>Advanced settings</h4>
