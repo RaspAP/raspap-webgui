@@ -10,6 +10,8 @@ function DisplayHostAPDConfig(){
 
   $status = new StatusMessages();
 
+  $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
+
   $arrConfig = array();
   $arrChannel = array('a','b','g');
   $arrSecurity = array( 1 => 'WPA', 2 => 'WPA2',3=> 'WPA+WPA2');
@@ -74,6 +76,7 @@ function DisplayHostAPDConfig(){
               <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
               <li><a href="#security" data-toggle="tab">Security</a></li>
               <li><a href="#advanced" data-toggle="tab">Advanced</a></li>
+              <li><a href="#logoutput" data-toggle="tab">Logfile Output</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -130,8 +133,28 @@ function DisplayHostAPDConfig(){
                   </div>
                 </div>
               </div>
+              <div class="tab-pane fade" id="logoutput">
+                <?php
+                    if($arrHostapdConf['LogEnable'] == 1) {
+                        $log = file_get_contents('/tmp/hostapd.log');
+                        echo 'Logfile contents:<br /><textarea class="logoutput">'.$log.'</textarea>';
+                    } else {
+                        echo "Logfile output not enabled";
+                    }
+                ?>
+              </div>
               <div class="tab-pane fade" id="advanced">
                 <h4>Advanced settings</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                        Enable Logging <?php $checked = ''; if($arrHostapdConf['LogEnable'] == 1) { $checked = 'checked'; } ?>
+                        <input id="logEnable" name ="logEnable" type="checkbox" class="form-check-input" value="1" <?php echo $checked; ?> />
+                    </label>
+                  </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="form-group col-md-4">
                   <label for="code">Country Code</label>
@@ -430,6 +453,24 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
   }
 
   $good_input = true;
+
+  // Check for Logging Checkbox
+    $logEnable = 0;
+    if($arrHostapdConf['LogEnable'] == 0) {
+        if(isset($_POST['logEnable'])) {
+            // Need code to enable logfile logging here
+            $logEnable = 1;
+            exec('sudo /bin/sed -i "\'"\'s|#DAEMON_OPTS=""|DAEMON_OPTS=" -f /tmp/hostapd.log"|\'"\'" /etc/default/hostapd');
+        }
+    } else {
+        if(isset($_POST['logEnable'])) {
+            $logEnable = 1;
+            exec('sudo /bin/sed -i "\'"\'s|#DAEMON_OPTS=""|DAEMON_OPTS=" -f /tmp/hostapd.log"|\'"\'" /etc/default/hostapd');
+        } else {
+            exec('sudo /bin/sed -i "\'"\'s|DAEMON_OPTS=" -f /tmp/hostapd.log"|#DAEMON_OPTS=""|\'"\'" /etc/default/hostapd');
+        }
+    }
+    write_php_ini(["LogEnable" => $logEnable],'/etc/raspap/hostapd.ini');
 
   // Verify input
   if (strlen($_POST['ssid']) == 0 || strlen($_POST['ssid']) > 32) {
