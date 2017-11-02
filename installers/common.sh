@@ -73,7 +73,14 @@ function enable_php_lighttpd() {
     install_log "Enabling PHP for lighttpd"
 
     sudo lighty-enable-mod fastcgi-php
-    if [ $? -eq 2 ]; then echo already enabled; else install_error "Cannot enable fastcgi-php for lighttpd"; fi
+    ERR=$?
+    if [ $ERR -eq 2 ]
+    then
+        echo '  [already enabled]'
+    elif [ $ERR -ne 0 ]
+    then
+        install_error "Cannot enable fastcgi-php for lighttpd"
+    fi
     sudo /etc/init.d/lighttpd restart || install_error "Unable to restart lighttpd"
 }
 
@@ -88,6 +95,12 @@ function create_raspap_directories() {
     sudo mkdir -p "$raspap_dir/backups"
 
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
+}
+
+# Generate logging enable/disable files for hostapd
+function create_logging_scripts() {
+    sudo mkdir /etc/raspap/hostapd
+    sudo mv /var/www/html/installers/*log.sh /etc/rasp/hostapd
 }
 
 # Fetches latest files from github to webroot
@@ -207,6 +220,8 @@ function patch_system_files() {
       '/sbin/ip link set wlan0 down'
       '/sbin/ip link set wlan0 up'
       '/sbin/ip -s a f label wlan0'
+      '/etc/raspap/hostapd/enablelog.sh'
+      '/etc/raspap/hostapd/disablelog.sh'
     )
 
     # Check if sudoers needs patchin
@@ -243,6 +258,7 @@ function install_raspap() {
     install_dependencies
     enable_php_lighttpd
     create_raspap_directories
+    create_logging_scripts
     check_for_old_configs
     download_latest_files
     change_file_ownership
