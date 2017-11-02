@@ -456,18 +456,22 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 
   // Check for Logging Checkbox
     $logEnable = 0;
+    echo "SOMETHING ".$arrHostapdConf['LogEnable'];
+    echo 'logenable set:'.$_POST['logEnable'];
     if($arrHostapdConf['LogEnable'] == 0) {
         if(isset($_POST['logEnable'])) {
             // Need code to enable logfile logging here
             $logEnable = 1;
-            exec('sudo /bin/sed -i "\'"\'s|#DAEMON_OPTS=""|DAEMON_OPTS=" -f /tmp/hostapd.log"|\'"\'" /etc/default/hostapd');
+            exec('sudo /etc/raspap/hostapd/enablelog.sh');
+        } else {
+            exec('sudo /etc/raspap/hostapd/disablelog.sh');
         }
     } else {
         if(isset($_POST['logEnable'])) {
             $logEnable = 1;
-            exec('sudo /bin/sed -i "\'"\'s|#DAEMON_OPTS=""|DAEMON_OPTS=" -f /tmp/hostapd.log"|\'"\'" /etc/default/hostapd');
+            exec('sudo /etc/raspap/hostapd/enablelog.sh');
         } else {
-            exec('sudo /bin/sed -i "\'"\'s|DAEMON_OPTS=" -f /tmp/hostapd.log"|#DAEMON_OPTS=""|\'"\'" /etc/default/hostapd');
+            exec('sudo /etc/raspap/hostapd/disablelog.sh');
         }
     }
     write_php_ini(["LogEnable" => $logEnable],'/etc/raspap/hostapd.ini');
