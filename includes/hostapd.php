@@ -461,11 +461,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 
   // Check for Logging Checkbox
     $logEnable = 0;
-<<<<<<< HEAD
-=======
-    echo "SOMETHING ".$arrHostapdConf['LogEnable'];
-    echo 'logenable set:'.$_POST['logEnable'];
->>>>>>> 604b28130fd2e331a8c13b773239e0dcf0fa2fdf
     if($arrHostapdConf['LogEnable'] == 0) {
         if(isset($_POST['logEnable'])) {
             // Need code to enable logfile logging here
