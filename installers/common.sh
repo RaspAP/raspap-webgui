@@ -200,6 +200,7 @@ function default_configuration() {
     done
 }
 
+
 # Add a single entry to the sudoers file
 function sudo_add() {
   sudo bash -c "echo \"www-data ALL=(ALL) NOPASSWD:$1\" | (EDITOR=\"tee -a\" visudo)" \
