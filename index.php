@@ -122,13 +122,8 @@ $theme_url = 'dist/css/' . $theme;
                 <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure Hotspot</a>
               </li>
               <li>
-                <a href="#" aria-expanded="false"><i class="fa fa-sitemap fa-fw"></i> Networking <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse" aria-expanded="false">
-                        <li>
-                            <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> Basic Networking</a>
-                        </li>
-                    </ul>
-              </li>
+                <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> Configure Networking</a>
+              </li> 
               <li>
                 <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP Server</a>
               </li>
