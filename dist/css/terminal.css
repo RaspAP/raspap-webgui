@@ -196,4 +196,9 @@ a:focus, a:hover {
     float: left;
 }
 
-
+.logoutput {
+    width: 100%;
+    height: 300px;
+    background-color: #000;
+    border-color: #33ff00;
+}

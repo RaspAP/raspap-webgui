@@ -76,3 +76,8 @@ h4 {
     width: 140px;
     float: left;
 }
+
+.logoutput {
+    width: 100%;
+    height: 300px;
+}

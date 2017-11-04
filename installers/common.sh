@@ -105,6 +105,12 @@ function create_raspap_directories() {
 
 }
 
+# Generate logging enable/disable files for hostapd
+function create_logging_scripts() {
+    sudo mkdir /etc/raspap/hostapd
+    sudo mv /var/www/html/installers/*log.sh /etc/rasp/hostapd
+}
+
 # Fetches latest files from github to webroot
 function download_latest_files() {
     if [ -d "$webroot_dir" ]; then
@@ -223,6 +229,8 @@ function patch_system_files() {
       '/sbin/ip link set wlan0 up'
       '/sbin/ip -s a f label wlan0'
       '/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf'
+      '/etc/raspap/hostapd/enablelog.sh'
+      '/etc/raspap/hostapd/disablelog.sh'
     )
 
     # Check if sudoers needs patchin
@@ -259,6 +267,7 @@ function install_raspap() {
     install_dependencies
     enable_php_lighttpd
     create_raspap_directories
+    create_logging_scripts
     check_for_old_configs
     download_latest_files
     change_file_ownership
