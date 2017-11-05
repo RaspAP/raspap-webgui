@@ -66,7 +66,7 @@ a:focus, a:hover {
     border-color: #33ff00;
 }
 
-.panel-primary>.panel-heading {
+.panel-primary>.panel-heading, .panel-default>.panel-heading {
     border-color: #33ff00;
     background-color: #33ff00;
     color: #000;
@@ -81,6 +81,11 @@ a:focus, a:hover {
     margin-bottom: 20px;
     border: 1px solid #33ff00;
     border-radius: 0px;
+    background-color: #000;
+}
+
+hr { 
+    border-top: 1px solid #33ff00;
 }
 
 .page-header {
@@ -135,6 +140,14 @@ a:focus, a:hover {
     color: #33ff00;
 }
 
+label.btn.btn-primary {
+    color: #33ff00;
+}
+
+.btn.btn-primary {
+    border-color: #33ff00;
+}
+
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     background-color: #000;
     border-top: 1px solid #000;
@@ -181,6 +194,16 @@ a:focus, a:hover {
     border-radius: 0px;
     transition: unset;
 }
+
+input[type="text"]{
+    color: #33ff00 !important
+}
+
+.form-control::-webkit-input-placeholder { color: #33ff00; } 
+.form-control:-moz-placeholder { color: #33ff00; }  
+.form-control::-moz-placeholder { color: #33ff00; }  
+.form-control:-ms-input-placeholder { color: #33ff00; }  
+.form-control::-ms-input-placeholder { color: #33ff00; }
 
 .progress {
     background-color: #000;
