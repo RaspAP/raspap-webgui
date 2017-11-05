@@ -55,7 +55,7 @@ function safefilerewrite($fileName, $dataToSave) {
 */
 function CSRFToken() {
 ?>
-<input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
+<input id="csrf_token" type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
 <?php
 }
 

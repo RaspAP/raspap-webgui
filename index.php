@@ -13,36 +13,12 @@
  * @author     Lawrence Yau <sirlagz@gmail.com>
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
  * @license    GNU General Public License, version 3 (GPL-3.0)
- * @version    1.2.2
+ * @version    1.3.0
  * @link       https://github.com/billz/raspap-webgui
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
 
-define('RASPI_CONFIG', '/etc/raspap');
-define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
-
-//if(file_exists(RASPI_CONFIG.'/raspap.auth')) {
-//    define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
-//} else {
-//    define('RASPI_ADMIN_DETAILS','');
-//}
-
-// Constants for configuration file paths.
-// These are typical for default RPi installs. Modify if needed.
-define('RASPI_DNSMASQ_CONFIG', '/etc/dnsmasq.conf');
-define('RASPI_DNSMASQ_LEASES', '/var/lib/misc/dnsmasq.leases');
-define('RASPI_HOSTAPD_CONFIG', '/etc/hostapd/hostapd.conf');
-define('RASPI_WPA_SUPPLICANT_CONFIG', '/etc/wpa_supplicant/wpa_supplicant.conf');
-define('RASPI_HOSTAPD_CTRL_INTERFACE', '/var/run/hostapd');
-define('RASPI_WPA_CTRL_INTERFACE', '/var/run/wpa_supplicant');
-define('RASPI_OPENVPN_CLIENT_CONFIG', '/etc/openvpn/client.conf');
-define('RASPI_OPENVPN_SERVER_CONFIG', '/etc/openvpn/server.conf');
-define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
-
-// Optional services, set to true to enable.
-define('RASPI_OPENVPN_ENABLED', false );
-define('RASPI_TORPROXY_ENABLED', false );
-
+include_once( 'includes/config.php' );
 include_once( RASPI_CONFIG.'/raspap.php' );
 include_once( 'includes/functions.php' );
 include_once( 'includes/dashboard.php' );
@@ -52,6 +28,7 @@ include_once( 'includes/dhcp.php' );
 include_once( 'includes/hostapd.php' );
 include_once( 'includes/system.php' );
 include_once( 'includes/configure_client.php' );
+include_once( 'includes/networking.php' );
 include_once( 'includes/themes.php' );
 
 $output = $return = 0;
@@ -127,7 +104,7 @@ $theme_url = 'dist/css/' . $theme;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.2.2</a>
+          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.3.0</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -139,11 +116,14 @@ $theme_url = 'dist/css/' . $theme;
                 <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
               </li>
               <li>
-                <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> Configure client</a>
+                <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> Configure WiFi Client</a>
               </li>
               <li>
-                <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure hotspot</a>
+                <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure Hotspot</a>
               </li>
+              <li>
+                <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> Configure Networking</a>
+              </li> 
               <li>
                 <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP Server</a>
               </li>
@@ -194,6 +174,9 @@ $theme_url = 'dist/css/' . $theme;
           case "wpa_conf":
             DisplayWPAConfig();
             break;
+          case "network_conf":
+            DisplayNetworkingConfig();
+            break;
           case "hostapd_conf":
             DisplayHostAPDConfig();
             break;
@@ -241,5 +224,8 @@ $theme_url = 'dist/css/' . $theme;
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+
+    <!-- Custom RaspAP JS -->
+    <script src="js/custom.js"></script>
   </body>
 </html>

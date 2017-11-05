@@ -91,10 +91,18 @@ function create_raspap_directories() {
         sudo mv $raspap_dir "$raspap_dir.`date +%F-%R`" || install_error "Unable to move old '$raspap_dir' out of the way"
     fi
     sudo mkdir -p "$raspap_dir" || install_error "Unable to create directory '$raspap_dir'"
+
     # Create a directory for existing file backups.
     sudo mkdir -p "$raspap_dir/backups"
 
+    # Create a directory to store networking configs
+    sudo mkdir -p "$raspap_dir/networking"
+    # Copy existing dhcpcd.conf to use as base config
+    cat /etc/dhcpcd.conf > "$raspap_dir/networking/defaults"
+
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
+
+
 }
 
 # Generate logging enable/disable files for hostapd
@@ -192,6 +200,7 @@ function default_configuration() {
     done
 }
 
+
 # Add a single entry to the sudoers file
 function sudo_add() {
   sudo bash -c "echo \"www-data ALL=(ALL) NOPASSWD:$1\" | (EDITOR=\"tee -a\" visudo)" \
@@ -220,6 +229,7 @@ function patch_system_files() {
       '/sbin/ip link set wlan0 down'
       '/sbin/ip link set wlan0 up'
       '/sbin/ip -s a f label wlan0'
+      '/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf'
       '/etc/raspap/hostapd/enablelog.sh'
       '/etc/raspap/hostapd/disablelog.sh'
     )
