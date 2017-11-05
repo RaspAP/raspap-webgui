@@ -173,7 +173,7 @@ label.btn.btn-primary {
     border-radius: 0px;
 }
 
-.alert-success,.alert-warning,.alert-ifo,.alert-dismissable {
+.alert-success,.alert-warning,.alert-ifo,.alert-dismissable,.alert-danger {
     color: #33ff00;
     background-color: #000;
     border-color: #33ff00;
