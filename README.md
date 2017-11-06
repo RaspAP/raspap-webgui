@@ -1,6 +1,6 @@
 ![](http://i.imgur.com/xeKD93p.png)
 # `$ raspap-webgui` [![Release 1.3.0](https://img.shields.io/badge/Release-1.3.0-green.svg)](https://github.com/billz/raspap-webgui/releases)
-A simple, responsive web interface t:o control wifi, hostapd and related services on the Raspberry Pi.
+A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
 This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme. Since then, the project has evolved to include greater control over many aspects of a networked RPi, better security, authentication, support for themes and more. 
 
