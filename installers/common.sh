@@ -108,7 +108,7 @@ function create_raspap_directories() {
 # Generate logging enable/disable files for hostapd
 function create_logging_scripts() {
     sudo mkdir /etc/raspap/hostapd
-    sudo mv /var/www/html/installers/*log.sh /etc/rasp/hostapd
+    sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd
 }
 
 # Fetches latest files from github to webroot
