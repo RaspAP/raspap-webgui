@@ -98,7 +98,7 @@ function create_raspap_directories() {
     # Create a directory to store networking configs
     sudo mkdir -p "$raspap_dir/networking"
     # Copy existing dhcpcd.conf to use as base config
-    cat /etc/dhcpcd.conf > "$raspap_dir/networking/defaults"
+    cat /etc/dhcpcd.conf | sudo tee -a /etc/raspap/networking/defaults
 
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
 
