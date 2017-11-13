@@ -150,6 +150,14 @@ label.btn.btn-primary.active, label.btn.btn-warning.active {
     color: #000;
 }
 
+.label-warning {
+    background-color: #33ff00;
+}
+
+span.label.label-warning {
+    color: #000;
+}
+
 .btn.btn-primary {
     border-color: #33ff00;
 }
