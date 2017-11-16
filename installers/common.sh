@@ -78,8 +78,7 @@ function install_dependencies() {
 function enable_php_lighttpd() {
     install_log "Enabling PHP for lighttpd"
 
-    sudo lighttpd-enable-mod fastcgi-php
-    
+    sudo lighttpd-enable-mod fastcgi-php    
     sudo service lighttpd force-reload
     sudo /etc/init.d/lighttpd restart || install_error "Unable to restart lighttpd"
 }
@@ -101,6 +100,14 @@ function create_raspap_directories() {
     cat /etc/dhcpcd.conf | sudo tee -a /etc/raspap/networking/defaults
 
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
+
+
+}
+
+# Generate logging enable/disable files for hostapd
+function create_logging_scripts() {
+    sudo mkdir /etc/raspap/hostapd
+    sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd
 }
 
 # Generate logging enable/disable files for hostapd
@@ -186,7 +193,7 @@ function default_configuration() {
     'echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP'
     'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
     )
-
+    
     for line in "${lines[@]}"; do
         if grep "$line" /etc/rc.local > /dev/null; then
             echo "$line: Line already added"

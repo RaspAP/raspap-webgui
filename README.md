@@ -1,14 +1,16 @@
 ![](http://i.imgur.com/xeKD93p.png)
-# `$ raspap-webgui` [![Release 1.2.1](https://img.shields.io/badge/Release-1.2.1-green.svg)](https://github.com/billz/raspap-webgui/releases)
-A simple, responsive web interface t:o control wifi, hostapd and related services on the Raspberry Pi.
+# `$ raspap-webgui` [![Release 1.3.0](https://img.shields.io/badge/Release-1.3.0-green.svg)](https://github.com/billz/raspap-webgui/releases)
+A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
-This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme.
+This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme. Since then, the project has evolved to include greater control over many aspects of a networked RPi, better security, authentication, support for themes and more. 
 
 We'd be curious to hear about how you use this with your own Pi-powered access points. Ping us on Twitter ([**@billzimmerman**](https://twitter.com/billzimmerman), [**@jrmhaig**](https://twitter.com/jrmhaig) and [**@SirLagz**](https://twitter.com/SirLagz)). Until then, here are some screenshots:
 
-![](https://i.imgur.com/l4Vgd5G.png)
-![](https://i.imgur.com/mRPtEnC.png)
-![](https://i.imgur.com/FFdKoML.png)
+![](https://i.imgur.com/0f27nen.png)
+![](https://i.imgur.com/jFDMEy6.png)
+![](https://i.imgur.com/ck0XS8P.png)
+![](https://i.imgur.com/Vaej8Xv.png)
+![](https://i.imgur.com/iNuMMip.png)
 ## Contents
 
  - [Prerequisites](#prerequisites)
@@ -78,7 +80,7 @@ www-data ALL=(ALL) NOPASSWD:/sbin/reboot
 ```
 
 Once those modifications are done, git clone the files to `/var/www/html`.
-**Note,** for older versions of Raspbian (before Jessie, May 2016) use
+**Note:** for older versions of Raspbian (before Jessie, May 2016) use
 `/var/www` instead.
 ```sh
 sudo rm -rf /var/www/html
@@ -124,3 +126,4 @@ Please note that these are only UI's for now. If there's enough interest I'll co
 
 ## License
 See the [LICENSE](./LICENSE) file.
+

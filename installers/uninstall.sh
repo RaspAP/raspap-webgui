@@ -63,8 +63,21 @@ function check_for_backups() {
         fi
         if [ -f "$raspap_dir/backups/dhcpcd.conf" ]; then
             echo -n "Restore the last dhcpcd.conf file? [y/N]: "
+            read answer
             if [[ $answer -eq 'y' ]]; then
                 sudo cp "$raspap_dir/backups/dhcpcd.conf" /etc/dhcpcd.conf
+            fi
+        fi
+        if [ -f "$raspap_dir/backups/rc.local" ]; then
+            echo -n "Restore the last rc.local file? [y/N]: "
+            read answer
+            if [[ $answer -eq 'y' ]]; then
+                sudo cp "$raspap_dir/backups/rc.local" /etc/rc.local
+            else
+                echo -n "Remove RaspAP Lines from /etc/rc.local? [Y/n]: "
+                if $answer -ne 'n' ]]; then
+                    sed -i '/#RASPAP/d' /etc/rc.local
+                fi
             fi
         fi
     fi

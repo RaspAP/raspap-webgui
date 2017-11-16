@@ -149,11 +149,11 @@ function DisplayDHCPConfig() {
     </div>
 
     <div class="row">
-      <div class="form-group col-xs-2 col-sm-2">
+      <div class="form-group col-xs-4 col-sm-2">
         <label for="code">Lease Time</label>
         <input type="text" class="form-control" name="RangeLeaseTime" value="<?php echo $arrRangeLeaseTime[1]; ?>" />
       </div>
-      <div class="col-xs-2 col-sm-2">
+      <div class="col-xs-4 col-sm-2">
         <label for="code">Interval</label>
         <select name="RangeLeaseTimeUnits" class="form-control" ><option value="m" <?php echo $mselected; ?>>Minute(s)</option><option value="h" <?php echo $hselected; ?>>Hour(s)</option><option value="d" <?php echo $dselected; ?>>Day(s)</option><option value="infinite">Infinite</option></select> 
       </div>

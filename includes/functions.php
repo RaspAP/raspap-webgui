@@ -1,4 +1,52 @@
 <?php
+/* Functions for Networking */
+
+function mask2cidr($mask){
+  $long = ip2long($mask);
+  $base = ip2long('255.255.255.255');
+  return 32-log(($long ^ $base)+1,2);
+}
+
+/* Functions to write ini files */
+
+function write_php_ini($array, $file) {
+    $res = array();
+    foreach($array as $key => $val) {
+        if(is_array($val)) {
+            $res[] = "[$key]";
+            foreach($val as $skey => $sval) $res[] = "$skey = ".(is_numeric($sval) ? $sval : '"'.$sval.'"');
+        }
+        else $res[] = "$key = ".(is_numeric($val) ? $val : '"'.$val.'"');
+    }
+    if(safefilerewrite($file, implode("\r\n", $res))) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function safefilerewrite($fileName, $dataToSave) {
+    if ($fp = fopen($fileName, 'w')) {
+        $startTime = microtime(TRUE);
+        do {
+            $canWrite = flock($fp, LOCK_EX);
+            // If lock not obtained sleep for 0 - 100 milliseconds, to avoid collision and CPU load
+            if(!$canWrite) usleep(round(rand(0, 100)*1000));
+        } while ((!$canWrite)and((microtime(TRUE)-$startTime) < 5));
+
+        //file was locked so now we can store information
+        if ($canWrite) {
+            fwrite($fp, $dataToSave);
+            flock($fp, LOCK_UN);
+        }
+        fclose($fp);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 
 /**
 *
@@ -7,7 +55,7 @@
 */
 function CSRFToken() {
 ?>
-<input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
+<input id="csrf_token" type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
 <?php
 }
 
