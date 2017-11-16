@@ -2,14 +2,20 @@ raspap_dir="/etc/raspap"
 raspap_user="www-data"
 version=`sed 's/\..*//' /etc/debian_version`
 
-# Determine version and set default home location for lighttpd 
-if [ $version -ge 8 ]; then
-    version_msg="Raspian version 8.0 or later"
-    webroot_dir="/var/www/html"
-else
-    version_msg="Raspian version earlier than 8.0"
-    webroot_dir="/var/www"
-fi
+# Determine version, set default home location for lighttpd and 
+# php package to install 
+webroot_dir="/var/www/html" 
+if [ $version -eq 9 ]; then 
+    version_msg="Raspian 9.0 (Stretch)" 
+    php_package="php7.0-cgi" 
+elif [ $version -eq 8 ]; then 
+    version_msg="Raspian 8.0 (Jessie)" 
+    php_package="php5-cgi" 
+else 
+    version_msg="Raspian earlier than 8.0 (Wheezy)"
+    webroot_dir="/var/www" 
+    php_package="php5-cgi" 
+fi 
 
 # Outputs a RaspAP Install log line
 function install_log() {
@@ -72,8 +78,9 @@ function install_dependencies() {
 function enable_php_lighttpd() {
     install_log "Enabling PHP for lighttpd"
 
-    sudo lighty-enable-mod fastcgi-php
-    if [ $? -eq 2 ]; then echo already enabled; else install_error "Cannot enable fastcgi-php for lighttpd"; fi
+    sudo lighttpd-enable-mod fastcgi-php
+    
+    sudo service lighttpd force-reload
     sudo /etc/init.d/lighttpd restart || install_error "Unable to restart lighttpd"
 }
 
@@ -84,10 +91,22 @@ function create_raspap_directories() {
         sudo mv $raspap_dir "$raspap_dir.`date +%F-%R`" || install_error "Unable to move old '$raspap_dir' out of the way"
     fi
     sudo mkdir -p "$raspap_dir" || install_error "Unable to create directory '$raspap_dir'"
+
     # Create a directory for existing file backups.
     sudo mkdir -p "$raspap_dir/backups"
 
+    # Create a directory to store networking configs
+    sudo mkdir -p "$raspap_dir/networking"
+    # Copy existing dhcpcd.conf to use as base config
+    cat /etc/dhcpcd.conf | sudo tee -a /etc/raspap/networking/defaults
+
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
+}
+
+# Generate logging enable/disable files for hostapd
+function create_logging_scripts() {
+    sudo mkdir /etc/raspap/hostapd
+    sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd
 }
 
 # Fetches latest files from github to webroot
@@ -132,6 +151,11 @@ function check_for_old_configs() {
         sudo cp /etc/dhcpcd.conf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`"
         sudo ln -sf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`" "$raspap_dir/backups/dhcpcd.conf"
     fi
+
+    if [ -f /etc/rc.local ]; then
+        sudo cp /etc/rc.local "$raspap_dir/backups/rc.local.`date +%F-%R`"
+        sudo ln -sf "$raspap_dir/backups/rc.local.`date +%F-%R`" "$raspap_dir/backups/rc.local"
+    fi
 }
 
 # Move configuration file to the correct location
@@ -155,12 +179,28 @@ function default_configuration() {
     sudo mv $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
     sudo mv $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
     sudo mv $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
-    sudo mv $webroot_dir/config/rc.local /etc/rc.local || install_error "Unable to move rc.local file"
+
+    # Generate required lines for Rasp AP to place into rc.local file.
+    # #RASPAP is for removal script
+    lines=(
+    'echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP'
+    'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
+    )
+
+    for line in "${lines[@]}"; do
+        if grep "$line" /etc/rc.local > /dev/null; then
+            echo "$line: Line already added"
+        else
+            sed -i "s/exit 0/$line\nexit0/" /etc/rc.local
+            echo "Adding line $line"
+        fi
+    done
 }
+
 
 # Add a single entry to the sudoers file
 function sudo_add() {
-  sudo bash -c "echo \"www-data ALL=(ALL) NOPASSWD:$1\" | (EDITOR=\"tee -a\" visudo)" \
+    sudo bash -c "echo \"www-data ALL=(ALL) NOPASSWD:$1\" | (EDITOR=\"tee -a\" visudo)" \
         || install_error "Unable to patch /etc/sudoers"
 }
 
@@ -168,24 +208,27 @@ function sudo_add() {
 function patch_system_files() {
     # Set commands array
     cmds=(
-      '/sbin/ifdown wlan0'
-      '/sbin/ifup wlan0'
-      '/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf'
-      '/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf'
-      '/sbin/wpa_cli scan_results'
-      '/sbin/wpa_cli scan'
-      '/sbin/wpa_cli reconfigure'
-      '/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf'
-      '/etc/init.d/hostapd start'
-      '/etc/init.d/hostapd stop'
-      '/etc/init.d/dnsmasq start'
-      '/etc/init.d/dnsmasq stop'
-      '/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf'
-      '/sbin/shutdown -h now'
-      '/sbin/reboot'
-      '/sbin/ip link set wlan0 down'
-      '/sbin/ip link set wlan0 up'
-      '/sbin/ip -s a f label wlan0'
+        '/sbin/ifdown wlan0'
+        '/sbin/ifup wlan0'
+        '/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf'
+        '/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf'
+        '/sbin/wpa_cli scan_results'
+        '/sbin/wpa_cli scan'
+        '/sbin/wpa_cli reconfigure'
+        '/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf'
+        '/etc/init.d/hostapd start'
+        '/etc/init.d/hostapd stop'
+        '/etc/init.d/dnsmasq start'
+        '/etc/init.d/dnsmasq stop'
+        '/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf'
+        '/sbin/shutdown -h now'
+        '/sbin/reboot'
+        '/sbin/ip link set wlan0 down'
+        '/sbin/ip link set wlan0 up'
+        '/sbin/ip -s a f label wlan0'
+        '/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf'
+        '/etc/raspap/hostapd/enablelog.sh'
+        '/etc/raspap/hostapd/disablelog.sh'
     )
 
     # Check if sudoers needs patchin
@@ -222,6 +265,7 @@ function install_raspap() {
     install_dependencies
     enable_php_lighttpd
     create_raspap_directories
+    create_logging_scripts
     check_for_old_configs
     download_latest_files
     change_file_ownership
