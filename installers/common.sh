@@ -101,14 +101,15 @@ function create_raspap_directories() {
     cat /etc/dhcpcd.conf | sudo tee -a /etc/raspap/networking/defaults
 
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
-
-
 }
 
 # Generate logging enable/disable files for hostapd
 function create_logging_scripts() {
-    sudo mkdir /etc/raspap/hostapd
-    sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd
+    install_log "Creating logging scripts"
+    sudo mkdir $raspap_dir/hostapd || install_error "Unable to create directory '$raspap_dir/hostapd'"
+
+    # Move existing shell scripts 
+    sudo mv $webroot_dir/installers/*log.sh $raspap_dir/hostapd || install_error "Unable to move logging scripts"
 }
 
 # Fetches latest files from github to webroot
@@ -268,10 +269,10 @@ function install_raspap() {
     install_dependencies
     enable_php_lighttpd
     create_raspap_directories
-    create_logging_scripts
     check_for_old_configs
     download_latest_files
     change_file_ownership
+    create_logging_scripts
     move_config_file
     default_configuration
     patch_system_files
