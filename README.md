@@ -48,13 +48,13 @@ configured as an access point as follows:
 * Password: ChangeMe
 
 ## Manual installation
-Start off by installing git, lighttpd, php5, hostapd and dnsmasq.
+These steps apply to the latest release of Raspbian (currently [Stretch](https://www.raspberrypi.org/downloads/raspbian/)). Notes for previously released versions are provided, where applicable. Start off by installing git, lighttpd, php7, hostapd and dnsmasq. 
 ```sh
-$ sudo apt-get install git lighttpd php5-cgi hostapd dnsmasq
+$ sudo apt-get install git lighttpd php7.0-cgi hostapd dnsmasq
 ```
-After that, enable PHP for lighttpd and restart it for the settings to take effect.
+**Note:** for Raspbian Jessie and Wheezy, replace `php7.0-cgi` with `php5-cgi`. After that, enable PHP for lighttpd and restart it for the settings to take effect.
 ```sh
-sudo lighty-enable-mod fastcgi-php
+sudo lighttpd-enable-mod fastcgi-php
 sudo service lighttpd restart
 ```
 Now comes the fun part. For security reasons, the `www-data` user which lighttpd runs under is not allowed to start or stop daemons, or run commands like ifdown and ifup, all of which we want our page to do.
@@ -77,6 +77,12 @@ www-data ALL=(ALL) NOPASSWD:/etc/init.d/dnsmasq stop
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf
 www-data ALL=(ALL) NOPASSWD:/sbin/shutdown -h now
 www-data ALL=(ALL) NOPASSWD:/sbin/reboot
+www-data ALL=(ALL) NOPASSWD:/sbin/ip link set wlan0 down
+www-data ALL=(ALL) NOPASSWD:/sbin/ip link set wlan0 up
+www-data ALL=(ALL) NOPASSWD:/sbin/ip -s a f label wlan0
+www-data ALL=(ALL) NOPASSWD:/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf
+www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/enablelog.sh
+www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/disablelog.sh
 ```
 
 Once those modifications are done, git clone the files to `/var/www/html`.
@@ -95,6 +101,11 @@ Move the RaspAP configuration file to the correct location
 sudo mkdir /etc/raspap
 sudo mv /var/www/html/raspap.php /etc/raspap/
 sudo chown -R www-data:www-data /etc/raspap
+```
+Move the HostAPD logging scripts to the correct location
+```sh
+sudo mkdir /etc/raspap/hostapd
+sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd 
 ```
 Reboot and it should be up and running!
 ```sh
