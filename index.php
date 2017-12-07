@@ -118,15 +118,21 @@ $theme_url = 'dist/css/' . $theme;
               <li>
                 <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> Configure WiFi Client</a>
               </li>
+              <?php if ( RASPI_HOTSPOT_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure Hotspot</a>
               </li>
+              <?php endif; ?>
+              <?php if ( RASPI_NETWORK_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> Configure Networking</a>
               </li> 
+              <?php endif; ?>
+              <?php if ( RASPI_DHCP_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP Server</a>
               </li>
+              <?php endif; ?>
               <?php if ( RASPI_OPENVPN_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=openvpn_conf"><i class="fa fa-lock fa-fw"></i> Configure OpenVPN</a>
@@ -137,12 +143,16 @@ $theme_url = 'dist/css/' . $theme;
                  <a href="index.php?page=torproxy_conf"><i class="fa fa-eye-slash fa-fw"></i> Configure TOR proxy</a>
               </li>
               <?php endif; ?>
+              <?php if ( RASPI_CONFAUTH_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> Configure Auth</a>
               </li>
+              <?php endif; ?>
+              <?php if ( RASPI_CHANGETHEME_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=theme_conf"><i class="fa fa-wrench fa-fw"></i> Change Theme</a>
               </li>
+              <?php endif; ?>
               <li>
                  <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> System</a>
               </li>
