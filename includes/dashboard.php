@@ -35,7 +35,7 @@ function DisplayDashboard(){
   $strRxBytes = $result[1];
   preg_match( '/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result ) || $result[1] = 'No Data';
   $strTxBytes = $result[1];
-  preg_match( '/ESSID:\"([a-zA-Z0-9\s]+)\"/i',$strWlan0,$result ) || $result[1] = 'Not connected';
+  preg_match( '/ESSID:\"([a-zA-Z0-9\s].+)\"/i',$strWlan0,$result ) || $result[1] = 'Not connected';
   $strSSID = str_replace( '"','',$result[1] );
   preg_match( '/Access Point: ([0-9a-f:]+)/i',$strWlan0,$result ) || $result[1] = '';
   $strBSSID = $result[1];
