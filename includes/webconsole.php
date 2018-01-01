@@ -5,6 +5,9 @@
 // GitHub: https://github.com/nickola/web-console
 // URL: http://web-console.org
 
+//Require Authentication to prevent Unprotected SSH Web Console 
+include_once( './authenticate.php' );
+
 // Disable login (don't ask for credentials, be careful)
 // Example: $NO_LOGIN = true;
 $NO_LOGIN = true;
