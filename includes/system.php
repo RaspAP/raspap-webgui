@@ -32,8 +32,9 @@ function RPiVersion() {
     'a02082' => 'Pi 3 Model B',
     'a22082' => 'Pi 3 Model B'
   );
-  exec('cat /proc/cpuinfo', $cpuinfo_array);
-  $rev = trim(array_pop(explode(':',array_pop(preg_grep("/^Revision/", $cpuinfo_array)))));
+
+  exec("grep Revision /proc/cpuinfo | awk -F: '{ print $2 }'", $cpuinfo_array);
+  $rev = trim(array_pop($cpuinfo_array));
   if (array_key_exists($rev, $revisions)) {
     return $revisions[$rev];
   } else {
