@@ -70,15 +70,16 @@ function DisplaySystem(){
   $memused = floor($memarray[0]);
   if     ($memused > 90) { $memused_status = "danger";  }
   elseif ($memused > 75) { $memused_status = "warning"; }
-  elseif ($memused >  0) { $memused_status = "success"; }
+  elseif ($memused >=  0) { $memused_status = "success"; }
 
   // cpu load
   $cores   = exec("grep -c ^processor /proc/cpuinfo");
         $loadavg = exec("awk '{print $1}' /proc/loadavg");
   $cpuload = floor(($loadavg * 100) / $cores);
+  $cpuload_status = "unknown";
   if     ($cpuload > 90) { $cpuload_status = "danger";  }
   elseif ($cpuload > 75) { $cpuload_status = "warning"; }
-  elseif ($cpuload >  0) { $cpuload_status = "success"; }
+  elseif ($cpuload >=  0) { $cpuload_status = "success"; }
 
   ?>
   <div class="row">
