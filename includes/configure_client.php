@@ -134,7 +134,7 @@ function DisplayWPAConfig(){
     }
   }
 
-  exec( 'iwconfig wlan0', $iwconfig_return );
+  exec( 'iwconfig ' . RASPI_WIFI_CLIENT_INTERFACE, $iwconfig_return );
   foreach ($iwconfig_return as $line) {
     if (preg_match( '/ESSID:\"([^"]+)\"/i',$line,$iwconfig_ssid )) {
       $networks[$iwconfig_ssid[1]]['connected'] = true;
@@ -149,7 +149,7 @@ function DisplayWPAConfig(){
         <!-- /.panel-heading -->
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
-          <h4>Client settings</h4>
+          <h4>Client settings for interface <?php echo RASPI_WIFI_CLIENT_INTERFACE ?></h4>
 	<div class="btn-group btn-block">
 	<a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update">Rescan</a>
 	</div>

@@ -8,8 +8,8 @@ function DisplayDashboard(){
 
   $status = new StatusMessages();
 
-  exec( 'ip a s wlan0', $return );
-  exec( 'iwconfig wlan0', $return );
+  exec( 'ip a s ' . RASPI_WIFI_CLIENT_INTERFACE , $return );
+  exec( 'iwconfig ' . RASPI_WIFI_CLIENT_INTERFACE, $return );
 
   $strWlan0 = implode( " ", $return );
   $strWlan0 = preg_replace( '/\s\s+/', ' ', $strWlan0 );
@@ -58,17 +58,17 @@ function DisplayDashboard(){
   }
 
   if( isset($_POST['ifdown_wlan0']) ) {
-    exec( 'ifconfig wlan0 | grep -i running | wc -l',$test );
+    exec( 'ifconfig ' . RASPI_WIFI_CLIENT_INTERFACE . ' | grep -i running | wc -l',$test );
     if($test[0] == 1) {
-      exec( 'sudo ip link set wlan0 down',$return );
+      exec( 'sudo ip link set ' . RASPI_WIFI_CLIENT_INTERFACE . ' down',$return );
     } else {
       echo 'Interface already down';
     }
   } elseif( isset($_POST['ifup_wlan0']) ) {
-    exec( 'ifconfig wlan0 | grep -i running | wc -l',$test );
+    exec( 'ifconfig ' . RASPI_WIFI_CLIENT_INTERFACE . ' | grep -i running | wc -l',$test );
     if($test[0] == 0) {
-      exec( 'sudo ip link set wlan0 up',$return );
-      exec( 'sudo ip -s a f label wlan0',$return);
+      exec( 'sudo ip link set ' . RASPI_WIFI_CLIENT_INTERFACE . ' up',$return );
+      exec( 'sudo ip -s a f label ' . RASPI_WIFI_CLIENT_INTERFACE,$return);
     } else {
       echo 'Interface already up';
     }
@@ -85,7 +85,7 @@ function DisplayDashboard(){
                         <div class="panel panel-default">
                   <div class="panel-body">
                       <h4>Interface Information</h4>
-          <div class="info-item">Interface Name</div> wlan0</br>
+		      <div class="info-item">Interface Name</div> <?php echo RASPI_WIFI_CLIENT_INTERFACE ?></br>
           <div class="info-item">IP Address</div>     <?php echo $strIPAddress ?></br>
           <div class="info-item">Subnet Mask</div>    <?php echo $strNetMask ?></br>
           <div class="info-item">Mac Address</div>    <?php echo $strHWAddress ?></br></br>
@@ -126,9 +126,9 @@ function DisplayDashboard(){
                  <div class="row">
                     <form action="?page=wlan0_info" method="POST">
                     <?php if ( !$wlan0up ) {
-                      echo '<input type="submit" class="btn btn-success" value="Start wlan0" name="ifup_wlan0" />';
+                      echo '<input type="submit" class="btn btn-success" value="Start ' . RASPI_WIFI_CLIENT_INTERFACE . '" name="ifup_wlan0" />';
                     } else {
-                echo '<input type="submit" class="btn btn-warning" value="Stop wlan0" name="ifdown_wlan0" />';
+                echo '<input type="submit" class="btn btn-warning" value="Stop ' . RASPI_WIFI_CLIENT_INTERFACE . '" name="ifdown_wlan0" />';
               }
               ?>
               <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
