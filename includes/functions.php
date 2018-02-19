@@ -138,8 +138,16 @@ function ParseConfig( $arrConfig ) {
 * @return $channel
 */
 function ConvertToChannel( $freq ) {
-  $channel = ($freq - 2407)/5;
-  if ($channel > 0 && $channel < 14) {
+  if ($freq >= 2412 && $freq <= 2484) {
+    $channel = ($freq - 2407)/5;
+  } elseif ($freq >= 4915 && $freq <= 4980) {
+    $channel = ($freq - 4910)/5 + 182;
+  } elseif ($freq >= 5035 && $freq <= 5865) {
+    $channel = ($freq - 5030)/5 + 6;
+  } else {
+    $channel = -1;
+  }
+  if ($channel >= 1 && $channel <= 196) {
     return $channel;
   } else {
     return 'Invalid Channel';
