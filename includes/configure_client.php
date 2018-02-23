@@ -41,6 +41,9 @@ function DisplayWPAConfig(){
               $network['protocol'] = 'Open';
             }
             break;
+          case 'priority':
+            $network['priority'] = trim($lineArr[1], '"');
+            break;
         }
       }
     }
@@ -63,6 +66,9 @@ function DisplayWPAConfig(){
             'passphrase' => $_POST['passphrase' . $post_match[1]],
             'configured' => true
           );
+          if (array_key_exists('priority' . $post_match[1], $_POST)) {
+            $tmp_networks[$_POST['ssid' . $post_match[1]]]['priority'] = $_POST['priority' . $post_match[1]];
+          }
         }
       }
 
@@ -72,22 +78,30 @@ function DisplayWPAConfig(){
           fwrite($wpa_file, "network={".PHP_EOL);
           fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
           fwrite($wpa_file, "\tkey_mgmt=NONE".PHP_EOL);
+          if (array_key_exists('priority', $network)) {
+            fwrite($wpa_file, "\tpriority=".$network['priority'].PHP_EOL);
+          }
           fwrite($wpa_file, "}".PHP_EOL);
         } else {
           if (strlen($network['passphrase']) >=8 && strlen($network['passphrase']) <= 63) {
-	    unset($wpa_passphrase);
+            unset($wpa_passphrase);
             unset($line);
-	    exec( 'wpa_passphrase '.escapeshellarg($ssid). ' ' . escapeshellarg($network['passphrase']),$wpa_passphrase );
+            exec( 'wpa_passphrase '.escapeshellarg($ssid). ' ' . escapeshellarg($network['passphrase']),$wpa_passphrase );
             foreach($wpa_passphrase as $line) {
-              fwrite($wpa_file, $line.PHP_EOL);
+              if (preg_match('/^\s*}\s*$/', $line)) {
+                if (array_key_exists('priority', $network)) {
+                  fwrite($wpa_file, "\tpriority=".$network['priority'].PHP_EOL);
+                }
+                fwrite($wpa_file, $line.PHP_EOL);
+              } else {
+                fwrite($wpa_file, $line.PHP_EOL);
+              }
             }
           } else {
             $status->addMessage('WPA passphrase must be between 8 and 63 characters', 'danger');
             $ok = false;
-
           }
         }
-
       }
 
       if ($ok) {
@@ -118,7 +132,7 @@ function DisplayWPAConfig(){
   // display output
   foreach( $scan_return as $network ) {
     $arrNetwork = preg_split("/[\t]+/",$network);
-    if (array_key_exists($arrNetwork[4], $networks)) {
+    if (array_key_exists(4, $arrNetwork) && array_key_exists($arrNetwork[4], $networks)) {
       $networks[$arrNetwork[4]]['visible'] = true;
       $networks[$arrNetwork[4]]['channel'] = ConvertToChannel($arrNetwork[1]);
       // TODO What if the security has changed?
@@ -150,9 +164,9 @@ function DisplayWPAConfig(){
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
           <h4>Client settings for interface <?php echo RASPI_WIFI_CLIENT_INTERFACE ?></h4>
-	<div class="btn-group btn-block">
-	<a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update">Rescan</a>
-	</div>
+          <div class="btn-group btn-block">
+            <a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update">Rescan</a>
+          </div>
           <form method="POST" action="?page=wpa_conf" name="wpa_conf_form">
             <?php CSRFToken() ?>
             <input type="hidden" name="client_settings" ?>
@@ -172,7 +186,7 @@ function DisplayWPAConfig(){
                 <?php if ($network['configured']) { ?>
                 <i class="fa fa-check-circle fa-fw"></i>
                 <?php } ?>
-                <?php if ($network['connected']) { ?>
+                <?php if (array_key_exists('connected', $network) && $network['connected']) { ?>
                 <i class="fa fa-exchange fa-fw"></i>
                 <?php } ?>
                 </td>
@@ -180,12 +194,17 @@ function DisplayWPAConfig(){
                   <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo htmlentities($ssid) ?>" />
                   <?php echo $ssid ?>
                 </td>
-              <?php if ($network['visible']) { ?>
+              <?php if (array_key_exists('visible', $network) && $network['visible']) { ?>
                 <td><?php echo $network['channel'] ?></td>
               <?php } else { ?>
                 <td><span class="label label-warning">X</span></td>
               <?php } ?>
-                <td><input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo $network['protocol'] ?>" /><?php echo $network['protocol'] ?></td>
+                <td>
+              <?php if (array_key_exists('priority', $network)) { ?>
+                  <input type="hidden" name="priority<?php echo $index ?>" value="<?php echo $network['priority'] ?>" />
+              <?php } ?>
+                  <input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo $network['protocol'] ?>" /><?php echo $network['protocol'] ?>
+                </td>
               <?php if ($network['protocol'] === 'Open') { ?>
                 <td><input type="hidden" name="passphrase<?php echo $index ?>" value="" />---</td>
               <?php } else { ?>
