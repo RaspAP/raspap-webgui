@@ -214,40 +214,53 @@ function sudo_add() {
 
 # Adds www-data user to the sudoers file with restrictions on what the user can execute
 function patch_system_files() {
+    # add symlink to prevent wpa_cli cmds from breaking with multiple wlan interfaces
+    install_log "symlinked wpa_supplicant hooks for multiple wlan interfaces"
+    sudo ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /etc/dhcp/dhclient-enter-hooks.d/
     # Set commands array
     cmds=(
-        '/sbin/ifdown wlan0'
-        '/sbin/ifup wlan0'
-        '/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf'
-        '/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf'
-        '/sbin/wpa_cli scan_results'
-        '/sbin/wpa_cli scan'
-        '/sbin/wpa_cli reconfigure'
-        '/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf'
-        '/etc/init.d/hostapd start'
-        '/etc/init.d/hostapd stop'
-        '/etc/init.d/dnsmasq start'
-        '/etc/init.d/dnsmasq stop'
-        '/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf'
-        '/sbin/shutdown -h now'
-        '/sbin/reboot'
-        '/sbin/ip link set wlan0 down'
-        '/sbin/ip link set wlan0 up'
-        '/sbin/ip -s a f label wlan0'
-        '/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf'
-        '/etc/raspap/hostapd/enablelog.sh'
-        '/etc/raspap/hostapd/disablelog.sh'
+        "/sbin/ifdown"
+        "/sbin/ifup"
+        "/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf"
+        "/bin/cat /etc/wpa_supplicant/wpa_supplicant-wlan0.conf"
+        "/bin/cat /etc/wpa_supplicant/wpa_supplicant-wlan1.conf"
+        "/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf"
+        "/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant-wlan0.conf"
+        "/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant-wlan1.conf"
+        "/sbin/wpa_cli scan_results"
+        "/sbin/wpa_cli scan"
+        "/sbin/wpa_cli reconfigure"
+        "/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf"
+        "/etc/init.d/hostapd start"
+        "/etc/init.d/hostapd stop"
+        "/etc/init.d/dnsmasq start"
+        "/etc/init.d/dnsmasq stop"
+        "/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf"
+        "/sbin/shutdown -h now"
+        "/sbin/reboot"
+        "/sbin/ip link set wlan0 down"
+        "/sbin/ip link set wlan0 up"
+        "/sbin/ip -s a f label wlan0"
+        "/sbin/ip link set wlan1 down"
+        "/sbin/ip link set wlan1 up"
+        "/sbin/ip -s a f label wlan1"
+        "/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf"
+        "/etc/raspap/hostapd/enablelog.sh"
+        "/etc/raspap/hostapd/disablelog.sh"
     )
 
-    # Check if sudoers needs patchin
-    if [ $(sudo grep -c www-data /etc/sudoers) -ne 15 ]; then
+    # Check if sudoers needs patching
+    if [ $(sudo grep -c www-data /etc/sudoers) -ne 28 ]
+    then
         # Sudoers file has incorrect number of commands. Wiping them out.
         install_log "Cleaning sudoers file"
         sudo sed -i '/www-data/d' /etc/sudoers
         install_log "Patching system sudoers file"
         # patch /etc/sudoers file
-        for cmd in "${cmds[@]}"; do
+        for cmd in "${cmds[@]}"
+        do
             sudo_add $cmd
+            IFS=$'\n'
         done
     else
         install_log "Sudoers file already patched"
