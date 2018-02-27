@@ -30,6 +30,9 @@ include_once( 'includes/system.php' );
 include_once( 'includes/configure_client.php' );
 include_once( 'includes/networking.php' );
 include_once( 'includes/themes.php' );
+include_once( 'includes/custom_page_1.php' );
+include_once( 'includes/custom_page_2.php' );
+
 
 $output = $return = 0;
 $page = $_GET['page'];
@@ -61,7 +64,9 @@ $theme_url = 'dist/css/' . $theme;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Raspbian WiFi Configuration Portal</title>
+    <title>
+    <?php echo RASPI_PAGETITLE_NAME; ?>
+    </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -104,7 +109,7 @@ $theme_url = 'dist/css/' . $theme;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">RaspAP Wifi Portal v1.3.0</a>
+          <a class="navbar-brand" href="index.php"><?php echo RASPI_NAVBAR_NAME; ?></a>
         </div>
         <!-- /.navbar-header -->
 
@@ -112,12 +117,21 @@ $theme_url = 'dist/css/' . $theme;
         <div class="navbar-default sidebar" role="navigation">
           <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
+              <?php if ( RASPI_DASHBOARD_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
               </li>
+              <?php endif; ?>
+              <?php if ( RASPI_CUSTOMPAGE1_ENABLED ) : ?>
+              <li>
+                <a href="index.php?page=custompage1_conf"><i class="fa <?php echo RASPI_CUSTOMPAGE1_ICON; ?> fa-fw"></i> <?php echo RASPI_CUSTOMPAGE1_NAME; ?></a>
+              </li>
+              <?php endif; ?>
+              <?php if ( RASPI_CLIENT_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> Configure WiFi Client</a>
               </li>
+              <?php endif; ?>
               <?php if ( RASPI_HOTSPOT_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> Configure Hotspot</a>
@@ -131,6 +145,11 @@ $theme_url = 'dist/css/' . $theme;
               <?php if ( RASPI_DHCP_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> Configure DHCP Server</a>
+              </li>
+              <?php endif; ?>
+              <?php if ( RASPI_CUSTOMPAGE2_ENABLED ) : ?>
+              <li>
+                <a href="index.php?page=custompage2_conf"><i class="fa <?php echo RASPI_CUSTOMPAGE2_ICON; ?> fa-fw"></i> <?php echo RASPI_CUSTOMPAGE2_NAME; ?></a>
               </li>
               <?php endif; ?>
               <?php if ( RASPI_OPENVPN_ENABLED ) : ?>
@@ -153,9 +172,11 @@ $theme_url = 'dist/css/' . $theme;
                 <a href="index.php?page=theme_conf"><i class="fa fa-wrench fa-fw"></i> Change Theme</a>
               </li>
               <?php endif; ?>
+              <?php if ( RASPI_SYSTEM_ENABLED ) : ?>
               <li>
                  <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> System</a>
               </li>
+              <?php endif; ?>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.navbar-default -->
@@ -166,9 +187,18 @@ $theme_url = 'dist/css/' . $theme;
         <!-- Page Heading -->
         <div class="row">
           <div class="col-lg-12">
-            <h1 class="page-header">
-              <img class="logo" src="img/raspAP-logo.png" width="45" height="45">RaspAP
-            </h1>
+            <?php if ( RASPI_CUSTOMHEADER_ENABLED ) { ?>
+              <h1 class="page-header">
+                <img class="logo" src="img/<?php echo RASPI_CUSTOMHEADERIMAGE_NAME; ?>" width="45" height="45"> <?php echo RASPI_CUSTOMHEADERTEXT_NAME; ?>
+              </h1>
+              <h3>
+                <img class="logo" src="img/raspAP-logo.png" width="15" height="15"> Powered by RaspAP
+              </h3>
+            <?php } else { ?>
+              <h1 class="page-header">
+                <img class="logo" src="img/raspAP-logo.png" width="45" height="45">RaspAP
+              </h1>
+            <?php } ?>
           </div>
         </div><!-- /.row -->
 
@@ -177,6 +207,9 @@ $theme_url = 'dist/css/' . $theme;
         switch( $page ) {
           case "wlan0_info":
             DisplayDashboard();
+            break;
+          case "custompage1_conf":
+            DisplayCustomPage1();
             break;
           case "dhcpd_conf":
             DisplayDHCPConfig();
@@ -189,6 +222,9 @@ $theme_url = 'dist/css/' . $theme;
             break;
           case "hostapd_conf":
             DisplayHostAPDConfig();
+            break;
+          case "custompage2_conf":
+            DisplayCustomPage2();
             break;
           case "openvpn_conf":
             DisplayOpenVPNConfig();
