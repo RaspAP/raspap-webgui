@@ -33,9 +33,17 @@ include_once( 'includes/themes.php' );
 include_once( 'includes/custom_page_1.php' );
 include_once( 'includes/custom_page_2.php' );
 
+# Enable PHP error reporting.  TURN THIS ON FOR DEVELOPMENT, OFF FOR PRODUCTION
+#error_reporting(E_ALL);
+#ini_set('display_errors', true);
 
 $output = $return = 0;
-$page = $_GET['page'];
+
+if(isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = "";
+}
 
 session_start();
 if (empty($_SESSION['csrf_token'])) {
