@@ -1,5 +1,0 @@
-.no-math {
-  width: calc(50% + (25vh - 20px));
-  foo: 3 calc(3 + 4) 11;
-  bar: calc(1 + 20%);
-}

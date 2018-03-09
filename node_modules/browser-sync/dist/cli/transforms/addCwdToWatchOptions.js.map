@@ -1,1 +1,0 @@
-{"version":3,"file":"addCwdToWatchOptions.js","sourceRoot":"","sources":["../../../lib/cli/transforms/addCwdToWatchOptions.ts"],"names":[],"mappings":";;AAAA,8BAAqC,QAAQ;IACzC,MAAM,CAAC,QAAQ,CAAC,QAAQ,CAAC,CAAC,cAAc,EAAE,KAAK,CAAC,EAAE,UAAC,QAAQ;QACvD,MAAM,CAAC,QAAQ,IAAI,QAAQ,CAAC,GAAG,CAAC,KAAK,CAAC,CAAC;IAC3C,CAAC,CAAC,CAAA;AACN,CAAC;AAJD,oDAIC"}
