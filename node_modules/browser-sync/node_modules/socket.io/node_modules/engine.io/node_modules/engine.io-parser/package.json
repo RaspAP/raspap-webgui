@@ -1,0 +1,67 @@
+{
+  "name": "engine.io-parser",
+  "description": "Parser for the client for the realtime Engine",
+  "license": "MIT",
+  "version": "2.1.2",
+  "main": "lib/index.js",
+  "homepage": "https://github.com/socketio/engine.io-parser",
+  "devDependencies": {
+    "expect.js": "0.3.1",
+    "mocha": "3.2.0",
+    "socket.io-browsers": "^1.0.0",
+    "zuul": "3.11.1",
+    "zuul-ngrok": "4.0.0"
+  },
+  "dependencies": {
+    "after": "0.8.2",
+    "arraybuffer.slice": "~0.0.7",
+    "base64-arraybuffer": "0.1.5",
+    "blob": "0.0.4",
+    "has-binary2": "~1.0.2"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/socketio/engine.io-parser.git"
+  },
+  "files": [
+    "lib/"
+  ],
+  "browser": "./lib/browser.js",
+  "gitHead": "e867117708bafd80d673220359cb35d60bed6c37",
+  "bugs": {
+    "url": "https://github.com/socketio/engine.io-parser/issues"
+  },
+  "_id": "engine.io-parser@2.1.2",
+  "_npmVersion": "5.5.1",
+  "_nodeVersion": "9.2.0",
+  "_npmUser": {
+    "name": "darrachequesne",
+    "email": "damien.arrachequesne@gmail.com"
+  },
+  "dist": {
+    "integrity": "sha512-dInLFzr80RijZ1rGpx1+56/uFoH7/7InhH3kZt+Ms6hT8tNx3NGW/WNSA/f8As1WkOfkuyb3tnRyuXGxusclMw==",
+    "shasum": "4c0f4cff79aaeecbbdcfdea66a823c6085409196",
+    "tarball": "https://registry.npmjs.org/engine.io-parser/-/engine.io-parser-2.1.2.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "darrachequesne",
+      "email": "damien.arrachequesne@gmail.com"
+    },
+    {
+      "name": "rauchg",
+      "email": "rauchg@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/engine.io-parser-2.1.2.tgz_1514498785732_0.09912538365460932"
+  },
+  "directories": {},
+  "_shasum": "4c0f4cff79aaeecbbdcfdea66a823c6085409196",
+  "_resolved": "https://registry.npmjs.org/engine.io-parser/-/engine.io-parser-2.1.2.tgz",
+  "_from": "engine.io-parser@>=2.1.0 <2.2.0"
+}

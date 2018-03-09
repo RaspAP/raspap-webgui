@@ -1,0 +1,125 @@
+{
+  "name": "isobject",
+  "description": "Returns true if the value is an object and not an array or null.",
+  "version": "3.0.1",
+  "homepage": "https://github.com/jonschlinkert/isobject",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "contributors": [
+    {
+      "url": "https://github.com/LeSuisse"
+    },
+    {
+      "name": "Brian Woodward",
+      "url": "https://twitter.com/doowb"
+    },
+    {
+      "name": "Jon Schlinkert",
+      "url": "http://twitter.com/jonschlinkert"
+    },
+    {
+      "name": "Magnús Dæhlen",
+      "url": "https://github.com/magnudae"
+    },
+    {
+      "name": "Tom MacWright",
+      "url": "https://macwright.org"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/isobject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/isobject/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.d.ts",
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-format-md": "^0.1.9",
+    "mocha": "^2.4.5"
+  },
+  "keywords": [
+    "check",
+    "is",
+    "is-object",
+    "isobject",
+    "kind",
+    "kind-of",
+    "kindof",
+    "native",
+    "object",
+    "type",
+    "typeof",
+    "value"
+  ],
+  "types": "index.d.ts",
+  "verb": {
+    "related": {
+      "list": [
+        "extend-shallow",
+        "is-plain-object",
+        "kind-of",
+        "merge-deep"
+      ]
+    },
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": [
+      "verb"
+    ]
+  },
+  "gitHead": "7ad1fc405d19f144a21e2bfe947fa82801baa7aa",
+  "_id": "isobject@3.0.1",
+  "_shasum": "4e431e92b11a9731636aa1f9c8d1ccbcfdab78df",
+  "_from": "isobject@>=3.0.1 <4.0.0",
+  "_npmVersion": "4.6.1",
+  "_nodeVersion": "6.10.1",
+  "_npmUser": {
+    "name": "doowb",
+    "email": "brian.woodward@gmail.com"
+  },
+  "dist": {
+    "shasum": "4e431e92b11a9731636aa1f9c8d1ccbcfdab78df",
+    "tarball": "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    },
+    {
+      "name": "doowb",
+      "email": "brian.woodward@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/isobject-3.0.1.tgz_1498846769653_0.28330610087141395"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/isobject/-/isobject-3.0.1.tgz",
+  "readme": "ERROR: No README data found!"
+}

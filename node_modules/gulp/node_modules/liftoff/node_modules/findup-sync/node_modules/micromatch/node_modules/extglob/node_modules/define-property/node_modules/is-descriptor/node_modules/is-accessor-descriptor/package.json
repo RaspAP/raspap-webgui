@@ -1,0 +1,113 @@
+{
+  "name": "is-accessor-descriptor",
+  "description": "Returns true if a value has the characteristics of a valid JavaScript accessor descriptor.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/jonschlinkert/is-accessor-descriptor",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "contributors": [
+    {
+      "name": "Jon Schlinkert",
+      "url": "http://twitter.com/jonschlinkert"
+    },
+    {
+      "name": "Rouven Weßling",
+      "url": "www.rouvenwessling.de"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/is-accessor-descriptor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/is-accessor-descriptor/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "kind-of": "^6.0.0"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^1.0.0",
+    "mocha": "^3.5.3"
+  },
+  "keywords": [
+    "accessor",
+    "check",
+    "data",
+    "descriptor",
+    "get",
+    "getter",
+    "is",
+    "keys",
+    "object",
+    "properties",
+    "property",
+    "set",
+    "setter",
+    "type",
+    "valid",
+    "value"
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "is-accessor-descriptor",
+        "is-data-descriptor",
+        "is-descriptor",
+        "is-plain-object",
+        "isobject"
+      ]
+    },
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "22b0a2617ccbebd131247c29e3700ca860d37d06",
+  "_id": "is-accessor-descriptor@1.0.0",
+  "_npmVersion": "5.5.1",
+  "_nodeVersion": "8.7.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "dist": {
+    "integrity": "sha512-m5hnHTkcVsPfqx3AKlyttIPb7J+XykHvJP2B9bZDjlhLIoEq4XoK64Vg7boZlVWYK6LUY94dYPEE7Lh0ZkZKcQ==",
+    "shasum": "169c2f6d3df1f992618072365c9b0ea1f6878656",
+    "tarball": "https://registry.npmjs.org/is-accessor-descriptor/-/is-accessor-descriptor-1.0.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/is-accessor-descriptor-1.0.0.tgz_1509516773874_0.014908343320712447"
+  },
+  "directories": {},
+  "_shasum": "169c2f6d3df1f992618072365c9b0ea1f6878656",
+  "_resolved": "https://registry.npmjs.org/is-accessor-descriptor/-/is-accessor-descriptor-1.0.0.tgz",
+  "_from": "is-accessor-descriptor@>=1.0.0 <2.0.0",
+  "readme": "ERROR: No README data found!"
+}

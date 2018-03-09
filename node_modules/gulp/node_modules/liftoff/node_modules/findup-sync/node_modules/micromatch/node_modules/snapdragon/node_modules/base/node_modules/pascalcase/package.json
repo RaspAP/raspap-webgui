@@ -1,0 +1,75 @@
+{
+  "name": "pascalcase",
+  "description": "Convert a string to pascal-case.",
+  "version": "0.1.1",
+  "homepage": "https://github.com/jonschlinkert/pascalcase",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/pascalcase.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/pascalcase/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": [
+    "camelcase",
+    "case",
+    "casing",
+    "pascal",
+    "pascal-case",
+    "pascalcase",
+    "string"
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "pad-left",
+        "pad-right",
+        "word-wrap",
+        "repeat-string",
+        "justified"
+      ]
+    }
+  },
+  "gitHead": "c2600f8aa648fe093381a064ba364d99b374911c",
+  "_id": "pascalcase@0.1.1",
+  "_shasum": "b363e55e8006ca6fe21784d2db22bd15d7917f14",
+  "_from": "pascalcase@>=0.1.1 <0.2.0",
+  "_npmVersion": "3.3.6",
+  "_nodeVersion": "5.0.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "b363e55e8006ca6fe21784d2db22bd15d7917f14",
+    "tarball": "https://registry.npmjs.org/pascalcase/-/pascalcase-0.1.1.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/pascalcase/-/pascalcase-0.1.1.tgz",
+  "readme": "ERROR: No README data found!"
+}

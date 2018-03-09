@@ -1,0 +1,125 @@
+{
+  "name": "is-glob",
+  "description": "Returns `true` if the given string looks like a glob pattern or an extglob pattern. This makes it easy to create code that only uses external modules like node-glob when necessary, resulting in much faster code execution and initialization time, and a bet",
+  "version": "3.1.0",
+  "homepage": "https://github.com/jonschlinkert/is-glob",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "contributors": [
+    {
+      "name": "Daniel Perez",
+      "email": "daniel@claudetech.com",
+      "url": "http://tuvistavie.com"
+    },
+    {
+      "name": "Jon Schlinkert",
+      "email": "jon.schlinkert@sellside.com",
+      "url": "http://twitter.com/jonschlinkert"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/is-glob.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/is-glob/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "is-extglob": "^2.1.0"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.10",
+    "mocha": "^3.0.2"
+  },
+  "keywords": [
+    "bash",
+    "braces",
+    "check",
+    "exec",
+    "expression",
+    "extglob",
+    "glob",
+    "globbing",
+    "globstar",
+    "is",
+    "match",
+    "matches",
+    "pattern",
+    "regex",
+    "regular",
+    "string",
+    "test"
+  ],
+  "verb": {
+    "layout": "default",
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "assemble",
+        "base",
+        "update",
+        "verb"
+      ]
+    },
+    "reflinks": [
+      "assemble",
+      "bach",
+      "base",
+      "composer",
+      "gulp",
+      "has-glob",
+      "is-valid-glob",
+      "micromatch",
+      "npm",
+      "scaffold",
+      "verb",
+      "vinyl"
+    ]
+  },
+  "gitHead": "4537576b5747e03db2f78235c98ec27755ace63c",
+  "_id": "is-glob@3.1.0",
+  "_shasum": "7ba5ae24217804ac70707b96922567486cc3e84a",
+  "_from": "is-glob@>=3.1.0 <4.0.0",
+  "_npmVersion": "3.10.3",
+  "_nodeVersion": "6.7.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    },
+    {
+      "name": "doowb",
+      "email": "brian.woodward@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "7ba5ae24217804ac70707b96922567486cc3e84a",
+    "tarball": "https://registry.npmjs.org/is-glob/-/is-glob-3.1.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/is-glob-3.1.0.tgz_1476311825972_0.002021018648520112"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/is-glob/-/is-glob-3.1.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

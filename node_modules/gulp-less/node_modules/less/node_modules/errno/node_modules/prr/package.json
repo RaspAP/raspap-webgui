@@ -1,0 +1,54 @@
+{
+  "name": "prr",
+  "description": "A better Object.defineProperty()",
+  "version": "1.0.1",
+  "homepage": "https://github.com/rvagg/prr",
+  "author": {
+    "name": "Rod Vagg",
+    "email": "rod@vagg.org",
+    "url": "https://github.com/rvagg"
+  },
+  "keywords": [
+    "property",
+    "properties",
+    "defineProperty",
+    "ender"
+  ],
+  "main": "./prr.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rvagg/prr.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tap": "*"
+  },
+  "scripts": {
+    "test": "node ./test.js"
+  },
+  "license": "MIT",
+  "gitHead": "b69ba0edc7aacbda0c98d550579e452b8597c126",
+  "bugs": {
+    "url": "https://github.com/rvagg/prr/issues"
+  },
+  "_id": "prr@1.0.1",
+  "_shasum": "d3fc114ba06995a45ec6893f484ceb1d78f5f476",
+  "_from": "prr@>=1.0.1 <1.1.0",
+  "_npmVersion": "1.4.14",
+  "_npmUser": {
+    "name": "rvagg",
+    "email": "rod@vagg.org"
+  },
+  "maintainers": [
+    {
+      "name": "rvagg",
+      "email": "rod@vagg.org"
+    }
+  ],
+  "dist": {
+    "shasum": "d3fc114ba06995a45ec6893f484ceb1d78f5f476",
+    "tarball": "https://registry.npmjs.org/prr/-/prr-1.0.1.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/prr/-/prr-1.0.1.tgz"
+}

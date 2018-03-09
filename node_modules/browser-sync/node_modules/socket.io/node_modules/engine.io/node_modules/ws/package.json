@@ -1,0 +1,94 @@
+{
+  "name": "ws",
+  "version": "3.3.3",
+  "description": "Simple to use, blazing fast and thoroughly tested websocket client and server for Node.js",
+  "keywords": [
+    "HyBi",
+    "Push",
+    "RFC-6455",
+    "WebSocket",
+    "WebSockets",
+    "real-time"
+  ],
+  "homepage": "https://github.com/websockets/ws",
+  "bugs": {
+    "url": "https://github.com/websockets/ws/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/websockets/ws.git"
+  },
+  "author": {
+    "name": "Einar Otto Stangvik",
+    "email": "einaros@gmail.com",
+    "url": "http://2x.io"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "scripts": {
+    "test": "eslint . && nyc --reporter=html --reporter=text mocha test/*.test.js",
+    "integration": "eslint . && mocha test/*.integration.js",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "async-limiter": "~1.0.0",
+    "safe-buffer": "~5.1.0",
+    "ultron": "~1.1.0"
+  },
+  "devDependencies": {
+    "benchmark": "~2.1.2",
+    "bufferutil": "~3.0.0",
+    "eslint": "~4.13.0",
+    "eslint-config-standard": "~10.2.0",
+    "eslint-plugin-import": "~2.8.0",
+    "eslint-plugin-node": "~5.2.0",
+    "eslint-plugin-promise": "~3.6.0",
+    "eslint-plugin-standard": "~3.0.0",
+    "mocha": "~4.0.0",
+    "nyc": "~11.3.0",
+    "utf-8-validate": "~4.0.0"
+  },
+  "gitHead": "157f58a73250674eb57c505a522c7e5fe5fb3bee",
+  "_id": "ws@3.3.3",
+  "_npmVersion": "5.6.0",
+  "_nodeVersion": "9.3.0",
+  "_npmUser": {
+    "name": "lpinca",
+    "email": "luigipinca@gmail.com"
+  },
+  "dist": {
+    "integrity": "sha512-nnWLa/NwZSt4KQJu51MYlCcSQ5g7INpOrOMt4XV8j4dqTXdmlUmSHQ8/oLC069ckre0fRsgfvsKwbTdtKLCDkA==",
+    "shasum": "f1cf84fe2d5e901ebce94efaece785f187a228f2",
+    "tarball": "https://registry.npmjs.org/ws/-/ws-3.3.3.tgz"
+  },
+  "maintainers": [
+    {
+      "email": "luigipinca@gmail.com",
+      "name": "lpinca"
+    },
+    {
+      "email": "npm@3rd-Eden.com",
+      "name": "v1"
+    },
+    {
+      "email": "npm@3rd-Eden.com",
+      "name": "3rdeden"
+    },
+    {
+      "email": "einaros@gmail.com",
+      "name": "einaros"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/ws-3.3.3.tgz_1513504156433_0.36967517668381333"
+  },
+  "directories": {},
+  "_shasum": "f1cf84fe2d5e901ebce94efaece785f187a228f2",
+  "_resolved": "https://registry.npmjs.org/ws/-/ws-3.3.3.tgz",
+  "_from": "ws@>=3.3.1 <3.4.0"
+}

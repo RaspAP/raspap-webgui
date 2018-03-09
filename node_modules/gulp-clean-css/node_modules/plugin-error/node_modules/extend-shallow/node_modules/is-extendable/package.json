@@ -1,0 +1,105 @@
+{
+  "name": "is-extendable",
+  "description": "Returns true if a value is a plain object, array or function.",
+  "version": "1.0.1",
+  "homepage": "https://github.com/jonschlinkert/is-extendable",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/is-extendable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/is-extendable/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "main": "index.js",
+  "types": "index.d.ts",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "is-plain-object": "^2.0.4"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^1.0.0",
+    "mocha": "^3.4.2"
+  },
+  "keywords": [
+    "array",
+    "assign",
+    "check",
+    "date",
+    "extend",
+    "extendable",
+    "extensible",
+    "function",
+    "is",
+    "object",
+    "regex",
+    "test"
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "assign-deep",
+        "is-equal-shallow",
+        "is-plain-object",
+        "isobject",
+        "kind-of"
+      ]
+    },
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "230717f6be5be812c16916ec8a745d6252dfa7a5",
+  "_id": "is-extendable@1.0.1",
+  "_npmVersion": "5.3.0",
+  "_nodeVersion": "8.4.0",
+  "_npmUser": {
+    "name": "doowb",
+    "email": "brian.woodward@gmail.com"
+  },
+  "dist": {
+    "integrity": "sha512-arnXMxT1hhoKo9k1LZdmlNyJdDDfy2v0fXjFlmok4+i8ul/6WlbVge9bhM74OpNPQPMGUToDtz+KXa1PneJxOA==",
+    "shasum": "a7470f9e426733d81bd81e1155264e3a3507cab4",
+    "tarball": "https://registry.npmjs.org/is-extendable/-/is-extendable-1.0.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "doowb",
+      "email": "brian.woodward@gmail.com"
+    },
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/is-extendable-1.0.1.tgz_1505162306211_0.2682281613815576"
+  },
+  "directories": {},
+  "_shasum": "a7470f9e426733d81bd81e1155264e3a3507cab4",
+  "_resolved": "https://registry.npmjs.org/is-extendable/-/is-extendable-1.0.1.tgz",
+  "_from": "is-extendable@>=1.0.1 <2.0.0",
+  "readme": "ERROR: No README data found!"
+}

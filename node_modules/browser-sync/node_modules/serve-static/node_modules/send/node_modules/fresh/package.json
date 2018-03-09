@@ -1,0 +1,84 @@
+{
+  "name": "fresh",
+  "description": "HTTP response freshness testing",
+  "version": "0.5.0",
+  "author": {
+    "name": "TJ Holowaychuk",
+    "email": "tj@vision-media.ca",
+    "url": "http://tjholowaychuk.com"
+  },
+  "contributors": [
+    {
+      "name": "Douglas Christopher Wilson",
+      "email": "doug@somethingdoug.com"
+    },
+    {
+      "name": "Jonathan Ong",
+      "email": "me@jongleberry.com",
+      "url": "http://jongleberry.com"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "fresh",
+    "http",
+    "conditional",
+    "cache"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jshttp/fresh.git"
+  },
+  "devDependencies": {
+    "eslint": "3.16.0",
+    "eslint-config-standard": "6.2.1",
+    "eslint-plugin-promise": "3.4.2",
+    "eslint-plugin-standard": "2.0.1",
+    "istanbul": "0.4.5",
+    "mocha": "1.21.5"
+  },
+  "files": [
+    "HISTORY.md",
+    "LICENSE",
+    "index.js"
+  ],
+  "engines": {
+    "node": ">= 0.6"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha --reporter spec --bail --check-leaks test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+  },
+  "gitHead": "b1d26abb390d5dd1d9b82f0a5b890ab0ef1fee5c",
+  "bugs": {
+    "url": "https://github.com/jshttp/fresh/issues"
+  },
+  "homepage": "https://github.com/jshttp/fresh#readme",
+  "_id": "fresh@0.5.0",
+  "_shasum": "f474ca5e6a9246d6fd8e0953cfa9b9c805afa78e",
+  "_from": "fresh@0.5.0",
+  "_npmVersion": "2.15.11",
+  "_nodeVersion": "4.7.3",
+  "_npmUser": {
+    "name": "dougwilson",
+    "email": "doug@somethingdoug.com"
+  },
+  "dist": {
+    "shasum": "f474ca5e6a9246d6fd8e0953cfa9b9c805afa78e",
+    "tarball": "https://registry.npmjs.org/fresh/-/fresh-0.5.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "dougwilson",
+      "email": "doug@somethingdoug.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/fresh-0.5.0.tgz_1487738798128_0.4817247486207634"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/fresh/-/fresh-0.5.0.tgz"
+}

@@ -1,0 +1,95 @@
+{
+  "name": "define-property",
+  "description": "Define a non-enumerable property on an object.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/jonschlinkert/define-property",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/define-property.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/define-property/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "is-descriptor": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.12",
+    "mocha": "^3.2.0"
+  },
+  "keywords": [
+    "define",
+    "define-property",
+    "enumerable",
+    "key",
+    "non",
+    "non-enumerable",
+    "object",
+    "prop",
+    "property",
+    "value"
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "extend-shallow",
+        "merge-deep",
+        "assign-deep",
+        "mixin-deep"
+      ]
+    },
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "4811e7c7999e82ab086265eefeb5d9cbffe10912",
+  "_id": "define-property@1.0.0",
+  "_shasum": "769ebaaf3f4a63aad3af9e8d304c9bbe79bfb0e6",
+  "_from": "define-property@>=1.0.0 <2.0.0",
+  "_npmVersion": "4.2.0",
+  "_nodeVersion": "7.7.3",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "769ebaaf3f4a63aad3af9e8d304c9bbe79bfb0e6",
+    "tarball": "https://registry.npmjs.org/define-property/-/define-property-1.0.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/define-property-1.0.0.tgz_1492669183321_0.5127195529639721"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/define-property/-/define-property-1.0.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

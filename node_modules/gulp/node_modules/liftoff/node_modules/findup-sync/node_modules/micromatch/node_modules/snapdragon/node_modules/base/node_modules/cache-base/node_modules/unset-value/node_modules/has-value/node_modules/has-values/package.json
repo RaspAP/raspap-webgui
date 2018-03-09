@@ -1,0 +1,108 @@
+{
+  "name": "has-values",
+  "version": "0.1.4",
+  "description": "Returns true if any values exist, false if empty. Works for booleans, functions, numbers, strings, nulls, objects and arrays. ",
+  "homepage": "https://github.com/jonschlinkert/has-values",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/has-values.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/has-values/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.7",
+    "mocha": "^2.4.5"
+  },
+  "keywords": [
+    "array",
+    "boolean",
+    "empty",
+    "find",
+    "function",
+    "has",
+    "hasOwn",
+    "javascript",
+    "js",
+    "key",
+    "keys",
+    "node.js",
+    "null",
+    "number",
+    "object",
+    "properties",
+    "property",
+    "string",
+    "type",
+    "util",
+    "utilities",
+    "utility",
+    "value"
+  ],
+  "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "has-value",
+        "isobject",
+        "is-plain-object"
+      ]
+    },
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "199a3eacd663b4ae4b00aef5ef5541aa2c7c8089",
+  "_id": "has-values@0.1.4",
+  "_shasum": "6d61de95d91dfca9b9a02089ad384bff8f62b771",
+  "_from": "has-values@>=0.1.4 <0.2.0",
+  "_npmVersion": "3.6.0",
+  "_nodeVersion": "5.5.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "6d61de95d91dfca9b9a02089ad384bff8f62b771",
+    "tarball": "https://registry.npmjs.org/has-values/-/has-values-0.1.4.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/has-values-0.1.4.tgz_1459080711641_0.050919414730742574"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/has-values/-/has-values-0.1.4.tgz",
+  "readme": "ERROR: No README data found!"
+}

@@ -1,0 +1,121 @@
+{
+  "name": "collection-visit",
+  "description": "Visit a method over the items in an object, or map visit over the objects in an array.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/jonschlinkert/collection-visit",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "contributors": [
+    {
+      "name": "Brian Woodward",
+      "email": "brian.woodward@gmail.com",
+      "url": "https://twitter.com/doowb"
+    },
+    {
+      "name": "Jon Schlinkert",
+      "email": "jon.schlinkert@sellside.com",
+      "url": "http://twitter.com/jonschlinkert"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/collection-visit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/collection-visit/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "map-visit": "^1.0.0",
+    "object-visit": "^1.0.0"
+  },
+  "devDependencies": {
+    "clone-deep": "^0.2.4",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-format-md": "^0.1.12",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-mocha": "^3.0.0",
+    "mocha": "^3.2.0"
+  },
+  "keywords": [
+    "array",
+    "arrays",
+    "collection",
+    "context",
+    "function",
+    "helper",
+    "invoke",
+    "key",
+    "map",
+    "method",
+    "object",
+    "objects",
+    "value",
+    "visit",
+    "visitor"
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "base-methods",
+        "map-visit",
+        "object-visit"
+      ]
+    },
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "39c229dceb7e124cb821b59668df5da1d5c81a6c",
+  "_id": "collection-visit@1.0.0",
+  "_shasum": "4bc0373c164bc3291b4d368c829cf1a80a59dca0",
+  "_from": "collection-visit@>=1.0.0 <2.0.0",
+  "_npmVersion": "4.1.2",
+  "_nodeVersion": "7.7.3",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "doowb",
+      "email": "brian.woodward@gmail.com"
+    },
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "4bc0373c164bc3291b4d368c829cf1a80a59dca0",
+    "tarball": "https://registry.npmjs.org/collection-visit/-/collection-visit-1.0.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/collection-visit-1.0.0.tgz_1491775229437_0.10189219401217997"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/collection-visit/-/collection-visit-1.0.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

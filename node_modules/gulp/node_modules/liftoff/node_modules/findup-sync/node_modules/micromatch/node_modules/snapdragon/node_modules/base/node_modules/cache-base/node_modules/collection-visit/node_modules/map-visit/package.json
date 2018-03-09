@@ -1,0 +1,119 @@
+{
+  "name": "map-visit",
+  "description": "Map `visit` over an array of objects.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/jonschlinkert/map-visit",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "contributors": [
+    {
+      "name": "Brian Woodward",
+      "email": "brian.woodward@gmail.com",
+      "url": "https://twitter.com/doowb"
+    },
+    {
+      "name": "Jon Schlinkert",
+      "email": "jon.schlinkert@sellside.com",
+      "url": "http://twitter.com/jonschlinkert"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/map-visit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/map-visit/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "object-visit": "^1.0.0"
+  },
+  "devDependencies": {
+    "clone-deep": "^0.2.4",
+    "extend-shallow": "^2.0.1",
+    "gulp-format-md": "^0.1.12",
+    "lodash": "^4.17.4",
+    "mocha": "^3.2.0"
+  },
+  "keywords": [
+    "array",
+    "arrays",
+    "function",
+    "helper",
+    "invoke",
+    "key",
+    "map",
+    "method",
+    "object",
+    "objects",
+    "value",
+    "visit",
+    "visitor"
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "related": {
+      "list": [
+        "collection-visit",
+        "object-visit"
+      ]
+    },
+    "reflinks": [
+      "verb",
+      "verb-generate-readme"
+    ]
+  },
+  "gitHead": "73bcd8385c9520c595a825486f19623a5e0550f0",
+  "_id": "map-visit@1.0.0",
+  "_shasum": "ecdca8f13144e660f1b5bd41f12f3479d98dfb8f",
+  "_from": "map-visit@>=1.0.0 <2.0.0",
+  "_npmVersion": "4.1.2",
+  "_nodeVersion": "7.7.3",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "doowb",
+      "email": "brian.woodward@gmail.com"
+    },
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "ecdca8f13144e660f1b5bd41f12f3479d98dfb8f",
+    "tarball": "https://registry.npmjs.org/map-visit/-/map-visit-1.0.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/map-visit-1.0.0.tgz_1491774214052_0.825954457744956"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/map-visit/-/map-visit-1.0.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

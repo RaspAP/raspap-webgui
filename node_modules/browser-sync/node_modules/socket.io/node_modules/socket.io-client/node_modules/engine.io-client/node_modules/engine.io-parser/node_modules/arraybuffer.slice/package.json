@@ -1,0 +1,46 @@
+{
+  "name": "arraybuffer.slice",
+  "description": "Exports a function for slicing ArrayBuffers (no polyfilling)",
+  "version": "0.0.7",
+  "license": "MIT",
+  "homepage": "https://github.com/rase-/arraybuffer.slice",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "1.17.1",
+    "expect.js": "0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rase-/arraybuffer.slice.git"
+  },
+  "gitHead": "6779b3ca590f15c0910181bf7ccc51061f7eb7ac",
+  "bugs": {
+    "url": "https://github.com/rase-/arraybuffer.slice/issues"
+  },
+  "_id": "arraybuffer.slice@0.0.7",
+  "_npmVersion": "5.3.0",
+  "_nodeVersion": "8.4.0",
+  "_npmUser": {
+    "name": "rase-",
+    "email": "tonykovanen@hotmail.com"
+  },
+  "dist": {
+    "integrity": "sha512-wGUIVQXuehL5TCqQun8OW81jGzAWycqzFF8lFp+GOM5BXLYj3bKNsYC4daB7n6XjCqxQA/qgTJ+8ANR3acjrog==",
+    "shasum": "3bbc4275dd584cc1b10809b89d4e8b63a69e7675",
+    "tarball": "https://registry.npmjs.org/arraybuffer.slice/-/arraybuffer.slice-0.0.7.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "rase-",
+      "email": "tonykovanen@hotmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/arraybuffer.slice-0.0.7.tgz_1503998406760_0.431125596864149"
+  },
+  "directories": {},
+  "_shasum": "3bbc4275dd584cc1b10809b89d4e8b63a69e7675",
+  "_resolved": "https://registry.npmjs.org/arraybuffer.slice/-/arraybuffer.slice-0.0.7.tgz",
+  "_from": "arraybuffer.slice@>=0.0.7 <0.1.0"
+}

@@ -1,0 +1,119 @@
+{
+  "name": "time-stamp",
+  "description": "Get a formatted timestamp.",
+  "version": "1.1.0",
+  "homepage": "https://github.com/jonschlinkert/time-stamp",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "contributors": [
+    {
+      "name": "Daniel Stockman",
+      "url": "http://evocateur.org"
+    },
+    {
+      "name": "Drew",
+      "url": "https://github.com/mendenhallmagic"
+    },
+    {
+      "name": "Jon Schlinkert",
+      "url": "http://twitter.com/jonschlinkert"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/time-stamp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/time-stamp/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.12",
+    "mocha": "^3.4.1",
+    "pad-left": "^2.1.0"
+  },
+  "keywords": [
+    "console",
+    "date",
+    "format",
+    "formatting",
+    "log",
+    "pretty",
+    "stamp",
+    "terminal",
+    "time",
+    "time-stamp"
+  ],
+  "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "helpers": {
+      "timestamp": "./index.js"
+    },
+    "related": {
+      "list": [
+        "days",
+        "iso-week",
+        "month",
+        "months",
+        "o-clock",
+        "seconds",
+        "week",
+        "weekday",
+        "year"
+      ]
+    },
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "30533a5f71944f368b3b1ccaedd895a26b6c5bff",
+  "_id": "time-stamp@1.1.0",
+  "_shasum": "764a5a11af50561921b133f3b44e618687e0f5c3",
+  "_from": "time-stamp@>=1.0.0 <2.0.0",
+  "_npmVersion": "4.5.0",
+  "_nodeVersion": "7.7.3",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "764a5a11af50561921b133f3b44e618687e0f5c3",
+    "tarball": "https://registry.npmjs.org/time-stamp/-/time-stamp-1.1.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/time-stamp-1.1.0.tgz_1494809609879_0.2116724606603384"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/time-stamp/-/time-stamp-1.1.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

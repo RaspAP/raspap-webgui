@@ -1,0 +1,114 @@
+{
+  "name": "has-value",
+  "version": "0.3.1",
+  "description": "Returns true if a value exists, false if empty. Works with deeply nested values using object paths.",
+  "homepage": "https://github.com/jonschlinkert/has-value",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/has-value.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/has-value/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "get-value": "^2.0.3",
+    "has-values": "^0.1.4",
+    "isobject": "^2.0.0"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.7",
+    "mocha": "^2.4.5"
+  },
+  "keywords": [
+    "array",
+    "boolean",
+    "empty",
+    "find",
+    "function",
+    "has",
+    "hasOwn",
+    "javascript",
+    "js",
+    "key",
+    "keys",
+    "node.js",
+    "null",
+    "number",
+    "object",
+    "properties",
+    "property",
+    "string",
+    "type",
+    "util",
+    "utilities",
+    "utility",
+    "value"
+  ],
+  "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "get-object",
+        "get-property",
+        "get-value",
+        "set-value"
+      ]
+    },
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "adecb27b13b7e99688694e228a946e6e635fcc64",
+  "_id": "has-value@0.3.1",
+  "_shasum": "7b1f58bada62ca827ec0a2078025654845995e1f",
+  "_from": "has-value@>=0.3.1 <0.4.0",
+  "_npmVersion": "3.6.0",
+  "_nodeVersion": "5.5.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "7b1f58bada62ca827ec0a2078025654845995e1f",
+    "tarball": "https://registry.npmjs.org/has-value/-/has-value-0.3.1.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/has-value-0.3.1.tgz_1459091935592_0.006853065919131041"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/has-value/-/has-value-0.3.1.tgz",
+  "readme": "ERROR: No README data found!"
+}

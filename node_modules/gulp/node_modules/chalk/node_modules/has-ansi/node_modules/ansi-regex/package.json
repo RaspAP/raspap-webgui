@@ -1,0 +1,97 @@
+{
+  "name": "ansi-regex",
+  "version": "2.1.1",
+  "description": "Regular expression for matching ANSI escape codes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chalk/ansi-regex.git"
+  },
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "maintainers": [
+    {
+      "name": "qix",
+      "email": "i.am.qix@gmail.com"
+    },
+    {
+      "name": "sindresorhus",
+      "email": "sindresorhus@gmail.com"
+    }
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava --verbose",
+    "view-supported": "node fixtures/view-codes.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "cli",
+    "string",
+    "tty",
+    "escape",
+    "formatting",
+    "rgb",
+    "256",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "re",
+    "match",
+    "test",
+    "find",
+    "pattern"
+  ],
+  "devDependencies": {
+    "ava": "0.17.0",
+    "xo": "0.16.0"
+  },
+  "xo": {
+    "rules": {
+      "guard-for-in": 0,
+      "no-loop-func": 0
+    }
+  },
+  "gitHead": "7c908e7b4eb6cd82bfe1295e33fdf6d166c7ed85",
+  "bugs": {
+    "url": "https://github.com/chalk/ansi-regex/issues"
+  },
+  "homepage": "https://github.com/chalk/ansi-regex#readme",
+  "_id": "ansi-regex@2.1.1",
+  "_shasum": "c3b33ab5ee360d86e0e628f0468ae7ef27d654df",
+  "_from": "ansi-regex@>=2.0.0 <3.0.0",
+  "_npmVersion": "2.14.2",
+  "_nodeVersion": "0.10.32",
+  "_npmUser": {
+    "name": "qix",
+    "email": "i.am.qix@gmail.com"
+  },
+  "dist": {
+    "shasum": "c3b33ab5ee360d86e0e628f0468ae7ef27d654df",
+    "tarball": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-2.1.1.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/ansi-regex-2.1.1.tgz_1484363378013_0.4482989883981645"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-2.1.1.tgz",
+  "readme": "ERROR: No README data found!"
+}

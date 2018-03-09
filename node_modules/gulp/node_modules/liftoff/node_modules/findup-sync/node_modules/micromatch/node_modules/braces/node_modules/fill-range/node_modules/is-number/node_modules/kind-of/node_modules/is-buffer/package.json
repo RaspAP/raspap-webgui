@@ -1,0 +1,80 @@
+{
+  "name": "is-buffer",
+  "description": "Determine if an object is a Buffer",
+  "version": "1.1.6",
+  "author": {
+    "name": "Feross Aboukhadijeh",
+    "email": "feross@feross.org",
+    "url": "http://feross.org/"
+  },
+  "bugs": {
+    "url": "https://github.com/feross/is-buffer/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "standard": "*",
+    "tape": "^4.0.0",
+    "zuul": "^3.0.0"
+  },
+  "keywords": [
+    "buffer",
+    "buffers",
+    "type",
+    "core buffer",
+    "browser buffer",
+    "browserify",
+    "typed array",
+    "uint32array",
+    "int16array",
+    "int32array",
+    "float32array",
+    "float64array",
+    "browser",
+    "arraybuffer",
+    "dataview"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/feross/is-buffer.git"
+  },
+  "scripts": {
+    "test": "standard && npm run test-node && npm run test-browser",
+    "test-browser": "zuul -- test/*.js",
+    "test-browser-local": "zuul --local -- test/*.js",
+    "test-node": "tape test/*.js"
+  },
+  "testling": {
+    "files": "test/*.js"
+  },
+  "gitHead": "1e84e7ee31cf6b660b12500f3111a05501da387f",
+  "homepage": "https://github.com/feross/is-buffer#readme",
+  "_id": "is-buffer@1.1.6",
+  "_npmVersion": "5.5.1",
+  "_nodeVersion": "8.6.0",
+  "_npmUser": {
+    "name": "feross",
+    "email": "feross@feross.org"
+  },
+  "dist": {
+    "integrity": "sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==",
+    "shasum": "efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be",
+    "tarball": "https://registry.npmjs.org/is-buffer/-/is-buffer-1.1.6.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "feross",
+      "email": "feross@feross.org"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/is-buffer-1.1.6.tgz_1508967388794_0.03916449216194451"
+  },
+  "directories": {},
+  "_shasum": "efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be",
+  "_resolved": "https://registry.npmjs.org/is-buffer/-/is-buffer-1.1.6.tgz",
+  "_from": "is-buffer@>=1.1.5 <2.0.0",
+  "readme": "ERROR: No README data found!"
+}

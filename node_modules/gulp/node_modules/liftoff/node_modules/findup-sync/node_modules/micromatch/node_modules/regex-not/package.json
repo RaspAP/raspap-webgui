@@ -1,0 +1,99 @@
+{
+  "name": "regex-not",
+  "description": "Create a javascript regular expression for matching everything except for the given string.",
+  "version": "1.0.2",
+  "homepage": "https://github.com/jonschlinkert/regex-not",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/regex-not.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/regex-not/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "extend-shallow": "^3.0.2",
+    "safe-regex": "^1.1.0"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^1.0.0",
+    "mocha": "^3.5.3"
+  },
+  "keywords": [
+    "exec",
+    "match",
+    "negate",
+    "negation",
+    "not",
+    "regex",
+    "regular expression",
+    "test"
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "regex-cache",
+        "to-regex"
+      ]
+    },
+    "reflinks": [
+      "verb",
+      "verb-generate-readme"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "7e368998898e1fc7428596636ef5412ede414f3e",
+  "_id": "regex-not@1.0.2",
+  "_npmVersion": "5.6.0",
+  "_nodeVersion": "9.5.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "dist": {
+    "integrity": "sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A==",
+    "shasum": "1f4ece27e00b0b65e0247a6810e6a85d83a5752c",
+    "tarball": "https://registry.npmjs.org/regex-not/-/regex-not-1.0.2.tgz",
+    "fileCount": 4,
+    "unpackedSize": 8459
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/regex-not_1.0.2_1519093874391_0.48484026521777035"
+  },
+  "_shasum": "1f4ece27e00b0b65e0247a6810e6a85d83a5752c",
+  "_resolved": "https://registry.npmjs.org/regex-not/-/regex-not-1.0.2.tgz",
+  "_from": "regex-not@>=1.0.0 <2.0.0",
+  "readme": "ERROR: No README data found!"
+}

@@ -1,0 +1,93 @@
+{
+  "name": "fragment-cache",
+  "description": "A cache for managing namespaced sub-caches",
+  "version": "0.2.1",
+  "homepage": "https://github.com/jonschlinkert/fragment-cache",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/fragment-cache.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/fragment-cache/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "map-cache": "^0.2.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-format-md": "^0.1.11",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-mocha": "^3.0.1",
+    "mocha": "^3.2.0"
+  },
+  "keywords": [
+    "cache",
+    "fragment"
+  ],
+  "verb": {
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "reflinks": [
+      "map-cache",
+      "verb"
+    ],
+    "related": {
+      "list": [
+        "base",
+        "map-cache"
+      ]
+    },
+    "layout": "default",
+    "toc": false,
+    "tasks": [
+      "readme"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "33583b03f505c67479ddbc66f825b0e653704207",
+  "_id": "fragment-cache@0.2.1",
+  "_shasum": "4290fad27f13e89be7f33799c6bc5a0abfff0d19",
+  "_from": "fragment-cache@>=0.2.1 <0.3.0",
+  "_npmVersion": "4.1.2",
+  "_nodeVersion": "7.6.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "4290fad27f13e89be7f33799c6bc5a0abfff0d19",
+    "tarball": "https://registry.npmjs.org/fragment-cache/-/fragment-cache-0.2.1.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/fragment-cache-0.2.1.tgz_1489523817961_0.01654543890617788"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/fragment-cache/-/fragment-cache-0.2.1.tgz",
+  "readme": "ERROR: No README data found!"
+}

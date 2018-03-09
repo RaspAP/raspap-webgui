@@ -1,0 +1,75 @@
+{
+  "name": "ms",
+  "version": "2.0.0",
+  "description": "Tiny milisecond conversion utility",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeit/ms.git"
+  },
+  "main": "./index",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "precommit": "lint-staged",
+    "lint": "eslint lib/* bin/*",
+    "test": "mocha tests.js"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "node": true,
+      "es6": true
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "3.19.0",
+    "expect.js": "0.3.1",
+    "husky": "0.13.3",
+    "lint-staged": "3.4.1",
+    "mocha": "3.4.1"
+  },
+  "gitHead": "9b88d1568a52ec9bb67ecc8d2aa224fa38fd41f4",
+  "bugs": {
+    "url": "https://github.com/zeit/ms/issues"
+  },
+  "homepage": "https://github.com/zeit/ms#readme",
+  "_id": "ms@2.0.0",
+  "_shasum": "5608aeadfc00be6c2901df5f9861788de0d597c8",
+  "_from": "ms@2.0.0",
+  "_npmVersion": "4.2.0",
+  "_nodeVersion": "7.8.0",
+  "_npmUser": {
+    "name": "leo",
+    "email": "leo@zeit.co"
+  },
+  "dist": {
+    "shasum": "5608aeadfc00be6c2901df5f9861788de0d597c8",
+    "tarball": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "leo",
+      "email": "leo@zeit.co"
+    },
+    {
+      "name": "rauchg",
+      "email": "rauchg@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/ms-2.0.0.tgz_1494937565215_0.34005374647676945"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

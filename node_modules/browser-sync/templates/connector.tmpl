@@ -1,0 +1,6 @@
+window.___browserSync___ = {};
+___browserSync___.socketConfig = %config%;
+___browserSync___.socketUrl = %url%;
+if (location.protocol == "https:" && /^http:/.test(___browserSync___.socketUrl)) {
+    ___browserSync___.socketUrl = ___browserSync___.socketUrl.replace(/^http:/, "https:");
+}

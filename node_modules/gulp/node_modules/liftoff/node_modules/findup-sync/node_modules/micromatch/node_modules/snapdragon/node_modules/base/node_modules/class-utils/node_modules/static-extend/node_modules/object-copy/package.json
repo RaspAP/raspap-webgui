@@ -1,0 +1,80 @@
+{
+  "name": "object-copy",
+  "description": "Copy static properties, prototype properties, and descriptors from one object to another.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/object-copy",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/object-copy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/object-copy/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "copy-descriptor": "^0.1.0",
+    "define-property": "^0.2.5",
+    "kind-of": "^3.0.3"
+  },
+  "devDependencies": {
+    "gulp-format-md": "*",
+    "mocha": "*"
+  },
+  "keywords": [
+    "copy",
+    "object"
+  ],
+  "verb": {
+    "layout": "default",
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": []
+    },
+    "reflinks": [
+      "verb"
+    ]
+  },
+  "gitHead": "15b972a4a7137f6bf47886c68e73a2fffa8eacf2",
+  "_id": "object-copy@0.1.0",
+  "_shasum": "7e7d858b781bd7c991a41ba975ed3812754e998c",
+  "_from": "object-copy@>=0.1.0 <0.2.0",
+  "_npmVersion": "3.8.9",
+  "_nodeVersion": "6.2.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "7e7d858b781bd7c991a41ba975ed3812754e998c",
+    "tarball": "https://registry.npmjs.org/object-copy/-/object-copy-0.1.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/object-copy-0.1.0.tgz_1465495667685_0.612287495052442"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/object-copy/-/object-copy-0.1.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

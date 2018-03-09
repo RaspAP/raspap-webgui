@@ -1,0 +1,115 @@
+{
+  "name": "for-own",
+  "description": "Iterate over the own enumerable properties of an object, and return an object with properties that evaluate to true from the callback. Exit early by returning `false`. JavaScript/Node.js.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/jonschlinkert/for-own",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "contributors": [
+    {
+      "name": "Javier Cejudo",
+      "email": "javier@javiercejudo.com",
+      "url": "https://www.javiercejudo.com"
+    },
+    {
+      "name": "Jon Schlinkert",
+      "email": "jon.schlinkert@sellside.com",
+      "url": "http://twitter.com/jonschlinkert"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/for-own.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/for-own/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "for-in": "^1.0.1"
+  },
+  "devDependencies": {
+    "gulp-format-md": "^0.1.11",
+    "mocha": "^3.2.0"
+  },
+  "keywords": [
+    "for",
+    "for-in",
+    "for-own",
+    "has",
+    "has-own",
+    "hasOwn",
+    "key",
+    "keys",
+    "object",
+    "own",
+    "value"
+  ],
+  "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "arr-flatten",
+        "collection-map",
+        "for-in"
+      ]
+    },
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "2d39447529c7b41f41e0d3443e46c5de607720ab",
+  "_id": "for-own@1.0.0",
+  "_shasum": "c63332f415cedc4b04dbfe70cf836494c53cb44b",
+  "_from": "for-own@>=1.0.0 <2.0.0",
+  "_npmVersion": "4.1.2",
+  "_nodeVersion": "7.5.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    },
+    {
+      "name": "doowb",
+      "email": "brian.woodward@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "c63332f415cedc4b04dbfe70cf836494c53cb44b",
+    "tarball": "https://registry.npmjs.org/for-own/-/for-own-1.0.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/for-own-1.0.0.tgz_1488159207065_0.6514356201514602"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/for-own/-/for-own-1.0.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

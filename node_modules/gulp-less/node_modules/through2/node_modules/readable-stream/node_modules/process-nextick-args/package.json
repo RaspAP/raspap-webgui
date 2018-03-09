@@ -1,0 +1,52 @@
+{
+  "name": "process-nextick-args",
+  "version": "2.0.0",
+  "description": "process.nextTick but always with args",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calvinmetcalf/process-nextick-args.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calvinmetcalf/process-nextick-args/issues"
+  },
+  "homepage": "https://github.com/calvinmetcalf/process-nextick-args",
+  "devDependencies": {
+    "tap": "~0.2.6"
+  },
+  "gitHead": "8407900951af3e7651fca50f127f0e4ddc01ad55",
+  "_id": "process-nextick-args@2.0.0",
+  "_npmVersion": "5.5.1",
+  "_nodeVersion": "8.6.0",
+  "_npmUser": {
+    "name": "cwmma",
+    "email": "calvin.metcalf@gmail.com"
+  },
+  "dist": {
+    "integrity": "sha512-MtEC1TqN0EU5nephaJ4rAtThHtC86dNN9qCuEhtshvpVBkAW5ZO7BASN9REnF9eoXGcRub+pFuKEpOHE+HbEMw==",
+    "shasum": "a37d732f4271b4ab1ad070d35508e8290788ffaa",
+    "tarball": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "cwmma",
+      "email": "calvin.metcalf@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/process-nextick-args-2.0.0.tgz_1513027423688_0.4807069287635386"
+  },
+  "directories": {},
+  "_shasum": "a37d732f4271b4ab1ad070d35508e8290788ffaa",
+  "_resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.0.tgz",
+  "_from": "process-nextick-args@>=2.0.0 <2.1.0"
+}

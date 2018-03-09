@@ -1,0 +1,81 @@
+{
+  "name": "extend",
+  "author": {
+    "name": "Stefan Thomas",
+    "email": "justmoon@members.fsf.org",
+    "url": "http://www.justmoon.net"
+  },
+  "version": "3.0.1",
+  "description": "Port of jQuery.extend for node.js and the browser",
+  "main": "index",
+  "scripts": {
+    "pretest": "npm run lint",
+    "test": "npm run tests-only",
+    "posttest": "npm run coverage-quiet",
+    "tests-only": "node test",
+    "coverage": "covert test/index.js",
+    "coverage-quiet": "covert test/index.js --quiet",
+    "lint": "npm run jscs && npm run eslint",
+    "jscs": "jscs *.js */*.js",
+    "eslint": "eslint *.js */*.js"
+  },
+  "contributors": [
+    {
+      "name": "Jordan Harband",
+      "url": "https://github.com/ljharb"
+    }
+  ],
+  "keywords": [
+    "extend",
+    "clone",
+    "merge"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justmoon/node-extend.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tape": "^4.6.3",
+    "covert": "^1.1.0",
+    "jscs": "^3.0.7",
+    "eslint": "^3.19.0",
+    "@ljharb/eslint-config": "^11.0.0"
+  },
+  "license": "MIT",
+  "gitHead": "138b515df4d628bb1742254ede5d2551c0fecae7",
+  "bugs": {
+    "url": "https://github.com/justmoon/node-extend/issues"
+  },
+  "homepage": "https://github.com/justmoon/node-extend#readme",
+  "_id": "extend@3.0.1",
+  "_shasum": "a755ea7bc1adfcc5a31ce7e762dbaadc5e636444",
+  "_from": "extend@>=3.0.0 <3.1.0",
+  "_npmVersion": "4.2.0",
+  "_nodeVersion": "7.9.0",
+  "_npmUser": {
+    "name": "ljharb",
+    "email": "ljharb@gmail.com"
+  },
+  "dist": {
+    "shasum": "a755ea7bc1adfcc5a31ce7e762dbaadc5e636444",
+    "tarball": "https://registry.npmjs.org/extend/-/extend-3.0.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "justmoon",
+      "email": "justmoon@members.fsf.org"
+    },
+    {
+      "name": "ljharb",
+      "email": "ljharb@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/extend-3.0.1.tgz_1493357803699_0.1708133383654058"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/extend/-/extend-3.0.1.tgz",
+  "readme": "ERROR: No README data found!"
+}

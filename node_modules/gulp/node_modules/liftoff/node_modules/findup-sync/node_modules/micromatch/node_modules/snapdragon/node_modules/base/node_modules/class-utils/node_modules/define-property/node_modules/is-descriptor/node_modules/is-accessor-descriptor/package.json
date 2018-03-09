@@ -1,0 +1,90 @@
+{
+  "name": "is-accessor-descriptor",
+  "description": "Returns true if a value has the characteristics of a valid JavaScript accessor descriptor.",
+  "version": "0.1.6",
+  "homepage": "https://github.com/jonschlinkert/is-accessor-descriptor",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/is-accessor-descriptor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/is-accessor-descriptor/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "kind-of": "^3.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": [
+    "accessor",
+    "check",
+    "data",
+    "descriptor",
+    "get",
+    "getter",
+    "is",
+    "keys",
+    "object",
+    "properties",
+    "property",
+    "set",
+    "setter",
+    "type",
+    "valid",
+    "value"
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "is-accessor-descriptor",
+        "is-data-descriptor",
+        "is-descriptor",
+        "isobject"
+      ]
+    },
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "layout": "default"
+  },
+  "gitHead": "e64ae49c456c9f31dab47934b0183e2a9938b5bd",
+  "_id": "is-accessor-descriptor@0.1.6",
+  "_shasum": "a9e12cb3ae8d876727eeef3843f8a0897b5c98d6",
+  "_from": "is-accessor-descriptor@>=0.1.6 <0.2.0",
+  "_npmVersion": "3.3.6",
+  "_nodeVersion": "5.0.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "a9e12cb3ae8d876727eeef3843f8a0897b5c98d6",
+    "tarball": "https://registry.npmjs.org/is-accessor-descriptor/-/is-accessor-descriptor-0.1.6.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/is-accessor-descriptor/-/is-accessor-descriptor-0.1.6.tgz",
+  "readme": "ERROR: No README data found!"
+}

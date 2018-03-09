@@ -1,0 +1,109 @@
+{
+  "name": "arr-union",
+  "description": "Combines a list of arrays, returning a single array with unique values, using strict equality for comparisons.",
+  "version": "3.1.0",
+  "homepage": "https://github.com/jonschlinkert/arr-union",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonschlinkert/arr-union.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/arr-union/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "ansi-bold": "^0.1.1",
+    "array-union": "^1.0.1",
+    "array-unique": "^0.2.1",
+    "benchmarked": "^0.1.4",
+    "gulp-format-md": "^0.1.7",
+    "minimist": "^1.1.1",
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": [
+    "add",
+    "append",
+    "array",
+    "arrays",
+    "combine",
+    "concat",
+    "extend",
+    "union",
+    "uniq",
+    "unique",
+    "util",
+    "utility",
+    "utils"
+  ],
+  "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "arr-diff",
+        "arr-flatten",
+        "arr-filter",
+        "arr-map",
+        "arr-pluck",
+        "arr-reduce",
+        "array-unique"
+      ]
+    },
+    "reflinks": [
+      "verb",
+      "array-union"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  },
+  "gitHead": "ede857f5d5082467534e372fd3da45ce5e782e93",
+  "_id": "arr-union@3.1.0",
+  "_shasum": "e39b09aea9def866a8f206e288af63919bae39c4",
+  "_from": "arr-union@>=3.1.0 <4.0.0",
+  "_npmVersion": "3.6.0",
+  "_nodeVersion": "5.5.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "e39b09aea9def866a8f206e288af63919bae39c4",
+    "tarball": "https://registry.npmjs.org/arr-union/-/arr-union-3.1.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-9-west.internal.npmjs.com",
+    "tmp": "tmp/arr-union-3.1.0.tgz_1456232075611_0.8481670441105962"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/arr-union/-/arr-union-3.1.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

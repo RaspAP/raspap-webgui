@@ -1,0 +1,67 @@
+{
+  "name": "async-each",
+  "description": "No-bullshit, ultra-simple, 35-lines-of-code async parallel forEach / map function for JavaScript.",
+  "version": "1.0.1",
+  "license": "MIT",
+  "keywords": [
+    "async",
+    "forEach",
+    "each",
+    "map",
+    "asynchronous",
+    "iteration",
+    "iterate",
+    "loop",
+    "parallel",
+    "concurrent",
+    "array",
+    "flow",
+    "control flow"
+  ],
+  "homepage": "https://github.com/paulmillr/async-each/",
+  "author": {
+    "name": "Paul Miller",
+    "url": "http://paulmillr.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/paulmillr/async-each.git"
+  },
+  "main": "index.js",
+  "dependencies": {},
+  "gitHead": "f2342d85633d0dc1034a49387ca01c08c1189823",
+  "bugs": {
+    "url": "https://github.com/paulmillr/async-each/issues"
+  },
+  "_id": "async-each@1.0.1",
+  "scripts": {},
+  "_shasum": "19d386a1d9edc6e7c1c85d388aedbcc56d33602d",
+  "_from": "async-each@>=1.0.0 <2.0.0",
+  "_npmVersion": "3.10.3",
+  "_nodeVersion": "6.3.0",
+  "_npmUser": {
+    "name": "paulmillr",
+    "email": "paul@paulmillr.com"
+  },
+  "maintainers": [
+    {
+      "name": "paulmillr",
+      "email": "paul@paulmillr.com"
+    },
+    {
+      "name": "es128",
+      "email": "elan.shanker+npm@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "19d386a1d9edc6e7c1c85d388aedbcc56d33602d",
+    "tarball": "https://registry.npmjs.org/async-each/-/async-each-1.0.1.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/async-each-1.0.1.tgz_1472080935649_0.032988218357786536"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/async-each/-/async-each-1.0.1.tgz",
+  "readme": "ERROR: No README data found!"
+}
