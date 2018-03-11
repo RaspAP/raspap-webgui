@@ -64,22 +64,22 @@ $theme_url = 'dist/css/' . $theme;
     <title>Raspbian WiFi Configuration Portal</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
     <link href="dist/css/timeline.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="bower_components/morrisjs/morris.css" rel="stylesheet">
+    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
     <link href="<?php echo $theme_url; ?>" title="main" rel="stylesheet">
@@ -219,17 +219,17 @@ $theme_url = 'dist/css/' . $theme;
     <script src="dist/js/functions.js"></script>
 
     <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <!--script src="bower_components/raphael/raphael-min.js"></script-->
-    <!--script src="bower_components/morrisjs/morris.min.js"></script-->
+    <!--script src="vendor/raphael/raphael-min.js"></script-->
+    <!--script src="vendor/morrisjs/morris.min.js"></script-->
     <!--script src="js/morris-data.js"></script-->
 
     <!-- Custom Theme JavaScript -->
