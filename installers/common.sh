@@ -117,6 +117,11 @@ function create_logging_scripts() {
     sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd
 }
 
+# Generate configuration reset files for raspap
+function create_reset_script() {
+    sudo mv /var/www/html/installers/reset.sh /etc/raspap/hostapd
+}
+
 # Fetches latest files from github to webroot
 function download_latest_files() {
     if [ -d "$webroot_dir" ]; then
@@ -183,16 +188,17 @@ function default_configuration() {
     if [ -f /etc/default/hostapd ]; then
         sudo mv /etc/default/hostapd /tmp/default_hostapd.old || install_error "Unable to remove old /etc/default/hostapd file"
     fi
-    sudo mv $webroot_dir/config/default_hostapd /etc/default/hostapd || install_error "Unable to move hostapd defaults file"
-    sudo mv $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
-    sudo mv $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
-    sudo mv $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
+    sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || install_error "Unable to move hostapd defaults file"
+    sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
+    sudo cp $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
+    sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
 
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script
     lines=(
-    'echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP'
+    'echo 1 > \/proc\/sys\/net\/ipv4\/ip_forward #RASPAP'
     'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
+    '~pi\/shutdown-press-simple.py \&  #RASPAP'
     )
     
     for line in "${lines[@]}"; do
@@ -290,6 +296,7 @@ function install_raspap() {
     download_latest_files
     change_file_ownership
     create_logging_scripts
+    create_reset_script
     move_config_file
     default_configuration
     patch_system_files
