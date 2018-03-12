@@ -111,15 +111,10 @@ function create_logging_scripts() {
     sudo mv $webroot_dir/installers/*log.sh $raspap_dir/hostapd || install_error "Unable to move logging scripts"
 }
 
-# Generate logging enable/disable files for hostapd
-function create_logging_scripts() {
-    sudo mkdir /etc/raspap/hostapd
-    sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd
-}
-
 # Generate configuration reset files for raspap
-function create_reset_script() {
+function create_reset_scripts() {
     sudo mv /var/www/html/installers/reset.sh /etc/raspap/hostapd
+    sudo mv /var/www/html/installers/button.py /etc/raspap/hostapd
 }
 
 # Fetches latest files from github to webroot
@@ -196,16 +191,16 @@ function default_configuration() {
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script
     lines=(
-    'echo 1 > \/proc\/sys\/net\/ipv4\/ip_forward #RASPAP'
-    'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
-    '~pi\/shutdown-press-simple.py \&  #RASPAP'
+	"echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP"
+	"iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP"
+	"$raspaspap_dir/button.py &  #RASPAP"
     )
     
     for line in "${lines[@]}"; do
         if grep "$line" /etc/rc.local > /dev/null; then
             echo "$line: Line already added"
         else
-            sed -i "s/exit 0/$line\nexit0/" /etc/rc.local
+            sed -i "s?exit 0?$line\nexit 0?" /etc/rc.local
             echo "Adding line $line"
         fi
     done
@@ -296,7 +291,7 @@ function install_raspap() {
     download_latest_files
     change_file_ownership
     create_logging_scripts
-    create_reset_script
+    create_reset_scripts
     move_config_file
     default_configuration
     patch_system_files
