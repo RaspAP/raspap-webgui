@@ -5,69 +5,88 @@ from signal import pause
 import os, sys
 
 # Define the location of the script to restore default configuration
-defaultsscriptlocation = int(sys.argv[1]) if len(sys.argv) >= 1 else "/etc/raspap/hostapd/reset.sh"
+defaultsscriptlocation = "/etc/raspap/hostapd/reset.sh"
+scriptlocation = sys.argv[1] if len(sys.argv) >= 2 else defaultsscriptlocation
 
 buttonGPIO = 21         # Pushbutton is connected to GPIO 21 (pin 40)
-LEDGPIO = 20            # LED is connected to GPIO 20 (pin 38)
+ledGPIO = 20            # LED is connected to GPIO 20 (pin 38)
 
 restarttime = 1         # restart if held for greater than restarttime seconds
 offtime = 6             # shut down if held for greater than offtime seconds
 defaultstime = 15       # reset RaspAP to default config if held for greater than defaultstime seconds
 
-resetready = False
-shutdownready = False
-defaultsready = False
+restartready = False     # Flag for reset time exceeded
+shutdownready = False     # Flag for shutdown time exceeded
+defaultsready = False     # Flag for defaults reset flag exceeded
 
 def when_held():
+    global restartready
+    global shutdownready
+    global defaultsready
+
     # find how long the button has been held
-    ptime = b.pressed_time
+    held_time = button.held_time - restarttime
 
     # blink rate will increase the longer we hold
     # Set flags for the action needed when the button is released
-    if ptime > restarttime && ptime < offtime:
-        led.blink(on_time=0.5/p, off_time=0.5/p)
-        resetready      = True
-        shutdownready   = False
-        defaultsready   = False
+    if held_time > restarttime and held_time < offtime and not restartready:
+        led.blink(on_time=0.5, off_time=0.5)
+        restartready = True
+        shutdownready = False
+        defaultsready = False
+        print "Restart time reached"
 
 
-    if ptime > offtime && ptime < defaultstime:
-        led.blink(on_time=0.25/p, off_time=0.25/p)
-        resetready      = False
-        shutdownready   = True
-        defaultsready   = False
+    if held_time > offtime and held_time < defaultstime and not shutdownready:
+        led.blink(on_time=0.25, off_time=0.25)
+        restartready = False
+        shutdownready = True
+        defaultsready = False
+        print "Shutdown time reached"
 
 
-    if ptime > defaultstime:
-        led.blink(on_time=0.1/p, off_time=0.1/p)
-        resetready      = False
-        shutdownready   = False
-        defaultsready   = True
+    if held_time > defaultstime and not defaultsready:
+        led.blink(on_time=0.1, off_time=0.1)
+        restartready = False
+        shutdownready = False
+        defaultsready = True
+        print "Restore defaults time reached"
 
 
 def when_released():
-    # turn the LEDs off if we release early
-    led.off()
+    global restartready
+    global shutdownready
+    global defaultsready
 
-    if resetready == True:
-        os.system("sudo restart")
+    led.on()
 
-    if shutdownready == True:
+    if restartready:
+        print "System restarting"
+        os.system("sudo reboot")
+
+    if shutdownready:
+        print "System powering down"
         os.system("sudo poweroff")
 
-    if defaultsready == True:
-        os.system("sudo " + defaultsscriptlocation)
-        os.system("sudo restart")
+    if defaultsready:
+        print "System restoring RaspAP defaults"
+        os.system("sudo bash " + scriptlocation)
+        os.system("sudo reboot")
 
-    # clear flags if we release early
-    resetready      = False
-    shutdownready   = False
-    defaultsready   = False
+    # Clear flags if the button was released early
+    print "Button released before any action was needed"
+    restartready = False
+    shutdownready = False
+    defaultsready = False
 
 
-led = LED(LEDGPIO)
+led = LED(ledGPIO)
+led.on()
 
-btn = Button(buttonGPIO, hold_time=restarttime, hold_repeat=True)
-btn.when_held = when_held
-btn.when_released = when_released
+button = Button(buttonGPIO, hold_time=restarttime, hold_repeat=True)
+button.when_held = when_held
+button.when_released = when_released
+
+print "Waiting for a button press"
+
 pause()
