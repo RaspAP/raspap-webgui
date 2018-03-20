@@ -191,9 +191,9 @@ function default_configuration() {
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script
     lines=(
-    "echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP"
-    "iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP"
-    "$raspap_dir/button.py \&  #RASPAP"
+    'echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP'
+    'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
+    '$raspap_dir/button.py \&  #RASPAP'
     )
     
     for line in "${lines[@]}"; do
