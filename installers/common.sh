@@ -183,17 +183,17 @@ function default_configuration() {
     if [ -f /etc/default/hostapd ]; then
         sudo mv /etc/default/hostapd /tmp/default_hostapd.old || install_error "Unable to remove old /etc/default/hostapd file"
     fi
-    sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || install_error "Unable to move hostapd defaults file"
-    sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
-    sudo cp $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
-    sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
+    sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || install_error "Unable to copy hostapd defaults file"
+    sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to copy hostapd configuration file"
+    sudo cp $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to copy dnsmasq configuration file"
+    sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to copy dhcpcd configuration file"
 
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script
     lines=(
 	"echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP"
 	"iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP"
-	"$raspaspap_dir/button.py &  #RASPAP"
+	"$raspaspap_dir/button.py \&  #RASPAP"
     )
     
     for line in "${lines[@]}"; do
@@ -204,6 +204,14 @@ function default_configuration() {
             echo "Adding line $line"
         fi
     done
+}
+
+# Set up configuration for the reset function
+function configuration_for_reset() {
+    install_log "Setting up configuration for the reset function"
+    sudo echo "webroot_dir = $webroot_dir" >> /etc/raspap/hostapd/reset.ini || install_error "Unable to write to reset configuration file"
+    sudo echo "user_reset_files = 0" >> /etc/raspap/hostapd/reset.ini || install_error "Unable to write to reset configuration file"
+    sudo echo "user_files_saved = 0" >> /etc/raspap/hostapd/reset.ini || install_error "Unable to write to reset configuration file"
 }
 
 
@@ -294,6 +302,8 @@ function install_raspap() {
     create_reset_scripts
     move_config_file
     default_configuration
+    configuration_for_reset
+    sudo_add
     patch_system_files
     install_complete
 }

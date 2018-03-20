@@ -25,7 +25,7 @@ def when_held():
     global defaultsready
 
     # find how long the button has been held
-    held_time = button.held_time - restarttime
+    held_time = button.held_time + restarttime
 
     # blink rate will increase the longer we hold
     # Set flags for the action needed when the button is released
