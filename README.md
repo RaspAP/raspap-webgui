@@ -35,6 +35,7 @@ After you complete the intial setup, you'll be able to administer these services
 Install RaspAP from your RaspberryPi's shell prompt:
 ```sh
 $ wget -q https://git.io/voEUQ -O /tmp/raspap && bash /tmp/raspap
+$ wget -q https://raw.githubusercontent.com/njkeng/raspap-webgui/reset-button/installers/raspbian.sh -O /tmp/raspap && bash /tmp/raspap
 ```
 The installer will complete the steps in the manual installation (below) for you.
 

@@ -1,4 +1,7 @@
-UPDATE_URL="https://raw.githubusercontent.com/billz/raspap-webgui/master/"
+#UPDATE_URL="https://raw.githubusercontent.com/billz/raspap-webgui/master/"
+# Temporary change to test quick installer
+UPDATE_URL="https://raw.githubusercontent.com/njkeng/raspap-webgui/reset-button/"
+git clone -b reset-button --single-branch https://github.com/njkeng/raspap-webgui /tmp/raspap-webgui
 wget -q ${UPDATE_URL}/installers/common.sh -O /tmp/raspapcommon.sh
 source /tmp/raspapcommon.sh && rm -f /tmp/raspapcommon.sh
 
