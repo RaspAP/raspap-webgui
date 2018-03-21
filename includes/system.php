@@ -106,7 +106,7 @@ function DisplaySystem(){
     if (CSRFValidate()) {
       $arrDefaultsConf["user_reset_files"] = "1";
       if ( write_php_ini($arrDefaultsConf,'/etc/raspap/hostapd/reset.ini')) {
-        $status->addMessage('Successfully saved preference for user-daved defaults', 'success');
+        $status->addMessage('Successfully saved preference for user-saved defaults', 'success');
       } else {
         $status->addMessage('Unable to save configuration preferences', 'danger');
       }
