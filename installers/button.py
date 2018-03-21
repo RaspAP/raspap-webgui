@@ -34,7 +34,7 @@ def when_held():
         restartready = True
         shutdownready = False
         defaultsready = False
-        print "Restart time reached"
+        print ("Restart time reached")
 
 
     if held_time > offtime and held_time < defaultstime and not shutdownready:
@@ -42,7 +42,7 @@ def when_held():
         restartready = False
         shutdownready = True
         defaultsready = False
-        print "Shutdown time reached"
+        print ("Shutdown time reached")
 
 
     if held_time > defaultstime and not defaultsready:
@@ -50,7 +50,7 @@ def when_held():
         restartready = False
         shutdownready = False
         defaultsready = True
-        print "Restore defaults time reached"
+        print ("Restore defaults time reached")
 
 
 def when_released():
@@ -61,20 +61,20 @@ def when_released():
     led.on()
 
     if restartready:
-        print "System restarting"
+        print ("System restarting")
         os.system("sudo reboot")
 
     if shutdownready:
-        print "System powering down"
+        print ("System powering down")
         os.system("sudo poweroff")
 
     if defaultsready:
-        print "System restoring RaspAP defaults"
+        print ("System restoring RaspAP defaults")
         os.system("sudo bash " + scriptlocation)
         os.system("sudo reboot")
 
     # Clear flags if the button was released early
-    print "Button released before any action was needed"
+    print ("Button released before any action was needed")
     restartready = False
     shutdownready = False
     defaultsready = False
@@ -87,6 +87,6 @@ button = Button(buttonGPIO, hold_time=restarttime, hold_repeat=True)
 button.when_held = when_held
 button.when_released = when_released
 
-print "Waiting for a button press"
+print ("Waiting for a button press")
 
 pause()

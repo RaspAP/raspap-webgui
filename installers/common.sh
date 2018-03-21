@@ -209,7 +209,7 @@ function default_configuration() {
     lines=(
     'echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP'
     'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
-    '$raspap_dir/button.py \&  #RASPAP'
+    "python3 $raspap_dir/hostapd/button.py \&  #RASPAP"
     )
     
     for line in "${lines[@]}"; do
