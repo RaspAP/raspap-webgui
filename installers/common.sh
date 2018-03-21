@@ -176,8 +176,21 @@ function move_config_file() {
 
     install_log "Moving configuration file to '$raspap_dir'"
     sudo mv "$webroot_dir"/raspap.php "$raspap_dir" || install_error "Unable to move files to '$raspap_dir'"
+}
+
+# Set up configuration for the reset function
+function configuration_for_reset() {
+    install_log "Setting up configuration for the reset function"
+    sudo echo "webroot_dir = $webroot_dir" >> /tmp/reset.ini || install_error "Unable to write to reset configuration file"
+    sudo echo "user_reset_files = 0" >> /tmp/reset.ini || install_error "Unable to write to reset configuration file"
+    sudo echo "user_files_saved = 0" >> /tmp/reset.ini || install_error "Unable to write to reset configuration file"
+}
+
+# Set permissions for all RaspAP directories and folders
+function set_permissions() {
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
 }
+
 
 # Set up default configuration
 function default_configuration() {
@@ -202,20 +215,11 @@ function default_configuration() {
         if grep "$line" /etc/rc.local > /dev/null; then
             echo "$line: Line already added"
         else
-            sudo sed -i "s?^exit 0$?$line\nexit 0?" /etc/rc.local
+            sudo sed -i "s~^exit 0$~$line\nexit 0~" /etc/rc.local
             echo "Adding line $line"
         fi
     done
 }
-
-# Set up configuration for the reset function
-function configuration_for_reset() {
-    install_log "Setting up configuration for the reset function"
-    sudo echo "webroot_dir = $webroot_dir" >> /etc/raspap/hostapd/reset.ini || install_error "Unable to write to reset configuration file"
-    sudo echo "user_reset_files = 0" >> /etc/raspap/hostapd/reset.ini || install_error "Unable to write to reset configuration file"
-    sudo echo "user_files_saved = 0" >> /etc/raspap/hostapd/reset.ini || install_error "Unable to write to reset configuration file"
-}
-
 
 # Add a single entry to the sudoers file
 function sudo_add() {
@@ -303,8 +307,9 @@ function install_raspap() {
     create_logging_scripts
     create_reset_scripts
     move_config_file
-    default_configuration
     configuration_for_reset
+    set_permissions
+    default_configuration
     sudo_add
     patch_system_files
     install_complete
