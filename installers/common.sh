@@ -203,6 +203,15 @@ function default_configuration() {
     sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to copy hostapd configuration file"
     sudo cp $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to copy dnsmasq configuration file"
     sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to copy dhcpcd configuration file"
+    if [ -f /etc/wpa_supplicant/wpa_supplicant.conf ]; then
+        sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $webroot_dir/config/wpa_supplicant.conf || install_error "Unable to copy original wpa_supplicant configuration"
+    fi
+    if [ -f /etc/wpa_supplicant/wpa_supplicant_wlan0.conf ]; then
+        sudo cp /etc/wpa_supplicant/wpa_supplicant_wlan0.conf $webroot_dir/config/wpa_supplicant_wlan0.conf || install_error "Unable to copy original wpa_supplicant_wlan0 configuration"
+    fi
+    if [ -f /etc/wpa_supplicant/wpa_supplicant_wlan1.conf ]; then
+        sudo cp /etc/wpa_supplicant/wpa_supplicant_wlan1.conf $webroot_dir/config/wpa_supplicant_wlan1.conf || install_error "Unable to copy original wpa_supplicant_wlan1 configuration"
+    fi
 
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script

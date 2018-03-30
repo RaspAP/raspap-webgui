@@ -9,21 +9,18 @@ function reset_default_configuration() {
 	    sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf
 	    sudo cp $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf
 	    sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf
-	    sudo rm /etc/wpa_supplicant/wpa_supplicant.conf
-	    sudo rm /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
-	    sudo rm /etc/wpa_supplicant/wpa_supplicant-wlan1.conf
+	    sudo cp $webroot_dir/config/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+	    sudo cp $webroot_dir/config/wpa_supplicant_wlan0.conf /etc/wpa_supplicant/wpa_supplicant_wlan0.conf
+	    sudo cp $webroot_dir/config/wpa_supplicant_wlan1.conf /etc/wpa_supplicant/wpa_supplicant_wlan1.conf
 	    sudo rm /etc/raspap/raspap.auth
 	else
 	    sudo cp $webroot_dir/config/user_hostapd.conf /etc/hostapd/hostapd.conf
 	    sudo cp $webroot_dir/config/user_dnsmasq.conf /etc/dnsmasq.conf
 	    sudo cp $webroot_dir/config/user_dhcpcd.conf /etc/dhcpcd.conf
-	    sudo rm /etc/wpa_supplicant/wpa_supplicant.conf
-	    sudo rm /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
-	    sudo rm /etc/wpa_supplicant/wpa_supplicant-wlan1.conf
 	    sudo cp $webroot_dir/config/user_wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
-	    sudo cp $webroot_dir/config/user_wpa_supplicant-wlan0.conf /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
-	    sudo cp $webroot_dir/config/user_wpa_supplicant-wlan1.conf /etc/wpa_supplicant/wpa_supplicant-wlan1.conf
-	    sudo rm /etc/raspap/raspap.auth
+	    sudo cp $webroot_dir/config/user_wpa_supplicant_wlan0.conf /etc/wpa_supplicant/wpa_supplicant_wlan0.conf
+	    sudo cp $webroot_dir/config/user_wpa_supplicant_wlan1.conf /etc/wpa_supplicant/wpa_supplicant_wlan1.conf
+		sudo rm /etc/raspap/raspap.auth
 	    sudo cp $webroot_dir/config/user_raspap.auth /etc/raspap/raspap.auth
 	fi
 }
