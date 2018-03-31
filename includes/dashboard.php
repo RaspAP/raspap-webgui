@@ -51,26 +51,37 @@ function DisplayDashboard(){
   $strFrequency = $result[1];
 
   if(strpos( $strWlan0, "UP" ) !== false) {
-    $status->addMessage('Interface is up', 'success');
     $wlan0up = true;
-  } else {
-    $status->addMessage('Interface is down', 'warning');
   }
 
-  if( isset($_POST['ifdown_wlan0']) ) {
-    exec( 'ifconfig ' . RASPI_WIFI_CLIENT_INTERFACE . ' | grep -i running | wc -l',$test );
-    if($test[0] == 1) {
+  if( $wlan0up ) {
+    if( isset($_POST['ifdown_wlan0']) ) {
       exec( 'sudo ip link set ' . RASPI_WIFI_CLIENT_INTERFACE . ' down',$return );
+      $status->addMessage('Stopping the interface. Wait for the page to refresh', 'warning');
+      ?>
+        <script type="text/JavaScript">
+          setTimeout("location.href = 'index.php?page=wlan0_info';",2000);
+        </script>
+      <?php
+    } elseif( isset($_POST['ifup_wlan0']) ) {
+      $status->addMessage('Interface is already up', 'warning');
     } else {
-      echo 'Interface already down';
+      $status->addMessage('Interface is up', 'success');
     }
-  } elseif( isset($_POST['ifup_wlan0']) ) {
-    exec( 'ifconfig ' . RASPI_WIFI_CLIENT_INTERFACE . ' | grep -i running | wc -l',$test );
-    if($test[0] == 0) {
+  } else {
+    if( isset($_POST['ifup_wlan0']) ) {
       exec( 'sudo ip link set ' . RASPI_WIFI_CLIENT_INTERFACE . ' up',$return );
       exec( 'sudo ip -s a f label ' . RASPI_WIFI_CLIENT_INTERFACE,$return);
+      $status->addMessage('Starting the interface. Wait for the page to refresh', 'warning');
+      ?>
+        <script type="text/JavaScript">
+          setTimeout("location.href = 'index.php?page=wlan0_info';",2000);
+        </script>
+      <?php
+    } elseif( isset($_POST['ifdown_wlan0']) ) {
+      $status->addMessage('Interface is already down', 'warning');
     } else {
-      echo 'Interface already up';
+      $status->addMessage('Interface is down', 'warning');
     }
   }
   ?>
@@ -131,7 +142,7 @@ function DisplayDashboard(){
                 echo '<input type="submit" class="btn btn-warning" value="Stop ' . RASPI_WIFI_CLIENT_INTERFACE . '" name="ifdown_wlan0" />';
               }
               ?>
-              <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
+                <a href="index.php?page=wlan0_info" class="btn btn-outline btn-primary" id="btnSummaryRefresh"><i class="fa fa-refresh"></i> Refresh</a>
               </form>
             </div>
               </div>
