@@ -96,7 +96,7 @@ function DisplaySystem(){
         $status->addMessage('Unable to save configuration preferences', 'danger');
       }
     } else {
-        $status->addMessage('Unable to save configuration preferences', 'danger');
+      $status->addMessage('Unable to save configuration preferences', 'danger');
       error_log('CSRF violation');
     }
   }
@@ -241,109 +241,120 @@ function DisplaySystem(){
 
 function SaveUserSettings($status) {
 
-  $success = True;
+  $fail = False;
 
   #  WiFi hotspot
-  if (! shell_exec("sudo cp /etc/hostapd/hostapd.conf config/user_hostapd.conf")) {
-    $status->addMessage('Successfully saved WiFI hotspot configuration', 'success');
+  exec( 'cp /etc/hostapd/hostapd.conf config/user_hostapd.conf', $output, $return );
+  if ($return) {
+    $status->addMessage('Unable to save WiFi hotspot configuration', 'danger');
+    $fail = True;
   } else {
-    $status->addMessage('Unable to save WiFI hotspot configuration', 'danger');
-    $success = False;
+    $status->addMessage('Successfully saved WiFi hotspot configuration', 'success');
   }
 
   # DHCP server
-  if (! shell_exec("sudo cp /etc/dnsmasq.conf config/user_dnsmasq.conf")) {
-    $status->addMessage('Successfully saved DHCP server configuration', 'success');
-  } else {
+  exec( 'cp /etc/dnsmasq.conf config/user_dnsmasq.conf', $output, $return );
+  if ($return) {
     $status->addMessage('Unable to save DHCP server configuration', 'danger');
-    $success = False;
+    $fail = True;
+  } else {
+    $status->addMessage('Successfully saved DHCP server configuration', 'success');
   }
 
   # DHCP client
-  if (! shell_exec("sudo cp /etc/dhcpcd.conf config/user_dhcpcd.conf")) {
-    $status->addMessage('Successfully saved Networking configuration', 'success');
-  } else {
+  exec( 'cp /etc/dhcpcd.conf config/user_dhcpcd.conf', $output, $return );
+  if ($return) {
     $status->addMessage('Unable to save Networking configuration', 'danger');
-    $success = False;
+    $fail = True;
+  } else {
+    $status->addMessage('Successfully saved Networking configuration', 'success');
   }
 
   # Update wifi client configuration
   if (file_exists('/etc/wpa_supplicant/wpa_supplicant.conf')) {
-    if (! shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplicant.conf config/user_wpa_supplicant.conf")) {
-      $status->addMessage('Successfully saved WiFi client configuration', 'success');
-    } else {
+    exec( 'sudo cat /etc/wpa_supplicant/wpa_supplicant.conf > config/user_wpa_supplicant.conf', $output, $return );  
+    if ($return) {
       $status->addMessage('Unable to save WiFi client configuration', 'warning');
-      $success = False;
+      $fail = True;
+    } else {
+      $status->addMessage('Successfully saved WiFi client configuration', 'success');
     }
   } else {
     if (file_exists('config/user_wpa_supplicant.conf')) {
-      if (! shell_exec("sudo rm config/user_wpa_supplicant.conf")) {
-        $status->addMessage('Successfully removed old WiFi client configuration', 'success');
-      } else {
+      exec( 'rm config/user_wpa_supplicant.conf', $output, $return );
+      if ($return) {
         $status->addMessage('Unable to remove old WiFi client configuration', 'warning');
-        $success = False;
+        $fail = True;
+      } else {
+        $status->addMessage('Successfully removed old WiFi client configuration', 'success');
       }
     }
   }
 
   # Update wlan0 wifi client configuration
   if (file_exists('/etc/wpa_supplicant/wpa_supplicant-wlan0.conf')) {
-    if (! shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplican-wlan0t.conf config/user_wpa_supplicant-wlan0.conf")) {
-      $status->addMessage('Successfully saved wlan0 WiFi client configuration', 'success');
-    } else {
+    exec( 'sudo cat /etc/wpa_supplicant/wpa_supplicant-wlan0.conf > config/user_wpa_supplicant-wlan0.conf', $output, $return );
+    if ($return) {
       $status->addMessage('Unable to save wlan0 WiFi client configuration', 'warning');
-      $success = False;
+      $fail = True;
+    } else {
+      $status->addMessage('Successfully saved wlan0 WiFi client configuration', 'success');
     }
   } else {
     if (file_exists('config/user_wpa_supplicant-wlan0.conf')) {
-      if (! shell_exec("sudo rm config/user_wpa_supplicant-wlan0.conf")) {
-        $status->addMessage('Successfully removed old wlan0 WiFi client configuration', 'success');
-      } else {
+      exec( 'rm config/user_wpa_supplicant-wlan0.conf', $output, $return );
+      if ($return) {
         $status->addMessage('Unable to remove old wlan0 WiFi client configuration', 'warning');
-        $success = False;
+        $fail = True;
+      } else {
+        $status->addMessage('Successfully removed old wlan0 WiFi client configuration', 'success');
       }
     }
   }
 
   # Update wlan1 wifi client configuration
   if (file_exists('/etc/wpa_supplicant/wpa_supplicant-wlan1.conf')) {
-    if (! shell_exec("sudo cp /etc/wpa_supplicant/wpa_supplican-wlan1t.conf config/user_wpa_supplicant-wlan1.conf")) {
-      $status->addMessage('Successfully saved wlan1 WiFi client configuration', 'success');
-    } else {
+    exec( 'sudo cat /etc/wpa_supplicant/wpa_supplicant-wlan1.conf > config/user_wpa_supplicant-wlan1.conf', $output, $return );
+    if ($return) {
       $status->addMessage('Unable to save wlan1 WiFi client configuration', 'warning');
-      $success = False;
+      $fail = True;
+    } else {
+      $status->addMessage('Successfully saved wlan1 WiFi client configuration', 'success');
     }
   } else {
     if (file_exists('config/user_wpa_supplicant-wlan1.conf')) {
-      if (! shell_exec("sudo rm config/user_wpa_supplicant-wlan1.conf")) {
-        $status->addMessage('Successfully removed old wlan1 WiFi client configuration', 'success');
-      } else {
+      exec( 'rm config/user_wpa_supplicant-wlan1.conf', $output, $return );
+      if ($return) {
         $status->addMessage('Unable to remove old wlan1 WiFi client configuration', 'warning');
-        $success = False;
+        $fail = True;
+      } else {
+        $status->addMessage('Successfully removed old wlan1 WiFi client configuration', 'success');
       }
     }
   }
 
   # Update RaspAP authentication configuration
   if (file_exists('/etc/raspap/raspap.auth')) {
-    if (! shell_exec("sudo cp /etc/raspap/raspap.auth config/user_raspap.auth")) {
-      $status->addMessage('Successfully saved RaspAP authentication configuration', 'success');
-    } else {
+    exec( 'cp /etc/raspap/raspap.auth config/user_raspap.auth', $output, $return );
+    if ($return) {
       $status->addMessage('Unable to save RaspAP authentication configuration', 'warning');
-      $success = False;
+      $fail = True;
+    } else {
+      $status->addMessage('Successfully saved RaspAP authentication configuration', 'success');
     }
   } else {
     if (file_exists('config/user_raspap.auth')) {
-      if (! shell_exec("sudo rm config/user_raspap.auth")) {
-        $status->addMessage('Successfully removed old RaspAP authentication configuration', 'success');
-      } else {
+      exec( 'rm config/user_raspap.auth', $output, $return );
+      if ($return) {
         $status->addMessage('Unable to remove old RaspAP authentication configuration', 'warning');
-        $success = False;
+        $fail = True;
+      } else {
+        $status->addMessage('Successfully removed old RaspAP authentication configuration', 'success');
       }
     }
   }
 
-  return $success;
+  return $fail;
 }
 
 ?>
