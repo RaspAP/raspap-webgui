@@ -124,7 +124,7 @@ function download_latest_files() {
     fi
 
     install_log "Cloning latest files from github"
-    git clone https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
+    git clone --depth 1 https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
 }
 
