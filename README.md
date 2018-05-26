@@ -139,6 +139,7 @@ Please note that these are only UI's for now. If there's enough interest I'll co
 ## Support us
 
 If you find RaspAP useful for your personal or commerical projects, please consider buying the founders a beer!
+
 [![Beerpay](https://beerpay.io/billz/raspap-webgui/badge.svg?style=beer-square)](https://beerpay.io/billz/raspap-webgui) 
 
 ## License
