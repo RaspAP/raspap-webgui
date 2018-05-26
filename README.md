@@ -2,7 +2,7 @@
 # `$ raspap-webgui` [![Release 1.3.1](https://img.shields.io/badge/Release-1.3.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi)
 A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
-This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme. Since then, the project has evolved to include greater control over many aspects of a networked RPi, better security, authentication, a Quick Installer, support for themes and more. RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [HowTo RaspberryPi](https://howtoraspberrypi.com/create-a-wi-fi-hotspot-in-less-than-10-minutes-with-pi-raspberry/) and implemented in countless projects.
+This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme. Since then, the project has evolved to include greater control over many aspects of a networked RPi, better security, authentication, a Quick Installer, support for themes and more. RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
 
 We'd be curious to hear about how you use this with your own RPi-powered projects. Until then, here are some screenshots:
 
@@ -18,6 +18,7 @@ We'd be curious to hear about how you use this with your own RPi-powered project
  - [Manual installation](#manual-installation)
  - [Optional services](#optional-services)
  - [How to contribute](#how-to-contribute)
+ - [Support us](#support-us)
  - [License](#license)
 
 ## Prerequisites
@@ -134,6 +135,11 @@ Please note that these are only UI's for now. If there's enough interest I'll co
 3. Commit your changes in that branch.
 4. Open a pull request, and reference the initial issue in the pull request
    message.
+
+## Support us
+
+If you find RaspAP useful for your personal or commerical projects, please consider buying the founders a beer!
+[![Beerpay](https://beerpay.io/billz/raspap-webgui/badge.svg?style=beer-square)](https://beerpay.io/billz/raspap-webgui) 
 
 ## License
 See the [LICENSE](./LICENSE) file.
