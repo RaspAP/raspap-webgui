@@ -126,7 +126,7 @@ $theme_url = 'dist/css/' . $theme;
               <?php endif; ?>
               <?php if ( RASPI_NETWORK_ENABLED ) : ?>
               <li>
-	        <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></a>
+	             <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></a>
               </li> 
               <?php endif; ?>
               <?php if ( RASPI_DHCP_ENABLED ) : ?>
@@ -155,7 +155,7 @@ $theme_url = 'dist/css/' . $theme;
               </li>
               <?php endif; ?>
               <li>
-                 <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
+                <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
               </li>
             </ul>
           </div><!-- /.navbar-collapse -->
