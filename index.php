@@ -13,7 +13,7 @@
  * @author     Lawrence Yau <sirlagz@gmail.com>
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
  * @license    GNU General Public License, version 3 (GPL-3.0)
- * @version    1.3.0
+ * @version    1.3.1
  * @link       https://github.com/billz/raspap-webgui
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
@@ -105,7 +105,7 @@ $theme_url = 'dist/css/' . $theme;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php"><?php echo _("RaspAP Wifi Portal v1.3.1"); ?></a>
+	  <a class="navbar-brand" href="index.php"><?php echo _("RaspAP Wifi Portal"); ?> v<?php echo RASPI_VERSION; ?></a>
         </div>
         <!-- /.navbar-header -->
 
@@ -126,7 +126,7 @@ $theme_url = 'dist/css/' . $theme;
               <?php endif; ?>
               <?php if ( RASPI_NETWORK_ENABLED ) : ?>
               <li>
-                <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> Configure Networking</a>
+	        <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></a>
               </li> 
               <?php endif; ?>
               <?php if ( RASPI_DHCP_ENABLED ) : ?>
