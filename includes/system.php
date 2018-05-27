@@ -74,7 +74,7 @@ function DisplaySystem(){
 
   // cpu load
   $cores   = exec("grep -c ^processor /proc/cpuinfo");
-        $loadavg = exec("awk '{print $1}' /proc/loadavg");
+  $loadavg = exec("awk '{print $1}' /proc/loadavg");
   $cpuload = floor(($loadavg * 100) / $cores);
   if     ($cpuload > 90) { $cpuload_status = "danger";  }
   elseif ($cpuload > 75) { $cpuload_status = "warning"; }
@@ -84,16 +84,16 @@ function DisplaySystem(){
   <div class="row">
   <div class="col-lg-12">
   <div class="panel panel-primary">
-  <div class="panel-heading"><i class="fa fa-cube fa-fw"></i> System</div>
+  <div class="panel-heading"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></div>
   <div class="panel-body">
 
     <?php
     if (isset($_POST['system_reboot'])) {
-      echo '<div class="alert alert-warning">System Rebooting Now!</div>';
+      echo '<div class="alert alert-warning">' . _("System Rebooting Now!") . '</div>';
       $result = shell_exec("sudo /sbin/reboot");
     }
     if (isset($_POST['system_shutdown'])) {
-      echo '<div class="alert alert-warning">System Shutting Down Now!</div>';
+      echo '<div class="alert alert-warning">' . _("System Shutting Down Now!") . '</div>';
       $result = shell_exec("sudo /sbin/shutdown -h now");
     }
     ?>
@@ -103,19 +103,19 @@ function DisplaySystem(){
     <div class="panel panel-default">
     <div class="panel-body">
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active systemtab"><a href="#system" aria-controls="system" role="tab" data-toggle="tab">System</a></li>
-        <li role="presentation" class="consoletab"><a href="#console" aria-controls="console" role="tab" data-toggle="tab">Console</a></li>
+        <li role="presentation" class="active systemtab"><a href="#system" aria-controls="system" role="tab" data-toggle="tab"><?php echo _("System"); ?></a></li>
+        <li role="presentation" class="consoletab"><a href="#console" aria-controls="console" role="tab" data-toggle="tab"><?php echo _("Console"); ?></a></li>
     </ul>
 
     <div class="systemtabcontent tab-content">
         <div role="tabpanel" class="tab-pane active" id="system">
             <div class="row">
                 <div class="col-lg-6">
-                        <h4>System Information</h4>
-                        <div class="info-item">Hostname</div> <?php echo $hostname ?></br>
-                        <div class="info-item">Pi Revision</div> <?php echo RPiVersion() ?></br>
-                        <div class="info-item">Uptime</div>   <?php echo $uptime ?></br></br>
-                        <div class="info-item">Memory Used</div>
+                        <h4><?php echo _("System Information"); ?></h4>
+                        <div class="info-item"><?php echo _("Hostname"); ?></div> <?php echo $hostname ?></br>
+                        <div class="info-item"><?php echo _("Pi Revision"); ?></div> <?php echo RPiVersion() ?></br>
+                        <div class="info-item"><?php echo _("Uptime"); ?></div>   <?php echo $uptime ?></br></br>
+                        <div class="info-item"><?php echo _("Memory Used"); ?></div>
                         <div class="progress">
                         <div class="progress-bar progress-bar-<?php echo $memused_status ?> progress-bar-striped active"
                         role="progressbar"
@@ -123,7 +123,7 @@ function DisplaySystem(){
                         style="width: <?php echo $memused ?>%;"><?php echo $memused ?>%
                         </div>
                         </div>
-                        <div class="info-item">CPU Load</div>
+                        <div class="info-item"><?php echo _("CPU Load"); ?></div>
                         <div class="progress">
                         <div class="progress-bar progress-bar-<?php echo $cpuload_status ?> progress-bar-striped active"
                         role="progressbar"
@@ -133,16 +133,20 @@ function DisplaySystem(){
                         </div>
 
                         <form action="?page=system_info" method="POST">
-                        <input type="submit" class="btn btn-warning" name="system_reboot"   value="Reboot" />
-                        <input type="submit" class="btn btn-warning" name="system_shutdown" value="Shutdown" />
-                        <input type="button" class="btn btn-outline btn-primary" value="Refresh" onclick="document.location.reload(true)" />
+                        <input type="submit" class="btn btn-warning" name="system_reboot"   value="<?php echo _("Reboot"); ?>" />
+                        <input type="submit" class="btn btn-warning" name="system_shutdown" value="<?php echo _("Shutdown"); ?>" />
+                        <input type="button" class="btn btn-outline btn-primary" value="<?php echo _("Refresh"); ?>" onclick="document.location.reload(true)" />
                         </form>
                 </div>
             </div>
         </div>
-      <div role="tabpanel" class="tab-pane" id="console">
-      <iframe src="includes/webconsole.php" class="webconsole"></iframe>
-      </div>
+        <div role="tabpanel" class="tab-pane" id="console">
+            <div class="row">                                                                                                                                                             
+                <div class="col-lg-12"> 
+                    <iframe src="includes/webconsole.php" class="webconsole"></iframe>
+                </div>
+            </div>
+       </div>
 
 
 

@@ -1,5 +1,6 @@
 <?php
 
+define('RASPI_VERSION', '1.3.1');
 define('RASPI_CONFIG', '/etc/raspap');
 define('RASPI_CONFIG_NETWORKING',RASPI_CONFIG.'/networking');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
@@ -25,5 +26,9 @@ define('RASPI_OPENVPN_ENABLED', false );
 define('RASPI_TORPROXY_ENABLED', false );
 define('RASPI_CONFAUTH_ENABLED', true );
 define('RASPI_CHANGETHEME_ENABLED', true );
+
+// Locale settings
+define('LOCALE_ROOT', 'locale');
+define('LOCALE_DOMAIN', 'messages'); 
 
 ?>

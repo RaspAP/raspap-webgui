@@ -38,36 +38,36 @@ function DisplayAuthConfig($username, $password){
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-primary">
-        <div class="panel-heading"><i class="fa fa-lock fa-fw"></i>Configure Auth</div>
+        <div class="panel-heading"><i class="fa fa-lock fa-fw"></i><?php echo _("Configure Auth"); ?></div>
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
           <form role="form" action="?page=auth_conf" method="POST">
             <?php CSRFToken() ?>
             <div class="row">
               <div class="form-group col-md-4">
-                <label for="username">Username</label>
+                <label for="username"><?php echo _("Username"); ?></label>
                 <input type="text" class="form-control" name="username" value="<?php echo $username; ?>"/>
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-4">
-                <label for="password">Old password</label>
+                <label for="password"><?php echo _("Old password"); ?></label>
                 <input type="password" class="form-control" name="oldpass"/>
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-4">
-                <label for="password">New password</label>
+                <label for="password"><?php echo _("New password"); ?></label>
                 <input type="password" class="form-control" name="newpass"/>
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-4">
-                <label for="password">Repeat new password</label>
+                <label for="password"><?php echo _("Repeat new password"); ?></label>
                 <input type="password" class="form-control" name="newpassagain"/>
               </div>
             </div>
-            <input type="submit" class="btn btn-outline btn-primary" name="UpdateAdminPassword" value="Save settings" />
+            <input type="submit" class="btn btn-outline btn-primary" name="UpdateAdminPassword" value="<?php echo _("Save settings"); ?>" />
           </form>
         </div><!-- /.panel-body -->
       </div><!-- /.panel-default -->

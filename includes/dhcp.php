@@ -98,16 +98,15 @@ function DisplayDHCPConfig() {
   <div class="row">
   <div class="col-lg-12">
       <div class="panel panel-primary">
-      <div class="panel-heading"><i class="fa fa-exchange fa-fw"></i> Configure DHCP
-            </div>
+      <div class="panel-heading"><i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP"); ?></div>
         <!-- /.panel-heading -->
         <div class="panel-body">
         <p><?php $status->showMessages(); ?></p>
         <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#server-settings" data-toggle="tab">Server settings</a>
+                <li class="active"><a href="#server-settings" data-toggle="tab"><?php echo _("Server settings"); ?></a>
                 </li>
-                <li><a href="#client-list" data-toggle="tab">Client list</a>
+                <li><a href="#client-list" data-toggle="tab"><?php echo _("Client list"); ?></a>
                 </li>
             </ul>
         <!-- Tab panes -->
@@ -136,36 +135,36 @@ function DisplayDHCPConfig() {
     </div>
     <div class="row">
       <div class="form-group col-md-4">
-        <label for="code">Starting IP Address</label>
+        <label for="code"><?php echo _("Starting IP Address"); ?></label>
         <input type="text" class="form-control"name="RangeStart" value="<?php echo $RangeStart; ?>" />
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-md-4">
-        <label for="code">Ending IP Address</label>
+        <label for="code"><?php echo _("Ending IP Address"); ?></label>
         <input type="text" class="form-control" name="RangeEnd" value="<?php echo $RangeEnd; ?>" />
       </div>
     </div>
 
     <div class="row">
-      <div class="form-group col-xs-4 col-sm-2">
-        <label for="code">Lease Time</label>
+      <div class="form-group col-xs-2 col-sm-2">
+        <label for="code"><?php echo _("Lease Time"); ?></label>
         <input type="text" class="form-control" name="RangeLeaseTime" value="<?php echo $arrRangeLeaseTime[1]; ?>" />
       </div>
-      <div class="col-xs-4 col-sm-2">
-        <label for="code">Interval</label>
+      <div class="col-xs-2 col-sm-2">
+        <label for="code"><?php echo _("Interval"); ?></label>
         <select name="RangeLeaseTimeUnits" class="form-control" ><option value="m" <?php echo $mselected; ?>>Minute(s)</option><option value="h" <?php echo $hselected; ?>>Hour(s)</option><option value="d" <?php echo $dselected; ?>>Day(s)</option><option value="infinite">Infinite</option></select> 
       </div>
     </div>
 
-    <input type="submit" class="btn btn-outline btn-primary" value="Save settings" name="savedhcpdsettings" />
+    <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
     <?php
 
     if ( $dnsmasq_state ) {
-      echo '<input type="submit" class="btn btn-warning" value="Stop dnsmasq" name="stopdhcpd" />';
+      echo '<input type="submit" class="btn btn-warning" value="' . _("Stop dnsmasq") . '" name="stopdhcpd" />';
     } else {
-      echo'<input type="submit" class="btn btn-success" value="Start dnsmasq" name="startdhcpd" />';
+      echo'<input type="submit" class="btn btn-success" value="' .  _("Start dnsmasq") . '" name="startdhcpd" />';
     }
     ?>
     </form>
@@ -175,20 +174,18 @@ function DisplayDHCPConfig() {
     <h4>Client list</h4>
     <div class="col-lg-12">
       <div class="panel panel-default">
-      <div class="panel-heading">
-        Active DHCP leases
-      </div>
+      <div class="panel-heading"><?php echo _("Active DHCP leases"); ?></div>
       <!-- /.panel-heading -->
       <div class="panel-body">
         <div class="table-responsive">
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>Expire time</th>
-                <th>MAC Address</th>
-                <th>IP Address</th>
-                <th>Host name</th>
-                <th>Client ID</th>
+                <th><?php echo _("Expire time"); ?></th>
+                <th><?php echo _("MAC Address"); ?></th>
+                <th><?php echo _("IP Address"); ?></th>
+                <th><?php echo _("Host name"); ?></th>
+                <th><?php echo _("Client ID"); ?></th>
               </tr>
             </thead>
             <tbody>
@@ -213,7 +210,7 @@ function DisplayDHCPConfig() {
     </div><!-- /.tab-pane -->
     </div><!-- /.tab-content -->
     </div><!-- ./ Panel body -->
-    <div class="panel-footer"> Information provided by Dnsmasq</div>
+    <div class="panel-footer"> <?php echo _("Information provided by Dnsmasq");?></div>
         </div><!-- /.panel-primary -->
     </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->

@@ -112,14 +112,14 @@ function DisplayWPAConfig(){
             $status->addMessage('Wifi settings updated successfully', 'success');
             $networks = $tmp_networks;
           } else {
-            $status->addMessage('Wifi settings updated but cannot restart (cannon execute "wpa_cli reconfigure")', 'danger');
+            $status->addMessage('Wifi settings updated but cannot restart (cannot execute "wpa_cli reconfigure")', 'danger');
           }
         } else {
           $status->addMessage('Wifi settings failed to be updated', 'danger');
         }
       }
     } else {
-      $status->addMessage('Failed to updated wifi settings', 'danger');
+      $status->addMessage('Failed to update wifi settings', 'danger');
     }
   }
 
@@ -159,24 +159,24 @@ function DisplayWPAConfig(){
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-primary">           
-        <div class="panel-heading"><i class="fa fa-signal fa-fw"></i> Configure client</div>
+        <div class="panel-heading"><i class="fa fa-signal fa-fw"></i> <?php echo _("Configure client"); ?></div>
         <!-- /.panel-heading -->
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
-          <h4>Client settings for interface <?php echo RASPI_WIFI_CLIENT_INTERFACE ?></h4>
-          <div class="btn-group btn-block">
-            <a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update">Rescan</a>
-          </div>
+          <h4><?php echo _("Client settings"); ?></h4>
+	        <div class="btn-group btn-block">
+	          <a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update"><?php echo _("Rescan"); ?></a>
+	        </div>
           <form method="POST" action="?page=wpa_conf" name="wpa_conf_form">
             <?php CSRFToken() ?>
             <input type="hidden" name="client_settings" ?>
             <table class="table table-responsive table-striped">
               <tr>
                 <th></th>
-                <th>SSID</th>
-                <th>Channel</th>
-                <th>Security</th>
-                <th>Passphrase</th>
+                <th><?php echo _("SSID"); ?></th>
+                <th><?php echo _("Channel"); ?></th>
+                <th><?php echo _("Security"); ?></th>
+                <th><?php echo _("Passphrase"); ?></th>
                 <th></th>
               </tr>
             <?php $index = 0; ?>
@@ -213,11 +213,11 @@ function DisplayWPAConfig(){
                 <td>
                   <div class="btn-group btn-block">
                   <?php if ($network['configured']) { ?>
-                    <input type="submit" class="col-md-6 btn btn-warning" value="Update" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> />
+                    <input type="submit" class="col-md-6 btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> />
                   <?php } else { ?>
-                    <input type="submit" class="col-md-6 btn btn-info" value="Add" id="update<?php echo $index ?>" name="update<?php echo $index ?>" <?php echo ($network['protocol'] === 'Open' ? '' : ' disabled')?> />
+                    <input type="submit" class="col-md-6 btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" <?php echo ($network['protocol'] === 'Open' ? '' : ' disabled')?> />
                   <?php } ?>
-                    <input type="submit" class="col-md-6 btn btn-danger" value="Delete" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> />
+                    <input type="submit" class="col-md-6 btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> />
                   </div>
                 </td>
               </tr>
@@ -226,7 +226,7 @@ function DisplayWPAConfig(){
             </table>
           </form>
         </div><!-- ./ Panel body -->
-        <div class="panel-footer"><strong>Note,</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP.</div>
+        <div class="panel-footer"><?php echo _("<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"); ?></div>
       </div><!-- /.panel-primary -->
     </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->

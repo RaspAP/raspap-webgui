@@ -66,28 +66,28 @@ function DisplayHostAPDConfig(){
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-primary">
-        <div class="panel-heading"><i class="fa fa-dot-circle-o fa-fw"></i> Configure hotspot</div>
+        <div class="panel-heading"><i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?></div>
         <!-- /.panel-heading -->
         <div class="panel-body">
 	  <p><?php $status->showMessages(); ?></p>
           <form role="form" action="?page=hostapd_conf" method="POST">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
-              <li><a href="#security" data-toggle="tab">Security</a></li>
-              <li><a href="#advanced" data-toggle="tab">Advanced</a></li>
-              <li><a href="#logoutput" data-toggle="tab">Logfile Output</a></li>
+              <li class="active"><a href="#basic" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
+              <li><a href="#security" data-toggle="tab"><?php echo _("Security"); ?></a></li>
+              <li><a href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
+              <li><a href="#logoutput" data-toggle="tab"><?php echo _("Logfile output"); ?></a></li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="basic">
 
-                <h4>Basic settings</h4>
+                <h4><?php echo _("Basic settings") ;?></h4>
                 <?php CSRFToken() ?>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code">Interface</label>
+                    <label for="code"><?php echo _("Interface") ;?></label>
                     <?php
                       SelectorOptions('interface', $interfaces, $arrConfig['interface']);
                     ?>
@@ -95,46 +95,46 @@ function DisplayHostAPDConfig(){
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code">SSID</label>
+                    <label for="code"><?php echo _("SSID"); ?></label>
                     <input type="text" class="form-control" name="ssid" value="<?php echo $arrConfig['ssid']; ?>" />
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code">Wireless Mode</label>
+                    <label for="code"><?php echo _("Wireless Mode") ;?></label>
                     <?php SelectorOptions('hw_mode', $arrChannel, $arrConfig['hw_mode']); ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code">Channel</label>
+                    <label for="code"><?php echo _("Channel"); ?></label>
                     <?php SelectorOptions('channel', range(1, 14), intval($arrConfig['channel'])) ?>
                   </div>
                 </div>
               </div>
               <div class="tab-pane fade" id="security">
-                <h4>Security settings</h4>
+                <h4><?php echo _("Security settings"); ?></h4>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code">Security type</label>
+                    <label for="code"><?php echo _("Security type"); ?></label>
                     <?php SelectorOptions('wpa', $arrSecurity, $arrConfig['wpa']); ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code">Encryption Type</label>
+                    <label for="code"><?php echo _("Encryption Type"); ?></label>
                     <?php SelectorOptions('wpa_pairwise', $arrEncType, $arrConfig['wpa_pairwise']); ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code">PSK</label>
+                    <label for="code"><?php echo _("PSK"); ?></label>
                     <input type="text" class="form-control" name="wpa_passphrase" value="<?php echo $arrConfig['wpa_passphrase'] ?>" />
                   </div>
                 </div>
               </div>
               <div class="tab-pane fade" id="logoutput">
-                <h4>Logfile output</h4>
+	      <h4><?php echo _("Logfile output"); ?></h4>
                   <div class="row">
                     <div class="form-group col-md-8">
                       <?php
@@ -149,12 +149,12 @@ function DisplayHostAPDConfig(){
                 </div>
               </div>
               <div class="tab-pane fade" id="advanced">
-                <h4>Advanced settings</h4>
+                <h4><?php echo _("Advanced settings"); ?></h4>
                 <div class="row">
                   <div class="col-md-4">
                   <div class="form-check">
                     <label class="form-check-label">
-                        Enable Logging <?php $checked = ''; if($arrHostapdConf['LogEnable'] == 1) { $checked = 'checked'; } ?>
+			<?php echo _("Enable logging"); ?> <?php $checked = ''; if($arrHostapdConf['LogEnable'] == 1) { $checked = 'checked'; } ?>
                         <input id="logEnable" name ="logEnable" type="checkbox" class="form-check-input" value="1" <?php echo $checked; ?> />
                     </label>
                   </div>
@@ -162,7 +162,7 @@ function DisplayHostAPDConfig(){
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                  <label for="code">Country Code</label>
+                  <label for="code"><?php echo _("Country Code"); ?></label>
                   <input type="hidden" id="selected_country" value="<?php echo $arrConfig['country_code'] ?>">
                   <select  class="form-control"  id="countries" name="country_code">
                     <option value="AF">Afghanistan</option>
@@ -429,17 +429,17 @@ function DisplayHostAPDConfig(){
                 </div>
               </div><!-- /.panel-body -->
             </div><!-- /.panel-primary -->
-            <input type="submit" class="btn btn-outline btn-primary" name="SaveHostAPDSettings" value="Save settings" />
+            <input type="submit" class="btn btn-outline btn-primary" name="SaveHostAPDSettings" value="<?php echo _("Save settings"); ?>" />
             <?php
               if($hostapdstatus[0] == 0) {
-                echo '<input type="submit" class="btn btn-success" name="StartHotspot" value="Start hotspot" />';
+                echo '<input type="submit" class="btn btn-success" name="StartHotspot" value="' . _("Start hotspot") . '"/>';
               } else {
-                echo '<input type="submit" class="btn btn-warning" name="StopHotspot" value="Stop hotspot" />';
+                echo '<input type="submit" class="btn btn-warning" name="StopHotspot" value="' . _("Stop hotspot") . '"/>';
               };
             ?>
           </form>
         </div></div><!-- /.panel-primary -->
-      <div class="panel-footer"> Information provided by hostapd</div>
+      <div class="panel-footer"> <?php echo _("Information provided by hostapd"); ?></div>
     </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
 <?php 
