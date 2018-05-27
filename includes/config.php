@@ -26,4 +26,8 @@ define('RASPI_TORPROXY_ENABLED', false );
 define('RASPI_CONFAUTH_ENABLED', true );
 define('RASPI_CHANGETHEME_ENABLED', true );
 
+// Locale settings
+define('LOCALE_ROOT', 'locale');
+define('LOCALE_DOMAIN', 'messages'); 
+
 ?>
