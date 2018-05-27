@@ -16,6 +16,7 @@ We'd be curious to hear about how you use this with your own RPi-powered project
  - [Prerequisites](#prerequisites)
  - [Quick installer](#quick-installer)
  - [Manual installation](#manual-installation)
+ - [Optional reset button](#optional-reset-button)
  - [Optional services](#optional-services)
  - [How to contribute](#how-to-contribute)
  - [Support us](#support-us)
@@ -114,6 +115,61 @@ sudo reboot
 ```
 
 The default username is 'admin' and the default password is 'secret'.
+
+## Optional reset button
+
+#### About
+The RaspAP software monitors a GPIO pin which can be used to activate several reset functions. When held for different lengths of time, this one pin can activate reboot, power down and factory reset functions.  You can connect a push button to this GPIO pin to make these functions available to the user. RaspAP also drives a GPIO output pin to indicate which function will be activated.  You can wire an LED to this pin so that you can clearly see which function will be activated.  The LED is not necessary to use the reset functions but it is nice to have.
+
+This functionality is included in RaspAP.  All you need to do is add the button and the LED.
+
+#### Reset functions
+
+The following functions can all be accessed by using the reset button
+
+- Reboot.  The Pi will power down and power back up again.
+- Shutdown.  The Pi will shut down.  You need to cycle power to re-start the Pi.
+- Factory reset. See [below](#factory-reset-function) for details about how this works.
+
+#### Function selection
+
+To activate the reset functions, hold the reset button down.  Different hold times select the reset function that will be performed.
+If you have connected an LED, the LED flash timing shows which of the reset functions will be activated when the button is released.  
+
+The reset function hold times and the LED flash codes are:
+
+Reset function | Button held for | Recommended hold time | LED flash rate
+-------------- | --------------- | --------------------- | ---------------
+Device reboot | Between 1sec and 6 sec | 3 seconds | 1 per second (slow)
+Device shutdown | Between 6 sec and 15 sec | 8 seconds | 2 per second (medium)
+Factory reset | Longer than 15 seconds | 20 seconds | 5 per second (fast)
+
+If the button has not been pressed, the LED will simply be ON.  This indicates that RaspAP is operating normally.
+
+Video showing how to use the button to activate the reset modes
+https://youtu.be/7N_r_Cffa58
+
+#### Factory reset function
+
+The factory reset function restores RaspAP settings to a pre-defined state.  Without changing any settings, the factory reset restores the default RaspAP settings, as would be used for a new installation.  
+
+You can configure the factory reset function to use settings that you have saved.  The System -> Defaults menu has functions to set this up.  There is a control that will save the current RaspAP configuration.  You can also select whether the user saved settings or the RaspAP default settings will be used upon factory reset.
+
+#### Adding the button and the LED
+
+The button must be connected so that it shorts the pin GPIO 21 to ground.  There is a ground pin directly adjacent to GPIO21 that will be convenient for most applications. Any normally open button will work.  
+The LED is connected from pin GPIO 20 to ground via a resistor. Using a resistor is **critical**.  Leaving it out will definitely fry the GPIO pin and if you're unlucky it will take out the whole processor too. 330 ohms is a safe value to choose for the resistor.
+
+Fritzing diagram showing which Pi pins to use and which way around the LED needs to be.
+![](https://i.imgur.com/m7pT25C.png)
+
+Photo of a button and LED installed on a Raspberry Pi Zero W.
+![](https://i.imgur.com/X95yb6S.png)
+
+Reference GPIO pinouts
+![](https://pinout.xyz/resources/raspberry-pi-pinout.png)
+Image courtesy of [pinout.xyz](https://pinout.xyz/)
+
 
 ## Optional services
 OpenVPN and TOR are two additional services that run perfectly well on the RPi, and are a nice way to extend the usefulness of your WiFi router. I've started on interfaces to administer these services. Not everyone will need them, so for the moment they are disabled by default. You can enable them by changing these options in `/var/www/html/includes/config.php`:

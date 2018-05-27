@@ -46,7 +46,7 @@ function RPiVersion() {
 *
 */
 function DisplaySystem(){
-
+  $status = new StatusMessages();
   // hostname
   exec("hostname -f", $hostarray);
   $hostname = $hostarray[0];
@@ -80,6 +80,64 @@ function DisplaySystem(){
   elseif ($cpuload > 75) { $cpuload_status = "warning"; }
   elseif ($cpuload >  0) { $cpuload_status = "success"; }
 
+
+  # Check for RasAP defaults or user saved defaults upon system factory reset
+  if ( ! $arrDefaultsConf = parse_ini_file('/etc/raspap/hostapd/reset.ini')) {
+    $status->addMessage('Could not read the configuration file', 'warning');
+  }
+
+  # Write preference for RaspAP defaults to reset.ini
+  if( isset($_POST['select_raspap_defaults']) ) {
+    if (CSRFValidate()) {
+      $arrDefaultsConf["user_reset_files"] = "0";
+      if ( write_php_ini($arrDefaultsConf,'/etc/raspap/hostapd/reset.ini')) {
+        $status->addMessage('Successfully saved preference for RaspAP defaults', 'success');
+      } else {
+        $status->addMessage('Unable to save configuration preferences', 'danger');
+      }
+    } else {
+      $status->addMessage('Unable to save configuration preferences', 'danger');
+      error_log('CSRF violation');
+    }
+  }
+
+  # Write preference for user-saved defaults to reset.ini
+  if( isset($_POST['select_user_defaults']) ) {
+    if (CSRFValidate()) {
+      $arrDefaultsConf["user_reset_files"] = "1";
+      if ( write_php_ini($arrDefaultsConf,'/etc/raspap/hostapd/reset.ini')) {
+        $status->addMessage('Successfully saved preference for user-saved defaults', 'success');
+      } else {
+        $status->addMessage('Unable to save configuration preferences', 'danger');
+      }
+    } else {
+      error_log('CSRF violation');
+    }
+  }
+
+  # Copy current RaspAP settings into user preference files
+  if( isset($_POST['save_user_settings']) ) {
+    if (CSRFValidate()) {
+      SaveUserSettings($status);
+      $arrDefaultsConf["user_files_saved"] = "1";
+      write_php_ini($arrDefaultsConf,'/etc/raspap/hostapd/reset.ini');
+    } else {
+      error_log('CSRF violation');
+    }
+  }
+
+  # Use values from reset.ini for correct display of buttons on "defaults" tab
+  if ( $arrDefaultsConf['user_reset_files'] == "0") {
+    $raspapDefaults = " active";
+    $userDefaults = "";
+  } else {
+    $raspapDefaults = "";
+    $userDefaults = " active";
+  }
+  if ( $arrDefaultsConf['user_files_saved'] == "0") {
+    $disableUserSettings = '  disabled="disabled"';
+  }
+
   ?>
   <div class="row">
   <div class="col-lg-12">
@@ -97,13 +155,14 @@ function DisplaySystem(){
       $result = shell_exec("sudo /sbin/shutdown -h now");
     }
     ?>
-
+    <p><?php $status->showMessages(); ?></p>
     <div class="row">
     <div class="col-md-12">
     <div class="panel panel-default">
     <div class="panel-body">
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active systemtab"><a href="#system" aria-controls="system" role="tab" data-toggle="tab">System</a></li>
+        <li role="presentation" class="systemtab active"><a href="#system" aria-controls="system" role="tab" data-toggle="tab">System</a></li>
+        <li role="presentation" class="defaultstab"><a href="#defaults" aria-controls="defaults" role="tab" data-toggle="tab">Defaults</a></li>
         <li role="presentation" class="consoletab"><a href="#console" aria-controls="console" role="tab" data-toggle="tab">Console</a></li>
     </ul>
 
@@ -140,11 +199,27 @@ function DisplaySystem(){
                 </div>
             </div>
         </div>
+      <div role="tabpanel" class="tab-pane" id="defaults">
+        <div class="row">
+          <div class="col-lg-6">
+            <h4>Source for reset data</h4>
+            <h5>Settings that will be written in if a factory reset is performed</h5>
+            <form action="?page=system_info" method="POST"><?php CSRFToken() ?>
+              <input type="submit" class="btn btn-primary<?php echo $raspapDefaults ?>" name="select_raspap_defaults" value="RaspAP defaults" />
+              <input type="submit" class="btn btn-primary<?php echo $userDefaults ?>"<?php echo $disableUserSettings ?> name="select_user_defaults" value="User settings" />
+            </form>
+            <br>
+            <h4>Save user settings</h4>
+            <h5>Save current settings as user defaults</h5>
+            <form action="?page=system_info" method="POST"><?php CSRFToken() ?>
+              <input type="submit" class="btn btn-success" name="save_user_settings" value="Save" />
+            </form>
+          </div>
+        </div>
+      </div>
       <div role="tabpanel" class="tab-pane" id="console">
       <iframe src="includes/webconsole.php" class="webconsole"></iframe>
       </div>
-
-
 
     </div><!-- /.panel-body -->
     </div><!-- /.panel-default -->
@@ -162,4 +237,124 @@ function DisplaySystem(){
   </div>
   <?php
 }
+
+
+function SaveUserSettings($status) {
+
+  $fail = False;
+
+  #  WiFi hotspot
+  exec( 'cp /etc/hostapd/hostapd.conf config/user_hostapd.conf', $output, $return );
+  if ($return) {
+    $status->addMessage('Unable to save WiFi hotspot configuration', 'danger');
+    $fail = True;
+  } else {
+    $status->addMessage('Successfully saved WiFi hotspot configuration', 'success');
+  }
+
+  # DHCP server
+  exec( 'cp /etc/dnsmasq.conf config/user_dnsmasq.conf', $output, $return );
+  if ($return) {
+    $status->addMessage('Unable to save DHCP server configuration', 'danger');
+    $fail = True;
+  } else {
+    $status->addMessage('Successfully saved DHCP server configuration', 'success');
+  }
+
+  # DHCP client
+  exec( 'cp /etc/dhcpcd.conf config/user_dhcpcd.conf', $output, $return );
+  if ($return) {
+    $status->addMessage('Unable to save Networking configuration', 'danger');
+    $fail = True;
+  } else {
+    $status->addMessage('Successfully saved Networking configuration', 'success');
+  }
+
+  # Update wifi client configuration
+  if (file_exists('/etc/wpa_supplicant/wpa_supplicant.conf')) {
+    exec( 'sudo cat /etc/wpa_supplicant/wpa_supplicant.conf > config/user_wpa_supplicant.conf', $output, $return );  
+    if ($return) {
+      $status->addMessage('Unable to save WiFi client configuration', 'warning');
+      $fail = True;
+    } else {
+      $status->addMessage('Successfully saved WiFi client configuration', 'success');
+    }
+  } else {
+    if (file_exists('config/user_wpa_supplicant.conf')) {
+      exec( 'rm config/user_wpa_supplicant.conf', $output, $return );
+      if ($return) {
+        $status->addMessage('Unable to remove old WiFi client configuration', 'warning');
+        $fail = True;
+      } else {
+        $status->addMessage('Successfully removed old WiFi client configuration', 'success');
+      }
+    }
+  }
+
+  # Update wlan0 wifi client configuration
+  if (file_exists('/etc/wpa_supplicant/wpa_supplicant-wlan0.conf')) {
+    exec( 'sudo cat /etc/wpa_supplicant/wpa_supplicant-wlan0.conf > config/user_wpa_supplicant-wlan0.conf', $output, $return );
+    if ($return) {
+      $status->addMessage('Unable to save wlan0 WiFi client configuration', 'warning');
+      $fail = True;
+    } else {
+      $status->addMessage('Successfully saved wlan0 WiFi client configuration', 'success');
+    }
+  } else {
+    if (file_exists('config/user_wpa_supplicant-wlan0.conf')) {
+      exec( 'rm config/user_wpa_supplicant-wlan0.conf', $output, $return );
+      if ($return) {
+        $status->addMessage('Unable to remove old wlan0 WiFi client configuration', 'warning');
+        $fail = True;
+      } else {
+        $status->addMessage('Successfully removed old wlan0 WiFi client configuration', 'success');
+      }
+    }
+  }
+
+  # Update wlan1 wifi client configuration
+  if (file_exists('/etc/wpa_supplicant/wpa_supplicant-wlan1.conf')) {
+    exec( 'sudo cat /etc/wpa_supplicant/wpa_supplicant-wlan1.conf > config/user_wpa_supplicant-wlan1.conf', $output, $return );
+    if ($return) {
+      $status->addMessage('Unable to save wlan1 WiFi client configuration', 'warning');
+      $fail = True;
+    } else {
+      $status->addMessage('Successfully saved wlan1 WiFi client configuration', 'success');
+    }
+  } else {
+    if (file_exists('config/user_wpa_supplicant-wlan1.conf')) {
+      exec( 'rm config/user_wpa_supplicant-wlan1.conf', $output, $return );
+      if ($return) {
+        $status->addMessage('Unable to remove old wlan1 WiFi client configuration', 'warning');
+        $fail = True;
+      } else {
+        $status->addMessage('Successfully removed old wlan1 WiFi client configuration', 'success');
+      }
+    }
+  }
+
+  # Update RaspAP authentication configuration
+  if (file_exists('/etc/raspap/raspap.auth')) {
+    exec( 'cp /etc/raspap/raspap.auth config/user_raspap.auth', $output, $return );
+    if ($return) {
+      $status->addMessage('Unable to save RaspAP authentication configuration', 'warning');
+      $fail = True;
+    } else {
+      $status->addMessage('Successfully saved RaspAP authentication configuration', 'success');
+    }
+  } else {
+    if (file_exists('config/user_raspap.auth')) {
+      exec( 'rm config/user_raspap.auth', $output, $return );
+      if ($return) {
+        $status->addMessage('Unable to remove old RaspAP authentication configuration', 'warning');
+        $fail = True;
+      } else {
+        $status->addMessage('Successfully removed old RaspAP authentication configuration', 'success');
+      }
+    }
+  }
+
+  return $fail;
+}
+
 ?>

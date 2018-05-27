@@ -111,10 +111,10 @@ function create_logging_scripts() {
     sudo mv $webroot_dir/installers/*log.sh $raspap_dir/hostapd || install_error "Unable to move logging scripts"
 }
 
-# Generate logging enable/disable files for hostapd
-function create_logging_scripts() {
-    sudo mkdir /etc/raspap/hostapd
-    sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd
+# Generate configuration reset files for raspap
+function create_reset_scripts() {
+    sudo mv /var/www/html/installers/reset.sh /etc/raspap/hostapd
+    sudo mv /var/www/html/installers/button.py /etc/raspap/hostapd
 }
 
 # Fetches latest files from github to webroot
@@ -174,8 +174,22 @@ function move_config_file() {
 
     install_log "Moving configuration file to '$raspap_dir'"
     sudo mv "$webroot_dir"/raspap.php "$raspap_dir" || install_error "Unable to move files to '$raspap_dir'"
+}
+
+# Set up configuration for the reset function
+function configuration_for_reset() {
+    install_log "Setting up configuration for the reset function"
+    sudo echo "webroot_dir = \"$webroot_dir\"" >> /tmp/reset.ini || install_error "Unable to write to reset configuration file"
+    sudo echo "user_reset_files = 0" >> /tmp/reset.ini || install_error "Unable to write to reset configuration file"
+    sudo echo "user_files_saved = 0" >> /tmp/reset.ini || install_error "Unable to write to reset configuration file"
+    sudo mv /tmp/reset.ini /etc/raspap/hostapd/ || install_error "Unable to move files to '$raspap_dir'"
+}
+
+# Set permissions for all RaspAP directories and folders
+function set_permissions() {
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
 }
+
 
 # Set up default configuration
 function default_configuration() {
@@ -183,29 +197,37 @@ function default_configuration() {
     if [ -f /etc/default/hostapd ]; then
         sudo mv /etc/default/hostapd /tmp/default_hostapd.old || install_error "Unable to remove old /etc/default/hostapd file"
     fi
-    sudo mv $webroot_dir/config/default_hostapd /etc/default/hostapd || install_error "Unable to move hostapd defaults file"
-    sudo mv $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
-    sudo mv $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
-    sudo mv $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
+    sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || install_error "Unable to copy hostapd defaults file"
+    sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to copy hostapd configuration file"
+    sudo cp $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to copy dnsmasq configuration file"
+    sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to copy dhcpcd configuration file"
+    if [ -f /etc/wpa_supplicant/wpa_supplicant.conf ]; then
+        sudo cp /etc/wpa_supplicant/wpa_supplicant.conf $webroot_dir/config/wpa_supplicant.conf || install_error "Unable to copy original wpa_supplicant configuration"
+    fi
+    if [ -f /etc/wpa_supplicant/wpa_supplicant_wlan0.conf ]; then
+        sudo cp /etc/wpa_supplicant/wpa_supplicant_wlan0.conf $webroot_dir/config/wpa_supplicant_wlan0.conf || install_error "Unable to copy original wpa_supplicant_wlan0 configuration"
+    fi
+    if [ -f /etc/wpa_supplicant/wpa_supplicant_wlan1.conf ]; then
+        sudo cp /etc/wpa_supplicant/wpa_supplicant_wlan1.conf $webroot_dir/config/wpa_supplicant_wlan1.conf || install_error "Unable to copy original wpa_supplicant_wlan1 configuration"
+    fi
 
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script
     lines=(
-    'echo 1 > \/proc\/sys\/net\/ipv4\/ip_forward #RASPAP'
+    'echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP'
     'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
-
+    "python3 $raspap_dir/hostapd/button.py \&  #RASPAP"
     )
     
     for line in "${lines[@]}"; do
         if grep "$line" /etc/rc.local > /dev/null; then
             echo "$line: Line already added"
         else
-            sudo sed -i "s/^exit 0$/$line\nexit 0/" /etc/rc.local
+            sudo sed -i "s~^exit 0$~$line\nexit 0~" /etc/rc.local
             echo "Adding line $line"
         fi
     done
 }
-
 
 # Add a single entry to the sudoers file
 function sudo_add() {
@@ -291,8 +313,12 @@ function install_raspap() {
     download_latest_files
     change_file_ownership
     create_logging_scripts
+    create_reset_scripts
     move_config_file
+    configuration_for_reset
+    set_permissions
     default_configuration
+    sudo_add
     patch_system_files
     install_complete
 }
