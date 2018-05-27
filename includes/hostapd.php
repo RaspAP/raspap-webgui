@@ -76,7 +76,7 @@ function DisplayHostAPDConfig(){
               <li class="active"><a href="#basic" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
               <li><a href="#security" data-toggle="tab"><?php echo _("Security"); ?></a></li>
               <li><a href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-              <li><a href="#logoutput" data-toggle="tab"><?php echo _("Logfile Output"); ?></a></li>
+              <li><a href="#logoutput" data-toggle="tab"><?php echo _("Logfile output"); ?></a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -134,7 +134,7 @@ function DisplayHostAPDConfig(){
                 </div>
               </div>
               <div class="tab-pane fade" id="logoutput">
-                <h4>Logfile output</h4>
+	      <h4><?php echo _("Logfile output"); ?></h4>
                   <div class="row">
                     <div class="form-group col-md-8">
                       <?php
@@ -154,7 +154,7 @@ function DisplayHostAPDConfig(){
                   <div class="col-md-4">
                   <div class="form-check">
                     <label class="form-check-label">
-                        Enable Logging <?php $checked = ''; if($arrHostapdConf['LogEnable'] == 1) { $checked = 'checked'; } ?>
+			<?php echo _("Enable logging"); ?> <?php $checked = ''; if($arrHostapdConf['LogEnable'] == 1) { $checked = 'checked'; } ?>
                         <input id="logEnable" name ="logEnable" type="checkbox" class="form-check-input" value="1" <?php echo $checked; ?> />
                     </label>
                   </div>
