@@ -8,8 +8,8 @@ function DisplayDashboard(){
 
   $status = new StatusMessages();
 
-  exec( 'ip a s wlan0', $return );
-  exec( 'iwconfig wlan0', $return );
+  exec( 'ip a s ' . RASPI_WIFI_CLIENT_INTERFACE , $return );
+  exec( 'iwconfig ' . RASPI_WIFI_CLIENT_INTERFACE, $return );
 
   $strWlan0 = implode( " ", $return );
   $strWlan0 = preg_replace( '/\s\s+/', ' ', $strWlan0 );
@@ -35,7 +35,7 @@ function DisplayDashboard(){
   $strRxBytes = $result[1];
   preg_match( '/TX Bytes:(\d+ \(\d+.\d+ [K|M|G]iB\))/i',$strWlan0,$result ) || $result[1] = 'No Data';
   $strTxBytes = $result[1];
-  preg_match( '/ESSID:\"([a-zA-Z0-9\s]+)\"/i',$strWlan0,$result ) || $result[1] = 'Not connected';
+  preg_match( '/ESSID:\"([a-zA-Z0-9\s].+)\"/i',$strWlan0,$result ) || $result[1] = 'Not connected';
   $strSSID = str_replace( '"','',$result[1] );
   preg_match( '/Access Point: ([0-9a-f:]+)/i',$strWlan0,$result ) || $result[1] = '';
   $strBSSID = $result[1];
@@ -58,17 +58,17 @@ function DisplayDashboard(){
   }
 
   if( isset($_POST['ifdown_wlan0']) ) {
-    exec( 'ifconfig wlan0 | grep -i running | wc -l',$test );
+    exec( 'ifconfig ' . RASPI_WIFI_CLIENT_INTERFACE . ' | grep -i running | wc -l',$test );
     if($test[0] == 1) {
-      exec( 'sudo ip link set wlan0 down',$return );
+      exec( 'sudo ip link set ' . RASPI_WIFI_CLIENT_INTERFACE . ' down',$return );
     } else {
       echo 'Interface already down';
     }
   } elseif( isset($_POST['ifup_wlan0']) ) {
-    exec( 'ifconfig wlan0 | grep -i running | wc -l',$test );
+    exec( 'ifconfig ' . RASPI_WIFI_CLIENT_INTERFACE . ' | grep -i running | wc -l',$test );
     if($test[0] == 0) {
-      exec( 'sudo ip link set wlan0 up',$return );
-      exec( 'sudo ip -s a f label wlan0',$return);
+      exec( 'sudo ip link set ' . RASPI_WIFI_CLIENT_INTERFACE . ' up',$return );
+      exec( 'sudo ip -s a f label ' . RASPI_WIFI_CLIENT_INTERFACE,$return);
     } else {
       echo 'Interface already up';
     }
@@ -81,55 +81,54 @@ function DisplayDashboard(){
               <div class="panel-body">
                 <p><?php $status->showMessages(); ?></p>
                   <div class="row">
-                        <div class="col-md-6">
+                      <div class="col-md-6">
                         <div class="panel panel-default">
-                  <div class="panel-body">
-                      <h4><?php echo _("Interface Information"); ?></h4>
-          <div class="info-item"><?php echo _("Interface Name"); ?></div> wlan0</br>
-          <div class="info-item"><?php echo _("IP Address"); ?></div>     <?php echo $strIPAddress ?></br>
-          <div class="info-item"><?php echo _("Subnet Mask"); ?></div>    <?php echo $strNetMask ?></br>
-          <div class="info-item"><?php echo _("Mac Address"); ?></div>    <?php echo $strHWAddress ?></br></br>
+                          <div class="panel-body">
+                            <h4><?php echo _("Interface Information"); ?></h4>
+                              <div class="info-item"><?php echo _("Interface Name"); ?></div> <?php echo RASPI_WIFI_CLIENT_INTERFACE ?></br>
+                              <div class="info-item"><?php echo _("IP Address"); ?></div>     <?php echo $strIPAddress ?></br>
+                              <div class="info-item"><?php echo _("Subnet Mask"); ?></div>    <?php echo $strNetMask ?></br>
+                              <div class="info-item"><?php echo _("Mac Address"); ?></div>    <?php echo $strHWAddress ?></br></br>
 
-                      <h4><?php echo _("Interface Statistics"); ?></h4>
-          <div class="info-item"><?php echo _("Received Packets"); ?></div>    <?php echo $strRxPackets ?></br>
-          <div class="info-item"><?php echo _("Received Bytes"); ?></div>      <?php echo $strRxBytes ?></br></br>
-          <div class="info-item"><?php echo _("Transferred Packets"); ?></div> <?php echo $strTxPackets ?></br>
-          <div class="info-item"><?php echo _("Transferred Bytes"); ?></div>   <?php echo $strTxBytes ?></br>
-        </div><!-- /.panel-body -->
-        </div><!-- /.panel-default -->
+                            <h4><?php echo _("Interface Statistics"); ?></h4>
+                              <div class="info-item"><?php echo _("Received Packets"); ?></div>    <?php echo $strRxPackets ?></br>
+                              <div class="info-item"><?php echo _("Received Bytes"); ?></div>      <?php echo $strRxBytes ?></br></br>
+                              <div class="info-item"><?php echo _("Transferred Packets"); ?></div> <?php echo $strTxPackets ?></br>
+                              <div class="info-item"><?php echo _("Transferred Bytes"); ?></div>   <?php echo $strTxBytes ?></br>
+                          </div><!-- /.panel-body -->
+                        </div><!-- /.panel-default -->
                         </div><!-- /.col-md-6 -->
-
-        <div class="col-md-6">
-                    <div class="panel panel-default">
-              <div class="panel-body wireless">
+                      <div class="col-md-6">
+                        <div class="panel panel-default">
+                          <div class="panel-body wireless">
                             <h4><?php echo _("Wireless Information"); ?></h4>
-          <div class="info-item"><?php echo _("Connected To"); ?></div>   <?php echo $strSSID ?></br>
-          <div class="info-item"><?php echo _("AP Mac Address"); ?></div> <?php echo $strBSSID ?></br>
-          <div class="info-item"><?php echo _("Bitrate"); ?></div>        <?php echo $strBitrate ?></br>
-          <div class="info-item"><?php echo _("Signal Level"); ?></div>	<?php echo $strSignalLevel ?></br>
-          <div class="info-item"><?php echo _("Transmit Power"); ?></div> <?php echo $strTxPower ?></br>
-          <div class="info-item"><?php echo _("Frequency"); ?></div>      <?php echo $strFrequency ?></br></br>
-          <div class="info-item"><?php echo _("Link Quality"); ?></div>
-            <div class="progress">
-            <div class="progress-bar progress-bar-info progress-bar-striped active"
-              role="progressbar"
-              aria-valuenow="<?php echo $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
-              style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
-            </div>
-          </div>
-        </div><!-- /.panel-body -->
-        </div><!-- /.panel-default -->
-      </div><!-- /.col-md-6 -->
-      </div><!-- /.row -->
+                              <div class="info-item"><?php echo _("Connected To"); ?></div>   <?php echo $strSSID ?></br>
+                              <div class="info-item"><?php echo _("AP Mac Address"); ?></div> <?php echo $strBSSID ?></br>
+                              <div class="info-item"><?php echo _("Bitrate"); ?></div>        <?php echo $strBitrate ?></br>
+                              <div class="info-item"><?php echo _("Signal Level"); ?></div>	<?php echo $strSignalLevel ?></br>
+                              <div class="info-item"><?php echo _("Transmit Power"); ?></div> <?php echo $strTxPower ?></br>
+                              <div class="info-item"><?php echo _("Frequency"); ?></div>      <?php echo $strFrequency ?></br></br>
+                              <div class="info-item"><?php echo _("Link Quality"); ?></div>
+                                <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped active"
+                                  role="progressbar"
+                                  aria-valuenow="<?php echo $strLinkQuality ?>" aria-valuemin="0" aria-valuemax="100"
+                                  style="width: <?php echo $strLinkQuality ?>%;"><?php echo $strLinkQuality ?>%
+                                </div>
+                              </div>
+                          </div><!-- /.panel-body -->
+                        </div><!-- /.panel-default -->
+                      </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
 
-                  <div class="col-lg-12">
+                 <div class="col-lg-12">
                  <div class="row">
                     <form action="?page=wlan0_info" method="POST">
                     <?php if ( !$wlan0up ) {
-                      echo '<input type="submit" class="btn btn-success" value="' . _("Start wlan0") . '" name="ifup_wlan0" />';
+                      echo '<input type="submit" class="btn btn-success" value="' . _("Start ") . RASPI_WIFI_CLIENT_INTERFACE . '" name="ifup_wlan0" />';
                     } else {
-                echo '<input type="submit" class="btn btn-warning" value="' . _("Stop wlan0") . '"  name="ifdown_wlan0" />';
-              }
+                      echo '<input type="submit" class="btn btn-warning" value="' . _("Stop ") . RASPI_WIFI_CLIENT_INTERFACE . '"  name="ifdown_wlan0" />';
+                    }
               ?>
               <input type="button" class="btn btn-outline btn-primary" value="<?php echo _("Refresh"); ?>" onclick="document.location.reload(true)" />
               </form>

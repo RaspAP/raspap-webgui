@@ -13,40 +13,12 @@
  * @author     Lawrence Yau <sirlagz@gmail.com>
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
  * @license    GNU General Public License, version 3 (GPL-3.0)
- * @version    1.2.2
+ * @version    1.3.0
  * @link       https://github.com/billz/raspap-webgui
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
 
-define('RASPI_CONFIG', '/etc/raspap');
-define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
-
-//if(file_exists(RASPI_CONFIG.'/raspap.auth')) {
-//    define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
-//} else {
-//    define('RASPI_ADMIN_DETAILS','');
-//}
-
-// Constants for configuration file paths.
-// These are typical for default RPi installs. Modify if needed.
-define('RASPI_DNSMASQ_CONFIG', '/etc/dnsmasq.conf');
-define('RASPI_DNSMASQ_LEASES', '/var/lib/misc/dnsmasq.leases');
-define('RASPI_HOSTAPD_CONFIG', '/etc/hostapd/hostapd.conf');
-define('RASPI_WPA_SUPPLICANT_CONFIG', '/etc/wpa_supplicant/wpa_supplicant.conf');
-define('RASPI_HOSTAPD_CTRL_INTERFACE', '/var/run/hostapd');
-define('RASPI_WPA_CTRL_INTERFACE', '/var/run/wpa_supplicant');
-define('RASPI_OPENVPN_CLIENT_CONFIG', '/etc/openvpn/client.conf');
-define('RASPI_OPENVPN_SERVER_CONFIG', '/etc/openvpn/server.conf');
-define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
-
-// Optional services, set to true to enable.
-define('RASPI_OPENVPN_ENABLED', false );
-define('RASPI_TORPROXY_ENABLED', false );
-
-// Locale settings
-define('LOCALE_ROOT', 'locale');
-define('LOCALE_DOMAIN', 'messages'); 
-
+include_once( 'includes/config.php' );
 include_once( RASPI_CONFIG.'/raspap.php' );
 include_once( 'includes/locale.php');
 include_once( 'includes/functions.php' );
@@ -57,6 +29,7 @@ include_once( 'includes/dhcp.php' );
 include_once( 'includes/hostapd.php' );
 include_once( 'includes/system.php' );
 include_once( 'includes/configure_client.php' );
+include_once( 'includes/networking.php' );
 include_once( 'includes/themes.php' );
 
 $output = $return = 0;
@@ -92,22 +65,22 @@ $theme_url = 'dist/css/' . $theme;
     <title><?php echo _("Raspbian WiFi Configuration Portal"); ?></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
     <link href="dist/css/timeline.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="bower_components/morrisjs/morris.css" rel="stylesheet">
+    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
     <link href="<?php echo $theme_url; ?>" title="main" rel="stylesheet">
@@ -132,7 +105,7 @@ $theme_url = 'dist/css/' . $theme;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php"><?php echo _("RaspAP Wifi Portal v1.2.2"); ?></a>
+          <a class="navbar-brand" href="index.php"><?php echo _("RaspAP Wifi Portal v1.3.1"); ?></a>
         </div>
         <!-- /.navbar-header -->
 
@@ -144,14 +117,23 @@ $theme_url = 'dist/css/' . $theme;
                 <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> <?php echo _("Dashboard"); ?></a>
               </li>
               <li>
-                <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> <?php echo _("Configure client"); ?></a>
+                <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
               </li>
+              <?php if ( RASPI_HOTSPOT_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?></a>
               </li>
+              <?php endif; ?>
+              <?php if ( RASPI_NETWORK_ENABLED ) : ?>
+              <li>
+                <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> Configure Networking</a>
+              </li> 
+              <?php endif; ?>
+              <?php if ( RASPI_DHCP_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP"); ?></a>
               </li>
+              <?php endif; ?>
               <?php if ( RASPI_OPENVPN_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=openvpn_conf"><i class="fa fa-lock fa-fw"></i> <?php echo _("Configure OpenVPN"); ?></a>
@@ -162,12 +144,16 @@ $theme_url = 'dist/css/' . $theme;
                  <a href="index.php?page=torproxy_conf"><i class="fa fa-eye-slash fa-fw"></i> <?php echo _("Configure TOR proxy"); ?></a>
               </li>
               <?php endif; ?>
+              <?php if ( RASPI_CONFAUTH_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> <?php echo _("Configure Auth"); ?></a>
               </li>
+              <?php endif; ?>
+              <?php if ( RASPI_CHANGETHEME_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=theme_conf"><i class="fa fa-wrench fa-fw"></i> <?php echo _("Change Theme"); ?></a>
               </li>
+              <?php endif; ?>
               <li>
                  <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
               </li>
@@ -198,6 +184,9 @@ $theme_url = 'dist/css/' . $theme;
             break;
           case "wpa_conf":
             DisplayWPAConfig();
+            break;
+          case "network_conf":
+            DisplayNetworkingConfig();
             break;
           case "hostapd_conf":
             DisplayHostAPDConfig();
@@ -231,20 +220,23 @@ $theme_url = 'dist/css/' . $theme;
     <script src="dist/js/functions.js"></script>
 
     <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <!--script src="bower_components/raphael/raphael-min.js"></script-->
-    <!--script src="bower_components/morrisjs/morris.min.js"></script-->
+    <!--script src="vendor/raphael/raphael-min.js"></script-->
+    <!--script src="vendor/morrisjs/morris.min.js"></script-->
     <!--script src="js/morris-data.js"></script-->
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+
+    <!-- Custom RaspAP JS -->
+    <script src="js/custom.js"></script>
   </body>
 </html>

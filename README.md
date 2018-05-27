@@ -1,14 +1,16 @@
 ![](http://i.imgur.com/xeKD93p.png)
-# `$ raspap-webgui` [![Release 1.2.1](https://img.shields.io/badge/Release-1.2.1-green.svg)](https://github.com/billz/raspap-webgui/releases)
+# `$ raspap-webgui` [![Release 1.3.1](https://img.shields.io/badge/Release-1.3.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi)
 A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
-This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme.
+This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I mostly just prettified the UI by wrapping it in [**SB Admin 2**](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme. Since then, the project has evolved to include greater control over many aspects of a networked RPi, better security, authentication, a Quick Installer, support for themes and more. RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
 
-We'd be curious to hear about how you use this with your own Pi-powered access points. Ping us on Twitter ([**@billzimmerman**](https://twitter.com/billzimmerman), [**@jrmhaig**](https://twitter.com/jrmhaig) and [**@SirLagz**](https://twitter.com/SirLagz)). Until then, here are some screenshots:
+We'd be curious to hear about how you use this with your own RPi-powered projects. Until then, here are some screenshots:
 
-![](https://i.imgur.com/l4Vgd5G.png)
-![](https://i.imgur.com/mRPtEnC.png)
-![](https://i.imgur.com/FFdKoML.png)
+![](https://i.imgur.com/0f27nen.png)
+![](https://i.imgur.com/jFDMEy6.png)
+![](https://i.imgur.com/ck0XS8P.png)
+![](https://i.imgur.com/Vaej8Xv.png)
+![](https://i.imgur.com/iNuMMip.png)
 ## Contents
 
  - [Prerequisites](#prerequisites)
@@ -16,6 +18,7 @@ We'd be curious to hear about how you use this with your own Pi-powered access p
  - [Manual installation](#manual-installation)
  - [Optional services](#optional-services)
  - [How to contribute](#how-to-contribute)
+ - [Support us](#support-us)
  - [License](#license)
 
 ## Prerequisites
@@ -46,13 +49,13 @@ configured as an access point as follows:
 * Password: ChangeMe
 
 ## Manual installation
-Start off by installing git, lighttpd, php5, hostapd and dnsmasq.
+These steps apply to the latest release of Raspbian (currently [Stretch](https://www.raspberrypi.org/downloads/raspbian/)). Notes for previously released versions are provided, where applicable. Start off by installing git, lighttpd, php7, hostapd and dnsmasq. 
 ```sh
-$ sudo apt-get install git lighttpd php5-cgi hostapd dnsmasq
+$ sudo apt-get install git lighttpd php7.0-cgi hostapd dnsmasq
 ```
-After that, enable PHP for lighttpd and restart it for the settings to take effect.
+**Note:** for Raspbian Jessie and Wheezy, replace `php7.0-cgi` with `php5-cgi`. After that, enable PHP for lighttpd and restart it for the settings to take effect.
 ```sh
-sudo lighty-enable-mod fastcgi-php
+sudo lighttpd-enable-mod fastcgi-php
 sudo service lighttpd restart
 ```
 Now comes the fun part. For security reasons, the `www-data` user which lighttpd runs under is not allowed to start or stop daemons, or run commands like ifdown and ifup, all of which we want our page to do.
@@ -75,10 +78,16 @@ www-data ALL=(ALL) NOPASSWD:/etc/init.d/dnsmasq stop
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf
 www-data ALL=(ALL) NOPASSWD:/sbin/shutdown -h now
 www-data ALL=(ALL) NOPASSWD:/sbin/reboot
+www-data ALL=(ALL) NOPASSWD:/sbin/ip link set wlan0 down
+www-data ALL=(ALL) NOPASSWD:/sbin/ip link set wlan0 up
+www-data ALL=(ALL) NOPASSWD:/sbin/ip -s a f label wlan0
+www-data ALL=(ALL) NOPASSWD:/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf
+www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/enablelog.sh
+www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/disablelog.sh
 ```
 
 Once those modifications are done, git clone the files to `/var/www/html`.
-**Note,** for older versions of Raspbian (before Jessie, May 2016) use
+**Note:** for older versions of Raspbian (before Jessie, May 2016) use
 `/var/www` instead.
 ```sh
 sudo rm -rf /var/www/html
@@ -94,6 +103,11 @@ sudo mkdir /etc/raspap
 sudo mv /var/www/html/raspap.php /etc/raspap/
 sudo chown -R www-data:www-data /etc/raspap
 ```
+Move the HostAPD logging scripts to the correct location
+```sh
+sudo mkdir /etc/raspap/hostapd
+sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd 
+```
 Reboot and it should be up and running!
 ```sh
 sudo reboot
@@ -102,7 +116,7 @@ sudo reboot
 The default username is 'admin' and the default password is 'secret'.
 
 ## Optional services
-OpenVPN and TOR are two additional services that run perfectly well on the RPi, and are a nice way to extend the usefulness of your WiFi router. I've started on interfaces to administer these services. Not everyone will need them, so for the moment they are disabled by default. You can enable them by changing these options in `index.php`:
+OpenVPN and TOR are two additional services that run perfectly well on the RPi, and are a nice way to extend the usefulness of your WiFi router. I've started on interfaces to administer these services. Not everyone will need them, so for the moment they are disabled by default. You can enable them by changing these options in `/var/www/html/includes/config.php`:
 
 ```sh
 // Optional services, set to true to enable.
@@ -122,5 +136,12 @@ Please note that these are only UI's for now. If there's enough interest I'll co
 4. Open a pull request, and reference the initial issue in the pull request
    message.
 
+## Support us
+
+If you find RaspAP useful for your personal or commerical projects, please consider buying the founders a beer!
+
+[![Beerpay](https://beerpay.io/billz/raspap-webgui/badge.svg?style=beer-square)](https://beerpay.io/billz/raspap-webgui) 
+
 ## License
 See the [LICENSE](./LICENSE) file.
+
