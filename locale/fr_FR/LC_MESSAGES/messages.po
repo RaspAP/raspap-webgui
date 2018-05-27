@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2017-10-24 9:50+0000\n"
+"PO-Revision-Date: 2018-05-27 17:15+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -25,17 +25,20 @@ msgstr "RaspAP Wifi Portail de Configuration"
 msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
-msgid "RaspAP Wifi Portal v1.2.1"
-msgstr "RaspAP Wifi Portal v1.2.1"
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP Wifi Portal"
 
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-msgid "Configure client"
-msgstr "Configurer le client"
+msgid "Configure WiFi client"
+msgstr "Configurer le client WiFi"
 
 msgid "Configure hotspot"
 msgstr "Configurer le hotspot"
+
+msgid "Configure networking"
+msgstr "Configurer le réseau"
 
 msgid "Configure DHCP"
 msgstr "Configurer DHCP"
@@ -350,6 +353,52 @@ msgstr "Démarrer le point d'accès"
 
 msgid "Stop hotspot"
 msgstr "Arrêté hotspot"
+
+msgid "Enable logging"
+msgstr "Activer la journalisation"
+
+msgid "Logfile output"
+msgstr "Sortie de journal"
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Résumé"
+
+msgid "Current settings"
+msgstr "Paramètres actuels"
+
+msgid "Default Gateway"
+msgstr "Passerelle par défaut"
+
+msgid "DNS Server"
+msgstr "Serveur DNS"
+
+msgid "Alternate DNS Server"
+msgstr "Autre serveur DNS"
+
+msgid "Adapter IP Address Settings"
+msgstr "Paramètres d'adresse IP de l'adaptateur"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Activer la repli vers l'option statique"
+
+msgid "Static IP"
+msgstr "IP statique"
+
+msgid "Enabled"
+msgstr "Activée"
+
+msgid "Disabled"
+msgstr "Désactivé"
+
+msgid "Static IP Options"
+msgstr "Options IP statiques"
+
+msgid "Apply settings"
+msgstr "Appliquer les paramètres"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Informations fournies par /sys/class/net"
 
 #: includes/system.php
 msgid "Hostname"

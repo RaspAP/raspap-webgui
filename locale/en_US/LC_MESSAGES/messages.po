@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2017-10-24 9:50+0000\n"
+"PO-Revision-Date: 2018-05-17 17:15+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -25,17 +25,20 @@ msgstr "RaspAP Wifi Configuration Portal"
 msgid "Toggle navigation"
 msgstr "Toggle navigation"
 
-msgid "RaspAP Wifi Portal v1.2.1"
-msgstr "RaspAP Wifi Portal v1.2.1"
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP Wifi Portal"
 
 msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "Configure client"
-msgstr "Configure client"
+msgid "Configure WiFI client"
+msgstr "Configure WiFi client"
 
 msgid "Configure hotspot"
 msgstr "Configure hotspot"
+
+msgid "Configure networking"
+msgstr "Configure networking"
 
 msgid "Configure DHCP Server"
 msgstr "Configure DHCP Server"
@@ -353,6 +356,52 @@ msgstr "Start hotspot"
 
 msgid "Stop hotspot"
 msgstr "Stop hotspot"
+
+msgid "Enable logging"
+msgstr "Enable logging"
+
+msgid "Logfile output"
+msgstr "Logfile output"
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Summary"
+
+msgid "Current settings"
+msgstr "Current settings"
+
+msgid "Default Gateway"
+msgstr "Default Gateway"
+
+msgid "DNS Server"
+msgstr "DNS Server"
+
+msgid "Alternate DNS Server"
+msgstr "Alternate DNS Server"
+
+msgid "Adapter IP Address Settings"
+msgstr "Adapter IP Address Settings"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Enable Fallback to Static Option"
+
+msgid "Static IP"
+msgstr "Static IP"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Static IP Options"
+msgstr "Static IP Options"
+
+msgid "Apply settings"
+msgstr "Apply settings"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Information provided by /sys/class/net"
 
 #: includes/system.php
 msgid "Hostname"

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2017-10-29 9:45+0000\n"
+"PO-Revision-Date: 2018-05-27 17:15+0000\n"
 "Last-Translator: Simone Rizzo <simone.rizzo@live.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -25,20 +25,23 @@ msgstr "Portale configurazione RaspAP Wifi"
 msgid "Toggle navigation"
 msgstr "Mostra/nascondi navigazione"
 
-msgid "RaspAP Wifi Portal v1.2.1"
-msgstr "RaspAP Wifi Portal v1.2.1"
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP Wifi Portal"
 
 msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "Configure client"
-msgstr "Configura client"
+msgid "Configure WiFi client"
+msgstr "Configura client WiFi"
 
 msgid "Configure hotspot"
 msgstr "Configura hotspot"
 
-msgid "Configure DHCP Server"
-msgstr "Configura server DHCP"
+msgid "Configure networking"
+msgstr "Configura rete"
+
+msgid "Configure DHCP"
+msgstr "Configura DHCP"
 
 msgid "Configure OpenVPN"
 msgstr "Configura OpenVPN"
@@ -353,6 +356,52 @@ msgstr "Avvia l'hotspot"
 
 msgid "Stop hotspot"
 msgstr "Ferma l'hotspot"
+
+msgid "Enable logging"
+msgstr "Abilita la registrazione"
+
+msgid "Logfile output"
+msgstr "File di log in uscita"
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Sommario"
+
+msgid "Current settings"
+msgstr "Impostazioni attuali"
+
+msgid "Default Gateway"
+msgstr "Gateway predefinito"
+
+msgid "DNS Server"
+msgstr "Server DNS"
+
+msgid "Alternate DNS Server"
+msgstr "Server DNS alternativo"
+
+msgid "Adapter IP Address Settings"
+msgstr "Impostazioni dell'indirizzo IP dell'adattatore"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Abilita l'opzione statica di fallback"
+
+msgid "Static IP"
+msgstr "IP statico"
+
+msgid "Enabled"
+msgstr "Abilitato"
+
+msgid "Disabled"
+msgstr "Disabilitato"
+
+msgid "Static IP Options"
+msgstr "Opzioni IP statiche"
+
+msgid "Apply settings"
+msgstr "Applica le impostazioni"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Informazioni fornite da /sys/class/net"
 
 #: includes/system.php
 msgid "Hostname"
