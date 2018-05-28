@@ -31,7 +31,7 @@ msgstr "RaspAP Wifi Portal"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "Configure WiFI client"
+msgid "Configure WiFi client"
 msgstr "Configure WiFi client"
 
 msgid "Configure hotspot"
