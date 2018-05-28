@@ -23,6 +23,9 @@ if (!isset($_SESSION["locale"])) {
     case "it":
       $locale = "it_IT.UTF-8";
       break; 
+    case "pt":
+      $locale = "pt_BR.UTF-8";
+      break;
     default:  
       $locale = "en_GB.UTF-8";
       break;
@@ -32,7 +35,7 @@ if (!isset($_SESSION["locale"])) {
 // Note: the associated locale must be installed on the RPi 
 // Use: 'sudo raspi-configure' and select 'Localisation Options' 
 // Uncomment for testing 
-// $locale = "fr_FR.UTF-8";
+// $locale = "pt_BR.UTF-8";
 $_SESSION["locale"] = $locale; 
 
 // activate the locale setting                                                                                                                                                            
