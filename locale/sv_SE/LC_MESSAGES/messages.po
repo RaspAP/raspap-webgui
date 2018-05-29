@@ -25,20 +25,23 @@ msgstr "RaspAP Wifi Konfigurationsportal"
 msgid "Toggle navigation"
 msgstr "Växla meny"
 
-msgid "RaspAP Wifi Portal v1.2.1"
-msgstr "RaspAP Wifi Portal v1.2.1"
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP Wifi Portal"
 
 msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "Configure client"
-msgstr "Konfigurera klienten"
+msgid "Configure WiFi client"
+msgstr "Konfigurera WiFi klienten"
 
 msgid "Configure hotspot"
 msgstr "Konfigurera hotspot"
 
-msgid "Configure DHCP Server"
-msgstr "Konfigurera DHCP Server"
+msgid "Configure networking"
+msgstr "Konfigurera nätverk"
+
+msgid "Configure DHCP"
+msgstr "Konfigurera DHCP"
 
 msgid "Configure OpenVPN"
 msgstr "Konfigurera OpenVPN"
