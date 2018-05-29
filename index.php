@@ -132,7 +132,7 @@ $theme_url = 'dist/css/' . $theme;
               <?php endif; ?>
               <?php if ( RASPI_DHCP_ENABLED ) : ?>
               <li>
-                <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP"); ?></a>
+                <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP Server"); ?></a>
               </li>
               <?php endif; ?>
               <?php if ( RASPI_OPENVPN_ENABLED ) : ?>
