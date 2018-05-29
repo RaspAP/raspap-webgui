@@ -26,6 +26,9 @@ if (empty($_SESSION['locale'])) {
     case "pt":
       $locale = "pt_BR.UTF-8";
       break;
+    case "sv":
+      $locale = "sv_SE.UTF-8";
+      break;
     default:  
       $locale = "en_GB.UTF-8";
       break;
@@ -35,8 +38,6 @@ if (empty($_SESSION['locale'])) {
 
 // Note: the associated locale must be installed on the RPi 
 // Use: 'sudo raspi-configure' and select 'Localisation Options' 
-// Uncomment for testing 
-// $locale = "pt_BR.UTF-8";
 
 // activate the locale setting                                                                                                                                                            
 putenv("LANG=" . $_SESSION['locale']);                                                                                                                                                                
