@@ -18,6 +18,8 @@
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
 
+session_start();
+
 include_once( 'includes/config.php' );
 include_once( RASPI_CONFIG.'/raspap.php' );
 include_once( 'includes/locale.php');
@@ -35,7 +37,6 @@ include_once( 'includes/themes.php' );
 $output = $return = 0;
 $page = $_GET['page'];
 
-session_start();
 if (empty($_SESSION['csrf_token'])) {
     if (function_exists('mcrypt_create_iv')) {
         $_SESSION['csrf_token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
