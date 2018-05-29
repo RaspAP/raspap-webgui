@@ -1,0 +1,443 @@
+# RaspAP Portable Object file
+# Project home: https://github.com/billz/raspap-webgui
+# Licensed under the GNU General Public License v3.0
+# This file is distributed under the same license as the RaspAP package
+# FIRST AUTHOR billzimmerman@gmail.com, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2.1\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2017-10-24 9:50+0000\n"
+"Last-Translator: Emil Nilsson <emil_nilsson_96@live.se>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "RaspAP Wifi Konfigurationsportal"
+
+msgid "Toggle navigation"
+msgstr "Växla meny"
+
+msgid "RaspAP Wifi Portal v1.2.1"
+msgstr "RaspAP Wifi Portal v1.2.1"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Configure client"
+msgstr "Konfigurera klienten"
+
+msgid "Configure hotspot"
+msgstr "Konfigurera hotspot"
+
+msgid "Configure DHCP Server"
+msgstr "Konfigurera DHCP Server"
+
+msgid "Configure OpenVPN"
+msgstr "Konfigurera OpenVPN"
+
+msgid "Configure TOR proxy"
+msgstr "Konfigurera TOR proxy"
+
+msgid "Configure Auth"
+msgstr "Konfigurera Auth"
+
+msgid "Change Theme"
+msgstr "Byt Tema"
+
+msgid "System"
+msgstr "System"
+
+#: includes/admin.php
+msgid "New passwords do not match"
+msgstr "Nya lösenord matchar ej"
+
+msgid "Username must not be empty"
+msgstr "Användarnamnet saknar värde"
+
+msgid "Admin password updated"
+msgstr "Admin lösenord uppdaterat"
+
+msgid "Failed to update admin password"
+msgstr "Misslyckades med att uppdatera admin lösenord"
+
+msgid "Old password does not match"
+msgstr "Gamla lösenord matchar ej"
+
+msgid "Username"
+msgstr "Användarnamn"
+
+msgid "Old password"
+msgstr "Gammalt lösenord"
+
+msgid "New password"
+msgstr "Nytt lösenord"
+
+msgid "Repeat new password"
+msgstr "Upprepa nytt lösenord"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "Klient inställningar"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "Security"
+msgstr "Säkerhet"
+
+msgid "Passphrase"
+msgstr "Lösenordsfras"
+
+msgid "Wifi settings updated successfully"
+msgstr "Wifi inställningar har uppdaterats"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "Wifi inställningar har uppdaterats men omstarten misslyckades (kan ej exekvera 'wpa_cli reconfigure')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Wifi inställningar kunde ej uppdateras"
+
+msgid "Failed to update wifi settings"
+msgstr "Det gick inte att uppdatera wifi inställningarna"
+
+msgid "Rescan"
+msgstr "Sök igen"
+
+msgid "Update"
+msgstr "Uppdatera"
+
+msgid "Add"
+msgstr "Lägg till"
+
+msgid "Delete"
+msgstr "Ta bort"
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Notera:</strong> WEP åtkomstpunkter visas som 'Öppna'. RaspAP stödjer närvarande inte anslutning till WEP"
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "Gränssnittsinformation"
+
+msgid "Interface Name"
+msgstr "Gränssnittsnamn"
+
+msgid "IP Address"
+msgstr "IP Adress"
+
+msgid "Subnet Mask"
+msgstr "Subnet Mask"
+
+msgid "Mac Address"
+msgstr "Mac Adress"
+
+msgid "Interface Statistics"
+msgstr "Gränssnittsstatistik"
+
+msgid "Received Packets"
+msgstr "Mottagna Packets"
+
+msgid "Received Bytes"
+msgstr "Mottagna Bytes"
+
+msgid "Transferred Packets"
+msgstr "Överförda Packets"
+
+msgid "Transferred Bytes"
+msgstr "Överförda Bytes"
+
+msgid "Wireless Information"
+msgstr "Wireless Information"
+
+msgid "Connected To"
+msgstr "Ansluten Till"
+
+msgid "AP Mac Address"
+msgstr "AP Mac Adress"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Signal Level"
+msgstr "Signalnivå"
+
+msgid "Transmit Power"
+msgstr "Transmit Power"
+
+msgid "Frequency"
+msgstr "Frekvens"
+
+msgid "Link Quality"
+msgstr "Länkkvalitet"
+
+msgid "Information provided by ifconfig and iwconfig"
+msgstr "Information tillhandahållen av ifconfig och iwconfig"
+
+msgid "No MAC Address Found"
+msgstr "Ingen MAC Adress Hittad"
+
+msgid "No IP Address Found"
+msgstr "Ingen IP Adress Hittad"
+
+msgid "No Subnet Mask Found"
+msgstr "Ingen Subnet Mask Hittad"
+
+msgid "No Data"
+msgstr "Inga Data"
+
+msgid "Not connected"
+msgstr "Ej ansluten"
+
+msgid "Interface is up"
+msgstr "Gränssnittet är uppe"
+
+msgid "Interface is down"
+msgstr "Gränssnittet är nere"
+
+msgid "Interface already down"
+msgstr "Gränssnittet är redan nere"
+
+msgid "Start wlan0"
+msgstr "Starta wlan0"
+
+msgid "Stop wlan0"
+msgstr "Stoppa wlan0"
+
+#: includes/dhcp.php
+msgid "Server settings"
+msgstr "Server inställningar"
+
+msgid "Client list"
+msgstr "Klient lista"
+
+msgid "Starting IP Address"
+msgstr "Startar IP Adress"
+
+msgid "Ending IP Address"
+msgstr "Ending IP Adress"
+
+msgid "Lease Time"
+msgstr "Lease Tid"
+
+msgid "Interval"
+msgstr "Intervall"
+
+msgid "Active DHCP leases"
+msgstr "Aktiva DHCP ärenden"
+
+msgid "Expire time"
+msgstr "Förfallotid"
+
+msgid "MAC Address"
+msgstr "MAC Adress"
+
+msgid "Host name"
+msgstr "Värdnamn"
+
+msgid "Client ID"
+msgstr "Klient ID"
+
+msgid "Information provided by Dnsmasq"
+msgstr "Information tillhandahållen av Dnsmasq"
+
+msgid "Stop dnsmasq"
+msgstr "Stoppa dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "Starta dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Dnsmasq konfiguration har uppdaterats"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq är redan igång"
+
+msgid "Successfully started dnsmasq"
+msgstr "Startade dnsmasq"
+
+msgid "Failed to start dnsmasq"
+msgstr "Kunde ej starta dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Stoppade dnsmasq"
+
+msgid "Failed to stop dnsmasq"
+msgstr "Kunde ej stoppa dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq är redan stoppad"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq körs"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq körs ej"
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "Grundläggande"
+
+msgid "Advanced"
+msgstr "Advancerad"
+
+msgid "Basic settings"
+msgstr "Grundläggande inställningar"
+
+msgid "Wireless Mode"
+msgstr "Trådlöst läge"
+
+msgid "Security settings"
+msgstr "Säkerhetsinställningar"
+
+msgid "Security type"
+msgstr "Säkerhetstyp"
+
+msgid "Encryption Type"
+msgstr "Krypteringstyp"
+
+msgid "PSK"
+msgstr "PSK"
+
+msgid "Advanced settings"
+msgstr "Advancerade inställningar"
+
+msgid "Country Code"
+msgstr "Landskod"
+
+msgid "Information provided by hostapd"
+msgstr "Information tillhandahållen av hostapd"
+
+msgid "Attempting to start hotspot"
+msgstr "Försöker starta hotspot"
+
+msgid "Attempting to stop hotspot"
+msgstr "Försöker stoppa hotspot"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD körs ej"
+
+msgid "HostAPD is running"
+msgstr "HostAPD körs"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID måste vara mellan 1 och 32 tecken"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "WPA lösenordsfras måste vara mellan 8 och 63 tecken"
+
+msgid "Unknown interface"
+msgstr "Okänt gränssnitt"
+
+msgid "Country code must be blank or two characters"
+msgstr "Landskoden måste vara tom eller bestå av 2 tecken"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Wifi Hotspot inställningar har sparats"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "Kunde ej spara wifi hotspot inställningar"
+
+msgid "Start hotspot"
+msgstr "Starta hotspot"
+
+msgid "Stop hotspot"
+msgstr "Stoppa hotspot"
+
+msgid "Enable logging"
+msgstr "Aktivera loggning"
+
+msgid "Logfile output"
+msgstr "Logfilutskrift"
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Sammanfattning"
+
+msgid "Current settings"
+msgstr "Nuvarande inställningar"
+
+msgid "Default Gateway"
+msgstr "Standard Gateway"
+
+msgid "DNS Server"
+msgstr "DNS Server"
+
+msgid "Alternate DNS Server"
+msgstr "Alternativ DNS Server"
+
+msgid "Adapter IP Address Settings"
+msgstr "Adapter IP-adressinställningar"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Aktivera Fallback till statiskt alternativ"
+
+msgid "Static IP"
+msgstr "Statisk IP"
+
+msgid "Enabled"
+msgstr "Aktiverad"
+
+msgid "Disabled"
+msgstr "Inaktiverad"
+
+msgid "Static IP Options"
+msgstr "Statiska IP-alternativ"
+
+msgid "Apply settings"
+msgstr "Använd inställningar"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Information tillhandahållen av /sys/class/net"
+
+#: includes/system.php
+msgid "Hostname"
+msgstr "Värdnamn"
+
+msgid "Pi Revision"
+msgstr "Pi Revision"
+
+msgid "Uptime"
+msgstr "Drifttid"
+
+msgid "Memory Used"
+msgstr "Minne Använt"
+
+msgid "CPU Load"
+msgstr "CPU Användning"
+
+msgid "Reboot"
+msgstr "Starta om"
+
+msgid "Shutdown"
+msgstr "Stäng av"
+
+msgid "System Rebooting Now!"
+msgstr "Systemet Startar Om Nu!"
+
+msgid "System Shutting Down Now!"
+msgstr "Systemet Stängs Av!"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "Temainställningar"
+
+msgid "Select a theme"
+msgstr "Välj ett tema"
+
+#: common form controls
+msgid "Save settings"
+msgstr "Spara inställningar"
+
+msgid "Refresh"
+msgstr "Uppdatera"
