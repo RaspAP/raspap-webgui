@@ -68,7 +68,8 @@ function DisplaySystem(){
     'en_GB.UTF-8' => 'English',
     'fr_FR.UTF-8' => 'français',
     'it_IT.UTF-8' => 'italiano',
-    'pt_BR.UTF-8' => 'Português'
+    'pt_BR.UTF-8' => 'Português',
+    'sv_SE.UTF-8' => 'svenska'
   );
 
   // hostname
