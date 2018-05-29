@@ -13,8 +13,8 @@
 * the languages supported by our platform.
 *
 * Refer to: https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4
-*/
-if (!isset($_SESSION["locale"])) {
+ */
+if (empty($_SESSION['locale'])) {
   $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
   switch ($lang){
     case "fr":
@@ -30,17 +30,17 @@ if (!isset($_SESSION["locale"])) {
       $locale = "en_GB.UTF-8";
       break;
   }
+  $_SESSION['locale'] = $locale; 
 }
 
 // Note: the associated locale must be installed on the RPi 
 // Use: 'sudo raspi-configure' and select 'Localisation Options' 
 // Uncomment for testing 
 // $locale = "pt_BR.UTF-8";
-$_SESSION["locale"] = $locale; 
 
 // activate the locale setting                                                                                                                                                            
-putenv("LANG=" . $_SESSION["locale"]);                                                                                                                                                                
-setlocale(LC_ALL, $_SESSION["locale"]);                                                                                                                                                               
+putenv("LANG=" . $_SESSION['locale']);                                                                                                                                                                
+setlocale(LC_ALL, $_SESSION['locale']);                                                                                                                                                               
                                                                                                                                                                                           
 bindtextdomain(LOCALE_DOMAIN, LOCALE_ROOT);                                                                                                                                                    
 bind_textdomain_codeset(LOCALE_DOMAIN, 'UTF-8');                                                                                                                                                
