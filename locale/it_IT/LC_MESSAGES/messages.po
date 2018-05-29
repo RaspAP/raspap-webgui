@@ -40,8 +40,8 @@ msgstr "Configura hotspot"
 msgid "Configure networking"
 msgstr "Configura rete"
 
-msgid "Configure DHCP"
-msgstr "Configura DHCP"
+msgid "Configure DHCP Server"
+msgstr "Configura server DHCP"
 
 msgid "Configure OpenVPN"
 msgstr "Configura OpenVPN"

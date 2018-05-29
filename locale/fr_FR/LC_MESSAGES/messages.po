@@ -26,34 +26,34 @@ msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
 msgid "RaspAP Wifi Portal"
-msgstr "RaspAP Wifi Portal"
+msgstr "RaspAP Wifi Portail"
 
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
 msgid "Configure WiFi client"
-msgstr "Configurer le client WiFi"
+msgstr "Configurer client WiFi"
 
 msgid "Configure hotspot"
-msgstr "Configurer le hotspot"
+msgstr "Configurer hotspot"
 
 msgid "Configure networking"
-msgstr "Configurer le réseau"
+msgstr "Configurer réseau"
 
-msgid "Configure DHCP"
-msgstr "Configurer DHCP"
+msgid "Configure DHCP Server"
+msgstr "Configurer server DHCP"
 
 msgid "Configure OpenVPN"
 msgstr "Configurer OpenVPN"
 
 msgid "Configure TOR proxy"
-msgstr "Configurer le proxy TOR"
+msgstr "Configurer proxy TOR"
 
 msgid "Configure Auth"
-msgstr "Configurer l'auth"
+msgstr "Configurer Auth"
 
 msgid "Change Theme"
-msgstr "Change le thème"
+msgstr "Change Thème"
 
 msgid "System"
 msgstr "Système"
