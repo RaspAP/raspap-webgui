@@ -1,10 +1,13 @@
 <?php
+
+include_once( 'includes/status_messages.php' );
+
 /**
-*
-* Find the version of the Raspberry Pi
-* Currently only used for the system information page but may useful elsewhere
-*
-*/
+ *
+ * Find the version of the Raspberry Pi
+ * Currently only used for the system information page but may useful elsewhere
+ *
+ */
 
 function RPiVersion() {
   // Lookup table from http://www.raspberrypi-spy.co.uk/2012/09/checking-your-raspberry-pi-board-version/
@@ -42,10 +45,31 @@ function RPiVersion() {
 }
 
 /**
-*
-*
-*/
+ *
+ *
+ */
 function DisplaySystem(){
+
+  $status = new StatusMessages();
+
+  if( isset($_POST['SaveLanguage']) ) {
+    if (CSRFValidate()) {
+      if(isset($_POST['locale'])) {
+        $_SESSION['locale'] = $_POST['locale'];
+        $status->addMessage('Language setting saved', 'success'); 
+      }
+    } else {
+      error_log('CSRF violation');
+    }
+  }
+
+  // define locales 
+  $arrLocales = array(
+    'en_GB.UTF-8' => 'English',
+    'fr_FR.UTF-8' => 'français',
+    'it_IT.UTF-8' => 'italiano',
+    'pt_BR.UTF-8' => 'Português'
+  );
 
   // hostname
   exec("hostname -f", $hostarray);
@@ -80,90 +104,103 @@ function DisplaySystem(){
   elseif ($cpuload > 75) { $cpuload_status = "warning"; }
   elseif ($cpuload >  0) { $cpuload_status = "success"; }
 
-  ?>
+?>
   <div class="row">
   <div class="col-lg-12">
   <div class="panel panel-primary">
   <div class="panel-heading"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></div>
   <div class="panel-body">
 
-    <?php
-    if (isset($_POST['system_reboot'])) {
-      echo '<div class="alert alert-warning">' . _("System Rebooting Now!") . '</div>';
-      $result = shell_exec("sudo /sbin/reboot");
-    }
-    if (isset($_POST['system_shutdown'])) {
-      echo '<div class="alert alert-warning">' . _("System Shutting Down Now!") . '</div>';
-      $result = shell_exec("sudo /sbin/shutdown -h now");
-    }
-    ?>
+<?php
+  if (isset($_POST['system_reboot'])) {
+    echo '<div class="alert alert-warning">' . _("System Rebooting Now!") . '</div>';
+    $result = shell_exec("sudo /sbin/reboot");
+  }
+  if (isset($_POST['system_shutdown'])) {
+    echo '<div class="alert alert-warning">' . _("System Shutting Down Now!") . '</div>';
+    $result = shell_exec("sudo /sbin/shutdown -h now");
+  }
+?>
 
-    <div class="row">
-    <div class="col-md-12">
-    <div class="panel panel-default">
-    <div class="panel-body">
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active systemtab"><a href="#system" aria-controls="system" role="tab" data-toggle="tab"><?php echo _("System"); ?></a></li>
-        <li role="presentation" class="consoletab"><a href="#console" aria-controls="console" role="tab" data-toggle="tab"><?php echo _("Console"); ?></a></li>
-    </ul>
+  <div class="row">
+  <div class="col-md-12">
+  <div class="panel panel-default">
+  <div class="panel-body">
+  <p><?php $status->showMessages(); ?></p>
+  <form role="form" action="?page=system_info" method="POST">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active systemtab"><a href="#system" aria-controls="system" role="tab" data-toggle="tab"><?php echo _("System"); ?></a></li>
+    <li role="presentation" class="languagetab"><a href="#language" aria-controls="language" role="tab" data-toggle="tab"><?php echo _("Language"); ?></a></li>
+    <li role="presentation" class="consoletab"><a href="#console" aria-controls="console" role="tab" data-toggle="tab"><?php echo _("Console"); ?></a></li>
+  </ul>
 
-    <div class="systemtabcontent tab-content">
-        <div role="tabpanel" class="tab-pane active" id="system">
-            <div class="row">
-                <div class="col-lg-6">
-                        <h4><?php echo _("System Information"); ?></h4>
-                        <div class="info-item"><?php echo _("Hostname"); ?></div> <?php echo $hostname ?></br>
-                        <div class="info-item"><?php echo _("Pi Revision"); ?></div> <?php echo RPiVersion() ?></br>
-                        <div class="info-item"><?php echo _("Uptime"); ?></div>   <?php echo $uptime ?></br></br>
-                        <div class="info-item"><?php echo _("Memory Used"); ?></div>
-                        <div class="progress">
-                        <div class="progress-bar progress-bar-<?php echo $memused_status ?> progress-bar-striped active"
-                        role="progressbar"
-                        aria-valuenow="<?php echo $memused ?>" aria-valuemin="0" aria-valuemax="100"
-                        style="width: <?php echo $memused ?>%;"><?php echo $memused ?>%
-                        </div>
-                        </div>
-                        <div class="info-item"><?php echo _("CPU Load"); ?></div>
-                        <div class="progress">
-                        <div class="progress-bar progress-bar-<?php echo $cpuload_status ?> progress-bar-striped active"
-                        role="progressbar"
-                        aria-valuenow="<?php echo $cpuload ?>" aria-valuemin="0" aria-valuemax="100"
-                        style="width: <?php echo $cpuload ?>%;"><?php echo $cpuload ?>%
-                        </div>
-                        </div>
+  <div class="systemtabcontent tab-content">
+    <div role="tabpanel" class="tab-pane active" id="system">
+      <div class="row">
+        <div class="col-lg-6">
+          <h4><?php echo _("System Information"); ?></h4>
+          <div class="info-item"><?php echo _("Hostname"); ?></div> <?php echo $hostname ?></br>
+          <div class="info-item"><?php echo _("Pi Revision"); ?></div> <?php echo RPiVersion() ?></br>
+          <div class="info-item"><?php echo _("Uptime"); ?></div>   <?php echo $uptime ?></br></br>
+          <div class="info-item"><?php echo _("Memory Used"); ?></div>
+          <div class="progress">
+          <div class="progress-bar progress-bar-<?php echo $memused_status ?> progress-bar-striped active"
+          role="progressbar"
+          aria-valuenow="<?php echo $memused ?>" aria-valuemin="0" aria-valuemax="100"
+          style="width: <?php echo $memused ?>%;"><?php echo $memused ?>%
+          </div>
+          </div>
+          <div class="info-item"><?php echo _("CPU Load"); ?></div>
+          <div class="progress">
+          <div class="progress-bar progress-bar-<?php echo $cpuload_status ?> progress-bar-striped active"
+          role="progressbar"
+          aria-valuenow="<?php echo $cpuload ?>" aria-valuemin="0" aria-valuemax="100"
+          style="width: <?php echo $cpuload ?>%;"><?php echo $cpuload ?>%
+          </div>
+          </div>
 
-                        <form action="?page=system_info" method="POST">
-                        <input type="submit" class="btn btn-warning" name="system_reboot"   value="<?php echo _("Reboot"); ?>" />
-                        <input type="submit" class="btn btn-warning" name="system_shutdown" value="<?php echo _("Shutdown"); ?>" />
-                        <input type="button" class="btn btn-outline btn-primary" value="<?php echo _("Refresh"); ?>" onclick="document.location.reload(true)" />
-                        </form>
-                </div>
-            </div>
+          <form action="?page=system_info" method="POST">
+          <input type="submit" class="btn btn-warning" name="system_reboot"   value="<?php echo _("Reboot"); ?>" />
+          <input type="submit" class="btn btn-warning" name="system_shutdown" value="<?php echo _("Shutdown"); ?>" />
+          <input type="button" class="btn btn-outline btn-primary" value="<?php echo _("Refresh"); ?>" onclick="document.location.reload(true)" />
+          </form>
         </div>
-        <div role="tabpanel" class="tab-pane" id="console">
-            <div class="row">                                                                                                                                                             
-                <div class="col-lg-12"> 
-                    <iframe src="includes/webconsole.php" class="webconsole"></iframe>
-                </div>
-            </div>
-       </div>
+      </div>
+    </div>
 
+    <div role="tabpanel" class="tab-pane" id="language">
+      <h4><?php echo _("Language settings") ;?></h4>
+      <?php CSRFToken() ?>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="code"><?php echo _("Select a language"); ?></label>
+            <?php SelectorOptions('locale', $arrLocales, $_SESSION['locale']); ?>
+        </div>
+      </div>
+      <input type="submit" class="btn btn-outline btn-primary" name="SaveLanguage" value="<?php echo _("Save settings"); ?>" />
+      <input type="button" class="btn btn-outline btn-primary" value="<?php echo _("Refresh"); ?>" onclick="document.location.reload(true)" />
+    </div>
 
+    <div role="tabpanel" class="tab-pane" id="console">
+      <div class="row">
+        <div class="col-lg-12"> 
+          <iframe src="includes/webconsole.php" class="webconsole"></iframe>
+        </div>
+      </div>
+    </div>
 
-    </div><!-- /.panel-body -->
+    </div><!-- /.systemtabcontent -->
+
     </div><!-- /.panel-default -->
     </div><!-- /.col-md-6 -->
     </div><!-- /.row -->
   </div><!-- /.panel-body -->
+  </form>
   </div><!-- /.panel-primary -->
+  <div class="panel-footer"></div>
   </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
-
-
-
-
-      </div>
-  </div>
-  <?php
+  </xdiv>
+<?php
 }
 ?>
