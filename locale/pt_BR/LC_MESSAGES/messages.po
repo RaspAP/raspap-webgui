@@ -404,6 +404,24 @@ msgid "Information provided by /sys/class/net"
 msgstr "Informação Provida por /sys/class/net"
 
 #: includes/system.php
+msgid "System Information"
+msgstr "Informação do sistema"
+
+msgid "Language"
+msgstr "Língua"
+
+msgid "Language settings"
+msgstr "Configurações de linguagem"
+
+msgid "Select a language"
+msgstr "Selecione um idioma"
+
+msgid "Language setting saved"
+msgstr "Configuração de idioma salva"
+
+msgid "Console"
+msgstr "Console"
+
 msgid "Hostname"
 msgstr "Hostname"
 
