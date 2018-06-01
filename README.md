@@ -16,6 +16,7 @@ We'd be curious to hear about how you use this with your own RPi-powered project
  - [Prerequisites](#prerequisites)
  - [Quick installer](#quick-installer)
  - [Manual installation](#manual-installation)
+ - [Multilingual support](#multilingual-support)
  - [Optional services](#optional-services)
  - [How to contribute](#how-to-contribute)
  - [Support us](#support-us)
@@ -114,6 +115,18 @@ sudo reboot
 ```
 
 The default username is 'admin' and the default password is 'secret'.
+
+## Multilingual support
+RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multilingual messages. In order to use RaspAP with one of our supported translations, you must configure a corresponding language package on your RPi. To list languages currently installed on your system, use `locale -a` at the shell prompt. To generate new locales, run `sudo dpkg-reconfigure locales` and select any other desired locales. Details are provided on our [wiki](https://github.com/billz/raspap-webgui/wiki/Translations#raspap-in-your-language). 
+
+The following translations are currently maintained by the project:
+
+- Français
+- Italiano
+- Português
+- Svenska
+
+If your language is not in the list above, why not [contribute a translation](https://github.com/billz/raspap-webgui/wiki/Translations#contributing-a-translation)? Contributors will receive credit as the original translators.
 
 ## Optional services
 OpenVPN and TOR are two additional services that run perfectly well on the RPi, and are a nice way to extend the usefulness of your WiFi router. I've started on interfaces to administer these services. Not everyone will need them, so for the moment they are disabled by default. You can enable them by changing these options in `/var/www/html/includes/config.php`:
