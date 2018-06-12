@@ -126,7 +126,7 @@ function DisplayWPAConfig(){
   exec( 'sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' scan' );
   sleep(3);
   exec( 'sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' scan_results',$scan_return );
-  for( $shift = 0; $shift < 2; $shift++ ) {
+  for( $shift = 0; $shift < 1; $shift++ ) {
     array_shift($scan_return);
   }
   // display output
