@@ -17,6 +17,9 @@
 if (empty($_SESSION['locale'])) {
   $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
   switch ($lang){
+    case "de":
+      $locale = "de_DE.UTF-8";
+      break;
     case "fr":
       $locale = "fr_FR.UTF-8";
       break;

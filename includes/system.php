@@ -66,6 +66,7 @@ function DisplaySystem(){
   // define locales 
   $arrLocales = array(
     'en_GB.UTF-8' => 'English',
+    'de_DE.UTF-8' => 'Deutsche',
     'fr_FR.UTF-8' => 'Français',
     'it_IT.UTF-8' => 'Italiano',
     'pt_BR.UTF-8' => 'Português',
