@@ -1,0 +1,464 @@
+# RaspAP Portable Object file
+# Project home: https://github.com/billz/raspap-webgui
+# Licensed under the GNU General Public License v3.0
+# This file is distributed under the same license as the RaspAP package
+# FIRST AUTHOR billzimmerman@gmail.com, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2018-05-17 17:15+0000\n"
+"Last-Translator: Tino Undeutsch\n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "RaspAP WLAN Konfiguration Portal"
+
+msgid "Toggle navigation"
+msgstr "Navigation umschalten"
+
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP WLAN Portal"
+
+msgid "Dashboard"
+msgstr "Übersicht"
+
+msgid "Configure WiFi client"
+msgstr "WLAN Client einrichten"
+
+msgid "Configure hotspot"
+msgstr "Hotspot einrichten"
+
+msgid "Configure networking"
+msgstr "Netzwerk einrichten"
+
+msgid "Configure DHCP Server"
+msgstr "DHCP Server einrichten"
+
+msgid "Configure OpenVPN"
+msgstr "OpenVPN einrichten"
+
+msgid "Configure TOR proxy"
+msgstr "TOR Proxy einrichten"
+
+msgid "Configure Auth"
+msgstr "Authentifizierung einrichten"
+
+msgid "Change Theme"
+msgstr "Oberflächendesign ändern"
+
+msgid "System"
+msgstr "System"
+
+#: includes/admin.php
+msgid "New passwords do not match"
+msgstr "Passwörter stimmen nicht überein"
+
+msgid "Username must not be empty"
+msgstr "Benutzername darf nicht leer sein"
+
+msgid "Admin password updated"
+msgstr "Administrator Passwort aktualisiert"
+
+msgid "Failed to update admin password"
+msgstr "Aktualisierung Admin Password fehlgeschlagen"
+
+msgid "Old password does not match"
+msgstr "Altes Passwort nicht korrekt"
+
+msgid "Username"
+msgstr "Benutzername"
+
+msgid "Old password"
+msgstr "Altes Passwort"
+
+msgid "New password"
+msgstr "Neues Passwort"
+
+msgid "Repeat new password"
+msgstr "Wiederholung neues Passwort"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "Client Einstellungen"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "Security"
+msgstr "Sicherheit"
+
+msgid "Passphrase"
+msgstr "Passphrase"
+
+msgid "Wifi settings updated successfully"
+msgstr "WLAN Einstellungen erfolgreich aktualisert"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "WLAN Einstallungen wurden aktualisiert, Neustart der Dienste fehlgeschlagen ('wpa_cli reconfigure' konnte nicht ausgeführt werden)"
+
+msgid "Wifi settings failed to be updated"
+msgstr "WLAN Einstellungen konnten nicht übernommen werden"
+
+msgid "Failed to update wifi settings"
+msgstr "Übernahme der WLAN Einstellungen fehlgeschlagen"
+
+msgid "Rescan"
+msgstr "Aktualisieren"
+
+msgid "Update"
+msgstr "Übernehmen"
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Hinweis:</strong> WEP access points erscheinen als 'Offen'. RaspAP unterstützt derzeit keine Verbindungen zu WEP"
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "Schnittstelle Informationen"
+
+msgid "Interface Name"
+msgstr "Schnittstelle Name"
+
+msgid "IP Address"
+msgstr "IP Addresse"
+
+msgid "Subnet Mask"
+msgstr "Subnetz Maske"
+
+msgid "Mac Address"
+msgstr "MAC Addresse"
+
+msgid "Interface Statistics"
+msgstr "Schnittstelle Statistiken"
+
+msgid "Received Packets"
+msgstr "Empfangene Pakete"
+
+msgid "Received Bytes"
+msgstr "Empfangene Bytes"
+
+msgid "Transferred Packets"
+msgstr "Übertragene Pakete"
+
+msgid "Transferred Bytes"
+msgstr "Übertragene Bytes"
+
+msgid "Wireless Information"
+msgstr "Informationen Funknetz"
+
+msgid "Connected To"
+msgstr "Verbunden mit"
+
+msgid "AP Mac Address"
+msgstr "AP MAC Addresse"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Signal Level"
+msgstr "Signalstärke"
+
+msgid "Transmit Power"
+msgstr "Sendeleistung"
+
+msgid "Frequency"
+msgstr "Frequenz"
+
+msgid "Link Quality"
+msgstr "Verbindungsqualität"
+
+msgid "Information provided by ifconfig and iwconfig"
+msgstr "Informationen von 'ifconfig' und 'iwconfig'"
+
+msgid "No MAC Address Found"
+msgstr "Keine MAC Addresse gefunden"
+
+msgid "No IP Address Found"
+msgstr "Keine IP Addresse gefunden"
+
+msgid "No Subnet Mask Found"
+msgstr "Keine Subnetz Maske gefunden"
+
+msgid "No Data"
+msgstr "Keine Daten"
+
+msgid "Not connected"
+msgstr "Nich verbunden"
+
+msgid "Interface is up"
+msgstr "Schnittstelle ist gestartet"
+
+msgid "Interface is down"
+msgstr "Schnittstelle ist aus"
+
+msgid "Interface already down"
+msgstr "Schnittstelle bereits aus"
+
+msgid "Start wlan0"
+msgstr "Start wlan0"
+
+msgid "Stop wlan0"
+msgstr "Stop wlan0"
+
+#: includes/dhcp.php
+msgid "Server settings"
+msgstr "Server Einstellungen"
+
+msgid "Client list"
+msgstr "Client Liste"
+
+msgid "Starting IP Address"
+msgstr "Erste IP Addresse"
+
+msgid "Ending IP Address"
+msgstr "Letzte IP Addresse"
+
+msgid "Lease Time"
+msgstr "Gültigkeit"
+
+msgid "Interval"
+msgstr "Intervall"
+
+msgid "Active DHCP leases"
+msgstr "Aktive DHCP Zuordnungen"
+
+msgid "Expire time"
+msgstr "Ablaufzeit"
+
+msgid "MAC Address"
+msgstr "MAC Addresse"
+
+msgid "Host name"
+msgstr "Rechnername"
+
+msgid "Client ID"
+msgstr "Client ID"
+
+msgid "Information provided by Dnsmasq"
+msgstr "Informationen von 'Dnsmasq'"
+
+msgid "Stop dnsmasq"
+msgstr "Stop dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "Start dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Dnsmasq Konfiguration erfolgreich übernommen"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq läuft bereits"
+
+msgid "Successfully started dnsmasq"
+msgstr "Dnsmasq wure erfolgreich gestartet"
+
+msgid "Failed to start dnsmasq"
+msgstr "Start von dnsmasq fehlgeschlagen"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Dnsmasq wurde erfolgreich angehalten"
+
+msgid "Failed to stop dnsmasq"
+msgstr "Dnsmasq konnte nicht angehalten werden"
+
+msgid "dnsmasq already stopped"
+msgstr "Dnsmasq wurde bereits angehalten"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq läuft"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq läuft nicht"
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "Basis"
+
+msgid "Advanced"
+msgstr "Erweitert"
+
+msgid "Basic settings"
+msgstr "Grundeinstellungen"
+
+msgid "Wireless Mode"
+msgstr "Drahtlosmodus"
+
+msgid "Security settings"
+msgstr "Sicherheitseinstellungen"
+
+msgid "Security type"
+msgstr "Sicherheitstyp"
+
+msgid "Encryption Type"
+msgstr "Verschlüsselungstyp"
+
+msgid "PSK"
+msgstr "PSK"
+
+msgid "Advanced settings"
+msgstr "Erweiterte Einstellungen"
+
+msgid "Country Code"
+msgstr "Ländercode"
+
+msgid "Information provided by hostapd"
+msgstr "Informationen von hostapd"
+
+msgid "Attempting to start hotspot"
+msgstr "Hotspot wird gestartet"
+
+msgid "Attempting to stop hotspot"
+msgstr "Hotspot wird beendet"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD läuft nicht"
+
+msgid "HostAPD is running"
+msgstr "HostAPD läuft"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID muss zwischen 1 und 32 Zeichen lang sein"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "WPA passphrase muss zwischen 8 und 63 Zeichen lang sein"
+
+msgid "Unknown interface"
+msgstr "Unbekanntes interface"
+
+msgid "Country code must be blank or two characters"
+msgstr "Ländercode muss leer bleiben oder mit zwei Buchstaben angegeben werden"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Wifi Hotspot Einstellungen gespeichert"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "WiFi Hotspot Einstellungen konnten nicht gespeichert werden"
+
+msgid "Start hotspot"
+msgstr "Hotspot starten"
+
+msgid "Stop hotspot"
+msgstr "Hotspot anhalten"
+
+msgid "Enable logging"
+msgstr "Aktiviere Protokoll"
+
+msgid "Logfile output"
+msgstr "Logfile Ausgabe"
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+msgid "Current settings"
+msgstr "Aktuelle Einstellungen"
+
+msgid "Default Gateway"
+msgstr "Standardgateway"
+
+msgid "DNS Server"
+msgstr "DNS Server"
+
+msgid "Alternate DNS Server"
+msgstr "Alternativer DNS Server"
+
+msgid "Adapter IP Address Settings"
+msgstr "Adapter IP Address Einstellungen"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Aktiviere Fallback zur Statischen Option"
+
+msgid "Static IP"
+msgstr "Statische IP"
+
+msgid "Enabled"
+msgstr "Aktiviert"
+
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+msgid "Static IP Options"
+msgstr "Statische IP Optionen"
+
+msgid "Apply settings"
+msgstr "Einstellungen übernehmen"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Information aus /sys/class/net"
+
+#: includes/system.php
+msgid "System Information"
+msgstr "System Information"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Language settings"
+msgstr "Spracheinstellungen"
+
+msgid "Select a language"
+msgstr "Sprache auswählen"
+
+msgid "Language setting saved"
+msgstr "Spracheinstellungen gespeichert"
+
+msgid "Console"
+msgstr "Konsole"
+
+msgid "Hostname"
+msgstr "Hostname"
+
+msgid "Pi Revision"
+msgstr "Pi Revision"
+
+msgid "Uptime"
+msgstr "Laufzeit"
+
+msgid "Memory Used"
+msgstr "genutzter Speicher"
+
+msgid "CPU Load"
+msgstr "CPU Last"
+
+msgid "Reboot"
+msgstr "Neustart"
+
+msgid "Shutdown"
+msgstr "Herunterfahren"
+
+msgid "System Rebooting Now!"
+msgstr "System Rebooting Now!"
+
+msgid "System Shutting Down Now!"
+msgstr "System wird heruntergefahren!"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "Oberflächendesign Einstellungen"
+
+msgid "Select a theme"
+msgstr "Oberflächendesign auswählen"
+
+#: common form controls
+msgid "Save settings"
+msgstr "Einstellungen speichern"
+
+msgid "Refresh"
+msgstr "Aktualisieren"
