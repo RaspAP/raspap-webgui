@@ -121,7 +121,7 @@ RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multi
 
 The following translations are currently maintained by the project:
 
-- Deutsche
+- Deutsch
 - Français
 - Italiano
 - Português
