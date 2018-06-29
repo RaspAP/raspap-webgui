@@ -230,6 +230,8 @@ function patch_system_files() {
         "/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant-wlan1.conf"
         "/sbin/wpa_cli -i wlan0 scan_results"
         "/sbin/wpa_cli -i wlan0 scan"
+        "/sbin/wpa_cli -i wlan1 scan_results"
+        "/sbin/wpa_cli -i wlan1 scan"
         "/sbin/wpa_cli reconfigure"
         "/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf"
         "/etc/init.d/hostapd start"
