@@ -117,6 +117,11 @@ $theme_url = 'dist/css/' . $theme;
               <li>
                 <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> <?php echo _("Dashboard"); ?></a>
               </li>
+			  <?php if ( RASPI_PPP_ENABLED ) : ?>
+			  <li>
+			     <a href="index.php?page=ppp0_info"><i class="fa fa-dashboard fa-fw"></i> <?php echo _("Cellular Dashboard"); ?></a>
+			  </li>
+              <?php endif; ?>
               <li>
                 <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
               </li>
