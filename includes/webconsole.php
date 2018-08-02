@@ -1,4 +1,14 @@
 <?php
+require_once 'config.php';
+require_once RASPI_CONFIG.'/raspap.php';
+
+session_start();
+header('X-Frame-Options: SAMEORIGIN');
+header("Content-Security-Policy: default-src 'none'; frame-src 'self'; connect-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'");
+
+require_once 'authenticate.php';
+
+
 // Web Console v0.9.7 (2016-11-05)
 //
 // Author: Nickolay Kovalev (http://nickola.ru)

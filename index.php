@@ -51,10 +51,10 @@ if(!isset($_COOKIE['theme'])) {
 } else {
     $theme = $_COOKIE['theme'];
 }
-$theme_url = 'dist/css/' . $theme;
-?>
 
-<!DOCTYPE html>
+$theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
+
+?><!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
