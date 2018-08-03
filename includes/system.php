@@ -141,23 +141,23 @@ function DisplaySystem(){
       <div class="row">
         <div class="col-lg-6">
           <h4><?php echo _("System Information"); ?></h4>
-          <div class="info-item"><?php echo _("Hostname"); ?></div> <?php echo $hostname ?></br>
-          <div class="info-item"><?php echo _("Pi Revision"); ?></div> <?php echo RPiVersion() ?></br>
-          <div class="info-item"><?php echo _("Uptime"); ?></div>   <?php echo $uptime ?></br></br>
+          <div class="info-item"><?php echo _("Hostname"); ?></div> <?php echo htmlspecialchars($hostname, ENT_QUOTES); ?></br>
+          <div class="info-item"><?php echo _("Pi Revision"); ?></div> <?php echo htmlspecialchars(RPiVersion(), ENT_QUOTES); ?></br>
+          <div class="info-item"><?php echo _("Uptime"); ?></div>   <?php echo htmlspecialchars($uptime, ENT_QUOTES); ?></br></br>
           <div class="info-item"><?php echo _("Memory Used"); ?></div>
           <div class="progress">
-          <div class="progress-bar progress-bar-<?php echo $memused_status ?> progress-bar-striped active"
+          <div class="progress-bar progress-bar-<?php echo htmlspecialchars($memused_status, ENT_QUOTES); ?> progress-bar-striped active"
           role="progressbar"
-          aria-valuenow="<?php echo $memused ?>" aria-valuemin="0" aria-valuemax="100"
-          style="width: <?php echo $memused ?>%;"><?php echo $memused ?>%
+          aria-valuenow="<?php echo htmlspecialchars($memused, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100"
+          style="width: <?php echo htmlspecialchars($memused, ENT_QUOTES); ?>%;"><?php echo htmlspecialchars($memused, ENT_QUOTES); ?>%
           </div>
           </div>
           <div class="info-item"><?php echo _("CPU Load"); ?></div>
           <div class="progress">
-          <div class="progress-bar progress-bar-<?php echo $cpuload_status ?> progress-bar-striped active"
+          <div class="progress-bar progress-bar-<?php echo htmlspecialchars($cpuload_status, ENT_QUOTES); ?> progress-bar-striped active"
           role="progressbar"
-          aria-valuenow="<?php echo $cpuload ?>" aria-valuemin="0" aria-valuemax="100"
-          style="width: <?php echo $cpuload ?>%;"><?php echo $cpuload ?>%
+          aria-valuenow="<?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100"
+          style="width: <?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>%;"><?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>%
           </div>
           </div>
 
@@ -200,9 +200,9 @@ function DisplaySystem(){
   </form>
   </div><!-- /.panel-primary -->
   <div class="panel-footer"></div>
+  </div><!-- /.panel-primary -->
   </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
-  </xdiv>
 <?php
 }
-?>
+

@@ -10,4 +10,3 @@ if (!$validated) {
   die ("Not authorized");
 }
 
-?>

@@ -55,7 +55,7 @@ function safefilerewrite($fileName, $dataToSave) {
 */
 function CSRFToken() {
 ?>
-<input id="csrf_token" type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
+<input id="csrf_token" type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES);; ?>" />
 <?php
 }
 
@@ -90,16 +90,19 @@ function isAssoc($arr) {
 *
 */
 function SelectorOptions($name, $options, $selected = null) {
-  echo "<select class=\"form-control\" name=\"$name\">";
+  echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'>' , PHP_EOL;
   foreach ( $options as $opt => $label) {
     $select = '';
     $key = isAssoc($options) ? $opt : $label;
     if( $key == $selected ) {
-      $select = " selected";
+      $select = ' selected="selected"';
     }
-    echo "<option value=\"$key\"$select>$label</options>";
+
+    echo '<option value="'.htmlspecialchars($key, ENT_QUOTES).'"'.$select.'>'.
+            htmlspecialchars($label, ENT_QUOTES).'</options>' , PHP_EOL;
   }
-  echo "</select>";
+
+  echo '</select>' , PHP_EOL;
 }
 
 /**
@@ -220,96 +223,93 @@ function DisplayOpenVPNConfig() {
 	?>
 	<div class="row">
 	<div class="col-lg-12">
-    	<div class="panel panel-primary">           
-			<div class="panel-heading"><i class="fa fa-lock fa-fw"></i> Configure OpenVPN 
-            </div>
-        <!-- /.panel-heading -->
-        <div class="panel-body">
-        	<!-- Nav tabs -->
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#openvpnclient" data-toggle="tab">Client settings</a>
-                </li>
-                <li><a href="#openvpnserver" data-toggle="tab">Server settings</a>
-                </li>
-            </ul>
-            <!-- Tab panes -->
-           	<div class="tab-content">
-           		<p><?php echo $status; ?></p>
-            	<div class="tab-pane fade in active" id="openvpnclient">
-            		
-            		<h4>Client settings</h4>
+		<div class="panel panel-primary">
+			<div class="panel-heading"><i class="fa fa-lock fa-fw"></i> Configure OpenVPN </div>
+		<!-- /.panel-heading -->
+		<div class="panel-body">
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#openvpnclient" data-toggle="tab">Client settings</a></li>
+				<li><a href="#openvpnserver" data-toggle="tab">Server settings</a></li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<p><?php echo $status; ?></p>
+				<div class="tab-pane fade in active" id="openvpnclient">
+
+					<h4>Client settings</h4>
 					<form role="form" action="?page=save_hostapd_conf" method="POST">
 
 					<div class="row">
 						<div class="form-group col-md-4">
-	                        <label>Select OpenVPN configuration file (.ovpn)</label>
-	                        <input type="file" name="openvpn-config">
-	                    </div>
+							<label>Select OpenVPN configuration file (.ovpn)</label>
+							<input type="file" name="openvpn-config">
+						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">Client Log</label>
-							<input type="text" class="form-control" id="disabledInput" name="log-append" type="text" placeholder="<?php echo $arrClientConfig['log-append']; ?>" disabled />
+							<input type="text" class="form-control" id="disabledInput" name="log-append" type="text" placeholder="<?php echo htmlspecialchars($arrClientConfig['log-append'], ENT_QUOTES); ?>" disabled="disabled" />
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane fade" id="openvpnserver">
-            		<h4>Server settings</h4>
-            		<div class="row">
+					<h4>Server settings</h4>
+					<div class="row">
 						<div class="form-group col-md-4">
-            			<label for="code">Port</label> 
-            			<input type="text" class="form-control" name="openvpn_port" value="<?php echo $arrServerConfig['port'] ?>" />
+						<label for="code">Port</label> 
+						<input type="text" class="form-control" name="openvpn_port" value="<?php echo htmlspecialchars($arrServerConfig['port'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 						<label for="code">Protocol</label>
-						<input type="text" class="form-control" name="openvpn_proto" value="<?php echo $arrServerConfig['proto'] ?>" />
+						<input type="text" class="form-control" name="openvpn_proto" value="<?php echo htmlspecialchars($arrServerConfig['proto'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 						<label for="code">Root CA certificate</label>
-						<input type="text" class="form-control" name="openvpn_rootca" placeholder="<?php echo $arrServerConfig['ca']; ?>" disabled />
+						<input type="text" class="form-control" name="openvpn_rootca" placeholder="<?php echo htmlspecialchars($arrServerConfig['ca'], ENT_QUOTES); ?>" disabled="disabled" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 						<label for="code">Server certificate</label>
-						<input type="text" class="form-control" name="openvpn_cert" placeholder="<?php echo $arrServerConfig['cert']; ?>" disabled />
+						<input type="text" class="form-control" name="openvpn_cert" placeholder="<?php echo htmlspecialchars($arrServerConfig['cert'], ENT_QUOTES); ?>" disabled="disabled" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 						<label for="code">Diffie Hellman parameters</label>
-						<input type="text" class="form-control" name="openvpn_dh" placeholder="<?php echo $arrServerConfig['dh']; ?>" disabled />
+						<input type="text" class="form-control" name="openvpn_dh" placeholder="<?php echo htmlspecialchars($arrServerConfig['dh'], ENT_QUOTES); ?>" disabled="disabled" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 						<label for="code">KeepAlive</label>
-						<input type="text" class="form-control" name="openvpn_keepalive" value="<?php echo $arrServerConfig['keepalive']; ?>" />
+						<input type="text" class="form-control" name="openvpn_keepalive" value="<?php echo htmlspecialchars($arrServerConfig['keepalive'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 						<label for="code">Server log</label>
-						<input type="text" class="form-control" name="openvpn_status" placeholder="<?php echo $arrServerConfig['status']; ?>" disabled />
+						<input type="text" class="form-control" name="openvpn_status" placeholder="<?php echo htmlspecialchars($arrServerConfig['status'], ENT_QUOTES); ?>" disabled="disabled" />
 						</div>
 					</div>
-            	</div>
+				</div>
 				<input type="submit" class="btn btn-outline btn-primary" name="SaveOpenVPNSettings" value="Save settings" />
 				<?php
 				if($hostapdstatus[0] == 0) {
-					echo '<input type="submit" class="btn btn-success" name="StartOpenVPN" value="Start OpenVPN" />';
+					echo '<input type="submit" class="btn btn-success" name="StartOpenVPN" value="Start OpenVPN" />' , PHP_EOL;
 				} else {
-					echo '<input type="submit" class="btn btn-warning" name="StopOpenVPN" value="Stop OpenVPN" />';
+					echo '<input type="submit" class="btn btn-warning" name="StopOpenVPN" value="Stop OpenVPN" />' , PHP_EOL;
 				}
-				?>
+?>
 				</form>
 		</div><!-- /.panel-body -->
-    </div><!-- /.panel-primary -->
-    <div class="panel-footer"> Information provided by openvpn</div>
+	</div><!-- /.panel-primary -->
+	<div class="panel-footer"> Information provided by openvpn</div>
 </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 <?php
@@ -339,12 +339,11 @@ function DisplayTorProxyConfig(){
 		}
 	}
 
-	?>
+?>
 	<div class="row">
 	<div class="col-lg-12">
-    	<div class="panel panel-primary">           
-			<div class="panel-heading"><i class="fa fa-eye-slash fa-fw"></i> Configure TOR proxy
-            </div>
+		<div class="panel panel-primary">
+			<div class="panel-heading"><i class="fa fa-eye-slash fa-fw"></i> Configure TOR proxy</div>
         <!-- /.panel-heading -->
         <div class="panel-body">
         	<!-- Nav tabs -->
@@ -365,37 +364,37 @@ function DisplayTorProxyConfig(){
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">VirtualAddrNetwork</label>
-							<input type="text" class="form-control" name="virtualaddrnetwork" value="<?php echo $arrConfig['VirtualAddrNetwork']; ?>" />
+							<input type="text" class="form-control" name="virtualaddrnetwork" value="<?php echo htmlspecialchars($arrConfig['VirtualAddrNetwork'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">AutomapHostsSuffixes</label>
-							<input type="text" class="form-control" name="automaphostssuffixes" value="<?php echo $arrConfig['AutomapHostsSuffixes']; ?>" />
+							<input type="text" class="form-control" name="automaphostssuffixes" value="<?php echo htmlspecialchars($arrConfig['AutomapHostsSuffixes'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">AutomapHostsOnResolve</label>
-							<input type="text" class="form-control" name="automaphostsonresolve" value="<?php echo $arrConfig['AutomapHostsOnResolve']; ?>" />
+							<input type="text" class="form-control" name="automaphostsonresolve" value="<?php echo htmlspecialchars($arrConfig['AutomapHostsOnResolve'], ENT_QUOTES); ?>" />
 						</div>
 					</div>	
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">TransListenAddress</label>
-							<input type="text" class="form-control" name="translistenaddress" value="<?php echo $arrConfig['TransListenAddress']; ?>" />
+							<input type="text" class="form-control" name="translistenaddress" value="<?php echo htmlspecialchars($arrConfig['TransListenAddress'], ENT_QUOTES); ?>" />
 						</div>
 					</div>	
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">DNSPort</label>
-							<input type="text" class="form-control" name="dnsport" value="<?php echo $arrConfig['DNSPort']; ?>" />
+							<input type="text" class="form-control" name="dnsport" value="<?php echo htmlspecialchars($arrConfig['DNSPort'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">DNSListenAddress</label>
-							<input type="text" class="form-control" name="dnslistenaddress" value="<?php echo $arrConfig['DNSListenAddress']; ?>" />
+							<input type="text" class="form-control" name="dnslistenaddress" value="<?php echo htmlspecialchars($arrConfig['DNSListenAddress'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 				</div>
@@ -404,47 +403,47 @@ function DisplayTorProxyConfig(){
             		<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">ORPort</label>
-							<input type="text" class="form-control" name="orport" value="<?php echo $arrConfig['ORPort']; ?>" />
+							<input type="text" class="form-control" name="orport" value="<?php echo htmlspecialchars($arrConfig['ORPort'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">ORListenAddress</label>
-							<input type="text" class="form-control" name="orlistenaddress" value="<?php echo $arrConfig['ORListenAddress']; ?>" />
+							<input type="text" class="form-control" name="orlistenaddress" value="<?php echo htmlspecialchars($arrConfig['ORListenAddress'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">Nickname</label>
-							<input type="text" class="form-control" name="nickname" value="<?php echo $arrConfig['Nickname']; ?>" />
+							<input type="text" class="form-control" name="nickname" value="<?php echo htmlspecialchars($arrConfig['Nickname'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">Address</label>
-							<input type="text" class="form-control" name="address" value="<?php echo $arrConfig['Address']; ?>" />
+							<input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($arrConfig['Address'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">RelayBandwidthRate</label>
-							<input type="text" class="form-control" name="relaybandwidthrate" value="<?php echo $arrConfig['RelayBandwidthRate']; ?>" />
+							<input type="text" class="form-control" name="relaybandwidthrate" value="<?php echo htmlspecialchars($arrConfig['RelayBandwidthRate'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-4">
 							<label for="code">RelayBandwidthBurst</label>
-							<input type="text" class="form-control" name="relaybandwidthburst" value="<?php echo $arrConfig['RelayBandwidthBurst']; ?>" />
+							<input type="text" class="form-control" name="relaybandwidthburst" value="<?php echo htmlspecialchars($arrConfig['RelayBandwidthBurst'], ENT_QUOTES); ?>" />
 						</div>
 					</div>
-            	</div>
-		
+				</div>
+
 				<input type="submit" class="btn btn-outline btn-primary" name="SaveTORProxySettings" value="Save settings" />
 				<?php 
 				if( $torproxystatus[0] == 0 ) {
-					echo '<input type="submit" class="btn btn-success" name="StartTOR" value="Start TOR" />';
+					echo '<input type="submit" class="btn btn-success" name="StartTOR" value="Start TOR" />' , PHP_EOL;
 				} else {
-					echo '<input type="submit" class="btn btn-warning" name="StopTOR" value="Stop TOR" />';
+					echo '<input type="submit" class="btn btn-warning" name="StopTOR" value="Stop TOR" />' , PHP_EOL;
 				};
 				?>
 				</form>
@@ -470,26 +469,26 @@ function SaveTORAndVPNConfig(){
     echo "Attempting to start openvpn";
     exec( 'sudo /etc/init.d/openvpn start', $return );
     foreach( $return as $line ) {
-      echo $line."<br />";
+      echo htmlspecialchars($line, ENT_QUOTES).'<br />' , PHP_EOL;
     }
   } elseif( isset($_POST['StopOpenVPN']) ) {
     echo "Attempting to stop openvpn";
     exec( 'sudo /etc/init.d/openvpn stop', $return );
     foreach( $return as $line ) {
-      echo $line."<br />";
+      echo htmlspecialchars($line, ENT_QUOTES).'<br />' , PHP_EOL;
     }
   } elseif( isset($_POST['StartTOR']) ) {
     echo "Attempting to start TOR";
     exec( 'sudo /etc/init.d/tor start', $return );
     foreach( $return as $line ) {
-      echo $line."<br />";
+      echo htmlspecialchars($line, ENT_QUOTES).'<br />' , PHP_EOL;
     }
   } elseif( isset($_POST['StopTOR']) ) {
     echo "Attempting to stop TOR";
     exec( 'sudo /etc/init.d/tor stop', $return );
     foreach( $return as $line ) {
-      echo $line."<br />";
+      echo htmlspecialchars($line, ENT_QUOTES).'<br />' , PHP_EOL;
     }
   }
 }
-?>
+

@@ -31,4 +31,3 @@ define('RASPI_CHANGETHEME_ENABLED', true );
 define('LOCALE_ROOT', 'locale');
 define('LOCALE_DOMAIN', 'messages'); 
 
-?>

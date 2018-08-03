@@ -158,14 +158,14 @@ function DisplayWPAConfig(){
 
   <div class="row">
     <div class="col-lg-12">
-      <div class="panel panel-primary">           
+      <div class="panel panel-primary">
         <div class="panel-heading"><i class="fa fa-signal fa-fw"></i> <?php echo _("Configure client"); ?></div>
         <!-- /.panel-heading -->
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
           <h4><?php echo _("Client settings"); ?></h4>
 	        <div class="btn-group btn-block">
-	          <a href=".?<?php echo $_SERVER['QUERY_STRING']; ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update"><?php echo _("Rescan"); ?></a>
+	          <a href=".?<?php echo htmlspecialchars($_SERVER['QUERY_STRING'], ENT_QUOTES); ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update"><?php echo _("Rescan"); ?></a>
 	        </div>
           <form method="POST" action="?page=wpa_conf" name="wpa_conf_form">
             <?php CSRFToken() ?>
@@ -191,19 +191,19 @@ function DisplayWPAConfig(){
                 <?php } ?>
                 </td>
                 <td>
-                  <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo htmlentities($ssid) ?>" />
-                  <?php echo $ssid ?>
+                  <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo htmlentities($ssid, ENT_QUOTES) ?>" />
+                  <?php echo htmlspecialchars($ssid, ENT_QUOTES); ?>
                 </td>
               <?php if (array_key_exists('visible', $network) && $network['visible']) { ?>
-                <td><?php echo $network['channel'] ?></td>
+                <td><?php echo htmlspecialchars($network['channel'], ENT_QUOTES); ?></td>
               <?php } else { ?>
                 <td><span class="label label-warning">X</span></td>
               <?php } ?>
                 <td>
               <?php if (array_key_exists('priority', $network)) { ?>
-                  <input type="hidden" name="priority<?php echo $index ?>" value="<?php echo $network['priority'] ?>" />
+                  <input type="hidden" name="priority<?php echo $index ?>" value="<?php echo htmlspecialchars($network['priority'], ENT_QUOTES); ?>" />
               <?php } ?>
-                  <input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo $network['protocol'] ?>" /><?php echo $network['protocol'] ?>
+                  <input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>" /><?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>
                 </td>
               <?php if ($network['protocol'] === 'Open') { ?>
                 <td><input type="hidden" name="passphrase<?php echo $index ?>" value="" />---</td>
@@ -233,4 +233,3 @@ function DisplayWPAConfig(){
 <?php
 }
 
-?>
