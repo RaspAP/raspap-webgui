@@ -12,16 +12,47 @@ function DisplayDHCPConfig() {
   $status = new StatusMessages();
   if( isset( $_POST['savedhcpdsettings'] ) ) {
     if (CSRFValidate()) {
-      $config = 'interface='.$_POST['interface'].PHP_EOL
-        .'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].',255.255.255.0,'.$_POST['RangeLeaseTime'].''.$_POST['RangeLeaseTimeUnits'];
-      exec( 'echo "'.$config.'" > /tmp/dhcpddata',$temp);
-      system( 'sudo cp /tmp/dhcpddata '. RASPI_DNSMASQ_CONFIG, $return );
+        $errors = '';
+        define('IFNAMSIZ', 16);
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['interface']) ||
+            strlen($_POST['interface']) >= IFNAMSIZ) {
+            $errors .= _('Invalid interface name.').'<br />'.PHP_EOL;
+        }
 
-      if( $return == 0 ) {
-        $status->addMessage('Dnsmasq configuration updated successfully', 'success');
-      } else {
-        $status->addMessage('Dnsmasq configuration failed to be updated', 'danger');
-      }
+        if (!preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_POST['RangeStart']) &&
+            !empty($_POST['RangeStart'])) {  // allow ''/null ?
+            $errors .= _('Invalid DHCP range start.').'<br />'.PHP_EOL;
+        }
+
+        if (!preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_POST['RangeEnd']) &&
+            !empty($_POST['RangeEnd'])) {  // allow ''/null ?
+            $errors .= _('Invalid DHCP range end.').'<br />'.PHP_EOL;
+        }
+
+        if (!ctype_digit($_POST['RangeLeaseTime'])) {
+            $errors .= _('Invalid DHCP lease time, not a number.').'<br />'.PHP_EOL;
+        }
+
+        if (!in_array($_POST['RangeLeaseTimeUnits'], array('m', 'h', 'd', 'infinite'))) {
+            $errors .= _('Unknown DHCP lease time unit.').'<br />'.PHP_EOL;
+        }
+
+        $return = 1;
+        if (empty($errors)) {
+            $config = 'interface='.$_POST['interface'].PHP_EOL.
+                      'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].
+                      ',255.255.255.0,'.$_POST['RangeLeaseTime'].$_POST['RangeLeaseTimeUnits'];
+            exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
+            system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);
+        } else {
+            $status->addMessage($errors, 'danger');
+        }
+
+        if ($return == 0) {
+            $status->addMessage('Dnsmasq configuration updated successfully', 'success');
+        } else {
+            $status->addMessage('Dnsmasq configuration failed to be updated.', 'danger');
+        }
     } else {
       error_log('CSRF violation');
     }
