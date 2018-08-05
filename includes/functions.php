@@ -332,6 +332,7 @@ function DisplayTorProxyConfig(){
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>';
 	}
 
+	$arrConfig = array();
 	foreach( $return as $a ) {
 		if( $a[0] != "#" ) {
 			$arrLine = explode( " ",$a) ;
