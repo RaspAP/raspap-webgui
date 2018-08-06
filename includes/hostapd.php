@@ -62,7 +62,8 @@ function DisplayHostAPDConfig(){
       $arrConfig[$arrLine[0]]=$arrLine[1];
     }
   };
-  ?>
+
+?>
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-primary">
@@ -96,7 +97,7 @@ function DisplayHostAPDConfig(){
                 <div class="row">
                   <div class="form-group col-md-4">
                     <label for="code"><?php echo _("SSID"); ?></label>
-                    <input type="text" class="form-control" name="ssid" value="<?php echo $arrConfig['ssid']; ?>" />
+                    <input type="text" class="form-control" name="ssid" value="<?php echo htmlspecialchars($arrConfig['ssid'], ENT_QUOTES); ?>" />
                   </div>
                 </div>
                 <div class="row">
@@ -129,7 +130,7 @@ function DisplayHostAPDConfig(){
                 <div class="row">
                   <div class="form-group col-md-4">
                     <label for="code"><?php echo _("PSK"); ?></label>
-                    <input type="text" class="form-control" name="wpa_passphrase" value="<?php echo $arrConfig['wpa_passphrase'] ?>" />
+                    <input type="text" class="form-control" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" />
                   </div>
                 </div>
               </div>
@@ -140,7 +141,7 @@ function DisplayHostAPDConfig(){
                       <?php
                           if($arrHostapdConf['LogEnable'] == 1) {
                               $log = file_get_contents('/tmp/hostapd.log');
-                              echo '<br /><textarea class="logoutput">'.$log.'</textarea>';
+                              echo '<br /><textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
                           } else {
                               echo "<br />Logfile output not enabled";
                           }
@@ -154,8 +155,14 @@ function DisplayHostAPDConfig(){
                   <div class="col-md-4">
                   <div class="form-check">
                     <label class="form-check-label">
-			<?php echo _("Enable logging"); ?> <?php $checked = ''; if($arrHostapdConf['LogEnable'] == 1) { $checked = 'checked'; } ?>
-                        <input id="logEnable" name ="logEnable" type="checkbox" class="form-check-input" value="1" <?php echo $checked; ?> />
+                      <?php echo _("Enable logging");
+$checked = ''; 
+if ($arrHostapdConf['LogEnable'] == 1) {
+    $checked = ' checked="checked"';
+}
+
+?>
+                      <input id="logEnable" name ="logEnable" type="checkbox" class="form-check-input" value="1"<?php echo $checked; ?> />
                     </label>
                   </div>
                   </div>
@@ -163,7 +170,7 @@ function DisplayHostAPDConfig(){
                 <div class="row">
                   <div class="form-group col-md-4">
                   <label for="code"><?php echo _("Country Code"); ?></label>
-                  <input type="hidden" id="selected_country" value="<?php echo $arrConfig['country_code'] ?>">
+                  <input type="hidden" id="selected_country" value="<?php echo htmlspecialchars($arrConfig['country_code'], ENT_QUOTES); ?>">
                   <select  class="form-control"  id="countries" name="country_code">
                     <option value="AF">Afghanistan</option>
                     <option value="AX">Åland Islands</option>
@@ -414,29 +421,30 @@ function DisplayHostAPDConfig(){
                     <option value="YE">Yemen</option>
                     <option value="ZM">Zambia</option>
                     <option value="ZW">Zimbabwe</option>
-        	  </select>
-        	  <script>       
-		    country = document.getElementById("selected_country").value;
-		    countries = document.getElementById("countries");
-		    ops = countries.getElementsByTagName("option");
-		      for(i = 0;i < ops.length; i++) {
-			if(ops[i].value == country){
-			  ops[i].selected=true;
-			  break;
-			}
-		      }
-		  </script>
+                  </select>
+<script type="text/javascript">
+var country = document.getElementById("selected_country").value;
+var countries = document.getElementById("countries");
+var ops = countries.getElementsByTagName("option");
+for (var i = 0; i < ops.length; ++i) {
+	if(ops[i].value == country){
+		ops[i].selected=true;
+		break;
+	}
+}
+
+</script>
                 </div>
               </div><!-- /.panel-body -->
             </div><!-- /.panel-primary -->
             <input type="submit" class="btn btn-outline btn-primary" name="SaveHostAPDSettings" value="<?php echo _("Save settings"); ?>" />
             <?php
               if($hostapdstatus[0] == 0) {
-                echo '<input type="submit" class="btn btn-success" name="StartHotspot" value="' . _("Start hotspot") . '"/>';
+                echo '<input type="submit" class="btn btn-success" name="StartHotspot" value="' . _("Start hotspot") . '"/>' , PHP_EOL;
               } else {
-                echo '<input type="submit" class="btn btn-warning" name="StopHotspot" value="' . _("Stop hotspot") . '"/>';
+                echo '<input type="submit" class="btn btn-warning" name="StopHotspot" value="' . _("Stop hotspot") . '"/>' , PHP_EOL;
               };
-            ?>
+?>
           </form>
         </div></div><!-- /.panel-primary -->
       <div class="panel-footer"> <?php echo _("Information provided by hostapd"); ?></div>
@@ -448,12 +456,17 @@ function DisplayHostAPDConfig(){
 function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status) {
   // It should not be possible to send bad data for these fields so clearly
   // someone is up to something if they fail. Fail silently.
-  if (!(array_key_exists($_POST['wpa'], $wpa_array) && array_key_exists($_POST['wpa_pairwise'], $enc_types) && in_array($_POST['hw_mode'], $modes))) {
-    error_log("Attempting to set hostapd config with wpa='".$_POST['wpa']."', wpa_pairwise='".$_POST['wpa_pairwise']."' and hw_mode='".$_POST['hw_mode']."'");
+  if (!(array_key_exists($_POST['wpa'], $wpa_array) &&
+      array_key_exists($_POST['wpa_pairwise'], $enc_types) &&
+      in_array($_POST['hw_mode'], $modes))) {
+    error_log("Attempting to set hostapd config with wpa='".$_POST['wpa']."', wpa_pairwise='".$_POST['wpa_pairwise']."' and hw_mode='".$_POST['hw_mode']."'");  // FIXME: log injection
     return false;
   }
-  if ((!filter_var($_POST['channel'], FILTER_VALIDATE_INT)) || intval($_POST['channel']) < 1 || intval($_POST['channel']) > 14) {
-    error_log("Attempting to set channel to '".$_POST['channel']."'");
+
+  if ((!filter_var($_POST['channel'], FILTER_VALIDATE_INT)) || 
+       intval($_POST['channel']) < 1 ||
+       intval($_POST['channel']) > 14) {
+    error_log("Attempting to set channel to '".$_POST['channel']."'");  // FIXME: log injection
     return false;
   }
 
@@ -477,25 +490,29 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             exec('sudo /etc/raspap/hostapd/disablelog.sh');
         }
     }
+
     write_php_ini(["LogEnable" => $logEnable],'/etc/raspap/hostapd.ini');
 
   // Verify input
-  if (strlen($_POST['ssid']) == 0 || strlen($_POST['ssid']) > 32) {
+  if (empty($_POST['ssid']) || strlen($_POST['ssid']) > 32) {
     // Not sure of all the restrictions of SSID
     $status->addMessage('SSID must be between 1 and 32 characters', 'danger');
     $good_input = false;
   }
+
   if (strlen($_POST['wpa_passphrase']) < 8 || strlen($_POST['wpa_passphrase']) > 63) {
     $status->addMessage('WPA passphrase must be between 8 and 63 characters', 'danger');
     $good_input = false;
   }
+
   if (! in_array($_POST['interface'], $interfaces)) {
     // The user is probably up to something here but it may also be a
     // genuine error.
     $status->addMessage('Unknown interface '.$_POST['interface'], 'danger');
     $good_input = false;
   }
-  if (strlen($_POST['country_code']) != 0 && strlen($_POST['country_code']) != 2) {
+
+  if (strlen($_POST['country_code']) !== 0 && strlen($_POST['country_code']) != 2) {
     $status->addMessage('Country code must be blank or two characters', 'danger');
     $good_input = false;
   }
@@ -510,6 +527,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
       fwrite($tmp_file, 'auth_algs=1'.PHP_EOL);
       fwrite($tmp_file, 'wpa_key_mgmt=WPA-PSK'.PHP_EOL);
 
+      // TODO: deal with ini file value escaping. E.g. ssid=E=mc2 becomes ssid=E\=mc2
       fwrite($tmp_file, 'ssid='.$_POST['ssid'].PHP_EOL);
       fwrite($tmp_file, 'channel='.$_POST['channel'].PHP_EOL);
       fwrite($tmp_file, 'hw_mode='.$_POST['hw_mode'].PHP_EOL);
@@ -531,6 +549,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
       return false;
     }
   }
+
   return true;
 }
-?>
+

@@ -8,7 +8,7 @@ function DisplayAuthConfig($username, $password){
     if (CSRFValidate()) {
       if (password_verify($_POST['oldpass'], $password)) {
         $new_username=trim($_POST['username']);
-        if ($_POST['newpass'] != $_POST['newpassagain']) {
+        if ($_POST['newpass'] !== $_POST['newpassagain']) {
           $status->addMessage('New passwords do not match', 'danger');
         } else if ($new_username == '') {
           $status->addMessage('Username must not be empty', 'danger');
@@ -16,7 +16,8 @@ function DisplayAuthConfig($username, $password){
           if (!file_exists(RASPI_ADMIN_DETAILS)) {
               $tmpauth = fopen(RASPI_ADMIN_DETAILS, 'w');
               fclose($tmpauth);
-	  }
+          }
+
           if ($auth_file = fopen(RASPI_ADMIN_DETAILS, 'w')) {
             fwrite($auth_file, $new_username.PHP_EOL);
             fwrite($auth_file, password_hash($_POST['newpass'], PASSWORD_BCRYPT).PHP_EOL);
@@ -46,7 +47,7 @@ function DisplayAuthConfig($username, $password){
             <div class="row">
               <div class="form-group col-md-4">
                 <label for="username"><?php echo _("Username"); ?></label>
-                <input type="text" class="form-control" name="username" value="<?php echo $username; ?>"/>
+                <input type="text" class="form-control" name="username" value="<?php echo htmlspecialchars($username, ENT_QUOTES); ?>"/>
               </div>
             </div>
             <div class="row">
@@ -76,4 +77,3 @@ function DisplayAuthConfig($username, $password){
 <?php 
 }
 
-?>

@@ -5,7 +5,7 @@ include_once('../../includes/functions.php');
 
 
 if(isset($_POST['interface']) && isset($_POST['csrf_token']) && CSRFValidate()) {
-    $int = $_POST['interface'];
+    $int = preg_replace('/[^a-z0-9]/', '', $_POST['interface']);
     if(!file_exists(RASPI_CONFIG_NETWORKING.'/'.$int.'.ini')) {
         touch(RASPI_CONFIG_NETWORKING.'/'.$int.'.ini');
     }
@@ -21,4 +21,3 @@ if(isset($_POST['interface']) && isset($_POST['csrf_token']) && CSRFValidate()) 
     echo json_encode($jsonData);
 }
 
-?>
