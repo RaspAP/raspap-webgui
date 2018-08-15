@@ -90,7 +90,7 @@ function isAssoc($arr) {
 *
 */
 function SelectorOptions($name, $options, $selected = null) {
-  echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'>' , PHP_EOL;
+  echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'">' , PHP_EOL;
   foreach ( $options as $opt => $label) {
     $select = '';
     $key = isAssoc($options) ? $opt : $label;
