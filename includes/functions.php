@@ -99,7 +99,7 @@ function SelectorOptions($name, $options, $selected = null) {
     }
 
     echo '<option value="'.htmlspecialchars($key, ENT_QUOTES).'"'.$select.'>'.
-            htmlspecialchars($label, ENT_QUOTES).'</options>' , PHP_EOL;
+            htmlspecialchars($label, ENT_QUOTES).'</option>' , PHP_EOL;
   }
 
   echo '</select>' , PHP_EOL;
