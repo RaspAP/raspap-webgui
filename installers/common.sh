@@ -28,6 +28,11 @@ function install_error() {
     exit 1
 }
 
+# Outputs a RaspAP Warning line
+function install_warning() {
+    echo -e "\033[1;33mWarning: $*\033[m"
+}
+
 # Outputs a welcome message
 function display_welcome() {
     raspberry='\033[0;35m'
@@ -263,13 +268,63 @@ function patch_system_files() {
     fi
 }
 
+
+# Change configuration of php cgi.
+function configure_php() {
+    phpcgiconf=""
+    if [ "$php_package" = "php7.0-cgi" ]; then
+        phpcgiconf="/etc/php/7.0/cgi/php.ini"
+    elif [ "$php_package" = "php5-cgi" ]; then
+        phpcgiconf="/etc/php/cgi/php.ini"
+    fi
+
+    if [ -f "$phpcgiconf" ]; then
+        # Set the httpOnly flag on session cookies. 
+        # So they cannot be read by javascript, if cookie flag supported by useragent.
+        sudo sed -i 's/^session.cookie_httponly\s*=\s*([O|o]ff|0)\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
+        # Enable PHP Zend Opcache if off.
+        sudo sed -i 's/;opcache.enable\s*=\s*([O|o]ff|0)\s*$/opcache.enable=1/' "$phpcgiconf"
+        # Turn off unused assert function for unit test support. 
+        #sudo sed -i 's/;assert.active\s*=\s*([O|o]n|1)\s*$/assert.active = 0/' "$phpcgiconf"
+        # Turn off file upload support if on.
+        #sudo sed -i 's/file_uploads\s*=\s*([O|o]n|1)\s*$/file_uploads = 0/' "$phpcgiconf"
+        # Use sha1 instead of md5 for sessionid.
+        sudo sed -i 's/^session.hash_function\s*=\s*0\s*$/session.hash_function = 1/' "$phpcgiconf"
+        # Disable the X-Powered-By header and magic logo uri(if enabled php5).
+        sudo sed -i 's/^expose_php\s*=\s*([O|o]n|1)\s*$/expose_php = 0/' "$phpcgiconf"
+    else
+        install_warning "Php configuration could not be found."
+    fi
+
+    # Make sure opcache extension is turned on.
+    if [ -f "/usr/sbin/phpenmod" ]; then
+        sudo phpenmod opcache
+    else
+        install_warning "phpenmod not installed."
+    fi
+
+    # Disable unused php extensions to safe memory use and for hardening.
+    if [ -f "/usr/sbin/phpdismod" ]; then
+        sudo phpdismod phar
+        sudo phpdismod ftp
+        sudo phpdismod sockets
+        sudo phpdismod shmop
+        sudo phpdismod sysvmsg
+        sudo phpdismod sysvsem
+        sudo phpdismod sysvshm
+        sudo phpdismod tokenizer
+    else
+        install_warning "phpdismmod not installed or not in path."
+    fi
+}
+
 function install_complete() {
     install_log "Installation completed!"
 
     echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
     read answer
     if [[ $answer != "y" ]]; then
-        echo "Installation aborted."
+        echo "Reboot aborted."
         exit 0
     fi
     sudo shutdown -r now || install_error "Unable to execute shutdown"
@@ -289,5 +344,6 @@ function install_raspap() {
     move_config_file
     default_configuration
     patch_system_files
+    configure_php
     install_complete
 }
