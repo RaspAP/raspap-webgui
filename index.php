@@ -33,6 +33,7 @@ include_once( 'includes/system.php' );
 include_once( 'includes/configure_client.php' );
 include_once( 'includes/networking.php' );
 include_once( 'includes/themes.php' );
+include_once( 'includes/vnstat.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
@@ -155,6 +156,13 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
                 <a href="index.php?page=theme_conf"><i class="fa fa-wrench fa-fw"></i> <?php echo _("Change Theme"); ?></a>
               </li>
               <?php endif; ?>
+              <?php //if ( RASPI_VNSTAT_ENABLED ) :
+              ?>
+              <li>
+                <a href="index.php?page=vnstat"><i class="fa fa-bar-chart fa-fw"></i> <?php echo _("Bandwidth"); ?></a>
+              </li>
+              <?php //endif; 
+              ?>
               <li>
                 <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
               </li>
@@ -206,6 +214,9 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
             break;
           case "theme_conf":
             DisplayThemeConfig();
+            break;
+          case "vnstat":
+            DisplayVnstat();
             break;
           case "system_info":
             DisplaySystem();
