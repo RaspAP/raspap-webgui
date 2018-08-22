@@ -269,7 +269,7 @@ function patch_system_files() {
 }
 
 
-# Change configuration of php cgi.
+# Change configuration of php-cgi.
 function configure_php() {
     phpcgiconf=""
     if [ "$php_package" = "php7.0-cgi" ]; then
@@ -281,27 +281,25 @@ function configure_php() {
     if [ -f "$phpcgiconf" ]; then
         # Set the httpOnly flag on session cookies. 
         # So they cannot be read by javascript, if cookie flag supported by useragent.
-        sudo sed -i 's/^session.cookie_httponly\s*=\s*([O|o]ff|0)\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
-        # Enable PHP Zend Opcache if off.
-        sudo sed -i 's/;opcache.enable\s*=\s*([O|o]ff|0)\s*$/opcache.enable=1/' "$phpcgiconf"
-        # Turn off unused assert function for unit test support. 
-        #sudo sed -i 's/;assert.active\s*=\s*([O|o]n|1)\s*$/assert.active = 0/' "$phpcgiconf"
+        sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
+        # Don't accept uninitialized session ID's.
+        sudo sed -i -E 's/^session\.use_strict_mode\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.use_strict_mode = 1/' "$phpcgiconf"
         # Turn off file upload support if on.
-        #sudo sed -i 's/file_uploads\s*=\s*([O|o]n|1)\s*$/file_uploads = 0/' "$phpcgiconf"
-        # Use sha1 instead of md5 for sessionid.
-        sudo sed -i 's/^session.hash_function\s*=\s*0\s*$/session.hash_function = 1/' "$phpcgiconf"
-        # Disable the X-Powered-By header and magic logo uri(if enabled php5).
-        sudo sed -i 's/^expose_php\s*=\s*([O|o]n|1)\s*$/expose_php = 0/' "$phpcgiconf"
+        sudo sed -i -E 's/^file_uploads\s*=\s*(1|([O|o]n)|([T|t]rue)|([Y|y]es))\s*$/file_uploads = 0/' "$phpcgiconf"
+        if [ "$php_package" = "php7.0-cgi" ]; then
+            # Enable PHP Zend Opcache.
+            sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
+            # Make sure opcache extension is turned on.
+            if [ -f "/usr/sbin/phpenmod" ]; then
+                sudo phpenmod opcache
+            else
+                install_warning "phpenmod not found."
+            fi
+        fi
     else
-        install_warning "Php configuration could not be found."
+        install_warning "PHP configuration could not be found."
     fi
 
-    # Make sure opcache extension is turned on.
-    if [ -f "/usr/sbin/phpenmod" ]; then
-        sudo phpenmod opcache
-    else
-        install_warning "phpenmod not installed."
-    fi
 
     # Disable unused php extensions to safe memory use and for hardening.
     if [ -f "/usr/sbin/phpdismod" ]; then
@@ -314,8 +312,11 @@ function configure_php() {
         sudo phpdismod sysvshm
         sudo phpdismod tokenizer
     else
-        install_warning "phpdismmod not installed or not in path."
+        install_warning "phpdismmod not found."
     fi
+
+    # Apply new php configuration.
+    sudo service lighttpd reload
 }
 
 function install_complete() {
@@ -324,7 +325,7 @@ function install_complete() {
     echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
     read answer
     if [[ $answer != "y" ]]; then
-        echo "Reboot aborted."
+        echo "Installation reboot aborted."
         exit 0
     fi
     sudo shutdown -r now || install_error "Unable to execute shutdown"
