@@ -156,13 +156,11 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
                 <a href="index.php?page=theme_conf"><i class="fa fa-wrench fa-fw"></i> <?php echo _("Change Theme"); ?></a>
               </li>
               <?php endif; ?>
-              <?php //if ( RASPI_VNSTAT_ENABLED ) :
-              ?>
+              <?php if ( RASPI_VNSTAT_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=vnstat"><i class="fa fa-bar-chart fa-fw"></i> <?php echo _("Bandwidth"); ?></a>
               </li>
-              <?php //endif; 
-              ?>
+              <?php endif; ?>
               <li>
                 <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
               </li>
