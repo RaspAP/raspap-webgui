@@ -270,7 +270,8 @@ function patch_system_files() {
 
 
 # Change configuration of php-cgi.
-function configure_php() {
+function reconfigure_php() {
+    install_log "Reconfiguring php"
     phpcgiconf=""
     if [ "$php_package" = "php7.0-cgi" ]; then
         phpcgiconf="/etc/php/7.0/cgi/php.ini"
@@ -279,13 +280,12 @@ function configure_php() {
     fi
 
     if [ -f "$phpcgiconf" ]; then
-        # Set the httpOnly flag on session cookies. 
-        # So they cannot be read by javascript, if cookie flag supported by useragent.
+        # Backup php configuration.
+        sudo cp "$phpcgiconf" "$phpcgiconf.`date +%F-%R`"
+        # Turn on the httpOnly flag if off.
         sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
         # Don't accept uninitialized session ID's.
         sudo sed -i -E 's/^session\.use_strict_mode\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.use_strict_mode = 1/' "$phpcgiconf"
-        # Turn off file upload support if on.
-        sudo sed -i -E 's/^file_uploads\s*=\s*(1|([O|o]n)|([T|t]rue)|([Y|y]es))\s*$/file_uploads = 0/' "$phpcgiconf"
         if [ "$php_package" = "php7.0-cgi" ]; then
             # Enable PHP Zend Opcache.
             sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
@@ -298,21 +298,6 @@ function configure_php() {
         fi
     else
         install_warning "PHP configuration could not be found."
-    fi
-
-
-    # Disable unused php extensions to safe memory use and for hardening.
-    if [ -f "/usr/sbin/phpdismod" ]; then
-        sudo phpdismod phar
-        sudo phpdismod ftp
-        sudo phpdismod sockets
-        sudo phpdismod shmop
-        sudo phpdismod sysvmsg
-        sudo phpdismod sysvsem
-        sudo phpdismod sysvshm
-        sudo phpdismod tokenizer
-    else
-        install_warning "phpdismmod not found."
     fi
 
     # Apply new php configuration.
@@ -345,6 +330,6 @@ function install_raspap() {
     move_config_file
     default_configuration
     patch_system_files
-    configure_php
+    reconfigure_php
     install_complete
 }
