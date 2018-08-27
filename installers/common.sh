@@ -113,14 +113,12 @@ function create_logging_scripts() {
     sudo mkdir $raspap_dir/hostapd || install_error "Unable to create directory '$raspap_dir/hostapd'"
 
     # Move existing shell scripts 
-    sudo mv $webroot_dir/installers/*log.sh $raspap_dir/hostapd || install_error "Unable to move logging scripts"
+    sudo mv "$webroot_dir/installers/"*log.sh "$raspap_dir/hostapd" || install_error "Unable to move logging scripts"
+    # Make enablelog.sh and disablelog.sh not writable by www-data group.
+    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*log.sh || install_error "Unable change owner and/or group."
+    sudo chmod 750 "$raspap_dir/hostapd/"*log.sh || install_error "Unable to change file permissions."
 }
 
-# Generate logging enable/disable files for hostapd
-function create_logging_scripts() {
-    sudo mkdir /etc/raspap/hostapd
-    sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd
-}
 
 # Fetches latest files from github to webroot
 function download_latest_files() {
