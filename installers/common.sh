@@ -15,7 +15,14 @@ else
     version_msg="Raspian earlier than 8.0 (Wheezy)"
     webroot_dir="/var/www" 
     php_package="php5-cgi" 
-fi 
+fi
+
+phpcgiconf=""
+if [ "$php_package" = "php7.0-cgi" ]; then
+    phpcgiconf="/etc/php/7.0/cgi/php.ini"
+elif [ "$php_package" = "php5-cgi" ]; then
+    phpcgiconf="/etc/php5/cgi/php.ini"
+fi
 
 # Outputs a RaspAP Install log line
 function install_log() {
@@ -269,23 +276,28 @@ function patch_system_files() {
 
 # Change configuration of php-cgi.
 function reconfigure_php() {
-    install_log "Reconfiguring php"
-    phpcgiconf=""
-    if [ "$php_package" = "php7.0-cgi" ]; then
-        phpcgiconf="/etc/php/7.0/cgi/php.ini"
-    elif [ "$php_package" = "php5-cgi" ]; then
-        phpcgiconf="/etc/php/cgi/php.ini"
+    if [ ! -f "$phpcgiconf" ]; then
+        install_warning "PHP configuration could not be found."
+        return
     fi
 
-    if [ -f "$phpcgiconf" ]; then
-        # Backup php configuration.
-        sudo cp "$phpcgiconf" "$phpcgiconf.`date +%F-%R`"
-        # Turn on the httpOnly flag if off.
+    # Backup php.ini and create symlink for restoring.
+    datetimephpconf=$(date +%F-%R)
+    sudo cp "$phpcgiconf" "$raspap_dir/backups/php.ini.$datetimephpconf"
+    sudo ln -sf "$raspap_dir/backups/php.ini.$datetimephpconf" "$raspap_dir/backups/php.ini"
+
+    echo -n "Turn on httpOnly flag for session cookies(recommended)? [Y/n]: "
+    read answer
+    if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+        install_log "Php-cgi enabling session.cookie_httponly."
         sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
-        # Don't accept uninitialized session ID's.
-        sudo sed -i -E 's/^session\.use_strict_mode\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.use_strict_mode = 1/' "$phpcgiconf"
-        if [ "$php_package" = "php7.0-cgi" ]; then
-            # Enable PHP Zend Opcache.
+    fi
+
+    if [ "$php_package" = "php7.0-cgi" ]; then
+        echo -n "Turn on php opcache? [Y/n]: "
+        read answer
+        if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+            install_log "Php-cgi enabling opcache.enable."
             sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
             # Make sure opcache extension is turned on.
             if [ -f "/usr/sbin/phpenmod" ]; then
@@ -294,8 +306,6 @@ function reconfigure_php() {
                 install_warning "phpenmod not found."
             fi
         fi
-    else
-        install_warning "PHP configuration could not be found."
     fi
 
     # Apply new php configuration.
