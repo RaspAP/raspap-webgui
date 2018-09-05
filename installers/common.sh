@@ -15,7 +15,14 @@ else
     version_msg="Raspian earlier than 8.0 (Wheezy)"
     webroot_dir="/var/www" 
     php_package="php5-cgi" 
-fi 
+fi
+
+phpcgiconf=""
+if [ "$php_package" = "php7.0-cgi" ]; then
+    phpcgiconf="/etc/php/7.0/cgi/php.ini"
+elif [ "$php_package" = "php5-cgi" ]; then
+    phpcgiconf="/etc/php5/cgi/php.ini"
+fi
 
 # Outputs a RaspAP Install log line
 function install_log() {
@@ -26,6 +33,11 @@ function install_log() {
 function install_error() {
     echo -e "\033[1;37;41mRaspAP Install Error: $*\033[m"
     exit 1
+}
+
+# Outputs a RaspAP Warning line
+function install_warning() {
+    echo -e "\033[1;33mWarning: $*\033[m"
 }
 
 # Outputs a welcome message
@@ -108,14 +120,12 @@ function create_logging_scripts() {
     sudo mkdir $raspap_dir/hostapd || install_error "Unable to create directory '$raspap_dir/hostapd'"
 
     # Move existing shell scripts 
-    sudo mv $webroot_dir/installers/*log.sh $raspap_dir/hostapd || install_error "Unable to move logging scripts"
+    sudo mv "$webroot_dir/installers/"*log.sh "$raspap_dir/hostapd" || install_error "Unable to move logging scripts"
+    # Make enablelog.sh and disablelog.sh not writable by www-data group.
+    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*log.sh || install_error "Unable change owner and/or group."
+    sudo chmod 750 "$raspap_dir/hostapd/"*log.sh || install_error "Unable to change file permissions."
 }
 
-# Generate logging enable/disable files for hostapd
-function create_logging_scripts() {
-    sudo mkdir /etc/raspap/hostapd
-    sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd
-}
 
 # Fetches latest files from github to webroot
 function download_latest_files() {
@@ -263,13 +273,50 @@ function patch_system_files() {
     fi
 }
 
+
+# Optimize configuration of php-cgi.
+function optimize_php() {
+    install_log "Optimize PHP configuration"
+    if [ ! -f "$phpcgiconf" ]; then
+        install_warning "PHP configuration could not be found."
+        return
+    fi
+
+    # Backup php.ini and create symlink for restoring.
+    datetimephpconf=$(date +%F-%R)
+    sudo cp "$phpcgiconf" "$raspap_dir/backups/php.ini.$datetimephpconf"
+    sudo ln -sf "$raspap_dir/backups/php.ini.$datetimephpconf" "$raspap_dir/backups/php.ini"
+
+    echo -n "Enable HttpOnly for session cookies (Recommended)? [Y/n]: "
+    read answer
+    if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+        echo "Php-cgi enabling session.cookie_httponly."
+        sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
+    fi
+
+    if [ "$php_package" = "php7.0-cgi" ]; then
+        echo -n "Enable PHP OPCache? [Y/n]: "
+        read answer
+        if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+            echo "Php-cgi enabling opcache.enable."
+            sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
+            # Make sure opcache extension is turned on.
+            if [ -f "/usr/sbin/phpenmod" ]; then
+                sudo phpenmod opcache
+            else
+                install_warning "phpenmod not found."
+            fi
+        fi
+    fi
+}
+
 function install_complete() {
     install_log "Installation completed!"
 
     echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
     read answer
     if [[ $answer != "y" ]]; then
-        echo "Installation aborted."
+        echo "Installation reboot aborted."
         exit 0
     fi
     sudo shutdown -r now || install_error "Unable to execute shutdown"
@@ -280,6 +327,7 @@ function install_raspap() {
     config_installation
     update_system_packages
     install_dependencies
+    optimize_php
     enable_php_lighttpd
     create_raspap_directories
     check_for_old_configs

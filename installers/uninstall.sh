@@ -4,13 +4,27 @@ raspap_user="www-data"
 version=`sed 's/\..*//' /etc/debian_version`
 
 # Determine version and set default home location for lighttpd 
-if [ $version -ge 8 ]; then
-    version_msg="Raspian version 8.0 or later"
-    webroot_dir="/var/www/html"
-else
-    version_msg="Raspian version earlier than 8.0"
-    webroot_dir="/var/www"
+webroot_dir="/var/www/html" 
+if [ $version -eq 9 ]; then 
+    version_msg="Raspian 9.0 (Stretch)" 
+    php_package="php7.0-cgi" 
+elif [ $version -eq 8 ]; then 
+    version_msg="Raspian 8.0 (Jessie)" 
+    webroot_dir="/var/www" 
+    php_package="php5-cgi" 
+else 
+    version_msg="Raspian earlier than 8.0 (Wheezy)"
+    webroot_dir="/var/www" 
+    php_package="php5-cgi" 
 fi
+
+phpcgiconf=""
+if [ "$php_package" = "php7.0-cgi" ]; then
+    phpcgiconf="/etc/php/7.0/cgi/php.ini"
+elif [ "$php_package" = "php5-cgi" ]; then
+    phpcgiconf="/etc/php5/cgi/php.ini"
+fi
+
 
 # Outputs a RaspAP Install log line
 function install_log() {
@@ -68,6 +82,13 @@ function check_for_backups() {
                 sudo cp "$raspap_dir/backups/dhcpcd.conf" /etc/dhcpcd.conf
             fi
         fi
+        if [ -f "$raspap_dir/backups/php.ini" ] && [ -f "$phpcgiconf" ]; then
+            echo -n "Restore the last php.ini file? [y/N]: "
+            read answer
+            if [[ $answer -eq 'y' ]]; then
+                sudo cp "$raspap_dir/backups/php.ini" "$phpcgiconf"
+            fi
+        fi
         if [ -f "$raspap_dir/backups/rc.local" ]; then
             echo -n "Restore the last rc.local file? [y/N]: "
             read answer
@@ -75,7 +96,7 @@ function check_for_backups() {
                 sudo cp "$raspap_dir/backups/rc.local" /etc/rc.local
             else
                 echo -n "Remove RaspAP Lines from /etc/rc.local? [Y/n]: "
-                if $answer -ne 'n' ]]; then
+                if [[ $answer -ne 'n' ]]; then
                     sed -i '/#RASPAP/d' /etc/rc.local
                 fi
             fi
