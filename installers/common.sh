@@ -274,8 +274,9 @@ function patch_system_files() {
 }
 
 
-# Change configuration of php-cgi.
-function reconfigure_php() {
+# Optimize configuration of php-cgi.
+function optimize_php() {
+    install_log "Optimize PHP configuration"
     if [ ! -f "$phpcgiconf" ]; then
         install_warning "PHP configuration could not be found."
         return
@@ -286,18 +287,18 @@ function reconfigure_php() {
     sudo cp "$phpcgiconf" "$raspap_dir/backups/php.ini.$datetimephpconf"
     sudo ln -sf "$raspap_dir/backups/php.ini.$datetimephpconf" "$raspap_dir/backups/php.ini"
 
-    echo -n "Turn on httpOnly flag for session cookies(recommended)? [Y/n]: "
+    echo -n "Enable HttpOnly for session cookies (Recommended)? [Y/n]: "
     read answer
     if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
-        install_log "Php-cgi enabling session.cookie_httponly."
+        echo "Php-cgi enabling session.cookie_httponly."
         sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
     fi
 
     if [ "$php_package" = "php7.0-cgi" ]; then
-        echo -n "Turn on php opcache? [Y/n]: "
+        echo -n "Enable PHP OPCache? [Y/n]: "
         read answer
         if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
-            install_log "Php-cgi enabling opcache.enable."
+            echo "Php-cgi enabling opcache.enable."
             sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
             # Make sure opcache extension is turned on.
             if [ -f "/usr/sbin/phpenmod" ]; then
@@ -307,9 +308,6 @@ function reconfigure_php() {
             fi
         fi
     fi
-
-    # Apply new php configuration.
-    sudo service lighttpd reload
 }
 
 function install_complete() {
@@ -329,6 +327,7 @@ function install_raspap() {
     config_installation
     update_system_packages
     install_dependencies
+    optimize_php
     enable_php_lighttpd
     create_raspap_directories
     check_for_old_configs
@@ -338,6 +337,5 @@ function install_raspap() {
     move_config_file
     default_configuration
     patch_system_files
-    reconfigure_php
     install_complete
 }
