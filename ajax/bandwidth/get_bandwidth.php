@@ -2,11 +2,11 @@
 require_once '../../includes/config.php';
 require_once RASPI_CONFIG.'/raspap.php';
 
-// For privacy require authentication.
 session_start();
 header('X-Frame-Options: DENY');
 header("Content-Security-Policy: default-src 'none'; connect-src 'self'");
 require_once '../../includes/authenticate.php';
+
 
 $interface = filter_input(INPUT_GET, 'inet', FILTER_SANITIZE_SPECIAL_CHARS);
 if (empty($interface)) {
@@ -37,15 +37,12 @@ $timeunits = filter_input(INPUT_GET, 'tu');
 if ($timeunits === 'm') {
     // months
     $jsonData = $jsonobj['interfaces'][0]['traffic']['months'];
-//} elseif ($timeunits === 'h') {
-//    $jsonData = $jsonobj['interfaces'][0]['traffic']['hours'];
 } else {
     // default: days
     $jsonData = $jsonobj['interfaces'][0]['traffic']['days'];
 }
 
 $datasizeunits = filter_input(INPUT_GET, 'dsu');
-
 header('X-Content-Type-Options: nosniff');
 header('Content-Type: application/json');
 echo '[ ';
@@ -54,11 +51,6 @@ for ($i = count($jsonData) - 1; $i >= 0; --$i) {
     if ($timeunits === 'm') {
         $dt = DateTime::createFromFormat('Y n', $jsonData[$i]['date']['year'].' '.
                                                       $jsonData[$i]['date']['month']);
-//    } elseif ($timeunits === 'h') {
-//        $dt = DateTime::createFromFormat('Y n j G i', $jsonData[$i]['date']['year'].' '.
-//                                                      $jsonData[$i]['date']['month'].' '.
-//                                                      $jsonData[$i]['date']['day'].' '.
-//                                                      $i.' 00');
     } else {
         $dt = DateTime::createFromFormat('Y n j', $jsonData[$i]['date']['year'].' '.
                                                       $jsonData[$i]['date']['month'].' '.
@@ -82,9 +74,6 @@ for ($i = count($jsonData) - 1; $i >= 0; --$i) {
     if ($timeunits === 'm') {
         echo '{ "date": "' , $dt->format('Y-m') , '", "rx": "' , $datareceived , 
         '", "tx": "' , $datasend , '" }';
-//    } elseif ($timeunits === 'h') {
-//        echo '{ "date": "' , $dt->format('Y-m-d H:i') , '", "rx": ' , $datareceived , 
-//             ', "tx": ' , $datasend , ' }';
     } else {
         echo '{ "date": "' , $dt->format('Y-m-d') , '", "rx": "' , $datareceived , 
         '", "tx": "' , $datasend , '" }';

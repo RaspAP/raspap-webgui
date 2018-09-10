@@ -18,8 +18,8 @@
     /**
      * Create a bootstrap data table.
      */
-    function CreateDataTable(placeholder) {
-        $("#"+placeholder).append('<br /><table id="tableBandwidth" class="table table-striped container-fluid"><thead><tr><th>date</th><th>rx</th><th>tx</th></tr></thead><tbody></tbody></table>');
+    function CreateDataTable(placeholder, timeunits) {
+        $("#"+placeholder).append('<table id="tableBandwidth'+timeunits+'" class="table table-striped container-fluid"><thead><tr><th>date</th><th>rx</th><th>tx</th></tr></thead><tbody></tbody></table>');
     }
 
     /**
@@ -27,11 +27,13 @@
      * construct the proper barchart.
      */
     function ShowBandwidthChartHandler(e) {
-        // Remove all charts
-        $("#divBandwidthdaily").empty();
-        $("#divBandwidthweekly").empty();
-        $("#divBandwidthmonthly").empty();
-        // Construct ajax uri for getting proper data.
+        // Remove all morrisjs charts
+        $("#divChartBandwidthdaily").empty();
+        $("#divChartBandwidthmonthly").empty();
+        // Remove all datatables
+        $("#divTableBandwidthdaily").empty();
+        $("#divTableBandwidthmonthly").empty();
+        // Construct ajax uri for getting the proper data.
         var timeunit = $("ul#tabbarBandwidth li.active a").attr("href").substr(1);
         var uri = 'ajax/bandwidth/get_bandwidth.php?';
         uri += 'inet=';
@@ -41,9 +43,9 @@
         var datasizeunits = 'mb';
         uri += '&dsu='+encodeURIComponent(datasizeunits);
         // Init. chart
-        var barchart = CreateBarChart('divBandwidth'+timeunit, datasizeunits);
-        // Init. datatable
-        var datatable = CreateDataTable('divBandwidth'+timeunit);
+        var barchart = CreateBarChart('divChartBandwidth'+timeunit, datasizeunits);
+        // Init. datatable html
+        var datatable = CreateDataTable('divTableBandwidth'+timeunit, timeunit);
         // Get data for chart
         $.ajax({
             url: uri,
@@ -54,10 +56,11 @@
         }).done(function(jsondata) {
             $("#divLoaderBandwidth"+timeunit).addClass("hidden");
             barchart.setData(jsondata);
-            $('#tableBandwidth').DataTable({
-                "searching": false,
+            $('#tableBandwidth'+timeunit).DataTable({
+                searching: false,
+                paging: false,
                 data: jsondata,
-                "columns": [
+                columns: [
                     { "data": "date" },
                     { "data": "rx", "title": "received "+datasizeunits },
                     { "data": "tx", "title": "send "+datasizeunits }]
@@ -71,10 +74,12 @@
         });
     }
 
-    $('#tabbarBandwidth a[data-toggle="tab"]').on('shown.bs.tab', ShowBandwidthChartHandler);
-    $('#cbxInterfacedaily').on('change', ShowBandwidthChartHandler);
-    $('#cbxInterfaceweekly').on('change', ShowBandwidthChartHandler);
-    $('#cbxInterfacemonthly').on('change', ShowBandwidthChartHandler);
-    ShowBandwidthChartHandler();
+    $( document ).ready(function() {
+        $('#tabbarBandwidth a[data-toggle="tab"]').on('shown.bs.tab', ShowBandwidthChartHandler);
+        $('#cbxInterfacedaily').on('change', ShowBandwidthChartHandler);
+        $('#cbxInterfaceweekly').on('change', ShowBandwidthChartHandler);
+        $('#cbxInterfacemonthly').on('change', ShowBandwidthChartHandler);
+        ShowBandwidthChartHandler();
+    });
 
 })(jQuery);
