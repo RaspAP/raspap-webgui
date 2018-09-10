@@ -181,6 +181,7 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
         </div><!-- /.row -->
 
         <?php 
+$extraFooterScripts = array();
         // handle page actions
         switch( $page ) {
           case "wlan0_info":
@@ -214,7 +215,7 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
             DisplayThemeConfig();
             break;
           case "vnstat":
-            DisplayVnstat();
+            DisplayVnstat($extraFooterScripts);
             break;
           case "system_info":
             DisplaySystem();
@@ -222,7 +223,8 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
           default:
             DisplayDashboard();
         }
-        ?>
+
+?>
       </div><!-- /#page-wrapper --> 
     </div><!-- /#wrapper -->
 
@@ -238,15 +240,24 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <!--script src="vendor/raphael/raphael-min.js"></script-->
-    <!--script src="vendor/morrisjs/morris.min.js"></script-->
-    <!--script src="js/morris-data.js"></script-->
-
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
 
     <!-- Custom RaspAP JS -->
     <script src="js/custom.js"></script>
+
+<?php
+// Load non default JS/ECMAScript in footer.
+foreach ($extraFooterScripts as $script) {
+    echo '    <script type="text/javascript" src="' , $script['src'] , '"';
+    if ($script['defer']) {
+        echo ' defer="defer"';
+    }
+
+    // if ($script['async']) { echo ( echo ' defer="async"'; ), intrigity=, nonce=  etc. etc.
+    echo '></script>' , PHP_EOL;
+}
+
+?>
   </body>
 </html>
