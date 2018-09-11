@@ -1,4 +1,4 @@
-(function($) {
+(function($, _t) {
     "use strict";
 
     /**
@@ -9,7 +9,8 @@
             element: placeholder,
             xkey: 'date',
             ykeys: ['rx', 'tx'],
-            labels: ['Received '+datasizeunits, 'Send '+datasizeunits]  // NOI18N
+            labels: [_t['send']+' '+datasizeunits.toUpperCase(), 
+                     _t['receive']+' '+datasizeunits.toUpperCase()]
         });
 
       return barchart;
@@ -19,7 +20,9 @@
      * Create a bootstrap data table.
      */
     function CreateDataTable(placeholder, timeunits) {
-        $("#"+placeholder).append('<table id="tableBandwidth'+timeunits+'" class="table table-striped container-fluid"><thead><tr><th>date</th><th>rx</th><th>tx</th></tr></thead><tbody></tbody></table>');
+        $("#"+placeholder).append('<table id="tableBandwidth'+timeunits+
+            '" class="table table-responsive table-striped container-fluid"><thead>'+
+            '<tr><th>date</th><th>rx</th><th>tx</th></tr></thead><tbody></tbody></table>');
     }
 
     /**
@@ -62,8 +65,8 @@
                 data: jsondata,
                 columns: [
                     { "data": "date" },
-                    { "data": "rx", "title": "received "+datasizeunits },
-                    { "data": "tx", "title": "send "+datasizeunits }]
+                    { "data": "rx", "title": _t['send']+' '+datasizeunits.toUpperCase() },
+                    { "data": "tx", "title": _t['receive']+' '+datasizeunits.toUpperCase() }]
             });
         }).fail(function(xhr, textStatus) {
             if (window.console) {
@@ -74,7 +77,7 @@
         });
     }
 
-    $( document ).ready(function() {
+    $(document).ready(function() {
         $('#tabbarBandwidth a[data-toggle="tab"]').on('shown.bs.tab', ShowBandwidthChartHandler);
         $('#cbxInterfacedaily').on('change', ShowBandwidthChartHandler);
         $('#cbxInterfaceweekly').on('change', ShowBandwidthChartHandler);
@@ -82,5 +85,5 @@
         ShowBandwidthChartHandler();
     });
 
-})(jQuery);
+})(jQuery, t);
 

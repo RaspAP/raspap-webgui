@@ -27,7 +27,8 @@ function DisplayBandwidth(&$extraFooterScripts)
                         <div class="row">
                           <div class="col-lg-12">
                             <h4><?php echo _('Daily traffic amount'); ?></h4>
-                            <label for="cbxInterfacedaily"><?php echo _('interface'); ?></label> <select id="cbxInterfacedaily" class="form-control" name="interface">
+                            <label for="cbxInterfacedaily"><?php echo _('interface'); ?></label> 
+                            <select id="cbxInterfacedaily" class="form-control" name="interfacedaily">
 <?php
 exec("ip -o link show | awk -F ': ' '{print $2}' | grep -v lo ", $interfacesWlo);
 foreach ($interfacesWlo as $interface) {
@@ -37,9 +38,8 @@ foreach ($interfacesWlo as $interface) {
 
 ?>
                             </select>
-                            <div class="hidden alert alert-info" id="divLoaderBandwidthdaily">
-                            <?php echo sprintf(_("Loading %s bandwidth chart"), _('daily')); ?>
-                            </div>
+                            <div class="hidden alert alert-info" id="divLoaderBandwidthdaily"><?php
+                            echo sprintf(_("Loading %s bandwidth chart"), _('daily')); ?></div>
                             <div id="divChartBandwidthdaily"></div>
                             <div id="divTableBandwidthdaily"></div>
                           </div>
@@ -49,7 +49,8 @@ foreach ($interfacesWlo as $interface) {
                         <div class="row">
                           <div class="col-lg-12">
                             <h4><?php echo _("Monthly traffic amount"); ?></h4>
-                            <label for="cbxInterfacemonthly"><?php echo _('interface'); ?></label> <select id="cbxInterfacemonthly" class="form-control" name="interface">
+                            <label for="cbxInterfacemonthly"><?php echo _('interface'); ?></label> 
+                            <select id="cbxInterfacemonthly" class="form-control" name="interfacemonthly">
 <?php
 foreach ($interfacesWlo as $interface) {
     echo '                            <option value="' , htmlentities($interface, ENT_QUOTES) , '">' ,
@@ -76,7 +77,14 @@ foreach ($interfacesWlo as $interface) {
       </div><!-- /.panel-primary -->
     </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
+<script type="text/javascript"<?php //echo ' nonce="'.$csp_page_nonce.'"'; ?>>
+// js translations:
+var t = new Array();
+t['send'] = '<?php echo addslashes(_('Send')); ?>';
+t['receive'] = '<?php echo addslashes(_('Receive')); ?>';
+</script>
 <?php
+
     $extraFooterScripts[] = array('src'=>'vendor/raphael/raphael.min.js',
                                   'defer'=>false);
     $extraFooterScripts[] = array('src'=>'vendor/morrisjs/morris.min.js', 'defer'=>false);
