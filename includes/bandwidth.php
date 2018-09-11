@@ -3,9 +3,10 @@ include_once( 'includes/status_messages.php' );
 
 
 /**
- * Generate html output for tab with vnstat traffic amount information.
+ * Generate html output for tab with charts and datatables
+ * with vnstat bandwidth use information.
  */
-function DisplayVnstat(&$extraFooterScripts)
+function DisplayBandwidth(&$extraFooterScripts)
 {
 ?>
   <div class="row">
