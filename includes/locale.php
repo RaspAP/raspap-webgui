@@ -14,7 +14,7 @@
 *
 * Refer to: https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4
  */
-if (empty($_SESSION['locale']) && strlen($_SESSION['locale']) >= 2) {
+if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2) {
   $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
   switch ($lang){
     case "de":
