@@ -127,6 +127,7 @@ The following translations are currently maintained by the project:
 - Italiano
 - Português
 - Svenska
+- Nederlands
 
 If your language is not in the list above, why not [contribute a translation](https://github.com/billz/raspap-webgui/wiki/Translations#contributing-a-translation)? Contributors will receive credit as the original translators.
 
