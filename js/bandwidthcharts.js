@@ -17,7 +17,7 @@
     }
 
     /**
-     * Create a bootstrap data table.
+     * Create a jquery bootstrap datatable.
      */
     function CreateDataTable(placeholder, timeunits) {
         $("#"+placeholder).append('<table id="tableBandwidth'+timeunits+
@@ -31,16 +31,16 @@
      */
     function ShowBandwidthChartHandler(e) {
         // Remove all morrisjs charts
-        $("#divChartBandwidthdaily").empty();
-        $("#divChartBandwidthmonthly").empty();
+        $('#divChartBandwidthdaily').empty();
+        $('#divChartBandwidthmonthly').empty();
         // Remove all datatables
-        $("#divTableBandwidthdaily").empty();
-        $("#divTableBandwidthmonthly").empty();
+        $('#divTableBandwidthdaily').empty();
+        $('#divTableBandwidthmonthly').empty();
         // Construct ajax uri for getting the proper data.
-        var timeunit = $("ul#tabbarBandwidth li.active a").attr("href").substr(1);
+        var timeunit = $('ul#tabbarBandwidth li.active a').attr('href').substr(1);
         var uri = 'ajax/bandwidth/get_bandwidth.php?';
         uri += 'inet=';
-        uri += encodeURIComponent($("#cbxInterface"+timeunit+" option:selected").text());
+        uri += encodeURIComponent($('#cbxInterface'+timeunit+' option:selected').text());
         uri += '&tu=';
         uri += encodeURIComponent(timeunit.substr(0, 1));
         var datasizeunits = 'mb';
@@ -54,23 +54,24 @@
             url: uri,
             dataType: 'json',
             beforeSend: function() {
-                $("#divLoaderBandwidth"+timeunit).removeClass("hidden");
+                $('#divLoaderBandwidth'+timeunit).removeClass('hidden');
             }
         }).done(function(jsondata) {
-            $("#divLoaderBandwidth"+timeunit).addClass("hidden");
+            $('#divLoaderBandwidth'+timeunit).addClass('hidden');
             barchart.setData(jsondata);
             $('#tableBandwidth'+timeunit).DataTable({
-                searching: false,
-                paging: false,
-                data: jsondata,
-                columns: [
-                    { "data": "date" },
-                    { "data": "rx", "title": _t['send']+' '+datasizeunits.toUpperCase() },
-                    { "data": "tx", "title": _t['receive']+' '+datasizeunits.toUpperCase() }]
+                'searching': false,
+                'paging': false,
+                'data': jsondata,
+                'order': [[ 0, 'ASC' ]],
+                'columns': [
+                    { 'data': 'date' },
+                    { 'data': 'rx', "title": _t['send']+' '+datasizeunits.toUpperCase() },
+                    { 'data': 'tx', "title": _t['receive']+' '+datasizeunits.toUpperCase() }]
             });
         }).fail(function(xhr, textStatus) {
             if (window.console) {
-                console.error("server error");
+                console.error('server error');
             } else {
                 alert("server error");
             }

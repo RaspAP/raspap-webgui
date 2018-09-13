@@ -1,18 +1,15 @@
 <?php
-include_once( 'includes/status_messages.php' );
-
 
 /**
- * Generate html output for tab with charts and datatables
- * with vnstat bandwidth use information.
+ * Generate html for displaying data usage.
  */
-function DisplayBandwidth(&$extraFooterScripts)
+function DisplayDataUsage(&$extraFooterScripts)
 {
 ?>
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-primary">
-        <div class="panel-heading"><i class="fa fa-bar-chart fa-fw"></i> <?php echo _("Bandwidth monitoring"); ?></div>
+        <div class="panel-heading"><i class="fa fa-bar-chart fa-fw"></i> <?php echo _("Data usage monitoring"); ?></div>
           <div class="panel-body">
             <div class="row">
               <div class="col-md-12">

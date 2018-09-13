@@ -33,7 +33,7 @@ include_once( 'includes/system.php' );
 include_once( 'includes/configure_client.php' );
 include_once( 'includes/networking.php' );
 include_once( 'includes/themes.php' );
-include_once( 'includes/bandwidth.php' );
+include_once( 'includes/data_usage.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
@@ -158,7 +158,7 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
               <?php endif; ?>
               <?php if ( RASPI_VNSTAT_ENABLED ) : ?>
               <li>
-                <a href="index.php?page=bandwidth"><i class="fa fa-bar-chart fa-fw"></i> <?php echo _("Bandwidth"); ?></a>
+                <a href="index.php?page=data_use"><i class="fa fa-bar-chart fa-fw"></i> <?php echo _("Data usage"); ?></a>
               </li>
               <?php endif; ?>
               <li>
@@ -214,8 +214,8 @@ $extraFooterScripts = array();
           case "theme_conf":
             DisplayThemeConfig();
             break;
-          case "bandwidth":
-            DisplayBandwidth($extraFooterScripts);
+          case "data_use":
+            DisplayDataUsage($extraFooterScripts);
             break;
           case "system_info":
             DisplaySystem();
