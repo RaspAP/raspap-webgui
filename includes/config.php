@@ -26,7 +26,7 @@ define('RASPI_OPENVPN_ENABLED', false );
 define('RASPI_TORPROXY_ENABLED', false );
 define('RASPI_CONFAUTH_ENABLED', true );
 define('RASPI_CHANGETHEME_ENABLED', true );
-define('RASPI_VNSTAT_ENABLED', false );
+define('RASPI_VNSTAT_ENABLED', true );
 
 // Locale settings
 define('LOCALE_ROOT', 'locale');
