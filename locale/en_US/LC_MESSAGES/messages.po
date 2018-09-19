@@ -456,6 +456,40 @@ msgstr "Theme settings"
 msgid "Select a theme"
 msgstr "Select a theme"
 
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Data usage"
+
+msgid "Data usage monitoring"
+msgstr "Data usage monitoring"
+
+msgid "Daily traffic amount"
+msgstr "Daily traffic amount"
+
+msgid "interface"
+msgstr "interface"
+
+msgid "date"
+msgstr "date"
+
+msgid "Send MB"
+msgstr "Send MB"
+
+msgid "Receive MB"
+msgstr "Receive MB"
+
+msgid "Monthly traffic amount"
+msgstr "Monthly traffic amount"
+
+msgid "Information provided by vnstat"
+msgstr "Information provided by vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Loading {0} bandwidth chart"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Showing {0} to {1} of {2} entries"
+
 #: common form controls
 msgid "Save settings"
 msgstr "Save settings"
