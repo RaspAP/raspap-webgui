@@ -29,7 +29,7 @@ function DisplayDHCPConfig() {
             $errors .= _('Invalid DHCP range end.').'<br />'.PHP_EOL;
         }
 
-        if (!ctype_digit($_POST['RangeLeaseTime'])) {
+        if (!ctype_digit($_POST['RangeLeaseTime']) && $_POST['RangeLeaseTimeUnits'] !== 'infinite') {
             $errors .= _('Invalid DHCP lease time, not a number.').'<br />'.PHP_EOL;
         }
 
@@ -41,7 +41,12 @@ function DisplayDHCPConfig() {
         if (empty($errors)) {
             $config = 'interface='.$_POST['interface'].PHP_EOL.
                       'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].
-                      ',255.255.255.0,'.$_POST['RangeLeaseTime'].$_POST['RangeLeaseTimeUnits'];
+                      ',255.255.255.0,';
+            if ($_POST['RangeLeaseTimeUnits'] !== 'infinite') {
+                $config .= $_POST['RangeLeaseTime'];
+            }
+
+            $config .= $_POST['RangeLeaseTimeUnits'];
             exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
             system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);
         } else {
