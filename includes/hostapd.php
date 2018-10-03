@@ -6,22 +6,21 @@ include_once( 'includes/status_messages.php' );
 *
 *
 */
-function DisplayHostAPDConfig(){
-
+function DisplayHostAPDConfig()
+{
   $status = new StatusMessages();
 
   $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
 
   $arrConfig = array();
-  $arrChannel = array('a','b','g');
+  $arr80211Standard = array('a','b','g','n');
   $arrSecurity = array( 1 => 'WPA', 2 => 'WPA2',3=> 'WPA+WPA2');
   $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
   exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
 
-
   if( isset($_POST['SaveHostAPDSettings']) ) {
     if (CSRFValidate()) {
-      SaveHostAPDConfig($arrSecurity, $arrEncType, $arrChannel, $interfaces, $status);
+      SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $status);
     } else {
       error_log('CSRF violation');
     }
@@ -47,7 +46,7 @@ function DisplayHostAPDConfig(){
     }
   }
 
-  exec( 'cat '. RASPI_HOSTAPD_CONFIG, $return );
+  exec( 'cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig );
   exec( 'pidof hostapd | wc -l', $hostapdstatus);
 
   if( $hostapdstatus[0] == 0 ) {
@@ -56,9 +55,13 @@ function DisplayHostAPDConfig(){
     $status->addMessage('HostAPD is running', 'success');
   }
 
-  foreach( $return as $a ) {
-    if( $a[0] != "#" ) {
-      $arrLine = explode( "=",$a) ;
+  foreach( $hostapdconfig as $hostapdconfigline ) {
+    if (strlen($hostapdconfigline) === 0) {
+      continue;
+    }
+
+    if ($hostapdconfigline[0] != "#" ) {
+      $arrLine = explode("=", $hostapdconfigline) ;
       $arrConfig[$arrLine[0]]=$arrLine[1];
     }
   };
@@ -103,13 +106,32 @@ function DisplayHostAPDConfig(){
                 <div class="row">
                   <div class="form-group col-md-4">
                     <label for="code"><?php echo _("Wireless Mode") ;?></label>
-                    <?php SelectorOptions('hw_mode', $arrChannel, $arrConfig['hw_mode']); ?>
+                    <?php
+$selectedHwMode = $arrConfig['hw_mode'];
+if (isset($arrConfig['ieee80211n'])) {
+    if (strval($arrConfig['ieee80211n']) === '1') {
+        $selectedHwMode = 'n';
+    }
+}
+
+SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode); ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
                     <label for="code"><?php echo _("Channel"); ?></label>
-                    <?php SelectorOptions('channel', range(1, 14), intval($arrConfig['channel'])) ?>
+                    <?php
+$selectablechannels = range(1, 13);
+$countries_max11channels = array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
+                                 'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT', 'US', 'CA');
+if (in_array($arrConfig['country_code'], $countries_max11channels)) {
+    // In north america till channel 11 is the maximum allowed wi-fi 2.4Ghz channel.
+    // Except for the US that allows channel 12 & 13 in low power mode only with additional restrictions
+    // and canada that allows channel 12 in low power mode.
+    // source: https://en.wikipedia.org/wiki/List_of_WLAN_channels#Interference_concerns
+    $selectablechannels = range(1, 11);
+}
+                    SelectorOptions('channel', $selectablechannels, intval($arrConfig['channel'])) ?>
                   </div>
                 </div>
               </div>
@@ -463,10 +485,13 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     return false;
   }
 
-  if ((!filter_var($_POST['channel'], FILTER_VALIDATE_INT)) || 
-       intval($_POST['channel']) < 1 ||
-       intval($_POST['channel']) > 14) {
-    error_log("Attempting to set channel to '".$_POST['channel']."'");  // FIXME: log injection
+  if (!filter_var($_POST['channel'], FILTER_VALIDATE_INT)) {
+    error_log("Attempting to set channel to invalid number.");
+    return false;
+  }
+
+  if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > 13) {
+    error_log("Attempting to set channel to '".$_POST['channel']."'");
     return false;
   }
 
@@ -523,14 +548,22 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
       fwrite($tmp_file, 'driver=nl80211'.PHP_EOL);
       fwrite($tmp_file, 'ctrl_interface='.RASPI_HOSTAPD_CTRL_INTERFACE.PHP_EOL);
       fwrite($tmp_file, 'ctrl_interface_group=0'.PHP_EOL);
-      fwrite($tmp_file, 'beacon_int=100'.PHP_EOL);
       fwrite($tmp_file, 'auth_algs=1'.PHP_EOL);
       fwrite($tmp_file, 'wpa_key_mgmt=WPA-PSK'.PHP_EOL);
+      fwrite($tmp_file, 'beacon_int=100'.PHP_EOL);
 
-      // TODO: deal with ini file value escaping. E.g. ssid=E=mc2 becomes ssid=E\=mc2
       fwrite($tmp_file, 'ssid='.$_POST['ssid'].PHP_EOL);
       fwrite($tmp_file, 'channel='.$_POST['channel'].PHP_EOL);
-      fwrite($tmp_file, 'hw_mode='.$_POST['hw_mode'].PHP_EOL);
+      if ($_POST['hw_mode'] === 'n') {
+        fwrite($tmp_file, 'hw_mode=g'.PHP_EOL);
+        fwrite($tmp_file, 'ieee80211n=1'.PHP_EOL);
+        // Enable basic Quality of service
+        fwrite($tmp_file, 'wme_enabled=1'.PHP_EOL);
+      } else {
+        fwrite($tmp_file, 'hw_mode='.$_POST['hw_mode'].PHP_EOL);
+        fwrite($tmp_file, 'ieee80211n=0'.PHP_EOL);
+      }
+
       fwrite($tmp_file, 'wpa_passphrase='.$_POST['wpa_passphrase'].PHP_EOL);
       fwrite($tmp_file, 'interface='.$_POST['interface'].PHP_EOL);
       fwrite($tmp_file, 'wpa='.$_POST['wpa'].PHP_EOL);
