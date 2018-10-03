@@ -122,14 +122,22 @@ SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode); ?>
                     <label for="code"><?php echo _("Channel"); ?></label>
                     <?php
 $selectablechannels = range(1, 13);
-$countries_max11channels = array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
-                                 'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT', 'US', 'CA');
+$countries_2_4Ghz_max11ch = array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
+                                 'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT',
+                                 'US', 'CA', 'UZ', 'CO');
+$countries_2_4Ghz_max14ch = array('JA');
 if (in_array($arrConfig['country_code'], $countries_max11channels)) {
-    // In north america till channel 11 is the maximum allowed wi-fi 2.4Ghz channel.
-    // Except for the US that allows channel 12 & 13 in low power mode only with additional restrictions
-    // and canada that allows channel 12 in low power mode.
+    // In North America till channel 11 is the maximum allowed wi-fi 2.4Ghz channel.
+    // Except for the US that allows channel 12 & 13 in low power mode with additional restrictions.
+    // Canada that allows channel 12 in low power mode. Because it's unsure if low powered mode
+    // can be supported the channels are not selectable for those countries.
     // source: https://en.wikipedia.org/wiki/List_of_WLAN_channels#Interference_concerns
+    // Also Uzbekistan and Colombia allow to select till channel 11 as maximum channel on the 2.4Ghz wi-fi band.
     $selectablechannels = range(1, 11);
+} elseif (in_array($arrConfig['country_code'], $countries_2_4Ghz_max14ch)) {
+    if ($arrConfig['hw_mode'] === 'b') {
+        $selectablechannels = range(1, 14);
+    }
 }
                     SelectorOptions('channel', $selectablechannels, intval($arrConfig['channel'])) ?>
                   </div>
@@ -490,7 +498,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     return false;
   }
 
-  if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > 13) {
+  if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > 14) {
     error_log("Attempting to set channel to '".$_POST['channel']."'");
     return false;
   }
