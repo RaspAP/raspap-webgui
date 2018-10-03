@@ -91,21 +91,21 @@ function DisplayHostAPDConfig()
                 <?php CSRFToken() ?>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code"><?php echo _("Interface") ;?></label>
+                    <label for="cbxinterface"><?php echo _("Interface") ;?></label>
                     <?php
-                      SelectorOptions('interface', $interfaces, $arrConfig['interface']);
+                      SelectorOptions('interface', $interfaces, $arrConfig['interface'], 'cbxinterface');
                     ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code"><?php echo _("SSID"); ?></label>
-                    <input type="text" class="form-control" name="ssid" value="<?php echo htmlspecialchars($arrConfig['ssid'], ENT_QUOTES); ?>" />
+                    <label for="txtssid"><?php echo _("SSID"); ?></label>
+                    <input type="text" id="txtssid" class="form-control" name="ssid" value="<?php echo htmlspecialchars($arrConfig['ssid'], ENT_QUOTES); ?>" />
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code"><?php echo _("Wireless Mode") ;?></label>
+                    <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
                     <?php
 $selectedHwMode = $arrConfig['hw_mode'];
 if (isset($arrConfig['ieee80211n'])) {
@@ -114,12 +114,12 @@ if (isset($arrConfig['ieee80211n'])) {
     }
 }
 
-SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode); ?>
+SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode, 'cbxhwmode'); ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code"><?php echo _("Channel"); ?></label>
+                    <label for="cbxchannel"><?php echo _("Channel"); ?></label>
                     <?php
 $selectablechannels = range(1, 13);
 $countries_2_4Ghz_max11ch = array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
@@ -139,7 +139,7 @@ if (in_array($arrConfig['country_code'], $countries_max11channels)) {
         $selectablechannels = range(1, 14);
     }
 }
-                    SelectorOptions('channel', $selectablechannels, intval($arrConfig['channel'])) ?>
+                    SelectorOptions('channel', $selectablechannels, intval($arrConfig['channel']), 'cbxchannel') ?>
                   </div>
                 </div>
               </div>
@@ -147,20 +147,20 @@ if (in_array($arrConfig['country_code'], $countries_max11channels)) {
                 <h4><?php echo _("Security settings"); ?></h4>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code"><?php echo _("Security type"); ?></label>
-                    <?php SelectorOptions('wpa', $arrSecurity, $arrConfig['wpa']); ?>
+                    <label for="cbxwpa"><?php echo _("Security type"); ?></label>
+                    <?php SelectorOptions('wpa', $arrSecurity, $arrConfig['wpa'], 'cbxwpa'); ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code"><?php echo _("Encryption Type"); ?></label>
-                    <?php SelectorOptions('wpa_pairwise', $arrEncType, $arrConfig['wpa_pairwise']); ?>
+                    <label for="cbxwpapairwise"><?php echo _("Encryption Type"); ?></label>
+                    <?php SelectorOptions('wpa_pairwise', $arrEncType, $arrConfig['wpa_pairwise'], 'cbxwpapairwise'); ?>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="code"><?php echo _("PSK"); ?></label>
-                    <input type="text" class="form-control" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" />
+                    <label for="txtwpapassphrase"><?php echo _("PSK"); ?></label>
+                    <input type="text" class="form-control" id="txtwpapassphrase" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" />
                   </div>
                 </div>
               </div>
@@ -184,24 +184,24 @@ if (in_array($arrConfig['country_code'], $countries_max11channels)) {
                 <div class="row">
                   <div class="col-md-4">
                   <div class="form-check">
-                    <label class="form-check-label">
+                    <label class="form-check-label" for="chxlogenable">
                       <?php echo _("Enable logging");
-$checked = ''; 
+$checkedLogEnabled = ''; 
 if ($arrHostapdConf['LogEnable'] == 1) {
-    $checked = ' checked="checked"';
+    $checkedLogEnabled = ' checked="checked"';
 }
 
 ?>
-                      <input id="logEnable" name ="logEnable" type="checkbox" class="form-check-input" value="1"<?php echo $checked; ?> />
                     </label>
+                    <input id="chxlogenable" name="logEnable" type="checkbox" class="form-check-input" value="1"<?php echo $checkedLogEnabled; ?> />
                   </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
-                  <label for="code"><?php echo _("Country Code"); ?></label>
+                  <label for="cbxcountries"><?php echo _("Country Code"); ?></label>
                   <input type="hidden" id="selected_country" value="<?php echo htmlspecialchars($arrConfig['country_code'], ENT_QUOTES); ?>">
-                  <select  class="form-control"  id="countries" name="country_code">
+                  <select  class="form-control" id="cbxcountries" name="country_code">
                     <option value="AF">Afghanistan</option>
                     <option value="AX">Åland Islands</option>
                     <option value="AL">Albania</option>
@@ -454,7 +454,7 @@ if ($arrHostapdConf['LogEnable'] == 1) {
                   </select>
 <script type="text/javascript">
 var country = document.getElementById("selected_country").value;
-var countries = document.getElementById("countries");
+var countries = document.getElementById("cbxcountries");
 var ops = countries.getElementsByTagName("option");
 for (var i = 0; i < ops.length; ++i) {
 	if(ops[i].value == country){
