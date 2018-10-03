@@ -508,7 +508,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
   if (! in_array($_POST['interface'], $interfaces)) {
     // The user is probably up to something here but it may also be a
     // genuine error.
-    $status->addMessage('Unknown interface '.$_POST['interface'], 'danger');
+    $status->addMessage('Unknown interface '.htmlspecialchars($_POST['interface'], ENT_QUOTES), 'danger');
     $good_input = false;
   }
 
