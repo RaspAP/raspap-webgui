@@ -89,8 +89,13 @@ function isAssoc($arr) {
 *       If $options is an associative array this should be the key
 *
 */
-function SelectorOptions($name, $options, $selected = null) {
-  echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'">' , PHP_EOL;
+function SelectorOptions($name, $options, $selected = null, $id = null) {
+  echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
+  if (isset($id)) {
+      echo ' id="' . htmlspecialchars($id, ENT_QUOTES) .'"';
+  }
+
+  echo '>' , PHP_EOL;
   foreach ( $options as $opt => $label) {
     $select = '';
     $key = isAssoc($options) ? $opt : $label;
