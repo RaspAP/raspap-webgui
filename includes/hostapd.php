@@ -14,7 +14,7 @@ function DisplayHostAPDConfig()
 
   $arrConfig = array();
   $arr80211Standard = array('a','b','g','n');
-  $arrSecurity = array( 1 => 'WPA', 2 => 'WPA2',3=> 'WPA+WPA2');
+  $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
   $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
   exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
 
@@ -139,7 +139,7 @@ if (in_array($arrConfig['country_code'], $countries_max11channels)) {
         $selectablechannels = range(1, 14);
     }
 }
-                    SelectorOptions('channel', $selectablechannels, intval($arrConfig['channel']), 'cbxchannel') ?>
+                    SelectorOptions('channel', $selectablechannels, intval($arrConfig['channel']), 'cbxchannel'); ?>
                   </div>
                 </div>
               </div>
