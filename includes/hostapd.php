@@ -14,7 +14,7 @@ function DisplayHostAPDConfig()
 
   $arrConfig = array();
   $arr80211Standard = array('a','b','g','n');
-  $arrSecurity = array( 1 => 'WPA', 2 => 'WPA2',3=> 'WPA+WPA2');
+  $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
   $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
   exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
 
@@ -139,7 +139,7 @@ if (in_array($arrConfig['country_code'], $countries_max11channels)) {
         $selectablechannels = range(1, 14);
     }
 }
-                    SelectorOptions('channel', $selectablechannels, intval($arrConfig['channel']), 'cbxchannel') ?>
+                    SelectorOptions('channel', $selectablechannels, intval($arrConfig['channel']), 'cbxchannel'); ?>
                   </div>
                 </div>
               </div>
@@ -183,18 +183,31 @@ if (in_array($arrConfig['country_code'], $countries_max11channels)) {
                 <h4><?php echo _("Advanced settings"); ?></h4>
                 <div class="row">
                   <div class="col-md-4">
-                  <div class="form-check">
-                    <label class="form-check-label" for="chxlogenable">
-                      <?php echo _("Enable logging");
+                    <div class="form-check">
+                      <label class="form-check-label" for="chxlogenable"><?php echo _("Enable logging");
 $checkedLogEnabled = ''; 
 if ($arrHostapdConf['LogEnable'] == 1) {
     $checkedLogEnabled = ' checked="checked"';
 }
 
 ?>
-                    </label>
-                    <input id="chxlogenable" name="logEnable" type="checkbox" class="form-check-input" value="1"<?php echo $checkedLogEnabled; ?> />
+                      </label>
+                      <input id="chxlogenable" name="logEnable" type="checkbox" class="form-check-input" value="1"<?php echo $checkedLogEnabled; ?> />
+                    </div>
                   </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-check">
+                      <label class="form-check-label" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast");
+$checkedHiddenSSID = ''; 
+if ($arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssid'] == 2) {
+    $checkedHiddenSSID = ' checked="checked"';
+}
+
+?> </label>
+                      <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" class="form-check-input" value="1"<?php echo $checkedHiddenSSID; ?> />
+                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -533,9 +546,24 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     $good_input = false;
   }
 
-  if (strlen($_POST['wpa_passphrase']) < 8 || strlen($_POST['wpa_passphrase']) > 63) {
+  if ($_POST['wpa'] !== 'none' &&
+      (strlen($_POST['wpa_passphrase']) < 8 || strlen($_POST['wpa_passphrase']) > 63)) {
     $status->addMessage('WPA passphrase must be between 8 and 63 characters', 'danger');
     $good_input = false;
+  }
+
+  if (isset($_POST['hiddenSSID'])) {
+    if (!is_int((int)$_POST['hiddenSSID'])) {
+      $status->addMessage('Parameter hiddenSSID not a number.', 'danger');
+      $good_input = false;
+    } elseif ((int)$_POST['hiddenSSID'] < 0 || (int)$_POST['hiddenSSID'] >= 3) {
+      $status->addMessage('Parameter hiddenSSID contains invalid configuratie value.', 'danger');
+      $good_input = false;
+    } else {
+        $ignore_broadcast_ssid = $_POST['hiddenSSID'];
+    }
+  } else {
+      $ignore_broadcast_ssid = '0';
   }
 
   if (! in_array($_POST['interface'], $interfaces)) {
@@ -577,6 +605,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
       fwrite($tmp_file, 'wpa='.$_POST['wpa'].PHP_EOL);
       fwrite($tmp_file, 'wpa_pairwise='.$_POST['wpa_pairwise'].PHP_EOL);
       fwrite($tmp_file, 'country_code='.$_POST['country_code'].PHP_EOL);
+      fwrite($tmp_file, 'ignore_broadcast_ssid='.$ignore_broadcast_ssid.PHP_EOL);
       fclose($tmp_file);
 
       system( "sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $return );
