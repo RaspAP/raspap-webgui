@@ -546,7 +546,8 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     $good_input = false;
   }
 
-  if (strlen($_POST['wpa_passphrase']) < 8 || strlen($_POST['wpa_passphrase']) > 63) {
+  if ($_POST['wpa'] !== 'none' &&
+      (strlen($_POST['wpa_passphrase']) < 8 || strlen($_POST['wpa_passphrase']) > 63)) {
     $status->addMessage('WPA passphrase must be between 8 and 63 characters', 'danger');
     $good_input = false;
   }
