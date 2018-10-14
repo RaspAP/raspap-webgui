@@ -29,7 +29,7 @@ function DisplayDHCPConfig() {
             $errors .= _('Invalid DHCP range end.').'<br />'.PHP_EOL;
         }
 
-        if (!ctype_digit($_POST['RangeLeaseTime'])) {
+        if (!ctype_digit($_POST['RangeLeaseTime']) && $_POST['RangeLeaseTimeUnits'] !== 'infinite') {
             $errors .= _('Invalid DHCP lease time, not a number.').'<br />'.PHP_EOL;
         }
 
@@ -41,7 +41,12 @@ function DisplayDHCPConfig() {
         if (empty($errors)) {
             $config = 'interface='.$_POST['interface'].PHP_EOL.
                       'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].
-                      ',255.255.255.0,'.$_POST['RangeLeaseTime'].$_POST['RangeLeaseTimeUnits'];
+                      ',255.255.255.0,';
+            if ($_POST['RangeLeaseTimeUnits'] !== 'infinite') {
+                $config .= $_POST['RangeLeaseTime'];
+            }
+
+            $config .= $_POST['RangeLeaseTimeUnits'];
             exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
             system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);
         } else {
@@ -107,25 +112,30 @@ function DisplayDHCPConfig() {
   $RangeStart = $arrRange[0];
   $RangeEnd = $arrRange[1];
   $RangeMask = $arrRange[2];
-  preg_match( '/([0-9]*)([a-z])/i', $arrRange[3], $arrRangeLeaseTime );
+  $leaseTime = $arrRange[3];
 
   $hselected = '';
   $mselected = '';
   $dselected = '';
-
-  switch( $arrRangeLeaseTime[2] ) {
-    case 'h':
-      $hselected = ' selected="selected"';
-    break;
-    case 'm':
-      $mselected = ' selected="selected"';
-    break;
-    case 'd':
-      $dselected = ' selected="selected"';
-    break;
+  $infiniteselected = '';
+  preg_match( '/([0-9]*)([a-z])/i', $leaseTime, $arrRangeLeaseTime );
+  if ($leaseTime === 'infinite') {
+    $infiniteselected = ' selected="selected"';
+  } else {
+    switch( $arrRangeLeaseTime[2] ) {
+      case 'h':
+        $hselected = ' selected="selected"';
+        break;
+      case 'm':
+        $mselected = ' selected="selected"';
+        break;
+      case 'd':
+        $dselected = ' selected="selected"';
+        break;
+    }
   }
 
-  ?>
+?>
   <div class="row">
   <div class="col-lg-12">
       <div class="panel panel-primary">
@@ -156,7 +166,7 @@ function DisplayDHCPConfig() {
         foreach( $interfaces as $inet ) {
           $select = '';
           if( $inet === $conf['interface'] ) {
-            $select = ' selected="selected"';  // FIXED use xhtml valid attribute
+            $select = ' selected="selected"';
           }
 
           echo '        <option value="'.htmlspecialchars($inet, ENT_QUOTES).'"'.
@@ -188,10 +198,10 @@ function DisplayDHCPConfig() {
       <div class="col-xs-2 col-sm-2">
         <label for="code"><?php echo _("Interval"); ?></label>
         <select name="RangeLeaseTimeUnits" class="form-control" >
-            <option value="m" <?php echo $mselected; ?>>Minute(s)</option>
-            <option value="h" <?php echo $hselected; ?>>Hour(s)</option>
-            <option value="d" <?php echo $dselected; ?>>Day(s)</option>
-            <option value="infinite">Infinite</option>
+          <option value="m"<?php echo $mselected; ?>><?php echo _("Minute(s)"); ?></option>
+          <option value="h"<?php echo $hselected; ?>><?php echo _("Hour(s)"); ?></option>
+          <option value="d"<?php echo $dselected; ?>><?php echo _("Day(s)"); ?></option>
+          <option value="infinite"<?php echo $infiniteselected; ?>><?php echo _("Infinite"); ?></option>
         </select> 
       </div>
     </div>

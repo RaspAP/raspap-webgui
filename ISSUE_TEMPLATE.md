@@ -1,3 +1,6 @@
+### Before submitting an issue
+The [FAQs](https://github.com/billz/raspap-webgui/wiki/FAQs) have answers to many common issues. Please check this before creating a new issue. 
+
 ### Subject of the issue
 Describe your issue here.
 
