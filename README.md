@@ -129,6 +129,7 @@ The following translations are currently maintained by the project:
 - Português
 - Svenska
 - Nederlands
+- 简体中文 (Chinese Simplified)
 
 If your language is not in the list above, why not [contribute a translation](https://github.com/billz/raspap-webgui/wiki/Translations#contributing-a-translation)? Contributors will receive credit as the original translators.
 
