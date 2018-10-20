@@ -23,44 +23,44 @@ function DisplayDashboard(){
   $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
   $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
 
-  preg_match('/link\/ether ([0-9a-f:]+)/i', $stdoutIpWRepeatedSpaces, $matchesMacAddr ) || $matchesMacAddr[1] = 'No MAC Address Found';
+  preg_match('/link\/ether ([0-9a-f:]+)/i', $stdoutIpWRepeatedSpaces, $matchesMacAddr ) || $matchesMacAddr[1] = _('No MAC Address Found');
   $macAddr = $matchesMacAddr[1];
 
-  preg_match('/inet (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/(([0-3][0-9]))/i', $stdoutIpWRepeatedSpaces, $matchesIpv4AddrAndSubnet) || $matchesIpv4Addr[1] = 'No IP Address Found';
+  preg_match('/inet (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/(([0-3][0-9]))/i', $stdoutIpWRepeatedSpaces, $matchesIpv4AddrAndSubnet) || $matchesIpv4Addr[1] = _('No IPv4 Address Found');
   $ipv4Addr = $matchesIpv4AddrAndSubnet[1];
-  $strNetMask = long2ip(-1 << (32 -(int)$matchesIpv4AddrAndSubnet[2]));
+  $ipv4Netmask = long2ip(-1 << (32 -(int)$matchesIpv4AddrAndSubnet[2]));
   // TODO multiple ipv4 addresses
 
-  preg_match('/inet6 ([a-f0-9:]+)/i', $stdoutIpWRepeatedSpaces, $matchesIpv4Addr ) || $matchesIpv6Addr[1] = 'No IPv6 Address Found';
+  preg_match('/inet6 ([a-f0-9:]+)/i', $stdoutIpWRepeatedSpaces, $matchesIpv4Addr ) || $matchesIpv6Addr[1] = _('No IPv6 Address Found');
   $ipv6Addr = $matchesIpv6Addr[1];
   // TODO multiple ipv6 addresses
 
   preg_match('/state (UP|DOWN)/i', $stdoutIpWRepeatedSpaces, $matchesState ) || $matchesState[1] = 'unknown';
-  $deviceState = $matchesState[1];
+  $interfaceState = $matchesState[1];
 
   // Because of table layout used in the ip output we get the interface statistics directly from 
   // the system. One advantage of this is that it could work when interface is disable.
   exec('cat /sys/class/net/'.RASPI_WIFI_CLIENT_INTERFACE.'/statistics/rx_packets ', $stdoutCatRxPackets);
-  $strRxPackets = 'No data';
+  $strRxPackets = _('No data');
   if (ctype_digit($stdoutCatRxPackets[0])) {
     $strRxPackets = $stdoutCatRxPackets[0];
   }
 
   exec('cat /sys/class/net/'.RASPI_WIFI_CLIENT_INTERFACE.'/statistics/tx_packets ', $stdoutCatTxPackets);
-  $strTxPackets = 'No data';
+  $strTxPackets = _('No data');
   if (ctype_digit($stdoutCatTxPackets[0])) {
     $strTxPackets = $stdoutCatTxPackets[0];
   }
 
   exec('cat /sys/class/net/'.RASPI_WIFI_CLIENT_INTERFACE.'/statistics/rx_bytes ', $stdoutCatRxBytes);
-  $strRxBytes = 'No data';
+  $strRxBytes = _('No data');
   if (ctype_digit($stdoutCatRxBytes[0])) {
     $strRxBytes = $stdoutCatRxBytes[0];
     $strRxBytes .= getHumanReadableDatasize($strRxBytes);
   }
 
   exec('cat /sys/class/net/'.RASPI_WIFI_CLIENT_INTERFACE.'/statistics/tx_bytes ', $stdoutCatTxBytes);
-  $strTxBytes = 'No data';
+  $strTxBytes = _('No data');
   if (ctype_digit($stdoutCatTxBytes[0])) {
     $strTxBytes = $stdoutCatTxBytes[0];
     $strTxBytes .= getHumanReadableDatasize($strTxBytes);
@@ -75,7 +75,11 @@ function DisplayDashboard(){
   preg_match('/Connected to (([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2}))/', $stdoutIwWRepSpaces, $matchesBSSID) || $matchesBSSID[1] = '';
   $connectedBSSID = $matchesBSSID[1];
 
-  $wlanHasLink = $deviceState;
+  $wlanHasLink = false;
+  if ($interfaceState === 'UP') {
+    $wlanHasLink = true;
+  }
+
   if (!preg_match('/SSID: ([^ ]{1,'.SSIDMAXLEN.'})/', $stdoutIwWRepSpaces, $matchesSSID)) {
     $wlanHasLink = false;
     $matchesSSID[1] = 'Not connected';
@@ -98,7 +102,7 @@ function DisplayDashboard(){
   $stdoutIpInfoWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwInfoAllLinesGlued);
 
   preg_match('/txpower ([0-9\.]+ dBm)/i', $stdoutIpInfoWRepSpaces, $matchesTxPower ) || $matchesTxPower[1] = '';
-  $strTxPower = $matchesTxPower[1];
+  $txPower = $matchesTxPower[1];
 
   // iw does not have the "Link Quality". This is a is an aggregate value, 
   // and depends on the driver and hardware.
@@ -114,30 +118,39 @@ function DisplayDashboard(){
 
   $wlan0up = false;
   $classMsgDevicestatus = 'warning';
-  if ($deviceState === 'UP') {
+  if ($interfaceState === 'UP') {
       $wlan0up = true;
       $classMsgDevicestatus = 'success';
   }
 
-  $status->addMessage(sprintf(_('Interface is %s.'), strtolower($deviceState)), $classMsgDevicestatus);
 
-  if( isset($_POST['ifdown_wlan0']) ) {
+  if (isset($_POST['ifdown_wlan0'])) {
     // Pressed stop button
-    exec( 'ifconfig '.RASPI_WIFI_CLIENT_INTERFACE.' | grep -i running | wc -l', $test );
-    if($test[0] == 1) {
+    if ($interfaceState === 'UP') {
+      $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
       exec( 'sudo ip link set '.RASPI_WIFI_CLIENT_INTERFACE.' down' );
+      $wlan0up = false;
+      $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
+    } elseif ($interfaceState === 'unknown') {
+      $status->addMessage(_('Interface state unknown.'), 'danger');
     } else {
-      echo 'Interface already down';
+      $status->addMessage(sprintf(_('Interface already %s.'), _('down')), 'warning');
     }
   } elseif( isset($_POST['ifup_wlan0']) ) {
     // Pressed start button
-    exec('ifconfig '.RASPI_WIFI_CLIENT_INTERFACE.' | grep -i running | wc -l', $test);
-    if($test[0] == 0) {
+    if ($interfaceState === 'DOWN') {
+      $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
       exec('sudo ip link set ' . RASPI_WIFI_CLIENT_INTERFACE . ' up');
       exec('sudo ip -s a f label ' . RASPI_WIFI_CLIENT_INTERFACE);
+      $wlan0up = true;
+      $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
+    } elseif ($interfaceState === 'unknown') {
+      $status->addMessage(_('Interface state unknown.'), 'danger');
     } else {
-      echo 'Interface already up';
+      $status->addMessage(sprintf(_('Interface already %s.'), _('up')), 'warning');
     }
+  } else {
+    $status->addMessage(sprintf(_('Interface is %s.'), strtolower($interfaceState)), $classMsgDevicestatus);
   }
   ?>
   <div class="row">
@@ -153,7 +166,7 @@ function DisplayDashboard(){
                             <h4><?php echo _("Interface Information"); ?></h4>
                               <div class="info-item"><?php echo _("Interface Name"); ?></div> <?php echo RASPI_WIFI_CLIENT_INTERFACE; ?><br />
                               <div class="info-item"><?php echo _("IPv4 Address"); ?></div> <?php echo htmlspecialchars($ipv4Addr, ENT_QUOTES); ?><br />
-                              <div class="info-item"><?php echo _("Subnet Mask"); ?></div> <?php echo htmlspecialchars($strNetMask, ENT_QUOTES); ?><br />
+                              <div class="info-item"><?php echo _("Subnet Mask"); ?></div> <?php echo htmlspecialchars($ipv4Netmask, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("IPv6 Address"); ?></div> <?php echo htmlspecialchars($ipv6Addr, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("Mac Address"); ?></div> <?php echo htmlspecialchars($macAddr, ENT_QUOTES); ?><br /><br />
                             <h4><?php echo _("Interface Statistics"); ?></h4>
@@ -172,7 +185,7 @@ function DisplayDashboard(){
                               <div class="info-item"><?php echo _("AP Mac Address"); ?></div> <?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("Bitrate"); ?></div> <?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("Signal Level"); ?></div>	<?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?><br />
-                              <div class="info-item"><?php echo _("Transmit Power"); ?></div> <?php echo htmlspecialchars($strTxPower, ENT_QUOTES); ?><br />
+                              <div class="info-item"><?php echo _("Transmit Power"); ?></div> <?php echo htmlspecialchars($txPower, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("Frequency"); ?></div> <?php echo htmlspecialchars($frequency, ENT_QUOTES); ?><br /><br />
                               <div class="info-item"><?php echo _("Link Quality"); ?></div>
                                 <div class="progress">
@@ -191,9 +204,9 @@ function DisplayDashboard(){
                  <div class="row">
                     <form action="?page=wlan0_info" method="POST">
                     <?php if ( !$wlan0up ) {
-                      echo '<input type="submit" class="btn btn-success" value="' . _("Start ") . RASPI_WIFI_CLIENT_INTERFACE . '" name="ifup_wlan0" />';
+                      echo '<input type="submit" class="btn btn-success" value="'._("Start ").RASPI_WIFI_CLIENT_INTERFACE.'" name="ifup_wlan0" />';
                     } else {
-                      echo '<input type="submit" class="btn btn-warning" value="' . _("Stop ") . RASPI_WIFI_CLIENT_INTERFACE . '"  name="ifdown_wlan0" />';
+                      echo '<input type="submit" class="btn btn-warning" value="'._("Stop ").RASPI_WIFI_CLIENT_INTERFACE.'"  name="ifdown_wlan0" />';
                     }
               ?>
               <input type="button" class="btn btn-outline btn-primary" value="<?php echo _("Refresh"); ?>" onclick="document.location.reload(true)" />
