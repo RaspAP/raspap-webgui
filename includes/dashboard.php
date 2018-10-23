@@ -26,14 +26,36 @@ function DisplayDashboard(){
   preg_match('/link\/ether ([0-9a-f:]+)/i', $stdoutIpWRepeatedSpaces, $matchesMacAddr ) || $matchesMacAddr[1] = _('No MAC Address Found');
   $macAddr = $matchesMacAddr[1];
 
-  preg_match('/inet (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/(([0-3][0-9]))/i', $stdoutIpWRepeatedSpaces, $matchesIpv4AddrAndSubnet) || $matchesIpv4Addr[1] = _('No IPv4 Address Found');
-  $ipv4Addr = $matchesIpv4AddrAndSubnet[1];
-  $ipv4Netmask = long2ip(-1 << (32 -(int)$matchesIpv4AddrAndSubnet[2]));
-  // TODO multiple ipv4 addresses
+  $ipv4Addrs = '';
+  $ipv4Netmasks = '';
+  if (!preg_match_all('/inet (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/([0-3][0-9])/i', $stdoutIpWRepeatedSpaces, $matchesIpv4AddrAndSubnet)) {
+    $ipv4Addrs = _('No IPv4 Address Found');
+  } else {
+    $numMatchesIpv4AddrAndSubnet = count($matchesIpv4AddrAndSubnet);
+    for ($i = 1; $i < $numMatchesIpv4AddrAndSubnet; $i += 2) {
+      if ($i > 2) {
+        $ipv4Netmasks .= ' ';
+        $ipv4Addrs .= ' ';
+      }
 
-  preg_match('/inet6 ([a-f0-9:]+)/i', $stdoutIpWRepeatedSpaces, $matchesIpv4Addr ) || $matchesIpv6Addr[1] = _('No IPv6 Address Found');
-  $ipv6Addr = $matchesIpv6Addr[1];
-  // TODO multiple ipv6 addresses
+      $ipv4Addrs .= $matchesIpv4AddrAndSubnet[$i][0];
+      $ipv4Netmasks .= long2ip(-1 << (32 -(int)$matchesIpv4AddrAndSubnet[$i+1][0]));
+    }
+  }
+
+  $ipv6Addrs = '';
+  if (!preg_match_all('/inet6 ([a-f0-9:]+)/i', $stdoutIpWRepeatedSpaces, $matchesIpv6Addr)) {
+    $ipv6Addrs = _('No IPv6 Address Found');
+  } else {
+    $numMatchesIpv6Addr = count($matchesIpv6Addr);
+    for ($i = 1; $i < $numMatchesIpv6Addr; ++$i) {
+      if ($i > 1) {
+        $ipv6Addrs .= ' ';
+      }
+
+      $ipv6Addrs .= $matchesIpv6Addr[$i];
+    }
+  }
 
   preg_match('/state (UP|DOWN)/i', $stdoutIpWRepeatedSpaces, $matchesState ) || $matchesState[1] = 'unknown';
   $interfaceState = $matchesState[1];
@@ -165,9 +187,9 @@ function DisplayDashboard(){
                           <div class="panel-body">
                             <h4><?php echo _("Interface Information"); ?></h4>
                               <div class="info-item"><?php echo _("Interface Name"); ?></div> <?php echo RASPI_WIFI_CLIENT_INTERFACE; ?><br />
-                              <div class="info-item"><?php echo _("IPv4 Address"); ?></div> <?php echo htmlspecialchars($ipv4Addr, ENT_QUOTES); ?><br />
-                              <div class="info-item"><?php echo _("Subnet Mask"); ?></div> <?php echo htmlspecialchars($ipv4Netmask, ENT_QUOTES); ?><br />
-                              <div class="info-item"><?php echo _("IPv6 Address"); ?></div> <?php echo htmlspecialchars($ipv6Addr, ENT_QUOTES); ?><br />
+                              <div class="info-item"><?php echo _("IPv4 Address"); ?></div> <?php echo htmlspecialchars($ipv4Addrs, ENT_QUOTES); ?><br />
+                              <div class="info-item"><?php echo _("Subnet Mask"); ?></div> <?php echo htmlspecialchars($ipv4Netmasks, ENT_QUOTES); ?><br />
+                              <div class="info-item"><?php echo _("IPv6 Address"); ?></div> <?php echo htmlspecialchars($ipv6Addrs, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("Mac Address"); ?></div> <?php echo htmlspecialchars($macAddr, ENT_QUOTES); ?><br /><br />
                             <h4><?php echo _("Interface Statistics"); ?></h4>
                               <div class="info-item"><?php echo _("Received Packets"); ?></div> <?php echo htmlspecialchars($strRxPackets, ENT_QUOTES); ?><br />
