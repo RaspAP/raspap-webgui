@@ -175,9 +175,9 @@ function ConvertToSecurity( $security ) {
       $protocol = $protocol_match[1];
       $matchArr = explode('-', $match);
       if (count($matchArr) > 2) {
-        $options[] = $protocol . ' ('. $matchArr[2] .')';
+        $options[] = htmlspecialchars($protocol . ' ('. $matchArr[2] .')', ENT_QUOTES);
       } else {
-        $options[] = $protocol;
+        $options[] = htmlspecialchars($protocol, ENT_QUOTES);
       }
     }
   }
