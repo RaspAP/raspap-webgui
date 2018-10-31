@@ -15,6 +15,12 @@ if (extension_loaded('apcu')) {
             $numFailedLogins = apcu_fetch('numfailedlogins');
             if ($numFailedLogins >= MAXNUMFAILEDLOGINS) {
                 // Bruteforce detected.
+                if (function_exists('http_response_code')) {
+                    http_response_code(429);
+                } else {
+                    header('HTTP/1.0 429 Too Many Requests');
+                }
+
                 if ($numFailedLogins > MAXNUMFAILEDLOGINS) {
                     exit();
                 }

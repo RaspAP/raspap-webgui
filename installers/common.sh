@@ -308,6 +308,13 @@ function optimize_php() {
             fi
         fi
     fi
+
+    # Turn on APCu php extension.
+    if [ -f "/usr/sbin/phpenmod" ]; then
+        sudo phpenmod apcu
+    else
+        install_warning "phpenmod not found."
+    fi
 }
 
 function install_complete() {
