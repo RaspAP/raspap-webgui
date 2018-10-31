@@ -203,7 +203,7 @@ function DisplayWPAConfig(){
               <?php if (array_key_exists('priority', $network)) { ?>
                   <input type="hidden" name="priority<?php echo $index ?>" value="<?php echo htmlspecialchars($network['priority'], ENT_QUOTES); ?>" />
               <?php } ?>
-                  <input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>" /><?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>
+                  <input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>" /><?php echo $network['protocol']; ?>
                 </td>
               <?php if ($network['protocol'] === 'Open') { ?>
                 <td><input type="hidden" name="passphrase<?php echo $index ?>" value="" />---</td>
