@@ -1,5 +1,5 @@
 ![](http://i.imgur.com/xeKD93p.png)
-# `$ raspap-webgui` [![Release 1.3.1](https://img.shields.io/badge/Release-1.3.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Beerpay](https://img.shields.io/beerpay/hashdog/scrapfy-chrome-extension.svg)](https://beerpay.io/billz/raspap-webgui)
+# `$ raspap-webgui` [![Release 1.4.0](https://img.shields.io/badge/Release-1.4.0-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) 
 
 A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
