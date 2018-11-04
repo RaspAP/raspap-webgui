@@ -74,7 +74,8 @@ function DisplaySystem(){
     'pt_BR.UTF-8' => 'Português',
     'sv_SE.UTF-8' => 'Svenska',
     'nl_NL.UTF-8' => 'Nederlands',
-    'zh_CN.UTF-8' => 'Chinese simplified'
+    'zh_CN.UTF-8' => '简体中文 (Chinese simplified)',
+    'cs_CZ.UTF-8' => 'Čeština'
   );
 
   // hostname
