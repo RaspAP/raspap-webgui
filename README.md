@@ -62,17 +62,16 @@ sudo lighttpd-enable-mod fastcgi-php
 sudo service lighttpd restart
 ```
 Now comes the fun part. For security reasons, the `www-data` user which lighttpd runs under is not allowed to start or stop daemons, or run commands like ifdown and ifup, all of which we want our page to do.
-So what I have done is added the `www-data` user to the sudoers file, but with restrictions on what commands the user can run.
-Add the following to the end of  `/etc/sudoers`: 
+So what I have done is added the `www-data` user to the sudoers file, but with restrictions on what commands the user can run. Add the following to the end of `/etc/sudoers`, substituting your wireless interface for `wlan0` if needed: 
 
 ```sh
 www-data ALL=(ALL) NOPASSWD:/sbin/ifdown wlan0
 www-data ALL=(ALL) NOPASSWD:/sbin/ifup wlan0
 www-data ALL=(ALL) NOPASSWD:/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf
-www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli scan_results
-www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli scan
-www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli reconfigure
+www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan0 scan_results
+www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan0 scan
+www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan0 reconfigure
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf
 www-data ALL=(ALL) NOPASSWD:/etc/init.d/hostapd start
 www-data ALL=(ALL) NOPASSWD:/etc/init.d/hostapd stop
