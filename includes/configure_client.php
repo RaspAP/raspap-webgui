@@ -116,14 +116,14 @@ function DisplayWPAConfig(){
             $status->addMessage('Wifi settings updated successfully', 'success');
             $networks = $tmp_networks;
           } else {
-            $status->addMessage('Wifi settings updated but cannot restart (cannon execute "wpa_cli reconfigure")', 'danger');
+            $status->addMessage('Wifi settings updated but cannot restart (cannot execute "wpa_cli reconfigure")', 'danger');
           }
         } else {
           $status->addMessage('Wifi settings failed to be updated', 'danger');
         }
       }
     } else {
-      $status->addMessage('Failed to updated wifi settings', 'danger');
+      $status->addMessage('Failed to update wifi settings', 'danger');
     }
   }
 
@@ -230,7 +230,7 @@ function DisplayWPAConfig(){
 
                   <div class="row">
                     <div class="col-xs-4 col-md-4">RSSI</div>
-                    <div class="col-xs-4 col-md-4">
+                    <div class="col-xs-6 col-md-6">
                     <?php echo htmlspecialchars($network['RSSI'], ENT_QUOTES);
                         echo "dB (";
                         if($network['RSSI'] >= -50) { echo 100; }
@@ -248,7 +248,7 @@ function DisplayWPAConfig(){
 
                   <div class="row">
                     <div class="col-xs-4 col-md-4">Security</div>
-                    <div class="col-xs-4 col-md-4"><?php echo $network['protocol'] ?></div>
+                    <div class="col-xs-6 col-md-6"><?php echo $network['protocol'] ?></div>
                   </div>
 
                   <div class="form-group">
