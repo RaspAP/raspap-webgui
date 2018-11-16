@@ -17,7 +17,7 @@ html * {
   background-color: #000;
 }
 
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover, .input-group-addon {
   color: #33ff00;
   cursor: default;
   background-color: #000;
@@ -125,12 +125,12 @@ hr {
   border-bottom: 1px solid #33ff00;
 }
 
-.btn-primary.btn-outline,.btn-warning {
+.btn-primary.btn-outline,.btn-warning,.btn-default,.btn-danger {
   color: #33ff00;
   border-color: #33ff00;
 }
 
-.btn-primary:hover,.btn-primary:focus,.btn-warning:hover,.btn-warning:focus,.btn-primary:active {
+.btn-primary:hover,.btn-primary:focus,.btn-warning:hover,.btn-warning:focus,.btn-primary:active,.btn-default:hover,.btn-danger:hover,.btn-default:active,.btn-default:focus {
   color: #33ff00;
   background-color: #000;
   border-color: #33ff00;
@@ -226,6 +226,10 @@ input[type="text"]{
 
 .progress-bar {
   color: #000;
+}
+
+.progress-bar.progress-bar-info.progress-bar-striped.active {
+  background-color: #33ff00;
 }
 
 .info-item {
