@@ -41,6 +41,9 @@ if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2)
     case "cs":
       $locale = "cs_CZ.UTF-8";
       break;
+    case "ru":
+      $locale = "ru_RU.UTF-8";
+      break;
     default:  
       $locale = "en_GB.UTF-8";
       break;
