@@ -118,9 +118,11 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
               <li>
                 <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> <?php echo _("Dashboard"); ?></a>
               </li>
+	      <?php if ( RASPI_WIFICLIENT_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
-              </li>
+	      </li>
+              <?php endif; ?>
               <?php if ( RASPI_HOTSPOT_ENABLED ) : ?>
               <li>
                 <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?></a>
