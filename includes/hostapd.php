@@ -27,7 +27,12 @@ function DisplayHostAPDConfig()
   } elseif( isset($_POST['StartHotspot']) ) {
     if (CSRFValidate()) {
       $status->addMessage('Attempting to start hotspot', 'info');
-      exec( 'sudo /etc/init.d/hostapd start', $return );
+      if ($arrHostapdConf['WifiAPEnable'] == 1) {
+        //exec('sudo /etc/raspap/hostapd/servicesdisable.sh');
+	exec('sudo /etc/raspap/hostapd/servicesstart.sh', $return );
+      } else {
+        exec( 'sudo /etc/init.d/hostapd start', $return );
+      }
       foreach( $return as $line ) {
         $status->addMessage($line, 'info');
       }
@@ -186,7 +191,7 @@ if (in_array($arrConfig['country_code'], $countries_max11channels)) {
 		    <div class="checkbox">
 <?php 
 $checkedWifiAPEnabled = '';
-if ($arrHostapdConf['wifiAPEnable'] == 1) {
+if ($arrHostapdConf['WifiAPEnable'] == 1) {
     $checkedWifiAPEnabled = ' checked="checked"';
 }
 ?>
@@ -535,11 +540,13 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
   $wifiAPEnable = 0;
   if($arrHostapdConf['WifiAPEnable'] == 0) {
       if(isset($_POST['wifiAPEnable'])) {
-	  $wifiAPEnable = 1;
-          //exec('sudo /etc/raspap/hostapd/servicesdisable.sh');
-	  //exec('sudo /etc/raspap/hostapd/servicesstart.sh');
+          $wifiAPEnable = 1;
       }
-  }
+  } else {
+      if(isset($_POST['wifiAPEnable'])) {
+          $wifiAPEnable = 1;
+      }
+  } 
 
   // Check for Logfile output checkbox
   $logEnable = 0;
@@ -558,7 +565,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
           exec('sudo /etc/raspap/hostapd/disablelog.sh');
       }
   }
-  write_php_ini(["LogEnable" => $logEnable],'/etc/raspap/hostapd.ini');
+  $cfg = [];
+  $cfg['LogEnable'] = $logEnable;
+  $cfg['WifiAPEnable'] = $wifiAPEnable;
+  write_php_ini($cfg,'/etc/raspap/hostapd.ini');
 
   // Verify input
   if (empty($_POST['ssid']) || strlen($_POST['ssid']) > 32) {
@@ -619,14 +629,36 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         fwrite($tmp_file, 'hw_mode='.$_POST['hw_mode'].PHP_EOL);
         fwrite($tmp_file, 'ieee80211n=0'.PHP_EOL);
       }
-
       fwrite($tmp_file, 'wpa_passphrase='.$_POST['wpa_passphrase'].PHP_EOL);
-      fwrite($tmp_file, 'interface='.$_POST['interface'].PHP_EOL);
+      if ($wifiAPEnable == 1) {
+        fwrite($tmp_file, 'interface=uap0'.PHP_EOL);
+      } else {      
+        fwrite($tmp_file, 'interface='.$_POST['interface'].PHP_EOL);
+      }
       fwrite($tmp_file, 'wpa='.$_POST['wpa'].PHP_EOL);
       fwrite($tmp_file, 'wpa_pairwise='.$_POST['wpa_pairwise'].PHP_EOL);
       fwrite($tmp_file, 'country_code='.$_POST['country_code'].PHP_EOL);
       fwrite($tmp_file, 'ignore_broadcast_ssid='.$ignore_broadcast_ssid.PHP_EOL);
       fclose($tmp_file);
+
+      if ($wifiAPEnable == 1) {
+        // Enable uap0 configuration in dnsmasq for Wifi client AP mode
+        $arrDnsmasqConf = parse_ini_file(RASPI_DNSMASQ_CONFIG);
+
+        $config = 'interface=lo,uap0               # Enable uap0 interface for wireless client AP mode'.PHP_EOL;
+        $config.= 'bind-interfaces                 # Bind to the interfaces'.PHP_EOL;
+        $config.= 'server=8.8.8.8                  # Forward DNS requests to Google DNS'.PHP_EOL;
+        $config.= 'domain-needed                   # Don\'t forward short names'.PHP_EOL;
+        $config.= 'bogus-priv                      # Never forward addresses in the non-routed address spaces'.PHP_EOL;
+        $config.= 'dhcp-range=192.168.50.50,192.168.50.150,12h'.PHP_EOL;
+      } else {
+        // Fallback to default config
+        // Todo: 
+        $config = 'interface='.$_POST['interface'].PHP_EOL;
+        $config .= 'dhcp-range=10.3.141.50,10.3.141.255,255.255.255.0,12h'.PHP_EOL;
+      }
+      exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
+      system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);        
 
       system( "sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $return );
       if( $return == 0 ) {
