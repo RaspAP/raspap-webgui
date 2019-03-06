@@ -31,6 +31,8 @@ function DisplayHostAPDConfig()
         //exec('sudo /etc/raspap/hostapd/servicesdisable.sh');
 	exec('sudo /etc/raspap/hostapd/servicestart.sh', $return );
       } else {
+	// Todo: remove uap0 interface before switching back to wlan0, else IAID conflict with dhcpcd
+	// Stop/start dhcpd.service
         exec( 'sudo /etc/init.d/hostapd start', $return );
       }
       foreach( $return as $line ) {
