@@ -29,7 +29,7 @@ function DisplayHostAPDConfig()
       $status->addMessage('Attempting to start hotspot', 'info');
       if ($arrHostapdConf['WifiAPEnable'] == 1) {
         //exec('sudo /etc/raspap/hostapd/servicesdisable.sh');
-	exec('sudo /etc/raspap/hostapd/servicesstart.sh', $return );
+	exec('sudo /etc/raspap/hostapd/servicestart.sh', $return );
       } else {
         exec( 'sudo /etc/init.d/hostapd start', $return );
       }
