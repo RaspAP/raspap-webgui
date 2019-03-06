@@ -114,16 +114,18 @@ function create_raspap_directories() {
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
 }
 
-# Generate logging enable/disable files for hostapd
-function create_logging_scripts() {
-    install_log "Creating logging scripts"
+# Generate hostapd logging and service control scripts
+function create_hostapd_scripts() {
+    install_log "Creating hostapd logging & control scripts"
     sudo mkdir $raspap_dir/hostapd || install_error "Unable to create directory '$raspap_dir/hostapd'"
 
-    # Move existing shell scripts 
+    # Move logging shell scripts 
     sudo mv "$webroot_dir/installers/"*log.sh "$raspap_dir/hostapd" || install_error "Unable to move logging scripts"
+    # Move service control shell scripts
+    sudo mv "$webroot_dir/installers/"services*.sh "$raspap_dir/hostapd" || install_error "Unable to move service control scripts"
     # Make enablelog.sh and disablelog.sh not writable by www-data group.
-    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*log.sh || install_error "Unable change owner and/or group."
-    sudo chmod 750 "$raspap_dir/hostapd/"*log.sh || install_error "Unable to change file permissions."
+    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || install_error "Unable change owner and/or group."
+    sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions."
 }
 
 
@@ -254,6 +256,8 @@ function patch_system_files() {
         "/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf"
         "/etc/raspap/hostapd/enablelog.sh"
         "/etc/raspap/hostapd/disablelog.sh"
+	"/etc/raspap/hostapd/servicesdisable.sh"
+	"/etc/raspap/hostapd/servicesstart.sh"
     )
 
     # Check if sudoers needs patching
@@ -334,7 +338,7 @@ function install_raspap() {
     check_for_old_configs
     download_latest_files
     change_file_ownership
-    create_logging_scripts
+    create_hostapd_scripts
     move_config_file
     default_configuration
     patch_system_files
