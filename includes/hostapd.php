@@ -180,33 +180,46 @@ if (in_array($arrConfig['country_code'], $countries_max11channels)) {
                 </div>
               </div>
               <div class="tab-pane fade" id="advanced">
-                <h4><?php echo _("Advanced settings"); ?></h4>
+		<h4><?php echo _("Advanced settings"); ?></h4>
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="form-check">
-                      <label class="form-check-label" for="chxlogenable"><?php echo _("Enable logging");
-$checkedLogEnabled = ''; 
-if ($arrHostapdConf['LogEnable'] == 1) {
-    $checkedLogEnabled = ' checked="checked"';
+		    <div class="checkbox">
+<?php 
+$checkedWifiAPEnabled = '';
+if ($arrHostapdConf['wifiAPEnable'] == 1) {
+    $checkedWifiAPEnabled = ' checked="checked"';
 }
-
 ?>
-                      </label>
-                      <input id="chxlogenable" name="logEnable" type="checkbox" class="form-check-input" value="1"<?php echo $checkedLogEnabled; ?> />
+		      <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedWifiAPEnabled; ?> />
+		      <label class="form-check-label" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="form-check">
-                      <label class="form-check-label" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast");
+		    <div class="checkbox">
+<?php 
+$checkedLogEnabled = ''; 
+if ($arrHostapdConf['LogEnable'] == 1) {
+    $checkedLogEnabled = ' checked="checked"';
+}
+?>
+		      <input id="chxlogenable" name="logEnable" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedLogEnabled; ?> />
+		      <label class="form-check-label" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+		    <div class="checkbox">
+<?php
 $checkedHiddenSSID = ''; 
 if ($arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssid'] == 2) {
     $checkedHiddenSSID = ' checked="checked"';
 }
-
-?> </label>
-                      <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" class="form-check-input" value="1"<?php echo $checkedHiddenSSID; ?> />
+?>
+		      <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedHiddenSSID; ?> />
+		      <label class="form-check-label" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast"); ?></label>
                     </div>
                   </div>
                 </div>
