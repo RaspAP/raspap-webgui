@@ -122,7 +122,7 @@ function create_hostapd_scripts() {
     # Move logging shell scripts 
     sudo mv "$webroot_dir/installers/"*log.sh "$raspap_dir/hostapd" || install_error "Unable to move logging scripts"
     # Move service control shell scripts
-    sudo mv "$webroot_dir/installers/"services*.sh "$raspap_dir/hostapd" || install_error "Unable to move service control scripts"
+    sudo mv "$webroot_dir/installers/"service*.sh "$raspap_dir/hostapd" || install_error "Unable to move service control scripts"
     # Make enablelog.sh and disablelog.sh not writable by www-data group.
     sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || install_error "Unable change owner and/or group."
     sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions."
