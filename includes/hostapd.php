@@ -530,27 +530,35 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
   }
 
   $good_input = true;
+  
+  // Check for WiFi client AP mode checkbox
+  $wifiAPEnable = 0;
+  if($arrHostapdConf['WifiAPEnable'] == 0) {
+      if(isset($_POST['wifiAPEnable'])) {
+	  $wifiAPEnable = 1;
+          //exec('sudo /etc/raspap/hostapd/servicesdisable.sh');
+	  //exec('sudo /etc/raspap/hostapd/servicesstart.sh');
+      }
+  }
 
-  // Check for Logging Checkbox
-    $logEnable = 0;
-    if($arrHostapdConf['LogEnable'] == 0) {
-        if(isset($_POST['logEnable'])) {
-            // Need code to enable logfile logging here
-            $logEnable = 1;
-            exec('sudo /etc/raspap/hostapd/enablelog.sh');
-        } else {
-            exec('sudo /etc/raspap/hostapd/disablelog.sh');
-        }
-    } else {
-        if(isset($_POST['logEnable'])) {
-            $logEnable = 1;
-            exec('sudo /etc/raspap/hostapd/enablelog.sh');
-        } else {
-            exec('sudo /etc/raspap/hostapd/disablelog.sh');
-        }
-    }
-
-    write_php_ini(["LogEnable" => $logEnable],'/etc/raspap/hostapd.ini');
+  // Check for Logfile output checkbox
+  $logEnable = 0;
+  if($arrHostapdConf['LogEnable'] == 0) {
+      if(isset($_POST['logEnable'])) {
+          $logEnable = 1;
+          exec('sudo /etc/raspap/hostapd/enablelog.sh');
+      } else {
+          exec('sudo /etc/raspap/hostapd/disablelog.sh');
+      }
+  } else {
+      if(isset($_POST['logEnable'])) {
+          $logEnable = 1;
+          exec('sudo /etc/raspap/hostapd/enablelog.sh');
+      } else {
+          exec('sudo /etc/raspap/hostapd/disablelog.sh');
+      }
+  }
+  write_php_ini(["LogEnable" => $logEnable],'/etc/raspap/hostapd.ini');
 
   // Verify input
   if (empty($_POST['ssid']) || strlen($_POST['ssid']) > 32) {
@@ -600,7 +608,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
       fwrite($tmp_file, 'auth_algs=1'.PHP_EOL);
       fwrite($tmp_file, 'wpa_key_mgmt=WPA-PSK'.PHP_EOL);
       fwrite($tmp_file, 'beacon_int=100'.PHP_EOL);
-
       fwrite($tmp_file, 'ssid='.$_POST['ssid'].PHP_EOL);
       fwrite($tmp_file, 'channel='.$_POST['channel'].PHP_EOL);
       if ($_POST['hw_mode'] === 'n') {
