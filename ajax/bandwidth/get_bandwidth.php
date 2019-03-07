@@ -26,6 +26,8 @@ if (strlen($interface) > IFNAMSIZ) {
     exit('Invalid interface name.');
 }
 
+require_once './get_bandwidth_hourly.php';
+
 exec(sprintf('vnstat -i %s --json ', escapeshellarg($interface)), $jsonstdoutvnstat,
      $exitcodedaily);
 if ($exitcodedaily !== 0) {
