@@ -31,18 +31,15 @@ systemctl stop hostapd.service
 systemctl stop dnsmasq.service
 systemctl stop dhcpcd.service
 
-if [ "${interface}" = "uap0" ]; then
-    echo "Removing uap0 interface..."
-    iw dev uap0 del
+echo "Removing uap0 interface..."
+iw dev uap0 del
  
+if [ "${interface}" = "uap0" ]; then
     echo "Adding uap0 interface..."
     iw dev wlan0 interface add uap0 type __ap
 
     # Bring up uap0 interface
     ifconfig uap0 up
-else
-    echo "Removing uap0 interface..."
-    iw dev uap0 del
 fi 
 
 # Start services, mitigating race conditions
@@ -57,5 +54,5 @@ sleep "${seconds}"
 echo "Starting dnsmasq service..."
 systemctl start dnsmasq.service
 
-echo "RaspAP servicestart DONE"
+echo "RaspAP service start DONE"
 
