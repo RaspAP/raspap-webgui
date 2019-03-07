@@ -28,12 +28,9 @@ function DisplayHostAPDConfig()
     if (CSRFValidate()) {
       $status->addMessage('Attempting to start hotspot', 'info');
       if ($arrHostapdConf['WifiAPEnable'] == 1) {
-        //exec('sudo /etc/raspap/hostapd/servicesdisable.sh');
-	exec('sudo /etc/raspap/hostapd/servicestart.sh', $return );
+	exec('sudo /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 3', $return );
       } else {
-	// Todo: remove uap0 interface before switching back to wlan0, else IAID conflict with dhcpcd
-	// Stop/start dhcpd.service
-        exec( 'sudo /etc/init.d/hostapd start', $return );
+        exec( 'sudo /etc/raspap/hostapd/servicestart.sh --seconds 3', $return );
       }
       foreach( $return as $line ) {
         $status->addMessage($line, 'info');
@@ -87,7 +84,7 @@ function DisplayHostAPDConfig()
               <li class="active"><a href="#basic" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
               <li><a href="#security" data-toggle="tab"><?php echo _("Security"); ?></a></li>
               <li><a href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-              <li><a href="#logoutput" data-toggle="tab"><?php echo _("Logfile output"); ?></a></li>
+              <li><a href="#logoutput" data-toggle="tab"><?php echo _("Logfile"); ?></a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -645,8 +642,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 
       if ($wifiAPEnable == 1) {
         // Enable uap0 configuration in dnsmasq for Wifi client AP mode
-        $arrDnsmasqConf = parse_ini_file(RASPI_DNSMASQ_CONFIG);
-
         $config = 'interface=lo,uap0               # Enable uap0 interface for wireless client AP mode'.PHP_EOL;
         $config.= 'bind-interfaces                 # Bind to the interfaces'.PHP_EOL;
         $config.= 'server=8.8.8.8                  # Forward DNS requests to Google DNS'.PHP_EOL;
@@ -655,7 +650,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $config.= 'dhcp-range=192.168.50.50,192.168.50.150,12h'.PHP_EOL;
       } else {
         // Fallback to default config
-        // Todo: 
         $config = 'interface='.$_POST['interface'].PHP_EOL;
         $config .= 'dhcp-range=10.3.141.50,10.3.141.255,255.255.255.0,12h'.PHP_EOL;
       }
