@@ -649,9 +649,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $config.= 'bogus-priv                      # Never forward addresses in the non-routed address spaces'.PHP_EOL;
         $config.= 'dhcp-range=192.168.50.50,192.168.50.150,12h'.PHP_EOL;
       } else {
-        // Fallback to default config
-        $config = 'interface='.$_POST['interface'].PHP_EOL;
-        $config .= 'dhcp-range=10.3.141.50,10.3.141.255,255.255.255.0,12h'.PHP_EOL;
+	// Fallback to default config
+	$config = 'domain-needed'.PHP_EOL;
+        $config.= 'interface='.$_POST['interface'].PHP_EOL;
+        $config.= 'dhcp-range=10.3.141.50,10.3.141.255,255.255.255.0,12h'.PHP_EOL;
       }
       exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
       system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);        
