@@ -276,6 +276,10 @@ function patch_system_files() {
     else
         install_log "Sudoers file already patched"
     fi
+
+    # Unmask and enable hostapd.service
+    sudo systemctl unmask hostapd.service
+    sudo systemctl enable hostapd.service
 }
 
 
