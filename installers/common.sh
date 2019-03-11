@@ -248,6 +248,7 @@ function patch_system_files() {
         "/etc/init.d/dnsmasq start"
         "/etc/init.d/dnsmasq stop"
         "/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf"
+        "/bin/cp /tmp/dhcpddata /etc/dhcpcd.conf"
         "/sbin/shutdown -h now"
         "/sbin/reboot"
         "/sbin/ip link set wlan[0-9] down"
