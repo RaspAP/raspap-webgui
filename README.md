@@ -16,11 +16,11 @@ We'd be curious to hear about how you use this with your own RPi-powered project
 
  - [Prerequisites](#prerequisites)
  - [Quick installer](#quick-installer)
+ - [Support us](#support-us)
  - [Manual installation](#manual-installation)
  - [Multilingual support](#multilingual-support)
  - [Optional services](#optional-services)
  - [How to contribute](#how-to-contribute)
- - [Support us](#support-us)
  - [License](#license)
 
 ## Prerequisites
@@ -53,6 +53,12 @@ configured as an access point as follows:
 * DHCP range: 10.3.141.50 to 10.3.141.255
 * SSID: `raspi-webgui`
 * Password: ChangeMe
+
+## Support us
+
+RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal projects, please consider making a small donation. We feel strongly about creating high quality, easy-to-use software, as well as the importance of keeping it maintained. 
+
+[![Beerpay](https://beerpay.io/billz/raspap-webgui/badge.svg?style=flat)](https://beerpay.io/billz/raspap-webgui)
 
 ## Manual installation
 These steps apply to the latest release of Raspbian (currently [Stretch](https://www.raspberrypi.org/downloads/raspbian/)). Notes for previously released versions are provided, where applicable. Start off by installing git, lighttpd, php7, hostapd and dnsmasq. 
@@ -160,12 +166,6 @@ Please note that these are only UI's for now. If there's enough interest I'll co
 3. Commit your changes in that branch.
 4. Open a pull request, and reference the initial issue in the pull request
    message.
-
-## Support us
-
-If you find RaspAP useful for your personal or commerical projects, please consider buying the founders a beer!
-
-[![Beerpay](https://beerpay.io/billz/raspap-webgui/badge.svg?style=beer-square)](https://beerpay.io/billz/raspap-webgui) 
 
 ## License
 See the [LICENSE](./LICENSE) file.
