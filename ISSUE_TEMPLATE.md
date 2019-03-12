@@ -20,8 +20,8 @@ Describe your issue here.
 ### Steps to reproduce
 Tell us how to reproduce this issue.
 
-### Expected behaviour
+### Expected behavior
 Tell us what should happen.
 
-### Actual behaviour
+### Actual behavior
 Tell us what happens instead.
