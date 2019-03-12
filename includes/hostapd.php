@@ -661,7 +661,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
    if ($wifiAPEnable == 1) {
     // Enable uap0 configuration in dhcpcd for Wifi client AP mode
       $config = PHP_EOL.'# RaspAP uap0 configuration'.PHP_EOL;
-      $config.= 'interface=uap0'.PHP_EOL;
+      $config.= 'interface uap0'.PHP_EOL;
       $config.= 'static ip_address=192.168.50.1/24'.PHP_EOL;
       $config.= 'nohook wpa_supplicant'.PHP_EOL;
     } else {
