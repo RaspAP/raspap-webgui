@@ -658,20 +658,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
     system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return); 
 
-    // Fixed dhcpcd values
-    $config = '# RaspAP defaults'.PHP_EOL;
-    $config.= 'hostname'.PHP_EOL;
-    $config.= 'clientid'.PHP_EOL;
-    $config.= 'persistent'.PHP_EOL;
-    $config.= 'option rapid_commit'.PHP_EOL;
-    $config.= 'option domain_name_servers, domain_name, domain_search, host_name'.PHP_EOL;
-    $config.= 'option classless_static_routes'.PHP_EOL;
-    $config.= 'option ntp_servers'.PHP_EOL;
-    $config.= 'require dhcp_server_identifier'.PHP_EOL;
-    $config.= 'slaac private'.PHP_EOL;
-    $config.= 'nohook lookup-hostname'.PHP_EOL;
-
-    if ($wifiAPEnable == 1) {
+   if ($wifiAPEnable == 1) {
     // Enable uap0 configuration in dhcpcd for Wifi client AP mode
       $config.= PHP_EOL.'# RaspAP uap0 configuration'.PHP_EOL;
       $config.= 'interface=uap0'.PHP_EOL;
@@ -679,7 +666,17 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
       $config.= 'nohook wpa_supplicant'.PHP_EOL;
     } else {
       // Default config
-      $config.= PHP_EOL.'# RaspAP wlan0 configuration'.PHP_EOL;
+      $config.= '# RaspAP wlan0 configuration'.PHP_EOL;
+      $config.= 'hostname'.PHP_EOL;
+      $config.= 'clientid'.PHP_EOL;
+      $config.= 'persistent'.PHP_EOL;
+      $config.= 'option rapid_commit'.PHP_EOL;
+      $config.= 'option domain_name_servers, domain_name, domain_search, host_name'.PHP_EOL;
+      $config.= 'option classless_static_routes'.PHP_EOL;
+      $config.= 'option ntp_servers'.PHP_EOL;
+      $config.= 'require dhcp_server_identifier'.PHP_EOL;
+      $config.= 'slaac private'.PHP_EOL;
+      $config.= 'nohook lookup-hostname'.PHP_EOL;
       $config.= 'interface wlan0'.PHP_EOL;
       $config.= 'static ip_address=10.3.141.1/24'.PHP_EOL;
       $config.= 'static routers=10.3.141.1'.PHP_EOL;
