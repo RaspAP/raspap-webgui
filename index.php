@@ -34,6 +34,7 @@ include_once( 'includes/configure_client.php' );
 include_once( 'includes/networking.php' );
 include_once( 'includes/themes.php' );
 include_once( 'includes/data_usage.php' );
+include_once( 'includes/about.php' );
 
 $output = $return = 0;
 $page = $_GET['page'];
@@ -120,7 +121,7 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
               </li>
 	      <?php if ( RASPI_WIFICLIENT_ENABLED ) : ?>
               <li>
-                <a href="index.php?page=wpa_conf"><i class="fa fa-signal fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
+                <a href="index.php?page=wpa_conf"><i class="fa fa-wifi fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
 	      </li>
               <?php endif; ?>
               <?php if ( RASPI_HOTSPOT_ENABLED ) : ?>
@@ -166,7 +167,10 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
               <li>
                 <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
               </li>
-            </ul>
+               <li>
+                <a href="index.php?page=about"><i class="fa fa-info-circle fa-fw"></i> <?php echo _("About RaspAP"); ?></a>
+              </li>
+           </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.navbar-default -->
       </nav>
@@ -221,6 +225,9 @@ $extraFooterScripts = array();
             break;
           case "system_info":
             DisplaySystem();
+            break;
+           case "about":
+            DisplayAbout();
             break;
           default:
             DisplayDashboard();
