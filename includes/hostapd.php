@@ -677,7 +677,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
       $config.= 'require dhcp_server_identifier'.PHP_EOL;
       $config.= 'slaac private'.PHP_EOL;
       $config.= 'nohook lookup-hostname'.PHP_EOL;
-      $config.= 'interface wlan0'.PHP_EOL;
+      $config.= 'interface '.RASPI_WIFI_CLIENT_INTERFACE.PHP_EOL;
       $config.= 'static ip_address=10.3.141.1/24'.PHP_EOL;
       $config.= 'static routers=10.3.141.1'.PHP_EOL;
       $config.= 'static domain_name_server=1.1.1.1 8.8.8.8'.PHP_EOL;
