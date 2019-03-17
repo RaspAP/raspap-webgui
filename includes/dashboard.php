@@ -237,7 +237,7 @@ function DisplayDashboard(){
                                 </thead>
                                 <tbody>
 <?php
-exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i wlan0 | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
+exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.RASPI_WIFI_CLIENT_INTERFACE.' | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
 foreach( $clients as $client ) {
     $client_items = explode(' ', $client);
     echo '<tr>'.PHP_EOL;
