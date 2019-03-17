@@ -237,20 +237,17 @@ function DisplayDHCPConfig() {
               </tr>
             </thead>
             <tbody>
-              <tr>
 <?php
 exec( 'cat ' . RASPI_DNSMASQ_LEASES, $leases );
 foreach( $leases as $lease ) {
+    echo '              <tr>'.PHP_EOL;
     $lease_items = explode(' ', $lease);
     foreach( $lease_items as $lease_item ) {
-        echo '                  <td>'.htmlspecialchars($lease_item, ENT_QUOTES).'</td>'.PHP_EOL;
+        echo '                <td>'.htmlspecialchars($lease_item, ENT_QUOTES).'</td>'.PHP_EOL;
     }
-
-    echo '                </tr>'.PHP_EOL;
+    echo '              </tr>'.PHP_EOL;
 };
-
 ?>
-              </tr>
             </tbody>
           </table>
         </div><!-- /.table-responsive -->
