@@ -191,6 +191,10 @@ function DisplayDashboard(){
                               <div class="info-item"><?php echo _("Subnet Mask"); ?></div> <?php echo htmlspecialchars($ipv4Netmasks, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("IPv6 Address"); ?></div> <?php echo htmlspecialchars($ipv6Addrs, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("Mac Address"); ?></div> <?php echo htmlspecialchars($macAddr, ENT_QUOTES); ?><br /><br />
+                          </div><!-- /.panel-body -->
+                        </div><!-- /.panel-default -->
+                        <div class="panel panel-default">
+                          <div class="panel-body">
                             <h4><?php echo _("Interface Statistics"); ?></h4>
                               <div class="info-item"><?php echo _("Received Packets"); ?></div> <?php echo htmlspecialchars($strRxPackets, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("Received Bytes"); ?></div> <?php echo htmlspecialchars($strRxBytes, ENT_QUOTES); ?><br /><br />
@@ -206,7 +210,7 @@ function DisplayDashboard(){
                               <div class="info-item"><?php echo _("Connected To"); ?></div> <?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("AP Mac Address"); ?></div> <?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("Bitrate"); ?></div> <?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?><br />
-                              <div class="info-item"><?php echo _("Signal Level"); ?></div>	<?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?><br />
+                              <div class="info-item"><?php echo _("Signal Level"); ?></div> <?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("Transmit Power"); ?></div> <?php echo htmlspecialchars($txPower, ENT_QUOTES); ?><br />
                               <div class="info-item"><?php echo _("Frequency"); ?></div> <?php echo htmlspecialchars($frequency, ENT_QUOTES); ?><br /><br />
                               <div class="info-item"><?php echo _("Link Quality"); ?></div>
@@ -217,6 +221,35 @@ function DisplayDashboard(){
                                   style="width: <?php echo htmlspecialchars($strLinkQuality, ENT_QUOTES); ?>%;"><?php echo htmlspecialchars($strLinkQuality, ENT_QUOTES); ?>%
                                 </div>
                               </div>
+                          </div><!-- /.panel-body -->
+                        </div><!-- /.panel-default -->
+                        <div class="panel panel-default">
+                          <div class="panel-body wireless">
+                            <h4><?php echo _("Connected Devices"); ?></h4>
+                            <div class="table-responsive">
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th><?php echo _("Host name"); ?></th>
+                                    <th><?php echo _("IP Address"); ?></th>
+                                    <th><?php echo _("MAC Address"); ?></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+<?php
+exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i wlan0 | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
+foreach( $clients as $client ) {
+    $client_items = explode(' ', $client);
+    echo '<tr>'.PHP_EOL;
+    echo '<td>'.htmlspecialchars($client_items[3], ENT_QUOTES).'</td>'.PHP_EOL;
+    echo '<td>'.htmlspecialchars($client_items[2], ENT_QUOTES).'</td>'.PHP_EOL;
+    echo '<td>'.htmlspecialchars($client_items[1], ENT_QUOTES).'</td>'.PHP_EOL;
+    echo '</tr>'.PHP_EOL;
+};
+?>
+                                </tbody>
+                              </table>
+                            </div><!-- /.table-responsive -->
                           </div><!-- /.panel-body -->
                         </div><!-- /.panel-default -->
                       </div><!-- /.col-md-6 -->
