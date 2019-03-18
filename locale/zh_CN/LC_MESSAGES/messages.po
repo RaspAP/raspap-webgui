@@ -217,6 +217,9 @@ msgstr "启动wlan0接口"
 msgid "Stop wlan0"
 msgstr "关闭wlan0接口"
 
+msgid "Connected Devices"
+msgstr "连接设备"
+
 #: includes/dhcp.php
 msgid "Server settings"
 msgstr "服务设置"

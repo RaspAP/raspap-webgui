@@ -217,6 +217,9 @@ msgstr "Iniciar wlan0"
 msgid "Stop wlan0"
 msgstr "Detener wlan0"
 
+msgid "Connected Devices"
+msgstr "Dispositivos conectados"
+
 #: includes/dhcp.php
 msgid "Server settings"
 msgstr "Configuracion de Servidor"

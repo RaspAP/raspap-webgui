@@ -217,6 +217,9 @@ msgstr "wlan0 ආරම්භ කරන්න"
 msgid "Stop wlan0"
 msgstr "wlan0 නතර කරන්න"
 
+msgid "Connected Devices"
+msgstr "සම්බන්ධිත උපකරණ"
+
 #: includes/dhcp.php
 msgid "Server settings"
 msgstr "සර්වර සැකසීම්"
