@@ -206,19 +206,19 @@ msgid "Interface is up"
 msgstr "L'interface est en place"
 
 msgid "Interface is down"
-msgstr "L'interface est en panne"
+msgstr "L'interface est arrêté"
 
 msgid "Interface already down"
 msgstr "Interface déjà en bas"
 
 msgid "Start wlan0"
-msgstr "Commencer wlan0"
+msgstr "Démarrer wlan0"
 
 msgid "Stop wlan0"
 msgstr "Arrêtez wlan0"
 
 msgid "Connected Devices"
-msgstr "Des appareils connectés"
+msgstr "Appareils connectés"
 
 #: includes/dhcp.php
 msgid "Server settings"
