@@ -69,10 +69,10 @@ msgid "Admin password updated"
 msgstr "Mot de passe admin modifié"
 
 msgid "Failed to update admin password"
-msgstr "Modifier le mot de passe d'admin a échouéd"
+msgstr "Erreur durant la mise à jour du mot de passe admin"
 
 msgid "Old password does not match"
-msgstr "L'ancien mot de passe ne correspond pas"
+msgstr "Ancien mot de passe incorrect"
 
 msgid "Username"
 msgstr "Nom d'utilisateur"
@@ -84,7 +84,7 @@ msgid "New password"
 msgstr "Nouveau mot de passe"
 
 msgid "Repeat new password"
-msgstr "Répété le nouveau mot de passe"
+msgstr "Répéter le nouveau mot de passe"
 
 #: includes/configure_client.php
 msgid "Client settings"
@@ -112,10 +112,10 @@ msgid "Wifi settings failed to be updated"
 msgstr "Les paramètres Wifi n'ont pas été mis à jour"
 
 msgid "Failed to updated wifi settings"
-msgstr "N'a pas mis à jour les paramètres wifi"
+msgstr "Erreur durant la mise à jour des paramètres Wifi"
 
 msgid "Rescan"
-msgstr "Rescan"
+msgstr "Actualiser"
 
 msgid "Update"
 msgstr "Mettre à jour"
@@ -127,7 +127,7 @@ msgid "Delete"
 msgstr "Effacer"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>Remarque:</strong> Les points d'accès WEP apparaissent comme 'ouverts'. RaspAP ne prend actuellement pas en charge la connexion à WEP"
+msgstr "<strong>Remarque:</strong> Les points d'accès WEP apparaissent comme 'ouverts'. RaspAP ne prend actuellement pas en charge la connexion via WEP"
 
 #: includes/dashboard.php
 msgid "Interface Information"
@@ -179,7 +179,7 @@ msgid "Transmit Power"
 msgstr "Puissance de transmission"
 
 msgid "Frequency"
-msgstr "La fréquence"
+msgstr "Fréquence"
 
 msgid "Link Quality"
 msgstr "Qualité de lien"
@@ -200,16 +200,16 @@ msgid "No Data"
 msgstr "Pas de données"
 
 msgid "Not connected"
-msgstr "Pas connecté"
+msgstr "Non connecté"
 
 msgid "Interface is up"
-msgstr "L'interface est en place"
+msgstr "L'interface est active"
 
 msgid "Interface is down"
 msgstr "L'interface est arrêté"
 
 msgid "Interface already down"
-msgstr "Interface déjà en bas"
+msgstr "Interface déjà arrêté"
 
 msgid "Start wlan0"
 msgstr "Démarrer wlan0"
@@ -261,22 +261,22 @@ msgid "Stop dnsmasq"
 msgstr "Arrêtez dnsmasq"
 
 msgid "Start dnsmasq"
-msgstr "Commencer dnsmasq"
+msgstr "Démarrer dnsmasq"
 
 msgid "dnsmasq already running"
-msgstr "Dnsmasq déjà en cours d'exécution"
+msgstr "Dnsmasq est déjà en cours d'exécution"
 
 msgid "Successfully started dnsmasq"
-msgstr "Lancé avec succès dnsmasq"
+msgstr "Dnsmasq lancé avec succès"
 
 msgid "Failed to start dnsmasq"
-msgstr "N'a pas démarrage de Dnsmasq"
+msgstr "Erreur durant le démarrage de Dnsmasq"
 
 msgid "Successfully stopped dnsmasq"
-msgstr "Arrêté avec succès dnsmasq"
+msgstr "Dnsmasq arrêté avec succès"
 
 msgid "Failed to stop dnsmasq"
-msgstr "N'a pas arrêté dnsmasq"
+msgstr "Erreur durant l'arrêt de Dnsmasq"
 
 msgid "dnsmasq already stopped"
 msgstr "dnsmasq déjà arrêté"
@@ -285,7 +285,7 @@ msgid "Dnsmasq is running"
 msgstr "Dnsmasq est en cours d'exécution"
 
 msgid "Dnsmasq is not running"
-msgstr "Dnsmasq ne fonctionne pas"
+msgstr "Dnsmasq n'est pas en fonctionnement"
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -316,13 +316,13 @@ msgid "Advanced settings"
 msgstr "Réglages avancés"
 
 msgid "Country Code"
-msgstr "Le code du pays"
+msgstr "Code pays"
 
 msgid "Information provided by hostapd"
 msgstr "Informations fournies par hostapd"
 
 msgid "Attempting to start hotspot"
-msgstr "Essayez de démarrer le hotspot"
+msgstr "Tentative de démarrage du hotspot"
 
 msgid "Attempting to stop hotspot"
 msgstr "Tentative d'arrêt du hotspot"
@@ -355,7 +355,7 @@ msgid "Start hotspot"
 msgstr "Démarrer le point d'accès"
 
 msgid "Stop hotspot"
-msgstr "Arrêté hotspot"
+msgstr "Arrêté le point d'accès"
 
 msgid "Enable logging"
 msgstr "Activer la journalisation"
@@ -392,7 +392,7 @@ msgid "Enabled"
 msgstr "Activée"
 
 msgid "Disabled"
-msgstr "Désactivé"
+msgstr "Désactivée"
 
 msgid "Static IP Options"
 msgstr "Options IP statiques"
@@ -444,10 +444,10 @@ msgid "Shutdown"
 msgstr "Fermer"
 
 msgid "System Rebooting Now!"
-msgstr "Système de redémarrage maintenant!"
+msgstr "Redémarrer le système maintenant!"
 
 msgid "System Shutting Down Now!"
-msgstr "Système de fermeture maintenant!"
+msgstr "Arrêter le système maintenant!"
 
 #: includes/themes.php
 msgid "Theme settings"
