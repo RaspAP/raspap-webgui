@@ -63,7 +63,7 @@ RaspAP is free software, but powered by your support. If you find RaspAP useful 
 ## Manual installation
 These steps apply to the latest release of Raspbian (currently [Stretch](https://www.raspberrypi.org/downloads/raspbian/)). Notes for previously released versions are provided, where applicable. Start off by installing git, lighttpd, php7, hostapd and dnsmasq. 
 ```sh
-$ sudo apt-get install git lighttpd php7.0-cgi hostapd dnsmasq vnstat
+sudo apt-get install git lighttpd php7.0-cgi hostapd dnsmasq vnstat
 ```
 **Note:** for Raspbian Jessie and Wheezy, replace `php7.0-cgi` with `php5-cgi`. After that, enable PHP for lighttpd and restart it for the settings to take effect.
 ```sh
