@@ -216,6 +216,10 @@ function default_configuration() {
             echo "Adding line $line"
         fi
     done
+
+    # Force a reload of new settings in /etc/rc.local
+    sudo systemctl restart rc-local.service
+    sudo systemctl daemon-reload
 }
 
 
