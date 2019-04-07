@@ -326,13 +326,17 @@ function optimize_php() {
 function install_complete() {
     install_log "Installation completed!"
 
-    echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
-    read answer
-    if [[ $answer != "y" ]]; then
-        echo "Installation reboot aborted."
-        exit 0
+    # Prompt to reboot if wired ethernet (eth0) is connected.
+    # With default_configuration this will create an active AP on restart.
+    if ip a | grep -q ': eth0:.*state UP'; then
+        echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
+        read answer
+        if [[ $answer != "y" ]]; then
+            echo "Installation reboot aborted."
+            exit 0
+        fi
+        sudo shutdown -r now || install_error "Unable to execute shutdown"
     fi
-    sudo shutdown -r now || install_error "Unable to execute shutdown"
 }
 
 function install_raspap() {
