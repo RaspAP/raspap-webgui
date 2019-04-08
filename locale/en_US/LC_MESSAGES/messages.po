@@ -363,6 +363,9 @@ msgstr "Enable logging"
 msgid "Logfile output"
 msgstr "Logfile output"
 
+msgid "WiFi client AP mode"
+msgstr "WiFi client AP mode"
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
