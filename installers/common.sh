@@ -114,16 +114,18 @@ function create_raspap_directories() {
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
 }
 
-# Generate logging enable/disable files for hostapd
-function create_logging_scripts() {
-    install_log "Creating logging scripts"
+# Generate hostapd logging and service control scripts
+function create_hostapd_scripts() {
+    install_log "Creating hostapd logging & control scripts"
     sudo mkdir $raspap_dir/hostapd || install_error "Unable to create directory '$raspap_dir/hostapd'"
 
-    # Move existing shell scripts 
+    # Move logging shell scripts 
     sudo mv "$webroot_dir/installers/"*log.sh "$raspap_dir/hostapd" || install_error "Unable to move logging scripts"
+    # Move service control shell scripts
+    sudo mv "$webroot_dir/installers/"service*.sh "$raspap_dir/hostapd" || install_error "Unable to move service control scripts"
     # Make enablelog.sh and disablelog.sh not writable by www-data group.
-    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*log.sh || install_error "Unable change owner and/or group."
-    sudo chmod 750 "$raspap_dir/hostapd/"*log.sh || install_error "Unable to change file permissions."
+    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || install_error "Unable change owner and/or group."
+    sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions."
 }
 
 
@@ -203,7 +205,7 @@ function default_configuration() {
     lines=(
     'echo 1 > \/proc\/sys\/net\/ipv4\/ip_forward #RASPAP'
     'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
-
+    'iptables -t nat -A POSTROUTING -s 192.168.50.0\/24 ! -d 192.168.50.0\/24 -j MASQUERADE #RASPAP'
     )
     
     for line in "${lines[@]}"; do
@@ -214,6 +216,10 @@ function default_configuration() {
             echo "Adding line $line"
         fi
     done
+
+    # Force a reload of new settings in /etc/rc.local
+    sudo systemctl restart rc-local.service
+    sudo systemctl daemon-reload
 }
 
 
@@ -246,6 +252,7 @@ function patch_system_files() {
         "/etc/init.d/dnsmasq start"
         "/etc/init.d/dnsmasq stop"
         "/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf"
+        "/bin/cp /tmp/dhcpddata /etc/dhcpcd.conf"
         "/sbin/shutdown -h now"
         "/sbin/reboot"
         "/sbin/ip link set wlan[0-9] down"
@@ -254,6 +261,7 @@ function patch_system_files() {
         "/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf"
         "/etc/raspap/hostapd/enablelog.sh"
         "/etc/raspap/hostapd/disablelog.sh"
+	"/etc/raspap/hostapd/servicestart.sh"
     )
 
     # Check if sudoers needs patching
@@ -318,13 +326,17 @@ function optimize_php() {
 function install_complete() {
     install_log "Installation completed!"
 
-    echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
-    read answer
-    if [[ $answer != "y" ]]; then
-        echo "Installation reboot aborted."
-        exit 0
+    # Prompt to reboot if wired ethernet (eth0) is connected.
+    # With default_configuration this will create an active AP on restart.
+    if ip a | grep -q ': eth0:.*state UP'; then
+        echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
+        read answer
+        if [[ $answer != "y" ]]; then
+            echo "Installation reboot aborted."
+            exit 0
+        fi
+        sudo shutdown -r now || install_error "Unable to execute shutdown"
     fi
-    sudo shutdown -r now || install_error "Unable to execute shutdown"
 }
 
 function install_raspap() {
@@ -338,7 +350,7 @@ function install_raspap() {
     check_for_old_configs
     download_latest_files
     change_file_ownership
-    create_logging_scripts
+    create_hostapd_scripts
     move_config_file
     default_configuration
     patch_system_files
