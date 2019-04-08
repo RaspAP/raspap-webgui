@@ -217,6 +217,9 @@ msgstr "Start wlan0"
 msgid "Stop wlan0"
 msgstr "Stop wlan0"
 
+msgid "Connected Devices"
+msgstr "Connected Devices"
+
 #: includes/dhcp.php
 msgid "Server settings"
 msgstr "Server settings"
@@ -362,9 +365,6 @@ msgstr "Enable logging"
 
 msgid "Logfile output"
 msgstr "Logfile output"
-
-msgid "WiFi client AP mode"
-msgstr "WiFi client AP mode"
 
 #: includes/networking.php
 msgid "Summary"
