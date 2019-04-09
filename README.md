@@ -56,7 +56,7 @@ configured as an access point as follows:
 * Password: ChangeMe
 
 ## Simultaneous AP and Wifi client
-RaspAP lets you easily create an AP with a Wifi client configuration (also known as managed mode). When in managed mode, enable the AP from the Advanced tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
+RaspAP lets you easily create an AP with a Wifi client configuration (also known as managed mode). When configured as a WiFi client, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
 
 ![](https://i.imgur.com/4JkK2a5.png)
 
