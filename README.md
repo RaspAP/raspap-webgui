@@ -16,8 +16,8 @@ We'd be curious to hear about how you use this with your own RPi-powered project
 
  - [Prerequisites](#prerequisites)
  - [Quick installer](#quick-installer)
+ - [Simultaneous AP and Wifi client](#simultaneous-ap-and-wifi-client)
  - [Support us](#support-us)
- - [Simultaneous AP and Wifi client](#wificlient-ap)
  - [Manual installation](#manual-installation)
  - [Multilingual support](#multilingual-support)
  - [Optional services](#optional-services)
@@ -55,16 +55,16 @@ configured as an access point as follows:
 * SSID: `raspi-webgui`
 * Password: ChangeMe
 
+## Simultaneous AP and Wifi client
+RaspAP lets you easily create an AP with a Wifi client configuration (also known as managed mode). When in managed mode, enable the AP from the Advanced tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
+
+![](https://i.imgur.com/4JkK2a5.png)
+
 ## Support us
 
 RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal projects, please consider making a small donation. We believe strongly about creating high quality, intuitive software for the Raspberry Pi, as well as the importance of keeping it maintained. 
 
 [![Beerpay](https://beerpay.io/billz/raspap-webgui/badge.svg?style=flat)](https://beerpay.io/billz/raspap-webgui)
-
-## Simultaneous AP and Wifi client
-RaspAP lets you easily create an AP with a Wifi client configuration (also known as managed mode). When in managed mode, enable the AP from the Advanced tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
-
-![](https://i.imgur.com/4JkK2a5.png)
 
 ## Manual installation
 These steps apply to the latest release of Raspbian (currently [Stretch](https://www.raspberrypi.org/downloads/raspbian/)). Notes for previously released versions are provided, where applicable. Start off by installing git, lighttpd, php7, hostapd and dnsmasq. 
