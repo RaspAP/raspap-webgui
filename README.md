@@ -164,14 +164,13 @@ Please note that these are only UI's for now. If there's enough interest I'll co
 
 ## How to contribute
 
-1. File an issue in the repository, using the bug tracker, describing the
-   contribution you'd like to make. This will help us to get you started on the
+1. File an issue in the repository describing the contribution you'd like to make. This will help us get you started on the
    right foot.
-2. Fork the project in your account and create a new branch:
-   `your-great-feature`.
+2. Fork the project in your account and create a new branch: `your-great-feature`.
 3. Commit your changes in that branch.
-4. Open a pull request, and reference the initial issue in the pull request
-   message.
+4. Open a pull request, and reference the initial issue in the pull request message.
+
+This project follows the [PSR-2](http://www.php-fig.org/psr/psr-2/) coding style guidelines. There are many ways to check your code for PSR-2. An excellent tool is [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer). The command line tool `phpcs` can be run against any single file. [Phing](https://www.phing.info/), a PHP build tool, integrates nicely with `phpcs` to automate PSR-2 checks across all source files in a project.
 
 ## License
 See the [LICENSE](./LICENSE) file.
