@@ -1,6 +1,6 @@
 <?php
 
-include_once( 'includes/status_messages.php' );
+include_once('includes/status_messages.php');
 
 /**
  *
@@ -9,9 +9,10 @@ include_once( 'includes/status_messages.php' );
  *
  */
 
-function RPiVersion() {
-  // Lookup table from http://www.raspberrypi-spy.co.uk/2012/09/checking-your-raspberry-pi-board-version/
-  $revisions = array(
+function RPiVersion()
+{
+    // Lookup table from http://www.raspberrypi-spy.co.uk/2012/09/checking-your-raspberry-pi-board-version/
+    $revisions = array(
     '0002' => 'Model B Revision 1.0',
     '0003' => 'Model B Revision 1.0 + ECN0001',
     '0004' => 'Model B Revision 2.0 (256 MB)',
@@ -40,39 +41,40 @@ function RPiVersion() {
     'a220a0' => 'Compute Module 3',
     'a020a0' => 'Compute Module 3',
     'a02100' => 'Compute Module 3+',
-  );
+    );
 
-  $cpuinfo_array = '';
-  exec('cat /proc/cpuinfo', $cpuinfo_array);
-  $rev = trim(array_pop(explode(':',array_pop(preg_grep("/^Revision/", $cpuinfo_array)))));
-  if (array_key_exists($rev, $revisions)) {
-    return $revisions[$rev];
-  } else {
-    return 'Unknown Pi';
-  }
+    $cpuinfo_array = '';
+    exec('cat /proc/cpuinfo', $cpuinfo_array);
+    $rev = trim(array_pop(explode(':', array_pop(preg_grep("/^Revision/", $cpuinfo_array)))));
+    if (array_key_exists($rev, $revisions)) {
+        return $revisions[$rev];
+    } else {
+        return 'Unknown Pi';
+    }
 }
 
 /**
  *
  *
  */
-function DisplaySystem(){
+function DisplaySystem()
+{
 
-  $status = new StatusMessages();
+    $status = new StatusMessages();
 
-  if( isset($_POST['SaveLanguage']) ) {
-    if (CSRFValidate()) {
-      if(isset($_POST['locale'])) {
-        $_SESSION['locale'] = $_POST['locale'];
-        $status->addMessage('Language setting saved', 'success'); 
-      }
-    } else {
-      error_log('CSRF violation');
+    if (isset($_POST['SaveLanguage'])) {
+        if (CSRFValidate()) {
+            if (isset($_POST['locale'])) {
+                $_SESSION['locale'] = $_POST['locale'];
+                $status->addMessage('Language setting saved', 'success');
+            }
+        } else {
+            error_log('CSRF violation');
+        }
     }
-  }
 
-  // define locales 
-  $arrLocales = array(
+    // define locales
+    $arrLocales = array(
     'en_GB.UTF-8' => 'English',
     'de_DE.UTF-8' => 'Deutsch',
     'fr_FR.UTF-8' => 'Français',
@@ -86,40 +88,54 @@ function DisplaySystem(){
     'es_MX.UTF-8' => 'Español',
     'fi_FI.UTF-8' => 'Finnish',
     'si_LK.UTF-8' => 'Sinhala'
-  );
+    );
 
-  // hostname
-  exec("hostname -f", $hostarray);
-  $hostname = $hostarray[0];
+    // hostname
+    exec("hostname -f", $hostarray);
+    $hostname = $hostarray[0];
 
-  // uptime
-  $uparray = explode(" ", exec("cat /proc/uptime"));
-  $seconds = round($uparray[0], 0);
-  $minutes = $seconds / 60;
-  $hours   = $minutes / 60;
-  $days    = floor($hours / 24);
-  $hours   = floor($hours   - ($days * 24));
-  $minutes = floor($minutes - ($days * 24 * 60) - ($hours * 60));
-  $uptime= '';
-  if ($days    != 0) { $uptime .= $days    . ' day'    . (($days    > 1)? 's ':' '); }
-  if ($hours   != 0) { $uptime .= $hours   . ' hour'   . (($hours   > 1)? 's ':' '); }
-  if ($minutes != 0) { $uptime .= $minutes . ' minute' . (($minutes > 1)? 's ':' '); }
+    // uptime
+    $uparray = explode(" ", exec("cat /proc/uptime"));
+    $seconds = round($uparray[0], 0);
+    $minutes = $seconds / 60;
+    $hours   = $minutes / 60;
+    $days    = floor($hours / 24);
+    $hours   = floor($hours   - ($days * 24));
+    $minutes = floor($minutes - ($days * 24 * 60) - ($hours * 60));
+    $uptime= '';
+    if ($days    != 0) {
+        $uptime .= $days    . ' day'    . (($days    > 1)? 's ':' ');
+    }
+    if ($hours   != 0) {
+        $uptime .= $hours   . ' hour'   . (($hours   > 1)? 's ':' ');
+    }
+    if ($minutes != 0) {
+        $uptime .= $minutes . ' minute' . (($minutes > 1)? 's ':' ');
+    }
 
-  // mem used
-  $memused_status = "primary";
-  exec("free -m | awk '/Mem:/ { total=$2 ; used=$3 } END { print used/total*100}'", $memarray);
-  $memused = floor($memarray[0]);
-  if     ($memused > 90) { $memused_status = "danger";  }
-  elseif ($memused > 75) { $memused_status = "warning"; }
-  elseif ($memused >  0) { $memused_status = "success"; }
+    // mem used
+    $memused_status = "primary";
+    exec("free -m | awk '/Mem:/ { total=$2 ; used=$3 } END { print used/total*100}'", $memarray);
+    $memused = floor($memarray[0]);
+    if ($memused > 90) {
+        $memused_status = "danger";
+    } elseif ($memused > 75) {
+        $memused_status = "warning";
+    } elseif ($memused >  0) {
+        $memused_status = "success";
+    }
 
-  // cpu load
-  $cores   = exec("grep -c ^processor /proc/cpuinfo");
-  $loadavg = exec("awk '{print $1}' /proc/loadavg");
-  $cpuload = floor(($loadavg * 100) / $cores);
-  if     ($cpuload > 90) { $cpuload_status = "danger";  }
-  elseif ($cpuload > 75) { $cpuload_status = "warning"; }
-  elseif ($cpuload >  0) { $cpuload_status = "success"; }
+    // cpu load
+    $cores   = exec("grep -c ^processor /proc/cpuinfo");
+    $loadavg = exec("awk '{print $1}' /proc/loadavg");
+    $cpuload = floor(($loadavg * 100) / $cores);
+    if ($cpuload > 90) {
+        $cpuload_status = "danger";
+    } elseif ($cpuload > 75) {
+        $cpuload_status = "warning";
+    } elseif ($cpuload >  0) {
+        $cpuload_status = "success";
+    }
 
 ?>
   <div class="row">
@@ -129,14 +145,14 @@ function DisplaySystem(){
   <div class="panel-body">
 
 <?php
-  if (isset($_POST['system_reboot'])) {
+if (isset($_POST['system_reboot'])) {
     echo '<div class="alert alert-warning">' . _("System Rebooting Now!") . '</div>';
     $result = shell_exec("sudo /sbin/reboot");
-  }
-  if (isset($_POST['system_shutdown'])) {
+}
+if (isset($_POST['system_shutdown'])) {
     echo '<div class="alert alert-warning">' . _("System Shutting Down Now!") . '</div>';
     $result = shell_exec("sudo /sbin/shutdown -h now");
-  }
+}
 ?>
 
   <div class="row">
@@ -187,7 +203,7 @@ function DisplaySystem(){
 
     <div role="tabpanel" class="tab-pane" id="language">
       <h4><?php echo _("Language settings") ;?></h4>
-      <?php CSRFToken() ?>
+        <?php CSRFToken() ?>
       <div class="row">
         <div class="form-group col-md-4">
           <label for="code"><?php echo _("Select a language"); ?></label>

@@ -1,8 +1,9 @@
 <?php
 
-include_once( 'includes/status_messages.php' );
+include_once('includes/status_messages.php');
 
-function DisplayAbout() {
+function DisplayAbout()
+{
 /**
  *
  * Displays info about the RaspAP project

@@ -3,25 +3,26 @@
 *
 *
 */
-function DisplayThemeConfig(){
+function DisplayThemeConfig()
+{
 
-  $cselected = '';
-  $hselected = '';
-  $tselected = '';
+    $cselected = '';
+    $hselected = '';
+    $tselected = '';
 
-  switch( $_COOKIE['theme'] ) {
-    case "custom.css":
-      $cselected = ' selected="selected"';
-      break;
-    case "hackernews.css":
-      $hselected = ' selected="selected"';
-      break;
-    case "terminal.css":
-      $tselected = ' selected="selected"';
-      break;
-  }
+    switch ($_COOKIE['theme']) {
+        case "custom.css":
+            $cselected = ' selected="selected"';
+            break;
+        case "hackernews.css":
+            $hselected = ' selected="selected"';
+            break;
+        case "terminal.css":
+            $tselected = ' selected="selected"';
+            break;
+    }
 
-  ?>
+?>
   <div class="row">
   <div class="col-lg-12">
   <div class="panel panel-primary">
@@ -57,6 +58,6 @@ function DisplayThemeConfig(){
   </div><!-- /.panel-primary -->
   </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
-  <?php
+<?php
 }
 

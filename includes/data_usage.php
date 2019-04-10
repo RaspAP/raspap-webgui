@@ -5,7 +5,7 @@
  */
 function DisplayDataUsage(&$extraFooterScripts)
 {
-exec("ip -o link show | awk -F ': ' '{print $2}' | grep -v lo ", $interfacesWlo);
+    exec("ip -o link show | awk -F ': ' '{print $2}' | grep -v lo ", $interfacesWlo);
 ?>
   <div class="row">
     <div class="col-lg-12">

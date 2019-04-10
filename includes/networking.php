@@ -1,63 +1,64 @@
 <?php
 
-include_once( 'includes/status_messages.php' );
+include_once('includes/status_messages.php');
 
 /**
 *
 *
 */
-function DisplayNetworkingConfig(){
+function DisplayNetworkingConfig()
+{
 
-  $status = new StatusMessages();
+    $status = new StatusMessages();
 
-  exec("ls /sys/class/net | grep -v lo", $interfaces);
+    exec("ls /sys/class/net | grep -v lo", $interfaces);
 
-  foreach($interfaces as $interface) {
-    exec("ip a show $interface",$$interface);
-  }
+    foreach ($interfaces as $interface) {
+        exec("ip a show $interface", $$interface);
+    }
 
-  CSRFToken();
+    CSRFToken();
 ?>
 
 <div class="row">
     <div class="col-lg-12">
        <div class="panel panel-primary">
           <div class="panel panel-heading">
-	  <i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></div>
+      <i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></div>
           <div class="panel-body">
             <div id="msgNetworking"></div>
               <ul class="nav nav-tabs">
-	      <li role="presentation" class="active"><a href="#summary" aria-controls="summary" role="tab" data-toggle="tab"><?php echo _("Summary"); ?></a></li>
+          <li role="presentation" class="active"><a href="#summary" aria-controls="summary" role="tab" data-toggle="tab"><?php echo _("Summary"); ?></a></li>
                 <?php
-                  foreach($interfaces as $interface) {
-                      echo '<li role="presentation"><a href="#'.htmlspecialchars($interface, ENT_QUOTES).'" aria-controls="'.htmlspecialchars($interface, ENT_QUOTES).'" role="tab" data-toggle="tab">'.htmlspecialchars($interface, ENT_QUOTES).'</a></li>';
-                  }
+                foreach ($interfaces as $interface) {
+                    echo '<li role="presentation"><a href="#'.htmlspecialchars($interface, ENT_QUOTES).'" aria-controls="'.htmlspecialchars($interface, ENT_QUOTES).'" role="tab" data-toggle="tab">'.htmlspecialchars($interface, ENT_QUOTES).'</a></li>';
+                }
                 ?>
               </ul>
                 <div class="tab-content">
                   <div role="tabpanel" class="tab-pane active" id="summary">
-		    <h4><?php echo _("Current settings"); ?></h4>
+            <h4><?php echo _("Current settings"); ?></h4>
                       <div class="row">
-                      <?php
-                        foreach($interfaces as $interface) {
-                          echo '<div class="col-md-6">
+                        <?php
+                        foreach ($interfaces as $interface) {
+                            echo '<div class="col-md-6">
                             <div class="panel panel-default">
                                 <div class="panel-heading">'.htmlspecialchars($interface, ENT_QUOTES).'</div>
                                 <div class="panel-body" id="'.htmlspecialchars($interface, ENT_QUOTES).'-summary"></div>
                             </div>
                             </div>';
                         }
-                      ?>
+                        ?>
                       </div><!-- /.row -->
                     <div class="col-lg-12">
                       <div class="row">
-		      <a href="#" class="btn btn-outline btn-primary" id="btnSummaryRefresh"><i class="fa fa-refresh"></i> <?php echo _("Refresh"); ?></a>
+              <a href="#" class="btn btn-outline btn-primary" id="btnSummaryRefresh"><i class="fa fa-refresh"></i> <?php echo _("Refresh"); ?></a>
                       </div><!-- /.row -->
                     </div><!-- /.col-lg-12 -->
                   </div><!-- /.tab-pane -->
 <?php
-                  foreach($interfaces as $interface) {
-                      echo '
+foreach ($interfaces as $interface) {
+    echo '
                       <div role="tabpanel" class="tab-pane fade in" id="'.htmlspecialchars($interface, ENT_QUOTES).'">
                         <div class="row">
                           <div class="col-lg-6">
@@ -110,11 +111,11 @@ function DisplayNetworkingConfig(){
                             </div>
                       </div><!-- /.tab-panel -->
                     </div>';
-                  }
+}
 ?>
               </div><!-- /.tab-content -->
             </div><!-- /.panel-body -->
-	    <div class="panel-footer"><?php echo _("Information provided by /sys/class/net"); ?></div>
+        <div class="panel-footer"><?php echo _("Information provided by /sys/class/net"); ?></div>
         </div><!-- /.panel-primary -->
       </div><!-- /.col-lg-12 -->
     </div>

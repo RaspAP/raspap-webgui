@@ -9,7 +9,7 @@
  * lighttpd (I have version 1.4.31-2 installed via apt)
  * php5-cgi (I have version 5.4.4-12 installed via apt)
  * along with their supporting packages, php5 will also need to be enabled.
- * 
+ *
  * @author     Lawrence Yau <sirlagz@gmail.com>
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
  * @license    GNU General Public License, version 3 (GPL-3.0)
@@ -20,21 +20,21 @@
 
 session_start();
 
-include_once( 'includes/config.php' );
-include_once( RASPI_CONFIG.'/raspap.php' );
-include_once( 'includes/locale.php');
-include_once( 'includes/functions.php' );
-include_once( 'includes/dashboard.php' );
-include_once( 'includes/authenticate.php' );
-include_once( 'includes/admin.php' );
-include_once( 'includes/dhcp.php' );
-include_once( 'includes/hostapd.php' );
-include_once( 'includes/system.php' );
-include_once( 'includes/configure_client.php' );
-include_once( 'includes/networking.php' );
-include_once( 'includes/themes.php' );
-include_once( 'includes/data_usage.php' );
-include_once( 'includes/about.php' );
+include_once('includes/config.php');
+include_once(RASPI_CONFIG.'/raspap.php');
+include_once('includes/locale.php');
+include_once('includes/functions.php');
+include_once('includes/dashboard.php');
+include_once('includes/authenticate.php');
+include_once('includes/admin.php');
+include_once('includes/dhcp.php');
+include_once('includes/hostapd.php');
+include_once('includes/system.php');
+include_once('includes/configure_client.php');
+include_once('includes/networking.php');
+include_once('includes/themes.php');
+include_once('includes/data_usage.php');
+include_once('includes/about.php');
 
 $output = $return = 0;
 $page = $_GET['page'];
@@ -48,7 +48,7 @@ if (empty($_SESSION['csrf_token'])) {
 }
 $csrf_token = $_SESSION['csrf_token'];
 
-if(!isset($_COOKIE['theme'])) {
+if (!isset($_COOKIE['theme'])) {
     $theme = "custom.css";
 } else {
     $theme = $_COOKIE['theme'];
@@ -111,7 +111,7 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-	  <a class="navbar-brand" href="index.php"><?php echo _("RaspAP Wifi Portal"); ?> v<?php echo RASPI_VERSION; ?></a>
+      <a class="navbar-brand" href="index.php"><?php echo _("RaspAP Wifi Portal"); ?> v<?php echo RASPI_VERSION; ?></a>
         </div>
         <!-- /.navbar-header -->
 
@@ -122,51 +122,51 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
               <li>
                 <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> <?php echo _("Dashboard"); ?></a>
               </li>
-	      <?php if ( RASPI_WIFICLIENT_ENABLED ) : ?>
+            <?php if (RASPI_WIFICLIENT_ENABLED) : ?>
               <li>
                 <a href="index.php?page=wpa_conf"><i class="fa fa-wifi fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
-	      </li>
-              <?php endif; ?>
-              <?php if ( RASPI_HOTSPOT_ENABLED ) : ?>
+          </li>
+                <?php endif; ?>
+                <?php if (RASPI_HOTSPOT_ENABLED) : ?>
               <li>
                 <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?></a>
               </li>
-              <?php endif; ?>
-              <?php if ( RASPI_NETWORK_ENABLED ) : ?>
+                <?php endif; ?>
+                <?php if (RASPI_NETWORK_ENABLED) : ?>
               <li>
-	             <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></a>
+                 <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></a>
               </li> 
-              <?php endif; ?>
-              <?php if ( RASPI_DHCP_ENABLED ) : ?>
+                <?php endif; ?>
+                <?php if (RASPI_DHCP_ENABLED) : ?>
               <li>
                 <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP Server"); ?></a>
               </li>
-              <?php endif; ?>
-              <?php if ( RASPI_OPENVPN_ENABLED ) : ?>
+                <?php endif; ?>
+                <?php if (RASPI_OPENVPN_ENABLED) : ?>
               <li>
                 <a href="index.php?page=openvpn_conf"><i class="fa fa-lock fa-fw"></i> <?php echo _("Configure OpenVPN"); ?></a>
               </li>
-              <?php endif; ?>
-              <?php if ( RASPI_TORPROXY_ENABLED ) : ?>
+                <?php endif; ?>
+                <?php if (RASPI_TORPROXY_ENABLED) : ?>
               <li>
                  <a href="index.php?page=torproxy_conf"><i class="fa fa-eye-slash fa-fw"></i> <?php echo _("Configure TOR proxy"); ?></a>
               </li>
-              <?php endif; ?>
-              <?php if ( RASPI_CONFAUTH_ENABLED ) : ?>
+                <?php endif; ?>
+                <?php if (RASPI_CONFAUTH_ENABLED) : ?>
               <li>
                 <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> <?php echo _("Configure Auth"); ?></a>
               </li>
-              <?php endif; ?>
-              <?php if ( RASPI_CHANGETHEME_ENABLED ) : ?>
+                <?php endif; ?>
+                <?php if (RASPI_CHANGETHEME_ENABLED) : ?>
               <li>
                 <a href="index.php?page=theme_conf"><i class="fa fa-wrench fa-fw"></i> <?php echo _("Change Theme"); ?></a>
               </li>
-              <?php endif; ?>
-              <?php if ( RASPI_VNSTAT_ENABLED ) : ?>
+                <?php endif; ?>
+                <?php if (RASPI_VNSTAT_ENABLED) : ?>
               <li>
                 <a href="index.php?page=data_use"><i class="fa fa-bar-chart fa-fw"></i> <?php echo _("Data usage"); ?></a>
               </li>
-              <?php endif; ?>
+                <?php endif; ?>
               <li>
                 <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
               </li>
@@ -189,51 +189,51 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
           </div>
         </div><!-- /.row -->
 
-        <?php 
-$extraFooterScripts = array();
+        <?php
+        $extraFooterScripts = array();
         // handle page actions
-        switch( $page ) {
-          case "wlan0_info":
-            DisplayDashboard();
-            break;
-          case "dhcpd_conf":
-            DisplayDHCPConfig();
-            break;
-          case "wpa_conf":
-            DisplayWPAConfig();
-            break;
-          case "network_conf":
-            DisplayNetworkingConfig();
-            break;
-          case "hostapd_conf":
-            DisplayHostAPDConfig();
-            break;
-          case "openvpn_conf":
-            DisplayOpenVPNConfig();
-            break;
-          case "torproxy_conf":
-            DisplayTorProxyConfig();
-            break;
-          case "auth_conf":
-            DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
-            break;
-          case "save_hostapd_conf":
-            SaveTORAndVPNConfig();
-            break;
-          case "theme_conf":
-            DisplayThemeConfig();
-            break;
-          case "data_use":
-            DisplayDataUsage($extraFooterScripts);
-            break;
-          case "system_info":
-            DisplaySystem();
-            break;
-           case "about":
-            DisplayAbout();
-            break;
-          default:
-            DisplayDashboard();
+        switch ($page) {
+            case "wlan0_info":
+                DisplayDashboard();
+                break;
+            case "dhcpd_conf":
+                DisplayDHCPConfig();
+                break;
+            case "wpa_conf":
+                DisplayWPAConfig();
+                break;
+            case "network_conf":
+                DisplayNetworkingConfig();
+                break;
+            case "hostapd_conf":
+                DisplayHostAPDConfig();
+                break;
+            case "openvpn_conf":
+                DisplayOpenVPNConfig();
+                break;
+            case "torproxy_conf":
+                DisplayTorProxyConfig();
+                break;
+            case "auth_conf":
+                DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
+                break;
+            case "save_hostapd_conf":
+                SaveTORAndVPNConfig();
+                break;
+            case "theme_conf":
+                DisplayThemeConfig();
+                break;
+            case "data_use":
+                DisplayDataUsage($extraFooterScripts);
+                break;
+            case "system_info":
+                DisplaySystem();
+                break;
+            case "about":
+                DisplayAbout();
+                break;
+            default:
+                DisplayDashboard();
         }
 
 ?>

@@ -1,139 +1,140 @@
 <?php
 
-include_once( 'includes/status_messages.php' );
+include_once('includes/status_messages.php');
 
 /**
 *
 * Manage DHCP configuration
 *
 */
-function DisplayDHCPConfig() {
+function DisplayDHCPConfig()
+{
 
-  $status = new StatusMessages();
-  if( isset( $_POST['savedhcpdsettings'] ) ) {
-    if (CSRFValidate()) {
-        $errors = '';
-        define('IFNAMSIZ', 16);
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['interface']) ||
+    $status = new StatusMessages();
+    if (isset($_POST['savedhcpdsettings'])) {
+        if (CSRFValidate()) {
+            $errors = '';
+            define('IFNAMSIZ', 16);
+            if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['interface']) ||
             strlen($_POST['interface']) >= IFNAMSIZ) {
-            $errors .= _('Invalid interface name.').'<br />'.PHP_EOL;
-        }
-
-        if (!preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_POST['RangeStart']) &&
-            !empty($_POST['RangeStart'])) {  // allow ''/null ?
-            $errors .= _('Invalid DHCP range start.').'<br />'.PHP_EOL;
-        }
-
-        if (!preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_POST['RangeEnd']) &&
-            !empty($_POST['RangeEnd'])) {  // allow ''/null ?
-            $errors .= _('Invalid DHCP range end.').'<br />'.PHP_EOL;
-        }
-
-        if (!ctype_digit($_POST['RangeLeaseTime']) && $_POST['RangeLeaseTimeUnits'] !== 'infinite') {
-            $errors .= _('Invalid DHCP lease time, not a number.').'<br />'.PHP_EOL;
-        }
-
-        if (!in_array($_POST['RangeLeaseTimeUnits'], array('m', 'h', 'd', 'infinite'))) {
-            $errors .= _('Unknown DHCP lease time unit.').'<br />'.PHP_EOL;
-        }
-
-        $return = 1;
-        if (empty($errors)) {
-            $config = 'interface='.$_POST['interface'].PHP_EOL.
-                      'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].
-                      ',255.255.255.0,';
-            if ($_POST['RangeLeaseTimeUnits'] !== 'infinite') {
-                $config .= $_POST['RangeLeaseTime'];
+                  $errors .= _('Invalid interface name.').'<br />'.PHP_EOL;
             }
 
-            $config .= $_POST['RangeLeaseTimeUnits'];
-            exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
-            system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);
-        } else {
-            $status->addMessage($errors, 'danger');
-        }
+            if (!preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_POST['RangeStart']) &&
+            !empty($_POST['RangeStart'])) {  // allow ''/null ?
+                  $errors .= _('Invalid DHCP range start.').'<br />'.PHP_EOL;
+            }
 
-        if ($return == 0) {
-            $status->addMessage('Dnsmasq configuration updated successfully', 'success');
+            if (!preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_POST['RangeEnd']) &&
+            !empty($_POST['RangeEnd'])) {  // allow ''/null ?
+                  $errors .= _('Invalid DHCP range end.').'<br />'.PHP_EOL;
+            }
+
+            if (!ctype_digit($_POST['RangeLeaseTime']) && $_POST['RangeLeaseTimeUnits'] !== 'infinite') {
+                $errors .= _('Invalid DHCP lease time, not a number.').'<br />'.PHP_EOL;
+            }
+
+            if (!in_array($_POST['RangeLeaseTimeUnits'], array('m', 'h', 'd', 'infinite'))) {
+                $errors .= _('Unknown DHCP lease time unit.').'<br />'.PHP_EOL;
+            }
+
+            $return = 1;
+            if (empty($errors)) {
+                $config = 'interface='.$_POST['interface'].PHP_EOL.
+                      'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].
+                      ',255.255.255.0,';
+                if ($_POST['RangeLeaseTimeUnits'] !== 'infinite') {
+                    $config .= $_POST['RangeLeaseTime'];
+                }
+
+                $config .= $_POST['RangeLeaseTimeUnits'];
+                exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
+                system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);
+            } else {
+                $status->addMessage($errors, 'danger');
+            }
+
+            if ($return == 0) {
+                $status->addMessage('Dnsmasq configuration updated successfully', 'success');
+            } else {
+                $status->addMessage('Dnsmasq configuration failed to be updated.', 'danger');
+            }
         } else {
-            $status->addMessage('Dnsmasq configuration failed to be updated.', 'danger');
+            error_log('CSRF violation');
+        }
+    }
+
+    exec('pidof dnsmasq | wc -l', $dnsmasq);
+    $dnsmasq_state = ($dnsmasq[0] > 0);
+
+    if (isset($_POST['startdhcpd'])) {
+        if (CSRFValidate()) {
+            if ($dnsmasq_state) {
+                $status->addMessage('dnsmasq already running', 'info');
+            } else {
+                exec('sudo /etc/init.d/dnsmasq start', $dnsmasq, $return);
+                if ($return == 0) {
+                    $status->addMessage('Successfully started dnsmasq', 'success');
+                    $dnsmasq_state = true;
+                } else {
+                    $status->addMessage('Failed to start dnsmasq', 'danger');
+                }
+            }
+        } else {
+            error_log('CSRF violation');
+        }
+    } elseif (isset($_POST['stopdhcpd'])) {
+        if (CSRFValidate()) {
+            if ($dnsmasq_state) {
+                exec('sudo /etc/init.d/dnsmasq stop', $dnsmasq, $return);
+                if ($return == 0) {
+                    $status->addMessage('Successfully stopped dnsmasq', 'success');
+                    $dnsmasq_state = false;
+                } else {
+                    $status->addMessage('Failed to stop dnsmasq', 'danger');
+                }
+            } else {
+                $status->addMessage('dnsmasq already stopped', 'info');
+            }
+        } else {
+            error_log('CSRF violation');
         }
     } else {
-      error_log('CSRF violation');
-    }
-  }
-
-  exec( 'pidof dnsmasq | wc -l',$dnsmasq );
-  $dnsmasq_state = ($dnsmasq[0] > 0);
-
-  if( isset( $_POST['startdhcpd'] ) ) {
-    if (CSRFValidate()) {
-      if ($dnsmasq_state) {
-        $status->addMessage('dnsmasq already running', 'info');
-      } else {
-        exec('sudo /etc/init.d/dnsmasq start', $dnsmasq, $return);
-        if ($return == 0) {
-          $status->addMessage('Successfully started dnsmasq', 'success');
-          $dnsmasq_state = true;
+        if ($dnsmasq_state) {
+            $status->addMessage('Dnsmasq is running', 'success');
         } else {
-          $status->addMessage('Failed to start dnsmasq', 'danger');
+            $status->addMessage('Dnsmasq is not running', 'warning');
         }
-      }
-    } else {
-      error_log('CSRF violation');
     }
-  } elseif( isset($_POST['stopdhcpd'] ) ) {
-    if (CSRFValidate()) {
-      if ($dnsmasq_state) {
-        exec('sudo /etc/init.d/dnsmasq stop', $dnsmasq, $return);
-        if ($return == 0) {
-          $status->addMessage('Successfully stopped dnsmasq', 'success');
-          $dnsmasq_state = false;
-        } else {
-          $status->addMessage('Failed to stop dnsmasq', 'danger');
+
+    exec('cat '. RASPI_DNSMASQ_CONFIG, $return);
+    $conf = ParseConfig($return);
+    $arrRange = explode(",", $conf['dhcp-range']);
+    $RangeStart = $arrRange[0];
+    $RangeEnd = $arrRange[1];
+    $RangeMask = $arrRange[2];
+    $leaseTime = $arrRange[3];
+
+    $hselected = '';
+    $mselected = '';
+    $dselected = '';
+    $infiniteselected = '';
+    preg_match('/([0-9]*)([a-z])/i', $leaseTime, $arrRangeLeaseTime);
+    if ($leaseTime === 'infinite') {
+        $infiniteselected = ' selected="selected"';
+    } else {
+        switch ($arrRangeLeaseTime[2]) {
+            case 'h':
+                $hselected = ' selected="selected"';
+                break;
+            case 'm':
+                $mselected = ' selected="selected"';
+                break;
+            case 'd':
+                $dselected = ' selected="selected"';
+                break;
         }
-      } else {
-        $status->addMessage('dnsmasq already stopped', 'info');
-      }
-    } else {
-      error_log('CSRF violation');
     }
-  } else {
-    if( $dnsmasq_state ) {
-      $status->addMessage('Dnsmasq is running', 'success');
-    } else {
-      $status->addMessage('Dnsmasq is not running', 'warning');
-    }
-  }
-
-  exec( 'cat '. RASPI_DNSMASQ_CONFIG, $return );
-  $conf = ParseConfig($return);
-  $arrRange = explode( ",", $conf['dhcp-range'] );
-  $RangeStart = $arrRange[0];
-  $RangeEnd = $arrRange[1];
-  $RangeMask = $arrRange[2];
-  $leaseTime = $arrRange[3];
-
-  $hselected = '';
-  $mselected = '';
-  $dselected = '';
-  $infiniteselected = '';
-  preg_match( '/([0-9]*)([a-z])/i', $leaseTime, $arrRangeLeaseTime );
-  if ($leaseTime === 'infinite') {
-    $infiniteselected = ' selected="selected"';
-  } else {
-    switch( $arrRangeLeaseTime[2] ) {
-      case 'h':
-        $hselected = ' selected="selected"';
-        break;
-      case 'm':
-        $mselected = ' selected="selected"';
-        break;
-      case 'd':
-        $dselected = ' selected="selected"';
-        break;
-    }
-  }
 
 ?>
   <div class="row">
@@ -160,18 +161,18 @@ function DisplayDHCPConfig() {
       <div class="form-group col-md-4">
         <label for="code">Interface</label>
         <select class="form-control" name="interface">
-<?php 
+<?php
         exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
 
-        foreach( $interfaces as $inet ) {
-          $select = '';
-          if( $inet === $conf['interface'] ) {
-            $select = ' selected="selected"';
-          }
+foreach ($interfaces as $inet) {
+    $select = '';
+    if ($inet === $conf['interface']) {
+        $select = ' selected="selected"';
+    }
 
-          echo '        <option value="'.htmlspecialchars($inet, ENT_QUOTES).'"'.
-                $select.'>'.htmlspecialchars($inet, ENT_QUOTES).'</option>' , PHP_EOL;
-        }
+    echo '        <option value="'.htmlspecialchars($inet, ENT_QUOTES).'"'.
+    $select.'>'.htmlspecialchars($inet, ENT_QUOTES).'</option>' , PHP_EOL;
+}
 ?>
         </select>
       </div>
@@ -209,12 +210,12 @@ function DisplayDHCPConfig() {
     <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
     <?php
 
-    if ( $dnsmasq_state ) {
-      echo '<input type="submit" class="btn btn-warning" value="' . _("Stop dnsmasq") . '" name="stopdhcpd" />';
+    if ($dnsmasq_state) {
+        echo '<input type="submit" class="btn btn-warning" value="' . _("Stop dnsmasq") . '" name="stopdhcpd" />';
     } else {
-      echo'<input type="submit" class="btn btn-success" value="' .  _("Start dnsmasq") . '" name="startdhcpd" />';
+        echo'<input type="submit" class="btn btn-success" value="' .  _("Start dnsmasq") . '" name="startdhcpd" />';
     }
-?>
+    ?>
     </form>
     </div><!-- /.tab-pane -->
 
@@ -238,11 +239,11 @@ function DisplayDHCPConfig() {
             </thead>
             <tbody>
 <?php
-exec( 'cat ' . RASPI_DNSMASQ_LEASES, $leases );
-foreach( $leases as $lease ) {
+exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
+foreach ($leases as $lease) {
     echo '              <tr>'.PHP_EOL;
     $lease_items = explode(' ', $lease);
-    foreach( $lease_items as $lease_item ) {
+    foreach ($lease_items as $lease_item) {
         echo '                <td>'.htmlspecialchars($lease_item, ENT_QUOTES).'</td>'.PHP_EOL;
     }
     echo '              </tr>'.PHP_EOL;
