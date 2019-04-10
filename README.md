@@ -83,10 +83,12 @@ So what I have done is added the `www-data` user to the sudoers file, but with r
 www-data ALL=(ALL) NOPASSWD:/sbin/ifdown wlan0
 www-data ALL=(ALL) NOPASSWD:/sbin/ifup wlan0
 www-data ALL=(ALL) NOPASSWD:/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf
+www-data ALL=(ALL) NOPASSWD:/bin/cat /etc/wpa_supplicant/wpa_supplicant-wlan[0-9].conf
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf
-www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan0 scan_results
-www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan0 scan
-www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan0 reconfigure
+www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant-wlan[0-9].conf
+www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan[0-9] scan_results
+www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan[0-9] scan
+www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan[0-9] reconfigure
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf
 www-data ALL=(ALL) NOPASSWD:/etc/init.d/hostapd start
 www-data ALL=(ALL) NOPASSWD:/etc/init.d/hostapd stop
@@ -95,12 +97,13 @@ www-data ALL=(ALL) NOPASSWD:/etc/init.d/dnsmasq stop
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf
 www-data ALL=(ALL) NOPASSWD:/sbin/shutdown -h now
 www-data ALL=(ALL) NOPASSWD:/sbin/reboot
-www-data ALL=(ALL) NOPASSWD:/sbin/ip link set wlan0 down
-www-data ALL=(ALL) NOPASSWD:/sbin/ip link set wlan0 up
-www-data ALL=(ALL) NOPASSWD:/sbin/ip -s a f label wlan0
+www-data ALL=(ALL) NOPASSWD:/sbin/ip link set wlan[0-9] down
+www-data ALL=(ALL) NOPASSWD:/sbin/ip link set wlan[0-9] up
+www-data ALL=(ALL) NOPASSWD:/sbin/ip -s a f label wlan[0-9]
 www-data ALL=(ALL) NOPASSWD:/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/enablelog.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/disablelog.sh
+www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/servicestart.sh
 ```
 
 Once those modifications are done, git clone the files to `/var/www/html`.
@@ -124,6 +127,17 @@ Move the HostAPD logging scripts to the correct location
 ```sh
 sudo mkdir /etc/raspap/hostapd
 sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd 
+```
+Add the following lines to `/etc/rc.local` before `exit 0`.
+```sh
+echo 1 > /proc/sys/net/ipv4/ip_forward #RASPAP
+iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP 
+iptables -t nat -A POSTROUTING -s 192.168.50.0/24 ! -d 192.168.50.0/24 -j MASQUERADE #RASPAP
+```
+Force a reload of new settings in /etc/rc.local.
+```sh
+sudo systemctl restart rc-local.service
+sudo systemctl daemon-reload
 ```
 Reboot and it should be up and running!
 ```sh
