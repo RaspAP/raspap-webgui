@@ -238,7 +238,13 @@ function DisplayDashboard()
                                 </thead>
                                 <tbody>
 <?php
-exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.RASPI_WIFI_CLIENT_INTERFACE.' | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
+$arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
+if ($arrHostapdConf['WifiAPEnable'] == 1) {
+    $client_iface = 'uap0';
+} else {
+    $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
+}
+exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
 foreach ($clients as $client) {
     $client_items = explode(' ', $client);
     echo '<tr>'.PHP_EOL;
