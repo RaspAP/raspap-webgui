@@ -22,6 +22,7 @@ We'd be curious to hear about how you use this with your own RPi-powered project
  - [Multilingual support](#multilingual-support)
  - [Optional services](#optional-services)
  - [How to contribute](#how-to-contribute)
+ - [Reporting issues](#reporting-issues)
  - [License](#license)
 
 ## Prerequisites
@@ -190,6 +191,9 @@ Please note that these are only UI's for now. If there's enough interest I'll co
 4. Open a pull request, and reference the initial issue in the pull request message.
 
 This project follows the [PSR-2](http://www.php-fig.org/psr/psr-2/) coding style guidelines. There are many ways to check your code for PSR-2. An excellent tool is [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer). The command line tool `phpcs` can be run against any single file. [Phing](https://www.phing.info/), a PHP build tool, integrates nicely with `phpcs` to automate PSR-2 checks across all source files in a project.
+
+## Reporting issues
+Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting a bug.
 
 ## License
 See the [LICENSE](./LICENSE) file.
