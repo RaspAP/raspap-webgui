@@ -61,6 +61,8 @@ RaspAP lets you easily create an AP with a Wifi client configuration (also known
 
 ![](https://i.imgur.com/4JkK2a5.png)
 
+**Note:** For a Raspberry Pi operating in managed mode, such as the Pi Zero W, this configuration must be enabled _before_ a reboot.
+
 ## Support us
 
 RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal projects, please consider making a small donation. We believe strongly about creating high quality, intuitive software for the Raspberry Pi, as well as the importance of keeping it maintained. 
