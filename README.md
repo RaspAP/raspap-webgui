@@ -61,7 +61,7 @@ RaspAP lets you easily create an AP with a Wifi client configuration (also known
 
 ![](https://i.imgur.com/4JkK2a5.png)
 
-**Note:** For a Raspberry Pi operating in managed mode, such as the Pi Zero W, this configuration must be enabled _before_ a reboot.
+**Note:** For a Raspberry Pi operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) this configuration must be enabled _before_ a reboot. 
 
 ## Support us
 
