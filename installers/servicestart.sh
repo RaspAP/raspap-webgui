@@ -31,30 +31,30 @@ systemctl stop hostapd.service
 systemctl stop dnsmasq.service
 systemctl stop dhcpcd.service
 
-source <(grep = /etc/raspap/hostapd.ini | sed 's/ *= */=/g')
-if [ $WifiAPEnable = 1 ]; then
-    if [ "${interface}" = "uap0" ]; then
-        echo "Removing uap0 interface..."
-        iw dev uap0 del
+if [ -f /etc/raspap/hostapd.ini ]; then
+    source <(grep = /etc/raspap/hostapd.ini | sed 's/ *= */=/g')
+    if [ $WifiAPEnable = 1 ]; then
+        if [ "${interface}" = "uap0" ]; then
+            echo "Removing uap0 interface..."
+            iw dev uap0 del
  
-        echo "Adding uap0 interface..."
-        iw dev wlan0 interface add uap0 type __ap
+            echo "Adding uap0 interface..."
+            iw dev wlan0 interface add uap0 type __ap
 
-        # Bring up uap0 interface
-        ifconfig uap0 up
+            # Bring up uap0 interface
+            ifconfig uap0 up
+        fi
     fi
 fi
 
 # Start services, mitigating race conditions
-echo "Starting hostapd service..."
+echo "Starting network services..."
 systemctl start hostapd.service
 sleep "${seconds}"
 
-echo "Starting dhcpcd service..."
 systemctl start dhcpcd.service
 sleep "${seconds}"
 
-echo "Starting dnsmasq service..."
 systemctl start dnsmasq.service
 
 echo "RaspAP service start DONE"
