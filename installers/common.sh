@@ -220,6 +220,10 @@ function default_configuration() {
     # Force a reload of new settings in /etc/rc.local
     sudo systemctl restart rc-local.service
     sudo systemctl daemon-reload
+
+    # Install and enable RaspAP daemon
+    sudo mv $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
+    #sudo systemctl enable raspap.service
 }
 
 
