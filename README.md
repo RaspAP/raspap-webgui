@@ -149,6 +149,11 @@ Unmask and enable the hostapd service.
 sudo systemctl unmask hostapd.service
 sudo systemctl enable hostapd.service
 ```
+Move the raspap service to the correct location and enable it.
+```
+sudo mv /var/www/html/installers/raspap.service /lib/systemd/system
+sudo systemctl enable raspap.service
+```
 Reboot and it should be up and running!
 ```sh
 sudo reboot
