@@ -222,10 +222,14 @@ function default_configuration() {
     sudo systemctl daemon-reload
 
     # Install and enable RaspAP daemon
-    sudo mv $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
-    #sudo systemctl enable raspap.service
+    echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
+    read answer
+    if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+        echo -n "Enabling RaspAP daemon. Disable with: sudo systemctl disable raspap.service"
+        sudo mv $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
+        sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
+    fi
 }
-
 
 # Add a single entry to the sudoers file
 function sudo_add() {
@@ -249,7 +253,7 @@ function patch_system_files() {
         "/sbin/wpa_cli -i wlan[0-9] scan_results"
         "/sbin/wpa_cli -i wlan[0-9] scan"
         "/sbin/wpa_cli -i wlan[0-9] reconfigure"
-	"/sbin/wpa_cli -i wlan[0-9] select_network"
+        "/sbin/wpa_cli -i wlan[0-9] select_network"
         "/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf"
         "/etc/init.d/hostapd start"
         "/etc/init.d/hostapd stop"
@@ -312,7 +316,7 @@ function optimize_php() {
     fi
 
     if [ "$php_package" = "php7.0-cgi" ]; then
-        echo -n "Enable PHP OPCache? [Y/n]: "
+        echo -n "Enable PHP OPCache (Recommended)? [Y/n]: "
         read answer
         if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
             echo "Php-cgi enabling opcache.enable."
