@@ -138,6 +138,10 @@ function download_latest_files() {
     install_log "Cloning latest files from github"
     git clone --depth 1 https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
+
+    # Move icons to webroot
+    echo -n "Installing high-res favicons"
+    sudo mv $webroot_dir/dist/icons/* $webroot_dir || install_error "Unable to move icons to web root"
 }
 
 # Sets files ownership in web root directory
@@ -229,10 +233,6 @@ function default_configuration() {
         sudo mv $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
         sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
     fi
-
-    # Move icons to webroot
-    echo -n "Installing high-res favicons"
-    sudo mv $webroot_dir/dist/icons/* $webroot_dir
 }
 
 # Add a single entry to the sudoers file
