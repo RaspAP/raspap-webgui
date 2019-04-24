@@ -118,17 +118,21 @@ Once those modifications are done, git clone the files to `/var/www/html`.
 sudo rm -rf /var/www/html
 sudo git clone https://github.com/billz/raspap-webgui /var/www/html
 ```
+Move the high-res favicons to the web root.
+```
+sudo mv /var/www/html/dist/icons/* /var/www/html
+```
 Set the files ownership to `www-data` user.
 ```sh
 sudo chown -R www-data:www-data /var/www/html
 ```
-Move the RaspAP configuration file to the correct location
+Move the RaspAP configuration file to the correct location.
 ```sh
 sudo mkdir /etc/raspap
 sudo mv /var/www/html/raspap.php /etc/raspap/
 sudo chown -R www-data:www-data /etc/raspap
 ```
-Move the HostAPD logging scripts to the correct location
+Move the HostAPD logging scripts to the correct location.
 ```sh
 sudo mkdir /etc/raspap/hostapd
 sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd 
