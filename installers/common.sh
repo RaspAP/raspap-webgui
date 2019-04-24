@@ -229,6 +229,10 @@ function default_configuration() {
         sudo mv $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
         sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
     fi
+
+    # Move icons to webroot
+    echo -n "Installing high-res favicons"
+    sudo mv $webroot_dir/dist/icons/* $webroot_dir
 }
 
 # Add a single entry to the sudoers file
