@@ -23,7 +23,7 @@ function write_php_ini($array, $file)
             $res[] = "$key = ".(is_numeric($val) ? $val : '"'.$val.'"');
         }
     }
-    if (safefilerewrite($file, implode("\r\n", $res))) {
+    if (safefilerewrite($file, implode(PHP_EOL, $res))) {
         return true;
     } else {
         return false;
