@@ -26,7 +26,7 @@ function DisplayHostAPDConfig()
         if (CSRFValidate()) {
             $status->addMessage('Attempting to start hotspot', 'info');
             if ($arrHostapdConf['WifiAPEnable'] == 1) {
-                exec('sudo /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 5', $return);
+                exec('sudo /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 3', $return);
             } else {
                 exec('sudo /etc/raspap/hostapd/servicestart.sh --seconds 5', $return);
             }
@@ -566,6 +566,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     $cfg = [];
     $cfg['LogEnable'] = $logEnable;
     $cfg['WifiAPEnable'] = $wifiAPEnable;
+    $cfg['WifiManaged'] = RASPI_WIFI_CLIENT_INTERFACE;
     write_php_ini($cfg, '/etc/raspap/hostapd.ini');
 
     // Verify input
