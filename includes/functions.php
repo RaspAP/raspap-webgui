@@ -17,10 +17,10 @@ function write_php_ini($array, $file)
         if (is_array($val)) {
             $res[] = "[$key]";
             foreach ($val as $skey => $sval) {
-                $res[] = "$skey = ".(is_numeric($sval) ? $sval : '"'.$sval.'"');
+                $res[] = "$skey = $val";
             }
         } else {
-            $res[] = "$key = ".(is_numeric($val) ? $val : '"'.$val.'"');
+            $res[] = "$key = $val";
         }
     }
     if (safefilerewrite($file, implode(PHP_EOL, $res))) {
