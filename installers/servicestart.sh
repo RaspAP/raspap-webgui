@@ -34,17 +34,17 @@ systemctl stop dhcpcd.service
 
 if [ -r "$CONFIGFILE" ]; then
     declare -A config
-    while IFS="=" read -r key value; do
+    while IFS=" = " read -r key value; do
         config["$key"]="$value"
-    done <  <(sed -E -e 's/ *= */=/g' "$CONFIGFILE" )
+    done < "$CONFIGFILE"
 
-    if [[ ${config[WifiAPEnable]} =~ 1 ]]; then
+    if [ "${config[WifiAPEnable]}" = 1 ]; then
         if [ "${interface}" = "uap0" ]; then
             echo "Removing uap0 interface..."
             iw dev uap0 del
  
             echo "Adding uap0 interface to ${config[WifiManaged]}"
-            iw dev wlan0 interface add uap0 type __ap
+            iw dev ${config[WifiManaged]} interface add uap0 type __ap
             # Bring up uap0 interface
             ifconfig uap0 up
         fi
