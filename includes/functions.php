@@ -17,7 +17,7 @@ function write_php_ini($array, $file)
         if (is_array($val)) {
             $res[] = "[$key]";
             foreach ($val as $skey => $sval) {
-                $res[] = "$skey = $val";
+                $res[] = "$skey = $sval";
             }
         } else {
             $res[] = "$key = $val";
@@ -44,7 +44,7 @@ function safefilerewrite($fileName, $dataToSave)
 
         //file was locked so now we can store information
         if ($canWrite) {
-            fwrite($fp, $dataToSave);
+            fwrite($fp, $dataToSave.PHP_EOL);
             flock($fp, LOCK_UN);
         }
         fclose($fp);
