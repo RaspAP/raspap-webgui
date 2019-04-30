@@ -5,6 +5,7 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NAME=raspap
 DESC="Service control for RaspAP"
+CONFIGFILE="/etc/raspap/hostapd.ini"
 
 positional=()
 while [[ $# -gt 0 ]]
@@ -31,16 +32,19 @@ systemctl stop hostapd.service
 systemctl stop dnsmasq.service
 systemctl stop dhcpcd.service
 
-if [ -f /etc/raspap/hostapd.ini ]; then
-    source <(grep = /etc/raspap/hostapd.ini | sed 's/ *= */=/g')
-    if [ $WifiAPEnable = 1 ]; then
+if [ -r "$CONFIGFILE" ]; then
+    declare -A config
+    while IFS="=" read -r key value; do
+        config["$key"]="$value"
+    done <  <(sed -E -e 's/ *= */=/g' "$CONFIGFILE" )
+
+    if [[ ${config[WifiAPEnable]} =~ 1 ]]; then
         if [ "${interface}" = "uap0" ]; then
             echo "Removing uap0 interface..."
             iw dev uap0 del
  
-            echo "Adding uap0 interface..."
+            echo "Adding uap0 interface to ${config[WifiManaged]}"
             iw dev wlan0 interface add uap0 type __ap
-
             # Bring up uap0 interface
             ifconfig uap0 up
         fi
