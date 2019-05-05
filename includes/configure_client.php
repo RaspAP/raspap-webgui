@@ -137,11 +137,6 @@ function DisplayWPAConfig()
     foreach ($scan_return as $network) {
         $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
 
-        // Save RSSI
-        if (array_key_exists(4, $arrNetwork)) {
-            $networks[$arrNetwork[4]]['RSSI'] = $arrNetwork[2];
-        }
-
         // If network is saved
         if (array_key_exists(4, $arrNetwork) && array_key_exists($arrNetwork[4], $networks)) {
             $networks[$arrNetwork[4]]['visible'] = true;
@@ -156,7 +151,13 @@ function DisplayWPAConfig()
             'visible' => true,
             'connected' => false
             );
+	}
+
+        // Save RSSI
+        if (array_key_exists(4, $arrNetwork)) {
+            $networks[$arrNetwork[4]]['RSSI'] = $arrNetwork[2];
         }
+
     }
 
     exec('iwconfig ' . RASPI_WIFI_CLIENT_INTERFACE, $iwconfig_return);
@@ -257,7 +258,7 @@ function DisplayWPAConfig()
                     <div class="input-group col-xs-12 col-md-12">
                       <span class="input-group-addon" id="passphrase">Passphrase</span>
                         <?php if ($network['protocol'] === 'Open') { ?> 
-                          <input type="hidden" name="passphrase<?php echo $index ?>" value="" />--- 
+                          <input type="password" disabled class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="" />
                         <?php } else { ?>
                           <input type="password" class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="<?php echo $network['passphrase'] ?>" onKeyUp="CheckPSK(this, 'update<?php echo $index?>')" >
                           <span class="input-group-btn">
