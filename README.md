@@ -67,9 +67,11 @@ RaspAP lets you easily create an AP with a Wifi client configuration. With your 
 
 ## Support us
 
-RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal projects, please consider making a small donation. We believe strongly about creating high quality, intuitive software for the Raspberry Pi, as well as the importance of keeping it maintained. 
+RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal projects, please consider making a small one-time or recurring donation. We believe strongly in creating great software for the Raspberry Pi, as well as the importance of keeping it maintained. 
 
-[![Beerpay](https://beerpay.io/billz/raspap-webgui/badge.svg?style=flat)](https://beerpay.io/billz/raspap-webgui)
+[![Beerpay](https://beerpay.io/billz/raspap-webgui/badge.svg?style=flat)](https://beerpay.io/billz/raspap-webgui) (one-time donation)
+
+[![Patreon](https://img.shields.io/badge/-patreon-rgb(85%2C%2051%2C%2068).svg?style=flat)](https://www.patreon.com/billz) (recurring pledge)
 
 ## Manual installation
 These steps apply to the latest release of Raspbian (currently [Stretch](https://www.raspberrypi.org/downloads/raspbian/)). Notes for previously released versions are provided, where applicable. Start off by installing git, lighttpd, php7, hostapd and dnsmasq. 
