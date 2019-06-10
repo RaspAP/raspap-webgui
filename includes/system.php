@@ -87,7 +87,8 @@ function DisplaySystem()
     'ru_RU.UTF-8' => 'Русский',
     'es_MX.UTF-8' => 'Español',
     'fi_FI.UTF-8' => 'Finnish',
-    'si_LK.UTF-8' => 'Sinhala'
+    'si_LK.UTF-8' => 'Sinhala',
+    'tr_TR.UTF-8' => 'Türkçe'
     );
 
     // hostname
