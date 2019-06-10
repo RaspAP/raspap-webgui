@@ -180,6 +180,7 @@ The following translations are currently maintained by the project:
 - Español
 - Finnish
 - Sinhala
+- Türkçe
 
 If your language is not in the list above, why not [contribute a translation](https://github.com/billz/raspap-webgui/wiki/Translations#contributing-a-translation)? Contributors will receive credit as the original translators.
 
