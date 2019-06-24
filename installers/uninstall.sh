@@ -120,6 +120,20 @@ function remove_raspap_directories() {
 
 }
 
+# Removes installed packages
+function remove_installed_packages() {
+    install_log "Removing installed packages"
+    echo -n "Remove the following installed packages? lighttpd $php_package git hostapd dnsmasq vnstat [y/N]: "
+    read answer
+    if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+        echo "Removing packages."
+        sudo apt-get remove lighttpd $php_package git hostapd dnsmasq vnstat
+        sudo apt-get autoremove
+    else
+        echo "Leaving packages installed."
+    fi
+}
+
 # Removes www-data from sudoers
 function clean_sudoers() {
     # should this check for only our commands?
@@ -130,6 +144,7 @@ function remove_raspap() {
     config_uninstallation
     check_for_backups
     remove_raspap_directories
+    remove_installed_packages
     clean_sudoers
 }
 
