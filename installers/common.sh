@@ -13,7 +13,7 @@ version=`sed 's/\..*//' /etc/debian_version`
 # php package to install 
 if [ $version -eq 10 ]; then
     version_msg="Raspian 10.0 (Buster)"
-    php_package="php7.0-cgi"
+    php_package="php7.1-cgi"
 elif [ $version -eq 9 ]; then
     version_msg="Raspian 9.0 (Stretch)" 
     php_package="php7.0-cgi" 
@@ -27,7 +27,9 @@ else
 fi
 
 phpcgiconf=""
-if [ "$php_package" = "php7.0-cgi" ]; then
+if [ "$php_package" = "php7.1-cgi" ]; then
+    phpcgiconf="/etc/php/7.1/cgi/php.ini"
+elif [ "$php_package" = "php7.0-cgi" ]; then
     phpcgiconf="/etc/php/7.0/cgi/php.ini"
 elif [ "$php_package" = "php5-cgi" ]; then
     phpcgiconf="/etc/php5/cgi/php.ini"
