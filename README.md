@@ -70,11 +70,11 @@ RaspAP lets you easily create an AP with a Wifi client configuration. With your 
 RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal, educational or commercial projects, please make a pledge at [our Patreon page](https://www.patreon.com/billz) or a one-time donation with [Beerpay](https://beerpay.io/billz/raspap-webgui). Either option makes a big difference to us!
 
 ## Manual installation
-These steps apply to the latest release of Raspbian (currently [Stretch](https://www.raspberrypi.org/downloads/raspbian/)). Notes for previously released versions are provided, where applicable. Start off by installing git, lighttpd, php7, hostapd and dnsmasq. 
+These steps apply to the latest release of Raspbian (currently [Buster](https://www.raspberrypi.org/downloads/raspbian/)). Notes for previously released versions are provided, where applicable. Start off by installing git, lighttpd, php7, hostapd and dnsmasq. 
 ```sh
-sudo apt-get install git lighttpd php7.0-cgi hostapd dnsmasq vnstat
+sudo apt-get install git lighttpd php7.1-cgi hostapd dnsmasq vnstat
 ```
-**Note:** for Raspbian Jessie and Wheezy, replace `php7.0-cgi` with `php5-cgi`. After that, enable PHP for lighttpd and restart it for the settings to take effect.
+**Note:** for Raspbian Stretch, replace `php7.1-cgi` with `php7.0-cgi`. For Raspbian Jessie and older versions, use `php5-cgi`. After that, enable PHP for lighttpd and restart it for the settings to take effect.
 ```sh
 sudo lighttpd-enable-mod fastcgi-php
 sudo service lighttpd restart
