@@ -26,7 +26,7 @@ We'd be curious to hear about how you use this with your own RPi-powered project
  - [License](#license)
 
 ## Prerequisites
-Start with a clean install of the [latest release of Raspbian](https://www.raspberrypi.org/downloads/raspbian/) (currently Stretch). Raspbian Stretch Lite is recommended.
+Start with a clean install of the [latest release of Raspbian](https://www.raspberrypi.org/downloads/raspbian/) (currently Buster). Raspbian Buster Lite is recommended.
 
 1. Update Raspbian, including the kernel and firmware, followed by a reboot:
 ```
