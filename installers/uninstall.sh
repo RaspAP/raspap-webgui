@@ -3,16 +3,16 @@ raspap_dir="/etc/raspap"
 raspap_user="www-data"
 version=`sed 's/\..*//' /etc/debian_version`
 
-# Determine version and set default home location for lighttpd 
+# Determine Raspbian version and set default home location for lighttpd 
 webroot_dir="/var/www/html" 
 if [ $version -eq 10 ]; then
-    version_msg="Raspian 10.0 (Buster)"
+    version_msg="Raspbian 10.0 (Buster)"
     php_package="php7.1-cgi"
 elif [ $version -eq 9 ]; then
-    version_msg="Raspian 9.0 (Stretch)" 
+    version_msg="Raspbian 9.0 (Stretch)" 
     php_package="php7.0-cgi"
 else 
-    version_msg="Raspian 8.0 (Jessie) or earlier"
+    version_msg="Raspbian 8.0 (Jessie) or earlier"
     webroot_dir="/var/www" 
     php_package="php5-cgi" 
 fi
