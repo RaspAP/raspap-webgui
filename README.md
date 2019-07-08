@@ -132,10 +132,16 @@ sudo mkdir /etc/raspap
 sudo mv /var/www/html/raspap.php /etc/raspap/
 sudo chown -R www-data:www-data /etc/raspap
 ```
-Move the HostAPD logging scripts to the correct location.
+Move the HostAPD logging and service control shell scripts to the correct location.
 ```sh
 sudo mkdir /etc/raspap/hostapd
 sudo mv /var/www/html/installers/*log.sh /etc/raspap/hostapd 
+sudo mv /var/www/html/installers/service*.sh /etc/raspap/hostapd
+```
+Set ownership and permissions for logging and service control scripts.
+```sh
+sudo chown -c root:www-data /etc/raspap/hostapd/*.sh 
+sudo chmod 750 /etc/raspap/hostapd/*.sh 
 ```
 Add the following lines to `/etc/rc.local` before `exit 0`.
 ```sh
