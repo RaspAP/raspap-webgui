@@ -4,7 +4,7 @@ source /tmp/raspapcommon.sh && rm -f /tmp/raspapcommon.sh
 
 function update_system_packages() {
     install_log "Updating sources"
-    sudo apt-get update || install_error "Unable to update package list"
+    sudo apt-get update --allow-releaseinfo-change || install_error "Unable to update package list"
 }
 
 function install_dependencies() {
