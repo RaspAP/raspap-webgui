@@ -4,12 +4,12 @@ include_once('../../includes/config.php');
 include_once('../../includes/functions.php');
 
 if(isset($_POST['generate']) && isset($_POST['csrf_token']) && CSRFValidate()) {
-    $cnfNetworking = array_diff(scandir(RASPI_CONFIG_NETWORKING, 1),array('..','.'));
+    $cnfNetworking = array_diff(scandir(RASPI_CONFIG_NETWORKING, 1),array('..','.','dhcpcd.conf'));
     $cnfNetworking = array_combine($cnfNetworking,$cnfNetworking);
     $strConfFile = "";
     foreach($cnfNetworking as $index=>$file) {
         if($index != "defaults") {
-            $cnfFile = parse_ini_file(RASPI_CONFIG_NETWORKING.'/'.$file);
+            $cnfFile = parse_ini_file(RASPI_CONFIG_NETWORKING.'/'.$file, false, INI_SCANNER_RAW);
             if($cnfFile['static'] === 'true') {
                 $strConfFile .= "interface ".$cnfFile['interface']."\n";
                 $strConfFile .= "static ip_address=".$cnfFile['ip_address']."\n";
