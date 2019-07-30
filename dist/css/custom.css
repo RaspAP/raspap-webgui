@@ -53,3 +53,9 @@
     width:100%;
     height:300px;
 }
+
+pre.unstyled {
+    border-width: 0;
+    background-color: transparent;
+    padding: 0;
+}
