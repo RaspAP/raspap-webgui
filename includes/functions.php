@@ -68,6 +68,15 @@ function CSRFToken()
 }
 
 /**
+* Retuns a CSRF meta tag (for use with xhr, for example)
+*/
+function CSRFMetaTag()
+{
+    $token = htmlspecialchars($_SESSION['csrf_token']);
+    return '<meta name="csrf_token" content="' . $token . '">';
+}
+
+/**
 *
 * Validate CSRF Token
 *
