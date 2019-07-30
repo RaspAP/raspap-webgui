@@ -44,7 +44,9 @@ function DisplayNetworkingConfig()
                             echo '<div class="col-md-6">
                             <div class="panel panel-default">
                                 <div class="panel-heading">'.htmlspecialchars($interface, ENT_QUOTES).'</div>
-                                <div class="panel-body" id="'.htmlspecialchars($interface, ENT_QUOTES).'-summary"></div>
+                                <div class="panel-body">
+                                  <pre class="unstyled" id="'.htmlspecialchars($interface, ENT_QUOTES).'-summary"></pre>
+                                </div>
                             </div>
                             </div>';
                         }
