@@ -83,7 +83,19 @@ function CSRFMetaTag()
 */
 function CSRFValidate()
 {
-    if (hash_equals($_POST['csrf_token'], $_SESSION['csrf_token'])) {
+    $post_token   = $_POST['csrf_token'];
+    $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'];
+
+    if (empty($post_token) && empty($header_token)) {
+        return false;
+    }
+
+    $request_token = $post_token;
+    if (empty($post_token)) {
+        $request_token = $header_token;
+    }
+
+    if (hash_equals($_SESSION['csrf_token'], $request_token)) {
         return true;
     } else {
         error_log('CSRF violation');
