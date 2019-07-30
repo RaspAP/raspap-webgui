@@ -638,7 +638,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $config.= 'country_code='.$_POST['country_code'].PHP_EOL;
         $config.= 'ignore_broadcast_ssid='.$ignore_broadcast_ssid.PHP_EOL;
 
-        exec('echo "'.$config.'" > /tmp/hostapddata', $temp);
+        file_put_contents("/tmp/hostapddata", $config);
         system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $return);
 
         if ($wifiAPEnable == 1) {
@@ -655,7 +655,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'interface='.$_POST['interface'].PHP_EOL;
             $config.= 'dhcp-range=10.3.141.50,10.3.141.255,255.255.255.0,12h'.PHP_EOL;
         }
-        exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
+        file_put_contents("/tmp/dhcpddata", $config);
         system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);
 
         if ($wifiAPEnable == 1) {
@@ -682,7 +682,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'static routers=10.3.141.1'.PHP_EOL;
             $config.= 'static domain_name_server=1.1.1.1 8.8.8.8'.PHP_EOL;
         }
-        exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
+        file_put_contents("/tmp/dhcpddata", $config);
         system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
 
 
