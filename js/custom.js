@@ -19,7 +19,7 @@ function createNetmaskAddr(bitCount) {
 }
 
 function loadSummary(strInterface) {
-    $.post('/ajax/networking/get_ip_summary.php',{interface:strInterface,csrf_token:csrf},function(data){
+    $.post('/ajax/networking/get_ip_summary.php',{interface:strInterface},function(data){
         jsonData = JSON.parse(data);
         console.log(jsonData);
         if(jsonData['return'] == 0) {
@@ -50,7 +50,7 @@ function setupTabs() {
 }
 
 function loadCurrentSettings(strInterface) {
-    $.post('/ajax/networking/get_int_config.php',{interface:strInterface,csrf_token:csrf},function(data){
+    $.post('/ajax/networking/get_int_config.php',{interface:strInterface},function(data){
         jsonData = JSON.parse(data);
         $.each(jsonData['output'],function(i,v) {
             var int = v['interface'];
@@ -102,7 +102,6 @@ function saveNetworkSettings(int) {
             }
         });
         arrFormData['interface'] = int;
-        arrFormData['csrf_token'] = csrf;
         $.post('/ajax/networking/save_int_config.php',arrFormData,function(data){
             //console.log(data);
             var jsonData = JSON.parse(data);
@@ -113,7 +112,6 @@ function saveNetworkSettings(int) {
 function applyNetworkSettings() {
         var int = $(this).data('int');
         arrFormData = {};
-        arrFormData['csrf_token'] = csrf;
         arrFormData['generate'] = '';
         $.post('/ajax/networking/gen_int_config.php',arrFormData,function(data){
             console.log(data);
@@ -172,7 +170,6 @@ $.ajaxSetup({
 });
 
 $().ready(function(){
-    csrf = $('#csrf_token').val();
     pageCurrent = window.location.href.split("?")[1].split("=")[1];
     pageCurrent = pageCurrent.replace("#","");
     $('#side-menu').metisMenu();
