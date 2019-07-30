@@ -162,6 +162,15 @@ function setupBtns() {
     });
 }
 
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        var csrfToken = $('meta[name=csrf_token]').attr('content');
+        if (/^(POST|PATCH|PUT|DELETE)$/i.test(settings.type)) {
+            xhr.setRequestHeader("X-CSRF-Token", csrfToken);
+        }
+    }
+});
+
 $().ready(function(){
     csrf = $('#csrf_token').val();
     pageCurrent = window.location.href.split("?")[1].split("=")[1];
