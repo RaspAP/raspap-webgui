@@ -39,6 +39,10 @@ include_once('includes/about.php');
 $output = $return = 0;
 $page = $_GET['page'];
 
+if (csrfValidateRequest() && !CSRFValidate()) {
+  handleInvalidCSRFToken();
+}
+
 if (empty($_SESSION['csrf_token'])) {
     if (function_exists('mcrypt_create_iv')) {
         $_SESSION['csrf_token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));

@@ -83,6 +83,26 @@ function CSRFValidate()
 }
 
 /**
+* Should the request be CSRF-validated?
+*/
+function csrfValidateRequest()
+{
+  $request_method = strtolower($_SERVER['REQUEST_METHOD']);
+  return in_array($request_method, [ "post", "put", "patch", "delete" ]);
+}
+
+/**
+* Handle invalid CSRF
+*/
+function handleInvalidCSRFToken()
+{
+    header('HTTP/1.1 500 Internal Server Error');
+    header('Content-Type: text/plain');
+    echo 'Invalid CSRF token';
+    exit;
+}
+
+/**
 * Test whether array is associative
 */
 function isAssoc($arr)
