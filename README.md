@@ -20,6 +20,7 @@ We'd be curious to hear about how you use this with your own RPi-powered project
  - [Support us](#support-us)
  - [Manual installation](#manual-installation)
  - [Multilingual support](#multilingual-support)
+ - [HTTPS support](#https-support)
  - [Optional services](#optional-services)
  - [How to contribute](#how-to-contribute)
  - [Reporting issues](#reporting-issues)
@@ -191,6 +192,9 @@ The following translations are currently maintained by the project:
 - Türkçe
 
 If your language is not in the list above, why not [contribute a translation](https://github.com/billz/raspap-webgui/wiki/Translations#contributing-a-translation)? Contributors will receive credit as the original translators.
+
+## HTTPS support
+A detailed how-to for enabling HTTPS is available [on our wiki](https://github.com/billz/raspap-webgui/wiki/HTTPS--support). 
 
 ## Optional services
 OpenVPN and TOR are two additional services that run perfectly well on the RPi, and are a nice way to extend the usefulness of your WiFi router. I've started on interfaces to administer these services. Not everyone will need them, so for the moment they are disabled by default. You can enable them by changing these options in `/var/www/html/includes/config.php`:
