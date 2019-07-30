@@ -48,13 +48,8 @@ function DisplayDashboard()
     if (!preg_match_all('/inet6 ([a-f0-9:]+)/i', $stdoutIpWRepeatedSpaces, $matchesIpv6Addr)) {
         $ipv6Addrs = _('No IPv6 Address Found');
     } else {
-        $numMatchesIpv6Addr = count($matchesIpv6Addr);
-        for ($i = 1; $i < $numMatchesIpv6Addr; ++$i) {
-            if ($i > 1) {
-                $ipv6Addrs .= ' ';
-            }
-
-            $ipv6Addrs .= $matchesIpv6Addr[$i];
+        if (isset($matchesIpv6Addr[1])) {
+            $ipv6Addrs = implode(' ', $matchesIpv6Addr[1]);
         }
     }
 
