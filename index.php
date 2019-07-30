@@ -43,13 +43,7 @@ if (csrfValidateRequest() && !CSRFValidate()) {
   handleInvalidCSRFToken();
 }
 
-if (empty($_SESSION['csrf_token'])) {
-    if (function_exists('mcrypt_create_iv')) {
-        $_SESSION['csrf_token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
-    } else {
-        $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(32));
-    }
-}
+ensureCSRFSessionToken();
 
 if (!isset($_COOKIE['theme'])) {
     $theme = "custom.css";

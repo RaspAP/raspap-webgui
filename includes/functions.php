@@ -55,6 +55,20 @@ function safefilerewrite($fileName, $dataToSave)
 }
 
 /**
+* Saves a CSRF token in the session
+*/
+function ensureCSRFSessionToken()
+{
+    if (empty($_SESSION['csrf_token'])) {
+        if (function_exists('mcrypt_create_iv')) {
+            $_SESSION['csrf_token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+        } else {
+            $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+        }
+    }
+}
+
+/**
 *
 * Add CSRF Token to form
 *
