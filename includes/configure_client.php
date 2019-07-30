@@ -53,7 +53,7 @@ function DisplayWPAConfig()
     if (isset($_POST['connect'])) {
         $result = 0;
         exec('sudo wpa_cli -i ' . RASPI_WPA_CTRL_INTERFACE . ' select_network '.strval($_POST['connect']));
-    } elseif (isset($_POST['client_settings']) && CSRFValidate()) {
+    } elseif (isset($_POST['client_settings'])) {
         $tmp_networks = $networks;
         if ($wpa_file = fopen('/tmp/wifidata', 'w')) {
             fwrite($wpa_file, 'ctrl_interface=DIR=' . RASPI_WPA_CTRL_INTERFACE . ' GROUP=netdev' . PHP_EOL);

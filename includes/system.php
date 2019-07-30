@@ -63,13 +63,9 @@ function DisplaySystem()
     $status = new StatusMessages();
 
     if (isset($_POST['SaveLanguage'])) {
-        if (CSRFValidate()) {
-            if (isset($_POST['locale'])) {
-                $_SESSION['locale'] = $_POST['locale'];
-                $status->addMessage('Language setting saved', 'success');
-            }
-        } else {
-            error_log('CSRF violation');
+        if (isset($_POST['locale'])) {
+            $_SESSION['locale'] = $_POST['locale'];
+            $status->addMessage('Language setting saved', 'success');
         }
     }
 

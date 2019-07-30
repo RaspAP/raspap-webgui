@@ -22,34 +22,22 @@ function DisplayHostAPDConfig()
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
 
     if (isset($_POST['SaveHostAPDSettings'])) {
-        if (CSRFValidate()) {
-            SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $status);
-        } else {
-            error_log('CSRF violation');
-        }
+        SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $status);
     } elseif (isset($_POST['StartHotspot'])) {
-        if (CSRFValidate()) {
-            $status->addMessage('Attempting to start hotspot', 'info');
-            if ($arrHostapdConf['WifiAPEnable'] == 1) {
-                exec('sudo /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 3', $return);
-            } else {
-                exec('sudo /etc/raspap/hostapd/servicestart.sh --seconds 5', $return);
-            }
-            foreach ($return as $line) {
-                $status->addMessage($line, 'info');
-            }
+        $status->addMessage('Attempting to start hotspot', 'info');
+        if ($arrHostapdConf['WifiAPEnable'] == 1) {
+            exec('sudo /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 3', $return);
         } else {
-            error_log('CSRF violation');
+            exec('sudo /etc/raspap/hostapd/servicestart.sh --seconds 5', $return);
+        }
+        foreach ($return as $line) {
+            $status->addMessage($line, 'info');
         }
     } elseif (isset($_POST['StopHotspot'])) {
-        if (CSRFValidate()) {
-            $status->addMessage('Attempting to stop hotspot', 'info');
-            exec('sudo /etc/init.d/hostapd stop', $return);
-            foreach ($return as $line) {
-                $status->addMessage($line, 'info');
-            }
-        } else {
-            error_log('CSRF violation');
+        $status->addMessage('Attempting to stop hotspot', 'info');
+        exec('sudo /etc/init.d/hostapd stop', $return);
+        foreach ($return as $line) {
+            $status->addMessage($line, 'info');
         }
     }
 
