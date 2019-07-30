@@ -655,8 +655,8 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'interface='.$_POST['interface'].PHP_EOL;
             $config.= 'dhcp-range=10.3.141.50,10.3.141.255,255.255.255.0,12h'.PHP_EOL;
         }
-        file_put_contents("/tmp/dhcpddata", $config);
-        system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);
+        file_put_contents("/tmp/dnsmasqdata", $config);
+        system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_CONFIG, $return);
 
         if ($wifiAPEnable == 1) {
             // Enable uap0 configuration in dhcpcd for Wifi client AP mode
