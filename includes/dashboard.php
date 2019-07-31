@@ -29,32 +29,27 @@ function DisplayDashboard()
 
     $ipv4Addrs = '';
     $ipv4Netmasks = '';
-    if (!preg_match_all('/inet (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/([0-3][0-9])/i', $stdoutIpWRepeatedSpaces, $matchesIpv4AddrAndSubnet)) {
+    if (!preg_match_all('/inet (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/([0-3][0-9])/i', $stdoutIpWRepeatedSpaces, $matchesIpv4AddrAndSubnet, PREG_SET_ORDER)) {
         $ipv4Addrs = _('No IPv4 Address Found');
     } else {
-        $numMatchesIpv4AddrAndSubnet = count($matchesIpv4AddrAndSubnet);
-        for ($i = 1; $i < $numMatchesIpv4AddrAndSubnet; $i += 2) {
-            if ($i > 2) {
-                $ipv4Netmasks .= ' ';
-                $ipv4Addrs .= ' ';
-            }
+        foreach ($matchesIpv4AddrAndSubnet as $inet) {
+          $address = $inet[1];
+          $suffix  = (int) $inet[2];
+          $netmask = long2ip(-1 << (32 - $suffix));
 
-            $ipv4Addrs .= $matchesIpv4AddrAndSubnet[$i][0];
-            $ipv4Netmasks .= long2ip(-1 << (32 -(int)$matchesIpv4AddrAndSubnet[$i+1][0]));
+          $ipv4Addrs    .= " $address";
+          $ipv4Netmasks .= " $netmask";
         }
+        $ipv4Addrs    = trim($ipv4Addrs);
+        $ipv4Netmasks = trim($ipv4Netmasks);
     }
 
     $ipv6Addrs = '';
     if (!preg_match_all('/inet6 ([a-f0-9:]+)/i', $stdoutIpWRepeatedSpaces, $matchesIpv6Addr)) {
         $ipv6Addrs = _('No IPv6 Address Found');
     } else {
-        $numMatchesIpv6Addr = count($matchesIpv6Addr);
-        for ($i = 1; $i < $numMatchesIpv6Addr; ++$i) {
-            if ($i > 1) {
-                $ipv6Addrs .= ' ';
-            }
-
-            $ipv6Addrs .= $matchesIpv6Addr[$i];
+        if (isset($matchesIpv6Addr[1])) {
+            $ipv6Addrs = implode(' ', $matchesIpv6Addr[1]);
         }
     }
 
