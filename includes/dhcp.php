@@ -48,7 +48,7 @@ function DisplayDHCPConfig()
                 }
 
                 $config .= $_POST['RangeLeaseTimeUnits'];
-                exec('echo "'.$config.'" > /tmp/dhcpddata', $temp);
+                file_put_contents("/tmp/dhcpddata", $config);
                 system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);
             } else {
                 $status->addMessage($errors, 'danger');
