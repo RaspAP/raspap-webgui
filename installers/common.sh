@@ -149,10 +149,6 @@ function download_latest_files() {
     install_log "Cloning latest files from github"
     git clone --depth 1 https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
-
-    # Move icons to webroot
-    echo -n "Installing high-res favicons"
-    sudo cp $webroot_dir/dist/icons/* $webroot_dir || install_error "Unable to move icons to web root"
 }
 
 # Sets files ownership in web root directory
