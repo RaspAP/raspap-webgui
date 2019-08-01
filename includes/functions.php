@@ -67,7 +67,7 @@ function ensureCSRFSessionToken()
 * Add CSRF Token to form
 *
 */
-function CSRFToken()
+function CSRFTokenFieldTag()
 {
     $token = htmlspecialchars($_SESSION['csrf_token']);
     return '<input id="csrf_token" type="hidden" name="csrf_token" value="' . $token . '">';

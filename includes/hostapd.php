@@ -83,7 +83,7 @@ function DisplayHostAPDConfig()
                 <div class="tab-pane fade in active" id="basic">
 
                 <h4><?php echo _("Basic settings") ;?></h4>
-                <?php echo CSRFToken() ?>
+                <?php echo CSRFTokenFieldTag() ?>
                 <div class="row">
                   <div class="form-group col-md-4">
                     <label for="cbxinterface"><?php echo _("Interface") ;?></label>
