@@ -91,12 +91,14 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- Custom CSS -->
     <link href="<?php echo $theme_url; ?>" title="main" rel="stylesheet">
 
-    <link rel="shortcut icon" type="image/png" href="/favicon.png?ver=2.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/png" href="/dist/icons/favicon.png?ver=2.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/dist/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dist/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="/dist/icons/favicon.png" />
     <link rel="manifest" href="/dist/icons/site.webmanifest">
-    <link rel="mask-icon" href="/dist/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="mask-icon" href="/dist/icons/safari-pinned-tab.svg" color="#b91d47">
+    <meta name="msapplication-config" content="/dist/icons/browserconfig.xml">
     <meta name="msapplication-TileColor" content="#b91d47">
     <meta name="theme-color" content="#ffffff">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
