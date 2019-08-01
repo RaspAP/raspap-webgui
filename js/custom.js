@@ -145,6 +145,10 @@ $(document).on("click", ".js-remove-dhcp-static-lease", function(e) {
     $(this).parents(".js-dhcp-static-lease-row").remove();
 });
 
+$(document).on("submit", ".js-dhcp-settings-form", function(e) {
+    $(".js-add-dhcp-static-lease").trigger("click");
+});
+
 function setupBtns() {
     $('#btnSummaryRefresh').click(function(){getAllInterfaces();});
 
