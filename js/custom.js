@@ -122,6 +122,29 @@ function applyNetworkSettings() {
         });
 }
 
+$(document).on("click", ".js-add-dhcp-static-lease", function(e) {
+    e.preventDefault();
+    var container = $(".js-new-dhcp-static-lease");
+    var mac = $("input[name=mac]", container).val().trim();
+    var ip  = $("input[name=ip]", container).val().trim();
+    if (mac == "" || ip == "") {
+        return;
+    }
+
+    var row = $("#js-dhcp-static-lease-row").html()
+        .replace("{{ mac }}", mac)
+        .replace("{{ ip }}", ip);
+    $(".js-dhcp-static-lease-container").append(row);
+
+    $("input[name=mac]", container).val("");
+    $("input[name=ip]", container).val("");
+});
+
+$(document).on("click", ".js-remove-dhcp-static-lease", function(e) {
+    e.preventDefault();
+    $(this).parents(".js-dhcp-static-lease-row").remove();
+});
+
 function setupBtns() {
     $('#btnSummaryRefresh').click(function(){getAllInterfaces();});
 

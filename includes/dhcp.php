@@ -47,7 +47,16 @@ function DisplayDHCPConfig()
                     $config .= $_POST['RangeLeaseTime'];
                 }
 
-                $config .= $_POST['RangeLeaseTimeUnits'];
+                $config .= $_POST['RangeLeaseTimeUnits'].PHP_EOL;
+
+                for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
+                    $mac = trim($_POST["static_leases"]["mac"][$i]);
+                    $ip  = trim($_POST["static_leases"]["ip"][$i]);
+                    if ($mac != "" && $ip != "") {
+                        $config .= "dhcp-host=$mac,$ip".PHP_EOL;
+                    }
+                }
+
                 file_put_contents("/tmp/dhcpddata", $config);
                 system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);
             } else {
@@ -114,6 +123,9 @@ function DisplayDHCPConfig()
     $RangeEnd = $arrRange[1];
     $RangeMask = $arrRange[2];
     $leaseTime = $arrRange[3];
+    $dhcpHost = $conf["dhcp-host"];
+    $dhcpHost = empty($dhcpHost) ? [] : $dhcpHost;
+    $dhcpHost = is_array($dhcpHost) ? $dhcpHost : [ $dhcpHost ];
 
     $hselected = '';
     $mselected = '';
@@ -144,10 +156,13 @@ function DisplayDHCPConfig()
         <!-- /.panel-heading -->
         <div class="panel-body">
         <p><?php $status->showMessages(); ?></p>
+        <form method="POST" action="?page=dhcpd_conf">
+        <?php CSRFToken() ?>
         <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#server-settings" data-toggle="tab"><?php echo _("Server settings"); ?></a>
                 </li>
+                <li><a href="#static-leases" data-toggle="tab"><?php echo _("Static Leases") ?></a></li>
                 <li><a href="#client-list" data-toggle="tab"><?php echo _("Client list"); ?></a>
                 </li>
             </ul>
@@ -155,8 +170,6 @@ function DisplayDHCPConfig()
         <div class="tab-content">
     <div class="tab-pane fade in active" id="server-settings">
     <h4>DHCP server settings</h4>
-    <form method="POST" action="?page=dhcpd_conf">
-    <?php CSRFToken() ?>
     <div class="row">
       <div class="form-group col-md-4">
         <label for="code">Interface</label>
@@ -216,7 +229,6 @@ foreach ($interfaces as $inet) {
         echo'<input type="submit" class="btn btn-success" value="' .  _("Start dnsmasq") . '" name="startdhcpd" />';
     }
     ?>
-    </form>
     </div><!-- /.tab-pane -->
 
     <div class="tab-pane fade in" id="client-list">
@@ -256,7 +268,65 @@ foreach ($leases as $lease) {
       </div><!-- /.panel -->
     </div><!-- /.col-lg-6 -->
     </div><!-- /.tab-pane -->
+
+    <div class="tab-pane fade in" id="static-leases">
+        <div class="dhcp-static-leases js-dhcp-static-lease-container">
+            <?php foreach ($dhcpHost as $host): ?>
+            <?php list($mac, $ip) = array_map("trim", explode(",", $host)); ?>
+            <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" name="static_leases[mac][]" value="<?php echo htmlspecialchars($mac, ENT_QUOTES) ?>" placeholder="<?php echo _("MAC address") ?>" class="form-control">
+                </div>
+                <div class="col-md-5 col-xs-4">
+                    <input type="text" name="static_leases[ip][]" value="<?php echo htmlspecialchars($ip, ENT_QUOTES) ?>" placeholder="<?php echo _("IP address") ?>" class="form-control">
+                </div>
+                <div class="col-md-2 col-xs-3">
+                    <button type="button" class="btn btn-danger js-remove-dhcp-static-lease"><?php echo _("Remove") ?></button>
+                </div>
+            </div>
+            <?php endforeach ?>
+        </div>
+
+        <h5><?php echo _("Add static DHCP lease") ?></h5>
+        <div class="row dhcp-static-lease-row js-new-dhcp-static-lease">
+            <div class="col-md-5 col-xs-5">
+                <input type="text" name="mac" value="" placeholder="<?php echo _("MAC address") ?>" class="form-control" autofocus="autofocus">
+            </div>
+            <div class="col-md-5 col-xs-4">
+                <input type="text" name="ip" value="" placeholder="<?php echo _("IP address") ?>" class="form-control">
+            </div>
+            <div class="col-md-2 col-xs-3">
+                <button type="button" class="btn btn-success js-add-dhcp-static-lease"><?php echo _("Add") ?></button>
+            </div>
+        </div>
+
+        <template id="js-dhcp-static-lease-row">
+            <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
+                <div class="col-md-5 col-xs-5">
+                    <input type="text" name="static_leases[mac][]" value="{{ mac }}" placeholder="<?php echo _("MAC address") ?>" class="form-control">
+                </div>
+                <div class="col-md-5 col-xs-4">
+                    <input type="text" name="static_leases[ip][]" value="{{ ip }}" placeholder="<?php echo _("IP address") ?>" class="form-control">
+                </div>
+                <div class="col-md-2 col-xs-3">
+                    <button type="button" class="btn btn-warning js-remove-dhcp-static-lease"><?php echo _("Remove") ?></button>
+                </div>
+            </div>
+        </template>
+
+        <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
+        <?php
+
+        if ($dnsmasq_state) {
+            echo '<input type="submit" class="btn btn-warning" value="' . _("Stop dnsmasq") . '" name="stopdhcpd" />';
+        } else {
+            echo'<input type="submit" class="btn btn-success" value="' .  _("Start dnsmasq") . '" name="startdhcpd" />';
+        }
+        ?>
+    </div>
+
     </div><!-- /.tab-content -->
+    </form>
     </div><!-- ./ Panel body -->
     <div class="panel-footer"> <?php echo _("Information provided by Dnsmasq"); ?></div>
         </div><!-- /.panel-primary -->
