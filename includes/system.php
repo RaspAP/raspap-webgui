@@ -200,7 +200,7 @@ if (isset($_POST['system_shutdown'])) {
 
     <div role="tabpanel" class="tab-pane" id="language">
       <h4><?php echo _("Language settings") ;?></h4>
-        <?php CSRFToken() ?>
+        <?php echo CSRFToken() ?>
       <div class="row">
         <div class="form-group col-md-4">
           <label for="code"><?php echo _("Select a language"); ?></label>

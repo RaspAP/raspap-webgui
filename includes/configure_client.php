@@ -182,7 +182,7 @@ function DisplayWPAConfig()
             </div> 
 
             <form method="POST" action="?page=wpa_conf" name="wpa_conf_form">
-                <?php CSRFToken() ?>
+                <?php echo CSRFToken() ?>
               <input type="hidden" name="client_settings" ?>
               <script>
                 function showPassword(index) {

@@ -70,7 +70,7 @@ function ensureCSRFSessionToken()
 function CSRFToken()
 {
     $token = htmlspecialchars($_SESSION['csrf_token']);
-    echo '<input id="csrf_token" type="hidden" name="csrf_token" value="' . $token . '">';
+    return '<input id="csrf_token" type="hidden" name="csrf_token" value="' . $token . '">';
 }
 
 /**

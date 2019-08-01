@@ -40,7 +40,7 @@ function DisplayAuthConfig($username, $password)
         <div class="panel-body">
           <p><?php $status->showMessages(); ?></p>
           <form role="form" action="?page=auth_conf" method="POST">
-            <?php CSRFToken() ?>
+            <?php echo CSRFToken() ?>
             <div class="row">
               <div class="form-group col-md-4">
                 <label for="username"><?php echo _("Username"); ?></label>
