@@ -227,6 +227,13 @@ if ($arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssi
                 </div>
                 <div class="row">
                   <div class="form-group col-md-4">
+                    <label for="max_num_sta"><?php echo _("Maximum number of clients") ?></label>
+                    <input type="text" id="max_num_sta" class="form-control" name="max_num_sta" placeholder="2007" value="<?php echo $_POST["max_num_sta"] ?>" aria-describedby="max_num_sta_help">
+                    <span id="max_num_sta_help" class="help-block">Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies.</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-4">
                   <label for="cbxcountries"><?php echo _("Country Code"); ?></label>
                   <input type="hidden" id="selected_country" value="<?php echo htmlspecialchars($arrConfig['country_code'], ENT_QUOTES); ?>">
                   <select  class="form-control" id="cbxcountries" name="country_code">
@@ -608,6 +615,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $good_input = false;
     }
 
+    $_POST['max_num_sta'] = (int) $_POST['max_num_sta'];
+    $_POST['max_num_sta'] = $_POST['max_num_sta'] > 2007 ? 2007 : $_POST['max_num_sta'];
+    $_POST['max_num_sta'] = $_POST['max_num_sta'] < 1 ? null : $_POST['max_num_sta'];
+
     if ($good_input) {
         // Fixed values
         $config = 'driver=nl80211'.PHP_EOL;
@@ -637,6 +648,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $config.= 'wpa_pairwise='.$_POST['wpa_pairwise'].PHP_EOL;
         $config.= 'country_code='.$_POST['country_code'].PHP_EOL;
         $config.= 'ignore_broadcast_ssid='.$ignore_broadcast_ssid.PHP_EOL;
+        if (isset($_POST['max_num_sta'])) {
+            $config.= 'max_num_sta='.$_POST['max_num_sta'].PHP_EOL;
+        }
 
         file_put_contents("/tmp/hostapddata", $config);
         system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $return);
