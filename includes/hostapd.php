@@ -11,7 +11,12 @@ function DisplayHostAPDConfig()
     $status = new StatusMessages();
     $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
     $arrConfig = array();
-    $arr80211Standard = array('a','b','g','n');
+    $arr80211Standard = [
+        'a' => '802.11a - 5 GHz',
+        'b' => '802.11b - 2.4 GHz',
+        'g' => '802.11g - 2.4 GHz',
+        'n' => '802.11n - 2.4 GHz'
+    ];
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
