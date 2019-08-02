@@ -59,3 +59,13 @@ pre.unstyled {
     background-color: transparent;
     padding: 0;
 }
+
+.dhcp-static-leases {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.dhcp-static-lease-row {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
