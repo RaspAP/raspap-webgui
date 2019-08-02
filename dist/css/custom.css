@@ -54,6 +54,12 @@
     height:300px;
 }
 
+pre.unstyled {
+    border-width: 0;
+    background-color: transparent;
+    padding: 0;
+}
+
 .dhcp-static-leases {
 	margin-top: 1em;
 	margin-bottom: 1em;
