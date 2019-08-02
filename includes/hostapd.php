@@ -51,11 +51,7 @@ function DisplayHostAPDConfig()
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
     exec('pidof hostapd | wc -l', $hostapdstatus);
 
-    if ($hostapdstatus[0] == 0) {
-        $status->addMessage('HostAPD is not running', 'warning');
-    } else {
-        $status->addMessage('HostAPD is running', 'success');
-    }
+    $serviceStatus = $hostapdstatus[0] == 0 ? "stopped" : "running";
 
     foreach ($hostapdconfig as $hostapdconfigline) {
         if (strlen($hostapdconfigline) === 0) {
@@ -72,7 +68,10 @@ function DisplayHostAPDConfig()
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-primary">
-        <div class="panel-heading"><i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?></div>
+        <div class="panel-heading">
+            <i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?>
+            <span class="label pull-right service-status-<?php echo $serviceStatus ?>">hostapd <?php echo _($serviceStatus) ?></span>
+        </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
       <p><?php $status->showMessages(); ?></p>

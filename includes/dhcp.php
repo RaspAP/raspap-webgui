@@ -99,13 +99,9 @@ function DisplayDHCPConfig()
         } else {
             error_log('CSRF violation');
         }
-    } else {
-        if ($dnsmasq_state) {
-            $status->addMessage('Dnsmasq is running', 'success');
-        } else {
-            $status->addMessage('Dnsmasq is not running', 'warning');
-        }
     }
+
+    $serviceStatus = $dnsmasq_state ? "running" : "stopped";
 
     exec('cat '. RASPI_DNSMASQ_CONFIG, $return);
     $conf = ParseConfig($return);
@@ -140,7 +136,10 @@ function DisplayDHCPConfig()
   <div class="row">
   <div class="col-lg-12">
       <div class="panel panel-primary">
-      <div class="panel-heading"><i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP"); ?></div>
+      <div class="panel-heading">
+        <i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP"); ?>
+        <span class="label pull-right service-status-<?php echo $serviceStatus ?>">dnsmasq <?php echo _($serviceStatus) ?></span>
+      </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
         <p><?php $status->showMessages(); ?></p>
