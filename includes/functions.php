@@ -145,9 +145,17 @@ function ParseConfig($arrConfig)
     $config = array();
     foreach ($arrConfig as $line) {
         $line = trim($line);
-        if ($line != "" && $line[0] != "#") {
-            $arrLine = explode("=", $line);
-            $config[$arrLine[0]] = ( count($arrLine) > 1 ? $arrLine[1] : true );
+        if ($line == "" || $line[0] == "#") { continue; }
+
+        list($option, $value) = array_map("trim", explode("=", $line, 2));
+
+        if (empty($config[$option])) {
+            $config[$option] = $value ?: true;
+        } else {
+            if (!is_array($config[$option])) {
+                $config[$option] = [ $config[$option] ];
+            }
+            $config[$option][] = $value;
         }
     }
     return $config;
