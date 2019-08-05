@@ -82,6 +82,7 @@ function DisplayWPAConfig()
                     fwrite($wpa_file, "network={".PHP_EOL);
                     fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
                     fwrite($wpa_file, "\tkey_mgmt=NONE".PHP_EOL);
+		    fwrite($wpa_file, "\tscan_ssid=1".PHP_EOL);
                     if (array_key_exists('priority', $network)) {
                         fwrite($wpa_file, "\tpriority=".$network['priority'].PHP_EOL);
                     }
