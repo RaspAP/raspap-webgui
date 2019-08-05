@@ -522,7 +522,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     // someone is up to something if they fail. Fail silently.
     if (!(array_key_exists($_POST['wpa'], $wpa_array) &&
       array_key_exists($_POST['wpa_pairwise'], $enc_types) &&
-      in_array($_POST['hw_mode'], $modes))) {
+      array_key_exists($_POST['hw_mode'], $modes))) {
         error_log("Attempting to set hostapd config with wpa='".$_POST['wpa']."', wpa_pairwise='".$_POST['wpa_pairwise']."' and hw_mode='".$_POST['hw_mode']."'");  // FIXME: log injection
         return false;
     }
