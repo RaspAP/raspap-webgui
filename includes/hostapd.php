@@ -627,7 +627,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'hw_mode=g'.PHP_EOL;
             $config.= 'ieee80211n=1'.PHP_EOL;
             // Enable basic Quality of service
-            $config.= 'wme_enabled=1'.PHP_EOL;
+            $config.= 'wmm_enabled=1'.PHP_EOL;
         } else {
             $config.= 'hw_mode='.$_POST['hw_mode'].PHP_EOL;
             $config.= 'ieee80211n=0'.PHP_EOL;
