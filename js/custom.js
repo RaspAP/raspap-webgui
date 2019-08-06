@@ -175,11 +175,7 @@ function updateCSRFTokens(event, xhr, settings) {
     }
 }
 
-$(document)
-    .ajaxSend(setCSRFTokenHeader)
-    .ajaxComplete(updateCSRFTokens);
-
-$().ready(function(){
+function contentLoaded() {
     pageCurrent = window.location.href.split("?")[1].split("=")[1];
     pageCurrent = pageCurrent.replace("#","");
     $('#side-menu').metisMenu();
@@ -190,6 +186,9 @@ $().ready(function(){
             setupBtns();
         break;
     }
-});
+}
 
-
+$(document)
+    .ajaxSend(setCSRFTokenHeader)
+    .ajaxComplete(updateCSRFTokens)
+    .ready(contentLoaded);
