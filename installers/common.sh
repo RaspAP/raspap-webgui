@@ -131,9 +131,9 @@ function create_hostapd_scripts() {
     sudo mkdir $raspap_dir/hostapd || install_error "Unable to create directory '$raspap_dir/hostapd'"
 
     # Move logging shell scripts 
-    sudo mv "$webroot_dir/installers/"*log.sh "$raspap_dir/hostapd" || install_error "Unable to move logging scripts"
+    sudo cp "$webroot_dir/installers/"*log.sh "$raspap_dir/hostapd" || install_error "Unable to move logging scripts"
     # Move service control shell scripts
-    sudo mv "$webroot_dir/installers/"service*.sh "$raspap_dir/hostapd" || install_error "Unable to move service control scripts"
+    sudo cp "$webroot_dir/installers/"service*.sh "$raspap_dir/hostapd" || install_error "Unable to move service control scripts"
     # Make enablelog.sh and disablelog.sh not writable by www-data group.
     sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || install_error "Unable change owner and/or group."
     sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions."
@@ -149,10 +149,6 @@ function download_latest_files() {
     install_log "Cloning latest files from github"
     git clone --depth 1 https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
-
-    # Move icons to webroot
-    echo -n "Installing high-res favicons"
-    sudo mv $webroot_dir/dist/icons/* $webroot_dir || install_error "Unable to move icons to web root"
 }
 
 # Sets files ownership in web root directory
@@ -200,7 +196,7 @@ function move_config_file() {
     fi
 
     install_log "Moving configuration file to '$raspap_dir'"
-    sudo mv "$webroot_dir"/raspap.php "$raspap_dir" || install_error "Unable to move files to '$raspap_dir'"
+    sudo cp "$webroot_dir"/raspap.php "$raspap_dir" || install_error "Unable to move files to '$raspap_dir'"
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || install_error "Unable to change file ownership for '$raspap_dir'"
 }
 
@@ -210,10 +206,10 @@ function default_configuration() {
     if [ -f /etc/default/hostapd ]; then
         sudo mv /etc/default/hostapd /tmp/default_hostapd.old || install_error "Unable to remove old /etc/default/hostapd file"
     fi
-    sudo mv $webroot_dir/config/default_hostapd /etc/default/hostapd || install_error "Unable to move hostapd defaults file"
-    sudo mv $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
-    sudo mv $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
-    sudo mv $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
+    sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || install_error "Unable to move hostapd defaults file"
+    sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
+    sudo cp $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
+    sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
 
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script
@@ -241,7 +237,7 @@ function default_configuration() {
     read answer
     if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
         echo -n "Enabling RaspAP daemon. Disable with: sudo systemctl disable raspap.service"
-        sudo mv $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
+        sudo cp $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
         sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
     fi
 }
