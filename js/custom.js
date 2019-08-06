@@ -160,7 +160,14 @@ function setupBtns() {
     });
 }
 
-function updateCSRFToken(xhr, settings) {
+function setCSRFTokenHeader(event, xhr, settings) {
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    if (/^(POST|PATCH|PUT|DELETE)$/i.test(settings.type)) {
+        xhr.setRequestHeader("X-CSRF-Token", csrfToken);
+    }
+}
+
+function updateCSRFTokens(event, xhr, settings) {
     var newToken = xhr.getResponseHeader("X-CSRF-Token");
     if (newToken) {
         $('meta[name=csrf_token]').attr('content', newToken);
@@ -168,15 +175,9 @@ function updateCSRFToken(xhr, settings) {
     }
 }
 
-$.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-        var csrfToken = $('meta[name=csrf_token]').attr('content');
-        if (/^(POST|PATCH|PUT|DELETE)$/i.test(settings.type)) {
-            xhr.setRequestHeader("X-CSRF-Token", csrfToken);
-        }
-    },
-    ajaxComplete: updateCSRFToken
-});
+$(document)
+    .ajaxSend(setCSRFTokenHeader)
+    .ajaxComplete(updateCSRFTokens);
 
 $().ready(function(){
     pageCurrent = window.location.href.split("?")[1].split("=")[1];
