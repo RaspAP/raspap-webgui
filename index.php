@@ -18,7 +18,7 @@
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
 
-session_start();
+require('includes/csrf.php');
 
 include_once('includes/config.php');
 include_once(RASPI_CONFIG.'/raspap.php');
@@ -38,12 +38,6 @@ include_once('includes/about.php');
 
 $output = $return = 0;
 $page = $_GET['page'];
-
-if (csrfValidateRequest() && !CSRFValidate()) {
-  handleInvalidCSRFToken();
-}
-
-ensureCSRFSessionToken();
 
 if (!isset($_COOKIE['theme'])) {
     $theme = "custom.css";

@@ -160,13 +160,22 @@ function setupBtns() {
     });
 }
 
+function updateCSRFToken(xhr, settings) {
+    var newToken = xhr.getResponseHeader("X-CSRF-Token");
+    if (newToken) {
+        $('meta[name=csrf_token]').attr('content', newToken);
+        $('[name=csrf_token]:input').attr('value', newToken);
+    }
+}
+
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
         var csrfToken = $('meta[name=csrf_token]').attr('content');
         if (/^(POST|PATCH|PUT|DELETE)$/i.test(settings.type)) {
             xhr.setRequestHeader("X-CSRF-Token", csrfToken);
         }
-    }
+    },
+    ajaxComplete: updateCSRFToken
 });
 
 $().ready(function(){
