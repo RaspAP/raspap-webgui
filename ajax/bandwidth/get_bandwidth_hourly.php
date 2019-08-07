@@ -1,6 +1,6 @@
 <?php 
 
-require('includes/csrf.php');
+require('../../includes/csrf.php');
 
 if (filter_input(INPUT_GET, 'tu') == 'h') {
 

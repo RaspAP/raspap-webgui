@@ -1,7 +1,7 @@
 <?php
 
-include_once('includes/functions.php');
-include_once('includes/session.php');
+include_once('functions.php');
+include_once('session.php');
 
 if (csrfValidateRequest() && !CSRFValidate()) {
   handleInvalidCSRFToken();

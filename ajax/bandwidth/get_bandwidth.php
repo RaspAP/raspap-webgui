@@ -1,6 +1,6 @@
 <?php
 
-require('includes/csrf.php');
+require('../../includes/csrf.php');
 
 require_once '../../includes/config.php';
 require_once RASPI_CONFIG.'/raspap.php';
