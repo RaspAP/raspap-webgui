@@ -236,7 +236,8 @@ function default_configuration() {
     echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
     read answer
     if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
-        echo -n "Enabling RaspAP daemon. Disable with: sudo systemctl disable raspap.service"
+        install_log "Enabling RaspAP daemon"
+        echo "Disable with: sudo systemctl disable raspap.service"
         sudo cp $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
         sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
     fi
