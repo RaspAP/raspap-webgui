@@ -152,10 +152,6 @@ if (isset($_POST['system_shutdown'])) {
 }
 ?>
 
-  <div class="row">
-  <div class="col-md-12">
-  <div class="panel panel-default">
-  <div class="panel-body">
   <p><?php $status->showMessages(); ?></p>
   <form role="form" action="?page=system_info" method="POST">
   <ul class="nav nav-tabs" role="tablist">
@@ -219,11 +215,8 @@ if (isset($_POST['system_shutdown'])) {
       </div>
     </div>
 
-    </div><!-- /.systemtabcontent -->
+  </div><!-- /.systemtabcontent -->
 
-    </div><!-- /.panel-default -->
-    </div><!-- /.col-md-6 -->
-    </div><!-- /.row -->
   </div><!-- /.panel-body -->
   </form>
   </div><!-- /.panel-primary -->
