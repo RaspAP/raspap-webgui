@@ -167,14 +167,6 @@ function setCSRFTokenHeader(event, xhr, settings) {
     }
 }
 
-function updateCSRFTokens(event, xhr, settings) {
-    var newToken = xhr.getResponseHeader("X-CSRF-Token");
-    if (newToken) {
-        $('meta[name=csrf_token]').attr('content', newToken);
-        $('[name=csrf_token]:input').attr('value', newToken);
-    }
-}
-
 function contentLoaded() {
     pageCurrent = window.location.href.split("?")[1].split("=")[1];
     pageCurrent = pageCurrent.replace("#","");
@@ -190,5 +182,4 @@ function contentLoaded() {
 
 $(document)
     .ajaxSend(setCSRFTokenHeader)
-    .ajaxComplete(updateCSRFTokens)
     .ready(contentLoaded);

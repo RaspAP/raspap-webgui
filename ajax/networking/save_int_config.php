@@ -1,6 +1,6 @@
 <?php
 
-    require('includes/csrf.php');
+    require('../../includes/csrf.php');
 
     include_once('../../includes/config.php');
     include_once('../../includes/functions.php');
