@@ -145,7 +145,7 @@ function DisplayDHCPConfig()
         <div class="panel-body">
         <p><?php $status->showMessages(); ?></p>
         <form method="POST" action="?page=dhcpd_conf" class="js-dhcp-settings-form">
-        <?php CSRFToken() ?>
+        <?php echo CSRFTokenFieldTag() ?>
         <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#server-settings" data-toggle="tab"><?php echo _("Server settings"); ?></a>
