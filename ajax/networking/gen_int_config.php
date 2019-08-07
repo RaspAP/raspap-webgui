@@ -1,9 +1,11 @@
 <?php
-session_start();
+
+require('includes/csrf.php');
+
 include_once('../../includes/config.php');
 include_once('../../includes/functions.php');
 
-if(isset($_POST['generate']) && isset($_POST['csrf_token']) && CSRFValidate()) {
+if(isset($_POST['generate'])) {
     $cnfNetworking = array_diff(scandir(RASPI_CONFIG_NETWORKING, 1),array('..','.','dhcpcd.conf'));
     $cnfNetworking = array_combine($cnfNetworking,$cnfNetworking);
     $strConfFile = "";

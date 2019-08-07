@@ -16,8 +16,6 @@ function DisplayNetworkingConfig()
     foreach ($interfaces as $interface) {
         exec("ip a show $interface", $$interface);
     }
-
-    CSRFToken();
 ?>
 
 <div class="row">

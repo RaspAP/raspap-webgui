@@ -18,7 +18,7 @@
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
 
-session_start();
+require('includes/csrf.php');
 
 include_once('includes/config.php');
 include_once(RASPI_CONFIG.'/raspap.php');
@@ -39,15 +39,6 @@ include_once('includes/about.php');
 $output = $return = 0;
 $page = $_GET['page'];
 
-if (empty($_SESSION['csrf_token'])) {
-    if (function_exists('mcrypt_create_iv')) {
-        $_SESSION['csrf_token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
-    } else {
-        $_SESSION['csrf_token'] = bin2hex(openssl_random_pseudo_bytes(32));
-    }
-}
-$csrf_token = $_SESSION['csrf_token'];
-
 if (!isset($_COOKIE['theme'])) {
     $theme = "custom.css";
 } else {
@@ -60,6 +51,7 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <?php echo CSRFMetaTag() ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">

@@ -55,16 +55,31 @@ function safefilerewrite($fileName, $dataToSave)
 }
 
 /**
+* Saves a CSRF token in the session
+*/
+function ensureCSRFSessionToken()
+{
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+/**
 *
 * Add CSRF Token to form
 *
 */
-function CSRFToken()
+function CSRFTokenFieldTag()
 {
-?>
-<input id="csrf_token" type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES);
-; ?>" />
-<?php
+    $token = htmlspecialchars($_SESSION['csrf_token']);
+    return '<input type="hidden" name="csrf_token" value="' . $token . '">';
+}
+
+/**
+* Retuns a CSRF meta tag (for use with xhr, for example)
+*/
+function CSRFMetaTag()
+{
+    $token = htmlspecialchars($_SESSION['csrf_token']);
+    return '<meta name="csrf_token" content="' . $token . '">';
 }
 
 /**
@@ -74,12 +89,44 @@ function CSRFToken()
 */
 function CSRFValidate()
 {
-    if (hash_equals($_POST['csrf_token'], $_SESSION['csrf_token'])) {
+    $post_token   = $_POST['csrf_token'];
+    $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'];
+
+    if (empty($post_token) && empty($header_token)) {
+        return false;
+    }
+
+    $request_token = $post_token;
+    if (empty($post_token)) {
+        $request_token = $header_token;
+    }
+
+    if (hash_equals($_SESSION['csrf_token'], $request_token)) {
         return true;
     } else {
         error_log('CSRF violation');
         return false;
     }
+}
+
+/**
+* Should the request be CSRF-validated?
+*/
+function csrfValidateRequest()
+{
+  $request_method = strtolower($_SERVER['REQUEST_METHOD']);
+  return in_array($request_method, [ "post", "put", "patch", "delete" ]);
+}
+
+/**
+* Handle invalid CSRF
+*/
+function handleInvalidCSRFToken()
+{
+    header('HTTP/1.1 500 Internal Server Error');
+    header('Content-Type: text/plain');
+    echo 'Invalid CSRF token';
+    exit;
 }
 
 /**

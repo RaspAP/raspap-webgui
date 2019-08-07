@@ -1,8 +1,10 @@
 <?php
-session_start();
+
+require('includes/csrf.php');
+
 include_once('../../includes/functions.php');
 
-if(isset($_POST['interface']) && isset($_POST['csrf_token']) && CSRFValidate()) {
+if(isset($_POST['interface'])) {
     $int = preg_replace('/[^a-z0-9]/','',$_POST['interface']);
     exec('ip a s '.$int,$intOutput,$intResult);
     $intOutput = array_map('htmlentities', $intOutput);

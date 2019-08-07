@@ -63,13 +63,9 @@ function DisplaySystem()
     $status = new StatusMessages();
 
     if (isset($_POST['SaveLanguage'])) {
-        if (CSRFValidate()) {
-            if (isset($_POST['locale'])) {
-                $_SESSION['locale'] = $_POST['locale'];
-                $status->addMessage('Language setting saved', 'success');
-            }
-        } else {
-            error_log('CSRF violation');
+        if (isset($_POST['locale'])) {
+            $_SESSION['locale'] = $_POST['locale'];
+            $status->addMessage('Language setting saved', 'success');
         }
     }
 
@@ -204,7 +200,7 @@ if (isset($_POST['system_shutdown'])) {
 
     <div role="tabpanel" class="tab-pane" id="language">
       <h4><?php echo _("Language settings") ;?></h4>
-        <?php CSRFToken() ?>
+        <?php echo CSRFTokenFieldTag() ?>
       <div class="row">
         <div class="form-group col-md-4">
           <label for="code"><?php echo _("Select a language"); ?></label>

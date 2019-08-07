@@ -1,4 +1,7 @@
 <?php 
+
+require('includes/csrf.php');
+
 if (filter_input(INPUT_GET, 'tu') == 'h') {
 
 	header('X-Content-Type-Options: nosniff');

@@ -19,7 +19,7 @@ function createNetmaskAddr(bitCount) {
 }
 
 function loadSummary(strInterface) {
-    $.post('/ajax/networking/get_ip_summary.php',{interface:strInterface,csrf_token:csrf},function(data){
+    $.post('/ajax/networking/get_ip_summary.php',{interface:strInterface},function(data){
         jsonData = JSON.parse(data);
         console.log(jsonData);
         if(jsonData['return'] == 0) {
@@ -50,7 +50,7 @@ function setupTabs() {
 }
 
 function loadCurrentSettings(strInterface) {
-    $.post('/ajax/networking/get_int_config.php',{interface:strInterface,csrf_token:csrf},function(data){
+    $.post('/ajax/networking/get_int_config.php',{interface:strInterface},function(data){
         jsonData = JSON.parse(data);
         $.each(jsonData['output'],function(i,v) {
             var int = v['interface'];
@@ -102,7 +102,6 @@ function saveNetworkSettings(int) {
             }
         });
         arrFormData['interface'] = int;
-        arrFormData['csrf_token'] = csrf;
         $.post('/ajax/networking/save_int_config.php',arrFormData,function(data){
             //console.log(data);
             var jsonData = JSON.parse(data);
@@ -113,7 +112,6 @@ function saveNetworkSettings(int) {
 function applyNetworkSettings() {
         var int = $(this).data('int');
         arrFormData = {};
-        arrFormData['csrf_token'] = csrf;
         arrFormData['generate'] = '';
         $.post('/ajax/networking/gen_int_config.php',arrFormData,function(data){
             console.log(data);
@@ -162,8 +160,22 @@ function setupBtns() {
     });
 }
 
-$().ready(function(){
-    csrf = $('#csrf_token').val();
+function setCSRFTokenHeader(event, xhr, settings) {
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    if (/^(POST|PATCH|PUT|DELETE)$/i.test(settings.type)) {
+        xhr.setRequestHeader("X-CSRF-Token", csrfToken);
+    }
+}
+
+function updateCSRFTokens(event, xhr, settings) {
+    var newToken = xhr.getResponseHeader("X-CSRF-Token");
+    if (newToken) {
+        $('meta[name=csrf_token]').attr('content', newToken);
+        $('[name=csrf_token]:input').attr('value', newToken);
+    }
+}
+
+function contentLoaded() {
     pageCurrent = window.location.href.split("?")[1].split("=")[1];
     pageCurrent = pageCurrent.replace("#","");
     $('#side-menu').metisMenu();
@@ -174,6 +186,9 @@ $().ready(function(){
             setupBtns();
         break;
     }
-});
+}
 
-
+$(document)
+    .ajaxSend(setCSRFTokenHeader)
+    .ajaxComplete(updateCSRFTokens)
+    .ready(contentLoaded);

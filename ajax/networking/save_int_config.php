@@ -1,8 +1,10 @@
 <?php
-    session_start();
+
+    require('includes/csrf.php');
+
     include_once('../../includes/config.php');
     include_once('../../includes/functions.php');
-    if(isset($_POST['interface']) && isset($_POST['csrf_token']) && CSRFValidate()) {
+    if(isset($_POST['interface'])) {
         $int = $_POST['interface'];
         $cfg = [];
         $file = $int.".ini";
