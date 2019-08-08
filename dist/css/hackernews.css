@@ -81,3 +81,32 @@ h4 {
     width: 100%;
     height: 300px;
 }
+
+.service-status-running,
+.service-status-stopped {
+    background-color: #fff;
+    color: #333;
+    text-transform: uppercase;
+    line-height: inherit;
+}
+.service-status-running:before,
+.service-status-stopped:before {
+    display: inline-block;
+    height: 18px;
+    width: 16px;
+    content: "\2022";
+    font-size: 1.5em;
+    color: green;
+    line-height: 16px;
+    vertical-align: bottom;
+    margin-right: 2px;
+}
+.service-status-stopped:before {
+    color: red;
+    animation: flash 1s linear infinite;
+}
+@keyframes flash {
+  50% {
+    opacity: 0;
+  }
+}
