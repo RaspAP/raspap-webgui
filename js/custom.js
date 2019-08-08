@@ -180,6 +180,20 @@ function contentLoaded() {
     }
 }
 
+function loadWifiStations(refresh) {
+    return function() {
+        var complete = function() { $(this).removeClass('loading-spinner'); }
+        var qs = refresh === true ? '?refresh' : '';
+        $('.js-wifi-stations')
+            .addClass('loading-spinner')
+            .empty()
+            .load('/ajax/networking/wifi_stations.php'+qs, complete);
+    };
+}
+
+$(".js-reload-wifi-stations").on("click", loadWifiStations(true));
+
 $(document)
     .ajaxSend(setCSRFTokenHeader)
-    .ready(contentLoaded);
+    .ready(contentLoaded)
+    .ready(loadWifiStations());
