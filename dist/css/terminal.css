@@ -125,6 +125,12 @@ hr {
   border-bottom: 1px solid #33ff00;
 }
 
+.btn-default.active, .btn-default.active:focus, .btn-default.active:hover {
+  color: #33ff00;
+  background-color: #000;
+}
+
+
 .btn-primary.btn-outline,.btn-warning,.btn-default,.btn-danger {
   color: #33ff00;
   border-color: #33ff00;
@@ -280,4 +286,16 @@ tspan, rect {
 
 path {
   stroke: #33ff00;
+}
+
+span.service-status-running {
+  color: #000;
+  font-size: 10pt;
+  text-transform: uppercase;
+  line-height: inherit;
+}
+
+pre {
+  background-color: #000;
+  border: #000;
 }
