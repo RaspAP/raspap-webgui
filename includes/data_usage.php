@@ -86,8 +86,8 @@ echo '                            <option value="' , htmlentities($interface, EN
             </div><!-- /.tabsBandwidth -->
 
            </div><!-- /.panel-body -->
-         </div><!-- /.panel-primary -->
-       <div class="panel-footer"><?php echo _("Information provided by vnstat"); ?></div>
+         <div class="panel-footer"><?php echo _("Information provided by vnstat"); ?></div>
+       </div><!-- /.panel-primary -->
       </div><!-- /.panel-primary -->
     </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->

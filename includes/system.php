@@ -217,9 +217,8 @@ if (isset($_POST['system_shutdown'])) {
 
   </div><!-- /.systemtabcontent -->
 
-  </div><!-- /.panel-body -->
   </form>
-  </div><!-- /.panel-primary -->
+  </div><!-- /.panel-body -->
   <div class="panel-footer"></div>
   </div><!-- /.panel-primary -->
   </div><!-- /.col-lg-12 -->
