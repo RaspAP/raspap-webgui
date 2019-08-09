@@ -220,6 +220,7 @@ foreach ($interfaces as $inet) {
 
     <div class="tab-pane fade in" id="client-list">
     <h4>Client list</h4>
+    <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-default">
       <div class="panel-heading"><?php echo _("Active DHCP leases"); ?></div>
@@ -253,7 +254,8 @@ foreach ($leases as $lease) {
         </div><!-- /.table-responsive -->
       </div><!-- /.panel-body -->
       </div><!-- /.panel -->
-    </div><!-- /.col-lg-6 -->
+    </div><!-- /.col-lg-12 -->
+    </div><!-- /.row -->
     </div><!-- /.tab-pane -->
 
     <div class="tab-pane fade in" id="static-leases">

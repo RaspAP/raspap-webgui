@@ -181,7 +181,7 @@ function DisplayWPAConfig()
               <a href=".?<?php echo htmlspecialchars($_SERVER['QUERY_STRING'], ENT_QUOTES); ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update"><?php echo _("Rescan"); ?></a>
             </div> 
 
-            <form method="POST" action="?page=wpa_conf" name="wpa_conf_form">
+            <form method="POST" action="?page=wpa_conf" name="wpa_conf_form" class="row">
                 <?php echo CSRFTokenFieldTag() ?>
               <input type="hidden" name="client_settings" ?>
               <script>
