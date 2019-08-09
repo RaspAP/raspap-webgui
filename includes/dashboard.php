@@ -239,7 +239,7 @@ if ($arrHostapdConf['WifiAPEnable'] == 1) {
 } else {
     $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
 }
-exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
+exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
 foreach ($clients as $client) {
     $client_items = explode(' ', $client);
     echo '<tr>'.PHP_EOL;
