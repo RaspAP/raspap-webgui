@@ -228,8 +228,8 @@ if ($arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssi
                 <div class="row">
                   <div class="form-group col-md-4">
                     <label for="max_num_sta"><?php echo _("Maximum number of clients") ?></label>
-                    <input type="text" id="max_num_sta" class="form-control" name="max_num_sta" placeholder="2007" value="<?php echo $_POST["max_num_sta"] ?>" aria-describedby="max_num_sta_help">
-                    <span id="max_num_sta_help" class="help-block">Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies.</span>
+                    <input type="text" id="max_num_sta" class="form-control" name="max_num_sta" placeholder="2007" value="<?php echo $arrConfig["max_num_sta"] ?>" aria-describedby="max_num_sta_help">
+                    <span id="max_num_sta_help" class="help-block"><?php echo _("Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies.") ?></span>
                   </div>
                 </div>
                 <div class="row">
