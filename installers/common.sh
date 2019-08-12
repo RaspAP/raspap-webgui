@@ -271,7 +271,7 @@ function patch_system_files() {
         "/etc/init.d/hostapd stop"
         "/etc/init.d/dnsmasq start"
         "/etc/init.d/dnsmasq stop"
-        "/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf"
+        "/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.conf"
         "/bin/cp /tmp/dhcpddata /etc/dhcpcd.conf"
         "/sbin/shutdown -h now"
         "/sbin/reboot"
