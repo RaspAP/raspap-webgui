@@ -41,6 +41,7 @@ function RPiVersion()
     'a220a0' => 'Compute Module 3',
     'a020a0' => 'Compute Module 3',
     'a02100' => 'Compute Module 3+',
+	'c03111' => 'Model 4B v1.1'
     );
 
     $cpuinfo_array = '';
