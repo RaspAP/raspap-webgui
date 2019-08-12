@@ -12,7 +12,7 @@ if(isset($_POST['interface'])) {
         touch(RASPI_CONFIG_NETWORKING.'/'.$int.'.ini');
     }
 
-    $intConfig = parse_ini_file(RASPI_CONFIG_NETWORKING.'/'.$int.'.ini');
+    $intConfig = parse_ini_file(RASPI_CONFIG_NETWORKING.'/'.$int.'.ini', false, INI_SCANNER_RAW);
     $jsonData = ['return'=>1,'output'=>['intConfig'=>$intConfig]];
     echo json_encode($jsonData);
 
