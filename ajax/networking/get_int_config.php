@@ -6,9 +6,9 @@ include_once('../../includes/config.php');
 include_once('../../includes/functions.php');
 
 
-if(isset($_POST['interface'])) {
+if (isset($_POST['interface'])) {
     $int = preg_replace('/[^a-z0-9]/', '', $_POST['interface']);
-    if(!file_exists(RASPI_CONFIG_NETWORKING.'/'.$int.'.ini')) {
+    if (!file_exists(RASPI_CONFIG_NETWORKING.'/'.$int.'.ini')) {
         touch(RASPI_CONFIG_NETWORKING.'/'.$int.'.ini');
     }
 
@@ -17,9 +17,7 @@ if(isset($_POST['interface'])) {
     echo json_encode($jsonData);
 
     // Todo - get dhcp lease information from `dhcpcd -U eth0` ? maybe ?
-
 } else {
     $jsonData = ['return'=>2,'output'=>['Error getting data']];
     echo json_encode($jsonData);
 }
-
