@@ -41,7 +41,7 @@ function RPiVersion()
     'a220a0' => 'Compute Module 3',
     'a020a0' => 'Compute Module 3',
     'a02100' => 'Compute Module 3+',
-	'c03111' => 'Model 4B v1.1'
+    'c03111' => 'Model 4B v1.1'
     );
 
     $cpuinfo_array = '';
@@ -135,23 +135,23 @@ function DisplaySystem()
         $cpuload_status = "success";
     }
 
-?>
+    ?>
   <div class="row">
   <div class="col-lg-12">
   <div class="panel panel-primary">
   <div class="panel-heading"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></div>
   <div class="panel-body">
 
-<?php
-if (isset($_POST['system_reboot'])) {
-    echo '<div class="alert alert-warning">' . _("System Rebooting Now!") . '</div>';
-    $result = shell_exec("sudo /sbin/reboot");
-}
-if (isset($_POST['system_shutdown'])) {
-    echo '<div class="alert alert-warning">' . _("System Shutting Down Now!") . '</div>';
-    $result = shell_exec("sudo /sbin/shutdown -h now");
-}
-?>
+    <?php
+    if (isset($_POST['system_reboot'])) {
+        echo '<div class="alert alert-warning">' . _("System Rebooting Now!") . '</div>';
+        $result = shell_exec("sudo /sbin/reboot");
+    }
+    if (isset($_POST['system_shutdown'])) {
+        echo '<div class="alert alert-warning">' . _("System Shutting Down Now!") . '</div>';
+        $result = shell_exec("sudo /sbin/shutdown -h now");
+    }
+    ?>
 
   <p><?php $status->showMessages(); ?></p>
   <form role="form" action="?page=system_info" method="POST">
@@ -224,6 +224,6 @@ if (isset($_POST['system_shutdown'])) {
   </div><!-- /.panel-primary -->
   </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
-<?php
+    <?php
 }
 
