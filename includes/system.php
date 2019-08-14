@@ -187,6 +187,7 @@ function DisplaySystem()
           </div>
 
           <form action="?page=system_info" method="POST">
+          <?php echo CSRFTokenFieldTag() ?>
           <input type="submit" class="btn btn-warning" name="system_reboot"   value="<?php echo _("Reboot"); ?>" />
           <input type="submit" class="btn btn-warning" name="system_shutdown" value="<?php echo _("Shutdown"); ?>" />
           <input type="button" class="btn btn-outline btn-primary" value="<?php echo _("Refresh"); ?>" onclick="document.location.reload(true)" />

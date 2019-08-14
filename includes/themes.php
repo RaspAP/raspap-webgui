@@ -43,6 +43,7 @@ function DisplayThemeConfig()
     </div>
 
     <form action="?page=system_info" method="POST">
+      <?php echo CSRFTokenFieldTag() ?>
       <input type="button" class="btn btn-outline btn-primary" value="<?php echo _("Refresh"); ?>" onclick="document.location.reload(true)" />
     </form>
 
