@@ -155,6 +155,7 @@ function DisplaySystem()
 
   <p><?php $status->showMessages(); ?></p>
   <form role="form" action="?page=system_info" method="POST">
+  <?php echo CSRFTokenFieldTag() ?>
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active systemtab"><a href="#system" aria-controls="system" role="tab" data-toggle="tab"><?php echo _("System"); ?></a></li>
     <li role="presentation" class="languagetab"><a href="#language" aria-controls="language" role="tab" data-toggle="tab"><?php echo _("Language"); ?></a></li>
@@ -198,7 +199,6 @@ function DisplaySystem()
 
     <div role="tabpanel" class="tab-pane" id="language">
       <h4><?php echo _("Language settings") ;?></h4>
-        <?php echo CSRFTokenFieldTag() ?>
       <div class="row">
         <div class="form-group col-md-4">
           <label for="code"><?php echo _("Select a language"); ?></label>
