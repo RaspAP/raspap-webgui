@@ -69,6 +69,7 @@ function DisplayHostAPDConfig()
         <div class="panel-body">
       <p><?php $status->showMessages(); ?></p>
           <form role="form" action="?page=hostapd_conf" method="POST">
+            <?php echo CSRFTokenFieldTag() ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
               <li class="active"><a href="#basic" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
@@ -82,7 +83,6 @@ function DisplayHostAPDConfig()
                 <div class="tab-pane fade in active" id="basic">
 
                 <h4><?php echo _("Basic settings") ;?></h4>
-                <?php echo CSRFTokenFieldTag() ?>
                 <div class="row">
                   <div class="form-group col-md-4">
                     <label for="cbxinterface"><?php echo _("Interface") ;?></label>

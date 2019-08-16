@@ -315,6 +315,7 @@ function DisplayOpenVPNConfig()
 
                     <h4>Client settings</h4>
                     <form role="form" action="?page=save_hostapd_conf" method="POST">
+                    <?php echo CSRFTokenFieldTag() ?>
 
                     <div class="row">
                         <div class="form-group col-md-4">
@@ -439,6 +440,7 @@ function DisplayTorProxyConfig()
                 <div class="tab-pane fade in active" id="basic">
                     <h4>Basic settings</h4>
                     <form role="form" action="?page=save_hostapd_conf" method="POST">
+                    <?php echo CSRFTokenFieldTag() ?>
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="code">VirtualAddrNetwork</label>

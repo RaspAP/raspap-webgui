@@ -63,6 +63,7 @@ foreach ($interfaces as $interface) {
                         <div class="row">
                           <div class="col-lg-6">
                             <form id="frm-'.htmlspecialchars($interface, ENT_QUOTES).'">
+                            ' . CSRFTokenFieldTag() . '
                               <div class="form-group">
                                 <h4>' . _("Adapter IP Address Settings") . '</h4>
                                 <div class="btn-group" data-toggle="buttons">

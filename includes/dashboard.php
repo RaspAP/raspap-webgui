@@ -260,6 +260,7 @@ foreach ($clients as $client) {
                  <div class="col-lg-12">
                  <div class="row">
                     <form action="?page=wlan0_info" method="POST">
+                    <?php echo CSRFTokenFieldTag() ?>
                     <?php if (!$wlan0up) {
                         echo '<input type="submit" class="btn btn-success" value="'._("Start ").RASPI_WIFI_CLIENT_INTERFACE.'" name="ifup_wlan0" />';
 } else {
