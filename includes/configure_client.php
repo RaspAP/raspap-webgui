@@ -7,48 +7,6 @@
 function DisplayWPAConfig()
 {
     $status = new StatusMessages();
-    $networks = array();
-
-    // Find currently configured networks
-    exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
-
-    $network = null;
-    $ssid = null;
-
-    foreach ($known_return as $line) {
-        if (preg_match('/network\s*=/', $line)) {
-            $network = array('visible' => false, 'configured' => true, 'connected' => false);
-        } elseif ($network !== null) {
-            if (preg_match('/^\s*}\s*$/', $line)) {
-                $networks[$ssid] = $network;
-                $network = null;
-                $ssid = null;
-            } elseif ($lineArr = preg_split('/\s*=\s*/', trim($line))) {
-                switch (strtolower($lineArr[0])) {
-                    case 'ssid':
-                        $ssid = trim($lineArr[1], '"');
-                        break;
-                    case 'psk':
-                        if (array_key_exists('passphrase', $network)) {
-                            break;
-                        }
-                    case '#psk':
-                        $network['protocol'] = 'WPA';
-                    case 'wep_key0': // Untested
-                        $network['passphrase'] = trim($lineArr[1], '"');
-                        break;
-                    case 'key_mgmt':
-                        if (! array_key_exists('passphrase', $network) && $lineArr[1] === 'NONE') {
-                            $network['protocol'] = 'Open';
-                        }
-                        break;
-                    case 'priority':
-                        $network['priority'] = trim($lineArr[1], '"');
-                        break;
-                }
-            }
-        }
-    }
 
     if (isset($_POST['connect'])) {
         $result = 0;
@@ -128,45 +86,6 @@ function DisplayWPAConfig()
         }
     }
 
-    exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' scan');
-    sleep(3);
-    exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' scan_results', $scan_return);
-
-    array_shift($scan_return);
-
-    // display output
-    foreach ($scan_return as $network) {
-        $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
-
-        // If network is saved
-        if (array_key_exists(4, $arrNetwork) && array_key_exists($arrNetwork[4], $networks)) {
-            $networks[$arrNetwork[4]]['visible'] = true;
-            $networks[$arrNetwork[4]]['channel'] = ConvertToChannel($arrNetwork[1]);
-            // TODO What if the security has changed?
-        } else {
-            $networks[$arrNetwork[4]] = array(
-            'configured' => false,
-            'protocol' => ConvertToSecurity($arrNetwork[3]),
-            'channel' => ConvertToChannel($arrNetwork[1]),
-            'passphrase' => '',
-            'visible' => true,
-            'connected' => false
-            );
-	}
-
-        // Save RSSI
-        if (array_key_exists(4, $arrNetwork)) {
-            $networks[$arrNetwork[4]]['RSSI'] = $arrNetwork[2];
-        }
-
-    }
-
-    exec('iwconfig ' . RASPI_WIFI_CLIENT_INTERFACE, $iwconfig_return);
-    foreach ($iwconfig_return as $line) {
-        if (preg_match('/ESSID:\"([^"]+)\"/i', $line, $iwconfig_ssid)) {
-            $networks[$iwconfig_ssid[1]]['connected'] = true;
-        }
-    }
 ?>
 
   <div class="row">
@@ -178,7 +97,7 @@ function DisplayWPAConfig()
           <p><?php $status->showMessages(); ?></p>
           <h4><?php echo _("Client settings"); ?></h4>
               <div class="btn-group btn-block">
-              <a href=".?<?php echo htmlspecialchars($_SERVER['QUERY_STRING'], ENT_QUOTES); ?>" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info" id="update"><?php echo _("Rescan"); ?></a>
+              <button type="button" style="padding:10px;float: right;display: block;position: relative;margin-top: -55px;" class="col-md-2 btn btn-info js-reload-wifi-stations"><?php echo _("Rescan"); ?></button>
             </div> 
 
             <form method="POST" action="?page=wpa_conf" name="wpa_conf_form" class="row">
@@ -195,96 +114,7 @@ function DisplayWPAConfig()
                 }
               </script>
 
-                <?php $index = 0; ?>
-                <?php foreach ($networks as $ssid => $network) { ?>
- 
-              <div class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-
-                  <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo htmlentities($ssid, ENT_QUOTES) ?>" />
-                  <h4><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></h4>
-
-                  <div class="row">
-                    <div class="col-xs-4 col-md-4">Status</div>
-                    <div class="col-xs-4 col-md-4">
-                        <?php if ($network['configured']) { ?>
-                        <i class="fa fa-check-circle fa-fw"></i>
-                        <?php } ?>
-                        <?php if ($network['connected']) { ?>
-                        <i class="fa fa-exchange fa-fw"></i>
-                        <?php } ?>
-                     </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-xs-4 col-md-4">Channel</div>
-                    <div class="col-xs-4 col-md-4">
-                        <?php if ($network['visible']) { ?>
-                            <?php echo htmlspecialchars($network['channel'], ENT_QUOTES) ?>
-                        <?php } else { ?>
-                          <span class="label label-warning"> X </span>
-                        <?php } ?>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-xs-4 col-md-4">RSSI</div>
-                    <div class="col-xs-6 col-md-6">
-                    <?php echo htmlspecialchars($network['RSSI'], ENT_QUOTES);
-                        echo "dB (";
-                    if ($network['RSSI'] >= -50) {
-                        echo 100;
-                    } elseif ($network['RSSI'] <= -100) {
-                        echo 0;
-                    } else {
-                        echo  2*($network['RSSI'] + 100);
-                    }
-                        echo "%)";
-                    ?>
-                    </div>
-                  </div>
-
-                    <?php if (array_key_exists('priority', $network)) { ?>
-                      <input type="hidden" name="priority<?php echo $index ?>" value="<?php echo htmlspecialchars($network['priority'], ENT_QUOTES); ?>" />
-                    <?php } ?>
-                  <input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>" />
-
-                  <div class="row">
-                    <div class="col-xs-4 col-md-4">Security</div>
-                    <div class="col-xs-6 col-md-6"><?php echo $network['protocol'] ?></div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="input-group col-xs-12 col-md-12">
-                      <span class="input-group-addon" id="passphrase">Passphrase</span>
-                        <?php if ($network['protocol'] === 'Open') { ?> 
-                          <input type="password" disabled class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="" />
-                        <?php } else { ?>
-                          <input type="password" class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="<?php echo $network['passphrase'] ?>" onKeyUp="CheckPSK(this, 'update<?php echo $index?>')" >
-                          <span class="input-group-btn">
-                            <button class="btn btn-default" onclick="showPassword(<?php echo $index; ?>)" type="button">Show</button>
-                          </span>
-                        <?php } ?>
-                    </div>
-                  </div>
-
-                  <div class="btn-group btn-block ">
-                    <?php if ($network['configured']) { ?>
-                        <input type="submit" class="col-xs-4 col-md-4 btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> />
-                        <button type="submit" class="col-xs-4 col-md-4 btn btn-info" value="<?php echo $index?>" ><?php echo _("Connect"); ?></button>
-                    <?php } else { ?>
-                        <input type="submit" class="col-xs-4 col-md-4 btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" <?php echo ($network['protocol'] === 'Open' ? '' : ' disabled')?> />
-                    <?php } ?>
-                        <input type="submit" class="col-xs-4 col-md-4 btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> />
-                  </div><!-- /.btn-group -->
-
-                </div><!-- /.panel-body -->
-              </div><!-- /.panel-default -->
-            </div><!-- /.col-md-6 -->
-
-            <?php $index += 1; ?>
-            <?php } ?>
+              <div class="js-wifi-stations loading-spinner"></div>
 
           </form>
         </div><!-- ./ Panel body -->

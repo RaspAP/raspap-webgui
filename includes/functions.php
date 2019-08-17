@@ -573,3 +573,67 @@ function SaveTORAndVPNConfig()
     }
 }
 
+/**
+ * Renders a simple PHP template
+ */
+function renderTemplate($name, $data)
+{
+    $file = "../../templates/$name.php";
+    if (!file_exists($file)) {
+        return "template $name ($file) not found";
+    }
+
+    if (is_array($data)){
+        extract($data);
+    }
+
+    ob_start();
+    include $file;
+    return ob_get_clean();
+}
+
+function expandCacheKey($key)
+{
+    return RASPI_CACHE_PATH . "/" . $key;
+}
+
+function hasCache($key)
+{
+    $cacheKey = expandCacheKey($key);
+    return file_exists($cacheKey);
+}
+
+function readCache($key)
+{
+    $cacheKey = expandCacheKey($key);
+    if (!file_exists($cacheKey)) {
+        return null;
+    }
+    return file_get_contents($cacheKey);
+}
+
+function writeCache($key, $data)
+{
+    mkdir(RASPI_CACHE_PATH, 0777, true);
+    $cacheKey = expandCacheKey($key);
+    file_put_contents($cacheKey, $data);
+}
+
+function deleteCache($key)
+{
+    if (hasCache($key)) {
+        $cacheKey = expandCacheKey($key);
+        unlink($cacheKey);
+    }
+}
+
+function cache($key, $callback)
+{
+    if (hasCache($key)) {
+        return readCache($key);
+    } else {
+        $data = $callback();
+        writeCache($key, $data);
+        return $data;
+    }
+}
