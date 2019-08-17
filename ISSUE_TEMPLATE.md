@@ -7,12 +7,13 @@ Describe your issue here.
 
 ### Your environment
 * Raspberry Pi hardware (examples: Pi 3 Model B, Pi Zero W)  
-* Raspbian version (examples: Stretch Lite, Stretch Desktop)
+* Raspbian version (examples: Buster Lite, Buster Desktop)
 * Followed the project prerequisites? (Y/N)
 * Checked the project FAQ? (Y/N)
 * RaspAP Quick Install or Manual setup?
 * Using default configuration? (Y/N)
 * Simultaneous AP and managed mode? (Y/N)
+* Onboard wireless chipset or external adapter? 
 * Other software or services running with RaspAP?
 
 ### Steps to reproduce
