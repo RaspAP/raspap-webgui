@@ -88,33 +88,16 @@ function DisplaySystem()
     'tr_TR.UTF-8' => 'Türkçe'
     );
 
-    // hostname
-    exec("hostname -f", $hostarray);
-    $hostname = $hostarray[0];
+    require_once "lib/system.php";
+    $system = new System();
 
-    // uptime
-    $uparray = explode(" ", exec("cat /proc/uptime"));
-    $seconds = round($uparray[0], 0);
-    $minutes = $seconds / 60;
-    $hours   = $minutes / 60;
-    $days    = floor($hours / 24);
-    $hours   = floor($hours   - ($days * 24));
-    $minutes = floor($minutes - ($days * 24 * 60) - ($hours * 60));
-    $uptime= '';
-    if ($days    != 0) {
-        $uptime .= $days    . ' day'    . (($days    > 1)? 's ':' ');
-    }
-    if ($hours   != 0) {
-        $uptime .= $hours   . ' hour'   . (($hours   > 1)? 's ':' ');
-    }
-    if ($minutes != 0) {
-        $uptime .= $minutes . ' minute' . (($minutes > 1)? 's ':' ');
-    }
+    $hostname = $system->hostname();
+    $uptime   = $system->uptime();
+    $cores    = $system->processorCount();
 
     // mem used
+    $memused  = $system->usedMemory();
     $memused_status = "primary";
-    exec("free -m | awk '/Mem:/ { total=$2 ; used=$3 } END { print used/total*100}'", $memarray);
-    $memused = floor($memarray[0]);
     if ($memused > 90) {
         $memused_status = "danger";
     } elseif ($memused > 75) {
@@ -124,9 +107,7 @@ function DisplaySystem()
     }
 
     // cpu load
-    $cores   = exec("grep -c ^processor /proc/cpuinfo");
-    $loadavg = exec("awk '{print $1}' /proc/loadavg");
-    $cpuload = floor(($loadavg * 100) / $cores);
+    $cpuload = $system->systemLoadPercentage();
     if ($cpuload > 90) {
         $cpuload_status = "danger";
     } elseif ($cpuload > 75) {
@@ -135,25 +116,22 @@ function DisplaySystem()
         $cpuload_status = "success";
     }
 
+    if (isset($_POST['system_reboot'])) {
+        $status->addMessage("System Rebooting Now!", "warning", false);
+        $result = shell_exec("sudo /sbin/reboot");
+    }
+    if (isset($_POST['system_shutdown'])) {
+        $status->addMessage("System Shutting Down Now!", "warning", false);
+        $result = shell_exec("sudo /sbin/shutdown -h now");
+    }
+
     ?>
   <div class="row">
   <div class="col-lg-12">
   <div class="panel panel-primary">
   <div class="panel-heading"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></div>
   <div class="panel-body">
-
-    <?php
-    if (isset($_POST['system_reboot'])) {
-        echo '<div class="alert alert-warning">' . _("System Rebooting Now!") . '</div>';
-        $result = shell_exec("sudo /sbin/reboot");
-    }
-    if (isset($_POST['system_shutdown'])) {
-        echo '<div class="alert alert-warning">' . _("System Shutting Down Now!") . '</div>';
-        $result = shell_exec("sudo /sbin/shutdown -h now");
-    }
-    ?>
-
-  <p><?php $status->showMessages(); ?></p>
+  <?php $status->showMessages(); ?>
   <form role="form" action="?page=system_info" method="POST">
   <?php echo CSRFTokenFieldTag() ?>
   <ul class="nav nav-tabs" role="tablist">
