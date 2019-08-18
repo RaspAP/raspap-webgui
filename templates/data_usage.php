@@ -15,10 +15,11 @@
               <div class="row">
                 <div class="col-lg-12">
                   <h4><?php echo _('Hourly traffic amount'); ?></h4>
-                  <label for="cbxInterfacehourly"><?php echo _('interface'); ?></label> 
+                  <label for="cbxInterfacehourly"><?php echo _('interface'); ?></label>
                   <select id="cbxInterfacehourly" class="form-control" name="interfacehourly">
-                    <?php foreach ($interfaces as $iface): ?>
-                      <option value="<?php echo htmlentities($iface, ENT_QUOTES) ?>"><?php echo htmlentities($iface, ENT_QUOTES) ?></option>
+                    <?php foreach ($interfaces as $if): ?>
+                      <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+                      <option value="<?php echo $if_quoted ?>"><?php echo $if_quoted ?></option>
                     <?php endforeach ?>
                   </select>
                   <div class="hidden alert alert-info" id="divLoaderBandwidthhourly">
@@ -33,10 +34,11 @@
               <div class="row">
                 <div class="col-lg-12">
                   <h4><?php echo _('Daily traffic amount'); ?></h4>
-                  <label for="cbxInterfacedaily"><?php echo _('interface'); ?></label> 
+                  <label for="cbxInterfacedaily"><?php echo _('interface'); ?></label>
                   <select id="cbxInterfacedaily" class="form-control" name="interfacedaily">
-                    <?php foreach ($interfaces as $iface): ?>
-                      <option value="<?php echo htmlentities($iface, ENT_QUOTES) ?>"><?php echo htmlentities($iface, ENT_QUOTES) ?></option>
+                    <?php foreach ($interfaces as $if): ?>
+                      <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+                      <option value="<?php echo $if_quoted ?>"><?php echo $if_quoted ?></option>
                     <?php endforeach ?>
                   </select>
                   <div class="hidden alert alert-info" id="divLoaderBandwidthdaily">
@@ -51,10 +53,11 @@
               <div class="row">
                 <div class="col-lg-12">
                   <h4><?php echo _("Monthly traffic amount"); ?></h4>
-                  <label for="cbxInterfacemonthly"><?php echo _('interface'); ?></label> 
+                  <label for="cbxInterfacemonthly"><?php echo _('interface'); ?></label>
                   <select id="cbxInterfacemonthly" class="form-control" name="interfacemonthly">
-                    <?php foreach ($interfaces as $iface): ?>
-                      <option value="<?php echo htmlentities($iface, ENT_QUOTES) ?>"><?php echo htmlentities($iface, ENT_QUOTES) ?></option>
+                    <?php foreach ($interfaces as $if): ?>
+                      <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+                      <option value="<?php echo $if_quoted ?>"><?php echo $if_quoted ?></option>
                     <?php endforeach ?>
                   </select>
                   <div class="hidden alert alert-info" id="divLoaderBandwidthmonthly">
