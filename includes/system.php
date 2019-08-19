@@ -91,6 +91,15 @@ function DisplaySystem()
     'tr_TR.UTF-8' => 'Türkçe'
     );
 
+    if (isset($_POST['system_reboot'])) {
+        $status->addMessage("System Rebooting Now!", "warning", false);
+        $result = shell_exec("sudo /sbin/reboot");
+    }
+    if (isset($_POST['system_shutdown'])) {
+        $status->addMessage("System Shutting Down Now!", "warning", false);
+        $result = shell_exec("sudo /sbin/shutdown -h now");
+    }
+
     echo renderTemplate("system", compact("arrLocales", "status", "system"));
 }
 

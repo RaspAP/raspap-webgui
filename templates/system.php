@@ -25,15 +25,6 @@ if ($cpuload > 90) {
     $cpuload_status = "success";
 }
 
-if (isset($_POST['system_reboot'])) {
-    $status->addMessage("System Rebooting Now!", "warning", false);
-    $result = shell_exec("sudo /sbin/reboot");
-}
-if (isset($_POST['system_shutdown'])) {
-    $status->addMessage("System Shutting Down Now!", "warning", false);
-    $result = shell_exec("sudo /sbin/shutdown -h now");
-}
-
 ?>
 <div class="row">
 <div class="col-lg-12">
