@@ -132,12 +132,16 @@ function DisplayDHCPConfig()
         }
     }
 
+    exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
+    exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
+
     echo renderTemplate("dhcp", compact(
         "status",
         "serviceStatus",
         "RangeStart", "RangeEnd",
         "arrRangeLeaseTime",
         "mselected", "hselected", "dselected", "infiniteselected",
-        "dnsmasq_state", "conf", "dhcpHost"
+        "dnsmasq_state", "conf", "dhcpHost",
+        "interfaces", "leases"
     ));
 }

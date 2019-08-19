@@ -26,19 +26,11 @@
   <div class="form-group col-md-4">
     <label for="code">Interface</label>
     <select class="form-control" name="interface">
-<?php
-    exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
-
-foreach ($interfaces as $inet) {
-$select = '';
-if ($inet === $conf['interface']) {
-    $select = ' selected="selected"';
-}
-
-echo '        <option value="'.htmlspecialchars($inet, ENT_QUOTES).'"'.
-$select.'>'.htmlspecialchars($inet, ENT_QUOTES).'</option>' , PHP_EOL;
-}
-?>
+    <?php foreach ($interfaces as $if): ?>
+      <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+      <?php $selected  = $if === $conf['interface'] ? ' selected="selected"' : '' ?>
+      <option value="<?php echo $if_quoted ?>"<?php echo $selected ?>><?php echo $if_quoted ?></option>
+    <?php endforeach ?>
     </select>
   </div>
 </div>
@@ -68,19 +60,17 @@ $select.'>'.htmlspecialchars($inet, ENT_QUOTES).'</option>' , PHP_EOL;
       <option value="h"<?php echo $hselected; ?>><?php echo _("Hour(s)"); ?></option>
       <option value="d"<?php echo $dselected; ?>><?php echo _("Day(s)"); ?></option>
       <option value="infinite"<?php echo $infiniteselected; ?>><?php echo _("Infinite"); ?></option>
-    </select> 
+    </select>
   </div>
 </div>
 
 <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
-<?php
 
-if ($dnsmasq_state) {
-    echo '<input type="submit" class="btn btn-warning" value="' . _("Stop dnsmasq") . '" name="stopdhcpd" />';
-} else {
-    echo'<input type="submit" class="btn btn-success" value="' .  _("Start dnsmasq") . '" name="startdhcpd" />';
-}
-?>
+<?php if ($dnsmasq_state): ?>
+  <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
+<?php else: ?>
+  <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
+<?php endif ?>
 </div><!-- /.tab-pane -->
 
 <div class="tab-pane fade in" id="client-list">
@@ -103,17 +93,13 @@ if ($dnsmasq_state) {
           </tr>
         </thead>
         <tbody>
-<?php
-exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
-foreach ($leases as $lease) {
-echo '              <tr>'.PHP_EOL;
-$lease_items = explode(' ', $lease);
-foreach ($lease_items as $lease_item) {
-    echo '                <td>'.htmlspecialchars($lease_item, ENT_QUOTES).'</td>'.PHP_EOL;
-}
-echo '              </tr>'.PHP_EOL;
-};
-?>
+        <?php foreach ($leases as $lease): ?>
+          <?php foreach (explode(' ', $lease) as $prop): ?>
+            <tr>
+              <td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
+            </tr>
+          <?php endforeach ?>
+        <?php endforeach ?>
         </tbody>
       </table>
     </div><!-- /.table-responsive -->
