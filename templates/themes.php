@@ -9,11 +9,7 @@
         <div class="row">
           <div class="form-group col-md-6">
             <label for="code"><?php echo _("Select a theme"); ?></label>
-            <select class="form-control" id="theme-select"><?php echo _("Select a Theme"); ?>
-              <option value="default" class="theme-link"<?php echo $cselected; ?>>RaspAP (default)</option>
-              <option value="hackernews" class="theme-link"<?php echo $hselected; ?>>HackerNews</option>
-              <option value="terminal" class="theme-link"<?php echo $tselected; ?>>Terminal</option>
-            </select>
+            <?php SelectorOptions("theme", $themes, $selectedTheme, "theme-select") ?>
           </div>
         </div>
 

@@ -5,22 +5,17 @@
 */
 function DisplayThemeConfig()
 {
+    $themes = [
+        "default"    => "RaspAP (default)",
+        "hackernews" => "HackerNews",
+        "terminal"   => "Terminal"
+    ];
+    $themeFiles = [
+        "default"    => "custom.css",
+        "hackernews" => "hackernews.css",
+        "terminal"   => "terminal.css"
+    ];
+    $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
 
-    $cselected = '';
-    $hselected = '';
-    $tselected = '';
-
-    switch ($_COOKIE['theme']) {
-        case "custom.css":
-            $cselected = ' selected="selected"';
-            break;
-        case "hackernews.css":
-            $hselected = ' selected="selected"';
-            break;
-        case "terminal.css":
-            $tselected = ' selected="selected"';
-            break;
-    }
-
-    echo renderTemplate("themes", compact("cselected", "hselected", "tselected"));
+    echo renderTemplate("themes", compact("themes", "selectedTheme"));
 }
