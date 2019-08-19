@@ -4,7 +4,7 @@
       <div class="panel-heading"><i class="fa fa-signal fa-fw"></i> <?php echo _("Configure client"); ?></div>
       <!-- /.panel-heading -->
       <div class="panel-body">
-        <p><?php $status->showMessages(); ?></p>
+        <?php $status->showMessages(); ?>
         <h4><?php echo _("Client settings"); ?></h4>
 
         <div class="btn-group btn-block">

@@ -3,7 +3,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading"><i class="fa fa-lock fa-fw"></i><?php echo _("Configure Auth"); ?></div>
       <div class="panel-body">
-        <p><?php $status->showMessages(); ?></p>
+        <?php $status->showMessages(); ?>
         <form role="form" action="?page=auth_conf" method="POST">
           <?php echo CSRFTokenFieldTag() ?>
           <div class="row">

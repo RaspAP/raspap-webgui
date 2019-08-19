@@ -7,7 +7,7 @@
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
-  <p><?php $status->showMessages(); ?></p>
+    <?php $status->showMessages(); ?>
       <form role="form" action="?page=hostapd_conf" method="POST">
         <?php echo CSRFTokenFieldTag() ?>
         <!-- Nav tabs -->

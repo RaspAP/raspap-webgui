@@ -7,7 +7,7 @@
   </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
-    <p><?php $status->showMessages(); ?></p>
+    <?php $status->showMessages(); ?>
     <form method="POST" action="?page=dhcpd_conf" class="js-dhcp-settings-form">
     <?php echo CSRFTokenFieldTag() ?>
     <!-- Nav tabs -->
