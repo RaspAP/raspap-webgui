@@ -90,7 +90,7 @@ exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep
               <?php else: ?>
                 <input type="submit" class="btn btn-warning" value="<?php echo _("Stop ").RASPI_WIFI_CLIENT_INTERFACE ?>"  name="ifdown_wlan0" />
               <?php endif ?>
-              <input type="button" class="btn btn-outline btn-primary" value="<?php echo _("Refresh"); ?>" onclick="document.location.reload(true)" />
+              <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><?php echo _("Refresh") ?></a>
             </form>
           </div>
         </div>
