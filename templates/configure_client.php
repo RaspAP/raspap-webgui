@@ -21,14 +21,3 @@
     </div><!-- /.panel-primary -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
-
-<script>
-  function showPassword(index) {
-      var x = document.getElementsByName("passphrase"+index)[0];
-      if (x.type === "password") {
-          x.type = "text";
-      } else {
-          x.type = "password";
-      }
-  }
-</script>

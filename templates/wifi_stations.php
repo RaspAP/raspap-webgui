@@ -69,7 +69,7 @@
             <?php } else { ?>
               <input type="password" class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="<?php echo $network['passphrase'] ?>" onKeyUp="CheckPSK(this, 'update<?php echo $index?>')" >
               <span class="input-group-btn">
-                <button class="btn btn-default" onclick="showPassword(<?php echo $index; ?>)" type="button">Show</button>
+                <button class="btn btn-default js-toggle-password" type="button" data-target="[name=passphrase<?php echo $index ?>]" data-toggle-with="<?php echo _("Hide") ?>">Show</button>
               </span>
             <?php } ?>
         </div>
