@@ -1,5 +1,8 @@
 <?php
 
+include_once('includes/status_messages.php');
+include_once('includes/wifi_functions.php');
+
 /**
 *
 *
@@ -7,6 +10,9 @@
 function DisplayWPAConfig()
 {
     $status = new StatusMessages();
+    $networks = [];
+
+    knownWifiStations($networks);
 
     if (isset($_POST['connect'])) {
         $result = 0;
@@ -85,6 +91,9 @@ function DisplayWPAConfig()
             $status->addMessage('Failed to update wifi settings', 'danger');
         }
     }
+
+    nearbyWifiStations($networks);
+    connectedWifiStations($networks);
 
 ?>
 
