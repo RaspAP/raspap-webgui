@@ -8,10 +8,10 @@ This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/scr
 We'd be curious to hear about how you use this with your own RPi-powered projects. Until then, here are some screenshots:
 
 ![](https://i.imgur.com/9yEHFt6.gif)
-![](https://i.imgur.com/jFDMEy6.png)
-![](https://i.imgur.com/ck0XS8P.png)
-![](https://i.imgur.com/Vaej8Xv.png)
-![](https://i.imgur.com/iNuMMip.png)
+![](https://i.imgur.com/T0vrSsA.gif)
+![](https://i.imgur.com/n7Ir2cS.gif)
+![](https://i.imgur.com/JdsNr9L.gif)
+![](https://i.imgur.com/cYFnTIl.gif)
 ## Contents
 
  - [Prerequisites](#prerequisites)
