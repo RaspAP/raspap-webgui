@@ -7,7 +7,7 @@ This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/scr
 
 We'd be curious to hear about how you use this with your own RPi-powered projects. Until then, here are some screenshots:
 
-![](https://i.imgur.com/9yEHFt6.gif)
+![](https://i.imgur.com/xyAdop0.gif)
 ![](https://i.imgur.com/T0vrSsA.gif)
 ![](https://i.imgur.com/n7Ir2cS.gif)
 ![](https://i.imgur.com/JdsNr9L.gif)
