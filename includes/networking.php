@@ -21,7 +21,7 @@ function DisplayNetworkingConfig()
 <div class="row">
     <div class="col-lg-12">
        <div class="panel panel-primary">
-          <div class="panel panel-heading">
+          <div class="panel-heading">
       <i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></div>
           <div class="panel-body">
             <div id="msgNetworking"></div>
