@@ -157,7 +157,7 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
                 <?php endif; ?>
                 <?php if (RASPI_CUSTOM_ENABLED) : ?>
               <li>
-                <a href="index.php?page=custom_conf"><i class="fa fa-wrench fa-fw"></i> <?php echo _("Configure Application"); ?></a>
+                <a href="index.php?page=custom_conf"><i class="fa fa-wrench fa-fw"></i> <?php echo _("Additional Configuration"); ?></a>
               </li>
                 <?php endif; ?>
                 <?php if (RASPI_CONFAUTH_ENABLED) : ?>
