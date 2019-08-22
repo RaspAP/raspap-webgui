@@ -33,6 +33,7 @@ include_once('includes/hostapd.php');
 include_once('includes/system.php');
 include_once('includes/configure_client.php');
 include_once('includes/networking.php');
+include_once('includes/custom.php');
 include_once('includes/themes.php');
 include_once('includes/data_usage.php');
 include_once('includes/about.php');
@@ -154,6 +155,11 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
                  <a href="index.php?page=torproxy_conf"><i class="fa fa-eye-slash fa-fw"></i> <?php echo _("Configure TOR proxy"); ?></a>
               </li>
                 <?php endif; ?>
+                <?php if (RASPI_CUSTOM_ENABLED) : ?>
+              <li>
+                <a href="index.php?page=custom_conf"><i class="fa fa-wrench fa-fw"></i> <?php echo _("Configure Application"); ?></a>
+              </li>
+                <?php endif; ?>
                 <?php if (RASPI_CONFAUTH_ENABLED) : ?>
               <li>
                 <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> <?php echo _("Configure Auth"); ?></a>
@@ -215,6 +221,9 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
                 break;
             case "torproxy_conf":
                 DisplayTorProxyConfig();
+                break;
+            case "custom_conf":
+                DisplayCustomConfig();
                 break;
             case "auth_conf":
                 DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
