@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/xeKD93p.png)
-# `$ raspap-webgui` [![Release 1.5](https://img.shields.io/badge/Release-1.5.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) 
+# `$ raspap-webgui` [![Release 1.6](https://img.shields.io/badge/Release-1.6-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) 
 
 A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
@@ -7,11 +7,11 @@ This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/scr
 
 We'd be curious to hear about how you use this with your own RPi-powered projects. Until then, here are some screenshots:
 
-![](https://i.imgur.com/lQ57jVg.png)
-![](https://i.imgur.com/jFDMEy6.png)
-![](https://i.imgur.com/ck0XS8P.png)
-![](https://i.imgur.com/Vaej8Xv.png)
-![](https://i.imgur.com/iNuMMip.png)
+![](https://i.imgur.com/xyAdop0.gif)
+![](https://i.imgur.com/T0vrSsA.gif)
+![](https://i.imgur.com/n7Ir2cS.gif)
+![](https://i.imgur.com/JdsNr9L.gif)
+![](https://i.imgur.com/cYFnTIl.gif)
 ## Contents
 
  - [Prerequisites](#prerequisites)

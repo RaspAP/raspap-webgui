@@ -16,6 +16,5 @@ function DisplayNetworkingConfig()
     foreach ($interfaces as $interface) {
         exec("ip a show $interface", $$interface);
     }
-
     echo renderTemplate("networking", compact("status", "interfaces"));
 }
