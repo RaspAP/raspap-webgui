@@ -193,6 +193,39 @@ function loadWifiStations(refresh) {
 
 $(".js-reload-wifi-stations").on("click", loadWifiStations(true));
 
+$(document).on("click", ".js-toggle-password", function(e) {
+    var button = $(e.target)
+    var field  = $(button.data("target"));
+    if (field.is(":input")) {
+        e.preventDefault();
+
+        if (!button.data("__toggle-with-initial")) {
+            button.data("__toggle-with-initial", button.text())
+        }
+
+        if (field.attr("type") === "password") {
+            button.text(button.data("toggle-with"));
+            field.attr("type", "text");
+        } else {
+            button.text(button.data("__toggle-with-initial"));
+            field.attr("type", "password");
+        }
+    }
+});
+
+$(document).on("keyup", ".js-validate-psk", function(e) {
+    var field  = $(e.target);
+    var colors = field.data("colors").split(",");
+    var target = $(field.data("target"));
+    if (field.val().length < 8 || field.val().length > 63) {
+        field.css("backgroundColor", colors[0]);
+        target.attr("disabled", true);
+    } else {
+        field.css("backgroundColor", colors[1]);
+        target.attr("disabled", false);
+    }
+});
+
 $(document)
     .ajaxSend(setCSRFTokenHeader)
     .ready(contentLoaded)

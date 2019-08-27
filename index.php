@@ -242,9 +242,6 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
       </div><!-- /#page-wrapper --> 
     </div><!-- /#wrapper -->
 
-    <!-- RaspAP JavaScript -->
-    <script src="dist/js/functions.js"></script>
-
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 

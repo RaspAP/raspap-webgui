@@ -578,9 +578,9 @@ function SaveTORAndVPNConfig()
 /**
  * Renders a simple PHP template
  */
-function renderTemplate($name, $data)
+function renderTemplate($name, $data = [])
 {
-    $file = "../../templates/$name.php";
+    $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
     if (!file_exists($file)) {
         return "template $name ($file) not found";
     }
