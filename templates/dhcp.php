@@ -63,13 +63,13 @@
     </select>
   </div>
 </div>
-
-<input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
-
-<?php if ($dnsmasq_state): ?>
-  <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
-<?php else: ?>
-  <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
+<?php if (!RASPI_MONITOR_ENABLED): ?>
+    <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
+    <?php if ($dnsmasq_state): ?>
+      <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
+    <?php else: ?>
+      <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
+    <?php endif ?>
 <?php endif ?>
 </div><!-- /.tab-pane -->
 
@@ -153,16 +153,16 @@
             </div>
         </div>
     </template>
-
-    <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
-    <?php
-
-    if ($dnsmasq_state) {
-        echo '<input type="submit" class="btn btn-warning" value="' . _("Stop dnsmasq") . '" name="stopdhcpd" />';
-    } else {
-        echo'<input type="submit" class="btn btn-success" value="' .  _("Start dnsmasq") . '" name="startdhcpd" />';
-    }
-    ?>
+    <?php if (!RASPI_MONITOR_ENABLED): ?>
+        <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
+        <?php
+        if ($dnsmasq_state) {
+            echo '<input type="submit" class="btn btn-warning" value="' . _("Stop dnsmasq") . '" name="stopdhcpd" />';
+        } else {
+            echo'<input type="submit" class="btn btn-success" value="' .  _("Start dnsmasq") . '" name="startdhcpd" />';
+        }
+        ?>
+    <?php endif ?>
 </div>
 
 </div><!-- /.tab-content -->

@@ -15,7 +15,7 @@
 
         <form action="?page=system_info" method="POST">
           <?php echo CSRFTokenFieldTag() ?>
-          <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><?php echo _("Refresh"); ?></a>
+          <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fa fa-refresh"></i> <?php echo _("Refresh"); ?></a>
         </form>
 
       </div><!-- /.panel-body -->
