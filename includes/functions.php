@@ -116,8 +116,8 @@ function CSRFValidate()
 */
 function csrfValidateRequest()
 {
-  $request_method = strtolower($_SERVER['REQUEST_METHOD']);
-  return in_array($request_method, [ "post", "put", "patch", "delete" ]);
+    $request_method = strtolower($_SERVER['REQUEST_METHOD']);
+    return in_array($request_method, [ "post", "put", "patch", "delete" ]);
 }
 
 /**
@@ -194,7 +194,9 @@ function ParseConfig($arrConfig)
     $config = array();
     foreach ($arrConfig as $line) {
         $line = trim($line);
-        if ($line == "" || $line[0] == "#") { continue; }
+        if ($line == "" || $line[0] == "#") {
+            continue;
+        }
 
         list($option, $value) = array_map("trim", explode("=", $line, 2));
 
@@ -384,14 +386,14 @@ function DisplayOpenVPNConfig()
                 } else {
                     echo '<input type="submit" class="btn btn-warning" name="StopOpenVPN" value="Stop OpenVPN" />' , PHP_EOL;
                 }
-?>
+                ?>
                 </form>
         </div><!-- /.panel-body -->
     </div><!-- /.panel-primary -->
     <div class="panel-footer"> Information provided by openvpn</div>
 </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
-<?php
+    <?php
 }
 
 /**
@@ -420,7 +422,7 @@ function DisplayTorProxyConfig()
         }
     }
 
-?>
+    ?>
     <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
@@ -535,7 +537,7 @@ function DisplayTorProxyConfig()
     </div><!-- /.panel-primary -->
 </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
-<?php
+    <?php
 }
 
 /**
@@ -585,7 +587,7 @@ function renderTemplate($name, $data = [])
         return "template $name ($file) not found";
     }
 
-    if (is_array($data)){
+    if (is_array($data)) {
         extract($data);
     }
 

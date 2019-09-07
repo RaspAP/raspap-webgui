@@ -26,9 +26,9 @@
   <div class="form-group col-md-4">
     <label for="code">Interface</label>
     <select class="form-control" name="interface">
-    <?php foreach ($interfaces as $if): ?>
-      <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
-      <?php $selected  = $if === $conf['interface'] ? ' selected="selected"' : '' ?>
+    <?php foreach ($interfaces as $if) : ?>
+        <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+        <?php $selected  = $if === $conf['interface'] ? ' selected="selected"' : '' ?>
       <option value="<?php echo $if_quoted ?>"<?php echo $selected ?>><?php echo $if_quoted ?></option>
     <?php endforeach ?>
     </select>
@@ -63,11 +63,11 @@
     </select>
   </div>
 </div>
-<?php if (!RASPI_MONITOR_ENABLED): ?>
+<?php if (!RASPI_MONITOR_ENABLED) : ?>
     <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
-    <?php if ($dnsmasq_state): ?>
+    <?php if ($dnsmasq_state) : ?>
       <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
-    <?php else: ?>
+    <?php else : ?>
       <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
     <?php endif ?>
 <?php endif ?>
@@ -93,12 +93,12 @@
           </tr>
         </thead>
         <tbody>
-        <?php foreach ($leases as $lease): ?>
-          <?php foreach (explode(' ', $lease) as $prop): ?>
+        <?php foreach ($leases as $lease) : ?>
+            <?php foreach (explode(' ', $lease) as $prop) : ?>
             <tr>
               <td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
             </tr>
-          <?php endforeach ?>
+            <?php endforeach ?>
         <?php endforeach ?>
         </tbody>
       </table>
@@ -111,8 +111,8 @@
 
 <div class="tab-pane fade in" id="static-leases">
     <div class="dhcp-static-leases js-dhcp-static-lease-container">
-        <?php foreach ($dhcpHost as $host): ?>
-        <?php list($mac, $ip) = array_map("trim", explode(",", $host)); ?>
+        <?php foreach ($dhcpHost as $host) : ?>
+            <?php list($mac, $ip) = array_map("trim", explode(",", $host)); ?>
         <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
             <div class="col-md-5 col-xs-5">
                 <input type="text" name="static_leases[mac][]" value="<?php echo htmlspecialchars($mac, ENT_QUOTES) ?>" placeholder="<?php echo _("MAC address") ?>" class="form-control">
@@ -153,7 +153,7 @@
             </div>
         </div>
     </template>
-    <?php if (!RASPI_MONITOR_ENABLED): ?>
+    <?php if (!RASPI_MONITOR_ENABLED) : ?>
         <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
         <?php
         if ($dnsmasq_state) {

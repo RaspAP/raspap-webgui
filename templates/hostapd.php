@@ -121,7 +121,7 @@
 <?php
 $checkedWifiAPEnabled = '';
 if ($arrHostapdConf['WifiAPEnable'] == 1) {
-$checkedWifiAPEnabled = ' checked="checked"';
+    $checkedWifiAPEnabled = ' checked="checked"';
 }
 ?>
           <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedWifiAPEnabled; ?> />
@@ -135,7 +135,7 @@ $checkedWifiAPEnabled = ' checked="checked"';
 <?php
 $checkedLogEnabled = '';
 if ($arrHostapdConf['LogEnable'] == 1) {
-$checkedLogEnabled = ' checked="checked"';
+    $checkedLogEnabled = ' checked="checked"';
 }
 ?>
           <input id="chxlogenable" name="logEnable" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedLogEnabled; ?> />
@@ -149,7 +149,7 @@ $checkedLogEnabled = ' checked="checked"';
 <?php
 $checkedHiddenSSID = '';
 if ($arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssid'] == 2) {
-$checkedHiddenSSID = ' checked="checked"';
+    $checkedHiddenSSID = ' checked="checked"';
 }
 ?>
           <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedHiddenSSID; ?> />
@@ -433,8 +433,8 @@ if(ops[i].value == country){
 </script>
             </div>
           </div><!-- /.panel-body -->
-	</div><!-- /.panel-primary -->
-        <?php if (!RASPI_MONITOR_ENABLED): ?>
+    </div><!-- /.panel-primary -->
+        <?php if (!RASPI_MONITOR_ENABLED) : ?>
             <input type="submit" class="btn btn-outline btn-primary" name="SaveHostAPDSettings" value="<?php echo _("Save settings"); ?>" />
             <?php
             if ($hostapdstatus[0] == 0) {
@@ -442,7 +442,7 @@ if(ops[i].value == country){
             } else {
                 echo '<input type="submit" class="btn btn-warning" name="StopHotspot" value="' . _("Stop hotspot") . '"/>' , PHP_EOL;
             };
-	endif ?>
+        endif ?>
       </form>
     </div></div><!-- /.panel-primary -->
   <div class="panel-footer"> <?php echo _("Information provided by hostapd"); ?></div>

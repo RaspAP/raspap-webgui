@@ -7,5 +7,5 @@
  */
 function DisplayAbout()
 {
-  echo renderTemplate("about");
+    echo renderTemplate("about");
 }

@@ -51,7 +51,7 @@ function nearbyWifiStations(&$networks, $cached = true)
         deleteCache($cacheKey);
     }
 
-    $scan_results = cache($cacheKey, function() {
+    $scan_results = cache($cacheKey, function () {
         exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' scan');
         sleep(3);
 

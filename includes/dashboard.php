@@ -33,12 +33,12 @@ function DisplayDashboard()
         $ipv4Addrs = _('No IPv4 Address Found');
     } else {
         foreach ($matchesIpv4AddrAndSubnet as $inet) {
-          $address = $inet[1];
-          $suffix  = (int) $inet[2];
-          $netmask = long2ip(-1 << (32 - $suffix));
+            $address = $inet[1];
+            $suffix  = (int) $inet[2];
+            $netmask = long2ip(-1 << (32 - $suffix));
 
-          $ipv4Addrs    .= " $address";
-          $ipv4Netmasks .= " $netmask";
+            $ipv4Addrs    .= " $address";
+            $ipv4Netmasks .= " $netmask";
         }
         $ipv4Addrs    = trim($ipv4Addrs);
         $ipv4Netmasks = trim($ipv4Netmasks);
@@ -173,12 +173,21 @@ function DisplayDashboard()
 
     echo renderTemplate("dashboard", compact(
         "status",
-        "ipv4Addrs", "ipv4Netmasks",
-        "ipv6Addrs", "macAddr",
-        "strRxPackets", "strRxBytes",
-        "strTxPackets", "strTxBytes",
-        "connectedSSID", "connectedBSSID",
-        "bitrate", "signalLevel", "txPower", "frequency", "strLinkQuality",
+        "ipv4Addrs",
+        "ipv4Netmasks",
+        "ipv6Addrs",
+        "macAddr",
+        "strRxPackets",
+        "strRxBytes",
+        "strTxPackets",
+        "strTxBytes",
+        "connectedSSID",
+        "connectedBSSID",
+        "bitrate",
+        "signalLevel",
+        "txPower",
+        "frequency",
+        "strLinkQuality",
         "wlan0up"
     ));
 }
@@ -213,4 +222,3 @@ function getHumanReadableDatasize($numbytes, $precision = 2)
 
     return $humanDatasize;
 }
-

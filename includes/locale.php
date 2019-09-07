@@ -62,8 +62,8 @@ if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2)
     $_SESSION['locale'] = $locale;
 }
 
-// Note: the associated locale must be installed on the RPi 
-// Use: 'sudo raspi-configure' and select 'Localisation Options' 
+// Note: the associated locale must be installed on the RPi
+// Use: 'sudo raspi-configure' and select 'Localisation Options'
 
 // activate the locale setting
 putenv("LANG=" . $_SESSION['locale']);

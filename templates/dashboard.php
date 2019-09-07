@@ -1,9 +1,9 @@
 <?php
 $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
 if ($arrHostapdConf['WifiAPEnable'] == 1) {
-  $client_iface = 'uap0';
+    $client_iface = 'uap0';
 } else {
-  $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
+    $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
 }
 exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
 ?>
@@ -64,14 +64,14 @@ exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($clients as $client): ?>
-                        <?php $props = explode(' ', $client) ?>
+                        <?php foreach ($clients as $client) : ?>
+                            <?php $props = explode(' ', $client) ?>
                         <tr>
                           <td><?php echo htmlspecialchars($props[3], ENT_QUOTES) ?></td>
                           <td><?php echo htmlspecialchars($props[2], ENT_QUOTES) ?></td>
                           <td><?php echo htmlspecialchars($props[1], ENT_QUOTES) ?></td>
                         </tr>
-                      <?php endforeach ?>
+                        <?php endforeach ?>
                     </tbody>
                   </table>
                 </div><!-- /.table-responsive -->
@@ -83,14 +83,14 @@ exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep
         <div class="col-lg-12">
           <div class="row">
             <form action="?page=wlan0_info" method="POST">
-              <?php echo CSRFTokenFieldTag() ?>
-              <?php if (!RASPI_MONITOR_ENABLED): ?>
-                  <?php if (!$wlan0up): ?>
+                <?php echo CSRFTokenFieldTag() ?>
+                <?php if (!RASPI_MONITOR_ENABLED) : ?>
+                    <?php if (!$wlan0up) : ?>
                     <input type="submit" class="btn btn-success" value="<?php echo _("Start ").RASPI_WIFI_CLIENT_INTERFACE ?>" name="ifup_wlan0" />
-                  <?php else: ?>
+                    <?php else : ?>
                     <input type="submit" class="btn btn-warning" value="<?php echo _("Stop ").RASPI_WIFI_CLIENT_INTERFACE ?>"  name="ifdown_wlan0" />
-                  <?php endif ?>
-              <?php endif ?>
+                    <?php endif ?>
+                <?php endif ?>
               <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fa fa-refresh"></i> <?php echo _("Refresh") ?></a>
             </form>
           </div>

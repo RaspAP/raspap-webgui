@@ -1,9 +1,9 @@
-<?php if (empty($networks)): ?>
+<?php if (empty($networks)) : ?>
   <p class="lead text-center"><?php echo _('No Wifi stations found') ?></p>
   <p class="text-center"><?php echo _('Click "Rescan" to search for nearby Wifi stations.') ?></p>
 <?php endif ?>
 <?php $index = 0; ?>
-<?php foreach ($networks as $ssid => $network): ?>
+<?php foreach ($networks as $ssid => $network) : ?>
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -89,5 +89,5 @@
   </div><!-- /.panel-default -->
 </div><!-- /.col-md-6 -->
 
-<?php $index += 1; ?>
+    <?php $index += 1; ?>
 <?php endforeach ?>

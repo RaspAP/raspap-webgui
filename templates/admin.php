@@ -5,7 +5,7 @@
       <div class="panel-body">
         <?php $status->showMessages(); ?>
         <form role="form" action="?page=auth_conf" method="POST">
-          <?php echo CSRFTokenFieldTag() ?>
+            <?php echo CSRFTokenFieldTag() ?>
           <div class="row">
             <div class="form-group col-md-4">
               <label for="username"><?php echo _("Username"); ?></label>

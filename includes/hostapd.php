@@ -59,10 +59,15 @@ function DisplayHostAPDConfig()
 
     echo renderTemplate("hostapd", compact(
         "status",
-        "serviceStatus", "hostapdstatus",
-        "interfaces", "arrConfig",
-        "arr80211Standard", "selectedHwMode",
-        "arrSecurity", "arrEncType", "arrHostapdConf"
+        "serviceStatus",
+        "hostapdstatus",
+        "interfaces",
+        "arrConfig",
+        "arr80211Standard",
+        "selectedHwMode",
+        "arrSecurity",
+        "arrEncType",
+        "arrHostapdConf"
     ));
 }
 
@@ -260,4 +265,3 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 
     return true;
 }
-

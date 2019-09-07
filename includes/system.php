@@ -102,4 +102,3 @@ function DisplaySystem()
 
     echo renderTemplate("system", compact("arrLocales", "status", "system"));
 }
-

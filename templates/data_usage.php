@@ -17,13 +17,13 @@
                   <h4><?php echo _('Hourly traffic amount'); ?></h4>
                   <label for="cbxInterfacehourly"><?php echo _('interface'); ?></label>
                   <select id="cbxInterfacehourly" class="form-control" name="interfacehourly">
-                    <?php foreach ($interfaces as $if): ?>
-                      <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+                    <?php foreach ($interfaces as $if) : ?>
+                        <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
                       <option value="<?php echo $if_quoted ?>"><?php echo $if_quoted ?></option>
                     <?php endforeach ?>
                   </select>
                   <div class="hidden alert alert-info" id="divLoaderBandwidthhourly">
-                  <?php echo sprintf(_("Loading %s bandwidth chart"), _('hourly')); ?>
+                    <?php echo sprintf(_("Loading %s bandwidth chart"), _('hourly')); ?>
                   </div>
                   <div id="divChartBandwidthhourly"></div>
                   <div id="divTableBandwidthhourly"></div>
@@ -36,13 +36,13 @@
                   <h4><?php echo _('Daily traffic amount'); ?></h4>
                   <label for="cbxInterfacedaily"><?php echo _('interface'); ?></label>
                   <select id="cbxInterfacedaily" class="form-control" name="interfacedaily">
-                    <?php foreach ($interfaces as $if): ?>
-                      <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+                    <?php foreach ($interfaces as $if) : ?>
+                        <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
                       <option value="<?php echo $if_quoted ?>"><?php echo $if_quoted ?></option>
                     <?php endforeach ?>
                   </select>
                   <div class="hidden alert alert-info" id="divLoaderBandwidthdaily">
-                  <?php echo sprintf(_("Loading %s bandwidth chart"), _('daily')); ?>
+                    <?php echo sprintf(_("Loading %s bandwidth chart"), _('daily')); ?>
                   </div>
                   <div id="divChartBandwidthdaily"></div>
                   <div id="divTableBandwidthdaily"></div>
@@ -55,13 +55,13 @@
                   <h4><?php echo _("Monthly traffic amount"); ?></h4>
                   <label for="cbxInterfacemonthly"><?php echo _('interface'); ?></label>
                   <select id="cbxInterfacemonthly" class="form-control" name="interfacemonthly">
-                    <?php foreach ($interfaces as $if): ?>
-                      <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+                    <?php foreach ($interfaces as $if) : ?>
+                        <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
                       <option value="<?php echo $if_quoted ?>"><?php echo $if_quoted ?></option>
                     <?php endforeach ?>
                   </select>
                   <div class="hidden alert alert-info" id="divLoaderBandwidthmonthly">
-                  <?php echo sprintf(_("Loading %s bandwidth chart"), _('monthly')); ?>
+                    <?php echo sprintf(_("Loading %s bandwidth chart"), _('monthly')); ?>
                   </div>
                   <div id="divChartBandwidthmonthly"></div>
                   <div id="divTableBandwidthmonthly"></div>

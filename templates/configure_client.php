@@ -12,7 +12,7 @@
         </div>
 
         <form method="POST" action="?page=wpa_conf" name="wpa_conf_form" class="row">
-          <?php echo CSRFTokenFieldTag() ?>
+            <?php echo CSRFTokenFieldTag() ?>
           <input type="hidden" name="client_settings" ?>
           <div class="js-wifi-stations loading-spinner"></div>
         </form>

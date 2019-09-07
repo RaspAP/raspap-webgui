@@ -66,12 +66,12 @@ if ($cpuload > 90) {
         </div>
 
         <form action="?page=system_info" method="POST">
-	<?php echo CSRFTokenFieldTag() ?>
-        <?php if (!RASPI_MONITOR_ENABLED): ?>
+    <?php echo CSRFTokenFieldTag() ?>
+        <?php if (!RASPI_MONITOR_ENABLED) : ?>
             <input type="submit" class="btn btn-warning" name="system_reboot"   value="<?php echo _("Reboot"); ?>" />
-	    <input type="submit" class="btn btn-warning" name="system_shutdown" value="<?php echo _("Shutdown"); ?>" />
+        <input type="submit" class="btn btn-warning" name="system_shutdown" value="<?php echo _("Shutdown"); ?>" />
         <?php endif ?>
-	<a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fa fa-refresh"></i> <?php echo _("Refresh") ?></a>
+    <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fa fa-refresh"></i> <?php echo _("Refresh") ?></a>
         </form>
       </div>
     </div>
@@ -82,7 +82,7 @@ if ($cpuload > 90) {
     <div class="row">
       <div class="form-group col-md-4">
         <label for="code"><?php echo _("Select a language"); ?></label>
-          <?php SelectorOptions('locale', $arrLocales, $_SESSION['locale']); ?>
+            <?php SelectorOptions('locale', $arrLocales, $_SESSION['locale']); ?>
       </div>
     </div>
     <input type="submit" class="btn btn-outline btn-primary" name="SaveLanguage" value="<?php echo _("Save settings"); ?>" />

@@ -138,10 +138,17 @@ function DisplayDHCPConfig()
     echo renderTemplate("dhcp", compact(
         "status",
         "serviceStatus",
-        "RangeStart", "RangeEnd",
+        "RangeStart",
+        "RangeEnd",
         "arrRangeLeaseTime",
-        "mselected", "hselected", "dselected", "infiniteselected",
-        "dnsmasq_state", "conf", "dhcpHost",
-        "interfaces", "leases"
+        "mselected",
+        "hselected",
+        "dselected",
+        "infiniteselected",
+        "dnsmasq_state",
+        "conf",
+        "dhcpHost",
+        "interfaces",
+        "leases"
     ));
 }
