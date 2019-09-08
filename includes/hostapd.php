@@ -208,6 +208,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         file_put_contents("/tmp/hostapddata", $config);
         system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $return);
 
+        // Set dhcp-range from system config, fallback to default if undefined
+        $dhcpConfig = parse_ini_file(RASPI_DNSMASQ_CONFIG, false, INI_SCANNER_RAW);
+        $dhcp_range = ($dhcpConfig['dhcp-range'] =='') ? '10.3.141.50,10.3.141.255,255.255.255.0,12h' : $dhcpConfig['dhcp-range'];
+
         if ($wifiAPEnable == 1) {
             // Enable uap0 configuration in dnsmasq for Wifi client AP mode
             $config = 'interface=lo,uap0               # Enable uap0 interface for wireless client AP mode'.PHP_EOL;
@@ -217,20 +221,26 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'bogus-priv                      # Never forward addresses in the non-routed address spaces'.PHP_EOL;
             $config.= 'dhcp-range=192.168.50.50,192.168.50.150,12h'.PHP_EOL;
         } else {
-            // Fallback to default config
+            // Fallback to system config
             $config = 'domain-needed'.PHP_EOL;
             $config.= 'interface='.$_POST['interface'].PHP_EOL;
-            $config.= 'dhcp-range=10.3.141.50,10.3.141.255,255.255.255.0,12h'.PHP_EOL;
+            $config.= 'dhcp-range='.$dhcp_range.PHP_EOL;
         }
         file_put_contents("/tmp/dnsmasqdata", $config);
         system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_CONFIG, $return);
 
+        // Set dnsmasq values from ini, fallback to default if undefined
+        $intConfig = parse_ini_file(RASPI_CONFIG_NETWORKING.'/'.RASPI_WIFI_CLIENT_INTERFACE.'.ini', false, INI_SCANNER_RAW);
+        $ip_address = ($intConfig['ip_address'] == '') ? '10.3.141.1/24' : $intConfig['ip_address'];
+        $domain_name_server = ($intConfig['domain_name_server'] =='') ? '1.1.1.1 8.8.8.8' : $intConfig['domain_name_server'];
+        $routers = ($intConfig['routers'] == '') ? '10.3.141.1' : $intConfig['routers'];
+
         if ($wifiAPEnable == 1) {
             // Enable uap0 configuration in dhcpcd for Wifi client AP mode
-             $config = PHP_EOL.'# RaspAP uap0 configuration'.PHP_EOL;
-             $config.= 'interface uap0'.PHP_EOL;
-             $config.= 'static ip_address=192.168.50.1/24'.PHP_EOL;
-             $config.= 'nohook wpa_supplicant'.PHP_EOL;
+            $config = PHP_EOL.'# RaspAP uap0 configuration'.PHP_EOL;
+            $config.= 'interface uap0'.PHP_EOL;
+            $config.= 'static ip_address=192.168.50.1/24'.PHP_EOL;
+            $config.= 'nohook wpa_supplicant'.PHP_EOL;
         } else {
             // Default config
             $config = '# RaspAP wlan0 configuration'.PHP_EOL;
@@ -245,13 +255,12 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'slaac private'.PHP_EOL;
             $config.= 'nohook lookup-hostname'.PHP_EOL;
             $config.= 'interface '.RASPI_WIFI_CLIENT_INTERFACE.PHP_EOL;
-            $config.= 'static ip_address=10.3.141.1/24'.PHP_EOL;
-            $config.= 'static routers=10.3.141.1'.PHP_EOL;
-            $config.= 'static domain_name_server=1.1.1.1 8.8.8.8'.PHP_EOL;
+            $config.= 'static ip_address='.$ip_address.PHP_EOL;
+            $config.= 'static routers='.$routers.PHP_EOL;
+            $config.= 'static domain_name_server='.$domain_name_server.PHP_EOL;
         }
         file_put_contents("/tmp/dhcpddata", $config);
         system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
-
 
         if ($return == 0) {
             $status->addMessage('Wifi Hotspot settings saved', 'success');
