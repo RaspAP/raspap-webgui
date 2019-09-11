@@ -6,6 +6,7 @@ You can join them by [pledging on Patreon](https://www.patreon.com/billz).
 ### $25+
 
 ### $5+
+- l4ckyguy
 
 ### $1+
 - Yaniv Eliash
