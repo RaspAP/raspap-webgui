@@ -8,25 +8,6 @@ raspap_dir="/etc/raspap"
 raspap_user="www-data"
 webroot_dir="/var/www/html"
 version=`sed 's/\..*//' /etc/debian_version`
-assume_yes=0
-
-positional=()
-while [[ $# -gt 0 ]]
-do
-key="$1"
-
-case $key in
-    -y|--yes|--assume-yes)
-    assume_yes=1
-    apt_option="-y"
-    shift # past argument
-    shift # past value
-    ;;
-    *)    # unknown option
-    shift # past argument
-    ;;
-esac
-done
 
 # Determine Raspbian version, set default home location for lighttpd and 
 # php package to install 
