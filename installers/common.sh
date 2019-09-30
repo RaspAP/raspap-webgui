@@ -8,6 +8,25 @@ raspap_dir="/etc/raspap"
 raspap_user="www-data"
 webroot_dir="/var/www/html"
 version=`sed 's/\..*//' /etc/debian_version`
+assume_yes=0
+
+positional=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -y|--yes|--assume-yes)
+    assume_yes=1
+    apt_option="-y"
+    shift # past argument
+    shift # past value
+    ;;
+    *)    # unknown option
+    shift # past argument
+    ;;
+esac
+done
 
 # Determine Raspbian version, set default home location for lighttpd and 
 # php package to install 
@@ -78,10 +97,14 @@ function config_installation() {
     echo "Install directory: ${raspap_dir}"
     echo "Lighttpd directory: ${webroot_dir}"
     echo -n "Complete installation with these values? [y/N]: "
-    read answer
-    if [[ $answer != "y" ]]; then
-        echo "Installation aborted."
-        exit 0
+    if [ $assume_yes == 0 ]; then
+        read answer
+        if [[ $answer != "y" ]]; then
+            echo "Installation aborted."
+            exit 0
+        fi
+    else
+        echo -e
     fi
 }
 
@@ -232,15 +255,25 @@ function default_configuration() {
     sudo systemctl restart rc-local.service
     sudo systemctl daemon-reload
 
-    # Install and enable RaspAP daemon
+    # Prompt to install RaspAP daemon
     echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
-    read answer
-    if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
-        install_log "Enabling RaspAP daemon"
-        echo "Disable with: sudo systemctl disable raspap.service"
-        sudo cp $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
-        sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
+    if [ $assume_yes == 0 ]; then
+        read answer
+        if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+            enable_raspap_daemon
+        fi
+    else
+        echo -e
+        enable_raspap_daemon
     fi
+}
+
+# Install and enable RaspAP daemon
+function enable_raspap_daemon() {
+    install_log "Enabling RaspAP daemon"
+    echo "Disable with: sudo systemctl disable raspap.service"
+    sudo cp $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
+    sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
 }
 
 # Add a single entry to the sudoers file
@@ -321,17 +354,29 @@ function optimize_php() {
     sudo ln -sf "$raspap_dir/backups/php.ini.$datetimephpconf" "$raspap_dir/backups/php.ini"
 
     echo -n "Enable HttpOnly for session cookies (Recommended)? [Y/n]: "
-    read answer
-    if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+    if [ $assume_yes == 0 ]; then
+        read answer
+        if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+            $php_session_cookie=1;
+        fi
+    fi
+
+    if [ $assume_yes == 1 ] || [ $php_session_cookie == 1 ]; then
         echo "Php-cgi enabling session.cookie_httponly."
         sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
     fi
 
-    if [ "$php_package" = "php7.0-cgi" ]; then
+    if [ "$php_package" = "php7.1-cgi" ]; then
         echo -n "Enable PHP OPCache (Recommended)? [Y/n]: "
-        read answer
-        if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
-            echo "Php-cgi enabling opcache.enable."
+        if [ $assume_yes == 0 ]; then
+            read answer
+            if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+                $php_opcache=1;
+            fi
+        fi
+
+        if [ $assume_yes == 1 ] || [ $phpopcache == 1 ]; then
+            echo -e "Php-cgi enabling opcache.enable."
             sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
             # Make sure opcache extension is turned on.
             if [ -f "/usr/sbin/phpenmod" ]; then
@@ -346,16 +391,18 @@ function optimize_php() {
 function install_complete() {
     install_log "Installation completed!"
 
-    # Prompt to reboot if wired ethernet (eth0) is connected.
-    # With default_configuration this will create an active AP on restart.
-    if ip a | grep -q ': eth0:.*state UP'; then
-        echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
-        read answer
-        if [[ $answer != "y" ]]; then
-            echo "Installation reboot aborted."
-            exit 0
+    if [ $assume_yes == 0 ]; then
+        # Prompt to reboot if wired ethernet (eth0) is connected.
+        # With default_configuration this will create an active AP on restart.
+        if ip a | grep -q ': eth0:.*state UP'; then
+            echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
+            read answer
+            if [[ $answer != "y" ]]; then
+                echo "Installation reboot aborted."
+                exit 0
+            fi
+            sudo shutdown -r now || install_error "Unable to execute shutdown"
         fi
-        sudo shutdown -r now || install_error "Unable to execute shutdown"
     fi
 }
 
