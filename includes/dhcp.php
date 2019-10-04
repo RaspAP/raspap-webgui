@@ -55,9 +55,8 @@ function DisplayDHCPConfig()
                     $config .= "dhcp-host=$mac,$ip".PHP_EOL;
                 }
             }
-
-            file_put_contents("/tmp/dhcpddata", $config);
-            system('sudo cp /tmp/dhcpddata '.RASPI_DNSMASQ_CONFIG, $return);
+            file_put_contents("/tmp/dnsmasqdata", $config);
+            system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_CONFIG, $return);
         } else {
             $status->addMessage($errors, 'danger');
         }
