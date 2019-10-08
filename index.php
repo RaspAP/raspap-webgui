@@ -69,10 +69,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- MetisMenu CSS -->
     <link href="dist/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Timeline CSS -->
-    <link href="app/css/timeline.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
+    <!-- SB-Admin-2 CSS -->
     <link href="dist/sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
@@ -254,7 +251,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- Metis Menu Plugin JavaScript -->
     <script src="dist/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
+    <!-- SB-Admin-2 JavaScript -->
     <script src="dist/sb-admin-2/js/sb-admin-2.js"></script>
 
     <!-- Custom RaspAP JS -->
