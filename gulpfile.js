@@ -1,123 +1,156 @@
-var gulp = require('gulp');
-var less = require('gulp-less');
-var browserSync = require('browser-sync').create();
-var header = require('gulp-header');
-var cleanCSS = require('gulp-clean-css');
-var rename = require("gulp-rename");
-var uglify = require('gulp-uglify');
-var pkg = require('./package.json');
+"use strict";
+
+// Load plugins
+const autoprefixer = require("gulp-autoprefixer");
+const browsersync = require("browser-sync").create();
+const cleanCSS = require("gulp-clean-css");
+const del = require("del");
+const gulp = require("gulp");
+const header = require("gulp-header");
+const merge = require("merge-stream");
+const plumber = require("gulp-plumber");
+const rename = require("gulp-rename");
+const sass = require("gulp-sass");
+const uglify = require("gulp-uglify");
+
+// Load package.json for banner
+const pkg = require('./package.json');
 
 // Set the banner content
-var banner = ['/*!\n',
-    ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
-    ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
-    ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n',
-    ' */\n',
-    ''
+const banner = ['/*!\n',
+  ' * RaspAP - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+  ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
+  ' * Licensed under <%= pkg.license %> (https://github.com/raspap-webgui/<%= pkg.name %>/blob/master/LICENSE)\n',
+  ' */\n',
+  '\n'
 ].join('');
 
-// Compile LESS files from /less into /css
-gulp.task('less', function() {
-    return gulp.src('less/sb-admin-2.less')
-        .pipe(less())
-        .pipe(header(banner, { pkg: pkg }))
-        .pipe(gulp.dest('dist/css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
-});
+// BrowserSync
+function browserSync(done) {
+  browsersync.init({
+    server: {
+      baseDir: "./"
+    },
+    port: 3000
+  });
+  done();
+}
 
-// Minify compiled CSS
-gulp.task('minify-css', ['less'], function() {
-    return gulp.src('dist/css/sb-admin-2.css')
-        .pipe(cleanCSS({ compatibility: 'ie8' }))
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('dist/css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
-});
+// BrowserSync reload
+function browserSyncReload(done) {
+  browsersync.reload();
+  done();
+}
 
-// Copy JS to dist
-gulp.task('js', function() {
-    return gulp.src(['js/sb-admin-2.js'])
-        .pipe(header(banner, { pkg: pkg }))
-        .pipe(gulp.dest('dist/js'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
-})
+// Clean vendor
+function clean() {
+  return del(["./dist/"]);
+}
 
-// Minify JS
-gulp.task('minify-js', ['js'], function() {
-    return gulp.src('js/sb-admin-2.js')
-        .pipe(uglify())
-        .pipe(header(banner, { pkg: pkg }))
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('dist/js'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
-});
+// Bring third party dependencies from node_modules into dist directory
+function modules() {
+  // Bootstrap JS
+  var bootstrapJS = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/*')
+    .pipe(gulp.dest('./dist/bootstrap/js'));
+  // Bootstrap SCSS
+  var bootstrapSCSS = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/css/*')
+    .pipe(gulp.dest('./dist/bootstrap/css'));
+  // Morris JS
+  var morrisJS = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/morrisjs/*')
+    .pipe(gulp.dest('./dist/morrisjs'));
+  // metisMenu
+  var metisMenu = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/*')
+    .pipe(gulp.dest('./dist/metisMenu'))
+  // Raphael
+  var raphael = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/raphael/*')
+    .pipe(gulp.dest('./dist/raphael'))
+  // dataTables
+  var dataTables = gulp.src([
+      './node_modules/startbootstrap-sb-admin-2/vendor/datatables/js/*',
+      './node_modules/startbootstrap-sb-admin-2/vendor/datatables/css/*'
+    ])
+    .pipe(gulp.dest('./dist/datatables'));
+  // Font Awesome
+  var fontAwesome = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/font-awesome/**/*')
+    .pipe(gulp.dest('./dist/font-awesome'));
+  // jQuery Easing
+  var jqueryEasing = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/jquery.easing/*.js')
+    .pipe(gulp.dest('./dist/jquery-easing'));
+  // jQuery
+  var jquery = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/jquery/*')
+    .pipe(gulp.dest('./dist/jquery'));
+  // SB Admin 2 JS
+  var sbadmin2JS = gulp.src('./node_modules/startbootstrap-sb-admin-2/dist/js/*')
+    .pipe(gulp.dest('./dist/sb-admin-2/js'));
+  // SB Admin2 CSS
+  var sbadmin2CSS = gulp.src('./node_modules/startbootstrap-sb-admin-2/dist/css/*')
+    .pipe(gulp.dest('./dist/sb-admin-2/css'));
+  // Bootstrap Toggle
+  var bootstraptoggle = gulp.src('./node_modules/bootstrap-toggle/**/*')
+    .pipe(gulp.dest('./dist/bootstrap-toggle'));
+  return merge(bootstrapJS, bootstrapSCSS, morrisJS, metisMenu, raphael, dataTables, fontAwesome, jquery, jqueryEasing, sbadmin2JS, sbadmin2CSS, bootstraptoggle);
+}
 
-// Copy vendor libraries from /bower_components into /vendor
-gulp.task('copy', function() {
-    gulp.src(['bower_components/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
-        .pipe(gulp.dest('vendor/bootstrap'))
+// CSS task
+function css() {
+  return gulp
+    .src("./scss/**/*.scss")
+    .pipe(plumber())
+    .pipe(sass({
+      outputStyle: "expanded",
+      includePaths: "./node_modules",
+    }))
+    .on("error", sass.logError)
+    .pipe(autoprefixer({
+      cascade: false
+    }))
+    .pipe(header(banner, {
+      pkg: pkg
+    }))
+    .pipe(gulp.dest("./css"))
+    .pipe(rename({
+      suffix: ".min"
+    }))
+    .pipe(cleanCSS())
+    .pipe(gulp.dest("./css"))
+    .pipe(browsersync.stream());
+}
 
-    gulp.src(['bower_components/bootstrap-social/*.css', 'bower_components/bootstrap-social/*.less', 'bower_components/bootstrap-social/*.scss'])
-        .pipe(gulp.dest('vendor/bootstrap-social'))
+// JS task
+function js() {
+  return gulp
+    .src([
+      './js/*.js',
+      '!./js/*.min.js',
+    ])
+    .pipe(uglify())
+    .pipe(header(banner, {
+      pkg: pkg
+    }))
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('./js'))
+    .pipe(browsersync.stream());
+}
 
-    gulp.src(['bower_components/datatables/media/**/*'])
-        .pipe(gulp.dest('vendor/datatables'))
+// Watch files
+function watchFiles() {
+  gulp.watch("./scss/**/*", css);
+  gulp.watch(["./js/**/*", "!./js/**/*.min.js"], js);
+  gulp.watch("./**/*.html", browserSyncReload);
+}
 
-    gulp.src(['bower_components/datatables-plugins/integration/bootstrap/3/*'])
-        .pipe(gulp.dest('vendor/datatables-plugins'))
+// Define complex tasks
+const vendor = gulp.series(clean, modules);
+const build = gulp.series(vendor, gulp.parallel(css, js));
+const watch = gulp.series(build, gulp.parallel(watchFiles, browserSync));
 
-    gulp.src(['bower_components/datatables-responsive/css/*', 'bower_components/datatables-responsive/js/*'])
-        .pipe(gulp.dest('vendor/datatables-responsive'))
-
-    gulp.src(['bower_components/flot/*.js'])
-        .pipe(gulp.dest('vendor/flot'))
-
-    gulp.src(['bower_components/flot.tooltip/js/*.js'])
-        .pipe(gulp.dest('vendor/flot-tooltip'))
-
-    gulp.src(['bower_components/font-awesome/**/*', '!bower_components/font-awesome/*.json', '!bower_components/font-awesome/.*'])
-        .pipe(gulp.dest('vendor/font-awesome'))
-
-    gulp.src(['bower_components/jquery/dist/jquery.js', 'bower_components/jquery/dist/jquery.min.js'])
-        .pipe(gulp.dest('vendor/jquery'))
-
-    gulp.src(['bower_components/metisMenu/dist/*'])
-        .pipe(gulp.dest('vendor/metisMenu'))
-
-    gulp.src(['bower_components/morrisjs/*.js', 'bower_components/morrisjs/*.css', '!bower_components/morrisjs/Gruntfile.js'])
-        .pipe(gulp.dest('vendor/morrisjs'))
-
-    gulp.src(['bower_components/raphael/raphael.js', 'bower_components/raphael/raphael.min.js'])
-        .pipe(gulp.dest('vendor/raphael'))
-
-})
-
-// Run everything
-gulp.task('default', ['minify-css', 'minify-js', 'copy']);
-
-// Configure the browserSync task
-gulp.task('browserSync', function() {
-    browserSync.init({
-        server: {
-            baseDir: ''
-        },
-    })
-})
-
-// Dev task with browserSync
-gulp.task('dev', ['browserSync', 'less', 'minify-css', 'js', 'minify-js'], function() {
-    gulp.watch('less/*.less', ['less']);
-    gulp.watch('dist/css/*.css', ['minify-css']);
-    gulp.watch('js/*.js', ['minify-js']);
-    // Reloads the browser whenever HTML or JS files change
-    gulp.watch('pages/*.html', browserSync.reload);
-    gulp.watch('dist/js/*.js', browserSync.reload);
-});
+// Export tasks
+exports.css = css;
+exports.js = js;
+exports.clean = clean;
+exports.vendor = vendor;
+exports.build = build;
+exports.watch = watch;
+exports.default = build;
