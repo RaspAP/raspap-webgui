@@ -1,7 +1,7 @@
 <?php
 
 include_once('includes/status_messages.php');
-include_once('lib/system.php');
+include_once('app/lib/system.php');
 
 /**
  *
