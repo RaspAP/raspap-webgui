@@ -100,7 +100,7 @@ pre.unstyled {
 }
 
 .loading-spinner {
-  background: url("../../img/loading-spinner.gif") no-repeat scroll center center transparent;
+  background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
   min-height: 150px;
   width: 100%;
 }
