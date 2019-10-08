@@ -46,7 +46,7 @@ if (!isset($_COOKIE['theme'])) {
     $theme = $_COOKIE['theme'];
 }
 
-$theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
+$theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -61,37 +61,37 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <title><?php echo _("RaspAP WiFi Configuration Portal"); ?></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Toggle CSS -->
-    <link href="vendor/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="dist/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="dist/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
-    <link href="dist/css/timeline.css" rel="stylesheet">
+    <link href="app/css/timeline.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="dist/sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="dist/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="dist/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
     <link href="<?php echo $theme_url; ?>" title="main" rel="stylesheet">
 
-    <link rel="shortcut icon" type="image/png" href="/dist/icons/favicon.png?ver=2.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="/dist/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/dist/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/dist/icons/favicon-16x16.png">
-    <link rel="icon" type="image/png" href="/dist/icons/favicon.png" />
-    <link rel="manifest" href="/dist/icons/site.webmanifest">
-    <link rel="mask-icon" href="/dist/icons/safari-pinned-tab.svg" color="#b91d47">
-    <meta name="msapplication-config" content="/dist/icons/browserconfig.xml">
+    <link rel="shortcut icon" type="image/png" href="app/icons/favicon.png?ver=2.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="app/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="app/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="app/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="app/icons/favicon.png" />
+    <link rel="manifest" href="app/icons/site.webmanifest">
+    <link rel="mask-icon" href="app/icons/safari-pinned-tab.svg" color="#b91d47">
+    <meta name="msapplication-config" content="app/icons/browserconfig.xml">
     <meta name="msapplication-TileColor" content="#b91d47">
     <meta name="theme-color" content="#ffffff">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -243,22 +243,22 @@ $theme_url = 'dist/css/'.htmlspecialchars($theme, ENT_QUOTES);
     </div><!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="dist/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="dist/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap Toggle JavaScript -->
-    <script src="vendor/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+    <script src="dist/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="dist/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script src="dist/sb-admin-2/js/sb-admin-2.js"></script>
 
     <!-- Custom RaspAP JS -->
-    <script src="js/custom.js"></script>
+    <script src="app/js/custom.js"></script>
 
 <?php
 // Load non default JS/ECMAScript in footer.
