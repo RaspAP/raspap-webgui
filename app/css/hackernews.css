@@ -1,0 +1,112 @@
+html * {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 10pt;
+  color: #828282;
+}
+
+.nav>li>a {
+  font-size: 12pt;
+}
+
+a:focus, a:hover {
+  color: #666;
+}
+
+h4 { 
+  font-size: 18px;
+}
+
+.panel {
+  border-radius: 1px;
+}
+
+.panel-primary {
+  border-color: #ff6600;
+}
+
+.panel-primary>.panel-heading {
+  border-color: #ff6600;
+  background-color: #ff6600;
+  color: #000;
+  font-size: 14pt;
+  font-weight: bold;
+}
+
+.panel-heading {
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
+}
+
+.panel-primary>.panel-heading .fa {
+  color: #fff;
+}
+
+.page-header {
+  font-size: 26pt;
+  margin: 10px 0 20px;
+}
+
+#wrapper,#page-wrapper,.panel-body,.nav>li>a,.navbar-default {
+  background-color: #f6f6ef;
+}
+
+.panel-footer {
+  background-color: #eee;
+}
+
+.btn-primary.btn-outline {
+  color: #c61931;
+  border-color: #c61931;
+}
+
+.btn-primary:hover {
+  background-color: #c61931;
+  border-color: #c61931;
+}
+
+.progress {
+  background-color: #eee;
+}
+
+.progress-bar {
+  color: #eee;
+}
+
+.info-item {
+  width: 140px;
+  float: left;
+}
+
+.logoutput {
+  width: 100%;
+  height: 300px;
+}
+
+.service-status-running,
+.service-status-stopped {
+  background-color: #fff;
+  color: #333;
+  text-transform: uppercase;
+  line-height: inherit;
+}
+.service-status-running:before,
+.service-status-stopped:before {
+  display: inline-block;
+  height: 18px;
+  width: 16px;
+  content: "\2022";
+  font-size: 1.5em;
+  color: green;
+  line-height: 16px;
+  vertical-align: bottom;
+  margin-right: 2px;
+}
+.service-status-stopped:before {
+  color: red;
+  animation: flash 1s linear infinite;
+}
+@keyframes flash {
+  50% {
+    opacity: 0;
+  }
+}

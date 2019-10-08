@@ -1,0 +1,301 @@
+html * {
+  font-family: Courier New, Andale Mono, monospace;
+  font-size: 10pt;
+  color: #33ff00;
+}
+
+#page-wrapper {
+  padding: 0 20px;
+  border-left: 1px solid #33ff00;
+}
+
+.nav>li>a {
+  font-size: 10pt;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+  background-color: #000;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover, .input-group-addon {
+  color: #33ff00;
+  cursor: default;
+  background-color: #000;
+  border: 1px solid #33ff00;
+  border-bottom-color: #33ff00;
+}
+
+.nav-tabs>li>a,.nav-tabs>li>a:hover {
+  border: 1px solid #33ff00;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #33ff00;
+}
+
+.navbar-default {
+  border-color: #33ff00;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+  color: #33ff00;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #33ff00;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #33ff00;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  background-color: #000;
+}
+
+.logo {
+  visibility: collapse;
+  width: 0px;
+}
+
+a:focus, a:hover {
+  color: #33ff00;
+}
+
+.panel-primary {
+  border-color: #33ff00;
+}
+
+.panel-primary>.panel-heading, .panel-default>.panel-heading {
+  border-color: #33ff00;
+  background-color: #33ff00;
+  color: #000;
+  font-size: 12pt;
+}
+
+.panel-primary>.panel-heading .fa {
+  color: #000;
+}
+
+.panel {
+  margin-bottom: 20px;
+  border: 1px solid #33ff00;
+  border-radius: 0px;
+  background-color: #000;
+}
+
+hr { 
+  border-top: 1px solid #33ff00;
+}
+
+.page-header {
+  font-size: 24pt;
+  margin: 10px 0 20px;
+  border-bottom: 1px solid #33ff00;
+}
+
+#wrapper,#page-wrapper,.panel-body,.nav>li>a,.navbar-default {
+  background-color: #000;
+}
+
+.panel-footer {
+  background-color: #000;
+  border-top: 1px solid #33ff00;
+}
+
+.panel-primary>.panel-heading::before, .navbar-default::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.sidebar ul li a.active,.sidebar ul li a.hover {
+  background-color: #000;
+}
+
+.sidebar ul li {
+  border-bottom: 1px solid #33ff00;
+}
+
+.btn-default.active, .btn-default.active:focus, .btn-default.active:hover {
+  color: #33ff00;
+  background-color: #000;
+}
+
+
+.btn-primary.btn-outline,.btn-warning,.btn-default,.btn-danger {
+  color: #33ff00;
+  border-color: #33ff00;
+}
+
+.btn-primary:hover,.btn-primary:focus,.btn-warning:hover,.btn-warning:focus,.btn-primary:active,.btn-default:hover,.btn-danger:hover,.btn-default:active,.btn-default:focus {
+  color: #33ff00;
+  background-color: #000;
+  border-color: #33ff00;
+}
+
+.btn-primary.btn-outline:hover,.btn-success, .btn-success.btn-outline:hover, .btn-info.btn-outline:hover, .btn-warning.btn-outline:hover, .btn-danger.btn-outline:hover {
+  color: #33ff00;
+}
+
+label.btn.btn-primary {
+  color: #33ff00;
+}
+
+label.btn.btn-primary.active, label.btn.btn-warning.active {
+  background-color: #33ff00;
+  border-color: #33ff00;
+  color: #000;
+}
+
+.label-warning {
+  background-color: #33ff00;
+}
+
+span.label.label-warning {
+  color: #000;
+}
+
+.btn.btn-primary {
+  border-color: #33ff00;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  background-color: #000;
+  border-top: 1px solid #000;
+}
+
+.table>thead>tr>th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #33ff00;
+}
+
+.btn-info, .btn-info:hover, .btn-info[disabled], .btn-danger.disabled, .btn-danger.disabled.active, .btn-danger.disabled.focus, .btn-danger.disabled:active, .btn-danger.disabled:focus, .btn-danger.disabled:hover, .btn-danger[disabled], .btn-danger[disabled].active, .btn-danger[disabled].focus, .btn-danger[disabled]:active, .btn-danger[disabled]:focus, .btn-danger[disabled]:hover, fieldset[disabled] .btn-danger, fieldset[disabled] .btn-danger.active, fieldset[disabled] .btn-danger.focus, fieldset[disabled] .btn-danger:active, fieldset[disabled] .btn-danger:focus, fieldset[disabled] .btn-danger:hover, .btn-info:hover {
+  background-color: #000;
+  border-color: #33ff00;
+  color: #33ff00;
+}
+
+.btn {
+  background-color: #000;
+  border-radius: 0px;
+}
+
+.alert {
+  border-radius: 0px;
+}
+
+.alert-success,.alert-warning,.alert-info,.alert-dismissable,.alert-danger {
+  color: #33ff00;
+  background-color: #000;
+  border-color: #33ff00;
+  border: 1px dashed;
+}
+
+.close {
+  font-size: 18px;
+  font-weight: normal;
+  text-shadow: 0 0px 0 #000;
+  opacity: 1;
+}
+
+.form-control, .form-control:focus {
+  color: #33ff00;
+  background-color: #000;
+  border: 1px solid #33ff00;
+  border-radius: 0px;
+  transition: unset;
+}
+
+input[type="text"]{
+  color: #33ff00 !important
+}
+
+.form-control::-webkit-input-placeholder { color: #33ff00; } 
+.form-control:-moz-placeholder { color: #33ff00; }  
+.form-control::-moz-placeholder { color: #33ff00; }  
+.form-control:-ms-input-placeholder { color: #33ff00; }  
+.form-control::-ms-input-placeholder { color: #33ff00; }
+
+.progress {
+  background-color: #000;
+  border-radius: 0px;
+}
+
+.progress-bar {
+  color: #000;
+}
+
+.progress-bar.progress-bar-info.progress-bar-striped.active {
+  background-color: #33ff00;
+}
+
+.info-item {
+  width: 140px;
+  float: left;
+}
+
+.logoutput {
+  width: 100%;
+  height: 300px;
+  background-color: #000;
+  border-color: #33ff00;
+}
+
+.webconsole {
+  width: 100%;
+  height: 100%;
+  border-color: #33ff00;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-top: 0px;
+  border-right: 1px solid;
+}
+
+#console {
+  height: 500px;
+}
+
+.systemtabcontent {
+  height: 100%;
+  min-height: 500px;
+}
+
+tspan, rect {
+  fill: #33ff00;
+}
+
+.morris-hover.morris-default-style {
+  background: none;
+  border-radius: 0px;
+  border-color: #33ff00;
+  border: dashed 1px #33ff00;
+}
+
+.morris-hover-point {
+  color: #33ff00 !important;
+}
+
+path {
+  stroke: #33ff00;
+}
+
+span.service-status-running {
+  color: #000;
+  font-size: 10pt;
+  text-transform: uppercase;
+  line-height: inherit;
+}
+
+pre {
+  background-color: #000;
+  border: #000;
+}
