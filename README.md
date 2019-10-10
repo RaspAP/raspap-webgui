@@ -121,7 +121,7 @@ sudo git clone https://github.com/billz/raspap-webgui /var/www/html
 ```
 Move the high-res favicons to the web root.
 ```
-sudo mv /var/www/html/dist/icons/* /var/www/html
+sudo mv /var/www/html/app/icons/* /var/www/html
 ```
 Set the files ownership to `www-data` user.
 ```sh
