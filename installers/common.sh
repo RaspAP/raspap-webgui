@@ -259,7 +259,7 @@ function enable_raspap_daemon() {
 
 # Add a single entry to the sudoers file
 function sudo_add() {
-    sudo bash -c "echo \"www-data ALL=(ALL) NOPASSWD:$1\" | (EDITOR=\"tee -a\" visudo)" \
+    sudo bash -c "echo \"$raspap_user ALL=(ALL) NOPASSWD:$1\" | (EDITOR=\"tee -a\" visudo)" \
         || install_error "Unable to patch /etc/sudoers"
 }
 
@@ -299,11 +299,11 @@ function patch_system_files() {
     )
 
     # Check if sudoers needs patching
-    if [ $(sudo grep -c www-data /etc/sudoers) -ne 28 ]
+    if [ $(sudo grep -c $raspap_user /etc/sudoers) -ne 28 ]
     then
         # Sudoers file has incorrect number of commands. Wiping them out.
         install_log "Cleaning sudoers file"
-        sudo sed -i '/www-data/d' /etc/sudoers
+        sudo sed -i "/$raspap_user/d" /etc/sudoers
         install_log "Patching system sudoers file"
         # patch /etc/sudoers file
         for cmd in "${cmds[@]}"
