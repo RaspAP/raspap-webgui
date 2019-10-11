@@ -61,22 +61,16 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <title><?php echo _("RaspAP WiFi Configuration Portal"); ?></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Bootstrap Toggle CSS -->
     <link href="dist/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="dist/metisMenu/metisMenu.min.css" rel="stylesheet">
-
     <!-- SB-Admin-2 CSS -->
     <link href="dist/sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="dist/morrisjs/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
-    <link href="dist/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="dist/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
     <link href="<?php echo $theme_url; ?>" title="main" rel="stylesheet">
@@ -98,95 +92,100 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body id="page-top">
 
     <div id="wrapper">
-      <!-- Navigation -->
-      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-      <a class="navbar-brand" href="index.php"><?php echo _("RaspAP Wifi Portal"); ?> v<?php echo RASPI_VERSION; ?></a>
-        </div>
-        <!-- /.navbar-header -->
+      <!-- Sidebar -->
+      <ul class="navbar-nav bg-gray-100 sidebar sidebar-light accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+          <div class="sidebar-brand-icon">
+            <img src="app/img/raspAP-logo64px.png" width="32" height="32">
+          </div>
+	  <div class="sidebar-brand-text ml-1">RaspAP <?php echo RASPI_VERSION; ?></div>
+	</a>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
 
-        <!-- Navigation -->
-        <div class="navbar-default sidebar" role="navigation">
-          <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
-              <li>
-                <a href="index.php?page=wlan0_info"><i class="fa fa-dashboard fa-fw"></i> <?php echo _("Dashboard"); ?></a>
+        <!-- Nav Item - Dashboard -->
+              <li class="nav-item">
+                <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw"></i> <?php echo _("Dashboard"); ?></a>
               </li>
-            <?php if (RASPI_WIFICLIENT_ENABLED) : ?>
-              <li>
-                <a href="index.php?page=wpa_conf"><i class="fa fa-wifi fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
-          </li>
+              <?php if (RASPI_WIFICLIENT_ENABLED) : ?>
+              <li class="nav-item">
+                <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
+              </li>
                 <?php endif; ?>
                 <?php if (RASPI_HOTSPOT_ENABLED) : ?>
-              <li>
-                <a href="index.php?page=hostapd_conf"><i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?></a>
+              <li class="nav-item">
+                <a class="nav-link" href="index.php?page=hostapd_conf"><i class="far fa-dot-circle fa-fw"></i> <?php echo _("Configure hotspot"); ?></a>
               </li>
                 <?php endif; ?>
                 <?php if (RASPI_NETWORK_ENABLED) : ?>
-              <li>
-                 <a href="index.php?page=network_conf"><i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></a>
+              <li class="nav-item">
+                 <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></a>
               </li> 
                 <?php endif; ?>
                 <?php if (RASPI_DHCP_ENABLED) : ?>
-              <li>
-                <a href="index.php?page=dhcpd_conf"><i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP Server"); ?></a>
+              <li class="nav-item">
+                <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw"></i> <?php echo _("Configure DHCP Server"); ?></a>
               </li>
                 <?php endif; ?>
                 <?php if (RASPI_OPENVPN_ENABLED) : ?>
-              <li>
-                <a href="index.php?page=openvpn_conf"><i class="fa fa-lock fa-fw"></i> <?php echo _("Configure OpenVPN"); ?></a>
+              <li class="nav-item">
+                <a class="nav-link" href="index.php?page=openvpn_conf"><i class="fas fa-lock fa-fw"></i> <?php echo _("Configure OpenVPN"); ?></a>
               </li>
                 <?php endif; ?>
                 <?php if (RASPI_TORPROXY_ENABLED) : ?>
-              <li>
-                 <a href="index.php?page=torproxy_conf"><i class="fa fa-eye-slash fa-fw"></i> <?php echo _("Configure TOR proxy"); ?></a>
+              <li class="nav-item">
+                 <a class="nav-link" href="index.php?page=torproxy_conf"><i class="fas fa-eye-slash fa-fw"></i> <?php echo _("Configure TOR proxy"); ?></a>
               </li>
                 <?php endif; ?>
                 <?php if (RASPI_CONFAUTH_ENABLED) : ?>
-              <li>
-                <a href="index.php?page=auth_conf"><i class="fa fa-lock fa-fw"></i> <?php echo _("Configure Auth"); ?></a>
+              <li class="nav-item">
+                <a class="nav-link" href="index.php?page=auth_conf"><i class="fas fa-lock fa-fw"></i> <?php echo _("Configure Auth"); ?></a>
               </li>
                 <?php endif; ?>
                 <?php if (RASPI_CHANGETHEME_ENABLED) : ?>
-              <li>
-                <a href="index.php?page=theme_conf"><i class="fa fa-wrench fa-fw"></i> <?php echo _("Change Theme"); ?></a>
+              <li class="nav-item">
+                <a class="nav-link" href="index.php?page=theme_conf"><i class="fas fa-wrench fa-fw"></i> <?php echo _("Change Theme"); ?></a>
               </li>
                 <?php endif; ?>
                 <?php if (RASPI_VNSTAT_ENABLED) : ?>
-              <li>
-                <a href="index.php?page=data_use"><i class="fa fa-bar-chart fa-fw"></i> <?php echo _("Data usage"); ?></a>
+              <li class="nav-item">
+                <a class="nav-link" href="index.php?page=data_use"><i class="fas fa-chart-bar fa-fw"></i> <?php echo _("Data usage"); ?></a>
               </li>
                 <?php endif; ?>
-              <li>
-                <a href="index.php?page=system_info"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
+              <li class="nav-item">
+                <a class="nav-link" href="index.php?page=system_info"><i class="fas fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
               </li>
-               <li>
-                <a href="index.php?page=about"><i class="fa fa-info-circle fa-fw"></i> <?php echo _("About RaspAP"); ?></a>
-              </li>
-           </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.navbar-default -->
-      </nav>
+               <li class="nav-item">
+                <a class="nav-link" href="index.php?page=about"><i class="fas fa-info-circle fa-fw"></i> <?php echo _("About RaspAP"); ?></a>
+	      </li>
+	      <hr class="sidebar-divider d-none d-md-block">
+	      <!-- Sidebar Toggler (Sidebar) -->
+              <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+              </div>
+	   </ul>
+           <!-- End of Sidebar -->
 
-      <div id="page-wrapper">
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+
+        <!-- Content Row
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="page-header">
+              <img class="logo" src="app/img/raspAP-logo.png" width="45" height="45">RaspAP
+            </h2>
+          </div>
+        </div>< /.row -->
 
         <!-- Page Heading -->
-        <div class="row">
-          <div class="col-lg-12">
-            <h1 class="page-header">
-              <img class="logo" src="app/img/raspAP-logo.png" width="45" height="45">RaspAP
-            </h1>
-          </div>
-        </div><!-- /.row -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <!-- todo -->
+	</div>
 
         <?php
         $extraFooterScripts = array();
@@ -248,8 +247,8 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- Bootstrap Toggle JavaScript -->
     <script src="dist/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="dist/metisMenu/metisMenu.min.js"></script>
+    <!-- Chart.js JavaScript -->
+    <script src="dist/chart.js/Chart.min.js"></script>
 
     <!-- SB-Admin-2 JavaScript -->
     <script src="dist/sb-admin-2/js/sb-admin-2.js"></script>

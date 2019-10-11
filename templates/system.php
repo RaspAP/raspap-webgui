@@ -28,16 +28,16 @@ if ($cpuload > 90) {
 ?>
 <div class="row">
 <div class="col-lg-12">
-<div class="panel panel-primary">
-<div class="panel-heading"><i class="fa fa-cube fa-fw"></i> <?php echo _("System"); ?></div>
-<div class="panel-body">
+<div class="card">
+<div class="card-header"><i class="fas fa-cube"></i> <?php echo _("System"); ?></div>
+<div class="card-body">
 <?php $status->showMessages(); ?>
 <form role="form" action="?page=system_info" method="POST">
 <?php echo CSRFTokenFieldTag() ?>
 <ul class="nav nav-tabs" role="tablist">
-  <li role="presentation" class="active systemtab"><a href="#system" aria-controls="system" role="tab" data-toggle="tab"><?php echo _("System"); ?></a></li>
-  <li role="presentation" class="languagetab"><a href="#language" aria-controls="language" role="tab" data-toggle="tab"><?php echo _("Language"); ?></a></li>
-  <li role="presentation" class="consoletab"><a href="#console" aria-controls="console" role="tab" data-toggle="tab"><?php echo _("Console"); ?></a></li>
+  <li role="presentation" class="nav-item"><a class="nav-link active" id="systemtab" href="#system" aria-controls="system" role="tab" data-toggle="tab"><?php echo _("System"); ?></a></li>
+  <li role="presentation" class="nav-item"><a class="nav-link" id="languagetab" href="#language" aria-controls="language" role="tab" data-toggle="tab"><?php echo _("Language"); ?></a></li>
+  <li role="presentation" class="nav-item"><a class="nav-link" id="consoletab" href="#console" aria-controls="console" role="tab" data-toggle="tab"><?php echo _("Console"); ?></a></li>
 </ul>
 
 <div class="systemtabcontent tab-content">
@@ -50,19 +50,19 @@ if ($cpuload > 90) {
         <div class="info-item"><?php echo _("Uptime"); ?></div>   <?php echo htmlspecialchars($uptime, ENT_QUOTES); ?></br></br>
         <div class="info-item"><?php echo _("Memory Used"); ?></div>
         <div class="progress">
-        <div class="progress-bar progress-bar-<?php echo htmlspecialchars($memused_status, ENT_QUOTES); ?> progress-bar-striped active"
+          <div class="progress-bar progress-bar-<?php echo htmlspecialchars($memused_status, ENT_QUOTES); ?> progress-bar-striped active"
         role="progressbar"
         aria-valuenow="<?php echo htmlspecialchars($memused, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100"
         style="width: <?php echo htmlspecialchars($memused, ENT_QUOTES); ?>%;"><?php echo htmlspecialchars($memused, ENT_QUOTES); ?>%
-        </div>
+          </div>
         </div>
         <div class="info-item"><?php echo _("CPU Load"); ?></div>
         <div class="progress">
-        <div class="progress-bar progress-bar-<?php echo htmlspecialchars($cpuload_status, ENT_QUOTES); ?> progress-bar-striped active"
+          <div class="progress-bar progress-bar-<?php echo htmlspecialchars($cpuload_status, ENT_QUOTES); ?> progress-bar-striped active"
         role="progressbar"
         aria-valuenow="<?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100"
         style="width: <?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>%;"><?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>%
-        </div>
+          </div>
         </div>
 
         <form action="?page=system_info" method="POST">
@@ -100,8 +100,8 @@ if ($cpuload > 90) {
 </div><!-- /.systemtabcontent -->
 
 </form>
-</div><!-- /.panel-body -->
-<div class="panel-footer"></div>
-</div><!-- /.panel-primary -->
+</div><!-- /.card-body -->
+<div class="card-footer"></div>
+</div><!-- /.card -->
 </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->

@@ -9,35 +9,35 @@ exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep
 ?>
 <div class="row">
   <div class="col-lg-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading"><i class="fa fa-dashboard fa-fw"></i> <?php echo _("Dashboard"); ?></div>
-      <div class="panel-body">
+    <div class="card">
+      <div class="card-header"><i class="fas fa-tachometer-alt fa-fw"></i> <?php echo _("Dashboard"); ?></div>
+      <div class="card-body">
         <?php $status->showMessages(); ?>
         <div class="row">
           <div class="col-md-6">
-            <div class="panel panel-default">
-              <div class="panel-body">
+	    <div class="card mb-3">
+              <div class="card-body">
                 <h4><?php echo _("Interface Information"); ?></h4>
                 <div class="info-item"><?php echo _("Interface Name"); ?></div> <?php echo RASPI_WIFI_CLIENT_INTERFACE; ?><br />
                 <div class="info-item"><?php echo _("IPv4 Address"); ?></div> <?php echo htmlspecialchars($ipv4Addrs, ENT_QUOTES); ?><br />
                 <div class="info-item"><?php echo _("Subnet Mask"); ?></div> <?php echo htmlspecialchars($ipv4Netmasks, ENT_QUOTES); ?><br />
                 <div class="info-item"><?php echo _("IPv6 Address"); ?></div> <?php echo htmlspecialchars($ipv6Addrs, ENT_QUOTES); ?><br />
                 <div class="info-item"><?php echo _("Mac Address"); ?></div> <?php echo htmlspecialchars($macAddr, ENT_QUOTES); ?><br /><br />
-              </div><!-- /.panel-body -->
-            </div><!-- /.panel-default -->
-            <div class="panel panel-default">
-              <div class="panel-body">
+              </div><!-- /.card-body -->
+            </div><!-- /.card-->
+            <div class="card mb-3">
+              <div class="card-body">
                 <h4><?php echo _("Interface Statistics"); ?></h4>
                 <div class="info-item"><?php echo _("Received Packets"); ?></div> <?php echo htmlspecialchars($strRxPackets, ENT_QUOTES); ?><br />
                 <div class="info-item"><?php echo _("Received Bytes"); ?></div> <?php echo htmlspecialchars($strRxBytes, ENT_QUOTES); ?><br /><br />
                 <div class="info-item"><?php echo _("Transferred Packets"); ?></div> <?php echo htmlspecialchars($strTxPackets, ENT_QUOTES); ?><br />
                 <div class="info-item"><?php echo _("Transferred Bytes"); ?></div> <?php echo htmlspecialchars($strTxBytes, ENT_QUOTES); ?><br />
-              </div><!-- /.panel-body -->
-            </div><!-- /.panel-default -->
+              </div><!-- /.card-body -->
+            </div><!-- /.card -->
           </div><!-- /.col-md-6 -->
           <div class="col-md-6">
-            <div class="panel panel-default">
-              <div class="panel-body wireless">
+            <div class="card mb-3">
+              <div class="card-body wireless">
                 <h4><?php echo _("Wireless Information"); ?></h4>
                 <div class="info-item"><?php echo _("Connected To"); ?></div> <?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?><br />
                 <div class="info-item"><?php echo _("AP Mac Address"); ?></div> <?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?><br />
@@ -49,10 +49,10 @@ exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep
                 <div class="progress">
                   <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo htmlspecialchars($strLinkQuality, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo htmlspecialchars($strLinkQuality, ENT_QUOTES); ?>%;"><?php echo htmlspecialchars($strLinkQuality, ENT_QUOTES); ?>%</div>
                 </div>
-              </div><!-- /.panel-body -->
-            </div><!-- /.panel-default -->
-            <div class="panel panel-default">
-              <div class="panel-body wireless">
+              </div><!-- /.card-body -->
+            </div><!-- /.card -->
+            <div class="card mb-3">
+              <div class="card-body wireless">
                 <h4><?php echo _("Connected Devices"); ?></h4>
                 <div class="table-responsive">
                   <table class="table table-hover">
@@ -75,8 +75,8 @@ exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep
                     </tbody>
                   </table>
                 </div><!-- /.table-responsive -->
-              </div><!-- /.panel-body -->
-            </div><!-- /.panel-default -->
+              </div><!-- /.card-body -->
+            </div><!-- /.card -->
           </div><!-- /.col-md-6 -->
         </div><!-- /.row -->
 
@@ -91,13 +91,13 @@ exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep
                     <input type="submit" class="btn btn-warning" value="<?php echo _("Stop ").RASPI_WIFI_CLIENT_INTERFACE ?>"  name="ifdown_wlan0" />
                     <?php endif ?>
                 <?php endif ?>
-              <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fa fa-refresh"></i> <?php echo _("Refresh") ?></a>
+              <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
             </form>
           </div>
         </div>
 
-      </div><!-- /.panel-body -->
-      <div class="panel-footer"><?php echo _("Information provided by ip and iw and from system."); ?></div>
-    </div><!-- /.panel-default -->
+      </div><!-- /.card-body -->
+      <div class="card-footer"><?php echo _("Information provided by ip and iw and from system."); ?></div>
+    </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
