@@ -53,17 +53,12 @@ function modules() {
   var bootstrapJS = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/*')
     .pipe(gulp.dest('./dist/bootstrap/js'));
   // Bootstrap SCSS
-  var bootstrapSCSS = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/css/*')
+  var bootstrapSCSS = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/scss/*')
+    .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./dist/bootstrap/css'));
-  // Morris JS
-  var morrisJS = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/morrisjs/*')
-    .pipe(gulp.dest('./dist/morrisjs'));
-  // metisMenu
-  var metisMenu = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/metisMenu/*')
-    .pipe(gulp.dest('./dist/metisMenu'))
-  // Raphael
-  var raphael = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/raphael/*')
-    .pipe(gulp.dest('./dist/raphael'))
+  // Chart JS
+  var chartJS = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/chart.js/*')
+    .pipe(gulp.dest('./dist/chart.js'));
   // dataTables
   var dataTables = gulp.src([
       './node_modules/startbootstrap-sb-admin-2/vendor/datatables/js/*',
@@ -71,8 +66,8 @@ function modules() {
     ])
     .pipe(gulp.dest('./dist/datatables'));
   // Font Awesome
-  var fontAwesome = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/font-awesome/**/*')
-    .pipe(gulp.dest('./dist/font-awesome'));
+  var fontAwesome = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/fontawesome-free/**/*')
+    .pipe(gulp.dest('./dist/fontawesome-free'));
   // jQuery Easing
   var jqueryEasing = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/jquery.easing/*.js')
     .pipe(gulp.dest('./dist/jquery-easing'));
@@ -80,15 +75,15 @@ function modules() {
   var jquery = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/jquery/*')
     .pipe(gulp.dest('./dist/jquery'));
   // SB Admin 2 JS
-  var sbadmin2JS = gulp.src('./node_modules/startbootstrap-sb-admin-2/dist/js/*')
+  var sbadmin2JS = gulp.src('./node_modules/startbootstrap-sb-admin-2/js/*')
     .pipe(gulp.dest('./dist/sb-admin-2/js'));
   // SB Admin2 CSS
-  var sbadmin2CSS = gulp.src('./node_modules/startbootstrap-sb-admin-2/dist/css/*')
+  var sbadmin2CSS = gulp.src('./node_modules/startbootstrap-sb-admin-2/css/*')
     .pipe(gulp.dest('./dist/sb-admin-2/css'));
   // Bootstrap Toggle
   var bootstraptoggle = gulp.src('./node_modules/bootstrap-toggle/**/*')
     .pipe(gulp.dest('./dist/bootstrap-toggle'));
-  return merge(bootstrapJS, bootstrapSCSS, morrisJS, metisMenu, raphael, dataTables, fontAwesome, jquery, jqueryEasing, sbadmin2JS, sbadmin2CSS, bootstraptoggle);
+  return merge(bootstrapJS, bootstrapSCSS, chartJS, dataTables, fontAwesome, jquery, jqueryEasing, sbadmin2JS, sbadmin2CSS, bootstraptoggle);
 }
 
 // CSS task
