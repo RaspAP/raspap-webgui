@@ -1,3 +1,7 @@
+body {
+  color: #212529;
+}
+
 .page-header {
   margin: 20px 0 20px;
 }
@@ -6,22 +10,47 @@
   margin-right: 5px;
 }
 
-.panel-primary {
+.card {
   border-color: #c61931;
 }
 
-.panel-primary>.panel-heading {
-  border-color: #d8224c;
-  background-color: #d8224c;
+.sidebar-brand-text {
+  text-transform: none;
+  color: #212529;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.panel-footer {
+.card .card-header {
+  border-color: #d8224c;
+  background-color: #d8224c;
+  color: #fff;
+}
+
+.card-footer {
   background-color: #f2f1f0;
 }
 
-.btn-primary.btn-outline {
-  color: #c61931;
-  border-color: #c61931;
+.nav-item {
+  font-size: 0.85rem;
+}
+
+.sidebar .nav-item .nav-link {
+  padding: 0.6rem;
+}
+
+.alert-success {
+  background-color: #d4edda;
+}
+
+.btn-primary {
+  color: #d8224c;
+  background-color: #fff;
+  border-color: #d8224c;
+}
+
+.btn-warning {
+  color: #333;
 }
 
 .btn-primary:hover {
