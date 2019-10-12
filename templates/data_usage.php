@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header"><i class="fas fa-bar-chart fa-fw"></i> <?php echo _("Data usage monitoring"); ?></div>
+      <div class="card-header"><i class="fas fa-chart-bar"></i> <?php echo _("Data usage monitoring"); ?></div>
         <div class="card-body">
 
           <ul id="tabbarBandwidth" class="nav nav-tabs" role="tablist">

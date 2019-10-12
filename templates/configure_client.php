@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header"><i class="fas fa-signal fa-fw"></i> <?php echo _("Configure client"); ?></div>
+      <div class="card-header"><i class="fas fa-wifi"></i> <?php echo _("Configure WiFi client"); ?></div>
       <!-- /.card-heading -->
       <div class="card-body">
         <?php $status->showMessages(); ?>

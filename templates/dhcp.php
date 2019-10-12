@@ -2,7 +2,7 @@
 <div class="col-lg-12">
   <div class="card">
   <div class="card-header">
-    <i class="fas fa-exchange"></i> <?php echo _("Configure DHCP"); ?>
+    <i class="fas fa-exchange-alt"></i> <?php echo _("Configure DHCP"); ?>
     <span class="label pull-right service-status-<?php echo $serviceStatus ?>">dnsmasq <?php echo _($serviceStatus) ?></span>
   </div>
     <!-- /.panel-heading -->

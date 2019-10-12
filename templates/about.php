@@ -11,8 +11,8 @@
           with the contributions of our <a href="https://github.com/billz/raspap-webgui/graphs/contributors">community</a>.</p>
           <p><i class="fab fa-github"></i> <a href="https://github.com/billz/raspap-webgui">https://github.com/billz/raspap-webgui</a></p>
 
-      </div><!-- /.panel-body -->
+      </div><!-- /.card-body -->
       <div class="card-footer"></div>
-    </div><!-- /.panel-primary -->
+    </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
