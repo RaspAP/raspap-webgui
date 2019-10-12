@@ -93,7 +93,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <![endif]-->
   </head>
   <body id="page-top">
-
+    <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
       <ul class="navbar-nav bg-gray-100 sidebar sidebar-light accordion" id="accordionSidebar">
@@ -107,142 +107,158 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <!-- Nav Item - Dashboard -->
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw"></i> <?php echo _("Dashboard"); ?></a>
-              </li>
-              <?php if (RASPI_WIFICLIENT_ENABLED) : ?>
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
-              </li>
-                <?php endif; ?>
-                <?php if (RASPI_HOTSPOT_ENABLED) : ?>
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?page=hostapd_conf"><i class="far fa-dot-circle fa-fw"></i> <?php echo _("Configure hotspot"); ?></a>
-              </li>
-                <?php endif; ?>
-                <?php if (RASPI_NETWORK_ENABLED) : ?>
-              <li class="nav-item">
-                 <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></a>
-              </li> 
-                <?php endif; ?>
-                <?php if (RASPI_DHCP_ENABLED) : ?>
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw"></i> <?php echo _("Configure DHCP Server"); ?></a>
-              </li>
-                <?php endif; ?>
-                <?php if (RASPI_OPENVPN_ENABLED) : ?>
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?page=openvpn_conf"><i class="fas fa-lock fa-fw"></i> <?php echo _("Configure OpenVPN"); ?></a>
-              </li>
-                <?php endif; ?>
-                <?php if (RASPI_TORPROXY_ENABLED) : ?>
-              <li class="nav-item">
-                 <a class="nav-link" href="index.php?page=torproxy_conf"><i class="fas fa-eye-slash fa-fw"></i> <?php echo _("Configure TOR proxy"); ?></a>
-              </li>
-                <?php endif; ?>
-                <?php if (RASPI_CONFAUTH_ENABLED) : ?>
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?page=auth_conf"><i class="fas fa-lock fa-fw"></i> <?php echo _("Configure Auth"); ?></a>
-              </li>
-                <?php endif; ?>
-                <?php if (RASPI_CHANGETHEME_ENABLED) : ?>
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?page=theme_conf"><i class="fas fa-paint-brush fa-fw"></i> <?php echo _("Change Theme"); ?></a>
-              </li>
-                <?php endif; ?>
-                <?php if (RASPI_VNSTAT_ENABLED) : ?>
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?page=data_use"><i class="fas fa-chart-bar fa-fw"></i> <?php echo _("Data usage"); ?></a>
-              </li>
-                <?php endif; ?>
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?page=system_info"><i class="fas fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
-              </li>
-               <li class="nav-item">
-                <a class="nav-link" href="index.php?page=about"><i class="fas fa-info-circle fa-fw"></i> <?php echo _("About RaspAP"); ?></a>
-	      </li>
-	      <hr class="sidebar-divider d-none d-md-block">
-	      <!-- Sidebar Toggler (Sidebar) -->
-              <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-              </div>
-	   </ul>
-           <!-- End of Sidebar -->
-
-      <!-- Begin Page Content -->
-      <div class="container-fluid">
-
-        <!-- Content Row
-        <div class="row">
-          <div class="col-sm-12">
-            <h2 class="page-header">
-              <img class="logo" src="app/img/raspAP-logo.png" width="45" height="45">RaspAP
-            </h2>
-          </div>
-        </div>< /.row -->
-
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <!-- todo -->
+	<li class="nav-item">
+	  <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw"></i> <?php echo _("Dashboard"); ?></a>
+	</li>
+	<?php if (RASPI_WIFICLIENT_ENABLED) : ?>
+	<li class="nav-item">
+	  <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
+	</li>
+	  <?php endif; ?>
+	  <?php if (RASPI_HOTSPOT_ENABLED) : ?>
+	<li class="nav-item">
+	  <a class="nav-link" href="index.php?page=hostapd_conf"><i class="far fa-dot-circle fa-fw"></i> <?php echo _("Configure hotspot"); ?></a>
+	</li>
+	  <?php endif; ?>
+	  <?php if (RASPI_NETWORK_ENABLED) : ?>
+	<li class="nav-item">
+	   <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></a>
+	</li> 
+	  <?php endif; ?>
+	  <?php if (RASPI_DHCP_ENABLED) : ?>
+	<li class="nav-item">
+	  <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw"></i> <?php echo _("Configure DHCP Server"); ?></a>
+	</li>
+	  <?php endif; ?>
+	  <?php if (RASPI_OPENVPN_ENABLED) : ?>
+	<li class="nav-item">
+	  <a class="nav-link" href="index.php?page=openvpn_conf"><i class="fas fa-lock fa-fw"></i> <?php echo _("Configure OpenVPN"); ?></a>
+	</li>
+	  <?php endif; ?>
+	  <?php if (RASPI_TORPROXY_ENABLED) : ?>
+	<li class="nav-item">
+	   <a class="nav-link" href="index.php?page=torproxy_conf"><i class="fas fa-eye-slash fa-fw"></i> <?php echo _("Configure TOR proxy"); ?></a>
+	</li>
+	  <?php endif; ?>
+	  <?php if (RASPI_CONFAUTH_ENABLED) : ?>
+	<li class="nav-item">
+	<a class="nav-link" href="index.php?page=auth_conf"><i class="fas fa-lock fa-fw"></i> <?php echo _("Configure Auth"); ?></a>
+	</li>
+	  <?php endif; ?>
+	  <?php if (RASPI_CHANGETHEME_ENABLED) : ?>
+	<li class="nav-item">
+	  <a class="nav-link" href="index.php?page=theme_conf"><i class="fas fa-paint-brush fa-fw"></i> <?php echo _("Change Theme"); ?></a>
+	</li>
+	  <?php endif; ?>
+	  <?php if (RASPI_VNSTAT_ENABLED) : ?>
+	<li class="nav-item">
+	  <a class="nav-link" href="index.php?page=data_use"><i class="fas fa-chart-bar fa-fw"></i> <?php echo _("Data usage"); ?></a>
+	</li>
+	  <?php endif; ?>
+	<li class="nav-item">
+	  <a class="nav-link" href="index.php?page=system_info"><i class="fas fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
+	</li>
+	 <li class="nav-item">
+	  <a class="nav-link" href="index.php?page=about"><i class="fas fa-info-circle fa-fw"></i> <?php echo _("About RaspAP"); ?></a>
+	</li>
+	<hr class="sidebar-divider d-none d-md-block">
+	<!-- Sidebar Toggler (Sidebar) -->
+	<div class="text-center d-none d-md-inline">
+	  <button class="rounded-circle border-0" id="sidebarToggle"></button>
 	</div>
+     </ul>
+     <!-- End of Sidebar -->
 
-        <?php
-        $extraFooterScripts = array();
-        // handle page actions
-        switch ($page) {
-            case "wlan0_info":
-                DisplayDashboard();
-                break;
-            case "dhcpd_conf":
-                DisplayDHCPConfig();
-                break;
-            case "wpa_conf":
-                DisplayWPAConfig();
-                break;
-            case "network_conf":
-                DisplayNetworkingConfig();
-                break;
-            case "hostapd_conf":
-                DisplayHostAPDConfig();
-                break;
-            case "openvpn_conf":
-                DisplayOpenVPNConfig();
-                break;
-            case "torproxy_conf":
-                DisplayTorProxyConfig();
-                break;
-            case "auth_conf":
-                DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
-                break;
-            case "save_hostapd_conf":
-                SaveTORAndVPNConfig();
-                break;
-            case "theme_conf":
-                DisplayThemeConfig();
-                break;
-            case "data_use":
-                DisplayDataUsage($extraFooterScripts);
-                break;
-            case "system_info":
-                DisplaySystem();
-                break;
-            case "about":
-                DisplayAbout();
-                break;
-            default:
-                DisplayDashboard();
-        }
+           <!-- Begin Page Content -->
+	  <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content"> 
+              <!-- Topbar -->
+	      <nav class="navbar navbar-expand navbar-light bg-gray-100 topbar mb-4 static-top">
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                  <i class="fa fa-bars"></i>
+	        </button>
+	        <!-- Topbar Navbar -->
+              </nav>
+              <!-- End of Topbar -->
+              <!-- Begin Page Content -->
+              <div class="container-fluid">
+    
+              <?php
+              $extraFooterScripts = array();
+              // handle page actions
+              switch ($page) {
+	      case "wlan0_info":
+		  DisplayDashboard();
+		  break;
+	      case "dhcpd_conf":
+		  DisplayDHCPConfig();
+		  break;
+	      case "wpa_conf":
+		  DisplayWPAConfig();
+		  break;
+	      case "network_conf":
+		  DisplayNetworkingConfig();
+		  break;
+	      case "hostapd_conf":
+		  DisplayHostAPDConfig();
+		  break;
+	      case "openvpn_conf":
+		  DisplayOpenVPNConfig();
+		  break;
+	      case "torproxy_conf":
+		  DisplayTorProxyConfig();
+		  break;
+	      case "auth_conf":
+		  DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
+		  break;
+	      case "save_hostapd_conf":
+		  SaveTORAndVPNConfig();
+		  break;
+	      case "theme_conf":
+		  DisplayThemeConfig();
+		  break;
+	      case "data_use":
+		  DisplayDataUsage($extraFooterScripts);
+		  break;
+	      case "system_info":
+		  DisplaySystem();
+		  break;
+	      case "about":
+		  DisplayAbout();
+		  break;
+	      default:
+		  DisplayDashboard();
+	      }
 
-?>
-      </div><!-- /#page-wrapper --> 
-    </div><!-- /#wrapper -->
+           ?>
+          </div><!-- /.container-fluid --> 
+        </div><!-- End of Main Content -->
+        <!-- Footer -->
+        <footer class="sticky-footer bg-grey-100">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span></span>
+            </div>
+          </div>
+	</footer>
+        <!-- End Footer -->
+      </div><!-- End of Content Wrapper -->
+    </div><!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top" style="display: inline;">
+      <i class="fas fa-angle-up"></i>
+    </a> 
 
     <!-- jQuery -->
     <script src="dist/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="dist/bootstrap/js/bootstrap.min.js"></script>
+    <script src="dist/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript -->
+    <script src="dist/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Bootstrap Toggle JavaScript -->
     <script src="dist/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
@@ -256,18 +272,18 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
-<?php
-// Load non default JS/ECMAScript in footer.
-foreach ($extraFooterScripts as $script) {
-    echo '    <script type="text/javascript" src="' , $script['src'] , '"';
-    if ($script['defer']) {
-        echo ' defer="defer"';
-    }
+  <?php
+  // Load non default JS/ECMAScript in footer.
+  foreach ($extraFooterScripts as $script) {
+      echo '    <script type="text/javascript" src="' , $script['src'] , '"';
+      if ($script['defer']) {
+	  echo ' defer="defer"';
+      }
 
-    // if ($script['async']) { echo ( echo ' defer="async"'; ), intrigity=, nonce=  etc. etc.
-    echo '></script>' , PHP_EOL;
-}
+      // if ($script['async']) { echo ( echo ' defer="async"'; ), intrigity=, nonce=  etc. etc.
+      echo '></script>' , PHP_EOL;
+  }
 
-?>
+  ?>
   </body>
 </html>
