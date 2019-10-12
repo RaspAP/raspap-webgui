@@ -69,7 +69,7 @@ function modules() {
   var fontAwesome = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/fontawesome-free/**/*')
     .pipe(gulp.dest('./dist/fontawesome-free'));
   // jQuery Easing
-  var jqueryEasing = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/jquery.easing/*.js')
+  var jqueryEasing = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/jquery-easing/*.js')
     .pipe(gulp.dest('./dist/jquery-easing'));
   // jQuery
   var jquery = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/jquery/*')
