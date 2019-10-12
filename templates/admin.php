@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading"><i class="fa fa-lock fa-fw"></i><?php echo _("Configure Auth"); ?></div>
-      <div class="panel-body">
+    <div class="card">
+      <div class="card-header"><i class="fas fa-lock"></i> <?php echo _("Configure Auth"); ?></div>
+      <div class="card-body">
         <?php $status->showMessages(); ?>
         <form role="form" action="?page=auth_conf" method="POST">
             <?php echo CSRFTokenFieldTag() ?>
@@ -32,7 +32,7 @@
           </div>
           <input type="submit" class="btn btn-outline btn-primary" name="UpdateAdminPassword" value="<?php echo _("Save settings"); ?>" />
         </form>
-      </div><!-- /.panel-body -->
-    </div><!-- /.panel-default -->
+      </div><!-- /.card-body -->
+    </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->

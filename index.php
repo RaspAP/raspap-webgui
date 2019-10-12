@@ -102,7 +102,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
           <div class="sidebar-brand-icon">
             <img src="app/img/raspAP-logo64px.png" width="32" height="32">
           </div>
-	  <div class="sidebar-brand-text ml-1">RaspAP <?php echo RASPI_VERSION; ?></div>
+	  <div class="sidebar-brand-text ml-1">RaspAP</div>
 	</a>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
@@ -148,7 +148,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
                 <?php endif; ?>
                 <?php if (RASPI_CHANGETHEME_ENABLED) : ?>
               <li class="nav-item">
-                <a class="nav-link" href="index.php?page=theme_conf"><i class="fas fa-wrench fa-fw"></i> <?php echo _("Change Theme"); ?></a>
+                <a class="nav-link" href="index.php?page=theme_conf"><i class="fas fa-paint-brush fa-fw"></i> <?php echo _("Change Theme"); ?></a>
               </li>
                 <?php endif; ?>
                 <?php if (RASPI_VNSTAT_ENABLED) : ?>

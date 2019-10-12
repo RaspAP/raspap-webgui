@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-lg-12">
-   <div class="panel panel-primary">
-    <div class="panel-heading"><i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></div>
-      <div class="panel-body">
+   <div class="card">
+    <div class="card-header"><i class="fas fa-sitemap"></i> <?php echo _("Configure networking"); ?></div>
+      <div class="card-body">
         <div id="msgNetworking"></div>
         <ul class="nav nav-tabs">
-          <li role="presentation" class="active"><a href="#summary" aria-controls="summary" role="tab" data-toggle="tab"><?php echo _("Summary"); ?></a></li>
+          <li role="presentation" class="nav-item active"><a href="#summary" aria-controls="summary" role="tab" data-toggle="tab"><?php echo _("Summary"); ?></a></li>
           <?php foreach ($interfaces as $if): ?>
           <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
-          <li role="presentation"><a href="#<?php echo $if_quoted ?>" aria-controls="<?php echo $if_quoted ?>" role="tab" data-toggle="tab"><?php echo $if_quoted ?></a></li>
+          <li role="presentation"><a class="nav-link" href="#<?php echo $if_quoted ?>" aria-controls="<?php echo $if_quoted ?>" role="tab" data-toggle="tab"><?php echo $if_quoted ?></a></li>
           <?php endforeach ?>
         </ul>
         <div class="tab-content">
@@ -19,9 +19,9 @@
               <?php foreach ($interfaces as $if): ?>
               <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
               <div class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading"><?php echo $if_quoted ?></div>
-                  <div class="panel-body">
+                <div class="card">
+                  <div class="card-header"><?php echo $if_quoted ?></div>
+                  <div class="card-body">
                     <pre class="unstyled" id="<?php echo $if_quoted ?>-summary"></pre>
                   </div>
                 </div>
@@ -99,8 +99,8 @@
           <?php endforeach ?>
 
         </div><!-- /.tab-content -->
-      </div><!-- /.panel-body -->
-      <div class="panel-footer"><?php echo _("Information provided by /sys/class/net"); ?></div>
-    </div><!-- /.panel-primary -->
+      </div><!-- /.card-body -->
+      <div class="card-footer"><?php echo _("Information provided by /sys/class/net"); ?></div>
+    </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div>

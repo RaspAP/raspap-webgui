@@ -1,17 +1,17 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading"><i class="fa fa-bar-chart fa-fw"></i> <?php echo _("Data usage monitoring"); ?></div>
-        <div class="panel-body">
+    <div class="card">
+      <div class="card-header"><i class="fas fa-bar-chart fa-fw"></i> <?php echo _("Data usage monitoring"); ?></div>
+        <div class="card-body">
 
           <ul id="tabbarBandwidth" class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#hourly" aria-controls="hourly" role="tab" data-toggle="tab"><?php echo _("Hourly"); ?></a></li>
-            <li role="presentation" class=""><a href="#daily" aria-controls="daily" role="tab" data-toggle="tab"><?php echo _("Daily"); ?></a></li>
-            <li role="presentation" class=""><a href="#monthly" aria-controls="monthly" role="tab" data-toggle="tab"><?php echo _("Monthly"); ?></a></li>
+            <li class="nav-item active"><a class="nav-link" href="#hourly" aria-controls="hourly" role="tab" data-toggle="tab"><?php echo _("Hourly"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#daily" aria-controls="daily" role="tab" data-toggle="tab"><?php echo _("Daily"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#monthly" aria-controls="monthly" role="tab" data-toggle="tab"><?php echo _("Monthly"); ?></a></li>
           </ul>
 
           <div id="tabsBandwidth" class="tabcontenttraffic tab-content">
-            <div role="tabpanel" class="tab-pane active fade in" id="hourly">
+            <div role="tabpanel" class="tab-pane active" id="hourly">
               <div class="row">
                 <div class="col-lg-12">
                   <h4><?php echo _('Hourly traffic amount'); ?></h4>
@@ -70,10 +70,10 @@
             </div><!-- /.tab-pane -->
           </div><!-- /.tabsBandwidth -->
 
-         </div><!-- /.panel-body -->
-       <div class="panel-footer"><?php echo _("Information provided by vnstat"); ?></div>
-     </div><!-- /.panel-primary -->
-    </div><!-- /.panel-primary -->
+         </div><!-- /.card-body -->
+       <div class="card-footer"><?php echo _("Information provided by vnstat"); ?></div>
+     </div><!-- /.card -->
+    </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 <script type="text/javascript"<?php //echo ' nonce="'.$csp_page_nonce.'"'; ?>>

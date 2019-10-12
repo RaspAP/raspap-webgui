@@ -1,26 +1,26 @@
 <div class="row">
 <div class="col-lg-12">
-  <div class="panel panel-primary">
-  <div class="panel-heading">
-    <i class="fa fa-exchange fa-fw"></i> <?php echo _("Configure DHCP"); ?>
+  <div class="card">
+  <div class="card-header">
+    <i class="fas fa-exchange"></i> <?php echo _("Configure DHCP"); ?>
     <span class="label pull-right service-status-<?php echo $serviceStatus ?>">dnsmasq <?php echo _($serviceStatus) ?></span>
   </div>
     <!-- /.panel-heading -->
-    <div class="panel-body">
+    <div class="card-body">
     <?php $status->showMessages(); ?>
     <form method="POST" action="?page=dhcpd_conf" class="js-dhcp-settings-form">
     <?php echo CSRFTokenFieldTag() ?>
     <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#server-settings" data-toggle="tab"><?php echo _("Server settings"); ?></a>
+            <li class="nav-item active"><a class="nav-link" href="#server-settings" data-toggle="tab"><?php echo _("Server settings"); ?></a>
             </li>
-            <li><a href="#static-leases" data-toggle="tab"><?php echo _("Static Leases") ?></a></li>
-            <li><a href="#client-list" data-toggle="tab"><?php echo _("Client list"); ?></a>
+            <li class="nav-item"><a class="nav-link" href="#static-leases" data-toggle="tab"><?php echo _("Static Leases") ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#client-list" data-toggle="tab"><?php echo _("Client list"); ?></a>
             </li>
         </ul>
     <!-- Tab panes -->
     <div class="tab-content">
-<div class="tab-pane fade in active" id="server-settings">
+<div class="tab-pane active" id="server-settings">
 <h4>DHCP server settings</h4>
 <div class="row">
   <div class="form-group col-md-4">
@@ -77,10 +77,10 @@
 <h4>Client list</h4>
 <div class="row">
 <div class="col-lg-12">
-  <div class="panel panel-default">
-  <div class="panel-heading"><?php echo _("Active DHCP leases"); ?></div>
+  <div class="card">
+  <div class="card-header"><?php echo _("Active DHCP leases"); ?></div>
   <!-- /.panel-heading -->
-  <div class="panel-body">
+  <div class="card-body">
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
@@ -103,8 +103,8 @@
         </tbody>
       </table>
     </div><!-- /.table-responsive -->
-  </div><!-- /.panel-body -->
-  </div><!-- /.panel -->
+  </div><!-- /.card-body -->
+  </div><!-- /.card -->
 </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 </div><!-- /.tab-pane -->
@@ -167,8 +167,8 @@
 
 </div><!-- /.tab-content -->
 </form>
-</div><!-- ./ Panel body -->
-<div class="panel-footer"> <?php echo _("Information provided by Dnsmasq"); ?></div>
-    </div><!-- /.panel-primary -->
+</div><!-- ./ card-body -->
+<div class="card-footer"> <?php echo _("Information provided by Dnsmasq"); ?></div>
+    </div><!-- /.card -->
 </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->

@@ -3,40 +3,36 @@
   <p class="text-center"><?php echo _('Click "Rescan" to search for nearby Wifi stations.') ?></p>
 <?php endif ?>
 <?php $index = 0; ?>
+<div class="__card-deck">
+
 <?php foreach ($networks as $ssid => $network) : ?>
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-body">
+    <div class="card mb-3 w-50">
+      <div class="card-body">
 
-      <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo htmlentities($ssid, ENT_QUOTES) ?>" />
-      <h4><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></h4>
+        <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo htmlentities($ssid, ENT_QUOTES) ?>" />
+        <h5 class="card-title"><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></h5>
 
-      <div class="row">
-        <div class="col-xs-4 col-md-4">Status</div>
-        <div class="col-xs-4 col-md-4">
+        <div class="_col-xs-4 col-sm">Status</div>
+        <div class="_col-xs-4 col-sm">
             <?php if ($network['configured']) { ?>
-            <i class="fa fa-check-circle fa-fw"></i>
+            <i class="fas fa-check-circle"></i>
             <?php } ?>
             <?php if ($network['connected']) { ?>
-            <i class="fa fa-exchange fa-fw"></i>
+            <i class="fas fa-exchange-alt"></i>
             <?php } ?>
          </div>
-      </div>
 
-      <div class="row">
-        <div class="col-xs-4 col-md-4">Channel</div>
-        <div class="col-xs-4 col-md-4">
+        <div class="_col-xs-4 col-md-4">Channel</div>
+        <div class="_col-xs-4 col-md-4">
             <?php if ($network['visible']) { ?>
                 <?php echo htmlspecialchars($network['channel'], ENT_QUOTES) ?>
             <?php } else { ?>
               <span class="label label-warning"> X </span>
             <?php } ?>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-xs-4 col-md-4">RSSI</div>
-        <div class="col-xs-6 col-md-6">
+        <div class="_col-xs-4 col-md-4">RSSI</div>
+        <div class="_col-xs-6 col-md-6">
         <?php echo htmlspecialchars($network['RSSI'], ENT_QUOTES);
             echo "dB (";
         if ($network['RSSI'] >= -50) {
@@ -49,17 +45,14 @@
             echo "%)";
         ?>
         </div>
-      </div>
 
         <?php if (array_key_exists('priority', $network)) { ?>
           <input type="hidden" name="priority<?php echo $index ?>" value="<?php echo htmlspecialchars($network['priority'], ENT_QUOTES); ?>" />
         <?php } ?>
-      <input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>" />
+        <input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>" />
 
-      <div class="row">
         <div class="col-xs-4 col-md-4">Security</div>
         <div class="col-xs-6 col-md-6"><?php echo $network['protocol'] ?></div>
-      </div>
 
       <div class="form-group">
         <div class="input-group col-xs-12 col-md-12">
@@ -84,10 +77,9 @@
         <?php } ?>
             <input type="submit" class="col-xs-4 col-md-4 btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> />
       </div><!-- /.btn-group -->
-
-    </div><!-- /.panel-body -->
-  </div><!-- /.panel-default -->
-</div><!-- /.col-md-6 -->
+    </div><!-- /.card-body -->
+  </div><!-- /.card -->
 
     <?php $index += 1; ?>
 <?php endforeach ?>
+</div><!-- /.card-deck -->

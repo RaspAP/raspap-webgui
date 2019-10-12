@@ -1,26 +1,26 @@
 <div class="row">
 <div class="col-lg-12">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-        <i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?>
+  <div class="card">
+    <div class="card-header">
+        <i class="far fa-dot-circle"></i> <?php echo _("Configure hotspot"); ?>
         <span class="label pull-right service-status-<?php echo $serviceStatus ?>">hostapd <?php echo _($serviceStatus) ?></span>
     </div>
-    <!-- /.panel-heading -->
-    <div class="panel-body">
+    <!-- /.card-header -->
+    <div class="card-body">
     <?php $status->showMessages(); ?>
       <form role="form" action="?page=hostapd_conf" method="POST">
         <?php echo CSRFTokenFieldTag() ?>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#basic" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
-          <li><a href="#security" data-toggle="tab"><?php echo _("Security"); ?></a></li>
-          <li><a href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-          <li><a href="#logoutput" data-toggle="tab"><?php echo _("Logfile"); ?></a></li>
+          <li class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
+          <li class="nav-item"><a class="nav-link" id="securitytab" href="#security" data-toggle="tab"><?php echo _("Security"); ?></a></li>
+          <li class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
+          <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#logoutput" data-toggle="tab"><?php echo _("Logfile"); ?></a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="basic">
+            <div class="tab-pane active" id="basic">
 
             <h4><?php echo _("Basic settings") ;?></h4>
             <div class="row">
@@ -432,7 +432,7 @@ if(ops[i].value == country){
 
 </script>
             </div>
-          </div><!-- /.panel-body -->
+          </div><!-- /.card-body -->
     </div><!-- /.panel-primary -->
         <?php if (!RASPI_MONITOR_ENABLED) : ?>
             <input type="submit" class="btn btn-outline btn-primary" name="SaveHostAPDSettings" value="<?php echo _("Save settings"); ?>" />
@@ -444,7 +444,7 @@ if(ops[i].value == country){
             };
         endif ?>
       </form>
-    </div></div><!-- /.panel-primary -->
-  <div class="panel-footer"> <?php echo _("Information provided by hostapd"); ?></div>
+    </div></div><!-- /.card -->
+  <div class="card-footer"> <?php echo _("Information provided by hostapd"); ?></div>
 </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
