@@ -106,7 +106,6 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 	</a>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-
 	<li class="nav-item">
 	  <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw"></i> <?php echo _("Dashboard"); ?></a>
 	</li>
@@ -169,17 +168,28 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
      </ul>
      <!-- End of Sidebar -->
 
-           <!-- Begin Page Content -->
+          <!-- Begin Page Content -->
 	  <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content"> 
               <!-- Topbar -->
-	      <nav class="navbar navbar-expand navbar-light bg-gray-100 topbar mb-4 static-top">
+	      <nav class="navbar navbar-expand navbar-light bg-gray-100 topbar mb-1 static-top">
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                   <i class="fa fa-bars"></i>
-	        </button>
-	        <!-- Topbar Navbar -->
+		</button>
+                <!-- Topbar Navbar -->
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item no-arrow mx-1"><?php //echo _("WiFi Configuration Portal"); ?></li>
+		  <div class="topbar-divider d-none d-sm-block"></div>
+                  <!-- Nav Item - User -->
+                  <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link" href="index.php?page=auth_conf">
+		      <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
+		      <i class="fas fa-user-circle fa-3x"></i>
+                    </a>
+		  </li>
+                </ul>
               </nav>
               <!-- End of Topbar -->
               <!-- Begin Page Content -->
