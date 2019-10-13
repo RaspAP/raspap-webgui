@@ -107,142 +107,141 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 	<li class="nav-item">
-	  <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw"></i> <?php echo _("Dashboard"); ?></a>
+	  <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
 	</li>
 	<?php if (RASPI_WIFICLIENT_ENABLED) : ?>
 	<li class="nav-item">
-	  <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw"></i> <?php echo _("Configure WiFi client"); ?></a>
+	  <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure WiFi client"); ?></span></a>
 	</li>
 	  <?php endif; ?>
 	  <?php if (RASPI_HOTSPOT_ENABLED) : ?>
 	<li class="nav-item">
-	  <a class="nav-link" href="index.php?page=hostapd_conf"><i class="far fa-dot-circle fa-fw"></i> <?php echo _("Configure hotspot"); ?></a>
+	  <a class="nav-link" href="index.php?page=hostapd_conf"><i class="far fa-dot-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure hotspot"); ?></a>
 	</li>
 	  <?php endif; ?>
 	  <?php if (RASPI_NETWORK_ENABLED) : ?>
 	<li class="nav-item">
-	   <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></a>
+	   <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-sitemap fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure networking"); ?></a>
 	</li> 
 	  <?php endif; ?>
 	  <?php if (RASPI_DHCP_ENABLED) : ?>
 	<li class="nav-item">
-	  <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw"></i> <?php echo _("Configure DHCP Server"); ?></a>
+	  <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure DHCP Server"); ?></a>
 	</li>
 	  <?php endif; ?>
 	  <?php if (RASPI_OPENVPN_ENABLED) : ?>
 	<li class="nav-item">
-	  <a class="nav-link" href="index.php?page=openvpn_conf"><i class="fas fa-lock fa-fw"></i> <?php echo _("Configure OpenVPN"); ?></a>
+	  <a class="nav-link" href="index.php?page=openvpn_conf"><i class="fas fa-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure OpenVPN"); ?></a>
 	</li>
 	  <?php endif; ?>
 	  <?php if (RASPI_TORPROXY_ENABLED) : ?>
 	<li class="nav-item">
-	   <a class="nav-link" href="index.php?page=torproxy_conf"><i class="fas fa-eye-slash fa-fw"></i> <?php echo _("Configure TOR proxy"); ?></a>
+	   <a class="nav-link" href="index.php?page=torproxy_conf"><i class="fas fa-eye-slash fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure TOR proxy"); ?></a>
 	</li>
 	  <?php endif; ?>
 	  <?php if (RASPI_CONFAUTH_ENABLED) : ?>
 	<li class="nav-item">
-	<a class="nav-link" href="index.php?page=auth_conf"><i class="fas fa-lock fa-fw"></i> <?php echo _("Configure Auth"); ?></a>
+	<a class="nav-link" href="index.php?page=auth_conf"><i class="fas fa-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure Auth"); ?></a>
 	</li>
 	  <?php endif; ?>
 	  <?php if (RASPI_CHANGETHEME_ENABLED) : ?>
 	<li class="nav-item">
-	  <a class="nav-link" href="index.php?page=theme_conf"><i class="fas fa-paint-brush fa-fw"></i> <?php echo _("Change Theme"); ?></a>
+	  <a class="nav-link" href="index.php?page=theme_conf"><i class="fas fa-paint-brush fa-fw mr-2"></i><span class="nav-label"><?php echo _("Change Theme"); ?></a>
 	</li>
 	  <?php endif; ?>
 	  <?php if (RASPI_VNSTAT_ENABLED) : ?>
 	<li class="nav-item">
-	  <a class="nav-link" href="index.php?page=data_use"><i class="fas fa-chart-bar fa-fw"></i> <?php echo _("Data usage"); ?></a>
+	  <a class="nav-link" href="index.php?page=data_use"><i class="fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
 	</li>
 	  <?php endif; ?>
 	<li class="nav-item">
-	  <a class="nav-link" href="index.php?page=system_info"><i class="fas fa-cube fa-fw"></i> <?php echo _("System"); ?></a>
+	  <a class="nav-link" href="index.php?page=system_info"><i class="fas fa-cube fa-fw mr-2"></i><span class="nav-label"><?php echo _("System"); ?></a>
 	</li>
 	 <li class="nav-item">
-	  <a class="nav-link" href="index.php?page=about"><i class="fas fa-info-circle fa-fw"></i> <?php echo _("About RaspAP"); ?></a>
+	  <a class="nav-link" href="index.php?page=about"><i class="fas fa-info-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("About RaspAP"); ?></a>
 	</li>
 	<hr class="sidebar-divider d-none d-md-block">
 	<!-- Sidebar Toggler (Sidebar) -->
 	<div class="text-center d-none d-md-inline">
 	  <button class="rounded-circle border-0" id="sidebarToggle"></button>
 	</div>
-     </ul>
-     <!-- End of Sidebar -->
+      </ul>
+      <!-- End of Sidebar -->
 
-          <!-- Begin Page Content -->
-	  <div id="content-wrapper" class="d-flex flex-column">
-            <!-- Main Content -->
-            <div id="content"> 
-              <!-- Topbar -->
-	      <nav class="navbar navbar-expand navbar-light bg-gray-100 topbar mb-1 static-top">
-                <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                  <i class="fa fa-bars"></i>
-		</button>
-                <!-- Topbar Navbar -->
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item no-arrow mx-1"><?php //echo _("WiFi Configuration Portal"); ?></li>
-		  <div class="topbar-divider d-none d-sm-block"></div>
-                  <!-- Nav Item - User -->
-                  <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link" href="index.php?page=auth_conf">
-		      <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
-		      <i class="fas fa-user-circle fa-3x"></i>
-                    </a>
-		  </li>
-                </ul>
-              </nav>
-              <!-- End of Topbar -->
-              <!-- Begin Page Content -->
-              <div class="container-fluid">
-    
-              <?php
-              $extraFooterScripts = array();
-              // handle page actions
-              switch ($page) {
-	      case "wlan0_info":
-		  DisplayDashboard();
-		  break;
-	      case "dhcpd_conf":
-		  DisplayDHCPConfig();
-		  break;
-	      case "wpa_conf":
-		  DisplayWPAConfig();
-		  break;
-	      case "network_conf":
-		  DisplayNetworkingConfig();
-		  break;
-	      case "hostapd_conf":
-		  DisplayHostAPDConfig();
-		  break;
-	      case "openvpn_conf":
-		  DisplayOpenVPNConfig();
-		  break;
-	      case "torproxy_conf":
-		  DisplayTorProxyConfig();
-		  break;
-	      case "auth_conf":
-		  DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
-		  break;
-	      case "save_hostapd_conf":
-		  SaveTORAndVPNConfig();
-		  break;
-	      case "theme_conf":
-		  DisplayThemeConfig();
-		  break;
-	      case "data_use":
-		  DisplayDataUsage($extraFooterScripts);
-		  break;
-	      case "system_info":
-		  DisplaySystem();
-		  break;
-	      case "about":
-		  DisplayAbout();
-		  break;
-	      default:
-		  DisplayDashboard();
-	      }
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+	<!-- Main Content -->
+	<div id="content"> 
+	  <!-- Topbar -->
+	  <nav class="navbar navbar-expand navbar-light bg-gray-100 topbar mb-1 static-top">
+	    <!-- Sidebar Toggle (Topbar) -->
+	    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+	      <i class="fa fa-bars"></i>
+	    </button>
+	    <!-- Topbar Navbar -->
 
-           ?>
+	    <p class="text-left brand-title"><?php //echo _("WiFi Configuration Portal"); ?></p>
+	    <ul class="navbar-nav ml-auto">
+	      <div class="topbar-divider d-none d-sm-block"></div>
+	      <!-- Nav Item - User -->
+	      <li class="nav-item dropdown no-arrow">
+		<a class="nav-link" href="index.php?page=auth_conf">
+		  <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
+		  <i class="fas fa-user-circle fa-3x"></i>
+		</a>
+	      </li>
+	    </ul>
+	  </nav>
+	  <!-- End of Topbar -->
+	  <!-- Begin Page Content -->
+	  <div class="container-fluid">
+	  <?php
+	    $extraFooterScripts = array();
+	    // handle page actions
+	    switch ($page) {
+	    case "wlan0_info":
+		DisplayDashboard();
+		break;
+	    case "dhcpd_conf":
+		DisplayDHCPConfig();
+		break;
+	    case "wpa_conf":
+		DisplayWPAConfig();
+		break;
+	    case "network_conf":
+		DisplayNetworkingConfig();
+		break;
+	    case "hostapd_conf":
+		DisplayHostAPDConfig();
+		break;
+	    case "openvpn_conf":
+		DisplayOpenVPNConfig();
+		break;
+	    case "torproxy_conf":
+		DisplayTorProxyConfig();
+		break;
+	    case "auth_conf":
+		DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
+		break;
+	    case "save_hostapd_conf":
+		SaveTORAndVPNConfig();
+		break;
+	    case "theme_conf":
+		DisplayThemeConfig();
+		break;
+	    case "data_use":
+		DisplayDataUsage($extraFooterScripts);
+		break;
+	    case "system_info":
+		DisplaySystem();
+		break;
+	    case "about":
+		DisplayAbout();
+		break;
+	    default:
+		DisplayDashboard();
+	    }
+	  ?>
           </div><!-- /.container-fluid --> 
         </div><!-- End of Main Content -->
         <!-- Footer -->
