@@ -33,6 +33,7 @@
           <input type="submit" class="btn btn-outline btn-primary" name="UpdateAdminPassword" value="<?php echo _("Save settings"); ?>" />
         </form>
       </div><!-- /.card-body -->
+      <div class="card-footer"></div>
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
