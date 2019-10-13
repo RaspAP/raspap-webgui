@@ -139,3 +139,27 @@ pre.unstyled {
 .js-wifi-stations .card-body {
   min-height: 256px;
 }
+
+.sidebar.toggled .nav-item .nav-link span {
+  display: none;
+}
+
+.sidebar .nav-item .nav-link i,
+.sidebar .nav-item .nav-link span {
+    font-size: 1.0rem;
+}
+
+.btn-warning:hover {
+    color: #000;
+}
+
+/* change transition animation when sidebar is toggled */
+#accordionSidebar.toggled {
+  -webkit-transition-timing-function: ease;
+       -o-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-duration: .2s;
+       -o-transition-duration: .2s;
+          transition-duration: .2s;
+}
+
