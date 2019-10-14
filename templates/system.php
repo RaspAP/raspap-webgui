@@ -29,7 +29,7 @@ if ($cpuload > 90) {
 <div class="row">
 <div class="col-lg-12">
 <div class="card">
-<div class="card-header"><i class="fas fa-cube"></i> <?php echo _("System"); ?></div>
+<div class="card-header"><i class="fas fa-cube mr-2"></i><?php echo _("System"); ?></div>
 <div class="card-body">
 <?php $status->showMessages(); ?>
 <form role="form" action="?page=system_info" method="POST">
@@ -44,7 +44,7 @@ if ($cpuload > 90) {
   <div role="tabpanel" class="tab-pane active" id="system">
     <div class="row">
       <div class="col-lg-6">
-        <h4><?php echo _("System Information"); ?></h4>
+        <h4 class="mt-3"><?php echo _("System Information"); ?></h4>
         <div class="info-item"><?php echo _("Hostname"); ?></div> <?php echo htmlspecialchars($hostname, ENT_QUOTES); ?></br>
         <div class="info-item"><?php echo _("Pi Revision"); ?></div> <?php echo htmlspecialchars(RPiVersion(), ENT_QUOTES); ?></br>
         <div class="info-item"><?php echo _("Uptime"); ?></div>   <?php echo htmlspecialchars($uptime, ENT_QUOTES); ?></br></br>
@@ -78,7 +78,7 @@ if ($cpuload > 90) {
   </div>
 
   <div role="tabpanel" class="tab-pane" id="language">
-    <h4><?php echo _("Language settings") ;?></h4>
+    <h4 class="mt-3"><?php echo _("Language settings") ;?></h4>
     <div class="row">
       <div class="form-group col-md-4">
         <label for="code"><?php echo _("Select a language"); ?></label>
@@ -91,7 +91,7 @@ if ($cpuload > 90) {
 
   <div role="tabpanel" class="tab-pane" id="console">
     <div class="row">
-      <div class="col-lg-12"> 
+      <div class="col-lg-12 mt-3"> 
         <iframe src="includes/webconsole.php" class="webconsole"></iframe>
       </div>
     </div>
