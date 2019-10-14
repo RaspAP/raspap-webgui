@@ -55,6 +55,17 @@ function DisplayDHCPConfig()
                     $config .= "dhcp-host=$mac,$ip".PHP_EOL;
                 }
             }
+
+            if ($_POST['DNS1']){
+                $config .= "dhcp-option=6," . $_POST['DNS1'];
+
+                if ($_POST['DNS2']){
+                    $config .= ','.$_POST['DNS2'];
+                }
+
+                $config .= PHP_EOL;
+            }
+
             file_put_contents("/tmp/dnsmasqdata", $config);
             system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_CONFIG, $return);
         } else {
@@ -110,6 +121,23 @@ function DisplayDHCPConfig()
     $dhcpHost = empty($dhcpHost) ? [] : $dhcpHost;
     $dhcpHost = is_array($dhcpHost) ? $dhcpHost : [ $dhcpHost ];
 
+    $DNS1 = '';
+    $DNS2 = '';
+
+    if (isset($conf['dhcp-option'])){
+        $arrDns = explode(",", $conf['dhcp-option']);
+
+        if ($arrDns[0] == '6'){
+            if (count($arrDns) > 1){
+                $DNS1 = $arrDns[1];
+            }
+
+            if (count($arrDns) > 2){
+                $DNS2 = $arrDns[2];
+            }
+        }
+    }
+
     $hselected = '';
     $mselected = '';
     $dselected = '';
@@ -139,6 +167,8 @@ function DisplayDHCPConfig()
         "serviceStatus",
         "RangeStart",
         "RangeEnd",
+        "DNS1",
+        "DNS2",
         "arrRangeLeaseTime",
         "mselected",
         "hselected",
