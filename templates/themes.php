@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header"><i class="fas fa-paint-brush"></i> <?php echo _("Change Theme"); ?></div>
+      <div class="card-header"><i class="fas fa-paint-brush mr-2"></i><?php echo _("Change Theme"); ?></div>
       <div class="card-body">
 
         <h4><?php echo _("Theme settings"); ?></h4>
@@ -18,6 +18,7 @@
         </form>
 
       </div><!-- /.card-body -->
+      <div class="card-footer"></div>
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
