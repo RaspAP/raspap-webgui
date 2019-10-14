@@ -31,12 +31,12 @@ $ifaceLabel = $wlan0up ? "up" : "down";
             <div class="card h-100">
               <div class="card-body wireless">
                 <h4><?php echo _("Wireless Information"); ?></h4>
-                <div class="info-item"><?php echo _("Connected To"); ?></div> <?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("AP Mac Address"); ?></div> <?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Bitrate"); ?></div> <?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Signal Level"); ?></div> <?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Transmit Power"); ?></div> <?php echo htmlspecialchars($txPower, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Frequency"); ?></div> <?php echo htmlspecialchars($frequency, ENT_QUOTES); ?><br /><br />
+                <div class="info-item"><?php echo _("Connected To"); ?></div><div><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
+                <div class="info-item"><?php echo _("AP Mac Address"); ?></div><div><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
+                <div class="info-item"><?php echo _("Bitrate"); ?></div><div><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
+                <div class="info-item"><?php echo _("Signal Level"); ?></div><div><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
+                <div class="info-item"><?php echo _("Transmit Power"); ?></div><div><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
+                <div class="info-item"><?php echo _("Frequency"); ?></div><div><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Link Quality"); ?></div>
                 <?php $linkQuality = 89; // $strLinkQuality ?>
                 <script>var linkQ = <?php echo json_encode($linkQuality); ?>;</script>
@@ -50,20 +50,20 @@ $ifaceLabel = $wlan0up ? "up" : "down";
 	    <div class="card mb-3">
               <div class="card-body">
                 <h4><?php echo _("Interface Information"); ?></h4>
-                <div class="info-item"><?php echo _("Interface Name"); ?></div> <?php echo RASPI_WIFI_CLIENT_INTERFACE; ?><br />
-                <div class="info-item"><?php echo _("IPv4 Address"); ?></div> <?php echo htmlspecialchars($ipv4Addrs, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Subnet Mask"); ?></div> <?php echo htmlspecialchars($ipv4Netmasks, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("IPv6 Address"); ?></div> <?php echo htmlspecialchars($ipv6Addrs, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Mac Address"); ?></div> <?php echo htmlspecialchars($macAddr, ENT_QUOTES); ?><br /><br />
+                <div class="info-item"><?php echo _("Interface Name"); ?></div><div><?php echo RASPI_WIFI_CLIENT_INTERFACE; ?></div>
+                <div class="info-item"><?php echo _("IPv4 Address"); ?></div><div><?php echo htmlspecialchars($ipv4Addrs, ENT_QUOTES); ?></div>
+                <div class="info-item"><?php echo _("Subnet Mask"); ?></div><div><?php echo htmlspecialchars($ipv4Netmasks, ENT_QUOTES); ?></div>
+                <div class="info-item"><?php echo _("IPv6 Address"); ?></div><div><?php echo htmlspecialchars($ipv6Addrs, ENT_QUOTES); ?></div>
+                <div class="info-item"><?php echo _("Mac Address"); ?></div><div><?php echo htmlspecialchars($macAddr, ENT_QUOTES); ?></div>
               </div><!-- /.card-body -->
             </div><!-- /.card-->
             <div class="card mb-3">
               <div class="card-body">
                 <h4><?php echo _("Interface Statistics"); ?></h4>
-                <div class="info-item"><?php echo _("Received Packets"); ?></div> <?php echo number_format($strRxPackets); ?><br />
-                <div class="info-item"><?php echo _("Received Bytes"); ?></div> <?php echo number_format($strRxBytes); ?><br /><br />
-                <div class="info-item"><?php echo _("Transferred Packets"); ?></div> <?php echo number_format($strTxPackets); ?><br />
-                <div class="info-item"><?php echo _("Transferred Bytes"); ?></div> <?php echo number_format($strTxBytes); ?><br />
+                <div class="info-item"><?php echo _("Received Packets"); ?></div><div><?php echo number_format($strRxPackets); ?></div>
+                <div class="info-item"><?php echo _("Received Bytes"); ?></div><div><?php echo number_format($strRxBytes); ?></div>
+                <div class="info-item"><?php echo _("Transferred Packets"); ?></div><div><?php echo number_format($strTxPackets); ?></div>
+                <div class="info-item"><?php echo _("Transferred Bytes"); ?></div><div><?php echo number_format($strTxBytes); ?></div>
               </div><!-- /.card-body -->
             </div><!-- /.card -->
             <div class="card mb-3">
