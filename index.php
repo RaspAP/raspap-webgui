@@ -281,6 +281,9 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
+    <!-- Link Quality Chart -->
+    <script src="app/js/linkquality.js"></script>
+
   <?php
   // Load non default JS/ECMAScript in footer.
   foreach ($extraFooterScripts as $script) {
