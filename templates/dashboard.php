@@ -6,13 +6,26 @@ if ($arrHostapdConf['WifiAPEnable'] == 1) {
     $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
 }
 exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
+$ifaceStatus = $wlan0up ? "running" : "stopped";
+$ifaceLabel = $wlan0up ? "up" : "down";
 ?>
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header"><i class="fas fa-tachometer-alt fa-fw"></i> <?php echo _("Dashboard"); ?></div>
+      <div class="card-header">
+        <div class="row">
+	  <div class="col">
+	    <i class="fas fa-tachometer-alt fa-fw mr-2"></i><?php echo _("Dashboard"); ?>
+	  </div>
+	  <div class="col">
+	    <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+	      <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
+	      <span class="text service-status"><?php echo strtolower($client_iface) .' '. _($ifaceLabel) ?></span>
+	    </button>
+	  </div>
+        </div><!-- /.row -->
+      </div><!-- /.card-header -->
       <div class="card-body">
-        <?php $status->showMessages(); ?>
         <div class="row">
           <div class="col-md-6 mb-3">
             <div class="card h-100">
@@ -47,10 +60,10 @@ exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep
             <div class="card mb-3">
               <div class="card-body">
                 <h4><?php echo _("Interface Statistics"); ?></h4>
-                <div class="info-item"><?php echo _("Received Packets"); ?></div> <?php echo htmlspecialchars($strRxPackets, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Received Bytes"); ?></div> <?php echo htmlspecialchars($strRxBytes, ENT_QUOTES); ?><br /><br />
-                <div class="info-item"><?php echo _("Transferred Packets"); ?></div> <?php echo htmlspecialchars($strTxPackets, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Transferred Bytes"); ?></div> <?php echo htmlspecialchars($strTxBytes, ENT_QUOTES); ?><br />
+                <div class="info-item"><?php echo _("Received Packets"); ?></div> <?php echo number_format($strRxPackets); ?><br />
+                <div class="info-item"><?php echo _("Received Bytes"); ?></div> <?php echo number_format($strRxBytes); ?><br /><br />
+                <div class="info-item"><?php echo _("Transferred Packets"); ?></div> <?php echo number_format($strTxPackets); ?><br />
+                <div class="info-item"><?php echo _("Transferred Bytes"); ?></div> <?php echo number_format($strTxBytes); ?><br />
               </div><!-- /.card-body -->
             </div><!-- /.card -->
             <div class="card mb-3">
