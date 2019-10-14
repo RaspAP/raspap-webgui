@@ -38,8 +38,7 @@ $ifaceLabel = $wlan0up ? "up" : "down";
                 <div class="info-item"><?php echo _("Transmit Power"); ?></div><div><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Frequency"); ?></div><div><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Link Quality"); ?></div>
-                <?php $linkQuality = 89; // $strLinkQuality ?>
-                <script>var linkQ = <?php echo json_encode($linkQuality); ?>;</script>
+                <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
                 <div class="chart-pie pt-5">
                   <canvas id="canvas" xwidth="662" xheight="430" class="chartjs-render-monitor"></canvas>
                 </div>
