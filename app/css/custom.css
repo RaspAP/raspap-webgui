@@ -37,6 +37,19 @@ body {
   font-size: 0.85rem;
 }
 
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link {
+  font-size: 1.0rem;
+}
+
+.nav-tabs a.nav-link {
+  color: #6e707e;
+}
+
+a.nav-link.active {
+    font-weight: bolder;
+}
+
 .sidebar .nav-item .nav-link {
   padding: 0.6rem;
 }
@@ -80,26 +93,15 @@ body {
   min-height:500px;
 }
 
-.service-status-running,
-.service-status-stopped {
-  background-color: #fff;
-  color: #333;
-  text-transform: uppercase;
-  line-height: inherit;
+.service-status {
+  border-width: 0;
 }
-.service-status-running:before,
-.service-status-stopped:before {
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-  content: "\2022";
-  font-size: 3.5em;
+
+.service-status-running {
   color: green;
-  line-height: 16px;
-  vertical-align: bottom;
-  margin-right: 2px;
 }
-.service-status-stopped:before {
+
+.service-status-stopped {
   color: red;
   animation: flash 1s linear infinite;
 }
@@ -108,7 +110,7 @@ body {
     opacity: 0;
   }
 }
-
+ 
 .logoutput {
   width:100%;
   height:300px;
