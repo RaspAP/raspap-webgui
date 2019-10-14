@@ -69,6 +69,21 @@
       </select>
     </div>
   </div>
+  
+  <div class="row">
+    <div class="form-group col-md-4">
+      <label for="code"><?php echo _("DNS Server 1"); ?></label>
+      <input type="text" class="form-control"name="DNS1" value="<?php echo htmlspecialchars($DNS1, ENT_QUOTES); ?>" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-4">
+      <label for="code"><?php echo _("DNS Server 2"); ?></label>
+      <input type="text" class="form-control" name="DNS2" value="<?php echo htmlspecialchars($DNS2, ENT_QUOTES); ?>" />
+    </div>
+  </div>
+
   <?php if (!RASPI_MONITOR_ENABLED) : ?>
       <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
       <?php if ($dnsmasq_state) : ?>
@@ -101,8 +116,10 @@
           <tbody>
           <?php foreach ($leases as $lease) : ?>
               <?php foreach (explode(' ', $lease) as $prop) : ?>
-              <tr>
-                <td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
+	      <tr>
+                <?php foreach (explode(' ', $lease) as $prop) : ?>
+                  <td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
+                <?php endforeach ?> 
               </tr>
               <?php endforeach ?>
           <?php endforeach ?>
