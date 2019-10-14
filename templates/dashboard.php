@@ -14,6 +14,25 @@ exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body wireless">
+                <h4><?php echo _("Wireless Information"); ?></h4>
+                <div class="info-item"><?php echo _("Connected To"); ?></div> <?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?><br />
+                <div class="info-item"><?php echo _("AP Mac Address"); ?></div> <?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?><br />
+                <div class="info-item"><?php echo _("Bitrate"); ?></div> <?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?><br />
+                <div class="info-item"><?php echo _("Signal Level"); ?></div> <?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?><br />
+                <div class="info-item"><?php echo _("Transmit Power"); ?></div> <?php echo htmlspecialchars($txPower, ENT_QUOTES); ?><br />
+                <div class="info-item"><?php echo _("Frequency"); ?></div> <?php echo htmlspecialchars($frequency, ENT_QUOTES); ?><br /><br />
+                <div class="info-item"><?php echo _("Link Quality"); ?></div>
+                <?php $linkQuality = 89; // $strLinkQuality ?>
+                <script>var linkQ = <?php echo json_encode($linkQuality); ?>;</script>
+                <div class="chart-pie pt-5">
+                  <canvas id="canvas" xwidth="662" xheight="430" class="chartjs-render-monitor"></canvas>
+                </div>
+             </div><!-- /.card-body -->
+            </div><!-- /.card -->
+          </div><!-- /.col-md-6 -->
           <div class="col-md-6">
 	    <div class="card mb-3">
               <div class="card-body">
@@ -32,23 +51,6 @@ exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep
                 <div class="info-item"><?php echo _("Received Bytes"); ?></div> <?php echo htmlspecialchars($strRxBytes, ENT_QUOTES); ?><br /><br />
                 <div class="info-item"><?php echo _("Transferred Packets"); ?></div> <?php echo htmlspecialchars($strTxPackets, ENT_QUOTES); ?><br />
                 <div class="info-item"><?php echo _("Transferred Bytes"); ?></div> <?php echo htmlspecialchars($strTxBytes, ENT_QUOTES); ?><br />
-              </div><!-- /.card-body -->
-            </div><!-- /.card -->
-          </div><!-- /.col-md-6 -->
-          <div class="col-md-6">
-            <div class="card mb-3">
-              <div class="card-body wireless">
-                <h4><?php echo _("Wireless Information"); ?></h4>
-                <div class="info-item"><?php echo _("Connected To"); ?></div> <?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("AP Mac Address"); ?></div> <?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Bitrate"); ?></div> <?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Signal Level"); ?></div> <?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Transmit Power"); ?></div> <?php echo htmlspecialchars($txPower, ENT_QUOTES); ?><br />
-                <div class="info-item"><?php echo _("Frequency"); ?></div> <?php echo htmlspecialchars($frequency, ENT_QUOTES); ?><br /><br />
-                <div class="info-item"><?php echo _("Link Quality"); ?></div>
-                <div class="progress">
-                  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo htmlspecialchars($strLinkQuality, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo htmlspecialchars($strLinkQuality, ENT_QUOTES); ?>%;"><?php echo htmlspecialchars($strLinkQuality, ENT_QUOTES); ?>%</div>
-                </div>
               </div><!-- /.card-body -->
             </div><!-- /.card -->
             <div class="card mb-3">
