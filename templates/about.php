@@ -1,9 +1,8 @@
 <div class="row">
-  <div class="col-xl-12">
+  <div class="col-lg-12">
     <div class="card">
-      <div class="card card-header"><i class="fas fa-info-circle"></i> <?php echo _("About RaspAP"); ?></div>
+      <div class="card-header"><i class="fas fa-info-circle mr-2"></i><?php echo _("About RaspAP"); ?></div>
       <div class="card-body text-center">
-
         <h3><?php echo _("RaspAP") . " v" . RASPI_VERSION; ?></h3>
         <h5><a href="https://github.com/billz/raspap-webgui/blob/master/LICENSE">GNU General Public License v3.0</a></h5>
         <p><img src="app/img/authors-8bit-200px.png"></p>
