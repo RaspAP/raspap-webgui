@@ -43,6 +43,7 @@ class System {
   }
 
   public function systemLoadPercentage() {
-    return floor(($this->loadAvg1Min() * 100) / $this->processorCount());
+    return intval(($this->loadAvg1Min() * 100) / $this->processorCount());
   }
 }
+
