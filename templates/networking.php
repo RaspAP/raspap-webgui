@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
    <div class="card">
-    <div class="card-header"><i class="fas fa-sitemap mr-2"></i><?php echo _("Configure networking"); ?></div>
+    <div class="card-header"><i class="fas fa-network-wired mr-2"></i><?php echo _("Configure networking"); ?></div>
       <div class="card-body">
         <div id="msgNetworking"></div>
         <ul class="nav nav-tabs">
