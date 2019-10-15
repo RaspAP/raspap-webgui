@@ -121,7 +121,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 	  <?php endif; ?>
 	  <?php if (RASPI_NETWORK_ENABLED) : ?>
 	<li class="nav-item">
-	   <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-sitemap fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure networking"); ?></a>
+	   <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-network-wired fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure networking"); ?></a>
 	</li> 
 	  <?php endif; ?>
 	  <?php if (RASPI_DHCP_ENABLED) : ?>
