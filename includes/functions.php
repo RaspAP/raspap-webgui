@@ -262,7 +262,7 @@ function ConvertToSecurity($security)
         // And you shouldn't be using WEP these days anyway.
         return 'Open';
     } else {
-        return implode('<br />', $options);
+        return implode(' / ', $options);
     }
 }
 
