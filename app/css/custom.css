@@ -138,15 +138,13 @@ pre.unstyled {
   width: 100%;
 }
 
-.js-wifi-stations .card-body {
-  min-height: 256px;
+.js-reload-wifi-stations {
+  min-width: 10rem;
 }
 
 .sidebar.toggled .nav-item .nav-link span {
   display: none;
-}
-
-.sidebar .nav-item .nav-link i,
+} .sidebar .nav-item .nav-link i,
 .sidebar .nav-item .nav-link span {
     font-size: 1.0rem;
 }
