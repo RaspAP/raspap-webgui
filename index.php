@@ -64,7 +64,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <link href="dist/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Bootstrap Toggle CSS -->
-    <link href="dist/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="dist/bootstrap4-toggle/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
     <!-- SB-Admin-2 CSS -->
     <link href="dist/sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
@@ -98,7 +98,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
       <!-- Sidebar -->
       <ul class="navbar-nav bg-gray-100 sidebar sidebar-light accordion" id="accordionSidebar">
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?page=wlan0_info">
           <div class="sidebar-brand-icon">
             <img src="app/img/raspAP-logo64px.png" width="32" height="32">
           </div>
@@ -270,7 +270,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <script src="dist/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Bootstrap Toggle JavaScript -->
-    <script src="dist/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+    <script src="dist/bootstrap4-toggle/js/bootstrap4-toggle.min.js"></script>
 
     <!-- Chart.js JavaScript -->
     <script src="dist/chart.js/Chart.min.js"></script>
