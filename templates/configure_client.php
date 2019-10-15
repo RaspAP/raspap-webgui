@@ -9,7 +9,7 @@
           <div class="col">
             <h4 class="mb-2"><?php echo _("Client settings"); ?></h4>
           </div>
-          <div class="col-xs mr-2 mb-3">
+          <div class="col-xs mr-3 mb-3">
             <button type="button" class="btn btn-info btn-block float-right js-reload-wifi-stations"><?php echo _("Rescan"); ?></button>
           </div>
         </div>
