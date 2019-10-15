@@ -78,6 +78,11 @@ a.nav-link.active {
   float: left;
 }
 
+.info-item-wifi {
+  width: 6rem;
+  float: left;
+}
+
 .webconsole {
   width:100%;
   height:100%;
