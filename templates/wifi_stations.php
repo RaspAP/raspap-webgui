@@ -3,16 +3,20 @@
   <p class="text-center"><?php echo _('Click "Rescan" to search for nearby Wifi stations.') ?></p>
 <?php endif ?>
 <?php $index = 0; ?>
-<div class="">
+<div class="row ml-1 mr-1">
 
   <?php foreach ($networks as $ssid => $network) : ?>
-    <div class="card mb-3">
+  <div class="col-sm-6 align-items-stretch mb-3">
+    <div class="card h-100">
       <div class="card-body">
 
         <input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo htmlentities($ssid, ENT_QUOTES) ?>" />
+        <?php if (strlen($ssid) == 0) {
+            $ssid = "(unknown)";
+        } ?>
         <h5 class="card-title"><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></h5>
 
-        <div class="info-item">Status</div>
+        <div class="info-item-wifi">Status</div>
         <div>
 	  <?php if ($network['configured']) { ?>
 	    <i class="fas fa-check-circle"></i>
@@ -25,7 +29,7 @@
           } ?>
          </div>
 
-        <div class="info-item">Channel</div>
+        <div class="info-item-wifi">Channel</div>
         <div>
 	  <?php if ($network['visible']) { ?>
 	      <?php echo htmlspecialchars($network['channel'], ENT_QUOTES) ?>
@@ -34,7 +38,7 @@
 	  <?php } ?>
         </div>
 
-        <div class="info-item">RSSI</div>
+        <div class="info-item-wifi">RSSI</div>
         <div>
 	  <?php echo htmlspecialchars($network['RSSI'], ENT_QUOTES);
 	      echo "dB (";
@@ -54,11 +58,11 @@
         <?php } ?>
         <input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>" />
 
-        <div class="info-item">Security</div>
+        <div class="info-item-wifi">Security</div>
         <div><?php echo $network['protocol'] ?></div>
 
 	<div class="form-group">
-	  <div class="info-item">Passphrase</div>
+	  <div class="info-item-wifi">Passphrase</div>
           <div class="input-group">
 	    <?php if ($network['protocol'] === 'Open') { ?>
 	      <input type="password" disabled class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="" />
@@ -82,7 +86,7 @@
 	</div><!-- /.btn-group -->
     </div><!-- /.card-body -->
   </div><!-- /.card -->
-
+  </div><!-- /.col-sm -->
     <?php $index += 1; ?>
 <?php endforeach ?>
 </div><!-- /.card-deck -->
