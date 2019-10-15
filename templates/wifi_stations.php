@@ -84,9 +84,9 @@
 	  <?php } ?>
 	      <input type="submit" class="col-xs-4 col-md-4 btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> />
 	</div><!-- /.btn-group -->
-    </div><!-- /.card-body -->
-  </div><!-- /.card -->
+      </div><!-- /.card-body -->
+    </div><!-- /.card -->
   </div><!-- /.col-sm -->
-    <?php $index += 1; ?>
+  <?php $index += 1; ?>
 <?php endforeach ?>
-</div><!-- /.card-deck -->
+</div><!-- /.row -->
