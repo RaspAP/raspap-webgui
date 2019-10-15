@@ -124,7 +124,7 @@
           <div class="tab-pane fade" id="advanced">
           <h4 class="mt-3"><?php echo _("Advanced settings"); ?></h4>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-4 mb-2">
                 <div class="checkbox">
                   <?php
                   $checkedWifiAPEnabled = '';
@@ -132,13 +132,13 @@
                       $checkedWifiAPEnabled = ' checked="checked"';
                   }
                   ?>
-                  <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedWifiAPEnabled; ?> />
+                  <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="110" value="1"<?php echo $checkedWifiAPEnabled; ?> />
                   <label class="form-check-label" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-4 mb-2">
                 <div class="checkbox">
                 <?php
                 $checkedLogEnabled = '';
@@ -146,13 +146,13 @@
                     $checkedLogEnabled = ' checked="checked"';
                 }
                 ?>
-                <input id="chxlogenable" name="logEnable" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedLogEnabled; ?> />
+                <input id="chxlogenable" name="logEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="110" value="1"<?php echo $checkedLogEnabled; ?> />
                 <label class="form-check-label" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-4 mb-2">
                 <div class="checkbox">
                 <?php
                 $checkedHiddenSSID = '';
@@ -160,7 +160,7 @@
                     $checkedHiddenSSID = ' checked="checked"';
                 }
                 ?>
-                  <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedHiddenSSID; ?> />
+                  <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="110" value="1"<?php echo $checkedHiddenSSID; ?> />
                   <label class="form-check-label" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast"); ?></label>
                 </div>
               </div>
