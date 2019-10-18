@@ -133,7 +133,7 @@
                   }
                   ?>
                   <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="110" data-height="40" value="1"<?php echo $checkedWifiAPEnabled; ?> />
-                  <label class="form-check-label" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
+                  <label class="form-check-label ml-3" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
                 </div>
               </div>
             </div>
@@ -147,7 +147,7 @@
                 }
                 ?>
                 <input id="chxlogenable" name="logEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="110" data-height="40" value="1"<?php echo $checkedLogEnabled; ?> />
-                <label class="form-check-label" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
+                <label class="form-check-label ml-3" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
                 </div>
               </div>
             </div>
@@ -161,7 +161,7 @@
                 }
                 ?>
                   <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="110" data-height="40" value="1"<?php echo $checkedHiddenSSID; ?> />
-                  <label class="form-check-label" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast"); ?></label>
+                  <label class="form-check-label ml-3" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast"); ?></label>
                 </div>
               </div>
             </div>
