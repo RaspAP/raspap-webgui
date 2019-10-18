@@ -73,6 +73,14 @@ a.nav-link.active {
   border-color: #c61931;
 }
 
+i.fa.fa-bars {
+  color: #d1d3e2;
+}
+
+i.fa.fa-bars:hover{
+  color: #6e707e;
+}
+
 .info-item {
   width: 10rem;
   float: left;
