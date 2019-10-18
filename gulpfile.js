@@ -60,10 +60,7 @@ function modules() {
   var chartJS = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/chart.js/*')
     .pipe(gulp.dest('./dist/chart.js'));
   // dataTables
-  var dataTables = gulp.src([
-      './node_modules/startbootstrap-sb-admin-2/vendor/datatables/js/*',
-      './node_modules/startbootstrap-sb-admin-2/vendor/datatables/css/*'
-    ])
+  var dataTables = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/datatables/*')
     .pipe(gulp.dest('./dist/datatables'));
   // Font Awesome
   var fontAwesome = gulp.src('./node_modules/startbootstrap-sb-admin-2/vendor/fontawesome-free/**/*')
