@@ -23,7 +23,7 @@
                   <div class="hidden alert alert-info" id="divLoaderBandwidthhourly">
                     <?php echo sprintf(_("Loading %s bandwidth chart"), _('hourly')); ?>
                   </div>
-                  <div id="divChartBandwidthhourly"></div>
+                  <canvas id="divChartBandwidthhourly"></canvas>
                   <div id="divTableBandwidthhourly"></div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                   <div class="hidden alert alert-info" id="divLoaderBandwidthdaily">
                     <?php echo sprintf(_("Loading %s bandwidth chart"), _('daily')); ?>
                   </div>
-                  <div id="divChartBandwidthdaily"></div>
+                  <canvas id="divChartBandwidthdaily"></canvas>
                   <div id="divTableBandwidthdaily"></div>
                 </div>
               </div>
@@ -61,7 +61,7 @@
                   <div class="hidden alert alert-info" id="divLoaderBandwidthmonthly">
                     <?php echo sprintf(_("Loading %s bandwidth chart"), _('monthly')); ?>
                   </div>
-                  <div id="divChartBandwidthmonthly"></div>
+                  <canvas id="divChartBandwidthmonthly"></canvas>
                   <div id="divTableBandwidthmonthly"></div>
                 </div>
               </div>
