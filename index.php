@@ -281,9 +281,6 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- SB-Admin-2 JavaScript -->
     <script src="dist/sb-admin-2/js/sb-admin-2.js"></script>
 
-    <!-- DataTables JavaScript -->
-    <script src="dist/datatables/jquery.dataTables.min.js"></script>
-
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
