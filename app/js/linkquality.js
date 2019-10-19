@@ -40,12 +40,12 @@ Chart.Chart.pluginService.register({
         if (chart.config.centerText.display !== null &&
             typeof chart.config.centerText.display !== 'undefined' &&
 	    chart.config.centerText.display) {
-                drawTotals(chart);
+                drawLinkQ(chart);
             }
     }
 });
 
-function drawTotals(chart) {
+function drawLinkQ(chart) {
 
     let width = chart.chart.width;
     let height = chart.chart.height;
