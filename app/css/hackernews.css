@@ -1,11 +1,11 @@
 html * {
   font-family: Verdana, Geneva, sans-serif;
-  font-size: 10pt;
+  font-size: 0.9rem;
   color: #828282;
 }
 
-.nav>li>a {
-  font-size: 12pt;
+body {
+  color: #212529;
 }
 
 a:focus, a:hover {
@@ -13,32 +13,43 @@ a:focus, a:hover {
 }
 
 h4 { 
-  font-size: 18px;
+  font-size: 1.3rem;
 }
 
-.panel {
+.card {
   border-radius: 1px;
-}
-
-.panel-primary {
   border-color: #ff6600;
 }
 
-.panel-primary>.panel-heading {
+.card>.card-header {
   border-color: #ff6600;
   background-color: #ff6600;
   color: #000;
-  font-size: 14pt;
+  font-size: 1.1rem;
   font-weight: bold;
+  border-radius: unset;
 }
 
-.panel-heading {
-  border-top-left-radius: 1px;
-  border-top-right-radius: 1px;
+.card-header .col {
+  color: #212529;
+  font-size: 1.1rem;
 }
 
-.panel-primary>.panel-heading .fa {
+.card-header .fas {
   color: #fff;
+  font-size: 1.0rem;
+}
+
+.sidebar-brand-text {
+  text-transform: none;
+  color: #212529;
+  font-size: 2.0rem;
+  font-weight: 500;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.sidebar .nav-item .nav-link {
+  padding: 0.6rem;
 }
 
 .page-header {
@@ -46,22 +57,26 @@ h4 {
   margin: 10px 0 20px;
 }
 
-#wrapper,#page-wrapper,.panel-body,.nav>li>a,.navbar-default {
+#wrapper,#page-wrapper,.card-body,.nav>li>a,.nav {
   background-color: #f6f6ef;
 }
 
-.panel-footer {
+.card-footer {
   background-color: #eee;
 }
 
-.btn-primary.btn-outline {
-  color: #c61931;
-  border-color: #c61931;
+.alert-success {
+  background-color: #d4edda;
 }
 
-.btn-primary:hover {
-  background-color: #c61931;
-  border-color: #c61931;
+.btn-primary, .btn-primary:hover {
+  color: #828282;
+  background-color: #fff;
+  border-color: #828282;
+}
+
+.btn-warning {
+  color: #333;
 }
 
 .progress {
@@ -82,31 +97,75 @@ h4 {
   height: 300px;
 }
 
-.service-status-running,
-.service-status-stopped {
-  background-color: #fff;
-  color: #333;
-  text-transform: uppercase;
-  line-height: inherit;
+.service-status {
+  border-width: 0;
 }
-.service-status-running:before,
-.service-status-stopped:before {
-  display: inline-block;
-  height: 18px;
-  width: 16px;
-  content: "\2022";
-  font-size: 1.5em;
+
+i.fas.fa-circle.service-status-running {
   color: green;
-  line-height: 16px;
-  vertical-align: bottom;
-  margin-right: 2px;
 }
-.service-status-stopped:before {
-  color: red;
+
+i.fas.fa-circle.service-status-stopped {
+    color: red;
+}
+
+.service-status-stopped {
   animation: flash 1s linear infinite;
 }
 @keyframes flash {
   50% {
     opacity: 0;
   }
+}
+ 
+.logoutput {
+  width:100%;
+  height:300px;
+}
+
+pre.unstyled {
+  border-width: 0;
+  background-color: transparent;
+  padding: 0;
+}
+
+.dhcp-static-leases {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.dhcp-static-lease-row {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.loading-spinner {
+  background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
+  min-height: 150px;
+  width: 100%;
+}
+
+.js-reload-wifi-stations {
+  min-width: 10rem;
+}
+
+.sidebar.toggled .nav-item .nav-link span {
+  display: none;
+} .sidebar .nav-item .nav-link i,
+.sidebar .nav-item .nav-link span {
+  font-size: 0.9rem;
+}
+
+.btn-warning:hover {
+    color: #000;
+}
+
+/* change transition animation when sidebar is toggled */
+#accordionSidebar.toggled {
+  -webkit-transition-timing-function: ease;
+       -o-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-duration: .2s;
+       -o-transition-duration: .2s;
+          transition-duration: .2s;
 }
