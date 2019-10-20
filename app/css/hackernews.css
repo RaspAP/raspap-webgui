@@ -14,6 +14,12 @@ a:focus, a:hover {
 
 h4 { 
   font-size: 1.3rem;
+  color: #212529;
+}
+
+h5.card-title {
+  font-size: 1.2rem;
+  color: #212529;
 }
 
 .card {
@@ -25,7 +31,7 @@ h4 {
   border-color: #ff6600;
   background-color: #ff6600;
   color: #000;
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   font-weight: bold;
   border-radius: unset;
 }
@@ -35,7 +41,7 @@ h4 {
   font-size: 1.1rem;
 }
 
-.card-header .fas {
+.card-header [class^="fa"] {
   color: #fff;
   font-size: 1.0rem;
 }
@@ -89,6 +95,11 @@ h4 {
 
 .info-item {
   width: 140px;
+  float: left;
+}
+
+.info-item-wifi {
+  width: 6rem;
   float: left;
 }
 
@@ -168,4 +179,4 @@ pre.unstyled {
   -webkit-transition-duration: .2s;
        -o-transition-duration: .2s;
           transition-duration: .2s;
-}
+
