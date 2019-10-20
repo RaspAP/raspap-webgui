@@ -99,7 +99,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-      <ul class="navbar-nav bg-gray-100 sidebar sidebar-light accordion" id="accordionSidebar">
+      <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?page=wlan0_info">
           <div class="sidebar-brand-icon">
@@ -176,7 +176,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 	<!-- Main Content -->
 	<div id="content"> 
 	  <!-- Topbar -->
-	  <nav class="navbar navbar-expand navbar-light bg-gray-100 topbar mb-1 static-top">
+	  <nav class="navbar navbar-expand navbar-light topbar mb-1 static-top">
 	    <!-- Sidebar Toggle (Topbar) -->
 	    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
 	      <i class="fa fa-bars"></i>
@@ -189,7 +189,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 	      <!-- Nav Item - User -->
 	      <li class="nav-item dropdown no-arrow">
 		<a class="nav-link" href="index.php?page=auth_conf">
-		  <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
+		  <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
 		  <i class="fas fa-user-circle fa-3x"></i>
 		</a>
 	      </li>
