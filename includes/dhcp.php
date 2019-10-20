@@ -132,7 +132,7 @@ function DisplayDHCPConfig()
             }
         }
     }
-
+  
     $hselected = '';
     $mselected = '';
     $dselected = '';

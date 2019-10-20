@@ -116,7 +116,7 @@
           <tbody>
           <?php foreach ($leases as $lease) : ?>
               <?php foreach (explode(' ', $lease) as $prop) : ?>
-	      <tr>
+	              <tr>
                 <?php foreach (explode(' ', $lease) as $prop) : ?>
                   <td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
                 <?php endforeach ?> 
