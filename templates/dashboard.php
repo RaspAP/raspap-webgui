@@ -19,7 +19,7 @@ $ifaceLabel = $wlan0up ? "up" : "down";
 	  </div>
 	  <div class="col">
 	    <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
-	      <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
+	      <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
 	      <span class="text service-status"><?php echo strtolower($client_iface) .' '. _($ifaceLabel) ?></span>
 	    </button>
 	  </div>
@@ -111,7 +111,7 @@ $ifaceLabel = $wlan0up ? "up" : "down";
         </div>
 
       </div><!-- /.card-body -->
-      <div class="card-footer"><?php echo _("Information provided by ip and iw and from system."); ?></div>
+      <div class="card-footer"><?php echo _("Information provided by ip and iw and from system"); ?></div>
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
