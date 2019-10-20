@@ -1,14 +1,25 @@
 // Link quality gauge for ChartJS
 // console.log(linkQ);
 
+// Support for dark terminal theme
+theme = getCookie('theme');
+if (theme == 'terminal.css') {
+    var bgColor1 = '#000';
+    var bgColor2 = '#000';
+    var borderColor = 'rgba(51, 255, 0, 1)';
+    var labelColor = 'rgba(51, 255, 0, 1)';
+} else {
+    var bgColor1 = '#d4edda';
+    var bgColor2 = '#eaecf4';
+    var borderColor = 'rgba(147, 210, 162, 1)';
+    var labelColor = 'rgba(130, 130, 130, 1)';
+}
+
 let data1 = {
     datasets: [{
       	data: [linkQ, 100-linkQ],
-        borderWidth: 1,
-        backgroundColor: ['#d4edda', '#eaecf4'],
-        borderColor: 'rgba(176, 222, 187, 1)',
-        hoverBackgroundColor: ['#c1e2c8', '#eaecf4'],
-        hoverBorderWidth: 0  
+        backgroundColor: [bgColor1, bgColor2],
+        borderColor: borderColor,
     }],
 };
 
@@ -17,6 +28,8 @@ let config = {
     data: data1,
     options: {
         responsive: true,
+        tooltips: {enabled: false},
+        hover: {mode: null},
         legend: {
             display: false,
         },
@@ -56,7 +69,7 @@ function drawLinkQ(chart) {
     ctx.restore();
     let fontSize = (height / 100).toFixed(2);
     ctx.font = fontSize + "em sans-serif";
-    ctx.fillStyle = "rgba(25,25,25,1)";
+    ctx.fillStyle = labelColor;
     ctx.textBaseline = "middle";
 
     let text = chart.config.centerText.text;
