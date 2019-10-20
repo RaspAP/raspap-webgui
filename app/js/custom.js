@@ -246,6 +246,12 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function getCookie(cname) {
+    var regx = new RegExp(cname + "=([^;]+)");
+    var value = regx.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
+}
+
 var themes = {
     "default": "custom.css",
     "hackernews" : "hackernews.css",
