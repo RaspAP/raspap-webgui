@@ -6,8 +6,8 @@ theme = getCookie('theme');
 if (theme == 'terminal.css') {
     var bgColor1 = '#000';
     var bgColor2 = '#000';
-    var borderColor = 'rgba(51, 255, 0, 1)';
-    var labelColor = 'rgba(51, 255, 0, 1)';
+    var borderColor = 'rgba(46, 230, 0, 1)';
+    var labelColor = 'rgba(46, 230, 0, 1)';
 } else {
     var bgColor1 = '#d4edda';
     var bgColor2 = '#eaecf4';

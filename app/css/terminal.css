@@ -1,7 +1,7 @@
 html * {
   font-family: Courier New, Andale Mono, monospace;
   font-size: 10pt;
-  color: #33ff00;
+  color: #2ee600;
 }
 
 h4 {
@@ -14,7 +14,7 @@ h5.card-title {
 
 .page-header {
   padding: 0 20px;
-  border-left: 1px solid #33ff00;
+  border-left: 1px solid #2ee600;
 }
 
 #wrapper #content-wrapper #content {
@@ -35,33 +35,33 @@ h5.card-title {
 .nav-tabs>li.active>a:hover,
 .nav-tabs .nav-link:hover,
 .input-group-addon {
-  color: #33ff00;
+  color: #2ee600;
   cursor: default;
   background-color: #000;
-  border: 1px solid #33ff00;
-  border-bottom-color: #33ff00;
+  border: 1px solid #2ee600;
+  border-bottom-color: #2ee600;
   border-radius: inherit;
 }
 
 .nav-tabs>li>a,.nav-tabs>li>a:hover {
-  border: 1px solid #33ff00;
+  border: 1px solid #2ee600;
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #33ff00;
+  border-bottom: 1px solid #2ee600;
 }
 
 .navbar-default .navbar-brand,
 .navbar-default .navbar-brand:hover {
-  color: #33ff00;
+  color: #2ee600;
 }
 
 .navbar-default .navbar-toggle {
-  border-color: #33ff00;
+  border-color: #2ee600;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #33ff00;
+  background-color: #2ee600;
 }
 
 .navbar-default .navbar-toggle:focus,
@@ -71,8 +71,8 @@ h5.card-title {
 
 .nav-tabs .nav-link.active {
   color: #000;
-  background-color: #33ff00;
-  border-color: #33ff00;
+  background-color: #2ee600;
+  border-color: #2ee600;
   border-radius: inherit;
 }
 
@@ -82,12 +82,12 @@ h5.card-title {
 }
 
 a:focus, a:hover {
-  color: #33ff00;
+  color: #2ee600;
 }
 
 .card>.card-header {
-  border-color: #33ff00;
-  background-color: #33ff00;
+  border-color: #2ee600;
+  background-color: #2ee600;
   color: #000;
   border-radius: unset;
   font-size: 1.1rem;
@@ -110,31 +110,31 @@ a:focus, a:hover {
 
 .card, .card-body {
   margin-bottom: 20px;
-  border: 1px solid #33ff00;
+  border: 1px solid #2ee600;
   border-radius: 0px;
   background-color: #000;
 }
 
 hr { 
-  border-top: 1px solid #33ff00;
+  border-top: 1px solid #2ee600;
 }
 
 .page-header {
   font-size: 24pt;
   margin: 10px 0 20px;
-  border-bottom: 1px solid #33ff00;
+  border-bottom: 1px solid #2ee600;
 }
 
 .sidebar-brand-text {
   text-transform: none;
-  color: #33ff00;
+  color: #2ee600;
   font-size: 2.0rem;
   font-weight: 500;
   font-family: inherit;
 }
 
 .sidebar-light #sidebarToggle {
-  background-color: #33ff00;
+  background-color: #2ee600;
 }
 
 .sidebar-light #sidebarToggle::after {
@@ -151,7 +151,7 @@ hr {
 
 .card-footer {
   background-color: #000;
-  border-top: 1px solid #33ff00;
+  border-top: 1px solid #2ee600;
 }
 
 .card>.card-header::before, .navbar-default::before {
@@ -173,7 +173,7 @@ hr {
 }
 
 .sidebar-light .nav-item .nav-link i {
-  color: #33ff00;
+  color: #2ee600;
 }
 
 .sidebar .nav-item .nav-link {
@@ -181,11 +181,11 @@ hr {
 }
 
 .sidebar-light hr.sidebar-divider {
-  border-top: 1px solid #33ff00;
+  border-top: 1px solid #2ee600;
 }
 
 .topbar .topbar-divider {
-  border-right: 1px solid #33ff00;
+  border-right: 1px solid #2ee600;
 }
 
 .info-item-wifi {
@@ -194,7 +194,7 @@ hr {
 }
 
 .label-warning {
-  background-color: #33ff00;
+  background-color: #2ee600;
 }
 
 span.label.label-warning {
@@ -213,15 +213,15 @@ span.label.label-warning {
 
 .table>thead>tr>th {
   vertical-align: bottom;
-  border-bottom: 1px solid #33ff00;
+  border-bottom: 1px solid #2ee600;
 }
 
 [class*="btn"], [class*="btn"]:focus, [class*="btn"]:disabled {
   background-color: #000;
-  border-color: #33ff00;
-  border-color: #33ff00;
+  border-color: #2ee600;
+  border-color: #2ee600;
   border-radius: 0px;
-  color: #33ff00;
+  color: #2ee600;
 }
 
 [class*="btn"]:hover {
@@ -238,9 +238,9 @@ span.label.label-warning {
 
 [class*="alert"] {
   border-radius: 0px;
-  color: #33ff00;
+  color: #2ee600;
   background-color: #000;
-  border-color: #33ff00;
+  border-color: #2ee600;
   border: 1px dashed;
 }
 
@@ -253,9 +253,9 @@ span.label.label-warning {
 
 .form-control,
 .form-control:focus {
-  color: #33ff00;
+  color: #2ee600;
   background-color: #000;
-  border: 1px solid #33ff00;
+  border: 1px solid #2ee600;
   border-radius: 0px;
   transition: unset;
 }
@@ -266,14 +266,14 @@ span.label.label-warning {
   opacity: 0.5;
 }
 
-.form-control::-webkit-input-placeholder { color: #33ff00; } 
-.form-control:-moz-placeholder { color: #33ff00; }  
-.form-control::-moz-placeholder { color: #33ff00; }  
-.form-control:-ms-input-placeholder { color: #33ff00; }  
-.form-control::-ms-input-placeholder { color: #33ff00; }
+.form-control::-webkit-input-placeholder { color: #2ee600; } 
+.form-control:-moz-placeholder { color: #2ee600; }  
+.form-control::-moz-placeholder { color: #2ee600; }  
+.form-control:-ms-input-placeholder { color: #2ee600; }  
+.form-control::-ms-input-placeholder { color: #2ee600; }
 
 input[type="text"]{
-color: #33ff00 !important
+color: #2ee600 !important
 }
 
 .progress {
@@ -286,7 +286,7 @@ color: #33ff00 !important
 }
 
 .progress-bar.progress-bar-info.progress-bar-striped.active {
-  background-color: #33ff00;
+  background-color: #2ee600;
 }
 
 .info-item {
@@ -298,13 +298,13 @@ color: #33ff00 !important
   width: 100%;
   height: 300px;
   background-color: #000;
-  border-color: #33ff00;
+  border-color: #2ee600;
 }
 
 .webconsole {
   width: 100%;
   height: 100%;
-  border-color: #33ff00;
+  border-color: #2ee600;
   border-bottom: 1px solid;
   border-left: 1px solid;
   border-top: 0px;
@@ -316,7 +316,7 @@ color: #33ff00 !important
 }
 
 tspan, rect {
-  fill: #33ff00;
+  fill: #2ee600;
 }
 
 .service-status {
