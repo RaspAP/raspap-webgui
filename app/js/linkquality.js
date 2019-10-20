@@ -4,7 +4,9 @@
 let data1 = {
     datasets: [{
       	data: [linkQ, 100-linkQ],
+        borderWidth: 1,
         backgroundColor: ['#d4edda', '#eaecf4'],
+        borderColor: 'rgba(176, 222, 187, 1)',
         hoverBackgroundColor: ['#c1e2c8', '#eaecf4'],
         hoverBorderWidth: 0  
     }],
