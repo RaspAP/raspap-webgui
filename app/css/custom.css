@@ -14,6 +14,10 @@ body {
   border-color: #c61931;
 }
 
+.sidebar {
+  background-color: #f8f9fc;
+}
+
 .sidebar-brand-text {
   text-transform: none;
   color: #212529;
