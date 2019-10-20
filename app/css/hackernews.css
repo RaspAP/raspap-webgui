@@ -12,7 +12,7 @@ a:focus, a:hover {
   color: #666;
 }
 
-h4 { 
+h4 {
   font-size: 1.3rem;
   color: #212529;
 }
@@ -54,6 +54,11 @@ h5.card-title {
   font-family: Verdana, Geneva, sans-serif;
 }
 
+ul.nav-tabs, .nav-tabs .nav-link {
+  background-color: #f6f6ef;
+  border-bottom: 1px solid #dddfeb;
+}
+
 .sidebar .nav-item .nav-link {
   padding: 0.6rem;
 }
@@ -63,7 +68,13 @@ h5.card-title {
   margin: 10px 0 20px;
 }
 
-#wrapper,#page-wrapper,.card-body,.nav>li>a,.nav {
+#wrapper,#page-wrapper,
+#wrapper #content-wrapper,
+.nav>li>a,.nav {
+  background-color: #fff;
+}
+
+.card-body {
   background-color: #f6f6ef;
 }
 
