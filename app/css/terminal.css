@@ -4,25 +4,43 @@ html * {
   color: #33ff00;
 }
 
-#page-wrapper {
+h4 {
+  font-size: 1.3rem;
+}
+
+h5.card-title {
+  font-size: 1.2rem;
+}
+
+.page-header {
   padding: 0 20px;
   border-left: 1px solid #33ff00;
 }
 
-.nav>li>a {
-  font-size: 10pt;
-}
-
-.nav>li>a:focus, .nav>li>a:hover {
+#wrapper #content-wrapper #content {
   background-color: #000;
 }
 
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover, .input-group-addon {
+.topbar {
+  background-color: #000;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link {
+  font-size: 1.0rem;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover,
+.nav-tabs .nav-link:hover,
+.input-group-addon {
   color: #33ff00;
   cursor: default;
   background-color: #000;
   border: 1px solid #33ff00;
   border-bottom-color: #33ff00;
+  border-radius: inherit;
 }
 
 .nav-tabs>li>a,.nav-tabs>li>a:hover {
@@ -33,11 +51,8 @@ html * {
   border-bottom: 1px solid #33ff00;
 }
 
-.navbar-default {
-  border-color: #33ff00;
-}
-
-.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover {
   color: #33ff00;
 }
 
@@ -49,11 +64,19 @@ html * {
   background-color: #33ff00;
 }
 
-.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
   background-color: #000;
 }
 
-.logo {
+.nav-tabs .nav-link.active {
+  color: #000;
+  background-color: #33ff00;
+  border-color: #33ff00;
+  border-radius: inherit;
+}
+
+.sidebar-brand-icon {
   visibility: collapse;
   width: 0px;
 }
@@ -62,22 +85,30 @@ a:focus, a:hover {
   color: #33ff00;
 }
 
-.panel-primary {
-  border-color: #33ff00;
-}
-
-.panel-primary>.panel-heading, .panel-default>.panel-heading {
+.card>.card-header {
   border-color: #33ff00;
   background-color: #33ff00;
   color: #000;
-  font-size: 12pt;
+  border-radius: unset;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
-.panel-primary>.panel-heading .fa {
+.card>.card-header .fa {
   color: #000;
 }
 
-.panel {
+.card-header [class^="fa"] {
+  color: #000;
+  font-size: 1.0rem;
+}
+
+.col {
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.card, .card-body {
   margin-bottom: 20px;
   border: 1px solid #33ff00;
   border-radius: 0px;
@@ -94,16 +125,36 @@ hr {
   border-bottom: 1px solid #33ff00;
 }
 
-#wrapper,#page-wrapper,.panel-body,.nav>li>a,.navbar-default {
-  background-color: #000;
+.sidebar-brand-text {
+  text-transform: none;
+  color: #33ff00;
+  font-size: 2.0rem;
+  font-weight: 500;
+  font-family: inherit;
 }
 
-.panel-footer {
+.sidebar-light #sidebarToggle {
+  background-color: #33ff00;
+}
+
+.sidebar-light #sidebarToggle::after {
+  color: #000;
+}
+
+.sidebar-light .nav-item .nav-link:hover i {
+  color: #81ff61;
+}
+
+.sidebar-light #sidebarToggle:hover {
+  background-color: #81ff61;
+}
+
+.card-footer {
   background-color: #000;
   border-top: 1px solid #33ff00;
 }
 
-.panel-primary>.panel-heading::before, .navbar-default::before {
+.card>.card-header::before, .navbar-default::before {
   content: " ";
   display: block;
   position: absolute;
@@ -117,43 +168,29 @@ hr {
   pointer-events: none;
 }
 
-.sidebar ul li a.active,.sidebar ul li a.hover {
+.sidebar-light, .sticky-footer {
   background-color: #000;
 }
 
-.sidebar ul li {
-  border-bottom: 1px solid #33ff00;
-}
-
-.btn-default.active, .btn-default.active:focus, .btn-default.active:hover {
-  color: #33ff00;
-  background-color: #000;
-}
-
-
-.btn-primary.btn-outline,.btn-warning,.btn-default,.btn-danger {
-  color: #33ff00;
-  border-color: #33ff00;
-}
-
-.btn-primary:hover,.btn-primary:focus,.btn-warning:hover,.btn-warning:focus,.btn-primary:active,.btn-default:hover,.btn-danger:hover,.btn-default:active,.btn-default:focus {
-  color: #33ff00;
-  background-color: #000;
-  border-color: #33ff00;
-}
-
-.btn-primary.btn-outline:hover,.btn-success, .btn-success.btn-outline:hover, .btn-info.btn-outline:hover, .btn-warning.btn-outline:hover, .btn-danger.btn-outline:hover {
+.sidebar-light .nav-item .nav-link i {
   color: #33ff00;
 }
 
-label.btn.btn-primary {
-  color: #33ff00;
+.sidebar .nav-item .nav-link {
+  padding: 0.6rem;
 }
 
-label.btn.btn-primary.active, label.btn.btn-warning.active {
-  background-color: #33ff00;
-  border-color: #33ff00;
-  color: #000;
+.sidebar-light hr.sidebar-divider {
+  border-top: 1px solid #33ff00;
+}
+
+.topbar .topbar-divider {
+  border-right: 1px solid #33ff00;
+}
+
+.info-item-wifi {
+  width: 6rem;
+  float: left;
 }
 
 .label-warning {
@@ -164,11 +201,12 @@ span.label.label-warning {
   color: #000;
 }
 
-.btn.btn-primary {
-  border-color: #33ff00;
-}
-
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
   background-color: #000;
   border-top: 1px solid #000;
 }
@@ -178,22 +216,28 @@ span.label.label-warning {
   border-bottom: 1px solid #33ff00;
 }
 
-.btn-info, .btn-info:hover, .btn-info[disabled], .btn-danger.disabled, .btn-danger.disabled.active, .btn-danger.disabled.focus, .btn-danger.disabled:active, .btn-danger.disabled:focus, .btn-danger.disabled:hover, .btn-danger[disabled], .btn-danger[disabled].active, .btn-danger[disabled].focus, .btn-danger[disabled]:active, .btn-danger[disabled]:focus, .btn-danger[disabled]:hover, fieldset[disabled] .btn-danger, fieldset[disabled] .btn-danger.active, fieldset[disabled] .btn-danger.focus, fieldset[disabled] .btn-danger:active, fieldset[disabled] .btn-danger:focus, fieldset[disabled] .btn-danger:hover, .btn-info:hover {
+[class*="btn"], [class*="btn"]:focus, [class*="btn"]:disabled {
   background-color: #000;
   border-color: #33ff00;
+  border-color: #33ff00;
+  border-radius: 0px;
   color: #33ff00;
 }
 
-.btn {
-  background-color: #000;
+[class*="btn"]:hover {
+  background-color: #81ff61;
+  border-color: #81ff61;
+  border-color: #81ff61;
   border-radius: 0px;
+  color: #000;
 }
 
-.alert {
-  border-radius: 0px;
+[class*="btn"]:hover .disabled {
+  background-color:red;
 }
 
-.alert-success,.alert-warning,.alert-info,.alert-dismissable,.alert-danger {
+[class*="alert"] {
+  border-radius: 0px;
   color: #33ff00;
   background-color: #000;
   border-color: #33ff00;
@@ -207,7 +251,8 @@ span.label.label-warning {
   opacity: 1;
 }
 
-.form-control, .form-control:focus {
+.form-control,
+.form-control:focus {
   color: #33ff00;
   background-color: #000;
   border: 1px solid #33ff00;
@@ -215,8 +260,10 @@ span.label.label-warning {
   transition: unset;
 }
 
-input[type="text"]{
-  color: #33ff00 !important
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #000;
+  opacity: 0.5;
 }
 
 .form-control::-webkit-input-placeholder { color: #33ff00; } 
@@ -224,6 +271,10 @@ input[type="text"]{
 .form-control::-moz-placeholder { color: #33ff00; }  
 .form-control:-ms-input-placeholder { color: #33ff00; }  
 .form-control::-ms-input-placeholder { color: #33ff00; }
+
+input[type="text"]{
+color: #33ff00 !important
+}
 
 .progress {
   background-color: #000;
@@ -264,38 +315,49 @@ input[type="text"]{
   height: 500px;
 }
 
-.systemtabcontent {
-  height: 100%;
-  min-height: 500px;
-}
-
 tspan, rect {
   fill: #33ff00;
 }
 
-.morris-hover.morris-default-style {
-  background: none;
-  border-radius: 0px;
-  border-color: #33ff00;
-  border: dashed 1px #33ff00;
+.service-status {
+  border-width: 0;
 }
 
-.morris-hover-point {
-  color: #33ff00 !important;
+.service-status-running {
+  color: green;
 }
 
-path {
-  stroke: #33ff00;
+.service-status-stopped {
+  color: red;
+  animation: flash 1s linear infinite;
 }
-
-span.service-status-running {
-  color: #000;
-  font-size: 10pt;
-  text-transform: uppercase;
-  line-height: inherit;
+@keyframes flash {
+  50% {
+    opacity: 0;
+  }
 }
 
 pre {
   background-color: #000;
   border: #000;
+}
+
+.dhcp-static-leases {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.dhcp-static-lease-row {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* change transition animation when sidebar is toggled */
+#accordionSidebar.toggled {
+  -webkit-transition-timing-function: ease;
+       -o-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-duration: .2s;
+       -o-transition-duration: .2s;
+          transition-duration: .2s;
 }
