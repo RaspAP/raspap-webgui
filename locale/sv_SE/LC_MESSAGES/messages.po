@@ -539,7 +539,7 @@ msgstr "Spara inställningar"
 msgid "Refresh"
 msgstr "Uppdatera"
 
-sgid "Disabled"
+msgid "Disabled"
 msgstr "Disabled"
 
 msgid "Enabled"
