@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-28 21:30+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Matheus Dal Mago <matheusdalmago10@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -57,6 +57,9 @@ msgstr "Alterar Tema"
 
 msgid "System"
 msgstr "Sistema"
+
+msgid "About RaspAP"
+msgstr "About RaspAP"
 
 #: includes/admin.php
 msgid "New passwords do not match"
@@ -126,6 +129,15 @@ msgstr "Adicionar"
 msgid "Delete"
 msgstr "Remover"
 
+msgid "Show"
+msgstr "Show"
+
+msgid "Hide"
+msgstr "Hide"
+
+msgid "Not configured"
+msgstr "Not configured"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Nota:</strong> pontos de acesso WEP aparecem como 'Open'. Atualmente, o RaspAP não suporta conexão com WEP"
 
@@ -136,8 +148,11 @@ msgstr "Informação da Interface"
 msgid "Interface Name"
 msgstr "Nome da Interface"
 
-msgid "IP Address"
-msgstr "Endereço IP"
+msgid "IPv4 Address"
+msgstr "Endereço IPv4"
+
+msgid "IPv6 Address"
+msgstr "Endereço IPv6"
 
 msgid "Subnet Mask"
 msgstr "Máscara de rede"
@@ -184,8 +199,8 @@ msgstr "Frequência"
 msgid "Link Quality"
 msgstr "Qualidade de Link"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Informações fornecidas por ifconfig e iwconfig"
+msgid "Information provided by ip and iw and from system"
+msgstr "Informações fornecidas por ip e iw e system"
 
 msgid "No MAC Address Found"
 msgstr "Endereço MAC Não Encontrado"
@@ -221,17 +236,26 @@ msgid "Connected Devices"
 msgstr "Dispositivos Conectados"
 
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Configurações do Servidor"
+msgid "DHCP server settings"
+msgstr "Configurações do servidor DHCP"
 
 msgid "Client list"
 msgstr "Lista de Clientes"
+
+msgid "Interface"
+msgstr "Interface"
 
 msgid "Starting IP Address"
 msgstr "Endereço IP Inicial"
 
 msgid "Ending IP Address"
 msgstr "Endereço IP Final"
+
+msgid "Static Leases"
+msgstr "Static Leases"
+
+msgid "Add static DHCP lease"
+msgstr "Add static DHCP lease"
 
 msgid "Lease Time"
 msgstr "Tempo de Concessão"
@@ -366,6 +390,18 @@ msgstr "Habilitar Logs"
 msgid "Logfile output"
 msgstr "Arquivo de Log"
 
+msgid "WiFi client AP mode"
+msgstr "WiFi client AP mode"
+
+msgid "Hide SSID in broadcast"
+msgstr "Hide SSID in broadcast"
+
+msgid "Maximum number of clients"
+msgstr "Maximum number of clients"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Sumário"
@@ -459,6 +495,43 @@ msgstr "Configurações de Tema"
 msgid "Select a theme"
 msgstr "Selecione um Tema"
 
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Data usage"
+
+msgid "Data usage monitoring"
+msgstr "Data usage monitoring"
+
+msgid "Hourly traffic amount"
+msgstr "Hourly traffic amount"
+
+msgid "Daily traffic amount"
+msgstr "Daily traffic amount"
+
+msgid "interface"
+msgstr "interface"
+
+msgid "date"
+msgstr "date"
+
+msgid "Send MB"
+msgstr "Send MB"
+
+msgid "Receive MB"
+msgstr "Receive MB"
+
+msgid "Monthly traffic amount"
+msgstr "Monthly traffic amount"
+
+msgid "Information provided by vnstat"
+msgstr "Information provided by vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Loading {0} bandwidth chart"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Showing {0} to {1} of {2} entries"
+
 #: common form controls
 msgid "Save settings"
 msgstr "Salvar configurações"
@@ -466,3 +539,23 @@ msgstr "Salvar configurações"
 msgid "Refresh"
 msgstr "Atualizar"
 
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "running"
+msgstr "running"
+
+msgid "stopped"
+msgstr "stopped"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "up"
+msgstr "up"
+
+msgid "down"
+msgstr "down"

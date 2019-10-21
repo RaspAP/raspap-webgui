@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-17 17:15+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
 "Language: si_LK\n"
@@ -19,14 +19,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: index.php
-msgid "UNIras Wifi Configuration Portal"
-msgstr "UNIras Wifi සැකසුම් වෙබ් අඩවිය"
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "RaspAP Wifi සැකසුම් වෙබ් අඩවිය"
 
 msgid "Toggle navigation"
 msgstr "හුවමාරුවීම"
 
-msgid "UNIras Wifi Portal"
-msgstr "UNIras Wifi වෙබ් අඩවිය"
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP Wifi වෙබ් අඩවිය"
 
 msgid "Dashboard"
 msgstr "උපකාරක පුවරුව"
@@ -59,6 +59,9 @@ msgid "System"
 msgstr "පද්ධතිය"
 
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Authentication settings"
+
 msgid "New passwords do not match"
 msgstr "නව මුරපදයන් නොගැලපේ"
 
@@ -126,6 +129,15 @@ msgstr "එක් කරන්න"
 msgid "Delete"
 msgstr "මකා දමන්න"
 
+msgid "Show"
+msgstr "Show"
+
+msgid "Hide"
+msgstr "Hide"
+
+msgid "Not configured"
+msgstr "Not configured"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong> සටහන: </ strong> WEP ප්‍රවේශ වීමේ ස්ථාන 'විවෘත' ලෙස පෙනේ. RaspAP දැනට WEP වෙත සම්බන්ධ වීමට සහාය නොදේ"
 
@@ -184,8 +196,8 @@ msgstr "සංඛ්‍යාතය"
 msgid "Link Quality"
 msgstr "සබැඳියෙහි  ගුණත්වය"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Ifconfig සහ iwconfig සපයන ලද තොරතුරු"
+msgid "Information provided by ip and iw and from system"
+msgstr "ip සහ iw සපයන ලද තොරතුරු"
 
 msgid "No MAC Address Found"
 msgstr "MAC ලිපිනයක් නොමැත"
@@ -221,17 +233,26 @@ msgid "Connected Devices"
 msgstr "සම්බන්ධිත උපකරණ"
 
 #: includes/dhcp.php
-msgid "Server settings"
+msgid "DHCP server settings"
 msgstr "සර්වර සැකසීම්"
 
 msgid "Client list"
 msgstr "සේවාදායක ලැයිස්තුව"
+
+msgid "Interface"
+msgstr "Interface"
 
 msgid "Starting IP Address"
 msgstr "IP ලිපිනය ආරම්භ කිරීම"
 
 msgid "Ending IP Address"
 msgstr "IP ලිපිනය අවසන් කිරීම"
+
+msgid "Static Leases"
+msgstr "Static Leases"
+
+msgid "Add static DHCP lease"
+msgstr "Add static DHCP lease"
 
 msgid "Lease Time"
 msgstr "කල් පිරෙන කාලය"
@@ -366,6 +387,18 @@ msgstr "ඇතුල්වීම සක්‍රිය කරන්න "
 msgid "Logfile output"
 msgstr " ලොග්ෆයිල් නිමැවුම "
 
+msgid "WiFi client AP mode"
+msgstr "WiFi client AP mode"
+
+msgid "Hide SSID in broadcast"
+msgstr "Hide SSID in broadcast"
+
+msgid "Maximum number of clients"
+msgstr "Maximum number of clients"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
@@ -466,6 +499,9 @@ msgstr "දත්ත භාවිතය"
 msgid "Data usage monitoring"
 msgstr "දත්ත භාවිතය පිළිබඳ අධීක්ෂණය"
 
+msgid "Hourly traffic amount"
+msgstr "Hourly traffic amount"
+
 msgid "Daily traffic amount"
 msgstr "දෛනිකව  ප්‍රවාහනය කරන ලද දත්ත ප්‍රමාණය  "
 
@@ -498,5 +534,25 @@ msgid "Save settings"
 msgstr "සැකසුම් සුරකින්න"
 
 msgid "Refresh"
-msgstr "ප්‍රාණවත් කරන්න "
+msgstr "ප්‍රාණවත් කරන්න"
 
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "running"
+msgstr "running"
+
+msgid "stopped"
+msgstr "stopped"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "up"
+msgstr "up"
+
+msgid "down"
+msgstr "down"

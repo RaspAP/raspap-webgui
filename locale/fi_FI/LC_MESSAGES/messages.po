@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-17 17:15+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: m4ra\n"
 "Language: fi_FI\n"
@@ -58,7 +58,13 @@ msgstr "Vaihda teema"
 msgid "System"
 msgstr "Järjestelmä"
 
+msgid "About RaspAP"
+msgstr "About RaspAP"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Authentication settings"
+
 msgid "New passwords do not match"
 msgstr "Uudet salasanat eivät täsmää"
 
@@ -126,6 +132,15 @@ msgstr "Lisää"
 msgid "Delete"
 msgstr "Poista"
 
+msgid "Show"
+msgstr "Show"
+
+msgid "Hide"
+msgstr "Hide"
+
+msgid "Not configured"
+msgstr "Not configured"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Huom:</strong> WEP yhteyspisteet näkyvät 'Avoimena' mutta RaspAP ei nyt tue WEP yhteyksiä."
 
@@ -136,8 +151,11 @@ msgstr "Liitymän tiedot"
 msgid "Interface Name"
 msgstr "Liitymän nimi"
 
-msgid "IP Address"
-msgstr "IP osoite"
+msgid "IPv4 Address"
+msgstr "IPv4 osoite"
+
+msgid "IPv6 Address"
+msgstr "IPv6 osoite"
 
 msgid "Subnet Mask"
 msgstr "Aliverkon peite"
@@ -184,8 +202,8 @@ msgstr "Taajuus"
 msgid "Link Quality"
 msgstr "Yhteyden laatu"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "ifconfig ja iwconfig saadut tiedot"
+msgid "Information provided by ip and iw and from system"
+msgstr "ip ja iw saadut tiedot"
 
 msgid "No MAC Address Found"
 msgstr "MAC osoitetta ei löydetty"
@@ -221,17 +239,26 @@ msgid "Connected Devices"
 msgstr "Kytkettyihin Laitteisiin"
 
 #: includes/dhcp.php
-msgid "Server settings"
+msgid "DHCP server settings"
 msgstr "Palvelimen asetukset"
 
 msgid "Client list"
 msgstr "Asiakaslista"
+
+msgid "Interface"
+msgstr "Liittymä"
 
 msgid "Starting IP Address"
 msgstr "Alkava IP osoite"
 
 msgid "Ending IP Address"
 msgstr "Loppuva IP osoite"
+
+msgid "Static Leases"
+msgstr "Static Leases"
+
+msgid "Add static DHCP lease"
+msgstr "Add static DHCP lease"
 
 msgid "Lease Time"
 msgstr "Laina-aika"
@@ -343,7 +370,7 @@ msgid "WPA passphrase must be between 8 and 63 characters"
 msgstr "WPA salasana on oltava 8 ja 63 merkin pituinen"
 
 msgid "Unknown interface"
-msgstr "Tuntematon liitymä"
+msgstr "Tuntematon liittymä"
 
 msgid "Country code must be blank or two characters"
 msgstr "Maatunnus on oltava tyhjä tai kaksi merkkiä"
@@ -365,6 +392,18 @@ msgstr "Salli lokikirjaus"
 
 msgid "Logfile output"
 msgstr "Lokitiedoston muoto"
+
+msgid "WiFi client AP mode"
+msgstr "WiFi client AP mode"
+
+msgid "Hide SSID in broadcast"
+msgstr "Hide SSID in broadcast"
+
+msgid "Maximum number of clients"
+msgstr "Maximum number of clients"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 
 #: includes/networking.php
 msgid "Summary"
@@ -470,7 +509,7 @@ msgid "Daily traffic amount"
 msgstr "Päivittäisen liikenteen määrä"
 
 msgid "interface"
-msgstr "liitymä"
+msgstr "liittymä"
 
 msgid "date"
 msgstr "pvm"
@@ -499,3 +538,25 @@ msgstr "Tallenna asetukset"
 
 msgid "Refresh"
 msgstr "Päivitä"
+
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "running"
+msgstr "running"
+
+msgid "stopped"
+msgstr "stopped"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "up"
+msgstr "up"
+
+msgid "down"
+msgstr "down"
+

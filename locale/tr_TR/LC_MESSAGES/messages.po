@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-06-10 11:15+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Furkan 'Cuqer' Sarıboğa <cuqerr@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -57,6 +57,9 @@ msgstr "Temayı değiştir"
 
 msgid "System"
 msgstr "Sistem"
+
+msgid "About RaspAP"
+msgstr "About RaspAP"
 
 #: includes/admin.php
 msgid "New passwords do not match"
@@ -126,6 +129,15 @@ msgstr "Ekle"
 msgid "Delete"
 msgstr "Sil"
 
+msgid "Show"
+msgstr "Show"
+
+msgid "Hide"
+msgstr "Hide"
+
+msgid "Not configured"
+msgstr "Not configured"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Note:</strong> WEP erişim noktası 'Açık' gözüküyor. RaspAP şu anda WEP bağlantısını desteklemiyor"
 
@@ -136,8 +148,11 @@ msgstr "Arayüz Bilgisi"
 msgid "Interface Name"
 msgstr "Arayüz Adı"
 
-msgid "IP Address"
-msgstr "IP Adresi"
+msgid "IPv4 Address"
+msgstr "IPv4 Adresi"
+
+msgid "IPv6 Address"
+msgstr "IPv6 Adresi"
 
 msgid "Subnet Mask"
 msgstr "Alt ağ maskesi"
@@ -184,8 +199,8 @@ msgstr "Frekans"
 msgid "Link Quality"
 msgstr "Bağlantı Kalitesi"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "İfconfig ve iwconfig tarafından sağlanan bilgiler"
+msgid "Information provided by ip and iw and from system"
+msgstr "ip ve iw tarafından sağlanan bilgiler"
 
 msgid "No MAC Address Found"
 msgstr "MAC adresi bulunamadı"
@@ -221,17 +236,26 @@ msgid "Connected Devices"
 msgstr "Bağlı Aygıtlar"
 
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Sunucu Ayarları"
+msgid "DHCP server settings"
+msgstr "DHCP sunucu ayarları"
 
 msgid "Client list"
 msgstr "İstemci listesi"
+
+msgid "Interface"
+msgstr "Interface"
 
 msgid "Starting IP Address"
 msgstr "Başlangıc IP Adresi"
 
 msgid "Ending IP Address"
 msgstr "Ending IP Adresi"
+
+msgid "Static Leases"
+msgstr "Static Leases"
+
+msgid "Add static DHCP lease"
+msgstr "Add static DHCP lease"
 
 msgid "Lease Time"
 msgstr "Kira Zamanı"
@@ -366,6 +390,18 @@ msgstr "Günlük kaydını etkinleştir"
 msgid "Logfile output"
 msgstr "Günlük dosyası çıkışı"
 
+msgid "WiFi client AP mode"
+msgstr "WiFi client AP mode"
+
+msgid "Hide SSID in broadcast"
+msgstr "Hide SSID in broadcast"
+
+msgid "Maximum number of clients"
+msgstr "Maximum number of clients"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Özet"
@@ -466,6 +502,9 @@ msgstr "Veri kullanımı"
 msgid "Data usage monitoring"
 msgstr "Veri kullanımını izle"
 
+msgid "Hourly traffic amount"
+msgstr "Hourly traffic amount"
+
 msgid "Daily traffic amount"
 msgstr "Günlük trafik miktarı"
 
@@ -500,3 +539,23 @@ msgstr "Ayarları kaydet"
 msgid "Refresh"
 msgstr "Yenile"
 
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "running"
+msgstr "running"
+
+msgid "stopped"
+msgstr "stopped"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "up"
+msgstr "up"
+
+msgid "down"
+msgstr "down"

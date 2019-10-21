@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-17 17:15+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Betep <betep@list.ru>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -57,6 +57,9 @@ msgstr "Сменить тему"
 
 msgid "System"
 msgstr "Система"
+
+msgid "About RaspAP"
+msgstr "About RaspAP"
 
 #: includes/admin.php
 msgid "New passwords do not match"
@@ -126,6 +129,15 @@ msgstr "Добавить"
 msgid "Delete"
 msgstr "Удалить"
 
+msgid "Show"
+msgstr "Show"
+
+msgid "Hide"
+msgstr "Hide"
+
+msgid "Not configured"
+msgstr "Not configured"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Note:</strong> точки доступа WEP показаны как 'Открытые'. RaspAP в данный момент не поддерживает подключение WEP"
 
@@ -136,8 +148,11 @@ msgstr "Информация об интерфейсе"
 msgid "Interface Name"
 msgstr "Имя интерфейса"
 
-msgid "IP Address"
-msgstr "IP-адрес"
+msgid "IPv4 Address"
+msgstr "IPv4-адрес"
+
+msgid "IPv6 Address"
+msgstr "IPv6-адрес"
 
 msgid "Subnet Mask"
 msgstr "Маска подсети"
@@ -184,8 +199,8 @@ msgstr "Частота"
 msgid "Link Quality"
 msgstr "Качество соединения"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Информация получена от ifconfig и iwconfig"
+msgid "Information provided by ip and iw and from system"
+msgstr "Информация получена от ip и iw и system"
 
 msgid "No MAC Address Found"
 msgstr "MAC-адрес не найден"
@@ -221,17 +236,26 @@ msgid "Connected Devices"
 msgstr "Подключенные устройства"
 
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Настройки сервера"
+msgid "DHCP server settings"
+msgstr "Настройки DHCP-сервера"
 
 msgid "Client list"
 msgstr "Список клиентов"
+
+msgid "Interface"
+msgstr "Интерфейс"
 
 msgid "Starting IP Address"
 msgstr "Начальный IP-адрес"
 
 msgid "Ending IP Address"
 msgstr "Конечный IP-адрес"
+
+msgid "Static Leases"
+msgstr "Static Leases"
+
+msgid "Add static DHCP lease"
+msgstr "Add static DHCP lease"
 
 msgid "Lease Time"
 msgstr "Срок аренды"
@@ -366,6 +390,18 @@ msgstr "Включить журналирование"
 msgid "Logfile output"
 msgstr "Записи журнала"
 
+msgid "WiFi client AP mode"
+msgstr "WiFi client AP mode"
+
+msgid "Hide SSID in broadcast"
+msgstr "Hide SSID in broadcast"
+
+msgid "Maximum number of clients"
+msgstr "Maximum number of clients"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Сводка"
@@ -466,6 +502,9 @@ msgstr "Использование данных"
 msgid "Data usage monitoring"
 msgstr "Мониторинг использования данных"
 
+msgid "Hourly traffic amount"
+msgstr "Hourly traffic amount"
+
 msgid "Daily traffic amount"
 msgstr "Ежедневный объем траффика"
 
@@ -499,4 +538,25 @@ msgstr "Сохранить настройки"
 
 msgid "Refresh"
 msgstr "Обновить"
+
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "running"
+msgstr "running"
+
+msgid "stopped"
+msgstr "stopped"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "up"
+msgstr "up"
+
+msgid "down"
+msgstr "down"
 

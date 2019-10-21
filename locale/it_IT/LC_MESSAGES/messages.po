@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-27 17:15+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Simone Rizzo <simone.rizzo@live.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -57,6 +57,9 @@ msgstr "Cambia tema"
 
 msgid "System"
 msgstr "Sistema"
+
+msgid "About RaspAP"
+msgstr "About RaspAP"
 
 #: includes/admin.php
 msgid "New passwords do not match"
@@ -126,6 +129,15 @@ msgstr "Aggiungi"
 msgid "Delete"
 msgstr "Cancella"
 
+msgid "Show"
+msgstr "Show"
+
+msgid "Hide"
+msgstr "Hide"
+
+msgid "Not configured"
+msgstr "Not configured"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Nota:</strong> gli access points WEP appaiono come 'Aperti' . RaspAP non supporta attualmente la connessione WEP"
 
@@ -136,8 +148,11 @@ msgstr "Informazioni interfaccia"
 msgid "Interface Name"
 msgstr "Nome interfaccia"
 
-msgid "IP Address"
-msgstr "Indirizzo IP"
+msgid "IPv4 Address"
+msgstr "Indirizzo IPv4"
+
+msgid "IPv6 Address"
+msgstr "Indirizzo IPv6"
 
 msgid "Subnet Mask"
 msgstr "Subnet mask"
@@ -184,8 +199,8 @@ msgstr "Frequenza"
 msgid "Link Quality"
 msgstr "Qualità collegamento"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Informazioni fornite da ifconfig e iwconfig"
+msgid "Information provided by ip and iw and from system"
+msgstr "Informazioni fornite da ip e iw e system"
 
 msgid "No MAC Address Found"
 msgstr "Indirizzo MAC non trovato"
@@ -221,17 +236,26 @@ msgid "Connected Devices"
 msgstr "Dispositivi Connessi"
 
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Impostazioni server"
+msgid "DHCP server settings"
+msgstr "Impostazioni server DHCP"
 
 msgid "Client list"
 msgstr "Lista client"
+
+msgid "Interface"
+msgstr "Interfaccia"
 
 msgid "Starting IP Address"
 msgstr "Indirizzo IP iniziale"
 
 msgid "Ending IP Address"
 msgstr "Indirizzo IP finale"
+
+msgid "Static Leases"
+msgstr "Static Leases"
+
+msgid "Add static DHCP lease"
+msgstr "Add static DHCP lease"
 
 msgid "Lease Time"
 msgstr "Tempo di lease"
@@ -366,6 +390,18 @@ msgstr "Abilita la registrazione"
 msgid "Logfile output"
 msgstr "File di log in uscita"
 
+msgid "WiFi client AP mode"
+msgstr "WiFi client AP mode"
+
+msgid "Hide SSID in broadcast"
+msgstr "Hide SSID in broadcast"
+
+msgid "Maximum number of clients"
+msgstr "Maximum number of clients"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Sommario"
@@ -459,10 +495,68 @@ msgstr "Impostazioni tema"
 msgid "Select a theme"
 msgstr "Seleziona un tema"
 
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Data usage"
+
+msgid "Data usage monitoring"
+msgstr "Data usage monitoring"
+
+msgid "Hourly traffic amount"
+msgstr "Hourly traffic amount"
+
+msgid "Daily traffic amount"
+msgstr "Daily traffic amount"
+
+msgid "interface"
+msgstr "interface"
+
+msgid "date"
+msgstr "date"
+
+msgid "Send MB"
+msgstr "Send MB"
+
+msgid "Receive MB"
+msgstr "Receive MB"
+
+msgid "Monthly traffic amount"
+msgstr "Monthly traffic amount"
+
+msgid "Information provided by vnstat"
+msgstr "Information provided by vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Loading {0} bandwidth chart"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Showing {0} to {1} of {2} entries"
+
 #: common form controls
 msgid "Save settings"
 msgstr "Salva le impostazioni"
 
 msgid "Refresh"
 msgstr "Ricarica"
+
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "running"
+msgstr "running"
+
+msgid "stopped"
+msgstr "stopped"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "up"
+msgstr "up"
+
+msgid "down"
+msgstr "down"
 

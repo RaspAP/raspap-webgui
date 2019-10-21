@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-10-16 00:00+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: BANKA2017 <kdwnil@hotmail.com>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -58,7 +58,13 @@ msgstr "主题中心"
 msgid "System"
 msgstr "系统"
 
+msgid "About RaspAP"
+msgstr "About RaspAP"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Authentication settings"
+
 msgid "New passwords do not match"
 msgstr "两次密码不相同"
 
@@ -126,6 +132,15 @@ msgstr "添加"
 msgid "Delete"
 msgstr "删除"
 
+msgid "Show"
+msgstr "Show"
+
+msgid "Hide"
+msgstr "Hide"
+
+msgid "Not configured"
+msgstr "Not configured"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>提示:</strong> 若目标热点已打开WEP登录验证，本程序将不支持连接到此类网络"
 
@@ -136,8 +151,11 @@ msgstr "接口信息"
 msgid "Interface Name"
 msgstr "接口名称"
 
-msgid "IP Address"
-msgstr "IP地址"
+msgid "IPv4 Address"
+msgstr "IPv4地址"
+
+msgid "IPv6 Address"
+msgstr "IPv6地址"
 
 msgid "Subnet Mask"
 msgstr "子网掩码"
@@ -184,8 +202,8 @@ msgstr "频率"
 msgid "Link Quality"
 msgstr "连接质量"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "信息由 ifconfig 和 iwconfig 提供"
+msgid "Information provided by ip and iw and from system"
+msgstr "信息由 ip 和 iw 和 系统 提供"
 
 msgid "No MAC Address Found"
 msgstr "没有找到MAC地址"
@@ -221,17 +239,26 @@ msgid "Connected Devices"
 msgstr "连接设备"
 
 #: includes/dhcp.php
-msgid "Server settings"
+msgid "DHCP server settings"
 msgstr "服务设置"
 
 msgid "Client list"
 msgstr "客户端列表"
+
+msgid "Interface"
+msgstr "接口"
+
+msgid "DNS Server"
+msgstr "DNS Server"
 
 msgid "Starting IP Address"
 msgstr "起始IP地址"
 
 msgid "Ending IP Address"
 msgstr "终止IP地址"
+
+msgid "Static Leases"
+msgstr "Static Leases"
 
 msgid "Lease Time"
 msgstr "租约时间"
@@ -366,6 +393,18 @@ msgstr "开启log"
 msgid "Logfile output"
 msgstr "log信息输出"
 
+msgid "WiFi client AP mode"
+msgstr "WiFi client AP mode"
+
+msgid "Hide SSID in broadcast"
+msgstr "Hide SSID in broadcast"
+
+msgid "Maximum number of clients"
+msgstr "Maximum number of clients"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "简报"
@@ -466,6 +505,9 @@ msgstr "数据使用量"
 msgid "Data usage monitoring"
 msgstr "流量监控"
 
+msgid "Hourly traffic amount"
+msgstr "Hourly traffic amount"
+
 msgid "Daily traffic amount"
 msgstr "每日流量统计"
 
@@ -499,3 +541,24 @@ msgstr "保存"
 
 msgid "Refresh"
 msgstr "刷新"
+
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "running"
+msgstr "running"
+
+msgid "stopped"
+msgstr "stopped"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "up"
+msgstr "up"
+
+msgid "down"
+msgstr "down"
