@@ -72,14 +72,14 @@
   
   <div class="row">
     <div class="form-group col-md-4">
-      <label for="code"><?php echo _("DNS Server 1"); ?></label>
+      <label for="code"><?php echo _("DNS Server"); ?> 1</label>
       <input type="text" class="form-control"name="DNS1" value="<?php echo htmlspecialchars($DNS1, ENT_QUOTES); ?>" />
     </div>
   </div>
 
   <div class="row">
     <div class="form-group col-md-4">
-      <label for="code"><?php echo _("DNS Server 2"); ?></label>
+      <label for="code"><?php echo _("DNS Server"); ?> 2</label>
       <input type="text" class="form-control" name="DNS2" value="<?php echo htmlspecialchars($DNS2, ENT_QUOTES); ?>" />
     </div>
   </div>
