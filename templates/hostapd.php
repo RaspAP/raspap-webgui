@@ -23,7 +23,7 @@
           <li class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
           <li class="nav-item"><a class="nav-link" id="securitytab" href="#security" data-toggle="tab"><?php echo _("Security"); ?></a></li>
           <li class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-          <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#logoutput" data-toggle="tab"><?php echo _("Logfile"); ?></a></li>
+          <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#logoutput" data-toggle="tab"><?php echo _("Logfile output"); ?></a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -132,7 +132,7 @@
                       $checkedWifiAPEnabled = ' checked="checked"';
                   }
                   ?>
-                  <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="110" data-height="40" value="1"<?php echo $checkedWifiAPEnabled; ?> />
+		  <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedWifiAPEnabled; ?> />
                   <label class="form-check-label ml-3" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
                 </div>
               </div>
@@ -146,7 +146,7 @@
                     $checkedLogEnabled = ' checked="checked"';
                 }
                 ?>
-                <input id="chxlogenable" name="logEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="110" data-height="40" value="1"<?php echo $checkedLogEnabled; ?> />
+		<input id="chxlogenable" name="logEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedLogEnabled; ?> />
                 <label class="form-check-label ml-3" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
                 </div>
               </div>
@@ -160,7 +160,7 @@
                     $checkedHiddenSSID = ' checked="checked"';
                 }
                 ?>
-                  <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="110" data-height="40" value="1"<?php echo $checkedHiddenSSID; ?> />
+		  <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedHiddenSSID; ?> />
                   <label class="form-check-label ml-3" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast"); ?></label>
                 </div>
               </div>
