@@ -352,6 +352,14 @@ pre {
   margin-bottom: 0.5em;
 }
 
+.toggle-off.btn {
+  padding-left: 1.2rem;
+  font-size: 0.9rem!important;
+}
+
+.toggle-on.btn {
+  font-size: 0.9rem!important;
+}
 /* change transition animation when sidebar is toggled */
 #accordionSidebar.toggled {
   -webkit-transition-timing-function: ease;

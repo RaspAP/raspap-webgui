@@ -116,7 +116,9 @@ ul.nav-tabs, .nav-tabs .nav-link {
 
 .logoutput {
   width: 100%;
-  height: 300px;
+  height: 20rem;
+  border: 1px solid #d1d3e2;
+  border-radius: .35rem;
 }
 
 .service-status {
@@ -180,6 +182,15 @@ pre.unstyled {
 
 .btn-warning:hover {
     color: #000;
+}
+
+.toggle-off.btn {
+  padding-left: 0.9rem;
+  font-size: 0.9rem!important;
+}
+
+.toggle-on.btn {
+  font-size: 0.9rem!important;
 }
 
 /* change transition animation when sidebar is toggled */
