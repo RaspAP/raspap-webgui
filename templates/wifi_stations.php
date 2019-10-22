@@ -16,7 +16,7 @@
         } ?>
         <h5 class="card-title"><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></h5>
 
-        <div class="info-item-wifi">Status</div>
+	<div class="info-item-wifi"><?php echo _("Status"); ?></div>
         <div>
 	  <?php if ($network['configured']) { ?>
 	    <i class="fas fa-check-circle"></i>
@@ -29,7 +29,7 @@
           } ?>
          </div>
 
-        <div class="info-item-wifi">Channel</div>
+	<div class="info-item-wifi"><?php echo _("Channel"); ?></div>
         <div>
 	  <?php if ($network['visible']) { ?>
 	      <?php echo htmlspecialchars($network['channel'], ENT_QUOTES) ?>
@@ -38,7 +38,7 @@
 	  <?php } ?>
         </div>
 
-        <div class="info-item-wifi">RSSI</div>
+	<div class="info-item-wifi"><?php echo _("RSSI"); ?></div>
         <div>
 	  <?php echo htmlspecialchars($network['RSSI'], ENT_QUOTES);
 	      echo "dB (";
@@ -58,11 +58,11 @@
         <?php } ?>
         <input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>" />
 
-        <div class="info-item-wifi">Security</div>
+	<div class="info-item-wifi"><?php echo _("Security"); ?></div>
         <div><?php echo $network['protocol'] ?></div>
 
 	<div class="form-group">
-	  <div class="info-item-wifi">Passphrase</div>
+	  <div class="info-item-wifi"><?php echo _("Passphrase"); ?></div>
           <div class="input-group">
 	    <?php if ($network['protocol'] === 'Open') { ?>
 	      <input type="password" disabled class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="" />
