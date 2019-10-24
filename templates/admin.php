@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header"><i class="fas fa-lock mr-2"></i><?php echo _("Configure Auth"); ?></div>
+      <div class="card-header"><i class="fas fa-user-lock mr-2"></i><?php echo _("Configure Auth"); ?></div>
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <h4><?php echo _("Authentication settings") ;?></h4>
