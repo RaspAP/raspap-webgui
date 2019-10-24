@@ -99,7 +99,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-      <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+      <ul class="navbar-nav sidebar sidebar-light d-none d-md-block accordion" id="accordionSidebar">
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?page=wlan0_info">
           <div class="sidebar-brand-icon">
@@ -163,35 +163,39 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 	 <li class="nav-item">
 	  <a class="nav-link" href="index.php?page=about"><i class="fas fa-info-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("About RaspAP"); ?></a>
 	</li>
+  <!-- Divider -->
 	<hr class="sidebar-divider d-none d-md-block">
+
 	<!-- Sidebar Toggler (Sidebar) -->
 	<div class="text-center d-none d-md-inline">
 	  <button class="rounded-circle border-0" id="sidebarToggle"></button>
 	</div>
-      </ul>
-      <!-- End of Sidebar -->
 
-      <!-- Content Wrapper -->
-      <div id="content-wrapper" class="d-flex flex-column">
+	</ul>
+	<!-- End of Sidebar -->
+
+	<!-- Content Wrapper -->
+	<div id="content-wrapper" class="d-flex flex-column">
+
 	<!-- Main Content -->
 	<div id="content"> 
 	  <!-- Topbar -->
 	  <nav class="navbar navbar-expand navbar-light topbar mb-1 static-top">
 	    <!-- Sidebar Toggle (Topbar) -->
-	    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+	    <button id="sidebarToggleTopbar" class="btn btn-link d-md-none rounded-circle mr-3">
 	      <i class="fa fa-bars"></i>
 	    </button>
 	    <!-- Topbar Navbar -->
 
-	    <p class="text-left brand-title"><?php //echo _("WiFi Configuration Portal"); ?></p>
+	    <p class="text-left brand-title mt-3 ml-2"><?php //echo _("WiFi Configuration Portal"); ?></p>
 	    <ul class="navbar-nav ml-auto">
 	      <div class="topbar-divider d-none d-sm-block"></div>
 	      <!-- Nav Item - User -->
 	      <li class="nav-item dropdown no-arrow">
-		<a class="nav-link" href="index.php?page=auth_conf">
-		  <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
-		  <i class="fas fa-user-circle fa-3x"></i>
-		</a>
+					<a class="nav-link" href="index.php?page=auth_conf">
+						<span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
+						<i class="fas fa-user-circle fa-3x"></i>
+					</a>
 	      </li>
 	    </ul>
 	  </nav>
