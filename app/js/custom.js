@@ -258,6 +258,27 @@ var themes = {
     "terminal" : "terminal.css",
 }
 
+// Toggles the sidebar navigation.
+// Overrides the default SB Admin 2 behavior
+$("#sidebarToggleTopbar").on('click', function(e) {
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");
+    $(".sidebar").toggleClass("d-none");
+});
+
+$(function() {
+    if ($(window).width() < 768) {
+        $('.sidebar').addClass('toggled');
+    }
+});
+
+$(window).resize(function() {
+    if ($(window).width() > 768) {
+      $('.sidebar').removeClass('d-none');
+      $('.sidebar').removeClass('toggled');
+    };
+  });
+
 $(document)
     .ajaxSend(setCSRFTokenHeader)
     .ready(contentLoaded)
