@@ -69,9 +69,8 @@
           </div><!-- /.tabsBandwidth -->
 
          </div><!-- /.card-body -->
-       <div class="card-footer"><?php echo _("Information provided by vnstat"); ?></div>
+         <div class="card-footer"><?php echo _("Information provided by vnstat"); ?></div>
      </div><!-- /.card -->
-    </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 <script type="text/javascript"<?php //echo ' nonce="'.$csp_page_nonce.'"'; ?>>
