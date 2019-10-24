@@ -8,25 +8,25 @@
         <form role="form" action="?page=auth_conf" method="POST">
             <?php echo CSRFTokenFieldTag() ?>
           <div class="row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
               <label for="username"><?php echo _("Username"); ?></label>
               <input type="text" class="form-control" name="username" value="<?php echo htmlspecialchars($username, ENT_QUOTES); ?>"/>
             </div>
           </div>
           <div class="row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
               <label for="password"><?php echo _("Old password"); ?></label>
               <input type="password" class="form-control" name="oldpass"/>
             </div>
           </div>
           <div class="row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
               <label for="password"><?php echo _("New password"); ?></label>
               <input type="password" class="form-control" name="newpass"/>
             </div>
           </div>
           <div class="row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
               <label for="password"><?php echo _("Repeat new password"); ?></label>
               <input type="password" class="form-control" name="newpassagain"/>
             </div>

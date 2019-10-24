@@ -32,7 +32,7 @@
 
             <h4 class="mt-3"><?php echo _("Basic settings") ;?></h4>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="cbxinterface"><?php echo _("Interface") ;?></label>
                 <?php
                   SelectorOptions('interface', $interfaces, $arrConfig['interface'], 'cbxinterface');
@@ -40,13 +40,13 @@
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="txtssid"><?php echo _("SSID"); ?></label>
                 <input type="text" id="txtssid" class="form-control" name="ssid" value="<?php echo htmlspecialchars($arrConfig['ssid'], ENT_QUOTES); ?>" />
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
                 <?php
                 $selectedHwMode = $arrConfig['hw_mode'];
@@ -60,7 +60,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="cbxchannel"><?php echo _("Channel"); ?></label>
                 <?php
                 $selectablechannels = range(1, 13);
@@ -88,19 +88,19 @@
           <div class="tab-pane fade" id="security">
             <h4 class="mt-3"><?php echo _("Security settings"); ?></h4>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="cbxwpa"><?php echo _("Security type"); ?></label>
                 <?php SelectorOptions('wpa', $arrSecurity, $arrConfig['wpa'], 'cbxwpa'); ?>
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="cbxwpapairwise"><?php echo _("Encryption Type"); ?></label>
                 <?php SelectorOptions('wpa_pairwise', $arrEncType, $arrConfig['wpa_pairwise'], 'cbxwpapairwise'); ?>
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="txtwpapassphrase"><?php echo _("PSK"); ?></label>
                 <input type="text" class="form-control" id="txtwpapassphrase" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" />
               </div>
@@ -124,7 +124,7 @@
           <div class="tab-pane fade" id="advanced">
           <h4 class="mt-3"><?php echo _("Advanced settings"); ?></h4>
             <div class="row">
-              <div class="col-md-4 mb-2">
+              <div class="col-md-6 mb-2">
                 <div class="checkbox">
                   <?php
                   $checkedWifiAPEnabled = '';
@@ -138,7 +138,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4 mb-2">
+              <div class="col-md-6 mb-2">
                 <div class="checkbox">
                 <?php
                 $checkedLogEnabled = '';
@@ -152,7 +152,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4 mb-2">
+              <div class="col-md-6 mb-2">
                 <div class="checkbox">
                 <?php
                 $checkedHiddenSSID = '';
@@ -166,14 +166,14 @@
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="max_num_sta"><?php echo _("Maximum number of clients") ?></label>
                 <input type="text" id="max_num_sta" class="form-control" name="max_num_sta" placeholder="2007" value="<?php echo $arrConfig["max_num_sta"] ?>" aria-describedby="max_num_sta_help">
                 <span id="max_num_sta_help" class="help-block"><?php echo _("Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies.") ?></span>
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
               <label for="cbxcountries"><?php echo _("Country Code"); ?></label>
               <input type="hidden" id="selected_country" value="<?php echo htmlspecialchars($arrConfig['country_code'], ENT_QUOTES); ?>">
               <select  class="form-control" id="cbxcountries" name="country_code">
