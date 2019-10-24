@@ -1,6 +1,6 @@
 html * {
   font-family: Courier New, Andale Mono, monospace;
-  font-size: 10pt;
+  font-size: 1.0rem;
   color: #2ee600;
 }
 
@@ -15,6 +15,14 @@ h5.card-title {
 .page-header {
   padding: 0 20px;
   border-left: 1px solid #2ee600;
+}
+
+.sidebar-light .nav-item.active .nav-link i {
+  color: #2ee600;
+}
+
+.sidebar .nav-item.active .nav-link {
+  font-weight: 700;
 }
 
 #wrapper #content-wrapper #content {

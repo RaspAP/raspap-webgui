@@ -26,6 +26,10 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+.sidebar .nav-item.active .nav-link {
+  font-weight: 500;
+}
+
 .card .card-header {
   border-color: #d8224c;
   background-color: #d8224c;
