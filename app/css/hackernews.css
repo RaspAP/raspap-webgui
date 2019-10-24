@@ -54,6 +54,7 @@ h5.card-title {
   font-family: Verdana, Geneva, sans-serif;
 }
 
+
 ul.nav-tabs, .nav-tabs .nav-link {
   background-color: #f6f6ef;
   border-bottom: 1px solid #dddfeb;
@@ -61,6 +62,10 @@ ul.nav-tabs, .nav-tabs .nav-link {
 
 .sidebar .nav-item .nav-link {
   padding: 0.6rem;
+}
+
+.sidebar-light .nav-item.active .nav-link {
+  font-weight: 300;
 }
 
 .page-header {
