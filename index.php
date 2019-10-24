@@ -134,7 +134,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 	  <?php endif; ?>
 	  <?php if (RASPI_OPENVPN_ENABLED) : ?>
 	<li class="nav-item">
-	  <a class="nav-link" href="index.php?page=openvpn_conf"><i class="fas fa-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure OpenVPN"); ?></a>
+	  <a class="nav-link" href="index.php?page=openvpn_conf"><i class="fas fa-key fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure OpenVPN"); ?></a>
 	</li>
 	  <?php endif; ?>
 	  <?php if (RASPI_TORPROXY_ENABLED) : ?>
@@ -144,7 +144,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 	  <?php endif; ?>
 	  <?php if (RASPI_CONFAUTH_ENABLED) : ?>
 	<li class="nav-item">
-	<a class="nav-link" href="index.php?page=auth_conf"><i class="fas fa-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure Auth"); ?></a>
+	<a class="nav-link" href="index.php?page=auth_conf"><i class="fas fa-user-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure Auth"); ?></a>
 	</li>
 	  <?php endif; ?>
 	  <?php if (RASPI_CHANGETHEME_ENABLED) : ?>
