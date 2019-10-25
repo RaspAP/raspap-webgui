@@ -532,6 +532,92 @@ msgstr "Loading {0} bandwidth chart"
 msgid "Showing {0} to {1} of {2} entries"
 msgstr "Showing {0} to {1} of {2} entries"
 
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN is not running"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN is running"
+
+msgid "Server settings"
+msgstr "Server settings"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Select OpenVPN configuration file (.ovpn)"
+
+msgid "Client Log"
+msgstr "Client Log"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Protocol"
+msgstr "Protocol"
+
+msgid "Root CA certificate"
+msgstr "Root CA certificate"
+
+msgid "Server certificate"
+msgstr "Server certificate"
+
+msgid "Diffie Hellman parameters"
+msgstr "Diffie Hellman parameters"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Server log"
+
+msgid "Start OpenVPN"
+msgstr "Start OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Stop OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Information provided by openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Attempting to start openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Attempting to stop openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR is not running"
+
+msgid "TOR is running"
+msgstr "TOR is running"
+
+msgid "Relay"
+msgstr "Relay"
+
+msgid "Relay settings"
+msgstr "Relay settings"
+
+msgid "Nickname"
+msgstr "Nickname"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "Start TOR"
+msgstr "Start TOR"
+
+msgid "Stop TOR"
+msgstr "Stop TOR"
+
+msgid "Information provided by tor"
+msgstr "Information provided by tor"
+
+msgid "Attempting to start TOR"
+msgstr "Attempting to start TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Attempting to stop TOR"
+
 #: common form controls
 msgid "Save settings"
 msgstr "Einstellungen speichern"
