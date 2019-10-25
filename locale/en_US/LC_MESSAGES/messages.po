@@ -418,9 +418,6 @@ msgstr "Current settings"
 msgid "Default Gateway"
 msgstr "Default Gateway"
 
-msgid "DNS Server"
-msgstr "DNS Server"
-
 msgid "Alternate DNS Server"
 msgstr "Alternate DNS Server"
 
@@ -539,17 +536,11 @@ msgid "Showing {0} to {1} of {2} entries"
 msgstr "Showing {0} to {1} of {2} entries"
 
 #: includes/openvpn.php
-msgid "Configure OpenVPN"
-msgstr "Configure OpenVPN"
-
 msgid "OpenVPN is not running"
 msgstr "OpenVPN is not running"
 
 msgid "OpenVPN is running"
 msgstr "OpenVPN is running"
-
-msgid "Client settings"
-msgstr "Client settings"
 
 msgid "Server settings"
 msgstr "Server settings"
@@ -597,9 +588,6 @@ msgid "Attempting to stop openvpn"
 msgstr "Attempting to stop openvpn"
 
 #: includes/torproxy.php
-msgid "Configure TOR proxy"
-msgstr "Configure TOR proxy"
-
 msgid "TOR is not running"
 msgstr "TOR is not running"
 
@@ -608,9 +596,6 @@ msgstr "TOR is running"
 
 msgid "Relay"
 msgstr "Relay"
-
-msgid "Basic settings"
-msgstr "Basic settings"
 
 msgid "Relay settings"
 msgstr "Relay settings"
@@ -642,12 +627,6 @@ msgstr "Save settings"
 
 msgid "Refresh"
 msgstr "Refresh"
-
-msgid "Disabled"
-msgstr "Disabled"
-
-msgid "Enabled"
-msgstr "Enabled"
 
 msgid "running"
 msgstr "running"
