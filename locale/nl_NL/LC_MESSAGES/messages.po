@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-09-12 16:37+0200\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Tom\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -58,7 +58,13 @@ msgstr "Verander thema"
 msgid "System"
 msgstr "Systeem"
 
+msgid "About RaspAP"
+msgstr "Over RaspAP"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Verificatie-instellingen"
+
 msgid "New passwords do not match"
 msgstr "Nieuw wachtwoord komt niet overeen"
 
@@ -126,6 +132,15 @@ msgstr "Voeg toe"
 msgid "Delete"
 msgstr "Verwijder"
 
+msgid "Show"
+msgstr "Toon"
+
+msgid "Hide"
+msgstr "Verbergen"
+
+msgid "Not configured"
+msgstr "Niet ingesteld"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Opmerking</strong> WEP beveiligde toegangspunten worden als 'Open' getoond. RaspAP heeft geen ondersteuning voor het verbinden met WEP beveiliging."
 
@@ -136,8 +151,11 @@ msgstr "Interface informatie"
 msgid "Interface Name"
 msgstr "Interface naam"
 
-msgid "IP Address"
-msgstr "IP adres"
+msgid "IPv4 Address"
+msgstr "IPv4-adres"
+
+msgid "IPv6 Address"
+msgstr "IPv6-adres"
 
 msgid "Subnet Mask"
 msgstr "Subnet mask"
@@ -184,8 +202,8 @@ msgstr "Frequentie"
 msgid "Link Quality"
 msgstr "Signaal kwaliteit"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Informatie gegeven door ifconfig en iwconfig (for now, if it works)"
+msgid "Information provided by ip and iw and from system"
+msgstr "Informatie verstrekt door ip en iw en vanuit het systeem"
 
 msgid "No MAC Address Found"
 msgstr "Geen MAC adres gevonden"
@@ -221,17 +239,26 @@ msgid "Connected Devices"
 msgstr "Verbonden Apparaten"
 
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Server instellingen"
+msgid "DHCP server settings"
+msgstr "DHCP-serverinstellingen"
 
 msgid "Client list"
 msgstr "Clienten lijst"
+
+msgid "Interface"
+msgstr "Interface"
 
 msgid "Starting IP Address"
 msgstr "Beginnend ip adres"
 
 msgid "Ending IP Address"
 msgstr "Laatste ip adres"
+
+msgid "Static Leases"
+msgstr "Statische leases"
+
+msgid "Add static DHCP lease"
+msgstr "Statische DHCP-lease toevoegen"
 
 msgid "Lease Time"
 msgstr "Lease tijd"
@@ -366,6 +393,18 @@ msgstr "Logboek inschakelen"
 msgid "Logfile output"
 msgstr "Logboek uitvoer"
 
+msgid "WiFi client AP mode"
+msgstr "WiFi-client AP-modus"
+
+msgid "Hide SSID in broadcast"
+msgstr "Verberg SSID in uitzending"
+
+msgid "Maximum number of clients"
+msgstr "Maximaal aantal klanten"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configureert de optie 'max_num_sta' van hostapd. Standaard is de maximale waarde van 2007 ingesteld. Indien leeg of 0 wordt de standaard toegepast."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Samenvatting"
@@ -380,16 +419,16 @@ msgid "DNS Server"
 msgstr "DNS Server"
 
 msgid "Alternate DNS Server"
-msgstr "Alternatieve DNS server"
+msgstr "Alternatieve DNS-server"
 
 msgid "Adapter IP Address Settings"
-msgstr "Adapter ip adres instellingen"
+msgstr "IP-adresinstellingen van adapter"
 
 msgid "Enable Fallback to Static Option"
-msgstr "Inschakelen terugvallen op statische opties"
+msgstr "Terugvallen op statische optie inschakelen"
 
 msgid "Static IP"
-msgstr "Statisch IP"
+msgstr "Statische IP"
 
 msgid "Enabled"
 msgstr "Ingeschakeld"
@@ -398,17 +437,17 @@ msgid "Disabled"
 msgstr "Uitgeschakeld"
 
 msgid "Static IP Options"
-msgstr "Statische IP opties"
+msgstr "Statische IP-opties"
 
 msgid "Apply settings"
-msgstr "Toepassen"
+msgstr "Instellingen toepassen"
 
 msgid "Information provided by /sys/class/net"
-msgstr "Informatie gegeven door /sys/class/net"
+msgstr "Informatie verstrekt door /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr "Systeem Informatie"
+msgstr "Systeeminformatie"
 
 msgid "Language"
 msgstr "Taal"
@@ -420,7 +459,7 @@ msgid "Select a language"
 msgstr "Selecteer een taal"
 
 msgid "Language setting saved"
-msgstr "Taal instellingen opsgeslagen"
+msgstr "Taalinstellingen opgeslagen"
 
 msgid "Console"
 msgstr "Console"
@@ -429,7 +468,7 @@ msgid "Hostname"
 msgstr "Hostnaam"
 
 msgid "Pi Revision"
-msgstr "Pi Revisie"
+msgstr "Pi-Revisie"
 
 msgid "Uptime"
 msgstr "Uptime"
@@ -438,30 +477,168 @@ msgid "Memory Used"
 msgstr "Geheugen gebruik"
 
 msgid "CPU Load"
-msgstr "CPU belasting"
+msgstr "CPU-belasting"
 
 msgid "Reboot"
-msgstr "Herstarten"
+msgstr "Opnieuw opstarten"
 
 msgid "Shutdown"
-msgstr "Uitzetten"
+msgstr "Afsluiten"
 
 msgid "System Rebooting Now!"
-msgstr "Systeem herstart nu!"
+msgstr "Systeem start nu opnieuw op!"
 
 msgid "System Shutting Down Now!"
-msgstr "Systeem schakelt nu uit!"
+msgstr "Systeem wordt nu uitgeschakeld!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr "Thema instellingen"
+msgstr "Thema-instellingen"
 
 msgid "Select a theme"
 msgstr "Selecteer een thema"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Datagebruik"
+
+msgid "Data usage monitoring"
+msgstr "Beheer van datagebruik"
+
+msgid "Hourly traffic amount"
+msgstr "Verkeer per uur"
+
+msgid "Daily traffic amount"
+msgstr "Verkeer per dag"
+
+msgid "Monthly traffic amount"
+msgstr "Verkeer per maand"
+
+msgid "interface"
+msgstr "interface"
+
+msgid "date"
+msgstr "datum"
+
+msgid "Send MB"
+msgstr "Verstuur MB"
+
+msgid "Receive MB"
+msgstr "Ontvang MB"
+
+msgid "Information provided by vnstat"
+msgstr "Informatie verstrekt door vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "{0} grafiek van bandbreedte wordt geladen"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Er worden {0} tot {1} van de {2} items weergegeven"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN draait niet"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN draait"
+
+msgid "Server settings"
+msgstr "Serverinstellingen"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Selecteer OpenVPN-configuratiebestand (.ovpn)"
+
+msgid "Client Log"
+msgstr "Clientlog"
+
+msgid "Port"
+msgstr "Poort"
+
+msgid "Protocol"
+msgstr "Protocol"
+
+msgid "Root CA certificate"
+msgstr "Basis CA-certificaat"
+
+msgid "Server certificate"
+msgstr "Servercertificaat"
+
+msgid "Diffie Hellman parameters"
+msgstr "Diffie Hellman-parameters"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Serverlog"
+
+msgid "Start OpenVPN"
+msgstr "OpenVPN opstarten"
+
+msgid "Stop OpenVPN"
+msgstr "OpenVPN stoppen"
+
+msgid "Information provided by openvpn"
+msgstr "Informatie verstrekt door openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "We proberen openvpn op te starten"
+
+msgid "Attempting to stop openvpn"
+msgstr "We proberen openvpn te stoppen"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR draait niet"
+
+msgid "TOR is running"
+msgstr "TOR draait"
+
+msgid "Relay"
+msgstr "Relay"
+
+msgid "Relay settings"
+msgstr "Relay-instellingen"
+
+msgid "Nickname"
+msgstr "Schermnaam"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Start TOR"
+msgstr "TOR opstarten"
+
+msgid "Stop TOR"
+msgstr "TOR stoppen"
+
+msgid "Information provided by tor"
+msgstr "Informatie verstrekt door tor"
+
+msgid "Attempting to start TOR"
+msgstr "We proberen TOR op te starten"
+
+msgid "Attempting to stop TOR"
+msgstr "We proberen TOR te stoppen"
 
 #: common form controls
 msgid "Save settings"
 msgstr "Instellingen opslaan"
 
 msgid "Refresh"
-msgstr "Herlaad"
+msgstr "Vernieuwen"
+
+msgid "running"
+msgstr "actief"
+
+msgid "stopped"
+msgstr "gestopt"
+
+msgid "Remove"
+msgstr "Verwijder"
+
+msgid "up"
+msgstr "omhoog"
+
+msgid "down"
+msgstr "omlaag"

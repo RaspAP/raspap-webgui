@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2017-10-24 9:50+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Emil Nilsson <emil_nilsson_96@live.se>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -58,7 +58,13 @@ msgstr "Byt Tema"
 msgid "System"
 msgstr "System"
 
+msgid "About RaspAP"
+msgstr "Om RaspAP"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Autentiseringsinställningar"
+
 msgid "New passwords do not match"
 msgstr "Nya lösenord matchar ej"
 
@@ -126,6 +132,15 @@ msgstr "Lägg till"
 msgid "Delete"
 msgstr "Ta bort"
 
+msgid "Show"
+msgstr "Visa"
+
+msgid "Hide"
+msgstr "Dölj"
+
+msgid "Not configured"
+msgstr "Inte konfigurerad"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Notera:</strong> WEP åtkomstpunkter visas som 'Öppna'. RaspAP stödjer närvarande inte anslutning till WEP"
 
@@ -136,8 +151,11 @@ msgstr "Gränssnittsinformation"
 msgid "Interface Name"
 msgstr "Gränssnittsnamn"
 
-msgid "IP Address"
-msgstr "IP Adress"
+msgid "IPv4 Address"
+msgstr "IPv4-adress"
+
+msgid "IPv6 Address"
+msgstr "IPv6-adress"
 
 msgid "Subnet Mask"
 msgstr "Subnet Mask"
@@ -184,8 +202,8 @@ msgstr "Frekvens"
 msgid "Link Quality"
 msgstr "Länkkvalitet"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Information tillhandahållen av ifconfig och iwconfig"
+msgid "Information provided by ip and iw and from system"
+msgstr "Information tillhandahållen av ip, iw och systemet"
 
 msgid "No MAC Address Found"
 msgstr "Ingen MAC Adress Hittad"
@@ -221,17 +239,26 @@ msgid "Connected Devices"
 msgstr "Anslutna Enheter"
 
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Server inställningar"
+msgid "DHCP server settings"
+msgstr "Inställningar för DHCP-server"
 
 msgid "Client list"
 msgstr "Klient lista"
+
+msgid "Interface"
+msgstr "Gränssnittet"
 
 msgid "Starting IP Address"
 msgstr "Startar IP Adress"
 
 msgid "Ending IP Address"
 msgstr "Ending IP Adress"
+
+msgid "Static Leases"
+msgstr "Statisk leasing"
+
+msgid "Add static DHCP lease"
+msgstr "Lägg till statisk DHCP-leasing"
 
 msgid "Lease Time"
 msgstr "Lease Tid"
@@ -366,6 +393,18 @@ msgstr "Aktivera loggning"
 msgid "Logfile output"
 msgstr "Logfilutskrift"
 
+msgid "WiFi client AP mode"
+msgstr "AP-läge för wifi-klient"
+
+msgid "Hide SSID in broadcast"
+msgstr "Dölj SSID i sändning"
+
+msgid "Maximum number of clients"
+msgstr "Maximalt antal klienter"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Konfigurerar alternativet max_num_sta för hostapd. Ordinarie och maximalt är 2007. Tomt eller 0 innebär att ordinarie värde gäller."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Sammanfattning"
@@ -459,9 +498,147 @@ msgstr "Temainställningar"
 msgid "Select a theme"
 msgstr "Välj ett tema"
 
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Dataanvändning"
+
+msgid "Data usage monitoring"
+msgstr "Bevakning av dataanvändning"
+
+msgid "Hourly traffic amount"
+msgstr "Trafik per timme"
+
+msgid "Daily traffic amount"
+msgstr "Daglig trafik"
+
+msgid "Monthly traffic amount"
+msgstr "Månatlig trafik"
+
+msgid "interface"
+msgstr "gränssnitt"
+
+msgid "date"
+msgstr "datum"
+
+msgid "Send MB"
+msgstr "Skicka MB"
+
+msgid "Receive MB"
+msgstr "Ta emot MB"
+
+msgid "Information provided by vnstat"
+msgstr "Information tillhandahållen av vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Laddar diagram med bandbredd för {0}"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Visar {0} till {1} av {2} inlägg"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN körs inte"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN körs"
+
+msgid "Server settings"
+msgstr "Serverinställningar"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Välj konfigurationsfil för OpenVPN (.ovpn)"
+
+msgid "Client Log"
+msgstr "Klientlogg"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Protocol"
+msgstr "Protokoll"
+
+msgid "Root CA certificate"
+msgstr "Root CA-certifikat"
+
+msgid "Server certificate"
+msgstr "Servercertifikat"
+
+msgid "Diffie Hellman parameters"
+msgstr "Diffie Hellman-parametrar"
+
+msgid "KeepAlive"
+msgstr "Håll vid liv"
+
+msgid "Server log"
+msgstr "Serverlogg"
+
+msgid "Start OpenVPN"
+msgstr "Starts OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Stoppa OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Information tillhandahållen av openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Försöker starta openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Försöker stoppa openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR körs inte"
+
+msgid "TOR is running"
+msgstr "TOR körs"
+
+msgid "Relay"
+msgstr "Relä"
+
+msgid "Relay settings"
+msgstr "Reläinställningar"
+
+msgid "Nickname"
+msgstr "Smeknamn"
+
+msgid "Address"
+msgstr "Adress"
+
+msgid "Start TOR"
+msgstr "Starta TOR"
+
+msgid "Stop TOR"
+msgstr "Stoppa TOR"
+
+msgid "Information provided by tor"
+msgstr "Information tillhandahållen av tor"
+
+msgid "Attempting to start TOR"
+msgstr "Försöker starta TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Försöker stoppa TOR"
+
 #: common form controls
 msgid "Save settings"
 msgstr "Spara inställningar"
 
 msgid "Refresh"
-msgstr "Uppdatera"
+msgstr "Ladda om"
+
+msgid "running"
+msgstr "körs"
+
+msgid "stopped"
+msgstr "stoppad"
+
+msgid "Remove"
+msgstr "Ta bort"
+
+msgid "up"
+msgstr "upp"
+
+msgid "down"
+msgstr "ned"

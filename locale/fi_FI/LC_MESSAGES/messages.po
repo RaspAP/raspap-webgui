@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-17 17:15+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: m4ra\n"
 "Language: fi_FI\n"
@@ -58,7 +58,13 @@ msgstr "Vaihda teema"
 msgid "System"
 msgstr "Järjestelmä"
 
+msgid "About RaspAP"
+msgstr "RaspAP tiedot"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Todennusasetukset"
+
 msgid "New passwords do not match"
 msgstr "Uudet salasanat eivät täsmää"
 
@@ -126,6 +132,15 @@ msgstr "Lisää"
 msgid "Delete"
 msgstr "Poista"
 
+msgid "Show"
+msgstr "Näytä"
+
+msgid "Hide"
+msgstr "Piilota"
+
+msgid "Not configured"
+msgstr "Ei määritelty"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Huom:</strong> WEP yhteyspisteet näkyvät 'Avoimena' mutta RaspAP ei nyt tue WEP yhteyksiä."
 
@@ -136,8 +151,11 @@ msgstr "Liitymän tiedot"
 msgid "Interface Name"
 msgstr "Liitymän nimi"
 
-msgid "IP Address"
-msgstr "IP osoite"
+msgid "IPv4 Address"
+msgstr "IPv4-osoite"
+
+msgid "IPv6 Address"
+msgstr "IPv6-osoite"
 
 msgid "Subnet Mask"
 msgstr "Aliverkon peite"
@@ -184,8 +202,8 @@ msgstr "Taajuus"
 msgid "Link Quality"
 msgstr "Yhteyden laatu"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "ifconfig ja iwconfig saadut tiedot"
+msgid "Information provided by ip and iw and from system"
+msgstr "iw:n ja iw:n tarjoamat tiedot järjestelmästä"
 
 msgid "No MAC Address Found"
 msgstr "MAC osoitetta ei löydetty"
@@ -221,17 +239,26 @@ msgid "Connected Devices"
 msgstr "Kytkettyihin Laitteisiin"
 
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Palvelimen asetukset"
+msgid "DHCP server settings"
+msgstr "DHCP-palvelinasetukset"
 
 msgid "Client list"
 msgstr "Asiakaslista"
+
+msgid "Interface"
+msgstr "Liittymä"
 
 msgid "Starting IP Address"
 msgstr "Alkava IP osoite"
 
 msgid "Ending IP Address"
 msgstr "Loppuva IP osoite"
+
+msgid "Static Leases"
+msgstr "Staattiset vuokraukset"
+
+msgid "Add static DHCP lease"
+msgstr "Lisää staattinen DHCP-vuokrasopimus"
 
 msgid "Lease Time"
 msgstr "Laina-aika"
@@ -343,7 +370,7 @@ msgid "WPA passphrase must be between 8 and 63 characters"
 msgstr "WPA salasana on oltava 8 ja 63 merkin pituinen"
 
 msgid "Unknown interface"
-msgstr "Tuntematon liitymä"
+msgstr "Tuntematon liittymä"
 
 msgid "Country code must be blank or two characters"
 msgstr "Maatunnus on oltava tyhjä tai kaksi merkkiä"
@@ -365,6 +392,18 @@ msgstr "Salli lokikirjaus"
 
 msgid "Logfile output"
 msgstr "Lokitiedoston muoto"
+
+msgid "WiFi client AP mode"
+msgstr "WiFi-asiakas AP-tila"
+
+msgid "Hide SSID in broadcast"
+msgstr "Piilota SSID lähetyksessä"
+
+msgid "Maximum number of clients"
+msgstr "Asiakkaiden maksimimäärä"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Määritä max_num_sta-valinta hostapd:lle. Maksimimäärän oletus on 2007. Jos tyhjä tai 0, käytetään oletusta."
 
 #: includes/networking.php
 msgid "Summary"
@@ -401,7 +440,7 @@ msgid "Static IP Options"
 msgstr "Staattinen IP asetukset"
 
 msgid "Apply settings"
-msgstr "Käytä asetuksia"
+msgstr "Ota asetukset käyttöön"
 
 msgid "Information provided by /sys/class/net"
 msgstr "/sys/class/net saadut tiedot"
@@ -426,13 +465,13 @@ msgid "Console"
 msgstr "Konsoli"
 
 msgid "Hostname"
-msgstr "Laitteen nimi"
+msgstr "Isäntänimi"
 
 msgid "Pi Revision"
 msgstr "Pi versio"
 
 msgid "Uptime"
-msgstr "Käytettävyysaika "
+msgstr "Käytettävyysaika"
 
 msgid "Memory Used"
 msgstr "Muisti käytössä"
@@ -441,16 +480,16 @@ msgid "CPU Load"
 msgstr "CPU kuorma"
 
 msgid "Reboot"
-msgstr "Käynnistä uudelleen"
+msgstr "Uudelleenkäynnistä"
 
 msgid "Shutdown"
-msgstr "Sammuta"
+msgstr "Sammutus"
 
 msgid "System Rebooting Now!"
-msgstr "Järjestelmä käynnistymässä uudelleen!"
+msgstr "Järjestelmän uudelleenkäynnistys nyt!"
 
 msgid "System Shutting Down Now!"
-msgstr "Järjestelmä sammutetaan nyt!"
+msgstr "Järjestelmä sammuu nyt!"
 
 #: includes/themes.php
 msgid "Theme settings"
@@ -461,16 +500,22 @@ msgstr "Valitse teema"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr "Datakäyttö"
+msgstr "Datan käyttö"
 
 msgid "Data usage monitoring"
-msgstr "Datakäytön seuranta"
+msgstr "Datan käytön seuranta"
+
+msgid "Hourly traffic amount"
+msgstr "Liikennemäärä tunneittain määrä"
 
 msgid "Daily traffic amount"
 msgstr "Päivittäisen liikenteen määrä"
 
+msgid "Monthly traffic amount"
+msgstr "Kuukausittaisen liikenteen määrä"
+
 msgid "interface"
-msgstr "liitymä"
+msgstr "liittymä"
 
 msgid "date"
 msgstr "pvm"
@@ -481,17 +526,100 @@ msgstr "Lähetetty MB"
 msgid "Receive MB"
 msgstr "Vastaanotettu MB"
 
-msgid "Monthly traffic amount"
-msgstr "Kuukausittaisen liikenteen määrä"
-
 msgid "Information provided by vnstat"
-msgstr "Vnstat saadut tiedot"
+msgstr "Vnstatin tarjoamat tiedot"
 
 msgid "Loading {0} bandwidth chart"
-msgstr "Lataamassa {0} laajakaistakartta"
+msgstr "Ladataan {0} kaistaleveystaulukkoa"
 
 msgid "Showing {0} to {1} of {2} entries"
 msgstr "Näyttämässä {0} - {1} merkintää kokonaismäärästä: {2}"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN ei ole käytössä"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN on käytössä"
+
+msgid "Server settings"
+msgstr "Palvelinasetukset"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Valitse OpenVPN -määritystiedosto (.ovpn)"
+
+msgid "Client Log"
+msgstr "Asiakasloki"
+
+msgid "Port"
+msgstr "Portti"
+
+msgid "Protocol"
+msgstr "Protokolla"
+
+msgid "Root CA certificate"
+msgstr "Root CA -sertifikaatti"
+
+msgid "Server certificate"
+msgstr "Palvelinsertifikaatti"
+
+msgid "Diffie Hellman parameters"
+msgstr "Diffie Hellmann -parametrit"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Palvelinloki"
+
+msgid "Start OpenVPN"
+msgstr "Käynnistä OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Käynnistä OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Openvpn -tiedot"
+
+msgid "Attempting to start openvpn"
+msgstr "Yritetään käynnistää openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Yritetään pysäyttää openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR ei ole käytössä"
+
+msgid "TOR is running"
+msgstr "TOR on käytössä"
+
+msgid "Relay"
+msgstr "Välitä"
+
+msgid "Relay settings"
+msgstr "Välitä asetukset"
+
+msgid "Nickname"
+msgstr "Nimimerkki"
+
+msgid "Address"
+msgstr "Osoite"
+
+msgid "Start TOR"
+msgstr "Käynnistä TOR"
+
+msgid "Stop TOR"
+msgstr "Pyräytä TOR"
+
+msgid "Information provided by tor"
+msgstr "TOR:in tarjoama tieto"
+
+msgid "Attempting to start TOR"
+msgstr "Yritetään käynnistää TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Yritetään pysäyttää TOR"
 
 #: common form controls
 msgid "Save settings"
@@ -499,3 +627,19 @@ msgstr "Tallenna asetukset"
 
 msgid "Refresh"
 msgstr "Päivitä"
+
+msgid "running"
+msgstr "käynnissä"
+
+msgid "stopped"
+msgstr "pysäytetty"
+
+msgid "Remove"
+msgstr "Poista"
+
+msgid "up"
+msgstr "ylös"
+
+msgid "down"
+msgstr "alas"
+

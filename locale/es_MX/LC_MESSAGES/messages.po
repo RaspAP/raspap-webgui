@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-01-09 17:08+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Luis Franco <luis_franco1990@hotmail.com>\n"
 "Language-Team: \n"
 "Language: es_MX\n"
@@ -58,7 +58,13 @@ msgstr "Cambiar tema"
 msgid "System"
 msgstr "Sistema"
 
+msgid "About RaspAP"
+msgstr "Acerca de RaspAP"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Ajustes de autenticación"
+
 msgid "New passwords do not match"
 msgstr "Nueva contraseña no coincide"
 
@@ -126,6 +132,15 @@ msgstr "Agregar"
 msgid "Delete"
 msgstr "Eliminar"
 
+msgid "Show"
+msgstr "Mostrar"
+
+msgid "Hide"
+msgstr "Ocultar"
+
+msgid "Not configured"
+msgstr "No configurado"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Nota:</strong> Punto de acceso WEP aparece como 'Abierto'. RaspAP actualmente no soporta conecciones WEP"
 
@@ -136,8 +151,11 @@ msgstr "Informacion de interfaz"
 msgid "Interface Name"
 msgstr "Nombre de interfaz"
 
-msgid "IP Address"
-msgstr "Direccion IP"
+msgid "IPv4 Address"
+msgstr "Dirección IPv4"
+
+msgid "IPv6 Address"
+msgstr "Dirección IPv6"
 
 msgid "Subnet Mask"
 msgstr "Mascara de subred"
@@ -184,14 +202,14 @@ msgstr "Frecuencia"
 msgid "Link Quality"
 msgstr "Calidad del Enlace"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Informacion obtenida de ifconfig y iwconfig"
+msgid "Information provided by ip and iw and from system"
+msgstr "Informacion obtenida de ip y iw y del system"
 
 msgid "No MAC Address Found"
-msgstr "Direccion MAC no encontrada"
+msgstr "Dirección MAC no encontrada"
 
 msgid "No IP Address Found"
-msgstr "Direccion IP no encontrada"
+msgstr "Dirección IP no encontrada"
 
 msgid "No Subnet Mask Found"
 msgstr "Mascara de subred no encontrada"
@@ -221,17 +239,26 @@ msgid "Connected Devices"
 msgstr "Dispositivos conectados"
 
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Configuracion de Servidor"
+msgid "DHCP server settings"
+msgstr "Ajustes de servidor DHCP"
 
 msgid "Client list"
 msgstr "Lista de Clientes"
 
+msgid "Interface"
+msgstr "Interfaz"
+
 msgid "Starting IP Address"
-msgstr "Direccion IP de incio"
+msgstr "Dirección IP de incio"
 
 msgid "Ending IP Address"
-msgstr "Direccion IP final"
+msgstr "Dirección IP final"
+
+msgid "Static Leases"
+msgstr "Asignaciones estáticas"
+
+msgid "Add static DHCP lease"
+msgstr "Agregar arrendamiento DHCP estático"
 
 msgid "Lease Time"
 msgstr "Tiempo de Renta"
@@ -246,7 +273,7 @@ msgid "Expire time"
 msgstr "Tiempo de Expiracion"
 
 msgid "MAC Address"
-msgstr "Direccion MAC"
+msgstr "Dirección MAC"
 
 msgid "Host name"
 msgstr "Nombre de Host"
@@ -366,6 +393,18 @@ msgstr "Habilitar registro"
 msgid "Logfile output"
 msgstr "Salida del archivo de registro"
 
+msgid "WiFi client AP mode"
+msgstr "Modo AP de WiFi de cliente"
+
+msgid "Hide SSID in broadcast"
+msgstr "Ocultar SSID en la transmisión"
+
+msgid "Maximum number of clients"
+msgstr "Máximo número de clientes"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configura la opción max_num_sta de hostapd. El valor por defecto y máximo es 2007. Si se deja en blanco o si es 0, se aplica el valor por defecto."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Resumen"
@@ -383,13 +422,13 @@ msgid "Alternate DNS Server"
 msgstr "Servidor DNS Alterno"
 
 msgid "Adapter IP Address Settings"
-msgstr "Configuracion de adaptador de direccion IP"
+msgstr "Configuracion de adaptador de dirección IP"
 
 msgid "Enable Fallback to Static Option"
-msgstr "Habilitar la caida a opcion estatica"
+msgstr "Habilitar la caida a opción estática"
 
 msgid "Static IP"
-msgstr "IP estatica"
+msgstr "IP estática"
 
 msgid "Enabled"
 msgstr "Habilitado"
@@ -398,17 +437,17 @@ msgid "Disabled"
 msgstr "Deshabilitado"
 
 msgid "Static IP Options"
-msgstr "Opciones de IP estatico"
+msgstr "Opciones de IP estática"
 
 msgid "Apply settings"
-msgstr "Aplicar Configuraciones"
+msgstr "Aplicar configuraciones"
 
 msgid "Information provided by /sys/class/net"
-msgstr "Informacion obtenida de /sys/class/net"
+msgstr "Información ofrecida por /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr "Informacion de sistema"
+msgstr "Información del sistema"
 
 msgid "Language"
 msgstr "Lenguaje"
@@ -420,16 +459,16 @@ msgid "Select a language"
 msgstr "Selecionar lenguaje"
 
 msgid "Language setting saved"
-msgstr "Configuracion de lenguaje guardada"
+msgstr "Configuración de lenguaje guardada"
 
 msgid "Console"
 msgstr "Consola"
 
 msgid "Hostname"
-msgstr "Nombre del host"
+msgstr "Nombre de host"
 
 msgid "Pi Revision"
-msgstr "Revision PI"
+msgstr "Revisión PI"
 
 msgid "Uptime"
 msgstr "Tiempo conectado"
@@ -447,27 +486,30 @@ msgid "Shutdown"
 msgstr "Apagar"
 
 msgid "System Rebooting Now!"
-msgstr "¡El Sistema se esta reiniciando ahora!"
+msgstr "¡El sistema se está reiniciando ahora!"
 
 msgid "System Shutting Down Now!"
-msgstr "¡El sistema se esta apagando ahora!"
+msgstr "¡El sistema se está apagando ahora!"
 
 #: includes/themes.php
 msgid "Theme settings"
 msgstr "Configuracion de tema"
 
 msgid "Select a theme"
-msgstr "Seleccionar tema"
+msgstr "Seleccionar un tema"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr "Uso de Datos"
+msgstr "Uso de datos"
 
 msgid "Data usage monitoring"
-msgstr "Monitor de Uso de Datos"
+msgstr "Monitor de uso de datos"
+
+msgid "Hourly traffic amount"
+msgstr "Cantidad de tráfico por hora"
 
 msgid "Daily traffic amount"
-msgstr "Cantidad de trafico diario"
+msgstr "Cantidad de tráfico diario"
 
 msgid "interface"
 msgstr "interfaz"
@@ -482,10 +524,10 @@ msgid "Receive MB"
 msgstr "MB recibidos"
 
 msgid "Monthly traffic amount"
-msgstr "Cantidad de trafico mensual"
+msgstr "Cantidad de tráfico mensual"
 
 msgid "Information provided by vnstat"
-msgstr "Informacion obtenida de vnstat"
+msgstr "Información ofrecida por vnstat"
 
 msgid "Loading {0} bandwidth chart"
 msgstr "Cargando {0} grafica de ancho de banda"
@@ -493,10 +535,111 @@ msgstr "Cargando {0} grafica de ancho de banda"
 msgid "Showing {0} to {1} of {2} entries"
 msgstr "Mostrando {0} a {1} de {2} entradas"
 
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN no está funcionando"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN está funcionando"
+
+msgid "Server settings"
+msgstr "Ajustes de servidor"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Selecciona archivo de configuración OpenVPN (.ovpn)"
+
+msgid "Client Log"
+msgstr "Registro de cliente"
+
+msgid "Port"
+msgstr "Puerto"
+
+msgid "Protocol"
+msgstr "Protocolo"
+
+msgid "Root CA certificate"
+msgstr "Certificado de root CA"
+
+msgid "Server certificate"
+msgstr "Certificado del servidor"
+
+msgid "Diffie Hellman parameters"
+msgstr "Parámetros Diffie Hellman"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Registro del servidor"
+
+msgid "Start OpenVPN"
+msgstr "Iniciar OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Detener OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Información ofrecida por openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Intentando iniciar openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Intentando detener openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR no está funcionando"
+
+msgid "TOR is running"
+msgstr "TOR está funcionando"
+
+msgid "Relay"
+msgstr "Relé"
+
+msgid "Relay settings"
+msgstr "Ajustes de relé"
+
+msgid "Nickname"
+msgstr "Sobrenombre"
+
+msgid "Address"
+msgstr "Dirección"
+
+msgid "Start TOR"
+msgstr "Iniciar TOR"
+
+msgid "Stop TOR"
+msgstr "Detener TOR"
+
+msgid "Information provided by tor"
+msgstr "Información ofrecida por tor"
+
+msgid "Attempting to start TOR"
+msgstr "Intentando iniciar TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Intentando detener TOR"
+
 #: common form controls
 msgid "Save settings"
 msgstr "Guardar Configuraciones"
 
 msgid "Refresh"
 msgstr "Refrescar"
+
+msgid "running"
+msgstr "funcionando"
+
+msgid "stopped"
+msgstr "detenido"
+
+msgid "Remove"
+msgstr "Eliminar"
+
+msgid "up"
+msgstr "arriba"
+
+msgid "down"
+msgstr "abajo"
 

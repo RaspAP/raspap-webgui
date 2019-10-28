@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-28 21:30+0000\n"
+"PO-Revision-Date: 2019-10-27 15:30-0300\n"
 "Last-Translator: Matheus Dal Mago <matheusdalmago10@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -58,7 +58,13 @@ msgstr "Alterar Tema"
 msgid "System"
 msgstr "Sistema"
 
+msgid "About RaspAP"
+msgstr "Sobre RaspAP"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Configurações de autenticação"
+
 msgid "New passwords do not match"
 msgstr "Novas senhas não conferem"
 
@@ -106,7 +112,7 @@ msgid "Wifi settings updated successfully"
 msgstr "Configurações WiFi atualizadas com sucesso"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr "Configurações WiFi atualizadas mas não foi possível reiniciar (não pôde executar ’wpa_cli reconfigure’)"
+msgstr "Configurações WiFi atualizadas mas não foi possível reiniciar (não pode executar ’wpa_cli reconfigure’)"
 
 msgid "Wifi settings failed to be updated"
 msgstr "Falha ao atualizar configurações WiFi"
@@ -126,6 +132,15 @@ msgstr "Adicionar"
 msgid "Delete"
 msgstr "Remover"
 
+msgid "Show"
+msgstr "Mostrar"
+
+msgid "Hide"
+msgstr "Esconder"
+
+msgid "Not configured"
+msgstr "Não configurado"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Nota:</strong> pontos de acesso WEP aparecem como 'Open'. Atualmente, o RaspAP não suporta conexão com WEP"
 
@@ -136,8 +151,11 @@ msgstr "Informação da Interface"
 msgid "Interface Name"
 msgstr "Nome da Interface"
 
-msgid "IP Address"
-msgstr "Endereço IP"
+msgid "IPv4 Address"
+msgstr "Endereço IPv4"
+
+msgid "IPv6 Address"
+msgstr "Endereço IPv6"
 
 msgid "Subnet Mask"
 msgstr "Máscara de rede"
@@ -184,8 +202,8 @@ msgstr "Frequência"
 msgid "Link Quality"
 msgstr "Qualidade de Link"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Informações fornecidas por ifconfig e iwconfig"
+msgid "Information provided by ip and iw and from system"
+msgstr "Informações fornecidas por ip e iw e do system"
 
 msgid "No MAC Address Found"
 msgstr "Endereço MAC Não Encontrado"
@@ -221,17 +239,26 @@ msgid "Connected Devices"
 msgstr "Dispositivos Conectados"
 
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Configurações do Servidor"
+msgid "DHCP server settings"
+msgstr "Configurações do servidor DHCP"
 
 msgid "Client list"
 msgstr "Lista de Clientes"
+
+msgid "Interface"
+msgstr "Interface"
 
 msgid "Starting IP Address"
 msgstr "Endereço IP Inicial"
 
 msgid "Ending IP Address"
 msgstr "Endereço IP Final"
+
+msgid "Static Leases"
+msgstr "Concessão Estática"
+
+msgid "Add static DHCP lease"
+msgstr "Adicionar Concessão DHCP Estática"
 
 msgid "Lease Time"
 msgstr "Tempo de Concessão"
@@ -366,12 +393,24 @@ msgstr "Habilitar Logs"
 msgid "Logfile output"
 msgstr "Arquivo de Log"
 
+msgid "WiFi client AP mode"
+msgstr "WiFi modo cliente AP"
+
+msgid "Hide SSID in broadcast"
+msgstr "Esconder SSID em transmissão"
+
+msgid "Maximum number of clients"
+msgstr "Número máximo de clientes"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configura a opção max_num_sta do hostapd. O valor padrão e máximo é 2007. Se deixado vazio ou 0, o valor padrão é aplicado."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Sumário"
 
 msgid "Current settings"
-msgstr "Configurações Atuais"
+msgstr "Configurações atuais"
 
 msgid "Default Gateway"
 msgstr "Gateway Padrão"
@@ -454,10 +493,133 @@ msgstr "Sistema Desligando Agora!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr "Configurações de Tema"
+msgstr "Configurações de tema"
 
 msgid "Select a theme"
-msgstr "Selecione um Tema"
+msgstr "Selecione um tema"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Uso de dados"
+
+msgid "Data usage monitoring"
+msgstr "Monitoramento de uso de dados"
+
+msgid "Hourly traffic amount"
+msgstr "Quantidade de tráfego por hora"
+
+msgid "Daily traffic amount"
+msgstr "Quantidade diária de tráfego"
+
+msgid "Monthly traffic amount"
+msgstr "Tráfego por mês"
+
+msgid "interface"
+msgstr "interface"
+
+msgid "date"
+msgstr "data"
+
+msgid "Send MB"
+msgstr "MB Enviados"
+
+msgid "Receive MB"
+msgstr "MB recebidos"
+
+msgid "Information provided by vnstat"
+msgstr "Informação disponibilizada por vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Carregando gráfico {0} de largura de banda"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Mostrando de {0} a {1} de {2} entradas"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN não está sendo executado"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN está em execução"
+
+msgid "Server settings"
+msgstr "Configurações do servidor"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Selecione o arquivo de configuração OpenVPN (.ovpn)"
+
+msgid "Client Log"
+msgstr "Log do cliente"
+
+msgid "Port"
+msgstr "Porta"
+
+msgid "Protocol"
+msgstr "Protocolo"
+
+msgid "Root CA certificate"
+msgstr "Certificado Root CA"
+
+msgid "Server certificate"
+msgstr "Certificado do servidor"
+
+msgid "Diffie Hellman parameters"
+msgstr "Parâmetros Diffie Hellman"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Log do servidor"
+
+msgid "Start OpenVPN"
+msgstr "Iniciar OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Parar OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Informações disponibilizadas por openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Tentando iniciar openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Tentando parar openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR não está sendo executado"
+
+msgid "TOR is running"
+msgstr "TOR está sendo executado"
+
+msgid "Relay"
+msgstr "Relay"
+
+msgid "Relay settings"
+msgstr "Configurações de relay"
+
+msgid "Nickname"
+msgstr "Apelido"
+
+msgid "Address"
+msgstr "Endereço"
+
+msgid "Start TOR"
+msgstr "Iniciar TOR"
+
+msgid "Stop TOR"
+msgstr "Parar TOR"
+
+msgid "Information provided by tor"
+msgstr "Informação disponibilizada por tor"
+
+msgid "Attempting to start TOR"
+msgstr "Tentando iniciar TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Tentando parar TOR"
 
 #: common form controls
 msgid "Save settings"
@@ -466,3 +628,17 @@ msgstr "Salvar configurações"
 msgid "Refresh"
 msgstr "Atualizar"
 
+msgid "running"
+msgstr "executando"
+
+msgid "stopped"
+msgstr "parado"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "up"
+msgstr "cima"
+
+msgid "down"
+msgstr "baixo"

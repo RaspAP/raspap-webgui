@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-06-10 11:15+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Furkan 'Cuqer' Sarıboğa <cuqerr@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -58,7 +58,13 @@ msgstr "Temayı değiştir"
 msgid "System"
 msgstr "Sistem"
 
+msgid "About RaspAP"
+msgstr "RaspAP Hakkında"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Kimlik Denetleme ayarları"
+
 msgid "New passwords do not match"
 msgstr "Yeni şifreler uyuşmuyor"
 
@@ -126,6 +132,15 @@ msgstr "Ekle"
 msgid "Delete"
 msgstr "Sil"
 
+msgid "Show"
+msgstr "Göster"
+
+msgid "Hide"
+msgstr "Gizle"
+
+msgid "Not configured"
+msgstr "Ayarlanmamış"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Note:</strong> WEP erişim noktası 'Açık' gözüküyor. RaspAP şu anda WEP bağlantısını desteklemiyor"
 
@@ -136,8 +151,11 @@ msgstr "Arayüz Bilgisi"
 msgid "Interface Name"
 msgstr "Arayüz Adı"
 
-msgid "IP Address"
-msgstr "IP Adresi"
+msgid "IPv4 Address"
+msgstr "IPv4 Adresi"
+
+msgid "IPv6 Address"
+msgstr "IPv6 Adresi"
 
 msgid "Subnet Mask"
 msgstr "Alt ağ maskesi"
@@ -184,8 +202,8 @@ msgstr "Frekans"
 msgid "Link Quality"
 msgstr "Bağlantı Kalitesi"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "İfconfig ve iwconfig tarafından sağlanan bilgiler"
+msgid "Information provided by ip and iw and from system"
+msgstr "Ip ve iw tarafından ve sistemden verilen bilgiler"
 
 msgid "No MAC Address Found"
 msgstr "MAC adresi bulunamadı"
@@ -221,17 +239,26 @@ msgid "Connected Devices"
 msgstr "Bağlı Aygıtlar"
 
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Sunucu Ayarları"
+msgid "DHCP server settings"
+msgstr "DHCP sunucu ayarları"
 
 msgid "Client list"
 msgstr "İstemci listesi"
+
+msgid "Interface"
+msgstr "Arayüz"
 
 msgid "Starting IP Address"
 msgstr "Başlangıc IP Adresi"
 
 msgid "Ending IP Address"
 msgstr "Ending IP Adresi"
+
+msgid "Static Leases"
+msgstr "Statik Kiralamalar"
+
+msgid "Add static DHCP lease"
+msgstr "Statik DHCP kiralaması ekle"
 
 msgid "Lease Time"
 msgstr "Kira Zamanı"
@@ -366,6 +393,18 @@ msgstr "Günlük kaydını etkinleştir"
 msgid "Logfile output"
 msgstr "Günlük dosyası çıkışı"
 
+msgid "WiFi client AP mode"
+msgstr "WiFi istemcisi AP modu"
+
+msgid "Hide SSID in broadcast"
+msgstr "Yayında SSID'yi gizle"
+
+msgid "Maximum number of clients"
+msgstr "Maksimum istemci sayısı"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Hostapd'ın max_num_sta seçeneğini yapılandırır. Varsayılan ve maksimum 2007'dir. Boşsa veya 0 ise, varsayılan geçerlidir."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Özet"
@@ -386,7 +425,7 @@ msgid "Adapter IP Address Settings"
 msgstr "Adaptör IP Adresi Ayarları"
 
 msgid "Enable Fallback to Static Option"
-msgstr "İstatiklere çekilme ayarını etkinleştir"
+msgstr "Statik Seçeneğe Geri Dönüşü Etkinleştir"
 
 msgid "Static IP"
 msgstr "Statik IP"
@@ -429,7 +468,7 @@ msgid "Hostname"
 msgstr "Sunucu adı"
 
 msgid "Pi Revision"
-msgstr "Pi revizyonu"
+msgstr "Pi Revizyonu"
 
 msgid "Uptime"
 msgstr "Çalışma süresi"
@@ -457,7 +496,7 @@ msgid "Theme settings"
 msgstr "Tema ayarları"
 
 msgid "Select a theme"
-msgstr "Bir tema se."
+msgstr "Bir tema seçin"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -466,8 +505,14 @@ msgstr "Veri kullanımı"
 msgid "Data usage monitoring"
 msgstr "Veri kullanımını izle"
 
+msgid "Hourly traffic amount"
+msgstr "Saatlik trafik miktarı"
+
 msgid "Daily traffic amount"
 msgstr "Günlük trafik miktarı"
+
+msgid "Monthly traffic amount"
+msgstr "Aylık trafik miktarı"
 
 msgid "interface"
 msgstr "arayüz"
@@ -481,9 +526,6 @@ msgstr "Gönderilen MB"
 msgid "Receive MB"
 msgstr "Alınan MB"
 
-msgid "Monthly traffic amount"
-msgstr "Aylık trafik miktarı"
-
 msgid "Information provided by vnstat"
 msgstr "Bilgi vnstat tarafından sağlandı"
 
@@ -493,6 +535,92 @@ msgstr "{0} bant genişliği tablosu yükleniyor"
 msgid "Showing {0} to {1} of {2} entries"
 msgstr "{2} girdiden {0} ve {1} arası gösteriliyor"
 
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN çalışmıyor"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN çalışıyor"
+
+msgid "Server settings"
+msgstr "Sunucu ayarları"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "OpenVPN yapılandırma dosyasını seçin (.ovpn)"
+
+msgid "Client Log"
+msgstr "İstemci Günlüğü"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Protocol"
+msgstr "Protokol"
+
+msgid "Root CA certificate"
+msgstr "Root CA sertifikası"
+
+msgid "Server certificate"
+msgstr "Sunucu sertifikası"
+
+msgid "Diffie Hellman parameters"
+msgstr "Diffie Hellman parametreleri"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Sunucu günlüğü"
+
+msgid "Start OpenVPN"
+msgstr "OpenVPN'i başlat"
+
+msgid "Stop OpenVPN"
+msgstr "OpenVPN'i durdur"
+
+msgid "Information provided by openvpn"
+msgstr "Openvpn tarafından sağlanan bilgiler"
+
+msgid "Attempting to start openvpn"
+msgstr "Openvpn başlatılmaya çalışıyor"
+
+msgid "Attempting to stop openvpn"
+msgstr "Openvpn durdurulmaya çalışılıyor"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR çalışmıyor"
+
+msgid "TOR is running"
+msgstr "TOR çalışıyor"
+
+msgid "Relay"
+msgstr "İleti anahtarlama"
+
+msgid "Relay settings"
+msgstr "İleti anahtarlama ayarları"
+
+msgid "Nickname"
+msgstr "Takma Ad"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Start TOR"
+msgstr "TOR'u başlat"
+
+msgid "Stop TOR"
+msgstr "TOR'u durdur"
+
+msgid "Information provided by tor"
+msgstr "Tor tarafından sağlanan bilgiler"
+
+msgid "Attempting to start TOR"
+msgstr "TOR başlatılmaya çalışılıyor"
+
+msgid "Attempting to stop TOR"
+msgstr "TOR durdurulmaya çalışılıyor"
+
 #: common form controls
 msgid "Save settings"
 msgstr "Ayarları kaydet"
@@ -500,3 +628,17 @@ msgstr "Ayarları kaydet"
 msgid "Refresh"
 msgstr "Yenile"
 
+msgid "running"
+msgstr "çalışıyor"
+
+msgid "stopped"
+msgstr "durduruldu"
+
+msgid "Remove"
+msgstr "Kaldır"
+
+msgid "up"
+msgstr "hazır"
+
+msgid "down"
+msgstr "kapalı"
