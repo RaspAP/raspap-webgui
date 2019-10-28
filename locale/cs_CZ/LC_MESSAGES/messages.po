@@ -285,10 +285,10 @@ msgid "Information provided by Dnsmasq"
 msgstr "Zdroj informací Dnsmasq"
 
 msgid "Stop dnsmasq"
-msgstr "Stop dnsmasq"
+msgstr "Zastavit dnsmasq"
 
 msgid "Start dnsmasq"
-msgstr "Start dnsmasq"
+msgstr "Spustit dnsmasq"
 
 msgid "Dnsmasq configuration updated successfully"
 msgstr "Dnsmasq úspěšně aktualizován"
@@ -382,10 +382,10 @@ msgid "Unable to save wifi hotspot settings"
 msgstr "Nemohu uložit nastavení wifi hotspotu"
 
 msgid "Start hotspot"
-msgstr "Start hotspot"
+msgstr "Spustit hotspot"
 
 msgid "Stop hotspot"
-msgstr "Stop hotspot"
+msgstr "Zastavit hotspot"
 
 msgid "Enable logging"
 msgstr "Zapnout logování"
