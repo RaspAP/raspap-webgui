@@ -262,8 +262,7 @@ var themes = {
 // Overrides the default SB Admin 2 behavior
 $("#sidebarToggleTopbar").on('click', function(e) {
     $("body").toggleClass("sidebar-toggled");
-    $(".sidebar").toggleClass("toggled");
-    $(".sidebar").toggleClass("d-none");
+    $(".sidebar").toggleClass("toggled d-none");
 });
 
 // Overrides SB Admin 2
@@ -281,9 +280,7 @@ $(function() {
 
 $(window).on("load resize",function(e) {
     if ($(window).width() > 768) {
-      $('.sidebar').removeClass('d-none');
-      $('.sidebar').removeClass('d-md-block');
-      $('.sidebar').removeClass('toggled');
+      $('.sidebar').removeClass('d-none d-md-block toggled');
     };
 });
 
