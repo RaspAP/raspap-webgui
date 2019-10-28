@@ -266,15 +266,23 @@ $("#sidebarToggleTopbar").on('click', function(e) {
     $(".sidebar").toggleClass("d-none");
 });
 
+// Overrides SB Admin 2
+$("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+    var toggled = $(".sidebar").hasClass("toggled");
+    // Persist state in cookie
+    setCookie('sidebar',toggled, 90);
+});
+
 $(function() {
     if ($(window).width() < 768) {
         $('.sidebar').addClass('toggled');
     }
 });
 
-$(window).resize(function() {
+$(window).on("load resize",function(e) {
     if ($(window).width() > 768) {
       $('.sidebar').removeClass('d-none');
+      $('.sidebar').removeClass('d-md-block');
       $('.sidebar').removeClass('toggled');
     };
 });
