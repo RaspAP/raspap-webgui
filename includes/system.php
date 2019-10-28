@@ -75,20 +75,24 @@ function DisplaySystem()
 
     // define locales
     $arrLocales = array(
-    'en_GB.UTF-8' => 'English',
-    'de_DE.UTF-8' => 'Deutsch',
-    'fr_FR.UTF-8' => 'Français',
-    'it_IT.UTF-8' => 'Italiano',
-    'pt_BR.UTF-8' => 'Português',
-    'sv_SE.UTF-8' => 'Svenska',
-    'nl_NL.UTF-8' => 'Nederlands',
-    'zh_CN.UTF-8' => '简体中文 (Chinese simplified)',
-    'cs_CZ.UTF-8' => 'Čeština',
-    'ru_RU.UTF-8' => 'Русский',
-    'es_MX.UTF-8' => 'Español',
-    'fi_FI.UTF-8' => 'Finnish',
-    'si_LK.UTF-8' => 'Sinhala',
-    'tr_TR.UTF-8' => 'Türkçe'
+        'en_GB.UTF-8' => 'English',
+        'de_DE.UTF-8' => 'Deutsch',
+        'fr_FR.UTF-8' => 'Français',
+        'it_IT.UTF-8' => 'Italiano',
+        'pt_BR.UTF-8' => 'Português',
+        'sv_SE.UTF-8' => 'Svenska',
+        'nl_NL.UTF-8' => 'Nederlands',
+        'zh_CN.UTF-8' => '简体中文 (Chinese simplified)',
+        'id_ID.UTF-8' => 'Indonesian',
+        'ko_KR.UTF-8' => '한국어 (Korean)',
+        'ja_JP.UTF-8' => '日本語 (Japanese)',
+        'vi_VN.UTF-8' => 'Tiếng Việt',
+        'cs_CZ.UTF-8' => 'Čeština',
+        'ru_RU.UTF-8' => 'Русский',
+        'es_MX.UTF-8' => 'Español',
+        'fi_FI.UTF-8' => 'Finnish',
+        'si_LK.UTF-8' => 'Sinhala',
+        'tr_TR.UTF-8' => 'Türkçe'
     );
 
     if (isset($_POST['system_reboot'])) {
