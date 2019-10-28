@@ -59,9 +59,12 @@ msgid "System"
 msgstr "Система"
 
 msgid "About RaspAP"
-msgstr "About RaspAP"
+msgstr "О RaspAP"
 
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Настройки аутентификации"
+
 msgid "New passwords do not match"
 msgstr "Новые пароли не совпадают"
 
@@ -130,13 +133,13 @@ msgid "Delete"
 msgstr "Удалить"
 
 msgid "Show"
-msgstr "Show"
+msgstr "Показать"
 
 msgid "Hide"
-msgstr "Hide"
+msgstr "Скрыть"
 
 msgid "Not configured"
-msgstr "Not configured"
+msgstr "Не настроено"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Note:</strong> точки доступа WEP показаны как 'Открытые'. RaspAP в данный момент не поддерживает подключение WEP"
@@ -200,7 +203,7 @@ msgid "Link Quality"
 msgstr "Качество соединения"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "Информация получена от ip и iw и system"
+msgstr "Информация, представленная IP и IW и из системы"
 
 msgid "No MAC Address Found"
 msgstr "MAC-адрес не найден"
@@ -237,7 +240,7 @@ msgstr "Подключенные устройства"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr "Настройки DHCP-сервера"
+msgstr "Настройки сервера DHCP"
 
 msgid "Client list"
 msgstr "Список клиентов"
@@ -252,10 +255,10 @@ msgid "Ending IP Address"
 msgstr "Конечный IP-адрес"
 
 msgid "Static Leases"
-msgstr "Static Leases"
+msgstr "Договоры аренды статических адресов"
 
 msgid "Add static DHCP lease"
-msgstr "Add static DHCP lease"
+msgstr "Добавить статическую аренду DHCP"
 
 msgid "Lease Time"
 msgstr "Срок аренды"
@@ -391,16 +394,16 @@ msgid "Logfile output"
 msgstr "Записи журнала"
 
 msgid "WiFi client AP mode"
-msgstr "WiFi client AP mode"
+msgstr "Режим AP WiFi-клиента"
 
 msgid "Hide SSID in broadcast"
-msgstr "Hide SSID in broadcast"
+msgstr "Скрыть SSID при трансляции"
 
 msgid "Maximum number of clients"
-msgstr "Maximum number of clients"
+msgstr "Максимальное количество клиентов"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Настраивает параметр max_num_sta в hostapd. По умолчанию и максимум — 2007. Если пусто или 0, применяется значение по умолчанию."
 
 #: includes/networking.php
 msgid "Summary"
@@ -416,7 +419,7 @@ msgid "DNS Server"
 msgstr "DNS сервер"
 
 msgid "Alternate DNS Server"
-msgstr "Альтернативный DNS сервер"
+msgstr "Альтернативный DNS-сервер"
 
 msgid "Adapter IP Address Settings"
 msgstr "Настройки IP-адреса адаптера"
@@ -465,7 +468,7 @@ msgid "Hostname"
 msgstr "Имя хоста"
 
 msgid "Pi Revision"
-msgstr "Ревизия Pi"
+msgstr "Пересмотр Pi"
 
 msgid "Uptime"
 msgstr "Время работы"
@@ -503,13 +506,16 @@ msgid "Data usage monitoring"
 msgstr "Мониторинг использования данных"
 
 msgid "Hourly traffic amount"
-msgstr "Hourly traffic amount"
+msgstr "Объем трафика за час"
 
 msgid "Daily traffic amount"
-msgstr "Ежедневный объем траффика"
+msgstr "Дневной объем трафика"
+
+msgid "Monthly traffic amount"
+msgstr "Месячный объем траффика"
 
 msgid "interface"
-msgstr "Интерфейс"
+msgstr "интерфейс"
 
 msgid "date"
 msgstr "дата"
@@ -520,11 +526,8 @@ msgstr "Отправлено Мб"
 msgid "Receive MB"
 msgstr "Получено Мб"
 
-msgid "Monthly traffic amount"
-msgstr "Месячный объем траффика"
-
 msgid "Information provided by vnstat"
-msgstr "Информация получена от vnstat"
+msgstr "Информация, предоставленная vnstat"
 
 msgid "Loading {0} bandwidth chart"
 msgstr "{0} график загружается"
@@ -534,89 +537,89 @@ msgstr "Отображение с {0} по {1} из {2} записей"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr "OpenVPN is not running"
+msgstr "OpenVPN не работает"
 
 msgid "OpenVPN is running"
-msgstr "OpenVPN is running"
+msgstr "OpenVPN работает"
 
 msgid "Server settings"
-msgstr "Server settings"
+msgstr "Настройки сервера"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Select OpenVPN configuration file (.ovpn)"
+msgstr "Выберите файл конфигурации OpenVPN (.ovpn)"
 
 msgid "Client Log"
-msgstr "Client Log"
+msgstr "Журнал клиента"
 
 msgid "Port"
-msgstr "Port"
+msgstr "Порт"
 
 msgid "Protocol"
-msgstr "Protocol"
+msgstr "Протокол"
 
 msgid "Root CA certificate"
-msgstr "Root CA certificate"
+msgstr "Корневой сертификат CA"
 
 msgid "Server certificate"
-msgstr "Server certificate"
+msgstr "Сертификат сервера"
 
 msgid "Diffie Hellman parameters"
-msgstr "Diffie Hellman parameters"
+msgstr "Параметры Диффи Хеллмана"
 
 msgid "KeepAlive"
-msgstr "KeepAlive"
+msgstr "Не отключать"
 
 msgid "Server log"
-msgstr "Server log"
+msgstr "Журнал сервера"
 
 msgid "Start OpenVPN"
-msgstr "Start OpenVPN"
+msgstr "Запустить OpenVPN"
 
 msgid "Stop OpenVPN"
-msgstr "Stop OpenVPN"
+msgstr "Остановить OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr "Information provided by openvpn"
+msgstr "Информация, представленная openvpn"
 
 msgid "Attempting to start openvpn"
-msgstr "Attempting to start openvpn"
+msgstr "Попытка запуска openvpn"
 
 msgid "Attempting to stop openvpn"
-msgstr "Attempting to stop openvpn"
+msgstr "Попытка остановить openvpn"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr "TOR is not running"
+msgstr "TOR не запущен"
 
 msgid "TOR is running"
-msgstr "TOR is running"
+msgstr "TOR работает"
 
 msgid "Relay"
-msgstr "Relay"
+msgstr "Перенаправить"
 
 msgid "Relay settings"
-msgstr "Relay settings"
+msgstr "Настройки перенаправления"
 
 msgid "Nickname"
-msgstr "Nickname"
+msgstr "Ник"
 
 msgid "Address"
-msgstr "Address"
+msgstr "Адрес"
 
 msgid "Start TOR"
-msgstr "Start TOR"
+msgstr "Запустить TOR"
 
 msgid "Stop TOR"
-msgstr "Stop TOR"
+msgstr "Остановить TOR"
 
 msgid "Information provided by tor"
-msgstr "Information provided by tor"
+msgstr "Информация, представленная tor"
 
 msgid "Attempting to start TOR"
-msgstr "Attempting to start TOR"
+msgstr "Попытка запуска TOR"
 
 msgid "Attempting to stop TOR"
-msgstr "Attempting to stop TOR"
+msgstr "Попытка остановить TOR"
 
 #: common form controls
 msgid "Save settings"
@@ -625,24 +628,18 @@ msgstr "Сохранить настройки"
 msgid "Refresh"
 msgstr "Обновить"
 
-msgid "Disabled"
-msgstr "Disabled"
-
-msgid "Enabled"
-msgstr "Enabled"
-
 msgid "running"
-msgstr "running"
+msgstr "работает"
 
 msgid "stopped"
-msgstr "stopped"
+msgstr "остановлен"
 
 msgid "Remove"
-msgstr "Remove"
+msgstr "Удалить"
 
 msgid "up"
-msgstr "up"
+msgstr "вверх"
 
 msgid "down"
-msgstr "down"
+msgstr "вниз"
 

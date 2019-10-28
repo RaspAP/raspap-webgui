@@ -59,9 +59,12 @@ msgid "System"
 msgstr "System"
 
 msgid "About RaspAP"
-msgstr "About RaspAP"
+msgstr "Über RaspAP"
 
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Authentifizierungseinstellungen"
+
 msgid "New passwords do not match"
 msgstr "Passwörter stimmen nicht überein"
 
@@ -130,13 +133,13 @@ msgid "Delete"
 msgstr "Löschen"
 
 msgid "Show"
-msgstr "Show"
+msgstr "Anzeigen"
 
 msgid "Hide"
-msgstr "Hide"
+msgstr "Ausblenden"
 
 msgid "Not configured"
-msgstr "Not configured"
+msgstr "Nicht konfiguriert"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Hinweis:</strong> WEP access points erscheinen als 'Offen'. RaspAP unterstützt derzeit keine Verbindungen zu WEP"
@@ -149,10 +152,10 @@ msgid "Interface Name"
 msgstr "Schnittstelle Name"
 
 msgid "IPv4 Address"
-msgstr "IPv4 Addresse"
+msgstr "IPv4-Adresse"
 
 msgid "IPv6 Address"
-msgstr "IPv6 Addresse"
+msgstr "IPv6-Adresse"
 
 msgid "Subnet Mask"
 msgstr "Subnetz Maske"
@@ -200,7 +203,7 @@ msgid "Link Quality"
 msgstr "Verbindungsqualität"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "Informationen von ip und iw und vom system"
+msgstr "Die Informationen, die von der IP und IW sowie vom System bereitgestellt werden"
 
 msgid "No MAC Address Found"
 msgstr "Keine MAC Addresse gefunden"
@@ -237,7 +240,7 @@ msgstr "Verbundene Geräte"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr "DHCP-Server Einstellungen"
+msgstr "DHCP-Servereinstellungen"
 
 msgid "Client list"
 msgstr "Client Liste"
@@ -252,10 +255,10 @@ msgid "Ending IP Address"
 msgstr "Letzte IP Addresse"
 
 msgid "Static Leases"
-msgstr "Static Leases"
+msgstr "Statische Zuordnungen"
 
 msgid "Add static DHCP lease"
-msgstr "Add static DHCP lease"
+msgstr "Statische DHCP-Zuweisung hinzufügen"
 
 msgid "Lease Time"
 msgstr "Gültigkeit"
@@ -391,16 +394,16 @@ msgid "Logfile output"
 msgstr "Logfile Ausgabe"
 
 msgid "WiFi client AP mode"
-msgstr "WiFi client AP mode"
+msgstr "AP-Modus von WiFI-Client"
 
 msgid "Hide SSID in broadcast"
-msgstr "Hide SSID in broadcast"
+msgstr "SSID in der Übertragung ausblenden"
 
 msgid "Maximum number of clients"
-msgstr "Maximum number of clients"
+msgstr "Maximale Anzahl an Clients"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Konfiguriert die maximale Anzahl an statischen Optionen der hostapd. Die Standardeinstellung und das Maximum betragen 2007. Wenn das Feld leer ist oder den Wert 0 besitzt, wird die Standardeinstellung angewendet."
 
 #: includes/networking.php
 msgid "Summary"
@@ -416,10 +419,10 @@ msgid "DNS Server"
 msgstr "DNS Server"
 
 msgid "Alternate DNS Server"
-msgstr "Alternativer DNS Server"
+msgstr "DNS-Server wechseln"
 
 msgid "Adapter IP Address Settings"
-msgstr "Adapter IP Address Einstellungen"
+msgstr "IP-Adressen Einstellungen für Adapter"
 
 msgid "Enable Fallback to Static Option"
 msgstr "Aktiviere Fallback zur Statischen Option"
@@ -444,7 +447,7 @@ msgstr "Information aus /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr "System Information"
+msgstr "Systeminformationen"
 
 msgid "Language"
 msgstr "Sprache"
@@ -453,7 +456,7 @@ msgid "Language settings"
 msgstr "Spracheinstellungen"
 
 msgid "Select a language"
-msgstr "Sprache auswählen"
+msgstr "Eine Sprache auswählen"
 
 msgid "Language setting saved"
 msgstr "Spracheinstellungen gespeichert"
@@ -465,28 +468,28 @@ msgid "Hostname"
 msgstr "Hostname"
 
 msgid "Pi Revision"
-msgstr "Pi Revision"
+msgstr "Pi-Prüfung"
 
 msgid "Uptime"
 msgstr "Laufzeit"
 
 msgid "Memory Used"
-msgstr "genutzter Speicher"
+msgstr "Genutzter Speicher"
 
 msgid "CPU Load"
-msgstr "CPU Last"
+msgstr "CPU-Auslastung"
 
 msgid "Reboot"
-msgstr "Neustart"
+msgstr "Neustarten"
 
 msgid "Shutdown"
 msgstr "Herunterfahren"
 
 msgid "System Rebooting Now!"
-msgstr "System Rebooting Now!"
+msgstr "System wird jetzt neugestartet!"
 
 msgid "System Shutting Down Now!"
-msgstr "System wird heruntergefahren!"
+msgstr "Das System wird jetzt heruntergefahren!"
 
 #: includes/themes.php
 msgid "Theme settings"
@@ -497,126 +500,126 @@ msgstr "Oberflächendesign auswählen"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr "Data usage"
+msgstr "Datennutzung"
 
 msgid "Data usage monitoring"
-msgstr "Data usage monitoring"
+msgstr "Kontrolle der Datennutzung"
 
 msgid "Hourly traffic amount"
-msgstr "Hourly traffic amount"
+msgstr "Stündliches Verkehrsvolumen"
 
 msgid "Daily traffic amount"
-msgstr "Daily traffic amount"
+msgstr "Tägliches Verkehrsvolumen"
 
 msgid "interface"
-msgstr "interface"
+msgstr "schnittstelle"
 
 msgid "date"
-msgstr "date"
+msgstr "Datum"
 
 msgid "Send MB"
-msgstr "Send MB"
+msgstr "MB senden"
 
 msgid "Receive MB"
-msgstr "Receive MB"
+msgstr "MB erhalten"
 
 msgid "Monthly traffic amount"
-msgstr "Monthly traffic amount"
+msgstr "Monatliches Verkehrsvolumen"
 
 msgid "Information provided by vnstat"
-msgstr "Information provided by vnstat"
+msgstr "Informationen, die von vnstat bereitgestellt werden"
 
 msgid "Loading {0} bandwidth chart"
-msgstr "Loading {0} bandwidth chart"
+msgstr "{0} Bandbreitendiagramme werden geladen"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr "Showing {0} to {1} of {2} entries"
+msgstr "{0} bis {1} von {2} Einträgen werden angezeigt"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr "OpenVPN is not running"
+msgstr "OpenVPN ist nicht aktiv"
 
 msgid "OpenVPN is running"
-msgstr "OpenVPN is running"
+msgstr "OpenVPN ist aktiv"
 
 msgid "Server settings"
-msgstr "Server settings"
+msgstr "Servereinstellungen"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Select OpenVPN configuration file (.ovpn)"
+msgstr "Konfigurationsdatei (.ovpn) für OpenVPN auswählen"
 
 msgid "Client Log"
-msgstr "Client Log"
+msgstr "Client-Protokoll"
 
 msgid "Port"
 msgstr "Port"
 
 msgid "Protocol"
-msgstr "Protocol"
+msgstr "Protokoll"
 
 msgid "Root CA certificate"
-msgstr "Root CA certificate"
+msgstr "CA-Zertifikat rooten"
 
 msgid "Server certificate"
-msgstr "Server certificate"
+msgstr "Serverzertifikat"
 
 msgid "Diffie Hellman parameters"
-msgstr "Diffie Hellman parameters"
+msgstr "Diffie-Hellman-Parameter"
 
 msgid "KeepAlive"
 msgstr "KeepAlive"
 
 msgid "Server log"
-msgstr "Server log"
+msgstr "Serverprotokoll"
 
 msgid "Start OpenVPN"
-msgstr "Start OpenVPN"
+msgstr "OpenVPN starten"
 
 msgid "Stop OpenVPN"
-msgstr "Stop OpenVPN"
+msgstr "OpenVPN stoppen"
 
 msgid "Information provided by openvpn"
-msgstr "Information provided by openvpn"
+msgstr "Informationen, die von OpenVPN bereitgestellt werden"
 
 msgid "Attempting to start openvpn"
-msgstr "Attempting to start openvpn"
+msgstr "Versuch, OpenVPN zu starten"
 
 msgid "Attempting to stop openvpn"
-msgstr "Attempting to stop openvpn"
+msgstr "Versuch, OpenVPN zu stoppen"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr "TOR is not running"
+msgstr "TOR ist nicht aktiv"
 
 msgid "TOR is running"
-msgstr "TOR is running"
+msgstr "TOR ist aktiv"
 
 msgid "Relay"
-msgstr "Relay"
+msgstr "Übertragung"
 
 msgid "Relay settings"
-msgstr "Relay settings"
+msgstr "Übertragungseinstellungen"
 
 msgid "Nickname"
-msgstr "Nickname"
+msgstr "Spitzname"
 
 msgid "Address"
-msgstr "Address"
+msgstr "Adresse"
 
 msgid "Start TOR"
-msgstr "Start TOR"
+msgstr "TOR starten"
 
 msgid "Stop TOR"
-msgstr "Stop TOR"
+msgstr "TOR stoppen"
 
 msgid "Information provided by tor"
-msgstr "Information provided by tor"
+msgstr "Informationen, die von TOR bereitgestellt werden"
 
 msgid "Attempting to start TOR"
-msgstr "Attempting to start TOR"
+msgstr "Versuch, TOR zu starten"
 
 msgid "Attempting to stop TOR"
-msgstr "Attempting to stop TOR"
+msgstr "Versuch, TOR zu stoppen"
 
 #: common form controls
 msgid "Save settings"
@@ -625,24 +628,18 @@ msgstr "Einstellungen speichern"
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-msgid "Disabled"
-msgstr "Disabled"
-
-msgid "Enabled"
-msgstr "Enabled"
-
 msgid "running"
-msgstr "running"
+msgstr "aktiv"
 
 msgid "stopped"
-msgstr "stopped"
+msgstr "gestoppt"
 
 msgid "Remove"
-msgstr "Remove"
+msgstr "Entfernen"
 
 msgid "up"
-msgstr "up"
+msgstr "oben"
 
 msgid "down"
-msgstr "down"
+msgstr "unten"
 

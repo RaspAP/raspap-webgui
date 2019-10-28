@@ -59,11 +59,11 @@ msgid "System"
 msgstr "Systém"
 
 msgid "About RaspAP"
-msgstr "About RaspAP"
+msgstr "Info o RaspAP"
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr "Authentication settings"
+msgstr "Nastavení ověřování"
 
 msgid "New passwords do not match"
 msgstr "Nová hesla se neshodují"
@@ -133,10 +133,10 @@ msgid "Delete"
 msgstr "Smazat"
 
 msgid "Show"
-msgstr "Show"
+msgstr "Zobrazit"
 
 msgid "Hide"
-msgstr "Hide"
+msgstr "Skrýt"
 
 msgid "Not configured"
 msgstr "Not configured"
@@ -203,7 +203,7 @@ msgid "Link Quality"
 msgstr "Kvalita Linky"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "Zdroj informací ip a iw a system"
+msgstr "Informace získány od ip, iw a systému"
 
 msgid "No MAC Address Found"
 msgstr "Žádná MAC Adresa Nenalezena"
@@ -240,7 +240,7 @@ msgstr "Připojená zařízení"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr "Nastavení serveru"
+msgstr "Nastavení serveru DHCP"
 
 msgid "Client list"
 msgstr "Seznam zařízení"
@@ -255,10 +255,10 @@ msgid "Ending IP Address"
 msgstr "Konečná IP Adresa"
 
 msgid "Static Leases"
-msgstr "Static Leases"
+msgstr "Statická zapůjčení"
 
 msgid "Add static DHCP lease"
-msgstr "Add static DHCP lease"
+msgstr "Přidat statický zapůjčení DHCP"
 
 msgid "Lease Time"
 msgstr "Čas Zápujčky"
@@ -394,20 +394,20 @@ msgid "Logfile output"
 msgstr "Výstop logu"
 
 msgid "WiFi client AP mode"
-msgstr "WiFi client AP mode"
+msgstr "AP režim WiFi klienta"
 
 msgid "Hide SSID in broadcast"
-msgstr "Hide SSID in broadcast"
+msgstr "Skrýt ve vysílání SSID"
 
 msgid "Maximum number of clients"
-msgstr "Maximum number of clients"
+msgstr "Maximální počet klientů"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Konfiguruje max_num_sta volbu hostapd. Výchozí a maximální hodnota je 2007. Pokud hodnota není vyplněna nebo je 0, použije se výchozí."
 
 #: includes/networking.php
 msgid "Summary"
-msgstr "Souhrn"
+msgstr "Shrnutí"
 
 msgid "Current settings"
 msgstr "Aktuální nastavení"
@@ -437,13 +437,13 @@ msgid "Disabled"
 msgstr "Vypnuto"
 
 msgid "Static IP Options"
-msgstr "Nastavení statické IP"
+msgstr "Možnosti statické IP"
 
 msgid "Apply settings"
 msgstr "Aplikovat nastavení"
 
 msgid "Information provided by /sys/class/net"
-msgstr "Zdroj informací /sys/class/net"
+msgstr "Informace získány od /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
@@ -471,45 +471,45 @@ msgid "Pi Revision"
 msgstr "Pi Revize"
 
 msgid "Uptime"
-msgstr "Uptime"
+msgstr "Doba využití"
 
 msgid "Memory Used"
-msgstr "Použitá paměť"
+msgstr "Využití paměti"
 
 msgid "CPU Load"
-msgstr "zatížení CPU"
+msgstr "Vytížení procesoru"
 
 msgid "Reboot"
-msgstr "Restart"
+msgstr "Rebootovat"
 
 msgid "Shutdown"
 msgstr "Vypnout"
 
 msgid "System Rebooting Now!"
-msgstr "Systém se nyní restartuje!"
+msgstr "Systém nyní rebootuje!"
 
 msgid "System Shutting Down Now!"
-msgstr "Systém se nyní vypne!"
+msgstr "Systém se nyní vypíná!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr "Nastavení vzhledu"
+msgstr "Nastavení témat"
 
 msgid "Select a theme"
-msgstr "Vyberte téma"
+msgstr "Vybrat téma"
 
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "Využití dat"
 
 msgid "Data usage monitoring"
-msgstr "Monitoring využití dat"
+msgstr "Sledování využití dat"
 
 msgid "Hourly traffic amount"
-msgstr "Hourly traffic amount"
+msgstr "Hodinový objem návštěvnosti"
 
 msgid "Daily traffic amount"
-msgstr "Provoz za den"
+msgstr "Denní objem návštěvnosti"
 
 msgid "interface"
 msgstr "rozhraní"
@@ -524,10 +524,10 @@ msgid "Receive MB"
 msgstr "Přijato MB"
 
 msgid "Monthly traffic amount"
-msgstr "Celkový měsíční provoz"
+msgstr "Měsíční objem návštěvnosti"
 
 msgid "Information provided by vnstat"
-msgstr "Zdroj informací vnstat"
+msgstr "Informace získány od vnstat"
 
 msgid "Loading {0} bandwidth chart"
 msgstr "Načítám {0} graf šířky pásma"
@@ -537,89 +537,89 @@ msgstr "Zobrazuji {0} do {1} z {2} záznamů"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr "OpenVPN is not running"
+msgstr "OpenVPN není spuštěn"
 
 msgid "OpenVPN is running"
-msgstr "OpenVPN is running"
+msgstr "OpenVPN je spuštěn"
 
 msgid "Server settings"
-msgstr "Server settings"
+msgstr "Nastavení serveru"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Select OpenVPN configuration file (.ovpn)"
+msgstr "Vyberte konfigurační soubor OpenVPN (.ovpn)"
 
 msgid "Client Log"
-msgstr "Client Log"
+msgstr "Protokol klienta"
 
 msgid "Port"
 msgstr "Port"
 
 msgid "Protocol"
-msgstr "Protocol"
+msgstr "Protokol"
 
 msgid "Root CA certificate"
-msgstr "Root CA certificate"
+msgstr "Root CA certifikát"
 
 msgid "Server certificate"
-msgstr "Server certificate"
+msgstr "Certifikát serveru"
 
 msgid "Diffie Hellman parameters"
-msgstr "Diffie Hellman parameters"
+msgstr "Parametry Diffie Hellman"
 
 msgid "KeepAlive"
 msgstr "KeepAlive"
 
 msgid "Server log"
-msgstr "Server log"
+msgstr "Protokol serveru"
 
 msgid "Start OpenVPN"
-msgstr "Start OpenVPN"
+msgstr "Spustit OpenVPN"
 
 msgid "Stop OpenVPN"
-msgstr "Stop OpenVPN"
+msgstr "Zastavit OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr "Information provided by openvpn"
+msgstr "Informace získány od openvpn"
 
 msgid "Attempting to start openvpn"
-msgstr "Attempting to start openvpn"
+msgstr "Pokus o spuštění openvpn"
 
 msgid "Attempting to stop openvpn"
-msgstr "Attempting to stop openvpn"
+msgstr "Pokus o zastavení openvpn"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr "TOR is not running"
+msgstr "TOR není spuštěno"
 
 msgid "TOR is running"
-msgstr "TOR is running"
+msgstr "TOR není spuštěn"
 
 msgid "Relay"
-msgstr "Relay"
+msgstr "Přepínač"
 
 msgid "Relay settings"
-msgstr "Relay settings"
+msgstr "Nastavení přepínače"
 
 msgid "Nickname"
-msgstr "Nickname"
+msgstr "Přezdívka"
 
 msgid "Address"
-msgstr "Address"
+msgstr "Adresa"
 
 msgid "Start TOR"
-msgstr "Start TOR"
+msgstr "Spustit TOR"
 
 msgid "Stop TOR"
-msgstr "Stop TOR"
+msgstr "Zastavit TOR"
 
 msgid "Information provided by tor"
-msgstr "Information provided by tor"
+msgstr "Informace získány od tor"
 
 msgid "Attempting to start TOR"
-msgstr "Attempting to start TOR"
+msgstr "Pokus o spuštění TOR"
 
 msgid "Attempting to stop TOR"
-msgstr "Attempting to stop TOR"
+msgstr "Pokus o zastavení TOR"
 
 #: common form controls
 msgid "Save settings"
@@ -628,23 +628,17 @@ msgstr "Uložit nastavení"
 msgid "Refresh"
 msgstr "Znovu načíst"
 
-msgid "Disabled"
-msgstr "Disabled"
-
-msgid "Enabled"
-msgstr "Enabled"
-
 msgid "running"
-msgstr "running"
+msgstr "je spuštěn"
 
 msgid "stopped"
-msgstr "stopped"
+msgstr "zastaveno"
 
 msgid "Remove"
-msgstr "Remove"
+msgstr "Odstranit"
 
 msgid "up"
-msgstr "up"
+msgstr "nahoru"
 
 msgid "down"
-msgstr "down"
+msgstr "dolů"

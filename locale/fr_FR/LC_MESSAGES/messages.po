@@ -136,7 +136,7 @@ msgid "Show"
 msgstr "Montrer"
 
 msgid "Hide"
-msgstr "Masquer"
+msgstr "Dissimuler"
 
 msgid "Not configured"
 msgstr "Pas configuré"
@@ -203,7 +203,7 @@ msgid "Link Quality"
 msgstr "Qualité de lien"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "Informations fournies par ip et iw et system"
+msgstr "Informations fournies par ip et iw, et par le system"
 
 msgid "No MAC Address Found"
 msgstr "Aucune adresse MAC trouvée"
@@ -253,6 +253,12 @@ msgstr "Adresse IP de départ"
 
 msgid "Ending IP Address"
 msgstr "Adresse IP de fin"
+
+msgid "Static Leases"
+msgstr "Bail statique"
+
+msgid "Add static DHCP lease"
+msgstr "Ajouter un bail DHCP statique"
 
 msgid "Lease Time"
 msgstr "Temps de bail"
@@ -385,7 +391,7 @@ msgid "Logfile output"
 msgstr "Sortie de journal"
 
 msgid "WiFi client AP mode"
-msgstr "Mode client WiFi"
+msgstr "Mode AP client WiFi"
 
 msgid "Hide SSID in broadcast"
 msgstr "Masquer le SSID en diffusion"
@@ -398,7 +404,7 @@ msgstr "Configure l'option max_num_sta de hostapd. La valeur par défaut et maxi
 
 #: includes/networking.php
 msgid "Summary"
-msgstr "Résumé"
+msgstr "Sommaire"
 
 msgid "Current settings"
 msgstr "Paramètres actuels"
@@ -410,7 +416,7 @@ msgid "DNS Server"
 msgstr "Serveur DNS"
 
 msgid "Alternate DNS Server"
-msgstr "Autre serveur DNS"
+msgstr "Serveur DNS alternatif"
 
 msgid "Adapter IP Address Settings"
 msgstr "Paramètres d'adresse IP de l'adaptateur"
@@ -428,7 +434,7 @@ msgid "Disabled"
 msgstr "Désactivée"
 
 msgid "Static IP Options"
-msgstr "Options IP statiques"
+msgstr "Options d'IP statique"
 
 msgid "Apply settings"
 msgstr "Appliquer les paramètres"
@@ -438,7 +444,7 @@ msgstr "Informations fournies par /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr "Informations système"
+msgstr "Informations du système"
 
 msgid "Language"
 msgstr "Langue"
@@ -459,7 +465,7 @@ msgid "Hostname"
 msgstr "Nom d'hôte"
 
 msgid "Pi Revision"
-msgstr "Pi Révision"
+msgstr "Révision Pi"
 
 msgid "Uptime"
 msgstr "Durée de fonctionnent"
@@ -474,33 +480,33 @@ msgid "Reboot"
 msgstr "Redémarrer"
 
 msgid "Shutdown"
-msgstr "Fermer"
+msgstr "Arrêt"
 
 msgid "System Rebooting Now!"
-msgstr "Redémarrer le système maintenant!"
+msgstr "Redémarrage du système maintenant !"
 
 msgid "System Shutting Down Now!"
-msgstr "Arrêter le système maintenant!"
+msgstr "Arrêt du système maintenant !"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr "Réglage des thèmes"
+msgstr "Paramètres des thèmes"
 
 msgid "Select a theme"
 msgstr "Sélectionnez un thème"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr "Data usage"
+msgstr "Utilisation des données"
 
 msgid "Data usage monitoring"
-msgstr "Data usage monitoring"
+msgstr "Surveillance de l'utilisation des données"
 
 msgid "Hourly traffic amount"
-msgstr "Hourly traffic amount"
+msgstr "Trafic horaire"
 
 msgid "Daily traffic amount"
-msgstr "Daily traffic amount"
+msgstr "Trafic journalier"
 
 msgid "interface"
 msgstr "interface"
@@ -509,108 +515,108 @@ msgid "date"
 msgstr "date"
 
 msgid "Send MB"
-msgstr "Send MB"
+msgstr "Envoyez les MB"
 
 msgid "Receive MB"
-msgstr "Receive MB"
+msgstr "Recevoir les MB"
 
 msgid "Monthly traffic amount"
-msgstr "Monthly traffic amount"
+msgstr "Trafic mensuel"
 
 msgid "Information provided by vnstat"
-msgstr "Information provided by vnstat"
+msgstr "Informations fournies par vnstat"
 
 msgid "Loading {0} bandwidth chart"
-msgstr "Loading {0} bandwidth chart"
+msgstr "Chargement de {0} graphique de bande passante"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr "Showing {0} to {1} of {2} entries"
+msgstr "Affichage de {0} à {1} des {2} entrées"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr "OpenVPN is not running"
+msgstr "OpenVPN n'est pas en cours d'exécution"
 
 msgid "OpenVPN is running"
-msgstr "OpenVPN is running"
+msgstr "OpenVPN est en cours d'exécution"
 
 msgid "Server settings"
-msgstr "Server settings"
+msgstr "Paramètres du serveur"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Select OpenVPN configuration file (.ovpn)"
+msgstr "Sélectionnez le fichier de configuration OpenVPN (.ovpn)"
 
 msgid "Client Log"
-msgstr "Client Log"
+msgstr "Journal client"
 
 msgid "Port"
 msgstr "Port"
 
 msgid "Protocol"
-msgstr "Protocol"
+msgstr "Protocole"
 
 msgid "Root CA certificate"
-msgstr "Root CA certificate"
+msgstr "Certificat de l'autorité de certification source"
 
 msgid "Server certificate"
-msgstr "Server certificate"
+msgstr "Certificat du serveur"
 
 msgid "Diffie Hellman parameters"
-msgstr "Diffie Hellman parameters"
+msgstr "Paramètres Diffie Hellman"
 
 msgid "KeepAlive"
 msgstr "KeepAlive"
 
 msgid "Server log"
-msgstr "Server log"
+msgstr "Journal du serveur"
 
 msgid "Start OpenVPN"
-msgstr "Start OpenVPN"
+msgstr "Démarrer OpenVPN"
 
 msgid "Stop OpenVPN"
-msgstr "Stop OpenVPN"
+msgstr "Arrêter OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr "Information provided by openvpn"
+msgstr "Informations fournies par openvpn"
 
 msgid "Attempting to start openvpn"
-msgstr "Attempting to start openvpn"
+msgstr "Essai de démarrage d'openvpn"
 
 msgid "Attempting to stop openvpn"
-msgstr "Attempting to stop openvpn"
+msgstr "Essai d'arrêt d'openvpn"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr "TOR is not running"
+msgstr "TOR n'est pas en cours d'exécution"
 
 msgid "TOR is running"
-msgstr "TOR is running"
+msgstr "TOR est en cours d'exécution"
 
 msgid "Relay"
-msgstr "Relay"
+msgstr "Relais"
 
 msgid "Relay settings"
-msgstr "Relay settings"
+msgstr "Paramètres du relais"
 
 msgid "Nickname"
-msgstr "Nickname"
+msgstr "Surnom"
 
 msgid "Address"
-msgstr "Address"
+msgstr "Adresse"
 
 msgid "Start TOR"
-msgstr "Start TOR"
+msgstr "Démarrer TOR"
 
 msgid "Stop TOR"
-msgstr "Stop TOR"
+msgstr "Démarrer TOR"
 
 msgid "Information provided by tor"
-msgstr "Information provided by tor"
+msgstr "Informations fournies par TOR"
 
 msgid "Attempting to start TOR"
-msgstr "Attempting to start TOR"
+msgstr "Essai de démarrage de TOR"
 
 msgid "Attempting to stop TOR"
-msgstr "Attempting to stop TOR"
+msgstr "Essai d'arrêt de TOR"
 
 #: common form controls
 msgid "Save settings"
@@ -619,23 +625,17 @@ msgstr "Enregistrer les paramètres"
 msgid "Refresh"
 msgstr "Recharger"
 
-msgid "Disabled"
-msgstr "Disabled"
-
-msgid "Enabled"
-msgstr "Enabled"
-
 msgid "running"
-msgstr "running"
+msgstr "en cours d'exécution"
 
 msgid "stopped"
-msgstr "stopped"
+msgstr "arrêté"
 
 msgid "Remove"
-msgstr "Remove"
+msgstr "arrêté"
 
 msgid "up"
-msgstr "up"
+msgstr "vers le haut"
 
 msgid "down"
-msgstr "down"
+msgstr "vers le bas"

@@ -59,9 +59,12 @@ msgid "System"
 msgstr "System"
 
 msgid "About RaspAP"
-msgstr "About RaspAP"
+msgstr "Om RaspAP"
 
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Autentiseringsinställningar"
+
 msgid "New passwords do not match"
 msgstr "Nya lösenord matchar ej"
 
@@ -130,13 +133,13 @@ msgid "Delete"
 msgstr "Ta bort"
 
 msgid "Show"
-msgstr "Show"
+msgstr "Visa"
 
 msgid "Hide"
-msgstr "Hide"
+msgstr "Dölj"
 
 msgid "Not configured"
-msgstr "Not configured"
+msgstr "Inte konfigurerad"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Notera:</strong> WEP åtkomstpunkter visas som 'Öppna'. RaspAP stödjer närvarande inte anslutning till WEP"
@@ -149,10 +152,10 @@ msgid "Interface Name"
 msgstr "Gränssnittsnamn"
 
 msgid "IPv4 Address"
-msgstr "IPv4 Adress"
+msgstr "IPv4-adress"
 
 msgid "IPv6 Address"
-msgstr "IPv6 Adress"
+msgstr "IPv6-adress"
 
 msgid "Subnet Mask"
 msgstr "Subnet Mask"
@@ -200,7 +203,7 @@ msgid "Link Quality"
 msgstr "Länkkvalitet"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "Information tillhandahållen av ip och iw"
+msgstr "Information tillhandahållen av ip, iw och systemet"
 
 msgid "No MAC Address Found"
 msgstr "Ingen MAC Adress Hittad"
@@ -237,7 +240,7 @@ msgstr "Anslutna Enheter"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr "DHCP server inställningar"
+msgstr "Inställningar för DHCP-server"
 
 msgid "Client list"
 msgstr "Klient lista"
@@ -252,10 +255,10 @@ msgid "Ending IP Address"
 msgstr "Ending IP Adress"
 
 msgid "Static Leases"
-msgstr "Static Leases"
+msgstr "Statisk leasing"
 
 msgid "Add static DHCP lease"
-msgstr "Add static DHCP lease"
+msgstr "Lägg till statisk DHCP-leasing"
 
 msgid "Lease Time"
 msgstr "Lease Tid"
@@ -391,16 +394,16 @@ msgid "Logfile output"
 msgstr "Logfilutskrift"
 
 msgid "WiFi client AP mode"
-msgstr "WiFi client AP mode"
+msgstr "AP-läge för wifi-klient"
 
 msgid "Hide SSID in broadcast"
-msgstr "Hide SSID in broadcast"
+msgstr "Dölj SSID i sändning"
 
 msgid "Maximum number of clients"
-msgstr "Maximum number of clients"
+msgstr "Maximalt antal klienter"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Konfigurerar alternativet max_num_sta för hostapd. Ordinarie och maximalt är 2007. Tomt eller 0 innebär att ordinarie värde gäller."
 
 #: includes/networking.php
 msgid "Summary"
@@ -497,151 +500,145 @@ msgstr "Välj ett tema"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr "Data usage"
+msgstr "Dataanvändning"
 
 msgid "Data usage monitoring"
-msgstr "Data usage monitoring"
+msgstr "Bevakning av dataanvändning"
 
 msgid "Hourly traffic amount"
-msgstr "Hourly traffic amount"
+msgstr "Trafik per timme"
 
 msgid "Daily traffic amount"
-msgstr "Daily traffic amount"
-
-msgid "interface"
-msgstr "interface"
-
-msgid "date"
-msgstr "date"
-
-msgid "Send MB"
-msgstr "Send MB"
-
-msgid "Receive MB"
-msgstr "Receive MB"
+msgstr "Daglig trafik"
 
 msgid "Monthly traffic amount"
-msgstr "Monthly traffic amount"
+msgstr "Månatlig trafik"
+
+msgid "interface"
+msgstr "gränssnitt"
+
+msgid "date"
+msgstr "datum"
+
+msgid "Send MB"
+msgstr "Skicka MB"
+
+msgid "Receive MB"
+msgstr "Ta emot MB"
 
 msgid "Information provided by vnstat"
-msgstr "Information provided by vnstat"
+msgstr "Information tillhandahållen av vnstat"
 
 msgid "Loading {0} bandwidth chart"
-msgstr "Loading {0} bandwidth chart"
+msgstr "Laddar diagram med bandbredd för {0}"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr "Showing {0} to {1} of {2} entries"
+msgstr "Visar {0} till {1} av {2} inlägg"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr "OpenVPN is not running"
+msgstr "OpenVPN körs inte"
 
 msgid "OpenVPN is running"
-msgstr "OpenVPN is running"
+msgstr "OpenVPN körs"
 
 msgid "Server settings"
-msgstr "Server settings"
+msgstr "Serverinställningar"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Select OpenVPN configuration file (.ovpn)"
+msgstr "Välj konfigurationsfil för OpenVPN (.ovpn)"
 
 msgid "Client Log"
-msgstr "Client Log"
+msgstr "Klientlogg"
 
 msgid "Port"
 msgstr "Port"
 
 msgid "Protocol"
-msgstr "Protocol"
+msgstr "Protokoll"
 
 msgid "Root CA certificate"
-msgstr "Root CA certificate"
+msgstr "Root CA-certifikat"
 
 msgid "Server certificate"
-msgstr "Server certificate"
+msgstr "Servercertifikat"
 
 msgid "Diffie Hellman parameters"
-msgstr "Diffie Hellman parameters"
+msgstr "Diffie Hellman-parametrar"
 
 msgid "KeepAlive"
-msgstr "KeepAlive"
+msgstr "Håll vid liv"
 
 msgid "Server log"
-msgstr "Server log"
+msgstr "Serverlogg"
 
 msgid "Start OpenVPN"
-msgstr "Start OpenVPN"
+msgstr "Starts OpenVPN"
 
 msgid "Stop OpenVPN"
-msgstr "Stop OpenVPN"
+msgstr "Stoppa OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr "Information provided by openvpn"
+msgstr "Information tillhandahållen av openvpn"
 
 msgid "Attempting to start openvpn"
-msgstr "Attempting to start openvpn"
+msgstr "Försöker starta openvpn"
 
 msgid "Attempting to stop openvpn"
-msgstr "Attempting to stop openvpn"
+msgstr "Försöker stoppa openvpn"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr "TOR is not running"
+msgstr "TOR körs inte"
 
 msgid "TOR is running"
-msgstr "TOR is running"
+msgstr "TOR körs"
 
 msgid "Relay"
-msgstr "Relay"
+msgstr "Relä"
 
 msgid "Relay settings"
-msgstr "Relay settings"
+msgstr "Reläinställningar"
 
 msgid "Nickname"
-msgstr "Nickname"
+msgstr "Smeknamn"
 
 msgid "Address"
-msgstr "Address"
+msgstr "Adress"
 
 msgid "Start TOR"
-msgstr "Start TOR"
+msgstr "Starta TOR"
 
 msgid "Stop TOR"
-msgstr "Stop TOR"
+msgstr "Stoppa TOR"
 
 msgid "Information provided by tor"
-msgstr "Information provided by tor"
+msgstr "Information tillhandahållen av tor"
 
 msgid "Attempting to start TOR"
-msgstr "Attempting to start TOR"
+msgstr "Försöker starta TOR"
 
 msgid "Attempting to stop TOR"
-msgstr "Attempting to stop TOR"
+msgstr "Försöker stoppa TOR"
 
 #: common form controls
 msgid "Save settings"
 msgstr "Spara inställningar"
 
 msgid "Refresh"
-msgstr "Uppdatera"
-
-msgid "Disabled"
-msgstr "Disabled"
-
-msgid "Enabled"
-msgstr "Enabled"
+msgstr "Ladda om"
 
 msgid "running"
-msgstr "running"
+msgstr "körs"
 
 msgid "stopped"
-msgstr "stopped"
+msgstr "stoppad"
 
 msgid "Remove"
-msgstr "Remove"
+msgstr "Ta bort"
 
 msgid "up"
-msgstr "up"
+msgstr "upp"
 
 msgid "down"
-msgstr "down"
+msgstr "ned"

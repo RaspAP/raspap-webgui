@@ -59,11 +59,11 @@ msgid "System"
 msgstr "系统"
 
 msgid "About RaspAP"
-msgstr "About RaspAP"
+msgstr "关于RaspAP"
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr "Authentication settings"
+msgstr "验证设置"
 
 msgid "New passwords do not match"
 msgstr "两次密码不相同"
@@ -133,13 +133,13 @@ msgid "Delete"
 msgstr "删除"
 
 msgid "Show"
-msgstr "Show"
+msgstr "显示"
 
 msgid "Hide"
-msgstr "Hide"
+msgstr "隐藏"
 
 msgid "Not configured"
-msgstr "Not configured"
+msgstr "未配置"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>提示:</strong> 若目标热点已打开WEP登录验证，本程序将不支持连接到此类网络"
@@ -203,7 +203,7 @@ msgid "Link Quality"
 msgstr "连接质量"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "信息由 ip 和 iw 和 系统 提供"
+msgstr "ip和iw以及系统所提供的信息"
 
 msgid "No MAC Address Found"
 msgstr "没有找到MAC地址"
@@ -240,16 +240,13 @@ msgstr "连接设备"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr "服务设置"
+msgstr "DHCP服务器设置"
 
 msgid "Client list"
 msgstr "客户端列表"
 
 msgid "Interface"
 msgstr "接口"
-
-msgid "DNS Server"
-msgstr "DNS Server"
 
 msgid "Starting IP Address"
 msgstr "起始IP地址"
@@ -258,7 +255,10 @@ msgid "Ending IP Address"
 msgstr "终止IP地址"
 
 msgid "Static Leases"
-msgstr "Static Leases"
+msgstr "静态租赁"
+
+msgid "Add static DHCP lease"
+msgstr "添加静态DHCP租约"
 
 msgid "Lease Time"
 msgstr "租约时间"
@@ -394,20 +394,20 @@ msgid "Logfile output"
 msgstr "log信息输出"
 
 msgid "WiFi client AP mode"
-msgstr "WiFi client AP mode"
+msgstr "无线网客户端AP模式"
 
 msgid "Hide SSID in broadcast"
-msgstr "Hide SSID in broadcast"
+msgstr "在广播中隐藏SSID"
 
 msgid "Maximum number of clients"
-msgstr "Maximum number of clients"
+msgstr "客户端最大数量"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "设置hostapd上的max_num_sta选项。默认值和最大值是2007。如果为空或为0，则应用默认值。"
 
 #: includes/networking.php
 msgid "Summary"
-msgstr "简报"
+msgstr "摘要"
 
 msgid "Current settings"
 msgstr "当前设置"
@@ -422,19 +422,19 @@ msgid "Alternate DNS Server"
 msgstr "备用DNS服务器"
 
 msgid "Adapter IP Address Settings"
-msgstr "IP设置"
+msgstr "适配器IP地址设置"
 
 msgid "Enable Fallback to Static Option"
-msgstr "允许回退静态设置"
+msgstr "启用退回静态的选项"
 
 msgid "Static IP"
 msgstr "静态IP"
 
 msgid "Enabled"
-msgstr "启用"
+msgstr "已启用"
 
 msgid "Disabled"
-msgstr "禁用"
+msgstr "已禁用"
 
 msgid "Static IP Options"
 msgstr "静态IP设置"
@@ -456,7 +456,7 @@ msgid "Language settings"
 msgstr "语言设置"
 
 msgid "Select a language"
-msgstr "请选择一种语言"
+msgstr "选择一种语言"
 
 msgid "Language setting saved"
 msgstr "语言设置已保存"
@@ -477,39 +477,42 @@ msgid "Memory Used"
 msgstr "内存占用"
 
 msgid "CPU Load"
-msgstr "CPU占用"
+msgstr "CPU负荷"
 
 msgid "Reboot"
 msgstr "重启"
 
 msgid "Shutdown"
-msgstr "关机"
+msgstr "关闭"
 
 msgid "System Rebooting Now!"
-msgstr "重启中！"
+msgstr "系统现在正在重启！"
 
 msgid "System Shutting Down Now!"
-msgstr "关机中！"
+msgstr "系统现在正在关闭！"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr "主题中心"
+msgstr "主题设置"
 
 msgid "Select a theme"
-msgstr "请选择一个主题"
+msgstr "选择一个主题"
 
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "数据使用量"
 
 msgid "Data usage monitoring"
-msgstr "流量监控"
+msgstr "数据用量监控"
 
 msgid "Hourly traffic amount"
-msgstr "Hourly traffic amount"
+msgstr "每小时流量"
 
 msgid "Daily traffic amount"
 msgstr "每日流量统计"
+
+msgid "Monthly traffic amount"
+msgstr "每月流量统计"
 
 msgid "interface"
 msgstr "接口"
@@ -523,128 +526,119 @@ msgstr "发送数据 (MB)"
 msgid "Receive MB"
 msgstr "接收数据 (MB)"
 
-msgid "Monthly traffic amount"
-msgstr "每月流量统计"
-
 msgid "Information provided by vnstat"
-msgstr "信息由 vnstat 提供"
+msgstr "vnstat所提供的信息"
 
 msgid "Loading {0} bandwidth chart"
-msgstr "{0}流量状态加载中"
+msgstr "正加载{0}带宽图"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr "加载{2}条记录中的{0}到{1}条"
+msgstr "正显示{2}个条目中的{0}至{1}条目"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr "OpenVPN is not running"
+msgstr "OpenVPN不在运行"
 
 msgid "OpenVPN is running"
-msgstr "OpenVPN is running"
+msgstr "OpenVPN正在运行"
 
 msgid "Server settings"
-msgstr "Server settings"
+msgstr "服务器设置"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Select OpenVPN configuration file (.ovpn)"
+msgstr "选择OpenVPN设置文件（.ovpn）"
 
 msgid "Client Log"
-msgstr "Client Log"
+msgstr "客户端日志"
 
 msgid "Port"
-msgstr "Port"
+msgstr "端口"
 
 msgid "Protocol"
-msgstr "Protocol"
+msgstr "协议"
 
 msgid "Root CA certificate"
-msgstr "Root CA certificate"
+msgstr "CA机构的根证书"
 
 msgid "Server certificate"
-msgstr "Server certificate"
+msgstr "服务器证书"
 
 msgid "Diffie Hellman parameters"
-msgstr "Diffie Hellman parameters"
+msgstr "迪菲-赫尔曼参数"
 
 msgid "KeepAlive"
-msgstr "KeepAlive"
+msgstr "保持活跃"
 
 msgid "Server log"
-msgstr "Server log"
+msgstr "服务器日志"
 
 msgid "Start OpenVPN"
-msgstr "Start OpenVPN"
+msgstr "启动OpenVPN"
 
 msgid "Stop OpenVPN"
-msgstr "Stop OpenVPN"
+msgstr "停止OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr "Information provided by openvpn"
+msgstr "openvpn所提供的信息"
 
 msgid "Attempting to start openvpn"
-msgstr "Attempting to start openvpn"
+msgstr "正尝试启动openvpn"
 
 msgid "Attempting to stop openvpn"
-msgstr "Attempting to stop openvpn"
+msgstr "正尝试停止openvpn"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr "TOR is not running"
+msgstr "TOR不在运行"
 
 msgid "TOR is running"
-msgstr "TOR is running"
+msgstr "TOR正在运行"
 
 msgid "Relay"
-msgstr "Relay"
+msgstr "中继"
 
 msgid "Relay settings"
-msgstr "Relay settings"
+msgstr "中继设置"
 
 msgid "Nickname"
-msgstr "Nickname"
+msgstr "昵称"
 
 msgid "Address"
-msgstr "Address"
+msgstr "地址"
 
 msgid "Start TOR"
-msgstr "Start TOR"
+msgstr "开启TOR"
 
 msgid "Stop TOR"
-msgstr "Stop TOR"
+msgstr "停止TOR"
 
 msgid "Information provided by tor"
-msgstr "Information provided by tor"
+msgstr "tor提供的信息"
 
 msgid "Attempting to start TOR"
-msgstr "Attempting to start TOR"
+msgstr "正尝试启动TOR"
 
 msgid "Attempting to stop TOR"
-msgstr "Attempting to stop TOR"
+msgstr "正尝试停止TOR"
 
 #: common form controls
 msgid "Save settings"
-msgstr "保存"
+msgstr "保存设置"
 
 msgid "Refresh"
 msgstr "刷新"
 
-msgid "Disabled"
-msgstr "Disabled"
-
-msgid "Enabled"
-msgstr "Enabled"
-
 msgid "running"
-msgstr "running"
+msgstr "运行中"
 
 msgid "stopped"
-msgstr "stopped"
+msgstr "已停止"
 
 msgid "Remove"
-msgstr "Remove"
+msgstr "移除"
 
 msgid "up"
-msgstr "up"
+msgstr "上"
 
 msgid "down"
-msgstr "down"
+msgstr "下"

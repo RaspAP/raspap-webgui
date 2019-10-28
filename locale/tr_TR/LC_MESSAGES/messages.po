@@ -59,9 +59,12 @@ msgid "System"
 msgstr "Sistem"
 
 msgid "About RaspAP"
-msgstr "About RaspAP"
+msgstr "RaspAP Hakkında"
 
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Kimlik Denetleme ayarları"
+
 msgid "New passwords do not match"
 msgstr "Yeni şifreler uyuşmuyor"
 
@@ -130,13 +133,13 @@ msgid "Delete"
 msgstr "Sil"
 
 msgid "Show"
-msgstr "Show"
+msgstr "Göster"
 
 msgid "Hide"
-msgstr "Hide"
+msgstr "Gizle"
 
 msgid "Not configured"
-msgstr "Not configured"
+msgstr "Ayarlanmamış"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Note:</strong> WEP erişim noktası 'Açık' gözüküyor. RaspAP şu anda WEP bağlantısını desteklemiyor"
@@ -200,7 +203,7 @@ msgid "Link Quality"
 msgstr "Bağlantı Kalitesi"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "ip ve iw tarafından sağlanan bilgiler"
+msgstr "Ip ve iw tarafından ve sistemden verilen bilgiler"
 
 msgid "No MAC Address Found"
 msgstr "MAC adresi bulunamadı"
@@ -243,7 +246,7 @@ msgid "Client list"
 msgstr "İstemci listesi"
 
 msgid "Interface"
-msgstr "Interface"
+msgstr "Arayüz"
 
 msgid "Starting IP Address"
 msgstr "Başlangıc IP Adresi"
@@ -252,10 +255,10 @@ msgid "Ending IP Address"
 msgstr "Ending IP Adresi"
 
 msgid "Static Leases"
-msgstr "Static Leases"
+msgstr "Statik Kiralamalar"
 
 msgid "Add static DHCP lease"
-msgstr "Add static DHCP lease"
+msgstr "Statik DHCP kiralaması ekle"
 
 msgid "Lease Time"
 msgstr "Kira Zamanı"
@@ -391,16 +394,16 @@ msgid "Logfile output"
 msgstr "Günlük dosyası çıkışı"
 
 msgid "WiFi client AP mode"
-msgstr "WiFi client AP mode"
+msgstr "WiFi istemcisi AP modu"
 
 msgid "Hide SSID in broadcast"
-msgstr "Hide SSID in broadcast"
+msgstr "Yayında SSID'yi gizle"
 
 msgid "Maximum number of clients"
-msgstr "Maximum number of clients"
+msgstr "Maksimum istemci sayısı"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Hostapd'ın max_num_sta seçeneğini yapılandırır. Varsayılan ve maksimum 2007'dir. Boşsa veya 0 ise, varsayılan geçerlidir."
 
 #: includes/networking.php
 msgid "Summary"
@@ -422,7 +425,7 @@ msgid "Adapter IP Address Settings"
 msgstr "Adaptör IP Adresi Ayarları"
 
 msgid "Enable Fallback to Static Option"
-msgstr "İstatiklere çekilme ayarını etkinleştir"
+msgstr "Statik Seçeneğe Geri Dönüşü Etkinleştir"
 
 msgid "Static IP"
 msgstr "Statik IP"
@@ -465,7 +468,7 @@ msgid "Hostname"
 msgstr "Sunucu adı"
 
 msgid "Pi Revision"
-msgstr "Pi revizyonu"
+msgstr "Pi Revizyonu"
 
 msgid "Uptime"
 msgstr "Çalışma süresi"
@@ -493,7 +496,7 @@ msgid "Theme settings"
 msgstr "Tema ayarları"
 
 msgid "Select a theme"
-msgstr "Bir tema se."
+msgstr "Bir tema seçin"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -503,10 +506,13 @@ msgid "Data usage monitoring"
 msgstr "Veri kullanımını izle"
 
 msgid "Hourly traffic amount"
-msgstr "Hourly traffic amount"
+msgstr "Saatlik trafik miktarı"
 
 msgid "Daily traffic amount"
 msgstr "Günlük trafik miktarı"
+
+msgid "Monthly traffic amount"
+msgstr "Aylık trafik miktarı"
 
 msgid "interface"
 msgstr "arayüz"
@@ -520,9 +526,6 @@ msgstr "Gönderilen MB"
 msgid "Receive MB"
 msgstr "Alınan MB"
 
-msgid "Monthly traffic amount"
-msgstr "Aylık trafik miktarı"
-
 msgid "Information provided by vnstat"
 msgstr "Bilgi vnstat tarafından sağlandı"
 
@@ -534,89 +537,89 @@ msgstr "{2} girdiden {0} ve {1} arası gösteriliyor"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr "OpenVPN is not running"
+msgstr "OpenVPN çalışmıyor"
 
 msgid "OpenVPN is running"
-msgstr "OpenVPN is running"
+msgstr "OpenVPN çalışıyor"
 
 msgid "Server settings"
-msgstr "Server settings"
+msgstr "Sunucu ayarları"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Select OpenVPN configuration file (.ovpn)"
+msgstr "OpenVPN yapılandırma dosyasını seçin (.ovpn)"
 
 msgid "Client Log"
-msgstr "Client Log"
+msgstr "İstemci Günlüğü"
 
 msgid "Port"
 msgstr "Port"
 
 msgid "Protocol"
-msgstr "Protocol"
+msgstr "Protokol"
 
 msgid "Root CA certificate"
-msgstr "Root CA certificate"
+msgstr "Root CA sertifikası"
 
 msgid "Server certificate"
-msgstr "Server certificate"
+msgstr "Sunucu sertifikası"
 
 msgid "Diffie Hellman parameters"
-msgstr "Diffie Hellman parameters"
+msgstr "Diffie Hellman parametreleri"
 
 msgid "KeepAlive"
 msgstr "KeepAlive"
 
 msgid "Server log"
-msgstr "Server log"
+msgstr "Sunucu günlüğü"
 
 msgid "Start OpenVPN"
-msgstr "Start OpenVPN"
+msgstr "OpenVPN'i başlat"
 
 msgid "Stop OpenVPN"
-msgstr "Stop OpenVPN"
+msgstr "OpenVPN'i durdur"
 
 msgid "Information provided by openvpn"
-msgstr "Information provided by openvpn"
+msgstr "Openvpn tarafından sağlanan bilgiler"
 
 msgid "Attempting to start openvpn"
-msgstr "Attempting to start openvpn"
+msgstr "Openvpn başlatılmaya çalışıyor"
 
 msgid "Attempting to stop openvpn"
-msgstr "Attempting to stop openvpn"
+msgstr "Openvpn durdurulmaya çalışılıyor"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr "TOR is not running"
+msgstr "TOR çalışmıyor"
 
 msgid "TOR is running"
-msgstr "TOR is running"
+msgstr "TOR çalışıyor"
 
 msgid "Relay"
-msgstr "Relay"
+msgstr "İleti anahtarlama"
 
 msgid "Relay settings"
-msgstr "Relay settings"
+msgstr "İleti anahtarlama ayarları"
 
 msgid "Nickname"
-msgstr "Nickname"
+msgstr "Takma Ad"
 
 msgid "Address"
-msgstr "Address"
+msgstr "Adres"
 
 msgid "Start TOR"
-msgstr "Start TOR"
+msgstr "TOR'u başlat"
 
 msgid "Stop TOR"
-msgstr "Stop TOR"
+msgstr "TOR'u durdur"
 
 msgid "Information provided by tor"
-msgstr "Information provided by tor"
+msgstr "Tor tarafından sağlanan bilgiler"
 
 msgid "Attempting to start TOR"
-msgstr "Attempting to start TOR"
+msgstr "TOR başlatılmaya çalışılıyor"
 
 msgid "Attempting to stop TOR"
-msgstr "Attempting to stop TOR"
+msgstr "TOR durdurulmaya çalışılıyor"
 
 #: common form controls
 msgid "Save settings"
@@ -625,23 +628,17 @@ msgstr "Ayarları kaydet"
 msgid "Refresh"
 msgstr "Yenile"
 
-msgid "Disabled"
-msgstr "Disabled"
-
-msgid "Enabled"
-msgstr "Enabled"
-
 msgid "running"
-msgstr "running"
+msgstr "çalışıyor"
 
 msgid "stopped"
-msgstr "stopped"
+msgstr "durduruldu"
 
 msgid "Remove"
-msgstr "Remove"
+msgstr "Kaldır"
 
 msgid "up"
-msgstr "up"
+msgstr "hazır"
 
 msgid "down"
-msgstr "down"
+msgstr "kapalı"
