@@ -198,12 +198,3 @@ pre.unstyled {
   font-size: 0.9rem!important;
 }
 
-/* change transition animation when sidebar is toggled */
-#accordionSidebar.toggled {
-  -webkit-transition-timing-function: ease;
-       -o-transition-timing-function: ease;
-          transition-timing-function: ease;
-  -webkit-transition-duration: .2s;
-       -o-transition-duration: .2s;
-          transition-duration: .2s;
-
