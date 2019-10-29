@@ -47,7 +47,7 @@ if (!isset($_COOKIE['theme'])) {
 }
 $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 
-if ($_COOKIE['sidebar'] == 'true' ) {
+if ($_COOKIE['sidebarToggled'] == 'true' ) {
     $toggleState = "toggled";
 }
 
@@ -170,7 +170,7 @@ if ($_COOKIE['sidebar'] == 'true' ) {
 	<hr class="sidebar-divider d-none d-md-block">
 
 	<!-- Sidebar Toggler (Sidebar) -->
-	<div class="text-center d-none d-md-inline">
+	<div class="text-center d-none d-md-block">
 	  <button class="rounded-circle border-0" id="sidebarToggle"></button>
 	</div>
 
