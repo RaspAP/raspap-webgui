@@ -178,6 +178,12 @@ pre.unstyled {
   min-width: 10rem;
 }
 
+.sidebar.toggled .nav-item .nav-link {
+  text-align: center;
+  padding: .6rem 1rem;
+  width: 6.5rem;
+}
+
 .sidebar.toggled .nav-item .nav-link span {
   display: none;
 } .sidebar .nav-item .nav-link i,

@@ -85,8 +85,8 @@ h5.card-title {
 }
 
 .sidebar-brand-icon {
-  visibility: collapse;
-  width: 0px;
+  filter: invert(65%) sepia(900%) saturate(536%) hue-rotate(68deg) brightness(100%) contrast(120%);
+  width: 30px;
 }
 
 a:focus, a:hover {
@@ -155,6 +155,16 @@ hr {
 
 .sidebar-light #sidebarToggle:hover {
   background-color: #81ff61;
+}
+
+.sidebar.toggled .nav-item .nav-link span {
+  display: none;
+}
+
+.sidebar.toggled .nav-item .nav-link {
+  text-align: center;
+  padding: .6rem 1rem;
+  width: 6.5rem;
 }
 
 .card-footer {
