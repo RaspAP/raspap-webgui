@@ -269,19 +269,23 @@ $("#sidebarToggleTopbar").on('click', function(e) {
 $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
     var toggled = $(".sidebar").hasClass("toggled");
     // Persist state in cookie
-    setCookie('sidebar',toggled, 90);
+    setCookie('sidebarToggled',toggled, 90);
 });
 
 $(function() {
     if ($(window).width() < 768) {
         $('.sidebar').addClass('toggled');
+        setCookie('sidebarToggled',false, 90);
     }
 });
 
 $(window).on("load resize",function(e) {
     if ($(window).width() > 768) {
-      $('.sidebar').removeClass('d-none d-md-block');
-    };
+        $('.sidebar').removeClass('d-none d-md-block');
+        if (getCookie('sidebarToggled') == 'false') {
+            $('.sidebar').removeClass('toggled');
+        }
+    }
 });
 
 // Adds active class to current nav-item
