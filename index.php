@@ -45,8 +45,11 @@ if (!isset($_COOKIE['theme'])) {
 } else {
     $theme = $_COOKIE['theme'];
 }
-
 $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
+
+if ($_COOKIE['sidebar'] == 'true' ) {
+    $toggleState = "toggled";
+}
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -99,7 +102,7 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-      <ul class="navbar-nav sidebar sidebar-light d-none d-md-block accordion" id="accordionSidebar">
+      <ul class="navbar-nav sidebar sidebar-light d-none d-md-block accordion <?php echo $toggleState; ?>" id="accordionSidebar">
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?page=wlan0_info">
           <div class="sidebar-brand-icon">
@@ -288,8 +291,10 @@ $theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
+    <?php if ($page == "wlan0_info") { ?>
     <!-- Link Quality Chart -->
     <script src="app/js/linkquality.js"></script>
+    <?php }; ?>
 
   <?php
   // Load non default JS/ECMAScript in footer.
