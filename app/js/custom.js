@@ -280,7 +280,7 @@ $(function() {
 
 $(window).on("load resize",function(e) {
     if ($(window).width() > 768) {
-      $('.sidebar').removeClass('d-none d-md-block toggled');
+      $('.sidebar').removeClass('d-none d-md-block');
     };
 });
 
