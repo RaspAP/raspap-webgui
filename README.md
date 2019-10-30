@@ -184,6 +184,10 @@ The following translations are currently maintained by the project:
 - Svenska
 - Nederlands
 - 简体中文 (Chinese Simplified)
+- Indonesian
+- 한국어 (Korean)
+- 日本語 (Japanese)
+- Tiếng Việt (Vietnamese)
 - Čeština
 - Русский
 - Español
