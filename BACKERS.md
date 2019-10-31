@@ -1,15 +1,12 @@
-# RaspAP Backers
+# RaspAP Sponors 
 
-Development of RaspAP is made possible thanks to our awesome backers!
-You can join them by [pledging on Patreon](https://www.patreon.com/billz).
+Development of RaspAP is made possible thanks to our awesome sponsors!
+You can join them by [becoming a sponsor](https://github.com/sponsors/billz).
 
-### $25+
+### 💖 Benefactors
 
-### $5+
-- l4ckyguy
+### 🏆 Gilded supporters 
 
-### $1+
-- Yaniv Eliash
+### 🤖 Robot fuelers 
 
-### Anonymous Supporters
-
+### ☕️  Coffee supporters 
