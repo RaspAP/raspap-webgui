@@ -291,7 +291,7 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
-    <?php if ($page == "wlan0_info") { ?>
+    <?php if ($page == "wlan0_info" || !isset($page)) { ?>
     <!-- Link Quality Chart -->
     <script src="app/js/linkquality.js"></script>
     <?php }; ?>
