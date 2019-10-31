@@ -1,7 +1,7 @@
 {
     "title": "RaspAP WiFi Configuration Portal",
     "name": "raspap-webgui",
-    "version": "1.6.1",
+    "version": "2.0",
     "scripts": {
         "start": "node_modules/.bin/gulp watch"
     },
