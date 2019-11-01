@@ -106,7 +106,7 @@ function DisplayDHCPConfig()
         }
     }
 
-    $serviceStatus = $dnsmasq_state ? "running" : "stopped";
+    $serviceStatus = $dnsmasq_state ? "up" : "down";
 
     exec('cat '. RASPI_DNSMASQ_CONFIG, $return);
     $conf = ParseConfig($return);
