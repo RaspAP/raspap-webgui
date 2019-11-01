@@ -29,6 +29,17 @@ h5.card-title {
   background-color: #000;
 }
 
+/* Small devices (portait phones, up to 576px) */
+@media (max-width: 576px) {
+  .container-fluid, .card-body, .col-md-6 { padding-left: 0.5rem; padding-right: 0.5rem; }
+  .card .card-header { padding: .75rem .5rem; font-size: 1.0rem; }
+  .row { margin-left: 0rem; margin-right: 0rem; }
+  .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
+  .form-group.col-md-6 { margin-left: -0.5rem; }
+  .js-wifi-stations { margin-left: -0.5rem; margin-right: -0.5rem; }
+  h4.mt-3 { margin-left: 0.5rem; }
+}
+
 .topbar {
   background-color: #000;
 }
@@ -113,7 +124,6 @@ a:focus, a:hover {
 
 .col {
   color: #000;
-  font-size: 1.2rem;
 }
 
 .card, .card-body {
@@ -341,12 +351,17 @@ tspan, rect {
   border-width: 0;
 }
 
-.service-status-running {
-  color: green;
+span.text.service-status {
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
 }
 
-.service-status-stopped {
-  color: red;
+i.fas.fa-circle.service-status-up {
+  color: #2ee600;
+}
+
+i.fas.fa-circle.service-status-down {
+  color: #2ee600;
   animation: flash 1s linear infinite;
 }
 @keyframes flash {
