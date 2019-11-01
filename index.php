@@ -189,16 +189,15 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
 	      <i class="fa fa-bars"></i>
 	    </button>
 	    <!-- Topbar Navbar -->
-
 	    <p class="text-left brand-title mt-3 ml-2"><?php //echo _("WiFi Configuration Portal"); ?></p>
 	    <ul class="navbar-nav ml-auto">
 	      <div class="topbar-divider d-none d-sm-block"></div>
 	      <!-- Nav Item - User -->
 	      <li class="nav-item dropdown no-arrow">
-					<a class="nav-link" href="index.php?page=auth_conf">
-						<span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
-						<i class="fas fa-user-circle fa-3x"></i>
-					</a>
+		<a class="nav-link" href="index.php?page=auth_conf">
+		  <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
+		  <i class="fas fa-user-circle fa-3x"></i>
+		</a>
 	      </li>
 	    </ul>
 	  </nav>
