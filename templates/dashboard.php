@@ -6,8 +6,7 @@ if ($arrHostapdConf['WifiAPEnable'] == 1) {
     $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
 }
 exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
-$ifaceStatus = $wlan0up ? "running" : "stopped";
-$ifaceLabel = $wlan0up ? "up" : "down";
+$ifaceStatus = $wlan0up ? "up" : "down";
 ?>
 <div class="row">
   <div class="col-lg-12">
@@ -20,7 +19,7 @@ $ifaceLabel = $wlan0up ? "up" : "down";
 	  <div class="col">
 	    <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
 	      <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-	      <span class="text service-status"><?php echo strtolower($client_iface) .' '. _($ifaceLabel) ?></span>
+	      <span class="text service-status"><?php echo strtolower($client_iface) .' '. _($ifaceStatus) ?></span>
 	    </button>
 	  </div>
         </div><!-- /.row -->
@@ -40,7 +39,7 @@ $ifaceLabel = $wlan0up ? "up" : "down";
                 <div class="info-item"><?php echo _("Link Quality"); ?></div>
                 <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
                 <div class="chart-pie pt-5">
-                  <canvas id="canvas" xwidth="662" xheight="430" class="chartjs-render-monitor"></canvas>
+                  <canvas id="canvas" class="chartjs-render-monitor"></canvas>
                 </div>
              </div><!-- /.card-body -->
             </div><!-- /.card -->
