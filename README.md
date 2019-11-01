@@ -1,17 +1,17 @@
 ![](https://i.imgur.com/xeKD93p.png)
-# `$ raspap` [![Release 1.6.2](https://img.shields.io/badge/Release-1.6.2-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Sponsor](https://img.shields.io/badge/sponsor-%F0%9F%92%96-green)](https://github.com/sponsors/billz)
+# `$ raspap` [![Release 2.0](https://img.shields.io/badge/Release-2.0-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Sponsor](https://img.shields.io/badge/sponsor-%F0%9F%92%96-green)](https://github.com/sponsors/billz)
 
 A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
-This project was inspired by a [**blog post**](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I began by prettifying the UI by wrapping it in [**SB Admin 2**](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme. Since then, the project has evolved to include greater control over many aspects of a networked RPi, better security, authentication, a Quick Installer, support for themes and more. RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
+This project was inspired by a [blog post](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I began by prettifying the UI by wrapping it in [SB Admin 2](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme. Since then, the project has evolved to include greater control over many aspects of a networked RPi, better security, authentication, a Quick Installer, support for themes and more. RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
 
 We'd be curious to hear about how you use this with [your own RPi-powered projects](https://github.com/billz/raspap-awesome). Until then, here are some screenshots:
 
-![](https://i.imgur.com/xyAdop0.gif)
-![](https://i.imgur.com/T0vrSsA.gif)
-![](https://i.imgur.com/n7Ir2cS.gif)
-![](https://i.imgur.com/JdsNr9L.gif)
-![](https://i.imgur.com/cYFnTIl.gif)
+![](https://i.imgur.com/nEX6J8D.gif)
+![](https://i.imgur.com/EiIpdOS.gif)
+![](https://i.imgur.com/eCjUS1H.gif)
+![](https://i.imgur.com/5FT2BcS.gif)
+![](https://i.imgur.com/RKaBFrZ.gif)
 ## Contents
 
  - [Prerequisites](#prerequisites)
