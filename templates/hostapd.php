@@ -1,30 +1,38 @@
 <div class="row">
 <div class="col-lg-12">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-        <i class="fa fa-dot-circle-o fa-fw"></i> <?php echo _("Configure hotspot"); ?>
-        <span class="label pull-right service-status-<?php echo $serviceStatus ?>">hostapd <?php echo _($serviceStatus) ?></span>
-    </div>
-    <!-- /.panel-heading -->
-    <div class="panel-body">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <i class="far fa-dot-circle mr-2"></i><?php echo _("Configure hotspot"); ?>
+        </div>
+        <div class="col">
+          <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+            <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
+            <span class="text service-status">hostapd <?php echo _($serviceStatus) ?></span>
+          </button>
+        </div>
+      </div><!-- /.row -->
+    </div><!-- /.card-header -->
+    <div class="card-body">
     <?php $status->showMessages(); ?>
       <form role="form" action="?page=hostapd_conf" method="POST">
         <?php echo CSRFTokenFieldTag() ?>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#basic" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
-          <li><a href="#security" data-toggle="tab"><?php echo _("Security"); ?></a></li>
-          <li><a href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-          <li><a href="#logoutput" data-toggle="tab"><?php echo _("Logfile"); ?></a></li>
+          <li class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
+          <li class="nav-item"><a class="nav-link" id="securitytab" href="#security" data-toggle="tab"><?php echo _("Security"); ?></a></li>
+          <li class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
+          <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#logoutput" data-toggle="tab"><?php echo _("Logfile output"); ?></a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="basic">
+            <div class="tab-pane active" id="basic">
 
-            <h4><?php echo _("Basic settings") ;?></h4>
+            <h4 class="mt-3"><?php echo _("Basic settings") ;?></h4>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="cbxinterface"><?php echo _("Interface") ;?></label>
                 <?php
                   SelectorOptions('interface', $interfaces, $arrConfig['interface'], 'cbxinterface');
@@ -32,13 +40,13 @@
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="txtssid"><?php echo _("SSID"); ?></label>
                 <input type="text" id="txtssid" class="form-control" name="ssid" value="<?php echo htmlspecialchars($arrConfig['ssid'], ENT_QUOTES); ?>" />
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
                 <?php
                 $selectedHwMode = $arrConfig['hw_mode'];
@@ -52,7 +60,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="cbxchannel"><?php echo _("Channel"); ?></label>
                 <?php
                 $selectablechannels = range(1, 13);
@@ -78,94 +86,94 @@
             </div>
           </div>
           <div class="tab-pane fade" id="security">
-            <h4><?php echo _("Security settings"); ?></h4>
+            <h4 class="mt-3"><?php echo _("Security settings"); ?></h4>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="cbxwpa"><?php echo _("Security type"); ?></label>
                 <?php SelectorOptions('wpa', $arrSecurity, $arrConfig['wpa'], 'cbxwpa'); ?>
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="cbxwpapairwise"><?php echo _("Encryption Type"); ?></label>
                 <?php SelectorOptions('wpa_pairwise', $arrEncType, $arrConfig['wpa_pairwise'], 'cbxwpapairwise'); ?>
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="txtwpapassphrase"><?php echo _("PSK"); ?></label>
                 <input type="text" class="form-control" id="txtwpapassphrase" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" />
               </div>
             </div>
           </div>
           <div class="tab-pane fade" id="logoutput">
-      <h4><?php echo _("Logfile output"); ?></h4>
-              <div class="row">
-                <div class="form-group col-md-8">
-                    <?php
-                    if ($arrHostapdConf['LogEnable'] == 1) {
-                        $log = file_get_contents('/tmp/hostapd.log');
-                        echo '<br /><textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
-                    } else {
-                        echo "<br />Logfile output not enabled";
-                    }
-                    ?>
+          <h4 class="mt-3"><?php echo _("Logfile output"); ?></h4>
+            <div class="row">
+              <div class="form-group col-md-8">
+                <?php
+                if ($arrHostapdConf['LogEnable'] == 1) {
+                    $log = file_get_contents('/tmp/hostapd.log');
+                    echo '<br /><textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
+                } else {
+                    echo "<br />Logfile output not enabled";
+                }
+                ?>
                </div>
             </div>
           </div>
           <div class="tab-pane fade" id="advanced">
-    <h4><?php echo _("Advanced settings"); ?></h4>
+          <h4 class="mt-3"><?php echo _("Advanced settings"); ?></h4>
             <div class="row">
-              <div class="col-md-4">
-        <div class="checkbox">
-<?php
-$checkedWifiAPEnabled = '';
-if ($arrHostapdConf['WifiAPEnable'] == 1) {
-    $checkedWifiAPEnabled = ' checked="checked"';
-}
-?>
-          <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedWifiAPEnabled; ?> />
-          <label class="form-check-label" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
+              <div class="col-md-6 mb-2">
+                <div class="checkbox">
+                  <?php
+                  $checkedWifiAPEnabled = '';
+                  if ($arrHostapdConf['WifiAPEnable'] == 1) {
+                      $checkedWifiAPEnabled = ' checked="checked"';
+                  }
+                  ?>
+		  <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedWifiAPEnabled; ?> />
+                  <label class="form-check-label ml-3" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4">
-        <div class="checkbox">
-<?php
-$checkedLogEnabled = '';
-if ($arrHostapdConf['LogEnable'] == 1) {
-    $checkedLogEnabled = ' checked="checked"';
-}
-?>
-          <input id="chxlogenable" name="logEnable" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedLogEnabled; ?> />
-          <label class="form-check-label" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
+              <div class="col-md-6 mb-2">
+                <div class="checkbox">
+                <?php
+                $checkedLogEnabled = '';
+                if ($arrHostapdConf['LogEnable'] == 1) {
+                    $checkedLogEnabled = ' checked="checked"';
+                }
+                ?>
+		<input id="chxlogenable" name="logEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedLogEnabled; ?> />
+                <label class="form-check-label ml-3" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4">
-        <div class="checkbox">
-<?php
-$checkedHiddenSSID = '';
-if ($arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssid'] == 2) {
-    $checkedHiddenSSID = ' checked="checked"';
-}
-?>
-          <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" class="form-check-input" data-toggle="toggle" data-on="Enabled" data-off="Disabled" data-width="100" value="1"<?php echo $checkedHiddenSSID; ?> />
-          <label class="form-check-label" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast"); ?></label>
+              <div class="col-md-6 mb-2">
+                <div class="checkbox">
+                <?php
+                $checkedHiddenSSID = '';
+                if ($arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssid'] == 2) {
+                    $checkedHiddenSSID = ' checked="checked"';
+                }
+                ?>
+		  <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedHiddenSSID; ?> />
+                  <label class="form-check-label ml-3" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast"); ?></label>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
                 <label for="max_num_sta"><?php echo _("Maximum number of clients") ?></label>
                 <input type="text" id="max_num_sta" class="form-control" name="max_num_sta" placeholder="2007" value="<?php echo $arrConfig["max_num_sta"] ?>" aria-describedby="max_num_sta_help">
-                <span id="max_num_sta_help" class="help-block"><?php echo _("Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies.") ?></span>
+                <span id="max_num_sta_help" class="help-block"><?php echo _("Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies.") ?></span>
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-6">
               <label for="cbxcountries"><?php echo _("Country Code"); ?></label>
               <input type="hidden" id="selected_country" value="<?php echo htmlspecialchars($arrConfig['country_code'], ENT_QUOTES); ?>">
               <select  class="form-control" id="cbxcountries" name="country_code">
@@ -419,21 +427,20 @@ if ($arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssi
                 <option value="ZM">Zambia</option>
                 <option value="ZW">Zimbabwe</option>
               </select>
-<script type="text/javascript">
-var country = document.getElementById("selected_country").value;
-var countries = document.getElementById("cbxcountries");
-var ops = countries.getElementsByTagName("option");
-for (var i = 0; i < ops.length; ++i) {
-if(ops[i].value == country){
-    ops[i].selected=true;
-    break;
-}
-}
-
-</script>
+              <script type="text/javascript">
+              var country = document.getElementById("selected_country").value;
+              var countries = document.getElementById("cbxcountries");
+              var ops = countries.getElementsByTagName("option");
+              for (var i = 0; i < ops.length; ++i) {
+                if(ops[i].value == country){
+                  ops[i].selected=true;
+                  break;
+                }
+              }
+              </script>
             </div>
-          </div><!-- /.panel-body -->
-    </div><!-- /.panel-primary -->
+          </div><!-- /.card-body -->
+        </div><!-- /.card -->
         <?php if (!RASPI_MONITOR_ENABLED) : ?>
             <input type="submit" class="btn btn-outline btn-primary" name="SaveHostAPDSettings" value="<?php echo _("Save settings"); ?>" />
             <?php
@@ -444,7 +451,7 @@ if(ops[i].value == country){
             };
         endif ?>
       </form>
-    </div></div><!-- /.panel-primary -->
-  <div class="panel-footer"> <?php echo _("Information provided by hostapd"); ?></div>
+    </div></div><!-- /.card -->
+  <div class="card-footer"> <?php echo _("Information provided by hostapd"); ?></div>
 </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->

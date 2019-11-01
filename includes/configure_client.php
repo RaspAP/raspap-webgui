@@ -27,8 +27,7 @@ function DisplayWPAConfig()
                 if (preg_match('/delete(\d+)/', $post, $post_match)) {
                     unset($tmp_networks[$_POST['ssid' . $post_match[1]]]);
                 } elseif (preg_match('/update(\d+)/', $post, $post_match)) {
-                    // NB, at the moment, the value of protocol from the form may
-                    // contain HTML line breaks
+                    // NB, multiple protocols are separated with a forward slash ('/')
                     $tmp_networks[$_POST['ssid' . $post_match[1]]] = array(
                     'protocol' => ( $_POST['protocol' . $post_match[1]] === 'Open' ? 'Open' : 'WPA' ),
                     'passphrase' => $_POST['passphrase' . $post_match[1]],

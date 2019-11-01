@@ -1,3 +1,7 @@
+body {
+  color: #212529;
+}
+
 .page-header {
   margin: 20px 0 20px;
 }
@@ -6,22 +10,76 @@
   margin-right: 5px;
 }
 
-.panel-primary {
-  border-color: #c61931;
+/* Small devices (portrait phones, up to 576px) */
+@media (max-width: 576px) {
+  .container-fluid, .card-body, .col-md-6 { padding-left: 0.5rem; padding-right: 0.5rem; }
+  .card .card-header { padding: .75rem .5rem; font-size: 1.0rem; }
+  .row { margin-left: 0rem; margin-right: 0rem; }
+  .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
+  .form-group.col-md-6 { margin-left: -0.5rem; }
+  .js-wifi-stations { margin-left: -0.5rem; margin-right: -0.5rem; }
+  h4.mt-3 { margin-left: 0.5rem; }
 }
 
-.panel-primary>.panel-heading {
+.sidebar {
+  background-color: #f8f9fc;
+}
+
+.sidebar-brand-text {
+  text-transform: none;
+  color: #212529;
+  font-size: 2.0rem;
+  font-weight: 500;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.sidebar .nav-item.active .nav-link {
+  font-weight: 500;
+}
+
+.card .card-header {
   border-color: #d8224c;
   background-color: #d8224c;
+  color: #fff;
 }
 
-.panel-footer {
+.card-footer {
   background-color: #f2f1f0;
 }
 
-.btn-primary.btn-outline {
-  color: #c61931;
-  border-color: #c61931;
+.nav-item {
+  font-size: 0.85rem;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link {
+  font-size: 1.0rem;
+}
+
+.nav-tabs a.nav-link {
+  color: #6e707e;
+}
+
+a.nav-link.active {
+    font-weight: bolder;
+}
+
+.sidebar .nav-item .nav-link {
+  padding: 0.6rem;
+}
+
+.alert-success {
+  background-color: #d4edda;
+}
+
+.btn-primary {
+  color: #d8224c;
+  background-color: #fff;
+  border-color: #d8224c;
+}
+
+.btn-warning {
+  color: #333;
 }
 
 .btn-primary:hover {
@@ -29,8 +87,21 @@
   border-color: #c61931;
 }
 
+i.fa.fa-bars {
+  color: #d1d3e2;
+}
+
+i.fa.fa-bars:hover{
+  color: #6e707e;
+}
+
 .info-item {
-  width: 140px;
+  width: 10rem;
+  float: left;
+}
+
+.info-item-wifi {
+  width: 6rem;
   float: left;
 }
 
@@ -49,26 +120,15 @@
   min-height:500px;
 }
 
-.service-status-running,
-.service-status-stopped {
-  background-color: #fff;
-  color: #333;
-  text-transform: uppercase;
-  line-height: inherit;
+.service-status {
+  border-width: 0;
 }
-.service-status-running:before,
-.service-status-stopped:before {
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-  content: "\2022";
-  font-size: 3.5em;
+
+.service-status-up {
   color: green;
-  line-height: 16px;
-  vertical-align: bottom;
-  margin-right: 2px;
 }
-.service-status-stopped:before {
+
+.service-status-down {
   color: red;
   animation: flash 1s linear infinite;
 }
@@ -77,10 +137,12 @@
     opacity: 0;
   }
 }
-
+ 
 .logoutput {
   width:100%;
-  height:300px;
+  height: 20rem;
+  border: 1px solid #d1d3e2;
+  border-radius: .35rem;
 }
 
 pre.unstyled {
@@ -105,6 +167,27 @@ pre.unstyled {
   width: 100%;
 }
 
-.js-wifi-stations .panel-body {
-  min-height: 256px;
+.js-reload-wifi-stations {
+  min-width: 10rem;
 }
+
+.sidebar.toggled .nav-item .nav-link span {
+  display: none;
+} .sidebar .nav-item .nav-link i,
+.sidebar .nav-item .nav-link span {
+    font-size: 1.0rem;
+}
+
+.btn-warning:hover {
+    color: #000;
+}
+
+.toggle-off.btn {
+  padding-left: 1.2rem;
+  font-size: 0.9rem!important;
+}
+
+.toggle-on.btn {
+  font-size: 0.9rem!important;
+}
+

@@ -170,7 +170,6 @@ function setCSRFTokenHeader(event, xhr, settings) {
 function contentLoaded() {
     pageCurrent = window.location.href.split("?")[1].split("=")[1];
     pageCurrent = pageCurrent.replace("#","");
-    $('#side-menu').metisMenu();
     switch(pageCurrent) {
         case "network_conf":
             getAllInterfaces();
@@ -247,43 +246,55 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function getCookie(cname) {
+    var regx = new RegExp(cname + "=([^;]+)");
+    var value = regx.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
+}
+
 var themes = {
     "default": "custom.css",
     "hackernews" : "hackernews.css",
     "terminal" : "terminal.css",
 }
 
-//Loads the correct sidebar on window load,
-//collapses the sidebar on window resize.
-// Sets the min-height of #page-wrapper to window size
+// Toggles the sidebar navigation.
+// Overrides the default SB Admin 2 behavior
+$("#sidebarToggleTopbar").on('click', function(e) {
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled d-none");
+});
+
+// Overrides SB Admin 2
+$("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+    var toggled = $(".sidebar").hasClass("toggled");
+    // Persist state in cookie
+    setCookie('sidebarToggled',toggled, 90);
+});
+
 $(function() {
-    $(window).bind("load resize", function() {
-        topOffset = 50;
-        width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
-        if (width < 768) {
-            $('div.navbar-collapse').addClass('collapse');
-            topOffset = 100; // 2-row-menu
-        } else {
-            $('div.navbar-collapse').removeClass('collapse');
-        }
-
-        height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
-        height = height - topOffset;
-        if (height < 1) height = 1;
-        if (height > topOffset) {
-            $("#page-wrapper").css("min-height", (height) + "px");
-        }
-    });
-
-    var url = window.location;
-    var element = $('ul.nav a').filter(function() {
-        return this.href == url || url.href.indexOf(this.href) == 0;
-    }).addClass('active').parent().parent().addClass('in').parent();
-    if (element.is('li')) {
-        element.addClass('active');
+    if ($(window).width() < 768) {
+        $('.sidebar').addClass('toggled');
+        setCookie('sidebarToggled',false, 90);
     }
 });
 
+$(window).on("load resize",function(e) {
+    if ($(window).width() > 768) {
+        $('.sidebar').removeClass('d-none d-md-block');
+        if (getCookie('sidebarToggled') == 'false') {
+            $('.sidebar').removeClass('toggled');
+        }
+    }
+});
+
+// Adds active class to current nav-item
+$(window).bind("load", function() {
+    var url = window.location;
+    $('ul.navbar-nav a').filter(function() {
+				return this.href == url;
+		}).parent().addClass('active');
+});
 
 $(document)
     .ajaxSend(setCSRFTokenHeader)

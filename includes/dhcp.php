@@ -58,11 +58,9 @@ function DisplayDHCPConfig()
 
             if ($_POST['DNS1']){
                 $config .= "dhcp-option=6," . $_POST['DNS1'];
-
                 if ($_POST['DNS2']){
                     $config .= ','.$_POST['DNS2'];
                 }
-
                 $config .= PHP_EOL;
             }
 
@@ -108,7 +106,7 @@ function DisplayDHCPConfig()
         }
     }
 
-    $serviceStatus = $dnsmasq_state ? "running" : "stopped";
+    $serviceStatus = $dnsmasq_state ? "up" : "down";
 
     exec('cat '. RASPI_DNSMASQ_CONFIG, $return);
     $conf = ParseConfig($return);
@@ -123,21 +121,18 @@ function DisplayDHCPConfig()
 
     $DNS1 = '';
     $DNS2 = '';
-
     if (isset($conf['dhcp-option'])){
         $arrDns = explode(",", $conf['dhcp-option']);
-
         if ($arrDns[0] == '6'){
             if (count($arrDns) > 1){
                 $DNS1 = $arrDns[1];
             }
-
             if (count($arrDns) > 2){
                 $DNS2 = $arrDns[2];
             }
         }
     }
-
+  
     $hselected = '';
     $mselected = '';
     $dselected = '';

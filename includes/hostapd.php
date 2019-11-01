@@ -44,7 +44,7 @@ function DisplayHostAPDConfig()
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
     exec('pidof hostapd | wc -l', $hostapdstatus);
 
-    $serviceStatus = $hostapdstatus[0] == 0 ? "stopped" : "running";
+    $serviceStatus = $hostapdstatus[0] == 0 ? "down" : "up";
 
     foreach ($hostapdconfig as $hostapdconfigline) {
         if (strlen($hostapdconfigline) === 0) {

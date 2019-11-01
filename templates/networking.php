@@ -1,27 +1,33 @@
 <div class="row">
   <div class="col-lg-12">
-   <div class="panel panel-primary">
-    <div class="panel-heading"><i class="fa fa-sitemap fa-fw"></i> <?php echo _("Configure networking"); ?></div>
-      <div class="panel-body">
+   <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col">
+          <i class="fas fa-network-wired mr-2"></i><?php echo _("Configure networking"); ?>
+        </div>
+      </div><!-- ./row -->
+     </div><!-- ./card-header -->
+      <div class="card-body">
         <div id="msgNetworking"></div>
         <ul class="nav nav-tabs">
-          <li role="presentation" class="active"><a href="#summary" aria-controls="summary" role="tab" data-toggle="tab"><?php echo _("Summary"); ?></a></li>
+          <li role="presentation" class="nav-item"><a class="nav-link active" href="#summary" aria-controls="summary" role="tab" data-toggle="tab"><?php echo _("Summary"); ?></a></li>
           <?php foreach ($interfaces as $if): ?>
           <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
-          <li role="presentation"><a href="#<?php echo $if_quoted ?>" aria-controls="<?php echo $if_quoted ?>" role="tab" data-toggle="tab"><?php echo $if_quoted ?></a></li>
+          <li role="presentation" class="nav-item"><a class="nav-link" href="#<?php echo $if_quoted ?>" aria-controls="<?php echo $if_quoted ?>" role="tab" data-toggle="tab"><?php echo $if_quoted ?></a></li>
           <?php endforeach ?>
         </ul>
         <div class="tab-content">
 
           <div role="tabpanel" class="tab-pane active" id="summary">
-            <h4><?php echo _("Current settings") ?></h4>
+            <h4 class="mt-3"><?php echo _("Current settings") ?></h4>
             <div class="row">
               <?php foreach ($interfaces as $if): ?>
               <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
-              <div class="col-md-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading"><?php echo $if_quoted ?></div>
-                  <div class="panel-body">
+              <div class="col-md-6 mb-3">
+                <div class="card">
+                  <div class="card-header"><?php echo $if_quoted ?></div>
+                  <div class="card-body">
                     <pre class="unstyled" id="<?php echo $if_quoted ?>-summary"></pre>
                   </div>
                 </div>
@@ -30,7 +36,7 @@
             </div><!-- /.row -->
             <div class="col-lg-12">
               <div class="row">
-                <a href="#" class="btn btn-outline btn-primary" id="btnSummaryRefresh"><i class="fa fa-refresh"></i> <?php echo _("Refresh"); ?></a>
+                <a href="#" class="btn btn-outline btn-primary" id="btnSummaryRefresh"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh"); ?></a>
               </div><!-- /.row -->
             </div><!-- /.col-lg-12 -->
           </div><!-- /.tab-pane -->
@@ -44,22 +50,22 @@
                 <form id="frm-<?php echo $if_quoted ?>">
                   <?php echo CSRFTokenFieldTag() ?>
                   <div class="form-group">
-                    <h4><?php echo _("Adapter IP Address Settings") ?></h4>
-                    <div class="btn-group" data-toggle="buttons">
+                    <h4 class="mt-3"><?php echo _("Adapter IP Address Settings") ?></h4>
+                    <div class="btn-group" role="group" data-toggle="buttons">
                       <label class="btn btn-primary">
-                        <input type="radio" name="<?php echo $if_quoted ?>-addresstype" id="<?php echo $if_quoted ?>-dhcp" autocomplete="off"><?php echo _("DHCP") ?>
+                        <input class="mr-2" type="radio" name="<?php echo $if_quoted ?>-addresstype" id="<?php echo $if_quoted ?>-dhcp" autocomplete="off"><?php echo _("DHCP") ?>
                       </label>
                       <label class="btn btn-primary">
-                        <input type="radio" name="<?php echo $if_quoted ?>-addresstype" id="<?php echo $if_quoted ?>-static" autocomplete="off"><?php echo _("Static IP") ?>
+                        <input class="mr-2" type="radio" name="<?php echo $if_quoted ?>-addresstype" id="<?php echo $if_quoted ?>-static" autocomplete="off"><?php echo _("Static IP") ?>
                       </label>
                     </div><!-- /.btn-group -->
-                    <h4><?php echo _("Enable Fallback to Static Option") ?></h4>
-                    <div class="btn-group" data-toggle="buttons">
+                    <h4 class="mt-3"><?php echo _("Enable Fallback to Static Option") ?></h4>
+                    <div class="btn-group" role="group" data-toggle="buttons">
                       <label class="btn btn-primary">
-                        <input type="radio" name="<?php echo $if_quoted ?>-dhcpfailover" id="<?php echo $if_quoted ?>-failover" autocomplete="off"><?php echo _("Enabled") ?>
+                        <input class="mr-2" type="radio" name="<?php echo $if_quoted ?>-dhcpfailover" id="<?php echo $if_quoted ?>-failover" autocomplete="off"><?php echo _("Enabled") ?>
                       </label>
                       <label class="btn btn-warning">
-                        <input type="radio" name="<?php echo $if_quoted ?>-dhcpfailover" id="<?php echo $if_quoted ?>-nofailover" autocomplete="off"><?php echo _("Disabled") ?>
+                        <input class="mr-2" type="radio" name="<?php echo $if_quoted ?>-dhcpfailover" id="<?php echo $if_quoted ?>-nofailover" autocomplete="off"><?php echo _("Disabled") ?>
                       </label>
                     </div><!-- /.btn-group -->
                   </div><!-- /.form-group -->
@@ -99,8 +105,8 @@
           <?php endforeach ?>
 
         </div><!-- /.tab-content -->
-      </div><!-- /.panel-body -->
-      <div class="panel-footer"><?php echo _("Information provided by /sys/class/net"); ?></div>
-    </div><!-- /.panel-primary -->
+      </div><!-- /.card-body -->
+      <div class="card-footer"><?php echo _("Information provided by /sys/class/net"); ?></div>
+    </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div>

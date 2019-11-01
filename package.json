@@ -1,7 +1,7 @@
 {
     "title": "RaspAP WiFi Configuration Portal",
     "name": "raspap-webgui",
-    "version": "1.6.1",
+    "version": "2.0",
     "scripts": {
         "start": "node_modules/.bin/gulp watch"
     },
@@ -30,8 +30,8 @@
         "url": "https://github.com/billz/raspap-webgui.git"
     },
     "dependencies": {
-	"bootstrap-toggle": "2.2.2",
-	"startbootstrap-sb-admin-2": "3.3.7"
+	"bootstrap4-toggle": "3.5.0",
+	"startbootstrap-sb-admin-2": "4.0.7"
     },
     "devDependencies": {
         "browser-sync": "^2.26.7",
