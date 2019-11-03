@@ -1,5 +1,4 @@
 // Link quality gauge for ChartJS
-// console.log(linkQ);
 
 // Support for dark terminal theme
 theme = getCookie('theme');
@@ -27,6 +26,7 @@ let config = {
     type: 'doughnut',
     data: data1,
     options: {
+        aspectRatio: 2,
         responsive: true,
         tooltips: {enabled: false},
         hover: {mode: null},

@@ -38,7 +38,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                 <div class="info-item"><?php echo _("Frequency"); ?></div><div><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Link Quality"); ?></div>
                 <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
-                <div class="chart-pie pt-5">
+                <div class="chart-container">
                   <canvas id="canvas" class="chartjs-render-monitor"></canvas>
                 </div>
              </div><!-- /.card-body -->
