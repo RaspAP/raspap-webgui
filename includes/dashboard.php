@@ -43,6 +43,7 @@ function DisplayDashboard()
         $ipv4Addrs    = trim($ipv4Addrs);
         $ipv4Netmasks = trim($ipv4Netmasks);
     }
+    $ipv4Netmasks = empty($ipv4Netmasks) ? "-" : $ipv4Netmasks;
 
     $ipv6Addrs = '';
     if (!preg_match_all('/inet6 ([a-f0-9:]+)/i', $stdoutIpWRepeatedSpaces, $matchesIpv6Addr)) {
@@ -92,6 +93,7 @@ function DisplayDashboard()
 
     preg_match('/Connected to (([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2}))/', $stdoutIwWRepSpaces, $matchesBSSID) || $matchesBSSID[1] = '';
     $connectedBSSID = $matchesBSSID[1];
+    $connectedBSSID = empty($connectedBSSID) ? "-" : $connectedBSSID;
 
     $wlanHasLink = false;
     if ($interfaceState === 'UP') {
@@ -110,9 +112,11 @@ function DisplayDashboard()
 
     preg_match('/signal: (-?[0-9]+ dBm)/i', $stdoutIwWRepSpaces, $matchesSignal) || $matchesSignal[1] = '';
     $signalLevel = $matchesSignal[1];
+    $signalLevel = empty($signalLevel) ? "-" : $signalLevel;
 
     preg_match('/tx bitrate: ([0-9\.]+ [KMGT]?Bit\/s)/', $stdoutIwWRepSpaces, $matchesBitrate) || $matchesBitrate[1] = '';
     $bitrate = $matchesBitrate[1];
+    $bitrate = empty($bitrate) ? "-" : $bitrate;
 
     // txpower is now displayed on iw dev(..) info command, not on link command.
     exec('iw dev '.RASPI_WIFI_CLIENT_INTERFACE.' info ', $stdoutIwInfo);
