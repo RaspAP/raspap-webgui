@@ -25,11 +25,6 @@
             type: 'linear',
             display: true,
             position: 'left',
-          //},{
-          //  id: 'y-axis-2',
-          //  type: 'linear',
-          //  display: true,
-          //  position: 'right',
             ticks: {
               beginAtZero: true
             }
