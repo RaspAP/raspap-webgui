@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-27 17:15+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Simone Rizzo <simone.rizzo@live.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -58,7 +58,13 @@ msgstr "Cambia tema"
 msgid "System"
 msgstr "Sistema"
 
+msgid "About RaspAP"
+msgstr "Informazioni su RaspAP"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Impostazioni di autenticazione"
+
 msgid "New passwords do not match"
 msgstr "Le nuove password non corrispondono"
 
@@ -126,6 +132,15 @@ msgstr "Aggiungi"
 msgid "Delete"
 msgstr "Cancella"
 
+msgid "Show"
+msgstr "Mostra"
+
+msgid "Hide"
+msgstr "Nascondi"
+
+msgid "Not configured"
+msgstr "Non configurato"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Nota:</strong> gli access points WEP appaiono come 'Aperti' . RaspAP non supporta attualmente la connessione WEP"
 
@@ -136,8 +151,11 @@ msgstr "Informazioni interfaccia"
 msgid "Interface Name"
 msgstr "Nome interfaccia"
 
-msgid "IP Address"
-msgstr "Indirizzo IP"
+msgid "IPv4 Address"
+msgstr "Indirizzo IPv4"
+
+msgid "IPv6 Address"
+msgstr "Indirizzo IPv6"
 
 msgid "Subnet Mask"
 msgstr "Subnet mask"
@@ -184,8 +202,8 @@ msgstr "Frequenza"
 msgid "Link Quality"
 msgstr "Qualità collegamento"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Informazioni fornite da ifconfig e iwconfig"
+msgid "Information provided by ip and iw and from system"
+msgstr "Informazioni fornite dall'ip e iw a dal sistema"
 
 msgid "No MAC Address Found"
 msgstr "Indirizzo MAC non trovato"
@@ -217,18 +235,30 @@ msgstr "Avvia wlan0"
 msgid "Stop wlan0"
 msgstr "Ferma wlan0"
 
+msgid "Connected Devices"
+msgstr "Dispositivi Connessi"
+
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Impostazioni server"
+msgid "DHCP server settings"
+msgstr "Impostazioni del server DHCP"
 
 msgid "Client list"
 msgstr "Lista client"
+
+msgid "Interface"
+msgstr "Interfaccia"
 
 msgid "Starting IP Address"
 msgstr "Indirizzo IP iniziale"
 
 msgid "Ending IP Address"
 msgstr "Indirizzo IP finale"
+
+msgid "Static Leases"
+msgstr "Allocazioni statiche"
+
+msgid "Add static DHCP lease"
+msgstr "Aggiungi lease DHCP statico"
 
 msgid "Lease Time"
 msgstr "Tempo di lease"
@@ -363,6 +393,18 @@ msgstr "Abilita la registrazione"
 msgid "Logfile output"
 msgstr "File di log in uscita"
 
+msgid "WiFi client AP mode"
+msgstr "AP WiFi modalità client"
+
+msgid "Hide SSID in broadcast"
+msgstr "Nascondere la trasmissione del SSID"
+
+msgid "Maximum number of clients"
+msgstr "Numero massimo di client"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configura l'opzione max_num_sta di hostapd. Il valore predefinito e massimo è 2007. Se vuoto o 0, viene applicato il valore predefinito."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Sommario"
@@ -444,10 +486,10 @@ msgid "Shutdown"
 msgstr "Spegni"
 
 msgid "System Rebooting Now!"
-msgstr "Il sistema si sta riavviando!"
+msgstr "Il sistema si sta riavviando ora!"
 
 msgid "System Shutting Down Now!"
-msgstr "Il sistema si sta spegnendo!"
+msgstr "Il sistema si sta spegnendo ora!"
 
 #: includes/themes.php
 msgid "Theme settings"
@@ -456,10 +498,157 @@ msgstr "Impostazioni tema"
 msgid "Select a theme"
 msgstr "Seleziona un tema"
 
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Utilizzo dei dati"
+
+msgid "Data usage monitoring"
+msgstr "Monitoraggio dell'utilizzo dei dati"
+
+msgid "Hourly traffic amount"
+msgstr "Quantità di traffico orario"
+
+msgid "Daily traffic amount"
+msgstr "Quantità di traffico giornaliero"
+
+msgid "Monthly traffic amount"
+msgstr "Quantità di traffico mensile"
+
+msgid "Hourly"
+msgstr "Orario"
+
+msgid "Daily"
+msgstr "Giornaliero"
+
+msgid "Monthly"
+msgstr "Mensile"
+
+msgid "interface"
+msgstr "interfaccia"
+
+msgid "date"
+msgstr "data"
+
+msgid "Send MB"
+msgstr "Invia MB"
+
+msgid "Receive MB"
+msgstr "Ricevi MB"
+
+msgid "Information provided by vnstat"
+msgstr "Informazioni fornite da vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Caricamento {0} del grafico della larghezza di banda in corso"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Visualizzazione da {0} a {1} di {2} voci"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN non è in esecuzione"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN è in esecuzione"
+
+msgid "Server settings"
+msgstr "Impostazioni del server"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Seleziona il file di configurazione OpenVPN (.ovpn)"
+
+msgid "Client Log"
+msgstr "Log del client"
+
+msgid "Port"
+msgstr "Porta"
+
+msgid "Protocol"
+msgstr "Protocollo"
+
+msgid "Root CA certificate"
+msgstr "Certificato CA radice"
+
+msgid "Server certificate"
+msgstr "Certificato del server"
+
+msgid "Diffie Hellman parameters"
+msgstr "Parametri Diffie Hellman"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Log del server"
+
+msgid "Start OpenVPN"
+msgstr "Avvia OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Arresta OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Informazioni fornite da openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Tentativo di avviare openvpn in corso"
+
+msgid "Attempting to stop openvpn"
+msgstr "Tentativo di arrestare openvpn in corso"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR non è in esecuzione"
+
+msgid "TOR is running"
+msgstr "TOR è in esecuzione"
+
+msgid "Relay"
+msgstr "Inoltro"
+
+msgid "Relay settings"
+msgstr "Impostazioni di inoltro"
+
+msgid "Nickname"
+msgstr "Nickname"
+
+msgid "Address"
+msgstr "Indirizzo"
+
+msgid "Start TOR"
+msgstr "Avvia TOR"
+
+msgid "Stop TOR"
+msgstr "Arresta TOR"
+
+msgid "Information provided by tor"
+msgstr "Informazioni fornite da tor"
+
+msgid "Attempting to start TOR"
+msgstr "Tentativo di avviare TOR in corso"
+
+msgid "Attempting to stop TOR"
+msgstr "Tentativo di arrestare TOR in corso"
+
 #: common form controls
 msgid "Save settings"
-msgstr "Salva le impostazioni"
+msgstr "Salva impostazioni"
 
 msgid "Refresh"
-msgstr "Ricarica"
+msgstr "Aggiorna"
+
+msgid "running"
+msgstr "in esecuzione"
+
+msgid "stopped"
+msgstr "arrestato"
+
+msgid "Remove"
+msgstr "Rimuovi"
+
+msgid "up"
+msgstr "su"
+
+msgid "down"
+msgstr "giù"
 

@@ -1,0 +1,653 @@
+# RaspAP Portable Object file
+# Project home: https://github.com/billz/raspap-webgui
+# Licensed under the GNU General Public License v3.0
+# This file is distributed under the same license as the RaspAP package
+# FIRST AUTHOR billzimmerman@gmail.com, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
+"Last-Translator: BANKA2017 <kdwnil@hotmail.com>\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "RaspAP WLAN热点设置中心"
+
+msgid "Toggle navigation"
+msgstr "响应式导航"
+
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP WLAN热点"
+
+msgid "Dashboard"
+msgstr "仪表板"
+
+msgid "Configure WiFi client"
+msgstr "WLAN客户端设置"
+
+msgid "Configure hotspot"
+msgstr "WLAN热点设置"
+
+msgid "Configure networking"
+msgstr "网络设置"
+
+msgid "Configure DHCP Server"
+msgstr "DHCP服务器设置"
+
+msgid "Configure OpenVPN"
+msgstr "OpenVPN设置"
+
+msgid "Configure TOR proxy"
+msgstr "TOR代理设置"
+
+msgid "Configure Auth"
+msgstr "登录设置"
+
+msgid "Change Theme"
+msgstr "主题中心"
+
+msgid "System"
+msgstr "系统"
+
+msgid "About RaspAP"
+msgstr "关于RaspAP"
+
+#: includes/admin.php
+msgid "Authentication settings"
+msgstr "验证设置"
+
+msgid "New passwords do not match"
+msgstr "两次密码不相同"
+
+msgid "Username must not be empty"
+msgstr "用户名不能为空"
+
+msgid "Admin password updated"
+msgstr "网络管理员密码已更新"
+
+msgid "Failed to update admin password"
+msgstr "网络管理员密码更新失败"
+
+msgid "Old password does not match"
+msgstr "旧密码错误"
+
+msgid "Username"
+msgstr "用户名"
+
+msgid "Old password"
+msgstr "旧密码"
+
+msgid "New password"
+msgstr "新密码"
+
+msgid "Repeat new password"
+msgstr "重复新密码"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "客户端设置"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "频道"
+
+msgid "Security"
+msgstr "安全性"
+
+msgid "Passphrase"
+msgstr "密码"
+
+msgid "Wifi settings updated successfully"
+msgstr "WLAN设置更新成功"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "WLAN设置已更新但无法重启(无法执行 'wpa_cli reconfigure')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "WLAN设置更新失败"
+
+msgid "Failed to update wifi settings"
+msgstr "无法更新WLAN设置"
+
+msgid "Rescan"
+msgstr "刷新"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Show"
+msgstr "显示"
+
+msgid "Hide"
+msgstr "隐藏"
+
+msgid "Not configured"
+msgstr "未配置"
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>提示:</strong> 若目标热点已打开WEP登录验证，本程序将不支持连接到此类网络"
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "接口信息"
+
+msgid "Interface Name"
+msgstr "接口名称"
+
+msgid "IPv4 Address"
+msgstr "IPv4地址"
+
+msgid "IPv6 Address"
+msgstr "IPv6地址"
+
+msgid "Subnet Mask"
+msgstr "子网掩码"
+
+msgid "Mac Address"
+msgstr "Mac地址"
+
+msgid "Interface Statistics"
+msgstr "接口统计"
+
+msgid "Received Packets"
+msgstr "接收包"
+
+msgid "Received Bytes"
+msgstr "接收数据"
+
+msgid "Transferred Packets"
+msgstr "传送包"
+
+msgid "Transferred Bytes"
+msgstr "传送数据"
+
+msgid "Wireless Information"
+msgstr "WLAN信息"
+
+msgid "Connected To"
+msgstr "已连接"
+
+msgid "AP Mac Address"
+msgstr "WLAN热点Mac地址"
+
+msgid "Bitrate"
+msgstr "比特率"
+
+msgid "Signal Level"
+msgstr "信号等级"
+
+msgid "Transmit Power"
+msgstr "发送功率"
+
+msgid "Frequency"
+msgstr "频率"
+
+msgid "Link Quality"
+msgstr "连接质量"
+
+msgid "Information provided by ip and iw and from system"
+msgstr "ip和iw以及系统所提供的信息"
+
+msgid "No MAC Address Found"
+msgstr "没有找到MAC地址"
+
+msgid "No IP Address Found"
+msgstr "没有找到IP地址"
+
+msgid "No Subnet Mask Found"
+msgstr "没有找到子网掩码"
+
+msgid "No Data"
+msgstr "没有数据"
+
+msgid "Not connected"
+msgstr "未连接到任何热点"
+
+msgid "Interface is up"
+msgstr "接口已启动"
+
+msgid "Interface is down"
+msgstr "接口已关闭"
+
+msgid "Interface already down"
+msgstr "接口已经关闭"
+
+msgid "Start wlan0"
+msgstr "启动wlan0接口"
+
+msgid "Stop wlan0"
+msgstr "关闭wlan0接口"
+
+msgid "Connected Devices"
+msgstr "连接设备"
+
+#: includes/dhcp.php
+msgid "DHCP server settings"
+msgstr "DHCP服务器设置"
+
+msgid "Client list"
+msgstr "客户端列表"
+
+msgid "Interface"
+msgstr "接口"
+
+msgid "Starting IP Address"
+msgstr "起始IP地址"
+
+msgid "Ending IP Address"
+msgstr "终止IP地址"
+
+msgid "Static Leases"
+msgstr "静态租赁"
+
+msgid "Add static DHCP lease"
+msgstr "添加静态DHCP租约"
+
+msgid "Lease Time"
+msgstr "租约时间"
+
+msgid "Interval"
+msgstr "时间间隔"
+
+msgid "Active DHCP leases"
+msgstr "活动中的设备"
+
+msgid "Expire time"
+msgstr "生存时间"
+
+msgid "MAC Address"
+msgstr "MAC地址"
+
+msgid "Host name"
+msgstr "设备名称"
+
+msgid "Client ID"
+msgstr "用户ID"
+
+msgid "Information provided by Dnsmasq"
+msgstr "信息由 Dnsmasq 提供"
+
+msgid "Stop dnsmasq"
+msgstr "关闭dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "启动dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Dnsmasq配置已更新"
+
+msgid "dnsmasq already running"
+msgstr "Dnsmasq已在运行"
+
+msgid "Successfully started dnsmasq"
+msgstr "Dnsmasq启动成功"
+
+msgid "Failed to start dnsmasq"
+msgstr "无法启动dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Dnsmasq关闭成功"
+
+msgid "Failed to stop dnsmasq"
+msgstr "无法关闭dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "Dnsmasq已经关闭"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq正在运行"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq未在运行"
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "基础"
+
+msgid "Advanced"
+msgstr "高级"
+
+msgid "Basic settings"
+msgstr "基础设置"
+
+msgid "Wireless Mode"
+msgstr "无线模式"
+
+msgid "Security settings"
+msgstr "安全设置"
+
+msgid "Security type"
+msgstr "安全性"
+
+msgid "Encryption Type"
+msgstr "加密模式"
+
+msgid "PSK"
+msgstr "密码"
+
+msgid "Advanced settings"
+msgstr "高级设置"
+
+msgid "Country Code"
+msgstr "地区代号"
+
+msgid "Information provided by hostapd"
+msgstr "信息由 hostapd 提供"
+
+msgid "Attempting to start hotspot"
+msgstr "请求启动WLAN热点"
+
+msgid "Attempting to stop hotspot"
+msgstr "请求关闭WLAN热点"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD不在运行"
+
+msgid "HostAPD is running"
+msgstr "HostAPD正在运行"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID长度需要介于1~32个字符"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "密码长度需要介于8~63个字符"
+
+msgid "Unknown interface"
+msgstr "未知接口"
+
+msgid "Country code must be blank or two characters"
+msgstr "地区代号只能为空或两个字符"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "WLAN热点设置已保存"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "WLAN热点设置保存失败"
+
+msgid "Start hotspot"
+msgstr "开启WLAN热点"
+
+msgid "Stop hotspot"
+msgstr "关闭WLAN热点"
+
+msgid "Enable logging"
+msgstr "开启log"
+
+msgid "Logfile output"
+msgstr "log信息输出"
+
+msgid "WiFi client AP mode"
+msgstr "无线网客户端AP模式"
+
+msgid "Hide SSID in broadcast"
+msgstr "在广播中隐藏SSID"
+
+msgid "Maximum number of clients"
+msgstr "客户端最大数量"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "设置hostapd上的max_num_sta选项。默认值和最大值是2007。如果为空或为0，则应用默认值。"
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "摘要"
+
+msgid "Current settings"
+msgstr "当前设置"
+
+msgid "Default Gateway"
+msgstr "默认网关"
+
+msgid "DNS Server"
+msgstr "DNS服务器"
+
+msgid "Alternate DNS Server"
+msgstr "备用DNS服务器"
+
+msgid "Adapter IP Address Settings"
+msgstr "适配器IP地址设置"
+
+msgid "Enable Fallback to Static Option"
+msgstr "启用退回静态的选项"
+
+msgid "Static IP"
+msgstr "静态IP"
+
+msgid "Enabled"
+msgstr "已启用"
+
+msgid "Disabled"
+msgstr "已禁用"
+
+msgid "Static IP Options"
+msgstr "静态IP设置"
+
+msgid "Apply settings"
+msgstr "请求设置"
+
+msgid "Information provided by /sys/class/net"
+msgstr "信息由 /sys/class/net 提供"
+
+#: includes/system.php
+msgid "System Information"
+msgstr "系统信息"
+
+msgid "Language"
+msgstr "语言"
+
+msgid "Language settings"
+msgstr "语言设置"
+
+msgid "Select a language"
+msgstr "选择一种语言"
+
+msgid "Language setting saved"
+msgstr "语言设置已保存"
+
+msgid "Console"
+msgstr "控制台"
+
+msgid "Hostname"
+msgstr "设备名称"
+
+msgid "Pi Revision"
+msgstr "树莓派型号"
+
+msgid "Uptime"
+msgstr "已开机时间"
+
+msgid "Memory Used"
+msgstr "内存占用"
+
+msgid "CPU Load"
+msgstr "CPU负荷"
+
+msgid "Reboot"
+msgstr "重启"
+
+msgid "Shutdown"
+msgstr "关闭"
+
+msgid "System Rebooting Now!"
+msgstr "系统现在正在重启！"
+
+msgid "System Shutting Down Now!"
+msgstr "系统现在正在关闭！"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "主题设置"
+
+msgid "Select a theme"
+msgstr "选择一个主题"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "数据使用量"
+
+msgid "Data usage monitoring"
+msgstr "数据用量监控"
+
+msgid "Hourly traffic amount"
+msgstr "每小时流量"
+
+msgid "Daily traffic amount"
+msgstr "每日流量统计"
+
+msgid "Monthly traffic amount"
+msgstr "每月流量统计"
+
+msgid "Hourly"
+msgstr "每小时"
+
+msgid "Daily"
+msgstr "每日"
+
+msgid "Monthly"
+msgstr "每月"
+
+msgid "interface"
+msgstr "接口"
+
+msgid "date"
+msgstr "日期"
+
+msgid "Send MB"
+msgstr "发送数据 (MB)"
+
+msgid "Receive MB"
+msgstr "接收数据 (MB)"
+
+msgid "Information provided by vnstat"
+msgstr "vnstat所提供的信息"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "正加载{0}带宽图"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "正显示{2}个条目中的{0}至{1}条目"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN不在运行"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN正在运行"
+
+msgid "Server settings"
+msgstr "服务器设置"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "选择OpenVPN设置文件（.ovpn）"
+
+msgid "Client Log"
+msgstr "客户端日志"
+
+msgid "Port"
+msgstr "端口"
+
+msgid "Protocol"
+msgstr "协议"
+
+msgid "Root CA certificate"
+msgstr "CA机构的根证书"
+
+msgid "Server certificate"
+msgstr "服务器证书"
+
+msgid "Diffie Hellman parameters"
+msgstr "迪菲-赫尔曼参数"
+
+msgid "KeepAlive"
+msgstr "保持活跃"
+
+msgid "Server log"
+msgstr "服务器日志"
+
+msgid "Start OpenVPN"
+msgstr "启动OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "停止OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "openvpn所提供的信息"
+
+msgid "Attempting to start openvpn"
+msgstr "正尝试启动openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "正尝试停止openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR不在运行"
+
+msgid "TOR is running"
+msgstr "TOR正在运行"
+
+msgid "Relay"
+msgstr "中继"
+
+msgid "Relay settings"
+msgstr "中继设置"
+
+msgid "Nickname"
+msgstr "昵称"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Start TOR"
+msgstr "开启TOR"
+
+msgid "Stop TOR"
+msgstr "停止TOR"
+
+msgid "Information provided by tor"
+msgstr "tor提供的信息"
+
+msgid "Attempting to start TOR"
+msgstr "正尝试启动TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "正尝试停止TOR"
+
+#: common form controls
+msgid "Save settings"
+msgstr "保存设置"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "running"
+msgstr "运行中"
+
+msgid "stopped"
+msgstr "已停止"
+
+msgid "Remove"
+msgstr "移除"
+
+msgid "up"
+msgstr "上"
+
+msgid "down"
+msgstr "下"

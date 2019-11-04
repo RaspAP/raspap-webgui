@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-27 17:15+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Bastien STEVENOOT\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +58,13 @@ msgstr "Change Thème"
 msgid "System"
 msgstr "Système"
 
+msgid "About RaspAP"
+msgstr "À propos de RaspAP"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Paramètres d'authentification"
+
 msgid "New passwords do not match"
 msgstr "Les nouveaux mots de passe ne correspondent pas"
 
@@ -69,10 +75,10 @@ msgid "Admin password updated"
 msgstr "Mot de passe admin modifié"
 
 msgid "Failed to update admin password"
-msgstr "Modifier le mot de passe d'admin a échouéd"
+msgstr "Erreur durant la mise à jour du mot de passe admin"
 
 msgid "Old password does not match"
-msgstr "L'ancien mot de passe ne correspond pas"
+msgstr "Ancien mot de passe incorrect"
 
 msgid "Username"
 msgstr "Nom d'utilisateur"
@@ -84,7 +90,7 @@ msgid "New password"
 msgstr "Nouveau mot de passe"
 
 msgid "Repeat new password"
-msgstr "Répété le nouveau mot de passe"
+msgstr "Répéter le nouveau mot de passe"
 
 #: includes/configure_client.php
 msgid "Client settings"
@@ -112,10 +118,10 @@ msgid "Wifi settings failed to be updated"
 msgstr "Les paramètres Wifi n'ont pas été mis à jour"
 
 msgid "Failed to updated wifi settings"
-msgstr "N'a pas mis à jour les paramètres wifi"
+msgstr "Erreur durant la mise à jour des paramètres Wifi"
 
 msgid "Rescan"
-msgstr "Rescan"
+msgstr "Actualiser"
 
 msgid "Update"
 msgstr "Mettre à jour"
@@ -126,8 +132,17 @@ msgstr "Ajouter"
 msgid "Delete"
 msgstr "Effacer"
 
+msgid "Show"
+msgstr "Montrer"
+
+msgid "Hide"
+msgstr "Dissimuler"
+
+msgid "Not configured"
+msgstr "Pas configuré"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>Remarque:</strong> Les points d'accès WEP apparaissent comme 'ouverts'. RaspAP ne prend actuellement pas en charge la connexion à WEP"
+msgstr "<strong>Remarque:</strong> Les points d'accès WEP apparaissent comme 'ouverts'. RaspAP ne prend actuellement pas en charge la connexion via WEP"
 
 #: includes/dashboard.php
 msgid "Interface Information"
@@ -136,8 +151,11 @@ msgstr "Informations d'interface"
 msgid "Interface Name"
 msgstr "Nom de l'interface"
 
-msgid "IP Address"
-msgstr "Adresse IP"
+msgid "IPv4 Address"
+msgstr "Adresse IPv4"
+
+msgid "IPv6 Address"
+msgstr "Adresse IPv6"
 
 msgid "Subnet Mask"
 msgstr "Masque de sous-réseau"
@@ -179,13 +197,13 @@ msgid "Transmit Power"
 msgstr "Puissance de transmission"
 
 msgid "Frequency"
-msgstr "La fréquence"
+msgstr "Fréquence"
 
 msgid "Link Quality"
 msgstr "Qualité de lien"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Informations fournies par ifconfig et iwconfig"
+msgid "Information provided by ip and iw and from system"
+msgstr "Informations fournies par ip et iw, et par le system"
 
 msgid "No MAC Address Found"
 msgstr "Aucune adresse MAC trouvée"
@@ -200,35 +218,47 @@ msgid "No Data"
 msgstr "Pas de données"
 
 msgid "Not connected"
-msgstr "Pas connecté"
+msgstr "Non connecté"
 
 msgid "Interface is up"
-msgstr "L'interface est en place"
+msgstr "L'interface est active"
 
 msgid "Interface is down"
-msgstr "L'interface est en panne"
+msgstr "L'interface est arrêté"
 
 msgid "Interface already down"
-msgstr "Interface déjà en bas"
+msgstr "Interface déjà arrêté"
 
 msgid "Start wlan0"
-msgstr "Commencer wlan0"
+msgstr "Démarrer wlan0"
 
 msgid "Stop wlan0"
 msgstr "Arrêtez wlan0"
 
+msgid "Connected Devices"
+msgstr "Appareils connectés"
+
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Paramètres du serveur"
+msgid "DHCP server settings"
+msgstr "Paramètres du serveur DHCP"
 
 msgid "Client list"
 msgstr "Liste des clients"
+
+msgid "Interface"
+msgstr "Interface"
 
 msgid "Starting IP Address"
 msgstr "Adresse IP de départ"
 
 msgid "Ending IP Address"
 msgstr "Adresse IP de fin"
+
+msgid "Static Leases"
+msgstr "Bail statique"
+
+msgid "Add static DHCP lease"
+msgstr "Ajouter un bail DHCP statique"
 
 msgid "Lease Time"
 msgstr "Temps de bail"
@@ -258,22 +288,22 @@ msgid "Stop dnsmasq"
 msgstr "Arrêtez dnsmasq"
 
 msgid "Start dnsmasq"
-msgstr "Commencer dnsmasq"
+msgstr "Démarrer dnsmasq"
 
 msgid "dnsmasq already running"
-msgstr "Dnsmasq déjà en cours d'exécution"
+msgstr "Dnsmasq est déjà en cours d'exécution"
 
 msgid "Successfully started dnsmasq"
-msgstr "Lancé avec succès dnsmasq"
+msgstr "Dnsmasq lancé avec succès"
 
 msgid "Failed to start dnsmasq"
-msgstr "N'a pas démarrage de Dnsmasq"
+msgstr "Erreur durant le démarrage de Dnsmasq"
 
 msgid "Successfully stopped dnsmasq"
-msgstr "Arrêté avec succès dnsmasq"
+msgstr "Dnsmasq arrêté avec succès"
 
 msgid "Failed to stop dnsmasq"
-msgstr "N'a pas arrêté dnsmasq"
+msgstr "Erreur durant l'arrêt de Dnsmasq"
 
 msgid "dnsmasq already stopped"
 msgstr "dnsmasq déjà arrêté"
@@ -282,7 +312,7 @@ msgid "Dnsmasq is running"
 msgstr "Dnsmasq est en cours d'exécution"
 
 msgid "Dnsmasq is not running"
-msgstr "Dnsmasq ne fonctionne pas"
+msgstr "Dnsmasq n'est pas en fonctionnement"
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -313,13 +343,13 @@ msgid "Advanced settings"
 msgstr "Réglages avancés"
 
 msgid "Country Code"
-msgstr "Le code du pays"
+msgstr "Code pays"
 
 msgid "Information provided by hostapd"
 msgstr "Informations fournies par hostapd"
 
 msgid "Attempting to start hotspot"
-msgstr "Essayez de démarrer le hotspot"
+msgstr "Tentative de démarrage du hotspot"
 
 msgid "Attempting to stop hotspot"
 msgstr "Tentative d'arrêt du hotspot"
@@ -352,7 +382,7 @@ msgid "Start hotspot"
 msgstr "Démarrer le point d'accès"
 
 msgid "Stop hotspot"
-msgstr "Arrêté hotspot"
+msgstr "Arrêté le point d'accès"
 
 msgid "Enable logging"
 msgstr "Activer la journalisation"
@@ -360,9 +390,21 @@ msgstr "Activer la journalisation"
 msgid "Logfile output"
 msgstr "Sortie de journal"
 
+msgid "WiFi client AP mode"
+msgstr "Mode AP client WiFi"
+
+msgid "Hide SSID in broadcast"
+msgstr "Masquer le SSID en diffusion"
+
+msgid "Maximum number of clients"
+msgstr "Nombre maximum de clients"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configure l'option max_num_sta de hostapd. La valeur par défaut et maximum est 2007. Si vide ou 0, la valeur par défaut s'applique."
+
 #: includes/networking.php
 msgid "Summary"
-msgstr "Résumé"
+msgstr "Sommaire"
 
 msgid "Current settings"
 msgstr "Paramètres actuels"
@@ -374,7 +416,7 @@ msgid "DNS Server"
 msgstr "Serveur DNS"
 
 msgid "Alternate DNS Server"
-msgstr "Autre serveur DNS"
+msgstr "Serveur DNS alternatif"
 
 msgid "Adapter IP Address Settings"
 msgstr "Paramètres d'adresse IP de l'adaptateur"
@@ -389,10 +431,10 @@ msgid "Enabled"
 msgstr "Activée"
 
 msgid "Disabled"
-msgstr "Désactivé"
+msgstr "Désactivée"
 
 msgid "Static IP Options"
-msgstr "Options IP statiques"
+msgstr "Options d'IP statique"
 
 msgid "Apply settings"
 msgstr "Appliquer les paramètres"
@@ -402,7 +444,7 @@ msgstr "Informations fournies par /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr "Informations système"
+msgstr "Informations du système"
 
 msgid "Language"
 msgstr "Langue"
@@ -423,7 +465,7 @@ msgid "Hostname"
 msgstr "Nom d'hôte"
 
 msgid "Pi Revision"
-msgstr "Pi Révision"
+msgstr "Révision Pi"
 
 msgid "Uptime"
 msgstr "Durée de fonctionnent"
@@ -438,20 +480,152 @@ msgid "Reboot"
 msgstr "Redémarrer"
 
 msgid "Shutdown"
-msgstr "Fermer"
+msgstr "Arrêt"
 
 msgid "System Rebooting Now!"
-msgstr "Système de redémarrage maintenant!"
+msgstr "Redémarrage du système maintenant !"
 
 msgid "System Shutting Down Now!"
-msgstr "Système de fermeture maintenant!"
+msgstr "Arrêt du système maintenant !"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr "Réglage des thèmes"
+msgstr "Paramètres des thèmes"
 
 msgid "Select a theme"
 msgstr "Sélectionnez un thème"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Utilisation des données"
+
+msgid "Data usage monitoring"
+msgstr "Surveillance de l'utilisation des données"
+
+msgid "Hourly traffic amount"
+msgstr "Trafic horaire"
+
+msgid "Daily traffic amount"
+msgstr "Trafic journalier"
+
+msgid "Monthly traffic amount"
+msgstr "Trafic mensuel"
+
+msgid "Hourly"
+msgstr "Horaire"
+
+msgid "Daily"
+msgstr "Journalier"
+
+msgid "Monthly"
+msgstr "Mensuel"
+
+msgid "interface"
+msgstr "interface"
+
+msgid "date"
+msgstr "date"
+
+msgid "Send MB"
+msgstr "Envoyez les MB"
+
+msgid "Receive MB"
+msgstr "Recevoir les MB"
+
+msgid "Information provided by vnstat"
+msgstr "Informations fournies par vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Chargement de {0} graphique de bande passante"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Affichage de {0} à {1} des {2} entrées"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN n'est pas en cours d'exécution"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN est en cours d'exécution"
+
+msgid "Server settings"
+msgstr "Paramètres du serveur"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Sélectionnez le fichier de configuration OpenVPN (.ovpn)"
+
+msgid "Client Log"
+msgstr "Journal client"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Protocol"
+msgstr "Protocole"
+
+msgid "Root CA certificate"
+msgstr "Certificat de l'autorité de certification source"
+
+msgid "Server certificate"
+msgstr "Certificat du serveur"
+
+msgid "Diffie Hellman parameters"
+msgstr "Paramètres Diffie Hellman"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Journal du serveur"
+
+msgid "Start OpenVPN"
+msgstr "Démarrer OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Arrêter OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Informations fournies par openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Essai de démarrage d'openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Essai d'arrêt d'openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR n'est pas en cours d'exécution"
+
+msgid "TOR is running"
+msgstr "TOR est en cours d'exécution"
+
+msgid "Relay"
+msgstr "Relais"
+
+msgid "Relay settings"
+msgstr "Paramètres du relais"
+
+msgid "Nickname"
+msgstr "Surnom"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Start TOR"
+msgstr "Démarrer TOR"
+
+msgid "Stop TOR"
+msgstr "Démarrer TOR"
+
+msgid "Information provided by tor"
+msgstr "Informations fournies par TOR"
+
+msgid "Attempting to start TOR"
+msgstr "Essai de démarrage de TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Essai d'arrêt de TOR"
 
 #: common form controls
 msgid "Save settings"
@@ -460,3 +634,17 @@ msgstr "Enregistrer les paramètres"
 msgid "Refresh"
 msgstr "Recharger"
 
+msgid "running"
+msgstr "en cours d'exécution"
+
+msgid "stopped"
+msgstr "arrêté"
+
+msgid "Remove"
+msgstr "arrêté"
+
+msgid "up"
+msgstr "vers le haut"
+
+msgid "down"
+msgstr "vers le bas"

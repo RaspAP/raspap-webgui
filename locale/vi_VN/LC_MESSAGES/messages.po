@@ -1,0 +1,669 @@
+# RaspAP Portable Object file
+# Project home: https://github.com/billz/raspap-webgui
+# Licensed under the GNU General Public License v3.0
+# This file is distributed under the same license as the RaspAP package
+# FIRST AUTHOR billzimmerman@gmail.com, 2017
+# 
+# Translators:
+# William Zimmerman <billzimmerman@gmail.com>, 2019
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2.1\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2019-10-25 17:42+0000\n"
+"Last-Translator: William Zimmerman <billzimmerman@gmail.com>, 2019\n"
+"Language-Team: Vietnamese (https://www.transifex.com/na-360/teams/104285/vi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "Cổng thông tin Cấu hình Wifi RaspAP"
+
+msgid "Toggle navigation"
+msgstr "Chuyển đổi điều hướng"
+
+msgid "RaspAP Wifi Portal"
+msgstr "Cổng thông tin wifi RaspAP"
+
+msgid "Dashboard"
+msgstr "Bảng điều khiển"
+
+msgid "Configure WiFi client"
+msgstr "Định cấu hình WiFi cho máy khách"
+
+msgid "Configure hotspot"
+msgstr "Định cấu hình điểm phát wifi"
+
+msgid "Configure networking"
+msgstr "Đặt cấu hình kết nối mạng"
+
+msgid "Configure DHCP Server"
+msgstr "Định cấu hình máy chủ DHCP"
+
+msgid "Configure OpenVPN"
+msgstr "Định cấu hình OpenVPN"
+
+msgid "Configure TOR proxy"
+msgstr "Định cấu hình proxy TOR"
+
+msgid "Configure Auth"
+msgstr "Định cấu hình xác thực"
+
+msgid "Change Theme"
+msgstr "Thay đổi Chủ đề"
+
+msgid "System"
+msgstr "Hệ thống"
+
+msgid "About RaspAP"
+msgstr "Về RaspAP"
+
+#: includes/admin.php
+msgid "Authentication settings"
+msgstr "Cài đặt xác thực"
+
+msgid "New passwords do not match"
+msgstr "Mật khẩu mới không khớp"
+
+msgid "Username must not be empty"
+msgstr "Tên tài khoản không được để trống"
+
+msgid "Admin password updated"
+msgstr "Đã cập nhật mật khẩu quản trị viên"
+
+msgid "Failed to update admin password"
+msgstr "Không thể cập nhật mật khẩu quản trị viên"
+
+msgid "Old password does not match"
+msgstr "Mật khẩu cũ không khớp"
+
+msgid "Username"
+msgstr "Tên người dùng"
+
+msgid "Old password"
+msgstr "Mật khẩu cũ"
+
+msgid "New password"
+msgstr "Mật khẩu mới"
+
+msgid "Repeat new password"
+msgstr "Nhập lại mật khẩu mới"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "Cài đặt máy khách"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "Kênh"
+
+msgid "Security"
+msgstr "Bảo mật"
+
+msgid "Passphrase"
+msgstr "Passphrase"
+
+msgid "Wifi settings updated successfully"
+msgstr "Đã cập nhật thành công cài đặt wifi"
+
+msgid ""
+"Wifi settings updated but cannot restart (cannot execute 'wpa_cli "
+"reconfigure')"
+msgstr ""
+"Đã cập nhật cài đặt wifi nhưng không thể khởi động lại (không thể thực hiện "
+"'cấu hình lại wpa_cli')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Không thể cập nhật cài đặt wifi"
+
+msgid "Failed to update wifi settings"
+msgstr "Không thể cập nhật cài đặt wifi"
+
+msgid "Rescan"
+msgstr "Quét lại"
+
+msgid "Update"
+msgstr "Cập nhật"
+
+msgid "Add"
+msgstr "Thêm"
+
+msgid "Delete"
+msgstr "Xóa"
+
+msgid "Show"
+msgstr "Hiển thị"
+
+msgid "Hide"
+msgstr "Ẩn"
+
+msgid "Not configured"
+msgstr "Không được cấu hình"
+
+msgid ""
+"<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not "
+"currently support connecting to WEP"
+msgstr ""
+"<strong>Lưu ý:</strong> Các điểm truy cập WEP đang có dạng \"Mở\". RaspAP "
+"hiện không hỗ trợ kết nối tới WEP."
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "Thông tin Giao diện"
+
+msgid "Interface Name"
+msgstr "Tên giao diện"
+
+msgid "IPv4 Address"
+msgstr "Địa chỉ IPv4"
+
+msgid "IPv6 Address"
+msgstr "Địa chỉ IPv6"
+
+msgid "Subnet Mask"
+msgstr "Chia mạng con"
+
+msgid "Mac Address"
+msgstr "Địa chỉ Mac"
+
+msgid "Interface Statistics"
+msgstr "Thống kê Giao diện"
+
+msgid "Received Packets"
+msgstr "Đã nhận các gói thông tin"
+
+msgid "Received Bytes"
+msgstr "Số Byte Nhận được"
+
+msgid "Transferred Packets"
+msgstr "Các gói chuyển đổi"
+
+msgid "Transferred Bytes"
+msgstr "Chuyển byte"
+
+msgid "Wireless Information"
+msgstr "Thông tin Không dây"
+
+msgid "Connected To"
+msgstr "Kết nối với"
+
+msgid "AP Mac Address"
+msgstr "Địa chỉ AP Mac"
+
+msgid "Bitrate"
+msgstr "Lượng dữ liệu chuyển tải"
+
+msgid "Signal Level"
+msgstr "Mức độ tín hiệu"
+
+msgid "Transmit Power"
+msgstr "Truyền điện"
+
+msgid "Frequency"
+msgstr "Tần suất"
+
+msgid "Link Quality"
+msgstr "Chất lượng Liên kết"
+
+msgid "Information provided by ip and iw and from system"
+msgstr "Thông tin được cung cấp bởi ip và iw và từ hệ thống"
+
+msgid "No MAC Address Found"
+msgstr "Không tìm thấy địa chỉ MAC"
+
+msgid "No IP Address Found"
+msgstr "Không tìm thấy Địa chỉ IP"
+
+msgid "No Subnet Mask Found"
+msgstr "Không tìm thấy mạng con"
+
+msgid "No Data"
+msgstr "Không có dữ liệu"
+
+msgid "Not connected"
+msgstr "Không kết nối"
+
+msgid "Interface is up"
+msgstr "Giao diện đang hiển thị"
+
+msgid "Interface is down"
+msgstr "Giao diện không hoạt động"
+
+msgid "Interface already down"
+msgstr "Giao diện không hoạt động"
+
+msgid "Start wlan0"
+msgstr "Khởi động wlan0"
+
+msgid "Stop wlan0"
+msgstr "Dừng mạng cục bộ không dây"
+
+msgid "Connected Devices"
+msgstr "Các thiết bị được kết nối"
+
+#: includes/dhcp.php
+msgid "DHCP server settings"
+msgstr "Cài đặt máy chủ DHCP"
+
+msgid "Client list"
+msgstr "Danh sách máy khách"
+
+msgid "Interface"
+msgstr "Giao diện"
+
+msgid "DNS Server"
+msgstr "Máy chủ DNS"
+
+msgid "Starting IP Address"
+msgstr "Bắt đầu địa chỉ IP"
+
+msgid "Ending IP Address"
+msgstr "Địa chỉ IP kết thúc"
+
+msgid "Static Leases"
+msgstr "Cấu hình tĩnh"
+
+msgid "Add static DHCP lease"
+msgstr "Thêm DHCP đang hoạt động"
+
+msgid "Lease Time"
+msgstr "Thời gian Đăng ký"
+
+msgid "Interval"
+msgstr "Khoảng thời gian giữa"
+
+msgid "Active DHCP leases"
+msgstr "DHCP đang hoạt động"
+
+msgid "Expire time"
+msgstr "Hết hạn thời gian"
+
+msgid "MAC Address"
+msgstr "Địa chỉ MAC"
+
+msgid "Host name"
+msgstr "Tên máy chủ"
+
+msgid "Client ID"
+msgstr "Mã khách hàng"
+
+msgid "Information provided by Dnsmasq"
+msgstr "Thông tin được cung cấp bởi Dnsmasq"
+
+msgid "Stop dnsmasq"
+msgstr "Dừng dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "Khởi động dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Đã cập nhật thành công cấu hình Dnsmasq"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq đã hoạt động"
+
+msgid "Successfully started dnsmasq"
+msgstr "Dừng dnsmasq thành công"
+
+msgid "Failed to start dnsmasq"
+msgstr "Không thể khởi động dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Đã dừng dnsmasq thành công"
+
+msgid "Failed to stop dnsmasq"
+msgstr "Không thể dừng dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq đã dừng hoạt động"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq đang hoạt động"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq đang không hoạt động"
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "Cơ bản"
+
+msgid "Advanced"
+msgstr "Nâng cao"
+
+msgid "Basic settings"
+msgstr "Cài đặt cơ bản"
+
+msgid "Wireless Mode"
+msgstr "Chế độ không dây"
+
+msgid "Security settings"
+msgstr "Cài đặt về Bảo mật"
+
+msgid "Security type"
+msgstr "Loại bảo mật"
+
+msgid "Encryption Type"
+msgstr "Loại Mã hóa"
+
+msgid "PSK"
+msgstr "Mật khẩu mã hóa"
+
+msgid "Advanced settings"
+msgstr "Cài đặt nâng cao"
+
+msgid "Country Code"
+msgstr "Mã quốc gia"
+
+msgid "Information provided by hostapd"
+msgstr "Thông tin được cung cấp bởi hostapd"
+
+msgid "Attempting to start hotspot"
+msgstr "Đang cố gắng khởi động truy cập wifi"
+
+msgid "Attempting to stop hotspot"
+msgstr "Đang cố dừng truy cập wifi"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD không hoạt động"
+
+msgid "HostAPD is running"
+msgstr "HostAPD đang hoạt động"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "Tên nhận dạng phải có từ 1 đến 32 ký tự"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "Cụm mật khẩu bảo mật Wifi phải có từ 8 đến 63 ký tự"
+
+msgid "Unknown interface"
+msgstr "Giao diện không xác định"
+
+msgid "Country code must be blank or two characters"
+msgstr "Mã quốc gia phải để trống hoặc gồm hai ký tự"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Đã lưu cài đặt Điểm truy cập Wifi"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "Không thể lưu cài đặt truy cập wifi"
+
+msgid "Start hotspot"
+msgstr "Khởi động tính năng phát wifi"
+
+msgid "Stop hotspot"
+msgstr "Dừng điểm truy cập"
+
+msgid "Enable logging"
+msgstr "Bật ghi nhật ký"
+
+msgid "Logfile output"
+msgstr "Tệp nhật ký đầu ra"
+
+msgid "WiFi client AP mode"
+msgstr "Chế độ tạo wifi cho khách"
+
+msgid "Hide SSID in broadcast"
+msgstr "Ẩn tên mạng wifi trong chương trình phát sóng"
+
+msgid "Maximum number of clients"
+msgstr "Số lượng máy khách tối đa"
+
+msgid ""
+"Configures the max_num_sta option of hostapd. The default and maximum is "
+"2007. If empty or 0, the default applies."
+msgstr ""
+"Định cấu hình tùy chọn max_num_sta của hostapd. Giá trị mặc định và tối đa "
+"là 2007. Nếu trống hoặc có giá trị bằng 0, giá trị mặc định sẽ được áp dụng."
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Tóm tắt"
+
+msgid "Current settings"
+msgstr "Cài đặt hiện tại"
+
+msgid "Default Gateway"
+msgstr "Cổng mặc định"
+
+msgid "Alternate DNS Server"
+msgstr "Máy chủ DNS thay thế"
+
+msgid "Adapter IP Address Settings"
+msgstr "Cài đặt địa chỉ IP của bộ điều hợp"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Bật tùy chọn tĩnh"
+
+msgid "Static IP"
+msgstr "IP tĩnh"
+
+msgid "Enabled"
+msgstr "Đã bật"
+
+msgid "Disabled"
+msgstr "Vô hiệu hóa"
+
+msgid "Static IP Options"
+msgstr "Tùy chọn IP tĩnh"
+
+msgid "Apply settings"
+msgstr "Áp dụng cài đặt"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Thông tin được cung cấp bởi / sys / class / net"
+
+#: includes/system.php
+msgid "System Information"
+msgstr "Thông tin Hệ thống"
+
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+msgid "Language settings"
+msgstr "Cài đặt ngôn ngữ"
+
+msgid "Select a language"
+msgstr "Chọn một ngôn ngữ"
+
+msgid "Language setting saved"
+msgstr "Đã lưu cài đặt ngôn ngữ"
+
+msgid "Console"
+msgstr "Bảng điều khiển"
+
+msgid "Hostname"
+msgstr "Tên máy chủ"
+
+msgid "Pi Revision"
+msgstr "Lưu bản sao Pi"
+
+msgid "Uptime"
+msgstr "Thời gian hoạt động "
+
+msgid "Memory Used"
+msgstr "Đã sử dụng bộ nhớ"
+
+msgid "CPU Load"
+msgstr "Tải CPU"
+
+msgid "Reboot"
+msgstr "Khởi động lại hệ thống"
+
+msgid "Shutdown"
+msgstr "Tắt"
+
+msgid "System Rebooting Now!"
+msgstr "Hệ thống đang khởi động lại!"
+
+msgid "System Shutting Down Now!"
+msgstr "Hệ thống đang ngừng hoạt động!"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "Cài đặt chủ đề"
+
+msgid "Select a theme"
+msgstr "Chọn một chủ đề"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Sử dụng dữ liệu"
+
+msgid "Data usage monitoring"
+msgstr "Kiểm soát dữ liệu sử dụng"
+
+msgid "Hourly traffic amount"
+msgstr "Lưu lượng hằng giờ"
+
+msgid "Daily traffic amount"
+msgstr "Lưu lượng hằng ngày"
+
+msgid "Monthly traffic amount"
+msgstr "Lưu lượng hằng tháng"
+
+msgid "Hourly"
+msgstr "Hàng giờ"
+
+msgid "Daily"
+msgstr "Hằng ngày"
+
+msgid "Monthly"
+msgstr "Hằng tháng"
+
+msgid "interface"
+msgstr "Giao diện"
+
+msgid "date"
+msgstr "ngày"
+
+msgid "Send MB"
+msgstr "Gửi MB"
+
+msgid "Receive MB"
+msgstr "Nhận MB"
+
+msgid "Information provided by vnstat"
+msgstr "Thông tin được cung cấp bởi vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Đang tải {0} biểu đồ băng thông"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Đang hiển thị {0} tới {1} trong {2} mục"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN không hoạt động"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN đang hoạt động"
+
+msgid "Server settings"
+msgstr "Cài đặt máy chủ"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Chọn tệp cấu hình OpenVPN (.ovpn)"
+
+msgid "Client Log"
+msgstr "Nhật ký khách hàng"
+
+msgid "Port"
+msgstr "Cổng"
+
+msgid "Protocol"
+msgstr "Giao thức"
+
+msgid "Root CA certificate"
+msgstr "Chứng chỉ gốc của CA"
+
+msgid "Server certificate"
+msgstr "Chứng chỉ cho máy chủ"
+
+msgid "Diffie Hellman parameters"
+msgstr "Thông số Diffie Hellman"
+
+msgid "KeepAlive"
+msgstr "Cấu trúc KeepAlive"
+
+msgid "Server log"
+msgstr "Nhật ký máy chủ"
+
+msgid "Start OpenVPN"
+msgstr "Khởi động OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Dừng OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Thông tin được cung cấp bởi openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Đang cố khởi động openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Đang cố dừng openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR đang không hoạt động"
+
+msgid "TOR is running"
+msgstr "TOR đang hoạt động"
+
+msgid "Relay"
+msgstr "Chuyển tiếp"
+
+msgid "Relay settings"
+msgstr "Cài đặt trung chuyển"
+
+msgid "Nickname"
+msgstr "Biệt danh"
+
+msgid "Address"
+msgstr "Địa chỉ"
+
+msgid "Start TOR"
+msgstr "Bắt đầu TOR"
+
+msgid "Stop TOR"
+msgstr "Dừng TOR"
+
+msgid "Information provided by tor"
+msgstr "Thông tin được cung cấp bởi tor"
+
+msgid "Attempting to start TOR"
+msgstr "Đang cố khởi động TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Đang cố dừng TOR"
+
+#: common form controls
+msgid "Save settings"
+msgstr "Lưu cài đặt"
+
+msgid "Refresh"
+msgstr "Làm mới"
+
+msgid "running"
+msgstr "đang hoạt động"
+
+msgid "stopped"
+msgstr "dừng"
+
+msgid "Remove"
+msgstr "Xóa"
+
+msgid "up"
+msgstr "lên"
+
+msgid "down"
+msgstr "Không hoạt động"

@@ -1,0 +1,193 @@
+body {
+  color: #212529;
+}
+
+.page-header {
+  margin: 20px 0 20px;
+}
+
+.page-header .logo {
+  margin-right: 5px;
+}
+
+/* Small devices (portrait phones, up to 576px) */
+@media (max-width: 576px) {
+  .container-fluid, .card-body, .col-md-6 { padding-left: 0.5rem; padding-right: 0.5rem; }
+  .card .card-header { padding: .75rem .5rem; font-size: 1.0rem; }
+  .row { margin-left: 0rem; margin-right: 0rem; }
+  .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
+  .form-group.col-md-6 { margin-left: -0.5rem; }
+  .js-wifi-stations { margin-left: -0.5rem; margin-right: -0.5rem; }
+  h4.mt-3 { margin-left: 0.5rem; }
+}
+
+.sidebar {
+  background-color: #f8f9fc;
+}
+
+.sidebar-brand-text {
+  text-transform: none;
+  color: #212529;
+  font-size: 2.0rem;
+  font-weight: 500;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.sidebar .nav-item.active .nav-link {
+  font-weight: 500;
+}
+
+.card .card-header {
+  border-color: #d8224c;
+  background-color: #d8224c;
+  color: #fff;
+}
+
+.card-footer {
+  background-color: #f2f1f0;
+}
+
+.nav-item {
+  font-size: 0.85rem;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link {
+  font-size: 1.0rem;
+}
+
+.nav-tabs a.nav-link {
+  color: #6e707e;
+}
+
+a.nav-link.active {
+    font-weight: bolder;
+}
+
+.sidebar .nav-item .nav-link {
+  padding: 0.6rem;
+}
+
+.alert-success {
+  background-color: #d4edda;
+}
+
+.btn-primary {
+  color: #d8224c;
+  background-color: #fff;
+  border-color: #d8224c;
+}
+
+.btn-warning {
+  color: #333;
+}
+
+.btn-primary:hover {
+  background-color: #c61931;
+  border-color: #c61931;
+}
+
+i.fa.fa-bars {
+  color: #d1d3e2;
+}
+
+i.fa.fa-bars:hover{
+  color: #6e707e;
+}
+
+.info-item {
+  width: 10rem;
+  float: left;
+}
+
+.info-item-wifi {
+  width: 6rem;
+  float: left;
+}
+
+.webconsole {
+  width:100%;
+  height:100%;
+  border:1px solid;
+}
+
+#console {
+  height:500px;
+}
+
+.systemtabcontent {
+  height:100%;
+  min-height:500px;
+}
+
+.service-status {
+  border-width: 0;
+}
+
+.service-status-up {
+  color: green;
+}
+
+.service-status-down {
+  color: red;
+  animation: flash 1s linear infinite;
+}
+@keyframes flash {
+  50% {
+    opacity: 0;
+  }
+}
+ 
+.logoutput {
+  width:100%;
+  height: 20rem;
+  border: 1px solid #d1d3e2;
+  border-radius: .35rem;
+}
+
+pre.unstyled {
+  border-width: 0;
+  background-color: transparent;
+  padding: 0;
+}
+
+.dhcp-static-leases {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.dhcp-static-lease-row {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.loading-spinner {
+  background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
+  min-height: 150px;
+  width: 100%;
+}
+
+.js-reload-wifi-stations {
+  min-width: 10rem;
+}
+
+.sidebar.toggled .nav-item .nav-link span {
+  display: none;
+} .sidebar .nav-item .nav-link i,
+.sidebar .nav-item .nav-link span {
+    font-size: 1.0rem;
+}
+
+.btn-warning:hover {
+    color: #000;
+}
+
+.toggle-off.btn {
+  padding-left: 1.2rem;
+  font-size: 0.9rem!important;
+}
+
+.toggle-on.btn {
+  font-size: 0.9rem!important;
+}
+

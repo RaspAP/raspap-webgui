@@ -1,8 +1,10 @@
 <?php
+
+require('../../includes/csrf.php');
+
 require_once '../../includes/config.php';
 require_once RASPI_CONFIG.'/raspap.php';
 
-session_start();
 header('X-Frame-Options: DENY');
 header("Content-Security-Policy: default-src 'none'; connect-src 'self'");
 require_once '../../includes/authenticate.php';
@@ -25,6 +27,8 @@ if (strlen($interface) > IFNAMSIZ) {
 } elseif(!preg_match('/^[a-zA-Z0-9]+$/', $interface)) {
     exit('Invalid interface name.');
 }
+
+require_once './get_bandwidth_hourly.php';
 
 exec(sprintf('vnstat -i %s --json ', escapeshellarg($interface)), $jsonstdoutvnstat,
      $exitcodedaily);

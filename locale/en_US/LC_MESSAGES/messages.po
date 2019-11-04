@@ -58,7 +58,13 @@ msgstr "Change Theme"
 msgid "System"
 msgstr "System"
 
+msgid "About RaspAP"
+msgstr "About RaspAP"
+
 #: includes/admin.php
+msgid "Authentication settings"
+msgstr "Authentication settings"
+
 msgid "New passwords do not match"
 msgstr "New passwords do not match"
 
@@ -126,6 +132,15 @@ msgstr "Add"
 msgid "Delete"
 msgstr "Delete"
 
+msgid "Show"
+msgstr "Show"
+
+msgid "Hide"
+msgstr "Hide"
+
+msgid "Not configured"
+msgstr "Not configured"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 
@@ -136,8 +151,11 @@ msgstr "Interface Information"
 msgid "Interface Name"
 msgstr "Interface Name"
 
-msgid "IP Address"
-msgstr "IP Address"
+msgid "IPv4 Address"
+msgstr "IPv4 Address"
+
+msgid "IPv6 Address"
+msgstr "IPv6 Address"
 
 msgid "Subnet Mask"
 msgstr "Subnet Mask"
@@ -184,8 +202,8 @@ msgstr "Frequency"
 msgid "Link Quality"
 msgstr "Link Quality"
 
-msgid "Information provided by ifconfig and iwconfig"
-msgstr "Information provided by ifconfig and iwconfig"
+msgid "Information provided by ip and iw and from system"
+msgstr "Information provided by ip and iw and from system"
 
 msgid "No MAC Address Found"
 msgstr "No MAC Address Found"
@@ -217,18 +235,33 @@ msgstr "Start wlan0"
 msgid "Stop wlan0"
 msgstr "Stop wlan0"
 
+msgid "Connected Devices"
+msgstr "Connected Devices"
+
 #: includes/dhcp.php
-msgid "Server settings"
-msgstr "Server settings"
+msgid "DHCP server settings"
+msgstr "DHCP server settings"
 
 msgid "Client list"
 msgstr "Client list"
+
+msgid "Interface"
+msgstr "Interface"
+
+msgid "DNS Server"
+msgstr "DNS Server"
 
 msgid "Starting IP Address"
 msgstr "Starting IP Address"
 
 msgid "Ending IP Address"
 msgstr "Ending IP Address"
+
+msgid "Static Leases"
+msgstr "Static Leases"
+
+msgid "Add static DHCP lease"
+msgstr "Add static DHCP lease"
 
 msgid "Lease Time"
 msgstr "Lease Time"
@@ -363,6 +396,18 @@ msgstr "Enable logging"
 msgid "Logfile output"
 msgstr "Logfile output"
 
+msgid "WiFi client AP mode"
+msgstr "WiFi client AP mode"
+
+msgid "Hide SSID in broadcast"
+msgstr "Hide SSID in broadcast"
+
+msgid "Maximum number of clients"
+msgstr "Maximum number of clients"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
@@ -372,9 +417,6 @@ msgstr "Current settings"
 
 msgid "Default Gateway"
 msgstr "Default Gateway"
-
-msgid "DNS Server"
-msgstr "DNS Server"
 
 msgid "Alternate DNS Server"
 msgstr "Alternate DNS Server"
@@ -456,6 +498,138 @@ msgstr "Theme settings"
 msgid "Select a theme"
 msgstr "Select a theme"
 
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Data usage"
+
+msgid "Data usage monitoring"
+msgstr "Data usage monitoring"
+
+msgid "Hourly traffic amount"
+msgstr "Hourly traffic amount"
+
+msgid "Daily traffic amount"
+msgstr "Daily traffic amount"
+
+msgid "Monthly traffic amount"
+msgstr "Monthly traffic amount"
+
+msgid "Hourly"
+msgstr "Hourly"
+
+msgid "Daily"
+msgstr "Daily"
+
+msgid "Monthly"
+msgstr "Monthly"
+
+msgid "interface"
+msgstr "interface"
+
+msgid "date"
+msgstr "date"
+
+msgid "Send MB"
+msgstr "Send MB"
+
+msgid "Receive MB"
+msgstr "Receive MB"
+
+msgid "Information provided by vnstat"
+msgstr "Information provided by vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Loading {0} bandwidth chart"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Showing {0} to {1} of {2} entries"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN is not running"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN is running"
+
+msgid "Server settings"
+msgstr "Server settings"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Select OpenVPN configuration file (.ovpn)"
+
+msgid "Client Log"
+msgstr "Client Log"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Protocol"
+msgstr "Protocol"
+
+msgid "Root CA certificate"
+msgstr "Root CA certificate"
+
+msgid "Server certificate"
+msgstr "Server certificate"
+
+msgid "Diffie Hellman parameters"
+msgstr "Diffie Hellman parameters"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Server log"
+
+msgid "Start OpenVPN"
+msgstr "Start OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Stop OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Information provided by openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Attempting to start openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Attempting to stop openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR is not running"
+
+msgid "TOR is running"
+msgstr "TOR is running"
+
+msgid "Relay"
+msgstr "Relay"
+
+msgid "Relay settings"
+msgstr "Relay settings"
+
+msgid "Nickname"
+msgstr "Nickname"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "Start TOR"
+msgstr "Start TOR"
+
+msgid "Stop TOR"
+msgstr "Stop TOR"
+
+msgid "Information provided by tor"
+msgstr "Information provided by tor"
+
+msgid "Attempting to start TOR"
+msgstr "Attempting to start TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Attempting to stop TOR"
+
 #: common form controls
 msgid "Save settings"
 msgstr "Save settings"
@@ -463,3 +637,17 @@ msgstr "Save settings"
 msgid "Refresh"
 msgstr "Refresh"
 
+msgid "running"
+msgstr "running"
+
+msgid "stopped"
+msgstr "stopped"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "up"
+msgstr "up"
+
+msgid "down"
+msgstr "down"

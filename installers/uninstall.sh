@@ -3,28 +3,28 @@ raspap_dir="/etc/raspap"
 raspap_user="www-data"
 version=`sed 's/\..*//' /etc/debian_version`
 
-# Determine version and set default home location for lighttpd 
+# Determine Raspbian version and set default home location for lighttpd 
 webroot_dir="/var/www/html" 
-if [ $version -eq 9 ]; then 
-    version_msg="Raspian 9.0 (Stretch)" 
-    php_package="php7.0-cgi" 
-elif [ $version -eq 8 ]; then 
-    version_msg="Raspian 8.0 (Jessie)" 
-    webroot_dir="/var/www" 
-    php_package="php5-cgi" 
+if [ $version -eq 10 ]; then
+    version_msg="Raspbian 10.0 (Buster)"
+    php_package="php7.1-cgi"
+elif [ $version -eq 9 ]; then
+    version_msg="Raspbian 9.0 (Stretch)" 
+    php_package="php7.0-cgi"
 else 
-    version_msg="Raspian earlier than 8.0 (Wheezy)"
+    version_msg="Raspbian 8.0 (Jessie) or earlier"
     webroot_dir="/var/www" 
     php_package="php5-cgi" 
 fi
 
 phpcgiconf=""
-if [ "$php_package" = "php7.0-cgi" ]; then
+if [ "$php_package" = "php7.1-cgi" ]; then
+    phpcgiconf="/etc/php/7.1/cgi/php.ini"
+elif [ "$php_package" = "php7.0-cgi" ]; then
     phpcgiconf="/etc/php/7.0/cgi/php.ini"
 elif [ "$php_package" = "php5-cgi" ]; then
     phpcgiconf="/etc/php5/cgi/php.ini"
 fi
-
 
 # Outputs a RaspAP Install log line
 function install_log() {
@@ -120,6 +120,20 @@ function remove_raspap_directories() {
 
 }
 
+# Removes installed packages
+function remove_installed_packages() {
+    install_log "Removing installed packages"
+    echo -n "Remove the following installed packages? lighttpd $php_package git hostapd dnsmasq vnstat [y/N]: "
+    read answer
+    if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+        echo "Removing packages."
+        sudo apt-get remove lighttpd $php_package git hostapd dnsmasq vnstat
+        sudo apt-get autoremove
+    else
+        echo "Leaving packages installed."
+    fi
+}
+
 # Removes www-data from sudoers
 function clean_sudoers() {
     # should this check for only our commands?
@@ -130,6 +144,7 @@ function remove_raspap() {
     config_uninstallation
     check_for_backups
     remove_raspap_directories
+    remove_installed_packages
     clean_sudoers
 }
 

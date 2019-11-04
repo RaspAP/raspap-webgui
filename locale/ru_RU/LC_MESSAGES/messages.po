@@ -1,0 +1,654 @@
+# RaspAP Portable Object file
+# Project home: https://github.com/billz/raspap-webgui
+# Licensed under the GNU General Public License v3.0
+# This file is distributed under the same license as the RaspAP package
+# FIRST AUTHOR billzimmerman@gmail.com, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2.1\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
+"Last-Translator: Betep <betep@list.ru>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "Портал настройки RaspAP Wifi"
+
+msgid "Toggle navigation"
+msgstr "Переключение навигации"
+
+msgid "RaspAP Wifi Portal"
+msgstr "Портал RaspAP Wifi"
+
+msgid "Dashboard"
+msgstr "Приборная панель"
+
+msgid "Configure WiFi client"
+msgstr "Настройка WiFi клиента"
+
+msgid "Configure hotspot"
+msgstr "Настройка точки доступа"
+
+msgid "Configure networking"
+msgstr "Сетевые настрйоки"
+
+msgid "Configure DHCP Server"
+msgstr "Настроить DHCP сервер"
+
+msgid "Configure OpenVPN"
+msgstr "Настройка OpenVPN"
+
+msgid "Configure TOR proxy"
+msgstr "Настройка TOR proxy"
+
+msgid "Configure Auth"
+msgstr "Настйроки авторизации"
+
+msgid "Change Theme"
+msgstr "Сменить тему"
+
+msgid "System"
+msgstr "Система"
+
+msgid "About RaspAP"
+msgstr "О RaspAP"
+
+#: includes/admin.php
+msgid "Authentication settings"
+msgstr "Настройки аутентификации"
+
+msgid "New passwords do not match"
+msgstr "Новые пароли не совпадают"
+
+msgid "Username must not be empty"
+msgstr "Пустое Имя Пользователя недопустимо"
+
+msgid "Admin password updated"
+msgstr "Пароль администратора обновлен"
+
+msgid "Failed to update admin password"
+msgstr "Не удается обновить пароль администратора"
+
+msgid "Old password does not match"
+msgstr "Старый пароль не совпадает"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Old password"
+msgstr "Старый пароль"
+
+msgid "New password"
+msgstr "Новый пароль"
+
+msgid "Repeat new password"
+msgstr "Повторить новый пароль"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "Настройки клиента"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "Канал"
+
+msgid "Security"
+msgstr "Безопасность"
+
+msgid "Passphrase"
+msgstr "Ключевая фраза"
+
+msgid "Wifi settings updated successfully"
+msgstr "Настройки Wifi успешно обновлены"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "Настрйоки Wifi обновлены, но перезапуск невозможен (не запускается 'wpa_cli reconfigure')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Настройки Wifi не были обновлены"
+
+msgid "Failed to update wifi settings"
+msgstr "Неудачная при обновлении настроек wifi"
+
+msgid "Rescan"
+msgstr "Сканировать повторно"
+
+msgid "Update"
+msgstr "Обновить"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Show"
+msgstr "Показать"
+
+msgid "Hide"
+msgstr "Скрыть"
+
+msgid "Not configured"
+msgstr "Не настроено"
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Note:</strong> точки доступа WEP показаны как 'Открытые'. RaspAP в данный момент не поддерживает подключение WEP"
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "Информация об интерфейсе"
+
+msgid "Interface Name"
+msgstr "Имя интерфейса"
+
+msgid "IPv4 Address"
+msgstr "IPv4-адрес"
+
+msgid "IPv6 Address"
+msgstr "IPv6-адрес"
+
+msgid "Subnet Mask"
+msgstr "Маска подсети"
+
+msgid "Mac Address"
+msgstr "Mac-адрес"
+
+msgid "Interface Statistics"
+msgstr "Статистика интерфейса"
+
+msgid "Received Packets"
+msgstr "Полученные пакеты"
+
+msgid "Received Bytes"
+msgstr "Получено Байт"
+
+msgid "Transferred Packets"
+msgstr "Переданные пакеты"
+
+msgid "Transferred Bytes"
+msgstr "Передано Байт"
+
+msgid "Wireless Information"
+msgstr "Беспроводная информация"
+
+msgid "Connected To"
+msgstr "Подключено к"
+
+msgid "AP Mac Address"
+msgstr "Mac-адрес точки"
+
+msgid "Bitrate"
+msgstr "Битрейт"
+
+msgid "Signal Level"
+msgstr "Уровень сигнала"
+
+msgid "Transmit Power"
+msgstr "Мощность передатчика"
+
+msgid "Frequency"
+msgstr "Частота"
+
+msgid "Link Quality"
+msgstr "Качество соединения"
+
+msgid "Information provided by ip and iw and from system"
+msgstr "Информация, представленная IP и IW и из системы"
+
+msgid "No MAC Address Found"
+msgstr "MAC-адрес не найден"
+
+msgid "No IP Address Found"
+msgstr "IP-адрес не найден"
+
+msgid "No Subnet Mask Found"
+msgstr "Маска подсети не найдена"
+
+msgid "No Data"
+msgstr "Нет данных"
+
+msgid "Not connected"
+msgstr "Не подключено"
+
+msgid "Interface is up"
+msgstr "Интерфейс активен"
+
+msgid "Interface is down"
+msgstr "Интерфейс отключен"
+
+msgid "Interface already down"
+msgstr "Интерфейс уже отключен"
+
+msgid "Start wlan0"
+msgstr "Запуск wlan0"
+
+msgid "Stop wlan0"
+msgstr "Остановка wlan0"
+
+msgid "Connected Devices"
+msgstr "Подключенные устройства"
+
+#: includes/dhcp.php
+msgid "DHCP server settings"
+msgstr "Настройки сервера DHCP"
+
+msgid "Client list"
+msgstr "Список клиентов"
+
+msgid "Interface"
+msgstr "Интерфейс"
+
+msgid "Starting IP Address"
+msgstr "Начальный IP-адрес"
+
+msgid "Ending IP Address"
+msgstr "Конечный IP-адрес"
+
+msgid "Static Leases"
+msgstr "Договоры аренды статических адресов"
+
+msgid "Add static DHCP lease"
+msgstr "Добавить статическую аренду DHCP"
+
+msgid "Lease Time"
+msgstr "Срок аренды"
+
+msgid "Interval"
+msgstr "Интервал"
+
+msgid "Active DHCP leases"
+msgstr "Активные аренды DHCP"
+
+msgid "Expire time"
+msgstr "Время окончания"
+
+msgid "MAC Address"
+msgstr "MAC-адрес"
+
+msgid "Host name"
+msgstr "Имя хоста"
+
+msgid "Client ID"
+msgstr "ID клиента"
+
+msgid "Information provided by Dnsmasq"
+msgstr "Информация получена от Dnsmasq"
+
+msgid "Stop dnsmasq"
+msgstr "Остановка dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "Запуск dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Конфигурация Dnsmasq успешно обновлена"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq уже запущена"
+
+msgid "Successfully started dnsmasq"
+msgstr "Успешно запущена dnsmasq"
+
+msgid "Failed to start dnsmasq"
+msgstr "Не удалось запустить dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Успешно остановлена dnsmasq"
+
+msgid "Failed to stop dnsmasq"
+msgstr "Не удалось остановить dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq уже остановлена"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq запущена"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq не запущена"
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "Основные"
+
+msgid "Advanced"
+msgstr "Расширенные"
+
+msgid "Basic settings"
+msgstr "Основные настройки"
+
+msgid "Wireless Mode"
+msgstr "Режим беспроводной сети"
+
+msgid "Security settings"
+msgstr "Настройки безопасности"
+
+msgid "Security type"
+msgstr "Стандарт безопасности"
+
+msgid "Encryption Type"
+msgstr "Тип шифрования"
+
+msgid "PSK"
+msgstr "PSK"
+
+msgid "Advanced settings"
+msgstr "Расширенные настройки"
+
+msgid "Country Code"
+msgstr "Код страны"
+
+msgid "Information provided by hostapd"
+msgstr "Информация получена от hostapd"
+
+msgid "Attempting to start hotspot"
+msgstr "Попытка запуска точки доступа"
+
+msgid "Attempting to stop hotspot"
+msgstr "Попытка остановки точки доуступа"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD не запущена"
+
+msgid "HostAPD is running"
+msgstr "HostAPD запущена"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID может быть длиной от 1 до 32 символов"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "Кодовая фраза WPA может быть длиной от 8 до 63 символов"
+
+msgid "Unknown interface"
+msgstr "Неизвестный интерфейс"
+
+msgid "Country code must be blank or two characters"
+msgstr "Код страны должен быть пустым или двухсимвольным"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Настройки Wifi-точки сохранены"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "Невозможно сохранить настройки wifi-точки"
+
+msgid "Start hotspot"
+msgstr "Запуск точки доступа"
+
+msgid "Stop hotspot"
+msgstr "Остановка точки доступа"
+
+msgid "Enable logging"
+msgstr "Включить журналирование"
+
+msgid "Logfile output"
+msgstr "Записи журнала"
+
+msgid "WiFi client AP mode"
+msgstr "Режим AP WiFi-клиента"
+
+msgid "Hide SSID in broadcast"
+msgstr "Скрыть SSID при трансляции"
+
+msgid "Maximum number of clients"
+msgstr "Максимальное количество клиентов"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Настраивает параметр max_num_sta в hostapd. По умолчанию и максимум — 2007. Если пусто или 0, применяется значение по умолчанию."
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Сводка"
+
+msgid "Current settings"
+msgstr "Текущие настройки"
+
+msgid "Default Gateway"
+msgstr "Основной шлюз"
+
+msgid "DNS Server"
+msgstr "DNS сервер"
+
+msgid "Alternate DNS Server"
+msgstr "Альтернативный DNS-сервер"
+
+msgid "Adapter IP Address Settings"
+msgstr "Настройки IP-адреса адаптера"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Включить опцию статического резервирования IP"
+
+msgid "Static IP"
+msgstr "Статический IP"
+
+msgid "Enabled"
+msgstr "Включено"
+
+msgid "Disabled"
+msgstr "Отключено"
+
+msgid "Static IP Options"
+msgstr "Настройки статического IP"
+
+msgid "Apply settings"
+msgstr "Применить настройки"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Информация получена от /sys/class/net"
+
+#: includes/system.php
+msgid "System Information"
+msgstr "Информация о системе"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Language settings"
+msgstr "Настройки языка"
+
+msgid "Select a language"
+msgstr "Выбрать язык"
+
+msgid "Language setting saved"
+msgstr "Настройки языка сохранены"
+
+msgid "Console"
+msgstr "Консоль"
+
+msgid "Hostname"
+msgstr "Имя хоста"
+
+msgid "Pi Revision"
+msgstr "Пересмотр Pi"
+
+msgid "Uptime"
+msgstr "Время работы"
+
+msgid "Memory Used"
+msgstr "Использовано памяти"
+
+msgid "CPU Load"
+msgstr "Нагрузка CPU"
+
+msgid "Reboot"
+msgstr "Перезапуск"
+
+msgid "Shutdown"
+msgstr "Выключить"
+
+msgid "System Rebooting Now!"
+msgstr "Система перезапускается!"
+
+msgid "System Shutting Down Now!"
+msgstr "Система выключается!"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "Настройки темы"
+
+msgid "Select a theme"
+msgstr "Выбор темы"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Использование данных"
+
+msgid "Data usage monitoring"
+msgstr "Мониторинг использования данных"
+
+msgid "Hourly traffic amount"
+msgstr "Объем трафика за час"
+
+msgid "Daily traffic amount"
+msgstr "Дневной объем трафика"
+
+msgid "Monthly traffic amount"
+msgstr "Месячный объем траффика"
+
+msgid "Hourly"
+msgstr "почасовой"
+
+msgid "Daily"
+msgstr "Повседневная"
+
+msgid "Monthly"
+msgstr "Месячный"
+
+msgid "interface"
+msgstr "интерфейс"
+
+msgid "date"
+msgstr "дата"
+
+msgid "Send MB"
+msgstr "Отправлено Мб"
+
+msgid "Receive MB"
+msgstr "Получено Мб"
+
+msgid "Information provided by vnstat"
+msgstr "Информация, предоставленная vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "{0} график загружается"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Отображение с {0} по {1} из {2} записей"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN не работает"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN работает"
+
+msgid "Server settings"
+msgstr "Настройки сервера"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Выберите файл конфигурации OpenVPN (.ovpn)"
+
+msgid "Client Log"
+msgstr "Журнал клиента"
+
+msgid "Port"
+msgstr "Порт"
+
+msgid "Protocol"
+msgstr "Протокол"
+
+msgid "Root CA certificate"
+msgstr "Корневой сертификат CA"
+
+msgid "Server certificate"
+msgstr "Сертификат сервера"
+
+msgid "Diffie Hellman parameters"
+msgstr "Параметры Диффи Хеллмана"
+
+msgid "KeepAlive"
+msgstr "Не отключать"
+
+msgid "Server log"
+msgstr "Журнал сервера"
+
+msgid "Start OpenVPN"
+msgstr "Запустить OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Остановить OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Информация, представленная openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Попытка запуска openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Попытка остановить openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR не запущен"
+
+msgid "TOR is running"
+msgstr "TOR работает"
+
+msgid "Relay"
+msgstr "Перенаправить"
+
+msgid "Relay settings"
+msgstr "Настройки перенаправления"
+
+msgid "Nickname"
+msgstr "Ник"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Start TOR"
+msgstr "Запустить TOR"
+
+msgid "Stop TOR"
+msgstr "Остановить TOR"
+
+msgid "Information provided by tor"
+msgstr "Информация, представленная tor"
+
+msgid "Attempting to start TOR"
+msgstr "Попытка запуска TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Попытка остановить TOR"
+
+#: common form controls
+msgid "Save settings"
+msgstr "Сохранить настройки"
+
+msgid "Refresh"
+msgstr "Обновить"
+
+msgid "running"
+msgstr "работает"
+
+msgid "stopped"
+msgstr "остановлен"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "up"
+msgstr "вверх"
+
+msgid "down"
+msgstr "вниз"
+

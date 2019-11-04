@@ -1,0 +1,653 @@
+# RaspAP Portable Object file
+# Project home: https://github.com/billz/raspap-webgui
+# Licensed under the GNU General Public License v3.0
+# This file is distributed under the same license as the RaspAP package
+# FIRST AUTHOR billzimmerman@gmail.com, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2.1\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2019-10-21 23:15+0000\n"
+"Last-Translator: Rudolf Vallo <r.vallo@seznam.cz>\n"
+"Language-Team: \n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "RaspAP Wifi Konfigurační Portál"
+
+msgid "Toggle navigation"
+msgstr "Přepni navigaci"
+
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP Wifi Portál"
+
+msgid "Dashboard"
+msgstr "Přehled"
+
+msgid "Configure WiFi client"
+msgstr "Nastavení WiFi klienta"
+
+msgid "Configure hotspot"
+msgstr "Nastavení hotspot(u)"
+
+msgid "Configure networking"
+msgstr "Nastavení sítě"
+
+msgid "Configure DHCP Server"
+msgstr "Nastavení DHCP Serveru"
+
+msgid "Configure OpenVPN"
+msgstr "Nastavení OpenVPN"
+
+msgid "Configure TOR proxy"
+msgstr "Nastavení TOR proxy"
+
+msgid "Configure Auth"
+msgstr "Nastavení Autentifikace"
+
+msgid "Change Theme"
+msgstr "Změnit vzhled"
+
+msgid "System"
+msgstr "Systém"
+
+msgid "About RaspAP"
+msgstr "Info o RaspAP"
+
+#: includes/admin.php
+msgid "Authentication settings"
+msgstr "Nastavení ověřování"
+
+msgid "New passwords do not match"
+msgstr "Nová hesla se neshodují"
+
+msgid "Username must not be empty"
+msgstr "Uživatelské jméno nesmí být prázdné"
+
+msgid "Admin password updated"
+msgstr "Admin heslo aktualizováno"
+
+msgid "Failed to update admin password"
+msgstr "Nepodařilo se aktualizovat admin heslo"
+
+msgid "Old password does not match"
+msgstr "Staré heslo se neshoduje"
+
+msgid "Username"
+msgstr "Uživatelské jméno"
+
+msgid "Old password"
+msgstr "Staré heslo"
+
+msgid "New password"
+msgstr "Nové heslo"
+
+msgid "Repeat new password"
+msgstr "Znovu zadejte nové heslo"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "Nastavení klienta"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "Kanál"
+
+msgid "Security"
+msgstr "Zabezpečení"
+
+msgid "Passphrase"
+msgstr "Heslo"
+
+msgid "Wifi settings updated successfully"
+msgstr "Wifi nastavení úspěšně aktualizováno"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "Wifi nastavení aktualizováno, ale nerestartováno (nemohu spustit 'wpa_cli reconfigure')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Wifi nastavení se nepodařilo aktualizovat"
+
+msgid "Failed to update wifi settings"
+msgstr "Failed nastavení se nepodařilo aktualizovat"
+
+msgid "Rescan"
+msgstr "Prohledat"
+
+msgid "Update"
+msgstr "Aktualizovat"
+
+msgid "Add"
+msgstr "Přidat"
+
+msgid "Delete"
+msgstr "Smazat"
+
+msgid "Show"
+msgstr "Zobrazit"
+
+msgid "Hide"
+msgstr "Skrýt"
+
+msgid "Not configured"
+msgstr "Not configured"
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Poznámka:</strong> WEP přístupový bod je zobrazen jako 'bez zabezpečení' ''. RaspAP zatím nepodporuje připojení k WEP sítím"
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "Informace o rozhraní"
+
+msgid "Interface Name"
+msgstr "Jméno rozhraní"
+
+msgid "IPv4 Address"
+msgstr "IPv4 Adresa"
+
+msgid "IPv6 Address"
+msgstr "IPv6 Adresa"
+
+msgid "Subnet Mask"
+msgstr "Subnet Maska"
+
+msgid "Mac Address"
+msgstr "Mac Adresa"
+
+msgid "Interface Statistics"
+msgstr "Statistiky rozhraní"
+
+msgid "Received Packets"
+msgstr "Přijaté Pakety"
+
+msgid "Received Bytes"
+msgstr "Přijaté Bajty"
+
+msgid "Transferred Packets"
+msgstr "Odeslané Pakety"
+
+msgid "Transferred Bytes"
+msgstr "Odeslané Bajty"
+
+msgid "Wireless Information"
+msgstr "Bezdrátové informace"
+
+msgid "Connected To"
+msgstr "Připojeno K"
+
+msgid "AP Mac Address"
+msgstr "AP Mac Adresa"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Signal Level"
+msgstr "Signal Level"
+
+msgid "Transmit Power"
+msgstr "Vysílací výkon"
+
+msgid "Frequency"
+msgstr "Frekvence"
+
+msgid "Link Quality"
+msgstr "Kvalita Linky"
+
+msgid "Information provided by ip and iw and from system"
+msgstr "Informace získány od ip, iw a systému"
+
+msgid "No MAC Address Found"
+msgstr "Žádná MAC Adresa Nenalezena"
+
+msgid "No IP Address Found"
+msgstr "Žádná IP Adresa Nenalezena"
+
+msgid "No Subnet Mask Found"
+msgstr "Žádná maska nenalezena"
+
+msgid "No Data"
+msgstr "Žádná Data"
+
+msgid "Not connected"
+msgstr "Nepřipojeno"
+
+msgid "Interface is up"
+msgstr "Rozhraní je zapnuté"
+
+msgid "Interface is down"
+msgstr "Rozhraní je vypnuté"
+
+msgid "Interface already down"
+msgstr "Rozhraní je už vypnuté"
+
+msgid "Start wlan0"
+msgstr "Start wlan0"
+
+msgid "Stop wlan0"
+msgstr "Stop wlan0"
+
+msgid "Connected Devices"
+msgstr "Připojená zařízení"
+
+#: includes/dhcp.php
+msgid "DHCP server settings"
+msgstr "Nastavení serveru DHCP"
+
+msgid "Client list"
+msgstr "Seznam zařízení"
+
+msgid "Interface"
+msgstr "Rozhraní"
+
+msgid "Starting IP Address"
+msgstr "Počáteční IP Adresa"
+
+msgid "Ending IP Address"
+msgstr "Konečná IP Adresa"
+
+msgid "Static Leases"
+msgstr "Statická zapůjčení"
+
+msgid "Add static DHCP lease"
+msgstr "Přidat statický zapůjčení DHCP"
+
+msgid "Lease Time"
+msgstr "Čas Zápujčky"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Active DHCP leases"
+msgstr "Aktivní DHCP zápujčky"
+
+msgid "Expire time"
+msgstr "Čas Expirace"
+
+msgid "MAC Address"
+msgstr "MAC Adresa"
+
+msgid "Host name"
+msgstr "Název klienta"
+
+msgid "Client ID"
+msgstr "Klient ID"
+
+msgid "Information provided by Dnsmasq"
+msgstr "Zdroj informací Dnsmasq"
+
+msgid "Stop dnsmasq"
+msgstr "Zastavit dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "Spustit dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Dnsmasq úspěšně aktualizován"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq již běží"
+
+msgid "Successfully started dnsmasq"
+msgstr "Úspěšně spuštěn dnsmasq"
+
+msgid "Failed to start dnsmasq"
+msgstr "Nepodařilo se spustit dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Úspěšně zastaven dnsmasq"
+
+msgid "Failed to stop dnsmasq"
+msgstr "Nepodařilo se zastavit dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq je už zastavený"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq beží"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq neběží"
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "Základní"
+
+msgid "Advanced"
+msgstr "Pokročilé"
+
+msgid "Basic settings"
+msgstr "Základní nastavení"
+
+msgid "Wireless Mode"
+msgstr "Bezdrátový mód"
+
+msgid "Security settings"
+msgstr "Nastavení Zabezpečení"
+
+msgid "Security type"
+msgstr "Typ zabezpečení"
+
+msgid "Encryption Type"
+msgstr "Typ šifrování"
+
+msgid "PSK"
+msgstr "PSK"
+
+msgid "Advanced settings"
+msgstr "Pokročilé nastavení"
+
+msgid "Country Code"
+msgstr "Kód země"
+
+msgid "Information provided by hostapd"
+msgstr "Zdroj informací hostapd"
+
+msgid "Attempting to start hotspot"
+msgstr "Pokouším se spustit hotspot"
+
+msgid "Attempting to stop hotspot"
+msgstr "Pokouším se zastavit hotspot"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD neběží"
+
+msgid "HostAPD is running"
+msgstr "HostAPD již běží"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID musí být mezi 1 a 32 znaky"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "WPA heslo musí být mezi 8 a 63 znaky"
+
+msgid "Unknown interface"
+msgstr "Neznáme rozhraní"
+
+msgid "Country code must be blank or two characters"
+msgstr "Kód země musí být prázdný nebo obsahovat dva znaky"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Nastavení Wifi Hotspotu uloženo"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "Nemohu uložit nastavení wifi hotspotu"
+
+msgid "Start hotspot"
+msgstr "Spustit hotspot"
+
+msgid "Stop hotspot"
+msgstr "Zastavit hotspot"
+
+msgid "Enable logging"
+msgstr "Zapnout logování"
+
+msgid "Logfile output"
+msgstr "Výstop logu"
+
+msgid "WiFi client AP mode"
+msgstr "AP režim WiFi klienta"
+
+msgid "Hide SSID in broadcast"
+msgstr "Skrýt ve vysílání SSID"
+
+msgid "Maximum number of clients"
+msgstr "Maximální počet klientů"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Konfiguruje max_num_sta volbu hostapd. Výchozí a maximální hodnota je 2007. Pokud hodnota není vyplněna nebo je 0, použije se výchozí."
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Shrnutí"
+
+msgid "Current settings"
+msgstr "Aktuální nastavení"
+
+msgid "Default Gateway"
+msgstr "Výchozí brána"
+
+msgid "DNS Server"
+msgstr "DNS Server"
+
+msgid "Alternate DNS Server"
+msgstr "Alternativní DNS Server"
+
+msgid "Adapter IP Address Settings"
+msgstr "Nastavení IP Adresy adaptéru"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Povolit Záložní nastavení Statické IP"
+
+msgid "Static IP"
+msgstr "Statická IP"
+
+msgid "Enabled"
+msgstr "Zapnuto"
+
+msgid "Disabled"
+msgstr "Vypnuto"
+
+msgid "Static IP Options"
+msgstr "Možnosti statické IP"
+
+msgid "Apply settings"
+msgstr "Aplikovat nastavení"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Informace získány od /sys/class/net"
+
+#: includes/system.php
+msgid "System Information"
+msgstr "Systémové Informace"
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "Language settings"
+msgstr "Nastavení jazyka"
+
+msgid "Select a language"
+msgstr "Vyberte jazyk"
+
+msgid "Language setting saved"
+msgstr "Nastavení jazyka uloženo"
+
+msgid "Console"
+msgstr "Konzole"
+
+msgid "Hostname"
+msgstr "Hostname"
+
+msgid "Pi Revision"
+msgstr "Pi Revize"
+
+msgid "Uptime"
+msgstr "Doba využití"
+
+msgid "Memory Used"
+msgstr "Využití paměti"
+
+msgid "CPU Load"
+msgstr "Vytížení procesoru"
+
+msgid "Reboot"
+msgstr "Rebootovat"
+
+msgid "Shutdown"
+msgstr "Vypnout"
+
+msgid "System Rebooting Now!"
+msgstr "Systém nyní rebootuje!"
+
+msgid "System Shutting Down Now!"
+msgstr "Systém se nyní vypíná!"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "Nastavení témat"
+
+msgid "Select a theme"
+msgstr "Vybrat téma"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Využití dat"
+
+msgid "Data usage monitoring"
+msgstr "Sledování využití dat"
+
+msgid "Hourly traffic amount"
+msgstr "Hodinový objem návštěvnosti"
+
+msgid "Daily traffic amount"
+msgstr "Denní objem návštěvnosti"
+
+msgid "Monthly traffic amount"
+msgstr "Měsíční objem návštěvnosti"
+
+msgid "Hourly"
+msgstr "Hodinový"
+
+msgid "Daily"
+msgstr "Denní"
+
+msgid "Monthly"
+msgstr "Měsíční"
+
+msgid "interface"
+msgstr "rozhraní"
+
+msgid "date"
+msgstr "datum"
+
+msgid "Send MB"
+msgstr "Odesláno MB"
+
+msgid "Receive MB"
+msgstr "Přijato MB"
+
+msgid "Information provided by vnstat"
+msgstr "Informace získány od vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Načítám {0} graf šířky pásma"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Zobrazuji {0} do {1} z {2} záznamů"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN není spuštěn"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN je spuštěn"
+
+msgid "Server settings"
+msgstr "Nastavení serveru"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Vyberte konfigurační soubor OpenVPN (.ovpn)"
+
+msgid "Client Log"
+msgstr "Protokol klienta"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Protocol"
+msgstr "Protokol"
+
+msgid "Root CA certificate"
+msgstr "Root CA certifikát"
+
+msgid "Server certificate"
+msgstr "Certifikát serveru"
+
+msgid "Diffie Hellman parameters"
+msgstr "Parametry Diffie Hellman"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Protokol serveru"
+
+msgid "Start OpenVPN"
+msgstr "Spustit OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Zastavit OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Informace získány od openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Pokus o spuštění openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Pokus o zastavení openvpn"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR není spuštěno"
+
+msgid "TOR is running"
+msgstr "TOR není spuštěn"
+
+msgid "Relay"
+msgstr "Přepínač"
+
+msgid "Relay settings"
+msgstr "Nastavení přepínače"
+
+msgid "Nickname"
+msgstr "Přezdívka"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Start TOR"
+msgstr "Spustit TOR"
+
+msgid "Stop TOR"
+msgstr "Zastavit TOR"
+
+msgid "Information provided by tor"
+msgstr "Informace získány od tor"
+
+msgid "Attempting to start TOR"
+msgstr "Pokus o spuštění TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Pokus o zastavení TOR"
+
+#: common form controls
+msgid "Save settings"
+msgstr "Uložit nastavení"
+
+msgid "Refresh"
+msgstr "Znovu načíst"
+
+msgid "running"
+msgstr "je spuštěn"
+
+msgid "stopped"
+msgstr "zastaveno"
+
+msgid "Remove"
+msgstr "Odstranit"
+
+msgid "up"
+msgstr "nahoru"
+
+msgid "down"
+msgstr "dolů"
