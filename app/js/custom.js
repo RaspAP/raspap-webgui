@@ -19,7 +19,7 @@ function createNetmaskAddr(bitCount) {
 }
 
 function loadSummary(strInterface) {
-    $.post('/ajax/networking/get_ip_summary.php',{interface:strInterface},function(data){
+    $.post('ajax/networking/get_ip_summary.php',{interface:strInterface},function(data){
         jsonData = JSON.parse(data);
         console.log(jsonData);
         if(jsonData['return'] == 0) {
@@ -31,7 +31,7 @@ function loadSummary(strInterface) {
 }
 
 function getAllInterfaces() {
-    $.get('/ajax/networking/get_all_interfaces.php',function(data){
+    $.get('ajax/networking/get_all_interfaces.php',function(data){
         jsonData = JSON.parse(data);
         $.each(jsonData,function(ind,value){
             loadSummary(value)
@@ -50,7 +50,7 @@ function setupTabs() {
 }
 
 function loadCurrentSettings(strInterface) {
-    $.post('/ajax/networking/get_int_config.php',{interface:strInterface},function(data){
+    $.post('ajax/networking/get_int_config.php',{interface:strInterface},function(data){
         jsonData = JSON.parse(data);
         $.each(jsonData['output'],function(i,v) {
             var int = v['interface'];
@@ -91,7 +91,6 @@ function loadCurrentSettings(strInterface) {
 }
 
 function saveNetworkSettings(int) {
-
         var frmInt = $('#frm-'+int).find(':input');
         var arrFormData = {};
         $.each(frmInt,function(i3,v3){
@@ -102,8 +101,7 @@ function saveNetworkSettings(int) {
             }
         });
         arrFormData['interface'] = int;
-        $.post('/ajax/networking/save_int_config.php',arrFormData,function(data){
-            //console.log(data);
+        $.post('ajax/networking/save_int_config.php',arrFormData,function(data){
             var jsonData = JSON.parse(data);
             $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
         });
@@ -113,7 +111,7 @@ function applyNetworkSettings() {
         var int = $(this).data('int');
         arrFormData = {};
         arrFormData['generate'] = '';
-        $.post('/ajax/networking/gen_int_config.php',arrFormData,function(data){
+        $.post('ajax/networking/gen_int_config.php',arrFormData,function(data){
             console.log(data);
             var jsonData = JSON.parse(data);
             $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
@@ -186,7 +184,7 @@ function loadWifiStations(refresh) {
         $('.js-wifi-stations')
             .addClass('loading-spinner')
             .empty()
-            .load('/ajax/networking/wifi_stations.php'+qs, complete);
+            .load('ajax/networking/wifi_stations.php'+qs, complete);
     };
 }
 
@@ -234,7 +232,6 @@ $(function() {
 
 function set_theme(theme) {
     $('link[title="main"]').attr('href', 'app/css/' + theme);
-
     // persist selected theme in cookie 
     setCookie('theme',theme,90);
 }
@@ -292,8 +289,8 @@ $(window).on("load resize",function(e) {
 $(window).bind("load", function() {
     var url = window.location;
     $('ul.navbar-nav a').filter(function() {
-				return this.href == url;
-		}).parent().addClass('active');
+      return this.href == url;
+    }).parent().addClass('active');
 });
 
 $(document)
