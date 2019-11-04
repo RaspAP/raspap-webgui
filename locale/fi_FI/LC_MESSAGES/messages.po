@@ -514,6 +514,15 @@ msgstr "Päivittäisen liikenteen määrä"
 msgid "Monthly traffic amount"
 msgstr "Kuukausittaisen liikenteen määrä"
 
+msgid "Hourly"
+msgstr "Tunneittain"
+
+msgid "Daily"
+msgstr "Päivittäin"
+
+msgid "Monthly"
+msgstr "Kuukausittain"
+
 msgid "interface"
 msgstr "liittymä"
 

@@ -514,6 +514,15 @@ msgstr "Verkeer per dag"
 msgid "Monthly traffic amount"
 msgstr "Verkeer per maand"
 
+msgid "Hourly"
+msgstr "Pur uur"
+
+msgid "Daily"
+msgstr "Per dag"
+
+msgid "Monthly"
+msgstr "Per maand"
+
 msgid "interface"
 msgstr "interface"
 

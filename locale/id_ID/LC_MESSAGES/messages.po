@@ -527,6 +527,18 @@ msgstr "Jumlah lalu lintas per jam"
 msgid "Daily traffic amount"
 msgstr "Jumlah lalu lintas harian"
 
+msgid "Monthly traffic amount"
+msgstr "Jumlah lalu lintas bulanan"
+
+msgid "Hourly"
+msgstr "Per jam"
+
+msgid "Daily"
+msgstr "Harian"
+
+msgid "Monthly"
+msgstr "Bulanan"
+
 msgid "interface"
 msgstr "antarmuka"
 
@@ -538,9 +550,6 @@ msgstr "Kirim MB"
 
 msgid "Receive MB"
 msgstr "MB Diterima"
-
-msgid "Monthly traffic amount"
-msgstr "Jumlah lalu lintas bulanan"
 
 msgid "Information provided by vnstat"
 msgstr "Informasi disediakan oleh vnstat"

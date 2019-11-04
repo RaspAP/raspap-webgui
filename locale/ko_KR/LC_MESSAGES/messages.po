@@ -524,6 +524,18 @@ msgstr "시간별 트래픽량"
 msgid "Daily traffic amount"
 msgstr "일일 트래픽양 "
 
+msgid "Monthly traffic amount"
+msgstr "월간 트래픽량"
+
+msgid "Hourly"
+msgstr "시간별"
+
+msgid "Daily"
+msgstr "일일"
+
+msgid "Monthly"
+msgstr "월간"
+
 msgid "interface"
 msgstr "인터페이스"
 
@@ -535,9 +547,6 @@ msgstr "MB 보내기 "
 
 msgid "Receive MB"
 msgstr "MB 받기 "
-
-msgid "Monthly traffic amount"
-msgstr "월간 트래픽량"
 
 msgid "Information provided by vnstat"
 msgstr "vnstat 제공 정보"

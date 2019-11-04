@@ -514,6 +514,15 @@ msgstr "Günlük trafik miktarı"
 msgid "Monthly traffic amount"
 msgstr "Aylık trafik miktarı"
 
+msgid "Hourly"
+msgstr "Saatlik"
+
+msgid "Daily"
+msgstr "Günlük"
+
+msgid "Monthly"
+msgstr "Aylık"
+
 msgid "interface"
 msgstr "arayüz"
 

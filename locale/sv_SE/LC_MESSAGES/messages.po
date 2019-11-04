@@ -514,6 +514,15 @@ msgstr "Daglig trafik"
 msgid "Monthly traffic amount"
 msgstr "Månatlig trafik"
 
+msgid "Hourly"
+msgstr "Varje timme"
+
+msgid "Daily"
+msgstr "Daglig"
+
+msgid "Monthly"
+msgstr "Månatlig"
+
 msgid "interface"
 msgstr "gränssnitt"
 

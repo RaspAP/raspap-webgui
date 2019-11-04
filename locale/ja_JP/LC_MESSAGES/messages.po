@@ -523,6 +523,18 @@ msgstr "毎時のトラフィック量"
 msgid "Daily traffic amount"
 msgstr "1日のトラフィック量"
 
+msgid "Monthly traffic amount"
+msgstr "月間のトラフィック量"
+
+msgid "Hourly"
+msgstr "毎時"
+
+msgid "Daily"
+msgstr "毎日"
+
+msgid "Monthly"
+msgstr "月間"
+
 msgid "interface"
 msgstr "インターフェース"
 
@@ -534,9 +546,6 @@ msgstr "MBを送信"
 
 msgid "Receive MB"
 msgstr "受信MB"
-
-msgid "Monthly traffic amount"
-msgstr "月間のトラフィック量"
 
 msgid "Information provided by vnstat"
 msgstr "vnstatが提供する情報"

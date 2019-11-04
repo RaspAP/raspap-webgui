@@ -514,6 +514,15 @@ msgstr "每日流量统计"
 msgid "Monthly traffic amount"
 msgstr "每月流量统计"
 
+msgid "Hourly"
+msgstr "每小时"
+
+msgid "Daily"
+msgstr "每日"
+
+msgid "Monthly"
+msgstr "每月"
+
 msgid "interface"
 msgstr "接口"
 

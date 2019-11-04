@@ -514,6 +514,15 @@ msgstr "Дневной объем трафика"
 msgid "Monthly traffic amount"
 msgstr "Месячный объем траффика"
 
+msgid "Hourly"
+msgstr "почасовой"
+
+msgid "Daily"
+msgstr "Повседневная"
+
+msgid "Monthly"
+msgstr "Месячный"
+
 msgid "interface"
 msgstr "интерфейс"
 

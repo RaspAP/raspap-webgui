@@ -50,7 +50,7 @@ msgid "Configure TOR proxy"
 msgstr "TOR proxy සැකසුම"
 
 msgid "Configure Auth"
-msgstr "පරිශීලක අනන්‍යතාවය සැකසුම"
+msgstr "සත්‍යාපනය වින්‍යාස කරන්න"
 
 msgid "Change Theme"
 msgstr "පසුබිම් සැකසුම"
@@ -503,7 +503,10 @@ msgid "Hourly traffic amount"
 msgstr "Hourly traffic amount"
 
 msgid "Daily traffic amount"
-msgstr "දෛනිකව  ප්‍රවාහනය කරන ලද දත්ත ප්‍රමාණය  "
+msgstr "Daily traffic amount"
+
+msgid "Monthly traffic amount"
+msgstr "මාසිකව ප්ර වාහනය  කරන ලද දත්ත ප්ර මාණය"
 
 msgid "interface"
 msgstr "අතුරුමුහුණත"
@@ -516,9 +519,6 @@ msgstr "යවන ලද  MB"
 
 msgid "Receive MB"
 msgstr "ලැබුණු  MB"
-
-msgid "Monthly traffic amount"
-msgstr "මාසිකව ප්‍රවාහනය  කරන ලද දත්ත ප්‍රමාණය"
 
 msgid "Information provided by vnstat"
 msgstr "Vnstat විසින් සපයන ලද තොරතුරු"
@@ -621,12 +621,6 @@ msgstr "සැකසුම් සුරකින්න"
 
 msgid "Refresh"
 msgstr "ප්‍රාණවත් කරන්න"
-
-msgid "Disabled"
-msgstr "Disabled"
-
-msgid "Enabled"
-msgstr "Enabled"
 
 msgid "running"
 msgstr "running"

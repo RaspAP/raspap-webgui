@@ -527,6 +527,18 @@ msgstr "Lưu lượng hằng giờ"
 msgid "Daily traffic amount"
 msgstr "Lưu lượng hằng ngày"
 
+msgid "Monthly traffic amount"
+msgstr "Lưu lượng hằng tháng"
+
+msgid "Hourly"
+msgstr "Hàng giờ"
+
+msgid "Daily"
+msgstr "Hằng ngày"
+
+msgid "Monthly"
+msgstr "Hằng tháng"
+
 msgid "interface"
 msgstr "Giao diện"
 
@@ -538,9 +550,6 @@ msgstr "Gửi MB"
 
 msgid "Receive MB"
 msgstr "Nhận MB"
-
-msgid "Monthly traffic amount"
-msgstr "Lưu lượng hằng tháng"
 
 msgid "Information provided by vnstat"
 msgstr "Thông tin được cung cấp bởi vnstat"

@@ -511,6 +511,18 @@ msgstr "Stündliches Verkehrsvolumen"
 msgid "Daily traffic amount"
 msgstr "Tägliches Verkehrsvolumen"
 
+msgid "Monthly traffic amount"
+msgstr "Monatliches Verkehrsvolumen"
+
+msgid "Hourly"
+msgstr "Stündliches"
+
+msgid "Daily"
+msgstr "Tägliches"
+
+msgid "Monthly"
+msgstr "Monatliches"
+
 msgid "interface"
 msgstr "schnittstelle"
 
@@ -522,9 +534,6 @@ msgstr "MB senden"
 
 msgid "Receive MB"
 msgstr "MB erhalten"
-
-msgid "Monthly traffic amount"
-msgstr "Monatliches Verkehrsvolumen"
 
 msgid "Information provided by vnstat"
 msgstr "Informationen, die von vnstat bereitgestellt werden"

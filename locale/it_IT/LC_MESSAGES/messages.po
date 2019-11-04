@@ -514,6 +514,15 @@ msgstr "Quantità di traffico giornaliero"
 msgid "Monthly traffic amount"
 msgstr "Quantità di traffico mensile"
 
+msgid "Hourly"
+msgstr "Orario"
+
+msgid "Daily"
+msgstr "Giornaliero"
+
+msgid "Monthly"
+msgstr "Mensile"
+
 msgid "interface"
 msgstr "interfaccia"
 
