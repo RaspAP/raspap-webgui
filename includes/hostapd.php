@@ -208,23 +208,31 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         file_put_contents("/tmp/hostapddata", $config);
         system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $return);
 
-        // Set dhcp-range from system config, fallback to default if undefined
+        // Fetch dhcp-range, lease time from system config
         $dhcpConfig = parse_ini_file(RASPI_DNSMASQ_CONFIG, false, INI_SCANNER_RAW);
-        $dhcp_range = ($dhcpConfig['dhcp-range'] =='') ? '10.3.141.50,10.3.141.255,255.255.255.0,12h' : $dhcpConfig['dhcp-range'];
 
         if ($wifiAPEnable == 1) {
             // Enable uap0 configuration in dnsmasq for Wifi client AP mode
+            // Set dhcp-range from system config. If undefined, fallback to default
+            $dhcp_range = ($dhcpConfig['dhcp-range'] =='') ? '192.168.50.50,192.168.50.150,12h' : $dhcpConfig['dhcp-range'];
             $config = 'interface=lo,uap0               # Enable uap0 interface for wireless client AP mode'.PHP_EOL;
             $config.= 'bind-interfaces                 # Bind to the interfaces'.PHP_EOL;
             $config.= 'server=8.8.8.8                  # Forward DNS requests to Google DNS'.PHP_EOL;
             $config.= 'domain-needed                   # Don\'t forward short names'.PHP_EOL;
             $config.= 'bogus-priv                      # Never forward addresses in the non-routed address spaces'.PHP_EOL;
-            $config.= 'dhcp-range=192.168.50.50,192.168.50.150,12h'.PHP_EOL;
+            $config.= 'dhcp-range='.$dhcp_range.PHP_EOL;
+            if (!empty($dhcpConfig['dhcp-option'])) {
+                $config.= 'dhcp-option='.$dhcpConfig['dhcp-option'].PHP_EOL;
+            }
         } else {
-            // Fallback to system config
+            // Set dhcp-range from system config. If undefined, fallback to default
+            $dhcp_range = ($dhcpConfig['dhcp-range'] =='') ? '10.3.141.50,10.3.141.255,255.255.255.0,12h' : $dhcpConfig['dhcp-range'];
             $config = 'domain-needed'.PHP_EOL;
             $config.= 'interface='.$_POST['interface'].PHP_EOL;
             $config.= 'dhcp-range='.$dhcp_range.PHP_EOL;
+            if (!empty($dhcpConfig['dhcp-option'])) {
+                $config.= 'dhcp-option='.$dhcpConfig['dhcp-option'].PHP_EOL;
+            }
         }
         file_put_contents("/tmp/dnsmasqdata", $config);
         system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_CONFIG, $return);
