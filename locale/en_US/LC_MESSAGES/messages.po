@@ -511,6 +511,18 @@ msgstr "Hourly traffic amount"
 msgid "Daily traffic amount"
 msgstr "Daily traffic amount"
 
+msgid "Monthly traffic amount"
+msgstr "Monthly traffic amount"
+
+msgid "Hourly"
+msgstr "Hourly"
+
+msgid "Daily"
+msgstr "Daily"
+
+msgid "Monthly"
+msgstr "Monthly"
+
 msgid "interface"
 msgstr "interface"
 
@@ -522,9 +534,6 @@ msgstr "Send MB"
 
 msgid "Receive MB"
 msgstr "Receive MB"
-
-msgid "Monthly traffic amount"
-msgstr "Monthly traffic amount"
 
 msgid "Information provided by vnstat"
 msgstr "Information provided by vnstat"
