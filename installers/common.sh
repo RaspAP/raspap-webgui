@@ -215,6 +215,10 @@ function default_configuration() {
     sudo cp $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
     sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
 
+    if [ ! -f "$webroot_dir/includes/config.php" ]; then
+        sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
+    fi
+
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script
     lines=(

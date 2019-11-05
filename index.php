@@ -22,6 +22,7 @@ require('includes/csrf.php');
 ensureCSRFSessionToken();
 
 include_once('includes/config.php');
+include_once('includes/defaults.php');
 include_once(RASPI_CONFIG.'/raspap.php');
 include_once('includes/locale.php');
 include_once('includes/functions.php');
