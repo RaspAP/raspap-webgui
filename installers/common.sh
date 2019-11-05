@@ -76,7 +76,17 @@ function config_installation() {
     install_log "Configure installation"
     echo "Detected ${version_msg}" 
     echo "Install directory: ${raspap_dir}"
-    echo "Lighttpd directory: ${webroot_dir}"
+    echo -n "Install to Lighttpd root directory: ${webroot_dir}? [y/N]: "
+    if [ $assume_yes == 0 ]; then
+        read answer
+        if [[ $answer != "y" ]]; then
+            read -e -p "Enter alternate Lighttpd directory: " -i "/var/www/html/" webroot_dir
+        fi
+    else
+        echo -e
+    fi
+    echo "Install to Lighttpd directory: ${webroot_dir}"
+
     echo -n "Complete installation with these values? [y/N]: "
     if [ $assume_yes == 0 ]; then
         read answer
@@ -146,6 +156,10 @@ function create_hostapd_scripts() {
 
 # Fetches latest files from github to webroot
 function download_latest_files() {
+    if [ ! -d "$webroot_dir" ]; then
+        sudo mkdir -p $webroot_dir || install_error "Unable to create new webroot directory"
+    fi
+
     if [ -d "$webroot_dir" ]; then
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || install_error "Unable to remove old webroot directory"
     fi
@@ -338,11 +352,11 @@ function optimize_php() {
     if [ $assume_yes == 0 ]; then
         read answer
         if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
-            $php_session_cookie=1;
+            php_session_cookie=1;
         fi
     fi
 
-    if [ $assume_yes == 1 ] || [ $php_session_cookie == 1 ]; then
+    if [ "$assume_yes" == 1 ] || [ "$php_session_cookie" == 1 ]; then
         echo "Php-cgi enabling session.cookie_httponly."
         sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
     fi
@@ -352,11 +366,11 @@ function optimize_php() {
         if [ $assume_yes == 0 ]; then
             read answer
             if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
-                $php_opcache=1;
+                php_opcache=1;
             fi
         fi
 
-        if [ $assume_yes == 1 ] || [ $phpopcache == 1 ]; then
+        if [ "$assume_yes" == 1 ] || [ "$phpopcache" == 1 ]; then
             echo -e "Php-cgi enabling opcache.enable."
             sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
             # Make sure opcache extension is turned on.
