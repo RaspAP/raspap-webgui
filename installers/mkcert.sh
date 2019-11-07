@@ -24,11 +24,11 @@ function config_installation() {
         echo -e
     fi
 
-    echo -n "Install to Lighttpd SSL directory: ${lighttpd_ssl}? [y/N]: "
+    echo -n "Install to lighttpd SSL directory: ${lighttpd_ssl}? [y/N]: "
     if [ $assume_yes == 0 ]; then
         read answer
         if [[ $answer != "y" ]]; then
-            read -e -p "Enter alternate Lighttpd SSL directory: " -i "${lighttpd_ssl}" lighttpd_ssl
+            read -e -p "Enter alternate lighttpd SSL directory: " -i "${lighttpd_ssl}" lighttpd_ssl
         fi
     else
         echo -e
