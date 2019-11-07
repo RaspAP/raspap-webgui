@@ -67,13 +67,13 @@ function generate_certificate() {
     mkcert $certname "*.${certname}.local" $certname || install_error "Failed to generate certificate for $certname"
 
     install_log "Combining private key and certificate"
-    cat $certname+2-key.pem $certname+2.pem > $certname.pem || install_error "Failed to combine key and certificate"a
+    cat $certname+2-key.pem $certname+2.pem > $certname.pem || install_error "Failed to combine key and certificate"
     echo "OK"
 }
 
 # Create a directory for the combined .pem file in lighttpd
 function create_lighttpd_dir() {
-    install_log "Create SLL directory for lighttpd"
+    install_log "Creating SLL directory for lighttpd"
     if [ ! -d "$lighttpd_ssl" ]; then
 	sudo mkdir -p "$lighttpd_ssl" || install_error "Failed to create lighttpd directory"
     fi
@@ -81,14 +81,13 @@ function create_lighttpd_dir() {
 
     install_log "Setting permissions and moving .pem file"
     chmod 400 /home/pi/"$certname".pem || install_error "Unable to set permissions for .pem file"
-    sudo mv /home/pi/"$certname".pem /etc/lighttpd/ssl
+    sudo mv /home/pi/"$certname".pem /etc/lighttpd/ssl || install_error "Unable to move .pem file"
     echo "OK"
 }
 
-# Edit the lighttpd configuration
+# Generate config to enable SSL in lighttpd
 function configure_lighttpd() {
     install_log "Configuring lighttpd for SSL"
-    # Generate config to enable SSL in lighttpd
     lines=(
         'server.modules += ("mod_openssl")'
         '$SERVER["socket"] == ":443" {'
@@ -105,15 +104,14 @@ function configure_lighttpd() {
             sudo sed -i "$ a $line" $lighttpd_conf
             echo "Adding line $line"
         fi
-        #echo $line
     done
     echo "OK"
 }
 
 # Copy rootCA.pem to RaspAP web root
 function copy_rootca() {
-    install_log "Copying rootCA.pem to RaspAP web root" || install_error "Unable to copy rootCA.pem to ${webroot_dir}"
-    sudo cp /home/pi/.local/share/mkcert/rootCA.pem ${webroot_dir}
+    install_log "Copying rootCA.pem to RaspAP web root"
+    sudo cp /home/pi/.local/share/mkcert/rootCA.pem ${webroot_dir} || install_error "Unable to copy rootCA.pem to ${webroot_dir}"
     echo "OK"
 }
 
