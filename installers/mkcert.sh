@@ -6,6 +6,7 @@
 
 certname=$HOSTNAME."local"
 lighttpd_ssl="/etc/lighttpd/ssl"
+lighttpd_conf="/etc/lighttpd/lighttpd.conf"
 webroot_dir="/var/www/html"
 
 ### NOTE: all the below functions are overloadable for system-specific installs
@@ -72,9 +73,10 @@ function generate_certificate() {
 
 # Create a directory for the combined .pem file in lighttpd
 function create_lighttpd_dir() {
-    #todo: check for existence
     install_log "Create SLL directory for lighttpd"
-    sudo mkdir -p "$lighttpd_ssl" || install_error "Failed to create lighttpd directory"
+    if [ ! -d "$lighttpd_ssl" ]; then
+	sudo mkdir -p "$lighttpd_ssl" || install_error "Failed to create lighttpd directory"
+    fi
     echo "OK"
 
     install_log "Setting permissions and moving .pem file"
@@ -86,7 +88,25 @@ function create_lighttpd_dir() {
 # Edit the lighttpd configuration
 function configure_lighttpd() {
     install_log "Configuring lighttpd for SSL"
-
+    # Generate config to enable SSL in lighttpd
+    lines=(
+        'server.modules += ("mod_openssl")'
+        '$SERVER["socket"] == ":443" {'
+        'ssl.engine = "enable"'
+        'ssl.pemfile = "'$lighttpd_ssl/$certname'.pem"'
+        'ssl.ca-file = "/home/pi/.local/share/mkcert/rootCA.pem"'
+        'server.name = "'$certname'"'
+        'server.document-root = "'${webroot_dir}'"}'
+    )
+    for line in "${lines[@]}"; do
+        if grep -Fxq "${line}" "${lighttpd_conf}" > /dev/null; then
+            echo "$line: Line already added"
+        else
+            sudo sed -i "$ a $line" $lighttpd_conf
+            echo "Adding line $line"
+        fi
+        #echo $line
+    done
     echo "OK"
 }
 
