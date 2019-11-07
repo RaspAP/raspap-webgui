@@ -4,27 +4,35 @@
 # author: @billz
 # license: GNU General Public License v3.0
 #
-# Command-line options: -y, --yes, --assume-yes
+# Command-line options:
+# -y, --yes, --assume-yes
 # Assume "yes" as answer to all prompts and run non-interactively
+#
+# c, --crt, --certficate
+# Installs mkcert and generates an SSL certificate for lighttpd
 
 UPDATE_URL="https://raw.githubusercontent.com/billz/raspap-webgui/master/"
 VERSION=$(curl -s "https://api.github.com/repos/billz/raspap-webgui/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
-USAGE="Usage: -y, --yes, --assume-yes, -c --cert"
+USAGE=$'Usage: raspbian.sh [OPTION] \n\n-y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts'
+USAGE+=$'\n-c, --crt, --certficate\n\tInstalls an SSL certificate for lighttpd\n'
+
 assume_yes=0
 
 while :; do
     case $1 in
-	-y|--yes|--assume-yes)
-	assume_yes=1
-	apt_option="-y"
-        echo "assume_yes"
-	;;
-	-c|--cert)
-	install_cert=1
-        echo "install_cert"
-	;;
-	*)
-        #echo $USAGE
+        -y|--yes|--assume-yes)
+        assume_yes=1
+        apt_option="-y"
+        ;;
+        -c|--crt|--certificate)
+        install_cert=1
+        ;;
+        -*|--*)
+        echo "Unknown option: $1";
+        echo "$USAGE"
+        exit 1
+        ;;
+        *)
         break
         ;;
     esac
