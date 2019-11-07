@@ -8,13 +8,13 @@
 # -y, --yes, --assume-yes
 # Assume "yes" as answer to all prompts and run non-interactively
 #
-# c, --crt, --certficate
+# c, --cert, --certficate
 # Installs mkcert and generates an SSL certificate for lighttpd
 
 UPDATE_URL="https://raw.githubusercontent.com/billz/raspap-webgui/master/"
 VERSION=$(curl -s "https://api.github.com/repos/billz/raspap-webgui/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 USAGE=$'Usage: raspbian.sh [OPTION] \n\n-y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts'
-USAGE+=$'\n-c, --crt, --certficate\n\tInstalls an SSL certificate for lighttpd\n'
+USAGE+=$'\n-c, --cert, --certficate\n\tInstalls an SSL certificate for lighttpd\n'
 
 assume_yes=0
 
@@ -24,7 +24,7 @@ while :; do
         assume_yes=1
         apt_option="-y"
         ;;
-        -c|--crt|--certificate)
+        -c|--cert|--certificate)
         install_cert=1
         ;;
         -*|--*)
@@ -85,12 +85,12 @@ function update_system_packages() {
 
 if [ "${install_cert:-}" = 1 ]; then
     source="mkcert"
-    wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}
+    wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
     source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
     install_certificate
 else
     source="common"
-    wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}
+    wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
     source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
     install_raspap
 fi
