@@ -132,6 +132,7 @@ function install_complete() {
     echo "Note: Be sure to set this certificate to "Always trust" to avoid browser warnings."
     echo "Finally, enter the address https://${certname} in your browser."
     echo "Enjoy an encrypted SSL connection to RaspAP 🔒"
+    echo "For advanced options, run mkcert -help"
     install_divider
 }
 
