@@ -8,7 +8,7 @@
 # Assume "yes" as answer to all prompts and run non-interactively
 
 UPDATE_URL="https://raw.githubusercontent.com/billz/raspap-webgui/master/"
-VERSION=$(curl -s https://api.github.com/repos/billz/raspap-webgui/releases/latest | jq -r .tag_name)
+VERSION=$(curl -s "https://api.github.com/repos/billz/raspap-webgui/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 wget -q ${UPDATE_URL}/installers/common.sh -O /tmp/raspapcommon.sh
 source /tmp/raspapcommon.sh && rm -f /tmp/raspapcommon.sh
 
