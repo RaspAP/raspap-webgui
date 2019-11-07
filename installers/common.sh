@@ -45,7 +45,7 @@ function config_installation() {
     if [ $assume_yes == 0 ]; then
         read answer
         if [[ $answer != "y" ]]; then
-            read -e -p "Enter alternate Lighttpd directory: " -i "/var/www/html/" webroot_dir
+            read -e -p "Enter alternate Lighttpd directory: " -i "/var/www/html" webroot_dir
         fi
     else
         echo -e
