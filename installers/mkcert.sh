@@ -13,7 +13,7 @@ webroot_dir="/var/www/html"
 
 function config_installation() {
     install_log "Configure a new SSL certificate"
-    echo "Current system hostname is ${certname}"
+    echo "Current system hostname is $HOSTNAME"
     echo -n "Create an SSL certificate for ${certname}? (Recommended) [y/N]"
     if [ $assume_yes == 0 ]; then
         read answer
