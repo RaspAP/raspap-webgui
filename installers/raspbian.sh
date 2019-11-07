@@ -86,12 +86,12 @@ function update_system_packages() {
 if [ "${install_cert:-}" = 1 ]; then
     source="mkcert"
     wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}
-    source /var/www/html/installers/raspap_${source}.sh
+    source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
     install_certificate
 else
     source="common"
     wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}
-    source /var/www/html/installers/raspap_${source}.sh
+    source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
     install_raspap
 fi
 
