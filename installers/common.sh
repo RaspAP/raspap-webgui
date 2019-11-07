@@ -35,42 +35,7 @@ elif [ "$php_package" = "php5-cgi" ]; then
     phpcgiconf="/etc/php5/cgi/php.ini"
 fi
 
-# Outputs a RaspAP Install log line
-function install_log() {
-    echo -e "\033[1;32mRaspAP Install: $*\033[m"
-}
-
-# Outputs a RaspAP Install Error log line and exits with status code 1
-function install_error() {
-    echo -e "\033[1;37;41mRaspAP Install Error: $*\033[m"
-    exit 1
-}
-
-# Outputs a RaspAP Warning line
-function install_warning() {
-    echo -e "\033[1;33mWarning: $*\033[m"
-}
-
-# Outputs a welcome message
-function display_welcome() {
-    raspberry='\033[0;35m'
-    green='\033[1;32m'
-
-    echo -e "${raspberry}\n"
-    echo -e " 888888ba                              .d888888   888888ba" 
-    echo -e " 88     8b                            d8     88   88     8b" 
-    echo -e "a88aaaa8P' .d8888b. .d8888b. 88d888b. 88aaaaa88a a88aaaa8P" 
-    echo -e " 88    8b. 88    88 Y8ooooo. 88    88 88     88   88" 
-    echo -e " 88     88 88.  .88       88 88.  .88 88     88   88" 
-    echo -e " dP     dP  88888P8  88888P  88Y888P  88     88   dP" 
-    echo -e "                             88"                             
-    echo -e "                             dP       version ${VERSION}"
-    echo -e "${green}"
-    echo -e "The Quick Installer will guide you through a few easy steps\n\n"
-}
-
 ### NOTE: all the below functions are overloadable for system-specific installs
-### NOTE: some of the below functions MUST be overloaded due to system-specific installs
 
 function config_installation() {
     install_log "Configure installation"
@@ -100,9 +65,9 @@ function config_installation() {
 }
 
 # Runs a system software update to make sure we're using all fresh packages
-function update_system_packages() {
-    # OVERLOAD THIS
-    install_error "No function definition for update_system_packages"
+function install_dependencies() {
+    install_log "Installing required packages"
+    sudo apt-get install $apt_option lighttpd $php_package git hostapd dnsmasq vnstat || install_error "Unable to install dependencies"
 }
 
 # Installs additional dependencies using system package manager
