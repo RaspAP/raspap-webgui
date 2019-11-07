@@ -8,7 +8,7 @@
 # Assume "yes" as answer to all prompts and run non-interactively
 
 UPDATE_URL="https://raw.githubusercontent.com/billz/raspap-webgui/master/"
-VERSION=$(curl -s https://api.github.com/repos/billz/raspap-webgui/releases/latest | jq -r .tag_name)
+VERSION=$(curl -s "https://api.github.com/repos/billz/raspap-webgui/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 USAGE="Usage: -y, --yes, --assume-yes, -c --cert"
 assume_yes=0
 
@@ -63,6 +63,11 @@ function install_error() {
 # Outputs a RaspAP Warning line
 function install_warning() {
     echo -e "\033[1;33mWarning: $*\033[m"
+}
+
+# Outputs a RaspAP divider
+function install_divider() {
+    echo -e "\033[1;32m***************************************************************$*\033[m"
 }
 
 function update_system_packages() {
