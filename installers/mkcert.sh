@@ -6,6 +6,7 @@
 
 certname=$HOSTNAME."local"
 lighttpd_ssl="/etc/lighttpd/ssl"
+webroot_dir="/var/www/html"
 
 ### NOTE: all the below functions are overloadable for system-specific installs
 
@@ -26,15 +27,16 @@ function config_installation() {
     if [ $assume_yes == 0 ]; then
         read answer
         if [[ $answer != "y" ]]; then
-            read -e -p "Enter alternate Lighttpd SSL directory: " -i "${lighttpd_ssl}/" lighttpd_ssl
+            read -e -p "Enter alternate Lighttpd SSL directory: " -i "${lighttpd_ssl}" lighttpd_ssl
         fi
     else
         echo -e
     fi
-    echo -e "\033[1;32m***************************************************************$*\033[m"
+
+    install_divider
     echo "A new SSL certificate for: ${certname}"
-    echo "will be installed to Lighttpd SSL directory: ${lighttpd_ssl}"
-    echo -e "\033[1;32m***************************************************************$*\033[m"
+    echo "will be installed to lighttpd SSL directory: ${lighttpd_ssl}"
+    install_divider
     echo -n "Complete installation with these values? [y/N]: "
     if [ $assume_yes == 0 ]; then
         read answer
@@ -50,7 +52,7 @@ function config_installation() {
 # Installs pre-built mkcert binary for Arch Linux ARM
 function install_mkcert() {
     install_log "Fetching mkcert binary"
-    sudo wget https://github.com/FiloSottile/mkcert/releases/download/v1.3.0/mkcert-v1.3.0-linux-arm -O /usr/local/bin/mkcert || install_error "Unable to download mkcert"
+    sudo wget -q https://github.com/FiloSottile/mkcert/releases/download/v1.3.0/mkcert-v1.3.0-linux-arm -O /usr/local/bin/mkcert || install_error "Unable to download mkcert"
     sudo chmod +x /usr/local/bin/mkcert
 
     install_log "Installing mkcert"
@@ -64,7 +66,8 @@ function generate_certificate() {
     mkcert $certname "*.${certname}.local" $certname || install_error "Failed to generate certificate for $certname"
 
     install_log "Combining private key and certificate"
-    cat $certname+2-key.pem $certname+2.pem > $certname.pem || install_error "Failed to combine key and certificate"
+    cat $certname+2-key.pem $certname+2.pem > $certname.pem || install_error "Failed to combine key and certificate"a
+    echo "OK"
 }
 
 # Create a directory for the combined .pem file in lighttpd
@@ -72,33 +75,44 @@ function create_lighttpd_dir() {
     #todo: check for existence
     install_log "Create SLL directory for lighttpd"
     sudo mkdir -p "$lighttpd_ssl" || install_error "Failed to create lighttpd directory"
+    echo "OK"
 
-    install_log "Setting permissions and moving the .pem file"
+    install_log "Setting permissions and moving .pem file"
     chmod 400 /home/pi/"$certname".pem || install_error "Unable to set permissions for .pem file"
     sudo mv /home/pi/"$certname".pem /etc/lighttpd/ssl
+    echo "OK"
 }
 
 # Edit the lighttpd configuration
 function configure_lighttpd() {
     install_log "Configuring lighttpd for SSL"
 
-
+    echo "OK"
 }
 
 # Copy rootCA.pem to RaspAP web root
 function copy_rootca() {
-    install_log "Copying rootCA.pem to RaspAP web root"
+    install_log "Copying rootCA.pem to RaspAP web root" || install_error "Unable to copy rootCA.pem to ${webroot_dir}"
     sudo cp /home/pi/.local/share/mkcert/rootCA.pem ${webroot_dir}
+    echo "OK"
+}
+
+# Restart lighttpd service
+function restart_lighttpd() {
+    install_log "Restarting lighttpd service"
+    sudo systemctl restart lighttpd.service || install_error "Unable to restart lighttpd service"
+    sudo systemctl status lighttpd.service
 }
 
 function install_complete() {
-    install_log "Installation completed!"
-
-    if [ "${assume_yes:-}" = 0 ]; then
-        # Prompt to reboot if wired ethernet (eth0) is connected.
-        # With default_configuration this will create an active AP on restart.
-        echo "ok"
-    fi
+    install_log "SSL certificate install completed!"
+    install_divider
+    echo "Open a browser and enter the address: http://${certname}/rootCA.pem"
+    echo "Download the root certificate to your client and add it to your system keychain."
+    echo "Note: Be sure to set this certificate to "Always trust" to avoid browser warnings."
+    echo "Finally, enter the address https://${certname} in your browser."
+    echo "Enjoy an encrypted SSL connection to RaspAP 🔒"
+    install_divider
 }
 
 function install_certificate() {
