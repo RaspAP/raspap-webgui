@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/xeKD93p.png)
-# `$ raspap` [![Release 2.0](https://img.shields.io/badge/Release-2.0-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Sponsor](https://img.shields.io/badge/sponsor-%F0%9F%92%96-green)](https://github.com/sponsors/billz)
+# `$raspap` [![Release 2.0](https://img.shields.io/badge/Release-2.0-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Sponsor](https://img.shields.io/badge/sponsor-%F0%9F%92%96-green)](https://github.com/sponsors/billz)
 
 A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
 
@@ -198,7 +198,17 @@ The following translations are currently maintained by the project:
 If your language is not in the list above, why not [contribute a translation](https://github.com/billz/raspap-webgui/wiki/Translations#contributing-a-translation)? Contributors will receive credit as the original translators.
 
 ## HTTPS support
-A detailed how-to for enabling HTTPS is available [on our wiki](https://github.com/billz/raspap-webgui/wiki/HTTPS--support). 
+The Quick Installer may be used to [generate SSL certificates](https://github.com/billz/raspap-webgui/wiki/SSL-certificates-(Quick-Installer)) with `mkcert`. The installer automates the manual steps [described in the wiki](https://github.com/billz/raspap-webgui/wiki/SSL-(Manual-steps)), including configuring lighttpd with SSL support. 
+
+Simply append the `-c` or `--cert` option to the Quick Installer, like so:
+
+```
+wget -q https://git.io/voEUQ -O /tmp/raspap && bash /tmp/raspap --cert
+```
+
+**Note**: this only installs mkcert and generates an SSL certificate with the input you provide. It does *not* (re)install RaspAP.
+
+More information on SSL certificates and HTTPS support is available [on our wiki](https://github.com/billz/raspap-webgui/wiki/SSL-certificates-(Quick-Installer)). 
 
 ## Optional services
 OpenVPN and TOR are two additional services that run perfectly well on the RPi, and are a nice way to extend the usefulness of your WiFi router. I've started on interfaces to administer these services. Not everyone will need them, so for the moment they are disabled by default. You can enable them by changing these options in `/var/www/html/includes/config.php`:
