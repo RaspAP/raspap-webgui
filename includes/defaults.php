@@ -34,6 +34,7 @@ $defaults = [
   'RASPI_CONFAUTH_ENABLED' => true,
   'RASPI_CHANGETHEME_ENABLED' => true,
   'RASPI_VNSTAT_ENABLED' => true,
+  'RASPI_SYSTEM_ENABLED' => true,
   'RASPI_MONITOR_ENABLED' => false,
 
   // Locale settings

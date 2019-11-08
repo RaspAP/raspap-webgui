@@ -161,9 +161,11 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
 	  <a class="nav-link" href="index.php?page=data_use"><i class="fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
 	</li>
 	  <?php endif; ?>
-	<li class="nav-item">
+      <?php if (RASPI_SYSTEM_ENABLED) : ?>
+    <li class="nav-item">
 	  <a class="nav-link" href="index.php?page=system_info"><i class="fas fa-cube fa-fw mr-2"></i><span class="nav-label"><?php echo _("System"); ?></a>
-	</li>
+    </li>
+      <?php endif; ?>
 	 <li class="nav-item">
 	  <a class="nav-link" href="index.php?page=about"><i class="fas fa-info-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("About RaspAP"); ?></a>
 	</li>
