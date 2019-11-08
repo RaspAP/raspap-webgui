@@ -70,12 +70,6 @@ function install_dependencies() {
     sudo apt-get install $apt_option lighttpd $php_package git hostapd dnsmasq vnstat || install_error "Unable to install dependencies"
 }
 
-# Installs additional dependencies using system package manager
-function install_dependencies() {
-    # OVERLOAD THIS
-    install_error "No function definition for install_dependencies"
-}
-
 # Enables PHP for lighttpd and restarts service for settings to take effect
 function enable_php_lighttpd() {
     install_log "Enabling PHP for lighttpd"
