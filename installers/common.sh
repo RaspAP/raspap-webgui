@@ -108,10 +108,21 @@ function create_hostapd_scripts() {
     # Move service control shell scripts
     sudo cp "$webroot_dir/installers/"service*.sh "$raspap_dir/hostapd" || install_error "Unable to move service control scripts"
     # Make enablelog.sh and disablelog.sh not writable by www-data group.
-    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || install_error "Unable change owner and/or group."
-    sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions."
+    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || install_error "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions"
 }
 
+# Generate lighttpd service control scripts
+function create_lighttpd_scripts() {
+    install_log "Creating lighttpd control scripts"
+    sudo mkdir  $raspap_dir/lighttpd || install_error "Unable to create directory '$raspap_dir/lighttpd"
+
+    # Move service control shell scripts
+    sudo cp "$webroot_dir/installers/"configport.sh "$raspap_dir/lighttpd" || install_error "Unable to move service control scripts"
+    # Make configport.sh writable by www-data group.
+    sudo chown -c root:"$raspap_user" "$raspap_dir/lighttpd/"*.sh || install_error "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/lighttpd/"*.sh || install_error "Unable to change file permissions"
+}
 
 # Fetches latest files from github to webroot
 function download_latest_files() {
@@ -273,6 +284,7 @@ function patch_system_files() {
         "/etc/raspap/hostapd/enablelog.sh"
         "/etc/raspap/hostapd/disablelog.sh"
         "/etc/raspap/hostapd/servicestart.sh"
+        "/etc/raspap/lighttpd/configport.sh"
     )
 
     # Check if sudoers needs patching
@@ -376,6 +388,7 @@ function install_raspap() {
     download_latest_files
     change_file_ownership
     create_hostapd_scripts
+    create_lighttpd_scripts
     move_config_file
     default_configuration
     patch_system_files
