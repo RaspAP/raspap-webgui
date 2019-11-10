@@ -19,7 +19,7 @@ define('RASPI_WPA_CTRL_INTERFACE', '/var/run/wpa_supplicant');
 define('RASPI_OPENVPN_CLIENT_CONFIG', '/etc/openvpn/client.conf');
 define('RASPI_OPENVPN_SERVER_CONFIG', '/etc/openvpn/server.conf');
 define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
-define("RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
+define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
 
 // Optional services, set to true to enable.
 define('RASPI_WIFICLIENT_ENABLED', true);
