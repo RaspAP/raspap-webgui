@@ -43,6 +43,7 @@ if ($cpuload > 90) {
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="nav-item"><a class="nav-link active" id="systemtab" href="#system" aria-controls="system" role="tab" data-toggle="tab"><?php echo _("System"); ?></a></li>
           <li role="presentation" class="nav-item"><a class="nav-link" id="languagetab" href="#language" aria-controls="language" role="tab" data-toggle="tab"><?php echo _("Language"); ?></a></li>
+          <li role="presentation" class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" aria-controls="advanced" role="tab" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
           <li role="presentation" class="nav-item"><a class="nav-link" id="consoletab" href="#console" aria-controls="console" role="tab" data-toggle="tab"><?php echo _("Console"); ?></a></li>
         </ul>
 
@@ -92,6 +93,22 @@ if ($cpuload > 90) {
               <input type="submit" class="btn btn-outline btn-primary" name="SaveLanguage" value="<?php echo _("Save settings"); ?>" />
               <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
             </div>
+
+            <div role="tabpanel" class="tab-pane" id="advanced">
+              <h4 class="mt-3"><?php echo _("Advanced settings") ;?></h4>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="code"><?php echo _("Web server port") ;?></label>
+                  <form action="?page=system_info" method="POST">
+                    <?php echo CSRFTokenFieldTag() ?>
+                    <?php if (!RASPI_MONITOR_ENABLED) : ?>
+                      <input type="text" class="form-control" name="serverPort" value="<?php echo htmlspecialchars($ServerPort, ENT_QUOTES); ?>" />
+                    <?php endif ?>
+                </div>
+              </div>
+              <input type="submit" class="btn btn-outline btn-primary" name="SaveServerPort" value="<?php echo _("Save settings"); ?>" />
+            </div>
+
             <div role="tabpanel" class="tab-pane" id="console">
               <div class="row">
                 <div class="col-lg-12 mt-3">
