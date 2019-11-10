@@ -65,13 +65,30 @@ function DisplaySystem()
     $status = new StatusMessages();
     $system = new System();
 
-
     if (isset($_POST['SaveLanguage'])) {
         if (isset($_POST['locale'])) {
             $_SESSION['locale'] = $_POST['locale'];
             $status->addMessage('Language setting saved', 'success');
         }
     }
+
+    if (isset($_POST['SaveServerPort'])) {
+        if (isset($_POST['serverPort'])) {
+            if (strlen($_POST['serverPort']) > 4 || !is_numeric($_POST['serverPort'])) {
+                $status->addMessage('Invalid value for port number', 'danger');
+            } else {
+                $serverPort = escapeshellarg($_POST['serverPort']);
+                exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
+                foreach ($return as $line) {
+                    $status->addMessage($line, 'info');
+                }
+            }
+        }
+    }
+
+    exec('cat '. RASPI_LIGHTTPD_CONFIG, $return);
+    $conf = ParseConfig($return);
+    $ServerPort = $conf['server.port'];
 
     // define locales
     $arrLocales = array(
@@ -104,5 +121,5 @@ function DisplaySystem()
         $result = shell_exec("sudo /sbin/shutdown -h now");
     }
 
-    echo renderTemplate("system", compact("arrLocales", "status", "system"));
+    echo renderTemplate("system", compact("arrLocales", "status", "system", "ServerPort"));
 }
