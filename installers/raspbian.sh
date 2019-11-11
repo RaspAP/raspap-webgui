@@ -42,6 +42,10 @@ while :; do
         -b|--branch)
         branch="$2"
         ;;
+        -h|--help)
+        printf "$usage"
+        exit 1
+        ;;
         -*|--*)
         echo "Unknown option: $1"
         printf "$usage"
