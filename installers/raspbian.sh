@@ -7,15 +7,20 @@
 # Command-line options:
 # -y, --yes, --assume-yes
 # Assume "yes" as answer to all prompts and run non-interactively
-#
 # c, --cert, --certficate
 # Installs mkcert and generates an SSL certificate for lighttpd
+# -r, --repo, --repository
+# Overrides the default GitHub repo (billz/raspap-webgui)
+# -b, --branch
+# Overrides the default git branch (master)
 
-UPDATE_URL="https://raw.githubusercontent.com/billz/raspap-webgui/master/"
-VERSION=$(curl -s "https://api.github.com/repos/billz/raspap-webgui/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
-USAGE=$'Usage: raspbian.sh [OPTION] \n\n-y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts'
-USAGE+=$'\n-c, --cert, --certficate\n\tInstalls an SSL certificate for lighttpd\n'
-
+repo="billz/raspap-webgui"
+branch="master"
+USAGE=$'Usage: raspbian.sh [OPTION] \n\n'
+USAGE+=$'-y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts\n'
+USAGE+=$'-c, --cert, --certficate\n\tInstalls an SSL certificate for lighttpd\n'
+USAGE+=$'-r, --repo, --repository\n\tOverrides the default GitHub repo (billz/raspap-webgui)\n'
+USAGE+=$'-b, --branch\n\tOverrides the default git branch (master)\n'
 assume_yes=0
 
 while :; do
@@ -27,8 +32,15 @@ while :; do
         -c|--cert|--certificate)
         install_cert=1
         ;;
+        -r|--repo|--repository)
+        repo="$2"
+        shift
+        ;;
+        -b|--branch)
+        branch="$2"
+        ;;
         -*|--*)
-        echo "Unknown option: $1";
+        echo "Unknown option: $1"
         echo "$USAGE"
         exit 1
         ;;
@@ -38,6 +50,9 @@ while :; do
     esac
     shift
 done
+
+VERSION=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
 
 # Outputs a welcome message
 function display_welcome() {
