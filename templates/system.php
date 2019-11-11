@@ -72,12 +72,13 @@ if ($cpuload > 90) {
 
                 <form action="?page=system_info" method="POST">
                   <?php echo CSRFTokenFieldTag() ?>
+                      <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+ 
                   <?php if (!RASPI_MONITOR_ENABLED) : ?>
                       <input type="submit" class="btn btn-warning" name="system_reboot"   value="<?php echo _("Reboot"); ?>" />
                       <input type="submit" class="btn btn-warning" name="system_shutdown" value="<?php echo _("Shutdown"); ?>" />
                   <?php endif ?>
-                      <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
-                </form>
+               </form>
                 </div>
               </div>
             </div>
@@ -107,6 +108,8 @@ if ($cpuload > 90) {
                 </div>
               </div>
               <input type="submit" class="btn btn-outline btn-primary" name="SaveServerPort" value="<?php echo _("Save settings"); ?>" />
+              <input type="submit" class="btn btn-warning" name="RestartLighttpd" value="<?php echo _("Restart lighttpd"); ?>" />
+
             </div>
 
             <div role="tabpanel" class="tab-pane" id="console">
