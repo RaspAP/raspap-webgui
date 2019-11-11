@@ -11,14 +11,14 @@ version=`sed 's/\..*//' /etc/debian_version`
 
 # Determine Raspbian version, set default home location for lighttpd and 
 # php package to install 
-if [ $version -eq 10 ]; then
+if [ "$version" -eq "10" ]; then
     version_msg="Raspbian 10.0 (Buster)"
     php_package="php7.1-cgi"
-elif [ $version -eq 9 ]; then
+elif [ "$version" -eq "9" ]; then
     version_msg="Raspbian 9.0 (Stretch)" 
     php_package="php7.0-cgi" 
-elif [ $version -eq 8 ]; then 
-    version_msg="Raspbian 8.0 (Jessie)" 
+elif [ "$version" -eq "8" ]; then
+    version_msg="Raspbian 8.0 (Jessie)"
     php_package="php5-cgi" 
 else 
     version_msg="Raspbian earlier than 8.0 (Wheezy)"
