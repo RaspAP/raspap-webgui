@@ -102,11 +102,11 @@ if [ "${install_cert:-}" = 1 ]; then
     source="mkcert"
     wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
     source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
-    install_certificate
+    install_certificate || install_error "Unable to install certificate"
 else
     source="common"
     wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
     source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
-    install_raspap
+    install_raspap || install_error "Unable to install RaspAP"
 fi
 
