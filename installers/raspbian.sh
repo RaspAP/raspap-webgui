@@ -16,11 +16,14 @@
 
 repo="billz/raspap-webgui"
 branch="master"
-USAGE=$'Usage: raspbian.sh [OPTION] \n\n'
-USAGE+=$'-y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts\n'
-USAGE+=$'-c, --cert, --certficate\n\tInstalls an SSL certificate for lighttpd\n'
-USAGE+=$'-r, --repo, --repository\n\tOverrides the default GitHub repo (billz/raspap-webgui)\n'
-USAGE+=$'-b, --branch\n\tOverrides the default git branch (master)\n'
+usage=$(cat << EOF
+Usage: raspbian.sh [OPTION]\n
+-y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts
+-c, --cert, --certficate\n\tInstalls an SSL certificate for lighttpd
+-r, --repo, --repository\n\tOverrides the default GitHub repo (billz/raspap-webgui)
+-b, --branch\n\tOverrides the default git branch (master)\n
+EOF
+)
 assume_yes=0
 
 while :; do
@@ -41,7 +44,7 @@ while :; do
         ;;
         -*|--*)
         echo "Unknown option: $1"
-        echo "$USAGE"
+        printf "$usage"
         exit 1
         ;;
         *)
