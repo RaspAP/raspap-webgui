@@ -37,6 +37,7 @@ include_once('includes/networking.php');
 include_once('includes/themes.php');
 include_once('includes/data_usage.php');
 include_once('includes/about.php');
+include_once('includes/openvpn.php');
 
 $output = $return = 0;
 $page = $_GET['page'];
