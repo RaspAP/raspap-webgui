@@ -33,5 +33,32 @@ function DisplayOpenVPNConfig()
         "status",
         "openvpnStatus"
     ));
+
 }
+
+/**
+*
+*
+*/
+function SaveOpenVPNConfig()
+{
+    if (isset($_POST['SaveOpenVPNSettings'])) {
+        // TODO
+    } elseif (isset($_POST['StartOpenVPN'])) {
+        echo "Attempting to start openvpn";
+        exec('sudo systemctl start openvpn.service', $return);
+        foreach ($return as $line) {
+            $status->addMessage($line, 'info');
+        }
+    } elseif (isset($_POST['StopOpenVPN'])) {
+        echo "Attempting to stop openvpn";
+        exec('sudo systemctl stop openvpn.service', $return);
+        foreach ($return as $line) {
+            $status->addMessage($line, 'info');        
+        }
+   }
+}
+?>
+
+
 
