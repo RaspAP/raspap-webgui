@@ -38,6 +38,7 @@ include_once('includes/themes.php');
 include_once('includes/data_usage.php');
 include_once('includes/about.php');
 include_once('includes/openvpn.php');
+include_once('includes/torproxy.php');
 
 $output = $return = 0;
 $page = $_GET['page'];
