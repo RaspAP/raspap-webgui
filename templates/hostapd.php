@@ -67,7 +67,7 @@
                 $countries_2_4Ghz_max11ch = array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
                              'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT',
                              'US', 'CA', 'UZ', 'CO');
-                $countries_2_4Ghz_max14ch = array('JA');
+                $countries_2_4Ghz_max14ch = array('JP');
                 if (in_array($arrConfig['country_code'], $countries_max11channels)) {
                     // In North America till channel 11 is the maximum allowed wi-fi 2.4Ghz channel.
                     // Except for the US that allows channel 12 & 13 in low power mode with additional restrictions.
