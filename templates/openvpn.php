@@ -5,8 +5,8 @@
         <div class="card-body">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" href="#openvpnclient" data-toggle="tab">Client settings</a></li>
-                <li class="nav-item"><a class="nav-link" href="#openvpnserver" data-toggle="tab">Server settings</a></li>
+                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-toggle="tab"><?php echo _("Client settings"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#openvpnlogoutput" data-toggle="tab"><?php echo _("Logfile output"); ?></a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -17,6 +17,18 @@
                     <?php echo CSRFTokenFieldTag() ?>
 
                     <div class="row">
+					  <div class="form-group col-md-6">
+						  <label for="code"><?php echo _("Username"); ?></label>
+						  <input type="text" class="form-control" name="Username" value="<?php echo htmlspecialchars($Username, ENT_QUOTES); ?>" />
+					  </div>
+					</div>
+                    <div class="row">
+					  <div class="form-group col-md-6">
+						  <label for="code"><?php echo _("Password"); ?></label>
+						  <input type="password" class="form-control" name="Password" value="<?php echo htmlspecialchars($Password, ENT_QUOTES); ?>" />
+					  </div>
+					</div>
+                    <div class="row">
                         <div class="form-group col-md-6">
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" id="customFile">
@@ -24,57 +36,17 @@
                           </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="code">Client Log</label>
-                            <input type="text" class="form-control" id="disabledInput" name="log-append" type="text" placeholder="<?php echo htmlspecialchars($arrClientConfig['log-append'], ENT_QUOTES); ?>" disabled="disabled" />
-                        </div>
-                    </div>
                 </div>
-                <div class="tab-pane fade" id="openvpnserver">
-                    <h4>Server settings</h4>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                        <label for="code">Port</label> 
-                        <input type="text" class="form-control" name="openvpn_port" value="<?php echo htmlspecialchars($arrServerConfig['port'], ENT_QUOTES); ?>" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                        <label for="code">Protocol</label>
-                        <input type="text" class="form-control" name="openvpn_proto" value="<?php echo htmlspecialchars($arrServerConfig['proto'], ENT_QUOTES); ?>" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                        <label for="code">Root CA certificate</label>
-                        <input type="text" class="form-control" name="openvpn_rootca" placeholder="<?php echo htmlspecialchars($arrServerConfig['ca'], ENT_QUOTES); ?>" disabled="disabled" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                        <label for="code">Server certificate</label>
-                        <input type="text" class="form-control" name="openvpn_cert" placeholder="<?php echo htmlspecialchars($arrServerConfig['cert'], ENT_QUOTES); ?>" disabled="disabled" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                        <label for="code">Diffie Hellman parameters</label>
-                        <input type="text" class="form-control" name="openvpn_dh" placeholder="<?php echo htmlspecialchars($arrServerConfig['dh'], ENT_QUOTES); ?>" disabled="disabled" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                        <label for="code">KeepAlive</label>
-                        <input type="text" class="form-control" name="openvpn_keepalive" value="<?php echo htmlspecialchars($arrServerConfig['keepalive'], ENT_QUOTES); ?>" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                        <label for="code">Server log</label>
-                        <input type="text" class="form-control" name="openvpn_status" placeholder="<?php echo htmlspecialchars($arrServerConfig['status'], ENT_QUOTES); ?>" disabled="disabled" />
-                        </div>
-                    </div>
+                <div class="tab-pane fade" id="openvpnlogoutput">
+				  <h4><?php echo _("Client log"); ?></h4>
+				  <div class="row">
+					<div class="form-group col-md-8">
+					  <?php
+						  $log = file_get_contents('/tmp/hostapd.log');
+						  echo '<br /><textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
+					  ?>
+					</div>
+				  </div>
                 </div>
                 <input type="submit" class="btn btn-outline btn-primary" name="SaveOpenVPNSettings" value="Save settings" />
                 <?php
