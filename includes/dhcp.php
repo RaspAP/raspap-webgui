@@ -84,7 +84,7 @@ function DisplayDHCPConfig()
         if ($dnsmasq_state) {
             $status->addMessage('dnsmasq already running', 'info');
         } else {
-            exec('sudo /etc/init.d/dnsmasq start', $dnsmasq, $return);
+            exec('sudo /bin/systemctl start dnsmasq.service', $dnsmasq, $return);
             if ($return == 0) {
                 $status->addMessage('Successfully started dnsmasq', 'success');
                 $dnsmasq_state = true;
@@ -94,7 +94,7 @@ function DisplayDHCPConfig()
         }
     } elseif (isset($_POST['stopdhcpd'])) {
         if ($dnsmasq_state) {
-            exec('sudo /etc/init.d/dnsmasq stop', $dnsmasq, $return);
+            exec('sudo /bin/systemctl stop dnsmasq.service', $dnsmasq, $return);
             if ($return == 0) {
                 $status->addMessage('Successfully stopped dnsmasq', 'success');
                 $dnsmasq_state = false;
