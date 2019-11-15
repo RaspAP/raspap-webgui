@@ -124,6 +124,18 @@ function create_lighttpd_scripts() {
     sudo chmod 750 "$raspap_dir/lighttpd/"*.sh || install_error "Unable to change file permissions"
 }
 
+# Generate openvpn logging and auth control scripts
+function create_openvpn_scripts() {
+    install_log "Creating openvpn logging & controlscripts"
+    sudo mkdir $raspap_dir/openvpn || install_error "Unable to create directory '$raspap_dir/openvpn'"
+
+   # Move service auth control shell scripts
+    sudo cp "$webroot_dir/installers/"configauth.sh "$raspap_dir/openvpn" || install_error "Unable to move auth control script"
+    # Make configauth.sh writable by www-data group
+    sudo chown -c root:"$raspap_user" "$raspap_dir/openvpn/"*.sh || install_error "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/openvpn/"*.sh || install_error "Unable to change file permissions"
+}
+
 # Fetches latest files from github to webroot
 function download_latest_files() {
     if [ ! -d "$webroot_dir" ]; then
@@ -269,10 +281,14 @@ function patch_system_files() {
         "/sbin/wpa_cli -i wlan[0-9] reconfigure"
         "/sbin/wpa_cli -i wlan[0-9] select_network"
         "/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf"
-        "/etc/init.d/hostapd start"
-        "/etc/init.d/hostapd stop"
-        "/etc/init.d/dnsmasq start"
-        "/etc/init.d/dnsmasq stop"
+        "/bin/systemctl start hostapd.service"
+        "/bin/systemctl stop hostapd.service"
+        "/bin/systemctl start dnsmasq.service"
+        "/bin/systemctl stop dnsmasq.service"
+        "/bin/systemctl start openvpn-client"
+        "/bin/systemctl stop openvpn-client"
+        "/bin/cp /tmp/ovpnclient.ovpn /etc/openvpn/client.conf"
+        "/bin/cp /tmp/authdata /etc/openvpn/login.conf"
         "/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.conf"
         "/bin/cp /tmp/dhcpddata /etc/dhcpcd.conf"
         "/sbin/shutdown -h now"
@@ -285,6 +301,7 @@ function patch_system_files() {
         "/etc/raspap/hostapd/disablelog.sh"
         "/etc/raspap/hostapd/servicestart.sh"
         "/etc/raspap/lighttpd/configport.sh"
+        "/etc/raspap/openvpn/configauth.sh"
     )
 
     # Check if sudoers needs patching
@@ -389,6 +406,7 @@ function install_raspap() {
     change_file_ownership
     create_hostapd_scripts
     create_lighttpd_scripts
+    create_openvpn_scripts
     move_config_file
     default_configuration
     patch_system_files
