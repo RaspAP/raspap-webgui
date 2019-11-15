@@ -35,7 +35,7 @@ function DisplayHostAPDConfig()
         }
     } elseif (isset($_POST['StopHotspot'])) {
         $status->addMessage('Attempting to stop hotspot', 'info');
-        exec('sudo /etc/init.d/hostapd stop', $return);
+        exec('sudo /bin/systemctl stop hostapd.service', $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
