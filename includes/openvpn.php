@@ -10,25 +10,14 @@ include_once('includes/status_messages.php');
 function DisplayOpenVPNConfig()
 {
     $status = new StatusMessages();
-    $errors = false;
     if (isset($_POST['SaveOpenVPNSettings'])) {
-        // TODO: validate $authUser, $authPassword
-        // Validate input
-        if (empty($_POST['authUser'])) {
-            $status->addMessage('Username cannot be empty', 'danger');
-            $errors = true;
-        } else {
-            $authUser = $_POST['authUser'];
+        if (isset($_POST['authUser'])) {
+            $authUser = strip_tags(trim($_POST['authUser']));
         }
-        if (empty($_POST['authPassword'])) {
-            $status->addMessage('Password cannot be empty', 'danger');
-            $errors = true;
-        } else {
-            $authPassword = $_POST['authPassword'];
+        if (isset($_POST['authPassword'])) {
+            $authPassword = strip_tags(trim($_POST['authPassword']));
         }
-        if (!$errors) {
-            $return = SaveOpenVPNConfig($status, $_FILES['customFile'], $authUser, $authPassword);
-        }
+        $return = SaveOpenVPNConfig($status, $_FILES['customFile'], $authUser, $authPassword);
     } elseif (isset($_POST['StartOpenVPN'])) {
         $status->addMessage('Attempting to start OpenVPN', 'info');
         exec('sudo /bin/systemctl start openvpn-client@client', $return);
@@ -82,6 +71,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
 {
     $tmp_ovpnclient = '/tmp/ovpnclient.ovpn';
     $tmp_authdata = '/tmp/authdata';
+    $auth_flag = 0;
 
     try {
         // If undefined or multiple files, treat as invalid
@@ -122,7 +112,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
 
         // Validate filesize
         define('KB', 1024);
-        if ($file['size'] > 128*KB) {
+        if ($file['size'] > 64*KB) {
             throw new RuntimeException('File size limit exceeded');
         }
 
@@ -137,24 +127,32 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         )) {
             throw new RuntimeException('Unable to move uploaded file');
         }
-        // Good upload, update /tmp client conf with auth-user-pass
-        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient " .RASPI_WIFI_CLIENT_INTERFACE, $return);
+        // Good file upload, update auth credentials if present
+        if (!empty($authUser) && !empty($authPassword)) {
+            $auth_flag = 1;
+            // Move tmp authdata to /etc/openvpn/login.conf
+            $auth = $authUser .PHP_EOL . $authPassword .PHP_EOL;
+            file_put_contents($tmp_authdata, $auth);
+            system("sudo cp $tmp_authdata " . RASPI_OPENVPN_CLIENT_LOGIN, $return);
+            if ($return !=0) {
+                $status->addMessage('Unable to save client auth credentials', 'danger');
+            }
+        }
+
+        // Set iptables rules and, optionally, auth-user-pass
+        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient $auth_flag " .RASPI_WIFI_CLIENT_INTERFACE, $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
-        // Copy tmp client config to /etc/openvpn
+
+        // Copy tmp client config to /etc/openvpn/client
         system("sudo cp $tmp_ovpnclient " . RASPI_OPENVPN_CLIENT_CONFIG, $return);
-
-        // Copy tmp authdata to /etc/openvpn/login.conf
-        $auth = $authUser .PHP_EOL . $authPassword .PHP_EOL;
-        file_put_contents($tmp_authdata, $auth);
-        system("sudo cp $tmp_authdata " . RASPI_OPENVPN_CLIENT_LOGIN, $return);
-
         if ($return ==0) {
-            $status->addMessage('OpenVPN .conf file uploaded successfully', 'info');
+            $status->addMessage('OpenVPN client.conf uploaded successfully', 'info');
         } else {
-            $status->addMessage('Unable to save OpenVPN settings', 'danger');
+            $status->addMessage('Unable to save OpenVPN client config', 'danger');
         }
+
         return $status;
     } catch (RuntimeException $e) {
         $status->addMessage($e->getMessage(), 'danger');
