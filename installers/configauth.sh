@@ -11,20 +11,20 @@ auth=$2
 interface=$3
 
 if [ "$auth" = 1 ]; then
-	echo "Enabling auth-user-pass in OpenVPN client.conf"
-	line='auth-user-pass'
-	if grep -q "$line" $file; then
-		echo "Updating $line"
-		sudo sed -i "s/$line/$line login.conf/g" $file
-	else
-		echo "Adding $line"
-		sudo sed -i "$ a $line login.conf" $file
-	fi
+    echo "Enabling auth-user-pass in OpenVPN client.conf"
+    line='auth-user-pass'
+    if grep -q "$line" $file; then
+        echo "Updating $line"
+        sudo sed -i "s/$line/$line login.conf/g" $file
+    else
+        echo "Adding $line"
+        sudo sed -i "$ a $line login.conf" $file
+    fi
 fi
 
 # Generate iptables entries to place into rc.local file.
 # #RASPAP is for uninstall script
-echo "Adding iptables rules for $interface"
+echo "Checking iptables rules for $interface"
 
 lines=(
 "iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE #RASPAP"
@@ -33,11 +33,11 @@ lines=(
 )
 
 for line in "${lines[@]}"; do
-	if grep "$line" /etc/rc.local > /dev/null; then
-		# iptables rule exists
+    if grep "$line" /etc/rc.local > /dev/null; then
 	else
-		sudo sed -i "s/^exit 0$/$line\nexit 0/" /etc/rc.local
-	fi
+        sudo sed -i "s/^exit 0$/$line\nexit 0/" /etc/rc.local
+        echo "Adding rule: $line"
+    fi
 done
 
 # Force a reload of new settings in /etc/rc.local
