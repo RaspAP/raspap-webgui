@@ -77,6 +77,8 @@ function DisplayOpenVPNConfig()
  */
 function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
 {
+    $tmp_ovpnclient = '/tmp/ovpnclient.ovpn';
+    $tmp_authdata = '/tmp/authdata';
 
     try {
         // If undefined or multiple files, treat as invalid
@@ -133,17 +135,17 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
             throw new RuntimeException('Unable to move uploaded file');
         }
         // Good upload, update /tmp client conf with auth-user-pass
-        exec('sudo /etc/raspap/openvpn/configauth.sh', $return);
+        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient " .RASPI_WIFI_CLIENT_INTERFACE, $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
-        // Copy /tmp file to /etc/openvpn
-        system('sudo cp /tmp/ovpnclient.ovpn ' . RASPI_OPENVPN_CLIENT_CONFIG, $return);
+        // Copy tmp client config to /etc/openvpn
+        system("sudo cp $tmp_ovpnclient " . RASPI_OPENVPN_CLIENT_CONFIG, $return);
 
-        // Copy /tmp/authdata to /etc/openvpn/login.conf
+        // Copy tmp authdata to /etc/openvpn/login.conf
         $auth = $authUser .PHP_EOL . $authPassword .PHP_EOL;
-        file_put_contents("/tmp/authdata", $auth);
-        system('sudo cp /tmp/authdata ' . RASPI_OPENVPN_CLIENT_LOGIN, $return);
+        file_put_contents($tmp_authdata, $auth);
+        system("sudo cp $tmp_authdata " . RASPI_OPENVPN_CLIENT_LOGIN, $return);
 
         if ($return ==0) {
             $status->addMessage('OpenVPN .conf file uploaded successfully', 'info');
