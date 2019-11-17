@@ -216,6 +216,11 @@ hr {
   border-right: 1px solid #2ee600;
 }
 
+.info-item {
+  width: 12rem;
+  float: left;
+}
+
 .info-item-wifi {
   width: 6rem;
   float: left;
@@ -315,11 +320,6 @@ color: #2ee600 !important
 
 .progress-bar.progress-bar-info.progress-bar-striped.active {
   background-color: #2ee600;
-}
-
-.info-item {
-  width: 140px;
-  float: left;
 }
 
 .logoutput {
