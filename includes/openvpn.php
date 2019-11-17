@@ -43,10 +43,12 @@ function DisplayOpenVPNConfig()
         }
     }
 
-    $auth = file(RASPI_OPENVPN_CLIENT_LOGIN, FILE_IGNORE_NEW_LINES);
     exec('pidof openvpn | wc -l', $openvpnstatus);
+    exec('wget https://ipinfo.io/ip -qO -', $return);
 
     $serviceStatus = $openvpnstatus[0] == 0 ? "down" : "up";
+    $auth = file(RASPI_OPENVPN_CLIENT_LOGIN, FILE_IGNORE_NEW_LINES);
+    $public_ip = $return[0];
 
     // parse client auth credentials
     if (!empty($auth)) {
@@ -58,6 +60,7 @@ function DisplayOpenVPNConfig()
         "status",
         "serviceStatus",
         "openvpnstatus",
+        "public_ip",
         "authUser",
         "authPassword"
     ));
