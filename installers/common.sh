@@ -288,7 +288,7 @@ function patch_system_files() {
         "/bin/systemctl start openvpn-client@client"
         "/bin/systemctl stop openvpn-client@client"
         "/bin/cp /tmp/ovpnclient.ovpn /etc/openvpn/client/client.conf"
-        "/bin/cp /tmp/authdata /etc/openvpn/login.conf"
+        "/bin/cp /tmp/authdata /etc/openvpn/client/login.conf"
         "/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.conf"
         "/bin/cp /tmp/dhcpddata /etc/dhcpcd.conf"
         "/sbin/shutdown -h now"
