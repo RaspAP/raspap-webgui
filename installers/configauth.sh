@@ -7,23 +7,25 @@
 # license: GNU General Public License v3.0
 
 file=$1
-interface=$2
+auth=$2
+interface=$3
 
-echo "Enabling auth credentials in OpenVPN client.conf"
-line='auth-user-pass'
-
-if grep -q "$line" $file; then
-    echo "Updating $line"
-    sudo sed -i "s/$line/$line login.conf/g" $file
-else
-    echo "Adding $line"
-    sudo sed -i "$ a $line login.conf" $file
+if [ "$auth" = 1 ]; then
+	echo "Enabling auth-user-pass in OpenVPN client.conf"
+	line='auth-user-pass'
+	if grep -q "$line" $file; then
+		echo "Updating $line"
+		sudo sed -i "s/$line/$line login.conf/g" $file
+	else
+		echo "Adding $line"
+		sudo sed -i "$ a $line login.conf" $file
+	fi
 fi
-
-echo "Adding iptables rules for $interface"
 
 # Generate iptables entries to place into rc.local file.
 # #RASPAP is for uninstall script
+echo "Adding iptables rules for $interface"
+
 lines=(
 "iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE #RASPAP"
 "iptables -A FORWARD -i tun0 -o $interface -m state --state RELATED,ESTABLISHED -j ACCEPT #RASPAP"
