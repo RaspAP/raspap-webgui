@@ -1,7 +1,8 @@
 #!/bin/bash
-# Updates lighttpd server.port and restarts the service in a predictable manner
-
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+#
+# Updates lighttpd server.port and restarts the service
+# @author billz
+# license: GNU General Public License v3.0
 
 server_port=$1
 lighttpd_conf=$2
