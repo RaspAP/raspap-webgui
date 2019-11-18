@@ -7,7 +7,7 @@ This project was inspired by a [blog post](http://sirlagz.net/2013/02/06/script-
 
 We'd be curious to hear about how you use this with [your own RPi-powered projects](https://github.com/billz/raspap-awesome). Until then, here are some screenshots:
 
-![](https://i.imgur.com/nEX6J8D.gif)
+![](https://i.imgur.com/fwekyGE.gif)
 ![](https://i.imgur.com/EiIpdOS.gif)
 ![](https://i.imgur.com/eCjUS1H.gif)
 ![](https://i.imgur.com/5FT2BcS.gif)
