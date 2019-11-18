@@ -37,14 +37,15 @@ fi
 
 ### NOTE: all the below functions are overloadable for system-specific installs
 
+# Prompts user to set options for installation
 function config_installation() {
     install_log "Configure installation"
     echo "Detected ${version_msg}" 
     echo "Install directory: ${raspap_dir}"
-    echo -n "Install to Lighttpd root directory: ${webroot_dir}? [y/N]: "
-    if [ $assume_yes == 0 ]; then
+    echo -n "Install to Lighttpd root directory: ${webroot_dir}? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
         read answer
-        if [[ $answer != "y" ]]; then
+        if [ "$answer" != "${answer#[Nn]}" ]; then
             read -e -p "Enter alternate Lighttpd directory: " -i "/var/www/html" webroot_dir
         fi
     else
@@ -52,10 +53,10 @@ function config_installation() {
     fi
     echo "Install to Lighttpd directory: ${webroot_dir}"
 
-    echo -n "Complete installation with these values? [y/N]: "
-    if [ $assume_yes == 0 ]; then
+    echo -n "Complete installation with these values? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
         read answer
-        if [[ $answer != "y" ]]; then
+        if [ "$answer" != "${answer#[Nn]}" ]; then
             echo "Installation aborted."
             exit 0
         fi
@@ -76,7 +77,7 @@ function enable_php_lighttpd() {
 
     sudo lighttpd-enable-mod fastcgi-php    
     sudo service lighttpd force-reload
-    sudo /etc/init.d/lighttpd restart || install_error "Unable to restart lighttpd"
+    sudo systemctl restart lighttpd.service || install_error "Unable to restart lighttpd"
 }
 
 # Verifies existence and permissions of RaspAP directory
@@ -115,18 +116,42 @@ function create_hostapd_scripts() {
 # Generate lighttpd service control scripts
 function create_lighttpd_scripts() {
     install_log "Creating lighttpd control scripts"
-    sudo mkdir  $raspap_dir/lighttpd || install_error "Unable to create directory '$raspap_dir/lighttpd"
+    sudo mkdir $raspap_dir/lighttpd || install_error "Unable to create directory '$raspap_dir/lighttpd"
 
     # Move service control shell scripts
     sudo cp "$webroot_dir/installers/"configport.sh "$raspap_dir/lighttpd" || install_error "Unable to move service control scripts"
-    # Make configport.sh writable by www-data group.
+    # Make configport.sh writable by www-data group
     sudo chown -c root:"$raspap_user" "$raspap_dir/lighttpd/"*.sh || install_error "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/lighttpd/"*.sh || install_error "Unable to change file permissions"
 }
 
+# Prompt to install openvpn
+function prompt_install_openvpn() {
+    install_log "Setting up OpenVPN support (beta)"
+    echo -n "Install OpenVPN and enable client configuration? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo -e
+        else
+            install_openvpn
+        fi
+    else
+        install_openvpn
+    fi
+}
+
+# Install openvpn and enable client configuration option
+function install_openvpn() {
+    install_log "Installing OpenVPN and enabling client configuration"
+    sudo apt-get install -y openvpn || install_error "Unable to install openvpn"
+    sudo sed -i "s/\('RASPI_OPENVPN_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || install_error "Unable to modify config.php"
+    create_openvpn_scripts || install_error "Unable to create openvpn control scripts"
+}
+
 # Generate openvpn logging and auth control scripts
 function create_openvpn_scripts() {
-    install_log "Creating openvpn logging & controlscripts"
+    install_log "Creating OpenVPN control scripts"
     sudo mkdir $raspap_dir/openvpn || install_error "Unable to create directory '$raspap_dir/openvpn'"
 
    # Move service auth control shell scripts
@@ -238,9 +263,11 @@ function default_configuration() {
 
     # Prompt to install RaspAP daemon
     echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
-    if [ $assume_yes == 0 ]; then
+    if [ "$assume_yes" == 0 ]; then
         read answer
-        if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo -e
+        else
             enable_raspap_daemon
         fi
     else
@@ -265,9 +292,7 @@ function sudo_add() {
 
 # Adds www-data user to the sudoers file with restrictions on what the user can execute
 function patch_system_files() {
-    # add symlink to prevent wpa_cli cmds from breaking with multiple wlan interfaces
-    install_log "symlinked wpa_supplicant hooks for multiple wlan interfaces"
-    sudo ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /etc/dhcp/dhclient-enter-hooks.d/
+
     # Set commands array
     cmds=(
         "/sbin/ifdown"
@@ -308,7 +333,7 @@ function patch_system_files() {
     if [ $(sudo grep -c $raspap_user /etc/sudoers) -ne 28 ]
     then
         # Sudoers file has incorrect number of commands. Wiping them out.
-        install_log "Cleaning sudoers file"
+        install_log "Cleaning system sudoers file"
         sudo sed -i "/$raspap_user/d" /etc/sudoers
         install_log "Patching system sudoers file"
         # patch /etc/sudoers file
@@ -321,7 +346,12 @@ function patch_system_files() {
         install_log "Sudoers file already patched"
     fi
 
+    # add symlink to prevent wpa_cli cmds from breaking with multiple wlan interfaces
+    install_log "Symlinked wpa_supplicant hooks for multiple wlan interfaces"
+    sudo ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /etc/dhcp/dhclient-enter-hooks.d/
+
     # Unmask and enable hostapd.service
+    install_log "Unmasking and enabling hostapd service"
     sudo systemctl unmask hostapd.service
     sudo systemctl enable hostapd.service
 }
@@ -341,10 +371,12 @@ function optimize_php() {
     sudo ln -sf "$raspap_dir/backups/php.ini.$datetimephpconf" "$raspap_dir/backups/php.ini"
 
     echo -n "Enable HttpOnly for session cookies (Recommended)? [Y/n]: "
-    if [ $assume_yes == 0 ]; then
+    if [ "$assume_yes" == 0 ]; then
         read answer
-        if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
-            php_session_cookie=1;
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo -e
+        else
+             php_session_cookie=1;
         fi
     fi
 
@@ -355,9 +387,11 @@ function optimize_php() {
 
     if [ "$php_package" = "php7.1-cgi" ]; then
         echo -n "Enable PHP OPCache (Recommended)? [Y/n]: "
-        if [ $assume_yes == 0 ]; then
+        if [ "$assume_yes" == 0 ]; then
             read answer
-            if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+            if [ "$answer" != "${answer#[Nn]}" ]; then
+                echo -e
+            else
                 php_opcache=1;
             fi
         fi
@@ -378,13 +412,13 @@ function optimize_php() {
 function install_complete() {
     install_log "Installation completed!"
 
-    if [ $assume_yes == 0 ]; then
+    if [ "$assume_yes" == 0 ]; then
         # Prompt to reboot if wired ethernet (eth0) is connected.
         # With default_configuration this will create an active AP on restart.
         if ip a | grep -q ': eth0:.*state UP'; then
             echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
             read answer
-            if [[ $answer != "y" ]]; then
+            if [ "$answer" != "${answer#[Nn]}" ]; then
                 echo "Installation reboot aborted."
                 exit 0
             fi
@@ -406,9 +440,9 @@ function install_raspap() {
     change_file_ownership
     create_hostapd_scripts
     create_lighttpd_scripts
-    create_openvpn_scripts
     move_config_file
     default_configuration
+    prompt_install_openvpn
     patch_system_files
     install_complete
 }
