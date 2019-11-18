@@ -21,7 +21,7 @@ We'd be curious to hear about how you use this with [your own RPi-powered projec
  - [Manual installation](#manual-installation)
  - [Multilingual support](#multilingual-support)
  - [HTTPS support](#https-support)
- - [Optional services](#optional-services)
+ - [OpenVPN support](#openvpn-support)
  - [How to contribute](#how-to-contribute)
  - [Reporting issues](#reporting-issues)
  - [License](#license)
@@ -210,15 +210,14 @@ wget -q https://git.io/voEUQ -O /tmp/raspap && bash /tmp/raspap --cert
 
 More information on SSL certificates and HTTPS support is available [on our wiki](https://github.com/billz/raspap-webgui/wiki/SSL-certificates-(Quick-Installer)). 
 
-## Optional services
-OpenVPN and TOR are two additional services that run perfectly well on the RPi, and are a nice way to extend the usefulness of your WiFi router. I've started on interfaces to administer these services. Not everyone will need them, so for the moment they are disabled by default. You can enable them by changing these options in `/var/www/html/includes/config.php`:
+## OpenVPN support
+OpenVPN may be optionally installed by the Quick Installer. Once this is done, you can managage a client configuration and the `openvpn-client` service with RaspAP.
 
-```sh
-// Optional services, set to true to enable.
-define('RASPI_OPENVPN_ENABLED', false );
-define('RASPI_TORPROXY_ENABLED', false );
-```
-Please note that these are only UI's for now. If there's enough interest I'll complete the funtionality for these optional admin screens.
+![](https://i.imgur.com/26T2FVZ.gif)
+
+To configure an OpenVPN client, upload a valid .ovpn file and, optionally, specify your login credentials. RaspAP will store your client configuration and add firewall rules to forward traffic from OpenVPN's `tun0` interface to your configured wireless interface. 
+
+**Note**: this feature is currently in beta. Please [read this](https://github.com/billz/raspap-webgui/wiki/FAQs#-openvpn-fails-to-start-andor-i-have-no-internet-help) before reporting an issue.
 
 ## How to contribute
 
