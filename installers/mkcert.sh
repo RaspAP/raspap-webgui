@@ -16,9 +16,9 @@ function config_installation() {
     echo "Current system hostname is $HOSTNAME"
     echo -n "Create an SSL certificate for ${certname}? (Recommended) [y/N]"
     if [ $assume_yes == 0 ]; then
-        read answer
+        read answer < /dev/tty
         if [[ $answer != "y" ]]; then
-            read -e -p "Enter an alternate certificate name: " -i "${certname}" certname
+            read -e -p < /dev/tty "Enter an alternate certificate name: " -i "${certname}" certname
         fi
     else
         echo -e
@@ -26,9 +26,9 @@ function config_installation() {
 
     echo -n "Install to lighttpd SSL directory: ${lighttpd_ssl}? [y/N]: "
     if [ $assume_yes == 0 ]; then
-        read answer
+        read answer < /dev/tty
         if [[ $answer != "y" ]]; then
-            read -e -p "Enter alternate lighttpd SSL directory: " -i "${lighttpd_ssl}" lighttpd_ssl
+            read -e -p < /dev/tty "Enter alternate lighttpd SSL directory: " -i "${lighttpd_ssl}" lighttpd_ssl
         fi
     else
         echo -e
@@ -40,7 +40,7 @@ function config_installation() {
     install_divider
     echo -n "Complete installation with these values? [y/N]: "
     if [ $assume_yes == 0 ]; then
-        read answer
+        read answer < /dev/tty
         if [[ $answer != "y" ]]; then
             echo "Installation aborted."
             exit 0
@@ -125,12 +125,13 @@ function restart_lighttpd() {
 function install_complete() {
     install_log "SSL certificate install completed!"
     install_divider
-    echo "Open a browser and enter the address: http://${certname}/rootCA.pem"
-    echo "Download the root certificate to your client and add it to your system keychain."
-    echo "Note: Be sure to set this certificate to "Always trust" to avoid browser warnings."
-    echo "Finally, enter the address https://${certname} in your browser."
-    echo "Enjoy an encrypted SSL connection to RaspAP 🔒"
-    echo "For advanced options, run mkcert -help"
+    printf '%s\n' \
+    "Open a browser and enter the address: http://$certname/rootCA.pem" \
+    "Download the root certificate to your client and add it to your system keychain." \
+    "Note: Be sure to set this certificate to 'Always trust' to avoid browser warnings." \
+    "Finally, enter the address https://$certname in your browser." \
+    "Enjoy an encrypted SSL connection to RaspAP 🔒" \
+    "For advanced options, run mkcert -help"
     install_divider
 }
 

@@ -44,9 +44,9 @@ function config_installation() {
     echo "Install directory: ${raspap_dir}"
     echo -n "Install to Lighttpd root directory: ${webroot_dir}? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
-        read answer
+        read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            read -e -p "Enter alternate Lighttpd directory: " -i "/var/www/html" webroot_dir
+            read -e -p < /dev/tty "Enter alternate Lighttpd directory: " -i "/var/www/html" webroot_dir
         fi
     else
         echo -e
@@ -55,7 +55,7 @@ function config_installation() {
 
     echo -n "Complete installation with these values? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
-        read answer
+        read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
             echo "Installation aborted."
             exit 0
@@ -130,7 +130,7 @@ function prompt_install_openvpn() {
     install_log "Setting up OpenVPN support (beta)"
     echo -n "Install OpenVPN and enable client configuration? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
-        read answer
+        read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
             echo -e
         else
@@ -264,7 +264,7 @@ function default_configuration() {
     # Prompt to install RaspAP daemon
     echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
-        read answer
+        read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
             echo -e
         else
@@ -372,7 +372,7 @@ function optimize_php() {
 
     echo -n "Enable HttpOnly for session cookies (Recommended)? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
-        read answer
+        read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
             echo -e
         else
@@ -388,7 +388,7 @@ function optimize_php() {
     if [ "$php_package" = "php7.1-cgi" ]; then
         echo -n "Enable PHP OPCache (Recommended)? [Y/n]: "
         if [ "$assume_yes" == 0 ]; then
-            read answer
+            read answer < /dev/tty
             if [ "$answer" != "${answer#[Nn]}" ]; then
                 echo -e
             else
@@ -417,7 +417,7 @@ function install_complete() {
         # With default_configuration this will create an active AP on restart.
         if ip a | grep -q ': eth0:.*state UP'; then
             echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
-            read answer
+            read answer < /dev/tty
             if [ "$answer" != "${answer#[Nn]}" ]; then
                 echo "Installation reboot aborted."
                 exit 0
