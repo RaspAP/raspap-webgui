@@ -202,8 +202,8 @@ The Quick Installer may be used to [generate SSL certificates](https://github.co
 
 Simply append the `-c` or `--cert` option to the Quick Installer, like so:
 
-```
-wget -q https://git.io/voEUQ -O /tmp/raspap && bash /tmp/raspap --cert
+```sh
+curl -sL https://install.raspap.com | bash -s -- --cert
 ```
 
 **Note**: this only installs mkcert and generates an SSL certificate with the input you provide. It does *not* (re)install RaspAP.
