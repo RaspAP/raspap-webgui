@@ -44,7 +44,7 @@ With the prerequisites done, you can proceed with either the Quick installer or 
 ## Quick installer
 Install RaspAP from your RaspberryPi's shell prompt:
 ```sh
-wget -q https://git.io/voEUQ -O /tmp/raspap && bash /tmp/raspap
+curl -L https://install.raspap.com | bash
 ```
 The installer will complete the steps in the manual installation (below) for you.
 
