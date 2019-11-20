@@ -46,7 +46,7 @@ Install RaspAP from your RaspberryPi's shell prompt:
 ```sh
 curl -sL https://install.raspap.com | bash
 ```
-The installer will complete the steps in the manual installation (below) for you.
+The [installer](https://github.com/billz/raspap-webgui/blob/master/installers/raspbian.sh) will complete the steps in the manual installation (below) for you.
 
 After the reboot at the end of the installation the wireless network will be
 configured as an access point as follows:
