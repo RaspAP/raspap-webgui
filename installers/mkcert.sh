@@ -63,7 +63,7 @@ function install_mkcert() {
 # Generate a certificate for host
 function generate_certificate() {
     install_log "Generating a new certificate for $certname"
-    cd /home/pi
+    cd $HOME
     mkcert $certname "*.${certname}.local" $certname || install_error "Failed to generate certificate for $certname"
 
     install_log "Combining private key and certificate"
@@ -80,8 +80,8 @@ function create_lighttpd_dir() {
     echo "OK"
 
     install_log "Setting permissions and moving .pem file"
-    chmod 400 /home/pi/"$certname".pem || install_error "Unable to set permissions for .pem file"
-    sudo mv /home/pi/"$certname".pem /etc/lighttpd/ssl || install_error "Unable to move .pem file"
+    chmod 400 "$HOME/$certname".pem || install_error "Unable to set permissions for .pem file"
+    sudo mv "$HOME/$certname".pem /etc/lighttpd/ssl || install_error "Unable to move .pem file"
     echo "OK"
 }
 
@@ -93,7 +93,7 @@ function configure_lighttpd() {
         '$SERVER["socket"] == ":443" {'
         'ssl.engine = "enable"'
         'ssl.pemfile = "'$lighttpd_ssl/$certname'.pem"'
-        'ssl.ca-file = "/home/pi/.local/share/mkcert/rootCA.pem"'
+        'ssl.ca-file = "'$HOME'/.local/share/mkcert/rootCA.pem"'
         'server.name = "'$certname'"'
         'server.document-root = "'${webroot_dir}'"}'
     )
@@ -111,7 +111,7 @@ function configure_lighttpd() {
 # Copy rootCA.pem to RaspAP web root
 function copy_rootca() {
     install_log "Copying rootCA.pem to RaspAP web root"
-    sudo cp /home/pi/.local/share/mkcert/rootCA.pem ${webroot_dir} || install_error "Unable to copy rootCA.pem to ${webroot_dir}"
+    sudo cp ${HOME}/.local/share/mkcert/rootCA.pem ${webroot_dir} || install_error "Unable to copy rootCA.pem to ${webroot_dir}"
     echo "OK"
 }
 
