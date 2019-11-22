@@ -146,6 +146,8 @@ function install_openvpn() {
     install_log "Installing OpenVPN and enabling client configuration"
     sudo apt-get install -y openvpn || install_error "Unable to install openvpn"
     sudo sed -i "s/\('RASPI_OPENVPN_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || install_error "Unable to modify config.php"
+    echo "Enabling openvpn-client service on boot"
+    sudo systemctl enable openvpn-client@client || install_error "Unable to enable opevpn-client daemon"
     create_openvpn_scripts || install_error "Unable to create openvpn control scripts"
 }
 
