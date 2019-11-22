@@ -131,7 +131,7 @@ function prompt_install_openvpn() {
         else
             install_openvpn
         fi
-    else
+    elif [ "$ovpn_option" == 1 ]; then
         install_openvpn
     fi
 }
