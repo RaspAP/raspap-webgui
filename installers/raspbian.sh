@@ -6,13 +6,15 @@
 #
 # Command-line options:
 # -y, --yes, --assume-yes
-# Assume "yes" as answer to all prompts and run non-interactively
+#     Assume "yes" as answer to all prompts and run non-interactively
 # c, --cert, --certficate
-# Installs mkcert and generates an SSL certificate for lighttpd
-# -r, --repo, --repository
-# Overrides the default GitHub repo (billz/raspap-webgui)
-# -b, --branch
-# Overrides the default git branch (master)
+#     Installs mkcert and generates an SSL certificate for lighttpd
+# -o, --openvpn <flag>
+#     Used with -y, --yes, sets OpenVPN install option (0=no install)
+# # -r, --repo, --repository <name>
+#     Overrides the default GitHub repo (billz/raspap-webgui)
+# -b, --branch <name>
+#     Overrides the default git branch (master)
 
 repo="billz/raspap-webgui"
 branch="master"
@@ -20,17 +22,23 @@ usage=$(cat << EOF
 Usage: raspbian.sh [OPTION]\n
 -y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts
 -c, --cert, --certficate\n\tInstalls an SSL certificate for lighttpd
--r, --repo, --repository\n\tOverrides the default GitHub repo (billz/raspap-webgui)
--b, --branch\n\tOverrides the default git branch (master)\n
+-o, --openvpn <flag>\n\tUsed with -y, --yes, sets OpenVPN install option (0=no install)
+-r, --repo, --repository <name>\n\tOverrides the default GitHub repo (billz/raspap-webgui)
+-b, --branch <name>\n\tOverrides the default git branch (master)\n
 EOF
 )
 assume_yes=0
+ovpn_option=1
 
 while :; do
     case $1 in
         -y|--yes|--assume-yes)
         assume_yes=1
         apt_option="-y"
+        ;;
+        -o|--openvpn)
+        ovpn_option="$2"
+        shift
         ;;
         -c|--cert|--certificate)
         install_cert=1
@@ -41,6 +49,7 @@ while :; do
         ;;
         -b|--branch)
         branch="$2"
+        shift
         ;;
         -h|--help)
         printf "$usage"
