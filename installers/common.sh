@@ -18,12 +18,9 @@ elif [ "$version" -eq "9" ]; then
     version_msg="Raspbian 9.0 (Stretch)" 
     php_package="php7.0-cgi" 
 elif [ "$version" -eq "8" ]; then
-    version_msg="Raspbian 8.0 (Jessie)"
-    php_package="php5-cgi" 
-else 
-    version_msg="Raspbian earlier than 8.0 (Wheezy)"
-    webroot_dir="/var/www" 
-    php_package="php5-cgi" 
+    install_error "Raspbian 8.0 (Jessie) and php5 are deprecated. Please upgrade."
+elif [ "$version" -lt "8" ]; then
+    install_error "Raspbian ${version} is unsupported. Please upgrade."
 fi
 
 phpcgiconf=""
@@ -31,8 +28,6 @@ if [ "$php_package" = "php7.1-cgi" ]; then
     phpcgiconf="/etc/php/7.1/cgi/php.ini"
 elif [ "$php_package" = "php7.0-cgi" ]; then
     phpcgiconf="/etc/php/7.0/cgi/php.ini"
-elif [ "$php_package" = "php5-cgi" ]; then
-    phpcgiconf="/etc/php5/cgi/php.ini"
 fi
 
 ### NOTE: all the below functions are overloadable for system-specific installs
@@ -147,7 +142,7 @@ function install_openvpn() {
     sudo apt-get install -y openvpn || install_error "Unable to install openvpn"
     sudo sed -i "s/\('RASPI_OPENVPN_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || install_error "Unable to modify config.php"
     echo "Enabling openvpn-client service on boot"
-    sudo systemctl enable openvpn-client@client || install_error "Unable to enable opevpn-client daemon"
+    sudo systemctl enable openvpn-client@client || install_error "Unable to enable openvpn-client daemon"
     create_openvpn_scripts || install_error "Unable to create openvpn control scripts"
 }
 
