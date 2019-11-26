@@ -191,7 +191,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'hw_mode='.$_POST['hw_mode'].PHP_EOL;
             $config.= 'ieee80211n=0'.PHP_EOL;
         }
-        $config.= 'wpa_passphrase='.$_POST['wpa_passphrase'].PHP_EOL;
+        if ($_POST['wpa'] !== 'none') {
+            $config.= 'wpa_passphrase='.$_POST['wpa_passphrase'].PHP_EOL;
+        }
         if ($wifiAPEnable == 1) {
             $config.= 'interface=uap0'.PHP_EOL;
         } else {
