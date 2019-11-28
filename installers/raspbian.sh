@@ -21,10 +21,11 @@ branch="master"
 usage=$(cat << EOF
 Usage: raspbian.sh [OPTION]\n
 -y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts
--c, --cert, --certficate\n\tInstalls an SSL certificate for lighttpd
+-c, --cert, --certificate\n\tInstalls an SSL certificate for lighttpd
 -o, --openvpn <flag>\n\tUsed with -y, --yes, sets OpenVPN install option (0=no install)
 -r, --repo, --repository <name>\n\tOverrides the default GitHub repo (billz/raspap-webgui)
--b, --branch <name>\n\tOverrides the default git branch (master)\n
+-b, --branch <name>\n\tOverrides the default git branch (master)
+-h, --help\n\tOutputs usage notes\n
 EOF
 )
 assume_yes=0
