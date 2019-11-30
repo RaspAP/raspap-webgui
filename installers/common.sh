@@ -327,7 +327,7 @@ function patch_system_files() {
     )
 
     # Check if sudoers needs patching
-    if [ $(sudo grep -c $raspap_user /etc/sudoers) -ne 28 ]
+    if [ $(sudo grep -c $raspap_user /etc/sudoers) -ne ${#cmds[@]} ]
     then
         # Sudoers file has incorrect number of commands. Wiping them out.
         install_log "Cleaning system sudoers file"
