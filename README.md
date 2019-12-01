@@ -95,12 +95,18 @@ www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_suppli
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan[0-9] scan_results
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan[0-9] scan
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan[0-9] reconfigure
+www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i wlan[0-9] select_network
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf
-www-data ALL=(ALL) NOPASSWD:/etc/init.d/hostapd start
-www-data ALL=(ALL) NOPASSWD:/etc/init.d/hostapd stop
-www-data ALL=(ALL) NOPASSWD:/etc/init.d/dnsmasq start
-www-data ALL=(ALL) NOPASSWD:/etc/init.d/dnsmasq stop
-www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dhcpddata /etc/dnsmasq.conf
+www-data ALL=(ALL) NOPASSWD:/bin/systemctl start hostapd.service
+www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop hostapd.service
+www-data ALL=(ALL) NOPASSWD:/bin/systemctl start dnsmasq.service
+www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop dnsmasq.service
+www-data ALL=(ALL) NOPASSWD:/bin/systemctl start openvpn-client@client
+www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop openvpn-client@client
+www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/openvpn.ovpn /etc/openvpn/client/client.conf
+www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/authdata /etc/openvpn/client/login.conf
+www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.conf
+www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dhcpddata /etc/dhcpcd.conf
 www-data ALL=(ALL) NOPASSWD:/sbin/shutdown -h now
 www-data ALL=(ALL) NOPASSWD:/sbin/reboot
 www-data ALL=(ALL) NOPASSWD:/sbin/ip link set wlan[0-9] down
@@ -110,6 +116,8 @@ www-data ALL=(ALL) NOPASSWD:/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcp
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/enablelog.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/disablelog.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/servicestart.sh
+www-data ALL=(ALL) NOPASSWD:/etc/raspap/lighttpd/configport.sh
+www-data ALL=(ALL) NOPASSWD:/etc/raspap/openvpn/configauth.sh
 ```
 
 Once those modifications are done, git clone the files to `/var/www/html`.
@@ -164,6 +172,20 @@ Move the raspap service to the correct location and enable it.
 ```
 sudo mv /var/www/html/installers/raspap.service /lib/systemd/system
 sudo systemctl enable raspap.service
+```
+Copy the configuration files for dhcpcd, dnsmasq, and hostapd.
+```
+sudo mv /var/www/html/config/default_hostapd /etc/default/hostapd
+sudo mv /var/www/html/config/hostapd.conf /etc/hostapd/hostapd.conf
+sudo mv /var/www/html/config/dnsmasq.conf /etc/dnsmasq.conf
+sudo mv /var/www/html/config/dhcpcd.conf /etc/dhcpcd.conf
+sudo mv /var/www/html/config/config.php /var/www/html/includes/
+```
+(Optional) Optimize PHP
+```
+sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' /etc/php/7.1/cgi/php.ini
+sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' /etc/php/7.1/cgi/php.ini
+sudo phpenmod opcache
 ```
 Reboot and it should be up and running!
 ```sh
