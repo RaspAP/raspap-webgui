@@ -20,9 +20,9 @@
 # -v, --version
 #    Outputs release info and exits
 
-VERSION=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 repo="billz/raspap-webgui"
 branch="master"
+VERSION=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 assume_yes=0
 ovpn_option=1
 usage=$(cat << EOF
