@@ -6,18 +6,25 @@
 #
 # Command-line options:
 # -y, --yes, --assume-yes
-#     Assume "yes" as answer to all prompts and run non-interactively
+#    Assume "yes" as answer to all prompts and run non-interactively
 # c, --cert, --certficate
-#     Installs mkcert and generates an SSL certificate for lighttpd
+#    Installs mkcert and generates an SSL certificate for lighttpd
 # -o, --openvpn <flag>
-#     Used with -y, --yes, sets OpenVPN install option (0=no install)
-# # -r, --repo, --repository <name>
-#     Overrides the default GitHub repo (billz/raspap-webgui)
+#    Used with -y, --yes, sets OpenVPN install option (0=no install)
+# -r, --repo, --repository <name>
+#    Overrides the default GitHub repo (billz/raspap-webgui)
 # -b, --branch <name>
-#     Overrides the default git branch (master)
+#    Overrides the default git branch (master)
+# -h, --help
+#    Outputs usage notes and exits
+# -v, --version
+#    Outputs release info and exits
 
+VERSION=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 repo="billz/raspap-webgui"
 branch="master"
+assume_yes=0
+ovpn_option=1
 usage=$(cat << EOF
 Usage: raspbian.sh [OPTION]\n
 -y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts
@@ -25,11 +32,10 @@ Usage: raspbian.sh [OPTION]\n
 -o, --openvpn <flag>\n\tUsed with -y, --yes, sets OpenVPN install option (0=no install)
 -r, --repo, --repository <name>\n\tOverrides the default GitHub repo (billz/raspap-webgui)
 -b, --branch <name>\n\tOverrides the default git branch (master)
--h, --help\n\tOutputs usage notes\n
+-h, --help\n\tOutputs usage notes and exits
+-v, --version\n\tOutputs release info and exits\n
 EOF
 )
-assume_yes=0
-ovpn_option=1
 
 while :; do
     case $1 in
@@ -56,6 +62,11 @@ while :; do
         printf "$usage"
         exit 1
         ;;
+        -v|--version)
+        printf "RaspAP v${VERSION} - simple AP setup and wifi mangement for the RaspberryPi\n"
+        printf "Licensed under GPL-3.0, BillZ <billzimmerman@gmail.com> and contributors\n"
+        exit 1
+	;;
         -*|--*)
         echo "Unknown option: $1"
         printf "$usage"
@@ -68,7 +79,6 @@ while :; do
     shift
 done
 
-VERSION=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
 
 # Outputs a welcome message
