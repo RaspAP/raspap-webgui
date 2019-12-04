@@ -64,7 +64,6 @@ while :; do
         ;;
         -v|--version)
         printf "RaspAP v${VERSION} - simple AP setup and wifi mangement for the RaspberryPi\n"
-        printf "Licensed under GPL-3.0, BillZ <billzimmerman@gmail.com> and contributors\n"
         exit 1
 	;;
         -*|--*)
