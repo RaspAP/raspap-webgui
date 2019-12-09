@@ -4,7 +4,8 @@
 # author: @billz
 # license: GNU General Public License v3.0
 #
-# Command-line options:
+# Usage:
+#
 # -y, --yes, --assume-yes
 #    Assume "yes" as answer to all prompts and run non-interactively
 # c, --cert, --certficate
@@ -20,11 +21,14 @@
 # -v, --version
 #    Outputs release info and exits
 
+# Set defaults
 repo="billz/raspap-webgui"
 branch="master"
 VERSION=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 assume_yes=0
 ovpn_option=1
+
+# Define usage notes
 usage=$(cat << EOF
 Usage: raspbian.sh [OPTION]\n
 -y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts
@@ -37,6 +41,7 @@ Usage: raspbian.sh [OPTION]\n
 EOF
 )
 
+# Parse command-line options
 while :; do
     case $1 in
         -y|--yes|--assume-yes)
@@ -124,6 +129,7 @@ function update_system_packages() {
     sudo apt-get update || install_error "Unable to update package list"
 }
 
+# Fetch required installer functions
 if [ "${install_cert:-}" = 1 ]; then
     source="mkcert"
     wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
