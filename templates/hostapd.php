@@ -130,9 +130,13 @@
                   $checkedWifiAPEnabled = '';
                   if ($arrHostapdConf['WifiAPEnable'] == 1) {
                       $checkedWifiAPEnabled = ' checked="checked"';
+		  }
+		  if ($managedModeEnabled == false) {
+                      $wifiAPToggle = "disabled";
+		      $wifiAPHelp = "Managed mode not enabled";
                   }
                   ?>
-		  <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedWifiAPEnabled; ?> />
+                  <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedWifiAPEnabled; ?> <?php echo $wifiAPToggle; ?> />
                   <label class="form-check-label ml-3" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
                 </div>
               </div>
@@ -144,7 +148,7 @@
                 $checkedLogEnabled = '';
                 if ($arrHostapdConf['LogEnable'] == 1) {
                     $checkedLogEnabled = ' checked="checked"';
-                }
+		}
                 ?>
 		<input id="chxlogenable" name="logEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedLogEnabled; ?> />
                 <label class="form-check-label ml-3" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
