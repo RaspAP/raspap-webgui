@@ -19,6 +19,7 @@ function DisplayHostAPDConfig()
     ];
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
+    $managedModeEnabled = false;
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
 
     if (isset($_POST['SaveHostAPDSettings'])) {
@@ -43,6 +44,10 @@ function DisplayHostAPDConfig()
 
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
     exec('pidof hostapd | wc -l', $hostapdstatus);
+    exec('iwgetid '. RASPI_WIFI_CLIENT_INTERFACE. ' -r', $wifiNetworkID);
+    if ( !empty($wifiNetworkID[0])) {
+        $managedModeEnabled = true;
+    }
 
     $serviceStatus = $hostapdstatus[0] == 0 ? "down" : "up";
 
@@ -61,6 +66,7 @@ function DisplayHostAPDConfig()
         "status",
         "serviceStatus",
         "hostapdstatus",
+        "managedModeEnabled",
         "interfaces",
         "arrConfig",
         "arr80211Standard",
