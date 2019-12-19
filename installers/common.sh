@@ -209,11 +209,6 @@ function check_for_old_configs() {
         sudo cp /etc/rc.local "$raspap_dir/backups/rc.local.`date +%F-%R`"
         sudo ln -sf "$raspap_dir/backups/rc.local.`date +%F-%R`" "$raspap_dir/backups/rc.local"
     fi
-
-    if [ -f /etc/wpa_supplicant/wpa_supplicant.conf ]; then
-        sudo cp /etc/wpa_supplicant/wpa_supplicant.conf "$raspap_dir/backups/wpa_supplicant.conf.`date +%F-%R`"
-        sudo ln -sf "$raspap_dir/backups/wpa_supplicant.conf.`date +%F-%R`" "$raspap_dir/backups/wpa_supplicant.conf"
-    fi
 }
 
 # Move configuration file to the correct location
@@ -352,21 +347,6 @@ function patch_system_files() {
     install_log "Symlinked wpa_supplicant hooks for multiple wlan interfaces"
     if [ ! -f /usr/share/dhcpcd/hooks/10-wpa_supplicant ]; then
         sudo ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /etc/dhcp/dhclient-enter-hooks.d/
-    fi
-
-    # Add ctrl_interface and group to wpa_supplicant, create if absent
-    install_log "Patching wpa_supplicant.conf"
-    line="ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev"
-    if [ ! -f /etc/wpa_supplicant/wpa_supplicant.conf ]; then
-        echo "Creating wpa_supplicant.conf"
-        sudo touch /etc/wpa_supplicant/wpa_supplicant.conf || install_error "Unable to create wpa_supplicant.conf"
-        echo $line | sudo tee /etc/wpa_supplicant/wpa_supplicant.conf || install_error "Unable to write to wpa_supplicant.conf"
-    fi
-    if grep "$line" /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null; then
-        echo "ctrl_interface is OK"
-    else
-        sudo sed -i "1 i\$line" /etc/wpa_supplicant/wpa_supplicant.conf || install_error "Unable to write to wpa_supplicant.conf"
-        echo "Adding line $line"
     fi
 
     # Unmask and enable hostapd.service
