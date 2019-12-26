@@ -68,29 +68,7 @@
               <div class="form-group col-md-6">
                 <label for="cbxchannel"><?php echo _("Channel"); ?></label>
                 <?php
-                $selectablechannels = range(1, 13);
-                $countries_2_4Ghz_max11ch = array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
-                             'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT',
-                             'US', 'CA', 'UZ', 'CO');
-                $countries_2_4Ghz_max14ch = array('JP');
-                $countries_5Ghz_max48ch = array('US');
-                if (in_array($arrConfig['country_code'], $countries_max11channels)) {
-                    // In North America up to channel 11 is the maximum allowed wi-fi 2.4Ghz channel.
-                    // Except for the US that allows channel 12 & 13 in low power mode with additional restrictions.
-                    // Canada that allows channel 12 in low power mode. Because it's unsure if low powered mode
-                    // can be supported the channels are not selectable for those countries.
-                    // source: https://en.wikipedia.org/wiki/List_of_WLAN_channels#Interference_concerns
-                    // Also Uzbekistan and Colombia allow up to channel 11 as maximum channel on the 2.4Ghz wi-fi band.
-                    $selectablechannels = range(1, 11);
-                } elseif (in_array($arrConfig['country_code'], $countries_2_4Ghz_max14ch)) {
-                    if ($arrConfig['hw_mode'] === 'b') {
-                        $selectablechannels = range(1, 14);
-                    }
-                } elseif (in_array($arrConfig['country_code'], $countries_5Ghz_max48ch)) {
-                    if ($selectedHwMode === 'ac') {
-                        $selectablechannels = array(36, 40, 44, 48);
-                    }
-                }
+                $selectablechannels = Array();
                 SelectorOptions('channel', $selectablechannels, intval($arrConfig['channel']), 'cbxchannel'); ?>
               </div>
             </div>
@@ -190,7 +168,7 @@
               <div class="form-group col-md-6">
               <label for="cbxcountries"><?php echo _("Country Code"); ?></label>
               <input type="hidden" id="selected_country" value="<?php echo htmlspecialchars($arrConfig['country_code'], ENT_QUOTES); ?>">
-              <select  class="form-control" id="cbxcountries" name="country_code">
+              <select  class="form-control" id="cbxcountries" name="country_code" onchange="loadChannelSelect()">
                 <option value="AF">Afghanistan</option>
                 <option value="AX">Åland Islands</option>
                 <option value="AL">Albania</option>
