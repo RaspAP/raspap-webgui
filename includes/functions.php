@@ -142,19 +142,21 @@ function isAssoc($arr)
 /**
 *
 * Display a selector field for a form. Arguments are:
-*   $name:     Field name
-*   $options:  Array of options
-*   $selected: Selected option (optional)
-*       If $options is an associative array this should be the key
-*
+* @param string $name: Field name
+* @param array $options: Array of options
+* @param string $selected: Selected option (optional)
+* @param string $id: $options is an associative array this should be the key
+* @param string $event: onChange event (optional)
 */
-function SelectorOptions($name, $options, $selected = null, $id = null)
+function SelectorOptions($name, $options, $selected = null, $id = null, $event = null)
 {
     echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
     if (isset($id)) {
         echo ' id="' . htmlspecialchars($id, ENT_QUOTES) .'"';
     }
-
+    if (isset($event)) {
+        echo ' onChange="' . htmlspecialchars($event, ENT_QUOTES).'()"';
+    }
     echo '>' , PHP_EOL;
     foreach ($options as $opt => $label) {
         $select = '';
