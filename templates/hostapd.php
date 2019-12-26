@@ -55,8 +55,13 @@
                         $selectedHwMode = 'n';
                     }
                 }
+                if (isset($arrConfig['ieee80211ac'])) {
+                    if (strval($arrConfig['ieee80211ac']) === '1') {
+                        $selectedHwMode = 'ac';
+                    }
+                }
 
-                SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode, 'cbxhwmode'); ?>
+                SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode, 'cbxhwmode', 'loadChannelSelect'); ?>
               </div>
             </div>
             <div class="row">
@@ -68,17 +73,22 @@
                              'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT',
                              'US', 'CA', 'UZ', 'CO');
                 $countries_2_4Ghz_max14ch = array('JP');
+                $countries_5Ghz_max48ch = array('US');
                 if (in_array($arrConfig['country_code'], $countries_max11channels)) {
-                    // In North America till channel 11 is the maximum allowed wi-fi 2.4Ghz channel.
+                    // In North America up to channel 11 is the maximum allowed wi-fi 2.4Ghz channel.
                     // Except for the US that allows channel 12 & 13 in low power mode with additional restrictions.
                     // Canada that allows channel 12 in low power mode. Because it's unsure if low powered mode
                     // can be supported the channels are not selectable for those countries.
                     // source: https://en.wikipedia.org/wiki/List_of_WLAN_channels#Interference_concerns
-                    // Also Uzbekistan and Colombia allow to select till channel 11 as maximum channel on the 2.4Ghz wi-fi band.
+                    // Also Uzbekistan and Colombia allow up to channel 11 as maximum channel on the 2.4Ghz wi-fi band.
                     $selectablechannels = range(1, 11);
                 } elseif (in_array($arrConfig['country_code'], $countries_2_4Ghz_max14ch)) {
                     if ($arrConfig['hw_mode'] === 'b') {
                         $selectablechannels = range(1, 14);
+                    }
+                } elseif (in_array($arrConfig['country_code'], $countries_5Ghz_max48ch)) {
+                    if ($selectedHwMode === 'ac') {
+                        $selectablechannels = array(36, 40, 44, 48);
                     }
                 }
                 SelectorOptions('channel', $selectablechannels, intval($arrConfig['channel']), 'cbxchannel'); ?>
