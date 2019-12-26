@@ -15,8 +15,9 @@ function DisplayHostAPDConfig()
         'a' => '802.11a - 5 GHz',
         'b' => '802.11b - 2.4 GHz',
         'g' => '802.11g - 2.4 GHz',
-        'n' => '802.11n - 2.4 GHz'
-    ];
+        'n' => '802.11n - 2.4 GHz',
+        'ac' => '802.11.ac - 5 GHz'
+   ];
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
     $managedModeEnabled = false;
@@ -93,7 +94,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         return false;
     }
 
-    if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > 14) {
+    if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > 48) {
         error_log("Attempting to set channel to '".$_POST['channel']."'");
         return false;
     }
@@ -180,6 +181,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 
     if ($good_input) {
         // Fixed values
+        $country_code = $_POST['country_code'];
         $config = 'driver=nl80211'.PHP_EOL;
         $config.= 'ctrl_interface='.RASPI_HOSTAPD_CTRL_INTERFACE.PHP_EOL;
         $config.= 'ctrl_interface_group=0'.PHP_EOL;
@@ -193,6 +195,20 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'ieee80211n=1'.PHP_EOL;
             // Enable basic Quality of service
             $config.= 'wmm_enabled=1'.PHP_EOL;
+        } elseif ($_POST['hw_mode'] === 'ac') {
+            $config.= 'hw_mode=a'.PHP_EOL.PHP_EOL;
+            $config.= '# N'.PHP_EOL;
+            $config.= 'ieee80211n=1'.PHP_EOL;
+            $config.= 'require_ht=1'.PHP_EOL;
+            $config.= 'ht_capab=[MAX-AMSDU-3839][HT40+][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40]'.PHP_EOL.PHP_EOL;
+            $config.= '# AC'.PHP_EOL;
+            $config.= 'ieee80211ac=1'.PHP_EOL;
+            $config.= 'require_vht=1'.PHP_EOL;
+            $config.= 'ieee80211d=0'.PHP_EOL;
+            $config.= 'ieee80211h=0'.PHP_EOL;
+            $config.= 'vht_capab=[MAX-AMSDU-3839][SHORT-GI-80]'.PHP_EOL;
+            $config.= 'vht_oper_chwidth=1'.PHP_EOL;
+            $config.= 'vht_oper_centr_freq_seg0_idx=42'.PHP_EOL.PHP_EOL;
         } else {
             $config.= 'hw_mode='.$_POST['hw_mode'].PHP_EOL;
             $config.= 'ieee80211n=0'.PHP_EOL;
