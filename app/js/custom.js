@@ -190,6 +190,44 @@ function loadWifiStations(refresh) {
 
 $(".js-reload-wifi-stations").on("click", loadWifiStations(true));
 
+/*
+Sets the wirelss channel select options based on hw_mode and country_code.
+
+Methodology: In North America up to channel 11 is the maximum allowed WiFi 2.4Ghz channel,
+except for the US that allows channel 12 & 13 in low power mode with additional restrictions.
+Canada allows channel 12 in low power mode. Because it's unsure if low powered mode can be
+supported the channels are not selectable for those countries.
+Source: https://en.wikipedia.org/wiki/List_of_WLAN_channels#Interference_concerns
+Also Uzbekistan and Colombia allow up to channel 11 as maximum channel on the 2.4Ghz WiFi band.
+*/
+function loadChannelSelect() {
+    var hw_mode = $('#cbxhwmode').val();
+    var country_code = $('#cbxcountries').val();
+    var selectablechannels = Array.range(1,14);
+    var countries_2_4Ghz_max11ch = Array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
+        'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT',
+        'US', 'CA', 'UZ', 'CO');
+    var countries_2_4Ghz_max14ch = Array('JP');
+    var countries_5Ghz_max48ch = Array('US');
+    if (($.inArray(country_code, countries_2_4Ghz_max11ch) !== -1) && (hw_mode !== 'ac') ) {
+       selectablechannels = Array.range(1,12);
+    } else if (($.inArray(country_code, countries_2_4Ghz_max14ch) !== -1) && (hw_mode === 'b')) {
+        selectablechannels = Array.range(1,15);
+    } else if (($.inArray(country_code, countries_5Ghz_max48ch) !== -1) && (hw_mode === 'ac')) {
+        selectablechannels = Array(36, 40, 44, 48);
+    }
+
+    // Set channel select with available values
+    var channel_select = $('#cbxchannel');
+    channel_select.empty();
+    $.each(selectablechannels, function(key,value) {
+        channel_select.append($("<option></option>").attr("value", value).text(value));
+    });
+}
+
+// Static Array method
+Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
+
 $(document).on("click", ".js-toggle-password", function(e) {
     var button = $(e.target)
     var field  = $(button.data("target"));
