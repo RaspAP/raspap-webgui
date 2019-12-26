@@ -196,13 +196,15 @@ Sets the wirelss channel select options based on hw_mode and country_code.
 Methodology: In North America up to channel 11 is the maximum allowed WiFi 2.4Ghz channel,
 except for the US that allows channel 12 & 13 in low power mode with additional restrictions.
 Canada allows channel 12 in low power mode. Because it's unsure if low powered mode can be
-supported the channels are not selectable for those countries.
+supported the channels are not selectable for those countries. Also Uzbekistan and Colombia
+allow up to channel 11 as maximum channel on the 2.4Ghz WiFi band.
 Source: https://en.wikipedia.org/wiki/List_of_WLAN_channels#Interference_concerns
-Also Uzbekistan and Colombia allow up to channel 11 as maximum channel on the 2.4Ghz WiFi band.
+Additional: https://git.kernel.org/pub/scm/linux/kernel/git/sforshee/wireless-regdb.git
 */
 function loadChannelSelect() {
     var hw_mode = $('#cbxhwmode').val();
     var country_code = $('#cbxcountries').val();
+    var channel_select = $('#cbxchannel');
     var selectablechannels = Array.range(1,14);
     var countries_2_4Ghz_max11ch = Array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
         'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT',
@@ -218,7 +220,6 @@ function loadChannelSelect() {
     }
 
     // Set channel select with available values
-    var channel_select = $('#cbxchannel');
     channel_select.empty();
     $.each(selectablechannels, function(key,value) {
         channel_select.append($("<option></option>").attr("value", value).text(value));
@@ -334,4 +335,5 @@ $(window).bind("load", function() {
 $(document)
     .ajaxSend(setCSRFTokenHeader)
     .ready(contentLoaded)
-    .ready(loadWifiStations());
+    .ready(loadWifiStations())
+    .ready(loadChannelSelect());
