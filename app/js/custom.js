@@ -198,7 +198,7 @@ except for the US that allows channel 12 & 13 in low power mode with additional 
 Canada allows channel 12 in low power mode. Because it's unsure if low powered mode can be
 supported the channels are not selectable for those countries. Also Uzbekistan and Colombia
 allow up to channel 11 as maximum channel on the 2.4Ghz WiFi band.
-Source: https://en.wikipedia.org/wiki/List_of_WLAN_channels#Interference_concerns
+Source: https://en.wikipedia.org/wiki/List_of_WLAN_channels
 Additional: https://git.kernel.org/pub/scm/linux/kernel/git/sforshee/wireless-regdb.git
 */
 function loadChannelSelect() {
@@ -207,8 +207,7 @@ function loadChannelSelect() {
     var channel_select = $('#cbxchannel');
     var selectablechannels = Array.range(1,14);
     var countries_2_4Ghz_max11ch = Array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
-        'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT',
-        'US', 'CA', 'UZ', 'CO');
+        'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT', 'US', 'CA', 'UZ', 'CO');
     var countries_2_4Ghz_max14ch = Array('JP');
     var countries_5Ghz_max48ch = Array('US');
     if (($.inArray(country_code, countries_2_4Ghz_max11ch) !== -1) && (hw_mode !== 'ac') ) {
