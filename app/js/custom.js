@@ -91,31 +91,30 @@ function loadCurrentSettings(strInterface) {
 }
 
 function saveNetworkSettings(int) {
-        var frmInt = $('#frm-'+int).find(':input');
-        var arrFormData = {};
-        $.each(frmInt,function(i3,v3){
-            if($(v3).attr('type') == 'radio') {
-                arrFormData[$(v3).attr('id')] = $(v3).prop('checked');
-            } else {
-                arrFormData[$(v3).attr('id')] = $(v3).val();
-            }
-        });
-        arrFormData['interface'] = int;
-        $.post('ajax/networking/save_int_config.php',arrFormData,function(data){
-            var jsonData = JSON.parse(data);
-            $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
-        });
+    var frmInt = $('#frm-'+int).find(':input');
+    var arrFormData = {};
+    $.each(frmInt,function(i3,v3){
+        if($(v3).attr('type') == 'radio') {
+		arrFormData[$(v3).attr('id')] = $(v3).prop('checked');
+    } else {
+	    arrFormData[$(v3).attr('id')] = $(v3).val();
+    }
+    });
+    arrFormData['interface'] = int;
+    $.post('ajax/networking/save_int_config.php',arrFormData,function(data){
+        var jsonData = JSON.parse(data);
+        $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
+    });
 }
 
 function applyNetworkSettings() {
-        var int = $(this).data('int');
-        arrFormData = {};
-        arrFormData['generate'] = '';
-        $.post('ajax/networking/gen_int_config.php',arrFormData,function(data){
-            console.log(data);
-            var jsonData = JSON.parse(data);
-            $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
-        });
+    var int = $(this).data('int');
+    arrFormData = {};
+    arrFormData['generate'] = '';
+    $.post('ajax/networking/gen_int_config.php',arrFormData,function(data){
+        var jsonData = JSON.parse(data);
+        $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
+    });
 }
 
 $(document).on("click", ".js-add-dhcp-static-lease", function(e) {
@@ -126,7 +125,6 @@ $(document).on("click", ".js-add-dhcp-static-lease", function(e) {
     if (mac == "" || ip == "") {
         return;
     }
-
     var row = $("#js-dhcp-static-lease-row").html()
         .replace("{{ mac }}", mac)
         .replace("{{ ip }}", ip);
@@ -147,12 +145,10 @@ $(document).on("submit", ".js-dhcp-settings-form", function(e) {
 
 function setupBtns() {
     $('#btnSummaryRefresh').click(function(){getAllInterfaces();});
-
     $('.intsave').click(function(){
         var int = $(this).data('int');
         saveNetworkSettings(int);
     });
-
     $('.intapply').click(function(){
         applyNetworkSettings();
     });
@@ -173,6 +169,8 @@ function contentLoaded() {
             getAllInterfaces();
             setupTabs();
             setupBtns();
+        case "hostapd_conf":
+            loadChannel();
         break;
     }
 }
@@ -190,6 +188,13 @@ function loadWifiStations(refresh) {
 
 $(".js-reload-wifi-stations").on("click", loadWifiStations(true));
 
+function loadChannel() {
+    $.get('ajax/networking/get_channel.php',function(data){
+        jsonData = JSON.parse(data);
+        loadChannelSelect(jsonData);
+    });
+}
+
 /*
 Sets the wirelss channel select options based on hw_mode and country_code.
 
@@ -201,7 +206,7 @@ allow up to channel 11 as maximum channel on the 2.4Ghz WiFi band.
 Source: https://en.wikipedia.org/wiki/List_of_WLAN_channels
 Additional: https://git.kernel.org/pub/scm/linux/kernel/git/sforshee/wireless-regdb.git
 */
-function loadChannelSelect() {
+function loadChannelSelect(selected) {
     var hw_mode = $('#cbxhwmode').val();
     var country_code = $('#cbxcountries').val();
     var channel_select = $('#cbxchannel');
@@ -219,10 +224,12 @@ function loadChannelSelect() {
     }
 
     // Set channel select with available values
+    var selected = (typeof selected === 'undefined') ? selectablechannels[0] : selected;
     channel_select.empty();
     $.each(selectablechannels, function(key,value) {
         channel_select.append($("<option></option>").attr("value", value).text(value));
     });
+    channel_select.val(selected);
 }
 
 // Static Array method
@@ -334,5 +341,4 @@ $(window).bind("load", function() {
 $(document)
     .ajaxSend(setCSRFTokenHeader)
     .ready(contentLoaded)
-    .ready(loadWifiStations())
-    .ready(loadChannelSelect());
+    .ready(loadWifiStations());
