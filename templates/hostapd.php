@@ -49,6 +49,7 @@
               <div class="form-group col-md-6">
                 <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
                 <?php
+                $countries_5Ghz_max48ch = array('US');
                 $selectedHwMode = $arrConfig['hw_mode'];
                 if (isset($arrConfig['ieee80211n'])) {
                     if (strval($arrConfig['ieee80211n']) === '1') {
@@ -60,8 +61,13 @@
                         $selectedHwMode = 'ac';
                     }
                 }
-
-                SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode, 'cbxhwmode', 'loadChannelSelect'); ?>
+                if (!in_array($arrConfig['country_code'], $countries_5Ghz_max48ch)) {
+                    $hwModeDisabled = 'ac';
+                    if ($selectedHwMode === $hwModeDisabled) {
+                        unset($selectedHwMode);
+                    }
+                }
+                SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode, 'cbxhwmode', 'loadChannelSelect', $hwModeDisabled); ?>
               </div>
             </div>
             <div class="row">
