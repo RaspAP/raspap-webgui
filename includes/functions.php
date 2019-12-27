@@ -147,8 +147,9 @@ function isAssoc($arr)
 * @param string $selected: Selected option (optional)
 * @param string $id: $options is an associative array this should be the key
 * @param string $event: onChange event (optional)
+* @param string $disabled (optional)
 */
-function SelectorOptions($name, $options, $selected = null, $id = null, $event = null)
+function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null)
 {
     echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
     if (isset($id)) {
@@ -164,8 +165,10 @@ function SelectorOptions($name, $options, $selected = null, $id = null, $event =
         if ($key == $selected) {
             $select = ' selected="selected"';
         }
-
-        echo '<option value="'.htmlspecialchars($key, ENT_QUOTES).'"'.$select.'>'.
+        if ($key == $disabled) {
+            $disabled = ' disabled';
+        }
+        echo '<option value="'.htmlspecialchars($key, ENT_QUOTES).'"'.$select.$disabled.'>'.
             htmlspecialchars($label, ENT_QUOTES).'</option>' , PHP_EOL;
     }
 
