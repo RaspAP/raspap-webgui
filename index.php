@@ -298,20 +298,16 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
     <?php if ($page == "wlan0_info" || !isset($page)) { ?>
     <!-- Link Quality Chart -->
     <script src="app/js/linkquality.js"></script>
-    <?php }; ?>
+    <?php }
 
-  <?php
-  // Load non default JS/ECMAScript in footer.
-  foreach ($extraFooterScripts as $script) {
-      echo '    <script type="text/javascript" src="' , $script['src'] , '"';
-      if ($script['defer']) {
-	  echo ' defer="defer"';
-      }
-
-      // if ($script['async']) { echo ( echo ' defer="async"'; ), intrigity=, nonce=  etc. etc.
-      echo '></script>' , PHP_EOL;
-  }
-
+    // Load non default JS/ECMAScript in footer.
+    foreach ($extraFooterScripts as $script) {
+        echo '    <script type="text/javascript" src="' , $script['src'] , '"';
+        if ($script['defer']) {
+	        echo ' defer="defer"';
+        }
+        echo '></script>' , PHP_EOL;
+    }
   ?>
   </body>
 </html>
