@@ -131,7 +131,7 @@
                   if ($arrHostapdConf['WifiAPEnable'] == 1) {
                       $checkedWifiAPEnabled = ' checked="checked"';
 		  }
-		  if ($managedModeEnabled == false) {
+		  if ($managedModeEnabled == false && $arrHostapdConf['WifiAPEnable'] != 1) {
                       $wifiAPToggle = "disabled";
 		      $wifiAPHelp = "Managed mode not enabled";
                   }
