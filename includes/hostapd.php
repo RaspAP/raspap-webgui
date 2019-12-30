@@ -94,7 +94,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         return false;
     }
 
-    if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > 64) {
+    if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > 48) {
         error_log("Attempting to set channel to '".$_POST['channel']."'");
         return false;
     }
