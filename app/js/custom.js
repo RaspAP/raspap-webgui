@@ -214,8 +214,7 @@ function loadChannelSelect(selected) {
     var countries_2_4Ghz_max11ch = Array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
         'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT', 'US', 'CA', 'UZ', 'CO');
     var countries_2_4Ghz_max14ch = Array('JP');
-    var countries_5Ghz_max48ch = Array('AU', 'BR', 'CA', 'EE', 'HK', 'IL', 'IS', 'LT', 'LV', 'NZ', 'US',
-        'PH', 'SI', 'SK');
+    var countries_5Ghz_max48ch = Array('US');
     if (($.inArray(country_code, countries_2_4Ghz_max11ch) !== -1) && (hw_mode !== 'ac') ) {
        selectablechannels = Array.range(1,12);
     } else if (($.inArray(country_code, countries_2_4Ghz_max14ch) !== -1) && (hw_mode === 'b')) {
