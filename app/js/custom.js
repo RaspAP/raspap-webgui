@@ -207,29 +207,37 @@ Source: https://en.wikipedia.org/wiki/List_of_WLAN_channels
 Additional: https://git.kernel.org/pub/scm/linux/kernel/git/sforshee/wireless-regdb.git
 */
 function loadChannelSelect(selected) {
-    var hw_mode = $('#cbxhwmode').val();
-    var country_code = $('#cbxcountries').val();
-    var channel_select = $('#cbxchannel');
-    var selectablechannels = Array.range(1,14);
-    var countries_2_4Ghz_max11ch = Array('AG', 'BS', 'BB', 'BZ', 'CR', 'CU', 'DM', 'DO', 'SV', 'GD', 'GT',
-        'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'KN', 'LC', 'VC', 'TT', 'US', 'CA', 'UZ', 'CO');
-    var countries_2_4Ghz_max14ch = Array('JP');
-    var countries_5Ghz_max48ch = Array('US');
-    if (($.inArray(country_code, countries_2_4Ghz_max11ch) !== -1) && (hw_mode !== 'ac') ) {
-       selectablechannels = Array.range(1,12);
-    } else if (($.inArray(country_code, countries_2_4Ghz_max14ch) !== -1) && (hw_mode === 'b')) {
-        selectablechannels = Array.range(1,15);
-    } else if (($.inArray(country_code, countries_5Ghz_max48ch) !== -1) && (hw_mode === 'ac')) {
-        selectablechannels = Array(36, 40, 44, 48);
-    }
 
-    // Set channel select with available values
-    var selected = (typeof selected === 'undefined') ? selectablechannels[0] : selected;
-    channel_select.empty();
-    $.each(selectablechannels, function(key,value) {
-        channel_select.append($("<option></option>").attr("value", value).text(value));
+    // Fetch wireless regulatory data
+    $.getJSON("config/wireless.json", function(json) {
+        var hw_mode = $('#cbxhwmode').val();
+        var country_code = $('#cbxcountries').val();
+        var channel_select = $('#cbxchannel');
+        var data = json["wireless_regdb"];
+        var selectablechannels = Array.range(1,14);
+
+        // Assign array of countries to valid frequencies (channels)
+        var countries_2_4Ghz_max11ch = data["2_4GHz_max11ch"].countries;
+        var countries_2_4Ghz_max14ch = data["2_4GHz_max14ch"].countries;
+        var countries_5Ghz_max48ch = data["5Ghz_max48ch"].countries;
+
+        // Map selected hw_mode and country to determine channel list
+        if (($.inArray(country_code, countries_2_4Ghz_max11ch) !== -1) && (hw_mode !== 'ac') ) {
+            selectablechannels = data["2_4GHz_max11ch"].channels;
+        } else if (($.inArray(country_code, countries_2_4Ghz_max14ch) !== -1) && (hw_mode === 'b')) {
+            selectablechannels = data["2_4GHz_max14ch"].channels;
+        } else if (($.inArray(country_code, countries_5Ghz_max48ch) !== -1) && (hw_mode === 'ac')) {
+            selectablechannels = data["5Ghz_max48ch"].channels;
+        }
+
+        // Set channel select with available values
+        var selected = (typeof selected === 'undefined') ? selectablechannels[0] : selected;
+        channel_select.empty();
+        $.each(selectablechannels, function(key,value) {
+            channel_select.append($("<option></option>").attr("value", value).text(value));
+        });
+        channel_select.val(selected);
     });
-    channel_select.val(selected);
 }
 
 // Static Array method
