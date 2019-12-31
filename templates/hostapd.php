@@ -49,7 +49,7 @@
               <div class="form-group col-md-6">
                 <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
                 <?php
-                $countries_5Ghz_max48ch = array('US');
+                $countries_5Ghz_max48ch = RASPI_5GHZ_ISO_ALPHA2;
                 $selectedHwMode = $arrConfig['hw_mode'];
                 if (isset($arrConfig['ieee80211n'])) {
                     if (strval($arrConfig['ieee80211n']) === '1') {
