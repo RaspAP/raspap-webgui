@@ -22,7 +22,7 @@ define('RASPI_OPENVPN_SERVER_CONFIG', '/etc/openvpn/server/server.conf');
 define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
 
-// Constants for CRDA wireless regulatory domain
+// Constant for the 5GHz wireless regulatory domain
 define('RASPI_5GHZ_ISO_ALPHA2', array('US'));
 
 // Optional services, set to true to enable.
