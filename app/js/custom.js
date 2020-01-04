@@ -231,7 +231,7 @@ function loadChannelSelect(selected) {
         }
 
         // Set channel select with available values
-        var selected = (typeof selected === 'undefined') ? selectablechannels[0] : selected;
+        selected = (typeof selected === 'undefined') ? selectablechannels[0] : selected;
         channel_select.empty();
         $.each(selectablechannels, function(key,value) {
             channel_select.append($("<option></option>").attr("value", value).text(value));
