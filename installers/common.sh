@@ -153,6 +153,13 @@ function create_openvpn_scripts() {
 
    # Move service auth control shell scripts
     sudo cp "$webroot_dir/installers/"configauth.sh "$raspap_dir/openvpn" || install_error "Unable to move auth control script"
+   #2020-01-02 Support Scripts
+    sudo cp "$webroot_dir/installers/"setIptables.sh "$raspap_dir/openvpn" || install_error "Unable to move auth control script"
+    sudo cp "$webroot_dir/installers/"unSetIptables.sh "$raspap_dir/openvpn" || install_error "Unable to move auth control script"
+    sudo cp "$webroot_dir/installers/"vpn.sh "$raspap_dir/openvpn" || install_error "Unable to move auth control script"
+    sudo cp "$webroot_dir/installers/"cpOpenVPNFile.sh "$raspap_dir/openvpn" || install_error "Unable to move auth control script"
+    sudo cp "$webroot_dir/installers/"mvTimedOutOpenVPNFile.sh "$raspap_dir/openvpn" || install_error "Unable to move auth control script"
+
     # Make configauth.sh writable by www-data group
     sudo chown -c root:"$raspap_user" "$raspap_dir/openvpn/"*.sh || install_error "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/openvpn/"*.sh || install_error "Unable to change file permissions"
@@ -324,6 +331,13 @@ function patch_system_files() {
         "/etc/raspap/hostapd/servicestart.sh"
         "/etc/raspap/lighttpd/configport.sh"
         "/etc/raspap/openvpn/configauth.sh"
+	"/etc/raspap/openvpn/firewallRestrict.sh"
+	"/etc/raspap/openvpn/setIptables.sh"
+	"/etc/raspap/openvpn/mvTimedOutOpenVPNFile.sh"
+	"/etc/raspap/openvpn/cpOpenVPNFile.sh"
+	"/etc/raspap/openvpn/unSetIptables.sh"
+	"/bin/systemctl status openvpn-client@client"
+
     )
 
     # Check if sudoers needs patching

@@ -66,18 +66,35 @@
                 </div>
               </div>
               <?php if (!RASPI_MONITOR_ENABLED) : ?>
+
                   <input type="submit" class="btn btn-outline btn-primary" name="SaveOpenVPNSettings" value="Save settings" />
-                  <?php if ($openvpnstatus[0] == 0) {
+                  <?php if ($serviceStatus==='down') {
 					  echo '<input type="submit" class="btn btn-success" name="StartOpenVPN" value="Start OpenVPN" />' , PHP_EOL;
 				  } else {
                     echo '<input type="submit" class="btn btn-warning" name="StopOpenVPN" value="Stop OpenVPN" />' , PHP_EOL;
                   }
                   ?>
+
               <?php endif ?>
+                        <input type="submit" class="btn btn-outline btn-warning" name="EnableNAT" title="Warning, AP clients will be able to connect to Internet" value="Enable NAT" />
+                        <input type="submit" class="btn btn-outline btn-warning" name="DisableNAT" title="AP clients will NOT be able to connect to Internet" value="Disable NAT"/>
+<br/>
+<select id = "Copy" name="Copy" size="5">
+<?php
+foreach (scan_dir("/home/pi/openVPN/conf") as $item){
+	echo '<option value = "'.$item.'">'.$item.'</option>';
+}
+?>
+</select>
+<br/>
+<input type="submit" class="btn btn-outline btn-primary" name="GetVPNGateServers" value="Refresh VPNGate Servers" />
+
+<input type="submit" class="btn btn-outline btn-primary" name="UseVPNGateServer" value="Use Selected VPNGate Server" />
               </form>
             </div>
         </div><!-- /.card-body -->
-    <div class="card-footer"> Information provided by openvpn</div>
+
+    <div class="card-footer"> Information provided by openvpn <a href="/download/openvpn.zip">Download VPN Gate zip file</a> | <a href="https://ipleak.net" target="_blank">Check for IP Leak</a></div>
   </div><!-- /.card -->
 </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->

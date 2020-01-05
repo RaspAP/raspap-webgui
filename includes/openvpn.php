@@ -10,6 +10,8 @@ include_once('includes/status_messages.php');
 function DisplayOpenVPNConfig()
 {
     $status = new StatusMessages();
+$serviceStatus="down";
+
     if (isset($_POST['SaveOpenVPNSettings'])) {
         if (isset($_POST['authUser'])) {
             $authUser = strip_tags(trim($_POST['authUser']));
@@ -25,20 +27,95 @@ function DisplayOpenVPNConfig()
             $status->addMessage($line, 'info');
         }
     } elseif (isset($_POST['StopOpenVPN'])) {
+      	$status->addMessage('Disabling NAT', 'info');
+        exec('sudo /etc/raspap/openvpn/unSetIptables.sh',$return);
         $status->addMessage('Attempting to stop OpenVPN', 'info');
         exec('sudo /bin/systemctl stop openvpn-client@client', $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
+    } elseif (isset($_POST['GetVPNGateServers'])) {
+        $status->addMessage('Retrieving servers for AU CN GB JP KR MY RU SG TH US VN', 'info');
+        exec('sudo /etc/raspap/openvpn/vpn.sh JP AU CN GB KR MY RU SG TH US VN', $return);
+   } elseif (isset($_POST['EnableNAT'])) {
+        $status->addMessage('Enabling NAT', 'info');
+	exec('sudo /etc/raspap/openvpn/setIptables.sh',$return);
+
+   } elseif (isset($_POST['DisableNAT'])) {
+        $status->addMessage('Disabling NAT', 'info');
+        exec('sudo /etc/raspap/openvpn/unSetIptables.sh',$return);
+
+   } elseif (isset($_POST['UseVPNGateServer'])) {
+	$fileName=$_POST['Copy'];
+        system("sudo /etc/raspap/openvpn/cpOpenVPNFile.sh $fileName " . RASPI_OPENVPN_CLIENT_CONFIG, $return);
+        $status->addMessage('Copy config ' . $fileName . " to " . RASPI_OPENVPN_CLIENT_CONFIG, 'info');
+//VN-2weeks-tcp-183.80.95.225.ovpn
+//	preg_match("/(.*)\-(.*)\-(.*)\-(.*)\.(.*)/", $fileName, $matches);
+//	array_shift($matches);
+//	list($ctry, $logPeriod, $protocol, $ip, $fileExt) = $matches;
+	exec('sudo /etc/raspap/openvpn/unSetIptables.sh',$return);
+	$status->addMessage('Disabled NAT, stopping OpenVPN...', 'info');
+	exec('sudo /bin/systemctl stop openvpn-client@client', $return);
+        $serviceStatus="?";
+        $totalTries=0;
+	sleep(2);
+        while(true){
+                sleep(1);
+                exec('sudo /bin/systemctl status openvpn-client@client', $return);
+                foreach ($return as $line) {
+                        if (strpos($line, 'Stopped OpenVPN tunnel') !==false) {
+                                $serviceStatus="down";
+                        }
+                }
+                if($totalTries>10 | $serviceStatus === "down"){
+                        break;
+                }
+                $totalTries++;
+        }
+        exec('sudo /bin/systemctl start openvpn-client@client', $return);
+	$serviceStatus="down";
+	$totalTries=0;
+	sleep(3);
+	while(true){
+		sleep(1);
+		exec('sudo /bin/systemctl status openvpn-client@client', $return2);
+	        foreach ($return2 as $line) {
+			if (strpos($line, 'Initialization Sequence Completed') !==false) {
+				$serviceStatus="up";
+			}else if(strpos($line,"TLS error: Unsupported protocol")!==false 
+				|| strpos($line,"Connection refused")!==false
+				|| strpos($line,"AUTH: Received control message: AUTH_FAILED")!==false
+                                || strpos($line,"No route to host")!==false){
+				$status->addMessage($line, 'warning');
+				$totalTries=100;
+				break;
+                        }
+		}
+		if($serviceStatus === "up"){
+			$status->addMessage('VPN Started, enabling NAT', 'success');
+                        exec('sudo /etc/raspap/openvpn/setIptables.sh',$return);
+			break;
+		}else if($totalTries>30){
+                        $status->addMessage('Unable to start VPN, NAT remains disabled', 'warning');
+		        exec('sudo /bin/systemctl stop openvpn-client@client', $return);
+
+			exec('sudo /etc/raspap/openvpn/mvTimedOutOpenVPNFile.sh '.$fileName.' '.$fileName.'-timeout',$return);
+ 			break;
+		}
+		$totalTries++;
+	}
     }
+    exec('wget https://ipinfo.io/ip -qO -', $return3);
 
-    exec('pidof openvpn | wc -l', $openvpnstatus);
-    exec('wget https://ipinfo.io/ip -qO -', $return);
-
-    $serviceStatus = $openvpnstatus[0] == 0 ? "down" : "up";
     $auth = file(RASPI_OPENVPN_CLIENT_LOGIN, FILE_IGNORE_NEW_LINES);
-    $public_ip = $return[0];
-
+    $public_ip = $return3[0];
+	exec('sudo /bin/systemctl status openvpn-client@client', $return4);
+	foreach ($return4 as $line) {
+	        if (strpos($line, 'Status: "Initialization Sequence Completed"') !==false) {
+	                $serviceStatus="up";
+			break;
+	        }
+	}
     // parse client auth credentials
     if (!empty($auth)) {
         $authUser = $auth[0];
@@ -158,4 +235,33 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         $status->addMessage($e->getMessage(), 'danger');
         return $status;
     }
+}
+function listdir_by_date($path){
+    $dir = opendir($path);
+    $list = array();
+    while($file = readdir($dir)){
+        if ($file != '.' and $file != '..'){
+            // add the filename, to be sure not to
+            // overwrite a array key
+            $ctime = filectime($dir . $file) . ',' . $file;
+            $list[$ctime] = $file;
+        }
+    }
+    closedir($dir);
+    krsort($list);
+    return $list;
+}
+function scan_dir($dir) {
+    $ignored = array('.', '..', '.svn', '.htaccess');
+
+    $files = array();
+    foreach (scandir($dir) as $file) {
+        if (in_array($file, $ignored)) continue;
+        $files[$file] = filemtime($dir . '/' . $file);
+    }
+
+    arsort($files,SORT_NUMERIC);
+    $files = array_keys($files);
+
+    return ($files) ? $files : false;
 }
