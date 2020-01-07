@@ -19,7 +19,7 @@ We'd be curious to hear about how you use this with [your own RPi-powered projec
  - [Simultaneous AP and Wifi client](#simultaneous-ap-and-wifi-client)
  - [Support us](#support-us)
  - [Manual installation](#manual-installation)
- - [802.11ac 5GHz support](#802.11ac-5GHz-support)
+ - [802.11ac 5GHz support](#80211ac-5ghz-support)
  - [Multilingual support](#multilingual-support)
  - [HTTPS support](#https-support)
  - [OpenVPN support](#openvpn-support)
@@ -68,7 +68,6 @@ RaspAP lets you easily create an AP with a Wifi client configuration. With your 
 **Note:** This option is disabled until you configure your RPi as a wireless client. For a Raspberry Pi operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) without an `eth0` connection, this configuration must be enabled _before_ a reboot. 
 
 ## Support us
-
 RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal or commercial projects, please [become a sponsor](https://github.com/sponsors/billz) or make a one-time donation with [Beerpay](https://beerpay.io/billz/raspap-webgui). Either option makes a big difference!
 
 [![Beerpay](https://beerpay.io/billz/raspap-webgui/badge.svg)](https://beerpay.io/billz/raspap-webgui)
@@ -125,9 +124,8 @@ To configure an OpenVPN client, upload a valid .ovpn file and, optionally, speci
 **Note**: this feature is currently in beta. Please [read this](https://github.com/billz/raspap-webgui/wiki/FAQs#-openvpn-fails-to-start-andor-i-have-no-internet-help) before reporting an issue.
 
 ## How to contribute
- 
-1. Fork the project in your account and create a new branch: `your-great-feature`.
-2. Open a feature request issue in the repository describing the contribution you'd like to make. This will help us get you started on the right foot.
+ 1. Fork the project in your account and create a new branch: `your-great-feature`.
+2. Open an issue in the repository describing the feature contribution you'd like to make. This will help us get you started on the right foot.
 3. Commit changes in your feature branch.
 4. Open a pull request and reference the initial issue in the pull request message.
 
