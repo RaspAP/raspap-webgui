@@ -116,7 +116,8 @@ function DisplaySystem()
         'es_MX.UTF-8' => 'Español',
         'fi_FI.UTF-8' => 'Finnish',
         'si_LK.UTF-8' => 'Sinhala',
-        'tr_TR.UTF-8' => 'Türkçe'
+        'tr_TR.UTF-8' => 'Türkçe',
+        'el_GR.UTF-8' => 'Ελληνικά'
     );
 
     if (isset($_POST['system_reboot'])) {
