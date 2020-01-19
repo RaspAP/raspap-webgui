@@ -1,4 +1,4 @@
 # These are supported funding model platforms
 
 github: billz
-custom: https://beerpay.io/billz/raspap-webgui
+custom: ["https://beerpay.io/billz/raspap-webgui", beerpay.com]
