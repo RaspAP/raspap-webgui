@@ -45,5 +45,10 @@ class System {
   public function systemLoadPercentage() {
     return intval(($this->loadAvg1Min() * 100) / $this->processorCount());
   }
+
+  public function systemTemperature() {
+    $cpuTemp = file_get_contents("/sys/class/thermal/thermal_zone0/temp");
+    return number_format($cpuTemp/1000, 1);
+  }
 }
 
