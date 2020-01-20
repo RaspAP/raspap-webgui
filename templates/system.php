@@ -25,6 +25,16 @@ if ($cpuload > 90) {
   $cpuload_status = "success";
 }
 
+// cpu temp
+$cputemp = $system->systemTemperature();
+if ($cputemp > 70) {
+  $cputemp_status = "danger";
+} elseif ($cputemp > 50) {
+  $cputemp_status = "warning";
+} else {
+  $cputemp_status = "success";
+}
+
 ?>
 <div class="row">
   <div class="col-lg-12">
@@ -63,10 +73,18 @@ if ($cpuload > 90) {
                   </div>
                 </div>
                 <div class="mb-1"><?php echo _("CPU Load"); ?></div>
-                <div class="progress mb-4" style="height: 20px;">
+                <div class="progress mb-2" style="height: 20px;">
                   <div class="progress-bar bg-<?php echo htmlspecialchars($cpuload_status, ENT_QUOTES); ?>"
                                               role="progressbar" aria-valuenow="<?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100"
                                               style="width: <?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>%"><?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>%
+                  </div>
+                </div>
+                </div>
+                <div class="mb-1"><?php echo _("CPU Temp"); ?></div>
+                <div class="progress mb-4" style="height: 20px;">
+                  <div class="progress-bar bg-<?php echo htmlspecialchars($cputemp_status, ENT_QUOTES); ?>"
+                                              role="progressbar" aria-valuenow="<?php echo htmlspecialchars($cputemp, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100"
+                                              style="width: <?php echo htmlspecialchars(($cputemp*1.2), ENT_QUOTES); ?>%"><?php echo htmlspecialchars($cputemp, ENT_QUOTES); ?>°C
                   </div>
                 </div>
 
