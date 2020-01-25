@@ -238,9 +238,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         if ($wifiAPEnable == 1) {
             // Enable uap0 configuration in dnsmasq for Wifi client AP mode
             // Set dhcp-range from system config. If undefined, fallback to default
-            $dhcp_range = ($dhcpConfig['dhcp-range'] =='') ? '192.168.50.50,192.168.50.150,12h' : $dhcpConfig['dhcp-range'];
+            $dhcp_range = ($dhcpConfig['dhcp-range'] =='10.3.141.50,10.3.141.255,255.255.255.0,12h' ||
+                $dhcpConfig['dhcp-range'] =='') ? '192.168.50.50,192.168.50.150,12h' : $dhcpConfig['dhcp-range'];
             $config = 'interface=lo,uap0               # Enable uap0 interface for wireless client AP mode'.PHP_EOL;
-            $config.= 'bind-interfaces                 # Bind to the interfaces'.PHP_EOL;
+            $config.= 'bind-dynamic                    # Hybrid between --bind-interfaces and default'.PHP_EOL;
             $config.= 'server=8.8.8.8                  # Forward DNS requests to Google DNS'.PHP_EOL;
             $config.= 'domain-needed                   # Don\'t forward short names'.PHP_EOL;
             $config.= 'bogus-priv                      # Never forward addresses in the non-routed address spaces'.PHP_EOL;
@@ -250,7 +251,8 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             }
         } else {
             // Set dhcp-range from system config. If undefined, fallback to default
-            $dhcp_range = ($dhcpConfig['dhcp-range'] =='') ? '10.3.141.50,10.3.141.255,255.255.255.0,12h' : $dhcpConfig['dhcp-range'];
+            $dhcp_range = ($dhcpConfig['dhcp-range'] =='192.168.50.50,192.168.50.150,12h' ||
+                $dhcpConfig['dhcp-range'] =='') ? '10.3.141.50,10.3.141.255,255.255.255.0,12h' : $dhcpConfig['dhcp-range'];
             $config = 'domain-needed'.PHP_EOL;
             $config.= 'interface='.$_POST['interface'].PHP_EOL;
             $config.= 'dhcp-range='.$dhcp_range.PHP_EOL;
