@@ -115,13 +115,11 @@
 						</thead>
 						<tbody>
 						<?php foreach ($leases as $lease) : ?>
+							<tr>
 								<?php foreach (explode(' ', $lease) as $prop) : ?>
-									<tr>
-									<?php foreach (explode(' ', $lease) as $prop) : ?>
-										<td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
-									<?php endforeach ?> 
-								</tr>
-								<?php endforeach ?>
+									<td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
+								<?php endforeach ?> 
+							</tr>
 						<?php endforeach ?>
 						</tbody>
 					</table>
