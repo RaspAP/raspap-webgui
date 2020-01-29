@@ -1,11 +1,11 @@
 ![](https://i.imgur.com/xeKD93p.png)
 # `$raspap` [![Release 2.1](https://img.shields.io/badge/Release-2.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Sponsor](https://img.shields.io/badge/sponsor-%F0%9F%92%96-green)](https://github.com/sponsors/billz)
 
-A simple, responsive web interface to control wifi, hostapd and related services on the Raspberry Pi.
+RaspAP lets you quickly get a WiFi access point up and running to share the internet connectivity of a Raspberry Pi. Our famous Quick Installer creates a known-good default configuration that "just works" with the built-in wireless of all WiFi-enabled Raspberry Pis. A handsome responsive interface gives you control over the relevant services and networking options. OpenVPN client support, SSL, security audits, themes and multilingual options round out the package. 
 
-This project was inspired by a [blog post](http://sirlagz.net/2013/02/06/script-web-configuration-page-for-raspberry-pi/) by SirLagz about using a web page rather than ssh to configure wifi and hostapd settings on the Raspberry Pi. I began by prettifying the UI by wrapping it in [SB Admin 2](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2), a Bootstrap based admin theme. Since then, the project has evolved to include greater control over many aspects of a networked RPi, better security, authentication, a Quick Installer, support for OpenVPN, themes and more. RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
+RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
 
-We'd be curious to hear about how you use this with [your own RPi-powered projects](https://github.com/billz/raspap-awesome). Until then, here are some screenshots:
+We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own RPi-powered projects](https://github.com/billz/raspap-awesome)!
 
 ![](https://i.imgur.com/fwekyGE.gif)
 ![](https://i.imgur.com/EiIpdOS.gif)
@@ -68,7 +68,7 @@ RaspAP lets you easily create an AP with a Wifi client configuration. With your 
 **Note:** This option is disabled until you configure your RPi as a wireless client. For a Raspberry Pi operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) without an `eth0` connection, this configuration must be enabled _before_ a reboot. 
 
 ## Support us
-RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal or commercial projects, please [become a sponsor](https://github.com/sponsors/billz) or make a one-time donation with [Beerpay](https://beerpay.io/billz/raspap-webgui). Either option makes a big difference!
+RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal or commercial projects, please [become a GitHub sponsor](https://github.com/sponsors/billz), join the project on [Open Collective](https://opencollective.com/raspap) or make a one-time donation with [Beerpay](https://beerpay.io/billz/raspap-webgui). Any of these options makes a big difference!
 
 [![Beerpay](https://beerpay.io/billz/raspap-webgui/badge.svg)](https://beerpay.io/billz/raspap-webgui)
 
