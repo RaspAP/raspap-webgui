@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/xeKD93p.png)
-# `$raspap` [![Release 2.1](https://img.shields.io/badge/Release-2.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) ![Twitter Follow](https://img.shields.io/twitter/follow/rasp_ap?label=Twitter)
+# `$raspap` [![Release 2.1](https://img.shields.io/badge/Release-2.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/rasp_ap.svg?style=social&label=Follow%20%40RaspAP)](https://twitter.com/rasp_ap)
 
 RaspAP lets you quickly get a WiFi access point up and running to share the internet connectivity of a Raspberry Pi. Our famous Quick Installer creates a known-good default configuration that "just works" with the built-in wireless of all WiFi-enabled Raspberry Pis. A handsome responsive interface gives you control over the relevant services and networking options. OpenVPN client support, SSL, security audits, themes and multilingual options round out the package. 
 
