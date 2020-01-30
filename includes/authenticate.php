@@ -2,9 +2,10 @@
 $user = $_SERVER['PHP_AUTH_USER'];
 $pass = $_SERVER['PHP_AUTH_PW'];
 
-$validated = ($user == $config['admin_user']) && password_verify($pass, $config['admin_pass']);
+$adminValidated = ($user == $config['admin_user']) && password_verify($pass, $config['admin_pass']);
+$guestValidated = ($user == $config['guest_user']) && password_verify($pass, $config['guest_pass']);
 
-if (!$validated) {
+if (!$adminValidated && !$guestValidated) {
     header('WWW-Authenticate: Basic realm="RaspAP"');
     if (function_exists('http_response_code')) {
         // http_response_code will respond with proper HTTP version back.
@@ -14,4 +15,10 @@ if (!$validated) {
     }
 
     exit('Not authorized'.PHP_EOL);
+}
+else if ($adminValidated){
+    $config['user_type'] = 'admin';
+}
+else if($guestValidated){
+ $config['user_type'] = 'guest';
 }

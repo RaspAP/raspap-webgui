@@ -169,8 +169,11 @@ function download_latest_files() {
     fi
 
     install_log "Cloning latest files from github"
-    git clone --depth 1 https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
+    git clone --depth 1 https://github.com/SomasunderAsteroid/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
+    echo "Downloaded files..."
+    sleep 30
+    sudo mv "$webroot_dir/config/wifistart" "/usr/local/bin/wifistart" || install_error "Unable to move wifistart file"
 }
 
 # Sets files ownership in web root directory
@@ -239,20 +242,19 @@ function default_configuration() {
 
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script
-    lines=(
-    'echo 1 > \/proc\/sys\/net\/ipv4\/ip_forward #RASPAP'
-    'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
-    'iptables -t nat -A POSTROUTING -s 192.168.50.0\/24 ! -d 192.168.50.0\/24 -j MASQUERADE #RASPAP'
-    )
+    # lines=(
+    # '/bin/bash /usr/local/bin/wifistart'
+    # )
     
-    for line in "${lines[@]}"; do
-        if grep "$line" /etc/rc.local > /dev/null; then
-            echo "$line: Line already added"
+   # for line in "${lines[@]}"; do
+   # Add startup script path to rc.local
+        if grep "/bin/bash /usr/local/bin/wifistart" /etc/rc.local > /dev/null; then
+            echo "/bin/bash /usr/local/bin/wifistart: Line already added"
         else
-            sudo sed -i "s/^exit 0$/$line\nexit 0/" /etc/rc.local
-            echo "Adding line $line"
+            sudo sed -i "s/^exit 0$/\/bin\/bash \/usr\/local\/bin\/wifistart\nexit 0/" /etc/rc.local || install_error "Unable to write command rc.local file."
+            echo "Adding line /bin/bash /usr/local/bin/wifistart"
         fi
-    done
+   # done
 
     # Force a reload of new settings in /etc/rc.local
     sudo systemctl restart rc-local.service

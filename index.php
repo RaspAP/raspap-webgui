@@ -14,7 +14,7 @@
  * @author     Bill Zimmerman <billzimmerman@gmail.com>
  * @license    GNU General Public License, version 3 (GPL-3.0)
  * @version    2.1
- * @link       https://github.com/billz/raspap-webgui
+ * @link       https://github.com/billz/raspap-webgui linkssss
  * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
  */
 
@@ -123,6 +123,8 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
 	  <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure WiFi client"); ?></span></a>
 	</li>
 	  <?php endif; ?>
+	 <?php if ($config['user_type'] == 'admin') : ?>
+
 	  <?php if (RASPI_HOTSPOT_ENABLED) : ?>
 	<li class="nav-item">
 	  <a class="nav-link" href="index.php?page=hostapd_conf"><i class="far fa-dot-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure hotspot"); ?></a>
@@ -163,11 +165,13 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
 	  <a class="nav-link" href="index.php?page=data_use"><i class="fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
 	</li>
 	  <?php endif; ?>
-      <?php if (RASPI_SYSTEM_ENABLED) : ?>
-    <li class="nav-item">
+        <?php if (RASPI_SYSTEM_ENABLED) : ?>
+        <li class="nav-item">
 	  <a class="nav-link" href="index.php?page=system_info"><i class="fas fa-cube fa-fw mr-2"></i><span class="nav-label"><?php echo _("System"); ?></a>
-    </li>
-      <?php endif; ?>
+        </li>
+        <?php endif; ?>
+	<?php endif; ?>
+
 	 <li class="nav-item">
 	  <a class="nav-link" href="index.php?page=about"><i class="fas fa-info-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("About RaspAP"); ?></a>
 	</li>
@@ -199,12 +203,18 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
 	      <div class="topbar-divider d-none d-sm-block"></div>
 	      <!-- Nav Item - User -->
 	      <li class="nav-item dropdown no-arrow">
+		<?php if ($config['user_type'] == 'admin') : ?>
 		<a class="nav-link" href="index.php?page=auth_conf">
-		  <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
+		<?php endif; ?>
+		<?php if ($config['user_type'] == 'guest') : ?>
+                <a class="nav-link" href="">
+		<?php endif; ?>
+		  <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['user_type'], ENT_QUOTES); ?></span>
 		  <i class="fas fa-user-circle fa-3x"></i>
 		</a>
 	      </li>
 	    </ul>
+
 	  </nav>
 	  <!-- End of Topbar -->
 	  <!-- Begin Page Content -->
@@ -311,3 +321,4 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
   ?>
   </body>
 </html>
+

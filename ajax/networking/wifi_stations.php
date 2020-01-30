@@ -2,7 +2,6 @@
 
 require('../../includes/csrf.php');
 include_once('../../includes/config.php');
-include_once('../../includes/defaults.php');
 include_once('../../includes/functions.php');
 include_once('../../includes/wifi_functions.php');
 

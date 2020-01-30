@@ -27,9 +27,9 @@ fi
 echo "Checking iptables rules for $interface"
 
 lines=(
-"iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE #RASPAP"
-"iptables -A FORWARD -i tun0 -o $interface -m state --state RELATED,ESTABLISHED -j ACCEPT #RASPAP"
-"iptables -A FORWARD -i wlan0 -o tun0 -j ACCEPT #RASPAP"
+"/bin/bash /usr/local/bin/wifistart"
+# "iptables -A FORWARD -i tun0 -o $interface -m state --state RELATED,ESTABLISHED -j ACCEPT #RASPAP"
+# "iptables -A FORWARD -i wlan0 -o tun0 -j ACCEPT #RASPAP"
 )
 
 for line in "${lines[@]}"; do
