@@ -1,11 +1,11 @@
 ![](https://i.imgur.com/xeKD93p.png)
 # `$raspap` [![Release 2.1](https://img.shields.io/badge/Release-2.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/rasp_ap.svg?style=social&label=Follow%20%40RaspAP)](https://twitter.com/rasp_ap)
 
-RaspAP lets you quickly get a WiFi access point up and running to share the internet connectivity of a Raspberry Pi. Our famous Quick Installer creates a known-good default configuration that "just works" with the built-in wireless of all WiFi-enabled Raspberry Pis. A handsome responsive interface gives you control over the relevant services and networking options. OpenVPN client support, SSL, security audits, themes and multilingual options round out the package. 
+RaspAP lets you quickly get a WiFi access point up and running to share the internet connectivity of a Raspberry Pi. Our famous [Quick installer](#quick-installer) creates a known-good default configuration that "just works" on all current Raspberry Pis with onboard wireless. A handsome responsive interface gives you control over the relevant services and networking options. OpenVPN client support, SSL, security audits, themes and multilingual options round out the package. 
 
 RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
 
-We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own RPi-powered projects](https://github.com/billz/raspap-awesome)!
+We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own Pi-powered projects](https://github.com/billz/raspap-awesome)!
 
 ![](https://i.imgur.com/fwekyGE.gif)
 ![](https://i.imgur.com/EiIpdOS.gif)
@@ -38,7 +38,7 @@ sudo reboot
 ```
 2. Set the WiFi country in raspi-config's **Localisation Options**: `sudo raspi-config`
 
-3. If you have an older Raspberry Pi without an onboard WiFi chipset, the [**Edimax Wireless 802.11b/g/n nano USB adapter**](https://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_n150/ew-7811un) is an excellent option – it's small, cheap and has good driver support.
+3. If you have a Raspberry Pi without an onboard WiFi chipset, the [**Edimax Wireless 802.11b/g/n nano USB adapter**](https://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_n150/ew-7811un) is an excellent option – it's small, cheap and has good driver support.
 
 With the prerequisites done, you can proceed with either the Quick installer or Manual installation steps below.
 
