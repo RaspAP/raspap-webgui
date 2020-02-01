@@ -1,6 +1,7 @@
 <?php
 
 include_once('includes/status_messages.php');
+include_once('app/lib/system.php');
 
 /**
 *
@@ -9,6 +10,7 @@ include_once('includes/status_messages.php');
 function DisplayHostAPDConfig()
 {
     $status = new StatusMessages();
+	$system = new System();
     $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
     $arrConfig = array();
     $arr80211Standard = [
@@ -44,12 +46,11 @@ function DisplayHostAPDConfig()
     }
 
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
-    exec('pidof hostapd | wc -l', $hostapdstatus);
     exec('iwgetid '. RASPI_WIFI_CLIENT_INTERFACE. ' -r', $wifiNetworkID);
     if ( !empty($wifiNetworkID[0])) {
         $managedModeEnabled = true;
     }
-
+    $hostapdstatus = $system->hostapdStatus();
     $serviceStatus = $hostapdstatus[0] == 0 ? "down" : "up";
 
     foreach ($hostapdconfig as $hostapdconfigline) {
