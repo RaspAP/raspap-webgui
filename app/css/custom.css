@@ -6,8 +6,9 @@ body {
   margin: 20px 0 20px;
 }
 
-.page-header .logo {
-  margin-right: 5px;
+.navbar-logo {
+  margin-top: 0.5em;
+  margin-left: 0.5em;
 }
 
 /* Small devices (portrait phones, up to 576px) */
@@ -100,6 +101,11 @@ i.fa.fa-bars:hover{
   float: left;
 }
 
+.info-item-xs {
+  font-size: 0.7rem;
+  margin-left: 0.3rem;
+}
+
 .info-item-wifi {
   width: 6rem;
   float: left;
@@ -189,5 +195,9 @@ pre.unstyled {
 
 .toggle-on.btn {
   font-size: 0.9rem!important;
+}
+
+canvas#divChartBandwidthhourly {
+  height: 350px!important;
 }
 
