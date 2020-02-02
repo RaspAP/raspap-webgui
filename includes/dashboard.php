@@ -3,7 +3,7 @@
 /**
 * Show dashboard page.
 */
-function DisplayDashboard()
+function DisplayDashboard(&$extraFooterScripts)
 {
 
     $status = new StatusMessages();
@@ -194,6 +194,7 @@ function DisplayDashboard()
         "strLinkQuality",
         "wlan0up"
     ));
+    $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);
 }
 
 

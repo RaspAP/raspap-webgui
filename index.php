@@ -108,13 +108,14 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
       <ul class="navbar-nav sidebar sidebar-light d-none d-md-block accordion <?php echo $toggleState; ?>" id="accordionSidebar">
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?page=wlan0_info">
-          <div class="sidebar-brand-icon">
-            <img src="app/img/raspAP-logo64px.png" width="32" height="32">
-          </div>
-	  <div class="sidebar-brand-text ml-1">RaspAP</div>
-	</a>
+          <div class="sidebar-brand-text ml-1">RaspAP</div>
+        </a>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
+		<div class="sidebar-brand-icon">
+          <img src="app/img/raspAP-logo64px.png" width="32" height="32">
+        </div>
+
 	<li class="nav-item">
 	  <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
 	</li>
@@ -214,7 +215,7 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
 	    // handle page actions
 	    switch ($page) {
 	    case "wlan0_info":
-		DisplayDashboard();
+		DisplayDashboard($extraFooterScripts);
 		break;
 	    case "dhcpd_conf":
 		DisplayDHCPConfig();
