@@ -9,7 +9,7 @@
       type: 'line',
       options: {
         responsive: true,
-		maintainAspectRatio: false,
+		    maintainAspectRatio: false,
         scales: {
           xAxes: [{
             scaleLabel: {
