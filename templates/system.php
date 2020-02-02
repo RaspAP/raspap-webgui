@@ -1,6 +1,6 @@
 <?php
 
-include_once('includes/sysstats.php');
+include('includes/sysstats.php');
 
 ?>
 <div class="row">
