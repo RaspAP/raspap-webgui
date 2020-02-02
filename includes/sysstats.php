@@ -12,38 +12,38 @@ $cores    = $system->processorCount();
 $memused  = $system->usedMemory();
 $memused_status = "primary";
 if ($memused > 90) {
-  $memused_status = "danger";
+	$memused_status = "danger";
 } elseif ($memused > 75) {
-  $memused_status = "warning";
+	$memused_status = "warning";
 } elseif ($memused >  0) {
-  $memused_status = "success";
+	$memused_status = "success";
 }
 
 // cpu load
 $cpuload = $system->systemLoadPercentage();
 if ($cpuload > 90) {
-  $cpuload_status = "danger";
+	$cpuload_status = "danger";
 } elseif ($cpuload > 75) {
-  $cpuload_status = "warning";
+	$cpuload_status = "warning";
 } elseif ($cpuload >  0) {
-  $cpuload_status = "success";
+	$cpuload_status = "success";
 }
 
 // cpu temp
 $cputemp = $system->systemTemperature();
 if ($cputemp > 70) {
-  $cputemp_status = "danger";
+	$cputemp_status = "danger";
 } elseif ($cputemp > 50) {
-  $cputemp_status = "warning";
+	$cputemp_status = "warning";
 } else {
-  $cputemp_status = "success";
+	$cputemp_status = "success";
 }
 
 // hostapd status
 $hostapd = $system->hostapdStatus();
 if ($hostapd) {
-  $hostapd_status = "success";
+	$hostapd_status = "success";
 } else {
-  $hostapd_status = "danger";
+	$hostapd_status = "danger";
 }
 
