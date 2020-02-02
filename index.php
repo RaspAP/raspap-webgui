@@ -32,6 +32,7 @@ include_once('includes/admin.php');
 include_once('includes/dhcp.php');
 include_once('includes/hostapd.php');
 include_once('includes/system.php');
+include_once('includes/sysstats.php');
 include_once('includes/configure_client.php');
 include_once('includes/networking.php');
 include_once('includes/themes.php');
@@ -112,10 +113,17 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
         </a>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-		<div class="sidebar-brand-icon">
-          <img src="app/img/raspAP-logo64px.png" width="32" height="32">
+        <div class="row">
+          <div class="col-xs ml-3 sidebar-brand-icon">
+            <img src="app/img/raspAP-logo64px.png" class="navbar-logo" width="64" height="64">
+          </div>
+          <div class="col-xs ml-2">
+            <div class="">Status</div>
+            <div class="info-item-xs"><span class="icon"><i class="fas fa-circle service-status-up"></i></span> Hotspot active</div>
+            <div class="info-item-xs"><span class="icon"><i class="fas fa-circle service-status-up"></i></span> Memory Use: <?php echo htmlspecialchars($memused, ENT_QUOTES); ?>%</div>
+            <div class="info-item-xs"><span class="icon"><i class="fas fa-circle service-status-up"></i></span> CPU Temp: <?php echo htmlspecialchars($cputemp, ENT_QUOTES); ?>°C</div>
+          </div>
         </div>
-
 	<li class="nav-item">
 	  <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
 	</li>
