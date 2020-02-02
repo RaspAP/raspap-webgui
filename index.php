@@ -115,7 +115,7 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
         <hr class="sidebar-divider my-0">
         <div class="row">
           <div class="col-xs ml-3 sidebar-brand-icon">
-            <img src="app/img/raspAP-logo64px.png" class="navbar-logo" width="64" height="64">
+            <img src="app/img/raspAP-logo.svg" class="navbar-logo" width="64" height="64">
           </div>
           <div class="col-xs ml-2">
             <div class="">Status</div>
