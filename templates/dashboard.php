@@ -34,7 +34,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                 <h4><?php echo _("Hourly traffic amount"); ?></h4>
                 <div id="divInterface" class="d-none"><?php echo RASPI_WIFI_CLIENT_INTERFACE; ?></div>
                 <div class="col-md-12">
-                  <canvas id="divChartBandwidthhourly"></canvas>
+                  <canvas id="divDBChartBandwidthhourly"></canvas>
                 </div>
               </div><!-- /.card-body -->
             </div><!-- /.card-->

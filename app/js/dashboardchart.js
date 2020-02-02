@@ -41,7 +41,7 @@
 
   function ShowBandwidthChartHandler(e) {
     // Remove hourly chartjs chart
-    $('#divChartBandwidthhourly').empty();
+    $('#divDBChartBandwidthhourly').empty();
     // Construct ajax uri for getting the proper data
     var timeunit = 'hourly'; 
     var uri = 'ajax/bandwidth/get_bandwidth.php?';
@@ -62,7 +62,7 @@
         return e.date;
       });
       // Init. chart with label series
-      var barchart = CreateChart('divChartBandwidth'+timeunit, labels);
+      var barchart = CreateChart('divDBChartBandwidth'+timeunit, labels);
       var dataRx = jsondata.map(function(e) {
         return e.rx;
       });
