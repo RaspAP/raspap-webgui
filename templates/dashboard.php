@@ -13,15 +13,15 @@ $ifaceStatus = $wlan0up ? "up" : "down";
     <div class="card">
       <div class="card-header">
         <div class="row">
-	  <div class="col">
-	    <i class="fas fa-tachometer-alt fa-fw mr-2"></i><?php echo _("Dashboard"); ?>
-	  </div>
-	  <div class="col">
-	    <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
-	      <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-	      <span class="text service-status"><?php echo strtolower($client_iface) .' '. _($ifaceStatus) ?></span>
-	    </button>
-	  </div>
+    <div class="col">
+      <i class="fas fa-tachometer-alt fa-fw mr-2"></i><?php echo _("Dashboard"); ?>
+    </div>
+    <div class="col">
+      <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+        <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
+        <span class="text service-status"><?php echo strtolower($client_iface) .' '. _($ifaceStatus) ?></span>
+      </button>
+    </div>
         </div><!-- /.row -->
       </div><!-- /.card-header -->
 
@@ -33,9 +33,9 @@ $ifaceStatus = $wlan0up ? "up" : "down";
               <div class="card-body">
                 <h4><?php echo _("Hourly traffic amount"); ?></h4>
                 <div id="divInterface" class="d-none"><?php echo RASPI_WIFI_CLIENT_INTERFACE; ?></div>
-								<div class="col-md-12">
+                <div class="col-md-12">
                   <canvas id="divChartBandwidthhourly"></canvas>
-								</div>
+                </div>
               </div><!-- /.card-body -->
             </div><!-- /.card-->
           </div>
@@ -64,7 +64,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
             </div><!-- /.card -->
           </div><!-- /.col-md-6 -->
           <div class="col-md-6">
-	        <div class="card mb-3">
+            <div class="card mb-3">
               <div class="card-body wireless">
                 <h4><?php echo _("Connected Devices"); ?></h4>
                 <div class="table-responsive">
