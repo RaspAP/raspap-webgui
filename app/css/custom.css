@@ -134,6 +134,10 @@ i.fa.fa-bars:hover{
   color: green;
 }
 
+.service-status-warn {
+  color: yellow;
+}
+
 .service-status-down {
   color: red;
   animation: flash 1s linear infinite;
