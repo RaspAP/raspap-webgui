@@ -1,7 +1,7 @@
 html * {
   font-family: Courier New, Andale Mono, monospace;
   font-size: 1.0rem;
-  color: #2ee600;
+  color: #2bcb02;
 }
 
 h4 {
@@ -14,11 +14,16 @@ h5.card-title {
 
 .page-header {
   padding: 0 20px;
-  border-left: 1px solid #2ee600;
+  border-left: .01rem solid #2bcb02;
+}
+
+.navbar-logo {
+  margin-top: 0.5em;
+  margin-left: 0.5em;
 }
 
 .sidebar-light .nav-item.active .nav-link i {
-  color: #2ee600;
+  color: #2bcb02;
 }
 
 .sidebar .nav-item.active .nav-link {
@@ -54,33 +59,33 @@ h5.card-title {
 .nav-tabs>li.active>a:hover,
 .nav-tabs .nav-link:hover,
 .input-group-addon {
-  color: #2ee600;
+  color: #2bcb02;
   cursor: default;
   background-color: #000;
-  border: 1px solid #2ee600;
-  border-bottom-color: #2ee600;
+  border: .01rem solid #2bcb02;
+  border-bottom-color: #2bcb02;
   border-radius: inherit;
 }
 
 .nav-tabs>li>a,.nav-tabs>li>a:hover {
-  border: 1px solid #2ee600;
+  border: .01rem solid #2bcb02;
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #2ee600;
+  border-bottom: .01rem solid #2bcb02;
 }
 
 .navbar-default .navbar-brand,
 .navbar-default .navbar-brand:hover {
-  color: #2ee600;
+  color: #2bcb02;
 }
 
 .navbar-default .navbar-toggle {
-  border-color: #2ee600;
+  border-color: #2bcb02;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #2ee600;
+  background-color: #2bcb02;
 }
 
 .navbar-default .navbar-toggle:focus,
@@ -90,23 +95,22 @@ h5.card-title {
 
 .nav-tabs .nav-link.active {
   color: #000;
-  background-color: #2ee600;
-  border-color: #2ee600;
+  background-color: #2bcb02;
+  border-color: #2bcb02;
   border-radius: inherit;
 }
 
 .sidebar-brand-icon {
   filter: invert(65%) sepia(900%) saturate(536%) hue-rotate(68deg) brightness(100%) contrast(120%);
-  width: 30px;
 }
 
 a:focus, a:hover {
-  color: #2ee600;
+  color: #2bcb02;
 }
 
 .card>.card-header {
-  border-color: #2ee600;
-  background-color: #2ee600;
+  border-color: #2bcb02;
+  background-color: #2bcb02;
   color: #000;
   border-radius: unset;
   font-size: 1.1rem;
@@ -128,31 +132,31 @@ a:focus, a:hover {
 
 .card, .card-body {
   margin-bottom: 20px;
-  border: 1px solid #2ee600;
+  border: .01rem solid #2bcb02;
   border-radius: 0px;
   background-color: #000;
 }
 
 hr { 
-  border-top: 1px solid #2ee600;
+  border-top: .01rem solid #2bcb02;
 }
 
 .page-header {
   font-size: 24pt;
   margin: 10px 0 20px;
-  border-bottom: 1px solid #2ee600;
+  border-bottom: .01rem solid #2bcb02;
 }
 
 .sidebar-brand-text {
   text-transform: none;
-  color: #2ee600;
+  color: #2bcb02;
   font-size: 2.0rem;
   font-weight: 500;
   font-family: inherit;
 }
 
 .sidebar-light #sidebarToggle {
-  background-color: #2ee600;
+  background-color: #2bcb02;
 }
 
 .sidebar-light #sidebarToggle::after {
@@ -179,7 +183,7 @@ hr {
 
 .card-footer {
   background-color: #000;
-  border-top: 1px solid #2ee600;
+  border-top: .01rem solid #2bcb02;
 }
 
 .card>.card-header::before, .navbar-default::before {
@@ -201,7 +205,7 @@ hr {
 }
 
 .sidebar-light .nav-item .nav-link i {
-  color: #2ee600;
+  color: #2bcb02;
 }
 
 .sidebar .nav-item .nav-link {
@@ -209,16 +213,22 @@ hr {
 }
 
 .sidebar-light hr.sidebar-divider {
-  border-top: 1px solid #2ee600;
+  border-top: .01rem solid #2bcb02;
 }
 
 .topbar .topbar-divider {
-  border-right: 1px solid #2ee600;
+  border-right: .01rem solid #2bcb02;
 }
 
 .info-item {
   width: 12rem;
   float: left;
+}
+
+.info-item-xs {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 0.7rem;
+  margin-left: 0.3rem;
 }
 
 .info-item-wifi {
@@ -227,7 +237,7 @@ hr {
 }
 
 .label-warning {
-  background-color: #2ee600;
+  background-color: #2bcb02;
 }
 
 span.label.label-warning {
@@ -241,20 +251,20 @@ span.label.label-warning {
 .table>thead>tr>td,
 .table>thead>tr>th {
   background-color: #000;
-  border-top: 1px solid #000;
+  border-top: .01rem solid #000;
 }
 
 .table>thead>tr>th {
   vertical-align: bottom;
-  border-bottom: 1px solid #2ee600;
+  border-bottom: .01rem solid #2bcb02;
 }
 
 [class*="btn"], [class*="btn"]:focus, [class*="btn"]:disabled {
   background-color: #000;
-  border-color: #2ee600;
-  border-color: #2ee600;
+  border-color: #2bcb02;
+  border-color: #2bcb02;
   border-radius: 0px;
-  color: #2ee600;
+  color: #2bcb02;
 }
 
 [class*="btn"]:hover {
@@ -271,9 +281,9 @@ span.label.label-warning {
 
 [class*="alert"] {
   border-radius: 0px;
-  color: #2ee600;
+  color: #2bcb02;
   background-color: #000;
-  border-color: #2ee600;
+  border-color: #2bcb02;
   border: 1px dashed;
 }
 
@@ -286,9 +296,9 @@ span.label.label-warning {
 
 .form-control,
 .form-control:focus {
-  color: #2ee600;
+  color: #2bcb02;
   background-color: #000;
-  border: 1px solid #2ee600;
+  border: .01rem solid #2bcb02;
   border-radius: 0px;
   transition: unset;
 }
@@ -299,14 +309,14 @@ span.label.label-warning {
   opacity: 0.5;
 }
 
-.form-control::-webkit-input-placeholder { color: #2ee600; } 
-.form-control:-moz-placeholder { color: #2ee600; }  
-.form-control::-moz-placeholder { color: #2ee600; }  
-.form-control:-ms-input-placeholder { color: #2ee600; }  
-.form-control::-ms-input-placeholder { color: #2ee600; }
+.form-control::-webkit-input-placeholder { color: #2bcb02; } 
+.form-control:-moz-placeholder { color: #2bcb02; }  
+.form-control::-moz-placeholder { color: #2bcb02; }  
+.form-control:-ms-input-placeholder { color: #2bcb02; }  
+.form-control::-ms-input-placeholder { color: #2bcb02; }
 
 input[type="text"]{
-color: #2ee600 !important
+color: #2bcb02 !important
 }
 
 .progress {
@@ -319,24 +329,24 @@ color: #2ee600 !important
 }
 
 .progress-bar.progress-bar-info.progress-bar-striped.active {
-  background-color: #2ee600;
+  background-color: #2bcb02;
 }
 
 .logoutput {
   width: 100%;
   height: 300px;
   background-color: #000;
-  border-color: #2ee600;
+  border-color: #2bcb02;
 }
 
 .webconsole {
   width: 100%;
   height: 100%;
-  border-color: #2ee600;
-  border-bottom: 1px solid;
-  border-left: 1px solid;
+  border-color: #2bcb02;
+  border-bottom: .01rem solid;
+  border-left: .01rem solid;
   border-top: 0px;
-  border-right: 1px solid;
+  border-right: .01rem solid;
 }
 
 #console {
@@ -344,7 +354,7 @@ color: #2ee600 !important
 }
 
 tspan, rect {
-  fill: #2ee600;
+  fill: #2bcb02;
 }
 
 .service-status {
@@ -357,11 +367,11 @@ span.text.service-status {
 }
 
 i.fas.fa-circle.service-status-up {
-  color: #2ee600;
+  color: #2bcb02;
 }
 
 i.fas.fa-circle.service-status-down {
-  color: #2ee600;
+  color: #2bcb02;
   animation: flash 1s linear infinite;
 }
 @keyframes flash {
