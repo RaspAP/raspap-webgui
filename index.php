@@ -191,92 +191,92 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
     </ul>
     <!-- End of Sidebar -->
 
-	<!-- Content Wrapper -->
-	<div id="content-wrapper" class="d-flex flex-column">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-	<!-- Main Content -->
-	<div id="content"> 
-	  <!-- Topbar -->
-	  <nav class="navbar navbar-expand navbar-light topbar mb-1 static-top">
-	    <!-- Sidebar Toggle (Topbar) -->
-	    <button id="sidebarToggleTopbar" class="btn btn-link d-md-none rounded-circle mr-3">
-	      <i class="fa fa-bars"></i>
-	    </button>
-	    <!-- Topbar Navbar -->
-	    <p class="text-left brand-title mt-3 ml-2"><?php //echo _("WiFi Configuration Portal"); ?></p>
-	    <ul class="navbar-nav ml-auto">
-	      <div class="topbar-divider d-none d-sm-block"></div>
-	      <!-- Nav Item - User -->
-	      <li class="nav-item dropdown no-arrow">
-		<a class="nav-link" href="index.php?page=auth_conf">
-		  <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
-		  <i class="fas fa-user-circle fa-3x"></i>
-		</a>
-	      </li>
-	    </ul>
-	  </nav>
-	  <!-- End of Topbar -->
-	  <!-- Begin Page Content -->
-	  <div class="container-fluid">
-	  <?php
-	    $extraFooterScripts = array();
-	    // handle page actions
-	    switch ($page) {
-	    case "wlan0_info":
-		DisplayDashboard($extraFooterScripts);
-		break;
-	    case "dhcpd_conf":
-		DisplayDHCPConfig();
-		break;
-	    case "wpa_conf":
-		DisplayWPAConfig();
-		break;
-	    case "network_conf":
-		DisplayNetworkingConfig();
-		break;
-	    case "hostapd_conf":
-		DisplayHostAPDConfig();
-		break;
-	    case "openvpn_conf":
-		DisplayOpenVPNConfig();
-		break;
-	    case "torproxy_conf":
-		DisplayTorProxyConfig();
-		break;
-	    case "auth_conf":
-		DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
-		break;
-	    case "save_hostapd_conf":
-		SaveTORAndVPNConfig();
-		break;
-	    case "theme_conf":
-		DisplayThemeConfig();
-		break;
-	    case "data_use":
-		DisplayDataUsage($extraFooterScripts);
-		break;
-	    case "system_info":
-		DisplaySystem();
-		break;
-	    case "about":
-		DisplayAbout();
-		break;
-	    default:
-		DisplayDashboard($extraFooterScripts);
-	    }
-	  ?>
-          </div><!-- /.container-fluid --> 
-        </div><!-- End of Main Content -->
-        <!-- Footer -->
-        <footer class="sticky-footer bg-grey-100">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span></span>
-            </div>
-          </div>
-	</footer>
-        <!-- End Footer -->
-      </div><!-- End of Content Wrapper -->
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light topbar mb-1 static-top">
+        <!-- Sidebar Toggle (Topbar) -->
+        <button id="sidebarToggleTopbar" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+        </button>
+        <!-- Topbar Navbar -->
+        <p class="text-left brand-title mt-3 ml-2"><?php //echo _("WiFi Configuration Portal"); ?></p>
+        <ul class="navbar-nav ml-auto">
+          <div class="topbar-divider d-none d-sm-block"></div>
+          <!-- Nav Item - User -->
+          <li class="nav-item dropdown no-arrow">
+          <a class="nav-link" href="index.php?page=auth_conf">
+            <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
+            <i class="fas fa-user-circle fa-3x"></i>
+          </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- End of Topbar -->
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+      <?php
+        $extraFooterScripts = array();
+        // handle page actions
+        switch ($page) {
+        case "wlan0_info":
+      DisplayDashboard($extraFooterScripts);
+      break;
+        case "dhcpd_conf":
+      DisplayDHCPConfig();
+      break;
+        case "wpa_conf":
+      DisplayWPAConfig();
+      break;
+        case "network_conf":
+      DisplayNetworkingConfig();
+      break;
+        case "hostapd_conf":
+      DisplayHostAPDConfig();
+      break;
+        case "openvpn_conf":
+      DisplayOpenVPNConfig();
+      break;
+        case "torproxy_conf":
+      DisplayTorProxyConfig();
+      break;
+        case "auth_conf":
+      DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
+      break;
+        case "save_hostapd_conf":
+      SaveTORAndVPNConfig();
+      break;
+        case "theme_conf":
+      DisplayThemeConfig();
+      break;
+        case "data_use":
+      DisplayDataUsage($extraFooterScripts);
+      break;
+        case "system_info":
+      DisplaySystem();
+      break;
+        case "about":
+      DisplayAbout();
+      break;
+        default:
+      DisplayDashboard($extraFooterScripts);
+        }
+      ?>
+      </div><!-- /.container-fluid -->
+    </div><!-- End of Main Content -->
+    <!-- Footer -->
+    <footer class="sticky-footer bg-grey-100">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span></span>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+    </div><!-- End of Content Wrapper -->
     </div><!-- End of Page Wrapper -->
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top" style="display: inline;">
