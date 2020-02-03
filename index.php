@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Raspbian WiFi Configuration Portal
+ * Raspbian WiFi Configuration Portal (RaspAP)
  *
  * Enables use of simple web interface rather than SSH to control wifi and hostapd on the Raspberry Pi.
  * Recommended distribution is Raspbian Buster Lite. Specific instructions to install the supported software are
@@ -219,51 +219,51 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
       <!-- Begin Page Content -->
       <div class="container-fluid">
       <?php
-        $extraFooterScripts = array();
-        // handle page actions
-        switch ($page) {
-        case "wlan0_info":
-      DisplayDashboard($extraFooterScripts);
-      break;
-        case "dhcpd_conf":
-      DisplayDHCPConfig();
-      break;
-        case "wpa_conf":
-      DisplayWPAConfig();
-      break;
-        case "network_conf":
-      DisplayNetworkingConfig();
-      break;
-        case "hostapd_conf":
-      DisplayHostAPDConfig();
-      break;
-        case "openvpn_conf":
-      DisplayOpenVPNConfig();
-      break;
-        case "torproxy_conf":
-      DisplayTorProxyConfig();
-      break;
-        case "auth_conf":
-      DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
-      break;
-        case "save_hostapd_conf":
-      SaveTORAndVPNConfig();
-      break;
-        case "theme_conf":
-      DisplayThemeConfig();
-      break;
-        case "data_use":
-      DisplayDataUsage($extraFooterScripts);
-      break;
-        case "system_info":
-      DisplaySystem();
-      break;
-        case "about":
-      DisplayAbout();
-      break;
-        default:
-      DisplayDashboard($extraFooterScripts);
-        }
+      $extraFooterScripts = array();
+      // handle page actions
+      switch ($page) {
+          case "wlan0_info":
+              DisplayDashboard($extraFooterScripts);
+              break;
+          case "dhcpd_conf":
+              DisplayDHCPConfig();
+              break;
+          case "wpa_conf":
+              DisplayWPAConfig();
+              break;
+          case "network_conf":
+              DisplayNetworkingConfig();
+              break;
+          case "hostapd_conf":
+              DisplayHostAPDConfig();
+              break;
+          case "openvpn_conf":
+              DisplayOpenVPNConfig();
+              break;
+          case "torproxy_conf":
+              DisplayTorProxyConfig();
+              break;
+          case "auth_conf":
+              DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
+              break;
+          case "save_hostapd_conf":
+              SaveTORAndVPNConfig();
+              break;
+          case "theme_conf":
+              DisplayThemeConfig();
+              break;
+          case "data_use":
+              DisplayDataUsage($extraFooterScripts);
+              break;
+          case "system_info":
+              DisplaySystem();
+              break;
+          case "about":
+              DisplayAbout();
+              break;
+          default:
+              DisplayDashboard($extraFooterScripts);
+      }
       ?>
       </div><!-- /.container-fluid -->
     </div><!-- End of Main Content -->
@@ -313,7 +313,7 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
     foreach ($extraFooterScripts as $script) {
         echo '    <script type="text/javascript" src="' , $script['src'] , '"';
         if ($script['defer']) {
-	        echo ' defer="defer"';
+            echo ' defer="defer"';
         }
         echo '></script>' , PHP_EOL;
     }
