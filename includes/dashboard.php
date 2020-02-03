@@ -102,7 +102,7 @@ function DisplayDashboard(&$extraFooterScripts)
 
     if (!preg_match('/SSID: ([^ ]{1,'.SSIDMAXLEN.'})/', $stdoutIwWRepSpaces, $matchesSSID)) {
         $wlanHasLink = false;
-        $matchesSSID[1] = 'Not connected';
+        $matchesSSID[1] = 'None';
     }
 
     $connectedSSID = $matchesSSID[1];
