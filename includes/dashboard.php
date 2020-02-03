@@ -3,7 +3,7 @@
 /**
 * Show dashboard page.
 */
-function DisplayDashboard()
+function DisplayDashboard(&$extraFooterScripts)
 {
 
     $status = new StatusMessages();
@@ -102,7 +102,7 @@ function DisplayDashboard()
 
     if (!preg_match('/SSID: ([^ ]{1,'.SSIDMAXLEN.'})/', $stdoutIwWRepSpaces, $matchesSSID)) {
         $wlanHasLink = false;
-        $matchesSSID[1] = 'Not connected';
+        $matchesSSID[1] = 'None';
     }
 
     $connectedSSID = $matchesSSID[1];
@@ -194,6 +194,7 @@ function DisplayDashboard()
         "strLinkQuality",
         "wlan0up"
     ));
+    $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);
 }
 
 

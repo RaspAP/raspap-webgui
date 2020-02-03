@@ -1,7 +1,6 @@
 <?php
 
 include_once('includes/status_messages.php');
-include_once('app/lib/system.php');
 
 /**
  *
@@ -65,7 +64,6 @@ function DisplaySystem()
 {
 
     $status = new StatusMessages();
-    $system = new System();
 
     if (isset($_POST['SaveLanguage'])) {
         if (isset($_POST['locale'])) {

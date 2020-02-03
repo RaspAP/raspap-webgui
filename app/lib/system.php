@@ -50,5 +50,10 @@ class System {
     $cpuTemp = file_get_contents("/sys/class/thermal/thermal_zone0/temp");
     return number_format($cpuTemp/1000, 1);
   }
-}
 
+  public function hostapdStatus() {
+    exec('pidof hostapd | wc -l', $status);
+	return $status;
+  }
+
+}
