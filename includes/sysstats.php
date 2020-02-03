@@ -13,10 +13,13 @@ $memused  = $system->usedMemory();
 $memused_status = "primary";
 if ($memused > 90) {
     $memused_status = "danger";
+    $memused_led = "service-status-down";
 } elseif ($memused > 75) {
     $memused_status = "warning";
+    $memused_led = "service-status-warn";
 } elseif ($memused >  0) {
     $memused_status = "success";
+    $memused_led = "service-status-up";
 }
 
 // cpu load
@@ -33,10 +36,13 @@ if ($cpuload > 90) {
 $cputemp = $system->systemTemperature();
 if ($cputemp > 70) {
     $cputemp_status = "danger";
+    $cputemp_led = "service-status-down";
 } elseif ($cputemp > 50) {
     $cputemp_status = "warning";
+    $cputemp_led = "service-status-warn";
 } else {
     $cputemp_status = "success";
+    $cputemp_led = "service-status-up";
 }
 
 // hostapd status
