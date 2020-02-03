@@ -40,12 +40,12 @@ $ifaceStatus = $wlan0up ? "up" : "down";
             </div><!-- /.card-->
           </div>
 
-          <div class="col-md-6 mb-3">
-            <div class="card">
+          <div class="col-sm-6 align-items-stretch">
+            <div class="card h-100">
               <div class="card-body wireless">
                 <h4><?php echo _("Wireless Client"); ?></h4>
                 <div class="row justify-content-md-center">
-                <div class="col-md-8">
+                <div class="col-md">
                 <div class="info-item"><?php echo _("Connected To"); ?></div><div><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("AP Mac Address"); ?></div><div><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Bitrate"); ?></div><div><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
@@ -53,7 +53,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                 <div class="info-item"><?php echo _("Transmit Power"); ?></div><div><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Frequency"); ?></div><div><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
               </div>
-              <div class="col-md-4"> 
+              <div class="col-md mt-2 d-flex justify-content-center">
                 <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
                 <div class="chart-container">
                   <canvas id="divChartLinkQ"></canvas>
@@ -63,9 +63,9 @@ $ifaceStatus = $wlan0up ? "up" : "down";
              </div><!-- /.card-body -->
             </div><!-- /.card -->
           </div><!-- /.col-md-6 -->
-          <div class="col-md-6">
-            <div class="card mb-3">
-              <div class="card-body wireless">
+          <div class="col-sm-6">
+            <div class="card h-100 mb-3">
+              <div class="card-body">
                 <h4><?php echo _("Connected Devices"); ?></h4>
                 <div class="table-responsive">
                   <table class="table table-hover">
@@ -77,7 +77,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                       </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($clients as $client) : ?>
+                        <?php foreach (array_slice($clients,0, 2) as $client) : ?>
                             <?php $props = explode(' ', $client) ?>
                         <tr>
                           <td><?php echo htmlspecialchars($props[3], ENT_QUOTES) ?></td>
@@ -87,13 +87,20 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                         <?php endforeach ?>
                     </tbody>
                   </table>
+                  <?php if (sizeof($clients) >2) : ?>
+                      <div class="col-lg-12 float-right">
+                        <a class="btn btn-outline-info" role="button" href="index.php?page=dhcpd_conf"><?php echo _("More");?>  <i class="fas fa-chevron-right"></i></a>
+                      </div>
+                  <?php elseif (sizeof($clients) ==0) : ?>
+                      <div class="col-lg-12 mt-3"><?php echo _("No connected devices");?></div>
+                  <?php endif; ?>
                 </div><!-- /.table-responsive -->
               </div><!-- /.card-body -->
             </div><!-- /.card -->
           </div><!-- /.col-md-6 -->
         </div><!-- /.row -->
 
-        <div class="col-lg-12">
+        <div class="col-lg-12 mt-3">
           <div class="row">
             <form action="?page=wlan0_info" method="POST">
                 <?php echo CSRFTokenFieldTag() ?>
