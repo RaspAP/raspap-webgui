@@ -366,6 +366,10 @@ span.text.service-status {
   margin-top: 0.2rem;
 }
 
+.fas.fa-circle {
+  font-size: 0.5rem;
+}
+
 i.fas.fa-circle.service-status-up {
   color: #2bcb02;
 }
