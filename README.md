@@ -70,8 +70,6 @@ RaspAP lets you easily create an AP with a Wifi client configuration. With your 
 ## Support us
 RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal or commercial projects, please [become a GitHub sponsor](https://github.com/sponsors/billz), join the project on [Open Collective](https://opencollective.com/raspap) or make a one-time donation with [PayPal](https://www.paypal.com/paypalme2/billzgithub). Any of these options makes a big difference!
 
-<a href="https://www.paypal.com/paypalme2/billzgithub"><img src="https://i.imgur.com/hzH4NZY.png" width=150 height=37></a>
-
 ## Manual installation
 Detailed manual setup instructions are provided [on our wiki](https://github.com/billz/raspap-webgui/wiki/Manual-installation).
 
