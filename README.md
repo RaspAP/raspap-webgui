@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/xeKD93p.png)
-# `$raspap` [![Release 2.1](https://img.shields.io/badge/Release-2.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap)
+# `$raspap` [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) [![Release 2.1](https://img.shields.io/badge/Release-2.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap)
 
 RaspAP lets you quickly get a WiFi access point up and running to share the internet connectivity of a Raspberry Pi. Our famous [Quick installer](#quick-installer) creates a known-good default configuration that "just works" on all current Raspberry Pis with onboard wireless. A handsome responsive interface gives you control over the relevant services and networking options. OpenVPN client support, SSL, security audits, themes and multilingual options round out the package. 
 
@@ -134,6 +134,36 @@ This project follows the [PSR-2](http://www.php-fig.org/psr/psr-2/) coding style
 
 ## Reporting issues
 Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting a bug.
+
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/billz/raspap-webgui/graphs/contributors"><img src="https://opencollective.com/raspap/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/raspap/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/raspap"><img src="https://opencollective.com/raspap/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/raspap/contribute)]
+
+<a href="https://opencollective.com/raspap/organization/0/website"><img src="https://opencollective.com/raspap/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/raspap/organization/1/website"><img src="https://opencollective.com/raspap/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/raspap/organization/2/website"><img src="https://opencollective.com/raspap/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/raspap/organization/3/website"><img src="https://opencollective.com/raspap/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/raspap/organization/4/website"><img src="https://opencollective.com/raspap/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/raspap/organization/5/website"><img src="https://opencollective.com/raspap/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/raspap/organization/6/website"><img src="https://opencollective.com/raspap/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/raspap/organization/7/website"><img src="https://opencollective.com/raspap/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/raspap/organization/8/website"><img src="https://opencollective.com/raspap/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/raspap/organization/9/website"><img src="https://opencollective.com/raspap/organization/9/avatar.svg"></a>
 
 ## License
 See the [LICENSE](./LICENSE) file.
