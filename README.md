@@ -139,7 +139,8 @@ Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues)
 
 ### Code Contributors
 
-This project exists thanks to all the people who [contribute](CONTRIBUTING.md).
+This project exists thanks to all the awesome people who [contribute](CONTRIBUTING.md) their time and expertise.
+
 <a href="https://github.com/billz/raspap-webgui/graphs/contributors"><img src="https://opencollective.com/raspap/contributors.svg?width=890&button=false" /></a>
 
 ### Financial Contributors
