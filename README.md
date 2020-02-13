@@ -130,7 +130,7 @@ To configure an OpenVPN client, upload a valid .ovpn file and, optionally, speci
 3. Commit changes in your feature branch.
 4. Open a pull request and reference the initial issue in the pull request message.
 
-This project follows the [PSR-2](http://www.php-fig.org/psr/psr-2/) coding style guidelines. There are many ways to check your code for PSR-2. An excellent tool is [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer). The command line tool `phpcs` can be run against any single file. [Phing](https://www.phing.info/), a PHP build tool, integrates nicely with `phpcs` to automate PSR-2 checks across all source files in a project.
+Find out more about our [coding style guidelines and recommended tools](CONTRIBUTING.md). 
 
 ## Reporting issues
 Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting a bug.
