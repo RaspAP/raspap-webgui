@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/xeKD93p.png)
-# `$raspap` [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) [![Release 2.2](https://img.shields.io/badge/Release-2.2-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap)
+[![Release 2.2](https://img.shields.io/badge/Release-2.2-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap)  [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap)
 
 RaspAP lets you quickly get a WiFi access point up and running to share the internet connectivity of a Raspberry Pi. Our famous [Quick installer](#quick-installer) creates a known-good default configuration that "just works" on all current Raspberry Pis with onboard wireless. A handsome responsive interface gives you control over the relevant services and networking options. OpenVPN client support, SSL, security audits, themes and multilingual options round out the package. 
 
@@ -139,12 +139,12 @@ Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues)
 
 ### Code Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+This project exists thanks to all the people who [[contribute](CONTRIBUTING.md)].
 <a href="https://github.com/billz/raspap-webgui/graphs/contributors"><img src="https://opencollective.com/raspap/contributors.svg?width=890&button=false" /></a>
 
 ### Financial Contributors
 
-Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/raspap/contribute)]
+Become a [[financial contributor](https://opencollective.com/raspap/contribute)] and help us sustain our community. 
 
 #### Individuals
 
@@ -152,7 +152,7 @@ Become a financial contributor and help us sustain our community. [[Contribute](
 
 #### Organizations
 
-Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/raspap/contribute)]
+[[Support this project](https://opencollective.com/raspap/contribute)] with your organization. Your logo will show up here with a link to your website. 
 
 <a href="https://opencollective.com/raspap/organization/0/website"><img src="https://opencollective.com/raspap/organization/0/avatar.svg"></a>
 <a href="https://opencollective.com/raspap/organization/1/website"><img src="https://opencollective.com/raspap/organization/1/avatar.svg"></a>
