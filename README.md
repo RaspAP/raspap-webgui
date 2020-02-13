@@ -139,12 +139,12 @@ Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues)
 
 ### Code Contributors
 
-This project exists thanks to all the people who [[contribute](CONTRIBUTING.md)].
+This project exists thanks to all the people who [contribute](CONTRIBUTING.md).
 <a href="https://github.com/billz/raspap-webgui/graphs/contributors"><img src="https://opencollective.com/raspap/contributors.svg?width=890&button=false" /></a>
 
 ### Financial Contributors
 
-Become a [[financial contributor](https://opencollective.com/raspap/contribute)] and help us sustain our community. 
+Become a [financial contributor](https://opencollective.com/raspap/contribute) and help us sustain our community. 
 
 #### Individuals
 
@@ -152,7 +152,7 @@ Become a [[financial contributor](https://opencollective.com/raspap/contribute)]
 
 #### Organizations
 
-[[Support this project](https://opencollective.com/raspap/contribute)] with your organization. Your logo will show up here with a link to your website. 
+[Support this project](https://opencollective.com/raspap/contribute) with your organization. Your logo will show up here with a link to your website. 
 
 <a href="https://opencollective.com/raspap/organization/0/website"><img src="https://opencollective.com/raspap/organization/0/avatar.svg"></a>
 <a href="https://opencollective.com/raspap/organization/1/website"><img src="https://opencollective.com/raspap/organization/1/avatar.svg"></a>
