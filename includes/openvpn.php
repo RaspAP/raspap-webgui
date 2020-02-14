@@ -1,6 +1,7 @@
 <?php
 
 include_once('includes/status_messages.php');
+require_once 'config.php';
 
 /**
  *
@@ -10,29 +11,28 @@ include_once('includes/status_messages.php');
 function DisplayOpenVPNConfig()
 {
     $status = new StatusMessages();
-$serviceStatus="down";
-
-    if (isset($_POST['SaveOpenVPNSettings'])) {
-        if (isset($_POST['authUser'])) {
-            $authUser = strip_tags(trim($_POST['authUser']));
-        }
-        if (isset($_POST['authPassword'])) {
-            $authPassword = strip_tags(trim($_POST['authPassword']));
-        }
-        $return = SaveOpenVPNConfig($status, $_FILES['customFile'], $authUser, $authPassword);
-    } elseif (isset($_POST['StartOpenVPN'])) {
-        $status->addMessage('Attempting to start OpenVPN', 'info');
-        exec('sudo /bin/systemctl start openvpn-client@client', $return);
-        foreach ($return as $line) {
-            $status->addMessage($line, 'info');
-        }
-    } elseif (isset($_POST['StopOpenVPN'])) {
-      	$status->addMessage('Disabling NAT', 'info');
-        exec('sudo /etc/raspap/openvpn/unSetIptables.sh',$return);
-        $status->addMessage('Attempting to stop OpenVPN', 'info');
-        exec('sudo /bin/systemctl stop openvpn-client@client', $return);
-        foreach ($return as $line) {
-            $status->addMessage($line, 'info');
+    $serviceStatus="down";
+    if (!RASPI_MONITOR_ENABLED) {
+        if (isset($_POST['SaveOpenVPNSettings'])) {
+            if (isset($_POST['authUser'])) {
+                $authUser = strip_tags(trim($_POST['authUser']));
+            }
+            if (isset($_POST['authPassword'])) {
+                $authPassword = strip_tags(trim($_POST['authPassword']));
+            }
+            $return = SaveOpenVPNConfig($status, $_FILES['customFile'], $authUser, $authPassword);
+        } elseif (isset($_POST['StartOpenVPN'])) {
+            $status->addMessage('Attempting to start OpenVPN', 'info');
+            exec('sudo /bin/systemctl start openvpn-client@client', $return);
+            foreach ($return as $line) {
+                $status->addMessage($line, 'info');
+            }
+        } elseif (isset($_POST['StopOpenVPN'])) {
+            $status->addMessage('Attempting to stop OpenVPN', 'info');
+            exec('sudo /bin/systemctl stop openvpn-client@client', $return);
+            foreach ($return as $line) {
+                $status->addMessage($line, 'info');
+            }
         }
     } elseif (isset($_POST['GetVPNGateServers'])) {
         $status->addMessage('Retrieving servers for AU CN GB JP KR MY RU SG TH US VN', 'info');

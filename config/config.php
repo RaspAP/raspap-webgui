@@ -1,6 +1,6 @@
 <?php
 
-define('RASPI_VERSION', '2.1');
+define('RASPI_VERSION', '2.2');
 define('RASPI_CONFIG', '/etc/raspap');
 define('RASPI_CONFIG_NETWORKING', RASPI_CONFIG.'/networking');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');

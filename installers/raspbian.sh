@@ -20,6 +20,13 @@
 #    Outputs usage notes and exits
 # -v, --version
 #    Outputs release info and exits
+#
+# Depending on options passed to the installer, ONE of the following
+# additional shell scripts will be downloaded and sourced:
+#
+# https://raw.githubusercontent.com/billz/raspap-webgui/installers/common.sh
+# - or -
+# https://raw.githubusercontent.com/billz/raspap-webgui/installers/mkcert.sh
 
 # Set defaults
 repo="billz/raspap-webgui"

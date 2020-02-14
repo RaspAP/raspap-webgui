@@ -1,29 +1,6 @@
 <?php
 
-$hostname = $system->hostname();
-$uptime   = $system->uptime();
-$cores    = $system->processorCount();
-
-// mem used
-$memused  = $system->usedMemory();
-$memused_status = "primary";
-if ($memused > 90) {
-  $memused_status = "danger";
-} elseif ($memused > 75) {
-  $memused_status = "warning";
-} elseif ($memused >  0) {
-  $memused_status = "success";
-}
-
-// cpu load
-$cpuload = $system->systemLoadPercentage();
-if ($cpuload > 90) {
-  $cpuload_status = "danger";
-} elseif ($cpuload > 75) {
-  $cpuload_status = "warning";
-} elseif ($cpuload >  0) {
-  $cpuload_status = "success";
-}
+include('includes/sysstats.php');
 
 ?>
 <div class="row">
@@ -63,10 +40,17 @@ if ($cpuload > 90) {
                   </div>
                 </div>
                 <div class="mb-1"><?php echo _("CPU Load"); ?></div>
-                <div class="progress mb-4" style="height: 20px;">
+                <div class="progress mb-2" style="height: 20px;">
                   <div class="progress-bar bg-<?php echo htmlspecialchars($cpuload_status, ENT_QUOTES); ?>"
                                               role="progressbar" aria-valuenow="<?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100"
                                               style="width: <?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>%"><?php echo htmlspecialchars($cpuload, ENT_QUOTES); ?>%
+                  </div>
+                </div>
+                <div class="mb-1"><?php echo _("CPU Temp"); ?></div>
+                <div class="progress mb-4" style="height: 20px;">
+                  <div class="progress-bar bg-<?php echo htmlspecialchars($cputemp_status, ENT_QUOTES); ?>"
+                                              role="progressbar" aria-valuenow="<?php echo htmlspecialchars($cputemp, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100"
+                                              style="width: <?php echo htmlspecialchars(($cputemp*1.2), ENT_QUOTES); ?>%"><?php echo htmlspecialchars($cputemp, ENT_QUOTES); ?>°C
                   </div>
                 </div>
 

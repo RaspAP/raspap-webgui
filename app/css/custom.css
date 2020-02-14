@@ -6,8 +6,9 @@ body {
   margin: 20px 0 20px;
 }
 
-.page-header .logo {
-  margin-right: 5px;
+.navbar-logo {
+  margin-top: 0.5em;
+  margin-left: 0.5em;
 }
 
 /* Small devices (portrait phones, up to 576px) */
@@ -100,6 +101,11 @@ i.fa.fa-bars:hover{
   float: left;
 }
 
+.info-item-xs {
+  font-size: 0.7rem;
+  margin-left: 0.3rem;
+}
+
 .info-item-wifi {
   width: 6rem;
   float: left;
@@ -125,11 +131,15 @@ i.fa.fa-bars:hover{
 }
 
 .service-status-up {
-  color: green;
+  color: #a1ec38;
+}
+
+.service-status-warn {
+  color: #f6f044;
 }
 
 .service-status-down {
-  color: red;
+  color: #f80107;
   animation: flash 1s linear infinite;
 }
 @keyframes flash {
@@ -191,3 +201,15 @@ pre.unstyled {
   font-size: 0.9rem!important;
 }
 
+canvas#divDBChartBandwidthhourly {
+  height: 350px!important;
+}
+
+.chart-container {
+  height: 150px;
+  width: 200px;
+}
+
+.table {
+  margin-bottom: 0rem;
+}
