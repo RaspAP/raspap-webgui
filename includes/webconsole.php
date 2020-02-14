@@ -2,6 +2,10 @@
 require_once 'config.php';
 require_once RASPI_CONFIG.'/raspap.php';
 
+if (RASPI_MONITOR_ENABLED) {
+  die();
+};
+
 session_start();
 header('X-Frame-Options: SAMEORIGIN');
 header("Content-Security-Policy: default-src 'none'; frame-src 'self'; connect-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'");
