@@ -10,36 +10,36 @@
  * php-cgi (I have version 7.1.20-1+b2  installed via apt)
  * along with their supporting packages, php7.1 will also need to be enabled.
  *
- * @author     Lawrence Yau <sirlagz@gmail.com>
- * @author     Bill Zimmerman <billzimmerman@gmail.com>
- * @license    GNU General Public License, version 3 (GPL-3.0)
- * @version    2.2
- * @link       https://github.com/billz/raspap-webgui
- * @see        http://sirlagz.net/2013/02/08/raspap-webgui/
+ * @author  Lawrence Yau <sirlagz@gmail.com>
+ * @author  Bill Zimmerman <billzimmerman@gmail.com>
+ * @license GNU General Public License, version 3 (GPL-3.0)
+ * @version 2.2
+ * @link    https://github.com/billz/raspap-webgui
+ * @see     http://sirlagz.net/2013/02/08/raspap-webgui/
  */
 
-require('includes/csrf.php');
+require 'includes/csrf.php';
 ensureCSRFSessionToken();
 
-include_once('includes/config.php');
-include_once('includes/defaults.php');
-include_once(RASPI_CONFIG.'/raspap.php');
-include_once('includes/locale.php');
-include_once('includes/functions.php');
-include_once('includes/dashboard.php');
-include_once('includes/authenticate.php');
-include_once('includes/admin.php');
-include_once('includes/dhcp.php');
-include_once('includes/hostapd.php');
-include_once('includes/system.php');
-include_once('includes/sysstats.php');
-include_once('includes/configure_client.php');
-include_once('includes/networking.php');
-include_once('includes/themes.php');
-include_once('includes/data_usage.php');
-include_once('includes/about.php');
-include_once('includes/openvpn.php');
-include_once('includes/torproxy.php');
+require_once 'includes/config.php';
+require_once 'includes/defaults.php';
+require_once RASPI_CONFIG.'/raspap.php';
+require_once 'includes/locale.php';
+require_once 'includes/functions.php';
+require_once 'includes/dashboard.php';
+require_once 'includes/authenticate.php';
+require_once 'includes/admin.php';
+require_once 'includes/dhcp.php';
+require_once 'includes/hostapd.php';
+require_once 'includes/system.php';
+require_once 'includes/sysstats.php';
+require_once 'includes/configure_client.php';
+require_once 'includes/networking.php';
+require_once 'includes/themes.php';
+require_once 'includes/data_usage.php';
+require_once 'includes/about.php';
+require_once 'includes/openvpn.php';
+require_once 'includes/torproxy.php';
 
 $output = $return = 0;
 $page = $_GET['page'];
@@ -131,7 +131,7 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
         <li class="nav-item">
           <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure WiFi client"); ?></span></a>
         </li>
-          <?php endif; ?>
+        <?php endif; ?>
           <?php if (RASPI_HOTSPOT_ENABLED) : ?>
         <li class="nav-item">
           <a class="nav-link" href="index.php?page=hostapd_conf"><i class="far fa-dot-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("Configure hotspot"); ?></a>
@@ -219,52 +219,52 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
       <!-- Begin Page Content -->
       <div class="container-fluid">
       <?php
-      $extraFooterScripts = array();
-      // handle page actions
-      switch ($page) {
-          case "wlan0_info":
-              DisplayDashboard($extraFooterScripts);
-              break;
-          case "dhcpd_conf":
-              DisplayDHCPConfig();
-              break;
-          case "wpa_conf":
-              DisplayWPAConfig();
-              break;
-          case "network_conf":
-              DisplayNetworkingConfig();
-              break;
-          case "hostapd_conf":
-              DisplayHostAPDConfig();
-              break;
-          case "openvpn_conf":
-              DisplayOpenVPNConfig();
-              break;
-          case "torproxy_conf":
-              DisplayTorProxyConfig();
-              break;
-          case "auth_conf":
-              DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
-              break;
-          case "save_hostapd_conf":
-              SaveTORAndVPNConfig();
-              break;
-          case "theme_conf":
-              DisplayThemeConfig();
-              break;
-          case "data_use":
-              DisplayDataUsage($extraFooterScripts);
-              break;
-          case "system_info":
-              DisplaySystem();
-              break;
-          case "about":
-              DisplayAbout();
-              break;
-          default:
-              DisplayDashboard($extraFooterScripts);
-      }
-      ?>
+        $extraFooterScripts = array();
+        // handle page actions
+        switch ($page) {
+        case "wlan0_info":
+            DisplayDashboard($extraFooterScripts);
+            break;
+        case "dhcpd_conf":
+            DisplayDHCPConfig();
+            break;
+        case "wpa_conf":
+            DisplayWPAConfig();
+            break;
+        case "network_conf":
+            DisplayNetworkingConfig();
+            break;
+        case "hostapd_conf":
+            DisplayHostAPDConfig();
+            break;
+        case "openvpn_conf":
+            DisplayOpenVPNConfig();
+            break;
+        case "torproxy_conf":
+            DisplayTorProxyConfig();
+            break;
+        case "auth_conf":
+            DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
+            break;
+        case "save_hostapd_conf":
+            SaveTORAndVPNConfig();
+            break;
+        case "theme_conf":
+            DisplayThemeConfig();
+            break;
+        case "data_use":
+            DisplayDataUsage($extraFooterScripts);
+            break;
+        case "system_info":
+            DisplaySystem();
+            break;
+        case "about":
+            DisplayAbout();
+            break;
+        default:
+            DisplayDashboard($extraFooterScripts);
+        }
+        ?>
       </div><!-- /.container-fluid -->
     </div><!-- End of Main Content -->
     <!-- Footer -->
@@ -317,6 +317,6 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
         }
         echo '></script>' , PHP_EOL;
     }
-  ?>
+    ?>
   </body>
 </html>

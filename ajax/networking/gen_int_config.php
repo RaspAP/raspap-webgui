@@ -1,9 +1,9 @@
 <?php
 
-require('../../includes/csrf.php');
+require '../../includes/csrf.php';
 
-include_once('../../includes/config.php');
-include_once('../../includes/functions.php');
+require_once '../../includes/config.php';
+require_once '../../includes/functions.php';
 
 if (isset($_POST['generate'])) {
     $cnfNetworking = array_diff(scandir(RASPI_CONFIG_NETWORKING, 1), array('..','.','dhcpcd.conf'));

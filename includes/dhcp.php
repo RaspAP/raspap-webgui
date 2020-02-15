@@ -1,13 +1,11 @@
 <?php
 
-include_once('includes/status_messages.php');
+require_once 'includes/status_messages.php';
 require_once 'config.php';
 
 /**
-*
-* Manage DHCP configuration
-*
-*/
+ * Manage DHCP configuration
+ */
 function DisplayDHCPConfig()
 {
 
@@ -16,18 +14,21 @@ function DisplayDHCPConfig()
         if (isset($_POST['savedhcpdsettings'])) {
             $errors = '';
             define('IFNAMSIZ', 16);
-            if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['interface']) ||
-            strlen($_POST['interface']) >= IFNAMSIZ) {
+            if (!preg_match('/^[a-zA-Z0-9]+$/', $_POST['interface']) 
+                || strlen($_POST['interface']) >= IFNAMSIZ
+            ) {
                 $errors .= _('Invalid interface name.').'<br />'.PHP_EOL;
             }
 
-            if (!preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_POST['RangeStart']) &&
-            !empty($_POST['RangeStart'])) {  // allow ''/null ?
+            if (!preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_POST['RangeStart']) 
+                && !empty($_POST['RangeStart'])
+            ) {  // allow ''/null ?
                 $errors .= _('Invalid DHCP range start.').'<br />'.PHP_EOL;
             }
 
-            if (!preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_POST['RangeEnd']) &&
-            !empty($_POST['RangeEnd'])) {  // allow ''/null ?
+            if (!preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_POST['RangeEnd']) 
+                && !empty($_POST['RangeEnd'])
+            ) {  // allow ''/null ?
                 $errors .= _('Invalid DHCP range end.').'<br />'.PHP_EOL;
             }
 
@@ -58,9 +59,9 @@ function DisplayDHCPConfig()
                     }
                 }
 
-                if ($_POST['DNS1']){
+                if ($_POST['DNS1']) {
                     $config .= "dhcp-option=6," . $_POST['DNS1'];
-                    if ($_POST['DNS2']){
+                    if ($_POST['DNS2']) {
                         $config .= ','.$_POST['DNS2'];
                     }
                     $config .= PHP_EOL;
@@ -126,13 +127,13 @@ function DisplayDHCPConfig()
 
     $DNS1 = '';
     $DNS2 = '';
-    if (isset($conf['dhcp-option'])){
+    if (isset($conf['dhcp-option'])) {
         $arrDns = explode(",", $conf['dhcp-option']);
-        if ($arrDns[0] == '6'){
-            if (count($arrDns) > 1){
+        if ($arrDns[0] == '6') {
+            if (count($arrDns) > 1) {
                 $DNS1 = $arrDns[1];
             }
-            if (count($arrDns) > 2){
+            if (count($arrDns) > 2) {
                 $DNS2 = $arrDns[2];
             }
         }
@@ -147,37 +148,39 @@ function DisplayDHCPConfig()
         $infiniteselected = ' selected="selected"';
     } else {
         switch ($arrRangeLeaseTime[2]) {
-            case 'h':
-                $hselected = ' selected="selected"';
-                break;
-            case 'm':
-                $mselected = ' selected="selected"';
-                break;
-            case 'd':
-                $dselected = ' selected="selected"';
-                break;
+        case 'h':
+            $hselected = ' selected="selected"';
+            break;
+        case 'm':
+            $mselected = ' selected="selected"';
+            break;
+        case 'd':
+            $dselected = ' selected="selected"';
+            break;
         }
     }
 
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
 
-    echo renderTemplate("dhcp", compact(
-        "status",
-        "serviceStatus",
-        "RangeStart",
-        "RangeEnd",
-        "DNS1",
-        "DNS2",
-        "arrRangeLeaseTime",
-        "mselected",
-        "hselected",
-        "dselected",
-        "infiniteselected",
-        "dnsmasq_state",
-        "conf",
-        "dhcpHost",
-        "interfaces",
-        "leases"
-    ));
+    echo renderTemplate(
+        "dhcp", compact(
+            "status",
+            "serviceStatus",
+            "RangeStart",
+            "RangeEnd",
+            "DNS1",
+            "DNS2",
+            "arrRangeLeaseTime",
+            "mselected",
+            "hselected",
+            "dselected",
+            "infiniteselected",
+            "dnsmasq_state",
+            "conf",
+            "dhcpHost",
+            "interfaces",
+            "leases"
+        )
+    );
 }

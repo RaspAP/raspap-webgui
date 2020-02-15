@@ -1,6 +1,6 @@
 <?php
 
-include_once('app/lib/system.php');
+require_once 'app/lib/system.php';
 
 $system = new System();
 

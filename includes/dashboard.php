@@ -3,8 +3,8 @@
 require_once 'config.php';
 
 /**
-* Show dashboard page.
-*/
+ * Show dashboard page.
+ */
 function DisplayDashboard(&$extraFooterScripts)
 {
 
@@ -179,25 +179,27 @@ function DisplayDashboard(&$extraFooterScripts)
         }
     }
 
-    echo renderTemplate("dashboard", compact(
-        "status",
-        "ipv4Addrs",
-        "ipv4Netmasks",
-        "ipv6Addrs",
-        "macAddr",
-        "strRxPackets",
-        "strRxBytes",
-        "strTxPackets",
-        "strTxBytes",
-        "connectedSSID",
-        "connectedBSSID",
-        "bitrate",
-        "signalLevel",
-        "txPower",
-        "frequency",
-        "strLinkQuality",
-        "wlan0up"
-    ));
+    echo renderTemplate(
+        "dashboard", compact(
+            "status",
+            "ipv4Addrs",
+            "ipv4Netmasks",
+            "ipv6Addrs",
+            "macAddr",
+            "strRxPackets",
+            "strRxBytes",
+            "strTxPackets",
+            "strTxBytes",
+            "connectedSSID",
+            "connectedBSSID",
+            "bitrate",
+            "signalLevel",
+            "txPower",
+            "frequency",
+            "strLinkQuality",
+            "wlan0up"
+        )
+    );
     $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);
 }
 
@@ -205,8 +207,8 @@ function DisplayDashboard(&$extraFooterScripts)
 /**
  * Get a human readable data size string from a number of bytes.
  *
- * @param long $numbytes   The number of bytes.
- * @param int  $precision  The number of numbers to round to after the dot/comma.
+ * @param  long $numbytes  The number of bytes.
+ * @param  int  $precision The number of numbers to round to after the dot/comma.
  * @return string Data size in units: PB, TB, GB, MB or KB otherwise an empty string.
  */
 function getHumanReadableDatasize($numbytes, $precision = 2)

@@ -55,8 +55,8 @@ function safefilerewrite($fileName, $dataToSave)
 }
 
 /**
-* Saves a CSRF token in the session
-*/
+ * Saves a CSRF token in the session
+ */
 function ensureCSRFSessionToken()
 {
     if (empty($_SESSION['csrf_token'])) {
@@ -65,10 +65,8 @@ function ensureCSRFSessionToken()
 }
 
 /**
-*
-* Add CSRF Token to form
-*
-*/
+ * Add CSRF Token to form
+ */
 function CSRFTokenFieldTag()
 {
     $token = htmlspecialchars($_SESSION['csrf_token']);
@@ -76,8 +74,8 @@ function CSRFTokenFieldTag()
 }
 
 /**
-* Retuns a CSRF meta tag (for use with xhr, for example)
-*/
+ * Retuns a CSRF meta tag (for use with xhr, for example)
+ */
 function CSRFMetaTag()
 {
     $token = htmlspecialchars($_SESSION['csrf_token']);
@@ -85,10 +83,8 @@ function CSRFMetaTag()
 }
 
 /**
-*
-* Validate CSRF Token
-*
-*/
+ * Validate CSRF Token
+ */
 function CSRFValidate()
 {
     $post_token   = $_POST['csrf_token'];
@@ -112,8 +108,8 @@ function CSRFValidate()
 }
 
 /**
-* Should the request be CSRF-validated?
-*/
+ * Should the request be CSRF-validated?
+ */
 function csrfValidateRequest()
 {
     $request_method = strtolower($_SERVER['REQUEST_METHOD']);
@@ -121,8 +117,8 @@ function csrfValidateRequest()
 }
 
 /**
-* Handle invalid CSRF
-*/
+ * Handle invalid CSRF
+ */
 function handleInvalidCSRFToken()
 {
     header('HTTP/1.1 500 Internal Server Error');
@@ -132,23 +128,23 @@ function handleInvalidCSRFToken()
 }
 
 /**
-* Test whether array is associative
-*/
+ * Test whether array is associative
+ */
 function isAssoc($arr)
 {
     return array_keys($arr) !== range(0, count($arr) - 1);
 }
 
 /**
-*
-* Display a selector field for a form. Arguments are:
-* @param string $name: Field name
-* @param array $options: Array of options
-* @param string $selected: Selected option (optional)
-* @param string $id: $options is an associative array this should be the key
-* @param string $event: onChange event (optional)
-* @param string $disabled (optional)
-*/
+ * Display a selector field for a form. Arguments are:
+ *
+ * @param string $name:     Field name
+ * @param array  $options:  Array of options
+ * @param string $selected: Selected option (optional)
+ * @param string $id:       $options is an associative array this should be the key
+ * @param string $event:    onChange event (optional)
+ * @param string $disabled  (optional)
+ */
 function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null)
 {
     echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
@@ -176,13 +172,13 @@ function SelectorOptions($name, $options, $selected = null, $id = null, $event =
 }
 
 /**
-*
-* @param string $input
-* @param string $string
-* @param int $offset
-* @param string $separator
-* @return $string
-*/
+ *
+ * @param  string $input
+ * @param  string $string
+ * @param  int    $offset
+ * @param  string $separator
+ * @return $string
+ */
 function GetDistString($input, $string, $offset, $separator)
 {
     $string = substr($input, strpos($input, $string)+$offset, strpos(substr($input, strpos($input, $string)+$offset), $separator));
@@ -190,10 +186,10 @@ function GetDistString($input, $string, $offset, $separator)
 }
 
 /**
-*
-* @param array $arrConfig
-* @return $config
-*/
+ *
+ * @param  array $arrConfig
+ * @return $config
+ */
 function ParseConfig($arrConfig)
 {
     $config = array();
@@ -218,10 +214,10 @@ function ParseConfig($arrConfig)
 }
 
 /**
-*
-* @param string $freq
-* @return $channel
-*/
+ *
+ * @param  string $freq
+ * @return $channel
+ */
 function ConvertToChannel($freq)
 {
     if ($freq >= 2412 && $freq <= 2484) {
@@ -241,10 +237,11 @@ function ConvertToChannel($freq)
 }
 
 /**
-* Converts WPA security string to readable format
-* @param string $security
-* @return string
-*/
+ * Converts WPA security string to readable format
+ *
+ * @param  string $security
+ * @return string
+ */
 function ConvertToSecurity($security)
 {
     $options = array();

@@ -1,17 +1,17 @@
 <?php
 
-include_once('includes/status_messages.php');
-include_once('app/lib/system.php');
+require_once 'includes/status_messages.php';
+require_once 'app/lib/system.php';
 require_once 'config.php';
 
 /**
-*
-*
-*/
+ *
+ *
+ */
 function DisplayHostAPDConfig()
 {
     $status = new StatusMessages();
-	$system = new System();
+    $system = new System();
     $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
     $arrConfig = array();
     $arr80211Standard = [
@@ -20,7 +20,7 @@ function DisplayHostAPDConfig()
         'g' => '802.11g - 2.4 GHz',
         'n' => '802.11n - 2.4 GHz',
         'ac' => '802.11.ac - 5 GHz'
-   ];
+    ];
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
     $managedModeEnabled = false;
@@ -50,7 +50,7 @@ function DisplayHostAPDConfig()
 
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
     exec('iwgetid '. RASPI_WIFI_CLIENT_INTERFACE. ' -r', $wifiNetworkID);
-    if ( !empty($wifiNetworkID[0])) {
+    if (!empty($wifiNetworkID[0])) {
         $managedModeEnabled = true;
     }
     $hostapdstatus = $system->hostapdStatus();
@@ -62,33 +62,36 @@ function DisplayHostAPDConfig()
         }
 
         if ($hostapdconfigline[0] != "#") {
-            $arrLine = explode("=", $hostapdconfigline) ;
+            $arrLine = explode("=", $hostapdconfigline);
             $arrConfig[$arrLine[0]]=$arrLine[1];
         }
     };
 
-    echo renderTemplate("hostapd", compact(
-        "status",
-        "serviceStatus",
-        "hostapdstatus",
-        "managedModeEnabled",
-        "interfaces",
-        "arrConfig",
-        "arr80211Standard",
-        "selectedHwMode",
-        "arrSecurity",
-        "arrEncType",
-        "arrHostapdConf"
-    ));
+    echo renderTemplate(
+        "hostapd", compact(
+            "status",
+            "serviceStatus",
+            "hostapdstatus",
+            "managedModeEnabled",
+            "interfaces",
+            "arrConfig",
+            "arr80211Standard",
+            "selectedHwMode",
+            "arrSecurity",
+            "arrEncType",
+            "arrHostapdConf"
+        )
+    );
 }
 
 function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 {
     // It should not be possible to send bad data for these fields so clearly
     // someone is up to something if they fail. Fail silently.
-    if (!(array_key_exists($_POST['wpa'], $wpa_array) &&
-      array_key_exists($_POST['wpa_pairwise'], $enc_types) &&
-      array_key_exists($_POST['hw_mode'], $modes))) {
+    if (!(array_key_exists($_POST['wpa'], $wpa_array) 
+        && array_key_exists($_POST['wpa_pairwise'], $enc_types) 
+        && array_key_exists($_POST['hw_mode'], $modes))
+    ) {
         error_log("Attempting to set hostapd config with wpa='".$_POST['wpa']."', wpa_pairwise='".$_POST['wpa_pairwise']."' and hw_mode='".$_POST['hw_mode']."'");  // FIXME: log injection
         return false;
     }
@@ -147,8 +150,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $good_input = false;
     }
 
-    if ($_POST['wpa'] !== 'none' &&
-      (strlen($_POST['wpa_passphrase']) < 8 || strlen($_POST['wpa_passphrase']) > 63)) {
+    if ($_POST['wpa'] !== 'none' 
+        && (strlen($_POST['wpa_passphrase']) < 8 || strlen($_POST['wpa_passphrase']) > 63)
+    ) {
         $status->addMessage('WPA passphrase must be between 8 and 63 characters', 'danger');
         $good_input = false;
     }

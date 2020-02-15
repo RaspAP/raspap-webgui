@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('RASPI_CONFIG')) {
-  define('RASPI_CONFIG', '/etc/raspap');
+    define('RASPI_CONFIG', '/etc/raspap');
 }
 
 $defaults = [
@@ -45,9 +45,9 @@ $defaults = [
 ];
 
 foreach ($defaults as $setting => $value) {
-  if (!defined($setting)) {
-    define($setting, $value);
-  }
+    if (!defined($setting)) {
+        define($setting, $value);
+    }
 }
 
 unset($defaults);

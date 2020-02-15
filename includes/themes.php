@@ -1,8 +1,8 @@
 <?php
 /**
-*
-*
-*/
+ *
+ *
+ */
 function DisplayThemeConfig()
 {
     $themes = [
