@@ -5,7 +5,7 @@ if (!defined('RASPI_CONFIG')) {
 }
 
 $defaults = [
-  'RASPI_VERSION' => '2.1',
+  'RASPI_VERSION' => '2.2',
   'RASPI_CONFIG_NETWORKING' => RASPI_CONFIG.'/networking',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',
   'RASPI_WIFI_CLIENT_INTERFACE' => 'wlan0',

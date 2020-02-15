@@ -1,9 +1,11 @@
 <?php
 
+require_once 'config.php';
+
 /**
 * Show dashboard page.
 */
-function DisplayDashboard()
+function DisplayDashboard(&$extraFooterScripts)
 {
 
     $status = new StatusMessages();
@@ -102,7 +104,7 @@ function DisplayDashboard()
 
     if (!preg_match('/SSID: ([^ ]{1,'.SSIDMAXLEN.'})/', $stdoutIwWRepSpaces, $matchesSSID)) {
         $wlanHasLink = false;
-        $matchesSSID[1] = 'Not connected';
+        $matchesSSID[1] = 'None';
     }
 
     $connectedSSID = $matchesSSID[1];
@@ -146,33 +148,35 @@ function DisplayDashboard()
     }
 
 
-    if (isset($_POST['ifdown_wlan0'])) {
-        // Pressed stop button
-        if ($interfaceState === 'UP') {
-            $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
-            exec('sudo ip link set '.RASPI_WIFI_CLIENT_INTERFACE.' down');
-            $wlan0up = false;
-            $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
-        } elseif ($interfaceState === 'unknown') {
-            $status->addMessage(_('Interface state unknown.'), 'danger');
+    if (!RASPI_MONITOR_ENABLED) {
+        if (isset($_POST['ifdown_wlan0'])) {
+            // Pressed stop button
+            if ($interfaceState === 'UP') {
+                $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
+                exec('sudo ip link set '.RASPI_WIFI_CLIENT_INTERFACE.' down');
+                $wlan0up = false;
+                $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
+            } elseif ($interfaceState === 'unknown') {
+                $status->addMessage(_('Interface state unknown.'), 'danger');
+            } else {
+                $status->addMessage(sprintf(_('Interface already %s.'), _('down')), 'warning');
+            }
+        } elseif (isset($_POST['ifup_wlan0'])) {
+            // Pressed start button
+            if ($interfaceState === 'DOWN') {
+                $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
+                exec('sudo ip link set ' . RASPI_WIFI_CLIENT_INTERFACE . ' up');
+                exec('sudo ip -s a f label ' . RASPI_WIFI_CLIENT_INTERFACE);
+                $wlan0up = true;
+                $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
+            } elseif ($interfaceState === 'unknown') {
+                $status->addMessage(_('Interface state unknown.'), 'danger');
+            } else {
+                $status->addMessage(sprintf(_('Interface already %s.'), _('up')), 'warning');
+            }
         } else {
-            $status->addMessage(sprintf(_('Interface already %s.'), _('down')), 'warning');
+            $status->addMessage(sprintf(_('Interface is %s.'), strtolower($interfaceState)), $classMsgDevicestatus);
         }
-    } elseif (isset($_POST['ifup_wlan0'])) {
-        // Pressed start button
-        if ($interfaceState === 'DOWN') {
-            $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
-            exec('sudo ip link set ' . RASPI_WIFI_CLIENT_INTERFACE . ' up');
-            exec('sudo ip -s a f label ' . RASPI_WIFI_CLIENT_INTERFACE);
-            $wlan0up = true;
-            $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
-        } elseif ($interfaceState === 'unknown') {
-            $status->addMessage(_('Interface state unknown.'), 'danger');
-        } else {
-            $status->addMessage(sprintf(_('Interface already %s.'), _('up')), 'warning');
-        }
-    } else {
-        $status->addMessage(sprintf(_('Interface is %s.'), strtolower($interfaceState)), $classMsgDevicestatus);
     }
 
     echo renderTemplate("dashboard", compact(
@@ -194,6 +198,7 @@ function DisplayDashboard()
         "strLinkQuality",
         "wlan0up"
     ));
+    $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);
 }
 
 
