@@ -446,6 +446,7 @@
                 echo '<input type="submit" class="btn btn-success" name="StartHotspot" value="' . _("Start hotspot") . '"/>' , PHP_EOL;
             } else {
                 echo '<input type="submit" class="btn btn-warning" name="StopHotspot" value="' . _("Stop hotspot") . '"/>' , PHP_EOL;
+                echo '<input type ="submit" class="btn btn-warning" name="RestartHotspot" value="' . _("Restart hotspot") . '"/>' , PHP_EOL;
             };
         endif ?>
       </form>

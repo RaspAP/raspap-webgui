@@ -29,12 +29,12 @@ function DisplayHostAPDConfig()
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveHostAPDSettings'])) {
             SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $status);
-        } elseif (isset($_POST['StartHotspot'])) {
+        } elseif (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
             $status->addMessage('Attempting to start hotspot', 'info');
             if ($arrHostapdConf['WifiAPEnable'] == 1) {
                 exec('sudo /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 3', $return);
             } else {
-                exec('sudo /etc/raspap/hostapd/servicestart.sh --seconds 5', $return);
+                exec('sudo /etc/raspap/hostapd/servicestart.sh --seconds 3', $return);
             }
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');
