@@ -399,6 +399,9 @@ msgstr "핫스팟 시작 "
 msgid "Stop hotspot"
 msgstr "핫스팟 중지"
 
+msgid "Restart hotspot"
+msgstr "핫스팟 재시작"
+
 msgid "Enable logging"
 msgstr "로깅 사용하기"
 

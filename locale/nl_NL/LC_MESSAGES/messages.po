@@ -387,6 +387,9 @@ msgstr "Start hotspot"
 msgid "Stop hotspot"
 msgstr "Stop hotstop"
 
+msgid "Restart hotspot"
+msgstr "Restart hotstop"
+
 msgid "Enable logging"
 msgstr "Logboek inschakelen"
 

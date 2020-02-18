@@ -399,6 +399,9 @@ msgstr "ホットスポットを開始"
 msgid "Stop hotspot"
 msgstr "ホットスポットを停止"
 
+msgid "Restart hotspot"
+msgstr "ホットスポットを再起動"
+
 msgid "Enable logging"
 msgstr "ロギングを有効にする"
 

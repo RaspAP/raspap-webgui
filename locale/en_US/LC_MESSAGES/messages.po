@@ -390,6 +390,9 @@ msgstr "Start hotspot"
 msgid "Stop hotspot"
 msgstr "Stop hotspot"
 
+msgid "Restart hotspot"
+msgstr "Restart hotspot"
+
 msgid "Enable logging"
 msgstr "Enable logging"
 

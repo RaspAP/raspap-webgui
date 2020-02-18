@@ -387,6 +387,9 @@ msgstr "Iniciar ponto de acesso"
 msgid "Stop hotspot"
 msgstr "Parar ponto de acesso"
 
+msgid "Restart hotspot"
+msgstr "Reinicie ponto de acesso"
+
 msgid "Enable logging"
 msgstr "Habilitar Logs"
 

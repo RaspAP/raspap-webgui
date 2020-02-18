@@ -402,6 +402,9 @@ msgstr "Khởi động tính năng phát wifi"
 msgid "Stop hotspot"
 msgstr "Dừng điểm truy cập"
 
+msgid "Restart hotspot"
+msgstr "Khởi động lại wifi"
+
 msgid "Enable logging"
 msgstr "Bật ghi nhật ký"
 

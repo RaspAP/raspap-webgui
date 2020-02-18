@@ -389,6 +389,9 @@ msgstr "Εκκίνηση hotspot"
 msgid "Stop hotspot" 
 msgstr "Παύση hotspot" 
 
+msgid "Restart hotspot" 
+msgstr "Επανεκκινήστε hotspot" 
+
 msgid "Enable logging" 
 msgstr "Ενεργοποίηση καταγραφής" 
 

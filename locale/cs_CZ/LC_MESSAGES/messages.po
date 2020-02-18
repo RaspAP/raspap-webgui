@@ -387,6 +387,9 @@ msgstr "Spustit hotspot"
 msgid "Stop hotspot"
 msgstr "Zastavit hotspot"
 
+msgid "Restart hotspot"
+msgstr "Restartujte hotspot"
+
 msgid "Enable logging"
 msgstr "Zapnout logování"
 

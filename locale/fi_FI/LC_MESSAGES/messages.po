@@ -387,6 +387,9 @@ msgstr "Käynnistä yhteyspiste"
 msgid "Stop hotspot"
 msgstr "Pysäytä yhteyspiste"
 
+msgid "Restart hotspot"
+msgstr "Käynnistä yhteyspiste uudelleen"
+
 msgid "Enable logging"
 msgstr "Salli lokikirjaus"
 

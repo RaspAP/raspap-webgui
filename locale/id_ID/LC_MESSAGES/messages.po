@@ -400,7 +400,10 @@ msgid "Start hotspot"
 msgstr "Mulai hotspot"
 
 msgid "Stop hotspot"
-msgstr "Stop hotspot"
+msgstr "Hentikan hotspot"
+
+msgid "Restart hotspot"
+msgstr "Mulai ulang hotspot"
 
 msgid "Enable logging"
 msgstr "Aktifkan logging"

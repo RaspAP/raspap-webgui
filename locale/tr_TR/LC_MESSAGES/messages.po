@@ -387,6 +387,9 @@ msgstr "Paylaşımı başlat"
 msgid "Stop hotspot"
 msgstr "Paylaşımı durdur"
 
+msgid "Restart hotspot"
+msgstr "Paylaşımı yeniden başlat"
+
 msgid "Enable logging"
 msgstr "Günlük kaydını etkinleştir"
 

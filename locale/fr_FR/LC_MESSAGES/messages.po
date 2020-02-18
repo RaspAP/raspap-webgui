@@ -384,6 +384,9 @@ msgstr "Démarrer le point d'accès"
 msgid "Stop hotspot"
 msgstr "Arrêté le point d'accès"
 
+msgid "Restart hotspot"
+msgstr "Redémarrer le point d'accès"
+
 msgid "Enable logging"
 msgstr "Activer la journalisation"
 

@@ -387,6 +387,9 @@ msgstr "Avvia l'hotspot"
 msgid "Stop hotspot"
 msgstr "Ferma l'hotspot"
 
+msgid "Restart hotspot"
+msgstr "Riavvia l'hotspot"
+
 msgid "Enable logging"
 msgstr "Abilita la registrazione"
 

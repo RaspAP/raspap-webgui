@@ -387,6 +387,9 @@ msgstr "Запуск точки доступа"
 msgid "Stop hotspot"
 msgstr "Остановка точки доступа"
 
+msgid "Restart hotspot"
+msgstr "Перезапустите точки доступа"
+
 msgid "Enable logging"
 msgstr "Включить журналирование"
 

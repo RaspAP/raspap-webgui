@@ -387,6 +387,9 @@ msgstr "开启WLAN热点"
 msgid "Stop hotspot"
 msgstr "关闭WLAN热点"
 
+msgid "Restart hotspot"
+msgstr "重新启动Wi-Fi热点"
+
 msgid "Enable logging"
 msgstr "开启log"
 

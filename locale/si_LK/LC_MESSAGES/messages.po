@@ -381,6 +381,9 @@ msgstr "hotspot ආරම්භ කරන්න "
 msgid "Stop hotspot"
 msgstr "hotspot නතර  කරන්න"
 
+msgid "Restart hotspot"
+msgstr "hotspot නැවත ආරම්භ"
+
 msgid "Enable logging"
 msgstr "ඇතුල්වීම සක්‍රිය කරන්න "
 
