@@ -118,7 +118,7 @@ curl -sL https://install.raspap.com | bash -s -- --cert
 More information on SSL certificates and HTTPS support is available [on our wiki](https://github.com/billz/raspap-webgui/wiki/SSL-certificates-(Quick-Installer)). 
 
 ## OpenVPN support
-OpenVPN may be optionally installed by the Quick Installer. Once this is done, you can managage a client configuration and the `openvpn-client` service with RaspAP.
+OpenVPN may be optionally installed by the Quick Installer. Once this is done, you can manage client configuration and the `openvpn-client` service with RaspAP.
 
 To configure an OpenVPN client, upload a valid .ovpn file and, optionally, specify your login credentials. RaspAP will store your client configuration and add firewall rules to forward traffic from OpenVPN's `tun0` interface to your configured wireless interface. 
 
