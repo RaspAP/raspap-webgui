@@ -67,6 +67,8 @@ function DisplayDHCPConfig()
                     $config .= PHP_EOL;
                 }
 
+                $config .= "conf-dir=/etc/dnsmasq.d".PHP_EOL;
+
                 file_put_contents("/tmp/dnsmasqdata", $config);
                 system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_CONFIG, $return);
             } else {
