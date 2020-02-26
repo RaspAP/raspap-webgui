@@ -82,21 +82,25 @@
           <div class="tab-pane fade" id="security">
             <h4 class="mt-3"><?php echo _("Security settings"); ?></h4>
             <div class="row">
-              <div class="form-group col-md-6">
-                <label for="cbxwpa"><?php echo _("Security type"); ?></label>
-                <?php SelectorOptions('wpa', $arrSecurity, $arrConfig['wpa'], 'cbxwpa'); ?>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="cbxwpa"><?php echo _("Security type"); ?></label>
+                  <?php SelectorOptions('wpa', $arrSecurity, $arrConfig['wpa'], 'cbxwpa'); ?>
+                </div>
+                <div class="form-group">
+                  <label for="cbxwpapairwise"><?php echo _("Encryption Type"); ?></label>
+                  <?php SelectorOptions('wpa_pairwise', $arrEncType, $arrConfig['wpa_pairwise'], 'cbxwpapairwise'); ?>
+                </div>
+                <div class="form-group">
+                  <label for="txtwpapassphrase"><?php echo _("PSK"); ?></label>
+                  <input type="text" class="form-control" id="txtwpapassphrase" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" />
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-md-6">
-                <label for="cbxwpapairwise"><?php echo _("Encryption Type"); ?></label>
-                <?php SelectorOptions('wpa_pairwise', $arrEncType, $arrConfig['wpa_pairwise'], 'cbxwpapairwise'); ?>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-md-6">
-                <label for="txtwpapassphrase"><?php echo _("PSK"); ?></label>
-                <input type="text" class="form-control" id="txtwpapassphrase" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" />
+              <div class="col-md-6">
+                <figure class="figure">
+                  <img src="/app/img/wifi-qr-code.php" class="figure-img img-fluid" alt="RaspAP Wifi QR code" style="width:100%;">
+                  <figcaption class="figure-caption"><?php echo _("Scan this QR code with your phone to connect to this RaspAP."); ?></figcaption>
+                </figure>
               </div>
             </div>
           </div>
