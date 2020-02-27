@@ -40,11 +40,13 @@ $svg = shell_exec($command);
 
 $config_mtime  = filemtime(RASPI_HOSTAPD_CONFIG);
 $last_modified = gmdate('D, d M Y H:i:s ', $config_mtime) . 'GMT';
+$etag = hash('sha256', $data);
 $content_length = strlen($svg);
 
 header("Content-Type: image/svg+xml");
 header("Content-Length: $content_length");
 header("Last-Modified: $last_modified");
+header("ETag: \"$etag\"");
 header("X-QR-Code-Content: $data");
 echo shell_exec($command);
 
