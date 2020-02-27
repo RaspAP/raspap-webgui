@@ -91,9 +91,12 @@
                   <label for="cbxwpapairwise"><?php echo _("Encryption Type"); ?></label>
                   <?php SelectorOptions('wpa_pairwise', $arrEncType, $arrConfig['wpa_pairwise'], 'cbxwpapairwise'); ?>
                 </div>
-                <div class="form-group">
-                  <label for="txtwpapassphrase"><?php echo _("PSK"); ?></label>
+                <label for="txtwpapassphrase"><?php echo _("PSK"); ?></label>
+                <div class="input-group">
                   <input type="text" class="form-control" id="txtwpapassphrase" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" />
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="gen_wpa_passphrase"><i class="fas fa-magic"></i></button>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6">
