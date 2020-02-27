@@ -143,6 +143,16 @@ $(document).on("submit", ".js-dhcp-settings-form", function(e) {
     $(".js-add-dhcp-static-lease").trigger("click");
 });
 
+$(document).on("click", "#gen_wpa_passphrase", function(e) {
+    $('#txtwpapassphrase').val(genPassword(63));
+});
+
+function genPassword(pwdLen) {
+    var pwdChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    var rndPass = Array(pwdLen).fill(pwdChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+    return rndPass;
+}
+
 function setupBtns() {
     $('#btnSummaryRefresh').click(function(){getAllInterfaces();});
     $('.intsave').click(function(){
