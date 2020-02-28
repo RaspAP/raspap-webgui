@@ -35,25 +35,25 @@ msgstr "Portal Wifi RaspAP"
 msgid "Dashboard"
 msgstr "Dasbor"
 
-msgid "Configure WiFi client"
+msgid "WiFi client"
 msgstr "Atur klien WiFi"
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "Atur hotspot"
 
-msgid "Configure networking"
+msgid "Networking"
 msgstr "Atur jaringan"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "Atur Server DHCP"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "Atur OpenVPN"
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "Konfigurasikan proxy TOR"
 
-msgid "Configure Auth"
+msgid "Auth"
 msgstr "Konfigurasi Auth"
 
 msgid "Change Theme"

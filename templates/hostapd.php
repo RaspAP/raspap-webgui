@@ -4,7 +4,7 @@
     <div class="card-header">
       <div class="row">
         <div class="col">
-          <i class="far fa-dot-circle mr-2"></i><?php echo _("Configure hotspot"); ?>
+          <i class="far fa-dot-circle mr-2"></i><?php echo _("Hotspot"); ?>
         </div>
         <div class="col">
           <button class="btn btn-light btn-icon-split btn-sm service-status float-right">

@@ -35,25 +35,25 @@ msgstr "Cổng thông tin wifi RaspAP"
 msgid "Dashboard"
 msgstr "Bảng điều khiển"
 
-msgid "Configure WiFi client"
+msgid "WiFi client"
 msgstr "Định cấu hình WiFi cho máy khách"
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "Định cấu hình điểm phát wifi"
 
-msgid "Configure networking"
+msgid "Networking"
 msgstr "Đặt cấu hình kết nối mạng"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "Định cấu hình máy chủ DHCP"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "Định cấu hình OpenVPN"
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "Định cấu hình proxy TOR"
 
-msgid "Configure Auth"
+msgid "Auth"
 msgstr "Định cấu hình xác thực"
 
 msgid "Change Theme"

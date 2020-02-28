@@ -31,25 +31,25 @@ msgstr "RaspAP Wifi Portail"
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-msgid "Configure WiFi client"
+msgid "WiFi client"
 msgstr "Configurer client WiFi"
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "Configurer hotspot"
 
-msgid "Configure networking"
+msgid "Networking"
 msgstr "Configurer réseau"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "Configurer server DHCP"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "Configurer OpenVPN"
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "Configurer proxy TOR"
 
-msgid "Configure Auth"
+msgid "Auth"
 msgstr "Configurer Auth"
 
 msgid "Change Theme"
@@ -403,7 +403,7 @@ msgid "Maximum number of clients"
 msgstr "Nombre maximum de clients"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configure l'option max_num_sta de hostapd. La valeur par défaut et maximum est 2007. Si vide ou 0, la valeur par défaut s'applique."
+msgstr "l'option max_num_sta de hostapd. La valeur par défaut et maximum est 2007. Si vide ou 0, la valeur par défaut s'applique."
 
 #: includes/networking.php
 msgid "Summary"

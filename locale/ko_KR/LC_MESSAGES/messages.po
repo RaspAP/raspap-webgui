@@ -35,25 +35,25 @@ msgstr "RaspAP WiFi 포탈"
 msgid "Dashboard"
 msgstr "대시보드 "
 
-msgid "Configure WiFi client"
+msgid "WiFi client"
 msgstr "WiFi 클라이언트 환경설정"
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "핫스팟 환경설정"
 
-msgid "Configure networking"
+msgid "Networking"
 msgstr "네트워킹 환경설정"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "DHCP 서버 구성"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "OpenVPN 환경설정"
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "TOR 프록시 구성"
 
-msgid "Configure Auth"
+msgid "Auth"
 msgstr "Auth 구성 "
 
 msgid "Change Theme"
