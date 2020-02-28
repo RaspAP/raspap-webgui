@@ -143,6 +143,28 @@ $(document).on("submit", ".js-dhcp-settings-form", function(e) {
     $(".js-add-dhcp-static-lease").trigger("click");
 });
 
+$(document).on("click", ".js-add-dhcp-upstream-server", function(e) {
+    e.preventDefault();
+
+    var field = $("#add-dhcp-upstream-server-field")
+    var row = $("#dhcp-upstream-server").html().replace("{{ server }}", field.val())
+
+    if (field.val().trim() == "") { return }
+
+    $(".js-dhcp-upstream-servers").append(row)
+
+    field.val("")
+});
+
+$(document).on("click", ".js-remove-dhcp-upstream-server", function(e) {
+    e.preventDefault();
+    $(this).parents(".js-dhcp-upstream-server").remove();
+});
+
+$(document).on("submit", ".js-dhcp-settings-form", function(e) {
+    $(".js-add-dhcp-upstream-server").trigger("click");
+});
+
 $(document).on("click", "#gen_wpa_passphrase", function(e) {
     $('#txtwpapassphrase').val(genPassword(63));
 });

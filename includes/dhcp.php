@@ -59,6 +59,10 @@ function DisplayDHCPConfig()
                     }
                 }
 
+                foreach ($_POST['server'] as $server) {
+                    $config .= "server=$server".PHP_EOL;
+                }
+
                 if ($_POST['DNS1']) {
                     $config .= "dhcp-option=6," . $_POST['DNS1'];
                     if ($_POST['DNS2']) {
@@ -126,6 +130,7 @@ function DisplayDHCPConfig()
     $dhcpHost = $conf["dhcp-host"];
     $dhcpHost = empty($dhcpHost) ? [] : $dhcpHost;
     $dhcpHost = is_array($dhcpHost) ? $dhcpHost : [ $dhcpHost ];
+    $upstreamServers = is_array($conf['server']) ? $conf['server'] : [ $conf['server'] ];
 
     $DNS1 = '';
     $DNS2 = '';
@@ -173,6 +178,7 @@ function DisplayDHCPConfig()
             "RangeEnd",
             "DNS1",
             "DNS2",
+            "upstreamServers",
             "arrRangeLeaseTime",
             "mselected",
             "hselected",

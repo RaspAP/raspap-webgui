@@ -84,6 +84,45 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <label class="form-label"><?php echo _("Upstream DNS servers") ?></label>
+
+        <div class="js-dhcp-upstream-servers">
+          <?php foreach ($upstreamServers as $server): ?>
+            <div class="form-group input-group js-dhcp-upstream-server">
+              <input type="text" class="form-control" name="server[]" value="<?php echo $server ?>">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
+              </div>
+            </div>
+          <?php endforeach ?>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" id="add-dhcp-upstream-server-field" aria-describedby="passwordHelpBlock">
+            <div class="input-group-append">
+              <button type="button" class="btn btn-outline-secondary js-add-dhcp-upstream-server"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+          <code id="passwordHelpBlock" class="form-text text-muted">
+            <small><?php echo htmlspecialchars("[/[<domain>]/[domain/]][<ipaddr>[#<port>][@<source-ip>|<interface>[#<port>]]"); ?></small>
+          </code>
+        </div>
+      </div>
+    </div>
+
+    <template id="dhcp-upstream-server">
+      <div class="form-group input-group js-dhcp-upstream-server">
+        <input type="text" class="form-control" name="server[]" value="{{ server }}">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
+        </div>
+      </div>
+    </template>
+
+
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
         <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
         <?php if ($dnsmasq_state) : ?>
