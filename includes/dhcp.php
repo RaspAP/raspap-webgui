@@ -59,6 +59,9 @@ function DisplayDHCPConfig()
                     }
                 }
 
+                if ($_POST['no-resolv'] == "1") {
+                    $config .= "no-resolv".PHP_EOL;
+                }
                 foreach ($_POST['server'] as $server) {
                     $config .= "server=$server".PHP_EOL;
                 }

@@ -88,6 +88,15 @@
       <div class="col-md-6">
         <label class="form-label"><?php echo _("Upstream DNS servers") ?></label>
 
+        <div class="form-check">
+          <input type="hidden" name="no-resolv" value="0">
+          <input class="form-check-input" id="no-resolv" type="checkbox" name="no-resolv" value="1" <?php echo $conf['no-resolv'] ? ' checked="checked"' : "" ?> aria-describedby="no-resolv-description">
+          <label for="no-resolv"><?php echo _("Do not use upstream DNS supplied from DHCP server") ?></label>
+          <p id="no-resolv-description">
+            <small><?php echo _("Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers.") ?></small>
+          </p>
+        </div>
+
         <div class="js-dhcp-upstream-servers">
           <?php foreach ($upstreamServers as $server): ?>
             <div class="form-group input-group js-dhcp-upstream-server">
