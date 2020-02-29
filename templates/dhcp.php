@@ -1,3 +1,14 @@
+<?php ob_start() ?>
+  <?php if (!RASPI_MONITOR_ENABLED) : ?>
+      <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
+      <?php if ($dnsmasq_state) : ?>
+        <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
+      <?php else : ?>
+        <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
+      <?php endif ?>
+  <?php endif ?>
+<?php $buttons = ob_get_clean(); ob_end_clean() ?>
+
 <div class="row">
 <div class="col-lg-12">
   <div class="card">
@@ -85,14 +96,8 @@
       </div>
     </div>
 
-    <?php if (!RASPI_MONITOR_ENABLED) : ?>
-        <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
-        <?php if ($dnsmasq_state) : ?>
-          <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
-        <?php else : ?>
-          <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
-        <?php endif ?>
-    <?php endif ?>
+    <?php echo $buttons ?>
+
     </div><!-- /.tab-pane -->
 
 
@@ -152,6 +157,8 @@
           </div>
         </template>
       </div><!-- /.row -->
+
+      <?php echo $buttons ?>
 
     </div><!-- /.tab-pane | advanded tab -->
 
@@ -236,16 +243,8 @@
       </div>
     </template>
 
-    <?php if (!RASPI_MONITOR_ENABLED) : ?>
-        <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
-        <?php
-        if ($dnsmasq_state) {
-            echo '<input type="submit" class="btn btn-warning" value="' . _("Stop dnsmasq") . '" name="stopdhcpd" />';
-        } else {
-            echo'<input type="submit" class="btn btn-success" value="' .  _("Start dnsmasq") . '" name="startdhcpd" />';
-        }
-        ?>
-    <?php endif ?>
+    <?php echo $buttons ?>
+
   </div>
 
   </div><!-- /.tab-content -->
