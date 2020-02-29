@@ -86,7 +86,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <label><?php echo _("Upstream DNS servers") ?></label>
+        <h5><?php echo _("Upstream DNS servers") ?></h5>
 
         <div class="form-check">
           <input type="hidden" name="no-resolv" value="0">
