@@ -110,6 +110,7 @@
         </div>
 
         <div class="form-group">
+          <label for="add-dhcp-upstream-server-field"><?php echo _("Add upstream DNS server") ?></label>
           <div class="input-group">
             <input type="text" class="form-control" id="add-dhcp-upstream-server-field" aria-describedby="new-dhcp-upstream-server" placeholder="<?php printf(_("e.g. %s"), "208.67.222.222") ?>">
             <div class="input-group-append">
