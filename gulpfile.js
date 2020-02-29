@@ -77,10 +77,7 @@ function modules() {
   // SB Admin2 CSS
   var sbadmin2CSS = gulp.src('./node_modules/startbootstrap-sb-admin-2/css/*')
     .pipe(gulp.dest('./dist/sb-admin-2/css'));
-  // Bootstrap Toggle
-  var bootstraptoggle = gulp.src('./node_modules/bootstrap4-toggle/**/*')
-    .pipe(gulp.dest('./dist/bootstrap4-toggle'));
-  return merge(bootstrapJS, bootstrapSCSS, chartJS, dataTables, fontAwesome, jquery, jqueryEasing, sbadmin2JS, sbadmin2CSS, bootstraptoggle);
+  return merge(bootstrapJS, bootstrapSCSS, chartJS, dataTables, fontAwesome, jquery, jqueryEasing, sbadmin2JS, sbadmin2CSS);
 }
 
 // CSS task

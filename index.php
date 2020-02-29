@@ -70,9 +70,6 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
     <!-- Bootstrap Core CSS -->
     <link href="dist/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-    <!-- Bootstrap Toggle CSS -->
-    <link href="dist/bootstrap4-toggle/css/bootstrap4-toggle.min.css" rel="stylesheet">
-
     <!-- SB-Admin-2 CSS -->
     <link href="dist/sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -291,9 +288,6 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
 
     <!-- Core plugin JavaScript -->
     <script src="dist/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Bootstrap Toggle JavaScript -->
-    <script src="dist/bootstrap4-toggle/js/bootstrap4-toggle.min.js"></script>
 
     <!-- Chart.js JavaScript -->
     <script src="dist/chart.js/Chart.min.js"></script>

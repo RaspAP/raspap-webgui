@@ -126,47 +126,29 @@
           <h4 class="mt-3"><?php echo _("Advanced settings"); ?></h4>
             <div class="row">
               <div class="col-md-6 mb-2">
-                <div class="checkbox">
-                  <?php
-                  $checkedWifiAPEnabled = '';
-                  if ($arrHostapdConf['WifiAPEnable'] == 1) {
-                      $checkedWifiAPEnabled = ' checked="checked"';
-		  }
-		  if ($managedModeEnabled == false && $arrHostapdConf['WifiAPEnable'] != 1) {
-                      $wifiAPToggle = "disabled";
-		      $wifiAPHelp = "Managed mode not enabled";
-                  }
-                  ?>
-                  <input id="chxwificlientap" name="wifiAPEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedWifiAPEnabled; ?> <?php echo $wifiAPToggle; ?> />
-                  <label class="form-check-label ml-3" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
+                <div class="custom-control custom-switch">
+                  <?php $checked = $arrHostapdConf['WifiAPEnable'] == 1 ? 'checked="checked"' : '' ?>
+                  <?php $disabled = $managedModeEnabled == false && $arrHostapdConf['WifiAPEnable'] != 1 ? 'disabled="disabled"' : '' ?>
+                  <input class="custom-control-input" id="chxwificlientap" name="wifiAPEnable" type="checkbox" value="1" <?php echo $checked ?> <?php echo $disabled ?> />
+                  <label class="custom-control-label" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 mb-2">
-                <div class="checkbox">
-                <?php
-                $checkedLogEnabled = '';
-                if ($arrHostapdConf['LogEnable'] == 1) {
-                    $checkedLogEnabled = ' checked="checked"';
-		}
-                ?>
-		<input id="chxlogenable" name="logEnable" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedLogEnabled; ?> />
-                <label class="form-check-label ml-3" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
+                <div class="custom-control custom-switch">
+                  <?php $checked = $arrHostapdConf['LogEnable'] == 1 ? 'checked="checked"' : '' ?>
+		              <input class="custom-control-input" id="chxlogenable" name="logEnable" type="checkbox" value="1" <?php echo $checked ?> />
+                  <label class="custom-control-label" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 mb-2">
-                <div class="checkbox">
-                <?php
-                $checkedHiddenSSID = '';
-                if ($arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssid'] == 2) {
-                    $checkedHiddenSSID = ' checked="checked"';
-                }
-                ?>
-		  <input id="chxhiddenssid" name="hiddenSSID" type="checkbox" data-onstyle="secondary" data-toggle="toggle" data-on="<?php echo _("Enabled"); ?>" data-off="<?php echo _("Disabled"); ?>" data-width="110" data-height="40" value="1"<?php echo $checkedHiddenSSID; ?> />
-                  <label class="form-check-label ml-3" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast"); ?></label>
+                <div class="custom-control custom-switch">
+                  <?php $checked = $arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssid'] == 2 ? 'checked="checked"' : '' ?>
+  		            <input class="custom-control-input" id="chxhiddenssid" name="hiddenSSID" type="checkbox" value="1" <?php echo $checked ?> />
+                  <label class="custom-control-label" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast"); ?></label>
                 </div>
               </div>
             </div>
