@@ -53,7 +53,7 @@ msgstr "Định cấu hình OpenVPN"
 msgid "TOR proxy"
 msgstr "Định cấu hình proxy TOR"
 
-msgid "Auth"
+msgid "Authentication"
 msgstr "Định cấu hình xác thực"
 
 msgid "Change Theme"

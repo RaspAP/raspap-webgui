@@ -53,7 +53,7 @@ msgstr "OpenVPN 환경설정"
 msgid "TOR proxy"
 msgstr "TOR 프록시 구성"
 
-msgid "Auth"
+msgid "Authentication"
 msgstr "Auth 구성 "
 
 msgid "Change Theme"

@@ -53,7 +53,7 @@ msgstr "OpenVPNを設定"
 msgid "TOR proxy"
 msgstr "TORプロキシを設定"
 
-msgid "Auth"
+msgid "Authentication"
 msgstr "認証を構成する"
 
 msgid "Change Theme"

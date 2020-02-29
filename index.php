@@ -159,7 +159,7 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
           <?php endif; ?>
           <?php if (RASPI_CONFAUTH_ENABLED) : ?>
         <li class="nav-item">
-        <a class="nav-link" href="index.php?page=auth_conf"><i class="fas fa-user-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Auth"); ?></a>
+        <a class="nav-link" href="index.php?page=auth_conf"><i class="fas fa-user-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Authentication"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_CHANGETHEME_ENABLED) : ?>

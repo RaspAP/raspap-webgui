@@ -53,7 +53,7 @@ msgstr "Atur OpenVPN"
 msgid "TOR proxy"
 msgstr "Konfigurasikan proxy TOR"
 
-msgid "Auth"
+msgid "Authentication"
 msgstr "Konfigurasi Auth"
 
 msgid "Change Theme"

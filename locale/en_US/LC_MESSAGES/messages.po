@@ -49,8 +49,8 @@ msgstr "OpenVPN"
 msgid "TOR proxy"
 msgstr "TOR proxy"
 
-msgid "Auth"
-msgstr "Auth"
+msgid "Authentication"
+msgstr "Authentication"
 
 msgid "Change Theme"
 msgstr "Change Theme"

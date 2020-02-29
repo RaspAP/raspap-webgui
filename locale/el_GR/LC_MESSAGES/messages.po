@@ -48,7 +48,7 @@ msgstr "Διαμόρφωση OpenVPN"
 msgid "TOR proxy" 
 msgstr "Διαμόρφωση μεσολαβητή TOR" 
 
-msgid "Auth" 
+msgid "Authentication" 
 msgstr "Διαμόρφωση Auth" 
 
 msgid "Change Theme" 

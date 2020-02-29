@@ -49,7 +49,7 @@ msgstr "Konfigurera OpenVPN"
 msgid "TOR proxy"
 msgstr "Konfigurera TOR proxy"
 
-msgid "Auth"
+msgid "Authentication"
 msgstr "Konfigurera Auth"
 
 msgid "Change Theme"
