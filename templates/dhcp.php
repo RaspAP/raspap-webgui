@@ -110,12 +110,12 @@
 
         <div class="form-group">
           <div class="input-group">
-            <input type="text" class="form-control" id="add-dhcp-upstream-server-field" aria-describedby="passwordHelpBlock">
+            <input type="text" class="form-control" id="add-dhcp-upstream-server-field" aria-describedby="new-dhcp-upstream-server">
             <div class="input-group-append">
               <button type="button" class="btn btn-outline-secondary js-add-dhcp-upstream-server"><i class="fas fa-plus"></i></button>
             </div>
           </div>
-          <code id="passwordHelpBlock" class="form-text text-muted">
+          <code id="new-dhcp-upstream-server" class="form-text text-muted">
             <small><?php echo htmlspecialchars("[/[<domain>]/[domain/]][<ipaddr>[#<port>][@<source-ip>|<interface>[#<port>]]"); ?></small>
           </code>
         </div>
