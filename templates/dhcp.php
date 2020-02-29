@@ -115,9 +115,12 @@
               <button type="button" class="btn btn-outline-secondary js-add-dhcp-upstream-server"><i class="fas fa-plus"></i></button>
             </div>
           </div>
-          <code id="new-dhcp-upstream-server" class="form-text text-muted">
-            <small><?php echo htmlspecialchars("[/[<domain>]/[domain/]][<ipaddr>[#<port>][@<source-ip>|<interface>[#<port>]]"); ?></small>
-          </code>
+          <p id="new-dhcp-upstream-server" class="form-text text-muted">
+            <small>
+              <?php echo _("Format: ") ?>
+              <code class="text-muted"><?php echo htmlspecialchars("[/[<domain>]/[domain/]][<ipaddr>[#<port>][@<source-ip>|<interface>[#<port>]]"); ?></code>
+            </small>
+          </p>
         </div>
       </div>
     </div>
