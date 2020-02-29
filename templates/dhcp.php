@@ -102,7 +102,7 @@
 
         <div class="js-dhcp-upstream-servers">
           <?php foreach ($upstreamServers as $server): ?>
-            <div class="form-group input-group js-dhcp-upstream-server">
+            <div class="form-group input-group input-group-sm js-dhcp-upstream-server">
               <input type="text" class="form-control" name="server[]" value="<?php echo $server ?>">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
@@ -130,7 +130,7 @@
     </div>
 
     <template id="dhcp-upstream-server">
-      <div class="form-group input-group js-dhcp-upstream-server">
+      <div class="form-group input-group input-group-sm js-dhcp-upstream-server">
         <input type="text" class="form-control" name="server[]" value="{{ server }}">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
