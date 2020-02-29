@@ -92,7 +92,7 @@
           <input type="hidden" name="no-resolv" value="0">
           <div class="custom-control custom-switch">
             <input class="custom-control-input" id="no-resolv" type="checkbox" name="no-resolv" value="1" <?php echo $conf['no-resolv'] ? ' checked="checked"' : "" ?> aria-describedby="no-resolv-description">
-            <label class="custom-control-label" for="no-resolv"><?php echo _("Do not use upstream DNS supplied from DHCP server") ?></label>
+            <label class="custom-control-label" for="no-resolv"><?php echo _("Only ever query DNS servers configured below") ?></label>
           </div>
           <p id="no-resolv-description">
             <small><?php echo _("Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers.") ?></small>
