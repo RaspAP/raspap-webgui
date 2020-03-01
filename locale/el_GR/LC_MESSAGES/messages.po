@@ -31,22 +31,22 @@ msgid "Dashboard"
 msgstr "Πίνακας" 
 
 msgid "WiFi client" 
-msgstr "Διαμόρφωση WiFi client" 
+msgstr "WiFi client" 
 
 msgid "Hotspot" 
-msgstr "Διαμόρφωση hotspot" 
+msgstr "Hotspot" 
 
 msgid "Networking" 
-msgstr "Διαμόρφωση δικτύωσης" 
+msgstr "Δικτύωση" 
 
 msgid "DHCP Server" 
-msgstr "Διαμόρφωση διακομιστή DHCP" 
+msgstr "Διακομιστή DHCP" 
 
 msgid "OpenVPN" 
-msgstr "Διαμόρφωση OpenVPN" 
+msgstr "OpenVPN" 
 
 msgid "TOR proxy" 
-msgstr "Διαμόρφωση μεσολαβητή TOR" 
+msgstr "Μεσολαβητή TOR" 
 
 msgid "Authentication" 
 msgstr "Διαμόρφωση Auth" 

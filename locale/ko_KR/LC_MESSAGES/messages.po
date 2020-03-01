@@ -36,16 +36,16 @@ msgid "Dashboard"
 msgstr "대시보드 "
 
 msgid "WiFi client"
-msgstr "WiFi 클라이언트 환경설정"
+msgstr "WiFi 클라이언트"
 
 msgid "Hotspot"
-msgstr "핫스팟 환경설정"
+msgstr "핫스팟"
 
 msgid "Networking"
-msgstr "네트워킹 환경설정"
+msgstr "네트워킹"
 
 msgid "DHCP Server"
-msgstr "DHCP 서버 구성"
+msgstr "DHCP 서버"
 
 msgid "OpenVPN"
 msgstr "OpenVPN 환경설정"
@@ -54,7 +54,7 @@ msgid "TOR proxy"
 msgstr "TOR 프록시 구성"
 
 msgid "Authentication"
-msgstr "Auth 구성 "
+msgstr "입증"
 
 msgid "Change Theme"
 msgstr "테마 변경 "

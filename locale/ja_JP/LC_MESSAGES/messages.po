@@ -36,22 +36,22 @@ msgid "Dashboard"
 msgstr "ダッシュボード"
 
 msgid "WiFi client"
-msgstr "WiFiクライアントを設定"
+msgstr "WiFiクライアント"
 
 msgid "Hotspot"
-msgstr "ホットスポットを設定"
+msgstr "ホットスポット"
 
 msgid "Networking"
-msgstr "ネットワークを設定"
+msgstr "ネットワーク"
 
 msgid "DHCP Server"
-msgstr "DHCPサーバーを構成"
+msgstr "DHCPサーバー"
 
 msgid "OpenVPN"
-msgstr "OpenVPNを設定"
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr "TORプロキシを設定"
+msgstr "TORプロキシ"
 
 msgid "Authentication"
 msgstr "認証を構成する"

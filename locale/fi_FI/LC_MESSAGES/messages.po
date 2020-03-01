@@ -32,25 +32,25 @@ msgid "Dashboard"
 msgstr "Ohjauspaneeli"
 
 msgid "WiFi client"
-msgstr "Konfiguroi WiFi asiakas"
+msgstr "WiFi asiakas"
 
 msgid "Hotspot"
-msgstr "Konfiguroi yhteyspiste"
+msgstr "Yhteyspiste"
 
 msgid "Networking"
-msgstr "Konfiguroi yhteyksia"
+msgstr "Yhteyksia"
 
 msgid "DHCP Server"
-msgstr "Konfiguroi DHCP palvelinta"
+msgstr "DHCP palvelinta"
 
 msgid "OpenVPN"
-msgstr "Konfiguroi OpenVPN"
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr "Konfiguroi TOR välitypalvelinta"
+msgstr "TOR välitypalvelinta"
 
 msgid "Authentication"
-msgstr "Konfiguroi Auth"
+msgstr "Authentication"
 
 msgid "Change Theme"
 msgstr "Vaihda teema"

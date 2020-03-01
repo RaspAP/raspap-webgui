@@ -36,25 +36,25 @@ msgid "Dashboard"
 msgstr "Dasbor"
 
 msgid "WiFi client"
-msgstr "Atur klien WiFi"
+msgstr "Klien WiFi"
 
 msgid "Hotspot"
-msgstr "Atur hotspot"
+msgstr "Hotspot"
 
 msgid "Networking"
-msgstr "Atur jaringan"
+msgstr "Jaringan"
 
 msgid "DHCP Server"
-msgstr "Atur Server DHCP"
+msgstr "Server DHCP"
 
 msgid "OpenVPN"
-msgstr "Atur OpenVPN"
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr "Konfigurasikan proxy TOR"
+msgstr "Proxy TOR"
 
 msgid "Authentication"
-msgstr "Konfigurasi Auth"
+msgstr "Autentikasi"
 
 msgid "Change Theme"
 msgstr "Ganti Tema"

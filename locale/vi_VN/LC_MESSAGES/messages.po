@@ -36,22 +36,22 @@ msgid "Dashboard"
 msgstr "Bảng điều khiển"
 
 msgid "WiFi client"
-msgstr "Định cấu hình WiFi cho máy khách"
+msgstr "WiFi cho máy khách"
 
 msgid "Hotspot"
-msgstr "Định cấu hình điểm phát wifi"
+msgstr "Điểm phát wifi"
 
 msgid "Networking"
-msgstr "Đặt cấu hình kết nối mạng"
+msgstr "Kết nối mạng"
 
 msgid "DHCP Server"
-msgstr "Định cấu hình máy chủ DHCP"
+msgstr "Chủ DHCP"
 
 msgid "OpenVPN"
-msgstr "Định cấu hình OpenVPN"
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr "Định cấu hình proxy TOR"
+msgstr "Proxy TOR"
 
 msgid "Authentication"
 msgstr "Định cấu hình xác thực"

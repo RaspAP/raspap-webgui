@@ -32,25 +32,25 @@ msgid "Dashboard"
 msgstr "Přehled"
 
 msgid "WiFi client"
-msgstr "Nastavení WiFi klienta"
+msgstr "WiFi klienta"
 
 msgid "Hotspot"
-msgstr "Nastavení hotspot(u)"
+msgstr "Hotspot(u)"
 
 msgid "Networking"
-msgstr "Nastavení sítě"
+msgstr "Sítě"
 
 msgid "DHCP Server"
-msgstr "Nastavení DHCP Serveru"
+msgstr "DHCP Serveru"
 
 msgid "OpenVPN"
-msgstr "Nastavení OpenVPN"
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr "Nastavení TOR proxy"
+msgstr "TOR proxy"
 
 msgid "Authentication"
-msgstr "Nastavení Autentifikace"
+msgstr "Autentifikace"
 
 msgid "Change Theme"
 msgstr "Změnit vzhled"

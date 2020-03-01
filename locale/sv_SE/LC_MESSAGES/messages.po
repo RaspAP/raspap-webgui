@@ -32,25 +32,25 @@ msgid "Dashboard"
 msgstr "Dashboard"
 
 msgid "WiFi client"
-msgstr "Konfigurera WiFi klienten"
+msgstr "WiFi klienten"
 
 msgid "Hotspot"
-msgstr "Konfigurera hotspot"
+msgstr "Hotspot"
 
 msgid "Networking"
-msgstr "Konfigurera nätverk"
+msgstr "Nätverk"
 
 msgid "DHCP Server"
-msgstr "Konfigurera DHCP"
+msgstr "DHCP Server"
 
 msgid "OpenVPN"
-msgstr "Konfigurera OpenVPN"
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr "Konfigurera TOR proxy"
+msgstr "TOR proxy"
 
 msgid "Authentication"
-msgstr "Konfigurera Auth"
+msgstr "Autentisering"
 
 msgid "Change Theme"
 msgstr "Byt Tema"

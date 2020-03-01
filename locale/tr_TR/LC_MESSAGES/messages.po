@@ -32,25 +32,25 @@ msgid "Dashboard"
 msgstr "Kontrol Paneli"
 
 msgid "WiFi client"
-msgstr "WiFi istemcisini yapılandır"
+msgstr "WiFi istemcisini"
 
 msgid "Hotspot"
-msgstr "Paylaşım noktasını yapılandır"
+msgstr "Paylaşım noktasını"
 
 msgid "Networking"
-msgstr "Ağı yapılandır"
+msgstr "Ağı"
 
 msgid "DHCP Server"
-msgstr "DHCP sunucusunu yapılandır"
+msgstr "DHCP sunucusunu"
 
 msgid "OpenVPN"
-msgstr "OpenVPN'i yapılandır"
+msgstr "OpenVPN'i"
 
 msgid "TOR proxy"
-msgstr "TOR proxysini yapılandır"
+msgstr "TOR proxysini"
 
 msgid "Authentication"
-msgstr "İzinleri yapılandır"
+msgstr "İzinleri"
 
 msgid "Change Theme"
 msgstr "Temayı değiştir"

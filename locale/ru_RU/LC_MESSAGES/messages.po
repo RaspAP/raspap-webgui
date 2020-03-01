@@ -32,25 +32,25 @@ msgid "Dashboard"
 msgstr "Приборная панель"
 
 msgid "WiFi client"
-msgstr "Настройка WiFi клиента"
+msgstr "WiFi клиента"
 
 msgid "Hotspot"
-msgstr "Настройка точки доступа"
+msgstr "Точка доступа"
 
 msgid "Networking"
-msgstr "Сетевые настрйоки"
+msgstr "Сетевые"
 
 msgid "DHCP Server"
-msgstr "Настроить DHCP сервер"
+msgstr "DHCP сервер"
 
 msgid "OpenVPN"
-msgstr "Настройка OpenVPN"
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr "Настройка TOR proxy"
+msgstr "TOR proxy"
 
 msgid "Authentication"
-msgstr "Настйроки авторизации"
+msgstr "авторизации"
 
 msgid "Change Theme"
 msgstr "Сменить тему"

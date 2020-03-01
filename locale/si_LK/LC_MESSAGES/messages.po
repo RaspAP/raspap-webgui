@@ -32,7 +32,7 @@ msgid "Dashboard"
 msgstr "උපකාරක පුවරුව"
 
 msgid "WiFi client"
-msgstr "WiFi සේවාලාභි සැකසුම"
+msgstr "WiFi සේවාලාභි "
 
 msgid "Hotspot"
 msgstr "හොට්ස්පොට් සැකසුම"

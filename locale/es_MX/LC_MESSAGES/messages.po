@@ -32,25 +32,25 @@ msgid "Dashboard"
 msgstr "Tablero"
 
 msgid "WiFi client"
-msgstr "Configurar cliente wiFi"
+msgstr "Cliente wiFi"
 
 msgid "Hotspot"
-msgstr "Configurar hotspot"
+msgstr "Hotspot"
 
 msgid "Networking"
-msgstr "Configurar red de trabajo"
+msgstr "Red de trabajo"
 
 msgid "DHCP Server"
-msgstr "Configurar servidor DHCP"
+msgstr "Servidor DHCP"
 
 msgid "OpenVPN"
-msgstr "Configurar OpenVPN"
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr "Configurar TOR proxy"
+msgstr "TOR proxy"
 
 msgid "Authentication"
-msgstr "Configurar autentificacion"
+msgstr "Autentificacion"
 
 msgid "Change Theme"
 msgstr "Cambiar tema"
