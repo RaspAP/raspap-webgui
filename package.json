@@ -30,8 +30,7 @@
         "url": "https://github.com/billz/raspap-webgui.git"
     },
     "dependencies": {
-	"bootstrap4-toggle": "3.5.0",
-	"startbootstrap-sb-admin-2": "4.0.7"
+        "startbootstrap-sb-admin-2": "4.0.7"
     },
     "devDependencies": {
         "browser-sync": "^2.26.7",
