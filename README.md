@@ -63,7 +63,7 @@ configured as an access point as follows:
 ## Simultaneous AP and Wifi client
 RaspAP lets you easily create an AP with a Wifi client configuration. With your RPi configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
 
-![](https://i.imgur.com/YObvd32.gif)
+![](https://i.imgur.com/1beOFgT.png)
 
 **Note:** This option is disabled until you configure your RPi as a wireless client. For a Raspberry Pi operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) without an `eth0` connection, this configuration must be enabled _before_ a reboot. 
 
