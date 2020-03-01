@@ -62,11 +62,11 @@ body {
 }
 
 a.nav-link.active {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 .sidebar .nav-item .nav-link {
-  padding: 0.6rem;
+  padding: 0.6rem 0.6rem 0.6rem 1.0rem;
 }
 
 .alert-success {
