@@ -31,25 +31,25 @@ msgstr "RaspAP Wifi Portál"
 msgid "Dashboard"
 msgstr "Přehled"
 
-msgid "Configure WiFi client"
+msgid "WiFi client"
 msgstr "Nastavení WiFi klienta"
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "Nastavení hotspot(u)"
 
-msgid "Configure networking"
+msgid "Networking"
 msgstr "Nastavení sítě"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "Nastavení DHCP Serveru"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "Nastavení OpenVPN"
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "Nastavení TOR proxy"
 
-msgid "Configure Auth"
+msgid "Authentication"
 msgstr "Nastavení Autentifikace"
 
 msgid "Change Theme"

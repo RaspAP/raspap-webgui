@@ -31,25 +31,25 @@ msgstr "RaspAP WLAN热点"
 msgid "Dashboard"
 msgstr "仪表板"
 
-msgid "Configure WiFi client"
+msgid "WiFi client"
 msgstr "WLAN客户端设置"
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "WLAN热点设置"
 
-msgid "Configure networking"
+msgid "Networking"
 msgstr "网络设置"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "DHCP服务器设置"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "OpenVPN设置"
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "TOR代理设置"
 
-msgid "Configure Auth"
+msgid "Authentication"
 msgstr "登录设置"
 
 msgid "Change Theme"

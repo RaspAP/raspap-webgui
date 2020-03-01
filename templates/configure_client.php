@@ -4,7 +4,7 @@
       <div class="card-header">
         <div class="row">
           <div class="col">
-            <i class="fas fa-wifi mr-2"></i><?php echo _("Configure WiFi client"); ?>
+            <i class="fas fa-wifi mr-2"></i><?php echo _("WiFi client"); ?>
           </div>
         </div><!-- /.row -->
       </div><!-- /.card-header -->

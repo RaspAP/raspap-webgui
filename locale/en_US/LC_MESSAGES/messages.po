@@ -31,26 +31,26 @@ msgstr "RaspAP Wifi Portal"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "Configure WiFi client"
-msgstr "Configure WiFi client"
+msgid "WiFi client"
+msgstr "WiFi client"
 
-msgid "Configure hotspot"
-msgstr "Configure hotspot"
+msgid "Hotspot"
+msgstr "Hotspot"
 
-msgid "Configure networking"
-msgstr "Configure networking"
+msgid "Networking"
+msgstr "Networking"
 
-msgid "Configure DHCP Server"
-msgstr "Configure DHCP Server"
+msgid "DHCP Server"
+msgstr "DHCP Server"
 
-msgid "Configure OpenVPN"
-msgstr "Configure OpenVPN"
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-msgid "Configure TOR proxy"
-msgstr "Configure TOR proxy"
+msgid "TOR proxy"
+msgstr "TOR proxy"
 
-msgid "Configure Auth"
-msgstr "Configure Auth"
+msgid "Authentication"
+msgstr "Authentication"
 
 msgid "Change Theme"
 msgstr "Change Theme"

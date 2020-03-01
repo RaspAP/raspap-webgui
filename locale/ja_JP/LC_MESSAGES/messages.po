@@ -35,25 +35,25 @@ msgstr "RaspAP Wifiポータル"
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-msgid "Configure WiFi client"
+msgid "WiFi client"
 msgstr "WiFiクライアントを設定"
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "ホットスポットを設定"
 
-msgid "Configure networking"
+msgid "Networking"
 msgstr "ネットワークを設定"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "DHCPサーバーを構成"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "OpenVPNを設定"
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "TORプロキシを設定"
 
-msgid "Configure Auth"
+msgid "Authentication"
 msgstr "認証を構成する"
 
 msgid "Change Theme"

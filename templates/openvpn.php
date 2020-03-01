@@ -4,7 +4,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col">
-              <i class="fas fa-key fa-fw mr-2"></i><?php echo _("Configure OpenVPN"); ?>
+              <i class="fas fa-key fa-fw mr-2"></i><?php echo _("OpenVPN"); ?>
             </div>
             <div class="col">
               <button class="btn btn-light btn-icon-split btn-sm service-status float-right">

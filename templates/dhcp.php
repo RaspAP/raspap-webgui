@@ -4,7 +4,7 @@
     <div class="card-header">
       <div class="row">
         <div class="col">
-          <i class="fas fa-exchange-alt mr-2"></i><?php echo _("Configure DHCP"); ?>
+          <i class="fas fa-exchange-alt mr-2"></i><?php echo _("DHCP Server"); ?>
         </div>
         <div class="col">
           <button class="btn btn-light btn-icon-split btn-sm service-status float-right">

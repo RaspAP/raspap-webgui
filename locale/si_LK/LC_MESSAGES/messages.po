@@ -31,25 +31,25 @@ msgstr "RaspAP Wifi වෙබ් අඩවිය"
 msgid "Dashboard"
 msgstr "උපකාරක පුවරුව"
 
-msgid "Configure WiFi client"
+msgid "WiFi client"
 msgstr "WiFi සේවාලාභි සැකසුම"
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "හොට්ස්පොට් සැකසුම"
 
-msgid "Configure networking"
+msgid "Networking"
 msgstr "ජාලකරණ සැකසුම"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "DHCP සර්වර් සැකසුම"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "OpenVPN සැකසුම" 
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "TOR proxy සැකසුම"
 
-msgid "Configure Auth"
+msgid "Authentication"
 msgstr "සත්‍යාපනය වින්‍යාස කරන්න"
 
 msgid "Change Theme"
