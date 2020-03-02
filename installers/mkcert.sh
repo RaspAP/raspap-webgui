@@ -8,6 +8,7 @@ certname=$HOSTNAME."local"
 lighttpd_ssl="/etc/lighttpd/ssl"
 lighttpd_conf="/etc/lighttpd/lighttpd.conf"
 webroot_dir="/var/www/html"
+mkcert_version="1.4.1"
 
 ### NOTE: all the below functions are overloadable for system-specific installs
 
@@ -53,7 +54,7 @@ function config_installation() {
 # Installs pre-built mkcert binary for Arch Linux ARM
 function install_mkcert() {
     install_log "Fetching mkcert binary"
-    sudo wget -q https://github.com/FiloSottile/mkcert/releases/download/v1.3.0/mkcert-v1.3.0-linux-arm -O /usr/local/bin/mkcert || install_error "Unable to download mkcert"
+    sudo wget -q https://github.com/FiloSottile/mkcert/releases/download/v${mkcert_version}/mkcert-v${mkcert_version}-linux-arm -O /usr/local/bin/mkcert || install_error "Unable to download mkcert"
     sudo chmod +x /usr/local/bin/mkcert
 
     install_log "Installing mkcert"
