@@ -1,3 +1,14 @@
+<?php ob_start() ?>
+  <?php if (!RASPI_MONITOR_ENABLED) : ?>
+      <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
+      <?php if ($dnsmasq_state) : ?>
+        <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
+      <?php else : ?>
+        <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
+      <?php endif ?>
+  <?php endif ?>
+<?php $buttons = ob_get_clean(); ob_end_clean() ?>
+
 <div class="row">
 <div class="col-lg-12">
   <div class="card">
@@ -19,8 +30,9 @@
     <form method="POST" action="?page=dhcpd_conf" class="js-dhcp-settings-form">
     <?php echo CSRFTokenFieldTag() ?>
     <!-- Nav tabs -->
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs mb-4">
       <li class="nav-item"><a class="nav-link active" href="#server-settings" data-toggle="tab"><?php echo _("Server settings"); ?></a></li>
+      <li class="nav-item"><a class="nav-link" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
       <li class="nav-item"><a class="nav-link" href="#static-leases" data-toggle="tab"><?php echo _("Static Leases") ?></a></li>
       <li class="nav-item"><a class="nav-link" href="#client-list" data-toggle="tab"><?php echo _("Client list"); ?></a></li>
     </ul>
@@ -84,15 +96,76 @@
       </div>
     </div>
 
-    <?php if (!RASPI_MONITOR_ENABLED) : ?>
-        <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
-        <?php if ($dnsmasq_state) : ?>
-          <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
-        <?php else : ?>
-          <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
-        <?php endif ?>
-    <?php endif ?>
+    <?php echo $buttons ?>
+
     </div><!-- /.tab-pane -->
+
+
+    <!-- advanced tab -->
+    <div class="tab-pane" id="advanced">
+
+      <div class="row">
+        <div class="col-md-6">
+          <h5><?php echo _("Upstream DNS servers") ?></h5>
+
+          <div class="input-group">
+            <input type="hidden" name="no-resolv" value="0">
+            <div class="custom-control custom-switch">
+              <input class="custom-control-input" id="no-resolv" type="checkbox" name="no-resolv" value="1" <?php echo $conf['no-resolv'] ? ' checked="checked"' : "" ?> aria-describedby="no-resolv-description">
+              <label class="custom-control-label" for="no-resolv"><?php echo _("Only ever query DNS servers configured below") ?></label>
+            </div>
+            <p id="no-resolv-description">
+              <small><?php echo _("Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers.") ?></small>
+              <br><small class="text-muted"><?php echo _("This option adds <code>no-resolv</code> to the dnsmasq configuration.") ?></small>
+            </p>
+          </div>
+
+          <div class="js-dhcp-upstream-servers">
+            <?php foreach ($upstreamServers as $server): ?>
+              <div class="form-group input-group input-group-sm js-dhcp-upstream-server">
+                <input type="text" class="form-control" name="server[]" value="<?php echo $server ?>">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
+                </div>
+              </div>
+            <?php endforeach ?>
+          </div>
+
+          <div class="form-group">
+            <label for="add-dhcp-upstream-server-field"><?php echo _("Add upstream DNS server") ?></label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="add-dhcp-upstream-server-field" aria-describedby="new-dhcp-upstream-server" placeholder="<?php printf(_("e.g. %s"), "208.67.222.222") ?>">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-outline-secondary js-add-dhcp-upstream-server"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+            <p id="new-dhcp-upstream-server" class="form-text text-muted">
+              <small>
+                <?php echo _("Format: ") ?>
+                <code class="text-muted"><?php echo htmlspecialchars("[/[<domain>]/[domain/]][<ipaddr>[#<port>][@<source-ip>|<interface>[#<port>]]"); ?></code>
+              </small>
+            </p>
+            <select class="custom-select custom-select-sm js-field-preset" data-field-preset-target="#add-dhcp-upstream-server-field">
+              <option value=""><?php echo _("Choose a hosted server") ?></option>
+              <option disabled="disabled"></option>
+              <?php echo optionsForSelect(dnsServers()) ?>
+            </select>
+          </div>
+        </div>
+
+        <template id="dhcp-upstream-server">
+          <div class="form-group input-group input-group-sm js-dhcp-upstream-server">
+            <input type="text" class="form-control" name="server[]" value="{{ server }}">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
+            </div>
+          </div>
+        </template>
+      </div><!-- /.row -->
+
+      <?php echo $buttons ?>
+
+    </div><!-- /.tab-pane | advanded tab -->
 
 		<div class="tab-pane fade" id="client-list">
 		<h4 class="mt-3 mb-3">Client list</h4>
@@ -175,16 +248,8 @@
       </div>
     </template>
 
-    <?php if (!RASPI_MONITOR_ENABLED) : ?>
-        <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
-        <?php
-        if ($dnsmasq_state) {
-            echo '<input type="submit" class="btn btn-warning" value="' . _("Stop dnsmasq") . '" name="stopdhcpd" />';
-        } else {
-            echo'<input type="submit" class="btn btn-success" value="' .  _("Start dnsmasq") . '" name="startdhcpd" />';
-        }
-        ?>
-    <?php endif ?>
+    <?php echo $buttons ?>
+
   </div>
 
   </div><!-- /.tab-content -->

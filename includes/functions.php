@@ -346,3 +346,27 @@ function mb_escapeshellarg($arg)
     return "\"$escaped_arg\"";
 }
 
+function dnsServers()
+{
+    $data = json_decode(file_get_contents("./config/dns-servers.json"));
+    return (array) $data;
+}
+
+function optionsForSelect($options)
+{
+    $html = "";
+    foreach ($options as $key => $value) {
+        // optgroup
+        if (is_array($value)) {
+            $html .= "<optgroup label=\"$key\">";
+            $html .= optionsForSelect($value);
+            $html .= "</optgroup>";
+        }
+        // option
+        else {
+            $key = is_int($key) ? $value : $key;
+            $html .= "<option value=\"$value\">$key</option>";
+        }
+    }
+    return $html;
+}
