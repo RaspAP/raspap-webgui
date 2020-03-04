@@ -165,6 +165,25 @@ $(document).on("submit", ".js-dhcp-settings-form", function(e) {
     $(".js-add-dhcp-upstream-server").trigger("click");
 });
 
+/**
+ * mark a form field, e.g. a select box, with the class `.js-field-preset`
+ * and give it an attribute `data-field-preset-target` with a text field's
+ * css selector.
+ *
+ * now, if the element marked `.js-field-preset` receives a `change` event,
+ * its value will be copied to all elements matching the selector in
+ * data-field-preset-target.
+ */
+$(document).on("change", ".js-field-preset", function(e) {
+    var selector = this.getAttribute("data-field-preset-target")
+    var value = "" + this.value
+    var syncValue = function(el) { el.value = value }
+
+    if (value.trim() === "") { return }
+
+    document.querySelectorAll(selector).forEach(syncValue)
+});
+
 $(document).on("click", "#gen_wpa_passphrase", function(e) {
     $('#txtwpapassphrase').val(genPassword(63));
 });
