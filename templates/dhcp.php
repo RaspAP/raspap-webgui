@@ -139,19 +139,17 @@
                 <button type="button" class="btn btn-outline-secondary js-add-dhcp-upstream-server"><i class="fas fa-plus"></i></button>
               </div>
             </div>
-            <div class="input-group">
-              <select class="custom-select custom-select-sm my-3 js-field-preset" data-field-preset-target="#add-dhcp-upstream-server-field">
-                <option value=""><?php echo _("Choose a hosted server") ?></option>
-                <option disabled="disabled"></option>
-                <?php echo optionsForSelect(dnsServers()) ?>
-              </select>
-            </div>
             <p id="new-dhcp-upstream-server" class="form-text text-muted">
               <small>
                 <?php echo _("Format: ") ?>
                 <code class="text-muted"><?php echo htmlspecialchars("[/[<domain>]/[domain/]][<ipaddr>[#<port>][@<source-ip>|<interface>[#<port>]]"); ?></code>
               </small>
             </p>
+            <select class="custom-select custom-select-sm js-field-preset" data-field-preset-target="#add-dhcp-upstream-server-field">
+              <option value=""><?php echo _("Choose a hosted server") ?></option>
+              <option disabled="disabled"></option>
+              <?php echo optionsForSelect(dnsServers()) ?>
+            </select>
           </div>
         </div>
 
