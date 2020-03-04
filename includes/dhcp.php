@@ -134,6 +134,7 @@ function DisplayDHCPConfig()
     $dhcpHost = empty($dhcpHost) ? [] : $dhcpHost;
     $dhcpHost = is_array($dhcpHost) ? $dhcpHost : [ $dhcpHost ];
     $upstreamServers = is_array($conf['server']) ? $conf['server'] : [ $conf['server'] ];
+    $upstreamServers = array_filter($upstreamServers);
 
     $DNS1 = '';
     $DNS2 = '';
