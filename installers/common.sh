@@ -108,6 +108,13 @@ function create_hostapd_scripts() {
     sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions"
 }
 
+# Generate dnsmasq logfile
+function create_dnsmasq_log() {
+    install_log "Creating dnsmasq logfile"
+    sudo touch /tmp/dnsmasq.log || install_error "Unable to create logfile /tmp/dnsmasq.log"
+    sudo chown dnsmasq:"$raspap_user" /tmp/dnsmasq.log || install_error "Unable to change file ownership"
+}
+
 # Generate lighttpd service control scripts
 function create_lighttpd_scripts() {
     install_log "Creating lighttpd control scripts"
@@ -440,6 +447,7 @@ function install_raspap() {
     download_latest_files
     change_file_ownership
     create_hostapd_scripts
+    create_dnsmasq_log
     create_lighttpd_scripts
     move_config_file
     default_configuration
