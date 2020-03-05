@@ -35,7 +35,7 @@
       <li class="nav-item"><a class="nav-link" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
       <li class="nav-item"><a class="nav-link" href="#static-leases" data-toggle="tab"><?php echo _("Static Leases") ?></a></li>
       <li class="nav-item"><a class="nav-link" href="#client-list" data-toggle="tab"><?php echo _("Client list"); ?></a></li>
-      <li class="nav-item"><a class="nav-link" href="#logfile-output" data-toggle="tab"><?php echo _("Logfile output"); ?></a></li>
+      <li class="nav-item"><a class="nav-link" href="#logfile-output" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -97,10 +97,7 @@
       </div>
     </div>
 
-    <?php //echo $buttons ?>
-
     </div><!-- /.tab-pane -->
-
 
     <!-- advanced tab -->
     <div class="tab-pane" id="advanced">
@@ -166,7 +163,7 @@
 
       <div class="row">
         <div class="col-md-6 mb-3">
-          <h5><?php echo _("Logfile output") ?></h5>
+          <h5><?php echo _("Logging") ?></h5>
             <p id="logfile-output-description">
               <small><?php echo _("Enable these options to log DHCP server activity.") ?></small>
            </p>
