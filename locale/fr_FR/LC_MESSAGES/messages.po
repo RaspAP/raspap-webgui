@@ -314,6 +314,33 @@ msgstr "Dnsmasq est en cours d'exécution"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq n'est pas en fonctionnement"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "De base"
