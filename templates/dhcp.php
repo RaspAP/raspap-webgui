@@ -35,6 +35,7 @@
       <li class="nav-item"><a class="nav-link" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
       <li class="nav-item"><a class="nav-link" href="#static-leases" data-toggle="tab"><?php echo _("Static Leases") ?></a></li>
       <li class="nav-item"><a class="nav-link" href="#client-list" data-toggle="tab"><?php echo _("Client list"); ?></a></li>
+      <li class="nav-item"><a class="nav-link" href="#logfile-output" data-toggle="tab"><?php echo _("Logfile output"); ?></a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -96,7 +97,7 @@
       </div>
     </div>
 
-    <?php echo $buttons ?>
+    <?php //echo $buttons ?>
 
     </div><!-- /.tab-pane -->
 
@@ -163,15 +164,29 @@
         </template>
       </div><!-- /.row -->
 
-      <?php echo $buttons ?>
-
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h5><?php echo _("Logfile output") ?></h5>
+            <p id="logfile-output-description">
+              <small><?php echo _("Enable these options to log DHCP server activity.") ?></small>
+           </p>
+           <div class="custom-control custom-switch">
+              <input class="custom-control-input" id="log-dhcp" type="checkbox" name="log-dhcp" value="1" <?php echo $conf['log-dhcp'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-requests">
+              <label class="custom-control-label" for="log-dhcp"><?php echo _("Log DHCP requests") ?></label>
+            </div>
+           <div class="custom-control custom-switch">
+             <input class="custom-control-input" id="log-queries" type="checkbox" name="log-queries" value="1" <?php echo $conf['log-queries'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-queries">
+             <label class="custom-control-label" for="log-queries"><?php echo _("Log DNS queries") ?></label>
+           </div>
+        </div>
+      </div><!-- /.row -->
     </div><!-- /.tab-pane | advanded tab -->
 
 		<div class="tab-pane fade" id="client-list">
 		<h4 class="mt-3 mb-3">Client list</h4>
 		<div class="row">
 		<div class="col-lg-12">
-			<div class="card">
+			<div class="card mb-3">
 			<div class="card-header"><?php echo _("Active DHCP leases"); ?></div>
 			<!-- /.panel-heading -->
 			<div class="card-body">
@@ -203,7 +218,10 @@
   </div><!-- /.row -->
   </div><!-- /.tab-pane -->
 
+  <!-- static leases tab -->
   <div class="tab-pane fade" id="static-leases">
+  <h4 class="mt-3 mb-3"><?php echo _("Static leases") ?></h4>
+
     <div class="dhcp-static-leases js-dhcp-static-lease-container">
       <?php foreach ($dhcpHost as $host) : ?>
           <?php list($mac, $ip) = array_map("trim", explode(",", $host)); ?>
@@ -221,7 +239,7 @@
       <?php endforeach ?>
     </div>
 
-    <h4 class="mt-3 mb-3"><?php echo _("Add static DHCP lease") ?></h4>
+    <h5 class="mt-3 mb-3"><?php echo _("Add static DHCP lease") ?></h5>
     <div class="row dhcp-static-lease-row js-new-dhcp-static-lease">
       <div class="col-md-5 col-xs-5">
         <input type="text" name="mac" value="" placeholder="<?php echo _("MAC address") ?>" class="form-control" autofocus="autofocus">
@@ -233,6 +251,7 @@
         <button type="button" class="btn btn-success js-add-dhcp-static-lease"><?php echo _("Add") ?></button>
       </div>
     </div>
+  </div><!-- /.tab-pane -->
 
     <template id="js-dhcp-static-lease-row">
       <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
@@ -248,7 +267,21 @@
       </div>
     </template>
 
-    <?php echo $buttons ?>
+
+  <!-- logfile output tab -->
+  <div class="tab-pane fade" id="logfile-output">
+    <h4 class="mb-3"><?php echo _("Logfile output"); ?></h4>
+		<div class="row">
+      <div class="form-group col-md-8">
+        <?php
+            $log = file_get_contents('/tmp/dnsmasq.log');
+            echo '<textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>'; 
+        ?>
+      </div><!-- /.col-md-8 -->
+    </div><!-- /.row -->
+  </div><!-- /.tab-pane -->
+
+  <?php echo $buttons ?>
 
   </div>
 

@@ -65,7 +65,12 @@ function DisplayDHCPConfig()
                 foreach ($_POST['server'] as $server) {
                     $config .= "server=$server".PHP_EOL;
                 }
-
+                if ($_POST['log-dhcp'] == "1") {
+                  $config .= "log-dhcp".PHP_EOL;
+                }
+                if ($_POST['log-queries'] == "1") {
+                  $config .= "log-queries".PHP_EOL;
+                }
                 if ($_POST['DNS1']) {
                     $config .= "dhcp-option=6," . $_POST['DNS1'];
                     if ($_POST['DNS2']) {
@@ -74,6 +79,7 @@ function DisplayDHCPConfig()
                     $config .= PHP_EOL;
                 }
 
+                $config .= "log-facility=/tmp/dnsmasq.log".PHP_EOL;
                 $config .= "conf-dir=/etc/dnsmasq.d".PHP_EOL;
 
                 file_put_contents("/tmp/dnsmasqdata", $config);
