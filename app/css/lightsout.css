@@ -1,7 +1,15 @@
+/*
+Theme Name: Lights Out
+Author: @billz
+Author URI: https://github.com/billz
+Description: A dark mode theme for RaspAP
+License: GNU General Public License v3.0
+*/
+
 html * {
-  font-family: Courier New, Andale Mono, monospace;
+  font-family: Helvetica,Arial,sans-serif;
   font-size: 1.0rem;
-  color: #2bcb02;
+  color: #afafaf;
 }
 
 h4 {
@@ -14,24 +22,25 @@ h5.card-title {
 
 .page-header {
   padding: 0 20px;
-  border-left: .01rem solid #2bcb02;
+  border-left: .01rem solid #d2d2d2;
 }
 
 .navbar-logo {
   margin-top: 0.5em;
   margin-left: 0.5em;
+  filter: brightness(70%);
 }
 
 .sidebar-light .nav-item.active .nav-link i {
-  color: #2bcb02;
+  color: #d2d2d2;
 }
 
 .sidebar .nav-item.active .nav-link {
-  font-weight: 700;
+  font-weight: 400;
 }
 
 #wrapper #content-wrapper #content {
-  background-color: #000;
+  background-color: #202020;
 }
 
 /* Small devices (portait phones, up to 576px) */
@@ -46,129 +55,110 @@ h5.card-title {
 }
 
 .topbar {
-  background-color: #000;
+  background-color: #202020;
 }
 
+.nav-tabs {
+  border-bottom: 1px solid #404040;
+}
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link {
   font-size: 1.0rem;
 }
 
-.nav-tabs>li.active>a,
-.nav-tabs>li.active>a:focus,
-.nav-tabs>li.active>a:hover,
-.nav-tabs .nav-link:hover,
-.input-group-addon {
-  color: #2bcb02;
-  cursor: default;
-  background-color: #000;
-  border: .01rem solid #2bcb02;
-  border-bottom-color: #2bcb02;
-  border-radius: inherit;
+.nav-tabs .nav-link:hover {
+  border-color: transparent;
 }
 
-.nav-tabs>li>a,.nav-tabs>li>a:hover {
-  border: .01rem solid #2bcb02;
-}
-
-.nav-tabs {
-  border-bottom: .01rem solid #2bcb02;
-}
-
-.navbar-default .navbar-brand,
 .navbar-default .navbar-brand:hover {
-  color: #2bcb02;
+  color: #d2d2d2;
 }
 
 .navbar-default .navbar-toggle {
-  border-color: #2bcb02;
+  border-color: #d2d2d2;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #2bcb02;
+  background-color: #d2d2d2;
 }
 
 .navbar-default .navbar-toggle:focus,
 .navbar-default .navbar-toggle:hover {
-  background-color: #000;
+  background-color: #202020;
 }
 
 .nav-tabs .nav-link.active {
-  color: #000;
-  background-color: #2bcb02;
-  border-color: #2bcb02;
-  border-radius: inherit;
-}
-
-.sidebar-brand-icon {
-  filter: invert(65%) sepia(900%) saturate(536%) hue-rotate(68deg) brightness(100%) contrast(120%);
+  color: #d2d2d2;
+  background-color: #141414;
+  border-color: #404040 #404040 #141414;
 }
 
 a:focus, a:hover {
-  color: #2bcb02;
+  color: #d2d2d2;
 }
 
 .card>.card-header {
-  border-color: #2bcb02;
-  background-color: #2bcb02;
-  color: #000;
-  border-radius: unset;
+  border-color: #404040;
+  background-color: #202020;
+  color: #202020;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .card>.card-header .fa {
-  color: #000;
+  color: #202020;
 }
 
 .card-header [class^="fa"] {
-  color: #000;
+  color: #afafaf;
   font-size: 1.0rem;
 }
 
 .col {
-  color: #000;
+  color: #afafaf;
 }
 
 .card, .card-body {
-  margin-bottom: 20px;
-  border: .01rem solid #2bcb02;
-  border-radius: 0px;
-  background-color: #000;
+  border-color: #343434;
+  border-radius: 3px;
+  background-color: #141414;
 }
 
 hr { 
-  border-top: .01rem solid #2bcb02;
+  border-top: .01rem solid #d2d2d2;
 }
 
 .page-header {
   font-size: 24pt;
   margin: 10px 0 20px;
-  border-bottom: .01rem solid #2bcb02;
+  border-bottom: .01rem solid #d2d2d2;
 }
 
 .sidebar-brand-text {
   text-transform: none;
-  color: #2bcb02;
+  color: #ac1b3d;
   font-size: 2.0rem;
   font-weight: 500;
   font-family: inherit;
 }
 
 .sidebar-light #sidebarToggle {
-  background-color: #2bcb02;
+  background-color: #202020;
+  border: 1px solid #eaecf4 !important
 }
 
 .sidebar-light #sidebarToggle::after {
-  color: #000;
+  color: #eaecf4;
 }
 
 .sidebar-light .nav-item .nav-link:hover i {
-  color: #81ff61;
+  color: #d2d2d2;
 }
 
 .sidebar-light #sidebarToggle:hover {
-  background-color: #81ff61;
+  background-color: #202020;
 }
 
 .sidebar.toggled .nav-item .nav-link span {
@@ -182,8 +172,8 @@ hr {
 }
 
 .card-footer {
-  background-color: #000;
-  border-top: .01rem solid #2bcb02;
+  background-color: #202020;
+  border-top: 0px;
 }
 
 .card>.card-header::before, .navbar-default::before {
@@ -194,30 +184,35 @@ hr {
   left: 0;
   bottom: 0;
   right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
   z-index: 2;
   background-size: 100% 2px, 3px 100%;
   pointer-events: none;
 }
 
 .sidebar-light, .sticky-footer {
-  background-color: #000;
+  background-color: #202020;
 }
 
 .sidebar-light .nav-item .nav-link i {
-  color: #2bcb02;
+  color: rgba(230, 230, 230, .3);
 }
 
 .sidebar .nav-item .nav-link {
   padding: 0.6rem;
+  padding-left: 1.2rem;
 }
 
 .sidebar-light hr.sidebar-divider {
-  border-top: .01rem solid #2bcb02;
+  border-top: 1px solid #404040;
+  padding-top: 0.5rem;
+}
+
+.sidebar .nav-item .nav-link span {
+  font-size: 1.0rem;
 }
 
 .topbar .topbar-divider {
-  border-right: .01rem solid #2bcb02;
+  border-right: 1px solid #404040;
 }
 
 .info-item {
@@ -226,9 +221,9 @@ hr {
 }
 
 .info-item-xs {
-  font-family: Verdana, Arial, sans-serif;
   font-size: 0.7rem;
-  margin-left: 0.3rem;
+  line-height: 1.5em;
+  margin-left: 0.5rem;
 }
 
 .info-item-wifi {
@@ -237,11 +232,11 @@ hr {
 }
 
 .label-warning {
-  background-color: #2bcb02;
+  background-color: #d2d2d2;
 }
 
 span.label.label-warning {
-  color: #000;
+  color: #202020;
 }
 
 .table>tbody>tr>td,
@@ -250,29 +245,27 @@ span.label.label-warning {
 .table>tfoot>tr>th,
 .table>thead>tr>td,
 .table>thead>tr>th {
-  background-color: #000;
-  border-top: .01rem solid #000;
+  background-color: #202020;
+  border-top: .01rem solid #202020;
 }
 
 .table>thead>tr>th {
   vertical-align: bottom;
-  border-bottom: .01rem solid #2bcb02;
+  border-bottom: .01rem solid #d2d2d2;
 }
 
 [class*="btn"], [class*="btn"]:focus, [class*="btn"]:disabled {
-  background-color: #000;
-  border-color: #2bcb02;
-  border-color: #2bcb02;
-  border-radius: 0px;
-  color: #2bcb02;
+  background-color: #202020;
+  border-color: #404040;
+  border-radius: 3px;
+  color: #d2d2d2;
 }
 
 [class*="btn"]:hover {
-  background-color: #81ff61;
-  border-color: #81ff61;
-  border-color: #81ff61;
-  border-radius: 0px;
-  color: #000;
+  border-radius: 3px;
+  color: #d2d2d2;
+  background-color: #202020;
+  border-color: #afafaf;
 }
 
 [class*="btn"]:hover .disabled {
@@ -281,72 +274,67 @@ span.label.label-warning {
 
 [class*="alert"] {
   border-radius: 0px;
-  color: #2bcb02;
-  background-color: #000;
-  border-color: #2bcb02;
+  color: #d2d2d2;
+  background-color: #202020;
+  border-color: #d2d2d2;
   border: 1px dashed;
 }
 
 .close {
   font-size: 18px;
   font-weight: normal;
-  text-shadow: 0 0px 0 #000;
+  text-shadow: 0 0px 0 #202020;
   opacity: 1;
 }
 
 .form-control,
 .form-control:focus {
-  color: #2bcb02;
-  background-color: #000;
-  border: .01rem solid #2bcb02;
-  border-radius: 0px;
-  transition: unset;
+  color: #d2d2d2;
+  background-color: #202020;
+  border: 1px solid #404040;
+  border-radius: 3px;
 }
 
 .form-control:disabled,
 .form-control[readonly] {
-  background-color: #000;
+  background-color: #202020;
   opacity: 0.5;
 }
 
-.form-control::-webkit-input-placeholder { color: #2bcb02; } 
-.form-control:-moz-placeholder { color: #2bcb02; }  
-.form-control::-moz-placeholder { color: #2bcb02; }  
-.form-control:-ms-input-placeholder { color: #2bcb02; }  
-.form-control::-ms-input-placeholder { color: #2bcb02; }
+.form-control::-webkit-input-placeholder { color: #d2d2d2; } 
+.form-control:-moz-placeholder { color: #d2d2d2; }  
+.form-control::-moz-placeholder { color: #d2d2d2; }  
+.form-control:-ms-input-placeholder { color: #d2d2d2; }  
+.form-control::-ms-input-placeholder { color: #d2d2d2; }
 
 input[type="text"]{
-color: #2bcb02 !important
+color: #d2d2d2 !important
 }
 
 .progress {
-  background-color: #000;
+  background-color: #202020;
   border-radius: 0px;
 }
 
 .progress-bar {
-  color: #000;
+  color: #202020;
 }
 
 .progress-bar.progress-bar-info.progress-bar-striped.active {
-  background-color: #2bcb02;
+  background-color: #d2d2d2;
 }
 
 .logoutput {
   width: 100%;
   height: 300px;
-  background-color: #000;
-  border-color: #2bcb02;
+  background-color: #202020;
+  border-color: #404040;
 }
 
 .webconsole {
   width: 100%;
-  height: 100%;
-  border-color: #2bcb02;
-  border-bottom: .01rem solid;
-  border-left: .01rem solid;
-  border-top: 0px;
-  border-right: .01rem solid;
+  height: 20rem;
+  border: 1px solid #404040;
 }
 
 #console {
@@ -354,11 +342,7 @@ color: #2bcb02 !important
 }
 
 tspan, rect {
-  fill: #2bcb02;
-}
-
-.service-status {
-  border-width: 0;
+  fill: #d2d2d2;
 }
 
 span.text.service-status {
@@ -366,16 +350,24 @@ span.text.service-status {
   margin-top: 0.2rem;
 }
 
+.text-muted {
+  font-size: 0.8rem;
+}
+
 .fas.fa-circle {
   font-size: 0.5rem;
 }
 
-i.fas.fa-circle.service-status-up {
-  color: #2bcb02;
+.service-status-up {
+  color: #a1ec38 !important;
 }
 
-i.fas.fa-circle.service-status-down {
-  color: #2bcb02;
+.service-status-warn {
+  color: #f6f044 !important;
+}
+
+.service-status-down {
+  color: #f80107 !important;
   animation: flash 1s linear infinite;
 }
 @keyframes flash {
@@ -385,8 +377,8 @@ i.fas.fa-circle.service-status-down {
 }
 
 pre {
-  background-color: #000;
-  border: #000;
+  background-color: #202020;
+  border: #202020;
 }
 
 .dhcp-static-leases {
@@ -419,4 +411,8 @@ canvas#divDBChartBandwidthhourly {
 
 .table {
   margin-bottom: 0rem;
+}
+
+.figure, .authors {
+  filter: brightness(70%) !important;
 }

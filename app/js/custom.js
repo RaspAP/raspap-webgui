@@ -356,7 +356,7 @@ function getCookie(cname) {
 var themes = {
     "default": "custom.css",
     "hackernews" : "hackernews.css",
-    "terminal" : "terminal.css",
+    "lightsout" : "lightsout.css",
 }
 
 // Toggles the sidebar navigation.
