@@ -10,282 +10,288 @@
 <?php $buttons = ob_get_clean(); ob_end_clean() ?>
 
 <div class="row">
-<div class="col-lg-12">
-  <div class="card">
-    <div class="card-header">
-      <div class="row">
-        <div class="col">
-          <i class="fas fa-exchange-alt mr-2"></i><?php echo _("DHCP Server"); ?>
-        </div>
-        <div class="col">
-          <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
-            <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
-            <span class="text service-status">dnsmasq <?php echo _($serviceStatus) ?></span>
-          </button>
-        </div>
-      </div><!-- /.row -->
-    </div><!-- /.card-header -->
-    <div class="card-body">
-    <?php $status->showMessages(); ?>
-    <form method="POST" action="?page=dhcpd_conf" class="js-dhcp-settings-form">
-    <?php echo CSRFTokenFieldTag() ?>
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs mb-4">
-      <li class="nav-item"><a class="nav-link active" href="#server-settings" data-toggle="tab"><?php echo _("Server settings"); ?></a></li>
-      <li class="nav-item"><a class="nav-link" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-      <li class="nav-item"><a class="nav-link" href="#static-leases" data-toggle="tab"><?php echo _("Static Leases") ?></a></li>
-      <li class="nav-item"><a class="nav-link" href="#client-list" data-toggle="tab"><?php echo _("Client list"); ?></a></li>
-      <li class="nav-item"><a class="nav-link" href="#logfile-output" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-    <div class="tab-pane active" id="server-settings">
-    <h4 class="mt-3">DHCP server settings</h4>
-    <div class="row">
-      <div class="form-group col-md-6">
-        <label for="code">Interface</label>
-        <select class="form-control" name="interface">
-        <?php foreach ($interfaces as $if) : ?>
-            <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
-            <?php $selected  = $if === $conf['interface'] ? ' selected="selected"' : '' ?>
-          <option value="<?php echo $if_quoted ?>"<?php echo $selected ?>><?php echo $if_quoted ?></option>
-        <?php endforeach ?>
-        </select>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-md-6">
-        <label for="code"><?php echo _("Starting IP Address"); ?></label>
-        <input type="text" class="form-control"name="RangeStart" value="<?php echo htmlspecialchars($RangeStart, ENT_QUOTES); ?>" />
-      </div>
-    </div>
+  <div class="col-lg-12">
+    <div class="card">
 
-    <div class="row">
-      <div class="form-group col-md-6">
-        <label for="code"><?php echo _("Ending IP Address"); ?></label>
-        <input type="text" class="form-control" name="RangeEnd" value="<?php echo htmlspecialchars($RangeEnd, ENT_QUOTES); ?>" />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col-xs-3 col-sm-3">
-        <label for="code"><?php echo _("Lease Time"); ?></label>
-        <input type="text" class="form-control" name="RangeLeaseTime" value="<?php echo htmlspecialchars($arrRangeLeaseTime[1], ENT_QUOTES); ?>" />
-      </div>
-      <div class="col-xs-3 col-sm-3">
-        <label for="code"><?php echo _("Interval"); ?></label>
-        <select name="RangeLeaseTimeUnits" class="form-control" >
-          <option value="m"<?php echo $mselected; ?>><?php echo _("Minute(s)"); ?></option>
-          <option value="h"<?php echo $hselected; ?>><?php echo _("Hour(s)"); ?></option>
-          <option value="d"<?php echo $dselected; ?>><?php echo _("Day(s)"); ?></option>
-          <option value="infinite"<?php echo $infiniteselected; ?>><?php echo _("Infinite"); ?></option>
-        </select>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="form-group col-md-6">
-        <label for="code"><?php echo _("DNS Server"); ?> 1</label>
-        <input type="text" class="form-control"name="DNS1" value="<?php echo htmlspecialchars($DNS1, ENT_QUOTES); ?>" />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col-md-6">
-        <label for="code"><?php echo _("DNS Server"); ?> 2</label>
-        <input type="text" class="form-control" name="DNS2" value="<?php echo htmlspecialchars($DNS2, ENT_QUOTES); ?>" />
-      </div>
-    </div>
-
-    </div><!-- /.tab-pane -->
-
-    <!-- advanced tab -->
-    <div class="tab-pane" id="advanced">
-
-      <div class="row">
-        <div class="col-md-6">
-          <h5><?php echo _("Upstream DNS servers") ?></h5>
-
-          <div class="input-group">
-            <input type="hidden" name="no-resolv" value="0">
-            <div class="custom-control custom-switch">
-              <input class="custom-control-input" id="no-resolv" type="checkbox" name="no-resolv" value="1" <?php echo $conf['no-resolv'] ? ' checked="checked"' : "" ?> aria-describedby="no-resolv-description">
-              <label class="custom-control-label" for="no-resolv"><?php echo _("Only ever query DNS servers configured below") ?></label>
-            </div>
-            <p id="no-resolv-description">
-              <small><?php echo _("Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers.") ?></small>
-              <br><small class="text-muted"><?php echo _("This option adds <code>no-resolv</code> to the dnsmasq configuration.") ?></small>
-            </p>
+      <div class="card-header">
+        <div class="row">
+          <div class="col">
+            <i class="fas fa-exchange-alt mr-2"></i><?php echo _("DHCP Server"); ?>
           </div>
+          <div class="col">
+            <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+              <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
+              <span class="text service-status">dnsmasq <?php echo _($serviceStatus) ?></span>
+            </button>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.card-header -->
 
-          <div class="js-dhcp-upstream-servers">
-            <?php foreach ($upstreamServers as $server): ?>
-              <div class="form-group input-group input-group-sm js-dhcp-upstream-server">
-                <input type="text" class="form-control" name="server[]" value="<?php echo $server ?>">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
+      <div class="card-body">
+        <?php $status->showMessages(); ?>
+        <form method="POST" action="?page=dhcpd_conf" class="js-dhcp-settings-form">
+          <?php echo CSRFTokenFieldTag() ?>
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs mb-4">
+            <li class="nav-item"><a class="nav-link active" href="#server-settings" data-toggle="tab"><?php echo _("Server settings"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#static-leases" data-toggle="tab"><?php echo _("Static Leases") ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#client-list" data-toggle="tab"><?php echo _("Client list"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#logfile-output" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
+          </ul>
+          <!-- Tab panes -->
+
+          <div class="tab-content">
+
+            <div class="tab-pane active" id="server-settings">
+              <h4 class="mt-3">DHCP server settings</h4>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="code">Interface</label>
+                  <select class="form-control" name="interface">
+                    <?php foreach ($interfaces as $if) : ?>
+                      <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+                      <?php $selected  = $if === $conf['interface'] ? ' selected="selected"' : '' ?>
+                      <option value="<?php echo $if_quoted ?>"<?php echo $selected ?>><?php echo $if_quoted ?></option>
+                    <?php endforeach ?>
+                  </select>
                 </div>
               </div>
-            <?php endforeach ?>
-          </div>
-
-          <div class="form-group">
-            <label for="add-dhcp-upstream-server-field"><?php echo _("Add upstream DNS server") ?></label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="add-dhcp-upstream-server-field" aria-describedby="new-dhcp-upstream-server" placeholder="<?php printf(_("e.g. %s"), "208.67.222.222") ?>">
-              <div class="input-group-append">
-                <button type="button" class="btn btn-outline-secondary js-add-dhcp-upstream-server"><i class="fas fa-plus"></i></button>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="code"><?php echo _("Starting IP Address"); ?></label>
+                  <input type="text" class="form-control"name="RangeStart" value="<?php echo htmlspecialchars($RangeStart, ENT_QUOTES); ?>" />
+                </div>
               </div>
-            </div>
-            <p id="new-dhcp-upstream-server" class="form-text text-muted">
-              <small>
-                <?php echo _("Format: ") ?>
-                <code class="text-muted"><?php echo htmlspecialchars("[/[<domain>]/[domain/]][<ipaddr>[#<port>][@<source-ip>|<interface>[#<port>]]"); ?></code>
-              </small>
-            </p>
-            <select class="custom-select custom-select-sm js-field-preset" data-field-preset-target="#add-dhcp-upstream-server-field">
-              <option value=""><?php echo _("Choose a hosted server") ?></option>
-              <option disabled="disabled"></option>
-              <?php echo optionsForSelect(dnsServers()) ?>
-            </select>
-          </div>
-        </div>
 
-        <template id="dhcp-upstream-server">
-          <div class="form-group input-group input-group-sm js-dhcp-upstream-server">
-            <input type="text" class="form-control" name="server[]" value="{{ server }}">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
-            </div>
-          </div>
-        </template>
-      </div><!-- /.row -->
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="code"><?php echo _("Ending IP Address"); ?></label>
+                  <input type="text" class="form-control" name="RangeEnd" value="<?php echo htmlspecialchars($RangeEnd, ENT_QUOTES); ?>" />
+                </div>
+              </div>
 
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <h5><?php echo _("Logging") ?></h5>
-            <p id="logfile-output-description">
-              <small><?php echo _("Enable these options to log DHCP server activity.") ?></small>
-           </p>
-           <div class="custom-control custom-switch">
-              <input class="custom-control-input" id="log-dhcp" type="checkbox" name="log-dhcp" value="1" <?php echo $conf['log-dhcp'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-requests">
-              <label class="custom-control-label" for="log-dhcp"><?php echo _("Log DHCP requests") ?></label>
-            </div>
-           <div class="custom-control custom-switch">
-             <input class="custom-control-input" id="log-queries" type="checkbox" name="log-queries" value="1" <?php echo $conf['log-queries'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-queries">
-             <label class="custom-control-label" for="log-queries"><?php echo _("Log DNS queries") ?></label>
-           </div>
-        </div>
-      </div><!-- /.row -->
-    </div><!-- /.tab-pane | advanded tab -->
+              <div class="row">
+                <div class="form-group col-xs-3 col-sm-3">
+                  <label for="code"><?php echo _("Lease Time"); ?></label>
+                  <input type="text" class="form-control" name="RangeLeaseTime" value="<?php echo htmlspecialchars($arrRangeLeaseTime[1], ENT_QUOTES); ?>" />
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                  <label for="code"><?php echo _("Interval"); ?></label>
+                  <select name="RangeLeaseTimeUnits" class="form-control" >
+                    <option value="m"<?php echo $mselected; ?>><?php echo _("Minute(s)"); ?></option>
+                    <option value="h"<?php echo $hselected; ?>><?php echo _("Hour(s)"); ?></option>
+                    <option value="d"<?php echo $dselected; ?>><?php echo _("Day(s)"); ?></option>
+                    <option value="infinite"<?php echo $infiniteselected; ?>><?php echo _("Infinite"); ?></option>
+                  </select>
+                </div>
+              </div>
 
-		<div class="tab-pane fade" id="client-list">
-		<h4 class="mt-3 mb-3">Client list</h4>
-		<div class="row">
-		<div class="col-lg-12">
-			<div class="card mb-3">
-			<div class="card-header"><?php echo _("Active DHCP leases"); ?></div>
-			<!-- /.panel-heading -->
-			<div class="card-body">
-				<div class="table-responsive">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th><?php echo _("Expire time"); ?></th>
-								<th><?php echo _("MAC Address"); ?></th>
-								<th><?php echo _("IP Address"); ?></th>
-								<th><?php echo _("Host name"); ?></th>
-								<th><?php echo _("Client ID"); ?></th>
-							</tr>
-						</thead>
-						<tbody>
-						<?php foreach ($leases as $lease) : ?>
-							<tr>
-								<?php foreach (explode(' ', $lease) as $prop) : ?>
-									<td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
-								<?php endforeach ?> 
-							</tr>
-						<?php endforeach ?>
-						</tbody>
-					</table>
-				</div><!-- /.table-responsive -->
-			</div><!-- /.card-body -->
-    </div><!-- /.card -->
-  </div><!-- /.col-lg-12 -->
-  </div><!-- /.row -->
-  </div><!-- /.tab-pane -->
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="code"><?php echo _("DNS Server"); ?> 1</label>
+                  <input type="text" class="form-control"name="DNS1" value="<?php echo htmlspecialchars($DNS1, ENT_QUOTES); ?>" />
+                </div>
+              </div>
 
-  <!-- static leases tab -->
-  <div class="tab-pane fade" id="static-leases">
-  <h4 class="mt-3 mb-3"><?php echo _("Static leases") ?></h4>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="code"><?php echo _("DNS Server"); ?> 2</label>
+                  <input type="text" class="form-control" name="DNS2" value="<?php echo htmlspecialchars($DNS2, ENT_QUOTES); ?>" />
+                </div>
+              </div>
 
-    <div class="dhcp-static-leases js-dhcp-static-lease-container">
-      <?php foreach ($dhcpHost as $host) : ?>
-          <?php list($mac, $ip) = array_map("trim", explode(",", $host)); ?>
-            <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
-              <div class="col-md-5 col-xs-5">
-                <input type="text" name="static_leases[mac][]" value="<?php echo htmlspecialchars($mac, ENT_QUOTES) ?>" placeholder="<?php echo _("MAC address") ?>" class="form-control">
+            </div><!-- /.tab-pane -->
+
+            <!-- advanced tab -->
+            <div class="tab-pane" id="advanced">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <h5><?php echo _("Upstream DNS servers") ?></h5>
+
+                  <div class="input-group">
+                    <input type="hidden" name="no-resolv" value="0">
+                    <div class="custom-control custom-switch">
+                      <input class="custom-control-input" id="no-resolv" type="checkbox" name="no-resolv" value="1" <?php echo $conf['no-resolv'] ? ' checked="checked"' : "" ?> aria-describedby="no-resolv-description">
+                      <label class="custom-control-label" for="no-resolv"><?php echo _("Only ever query DNS servers configured below") ?></label>
+                    </div>
+                    <p id="no-resolv-description">
+                      <small><?php echo _("Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers.") ?></small>
+                      <br><small class="text-muted"><?php echo _("This option adds <code>no-resolv</code> to the dnsmasq configuration.") ?></small>
+                    </p>
+                  </div>
+
+                  <div class="js-dhcp-upstream-servers">
+                    <?php foreach ($upstreamServers as $server): ?>
+                      <div class="form-group input-group input-group-sm js-dhcp-upstream-server">
+                        <input type="text" class="form-control" name="server[]" value="<?php echo $server ?>">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
+                        </div>
+                      </div>
+                    <?php endforeach ?>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="add-dhcp-upstream-server-field"><?php echo _("Add upstream DNS server") ?></label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="add-dhcp-upstream-server-field" aria-describedby="new-dhcp-upstream-server" placeholder="<?php printf(_("e.g. %s"), "208.67.222.222") ?>">
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary js-add-dhcp-upstream-server"><i class="fas fa-plus"></i></button>
+                      </div>
+                    </div>
+                    <p id="new-dhcp-upstream-server" class="form-text text-muted">
+                      <small>
+                        <?php echo _("Format: ") ?>
+                        <code class="text-muted"><?php echo htmlspecialchars("[/[<domain>]/[domain/]][<ipaddr>[#<port>][@<source-ip>|<interface>[#<port>]]"); ?></code>
+                      </small>
+                    </p>
+                    <select class="custom-select custom-select-sm js-field-preset" data-field-preset-target="#add-dhcp-upstream-server-field">
+                      <option value=""><?php echo _("Choose a hosted server") ?></option>
+                      <option disabled="disabled"></option>
+                      <?php echo optionsForSelect(dnsServers()) ?>
+                    </select>
+                  </div>
+                </div>
+
+                <template id="dhcp-upstream-server">
+                  <div class="form-group input-group input-group-sm js-dhcp-upstream-server">
+                    <input type="text" class="form-control" name="server[]" value="{{ server }}">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
+                    </div>
+                  </div>
+                </template>
+              </div><!-- /.row -->
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <h5><?php echo _("Logging") ?></h5>
+                  <p id="logfile-output-description">
+                    <small><?php echo _("Enable these options to log DHCP server activity.") ?></small>
+                  </p>
+                  <div class="custom-control custom-switch">
+                    <input class="custom-control-input" id="log-dhcp" type="checkbox" name="log-dhcp" value="1" <?php echo $conf['log-dhcp'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-requests">
+                    <label class="custom-control-label" for="log-dhcp"><?php echo _("Log DHCP requests") ?></label>
+                  </div>
+                  <div class="custom-control custom-switch">
+                    <input class="custom-control-input" id="log-queries" type="checkbox" name="log-queries" value="1" <?php echo $conf['log-queries'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-queries">
+                    <label class="custom-control-label" for="log-queries"><?php echo _("Log DNS queries") ?></label>
+                  </div>
+                </div>
+              </div><!-- /.row -->
+
+            </div><!-- /.tab-pane | advanded tab -->
+
+            <div class="tab-pane fade" id="client-list">
+              <h4 class="mt-3 mb-3">Client list</h4>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card mb-3">
+                    <div class="card-header"><?php echo _("Active DHCP leases"); ?></div>
+                    <!-- /.panel-heading -->
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th><?php echo _("Expire time"); ?></th>
+                              <th><?php echo _("MAC Address"); ?></th>
+                              <th><?php echo _("IP Address"); ?></th>
+                              <th><?php echo _("Host name"); ?></th>
+                              <th><?php echo _("Client ID"); ?></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php foreach ($leases as $lease) : ?>
+                            <tr>
+                              <?php foreach (explode(' ', $lease) as $prop) : ?>
+                              <td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
+                              <?php endforeach ?>
+                            </tr>
+                            <?php endforeach ?>
+                          </tbody>
+                        </table>
+                      </div><!-- /.table-responsive -->
+                    </div><!-- /.card-body -->
+                  </div><!-- /.card -->
+                </div><!-- /.col-lg-12 -->
+              </div><!-- /.row -->
+            </div><!-- /.tab-pane -->
+
+            <!-- static leases tab -->
+            <div class="tab-pane fade" id="static-leases">
+              <h4 class="mt-3 mb-3"><?php echo _("Static leases") ?></h4>
+
+              <div class="dhcp-static-leases js-dhcp-static-lease-container">
+                <?php foreach ($dhcpHost as $host) : ?>
+                  <?php list($mac, $ip) = array_map("trim", explode(",", $host)); ?>
+                  <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
+                    <div class="col-md-5 col-xs-5">
+                      <input type="text" name="static_leases[mac][]" value="<?php echo htmlspecialchars($mac, ENT_QUOTES) ?>" placeholder="<?php echo _("MAC address") ?>" class="form-control">
+                    </div>
+                    <div class="col-md-5 col-xs-4">
+                      <input type="text" name="static_leases[ip][]" value="<?php echo htmlspecialchars($ip, ENT_QUOTES) ?>" placeholder="<?php echo _("IP address") ?>" class="form-control">
+                    </div>
+                    <div class="col-md-2 col-xs-3">
+                      <button type="button" class="btn btn-danger js-remove-dhcp-static-lease"><?php echo _("Remove") ?></button>
+                    </div>
+                  </div>
+                <?php endforeach ?>
+              </div>
+
+              <h5 class="mt-3 mb-3"><?php echo _("Add static DHCP lease") ?></h5>
+              <div class="row dhcp-static-lease-row js-new-dhcp-static-lease">
+                <div class="col-md-5 col-xs-5">
+                  <input type="text" name="mac" value="" placeholder="<?php echo _("MAC address") ?>" class="form-control" autofocus="autofocus">
                 </div>
                 <div class="col-md-5 col-xs-4">
-                  <input type="text" name="static_leases[ip][]" value="<?php echo htmlspecialchars($ip, ENT_QUOTES) ?>" placeholder="<?php echo _("IP address") ?>" class="form-control">
+                  <input type="text" name="ip" value="" placeholder="<?php echo _("IP address") ?>" class="form-control">
                 </div>
                 <div class="col-md-2 col-xs-3">
-                  <button type="button" class="btn btn-danger js-remove-dhcp-static-lease"><?php echo _("Remove") ?></button>
+                  <button type="button" class="btn btn-success js-add-dhcp-static-lease"><?php echo _("Add") ?></button>
                 </div>
-            </div>
-      <?php endforeach ?>
-    </div>
+              </div>
+            </div><!-- /.tab-pane -->
 
-    <h5 class="mt-3 mb-3"><?php echo _("Add static DHCP lease") ?></h5>
-    <div class="row dhcp-static-lease-row js-new-dhcp-static-lease">
-      <div class="col-md-5 col-xs-5">
-        <input type="text" name="mac" value="" placeholder="<?php echo _("MAC address") ?>" class="form-control" autofocus="autofocus">
-      </div>
-      <div class="col-md-5 col-xs-4">
-        <input type="text" name="ip" value="" placeholder="<?php echo _("IP address") ?>" class="form-control">
-      </div>
-      <div class="col-md-2 col-xs-3">
-        <button type="button" class="btn btn-success js-add-dhcp-static-lease"><?php echo _("Add") ?></button>
-      </div>
-    </div>
-  </div><!-- /.tab-pane -->
-
-    <template id="js-dhcp-static-lease-row">
-      <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
-        <div class="col-md-5 col-xs-5">
-          <input type="text" name="static_leases[mac][]" value="{{ mac }}" placeholder="<?php echo _("MAC address") ?>" class="form-control">
-        </div>
-        <div class="col-md-5 col-xs-4">
-          <input type="text" name="static_leases[ip][]" value="{{ ip }}" placeholder="<?php echo _("IP address") ?>" class="form-control">
-        </div>
-        <div class="col-md-2 col-xs-3">
-          <button type="button" class="btn btn-warning js-remove-dhcp-static-lease"><?php echo _("Remove") ?></button>
-        </div>
-      </div>
-    </template>
+            <template id="js-dhcp-static-lease-row">
+              <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
+                <div class="col-md-5 col-xs-5">
+                  <input type="text" name="static_leases[mac][]" value="{{ mac }}" placeholder="<?php echo _("MAC address") ?>" class="form-control">
+                </div>
+                <div class="col-md-5 col-xs-4">
+                  <input type="text" name="static_leases[ip][]" value="{{ ip }}" placeholder="<?php echo _("IP address") ?>" class="form-control">
+                </div>
+                <div class="col-md-2 col-xs-3">
+                  <button type="button" class="btn btn-warning js-remove-dhcp-static-lease"><?php echo _("Remove") ?></button>
+                </div>
+              </div>
+            </template>
 
 
-  <!-- logfile output tab -->
-  <div class="tab-pane fade" id="logfile-output">
-    <h4 class="mb-3"><?php echo _("Logfile output"); ?></h4>
-		<div class="row">
-      <div class="form-group col-md-8">
-        <?php
-            $log = file_get_contents('/tmp/dnsmasq.log');
-            echo '<textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>'; 
-        ?>
-      </div><!-- /.col-md-8 -->
-    </div><!-- /.row -->
-  </div><!-- /.tab-pane -->
+            <!-- logfile output tab -->
+            <div class="tab-pane fade" id="logfile-output">
+              <h4 class="mb-3"><?php echo _("Logfile output"); ?></h4>
+              <div class="row">
+                <div class="form-group col-md-8">
+                  <?php
+                  $log = file_get_contents('/tmp/dnsmasq.log');
+                  echo '<textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
+                  ?>
+                </div><!-- /.col-md-8 -->
+              </div><!-- /.row -->
+            </div><!-- /.tab-pane -->
 
-  <?php echo $buttons ?>
+          </div><!-- /.tab-content -->
 
-  </div>
+          <?php echo $buttons ?>
+        </form>
+      </div><!-- ./ card-body -->
 
-  </div><!-- /.tab-content -->
-</form>
-</div><!-- ./ card-body -->
-<div class="card-footer"> <?php echo _("Information provided by Dnsmasq"); ?></div>
-  </div><!-- /.card -->
-</div><!-- /.col-lg-12 -->
+      <div class="card-footer"> <?php echo _("Information provided by Dnsmasq"); ?></div>
+
+    </div><!-- /.card -->
+  </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
