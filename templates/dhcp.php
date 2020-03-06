@@ -43,11 +43,11 @@
 
           <!-- Tab panes -->
           <div class="tab-content">
-            <?php echo renderTemplate("dhcp/general", $data) ?>
-            <?php echo renderTemplate("dhcp/advanced", $data) ?>
-            <?php echo renderTemplate("dhcp/clients", $data) ?>
-            <?php echo renderTemplate("dhcp/static_leases", $data) ?>
-            <?php echo renderTemplate("dhcp/logging", $data) ?>
+            <?php echo renderTemplate("dhcp/general", $__template_data) ?>
+            <?php echo renderTemplate("dhcp/advanced", $__template_data) ?>
+            <?php echo renderTemplate("dhcp/clients", $__template_data) ?>
+            <?php echo renderTemplate("dhcp/static_leases", $__template_data) ?>
+            <?php echo renderTemplate("dhcp/logging", $__template_data) ?>
           </div><!-- /.tab-content -->
 
           <?php echo $buttons ?>
