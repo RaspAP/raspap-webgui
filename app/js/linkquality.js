@@ -1,12 +1,12 @@
 // Link quality gauge for ChartJS
 
-// Support for dark terminal theme
+// Support for dark theme
 theme = getCookie('theme');
-if (theme == 'terminal.css') {
-  var bgColor1 = '#000';
-  var bgColor2 = '#000';
-  var borderColor = 'rgba(46, 230, 0, 1)';
-  var labelColor = 'rgba(46, 230, 0, 1)';
+if (theme == 'lightsout.css') {
+  var bgColor1 = '#141414';
+  var bgColor2 = '#141414';
+  var borderColor = 'rgba(37, 153, 63, 1)';
+  var labelColor = 'rgba(37, 153, 63, 1)';
 } else {
   var bgColor1 = '#d4edda';
   var bgColor2 = '#eaecf4';
