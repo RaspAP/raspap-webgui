@@ -271,15 +271,15 @@ function ConvertToSecurity($security)
 /**
  * Renders a simple PHP template
  */
-function renderTemplate($name, $data = [])
+function renderTemplate($name, $__template_data = [])
 {
     $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
     if (!file_exists($file)) {
         return "template $name ($file) not found";
     }
 
-    if (is_array($data)) {
-        extract($data);
+    if (is_array($__template_data)) {
+        extract($__template_data);
     }
 
     ob_start();
