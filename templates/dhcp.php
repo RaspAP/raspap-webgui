@@ -33,7 +33,7 @@
           <?php echo CSRFTokenFieldTag() ?>
 
           <!-- Nav tabs -->
-          <ul class="nav nav-tabs mb-4">
+          <ul class="nav nav-tabs mb-3">
             <li class="nav-item"><a class="nav-link active" href="#server-settings" data-toggle="tab"><?php echo _("Server settings"); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="#static-leases" data-toggle="tab"><?php echo _("Static Leases") ?></a></li>
@@ -166,23 +166,6 @@
                 </template>
               </div><!-- /.row -->
 
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <h5><?php echo _("Logging") ?></h5>
-                  <p id="logfile-output-description">
-                    <small><?php echo _("Enable these options to log DHCP server activity.") ?></small>
-                  </p>
-                  <div class="custom-control custom-switch">
-                    <input class="custom-control-input" id="log-dhcp" type="checkbox" name="log-dhcp" value="1" <?php echo $conf['log-dhcp'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-requests">
-                    <label class="custom-control-label" for="log-dhcp"><?php echo _("Log DHCP requests") ?></label>
-                  </div>
-                  <div class="custom-control custom-switch">
-                    <input class="custom-control-input" id="log-queries" type="checkbox" name="log-queries" value="1" <?php echo $conf['log-queries'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-queries">
-                    <label class="custom-control-label" for="log-queries"><?php echo _("Log DNS queries") ?></label>
-                  </div>
-                </div>
-              </div><!-- /.row -->
-
             </div><!-- /.tab-pane | advanded tab -->
 
             <div class="tab-pane fade" id="client-list">
@@ -273,15 +256,22 @@
 
             <!-- logfile output tab -->
             <div class="tab-pane fade" id="logfile-output">
-              <h4 class="mb-3"><?php echo _("Logfile output"); ?></h4>
-              <div class="row">
-                <div class="form-group col-md-8">
-                  <?php
-                  $log = file_get_contents('/tmp/dnsmasq.log');
-                  echo '<textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
-                  ?>
-                </div><!-- /.col-md-8 -->
-              </div><!-- /.row -->
+              <h4><?php echo _("Logging") ?></h4>
+              <p><?php echo _("Enable these options to log DHCP server activity.") ?></p>
+
+              <div class="custom-control custom-switch">
+                <input class="custom-control-input" id="log-dhcp" type="checkbox" name="log-dhcp" value="1" <?php echo $conf['log-dhcp'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-requests">
+                <label class="custom-control-label" for="log-dhcp"><?php echo _("Log DHCP requests") ?></label>
+              </div>
+              <div class="custom-control custom-switch">
+                <input class="custom-control-input" id="log-queries" type="checkbox" name="log-queries" value="1" <?php echo $conf['log-queries'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-queries">
+                <label class="custom-control-label" for="log-queries"><?php echo _("Log DNS queries") ?></label>
+              </div>
+
+              <?php
+              $log = file_get_contents('/tmp/dnsmasq.log');
+              echo '<textarea class="logoutput my-3">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
+              ?>
             </div><!-- /.tab-pane -->
 
           </div><!-- /.tab-content -->
