@@ -146,11 +146,11 @@ hr {
 
 .sidebar-light #sidebarToggle {
   background-color: #202020;
-  border: 1px solid #eaecf4 !important
+  border: 1px solid #afafaf !important
 }
 
 .sidebar-light #sidebarToggle::after {
-  color: #eaecf4;
+  color: #afafaf;
 }
 
 .sidebar-light .nav-item .nav-link:hover i {
