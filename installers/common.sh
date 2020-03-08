@@ -169,7 +169,8 @@ function download_latest_files() {
     fi
 
     install_log "Cloning latest files from github"
-    git clone --depth 1 https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
+    # git clone --depth 1 https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
+    git clone --single-branch --branch bridge-mode --depth 1 https://github.com/Taikuh/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
 }
 
@@ -209,6 +210,11 @@ function check_for_old_configs() {
         sudo cp /etc/rc.local "$raspap_dir/backups/rc.local.`date +%F-%R`"
         sudo ln -sf "$raspap_dir/backups/rc.local.`date +%F-%R`" "$raspap_dir/backups/rc.local"
     fi
+
+    for file in /etc/systemd/network/raspap-*.net*; do
+        sudo cp "$file" "${raspap_dir}/backups/${file}.`date +%F-%R`"
+        sudo ln -sf "${raspap_dir}/backups/${file}.`date +%F-%R`" "${raspap_dir}/backups/${file}"
+    done
 }
 
 # Move configuration file to the correct location
@@ -234,6 +240,11 @@ function default_configuration() {
     sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
 
     [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
+
+    sudo systemctl stop systemd-networkd
+    sudo systemctl disable systemd-networkd
+    sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || install_error "Unable to move br0 netdev file"
+    sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || install_error "Unable to move br0 member file"
 
     if [ ! -f "$webroot_dir/includes/config.php" ]; then
         sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
