@@ -8,6 +8,7 @@ raspap_dir="/etc/raspap"
 raspap_user="www-data"
 webroot_dir="/var/www/html"
 version=`sed 's/\..*//' /etc/debian_version`
+git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
 # Determine Raspbian version, set default home location for lighttpd and 
 # php package to install 
@@ -176,7 +177,7 @@ function download_latest_files() {
     fi
 
     install_log "Cloning latest files from github"
-    git clone --depth 1 https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
+    git clone --branch $branch --depth 1 $git_source_url /tmp/raspap-webgui || install_error "Unable to download files from github"
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
 }
 
