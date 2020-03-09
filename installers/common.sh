@@ -8,6 +8,7 @@ raspap_dir="/etc/raspap"
 raspap_user="www-data"
 webroot_dir="/var/www/html"
 version=`sed 's/\..*//' /etc/debian_version`
+git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
 # Determine Raspbian version, set default home location for lighttpd and 
 # php package to install 
@@ -108,6 +109,13 @@ function create_hostapd_scripts() {
     sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions"
 }
 
+# Generate dnsmasq logfile
+function create_dnsmasq_log() {
+    install_log "Creating dnsmasq logfile"
+    sudo touch /tmp/dnsmasq.log || install_error "Unable to create logfile /tmp/dnsmasq.log"
+    sudo chown dnsmasq:"$raspap_user" /tmp/dnsmasq.log || install_error "Unable to change file ownership"
+}
+
 # Generate lighttpd service control scripts
 function create_lighttpd_scripts() {
     install_log "Creating lighttpd control scripts"
@@ -169,8 +177,8 @@ function download_latest_files() {
     fi
 
     install_log "Cloning latest files from github"
-    # git clone --depth 1 https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
-    git clone --single-branch --branch bridge-mode --depth 1 https://github.com/Taikuh/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
+    git clone --single-branch $branch --depth 1 $git_source_url /tmp/raspap-webgui || install_error "Unable to download files from github"
+
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
 }
 
@@ -256,6 +264,8 @@ function default_configuration() {
     'echo 1 > \/proc\/sys\/net\/ipv4\/ip_forward #RASPAP'
     'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
     'iptables -t nat -A POSTROUTING -s 192.168.50.0\/24 ! -d 192.168.50.0\/24 -j MASQUERADE #RASPAP'
+    'chown dnsmasq:www-data \/tmp\/dnsmasq.log #RASPAP'
+    'chown root:www-data \/tmp\/hostapd.log #RASPAP'
     )
     
     for line in "${lines[@]}"; do
@@ -451,6 +461,7 @@ function install_raspap() {
     download_latest_files
     change_file_ownership
     create_hostapd_scripts
+    create_dnsmasq_log
     create_lighttpd_scripts
     move_config_file
     default_configuration

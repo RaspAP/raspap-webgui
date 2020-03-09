@@ -1,3 +1,11 @@
+/*
+Theme Name: HackerNews
+Author: @billz
+Author URI: https://github.com/billz
+Description: A theme inspired by HackerNews for RaspAP
+License: GNU General Public License v3.0
+*/
+
 html * {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 0.9rem;
