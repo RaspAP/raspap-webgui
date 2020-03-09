@@ -108,13 +108,6 @@ function create_hostapd_scripts() {
     sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions"
 }
 
-# Generate dnsmasq logfile
-function create_dnsmasq_log() {
-    install_log "Creating dnsmasq logfile"
-    sudo touch /tmp/dnsmasq.log || install_error "Unable to create logfile /tmp/dnsmasq.log"
-    sudo chown dnsmasq:"$raspap_user" /tmp/dnsmasq.log || install_error "Unable to change file ownership"
-}
-
 # Generate lighttpd service control scripts
 function create_lighttpd_scripts() {
     install_log "Creating lighttpd control scripts"
@@ -252,8 +245,6 @@ function default_configuration() {
     'echo 1 > \/proc\/sys\/net\/ipv4\/ip_forward #RASPAP'
     'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
     'iptables -t nat -A POSTROUTING -s 192.168.50.0\/24 ! -d 192.168.50.0\/24 -j MASQUERADE #RASPAP'
-    'chown dnsmasq:www-data \/tmp\/dnsmasq.log #RASPAP'
-    'chown root:www-data \/tmp\/hostapd.log #RASPAP'
     )
     
     for line in "${lines[@]}"; do
@@ -335,6 +326,8 @@ function patch_system_files() {
         "/etc/raspap/hostapd/servicestart.sh"
         "/etc/raspap/lighttpd/configport.sh"
         "/etc/raspap/openvpn/configauth.sh"
+        "/bin/chmod o+r /tmp/hostapd.log"
+        "/bin/chmod o+r /tmp/dnsmasq.log"
     )
 
     # Check if sudoers needs patching
@@ -449,7 +442,6 @@ function install_raspap() {
     download_latest_files
     change_file_ownership
     create_hostapd_scripts
-    create_dnsmasq_log
     create_lighttpd_scripts
     move_config_file
     default_configuration

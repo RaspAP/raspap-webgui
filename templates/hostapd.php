@@ -113,6 +113,7 @@
               <div class="form-group col-md-8">
                 <?php
                 if ($arrHostapdConf['LogEnable'] == 1) {
+                    exec('sudo /bin/chmod o+r /tmp/hostapd.log');
                     $log = file_get_contents('/tmp/hostapd.log');
                     echo '<br /><textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
                 } else {
