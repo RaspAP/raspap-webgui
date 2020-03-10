@@ -33,6 +33,8 @@ function DisplayHostAPDConfig()
             $status->addMessage('Attempting to start hotspot', 'info');
             if ($arrHostapdConf['WifiAPEnable'] == 1) {
                 exec('sudo /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 3', $return);
+            } elseif ($arrHostapdConf['BridgedEnable'] == 1) {
+                exec('sudo /etc/raspap/hostapd/servicestart.sh --interface br0 --seconds 3', $return);
             } else {
                 exec('sudo /etc/raspap/hostapd/servicestart.sh --seconds 3', $return);
             }
@@ -120,6 +122,18 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         }
     }
 
+    // Check for Bridged AP mode checkbox
+    $bridgedEnable = 0;
+    if ($arrHostapdConf['BridgedEnable'] == 0) {
+        if (isset($_POST['bridgedEnable'])) {
+            $bridgedEnable = 1;
+        }
+    } else {
+        if (isset($_POST['bridgedEnable'])) {
+            $bridgedEnable = 1;
+        }
+    }
+
     // Check for Logfile output checkbox
     $logEnable = 0;
     if ($arrHostapdConf['LogEnable'] == 0) {
@@ -140,6 +154,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     $cfg = [];
     $cfg['LogEnable'] = $logEnable;
     $cfg['WifiAPEnable'] = $wifiAPEnable;
+    $cfg['BridgedEnable'] = $bridgedEnable;
     $cfg['WifiManaged'] = RASPI_WIFI_CLIENT_INTERFACE;
     write_php_ini($cfg, '/etc/raspap/hostapd.ini');
 
@@ -228,6 +243,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'interface=uap0'.PHP_EOL;
         } else {
             $config.= 'interface='.$_POST['interface'].PHP_EOL;
+            if ($bridgedEnable == 1) {
+                $config.= 'bridge=br0'.PHP_EOL;
+            }
         }
         $config.= 'wpa='.$_POST['wpa'].PHP_EOL;
         $config.= 'wpa_pairwise='.$_POST['wpa_pairwise'].PHP_EOL;
@@ -288,7 +306,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $config[] = 'slaac private';
         $config[] = 'nohook lookup-hostname';
 
-        if ($wifiAPEnable == 1) {
+        if ($bridgedEnable == 1) {
+            $config[] = 'denyinterfaces eth0 wlan0';
+            $config[] = 'interface br0';
+        } elseif ($wifiAPEnable == 1) {
             // Enable uap0 configuration in dhcpcd for Wifi client AP mode
             $intConfig = parse_ini_file(RASPI_CONFIG_NETWORKING.'/uap0.ini', false, INI_SCANNER_RAW);
             $ip_address = ($intConfig['ip_address'] == '') ? '192.168.50.1/24' : $intConfig['ip_address'];

@@ -137,6 +137,15 @@
             <div class="row">
               <div class="col-md-6 mb-2">
                 <div class="custom-control custom-switch">
+                  <?php $checked = $arrHostapdConf['BridgedEnable'] == 1 ? 'checked="checked"' : '' ?>
+                  <input class="custom-control-input" id="chxbridgedenable" name="bridgedEnable" type="checkbox" value="1" <?php echo $checked ?> />
+                  <label class="custom-control-label" for="chxbridgedenable"><?php echo _("Bridged AP mode"); ?></label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-2">
+                <div class="custom-control custom-switch">
                   <?php $checked = $arrHostapdConf['LogEnable'] == 1 ? 'checked="checked"' : '' ?>
                   <input class="custom-control-input" id="chxlogenable" name="logEnable" type="checkbox" value="1" <?php echo $checked ?> />
                   <label class="custom-control-label" for="chxlogenable"><?php echo _("Logfile output"); ?></label>

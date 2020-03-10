@@ -177,7 +177,7 @@ function download_latest_files() {
     fi
 
     install_log "Cloning latest files from github"
-    git clone --single-branch $branch --depth 1 $git_source_url /tmp/raspap-webgui || install_error "Unable to download files from github"
+    git clone --branch $branch --depth 1 $git_source_url /tmp/raspap-webgui || install_error "Unable to download files from github"
 
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
 }
@@ -220,8 +220,11 @@ function check_for_old_configs() {
     fi
 
     for file in /etc/systemd/network/raspap-*.net*; do
-        sudo cp "$file" "${raspap_dir}/backups/${file}.`date +%F-%R`"
-        sudo ln -sf "${raspap_dir}/backups/${file}.`date +%F-%R`" "${raspap_dir}/backups/${file}"
+        if [-f "${file}" ]; then
+            filename = $(basename $file)
+            sudo cp "$file" "${raspap_dir}/backups/${filename}.`date +%F-%R`"
+            sudo ln -sf "${raspap_dir}/backups/${filename}.`date +%F-%R`" "${raspap_dir}/backups/${filename}"
+        fi
     done
 }
 

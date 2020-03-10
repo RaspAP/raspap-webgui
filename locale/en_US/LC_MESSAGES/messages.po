@@ -429,6 +429,9 @@ msgstr "Logfile output"
 msgid "WiFi client AP mode"
 msgstr "WiFi client AP mode"
 
+msgid "Bridged AP mode"
+msgstr "Bridged AP mode"
+
 msgid "Hide SSID in broadcast"
 msgstr "Hide SSID in broadcast"
 
