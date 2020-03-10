@@ -13,6 +13,7 @@
   </div>
 
   <?php
+  exec('sudo chmod o+r /tmp/dnsmasq.log');
   $log = file_get_contents('/tmp/dnsmasq.log');
   echo '<textarea class="logoutput my-3">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
   ?>
