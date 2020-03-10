@@ -273,18 +273,17 @@ span.label.label-warning {
 }
 
 [class*="alert"] {
-  border-radius: 0px;
+  border-radius: .35rem;
   color: #d2d2d2;
   background-color: #202020;
-  border-color: #d2d2d2;
-  border: 1px dashed;
+  border: 1px solid #404040;
 }
 
 .close {
-  font-size: 18px;
-  font-weight: normal;
-  text-shadow: 0 0px 0 #202020;
-  opacity: 1;
+  font-size: 1.2em;
+  font-weight: 400;
+  text-shadow: none;
+  color: #d2d2d2;
 }
 
 .form-control,
