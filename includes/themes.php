@@ -1,19 +1,19 @@
 <?php
 /**
-*
-*
-*/
+ *
+ *
+ */
 function DisplayThemeConfig()
 {
     $themes = [
         "default"    => "RaspAP (default)",
         "hackernews" => "HackerNews",
-        "terminal"   => "Terminal"
+        "lightsout"  => "Lights Out"
     ];
     $themeFiles = [
         "default"    => "custom.css",
         "hackernews" => "hackernews.css",
-        "terminal"   => "terminal.css"
+        "lightsout"  => "lightsout.css"
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
 

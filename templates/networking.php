@@ -4,7 +4,7 @@
     <div class="card-header">
       <div class="row">
         <div class="col">
-          <i class="fas fa-network-wired mr-2"></i><?php echo _("Configure networking"); ?>
+          <i class="fas fa-network-wired mr-2"></i><?php echo _("Networking"); ?>
         </div>
       </div><!-- ./row -->
      </div><!-- ./card-header -->

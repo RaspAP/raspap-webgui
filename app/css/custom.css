@@ -1,3 +1,11 @@
+/*
+Theme Name: RaspAP default
+Author: @billz
+Author URI: https://github.com/billz
+Description: Default theme for RaspAP
+License: GNU General Public License v3.0
+*/
+
 body {
   color: #212529;
 }
@@ -6,8 +14,9 @@ body {
   margin: 20px 0 20px;
 }
 
-.page-header .logo {
-  margin-right: 5px;
+.navbar-logo {
+  margin-top: 0.5em;
+  margin-left: 0.5em;
 }
 
 /* Small devices (portrait phones, up to 576px) */
@@ -61,11 +70,11 @@ body {
 }
 
 a.nav-link.active {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 .sidebar .nav-item .nav-link {
-  padding: 0.6rem;
+  padding: 0.6rem 0.6rem 0.6rem 1.0rem;
 }
 
 .alert-success {
@@ -100,6 +109,11 @@ i.fa.fa-bars:hover{
   float: left;
 }
 
+.info-item-xs {
+  font-size: 0.7rem;
+  margin-left: 0.3rem;
+}
+
 .info-item-wifi {
   width: 6rem;
   float: left;
@@ -125,11 +139,15 @@ i.fa.fa-bars:hover{
 }
 
 .service-status-up {
-  color: green;
+  color: #a1ec38;
+}
+
+.service-status-warn {
+  color: #f6f044;
 }
 
 .service-status-down {
-  color: red;
+  color: #f80107;
   animation: flash 1s linear infinite;
 }
 @keyframes flash {
@@ -191,3 +209,15 @@ pre.unstyled {
   font-size: 0.9rem!important;
 }
 
+canvas#divDBChartBandwidthhourly {
+  height: 350px!important;
+}
+
+.chart-container {
+  height: 150px;
+  width: 200px;
+}
+
+.table {
+  margin-bottom: 0rem;
+}

@@ -1,0 +1,36 @@
+sudo: false
+language: php
+
+matrix:
+  fast_finish: true
+
+  include:
+    - php: '7.0'
+    - php: '7.1'
+    - php: '7.2'
+    - php: 'nightly'
+
+  allow_failures:
+    - php: nightly
+
+before_install:
+  - if [[ "$SNIFF" == "1" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
+  - if [[ "$SNIFF" == "1" ]]; then export PHPCOMPAT_DIR=/tmp/PHPCompatibility; fi
+  # Install PHP CodeSniffer
+  - if [[ "$SNIFF" == "1" ]]; then git clone -b master --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR; fi
+  # Install PHP Compatibility Standard
+  - if [[ "$SNIFF" == "1" ]]; then git clone -b master --depth 1 https://github.com/wimg/PHPCompatibility.git $PHPCOMPAT_DIR; fi
+  # Set install path for PHP Compatibility Standard
+  # @link https://github.com/squizlabs/PHP_CodeSniffer/wiki/Configuration-Options#setting-the-installed-standard-paths
+  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs --config-set installed_paths $PHPCOMPAT_DIR; fi
+  # Refresh path
+  - if [[ "$SNIFF" == "1" ]]; then phpenv rehash; fi
+
+
+# Run test script commands.
+# All commands must exit with code 0 on success. Anything else is considered failure.
+script:
+  # Search for PHP syntax errors
+  - find -L . -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+  # Run PHPCS
+  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs . ; fi

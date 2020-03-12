@@ -35,26 +35,26 @@ msgstr "RaspAP WiFi 포탈"
 msgid "Dashboard"
 msgstr "대시보드 "
 
-msgid "Configure WiFi client"
-msgstr "WiFi 클라이언트 환경설정"
+msgid "WiFi client"
+msgstr "WiFi 클라이언트"
 
-msgid "Configure hotspot"
-msgstr "핫스팟 환경설정"
+msgid "Hotspot"
+msgstr "핫스팟"
 
-msgid "Configure networking"
-msgstr "네트워킹 환경설정"
+msgid "Networking"
+msgstr "네트워킹"
 
-msgid "Configure DHCP Server"
-msgstr "DHCP 서버 구성"
+msgid "DHCP Server"
+msgstr "DHCP 서버"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "OpenVPN 환경설정"
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "TOR 프록시 구성"
 
-msgid "Configure Auth"
-msgstr "Auth 구성 "
+msgid "Authentication"
+msgstr "입증"
 
 msgid "Change Theme"
 msgstr "테마 변경 "
@@ -329,6 +329,33 @@ msgstr "Dnsmasq가 실행 중입니다"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq가 실행 중이 아닙니다 "
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "베이직"
@@ -398,6 +425,9 @@ msgstr "핫스팟 시작 "
 
 msgid "Stop hotspot"
 msgstr "핫스팟 중지"
+
+msgid "Restart hotspot"
+msgstr "핫스팟 재시작"
 
 msgid "Enable logging"
 msgstr "로깅 사용하기"

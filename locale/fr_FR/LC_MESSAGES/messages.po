@@ -31,26 +31,26 @@ msgstr "RaspAP Wifi Portail"
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-msgid "Configure WiFi client"
-msgstr "Configurer client WiFi"
+msgid "WiFi client"
+msgstr "Client WiFi"
 
-msgid "Configure hotspot"
-msgstr "Configurer hotspot"
+msgid "Hotspot"
+msgstr "Hotspot"
 
-msgid "Configure networking"
-msgstr "Configurer réseau"
+msgid "Networking"
+msgstr "Réseau"
 
-msgid "Configure DHCP Server"
-msgstr "Configurer server DHCP"
+msgid "DHCP Server"
+msgstr "Server DHCP"
 
-msgid "Configure OpenVPN"
-msgstr "Configurer OpenVPN"
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-msgid "Configure TOR proxy"
-msgstr "Configurer proxy TOR"
+msgid "TOR proxy"
+msgstr "Proxy TOR"
 
-msgid "Configure Auth"
-msgstr "Configurer Auth"
+msgid "Authentication"
+msgstr "Authentification"
 
 msgid "Change Theme"
 msgstr "Change Thème"
@@ -314,6 +314,33 @@ msgstr "Dnsmasq est en cours d'exécution"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq n'est pas en fonctionnement"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "De base"
@@ -384,6 +411,9 @@ msgstr "Démarrer le point d'accès"
 msgid "Stop hotspot"
 msgstr "Arrêté le point d'accès"
 
+msgid "Restart hotspot"
+msgstr "Redémarrer le point d'accès"
+
 msgid "Enable logging"
 msgstr "Activer la journalisation"
 
@@ -400,7 +430,7 @@ msgid "Maximum number of clients"
 msgstr "Nombre maximum de clients"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configure l'option max_num_sta de hostapd. La valeur par défaut et maximum est 2007. Si vide ou 0, la valeur par défaut s'applique."
+msgstr "l'option max_num_sta de hostapd. La valeur par défaut et maximum est 2007. Si vide ou 0, la valeur par défaut s'applique."
 
 #: includes/networking.php
 msgid "Summary"

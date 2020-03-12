@@ -31,26 +31,26 @@ msgstr "RaspAP Wifi portaali"
 msgid "Dashboard"
 msgstr "Ohjauspaneeli"
 
-msgid "Configure WiFi client"
-msgstr "Konfiguroi WiFi asiakas"
+msgid "WiFi client"
+msgstr "WiFi asiakas"
 
-msgid "Configure hotspot"
-msgstr "Konfiguroi yhteyspiste"
+msgid "Hotspot"
+msgstr "Yhteyspiste"
 
-msgid "Configure networking"
-msgstr "Konfiguroi yhteyksia"
+msgid "Networking"
+msgstr "Yhteyksia"
 
-msgid "Configure DHCP Server"
-msgstr "Konfiguroi DHCP palvelinta"
+msgid "DHCP Server"
+msgstr "DHCP palvelinta"
 
-msgid "Configure OpenVPN"
-msgstr "Konfiguroi OpenVPN"
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-msgid "Configure TOR proxy"
-msgstr "Konfiguroi TOR välitypalvelinta"
+msgid "TOR proxy"
+msgstr "TOR välitypalvelinta"
 
-msgid "Configure Auth"
-msgstr "Konfiguroi Auth"
+msgid "Authentication"
+msgstr "Authentication"
 
 msgid "Change Theme"
 msgstr "Vaihda teema"
@@ -317,6 +317,33 @@ msgstr "Dnsmasq on käynnissä"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq ei ole käynnissä"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Perus"
@@ -386,6 +413,9 @@ msgstr "Käynnistä yhteyspiste"
 
 msgid "Stop hotspot"
 msgstr "Pysäytä yhteyspiste"
+
+msgid "Restart hotspot"
+msgstr "Käynnistä yhteyspiste uudelleen"
 
 msgid "Enable logging"
 msgstr "Salli lokikirjaus"

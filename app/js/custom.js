@@ -91,31 +91,30 @@ function loadCurrentSettings(strInterface) {
 }
 
 function saveNetworkSettings(int) {
-        var frmInt = $('#frm-'+int).find(':input');
-        var arrFormData = {};
-        $.each(frmInt,function(i3,v3){
-            if($(v3).attr('type') == 'radio') {
-                arrFormData[$(v3).attr('id')] = $(v3).prop('checked');
-            } else {
-                arrFormData[$(v3).attr('id')] = $(v3).val();
-            }
-        });
-        arrFormData['interface'] = int;
-        $.post('ajax/networking/save_int_config.php',arrFormData,function(data){
-            var jsonData = JSON.parse(data);
-            $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
-        });
+    var frmInt = $('#frm-'+int).find(':input');
+    var arrFormData = {};
+    $.each(frmInt,function(i3,v3){
+        if($(v3).attr('type') == 'radio') {
+		arrFormData[$(v3).attr('id')] = $(v3).prop('checked');
+    } else {
+	    arrFormData[$(v3).attr('id')] = $(v3).val();
+    }
+    });
+    arrFormData['interface'] = int;
+    $.post('ajax/networking/save_int_config.php',arrFormData,function(data){
+        var jsonData = JSON.parse(data);
+        $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
+    });
 }
 
 function applyNetworkSettings() {
-        var int = $(this).data('int');
-        arrFormData = {};
-        arrFormData['generate'] = '';
-        $.post('ajax/networking/gen_int_config.php',arrFormData,function(data){
-            console.log(data);
-            var jsonData = JSON.parse(data);
-            $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
-        });
+    var int = $(this).data('int');
+    arrFormData = {};
+    arrFormData['generate'] = '';
+    $.post('ajax/networking/gen_int_config.php',arrFormData,function(data){
+        var jsonData = JSON.parse(data);
+        $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
+    });
 }
 
 $(document).on("click", ".js-add-dhcp-static-lease", function(e) {
@@ -126,7 +125,6 @@ $(document).on("click", ".js-add-dhcp-static-lease", function(e) {
     if (mac == "" || ip == "") {
         return;
     }
-
     var row = $("#js-dhcp-static-lease-row").html()
         .replace("{{ mac }}", mac)
         .replace("{{ ip }}", ip);
@@ -145,14 +143,63 @@ $(document).on("submit", ".js-dhcp-settings-form", function(e) {
     $(".js-add-dhcp-static-lease").trigger("click");
 });
 
+$(document).on("click", ".js-add-dhcp-upstream-server", function(e) {
+    e.preventDefault();
+
+    var field = $("#add-dhcp-upstream-server-field")
+    var row = $("#dhcp-upstream-server").html().replace("{{ server }}", field.val())
+
+    if (field.val().trim() == "") { return }
+
+    $(".js-dhcp-upstream-servers").append(row)
+
+    field.val("")
+});
+
+$(document).on("click", ".js-remove-dhcp-upstream-server", function(e) {
+    e.preventDefault();
+    $(this).parents(".js-dhcp-upstream-server").remove();
+});
+
+$(document).on("submit", ".js-dhcp-settings-form", function(e) {
+    $(".js-add-dhcp-upstream-server").trigger("click");
+});
+
+/**
+ * mark a form field, e.g. a select box, with the class `.js-field-preset`
+ * and give it an attribute `data-field-preset-target` with a text field's
+ * css selector.
+ *
+ * now, if the element marked `.js-field-preset` receives a `change` event,
+ * its value will be copied to all elements matching the selector in
+ * data-field-preset-target.
+ */
+$(document).on("change", ".js-field-preset", function(e) {
+    var selector = this.getAttribute("data-field-preset-target")
+    var value = "" + this.value
+    var syncValue = function(el) { el.value = value }
+
+    if (value.trim() === "") { return }
+
+    document.querySelectorAll(selector).forEach(syncValue)
+});
+
+$(document).on("click", "#gen_wpa_passphrase", function(e) {
+    $('#txtwpapassphrase').val(genPassword(63));
+});
+
+function genPassword(pwdLen) {
+    var pwdChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    var rndPass = Array(pwdLen).fill(pwdChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+    return rndPass;
+}
+
 function setupBtns() {
     $('#btnSummaryRefresh').click(function(){getAllInterfaces();});
-
     $('.intsave').click(function(){
         var int = $(this).data('int');
         saveNetworkSettings(int);
     });
-
     $('.intapply').click(function(){
         applyNetworkSettings();
     });
@@ -173,6 +220,8 @@ function contentLoaded() {
             getAllInterfaces();
             setupTabs();
             setupBtns();
+        case "hostapd_conf":
+            loadChannel();
         break;
     }
 }
@@ -189,6 +238,61 @@ function loadWifiStations(refresh) {
 }
 
 $(".js-reload-wifi-stations").on("click", loadWifiStations(true));
+
+function loadChannel() {
+    $.get('ajax/networking/get_channel.php',function(data){
+        jsonData = JSON.parse(data);
+        loadChannelSelect(jsonData);
+    });
+}
+
+/*
+Sets the wirelss channel select options based on hw_mode and country_code.
+
+Methodology: In North America up to channel 11 is the maximum allowed WiFi 2.4Ghz channel,
+except for the US that allows channel 12 & 13 in low power mode with additional restrictions.
+Canada allows channel 12 in low power mode. Because it's unsure if low powered mode can be
+supported the channels are not selectable for those countries. Also Uzbekistan and Colombia
+allow up to channel 11 as maximum channel on the 2.4Ghz WiFi band.
+Source: https://en.wikipedia.org/wiki/List_of_WLAN_channels
+Additional: https://git.kernel.org/pub/scm/linux/kernel/git/sforshee/wireless-regdb.git
+*/
+function loadChannelSelect(selected) {
+
+    // Fetch wireless regulatory data
+    $.getJSON("config/wireless.json", function(json) {
+        var hw_mode = $('#cbxhwmode').val();
+        var country_code = $('#cbxcountries').val();
+        var channel_select = $('#cbxchannel');
+        var data = json["wireless_regdb"];
+        var selectablechannels = Array.range(1,14);
+
+        // Assign array of countries to valid frequencies (channels)
+        var countries_2_4Ghz_max11ch = data["2_4GHz_max11ch"].countries;
+        var countries_2_4Ghz_max14ch = data["2_4GHz_max14ch"].countries;
+        var countries_5Ghz_max48ch = data["5Ghz_max48ch"].countries;
+
+        // Map selected hw_mode and country to determine channel list
+        if (($.inArray(country_code, countries_2_4Ghz_max11ch) !== -1) && (hw_mode !== 'ac') ) {
+            selectablechannels = data["2_4GHz_max11ch"].channels;
+        } else if (($.inArray(country_code, countries_2_4Ghz_max14ch) !== -1) && (hw_mode === 'b')) {
+            selectablechannels = data["2_4GHz_max14ch"].channels;
+        } else if (($.inArray(country_code, countries_5Ghz_max48ch) !== -1) && (hw_mode === 'ac')) {
+            selectablechannels = data["5Ghz_max48ch"].channels;
+        }
+
+        // Set channel select with available values
+        selected = (typeof selected === 'undefined') ? selectablechannels[0] : selected;
+        channel_select.empty();
+        $.each(selectablechannels, function(key,value) {
+            channel_select.append($("<option></option>").attr("value", value).text(value));
+        });
+        channel_select.val(selected);
+    });
+}
+
+// Static Array method
+Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
 
 $(document).on("click", ".js-toggle-password", function(e) {
     var button = $(e.target)
@@ -252,7 +356,7 @@ function getCookie(cname) {
 var themes = {
     "default": "custom.css",
     "hackernews" : "hackernews.css",
-    "terminal" : "terminal.css",
+    "lightsout" : "lightsout.css",
 }
 
 // Toggles the sidebar navigation.

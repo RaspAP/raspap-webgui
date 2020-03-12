@@ -8,22 +8,20 @@ raspap_dir="/etc/raspap"
 raspap_user="www-data"
 webroot_dir="/var/www/html"
 version=`sed 's/\..*//' /etc/debian_version`
+git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
 # Determine Raspbian version, set default home location for lighttpd and 
 # php package to install 
-if [ $version -eq 10 ]; then
+if [ "$version" -eq "10" ]; then
     version_msg="Raspbian 10.0 (Buster)"
     php_package="php7.1-cgi"
-elif [ $version -eq 9 ]; then
+elif [ "$version" -eq "9" ]; then
     version_msg="Raspbian 9.0 (Stretch)" 
     php_package="php7.0-cgi" 
-elif [ $version -eq 8 ]; then 
-    version_msg="Raspbian 8.0 (Jessie)" 
-    php_package="php5-cgi" 
-else 
-    version_msg="Raspbian earlier than 8.0 (Wheezy)"
-    webroot_dir="/var/www" 
-    php_package="php5-cgi" 
+elif [ "$version" -eq "8" ]; then
+    install_error "Raspbian 8.0 (Jessie) and php5 are deprecated. Please upgrade."
+elif [ "$version" -lt "8" ]; then
+    install_error "Raspbian ${version} is unsupported. Please upgrade."
 fi
 
 phpcgiconf=""
@@ -31,56 +29,30 @@ if [ "$php_package" = "php7.1-cgi" ]; then
     phpcgiconf="/etc/php/7.1/cgi/php.ini"
 elif [ "$php_package" = "php7.0-cgi" ]; then
     phpcgiconf="/etc/php/7.0/cgi/php.ini"
-elif [ "$php_package" = "php5-cgi" ]; then
-    phpcgiconf="/etc/php5/cgi/php.ini"
 fi
 
-# Outputs a RaspAP Install log line
-function install_log() {
-    echo -e "\033[1;32mRaspAP Install: $*\033[m"
-}
-
-# Outputs a RaspAP Install Error log line and exits with status code 1
-function install_error() {
-    echo -e "\033[1;37;41mRaspAP Install Error: $*\033[m"
-    exit 1
-}
-
-# Outputs a RaspAP Warning line
-function install_warning() {
-    echo -e "\033[1;33mWarning: $*\033[m"
-}
-
-# Outputs a welcome message
-function display_welcome() {
-    raspberry='\033[0;35m'
-    green='\033[1;32m'
-
-    echo -e "${raspberry}\n"
-    echo -e " 888888ba                              .d888888   888888ba" 
-    echo -e " 88     8b                            d8     88   88     8b" 
-    echo -e "a88aaaa8P' .d8888b. .d8888b. 88d888b. 88aaaaa88a a88aaaa8P" 
-    echo -e " 88    8b. 88    88 Y8ooooo. 88    88 88     88   88" 
-    echo -e " 88     88 88.  .88       88 88.  .88 88     88   88" 
-    echo -e " dP     dP  88888P8  88888P  88Y888P  88     88   dP" 
-    echo -e "                             88"                             
-    echo -e "                             dP       version ${VERSION}"
-    echo -e "${green}"
-    echo -e "The Quick Installer will guide you through a few easy steps\n\n"
-}
-
 ### NOTE: all the below functions are overloadable for system-specific installs
-### NOTE: some of the below functions MUST be overloaded due to system-specific installs
 
+# Prompts user to set options for installation
 function config_installation() {
     install_log "Configure installation"
     echo "Detected ${version_msg}" 
     echo "Install directory: ${raspap_dir}"
-    echo "Lighttpd directory: ${webroot_dir}"
-    echo -n "Complete installation with these values? [y/N]: "
-    if [ $assume_yes == 0 ]; then
-        read answer
-        if [[ $answer != "y" ]]; then
+    echo -n "Install to Lighttpd root directory: ${webroot_dir}? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            read -e -p < /dev/tty "Enter alternate Lighttpd directory: " -i "/var/www/html" webroot_dir
+        fi
+    else
+        echo -e
+    fi
+    echo "Install to Lighttpd directory: ${webroot_dir}"
+
+    echo -n "Complete installation with these values? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
             echo "Installation aborted."
             exit 0
         fi
@@ -90,15 +62,9 @@ function config_installation() {
 }
 
 # Runs a system software update to make sure we're using all fresh packages
-function update_system_packages() {
-    # OVERLOAD THIS
-    install_error "No function definition for update_system_packages"
-}
-
-# Installs additional dependencies using system package manager
 function install_dependencies() {
-    # OVERLOAD THIS
-    install_error "No function definition for install_dependencies"
+    install_log "Installing required packages"
+    sudo apt-get install $apt_option lighttpd $php_package git hostapd dnsmasq vnstat qrencode || install_error "Unable to install dependencies"
 }
 
 # Enables PHP for lighttpd and restarts service for settings to take effect
@@ -107,7 +73,7 @@ function enable_php_lighttpd() {
 
     sudo lighttpd-enable-mod fastcgi-php    
     sudo service lighttpd force-reload
-    sudo /etc/init.d/lighttpd restart || install_error "Unable to restart lighttpd"
+    sudo systemctl restart lighttpd.service || install_error "Unable to restart lighttpd"
 }
 
 # Verifies existence and permissions of RaspAP directory
@@ -139,19 +105,72 @@ function create_hostapd_scripts() {
     # Move service control shell scripts
     sudo cp "$webroot_dir/installers/"service*.sh "$raspap_dir/hostapd" || install_error "Unable to move service control scripts"
     # Make enablelog.sh and disablelog.sh not writable by www-data group.
-    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || install_error "Unable change owner and/or group."
-    sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions."
+    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || install_error "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/hostapd/"*.sh || install_error "Unable to change file permissions"
 }
 
+# Generate lighttpd service control scripts
+function create_lighttpd_scripts() {
+    install_log "Creating lighttpd control scripts"
+    sudo mkdir $raspap_dir/lighttpd || install_error "Unable to create directory '$raspap_dir/lighttpd"
+
+    # Move service control shell scripts
+    sudo cp "$webroot_dir/installers/"configport.sh "$raspap_dir/lighttpd" || install_error "Unable to move service control scripts"
+    # Make configport.sh writable by www-data group
+    sudo chown -c root:"$raspap_user" "$raspap_dir/lighttpd/"*.sh || install_error "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/lighttpd/"*.sh || install_error "Unable to change file permissions"
+}
+
+# Prompt to install openvpn
+function prompt_install_openvpn() {
+    install_log "Setting up OpenVPN support (beta)"
+    echo -n "Install OpenVPN and enable client configuration? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo -e
+        else
+            install_openvpn
+        fi
+    elif [ "$ovpn_option" == 1 ]; then
+        install_openvpn
+    fi
+}
+
+# Install openvpn and enable client configuration option
+function install_openvpn() {
+    install_log "Installing OpenVPN and enabling client configuration"
+    sudo apt-get install -y openvpn || install_error "Unable to install openvpn"
+    sudo sed -i "s/\('RASPI_OPENVPN_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || install_error "Unable to modify config.php"
+    echo "Enabling openvpn-client service on boot"
+    sudo systemctl enable openvpn-client@client || install_error "Unable to enable openvpn-client daemon"
+    create_openvpn_scripts || install_error "Unable to create openvpn control scripts"
+}
+
+# Generate openvpn logging and auth control scripts
+function create_openvpn_scripts() {
+    install_log "Creating OpenVPN control scripts"
+    sudo mkdir $raspap_dir/openvpn || install_error "Unable to create directory '$raspap_dir/openvpn'"
+
+   # Move service auth control shell scripts
+    sudo cp "$webroot_dir/installers/"configauth.sh "$raspap_dir/openvpn" || install_error "Unable to move auth control script"
+    # Make configauth.sh writable by www-data group
+    sudo chown -c root:"$raspap_user" "$raspap_dir/openvpn/"*.sh || install_error "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/openvpn/"*.sh || install_error "Unable to change file permissions"
+}
 
 # Fetches latest files from github to webroot
 function download_latest_files() {
+    if [ ! -d "$webroot_dir" ]; then
+        sudo mkdir -p $webroot_dir || install_error "Unable to create new webroot directory"
+    fi
+
     if [ -d "$webroot_dir" ]; then
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || install_error "Unable to remove old webroot directory"
     fi
 
     install_log "Cloning latest files from github"
-    git clone --depth 1 https://github.com/billz/raspap-webgui /tmp/raspap-webgui || install_error "Unable to download files from github"
+    git clone --branch $branch --depth 1 $git_source_url /tmp/raspap-webgui || install_error "Unable to download files from github"
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
 }
 
@@ -215,6 +234,12 @@ function default_configuration() {
     sudo cp $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
     sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
 
+    [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
+
+    if [ ! -f "$webroot_dir/includes/config.php" ]; then
+        sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
+    fi
+
     # Generate required lines for Rasp AP to place into rc.local file.
     # #RASPAP is for removal script
     lines=(
@@ -238,9 +263,11 @@ function default_configuration() {
 
     # Prompt to install RaspAP daemon
     echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
-    if [ $assume_yes == 0 ]; then
-        read answer
-        if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo -e
+        else
             enable_raspap_daemon
         fi
     else
@@ -265,9 +292,7 @@ function sudo_add() {
 
 # Adds www-data user to the sudoers file with restrictions on what the user can execute
 function patch_system_files() {
-    # add symlink to prevent wpa_cli cmds from breaking with multiple wlan interfaces
-    install_log "symlinked wpa_supplicant hooks for multiple wlan interfaces"
-    sudo ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /etc/dhcp/dhclient-enter-hooks.d/
+
     # Set commands array
     cmds=(
         "/sbin/ifdown"
@@ -281,10 +306,14 @@ function patch_system_files() {
         "/sbin/wpa_cli -i wlan[0-9] reconfigure"
         "/sbin/wpa_cli -i wlan[0-9] select_network"
         "/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf"
-        "/etc/init.d/hostapd start"
-        "/etc/init.d/hostapd stop"
-        "/etc/init.d/dnsmasq start"
-        "/etc/init.d/dnsmasq stop"
+        "/bin/systemctl start hostapd.service"
+        "/bin/systemctl stop hostapd.service"
+        "/bin/systemctl start dnsmasq.service"
+        "/bin/systemctl stop dnsmasq.service"
+        "/bin/systemctl start openvpn-client@client"
+        "/bin/systemctl stop openvpn-client@client"
+        "/bin/cp /tmp/ovpnclient.ovpn /etc/openvpn/client/client.conf"
+        "/bin/cp /tmp/authdata /etc/openvpn/client/login.conf"
         "/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.conf"
         "/bin/cp /tmp/dhcpddata /etc/dhcpcd.conf"
         "/sbin/shutdown -h now"
@@ -296,13 +325,17 @@ function patch_system_files() {
         "/etc/raspap/hostapd/enablelog.sh"
         "/etc/raspap/hostapd/disablelog.sh"
         "/etc/raspap/hostapd/servicestart.sh"
+        "/etc/raspap/lighttpd/configport.sh"
+        "/etc/raspap/openvpn/configauth.sh"
+        "/bin/chmod o+r /tmp/hostapd.log"
+        "/bin/chmod o+r /tmp/dnsmasq.log"
     )
 
     # Check if sudoers needs patching
-    if [ $(sudo grep -c $raspap_user /etc/sudoers) -ne 28 ]
+    if [ $(sudo grep -c $raspap_user /etc/sudoers) -ne ${#cmds[@]} ]
     then
         # Sudoers file has incorrect number of commands. Wiping them out.
-        install_log "Cleaning sudoers file"
+        install_log "Cleaning system sudoers file"
         sudo sed -i "/$raspap_user/d" /etc/sudoers
         install_log "Patching system sudoers file"
         # patch /etc/sudoers file
@@ -315,7 +348,14 @@ function patch_system_files() {
         install_log "Sudoers file already patched"
     fi
 
+    # Add symlink to prevent wpa_cli cmds from breaking with multiple wlan interfaces
+    install_log "Symlinked wpa_supplicant hooks for multiple wlan interfaces"
+    if [ ! -f /usr/share/dhcpcd/hooks/10-wpa_supplicant ]; then
+        sudo ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /etc/dhcp/dhclient-enter-hooks.d/
+    fi
+
     # Unmask and enable hostapd.service
+    install_log "Unmasking and enabling hostapd service"
     sudo systemctl unmask hostapd.service
     sudo systemctl enable hostapd.service
 }
@@ -335,28 +375,32 @@ function optimize_php() {
     sudo ln -sf "$raspap_dir/backups/php.ini.$datetimephpconf" "$raspap_dir/backups/php.ini"
 
     echo -n "Enable HttpOnly for session cookies (Recommended)? [Y/n]: "
-    if [ $assume_yes == 0 ]; then
-        read answer
-        if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
-            $php_session_cookie=1;
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo -e
+        else
+             php_session_cookie=1;
         fi
     fi
 
-    if [ $assume_yes == 1 ] || [ $php_session_cookie == 1 ]; then
+    if [ "$assume_yes" == 1 ] || [ "$php_session_cookie" == 1 ]; then
         echo "Php-cgi enabling session.cookie_httponly."
         sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
     fi
 
     if [ "$php_package" = "php7.1-cgi" ]; then
         echo -n "Enable PHP OPCache (Recommended)? [Y/n]: "
-        if [ $assume_yes == 0 ]; then
-            read answer
-            if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
-                $php_opcache=1;
+        if [ "$assume_yes" == 0 ]; then
+            read answer < /dev/tty
+            if [ "$answer" != "${answer#[Nn]}" ]; then
+                echo -e
+            else
+                php_opcache=1;
             fi
         fi
 
-        if [ $assume_yes == 1 ] || [ $phpopcache == 1 ]; then
+        if [ "$assume_yes" == 1 ] || [ "$phpopcache" == 1 ]; then
             echo -e "Php-cgi enabling opcache.enable."
             sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
             # Make sure opcache extension is turned on.
@@ -379,13 +423,13 @@ function optimize_php() {
 function install_complete() {
     install_log "Installation completed!"
 
-    if [ $assume_yes == 0 ]; then
+    if [ "$assume_yes" == 0 ]; then
         # Prompt to reboot if wired ethernet (eth0) is connected.
         # With default_configuration this will create an active AP on restart.
         if ip a | grep -q ': eth0:.*state UP'; then
             echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
-            read answer
-            if [[ $answer != "y" ]]; then
+            read answer < /dev/tty
+            if [ "$answer" != "${answer#[Nn]}" ]; then
                 echo "Installation reboot aborted."
                 exit 0
             fi
@@ -399,15 +443,17 @@ function install_raspap() {
     config_installation
     update_system_packages
     install_dependencies
-    optimize_php
     enable_php_lighttpd
     create_raspap_directories
+    optimize_php
     check_for_old_configs
     download_latest_files
     change_file_ownership
     create_hostapd_scripts
+    create_lighttpd_scripts
     move_config_file
     default_configuration
+    prompt_install_openvpn
     patch_system_files
     install_complete
 }

@@ -31,25 +31,25 @@ msgstr "RaspAP WLAN热点"
 msgid "Dashboard"
 msgstr "仪表板"
 
-msgid "Configure WiFi client"
+msgid "WiFi client"
 msgstr "WLAN客户端设置"
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "WLAN热点设置"
 
-msgid "Configure networking"
+msgid "Networking"
 msgstr "网络设置"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "DHCP服务器设置"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "OpenVPN设置"
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "TOR代理设置"
 
-msgid "Configure Auth"
+msgid "Authentication"
 msgstr "登录设置"
 
 msgid "Change Theme"
@@ -317,6 +317,33 @@ msgstr "Dnsmasq正在运行"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq未在运行"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "基础"
@@ -386,6 +413,9 @@ msgstr "开启WLAN热点"
 
 msgid "Stop hotspot"
 msgstr "关闭WLAN热点"
+
+msgid "Restart hotspot"
+msgstr "重新启动Wi-Fi热点"
 
 msgid "Enable logging"
 msgstr "开启log"

@@ -1,8 +1,8 @@
 <?php
 
-require('../../includes/csrf.php');
+require '../../includes/csrf.php';
 
-include_once('../../includes/functions.php');
+require_once '../../includes/functions.php';
 
 if (isset($_POST['interface'])) {
     $int = preg_replace('/[^a-z0-9]/', '', $_POST['interface']);

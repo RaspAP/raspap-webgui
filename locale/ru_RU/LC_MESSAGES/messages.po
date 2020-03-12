@@ -31,26 +31,26 @@ msgstr "Портал RaspAP Wifi"
 msgid "Dashboard"
 msgstr "Приборная панель"
 
-msgid "Configure WiFi client"
-msgstr "Настройка WiFi клиента"
+msgid "WiFi client"
+msgstr "WiFi клиента"
 
-msgid "Configure hotspot"
-msgstr "Настройка точки доступа"
+msgid "Hotspot"
+msgstr "Точка доступа"
 
-msgid "Configure networking"
-msgstr "Сетевые настрйоки"
+msgid "Networking"
+msgstr "Сетевые"
 
-msgid "Configure DHCP Server"
-msgstr "Настроить DHCP сервер"
+msgid "DHCP Server"
+msgstr "DHCP сервер"
 
-msgid "Configure OpenVPN"
-msgstr "Настройка OpenVPN"
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-msgid "Configure TOR proxy"
-msgstr "Настройка TOR proxy"
+msgid "TOR proxy"
+msgstr "TOR proxy"
 
-msgid "Configure Auth"
-msgstr "Настйроки авторизации"
+msgid "Authentication"
+msgstr "авторизации"
 
 msgid "Change Theme"
 msgstr "Сменить тему"
@@ -317,6 +317,33 @@ msgstr "Dnsmasq запущена"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq не запущена"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Основные"
@@ -386,6 +413,9 @@ msgstr "Запуск точки доступа"
 
 msgid "Stop hotspot"
 msgstr "Остановка точки доступа"
+
+msgid "Restart hotspot"
+msgstr "Перезапустите точки доступа"
 
 msgid "Enable logging"
 msgstr "Включить журналирование"

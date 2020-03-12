@@ -31,25 +31,25 @@ msgstr "RaspAP Wifi වෙබ් අඩවිය"
 msgid "Dashboard"
 msgstr "උපකාරක පුවරුව"
 
-msgid "Configure WiFi client"
-msgstr "WiFi සේවාලාභි සැකසුම"
+msgid "WiFi client"
+msgstr "WiFi සේවාලාභි "
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "හොට්ස්පොට් සැකසුම"
 
-msgid "Configure networking"
+msgid "Networking"
 msgstr "ජාලකරණ සැකසුම"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "DHCP සර්වර් සැකසුම"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "OpenVPN සැකසුම" 
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "TOR proxy සැකසුම"
 
-msgid "Configure Auth"
+msgid "Authentication"
 msgstr "සත්‍යාපනය වින්‍යාස කරන්න"
 
 msgid "Change Theme"
@@ -311,6 +311,33 @@ msgstr "Dnsmasq is running"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq ක්‍රියාත්මක නොවේ"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "මූලික"
@@ -380,6 +407,9 @@ msgstr "hotspot ආරම්භ කරන්න "
 
 msgid "Stop hotspot"
 msgstr "hotspot නතර  කරන්න"
+
+msgid "Restart hotspot"
+msgstr "hotspot නැවත ආරම්භ"
 
 msgid "Enable logging"
 msgstr "ඇතුල්වීම සක්‍රිය කරන්න "

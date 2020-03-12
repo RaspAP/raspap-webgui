@@ -1,9 +1,10 @@
 <?php
 
-require('../../includes/csrf.php');
-include_once('../../includes/config.php');
-include_once('../../includes/functions.php');
-include_once('../../includes/wifi_functions.php');
+require '../../includes/csrf.php';
+require_once '../../includes/config.php';
+require_once '../../includes/defaults.php';
+require_once '../../includes/functions.php';
+require_once '../../includes/wifi_functions.php';
 
 $networks = [];
 $network  = null;

@@ -1,6 +1,6 @@
 <?php
 
-require('../../includes/csrf.php');
+require '../../includes/csrf.php';
 
 require_once '../../includes/config.php';
 require_once RASPI_CONFIG.'/raspap.php';
@@ -30,10 +30,12 @@ if (strlen($interface) > IFNAMSIZ) {
 
 require_once './get_bandwidth_hourly.php';
 
-exec(sprintf('vnstat -i %s --json ', escapeshellarg($interface)), $jsonstdoutvnstat,
-     $exitcodedaily);
+exec(
+    sprintf('vnstat -i %s --json ', escapeshellarg($interface)), $jsonstdoutvnstat,
+    $exitcodedaily
+);
 if ($exitcodedaily !== 0) {
-  exit('vnstat error');
+    exit('vnstat error');
 }
 
 $jsonobj = json_decode($jsonstdoutvnstat[0], true);
@@ -53,12 +55,16 @@ echo '[ ';
 $firstelm = true;
 for ($i = count($jsonData) - 1; $i >= 0; --$i) {
     if ($timeunits === 'm') {
-        $dt = DateTime::createFromFormat('Y n', $jsonData[$i]['date']['year'].' '.
-                                                      $jsonData[$i]['date']['month']);
+        $dt = DateTime::createFromFormat(
+            'Y n', $jsonData[$i]['date']['year'].' '.
+            $jsonData[$i]['date']['month']
+        );
     } else {
-        $dt = DateTime::createFromFormat('Y n j', $jsonData[$i]['date']['year'].' '.
+        $dt = DateTime::createFromFormat(
+            'Y n j', $jsonData[$i]['date']['year'].' '.
                                                       $jsonData[$i]['date']['month'].' '.
-                                                      $jsonData[$i]['date']['day']);
+            $jsonData[$i]['date']['day']
+        );
     }
 
     if ($firstelm) {

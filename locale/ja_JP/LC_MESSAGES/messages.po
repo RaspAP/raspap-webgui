@@ -35,25 +35,25 @@ msgstr "RaspAP Wifiポータル"
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-msgid "Configure WiFi client"
-msgstr "WiFiクライアントを設定"
+msgid "WiFi client"
+msgstr "WiFiクライアント"
 
-msgid "Configure hotspot"
-msgstr "ホットスポットを設定"
+msgid "Hotspot"
+msgstr "ホットスポット"
 
-msgid "Configure networking"
-msgstr "ネットワークを設定"
+msgid "Networking"
+msgstr "ネットワーク"
 
-msgid "Configure DHCP Server"
-msgstr "DHCPサーバーを構成"
+msgid "DHCP Server"
+msgstr "DHCPサーバー"
 
-msgid "Configure OpenVPN"
-msgstr "OpenVPNを設定"
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-msgid "Configure TOR proxy"
-msgstr "TORプロキシを設定"
+msgid "TOR proxy"
+msgstr "TORプロキシ"
 
-msgid "Configure Auth"
+msgid "Authentication"
 msgstr "認証を構成する"
 
 msgid "Change Theme"
@@ -329,6 +329,33 @@ msgstr "Dnsmasqが実行されています"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasqが実行されていません"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "基本"
@@ -398,6 +425,9 @@ msgstr "ホットスポットを開始"
 
 msgid "Stop hotspot"
 msgstr "ホットスポットを停止"
+
+msgid "Restart hotspot"
+msgstr "ホットスポットを再起動"
 
 msgid "Enable logging"
 msgstr "ロギングを有効にする"

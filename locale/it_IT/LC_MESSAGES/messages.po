@@ -31,26 +31,26 @@ msgstr "RaspAP Wifi Portal"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "Configure WiFi client"
-msgstr "Configura client WiFi"
+msgid "WiFi client"
+msgstr "Client WiFi"
 
-msgid "Configure hotspot"
-msgstr "Configura hotspot"
+msgid "Hotspot"
+msgstr "Hotspot"
 
-msgid "Configure networking"
-msgstr "Configura rete"
+msgid "Networking"
+msgstr "Rete"
 
-msgid "Configure DHCP Server"
-msgstr "Configura server DHCP"
+msgid "DHCP Server"
+msgstr "Server DHCP"
 
-msgid "Configure OpenVPN"
-msgstr "Configura OpenVPN"
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-msgid "Configure TOR proxy"
-msgstr "Configura proxy TOR"
+msgid "TOR proxy"
+msgstr "Proxy TOR"
 
-msgid "Configure Auth"
-msgstr "Configura Auth"
+msgid "Authentication"
+msgstr "Autenticazione"
 
 msgid "Change Theme"
 msgstr "Cambia tema"
@@ -317,6 +317,33 @@ msgstr "Dnsmasq è in esecuzione"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq non è in esecuzione"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Base"
@@ -386,6 +413,9 @@ msgstr "Avvia l'hotspot"
 
 msgid "Stop hotspot"
 msgstr "Ferma l'hotspot"
+
+msgid "Restart hotspot"
+msgstr "Riavvia l'hotspot"
 
 msgid "Enable logging"
 msgstr "Abilita la registrazione"

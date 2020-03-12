@@ -1,13 +1,11 @@
 <?php
 
-include_once('includes/status_messages.php');
-include_once('app/lib/system.php');
+require_once 'includes/status_messages.php';
+require_once 'config.php';
 
 /**
- *
  * Find the version of the Raspberry Pi
  * Currently only used for the system information page but may useful elsewhere
- *
  */
 
 function RPiVersion()
@@ -42,7 +40,9 @@ function RPiVersion()
     'a220a0' => 'Compute Module 3',
     'a020a0' => 'Compute Module 3',
     'a02100' => 'Compute Module 3+',
-    'c03111' => 'Model 4B v1.1'
+    'a03111' => 'Model 4B Revision 1.1 (1 GB)',
+    'b03111' => 'Model 4B Revision 1.1 (2 GB)',
+    'c03111' => 'Model 4B Revision 1.1 (4 GB)'
     );
 
     $cpuinfo_array = '';
@@ -63,8 +63,6 @@ function DisplaySystem()
 {
 
     $status = new StatusMessages();
-    $system = new System();
-
 
     if (isset($_POST['SaveLanguage'])) {
         if (isset($_POST['locale'])) {
@@ -72,6 +70,38 @@ function DisplaySystem()
             $status->addMessage('Language setting saved', 'success');
         }
     }
+
+    if (!RASPI_MONITOR_ENABLED) {
+        if (isset($_POST['SaveServerPort'])) {
+            if (isset($_POST['serverPort'])) {
+                if (strlen($_POST['serverPort']) > 4 || !is_numeric($_POST['serverPort'])) {
+                    $status->addMessage('Invalid value for port number', 'danger');
+                } else {
+                    $serverPort = escapeshellarg($_POST['serverPort']);
+                    exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
+                    foreach ($return as $line) {
+                        $status->addMessage($line, 'info');
+                    }
+                }
+            }
+        }
+        if (isset($_POST['system_reboot'])) {
+            $status->addMessage("System Rebooting Now!", "warning", false);
+            $result = shell_exec("sudo /sbin/reboot");
+        }
+        if (isset($_POST['system_shutdown'])) {
+            $status->addMessage("System Shutting Down Now!", "warning", false);
+            $result = shell_exec("sudo /sbin/shutdown -h now");
+        }
+    }
+
+    if (isset($_POST['RestartLighttpd'])) {
+        $status->addMessage('Restarting lighttpd in 3 seconds...', 'info');
+        exec('sudo /etc/raspap/lighttpd/configport.sh --restart');
+    }
+    exec('cat '. RASPI_LIGHTTPD_CONFIG, $return);
+    $conf = ParseConfig($return);
+    $ServerPort = $conf['server.port'];
 
     // define locales
     $arrLocales = array(
@@ -92,17 +122,9 @@ function DisplaySystem()
         'es_MX.UTF-8' => 'Español',
         'fi_FI.UTF-8' => 'Finnish',
         'si_LK.UTF-8' => 'Sinhala',
-        'tr_TR.UTF-8' => 'Türkçe'
+        'tr_TR.UTF-8' => 'Türkçe',
+        'el_GR.UTF-8' => 'Ελληνικά'
     );
 
-    if (isset($_POST['system_reboot'])) {
-        $status->addMessage("System Rebooting Now!", "warning", false);
-        $result = shell_exec("sudo /sbin/reboot");
-    }
-    if (isset($_POST['system_shutdown'])) {
-        $status->addMessage("System Shutting Down Now!", "warning", false);
-        $result = shell_exec("sudo /sbin/shutdown -h now");
-    }
-
-    echo renderTemplate("system", compact("arrLocales", "status", "system"));
+    echo renderTemplate("system", compact("arrLocales", "status", "system", "ServerPort"));
 }

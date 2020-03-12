@@ -31,26 +31,26 @@ msgstr "Portal WiFi RaspAP"
 msgid "Dashboard"
 msgstr "Painel"
 
-msgid "Configure WiFi client"
-msgstr "Configurar Cliente WiFi"
+msgid "WiFi client"
+msgstr "Cliente WiFi"
 
-msgid "Configure hotspot"
-msgstr "Configurar ponto de acesso"
+msgid "Hotspot"
+msgstr "Ponto de acesso"
 
-msgid "Configure networking"
-msgstr "Configurar networking"
+msgid "Networking"
+msgstr "Networking"
 
-msgid "Configure DHCP Server"
-msgstr "Configurar Servidor DHCP"
+msgid "DHCP Server"
+msgstr "Servidor DHCP"
 
-msgid "Configure OpenVPN"
-msgstr "Configurar OpenVPN"
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-msgid "Configure TOR proxy"
-msgstr "Configurar proxy TOR"
+msgid "TOR proxy"
+msgstr "Proxy TOR"
 
-msgid "Configure Auth"
-msgstr "Configurar Autenticação"
+msgid "Authentication"
+msgstr "Autenticação"
 
 msgid "Change Theme"
 msgstr "Alterar Tema"
@@ -317,6 +317,33 @@ msgstr "Dnsmasq executando"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq não executando"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Básico"
@@ -386,6 +413,9 @@ msgstr "Iniciar ponto de acesso"
 
 msgid "Stop hotspot"
 msgstr "Parar ponto de acesso"
+
+msgid "Restart hotspot"
+msgstr "Reinicie ponto de acesso"
 
 msgid "Enable logging"
 msgstr "Habilitar Logs"

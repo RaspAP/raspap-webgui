@@ -1,3 +1,11 @@
+/*
+Theme Name: HackerNews
+Author: @billz
+Author URI: https://github.com/billz
+Description: A theme inspired by HackerNews for RaspAP
+License: GNU General Public License v3.0
+*/
+
 html * {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 0.9rem;
@@ -73,6 +81,11 @@ ul.nav-tabs, .nav-tabs .nav-link {
   margin: 10px 0 20px;
 }
 
+.navbar-logo {
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+}
+
 #wrapper,#page-wrapper,
 #wrapper #content-wrapper,
 .nav>li>a,.nav {
@@ -121,8 +134,13 @@ ul.nav-tabs, .nav-tabs .nav-link {
 }
 
 .info-item {
-  width: 140px;
+  width: 10rem;
   float: left;
+}
+
+.info-item-xs {
+  font-size: 0.7rem;
+  margin-left: 0.3rem;
 }
 
 .info-item-wifi {
@@ -141,15 +159,16 @@ ul.nav-tabs, .nav-tabs .nav-link {
   border-width: 0;
 }
 
-i.fas.fa-circle.service-status-up {
-  color: green;
+.service-status-up {
+  color: #a1ec38!important;
 }
 
-i.fas.fa-circle.service-status-down {
-    color: red;
+.service-status-warn {
+  color: #f6f044!important;
 }
 
 .service-status-down {
+  color: #f80107!important;
   animation: flash 1s linear infinite;
 }
 @keyframes flash {
@@ -157,7 +176,7 @@ i.fas.fa-circle.service-status-down {
     opacity: 0;
   }
 }
- 
+
 .logoutput {
   width:100%;
   height:300px;
@@ -215,3 +234,14 @@ pre.unstyled {
   font-size: 0.9rem!important;
 }
 
+canvas#divDBChartBandwidthhourly {
+  height: 350px!important;
+}
+
+.chart-container {
+  height: 150px;
+  width: 200px;
+}
+.table {
+  margin-bottom: 0rem;
+}

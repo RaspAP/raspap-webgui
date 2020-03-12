@@ -31,26 +31,26 @@ msgstr "RaspAP Wifi Portalı"
 msgid "Dashboard"
 msgstr "Kontrol Paneli"
 
-msgid "Configure WiFi client"
-msgstr "WiFi istemcisini yapılandır"
+msgid "WiFi client"
+msgstr "WiFi istemcisini"
 
-msgid "Configure hotspot"
-msgstr "Paylaşım noktasını yapılandır"
+msgid "Hotspot"
+msgstr "Paylaşım noktasını"
 
-msgid "Configure networking"
-msgstr "Ağı yapılandır"
+msgid "Networking"
+msgstr "Ağı"
 
-msgid "Configure DHCP Server"
-msgstr "DHCP sunucusunu yapılandır"
+msgid "DHCP Server"
+msgstr "DHCP sunucusunu"
 
-msgid "Configure OpenVPN"
-msgstr "OpenVPN'i yapılandır"
+msgid "OpenVPN"
+msgstr "OpenVPN'i"
 
-msgid "Configure TOR proxy"
-msgstr "TOR proxysini yapılandır"
+msgid "TOR proxy"
+msgstr "TOR proxysini"
 
-msgid "Configure Auth"
-msgstr "İzinleri yapılandır"
+msgid "Authentication"
+msgstr "İzinleri"
 
 msgid "Change Theme"
 msgstr "Temayı değiştir"
@@ -317,6 +317,33 @@ msgstr "Dnsmasq çalışıyor"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq çalışmıyor"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Basit"
@@ -386,6 +413,9 @@ msgstr "Paylaşımı başlat"
 
 msgid "Stop hotspot"
 msgstr "Paylaşımı durdur"
+
+msgid "Restart hotspot"
+msgstr "Paylaşımı yeniden başlat"
 
 msgid "Enable logging"
 msgstr "Günlük kaydını etkinleştir"
