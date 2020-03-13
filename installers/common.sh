@@ -64,7 +64,7 @@ function config_installation() {
 # Runs a system software update to make sure we're using all fresh packages
 function install_dependencies() {
     install_log "Installing required packages"
-    sudo apt-get install $apt_option lighttpd $php_package git hostapd dnsmasq vnstat qrencode || install_error "Unable to install dependencies"
+    sudo apt-get install $apt_option lighttpd $php_package git hostapd dnsmasq dhcpcd5 vnstat qrencode || install_error "Unable to install dependencies"
 }
 
 # Enables PHP for lighttpd and restarts service for settings to take effect
