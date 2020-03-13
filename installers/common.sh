@@ -14,7 +14,7 @@ git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 # php package to install 
 if [ "$version" -eq "10" ]; then
     version_msg="Raspbian 10.0 (Buster)"
-    php_package="php7.1-cgi"
+    php_package="php7.3-cgi"
 elif [ "$version" -eq "9" ]; then
     version_msg="Raspbian 9.0 (Stretch)" 
     php_package="php7.0-cgi" 
