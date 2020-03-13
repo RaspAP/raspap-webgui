@@ -25,8 +25,8 @@ elif [ "$version" -lt "8" ]; then
 fi
 
 phpcgiconf=""
-if [ "$php_package" = "php7.1-cgi" ]; then
-    phpcgiconf="/etc/php/7.1/cgi/php.ini"
+if [ "$php_package" = "php7.3-cgi" ]; then
+    phpcgiconf="/etc/php/7.3/cgi/php.ini"
 elif [ "$php_package" = "php7.0-cgi" ]; then
     phpcgiconf="/etc/php/7.0/cgi/php.ini"
 fi
@@ -64,7 +64,7 @@ function config_installation() {
 # Runs a system software update to make sure we're using all fresh packages
 function install_dependencies() {
     install_log "Installing required packages"
-    sudo apt-get install $apt_option lighttpd $php_package git hostapd dnsmasq vnstat qrencode || install_error "Unable to install dependencies"
+    sudo apt-get install $apt_option lighttpd $php_package git hostapd dnsmasq dhcpcd5 vnstat qrencode || install_error "Unable to install dependencies"
 }
 
 # Enables PHP for lighttpd and restarts service for settings to take effect
