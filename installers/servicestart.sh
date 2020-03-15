@@ -7,6 +7,7 @@ NAME=raspap
 DESC="Service control for RaspAP"
 CONFIGFILE="/etc/raspap/hostapd.ini"
 DAEMONPATH="/lib/systemd/system/raspap.service"
+OPENVPNENABLED=$(pidof openvpn | wc -l)
 
 positional=()
 while [[ $# -gt 0 ]]
@@ -29,6 +30,7 @@ done
 set -- "${positional[@]}"
 
 echo "Stopping network services..."
+systemctl stop openvpn-client@client
 systemctl stop systemd-networkd
 systemctl stop hostapd.service
 systemctl stop dnsmasq.service
@@ -50,6 +52,9 @@ if [ -r "$CONFIGFILE" ]; then
             echo "Restarting eth0 interface..."
             ip link set down eth0
             ip link set up eth0
+
+            echo "Removing uap0 interface..."
+            iw dev uap0 del
 
             echo "Enabling systemd-networkd"
             systemctl start systemd-networkd
@@ -86,6 +91,10 @@ systemctl start dhcpcd.service
 sleep "${seconds}"
 
 systemctl start dnsmasq.service
+
+if [ $OPENVPNENABLED -eq 1 ]; then
+    systemctl start openvpn-client@client
+fi
 
 echo "RaspAP service start DONE"
 

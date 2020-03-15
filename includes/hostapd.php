@@ -246,11 +246,11 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         }
         if ($wifiAPEnable == 1) {
             $config.= 'interface=uap0'.PHP_EOL;
+        } elseif ($bridgedEnable == 1) {
+            $config.='interface='.RASPI_WIFI_CLIENT_INTERFACE.PHP_EOL;
+            $config.= 'bridge=br0'.PHP_EOL;
         } else {
             $config.= 'interface='.$_POST['interface'].PHP_EOL;
-            if ($bridgedEnable == 1) {
-                $config.= 'bridge=br0'.PHP_EOL;
-            }
         }
         $config.= 'wpa='.$_POST['wpa'].PHP_EOL;
         $config.= 'wpa_pairwise='.$_POST['wpa_pairwise'].PHP_EOL;

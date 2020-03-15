@@ -34,7 +34,8 @@ lines=(
 
 for line in "${lines[@]}"; do
     if grep "$line" /etc/rc.local > /dev/null; then
-	else
+        echo "$line: Line already added"
+    else
         sudo sed -i "s/^exit 0$/$line\nexit 0/" /etc/rc.local
         echo "Adding rule: $line"
     fi
