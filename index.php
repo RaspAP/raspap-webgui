@@ -55,6 +55,11 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
     $toggleState = "toggled";
 }
 
+// Get Bridged AP mode status
+$arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
+// defaults to false
+$bridgedEnabled = $arrHostapdConf['BridgedEnable'];
+
 ?><!DOCTYPE html>
 <html lang="en">
   <head>
@@ -124,7 +129,7 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
         <li class="nav-item">
           <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
         </li>
-        <?php if (RASPI_WIFICLIENT_ENABLED) : ?>
+        <?php if (RASPI_WIFICLIENT_ENABLED && !$bridgedEnabled) : ?>
         <li class="nav-item">
           <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw mr-2"></i><span class="nav-label"><?php echo _("WiFi client"); ?></span></a>
         </li>
@@ -139,7 +144,7 @@ if ($_COOKIE['sidebarToggled'] == 'true' ) {
            <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-network-wired fa-fw mr-2"></i><span class="nav-label"><?php echo _("Networking"); ?></a>
         </li> 
           <?php endif; ?>
-          <?php if (RASPI_DHCP_ENABLED) : ?>
+          <?php if (RASPI_DHCP_ENABLED && !$bridgedEnabled) : ?>
         <li class="nav-item">
           <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("DHCP Server"); ?></a>
         </li>
