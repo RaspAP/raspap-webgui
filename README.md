@@ -64,14 +64,14 @@ configured as an access point as follows:
 ## Bridged AP
 By default RaspAP configures a routed AP for your clients to connect to. A bridged AP configuration is also possible. Slide the **Bridged AP mode** toggle under the **Advanced** tab of **Configure hotspot**, then save and restart the hotspot.
 
+![](https://i.imgur.com/J5VKSay.png)
+
 **Note:** In bridged mode, all routing capabilities are handled by your upstream router. Because your router assigns IP addresses to your RPi's hotspot and its clients, you might not be able to reach the RaspAP web interface from the default `10.3.141.1` address. Instead use your RPi's hostname followed by `.local` to access the RaspAP web interface. With Raspbian default settings, this should look like `raspberrypi.local`.
 
 More information on Bridged AP mode is provided [on our wiki](https://github.com/billz/raspap-webgui/wiki/Bridged-AP-mode).
 
 ## Simultaneous AP and Wifi client
 RaspAP lets you easily create an AP with a Wifi client configuration. With your RPi configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
-
-![](https://i.imgur.com/y7XOYPB.png)
 
 **Note:** This option is disabled until you configure your RPi as a wireless client. For a Raspberry Pi operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) without an `eth0` connection, this configuration must be enabled _before_ a reboot. 
 
