@@ -66,6 +66,8 @@ By default RaspAP configures a routed AP for your clients to connect to. A bridg
 
 **Note:** In bridged mode, all routing capabilities are handled by your upstream router. Because your router assigns IP addresses to your RPi's hotspot and its clients, you might not be able to reach the RaspAP web interface from the default `10.3.141.1` address. Instead use your RPi's hostname followed by `.local` to access the RaspAP web interface. With Raspbian default settings, this should look like `raspberrypi.local`.
 
+More information on Bridged AP mode is provided [on our wiki](https://github.com/billz/raspap-webgui/wiki/Bridged-AP-mode).
+
 ## Simultaneous AP and Wifi client
 RaspAP lets you easily create an AP with a Wifi client configuration. With your RPi configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
 
