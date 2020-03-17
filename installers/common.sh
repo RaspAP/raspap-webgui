@@ -11,7 +11,7 @@ git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
 if type lsb_release >/dev/null 2>&1; then # linuxbase.org
     OS=$(lsb_release -si)
-    VERSION=$(lsb_release -sr)
+    RELEASE=$(lsb_release -sr)
     CODENAME=$(lsb_release -sc)
     DESC=$(lsb_release -sd)
 else
@@ -20,13 +20,13 @@ fi
 
 # Set default home for lighttpd, dhcpcd5 and php package option
 # based on Linux OS, version
-if [ "$VERSION" -eq "10" ]; then
+if [ "$RELEASE" -eq "10" ]; then
     php_package="php7.3-cgi"
-elif [ "$VERSION" -eq "9" ]; then
+elif [ "$RELEASE" -eq "9" ]; then
     php_package="php7.0-cgi" 
-elif [ "$VERSION" -eq "8" ]; then
+elif [ "$RELEASE" -eq "8" ]; then
     install_error "${DESC} and php5 are not supported. Please upgrade."
-elif [ "$VERSION" -lt "8" ]; then
+elif [ "$RELEASE" -lt "8" ]; then
     install_error "${DESC} is unsupported. Please install on a supported distro."
 fi
 

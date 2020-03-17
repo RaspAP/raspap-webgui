@@ -31,7 +31,7 @@
 # Set defaults
 repo="billz/raspap-webgui"
 branch="master"
-RASPAP_VERSION=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+VERSION=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 assume_yes=0
 ovpn_option=1
 
@@ -75,7 +75,7 @@ while :; do
         exit 1
         ;;
         -v|--version)
-        printf "RaspAP v${RASPAP_VERSION} - simple AP setup and wifi mangement for the RaspberryPi\n"
+        printf "RaspAP v${VERSION} - simple AP setup and wifi mangement for the RaspberryPi\n"
         exit 1
 	;;
         -*|--*)
@@ -105,7 +105,7 @@ function display_welcome() {
     echo -e " 88     88 88.  .88       88 88.  .88 88     88   88"
     echo -e " dP     dP  88888P8  88888P  88Y888P  88     88   dP"
     echo -e "                             88"
-    echo -e "                             dP       version ${RASPAP_VERSION}"
+    echo -e "                             dP       version ${VERSION}"
     echo -e "${green}"
     echo -e "The Quick Installer will guide you through a few easy steps\n\n"
 }
