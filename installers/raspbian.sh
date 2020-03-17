@@ -105,7 +105,7 @@ function display_welcome() {
     echo -e " 88     88 88.  .88       88 88.  .88 88     88   88"
     echo -e " dP     dP  88888P8  88888P  88Y888P  88     88   dP"
     echo -e "                             88"
-    echo -e "                             dP       version ${VERSION}"
+    echo -e "                             dP       version ${RASPAP_VERSION}"
     echo -e "${green}"
     echo -e "The Quick Installer will guide you through a few easy steps\n\n"
 }
