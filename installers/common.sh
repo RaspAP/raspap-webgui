@@ -30,7 +30,7 @@ elif [ "$VERSION" -lt "8" ]; then
     install_error "${DESC} is unsupported. Please install on a supported distro."
 fi
 
-if [ "$OS" -eq "Debian" ]; then
+if [ "$OS" = "Debian" ]; then
     dhcpcd_package="dhcpcd5"
 fi
 
