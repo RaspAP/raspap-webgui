@@ -87,6 +87,24 @@ h5.card-title {
   background-color: #202020;
 }
 
+#content, .navbar, .sidebar, .footer, .sticky-footer {
+  background-image: url('/app/img/bg.png');
+  background-attachment: scroll;
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: 0 0;
+  background-origin: padding-box;
+  background-clip: border-box;
+}
+
+.sticky-footer {
+  background-position: 30px 0;
+}
+
+.sidebar {
+  background-position: 0 20px;
+}
+
 .nav-tabs .nav-link.active {
   color: #d2d2d2;
   background-color: #141414;
@@ -100,10 +118,10 @@ a:focus, a:hover {
 .card>.card-header {
   border-color: #404040;
   background-color: #202020;
-  color: #202020;
+  color: #afafaf;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   font-weight: 400;
 }
 
@@ -287,7 +305,8 @@ span.label.label-warning {
 }
 
 .form-control,
-.form-control:focus {
+.form-control:focus,
+.custom-select {
   color: #d2d2d2;
   background-color: #202020;
   border: 1px solid #404040;

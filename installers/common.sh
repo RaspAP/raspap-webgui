@@ -14,7 +14,7 @@ git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 # php package to install 
 if [ "$version" -eq "10" ]; then
     version_msg="Raspbian 10.0 (Buster)"
-    php_package="php7.1-cgi"
+    php_package="php7.3-cgi"
 elif [ "$version" -eq "9" ]; then
     version_msg="Raspbian 9.0 (Stretch)" 
     php_package="php7.0-cgi" 
@@ -25,8 +25,8 @@ elif [ "$version" -lt "8" ]; then
 fi
 
 phpcgiconf=""
-if [ "$php_package" = "php7.1-cgi" ]; then
-    phpcgiconf="/etc/php/7.1/cgi/php.ini"
+if [ "$php_package" = "php7.3-cgi" ]; then
+    phpcgiconf="/etc/php/7.3/cgi/php.ini"
 elif [ "$php_package" = "php7.0-cgi" ]; then
     phpcgiconf="/etc/php/7.0/cgi/php.ini"
 fi
@@ -171,6 +171,7 @@ function download_latest_files() {
 
     install_log "Cloning latest files from github"
     git clone --branch $branch --depth 1 $git_source_url /tmp/raspap-webgui || install_error "Unable to download files from github"
+
     sudo mv /tmp/raspap-webgui $webroot_dir || install_error "Unable to move raspap-webgui to web root"
 }
 
@@ -210,6 +211,14 @@ function check_for_old_configs() {
         sudo cp /etc/rc.local "$raspap_dir/backups/rc.local.`date +%F-%R`"
         sudo ln -sf "$raspap_dir/backups/rc.local.`date +%F-%R`" "$raspap_dir/backups/rc.local"
     fi
+
+    for file in /etc/systemd/network/raspap-*.net*; do
+        if [ -f "${file}" ]; then
+            filename = $(basename $file)
+            sudo cp "$file" "${raspap_dir}/backups/${filename}.`date +%F-%R`"
+            sudo ln -sf "${raspap_dir}/backups/${filename}.`date +%F-%R`" "${raspap_dir}/backups/${filename}"
+        fi
+    done
 }
 
 # Move configuration file to the correct location
@@ -235,6 +244,11 @@ function default_configuration() {
     sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
 
     [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
+
+    sudo systemctl stop systemd-networkd
+    sudo systemctl disable systemd-networkd
+    sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || install_error "Unable to move br0 netdev file"
+    sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || install_error "Unable to move br0 member file"
 
     if [ ! -f "$webroot_dir/includes/config.php" ]; then
         sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
@@ -311,7 +325,9 @@ function patch_system_files() {
         "/bin/systemctl start dnsmasq.service"
         "/bin/systemctl stop dnsmasq.service"
         "/bin/systemctl start openvpn-client@client"
+        "/bin/systemctl enable openvpn-client@client"
         "/bin/systemctl stop openvpn-client@client"
+        "/bin/systemctl disable openvpn-client@client"
         "/bin/cp /tmp/ovpnclient.ovpn /etc/openvpn/client/client.conf"
         "/bin/cp /tmp/authdata /etc/openvpn/client/login.conf"
         "/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.conf"

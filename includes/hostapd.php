@@ -31,7 +31,9 @@ function DisplayHostAPDConfig()
             SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $status);
         } elseif (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
             $status->addMessage('Attempting to start hotspot', 'info');
-            if ($arrHostapdConf['WifiAPEnable'] == 1) {
+            if ($arrHostapdConf['BridgedEnable'] == 1) {
+                exec('sudo /etc/raspap/hostapd/servicestart.sh --interface br0 --seconds 3', $return);
+            } elseif ($arrHostapdConf['WifiAPEnable'] == 1) {
                 exec('sudo /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 3', $return);
             } else {
                 exec('sudo /etc/raspap/hostapd/servicestart.sh --seconds 3', $return);
@@ -108,15 +110,29 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 
     $good_input = true;
   
-    // Check for WiFi client AP mode checkbox
-    $wifiAPEnable = 0;
-    if ($arrHostapdConf['WifiAPEnable'] == 0) {
-        if (isset($_POST['wifiAPEnable'])) {
-            $wifiAPEnable = 1;
+    // Check for Bridged AP mode checkbox
+    $bridgedEnable = 0;
+    if ($arrHostapdConf['BridgedEnable'] == 0) {
+        if (isset($_POST['bridgedEnable'])) {
+            $bridgedEnable = 1;
         }
     } else {
-        if (isset($_POST['wifiAPEnable'])) {
-            $wifiAPEnable = 1;
+        if (isset($_POST['bridgedEnable'])) {
+            $bridgedEnable = 1;
+        }
+    }
+
+    // Check for WiFi client AP mode checkbox
+    $wifiAPEnable = 0;
+    if ($bridgedEnable == 0) {  // enable client mode actions when not bridged
+        if ($arrHostapdConf['WifiAPEnable'] == 0) {
+            if (isset($_POST['wifiAPEnable'])) {
+                $wifiAPEnable = 1;
+            }
+        } else {
+            if (isset($_POST['wifiAPEnable'])) {
+                $wifiAPEnable = 1;
+            }
         }
     }
 
@@ -137,9 +153,13 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             exec('sudo /etc/raspap/hostapd/disablelog.sh');
         }
     }
+
     $cfg = [];
     $cfg['LogEnable'] = $logEnable;
-    $cfg['WifiAPEnable'] = $wifiAPEnable;
+    // Save previous Client mode status when Bridged
+    $cfg['WifiAPEnable'] = ($bridgedEnable == 1 ?
+        $arrHostapdConf['WifiAPEnable'] : $wifiAPEnable);
+    $cfg['BridgedEnable'] = $bridgedEnable;
     $cfg['WifiManaged'] = RASPI_WIFI_CLIENT_INTERFACE;
     write_php_ini($cfg, '/etc/raspap/hostapd.ini');
 
@@ -226,6 +246,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         }
         if ($wifiAPEnable == 1) {
             $config.= 'interface=uap0'.PHP_EOL;
+        } elseif ($bridgedEnable == 1) {
+            $config.='interface='.RASPI_WIFI_CLIENT_INTERFACE.PHP_EOL;
+            $config.= 'bridge=br0'.PHP_EOL;
         } else {
             $config.= 'interface='.$_POST['interface'].PHP_EOL;
         }
@@ -288,7 +311,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $config[] = 'slaac private';
         $config[] = 'nohook lookup-hostname';
 
-        if ($wifiAPEnable == 1) {
+        if ($bridgedEnable == 1) {
+            $config[] = 'denyinterfaces eth0 wlan0';
+            $config[] = 'interface br0';
+        } elseif ($wifiAPEnable == 1) {
             // Enable uap0 configuration in dhcpcd for Wifi client AP mode
             $intConfig = parse_ini_file(RASPI_CONFIG_NETWORKING.'/uap0.ini', false, INI_SCANNER_RAW);
             $ip_address = ($intConfig['ip_address'] == '') ? '192.168.50.1/24' : $intConfig['ip_address'];
