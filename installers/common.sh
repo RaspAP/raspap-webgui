@@ -7,24 +7,33 @@
 raspap_dir="/etc/raspap"
 raspap_user="www-data"
 webroot_dir="/var/www/html"
-version=`sed 's/\..*//' /etc/debian_version`
 git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
-# Determine Raspbian version, set default home location for lighttpd and 
-# php package to install 
-if [ "$version" -eq "10" ]; then
-    version_msg="Raspbian 10.0 (Buster)"
-    php_package="php7.3-cgi"
-elif [ "$version" -eq "9" ]; then
-    version_msg="Raspbian 9.0 (Stretch)" 
-    php_package="php7.0-cgi" 
-elif [ "$version" -eq "8" ]; then
-    install_error "Raspbian 8.0 (Jessie) and php5 are deprecated. Please upgrade."
-elif [ "$version" -lt "8" ]; then
-    install_error "Raspbian ${version} is unsupported. Please upgrade."
+if type lsb_release >/dev/null 2>&1; then # linuxbase.org
+    OS=$(lsb_release -si)
+    VERSION=$(lsb_release -sr)
+    CODENAME=$(lsb_release -sc)
+    DESC=$(lsb_release -sd)
+else
+    install_error "Unsupported Linux distribution"
 fi
 
-phpcgiconf=""
+# Set default home for lighttpd, dhcpcd5 and php package option
+# based on Linux OS, version
+if [ "$VERSION" -eq "10" ]; then
+    php_package="php7.3-cgi"
+elif [ "$VERSION" -eq "9" ]; then
+    php_package="php7.0-cgi" 
+elif [ "$VERSION" -eq "8" ]; then
+    install_error "${DESC} and php5 are not supported. Please upgrade."
+elif [ "$VERSION" -lt "8" ]; then
+    install_error "${DESC} is unsupported. Please install on a supported distro."
+fi
+
+if [ "$OS" -eq "Debian" ]; then
+    dhcpcd_package="dhcpcd5"
+fi
+
 if [ "$php_package" = "php7.3-cgi" ]; then
     phpcgiconf="/etc/php/7.3/cgi/php.ini"
 elif [ "$php_package" = "php7.0-cgi" ]; then
@@ -36,7 +45,7 @@ fi
 # Prompts user to set options for installation
 function config_installation() {
     install_log "Configure installation"
-    echo "Detected ${version_msg}" 
+    echo "Detected ${DESC}"
     echo "Install directory: ${raspap_dir}"
     echo -n "Install to Lighttpd root directory: ${webroot_dir}? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
@@ -64,7 +73,7 @@ function config_installation() {
 # Runs a system software update to make sure we're using all fresh packages
 function install_dependencies() {
     install_log "Installing required packages"
-    sudo apt-get install $apt_option lighttpd $php_package git hostapd dnsmasq dhcpcd5 vnstat qrencode || install_error "Unable to install dependencies"
+    sudo apt-get install $apt_option lighttpd git hostapd dnsmasq $php_package $dhcpcd_package vnstat qrencode || install_error "Unable to install dependencies"
 }
 
 # Enables PHP for lighttpd and restarts service for settings to take effect
