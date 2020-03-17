@@ -305,7 +305,8 @@ span.label.label-warning {
 }
 
 .form-control,
-.form-control:focus {
+.form-control:focus,
+.custom-select {
   color: #d2d2d2;
   background-color: #202020;
   border: 1px solid #404040;
