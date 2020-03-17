@@ -31,7 +31,7 @@
 # Set defaults
 repo="billz/raspap-webgui"
 branch="master"
-VERSION=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+RASPAP_VERSION=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 assume_yes=0
 ovpn_option=1
 
@@ -75,7 +75,7 @@ while :; do
         exit 1
         ;;
         -v|--version)
-        printf "RaspAP v${VERSION} - simple AP setup and wifi mangement for the RaspberryPi\n"
+        printf "RaspAP v${RASPAP_VERSION} - simple AP setup and wifi mangement for the RaspberryPi\n"
         exit 1
 	;;
         -*|--*)
