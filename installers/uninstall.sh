@@ -127,7 +127,7 @@ function remove_installed_packages() {
     read answer
     if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
         echo "Removing packages."
-        sudo apt-get remove lighttpd $php_package git hostapd dnsmasq vnstat
+        sudo apt-get remove lighttpd $php_package git hostapd dnsmasq vnstat php-apcu php-apcu-bc
         sudo apt-get autoremove
     else
         echo "Leaving packages installed."
