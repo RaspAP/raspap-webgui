@@ -6,14 +6,22 @@
 
 raspap_dir="/etc/raspap"
 raspap_user="www-data"
+raspap_sudoers="/etc/sudoers.d/090_raspap"
 webroot_dir="/var/www/html"
 git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
+# Fetch details for various Linux distros
 if type lsb_release >/dev/null 2>&1; then # linuxbase.org
     OS=$(lsb_release -si)
     RELEASE=$(lsb_release -sr)
     CODENAME=$(lsb_release -sc)
     DESC=$(lsb_release -sd)
+elif [ -f /etc/os-release ]; then # freedesktop.org
+    . /etc/os-release
+    OS=$ID
+    RELEASE=$VERSION_ID
+    CODENAME=$VERSION_CODENAME
+    DESC=$PRETTY_NAME
 else
     install_error "Unsupported Linux distribution"
 fi
@@ -30,7 +38,7 @@ elif [ "$RELEASE" -lt "8" ]; then
     install_error "${DESC} is unsupported. Please install on a supported distro."
 fi
 
-if [ "$OS" = "Debian" ]; then
+if [ ${OS,,} = "debian" ]; then
     dhcpcd_package="dhcpcd5"
 fi
 
@@ -309,7 +317,7 @@ function enable_raspap_daemon() {
 
 # Add a single entry to the sudoers file
 function sudo_add() {
-    sudo bash -c "echo \"$raspap_user ALL=(ALL) NOPASSWD:$1\" | (EDITOR=\"tee -a\" visudo)" \
+    sudo bash -c "echo \"$raspap_user ALL=(ALL) NOPASSWD:$1\" | tee -a $raspap_sudoers" \
         || install_error "Unable to patch /etc/sudoers"
 }
 
@@ -356,14 +364,20 @@ function patch_system_files() {
         "/bin/chmod o+r /tmp/dnsmasq.log"
     )
 
+    # Create sudoers if not present
+    if [ ! -f $raspap_sudoers ]; then
+        install_log "Creating ${raspap_sudoers}"
+        sudo touch $raspap_sudoers
+    fi
+
     # Check if sudoers needs patching
-    if [ $(sudo grep -c $raspap_user /etc/sudoers) -ne ${#cmds[@]} ]
-    then
+    if [ $(sudo grep -c $raspap_user $raspap_sudoers) -ne ${#cmds[@]} ]; then
         # Sudoers file has incorrect number of commands. Wiping them out.
         install_log "Cleaning system sudoers file"
-        sudo sed -i "/$raspap_user/d" /etc/sudoers
+        sudo sed -i "/$raspap_user/d" $raspap_sudoers
         install_log "Patching system sudoers file"
-        # patch /etc/sudoers file
+
+        # patch /etc/sudoers.d/090_raspap file
         for cmd in "${cmds[@]}"
         do
             sudo_add $cmd
