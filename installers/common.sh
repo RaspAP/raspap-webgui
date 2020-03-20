@@ -30,7 +30,9 @@ fi
 
 # Set default home for lighttpd, dhcpcd5 and php package option
 # based on Linux OS, version
-if [ "$RELEASE" -eq "10" ]; then
+if [ "$RELEASE" = "18.04" ]; then
+    php_package="php7.4-cgi"
+elif [ "$RELEASE" -eq "10" ]; then
     php_package="php7.3-cgi"
 elif [ "$RELEASE" -eq "9" ]; then
     php_package="php7.0-cgi"
@@ -40,11 +42,13 @@ elif [ "$RELEASE" -lt "8" ]; then
     install_error "${DESC} is unsupported. Please install on a supported distro."
 fi
 
-if [ ${OS,,} = "debian" ]; then
+if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
     dhcpcd_package="dhcpcd5"
 fi
 
-if [ "$php_package" = "php7.3-cgi" ]; then
+if [ "$php_package" = "php7.4-cgi" ]; then
+    phpcgiconf="/etc/php/7.4/cgi/php.ini"
+elif [ "$php_package" = "php7.3-cgi" ]; then
     phpcgiconf="/etc/php/7.3/cgi/php.ini"
 elif [ "$php_package" = "php7.0-cgi" ]; then
     phpcgiconf="/etc/php/7.0/cgi/php.ini"
@@ -62,12 +66,12 @@ function config_installation() {
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            read -e -p < /dev/tty "Enter alternate Lighttpd directory: " -i "/var/www/html" webroot_dir
+            read -e -p < /dev/tty "Enter alternate lighttpd directory: " -i "/var/www/html" webroot_dir
         fi
     else
         echo -e
     fi
-    echo "Install to Lighttpd directory: ${webroot_dir}"
+    echo "Installing to lighttpd directory: ${webroot_dir}"
     echo -n "Complete installation with these values? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
@@ -83,6 +87,10 @@ function config_installation() {
 # Runs a system software update to make sure we're using all fresh packages
 function install_dependencies() {
     install_log "Installing required packages"
+    if [ "$php_package" = "php7.4-cgi" ]; then
+        echo "Adding apt-repository ppa:ondrej/php"
+        sudo add-apt-repository ppa:ondrej/php || install_error "Unable to add-apt-repository ppa:ondrej/php"
+    fi
     sudo apt-get install $apt_option lighttpd git hostapd dnsmasq $php_package $dhcpcd_package vnstat qrencode || install_error "Unable to install dependencies"
 }
 
