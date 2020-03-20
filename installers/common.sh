@@ -277,7 +277,7 @@ function default_configuration() {
     if [ ! -f $raspap_sysctl ]; then
         echo "Enabling IP forwarding"
         sudo touch $raspap_sysctl || install_error "Unable to create ${raspap_sysctl}"
-        sudo echo "net.ipv4.ip_forward = 1" >> $raspap_sysctl || install_error "Unable to append to ${raspap_sysctl}"
+        echo "net.ipv4.ip_forward = 1" | sudo tee -a $raspap_sysctl || install_error "Unable to append to ${raspap_sysctl}"
     fi
 
     echo "Enabling persistent IP tables rules"
