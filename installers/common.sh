@@ -288,6 +288,7 @@ function default_configuration() {
     if [ ! -f "/etc/systemd/system/iptables.service" ]; then
         echo "Enabling iptables.service"
         sudo cp "$webroot_dir/installers/iptables.service" /etc/systemd/system/ || install_error "Unable to move iptables.service file"
+        sudo update-alternatives --set iptables /usr/sbin/iptables-legacy || install_error "Unable to execute update-alternatives"
         sudo systemctl daemon-reload
         sudo systemctl enable iptables.service || install_error "Failed to enable iptables.service"
         sudo systemctl start iptables.service || install_error "Unable to start iptables.service"
