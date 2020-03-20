@@ -288,8 +288,8 @@ function default_configuration() {
     fi
 
     echo "Applying persistent IP tables rules"
-    if [ ! -f "/etc/iptables/raspap.iptables" ]; then
-        sudo cp $webroot_dir/installers/raspap.iptables /etc/iptables
+    if [ ! -f "/etc/iptables/iptables.rules" ]; then
+        sudo cp $webroot_dir/installers/iptables.rules /etc/iptables
     fi
 
     if [ ! -f "/etc/systemd/system/iptables.service" ]; then
