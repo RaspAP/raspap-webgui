@@ -324,76 +324,14 @@ function enable_raspap_daemon() {
     sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
 }
 
-# Add a single entry to the sudoers file
-function sudo_add() {
-    sudo bash -c "echo \"$raspap_user ALL=(ALL) NOPASSWD:$1\" | tee -a $raspap_sudoers" \
-        || install_error "Unable to patch /etc/sudoers"
-}
-
-# Adds www-data user to the sudoers file with restrictions on what the user can execute
+# Add sudoers file to /etc/sudoers.d/ and set file permissions
 function patch_system_files() {
-
-    # Set commands array
-    cmds=(
-        "/sbin/ifdown"
-        "/sbin/ifup"
-        "/bin/cat /etc/wpa_supplicant/wpa_supplicant.conf"
-        "/bin/cat /etc/wpa_supplicant/wpa_supplicant-wlan[0-9].conf"
-        "/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf"
-        "/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant-wlan[0-9].conf"
-        "/sbin/wpa_cli -i wlan[0-9] scan_results"
-        "/sbin/wpa_cli -i wlan[0-9] scan"
-        "/sbin/wpa_cli -i wlan[0-9] reconfigure"
-        "/sbin/wpa_cli -i wlan[0-9] select_network"
-        "/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf"
-        "/bin/systemctl start hostapd.service"
-        "/bin/systemctl stop hostapd.service"
-        "/bin/systemctl start dnsmasq.service"
-        "/bin/systemctl stop dnsmasq.service"
-        "/bin/systemctl start openvpn-client@client"
-        "/bin/systemctl enable openvpn-client@client"
-        "/bin/systemctl stop openvpn-client@client"
-        "/bin/systemctl disable openvpn-client@client"
-        "/bin/cp /tmp/ovpnclient.ovpn /etc/openvpn/client/client.conf"
-        "/bin/cp /tmp/authdata /etc/openvpn/client/login.conf"
-        "/bin/cp /tmp/dnsmasqdata ${raspap_dnsmasq}"
-        "/bin/cp /tmp/dhcpddata /etc/dhcpcd.conf"
-        "/sbin/shutdown -h now"
-        "/sbin/reboot"
-        "/sbin/ip link set wlan[0-9] down"
-        "/sbin/ip link set wlan[0-9] up"
-        "/sbin/ip -s a f label wlan[0-9]"
-        "/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf"
-        "/etc/raspap/hostapd/enablelog.sh"
-        "/etc/raspap/hostapd/disablelog.sh"
-        "/etc/raspap/hostapd/servicestart.sh"
-        "/etc/raspap/lighttpd/configport.sh"
-        "/etc/raspap/openvpn/configauth.sh"
-        "/bin/chmod o+r /tmp/hostapd.log"
-        "/bin/chmod o+r /tmp/dnsmasq.log"
-    )
 
     # Create sudoers if not present
     if [ ! -f $raspap_sudoers ]; then
-        install_log "Creating ${raspap_sudoers}"
-        sudo touch $raspap_sudoers
-    fi
-
-    # Check if sudoers needs patching
-    if [ $(sudo grep -c $raspap_user $raspap_sudoers) -ne ${#cmds[@]} ]; then
-        # Sudoers file has incorrect number of commands. Wiping them out.
-        install_log "Cleaning system sudoers file"
-        sudo sed -i "/$raspap_user/d" $raspap_sudoers
-        install_log "Patching system sudoers file"
-
-        # patch /etc/sudoers.d/090_raspap file
-        for cmd in "${cmds[@]}"
-        do
-            sudo_add $cmd
-            IFS=$'\n'
-        done
-    else
-        install_log "Sudoers file already patched"
+        install_log "Adding raspap.sudoers to ${raspap_sudoers}"
+        sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || install_error "Unable to apply raspap.sudoers to $raspap_sudoers"
+        sudo chmod 0440 $raspap_sudoers || install_error "Unable to change file permissions for $raspap_sudoers"
     fi
 
     # Add symlink to prevent wpa_cli cmds from breaking with multiple wlan interfaces
