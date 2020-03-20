@@ -55,9 +55,10 @@ fi
 # Prompts user to set options for installation
 function config_installation() {
     install_log "Configure installation"
-    echo "Detected ${DESC}"
+    echo "Detected OS: ${DESC}"
+    echo "Using GitHub repository: ${repo} ${branch} branch"
     echo "Install directory: ${raspap_dir}"
-    echo -n "Install to Lighttpd root directory: ${webroot_dir}? [Y/n]: "
+    echo -n "Install to lighttpd root: ${webroot_dir}? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
@@ -67,7 +68,6 @@ function config_installation() {
         echo -e
     fi
     echo "Install to Lighttpd directory: ${webroot_dir}"
-
     echo -n "Complete installation with these values? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
@@ -233,7 +233,7 @@ function check_for_old_configs() {
 
     for file in /etc/systemd/network/raspap-*.net*; do
         if [ -f "${file}" ]; then
-            filename = $(basename $file)
+            filename=$(basename $file)
             sudo cp "$file" "${raspap_dir}/backups/${filename}.`date +%F-%R`"
             sudo ln -sf "${raspap_dir}/backups/${filename}.`date +%F-%R`" "${raspap_dir}/backups/${filename}"
         fi
@@ -282,12 +282,12 @@ function default_configuration() {
 
     echo "Enabling persistent IP tables rules"
     if [ ! -f "/etc/iptables/iptables.rules" ]; then
-        sudo cp $webroot_dir/installers/iptables.rules /etc/iptables || install_error "Unable to move iptables.rules to /etc/iptables"
+        sudo cp "$webroot_dir/installers/iptables.rules" /etc/iptables || install_error "Unable to move iptables.rules to /etc/iptables"
     fi
 
     if [ ! -f "/etc/systemd/system/iptables.service" ]; then
         echo "Enabling iptables.service"
-        sudo cp $webroot_dir/installers/iptables.service /etc/systemd/system/ || install_error "Unable to move iptables.service file"
+        sudo cp "$webroot_dir/installers/iptables.service" /etc/systemd/system/ || install_error "Unable to move iptables.service file"
         sudo systemctl daemon-reload
         sudo systemctl enable iptables.service || install_error "Failed to enable iptables.service"
         sudo systemctl start iptables.service || install_error "Unable to start iptables.service"
