@@ -322,7 +322,6 @@ function enable_raspap_daemon() {
     sudo cp $webroot_dir/installers/raspap.service /etc/systemd/system/ || install_error "Unable to move raspap.service file"
     sudo systemctl daemon-reload
     sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
-    sudo systemctl start raspap.service || intall_error "Unable to start raspap.service"
 }
 
 # Add a single entry to the sudoers file
