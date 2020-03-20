@@ -7,6 +7,8 @@
 raspap_dir="/etc/raspap"
 raspap_user="www-data"
 raspap_sudoers="/etc/sudoers.d/090_raspap"
+raspap_dnsmasq="/etc/dnsmasq.d/090_raspap.conf"
+raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 webroot_dir="/var/www/html"
 git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
@@ -31,7 +33,7 @@ fi
 if [ "$RELEASE" -eq "10" ]; then
     php_package="php7.3-cgi"
 elif [ "$RELEASE" -eq "9" ]; then
-    php_package="php7.0-cgi" 
+    php_package="php7.0-cgi"
 elif [ "$RELEASE" -eq "8" ]; then
     install_error "${DESC} and php5 are not supported. Please upgrade."
 elif [ "$RELEASE" -lt "8" ]; then
@@ -202,7 +204,7 @@ function change_file_ownership() {
     sudo chown -R $raspap_user:$raspap_user "$webroot_dir" || install_error "Unable to change file ownership for '$webroot_dir'"
 }
 
-# Check for existing /etc/network/interfaces and /etc/hostapd/hostapd.conf files
+# Check for existing configuration files
 function check_for_old_configs() {
     if [ -f /etc/network/interfaces ]; then
         sudo cp /etc/network/interfaces "$raspap_dir/backups/interfaces.`date +%F-%R`"
@@ -214,8 +216,8 @@ function check_for_old_configs() {
         sudo ln -sf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`" "$raspap_dir/backups/hostapd.conf"
     fi
 
-    if [ -f /etc/dnsmasq.conf ]; then
-        sudo cp /etc/dnsmasq.conf "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`"
+    if [ -f $raspap_dnsmasq ]; then
+        sudo cp $raspap_dnsmasq "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`"
         sudo ln -sf "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`" "$raspap_dir/backups/dnsmasq.conf"
     fi
 
@@ -224,8 +226,8 @@ function check_for_old_configs() {
         sudo ln -sf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`" "$raspap_dir/backups/dhcpcd.conf"
     fi
 
-    if [ -f /etc/rc.local ]; then
-        sudo cp /etc/rc.local "$raspap_dir/backups/rc.local.`date +%F-%R`"
+    if [ -f $raspap_sysctl ]; then
+        sudo cp $raspap_sysctl "$raspap_dir/backups/rc.local.`date +%F-%R`"
         sudo ln -sf "$raspap_dir/backups/rc.local.`date +%F-%R`" "$raspap_dir/backups/rc.local"
     fi
 
@@ -251,13 +253,13 @@ function move_config_file() {
 
 # Set up default configuration
 function default_configuration() {
-    install_log "Setting up hostapd"
+    install_log "Applying default configuration to installed services"
     if [ -f /etc/default/hostapd ]; then
         sudo mv /etc/default/hostapd /tmp/default_hostapd.old || install_error "Unable to remove old /etc/default/hostapd file"
     fi
     sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || install_error "Unable to move hostapd defaults file"
     sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || install_error "Unable to move hostapd configuration file"
-    sudo cp $webroot_dir/config/dnsmasq.conf /etc/dnsmasq.conf || install_error "Unable to move dnsmasq configuration file"
+    sudo cp $webroot_dir/config/dnsmasq.conf $raspap_dnsmasq || install_error "Unable to move dnsmasq configuration file"
     sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || install_error "Unable to move dhcpcd configuration file"
 
     [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
@@ -271,26 +273,32 @@ function default_configuration() {
         sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
     fi
 
-    # Generate required lines for Rasp AP to place into rc.local file.
-    # #RASPAP is for removal script
-    lines=(
-    'echo 1 > \/proc\/sys\/net\/ipv4\/ip_forward #RASPAP'
-    'iptables -t nat -A POSTROUTING -j MASQUERADE #RASPAP'
-    'iptables -t nat -A POSTROUTING -s 192.168.50.0\/24 ! -d 192.168.50.0\/24 -j MASQUERADE #RASPAP'
-    )
-    
-    for line in "${lines[@]}"; do
-        if grep "$line" /etc/rc.local > /dev/null; then
-            echo "$line: Line already added"
-        else
-            sudo sed -i "s/^exit 0$/$line\nexit 0/" /etc/rc.local
-            echo "Adding line $line"
-        fi
-    done
+    # Enable IP forwarding in /etc/sysctl.d/90_raspap.conf
+    if [ ! -f $raspap_sysctl ]; then
+        echo "Enabling IP forwarding"
+        sudo touch $raspap_sysctl || install_error "Unable to create ${raspap_sysctl}"
+    fi
 
-    # Force a reload of new settings in /etc/rc.local
-    sudo systemctl restart rc-local.service
-    sudo systemctl daemon-reload
+    line='echo 1 > \/proc\/sys\/net\/ipv4\/ip_forward'
+    if grep "$line" $raspap_sysctl > /dev/null; then
+        echo "$line: Line already added"
+    else
+        sudo sed -i "s/^exit 0$/$line\nexit 0/" $raspap_sysctl
+        echo "Adding line $line to $raspap_sysctl"
+    fi
+
+    echo "Applying persistent IP tables rules"
+    if [ ! -f "/etc/iptables/raspap.iptables" ]; then
+        sudo cp $webroot_dir/installers/raspap.iptables /etc/iptables
+    fi
+
+    if [ ! -f "/etc/systemd/system/iptables.service" ]; then
+        echo "Enabling iptables.service"
+        sudo cp $webroot_dir/installers/iptables.service /etc/systemd/system/
+        sudo systemctl daemon-reload
+        sudo systemctl enable iptables.service
+        sudo systemctl start iptables.service
+    fi
 
     # Prompt to install RaspAP daemon
     echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
@@ -347,7 +355,7 @@ function patch_system_files() {
         "/bin/systemctl disable openvpn-client@client"
         "/bin/cp /tmp/ovpnclient.ovpn /etc/openvpn/client/client.conf"
         "/bin/cp /tmp/authdata /etc/openvpn/client/login.conf"
-        "/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.conf"
+        "/bin/cp /tmp/dnsmasqdata ${raspap_dnsmasq}"
         "/bin/cp /tmp/dhcpddata /etc/dhcpcd.conf"
         "/sbin/shutdown -h now"
         "/sbin/reboot"
