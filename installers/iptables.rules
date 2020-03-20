@@ -1,4 +1,24 @@
 # RaspAP iptables rules
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT DROP [0:0]
+
+# loopback
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+-A INPUT -d 127.0.0.1 -j ACCEPT
+-A OUTPUT -s 127.0.0.1 -j ACCEPT
+
+# ACCEPT already ESTABLISHED connections
+-A INPUT -p ALL -i eth0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# ACCEPT all OUTPUT
+-A OUTPUT -p ALL -o eth0 -j ACCEPT
+
+# SSH
+-A INPUT -p tcp -i eth0 --dport 22 -m state --state NEW -j ACCEPT
+
 *nat
 :PREROUTING ACCEPT [0:0]
 :INPUT ACCEPT [0:0]
