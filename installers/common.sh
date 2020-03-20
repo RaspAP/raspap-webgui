@@ -214,7 +214,7 @@ function check_for_old_configs() {
 
     for file in /etc/systemd/network/raspap-*.net*; do
         if [ -f "${file}" ]; then
-            filename = $(basename $file)
+            filename=$(basename $file)
             sudo cp "$file" "${raspap_dir}/backups/${filename}.`date +%F-%R`"
             sudo ln -sf "${raspap_dir}/backups/${filename}.`date +%F-%R`" "${raspap_dir}/backups/${filename}"
         fi
