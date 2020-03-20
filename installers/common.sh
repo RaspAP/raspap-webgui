@@ -227,12 +227,12 @@ function check_for_old_configs() {
     fi
 
     if [ -f $raspap_sysctl ]; then
-        sudo cp $raspap_sysctl "$raspap_dir/backups/rc.local.`date +%F-%R`"
-        sudo ln -sf "$raspap_dir/backups/rc.local.`date +%F-%R`" "$raspap_dir/backups/rc.local"
+        sudo cp $raspap_sysctl "$raspap_dir/backups/sysctl.d.`date +%F-%R`"
+        sudo ln -sf "$raspap_dir/backups/sysctl.d.`date +%F-%R`" "$raspap_dir/backups/sysctl.d"
     fi
 
     for file in /etc/systemd/network/raspap-*.net*; do
-        if [-f "${file}" ]; then
+        if [ -f "${file}" ]; then
             filename = $(basename $file)
             sudo cp "$file" "${raspap_dir}/backups/${filename}.`date +%F-%R`"
             sudo ln -sf "${raspap_dir}/backups/${filename}.`date +%F-%R`" "${raspap_dir}/backups/${filename}"
@@ -277,19 +277,12 @@ function default_configuration() {
     if [ ! -f $raspap_sysctl ]; then
         echo "Enabling IP forwarding"
         sudo touch $raspap_sysctl || install_error "Unable to create ${raspap_sysctl}"
+        sudo echo "net.ipv4.ip_forward = 1" >> $raspap_sysctl || install_error "Unable to append to ${raspap_sysctl}"
     fi
 
-    line='echo 1 > \/proc\/sys\/net\/ipv4\/ip_forward'
-    if grep "$line" $raspap_sysctl > /dev/null; then
-        echo "$line: Line already added"
-    else
-        sudo sed -i "s/^exit 0$/$line\nexit 0/" $raspap_sysctl
-        echo "Adding line $line to $raspap_sysctl"
-    fi
-
-    echo "Applying persistent IP tables rules"
+    echo "Enabling persistent IP tables rules"
     if [ ! -f "/etc/iptables/iptables.rules" ]; then
-        sudo cp $webroot_dir/installers/iptables.rules /etc/iptables
+        sudo cp $webroot_dir/installers/iptables.rules /etc/iptables || install_error "Unable to move iptables.rules to /etc/iptables"
     fi
 
     if [ ! -f "/etc/systemd/system/iptables.service" ]; then
