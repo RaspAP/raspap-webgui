@@ -281,8 +281,8 @@ function default_configuration() {
     fi
 
     echo "Enabling persistent IP tables rules"
-    if [ ! -f "/etc/iptables/iptables.rules" ]; then
-        sudo cp "$webroot_dir/installers/iptables.rules" /etc/iptables || install_error "Unable to move iptables.rules to /etc/iptables"
+    if [ ! -f "/etc/iptables.raspap.rules" ]; then
+        sudo cp "$webroot_dir/installers/iptables.rules" /etc/iptables.raspap.rules || install_error "Unable to move iptables.rules"
     fi
 
     if [ ! -f "/etc/systemd/system/iptables.service" ]; then
