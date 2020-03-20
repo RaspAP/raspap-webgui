@@ -22,8 +22,13 @@ case $key in
     ;;
     -s|--seconds)
     seconds="$2"
-    shift # past argument
-    shift # past value
+    shift
+    shift
+    ;;
+    -a|--action)
+    action="$2"
+    shift
+    shift
     ;;
 esac
 done
@@ -35,6 +40,11 @@ systemctl stop systemd-networkd
 systemctl stop hostapd.service
 systemctl stop dnsmasq.service
 systemctl stop dhcpcd.service
+
+if [ "${action}" = "stop" ]; then
+    echo "Services stopped. Exiting."
+    exit 0
+fi
 
 if [ -f "$DAEMONPATH" ]; then
     echo "Changing RaspAP Daemon --interface to $interface"
