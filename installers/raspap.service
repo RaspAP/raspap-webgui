@@ -1,5 +1,5 @@
 ### BEGIN INIT INFO
-# Provides:          /etc/raspap/hostapd/servicestart
+# Provides:          raspapd
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
@@ -11,8 +11,7 @@
 [Unit]
 Description=RaspAP Service Daemon
 DefaultDependencies=no
-After=systemd-sysctl.service
-Before=sysinit.target
+After=network.target
 
 [Service]
 Type=oneshot

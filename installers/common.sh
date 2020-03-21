@@ -8,7 +8,7 @@ raspap_dir="/etc/raspap"
 raspap_user="www-data"
 raspap_sudoers="/etc/sudoers.d/090_raspap"
 raspap_dnsmasq="/etc/dnsmasq.d/090_raspap.conf"
-raspap_iptables="/etc/raspap.iptables.rules"
+raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 webroot_dir="/var/www/html"
 git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
@@ -291,14 +291,15 @@ function enable_raspap_daemon() {
 function configure_networking() {
     install_log "Configuring networking"
     echo "Enabling IP forwarding"
-    sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf || install_error "Unable to set IP forwarding"
-    sudo sysctl -p /etc/sysctl.conf || install_error "Unable to execute sysctl"
+    echo "net.ipv4.ip_forward=1" | sudo tee $raspap_sysctl || install_error "Unable to set IP forwarding"
+    sudo sysctl -p $raspap_sysctl || install_error "Unable to execute sysctl"
+    sudo /etc/init.d/procps restart || install_error "Unable to execute procps"
 
     echo "Creating IP tables rules"
     sudo iptables -t nat -A POSTROUTING -j MASQUERADE || install_error "Unable to execute iptables"
     sudo iptables -t nat -A POSTROUTING -s 192.168.50.0/24 ! -d 192.168.50.0/24 -j MASQUERADE || install_error "Unable to execute iptables"
     echo "Persisting IP tables rules"
-    sudo iptables-save | sudo tee $raspap_iptables
+    sudo iptables-save | sudo tee /etc/iptables/rules.v4
 
     # Prompt to install RaspAP daemon
     echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
