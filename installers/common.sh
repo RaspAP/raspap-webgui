@@ -8,49 +8,16 @@ raspap_dir="/etc/raspap"
 raspap_user="www-data"
 raspap_sudoers="/etc/sudoers.d/090_raspap"
 raspap_dnsmasq="/etc/dnsmasq.d/090_raspap.conf"
-raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
+raspap_iptables="/etc/raspap.iptables.rules"
 webroot_dir="/var/www/html"
 git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
-# Fetch details for various Linux distros
-if type lsb_release >/dev/null 2>&1; then # linuxbase.org
-    OS=$(lsb_release -si)
-    RELEASE=$(lsb_release -sr)
-    CODENAME=$(lsb_release -sc)
-    DESC=$(lsb_release -sd)
-elif [ -f /etc/os-release ]; then # freedesktop.org
-    . /etc/os-release
-    OS=$ID
-    RELEASE=$VERSION_ID
-    CODENAME=$VERSION_CODENAME
-    DESC=$PRETTY_NAME
-else
-    install_error "Unsupported Linux distribution"
-fi
-
-# Set php package option based on Linux release version,
-# abort if unsupported distro
-case $RELEASE in
-    "18.04") # Ubuntu 18.04 LTS
-        php_package="php7.4-cgi"
-        phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
-    "10")
-        php_package="php7.3-cgi"
-        phpcgiconf="/etc/php/7.3/cgi/php.ini" ;;
-    "9")
-        php_package="php7.0-cgi"
-        phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
-    "8")
-        install_error "${DESC} and php5 are not supported. Please upgrade." ;;
-    *)
-        install_error "${DESC} is unsupported. Please install on a supported distro." ;;
-esac
-
-### NOTE: all the below functions are overloadable for system-specific installs
+# NOTE: all the below functions are overloadable for system-specific installs
 
 # Prompts user to set options for installation
 function config_installation() {
     install_log "Configure installation"
+    get_linux_distro
     echo "Detected OS: ${DESC}"
     echo "Using GitHub repository: ${repo} ${branch} branch"
     echo "Install directory: ${raspap_dir}"
@@ -76,14 +43,56 @@ function config_installation() {
     fi
 }
 
+# Determines host Linux distrubtion details
+function get_linux_distro() {
+    if type lsb_release >/dev/null 2>&1; then # linuxbase.org
+        OS=$(lsb_release -si)
+        RELEASE=$(lsb_release -sr)
+        CODENAME=$(lsb_release -sc)
+        DESC=$(lsb_release -sd)
+    elif [ -f /etc/os-release ]; then # freedesktop.org
+        . /etc/os-release
+        OS=$ID
+        RELEASE=$VERSION_ID
+        CODENAME=$VERSION_CODENAME
+        DESC=$PRETTY_NAME
+    else
+        install_error "Unsupported Linux distribution"
+    fi
+}
+
+# Sets php package option based on Linux release version,
+# abort if unsupported distro
+function set_php_package() {
+    case $RELEASE in
+        "18.04") # Ubuntu 18.04 LTS
+            php_package="php7.4-cgi"
+            phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
+        "10")
+            php_package="php7.3-cgi"
+            phpcgiconf="/etc/php/7.3/cgi/php.ini" ;;
+        "9")
+            php_package="php7.0-cgi"
+            phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
+        "8")
+            install_error "${DESC} and php5 are not supported. Please upgrade." ;;
+        *)
+            install_error "${DESC} is unsupported. Please install on a supported distro." ;;
+    esac
+}
+
 # Runs a system software update to make sure we're using all fresh packages
 function install_dependencies() {
     install_log "Installing required packages"
+    set_php_package
     if [ "$php_package" = "php7.4-cgi" ]; then
         echo "Adding apt-repository ppa:ondrej/php"
         sudo add-apt-repository ppa:ondrej/php || install_error "Unable to add-apt-repository ppa:ondrej/php"
     fi
-    sudo apt-get install $apt_option lighttpd git hostapd dnsmasq $php_package $dhcpcd_package vnstat qrencode || install_error "Unable to install dependencies"
+    # Set dconf-set-selections
+    echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
+    echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
+    sudo apt-get install $apt_option lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package vnstat qrencode || install_error "Unable to install dependencies"
 }
 
 # Enables PHP for lighttpd and restarts service for settings to take effect
@@ -226,11 +235,6 @@ function check_for_old_configs() {
         sudo ln -sf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`" "$raspap_dir/backups/dhcpcd.conf"
     fi
 
-    if [ -f $raspap_sysctl ]; then
-        sudo cp $raspap_sysctl "$raspap_dir/backups/sysctl.d.`date +%F-%R`"
-        sudo ln -sf "$raspap_dir/backups/sysctl.d.`date +%F-%R`" "$raspap_dir/backups/sysctl.d"
-    fi
-
     for file in /etc/systemd/network/raspap-*.net*; do
         if [ -f "${file}" ]; then
             filename=$(basename $file)
@@ -283,30 +287,18 @@ function enable_raspap_daemon() {
     sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
 }
 
-# Configure IP forwarding, IP tables rules and RaspAP daemon
+# Configure IP forwarding, set IP tables rules, prompt to install RaspAP daemon
 function configure_networking() {
     install_log "Configuring networking"
-    # Enable IP forwarding in /etc/sysctl.d/90_raspap.conf
-    if [ ! -f $raspap_sysctl ]; then
-        echo "Enabling IP forwarding"
-        sudo touch $raspap_sysctl || install_error "Unable to create ${raspap_sysctl}"
-        echo "net.ipv4.ip_forward = 1" | sudo tee -a $raspap_sysctl || install_error "Unable to append to ${raspap_sysctl}"
-        sudo sysctl -p $raspap_sysctl || install_error "Unable to load sysctl settings from file"
-    fi
+    echo "Enabling IP forwarding"
+    sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf || install_error "Unable to set IP forwarding"
+    sudo sysctl -p /etc/sysctl.conf || install_error "Unable to execute sysctl"
 
-    echo "Enabling persistent IP tables rules"
-    if [ ! -f "/etc/iptables.raspap.rules" ]; then
-        sudo cp "$webroot_dir/installers/iptables.rules" /etc/iptables.raspap.rules || install_error "Unable to move iptables.rules"
-    fi
-
-    if [ ! -f "/etc/systemd/system/iptables.service" ]; then
-        echo "Enabling iptables.service"
-        sudo cp "$webroot_dir/installers/iptables.service" /etc/systemd/system/ || install_error "Unable to move iptables.service file"
-        sudo update-alternatives --set iptables /usr/sbin/iptables-legacy || install_error "Unable to execute update-alternatives"
-        sudo systemctl daemon-reload
-        sudo systemctl enable iptables.service || install_error "Failed to enable iptables.service"
-        sudo systemctl start iptables.service || install_error "Unable to start iptables.service"
-    fi
+    echo "Creating IP tables rules"
+    sudo iptables -t nat -A POSTROUTING -j MASQUERADE || install_error "Unable to execute iptables"
+    sudo iptables -t nat -A POSTROUTING -s 192.168.50.0/24 ! -d 192.168.50.0/24 -j MASQUERADE || install_error "Unable to execute iptables"
+    echo "Persisting IP tables rules"
+    sudo iptables-save | sudo tee $raspap_iptables
 
     # Prompt to install RaspAP daemon
     echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
