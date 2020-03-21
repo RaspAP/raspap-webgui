@@ -28,31 +28,23 @@ else
     install_error "Unsupported Linux distribution"
 fi
 
-# Set default home for lighttpd, dhcpcd5 and php package option
-# based on Linux OS, version
-if [ "$RELEASE" = "18.04" ]; then
-    php_package="php7.4-cgi"
-elif [ "$RELEASE" -eq "10" ]; then
-    php_package="php7.3-cgi"
-elif [ "$RELEASE" -eq "9" ]; then
-    php_package="php7.0-cgi"
-elif [ "$RELEASE" -eq "8" ]; then
-    install_error "${DESC} and php5 are not supported. Please upgrade."
-elif [ "$RELEASE" -lt "8" ]; then
-    install_error "${DESC} is unsupported. Please install on a supported distro."
-fi
-
-if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
-    dhcpcd_package="dhcpcd5"
-fi
-
-if [ "$php_package" = "php7.4-cgi" ]; then
-    phpcgiconf="/etc/php/7.4/cgi/php.ini"
-elif [ "$php_package" = "php7.3-cgi" ]; then
-    phpcgiconf="/etc/php/7.3/cgi/php.ini"
-elif [ "$php_package" = "php7.0-cgi" ]; then
-    phpcgiconf="/etc/php/7.0/cgi/php.ini"
-fi
+# Set php package option based on Linux release version,
+# abort if unsupported distro
+case $RELEASE in
+    "18.04") # Ubuntu 18.04 LTS
+        php_package="php7.4-cgi"
+        phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
+    "10")
+        php_package="php7.3-cgi"
+        phpcgiconf="/etc/php/7.3/cgi/php.ini" ;;
+    "9")
+        php_package="php7.0-cgi"
+        phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
+    "8")
+        install_error "${DESC} and php5 are not supported. Please upgrade." ;;
+    *)
+        install_error "${DESC} is unsupported. Please install on a supported distro." ;;
+esac
 
 ### NOTE: all the below functions are overloadable for system-specific installs
 
@@ -280,7 +272,20 @@ function default_configuration() {
     if [ ! -f "$webroot_dir/includes/config.php" ]; then
         sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
     fi
+}
 
+# Install and enable RaspAP daemon
+function enable_raspap_daemon() {
+    install_log "Enabling RaspAP daemon"
+    echo "Disable with: sudo systemctl disable raspap.service"
+    sudo cp $webroot_dir/installers/raspap.service /etc/systemd/system/ || install_error "Unable to move raspap.service file"
+    sudo systemctl daemon-reload
+    sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
+}
+
+# Configure IP forwarding, IP tables rules and RaspAP daemon
+function configure_networking() {
+    install_log "Configuring networking"
     # Enable IP forwarding in /etc/sysctl.d/90_raspap.conf
     if [ ! -f $raspap_sysctl ]; then
         echo "Enabling IP forwarding"
@@ -316,16 +321,7 @@ function default_configuration() {
         echo -e
         enable_raspap_daemon
     fi
-}
-
-# Install and enable RaspAP daemon
-function enable_raspap_daemon() {
-    install_log "Enabling RaspAP daemon"
-    echo "Disable with: sudo systemctl disable raspap.service"
-    sudo cp $webroot_dir/installers/raspap.service /etc/systemd/system/ || install_error "Unable to move raspap.service file"
-    sudo systemctl daemon-reload
-    sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
-}
+ }
 
 # Add sudoers file to /etc/sudoers.d/ and set file permissions
 function patch_system_files() {
@@ -435,6 +431,7 @@ function install_raspap() {
     create_lighttpd_scripts
     move_config_file
     default_configuration
+    configure_networking
     prompt_install_openvpn
     patch_system_files
     install_complete
