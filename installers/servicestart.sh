@@ -1,12 +1,12 @@
 #!/bin/bash
-# When wireless client AP mode is enabled, this script handles starting
+# When wireless client AP or Bridge mode is enabled, this script handles starting
 # up network services in a specific order and timing to avoid race conditions.
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NAME=raspapd
 DESC="Service control for RaspAP"
 CONFIGFILE="/etc/raspap/hostapd.ini"
-DAEMONPATH="/lib/systemd/system/raspap.service"
+DAEMONPATH="/lib/systemd/system/raspapd.service"
 OPENVPNENABLED=$(pidof openvpn | wc -l)
 
 positional=()
@@ -36,6 +36,7 @@ set -- "${positional[@]}"
 
 echo "Stopping network services..."
 systemctl stop openvpn-client@client
+systemctl stop systemd-networkd
 systemctl stop hostapd.service
 systemctl stop dnsmasq.service
 systemctl stop dhcpcd.service
@@ -64,8 +65,15 @@ if [ -r "$CONFIGFILE" ]; then
 
             echo "Removing uap0 interface..."
             iw dev uap0 del
+
+            echo "Enabling systemd-networkd"
+            systemctl start systemd-networkd
+            systemctl enable systemd-networkd
         fi
     else
+        echo "Disabling systemd-networkd"
+        systemctl disable systemd-networkd
+
         echo "Removing br0 interface..."
         ip link set down br0
         ip link del dev br0
