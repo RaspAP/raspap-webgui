@@ -282,7 +282,7 @@ function default_configuration() {
 function enable_raspap_daemon() {
     install_log "Enabling RaspAP daemon"
     echo "Disable with: sudo systemctl disable raspap.service"
-    sudo cp $webroot_dir/installers/raspap.service /etc/systemd/system/ || install_error "Unable to move raspap.service file"
+    sudo cp $webroot_dir/installers/raspap.service /lib/systemd/system/ || install_error "Unable to move raspap.service file"
     sudo systemctl daemon-reload
     sudo systemctl enable raspap.service || install_error "Failed to enable raspap.service"
 }
