@@ -59,6 +59,9 @@ if [ -r "$CONFIGFILE" ]; then
 
     if [ "${config[BridgedEnable]}" = 1 ]; then
         if [ "${interface}" = "br0" ]; then
+            echo "Stopping systemd-networkd"
+            systemctl stop systemd-networkd
+
             echo "Restarting eth0 interface..."
             ip link set down eth0
             ip link set up eth0
