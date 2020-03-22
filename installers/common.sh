@@ -291,7 +291,7 @@ function enable_raspap_daemon() {
 function configure_networking() {
     install_log "Configuring networking"
     echo "Enabling IP forwarding"
-    echo "net.ipv4.ip_forward=1" | sudo tee $raspap_sysctl || install_error "Unable to set IP forwarding"
+    echo "net.ipv4.ip_forward=1" | sudo tee $raspap_sysctl > /dev/null || install_error "Unable to set IP forwarding"
     sudo sysctl -p $raspap_sysctl || install_error "Unable to execute sysctl"
     sudo /etc/init.d/procps restart || install_error "Unable to execute procps"
 
@@ -299,7 +299,7 @@ function configure_networking() {
     sudo iptables -t nat -A POSTROUTING -j MASQUERADE || install_error "Unable to execute iptables"
     sudo iptables -t nat -A POSTROUTING -s 192.168.50.0/24 ! -d 192.168.50.0/24 -j MASQUERADE || install_error "Unable to execute iptables"
     echo "Persisting IP tables rules"
-    sudo iptables-save | sudo tee /etc/iptables/rules.v4
+    sudo iptables-save | sudo tee /etc/iptables/rules.v4 > /dev/null || install_error "Unable to execute iptables-save"
 
     # Prompt to install RaspAP daemon
     echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
