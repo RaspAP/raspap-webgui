@@ -87,7 +87,11 @@ function install_dependencies() {
     set_php_package
     if [ "$php_package" = "php7.4-cgi" ]; then
         echo "Adding apt-repository ppa:ondrej/php"
+        sudo apt-get install software-properties-common || install_error "Unable to install dependency"
         sudo add-apt-repository ppa:ondrej/php || install_error "Unable to add-apt-repository ppa:ondrej/php"
+    fi
+    if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
+        dhcpcd_package="dhcpcd5"
     fi
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
