@@ -12,7 +12,6 @@ function DisplayHostAPDConfig()
 {
     $status = new StatusMessages();
     $system = new System();
-    $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
     $arrConfig = array();
     $arr80211Standard = [
         'a' => '802.11a - 5 GHz',
@@ -29,7 +28,13 @@ function DisplayHostAPDConfig()
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveHostAPDSettings'])) {
             SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $status);
-        } elseif (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
+        }
+    }
+
+    $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
+
+    if (!RASPI_MONITOR_ENABLED) {
+         if (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
             $status->addMessage('Attempting to start hotspot', 'info');
             if ($arrHostapdConf['BridgedEnable'] == 1) {
                 exec('sudo /etc/raspap/hostapd/servicestart.sh --interface br0 --seconds 3', $return);
