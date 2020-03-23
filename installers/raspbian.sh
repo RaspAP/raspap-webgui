@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 # RaspAP Quick Installer
-# author: @billz
-# license: GNU General Public License v3.0
+# Author: @billz <billzimmerman@gmail.com>
+# License: GNU General Public License v3.0
 #
 # Usage:
 #
@@ -27,13 +27,16 @@
 # https://raw.githubusercontent.com/billz/raspap-webgui/master/installers/common.sh
 # - or -
 # https://raw.githubusercontent.com/billz/raspap-webgui/master/installers/mkcert.sh
+#
+# You are not obligated to bundle the LICENSE file with your RaspAP projects as long
+# as you leave these references intact in the header comments of your source files.
 
 # Set defaults
 repo="billz/raspap-webgui"
 branch="master"
 assume_yes=0
 ovpn_option=1
-RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 
 # Define usage notes
 usage=$(cat << EOF
@@ -93,7 +96,7 @@ done
 UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
 
 # Outputs a welcome message
-function display_welcome() {
+function _display_welcome() {
     raspberry='\033[0;35m'
     green='\033[1;32m'
 
@@ -111,29 +114,29 @@ function display_welcome() {
 }
 
 # Outputs a RaspAP Install log line
-function install_log() {
+function _install_log() {
     echo -e "\033[1;32mRaspAP Install: $*\033[m"
 }
 
 # Outputs a RaspAP Install Error log line and exits with status code 1
-function install_error() {
+function _install_error() {
     echo -e "\033[1;37;41mRaspAP Install Error: $*\033[m"
     exit 1
 }
 
 # Outputs a RaspAP Warning line
-function install_warning() {
+function _install_warning() {
     echo -e "\033[1;33mWarning: $*\033[m"
 }
 
 # Outputs a RaspAP divider
-function install_divider() {
+function _install_divider() {
     echo -e "\033[1;32m***************************************************************$*\033[m"
 }
 
-function update_system_packages() {
-    install_log "Updating sources"
-    sudo apt-get update || install_error "Unable to update package list"
+function _update_system_packages() {
+    _install_log "Updating sources"
+    sudo apt-get update || _install_error "Unable to update package list"
 }
 
 # Fetch required installer functions
@@ -141,11 +144,11 @@ if [ "${install_cert:-}" = 1 ]; then
     source="mkcert"
     wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
     source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
-    install_certificate || install_error "Unable to install certificate"
+    _install_certificate || _install_error "Unable to install certificate"
 else
     source="common"
     wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
     source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
-    install_raspap || install_error "Unable to install RaspAP"
+    _install_raspap || _install_error "Unable to install RaspAP"
 fi
 
