@@ -6,9 +6,17 @@
 # @author billz
 # license: GNU General Public License v3.0
 
+# Exit on error
+set -o errexit
+# Exit on error inside functions
+set -o errtrace
+# Turn on traces, disabled by default
+#set -o xtrace
+
 file=$1
 auth=$2
 interface=$3
+readonly rulesv4="/etc/iptables/rules.v4"
 
 if [ "$auth" = 1 ]; then
     echo "Enabling auth-user-pass in OpenVPN client.conf"
@@ -23,11 +31,26 @@ if [ "$auth" = 1 ]; then
 fi
 
 # Configure NAT and forwarding with iptables
-echo "Adding iptables rules for $interface"
-sudo iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
-sudo iptables -A FORWARD -i tun0 -o $interface -m state --state RELATED,ESTABLISHED -j ACCEPT
-sudo iptables -A FORWARD -i wlan0 -o tun0 -j ACCEPT
+echo "Checking iptables rules"
+rules=(
+"-A POSTROUTING -o tun0 -j MASQUERADE"
+"-A FORWARD -i tun0 -o ${interface} -m state --state RELATED,ESTABLISHED -j ACCEPT"
+"-A FORWARD -i wlan0 -o tun0 -j ACCEPT"
+)
 
-echo "Persisting IP tables rules"
-sudo iptables-save | sudo tee /etc/iptables/rules.v4 > /dev/null
+for rule in "${rules[@]}"; do
+    if grep -- "$rule" $rulesv4 > /dev/null; then
+        echo "Rule already exits: ${rule}"
+    else
+        rule=$(sed -e 's/^\(-A POSTROUTING\)/-t nat \1/' <<< $rule)
+        echo "Adding rule: ${rule}"
+        sudo iptables $rule
+        added=true
+    fi
+done
+
+if [ "$added" = true ]; then
+    echo "Persisting IP tables rules"
+    sudo iptables-save | sudo tee /etc/iptables/rules.v4 > /dev/null
+fi
 
