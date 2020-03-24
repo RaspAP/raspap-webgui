@@ -22,26 +22,12 @@ if [ "$auth" = 1 ]; then
     fi
 fi
 
-# Generate iptables entries to place into rc.local file.
-# #RASPAP is for uninstall script
-echo "Checking iptables rules for $interface"
+# Configure NAT and forwarding with iptables
+echo "Adding iptables rules for $interface"
+sudo iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
+sudo iptables -A FORWARD -i tun0 -o $interface -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i wlan0 -o tun0 -j ACCEPT
 
-lines=(
-"iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE #RASPAP"
-"iptables -A FORWARD -i tun0 -o $interface -m state --state RELATED,ESTABLISHED -j ACCEPT #RASPAP"
-"iptables -A FORWARD -i wlan0 -o tun0 -j ACCEPT #RASPAP"
-)
-
-for line in "${lines[@]}"; do
-    if grep "$line" /etc/rc.local > /dev/null; then
-        echo "$line: Line already added"
-    else
-        sudo sed -i "s/^exit 0$/$line\nexit 0/" /etc/rc.local
-        echo "Adding rule: $line"
-    fi
-done
-
-# Force a reload of new settings in /etc/rc.local
-sudo systemctl restart rc-local.service
-sudo systemctl daemon-reload
+echo "Persisting IP tables rules"
+sudo iptables-save | sudo tee /etc/iptables/rules.v4 > /dev/null
 
