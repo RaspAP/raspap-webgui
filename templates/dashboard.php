@@ -5,7 +5,7 @@ if ($arrHostapdConf['WifiAPEnable'] == 1) {
 } else {
   $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
 }
-$MACPattern = '([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}';
+$MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
 if ($arrHostapdConf['BridgedEnable'] == 1) {
   $moreLink = "index.php?page=hostapd_conf";
   exec('arp -i '.$client_iface.' -a | grep -E $(iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|") | tr -d "()" | awk -F" " \'{print $7 " " $4 " " $2 " " $1}\'', $clients);
