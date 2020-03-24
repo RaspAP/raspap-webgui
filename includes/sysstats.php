@@ -28,7 +28,7 @@ if ($cpuload > 90) {
     $cpuload_status = "danger";
 } elseif ($cpuload > 75) {
     $cpuload_status = "warning";
-} elseif ($cpuload >  0) {
+} elseif ($cpuload >=  0) {
     $cpuload_status = "success";
 }
 

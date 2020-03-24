@@ -59,8 +59,7 @@
                 <div class="row">
                   <div class="form-group col-md-8">
                     <?php
-                        $log = file_get_contents('/tmp/openvpn.log');
-                        echo '<textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
+                        echo '<textarea class="logoutput"></textarea>';
                     ?>
                   </div>
                 </div>
