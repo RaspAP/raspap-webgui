@@ -20,6 +20,7 @@ readonly raspap_user="www-data"
 readonly raspap_sudoers="/etc/sudoers.d/090_raspap"
 readonly raspap_dnsmasq="/etc/dnsmasq.d/090_raspap.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
+readonly rulesv4="/etc/iptables/rules.v4"
 webroot_dir="/var/www/html"
 git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
@@ -310,11 +311,26 @@ function _configure_networking() {
     sudo sysctl -p $raspap_sysctl || _install_error "Unable to execute sysctl"
     sudo /etc/init.d/procps restart || _install_error "Unable to execute procps"
 
-    echo "Creating IP tables rules"
-    sudo iptables -t nat -A POSTROUTING -j MASQUERADE || _install_error "Unable to execute iptables"
-    sudo iptables -t nat -A POSTROUTING -s 192.168.50.0/24 ! -d 192.168.50.0/24 -j MASQUERADE || _install_error "Unable to execute iptables"
-    echo "Persisting IP tables rules to /etc/iptables/rules.v4"
-    sudo iptables-save | sudo tee /etc/iptables/rules.v4 > /dev/null || _install_error "Unable to execute iptables-save"
+    echo "Checking iptables rules"
+    rules=(
+    "-A POSTROUTING -j MASQUERADE"
+    "-A POSTROUTING -s 192.168.50.0/24 ! -d 192.168.50.0/24 -j MASQUERADE"
+    )
+    for rule in "${rules[@]}"; do
+        if grep -- "$rule" $rulesv4 > /dev/null; then
+            echo "Rule already exits: ${rule}"
+        else
+            rule=$(sed -e 's/^\(-A POSTROUTING\)/-t nat \1/' <<< $rule)
+            echo "Adding rule: ${rule}"
+            sudo iptables $rule || _install_error "Unable to execute iptables"
+            added=true
+        fi
+    done
+    # Persist rules if added
+    if [ "$added" = true ]; then
+        echo "Persisting IP tables rules"
+        sudo iptables-save | sudo tee $rulesv4 > /dev/null || _install_error "Unable to execute iptables-save"
+    fi
 
     # Prompt to install RaspAP daemon
     echo -n "Enable RaspAP control service (Recommended)? [Y/n]: "
