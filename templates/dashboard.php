@@ -8,7 +8,7 @@ if ($arrHostapdConf['WifiAPEnable'] == 1) {
 $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
 if ($arrHostapdConf['BridgedEnable'] == 1) {
   $moreLink = "index.php?page=hostapd_conf";
-  exec('arp -i '.$client_iface.' -a | grep -E $(iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|") | tr -d "()" | awk -F" " \'{print $7 " " $4 " " $2 " " $1}\'', $clients);
+  exec('iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern, $clients);
 } else {
   $moreLink = "index.php?page=dhcpd_conf";
   exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
@@ -78,18 +78,31 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <th><?php echo _("Host name"); ?></th>
-                        <th><?php echo _("IP Address"); ?></th>
-                        <th><?php echo _("MAC Address"); ?></th>
+                        <?php if ($arrHostapdConf['BridgedEnable'] == 1) : ?>
+                          <th><?php echo _("MAC Address"); ?></th>
+                        <?php else : ?>
+                          <th><?php echo _("Host name"); ?></th>
+                          <th><?php echo _("IP Address"); ?></th>
+                          <th><?php echo _("MAC Address"); ?></th>
+                        <?php endif; ?>
                       </tr>
                     </thead>
                     <tbody>
+                        <?php if ($arrHostapdConf['BridgedEnable'] == 1) : ?>
+                          <tr>
+                            <td><?php echo _("<em>Bridged AP mode is enabled. To find the Hostname and IP of your connected clients, please cross-reference the MAC addresses here with those from your router's admin page.</em>");?></td>
+                          </tr>
+                        <?php endif; ?>
                         <?php foreach (array_slice($clients,0, 2) as $client) : ?>
-                            <?php $props = explode(' ', $client) ?>
                         <tr>
-                          <td><?php echo htmlspecialchars($props[3], ENT_QUOTES) ?></td>
-                          <td><?php echo htmlspecialchars($props[2], ENT_QUOTES) ?></td>
-                          <td><?php echo htmlspecialchars($props[1], ENT_QUOTES) ?></td>
+                          <?php if ($arrHostapdConf['BridgedEnable'] == 1): ?>
+                            <td><?php echo htmlspecialchars($client, ENT_QUOTES) ?></td>
+                          <?php else : ?>
+                            <?php $props = explode(' ', $client) ?>
+                            <td><?php echo htmlspecialchars($props[3], ENT_QUOTES) ?></td>
+                            <td><?php echo htmlspecialchars($props[2], ENT_QUOTES) ?></td>
+                            <td><?php echo htmlspecialchars($props[1], ENT_QUOTES) ?></td>
+                          <?php endif; ?>
                         </tr>
                         <?php endforeach ?>
                     </tbody>
