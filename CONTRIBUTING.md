@@ -7,3 +7,6 @@
 
 ### Coding standards
 This project follows the [PSR-2](http://www.php-fig.org/psr/psr-2/) coding style guidelines. There are many ways to check your code for PSR-2. An excellent tool is [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer). The command line tool phpcs can be run against any single file. [Phing](https://www.phing.info/), a PHP build tool, integrates nicely with `phpcs` to automate PSR-2 checks across all source files in a project.
+
+### Development process
+Development processes used by contributors to the project are described [on this page](https://github.com/billz/raspap-webgui/wiki/Development-process). It does not endorse one over the other; rather it is meant to share two different approaches. 
