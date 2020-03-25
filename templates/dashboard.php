@@ -90,7 +90,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                     <tbody>
                         <?php if ($arrHostapdConf['BridgedEnable'] == 1) : ?>
                           <tr>
-                            <td><?php echo _("<em>Bridged AP mode is enabled. To find the Hostname and IP of your connected clients, please cross-reference the MAC addresses here with those from your router's admin page.</em>");?></td>
+                            <td><?php echo _("<em>Bridged AP mode is enabled. For Hostname and IP, see your router's admin page.</em>");?></td>
                           </tr>
                         <?php endif; ?>
                         <?php foreach (array_slice($clients,0, 2) as $client) : ?>
