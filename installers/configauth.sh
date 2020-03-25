@@ -51,6 +51,6 @@ done
 
 if [ "$added" = true ]; then
     echo "Persisting IP tables rules"
-    sudo iptables-save | sudo tee /etc/iptables/rules.v4 > /dev/null
+    sudo iptables-save | sudo tee $rulesv4 > /dev/null
 fi
 
