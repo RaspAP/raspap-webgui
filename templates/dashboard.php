@@ -11,7 +11,7 @@ if ($arrHostapdConf['BridgedEnable'] == 1) {
   exec('iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern, $clients);
 } else {
   $moreLink = "index.php?page=dhcpd_conf";
-  exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
+  exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
 }
 $ifaceStatus = $wlan0up ? "up" : "down";
 ?>
