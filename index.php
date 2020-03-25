@@ -6,14 +6,14 @@
  * Enables use of simple web interface rather than SSH to control wifi and hostapd on the Raspberry Pi.
  * Recommended distribution is Raspbian Buster Lite. Specific instructions to install the supported software are
  * in the README and original post by @SirLagz. For a quick run through, the packages required for the WebGUI are:
- * lighttpd (I have version 1.4.53 installed via apt)
- * php-cgi (I have version 7.1.20-1+b2  installed via apt)
- * along with their supporting packages, php7.1 will also need to be enabled.
+ * lighttpd (version 1.4.53 installed via apt)
+ * php-cgi (version 7.3.14-1 installed via apt)
+ * along with their supporting packages, php7.3 will also need to be enabled.
  *
  * @author  Lawrence Yau <sirlagz@gmail.com>
  * @author  Bill Zimmerman <billzimmerman@gmail.com>
  * @license GNU General Public License, version 3 (GPL-3.0)
- * @version 2.2
+ * @version 2.3
  * @link    https://github.com/billz/raspap-webgui
  * @see     http://sirlagz.net/2013/02/08/raspap-webgui/
  */
