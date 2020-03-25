@@ -663,6 +663,10 @@ msgstr "Attempting to start TOR"
 msgid "Attempting to stop TOR"
 msgstr "Attempting to stop TOR"
 
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+
 #: common form controls
 msgid "Save settings"
 msgstr "Save settings"

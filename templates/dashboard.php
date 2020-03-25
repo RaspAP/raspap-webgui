@@ -1,11 +1,18 @@
 <?php
 $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
 if ($arrHostapdConf['WifiAPEnable'] == 1) {
-    $client_iface = 'uap0';
+  $client_iface = 'uap0';
 } else {
-    $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
+  $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
 }
-exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(arp -i '.$client_iface.' -n | grep -oE "(([0-9]|[a-f]|[A-F]){2}:){5}([0-9]|[a-f]|[A-F]){2}" | tr "\n" "\|" | sed "s/.$//")', $clients);
+$MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
+if ($arrHostapdConf['BridgedEnable'] == 1) {
+  $moreLink = "index.php?page=hostapd_conf";
+  exec('iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern, $clients);
+} else {
+  $moreLink = "index.php?page=dhcpd_conf";
+  exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
+}
 $ifaceStatus = $wlan0up ? "up" : "down";
 ?>
 <div class="row">
@@ -71,25 +78,38 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <th><?php echo _("Host name"); ?></th>
-                        <th><?php echo _("IP Address"); ?></th>
-                        <th><?php echo _("MAC Address"); ?></th>
+                        <?php if ($arrHostapdConf['BridgedEnable'] == 1) : ?>
+                          <th><?php echo _("MAC Address"); ?></th>
+                        <?php else : ?>
+                          <th><?php echo _("Host name"); ?></th>
+                          <th><?php echo _("IP Address"); ?></th>
+                          <th><?php echo _("MAC Address"); ?></th>
+                        <?php endif; ?>
                       </tr>
                     </thead>
                     <tbody>
+                        <?php if ($arrHostapdConf['BridgedEnable'] == 1) : ?>
+                          <tr>
+                            <td><small class="text-muted"><?php echo _("Bridged AP mode is enabled. For Hostname and IP, see your router's admin page.");?></small></td>
+                          </tr>
+                        <?php endif; ?>
                         <?php foreach (array_slice($clients,0, 2) as $client) : ?>
-                            <?php $props = explode(' ', $client) ?>
                         <tr>
-                          <td><?php echo htmlspecialchars($props[3], ENT_QUOTES) ?></td>
-                          <td><?php echo htmlspecialchars($props[2], ENT_QUOTES) ?></td>
-                          <td><?php echo htmlspecialchars($props[1], ENT_QUOTES) ?></td>
+                          <?php if ($arrHostapdConf['BridgedEnable'] == 1): ?>
+                            <td><?php echo htmlspecialchars($client, ENT_QUOTES) ?></td>
+                          <?php else : ?>
+                            <?php $props = explode(' ', $client) ?>
+                            <td><?php echo htmlspecialchars($props[3], ENT_QUOTES) ?></td>
+                            <td><?php echo htmlspecialchars($props[2], ENT_QUOTES) ?></td>
+                            <td><?php echo htmlspecialchars($props[1], ENT_QUOTES) ?></td>
+                          <?php endif; ?>
                         </tr>
                         <?php endforeach ?>
                     </tbody>
                   </table>
                   <?php if (sizeof($clients) >2) : ?>
                       <div class="col-lg-12 float-right">
-                        <a class="btn btn-outline-info" role="button" href="index.php?page=dhcpd_conf"><?php echo _("More");?>  <i class="fas fa-chevron-right"></i></a>
+                        <a class="btn btn-outline-info" role="button" href="<?php echo $moreLink ?>"><?php echo _("More");?>  <i class="fas fa-chevron-right"></i></a>
                       </div>
                   <?php elseif (sizeof($clients) ==0) : ?>
                       <div class="col-lg-12 mt-3"><?php echo _("No connected devices");?></div>
