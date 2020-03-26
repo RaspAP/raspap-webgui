@@ -129,14 +129,14 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
         <li class="nav-item">
           <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
         </li>
-        <?php if (RASPI_WIFICLIENT_ENABLED && !$bridgedEnabled) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw mr-2"></i><span class="nav-label"><?php echo _("WiFi client"); ?></span></a>
-        </li>
-        <?php endif; ?>
           <?php if (RASPI_HOTSPOT_ENABLED) : ?>
         <li class="nav-item">
           <a class="nav-link" href="index.php?page=hostapd_conf"><i class="far fa-dot-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("Hotspot"); ?></a>
+        </li>
+          <?php endif; ?>
+          <?php if (RASPI_DHCP_ENABLED && !$bridgedEnabled) : ?>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("DHCP Server"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_NETWORK_ENABLED) : ?>
@@ -144,9 +144,9 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
            <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-network-wired fa-fw mr-2"></i><span class="nav-label"><?php echo _("Networking"); ?></a>
         </li> 
           <?php endif; ?>
-          <?php if (RASPI_DHCP_ENABLED && !$bridgedEnabled) : ?>
+          <?php if (RASPI_WIFICLIENT_ENABLED && !$bridgedEnabled) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("DHCP Server"); ?></a>
+          <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw mr-2"></i><span class="nav-label"><?php echo _("WiFi client"); ?></span></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_OPENVPN_ENABLED) : ?>
