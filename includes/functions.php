@@ -352,6 +352,12 @@ function dnsServers()
     return (array) $data;
 }
 
+function blocklistProviders()
+{
+    $data = json_decode(file_get_contents("./config/blocklists.json"));
+    return (array) $data;
+}
+
 function optionsForSelect($options)
 {
     $html = "";

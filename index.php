@@ -31,6 +31,7 @@ require_once 'includes/authenticate.php';
 require_once 'includes/admin.php';
 require_once 'includes/dhcp.php';
 require_once 'includes/hostapd.php';
+require_once 'includes/adblock.php';
 require_once 'includes/system.php';
 require_once 'includes/sysstats.php';
 require_once 'includes/configure_client.php';
@@ -139,6 +140,11 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
           <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("DHCP Server"); ?></a>
         </li>
           <?php endif; ?>
+          <?php if (RASPI_ADBLOCK_ENABLED) : ?>
+        <li class="nav-item">
+           <a class="nav-link" href="index.php?page=adblock_conf"><i class="far fa-hand-paper fa-fw mr-2"></i><span class="nav-label"><?php echo _("Ad Blocking"); ?></a>
+        </li>
+          <?php endif; ?>
           <?php if (RASPI_NETWORK_ENABLED) : ?>
         <li class="nav-item">
            <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-network-wired fa-fw mr-2"></i><span class="nav-label"><?php echo _("Networking"); ?></a>
@@ -238,6 +244,9 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
             break;
         case "hostapd_conf":
             DisplayHostAPDConfig();
+            break;
+        case "adblock_conf":
+            DisplayAdBlockConfig();
             break;
         case "openvpn_conf":
             DisplayOpenVPNConfig();
