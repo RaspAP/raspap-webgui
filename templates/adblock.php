@@ -2,9 +2,9 @@
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
       <input type="submit" class="btn btn-outline btn-primary" name="saveadblocksettings" value="<?php echo _("Save settings"); ?>">
       <?php if ($dnsmasq_state) : ?>
-        <input type="submit" class="btn btn-success" name="startadblock" value="<?php echo _("Start Ad Blocking"); ?>">
-      <?php else : ?>
         <input type="submit" class="btn btn-warning" name="stopadblock" value="<?php echo _("Stop Ad Blocking"); ?>">
+      <?php else : ?>
+        <input type="submit" class="btn btn-success" name="startadblock" value="<?php echo _("Start Ad Blocking"); ?>">
       <?php endif ?>
     <?php endif ?>
   <?php $buttons = ob_get_clean(); ob_end_clean() ?>
@@ -32,7 +32,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" id="clienttab" href="#adblocklistsettings" data-toggle="tab"><?php echo _("Blocklist settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#adblocklogfileoutput" data-toggle="tab"><?php echo _("Logfile output"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#adblocklogfileoutput" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -82,7 +82,20 @@
                 <div class="row">
                   <div class="form-group col-md-8">
                     <?php
-                        echo '<textarea class="logoutput"></textarea>';
+                    $log = '';
+                    exec('sudo chmod o+r /tmp/dnsmasq.log');
+                    $handle = fopen("/tmp/dnsmasq.log", "r");
+                    if ($handle) {
+                        while (($line = fgets($handle)) !== false) {
+                            if (preg_match('/(0.0.0.0)/', $line)){
+                                $log.=$line;
+                            }
+                        }
+                    } else {
+                        $log = "Unable to open log file";
+                    }
+                    fclose($handle);
+                    echo '<textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
                     ?>
                   </div>
                 </div>
