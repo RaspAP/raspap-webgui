@@ -1,3 +1,14 @@
+  <?php ob_start() ?>
+    <?php if (!RASPI_MONITOR_ENABLED) : ?>
+      <input type="submit" class="btn btn-outline btn-primary" name="saveadblocksettings" value="<?php echo _("Save settings"); ?>">
+      <?php if ($dnsmasq_state) : ?>
+        <input type="submit" class="btn btn-success" name="startadblock" value="<?php echo _("Start Ad Blocking"); ?>">
+      <?php else : ?>
+        <input type="submit" class="btn btn-warning" name="stopadblock" value="<?php echo _("Stop Ad Blocking"); ?>">
+      <?php endif ?>
+    <?php endif ?>
+  <?php $buttons = ob_get_clean(); ob_end_clean() ?>
+
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
@@ -36,7 +47,7 @@
                       <div class="input-group">
                         <input type="hidden" name="adblock-enable" value="0">
                         <div class="custom-control custom-switch">
-                          <input class="custom-control-input" id="adblock-enable" type="checkbox" name="adblock-enable" value="1" <?php echo $conf['adblock-enable'] ? ' checked="checked"' : "" ?> aria-describedby="adblock-description">
+                          <input class="custom-control-input" id="adblock-enable" type="checkbox" name="adblock-enable" value="1" <?php echo $arrConf['addn-hosts'] ? ' checked="checked"' : "" ?> aria-describedby="adblock-description">
                         <label class="custom-control-label" for="adblock-enable"><?php echo _("Enable blocklists") ?></label>
                       </div>
                       <p id="adblock-description">
@@ -55,7 +66,7 @@
                             <?php echo optionsForSelect(blocklistProviders()) ?>
                           </select>
                           <div class="input-group-append">
-                            <button class="btn btn-sm btn-outline-secondary rounded-right" type="button" onclick="updateBlocklist()">Update now</button>
+                            <button class="btn btn-sm btn-outline-secondary rounded-right" type="button" onclick="updateBlocklist()"><?php echo _("Update now"); ?></button>
                             <span id="cbxblocklist-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
                           </div>
                         </div>
@@ -76,15 +87,7 @@
                   </div>
                 </div>
               </div>
-              <?php if (!RASPI_MONITOR_ENABLED) : ?>
-                  <input type="submit" class="btn btn-outline btn-primary" name="SaveAdBlockSettings" value="Save settings" />
-                  <?php if ($serviceStatus[0] == 0) {
-					  echo '<input type="submit" class="btn btn-success" name="StartAdBlock" value="Start Ad Blocking" />' , PHP_EOL;
-				  } else {
-                    echo '<input type="submit" class="btn btn-warning" name="StopAdBlock" value="Stop Ad Blocking" />' , PHP_EOL;
-                  }
-                  ?>
-              <?php endif ?>
+              <?php echo $buttons ?>
               </form>
             </div>
         </div><!-- /.card-body -->
