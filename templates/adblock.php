@@ -48,14 +48,19 @@
                       </div>
 
                       <div class="row">
-                        <div class="form-group col-md-6">
-                          <select class="custom-select custom-select-sm js-field-preset" data-field-preset-target="#add-dhcp-upstream-server-field">
+                        <div class="input-group col-md-12 mb-4">
+                          <select class="custom-select custom-select-sm" id="cbxblocklist">
                             <option value=""><?php echo _("Choose a blocklist provider") ?></option>
                             <option disabled="disabled"></option>
                             <?php echo optionsForSelect(blocklistProviders()) ?>
                           </select>
-                       </div>
-                    </div>
+                          <div class="input-group-append">
+                            <button class="btn btn-sm btn-outline-secondary rounded-right" type="button" onclick="updateBlocklist()">Update now</button>
+                            <span id="cbxblocklist-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
+                          </div>
+                        </div>
+                      </div>
+
                   </div>
                 </div><!-- /.row -->
               </div><!-- /.tab-pane | advanded tab -->
@@ -73,10 +78,10 @@
               </div>
               <?php if (!RASPI_MONITOR_ENABLED) : ?>
                   <input type="submit" class="btn btn-outline btn-primary" name="SaveAdBlockSettings" value="Save settings" />
-                  <?php if ($openvpnstatus[0] == 0) {
-					  echo '<input type="submit" class="btn btn-success" name="StartOpenVPN" value="Start Ad Blocking" />' , PHP_EOL;
+                  <?php if ($serviceStatus[0] == 0) {
+					  echo '<input type="submit" class="btn btn-success" name="StartAdBlock" value="Start Ad Blocking" />' , PHP_EOL;
 				  } else {
-                    echo '<input type="submit" class="btn btn-warning" name="StopOpenVPN" value="Stop Ad Blocking" />' , PHP_EOL;
+                    echo '<input type="submit" class="btn btn-warning" name="StopAdBlock" value="Stop Ad Blocking" />' , PHP_EOL;
                   }
                   ?>
               <?php endif ?>
