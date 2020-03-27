@@ -19,7 +19,7 @@ if (isset($_POST['blocklist_id'])) {
     $blocklist = $notracking_url . $file;
 
     exec("sudo /etc/raspap/adblock/update_blocklist.sh $blocklist $file $dnsmasq_config", $return);
-     
-    echo json_encode($return);
+    $jsonData = ['return'=>$return];
+    echo json_encode($jsonData);
 }
 

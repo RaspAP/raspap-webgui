@@ -49,7 +49,7 @@
 
                       <div class="row">
                         <div class="input-group col-md-12 mb-4">
-                          <select class="custom-select custom-select-sm" id="cbxblocklist">
+                          <select class="custom-select custom-select-sm" id="cbxblocklist" onchange="clearBlocklistStatus()">
                             <option value=""><?php echo _("Choose a blocklist provider") ?></option>
                             <option disabled="disabled"></option>
                             <?php echo optionsForSelect(blocklistProviders()) ?>
