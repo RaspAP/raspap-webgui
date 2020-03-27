@@ -221,3 +221,12 @@ canvas#divDBChartBandwidthhourly {
 .table {
   margin-bottom: 0rem;
 }
+
+.check-hidden {
+  visibility: hidden;
+}
+
+.check-updated {
+  opacity: 0;
+  color: #1cc88a;
+}
