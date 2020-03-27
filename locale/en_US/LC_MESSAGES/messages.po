@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-17 17:15+0000\n"
+"PO-Revision-Date: 2020-03-29 00:05+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -318,7 +318,7 @@ msgid "Dnsmasq is running"
 msgstr "Dnsmasq is running"
 
 msgid "Dnsmasq is not running"
-msgstr "Dnsmasq is not running
+msgstr "Dnsmasq is not running"
 
 msgid "Upstream DNS servers"
 msgstr "Upstream DNS servers"
@@ -688,3 +688,42 @@ msgstr "up"
 
 msgid "down"
 msgstr "down"
+
+#: includes/adblock.php
+
+msgid "adblock"
+msgstr "adblock"
+
+msgid "Ad Blocking"
+msgstr "Ad Blocking"
+
+msgid "Start Ad Blocking"
+msgstr "Start Ad Blocking"
+
+msgid "Restart Ad Blocking"
+msgstr "Restart Ad Blocking"
+
+msgid "Blocklist settings"
+msgstr "Blocklist settings"
+
+msgid "Enable blocklists"
+msgstr "Enable blocklists"
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+
+msgid "Choose a blocklist provider"
+msgstr "Choose a blocklist provider"
+
+msgid "Update now"
+msgstr "Update now"
+
+msgid "Statistics"
+msgstr "Statistics"
+
+msgid "Information provided by adblock"
+msgstr "Information provided by adblock"
+
