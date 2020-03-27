@@ -1,5 +1,6 @@
 {
   "notracking/hosts-blocklist": [
-    "notracking-master"
+    "notracking-hostnames",
+    "notracking-domains"
   ]
 }
