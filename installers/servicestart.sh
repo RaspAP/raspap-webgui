@@ -35,7 +35,9 @@ done
 set -- "${positional[@]}"
 
 echo "Stopping network services..."
-systemctl stop openvpn-client@client
+if [ $OPENVPNENABLED -eq 1 ]; then
+    systemctl stop openvpn-client@client
+fi
 systemctl stop systemd-networkd
 systemctl stop hostapd.service
 systemctl stop dnsmasq.service
@@ -75,7 +77,7 @@ if [ -r "$CONFIGFILE" ]; then
         fi
     else
         echo "Disabling systemd-networkd"
-        systemctl disable systemd-networkd
+-       systemctl disable systemd-networkd
 
         echo "Removing br0 interface..."
         ip link set down br0
