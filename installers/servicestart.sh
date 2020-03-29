@@ -88,8 +88,12 @@ if [ -r "$CONFIGFILE" ]; then
 
         if [ "${config[WifiAPEnable]}" = 1 ]; then
             if [ "${interface}" = "uap0" ]; then
-                echo "Removing uap0 interface..."
-                iw dev uap0 del
+
+                ip link ls up | grep -q 'uap0' &> /dev/null
+                if [ $? == 0 ]; then
+                    echo "Removing uap0 interface..."
+                    iw dev uap0 del
+                fi
 
                 echo "Adding uap0 interface to ${config[WifiManaged]}"
                 iw dev ${config[WifiManaged]} interface add uap0 type __ap
