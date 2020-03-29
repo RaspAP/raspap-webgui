@@ -48,7 +48,7 @@ if [ "${action}" = "stop" ]; then
     exit 0
 fi
 
-if [ -f "$DAEMONPATH" ]; then
+if [ -f "$DAEMONPATH" ] && [ ! -z "$interface" ]; then
     echo "Changing RaspAP Daemon --interface to $interface"
     sed -i "s/\(--interface \)[[:alnum:]]*/\1$interface/" "$DAEMONPATH"
 fi
@@ -77,11 +77,14 @@ if [ -r "$CONFIGFILE" ]; then
         fi
     else
         echo "Disabling systemd-networkd"
--       systemctl disable systemd-networkd
+        systemctl disable systemd-networkd
 
-        echo "Removing br0 interface..."
-        ip link set down br0
-        ip link del dev br0
+        ip link ls up | grep -q 'br0' &> /dev/null
+        if [ $? == 0 ]; then
+            echo "Removing br0 interface..."
+            ip link set down br0
+            ip link del dev br0
+        fi
 
         if [ "${config[WifiAPEnable]}" = 1 ]; then
             if [ "${interface}" = "uap0" ]; then
