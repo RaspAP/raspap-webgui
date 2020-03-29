@@ -6,7 +6,7 @@
         <div class="input-group">
           <input type="hidden" name="adblock-enable" value="0">
           <div class="custom-control custom-switch">
-            <input class="custom-control-input" id="adblock-enable" type="checkbox" name="adblock-enable" value="1" <?php echo $arrConf['addn-hosts'] ? ' checked="checked"' : "" ?> aria-describedby="adblock-description">
+            <input class="custom-control-input" id="adblock-enable" type="checkbox" name="adblock-enable" value="1" <?php echo $enabled ? ' checked="checked"' : "" ?> aria-describedby="adblock-description">
           <label class="custom-control-label" for="adblock-enable"><?php echo _("Enable blocklists") ?></label>
         </div>
         <p id="adblock-description">
