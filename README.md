@@ -99,7 +99,7 @@ RaspAP was originally made for Raspbian, but now also installs on the following 
 
 ![](https://i.imgur.com/luiyYNw.png)
 
-We find Armbian particularly well-suited for this project. Please note that "supported" is not a guaranteee. If you are able to improve support for your preferred distro, we encourage you to [actively contribute](#how-to-contribute) to the project.
+We find Armbian particularly well-suited for this project. Please note that "supported" is not a guarantee. If you are able to improve support for your preferred distro, we encourage you to [actively contribute](#how-to-contribute) to the project.
 
 ## Multilingual support
 RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multilingual messages. In order to use RaspAP with one of our supported translations, you must configure a corresponding language package on your RPi. To list languages currently installed on your system, use `locale -a` at the shell prompt. To generate new locales, run `sudo dpkg-reconfigure locales` and select any other desired locales. Details are provided on our [wiki](https://github.com/billz/raspap-webgui/wiki/Translations#raspap-in-your-language). 
