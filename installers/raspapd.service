@@ -1,0 +1,24 @@
+### BEGIN INIT INFO
+# Provides:          raspapd
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     S 2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start RaspAP daemon at boot time
+# Description:       Enable service provided by daemon
+### END INIT INFO
+# Author: BillZ <billzimmerman@gmail.com>
+
+[Unit]
+Description=RaspAP Service Daemon
+DefaultDependencies=no
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 3
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
+

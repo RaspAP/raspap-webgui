@@ -6,9 +6,17 @@
 # @author billz
 # license: GNU General Public License v3.0
 
+# Exit on error
+set -o errexit
+# Exit on error inside functions
+set -o errtrace
+# Turn on traces, disabled by default
+#set -o xtrace
+
 file=$1
 auth=$2
 interface=$3
+readonly rulesv4="/etc/iptables/rules.v4"
 
 if [ "$auth" = 1 ]; then
     echo "Enabling auth-user-pass in OpenVPN client.conf"
@@ -22,26 +30,27 @@ if [ "$auth" = 1 ]; then
     fi
 fi
 
-# Generate iptables entries to place into rc.local file.
-# #RASPAP is for uninstall script
-echo "Checking iptables rules for $interface"
-
-lines=(
-"iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE #RASPAP"
-"iptables -A FORWARD -i tun0 -o $interface -m state --state RELATED,ESTABLISHED -j ACCEPT #RASPAP"
-"iptables -A FORWARD -i wlan0 -o tun0 -j ACCEPT #RASPAP"
+# Configure NAT and forwarding with iptables
+echo "Checking iptables rules"
+rules=(
+"-A POSTROUTING -o tun0 -j MASQUERADE"
+"-A FORWARD -i tun0 -o ${interface} -m state --state RELATED,ESTABLISHED -j ACCEPT"
+"-A FORWARD -i wlan0 -o tun0 -j ACCEPT"
 )
 
-for line in "${lines[@]}"; do
-    if grep "$line" /etc/rc.local > /dev/null; then
-        echo "$line: Line already added"
+for rule in "${rules[@]}"; do
+    if grep -- "$rule" $rulesv4 > /dev/null; then
+        echo "Rule already exits: ${rule}"
     else
-        sudo sed -i "s/^exit 0$/$line\nexit 0/" /etc/rc.local
-        echo "Adding rule: $line"
+        rule=$(sed -e 's/^\(-A POSTROUTING\)/-t nat \1/' <<< $rule)
+        echo "Adding rule: ${rule}"
+        sudo iptables $rule
+        added=true
     fi
 done
 
-# Force a reload of new settings in /etc/rc.local
-sudo systemctl restart rc-local.service
-sudo systemctl daemon-reload
+if [ "$added" = true ]; then
+    echo "Persisting IP tables rules"
+    sudo iptables-save | sudo tee $rulesv4 > /dev/null
+fi
 

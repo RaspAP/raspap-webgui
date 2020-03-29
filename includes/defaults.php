@@ -13,7 +13,7 @@ $defaults = [
 
   // Constants for configuration file paths.
   // These are typical for default RPi installs. Modify if needed.
-  'RASPI_DNSMASQ_CONFIG' => '/etc/dnsmasq.conf',
+  'RASPI_DNSMASQ_CONFIG' => '/etc/dnsmasq.d/090_raspap.conf',
   'RASPI_DNSMASQ_LEASES' => '/var/lib/misc/dnsmasq.leases',
   'RASPI_HOSTAPD_CONFIG' => '/etc/hostapd/hostapd.conf',
   'RASPI_DHCPCD_CONFIG' => '/etc/dhcpcd.conf',
