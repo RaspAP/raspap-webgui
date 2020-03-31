@@ -62,6 +62,9 @@ while :; do
         ovpn_option="$2"
         shift
         ;;
+        -a|--adblock)
+        install_adblock=1
+        ;;
         -c|--cert|--certificate)
         install_cert=1
         ;;

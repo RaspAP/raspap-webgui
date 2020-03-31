@@ -165,6 +165,54 @@ function _create_lighttpd_scripts() {
     sudo chmod 750 "$raspap_dir/lighttpd/"*.sh || _install_error "Unable to change file permissions"
 }
 
+# Prompt to install adblock
+function _prompt_install_adblock() {
+    if [ "$install_adblock" == 1 ]; then
+        _install_log "Configure ad blocking (Beta)"
+        echo -n "Download blocklists and enable ad blocking? [Y/n]: "
+        if [ "$assume_yes" == 0 ]; then
+            read answer < /dev/tty
+            if [ "$answer" != "${answer#[Nn]}" ]; then
+                echo -e
+            else
+                _install_adblock
+            fi
+        fi
+    fi
+}
+
+# Download notracking adblock lists and enable option
+function _install_adblock() {
+    _install_log "Creating ad block base configuration (Beta)"
+    notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
+    if [ ! -d "$raspap_dir/adblock" ]; then
+        echo "Creating $raspap_dir/adblock"
+        sudo mkdir -p "$raspap_dir/adblock"
+    fi
+    if [ ! -f /tmp/hostnames.txt ]; then
+        echo "Fetching latest hostnames list"
+        wget ${notracking_url}hostnames.txt -O /tmp/hostnames.txt || _install_error "Unable to download notracking hostnames"
+    fi
+    if [ ! -f /tmp/domains.txt ]; then
+        echo "Fetching latest domains list"
+        wget ${notracking_url}domains.txt -O /tmp/domains.txt || _install_error "Unable to download notracking domains"
+    fi
+    echo "Adding blocklists to $raspap_dir/adblock"
+    sudo cp /tmp/hostnames.txt $raspap_dir/adblock || _install_error "Unable to move notracking hostnames"
+    sudo cp /tmp/domains.txt $raspap_dir/adblock || _install_error "Unable to move notracking domains"
+
+    echo "Moving and setting permissions for blocklist update script"
+    sudo cp "$webroot_dir/installers/"update_blocklist.sh "$raspap_dir/adblock" || _install_error "Unable to move blocklist update script"
+
+    # Make blocklists and update script writable by www-data group
+    sudo chown -c root:"$raspap_user" "$raspap_dir/adblock/"*.* || _install_error "Unable to change owner/group"
+    sudo chmod 750 "$raspap_dir/adblock/"*.sh || install_error "Unable to change file permissions"
+
+    echo "Enabling ad blocking management option"
+    sudo sed -i "s/\('RASPI_ADBLOCK_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_error "Unable to modify config.php"
+    echo "Done."
+}
+
 # Prompt to install openvpn
 function _prompt_install_openvpn() {
     _install_log "Setting up OpenVPN support"
@@ -456,6 +504,7 @@ function _install_raspap() {
     _default_configuration
     _configure_networking
     _prompt_install_openvpn
+    _prompt_install_adblock
     _patch_system_files
     _install_complete
 }

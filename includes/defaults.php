@@ -31,6 +31,7 @@ $defaults = [
   'RASPI_HOTSPOT_ENABLED' => true,
   'RASPI_NETWORK_ENABLED' => true,
   'RASPI_DHCP_ENABLED' => true,
+  'RASPI_ADBLOCK_ENABLED' => false,
   'RASPI_OPENVPN_ENABLED' => false,
   'RASPI_TORPROXY_ENABLED' => false,
   'RASPI_CONFAUTH_ENABLED' => true,
