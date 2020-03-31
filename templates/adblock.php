@@ -32,7 +32,6 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" id="clienttab" href="#adblocklistsettings" data-toggle="tab"><?php echo _("Blocklist settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="clienttab" href="#adblockstats" data-toggle="tab"><?php echo _("Statistics"); ?></a></li>
                 <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#adblocklogfileoutput" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
             </ul>
 
