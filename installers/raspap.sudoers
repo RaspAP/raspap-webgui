@@ -13,6 +13,7 @@ www-data ALL=(ALL) NOPASSWD:/bin/systemctl start hostapd.service
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop hostapd.service
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl start dnsmasq.service
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop dnsmasq.service
+www-data ALL=(ALL) NOPASSWD:/bin/systemctl restart dnsmasq.service
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl start openvpn-client@client
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl enable openvpn-client@client
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop openvpn-client@client
@@ -34,4 +35,6 @@ www-data ALL=(ALL) NOPASSWD:/etc/raspap/lighttpd/configport.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/openvpn/configauth.sh
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/hostapd.log
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/dnsmasq.log
+www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.d/090_adblock.conf
+www-data ALL=(ALL) NOPASSWD:/etc/raspap/adblock/update_blocklist.sh
 
