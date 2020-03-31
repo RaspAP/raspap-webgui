@@ -5,7 +5,7 @@ if (!defined('RASPI_CONFIG')) {
 }
 
 $defaults = [
-  'RASPI_VERSION' => '2.3',
+  'RASPI_VERSION' => '2.3.1',
   'RASPI_CONFIG_NETWORKING' => RASPI_CONFIG.'/networking',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',
   'RASPI_WIFI_CLIENT_INTERFACE' => 'wlan0',
@@ -33,7 +33,7 @@ $defaults = [
   'RASPI_HOTSPOT_ENABLED' => true,
   'RASPI_NETWORK_ENABLED' => true,
   'RASPI_DHCP_ENABLED' => true,
-  'RASPI_ADBLOCK_ENABLED' => true,
+  'RASPI_ADBLOCK_ENABLED' => false,
   'RASPI_OPENVPN_ENABLED' => false,
   'RASPI_TORPROXY_ENABLED' => false,
   'RASPI_CONFAUTH_ENABLED' => true,

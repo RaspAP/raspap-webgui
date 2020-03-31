@@ -1,6 +1,6 @@
 <?php
 
-define('RASPI_VERSION', '2.3');
+define('RASPI_VERSION', '2.3.1');
 define('RASPI_CONFIG', '/etc/raspap');
 define('RASPI_CONFIG_NETWORKING', RASPI_CONFIG.'/networking');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
@@ -9,7 +9,7 @@ define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
 
 // Constants for configuration file paths.
 // These are typical for default RPi installs. Modify if needed.
-define('RASPI_DNSMASQ_CONFIG', '/etc/dnsmasq.conf');
+define('RASPI_DNSMASQ_CONFIG', '/etc/dnsmasq.d/090_raspap.conf');
 define('RASPI_DNSMASQ_LEASES', '/var/lib/misc/dnsmasq.leases');
 define('RASPI_ADBLOCK_LISTPATH', '/etc/raspap/adblock/');
 define('RASPI_ADBLOCK_CONFIG', '/etc/dnsmasq.d/090_adblock.conf');
@@ -32,7 +32,7 @@ define('RASPI_WIFICLIENT_ENABLED', true);
 define('RASPI_HOTSPOT_ENABLED', true);
 define('RASPI_NETWORK_ENABLED', true);
 define('RASPI_DHCP_ENABLED', true);
-define('RASPI_ADBLOCK_ENABLED', true);
+define('RASPI_ADBLOCK_ENABLED', false);
 define('RASPI_OPENVPN_ENABLED', false);
 define('RASPI_TORPROXY_ENABLED', false);
 define('RASPI_CONFAUTH_ENABLED', true);

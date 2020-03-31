@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/xeKD93p.png)
-[![Release 2.3](https://img.shields.io/badge/Release-2.3-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/billz/raspap-webgui/](https://img.shields.io/travis/com/billz/raspap-webgui/master) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
+[![Release 2.3.1](https://img.shields.io/badge/Release-2.3.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/billz/raspap-webgui/](https://img.shields.io/travis/com/billz/raspap-webgui/master) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
 
 RaspAP lets you quickly get a WiFi access point up and running to share the internet connectivity of a Raspberry Pi. Our famous [Quick installer](#quick-installer) creates a known-good default configuration that "just works" on all current Raspberry Pis with onboard wireless. A handsome responsive interface gives you control over the relevant services and networking options. OpenVPN client support, SSL, security audits, themes and multilingual options round out the package. 
 
@@ -21,6 +21,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [Support us](#support-us)
  - [Manual installation](#manual-installation)
  - [802.11ac 5GHz support](#80211ac-5ghz-support)
+ - [Supported operating systems](#supported-operating-systems)
  - [Multilingual support](#multilingual-support)
  - [HTTPS support](#https-support)
  - [OpenVPN support](#openvpn-support)
@@ -85,6 +86,20 @@ Detailed manual setup instructions are provided [on our wiki](https://github.com
 
 ## 802.11ac 5GHz support
 RaspAP provides an 802.11ac wireless mode option for supported hardware (currently the RPi 3B+/4) and wireless regulatory domains. See [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#80211ac) for more information. 
+
+## Supported operating systems
+RaspAP was originally made for Raspbian, but now also installs on the following Debian-based distros.
+
+| Distribution | Release  | Architecture | Support |
+|---|:---:|:---:|:---:|
+| Raspbian | Buster | ARM | Official |
+| Armbian | Buster | [ARM](https://docs.armbian.com/#supported-chips) | Official |
+| Debian  |  Buster | ARM / x86_64  | Beta |
+| Ubuntu  |  18.04 LTS / 19.10 | ARM / x86_64  | Beta |
+
+![](https://i.imgur.com/luiyYNw.png)
+
+We find Armbian particularly well-suited for this project. Please note that "supported" is not a guarantee. If you are able to improve support for your preferred distro, we encourage you to [actively contribute](#how-to-contribute) to the project.
 
 ## Multilingual support
 RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multilingual messages. In order to use RaspAP with one of our supported translations, you must configure a corresponding language package on your RPi. To list languages currently installed on your system, use `locale -a` at the shell prompt. To generate new locales, run `sudo dpkg-reconfigure locales` and select any other desired locales. Details are provided on our [wiki](https://github.com/billz/raspap-webgui/wiki/Translations#raspap-in-your-language). 
