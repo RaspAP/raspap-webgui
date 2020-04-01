@@ -19,8 +19,8 @@
         <div class="row">
           <div class="col-md-12">
             <p id="blocklist-updated">
-              <div><small>Hostnames blocklist last updated: <b><?php echo blocklistUpdated('hostnames.txt') ?></b></small></div>
-              <div><small>Domains blocklist last updated: <b><?php echo blocklistUpdated('domains.txt') ?></b></small></div>
+              <div><small><?php echo _("Hostnames blocklist last updated") ?>: <b><?php echo blocklistUpdated('hostnames.txt') ?></b></small></div>
+              <div><small><?php echo _("Domains blocklist last updated") ?>: <b><?php echo blocklistUpdated('domains.txt') ?></b></small></div>
             </p>
             <div class="input-group col-md-12 mb-4">
               <select class="custom-select custom-select-sm" id="cbxblocklist" onchange="clearBlocklistStatus()">
