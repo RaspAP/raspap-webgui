@@ -19,6 +19,7 @@ readonly raspap_dir="/etc/raspap"
 readonly raspap_user="www-data"
 readonly raspap_sudoers="/etc/sudoers.d/090_raspap"
 readonly raspap_dnsmasq="/etc/dnsmasq.d/090_raspap.conf"
+readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly rulesv4="/etc/iptables/rules.v4"
 webroot_dir="/var/www/html"
@@ -207,6 +208,14 @@ function _install_adblock() {
     # Make blocklists and update script writable by www-data group
     sudo chown -c root:"$raspap_user" "$raspap_dir/adblock/"*.* || _install_error "Unable to change owner/group"
     sudo chmod 750 "$raspap_dir/adblock/"*.sh || install_error "Unable to change file permissions"
+
+    # Create 090_adblock.conf and write values to /etc/dnsmasq.d
+    if [ ! -f "$raspap_adblock" ]; then
+        echo "Adding 090_addblock.conf to /etc/dnsmasq.d"
+        sudo touch "$raspap_adblock"
+        echo "conf-file=$raspap_dir/adblock/domains.txt" | sudo tee -a "$raspap_adblock" > /dev/null || _install_error "Unable to write to $raspap_adblock"
+        echo "addn-hosts=$raspap_dir/adblock/hostnames.txt" | sudo tee -a "$raspap_adblock" > /dev/null || _install_error "Unable to write to $raspap_adblock"
+    fi
 
     echo "Enabling ad blocking management option"
     sudo sed -i "s/\('RASPI_ADBLOCK_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_error "Unable to modify config.php"
