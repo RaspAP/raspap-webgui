@@ -192,11 +192,13 @@ function _install_adblock() {
     fi
     if [ ! -f /tmp/hostnames.txt ]; then
         echo "Fetching latest hostnames list"
-        wget ${notracking_url}hostnames.txt -O /tmp/hostnames.txt || _install_error "Unable to download notracking hostnames"
+        wget ${notracking_url}hostnames.txt -q --show-progress --progress=bar:force -O /tmp/hostnames.txt 2>&1 \
+            || _install_error "Unable to download notracking hostnames"
     fi
     if [ ! -f /tmp/domains.txt ]; then
         echo "Fetching latest domains list"
-        wget ${notracking_url}domains.txt -O /tmp/domains.txt || _install_error "Unable to download notracking domains"
+        wget ${notracking_url}domains.txt -q --show-progress --progress=bar:force -O /tmp/domains.txt 2>&1 \
+            || _install_error "Unable to download notracking domains"
     fi
     echo "Adding blocklists to $raspap_dir/adblock"
     sudo cp /tmp/hostnames.txt $raspap_dir/adblock || _install_error "Unable to move notracking hostnames"
