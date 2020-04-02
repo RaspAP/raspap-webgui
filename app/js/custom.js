@@ -291,9 +291,9 @@ function loadChannelSelect(selected) {
     });
 }
 
-/* Updates the selected ad blocklist
- * Request is passed to an ajax handler to download the associated list
- *
+/* Updates the selected blocklist
+ * Request is passed to an ajax handler to download the associated list.
+ * Interface elements are updated to indicate current progress, status.
  */
 function updateBlocklist() {
     var blocklist_id = $('#cbxblocklist').val();
@@ -305,6 +305,7 @@ function updateBlocklist() {
         if (jsonData['return'] == '0') {
             $('#cbxblocklist-status').find('i').removeClass('fas fa-cog fa-spin').addClass('fas fa-check');
             $('#cbxblocklist-status').removeClass('check-progress').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
+            $('#'+blocklist_id).text("Just now");
         }
     })
 }
