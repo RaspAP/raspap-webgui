@@ -50,13 +50,11 @@ function DisplayAdBlockConfig()
 
     echo renderTemplate(
         "adblock", compact(
-            "status",
-            "serviceStatus",
-            "dnsmasq_state",
-            "enabled"
+        "status",
+        "serviceStatus",
+        "dnsmasq_state",
+        "enabled"
         )
     );
 }
-
-
 
