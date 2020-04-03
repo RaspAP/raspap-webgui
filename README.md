@@ -16,6 +16,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
 
  - [Prerequisites](#prerequisites)
  - [Quick installer](#quick-installer)
+ - [Ad Blocking](#ad-blocking)
  - [Bridged AP](#bridged-ap)
  - [Simultaneous AP and Wifi client](#simultaneous-ap-and-wifi-client)
  - [Support us](#support-us)
@@ -61,6 +62,15 @@ configured as an access point as follows:
 * Password: ChangeMe
 
 **Note:** As the name suggests, the Quick Installer is a great way to quickly setup a new AP. However, it does not automagically detect the unique configuration of your RPi. Best results are obtained by connecting an RPi to ethernet (`eth0`) or as a WiFi client, also known as managed mode, with `wlan0`. For the latter, refer to [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode). Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting an issue.
+
+## Ad Blocking
+This feature is currently in beta. We encourage testing and feedback from users of RaspAP. To enable ad blocking, simply use the installer to (re)install RaspAP using the `--adblock` option:
+
+```
+curl -sL https://install.raspap.com | bash -s -- --adblock
+```
+
+Details are [provided here](https://github.com/billz/raspap-webgui/wiki/Ad-blocking-(Beta)). 
 
 ## Bridged AP
 By default RaspAP configures a routed AP for your clients to connect to. A bridged AP configuration is also possible. Slide the **Bridged AP mode** toggle under the **Advanced** tab of **Configure hotspot**, then save and restart the hotspot.
