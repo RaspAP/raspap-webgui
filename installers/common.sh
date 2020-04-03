@@ -219,6 +219,10 @@ function _install_adblock() {
         echo "addn-hosts=$raspap_dir/adblock/hostnames.txt" | sudo tee -a "$raspap_adblock" > /dev/null || _install_error "Unable to write to $raspap_adblock"
     fi
 
+    # Remove dhcp-option=6 in dnsmasq.d/090_raspap.conf to force local DNS resolution for DHCP clients
+    echo "Enabling local DNS name resolution for DHCP clients"
+    sudo sed -i '/dhcp-option=6/d' $raspap_dnsmasq || _install_error "Unable to modify $raspap_dnsmasq"
+
     echo "Enabling ad blocking management option"
     sudo sed -i "s/\('RASPI_ADBLOCK_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_error "Unable to modify config.php"
     echo "Done."
