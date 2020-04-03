@@ -291,6 +291,28 @@ function loadChannelSelect(selected) {
     });
 }
 
+/* Updates the selected blocklist
+ * Request is passed to an ajax handler to download the associated list.
+ * Interface elements are updated to indicate current progress, status.
+ */
+function updateBlocklist() {
+    var blocklist_id = $('#cbxblocklist').val();
+    if (blocklist_id == '') { return; }
+    $('#cbxblocklist-status').find('i').removeClass('fas fa-check').addClass('fas fa-cog fa-spin');
+    $('#cbxblocklist-status').removeClass('check-hidden').addClass('check-progress');
+    $.post('ajax/adblock/update_blocklist.php',{ 'blocklist_id':blocklist_id },function(data){
+        var jsonData = JSON.parse(data);
+        if (jsonData['return'] == '0') {
+            $('#cbxblocklist-status').find('i').removeClass('fas fa-cog fa-spin').addClass('fas fa-check');
+            $('#cbxblocklist-status').removeClass('check-progress').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
+            $('#'+blocklist_id).text("Just now");
+        }
+    })
+}
+
+function clearBlocklistStatus() {
+    $('#cbxblocklist-status').removeClass('check-updated').addClass('check-hidden');
+}
 // Static Array method
 Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
 

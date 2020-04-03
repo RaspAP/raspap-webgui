@@ -352,6 +352,12 @@ function dnsServers()
     return (array) $data;
 }
 
+function blocklistProviders()
+{
+    $data = json_decode(file_get_contents("./config/blocklists.json"));
+    return (array) $data;
+}
+
 function optionsForSelect($options)
 {
     $html = "";
@@ -369,4 +375,45 @@ function optionsForSelect($options)
         }
     }
     return $html;
+}
+
+function blocklistUpdated($file)
+{
+    $blocklist = RASPI_CONFIG.'/adblock/'.$file;
+    if (file_exists($blocklist)) {
+        $lastModified = date ("F d Y H:i:s.", filemtime($blocklist));
+        $lastModified = formatDateAgo($lastModified);
+        return $lastModified;
+    } else {
+        return 'Never';
+    }
+}
+
+function formatDateAgo($datetime, $full = false)
+{
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
 }

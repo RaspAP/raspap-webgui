@@ -434,3 +434,17 @@ canvas#divDBChartBandwidthhourly {
 .figure, .authors {
   filter: brightness(70%) !important;
 }
+
+.check-hidden {
+  visibility: hidden;
+}
+
+.check-updated {
+  opacity: 0;
+  color: #1cc88a;
+}
+
+.check-progress {
+  color: #999;
+}
+
