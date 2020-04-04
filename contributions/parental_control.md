@@ -67,7 +67,4 @@ steps
     
 and thats it for nxfilter configuration
 
-1. 
-
-
-    
+1. configure the router's dhcp server to provide the new internal nxfilter based dns server to all dhcp clients
