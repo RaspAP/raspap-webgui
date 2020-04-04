@@ -12,6 +12,7 @@ What this means is that the distraction of the general internet is available to 
 
 ## My network setup
 I have drawn up my home internet for easy refence for all.
+
  ![setup](Home_Setup.png) 
 
 You will notice I already have a router/switch/Access Point in my home network that wasnt doing the filtering I wanted and I had to introduce the Raspberry Pi 
