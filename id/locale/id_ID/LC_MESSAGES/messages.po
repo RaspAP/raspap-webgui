@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 07:35\n"
+"PO-Revision-Date: 2020-04-05 08:54\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Indonesian\n"
 "Language: id_ID\n"
@@ -17,305 +17,305 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr ""
+msgstr "Portal Konfigurasi Wifi RaspAP"
 
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Ubah navigasi"
 
 msgid "RaspAP Wifi Portal"
-msgstr ""
+msgstr "Portal Wifi RaspAP"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "Dasbor"
 
 msgid "WiFi client"
-msgstr ""
+msgstr "Klien WiFi"
 
 msgid "Hotspot"
 msgstr ""
 
 msgid "Networking"
-msgstr ""
+msgstr "Jaringan"
 
 msgid "DHCP Server"
-msgstr ""
+msgstr "Server DHCP"
 
 msgid "OpenVPN"
 msgstr ""
 
 msgid "TOR proxy"
-msgstr ""
+msgstr "Proxy TOR"
 
 msgid "Authentication"
-msgstr ""
+msgstr "Autentikasi"
 
 msgid "Change Theme"
-msgstr ""
+msgstr "Ganti Tema"
 
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 msgid "About RaspAP"
-msgstr ""
+msgstr "Tentang RaspAP"
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr ""
+msgstr "Pengaturan otentikasi"
 
 msgid "New passwords do not match"
-msgstr ""
+msgstr "Sandi baru tidak cocok"
 
 msgid "Username must not be empty"
-msgstr ""
+msgstr "Nama pengguna tidak boleh kosong"
 
 msgid "Admin password updated"
-msgstr ""
+msgstr "Sandi Admin diperbarui"
 
 msgid "Failed to update admin password"
-msgstr ""
+msgstr "Gagal memperbarui sandi admin"
 
 msgid "Old password does not match"
-msgstr ""
+msgstr "Sandi lama tidak cocok"
 
 msgid "Username"
-msgstr ""
+msgstr "Nama Pengguna"
 
 msgid "Old password"
-msgstr ""
+msgstr "Sandi lama"
 
 msgid "New password"
-msgstr ""
+msgstr "Sandi baru"
 
 msgid "Repeat new password"
-msgstr ""
+msgstr "Ulangi kata sandi baru"
 
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr ""
+msgstr "Pengaturan klien"
 
 msgid "SSID"
 msgstr ""
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanal"
 
 msgid "Security"
-msgstr ""
+msgstr "Keamanan"
 
 msgid "Passphrase"
-msgstr ""
+msgstr "Kalimat sandi"
 
 msgid "Wifi settings updated successfully"
-msgstr ""
+msgstr "Pengaturan Wifi berhasil dimutakhirkan"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr ""
+msgstr "Pengaturan Wifi dimutakhirkan tapi tak bisa dimulai ulang (tak dapat menjalankan 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
-msgstr ""
+msgstr "Gagal memperbarui pengaturan wifi"
 
 msgid "Failed to update wifi settings"
-msgstr ""
+msgstr "Gagal memutakhirkan pengaturan wifi"
 
 msgid "Rescan"
-msgstr ""
+msgstr "Pindai ulang"
 
 msgid "Update"
-msgstr ""
+msgstr "Perbarui"
 
 msgid "Add"
-msgstr ""
+msgstr "Tambah"
 
 msgid "Delete"
-msgstr ""
+msgstr "Hapus"
 
 msgid "Show"
-msgstr ""
+msgstr "Tampilkan"
 
 msgid "Hide"
-msgstr ""
+msgstr "Sembunyikan"
 
 msgid "Not configured"
-msgstr ""
+msgstr "Tidak dikonfigurasi"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr ""
+msgstr "<strong>Note:</strong> Poin akses WEP tampil sebagai 'Terbuka'. RaspAP saat ini tak mendukung hubungan ke WEP"
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr ""
+msgstr "Informasi Antarmuka"
 
 msgid "Interface Name"
-msgstr ""
+msgstr "Nama Antarmuka"
 
 msgid "IPv4 Address"
-msgstr ""
+msgstr "Alamat IPv4"
 
 msgid "IPv6 Address"
-msgstr ""
+msgstr "Alamat IPv6"
 
 msgid "Subnet Mask"
 msgstr ""
 
 msgid "Mac Address"
-msgstr ""
+msgstr "Alamat MAC"
 
 msgid "Interface Statistics"
-msgstr ""
+msgstr "Statistik Antarmuka"
 
 msgid "Received Packets"
-msgstr ""
+msgstr "Paket Diterima"
 
 msgid "Received Bytes"
-msgstr ""
+msgstr "Byte diterima"
 
 msgid "Transferred Packets"
-msgstr ""
+msgstr "Paket Ditransfer"
 
 msgid "Transferred Bytes"
-msgstr ""
+msgstr "Byte Ditransfer"
 
 msgid "Wireless Information"
-msgstr ""
+msgstr "Informasi Nirkabel"
 
 msgid "Connected To"
-msgstr ""
+msgstr "Terhubung ke"
 
 msgid "AP Mac Address"
-msgstr ""
+msgstr "Alamat MAC AP"
 
 msgid "Bitrate"
-msgstr ""
+msgstr "Laju bit"
 
 msgid "Signal Level"
-msgstr ""
+msgstr "Tingkat Sinyal"
 
 msgid "Transmit Power"
-msgstr ""
+msgstr "Daya Transmisi"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Frekuensi"
 
 msgid "Link Quality"
-msgstr ""
+msgstr "Kualitas Tautan"
 
 msgid "Information provided by ip and iw and from system"
-msgstr ""
+msgstr "Informasi dari ip dan iw serta dari sistem"
 
 msgid "No MAC Address Found"
-msgstr ""
+msgstr "Alamat MAC Tak Ditemukan"
 
 msgid "No IP Address Found"
-msgstr ""
+msgstr "Tak ditemukan alamat IP"
 
 msgid "No Subnet Mask Found"
-msgstr ""
+msgstr "Subnet Mask Tak Ditemukan"
 
 msgid "No Data"
-msgstr ""
+msgstr "Tak Ada Data"
 
 msgid "Not connected"
-msgstr ""
+msgstr "Tidak tersambung"
 
 msgid "Interface is up"
-msgstr ""
+msgstr "Antar muka sedang beroperasi"
 
 msgid "Interface is down"
-msgstr ""
+msgstr "Antarmuka sedang tak beroperasi"
 
 msgid "Interface already down"
-msgstr ""
+msgstr "Antar muka sudah berhenti beroperasi"
 
 msgid "Start wlan0"
-msgstr ""
+msgstr "Mulai wlan0"
 
 msgid "Stop wlan0"
-msgstr ""
+msgstr "Hentikan wlan0"
 
 msgid "Connected Devices"
-msgstr ""
+msgstr "Perangkat Terhubung"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr ""
+msgstr "Pengaturan server DHCP"
 
 msgid "Client list"
-msgstr ""
+msgstr "Daftar client"
 
 msgid "Interface"
-msgstr ""
+msgstr "Antarmuka"
 
 msgid "DNS Server"
-msgstr ""
+msgstr "Server DNS"
 
 msgid "Starting IP Address"
-msgstr ""
+msgstr "Alamat IP Awal"
 
 msgid "Ending IP Address"
-msgstr ""
+msgstr "Akhiri Alamat IP"
 
 msgid "Static Leases"
-msgstr ""
+msgstr "Jalur Pengguna Statis"
 
 msgid "Add static DHCP lease"
-msgstr ""
+msgstr "Tambah jalur pengguna DHCP statis"
 
 msgid "Lease Time"
-msgstr ""
+msgstr "Jangka Waktu Jalur Pengguna"
 
 msgid "Interval"
 msgstr ""
 
 msgid "Active DHCP leases"
-msgstr ""
+msgstr "Jalur Pengguna DHCP aktif"
 
 msgid "Expire time"
-msgstr ""
+msgstr "Kedaluwarsa pada"
 
 msgid "MAC Address"
-msgstr ""
+msgstr "Alamat MAC"
 
 msgid "Host name"
-msgstr ""
+msgstr "Nama Host"
 
 msgid "Client ID"
-msgstr ""
+msgstr "ID Klien"
 
 msgid "Information provided by Dnsmasq"
-msgstr ""
+msgstr "Informasi disediakan oleh Dnsmasq"
 
 msgid "Stop dnsmasq"
-msgstr ""
+msgstr "Hentikan dnsmasq"
 
 msgid "Start dnsmasq"
-msgstr ""
+msgstr "Mulai dnsmasq"
 
 msgid "Dnsmasq configuration updated successfully"
-msgstr ""
+msgstr "Konfigurasi Dnsmasq berhasil dimutakhirkan"
 
 msgid "dnsmasq already running"
-msgstr ""
+msgstr "dnsmasq sudah berjalan"
 
 msgid "Successfully started dnsmasq"
-msgstr ""
+msgstr "Sukses memulai dnsmasq"
 
 msgid "Failed to start dnsmasq"
-msgstr ""
+msgstr "Gagal menjalankan dnsmasq"
 
 msgid "Successfully stopped dnsmasq"
-msgstr ""
+msgstr "Dnsmasq berhasil dihentikan"
 
 msgid "Failed to stop dnsmasq"
-msgstr ""
+msgstr "Gagal menghentikan dnsmasq"
 
 msgid "dnsmasq already stopped"
-msgstr ""
+msgstr "dnsmasq telah berhenti"
 
 msgid "Dnsmasq is running"
-msgstr ""
+msgstr "Dnsmasq sedang berjalan"
 
 msgid "Dnsmasq is not running"
-msgstr ""
+msgstr "Dnsmasq tidak berjalan"
 
 msgid "Upstream DNS servers"
 msgstr ""
@@ -346,319 +346,319 @@ msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
-msgstr ""
+msgstr "Dasar"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Tingkat lanjut"
 
 msgid "Basic settings"
-msgstr ""
+msgstr "Pengaturan dasar"
 
 msgid "Wireless Mode"
-msgstr ""
+msgstr "Mode Nirkabel"
 
 msgid "Security settings"
-msgstr ""
+msgstr "Pengaturan keamanan"
 
 msgid "Security type"
-msgstr ""
+msgstr "Tipe keamanan"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Tipe Enkripsi"
 
 msgid "PSK"
 msgstr ""
 
 msgid "Advanced settings"
-msgstr ""
+msgstr "Pengaturan tingkat lanjut"
 
 msgid "Country Code"
-msgstr ""
+msgstr "Kode Negara"
 
 msgid "Information provided by hostapd"
-msgstr ""
+msgstr "Informasi dari hostapd"
 
 msgid "Attempting to start hotspot"
-msgstr ""
+msgstr "Mencoba memulai hotspot"
 
 msgid "Attempting to stop hotspot"
-msgstr ""
+msgstr "Mencoba menghentikan hotspot"
 
 msgid "HostAPD is not running"
-msgstr ""
+msgstr "HostAPD tidak sedang berjalan"
 
 msgid "HostAPD is running"
-msgstr ""
+msgstr "HostAPD berjalan"
 
 msgid "SSID must be between 1 and 32 characters"
-msgstr ""
+msgstr "SSID harus antara 1 sampai 32 karakter"
 
 msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr ""
+msgstr "Kalimat sandi WPA harus antara 8 dan 63 karakter"
 
 msgid "Unknown interface"
-msgstr ""
+msgstr "Antarmuka tak diketahui"
 
 msgid "Country code must be blank or two characters"
-msgstr ""
+msgstr "Kode negara harus kosong atau dua karakter"
 
 msgid "Wifi Hotspot settings saved"
-msgstr ""
+msgstr "Pengaturan Hotspot Wifi disimpan"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr ""
+msgstr "Tidak dapat menyimpan pengaturan hotspot wifi"
 
 msgid "Start hotspot"
-msgstr ""
+msgstr "Mulai hotspot"
 
 msgid "Stop hotspot"
-msgstr ""
+msgstr "Hentikan hotspot"
 
 msgid "Restart hotspot"
-msgstr ""
+msgstr "Mulai ulang hotspot"
 
 msgid "Enable logging"
-msgstr ""
+msgstr "Aktifkan logging"
 
 msgid "Logfile output"
-msgstr ""
+msgstr "Keluaran berkas log"
 
 msgid "WiFi client AP mode"
-msgstr ""
+msgstr "Mode AP klien WIFI"
 
 msgid "Bridged AP mode"
 msgstr ""
 
 msgid "Hide SSID in broadcast"
-msgstr ""
+msgstr "Sembunyikan SSID di pancaran"
 
 msgid "Maximum number of clients"
-msgstr ""
+msgstr "Jumlah klien maksimal"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr ""
+msgstr "Mengonfigurasi opsi max_num_sta dari hostapd. Nilai baku dan maksimum adalah 2007. Jika kosong atau 0, nilai baku diberlakukan."
 
 #: includes/networking.php
 msgid "Summary"
-msgstr ""
+msgstr "Ringkasan"
 
 msgid "Current settings"
-msgstr ""
+msgstr "Pengaturan saat ini"
 
 msgid "Default Gateway"
-msgstr ""
+msgstr "Gateway Baku"
 
 msgid "Alternate DNS Server"
-msgstr ""
+msgstr "Server DNS alternatif"
 
 msgid "Adapter IP Address Settings"
-msgstr ""
+msgstr "Pengaturan Alamat IP Adapter"
 
 msgid "Enable Fallback to Static Option"
-msgstr ""
+msgstr "Aktifkan Jalur Baku ke Opsi Statis"
 
 msgid "Static IP"
-msgstr ""
+msgstr "IP Statis"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Aktif"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Dinonaktifkan"
 
 msgid "Static IP Options"
-msgstr ""
+msgstr "Opsi IP Statis"
 
 msgid "Apply settings"
-msgstr ""
+msgstr "Terapkan pengaturan"
 
 msgid "Information provided by /sys/class/net"
-msgstr ""
+msgstr "Informasi dari /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr ""
+msgstr "Informasi Sistem"
 
 msgid "Language"
-msgstr ""
+msgstr "Bahasa"
 
 msgid "Language settings"
-msgstr ""
+msgstr "Pengaturan bahasa"
 
 msgid "Select a language"
-msgstr ""
+msgstr "Pilih bahasa"
 
 msgid "Language setting saved"
-msgstr ""
+msgstr "Pengaturan bahasa disimpan"
 
 msgid "Console"
-msgstr ""
+msgstr "Konsol"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Nama Host"
 
 msgid "Pi Revision"
-msgstr ""
+msgstr "Revisi Pi"
 
 msgid "Uptime"
-msgstr ""
+msgstr "Waktu nyala"
 
 msgid "Memory Used"
-msgstr ""
+msgstr "Memori Terpakai"
 
 msgid "CPU Load"
-msgstr ""
+msgstr "Beban Kerja CPU"
 
 msgid "Reboot"
 msgstr ""
 
 msgid "Shutdown"
-msgstr ""
+msgstr "Tutup"
 
 msgid "System Rebooting Now!"
-msgstr ""
+msgstr "Sistem Memulai Kembali Sekarang!"
 
 msgid "System Shutting Down Now!"
-msgstr ""
+msgstr "Sistem Dimatikan Sekarang!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr ""
+msgstr "Pengaturan Tema"
 
 msgid "Select a theme"
-msgstr ""
+msgstr "Pilih tema"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr ""
+msgstr "Pemakaian data"
 
 msgid "Data usage monitoring"
-msgstr ""
+msgstr "Pemantauan pemakaian data"
 
 msgid "Hourly traffic amount"
-msgstr ""
+msgstr "Jumlah lalu lintas per jam"
 
 msgid "Daily traffic amount"
-msgstr ""
+msgstr "Jumlah lalu lintas harian"
 
 msgid "Monthly traffic amount"
-msgstr ""
+msgstr "Jumlah lalu lintas bulanan"
 
 msgid "Hourly"
-msgstr ""
+msgstr "Per jam"
 
 msgid "Daily"
-msgstr ""
+msgstr "Harian"
 
 msgid "Monthly"
-msgstr ""
+msgstr "Bulanan"
 
 msgid "interface"
-msgstr ""
+msgstr "antarmuka"
 
 msgid "date"
-msgstr ""
+msgstr "tanggal"
 
 msgid "Send MB"
-msgstr ""
+msgstr "Kirim MB"
 
 msgid "Receive MB"
-msgstr ""
+msgstr "MB Diterima"
 
 msgid "Information provided by vnstat"
-msgstr ""
+msgstr "Informasi disediakan oleh vnstat"
 
 msgid "Loading {0} bandwidth chart"
-msgstr ""
+msgstr "Memuat bagan kecepatan jalur {0}"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr ""
+msgstr "Menampilkan {0} sampai {1} dari {2} entri"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr ""
+msgstr "OpenVPN tidak berjalan"
 
 msgid "OpenVPN is running"
-msgstr ""
+msgstr "OpenVPN sedang berjalan"
 
 msgid "Server settings"
-msgstr ""
+msgstr "Pengaturan Server"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr ""
+msgstr "Pilih berkas konfigurasi OpenVPN (.ovpn)"
 
 msgid "Client Log"
-msgstr ""
+msgstr "Log Klien"
 
 msgid "Port"
 msgstr ""
 
 msgid "Protocol"
-msgstr ""
+msgstr "Protokol"
 
 msgid "Root CA certificate"
-msgstr ""
+msgstr "Sertifikat Root CA"
 
 msgid "Server certificate"
-msgstr ""
+msgstr "Sertifikat Server"
 
 msgid "Diffie Hellman parameters"
-msgstr ""
+msgstr "Parameter Diffie Hellman"
 
 msgid "KeepAlive"
 msgstr ""
 
 msgid "Server log"
-msgstr ""
+msgstr "Log Server"
 
 msgid "Start OpenVPN"
-msgstr ""
+msgstr "Mulai OpenVPN"
 
 msgid "Stop OpenVPN"
-msgstr ""
+msgstr "Hentikan OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr ""
+msgstr "Informasi disediakan oleh openvpn"
 
 msgid "Attempting to start openvpn"
-msgstr ""
+msgstr "Mencoba untuk memulai openvpn"
 
 msgid "Attempting to stop openvpn"
-msgstr ""
+msgstr "Mencoba menghentikan openvpn"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr ""
+msgstr "TOR tidak sedang berjalan"
 
 msgid "TOR is running"
-msgstr ""
+msgstr "TOR sedang berjalan"
 
 msgid "Relay"
-msgstr ""
+msgstr "Relai"
 
 msgid "Relay settings"
-msgstr ""
+msgstr "Pengaturan Relay"
 
 msgid "Nickname"
 msgstr ""
 
 msgid "Address"
-msgstr ""
+msgstr "Alamat"
 
 msgid "Start TOR"
-msgstr ""
+msgstr "Mulai TOR"
 
 msgid "Stop TOR"
-msgstr ""
+msgstr "Hentikan TOR"
 
 msgid "Information provided by tor"
-msgstr ""
+msgstr "Informasi dari tor"
 
 msgid "Attempting to start TOR"
-msgstr ""
+msgstr "Mencoba untuk memulai TOR"
 
 msgid "Attempting to stop TOR"
-msgstr ""
+msgstr "Mencoba untuk menghentikan TOR"
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
@@ -666,25 +666,25 @@ msgstr ""
 
 #: common form controls
 msgid "Save settings"
-msgstr ""
+msgstr "Simpan pengaturan"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Segarkan"
 
 msgid "running"
-msgstr ""
+msgstr "beroperasi aktif"
 
 msgid "stopped"
-msgstr ""
+msgstr "dihentikan"
 
 msgid "Remove"
-msgstr ""
+msgstr "Hapus"
 
 msgid "up"
-msgstr ""
+msgstr "naik"
 
 msgid "down"
-msgstr ""
+msgstr "tidak beroperasi"
 
 msgid "adblock"
 msgstr ""
