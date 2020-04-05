@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 07:35\n"
+"PO-Revision-Date: 2020-04-05 08:54\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -17,16 +17,16 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr ""
+msgstr "RaspAP Wifi Portal Konfiguracyjny"
 
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Przełącz tryb nawigacji"
 
 msgid "RaspAP Wifi Portal"
-msgstr ""
+msgstr "RaspAP Portal Wifi"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "Pulpit nawigacyjny"
 
 msgid "WiFi client"
 msgstr ""
@@ -50,7 +50,7 @@ msgid "Authentication"
 msgstr ""
 
 msgid "Change Theme"
-msgstr ""
+msgstr "Zmień motyw"
 
 msgid "System"
 msgstr ""
@@ -63,71 +63,71 @@ msgid "Authentication settings"
 msgstr ""
 
 msgid "New passwords do not match"
-msgstr ""
+msgstr "Nowe hasła nie pasują do siebie"
 
 msgid "Username must not be empty"
-msgstr ""
+msgstr "Nazwa użytkownika nie może być pusta"
 
 msgid "Admin password updated"
-msgstr ""
+msgstr "Hasło administratora zostało zaktualizowane"
 
 msgid "Failed to update admin password"
-msgstr ""
+msgstr "Nie można zaktualizować hasła administratora"
 
 msgid "Old password does not match"
-msgstr ""
+msgstr "Stare hasło jest niepoprawne"
 
 msgid "Username"
-msgstr ""
+msgstr "Nazwa użytkownika"
 
 msgid "Old password"
-msgstr ""
+msgstr "Stare hasło"
 
 msgid "New password"
-msgstr ""
+msgstr "Nowe hasło"
 
 msgid "Repeat new password"
-msgstr ""
+msgstr "Powtórz nowe hasło"
 
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr ""
+msgstr "Ustawienia klienta"
 
 msgid "SSID"
 msgstr ""
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanał"
 
 msgid "Security"
-msgstr ""
+msgstr "Bezpieczeństwo"
 
 msgid "Passphrase"
-msgstr ""
+msgstr "Hasło"
 
 msgid "Wifi settings updated successfully"
-msgstr ""
+msgstr "Ustawienia WiFi zostały pomyślnie zaktualizowane"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr ""
+msgstr "Ustawienia Wifi zostały zaktualizowane, ale restart nie przebiegł pomyślnie (nie można wykonać 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
-msgstr ""
+msgstr "Ustawienia Wifi nie mogły zostać zaktualizowane"
 
 msgid "Failed to update wifi settings"
-msgstr ""
+msgstr "Nie udało się zaktualizować ustawień wifi"
 
 msgid "Rescan"
-msgstr ""
+msgstr "Ponowne skanowanie"
 
 msgid "Update"
-msgstr ""
+msgstr "Aktualizacja"
 
 msgid "Add"
-msgstr ""
+msgstr "Dodaj"
 
 msgid "Delete"
-msgstr ""
+msgstr "Usuń"
 
 msgid "Show"
 msgstr ""
@@ -139,14 +139,14 @@ msgid "Not configured"
 msgstr ""
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr ""
+msgstr "<strong>Notka:</strong> Punkt dostępu WEP wydaje się być 'Otwarty'. RaspAP aktualnie nie wspiera podłączania do WEP"
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr ""
+msgstr "Informacje na temat interfejsu"
 
 msgid "Interface Name"
-msgstr ""
+msgstr "Nazwa interfejsu"
 
 msgid "IPv4 Address"
 msgstr ""
@@ -155,76 +155,76 @@ msgid "IPv6 Address"
 msgstr ""
 
 msgid "Subnet Mask"
-msgstr ""
+msgstr "Adres podsieci"
 
 msgid "Mac Address"
-msgstr ""
+msgstr "Adres Mac"
 
 msgid "Interface Statistics"
-msgstr ""
+msgstr "Statystyki Interfejsu"
 
 msgid "Received Packets"
-msgstr ""
+msgstr "Otrzymane Pakiety"
 
 msgid "Received Bytes"
-msgstr ""
+msgstr "Otrzymane Bajty"
 
 msgid "Transferred Packets"
-msgstr ""
+msgstr "Przesłane Pakiety"
 
 msgid "Transferred Bytes"
-msgstr ""
+msgstr "Przesłane Bajty"
 
 msgid "Wireless Information"
-msgstr ""
+msgstr "Informacje o sieci bezprzewodowej"
 
 msgid "Connected To"
-msgstr ""
+msgstr "Podłączony do"
 
 msgid "AP Mac Address"
-msgstr ""
+msgstr "AP Adres Mac"
 
 msgid "Bitrate"
 msgstr ""
 
 msgid "Signal Level"
-msgstr ""
+msgstr "Poziom sygnału"
 
 msgid "Transmit Power"
-msgstr ""
+msgstr "Siła sygnału"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Częstotliwość"
 
 msgid "Link Quality"
-msgstr ""
+msgstr "Jakość połączenia"
 
 msgid "Information provided by ip and iw and from system"
 msgstr ""
 
 msgid "No MAC Address Found"
-msgstr ""
+msgstr "MAC Address nie został odnaleziony"
 
 msgid "No IP Address Found"
-msgstr ""
+msgstr "Adres IP nie został odnaleziony"
 
 msgid "No Subnet Mask Found"
-msgstr ""
+msgstr "Maska podsieci nie została odnaleziona"
 
 msgid "No Data"
-msgstr ""
+msgstr "Brak danych"
 
 msgid "Not connected"
-msgstr ""
+msgstr "Nie podłączony"
 
 msgid "Interface is up"
-msgstr ""
+msgstr "Interfejs jest włączony"
 
 msgid "Interface is down"
-msgstr ""
+msgstr "Interfejs jest wyłączony"
 
 msgid "Interface already down"
-msgstr ""
+msgstr "Interfejs już jest wyłączony"
 
 msgid "Start wlan0"
 msgstr ""
@@ -240,19 +240,19 @@ msgid "DHCP server settings"
 msgstr ""
 
 msgid "Client list"
-msgstr ""
+msgstr "Lista klientów"
 
 msgid "Interface"
 msgstr ""
 
 msgid "DNS Server"
-msgstr ""
+msgstr "Serwer DNS"
 
 msgid "Starting IP Address"
-msgstr ""
+msgstr "Startowanie adresu IP"
 
 msgid "Ending IP Address"
-msgstr ""
+msgstr "Kończenie adresu IP"
 
 msgid "Static Leases"
 msgstr ""
@@ -261,28 +261,28 @@ msgid "Add static DHCP lease"
 msgstr ""
 
 msgid "Lease Time"
-msgstr ""
+msgstr "Czas wynajęcia (Lease Time)"
 
 msgid "Interval"
-msgstr ""
+msgstr "Interwał"
 
 msgid "Active DHCP leases"
-msgstr ""
+msgstr "Aktywne wynajęcia DHCP"
 
 msgid "Expire time"
-msgstr ""
+msgstr "Czas wygaśnięcia"
 
 msgid "MAC Address"
-msgstr ""
+msgstr "Adres MAC"
 
 msgid "Host name"
-msgstr ""
+msgstr "Nazwa gospodarza"
 
 msgid "Client ID"
-msgstr ""
+msgstr "ID Klienta"
 
 msgid "Information provided by Dnsmasq"
-msgstr ""
+msgstr "Informacje dostarczone przez Dnsmasq"
 
 msgid "Stop dnsmasq"
 msgstr ""
@@ -291,31 +291,31 @@ msgid "Start dnsmasq"
 msgstr ""
 
 msgid "Dnsmasq configuration updated successfully"
-msgstr ""
+msgstr "Konfiguracja Dnsmasq zaktualizowana pomyślnie"
 
 msgid "dnsmasq already running"
-msgstr ""
+msgstr "dnsmasq jest już odpalony"
 
 msgid "Successfully started dnsmasq"
-msgstr ""
+msgstr "Pomyślnie wystartowano dnsmasq"
 
 msgid "Failed to start dnsmasq"
-msgstr ""
+msgstr "Nie można wystartować dnsmasq"
 
 msgid "Successfully stopped dnsmasq"
-msgstr ""
+msgstr "Pomyślnie zatrzymano dnsmasq"
 
 msgid "Failed to stop dnsmasq"
-msgstr ""
+msgstr "Nie udało się zatrzymać dnsmasq"
 
 msgid "dnsmasq already stopped"
-msgstr ""
+msgstr "dnsmasq już jest zatrzymany"
 
 msgid "Dnsmasq is running"
-msgstr ""
+msgstr "Dnsmasq jest odpalony"
 
 msgid "Dnsmasq is not running"
-msgstr ""
+msgstr "Dnsmasq nie jest odpalony"
 
 msgid "Upstream DNS servers"
 msgstr ""
@@ -346,82 +346,82 @@ msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
-msgstr ""
+msgstr "Podstawowe"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Zaawansowane"
 
 msgid "Basic settings"
-msgstr ""
+msgstr "Podstawowe ustawienia"
 
 msgid "Wireless Mode"
-msgstr ""
+msgstr "Tryb Bezprzewodowy"
 
 msgid "Security settings"
-msgstr ""
+msgstr "Ustawienia bezpieczeństwa"
 
 msgid "Security type"
-msgstr ""
+msgstr "Tyb zabezpieczeń"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Typ szyfrowania"
 
 msgid "PSK"
 msgstr ""
 
 msgid "Advanced settings"
-msgstr ""
+msgstr "Zaawansowane ustawienia"
 
 msgid "Country Code"
-msgstr ""
+msgstr "Kod kraju"
 
 msgid "Information provided by hostapd"
-msgstr ""
+msgstr "Informacje dostarczone przez hostapd"
 
 msgid "Attempting to start hotspot"
-msgstr ""
+msgstr "Próba wystartowania punktu dostępowego hotspot"
 
 msgid "Attempting to stop hotspot"
-msgstr ""
+msgstr "Próba zatrzymania punktu dostępowego hotspot"
 
 msgid "HostAPD is not running"
-msgstr ""
+msgstr "HostAPD nie jest odpalony"
 
 msgid "HostAPD is running"
-msgstr ""
+msgstr "HostAPD jest już odpalony"
 
 msgid "SSID must be between 1 and 32 characters"
-msgstr ""
+msgstr "SSID musi zawierać między 1 a 32 znaków"
 
 msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr ""
+msgstr "Hasło WPA musi zawierać między 8 a 63 znaków"
 
 msgid "Unknown interface"
-msgstr ""
+msgstr "Nieznany interfejs"
 
 msgid "Country code must be blank or two characters"
-msgstr ""
+msgstr "Kod kraju musi być pusty lub zawierać dwa znaki"
 
 msgid "Wifi Hotspot settings saved"
-msgstr ""
+msgstr "Ustawienia Wifi Hotspot zostały zapisane"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr ""
+msgstr "Nie można zapisać ustawień wifi hotspot"
 
 msgid "Start hotspot"
-msgstr ""
+msgstr "Odpal hotspot"
 
 msgid "Stop hotspot"
-msgstr ""
+msgstr "Zatrzymaj hotspot"
 
 msgid "Restart hotspot"
 msgstr ""
 
 msgid "Enable logging"
-msgstr ""
+msgstr "Włącz logowanie"
 
 msgid "Logfile output"
-msgstr ""
+msgstr "Plik wyjściowy logów"
 
 msgid "WiFi client AP mode"
 msgstr ""
@@ -440,109 +440,109 @@ msgstr ""
 
 #: includes/networking.php
 msgid "Summary"
-msgstr ""
+msgstr "Podsumowanie"
 
 msgid "Current settings"
-msgstr ""
+msgstr "Aktualne ustawienia"
 
 msgid "Default Gateway"
-msgstr ""
+msgstr "Domyślna brama"
 
 msgid "Alternate DNS Server"
-msgstr ""
+msgstr "Alternatywny serwer DNS"
 
 msgid "Adapter IP Address Settings"
-msgstr ""
+msgstr "Ustawienia adresu IP adaptera"
 
 msgid "Enable Fallback to Static Option"
-msgstr ""
+msgstr "Ustaw opcję statyczną jako wyjście awaryjne"
 
 msgid "Static IP"
-msgstr ""
+msgstr "Statyczne IP"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Włączony"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Wyłączony"
 
 msgid "Static IP Options"
-msgstr ""
+msgstr "Opcje statycznego IP"
 
 msgid "Apply settings"
-msgstr ""
+msgstr "Zapisz ustawienia"
 
 msgid "Information provided by /sys/class/net"
-msgstr ""
+msgstr "Informacje dostarczone przez /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr ""
+msgstr "Informacje systemowe"
 
 msgid "Language"
-msgstr ""
+msgstr "Język"
 
 msgid "Language settings"
-msgstr ""
+msgstr "Ustawienia języka"
 
 msgid "Select a language"
-msgstr ""
+msgstr "Wybierz język"
 
 msgid "Language setting saved"
-msgstr ""
+msgstr "Ustawienia języka zapisane"
 
 msgid "Console"
-msgstr ""
+msgstr "Konsola"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Nazwa gospodarza"
 
 msgid "Pi Revision"
-msgstr ""
+msgstr "wersja PI"
 
 msgid "Uptime"
-msgstr ""
+msgstr "Czas działania"
 
 msgid "Memory Used"
-msgstr ""
+msgstr "Użyta pamięć"
 
 msgid "CPU Load"
-msgstr ""
+msgstr "Obciążenie CPU"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Restart"
 
 msgid "Shutdown"
-msgstr ""
+msgstr "Wyłącz"
 
 msgid "System Rebooting Now!"
-msgstr ""
+msgstr "System jest uruchamiany ponownie!"
 
 msgid "System Shutting Down Now!"
-msgstr ""
+msgstr "System jest wyłączany!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr ""
+msgstr "Ustawienia motywu"
 
 msgid "Select a theme"
-msgstr ""
+msgstr "Wybierz motyw"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr ""
+msgstr "Użycie danych"
 
 msgid "Data usage monitoring"
-msgstr ""
+msgstr "Monitorowanie zużycia danych"
 
 msgid "Hourly traffic amount"
 msgstr ""
 
 msgid "Daily traffic amount"
-msgstr ""
+msgstr "Dzienny przepływ danych"
 
 msgid "Monthly traffic amount"
-msgstr ""
+msgstr "Miesięczny przepływ danych"
 
 msgid "Hourly"
 msgstr ""
@@ -554,25 +554,25 @@ msgid "Monthly"
 msgstr ""
 
 msgid "interface"
-msgstr ""
+msgstr "interfejs"
 
 msgid "date"
-msgstr ""
+msgstr "data"
 
 msgid "Send MB"
-msgstr ""
+msgstr "Wysłane MB"
 
 msgid "Receive MB"
-msgstr ""
+msgstr "Otrzymane MB"
 
 msgid "Information provided by vnstat"
-msgstr ""
+msgstr "Informacje dostarczone przez vnstat"
 
 msgid "Loading {0} bandwidth chart"
-msgstr ""
+msgstr "Wczytywanie {0} wykresu bandwidth"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr ""
+msgstr "Pokazywanie wpisów od {0} do {1} z {2}"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
@@ -582,7 +582,7 @@ msgid "OpenVPN is running"
 msgstr ""
 
 msgid "Server settings"
-msgstr ""
+msgstr "Ustawienia serwera"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
 msgstr ""
@@ -666,10 +666,10 @@ msgstr ""
 
 #: common form controls
 msgid "Save settings"
-msgstr ""
+msgstr "Zapisz ustawienia"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Odśwież"
 
 msgid "running"
 msgstr ""
