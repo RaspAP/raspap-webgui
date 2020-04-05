@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 07:35\n"
+"PO-Revision-Date: 2020-04-05 08:54\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Greek\n"
 "Language: el_GR\n"
@@ -17,16 +17,16 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr ""
+msgstr "Σελίδα ρυθμίσεων RaspAP WiFi"
 
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Εναλλαγή πλοήγησης"
 
 msgid "RaspAP Wifi Portal"
-msgstr ""
+msgstr "Πύλη RaspAP WiFi"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "Πίνακας"
 
 msgid "WiFi client"
 msgstr ""
@@ -35,287 +35,287 @@ msgid "Hotspot"
 msgstr ""
 
 msgid "Networking"
-msgstr ""
+msgstr "Δικτύωση"
 
 msgid "DHCP Server"
-msgstr ""
+msgstr "Διακομιστή DHCP"
 
 msgid "OpenVPN"
 msgstr ""
 
 msgid "TOR proxy"
-msgstr ""
+msgstr "Μεσολαβητή TOR"
 
 msgid "Authentication"
-msgstr ""
+msgstr "Διαμόρφωση Auth"
 
 msgid "Change Theme"
-msgstr ""
+msgstr "Αλλαγή Θέματος"
 
 msgid "System"
-msgstr ""
+msgstr "Σύστημα"
 
 msgid "About RaspAP"
-msgstr ""
+msgstr "Περί RaspAP"
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr ""
+msgstr "Ρυθμίσεις πιστοποίησης"
 
 msgid "New passwords do not match"
-msgstr ""
+msgstr "Οι νέοι κωδικοί πρόσβασης δεν ταιριάζουν"
 
 msgid "Username must not be empty"
-msgstr ""
+msgstr "Το όνομα χρήστη δεν πρέπει να είναι κενό"
 
 msgid "Admin password updated"
-msgstr ""
+msgstr "Ο κωδικός πρόσβασης διαχειριστή ενημερώθηκε"
 
 msgid "Failed to update admin password"
-msgstr ""
+msgstr "Αποτυχία ενημέρωσης του κωδικού πρόσβασης διαχειριστή"
 
 msgid "Old password does not match"
-msgstr ""
+msgstr "Ο παλιός κωδικός πρόσβασης δεν ταιριάζει"
 
 msgid "Username"
-msgstr ""
+msgstr "Όνομα χρήστη"
 
 msgid "Old password"
-msgstr ""
+msgstr "Παλιός κωδικός πρόσβασης"
 
 msgid "New password"
-msgstr ""
+msgstr "Νέος κωδικός πρόσβασης"
 
 msgid "Repeat new password"
-msgstr ""
+msgstr "Επανάληψη νέου κωδικού πρόσβασης"
 
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr ""
+msgstr "Ρυθμίσεις client"
 
 msgid "SSID"
 msgstr ""
 
 msgid "Channel"
-msgstr ""
+msgstr "Κανάλι"
 
 msgid "Security"
-msgstr ""
+msgstr "Ασφάλεια"
 
 msgid "Passphrase"
-msgstr ""
+msgstr "Φράση πρόσβασης"
 
 msgid "Wifi settings updated successfully"
-msgstr ""
+msgstr "Οι ρυθμίσεις WiFi ενημερώθηκαν με επιτυχία"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr ""
+msgstr "Οι ρυθμίσεις WiFi ενημερώθηκαν αλλά δεν είναι δυνατή η επανεκκίνηση (δεν είναι δυνατή η εκτέλεση του 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
-msgstr ""
+msgstr "Οι ρυθμίσεις WiFi δεν ενημερώθηκαν"
 
 msgid "Failed to update wifi settings"
-msgstr ""
+msgstr "Δεν ήταν δυνατή η ενημέρωση των ρυθμίσεων WiFi"
 
 msgid "Rescan"
-msgstr ""
+msgstr "Σάρωση ξανά"
 
 msgid "Update"
-msgstr ""
+msgstr "Ενημέρωση"
 
 msgid "Add"
-msgstr ""
+msgstr "Προσθήκη"
 
 msgid "Delete"
-msgstr ""
+msgstr "Διαγραφή"
 
 msgid "Show"
-msgstr ""
+msgstr "Προβολή"
 
 msgid "Hide"
-msgstr ""
+msgstr "Απόκρυψη"
 
 msgid "Not configured"
-msgstr ""
+msgstr "Δεν έχει ρυθμιστεί"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr ""
+msgstr "<strong>Σημείωση:</strong> Τα σημεία πρόσβασης WEP εμφανίζονται ως 'Ανοιχτά'. Το RaspAP δεν υποστηρίζει αυτήν τη στιγμή τη σύνδεση με WEP"
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr ""
+msgstr "Πληροφορίες διεπαφής"
 
 msgid "Interface Name"
-msgstr ""
+msgstr "Όνομα διεπαφής"
 
 msgid "IPv4 Address"
-msgstr ""
+msgstr "Διεύθυνση IPv4"
 
 msgid "IPv6 Address"
-msgstr ""
+msgstr "Διεύθυνση IPv6"
 
 msgid "Subnet Mask"
-msgstr ""
+msgstr "Μάσκα υποδικτύου"
 
 msgid "Mac Address"
-msgstr ""
+msgstr "Διεύθυνση Mac"
 
 msgid "Interface Statistics"
-msgstr ""
+msgstr "Στατιστικά διεπαφής"
 
 msgid "Received Packets"
-msgstr ""
+msgstr "Ληφθέντα πακέτα"
 
 msgid "Received Bytes"
-msgstr ""
+msgstr "Ληφθέντα Byte"
 
 msgid "Transferred Packets"
-msgstr ""
+msgstr "Μεταφερθέντα πακέτα"
 
 msgid "Transferred Bytes"
-msgstr ""
+msgstr "Μεταφερθέντα Byte"
 
 msgid "Wireless Information"
-msgstr ""
+msgstr "Πληροφορίες ασύρματου"
 
 msgid "Connected To"
-msgstr ""
+msgstr "Συνδεδεμένο με"
 
 msgid "AP Mac Address"
-msgstr ""
+msgstr "Διεύθυνση Mac σημείου πρόσβασης"
 
 msgid "Bitrate"
 msgstr ""
 
 msgid "Signal Level"
-msgstr ""
+msgstr "Επίπεδο σήματος"
 
 msgid "Transmit Power"
-msgstr ""
+msgstr "Ισχύς μετάδοσης"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Συχνότητα"
 
 msgid "Link Quality"
-msgstr ""
+msgstr "Ποιότητα συνδέσμου"
 
 msgid "Information provided by ip and iw and from system"
-msgstr ""
+msgstr "Πληροφορίες που παρέχονται από ip και iw και από το σύστημα"
 
 msgid "No MAC Address Found"
-msgstr ""
+msgstr "Δε βρέθηκε διεύθυνση MAC"
 
 msgid "No IP Address Found"
-msgstr ""
+msgstr "Δε βρέθηκε διεύθυνση IP"
 
 msgid "No Subnet Mask Found"
-msgstr ""
+msgstr "Δε βρέθηκε μάσκα υποδικτύου"
 
 msgid "No Data"
-msgstr ""
+msgstr "Χωρίς δεδομένα"
 
 msgid "Not connected"
-msgstr ""
+msgstr "Μη συνδεδεμένο"
 
 msgid "Interface is up"
-msgstr ""
+msgstr "Η διεπαφή λειτουργεί"
 
 msgid "Interface is down"
-msgstr ""
+msgstr "Η διεπαφή δε λειτουργεί"
 
 msgid "Interface already down"
-msgstr ""
+msgstr "Η διεπαφή είναι ήδη εκτός λειτουργίας"
 
 msgid "Start wlan0"
-msgstr ""
+msgstr "Εκκίνηση wlan0"
 
 msgid "Stop wlan0"
-msgstr ""
+msgstr "Παύση wlan0"
 
 msgid "Connected Devices"
-msgstr ""
+msgstr "Συνδεδεμένες συσκευές"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr ""
+msgstr "Ρυθμίσεις διακομιστή DHCP"
 
 msgid "Client list"
-msgstr ""
+msgstr "Λίστα client"
 
 msgid "Interface"
-msgstr ""
+msgstr "Διεπαφή"
 
 msgid "DNS Server"
-msgstr ""
+msgstr "Διακομιστής DNS"
 
 msgid "Starting IP Address"
-msgstr ""
+msgstr "Αρχική διεύθυνση IP"
 
 msgid "Ending IP Address"
-msgstr ""
+msgstr "Τελική διεύθυνση IP"
 
 msgid "Static Leases"
-msgstr ""
+msgstr "Στατικές μισθώσεις"
 
 msgid "Add static DHCP lease"
-msgstr ""
+msgstr "Προσθήκη στατικής μίσθωσης DHCP"
 
 msgid "Lease Time"
-msgstr ""
+msgstr "Χρόνος μίσθωσης"
 
 msgid "Interval"
-msgstr ""
+msgstr "Διάρκεια"
 
 msgid "Active DHCP leases"
-msgstr ""
+msgstr "Ενεργές μισθώσεις DHCP"
 
 msgid "Expire time"
-msgstr ""
+msgstr "Χρόνος λήξης"
 
 msgid "MAC Address"
-msgstr ""
+msgstr "Διεύθυνση MAC"
 
 msgid "Host name"
-msgstr ""
+msgstr "Όνομα κεντρικού υπολογιστή"
 
 msgid "Client ID"
 msgstr ""
 
 msgid "Information provided by Dnsmasq"
-msgstr ""
+msgstr "Οι πληροφορίες παρέχονται από το Dnsmasq"
 
 msgid "Stop dnsmasq"
-msgstr ""
+msgstr "Παύση dnsmasq"
 
 msgid "Start dnsmasq"
-msgstr ""
+msgstr "Εκκίνηση dnsmasq"
 
 msgid "Dnsmasq configuration updated successfully"
-msgstr ""
+msgstr "Η ρύθμιση του dnsmasq ενημερώθηκε με επιτυχία"
 
 msgid "dnsmasq already running"
-msgstr ""
+msgstr "Το dnsmasq εκτελείται ήδη"
 
 msgid "Successfully started dnsmasq"
-msgstr ""
+msgstr "Επιτυχής εκκίνηση του dnsmasq"
 
 msgid "Failed to start dnsmasq"
-msgstr ""
+msgstr "Αποτυχία εκκίνησης του dnsmasq"
 
 msgid "Successfully stopped dnsmasq"
-msgstr ""
+msgstr "Επιτυχής παύση του dnsmasq"
 
 msgid "Failed to stop dnsmasq"
-msgstr ""
+msgstr "Αποτυχία παύσης του dnsmasq"
 
 msgid "dnsmasq already stopped"
-msgstr ""
+msgstr "Το dnsmasq έχει ήδη σταματήσει"
 
 msgid "Dnsmasq is running"
-msgstr ""
+msgstr "Το dnsmasq εκτελείται"
 
 msgid "Dnsmasq is not running"
-msgstr ""
+msgstr "Το dnsmasq δεν εκτελείται"
 
 msgid "Upstream DNS servers"
 msgstr ""
@@ -346,319 +346,319 @@ msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
-msgstr ""
+msgstr "Βασικό"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Προχωρημένο"
 
 msgid "Basic settings"
-msgstr ""
+msgstr "Βασικές ρυθμίσεις"
 
 msgid "Wireless Mode"
-msgstr ""
+msgstr "Ασύρματη λειτουργία"
 
 msgid "Security settings"
-msgstr ""
+msgstr "Ρυθμίσεις ασφαλείας"
 
 msgid "Security type"
-msgstr ""
+msgstr "Τύπος ασφάλειας"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Τύπος κρυπτογράφησης"
 
 msgid "PSK"
 msgstr ""
 
 msgid "Advanced settings"
-msgstr ""
+msgstr "Προχωρημένες ρυθμίσεις"
 
 msgid "Country Code"
-msgstr ""
+msgstr "Κωδικός χώρας"
 
 msgid "Information provided by hostapd"
-msgstr ""
+msgstr "Οι πληροφορίες παρέχονται από το hostapd"
 
 msgid "Attempting to start hotspot"
-msgstr ""
+msgstr "Προσπάθεια εκκίνησης του hotspot"
 
 msgid "Attempting to stop hotspot"
-msgstr ""
+msgstr "Προσπάθεια παύσης του hotspot"
 
 msgid "HostAPD is not running"
-msgstr ""
+msgstr "Το hostapd δεν εκτελείται"
 
 msgid "HostAPD is running"
-msgstr ""
+msgstr "Το hostapd εκτελείται"
 
 msgid "SSID must be between 1 and 32 characters"
-msgstr ""
+msgstr "Το SSID πρέπει να είναι μεταξύ 1 και 32 χαρακτήρων"
 
 msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr ""
+msgstr "Η φράση πρόσβασης WPA πρέπει να είναι μεταξύ 8 και 63 χαρακτήρων"
 
 msgid "Unknown interface"
-msgstr ""
+msgstr "Άγνωστη διεπαφή"
 
 msgid "Country code must be blank or two characters"
-msgstr ""
+msgstr "Ο κωδικός χώρας πρέπει να είναι κενός ή δύο χαρακτήρες"
 
 msgid "Wifi Hotspot settings saved"
-msgstr ""
+msgstr "Οι ρυθμίσεις WiFi hotspot αποθηκεύτηκαν"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr ""
+msgstr "Αδύνατη η αποθήκευση ρυθμίσεων wifi hotspot"
 
 msgid "Start hotspot"
-msgstr ""
+msgstr "Εκκίνηση hotspot"
 
 msgid "Stop hotspot"
-msgstr ""
+msgstr "Παύση hotspot"
 
 msgid "Restart hotspot"
-msgstr ""
+msgstr "Επανεκκινήστε hotspot"
 
 msgid "Enable logging"
-msgstr ""
+msgstr "Ενεργοποίηση καταγραφής"
 
 msgid "Logfile output"
-msgstr ""
+msgstr "Απόδοση αρχείου καταγραφής"
 
 msgid "WiFi client AP mode"
-msgstr ""
+msgstr "Λειτουργία WiFi client σημείου πρόσβασης"
 
 msgid "Bridged AP mode"
 msgstr ""
 
 msgid "Hide SSID in broadcast"
-msgstr ""
+msgstr "Απόκρυψη εκπομπής SSID"
 
 msgid "Maximum number of clients"
-msgstr ""
+msgstr "Μέγιστος αριθμός client"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr ""
+msgstr "Ρυθμίζει την επιλογή max_num_sta του hostapd. Το προεπιλεγμένο και το μέγιστο είναι το 2007. Εάν είναι κενό ή 0, ισχύει η προεπιλογή."
 
 #: includes/networking.php
 msgid "Summary"
-msgstr ""
+msgstr "Επισκόπηση"
 
 msgid "Current settings"
-msgstr ""
+msgstr "Τρέχουσες ρυθμίσεις"
 
 msgid "Default Gateway"
-msgstr ""
+msgstr "Προεπιλεγμένη πύλη"
 
 msgid "Alternate DNS Server"
-msgstr ""
+msgstr "Εναλλακτικός διακομιστής DNS"
 
 msgid "Adapter IP Address Settings"
-msgstr ""
+msgstr "Ρυθμίσεις διεύθυνσης IP προσαρμογέα"
 
 msgid "Enable Fallback to Static Option"
-msgstr ""
+msgstr "Ενεργοποίση επαναφοράς σε στατική επιλογή"
 
 msgid "Static IP"
-msgstr ""
+msgstr "Στατική IP"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Ενεργοποιήθηκε"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Απενεργοποιήθηκε"
 
 msgid "Static IP Options"
-msgstr ""
+msgstr "Επιλογές στατικής IP"
 
 msgid "Apply settings"
-msgstr ""
+msgstr "Εφαρμογή ρυθμίσεων"
 
 msgid "Information provided by /sys/class/net"
-msgstr ""
+msgstr "Οι πληροφορίες παρέχονται από το /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr ""
+msgstr "Πληροφορίες συστήματος"
 
 msgid "Language"
-msgstr ""
+msgstr "Γλώσσα"
 
 msgid "Language settings"
-msgstr ""
+msgstr "Ρυθμίσεις γλώσσας"
 
 msgid "Select a language"
-msgstr ""
+msgstr "Επιλογή γλώσσας"
 
 msgid "Language setting saved"
-msgstr ""
+msgstr "Οι ρυθμίσεις γλώσσας αποθηκεύτηκαν"
 
 msgid "Console"
-msgstr ""
+msgstr "Κονσόλα"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Όνομα κεντρικού υπολογιστή"
 
 msgid "Pi Revision"
 msgstr ""
 
 msgid "Uptime"
-msgstr ""
+msgstr "Χρόνος λειτουργίας"
 
 msgid "Memory Used"
-msgstr ""
+msgstr "Χρησιμοποιημένη μνήμη"
 
 msgid "CPU Load"
-msgstr ""
+msgstr "Φόρτος CPU"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Επανεκκίνηση"
 
 msgid "Shutdown"
-msgstr ""
+msgstr "Απενεργοποίηση"
 
 msgid "System Rebooting Now!"
-msgstr ""
+msgstr "Το σύστημα επανεκκινείται τώρα!"
 
 msgid "System Shutting Down Now!"
-msgstr ""
+msgstr "Το σύστημα απενεργοποιείται τώρα!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr ""
+msgstr "Ρυθμίσεις θέματος"
 
 msgid "Select a theme"
-msgstr ""
+msgstr "Επιλογή θέματος"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr ""
+msgstr "Χρήση δεδομένων"
 
 msgid "Data usage monitoring"
-msgstr ""
+msgstr "Παρακολούθηση χρήσης δεδομένων"
 
 msgid "Hourly traffic amount"
-msgstr ""
+msgstr "Ωριαίος όγκος δεδομένων"
 
 msgid "Daily traffic amount"
-msgstr ""
+msgstr "Ημερήσιος όγκος δεδομένων"
 
 msgid "Monthly traffic amount"
-msgstr ""
+msgstr "Μηνιαίος όγκος δεδομένων"
 
 msgid "Hourly"
-msgstr ""
+msgstr "Ωριαίο"
 
 msgid "Daily"
-msgstr ""
+msgstr "Ημερήσιο"
 
 msgid "Monthly"
-msgstr ""
+msgstr "Μηνιαίο"
 
 msgid "interface"
-msgstr ""
+msgstr "Διεπαφή"
 
 msgid "date"
-msgstr ""
+msgstr "ημερομηνία"
 
 msgid "Send MB"
-msgstr ""
+msgstr "Αποστολή MB"
 
 msgid "Receive MB"
-msgstr ""
+msgstr "Λήψη MB"
 
 msgid "Information provided by vnstat"
-msgstr ""
+msgstr "Οι πληροφορίες παρέχονται από το vnstat"
 
 msgid "Loading {0} bandwidth chart"
-msgstr ""
+msgstr "Φόρτωση γραφήματος εύρους ζώνης {0}"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr ""
+msgstr "Προβολή {0} έως {1} από {2} καταχωρήσεις"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr ""
+msgstr "Το OpenVPN δεν εκτελείται"
 
 msgid "OpenVPN is running"
-msgstr ""
+msgstr "Το OpenVPN εκτελείται"
 
 msgid "Server settings"
-msgstr ""
+msgstr "Ρυθμίσεις διακομιστή"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr ""
+msgstr "Επιλογή αρχείου ρυθμίσεων OpenVPN (.ovpn)"
 
 msgid "Client Log"
-msgstr ""
+msgstr "Μητρώο client"
 
 msgid "Port"
-msgstr ""
+msgstr "Πόρτα"
 
 msgid "Protocol"
-msgstr ""
+msgstr "Πρωτόκολο"
 
 msgid "Root CA certificate"
-msgstr ""
+msgstr "Πιστοποιητικό CA Root"
 
 msgid "Server certificate"
-msgstr ""
+msgstr "Πιστοποιητικό διακομιστή"
 
 msgid "Diffie Hellman parameters"
-msgstr ""
+msgstr "Παράμετροι Diffie Hellman"
 
 msgid "KeepAlive"
 msgstr ""
 
 msgid "Server log"
-msgstr ""
+msgstr "Μητρώο διακομιστή"
 
 msgid "Start OpenVPN"
-msgstr ""
+msgstr "Εκκίνηση OpenVPN"
 
 msgid "Stop OpenVPN"
-msgstr ""
+msgstr "Παύση OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr ""
+msgstr "Οι πληροφορίες παρέχονται από το openvpn"
 
 msgid "Attempting to start openvpn"
-msgstr ""
+msgstr "Προσπάθεια εκκίνησης του openvpn"
 
 msgid "Attempting to stop openvpn"
-msgstr ""
+msgstr "Προσπάθεια παύσης του openvpn"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr ""
+msgstr "Το TOR δεν εκτελείται"
 
 msgid "TOR is running"
-msgstr ""
+msgstr "TOR εκτελείται"
 
 msgid "Relay"
-msgstr ""
+msgstr "Αναμετάδοση"
 
 msgid "Relay settings"
-msgstr ""
+msgstr "Ρυθμίσεις αναμετάδοσης"
 
 msgid "Nickname"
-msgstr ""
+msgstr "Ψευδώνυμο"
 
 msgid "Address"
-msgstr ""
+msgstr "Διεύθυνση"
 
 msgid "Start TOR"
-msgstr ""
+msgstr "Εκκίνηση TOR"
 
 msgid "Stop TOR"
-msgstr ""
+msgstr "Παύση TOR"
 
 msgid "Information provided by tor"
-msgstr ""
+msgstr "Οι πληροφορίες παρέχονται από το TOR"
 
 msgid "Attempting to start TOR"
-msgstr ""
+msgstr "Προσπάθεια εκκίνησης του TOR"
 
 msgid "Attempting to stop TOR"
-msgstr ""
+msgstr "Προσπάθεια παύσης του TOR"
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
@@ -666,25 +666,25 @@ msgstr ""
 
 #: common form controls
 msgid "Save settings"
-msgstr ""
+msgstr "Αποθήκευση ρυθμίσεων"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Ανανέωση"
 
 msgid "running"
-msgstr ""
+msgstr "εκτελείται"
 
 msgid "stopped"
-msgstr ""
+msgstr "διακόπηκε"
 
 msgid "Remove"
-msgstr ""
+msgstr "Αφαίρεση"
 
 msgid "up"
-msgstr ""
+msgstr "πάνω"
 
 msgid "down"
-msgstr ""
+msgstr "κάτω"
 
 msgid "adblock"
 msgstr ""
