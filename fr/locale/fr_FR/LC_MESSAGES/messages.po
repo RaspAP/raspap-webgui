@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 08:54\n"
+"PO-Revision-Date: 2020-04-05 19:06\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -115,7 +115,7 @@ msgid "Wifi settings failed to be updated"
 msgstr "Les paramètres Wifi n'ont pas été mis à jour"
 
 msgid "Failed to update wifi settings"
-msgstr ""
+msgstr "échec de la mise a jour des paramètres wifi"
 
 msgid "Rescan"
 msgstr "Actualiser"
@@ -333,7 +333,7 @@ msgid "Add upstream DNS server"
 msgstr "Ajouter un serveur DNS amont"
 
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 msgid "Choose a hosted server"
 msgstr "Choisissez un serveur hébergé"
@@ -606,7 +606,7 @@ msgid "Diffie Hellman parameters"
 msgstr "Paramètres Diffie Hellman"
 
 msgid "KeepAlive"
-msgstr ""
+msgstr "Maintenir en vie"
 
 msgid "Server log"
 msgstr "Journal du serveur"
@@ -687,19 +687,19 @@ msgid "down"
 msgstr "vers le bas"
 
 msgid "adblock"
-msgstr ""
+msgstr "AdBlock"
 
 msgid "Ad Blocking"
-msgstr ""
+msgstr "Blocage de la pub"
 
 msgid "Start Ad Blocking"
-msgstr ""
+msgstr "Lancer le blocage des publicités"
 
 msgid "Restart Ad Blocking"
-msgstr ""
+msgstr "Redémarrer le blocage des publicités"
 
 msgid "Blocklist settings"
-msgstr ""
+msgstr "Paramètres anti-spam"
 
 msgid "Enable blocklists"
 msgstr "Activer les listes noires"
