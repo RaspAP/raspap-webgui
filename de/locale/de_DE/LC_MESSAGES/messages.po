@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 08:54\n"
+"PO-Revision-Date: 2020-04-05 10:12\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -32,16 +32,16 @@ msgid "WiFi client"
 msgstr "WLAN Client"
 
 msgid "Hotspot"
-msgstr ""
+msgstr "Hotspot"
 
 msgid "Networking"
 msgstr "Netzwerk"
 
 msgid "DHCP Server"
-msgstr ""
+msgstr "DHCP-Server"
 
 msgid "OpenVPN"
-msgstr ""
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
 msgstr "TOR Proxy"
@@ -53,7 +53,7 @@ msgid "Change Theme"
 msgstr "Oberflächendesign ändern"
 
 msgid "System"
-msgstr ""
+msgstr "System"
 
 msgid "About RaspAP"
 msgstr "Über RaspAP"
@@ -94,7 +94,7 @@ msgid "Client settings"
 msgstr "Client Einstellungen"
 
 msgid "SSID"
-msgstr ""
+msgstr "SSID"
 
 msgid "Channel"
 msgstr "Kanal"
@@ -103,7 +103,7 @@ msgid "Security"
 msgstr "Sicherheit"
 
 msgid "Passphrase"
-msgstr ""
+msgstr "Passwort"
 
 msgid "Wifi settings updated successfully"
 msgstr "WLAN Einstellungen erfolgreich aktualisert"
@@ -185,7 +185,7 @@ msgid "AP Mac Address"
 msgstr "AP MAC Addresse"
 
 msgid "Bitrate"
-msgstr ""
+msgstr "Bitrate"
 
 msgid "Signal Level"
 msgstr "Signalstärke"
@@ -227,10 +227,10 @@ msgid "Interface already down"
 msgstr "Schnittstelle bereits aus"
 
 msgid "Start wlan0"
-msgstr ""
+msgstr "wlan0 starten"
 
 msgid "Stop wlan0"
-msgstr ""
+msgstr "wlan0 beenden"
 
 msgid "Connected Devices"
 msgstr "Verbundene Geräte"
@@ -246,7 +246,7 @@ msgid "Interface"
 msgstr "Schnittstelle"
 
 msgid "DNS Server"
-msgstr ""
+msgstr "DNS-Server"
 
 msgid "Starting IP Address"
 msgstr "Erste IP Addresse"
@@ -279,16 +279,16 @@ msgid "Host name"
 msgstr "Rechnername"
 
 msgid "Client ID"
-msgstr ""
+msgstr "Client-ID"
 
 msgid "Information provided by Dnsmasq"
 msgstr "Informationen von 'Dnsmasq'"
 
 msgid "Stop dnsmasq"
-msgstr ""
+msgstr "dnsmasq beenden"
 
 msgid "Start dnsmasq"
-msgstr ""
+msgstr "dnsmasq starten"
 
 msgid "Dnsmasq configuration updated successfully"
 msgstr "Dnsmasq Konfiguration erfolgreich übernommen"
@@ -318,31 +318,31 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq läuft nicht"
 
 msgid "Upstream DNS servers"
-msgstr ""
+msgstr "Upstream DNS-Server"
 
 msgid "Only ever query DNS servers configured below"
-msgstr ""
+msgstr "Nur folgende DNS-Server abfragen"
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr ""
+msgstr "Aktivieren Sie diese Option, wenn Sie möchten, dass RaspAP <b>DNS-Abfragen an die unten konfigurierten Server sendet.</b>Standardmäßig verwendet RaspAP auch die Nameserver des ursprünglichen DHCP-Servers."
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "Diese Option fügt <code>no-resolv</code> zur dnsmasq-Konfiguration hinzu."
 
 msgid "Add upstream DNS server"
-msgstr ""
+msgstr "Upstream DNS-Server hinzufügen"
 
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 msgid "Choose a hosted server"
-msgstr ""
+msgstr "Gehosteten Server auswählen"
 
 msgid "Log DHCP requests"
-msgstr ""
+msgstr "DHCP-Anfragen protokollieren"
 
 msgid "Log DNS queries"
-msgstr ""
+msgstr "DNS-Anfragen protokollieren"
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -367,7 +367,7 @@ msgid "Encryption Type"
 msgstr "Verschlüsselungstyp"
 
 msgid "PSK"
-msgstr ""
+msgstr "PSK"
 
 msgid "Advanced settings"
 msgstr "Erweiterte Einstellungen"
@@ -495,7 +495,7 @@ msgid "Console"
 msgstr "Konsole"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Hostname"
 
 msgid "Pi Revision"
 msgstr "Pi-Prüfung"
