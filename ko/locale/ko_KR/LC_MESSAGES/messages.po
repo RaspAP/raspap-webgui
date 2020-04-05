@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 07:35\n"
+"PO-Revision-Date: 2020-04-05 08:54\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -17,305 +17,305 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr ""
+msgstr "RaspAP WiFi 환경설정 포탈"
 
 msgid "Toggle navigation"
-msgstr ""
+msgstr "토글 내비게이션"
 
 msgid "RaspAP Wifi Portal"
-msgstr ""
+msgstr "RaspAP WiFi 포탈"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "대시보드 "
 
 msgid "WiFi client"
-msgstr ""
+msgstr "WiFi 클라이언트"
 
 msgid "Hotspot"
-msgstr ""
+msgstr "핫스팟"
 
 msgid "Networking"
-msgstr ""
+msgstr "네트워킹"
 
 msgid "DHCP Server"
-msgstr ""
+msgstr "DHCP 서버"
 
 msgid "OpenVPN"
-msgstr ""
+msgstr "OpenVPN 환경설정"
 
 msgid "TOR proxy"
-msgstr ""
+msgstr "TOR 프록시 구성"
 
 msgid "Authentication"
-msgstr ""
+msgstr "입증"
 
 msgid "Change Theme"
-msgstr ""
+msgstr "테마 변경 "
 
 msgid "System"
-msgstr ""
+msgstr "시스템"
 
 msgid "About RaspAP"
-msgstr ""
+msgstr "RaspAP 소개 "
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr ""
+msgstr "인증 설정"
 
 msgid "New passwords do not match"
-msgstr ""
+msgstr "새 패스워드가 일치하지 않습니다"
 
 msgid "Username must not be empty"
-msgstr ""
+msgstr "사용자명은 절대 비워 두면 안됩니다"
 
 msgid "Admin password updated"
-msgstr ""
+msgstr "관리자 비밀번호가 업데이트되었습니다"
 
 msgid "Failed to update admin password"
-msgstr ""
+msgstr "관리자 비밀번호 업데이트에 실패했습니다"
 
 msgid "Old password does not match"
-msgstr ""
+msgstr "기존 비밀번호가 일치하지 않습니다 "
 
 msgid "Username"
-msgstr ""
+msgstr "사용자명"
 
 msgid "Old password"
-msgstr ""
+msgstr "기존 비밀번호 "
 
 msgid "New password"
-msgstr ""
+msgstr "새 패스워드"
 
 msgid "Repeat new password"
-msgstr ""
+msgstr "새 패스워드 다시 입력"
 
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr ""
+msgstr "클라이언트 설정 "
 
 msgid "SSID"
 msgstr ""
 
 msgid "Channel"
-msgstr ""
+msgstr "채널 "
 
 msgid "Security"
-msgstr ""
+msgstr "보안 "
 
 msgid "Passphrase"
-msgstr ""
+msgstr "암호 "
 
 msgid "Wifi settings updated successfully"
-msgstr ""
+msgstr "Wifi 설정이 성공적으로 업데이트되었습니다"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr ""
+msgstr "Wifi 설정이 업데이트되었지만 재시작할 수 없습니다('wpa_cli reconfigure'를 실행할 수 없습니다)"
 
 msgid "Wifi settings failed to be updated"
-msgstr ""
+msgstr "Wifi 설정 업데이트에 실패했습니다"
 
 msgid "Failed to update wifi settings"
-msgstr ""
+msgstr "Wifi 설정 업데이트를 실패했습니다"
 
 msgid "Rescan"
-msgstr ""
+msgstr "다시 스캔"
 
 msgid "Update"
-msgstr ""
+msgstr "업데이트"
 
 msgid "Add"
-msgstr ""
+msgstr "추가"
 
 msgid "Delete"
-msgstr ""
+msgstr "삭제"
 
 msgid "Show"
-msgstr ""
+msgstr "보기 "
 
 msgid "Hide"
-msgstr ""
+msgstr "숨기기 "
 
 msgid "Not configured"
-msgstr ""
+msgstr "환결설정 안됨"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr ""
+msgstr "<strong>주의:</strong> WEP 접근점은 'Open'으로 표시됩니다. RaspAP은 현재 WEP 연결을 지원하지 않습니다"
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr ""
+msgstr "인터페이스 정보 "
 
 msgid "Interface Name"
-msgstr ""
+msgstr "인터페이스 이름"
 
 msgid "IPv4 Address"
-msgstr ""
+msgstr "IPv4 주소"
 
 msgid "IPv6 Address"
-msgstr ""
+msgstr "IPv6 주소"
 
 msgid "Subnet Mask"
-msgstr ""
+msgstr "서브넷 마스크 "
 
 msgid "Mac Address"
-msgstr ""
+msgstr "맥 주소"
 
 msgid "Interface Statistics"
-msgstr ""
+msgstr "인터페이스 통계 "
 
 msgid "Received Packets"
-msgstr ""
+msgstr "받은 패킷 "
 
 msgid "Received Bytes"
-msgstr ""
+msgstr "받은 바이트량"
 
 msgid "Transferred Packets"
-msgstr ""
+msgstr "전송된 패킷"
 
 msgid "Transferred Bytes"
-msgstr ""
+msgstr "전송된 바이트량"
 
 msgid "Wireless Information"
-msgstr ""
+msgstr "무선 정보"
 
 msgid "Connected To"
-msgstr ""
+msgstr "연결"
 
 msgid "AP Mac Address"
-msgstr ""
+msgstr "AP Mac 주소"
 
 msgid "Bitrate"
-msgstr ""
+msgstr "비트 전송률"
 
 msgid "Signal Level"
-msgstr ""
+msgstr "신호 레벨"
 
 msgid "Transmit Power"
-msgstr ""
+msgstr "송신 전력"
 
 msgid "Frequency"
-msgstr ""
+msgstr "주파수 "
 
 msgid "Link Quality"
-msgstr ""
+msgstr "링크 품질 "
 
 msgid "Information provided by ip and iw and from system"
-msgstr ""
+msgstr "ip 및 iw, 시스템에서 제공한 정보"
 
 msgid "No MAC Address Found"
-msgstr ""
+msgstr "MAC 주소를 찾을 수 없습니다"
 
 msgid "No IP Address Found"
-msgstr ""
+msgstr "IP 주소를 찾지 못했습니다"
 
 msgid "No Subnet Mask Found"
-msgstr ""
+msgstr "서브넷 마스크를 찾지 못했습니다"
 
 msgid "No Data"
-msgstr ""
+msgstr "데이터 없음"
 
 msgid "Not connected"
-msgstr ""
+msgstr "연결되지 않음 "
 
 msgid "Interface is up"
-msgstr ""
+msgstr "인터페이스가 작동 중입니다"
 
 msgid "Interface is down"
-msgstr ""
+msgstr "인터페이스가 다운되었습니다"
 
 msgid "Interface already down"
-msgstr ""
+msgstr "인터페이스가 이미 작동 중지되었습니다"
 
 msgid "Start wlan0"
-msgstr ""
+msgstr "wlan0 시작"
 
 msgid "Stop wlan0"
-msgstr ""
+msgstr "wlan0 중지"
 
 msgid "Connected Devices"
-msgstr ""
+msgstr "연결된 디바이스 "
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr ""
+msgstr "DHCP 서버 설정 "
 
 msgid "Client list"
-msgstr ""
+msgstr "클라이언트 목록 "
 
 msgid "Interface"
-msgstr ""
+msgstr "인터페이스 "
 
 msgid "DNS Server"
-msgstr ""
+msgstr "DNS 서버"
 
 msgid "Starting IP Address"
-msgstr ""
+msgstr "시작 IP 주소"
 
 msgid "Ending IP Address"
-msgstr ""
+msgstr "끝 IP 주소"
 
 msgid "Static Leases"
-msgstr ""
+msgstr "고정 임대"
 
 msgid "Add static DHCP lease"
-msgstr ""
+msgstr "정적 DHCP 대여(lease) 추가"
 
 msgid "Lease Time"
-msgstr ""
+msgstr "대여 시간(Lease Time)"
 
 msgid "Interval"
-msgstr ""
+msgstr "간격 "
 
 msgid "Active DHCP leases"
-msgstr ""
+msgstr "활성 DHCP 임대"
 
 msgid "Expire time"
-msgstr ""
+msgstr "만료 시간 "
 
 msgid "MAC Address"
-msgstr ""
+msgstr "MAC 주소"
 
 msgid "Host name"
-msgstr ""
+msgstr "호스트명"
 
 msgid "Client ID"
-msgstr ""
+msgstr "클라이언트 ID"
 
 msgid "Information provided by Dnsmasq"
-msgstr ""
+msgstr "Dnsmasq가 제공한 정보"
 
 msgid "Stop dnsmasq"
-msgstr ""
+msgstr "dnsmasq 중지"
 
 msgid "Start dnsmasq"
-msgstr ""
+msgstr "dnsmasq 시작 "
 
 msgid "Dnsmasq configuration updated successfully"
-msgstr ""
+msgstr "Dnsmasq 구성이 성공적으로 업데이트되었습니다"
 
 msgid "dnsmasq already running"
-msgstr ""
+msgstr "dnsmasq가 이미 실행 중입니다 "
 
 msgid "Successfully started dnsmasq"
-msgstr ""
+msgstr "dnsmasq를 성공적으로 시작했습니다"
 
 msgid "Failed to start dnsmasq"
-msgstr ""
+msgstr "openvpn 시작 실패 "
 
 msgid "Successfully stopped dnsmasq"
-msgstr ""
+msgstr "dnsmasq를 성공적으로 중지하였습니다"
 
 msgid "Failed to stop dnsmasq"
-msgstr ""
+msgstr "dnsmasq 중지에 실패했습니다 "
 
 msgid "dnsmasq already stopped"
-msgstr ""
+msgstr "dnsmasq가 이미 중지되었습니다 "
 
 msgid "Dnsmasq is running"
-msgstr ""
+msgstr "Dnsmasq가 실행 중입니다"
 
 msgid "Dnsmasq is not running"
-msgstr ""
+msgstr "Dnsmasq가 실행 중이 아닙니다 "
 
 msgid "Upstream DNS servers"
 msgstr ""
@@ -346,319 +346,319 @@ msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
-msgstr ""
+msgstr "베이직"
 
 msgid "Advanced"
-msgstr ""
+msgstr "고급"
 
 msgid "Basic settings"
-msgstr ""
+msgstr "기본 설정"
 
 msgid "Wireless Mode"
-msgstr ""
+msgstr "무선 모드 "
 
 msgid "Security settings"
-msgstr ""
+msgstr "보안 설정 "
 
 msgid "Security type"
-msgstr ""
+msgstr "보안 유형 "
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "암호화 유형"
 
 msgid "PSK"
 msgstr ""
 
 msgid "Advanced settings"
-msgstr ""
+msgstr "고급 설정 "
 
 msgid "Country Code"
-msgstr ""
+msgstr "국가 코드 "
 
 msgid "Information provided by hostapd"
-msgstr ""
+msgstr "hostapd가 제공한 정보"
 
 msgid "Attempting to start hotspot"
-msgstr ""
+msgstr "핫스팍 시작 시도 중"
 
 msgid "Attempting to stop hotspot"
-msgstr ""
+msgstr "hotspot 중지 시도 중입니다 "
 
 msgid "HostAPD is not running"
-msgstr ""
+msgstr "HostAPD가 구동 중이 아닙니다"
 
 msgid "HostAPD is running"
-msgstr ""
+msgstr "HostAPD가 실행 중입니다"
 
 msgid "SSID must be between 1 and 32 characters"
-msgstr ""
+msgstr "SSID는 반드시 1자에서 32자 사이여야 합니다"
 
 msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr ""
+msgstr "WPA 암호는 반드시 8자에서 63자 사이여야 합니다"
 
 msgid "Unknown interface"
-msgstr ""
+msgstr "알 수 없는 인터페이스 "
 
 msgid "Country code must be blank or two characters"
-msgstr ""
+msgstr "국가 코드는 비워 두거나 2 글자이어야 합니다 "
 
 msgid "Wifi Hotspot settings saved"
-msgstr ""
+msgstr "Wifi 핫스팟 설정이 저장되었습니다"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr ""
+msgstr "Wifi 핫스팟 설정을 저장할 수 없습니다 "
 
 msgid "Start hotspot"
-msgstr ""
+msgstr "핫스팟 시작 "
 
 msgid "Stop hotspot"
-msgstr ""
+msgstr "핫스팟 중지"
 
 msgid "Restart hotspot"
-msgstr ""
+msgstr "핫스팟 재시작"
 
 msgid "Enable logging"
-msgstr ""
+msgstr "로깅 사용하기"
 
 msgid "Logfile output"
-msgstr ""
+msgstr "로그파일 출력"
 
 msgid "WiFi client AP mode"
-msgstr ""
+msgstr "WiFi 클라이언트 AP 모드 "
 
 msgid "Bridged AP mode"
 msgstr ""
 
 msgid "Hide SSID in broadcast"
-msgstr ""
+msgstr "방송 중에 SSID 숨기기 "
 
 msgid "Maximum number of clients"
-msgstr ""
+msgstr "클라이언트 최대 개수"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr ""
+msgstr "hostapd의 max_num_sta option을 구성합니다. 기본값 및 최대값은 2007입니다. 비었거나 0인 경우 기본값이 적용됩니다."
 
 #: includes/networking.php
 msgid "Summary"
-msgstr ""
+msgstr "요약 "
 
 msgid "Current settings"
-msgstr ""
+msgstr "현재 설정"
 
 msgid "Default Gateway"
-msgstr ""
+msgstr "기본 게이트웨이"
 
 msgid "Alternate DNS Server"
-msgstr ""
+msgstr "대체 DNS 서버 "
 
 msgid "Adapter IP Address Settings"
-msgstr ""
+msgstr "어댑터 IP 주소 설정"
 
 msgid "Enable Fallback to Static Option"
-msgstr ""
+msgstr "정적 옵션으로 대체 시스템 사용"
 
 msgid "Static IP"
-msgstr ""
+msgstr "고정 IP"
 
 msgid "Enabled"
-msgstr ""
+msgstr "활성화"
 
 msgid "Disabled"
-msgstr ""
+msgstr "비활성화 "
 
 msgid "Static IP Options"
-msgstr ""
+msgstr "고정 IP 옵션"
 
 msgid "Apply settings"
-msgstr ""
+msgstr "설정 적용"
 
 msgid "Information provided by /sys/class/net"
-msgstr ""
+msgstr "/sys/class/net이 제공한 정보 "
 
 #: includes/system.php
 msgid "System Information"
-msgstr ""
+msgstr "시스템 정보"
 
 msgid "Language"
-msgstr ""
+msgstr "언어 "
 
 msgid "Language settings"
-msgstr ""
+msgstr "언어 설정 "
 
 msgid "Select a language"
-msgstr ""
+msgstr "언어 선택 "
 
 msgid "Language setting saved"
-msgstr ""
+msgstr "언어 설정이 저장되었습니다"
 
 msgid "Console"
-msgstr ""
+msgstr "콘솔 "
 
 msgid "Hostname"
-msgstr ""
+msgstr "호스트 이름"
 
 msgid "Pi Revision"
-msgstr ""
+msgstr "Pi 리비전"
 
 msgid "Uptime"
-msgstr ""
+msgstr "가동시간"
 
 msgid "Memory Used"
-msgstr ""
+msgstr "사용된 메모리"
 
 msgid "CPU Load"
-msgstr ""
+msgstr "CPU 로드"
 
 msgid "Reboot"
-msgstr ""
+msgstr "리부팅"
 
 msgid "Shutdown"
-msgstr ""
+msgstr "기기 끄기"
 
 msgid "System Rebooting Now!"
-msgstr ""
+msgstr "지금 시스템을 재부팅합니다!"
 
 msgid "System Shutting Down Now!"
-msgstr ""
+msgstr "시스템이 지금 정지됩니다!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr ""
+msgstr "테마 설정"
 
 msgid "Select a theme"
-msgstr ""
+msgstr "테마 선택 "
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr ""
+msgstr "데이터 사용량 "
 
 msgid "Data usage monitoring"
-msgstr ""
+msgstr "데이터 사용량 모니터링"
 
 msgid "Hourly traffic amount"
-msgstr ""
+msgstr "시간별 트래픽량"
 
 msgid "Daily traffic amount"
-msgstr ""
+msgstr "일일 트래픽양 "
 
 msgid "Monthly traffic amount"
-msgstr ""
+msgstr "월간 트래픽량"
 
 msgid "Hourly"
-msgstr ""
+msgstr "시간별"
 
 msgid "Daily"
-msgstr ""
+msgstr "일일"
 
 msgid "Monthly"
-msgstr ""
+msgstr "월간"
 
 msgid "interface"
-msgstr ""
+msgstr "인터페이스"
 
 msgid "date"
-msgstr ""
+msgstr "날짜"
 
 msgid "Send MB"
-msgstr ""
+msgstr "MB 보내기 "
 
 msgid "Receive MB"
-msgstr ""
+msgstr "MB 받기 "
 
 msgid "Information provided by vnstat"
-msgstr ""
+msgstr "vnstat 제공 정보"
 
 msgid "Loading {0} bandwidth chart"
-msgstr ""
+msgstr "{0} 대역폭 차트 로딩 "
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr ""
+msgstr "{2}개 항목 중 {0}에서 {1}까지 표시"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr ""
+msgstr "OpenVPN은 실행 중이 아닙니다"
 
 msgid "OpenVPN is running"
-msgstr ""
+msgstr "OpenVPN이 구동 중입니다"
 
 msgid "Server settings"
-msgstr ""
+msgstr "서버 설정"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr ""
+msgstr "OpenVPN 구성 파일 (.ovpn) 선택"
 
 msgid "Client Log"
-msgstr ""
+msgstr "클라이언트 로그 "
 
 msgid "Port"
-msgstr ""
+msgstr "포트 "
 
 msgid "Protocol"
-msgstr ""
+msgstr "프로토콜"
 
 msgid "Root CA certificate"
-msgstr ""
+msgstr "루트 CA 인증서"
 
 msgid "Server certificate"
-msgstr ""
+msgstr "서버 인증서 "
 
 msgid "Diffie Hellman parameters"
-msgstr ""
+msgstr "Diffie Hellman 매개 변수"
 
 msgid "KeepAlive"
-msgstr ""
+msgstr "기본 연결 유지(KeepAlive)"
 
 msgid "Server log"
-msgstr ""
+msgstr "서버 로그"
 
 msgid "Start OpenVPN"
-msgstr ""
+msgstr "OpenVPN 시작"
 
 msgid "Stop OpenVPN"
-msgstr ""
+msgstr "OpenVPN 중지"
 
 msgid "Information provided by openvpn"
-msgstr ""
+msgstr "openvpn이 제공한 정보 "
 
 msgid "Attempting to start openvpn"
-msgstr ""
+msgstr "openvpn 시작 시도 중입니다 "
 
 msgid "Attempting to stop openvpn"
-msgstr ""
+msgstr "openvpn 중지 시도 중입니다 "
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr ""
+msgstr "TOR는 실행 중이 아닙니다 "
 
 msgid "TOR is running"
-msgstr ""
+msgstr "TOR가 실행 중입니다 "
 
 msgid "Relay"
-msgstr ""
+msgstr "릴레이"
 
 msgid "Relay settings"
-msgstr ""
+msgstr "릴레이 설정 "
 
 msgid "Nickname"
-msgstr ""
+msgstr "닉네임"
 
 msgid "Address"
-msgstr ""
+msgstr "주소  "
 
 msgid "Start TOR"
-msgstr ""
+msgstr "TOR 시작 "
 
 msgid "Stop TOR"
-msgstr ""
+msgstr "TOR 중지"
 
 msgid "Information provided by tor"
-msgstr ""
+msgstr "tor 제공 정보"
 
 msgid "Attempting to start TOR"
-msgstr ""
+msgstr "TOR 시작 시도 중입니다 "
 
 msgid "Attempting to stop TOR"
-msgstr ""
+msgstr "TOR 중지 시도 중입니다 "
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
@@ -666,25 +666,25 @@ msgstr ""
 
 #: common form controls
 msgid "Save settings"
-msgstr ""
+msgstr "설정 저장"
 
 msgid "Refresh"
-msgstr ""
+msgstr "새로 고침"
 
 msgid "running"
-msgstr ""
+msgstr "실행 "
 
 msgid "stopped"
-msgstr ""
+msgstr "중지"
 
 msgid "Remove"
-msgstr ""
+msgstr "삭제"
 
 msgid "up"
-msgstr ""
+msgstr "작동"
 
 msgid "down"
-msgstr ""
+msgstr "다운"
 
 msgid "adblock"
 msgstr ""
