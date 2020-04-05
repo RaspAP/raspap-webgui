@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 07:35\n"
+"PO-Revision-Date: 2020-04-05 08:54\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -17,305 +17,305 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr ""
+msgstr "RaspAP Wifi konfigurointiportaali"
 
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Navigointi päällä/pois"
 
 msgid "RaspAP Wifi Portal"
-msgstr ""
+msgstr "RaspAP Wifi portaali"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "Ohjauspaneeli"
 
 msgid "WiFi client"
-msgstr ""
+msgstr "WiFi asiakas"
 
 msgid "Hotspot"
-msgstr ""
+msgstr "Yhteyspiste"
 
 msgid "Networking"
-msgstr ""
+msgstr "Yhteyksia"
 
 msgid "DHCP Server"
-msgstr ""
+msgstr "DHCP palvelinta"
 
 msgid "OpenVPN"
 msgstr ""
 
 msgid "TOR proxy"
-msgstr ""
+msgstr "TOR välitypalvelinta"
 
 msgid "Authentication"
 msgstr ""
 
 msgid "Change Theme"
-msgstr ""
+msgstr "Vaihda teema"
 
 msgid "System"
-msgstr ""
+msgstr "Järjestelmä"
 
 msgid "About RaspAP"
-msgstr ""
+msgstr "RaspAP tiedot"
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr ""
+msgstr "Todennusasetukset"
 
 msgid "New passwords do not match"
-msgstr ""
+msgstr "Uudet salasanat eivät täsmää"
 
 msgid "Username must not be empty"
-msgstr ""
+msgstr "Käyttäjänimi ei saa olla tyhjä"
 
 msgid "Admin password updated"
-msgstr ""
+msgstr "Admin salasana on päivitetty"
 
 msgid "Failed to update admin password"
-msgstr ""
+msgstr "Admin salasanaa ei voitu päivittää"
 
 msgid "Old password does not match"
-msgstr ""
+msgstr "Vanha salasana ei täsmää"
 
 msgid "Username"
-msgstr ""
+msgstr "Käyttäjänimi"
 
 msgid "Old password"
-msgstr ""
+msgstr "Vanha salasana"
 
 msgid "New password"
-msgstr ""
+msgstr "Uusi salasana"
 
 msgid "Repeat new password"
-msgstr ""
+msgstr "Anna uusi salasana uudestaan"
 
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr ""
+msgstr "Asiakasasetukset"
 
 msgid "SSID"
 msgstr ""
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanava"
 
 msgid "Security"
-msgstr ""
+msgstr "Turvallisuus"
 
 msgid "Passphrase"
-msgstr ""
+msgstr "Salasana"
 
 msgid "Wifi settings updated successfully"
-msgstr ""
+msgstr "Wifi asetusten päivitys onnistui"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr ""
+msgstr "Wifi asetukset päivitettiin mutta ei voitu käynnistää uudelleen (ei pysty ajaamaan 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
-msgstr ""
+msgstr "Wifi asetuksia ei voitu päivittää"
 
 msgid "Failed to update wifi settings"
-msgstr ""
+msgstr "Wifi asetukset ei voitu päivittää"
 
 msgid "Rescan"
-msgstr ""
+msgstr "Skannaa uudestaan"
 
 msgid "Update"
-msgstr ""
+msgstr "Päivitä"
 
 msgid "Add"
-msgstr ""
+msgstr "Lisää"
 
 msgid "Delete"
-msgstr ""
+msgstr "Poista"
 
 msgid "Show"
-msgstr ""
+msgstr "Näytä"
 
 msgid "Hide"
-msgstr ""
+msgstr "Piilota"
 
 msgid "Not configured"
-msgstr ""
+msgstr "Ei määritelty"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr ""
+msgstr "<strong>Huom:</strong> WEP yhteyspisteet näkyvät 'Avoimena' mutta RaspAP ei nyt tue WEP yhteyksiä."
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr ""
+msgstr "Liitymän tiedot"
 
 msgid "Interface Name"
-msgstr ""
+msgstr "Liitymän nimi"
 
 msgid "IPv4 Address"
-msgstr ""
+msgstr "IPv4-osoite"
 
 msgid "IPv6 Address"
-msgstr ""
+msgstr "IPv6-osoite"
 
 msgid "Subnet Mask"
-msgstr ""
+msgstr "Aliverkon peite"
 
 msgid "Mac Address"
-msgstr ""
+msgstr "Mac osoite"
 
 msgid "Interface Statistics"
-msgstr ""
+msgstr "Liitymän tilastot"
 
 msgid "Received Packets"
-msgstr ""
+msgstr "Saapuneet paketit"
 
 msgid "Received Bytes"
-msgstr ""
+msgstr "Saapuneet tavut"
 
 msgid "Transferred Packets"
-msgstr ""
+msgstr "Lähetetyt paketit"
 
 msgid "Transferred Bytes"
-msgstr ""
+msgstr "Läheteyt tavut"
 
 msgid "Wireless Information"
-msgstr ""
+msgstr "Langattoman tiedot"
 
 msgid "Connected To"
-msgstr ""
+msgstr "Yhdistetty kohteeseen"
 
 msgid "AP Mac Address"
-msgstr ""
+msgstr "Yhteyspisteen Mac osoite"
 
 msgid "Bitrate"
-msgstr ""
+msgstr "Bittinopeus"
 
 msgid "Signal Level"
-msgstr ""
+msgstr "Signaalitaso"
 
 msgid "Transmit Power"
-msgstr ""
+msgstr "Lähetysvahvuus"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Taajuus"
 
 msgid "Link Quality"
-msgstr ""
+msgstr "Yhteyden laatu"
 
 msgid "Information provided by ip and iw and from system"
-msgstr ""
+msgstr "iw:n ja iw:n tarjoamat tiedot järjestelmästä"
 
 msgid "No MAC Address Found"
-msgstr ""
+msgstr "MAC osoitetta ei löydetty"
 
 msgid "No IP Address Found"
-msgstr ""
+msgstr "IP osoitetta ei löydetty"
 
 msgid "No Subnet Mask Found"
-msgstr ""
+msgstr "Aliverkon peite ei löydetty"
 
 msgid "No Data"
-msgstr ""
+msgstr "Ei dataa"
 
 msgid "Not connected"
-msgstr ""
+msgstr "Ei yhdistetty"
 
 msgid "Interface is up"
-msgstr ""
+msgstr "Liitymä on ylhäällä"
 
 msgid "Interface is down"
-msgstr ""
+msgstr "Liitymä on alhaalla"
 
 msgid "Interface already down"
-msgstr ""
+msgstr "Liitymä on jo alhaalla"
 
 msgid "Start wlan0"
-msgstr ""
+msgstr "Käynnistä wlan0"
 
 msgid "Stop wlan0"
-msgstr ""
+msgstr "Pysäytä wlan0"
 
 msgid "Connected Devices"
-msgstr ""
+msgstr "Kytkettyihin Laitteisiin"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr ""
+msgstr "DHCP-palvelinasetukset"
 
 msgid "Client list"
-msgstr ""
+msgstr "Asiakaslista"
 
 msgid "Interface"
-msgstr ""
+msgstr "Liittymä"
 
 msgid "DNS Server"
-msgstr ""
+msgstr "DNS palvelin"
 
 msgid "Starting IP Address"
-msgstr ""
+msgstr "Alkava IP osoite"
 
 msgid "Ending IP Address"
-msgstr ""
+msgstr "Loppuva IP osoite"
 
 msgid "Static Leases"
-msgstr ""
+msgstr "Staattiset vuokraukset"
 
 msgid "Add static DHCP lease"
-msgstr ""
+msgstr "Lisää staattinen DHCP-vuokrasopimus"
 
 msgid "Lease Time"
-msgstr ""
+msgstr "Laina-aika"
 
 msgid "Interval"
-msgstr ""
+msgstr "Aikaväli"
 
 msgid "Active DHCP leases"
-msgstr ""
+msgstr "Aktiivien DHCP lainaukset"
 
 msgid "Expire time"
-msgstr ""
+msgstr "Umpeutumisaika"
 
 msgid "MAC Address"
-msgstr ""
+msgstr "MAC osoite"
 
 msgid "Host name"
-msgstr ""
+msgstr "Isäntänimi"
 
 msgid "Client ID"
-msgstr ""
+msgstr "Asiakas ID"
 
 msgid "Information provided by Dnsmasq"
-msgstr ""
+msgstr "Dnsmasq tullut tieto"
 
 msgid "Stop dnsmasq"
-msgstr ""
+msgstr "Pysäytä dnsmasq"
 
 msgid "Start dnsmasq"
-msgstr ""
+msgstr "Käynnistä dnsmasq"
 
 msgid "Dnsmasq configuration updated successfully"
-msgstr ""
+msgstr "Dnsmasq konfiguroinnin päivitys onnistui"
 
 msgid "dnsmasq already running"
-msgstr ""
+msgstr "Dnsmasq on jo käynnissä"
 
 msgid "Successfully started dnsmasq"
-msgstr ""
+msgstr "Dnsmasq käynnistys onnistui"
 
 msgid "Failed to start dnsmasq"
-msgstr ""
+msgstr "Dnsmasq käynnistys epäonnistui"
 
 msgid "Successfully stopped dnsmasq"
-msgstr ""
+msgstr "Dnsmasq pysäytys onnistui"
 
 msgid "Failed to stop dnsmasq"
-msgstr ""
+msgstr "Dnsmasq pysäytys epäonnistui"
 
 msgid "dnsmasq already stopped"
-msgstr ""
+msgstr "Dnsmasq on jo pysäytetty"
 
 msgid "Dnsmasq is running"
-msgstr ""
+msgstr "Dnsmasq on käynnissä"
 
 msgid "Dnsmasq is not running"
-msgstr ""
+msgstr "Dnsmasq ei ole käynnissä"
 
 msgid "Upstream DNS servers"
 msgstr ""
@@ -346,319 +346,319 @@ msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
-msgstr ""
+msgstr "Perus"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Lisä"
 
 msgid "Basic settings"
-msgstr ""
+msgstr "Perusasetukset"
 
 msgid "Wireless Mode"
-msgstr ""
+msgstr "Langaton tila"
 
 msgid "Security settings"
-msgstr ""
+msgstr "Turvallisuusasetukset"
 
 msgid "Security type"
-msgstr ""
+msgstr "Turvallisuuden tyyppi"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Salauksen tyyppi"
 
 msgid "PSK"
 msgstr ""
 
 msgid "Advanced settings"
-msgstr ""
+msgstr "Lisäasetukset"
 
 msgid "Country Code"
-msgstr ""
+msgstr "Maatunnus"
 
 msgid "Information provided by hostapd"
-msgstr ""
+msgstr "Hostapd tullut tieto"
 
 msgid "Attempting to start hotspot"
-msgstr ""
+msgstr "Yritettään käynnistää yhteyspiste"
 
 msgid "Attempting to stop hotspot"
-msgstr ""
+msgstr "Yritettään pysäyttää yhteyspiste"
 
 msgid "HostAPD is not running"
-msgstr ""
+msgstr "HostAPD ei ole käynnissä"
 
 msgid "HostAPD is running"
-msgstr ""
+msgstr "HostAPD on käynnissä"
 
 msgid "SSID must be between 1 and 32 characters"
-msgstr ""
+msgstr "SSID on oltava 1 ja 32 merkin pituinen"
 
 msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr ""
+msgstr "WPA salasana on oltava 8 ja 63 merkin pituinen"
 
 msgid "Unknown interface"
-msgstr ""
+msgstr "Tuntematon liittymä"
 
 msgid "Country code must be blank or two characters"
-msgstr ""
+msgstr "Maatunnus on oltava tyhjä tai kaksi merkkiä"
 
 msgid "Wifi Hotspot settings saved"
-msgstr ""
+msgstr "Wifi yhteyspisteen asetukset tallennettu"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr ""
+msgstr "Wifi yhteyspisteen asetukset ei voitu tallentaa"
 
 msgid "Start hotspot"
-msgstr ""
+msgstr "Käynnistä yhteyspiste"
 
 msgid "Stop hotspot"
-msgstr ""
+msgstr "Pysäytä yhteyspiste"
 
 msgid "Restart hotspot"
-msgstr ""
+msgstr "Käynnistä yhteyspiste uudelleen"
 
 msgid "Enable logging"
-msgstr ""
+msgstr "Salli lokikirjaus"
 
 msgid "Logfile output"
-msgstr ""
+msgstr "Lokitiedoston muoto"
 
 msgid "WiFi client AP mode"
-msgstr ""
+msgstr "WiFi-asiakas AP-tila"
 
 msgid "Bridged AP mode"
 msgstr ""
 
 msgid "Hide SSID in broadcast"
-msgstr ""
+msgstr "Piilota SSID lähetyksessä"
 
 msgid "Maximum number of clients"
-msgstr ""
+msgstr "Asiakkaiden maksimimäärä"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr ""
+msgstr "Määritä max_num_sta-valinta hostapd:lle. Maksimimäärän oletus on 2007. Jos tyhjä tai 0, käytetään oletusta."
 
 #: includes/networking.php
 msgid "Summary"
-msgstr ""
+msgstr "Yhteenveto"
 
 msgid "Current settings"
-msgstr ""
+msgstr "Nykyiset asetukset"
 
 msgid "Default Gateway"
-msgstr ""
+msgstr "Oletusyhdyskäytävä"
 
 msgid "Alternate DNS Server"
-msgstr ""
+msgstr "Vaihtoehtoinen DNS palvelin"
 
 msgid "Adapter IP Address Settings"
-msgstr ""
+msgstr "Adapteri IP osoite asetukset"
 
 msgid "Enable Fallback to Static Option"
-msgstr ""
+msgstr "Käytä staattinen IP varana asetusta"
 
 msgid "Static IP"
-msgstr ""
+msgstr "Staattinen IP"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Käytössä"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Ei käytössä"
 
 msgid "Static IP Options"
-msgstr ""
+msgstr "Staattinen IP asetukset"
 
 msgid "Apply settings"
-msgstr ""
+msgstr "Ota asetukset käyttöön"
 
 msgid "Information provided by /sys/class/net"
-msgstr ""
+msgstr "/sys/class/net saadut tiedot"
 
 #: includes/system.php
 msgid "System Information"
-msgstr ""
+msgstr "Järjestelmätiedot"
 
 msgid "Language"
-msgstr ""
+msgstr "Kieli"
 
 msgid "Language settings"
-msgstr ""
+msgstr "Kieliasetukset"
 
 msgid "Select a language"
-msgstr ""
+msgstr "Valitse kieli"
 
 msgid "Language setting saved"
-msgstr ""
+msgstr "Kieliasetukset tallennettu"
 
 msgid "Console"
-msgstr ""
+msgstr "Konsoli"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Isäntänimi"
 
 msgid "Pi Revision"
-msgstr ""
+msgstr "Pi versio"
 
 msgid "Uptime"
-msgstr ""
+msgstr "Käytettävyysaika"
 
 msgid "Memory Used"
-msgstr ""
+msgstr "Muisti käytössä"
 
 msgid "CPU Load"
-msgstr ""
+msgstr "CPU kuorma"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Uudelleenkäynnistä"
 
 msgid "Shutdown"
-msgstr ""
+msgstr "Sammutus"
 
 msgid "System Rebooting Now!"
-msgstr ""
+msgstr "Järjestelmän uudelleenkäynnistys nyt!"
 
 msgid "System Shutting Down Now!"
-msgstr ""
+msgstr "Järjestelmä sammuu nyt!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr ""
+msgstr "Teema-asetukset"
 
 msgid "Select a theme"
-msgstr ""
+msgstr "Valitse teema"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr ""
+msgstr "Datan käyttö"
 
 msgid "Data usage monitoring"
-msgstr ""
+msgstr "Datan käytön seuranta"
 
 msgid "Hourly traffic amount"
-msgstr ""
+msgstr "Liikennemäärä tunneittain määrä"
 
 msgid "Daily traffic amount"
-msgstr ""
+msgstr "Päivittäisen liikenteen määrä"
 
 msgid "Monthly traffic amount"
-msgstr ""
+msgstr "Kuukausittaisen liikenteen määrä"
 
 msgid "Hourly"
-msgstr ""
+msgstr "Tunneittain"
 
 msgid "Daily"
-msgstr ""
+msgstr "Päivittäin"
 
 msgid "Monthly"
-msgstr ""
+msgstr "Kuukausittain"
 
 msgid "interface"
-msgstr ""
+msgstr "liittymä"
 
 msgid "date"
-msgstr ""
+msgstr "pvm"
 
 msgid "Send MB"
-msgstr ""
+msgstr "Lähetetty MB"
 
 msgid "Receive MB"
-msgstr ""
+msgstr "Vastaanotettu MB"
 
 msgid "Information provided by vnstat"
-msgstr ""
+msgstr "Vnstatin tarjoamat tiedot"
 
 msgid "Loading {0} bandwidth chart"
-msgstr ""
+msgstr "Ladataan {0} kaistaleveystaulukkoa"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr ""
+msgstr "Näyttämässä {0} - {1} merkintää kokonaismäärästä: {2}"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr ""
+msgstr "OpenVPN ei ole käytössä"
 
 msgid "OpenVPN is running"
-msgstr ""
+msgstr "OpenVPN on käytössä"
 
 msgid "Server settings"
-msgstr ""
+msgstr "Palvelinasetukset"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr ""
+msgstr "Valitse OpenVPN -määritystiedosto (.ovpn)"
 
 msgid "Client Log"
-msgstr ""
+msgstr "Asiakasloki"
 
 msgid "Port"
-msgstr ""
+msgstr "Portti"
 
 msgid "Protocol"
-msgstr ""
+msgstr "Protokolla"
 
 msgid "Root CA certificate"
-msgstr ""
+msgstr "Root CA -sertifikaatti"
 
 msgid "Server certificate"
-msgstr ""
+msgstr "Palvelinsertifikaatti"
 
 msgid "Diffie Hellman parameters"
-msgstr ""
+msgstr "Diffie Hellmann -parametrit"
 
 msgid "KeepAlive"
 msgstr ""
 
 msgid "Server log"
-msgstr ""
+msgstr "Palvelinloki"
 
 msgid "Start OpenVPN"
-msgstr ""
+msgstr "Käynnistä OpenVPN"
 
 msgid "Stop OpenVPN"
-msgstr ""
+msgstr "Käynnistä OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr ""
+msgstr "Openvpn -tiedot"
 
 msgid "Attempting to start openvpn"
-msgstr ""
+msgstr "Yritetään käynnistää openvpn"
 
 msgid "Attempting to stop openvpn"
-msgstr ""
+msgstr "Yritetään pysäyttää openvpn"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr ""
+msgstr "TOR ei ole käytössä"
 
 msgid "TOR is running"
-msgstr ""
+msgstr "TOR on käytössä"
 
 msgid "Relay"
-msgstr ""
+msgstr "Välitä"
 
 msgid "Relay settings"
-msgstr ""
+msgstr "Välitä asetukset"
 
 msgid "Nickname"
-msgstr ""
+msgstr "Nimimerkki"
 
 msgid "Address"
-msgstr ""
+msgstr "Osoite"
 
 msgid "Start TOR"
-msgstr ""
+msgstr "Käynnistä TOR"
 
 msgid "Stop TOR"
-msgstr ""
+msgstr "Pyräytä TOR"
 
 msgid "Information provided by tor"
-msgstr ""
+msgstr "TOR:in tarjoama tieto"
 
 msgid "Attempting to start TOR"
-msgstr ""
+msgstr "Yritetään käynnistää TOR"
 
 msgid "Attempting to stop TOR"
-msgstr ""
+msgstr "Yritetään pysäyttää TOR"
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
@@ -666,25 +666,25 @@ msgstr ""
 
 #: common form controls
 msgid "Save settings"
-msgstr ""
+msgstr "Tallenna asetukset"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Päivitä"
 
 msgid "running"
-msgstr ""
+msgstr "käynnissä"
 
 msgid "stopped"
-msgstr ""
+msgstr "pysäytetty"
 
 msgid "Remove"
-msgstr ""
+msgstr "Poista"
 
 msgid "up"
-msgstr ""
+msgstr "ylös"
 
 msgid "down"
-msgstr ""
+msgstr "alas"
 
 msgid "adblock"
 msgstr ""
