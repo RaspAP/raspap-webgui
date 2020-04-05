@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 07:35\n"
+"PO-Revision-Date: 2020-04-05 08:54\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -17,28 +17,28 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr ""
+msgstr "RaspAP Wi-Fi configuratie portaal"
 
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Toon navigatie"
 
 msgid "RaspAP Wifi Portal"
-msgstr ""
+msgstr "RaspAP Wi-fi portaal"
 
 msgid "Dashboard"
 msgstr ""
 
 msgid "WiFi client"
-msgstr ""
+msgstr "WiFi apparaat"
 
 msgid "Hotspot"
 msgstr ""
 
 msgid "Networking"
-msgstr ""
+msgstr "Netwerk"
 
 msgid "DHCP Server"
-msgstr ""
+msgstr "DHCP server"
 
 msgid "OpenVPN"
 msgstr ""
@@ -47,175 +47,175 @@ msgid "TOR proxy"
 msgstr ""
 
 msgid "Authentication"
-msgstr ""
+msgstr "Autenticatie"
 
 msgid "Change Theme"
-msgstr ""
+msgstr "Verander thema"
 
 msgid "System"
-msgstr ""
+msgstr "Systeem"
 
 msgid "About RaspAP"
-msgstr ""
+msgstr "Over RaspAP"
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr ""
+msgstr "Verificatie-instellingen"
 
 msgid "New passwords do not match"
-msgstr ""
+msgstr "Nieuw wachtwoord komt niet overeen"
 
 msgid "Username must not be empty"
-msgstr ""
+msgstr "Gebruikersnaam mag niet leeg zijn"
 
 msgid "Admin password updated"
-msgstr ""
+msgstr "Admin wachtwoord geupdate"
 
 msgid "Failed to update admin password"
-msgstr ""
+msgstr "Mislukt om admin wachtwoord te updaten"
 
 msgid "Old password does not match"
-msgstr ""
+msgstr "Oud wachtwoord is niet hetzelfde"
 
 msgid "Username"
-msgstr ""
+msgstr "Gebruikersnaam"
 
 msgid "Old password"
-msgstr ""
+msgstr "Oud wachtwoord"
 
 msgid "New password"
-msgstr ""
+msgstr "Nieuw wachtwoord"
 
 msgid "Repeat new password"
-msgstr ""
+msgstr "Herhaal nieuw wachtwoord"
 
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr ""
+msgstr "Client instellingen"
 
 msgid "SSID"
 msgstr ""
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanaal"
 
 msgid "Security"
-msgstr ""
+msgstr "Beveiliging"
 
 msgid "Passphrase"
-msgstr ""
+msgstr "Wachtwoordzin"
 
 msgid "Wifi settings updated successfully"
-msgstr ""
+msgstr "Wifi instellingen succesvol opgeslagen."
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr ""
+msgstr "Wi-Fi instellingen geupdate maar kan niet herstarten (kan niet uitvoeren van 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
-msgstr ""
+msgstr "Wi-Fi instellingen konden niet geupdate worden"
 
 msgid "Failed to update wifi settings"
-msgstr ""
+msgstr "Mislukt op wi-fi instellingen te updaten"
 
 msgid "Rescan"
-msgstr ""
+msgstr "Herscan"
 
 msgid "Update"
 msgstr ""
 
 msgid "Add"
-msgstr ""
+msgstr "Voeg toe"
 
 msgid "Delete"
-msgstr ""
+msgstr "Verwijder"
 
 msgid "Show"
-msgstr ""
+msgstr "Toon"
 
 msgid "Hide"
-msgstr ""
+msgstr "Verbergen"
 
 msgid "Not configured"
-msgstr ""
+msgstr "Niet ingesteld"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr ""
+msgstr "<strong>Opmerking</strong> WEP beveiligde toegangspunten worden als 'Open' getoond. RaspAP heeft geen ondersteuning voor het verbinden met WEP beveiliging."
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr ""
+msgstr "Interface informatie"
 
 msgid "Interface Name"
-msgstr ""
+msgstr "Interface naam"
 
 msgid "IPv4 Address"
-msgstr ""
+msgstr "IPv4-adres"
 
 msgid "IPv6 Address"
-msgstr ""
+msgstr "IPv6-adres"
 
 msgid "Subnet Mask"
-msgstr ""
+msgstr "Subnet mask"
 
 msgid "Mac Address"
-msgstr ""
+msgstr "mac adres"
 
 msgid "Interface Statistics"
-msgstr ""
+msgstr "Interface statenstieken"
 
 msgid "Received Packets"
-msgstr ""
+msgstr "Ontvangen pakketen"
 
 msgid "Received Bytes"
-msgstr ""
+msgstr "Ontvangen Bytes"
 
 msgid "Transferred Packets"
-msgstr ""
+msgstr "Verzonden pakketen"
 
 msgid "Transferred Bytes"
-msgstr ""
+msgstr "Verzonden Bytes"
 
 msgid "Wireless Information"
-msgstr ""
+msgstr "Draadloze informatie"
 
 msgid "Connected To"
-msgstr ""
+msgstr "Verbinden met"
 
 msgid "AP Mac Address"
-msgstr ""
+msgstr "AP Mac adres"
 
 msgid "Bitrate"
-msgstr ""
+msgstr "bitrate"
 
 msgid "Signal Level"
-msgstr ""
+msgstr "Signaal niveau"
 
 msgid "Transmit Power"
-msgstr ""
+msgstr "Verzend energie"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Frequentie"
 
 msgid "Link Quality"
-msgstr ""
+msgstr "Signaal kwaliteit"
 
 msgid "Information provided by ip and iw and from system"
-msgstr ""
+msgstr "Informatie verstrekt door ip en iw en vanuit het systeem"
 
 msgid "No MAC Address Found"
-msgstr ""
+msgstr "Geen MAC adres gevonden"
 
 msgid "No IP Address Found"
-msgstr ""
+msgstr "Geen IP adres gevonden"
 
 msgid "No Subnet Mask Found"
-msgstr ""
+msgstr "Geen subnet mask gevonden"
 
 msgid "No Data"
-msgstr ""
+msgstr "Geen data"
 
 msgid "Not connected"
-msgstr ""
+msgstr "Niet verbonden"
 
 msgid "Interface is up"
 msgstr ""
@@ -224,7 +224,7 @@ msgid "Interface is down"
 msgstr ""
 
 msgid "Interface already down"
-msgstr ""
+msgstr "Interface reeds down"
 
 msgid "Start wlan0"
 msgstr ""
@@ -233,14 +233,14 @@ msgid "Stop wlan0"
 msgstr ""
 
 msgid "Connected Devices"
-msgstr ""
+msgstr "Verbonden Apparaten"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr ""
+msgstr "DHCP-serverinstellingen"
 
 msgid "Client list"
-msgstr ""
+msgstr "Clienten lijst"
 
 msgid "Interface"
 msgstr ""
@@ -249,40 +249,40 @@ msgid "DNS Server"
 msgstr ""
 
 msgid "Starting IP Address"
-msgstr ""
+msgstr "Beginnend ip adres"
 
 msgid "Ending IP Address"
-msgstr ""
+msgstr "Laatste ip adres"
 
 msgid "Static Leases"
-msgstr ""
+msgstr "Statische leases"
 
 msgid "Add static DHCP lease"
-msgstr ""
+msgstr "Statische DHCP-lease toevoegen"
 
 msgid "Lease Time"
-msgstr ""
+msgstr "Lease tijd"
 
 msgid "Interval"
-msgstr ""
+msgstr "interval"
 
 msgid "Active DHCP leases"
-msgstr ""
+msgstr "Actieve DHCP leases"
 
 msgid "Expire time"
-msgstr ""
+msgstr "Verloop tijd"
 
 msgid "MAC Address"
-msgstr ""
+msgstr "MAC adres"
 
 msgid "Host name"
-msgstr ""
+msgstr "Hostnaam"
 
 msgid "Client ID"
 msgstr ""
 
 msgid "Information provided by Dnsmasq"
-msgstr ""
+msgstr "Informatie gegeven door Dnsmasq"
 
 msgid "Stop dnsmasq"
 msgstr ""
@@ -291,31 +291,31 @@ msgid "Start dnsmasq"
 msgstr ""
 
 msgid "Dnsmasq configuration updated successfully"
-msgstr ""
+msgstr "Dnsmasq configuratie succesvol geupdate"
 
 msgid "dnsmasq already running"
-msgstr ""
+msgstr "dnsmasq draait reeds"
 
 msgid "Successfully started dnsmasq"
-msgstr ""
+msgstr "Succesvol dnsmasq gestart"
 
 msgid "Failed to start dnsmasq"
-msgstr ""
+msgstr "Mislukt om dnsmasq te starten"
 
 msgid "Successfully stopped dnsmasq"
-msgstr ""
+msgstr "Succesvol dnsmasq gestopt"
 
 msgid "Failed to stop dnsmasq"
-msgstr ""
+msgstr "Mislukt om dnsmasq te stoppen"
 
 msgid "dnsmasq already stopped"
-msgstr ""
+msgstr "dnsmasq is reeds gestopt"
 
 msgid "Dnsmasq is running"
-msgstr ""
+msgstr "Dnsmasq draait"
 
 msgid "Dnsmasq is not running"
-msgstr ""
+msgstr "Dnsmasq is gestopt"
 
 msgid "Upstream DNS servers"
 msgstr ""
@@ -346,319 +346,319 @@ msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
-msgstr ""
+msgstr "Basisch"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Geavanceerd"
 
 msgid "Basic settings"
-msgstr ""
+msgstr "Basic instellingen"
 
 msgid "Wireless Mode"
-msgstr ""
+msgstr "Draadloze mode"
 
 msgid "Security settings"
-msgstr ""
+msgstr "Beveiliging instellingen"
 
 msgid "Security type"
-msgstr ""
+msgstr "Beveiliging type"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Encryptie modus"
 
 msgid "PSK"
 msgstr ""
 
 msgid "Advanced settings"
-msgstr ""
+msgstr "Gevanceerde instellingen"
 
 msgid "Country Code"
-msgstr ""
+msgstr "Landcode"
 
 msgid "Information provided by hostapd"
-msgstr ""
+msgstr "Informatie gegeven door hostapd"
 
 msgid "Attempting to start hotspot"
-msgstr ""
+msgstr "Probeer hostspot te starten"
 
 msgid "Attempting to stop hotspot"
-msgstr ""
+msgstr "Probeer hotspot te stoppen"
 
 msgid "HostAPD is not running"
-msgstr ""
+msgstr "HostAPD draait niet"
 
 msgid "HostAPD is running"
-msgstr ""
+msgstr "HostAPD werkt"
 
 msgid "SSID must be between 1 and 32 characters"
-msgstr ""
+msgstr "De SSID moet tussen 1 en 32 tekens zijn"
 
 msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr ""
+msgstr "De WPA wachtwoordzin moet tussen 8 en 63 tekens zijn"
 
 msgid "Unknown interface"
-msgstr ""
+msgstr "Onbekende interface"
 
 msgid "Country code must be blank or two characters"
-msgstr ""
+msgstr "Land code moet leeg zijn of twee tekens"
 
 msgid "Wifi Hotspot settings saved"
-msgstr ""
+msgstr "Wi-Fi hostspot instellingen opgeslagen"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr ""
+msgstr "Mislukt om Wi-FI Hotspot instellen op te slaan"
 
 msgid "Start hotspot"
 msgstr ""
 
 msgid "Stop hotspot"
-msgstr ""
+msgstr "Stop hotstop"
 
 msgid "Restart hotspot"
-msgstr ""
+msgstr "Restart hotstop"
 
 msgid "Enable logging"
-msgstr ""
+msgstr "Logboek inschakelen"
 
 msgid "Logfile output"
-msgstr ""
+msgstr "Logboek uitvoer"
 
 msgid "WiFi client AP mode"
-msgstr ""
+msgstr "WiFi-client AP-modus"
 
 msgid "Bridged AP mode"
 msgstr ""
 
 msgid "Hide SSID in broadcast"
-msgstr ""
+msgstr "Verberg SSID in uitzending"
 
 msgid "Maximum number of clients"
-msgstr ""
+msgstr "Maximaal aantal klanten"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr ""
+msgstr "Configureert de optie 'max_num_sta' van hostapd. Standaard is de maximale waarde van 2007 ingesteld. Indien leeg of 0 wordt de standaard toegepast."
 
 #: includes/networking.php
 msgid "Summary"
-msgstr ""
+msgstr "Samenvatting"
 
 msgid "Current settings"
-msgstr ""
+msgstr "Huidige instellingen"
 
 msgid "Default Gateway"
-msgstr ""
+msgstr "Standaard Gateway"
 
 msgid "Alternate DNS Server"
-msgstr ""
+msgstr "Alternatieve DNS-server"
 
 msgid "Adapter IP Address Settings"
-msgstr ""
+msgstr "IP-adresinstellingen van adapter"
 
 msgid "Enable Fallback to Static Option"
-msgstr ""
+msgstr "Terugvallen op statische optie inschakelen"
 
 msgid "Static IP"
-msgstr ""
+msgstr "Statische IP"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Ingeschakeld"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Uitgeschakeld"
 
 msgid "Static IP Options"
-msgstr ""
+msgstr "Statische IP-opties"
 
 msgid "Apply settings"
-msgstr ""
+msgstr "Instellingen toepassen"
 
 msgid "Information provided by /sys/class/net"
-msgstr ""
+msgstr "Informatie verstrekt door /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr ""
+msgstr "Systeeminformatie"
 
 msgid "Language"
-msgstr ""
+msgstr "Taal"
 
 msgid "Language settings"
-msgstr ""
+msgstr "Taal instellingen"
 
 msgid "Select a language"
-msgstr ""
+msgstr "Selecteer een taal"
 
 msgid "Language setting saved"
-msgstr ""
+msgstr "Taalinstellingen opgeslagen"
 
 msgid "Console"
 msgstr ""
 
 msgid "Hostname"
-msgstr ""
+msgstr "Hostnaam"
 
 msgid "Pi Revision"
-msgstr ""
+msgstr "Pi-Revisie"
 
 msgid "Uptime"
 msgstr ""
 
 msgid "Memory Used"
-msgstr ""
+msgstr "Geheugen gebruik"
 
 msgid "CPU Load"
-msgstr ""
+msgstr "CPU-belasting"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Opnieuw opstarten"
 
 msgid "Shutdown"
-msgstr ""
+msgstr "Afsluiten"
 
 msgid "System Rebooting Now!"
-msgstr ""
+msgstr "Systeem start nu opnieuw op!"
 
 msgid "System Shutting Down Now!"
-msgstr ""
+msgstr "Systeem wordt nu uitgeschakeld!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr ""
+msgstr "Thema-instellingen"
 
 msgid "Select a theme"
-msgstr ""
+msgstr "Selecteer een thema"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr ""
+msgstr "Datagebruik"
 
 msgid "Data usage monitoring"
-msgstr ""
+msgstr "Beheer van datagebruik"
 
 msgid "Hourly traffic amount"
-msgstr ""
+msgstr "Verkeer per uur"
 
 msgid "Daily traffic amount"
-msgstr ""
+msgstr "Verkeer per dag"
 
 msgid "Monthly traffic amount"
-msgstr ""
+msgstr "Verkeer per maand"
 
 msgid "Hourly"
-msgstr ""
+msgstr "Pur uur"
 
 msgid "Daily"
-msgstr ""
+msgstr "Per dag"
 
 msgid "Monthly"
-msgstr ""
+msgstr "Per maand"
 
 msgid "interface"
 msgstr ""
 
 msgid "date"
-msgstr ""
+msgstr "datum"
 
 msgid "Send MB"
-msgstr ""
+msgstr "Verstuur MB"
 
 msgid "Receive MB"
-msgstr ""
+msgstr "Ontvang MB"
 
 msgid "Information provided by vnstat"
-msgstr ""
+msgstr "Informatie verstrekt door vnstat"
 
 msgid "Loading {0} bandwidth chart"
-msgstr ""
+msgstr "{0} grafiek van bandbreedte wordt geladen"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr ""
+msgstr "Er worden {0} tot {1} van de {2} items weergegeven"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr ""
+msgstr "OpenVPN draait niet"
 
 msgid "OpenVPN is running"
-msgstr ""
+msgstr "OpenVPN draait"
 
 msgid "Server settings"
-msgstr ""
+msgstr "Serverinstellingen"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr ""
+msgstr "Selecteer OpenVPN-configuratiebestand (.ovpn)"
 
 msgid "Client Log"
-msgstr ""
+msgstr "Clientlog"
 
 msgid "Port"
-msgstr ""
+msgstr "Poort"
 
 msgid "Protocol"
 msgstr ""
 
 msgid "Root CA certificate"
-msgstr ""
+msgstr "Basis CA-certificaat"
 
 msgid "Server certificate"
-msgstr ""
+msgstr "Servercertificaat"
 
 msgid "Diffie Hellman parameters"
-msgstr ""
+msgstr "Diffie Hellman-parameters"
 
 msgid "KeepAlive"
 msgstr ""
 
 msgid "Server log"
-msgstr ""
+msgstr "Serverlog"
 
 msgid "Start OpenVPN"
-msgstr ""
+msgstr "OpenVPN opstarten"
 
 msgid "Stop OpenVPN"
-msgstr ""
+msgstr "OpenVPN stoppen"
 
 msgid "Information provided by openvpn"
-msgstr ""
+msgstr "Informatie verstrekt door openvpn"
 
 msgid "Attempting to start openvpn"
-msgstr ""
+msgstr "We proberen openvpn op te starten"
 
 msgid "Attempting to stop openvpn"
-msgstr ""
+msgstr "We proberen openvpn te stoppen"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr ""
+msgstr "TOR draait niet"
 
 msgid "TOR is running"
-msgstr ""
+msgstr "TOR draait"
 
 msgid "Relay"
 msgstr ""
 
 msgid "Relay settings"
-msgstr ""
+msgstr "Relay-instellingen"
 
 msgid "Nickname"
-msgstr ""
+msgstr "Schermnaam"
 
 msgid "Address"
-msgstr ""
+msgstr "Adres"
 
 msgid "Start TOR"
-msgstr ""
+msgstr "TOR opstarten"
 
 msgid "Stop TOR"
-msgstr ""
+msgstr "TOR stoppen"
 
 msgid "Information provided by tor"
-msgstr ""
+msgstr "Informatie verstrekt door tor"
 
 msgid "Attempting to start TOR"
-msgstr ""
+msgstr "We proberen TOR op te starten"
 
 msgid "Attempting to stop TOR"
-msgstr ""
+msgstr "We proberen TOR te stoppen"
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
@@ -666,25 +666,25 @@ msgstr ""
 
 #: common form controls
 msgid "Save settings"
-msgstr ""
+msgstr "Instellingen opslaan"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Vernieuwen"
 
 msgid "running"
-msgstr ""
+msgstr "actief"
 
 msgid "stopped"
-msgstr ""
+msgstr "gestopt"
 
 msgid "Remove"
-msgstr ""
+msgstr "Verwijder"
 
 msgid "up"
-msgstr ""
+msgstr "omhoog"
 
 msgid "down"
-msgstr ""
+msgstr "omlaag"
 
 msgid "adblock"
 msgstr ""
