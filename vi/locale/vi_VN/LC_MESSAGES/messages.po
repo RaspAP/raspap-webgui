@@ -1,0 +1,724 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: raspap\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2020-04-05 07:35\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Vietnamese\n"
+"Language: vi_VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: vi\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr ""
+
+msgid "Toggle navigation"
+msgstr ""
+
+msgid "RaspAP Wifi Portal"
+msgstr ""
+
+msgid "Dashboard"
+msgstr ""
+
+msgid "WiFi client"
+msgstr ""
+
+msgid "Hotspot"
+msgstr ""
+
+msgid "Networking"
+msgstr ""
+
+msgid "DHCP Server"
+msgstr ""
+
+msgid "OpenVPN"
+msgstr ""
+
+msgid "TOR proxy"
+msgstr ""
+
+msgid "Authentication"
+msgstr ""
+
+msgid "Change Theme"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "About RaspAP"
+msgstr ""
+
+#: includes/admin.php
+msgid "Authentication settings"
+msgstr ""
+
+msgid "New passwords do not match"
+msgstr ""
+
+msgid "Username must not be empty"
+msgstr ""
+
+msgid "Admin password updated"
+msgstr ""
+
+msgid "Failed to update admin password"
+msgstr ""
+
+msgid "Old password does not match"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Old password"
+msgstr ""
+
+msgid "New password"
+msgstr ""
+
+msgid "Repeat new password"
+msgstr ""
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr ""
+
+msgid "SSID"
+msgstr ""
+
+msgid "Channel"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Passphrase"
+msgstr ""
+
+msgid "Wifi settings updated successfully"
+msgstr ""
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr ""
+
+msgid "Wifi settings failed to be updated"
+msgstr ""
+
+msgid "Failed to update wifi settings"
+msgstr ""
+
+msgid "Rescan"
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Not configured"
+msgstr ""
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr ""
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr ""
+
+msgid "Interface Name"
+msgstr ""
+
+msgid "IPv4 Address"
+msgstr ""
+
+msgid "IPv6 Address"
+msgstr ""
+
+msgid "Subnet Mask"
+msgstr ""
+
+msgid "Mac Address"
+msgstr ""
+
+msgid "Interface Statistics"
+msgstr ""
+
+msgid "Received Packets"
+msgstr ""
+
+msgid "Received Bytes"
+msgstr ""
+
+msgid "Transferred Packets"
+msgstr ""
+
+msgid "Transferred Bytes"
+msgstr ""
+
+msgid "Wireless Information"
+msgstr ""
+
+msgid "Connected To"
+msgstr ""
+
+msgid "AP Mac Address"
+msgstr ""
+
+msgid "Bitrate"
+msgstr ""
+
+msgid "Signal Level"
+msgstr ""
+
+msgid "Transmit Power"
+msgstr ""
+
+msgid "Frequency"
+msgstr ""
+
+msgid "Link Quality"
+msgstr ""
+
+msgid "Information provided by ip and iw and from system"
+msgstr ""
+
+msgid "No MAC Address Found"
+msgstr ""
+
+msgid "No IP Address Found"
+msgstr ""
+
+msgid "No Subnet Mask Found"
+msgstr ""
+
+msgid "No Data"
+msgstr ""
+
+msgid "Not connected"
+msgstr ""
+
+msgid "Interface is up"
+msgstr ""
+
+msgid "Interface is down"
+msgstr ""
+
+msgid "Interface already down"
+msgstr ""
+
+msgid "Start wlan0"
+msgstr ""
+
+msgid "Stop wlan0"
+msgstr ""
+
+msgid "Connected Devices"
+msgstr ""
+
+#: includes/dhcp.php
+msgid "DHCP server settings"
+msgstr ""
+
+msgid "Client list"
+msgstr ""
+
+msgid "Interface"
+msgstr ""
+
+msgid "DNS Server"
+msgstr ""
+
+msgid "Starting IP Address"
+msgstr ""
+
+msgid "Ending IP Address"
+msgstr ""
+
+msgid "Static Leases"
+msgstr ""
+
+msgid "Add static DHCP lease"
+msgstr ""
+
+msgid "Lease Time"
+msgstr ""
+
+msgid "Interval"
+msgstr ""
+
+msgid "Active DHCP leases"
+msgstr ""
+
+msgid "Expire time"
+msgstr ""
+
+msgid "MAC Address"
+msgstr ""
+
+msgid "Host name"
+msgstr ""
+
+msgid "Client ID"
+msgstr ""
+
+msgid "Information provided by Dnsmasq"
+msgstr ""
+
+msgid "Stop dnsmasq"
+msgstr ""
+
+msgid "Start dnsmasq"
+msgstr ""
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr ""
+
+msgid "dnsmasq already running"
+msgstr ""
+
+msgid "Successfully started dnsmasq"
+msgstr ""
+
+msgid "Failed to start dnsmasq"
+msgstr ""
+
+msgid "Successfully stopped dnsmasq"
+msgstr ""
+
+msgid "Failed to stop dnsmasq"
+msgstr ""
+
+msgid "dnsmasq already stopped"
+msgstr ""
+
+msgid "Dnsmasq is running"
+msgstr ""
+
+msgid "Dnsmasq is not running"
+msgstr ""
+
+msgid "Upstream DNS servers"
+msgstr ""
+
+msgid "Only ever query DNS servers configured below"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Add upstream DNS server"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Choose a hosted server"
+msgstr ""
+
+msgid "Log DHCP requests"
+msgstr ""
+
+msgid "Log DNS queries"
+msgstr ""
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr ""
+
+msgid "Advanced"
+msgstr ""
+
+msgid "Basic settings"
+msgstr ""
+
+msgid "Wireless Mode"
+msgstr ""
+
+msgid "Security settings"
+msgstr ""
+
+msgid "Security type"
+msgstr ""
+
+msgid "Encryption Type"
+msgstr ""
+
+msgid "PSK"
+msgstr ""
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Country Code"
+msgstr ""
+
+msgid "Information provided by hostapd"
+msgstr ""
+
+msgid "Attempting to start hotspot"
+msgstr ""
+
+msgid "Attempting to stop hotspot"
+msgstr ""
+
+msgid "HostAPD is not running"
+msgstr ""
+
+msgid "HostAPD is running"
+msgstr ""
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr ""
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr ""
+
+msgid "Unknown interface"
+msgstr ""
+
+msgid "Country code must be blank or two characters"
+msgstr ""
+
+msgid "Wifi Hotspot settings saved"
+msgstr ""
+
+msgid "Unable to save wifi hotspot settings"
+msgstr ""
+
+msgid "Start hotspot"
+msgstr ""
+
+msgid "Stop hotspot"
+msgstr ""
+
+msgid "Restart hotspot"
+msgstr ""
+
+msgid "Enable logging"
+msgstr ""
+
+msgid "Logfile output"
+msgstr ""
+
+msgid "WiFi client AP mode"
+msgstr ""
+
+msgid "Bridged AP mode"
+msgstr ""
+
+msgid "Hide SSID in broadcast"
+msgstr ""
+
+msgid "Maximum number of clients"
+msgstr ""
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr ""
+
+#: includes/networking.php
+msgid "Summary"
+msgstr ""
+
+msgid "Current settings"
+msgstr ""
+
+msgid "Default Gateway"
+msgstr ""
+
+msgid "Alternate DNS Server"
+msgstr ""
+
+msgid "Adapter IP Address Settings"
+msgstr ""
+
+msgid "Enable Fallback to Static Option"
+msgstr ""
+
+msgid "Static IP"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Static IP Options"
+msgstr ""
+
+msgid "Apply settings"
+msgstr ""
+
+msgid "Information provided by /sys/class/net"
+msgstr ""
+
+#: includes/system.php
+msgid "System Information"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Language settings"
+msgstr ""
+
+msgid "Select a language"
+msgstr ""
+
+msgid "Language setting saved"
+msgstr ""
+
+msgid "Console"
+msgstr ""
+
+msgid "Hostname"
+msgstr ""
+
+msgid "Pi Revision"
+msgstr ""
+
+msgid "Uptime"
+msgstr ""
+
+msgid "Memory Used"
+msgstr ""
+
+msgid "CPU Load"
+msgstr ""
+
+msgid "Reboot"
+msgstr ""
+
+msgid "Shutdown"
+msgstr ""
+
+msgid "System Rebooting Now!"
+msgstr ""
+
+msgid "System Shutting Down Now!"
+msgstr ""
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr ""
+
+msgid "Select a theme"
+msgstr ""
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr ""
+
+msgid "Data usage monitoring"
+msgstr ""
+
+msgid "Hourly traffic amount"
+msgstr ""
+
+msgid "Daily traffic amount"
+msgstr ""
+
+msgid "Monthly traffic amount"
+msgstr ""
+
+msgid "Hourly"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Monthly"
+msgstr ""
+
+msgid "interface"
+msgstr ""
+
+msgid "date"
+msgstr ""
+
+msgid "Send MB"
+msgstr ""
+
+msgid "Receive MB"
+msgstr ""
+
+msgid "Information provided by vnstat"
+msgstr ""
+
+msgid "Loading {0} bandwidth chart"
+msgstr ""
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr ""
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr ""
+
+msgid "OpenVPN is running"
+msgstr ""
+
+msgid "Server settings"
+msgstr ""
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr ""
+
+msgid "Client Log"
+msgstr ""
+
+msgid "Port"
+msgstr ""
+
+msgid "Protocol"
+msgstr ""
+
+msgid "Root CA certificate"
+msgstr ""
+
+msgid "Server certificate"
+msgstr ""
+
+msgid "Diffie Hellman parameters"
+msgstr ""
+
+msgid "KeepAlive"
+msgstr ""
+
+msgid "Server log"
+msgstr ""
+
+msgid "Start OpenVPN"
+msgstr ""
+
+msgid "Stop OpenVPN"
+msgstr ""
+
+msgid "Information provided by openvpn"
+msgstr ""
+
+msgid "Attempting to start openvpn"
+msgstr ""
+
+msgid "Attempting to stop openvpn"
+msgstr ""
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr ""
+
+msgid "TOR is running"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Relay settings"
+msgstr ""
+
+msgid "Nickname"
+msgstr ""
+
+msgid "Address"
+msgstr ""
+
+msgid "Start TOR"
+msgstr ""
+
+msgid "Stop TOR"
+msgstr ""
+
+msgid "Information provided by tor"
+msgstr ""
+
+msgid "Attempting to start TOR"
+msgstr ""
+
+msgid "Attempting to stop TOR"
+msgstr ""
+
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr ""
+
+#: common form controls
+msgid "Save settings"
+msgstr ""
+
+msgid "Refresh"
+msgstr ""
+
+msgid "running"
+msgstr ""
+
+msgid "stopped"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "up"
+msgstr ""
+
+msgid "down"
+msgstr ""
+
+msgid "adblock"
+msgstr ""
+
+msgid "Ad Blocking"
+msgstr ""
+
+msgid "Start Ad Blocking"
+msgstr ""
+
+msgid "Restart Ad Blocking"
+msgstr ""
+
+msgid "Blocklist settings"
+msgstr ""
+
+msgid "Enable blocklists"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr ""
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Information provided by adblock"
+msgstr ""
+
