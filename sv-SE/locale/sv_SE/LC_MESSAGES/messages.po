@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 07:35\n"
+"PO-Revision-Date: 2020-04-05 08:54\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -17,10 +17,10 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr ""
+msgstr "RaspAP Wifi Konfigurationsportal"
 
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Växla meny"
 
 msgid "RaspAP Wifi Portal"
 msgstr ""
@@ -29,13 +29,13 @@ msgid "Dashboard"
 msgstr ""
 
 msgid "WiFi client"
-msgstr ""
+msgstr "WiFi klienten"
 
 msgid "Hotspot"
 msgstr ""
 
 msgid "Networking"
-msgstr ""
+msgstr "Nätverk"
 
 msgid "DHCP Server"
 msgstr ""
@@ -47,275 +47,275 @@ msgid "TOR proxy"
 msgstr ""
 
 msgid "Authentication"
-msgstr ""
+msgstr "Autentisering"
 
 msgid "Change Theme"
-msgstr ""
+msgstr "Byt Tema"
 
 msgid "System"
 msgstr ""
 
 msgid "About RaspAP"
-msgstr ""
+msgstr "Om RaspAP"
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr ""
+msgstr "Autentiseringsinställningar"
 
 msgid "New passwords do not match"
-msgstr ""
+msgstr "Nya lösenord matchar ej"
 
 msgid "Username must not be empty"
-msgstr ""
+msgstr "Användarnamnet saknar värde"
 
 msgid "Admin password updated"
-msgstr ""
+msgstr "Admin lösenord uppdaterat"
 
 msgid "Failed to update admin password"
-msgstr ""
+msgstr "Misslyckades med att uppdatera admin lösenord"
 
 msgid "Old password does not match"
-msgstr ""
+msgstr "Gamla lösenord matchar ej"
 
 msgid "Username"
-msgstr ""
+msgstr "Användarnamn"
 
 msgid "Old password"
-msgstr ""
+msgstr "Gammalt lösenord"
 
 msgid "New password"
-msgstr ""
+msgstr "Nytt lösenord"
 
 msgid "Repeat new password"
-msgstr ""
+msgstr "Upprepa nytt lösenord"
 
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr ""
+msgstr "Klient inställningar"
 
 msgid "SSID"
 msgstr ""
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanal"
 
 msgid "Security"
-msgstr ""
+msgstr "Säkerhet"
 
 msgid "Passphrase"
-msgstr ""
+msgstr "Lösenordsfras"
 
 msgid "Wifi settings updated successfully"
-msgstr ""
+msgstr "Wifi inställningar har uppdaterats"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr ""
+msgstr "Wifi inställningar har uppdaterats men omstarten misslyckades (kan ej exekvera 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
-msgstr ""
+msgstr "Wifi inställningar kunde ej uppdateras"
 
 msgid "Failed to update wifi settings"
-msgstr ""
+msgstr "Det gick inte att uppdatera wifi inställningarna"
 
 msgid "Rescan"
-msgstr ""
+msgstr "Sök igen"
 
 msgid "Update"
-msgstr ""
+msgstr "Uppdatera"
 
 msgid "Add"
-msgstr ""
+msgstr "Lägg till"
 
 msgid "Delete"
-msgstr ""
+msgstr "Ta bort"
 
 msgid "Show"
-msgstr ""
+msgstr "Visa"
 
 msgid "Hide"
-msgstr ""
+msgstr "Dölj"
 
 msgid "Not configured"
-msgstr ""
+msgstr "Inte konfigurerad"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr ""
+msgstr "<strong>Notera:</strong> WEP åtkomstpunkter visas som 'Öppna'. RaspAP stödjer närvarande inte anslutning till WEP"
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr ""
+msgstr "Gränssnittsinformation"
 
 msgid "Interface Name"
-msgstr ""
+msgstr "Gränssnittsnamn"
 
 msgid "IPv4 Address"
-msgstr ""
+msgstr "IPv4-adress"
 
 msgid "IPv6 Address"
-msgstr ""
+msgstr "IPv6-adress"
 
 msgid "Subnet Mask"
 msgstr ""
 
 msgid "Mac Address"
-msgstr ""
+msgstr "Mac Adress"
 
 msgid "Interface Statistics"
-msgstr ""
+msgstr "Gränssnittsstatistik"
 
 msgid "Received Packets"
-msgstr ""
+msgstr "Mottagna Packets"
 
 msgid "Received Bytes"
-msgstr ""
+msgstr "Mottagna Bytes"
 
 msgid "Transferred Packets"
-msgstr ""
+msgstr "Överförda Packets"
 
 msgid "Transferred Bytes"
-msgstr ""
+msgstr "Överförda Bytes"
 
 msgid "Wireless Information"
 msgstr ""
 
 msgid "Connected To"
-msgstr ""
+msgstr "Ansluten Till"
 
 msgid "AP Mac Address"
-msgstr ""
+msgstr "AP Mac Adress"
 
 msgid "Bitrate"
 msgstr ""
 
 msgid "Signal Level"
-msgstr ""
+msgstr "Signalnivå"
 
 msgid "Transmit Power"
 msgstr ""
 
 msgid "Frequency"
-msgstr ""
+msgstr "Frekvens"
 
 msgid "Link Quality"
-msgstr ""
+msgstr "Länkkvalitet"
 
 msgid "Information provided by ip and iw and from system"
-msgstr ""
+msgstr "Information tillhandahållen av ip, iw och systemet"
 
 msgid "No MAC Address Found"
-msgstr ""
+msgstr "Ingen MAC Adress Hittad"
 
 msgid "No IP Address Found"
-msgstr ""
+msgstr "Ingen IP Adress Hittad"
 
 msgid "No Subnet Mask Found"
-msgstr ""
+msgstr "Ingen Subnet Mask Hittad"
 
 msgid "No Data"
-msgstr ""
+msgstr "Inga Data"
 
 msgid "Not connected"
-msgstr ""
+msgstr "Ej ansluten"
 
 msgid "Interface is up"
-msgstr ""
+msgstr "Gränssnittet är uppe"
 
 msgid "Interface is down"
-msgstr ""
+msgstr "Gränssnittet är nere"
 
 msgid "Interface already down"
-msgstr ""
+msgstr "Gränssnittet är redan nere"
 
 msgid "Start wlan0"
-msgstr ""
+msgstr "Starta wlan0"
 
 msgid "Stop wlan0"
-msgstr ""
+msgstr "Stoppa wlan0"
 
 msgid "Connected Devices"
-msgstr ""
+msgstr "Anslutna Enheter"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr ""
+msgstr "Inställningar för DHCP-server"
 
 msgid "Client list"
-msgstr ""
+msgstr "Klient lista"
 
 msgid "Interface"
-msgstr ""
+msgstr "Gränssnittet"
 
 msgid "DNS Server"
 msgstr ""
 
 msgid "Starting IP Address"
-msgstr ""
+msgstr "Startar IP Adress"
 
 msgid "Ending IP Address"
-msgstr ""
+msgstr "Ending IP Adress"
 
 msgid "Static Leases"
-msgstr ""
+msgstr "Statisk leasing"
 
 msgid "Add static DHCP lease"
-msgstr ""
+msgstr "Lägg till statisk DHCP-leasing"
 
 msgid "Lease Time"
-msgstr ""
+msgstr "Lease Tid"
 
 msgid "Interval"
-msgstr ""
+msgstr "Intervall"
 
 msgid "Active DHCP leases"
-msgstr ""
+msgstr "Aktiva DHCP ärenden"
 
 msgid "Expire time"
-msgstr ""
+msgstr "Förfallotid"
 
 msgid "MAC Address"
-msgstr ""
+msgstr "MAC Adress"
 
 msgid "Host name"
-msgstr ""
+msgstr "Värdnamn"
 
 msgid "Client ID"
-msgstr ""
+msgstr "Klient ID"
 
 msgid "Information provided by Dnsmasq"
-msgstr ""
+msgstr "Information tillhandahållen av Dnsmasq"
 
 msgid "Stop dnsmasq"
-msgstr ""
+msgstr "Stoppa dnsmasq"
 
 msgid "Start dnsmasq"
-msgstr ""
+msgstr "Starta dnsmasq"
 
 msgid "Dnsmasq configuration updated successfully"
-msgstr ""
+msgstr "Dnsmasq konfiguration har uppdaterats"
 
 msgid "dnsmasq already running"
-msgstr ""
+msgstr "dnsmasq är redan igång"
 
 msgid "Successfully started dnsmasq"
-msgstr ""
+msgstr "Startade dnsmasq"
 
 msgid "Failed to start dnsmasq"
-msgstr ""
+msgstr "Kunde ej starta dnsmasq"
 
 msgid "Successfully stopped dnsmasq"
-msgstr ""
+msgstr "Stoppade dnsmasq"
 
 msgid "Failed to stop dnsmasq"
-msgstr ""
+msgstr "Kunde ej stoppa dnsmasq"
 
 msgid "dnsmasq already stopped"
-msgstr ""
+msgstr "dnsmasq är redan stoppad"
 
 msgid "Dnsmasq is running"
-msgstr ""
+msgstr "Dnsmasq körs"
 
 msgid "Dnsmasq is not running"
-msgstr ""
+msgstr "Dnsmasq körs ej"
 
 msgid "Upstream DNS servers"
 msgstr ""
@@ -346,319 +346,319 @@ msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
-msgstr ""
+msgstr "Grundläggande"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Advancerad"
 
 msgid "Basic settings"
-msgstr ""
+msgstr "Grundläggande inställningar"
 
 msgid "Wireless Mode"
-msgstr ""
+msgstr "Trådlöst läge"
 
 msgid "Security settings"
-msgstr ""
+msgstr "Säkerhetsinställningar"
 
 msgid "Security type"
-msgstr ""
+msgstr "Säkerhetstyp"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Krypteringstyp"
 
 msgid "PSK"
 msgstr ""
 
 msgid "Advanced settings"
-msgstr ""
+msgstr "Advancerade inställningar"
 
 msgid "Country Code"
-msgstr ""
+msgstr "Landskod"
 
 msgid "Information provided by hostapd"
-msgstr ""
+msgstr "Information tillhandahållen av hostapd"
 
 msgid "Attempting to start hotspot"
-msgstr ""
+msgstr "Försöker starta hotspot"
 
 msgid "Attempting to stop hotspot"
-msgstr ""
+msgstr "Försöker stoppa hotspot"
 
 msgid "HostAPD is not running"
-msgstr ""
+msgstr "HostAPD körs ej"
 
 msgid "HostAPD is running"
-msgstr ""
+msgstr "HostAPD körs"
 
 msgid "SSID must be between 1 and 32 characters"
-msgstr ""
+msgstr "SSID måste vara mellan 1 och 32 tecken"
 
 msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr ""
+msgstr "WPA lösenordsfras måste vara mellan 8 och 63 tecken"
 
 msgid "Unknown interface"
-msgstr ""
+msgstr "Okänt gränssnitt"
 
 msgid "Country code must be blank or two characters"
-msgstr ""
+msgstr "Landskoden måste vara tom eller bestå av 2 tecken"
 
 msgid "Wifi Hotspot settings saved"
-msgstr ""
+msgstr "Wifi Hotspot inställningar har sparats"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr ""
+msgstr "Kunde ej spara wifi hotspot inställningar"
 
 msgid "Start hotspot"
-msgstr ""
+msgstr "Starta hotspot"
 
 msgid "Stop hotspot"
-msgstr ""
+msgstr "Stoppa hotspot"
 
 msgid "Restart hotspot"
-msgstr ""
+msgstr "Starta om hotspot"
 
 msgid "Enable logging"
-msgstr ""
+msgstr "Aktivera loggning"
 
 msgid "Logfile output"
-msgstr ""
+msgstr "Logfilutskrift"
 
 msgid "WiFi client AP mode"
-msgstr ""
+msgstr "AP-läge för wifi-klient"
 
 msgid "Bridged AP mode"
 msgstr ""
 
 msgid "Hide SSID in broadcast"
-msgstr ""
+msgstr "Dölj SSID i sändning"
 
 msgid "Maximum number of clients"
-msgstr ""
+msgstr "Maximalt antal klienter"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr ""
+msgstr "Konfigurerar alternativet max_num_sta för hostapd. Ordinarie och maximalt är 2007. Tomt eller 0 innebär att ordinarie värde gäller."
 
 #: includes/networking.php
 msgid "Summary"
-msgstr ""
+msgstr "Sammanfattning"
 
 msgid "Current settings"
-msgstr ""
+msgstr "Nuvarande inställningar"
 
 msgid "Default Gateway"
-msgstr ""
+msgstr "Standard Gateway"
 
 msgid "Alternate DNS Server"
-msgstr ""
+msgstr "Alternativ DNS Server"
 
 msgid "Adapter IP Address Settings"
-msgstr ""
+msgstr "Adapter IP-adressinställningar"
 
 msgid "Enable Fallback to Static Option"
-msgstr ""
+msgstr "Aktivera Fallback till statiskt alternativ"
 
 msgid "Static IP"
-msgstr ""
+msgstr "Statisk IP"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiverad"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktiverad"
 
 msgid "Static IP Options"
-msgstr ""
+msgstr "Statiska IP-alternativ"
 
 msgid "Apply settings"
-msgstr ""
+msgstr "Använd inställningar"
 
 msgid "Information provided by /sys/class/net"
-msgstr ""
+msgstr "Information tillhandahållen av /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr ""
+msgstr "Systeminformation"
 
 msgid "Language"
-msgstr ""
+msgstr "Språk"
 
 msgid "Language settings"
-msgstr ""
+msgstr "Språkinställningar"
 
 msgid "Select a language"
-msgstr ""
+msgstr "Välj ett språk"
 
 msgid "Language setting saved"
-msgstr ""
+msgstr "Språkinställningen sparades"
 
 msgid "Console"
-msgstr ""
+msgstr "Konsol"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Värdnamn"
 
 msgid "Pi Revision"
 msgstr ""
 
 msgid "Uptime"
-msgstr ""
+msgstr "Drifttid"
 
 msgid "Memory Used"
-msgstr ""
+msgstr "Minne Använt"
 
 msgid "CPU Load"
-msgstr ""
+msgstr "CPU Användning"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Starta om"
 
 msgid "Shutdown"
-msgstr ""
+msgstr "Stäng av"
 
 msgid "System Rebooting Now!"
-msgstr ""
+msgstr "Systemet Startar Om Nu!"
 
 msgid "System Shutting Down Now!"
-msgstr ""
+msgstr "Systemet Stängs Av!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr ""
+msgstr "Temainställningar"
 
 msgid "Select a theme"
-msgstr ""
+msgstr "Välj ett tema"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr ""
+msgstr "Dataanvändning"
 
 msgid "Data usage monitoring"
-msgstr ""
+msgstr "Bevakning av dataanvändning"
 
 msgid "Hourly traffic amount"
-msgstr ""
+msgstr "Trafik per timme"
 
 msgid "Daily traffic amount"
-msgstr ""
+msgstr "Daglig trafik"
 
 msgid "Monthly traffic amount"
-msgstr ""
+msgstr "Månatlig trafik"
 
 msgid "Hourly"
-msgstr ""
+msgstr "Varje timme"
 
 msgid "Daily"
-msgstr ""
+msgstr "Daglig"
 
 msgid "Monthly"
-msgstr ""
+msgstr "Månatlig"
 
 msgid "interface"
-msgstr ""
+msgstr "gränssnitt"
 
 msgid "date"
-msgstr ""
+msgstr "datum"
 
 msgid "Send MB"
-msgstr ""
+msgstr "Skicka MB"
 
 msgid "Receive MB"
-msgstr ""
+msgstr "Ta emot MB"
 
 msgid "Information provided by vnstat"
-msgstr ""
+msgstr "Information tillhandahållen av vnstat"
 
 msgid "Loading {0} bandwidth chart"
-msgstr ""
+msgstr "Laddar diagram med bandbredd för {0}"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr ""
+msgstr "Visar {0} till {1} av {2} inlägg"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr ""
+msgstr "OpenVPN körs inte"
 
 msgid "OpenVPN is running"
-msgstr ""
+msgstr "OpenVPN körs"
 
 msgid "Server settings"
-msgstr ""
+msgstr "Serverinställningar"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr ""
+msgstr "Välj konfigurationsfil för OpenVPN (.ovpn)"
 
 msgid "Client Log"
-msgstr ""
+msgstr "Klientlogg"
 
 msgid "Port"
 msgstr ""
 
 msgid "Protocol"
-msgstr ""
+msgstr "Protokoll"
 
 msgid "Root CA certificate"
-msgstr ""
+msgstr "Root CA-certifikat"
 
 msgid "Server certificate"
-msgstr ""
+msgstr "Servercertifikat"
 
 msgid "Diffie Hellman parameters"
-msgstr ""
+msgstr "Diffie Hellman-parametrar"
 
 msgid "KeepAlive"
-msgstr ""
+msgstr "Håll vid liv"
 
 msgid "Server log"
-msgstr ""
+msgstr "Serverlogg"
 
 msgid "Start OpenVPN"
-msgstr ""
+msgstr "Starts OpenVPN"
 
 msgid "Stop OpenVPN"
-msgstr ""
+msgstr "Stoppa OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr ""
+msgstr "Information tillhandahållen av openvpn"
 
 msgid "Attempting to start openvpn"
-msgstr ""
+msgstr "Försöker starta openvpn"
 
 msgid "Attempting to stop openvpn"
-msgstr ""
+msgstr "Försöker stoppa openvpn"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr ""
+msgstr "TOR körs inte"
 
 msgid "TOR is running"
-msgstr ""
+msgstr "TOR körs"
 
 msgid "Relay"
-msgstr ""
+msgstr "Relä"
 
 msgid "Relay settings"
-msgstr ""
+msgstr "Reläinställningar"
 
 msgid "Nickname"
-msgstr ""
+msgstr "Smeknamn"
 
 msgid "Address"
-msgstr ""
+msgstr "Adress"
 
 msgid "Start TOR"
-msgstr ""
+msgstr "Starta TOR"
 
 msgid "Stop TOR"
-msgstr ""
+msgstr "Stoppa TOR"
 
 msgid "Information provided by tor"
-msgstr ""
+msgstr "Information tillhandahållen av tor"
 
 msgid "Attempting to start TOR"
-msgstr ""
+msgstr "Försöker starta TOR"
 
 msgid "Attempting to stop TOR"
-msgstr ""
+msgstr "Försöker stoppa TOR"
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
@@ -666,25 +666,25 @@ msgstr ""
 
 #: common form controls
 msgid "Save settings"
-msgstr ""
+msgstr "Spara inställningar"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Ladda om"
 
 msgid "running"
-msgstr ""
+msgstr "körs"
 
 msgid "stopped"
-msgstr ""
+msgstr "stoppad"
 
 msgid "Remove"
-msgstr ""
+msgstr "Ta bort"
 
 msgid "up"
-msgstr ""
+msgstr "upp"
 
 msgid "down"
-msgstr ""
+msgstr "ned"
 
 msgid "adblock"
 msgstr ""
