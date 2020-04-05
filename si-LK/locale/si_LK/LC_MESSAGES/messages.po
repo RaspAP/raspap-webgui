@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 07:35\n"
+"PO-Revision-Date: 2020-04-05 08:54\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Sinhala\n"
 "Language: si_LK\n"
@@ -17,43 +17,43 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr ""
+msgstr "RaspAP Wifi සැකසුම් වෙබ් අඩවිය"
 
 msgid "Toggle navigation"
-msgstr ""
+msgstr "හුවමාරුවීම"
 
 msgid "RaspAP Wifi Portal"
-msgstr ""
+msgstr "RaspAP Wifi වෙබ් අඩවිය"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "උපකාරක පුවරුව"
 
 msgid "WiFi client"
-msgstr ""
+msgstr "WiFi සේවාලාභි "
 
 msgid "Hotspot"
-msgstr ""
+msgstr "හොට්ස්පොට් සැකසුම"
 
 msgid "Networking"
-msgstr ""
+msgstr "ජාලකරණ සැකසුම"
 
 msgid "DHCP Server"
-msgstr ""
+msgstr "DHCP සර්වර් සැකසුම"
 
 msgid "OpenVPN"
-msgstr ""
+msgstr "OpenVPN සැකසුම"
 
 msgid "TOR proxy"
-msgstr ""
+msgstr "TOR proxy සැකසුම"
 
 msgid "Authentication"
-msgstr ""
+msgstr "සත්‍යාපනය වින්‍යාස කරන්න"
 
 msgid "Change Theme"
-msgstr ""
+msgstr "පසුබිම් සැකසුම"
 
 msgid "System"
-msgstr ""
+msgstr "පද්ධතිය"
 
 msgid "About RaspAP"
 msgstr ""
@@ -63,71 +63,71 @@ msgid "Authentication settings"
 msgstr ""
 
 msgid "New passwords do not match"
-msgstr ""
+msgstr "නව මුරපදයන් නොගැලපේ"
 
 msgid "Username must not be empty"
-msgstr ""
+msgstr "පරිශීලක නාමය හිස් නොවිය යුතුය"
 
 msgid "Admin password updated"
-msgstr ""
+msgstr "පරිපාලක මුරපදය යාවත්කාලීන වීම සාර්ථකයි"
 
 msgid "Failed to update admin password"
-msgstr ""
+msgstr "පරිපාලක මුරපදය යාවත්කාලීන කිරීම අසාර්ථකයි"
 
 msgid "Old password does not match"
-msgstr ""
+msgstr "පැරණි  මුරපදය නොගැලපේ"
 
 msgid "Username"
-msgstr ""
+msgstr "පරිශීලක නාමය"
 
 msgid "Old password"
-msgstr ""
+msgstr "පැරණි  මුරපදය"
 
 msgid "New password"
-msgstr ""
+msgstr "නව මුරපදය"
 
 msgid "Repeat new password"
-msgstr ""
+msgstr "නව මුරපදය නැවත සිදු කරන්න"
 
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr ""
+msgstr "සේවාදායක සැකසුම්"
 
 msgid "SSID"
-msgstr ""
+msgstr "සේවා නිර්ණය කිරීම"
 
 msgid "Channel"
-msgstr ""
+msgstr "නාලිකාව"
 
 msgid "Security"
-msgstr ""
+msgstr "ආරක්ෂාව"
 
 msgid "Passphrase"
-msgstr ""
+msgstr "මුරපදය"
 
 msgid "Wifi settings updated successfully"
-msgstr ""
+msgstr "Wifi සැකසුම්  යාවත්කාලීන වීම සාර්ථකයි"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr ""
+msgstr "Wifi සැකසුම් යාවත්කාලීන කර ඇති නමුත් එය නැවත ආරම්භ කළ නොහැක (wpa_cli reconfigure ක්‍රියාත්මක කළ නොහැක)"
 
 msgid "Wifi settings failed to be updated"
-msgstr ""
+msgstr "Wifi සැකසුම් යාවත්කාලීන කිරීම නොහැකිය"
 
 msgid "Failed to update wifi settings"
-msgstr ""
+msgstr "Wifi සැකසුම් යාවත්කාල කිරීමට අසමත් විය"
 
 msgid "Rescan"
-msgstr ""
+msgstr "නැවත සුපිරික්සා කරන්න"
 
 msgid "Update"
-msgstr ""
+msgstr "යාවත්කාලීන කිරීම"
 
 msgid "Add"
-msgstr ""
+msgstr "එක් කරන්න"
 
 msgid "Delete"
-msgstr ""
+msgstr "මකා දමන්න"
 
 msgid "Show"
 msgstr ""
@@ -139,14 +139,14 @@ msgid "Not configured"
 msgstr ""
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr ""
+msgstr "<strong> සටහන: </ strong> WEP ප්‍රවේශ වීමේ ස්ථාන 'විවෘත' ලෙස පෙනේ. RaspAP දැනට WEP වෙත සම්බන්ධ වීමට සහාය නොදේ"
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr ""
+msgstr "අතුරුමුහුණත් තොරතුරු"
 
 msgid "Interface Name"
-msgstr ""
+msgstr "අතුරුමුහුණත නම"
 
 msgid "IPv4 Address"
 msgstr ""
@@ -155,104 +155,104 @@ msgid "IPv6 Address"
 msgstr ""
 
 msgid "Subnet Mask"
-msgstr ""
+msgstr "උපජාල ආවරණය"
 
 msgid "Mac Address"
-msgstr ""
+msgstr "Mac ලිපිනය"
 
 msgid "Interface Statistics"
-msgstr ""
+msgstr "අතුරු මුහුණත සංඛ්‍යාලේඛන"
 
 msgid "Received Packets"
-msgstr ""
+msgstr "ලබාගත් දත්ත පැකට් ප්‍රමාණය"
 
 msgid "Received Bytes"
-msgstr ""
+msgstr "ලැබුණු බයිට් ප්‍රමාණය"
 
 msgid "Transferred Packets"
-msgstr ""
+msgstr "යවන ලද  දත්ත පැකට් ප්‍රමාණය"
 
 msgid "Transferred Bytes"
-msgstr ""
+msgstr "යවන ලද  බයිට් ප්‍රමාණය"
 
 msgid "Wireless Information"
-msgstr ""
+msgstr "රැහැන් රහිත පද්ධතියේ තොරතුරු"
 
 msgid "Connected To"
-msgstr ""
+msgstr "සම්බන්ධයි"
 
 msgid "AP Mac Address"
-msgstr ""
+msgstr "AP Mac ලිපිනය"
 
 msgid "Bitrate"
-msgstr ""
+msgstr "බිට් අනුපාතය"
 
 msgid "Signal Level"
-msgstr ""
+msgstr "සංඥා මට්ටම"
 
 msgid "Transmit Power"
-msgstr ""
+msgstr "සම්පේශණ බලය"
 
 msgid "Frequency"
-msgstr ""
+msgstr "සංඛ්‍යාතය"
 
 msgid "Link Quality"
-msgstr ""
+msgstr "සබැඳියෙහි  ගුණත්වය"
 
 msgid "Information provided by ip and iw and from system"
-msgstr ""
+msgstr "ip සහ iw සපයන ලද තොරතුරු"
 
 msgid "No MAC Address Found"
-msgstr ""
+msgstr "MAC ලිපිනයක් නොමැත"
 
 msgid "No IP Address Found"
-msgstr ""
+msgstr "කිසිදු IP ලිපිනයක් සොයාගත නොහැකි විය"
 
 msgid "No Subnet Mask Found"
-msgstr ""
+msgstr "උපජාල ආවරණයක් සොයාගත නොහැකි විය"
 
 msgid "No Data"
-msgstr ""
+msgstr "දත්ත නැත"
 
 msgid "Not connected"
-msgstr ""
+msgstr "සම්බන්ධ නොවේ"
 
 msgid "Interface is up"
-msgstr ""
+msgstr "අතුරුමුහුණත සක්‍රීය විය"
 
 msgid "Interface is down"
-msgstr ""
+msgstr "අතුරුමුහුණත අක්‍රීය විය"
 
 msgid "Interface already down"
-msgstr ""
+msgstr "අතුරුමුහුණත අක්‍රීය වී ඇත"
 
 msgid "Start wlan0"
-msgstr ""
+msgstr "wlan0 ආරම්භ කරන්න"
 
 msgid "Stop wlan0"
-msgstr ""
+msgstr "wlan0 නතර කරන්න"
 
 msgid "Connected Devices"
-msgstr ""
+msgstr "සම්බන්ධිත උපකරණ"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr ""
+msgstr "සර්වර සැකසීම්"
 
 msgid "Client list"
-msgstr ""
+msgstr "සේවාදායක ලැයිස්තුව"
 
 msgid "Interface"
 msgstr ""
 
 msgid "DNS Server"
-msgstr ""
+msgstr "DNS සේවාදායකය"
 
 msgid "Starting IP Address"
-msgstr ""
+msgstr "IP ලිපිනය ආරම්භ කිරීම"
 
 msgid "Ending IP Address"
-msgstr ""
+msgstr "IP ලිපිනය අවසන් කිරීම"
 
 msgid "Static Leases"
 msgstr ""
@@ -261,49 +261,49 @@ msgid "Add static DHCP lease"
 msgstr ""
 
 msgid "Lease Time"
-msgstr ""
+msgstr "කල් පිරෙන කාලය"
 
 msgid "Interval"
-msgstr ""
+msgstr "කාල පරතරය"
 
 msgid "Active DHCP leases"
-msgstr ""
+msgstr "ක්‍රියාකාරී DHCP කාලය"
 
 msgid "Expire time"
-msgstr ""
+msgstr "කල් ඉකුත්වන්න කාලය"
 
 msgid "MAC Address"
-msgstr ""
+msgstr "MAC ලිපිනය "
 
 msgid "Host name"
-msgstr ""
+msgstr "Host නාමය"
 
 msgid "Client ID"
-msgstr ""
+msgstr "සේවාලාභී හැඳුනුම්පත් අංකය "
 
 msgid "Information provided by Dnsmasq"
-msgstr ""
+msgstr "Dnsmasq විසින් සපයන ලද තොරතුරු"
 
 msgid "Stop dnsmasq"
-msgstr ""
+msgstr "Dnsmasq නතර කරන්න"
 
 msgid "Start dnsmasq"
-msgstr ""
+msgstr "dnsmasq ආරම්භ කරන්න "
 
 msgid "Dnsmasq configuration updated successfully"
-msgstr ""
+msgstr "Dnsmasq සැකසීම  සාර්ථකව යාවත්කාලීන කර ඇත"
 
 msgid "dnsmasq already running"
-msgstr ""
+msgstr "dnsmasq දැනටමත් ක්‍රියාත්මක වේ"
 
 msgid "Successfully started dnsmasq"
-msgstr ""
+msgstr "dnsmasq සාර්ථකව ආරම්භ විය "
 
 msgid "Failed to start dnsmasq"
-msgstr ""
+msgstr "Dnsmasq ආරම්භ කිරීමට අපොහොසත් විය"
 
 msgid "Successfully stopped dnsmasq"
-msgstr ""
+msgstr " dnsmasq සාර්ථකව නතර කරන ලදී "
 
 msgid "Failed to stop dnsmasq"
 msgstr ""
@@ -315,7 +315,7 @@ msgid "Dnsmasq is running"
 msgstr ""
 
 msgid "Dnsmasq is not running"
-msgstr ""
+msgstr "Dnsmasq ක්‍රියාත්මක නොවේ"
 
 msgid "Upstream DNS servers"
 msgstr ""
@@ -346,82 +346,82 @@ msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
-msgstr ""
+msgstr "මූලික"
 
 msgid "Advanced"
-msgstr ""
+msgstr "උසස්"
 
 msgid "Basic settings"
-msgstr ""
+msgstr "මූලික සැකසුම්"
 
 msgid "Wireless Mode"
-msgstr ""
+msgstr "රැහැන් රහිත ක්‍රම "
 
 msgid "Security settings"
-msgstr ""
+msgstr "ආරක්ෂක සැකසුම්"
 
 msgid "Security type"
-msgstr ""
+msgstr "ආරක්ෂක ක්‍රමය  "
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "ගුප්තකේතන වර්ගය"
 
 msgid "PSK"
-msgstr ""
+msgstr "පූර්ව යෝජිත යතුර (PSK)"
 
 msgid "Advanced settings"
-msgstr ""
+msgstr "උසස් සැකසුම්"
 
 msgid "Country Code"
-msgstr ""
+msgstr "රටේ කේතය"
 
 msgid "Information provided by hostapd"
-msgstr ""
+msgstr "hostapd විසින් සපයන ලද තොරතුරු"
 
 msgid "Attempting to start hotspot"
-msgstr ""
+msgstr "Hotspot ආරම්භ කිරීමට උත්සාහ කිරීම"
 
 msgid "Attempting to stop hotspot"
-msgstr ""
+msgstr "Hotspot නතර කිරීමට උත්සාහ කිරීම"
 
 msgid "HostAPD is not running"
-msgstr ""
+msgstr "HostAPD ක්‍රියාත්මක නොවේ"
 
 msgid "HostAPD is running"
-msgstr ""
+msgstr "HostAPD ක්‍රියාත්මක වේ"
 
 msgid "SSID must be between 1 and 32 characters"
-msgstr ""
+msgstr "SSID අක්ෂර 1 සිට 32 දක්වා විය යුතුය"
 
 msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr ""
+msgstr "WPA රහස්පදය අක්ෂර 8 සිට  63 අතර විය යුතුය"
 
 msgid "Unknown interface"
-msgstr ""
+msgstr "නොදන්නා අතුරු මුහුණතක්"
 
 msgid "Country code must be blank or two characters"
-msgstr ""
+msgstr "රටේ කේතය හිස් ව හෝ අක්ෂර දෙකක්  විය යුතුය"
 
 msgid "Wifi Hotspot settings saved"
-msgstr ""
+msgstr "Wifi හොට්ස්පොට් සැකසීම් සුරකින ලදි"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr ""
+msgstr "WiFi hotspot සැකසුම් සුරැකීමට නොහැකි විය"
 
 msgid "Start hotspot"
-msgstr ""
+msgstr "hotspot ආරම්භ කරන්න "
 
 msgid "Stop hotspot"
-msgstr ""
+msgstr "hotspot නතර  කරන්න"
 
 msgid "Restart hotspot"
-msgstr ""
+msgstr "hotspot නැවත ආරම්භ"
 
 msgid "Enable logging"
-msgstr ""
+msgstr "ඇතුල්වීම සක්‍රිය කරන්න "
 
 msgid "Logfile output"
-msgstr ""
+msgstr " ලොග්ෆයිල් නිමැවුම "
 
 msgid "WiFi client AP mode"
 msgstr ""
@@ -443,97 +443,97 @@ msgid "Summary"
 msgstr ""
 
 msgid "Current settings"
-msgstr ""
+msgstr "වත්මන් සැකසුම්"
 
 msgid "Default Gateway"
-msgstr ""
+msgstr "මුලික දොරටුව"
 
 msgid "Alternate DNS Server"
-msgstr ""
+msgstr "විකල්ප DNS සේවාදායකය"
 
 msgid "Adapter IP Address Settings"
-msgstr ""
+msgstr "ඇඩැප්ටරහි IP ලිපින සැකසුම්"
 
 msgid "Enable Fallback to Static Option"
-msgstr ""
+msgstr "ස්ථාවර  විකල්ප ක්‍රමයට   සක්‍රිය කරන්න  "
 
 msgid "Static IP"
 msgstr ""
 
 msgid "Enabled"
-msgstr ""
+msgstr "සක්‍රිය කර ඇත "
 
 msgid "Disabled"
-msgstr ""
+msgstr "ක්‍රියා විරහිත වී ඇත "
 
 msgid "Static IP Options"
-msgstr ""
+msgstr "ස්ථාවර  IP ක්‍රම "
 
 msgid "Apply settings"
-msgstr ""
+msgstr "සැකසීම් කරන්න"
 
 msgid "Information provided by /sys/class/net"
-msgstr ""
+msgstr "/ Sys / class / net විසින් සපයන ලද තොරතුරු"
 
 #: includes/system.php
 msgid "System Information"
-msgstr ""
+msgstr "පද්ධති තොරතුරු"
 
 msgid "Language"
-msgstr ""
+msgstr "භාෂාව"
 
 msgid "Language settings"
-msgstr ""
+msgstr "භාෂා සැකසුම්"
 
 msgid "Select a language"
-msgstr ""
+msgstr "භාෂාව තෝරන්න"
 
 msgid "Language setting saved"
-msgstr ""
+msgstr "භාෂා සැකසුම්  සුරකිනි "
 
 msgid "Console"
-msgstr ""
+msgstr "පාලන පුවරුව"
 
 msgid "Hostname"
-msgstr ""
+msgstr "සත්කාරක නාමය"
 
 msgid "Pi Revision"
-msgstr ""
+msgstr "Pi සංශෝදිතය "
 
 msgid "Uptime"
-msgstr ""
+msgstr "ක්‍රියාත්මක කළා සිමාව "
 
 msgid "Memory Used"
-msgstr ""
+msgstr "භාවිතා කල මතක ධාරිතාවය  "
 
 msgid "CPU Load"
-msgstr ""
+msgstr "CPU ධාරිතාවය"
 
 msgid "Reboot"
-msgstr ""
+msgstr "නැවත ආරම්භ කරන්න"
 
 msgid "Shutdown"
-msgstr ""
+msgstr "වසා දමන්න"
 
 msgid "System Rebooting Now!"
-msgstr ""
+msgstr "දැන් .... පද්ධතිය නැවත ක්‍රියාත්මක කරන්න  !"
 
 msgid "System Shutting Down Now!"
-msgstr ""
+msgstr "දැන් .... පද්ධතිය වසා දමන්න  !"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr ""
+msgstr "තේමා සැකසුම්"
 
 msgid "Select a theme"
-msgstr ""
+msgstr "තේමාවක් තෝරන්න"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr ""
+msgstr "දත්ත භාවිතය"
 
 msgid "Data usage monitoring"
-msgstr ""
+msgstr "දත්ත භාවිතය පිළිබඳ අධීක්ෂණය"
 
 msgid "Hourly traffic amount"
 msgstr ""
@@ -542,7 +542,7 @@ msgid "Daily traffic amount"
 msgstr ""
 
 msgid "Monthly traffic amount"
-msgstr ""
+msgstr "මාසිකව ප්ර වාහනය  කරන ලද දත්ත ප්ර මාණය"
 
 msgid "Hourly"
 msgstr ""
@@ -554,25 +554,25 @@ msgid "Monthly"
 msgstr ""
 
 msgid "interface"
-msgstr ""
+msgstr "අතුරුමුහුණත"
 
 msgid "date"
-msgstr ""
+msgstr "දිනය "
 
 msgid "Send MB"
-msgstr ""
+msgstr "යවන ලද  MB"
 
 msgid "Receive MB"
-msgstr ""
+msgstr "ලැබුණු  MB"
 
 msgid "Information provided by vnstat"
-msgstr ""
+msgstr "Vnstat විසින් සපයන ලද තොරතුරු"
 
 msgid "Loading {0} bandwidth chart"
-msgstr ""
+msgstr "දත්ත පරාස  වගු {0}  ආරම්භ වෙමින් පවතී  "
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr ""
+msgstr "{0} දක්වා  {1} / {2} ඇතුළත් කිරීම් පෙන්වමින් පවතී  "
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
@@ -666,10 +666,10 @@ msgstr ""
 
 #: common form controls
 msgid "Save settings"
-msgstr ""
+msgstr "සැකසුම් සුරකින්න"
 
 msgid "Refresh"
-msgstr ""
+msgstr "ප්‍රාණවත් කරන්න"
 
 msgid "running"
 msgstr ""
