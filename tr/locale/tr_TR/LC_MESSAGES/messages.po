@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 07:35\n"
+"PO-Revision-Date: 2020-04-05 08:54\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
@@ -17,305 +17,305 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr ""
+msgstr "RaspAP Wifi Yapılandırma Portalı"
 
 msgid "Toggle navigation"
-msgstr ""
+msgstr "Navigasyonu Aç/Kapa"
 
 msgid "RaspAP Wifi Portal"
-msgstr ""
+msgstr "RaspAP Wifi Portalı"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "Kontrol Paneli"
 
 msgid "WiFi client"
-msgstr ""
+msgstr "WiFi istemcisini"
 
 msgid "Hotspot"
-msgstr ""
+msgstr "Paylaşım noktasını"
 
 msgid "Networking"
-msgstr ""
+msgstr "Ağı"
 
 msgid "DHCP Server"
-msgstr ""
+msgstr "DHCP sunucusunu"
 
 msgid "OpenVPN"
-msgstr ""
+msgstr "OpenVPN'i"
 
 msgid "TOR proxy"
-msgstr ""
+msgstr "TOR proxysini"
 
 msgid "Authentication"
-msgstr ""
+msgstr "İzinleri"
 
 msgid "Change Theme"
-msgstr ""
+msgstr "Temayı değiştir"
 
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 msgid "About RaspAP"
-msgstr ""
+msgstr "RaspAP Hakkında"
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr ""
+msgstr "Kimlik Denetleme ayarları"
 
 msgid "New passwords do not match"
-msgstr ""
+msgstr "Yeni şifreler uyuşmuyor"
 
 msgid "Username must not be empty"
-msgstr ""
+msgstr "Kullanıcı adı boş bırakılamaz"
 
 msgid "Admin password updated"
-msgstr ""
+msgstr "Yönetici şifresi değiştirildi"
 
 msgid "Failed to update admin password"
-msgstr ""
+msgstr "Yönetici şifresi değiştirme başarısız"
 
 msgid "Old password does not match"
-msgstr ""
+msgstr "Eski şifre doğru değil"
 
 msgid "Username"
-msgstr ""
+msgstr "Kullanıcı adı"
 
 msgid "Old password"
-msgstr ""
+msgstr "Eski şifre"
 
 msgid "New password"
-msgstr ""
+msgstr "Yeni şifre"
 
 msgid "Repeat new password"
-msgstr ""
+msgstr "Yeni şifreyi tekrarla"
 
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr ""
+msgstr "İstemci ayarları"
 
 msgid "SSID"
 msgstr ""
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanal"
 
 msgid "Security"
-msgstr ""
+msgstr "Güvenlik"
 
 msgid "Passphrase"
-msgstr ""
+msgstr "Şifre"
 
 msgid "Wifi settings updated successfully"
-msgstr ""
+msgstr "Wifi ayarları başarıyla güncellendi"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr ""
+msgstr "Wifi ayarları güncellendi ancak yeniden başlatılamıyor (cannot execute 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
-msgstr ""
+msgstr "Wifi ayarları güncellenemedi"
 
 msgid "Failed to update wifi settings"
-msgstr ""
+msgstr "Wifi ayarları güncellenemedi"
 
 msgid "Rescan"
-msgstr ""
+msgstr "Yeniden tara"
 
 msgid "Update"
-msgstr ""
+msgstr "Güncelle"
 
 msgid "Add"
-msgstr ""
+msgstr "Ekle"
 
 msgid "Delete"
-msgstr ""
+msgstr "Sil"
 
 msgid "Show"
-msgstr ""
+msgstr "Göster"
 
 msgid "Hide"
-msgstr ""
+msgstr "Gizle"
 
 msgid "Not configured"
-msgstr ""
+msgstr "Ayarlanmamış"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr ""
+msgstr "<strong>Note:</strong> WEP erişim noktası 'Açık' gözüküyor. RaspAP şu anda WEP bağlantısını desteklemiyor"
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr ""
+msgstr "Arayüz Bilgisi"
 
 msgid "Interface Name"
-msgstr ""
+msgstr "Arayüz Adı"
 
 msgid "IPv4 Address"
-msgstr ""
+msgstr "IPv4 Adresi"
 
 msgid "IPv6 Address"
-msgstr ""
+msgstr "IPv6 Adresi"
 
 msgid "Subnet Mask"
-msgstr ""
+msgstr "Alt ağ maskesi"
 
 msgid "Mac Address"
-msgstr ""
+msgstr "Mac Adresi"
 
 msgid "Interface Statistics"
-msgstr ""
+msgstr "Arayüz İstatistikleri"
 
 msgid "Received Packets"
-msgstr ""
+msgstr "Alınan Paketler"
 
 msgid "Received Bytes"
-msgstr ""
+msgstr "Gönderilen bitler"
 
 msgid "Transferred Packets"
-msgstr ""
+msgstr "Transfer edilen paketler"
 
 msgid "Transferred Bytes"
-msgstr ""
+msgstr "Transfer edilen bitler"
 
 msgid "Wireless Information"
-msgstr ""
+msgstr "Kablosuz Bilgisi"
 
 msgid "Connected To"
-msgstr ""
+msgstr "Şuraya Bağlı"
 
 msgid "AP Mac Address"
-msgstr ""
+msgstr "AP Mac Adresi"
 
 msgid "Bitrate"
 msgstr ""
 
 msgid "Signal Level"
-msgstr ""
+msgstr "Sinyal Seviyesi"
 
 msgid "Transmit Power"
-msgstr ""
+msgstr "Aktarım Gücü"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Frekans"
 
 msgid "Link Quality"
-msgstr ""
+msgstr "Bağlantı Kalitesi"
 
 msgid "Information provided by ip and iw and from system"
-msgstr ""
+msgstr "Ip ve iw tarafından ve sistemden verilen bilgiler"
 
 msgid "No MAC Address Found"
-msgstr ""
+msgstr "MAC adresi bulunamadı"
 
 msgid "No IP Address Found"
-msgstr ""
+msgstr "IP adresi bulunamadı"
 
 msgid "No Subnet Mask Found"
-msgstr ""
+msgstr "Alt ağ maskesi bulunamadı"
 
 msgid "No Data"
-msgstr ""
+msgstr "Veri Yok"
 
 msgid "Not connected"
-msgstr ""
+msgstr "Bağlı değil"
 
 msgid "Interface is up"
-msgstr ""
+msgstr "Arayüz açık"
 
 msgid "Interface is down"
-msgstr ""
+msgstr "Arayüz kapalı"
 
 msgid "Interface already down"
-msgstr ""
+msgstr "Arayüz zaten kapalı"
 
 msgid "Start wlan0"
-msgstr ""
+msgstr "Wlan0'ı başlat"
 
 msgid "Stop wlan0"
-msgstr ""
+msgstr "Wlan0'ı durdur"
 
 msgid "Connected Devices"
-msgstr ""
+msgstr "Bağlı Aygıtlar"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr ""
+msgstr "DHCP sunucu ayarları"
 
 msgid "Client list"
-msgstr ""
+msgstr "İstemci listesi"
 
 msgid "Interface"
-msgstr ""
+msgstr "Arayüz"
 
 msgid "DNS Server"
-msgstr ""
+msgstr "DNS Sunucusu"
 
 msgid "Starting IP Address"
-msgstr ""
+msgstr "Başlangıc IP Adresi"
 
 msgid "Ending IP Address"
-msgstr ""
+msgstr "Ending IP Adresi"
 
 msgid "Static Leases"
-msgstr ""
+msgstr "Statik Kiralamalar"
 
 msgid "Add static DHCP lease"
-msgstr ""
+msgstr "Statik DHCP kiralaması ekle"
 
 msgid "Lease Time"
-msgstr ""
+msgstr "Kira Zamanı"
 
 msgid "Interval"
-msgstr ""
+msgstr "Süre"
 
 msgid "Active DHCP leases"
-msgstr ""
+msgstr "Aktif DHCP kiraları"
 
 msgid "Expire time"
-msgstr ""
+msgstr "Aşım Zamanı"
 
 msgid "MAC Address"
-msgstr ""
+msgstr "MAC adresi"
 
 msgid "Host name"
-msgstr ""
+msgstr "Sunucu adı"
 
 msgid "Client ID"
-msgstr ""
+msgstr "İstemci ID"
 
 msgid "Information provided by Dnsmasq"
-msgstr ""
+msgstr "Bilgi Dnsmasq tarafından sağlandı"
 
 msgid "Stop dnsmasq"
-msgstr ""
+msgstr "Dnsmasq'ı durdur"
 
 msgid "Start dnsmasq"
-msgstr ""
+msgstr "Dnsmasq'ı başlat"
 
 msgid "Dnsmasq configuration updated successfully"
-msgstr ""
+msgstr "Dnsmasq yapılandırması başarıyla güncellendi"
 
 msgid "dnsmasq already running"
-msgstr ""
+msgstr "Dnsmasq zaten çalışıyor"
 
 msgid "Successfully started dnsmasq"
-msgstr ""
+msgstr "Dnsmasq başarıyla başlatıldı"
 
 msgid "Failed to start dnsmasq"
-msgstr ""
+msgstr "Dnsmasq başlatılamadı"
 
 msgid "Successfully stopped dnsmasq"
-msgstr ""
+msgstr "Dnsmasq başarıyla durduruldu"
 
 msgid "Failed to stop dnsmasq"
-msgstr ""
+msgstr "Dnsmasq durdurulamadı"
 
 msgid "dnsmasq already stopped"
-msgstr ""
+msgstr "dnsmasq zaten çalışmıyor"
 
 msgid "Dnsmasq is running"
-msgstr ""
+msgstr "Dnsmasq çalışıyor"
 
 msgid "Dnsmasq is not running"
-msgstr ""
+msgstr "Dnsmasq çalışmıyor"
 
 msgid "Upstream DNS servers"
 msgstr ""
@@ -346,319 +346,319 @@ msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
-msgstr ""
+msgstr "Basit"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Gelişmiş"
 
 msgid "Basic settings"
-msgstr ""
+msgstr "Basit ayarlar"
 
 msgid "Wireless Mode"
-msgstr ""
+msgstr "Kablosuz Modu"
 
 msgid "Security settings"
-msgstr ""
+msgstr "Güvenlik ayarları"
 
 msgid "Security type"
-msgstr ""
+msgstr "Güvenlik tipi"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Şifreleme Tipi"
 
 msgid "PSK"
 msgstr ""
 
 msgid "Advanced settings"
-msgstr ""
+msgstr "Gelişmiş ayarlar"
 
 msgid "Country Code"
-msgstr ""
+msgstr "Ülke kodu"
 
 msgid "Information provided by hostapd"
-msgstr ""
+msgstr "Bilgi hostapd tarafından sağlandı"
 
 msgid "Attempting to start hotspot"
-msgstr ""
+msgstr "paylaşım başlatılıyor"
 
 msgid "Attempting to stop hotspot"
-msgstr ""
+msgstr "Paylaşım durduruluyor"
 
 msgid "HostAPD is not running"
-msgstr ""
+msgstr "HostAPD çalışmıyor"
 
 msgid "HostAPD is running"
-msgstr ""
+msgstr "HostAPD çalışıyor"
 
 msgid "SSID must be between 1 and 32 characters"
-msgstr ""
+msgstr "SSID 1 ve 32 karakter arasında olmalı"
 
 msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr ""
+msgstr "WPA şifresi 8 ve 63 karakter arasında olmalı"
 
 msgid "Unknown interface"
-msgstr ""
+msgstr "Bilinmeyen arayüz"
 
 msgid "Country code must be blank or two characters"
-msgstr ""
+msgstr "Ülke kodu boş bırakılmalı yada iki karakter içermeli"
 
 msgid "Wifi Hotspot settings saved"
-msgstr ""
+msgstr "Wifi paylaşımı ayarları kaydedildi"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr ""
+msgstr "Wifi paylaşımı ayarları kaydedilemiyor"
 
 msgid "Start hotspot"
-msgstr ""
+msgstr "Paylaşımı başlat"
 
 msgid "Stop hotspot"
-msgstr ""
+msgstr "Paylaşımı durdur"
 
 msgid "Restart hotspot"
-msgstr ""
+msgstr "Paylaşımı yeniden başlat"
 
 msgid "Enable logging"
-msgstr ""
+msgstr "Günlük kaydını etkinleştir"
 
 msgid "Logfile output"
-msgstr ""
+msgstr "Günlük dosyası çıkışı"
 
 msgid "WiFi client AP mode"
-msgstr ""
+msgstr "WiFi istemcisi AP modu"
 
 msgid "Bridged AP mode"
 msgstr ""
 
 msgid "Hide SSID in broadcast"
-msgstr ""
+msgstr "Yayında SSID'yi gizle"
 
 msgid "Maximum number of clients"
-msgstr ""
+msgstr "Maksimum istemci sayısı"
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr ""
+msgstr "Hostapd'ın max_num_sta seçeneğini yapılandırır. Varsayılan ve maksimum 2007'dir. Boşsa veya 0 ise, varsayılan geçerlidir."
 
 #: includes/networking.php
 msgid "Summary"
-msgstr ""
+msgstr "Özet"
 
 msgid "Current settings"
-msgstr ""
+msgstr "Şimdiki ayarlar"
 
 msgid "Default Gateway"
-msgstr ""
+msgstr "Varsayılan Geçit"
 
 msgid "Alternate DNS Server"
-msgstr ""
+msgstr "Alternatif DNS Sunucusu"
 
 msgid "Adapter IP Address Settings"
-msgstr ""
+msgstr "Adaptör IP Adresi Ayarları"
 
 msgid "Enable Fallback to Static Option"
-msgstr ""
+msgstr "Statik Seçeneğe Geri Dönüşü Etkinleştir"
 
 msgid "Static IP"
-msgstr ""
+msgstr "Statik IP"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Etkinleştirildi"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Devre dışı"
 
 msgid "Static IP Options"
-msgstr ""
+msgstr "Statik IP Ayarları"
 
 msgid "Apply settings"
-msgstr ""
+msgstr "Ayarları uygula"
 
 msgid "Information provided by /sys/class/net"
-msgstr ""
+msgstr "Bilgiler /sys/class/net tarafından sağlandı"
 
 #: includes/system.php
 msgid "System Information"
-msgstr ""
+msgstr "Sistem Bilgisi"
 
 msgid "Language"
-msgstr ""
+msgstr "Dil"
 
 msgid "Language settings"
-msgstr ""
+msgstr "Dil ayarları"
 
 msgid "Select a language"
-msgstr ""
+msgstr "Bir dil seçin"
 
 msgid "Language setting saved"
-msgstr ""
+msgstr "Dil ayarı kaydedildi"
 
 msgid "Console"
-msgstr ""
+msgstr "Konsol"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Sunucu adı"
 
 msgid "Pi Revision"
-msgstr ""
+msgstr "Pi Revizyonu"
 
 msgid "Uptime"
-msgstr ""
+msgstr "Çalışma süresi"
 
 msgid "Memory Used"
-msgstr ""
+msgstr "Kullanılan hafıza"
 
 msgid "CPU Load"
-msgstr ""
+msgstr "CPU Yükü"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Yeniden başlat"
 
 msgid "Shutdown"
-msgstr ""
+msgstr "Kapat"
 
 msgid "System Rebooting Now!"
-msgstr ""
+msgstr "Sistem Şimdi Yeniden Başlatılıyor!"
 
 msgid "System Shutting Down Now!"
-msgstr ""
+msgstr "Sistem Şimdi Kapatılıyor!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr ""
+msgstr "Tema ayarları"
 
 msgid "Select a theme"
-msgstr ""
+msgstr "Bir tema seçin"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr ""
+msgstr "Veri kullanımı"
 
 msgid "Data usage monitoring"
-msgstr ""
+msgstr "Veri kullanımını izle"
 
 msgid "Hourly traffic amount"
-msgstr ""
+msgstr "Saatlik trafik miktarı"
 
 msgid "Daily traffic amount"
-msgstr ""
+msgstr "Günlük trafik miktarı"
 
 msgid "Monthly traffic amount"
-msgstr ""
+msgstr "Aylık trafik miktarı"
 
 msgid "Hourly"
-msgstr ""
+msgstr "Saatlik"
 
 msgid "Daily"
-msgstr ""
+msgstr "Günlük"
 
 msgid "Monthly"
-msgstr ""
+msgstr "Aylık"
 
 msgid "interface"
-msgstr ""
+msgstr "arayüz"
 
 msgid "date"
-msgstr ""
+msgstr "tarih"
 
 msgid "Send MB"
-msgstr ""
+msgstr "Gönderilen MB"
 
 msgid "Receive MB"
-msgstr ""
+msgstr "Alınan MB"
 
 msgid "Information provided by vnstat"
-msgstr ""
+msgstr "Bilgi vnstat tarafından sağlandı"
 
 msgid "Loading {0} bandwidth chart"
-msgstr ""
+msgstr "{0} bant genişliği tablosu yükleniyor"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr ""
+msgstr "{2} girdiden {0} ve {1} arası gösteriliyor"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr ""
+msgstr "OpenVPN çalışmıyor"
 
 msgid "OpenVPN is running"
-msgstr ""
+msgstr "OpenVPN çalışıyor"
 
 msgid "Server settings"
-msgstr ""
+msgstr "Sunucu ayarları"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr ""
+msgstr "OpenVPN yapılandırma dosyasını seçin (.ovpn)"
 
 msgid "Client Log"
-msgstr ""
+msgstr "İstemci Günlüğü"
 
 msgid "Port"
 msgstr ""
 
 msgid "Protocol"
-msgstr ""
+msgstr "Protokol"
 
 msgid "Root CA certificate"
-msgstr ""
+msgstr "Root CA sertifikası"
 
 msgid "Server certificate"
-msgstr ""
+msgstr "Sunucu sertifikası"
 
 msgid "Diffie Hellman parameters"
-msgstr ""
+msgstr "Diffie Hellman parametreleri"
 
 msgid "KeepAlive"
 msgstr ""
 
 msgid "Server log"
-msgstr ""
+msgstr "Sunucu günlüğü"
 
 msgid "Start OpenVPN"
-msgstr ""
+msgstr "OpenVPN'i başlat"
 
 msgid "Stop OpenVPN"
-msgstr ""
+msgstr "OpenVPN'i durdur"
 
 msgid "Information provided by openvpn"
-msgstr ""
+msgstr "Openvpn tarafından sağlanan bilgiler"
 
 msgid "Attempting to start openvpn"
-msgstr ""
+msgstr "Openvpn başlatılmaya çalışıyor"
 
 msgid "Attempting to stop openvpn"
-msgstr ""
+msgstr "Openvpn durdurulmaya çalışılıyor"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr ""
+msgstr "TOR çalışmıyor"
 
 msgid "TOR is running"
-msgstr ""
+msgstr "TOR çalışıyor"
 
 msgid "Relay"
-msgstr ""
+msgstr "İleti anahtarlama"
 
 msgid "Relay settings"
-msgstr ""
+msgstr "İleti anahtarlama ayarları"
 
 msgid "Nickname"
-msgstr ""
+msgstr "Takma Ad"
 
 msgid "Address"
-msgstr ""
+msgstr "Adres"
 
 msgid "Start TOR"
-msgstr ""
+msgstr "TOR'u başlat"
 
 msgid "Stop TOR"
-msgstr ""
+msgstr "TOR'u durdur"
 
 msgid "Information provided by tor"
-msgstr ""
+msgstr "Tor tarafından sağlanan bilgiler"
 
 msgid "Attempting to start TOR"
-msgstr ""
+msgstr "TOR başlatılmaya çalışılıyor"
 
 msgid "Attempting to stop TOR"
-msgstr ""
+msgstr "TOR durdurulmaya çalışılıyor"
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
@@ -666,25 +666,25 @@ msgstr ""
 
 #: common form controls
 msgid "Save settings"
-msgstr ""
+msgstr "Ayarları kaydet"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Yenile"
 
 msgid "running"
-msgstr ""
+msgstr "çalışıyor"
 
 msgid "stopped"
-msgstr ""
+msgstr "durduruldu"
 
 msgid "Remove"
-msgstr ""
+msgstr "Kaldır"
 
 msgid "up"
-msgstr ""
+msgstr "hazır"
 
 msgid "down"
-msgstr ""
+msgstr "kapalı"
 
 msgid "adblock"
 msgstr ""
