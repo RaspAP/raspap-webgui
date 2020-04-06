@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-06 13:27\n"
+"PO-Revision-Date: 2020-04-06 14:08\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -41,10 +41,10 @@ msgid "DHCP Server"
 msgstr "DHCP Serveru"
 
 msgid "OpenVPN"
-msgstr ""
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr ""
+msgstr "TOR proxy"
 
 msgid "Authentication"
 msgstr "Autentifikace"
@@ -94,7 +94,7 @@ msgid "Client settings"
 msgstr "Nastavení klienta"
 
 msgid "SSID"
-msgstr ""
+msgstr "SSID"
 
 msgid "Channel"
 msgstr "Kanál"
@@ -136,7 +136,7 @@ msgid "Hide"
 msgstr "Skrýt"
 
 msgid "Not configured"
-msgstr ""
+msgstr "Není nakonfigurováno"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Poznámka:</strong> WEP přístupový bod je zobrazen jako 'bez zabezpečení' ''. RaspAP zatím nepodporuje připojení k WEP sítím"
@@ -185,10 +185,10 @@ msgid "AP Mac Address"
 msgstr "AP Mac Adresa"
 
 msgid "Bitrate"
-msgstr ""
+msgstr "Datový tok"
 
 msgid "Signal Level"
-msgstr ""
+msgstr "Úroveň signálu"
 
 msgid "Transmit Power"
 msgstr "Vysílací výkon"
@@ -227,10 +227,10 @@ msgid "Interface already down"
 msgstr "Rozhraní je už vypnuté"
 
 msgid "Start wlan0"
-msgstr ""
+msgstr "Začít wlan0"
 
 msgid "Stop wlan0"
-msgstr ""
+msgstr "Zastavit wlan0"
 
 msgid "Connected Devices"
 msgstr "Připojená zařízení"
@@ -246,7 +246,7 @@ msgid "Interface"
 msgstr "Rozhraní"
 
 msgid "DNS Server"
-msgstr ""
+msgstr "DNS server"
 
 msgid "Starting IP Address"
 msgstr "Počáteční IP Adresa"
@@ -264,7 +264,7 @@ msgid "Lease Time"
 msgstr "Čas Zápujčky"
 
 msgid "Interval"
-msgstr ""
+msgstr "Interval"
 
 msgid "Active DHCP leases"
 msgstr "Aktivní DHCP zápujčky"
@@ -318,31 +318,31 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq neběží"
 
 msgid "Upstream DNS servers"
-msgstr ""
+msgstr "Upstream servery DNS"
 
 msgid "Only ever query DNS servers configured below"
-msgstr ""
+msgstr "Only ever query DNS servers configured below"
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr ""
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "Tato volba přidává do konfigurace dnsmasq <code>no-resolv</code>."
 
 msgid "Add upstream DNS server"
-msgstr ""
+msgstr "Přidejte server DNS proti proudu"
 
 msgid "Format"
-msgstr ""
+msgstr "Formát"
 
 msgid "Choose a hosted server"
-msgstr ""
+msgstr "Vyberte hostovaný server"
 
 msgid "Log DHCP requests"
-msgstr ""
+msgstr "Log DHCP požadavky"
 
 msgid "Log DNS queries"
-msgstr ""
+msgstr "Log DNS dotazů"
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -367,7 +367,7 @@ msgid "Encryption Type"
 msgstr "Typ šifrování"
 
 msgid "PSK"
-msgstr ""
+msgstr "PSK"
 
 msgid "Advanced settings"
 msgstr "Pokročilé nastavení"
@@ -427,7 +427,7 @@ msgid "WiFi client AP mode"
 msgstr "AP režim WiFi klienta"
 
 msgid "Bridged AP mode"
-msgstr ""
+msgstr "Bridged AP mode"
 
 msgid "Hide SSID in broadcast"
 msgstr "Skrýt ve vysílání SSID"
@@ -495,7 +495,7 @@ msgid "Console"
 msgstr "Konzole"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Hostname"
 
 msgid "Pi Revision"
 msgstr "Pi Revize"
@@ -591,7 +591,7 @@ msgid "Client Log"
 msgstr "Protokol klienta"
 
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 msgid "Protocol"
 msgstr "Protokol"
