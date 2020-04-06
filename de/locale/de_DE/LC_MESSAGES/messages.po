@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 10:12\n"
+"PO-Revision-Date: 2020-04-06 05:51\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr "RaspAP WLAN Konfiguration Portal"
+msgstr "RaspAP Wifi Konfigurationsportal"
 
 msgid "Toggle navigation"
 msgstr "Navigation umschalten"
@@ -69,10 +69,10 @@ msgid "Username must not be empty"
 msgstr "Benutzername darf nicht leer sein"
 
 msgid "Admin password updated"
-msgstr "Administrator Passwort aktualisiert"
+msgstr "Admin-Passwort aktualisiert"
 
 msgid "Failed to update admin password"
-msgstr "Aktualisierung Admin Password fehlgeschlagen"
+msgstr "Fehler beim Aktualisieren des Admin-Passwortes"
 
 msgid "Old password does not match"
 msgstr "Altes Passwort nicht korrekt"
@@ -81,7 +81,7 @@ msgid "Username"
 msgstr "Benutzername"
 
 msgid "Old password"
-msgstr "Altes Passwort"
+msgstr "Altes Password"
 
 msgid "New password"
 msgstr "Neues Passwort"
@@ -188,7 +188,7 @@ msgid "Bitrate"
 msgstr "Bitrate"
 
 msgid "Signal Level"
-msgstr "Signalstärke"
+msgstr "Signalpegel"
 
 msgid "Transmit Power"
 msgstr "Sendeleistung"
