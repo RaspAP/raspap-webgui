@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-06 07:29\n"
+"PO-Revision-Date: 2020-04-06 09:52\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -26,13 +26,13 @@ msgid "RaspAP Wifi Portal"
 msgstr "RaspAP Wi-fi portaal"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 msgid "WiFi client"
 msgstr "WiFi apparaat"
 
 msgid "Hotspot"
-msgstr ""
+msgstr "Hotspot"
 
 msgid "Networking"
 msgstr "Netwerk"
@@ -41,10 +41,10 @@ msgid "DHCP Server"
 msgstr "DHCP server"
 
 msgid "OpenVPN"
-msgstr ""
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr ""
+msgstr "TOR proxy"
 
 msgid "Authentication"
 msgstr "Autenticatie"
@@ -94,7 +94,7 @@ msgid "Client settings"
 msgstr "Client instellingen"
 
 msgid "SSID"
-msgstr ""
+msgstr "SSID"
 
 msgid "Channel"
 msgstr "Kanaal"
@@ -121,7 +121,7 @@ msgid "Rescan"
 msgstr "Herscan"
 
 msgid "Update"
-msgstr ""
+msgstr "Update"
 
 msgid "Add"
 msgstr "Voeg toe"
@@ -218,7 +218,7 @@ msgid "Not connected"
 msgstr "Niet verbonden"
 
 msgid "Interface is up"
-msgstr ""
+msgstr "Interface is up"
 
 msgid "Interface is down"
 msgstr ""
@@ -227,10 +227,10 @@ msgid "Interface already down"
 msgstr "Interface reeds down"
 
 msgid "Start wlan0"
-msgstr ""
+msgstr "Start wlan0"
 
 msgid "Stop wlan0"
-msgstr ""
+msgstr "Stop wlan0"
 
 msgid "Connected Devices"
 msgstr "Verbonden Apparaten"
@@ -243,10 +243,10 @@ msgid "Client list"
 msgstr "Clienten lijst"
 
 msgid "Interface"
-msgstr ""
+msgstr "Interface"
 
 msgid "DNS Server"
-msgstr ""
+msgstr "DNS server"
 
 msgid "Starting IP Address"
 msgstr "Beginnend ip adres"
@@ -279,7 +279,7 @@ msgid "Host name"
 msgstr "Hostnaam"
 
 msgid "Client ID"
-msgstr ""
+msgstr "Klant ID"
 
 msgid "Information provided by Dnsmasq"
 msgstr "Informatie gegeven door Dnsmasq"
@@ -333,7 +333,7 @@ msgid "Add upstream DNS server"
 msgstr ""
 
 msgid "Format"
-msgstr ""
+msgstr "Formaat"
 
 msgid "Choose a hosted server"
 msgstr ""
@@ -367,7 +367,7 @@ msgid "Encryption Type"
 msgstr "Encryptie modus"
 
 msgid "PSK"
-msgstr ""
+msgstr "PSK"
 
 msgid "Advanced settings"
 msgstr "Gevanceerde instellingen"
@@ -594,7 +594,7 @@ msgid "Port"
 msgstr "Poort"
 
 msgid "Protocol"
-msgstr ""
+msgstr "Protocol"
 
 msgid "Root CA certificate"
 msgstr "Basis CA-certificaat"
@@ -606,7 +606,7 @@ msgid "Diffie Hellman parameters"
 msgstr "Diffie Hellman-parameters"
 
 msgid "KeepAlive"
-msgstr ""
+msgstr "KeepAlive"
 
 msgid "Server log"
 msgstr "Serverlog"
@@ -726,5 +726,5 @@ msgid "Statistics"
 msgstr ""
 
 msgid "Information provided by adblock"
-msgstr ""
+msgstr "Informatie verstrekt door adblock"
 
