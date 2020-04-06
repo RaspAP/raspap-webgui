@@ -47,8 +47,8 @@ if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2)
     case "fi":
         $locale = "fi_FI.UTF-8";
         break;
-    case "si":
-        $locale = "si_LK.UTF-8";
+    case "pl":
+        $locale = "pl_PL.UTF-8";
         break;
     case "tr":
         $locale = "tr_TR.UTF-8";
