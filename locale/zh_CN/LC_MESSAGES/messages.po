@@ -1,22 +1,19 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: raspap\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-21 23:15+0000\n"
-"Last-Translator: BANKA2017 <kdwnil@hotmail.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2020-04-06 13:13\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -97,7 +94,7 @@ msgid "Client settings"
 msgstr "客户端设置"
 
 msgid "SSID"
-msgstr "SSID"
+msgstr ""
 
 msgid "Channel"
 msgstr "频道"
@@ -248,6 +245,9 @@ msgstr "客户端列表"
 msgid "Interface"
 msgstr "接口"
 
+msgid "DNS Server"
+msgstr "DNS服务器"
+
 msgid "Starting IP Address"
 msgstr "起始IP地址"
 
@@ -318,31 +318,31 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq未在运行"
 
 msgid "Upstream DNS servers"
-msgstr "Upstream DNS servers"
+msgstr ""
 
 msgid "Only ever query DNS servers configured below"
-msgstr "Only ever query DNS servers configured below"
+msgstr ""
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
 
 msgid "Add upstream DNS server"
-msgstr "Add upstream DNS server"
+msgstr ""
 
 msgid "Format"
-msgstr "Format"
+msgstr ""
 
 msgid "Choose a hosted server"
-msgstr "Choose a hosted server"
+msgstr ""
 
 msgid "Log DHCP requests"
-msgstr "Log DHCP requests"
+msgstr ""
 
 msgid "Log DNS queries"
-msgstr "Log DNS queries"
+msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -426,6 +426,9 @@ msgstr "log信息输出"
 msgid "WiFi client AP mode"
 msgstr "无线网客户端AP模式"
 
+msgid "Bridged AP mode"
+msgstr ""
+
 msgid "Hide SSID in broadcast"
 msgstr "在广播中隐藏SSID"
 
@@ -444,9 +447,6 @@ msgstr "当前设置"
 
 msgid "Default Gateway"
 msgstr "默认网关"
-
-msgid "DNS Server"
-msgstr "DNS服务器"
 
 msgid "Alternate DNS Server"
 msgstr "备用DNS服务器"
@@ -660,6 +660,10 @@ msgstr "正尝试启动TOR"
 msgid "Attempting to stop TOR"
 msgstr "正尝试停止TOR"
 
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr ""
+
 #: common form controls
 msgid "Save settings"
 msgstr "保存设置"
@@ -681,3 +685,46 @@ msgstr "上"
 
 msgid "down"
 msgstr "下"
+
+msgid "adblock"
+msgstr ""
+
+msgid "Ad Blocking"
+msgstr ""
+
+msgid "Start Ad Blocking"
+msgstr ""
+
+msgid "Restart Ad Blocking"
+msgstr ""
+
+msgid "Blocklist settings"
+msgstr ""
+
+msgid "Enable blocklists"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr ""
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Hostnames blocklist last updated"
+msgstr ""
+
+msgid "Domains blocklist last updated"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Information provided by adblock"
+msgstr ""
+
