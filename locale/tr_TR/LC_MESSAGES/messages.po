@@ -1,22 +1,19 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
+"Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-21 23:15+0000\n"
-"Last-Translator: Furkan 'Cuqer' Sarıboğa <cuqerr@gmail.com>\n"
-"Language-Team: \n"
-"Language: en_US\n"
+"PO-Revision-Date: 2020-04-06 13:27\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: tr\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -97,7 +94,7 @@ msgid "Client settings"
 msgstr "İstemci ayarları"
 
 msgid "SSID"
-msgstr "SSID"
+msgstr ""
 
 msgid "Channel"
 msgstr "Kanal"
@@ -188,7 +185,7 @@ msgid "AP Mac Address"
 msgstr "AP Mac Adresi"
 
 msgid "Bitrate"
-msgstr "Bitrate"
+msgstr ""
 
 msgid "Signal Level"
 msgstr "Sinyal Seviyesi"
@@ -247,6 +244,9 @@ msgstr "İstemci listesi"
 
 msgid "Interface"
 msgstr "Arayüz"
+
+msgid "DNS Server"
+msgstr "DNS Sunucusu"
 
 msgid "Starting IP Address"
 msgstr "Başlangıc IP Adresi"
@@ -318,31 +318,31 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq çalışmıyor"
 
 msgid "Upstream DNS servers"
-msgstr "Upstream DNS servers"
+msgstr ""
 
 msgid "Only ever query DNS servers configured below"
-msgstr "Only ever query DNS servers configured below"
+msgstr ""
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
 
 msgid "Add upstream DNS server"
-msgstr "Add upstream DNS server"
+msgstr ""
 
 msgid "Format"
-msgstr "Format"
+msgstr ""
 
 msgid "Choose a hosted server"
-msgstr "Choose a hosted server"
+msgstr ""
 
 msgid "Log DHCP requests"
-msgstr "Log DHCP requests"
+msgstr ""
 
 msgid "Log DNS queries"
-msgstr "Log DNS queries"
+msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -367,7 +367,7 @@ msgid "Encryption Type"
 msgstr "Şifreleme Tipi"
 
 msgid "PSK"
-msgstr "PSK"
+msgstr ""
 
 msgid "Advanced settings"
 msgstr "Gelişmiş ayarlar"
@@ -426,6 +426,9 @@ msgstr "Günlük dosyası çıkışı"
 msgid "WiFi client AP mode"
 msgstr "WiFi istemcisi AP modu"
 
+msgid "Bridged AP mode"
+msgstr ""
+
 msgid "Hide SSID in broadcast"
 msgstr "Yayında SSID'yi gizle"
 
@@ -444,9 +447,6 @@ msgstr "Şimdiki ayarlar"
 
 msgid "Default Gateway"
 msgstr "Varsayılan Geçit"
-
-msgid "DNS Server"
-msgstr "DNS Sunucusu"
 
 msgid "Alternate DNS Server"
 msgstr "Alternatif DNS Sunucusu"
@@ -591,7 +591,7 @@ msgid "Client Log"
 msgstr "İstemci Günlüğü"
 
 msgid "Port"
-msgstr "Port"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Protokol"
@@ -606,7 +606,7 @@ msgid "Diffie Hellman parameters"
 msgstr "Diffie Hellman parametreleri"
 
 msgid "KeepAlive"
-msgstr "KeepAlive"
+msgstr ""
 
 msgid "Server log"
 msgstr "Sunucu günlüğü"
@@ -660,6 +660,10 @@ msgstr "TOR başlatılmaya çalışılıyor"
 msgid "Attempting to stop TOR"
 msgstr "TOR durdurulmaya çalışılıyor"
 
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr ""
+
 #: common form controls
 msgid "Save settings"
 msgstr "Ayarları kaydet"
@@ -681,3 +685,46 @@ msgstr "hazır"
 
 msgid "down"
 msgstr "kapalı"
+
+msgid "adblock"
+msgstr ""
+
+msgid "Ad Blocking"
+msgstr ""
+
+msgid "Start Ad Blocking"
+msgstr ""
+
+msgid "Restart Ad Blocking"
+msgstr ""
+
+msgid "Blocklist settings"
+msgstr ""
+
+msgid "Enable blocklists"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr ""
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Hostnames blocklist last updated"
+msgstr ""
+
+msgid "Domains blocklist last updated"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Information provided by adblock"
+msgstr ""
+
