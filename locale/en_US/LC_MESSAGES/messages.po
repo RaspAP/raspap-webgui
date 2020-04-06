@@ -718,6 +718,12 @@ msgstr "This option adds <code>conf-file</code> and <code>addn-hosts</code> to t
 msgid "Choose a blocklist provider"
 msgstr "Choose a blocklist provider"
 
+msgid "Hostnames blocklist last updated"
+msgstr "Hostnames blocklist last updated"
+
+msgid "Domains blocklist last updated"
+msgstr "Domains blocklist last updated"
+
 msgid "Update now"
 msgstr "Update now"
 
