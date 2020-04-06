@@ -5,317 +5,317 @@ msgstr ""
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
 "PO-Revision-Date: 2020-04-06 22:13\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"Language-Team: Chinese Simplified\n"
-"Language: zh_CN\n"
+"Language-Team: Polish\n"
+"Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Crowdin-Project: raspap\n"
-"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-Language: pl\n"
 "X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr "RaspAP WLAN热点设置中心"
+msgstr "RaspAP Wifi Portal Konfiguracyjny"
 
 msgid "Toggle navigation"
-msgstr "响应式导航"
+msgstr "Przełącz tryb nawigacji"
 
 msgid "RaspAP Wifi Portal"
-msgstr "RaspAP WLAN热点"
+msgstr "RaspAP Portal Wifi"
 
 msgid "Dashboard"
-msgstr "仪表板"
+msgstr "Pulpit nawigacyjny"
 
 msgid "WiFi client"
-msgstr "WLAN客户端设置"
+msgstr ""
 
 msgid "Hotspot"
-msgstr "WLAN热点设置"
+msgstr ""
 
 msgid "Networking"
-msgstr "网络设置"
+msgstr ""
 
 msgid "DHCP Server"
-msgstr "DHCP服务器设置"
+msgstr ""
 
 msgid "OpenVPN"
-msgstr "OpenVPN设置"
+msgstr ""
 
 msgid "TOR proxy"
-msgstr "TOR代理设置"
+msgstr ""
 
 msgid "Authentication"
-msgstr "登录设置"
+msgstr ""
 
 msgid "Change Theme"
-msgstr "主题中心"
+msgstr "Zmień motyw"
 
 msgid "System"
-msgstr "系统"
+msgstr ""
 
 msgid "About RaspAP"
-msgstr "关于RaspAP"
+msgstr ""
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr "验证设置"
+msgstr ""
 
 msgid "New passwords do not match"
-msgstr "两次密码不相同"
+msgstr "Nowe hasła nie pasują do siebie"
 
 msgid "Username must not be empty"
-msgstr "用户名不能为空"
+msgstr "Nazwa użytkownika nie może być pusta"
 
 msgid "Admin password updated"
-msgstr "网络管理员密码已更新"
+msgstr "Hasło administratora zostało zaktualizowane"
 
 msgid "Failed to update admin password"
-msgstr "网络管理员密码更新失败"
+msgstr "Nie można zaktualizować hasła administratora"
 
 msgid "Old password does not match"
-msgstr "旧密码错误"
+msgstr "Stare hasło jest niepoprawne"
 
 msgid "Username"
-msgstr "用户名"
+msgstr "Nazwa użytkownika"
 
 msgid "Old password"
-msgstr "旧密码"
+msgstr "Stare hasło"
 
 msgid "New password"
-msgstr "新密码"
+msgstr "Nowe hasło"
 
 msgid "Repeat new password"
-msgstr "重复新密码"
+msgstr "Powtórz nowe hasło"
 
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr "客户端设置"
+msgstr "Ustawienia klienta"
 
 msgid "SSID"
 msgstr ""
 
 msgid "Channel"
-msgstr "频道"
+msgstr "Kanał"
 
 msgid "Security"
-msgstr "安全性"
+msgstr "Bezpieczeństwo"
 
 msgid "Passphrase"
-msgstr "密码"
+msgstr "Hasło"
 
 msgid "Wifi settings updated successfully"
-msgstr "WLAN设置更新成功"
+msgstr "Ustawienia WiFi zostały pomyślnie zaktualizowane"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr "WLAN设置已更新但无法重启(无法执行 'wpa_cli reconfigure')"
+msgstr "Ustawienia Wifi zostały zaktualizowane, ale restart nie przebiegł pomyślnie (nie można wykonać 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
-msgstr "WLAN设置更新失败"
+msgstr "Ustawienia Wifi nie mogły zostać zaktualizowane"
 
 msgid "Failed to update wifi settings"
-msgstr "无法更新WLAN设置"
+msgstr "Nie udało się zaktualizować ustawień wifi"
 
 msgid "Rescan"
-msgstr "刷新"
+msgstr "Ponowne skanowanie"
 
 msgid "Update"
-msgstr "更新"
+msgstr "Aktualizacja"
 
 msgid "Add"
-msgstr "添加"
+msgstr "Dodaj"
 
 msgid "Delete"
-msgstr "删除"
+msgstr "Usuń"
 
 msgid "Show"
-msgstr "显示"
+msgstr ""
 
 msgid "Hide"
-msgstr "隐藏"
+msgstr ""
 
 msgid "Not configured"
-msgstr "未配置"
+msgstr ""
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>提示:</strong> 若目标热点已打开WEP登录验证，本程序将不支持连接到此类网络"
+msgstr "<strong>Notka:</strong> Punkt dostępu WEP wydaje się być 'Otwarty'. RaspAP aktualnie nie wspiera podłączania do WEP"
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr "接口信息"
+msgstr "Informacje na temat interfejsu"
 
 msgid "Interface Name"
-msgstr "接口名称"
+msgstr "Nazwa interfejsu"
 
 msgid "IPv4 Address"
-msgstr "IPv4地址"
+msgstr ""
 
 msgid "IPv6 Address"
-msgstr "IPv6地址"
+msgstr ""
 
 msgid "Subnet Mask"
-msgstr "子网掩码"
+msgstr "Adres podsieci"
 
 msgid "Mac Address"
-msgstr "Mac地址"
+msgstr "Adres Mac"
 
 msgid "Interface Statistics"
-msgstr "接口统计"
+msgstr "Statystyki Interfejsu"
 
 msgid "Received Packets"
-msgstr "接收包"
+msgstr "Otrzymane Pakiety"
 
 msgid "Received Bytes"
-msgstr "接收数据"
+msgstr "Otrzymane Bajty"
 
 msgid "Transferred Packets"
-msgstr "传送包"
+msgstr "Przesłane Pakiety"
 
 msgid "Transferred Bytes"
-msgstr "传送数据"
+msgstr "Przesłane Bajty"
 
 msgid "Wireless Information"
-msgstr "WLAN信息"
+msgstr "Informacje o sieci bezprzewodowej"
 
 msgid "Connected To"
-msgstr "已连接"
+msgstr "Podłączony do"
 
 msgid "AP Mac Address"
-msgstr "WLAN热点Mac地址"
+msgstr "AP Adres Mac"
 
 msgid "Bitrate"
-msgstr "比特率"
+msgstr ""
 
 msgid "Signal Level"
-msgstr "信号等级"
+msgstr "Poziom sygnału"
 
 msgid "Transmit Power"
-msgstr "发送功率"
+msgstr "Siła sygnału"
 
 msgid "Frequency"
-msgstr "频率"
+msgstr "Częstotliwość"
 
 msgid "Link Quality"
-msgstr "连接质量"
+msgstr "Jakość połączenia"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "ip和iw以及系统所提供的信息"
+msgstr ""
 
 msgid "No MAC Address Found"
-msgstr "没有找到MAC地址"
+msgstr "MAC Address nie został odnaleziony"
 
 msgid "No IP Address Found"
-msgstr "没有找到IP地址"
+msgstr "Adres IP nie został odnaleziony"
 
 msgid "No Subnet Mask Found"
-msgstr "没有找到子网掩码"
+msgstr "Maska podsieci nie została odnaleziona"
 
 msgid "No Data"
-msgstr "没有数据"
+msgstr "Brak danych"
 
 msgid "Not connected"
-msgstr "未连接到任何热点"
+msgstr "Nie podłączony"
 
 msgid "Interface is up"
-msgstr "接口已启动"
+msgstr "Interfejs jest włączony"
 
 msgid "Interface is down"
-msgstr "接口已关闭"
+msgstr "Interfejs jest wyłączony"
 
 msgid "Interface already down"
-msgstr "接口已经关闭"
+msgstr "Interfejs już jest wyłączony"
 
 msgid "Start wlan0"
-msgstr "启动wlan0接口"
+msgstr ""
 
 msgid "Stop wlan0"
-msgstr "关闭wlan0接口"
+msgstr ""
 
 msgid "Connected Devices"
-msgstr "连接设备"
+msgstr ""
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
-msgstr "DHCP服务器设置"
+msgstr ""
 
 msgid "Client list"
-msgstr "客户端列表"
+msgstr "Lista klientów"
 
 msgid "Interface"
-msgstr "接口"
+msgstr ""
 
 msgid "DNS Server"
-msgstr "DNS服务器"
+msgstr "Serwer DNS"
 
 msgid "Starting IP Address"
-msgstr "起始IP地址"
+msgstr "Startowanie adresu IP"
 
 msgid "Ending IP Address"
-msgstr "终止IP地址"
+msgstr "Kończenie adresu IP"
 
 msgid "Static Leases"
-msgstr "静态租赁"
+msgstr ""
 
 msgid "Add static DHCP lease"
-msgstr "添加静态DHCP租约"
+msgstr ""
 
 msgid "Lease Time"
-msgstr "租约时间"
+msgstr "Czas wynajęcia (Lease Time)"
 
 msgid "Interval"
-msgstr "时间间隔"
+msgstr "Interwał"
 
 msgid "Active DHCP leases"
-msgstr "活动中的设备"
+msgstr "Aktywne wynajęcia DHCP"
 
 msgid "Expire time"
-msgstr "生存时间"
+msgstr "Czas wygaśnięcia"
 
 msgid "MAC Address"
-msgstr "MAC地址"
+msgstr "Adres MAC"
 
 msgid "Host name"
-msgstr "设备名称"
+msgstr "Nazwa gospodarza"
 
 msgid "Client ID"
-msgstr "用户ID"
+msgstr "ID Klienta"
 
 msgid "Information provided by Dnsmasq"
-msgstr "信息由 Dnsmasq 提供"
+msgstr "Informacje dostarczone przez Dnsmasq"
 
 msgid "Stop dnsmasq"
-msgstr "关闭dnsmasq"
+msgstr ""
 
 msgid "Start dnsmasq"
-msgstr "启动dnsmasq"
+msgstr ""
 
 msgid "Dnsmasq configuration updated successfully"
-msgstr "Dnsmasq配置已更新"
+msgstr "Konfiguracja Dnsmasq zaktualizowana pomyślnie"
 
 msgid "dnsmasq already running"
-msgstr "Dnsmasq已在运行"
+msgstr "dnsmasq jest już odpalony"
 
 msgid "Successfully started dnsmasq"
-msgstr "Dnsmasq启动成功"
+msgstr "Pomyślnie wystartowano dnsmasq"
 
 msgid "Failed to start dnsmasq"
-msgstr "无法启动dnsmasq"
+msgstr "Nie można wystartować dnsmasq"
 
 msgid "Successfully stopped dnsmasq"
-msgstr "Dnsmasq关闭成功"
+msgstr "Pomyślnie zatrzymano dnsmasq"
 
 msgid "Failed to stop dnsmasq"
-msgstr "无法关闭dnsmasq"
+msgstr "Nie udało się zatrzymać dnsmasq"
 
 msgid "dnsmasq already stopped"
-msgstr "Dnsmasq已经关闭"
+msgstr "dnsmasq już jest zatrzymany"
 
 msgid "Dnsmasq is running"
-msgstr "Dnsmasq正在运行"
+msgstr "Dnsmasq jest odpalony"
 
 msgid "Dnsmasq is not running"
-msgstr "Dnsmasq未在运行"
+msgstr "Dnsmasq nie jest odpalony"
 
 msgid "Upstream DNS servers"
 msgstr ""
@@ -346,319 +346,319 @@ msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
-msgstr "基础"
+msgstr "Podstawowe"
 
 msgid "Advanced"
-msgstr "高级"
+msgstr "Zaawansowane"
 
 msgid "Basic settings"
-msgstr "基础设置"
+msgstr "Podstawowe ustawienia"
 
 msgid "Wireless Mode"
-msgstr "无线模式"
+msgstr "Tryb Bezprzewodowy"
 
 msgid "Security settings"
-msgstr "安全设置"
+msgstr "Ustawienia bezpieczeństwa"
 
 msgid "Security type"
-msgstr "安全性"
+msgstr "Tyb zabezpieczeń"
 
 msgid "Encryption Type"
-msgstr "加密模式"
+msgstr "Typ szyfrowania"
 
 msgid "PSK"
-msgstr "密码"
+msgstr ""
 
 msgid "Advanced settings"
-msgstr "高级设置"
+msgstr "Zaawansowane ustawienia"
 
 msgid "Country Code"
-msgstr "地区代号"
+msgstr "Kod kraju"
 
 msgid "Information provided by hostapd"
-msgstr "信息由 hostapd 提供"
+msgstr "Informacje dostarczone przez hostapd"
 
 msgid "Attempting to start hotspot"
-msgstr "请求启动WLAN热点"
+msgstr "Próba wystartowania punktu dostępowego hotspot"
 
 msgid "Attempting to stop hotspot"
-msgstr "请求关闭WLAN热点"
+msgstr "Próba zatrzymania punktu dostępowego hotspot"
 
 msgid "HostAPD is not running"
-msgstr "HostAPD不在运行"
+msgstr "HostAPD nie jest odpalony"
 
 msgid "HostAPD is running"
-msgstr "HostAPD正在运行"
+msgstr "HostAPD jest już odpalony"
 
 msgid "SSID must be between 1 and 32 characters"
-msgstr "SSID长度需要介于1~32个字符"
+msgstr "SSID musi zawierać między 1 a 32 znaków"
 
 msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr "密码长度需要介于8~63个字符"
+msgstr "Hasło WPA musi zawierać między 8 a 63 znaków"
 
 msgid "Unknown interface"
-msgstr "未知接口"
+msgstr "Nieznany interfejs"
 
 msgid "Country code must be blank or two characters"
-msgstr "地区代号只能为空或两个字符"
+msgstr "Kod kraju musi być pusty lub zawierać dwa znaki"
 
 msgid "Wifi Hotspot settings saved"
-msgstr "WLAN热点设置已保存"
+msgstr "Ustawienia Wifi Hotspot zostały zapisane"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr "WLAN热点设置保存失败"
+msgstr "Nie można zapisać ustawień wifi hotspot"
 
 msgid "Start hotspot"
-msgstr "开启WLAN热点"
+msgstr "Odpal hotspot"
 
 msgid "Stop hotspot"
-msgstr "关闭WLAN热点"
+msgstr "Zatrzymaj hotspot"
 
 msgid "Restart hotspot"
-msgstr "重新启动Wi-Fi热点"
+msgstr ""
 
 msgid "Enable logging"
-msgstr "开启log"
+msgstr "Włącz logowanie"
 
 msgid "Logfile output"
-msgstr "log信息输出"
+msgstr "Plik wyjściowy logów"
 
 msgid "WiFi client AP mode"
-msgstr "无线网客户端AP模式"
+msgstr ""
 
 msgid "Bridged AP mode"
 msgstr ""
 
 msgid "Hide SSID in broadcast"
-msgstr "在广播中隐藏SSID"
+msgstr ""
 
 msgid "Maximum number of clients"
-msgstr "客户端最大数量"
+msgstr ""
 
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "设置hostapd上的max_num_sta选项。默认值和最大值是2007。如果为空或为0，则应用默认值。"
+msgstr ""
 
 #: includes/networking.php
 msgid "Summary"
-msgstr "摘要"
+msgstr "Podsumowanie"
 
 msgid "Current settings"
-msgstr "当前设置"
+msgstr "Aktualne ustawienia"
 
 msgid "Default Gateway"
-msgstr "默认网关"
+msgstr "Domyślna brama"
 
 msgid "Alternate DNS Server"
-msgstr "备用DNS服务器"
+msgstr "Alternatywny serwer DNS"
 
 msgid "Adapter IP Address Settings"
-msgstr "适配器IP地址设置"
+msgstr "Ustawienia adresu IP adaptera"
 
 msgid "Enable Fallback to Static Option"
-msgstr "启用退回静态的选项"
+msgstr "Ustaw opcję statyczną jako wyjście awaryjne"
 
 msgid "Static IP"
-msgstr "静态IP"
+msgstr "Statyczne IP"
 
 msgid "Enabled"
-msgstr "已启用"
+msgstr "Włączony"
 
 msgid "Disabled"
-msgstr "已禁用"
+msgstr "Wyłączony"
 
 msgid "Static IP Options"
-msgstr "静态IP设置"
+msgstr "Opcje statycznego IP"
 
 msgid "Apply settings"
-msgstr "请求设置"
+msgstr "Zapisz ustawienia"
 
 msgid "Information provided by /sys/class/net"
-msgstr "信息由 /sys/class/net 提供"
+msgstr "Informacje dostarczone przez /sys/class/net"
 
 #: includes/system.php
 msgid "System Information"
-msgstr "系统信息"
+msgstr "Informacje systemowe"
 
 msgid "Language"
-msgstr "语言"
+msgstr "Język"
 
 msgid "Language settings"
-msgstr "语言设置"
+msgstr "Ustawienia języka"
 
 msgid "Select a language"
-msgstr "选择一种语言"
+msgstr "Wybierz język"
 
 msgid "Language setting saved"
-msgstr "语言设置已保存"
+msgstr "Ustawienia języka zapisane"
 
 msgid "Console"
-msgstr "控制台"
+msgstr "Konsola"
 
 msgid "Hostname"
-msgstr "设备名称"
+msgstr "Nazwa gospodarza"
 
 msgid "Pi Revision"
-msgstr "树莓派型号"
+msgstr "wersja PI"
 
 msgid "Uptime"
-msgstr "已开机时间"
+msgstr "Czas działania"
 
 msgid "Memory Used"
-msgstr "内存占用"
+msgstr "Użyta pamięć"
 
 msgid "CPU Load"
-msgstr "CPU负荷"
+msgstr "Obciążenie CPU"
 
 msgid "Reboot"
-msgstr "重启"
+msgstr "Restart"
 
 msgid "Shutdown"
-msgstr "关闭"
+msgstr "Wyłącz"
 
 msgid "System Rebooting Now!"
-msgstr "系统现在正在重启！"
+msgstr "System jest uruchamiany ponownie!"
 
 msgid "System Shutting Down Now!"
-msgstr "系统现在正在关闭！"
+msgstr "System jest wyłączany!"
 
 #: includes/themes.php
 msgid "Theme settings"
-msgstr "主题设置"
+msgstr "Ustawienia motywu"
 
 msgid "Select a theme"
-msgstr "选择一个主题"
+msgstr "Wybierz motyw"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr "数据使用量"
+msgstr "Użycie danych"
 
 msgid "Data usage monitoring"
-msgstr "数据用量监控"
+msgstr "Monitorowanie zużycia danych"
 
 msgid "Hourly traffic amount"
-msgstr "每小时流量"
+msgstr ""
 
 msgid "Daily traffic amount"
-msgstr "每日流量统计"
+msgstr "Dzienny przepływ danych"
 
 msgid "Monthly traffic amount"
-msgstr "每月流量统计"
+msgstr "Miesięczny przepływ danych"
 
 msgid "Hourly"
-msgstr "每小时"
+msgstr ""
 
 msgid "Daily"
-msgstr "每日"
+msgstr ""
 
 msgid "Monthly"
-msgstr "每月"
+msgstr ""
 
 msgid "interface"
-msgstr "接口"
+msgstr "interfejs"
 
 msgid "date"
-msgstr "日期"
+msgstr "data"
 
 msgid "Send MB"
-msgstr "发送数据 (MB)"
+msgstr "Wysłane MB"
 
 msgid "Receive MB"
-msgstr "接收数据 (MB)"
+msgstr "Otrzymane MB"
 
 msgid "Information provided by vnstat"
-msgstr "vnstat所提供的信息"
+msgstr "Informacje dostarczone przez vnstat"
 
 msgid "Loading {0} bandwidth chart"
-msgstr "正加载{0}带宽图"
+msgstr "Wczytywanie {0} wykresu bandwidth"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr "正显示{2}个条目中的{0}至{1}条目"
+msgstr "Pokazywanie wpisów od {0} do {1} z {2}"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"
-msgstr "OpenVPN不在运行"
+msgstr ""
 
 msgid "OpenVPN is running"
-msgstr "OpenVPN正在运行"
+msgstr ""
 
 msgid "Server settings"
-msgstr "服务器设置"
+msgstr "Ustawienia serwera"
 
 msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "选择OpenVPN设置文件（.ovpn）"
+msgstr ""
 
 msgid "Client Log"
-msgstr "客户端日志"
+msgstr ""
 
 msgid "Port"
-msgstr "端口"
+msgstr ""
 
 msgid "Protocol"
-msgstr "协议"
+msgstr ""
 
 msgid "Root CA certificate"
-msgstr "CA机构的根证书"
+msgstr ""
 
 msgid "Server certificate"
-msgstr "服务器证书"
+msgstr ""
 
 msgid "Diffie Hellman parameters"
-msgstr "迪菲-赫尔曼参数"
+msgstr ""
 
 msgid "KeepAlive"
-msgstr "保持活跃"
+msgstr ""
 
 msgid "Server log"
-msgstr "服务器日志"
+msgstr ""
 
 msgid "Start OpenVPN"
-msgstr "启动OpenVPN"
+msgstr ""
 
 msgid "Stop OpenVPN"
-msgstr "停止OpenVPN"
+msgstr ""
 
 msgid "Information provided by openvpn"
-msgstr "openvpn所提供的信息"
+msgstr ""
 
 msgid "Attempting to start openvpn"
-msgstr "正尝试启动openvpn"
+msgstr ""
 
 msgid "Attempting to stop openvpn"
-msgstr "正尝试停止openvpn"
+msgstr ""
 
 #: includes/torproxy.php
 msgid "TOR is not running"
-msgstr "TOR不在运行"
+msgstr ""
 
 msgid "TOR is running"
-msgstr "TOR正在运行"
+msgstr ""
 
 msgid "Relay"
-msgstr "中继"
+msgstr ""
 
 msgid "Relay settings"
-msgstr "中继设置"
+msgstr ""
 
 msgid "Nickname"
-msgstr "昵称"
+msgstr ""
 
 msgid "Address"
-msgstr "地址"
+msgstr ""
 
 msgid "Start TOR"
-msgstr "开启TOR"
+msgstr ""
 
 msgid "Stop TOR"
-msgstr "停止TOR"
+msgstr ""
 
 msgid "Information provided by tor"
-msgstr "tor提供的信息"
+msgstr ""
 
 msgid "Attempting to start TOR"
-msgstr "正尝试启动TOR"
+msgstr ""
 
 msgid "Attempting to stop TOR"
-msgstr "正尝试停止TOR"
+msgstr ""
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
@@ -666,25 +666,25 @@ msgstr ""
 
 #: common form controls
 msgid "Save settings"
-msgstr "保存设置"
+msgstr "Zapisz ustawienia"
 
 msgid "Refresh"
-msgstr "刷新"
+msgstr "Odśwież"
 
 msgid "running"
-msgstr "运行中"
+msgstr ""
 
 msgid "stopped"
-msgstr "已停止"
+msgstr ""
 
 msgid "Remove"
-msgstr "移除"
+msgstr ""
 
 msgid "up"
-msgstr "上"
+msgstr ""
 
 msgid "down"
-msgstr "下"
+msgstr ""
 
 msgid "adblock"
 msgstr ""
