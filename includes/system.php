@@ -121,7 +121,7 @@ function DisplaySystem()
         'ru_RU.UTF-8' => 'Русский',
         'es_MX.UTF-8' => 'Español',
         'fi_FI.UTF-8' => 'Finnish',
-        'si_LK.UTF-8' => 'Sinhala',
+        'pl_PL.UTF-8' => 'Polish',
         'tr_TR.UTF-8' => 'Türkçe',
         'el_GR.UTF-8' => 'Ελληνικά'
     );
