@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-06 14:08\n"
+"PO-Revision-Date: 2020-04-06 14:13\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -606,7 +606,7 @@ msgid "Diffie Hellman parameters"
 msgstr "Parametry Diffie Hellman"
 
 msgid "KeepAlive"
-msgstr ""
+msgstr "KeepAlive"
 
 msgid "Server log"
 msgstr "Protokol serveru"
@@ -662,7 +662,7 @@ msgstr "Pokus o zastavení TOR"
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
-msgstr ""
+msgstr "Režim přemostění AP je povolen. Pro název hostitele a IP navštivte administrátorskou stránku vašeho routeru."
 
 #: common form controls
 msgid "Save settings"
