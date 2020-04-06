@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-06 07:29\n"
+"PO-Revision-Date: 2020-04-06 10:06\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Sinhala\n"
 "Language: si_LK\n"
@@ -26,22 +26,22 @@ msgid "RaspAP Wifi Portal"
 msgstr "RaspAP Wifi වෙබ් අඩවිය"
 
 msgid "Dashboard"
-msgstr "උපකාරක පුවරුව"
+msgstr "උපකරණ පුවරුව"
 
 msgid "WiFi client"
 msgstr "WiFi සේවාලාභි "
 
 msgid "Hotspot"
-msgstr "හොට්ස්පොට් සැකසුම"
+msgstr "හොට්ස්පොට්"
 
 msgid "Networking"
-msgstr "ජාලකරණ සැකසුම"
+msgstr "ජාලකරණ"
 
 msgid "DHCP Server"
-msgstr "DHCP සර්වර් සැකසුම"
+msgstr "DHCP සර්වර්"
 
 msgid "OpenVPN"
-msgstr "OpenVPN සැකසුම"
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
 msgstr "TOR proxy සැකසුම"
