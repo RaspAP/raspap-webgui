@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-05 08:54\n"
+"PO-Revision-Date: 2020-04-06 07:29\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
@@ -711,6 +711,12 @@ msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to th
 msgstr ""
 
 msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Hostnames blocklist last updated"
+msgstr ""
+
+msgid "Domains blocklist last updated"
 msgstr ""
 
 msgid "Update now"
