@@ -1,26 +1,19 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-# 
-# Translators:
-# William Zimmerman <billzimmerman@gmail.com>, 2019
-# 
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
+"Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-25 17:42+0000\n"
-"Last-Translator: William Zimmerman <billzimmerman@gmail.com>, 2019\n"
-"Language-Team: Indonesian (https://www.transifex.com/na-360/teams/104285/id/)\n"
+"PO-Revision-Date: 2020-04-06 13:14\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Indonesian\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: id\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -39,7 +32,7 @@ msgid "WiFi client"
 msgstr "Klien WiFi"
 
 msgid "Hotspot"
-msgstr "Hotspot"
+msgstr ""
 
 msgid "Networking"
 msgstr "Jaringan"
@@ -48,7 +41,7 @@ msgid "DHCP Server"
 msgstr "Server DHCP"
 
 msgid "OpenVPN"
-msgstr "OpenVPN"
+msgstr ""
 
 msgid "TOR proxy"
 msgstr "Proxy TOR"
@@ -101,7 +94,7 @@ msgid "Client settings"
 msgstr "Pengaturan klien"
 
 msgid "SSID"
-msgstr "SSID"
+msgstr ""
 
 msgid "Channel"
 msgstr "Kanal"
@@ -115,12 +108,8 @@ msgstr "Kalimat sandi"
 msgid "Wifi settings updated successfully"
 msgstr "Pengaturan Wifi berhasil dimutakhirkan"
 
-msgid ""
-"Wifi settings updated but cannot restart (cannot execute 'wpa_cli "
-"reconfigure')"
-msgstr ""
-"Pengaturan Wifi dimutakhirkan tapi tak bisa dimulai ulang (tak dapat "
-"menjalankan 'wpa_cli reconfigure')"
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "Pengaturan Wifi dimutakhirkan tapi tak bisa dimulai ulang (tak dapat menjalankan 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
 msgstr "Gagal memperbarui pengaturan wifi"
@@ -149,12 +138,8 @@ msgstr "Sembunyikan"
 msgid "Not configured"
 msgstr "Tidak dikonfigurasi"
 
-msgid ""
-"<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not "
-"currently support connecting to WEP"
-msgstr ""
-"<strong>Note:</strong> Poin akses WEP tampil sebagai 'Terbuka'. RaspAP saat "
-"ini tak mendukung hubungan ke WEP"
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Note:</strong> Poin akses WEP tampil sebagai 'Terbuka'. RaspAP saat ini tak mendukung hubungan ke WEP"
 
 #: includes/dashboard.php
 msgid "Interface Information"
@@ -170,7 +155,7 @@ msgid "IPv6 Address"
 msgstr "Alamat IPv6"
 
 msgid "Subnet Mask"
-msgstr "Subnet Mask"
+msgstr ""
 
 msgid "Mac Address"
 msgstr "Alamat MAC"
@@ -279,7 +264,7 @@ msgid "Lease Time"
 msgstr "Jangka Waktu Jalur Pengguna"
 
 msgid "Interval"
-msgstr "Interval"
+msgstr ""
 
 msgid "Active DHCP leases"
 msgstr "Jalur Pengguna DHCP aktif"
@@ -333,31 +318,31 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq tidak berjalan"
 
 msgid "Upstream DNS servers"
-msgstr "Upstream DNS servers"
+msgstr ""
 
 msgid "Only ever query DNS servers configured below"
-msgstr "Only ever query DNS servers configured below"
+msgstr ""
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
 
 msgid "Add upstream DNS server"
-msgstr "Add upstream DNS server"
+msgstr ""
 
 msgid "Format"
-msgstr "Format"
+msgstr ""
 
 msgid "Choose a hosted server"
-msgstr "Choose a hosted server"
+msgstr ""
 
 msgid "Log DHCP requests"
-msgstr "Log DHCP requests"
+msgstr ""
 
 msgid "Log DNS queries"
-msgstr "Log DNS queries"
+msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -382,7 +367,7 @@ msgid "Encryption Type"
 msgstr "Tipe Enkripsi"
 
 msgid "PSK"
-msgstr "PSK"
+msgstr ""
 
 msgid "Advanced settings"
 msgstr "Pengaturan tingkat lanjut"
@@ -441,18 +426,17 @@ msgstr "Keluaran berkas log"
 msgid "WiFi client AP mode"
 msgstr "Mode AP klien WIFI"
 
+msgid "Bridged AP mode"
+msgstr ""
+
 msgid "Hide SSID in broadcast"
 msgstr "Sembunyikan SSID di pancaran"
 
 msgid "Maximum number of clients"
 msgstr "Jumlah klien maksimal"
 
-msgid ""
-"Configures the max_num_sta option of hostapd. The default and maximum is "
-"2007. If empty or 0, the default applies."
-msgstr ""
-"Mengonfigurasi opsi max_num_sta dari hostapd. Nilai baku dan maksimum adalah"
-" 2007. Jika kosong atau 0, nilai baku diberlakukan."
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Mengonfigurasi opsi max_num_sta dari hostapd. Nilai baku dan maksimum adalah 2007. Jika kosong atau 0, nilai baku diberlakukan."
 
 #: includes/networking.php
 msgid "Summary"
@@ -526,7 +510,7 @@ msgid "CPU Load"
 msgstr "Beban Kerja CPU"
 
 msgid "Reboot"
-msgstr "Reboot"
+msgstr ""
 
 msgid "Shutdown"
 msgstr "Tutup"
@@ -607,7 +591,7 @@ msgid "Client Log"
 msgstr "Log Klien"
 
 msgid "Port"
-msgstr "Port"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Protokol"
@@ -622,7 +606,7 @@ msgid "Diffie Hellman parameters"
 msgstr "Parameter Diffie Hellman"
 
 msgid "KeepAlive"
-msgstr "KeepAlive"
+msgstr ""
 
 msgid "Server log"
 msgstr "Log Server"
@@ -656,7 +640,7 @@ msgid "Relay settings"
 msgstr "Pengaturan Relay"
 
 msgid "Nickname"
-msgstr "Nickname"
+msgstr ""
 
 msgid "Address"
 msgstr "Alamat"
@@ -675,6 +659,10 @@ msgstr "Mencoba untuk memulai TOR"
 
 msgid "Attempting to stop TOR"
 msgstr "Mencoba untuk menghentikan TOR"
+
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr ""
 
 #: common form controls
 msgid "Save settings"
@@ -697,3 +685,46 @@ msgstr "naik"
 
 msgid "down"
 msgstr "tidak beroperasi"
+
+msgid "adblock"
+msgstr ""
+
+msgid "Ad Blocking"
+msgstr ""
+
+msgid "Start Ad Blocking"
+msgstr ""
+
+msgid "Restart Ad Blocking"
+msgstr ""
+
+msgid "Blocklist settings"
+msgstr ""
+
+msgid "Enable blocklists"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr ""
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Hostnames blocklist last updated"
+msgstr ""
+
+msgid "Domains blocklist last updated"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Information provided by adblock"
+msgstr ""
+
