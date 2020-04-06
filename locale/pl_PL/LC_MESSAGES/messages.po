@@ -1,0 +1,730 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: raspap\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2020-04-06 13:27\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Polish\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: pl\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "RaspAP Wifi Portal Konfiguracyjny"
+
+msgid "Toggle navigation"
+msgstr "Przełącz tryb nawigacji"
+
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP Portal Wifi"
+
+msgid "Dashboard"
+msgstr "Pulpit nawigacyjny"
+
+msgid "WiFi client"
+msgstr ""
+
+msgid "Hotspot"
+msgstr ""
+
+msgid "Networking"
+msgstr ""
+
+msgid "DHCP Server"
+msgstr ""
+
+msgid "OpenVPN"
+msgstr ""
+
+msgid "TOR proxy"
+msgstr ""
+
+msgid "Authentication"
+msgstr ""
+
+msgid "Change Theme"
+msgstr "Zmień motyw"
+
+msgid "System"
+msgstr ""
+
+msgid "About RaspAP"
+msgstr ""
+
+#: includes/admin.php
+msgid "Authentication settings"
+msgstr ""
+
+msgid "New passwords do not match"
+msgstr "Nowe hasła nie pasują do siebie"
+
+msgid "Username must not be empty"
+msgstr "Nazwa użytkownika nie może być pusta"
+
+msgid "Admin password updated"
+msgstr "Hasło administratora zostało zaktualizowane"
+
+msgid "Failed to update admin password"
+msgstr "Nie można zaktualizować hasła administratora"
+
+msgid "Old password does not match"
+msgstr "Stare hasło jest niepoprawne"
+
+msgid "Username"
+msgstr "Nazwa użytkownika"
+
+msgid "Old password"
+msgstr "Stare hasło"
+
+msgid "New password"
+msgstr "Nowe hasło"
+
+msgid "Repeat new password"
+msgstr "Powtórz nowe hasło"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "Ustawienia klienta"
+
+msgid "SSID"
+msgstr ""
+
+msgid "Channel"
+msgstr "Kanał"
+
+msgid "Security"
+msgstr "Bezpieczeństwo"
+
+msgid "Passphrase"
+msgstr "Hasło"
+
+msgid "Wifi settings updated successfully"
+msgstr "Ustawienia WiFi zostały pomyślnie zaktualizowane"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "Ustawienia Wifi zostały zaktualizowane, ale restart nie przebiegł pomyślnie (nie można wykonać 'wpa_cli reconfigure')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Ustawienia Wifi nie mogły zostać zaktualizowane"
+
+msgid "Failed to update wifi settings"
+msgstr "Nie udało się zaktualizować ustawień wifi"
+
+msgid "Rescan"
+msgstr "Ponowne skanowanie"
+
+msgid "Update"
+msgstr "Aktualizacja"
+
+msgid "Add"
+msgstr "Dodaj"
+
+msgid "Delete"
+msgstr "Usuń"
+
+msgid "Show"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Not configured"
+msgstr ""
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Notka:</strong> Punkt dostępu WEP wydaje się być 'Otwarty'. RaspAP aktualnie nie wspiera podłączania do WEP"
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "Informacje na temat interfejsu"
+
+msgid "Interface Name"
+msgstr "Nazwa interfejsu"
+
+msgid "IPv4 Address"
+msgstr ""
+
+msgid "IPv6 Address"
+msgstr ""
+
+msgid "Subnet Mask"
+msgstr "Adres podsieci"
+
+msgid "Mac Address"
+msgstr "Adres Mac"
+
+msgid "Interface Statistics"
+msgstr "Statystyki Interfejsu"
+
+msgid "Received Packets"
+msgstr "Otrzymane Pakiety"
+
+msgid "Received Bytes"
+msgstr "Otrzymane Bajty"
+
+msgid "Transferred Packets"
+msgstr "Przesłane Pakiety"
+
+msgid "Transferred Bytes"
+msgstr "Przesłane Bajty"
+
+msgid "Wireless Information"
+msgstr "Informacje o sieci bezprzewodowej"
+
+msgid "Connected To"
+msgstr "Podłączony do"
+
+msgid "AP Mac Address"
+msgstr "AP Adres Mac"
+
+msgid "Bitrate"
+msgstr ""
+
+msgid "Signal Level"
+msgstr "Poziom sygnału"
+
+msgid "Transmit Power"
+msgstr "Siła sygnału"
+
+msgid "Frequency"
+msgstr "Częstotliwość"
+
+msgid "Link Quality"
+msgstr "Jakość połączenia"
+
+msgid "Information provided by ip and iw and from system"
+msgstr ""
+
+msgid "No MAC Address Found"
+msgstr "MAC Address nie został odnaleziony"
+
+msgid "No IP Address Found"
+msgstr "Adres IP nie został odnaleziony"
+
+msgid "No Subnet Mask Found"
+msgstr "Maska podsieci nie została odnaleziona"
+
+msgid "No Data"
+msgstr "Brak danych"
+
+msgid "Not connected"
+msgstr "Nie podłączony"
+
+msgid "Interface is up"
+msgstr "Interfejs jest włączony"
+
+msgid "Interface is down"
+msgstr "Interfejs jest wyłączony"
+
+msgid "Interface already down"
+msgstr "Interfejs już jest wyłączony"
+
+msgid "Start wlan0"
+msgstr ""
+
+msgid "Stop wlan0"
+msgstr ""
+
+msgid "Connected Devices"
+msgstr ""
+
+#: includes/dhcp.php
+msgid "DHCP server settings"
+msgstr ""
+
+msgid "Client list"
+msgstr "Lista klientów"
+
+msgid "Interface"
+msgstr ""
+
+msgid "DNS Server"
+msgstr "Serwer DNS"
+
+msgid "Starting IP Address"
+msgstr "Startowanie adresu IP"
+
+msgid "Ending IP Address"
+msgstr "Kończenie adresu IP"
+
+msgid "Static Leases"
+msgstr ""
+
+msgid "Add static DHCP lease"
+msgstr ""
+
+msgid "Lease Time"
+msgstr "Czas wynajęcia (Lease Time)"
+
+msgid "Interval"
+msgstr "Interwał"
+
+msgid "Active DHCP leases"
+msgstr "Aktywne wynajęcia DHCP"
+
+msgid "Expire time"
+msgstr "Czas wygaśnięcia"
+
+msgid "MAC Address"
+msgstr "Adres MAC"
+
+msgid "Host name"
+msgstr "Nazwa gospodarza"
+
+msgid "Client ID"
+msgstr "ID Klienta"
+
+msgid "Information provided by Dnsmasq"
+msgstr "Informacje dostarczone przez Dnsmasq"
+
+msgid "Stop dnsmasq"
+msgstr ""
+
+msgid "Start dnsmasq"
+msgstr ""
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Konfiguracja Dnsmasq zaktualizowana pomyślnie"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq jest już odpalony"
+
+msgid "Successfully started dnsmasq"
+msgstr "Pomyślnie wystartowano dnsmasq"
+
+msgid "Failed to start dnsmasq"
+msgstr "Nie można wystartować dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Pomyślnie zatrzymano dnsmasq"
+
+msgid "Failed to stop dnsmasq"
+msgstr "Nie udało się zatrzymać dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq już jest zatrzymany"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq jest odpalony"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq nie jest odpalony"
+
+msgid "Upstream DNS servers"
+msgstr ""
+
+msgid "Only ever query DNS servers configured below"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Add upstream DNS server"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Choose a hosted server"
+msgstr ""
+
+msgid "Log DHCP requests"
+msgstr ""
+
+msgid "Log DNS queries"
+msgstr ""
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "Podstawowe"
+
+msgid "Advanced"
+msgstr "Zaawansowane"
+
+msgid "Basic settings"
+msgstr "Podstawowe ustawienia"
+
+msgid "Wireless Mode"
+msgstr "Tryb Bezprzewodowy"
+
+msgid "Security settings"
+msgstr "Ustawienia bezpieczeństwa"
+
+msgid "Security type"
+msgstr "Tyb zabezpieczeń"
+
+msgid "Encryption Type"
+msgstr "Typ szyfrowania"
+
+msgid "PSK"
+msgstr ""
+
+msgid "Advanced settings"
+msgstr "Zaawansowane ustawienia"
+
+msgid "Country Code"
+msgstr "Kod kraju"
+
+msgid "Information provided by hostapd"
+msgstr "Informacje dostarczone przez hostapd"
+
+msgid "Attempting to start hotspot"
+msgstr "Próba wystartowania punktu dostępowego hotspot"
+
+msgid "Attempting to stop hotspot"
+msgstr "Próba zatrzymania punktu dostępowego hotspot"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD nie jest odpalony"
+
+msgid "HostAPD is running"
+msgstr "HostAPD jest już odpalony"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID musi zawierać między 1 a 32 znaków"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "Hasło WPA musi zawierać między 8 a 63 znaków"
+
+msgid "Unknown interface"
+msgstr "Nieznany interfejs"
+
+msgid "Country code must be blank or two characters"
+msgstr "Kod kraju musi być pusty lub zawierać dwa znaki"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Ustawienia Wifi Hotspot zostały zapisane"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "Nie można zapisać ustawień wifi hotspot"
+
+msgid "Start hotspot"
+msgstr "Odpal hotspot"
+
+msgid "Stop hotspot"
+msgstr "Zatrzymaj hotspot"
+
+msgid "Restart hotspot"
+msgstr ""
+
+msgid "Enable logging"
+msgstr "Włącz logowanie"
+
+msgid "Logfile output"
+msgstr "Plik wyjściowy logów"
+
+msgid "WiFi client AP mode"
+msgstr ""
+
+msgid "Bridged AP mode"
+msgstr ""
+
+msgid "Hide SSID in broadcast"
+msgstr ""
+
+msgid "Maximum number of clients"
+msgstr ""
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr ""
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Podsumowanie"
+
+msgid "Current settings"
+msgstr "Aktualne ustawienia"
+
+msgid "Default Gateway"
+msgstr "Domyślna brama"
+
+msgid "Alternate DNS Server"
+msgstr "Alternatywny serwer DNS"
+
+msgid "Adapter IP Address Settings"
+msgstr "Ustawienia adresu IP adaptera"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Ustaw opcję statyczną jako wyjście awaryjne"
+
+msgid "Static IP"
+msgstr "Statyczne IP"
+
+msgid "Enabled"
+msgstr "Włączony"
+
+msgid "Disabled"
+msgstr "Wyłączony"
+
+msgid "Static IP Options"
+msgstr "Opcje statycznego IP"
+
+msgid "Apply settings"
+msgstr "Zapisz ustawienia"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Informacje dostarczone przez /sys/class/net"
+
+#: includes/system.php
+msgid "System Information"
+msgstr "Informacje systemowe"
+
+msgid "Language"
+msgstr "Język"
+
+msgid "Language settings"
+msgstr "Ustawienia języka"
+
+msgid "Select a language"
+msgstr "Wybierz język"
+
+msgid "Language setting saved"
+msgstr "Ustawienia języka zapisane"
+
+msgid "Console"
+msgstr "Konsola"
+
+msgid "Hostname"
+msgstr "Nazwa gospodarza"
+
+msgid "Pi Revision"
+msgstr "wersja PI"
+
+msgid "Uptime"
+msgstr "Czas działania"
+
+msgid "Memory Used"
+msgstr "Użyta pamięć"
+
+msgid "CPU Load"
+msgstr "Obciążenie CPU"
+
+msgid "Reboot"
+msgstr "Restart"
+
+msgid "Shutdown"
+msgstr "Wyłącz"
+
+msgid "System Rebooting Now!"
+msgstr "System jest uruchamiany ponownie!"
+
+msgid "System Shutting Down Now!"
+msgstr "System jest wyłączany!"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "Ustawienia motywu"
+
+msgid "Select a theme"
+msgstr "Wybierz motyw"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Użycie danych"
+
+msgid "Data usage monitoring"
+msgstr "Monitorowanie zużycia danych"
+
+msgid "Hourly traffic amount"
+msgstr ""
+
+msgid "Daily traffic amount"
+msgstr "Dzienny przepływ danych"
+
+msgid "Monthly traffic amount"
+msgstr "Miesięczny przepływ danych"
+
+msgid "Hourly"
+msgstr ""
+
+msgid "Daily"
+msgstr ""
+
+msgid "Monthly"
+msgstr ""
+
+msgid "interface"
+msgstr "interfejs"
+
+msgid "date"
+msgstr "data"
+
+msgid "Send MB"
+msgstr "Wysłane MB"
+
+msgid "Receive MB"
+msgstr "Otrzymane MB"
+
+msgid "Information provided by vnstat"
+msgstr "Informacje dostarczone przez vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Wczytywanie {0} wykresu bandwidth"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Pokazywanie wpisów od {0} do {1} z {2}"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr ""
+
+msgid "OpenVPN is running"
+msgstr ""
+
+msgid "Server settings"
+msgstr "Ustawienia serwera"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr ""
+
+msgid "Client Log"
+msgstr ""
+
+msgid "Port"
+msgstr ""
+
+msgid "Protocol"
+msgstr ""
+
+msgid "Root CA certificate"
+msgstr ""
+
+msgid "Server certificate"
+msgstr ""
+
+msgid "Diffie Hellman parameters"
+msgstr ""
+
+msgid "KeepAlive"
+msgstr ""
+
+msgid "Server log"
+msgstr ""
+
+msgid "Start OpenVPN"
+msgstr ""
+
+msgid "Stop OpenVPN"
+msgstr ""
+
+msgid "Information provided by openvpn"
+msgstr ""
+
+msgid "Attempting to start openvpn"
+msgstr ""
+
+msgid "Attempting to stop openvpn"
+msgstr ""
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr ""
+
+msgid "TOR is running"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Relay settings"
+msgstr ""
+
+msgid "Nickname"
+msgstr ""
+
+msgid "Address"
+msgstr ""
+
+msgid "Start TOR"
+msgstr ""
+
+msgid "Stop TOR"
+msgstr ""
+
+msgid "Information provided by tor"
+msgstr ""
+
+msgid "Attempting to start TOR"
+msgstr ""
+
+msgid "Attempting to stop TOR"
+msgstr ""
+
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr ""
+
+#: common form controls
+msgid "Save settings"
+msgstr "Zapisz ustawienia"
+
+msgid "Refresh"
+msgstr "Odśwież"
+
+msgid "running"
+msgstr ""
+
+msgid "stopped"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "up"
+msgstr ""
+
+msgid "down"
+msgstr ""
+
+msgid "adblock"
+msgstr ""
+
+msgid "Ad Blocking"
+msgstr ""
+
+msgid "Start Ad Blocking"
+msgstr ""
+
+msgid "Restart Ad Blocking"
+msgstr ""
+
+msgid "Blocklist settings"
+msgstr ""
+
+msgid "Enable blocklists"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr ""
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Hostnames blocklist last updated"
+msgstr ""
+
+msgid "Domains blocklist last updated"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Information provided by adblock"
+msgstr ""
+
