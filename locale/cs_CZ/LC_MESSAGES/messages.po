@@ -1,22 +1,19 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
+"Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-21 23:15+0000\n"
-"Last-Translator: Rudolf Vallo <r.vallo@seznam.cz>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2020-04-06 14:13\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Czech\n"
 "Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: cs\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -139,7 +136,7 @@ msgid "Hide"
 msgstr "Skrýt"
 
 msgid "Not configured"
-msgstr "Not configured"
+msgstr "Není nakonfigurováno"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Poznámka:</strong> WEP přístupový bod je zobrazen jako 'bez zabezpečení' ''. RaspAP zatím nepodporuje připojení k WEP sítím"
@@ -188,10 +185,10 @@ msgid "AP Mac Address"
 msgstr "AP Mac Adresa"
 
 msgid "Bitrate"
-msgstr "Bitrate"
+msgstr "Datový tok"
 
 msgid "Signal Level"
-msgstr "Signal Level"
+msgstr "Úroveň signálu"
 
 msgid "Transmit Power"
 msgstr "Vysílací výkon"
@@ -230,10 +227,10 @@ msgid "Interface already down"
 msgstr "Rozhraní je už vypnuté"
 
 msgid "Start wlan0"
-msgstr "Start wlan0"
+msgstr "Začít wlan0"
 
 msgid "Stop wlan0"
-msgstr "Stop wlan0"
+msgstr "Zastavit wlan0"
 
 msgid "Connected Devices"
 msgstr "Připojená zařízení"
@@ -247,6 +244,9 @@ msgstr "Seznam zařízení"
 
 msgid "Interface"
 msgstr "Rozhraní"
+
+msgid "DNS Server"
+msgstr "DNS server"
 
 msgid "Starting IP Address"
 msgstr "Počáteční IP Adresa"
@@ -318,7 +318,7 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq neběží"
 
 msgid "Upstream DNS servers"
-msgstr "Upstream DNS servers"
+msgstr "Upstream servery DNS"
 
 msgid "Only ever query DNS servers configured below"
 msgstr "Only ever query DNS servers configured below"
@@ -327,22 +327,22 @@ msgid "Enable this option if you want RaspAP to <b>send DNS queries to the serve
 msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "Tato volba přidává do konfigurace dnsmasq <code>no-resolv</code>."
 
 msgid "Add upstream DNS server"
-msgstr "Add upstream DNS server"
+msgstr "Přidejte server DNS proti proudu"
 
 msgid "Format"
-msgstr "Format"
+msgstr "Formát"
 
 msgid "Choose a hosted server"
-msgstr "Choose a hosted server"
+msgstr "Vyberte hostovaný server"
 
 msgid "Log DHCP requests"
-msgstr "Log DHCP requests"
+msgstr "Log DHCP požadavky"
 
 msgid "Log DNS queries"
-msgstr "Log DNS queries"
+msgstr "Log DNS dotazů"
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -426,6 +426,9 @@ msgstr "Výstop logu"
 msgid "WiFi client AP mode"
 msgstr "AP režim WiFi klienta"
 
+msgid "Bridged AP mode"
+msgstr "Bridged AP mode"
+
 msgid "Hide SSID in broadcast"
 msgstr "Skrýt ve vysílání SSID"
 
@@ -444,9 +447,6 @@ msgstr "Aktuální nastavení"
 
 msgid "Default Gateway"
 msgstr "Výchozí brána"
-
-msgid "DNS Server"
-msgstr "DNS Server"
 
 msgid "Alternate DNS Server"
 msgstr "Alternativní DNS Server"
@@ -660,6 +660,10 @@ msgstr "Pokus o spuštění TOR"
 msgid "Attempting to stop TOR"
 msgstr "Pokus o zastavení TOR"
 
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr "Režim přemostění AP je povolen. Pro název hostitele a IP navštivte administrátorskou stránku vašeho routeru."
+
 #: common form controls
 msgid "Save settings"
 msgstr "Uložit nastavení"
@@ -681,3 +685,46 @@ msgstr "nahoru"
 
 msgid "down"
 msgstr "dolů"
+
+msgid "adblock"
+msgstr ""
+
+msgid "Ad Blocking"
+msgstr ""
+
+msgid "Start Ad Blocking"
+msgstr ""
+
+msgid "Restart Ad Blocking"
+msgstr ""
+
+msgid "Blocklist settings"
+msgstr ""
+
+msgid "Enable blocklists"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr ""
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Hostnames blocklist last updated"
+msgstr ""
+
+msgid "Domains blocklist last updated"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Information provided by adblock"
+msgstr ""
+

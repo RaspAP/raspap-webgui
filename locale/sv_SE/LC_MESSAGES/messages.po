@@ -1,22 +1,19 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
+"Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-21 23:15+0000\n"
-"Last-Translator: Emil Nilsson <emil_nilsson_96@live.se>\n"
-"Language-Team: \n"
-"Language: en_US\n"
+"PO-Revision-Date: 2020-04-06 13:27\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Swedish\n"
+"Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: sv-SE\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -26,28 +23,28 @@ msgid "Toggle navigation"
 msgstr "Växla meny"
 
 msgid "RaspAP Wifi Portal"
-msgstr "RaspAP Wifi Portal"
+msgstr ""
 
 msgid "Dashboard"
-msgstr "Dashboard"
+msgstr ""
 
 msgid "WiFi client"
 msgstr "WiFi klienten"
 
 msgid "Hotspot"
-msgstr "Hotspot"
+msgstr ""
 
 msgid "Networking"
 msgstr "Nätverk"
 
 msgid "DHCP Server"
-msgstr "DHCP Server"
+msgstr ""
 
 msgid "OpenVPN"
-msgstr "OpenVPN"
+msgstr ""
 
 msgid "TOR proxy"
-msgstr "TOR proxy"
+msgstr ""
 
 msgid "Authentication"
 msgstr "Autentisering"
@@ -56,7 +53,7 @@ msgid "Change Theme"
 msgstr "Byt Tema"
 
 msgid "System"
-msgstr "System"
+msgstr ""
 
 msgid "About RaspAP"
 msgstr "Om RaspAP"
@@ -97,7 +94,7 @@ msgid "Client settings"
 msgstr "Klient inställningar"
 
 msgid "SSID"
-msgstr "SSID"
+msgstr ""
 
 msgid "Channel"
 msgstr "Kanal"
@@ -158,7 +155,7 @@ msgid "IPv6 Address"
 msgstr "IPv6-adress"
 
 msgid "Subnet Mask"
-msgstr "Subnet Mask"
+msgstr ""
 
 msgid "Mac Address"
 msgstr "Mac Adress"
@@ -179,7 +176,7 @@ msgid "Transferred Bytes"
 msgstr "Överförda Bytes"
 
 msgid "Wireless Information"
-msgstr "Wireless Information"
+msgstr ""
 
 msgid "Connected To"
 msgstr "Ansluten Till"
@@ -188,13 +185,13 @@ msgid "AP Mac Address"
 msgstr "AP Mac Adress"
 
 msgid "Bitrate"
-msgstr "Bitrate"
+msgstr ""
 
 msgid "Signal Level"
 msgstr "Signalnivå"
 
 msgid "Transmit Power"
-msgstr "Transmit Power"
+msgstr ""
 
 msgid "Frequency"
 msgstr "Frekvens"
@@ -247,6 +244,9 @@ msgstr "Klient lista"
 
 msgid "Interface"
 msgstr "Gränssnittet"
+
+msgid "DNS Server"
+msgstr ""
 
 msgid "Starting IP Address"
 msgstr "Startar IP Adress"
@@ -318,31 +318,31 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq körs ej"
 
 msgid "Upstream DNS servers"
-msgstr "Upstream DNS servers"
+msgstr ""
 
 msgid "Only ever query DNS servers configured below"
-msgstr "Only ever query DNS servers configured below"
+msgstr ""
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
 
 msgid "Add upstream DNS server"
-msgstr "Add upstream DNS server"
+msgstr ""
 
 msgid "Format"
-msgstr "Format"
+msgstr ""
 
 msgid "Choose a hosted server"
-msgstr "Choose a hosted server"
+msgstr ""
 
 msgid "Log DHCP requests"
-msgstr "Log DHCP requests"
+msgstr ""
 
 msgid "Log DNS queries"
-msgstr "Log DNS queries"
+msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -367,7 +367,7 @@ msgid "Encryption Type"
 msgstr "Krypteringstyp"
 
 msgid "PSK"
-msgstr "PSK"
+msgstr ""
 
 msgid "Advanced settings"
 msgstr "Advancerade inställningar"
@@ -426,6 +426,9 @@ msgstr "Logfilutskrift"
 msgid "WiFi client AP mode"
 msgstr "AP-läge för wifi-klient"
 
+msgid "Bridged AP mode"
+msgstr ""
+
 msgid "Hide SSID in broadcast"
 msgstr "Dölj SSID i sändning"
 
@@ -444,9 +447,6 @@ msgstr "Nuvarande inställningar"
 
 msgid "Default Gateway"
 msgstr "Standard Gateway"
-
-msgid "DNS Server"
-msgstr "DNS Server"
 
 msgid "Alternate DNS Server"
 msgstr "Alternativ DNS Server"
@@ -498,7 +498,7 @@ msgid "Hostname"
 msgstr "Värdnamn"
 
 msgid "Pi Revision"
-msgstr "Pi Revision"
+msgstr ""
 
 msgid "Uptime"
 msgstr "Drifttid"
@@ -591,7 +591,7 @@ msgid "Client Log"
 msgstr "Klientlogg"
 
 msgid "Port"
-msgstr "Port"
+msgstr ""
 
 msgid "Protocol"
 msgstr "Protokoll"
@@ -660,6 +660,10 @@ msgstr "Försöker starta TOR"
 msgid "Attempting to stop TOR"
 msgstr "Försöker stoppa TOR"
 
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr ""
+
 #: common form controls
 msgid "Save settings"
 msgstr "Spara inställningar"
@@ -681,3 +685,46 @@ msgstr "upp"
 
 msgid "down"
 msgstr "ned"
+
+msgid "adblock"
+msgstr ""
+
+msgid "Ad Blocking"
+msgstr ""
+
+msgid "Start Ad Blocking"
+msgstr ""
+
+msgid "Restart Ad Blocking"
+msgstr ""
+
+msgid "Blocklist settings"
+msgstr ""
+
+msgid "Enable blocklists"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr ""
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Hostnames blocklist last updated"
+msgstr ""
+
+msgid "Domains blocklist last updated"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Information provided by adblock"
+msgstr ""
+

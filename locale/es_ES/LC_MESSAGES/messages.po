@@ -1,22 +1,19 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
+"Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-21 23:15+0000\n"
-"Last-Translator: Luis Franco <luis_franco1990@hotmail.com>\n"
-"Language-Team: \n"
-"Language: es_MX\n"
+"PO-Revision-Date: 2020-04-06 13:27\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Spanish\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -35,7 +32,7 @@ msgid "WiFi client"
 msgstr "Cliente wiFi"
 
 msgid "Hotspot"
-msgstr "Hotspot"
+msgstr ""
 
 msgid "Networking"
 msgstr "Red de trabajo"
@@ -44,10 +41,10 @@ msgid "DHCP Server"
 msgstr "Servidor DHCP"
 
 msgid "OpenVPN"
-msgstr "OpenVPN"
+msgstr ""
 
 msgid "TOR proxy"
-msgstr "TOR proxy"
+msgstr ""
 
 msgid "Authentication"
 msgstr "Autentificacion"
@@ -97,7 +94,7 @@ msgid "Client settings"
 msgstr "Configuracion de Cliente"
 
 msgid "SSID"
-msgstr "SSID"
+msgstr ""
 
 msgid "Channel"
 msgstr "Canal"
@@ -248,6 +245,9 @@ msgstr "Lista de Clientes"
 msgid "Interface"
 msgstr "Interfaz"
 
+msgid "DNS Server"
+msgstr "Servidor DNS"
+
 msgid "Starting IP Address"
 msgstr "Dirección IP de incio"
 
@@ -318,31 +318,31 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq no esta iniciado"
 
 msgid "Upstream DNS servers"
-msgstr "Upstream DNS servers"
+msgstr ""
 
 msgid "Only ever query DNS servers configured below"
-msgstr "Only ever query DNS servers configured below"
+msgstr ""
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
 
 msgid "Add upstream DNS server"
-msgstr "Add upstream DNS server"
+msgstr ""
 
 msgid "Format"
-msgstr "Format"
+msgstr ""
 
 msgid "Choose a hosted server"
-msgstr "Choose a hosted server"
+msgstr ""
 
 msgid "Log DHCP requests"
-msgstr "Log DHCP requests"
+msgstr ""
 
 msgid "Log DNS queries"
-msgstr "Log DNS queries"
+msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -367,7 +367,7 @@ msgid "Encryption Type"
 msgstr "Tipo de Encriptacion"
 
 msgid "PSK"
-msgstr "PSK"
+msgstr ""
 
 msgid "Advanced settings"
 msgstr "Configuracion Avanzada"
@@ -426,6 +426,9 @@ msgstr "Salida del archivo de registro"
 msgid "WiFi client AP mode"
 msgstr "Modo AP de WiFi de cliente"
 
+msgid "Bridged AP mode"
+msgstr ""
+
 msgid "Hide SSID in broadcast"
 msgstr "Ocultar SSID en la transmisión"
 
@@ -444,9 +447,6 @@ msgstr "Configuracion Actual"
 
 msgid "Default Gateway"
 msgstr "Puerta de Enlace predeterminada"
-
-msgid "DNS Server"
-msgstr "Servidor DNS"
 
 msgid "Alternate DNS Server"
 msgstr "Servidor DNS Alterno"
@@ -606,7 +606,7 @@ msgid "Diffie Hellman parameters"
 msgstr "Parámetros Diffie Hellman"
 
 msgid "KeepAlive"
-msgstr "KeepAlive"
+msgstr ""
 
 msgid "Server log"
 msgstr "Registro del servidor"
@@ -660,6 +660,10 @@ msgstr "Intentando iniciar TOR"
 msgid "Attempting to stop TOR"
 msgstr "Intentando detener TOR"
 
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr ""
+
 #: common form controls
 msgid "Save settings"
 msgstr "Guardar Configuraciones"
@@ -681,4 +685,46 @@ msgstr "arriba"
 
 msgid "down"
 msgstr "abajo"
+
+msgid "adblock"
+msgstr ""
+
+msgid "Ad Blocking"
+msgstr ""
+
+msgid "Start Ad Blocking"
+msgstr ""
+
+msgid "Restart Ad Blocking"
+msgstr ""
+
+msgid "Blocklist settings"
+msgstr ""
+
+msgid "Enable blocklists"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr ""
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Hostnames blocklist last updated"
+msgstr ""
+
+msgid "Domains blocklist last updated"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Information provided by adblock"
+msgstr ""
 
