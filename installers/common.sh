@@ -70,7 +70,7 @@ function _get_linux_distro() {
         CODENAME=$VERSION_CODENAME
         DESC=$PRETTY_NAME
     else
-        _install_error "Unsupported Linux distribution"
+        _install_status 1 "Unsupported Linux distribution"
     fi
 }
 
@@ -87,9 +87,9 @@ function _set_php_package() {
             php_package="php7.0-cgi"
             phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
         "8")
-            _install_error "${DESC} and php5 are not supported. Please upgrade." ;;
+            _install_status 1 "${DESC} and php5 are not supported. Please upgrade." ;;
         *)
-            _install_error "${DESC} is unsupported. Please install on a supported distro." ;;
+            _install_status 1 "${DESC} is unsupported. Please install on a supported distro." ;;
     esac
 }
 
@@ -99,8 +99,8 @@ function _install_dependencies() {
     _set_php_package
     if [ "$php_package" = "php7.4-cgi" ]; then
         echo "Adding apt-repository ppa:ondrej/php"
-        sudo apt-get install software-properties-common || _install_error "Unable to install dependency"
-        sudo add-apt-repository ppa:ondrej/php || _install_error "Unable to add-apt-repository ppa:ondrej/php"
+        sudo apt-get install software-properties-common || _install_status 1 "Unable to install dependency"
+        sudo add-apt-repository ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
     fi
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
@@ -108,7 +108,8 @@ function _install_dependencies() {
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install $apt_option lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package vnstat qrencode || _install_error "Unable to install dependencies"
+    sudo apt-get install $apt_option lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package vnstat qrencode || _install_status 1 "Unable to install dependencies"
+    _install_status 0
 }
 
 # Enables PHP for lighttpd and restarts service for settings to take effect
@@ -116,16 +117,16 @@ function _enable_php_lighttpd() {
     _install_log "Enabling PHP for lighttpd"
     sudo lighttpd-enable-mod fastcgi-php    
     sudo service lighttpd force-reload
-    sudo systemctl restart lighttpd.service || _install_error "Unable to restart lighttpd"
+    sudo systemctl restart lighttpd.service || _install_status 1 "Unable to restart lighttpd"
 }
 
 # Verifies existence and permissions of RaspAP directory
 function _create_raspap_directories() {
     _install_log "Creating RaspAP directories"
     if [ -d "$raspap_dir" ]; then
-        sudo mv $raspap_dir "$raspap_dir.`date +%F-%R`" || _install_error "Unable to move old '$raspap_dir' out of the way"
+        sudo mv $raspap_dir "$raspap_dir.`date +%F-%R`" || _install_status 1 "Unable to move old '$raspap_dir' out of the way"
     fi
-    sudo mkdir -p "$raspap_dir" || _install_error "Unable to create directory '$raspap_dir'"
+    sudo mkdir -p "$raspap_dir" || _install_status 1 "Unable to create directory '$raspap_dir'"
 
     # Create a directory for existing file backups.
     sudo mkdir -p "$raspap_dir/backups"
@@ -137,33 +138,37 @@ function _create_raspap_directories() {
     echo "Adding /etc/dhcpcd.conf as base configuration"
     cat /etc/dhcpcd.conf | sudo tee -a /etc/raspap/networking/defaults > /dev/null
     echo "Changing file ownership of $raspap_dir"
-    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_error "Unable to change file ownership for '$raspap_dir'"
+    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 }
 
 # Generate hostapd logging and service control scripts
 function _create_hostapd_scripts() {
     _install_log "Creating hostapd logging & control scripts"
-    sudo mkdir $raspap_dir/hostapd || _install_error "Unable to create directory '$raspap_dir/hostapd'"
+    sudo mkdir $raspap_dir/hostapd || _install_status 1 "Unable to create directory '$raspap_dir/hostapd'"
 
     # Move logging shell scripts 
-    sudo cp "$webroot_dir/installers/"*log.sh "$raspap_dir/hostapd" || _install_error "Unable to move logging scripts"
+    sudo cp "$webroot_dir/installers/"*log.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move logging scripts"
     # Move service control shell scripts
-    sudo cp "$webroot_dir/installers/"service*.sh "$raspap_dir/hostapd" || _install_error "Unable to move service control scripts"
+    sudo cp "$webroot_dir/installers/"service*.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move service control scripts"
     # Make enablelog.sh and disablelog.sh not writable by www-data group.
-    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || _install_error "Unable change owner and/or group"
-    sudo chmod 750 "$raspap_dir/hostapd/"*.sh || _install_error "Unable to change file permissions"
+    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable to change file permissions"
+    _install_status 0
 }
 
 # Generate lighttpd service control scripts
 function _create_lighttpd_scripts() {
     _install_log "Creating lighttpd control scripts"
-    sudo mkdir $raspap_dir/lighttpd || _install_error "Unable to create directory '$raspap_dir/lighttpd"
+    sudo mkdir $raspap_dir/lighttpd || _install_status 1 "Unable to create directory '$raspap_dir/lighttpd"
 
     # Move service control shell scripts
-    sudo cp "$webroot_dir/installers/"configport.sh "$raspap_dir/lighttpd" || _install_error "Unable to move service control scripts"
+    echo "Copying configport.sh to $raspap_dir/lighttpd"
+    sudo cp "$webroot_dir/installers/"configport.sh "$raspap_dir/lighttpd" || _install_status 1 "Unable to move service control scripts"
     # Make configport.sh writable by www-data group
-    sudo chown -c root:"$raspap_user" "$raspap_dir/lighttpd/"*.sh || _install_error "Unable change owner and/or group"
-    sudo chmod 750 "$raspap_dir/lighttpd/"*.sh || _install_error "Unable to change file permissions"
+    echo "Changing file ownership"
+    sudo chown -c root:"$raspap_user" "$raspap_dir/lighttpd/"*.sh || _install_status 1 "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/lighttpd/"*.sh || _install_status 1 "Unable to change file permissions"
+    _install_status 0
 }
 
 # Prompt to install adblock
@@ -193,39 +198,39 @@ function _install_adblock() {
     if [ ! -f /tmp/hostnames.txt ]; then
         echo "Fetching latest hostnames list"
         wget ${notracking_url}hostnames.txt -q --show-progress --progress=bar:force -O /tmp/hostnames.txt 2>&1 \
-            || _install_error "Unable to download notracking hostnames"
+            || _install_status 1 "Unable to download notracking hostnames"
     fi
     if [ ! -f /tmp/domains.txt ]; then
         echo "Fetching latest domains list"
         wget ${notracking_url}domains.txt -q --show-progress --progress=bar:force -O /tmp/domains.txt 2>&1 \
-            || _install_error "Unable to download notracking domains"
+            || _install_status 1 "Unable to download notracking domains"
     fi
     echo "Adding blocklists to $raspap_dir/adblock"
-    sudo cp /tmp/hostnames.txt $raspap_dir/adblock || _install_error "Unable to move notracking hostnames"
-    sudo cp /tmp/domains.txt $raspap_dir/adblock || _install_error "Unable to move notracking domains"
+    sudo cp /tmp/hostnames.txt $raspap_dir/adblock || _install_status 1 "Unable to move notracking hostnames"
+    sudo cp /tmp/domains.txt $raspap_dir/adblock || _install_status 1 "Unable to move notracking domains"
 
     echo "Moving and setting permissions for blocklist update script"
-    sudo cp "$webroot_dir/installers/"update_blocklist.sh "$raspap_dir/adblock" || _install_error "Unable to move blocklist update script"
+    sudo cp "$webroot_dir/installers/"update_blocklist.sh "$raspap_dir/adblock" || _install_status 1 "Unable to move blocklist update script"
 
     # Make blocklists and update script writable by www-data group
-    sudo chown -c root:"$raspap_user" "$raspap_dir/adblock/"*.* || _install_error "Unable to change owner/group"
+    sudo chown -c root:"$raspap_user" "$raspap_dir/adblock/"*.* || _install_status 1 "Unable to change owner/group"
     sudo chmod 750 "$raspap_dir/adblock/"*.sh || install_error "Unable to change file permissions"
 
     # Create 090_adblock.conf and write values to /etc/dnsmasq.d
     if [ ! -f "$raspap_adblock" ]; then
         echo "Adding 090_addblock.conf to /etc/dnsmasq.d"
         sudo touch "$raspap_adblock"
-        echo "conf-file=$raspap_dir/adblock/domains.txt" | sudo tee -a "$raspap_adblock" > /dev/null || _install_error "Unable to write to $raspap_adblock"
-        echo "addn-hosts=$raspap_dir/adblock/hostnames.txt" | sudo tee -a "$raspap_adblock" > /dev/null || _install_error "Unable to write to $raspap_adblock"
+        echo "conf-file=$raspap_dir/adblock/domains.txt" | sudo tee -a "$raspap_adblock" > /dev/null || _install_status 1 "Unable to write to $raspap_adblock"
+        echo "addn-hosts=$raspap_dir/adblock/hostnames.txt" | sudo tee -a "$raspap_adblock" > /dev/null || _install_status 1 "Unable to write to $raspap_adblock"
     fi
 
     # Remove dhcp-option=6 in dnsmasq.d/090_raspap.conf to force local DNS resolution for DHCP clients
     echo "Enabling local DNS name resolution for DHCP clients"
-    sudo sed -i '/dhcp-option=6/d' $raspap_dnsmasq || _install_error "Unable to modify $raspap_dnsmasq"
+    sudo sed -i '/dhcp-option=6/d' $raspap_dnsmasq || _install_status 1 "Unable to modify $raspap_dnsmasq"
 
     echo "Enabling ad blocking management option"
-    sudo sed -i "s/\('RASPI_ADBLOCK_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_error "Unable to modify config.php"
-    echo "Done."
+    sudo sed -i "s/\('RASPI_ADBLOCK_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
+    _install_status 0
 }
 
 # Prompt to install openvpn
@@ -247,49 +252,51 @@ function _prompt_install_openvpn() {
 # Install openvpn and enable client configuration option
 function _install_openvpn() {
     _install_log "Installing OpenVPN and enabling client configuration"
-    sudo apt-get install -y openvpn || _install_error "Unable to install openvpn"
-    sudo sed -i "s/\('RASPI_OPENVPN_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_error "Unable to modify config.php"
+    sudo apt-get install -y openvpn || _install_status 1 "Unable to install openvpn"
+    sudo sed -i "s/\('RASPI_OPENVPN_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
     echo "Enabling openvpn-client service on boot"
-    sudo systemctl enable openvpn-client@client || _install_error "Unable to enable openvpn-client daemon"
-    _create_openvpn_scripts || _install_error "Unable to create openvpn control scripts"
+    sudo systemctl enable openvpn-client@client || _install_status 1 "Unable to enable openvpn-client daemon"
+    _create_openvpn_scripts || _install_status 1 "Unable to create openvpn control scripts"
 }
 
 # Generate openvpn logging and auth control scripts
 function _create_openvpn_scripts() {
     _install_log "Creating OpenVPN control scripts"
-    sudo mkdir $raspap_dir/openvpn || _install_error "Unable to create directory '$raspap_dir/openvpn'"
+    sudo mkdir $raspap_dir/openvpn || _install_status 1 "Unable to create directory '$raspap_dir/openvpn'"
 
    # Move service auth control shell scripts
-    sudo cp "$webroot_dir/installers/"configauth.sh "$raspap_dir/openvpn" || _install_error "Unable to move auth control script"
+    sudo cp "$webroot_dir/installers/"configauth.sh "$raspap_dir/openvpn" || _install_status 1 "Unable to move auth control script"
     # Make configauth.sh writable by www-data group
-    sudo chown -c root:"$raspap_user" "$raspap_dir/openvpn/"*.sh || _install_error "Unable change owner and/or group"
-    sudo chmod 750 "$raspap_dir/openvpn/"*.sh || _install_error "Unable to change file permissions"
+    sudo chown -c root:"$raspap_user" "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable to change file permissions"
+    _install_status 0
 }
 
 # Fetches latest files from github to webroot
 function _download_latest_files() {
     if [ ! -d "$webroot_dir" ]; then
-        sudo mkdir -p $webroot_dir || _install_error "Unable to create new webroot directory"
+        sudo mkdir -p $webroot_dir || _install_status 1 "Unable to create new webroot directory"
     fi
 
     if [ -d "$webroot_dir" ]; then
-        sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_error "Unable to remove old webroot directory"
+        sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to remove old webroot directory"
     fi
 
     _install_log "Cloning latest files from github"
-    git clone --branch $branch --depth 1 $git_source_url /tmp/raspap-webgui || _install_error "Unable to download files from github"
+    git clone --branch $branch --depth 1 $git_source_url /tmp/raspap-webgui || _install_status 1 "Unable to download files from github"
 
-    sudo mv /tmp/raspap-webgui $webroot_dir || _install_error "Unable to move raspap-webgui to web root"
+    sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to web root"
+    _install_status 0
 }
 
 # Sets files ownership in web root directory
 function _change_file_ownership() {
     if [ ! -d "$webroot_dir" ]; then
-        _install_error "Web root directory doesn't exist"
+        _install_status 1 "Web root directory doesn't exist"
     fi
 
     _install_log "Changing file ownership in web root directory"
-    sudo chown -R $raspap_user:$raspap_user "$webroot_dir" || _install_error "Unable to change file ownership for '$webroot_dir'"
+    sudo chown -R $raspap_user:$raspap_user "$webroot_dir" || _install_status 1 "Unable to change file ownership for '$webroot_dir'"
 }
 
 # Check for existing configuration files
@@ -321,58 +328,63 @@ function _check_for_old_configs() {
             sudo ln -sf "${raspap_dir}/backups/${filename}.`date +%F-%R`" "${raspap_dir}/backups/${filename}"
         fi
     done
+    _install_status 0
 }
 
 # Move configuration file to the correct location
 function _move_config_file() {
     if [ ! -d "$raspap_dir" ]; then
-        _install_error "'$raspap_dir' directory doesn't exist"
+        _install_status 1 "'$raspap_dir' directory doesn't exist"
     fi
 
-    _install_log "Moving configuration file to '$raspap_dir'"
-    sudo cp "$webroot_dir"/raspap.php "$raspap_dir" || _install_error "Unable to move files to '$raspap_dir'"
-    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_error "Unable to change file ownership for '$raspap_dir'"
+    _install_log "Moving configuration file to $raspap_dir"
+    sudo cp "$webroot_dir"/raspap.php "$raspap_dir" || _install_status 1 "Unable to move files to '$raspap_dir'"
+    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 }
 
 # Set up default configuration
 function _default_configuration() {
     _install_log "Applying default configuration to installed services"
     if [ -f /etc/default/hostapd ]; then
-        sudo mv /etc/default/hostapd /tmp/default_hostapd.old || _install_error "Unable to remove old /etc/default/hostapd file"
+        sudo mv /etc/default/hostapd /tmp/default_hostapd.old || _install_status 1 "Unable to remove old /etc/default/hostapd file"
     fi
-    sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || _install_error "Unable to move hostapd defaults file"
-    sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_error "Unable to move hostapd configuration file"
-    sudo cp $webroot_dir/config/dnsmasq.conf $raspap_dnsmasq || _install_error "Unable to move dnsmasq configuration file"
-    sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_error "Unable to move dhcpcd configuration file"
+    sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || _install_status 1 "Unable to move hostapd defaults file"
+    sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
+    sudo cp $webroot_dir/config/dnsmasq.conf $raspap_dnsmasq || _install_status 1 "Unable to move dnsmasq configuration file"
+    sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
 
+    echo "Checking for existence of /etc/dnsmasq.d"
     [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
 
+    echo "Copying bridged AP config to /etc/systemd/network"
     sudo systemctl stop systemd-networkd
     sudo systemctl disable systemd-networkd
-    sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_error "Unable to move br0 netdev file"
-    sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_error "Unable to move br0 member file"
+    sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
+    sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
 
+    echo "Copying primary RaspAP config to includes/config.php"
     if [ ! -f "$webroot_dir/includes/config.php" ]; then
         sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
     fi
+    _install_status 0
 }
 
 # Install and enable RaspAP daemon
 function _enable_raspap_daemon() {
     _install_log "Enabling RaspAP daemon"
     echo "Disable with: sudo systemctl disable raspapd.service"
-    sudo cp $webroot_dir/installers/raspapd.service /lib/systemd/system/ || _install_error "Unable to move raspap.service file"
+    sudo cp $webroot_dir/installers/raspapd.service /lib/systemd/system/ || _install_status 1 "Unable to move raspap.service file"
     sudo systemctl daemon-reload
-    sudo systemctl enable raspapd.service || _install_error "Failed to enable raspap.service"
+    sudo systemctl enable raspapd.service || _install_status 1 "Failed to enable raspap.service"
 }
 
 # Configure IP forwarding, set IP tables rules, prompt to install RaspAP daemon
 function _configure_networking() {
     _install_log "Configuring networking"
     echo "Enabling IP forwarding"
-    echo "net.ipv4.ip_forward=1" | sudo tee $raspap_sysctl > /dev/null || _install_error "Unable to set IP forwarding"
-    sudo sysctl -p $raspap_sysctl || _install_error "Unable to execute sysctl"
-    sudo /etc/init.d/procps restart || _install_error "Unable to execute procps"
+    echo "net.ipv4.ip_forward=1" | sudo tee $raspap_sysctl > /dev/null || _install_status 1 "Unable to set IP forwarding"
+    sudo sysctl -p $raspap_sysctl || _install_status 1 "Unable to execute sysctl"
+    sudo /etc/init.d/procps restart || _install_status 1 "Unable to execute procps"
 
     echo "Checking iptables rules"
     rules=(
@@ -385,14 +397,14 @@ function _configure_networking() {
         else
             rule=$(sed -e 's/^\(-A POSTROUTING\)/-t nat \1/' <<< $rule)
             echo "Adding rule: ${rule}"
-            sudo iptables $rule || _install_error "Unable to execute iptables"
+            sudo iptables $rule || _install_status 1 "Unable to execute iptables"
             added=true
         fi
     done
     # Persist rules if added
     if [ "$added" = true ]; then
         echo "Persisting IP tables rules"
-        sudo iptables-save | sudo tee $rulesv4 > /dev/null || _install_error "Unable to execute iptables-save"
+        sudo iptables-save | sudo tee $rulesv4 > /dev/null || _install_status 1 "Unable to execute iptables-save"
     fi
 
     # Prompt to install RaspAP daemon
@@ -408,6 +420,7 @@ function _configure_networking() {
         echo -e
         _enable_raspap_daemon
     fi
+    _install_status 0
  }
 
 # Add sudoers file to /etc/sudoers.d/ and set file permissions
@@ -416,8 +429,8 @@ function _patch_system_files() {
     # Create sudoers if not present
     if [ ! -f $raspap_sudoers ]; then
         _install_log "Adding raspap.sudoers to ${raspap_sudoers}"
-        sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_error "Unable to apply raspap.sudoers to $raspap_sudoers"
-        sudo chmod 0440 $raspap_sudoers || _install_error "Unable to change file permissions for $raspap_sudoers"
+        sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
+        sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
     fi
 
     # Add symlink to prevent wpa_cli cmds from breaking with multiple wlan interfaces
@@ -430,6 +443,7 @@ function _patch_system_files() {
     _install_log "Unmasking and enabling hostapd service"
     sudo systemctl unmask hostapd.service
     sudo systemctl enable hostapd.service
+    _install_status 0
 }
 
 
@@ -479,7 +493,7 @@ function _optimize_php() {
             if [ -f "/usr/sbin/phpenmod" ]; then
                 sudo phpenmod opcache
             else
-                _install_warning "phpenmod not found."
+                _install_status 2 "phpenmod not found."
             fi
         fi
     fi
@@ -497,7 +511,7 @@ function _install_complete() {
                 echo "Installation reboot aborted."
                 exit 0
             fi
-            sudo shutdown -r now || _install_error "Unable to execute shutdown"
+            sudo shutdown -r now || _install_status 1 "Unable to execute shutdown"
         fi
     fi
 }

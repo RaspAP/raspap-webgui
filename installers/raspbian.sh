@@ -36,6 +36,16 @@ repo="billz/raspap-webgui"
 branch="master"
 assume_yes=0
 ovpn_option=1
+
+# Define colors
+readonly ANSI_RED="\033[0;31m"
+readonly ANSI_GREEN="\033[0;32m"
+readonly ANSI_YELLOW="\033[0;33m"
+readonly ANSI_RASPBERRY="\033[0;35m"
+readonly ANSI_ERROR="\033[1;37;41m"
+readonly ANSI_RESET="\033[m"
+
+# Fetch latest release from GitHub API
 readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 
 # Define usage notes
@@ -81,9 +91,9 @@ while :; do
         exit 1
         ;;
         -v|--version)
-        printf "RaspAP v${RASPAP_LATEST} - simple AP setup and wifi mangement for the RaspberryPi\n"
+        printf "RaspAP v${RASPAP_LATEST} - Simple AP setup & WiFi management for Debian-based devices\n"
         exit 1
-	;;
+        ;;
         -*|--*)
         echo "Unknown option: $1"
         printf "$usage"
@@ -100,10 +110,7 @@ UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
 
 # Outputs a welcome message
 function _display_welcome() {
-    raspberry='\033[0;35m'
-    green='\033[1;32m'
-
-    echo -e "${raspberry}\n"
+    echo -e "${ANSI_RASPBERRY}\n"
     echo -e " 888888ba                              .d888888   888888ba"
     echo -e " 88     8b                            d8     88   88     8b"
     echo -e "a88aaaa8P' .d8888b. .d8888b. 88d888b. 88aaaaa88a a88aaaa8P"
@@ -112,29 +119,28 @@ function _display_welcome() {
     echo -e " dP     dP  88888P8  88888P  88Y888P  88     88   dP"
     echo -e "                             88"
     echo -e "                             dP       version ${RASPAP_LATEST}"
-    echo -e "${green}"
-    echo -e "The Quick Installer will guide you through a few easy steps\n\n"
+    echo -e "${ANSI_GREEN}"
+    echo -e "The Quick Installer will guide you through a few easy steps${ANSI_RESET}\n\n"
 }
 
 # Outputs a RaspAP Install log line
 function _install_log() {
-    echo -e "\033[1;32mRaspAP Install: $*\033[m"
+    echo -e "${ANSI_GREEN}RaspAP Install: $1${ANSI_RESET}"
 }
 
-# Outputs a RaspAP Install Error log line and exits with status code 1
-function _install_error() {
-    echo -e "\033[1;37;41mRaspAP Install Error: $*\033[m"
-    exit 1
-}
-
-# Outputs a RaspAP Warning line
-function _install_warning() {
-    echo -e "\033[1;33mWarning: $*\033[m"
-}
-
-# Outputs a RaspAP divider
-function _install_divider() {
-    echo -e "\033[1;32m***************************************************************$*\033[m"
+# Outputs a RaspAP status indicator
+function _install_status() {
+    case $1 in
+        0)
+        echo -e "[$ANSI_GREEN \U2713 ok $ANSI_RESET] $2"
+        ;;
+        1)
+        echo -e "[$ANSI_RED \U2718 error $ANSI_RESET] $ANSI_ERROR $2 $ANSI_RESET"
+        ;;
+        2)
+        echo -e "[$ANSI_YELLOW \U26A0 warning $ANSI_RESET] $2"
+        ;;
+    esac
 }
 
 function _update_system_packages() {
