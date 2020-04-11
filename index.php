@@ -122,9 +122,15 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
           </div>
           <div class="col-xs ml-2">
             <div class="ml-1">Status</div>
-            <div class="info-item-xs"><span class="icon"><i class="fas fa-circle <?php echo ($hostapd_led); ?>"></i></span> Hotspot <?php echo _($hostapd_status); ?></div>
-            <div class="info-item-xs"><span class="icon"><i class="fas fa-circle <?php echo ($memused_led); ?>"></i></i></span> Memory Use: <?php echo htmlspecialchars($memused, ENT_QUOTES); ?>%</div>
-            <div class="info-item-xs"><span class="icon"><i class="fas fa-circle <?php echo ($cputemp_led); ?>"></i></span> CPU Temp: <?php echo htmlspecialchars($cputemp, ENT_QUOTES); ?>°C</div>
+            <div class="info-item-xs"><span class="icon">
+              <i class="fas fa-circle <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
+            </div>
+            <div class="info-item-xs"><span class="icon">
+              <i class="fas fa-circle <?php echo ($memused_led); ?>"></i></span> <?php echo _("Memory Use").': '. htmlspecialchars($memused, ENT_QUOTES); ?>%
+            </div>
+            <div class="info-item-xs"><span class="icon">
+              <i class="fas fa-circle <?php echo ($cputemp_led); ?>"></i></span> <?php echo _("CPU Temp").': '. htmlspecialchars($cputemp, ENT_QUOTES); ?>°C
+            </div>
           </div>
         </div>
         <li class="nav-item">
