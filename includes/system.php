@@ -106,24 +106,24 @@ function DisplaySystem()
     // define locales
     $arrLocales = array(
         'en_GB.UTF-8' => 'English',
-        'de_DE.UTF-8' => 'Deutsch',
-        'fr_FR.UTF-8' => 'Français',
-        'it_IT.UTF-8' => 'Italiano',
-        'pt_BR.UTF-8' => 'Português',
-        'sv_SE.UTF-8' => 'Svenska',
-        'nl_NL.UTF-8' => 'Nederlands',
-        'zh_CN.UTF-8' => '简体中文 (Chinese simplified)',
-        'id_ID.UTF-8' => 'Indonesian',
-        'ko_KR.UTF-8' => '한국어 (Korean)',
-        'ja_JP.UTF-8' => '日本語 (Japanese)',
-        'vi_VN.UTF-8' => 'Tiếng Việt',
         'cs_CZ.UTF-8' => 'Čeština',
-        'ru_RU.UTF-8' => 'Русский',
+        'zh_CN.UTF-8' => '简体中文 (Chinese simplified)',
+        'da_DK.UTF-8' => 'Dansk',
+        'de_DE.UTF-8' => 'Deutsch',
         'es_MX.UTF-8' => 'Español',
         'fi_FI.UTF-8' => 'Finnish',
-        'da_DK.UTF-8' => 'Danish',
+        'fr_FR.UTF-8' => 'Français',
+        'el_GR.UTF-8' => 'Ελληνικά',
+        'id_ID.UTF-8' => 'Indonesian',
+        'it_IT.UTF-8' => 'Italiano',
+        'ja_JP.UTF-8' => '日本語 (Japanese)',
+        'ko_KR.UTF-8' => '한국어 (Korean)',
+        'nl_NL.UTF-8' => 'Nederlands',
+        'pt_BR.UTF-8' => 'Português',
+        'ru_RU.UTF-8' => 'Русский',
+        'sv_SE.UTF-8' => 'Svenska',
         'tr_TR.UTF-8' => 'Türkçe',
-        'el_GR.UTF-8' => 'Ελληνικά'
+        'vi_VN.UTF-8' => 'Tiếng Việt (Vietnamese)'
     );
 
     echo renderTemplate("system", compact("arrLocales", "status", "system", "ServerPort"));
