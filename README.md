@@ -1,13 +1,13 @@
 ![](https://i.imgur.com/xeKD93p.png)
 [![Release 2.3.1](https://img.shields.io/badge/Release-2.3.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/billz/raspap-webgui/](https://img.shields.io/travis/com/billz/raspap-webgui/master) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
 
-RaspAP lets you quickly get a WiFi access point up and running to share the internet connectivity of a Raspberry Pi. Our famous [Quick installer](#quick-installer) creates a known-good default configuration that "just works" on all current Raspberry Pis with onboard wireless. A handsome responsive interface gives you control over the relevant services and networking options. OpenVPN client support, SSL, security audits, themes and multilingual options round out the package. 
+RaspAP lets you quickly get a WiFi access point up and running to share the internet connectivity of many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our famous [Quick installer](#quick-installer) creates a known-good default configuration that "just works" on all current Raspberry Pis with onboard wireless. A handsome responsive interface gives you control over the relevant services and networking options. Advanced DHCP settings, OpenVPN client support, SSL, security audits, themes and multilingual options round out the package. 
 
 RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
 
 We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/billz/raspap-awesome).
 
-![](https://i.imgur.com/juA6GlB.gif)
+![](https://i.imgur.com/BdEinwg.gif)
 ![](https://i.imgur.com/EiIpdOS.gif)
 ![](https://i.imgur.com/eCjUS1H.gif)
 ![](https://i.imgur.com/5FT2BcS.gif)
@@ -41,12 +41,12 @@ sudo reboot
 ```
 2. Set the WiFi country in raspi-config's **Localisation Options**: `sudo raspi-config`
 
-3. If you have a Raspberry Pi without an onboard WiFi chipset, the [**Edimax Wireless 802.11b/g/n nano USB adapter**](https://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_n150/ew-7811un) is an excellent option – it's small, cheap and has good driver support.
+3. If you have a device without an onboard WiFi chipset, the [**Edimax Wireless 802.11b/g/n nano USB adapter**](https://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_n150/ew-7811un) is an excellent option – it's small, cheap and has good driver support.
 
 With the prerequisites done, you can proceed with either the Quick installer or Manual installation steps below.
 
 ## Quick installer
-Install RaspAP from your RaspberryPi's shell prompt:
+Install RaspAP from your device's shell prompt:
 ```sh
 curl -sL https://install.raspap.com | bash
 ```
@@ -61,7 +61,7 @@ configured as an access point as follows:
 * SSID: `raspi-webgui`
 * Password: ChangeMe
 
-**Note:** As the name suggests, the Quick Installer is a great way to quickly setup a new AP. However, it does not automagically detect the unique configuration of your RPi. Best results are obtained by connecting an RPi to ethernet (`eth0`) or as a WiFi client, also known as managed mode, with `wlan0`. For the latter, refer to [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode). Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting an issue.
+**Note:** As the name suggests, the Quick Installer is a great way to quickly setup a new AP. However, it does not automagically detect the unique configuration of your system. Best results are obtained by connecting to ethernet (`eth0`) or as a WiFi client, also known as managed mode, with `wlan0`. For the latter, refer to [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode). Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting an issue.
 
 ## Ad Blocking
 This feature is currently in beta. We encourage testing and feedback from users of RaspAP. To enable ad blocking, simply use the installer to (re)install RaspAP using the `--adblock` option:
@@ -77,14 +77,14 @@ By default RaspAP configures a routed AP for your clients to connect to. A bridg
 
 ![](https://i.imgur.com/J5VKSay.png)
 
-**Note:** In bridged mode, all routing capabilities are handled by your upstream router. Because your router assigns IP addresses to your RPi's hotspot and its clients, you might not be able to reach the RaspAP web interface from the default `10.3.141.1` address. Instead use your RPi's hostname followed by `.local` to access the RaspAP web interface. With Raspbian default settings, this should look like `raspberrypi.local`.
+**Note:** In bridged mode, all routing capabilities are handled by your upstream router. Because your router assigns IP addresses to your device's hotspot and its clients, you might not be able to reach the RaspAP web interface from the default `10.3.141.1` address. Instead use your RPi's hostname followed by `.local` to access the RaspAP web interface. With Raspbian default settings, this should look like `raspberrypi.local`. Alternate methods are [discussed here](https://www.raspberrypi.org/documentation/remote-access/ip-address.md).
 
 More information on Bridged AP mode is provided [on our wiki](https://github.com/billz/raspap-webgui/wiki/Bridged-AP-mode).
 
 ## Simultaneous AP and Wifi client
-RaspAP lets you easily create an AP with a Wifi client configuration. With your RPi configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
+RaspAP lets you easily create an AP with a Wifi client configuration. With your system configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
 
-**Note:** This option is disabled until you configure your RPi as a wireless client. For a Raspberry Pi operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) without an `eth0` connection, this configuration must be enabled _before_ a reboot. 
+**Note:** This option is disabled until you configure your system as a wireless client. For a device operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) without an `eth0` connection, this configuration must be enabled _before_ a reboot. 
 
 ## Support us
 RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal or commercial projects, please [become a GitHub sponsor](https://github.com/sponsors/billz), join the project on [Open Collective](https://opencollective.com/raspap) or make a one-time donation with [PayPal](https://www.paypal.com/paypalme2/billzgithub). Any of these options makes a big difference!
@@ -95,7 +95,7 @@ RaspAP is free software, but powered by your support. If you find RaspAP useful 
 Detailed manual setup instructions are provided [on our wiki](https://github.com/billz/raspap-webgui/wiki/Manual-installation).
 
 ## 802.11ac 5GHz support
-RaspAP provides an 802.11ac wireless mode option for supported hardware (currently the RPi 3B+/4) and wireless regulatory domains. See [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#80211ac) for more information. 
+RaspAP provides an 802.11ac wireless mode option for supported hardware (currently the RPi 3B+/4 and compatible Orange Pi models) and wireless regulatory domains. See [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#80211ac) for more information. 
 
 ## Supported operating systems
 RaspAP was originally made for Raspbian, but now also installs on the following Debian-based distros.
@@ -158,8 +158,8 @@ To configure an OpenVPN client, upload a valid .ovpn file and, optionally, speci
 **Note**: this feature is currently in beta. Please [read this](https://github.com/billz/raspap-webgui/wiki/FAQs#-openvpn-fails-to-start-andor-i-have-no-internet-help) before reporting an issue.
 
 ## How to contribute
- 1. Fork the project in your account and create a new branch: `your-great-feature`.
-2. Open an issue in the repository describing the feature contribution you'd like to make. This will help us get you started on the right foot.
+1. Fork the project in your account and create a new branch: `your-great-feature`.
+2. Open an issue in the repository describing the feature contribution you'd like to make.
 3. Commit changes in your feature branch.
 4. Open a pull request and reference the initial issue in the pull request message.
 
@@ -171,17 +171,14 @@ Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues)
 ## Contributors
 
 ### Code Contributors
-
 This project exists thanks to all the awesome people who [contribute](CONTRIBUTING.md) their time and expertise.
 
 <a href="https://github.com/billz/raspap-webgui/graphs/contributors"><img src="https://opencollective.com/raspap/contributors.svg?width=890&button=false" /></a>
 
 ### Financial Contributors
-
 Become a [financial contributor](https://opencollective.com/raspap/contribute) and help us sustain our community. 
 
 #### Individuals
-
 <a href="https://opencollective.com/raspap"><img src="https://opencollective.com/raspap/individuals.svg?width=890"></a>
 
 #### Organizations
