@@ -5,9 +5,9 @@ RaspAP lets you quickly get a WiFi access point up and running to share the inte
 
 RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
 
-We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own Pi-powered projects](https://github.com/billz/raspap-awesome)!
+We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/billz/raspap-awesome).
 
-![](https://i.imgur.com/7LsxEGP.gif)
+![](https://i.imgur.com/juA6GlB.gif)
 ![](https://i.imgur.com/EiIpdOS.gif)
 ![](https://i.imgur.com/eCjUS1H.gif)
 ![](https://i.imgur.com/5FT2BcS.gif)
@@ -116,23 +116,23 @@ RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multi
 
 The following translations are currently maintained by the project:
 
+- Čeština
+- 简体中文 (Chinese Simplified)
 - Dansk
 - Deutsch
-- Čeština
 - Español
-- Français
 - Finnish
+- Français
 - ελληνικό (Greek)
 - Indonesian
 - Italiano
+- 日本語 (Japanese)
+- 한국어 (Korean)
 - Nederlands
 - Português
 - Русский
-- Türkçe
 - Svenska
-- 简体中文 (Chinese Simplified)
-- 한국어 (Korean)
-- 日本語 (Japanese)
+- Türkçe
 - Tiếng Việt (Vietnamese)
 
 If your language is not in the list above, why not [contribute a translation](https://github.com/billz/raspap-webgui/wiki/Translations#contributing-a-translation)? Contributors will receive credit as the original translators.
