@@ -116,24 +116,24 @@ RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multi
 
 The following translations are currently maintained by the project:
 
+- Dansk
 - Deutsch
+- Čeština
+- Español
 - Français
-- Italiano
-- Português
-- Svenska
-- Nederlands
-- 简体中文 (Chinese Simplified)
+- Finnish
+- ελληνικό (Greek)
 - Indonesian
+- Italiano
+- Nederlands
+- Português
+- Русский
+- Türkçe
+- Svenska
+- 简体中文 (Chinese Simplified)
 - 한국어 (Korean)
 - 日本語 (Japanese)
 - Tiếng Việt (Vietnamese)
-- Čeština
-- Русский
-- Español
-- Finnish
-- Sinhala
-- Türkçe
-- ελληνικό (Greek)
 
 If your language is not in the list above, why not [contribute a translation](https://github.com/billz/raspap-webgui/wiki/Translations#contributing-a-translation)? Contributors will receive credit as the original translators.
 
