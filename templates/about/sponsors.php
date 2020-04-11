@@ -1,7 +1,7 @@
 <!-- about sponsors tab -->
 <div class="tab-pane fade" id="aboutsponsors">
   <div class="row">
-    <div class="col-md-12 mt-3">
+    <div class="col-lg-12 mt-3">
       <?php 
       $Parsedown = new Parsedown();
       $strContent = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/BACKERS.md');
@@ -10,3 +10,4 @@
     </div>
   </div><!-- /.row -->
 </div><!-- /.tab-pane | sponsors tab -->
+

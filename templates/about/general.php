@@ -2,8 +2,8 @@
 <div class="tab-pane active" id="aboutgeneral">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="mt-3"><?php echo _("RaspAP") . " v" . RASPI_VERSION; ?></h1>
-        <div class="ml-5"><img class="authors" src="app/img/raspAP-logo.png" style="width: 150px; height:150px"></div>
+      <h2 class="mt-3"><?php echo _("RaspAP") . " v" . RASPI_VERSION; ?></h2>
+        <div class="ml-5 mt-3"><img class="about-logo" src="app/img/raspAP-logo.png" style="width: 175px; height:175px"></div>
         <div class="mt-3">RaspAP is a co-creation of <a href="https://github.com/billz">billz</a> and <a href="https://github.com/sirlagz">SirLagz</a>
           with the contributions of our <a href="https://github.com/billz/raspap-webgui/graphs/contributors">developer community</a>
           and <a href="https://crowdin.com/project/raspap">language translators</a>.</div>
