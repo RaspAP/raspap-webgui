@@ -37,6 +37,12 @@ msgstr "WiFi client"
 msgid "Hotspot"
 msgstr "Hotspot"
 
+msgid "Memory Use"
+msgstr "Memory Use"
+
+msgid "CPU Temp"
+msgstr "CPU Temp"
+
 msgid "Networking"
 msgstr "Networking"
 
