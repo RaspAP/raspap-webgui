@@ -112,19 +112,19 @@ msgid "Passphrase"
 msgstr "Chiave di sicurezza"
 
 msgid "Wifi settings updated successfully"
-msgstr "Impostazioni Wifi aggiornate con successo"
+msgstr "Impostazioni WiFi aggiornate con successo"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
 msgstr "Impostazioni WiFi aggiornate, ma non è stato possibile riavviare (impossibile eseguire 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
-msgstr "Non è stato possibile aggiornare le impostazioni Wifi"
+msgstr "Non è stato possibile aggiornare le impostazioni WiFi"
 
 msgid "Failed to update wifi settings"
-msgstr "Impossibile aggiornare le impostazioni Wifi"
+msgstr "Impossibile aggiornare le impostazioni WiFi"
 
 msgid "Rescan"
-msgstr "Ripeti la scan"
+msgstr "Riscansiona"
 
 msgid "Update"
 msgstr "Aggiorna"
@@ -206,13 +206,13 @@ msgid "Link Quality"
 msgstr "Qualità collegamento"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "Informazioni fornite dall'ip e iw a dal sistema"
+msgstr "Informazioni fornite da ip, iw e dal sistema"
 
 msgid "No MAC Address Found"
 msgstr "Indirizzo MAC non trovato"
 
 msgid "No IP Address Found"
-msgstr "Indirizzo IP no trovato"
+msgstr "Indirizzo IP non trovato"
 
 msgid "No Subnet Mask Found"
 msgstr "Subnet mask non trovata"
@@ -288,7 +288,7 @@ msgid "Client ID"
 msgstr "ID client"
 
 msgid "Information provided by Dnsmasq"
-msgstr "Informazioni fornite da Dnsmasq"
+msgstr "Informazioni fornite da dnsmasq"
 
 msgid "Stop dnsmasq"
 msgstr "Ferma dnsmasq"
@@ -300,22 +300,22 @@ msgid "Dnsmasq configuration updated successfully"
 msgstr "Configurazione Dnsmasq aggiornata con successo"
 
 msgid "dnsmasq already running"
-msgstr "dnsmasq è già in esecuzione"
+msgstr "Dnsmasq è già in esecuzione"
 
 msgid "Successfully started dnsmasq"
-msgstr "dnsmasq avviato con successo"
+msgstr "Dnsmasq è stato avviato con successo"
 
 msgid "Failed to start dnsmasq"
 msgstr "Impossibile avviare dnsmasq"
 
 msgid "Successfully stopped dnsmasq"
-msgstr "dnsmasq fermato con successo"
+msgstr "Dnsmasq è stato fermato con successo"
 
 msgid "Failed to stop dnsmasq"
 msgstr "Impossibile fermare dnsmasq"
 
 msgid "dnsmasq already stopped"
-msgstr "dnsmasq è già stoppato"
+msgstr "Dnsmasq è già stoppato"
 
 msgid "Dnsmasq is running"
 msgstr "Dnsmasq è in esecuzione"
@@ -406,13 +406,13 @@ msgid "Unknown interface"
 msgstr "Interfaccia sconosciuta"
 
 msgid "Country code must be blank or two characters"
-msgstr "Il codice paese deve essere o vuoto o di due caratteri"
+msgstr "Il codice paese deve essere vuoto o di due caratteri"
 
 msgid "Wifi Hotspot settings saved"
-msgstr "Impostazioni hotspot Wifi salvate"
+msgstr "Impostazioni hotspot WiFi salvate"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr "Impossibile salvare le impostazioni dell'hotspot Wifi"
+msgstr "Impossibile salvare le impostazioni dell'hotspot WiFi"
 
 msgid "Start hotspot"
 msgstr "Avvia l'hotspot"
@@ -436,7 +436,7 @@ msgid "Bridged AP mode"
 msgstr "Modalità AP Bridged"
 
 msgid "Hide SSID in broadcast"
-msgstr "Nascondere la trasmissione del SSID"
+msgstr "Nascondi la trasmissione del SSID"
 
 msgid "Maximum number of clients"
 msgstr "Numero massimo di client"
@@ -461,7 +461,7 @@ msgid "Adapter IP Address Settings"
 msgstr "Impostazioni dell'indirizzo IP dell'adattatore"
 
 msgid "Enable Fallback to Static Option"
-msgstr "Abilita l'opzione statica di fallback"
+msgstr "Abilita il fallback alle Opzioni IP statiche"
 
 msgid "Static IP"
 msgstr "IP statico"
@@ -504,7 +504,7 @@ msgid "Hostname"
 msgstr "Nome host"
 
 msgid "Pi Revision"
-msgstr "Revisione Pi"
+msgstr "Modello Pi"
 
 msgid "Uptime"
 msgstr "Tempo di attività"
@@ -566,10 +566,10 @@ msgid "date"
 msgstr "data"
 
 msgid "Send MB"
-msgstr "Invia MB"
+msgstr "MB inviati"
 
 msgid "Receive MB"
-msgstr "Ricevi MB"
+msgstr "MB ricevuti"
 
 msgid "Information provided by vnstat"
 msgstr "Informazioni fornite da vnstat"
@@ -624,13 +624,13 @@ msgid "Stop OpenVPN"
 msgstr "Arresta OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr "Informazioni fornite da openvpn"
+msgstr "Informazioni fornite da OpenVPN"
 
 msgid "Attempting to start openvpn"
-msgstr "Tentativo di avviare openvpn in corso"
+msgstr "Tentativo di avviare OpenVPN in corso"
 
 msgid "Attempting to stop openvpn"
-msgstr "Tentativo di arrestare openvpn in corso"
+msgstr "Tentativo di arrestare OpenVPN in corso"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
@@ -658,7 +658,7 @@ msgid "Stop TOR"
 msgstr "Arresta TOR"
 
 msgid "Information provided by tor"
-msgstr "Informazioni fornite da tor"
+msgstr "Informazioni fornite da TOR"
 
 msgid "Attempting to start TOR"
 msgstr "Tentativo di avviare TOR in corso"
@@ -687,10 +687,10 @@ msgid "Remove"
 msgstr "Rimuovi"
 
 msgid "up"
-msgstr "su"
+msgstr "attivo"
 
 msgid "down"
-msgstr "giù"
+msgstr "disattivo"
 
 msgid "adblock"
 msgstr "AdBlock"
