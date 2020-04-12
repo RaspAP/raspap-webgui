@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2020-04-10 14:56+0000\n"
-"PO-Revision-Date: 2020-04-10 21:17\n"
-"Last-Translator: Svend Skipper Andersen\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2020-04-12 10:21\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Danish\n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
@@ -29,10 +29,16 @@ msgid "Dashboard"
 msgstr "Oversigt"
 
 msgid "WiFi client"
-msgstr "WiFi klient"
+msgstr "WiFi-klient"
 
 msgid "Hotspot"
 msgstr "Hotspot"
+
+msgid "Memory Use"
+msgstr "Brugt hukommelse"
+
+msgid "CPU Temp"
+msgstr "CPU Temperatur"
 
 msgid "Networking"
 msgstr "Netværk"
@@ -427,7 +433,7 @@ msgid "WiFi client AP mode"
 msgstr "WiFi klient AP-tilstand"
 
 msgid "Bridged AP mode"
-msgstr "Bridged AP-mode"
+msgstr "Bridged AP-tilstand"
 
 msgid "Hide SSID in broadcast"
 msgstr "Skjul SSID"
@@ -554,10 +560,10 @@ msgid "Monthly"
 msgstr "Månedlig"
 
 msgid "interface"
-msgstr "interface"
+msgstr "Interface"
 
 msgid "date"
-msgstr "dato"
+msgstr "Dato"
 
 msgid "Send MB"
 msgstr "Sendte MB"
@@ -681,10 +687,10 @@ msgid "Remove"
 msgstr "Fjern"
 
 msgid "up"
-msgstr "op"
+msgstr "oppe"
 
 msgid "down"
-msgstr "ned"
+msgstr "nede"
 
 msgid "adblock"
 msgstr "adblock"
