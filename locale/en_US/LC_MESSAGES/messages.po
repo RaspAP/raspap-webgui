@@ -184,8 +184,8 @@ msgstr "Transferred Packets"
 msgid "Transferred Bytes"
 msgstr "Transferred Bytes"
 
-msgid "Wireless Information"
-msgstr "Wireless Information"
+msgid "Wireless Client"
+msgstr "Wireless Client"
 
 msgid "Connected To"
 msgstr "Connected To"
