@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/xeKD93p.png)
-[![Release 2.3.1](https://img.shields.io/badge/Release-2.3.1-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/billz/raspap-webgui/](https://img.shields.io/travis/com/billz/raspap-webgui/master) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
+[![Release 2.4](https://img.shields.io/badge/Release-2.4-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/billz/raspap-webgui/](https://img.shields.io/travis/com/billz/raspap-webgui/master) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
 
 RaspAP lets you quickly get a WiFi access point up and running to share the connectivity of many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our popular [Quick installer](#quick-installer) creates a known-good default configuration that "just works" on all current Raspberry Pis with onboard wireless. A responsive interface gives you control over the relevant services and networking options. Advanced DHCP settings, OpenVPN client support, SSL, security audits, themes and multilingual options are included.
 
@@ -64,11 +64,7 @@ configured as an access point as follows:
 **Note:** As the name suggests, the Quick Installer is a great way to quickly setup a new AP. However, it does not automagically detect the unique configuration of your system. Best results are obtained by connecting to ethernet (`eth0`) or as a WiFi client, also known as managed mode, with `wlan0`. For the latter, refer to [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode). Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting an issue.
 
 ## Ad Blocking
-This feature is currently in beta. We encourage testing and feedback from users of RaspAP. To enable ad blocking, simply use the installer to (re)install RaspAP using the `--adblock` option:
-
-```
-curl -sL https://install.raspap.com | bash -s -- --adblock
-```
+This feature uses DNS blacklisting to block requests for ads, trackers and other undesirable hosts. To enable ad blocking, simply respond to the prompt during the installation. As a beta release, we encourage testing and feedback from users of RaspAP.
 
 Details are [provided here](https://github.com/billz/raspap-webgui/wiki/Ad-blocking-(Beta)). 
 
