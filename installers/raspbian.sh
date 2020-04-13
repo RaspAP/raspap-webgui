@@ -12,6 +12,8 @@
 #    Installs mkcert and generates an SSL certificate for lighttpd
 # -o, --openvpn <flag>
 #    Used with -y, --yes, sets OpenVPN install option (0=no install)
+# -a, --adblock <flag>
+#    Used with -y, --yes, sets Adblock install option (0=no install)
 # -r, --repo, --repository <name>
 #    Overrides the default GitHub repo (billz/raspap-webgui)
 # -b, --branch <name>
@@ -36,6 +38,7 @@ repo="billz/raspap-webgui"
 branch="master"
 assume_yes=0
 ovpn_option=1
+adblock_option=1
 
 # Define colors
 readonly ANSI_RED="\033[0;31m"
@@ -54,6 +57,7 @@ Usage: raspbian.sh [OPTION]\n
 -y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts
 -c, --cert, --certificate\n\tInstalls an SSL certificate for lighttpd
 -o, --openvpn <flag>\n\tUsed with -y, --yes, sets OpenVPN install option (0=no install)
+-a, --adblock <flag>\n\tUsed with -y, --yes, sets Adblock install option (0=no install)
 -r, --repo, --repository <name>\n\tOverrides the default GitHub repo (billz/raspap-webgui)
 -b, --branch <name>\n\tOverrides the default git branch (master)
 -h, --help\n\tOutputs usage notes and exits
@@ -73,7 +77,8 @@ while :; do
         shift
         ;;
         -a|--adblock)
-        install_adblock=1
+        adblock_option="$2"
+        shift
         ;;
         -c|--cert|--certificate)
         install_cert=1

@@ -22,6 +22,7 @@ readonly raspap_dnsmasq="/etc/dnsmasq.d/090_raspap.conf"
 readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly rulesv4="/etc/iptables/rules.v4"
+readonly notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
 webroot_dir="/var/www/html"
 git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
@@ -171,26 +172,27 @@ function _create_lighttpd_scripts() {
     _install_status 0
 }
 
-# Prompt to install adblock
+# Prompt to install ad blocking
 function _prompt_install_adblock() {
-    if [ "$install_adblock" == 1 ]; then
-        _install_log "Configure ad blocking (Beta)"
-        echo -n "Download blocklists and enable ad blocking? [Y/n]: "
-        if [ "$assume_yes" == 0 ]; then
-            read answer < /dev/tty
-            if [ "$answer" != "${answer#[Nn]}" ]; then
-                echo -e
-            else
-                _install_adblock
-            fi
+    _install_log "Configure ad blocking (Beta)"
+    echo -n "Install ad blocking and enable list management? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo -e
+        else
+            _install_adblock
         fi
+    elif [ "$adblock_option" == 1 ]; then
+        _install_adblock
+    else
+        echo "(Skipped)"
     fi
 }
 
 # Download notracking adblock lists and enable option
 function _install_adblock() {
-    _install_log "Creating ad block base configuration (Beta)"
-    notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
+    _install_log "Creating ad blocking base configuration (Beta)"
     if [ ! -d "$raspap_dir/adblock" ]; then
         echo "Creating $raspap_dir/adblock"
         sudo mkdir -p "$raspap_dir/adblock"
@@ -235,7 +237,7 @@ function _install_adblock() {
 
 # Prompt to install openvpn
 function _prompt_install_openvpn() {
-    _install_log "Setting up OpenVPN support"
+    _install_log "Configure OpenVPN support"
     echo -n "Install OpenVPN and enable client configuration? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
@@ -246,6 +248,8 @@ function _prompt_install_openvpn() {
         fi
     elif [ "$ovpn_option" == 1 ]; then
         _install_openvpn
+    else
+        echo "(Skipped)"
     fi
 }
 
@@ -532,8 +536,8 @@ function _install_raspap() {
     _move_config_file
     _default_configuration
     _configure_networking
-    _prompt_install_openvpn
     _prompt_install_adblock
+    _prompt_install_openvpn
     _patch_system_files
     _install_complete
 }
