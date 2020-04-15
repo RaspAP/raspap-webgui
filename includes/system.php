@@ -107,6 +107,7 @@ function DisplaySystem()
     $arrLocales = array(
         'en_GB.UTF-8' => 'English',
         'cs_CZ.UTF-8' => 'Čeština',
+        'zh_TW.UTF-8' => '正體中文 (Chinese traditional)',
         'zh_CN.UTF-8' => '简体中文 (Chinese simplified)',
         'da_DK.UTF-8' => 'Dansk',
         'de_DE.UTF-8' => 'Deutsch',

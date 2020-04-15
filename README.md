@@ -113,6 +113,7 @@ RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multi
 The following translations are currently maintained by the project:
 
 - Čeština
+- 正體中文 (Chinese traditional)
 - 简体中文 (Chinese Simplified)
 - Dansk
 - Deutsch
