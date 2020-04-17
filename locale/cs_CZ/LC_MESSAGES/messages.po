@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-16 08:12\n"
+"PO-Revision-Date: 2020-04-17 06:37\n"
 "Last-Translator: Jiri Brejcha <jirka@jiribrejcha.net>\n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -32,7 +32,7 @@ msgid "WiFi client"
 msgstr "Wi-Fi klient"
 
 msgid "Hotspot"
-msgstr "Hotspot(u)"
+msgstr "Hotspot"
 
 msgid "Memory Use"
 msgstr "Využití paměti"
@@ -66,7 +66,7 @@ msgstr "Info o RaspAP"
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr "Nastavení ověřování"
+msgstr "Nastavení přístupu"
 
 msgid "New passwords do not match"
 msgstr "Nová hesla se neshodují"
@@ -124,7 +124,7 @@ msgid "Failed to update wifi settings"
 msgstr "Nepodařilo se aktualizovat nastavení Wi-Fi"
 
 msgid "Rescan"
-msgstr "Prohledat"
+msgstr "Vyhledat sítě"
 
 msgid "Update"
 msgstr "Aktualizovat"
@@ -155,10 +155,10 @@ msgid "Interface Name"
 msgstr "Jméno rozhraní"
 
 msgid "IPv4 Address"
-msgstr "IPv4 Adresa"
+msgstr "IPv4 adresa"
 
 msgid "IPv6 Address"
-msgstr "IPv6 Adresa"
+msgstr "IPv6 adresa"
 
 msgid "Subnet Mask"
 msgstr "Maska podsítě"
@@ -185,10 +185,10 @@ msgid "Wireless Client"
 msgstr "Bezdrátový klient"
 
 msgid "Connected To"
-msgstr "Připojeno K"
+msgstr "Připojeno k"
 
 msgid "AP Mac Address"
-msgstr "AP MAC Adresa"
+msgstr "MAC adresa AP"
 
 msgid "Bitrate"
 msgstr "Datový tok"
@@ -206,13 +206,13 @@ msgid "Link Quality"
 msgstr "Kvalita spojení"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "Informace získány od ip, iw a systému"
+msgstr "Informace získány z ip, iw a systému"
 
 msgid "No MAC Address Found"
 msgstr "Žádná MAC Adresa Nenalezena"
 
 msgid "No IP Address Found"
-msgstr "Žádná IP Adresa Nenalezena"
+msgstr "IP adresa nenalezena"
 
 msgid "No Subnet Mask Found"
 msgstr "Nenalezena žádná maska podsítě"
@@ -258,22 +258,22 @@ msgid "Starting IP Address"
 msgstr "Počáteční IP Adresa"
 
 msgid "Ending IP Address"
-msgstr "Konečná IP Adresa"
+msgstr "Konečná IP adresa"
 
 msgid "Static Leases"
 msgstr "Staticky přidělené adresy"
 
 msgid "Add static DHCP lease"
-msgstr "Staticky přidělit DHCP adresu"
+msgstr "Přidělit statickou IP adresu pomocí DHCP serveru"
 
 msgid "Lease Time"
-msgstr "Čas Zápujčky"
+msgstr "Délka zápůjčky IP adresy"
 
 msgid "Interval"
 msgstr "Interval"
 
 msgid "Active DHCP leases"
-msgstr "Aktivní DHCP zápujčky"
+msgstr "IP adresy přidělené DHCP serverem"
 
 msgid "Expire time"
 msgstr "Čas Expirace"
@@ -282,7 +282,7 @@ msgid "MAC Address"
 msgstr "MAC Adresa"
 
 msgid "Host name"
-msgstr "Název klienta"
+msgstr "Klient"
 
 msgid "Client ID"
 msgstr "Klient ID"
@@ -330,7 +330,7 @@ msgid "Only ever query DNS servers configured below"
 msgstr "Použít pouze DNS servery nakonfigurované níže"
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Povolte tuto možnost, pokud chcete, aby RaspAP <b>odesílalo DNS dotazy pouze na servery nakonfigurované níže</b>. Ve výchozím nastavení RaspAP používá také upstream DNS servery přidělené přes DHCP."
+msgstr "Povolte tuto možnost, pokud chcete, aby RaspAP <b>odesílalo DNS dotazy pouze na servery nakonfigurované níže</b>. Ve výchozím nastavení RaspAP používá upstream DNS servery přidělené DHCP serverem."
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
 msgstr "Tato volba přidává do konfigurace dnsmasq <code>no-resolv</code>."
@@ -342,7 +342,7 @@ msgid "Format"
 msgstr "Formát"
 
 msgid "Choose a hosted server"
-msgstr "Vyberte hostovaný server"
+msgstr "Veřejný DNS server"
 
 msgid "Log DHCP requests"
 msgstr "Logovat DHCP požadavky"
@@ -379,7 +379,7 @@ msgid "Advanced settings"
 msgstr "Pokročilé nastavení"
 
 msgid "Country Code"
-msgstr "Kód země"
+msgstr "Země"
 
 msgid "Information provided by hostapd"
 msgstr "Zdroj informací hostapd"
