@@ -33,7 +33,11 @@ if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2)
         $locale = "nl_NL.UTF-8";
         break;
     case "zh":
-        $locale = "zh_CN.UTF-8";
+        if ($_SERVER['HTTP_ACCEPT_LANGUAGE'] == 'zh_TW') {
+            $locale = "zh_TW.UTF-8";
+        } else {
+            $locale = "zh_CN.UTF-8";
+        }
         break;
     case "cs":
         $locale = "cs_CZ.UTF-8";
@@ -47,8 +51,8 @@ if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2)
     case "fi":
         $locale = "fi_FI.UTF-8";
         break;
-    case "si":
-        $locale = "si_LK.UTF-8";
+    case "da":
+        $locale = "da_DK.UTF-8";
         break;
     case "tr":
         $locale = "tr_TR.UTF-8";
