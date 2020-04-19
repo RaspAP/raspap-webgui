@@ -100,8 +100,8 @@ function _install_dependencies() {
     _set_php_package
     if [ "$php_package" = "php7.4-cgi" ]; then
         echo "Adding apt-repository ppa:ondrej/php"
-        sudo apt-get install software-properties-common || _install_status 1 "Unable to install dependency"
-        sudo add-apt-repository ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
+        sudo apt-get install $apt_option software-properties-common || _install_status 1 "Unable to install dependency"
+        sudo add-apt-repository $apt_option ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
     fi
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
@@ -256,7 +256,7 @@ function _prompt_install_openvpn() {
 # Install openvpn and enable client configuration option
 function _install_openvpn() {
     _install_log "Installing OpenVPN and enabling client configuration"
-    sudo apt-get install -y openvpn || _install_status 1 "Unable to install openvpn"
+    sudo apt-get install $apt_option openvpn || _install_status 1 "Unable to install openvpn"
     sudo sed -i "s/\('RASPI_OPENVPN_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
     echo "Enabling openvpn-client service on boot"
     sudo systemctl enable openvpn-client@client || _install_status 1 "Unable to enable openvpn-client daemon"
