@@ -46,6 +46,10 @@ body {
   font-weight: 500;
 }
 
+.sidebar-light hr.sidebar-divider {
+  padding-top: 0.5rem;
+}
+
 .card .card-header {
   border-color: #d8224c;
   background-color: #d8224c;
