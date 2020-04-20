@@ -40,6 +40,7 @@ require_once 'includes/themes.php';
 require_once 'includes/data_usage.php';
 require_once 'includes/about.php';
 require_once 'includes/openvpn.php';
+require_once 'includes/wireguard.php';
 require_once 'includes/torproxy.php';
 
 $output = $return = 0;
@@ -166,6 +167,11 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
           <a class="nav-link" href="index.php?page=openvpn_conf"><i class="fas fa-key fa-fw mr-2"></i><span class="nav-label"><?php echo _("OpenVPN"); ?></a>
         </li>
           <?php endif; ?>
+          <?php if (RASPI_WIREGUARD_ENABLED) : ?>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?page=wg_conf"><i class="fas fa-key fa-fw mr-2"></i><span class="nav-label"><?php echo _("WireGuard"); ?></a>
+        </li>
+          <?php endif; ?>
           <?php if (RASPI_TORPROXY_ENABLED) : ?>
         <li class="nav-item">
            <a class="nav-link" href="index.php?page=torproxy_conf"><i class="fas fa-eye-slash fa-fw mr-2"></i><span class="nav-label"><?php echo _("TOR proxy"); ?></a>
@@ -256,6 +262,9 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
             break;
         case "openvpn_conf":
             DisplayOpenVPNConfig();
+            break;
+        case "wg_conf":
+            DisplayWireGuardConfig();
             break;
         case "torproxy_conf":
             DisplayTorProxyConfig();
