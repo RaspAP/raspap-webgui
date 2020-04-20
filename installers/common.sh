@@ -254,7 +254,7 @@ function _prompt_install_vpn() {
 }
 
 function _install_vpn() {
-    echo -n "Install [O]penVPN or [W]ireguard? [O/W]: "
+    echo -n "Install [O]penVPN or [W]ireGuard? [O/W]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         case $answer in
@@ -273,15 +273,18 @@ function _install_vpn() {
 
 # Install Wireguard from the Debian unstable distro
 function _install_wireguard() {
-    _install_log "Configure Wireguard support"
-    echo "Installing Wireguard from Debian unstable distro"
+    _install_log "Configure WireGuard support"
+    echo "Installing WireGuard from Debian unstable distro"
     echo "Adding Debian distro"
     echo "deb http://deb.debian.org/debian/ unstable main" | sudo tee --append /etc/apt/sources.list.d/unstable.list || _install_status 1 "Unable to append to sources.list"
     sudo apt-get install dirmngr || _install_status 1 "Unable to install dirmngr"
     echo "Adding Debian distro keys"
     sudo wget -q -O - https://ftp-master.debian.org/keys/archive-key-$(lsb_release -sr).asc | sudo apt-key add - || _install_status 1 "Unable to add keys"
     printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' | sudo tee --append /etc/apt/preferences.d/limit-unstable || _install_status 1 "Unable to append to preferences.d"
+    echo "Installing WireGuard"
     sudo apt-get update && sudo apt-get install $apt_option wireguard || _install_status 1 "Unable to install wireguard"
+    echo "Enabling WireGuard management option"
+    sudo sed -i "s/\('RASPI_WIREGUARD_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
     _install_status 0
 }
 
