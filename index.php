@@ -83,8 +83,11 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
     <!-- DataTables CSS -->
     <link href="dist/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
+    <!-- Font Awesome -->
     <link href="dist/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- RaspAP Fonts -->
+    <link href="dist/raspap/css/style.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
     <link href="<?php echo $theme_url; ?>" title="main" rel="stylesheet">
@@ -119,7 +122,7 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
         <hr class="sidebar-divider my-0">
         <div class="row">
           <div class="col-xs ml-3 sidebar-brand-icon">
-            <img src="app/img/raspAP-logo.svg" class="navbar-logo" width="64" height="64">
+            <span class="ra-raspap"></span>
           </div>
           <div class="col-xs ml-2">
             <div class="ml-1">Status</div>
@@ -169,7 +172,7 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
           <?php endif; ?>
           <?php if (RASPI_WIREGUARD_ENABLED) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page=wg_conf"><i class="fas fa-key fa-fw mr-2"></i><span class="nav-label"><?php echo _("WireGuard"); ?></a>
+          <a class="nav-link" href="index.php?page=wg_conf"><span class="ra-wireguard mr-2"></span><span class="nav-label"><?php echo _("WireGuard"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_TORPROXY_ENABLED) : ?>
