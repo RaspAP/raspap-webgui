@@ -235,22 +235,54 @@ function _install_adblock() {
     _install_status 0
 }
 
-# Prompt to install openvpn
-function _prompt_install_openvpn() {
-    _install_log "Configure OpenVPN support"
-    echo -n "Install OpenVPN and enable client configuration? [Y/n]: "
+# Prompt to install VPN
+function _prompt_install_vpn() {
+    _install_log "Configure VPN support"
+    echo -n "Install VPN and enable client configuration? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
             echo -e
         else
-            _install_openvpn
+            _install_vpn
         fi
+    elif [ "$ovpn_option" == 1 ]; then
+        _install_vpn
+    else
+        echo "(Skipped)"
+    fi
+}
+
+function _install_vpn() {
+    echo -n "Install [O]penVPN or [W]ireguard? [O/W]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        case $answer in
+            [oO]* )
+                _install_openvpn;
+                break;;
+            [wW]* )
+                _install_wireguard;
+        esac
     elif [ "$ovpn_option" == 1 ]; then
         _install_openvpn
     else
         echo "(Skipped)"
     fi
+}
+
+# Install Wireguard from the Debian unstable distro
+function _install_wireguard() {
+    _install_log "Configure Wireguard support"
+    echo "Installing Wireguard from Debian unstable distro"
+    echo "Adding Debian distro"
+    echo "deb http://deb.debian.org/debian/ unstable main" | sudo tee --append /etc/apt/sources.list.d/unstable.list || _install_status 1 "Unable to append to sources.list"
+    sudo apt-get install dirmngr || _install_status 1 "Unable to install dirmngr"
+    echo "Adding Debian distro keys"
+    sudo wget -q -O - https://ftp-master.debian.org/keys/archive-key-$(lsb_release -sr).asc | sudo apt-key add - || _install_status 1 "Unable to add keys"
+    printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' | sudo tee --append /etc/apt/preferences.d/limit-unstable || _install_status 1 "Unable to append to preferences.d"
+    sudo apt-get update && sudo apt-get install $apt_option wireguard || _install_status 1 "Unable to install wireguard"
+    _install_status 0
 }
 
 # Install openvpn and enable client configuration option
@@ -537,7 +569,7 @@ function _install_raspap() {
     _default_configuration
     _configure_networking
     _prompt_install_adblock
-    _prompt_install_openvpn
+    _prompt_install_vpn
     _patch_system_files
     _install_complete
 }
