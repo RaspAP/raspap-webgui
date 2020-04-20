@@ -21,6 +21,8 @@ define('RASPI_WPA_CTRL_INTERFACE', '/var/run/wpa_supplicant');
 define('RASPI_OPENVPN_CLIENT_CONFIG', '/etc/openvpn/client/client.conf');
 define('RASPI_OPENVPN_CLIENT_LOGIN', '/etc/openvpn/client/login.conf');
 define('RASPI_OPENVPN_SERVER_CONFIG', '/etc/openvpn/server/server.conf');
+define('RASPI_WIREGUARD_SERVER_CONFIG', '/etc/wireguard/wg0.conf');
+define('RASPI_WIREGUARD_CLIENT_CONFIG', '/etc/wireguard/wg0-client.conf');
 define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
 
@@ -34,6 +36,7 @@ define('RASPI_NETWORK_ENABLED', true);
 define('RASPI_DHCP_ENABLED', true);
 define('RASPI_ADBLOCK_ENABLED', false);
 define('RASPI_OPENVPN_ENABLED', false);
+define('RASPI_WIREGUARD_ENABLED', false);
 define('RASPI_TORPROXY_ENABLED', false);
 define('RASPI_CONFAUTH_ENABLED', true);
 define('RASPI_CHANGETHEME_ENABLED', true);

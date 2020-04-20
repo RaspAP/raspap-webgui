@@ -25,6 +25,8 @@ $defaults = [
   'RASPI_OPENVPN_CLIENT_CONFIG' => '/etc/openvpn/client/client.conf',
   'RASPI_OPENVPN_CLIENT_LOGIN' => '/etc/openvpn/client/login.conf',
   'RASPI_OPENVPN_SERVER_CONFIG' => '/etc/openvpn/server/server.conf',
+  'RASPI_WIREGUARD_SERVER_CONFIG' => '/etc/wireguard/wg0.conf',
+  'RASPI_WIREGUARD_CLIENT_CONFIG' => '/etc/wireguard/wg0-client.conf',
   'RASPI_TORPROXY_CONFIG' => '/etc/tor/torrc',
   'RASPI_LIGHTTPD_CONFIG' => '/etc/lighttpd/lighttpd.conf',
 
@@ -35,6 +37,7 @@ $defaults = [
   'RASPI_DHCP_ENABLED' => true,
   'RASPI_ADBLOCK_ENABLED' => false,
   'RASPI_OPENVPN_ENABLED' => false,
+  'RASPI_WIREGUARD_ENABLED' => false,
   'RASPI_TORPROXY_ENABLED' => false,
   'RASPI_CONFAUTH_ENABLED' => true,
   'RASPI_CHANGETHEME_ENABLED' => true,
