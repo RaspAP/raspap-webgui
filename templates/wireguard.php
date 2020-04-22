@@ -1,8 +1,8 @@
   <?php ob_start() ?>
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
       <input type="submit" class="btn btn-outline btn-primary" name="savewgsettings" value="<?php echo _("Save settings"); ?>">
-      <?php if ($dnsmasq_state) : ?>
-        <input type="submit" class="btn btn-warning" name="restartwg" value="<?php echo _("Restart WireGuard"); ?>">
+      <?php if ($wg_state) : ?>
+        <input type="submit" class="btn btn-warning" name="stopwg" value="<?php echo _("Stop WireGuard"); ?>">
       <?php else : ?>
         <input type="submit" class="btn btn-success" name="startwg" value="<?php echo _("Start WireGuard"); ?>">
       <?php endif ?>
@@ -15,7 +15,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col">
-              <i class="fas fa-key fa-fw mr-2"></i><?php echo _("WireGuard"); ?>
+              <span class="ra-wireguard mr-2"></span><?php echo _("WireGuard"); ?>
             </div>
             <div class="col">
               <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
@@ -31,13 +31,15 @@
             <?php echo CSRFTokenFieldTag() ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#wgsettings" data-toggle="tab"><?php echo _("WireGuard settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#wglogging" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
+                <li class="nav-item"><a class="nav-link active" id="settingstab" href="#wgsettings" data-toggle="tab"><?php echo _("Settings"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="peertab" href="#wgpeers" data-toggle="tab"><?php echo _("Peers"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#wglogging" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
               <?php echo renderTemplate("wg/general", $__template_data) ?>
+              <?php echo renderTemplate("wg/peers", $__template_data) ?>
               <?php echo renderTemplate("wg/logging", $__template_data) ?>
             </div><!-- /.tab-content -->
 
