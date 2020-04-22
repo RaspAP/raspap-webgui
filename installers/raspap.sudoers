@@ -37,4 +37,8 @@ www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/hostapd.log
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/dnsmasq.log
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.d/090_adblock.conf
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/adblock/update_blocklist.sh
+www-data ALL=(ALL) NOPASSWD:/usr/bin/wg-quick up wg0
+www-data ALL=(ALL) NOPASSWD:/usr/bin/wg-quick down wg0
+www-data ALL=(ALL) NOPASSWD:/usr/bin/wg
+
 
