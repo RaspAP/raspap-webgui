@@ -19,28 +19,28 @@ function DisplayWireGuardConfig()
             }
         } elseif (isset($_POST['startwg'])) {
             $status->addMessage('Attempting to start WireGuard', 'info');
-            exec('sudo /bin/systemctl start wg-quick@wg0', $return);
-            exec('sudo /bin/systemctl enable wg-quick@wg0', $return);
+            exec('sudo /usr/bin/wg-quick up wg0', $return);
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');
             }
         } elseif (isset($_POST['stopwg'])) {
             $status->addMessage('Attempting to stop WireGuard', 'info');
-            exec('sudo /bin/systemctl stop wg-quick@wg0', $return);
-            exec('sudo /bin/systemctl disable wg-quick@wg0', $return);
+            exec('sudo /usr/bin/wg-quick down wg0', $return);
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');
             }
         }
     }
 
-    exec('pidof wg | wc -l', $wgstatus);
+    exec('pidof wg-crypt-wg0 | wc -l', $wgstatus);
 
     $serviceStatus = $wgstatus[0] == 0 ? "down" : "up";
+    $wg_state = ($wgstatus[0] > 0);
 
     echo renderTemplate(
         "wireguard", compact(
             "status",
+            "wg_state",
             "serviceStatus"
         )
     );
