@@ -133,6 +133,11 @@ function _install_log() {
     echo -e "${ANSI_GREEN}RaspAP Install: $1${ANSI_RESET}"
 }
 
+# Outputs a RaspAP divider
+function _install_divider() {
+    echo -e "\033[1;32m***************************************************************$*\033[m"
+}
+
 # Outputs a RaspAP status indicator
 function _install_status() {
     case $1 in
