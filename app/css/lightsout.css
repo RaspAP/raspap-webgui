@@ -166,6 +166,10 @@ hr {
   font-family: inherit;
 }
 
+.ra-raspap:before {
+  color: #ac1b3d !important;
+}
+
 .sidebar-light #sidebarToggle {
   background-color: #202020;
   border: 1px solid #afafaf !important
