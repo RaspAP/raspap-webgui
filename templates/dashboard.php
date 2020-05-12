@@ -5,13 +5,15 @@ if ($arrHostapdConf['WifiAPEnable'] == 1) {
 } else {
   $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
 }
+exec('cat '.RASPI_HOSTAPD_CONFIG.' | sed -rn "s/interface=(wlan[0-9])/\1/p" ',$ap_iface);
+$ap_iface = $ap_iface[0];
 $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
 if ($arrHostapdConf['BridgedEnable'] == 1) {
   $moreLink = "index.php?page=hostapd_conf";
-  exec('iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern, $clients);
+  exec('iw dev '.$ap_iface.' station dump | grep -oE '.$MACPattern, $clients);
 } else {
   $moreLink = "index.php?page=dhcpd_conf";
-  exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
+  exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(iw dev '.$ap_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
 }
 $ifaceStatus = $wlan0up ? "up" : "down";
 ?>
@@ -39,7 +41,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
             <div class="card mb-3">
               <div class="card-body">
                 <h4><?php echo _("Hourly traffic amount"); ?></h4>
-                <div id="divInterface" class="d-none"><?php echo RASPI_WIFI_CLIENT_INTERFACE; ?></div>
+                <div id="divInterface" class="d-none"><?php echo 'uap0'; ?></div>
                 <div class="col-md-12">
                   <canvas id="divDBChartBandwidthhourly"></canvas>
                 </div>
@@ -126,9 +128,9 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                 <?php echo CSRFTokenFieldTag() ?>
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
                     <?php if (!$wlan0up) : ?>
-                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.RASPI_WIFI_CLIENT_INTERFACE ?>" name="ifup_wlan0" />
+                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$client_iface ?>" name="ifup_wlan0" />
                     <?php else : ?>
-                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.RASPI_WIFI_CLIENT_INTERFACE ?>"  name="ifdown_wlan0" />
+                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$client_iface ?>"  name="ifdown_wlan0" />
                     <?php endif ?>
                 <?php endif ?>
               <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>

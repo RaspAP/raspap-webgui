@@ -56,7 +56,7 @@ function DisplayHostAPDConfig()
     }
 
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
-    exec('iwgetid '. RASPI_WIFI_CLIENT_INTERFACE. ' -r', $wifiNetworkID);
+    exec('iwgetid '. $_POST['interface']. ' -r', $wifiNetworkID);
     if (!empty($wifiNetworkID[0])) {
         $managedModeEnabled = true;
     }
@@ -165,7 +165,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     $cfg['WifiAPEnable'] = ($bridgedEnable == 1 ?
         $arrHostapdConf['WifiAPEnable'] : $wifiAPEnable);
     $cfg['BridgedEnable'] = $bridgedEnable;
-    $cfg['WifiManaged'] = RASPI_WIFI_CLIENT_INTERFACE;
+    $cfg['WifiManaged'] = $_POST['interface'];
     write_php_ini($cfg, '/etc/raspap/hostapd.ini');
 
     // Verify input
@@ -252,7 +252,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         if ($wifiAPEnable == 1) {
             $config.= 'interface=uap0'.PHP_EOL;
         } elseif ($bridgedEnable == 1) {
-            $config.='interface='.RASPI_WIFI_CLIENT_INTERFACE.PHP_EOL;
+            $config.='interface='.$_POST['interface'].PHP_EOL;
             $config.= 'bridge=br0'.PHP_EOL;
         } else {
             $config.= 'interface='.$_POST['interface'].PHP_EOL;
@@ -300,21 +300,13 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_CONFIG, $return);
 
         // Set dnsmasq values from ini, fallback to default if undefined
-        $intConfig = parse_ini_file(RASPI_CONFIG_NETWORKING.'/'.RASPI_WIFI_CLIENT_INTERFACE.'.ini', false, INI_SCANNER_RAW);
+        $intConfig = parse_ini_file(RASPI_CONFIG_NETWORKING.'/'.$_POST['interface'].'.ini', false, INI_SCANNER_RAW);
         $domain_name_server = ($intConfig['domain_name_server'] =='') ? '1.1.1.1 8.8.8.8' : $intConfig['domain_name_server'];
         $routers = ($intConfig['routers'] == '') ? '10.3.141.1' : $intConfig['routers'];
 
-        $config = [ '# RaspAP wlan0 configuration' ];
-        $config[] = 'hostname';
-        $config[] = 'clientid';
-        $config[] = 'persistent';
-        $config[] = 'option rapid_commit';
-        $config[] = 'option domain_name_servers, domain_name, domain_search, host_name';
-        $config[] = 'option classless_static_routes';
-        $config[] = 'option ntp_servers';
-        $config[] = 'require dhcp_server_identifier';
-        $config[] = 'slaac private';
-        $config[] = 'nohook lookup-hostname';
+		// load the defaults for dhcpcd.conf
+        $config = file_get_contents(RASPI_CONFIG_NETWORKING.'/defaults')."\n\n";
+        $config = explode('\n', $config);
 
         if ($bridgedEnable == 1) {
             $config[] = 'denyinterfaces eth0 wlan0';
@@ -327,14 +319,37 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'nohook wpa_supplicant';
         } else {
-            // Default config
-            $ip_address = ($intConfig['ip_address'] == '') ? '10.3.141.1/24' : $intConfig['ip_address'];
-            $config[] = 'interface '.RASPI_WIFI_CLIENT_INTERFACE;
+            // Default config 
+			$ip_address = "10.3.141.1/24";	// fallback IP
+			// default IP of the AP xxx.xxx.xxx.1/24 of the selected dhcp range
+			$def_ip = array();
+            if (preg_match("/^([0-9]{1,3}\.){3}/",$dhcp_range,$def_ip) ) $ip_address = $def_ip[0]."1/24";
+			// use static IP assigned to interface only, if consistent with the selected dhcp range
+            if (preg_match("/^([0-9]{1,3}\.){3}/",$intConfig['ip_address'],$int_ip) && $def_ip[0] === $int_ip[0]) $ip_address = $intConfig['ip_address'];
+
+			$routers = "";	// NO default route to be set for the hotspot. This screws up the routing!
+            $config[] = 'interface '.$_POST['interface'];
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'static routers='.$routers;
             $config[] = 'static domain_name_server='.$domain_name_server;
-        }
 
+            // write the static IP back to the $_POST['interface'].ini file
+            $intConfig['interface'] = $_POST['interface'];
+            $intConfig['ip_address'] = $ip_address;
+            $intConfig['domain_name_server'] = $domain_name_server;
+            $intConfig['routers'] = $routers;
+            $intConfig['static'] = "true";
+            $intConfig['failover'] = "false";
+            write_php_ini($intConfig, RASPI_CONFIG_NETWORKING.'/'.$_POST['interface'].".ini");
+
+            $config[] = 'interface '.$_POST['interface'];
+            $config[] = 'static ip_address='.$ip_address;
+            $config[] = 'static routers='.$routers;
+            $config[] = 'static domain_name_server='.$domain_name_server;
+			$config[] = PHP_EOL;
+		}
+
+		
         $config = join(PHP_EOL, $config);
         file_put_contents("/tmp/dhcpddata", $config);
         system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
