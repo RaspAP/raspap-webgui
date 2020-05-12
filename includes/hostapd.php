@@ -332,6 +332,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'static routers='.$routers;
             $config[] = 'static domain_name_server='.$domain_name_server;
+            $config[] = PHP_EOL;
 
             // write the static IP back to the $_POST['interface'].ini file
             $intConfig['interface'] = $_POST['interface'];
@@ -341,12 +342,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $intConfig['static'] = "true";
             $intConfig['failover'] = "false";
             write_php_ini($intConfig, RASPI_CONFIG_NETWORKING.'/'.$_POST['interface'].".ini");
-
-            $config[] = 'interface '.$_POST['interface'];
-            $config[] = 'static ip_address='.$ip_address;
-            $config[] = 'static routers='.$routers;
-            $config[] = 'static domain_name_server='.$domain_name_server;
-            $config[] = PHP_EOL;
         }
 
         $config = join(PHP_EOL, $config);
