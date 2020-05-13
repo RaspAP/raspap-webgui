@@ -13,5 +13,6 @@ $ssid     = null;
 knownWifiStations($networks);
 nearbyWifiStations($networks, !isset($_REQUEST["refresh"]));
 connectedWifiStations($networks);
+sortNetworksByRSSI($networks);
 
 echo renderTemplate('wifi_stations', compact('networks'));
