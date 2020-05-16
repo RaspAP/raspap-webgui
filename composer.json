@@ -5,11 +5,13 @@
     "homepage": "https://raspap.com/",
     "keywords": ["raspberrypi", "debian", "armbian", "wifi"],
     "type": "raspap-core",
-    "authors": {
-        "name": "RaspAP Team",
-        "email": "billzimmerman@gmail.com",
-        "homepage": "https://raspap.com/"
-    },
+    "authors": [
+        {
+          "name": "RaspAP Team",
+          "email": "billzimmerman@gmail.com",
+          "homepage": "https://raspap.com/"
+        }
+    ],
     "require": {
         "php": "^7.0"
     },
