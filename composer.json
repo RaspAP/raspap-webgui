@@ -11,8 +11,7 @@
         "homepage": "https://raspap.com/"
     },
     "require": {
-        "php": "^7.0",
-        "raspap/composer-installer": "^1.0"
+        "php": "^7.0"
     },
     "require-dev": {
         "php-parallel-lint/php-parallel-lint": "^1.2.0",
