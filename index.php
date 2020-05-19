@@ -146,7 +146,7 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
           <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("DHCP Server"); ?></a>
         </li>
           <?php endif; ?>
-          <?php if (RASPI_ADBLOCK_ENABLED) : ?>
+          <?php if (RASPI_ADBLOCK_ENABLED && !$bridgedEnabled) : ?>
         <li class="nav-item">
            <a class="nav-link" href="index.php?page=adblock_conf"><i class="far fa-hand-paper fa-fw mr-2"></i><span class="nav-label"><?php echo _("Ad Blocking"); ?></a>
         </li>
