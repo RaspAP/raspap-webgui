@@ -18,6 +18,7 @@ function DisplayHostAPDConfig()
         'b' => '802.11b - 2.4 GHz',
         'g' => '802.11g - 2.4 GHz',
         'n' => '802.11n - 2.4 GHz',
+        'w' => '802.11w - 2.4 Ghz',
         'ac' => '802.11.ac - 5 GHz'
     ];
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
@@ -242,6 +243,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'vht_capab=[MAX-AMSDU-3839][SHORT-GI-80]'.PHP_EOL;
             $config.= 'vht_oper_chwidth=1'.PHP_EOL;
             $config.= 'vht_oper_centr_freq_seg0_idx=42'.PHP_EOL.PHP_EOL;
+        } elseif ($_POST['hw_mode'] === 'w') {
+            $config.= 'ieee80211w=2'.PHP_EOL;
+            $config.= 'wpa_key_mgmt=WPA-EAP-SHA256'.PHP_EOL;
         } else {
             $config.= 'hw_mode='.$_POST['hw_mode'].PHP_EOL;
             $config.= 'ieee80211n=0'.PHP_EOL;
