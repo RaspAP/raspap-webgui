@@ -129,7 +129,7 @@ function sortNetworksByRSSI(&$networks)
     arsort($valRSSI);
     $networks = array();
     foreach ($valRSSI as $SSID => $RSSI) {
-        networks[$SSID] = $nets[$SSID];
+        $networks[$SSID] = $nets[$SSID];
         $networks[$SSID]['RSSI'] = $RSSI;
     }
 }
