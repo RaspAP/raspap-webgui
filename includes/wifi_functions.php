@@ -63,16 +63,26 @@ function nearbyWifiStations(&$networks, $cached = true)
         }
     );
 
-    foreach (explode("\n", $scan_results) as $network) {
-        $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
+    // get the name of the AP - should be excluded von the nearby networks
+    exec('cat '.RASPI_HOSTAPD_CONFIG.' | sed -rn "s/ssid=(.*)\s*$/\1/p" ',$ap_ssid);
+    $ap_ssid = $ap_ssid[0];
+	
+	foreach (explode("\n", $scan_results) as $network) {
+		$arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
+        if (!array_key_exists(4, $arrNetwork) ||
+            trim($arrNetwork[4]) == $ap_ssid) continue;
+
+        $ssid = trim($arrNetwork[4]);
+        // filter SSID string - anything invisable in 7bit ASCII or quotes -> ignore network
+        if( preg_match('[\x00-\x1f\x7f-\xff\'\`\´\"]',$ssid)) continue;
 
         // If network is saved
-        if (array_key_exists(4, $arrNetwork) && array_key_exists($arrNetwork[4], $networks)) {
-            $networks[$arrNetwork[4]]['visible'] = true;
-            $networks[$arrNetwork[4]]['channel'] = ConvertToChannel($arrNetwork[1]);
+        if (array_key_exists($ssid, $networks)) {
+            $networks[$ssid]['visible'] = true;
+            $networks[$ssid]['channel'] = ConvertToChannel($arrNetwork[1]);
             // TODO What if the security has changed?
         } else {
-            $networks[$arrNetwork[4]] = array(
+            $networks[$ssid] = array(
                 'configured' => false,
                 'protocol' => ConvertToSecurity($arrNetwork[3]),
                 'channel' => ConvertToChannel($arrNetwork[1]),
@@ -82,10 +92,12 @@ function nearbyWifiStations(&$networks, $cached = true)
             );
         }
 
-        // Save RSSI
-        if (array_key_exists(4, $arrNetwork)) {
-            $networks[$arrNetwork[4]]['RSSI'] = $arrNetwork[2];
+        // Save RSSI, if the current value is larger than the already stored
+        if (array_key_exists(4, $arrNetwork) && array_key_exists($arrNetwork[4],$networks)) {
+            if(! array_key_exists('RSSI',$networks[$arrNetwork[4]]) || $networks[$ssid]['RSSI'] < $arrNetwork[2])
+                $networks[$ssid]['RSSI'] = $arrNetwork[2];
         }
+
     }
 }
 
@@ -97,4 +109,19 @@ function connectedWifiStations(&$networks)
             $networks[$iwconfig_ssid[1]]['connected'] = true;
         }
     }
+}
+
+function sortNetworksByRSSI(&$networks) {
+        $valRSSI = array();
+        foreach ($networks as $SSID => $net) {
+                if (!array_key_exists('RSSI',$net)) $net['RSSI'] = -1000;
+                $valRSSI[$SSID] = $net['RSSI'];
+        }
+        $nets = $networks;
+        arsort($valRSSI);
+        $networks = array();
+        foreach ($valRSSI as $SSID => $RSSI) {
+                $networks[$SSID] = $nets[$SSID];
+                $networks[$SSID]['RSSI'] = $RSSI;
+        }
 }

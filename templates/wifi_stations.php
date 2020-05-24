@@ -40,16 +40,15 @@
 
 	<div class="info-item-wifi"><?php echo _("RSSI"); ?></div>
         <div>
-	  <?php echo htmlspecialchars($network['RSSI'], ENT_QUOTES);
-	      echo "dB (";
-	  if ($network['RSSI'] >= -50) {
-	      echo 100;
-	  } elseif ($network['RSSI'] <= -100) {
-	      echo 0;
-	  } else {
-	      echo  2*($network['RSSI'] + 100);
-	  }
-	      echo "%)";
+	  <?php 
+		if (isset($network['RSSI']) && $network['RSSI'] >= -200 ) {
+			echo htmlspecialchars($network['RSSI'], ENT_QUOTES);
+			echo "dB (";
+            if ($network['RSSI'] >= -50) echo 100;
+            elseif ($network['RSSI'] <= -100) echo 0;
+            else echo  2*($network['RSSI'] + 100);
+            echo "%)";
+        } else echo " not found ";
 	  ?>
         </div>
 
