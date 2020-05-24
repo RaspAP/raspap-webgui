@@ -52,7 +52,8 @@ function nearbyWifiStations(&$networks, $cached = true)
     }
 
     $scan_results = cache(
-        $cacheKey, function () {
+        $cacheKey,
+        function () {
             exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' scan');
             sleep(3);
 
@@ -63,18 +64,22 @@ function nearbyWifiStations(&$networks, $cached = true)
         }
     );
 
-    // get the name of the AP - should be excluded von the nearby networks
-    exec('cat '.RASPI_HOSTAPD_CONFIG.' | sed -rn "s/ssid=(.*)\s*$/\1/p" ',$ap_ssid);
+    // get the name of the AP. Should be excluded from nearby networks
+    exec('cat '.RASPI_HOSTAPD_CONFIG.' | sed -rn "s/ssid=(.*)\s*$/\1/p" ', $ap_ssid);
     $ap_ssid = $ap_ssid[0];
-	
-	foreach (explode("\n", $scan_results) as $network) {
-		$arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
+
+    foreach (explode("\n", $scan_results) as $network) {
+        $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
         if (!array_key_exists(4, $arrNetwork) ||
-            trim($arrNetwork[4]) == $ap_ssid) continue;
+            trim($arrNetwork[4]) == $ap_ssid) {
+            continue;
+        }
 
         $ssid = trim($arrNetwork[4]);
-        // filter SSID string - anything invisable in 7bit ASCII or quotes -> ignore network
-        if( preg_match('[\x00-\x1f\x7f-\xff\'\`\´\"]',$ssid)) continue;
+        // filter SSID string: anything invisible in 7bit ASCII or quotes -> ignore network
+        if (preg_match('[\x00-\x1f\x7f-\xff\'\`\´\"]', $ssid)) {
+            continue;
+        }
 
         // If network is saved
         if (array_key_exists($ssid, $networks)) {
@@ -93,11 +98,11 @@ function nearbyWifiStations(&$networks, $cached = true)
         }
 
         // Save RSSI, if the current value is larger than the already stored
-        if (array_key_exists(4, $arrNetwork) && array_key_exists($arrNetwork[4],$networks)) {
-            if(! array_key_exists('RSSI',$networks[$arrNetwork[4]]) || $networks[$ssid]['RSSI'] < $arrNetwork[2])
+        if (array_key_exists(4, $arrNetwork) && array_key_exists($arrNetwork[4], $networks)) {
+            if (! array_key_exists('RSSI', $networks[$arrNetwork[4]]) || $networks[$ssid]['RSSI'] < $arrNetwork[2]) {
                 $networks[$ssid]['RSSI'] = $arrNetwork[2];
+            }
         }
-
     }
 }
 
@@ -111,17 +116,20 @@ function connectedWifiStations(&$networks)
     }
 }
 
-function sortNetworksByRSSI(&$networks) {
-        $valRSSI = array();
-        foreach ($networks as $SSID => $net) {
-                if (!array_key_exists('RSSI',$net)) $net['RSSI'] = -1000;
-                $valRSSI[$SSID] = $net['RSSI'];
+function sortNetworksByRSSI(&$networks)
+{
+    $valRSSI = array();
+    foreach ($networks as $SSID => $net) {
+        if (!array_key_exists('RSSI', $net)) {
+            $net['RSSI'] = -1000;
         }
-        $nets = $networks;
-        arsort($valRSSI);
-        $networks = array();
-        foreach ($valRSSI as $SSID => $RSSI) {
-                $networks[$SSID] = $nets[$SSID];
-                $networks[$SSID]['RSSI'] = $RSSI;
-        }
+        $valRSSI[$SSID] = $net['RSSI'];
+    }
+    $nets = $networks;
+    arsort($valRSSI);
+    $networks = array();
+    foreach ($valRSSI as $SSID => $RSSI) {
+        networks[$SSID] = $nets[$SSID];
+        $networks[$SSID]['RSSI'] = $RSSI;
+    }
 }
