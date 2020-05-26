@@ -18,7 +18,6 @@ function DisplayHostAPDConfig()
         'b' => '802.11b - 2.4 GHz',
         'g' => '802.11g - 2.4 GHz',
         'n' => '802.11n - 2.4 GHz',
-        'w' => '802.11w - 2.4 Ghz',
         'ac' => '802.11.ac - 5 GHz'
     ];
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
