@@ -6,7 +6,7 @@
 <div class="row ml-1 mr-1">
 
   <?php foreach ($networks as $ssid => $network) : ?>
-  <div class="col-sm-6 align-items-stretch mb-3">
+  <div class="col-sm-10 align-items-stretch mb-3">
     <div class="card h-100">
       <div class="card-body">
 
