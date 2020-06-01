@@ -31,7 +31,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [License](#license)
 
 ## Prerequisites
-Start with a clean install of the [latest release of Raspbian](https://www.raspberrypi.org/downloads/raspbian/) (currently Buster). Raspbian Buster Lite is recommended.
+Start with a clean install of the [latest release of Raspberry Pi OS (32-bit)](https://www.raspberrypi.org/downloads/raspbian/). Raspberry Pi OS (32-bit) Lite is recommended.
 
 1. Update Raspbian, including the kernel and firmware, followed by a reboot:
 ```
