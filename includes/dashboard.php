@@ -140,6 +140,13 @@ function DisplayDashboard(&$extraFooterScripts)
         }
     }
 
+    $connectedIp = '-';
+    exec('ip addr show ' . RASPI_WIFI_CLIENT_INTERFACE, $stdoutWifiAddr);
+    preg_match('/inet\s+(\d+\.\d+\.\d+\.\d+)/', join(" ", $stdoutWifiAddr), $matchesWifiIp);
+    if (!empty($matchesWifiIp[1])) {
+        $connectedIp = $matchesWifiIp[1];
+    }
+
     $wlan0up = false;
     $classMsgDevicestatus = 'warning';
     if ($interfaceState === 'UP') {
@@ -147,6 +154,14 @@ function DisplayDashboard(&$extraFooterScripts)
         $classMsgDevicestatus = 'success';
     }
 
+    $connectedUsbIp = '-';
+    exec('ip addr show ' . RASPI_USB_CLIENT_INTERFACE, $stdoutUsbAddr);
+    preg_match('/inet\s+(\d+\.\d+\.\d+\.\d+)/', join(" ", $stdoutUsbAddr), $matchesUsbIp);
+    $usbUp = false;
+    if (!empty($matchesUsbIp[1])) {
+        $usbUp = true;
+        $connectedUsbIp = $matchesUsbIp[1];
+    }
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['ifdown_wlan0'])) {
@@ -192,12 +207,15 @@ function DisplayDashboard(&$extraFooterScripts)
             "strTxBytes",
             "connectedSSID",
             "connectedBSSID",
+            "connectedIp",
+            "connectedUsbIp",
             "bitrate",
             "signalLevel",
             "txPower",
             "frequency",
             "strLinkQuality",
-            "wlan0up"
+            "wlan0up",
+            "usbUp"
         )
     );
     $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);

@@ -2,18 +2,22 @@
 $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
 if ($arrHostapdConf['WifiAPEnable'] == 1) {
   $client_iface = 'uap0';
+  $host_iface = 'uap0';
 } else {
   $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
+  $host_iface = RASPI_WIFI_HOST_INTERFACE;
 }
+$usbclient_iface = RASPI_USB_CLIENT_INTERFACE;
 $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
 if ($arrHostapdConf['BridgedEnable'] == 1) {
   $moreLink = "index.php?page=hostapd_conf";
   exec('iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern, $clients);
 } else {
   $moreLink = "index.php?page=dhcpd_conf";
-  exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(iw dev '.$client_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
+  exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(iw dev '.$host_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
 }
 $ifaceStatus = $wlan0up ? "up" : "down";
+$ifaceUsbStatus = $usbUp ? "up" : "down";
 ?>
 <div class="row">
   <div class="col-lg-12">
@@ -24,10 +28,16 @@ $ifaceStatus = $wlan0up ? "up" : "down";
       <i class="fas fa-tachometer-alt fa-fw mr-2"></i><?php echo _("Dashboard"); ?>
     </div>
     <div class="col">
-      <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+      <button class="btn btn-light btn-icon-split btn-sm service-status float-right ml-2">
         <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
         <span class="text service-status"><?php echo strtolower($client_iface) .' '. _($ifaceStatus) ?></span>
       </button>
+<?php if (strlen($usbclient_iface) > 0) { ?>
+      <button class="btn btn-light btn-icon-split btn-sm service-status float-right ml-2">
+        <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceUsbStatus ?>"></i></span>
+        <span class="text service-status"><?php echo strtolower($usbclient_iface) .' '. _($ifaceUsbStatus) ?></span>
+      </button>
+<?php } ?>
     </div>
         </div><!-- /.row -->
       </div><!-- /.card-header -->
@@ -47,7 +57,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
             </div><!-- /.card-->
           </div>
 
-          <div class="col-sm-6 align-items-stretch">
+          <div class="col-sm-6 align-items-stretch mb-3">
             <div class="card h-100">
               <div class="card-body wireless">
                 <h4><?php echo _("Wireless Client"); ?></h4>
@@ -55,6 +65,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                 <div class="col-md">
                 <div class="info-item"><?php echo _("Connected To"); ?></div><div><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("AP Mac Address"); ?></div><div><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
+                <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo htmlspecialchars($connectedIp, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Bitrate"); ?></div><div><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Signal Level"); ?></div><div><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Transmit Power"); ?></div><div><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
@@ -70,8 +81,27 @@ $ifaceStatus = $wlan0up ? "up" : "down";
              </div><!-- /.card-body -->
             </div><!-- /.card -->
           </div><!-- /.col-md-6 -->
-          <div class="col-sm-6">
-            <div class="card h-100 mb-3">
+<?php if (strlen($usbclient_iface) > 0) { ?>
+          <div class="col-sm-6 align-items-stretch mb-3">
+            <div class="card h-100">
+              <div class="card-body wireless">
+                <h4><?php echo _("Usb Client"); ?></h4>
+                <div class="row justify-content-md-center">
+                <div class="col-md">
+                  <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo htmlspecialchars($connectedUsbIp, ENT_QUOTES); ?></div>
+              </div>
+              <div class="col-md mt-2 d-flex justify-content-center">
+                <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
+                <div class="chart-container">
+                </div>
+                </div><!--row-->
+              </div>
+             </div><!-- /.card-body -->
+            </div><!-- /.card -->
+          </div><!-- /.col-md-6 -->
+<?php } ?>
+          <div class="col-sm-6 mb-3">
+            <div class="card h-100">
               <div class="card-body">
                 <h4><?php echo _("Connected Devices"); ?></h4>
                 <div class="table-responsive">
@@ -135,7 +165,6 @@ $ifaceStatus = $wlan0up ? "up" : "down";
             </form>
           </div>
         </div>
-
       </div><!-- /.card-body -->
       <div class="card-footer"><?php echo _("Information provided by ip and iw and from system"); ?></div>
     </div><!-- /.card -->

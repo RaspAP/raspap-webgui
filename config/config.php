@@ -4,7 +4,9 @@ define('RASPI_VERSION', '2.4.1');
 define('RASPI_CONFIG', '/etc/raspap');
 define('RASPI_CONFIG_NETWORKING', RASPI_CONFIG.'/networking');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
-define('RASPI_WIFI_CLIENT_INTERFACE', 'wlan0');
+define('RASPI_WIFI_HOST_INTERFACE', 'wlan0');
+define('RASPI_WIFI_CLIENT_INTERFACE', 'wlan1');
+define('RASPI_USB_CLIENT_INTERFACE', 'usb0');
 define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
 
 // Constants for configuration file paths.
