@@ -5,8 +5,8 @@ if ($arrHostapdConf['WifiAPEnable'] == 1) {
 } else {
   $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
 }
-exec('cat '.RASPI_HOSTAPD_CONFIG.' | sed -rn "s/interface=(wlan[0-9])/\1/p" ',$ap_iface);
-$ap_iface = $ap_iface[0];
+$pars=parse_ini_file(RASPI_HOSTAPD_CONFIG,false,INI_SCANNER_RAW );
+$ap_iface = $pars['interface'];
 $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
 if ($arrHostapdConf['BridgedEnable'] == 1) {
   $moreLink = "index.php?page=hostapd_conf";

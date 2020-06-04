@@ -304,9 +304,18 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $domain_name_server = ($intConfig['domain_name_server'] =='') ? '1.1.1.1 8.8.8.8' : $intConfig['domain_name_server'];
         $routers = ($intConfig['routers'] == '') ? '10.3.141.1' : $intConfig['routers'];
 
-        // load the defaults for dhcpcd.conf
-        $config = file_get_contents(RASPI_CONFIG_NETWORKING.'/defaults')."\n\n";
-        $config = explode('\n', $config);
+        // write options to dhcpcd.conf
+        $config = [ '# RaspAP '.$_POST['interface'].' configuration' ];
+        $config[] = 'hostname';
+        $config[] = 'clientid';
+        $config[] = 'persistent';
+        $config[] = 'option rapid_commit';
+        $config[] = 'option domain_name_servers, domain_name, domain_search, host_name';
+        $config[] = 'option classless_static_routes';
+        $config[] = 'option ntp_servers';
+        $config[] = 'require dhcp_server_identifier';
+        $config[] = 'slaac private';
+        $config[] = 'nohook lookup-hostname';
 
         if ($bridgedEnable == 1) {
             $config[] = 'denyinterfaces eth0 wlan0';
