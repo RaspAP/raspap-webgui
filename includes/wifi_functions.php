@@ -1,7 +1,6 @@
 <?php
 
 require_once 'functions.php';
-require_once 'hostapd.php';
 
 function knownWifiStations(&$networks)
 {
