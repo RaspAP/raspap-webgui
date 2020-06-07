@@ -171,6 +171,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     $cfg['BridgedEnable'] = $bridgedEnable;
     $cfg['WifiManaged'] = $_POST['interface'];
     write_php_ini($cfg, RASPI_CONFIG.'/hostapd.ini');
+    $_SESSION['client_iface'] = $_POST['interface'];
 
     // Verify input
     if (empty($_POST['ssid']) || strlen($_POST['ssid']) > 32) {
