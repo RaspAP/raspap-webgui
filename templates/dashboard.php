@@ -1,19 +1,19 @@
 <?php
 $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
 if ($arrHostapdConf['WifiAPEnable'] == 1) {
-  $client_iface = 'uap0';
+    $client_iface = 'uap0';
 } else {
-  $client_iface = $arrHostapdConf['WifiInterface'];
+    $client_iface = $_SESSION['client_iface'];
 }
 $pars=parse_ini_file(RASPI_HOSTAPD_CONFIG,false,INI_SCANNER_RAW );
 $ap_iface = $pars['interface'];
 $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
 if ($arrHostapdConf['BridgedEnable'] == 1) {
-  $moreLink = "index.php?page=hostapd_conf";
-  exec('iw dev '.$ap_iface.' station dump | grep -oE '.$MACPattern, $clients);
+    $moreLink = "index.php?page=hostapd_conf";
+    exec('iw dev '.$ap_iface.' station dump | grep -oE '.$MACPattern, $clients);
 } else {
-  $moreLink = "index.php?page=dhcpd_conf";
-  exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(iw dev '.$ap_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
+    $moreLink = "index.php?page=dhcpd_conf";
+    exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(iw dev '.$ap_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
 }
 $ifaceStatus = $wlan0up ? "up" : "down";
 ?>
