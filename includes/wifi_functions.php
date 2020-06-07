@@ -92,10 +92,23 @@ function nearbyWifiStations(&$networks, $cached = true)
 
 function connectedWifiStations(&$networks)
 {
-    exec('iwconfig ' . RASPI_WIFI_CLIENT_INTERFACE, $iwconfig_return);
+    exec('iwconfig ' .$_SESSION['client_iface'], $iwconfig_return);
     foreach ($iwconfig_return as $line) {
         if (preg_match('/ESSID:\"([^"]+)\"/i', $line, $iwconfig_ssid)) {
             $networks[$iwconfig_ssid[1]]['connected'] = true;
         }
     }
 }
+
+function getWifiInterface()
+{
+    if (empty($_SESSION['client_iface'])) {
+        $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
+        if (isset($arrHostapdConf['WifiInterface'])) {
+            $_SESSION['client_iface'] = $arrHostapdConf['WifiInterface'];
+        } else { // fallback to default
+            $_SESSSION['client_iface'] = RASPI_WIFI_CLIENT_INTERFACE;
+        }
+    }
+}
+
