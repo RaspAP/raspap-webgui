@@ -78,16 +78,16 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        "18.04"|"19.10") # Ubuntu Server
+        18.04|19.10) # Ubuntu Server
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
-        "10")
+        10*)
             php_package="php7.3-cgi"
             phpcgiconf="/etc/php/7.3/cgi/php.ini" ;;
-        "9")
+        9*)
             php_package="php7.0-cgi"
             phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
-        "8")
+        8)
             _install_status 1 "${DESC} and php5 are not supported. Please upgrade." ;;
         *)
             _install_status 1 "${DESC} is unsupported. Please install on a supported distro." ;;
