@@ -2,7 +2,6 @@
 
 require_once 'includes/status_messages.php';
 require_once 'includes/wifi_functions.php';
-require_once 'includes/hostapd.php';
 
 /**
  *
@@ -13,6 +12,7 @@ function DisplayWPAConfig()
     $status = new StatusMessages();
     $networks = [];
 
+    getWifiInterface();
     knownWifiStations($networks);
 
     if (isset($_POST['connect'])) {

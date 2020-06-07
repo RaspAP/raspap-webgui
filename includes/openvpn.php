@@ -1,8 +1,10 @@
 <?php
 
 require_once 'includes/status_messages.php';
-require_once 'includes/hostapd.php';
-require_once 'config.php';
+require_once 'includes/config.php';
+require_once 'includes/wifi_functions.php';
+
+getWifiInterface();
 
 /**
  * Manage OpenVPN configuration

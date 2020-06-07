@@ -1,14 +1,14 @@
 <?php
 
-require_once 'config.php';
-require_once 'hostapd.php';
+require_once 'includes/config.php';
+require_once 'includes/wifi_functions.php';
 
 /**
  * Show dashboard page.
  */
 function DisplayDashboard(&$extraFooterScripts)
 {
-
+    getWifiInterface();
     $status = new StatusMessages();
     // Need this check interface name for proper shell execution.
     if (!preg_match('/^([a-zA-Z0-9]+)$/', $_SESSION['client_iface'])) {

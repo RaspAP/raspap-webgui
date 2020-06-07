@@ -2,16 +2,9 @@
 
 require_once 'includes/status_messages.php';
 require_once 'app/lib/system.php';
-require_once 'config.php';
+require_once 'includes/wifi_functions.php';
 
-if (empty($_SESSION['client_iface'])) {
-    $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
-    if (isset($arrHostapdConf['WifiInterface'])) {
-        $_SESSION['client_iface'] = $arrHostapdConf['WifiInterface'];
-    } else { // fallback to default
-        $_SESSSION['client_iface'] = RASPI_WIFI_CLIENT_INTERFACE;
-    }
-}
+getWifiInterface();
 
 /**
  *
