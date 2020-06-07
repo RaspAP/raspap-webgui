@@ -2,6 +2,7 @@
 
 require_once 'includes/status_messages.php';
 require_once 'includes/wifi_functions.php';
+require_once 'includes/hostapd.php';
 
 /**
  *
@@ -16,7 +17,7 @@ function DisplayWPAConfig()
 
     if (isset($_POST['connect'])) {
         $result = 0;
-        exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' select_network '.strval($_POST['connect']));
+        exec('sudo wpa_cli -i ' . $_SESSION['client_iface'] . ' select_network '.strval($_POST['connect']));
         $status->addMessage('New network selected', 'success');
     } elseif (isset($_POST['client_settings'])) {
         $tmp_networks = $networks;
@@ -76,7 +77,7 @@ function DisplayWPAConfig()
             if ($ok) {
                 system('sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval);
                 if ($returnval == 0) {
-                    exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' reconfigure', $reconfigure_out, $reconfigure_return);
+                    exec('sudo wpa_cli -i ' . $_SESSION['client_iface'] . ' reconfigure', $reconfigure_out, $reconfigure_return);
                     if ($reconfigure_return == 0) {
                         $status->addMessage('Wifi settings updated successfully', 'success');
                         $networks = $tmp_networks;

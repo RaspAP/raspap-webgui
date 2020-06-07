@@ -1,6 +1,7 @@
 <?php
 
 require_once 'functions.php';
+require_once 'hostapd.php';
 
 function knownWifiStations(&$networks)
 {
@@ -53,10 +54,10 @@ function nearbyWifiStations(&$networks, $cached = true)
 
     $scan_results = cache(
         $cacheKey, function () {
-            exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' scan');
+            exec('sudo wpa_cli -i ' .$_SESSION['client_iface']. ' scan');
             sleep(3);
 
-            exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' scan_results', $stdout);
+            exec('sudo wpa_cli -i ' .$_SESSION['client_iface']. ' scan_results', $stdout);
             array_shift($stdout);
 
             return implode("\n", $stdout);

@@ -1,9 +1,9 @@
 <?php
-$arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
+$arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
 if ($arrHostapdConf['WifiAPEnable'] == 1) {
   $client_iface = 'uap0';
 } else {
-  $client_iface = RASPI_WIFI_CLIENT_INTERFACE;
+  $client_iface = $arrHostapdConf['WifiInterface'];
 }
 $pars=parse_ini_file(RASPI_HOSTAPD_CONFIG,false,INI_SCANNER_RAW );
 $ap_iface = $pars['interface'];

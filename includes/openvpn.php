@@ -1,6 +1,7 @@
 <?php
 
 require_once 'includes/status_messages.php';
+require_once 'includes/hostapd.php';
 require_once 'config.php';
 
 /**
@@ -146,7 +147,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         }
 
         // Set iptables rules and, optionally, auth-user-pass
-        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient $auth_flag " .RASPI_WIFI_CLIENT_INTERFACE, $return);
+        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient $auth_flag " .$_SESSION['client_iface'], $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
