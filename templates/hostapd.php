@@ -61,6 +61,12 @@
                         $selectedHwMode = 'ac';
                     }
                 }
+                if (isset($arrConfig['ieee80211w'])) {
+                    if (strval($arrConfig['ieee80211w']) === '2') {
+                        $selectedHwMode = 'w';
+                    }
+                }
+
                 if (!in_array($arrConfig['country_code'], $countries_5Ghz_max48ch)) {
                     $hwModeDisabled = 'ac';
                     if ($selectedHwMode === $hwModeDisabled) {

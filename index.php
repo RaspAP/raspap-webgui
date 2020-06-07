@@ -13,7 +13,7 @@
  * @author  Lawrence Yau <sirlagz@gmail.com>
  * @author  Bill Zimmerman <billzimmerman@gmail.com>
  * @license GNU General Public License, version 3 (GPL-3.0)
- * @version 2.4
+ * @version 2.4.1
  * @link    https://github.com/billz/raspap-webgui
  * @see     http://sirlagz.net/2013/02/08/raspap-webgui/
  */
@@ -146,7 +146,7 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
           <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("DHCP Server"); ?></a>
         </li>
           <?php endif; ?>
-          <?php if (RASPI_ADBLOCK_ENABLED) : ?>
+          <?php if (RASPI_ADBLOCK_ENABLED && !$bridgedEnabled) : ?>
         <li class="nav-item">
            <a class="nav-link" href="index.php?page=adblock_conf"><i class="far fa-hand-paper fa-fw mr-2"></i><span class="nav-label"><?php echo _("Ad Blocking"); ?></a>
         </li>

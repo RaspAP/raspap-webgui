@@ -245,6 +245,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config.= 'vht_capab=[MAX-AMSDU-3839][SHORT-GI-80]'.PHP_EOL;
             $config.= 'vht_oper_chwidth=1'.PHP_EOL;
             $config.= 'vht_oper_centr_freq_seg0_idx=42'.PHP_EOL.PHP_EOL;
+        } elseif ($_POST['hw_mode'] === 'w') {
+            $config.= 'ieee80211w=2'.PHP_EOL;
+            $config.= 'wpa_key_mgmt=WPA-EAP-SHA256'.PHP_EOL;
         } else {
             $config.= 'hw_mode='.$_POST['hw_mode'].PHP_EOL;
             $config.= 'ieee80211n=0'.PHP_EOL;
