@@ -140,7 +140,7 @@ function getWifiInterface()
         if (isset($arrHostapdConf['WifiInterface'])) {
             $_SESSION['client_iface'] = $arrHostapdConf['WifiInterface'];
         } else { // fallback to default
-            $_SESSSION['client_iface'] = RASPI_WIFI_CLIENT_INTERFACE;
+            $_SESSION['client_iface'] = RASPI_WIFI_CLIENT_INTERFACE;
         }
     }
 }
