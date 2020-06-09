@@ -133,6 +133,13 @@ function sortNetworksByRSSI(&$networks)
     }
 }
 
+/*
+ * Determines the configured wireless AP interface
+ *
+ * If not saved in /etc/raspap/hostapd.ini, check for a second
+ * wireless interface with iw dev. Fallback to the constant
+ * value defined in config.php
+ */
 function getWifiInterface()
 {
     if (empty($_SESSION['ap_interface'])) {
