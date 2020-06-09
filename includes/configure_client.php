@@ -17,7 +17,7 @@ function DisplayWPAConfig()
 
     if (isset($_POST['connect'])) {
         $result = 0;
-        exec('sudo wpa_cli -i ' . $_SESSION['ap_interface'] . ' select_network '.strval($_POST['connect']));
+        exec('sudo wpa_cli -i ' . $_SESSION['wifi_client_interface'] . ' select_network '.strval($_POST['connect']));
         $status->addMessage('New network selected', 'success');
     } elseif (isset($_POST['client_settings'])) {
         $tmp_networks = $networks;
@@ -77,7 +77,7 @@ function DisplayWPAConfig()
             if ($ok) {
                 system('sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval);
                 if ($returnval == 0) {
-                    exec('sudo wpa_cli -i ' . $_SESSION['ap_interface'] . ' reconfigure', $reconfigure_out, $reconfigure_return);
+                    exec('sudo wpa_cli -i ' . $_SESSION['wifi_client_interface'] . ' reconfigure', $reconfigure_out, $reconfigure_return);
                     if ($reconfigure_return == 0) {
                         $status->addMessage('Wifi settings updated successfully', 'success');
                         $networks = $tmp_networks;

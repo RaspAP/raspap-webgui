@@ -11,7 +11,7 @@ function DisplayDashboard(&$extraFooterScripts)
     getWifiInterface();
     $status = new StatusMessages();
     // Need this check interface name for proper shell execution.
-    if (!preg_match('/^([a-zA-Z0-9]+)$/', $_SESSION['ap_interface'])) {
+    if (!preg_match('/^([a-zA-Z0-9]+)$/', $_SESSION['wifi_client_interface'])) {
         $status->addMessage(_('Interface name invalid.'), 'danger');
         $status->showMessages();
         return;
@@ -22,7 +22,7 @@ function DisplayDashboard(&$extraFooterScripts)
         $status->showMessages();
         return;
     }
-    exec('ip a show '.$_SESSION['ap_interface'], $stdoutIp);
+    exec('ip a show '.$_SESSION['wifi_client_interface'], $stdoutIp);
     $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
     $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
 
@@ -90,10 +90,7 @@ function DisplayDashboard(&$extraFooterScripts)
     define('SSIDMAXLEN', 32);
     // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
     // fetch first wireless interface
-    $iface = $_SESSION['ap_interface'];
-    exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'",$iface2);
-    $wifi_client_interface = empty($iface2) ? $iface1 : trim($iface2[0]);
-    exec('iw dev ' .$wifi_client_interface. ' link ', $stdoutIw);
+    exec('iw dev ' .$_SESSION['wifi_client_interface']. ' link ', $stdoutIw);
     $stdoutIwAllLinesGlued = implode(' ', $stdoutIw);
     $stdoutIwWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwAllLinesGlued);
 
@@ -125,7 +122,7 @@ function DisplayDashboard(&$extraFooterScripts)
     $bitrate = empty($bitrate) ? "-" : $bitrate;
 
     // txpower is now displayed on iw dev(..) info command, not on link command.
-    exec('iw dev '.$_SESSION['ap_interface'].' info ', $stdoutIwInfo);
+    exec('iw dev '.$_SESSION['wifi_client_interface'].' info ', $stdoutIwInfo);
     $stdoutIwInfoAllLinesGlued = implode(' ', $stdoutIwInfo);
     $stdoutIpInfoWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwInfoAllLinesGlued);
 
@@ -156,7 +153,7 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed stop button
             if ($interfaceState === 'UP') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
-                exec('sudo ip link set '.$_SESSION['ap_interface'].' down');
+                exec('sudo ip link set '.$_SESSION['wifi_client_interface'].' down');
                 $wlan0up = false;
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
             } elseif ($interfaceState === 'unknown') {
@@ -168,8 +165,8 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed start button
             if ($interfaceState === 'DOWN') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
-                exec('sudo ip link set ' .$_SESSION['ap_interface']. ' up');
-                exec('sudo ip -s a f label ' . $_SESSION['ap_interface']);
+                exec('sudo ip link set ' .$_SESSION['wifi_client_interface']. ' up');
+                exec('sudo ip -s a f label ' . $_SESSION['wifi_client_interface']);
                 $wlan0up = true;
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
             } elseif ($interfaceState === 'unknown') {
