@@ -1,12 +1,11 @@
 <?php
 $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
 if ($arrHostapdConf['WifiAPEnable'] == 1) {
-    $ap_interface = 'uap0';
+    $client_interface = 'uap0';
 } else {
-    $ap_interface = $_SESSION['ap_interface'];
+    $client_interface = $_SESSION['wifi_client_interface'];
 }
-$pars=parse_ini_file(RASPI_HOSTAPD_CONFIG,false,INI_SCANNER_RAW );
-$ap_iface = $pars['interface'];
+$ap_iface = $_SESSION['ap_interface'];
 $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
 if ($arrHostapdConf['BridgedEnable'] == 1) {
     $moreLink = "index.php?page=hostapd_conf";
@@ -28,7 +27,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
     <div class="col">
       <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
         <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-        <span class="text service-status"><?php echo strtolower($ap_interface) .' '. _($ifaceStatus) ?></span>
+        <span class="text service-status"><?php echo strtolower($client_interface) .' '. _($ifaceStatus) ?></span>
       </button>
     </div>
         </div><!-- /.row -->
@@ -128,9 +127,9 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                 <?php echo CSRFTokenFieldTag() ?>
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
                     <?php if (!$wlan0up) : ?>
-                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$ap_interface ?>" name="ifup_wlan0" />
+                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$client_interface ?>" name="ifup_wlan0" />
                     <?php else : ?>
-                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$ap_interface ?>"  name="ifdown_wlan0" />
+                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$client_interface ?>"  name="ifdown_wlan0" />
                     <?php endif ?>
                 <?php endif ?>
               <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
