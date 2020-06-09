@@ -143,7 +143,7 @@ function getWifiInterface()
             exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'",$iface2);
             $_SESSION['ap_interface'] = empty($iface2) ? $iface : trim($iface2[0]);
         } else { // fallback to default
-            $_SESSION['ap_interface'] = RASPI_WIFI_CLIENT_INTERFACE;
+            $_SESSION['ap_interface'] = RASPI_WIFI_AP_INTERFACE;
         }
     }
 }
