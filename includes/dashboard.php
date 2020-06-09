@@ -90,7 +90,11 @@ function DisplayDashboard(&$extraFooterScripts)
 
     define('SSIDMAXLEN', 32);
     // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
-    exec('iw dev '.$_SESSION['client_iface'].' link ', $stdoutIw);
+    // fetch first wireless interface
+    $iface = $_SESSION['client_iface'];
+    exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'",$iface2);
+    $host_iface = empty($iface2) ? $iface1 : trim($iface2[0]);
+    exec('iw dev ' .$host_iface. ' link ', $stdoutIw);
     $stdoutIwAllLinesGlued = implode(' ', $stdoutIw);
     $stdoutIwWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwAllLinesGlued);
 
