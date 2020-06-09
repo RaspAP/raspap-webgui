@@ -138,7 +138,10 @@ function getWifiInterface()
     if (empty($_SESSION['client_iface'])) {
         $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
         if (isset($arrHostapdConf['WifiInterface'])) {
-            $_SESSION['client_iface'] = $arrHostapdConf['WifiInterface'];
+            $iface = $arrHostapdConf['WifiInterface'];
+            // check for 2nd wifi interface
+            exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'",$iface2);
+            $_SESSION['client_iface'] = empty($iface2) ? $iface : trim($iface2[0]);
         } else { // fallback to default
             $_SESSION['client_iface'] = RASPI_WIFI_CLIENT_INTERFACE;
         }
