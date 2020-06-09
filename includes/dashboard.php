@@ -22,7 +22,6 @@ function DisplayDashboard(&$extraFooterScripts)
         $status->showMessages();
         return;
     }
-
     exec('ip a show '.$_SESSION['ap_interface'], $stdoutIp);
     $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
     $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
@@ -93,8 +92,8 @@ function DisplayDashboard(&$extraFooterScripts)
     // fetch first wireless interface
     $iface = $_SESSION['ap_interface'];
     exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'",$iface2);
-    $host_iface = empty($iface2) ? $iface1 : trim($iface2[0]);
-    exec('iw dev ' .$host_iface. ' link ', $stdoutIw);
+    $wifi_client_interface = empty($iface2) ? $iface1 : trim($iface2[0]);
+    exec('iw dev ' .$wifi_client_interface. ' link ', $stdoutIw);
     $stdoutIwAllLinesGlued = implode(' ', $stdoutIw);
     $stdoutIwWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwAllLinesGlued);
 
