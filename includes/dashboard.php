@@ -11,7 +11,7 @@ function DisplayDashboard(&$extraFooterScripts)
     getWifiInterface();
     $status = new StatusMessages();
     // Need this check interface name for proper shell execution.
-    if (!preg_match('/^([a-zA-Z0-9]+)$/', $_SESSION['client_iface'])) {
+    if (!preg_match('/^([a-zA-Z0-9]+)$/', $_SESSION['ap_interface'])) {
         $status->addMessage(_('Interface name invalid.'), 'danger');
         $status->showMessages();
         return;
@@ -23,7 +23,7 @@ function DisplayDashboard(&$extraFooterScripts)
         return;
     }
 
-    exec('ip a show '.$_SESSION['client_iface'], $stdoutIp);
+    exec('ip a show '.$_SESSION['ap_interface'], $stdoutIp);
     $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
     $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
 
@@ -62,26 +62,26 @@ function DisplayDashboard(&$extraFooterScripts)
 
     // Because of table layout used in the ip output we get the interface statistics directly from
     // the system. One advantage of this is that it could work when interface is disable.
-    exec('cat /sys/class/net/'.$_SESSION['client_iface'].'/statistics/rx_packets ', $stdoutCatRxPackets);
+    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/rx_packets ', $stdoutCatRxPackets);
     $strRxPackets = _('No data');
     if (ctype_digit($stdoutCatRxPackets[0])) {
         $strRxPackets = $stdoutCatRxPackets[0];
     }
 
-    exec('cat /sys/class/net/'.$_SESSION['client_iface'].'/statistics/tx_packets ', $stdoutCatTxPackets);
+    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/tx_packets ', $stdoutCatTxPackets);
     $strTxPackets = _('No data');
     if (ctype_digit($stdoutCatTxPackets[0])) {
         $strTxPackets = $stdoutCatTxPackets[0];
     }
 
-    exec('cat /sys/class/net/'.$_SESSION['client_iface'].'/statistics/rx_bytes ', $stdoutCatRxBytes);
+    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/rx_bytes ', $stdoutCatRxBytes);
     $strRxBytes = _('No data');
     if (ctype_digit($stdoutCatRxBytes[0])) {
         $strRxBytes = $stdoutCatRxBytes[0];
         $strRxBytes .= getHumanReadableDatasize($strRxBytes);
     }
 
-    exec('cat /sys/class/net/'.$_SESSION['client_iface'].'/statistics/tx_bytes ', $stdoutCatTxBytes);
+    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/tx_bytes ', $stdoutCatTxBytes);
     $strTxBytes = _('No data');
     if (ctype_digit($stdoutCatTxBytes[0])) {
         $strTxBytes = $stdoutCatTxBytes[0];
@@ -91,7 +91,7 @@ function DisplayDashboard(&$extraFooterScripts)
     define('SSIDMAXLEN', 32);
     // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
     // fetch first wireless interface
-    $iface = $_SESSION['client_iface'];
+    $iface = $_SESSION['ap_interface'];
     exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'",$iface2);
     $host_iface = empty($iface2) ? $iface1 : trim($iface2[0]);
     exec('iw dev ' .$host_iface. ' link ', $stdoutIw);
@@ -126,7 +126,7 @@ function DisplayDashboard(&$extraFooterScripts)
     $bitrate = empty($bitrate) ? "-" : $bitrate;
 
     // txpower is now displayed on iw dev(..) info command, not on link command.
-    exec('iw dev '.$_SESSION['client_iface'].' info ', $stdoutIwInfo);
+    exec('iw dev '.$_SESSION['ap_interface'].' info ', $stdoutIwInfo);
     $stdoutIwInfoAllLinesGlued = implode(' ', $stdoutIwInfo);
     $stdoutIpInfoWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwInfoAllLinesGlued);
 
@@ -157,7 +157,7 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed stop button
             if ($interfaceState === 'UP') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
-                exec('sudo ip link set '.$_SESSION['client_iface'].' down');
+                exec('sudo ip link set '.$_SESSION['ap_interface'].' down');
                 $wlan0up = false;
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
             } elseif ($interfaceState === 'unknown') {
@@ -169,8 +169,8 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed start button
             if ($interfaceState === 'DOWN') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
-                exec('sudo ip link set ' .$_SESSION['client_iface']. ' up');
-                exec('sudo ip -s a f label ' . $_SESSION['client_iface']);
+                exec('sudo ip link set ' .$_SESSION['ap_interface']. ' up');
+                exec('sudo ip -s a f label ' . $_SESSION['ap_interface']);
                 $wlan0up = true;
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
             } elseif ($interfaceState === 'unknown') {
