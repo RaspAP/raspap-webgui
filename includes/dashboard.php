@@ -22,7 +22,7 @@ function DisplayDashboard(&$extraFooterScripts)
         $status->showMessages();
         return;
     }
-    exec('ip a show '.$_SESSION['wifi_client_interface'], $stdoutIp);
+    exec('ip a show '.$_SESSION['ap_interface'], $stdoutIp);
     $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
     $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
 
@@ -89,7 +89,6 @@ function DisplayDashboard(&$extraFooterScripts)
 
     define('SSIDMAXLEN', 32);
     // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
-    // fetch first wireless interface
     exec('iw dev ' .$_SESSION['wifi_client_interface']. ' link ', $stdoutIw);
     $stdoutIwAllLinesGlued = implode(' ', $stdoutIw);
     $stdoutIwWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwAllLinesGlued);

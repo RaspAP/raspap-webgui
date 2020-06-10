@@ -3,7 +3,7 @@ $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
 if ($arrHostapdConf['WifiAPEnable'] == 1) {
     $client_interface = 'uap0';
 } else {
-    $client_interface = $_SESSION['wifi_client_interface'];
+    $client_interface = $_SESSION['ap_interface'];
 }
 $ap_iface = $_SESSION['ap_interface'];
 $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
@@ -40,7 +40,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
             <div class="card mb-3">
               <div class="card-body">
                 <h4><?php echo _("Hourly traffic amount"); ?></h4>
-                <div id="divInterface" class="d-none"><?php echo 'uap0'; ?></div>
+                <div id="divInterface" class="d-none"><?php echo $_SESSION['ap_interface']; ?></div>
                 <div class="col-md-12">
                   <canvas id="divDBChartBandwidthhourly"></canvas>
                 </div>
