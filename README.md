@@ -122,7 +122,7 @@ The following translations are currently maintained by the project:
 - Español
 - Finnish
 - Français
-- ελληνικό (Greek)
+- Ελληνικά (Greek)
 - Indonesian
 - Italiano
 - 日本語 (Japanese)
