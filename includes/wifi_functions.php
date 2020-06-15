@@ -142,12 +142,10 @@ function sortNetworksByRSSI(&$networks)
  */
 function getWifiInterface()
 {
-    if (empty($_SESSION['ap_interface'])) {
         $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
         $iface = $_SESSION['ap_interface'] = isset($arrHostapdConf['WifiInterface']) ?  $arrHostapdConf['WifiInterface'] : RASPI_WIFI_AP_INTERFACE;
         // check for 2nd wifi interface -> wifi client on different interface
         exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'",$iface2);
         $_SESSION['wifi_client_interface'] = empty($iface2) ? $iface : trim($iface2[0]);
-    }
 }
 
