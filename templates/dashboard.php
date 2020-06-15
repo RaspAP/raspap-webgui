@@ -27,7 +27,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
     <div class="col">
       <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
         <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-        <span class="text service-status"><?php echo strtolower($client_interface) .' '. _($ifaceStatus) ?></span>
+        <span class="text service-status"><?php echo strtolower($ap_iface) .' '. _($ifaceStatus) ?></span>
       </button>
     </div>
         </div><!-- /.row -->
