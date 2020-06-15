@@ -7,7 +7,7 @@ RaspAP has been featured on sites such as [Instructables](http://www.instructabl
 
 We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/billz/raspap-awesome).
 
-![](https://i.imgur.com/BdEinwg.gif)
+![](https://i.imgur.com/1p0DDQi.gif)
 ![](https://i.imgur.com/EiIpdOS.gif)
 ![](https://i.imgur.com/eCjUS1H.gif)
 ![](https://i.imgur.com/5FT2BcS.gif)
