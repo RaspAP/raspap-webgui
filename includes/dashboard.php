@@ -1,16 +1,17 @@
 <?php
 
-require_once 'config.php';
+require_once 'includes/config.php';
+require_once 'includes/wifi_functions.php';
 
 /**
  * Show dashboard page.
  */
 function DisplayDashboard(&$extraFooterScripts)
 {
-
+    getWifiInterface();
     $status = new StatusMessages();
     // Need this check interface name for proper shell execution.
-    if (!preg_match('/^([a-zA-Z0-9]+)$/', RASPI_WIFI_CLIENT_INTERFACE)) {
+    if (!preg_match('/^([a-zA-Z0-9]+)$/', $_SESSION['wifi_client_interface'])) {
         $status->addMessage(_('Interface name invalid.'), 'danger');
         $status->showMessages();
         return;
@@ -21,8 +22,7 @@ function DisplayDashboard(&$extraFooterScripts)
         $status->showMessages();
         return;
     }
-
-    exec('ip a show '.RASPI_WIFI_CLIENT_INTERFACE, $stdoutIp);
+    exec('ip a show '.$_SESSION['ap_interface'], $stdoutIp);
     $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
     $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
 
@@ -61,26 +61,26 @@ function DisplayDashboard(&$extraFooterScripts)
 
     // Because of table layout used in the ip output we get the interface statistics directly from
     // the system. One advantage of this is that it could work when interface is disable.
-    exec('cat /sys/class/net/'.RASPI_WIFI_CLIENT_INTERFACE.'/statistics/rx_packets ', $stdoutCatRxPackets);
+    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/rx_packets ', $stdoutCatRxPackets);
     $strRxPackets = _('No data');
     if (ctype_digit($stdoutCatRxPackets[0])) {
         $strRxPackets = $stdoutCatRxPackets[0];
     }
 
-    exec('cat /sys/class/net/'.RASPI_WIFI_CLIENT_INTERFACE.'/statistics/tx_packets ', $stdoutCatTxPackets);
+    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/tx_packets ', $stdoutCatTxPackets);
     $strTxPackets = _('No data');
     if (ctype_digit($stdoutCatTxPackets[0])) {
         $strTxPackets = $stdoutCatTxPackets[0];
     }
 
-    exec('cat /sys/class/net/'.RASPI_WIFI_CLIENT_INTERFACE.'/statistics/rx_bytes ', $stdoutCatRxBytes);
+    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/rx_bytes ', $stdoutCatRxBytes);
     $strRxBytes = _('No data');
     if (ctype_digit($stdoutCatRxBytes[0])) {
         $strRxBytes = $stdoutCatRxBytes[0];
         $strRxBytes .= getHumanReadableDatasize($strRxBytes);
     }
 
-    exec('cat /sys/class/net/'.RASPI_WIFI_CLIENT_INTERFACE.'/statistics/tx_bytes ', $stdoutCatTxBytes);
+    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/tx_bytes ', $stdoutCatTxBytes);
     $strTxBytes = _('No data');
     if (ctype_digit($stdoutCatTxBytes[0])) {
         $strTxBytes = $stdoutCatTxBytes[0];
@@ -89,7 +89,7 @@ function DisplayDashboard(&$extraFooterScripts)
 
     define('SSIDMAXLEN', 32);
     // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
-    exec('iw dev '.RASPI_WIFI_CLIENT_INTERFACE.' link ', $stdoutIw);
+    exec('iw dev ' .$_SESSION['wifi_client_interface']. ' link ', $stdoutIw);
     $stdoutIwAllLinesGlued = implode(' ', $stdoutIw);
     $stdoutIwWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwAllLinesGlued);
 
@@ -121,7 +121,7 @@ function DisplayDashboard(&$extraFooterScripts)
     $bitrate = empty($bitrate) ? "-" : $bitrate;
 
     // txpower is now displayed on iw dev(..) info command, not on link command.
-    exec('iw dev '.RASPI_WIFI_CLIENT_INTERFACE.' info ', $stdoutIwInfo);
+    exec('iw dev '.$_SESSION['wifi_client_interface'].' info ', $stdoutIwInfo);
     $stdoutIwInfoAllLinesGlued = implode(' ', $stdoutIwInfo);
     $stdoutIpInfoWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwInfoAllLinesGlued);
 
@@ -147,13 +147,12 @@ function DisplayDashboard(&$extraFooterScripts)
         $classMsgDevicestatus = 'success';
     }
 
-
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['ifdown_wlan0'])) {
             // Pressed stop button
             if ($interfaceState === 'UP') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
-                exec('sudo ip link set '.RASPI_WIFI_CLIENT_INTERFACE.' down');
+                exec('sudo ip link set '.$_SESSION['wifi_client_interface'].' down');
                 $wlan0up = false;
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
             } elseif ($interfaceState === 'unknown') {
@@ -165,8 +164,8 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed start button
             if ($interfaceState === 'DOWN') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
-                exec('sudo ip link set ' . RASPI_WIFI_CLIENT_INTERFACE . ' up');
-                exec('sudo ip -s a f label ' . RASPI_WIFI_CLIENT_INTERFACE);
+                exec('sudo ip link set ' .$_SESSION['wifi_client_interface']. ' up');
+                exec('sudo ip -s a f label ' . $_SESSION['wifi_client_interface']);
                 $wlan0up = true;
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
             } elseif ($interfaceState === 'unknown') {

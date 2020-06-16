@@ -8,7 +8,7 @@ $defaults = [
   'RASPI_VERSION' => '2.4.1',
   'RASPI_CONFIG_NETWORKING' => RASPI_CONFIG.'/networking',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',
-  'RASPI_WIFI_CLIENT_INTERFACE' => 'wlan0',
+  'RASPI_WIFI_AP_INTERFACE' => 'wlan0',
   'RASPI_CACHE_PATH' => sys_get_temp_dir() . '/raspap',
 
   // Constants for configuration file paths.

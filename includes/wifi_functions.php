@@ -52,12 +52,11 @@ function nearbyWifiStations(&$networks, $cached = true)
     }
 
     $scan_results = cache(
-        $cacheKey,
-        function () {
-            exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' scan');
+        $cacheKey, function () {
+            exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan');
             sleep(3);
 
-            exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' scan_results', $stdout);
+            exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan_results', $stdout);
             array_shift($stdout);
 
             return implode("\n", $stdout);
@@ -77,7 +76,7 @@ function nearbyWifiStations(&$networks, $cached = true)
 
         $ssid = trim($arrNetwork[4]);
         // filter SSID string: anything invisible in 7bit ASCII or quotes -> ignore network
-        if (preg_match('[\x00-\x1f\x7f-\xff\'\`\´\"]', $ssid)) {
+        if (preg_match('[\x00-\x1f\x7f-\xff\'\`\Â´\"]', $ssid)) {
             continue;
         }
 
@@ -108,7 +107,7 @@ function nearbyWifiStations(&$networks, $cached = true)
 
 function connectedWifiStations(&$networks)
 {
-    exec('iwconfig ' . RASPI_WIFI_CLIENT_INTERFACE, $iwconfig_return);
+    exec('iwconfig ' .$_SESSION['wifi_client_interface'], $iwconfig_return);
     foreach ($iwconfig_return as $line) {
         if (preg_match('/ESSID:\"([^"]+)\"/i', $line, $iwconfig_ssid)) {
             $networks[$iwconfig_ssid[1]]['connected'] = true;
@@ -133,3 +132,20 @@ function sortNetworksByRSSI(&$networks)
         $networks[$SSID]['RSSI'] = $RSSI;
     }
 }
+
+/*
+ * Determines the configured wireless AP interface
+ *
+ * If not saved in /etc/raspap/hostapd.ini, check for a second
+ * wireless interface with iw dev. Fallback to the constant
+ * value defined in config.php
+ */
+function getWifiInterface()
+{
+        $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
+        $iface = $_SESSION['ap_interface'] = isset($arrHostapdConf['WifiInterface']) ?  $arrHostapdConf['WifiInterface'] : RASPI_WIFI_AP_INTERFACE;
+        // check for 2nd wifi interface -> wifi client on different interface
+        exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'",$iface2);
+        $_SESSION['wifi_client_interface'] = empty($iface2) ? $iface : trim($iface2[0]);
+}
+

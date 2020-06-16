@@ -1,7 +1,10 @@
 <?php
 
 require_once 'includes/status_messages.php';
-require_once 'config.php';
+require_once 'includes/config.php';
+require_once 'includes/wifi_functions.php';
+
+getWifiInterface();
 
 /**
  * Manage OpenVPN configuration
@@ -146,7 +149,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         }
 
         // Set iptables rules and, optionally, auth-user-pass
-        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient $auth_flag " .RASPI_WIFI_CLIENT_INTERFACE, $return);
+        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient $auth_flag " .$_SESSION['ap_interface'], $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
