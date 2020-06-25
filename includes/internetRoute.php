@@ -13,14 +13,17 @@ define("ACCESS_CHECK_DNS","one.one.one.one");
           $rInfo[$i]["ip-address"]=$prop[1];
           $rInfo[$i]["gateway"]=$prop[2];
           // resolve the name of the gateway (if possible)
+          unset($host);
           exec('host '.$prop[2].' | sed -rn "s/.*domain name pointer (.*)\./\1/p" | head -n 1',$host);
           if (empty($host)) $host[0]="*";
           $rInfo[$i]["gw-name"] = $host[0];
           if (isset($checkAccess) && $checkAccess) {
             // check internet connectivity w/ and w/o DNS resolution
+            unset($okip);
             exec('ping -W1 -c 1 -I '.$prop[0].' '.ACCESS_CHECK_IP.' |  sed -rn "s/.*icmp_seq=1.*time=.*/\&check\;/p"',$okip);
             if (empty($okip)) $okip[0]="failed";
             $rInfo[$i]["access-ip"] = $okip[0];
+            unset($okdns);
             exec('ping -W1 -c 1 -I '.$prop[0].' '.ACCESS_CHECK_DNS.' |  sed -rn "s/.*icmp_seq=1.*time=.*/\&check\;/p"',$okdns);
             if (empty($okdns)) $okdns[0]="failed";
             $rInfo[$i]["access-dns"] = $okdns[0];
