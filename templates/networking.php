@@ -27,7 +27,47 @@
         </ul>
         <div class="tab-content">
 
-          <div role="tabpanel" class="tab-pane active" id="summary">
+          <div role="tabpanel" class="tab-pane active" id="summary">       <h4 class="mt-3"><?php echo _("Internet connection"); ?></h4>
+            <h4 class="mt-3"><?php echo _("Internet connection"); ?></h4>
+            <div class="row">
+             <div class="col-sm-12"">
+              <div class="card ">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th><?php echo _("Interface"); ?></th>
+                          <th><?php echo _("IP Address"); ?></th>
+                          <th><?php echo _("Gateway"); ?></th>
+                          <th colspan="2"><?php echo _("Internet Access"); ?></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                         $checkAccess=True;
+                         include("includes/internetRoute.php");
+                         if (isset($rInfo["error"]) || empty($rInfo)) {
+                            echo "<tr><td colspan=5>No route to the internet found</td></tr>";
+                         } else {
+                           foreach($rInfo as $route) {
+                             echo "<tr>";
+                              echo "<td>".$route["interface"]."</td>";
+                              echo "<td>".$route["ip-address"]."</td>";
+                              echo "<td>".$route["gateway"]."<br>".$route["gw-name"]."</td>";
+                              echo "<td>".$route["access-ip"]."<br>".ACCESS_CHECK_IP."</td>";
+                              echo "<td>".$route["access-dns"]."<br>".ACCESS_CHECK_DNS."</td>";
+                             echo "</tr>";
+                           }
+                         }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+             </div>
+            </div>
             <h4 class="mt-3"><?php echo _("Current settings") ?></h4>
             <div class="row">
               <?php foreach ($interfaces as $if): ?>
