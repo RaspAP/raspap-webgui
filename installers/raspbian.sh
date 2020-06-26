@@ -20,6 +20,8 @@
 #    Overrides the default git branch (master)
 # -h, --help
 #    Outputs usage notes and exits
+# -u, --upgrade
+#    Upgrades an existing installation to the latest release version
 # -v, --version
 #    Outputs release info and exits
 #
@@ -37,6 +39,7 @@
 repo="billz/raspap-webgui"
 branch="master"
 assume_yes=0
+upgrade=0
 ovpn_option=1
 adblock_option=1
 
@@ -61,6 +64,7 @@ Usage: raspbian.sh [OPTION]\n
 -r, --repo, --repository <name>\n\tOverrides the default GitHub repo (billz/raspap-webgui)
 -b, --branch <name>\n\tOverrides the default git branch (master)
 -h, --help\n\tOutputs usage notes and exits
+-u, --upgrade\n\tUpgrades an existing installation to the latest release version
 -v, --version\n\tOutputs release info and exits\n
 EOF
 )
@@ -94,6 +98,9 @@ while :; do
         -h|--help)
         printf "$usage"
         exit 1
+        ;;
+        -u|--upgrade)
+        upgrade=1
         ;;
         -v|--version)
         printf "RaspAP v${RASPAP_LATEST} - Simple AP setup & WiFi management for Debian-based devices\n"

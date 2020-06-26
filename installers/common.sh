@@ -30,12 +30,17 @@ git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
 # Prompts user to set installation options
 function _config_installation() {
-    _install_log "Configure installation"
+    if [ "$upgrade" == 1 ]; then
+        opt=(Upgrade Upgrading upgrade)
+    else
+        opt=(Install Installing installation)
+    fi
+    _install_log "Configure ${opt[2]}"
     _get_linux_distro
     echo "Detected OS: ${DESC}"
     echo "Using GitHub repository: ${repo} ${branch} branch"
-    echo "Install directory: ${raspap_dir}"
-    echo -n "Install to lighttpd root: ${webroot_dir}? [Y/n]: "
+    echo "Configuration directory: ${raspap_dir}"
+    echo -n "lighttpd root: ${webroot_dir}? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
@@ -44,8 +49,12 @@ function _config_installation() {
     else
         echo -e
     fi
-    echo "Installing to lighttpd directory: ${webroot_dir}"
-    echo -n "Complete installation with these values? [Y/n]: "
+    echo "${opt[1]} lighttpd directory: ${webroot_dir}"
+    if [ "$upgrade" == 1 ]; then
+        echo "This will upgrade your existing install to version ${RASPAP_LATEST}"
+        echo "Your configuration will NOT be changed"
+    fi
+    echo -n "Complete ${opt[2]} with these values? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
@@ -290,6 +299,12 @@ function _download_latest_files() {
     git clone --branch $branch --depth 1 $git_source_url /tmp/raspap-webgui || _install_status 1 "Unable to download files from github"
 
     sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to web root"
+    if [ "$upgrade" == 1 ]; then
+        _install_log "Applying existing configuration to ${webroot_dir}/includes"
+        sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
+        sudo mv /tmp/defaults.php $webroot_dir/includes || _install_status 1 "Unable to move defaults.php to ${webroot_dir}/includes"
+    fi
+
     _install_status 0
 }
 
@@ -305,33 +320,40 @@ function _change_file_ownership() {
 
 # Check for existing configuration files
 function _check_for_old_configs() {
-    if [ -f /etc/network/interfaces ]; then
-        sudo cp /etc/network/interfaces "$raspap_dir/backups/interfaces.`date +%F-%R`"
-        sudo ln -sf "$raspap_dir/backups/interfaces.`date +%F-%R`" "$raspap_dir/backups/interfaces"
-    fi
-
-    if [ -f /etc/hostapd/hostapd.conf ]; then
-        sudo cp /etc/hostapd/hostapd.conf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`"
-        sudo ln -sf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`" "$raspap_dir/backups/hostapd.conf"
-    fi
-
-    if [ -f $raspap_dnsmasq ]; then
-        sudo cp $raspap_dnsmasq "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`"
-        sudo ln -sf "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`" "$raspap_dir/backups/dnsmasq.conf"
-    fi
-
-    if [ -f /etc/dhcpcd.conf ]; then
-        sudo cp /etc/dhcpcd.conf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`"
-        sudo ln -sf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`" "$raspap_dir/backups/dhcpcd.conf"
-    fi
-
-    for file in /etc/systemd/network/raspap-*.net*; do
-        if [ -f "${file}" ]; then
-            filename=$(basename $file)
-            sudo cp "$file" "${raspap_dir}/backups/${filename}.`date +%F-%R`"
-            sudo ln -sf "${raspap_dir}/backups/${filename}.`date +%F-%R`" "${raspap_dir}/backups/${filename}"
+    if [ "$upgrade" == 1 ]; then
+        _install_log "Moving existing configuration to /tmp"
+        sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
+        sudo mv $webroot_dir/includes/defaults.php /tmp || _install_status 1 "Unable to move defaults.php to /tmp"
+    else
+        _install_log "Backing up existing configs to ${raspap_dir}/backups"
+        if [ -f /etc/network/interfaces ]; then
+            sudo cp /etc/network/interfaces "$raspap_dir/backups/interfaces.`date +%F-%R`"
+            sudo ln -sf "$raspap_dir/backups/interfaces.`date +%F-%R`" "$raspap_dir/backups/interfaces"
         fi
-    done
+
+        if [ -f /etc/hostapd/hostapd.conf ]; then
+            sudo cp /etc/hostapd/hostapd.conf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`"
+            sudo ln -sf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`" "$raspap_dir/backups/hostapd.conf"
+        fi
+
+        if [ -f $raspap_dnsmasq ]; then
+            sudo cp $raspap_dnsmasq "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`"
+            sudo ln -sf "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`" "$raspap_dir/backups/dnsmasq.conf"
+        fi
+
+        if [ -f /etc/dhcpcd.conf ]; then
+            sudo cp /etc/dhcpcd.conf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`"
+            sudo ln -sf "$raspap_dir/backups/dhcpcd.conf.`date +%F-%R`" "$raspap_dir/backups/dhcpcd.conf"
+        fi
+
+        for file in /etc/systemd/network/raspap-*.net*; do
+            if [ -f "${file}" ]; then
+                filename=$(basename $file)
+                sudo cp "$file" "${raspap_dir}/backups/${filename}.`date +%F-%R`"
+                sudo ln -sf "${raspap_dir}/backups/${filename}.`date +%F-%R`" "${raspap_dir}/backups/${filename}"
+            fi
+        done
+    fi
     _install_status 0
 }
 
@@ -348,29 +370,31 @@ function _move_config_file() {
 
 # Set up default configuration
 function _default_configuration() {
-    _install_log "Applying default configuration to installed services"
-    if [ -f /etc/default/hostapd ]; then
-        sudo mv /etc/default/hostapd /tmp/default_hostapd.old || _install_status 1 "Unable to remove old /etc/default/hostapd file"
+    if [ "$upgrade" == 0 ]; then
+        _install_log "Applying default configuration to installed services"
+        if [ -f /etc/default/hostapd ]; then
+            sudo mv /etc/default/hostapd /tmp/default_hostapd.old || _install_status 1 "Unable to remove old /etc/default/hostapd file"
+        fi
+        sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || _install_status 1 "Unable to move hostapd defaults file"
+        sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
+        sudo cp $webroot_dir/config/dnsmasq.conf $raspap_dnsmasq || _install_status 1 "Unable to move dnsmasq configuration file"
+        sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
+
+        echo "Checking for existence of /etc/dnsmasq.d"
+        [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
+
+        echo "Copying bridged AP config to /etc/systemd/network"
+        sudo systemctl stop systemd-networkd
+        sudo systemctl disable systemd-networkd
+        sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
+        sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
+
+        echo "Copying primary RaspAP config to includes/config.php"
+        if [ ! -f "$webroot_dir/includes/config.php" ]; then
+            sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
+        fi
+        _install_status 0
     fi
-    sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || _install_status 1 "Unable to move hostapd defaults file"
-    sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
-    sudo cp $webroot_dir/config/dnsmasq.conf $raspap_dnsmasq || _install_status 1 "Unable to move dnsmasq configuration file"
-    sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
-
-    echo "Checking for existence of /etc/dnsmasq.d"
-    [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
-
-    echo "Copying bridged AP config to /etc/systemd/network"
-    sudo systemctl stop systemd-networkd
-    sudo systemctl disable systemd-networkd
-    sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
-    sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
-
-    echo "Copying primary RaspAP config to includes/config.php"
-    if [ ! -f "$webroot_dir/includes/config.php" ]; then
-        sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
-    fi
-    _install_status 0
 }
 
 # Install and enable RaspAP daemon
@@ -453,51 +477,53 @@ function _patch_system_files() {
 
 # Optimize configuration of php-cgi.
 function _optimize_php() {
-    _install_log "Optimize PHP configuration"
-    if [ ! -f "$phpcgiconf" ]; then
-        _install_warning "PHP configuration could not be found."
-        return
-    fi
-
-    # Backup php.ini and create symlink for restoring.
-    datetimephpconf=$(date +%F-%R)
-    sudo cp "$phpcgiconf" "$raspap_dir/backups/php.ini.$datetimephpconf"
-    sudo ln -sf "$raspap_dir/backups/php.ini.$datetimephpconf" "$raspap_dir/backups/php.ini"
-
-    echo -n "Enable HttpOnly for session cookies (Recommended)? [Y/n]: "
-    if [ "$assume_yes" == 0 ]; then
-        read answer < /dev/tty
-        if [ "$answer" != "${answer#[Nn]}" ]; then
-            echo -e
-        else
-             php_session_cookie=1;
+    if [ "$upgrade" == 0 ]; then
+        _install_log "Optimize PHP configuration"
+        if [ ! -f "$phpcgiconf" ]; then
+            _install_warning "PHP configuration could not be found."
+            return
         fi
-    fi
 
-    if [ "$assume_yes" == 1 ] || [ "$php_session_cookie" == 1 ]; then
-        echo "Php-cgi enabling session.cookie_httponly."
-        sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
-    fi
+        # Backup php.ini and create symlink for restoring.
+        datetimephpconf=$(date +%F-%R)
+        sudo cp "$phpcgiconf" "$raspap_dir/backups/php.ini.$datetimephpconf"
+        sudo ln -sf "$raspap_dir/backups/php.ini.$datetimephpconf" "$raspap_dir/backups/php.ini"
 
-    if [ "$php_package" = "php7.1-cgi" ]; then
-        echo -n "Enable PHP OPCache (Recommended)? [Y/n]: "
+        echo -n "Enable HttpOnly for session cookies (Recommended)? [Y/n]: "
         if [ "$assume_yes" == 0 ]; then
             read answer < /dev/tty
             if [ "$answer" != "${answer#[Nn]}" ]; then
                 echo -e
             else
-                php_opcache=1;
+                 php_session_cookie=1;
             fi
         fi
 
-        if [ "$assume_yes" == 1 ] || [ "$phpopcache" == 1 ]; then
-            echo -e "Php-cgi enabling opcache.enable."
-            sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
-            # Make sure opcache extension is turned on.
-            if [ -f "/usr/sbin/phpenmod" ]; then
-                sudo phpenmod opcache
-            else
-                _install_status 2 "phpenmod not found."
+        if [ "$assume_yes" == 1 ] || [ "$php_session_cookie" == 1 ]; then
+            echo "Php-cgi enabling session.cookie_httponly."
+            sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
+        fi
+
+        if [ "$php_package" = "php7.1-cgi" ]; then
+            echo -n "Enable PHP OPCache (Recommended)? [Y/n]: "
+            if [ "$assume_yes" == 0 ]; then
+                read answer < /dev/tty
+                if [ "$answer" != "${answer#[Nn]}" ]; then
+                    echo -e
+                else
+                    php_opcache=1;
+                fi
+            fi
+
+            if [ "$assume_yes" == 1 ] || [ "$phpopcache" == 1 ]; then
+                echo -e "Php-cgi enabling opcache.enable."
+                sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
+                # Make sure opcache extension is turned on.
+                if [ -f "/usr/sbin/phpenmod" ]; then
+                    sudo phpenmod opcache
+                else
+                    _install_status 2 "phpenmod not found."
+                fi
             fi
         fi
     fi
