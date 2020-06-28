@@ -26,7 +26,6 @@ define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
 define('RASPI_ACCESS_CHECK_IP', '1.1.1.1');
 define('RASPI_ACCESS_CHECK_DNS', 'one.one.one.one');
 
-
 // Constant for the 5GHz wireless regulatory domain
 define('RASPI_5GHZ_ISO_ALPHA2', array('US'));
 
