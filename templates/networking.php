@@ -54,8 +54,10 @@
                                 echo "<td>".$route["interface"]."</td>";
                                 echo "<td>".$route["ip-address"]."</td>";
                                 echo "<td>".$route["gateway"]."<br>".$route["gw-name"]."</td>";
-                                echo "<td>".$route["access-ip"]."<br>".RASPI_ACCESS_CHECK_IP."</td>";
-                                echo "<td>".$route["access-dns"]."<br>".RASPI_ACCESS_CHECK_DNS."</td>";
+                                $checkok = $route["access-ip"] ? "&check;" : "failed";
+                                echo "<td>".$checkok."<br>".RASPI_ACCESS_CHECK_IP."</td>";
+                                $checkok = $route["access-dns"] ? "&check;" : "failed";
+                                echo "<td>".$checkok."<br>".RASPI_ACCESS_CHECK_DNS."</td>";
                                 echo "</tr>";
                             }
                         }
