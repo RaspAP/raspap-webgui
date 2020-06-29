@@ -16,10 +16,10 @@ if (!empty($routes) ) {
         if (isset($checkAccess) && $checkAccess) {
             // check internet connectivity w/ and w/o DNS resolution
             unset($okip);
-            exec('ping -W1 -c 1 -I '.$prop[0].' '.ACCESS_CHECK_IP.' |  sed -rn "s/.*icmp_seq=1.*time=.*/OK/p"',$okip);
+            exec('ping -W1 -c 1 -I '.$prop[0].' '.RASPI_ACCESS_CHECK_IP.' |  sed -rn "s/.*icmp_seq=1.*time=.*/OK/p"',$okip);
             $rInfo[$i]["access-ip"] = empty($okip) ? false : true;
             unset($okdns);
-            exec('ping -W1 -c 1 -I '.$prop[0].' '.ACCESS_CHECK_DNS.' |  sed -rn "s/.*icmp_seq=1.*time=.*/OK/p"',$okdns);
+            exec('ping -W1 -c 1 -I '.$prop[0].' '.RASPI_ACCESS_CHECK_DNS.' |  sed -rn "s/.*icmp_seq=1.*time=.*/OK/p"',$okdns);
             $rInfo[$i]["access-dns"] = empty($okdns) ? false : true;
         }
     }
