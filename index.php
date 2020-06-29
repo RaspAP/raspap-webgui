@@ -82,6 +82,9 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
     <!-- DataTables CSS -->
     <link href="dist/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <!-- Huebee CSS -->
+    <link href="dist/huebee/huebee.min.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="dist/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
@@ -318,9 +321,8 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
-    <!-- Huebee CDN -->
-    <link rel="stylesheet" href="https://unpkg.com/huebee@2/dist/huebee.min.css">
-    <script src="https://unpkg.com/huebee@2/dist/huebee.pkgd.min.js"></script>
+    <!-- Huebee -->
+    <script src="dist/huebee/huebee.pkgd.min.js"></script>
 
     <?php if ($page == "wlan0_info" || !isset($page)) { ?>
     <!-- Link Quality Chart -->
