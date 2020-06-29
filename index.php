@@ -318,6 +318,10 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
+    <!-- Huebee CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/huebee@2/dist/huebee.min.css">
+    <script src="https://unpkg.com/huebee@2/dist/huebee.pkgd.min.js"></script>
+
     <?php if ($page == "wlan0_info" || !isset($page)) { ?>
     <!-- Link Quality Chart -->
     <script src="app/js/linkquality.js"></script>
