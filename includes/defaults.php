@@ -27,6 +27,8 @@ $defaults = [
   'RASPI_OPENVPN_SERVER_CONFIG' => '/etc/openvpn/server/server.conf',
   'RASPI_TORPROXY_CONFIG' => '/etc/tor/torrc',
   'RASPI_LIGHTTPD_CONFIG' => '/etc/lighttpd/lighttpd.conf',
+  'RASPI_ACCESS_CHECK_IP' => '1.1.1.1',
+  'RASPI_ACCESS_CHECK_DNS' => 'one.one.one.one',
 
   // Optional services, set to true to enable.
   'RASPI_WIFICLIENT_ENABLED' => true,

@@ -451,6 +451,9 @@ msgstr "Configures the max_num_sta option of hostapd. The default and maximum is
 msgid "Summary"
 msgstr "Summary"
 
+msgid "Internet connection"
+msgstr "Internet connection"
+
 msgid "Current settings"
 msgstr "Current settings"
 

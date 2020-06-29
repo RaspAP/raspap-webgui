@@ -17,21 +17,62 @@
             $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
             // defaults to false
             $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
-          ?>
-          <?php if (!$bridgedEnabled): // no interface details when bridged ?>
-          <?php foreach ($interfaces as $if): ?>
-          <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+            ?>
+          <?php if (!$bridgedEnabled) : // no interface details when bridged ?>
+                <?php foreach ($interfaces as $if): ?>
+                    <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
           <li role="presentation" class="nav-item"><a class="nav-link" href="#<?php echo $if_quoted ?>" aria-controls="<?php echo $if_quoted ?>" role="tab" data-toggle="tab"><?php echo $if_quoted ?></a></li>
-          <?php endforeach ?>
+                <?php endforeach ?>
           <?php endif ?>
         </ul>
         <div class="tab-content">
-
           <div role="tabpanel" class="tab-pane active" id="summary">
+            <h4 class="mt-3"><?php echo _("Internet connection"); ?></h4>
+            <div class="row">
+             <div class="col-sm-12"">
+              <div class="card ">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th><?php echo _("Interface"); ?></th>
+                          <th><?php echo _("IP Address"); ?></th>
+                          <th><?php echo _("Gateway"); ?></th>
+                          <th colspan="2"><?php echo _("Internet Access"); ?></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                         $checkAccess=true;
+                         require "includes/internetRoute.php";
+                        if (isset($rInfo["error"]) || empty($rInfo)) {
+                            echo "<tr><td colspan=5>No route to the internet found</td></tr>";
+                        } else {
+                            foreach($rInfo as $route) {
+                                echo "<tr>";
+                                echo "<td>".$route["interface"]."</td>";
+                                echo "<td>".$route["ip-address"]."</td>";
+                                echo "<td>".$route["gateway"]."<br>".$route["gw-name"]."</td>";
+                                $checkok = $route["access-ip"] ? "&check;" : "failed";
+                                echo "<td>".$checkok."<br>".RASPI_ACCESS_CHECK_IP."</td>";
+                                $checkok = $route["access-dns"] ? "&check;" : "failed";
+                                echo "<td>".$checkok."<br>".RASPI_ACCESS_CHECK_DNS."</td>";
+                                echo "</tr>";
+                            }
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+             </div>
+            </div>
             <h4 class="mt-3"><?php echo _("Current settings") ?></h4>
             <div class="row">
               <?php foreach ($interfaces as $if): ?>
-              <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+                    <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
               <div class="col-md-6 mb-3">
                 <div class="card">
                   <div class="card-header"><?php echo $if_quoted ?></div>
@@ -50,7 +91,7 @@
           </div><!-- /.tab-pane -->
 
           <?php foreach ($interfaces as $if): ?>
-          <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
+                <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
           <div role="tabpanel" class="tab-pane fade in" id="<?php echo $if_quoted ?>">
             <div class="row">
               <div class="col-lg-6">
@@ -100,10 +141,10 @@
                   <div class="form-group">
                     <label for="<?php echo $if_quoted ?>-dnssvralt"><?php echo _("Alternate DNS Server") ?></label>
                     <input type="text" class="form-control" id="<?php echo $if_quoted ?>-dnssvralt" placeholder="0.0.0.0">
-		  </div>
-                  <?php if (!RASPI_MONITOR_ENABLED): ?>
+          </div>
+                  <?php if (!RASPI_MONITOR_ENABLED) : ?>
                       <a href="#" class="btn btn-outline btn-primary intsave" data-int="<?php echo $if_quoted ?>"><?php echo _("Save settings") ?></a>
-		      <a href="#" class="btn btn-warning intapply" data-int="<?php echo $if_quoted ?>"><?php echo _("Apply settings") ?></a>
+              <a href="#" class="btn btn-warning intapply" data-int="<?php echo $if_quoted ?>"><?php echo _("Apply settings") ?></a>
                   <?php endif ?>
                 </form>
 
