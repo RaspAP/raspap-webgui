@@ -11,9 +11,13 @@
       <div class="card-body">
         <h4><?php echo _("Theme settings"); ?></h4>
         <div class="row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-sm-6">
             <label for="code"><?php echo _("Select a theme"); ?></label>
             <?php SelectorOptions("theme", $themes, $selectedTheme, "theme-select") ?>
+          </div>
+          <div class="col-xs">
+            <label for="code"><?php echo _("Color"); ?></label>
+            <input class="form-control color-input" value="#d8224c" aria-label="color" data-huebee='{ "notation": "hex", "saturations": 2, "customColors": [ "#d8224c", "#dd4814", "#ea0", "#19f", "#333" ], "hue0": 210 }' />
           </div>
         </div>
         <form action="?page=system_info" method="POST">
