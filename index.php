@@ -46,15 +46,8 @@ $output = $return = 0;
 $page = $_GET['page'];
 
 $theme_url = getThemeOpt();
-
-if ($_COOKIE['sidebarToggled'] == 'true' ) {
-    $toggleState = "toggled";
-}
-
-// Get Bridged AP mode status
-$arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
-// defaults to false
-$bridgedEnabled = $arrHostapdConf['BridgedEnable'];
+$toggleState = getSidebarState();
+$bridgedEnabled = getBridgedState();
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -116,7 +109,7 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
         <hr class="sidebar-divider my-0">
         <div class="row">
           <div class="col-xs ml-3 sidebar-brand-icon">
-            <img src="app/img/raspAP-logo.svg" class="navbar-logo" width="64" height="64">
+            <img src="app/img/raspAP-logo.php" class="navbar-logo" width="64" height="64">
           </div>
           <div class="col-xs ml-2">
             <div class="ml-1">Status</div>
