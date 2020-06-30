@@ -428,3 +428,27 @@ function getThemeOpt()
     return 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 }
 
+function getColorOpt()
+{
+    if (!isset($_COOKIE['color'])) {
+        $color = "#d8224c";
+    } else {
+        $color = $_COOKIE['color'];
+    }
+    return $color;
+}
+function getSidebarState()
+{
+    if ($_COOKIE['sidebarToggled'] == 'true' ) {
+        return"toggled";
+    }
+}
+
+// Returns bridged AP mode status
+function getBridgedState()
+{
+    $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
+    // defaults to false
+    return  $arrHostapdConf['BridgedEnable'];
+}
+
