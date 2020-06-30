@@ -45,12 +45,7 @@ require_once 'includes/torproxy.php';
 $output = $return = 0;
 $page = $_GET['page'];
 
-if (!isset($_COOKIE['theme'])) {
-    $theme = "custom.css";
-} else {
-    $theme = $_COOKIE['theme'];
-}
-$theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
+$theme_url = getThemeOpt();
 
 if ($_COOKIE['sidebarToggled'] == 'true' ) {
     $toggleState = "toggled";
@@ -270,7 +265,7 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
             SaveTORAndVPNConfig();
             break;
         case "theme_conf":
-            DisplayThemeConfig();
+            DisplayThemeConfig($extraFooterScripts);
             break;
         case "data_use":
             DisplayDataUsage($extraFooterScripts);
@@ -321,17 +316,10 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
-    <!-- Huebee -->
-    <script src="dist/huebee/huebee.pkgd.min.js"></script>
-
-    <?php if ($page == "wlan0_info" || !isset($page)) { ?>
-    <!-- Link Quality Chart -->
-    <script src="app/js/linkquality.js"></script>
-    <?php }
-
+    <?php
     // Load non default JS/ECMAScript in footer.
     foreach ($extraFooterScripts as $script) {
-        echo '    <script type="text/javascript" src="' , $script['src'] , '"';
+        echo '<script type="text/javascript" src="' , $script['src'] , '"';
         if ($script['defer']) {
             echo ' defer="defer"';
         }
