@@ -417,3 +417,14 @@ function formatDateAgo($datetime, $full = false)
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
+
+function getThemeOpt()
+{
+    if (!isset($_COOKIE['theme'])) {
+        $theme = "custom.php";
+    } else {
+        $theme = $_COOKIE['theme'];
+    }
+    return 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
+}
+
