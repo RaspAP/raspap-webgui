@@ -18,6 +18,5 @@ hueb.setColor(color);
 // Change event
 hueb.on( 'change', function( color, hue, sat, lum ) {
     setCookie('color',color,90);
-    console.log(color)
 })
 
