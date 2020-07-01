@@ -1,10 +1,7 @@
 <?php header("Content-Type: text/css; charset=utf-8"); ?>
 <?php
-if (!isset($_COOKIE['color'])) {
-    $color = "#d8224c";
-} else {
-    $color = $_COOKIE['color'];
-}
+require_once '../../includes/functions.php';
+$color = getColorOpt();
 ?>
 
 /*
