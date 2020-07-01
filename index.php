@@ -45,21 +45,9 @@ require_once 'includes/torproxy.php';
 $output = $return = 0;
 $page = $_GET['page'];
 
-if (!isset($_COOKIE['theme'])) {
-    $theme = "custom.css";
-} else {
-    $theme = $_COOKIE['theme'];
-}
-$theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
-
-if ($_COOKIE['sidebarToggled'] == 'true' ) {
-    $toggleState = "toggled";
-}
-
-// Get Bridged AP mode status
-$arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
-// defaults to false
-$bridgedEnabled = $arrHostapdConf['BridgedEnable'];
+$theme_url = getThemeOpt();
+$toggleState = getSidebarState();
+$bridgedEnabled = getBridgedState();
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -81,6 +69,9 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
 
     <!-- DataTables CSS -->
     <link href="dist/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- Huebee CSS -->
+    <link href="dist/huebee/huebee.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="dist/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -112,13 +103,13 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
       <ul class="navbar-nav sidebar sidebar-light d-none d-md-block accordion <?php echo (isset($toggleState)) ? $toggleState : null ; ?>" id="accordionSidebar">
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?page=wlan0_info">
-          <div class="sidebar-brand-text ml-1">RaspAP</div>
+          <div class="sidebar-brand-text ml-1"><?php echo RASPI_BRAND_TEXT; ?></div>
         </a>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
         <div class="row">
           <div class="col-xs ml-3 sidebar-brand-icon">
-            <img src="app/img/raspAP-logo.svg" class="navbar-logo" width="64" height="64">
+            <img src="app/img/raspAP-logo.php" class="navbar-logo" width="64" height="64">
           </div>
           <div class="col-xs ml-2">
             <div class="ml-1">Status</div>
@@ -267,7 +258,7 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
             SaveTORAndVPNConfig();
             break;
         case "theme_conf":
-            DisplayThemeConfig();
+            DisplayThemeConfig($extraFooterScripts);
             break;
         case "data_use":
             DisplayDataUsage($extraFooterScripts);
@@ -318,14 +309,10 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
-    <?php if ($page == "wlan0_info" || !isset($page)) { ?>
-    <!-- Link Quality Chart -->
-    <script src="app/js/linkquality.js"></script>
-    <?php }
-
+    <?php
     // Load non default JS/ECMAScript in footer.
     foreach ($extraFooterScripts as $script) {
-        echo '    <script type="text/javascript" src="' , $script['src'] , '"';
+        echo '<script type="text/javascript" src="' , $script['src'] , '"';
         if ($script['defer']) {
             echo ' defer="defer"';
         }

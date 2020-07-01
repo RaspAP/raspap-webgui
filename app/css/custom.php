@@ -1,3 +1,9 @@
+<?php header("Content-Type: text/css; charset=utf-8"); ?>
+<?php
+require_once '../../includes/functions.php';
+$color = getColorOpt();
+?>
+
 /*
 Theme Name: RaspAP default
 Author: @billz
@@ -47,9 +53,15 @@ body {
 }
 
 .card .card-header {
-  border-color: #d8224c;
-  background-color: #d8224c;
+  border-color: <?php echo $color; ?>;
   color: #fff;
+  background-color: <?php echo $color; ?>;
+}
+
+.btn-primary {
+  color: <?php echo $color; ?>;
+  border-color: <?php echo $color; ?>;
+  background-color: #fff;
 }
 
 .card-footer {
@@ -82,9 +94,7 @@ a.nav-link.active {
 }
 
 .btn-primary {
-  color: #d8224c;
   background-color: #fff;
-  border-color: #d8224c;
 }
 
 .btn-warning {
@@ -92,8 +102,8 @@ a.nav-link.active {
 }
 
 .btn-primary:hover {
-  background-color: #c61931;
-  border-color: #c61931;
+  background-color: <?php echo $color; ?>;
+  border-color: <?php echo $color; ?>;
 }
 
 i.fa.fa-bars {

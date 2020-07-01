@@ -375,8 +375,9 @@ function getCookie(cname) {
     return (value != null) ? unescape(value[1]) : null;
 }
 
+// Define themes
 var themes = {
-    "default": "custom.css",
+    "default": "custom.php",
     "hackernews" : "hackernews.css",
     "lightsout" : "lightsout.css",
 }

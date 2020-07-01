@@ -540,6 +540,9 @@ msgstr "Theme settings"
 msgid "Select a theme"
 msgstr "Select a theme"
 
+msgid "Color"
+msgstr "Color"
+
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "Data usage"
