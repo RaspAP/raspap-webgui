@@ -5,6 +5,7 @@ if (!defined('RASPI_CONFIG')) {
 }
 
 $defaults = [
+  'RASPI_BRAND_TEXT' => 'RaspAP',
   'RASPI_VERSION' => '2.4.1',
   'RASPI_CONFIG_NETWORKING' => RASPI_CONFIG.'/networking',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',

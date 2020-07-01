@@ -103,7 +103,7 @@ $bridgedEnabled = getBridgedState();
       <ul class="navbar-nav sidebar sidebar-light d-none d-md-block accordion <?php echo (isset($toggleState)) ? $toggleState : null ; ?>" id="accordionSidebar">
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?page=wlan0_info">
-          <div class="sidebar-brand-text ml-1">RaspAP</div>
+          <div class="sidebar-brand-text ml-1"><?php echo RASPI_BRAND_TEXT; ?></div>
         </a>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
