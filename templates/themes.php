@@ -11,11 +11,11 @@
       <div class="card-body">
         <h4><?php echo _("Theme settings"); ?></h4>
         <div class="row">
-          <div class="form-group col-sm-6">
+          <div class="form-group col-xs-3 col-sm-3">
             <label for="code"><?php echo _("Select a theme"); ?></label>
             <?php SelectorOptions("theme", $themes, $selectedTheme, "theme-select") ?>
           </div>
-          <div class="col-xs">
+          <div class="col-xs-3 col-sm-3">
             <label for="code"><?php echo _("Color"); ?></label>
             <input class="form-control color-input" value="#d8224c" aria-label="color" />
           </div>
