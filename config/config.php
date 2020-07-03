@@ -1,7 +1,7 @@
 <?php
 
 define('RASPI_BRAND_TEXT', 'RaspAP');
-define('RASPI_VERSION', '2.4.1');
+define('RASPI_VERSION', '2.5');
 define('RASPI_CONFIG', '/etc/raspap');
 define('RASPI_CONFIG_NETWORKING', RASPI_CONFIG.'/networking');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');

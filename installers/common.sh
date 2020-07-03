@@ -66,7 +66,7 @@ function _config_installation() {
     fi
 }
 
-# Determines host Linux distrubtion details
+# Determines host Linux distribution details
 function _get_linux_distro() {
     if type lsb_release >/dev/null 2>&1; then # linuxbase.org
         OS=$(lsb_release -si)
@@ -530,7 +530,12 @@ function _optimize_php() {
 }
 
 function _install_complete() {
-    _install_log "Installation completed!"
+    _install_log "Installation completed"
+    echo "This project needs your help! Please consider supporting RaspAP on Open Collective or GitHub:"
+    echo -e "${ANSI_RASPBERRY}"
+    echo "> https://opencollective.com/raspap"
+    echo "> https://github.com/sponsors/billz"
+    echo -e "${ANSI_RESET}"
     if [ "$assume_yes" == 0 ]; then
         # Prompt to reboot if wired ethernet (eth0) is connected.
         # With default_configuration this will create an active AP on restart.
