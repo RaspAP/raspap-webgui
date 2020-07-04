@@ -28,7 +28,7 @@ define('RASPI_ACCESS_CHECK_IP', '1.1.1.1');
 define('RASPI_ACCESS_CHECK_DNS', 'one.one.one.one');
 
 // Constant for the 5GHz wireless regulatory domain
-define('RASPI_5GHZ_ISO_ALPHA2', array('US'));
+define('RASPI_5GHZ_ISO_ALPHA2', array('NL','US'));
 
 // Optional services, set to true to enable.
 define('RASPI_WIFICLIENT_ENABLED', true);
