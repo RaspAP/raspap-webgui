@@ -27,6 +27,7 @@ function DisplayHostAPDConfig()
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
     $managedModeEnabled = false;
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
+    exec("iw reg get | awk '/country / { sub(/:/,\"\",$2); print $2 }'", $country_code);
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveHostAPDSettings'])) {
@@ -76,6 +77,11 @@ function DisplayHostAPDConfig()
             $arrConfig[$arrLine[0]]=$arrLine[1];
         }
     };
+
+    // assign country_code from iw reg if not set in config
+    if (!isset($arrConfig['country_code']) && isset($country_code[0])) {
+        $arrConfig['country_code'] = $country_code[0];
+    }
 
     echo renderTemplate(
         "hostapd", compact(
