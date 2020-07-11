@@ -1,6 +1,6 @@
 <!-- logfile output tab -->
 <div class="tab-pane fade" id="logoutput">
-  <h4 class="mt-3"><?php echo _("Logfile output"); ?></h4>
+  <h4 class="mt-3"><?php echo _("Logging"); ?></h4>
   <div class="row">
     <div class="form-group col-md-8">
       <?php
