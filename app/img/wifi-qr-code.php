@@ -4,6 +4,12 @@ require_once '../../includes/config.php';
 require_once '../../includes/defaults.php';
 require_once '../../includes/functions.php';
 
+// prevent direct file access
+if (!isset($_SERVER['HTTP_REFERER'])) {
+    header('HTTP/1.0 403 Forbidden');
+    exit;
+}
+
 function qr_encode($str)
 {
     return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
