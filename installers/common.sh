@@ -302,7 +302,6 @@ function _download_latest_files() {
     if [ "$upgrade" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
         sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
-        sudo mv /tmp/defaults.php $webroot_dir/includes || _install_status 1 "Unable to move defaults.php to ${webroot_dir}/includes"
     fi
 
     _install_status 0
@@ -323,7 +322,6 @@ function _check_for_old_configs() {
     if [ "$upgrade" == 1 ]; then
         _install_log "Moving existing configuration to /tmp"
         sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
-        sudo mv $webroot_dir/includes/defaults.php /tmp || _install_status 1 "Unable to move defaults.php to /tmp"
     else
         _install_log "Backing up existing configs to ${raspap_dir}/backups"
         if [ -f /etc/network/interfaces ]; then
@@ -359,13 +357,15 @@ function _check_for_old_configs() {
 
 # Move configuration file to the correct location
 function _move_config_file() {
-    if [ ! -d "$raspap_dir" ]; then
-        _install_status 1 "'$raspap_dir' directory doesn't exist"
-    fi
+    if [ "$upgrade" == 0 ]; then
+        if [ ! -d "$raspap_dir" ]; then
+            _install_status 1 "'$raspap_dir' directory doesn't exist"
+        fi
 
-    _install_log "Moving configuration file to $raspap_dir"
-    sudo cp "$webroot_dir"/raspap.php "$raspap_dir" || _install_status 1 "Unable to move files to '$raspap_dir'"
-    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
+        _install_log "Moving configuration file to $raspap_dir"
+        sudo cp "$webroot_dir"/raspap.php "$raspap_dir" || _install_status 1 "Unable to move files to '$raspap_dir'"
+        sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
+    fi
 }
 
 # Set up default configuration
