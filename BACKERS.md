@@ -18,4 +18,6 @@ Recurring and one-time donors are vital to the continued development of this pro
 Ray E - "This project is awesome and just works; saved me and my client tons of work. Thank you!" - $20  
 Erin C - "Just got Raspap up and running, looks very cool, thanks!" -$20 CAD  
 Ralf J - "Thanks for RaspAP including OpenVPN. It was a big help for me." -€15  
-Olivier G -€15 EUR  
+Felipe C - "Thanks for the good work on RaspAP!" -$6
+Webagentur S - "Like what you and RaspAP are doing." -€20
+
