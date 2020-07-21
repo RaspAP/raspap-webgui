@@ -357,15 +357,13 @@ function _check_for_old_configs() {
 
 # Move configuration file to the correct location
 function _move_config_file() {
-    if [ "$upgrade" == 0 ]; then
-        if [ ! -d "$raspap_dir" ]; then
-            _install_status 1 "'$raspap_dir' directory doesn't exist"
-        fi
-
-        _install_log "Moving configuration file to $raspap_dir"
-        sudo cp "$webroot_dir"/raspap.php "$raspap_dir" || _install_status 1 "Unable to move files to '$raspap_dir'"
-        sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
+    if [ ! -d "$raspap_dir" ]; then
+        _install_status 1 "'$raspap_dir' directory doesn't exist"
     fi
+
+    _install_log "Moving configuration file to $raspap_dir"
+    sudo cp "$webroot_dir"/raspap.php "$raspap_dir" || _install_status 1 "Unable to move files to '$raspap_dir'"
+    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 }
 
 # Set up default configuration
