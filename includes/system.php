@@ -132,5 +132,5 @@ function DisplaySystem()
         'vi_VN.UTF-8' => 'Tiếng Việt (Vietnamese)'
     );
 
-    echo renderTemplate("system", compact("arrLocales", "status", "system", "ServerPort"));
+    echo renderTemplate("system", compact("arrLocales", "status", "ServerPort"));
 }
