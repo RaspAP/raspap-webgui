@@ -77,7 +77,8 @@ function DisplaySystem()
     }
 
     if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['SaveServerPort'])) {
+        if (isset($_POST['SaveServerSettings'])) {
+            // Save server port
             if (isset($_POST['serverPort'])) {
                 if (strlen($_POST['serverPort']) > 4 || !is_numeric($_POST['serverPort'])) {
                     $status->addMessage('Invalid value for port number', 'danger');
@@ -89,6 +90,19 @@ function DisplaySystem()
                     }
                 }
             }
+            // Save server bind address
+            if (isset($_POST['serverBind'])) {
+                if (!filter_var($_POST['serverBind'], FILTER_VALIDATE_IP)) {
+                    $status->addMessage('Invalid value for bind address', 'danger');
+                } else {
+                    $serverBind = escapeshellarg($_POST['serverBind']);
+                    //exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
+                    //foreach ($return as $line) {
+                    //    $status->addMessage($line, 'info');
+                    //}
+                }
+            }
+
         }
         if (isset($_POST['system_reboot'])) {
             $status->addMessage("System Rebooting Now!", "warning", false);
@@ -106,7 +120,8 @@ function DisplaySystem()
     }
     exec('cat '. RASPI_LIGHTTPD_CONFIG, $return);
     $conf = ParseConfig($return);
-    $ServerPort = $conf['server.port'];
+    $serverPort = $conf['server.port'];
+    $serverBind = str_replace('"', '',$conf['server.bind']);
 
     // define locales
     $arrLocales = array(
@@ -132,5 +147,5 @@ function DisplaySystem()
         'vi_VN.UTF-8' => 'Tiếng Việt (Vietnamese)'
     );
 
-    echo renderTemplate("system", compact("arrLocales", "status", "ServerPort"));
+    echo renderTemplate("system", compact("arrLocales", "status", "serverPort", "serverBind"));
 }

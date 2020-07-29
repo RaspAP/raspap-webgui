@@ -1,12 +1,20 @@
 #!/bin/bash
 #
-# Updates lighttpd server.port and restarts the service
+# Updates lighttpd config settings and restarts the service
 # @author billz
 # license: GNU General Public License v3.0
 
+# Exit on error
+set -o errexit
+# Exit on error inside functions
+set -o errtrace
+# Turn on traces, disabled by default
+#set -o xtrace
+
 server_port=$1
-lighttpd_conf=$2
-host=$3
+server_bind=$2
+lighttpd_conf=$3
+host=$4
 restart_service=0
 
 while :; do
