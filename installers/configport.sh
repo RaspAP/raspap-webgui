@@ -33,11 +33,20 @@ if [ "$restart_service" = 1 ]; then
     echo "Restarting lighttpd in 3 seconds..."
     sleep 3
     systemctl restart lighttpd.service
-else
-    echo "Changing lighttpd server.port to $server_port..."
+fi
+if [ -n "$server_port" ]; then
+    echo "Changing lighttpd server.port to $server_port ..."
     sed -i "s/^\(server\.port *= *\)[0-9]*/\1$server_port/g" "$lighttpd_conf"
-
     echo "RaspAP will now be available at $host:$server_port"
     echo "Restart lighttpd for new setting to take effect"
 fi
+if [ -n "$server_bind" ]; then
+    echo "Changing lighttpd server.bind to $server_bind ..."
+    grep -q 'server.bind' "$lighttpd_conf" && \
+        sed -i "s/^\(server\.bind.*= \)\".*\"*/\1\"$server_bind\"/g" "$lighttpd_conf" || \
+        printf "server.bind \t\t\t\t = \"$server_bind\"" >> "$lighttpd_conf"
+    echo "RaspAP will now be available at $server_bind"
+    echo "Restart lighttpd for new setting to take effect"
+fi
+
 
