@@ -37,16 +37,18 @@ fi
 if [ -n "$server_port" ]; then
     echo "Changing lighttpd server.port to $server_port ..."
     sed -i "s/^\(server\.port *= *\)[0-9]*/\1$server_port/g" "$lighttpd_conf"
-    echo "RaspAP will now be available at $host:$server_port"
-    echo "Restart lighttpd for new setting to take effect"
+    echo "RaspAP will now be available at port $server_port"
+    conf_change=1
 fi
 if [ -n "$server_bind" ]; then
     echo "Changing lighttpd server.bind to $server_bind ..."
     grep -q 'server.bind' "$lighttpd_conf" && \
         sed -i "s/^\(server\.bind.*= \)\".*\"*/\1\"$server_bind\"/g" "$lighttpd_conf" || \
         printf "server.bind \t\t\t\t = \"$server_bind\"" >> "$lighttpd_conf"
-    echo "RaspAP will now be available at $server_bind"
-    echo "Restart lighttpd for new setting to take effect"
+    echo "RaspAP will now be available at address $server_bind"
+    conf_change=1
 fi
-
+if [ "$conf_change" == 1 ]; then
+    echo "Restart lighttpd for new settings to take effect"
+fi
 
