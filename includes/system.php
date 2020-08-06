@@ -77,19 +77,36 @@ function DisplaySystem()
     }
 
     if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['SaveServerPort'])) {
+        if (isset($_POST['SaveServerSettings'])) {
+            $good_input = true;
+            // Validate server port
             if (isset($_POST['serverPort'])) {
                 if (strlen($_POST['serverPort']) > 4 || !is_numeric($_POST['serverPort'])) {
                     $status->addMessage('Invalid value for port number', 'danger');
+                    $good_input = false;
                 } else {
                     $serverPort = escapeshellarg($_POST['serverPort']);
-                    exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
-                    foreach ($return as $line) {
-                        $status->addMessage($line, 'info');
-                    }
+               }
+            }
+            // Validate server bind address
+            $serverBind = escapeshellarg('');
+            if ($_POST['serverBind'] && $_POST['serverBind'] !== null ) {
+                if (!filter_var($_POST['serverBind'], FILTER_VALIDATE_IP)) {
+                    $status->addMessage('Invalid value for bind address', 'danger');
+                    $good_input = false;
+                } else {
+                    $serverBind = escapeshellarg($_POST['serverBind']);
+                }
+            }
+            // Save settings
+            if ($good_input) {
+                exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort $serverBind " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
+                foreach ($return as $line) {
+                    $status->addMessage($line, 'info');
                 }
             }
         }
+
         if (isset($_POST['system_reboot'])) {
             $status->addMessage("System Rebooting Now!", "warning", false);
             $result = shell_exec("sudo /sbin/reboot");
@@ -106,7 +123,8 @@ function DisplaySystem()
     }
     exec('cat '. RASPI_LIGHTTPD_CONFIG, $return);
     $conf = ParseConfig($return);
-    $ServerPort = $conf['server.port'];
+    $serverPort = $conf['server.port'];
+    $serverBind = str_replace('"', '',$conf['server.bind']);
 
     // define locales
     $arrLocales = array(
@@ -132,5 +150,5 @@ function DisplaySystem()
         'vi_VN.UTF-8' => 'Tiếng Việt (Vietnamese)'
     );
 
-    echo renderTemplate("system", compact("arrLocales", "status", "ServerPort"));
+    echo renderTemplate("system", compact("arrLocales", "status", "serverPort", "serverBind"));
 }

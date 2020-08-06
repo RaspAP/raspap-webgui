@@ -533,6 +533,12 @@ msgstr "System Rebooting Now!"
 msgid "System Shutting Down Now!"
 msgstr "System Shutting Down Now!"
 
+msgid "Web server port"
+msgstr "Web server port"
+
+msgid "Web server bind address"
+msgstr "Web server bind address"
+
 #: includes/themes.php
 msgid "Theme settings"
 msgstr "Theme settings"
