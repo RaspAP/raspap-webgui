@@ -19,5 +19,5 @@ Ray E - "This project is awesome and just works; saved me and my client tons of 
 Erin C - "Just got Raspap up and running, looks very cool, thanks!" -$20 CAD  
 Ralf J - "Thanks for RaspAP including OpenVPN. It was a big help for me." -€15  
 Felipe C - "Thanks for the good work on RaspAP!" -$6  
-Webagentur S - "Like what you and RaspAP are doing." -€20
+Webagentur S - "Like what you and RaspAP are doing." -€20  
 Matthew B - "Great project, easy to set up." -£15
