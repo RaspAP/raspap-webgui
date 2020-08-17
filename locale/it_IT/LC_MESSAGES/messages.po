@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-12 10:21\n"
+"PO-Revision-Date: 2020-04-14 08:51\n"
 "Last-Translator: Marco Fantauzzo <marco97pa@live.it>\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -112,19 +112,19 @@ msgid "Passphrase"
 msgstr "Chiave di sicurezza"
 
 msgid "Wifi settings updated successfully"
-msgstr "Impostazioni WiFi aggiornate con successo"
+msgstr "Impostazioni Wifi aggiornate con successo"
 
 msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
 msgstr "Impostazioni WiFi aggiornate, ma non è stato possibile riavviare (impossibile eseguire 'wpa_cli reconfigure')"
 
 msgid "Wifi settings failed to be updated"
-msgstr "Non è stato possibile aggiornare le impostazioni WiFi"
+msgstr "Non è stato possibile aggiornare le impostazioni Wifi"
 
 msgid "Failed to update wifi settings"
-msgstr "Impossibile aggiornare le impostazioni WiFi"
+msgstr "Impossibile aggiornare le impostazioni Wifi"
 
 msgid "Rescan"
-msgstr "Riscansiona"
+msgstr "Ripeti la scan"
 
 msgid "Update"
 msgstr "Aggiorna"
@@ -181,8 +181,8 @@ msgstr "Pacchetti trasmessi"
 msgid "Transferred Bytes"
 msgstr "Bytes trasmessi"
 
-msgid "Wireless Information"
-msgstr "Informazioni wireless"
+msgid "Wireless Client"
+msgstr ""
 
 msgid "Connected To"
 msgstr "Connesso a"
@@ -206,13 +206,13 @@ msgid "Link Quality"
 msgstr "Qualità collegamento"
 
 msgid "Information provided by ip and iw and from system"
-msgstr "Informazioni fornite da ip, iw e dal sistema"
+msgstr "Informazioni fornite dall'ip e iw a dal sistema"
 
 msgid "No MAC Address Found"
 msgstr "Indirizzo MAC non trovato"
 
 msgid "No IP Address Found"
-msgstr "Indirizzo IP non trovato"
+msgstr "Indirizzo IP no trovato"
 
 msgid "No Subnet Mask Found"
 msgstr "Subnet mask non trovata"
@@ -288,7 +288,7 @@ msgid "Client ID"
 msgstr "ID client"
 
 msgid "Information provided by Dnsmasq"
-msgstr "Informazioni fornite da dnsmasq"
+msgstr "Informazioni fornite da Dnsmasq"
 
 msgid "Stop dnsmasq"
 msgstr "Ferma dnsmasq"
@@ -300,22 +300,22 @@ msgid "Dnsmasq configuration updated successfully"
 msgstr "Configurazione Dnsmasq aggiornata con successo"
 
 msgid "dnsmasq already running"
-msgstr "Dnsmasq è già in esecuzione"
+msgstr "dnsmasq è già in esecuzione"
 
 msgid "Successfully started dnsmasq"
-msgstr "Dnsmasq è stato avviato con successo"
+msgstr "dnsmasq avviato con successo"
 
 msgid "Failed to start dnsmasq"
 msgstr "Impossibile avviare dnsmasq"
 
 msgid "Successfully stopped dnsmasq"
-msgstr "Dnsmasq è stato fermato con successo"
+msgstr "dnsmasq fermato con successo"
 
 msgid "Failed to stop dnsmasq"
 msgstr "Impossibile fermare dnsmasq"
 
 msgid "dnsmasq already stopped"
-msgstr "Dnsmasq è già stoppato"
+msgstr "dnsmasq è già stoppato"
 
 msgid "Dnsmasq is running"
 msgstr "Dnsmasq è in esecuzione"
@@ -406,13 +406,13 @@ msgid "Unknown interface"
 msgstr "Interfaccia sconosciuta"
 
 msgid "Country code must be blank or two characters"
-msgstr "Il codice paese deve essere vuoto o di due caratteri"
+msgstr "Il codice paese deve essere o vuoto o di due caratteri"
 
 msgid "Wifi Hotspot settings saved"
-msgstr "Impostazioni hotspot WiFi salvate"
+msgstr "Impostazioni hotspot Wifi salvate"
 
 msgid "Unable to save wifi hotspot settings"
-msgstr "Impossibile salvare le impostazioni dell'hotspot WiFi"
+msgstr "Impossibile salvare le impostazioni dell'hotspot Wifi"
 
 msgid "Start hotspot"
 msgstr "Avvia l'hotspot"
@@ -436,7 +436,7 @@ msgid "Bridged AP mode"
 msgstr "Modalità AP Bridged"
 
 msgid "Hide SSID in broadcast"
-msgstr "Nascondi la trasmissione del SSID"
+msgstr "Nascondere la trasmissione del SSID"
 
 msgid "Maximum number of clients"
 msgstr "Numero massimo di client"
@@ -461,7 +461,7 @@ msgid "Adapter IP Address Settings"
 msgstr "Impostazioni dell'indirizzo IP dell'adattatore"
 
 msgid "Enable Fallback to Static Option"
-msgstr "Abilita il fallback alle Opzioni IP statiche"
+msgstr "Abilita l'opzione statica di fallback"
 
 msgid "Static IP"
 msgstr "IP statico"
@@ -504,7 +504,7 @@ msgid "Hostname"
 msgstr "Nome host"
 
 msgid "Pi Revision"
-msgstr "Modello Pi"
+msgstr "Revisione Pi"
 
 msgid "Uptime"
 msgstr "Tempo di attività"
@@ -566,10 +566,10 @@ msgid "date"
 msgstr "data"
 
 msgid "Send MB"
-msgstr "MB inviati"
+msgstr "Invia MB"
 
 msgid "Receive MB"
-msgstr "MB ricevuti"
+msgstr "Ricevi MB"
 
 msgid "Information provided by vnstat"
 msgstr "Informazioni fornite da vnstat"
@@ -624,13 +624,13 @@ msgid "Stop OpenVPN"
 msgstr "Arresta OpenVPN"
 
 msgid "Information provided by openvpn"
-msgstr "Informazioni fornite da OpenVPN"
+msgstr "Informazioni fornite da openvpn"
 
 msgid "Attempting to start openvpn"
-msgstr "Tentativo di avviare OpenVPN in corso"
+msgstr "Tentativo di avviare openvpn in corso"
 
 msgid "Attempting to stop openvpn"
-msgstr "Tentativo di arrestare OpenVPN in corso"
+msgstr "Tentativo di arrestare openvpn in corso"
 
 #: includes/torproxy.php
 msgid "TOR is not running"
@@ -658,7 +658,7 @@ msgid "Stop TOR"
 msgstr "Arresta TOR"
 
 msgid "Information provided by tor"
-msgstr "Informazioni fornite da TOR"
+msgstr "Informazioni fornite da tor"
 
 msgid "Attempting to start TOR"
 msgstr "Tentativo di avviare TOR in corso"
@@ -687,10 +687,10 @@ msgid "Remove"
 msgstr "Rimuovi"
 
 msgid "up"
-msgstr "attivo"
+msgstr "su"
 
 msgid "down"
-msgstr "disattivo"
+msgstr "giù"
 
 msgid "adblock"
 msgstr "AdBlock"
