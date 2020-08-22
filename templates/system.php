@@ -16,19 +16,13 @@
           <li role="presentation" class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" role="tab" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
           <li role="presentation" class="nav-item"><a class="nav-link" id="languagetab" href="#language" aria-controls="language" role="tab" data-toggle="tab"><?php echo _("Language"); ?></a></li>
           <li role="presentation" class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" aria-controls="advanced" role="tab" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-          <li role="presentation" class="nav-item"><a class="nav-link" id="consoletab" href="#console" aria-controls="console" role="tab" data-toggle="tab"><?php echo _("Console"); ?></a></li>
         </ul>
-
-        <div class="systemtabcontent tab-content">
           <!-- Tab panes -->
           <div class="tab-content">
             <?php echo renderTemplate("system/basic", $__template_data) ?>
             <?php echo renderTemplate("system/language", $__template_data) ?>
             <?php echo renderTemplate("system/advanced", $__template_data) ?>
-            <?php echo renderTemplate("system/console", $__template_data) ?>
           </div><!-- /.tab-content -->
-        </div><!-- /.systemtabcontent -->
-
         </form>
       </div><!-- /.card-body -->
       <div class="card-footer"></div>

@@ -129,21 +129,6 @@ i.fa.fa-bars:hover{
   float: left;
 }
 
-.webconsole {
-  width:100%;
-  height:100%;
-  border:1px solid;
-}
-
-#console {
-  height:500px;
-}
-
-.systemtabcontent {
-  height:100%;
-  min-height:500px;
-}
-
 .service-status {
   border-width: 0;
 }

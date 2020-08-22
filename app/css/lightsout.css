@@ -357,16 +357,6 @@ color: #d2d2d2 !important
   border-color: #404040;
 }
 
-.webconsole {
-  width: 100%;
-  height: 20rem;
-  border: 1px solid #404040;
-}
-
-#console {
-  height: 500px;
-}
-
 tspan, rect {
   fill: #d2d2d2;
 }
