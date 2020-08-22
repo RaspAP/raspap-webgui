@@ -5,10 +5,11 @@ if (!defined('RASPI_CONFIG')) {
 }
 
 $defaults = [
-  'RASPI_VERSION' => '2.4',
+  'RASPI_BRAND_TEXT' => 'RaspAP',
+  'RASPI_VERSION' => '2.5',
   'RASPI_CONFIG_NETWORKING' => RASPI_CONFIG.'/networking',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',
-  'RASPI_WIFI_CLIENT_INTERFACE' => 'wlan0',
+  'RASPI_WIFI_AP_INTERFACE' => 'wlan0',
   'RASPI_CACHE_PATH' => sys_get_temp_dir() . '/raspap',
 
   // Constants for configuration file paths.
@@ -29,6 +30,8 @@ $defaults = [
   'RASPI_WIREGUARD_CLIENT_CONFIG' => '/etc/wireguard/wg0-client.conf',
   'RASPI_TORPROXY_CONFIG' => '/etc/tor/torrc',
   'RASPI_LIGHTTPD_CONFIG' => '/etc/lighttpd/lighttpd.conf',
+  'RASPI_ACCESS_CHECK_IP' => '1.1.1.1',
+  'RASPI_ACCESS_CHECK_DNS' => 'one.one.one.one',
 
   // Optional services, set to true to enable.
   'RASPI_WIFICLIENT_ENABLED' => true,

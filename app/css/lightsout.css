@@ -166,6 +166,10 @@ hr {
   font-family: inherit;
 }
 
+.ra-raspap:before {
+  color: #ac1b3d !important;
+}
+
 .sidebar-light #sidebarToggle {
   background-color: #202020;
   border: 1px solid #afafaf !important
@@ -353,16 +357,6 @@ color: #d2d2d2 !important
   border-color: #404040;
 }
 
-.webconsole {
-  width: 100%;
-  height: 20rem;
-  border: 1px solid #404040;
-}
-
-#console {
-  height: 500px;
-}
-
 tspan, rect {
   fill: #d2d2d2;
 }
@@ -450,5 +444,13 @@ canvas#divDBChartBandwidthhourly {
 
 .check-progress {
   color: #999;
+}
+
+.fa-check {
+  color: #90ee90;
+}
+
+.fa-times {
+  color: #ff4500;
 }
 

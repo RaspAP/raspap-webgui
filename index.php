@@ -3,19 +3,24 @@
 /**
  * Raspbian WiFi Configuration Portal (RaspAP)
  *
- * Enables use of simple web interface rather than SSH to control wifi and hostapd on the Raspberry Pi.
- * Recommended distribution is Raspbian Buster Lite. Specific instructions to install the supported software are
+ * Simple AP setup & WiFi management for Debian-based devices.
+ * Enables use of simple web interface rather than SSH to control WiFi and related services  on the Raspberry Pi.
+ * Recommended distribution is Raspberry Pi OS (32-bit) Lite. Specific instructions to install the supported software are
  * in the README and original post by @SirLagz. For a quick run through, the packages required for the WebGUI are:
  * lighttpd (version 1.4.53 installed via apt)
- * php-cgi (version 7.3.14-1 installed via apt)
+ * php-cgi (version 7.3.19-1 installed via apt)
  * along with their supporting packages, php7.3 will also need to be enabled.
  *
  * @author  Lawrence Yau <sirlagz@gmail.com>
  * @author  Bill Zimmerman <billzimmerman@gmail.com>
  * @license GNU General Public License, version 3 (GPL-3.0)
- * @version 2.4
- * @link    https://github.com/billz/raspap-webgui
+ * @version 2.5
+ * @link    https://github.com/billz/raspap-webgui/
+ * @link    https://raspap.com/
  * @see     http://sirlagz.net/2013/02/08/raspap-webgui/
+ *
+ * You are not obligated to bundle the LICENSE file with your RaspAP projects as long
+ * as you leave these references intact in the header comments of your source files.
  */
 
 require 'includes/csrf.php';
@@ -46,21 +51,9 @@ require_once 'includes/torproxy.php';
 $output = $return = 0;
 $page = $_GET['page'];
 
-if (!isset($_COOKIE['theme'])) {
-    $theme = "custom.css";
-} else {
-    $theme = $_COOKIE['theme'];
-}
-$theme_url = 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
-
-if ($_COOKIE['sidebarToggled'] == 'true' ) {
-    $toggleState = "toggled";
-}
-
-// Get Bridged AP mode status
-$arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
-// defaults to false
-$bridgedEnabled = $arrHostapdConf['BridgedEnable'];
+$theme_url = getThemeOpt();
+$toggleState = getSidebarState();
+$bridgedEnabled = getBridgedState();
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -83,7 +76,10 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
     <!-- DataTables CSS -->
     <link href="dist/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
+    <!-- Huebee CSS -->
+    <link href="dist/huebee/huebee.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
     <link href="dist/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- RaspAP Fonts -->
@@ -116,13 +112,13 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
       <ul class="navbar-nav sidebar sidebar-light d-none d-md-block accordion <?php echo (isset($toggleState)) ? $toggleState : null ; ?>" id="accordionSidebar">
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?page=wlan0_info">
-          <div class="sidebar-brand-text ml-1">RaspAP</div>
+          <div class="sidebar-brand-text ml-1"><?php echo RASPI_BRAND_TEXT; ?></div>
         </a>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
         <div class="row">
           <div class="col-xs ml-3 sidebar-brand-icon">
-            <span class="ra-raspap"></span>
+            <img src="app/img/raspAP-logo.php" class="navbar-logo" width="64" height="64">
           </div>
           <div class="col-xs ml-2">
             <div class="ml-1">Status</div>
@@ -150,7 +146,7 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
           <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("DHCP Server"); ?></a>
         </li>
           <?php endif; ?>
-          <?php if (RASPI_ADBLOCK_ENABLED) : ?>
+          <?php if (RASPI_ADBLOCK_ENABLED && !$bridgedEnabled) : ?>
         <li class="nav-item">
            <a class="nav-link" href="index.php?page=adblock_conf"><i class="far fa-hand-paper fa-fw mr-2"></i><span class="nav-label"><?php echo _("Ad Blocking"); ?></a>
         </li>
@@ -279,7 +275,7 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
             SaveTORAndVPNConfig();
             break;
         case "theme_conf":
-            DisplayThemeConfig();
+            DisplayThemeConfig($extraFooterScripts);
             break;
         case "data_use":
             DisplayDataUsage($extraFooterScripts);
@@ -330,14 +326,10 @@ $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
-    <?php if ($page == "wlan0_info" || !isset($page)) { ?>
-    <!-- Link Quality Chart -->
-    <script src="app/js/linkquality.js"></script>
-    <?php }
-
+    <?php
     // Load non default JS/ECMAScript in footer.
     foreach ($extraFooterScripts as $script) {
-        echo '    <script type="text/javascript" src="' , $script['src'] , '"';
+        echo '<script type="text/javascript" src="' , $script['src'] , '"';
         if ($script['defer']) {
             echo ' defer="defer"';
         }

@@ -451,6 +451,9 @@ msgstr "Configures the max_num_sta option of hostapd. The default and maximum is
 msgid "Summary"
 msgstr "Summary"
 
+msgid "Internet connection"
+msgstr "Internet connection"
+
 msgid "Current settings"
 msgstr "Current settings"
 
@@ -530,12 +533,21 @@ msgstr "System Rebooting Now!"
 msgid "System Shutting Down Now!"
 msgstr "System Shutting Down Now!"
 
+msgid "Web server port"
+msgstr "Web server port"
+
+msgid "Web server bind address"
+msgstr "Web server bind address"
+
 #: includes/themes.php
 msgid "Theme settings"
 msgstr "Theme settings"
 
 msgid "Select a theme"
 msgstr "Select a theme"
+
+msgid "Color"
+msgstr "Color"
 
 #: includes/data_usage.php
 msgid "Data usage"

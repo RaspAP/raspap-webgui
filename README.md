@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/xeKD93p.png)
-[![Release 2.4](https://img.shields.io/badge/Release-2.4-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/billz/raspap-webgui/](https://img.shields.io/travis/com/billz/raspap-webgui/master) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
+[![Release 2.5](https://img.shields.io/badge/Release-2.5-green.svg)](https://github.com/billz/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/billz/raspap-webgui/](https://img.shields.io/travis/com/billz/raspap-webgui/master) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
 
 RaspAP lets you quickly get a WiFi access point up and running to share the connectivity of many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our popular [Quick installer](#quick-installer) creates a known-good default configuration that "just works" on all current Raspberry Pis with onboard wireless. A responsive interface gives you control over the relevant services and networking options. Advanced DHCP settings, OpenVPN client support, SSL, security audits, themes and multilingual options are included.
 
@@ -7,7 +7,7 @@ RaspAP has been featured on sites such as [Instructables](http://www.instructabl
 
 We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/billz/raspap-awesome).
 
-![](https://i.imgur.com/BdEinwg.gif)
+![](https://i.imgur.com/ikWvsMG.gif)
 ![](https://i.imgur.com/EiIpdOS.gif)
 ![](https://i.imgur.com/eCjUS1H.gif)
 ![](https://i.imgur.com/5FT2BcS.gif)
@@ -31,7 +31,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [License](#license)
 
 ## Prerequisites
-Start with a clean install of the [latest release of Raspbian](https://www.raspberrypi.org/downloads/raspbian/) (currently Buster). Raspbian Buster Lite is recommended.
+Start with a clean install of the [latest release of Raspberry Pi OS (32-bit) Lite](https://www.raspberrypi.org/downloads/raspbian/). The Raspberry Pi OS desktop and 64-bit beta distros are unsupported.
 
 1. Update Raspbian, including the kernel and firmware, followed by a reboot:
 ```
@@ -61,7 +61,9 @@ configured as an access point as follows:
 * SSID: `raspi-webgui`
 * Password: ChangeMe
 
-**Note:** As the name suggests, the Quick Installer is a great way to quickly setup a new AP. However, it does not automagically detect the unique configuration of your system. Best results are obtained by connecting to ethernet (`eth0`) or as a WiFi client, also known as managed mode, with `wlan0`. For the latter, refer to [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode). Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting an issue.
+**Note:** As the name suggests, the Quick Installer is a great way to quickly setup a new AP. However, it does not automagically detect the unique configuration of your system. Best results are obtained by connecting to ethernet (`eth0`) or as a WiFi client, also known as managed mode, with `wlan0`. For the latter, refer to [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode). Special instructions for the Pi Zero W are [available here](https://github.com/billz/raspap-webgui/wiki/RPi-Zero-W-AP-STA-mode).
+
+Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting an issue.
 
 ## Ad Blocking
 This feature uses DNS blacklisting to block requests for ads, trackers and other undesirable hosts. To enable ad blocking, simply respond to the prompt during the installation. As a beta release, we encourage testing and feedback from users of RaspAP.
@@ -78,9 +80,9 @@ By default RaspAP configures a routed AP for your clients to connect to. A bridg
 More information on Bridged AP mode is provided [on our wiki](https://github.com/billz/raspap-webgui/wiki/Bridged-AP-mode).
 
 ## Simultaneous AP and Wifi client
-RaspAP lets you easily create an AP with a Wifi client configuration. With your system configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
+RaspAP lets you create an AP with a Wifi client configuration, often called AP-STA mode. With your system configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
 
-**Note:** This option is disabled until you configure your system as a wireless client. For a device operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) without an `eth0` connection, this configuration must be enabled _before_ a reboot. 
+**Note:** This option is disabled until you configure your system as a wireless client. For a device operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) without an `eth0` connection, this configuration must be enabled [_before_ a reboot](https://github.com/billz/raspap-webgui/wiki/RPi-Zero-W-AP-STA-mode). 
 
 ## Support us
 RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal or commercial projects, please [become a GitHub sponsor](https://github.com/sponsors/billz), join the project on [Open Collective](https://opencollective.com/raspap) or make a one-time donation with [PayPal](https://www.paypal.com/paypalme2/billzgithub). Any of these options makes a big difference!
@@ -98,7 +100,7 @@ RaspAP was originally made for Raspbian, but now also installs on the following 
 
 | Distribution | Release  | Architecture | Support |
 |---|:---:|:---:|:---:|
-| Raspbian | Buster | ARM | Official |
+| Raspberry Pi OS | (32-bit) Lite Buster | ARM | Official |
 | Armbian | Buster | [ARM](https://docs.armbian.com/#supported-chips) | Official |
 | Debian  |  Buster | ARM / x86_64  | Beta |
 | Ubuntu  |  18.04 LTS / 19.10 | ARM / x86_64  | Beta |
@@ -120,7 +122,7 @@ The following translations are currently maintained by the project:
 - Español
 - Finnish
 - Français
-- ελληνικό (Greek)
+- Ελληνικά (Greek)
 - Indonesian
 - Italiano
 - 日本語 (Japanese)

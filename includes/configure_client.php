@@ -12,11 +12,13 @@ function DisplayWPAConfig()
     $status = new StatusMessages();
     $networks = [];
 
+    getWifiInterface();
     knownWifiStations($networks);
 
     if (isset($_POST['connect'])) {
         $result = 0;
-        exec('sudo wpa_cli -i ' . RASPI_WPA_CTRL_INTERFACE . ' select_network '.strval($_POST['connect']));
+        exec('sudo wpa_cli -i ' . $_SESSION['wifi_client_interface'] . ' select_network '.strval($_POST['connect']));
+        $status->addMessage('New network selected', 'success');
     } elseif (isset($_POST['client_settings'])) {
         $tmp_networks = $networks;
         if ($wpa_file = fopen('/tmp/wifidata', 'w')) {
@@ -75,7 +77,7 @@ function DisplayWPAConfig()
             if ($ok) {
                 system('sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval);
                 if ($returnval == 0) {
-                    exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' reconfigure', $reconfigure_out, $reconfigure_return);
+                    exec('sudo wpa_cli -i ' . $_SESSION['wifi_client_interface'] . ' reconfigure', $reconfigure_out, $reconfigure_return);
                     if ($reconfigure_return == 0) {
                         $status->addMessage('Wifi settings updated successfully', 'success');
                         $networks = $tmp_networks;
@@ -93,6 +95,7 @@ function DisplayWPAConfig()
 
     nearbyWifiStations($networks);
     connectedWifiStations($networks);
+    sortNetworksByRSSI($networks);
 
     echo renderTemplate("configure_client", compact("status"));
 }

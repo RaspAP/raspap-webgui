@@ -20,6 +20,7 @@ readonly raspap_user="www-data"
 readonly raspap_sudoers="/etc/sudoers.d/090_raspap"
 readonly raspap_dnsmasq="/etc/dnsmasq.d/090_raspap.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
+readonly raspap_network="/etc/systemd/network/"
 readonly rulesv4="/etc/iptables/rules.v4"
 webroot_dir="/var/www/html"
 
@@ -44,13 +45,13 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        "18.04"|"19.10") # Ubuntu Server
+        18.04|19.10) # Ubuntu Server
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
-        "10")
+        10*)
             php_package="php7.3-cgi"
             phpcgiconf="/etc/php/7.3/cgi/php.ini" ;;
-        "9")
+        9*)
             php_package="php7.0-cgi"
             phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
     esac
@@ -148,7 +149,7 @@ function _remove_raspap_service() {
 function _restore_networking() {
     _install_log "Restoring networking config to pre-install defaults"
     echo "Disabling IP forwarding in $raspap_sysctl"
-    sudo rm $raspap_sysctl || _install_error "Unable to remove $raspap_sysctl"
+    sudo rm "$raspap_sysctl" || _install_error "Unable to remove $raspap_sysctl"
     sudo /etc/init.d/procps restart || _install_error "Unable to execute procps"
     echo "Checking iptables rules"
     rules=(
@@ -169,6 +170,11 @@ function _restore_networking() {
         sudo iptables-save | sudo tee $rulesv4 > /dev/null || _install_error "Unable to execute iptables-save"
     fi
     echo "Done."
+    # Remove dnsmasq and bridge configs
+    echo "Removing 090_raspap.conf from dnsmasq"
+    sudo rm "$raspap_dnsmasq" || _install_error "Unable to remove $raspap_dnsmasq"
+    echo "Removing raspap bridge configurations"
+    sudo rm "$raspap_network"/raspap* || _install_error "Unable to remove bridge config"
 }
 
 # Removes installed packages

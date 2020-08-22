@@ -1,3 +1,9 @@
+<?php header("Content-Type: text/css; charset=utf-8"); ?>
+<?php
+require_once '../../includes/functions.php';
+$color = getColorOpt();
+?>
+
 /*
 Theme Name: RaspAP default
 Author: @billz
@@ -51,9 +57,15 @@ body {
 }
 
 .card .card-header {
-  border-color: #d8224c;
-  background-color: #d8224c;
+  border-color: <?php echo $color; ?>;
   color: #fff;
+  background-color: <?php echo $color; ?>;
+}
+
+.btn-primary {
+  color: <?php echo $color; ?>;
+  border-color: <?php echo $color; ?>;
+  background-color: #fff;
 }
 
 .card-footer {
@@ -86,9 +98,7 @@ a.nav-link.active {
 }
 
 .btn-primary {
-  color: #d8224c;
   background-color: #fff;
-  border-color: #d8224c;
 }
 
 .btn-warning {
@@ -96,8 +106,8 @@ a.nav-link.active {
 }
 
 .btn-primary:hover {
-  background-color: #c61931;
-  border-color: #c61931;
+  background-color: <?php echo $color; ?>;
+  border-color: <?php echo $color; ?>;
 }
 
 i.fa.fa-bars {
@@ -121,21 +131,6 @@ i.fa.fa-bars:hover{
 .info-item-wifi {
   width: 6rem;
   float: left;
-}
-
-.webconsole {
-  width:100%;
-  height:100%;
-  border:1px solid;
-}
-
-#console {
-  height:500px;
-}
-
-.systemtabcontent {
-  height:100%;
-  min-height:500px;
 }
 
 .service-status {
@@ -232,10 +227,18 @@ canvas#divDBChartBandwidthhourly {
 
 .check-updated {
   opacity: 0;
-  color: #1cc88a;
+  color: #90ee90;
 }
 
 .check-progress {
   color: #999;
+}
+
+.fa-check {
+  color: #90ee90;
+}
+
+.fa-times {
+  color: #ff4500;
 }
 

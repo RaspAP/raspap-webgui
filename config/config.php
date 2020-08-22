@@ -1,10 +1,10 @@
 <?php
 
-define('RASPI_VERSION', '2.4');
+define('RASPI_BRAND_TEXT', 'RaspAP');
 define('RASPI_CONFIG', '/etc/raspap');
 define('RASPI_CONFIG_NETWORKING', RASPI_CONFIG.'/networking');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
-define('RASPI_WIFI_CLIENT_INTERFACE', 'wlan0');
+define('RASPI_WIFI_AP_INTERFACE', 'wlan0');
 define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
 
 // Constants for configuration file paths.
@@ -25,9 +25,11 @@ define('RASPI_WIREGUARD_SERVER_CONFIG', '/etc/wireguard/wg0.conf');
 define('RASPI_WIREGUARD_CLIENT_CONFIG', '/etc/wireguard/wg0-client.conf');
 define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
+define('RASPI_ACCESS_CHECK_IP', '1.1.1.1');
+define('RASPI_ACCESS_CHECK_DNS', 'one.one.one.one');
 
 // Constant for the 5GHz wireless regulatory domain
-define('RASPI_5GHZ_ISO_ALPHA2', array('US'));
+define('RASPI_5GHZ_ISO_ALPHA2', array('NL','US'));
 
 // Optional services, set to true to enable.
 define('RASPI_WIFICLIENT_ENABLED', true);
