@@ -10,13 +10,13 @@
           <label class="custom-control-label" for="tunnel-enable"><?php echo _("Enable tunnel") ?></label>
         </div>
         <p id="wg-description">
-          <small><?php echo _("Enable this option to encrypt traffic on your local network by creating a tunnel between RaspAP and connected clients.") ?></small>
+          <small><?php echo _("Enable this option to encrypt traffic by creating a tunnel between RaspAP and configured peers.") ?></small>
         </p>
         </div>
         <div class="row">
           <div class="form-group col-xs-3 col-sm-3">
             <label for="code"><?php echo _("Local Port"); ?></label>
-            <input type="text" class="form-control" name="wgport" value="<?php echo htmlspecialchars($wg_port, ENT_QUOTES); ?>" />
+            <input type="text" class="form-control" name="wgport" placeholder="51820" value="<?php echo htmlspecialchars($wg_port, ENT_QUOTES); ?>" />
           </div>
         </div>
 

@@ -32,7 +32,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" id="settingstab" href="#wgsettings" data-toggle="tab"><?php echo _("Settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="peertab" href="#wgpeers" data-toggle="tab"><?php echo _("Peers"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="peertab" href="#wgpeers" data-toggle="tab"><?php echo _("Peer"); ?></a></li>
                 <li class="nav-item"><a class="nav-link" id="loggingtab" href="#wglogging" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
             </ul>
 
