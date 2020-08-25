@@ -11,12 +11,31 @@ function DisplayWireGuardConfig()
     $status = new StatusMessages();
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['savewgettings'])) {
+            # Todo: validate input
             if (isset($_POST['authUser'])) {
-                $authUser = strip_tags(trim($_POST['authUser']));
+                $peer_id = strip_tags(trim($_POST'peer_id']));
             }
-            if (isset($_POST['authPassword'])) {
-                $authPassword = strip_tags(trim($_POST['authPassword']));
+            if (isset($_POST['wg_endpoint'])) {
+                $wg_endpoint = strip_tags(trim($_POST['wg_endpoint']));
             }
+            if (isset($_POST['wg_allowedips'])) {
+                $wg_allowedips = strip_tags(trim($_POST['wg_allowedips']));
+            }
+            if (isset($_POST['wg_pkeepalive'])) {
+                $wg_pkeepalive = strip_tags(trim($_POST['wg_pkeepalive']));
+            }
+            if (isset($_POST['wg_peerpubkey'])) {
+                $wg_endpoint = strip_tags(trim($_POST['wg_peerpubkey']));
+            }
+            file_put_contents("/tmp/wgdata", $config);
+            system('sudo cp /tmp/wgdata '.RASPI_WIREGUARD_CONFIG, $return);
+
+            if ($return == 0) {
+                $status->addMessage('Wireguard configuration updated successfully', 'success');
+            } else {
+                $status->addMessage('Wireguard configuration failed to be updated.', 'danger');
+            }
+
         } elseif (isset($_POST['startwg'])) {
             $status->addMessage('Attempting to start WireGuard', 'info');
             exec('sudo /usr/bin/wg-quick up wg0', $return);
@@ -41,7 +60,13 @@ function DisplayWireGuardConfig()
         "wireguard", compact(
             "status",
             "wg_state",
-            "serviceStatus"
+            "serviceStatus",
+            "endpoint_enable",
+            "peer_id",
+            "wg_endpoint",
+            "wg_allowedips",
+            "wg_pkeepalive",
+            "wg_peerpubkey"
         )
     );
 }
