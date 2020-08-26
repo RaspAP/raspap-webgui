@@ -41,5 +41,7 @@ www-data ALL=(ALL) NOPASSWD:/etc/raspap/adblock/update_blocklist.sh
 www-data ALL=(ALL) NOPASSWD:/usr/bin/wg-quick up wg0
 www-data ALL=(ALL) NOPASSWD:/usr/bin/wg-quick down wg0
 www-data ALL=(ALL) NOPASSWD:/usr/bin/wg
+www-data ALL=(ALL) NOPASSWD:/bin/cat /etc/wireguard/wg0.conf
+
 
 

@@ -36,7 +36,7 @@
         <div class="row">
           <div class="form-group col-md-6">
             <label for="code"><?php echo _("IP Address"); ?></label>
-            <input type="text" class="form-control" name="RangeEnd" value="<?php echo htmlspecialchars($RangeEnd, ENT_QUOTES); ?>" />
+            <input type="text" class="form-control" name="wg_ipaddress" value="<?php echo htmlspecialchars($wg_ipaddress, ENT_QUOTES); ?>" />
           </div>
         </div>
 
