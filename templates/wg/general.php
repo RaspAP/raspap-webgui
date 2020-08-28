@@ -16,7 +16,7 @@
         <div class="row">
           <div class="form-group col-xs-3 col-sm-3">
             <label for="code"><?php echo _("Local Port"); ?></label>
-            <input type="text" class="form-control" name="wgport" placeholder="51820" value="<?php echo htmlspecialchars($wg_port, ENT_QUOTES); ?>" />
+            <input type="text" class="form-control" name="wg_port" value="<?php echo htmlspecialchars($wg_port, ENT_QUOTES); ?>" />
           </div>
         </div>
 
@@ -25,13 +25,14 @@
             <label for="code"><?php echo _("Local public key"); ?></label>
           </div>
           <div class="input-group col-md-12 mb-3">
-            <input type="text" class="form-control" name="wgpubkey" value="<?php echo htmlspecialchars($wg_pubkey, ENT_QUOTES); ?>" />
+            <input type="text" class="form-control" name="wg_pubkey" value="<?php echo htmlspecialchars($wg_pubkey, ENT_QUOTES); ?>" />
             <div class="input-group-append">
-              <button class="btn btn-sm btn-outline-secondary rounded-right" type="button" onclick="updateBlocklist()"><?php echo _("Generate key"); ?></button>
+              <button class="btn btn-sm btn-outline-secondary rounded-right" type="button" onclick="updateWgKey()"><?php echo _("Generate key"); ?></button>
               <span id="cbxblocklist-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
             </div>
           </div>
         </div>
+        <input type="hidden" name="wg_privkey" value="<?php echo htmlspecialchars($wg_privkey, ENT_QUOTES); ?>" />
 
         <div class="row">
           <div class="form-group col-md-6">

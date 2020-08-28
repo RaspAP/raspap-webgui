@@ -10,52 +10,73 @@ function DisplayWireGuardConfig()
 {
     $status = new StatusMessages();
     if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['savewgettings'])) {
-            // Validate input
+        if (isset($_POST['savewgsettings'])) {
+            // Set defaults
             $good_input = true;
             $peer_id = 1;
-            if (isset($_POST['peer_id'])) {
-                $peer_id = escapeshellarg($_POST['peer_id']);
+            // Validate input
+            if (isset($_POST['wg_port'])) {
+                if (strlen($_POST['wg_port']) > 5 || !is_numeric($_POST['wg_port'])) {
+                    $status->addMessage('Invalid value for port number', 'danger');
+                    $good_input = false;
+                }
             }
-            if (isset($_POST['wg_endpoint'])) {
-                if (!filter_var($_POST['wg_endpoint'], FILTER_VALIDATE_IP)) {
+            if (isset($_POST['wg_ipaddress'])) {
+                if (!validateCidr($_POST['wg_ipaddress'])) {
+                    $status->addMessage('Invalid value for IP address', 'danger');
+                    $good_input = false;
+                }
+            }
+            if (isset($_POST['wg_endpoint']) && strlen(trim($_POST['wg_endpoint']) >0 )) {
+                if (!validateCidr($_POST['wg_endpoint'])) {
                     $status->addMessage('Invalid value for endpoint address', 'danger');
                     $good_input = false;
-                } else {
-                    $wg_endpoint = escapeshellarg($_POST['wg_endpoint']);
                 }
             }
             if (isset($_POST['wg_allowedips'])) {
-                if (!filter_var($_POST['wg_allowedips'], FILTER_VALIDATE_IP)) {
+                if (!validateCidr($_POST['wg_allowedips'])) {
                     $status->addMessage('Invalid value for allowed IPs', 'danger');
                     $good_input = false;
-                } else {
-                    $wg_allowedips = escapeshellarg($_POST['wg_allowedips']);
                 }
             }
-            if (isset($_POST['wg_pkeepalive'])) {
+            if (isset($_POST['wg_pkeepalive']) && strlen(trim($_POST['wg_pkeepalive']) >0 )) {
                 if (strlen($_POST['wg_pkeepalive']) > 4 || !is_numeric($_POST['wg_pkeepalive'])) {
                     $status->addMessage('Invalid value for persistent keepalive', 'danger');
                     $good_input = false;
-                } else {
-                    $wg_pkeepalive = escapeshellarg($_POST['wg_pkeepalive']);
                 }
-            }
-            if (isset($_POST['wg_peerpubkey'])) {
-                $wg_endpoint = strip_tags(trim($_POST['wg_peerpubkey']));
             }
             // Save settings
             if ($good_input) {
+                $config[] = '[Interface]';
+                $config[] = 'Address = '.$_POST['wg_ipaddress'];
+                $config[] = 'ListenPort = '.$_POST['wg_port'];
+                $config[] = '';
+                $config[] = 'PrivateKey = '.$_POST['wg_privkey'];
+                $config[] = 'PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE';
+                $config[] = 'PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE';
+                $config[] = '';
+                $config[] = '[Peer]';
+                $config[] = 'PublicKey = '.$_POST['wg_pubkey'];
+                if ($_POST['wg_endpoint'] !== '') {
+                    $config[] = 'Endpoint = '.trim($_POST['wg_endpoint']);
+                }
+                $config[] = 'AllowedIPs = '.$_POST['wg_allowedips'];
+                if ($_POST['wg_pkeepalive'] !== '') {
+                    $config[] = 'PersistentKeepalive = '.trim($_POST['wg_pkeepalive']);
+                }
+                $config[] = '';
+                $config = join(PHP_EOL, $config);
+
                 file_put_contents("/tmp/wgdata", $config);
                 system('sudo cp /tmp/wgdata '.RASPI_WIREGUARD_CONFIG, $return);
                 foreach ($return as $line) {
                     $status->addMessage($line, 'info');
                 }
-            }
-            if ($return == 0) {
-                $status->addMessage('Wireguard configuration updated successfully', 'success');
-            } else {
-                $status->addMessage('Wireguard configuration failed to be updated.', 'danger');
+                if ($return == 0) {
+                    $status->addMessage('Wireguard configuration updated successfully', 'success');
+                } else {
+                    $status->addMessage('Wireguard configuration failed to be updated.', 'danger');
+                }
             }
 
         } elseif (isset($_POST['startwg'])) {
@@ -79,6 +100,7 @@ function DisplayWireGuardConfig()
     $wg_port = $conf['ListenPort'];
     $wg_ipaddress = $conf['Address'];
     $wg_pubkey = $conf['PublicKey'];
+    $wg_privkey = $conf['PrivateKey'];
     $wg_endpoint = $conf['Endpoint'];
     $wg_allowedips = $conf['AllowedIPs'];
     $wg_pkeepalive = $conf['PersistentKeepalive'];
@@ -98,6 +120,7 @@ function DisplayWireGuardConfig()
             "wg_port",
             "wg_ipaddress",
             "wg_pubkey",
+            "wg_privkey",
             "wg_endpoint",
             "wg_allowedips",
             "wg_pkeepalive"
