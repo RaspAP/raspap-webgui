@@ -3,6 +3,11 @@
 $rInfo=array();
 // get all default routes
 exec('ip route list |  sed -rn "s/default via (([0-9]{1,3}\.){3}[0-9]{1,3}).*dev (\w*).*src (([0-9]{1,3}\.){3}[0-9]{1,3}).*/\3 \4 \1/p"', $routes);
+exec('ip route list |  sed -rn "s/default dev (\w*) scope link/\1/p"',$devs);
+if(!empty($devs)) {
+   foreach ($devs as $dev)
+   exec('ip route list |  sed -rn "s/(([0-9]{1,3}\.){3}[0-9]{1,3}).*dev.*("'.$dev.'").*scope link src (([0-9]{1,3}\.){3}[0-9]{1,3}).*/\3 \4 \1/p"',$routes);
+} 
 if (!empty($routes) ) {
     foreach ($routes as $i => $route) {
         $prop=explode(' ', $route);
