@@ -69,6 +69,11 @@ function DisplayWireGuardConfig()
 
                 file_put_contents("/tmp/wgdata", $config);
                 system('sudo cp /tmp/wgdata '.RASPI_WIREGUARD_CONFIG, $return);
+                
+                // handle log option
+                if ($_POST['wg_log'] == "1") {
+                    exec("sudo /bin/systemctl status wg-quick@wg0 | sudo tee /tmp/wireguard.log > /dev/null");
+                }
                 foreach ($return as $line) {
                     $status->addMessage($line, 'info');
                 }
@@ -115,6 +120,7 @@ function DisplayWireGuardConfig()
             "status",
             "wg_state",
             "serviceStatus",
+            "wg_log",
             "endpoint_enable",
             "peer_id",
             "wg_port",
