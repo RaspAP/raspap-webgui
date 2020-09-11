@@ -447,6 +447,12 @@ msgstr "Maximum number of clients"
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 
+msgid "Beacon interval"
+msgstr "Beacon interval"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Disable <code>disassoc_low_ack</code>"
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
