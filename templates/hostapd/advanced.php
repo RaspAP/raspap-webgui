@@ -38,6 +38,27 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-xs-3 col-sm-3">
+        <div class="custom-control custom-switch">
+          <?php $checked = $arrConfig['beacon_interval_bool'] == 1 ? 'checked="checked"' : '' ?>
+          <input class="custom-control-input" id="chxbeaconinterval" name="beaconintervalEnable" type="checkbox" value="1" <?php echo $checked ?> />
+          <label class="custom-control-label" for="chxbeaconinterval"><?php echo _("Beacon interval"); ?></label>
+        </div>
+      </div>
+      <div class="col-xs-3 col-sm-3">
+        <input type="text" class="form-control" name="beacon_interval" value="<?php echo $arrConfig['beacon_int'] ?>">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <div class="custom-control custom-switch">
+          <?php $checked = $arrConfig['disassoc_low_ack_bool'] == 1 ? 'checked="checked"' : '' ?>
+          <input class="custom-control-input" id="chxdisassoclowack" name="disassoc_low_ackEnable" type="checkbox" value="1" <?php echo $checked ?> />
+          <label class="custom-control-label" for="chxdisassoclowack"><?php echo _("Disable <code>disassoc_low_ack</code>"); ?></label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="form-group col-md-6">
         <label for="max_num_sta"><?php echo _("Maximum number of clients") ?></label>
         <input type="text" id="max_num_sta" class="form-control" name="max_num_sta" placeholder="2007" value="<?php echo $arrConfig["max_num_sta"] ?>" aria-describedby="max_num_sta_help">
