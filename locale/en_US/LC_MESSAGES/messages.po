@@ -453,6 +453,9 @@ msgstr "Beacon interval"
 msgid "Disable <code>disassoc_low_ack</code>"
 msgstr "Disable <code>disassoc_low_ack</code>"
 
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Do not disassociate stations based on excessive transmission failures."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"

@@ -56,6 +56,9 @@
           <input class="custom-control-input" id="chxdisassoclowack" name="disassoc_low_ackEnable" type="checkbox" value="1" <?php echo $checked ?> />
           <label class="custom-control-label" for="chxdisassoclowack"><?php echo _("Disable <code>disassoc_low_ack</code>"); ?></label>
         </div>
+        <p id="disassoc_low_ack_help" class="mb-1 mt-0">
+          <small id="disassoc_low_ack_help" class="text-muted"><?php echo _("Do not disassociate stations based on excessive transmission failures.") ?></small></label>
+        </p>
       </div>
     </div>
     <div class="row">
