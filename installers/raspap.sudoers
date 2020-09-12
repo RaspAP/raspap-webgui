@@ -37,4 +37,8 @@ www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/hostapd.log
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/dnsmasq.log
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.d/090_adblock.conf
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/adblock/update_blocklist.sh
+www-data ALL=(ALL) NOPASSWD:/usr/bin/socat - /dev/ttyUSB[0-9]
+www-data ALL=(ALL) NOPASSWD:/usr/local/sbin/switchClientState.sh up
+www-data ALL=(ALL) NOPASSWD:/usr/local/sbin/switchClientState.sh down
+
 
