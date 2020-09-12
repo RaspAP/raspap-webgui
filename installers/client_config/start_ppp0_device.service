@@ -1,0 +1,16 @@
+[Unit]
+Description=Start ppp0 interface
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+BindsTo=sys-subsystem-net-devices-ppp0.device
+After=sys-subsystem-net-devices-ppp0.device
+ExecStart=/sbin/ifup ppp0
+ExecStop=/sbin/ifdown ppp0
+
+[Install]
+Alias=startppp0.service
+WantedBy=multi-user.target
+
+
