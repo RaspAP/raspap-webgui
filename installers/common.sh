@@ -22,6 +22,7 @@ readonly raspap_dnsmasq="/etc/dnsmasq.d/090_raspap.conf"
 readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly rulesv4="/etc/iptables/rules.v4"
+readonly raspap_client_scripts="/usr/local/sbin"
 readonly notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
 webroot_dir="/var/www/html"
 git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
@@ -405,6 +406,19 @@ function _enable_raspap_daemon() {
     sudo systemctl enable raspapd.service || _install_status 1 "Failed to enable raspap.service"
 }
 
+function _install_client_config() {
+    _install_log "Install mobile client scripts and settings"
+    # Move scripts 
+    sudo cp "$webroot_dir/installers/client_config/"*.sh "$raspap_client_scripts/" || _install_status 1 "Unable to move client scripts"
+    sudo chmod a+rx "$raspap_client_scripts/"*.sh  || _install_status 1 "Unable to chmod client scripts"
+    # wvdial settings
+    sudo cp "$webroot_dir/installers/client_config/wvdial.conf" "/etc/" || _install_status 1 "Unable to install client configuration"
+    sudo cp "$webroot_dir/installers/client_config/interfaces" "/etc/network/interfaces" || _install_status 1 "Unable to install interface settings"
+    # udev rules/services to auto start mobile data services
+    sudo cp "$webroot_dir/installers/client_config/70-mobile-data-sticks.rules" "/etc/udes/rules.d/" || _install_status 1 "Unable to install client udev rules"
+    sudo cp "$webroot_dir/installers/client_config/"*.service "/etc/systemd/system/" || _install_status 1 "Unable to install client startup services"
+}
+
 # Configure IP forwarding, set IP tables rules, prompt to install RaspAP daemon
 function _configure_networking() {
     _install_log "Configuring networking"
@@ -568,6 +582,7 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
+    _install_client_config
     _patch_system_files
     _install_complete
 }
