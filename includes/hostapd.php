@@ -352,6 +352,8 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config[] = 'interface '.$_POST['interface'];
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'static domain_name_server='.$domain_name_server;
+            $config[] = 'nohook wpa_supplicant';
+            $config[] = 'noarp';
             $config[] = PHP_EOL;
 
             // write the static IP back to the $_POST['interface'].ini file
