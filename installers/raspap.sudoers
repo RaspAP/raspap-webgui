@@ -40,5 +40,3 @@ www-data ALL=(ALL) NOPASSWD:/etc/raspap/adblock/update_blocklist.sh
 www-data ALL=(ALL) NOPASSWD:/usr/bin/socat - /dev/ttyUSB[0-9]
 www-data ALL=(ALL) NOPASSWD:/usr/local/sbin/switchClientState.sh up
 www-data ALL=(ALL) NOPASSWD:/usr/local/sbin/switchClientState.sh down
-
-

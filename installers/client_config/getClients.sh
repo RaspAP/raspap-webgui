@@ -9,8 +9,6 @@
 #
 # requires: udevadm, iw, ip, iwconfig, ifconfig, sed, grep
 #
-# zbchristian 2020
-#
 # defined device types
 # 0 : internal ethernet interface (eth0)
 # 1 : external ethernet 
@@ -40,7 +38,7 @@ if [[ ! -z $rawdevs ]]; then
   for dev in $rawdevs; do
     if [[ "$dev" =~ ^wlan[0-9]$ ]];   then
       itsAP=`iwconfig $dev 2> /dev/null | sed -rn 's/.*(mode:master).*/1/ip'`
-      if [[ ! -z $itsAP ]]; then break; fi # skip the wlan AP from the list
+      if [[ ! -z $itsAP ]]; then continue; fi # skip the wlan AP
     fi
     udevinfo=`udevadm info /sys/class/net/$dev 2> /dev/null`
     mod=`echo -e $(echo "$udevinfo" | sed -rn 's/.*ID_MODEL_ENC=(.*)$/\1/gp')`
@@ -64,10 +62,16 @@ if [[ ! -z $rawdevs ]]; then
     if [[ "$drv" == "rndis_host" ]];  then ty=2; fi       # look like an USB tethering device (e.g. Android phone)
     if [[ "$dev" =~ ppp[0-9] ]];      then ty=5;          # its a dial in mobile data modem
     elif [[ ! -z $vid ]] && [[ ! -z $pid ]] && [[ "${vidpids[@]}" =~ "$vid/$pid"  ]]; then ty=4; fi # mobile data in router mode
-    devs+=("$dev")
-    typs+=($ty)
-    vends+=("$vend")
-    mods+=("$mod")
+# store found devices in reverse order
+    devs=("$dev" $devs)
+    typs=($ty $typs)
+    vends=("$vend" $vends)
+    mods=("$mod" $mods)
+# append device to list
+#    devs+=("$dev")
+#    typs+=($ty)
+#    vends+=("$vend")
+#    mods+=("$mod")
   done
 fi
 
@@ -108,6 +112,7 @@ if [[ ! -z $devmodem ]]; then
   fi
 fi
 
+
 path=`dirname $0`
 
 # create json output
@@ -126,9 +131,15 @@ if [[ ! -z $devs ]]; then
          outjs+=', "connected": "y"'
          res=`echo "$iwout" | sed -rn 's/.*SSID: (\w*).*/\1/p'`
          outjs+=', "ssid": "'$res'"'
+         res=`echo "$iwout" | sed -rn 's/^Connected to ([0-9a-f\:]*).*$/\1/p'`
+         outjs+=', "ap-mac": "'$res'"'
          res=`echo "$iwout" | sed -rn 's/.*signal: (.*)$/\1/p'`
-         outjs+=', "signal": "'$res'"'
-         res=`echo "$iwout" | sed -rn 's/.*bitrate: (.*)$/\1/p'`
+         sig=`echo $res | grep -oP '^[0-9\.-]*'`
+         if [[ $sig -gt -50 ]]; then qual=100;
+         elif [[ $sig -lt -100 ]]; then qual=0;
+         else qual=$(bc <<< "scale=0;res=$sig*2+200;res/1"); fi
+         outjs+=', "signal": "'$res' ('$qual'%)"'
+         res=`echo "$iwout" | sed -rn 's/.*bitrate: ([0-9\.]* \w*\/s).*$/\1/p' | head -1`
          outjs+=', "bitrate": "'$res'"'
          res=`echo "$iwout" | sed -rn 's/.*freq: (.*)$/\1/p'`
          outjs+=', "freq": "'$res'"'

@@ -22,6 +22,9 @@ function DisplayDashboard(&$extraFooterScripts)
         $status->showMessages();
         return;
     }
+	
+	// ----------------------------- INFOS ABOUT THE ACCESS POINT -------------------------------------------------------------
+	
     exec('ip a show '.$_SESSION['ap_interface'], $stdoutIp);
     $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
     $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
@@ -87,63 +90,37 @@ function DisplayDashboard(&$extraFooterScripts)
         $strTxBytes .= getHumanReadableDatasize($strTxBytes);
     }
 
-    define('SSIDMAXLEN', 32);
-    // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
-    exec('iw dev ' .$_SESSION['wifi_client_interface']. ' link ', $stdoutIw);
-    $stdoutIwAllLinesGlued = implode(' ', $stdoutIw);
-    $stdoutIwWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwAllLinesGlued);
-
-    preg_match('/Connected to (([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2}))/', $stdoutIwWRepSpaces, $matchesBSSID) || $matchesBSSID[1] = '';
-    $connectedBSSID = $matchesBSSID[1];
-    $connectedBSSID = empty($connectedBSSID) ? "-" : $connectedBSSID;
-
-    $wlanHasLink = false;
-    if ($interfaceState === 'UP') {
-        $wlanHasLink = true;
-    }
-
-    if (!preg_match('/SSID: ([^ ]{1,'.SSIDMAXLEN.'})/', $stdoutIwWRepSpaces, $matchesSSID)) {
-        $wlanHasLink = false;
-        $matchesSSID[1] = 'None';
-    }
-
-    $connectedSSID = $matchesSSID[1];
-
-    preg_match('/freq: (\d+)/i', $stdoutIwWRepSpaces, $matchesFrequency) || $matchesFrequency[1] = '';
-    $frequency = $matchesFrequency[1].' MHz';
-
-    preg_match('/signal: (-?[0-9]+ dBm)/i', $stdoutIwWRepSpaces, $matchesSignal) || $matchesSignal[1] = '';
-    $signalLevel = $matchesSignal[1];
-    $signalLevel = empty($signalLevel) ? "-" : $signalLevel;
-
-    preg_match('/tx bitrate: ([0-9\.]+ [KMGT]?Bit\/s)/', $stdoutIwWRepSpaces, $matchesBitrate) || $matchesBitrate[1] = '';
-    $bitrate = $matchesBitrate[1];
-    $bitrate = empty($bitrate) ? "-" : $bitrate;
-
-    // txpower is now displayed on iw dev(..) info command, not on link command.
-    exec('iw dev '.$_SESSION['wifi_client_interface'].' info ', $stdoutIwInfo);
-    $stdoutIwInfoAllLinesGlued = implode(' ', $stdoutIwInfo);
-    $stdoutIpInfoWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwInfoAllLinesGlued);
-
-    preg_match('/txpower ([0-9\.]+ dBm)/i', $stdoutIpInfoWRepSpaces, $matchesTxPower) || $matchesTxPower[1] = '';
-    $txPower = $matchesTxPower[1];
-
-    // iw does not have the "Link Quality". This is a is an aggregate value,
-    // and depends on the driver and hardware.
-    // Display link quality as signal quality for now.
-    $strLinkQuality = 0;
-    if ($signalLevel > -100 && $wlanHasLink) {
-        if ($signalLevel >= 0) {
-            $strLinkQuality = 100;
-        } else {
-            $strLinkQuality = 100 + $signalLevel;
+	// ------------------------ INFOS ABOUT THE CLIENT---------------------------------------------------------------
+	$clientinfo=array("name"=>"none","type"=>-1,"connected"=>"n");
+	$raspi_client=$_SESSION['wifi_client_interface'];
+    exec('/usr/local/sbin/getClients.sh', $clients); # get list of clients, including connection information (json format)
+    if(!empty($clients)) {
+        $clients=json_decode($clients[0],true);
+		// client type: 0 - eth0, 1 -ethx, 2 - usb tethering, 3 - wlan, 4 - mobile data (router mode), 5 - mobile data modem
+        // extract the infos for the device with the highest type number		
+        $ncl=$clients["clients"];
+        if($ncl > 0) {
+			$ty=-1;
+            foreach($clients["device"] as $dev) {
+               if($dev["type"]>$ty) {
+                 $ty=$dev["type"];
+                 $clientinfo=$dev;
+               }
+            }
         }
     }
-
-    $wlan0up = false;
+	if ($clientinfo["name"] != "none") $raspi_client = $clientinfo["name"];
+	$interfaceState = $clientinfo["connected"] == "y" ? 'UP' : 'DOWN';
+	
+	$txPower="";
+	if ($clientinfo["type"] == 3) {
+      // txpower is now displayed on iw dev(..) info command, not on link command.
+      exec('iw dev '.$clientinfo["name"].' info |  sed -rn "s/.*txpower ([0-9]*)[0-9\.]*( dBm).*/\1\2/p"', $stdoutIwInfo);
+      if (!empty($stdoutIwInfo)) $txPower=$stdoutIwInfo[0];
+	}
+	
     $classMsgDevicestatus = 'warning';
     if ($interfaceState === 'UP') {
-        $wlan0up = true;
         $classMsgDevicestatus = 'success';
     }
 
@@ -152,8 +129,7 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed stop button
             if ($interfaceState === 'UP') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
-                exec('sudo ip link set '.$_SESSION['wifi_client_interface'].' down');
-                $wlan0up = false;
+                exec('sudo /usr/local/sbin/switchClientState.sh down');
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
             } elseif ($interfaceState === 'unknown') {
                 $status->addMessage(_('Interface state unknown.'), 'danger');
@@ -164,9 +140,8 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed start button
             if ($interfaceState === 'DOWN') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
-                exec('sudo ip link set ' .$_SESSION['wifi_client_interface']. ' up');
-                exec('sudo ip -s a f label ' . $_SESSION['wifi_client_interface']);
-                $wlan0up = true;
+                exec('sudo /usr/local/sbin/switchClientState.sh up');
+                exec('sudo ip -s a f label ' . $raspi_client);
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
             } elseif ($interfaceState === 'unknown') {
                 $status->addMessage(_('Interface state unknown.'), 'danger');
@@ -177,6 +152,7 @@ function DisplayDashboard(&$extraFooterScripts)
             $status->addMessage(sprintf(_('Interface is %s.'), strtolower($interfaceState)), $classMsgDevicestatus);
         }
     }
+ 
 
     echo renderTemplate(
         "dashboard", compact(
@@ -189,14 +165,8 @@ function DisplayDashboard(&$extraFooterScripts)
             "strRxBytes",
             "strTxPackets",
             "strTxBytes",
-            "connectedSSID",
-            "connectedBSSID",
-            "bitrate",
-            "signalLevel",
             "txPower",
-            "frequency",
-            "strLinkQuality",
-            "wlan0up"
+			"clientinfo"
         )
     );
     $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);
