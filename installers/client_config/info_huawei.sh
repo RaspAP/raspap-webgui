@@ -87,6 +87,16 @@ case $opt in
     fi
     if [[ ! "$res" == "none" ]]; then res="$res (${qual}%)"; fi
     ;;
+	
+  operator)
+    # check if operator/network is just a 5 digit number -> extract network name from table
+    if [[ $res =~ ^[0-9]{5}$ ]]; then
+      mcc=${res:0:3}
+      mnc=${res:3:2}
+      op=$(cat $path/mcc-mnc-table.csv | sed -rn 's/^'$mcc'\,[0-9]*\,'$mnc'\,(.*\,){4}(.*)$/\2/p')
+      if [[ ! -z $op ]]; then res="$op ($res)"; fi
+    fi
+   ;;
 
   *)
     ;;
