@@ -18,10 +18,12 @@ $ifaceStatus = $clientinfo["connected"]=="y" ? "up" : "down";
 switch($clientinfo["type"]) {
 	case 0:
 	case 1:
-			$type_name = $client_title = "Ethernet";
+			$client_title = "Client: Ethernet cable";
+			$type_name = "Ethernet";
 			break;
 	case 2:
-			$type_name = $client_title = "Smartphone";
+			$client_title = "Client: Smartphone (USB tethering)";
+			$type_name = "Smartphone";
 			break;
 	case 3:
 			$client_title = "Wireless Client";
@@ -85,7 +87,11 @@ switch($clientinfo["type"]) {
 					<div class="info-item"><?php echo _("Signal Level"); ?></div><div><?php echo htmlspecialchars($clientinfo["signal"], ENT_QUOTES); ?></div>
 					<div class="info-item"><?php echo _("Transmit Power"); ?></div><div><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
 					<div class="info-item"><?php echo _("Frequency"); ?></div><div><?php echo htmlspecialchars($clientinfo["freq"]." MHz", ENT_QUOTES); ?></div>
-				  <?php elseif ($clientinfo["type"] == 4 ) : // MOBILE DATA - ROUTER MODE (HILINK) ?>
+                  <?php elseif ($clientinfo["type"] == 2 ) : // Smartphones (tethering over USB) ?>
+                    <div class="info-item"><?php echo _("Device"); ?></div><div><?php echo htmlspecialchars($clientinfo["vendor"]." ".$clientinfo["model"], ENT_QUOTES); ?></div>
+                    <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo htmlspecialchars($clientinfo["ipaddress"], ENT_QUOTES); ?></div>
+
+ 				  <?php elseif ($clientinfo["type"] == 4 ) : // MOBILE DATA - ROUTER MODE (HILINK) ?>
                     <?php 
 						exec('ip route list |  sed -rn "s/default via (([0-9]{1,3}\.){3}[0-9]{1,3}).*dev '.$clientinfo["name"].'.*/\1/p"',$gw); // get gateway
 						$gw=empty($gw) ? "" : $gw[0]; 
@@ -102,8 +108,9 @@ switch($clientinfo["type"]) {
                     <div class="info-item"><?php echo _("Signal strength"); ?></div><div><?php echo htmlspecialchars($clientinfo["signal"], ENT_QUOTES); ?></div>
                     <div class="info-item"><?php echo _("Network"); ?></div><div><?php echo htmlspecialchars($clientinfo["operator"], ENT_QUOTES); ?></div>
                  <?php else : // ETHERNET ?>
-                    <div></div>
-				 <?php endif; ?>
+                    <div class="info-item"><?php echo _("Device"); ?></div><div><?php echo htmlspecialchars($clientinfo["vendor"]." ".$clientinfo["model"], ENT_QUOTES); ?></div>
+                    <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo htmlspecialchars($clientinfo["ipaddress"], ENT_QUOTES); ?></div>
+ 				 <?php endif; ?>
                 </div>
 
 

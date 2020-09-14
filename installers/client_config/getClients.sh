@@ -174,8 +174,13 @@ if [[ ! -z $devs ]]; then
        outjs+=', "operator": "'$res'"'
     elif [[ $simple == 0 ]]; then
        res=`ip link show ${devs[$i]} 2> /dev/null | grep -oP '( UP | UNKNOWN)'`
-       if [[ -z $res ]]; then outjs+=', "connected": "n"'
-       else outjs+=', "connected": "y"'; fi
+       if [[ -z $res ]]; then 
+			outjs+=', "connected": "n"'
+			outjs+=', "signal": "-100 dB (0%)"'
+       else 
+			outjs+=', "connected": "y"'; 
+			outjs+=', "signal": "-0 dB (100%)"'
+	   fi
     fi
     if [[ $simple == 0 ]]; then outjs+=', "ipaddress": "'$ipadd'"'; fi
     outjs+=', "model": "'$mod'"'
