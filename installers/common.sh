@@ -411,7 +411,7 @@ function _install_client_config() {
     # Move scripts 
     sudo cp "$webroot_dir/installers/client_config/"*.sh "$raspap_client_scripts/" || _install_status 1 "Unable to move client scripts"
     sudo chmod a+rx "$raspap_client_scripts/"*.sh  || _install_status 1 "Unable to chmod client scripts"
-    sudo cp "$webroot_dir/installers/client_config/mcc-mnc-table" "$raspap_client_scripts/" || _install_status 1 "Unable to move client data"
+    sudo cp "$webroot_dir/installers/client_config/mcc-mnc-table.csv" "$raspap_client_scripts/" || _install_status 1 "Unable to move client data"
     # wvdial settings
     sudo cp "$webroot_dir/installers/client_config/wvdial.conf" "/etc/" || _install_status 1 "Unable to install client configuration"
     sudo cp "$webroot_dir/installers/client_config/interfaces" "/etc/network/interfaces" || _install_status 1 "Unable to install interface settings"
