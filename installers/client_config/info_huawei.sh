@@ -87,7 +87,7 @@ case $opt in
     fi
     if [[ ! "$res" == "none" ]]; then res="$res (${qual}%)"; fi
     ;;
-	
+    
   operator)
     # check if operator/network is just a 5 digit number -> extract network name from table
     if [[ $res =~ ^[0-9]{5}$ ]]; then

@@ -22,9 +22,9 @@ function DisplayDashboard(&$extraFooterScripts)
         $status->showMessages();
         return;
     }
-	
-	// ----------------------------- INFOS ABOUT THE ACCESS POINT -------------------------------------------------------------
-	
+    
+    // ----------------------------- INFOS ABOUT THE ACCESS POINT -------------------------------------------------------------
+    
     exec('ip a show '.$_SESSION['ap_interface'], $stdoutIp);
     $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
     $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
@@ -90,17 +90,17 @@ function DisplayDashboard(&$extraFooterScripts)
         $strTxBytes .= getHumanReadableDatasize($strTxBytes);
     }
 
-	// ------------------------ INFOS ABOUT THE CLIENT---------------------------------------------------------------
-	$clientinfo=array("name"=>"none","type"=>-1,"connected"=>"n");
-	$raspi_client=$_SESSION['wifi_client_interface'];
+    // ------------------------ INFOS ABOUT THE CLIENT---------------------------------------------------------------
+    $clientinfo=array("name"=>"none","type"=>-1,"connected"=>"n");
+    $raspi_client=$_SESSION['wifi_client_interface'];
     exec('/usr/local/sbin/getClients.sh', $clients); # get list of clients, including connection information (json format)
     if(!empty($clients)) {
         $clients=json_decode($clients[0],true);
-		// client type: 0 - eth0, 1 -ethx, 2 - usb tethering, 3 - wlan, 4 - mobile data (router mode), 5 - mobile data modem
-        // extract the infos for the device with the highest type number		
+        // client type: 0 - eth0, 1 -ethx, 2 - usb tethering, 3 - wlan, 4 - mobile data (router mode), 5 - mobile data modem
+        // extract the infos for the device with the highest type number
         $ncl=$clients["clients"];
         if($ncl > 0) {
-			$ty=-1;
+            $ty=-1;
             foreach($clients["device"] as $dev) {
                if($dev["type"]>$ty) {
                  $ty=$dev["type"];
@@ -109,16 +109,16 @@ function DisplayDashboard(&$extraFooterScripts)
             }
         }
     }
-	if ($clientinfo["name"] != "none") $raspi_client = $clientinfo["name"];
-	$interfaceState = $clientinfo["connected"] == "y" ? 'UP' : 'DOWN';
-	
-	$txPower="";
-	if ($clientinfo["type"] == 3) {
+    if ($clientinfo["name"] != "none") $raspi_client = $clientinfo["name"];
+    $interfaceState = $clientinfo["connected"] == "y" ? 'UP' : 'DOWN';
+    
+    $txPower="";
+    if ($clientinfo["type"] == 3) {
       // txpower is now displayed on iw dev(..) info command, not on link command.
       exec('iw dev '.$clientinfo["name"].' info |  sed -rn "s/.*txpower ([0-9]*)[0-9\.]*( dBm).*/\1\2/p"', $stdoutIwInfo);
       if (!empty($stdoutIwInfo)) $txPower=$stdoutIwInfo[0];
-	}
-	
+    }
+    
     $classMsgDevicestatus = 'warning';
     if ($interfaceState === 'UP') {
         $classMsgDevicestatus = 'success';
@@ -166,7 +166,7 @@ function DisplayDashboard(&$extraFooterScripts)
             "strTxPackets",
             "strTxBytes",
             "txPower",
-			"clientinfo"
+            "clientinfo"
         )
     );
     $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);

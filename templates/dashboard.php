@@ -16,27 +16,27 @@ if ($arrHostapdConf['BridgedEnable'] == 1) {
 }
 $ifaceStatus = $clientinfo["connected"]=="y" ? "up" : "down";
 switch($clientinfo["type"]) {
-	case 0:
-	case 1:
-			$client_title = "Client: Ethernet cable";
-			$type_name = "Ethernet";
-			break;
-	case 2:
-			$client_title = "Client: Smartphone (USB tethering)";
-			$type_name = "Smartphone";
-			break;
-	case 3:
-			$client_title = "Wireless Client";
-			$type_name = "Wifi";
-			break;
-	case 4:
-	case 5:
-			$client_title = "Mobile Data Client";
-			$type_name = "Mobile Data";
-			break;
-	default: 
-			$client_title = "No information for client available";
-			$type_name = "No Client";
+    case 0:
+    case 1:
+            $client_title = "Client: Ethernet cable";
+            $type_name = "Ethernet";
+            break;
+    case 2:
+            $client_title = "Client: Smartphone (USB tethering)";
+            $type_name = "Smartphone";
+            break;
+    case 3:
+            $client_title = "Wireless Client";
+            $type_name = "Wifi";
+            break;
+    case 4:
+    case 5:
+            $client_title = "Mobile Data Client";
+            $type_name = "Mobile Data";
+            break;
+    default: 
+            $client_title = "No information for client available";
+            $type_name = "No Client";
 }
 
 ?>
@@ -75,26 +75,26 @@ switch($clientinfo["type"]) {
           <div class="col-sm-6 align-items-stretch">
             <div class="card h-100">
               <div class="card-body wireless">
-				<h4><?php echo _("$client_title"); ?></h4>
-				<div class="row justify-content-md-center">
+                <h4><?php echo _("$client_title"); ?></h4>
+                <div class="row justify-content-md-center">
                 <div class="col-md">
-				  <?php if ($clientinfo["type"] < 0) : // NO CLIENT ?>
-					<div class="info-item"><?php echo _("No Client device found"); ?></div>
-				  <?php elseif ($clientinfo["type"] == 3) : // WIRELESS ?>
-					<div class="info-item"><?php echo _("Connected To"); ?></div><div><?php echo htmlspecialchars($clientinfo["ssid"], ENT_QUOTES); ?></div>
-					<div class="info-item"><?php echo _("AP Mac Address"); ?></div><div><?php echo htmlspecialchars($clientinfo["ap-mac"], ENT_QUOTES); ?></div>
-					<div class="info-item"><?php echo _("Bitrate"); ?></div><div><?php echo htmlspecialchars($clientinfo["bitrate"], ENT_QUOTES); ?></div>
-					<div class="info-item"><?php echo _("Signal Level"); ?></div><div><?php echo htmlspecialchars($clientinfo["signal"], ENT_QUOTES); ?></div>
-					<div class="info-item"><?php echo _("Transmit Power"); ?></div><div><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
-					<div class="info-item"><?php echo _("Frequency"); ?></div><div><?php echo htmlspecialchars($clientinfo["freq"]." MHz", ENT_QUOTES); ?></div>
+                  <?php if ($clientinfo["type"] < 0) : // NO CLIENT ?>
+                    <div class="info-item"><?php echo _("No Client device found"); ?></div>
+                  <?php elseif ($clientinfo["type"] == 3) : // WIRELESS ?>
+                    <div class="info-item"><?php echo _("Connected To"); ?></div><div><?php echo htmlspecialchars($clientinfo["ssid"], ENT_QUOTES); ?></div>
+                    <div class="info-item"><?php echo _("AP Mac Address"); ?></div><div><?php echo htmlspecialchars($clientinfo["ap-mac"], ENT_QUOTES); ?></div>
+                    <div class="info-item"><?php echo _("Bitrate"); ?></div><div><?php echo htmlspecialchars($clientinfo["bitrate"], ENT_QUOTES); ?></div>
+                    <div class="info-item"><?php echo _("Signal Level"); ?></div><div><?php echo htmlspecialchars($clientinfo["signal"], ENT_QUOTES); ?></div>
+                    <div class="info-item"><?php echo _("Transmit Power"); ?></div><div><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
+                    <div class="info-item"><?php echo _("Frequency"); ?></div><div><?php echo htmlspecialchars($clientinfo["freq"]." MHz", ENT_QUOTES); ?></div>
                   <?php elseif ($clientinfo["type"] == 2 ) : // Smartphones (tethering over USB) ?>
                     <div class="info-item"><?php echo _("Device"); ?></div><div><?php echo htmlspecialchars($clientinfo["vendor"]." ".$clientinfo["model"], ENT_QUOTES); ?></div>
                     <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo htmlspecialchars($clientinfo["ipaddress"], ENT_QUOTES); ?></div>
 
- 				  <?php elseif ($clientinfo["type"] == 4 ) : // MOBILE DATA - ROUTER MODE (HILINK) ?>
+                  <?php elseif ($clientinfo["type"] == 4 ) : // MOBILE DATA - ROUTER MODE (HILINK) ?>
                     <?php 
-						exec('ip route list |  sed -rn "s/default via (([0-9]{1,3}\.){3}[0-9]{1,3}).*dev '.$clientinfo["name"].'.*/\1/p"',$gw); // get gateway
-						$gw=empty($gw) ? "" : $gw[0]; 
+                        exec('ip route list |  sed -rn "s/default via (([0-9]{1,3}\.){3}[0-9]{1,3}).*dev '.$clientinfo["name"].'.*/\1/p"',$gw); // get gateway
+                        $gw=empty($gw) ? "" : $gw[0]; 
                     ?>
                     <div class="info-item"><?php echo _("Device"); ?></div><div><?php echo htmlspecialchars($clientinfo["model"], ENT_QUOTES)." (Hilink)"; ?></div>
                     <div class="info-item"><?php echo _("Connection mode"); ?></div><div><?php echo htmlspecialchars($clientinfo["mode"], ENT_QUOTES); ?></div>
@@ -102,7 +102,7 @@ switch($clientinfo["type"]) {
                     <div class="info-item"><?php echo _("Network"); ?></div><div><?php echo htmlspecialchars($clientinfo["operator"], ENT_QUOTES); ?></div>
                     <div class="info-item"><?php echo _("WAN IP"); ?></div><div><?php echo htmlspecialchars($clientinfo["ipaddress"], ENT_QUOTES); ?></div>
                     <div class="info-item"><?php echo _("Web-GUI"); ?></div><div><?php if(!empty($gw)) echo '<a href="http://'.$gw.'" >'.$gw."</a>"; ?></div>
-				  <?php elseif ($clientinfo["type"] == 5 ) : // MOBILE DATA MODEM) ?>
+                  <?php elseif ($clientinfo["type"] == 5 ) : // MOBILE DATA MODEM) ?>
                     <div class="info-item"><?php echo _("Device"); ?></div><div><?php echo htmlspecialchars($clientinfo["model"], ENT_QUOTES); ?></div>
                     <div class="info-item"><?php echo _("Connection mode"); ?></div><div><?php echo htmlspecialchars($clientinfo["mode"], ENT_QUOTES); ?></div>
                     <div class="info-item"><?php echo _("Signal strength"); ?></div><div><?php echo htmlspecialchars($clientinfo["signal"], ENT_QUOTES); ?></div>
@@ -110,15 +110,15 @@ switch($clientinfo["type"]) {
                  <?php else : // ETHERNET ?>
                     <div class="info-item"><?php echo _("Device"); ?></div><div><?php echo htmlspecialchars($clientinfo["vendor"]." ".$clientinfo["model"], ENT_QUOTES); ?></div>
                     <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo htmlspecialchars($clientinfo["ipaddress"], ENT_QUOTES); ?></div>
- 				 <?php endif; ?>
+                 <?php endif; ?>
                 </div>
 
 
-				<div class="col-md mt-2 d-flex justify-content-center">
-			    <?php 
- 				  preg_match("/.*\((\s*\d*)\s*%\s*\)/",$clientinfo["signal"],$match);
-				  $strLinkQuality=array_key_exists(1,$match) ? $match[1] : 0;
-				?>
+                <div class="col-md mt-2 d-flex justify-content-center">
+                <?php 
+                  preg_match("/.*\((\s*\d*)\s*%\s*\)/",$clientinfo["signal"],$match);
+                  $strLinkQuality=array_key_exists(1,$match) ? $match[1] : 0;
+                ?>
                 <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
                 <div class="chart-container">
                   <canvas id="divChartLinkQ"></canvas>

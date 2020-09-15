@@ -343,7 +343,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config[] = 'nohook wpa_supplicant';
         } else {
             // Default config 
-            $ip_address = "10.3.141.1/24";	// fallback IP
+            $ip_address = "10.3.141.1/24";  // fallback IP
             // default IP of the AP xxx.xxx.xxx.1/24 of the selected dhcp range
             $def_ip = array();
             if (preg_match("/^([0-9]{1,3}\.){3}/",$dhcp_range,$def_ip) ) $ip_address = $def_ip[0]."1/24";

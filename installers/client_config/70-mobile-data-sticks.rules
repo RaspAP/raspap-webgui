@@ -1,9 +1,7 @@
 # mobile data modem - ttyUSB0 device appears 
-SUBSYSTEM=="tty", KERNEL=="ttyUSB0",  ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="14ac", TAG+="systemd", ENV{SYSTEMD_WANTS}="start start_ppp0_device.service"
-# device is remove: clear a possible stale network/istate
-SUBSYSTEM=="usb", ACTION=="remove", ATTR{idVendor}=="12d1", ATTR{idProduct}=="14ac", RUN+="/sbin/ifdown ppp0"
+SUBSYSTEM=="tty", KERNEL=="ttyUSB0", TAG+="systemd", ENV{SYSTEMD_WANTS}="start start_ppp0_device.service"
 
-# Huawei Hilink mobile data device is connected - use lte0 as device name (instead of eth1) and auto-connect
+# Huawei Hilink mobile data device is connected - use lte0 as device name (instead of eth1) and auto-connect via service
 # E3372h
 SUBSYSTEM=="net", ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="14db", NAME="lte0",  TAG+="systemd", ENV{SYSTEMD_WANTS}="start start_huawei_hilink.service"
 

@@ -148,7 +148,7 @@ if [[ ! -z $devs ]]; then
        fi
     elif [[ ${typs[$i]} == 4  ]] && [[ $simple == 0 ]]; then    # its a mobile data router -> assume Huawei HiLink
        res=`ip link show ${devs[$i]} 2> /dev/null | grep -oP ' UP '`
-       apiadd=$(ifconfig -a | grep -i ${devs[$i]} -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}")"1"	# get the ip address of the hilink API
+       apiadd=$(ifconfig -a | grep -i ${devs[$i]} -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}")"1" # get the ip address of the hilink API
        res=`$path/info_huawei.sh mode hilink $apiadd`
        outjs+=', "mode": "'$res'"'
        res=`$path/info_huawei.sh device hilink $apiadd`
@@ -175,12 +175,12 @@ if [[ ! -z $devs ]]; then
     elif [[ $simple == 0 ]]; then
        res=`ip link show ${devs[$i]} 2> /dev/null | grep -oP '( UP | UNKNOWN)'`
        if [[ -z $res ]]; then 
-			outjs+=', "connected": "n"'
-			outjs+=', "signal": "-100 dB (0%)"'
+            outjs+=', "connected": "n"'
+            outjs+=', "signal": "-100 dB (0%)"'
        else 
-			outjs+=', "connected": "y"'; 
-			outjs+=', "signal": "-0 dB (100%)"'
-	   fi
+            outjs+=', "connected": "y"'; 
+            outjs+=', "signal": "-0 dB (100%)"'
+       fi
     fi
     if [[ $simple == 0 ]]; then outjs+=', "ipaddress": "'$ipadd'"'; fi
     outjs+=', "model": "'$mod'"'
