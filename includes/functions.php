@@ -452,3 +452,8 @@ function getBridgedState()
     return  $arrHostapdConf['BridgedEnable'];
 }
 
+// Validates a host or FQDN
+function validate_host($host) {
+  return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host);
+}
+
