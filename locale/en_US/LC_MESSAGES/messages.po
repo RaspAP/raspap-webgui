@@ -760,3 +760,24 @@ msgstr "Statistics"
 msgid "Information provided by adblock"
 msgstr "Information provided by adblock"
 
+msgid "Enable custom blocklist"
+msgstr "Enable custom blocklist"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+
+msgid "Custom blocklist not defined"
+msgstr "Custom blocklist not defined"
+
+msgid "Invalid custom IP address found on line "
+msgstr "Invalid custom IP address found on line "
+
+msgid "Invalid custom host found on line "
+msgstr "Invalid custom host found on line "
+
