@@ -68,7 +68,7 @@ Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues)
 ## Ad Blocking
 This feature uses DNS blacklisting to block requests for ads, trackers and other undesirable hosts. To enable ad blocking, simply respond to the prompt during the installation. As a beta release, we encourage testing and feedback from users of RaspAP.
 
-Details are [provided here](https://github.com/billz/raspap-webgui/wiki/Ad-blocking-(Beta)). 
+Details are [provided here](https://github.com/billz/raspap-webgui/wiki/Ad-blocking).
 
 ## Bridged AP
 By default RaspAP configures a routed AP for your clients to connect to. A bridged AP configuration is also possible. Slide the **Bridged AP mode** toggle under the **Advanced** tab of **Configure hotspot**, then save and restart the hotspot.
