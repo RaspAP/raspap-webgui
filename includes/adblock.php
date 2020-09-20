@@ -27,7 +27,6 @@ function DisplayAdBlockConfig()
                 foreach ($lines as $line) {
                     $ip_host = preg_split('/\s+/', $line);
                     $index++;
-                    //echo $host[1] . '<br>';
                     if (!filter_var($ip_host[0], FILTER_VALIDATE_IP)) {
                         $errors .= _('Invalid custom IP address found on line '.$index);
                         break;
