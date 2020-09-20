@@ -24,19 +24,21 @@ function DisplayAdBlockConfig()
             if ($_POST['adblock-custom-enable'] == "1") {
                 // validate custom hosts input
                 $lines = preg_split('/\r\n|\n|\r/', trim($_POST['adblock-custom-hosts']));
-                foreach ($lines as $line) {
-                    $ip_host = preg_split('/\s+/', $line);
-                    $index++;
-                    if (!filter_var($ip_host[0], FILTER_VALIDATE_IP)) {
-                        $errors .= _('Invalid custom IP address found on line '.$index);
-                        break;
-                    }
-                    if (!validate_host($ip_host[1])) {
-                        $errors .= _('Invalid custom host found on line '.$index);
-                        break;
+                if (!in_array("", $lines, true)) {
+                    foreach ($lines as $line) {
+                        $ip_host = preg_split('/\s+/', $line);
+                        $index++;
+                        if (!filter_var($ip_host[0], FILTER_VALIDATE_IP)) {
+                            $errors .= _('Invalid custom IP address found on line '.$index);
+                            break;
+                        }
+                        if (!validate_host($ip_host[1])) {
+                            $errors .= _('Invalid custom host found on line '.$index);
+                            break;
+                        }
                     }
                 }
-                file_put_contents("/tmp/dnsmasq_custom", $_POST['adblock-custom-hosts']);
+                file_put_contents("/tmp/dnsmasq_custom", $_POST['adblock-custom-hosts'].PHP_EOL);
                 system("sudo cp /tmp/dnsmasq_custom " .RASPI_ADBLOCK_LISTPATH .'custom.txt', $return);
                 $config.= 'addn-hosts=' .RASPI_ADBLOCK_LISTPATH .'custom.txt'.PHP_EOL;
                 $custom_enabled = true;
