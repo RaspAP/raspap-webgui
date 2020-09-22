@@ -90,7 +90,7 @@ function DisplayDashboard(&$extraFooterScripts)
     define('SSIDMAXLEN', 32);
     // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
     exec('iw dev ' .$_SESSION['wifi_client_interface']. ' link ', $stdoutIw);
-    $stdoutIwAllLinesGlued = implode(' ', $stdoutIw);
+    $stdoutIwAllLinesGlued = implode('+', $stdoutIw); // Break lines with character illegal in SSID and MAC addr
     $stdoutIwWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwAllLinesGlued);
 
     preg_match('/Connected to (([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2}))/', $stdoutIwWRepSpaces, $matchesBSSID) || $matchesBSSID[1] = '';
@@ -102,7 +102,7 @@ function DisplayDashboard(&$extraFooterScripts)
         $wlanHasLink = true;
     }
 
-    if (!preg_match('/SSID: ([^ ]{1,'.SSIDMAXLEN.'})/', $stdoutIwWRepSpaces, $matchesSSID)) {
+    if (!preg_match('/SSID: ([^+]{1,'.SSIDMAXLEN.'})/', $stdoutIwWRepSpaces, $matchesSSID)) {
         $wlanHasLink = false;
         $matchesSSID[1] = 'None';
     }
