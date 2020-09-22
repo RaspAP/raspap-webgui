@@ -477,5 +477,9 @@ function validateCidr($cidr)
         return $netmask <= 128;
     }
     return false;
+    
+    // Validates a host or FQDN
+function validate_host($host) {
+  return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host);
 }
 
