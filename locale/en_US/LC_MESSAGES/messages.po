@@ -447,6 +447,15 @@ msgstr "Maximum number of clients"
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 
+msgid "Beacon interval"
+msgstr "Beacon interval"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Disable <code>disassoc_low_ack</code>"
+
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Do not disassociate stations based on excessive transmission failures."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
@@ -750,4 +759,25 @@ msgstr "Statistics"
 
 msgid "Information provided by adblock"
 msgstr "Information provided by adblock"
+
+msgid "Enable custom blocklist"
+msgstr "Enable custom blocklist"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+
+msgid "Custom blocklist not defined"
+msgstr "Custom blocklist not defined"
+
+msgid "Invalid custom IP address found on line "
+msgstr "Invalid custom IP address found on line "
+
+msgid "Invalid custom host found on line "
+msgstr "Invalid custom host found on line "
 

@@ -14,6 +14,16 @@ Development of RaspAP is made possible thanks to our awesome sponsors. If you us
 
 Recurring and one-time donors are vital to the continued development of this project. Join these awesome donors by pledging via [OpenCollective](https://opencollective.com/raspap) or [PayPal](https://paypal.me/billzgithub).
 
+## OpenCollective
+Navisense GmbH - $500  
+Wechaty - $20  
+Pheppy -  $10  
+Mark H - $10  
+Phil K - $10  
+T.Paul L - $5  
+Wouter D - $20  
+Andy N - $20  
+
 ## PayPal
 Ray E - "This project is awesome and just works; saved me and my client tons of work. Thank you!" - $20  
 Erin C - "Just got Raspap up and running, looks very cool, thanks!" -$20 CAD  

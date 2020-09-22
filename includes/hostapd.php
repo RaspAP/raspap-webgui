@@ -77,7 +77,14 @@ function DisplayHostAPDConfig()
             $arrConfig[$arrLine[0]]=$arrLine[1];
         }
     };
-
+    // assign beacon_int boolean if value is set
+    if (isset($arrConfig['beacon_int'])) {
+        $arrConfig['beacon_interval_bool'] = 1;
+    }
+    // assign disassoc_low_ack boolean if value is set
+    if (isset($arrConfig['disassoc_low_ack'])) {
+        $arrConfig['disassoc_low_ack_bool'] = 1;
+    }
     // assign country_code from iw reg if not set in config
     if (!isset($arrConfig['country_code']) && isset($country_code[0])) {
         $arrConfig['country_code'] = $country_code[0];
@@ -213,12 +220,19 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $status->addMessage('Unknown interface '.htmlspecialchars($_POST['interface'], ENT_QUOTES), 'danger');
         $good_input = false;
     }
-
     if (strlen($_POST['country_code']) !== 0 && strlen($_POST['country_code']) != 2) {
         $status->addMessage('Country code must be blank or two characters', 'danger');
         $good_input = false;
     }
-
+    if (isset($_POST['beaconintervalEnable'])) {
+        if (!is_numeric($_POST['beacon_interval'])) {
+            $status->addMessage('Beacon interval must be a numeric value', 'danger');
+            $good_input = false;
+        } elseif ($_POST['beacon_interval'] < 15 || $_POST['beacon_interval'] > 65535) {
+            $status->addMessage('Beacon interval must be between 15 and 65535', 'danger');
+            $good_input = false;
+        }
+    }
     $_POST['max_num_sta'] = (int) $_POST['max_num_sta'];
     $_POST['max_num_sta'] = $_POST['max_num_sta'] > 2007 ? 2007 : $_POST['max_num_sta'];
     $_POST['max_num_sta'] = $_POST['max_num_sta'] < 1 ? null : $_POST['max_num_sta'];
@@ -231,7 +245,12 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $config.= 'ctrl_interface_group=0'.PHP_EOL;
         $config.= 'auth_algs=1'.PHP_EOL;
         $config.= 'wpa_key_mgmt=WPA-PSK'.PHP_EOL;
-        $config.= 'beacon_int=100'.PHP_EOL;
+        if (isset($_POST['beaconintervalEnable'])) {
+            $config.= 'beacon_int='.$_POST['beacon_interval'].PHP_EOL;
+        }
+        if (isset($_POST['disassoc_low_ackEnable'])) {
+            $config.= 'disassoc_low_ack=0'.PHP_EOL;
+        }
         $config.= 'ssid='.$_POST['ssid'].PHP_EOL;
         $config.= 'channel='.$_POST['channel'].PHP_EOL;
         if ($_POST['hw_mode'] === 'n') {
