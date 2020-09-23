@@ -4,7 +4,6 @@
 <?php endif ?>
 <?php $index = 0; ?>
 <div class="row ml-1 mr-1 w-100">
-<?php $networks = array_slice($networks, 1,1); ?>
 <?php
 if (count($networks) == 1) {
     $prop_col = "col-sm-12";
