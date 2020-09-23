@@ -55,6 +55,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                 <div class="row justify-content-md-center">
                 <div class="col-md">
                 <div class="info-item"><?php echo _("Connected To"); ?></div><div><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
+                <div class="info-item"><?php echo _("Interface"); ?></div><div><?php echo htmlspecialchars($_SESSION['wifi_client_interface']); ?></div>
                 <div class="info-item"><?php echo _("AP Mac Address"); ?></div><div><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Bitrate"); ?></div><div><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Signal Level"); ?></div><div><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
