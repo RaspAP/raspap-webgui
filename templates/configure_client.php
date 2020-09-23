@@ -21,7 +21,7 @@
         <form method="POST" action="?page=wpa_conf" name="wpa_conf_form" class="row">
             <?php echo CSRFTokenFieldTag() ?>
           <input type="hidden" name="client_settings" ?>
-          <div class="js-wifi-stations loading-spinner"></div>
+          <div class="row js-wifi-stations w-100 loading-spinner"></div>
         </form>
       </div><!-- ./ card-body -->
       <div class="card-footer"><?php echo _("<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"); ?></div>
