@@ -1,11 +1,7 @@
-<?php if (empty($networks)) : ?>
+<?php if (empty($networks)) { ?>
   <p class="lead text-center"><?php echo _('No Wifi stations found') ?></p>
   <p class="text-center"><?php echo _('Click "Rescan" to search for nearby Wifi stations.') ?></p>
-<?php endif ?>
-<?php $index = 0; ?>
-<div class="row ml-1 mr-1 w-100">
-<?php
-if (count($networks) == 1) {
+<?php } elseif (count($networks) == 1) { 
     $prop_col = "col-sm-12";
     $prop_w = "w-50";
 } else {
@@ -13,7 +9,9 @@ if (count($networks) == 1) {
     $prop_w = "w-100";
 }
 ?>
-  <?php foreach ($networks as $ssid => $network) : ?>
+<?php $index = 0; ?>
+<div class="row ml-1 mr-1 w-100">
+ <?php foreach ($networks as $ssid => $network) : ?>
     <div class="<?php echo $prop_col; ?> align-items-stretch mb-3">
     <div class="card h-100 <?php echo $prop_w; ?>">
       <div class="card-body">
