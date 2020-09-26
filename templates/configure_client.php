@@ -1,3 +1,16 @@
+<?php
+$arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
+if ($arrHostapdConf['WifiAPEnable'] == 1) {
+    $client_interface = 'uap0';
+} else {
+    $client_interface = $_SESSION['wifi_client_interface'];
+}
+exec('ip a show '.$client_interface, $stdoutIp);
+$stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
+$stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
+preg_match('/state (UP|DOWN)/i', $stdoutIpWRepeatedSpaces, $matchesState) || $matchesState[1] = 'unknown';
+$ifaceStatus = strtolower($matchesState[1]) ? "up" : "down";
+?>
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
@@ -6,6 +19,12 @@
           <div class="col">
             <i class="fas fa-wifi mr-2"></i><?php echo _("WiFi client"); ?>
           </div>
+            <div class="col">
+              <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+                <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
+                <span class="text service-status"><?php echo strtolower($client_interface) .' '. _($ifaceStatus) ?></span>
+              </button>
+            </div>
         </div><!-- /.row -->
       </div><!-- /.card-header -->
       <div class="card-body">
