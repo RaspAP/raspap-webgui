@@ -39,6 +39,11 @@ if [[ ! -z "$connected" ]] &&  [[ $1 == "down" ]]; then
 fi
 if [[ $type == 4 ]]; then
    ipadd=$(echo $connected | grep -oP "([0-9]{1,3}\.){2}[0-9]{1,3}")".1"  # get ip address of the Hilink API
-   $path/onoff_huawei_hilink.sh $1 $ipadd; 
+   mode=0
+   if [[ $1 == "up" ]]; then mode=1; fi
+   if [[ -f /etc/raspap/networking/mobiledata.ini ]]; then
+      pin=$(cat /etc/raspap/networking/mobiledata.ini | sed -rn 's/pin = ([0-9]*)$/\1/p' )
+   fi
+   $path/onoff_huawei_hilink.sh -c $mode -h $ipadd -p $pin
 fi
 
