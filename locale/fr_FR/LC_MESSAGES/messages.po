@@ -35,10 +35,10 @@ msgid "Hotspot"
 msgstr "Hotspot"
 
 msgid "Memory Use"
-msgstr "Utilisation de la mémoire"
+msgstr "Usage mémoire"
 
 msgid "CPU Temp"
-msgstr "Température du CPU"
+msgstr "T°C CPU"
 
 msgid "Networking"
 msgstr "Réseau"
