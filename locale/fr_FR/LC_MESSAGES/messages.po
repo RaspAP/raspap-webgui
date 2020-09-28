@@ -35,10 +35,10 @@ msgid "Hotspot"
 msgstr "Hotspot"
 
 msgid "Memory Use"
-msgstr ""
+msgstr "Utilisation de la mémoire"
 
 msgid "CPU Temp"
-msgstr ""
+msgstr "Température du CPU"
 
 msgid "Networking"
 msgstr "Réseau"
@@ -127,7 +127,7 @@ msgid "Rescan"
 msgstr "Actualiser"
 
 msgid "Update"
-msgstr "Mettre à jour"
+msgstr "Mise à jour"
 
 msgid "Add"
 msgstr "Ajouter"
@@ -182,7 +182,7 @@ msgid "Transferred Bytes"
 msgstr "Octets transférés"
 
 msgid "Wireless Client"
-msgstr ""
+msgstr "Client WIFI"
 
 msgid "Connected To"
 msgstr "Connecté à"
@@ -230,13 +230,13 @@ msgid "Interface is down"
 msgstr "L'interface est arrêté"
 
 msgid "Interface already down"
-msgstr "Interface déjà arrêté"
+msgstr "Interface déjà arrêtée"
 
 msgid "Start wlan0"
 msgstr "Démarrer wlan0"
 
 msgid "Stop wlan0"
-msgstr "Arrêtez wlan0"
+msgstr "Arrêter wlan0"
 
 msgid "Connected Devices"
 msgstr "Appareils connectés"
@@ -276,7 +276,7 @@ msgid "Active DHCP leases"
 msgstr "Baux DHCP actifs"
 
 msgid "Expire time"
-msgstr "Temps d'expiration"
+msgstr "Temps avant expiration"
 
 msgid "MAC Address"
 msgstr "Adresse Mac"
@@ -291,7 +291,7 @@ msgid "Information provided by Dnsmasq"
 msgstr "Informations fournies par Dnsmasq"
 
 msgid "Stop dnsmasq"
-msgstr "Arrêtez dnsmasq"
+msgstr "Arrêter dnsmasq"
 
 msgid "Start dnsmasq"
 msgstr "Démarrer dnsmasq"
@@ -324,7 +324,7 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq n'est pas en fonctionnement"
 
 msgid "Upstream DNS servers"
-msgstr "Serveurs DNS amont"
+msgstr "Serveurs DNS en amont"
 
 msgid "Only ever query DNS servers configured below"
 msgstr "Uniquement les serveurs DNS de requête configurés ci-dessous"
@@ -336,7 +336,7 @@ msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
 msgstr "Cette option ajoute <code>no-resolv</code> à la configuration dnsmasq."
 
 msgid "Add upstream DNS server"
-msgstr "Ajouter un serveur DNS amont"
+msgstr "Ajouter un serveur DNS en amont"
 
 msgid "Format"
 msgstr "Format"
@@ -418,7 +418,7 @@ msgid "Start hotspot"
 msgstr "Démarrer le point d'accès"
 
 msgid "Stop hotspot"
-msgstr "Arrêté le point d'accès"
+msgstr "Arrêter le point d'accès"
 
 msgid "Restart hotspot"
 msgstr "Redémarrer le point d'accès"
@@ -495,7 +495,7 @@ msgid "Select a language"
 msgstr "Sélectionnez une langue"
 
 msgid "Language setting saved"
-msgstr "Paramètre de langue enregistré"
+msgstr "Paramètre de langue enregistrée"
 
 msgid "Console"
 msgstr "Console"
@@ -687,10 +687,10 @@ msgid "Remove"
 msgstr "arrêté"
 
 msgid "up"
-msgstr "vers le haut"
+msgstr "activé"
 
 msgid "down"
-msgstr "vers le bas"
+msgstr "désactivé"
 
 msgid "adblock"
 msgstr "AdBlock"
@@ -720,10 +720,10 @@ msgid "Choose a blocklist provider"
 msgstr "Choisir un fournisseur de liste noire"
 
 msgid "Hostnames blocklist last updated"
-msgstr ""
+msgstr "Dernière mise à jour de la liste de blocage des noms d'hôtes"
 
 msgid "Domains blocklist last updated"
-msgstr ""
+msgstr "Dernière mise à jour de la liste de blocage des domaines"
 
 msgid "Update now"
 msgstr "Mettre à jour"
