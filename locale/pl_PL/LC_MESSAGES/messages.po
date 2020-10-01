@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-10-01 06:44\n"
-"Last-Translator: Patryk Kubiak\n"
+"PO-Revision-Date: 2020-10-01 09:45\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Crowdin-Project: raspap\n"
 "X-Crowdin-Project-ID: 395801\n"
 "X-Crowdin-Language: pl\n"
-"X-Crowdin-File: /master/locale/pl_PL/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 "X-Crowdin-File-ID: 10\n"
 
 #: index.php
@@ -34,7 +34,7 @@ msgid "WiFi client"
 msgstr "Klient WiFi"
 
 msgid "Hotspot"
-msgstr "Punkt dostępu WiFi"
+msgstr "Punkt dostępu"
 
 msgid "Memory Use"
 msgstr "Użycie pamięci"
@@ -447,20 +447,20 @@ msgid "Configures the max_num_sta option of hostapd. The default and maximum is 
 msgstr "Konfiguruje opcję max_num_sta w hostapd. Domyślna i największa możliwa wartość to 2007. Jeśli pole jest puste lub wynosi 0, używana jest domyślna wartość."
 
 msgid "Beacon interval"
-msgstr ""
+msgstr "Częstotliwość znacznika"
 
 msgid "Disable <code>disassoc_low_ack</code>"
-msgstr ""
+msgstr "Wyłącz <code>disassoc_low_ack</code>"
 
 msgid "Do not disassociate stations based on excessive transmission failures."
-msgstr ""
+msgstr "Nie odłączaj stacji na podstawie nadmiernych awarii transmisji."
 
 #: includes/networking.php
 msgid "Summary"
 msgstr "Podsumowanie"
 
 msgid "Internet connection"
-msgstr ""
+msgstr "Połączenie internetowe"
 
 msgid "Current settings"
 msgstr "Aktualne ustawienia"
@@ -542,10 +542,10 @@ msgid "System Shutting Down Now!"
 msgstr "System jest wyłączany!"
 
 msgid "Web server port"
-msgstr ""
+msgstr "Port serwera sieci Web"
 
 msgid "Web server bind address"
-msgstr ""
+msgstr "Adres powiązania serwera WWW"
 
 #: includes/themes.php
 msgid "Theme settings"
@@ -555,7 +555,7 @@ msgid "Select a theme"
 msgstr "Wybierz motyw"
 
 msgid "Color"
-msgstr ""
+msgstr "Kolor"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -758,23 +758,23 @@ msgid "Information provided by adblock"
 msgstr "Informacje dostarczone przez AdBlock"
 
 msgid "Enable custom blocklist"
-msgstr ""
+msgstr "Włącz własną listę zablokowanych"
 
 msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
-msgstr ""
+msgstr "Zdefiniuj własne adresy gospodarzów do zablokowania poprzez wprowadzenie adresu IPv4 lub IPv6 wraz z nazwą domeny po spacji lub tabulatorze."
 
 msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
-msgstr ""
+msgstr "<b>IPv4 przykład:</b> 0.0.0.0 badhost.com"
 
 msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
-msgstr ""
+msgstr "Ta opcja dodaje dyrektywę <code>addn-hosts</code> do konfiguracji dnsmasq."
 
 msgid "Custom blocklist not defined"
-msgstr ""
+msgstr "Własna lista zablokowanych nie została zdefiniowana"
 
 msgid "Invalid custom IP address found on line "
-msgstr ""
+msgstr "Niepoprawny niestandardowy adres IP znaleziony w linii "
 
 msgid "Invalid custom host found on line "
-msgstr ""
+msgstr "Niepoprawny niestandardowy adres gospodarza znaleziony w linii "
 
