@@ -15,6 +15,9 @@ if (isset($_POST['generate'])) {
             if ($cnfFile['static'] === 'true') {
                 $strConfFile .= "#Static IP configured for ".$cnfFile['interface']."\n";
                 $strConfFile .= "interface ".$cnfFile['interface']."\n";
+                if (isset($cnfFile['metric'])) {
+                    $strConfFile .= "metric ".$cnfFile['metric']."\n";
+                }
                 $strConfFile .= "static ip_address=".$cnfFile['ip_address']."\n";
                 $strConfFile .= "static routers=".$cnfFile['routers']."\n";
                 $strConfFile .= "static domain_name_servers=".$cnfFile['domain_name_server']."\n\n";
@@ -25,6 +28,9 @@ if (isset($_POST['generate'])) {
                 $strConfFile .= "static routers=".$cnfFile['routers']."\n";
                 $strConfFile .= "static domain_name_servers=".$cnfFile['domain_name_server']."\n\n";
                 $strConfFile .= "interface ".$cnfFile['interface']."\n";
+                if (isset($cnfFile['metric'])) {
+                    $strConfFile .= "metric ".$cnfFile['metric']."\n";
+                }
                 $strConfFile .= "fallback static_".$cnfFile['interface']."\n\n";
             } else {
                 $strConfFile .= "#DHCP configured for ".$cnfFile['interface']."\n\n";
