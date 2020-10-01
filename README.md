@@ -128,6 +128,7 @@ The following translations are currently maintained by the project:
 - 日本語 (Japanese)
 - 한국어 (Korean)
 - Nederlands
+- Polskie
 - Português
 - Русский
 - Svenska
