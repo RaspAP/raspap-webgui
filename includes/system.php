@@ -143,6 +143,7 @@ function DisplaySystem()
         'ja_JP.UTF-8' => '日本語 (Japanese)',
         'ko_KR.UTF-8' => '한국어 (Korean)',
         'nl_NL.UTF-8' => 'Nederlands',
+        'pl_PL.UTF-8' => 'Polskie',
         'pt_BR.UTF-8' => 'Português',
         'ru_RU.UTF-8' => 'Русский',
         'sv_SE.UTF-8' => 'Svenska',
