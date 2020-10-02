@@ -33,7 +33,7 @@ if (isset($_POST['generate'])) {
                 }
                 $strConfFile .= "fallback static_".$cnfFile['interface']."\n\n";
             } else {
-                $strConfFile .= "#DHCP configured for ".$cnfFile['interface']."\n\n";
+                $strConfFile .= "#DHCP configured for ".pathinfo($file, PATHINFO_FILENAME)."\n\n";
             }
         }
     }
