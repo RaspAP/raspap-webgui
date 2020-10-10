@@ -62,16 +62,11 @@ if [[ ! -z $rawdevs ]]; then
     if [[ "$drv" == "rndis_host" ]];  then ty=2; fi       # look like an USB tethering device (e.g. Android phone)
     if [[ "$dev" =~ ppp[0-9] ]];      then ty=5;          # its a dial in mobile data modem
     elif [[ ! -z $vid ]] && [[ ! -z $pid ]] && [[ "${vidpids[@]}" =~ "$vid/$pid"  ]]; then ty=4; fi # mobile data in router mode
-# store found devices in reverse order
-    devs=("$dev" $devs)
-    typs=($ty $typs)
-    vends=("$vend" $vends)
-    mods=("$mod" $mods)
 # append device to list
-#    devs+=("$dev")
-#    typs+=($ty)
-#    vends+=("$vend")
-#    mods+=("$mod")
+    devs+=("$dev")
+    typs+=($ty)
+    vends+=("$vend")
+    mods+=("$mod")
   done
 fi
 
