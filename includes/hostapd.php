@@ -284,11 +284,15 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 
         // Fetch dhcp-range, lease time from system config
         $dhcpConfig = parse_ini_file(RASPI_DNSMASQ_CONFIG, false, INI_SCANNER_RAW);
-
+        $ip_AP_fragment = "10.3.141."; // fallback ip range
+        // default IP of the AP xxx.xxx.xxx.1/24 of the selected dhcp range
+        $def_ip = array();
+        if (array_key_exists('dhcp-range',$dhcpConfig) && preg_match("/^([0-9]{1,3}\.){3}/",$dhcpConfig['dhcp-range'],$def_ip) ) $ip_AP_fragment = $def_ip[0];
+        $ip_AP = $ip_AP_fragment.'1';
         if ($wifiAPEnable == 1) {
             // Enable uap0 configuration in dnsmasq for Wifi client AP mode
             // Set dhcp-range from system config. If undefined, fallback to default
-            $dhcp_range = ($dhcpConfig['dhcp-range'] =='10.3.141.50,10.3.141.255,255.255.255.0,12h' ||
+            $dhcp_range = ($dhcpConfig['dhcp-range'] == $ip_AP_fragment.'50,'.$ip_AP_fragment.'255,255.255.255.0,12h' ||
                 $dhcpConfig['dhcp-range'] =='') ? '192.168.50.50,192.168.50.150,12h' : $dhcpConfig['dhcp-range'];
             $config = 'interface=lo,uap0               # Enable uap0 interface for wireless client AP mode'.PHP_EOL;
             $config.= 'bind-dynamic                    # Hybrid between --bind-interfaces and default'.PHP_EOL;
@@ -302,7 +306,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         } else {
             // Set dhcp-range from system config. If undefined, fallback to default
             $dhcp_range = ($dhcpConfig['dhcp-range'] =='192.168.50.50,192.168.50.150,12h' ||
-                $dhcpConfig['dhcp-range'] =='') ? '10.3.141.50,10.3.141.255,255.255.255.0,12h' : $dhcpConfig['dhcp-range'];
+                $dhcpConfig['dhcp-range'] =='') ? $ip_AP_fragment.'50,'.$ip_AP_fragment.'255,255.255.255.0,12h' : $dhcpConfig['dhcp-range'];
             $config = 'domain-needed'.PHP_EOL;
             $config.= 'interface='.$_POST['interface'].PHP_EOL;
             $config.= 'dhcp-range='.$dhcp_range.PHP_EOL;
@@ -316,7 +320,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         // Set dnsmasq values from ini, fallback to default if undefined
         $intConfig = parse_ini_file(RASPI_CONFIG_NETWORKING.'/'.$_POST['interface'].'.ini', false, INI_SCANNER_RAW);
         $domain_name_server = ($intConfig['domain_name_server'] =='') ? '1.1.1.1 8.8.8.8' : $intConfig['domain_name_server'];
-        $routers = ($intConfig['routers'] == '') ? '10.3.141.1' : $intConfig['routers'];
+
+//        $routers = ($intConfig['routers'] == '') ? $ip_AP : $intConfig['routers'];
+        $routers = $intConfig['routers'];   // allow for an empty routers field. This is needed for the AP interface in order for the local name resolution to work 
 
         // write options to dhcpcd.conf
         $config = [ '# RaspAP '.$_POST['interface'].' configuration' ];
@@ -342,13 +348,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'nohook wpa_supplicant';
         } else {
-            // Default config 
-            $ip_address = "10.3.141.1/24";  // fallback IP
-            // default IP of the AP xxx.xxx.xxx.1/24 of the selected dhcp range
-            $def_ip = array();
-            if (preg_match("/^([0-9]{1,3}\.){3}/",$dhcp_range,$def_ip) ) $ip_address = $def_ip[0]."1/24";
-            // use static IP assigned to interface only, if consistent with the selected dhcp range
-            if (preg_match("/^([0-9]{1,3}\.){3}/",$intConfig['ip_address'],$int_ip) && $def_ip[0] === $int_ip[0]) $ip_address = $intConfig['ip_address'];
+            // Default config
+            $ip_address = $ip_AP."/24";  // fallback to default
+            // use static IP assigned to interface only, if consistent with the IP of the Access Point
+            if (preg_match("/^([0-9]{1,3}\.){3}/",$intConfig['ip_address'],$int_ip) && $ip_AP_fragment === $int_ip[0]) $ip_address = $intConfig['ip_address'];
             $config[] = 'interface '.$_POST['interface'];
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'static domain_name_server='.$domain_name_server;
