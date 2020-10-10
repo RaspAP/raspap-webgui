@@ -4,6 +4,7 @@
 # ========================================================
 # parameter
 #   $1 - simple - skip the details in the json output
+#   $1 - all    - include the AP wlan device
 #
 # result: json formatted list of client devices. Information depends on device type
 #
@@ -16,13 +17,17 @@
 # 3 : wlan device (not in Mode=Master)
 # 4 : mobile data router (from list of known devices) - Huawei Hilink device
 # 5 : mobile data modem (from list of known devices) - access via derial port and AT commands
+#
+# 30 : wlan device in Master mode (access point) - only listed with parameter "all"
 
 # known special devices (mobile data modem, 4G stick ...)
 #   Huawei   E1550        E1750      E3372h
 vidpids=( "12d1/14ac" "12d1/1406" "12d1/14db" )
 
 simple=0
+alldevs=0
 if [[ ! -z $1 ]] && [[ "$1" == "simple" ]]; then simple=1; fi
+if [[ ! -z $1 ]] && [[ "$1" == "all" ]]; then alldevs=1; fi
 
 # get all current interfaces (except lo)
 rawdevs=`ifconfig -a | grep -oP '^(?!lo)(\w*)'`
@@ -30,6 +35,9 @@ devs=()  # device names
 vends=() # vendor names
 mods=()  # model names
 typs=()  # device types
+vids=()  # USB vendor IDs
+pids=()  # USB product IDs
+macs=()  # MAC address
 
 shopt -s nocasematch
 
@@ -38,7 +46,7 @@ if [[ ! -z $rawdevs ]]; then
   for dev in $rawdevs; do
     if [[ "$dev" =~ ^wlan[0-9]$ ]];   then
       itsAP=`iwconfig $dev 2> /dev/null | sed -rn 's/.*(mode:master).*/1/ip'`
-      if [[ ! -z $itsAP ]]; then continue; fi # skip the wlan AP
+      if [[ ! -z $itsAP ]] && [[ $alldevs == 0 ]]; then continue; fi # skip the wlan AP
     fi
     udevinfo=`udevadm info /sys/class/net/$dev 2> /dev/null`
     mod=`echo -e $(echo "$udevinfo" | sed -rn 's/.*ID_MODEL_ENC=(.*)$/\1/gp')`
@@ -54,6 +62,7 @@ if [[ ! -z $rawdevs ]]; then
     drv=`echo "$udevinfo" | sed -rn 's/.*ID_NET_DRIVER=(\w*).*$/\1/p'`
     vid=`echo "$udevinfo" | sed -rn 's/.*ID_VENDOR_ID=(\w*).*$/\1/p'`
     pid=`echo "$udevinfo" | sed -rn 's/.*ID_MODEL_ID=(\w*).*$/\1/p'`
+    mac=`cat /sys/class/net/$dev/address 2> /dev/null | sed 's/://g'`
     ty=-1
     if [[ "$dev" == "eth0" ]];        then ty=0; fi       # its the internal ethernet
     if [[ "$dev" =~ ^eth[1-9]$ ]];    then ty=1; fi       # seems to be an ethernet port
@@ -62,11 +71,15 @@ if [[ ! -z $rawdevs ]]; then
     if [[ "$drv" == "rndis_host" ]];  then ty=2; fi       # look like an USB tethering device (e.g. Android phone)
     if [[ "$dev" =~ ppp[0-9] ]];      then ty=5;          # its a dial in mobile data modem
     elif [[ ! -z $vid ]] && [[ ! -z $pid ]] && [[ "${vidpids[@]}" =~ "$vid/$pid"  ]]; then ty=4; fi # mobile data in router mode
+    if [[ ! -z $itsAP ]]; then ty=30; fi # wlan AP
 # append device to list
     devs+=("$dev")
     typs+=($ty)
     vends+=("$vend")
     mods+=("$mod")
+    vids+=("$vid")
+    pids+=("$pid")
+    macs+=("$mac")
   done
 fi
 
@@ -98,11 +111,16 @@ if [[ ! -z $devmodem ]]; then
        typs[$idx]=5
        vends[$idx]="$vend"
        mods[$idx]="$mod"
+       vids[$idx]="$vid"
+       pids[$idx]="$pid"
      else 
        devs+=("ppp0")
        typs+=(5)
        vends+=("$vend")
        mods+=("$mod")
+       vids+=("$vid")
+       pids+=("$pid")
+       macs+=("")
     fi
   fi
 fi
@@ -116,6 +134,7 @@ outjs='{ "clients": '${#devs[@]}', "device": [ '
 if [[ ! -z $devs ]]; then
   for i in "${!devs[@]}"; do
     outjs+='{ "name": "'${devs[$i]}'", "vendor": "'${vends[$i]}'", "type": '${typs[$i]}
+    outjs+=', "vid": "'${vids[$i]}'", "pid": "'${pids[$i]}'", "mac": "'${macs[$i]}'"'
     mod=${mods[$i]}
     ipadd=`ifconfig ${devs[$i]} 2> /dev/null | sed -rn 's/.*inet ([0-9\.]+) .*/\1/p'`
     # get more information (signal strength, connection mode)  for wlan and mobile data interfaces
