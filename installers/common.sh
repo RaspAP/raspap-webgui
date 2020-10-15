@@ -283,6 +283,10 @@ function _prompt_install_wireguard() {
 # Install Wireguard from the Debian unstable distro
 function _install_wireguard() {
     _install_log "Configure WireGuard support"
+    if [ "$OS" == "Raspbian" ]; then
+        echo "Installing raspberrypi-kernel-headers"
+        sudo apt-get install $apt_option raspberrypi-kernel-headers || _install_status 1 "Unable to install raspberrypi-kernel-headers"
+    fi
     echo "Installing WireGuard from Debian unstable distro"
     echo "Adding Debian distro"
     echo "deb http://deb.debian.org/debian/ unstable main" | sudo tee --append /etc/apt/sources.list.d/unstable.list || _install_status 1 "Unable to append to sources.list"
