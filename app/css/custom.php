@@ -52,6 +52,10 @@ body {
   font-weight: 500;
 }
 
+.sidebar-light hr.sidebar-divider {
+  padding-top: 0.5rem;
+}
+
 .card .card-header {
   border-color: <?php echo $color; ?>;
   color: #fff;

@@ -14,6 +14,8 @@
 #    Used with -y, --yes, sets OpenVPN install option (0=no install)
 # -a, --adblock <flag>
 #    Used with -y, --yes, sets Adblock install option (0=no install)
+# -w, --wireguard <flag>
+#    Used with -y, --yes, sets WireGuard install option (0=no install)
 # -r, --repo, --repository <name>
 #    Overrides the default GitHub repo (billz/raspap-webgui)
 # -b, --branch <name>
@@ -42,6 +44,7 @@ assume_yes=0
 upgrade=0
 ovpn_option=1
 adblock_option=1
+wg_option=1
 
 # Define colors
 readonly ANSI_RED="\033[0;31m"
@@ -61,6 +64,7 @@ Usage: raspbian.sh [OPTION]\n
 -c, --cert, --certificate\n\tInstalls an SSL certificate for lighttpd
 -o, --openvpn <flag>\n\tUsed with -y, --yes, sets OpenVPN install option (0=no install)
 -a, --adblock <flag>\n\tUsed with -y, --yes, sets Adblock install option (0=no install)
+-w, --wireguard <flag>\n\tUsed with -y, --yes, sets WireGuard install option (0=no install)
 -r, --repo, --repository <name>\n\tOverrides the default GitHub repo (billz/raspap-webgui)
 -b, --branch <name>\n\tOverrides the default git branch (master)
 -h, --help\n\tOutputs usage notes and exits
@@ -82,6 +86,10 @@ while :; do
         ;;
         -a|--adblock)
         adblock_option="$2"
+        shift
+        ;;
+        -w|--wireguard)
+        wg_option="$2"
         shift
         ;;
         -c|--cert|--certificate)
