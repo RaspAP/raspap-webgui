@@ -80,7 +80,7 @@ By default RaspAP configures a routed AP for your clients to connect to. A bridg
 More information on Bridged AP mode is provided [on our wiki](https://github.com/billz/raspap-webgui/wiki/Bridged-AP-mode).
 
 ## Simultaneous AP and Wifi client
-RaspAP lets you create an AP with a Wifi client configuration, often called AP-STA mode. With your system configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
+RaspAP lets you create an AP with a Wifi client configuration, often called [AP-STA mode](https://github.com/billz/raspap-webgui/wiki/RPi-Zero-W-AP-STA-mode). With your system configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
 
 **Note:** This option is disabled until you configure your system as a wireless client. For a device operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) without an `eth0` connection, this configuration must be enabled [_before_ a reboot](https://github.com/billz/raspap-webgui/wiki/RPi-Zero-W-AP-STA-mode). 
 
