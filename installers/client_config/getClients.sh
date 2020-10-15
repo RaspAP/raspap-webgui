@@ -62,7 +62,7 @@ if [[ ! -z $rawdevs ]]; then
     drv=`echo "$udevinfo" | sed -rn 's/.*ID_NET_DRIVER=(\w*).*$/\1/p'`
     vid=`echo "$udevinfo" | sed -rn 's/.*ID_VENDOR_ID=(\w*).*$/\1/p'`
     pid=`echo "$udevinfo" | sed -rn 's/.*ID_MODEL_ID=(\w*).*$/\1/p'`
-    mac=`cat /sys/class/net/$dev/address 2> /dev/null | sed 's/://g'`
+    mac=`cat /sys/class/net/$dev/address 2> /dev/null`
     ty=-1
     if [[ "$dev" == "eth0" ]];        then ty=0; fi       # its the internal ethernet
     if [[ "$dev" =~ ^eth[1-9]$ ]];    then ty=1; fi       # seems to be an ethernet port
