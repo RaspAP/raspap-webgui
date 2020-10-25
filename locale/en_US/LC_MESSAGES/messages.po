@@ -490,6 +490,9 @@ msgstr "Disabled"
 msgid "Static IP Options"
 msgstr "Static IP Options"
 
+msgid "Metric"
+msgstr "Metric"
+
 msgid "Apply settings"
 msgstr "Apply settings"
 

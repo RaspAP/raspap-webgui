@@ -118,18 +118,18 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         error_log("Attempting to set hostapd config with wpa='".$_POST['wpa']."', wpa_pairwise='".$_POST['wpa_pairwise']."' and hw_mode='".$_POST['hw_mode']."'");  // FIXME: log injection
         return false;
     }
+    // Validate input
+    $good_input = true;
 
     if (!filter_var($_POST['channel'], FILTER_VALIDATE_INT)) {
-        error_log("Attempting to set channel to invalid number.");
-        return false;
+        $status->addMessage('Attempting to set channel to invalid number.', 'danger');
+        $good_input = false;
     }
 
-    if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > 48) {
-        error_log("Attempting to set channel to '".$_POST['channel']."'");
-        return false;
+    if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > RASPI_5GHZ_MAX_CHANNEL) {
+        $status->addMessage('Attempting to set channel outside of permitted range', 'danger');
+        $good_input = false;
     }
-
-    $good_input = true;
   
     // Check for Bridged AP mode checkbox
     $bridgedEnable = 0;

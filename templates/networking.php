@@ -141,10 +141,14 @@
                   <div class="form-group">
                     <label for="<?php echo $if_quoted ?>-dnssvralt"><?php echo _("Alternate DNS Server") ?></label>
                     <input type="text" class="form-control" id="<?php echo $if_quoted ?>-dnssvralt" placeholder="0.0.0.0">
-          </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="<?php echo $if_quoted ?>-metric"><?php echo _("Metric") ?></label>
+                    <input type="text" class="form-control" id="<?php echo $if_quoted ?>-metric" placeholder="0">
+                  </div>
                   <?php if (!RASPI_MONITOR_ENABLED) : ?>
                       <a href="#" class="btn btn-outline btn-primary intsave" data-int="<?php echo $if_quoted ?>"><?php echo _("Save settings") ?></a>
-              <a href="#" class="btn btn-warning intapply" data-int="<?php echo $if_quoted ?>"><?php echo _("Apply settings") ?></a>
+                      <a href="#" class="btn btn-warning intapply" data-int="<?php echo $if_quoted ?>"><?php echo _("Apply settings") ?></a>
                   <?php endif ?>
                 </form>
 

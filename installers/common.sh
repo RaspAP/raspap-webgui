@@ -265,6 +265,7 @@ function _prompt_install_openvpn() {
 # Install openvpn and enable client configuration option
 function _install_openvpn() {
     _install_log "Installing OpenVPN and enabling client configuration"
+    echo "Adding packages via apt-get"
     sudo apt-get install $apt_option openvpn || _install_status 1 "Unable to install openvpn"
     sudo sed -i "s/\('RASPI_OPENVPN_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
     echo "Enabling openvpn-client service on boot"

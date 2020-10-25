@@ -21,6 +21,7 @@ if (isset($_POST['interface'])) {
     $cfg['domain_name_server'] = $dns1." ".$dns2;
     $cfg['static'] = $_POST[$int.'-static'];
     $cfg['failover'] = $_POST[$int.'-failover'];
+    $cfg['metric'] = $_POST[$int.'-metric'];
 
     if (write_php_ini($cfg, RASPI_CONFIG_NETWORKING.'/'.$file)) {
         $jsonData = ['return'=>0,'output'=>['Successfully Updated Network Configuration']];

@@ -72,6 +72,9 @@ if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2)
     case "el":
         $locale = "el_GR.UTF-8";
         break;
+    case "pl":
+        $locale = "pl_PL.UTF-8";
+        break;
     default:
         $locale = "en_GB.UTF-8";
         break;

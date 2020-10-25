@@ -31,6 +31,10 @@ $defaults = [
   'RASPI_ACCESS_CHECK_IP' => '1.1.1.1',
   'RASPI_ACCESS_CHECK_DNS' => 'one.one.one.one',
 
+  // Constants for the 5GHz wireless regulatory domain
+  'RASPI_5GHZ_ISO_ALPHA2' => array('NL','US'),
+  'RASPI_5GHZ_MAX_CHANNEL' => 165,
+
   // Optional services, set to true to enable.
   'RASPI_WIFICLIENT_ENABLED' => true,
   'RASPI_HOTSPOT_ENABLED' => true,
