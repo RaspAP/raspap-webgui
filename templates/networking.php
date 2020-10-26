@@ -200,7 +200,7 @@
                             <th><?php echo _("Type"); ?></th>
                             <th><?php echo _("MAC"); ?></th>
                             <th><?php echo _("USB vid/pid"); ?></th>
-                            <th><?php echo _("Fixed name"); ?></th>
+                            <th style="min-width:6em"><?php echo _("Fixed name"); ?></th>
                             <th></th>
                           </tr>
                         </thead>
