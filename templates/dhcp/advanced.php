@@ -52,17 +52,14 @@
       <div class="input-group">
         <input type="hidden" name="dchp-eth0" value="0">
         <div class="custom-control custom-switch">
-          <input class="custom-control-input" id="dchp-eth0" type="checkbox" name="dhcp-eth0" value="1" <?php echo $conf['dhcp-eth0'] ? ' checked="checked"' : "" ?> aria-describedby="dhcp-eth0-description">
-          <label class="custom-control-label" for="dhcp-eth"><?php echo _("Enable DHCP for wired ethernet") ?></label>
+          <input class="custom-control-input" id="dhcp-eth0" type="checkbox" name="dhcp-eth0" value="1" <?php echo $dhcp_eth0 ? ' checked="checked"' : "" ?> aria-describedby="dhcp-eth0-description">
+          <label class="custom-control-label" for="dhcp-eth0"><?php echo _("Enable DHCP for wired ethernet") ?></label>
         </div>
         <p id="dhcp-eth0-description">
-          <small><?php echo _("Enable this option if you want RaspAP to provide IP addresses and connectivity to clients connected to the wired ethernet interface (eth0).") ?></small>
+          <small><?php echo _("Enable this option if you want RaspAP to provide IP addresses and connectivity to clients on the wired ethernet interface (eth0).") ?></small>
           <br><small class="text-muted"><?php echo _("This option enables an additional <code>eth0</code> configuration to DHCP and dnsmasq.") ?></small>
         </p>
       </div>
-
-
-
     </div>
 
     <template id="dhcp-upstream-server">
