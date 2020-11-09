@@ -57,7 +57,7 @@
         </div>
         <p id="dhcp-eth0-description">
           <small><?php echo _("Enable this option if you want RaspAP to provide IP addresses and connectivity to clients on the wired ethernet interface (eth0).") ?></small>
-          <br><small class="text-muted"><?php echo _("This option enables an additional <code>eth0</code> configuration to DHCP and dnsmasq.") ?></small>
+          <br><small class="text-muted"><?php echo _("This option enables an additional <code>eth0</code> configuration for DHCP and dnsmasq.") ?></small>
         </p>
       </div>
     </div>
