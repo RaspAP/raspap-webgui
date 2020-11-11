@@ -85,30 +85,44 @@ function DisplayDHCPConfig()
 
                 // handle DHCP for eth0 option
                 if ($_POST['dhcp-eth0'] == "1" && $_POST['interface'] == "eth0") {
-                    $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
-                    if (!preg_match('/inteface eth0/', $dhcp_cnf)) {
-                        // set dhcp values from ini, fallback to default if undefined
-                        $eth0_cfg = parse_ini_file(RASPI_CONFIG_NETWORKING.'/eth0.ini', false, INI_SCANNER_RAW);
-                        $ip_address = ($eth0_cfg['ip_address'] == '') ? '172.16.10.1/24' : $eth0_cfg['ip_address'];
-                        $domain_name_server = ($eth0_cfg['domain_name_server'] =='') ? '1.1.1.1 8.8.8.8' : $eth0_cfg['domain_name_server'];
+                    if (!file_exists(RASPI_CONFIG_NETWORKING.'/eth0.ini') || filesize(RASPI_CONFIG_NETWORKING.'/eth0.ini') ==0 ) {
+                        $status->addMessage('Static IP address for eth0 not found.', 'danger');
+                        $status->addMessage('Configure this interface in Networking > eth0.', 'danger');
+                        $return = 1;
+                    } else {
+                        $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
+                        if (!preg_match('/^interface\seth0$/m', $dhcp_cfg)) {
+                            // set dhcp values from ini
+                            $eth0_cfg = parse_ini_file(RASPI_CONFIG_NETWORKING.'/eth0.ini', false, INI_SCANNER_RAW);
+                            $ip_address = $eth0_cfg['ip_address'];
+                            $domain_name_server = ($eth0_cfg['domain_name_server'] =='') ? '1.1.1.1 8.8.8.8' : $eth0_cfg['domain_name_server'];
 
-                        // append eth0 config to dhcpcd.conf
-                        $cfg = $dhcp_conf;
-                        $cfg[] = '# RaspAP '.$_POST['interface'].' configuration';
-                        $cfg[] = 'interface '.$_POST['interface'];
-                        $cfg[] = 'static ip_address='.$ip_address;
-                        $cfg[] = 'static domain_name_server='.$domain_name_server;
-                        $cfg[] = PHP_EOL;
-                        $cfg = join(PHP_EOL, $cfg);
-                        $dhcp_cfg .= $cfg;
-                        file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
-                        system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
-                        $status->addMessage('DHCP configuration for eth0 added.', 'success');
+                            // append eth0 config to dhcpcd.conf
+                            $cfg = $dhcp_conf;
+                            $cfg[] = '# RaspAP '.$_POST['interface'].' configuration';
+                            $cfg[] = 'interface '.$_POST['interface'];
+                            $cfg[] = 'static ip_address='.$ip_address;
+                            $cfg[] = 'static domain_name_server='.$domain_name_server;
+                            $cfg[] = PHP_EOL;
+                            $cfg = join(PHP_EOL, $cfg);
+                            $dhcp_cfg .= $cfg;
+                            file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
+                            system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
+                            $status->addMessage('DHCP configuration for eth0 added.', 'success');
+                            system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_ETH0, $return);
+                            $status->addMessage('Dnsmasq configuration for eth0 added.', 'success');
+                        } else {
+                            $status->addMessage('DHCP for '.$_POST['interface'].' already enabled.', 'danger');
+                        }
                     }
-                    system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_ETH0, $return);
-                    $status->addMessage('Dnsmasq configuration for eth0 added.', 'success');
                 } elseif (!isset($_POST['dhcp-eth0']) && file_exists(RASPI_DNSMASQ_ETH0)) {
-                    // todo: remove dhcpcd eth0 conf
+                    // remove dhcpcd eth0 conf
+                    $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
+                    $dhcp_cfg = preg_replace('/^#\sRaspAP\seth0.*(\n.*){3,}/m', '', $dhcp_cfg);
+                    file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
+                    system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
+                    $status->addMessage('DHCP configuration for eth0 removed.', 'success');
+                    // remove dnsmasq eth0 conf
                     system('sudo rm '.RASPI_DNSMASQ_ETH0, $return);
                     $status->addMessage('Dnsmasq configuration for eth0 removed.', 'success');
                 } else {
