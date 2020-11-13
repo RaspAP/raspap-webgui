@@ -90,7 +90,7 @@ function loadCurrentSettings(strInterface) {
     });
 }
 
-function saveNetworkSettings(int) {
+function saveNetworkSettings(int,opts="") {
     var frmInt = $('#frm-'+int).find(':input');
     var arrFormData = {};
     $.each(frmInt,function(i3,v3){
@@ -101,6 +101,7 @@ function saveNetworkSettings(int) {
     }
     });
     arrFormData['interface'] = int;
+    arrFormData['opts'] = opts;
     $.post('ajax/networking/save_int_config.php',arrFormData,function(data){
         var jsonData = JSON.parse(data);
         $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
@@ -198,7 +199,8 @@ function setupBtns() {
     $('#btnSummaryRefresh').click(function(){getAllInterfaces();});
     $('.intsave').click(function(){
         var int = $(this).data('int');
-        saveNetworkSettings(int);
+        var opts = $(this).data('opts');
+        saveNetworkSettings(int,opts);
     });
     $('.intapply').click(function(){
         applyNetworkSettings();

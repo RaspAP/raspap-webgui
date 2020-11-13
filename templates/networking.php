@@ -23,7 +23,8 @@
                     <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
           <li role="presentation" class="nav-item"><a class="nav-link" href="#<?php echo $if_quoted ?>" aria-controls="<?php echo $if_quoted ?>" role="tab" data-toggle="tab"><?php echo $if_quoted ?></a></li>
 		  <?php endforeach ?>
-          <li role="presentation" class="nav-item"><a class="nav-link" href="#mobiledata" aria-controls="mobiledata" role="tab" data-toggle="tab">Mobile Data Devices</a></li>
+          <li role="presentation" class="nav-item"><a class="nav-link" href="#mobiledata" aria-controls="mobiledata" role="tab" data-toggle="tab">Mobile Data Settings</a></li>
+          <li role="presentation" class="nav-item"><a class="nav-link" href="#netdevices" aria-controls="netdevices" role="tab" data-toggle="tab">Network Devices</a></li>
           <?php endif ?>
         </ul>
         <div class="tab-content">
@@ -180,6 +181,81 @@
                 </form>
 
               </div>
+            </div><!-- /.tab-panel -->
+          </div>
+          <div role="tabpanel" class="tab-pane fade in" id="netdevices">
+            <h4 class="mt-3"><?php echo _("Properties of network devices") ?></h4>
+            <div class="row">
+             <div class="col-sm-12"">
+              <div class="card ">
+                <div class="card-body">
+                  <form id="frm-netdevices">
+                    <?php echo CSRFTokenFieldTag() ?>
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th><?php echo _("Device"); ?></th>
+                            <th><?php echo _("Interface"); ?></th>
+                            <th><?php echo _("Type"); ?></th>
+                            <th><?php echo _("MAC"); ?></th>
+                            <th><?php echo _("USB vid/pid"); ?></th>
+                            <th style="min-width:6em"><?php echo _("Fixed name"); ?></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                           exec('/usr/local/sbin/getClients.sh all', $clients);
+                           if(!empty($clients)) {
+                              $clients=json_decode($clients[0],true);
+                              $ncl=$clients["clients"];
+                              if($ncl > 0) {
+                                 foreach($clients["device"] as $dev) {
+                                   echo "<tr>";
+                                   echo "<td>".$dev["vendor"]." ".$dev["model"]."</td>\n";
+                                   echo "<td>".$dev["name"]."</td>\n";
+                                   $ty="Client";
+                                   if($dev["type"] == 30) $ty="Access Point";
+                                   echo "<td>".$ty."</td>\n";
+                                   echo "<td>".$dev["mac"]."</td>\n";
+                                   echo "<td>".$dev["vid"]."/".$dev["pid"]."</td>\n";
+                                   $udevfile="/etc/udev/rules.d/80-net-devices.rules";
+                                   $isStatic=array();
+                                   exec('find /etc/udev/rules.d/  -type f \( -iname "*.rules" ! -iname "'.basename($udevfile).'" \) -exec grep -i '.$dev["mac"].' {} \; ',$isStatic);
+                                   if(empty($isStatic))
+                                     exec('find /etc/udev/rules.d/  -type f \( -iname "*.rules" ! -iname "'.basename($udevfile).'" \) -exec grep -i '.$dev["vid"].' {} \; | grep -i '.$dev["pid"].' ',$isStatic);
+                                   $isStatic = empty($isStatic) ? false : true; 
+                                   $devname=array();
+                                   exec('grep -i '.$dev["vid"].' '.$udevfile.' | grep -i '.$dev["pid"].' | sed -rn \'s/.*name=\"(\w*)\".*/\1/ip\' ',$devname);
+                                   if(!empty($devname)) $devname=$devname[0];
+                                   else {
+                                      exec('grep -i '.$dev["mac"].' '.$udevfile.' | sed -rn \'s/.*name=\"(\w*)\".*/\1/ip\' ',$devname);
+                                      if(!empty($devname)) $devname=$devname[0];
+                                   }
+                                   if(empty($devname)) $devname="";
+                                   echo '<td>';
+                                   if (! $isStatic) echo '<input type="text" class="form-control" id="int-name-'.$dev["name"].'" size=10 value="'.$devname.'" >'."\n";
+                                   else echo $dev["name"];
+                                   echo '<input type="hidden" class="form-control" id="int-vid-'.$dev["name"].'" value="'.$dev["vid"].'" >'."\n";
+                                   echo '<input type="hidden" class="form-control" id="int-pid-'.$dev["name"].'" value="'.$dev["pid"].'" >'."\n";
+                                   echo '<input type="hidden" class="form-control" id="int-mac-'.$dev["name"].'" value="'.$dev["mac"].'" >'."\n";
+                                   echo '</td>'."\n";
+                                   echo '<td>';
+                                   if (! $isStatic) echo '<a href="#" class="btn btn-secondary intsave" data-opts="'.$dev["name"].'" data-int="netdevices">Change</a>';
+                                   echo "</td>\n";
+                                   echo "</tr>\n";
+                                 }
+                              }
+                           } else echo "<tr><td colspan=4>No network devices found</td></tr>";
+                        ?>
+                        </tbody>
+                     </table>
+                   </div>
+                  </form>
+                </div>
+               </div>
+             </div>
             </div><!-- /.tab-panel -->
           </div>
 
