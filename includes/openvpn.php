@@ -149,7 +149,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         }
 
         // Set iptables rules and, optionally, auth-user-pass
-        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient $auth_flag " .$_SESSION['wifi_client_interface'], $return);
+        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient $auth_flag " .$_SESSION['ap_interface'], $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
