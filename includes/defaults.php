@@ -16,7 +16,7 @@ $defaults = [
   // These are typical for default RPi installs. Modify if needed.
   'RASPI_DNSMASQ_CONFIG' => '/etc/dnsmasq.d/090_raspap.conf',
   'RASPI_DNSMASQ_LEASES' => '/var/lib/misc/dnsmasq.leases',
-  'RASPI_DNSMASQ_ETH0' => '/etc/dnsmasq.d/090_eth0.conf',
+  'RASPI_DNSMASQ_PREFIX' => '/etc/dnsmasq.d/090_',
   'RASPI_ADBLOCK_LISTPATH' => '/etc/raspap/adblock/',
   'RASPI_ADBLOCK_CONFIG' => '/etc/dnsmasq.d/090_adblock.conf',
   'RASPI_HOSTAPD_CONFIG' => '/etc/hostapd/hostapd.conf',
