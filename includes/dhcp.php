@@ -176,57 +176,6 @@ function DisplayDHCPConfig()
     }
 
     $serviceStatus = $dnsmasq_state ? "up" : "down";
-
-    exec('cat '. RASPI_DNSMASQ_CONFIG, $return);
-    $conf = ParseConfig($return);
-    $arrRange = explode(",", $conf['dhcp-range']);
-    $RangeStart = $arrRange[0];
-    $RangeEnd = $arrRange[1];
-    $RangeMask = $arrRange[2];
-    $leaseTime = $arrRange[3];
-    $dhcpHost = $conf["dhcp-host"];
-    $dhcpHost = empty($dhcpHost) ? [] : $dhcpHost;
-    $dhcpHost = is_array($dhcpHost) ? $dhcpHost : [ $dhcpHost ];
-    $upstreamServers = is_array($conf['server']) ? $conf['server'] : [ $conf['server'] ];
-    $upstreamServers = array_filter($upstreamServers);
-
-    $DNS1 = '';
-    $DNS2 = '';
-    if (isset($conf['dhcp-option'])) {
-        $arrDns = explode(",", $conf['dhcp-option']);
-        if ($arrDns[0] == '6') {
-            if (count($arrDns) > 1) {
-                $DNS1 = $arrDns[1];
-            }
-            if (count($arrDns) > 2) {
-                $DNS2 = $arrDns[2];
-            }
-        }
-    }
-  
-    $hselected = '';
-    $mselected = '';
-    $dselected = '';
-    $infiniteselected = '';
-    preg_match('/([0-9]*)([a-z])/i', $leaseTime, $arrRangeLeaseTime);
-    if ($leaseTime === 'infinite') {
-        $infiniteselected = ' selected="selected"';
-    } else {
-        switch ($arrRangeLeaseTime[2]) {
-        case 'h':
-            $hselected = ' selected="selected"';
-            break;
-        case 'm':
-            $mselected = ' selected="selected"';
-            break;
-        case 'd':
-            $dselected = ' selected="selected"';
-            break;
-        }
-    }
-    if (file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf')) {
-        $dhcp_iface_enable = 1;
-    }
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
 
@@ -234,22 +183,11 @@ function DisplayDHCPConfig()
         "dhcp", compact(
             "status",
             "serviceStatus",
-            "RangeStart",
-            "RangeEnd",
-            "DNS1",
-            "DNS2",
-            "upstreamServers",
-            "arrRangeLeaseTime",
-            "mselected",
-            "hselected",
-            "dselected",
-            "infiniteselected",
             "dnsmasq_state",
             "conf",
             "dhcpHost",
             "interfaces",
-            "leases",
-            "dhcp_iface_enable"
+            "leases"
         )
     );
 }
