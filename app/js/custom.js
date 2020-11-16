@@ -236,8 +236,27 @@ function loadWifiStations(refresh) {
             .load('ajax/networking/wifi_stations.php'+qs, complete);
     };
 }
-
 $(".js-reload-wifi-stations").on("click", loadWifiStations(true));
+
+
+function loadInterfaceDHCP(selected) {
+
+}
+
+function loadInterfaceDHCPSelect() {
+    var interface = $('#cbxdhcpiface').val();
+    console.log(interface);
+    $.get('ajax/networking/get_netcfg.php?iface='+interface,function(data){
+        jsonData = JSON.parse(data);
+        $('#dhcp-iface')[0].checked = jsonData.DHCPEnabled;
+        $('#txtrangestart').val(jsonData.RangeStart);
+        $('#txtrangeend').val(jsonData.RangeEnd);
+        $('#txtrangeleasetime').val(jsonData.leaseTime);
+        $('#txtdns1').val(jsonData.DNS1);
+        $('#txtdns2').val(jsonData.DNS2);
+        $('#cbxrangeleasetimeunits').val(jsonData.leaseTimeInterval);
+    });
+}
 
 function loadChannel() {
     $.get('ajax/networking/get_channel.php',function(data){
