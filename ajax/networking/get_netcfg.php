@@ -21,7 +21,7 @@ if (isset($interface)) {
     $dhcpdata['dhcpHost'] = is_array($dhcpHost) ? $dhcpHost : [ $dhcpHost ];
     $upstreamServers = is_array($conf['server']) ? $conf['server'] : [ $conf['server'] ];
     $dhcpdata['upstreamServers'] = array_filter($upstreamServers);
-
+    $dhcpdata['upstreamServersEnabled'] = empty($conf['server']) ? false: true;
     preg_match('/([0-9]*)([a-z])/i', $dhcpdata['leaseTime'], $arrRangeLeaseTime);
     $dhcpdata['leaseTime'] = $arrRangeLeaseTime[1];
     $dhcpdata['leaseTimeInterval'] = $arrRangeLeaseTime[2];
