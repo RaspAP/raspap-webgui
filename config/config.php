@@ -11,6 +11,7 @@ define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
 // These are typical for default RPi installs. Modify if needed.
 define('RASPI_DNSMASQ_CONFIG', '/etc/dnsmasq.d/090_raspap.conf');
 define('RASPI_DNSMASQ_LEASES', '/var/lib/misc/dnsmasq.leases');
+define('RASPI_DNSMASQ_PREFIX', '/etc/dnsmasq.d/090_');
 define('RASPI_ADBLOCK_LISTPATH', '/etc/raspap/adblock/');
 define('RASPI_ADBLOCK_CONFIG', '/etc/dnsmasq.d/090_adblock.conf');
 define('RASPI_HOSTAPD_CONFIG', '/etc/hostapd/hostapd.conf');

@@ -4,7 +4,6 @@
   <div class="row">
     <div class="col-md-6">
       <h5><?php echo _("Upstream DNS servers") ?></h5>
-
       <div class="input-group">
         <input type="hidden" name="no-resolv" value="0">
         <div class="custom-control custom-switch">
