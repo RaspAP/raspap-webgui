@@ -302,7 +302,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $return);
 
         // Fetch dhcp-range, lease time from system config
-        $dhcpConfig = parse_ini_file(RASPI_DNSMASQ_CONFIG, false, INI_SCANNER_RAW);
+        $dhcpConfig = parse_ini_file(RASPI_DNSMASQ_PREFIX.$_SESSION['ap_interface'].'conf', false, INI_SCANNER_RAW);
 
         if ($wifiAPEnable == 1) {
             // Enable uap0 configuration in dnsmasq for Wifi client AP mode
@@ -330,7 +330,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             }
         }
         file_put_contents("/tmp/dnsmasqdata", $config);
-        system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_CONFIG, $return);
+        system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$_SESSION['ap_interface'].'conf', $return);
 
         // Set dnsmasq values from ini, fallback to default if undefined
         $intConfig = parse_ini_file(RASPI_CONFIG_NETWORKING.'/'.$_POST['interface'].'.ini', false, INI_SCANNER_RAW);
@@ -371,7 +371,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config[] = 'interface '.$_POST['interface'];
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'static domain_name_server='.$domain_name_server;
-            $config[] = PHP_EOL;
 
             // write the static IP back to the $_POST['interface'].ini file
             $intConfig['interface'] = $_POST['interface'];
@@ -382,9 +381,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $intConfig['failover'] = "false";
             write_php_ini($intConfig, RASPI_CONFIG_NETWORKING.'/'.$_POST['interface'].".ini");
         }
-
         $config = join(PHP_EOL, $config);
-        file_put_contents("/tmp/dhcpddata", $config);
+        $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
+        $merged = preg_replace('/^#\sRaspAP\s.*?(?=\s*^\s*$)/ms', $config, $dhcp_cfg);
+        file_put_contents("/tmp/dhcpddata", rtrim($merged).PHP_EOL);
         system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
 
         if ($return == 0) {
