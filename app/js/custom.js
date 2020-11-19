@@ -222,6 +222,8 @@ function contentLoaded() {
             setupBtns();
         case "hostapd_conf":
             loadChannel();
+        case "dhcpd_conf":
+            loadInterfaceDHCPSelect('wlan0');
         break;
     }
 }
@@ -238,15 +240,10 @@ function loadWifiStations(refresh) {
 }
 $(".js-reload-wifi-stations").on("click", loadWifiStations(true));
 
-
-function loadInterfaceDHCP(selected) {
-
-}
-
-function loadInterfaceDHCPSelect() {
-    var interface = $('#cbxdhcpiface').val();
-    console.log(interface);
-    $.get('ajax/networking/get_netcfg.php?iface='+interface,function(data){
+function loadInterfaceDHCPSelect(default_iface) {
+    var iface = (default_iface) ? default_iface : $('#cbxdhcpiface').val();
+    $('#cbxdhcpiface').val(iface);
+    $.get('ajax/networking/get_netcfg.php?iface='+iface,function(data){
         jsonData = JSON.parse(data);
         $('#dhcp-iface')[0].checked = jsonData.DHCPEnabled;
         $('#txtrangestart').val(jsonData.RangeStart);

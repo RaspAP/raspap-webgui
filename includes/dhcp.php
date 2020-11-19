@@ -103,8 +103,11 @@ function SaveDHCPConfig($status)
                 }
                 $config .= PHP_EOL;
             }
-            $config .= "log-facility=/tmp/dnsmasq.log".PHP_EOL;
-            $config .= "conf-dir=/etc/dnsmasq.d".PHP_EOL;
+            // enable these settings on the default interface
+            if ($iface == "wlan0") {
+                $config .= "log-facility=/tmp/dnsmasq.log".PHP_EOL;
+                $config .= "conf-dir=/etc/dnsmasq.d".PHP_EOL;
+            }
             file_put_contents("/tmp/dnsmasqdata", $config);
             $msg = file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf') ? 'updated' : 'added';
             system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $return);
@@ -152,9 +155,8 @@ function SaveDHCPConfig($status)
     } elseif (($_POST['dhcp-iface'] == "0") && file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf')) {
         // remove dhcp conf for selected interface
         $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
-        // todo: improve by removing extra blank lines
         $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'.*\n(.*\n){3}/m', '', $dhcp_cfg);
-        file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
+        file_put_contents("/tmp/dhcpddata", rtrim($dhcp_cfg).PHP_EOL);
         system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
         $status->addMessage('DHCP configuration for '.$iface.'  removed.', 'success');
         // remove dnsmasq eth0 conf
