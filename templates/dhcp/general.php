@@ -15,7 +15,7 @@
           <input class="custom-control-input" id="dhcp-iface" type="checkbox" name="dhcp-iface" value="1" <?php echo $dhcp_iface_enable ? ' checked="checked"' : "" ?> aria-describedby="dhcp-iface-description">
           <label class="custom-control-label" for="dhcp-iface"><?php echo _("Enable DHCP for this interface") ?></label>
         </div>
-        <p id="dhcp-iface-description">
+        <p class="mb-0" id="dhcp-iface-description">
           <small><?php echo _("Enable this option if you want RaspAP to assign IP addresses on the selected interface.") ?></small>
         </p>
       </div>
