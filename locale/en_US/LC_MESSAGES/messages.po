@@ -254,6 +254,12 @@ msgstr "Client list"
 msgid "Interface"
 msgstr "Interface"
 
+msgid "Enable DHCP for this interface"
+msgstr "Enable DHCP for this interface"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+msgstr "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+
 msgid "DNS Server"
 msgstr "DNS Server"
 
