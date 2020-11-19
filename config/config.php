@@ -9,7 +9,6 @@ define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
 
 // Constants for configuration file paths.
 // These are typical for default RPi installs. Modify if needed.
-define('RASPI_DNSMASQ_CONFIG', '/etc/dnsmasq.d/090_raspap.conf');
 define('RASPI_DNSMASQ_LEASES', '/var/lib/misc/dnsmasq.leases');
 define('RASPI_DNSMASQ_PREFIX', '/etc/dnsmasq.d/090_');
 define('RASPI_ADBLOCK_LISTPATH', '/etc/raspap/adblock/');
