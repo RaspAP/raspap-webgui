@@ -18,7 +18,7 @@ set -o errtrace
 readonly raspap_dir="/etc/raspap"
 readonly raspap_user="www-data"
 readonly raspap_sudoers="/etc/sudoers.d/090_raspap"
-readonly raspap_dnsmasq="/etc/dnsmasq.d/090_raspap.conf"
+readonly raspap_dnsmasq="/etc/dnsmasq.d/090_wlan0.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_network="/etc/systemd/network/"
 readonly rulesv4="/etc/iptables/rules.v4"

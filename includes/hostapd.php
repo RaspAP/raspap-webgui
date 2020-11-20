@@ -383,8 +383,8 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         }
         $config = join(PHP_EOL, $config);
         $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
-        $merged = preg_replace('/^#\sRaspAP\s.*?(?=\s*^\s*$)/ms', $config, $dhcp_cfg);
-        file_put_contents("/tmp/dhcpddata", rtrim($merged).PHP_EOL);
+        $config = preg_replace('/^#\sRaspAP\s.*?(?=\s*^\s*$)/ms', $config, $dhcp_cfg, 1);
+        file_put_contents("/tmp/dhcpddata", $config);
         system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
 
         if ($return == 0) {
