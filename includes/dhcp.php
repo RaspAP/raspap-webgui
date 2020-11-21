@@ -44,17 +44,18 @@ function DisplayDHCPConfig()
             }
         }
     }
-
+    getWifiInterface();
     $serviceStatus = $dnsmasq_state ? "up" : "down";
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
+    $ap_iface = $_SESSION['ap_interface'];
 
     echo renderTemplate(
         "dhcp", compact(
             "status",
             "serviceStatus",
             "dnsmasq_state",
-            "conf",
+            "ap_iface",
             "dhcpHost",
             "interfaces",
             "leases"
