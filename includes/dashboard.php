@@ -122,7 +122,6 @@ function DisplayDashboard(&$extraFooterScripts)
     if ($interfaceState === 'UP') {
         $classMsgDevicestatus = 'success';
     }
-
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['ifdown_wlan0'])) {
             // Pressed stop button

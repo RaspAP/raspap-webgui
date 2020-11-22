@@ -4,12 +4,14 @@ require_once 'includes/functions.php';
 
 function getClients($simple=true) {
     exec ('ifconfig -a | grep -oP "^(?!lo)(\w*)"',$rawdevs); // all devices except loopback
+    $path=RASPI_CLIENT_SCRIPT_PATH;
     $cl=array();
     if(!empty($rawdevs) && is_array($rawdevs)) {
       $cl["clients"]=count($rawdevs);
-      if( empty(preg_only_match("/(ppp)[0-9]/",$rawdevs))) { // search for ttyUSB device
-        exec("find /sys/bus/usb/devices/usb*/ -name dev ",$devtty);
-        $devtty = preg_only_match("/(ttyUSB0)/",$devtty);
+      // search for possibly not connected modem 
+      exec("find /sys/bus/usb/devices/usb*/ -name dev ",$devtty); // search for ttyUSB
+      $devtty = preg_only_match("/(ttyUSB0)/",$devtty);
+      if( empty(preg_only_match("/(ppp)[0-9]/",$rawdevs))) {
         if(!empty($devtty)) {
           $rawdevs[]="ppp0";
           exec("udevadm info --name='$devtty' 2> /dev/null");
@@ -24,7 +26,7 @@ function getClients($simple=true) {
         $cl["device"][$i]["type"]=$ty;
         unset($udevinfo);
         exec("udevadm info /sys/class/net/$dev 2> /dev/null",$udevinfo);
-        if ( empty($udevinfo) && isset($devtty))  exec("udevadm info --name='$devtty' 2> /dev/null", $udevinfo);
+        if ( $nam == "ppp" && isset($devtty))  exec("udevadm info --name='$devtty' 2> /dev/null", $udevinfo);
         if(!empty($udevinfo) && is_array($udevinfo)) {
           $model = preg_only_match("/ID_MODEL_ENC=(.*)$/",$udevinfo);
           if(empty($model) || preg_match("/^[0-9a-f]{4}$/",$model) === 1) {
@@ -51,6 +53,10 @@ function getClients($simple=true) {
 
         switch($ty) {
            case "eth":
+              unset($res);
+              exec("ip link show $dev 2> /dev/null | grep -oP ' UP '",$res);
+              if(empty($res) && empty($ipadd)) $cl["device"][$i]["connected"] = "n";
+              else $cl["device"][$i]["connected"] = "y";
               break;
            case "wlan":
               unset($retiw);
@@ -75,9 +81,9 @@ function getClients($simple=true) {
               } else $cl["device"][$i]["connected"] = "n";
               break;
            case "ppp":
+              unset($res);
+              exec("ip link show $dev 2> /dev/null | grep -oP '( UP | UNKNOWN)'",$res);
               if($simple) {
-                unset($res);
-                exec("ip link show $dev 2> /dev/null | grep -oP '( UP | UNKNOWN)'",$res);
                 if(empty($res)) {
                   $cl["device"][$i]["connected"] = "n";
                   $cl["device"][$i]["signal"] =  "-100 dB (0%)";
@@ -87,29 +93,26 @@ function getClients($simple=true) {
                 }
                 break;
               }
-              unset($res);
-              exec("ip link show $dev 2> /dev/null | grep -oP ' UP '",$res);
               if(empty($res) && empty($ipadd)) $cl["device"][$i]["connected"] = "n";
               else $cl["device"][$i]["connected"] = "y";
               unset($res);
               exec("$path/info_huawei.sh mode modem",$res);
-              $cl["device"][$i]["mode"] = $res;
+              $cl["device"][$i]["mode"] = $res[0];
               unset($res);
               exec("$path/info_huawei.sh device modem",$res);
-              if( $res != "none" ) $cl["device"][$i]["model"] = $res;
+              if( $res[0] != "none" ) $cl["device"][$i]["model"] = $res[0];
               unset($res);
               exec("$path/info_huawei.sh signal modem",$res);
-              $cl["device"][$i]["signal"] = $res;
+              $cl["device"][$i]["signal"] = $res[0];
               unset($res);
               exec("$path/info_huawei.sh operator modem",$res);
-              $cl["device"][$i]["operator"] = $res;
+              $cl["device"][$i]["operator"] = $res[0];
               break;
            case "hilink":
               unset($res);
 //              exec("ip link show $dev 2> /dev/null | grep -oP ' UP '",$res);
               exec("ifconfig -a | grep -i $dev -A 1 | grep -oP '(?<=inet )([0-9]{1,3}\.){3}'",$apiadd);
               $apiadd = !empty($apiadd) ? $apiadd[0]."1" : "";
-              $path = $_SESSION["udevrules"]["script_path"];
               unset($res);
               exec("$path/info_huawei.sh mode hilink $apiadd",$res);
               $cl["device"][$i]["mode"] = $res[0];

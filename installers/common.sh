@@ -419,7 +419,7 @@ function _install_client_config() {
     sudo cp "$webroot_dir/installers/client_config/70-mobile-data-sticks.rules" "/etc/udev/rules.d/" || _install_status 1 "Unable to install client udev rules"
     sudo cp "$webroot_dir/installers/client_config/"*.service "/etc/systemd/system/" || _install_status 1 "Unable to install client startup services"
     # client configuration and udev rules
-    sudo cp "$webroot_dir/installers/client_config/client_udev_prototypes.json" "/etc/raspap/networking/" || _install_status 1 "Unable to install client configuration"
+    sudo cp "$webroot_dir/config/client_udev_prototypes.json" "/etc/raspap/networking/" || _install_status 1 "Unable to install client configuration"
 }
 
 # Configure IP forwarding, set IP tables rules, prompt to install RaspAP daemon
