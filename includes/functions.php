@@ -452,3 +452,14 @@ function getBridgedState()
     return  $arrHostapdConf['BridgedEnable'];
 }
 
+// search array for matching string and return only first matching group
+function preg_only_match($pat,$haystack) {
+  $match = "";
+  if(!empty($haystack) && !empty($pat)) {
+    if(!is_array($haystack)) $haystack = array($haystack);
+    $str = preg_grep($pat,$haystack);
+    if (!empty($str) && preg_match($pat,array_shift($str),$match) === 1 ) $match = $match[1];
+  }
+  return $match;
+}
+

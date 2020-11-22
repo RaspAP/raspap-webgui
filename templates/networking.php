@@ -197,35 +197,34 @@
                           <tr>
                             <th><?php echo _("Device"); ?></th>
                             <th><?php echo _("Interface"); ?></th>
-                            <th><?php echo _("Type"); ?></th>
+                            <th></th>
                             <th><?php echo _("MAC"); ?></th>
                             <th><?php echo _("USB vid/pid"); ?></th>
+                            <th><?php echo _("Device type"); ?></th>
                             <th style="min-width:6em"><?php echo _("Fixed name"); ?></th>
                             <th></th>
                           </tr>
                         </thead>
                         <tbody>
                         <?php
-                           exec('/usr/local/sbin/getClients.sh all', $clients);
                            if(!empty($clients)) {
-                              $clients=json_decode($clients[0],true);
                               $ncl=$clients["clients"];
                               if($ncl > 0) {
-                                 foreach($clients["device"] as $dev) {
+                                 foreach($clients["device"] as $id => $dev) {
                                    echo "<tr>";
                                    echo "<td>".$dev["vendor"]." ".$dev["model"]."</td>\n";
                                    echo "<td>".$dev["name"]."</td>\n";
                                    $ty="Client";
-                                   if($dev["type"] == 30) $ty="Access Point";
+                                   if(isset($dev["isAP"]) && $dev["isAP"]) $ty="Access Point";
                                    echo "<td>".$ty."</td>\n";
                                    echo "<td>".$dev["mac"]."</td>\n";
                                    echo "<td>".$dev["vid"]."/".$dev["pid"]."</td>\n";
-                                   $udevfile="/etc/udev/rules.d/80-net-devices.rules";
+                                   $udevfile=$_SESSION["udevrules"]["udev_rules_file"];
                                    $isStatic=array();
                                    exec('find /etc/udev/rules.d/  -type f \( -iname "*.rules" ! -iname "'.basename($udevfile).'" \) -exec grep -i '.$dev["mac"].' {} \; ',$isStatic);
                                    if(empty($isStatic))
                                      exec('find /etc/udev/rules.d/  -type f \( -iname "*.rules" ! -iname "'.basename($udevfile).'" \) -exec grep -i '.$dev["vid"].' {} \; | grep -i '.$dev["pid"].' ',$isStatic);
-                                   $isStatic = empty($isStatic) ? false : true; 
+                                   $isStatic = empty($isStatic) ? false : true;
                                    $devname=array();
                                    exec('grep -i '.$dev["vid"].' '.$udevfile.' | grep -i '.$dev["pid"].' | sed -rn \'s/.*name=\"(\w*)\".*/\1/ip\' ',$devname);
                                    if(!empty($devname)) $devname=$devname[0];
@@ -234,12 +233,23 @@
                                       if(!empty($devname)) $devname=$devname[0];
                                    }
                                    if(empty($devname)) $devname="";
+                                   $isStatic = $isStatic || $dev["type"] === "ppp";
+                                   $txtdisabled=$isStatic ? "disabled":"";
+                                   echo '<td><select '.$txtdisabled.' class="selectpicker" id="int-new-type-'.$dev["name"].'">';
+                                   foreach($_SESSION["net-device-types"] as $i => $type) {
+                                     $txt=$_SESSION["net-device-types-info"][$i];
+                                     $txtdisabled =  $type == "ppp" ? "disabled":"";
+                                     if(preg_match("/^".$_SESSION["net-device-name-prefix"][$i]."[0-9]*$/",$dev["name"])===1) echo '<option '.$txtdisabled.' selected value="'.$type.'">'.$txt.'</option>';
+                                     else echo '<option '.$txtdisabled.' value="'.$type.'">'.$txt.'</option>';
+                                   }
+                                   echo "</select></td>";
                                    echo '<td>';
-                                   if (! $isStatic) echo '<input type="text" class="form-control" id="int-name-'.$dev["name"].'" size=10 value="'.$devname.'" >'."\n";
+                                   if (! $isStatic ) echo '<input type="text" class="form-control" id="int-name-'.$dev["name"].'" value="'.$devname.'" >'."\n";
                                    else echo $dev["name"];
                                    echo '<input type="hidden" class="form-control" id="int-vid-'.$dev["name"].'" value="'.$dev["vid"].'" >'."\n";
                                    echo '<input type="hidden" class="form-control" id="int-pid-'.$dev["name"].'" value="'.$dev["pid"].'" >'."\n";
                                    echo '<input type="hidden" class="form-control" id="int-mac-'.$dev["name"].'" value="'.$dev["mac"].'" >'."\n";
+                                   echo '<input type="hidden" class="form-control" id="int-type-'.$dev["name"].'" value="'.$dev["type"].'" >'."\n";
                                    echo '</td>'."\n";
                                    echo '<td>';
                                    if (! $isStatic) echo '<a href="#" class="btn btn-secondary intsave" data-opts="'.$dev["name"].'" data-int="netdevices">Change</a>';

@@ -2,6 +2,7 @@
 
 require_once 'includes/config.php';
 require_once 'includes/wifi_functions.php';
+require_once 'includes/get_clients.php';
 
 /**
  * Show dashboard page.
@@ -93,17 +94,15 @@ function DisplayDashboard(&$extraFooterScripts)
     // ------------------------ INFOS ABOUT THE CLIENT---------------------------------------------------------------
     $clientinfo=array("name"=>"none","type"=>-1,"connected"=>"n");
     $raspi_client=$_SESSION['wifi_client_interface'];
-    exec('/usr/local/sbin/getClients.sh', $clients); # get list of clients, including connection information (json format)
+    load_client_config();
+    $clients = getClients(false);
     if(!empty($clients)) {
-        $clients=json_decode($clients[0],true);
-        // client type: 0 - eth0, 1 -ethx, 2 - usb tethering, 3 - wlan, 4 - mobile data (router mode), 5 - mobile data modem
-        // extract the infos for the device with the highest type number
         $ncl=$clients["clients"];
         if($ncl > 0) {
             $ty=-1;
             foreach($clients["device"] as $dev) {
-               if($dev["type"]>$ty) {
-                 $ty=$dev["type"];
+               if(($id=array_search($dev["type"],$_SESSION["net-device-types"])) > $ty && !$dev["isAP"]) {
+                 $ty=$id;
                  $clientinfo=$dev;
                }
             }
@@ -111,14 +110,14 @@ function DisplayDashboard(&$extraFooterScripts)
     }
     if ($clientinfo["name"] != "none") $raspi_client = $clientinfo["name"];
     $interfaceState = $clientinfo["connected"] == "y" ? 'UP' : 'DOWN';
-    
+
     $txPower="";
-    if ($clientinfo["type"] == 3) {
+    if ($clientinfo["type"] == "wlan") {
       // txpower is now displayed on iw dev(..) info command, not on link command.
       exec('iw dev '.$clientinfo["name"].' info |  sed -rn "s/.*txpower ([0-9]*)[0-9\.]*( dBm).*/\1\2/p"', $stdoutIwInfo);
       if (!empty($stdoutIwInfo)) $txPower=$stdoutIwInfo[0];
     }
-    
+
     $classMsgDevicestatus = 'warning';
     if ($interfaceState === 'UP') {
         $classMsgDevicestatus = 'success';
@@ -152,7 +151,6 @@ function DisplayDashboard(&$extraFooterScripts)
             $status->addMessage(sprintf(_('Interface is %s.'), strtolower($interfaceState)), $classMsgDevicestatus);
         }
     }
- 
 
     echo renderTemplate(
         "dashboard", compact(

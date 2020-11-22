@@ -29,21 +29,43 @@ if (isset($_POST['interface'])) {
         } else {
           $opts=explode(" ",$_POST['opts'] );
           $dev=$opts[0];
-          $mode=$opts[1];
           $vid=$_POST["int-vid-".$dev];
           $pid=$_POST["int-pid-".$dev];
           $mac=$_POST["int-mac-".$dev];
-          $name=$_POST["int-name-".$dev];
-          $udevfile="/etc/udev/rules.d/80-net-devices.rules";
-          // delete current entry
-          exec('sudo sed -i "/^.*'.$vid.'.*'.$pid.'.*$/d" '.$udevfile);
-          exec('sudo sed -i "/^.*'.$mac.'.*$/d" '.$udevfile);
-          if( !empty($name)) {
-             if( !empty($mac) ) $rule='SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="'.$mac.'", NAME="'.$name.'"';
-             else if( !empty($vid) )      $rule='SUBSYSTEM=="net", ACTION=="add", ATTRS{idVendor}=="'.$vid.'", ATTRS{idProduct}=="'.$pid.'", NAME="'.$name.'"';
-             if ( !empty($rule) ) exec('echo \''.$rule.'\' | sudo /usr/bin/tee -a '.$udevfile);
+          $name=trim($_POST["int-name-".$dev]);
+          $type=$_POST["int-type-".$dev];
+          $newtype=$_POST["int-new-type-".$dev];
+          $udevfile=$_SESSION["udevrules"]["udev_rules_file"];
+          // $udevfile="/etc/udev/rules.d/80-net-devices.rules";
+
+          // find the rule prototype and prefix
+          $rule = "";
+          foreach($_SESSION["udevrules"]["network_devices"] as $devt) {
+             if($devt["type"]==$newtype) {
+                $rule = $devt["udev_rule"];
+                $prefix = $devt["name_prefix"];
+             }
           }
-          $jsonData = ['return'=>0,'output'=>['Udev rules changed for device '.$dev]];
+          if(!empty($mac)) $rule = preg_replace("/\\\$MAC\\\$/i",$mac,$rule);
+          if(!empty($vid)) $rule = preg_replace("/\\\$IDVENDOR\\\$/i",$vid,$rule);
+          if(!empty($pid)) $rule = preg_replace("/\\\$IDPRODUCT\\\$/i",$pid,$rule);
+          // check for existing rule
+          $pre="";
+          if(preg_match("/^(\w+)[0-9]$/",$dev,$match)=== 1) $pre=$match[1];
+          $ruleold = preg_replace("/\\\$DEVNAME\\\$/i",$pre.".",$rule);
+          exec("grep -oP '".$ruleold."' $udevfile",$ret);
+          $newRule = empty($ret) || !empty($name);
+          // delete current entry
+          if(!empty($ret)) exec("sudo sed -i '/^".$ruleold."$/d' ".$udevfile);
+          exec('sudo sed -i "/^.*'.$mac.'.*$/d" '.$udevfile);
+          if($newRule) {
+            // create new entry
+            if(empty($name)) $name = $prefix."0";
+            if(!empty($name)) $rule = preg_replace("/\\\$DEVNAME\\\$/i",$name,$rule);
+            if (!empty($rule) ) exec('echo \''.$rule.'\' | sudo /usr/bin/tee -a '.$udevfile);
+          }
+$ret=print_r($ret,true);
+          $jsonData = ['return'=>0,'output'=>['Udev rules changed for device '.$dev ] ];
           echo json_encode($jsonData);
           return;
         }

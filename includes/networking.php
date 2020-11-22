@@ -1,11 +1,14 @@
 <?php
 
 require_once 'includes/status_messages.php';
+require_once 'includes/functions.php';
+require_once 'includes/get_clients.php';
 
 /**
  *
  *
  */
+
 function DisplayNetworkingConfig()
 {
 
@@ -16,5 +19,9 @@ function DisplayNetworkingConfig()
     foreach ($interfaces as $interface) {
         exec("ip a show $interface", $$interface);
     }
-    echo renderTemplate("networking", compact("status", "interfaces"));
+    load_client_config();
+    $clients=getClients();
+    echo renderTemplate("networking", compact("status", "interfaces", "clients"));
 }
+
+?>

@@ -3,6 +3,6 @@ SUBSYSTEM=="tty", KERNEL=="ttyUSB0", TAG+="systemd", ENV{SYSTEMD_WANTS}="start s
 
 # Huawei Hilink mobile data device is connected - use lte0 as device name (instead of eth1) and auto-connect via service
 # E3372h
-SUBSYSTEM=="net", ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="14db", NAME="lte0",  TAG+="systemd", ENV{SYSTEMD_WANTS}="start start_huawei_hilink.service"
+SUBSYSTEM=="net", ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="14db", NAME="hilink0",  TAG+="systemd", ENV{SYSTEMD_WANTS}="start start_huawei_hilink.service"
 
 
