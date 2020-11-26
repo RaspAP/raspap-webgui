@@ -245,6 +245,9 @@ function loadInterfaceDHCPSelect() {
     $.get('ajax/networking/get_netcfg.php?iface='+iface,function(data){
         jsonData = JSON.parse(data);
         $('#dhcp-iface')[0].checked = jsonData.DHCPEnabled;
+        $('#txtipaddress').val(jsonData.StaticIP);
+        $('#txtgateway').val(jsonData.StaticRouters);
+        $('#chkfallback')[0].checked = jsonData.FallbackEnabled;
         $('#txtrangestart').val(jsonData.RangeStart);
         $('#txtrangeend').val(jsonData.RangeEnd);
         $('#txtrangeleasetime').val(jsonData.leaseTime);
@@ -253,6 +256,14 @@ function loadInterfaceDHCPSelect() {
         $('#cbxrangeleasetimeunits').val(jsonData.leaseTimeInterval);
         $('#no-resolv')[0].checked = jsonData.upstreamServersEnabled;
         $('#cbxdhcpupstreamserver').val(jsonData.upstreamServers[0]);
+        $('#txtmetric').val(jsonData.Metric);
+        if (jsonData.StaticIP !== null && jsonData.StaticIP !== '') {
+            $('#chkstatic').closest('.btn').button('toggle');
+            $('#chkstatic').closest('.btn').blur();
+        } else {
+            $('#chkdhcp').closest('.btn').button('toggle');
+            $('#chkdhcp').closest('.btn').blur();
+        }
     });
 }
 
