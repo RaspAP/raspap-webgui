@@ -39,7 +39,7 @@ if (isset($interface)) {
 
     // fetch dhcpcd.conf settings for interface
     $conf = file_get_contents(RASPI_DHCPCD_CONFIG);
-    preg_match('/^#\sRaspAP\s'.$interface.'.*?(?=\s*^\s*$)/ms', $conf, $matched);
+    preg_match('/^#\sRaspAP\s'.$interface.'\s.*?(?=\s*+$)/ms', $conf, $matched);
     preg_match('/metric\s(\d*)/', $matched[0], $metric);
     preg_match('/static\sip_address=(.*)/', $matched[0], $static_ip);
     preg_match('/static\srouters=(.*)/', $matched[0], $static_routers);
