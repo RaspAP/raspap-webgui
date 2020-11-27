@@ -259,12 +259,21 @@ function loadInterfaceDHCPSelect() {
         $('#txtmetric').val(jsonData.Metric);
         if (jsonData.StaticIP !== null && jsonData.StaticIP !== '') {
             $('#chkstatic').closest('.btn').button('toggle');
-            $('#chkstatic').closest('.btn').blur();
+            $('#chkstatic').closest('.btn').button('toggle').blur();
+            $('#chkstatic').blur();
+            $('#chkfallback').prop('disabled', true);
         } else {
             $('#chkdhcp').closest('.btn').button('toggle');
-            $('#chkdhcp').closest('.btn').blur();
+            $('#chkdhcp').closest('.btn').button('toggle').blur();
+            $('#chkdhcp').blur();
+            $('#chkfallback').prop('disabled', false);
         }
     });
+}
+
+function setDHCPToggles(state) {
+    $('#chkfallback').prop('disabled', state);
+    $('#dhcp-iface').prop('disabled', !state);
 }
 
 function loadChannel() {
