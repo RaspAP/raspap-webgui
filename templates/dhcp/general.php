@@ -10,12 +10,12 @@
   <h5 class="mt-1"><?php echo _("Adapter IP Address Settings"); ?></h5>
   <div class="row">
     <div class="form-group col-md-6">
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-light active">
-          <input type="radio" name="adapter-ip" id="chkdhcp" autocomplete="off" checked>DHCP
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-light active" checked onclick="setDHCPToggles(false)">
+          <input type="radio" name="adapter-ip" id="chkdhcp" autocomplete="off"> DHCP
         </label>
-        <label class="btn btn-light">
-          <input type="radio" name="adapter-ip" id="chkstatic" autocomplete="off">Static IP
+        <label class="btn btn-light" onclick="setDHCPToggles(true)">
+          <input type="radio" name="adapter-ip" id="chkstatic" autocomplete="off"> Static IP
         </label>
       </div>
     </div>
@@ -25,7 +25,7 @@
     <div class="form-group col-md-6">
         <div class="custom-control custom-switch">
           <input class="custom-control-input" id="chkfallback" type="checkbox" name="Fallback" value="1" aria-describedby="fallback-description">
-          <label class="custom-control-label" for="fallback"><?php echo _("Enable fallback to static option") ?></label>
+          <label class="custom-control-label" for="chkfallback"><?php echo _("Enable fallback to static option") ?></label>
         </div>
         <p class="mb-0" id="fallback-description">
           <small><?php echo _("Enable this option to configure a static profile and fall back to it when DHCP lease fails.") ?></small>
@@ -52,9 +52,8 @@
   <div class="row">
     <div class="form-group col-md-6">
       <div class="input-group">
-        <input type="hidden" name="dhcp-iface" value="0">
         <div class="custom-control custom-switch">
-          <input class="custom-control-input" id="dhcp-iface" type="checkbox" name="dhcp-iface" value="1" <?php echo $dhcp_iface_enable ? ' checked="checked"' : "" ?> aria-describedby="dhcp-iface-description">
+          <input class="custom-control-input" id="dhcp-iface" type="checkbox" name="dhcp-iface" value="1" aria-describedby="dhcp-iface-description">
           <label class="custom-control-label" for="dhcp-iface"><?php echo _("Enable DHCP for this interface") ?></label>
         </div>
         <p class="mb-0" id="dhcp-iface-description">
