@@ -246,6 +246,7 @@ function loadInterfaceDHCPSelect() {
         jsonData = JSON.parse(data);
         $('#dhcp-iface')[0].checked = jsonData.DHCPEnabled;
         $('#txtipaddress').val(jsonData.StaticIP);
+        $('#txtsubnetmask').val(jsonData.SubnetMask);
         $('#txtgateway').val(jsonData.StaticRouters);
         $('#chkfallback')[0].checked = jsonData.FallbackEnabled;
         $('#txtrangestart').val(jsonData.RangeStart);
@@ -257,7 +258,7 @@ function loadInterfaceDHCPSelect() {
         $('#no-resolv')[0].checked = jsonData.upstreamServersEnabled;
         $('#cbxdhcpupstreamserver').val(jsonData.upstreamServers[0]);
         $('#txtmetric').val(jsonData.Metric);
-        if (jsonData.StaticIP !== null && jsonData.StaticIP !== '') {
+        if (jsonData.StaticIP !== null && jsonData.StaticIP !== '' && !jsonData.FallbackEnabled) {
             $('#chkstatic').closest('.btn').button('toggle');
             $('#chkstatic').closest('.btn').button('toggle').blur();
             $('#chkstatic').blur();
@@ -267,6 +268,9 @@ function loadInterfaceDHCPSelect() {
             $('#chkdhcp').closest('.btn').button('toggle').blur();
             $('#chkdhcp').blur();
             $('#chkfallback').prop('disabled', false);
+        }
+        if (jsonData.FallbackEnabled) {
+            $('#dhcp-iface').prop('disabled', true);
         }
     });
 }

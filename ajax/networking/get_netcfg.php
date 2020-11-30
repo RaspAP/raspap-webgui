@@ -46,7 +46,8 @@ if (isset($interface)) {
     preg_match('/static\sdomain_name_servers=(.*)/', $matched[0], $static_dns);
     preg_match('/fallback\sstatic_'.$interface.'/', $matched[0], $fallback);
     $dhcpdata['Metric'] = $metric[1];
-    $dhcpdata['StaticIP'] = $static_ip[1];
+    $dhcpdata['StaticIP'] = substr($static_ip[1], 0, strpos($static_ip[1],'/'));
+    $dhcpdata['SubnetMask'] = cidr2mask($static_ip[1]);
     $dhcpdata['StaticRouters'] = $static_routers[1];
     $dhcpdata['StaticDNS'] = $static_dns[1];
     $dhcpdata['FallbackEnabled'] = empty($fallback) ? false: true;

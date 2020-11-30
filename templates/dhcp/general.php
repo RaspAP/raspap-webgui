@@ -43,6 +43,13 @@
 
   <div class="row">
     <div class="form-group col-md-6">
+      <label for="code"><?php echo _("Subnet Mask"); ?></label>
+      <input type="text" class="form-control" id="txtsubnetmask" name="SubnetMask" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
       <label for="code"><?php echo _("Default gateway"); ?></label>
       <input type="text" class="form-control" id="txtgateway" name="DefaultGateway" />
     </div>
