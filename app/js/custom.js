@@ -49,74 +49,6 @@ function setupTabs() {
     });
 }
 
-function loadCurrentSettings(strInterface) {
-    $.post('ajax/networking/get_int_config.php',{interface:strInterface},function(data){
-        jsonData = JSON.parse(data);
-        $.each(jsonData['output'],function(i,v) {
-            var int = v['interface'];
-            $.each(v,function(i2,v2) {
-                switch(i2) {
-                    case "static":
-                        if(v2 == 'true') {
-                            $('#'+int+'-static').click();
-                            $('#'+int+'-nofailover').click();
-                        } else {
-                            $('#'+int+'-dhcp').click();
-                        }
-                    break;
-                    case "failover":
-                        if(v2 === 'true') {
-                            $('#'+int+'-failover').click();
-                        } else {
-                            $('#'+int+'-nofailover').click();
-                        }
-                    break;
-                    case "ip_address":
-                        var arrIPNetmask = v2.split('/');
-                        $('#'+int+'-ipaddress').val(arrIPNetmask[0]);
-                        $('#'+int+'-netmask').val(createNetmaskAddr(arrIPNetmask[1]));
-                    break;
-                    case "routers":
-                        $('#'+int+'-gateway').val(v2);
-                    break;
-                    case "domain_name_server":
-                        svrsDNS = v2.split(" ");
-                        $('#'+int+'-dnssvr').val(svrsDNS[0]);
-                        $('#'+int+'-dnssvralt').val(svrsDNS[1]);
-                    break;
-                }
-            });
-        });
-    });
-}
-
-function saveNetworkSettings(int) {
-    var frmInt = $('#frm-'+int).find(':input');
-    var arrFormData = {};
-    $.each(frmInt,function(i3,v3){
-        if($(v3).attr('type') == 'radio') {
-		arrFormData[$(v3).attr('id')] = $(v3).prop('checked');
-    } else {
-	    arrFormData[$(v3).attr('id')] = $(v3).val();
-    }
-    });
-    arrFormData['interface'] = int;
-    $.post('ajax/networking/save_int_config.php',arrFormData,function(data){
-        var jsonData = JSON.parse(data);
-        $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
-    });
-}
-
-function applyNetworkSettings() {
-    var int = $(this).data('int');
-    arrFormData = {};
-    arrFormData['generate'] = '';
-    $.post('ajax/networking/gen_int_config.php',arrFormData,function(data){
-        var jsonData = JSON.parse(data);
-        $('#msgNetworking').html(msgShow(jsonData['return'],jsonData['output']));
-    });
-}
-
 $(document).on("click", ".js-add-dhcp-static-lease", function(e) {
     e.preventDefault();
     var container = $(".js-new-dhcp-static-lease");
@@ -240,6 +172,10 @@ function loadWifiStations(refresh) {
 }
 $(".js-reload-wifi-stations").on("click", loadWifiStations(true));
 
+/*
+Populates the DHCP server form fields
+Option toggles are set dynamically depending on the loaded configuration
+*/
 function loadInterfaceDHCPSelect() {
     var iface = $('#cbxdhcpiface').val();
     $.get('ajax/networking/get_netcfg.php?iface='+iface,function(data){
@@ -258,6 +194,7 @@ function loadInterfaceDHCPSelect() {
         $('#no-resolv')[0].checked = jsonData.upstreamServersEnabled;
         $('#cbxdhcpupstreamserver').val(jsonData.upstreamServers[0]);
         $('#txtmetric').val(jsonData.Metric);
+
         if (jsonData.StaticIP !== null && jsonData.StaticIP !== '' && !jsonData.FallbackEnabled) {
             $('#chkstatic').closest('.btn').button('toggle');
             $('#chkstatic').closest('.btn').button('toggle').blur();
@@ -269,15 +206,23 @@ function loadInterfaceDHCPSelect() {
             $('#chkdhcp').blur();
             $('#chkfallback').prop('disabled', false);
         }
-        if (jsonData.FallbackEnabled) {
+        if (jsonData.FallbackEnabled || $('#chkdhcp').is(':checked')) {
             $('#dhcp-iface').prop('disabled', true);
         }
     });
 }
 
 function setDHCPToggles(state) {
+    if ($('#chkfallback').is(':checked') && state) {
+        $('#chkfallback').prop('checked', state);
+    }
+    if ($('#dhcp-iface').is(':checked') && !state) {
+        $('#dhcp-iface').prop('checked', state);
+    }
+
     $('#chkfallback').prop('disabled', state);
     $('#dhcp-iface').prop('disabled', !state);
+    //$('#dhcp-iface').prop('checked', state);
 }
 
 function loadChannel() {
