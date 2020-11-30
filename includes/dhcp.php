@@ -110,8 +110,13 @@ function ValidateDHCPInput()
     if (!filter_var($_POST['StaticIP'], FILTER_VALIDATE_IP) && !empty($_POST['StaticIP'])) {
         $errors .= _('Invalid static IP address.').'<br />'.PHP_EOL;
     }
-    if (!filter_var($_POST['DefaultGateway'], FILTER_VALIDATE_IP)) {
+    if (!filter_var($_POST['SubnetMask'], FILTER_VALIDATE_IP) && !empty($_POST['SubnetMask'])) {
+        $errors .= _('Invalid subnet mask.').'<br />'.PHP_EOL;
+    }
+    if (!filter_var($_POST['DefaultGateway'], FILTER_VALIDATE_IP) && !empty($_POST['DefaultGateway'])) {
         $errors .= _('Invalid default gateway.').'<br />'.PHP_EOL;
+        var_dump($_POST['DefaultGateway']);
+        die();
     }
     if (($_POST['dhcp-iface'] == "1")) {
         if (!filter_var($_POST['RangeStart'], FILTER_VALIDATE_IP) && !empty($_POST['RangeStart'])) {
@@ -186,7 +191,9 @@ function UpdateDHCPConfig($iface,$status)
 {
     $cfg[] = '# RaspAP '.$iface.' configuration';
     $cfg[] = 'interface '.$iface;
-    $cfg[] = 'static ip_address='.$_POST['StaticIP'];
+    if (isset($_POST['StaticIP'])) {
+        $cfg[] = 'static ip_address='.$_POST['StaticIP'].'/'.mask2cidr($_POST['SubnetMask']);
+    }
     if (isset($_POST['DefaultGateway'])) {
       $cfg[] = 'static routers='.$_POST['DefaultGateway'];
     }
@@ -197,7 +204,8 @@ function UpdateDHCPConfig($iface,$status)
       $cfg[] = 'metric '.$_POST['Metric'];
     }
     if ($_POST['Fallback'] == 1) {
-      $cfg[] = 'fallback static_'.$iface;
+        $cfg[] = 'profile static_'.$iface;
+        $cfg[] = 'fallback static_'.$iface;
     }
     $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
     if (!preg_match('/^$\s*\z/m', $dhcp_cfg) && !preg_match('/^interface\s'.$iface.'$/m', $dhcp_cfg)) {
