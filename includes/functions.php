@@ -1,11 +1,32 @@
 <?php
 /* Functions for Networking */
 
+/**
+ * Converts a netmask to CIDR notation string
+ *
+ * @param string $mask
+ * @return string
+ */
 function mask2cidr($mask)
 {
     $long = ip2long($mask);
     $base = ip2long('255.255.255.255');
     return 32-log(($long ^ $base)+1, 2);
+}
+
+/**
+ * Converts a CIDR notation string to a netmask
+ *
+ * @param string $cidr
+ * @return string
+*/
+function cidr2mask($cidr)
+{
+    $ta = substr ($cidr, strpos ($cidr, '/') + 1) * 1;
+    $netmask = str_split (str_pad (str_pad ('', $ta, '1'), 32, '0'), 8);
+    foreach ($netmask as &$element)
+      $element = bindec ($element);
+    return join ('.', $netmask);
 }
 
 /* Functions to write ini files */
