@@ -7,7 +7,7 @@ if (!defined('RASPI_CONFIG')) {
 $defaults = [
   'RASPI_BRAND_TEXT' => 'RaspAP',
   'RASPI_VERSION' => '2.5.1',
-  'RASPI_CONFIG_NETWORKING' => RASPI_CONFIG.'/networking',
+  'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/network.json',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',
   'RASPI_WIFI_AP_INTERFACE' => 'wlan0',
   'RASPI_CACHE_PATH' => sys_get_temp_dir() . '/raspap',

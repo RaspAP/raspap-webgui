@@ -2,7 +2,7 @@
 
 define('RASPI_BRAND_TEXT', 'RaspAP');
 define('RASPI_CONFIG', '/etc/raspap');
-define('RASPI_CONFIG_NETWORKING', RASPI_CONFIG.'/networking');
+define('RASPI_CONFIG_NETWORK', RASPI_CONFIG.'/networking/network.json');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
 define('RASPI_WIFI_AP_INTERFACE', 'wlan0');
 define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
