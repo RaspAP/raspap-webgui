@@ -173,11 +173,6 @@ function UpdateDnsmasqConfig($iface,$status)
         }
         $config .= PHP_EOL;
     }
-    // enable these settings on the default interface
-    if ($iface == "wlan0") {
-        $config .= "log-facility=/tmp/dnsmasq.log".PHP_EOL;
-        $config .= "conf-dir=/etc/dnsmasq.d".PHP_EOL;
-    }
     file_put_contents("/tmp/dnsmasqdata", $config);
     $msg = file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf') ? 'updated' : 'added';
     system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);
@@ -208,10 +203,6 @@ function UpdateDHCPConfig($iface,$status)
         $cfg[] = 'fallback static_'.$iface;
     }
     $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
-    if (!preg_match('/^$\s*\z/m', $dhcp_cfg) && !preg_match('/^interface\s'.$iface.'$/m', $dhcp_cfg)) {
-                echo '===== no ending newline found ====<br>';
-    }
-
     if (!preg_match('/^interface\s'.$iface.'$/m', $dhcp_cfg)) {
         $cfg[] = PHP_EOL;
         $cfg = join(PHP_EOL, $cfg);
