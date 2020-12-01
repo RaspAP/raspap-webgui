@@ -43,7 +43,7 @@ if (isset($interface)) {
     preg_match('/metric\s(\d*)/', $matched[0], $metric);
     preg_match('/static\sip_address=(.*)/', $matched[0], $static_ip);
     preg_match('/static\srouters=(.*)/', $matched[0], $static_routers);
-    preg_match('/static\sdomain_name_servers=(.*)/', $matched[0], $static_dns);
+    preg_match('/static\sdomain_name_server=(.*)/', $matched[0], $static_dns);
     preg_match('/fallback\sstatic_'.$interface.'/', $matched[0], $fallback);
     $dhcpdata['Metric'] = $metric[1];
     $dhcpdata['StaticIP'] = substr($static_ip[1], 0, strpos($static_ip[1],'/'));
