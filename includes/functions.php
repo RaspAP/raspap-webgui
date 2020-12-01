@@ -235,6 +235,19 @@ function ParseConfig($arrConfig)
 }
 
 /**
+ * Fetches DHCP configuration for an interface, returned as JSON data
+ *
+ * @param  string $interface
+ * @return json $jsonData
+ */
+function getNetConfig($interface)
+{
+    $URI = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'] .'/ajax/networking/get_netcfg.php?iface='.$interface;
+    $jsonData = file_get_contents($URI);
+    return $jsonData;
+}
+
+/**
  *
  * @param  string $freq
  * @return $channel
