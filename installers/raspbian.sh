@@ -51,6 +51,11 @@ readonly ANSI_RASPBERRY="\033[0;35m"
 readonly ANSI_ERROR="\033[1;37;41m"
 readonly ANSI_RESET="\033[m"
 
+# Log output
+readonly LOGFILE_PATH="/tmp"
+exec > >(tee -i $LOGFILE_PATH/raspap_install.log)
+exec 2>&1
+
 # Fetch latest release from GitHub API
 readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 
