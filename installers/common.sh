@@ -336,8 +336,8 @@ function _check_for_old_configs() {
         fi
 
         if [ -f $raspap_dnsmasq ]; then
-            sudo cp $raspap_dnsmasq "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`"
-            sudo ln -sf "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`" "$raspap_dir/backups/dnsmasq.conf"
+            sudo cp $raspap_dnsmasq "$raspap_dir/backups/090_wlan0.conf.`date +%F-%R`"
+            sudo ln -sf "$raspap_dir/backups/090_wlan0.conf.`date +%F-%R`" "$raspap_dir/backups/090_wlan0.conf"
         fi
 
         if [ -f /etc/dhcpcd.conf ]; then
@@ -376,7 +376,7 @@ function _default_configuration() {
         fi
         sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || _install_status 1 "Unable to move hostapd defaults file"
         sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
-        sudo cp $webroot_dir/config/dnsmasq.conf $raspap_dnsmasq || _install_status 1 "Unable to move dnsmasq configuration file"
+        sudo cp $webroot_dir/config/090_wlan0.conf $raspap_dnsmasq || _install_status 1 "Unable to move dnsmasq configuration file"
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
 
         echo "Checking for existence of /etc/dnsmasq.d"
