@@ -187,7 +187,8 @@ function UpdateDHCPConfig($iface,$status)
     $cfg[] = '# RaspAP '.$iface.' configuration';
     $cfg[] = 'interface '.$iface;
     if (isset($_POST['StaticIP'])) {
-        $cfg[] = 'static ip_address='.$_POST['StaticIP'].'/'.mask2cidr($_POST['SubnetMask']);
+        $mask = ($_POST['SubnetMask'] !== '' && $_POST['SubnetMask'] !== '0.0.0.0') ? '/'.mask2cidr($_POST['SubnetMask']) : null;
+        $cfg[] = 'static ip_address='.$_POST['StaticIP'].$mask;
     }
     if (isset($_POST['DefaultGateway'])) {
       $cfg[] = 'static routers='.$_POST['DefaultGateway'];
