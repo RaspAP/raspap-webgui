@@ -70,8 +70,9 @@ function SaveDHCPConfig($status)
 
     // handle disable dhcp option
     if (!isset($_POST['dhcp-iface']) && file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf')) {
-        // remove dhcp conf for selected interface
-        $return = RemoveDHCPConfig($iface,$status);
+        // remove dhcp + dnsmasq configs for selected interface
+        $return = removeDHCPConfig($iface,$status);
+        $return = removeDnsmasqConfig($iface,$status);
     } else {
         $errors = ValidateDHCPInput();
         if (empty($errors)) {
@@ -87,7 +88,6 @@ function SaveDHCPConfig($status)
         if (($_POST['dhcp-iface'] == "1")) {
             $return = UpdateDnsmasqConfig($iface,$status);
         }
-
         if ($return == 0) {
             $status->addMessage('Dnsmasq configuration updated successfully.', 'success');
         } else {
@@ -140,7 +140,8 @@ function ValidateDHCPInput()
 
 function UpdateDnsmasqConfig($iface,$status)
 {
-    $config = 'interface='.$iface.PHP_EOL.
+    $config = '# RaspAP '.$iface.' configuration'.PHP_EOL;
+    $config .= 'interface='.$iface.PHP_EOL.
         'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].
         ',255.255.255.0,';
     if ($_POST['RangeLeaseTimeUnits'] !== 'infinite') {
@@ -219,27 +220,4 @@ function UpdateDHCPConfig($iface,$status)
 
     return $result;
 }
-
-function RemoveDHCPConfig($iface,$status)
-{
-    $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
-    $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
-    file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
-    system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $result);
-    if ($result == 0) {
-        $status->addMessage('DHCP configuration for '.$iface.'  removed.', 'success');
-    } else {
-        $status->addMessage('Failed to remove DHCP configuration for '.$iface.'.', 'danger');
-        return $result;
-    }
-    // remove dnsmasq conf
-    system('sudo rm '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);
-    if ($result == 0) {
-        $status->addMessage('Dnsmasq configuration for '.$iface.' removed.', 'success');
-    } else {
-        $status->addMessage('Failed to remove dnsmasq configuration for '.$iface.'.', 'danger');
-    }
-    return $result;
-}
-
 
