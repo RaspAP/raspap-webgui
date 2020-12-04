@@ -11,7 +11,7 @@ function DisplayDHCPConfig()
     $status = new StatusMessages();
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['savedhcpdsettings'])) {
-            SaveDHCPConfig($status);
+            saveDHCPConfig($status);
         }
     }
     exec('pidof dnsmasq | wc -l', $dnsmasq);
@@ -63,7 +63,12 @@ function DisplayDHCPConfig()
     );
 }
 
-function SaveDHCPConfig($status)
+/**
+ * Saves a DHCP configuration
+ *
+ * @return object $status
+ */
+function saveDHCPConfig($status)
 {
     $iface = $_POST['interface'];
     $return = 1;
@@ -74,9 +79,9 @@ function SaveDHCPConfig($status)
         $return = removeDHCPConfig($iface,$status);
         $return = removeDnsmasqConfig($iface,$status);
     } else {
-        $errors = ValidateDHCPInput();
+        $errors = validateDHCPInput();
         if (empty($errors)) {
-            $return = UpdateDHCPConfig($iface,$status);
+            $return = updateDHCPConfig($iface,$status);
         } else {
             $status->addMessage($errors, 'danger');
         }
@@ -86,7 +91,7 @@ function SaveDHCPConfig($status)
         }
 
         if (($_POST['dhcp-iface'] == "1")) {
-            $return = UpdateDnsmasqConfig($iface,$status);
+            $return = updateDnsmasqConfig($iface,$status);
         }
         if ($return == 0) {
             $status->addMessage('Dnsmasq configuration updated successfully.', 'success');
@@ -98,7 +103,12 @@ function SaveDHCPConfig($status)
     }
 }
 
-function ValidateDHCPInput()
+/**
+ * Validates DHCP user input from the $_POST object
+ *
+ * @return string $errors
+ */
+function validateDHCPInput()
 {
     define('IFNAMSIZ', 16);
     $iface = $_POST['interface'];
@@ -138,7 +148,14 @@ function ValidateDHCPInput()
     return $errors;
 }
 
-function UpdateDnsmasqConfig($iface,$status)
+/**
+ * Updates a dnsmasq configuration
+ *
+ * @param string $iface
+ * @param object $status
+ * @return boolean $result
+ */
+function updateDnsmasqConfig($iface,$status)
 {
     $config = '# RaspAP '.$iface.' configuration'.PHP_EOL;
     $config .= 'interface='.$iface.PHP_EOL.
@@ -183,7 +200,14 @@ function UpdateDnsmasqConfig($iface,$status)
     return $result;
 }
 
-function UpdateDHCPConfig($iface,$status)
+/**
+ * Updates a dhcp configuration
+ *
+ * @param string $iface
+ * @param object $status
+ * @return boolean $result
+ */
+function updateDHCPConfig($iface,$status)
 {
     $cfg[] = '# RaspAP '.$iface.' configuration';
     $cfg[] = 'interface '.$iface;
