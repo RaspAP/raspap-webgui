@@ -113,9 +113,9 @@ function removeDnsmasqConfig($iface,$status)
 function scanConfigDir($dir_conf,$interface,$status)
 {
     $syscnf = preg_grep('~\.(conf)$~', scandir($dir_conf));
-    foreach ($syscnf as $key => $file) {
-        if ($file !== '090_adblock.conf' && !preg_match('/.*_'.$interface.'.conf/', $file)) {
-            removeDnsmasqConfig($interface,$status);
+    foreach ($syscnf as $cnf) {
+        if ($cnf !== '090_adblock.conf' && !preg_match('/.*_'.$interface.'.conf/', $cnf)) {
+            system('sudo rm /etc/dnsmasq.d/'.$cnf, $result);
         }
     }
     return $status;

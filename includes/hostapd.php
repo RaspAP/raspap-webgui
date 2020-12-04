@@ -8,7 +8,7 @@ require_once 'includes/config.php';
 getWifiInterface();
 
 /**
- *
+ * Initialize hostapd values, display interface
  *
  */
 function DisplayHostAPDConfig()
@@ -34,7 +34,6 @@ function DisplayHostAPDConfig()
             SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $status);
         }
     }
-
     $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
 
     if (!RASPI_MONITOR_ENABLED) {
@@ -71,7 +70,6 @@ function DisplayHostAPDConfig()
         if (strlen($hostapdconfigline) === 0) {
             continue;
         }
-
         if ($hostapdconfigline[0] != "#") {
             $arrLine = explode("=", $hostapdconfigline);
             $arrConfig[$arrLine[0]]=$arrLine[1];
@@ -107,6 +105,16 @@ function DisplayHostAPDConfig()
     );
 }
 
+/**
+ * Validate user input, save configs for hostapd, dnsmasq & dhcp
+ *
+ * @param array $wpa_array
+ * @param array $enc_types
+ * @param array $modes
+ * @param string $interface
+ * @param object $status
+ * @return boolean
+ */
 function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 {
     // It should not be possible to send bad data for these fields so clearly
@@ -125,12 +133,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $status->addMessage('Attempting to set channel to invalid number.', 'danger');
         $good_input = false;
     }
-
     if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > RASPI_5GHZ_MAX_CHANNEL) {
         $status->addMessage('Attempting to set channel outside of permitted range', 'danger');
         $good_input = false;
     }
-  
     // Check for Bridged AP mode checkbox
     $bridgedEnable = 0;
     if ($arrHostapdConf['BridgedEnable'] == 0) {
@@ -173,12 +179,12 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         }
     }
 
+    // persist user-defined options to /etc/raspap
     $cfg = [];
     $cfg['WifiInterface'] = $_POST['interface'];
     $cfg['LogEnable'] = $logEnable;
     // Save previous Client mode status when Bridged
-    $cfg['WifiAPEnable'] = ($bridgedEnable == 1 ?
-        $arrHostapdConf['WifiAPEnable'] : $wifiAPEnable);
+    $cfg['WifiAPEnable'] = ($bridgedEnable == 1 ? $arrHostapdConf['WifiAPEnable'] : $wifiAPEnable);
     $cfg['BridgedEnable'] = $bridgedEnable;
     $cfg['WifiManaged'] = $_POST['interface'];
     write_php_ini($cfg, RASPI_CONFIG.'/hostapd.ini');
@@ -236,6 +242,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     $_POST['max_num_sta'] = $_POST['max_num_sta'] > 2007 ? 2007 : $_POST['max_num_sta'];
     $_POST['max_num_sta'] = $_POST['max_num_sta'] < 1 ? null : $_POST['max_num_sta'];
 
+    // populate hostapd.conf
     if ($good_input) {
         // Fixed values
         $country_code = $_POST['country_code'];
@@ -409,6 +416,5 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $status->addMessage('Unable to save wifi hotspot settings', 'danger');
         return false;
     }
-
     return true;
 }
