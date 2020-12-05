@@ -145,9 +145,10 @@ function _create_raspap_directories() {
     # Create a directory to store networking configs
     echo "Creating $raspap_dir/networking"
     sudo mkdir -p "$raspap_dir/networking"
-    # Copy existing dhcpcd.conf to use as base config
-    echo "Adding /etc/dhcpcd.conf as base configuration"
-    cat /etc/dhcpcd.conf | sudo tee -a /etc/raspap/networking/defaults > /dev/null
+
+    # Copy defaults.json to use as fallback config
+    sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
+
     echo "Changing file ownership of $raspap_dir"
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 }
@@ -379,7 +380,6 @@ function _default_configuration() {
         sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
         sudo cp $webroot_dir/config/090_wlan0.conf $raspap_dnsmasq || _install_status 1 "Unable to move dnsmasq configuration file"
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
-        sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
 
         echo "Checking for existence of /etc/dnsmasq.d"
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
