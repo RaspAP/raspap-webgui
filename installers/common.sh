@@ -146,11 +146,6 @@ function _create_raspap_directories() {
     echo "Creating $raspap_dir/networking"
     sudo mkdir -p "$raspap_dir/networking"
 
-    # Copy defaults.json to use as fallback config
-    sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
-
-    echo "Changing file ownership of $raspap_dir"
-    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 }
 
 # Generate hostapd logging and service control scripts
@@ -237,7 +232,7 @@ function _install_adblock() {
         echo "addn-hosts=$raspap_dir/adblock/hostnames.txt" | sudo tee -a "$raspap_adblock" > /dev/null || _install_status 1 "Unable to write to $raspap_adblock"
     fi
 
-    # Remove dhcp-option=6 in dnsmasq.d/090_raspap.conf to force local DNS resolution for DHCP clients
+    # Remove dhcp-option=6 in dnsmasq.d/090_wlan0.conf to force local DNS resolution for DHCP clients
     echo "Enabling local DNS name resolution for DHCP clients"
     sudo sed -i '/dhcp-option=6/d' $raspap_dnsmasq || _install_status 1 "Unable to modify $raspap_dnsmasq"
 
@@ -380,6 +375,10 @@ function _default_configuration() {
         sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
         sudo cp $webroot_dir/config/090_wlan0.conf $raspap_dnsmasq || _install_status 1 "Unable to move dnsmasq configuration file"
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
+        sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
+
+        echo "Changing file ownership of $raspap_dir"
+        sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 
         echo "Checking for existence of /etc/dnsmasq.d"
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
