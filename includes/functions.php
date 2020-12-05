@@ -121,6 +121,24 @@ function scanConfigDir($dir_conf,$interface,$status)
     return $status;
 }
 
+/**
+ * Returns a default (fallback) value for the selected service, interface & setting
+ * from /etc/raspap/networking/defaults.json
+ *
+ * @param string $svc
+ * @param string $iface
+ * @return string $value
+ */
+function getDefaultNetValue($svc,$iface,$key)
+{
+    $json = json_decode(file_get_contents(RASPI_CONFIG_NETWORK), true);
+    if ($json === null) {
+        return false;
+    } else {
+        return $json[$svc][$iface][$key][0];
+    }
+}
+
 /* Functions to write ini files */
 
 function write_php_ini($array, $file)
