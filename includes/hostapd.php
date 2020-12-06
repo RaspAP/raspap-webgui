@@ -287,8 +287,12 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 
         // Set dhcp values from system config, fallback to default if undefined
         $jsonData = json_decode(getNetConfig($ap_iface), true);
-        $domain_name_server = ($jsonData['StaticDNS'] =='') ? getDefaultNetValue('dhcp','wlan0','static domain_name_server') : $jsonData['StaticDNS'];
-        $routers = ($jsonData['StaticRouters'] == '') ? getDefaultNetValue('dhcp','wlan0','static routers') : $jsonData['StaticRouters'];
+        $ip_address = ($jsonData['StaticIP'] == '') ? getDefaultNetValue('dhcp',$ap_iface,'static ip_address') : $jsonData['StaticIP'];
+        $domain_name_server = ($jsonData['StaticDNS'] =='') ? getDefaultNetValue('dhcp',$ap_iface,'static domain_name_server') : $jsonData['StaticDNS'];
+        $routers = ($jsonData['StaticRouters'] == '') ? getDefaultNetValue('dhcp',$ap_iface,'static routers') : $jsonData['StaticRouters'];
+        $netmask = ($jsonData['SubnetMask'] == '' || $jsonData['SubnetMask'] == '0.0.0.0') ? getDefaultNetValue('dhcp',$ap_iface,'subnetmask') : $jsonData['SubnetMask'];
+        $ip_address.= (!preg_match('/.*\/\d+/', $ip_address)) ? '/'.mask2cidr($netmask) : null;
+
         if ($bridgedEnable == 1) {
             $config = defaultHeader();
             $config[] = PHP_EOL.'# RaspAP br0 configuration';
@@ -297,7 +301,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config[] = PHP_EOL;
         } elseif ($wifiAPEnable == 1) {
             // Enable uap0 configuration for ap-sta 
-            $ip_address = ($jsonData['StaticIP'] == '') ? getDefaultNetValue('dhcp','uap0','static ip_address') : $jsonData['StaticIP'];
             $config = defaultHeader();
             $config[] = PHP_EOL.'# RaspAP uap0 configuration';
             $config[] = 'interface uap0';
@@ -306,11 +309,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config[] = PHP_EOL;
         } else {
             // Default wlan0 config
-            $ip_address = ($jsonData['StaticIP'] == '') ? getDefaultNetValue('dhcp','wlan0','static ip_address')  : $jsonData['StaticIP'];
             $def_ip = array();
-            if (preg_match("/^([0-9]{1,3}\.){3}/",$dhcp_range,$def_ip) ) $ip_address = $def_ip[0]."1/24";
-            // use static IP assigned to interface only, if consistent with the selected dhcp range
-            if (preg_match("/^([0-9]{1,3}\.){3}/",$jsonData['StaticIP'],$int_ip) && $def_ip[0] === $int_ip[0]) $ip_address = $jsonData['StaticIP'];
             $config = [ '# RaspAP wlan0 configuration' ];
             $config[] = 'interface wlan0';
             $config[] = 'static ip_address='.$ip_address;
