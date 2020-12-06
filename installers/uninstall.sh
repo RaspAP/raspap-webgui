@@ -172,8 +172,10 @@ function _restore_networking() {
     fi
     echo "Done."
     # Remove dnsmasq and bridge configs
-    echo "Removing 090_raspap.conf from dnsmasq"
-    sudo rm "$raspap_dnsmasq" || _install_error "Unable to remove $raspap_dnsmasq"
+    echo "Removing 090_wlan0.conf from dnsmasq"
+    if [ -f $raspap_dnsmasq ]; then
+    	sudo rm "$raspap_dnsmasq" || _install_error "Unable to remove $raspap_dnsmasq"
+    fi
     echo "Removing raspap bridge configurations"
     sudo rm "$raspap_network"/raspap* || _install_error "Unable to remove bridge config"
     if [ -f $raspap_adblock ]; then
