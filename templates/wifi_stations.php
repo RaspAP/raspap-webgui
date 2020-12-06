@@ -1,6 +1,8 @@
 <?php if (empty($networks)) { ?>
-  <p class="lead text-center"><?php echo _('No Wifi stations found') ?></p>
-  <p class="text-center"><?php echo _('Click "Rescan" to search for nearby Wifi stations.') ?></p>
+  <div class="col-md-6 ml-6">
+    <p class="lead text-center"><?php echo _('No Wifi stations found') ?></p>
+    <p class="text-center"><?php echo _('Click "Rescan" to search for nearby Wifi stations.') ?></p>
+  </div>
 <?php } elseif (count($networks) == 1) { 
     $prop_col = "col-sm-12";
     $prop_w = "w-50";

@@ -19,7 +19,7 @@ function mask2cidr($mask)
  *
  * @param string $cidr
  * @return string
-*/
+ */
 function cidr2mask($cidr)
 {
     $ta = substr ($cidr, strpos ($cidr, '/') + 1) * 1;
@@ -27,6 +27,116 @@ function cidr2mask($cidr)
     foreach ($netmask as &$element)
       $element = bindec ($element);
     return join ('.', $netmask);
+}
+
+/**
+ * Returns a dhcp default config header
+ *
+ * @return array $config
+ */
+function defaultHeader()
+{
+    $config = [ '# RaspAP default configuration' ];
+    $config[] = 'hostname';
+    $config[] = 'clientid';
+    $config[] = 'persistent';
+    $config[] = 'option rapid_commit';
+    $config[] = 'option domain_name_servers, domain_name, domain_search, host_name';
+    $config[] = 'option classless_static_routes';
+    $config[] = 'option ntp_servers';
+    $config[] = 'require dhcp_server_identifier';
+    $config[] = 'slaac private';
+    $config[] = 'nohook lookup-hostname';
+    return $config;
+}
+
+/**
+ * Removes a dhcp configuration block for the specified interface
+ *
+ * @param string $iface
+ * @param object $status
+ * @return boolean $result
+ */
+function removeDHCPConfig($iface,$status)
+{
+    $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
+    $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
+    file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
+    system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $result);
+    if ($result == 0) {
+        $status->addMessage('DHCP configuration for '.$iface.'  removed.', 'success');
+    } else {
+        $status->addMessage('Failed to remove DHCP configuration for '.$iface.'.', 'danger');
+        return $result;
+    }
+}
+
+/**
+ * Removes a dhcp configuration block for the specified interface
+ *
+ * @param string $dhcp_cfg
+ * @param string $iface
+ * @return string $dhcp_cfg
+ */
+function removeDHCPIface($dhcp_cfg,$iface)
+{
+    $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
+    return $dhcp_cfg;
+}
+
+/**
+ * Removes a dnsmasq configuration block for the specified interface
+ *
+ * @param string $iface
+ * @param object $status
+ * @return boolean $result
+ */
+function removeDnsmasqConfig($iface,$status)
+{
+    system('sudo rm '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);
+    if ($result == 0) {
+        $status->addMessage('Dnsmasq configuration for '.$iface.' removed.', 'success');
+    } else {
+        $status->addMessage('Failed to remove dnsmasq configuration for '.$iface.'.', 'danger');
+    }
+    return $result;
+}
+
+/**
+ * Scans dnsmasq configuration dir for the specified interface
+ * Non-matching configs are removed, optional adblock.conf is protected
+ *
+ * @param string $dir_conf
+ * @param string $interface
+ * @param object $status
+ */
+function scanConfigDir($dir_conf,$interface,$status)
+{
+    $syscnf = preg_grep('~\.(conf)$~', scandir($dir_conf));
+    foreach ($syscnf as $cnf) {
+        if ($cnf !== '090_adblock.conf' && !preg_match('/.*_'.$interface.'.conf/', $cnf)) {
+            system('sudo rm /etc/dnsmasq.d/'.$cnf, $result);
+        }
+    }
+    return $status;
+}
+
+/**
+ * Returns a default (fallback) value for the selected service, interface & setting
+ * from /etc/raspap/networking/defaults.json
+ *
+ * @param string $svc
+ * @param string $iface
+ * @return string $value
+ */
+function getDefaultNetValue($svc,$iface,$key)
+{
+    $json = json_decode(file_get_contents(RASPI_CONFIG_NETWORK), true);
+    if ($json === null) {
+        return false;
+    } else {
+        return $json[$svc][$iface][$key][0];
+    }
 }
 
 /* Functions to write ini files */
@@ -232,6 +342,19 @@ function ParseConfig($arrConfig)
         }
     }
     return $config;
+}
+
+/**
+ * Fetches DHCP configuration for an interface, returned as JSON data
+ *
+ * @param  string $interface
+ * @return json $jsonData
+ */
+function getNetConfig($interface)
+{
+    $URI = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'] .'/ajax/networking/get_netcfg.php?iface='.$interface;
+    $jsonData = file_get_contents($URI);
+    return $jsonData;
 }
 
 /**
