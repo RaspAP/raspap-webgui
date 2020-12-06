@@ -140,7 +140,9 @@ function _remove_raspap_directories() {
 # Removes raspapd.service
 function _remove_raspap_service() {
     _install_log "Removing raspapd.service"
-    sudo rm /lib/systemd/system/raspapd.service || _install_error "Unable to remove raspap.service file"
+    if [ -f /lib/systemd/system/raspapd.service ]; then
+        sudo rm /lib/systemd/system/raspapd.service || _install_error "Unable to remove raspap.service file"
+    fi
     sudo systemctl daemon-reload
     sudo systemctl disable raspapd.service || _install_error "Failed to disable raspap.service"
     echo "Done."
