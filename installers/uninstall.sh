@@ -205,16 +205,6 @@ function _remove_sudoers() {
     echo "Done."
 }
 
-# Stops any running services related to project
-function _stop_services() {
-    _install_log "Stopping services"
-    echo "Stopping hostapd, dnsmasq & dhcpcd"
-    sudo systemctl stop hostapd.service || _install_error "Unable to stop hostapd"
-    sudo systemctl stop dnsmasq.service || _install_error "Unable to stop dnsmasq"
-    sudo systemctl stop dhcpcd.service || _install_error "Unable to stop dhcpcd"
-    echo "Done."
-}
-
 function _uninstall_complete() {
     _install_log "Uninstall completed"
     echo "It is recommended that you reboot your system as a final step."
@@ -228,7 +218,6 @@ function _remove_raspap() {
     _remove_raspap_directories
     _remove_installed_packages
     _remove_sudoers
-    _stop_services
     _uninstall_complete
 }
 

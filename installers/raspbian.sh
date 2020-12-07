@@ -37,7 +37,6 @@
 
 # Set defaults
 repo="billz/raspap-webgui"
-branch="master"
 assume_yes=0
 upgrade=0
 ovpn_option=1
@@ -58,6 +57,7 @@ exec 2>&1
 
 # Fetch latest release from GitHub API
 readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+branch="$RASPAP_LATEST" #override with the -b, --branch option
 
 # Define usage notes
 usage=$(cat << EOF
@@ -67,7 +67,7 @@ Usage: raspbian.sh [OPTION]\n
 -o, --openvpn <flag>\n\tUsed with -y, --yes, sets OpenVPN install option (0=no install)
 -a, --adblock <flag>\n\tUsed with -y, --yes, sets Adblock install option (0=no install)
 -r, --repo, --repository <name>\n\tOverrides the default GitHub repo (billz/raspap-webgui)
--b, --branch <name>\n\tOverrides the default git branch (master)
+-b, --branch <name>\n\tOverrides the default git branch (latest release)
 -h, --help\n\tOutputs usage notes and exits
 -u, --upgrade\n\tUpgrades an existing installation to the latest release version
 -v, --version\n\tOutputs release info and exits\n
