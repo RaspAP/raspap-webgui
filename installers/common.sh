@@ -368,10 +368,7 @@ function _move_config_file() {
 function _default_configuration() {
     if [ "$upgrade" == 0 ]; then
         _install_log "Applying default configuration to installed services"
-        if [ -f /etc/default/hostapd ]; then
-            sudo mv /etc/default/hostapd /tmp/default_hostapd.old || _install_status 1 "Unable to remove old /etc/default/hostapd file"
-        fi
-        sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || _install_status 1 "Unable to move hostapd defaults file"
+
         sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
         sudo cp $webroot_dir/config/090_wlan0.conf $raspap_dnsmasq || _install_status 1 "Unable to move dnsmasq configuration file"
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
