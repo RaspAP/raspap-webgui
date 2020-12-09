@@ -8,9 +8,13 @@ assignees: ''
 ---
 
 **Before submitting an issue**
-Please read this first https://github.com/billz/raspap-webgui/wiki/Reporting-issues
 
-* [x] This is a bug report
+All submitters MUST read this first https://github.com/billz/raspap-webgui/wiki/Reporting-issues
+
+Have a question or want to suggest a feature? You may do so here https://github.com/billz/raspap-webgui/discussions
+
+
+* [ ] This is a bug report
 * [ ] I searched existing issues before opening this one
 * [ ] I checked the FAQ before creating this issue
 * [ ] I have read and understand the issue reporting guidelines 
@@ -20,7 +24,7 @@ A clear and concise description of what the bug is.
 
 **Your environment**
 * Raspberry Pi hardware (examples: Pi 3 Model B+, Pi Zero W)  
-* Raspbian version (examples: Buster Lite, Buster Desktop)
+* Raspbian version (examples: RPi OS Lite, Armbian)
 * Followed the project prerequisites? (Y/N)
 * Checked the project FAQ? (Y/N)
 * RaspAP Quick Install or Manual setup?
