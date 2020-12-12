@@ -32,3 +32,4 @@ Ralf J - "Thanks for RaspAP including OpenVPN. It was a big help for me." -€15
 Felipe C - "Thanks for the good work on RaspAP!" -$6  
 Webagentur S - "Like what you and RaspAP are doing." -€20  
 Matthew B - "Great project, easy to set up." -£15
+Mikko M - "Thanks for the great RaspAP." -€10  
