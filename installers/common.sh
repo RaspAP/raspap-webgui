@@ -18,7 +18,8 @@ set -o errtrace
 readonly raspap_dir="/etc/raspap"
 readonly raspap_user="www-data"
 readonly raspap_sudoers="/etc/sudoers.d/090_raspap"
-readonly raspap_dnsmasq="/etc/dnsmasq.d/090_wlan0.conf"
+readonly raspap_default="/etc/dnsmasq.d/090_raspap.conf"
+readonly raspap_wlan0="/etc/dnsmasq.d/090_wlan0.conf"
 readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_network="$raspap_dir/networking/"
@@ -234,7 +235,7 @@ function _install_adblock() {
 
     # Remove dhcp-option=6 in dnsmasq.d/090_wlan0.conf to force local DNS resolution for DHCP clients
     echo "Enabling local DNS name resolution for DHCP clients"
-    sudo sed -i '/dhcp-option=6/d' $raspap_dnsmasq || _install_status 1 "Unable to modify $raspap_dnsmasq"
+    sudo sed -i '/dhcp-option=6/d' $raspap_wlan0 || _install_status 1 "Unable to modify $raspap_dnsmasq"
 
     echo "Enabling ad blocking management option"
     sudo sed -i "s/\('RASPI_ADBLOCK_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
@@ -332,8 +333,13 @@ function _check_for_old_configs() {
             sudo ln -sf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`" "$raspap_dir/backups/hostapd.conf"
         fi
 
-        if [ -f $raspap_dnsmasq ]; then
-            sudo cp $raspap_dnsmasq "$raspap_dir/backups/090_wlan0.conf.`date +%F-%R`"
+        if [ -f $raspap_default ]; then
+            sudo cp $raspap_default "$raspap_dir/backups/090_raspap.conf.`date +%F-%R`"
+            sudo ln -sf "$raspap_dir/backups/090_raspap.conf.`date +%F-%R`" "$raspap_dir/backups/090_raspap.conf"
+        fi
+
+        if [ -f $raspap_wlan0 ]; then
+            sudo cp $raspap_wlan0 "$raspap_dir/backups/090_wlan0.conf.`date +%F-%R`"
             sudo ln -sf "$raspap_dir/backups/090_wlan0.conf.`date +%F-%R`" "$raspap_dir/backups/090_wlan0.conf"
         fi
 
@@ -370,7 +376,8 @@ function _default_configuration() {
         _install_log "Applying default configuration to installed services"
 
         sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
-        sudo cp $webroot_dir/config/090_wlan0.conf $raspap_dnsmasq || _install_status 1 "Unable to move dnsmasq configuration file"
+        sudo cp $webroot_dir/config/090_raspap.conf $raspap_default || _install_status 1 "Unable to move dnsmasq default configuration file"
+        sudo cp $webroot_dir/config/090_wlan0.conf $raspap_wlan0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
         sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
 
