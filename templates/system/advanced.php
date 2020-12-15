@@ -2,7 +2,7 @@
 <div role="tabpanel" class="tab-pane" id="advanced">
   <h4 class="mt-3"><?php echo _("Advanced settings") ;?></h4>
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
-    <form action="?page=system_info" method="POST">
+    <form action="system_info" method="POST">
     <?php echo CSRFTokenFieldTag() ?>
       <div class="row">
         <div class="form-group col-md-6">

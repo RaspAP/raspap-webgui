@@ -6,10 +6,10 @@ $client_interface = $_SESSION['wifi_client_interface'];
 $ap_iface = $_SESSION['ap_interface'];
 $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
 if ($arrHostapdConf['BridgedEnable'] == 1) {
-    $moreLink = "index.php?page=hostapd_conf";
+    $moreLink = "hostapd_conf";
     exec('iw dev '.$ap_iface.' station dump | grep -oE '.$MACPattern, $clients);
 } else {
-    $moreLink = "index.php?page=dhcpd_conf";
+    $moreLink = "dhcpd_conf";
     exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(iw dev '.$ap_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
 }
 $ifaceStatus = $wlan0up ? "up" : "down";
@@ -122,7 +122,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
 
         <div class="col-lg-12 mt-3">
           <div class="row">
-            <form action="?page=wlan0_info" method="POST">
+            <form action="wlan0_info" method="POST">
                 <?php echo CSRFTokenFieldTag() ?>
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
                     <?php if (!$wlan0up) : ?>
@@ -131,7 +131,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                     <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$client_interface ?>"  name="ifdown_wlan0" />
                     <?php endif ?>
                 <?php endif ?>
-              <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+              <a href="<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
             </form>
           </div>
         </div>

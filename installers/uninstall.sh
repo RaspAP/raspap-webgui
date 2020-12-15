@@ -219,6 +219,12 @@ function _remove_sudoers() {
     echo "Done."
 }
 
+function _remove_lighttpd_config() {
+    echo "Removing ${raspap_sudoers}" 
+    sudo rm "/etc/lighttpd/conf-available/50-raspap-router.conf" "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_error "Unable to remove lighttpd config"
+    echo "Done."
+}
+
 function _uninstall_complete() {
     _install_log "Uninstall completed"
     echo "It is recommended that you reboot your system as a final step."
@@ -230,6 +236,7 @@ function _remove_raspap() {
     _remove_raspap_service
     _restore_networking
     _remove_raspap_directories
+    _remove_lighttpd_config
     _remove_installed_packages
     _remove_sudoers
     _uninstall_complete
