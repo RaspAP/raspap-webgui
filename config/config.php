@@ -12,7 +12,7 @@ define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
 define('RASPI_DNSMASQ_LEASES', '/var/lib/misc/dnsmasq.leases');
 define('RASPI_DNSMASQ_PREFIX', '/etc/dnsmasq.d/090_');
 define('RASPI_ADBLOCK_LISTPATH', '/etc/raspap/adblock/');
-define('RASPI_ADBLOCK_CONFIG', '/etc/dnsmasq.d/090_adblock.conf');
+define('RASPI_ADBLOCK_CONFIG', RASPI_DNSMASQ_PREFIX.'adblock.conf');
 define('RASPI_HOSTAPD_CONFIG', '/etc/hostapd/hostapd.conf');
 define('RASPI_DHCPCD_CONFIG', '/etc/dhcpcd.conf');
 define('RASPI_WPA_SUPPLICANT_CONFIG', '/etc/wpa_supplicant/wpa_supplicant.conf');
