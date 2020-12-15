@@ -1,10 +1,8 @@
 <?php
 $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
-if ($arrHostapdConf['WifiAPEnable'] == 1) {
-    $client_interface = 'uap0';
-} else {
-    $client_interface = $_SESSION['wifi_client_interface'];
-}
+
+$client_interface = $_SESSION['wifi_client_interface'];
+
 $ap_iface = $_SESSION['ap_interface'];
 $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
 if ($arrHostapdConf['BridgedEnable'] == 1) {

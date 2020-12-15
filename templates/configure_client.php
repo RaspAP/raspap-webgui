@@ -1,10 +1,7 @@
 <?php
-$arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
-if ($arrHostapdConf['WifiAPEnable'] == 1) {
-    $client_interface = 'uap0';
-} else {
-    $client_interface = $_SESSION['wifi_client_interface'];
-}
+
+$client_interface = $_SESSION['wifi_client_interface'];
+
 exec('ip a show '.$client_interface, $stdoutIp);
 $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
 $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
