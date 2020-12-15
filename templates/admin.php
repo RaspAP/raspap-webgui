@@ -11,7 +11,7 @@
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <h4><?php echo _("Authentication settings") ;?></h4>
-        <form role="form" action="?page=auth_conf" method="POST">
+        <form role="form" action="auth_conf" method="POST">
             <?php echo CSRFTokenFieldTag() ?>
           <div class="row">
             <div class="form-group col-md-6">
