@@ -53,7 +53,7 @@ function nearbyWifiStations(&$networks, $cached = true)
 
     $scan_results = cache(
         $cacheKey, function () {
-            exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan', $output, $returnval);
+            exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan');
             sleep(3);
 
             exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan_results', $stdout);
