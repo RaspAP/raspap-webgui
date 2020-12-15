@@ -4,11 +4,12 @@
 # Author: @billz <billzimmerman@gmail.com>
 # License: GNU General Public License v3.0
 #
-# Usage:
+# Installs an instance of RaspAP.
 #
+# Available options:
 # -y, --yes, --assume-yes
 #    Assume "yes" as answer to all prompts and run non-interactively
-# c, --cert, --certficate
+# -c, --cert, --certficate
 #    Installs mkcert and generates an SSL certificate for lighttpd
 # -o, --openvpn <flag>
 #    Used with -y, --yes, sets OpenVPN install option (0=no install)
@@ -35,93 +36,118 @@
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.
 
-# Set defaults
-repo="billz/raspap-webgui"
-assume_yes=0
-upgrade=0
-ovpn_option=1
-adblock_option=1
-
-# Define colors
-readonly ANSI_RED="\033[0;31m"
-readonly ANSI_GREEN="\033[0;32m"
-readonly ANSI_YELLOW="\033[0;33m"
-readonly ANSI_RASPBERRY="\033[0;35m"
-readonly ANSI_ERROR="\033[1;37;41m"
-readonly ANSI_RESET="\033[m"
-
-# Log output
-readonly LOGFILE_PATH="/tmp"
-exec > >(tee -i $LOGFILE_PATH/raspap_install.log)
-exec 2>&1
-
 # Fetch latest release from GitHub API
+repo="billz/raspap-webgui" #override with -r, --repo option
 readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
-branch="$RASPAP_LATEST" #override with the -b, --branch option
+branch="$RASPAP_LATEST" #override with -b, --branch option
 
-# Define usage notes
-usage=$(cat << EOF
-Usage: raspbian.sh [OPTION]\n
--y, --yes, --assume-yes\n\tAssumes "yes" as an answer to all prompts
--c, --cert, --certificate\n\tInstalls an SSL certificate for lighttpd
--o, --openvpn <flag>\n\tUsed with -y, --yes, sets OpenVPN install option (0=no install)
--a, --adblock <flag>\n\tUsed with -y, --yes, sets Adblock install option (0=no install)
--r, --repo, --repository <name>\n\tOverrides the default GitHub repo (billz/raspap-webgui)
--b, --branch <name>\n\tOverrides the default git branch (latest release)
--h, --help\n\tOutputs usage notes and exits
--u, --upgrade\n\tUpgrades an existing installation to the latest release version
--v, --version\n\tOutputs release info and exits\n
+function _setup_colors() {
+    ANSI_RED="\033[0;31m"
+    ANSI_GREEN="\033[0;32m"
+    ANSI_YELLOW="\033[0;33m"
+    ANSI_RASPBERRY="\033[0;35m"
+    ANSI_ERROR="\033[1;37;41m"
+    ANSI_RESET="\033[m"
+}
+
+function _log_output() {
+    readonly LOGFILE_PATH="/tmp"
+    exec > >(tee -i $LOGFILE_PATH/raspap_install.log)
+    exec 2>&1
+}
+
+function _usage() {
+    cat << EOF
+Usage: $(basename "$0") [OPTION]
+
+Installs an instance of RaspAP.
+
+Available options:
+-y, --yes, --assume-yes
+    Assumes "yes" as an answer to all prompts
+-c, --cert, --certificate
+    Installs an SSL certificate for lighttpd
+-o, --openvpn <flag>
+    Used with -y, --yes, sets OpenVPN install option (0=no install)
+-a, --adblock <flag>
+    Used with -y, --yes, sets Adblock install option (0=no install)
+-r, --repo, --repository <name>
+    Overrides the default GitHub repo (billz/raspap-webgui)
+-b, --branch <name>
+    Overrides the default git branch (latest release)
+-h, --help
+    Outputs usage notes and exits
+-u, --upgrade
+    Upgrades an existing installation to the latest release version
+-v, --version
+    Outputs release info and exits
+
 EOF
-)
+    exit
+}
 
-# Parse command-line options
-while :; do
-    case $1 in
-        -y|--yes|--assume-yes)
-        assume_yes=1
-        apt_option="-y"
-        ;;
-        -o|--openvpn)
-        ovpn_option="$2"
+function _parse_params() {
+    # default flag values
+    assume_yes=0
+    upgrade=0
+    ovpn_option=1
+    adblock_option=1
+
+    while :; do
+        case ${1} in
+            -y|--yes|--assume-yes)
+            assume_yes=1
+            apt_option="-y"
+            ;;
+            -o|--openvpn)
+            ovpn_option="$2"
+            shift
+            ;;
+            -a|--adblock)
+            adblock_option="$2"
+            shift
+            ;;
+            -c|--cert|--certificate)
+            install_cert=1
+            ;;
+            -r|--repo|--repository)
+            repo="$2"
+            shift
+            ;;
+            -b|--branch)
+            branch="$2"
+            shift
+            ;;
+            -h|--help)
+            _usage
+            ;;
+            -u|--upgrade)
+            upgrade=1
+            ;;
+            -v|--version)
+            _version
+            ;;
+            -*|--*)
+            echo "Unknown option: $1"
+            _usage
+            exit 1
+            ;;
+            *)
+            break
+            ;;
+        esac
         shift
-        ;;
-        -a|--adblock)
-        adblock_option="$2"
-        shift
-        ;;
-        -c|--cert|--certificate)
-        install_cert=1
-        ;;
-        -r|--repo|--repository)
-        repo="$2"
-        shift
-        ;;
-        -b|--branch)
-        branch="$2"
-        shift
-        ;;
-        -h|--help)
-        printf "$usage"
-        exit 1
-        ;;
-        -u|--upgrade)
-        upgrade=1
-        ;;
-        -v|--version)
-        printf "RaspAP v${RASPAP_LATEST} - Simple AP setup & WiFi management for Debian-based devices\n"
-        exit 1
-        ;;
-        -*|--*)
-        echo "Unknown option: $1"
-        printf "$usage"
-        exit 1
-        ;;
-        *)
-        break
-        ;;
-    esac
-    shift
-done
+    done
+}
+
+function _version() {
+    echo -e "RaspAP v${RASPAP_LATEST} - Simple AP setup & WiFi management for Debian-based devices"
+    exit
+}
+
+_parse_params "$@"
+_setup_colors
+_log_output
 
 UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
 
@@ -167,7 +193,7 @@ function _install_status() {
 
 function _update_system_packages() {
     _install_log "Updating sources"
-    sudo apt-get update || _install_error "Unable to update package list"
+    sudo apt-get update || _install_status 1 "Unable to update package list"
 }
 
 # Fetch required installer functions
