@@ -137,6 +137,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $status->addMessage('Attempting to set channel outside of permitted range', 'danger');
         $good_input = false;
     }
+    
+    $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
+  
     // Check for Bridged AP mode checkbox
     $bridgedEnable = 0;
     if ($arrHostapdConf['BridgedEnable'] == 0) {
