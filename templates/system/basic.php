@@ -33,9 +33,9 @@ include('includes/sysstats.php');
         </div>
       </div>
 
-      <form action="?page=system_info" method="POST">
+      <form action="system_info" method="POST">
         <?php echo CSRFTokenFieldTag() ?>
-            <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+            <a href="<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
 
         <?php if (!RASPI_MONITOR_ENABLED) : ?>
             <input type="submit" class="btn btn-warning" name="system_reboot"   value="<?php echo _("Reboot"); ?>" />

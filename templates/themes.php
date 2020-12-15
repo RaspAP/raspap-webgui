@@ -20,9 +20,9 @@
             <input class="form-control color-input" value="#d8224c" aria-label="color" />
           </div>
         </div>
-        <form action="?page=system_info" method="POST">
+        <form action="system_info" method="POST">
             <?php echo CSRFTokenFieldTag() ?>
-          <a href="?page=<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh"); ?></a>
+          <a href="<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh"); ?></a>
         </form>
       </div><!-- /.card-body -->
       <div class="card-footer"></div>
