@@ -30,7 +30,7 @@
 
       <div class="card-body">
         <?php $status->showMessages(); ?>
-        <form role="form" action="?page=hostapd_conf" method="POST">
+        <form role="form" action="hostapd_conf" method="POST">
           <?php echo CSRFTokenFieldTag() ?>
 
           <!-- Nav tabs -->

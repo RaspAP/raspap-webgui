@@ -34,7 +34,7 @@ $ifaceStatus = strtolower($matchesState[1]) ? "up" : "down";
             <button type="button" class="btn btn-info btn-block float-right js-reload-wifi-stations"><?php echo _("Rescan"); ?></button>
           </div>
         </div>
-        <form method="POST" action="?page=wpa_conf" name="wpa_conf_form" class="row">
+        <form method="POST" action="wpa_conf" name="wpa_conf_form" class="row">
             <?php echo CSRFTokenFieldTag() ?>
           <input type="hidden" name="client_settings" ?>
           <div class="row js-wifi-stations w-100 loading-spinner"></div>
