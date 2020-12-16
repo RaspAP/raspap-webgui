@@ -36,10 +36,9 @@ set -eo pipefail
 function _main() {
     # set defaults
     repo="billz/raspap-webgui" # override with -r, --repo option
-    branch="$RASPAP_LATEST"    # override with -b, --branch option
-
-    _parse_params "$@"
     _get_release
+    branch="$RASPAP_LATEST"    # override with -b, --branch option
+    _parse_params "$@"
     _setup_colors
     _log_output
     _load_installer
