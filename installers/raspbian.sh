@@ -32,7 +32,6 @@
 # as you leave these references intact in the header comments of your source files.
 
 set -eo pipefail
-readonly PROGNAME=$(basename $0)
 
 function _main() {
     # set defaults
@@ -117,7 +116,7 @@ function _log_output() {
 
 function _usage() {
     cat << EOF
-Usage: $PROGNAME options
+Usage: raspbian.sh options
 
 Installs an instance of RaspAP.
 
@@ -134,10 +133,10 @@ OPTIONS:
 
 Examples:
     Run locally specifying GitHub repo and branch:
-    $PROGNAME --repo foo/bar --branch my/branch
+    raspbian.sh --repo foo/bar --branch my/branch
 
     Run locally requesting release info:
-    $PROGNAME --version
+    raspbian.sh --version
 
     Invoke installer remotely, run non-interactively with option flags:
     curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --adblock 0
