@@ -36,8 +36,7 @@ set -eo pipefail
 function _main() {
     # set defaults
     repo="billz/raspap-webgui" # override with -r, --repo option
-    _get_release
-    branch=$RASPAP_LATEST      # override with -b, --branch option
+
     _parse_params "$@"
     _setup_colors
     _log_output
@@ -202,6 +201,14 @@ function _update_system_packages() {
 
 # Fetch required installer functions
 function _load_installer() {
+    # fetch latest release tag
+    _get_release
+
+    # assign default branch if not defined with -b, --branch option
+    if [ -z ${branch} ]; then
+        branch=$RASPAP_LATEST
+    fi
+
     UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"

@@ -2,8 +2,10 @@
 #
 # RaspAP installation functions
 # Author: @billz <billzimmerman@gmail.com>
+# Author URI: https://github.com/billz/
 # License: GNU General Public License v3.0
-#
+# License URI: https://github.com/billz/raspap-webgui/blob/master/LICENSE
+
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.
 
@@ -27,6 +29,27 @@ webroot_dir="/var/www/html"
 git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
 
 # NOTE: all the below functions are overloadable for system-specific installs
+function _install_raspap() {
+    _display_welcome
+    _config_installation
+    _update_system_packages
+    _install_dependencies
+    _enable_php_lighttpd
+    _create_raspap_directories
+    _optimize_php
+    _check_for_old_configs
+    _download_latest_files
+    _change_file_ownership
+    _create_hostapd_scripts
+    _create_lighttpd_scripts
+    _move_config_file
+    _default_configuration
+    _configure_networking
+    _prompt_install_adblock
+    _prompt_install_openvpn
+    _patch_system_files
+    _install_complete
+}
 
 # Prompts user to set installation options
 function _config_installation() {
@@ -550,24 +573,3 @@ function _install_complete() {
     fi
 }
 
-function _install_raspap() {
-    _display_welcome
-    _config_installation
-    _update_system_packages
-    _install_dependencies
-    _enable_php_lighttpd
-    _create_raspap_directories
-    _optimize_php
-    _check_for_old_configs
-    _download_latest_files
-    _change_file_ownership
-    _create_hostapd_scripts
-    _create_lighttpd_scripts
-    _move_config_file
-    _default_configuration
-    _configure_networking
-    _prompt_install_adblock
-    _prompt_install_openvpn
-    _patch_system_files
-    _install_complete
-}
