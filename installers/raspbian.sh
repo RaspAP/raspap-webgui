@@ -167,7 +167,7 @@ function _display_welcome() {
 
 # Fetch latest release from GitHub API
 function _get_release() {
-    readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+    RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 }
 
 # Outputs a RaspAP Install log line
