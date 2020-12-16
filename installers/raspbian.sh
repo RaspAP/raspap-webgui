@@ -37,7 +37,7 @@ function _main() {
     # set defaults
     repo="billz/raspap-webgui" # override with -r, --repo option
     _get_release
-    branch="$RASPAP_LATEST"    # override with -b, --branch option
+    branch=$RASPAP_LATEST      # override with -b, --branch option
     _parse_params "$@"
     _setup_colors
     _log_output
@@ -167,7 +167,7 @@ function _display_welcome() {
 
 # Fetch latest release from GitHub API
 function _get_release() {
-    RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+    readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
 }
 
 # Outputs a RaspAP Install log line
