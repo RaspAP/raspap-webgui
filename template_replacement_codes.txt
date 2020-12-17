@@ -1,0 +1,8 @@
+:% s/<?php \+elseif *\((.*)\) *: *?>/@elseif\1/g
+:% s/<?php \+if *\((.*)\) *: *?>/@if\1/g
+:% s/<?php \+foreach *\((.*)\) *: *?>/@foreach\1/g
+:% s/<?php \+else \+: *?>/@else/g
+:% s/<?php \+endforeach.*?>/@endforeach/g
+:% s/<?php \+endif.*?>/@endif/g
+:% s/<?php echo *\([^;]*\);\? *?>/{{ \1 }}/g
+:% s/<?php echo htmlspecialchars *(\([^,]*\)\(, ENT_QUOTES\)\?) *;\? *?>/{{ \1 }}/g

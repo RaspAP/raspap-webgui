@@ -5,6 +5,7 @@ require_once '../../includes/config.php';
 require_once '../../includes/defaults.php';
 require_once '../../includes/functions.php';
 require_once '../../includes/wifi_functions.php';
+require_once '../../vendor/BladeOne/lib/BladeOne.php';
 
 $networks = [];
 $network  = null;
@@ -15,4 +16,4 @@ nearbyWifiStations($networks, !isset($_REQUEST["refresh"]));
 connectedWifiStations($networks);
 sortNetworksByRSSI($networks);
 
-echo renderTemplate('wifi_stations', compact('networks'));
+echo renderTemplate('wifi_stations', compact('networks'), true);

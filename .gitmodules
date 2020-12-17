@@ -1,0 +1,3 @@
+[submodule "vendor/BladeOne"]
+	path = vendor/BladeOne
+	url = https://github.com/EFTEC/BladeOne.git

@@ -1,0 +1,151 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('content'); ?>
+<div class="row">
+ <div class="col-lg-12">
+ <div class="card">
+ <div class="card-header">
+ <div class="row">
+ <div class="col">
+ <i class="fas fa-tachometer-alt fa-fw mr-2"></i><?php echo \htmlentities(_("Dashboard"), ENT_QUOTES, 'UTF-8', false); ?>
+
+ </div>
+ <div class="col">
+ <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+ <span class="icon"><i class="fas fa-circle service-status-<?php echo \htmlentities($ifaceStatus, ENT_QUOTES, 'UTF-8', false); ?>"></i></span>
+ <span class="text service-status"><?php echo \htmlentities(strtolower($apInterface) .' '. _($ifaceStatus), ENT_QUOTES, 'UTF-8', false); ?></span>
+ </button>
+ </div>
+ </div><!-- /.row -->
+ </div><!-- /.card-header -->
+
+ <div class="card-body">
+ <div class="row">
+
+ <div class="col-lg-12">
+ <div class="card mb-3">
+ <div class="card-body">
+ <h4><?php echo \htmlentities(_("Hourly traffic amount"), ENT_QUOTES, 'UTF-8', false); ?></h4>
+ <div id="divInterface" class="d-none"><?php echo \htmlentities($apInterface, ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="col-md-12">
+ <canvas id="divDBChartBandwidthhourly"></canvas>
+ </div>
+ </div><!-- /.card-body -->
+ </div><!-- /.card-->
+ </div>
+
+ <div class="col-sm-6 align-items-stretch">
+ <div class="card h-100">
+ <div class="card-body wireless">
+ <h4><?php echo \htmlentities(_("Wireless Client"), ENT_QUOTES, 'UTF-8', false); ?></h4>
+ <div class="row justify-content-md-center">
+ <div class="col-md">
+ <div class="info-item"><?php echo \htmlentities(_("Connected To"), ENT_QUOTES, 'UTF-8', false); ?></div><div><?php echo \htmlentities($connectedSSID, ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="info-item"><?php echo \htmlentities(_("Interface"), ENT_QUOTES, 'UTF-8', false); ?></div><div><?php echo \htmlentities($clientInterface, ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="info-item"><?php echo \htmlentities(_("AP Mac Address"), ENT_QUOTES, 'UTF-8', false); ?></div><div><?php echo \htmlentities($connectedBSSID, ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="info-item"><?php echo \htmlentities(_("Bitrate"), ENT_QUOTES, 'UTF-8', false); ?></div><div><?php echo \htmlentities($bitrate, ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="info-item"><?php echo \htmlentities(_("Signal Level"), ENT_QUOTES, 'UTF-8', false); ?></div><div><?php echo \htmlentities($signalLevel, ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="info-item"><?php echo \htmlentities(_("Transmit Power"), ENT_QUOTES, 'UTF-8', false); ?></div><div><?php echo \htmlentities($txPower, ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="info-item"><?php echo \htmlentities(_("Frequency"), ENT_QUOTES, 'UTF-8', false); ?></div><div><?php echo \htmlentities($frequency, ENT_QUOTES, 'UTF-8', false); ?></div>
+ </div>
+ <div class="col-md mt-2 d-flex justify-content-center">
+ <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
+ <div class="chart-container">
+ <canvas id="divChartLinkQ"></canvas>
+ </div>
+ </div><!--row-->
+ </div>
+ </div><!-- /.card-body -->
+ </div><!-- /.card -->
+ </div><!-- /.col-md-6 -->
+ <div class="col-sm-6">
+ <div class="card h-100 mb-3">
+ <div class="card-body">
+ <h4><?php echo \htmlentities(_("Connected Devices"), ENT_QUOTES, 'UTF-8', false); ?></h4>
+ <div class="table-responsive">
+ <table class="table table-hover">
+ <thead>
+ <tr>
+ <?php if($bridgedEnable): ?>
+ <th><?php echo \htmlentities(_("MAC Address"), ENT_QUOTES, 'UTF-8', false); ?></th>
+ <?php else: ?>
+ <th><?php echo \htmlentities(_("Host name"), ENT_QUOTES, 'UTF-8', false); ?></th>
+ <th><?php echo \htmlentities(_("IP Address"), ENT_QUOTES, 'UTF-8', false); ?></th>
+ <th><?php echo \htmlentities(_("MAC Address"), ENT_QUOTES, 'UTF-8', false); ?></th>
+ <?php endif; ?>
+ </tr>
+ </thead>
+ <tbody>
+ <?php if($bridgedEnable): ?>
+ <tr>
+ <td><small class="text-muted"><?php echo \htmlentities(_("Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."), ENT_QUOTES, 'UTF-8', false); ?></small></td>
+ </tr>
+ <?php endif; ?>
+ <?php $__currentLoopData = array_slice($clients,0, 2); $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $client): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <?php if($bridgedEnable): ?>
+ <td><?php echo \htmlentities($client, ENT_QUOTES, 'UTF-8', false); ?></td>
+ <?php else: ?>
+ <?php $props = explode(' ', $client) ?>
+ <td><?php echo \htmlentities($props[3], ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($props[2], ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($props[1], ENT_QUOTES, 'UTF-8', false); ?></td>
+ <?php endif; ?>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+ <?php if(sizeof($clients) >2): ?>
+ <div class="col-lg-12 float-right">
+ <a class="btn btn-outline-info" role="button" href="<?php echo $moreLink; ?>"><?php echo \htmlentities(_("More"), ENT_QUOTES, 'UTF-8', false); ?>  <i class="fas fa-chevron-right"></i></a>
+ </div>
+ <?php elseif(sizeof($clients) == 0): ?>
+ <div class="col-lg-12 mt-3"><?php echo \htmlentities(_("No connected devices"), ENT_QUOTES, 'UTF-8', false); ?></div>
+ <?php endif; ?>
+ </div><!-- /.table-responsive -->
+ </div><!-- /.card-body -->
+ </div><!-- /.card -->
+ </div><!-- /.col-md-6 -->
+ </div><!-- /.row -->
+
+ <div class="col-lg-12 mt-3">
+ <div class="row">
+ <form action="wlan0_info" method="POST">
+ <?php echo CSRFTokenFieldTag(); ?>
+
+ <?php if(!RASPI_MONITOR_ENABLED): ?>
+ <?php if(!$wlan0up): ?>
+ <input type="submit" class="btn btn-success" value="<?php echo \htmlentities(_("Start").' '.$clientInterface, ENT_QUOTES, 'UTF-8', false); ?>" name="ifup_wlan0" />
+ <?php else: ?>
+ <input type="submit" class="btn btn-warning" value="<?php echo \htmlentities(_("Stop").' '.$clientInterface, ENT_QUOTES, 'UTF-8', false); ?>"  name="ifdown_wlan0" />
+ <?php endif; ?>
+ <?php endif; ?>
+ <a href="." class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo \htmlentities(_("Refresh"), ENT_QUOTES, 'UTF-8', false); ?></a>
+ </form>
+ </div>
+ </div>
+
+ </div><!-- /.card-body -->
+ <div class="card-footer"><?php echo \htmlentities(_("Information provided by ip and iw and from system"), ENT_QUOTES, 'UTF-8', false); ?></div>
+ </div><!-- /.card -->
+ </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('footer_scripts'); ?>
+
+<script type="text/javascript"<?php /* nonce="<?php echo $csp_page_nonce; ?>" */ ?>>
+// js translations:
+var t = new Array();
+t['send'] = '<?php echo addslashes(_('Send')); ?>';
+t['receive'] = '<?php echo addslashes(_('Receive')); ?>';
+</script>
+
+<script type="text/javascript" src="app/js/dashboardchart.js"></script> 
+<script type="text/javascript" src="app/js/linkquality.js"></script> 
+
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.app'); } ?>

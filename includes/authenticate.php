@@ -1,6 +1,10 @@
 <?php
-$user = $_SERVER['PHP_AUTH_USER'];
-$pass = $_SERVER['PHP_AUTH_PW'];
+$user = $_SERVER['PHP_AUTH_USER'] ?? "";
+$pass = $_SERVER['PHP_AUTH_PW'] ?? "";
+
+require_once RASPI_CONFIG.'/raspap.php';
+$config = getConfig();
+
 
 $validated = ($user == $config['admin_user']) && password_verify($pass, $config['admin_pass']);
 
