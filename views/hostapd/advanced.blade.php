@@ -1,77 +1,71 @@
 <div class="tab-pane fade" id="advanced">
-  <h4 class="mt-3"><?php echo _("Advanced settings"); ?></h4>
+  <h4 class="mt-3">{{ _("Advanced settings") }}</h4>
     <div class="row">
       <div class="col-md-6 mb-2">
         <div class="custom-control custom-switch">
-          <?php $checked = $arrHostapdConf['BridgedEnable'] == 1 ? 'checked="checked"' : '' ?>
-          <input class="custom-control-input" id="chxbridgedenable" name="bridgedEnable" type="checkbox" value="1" <?php echo $checked ?> />
-          <label class="custom-control-label" for="chxbridgedenable"><?php echo _("Bridged AP mode"); ?></label>
+          <input class="custom-control-input" id="chxbridgedenable" name="bridgedEnable" type="checkbox" value="1" {{ $arrHostapdConf['BridgedEnable'] == 1 ? 'checked="checked"' : '' }} />
+          <label class="custom-control-label" for="chxbridgedenable">{{ _("Bridged AP mode") }}</label>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 mb-2">
         <div class="custom-control custom-switch">
-          <?php $checked = $arrHostapdConf['WifiAPEnable'] == 1 ? 'checked="checked"' : '' ?>
-          <?php $disabled = $managedModeEnabled == false && $arrHostapdConf['WifiAPEnable'] != 1 || $arrHostapdConf['BridgedEnable'] == 1 ? 'disabled="disabled"' : '' ?>
-          <input class="custom-control-input" id="chxwificlientap" name="wifiAPEnable" type="checkbox" value="1" <?php echo $checked ?> <?php echo $disabled ?> />
-          <label class="custom-control-label" for="chxwificlientap"><?php echo _("WiFi client AP mode"); ?></label>
+          <input class="custom-control-input" id="chxwificlientap" name="wifiAPEnable" type="checkbox" value="1" {{ $arrHostapdConf['WifiAPEnable'] == 1 ? 'checked="checked"' : '' }} 
+            {{ $managedModeEnabled == false && $arrHostapdConf['WifiAPEnable'] != 1 || $arrHostapdConf['BridgedEnable'] == 1 ? 'disabled="disabled"' : '' }} />
+          <label class="custom-control-label" for="chxwificlientap">{{ _("WiFi client AP mode") }}</label>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 mb-2">
         <div class="custom-control custom-switch">
-          <?php $checked = $arrHostapdConf['LogEnable'] == 1 ? 'checked="checked"' : '' ?>
-          <input class="custom-control-input" id="chxlogenable" name="logEnable" type="checkbox" value="1" <?php echo $checked ?> />
-          <label class="custom-control-label" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
+          <input class="custom-control-input" id="chxlogenable" name="logEnable" type="checkbox" value="1" {{ $arrHostapdConf['LogEnable'] == 1 ? 'checked="checked"' : '' }} />
+          <label class="custom-control-label" for="chxlogenable">{{ _("Logfile output") }}</label>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 mb-2">
         <div class="custom-control custom-switch">
-          <?php $checked = $arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssid'] == 2 ? 'checked="checked"' : '' ?>
-          <input class="custom-control-input" id="chxhiddenssid" name="hiddenSSID" type="checkbox" value="1" <?php echo $checked ?> />
-          <label class="custom-control-label" for="chxhiddenssid"><?php echo _("Hide SSID in broadcast"); ?></label>
+          <input class="custom-control-input" id="chxhiddenssid" name="hiddenSSID" type="checkbox" value="1" {{ $arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssid'] == 2 ? 'checked="checked"' : '' }}/>
+          <label class="custom-control-label" for="chxhiddenssid">{{ _("Hide SSID in broadcast") }}</label>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-3 col-sm-3">
         <div class="custom-control custom-switch">
-          <?php $checked = $arrConfig['beacon_interval_bool'] == 1 ? 'checked="checked"' : '' ?>
-          <input class="custom-control-input" id="chxbeaconinterval" name="beaconintervalEnable" type="checkbox" value="1" <?php echo $checked ?> />
-          <label class="custom-control-label" for="chxbeaconinterval"><?php echo _("Beacon interval"); ?></label>
+          <input class="custom-control-input" id="chxbeaconinterval" name="beaconintervalEnable" type="checkbox" value="1" {{ $arrConfig['beacon_interval_bool'] == 1 ? 'checked="checked"' : '' }} />
+          <label class="custom-control-label" for="chxbeaconinterval">{{ _("Beacon interval") }}</label>
         </div>
       </div>
       <div class="col-xs-3 col-sm-3">
-        <input type="text" class="form-control" name="beacon_interval" value="<?php echo $arrConfig['beacon_int'] ?>">
+        <input type="text" class="form-control" name="beacon_interval" value="{{ $arrConfig['beacon_int']  }}">
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 mb-2">
         <div class="custom-control custom-switch">
-          <?php $checked = $arrConfig['disassoc_low_ack_bool'] == 1 ? 'checked="checked"' : '' ?>
-          <input class="custom-control-input" id="chxdisassoclowack" name="disassoc_low_ackEnable" type="checkbox" value="1" <?php echo $checked ?> />
-          <label class="custom-control-label" for="chxdisassoclowack"><?php echo _("Disable <code>disassoc_low_ack</code>"); ?></label>
+          <input class="custom-control-input" id="chxdisassoclowack" name="disassoc_low_ackEnable" type="checkbox" value="1" {{ $arrConfig['disassoc_low_ack_bool'] == 1 ? 'checked="checked"' : '' }} />
+          <label class="custom-control-label" for="chxdisassoclowack">{!! _("Disable <code>disassoc_low_ack</code>") !!}</label>
         </div>
         <p id="disassoc_low_ack_help" class="mb-1 mt-0">
-          <small id="disassoc_low_ack_help" class="text-muted"><?php echo _("Do not disassociate stations based on excessive transmission failures.") ?></small></label>
+          <small id="disassoc_low_ack_help" class="text-muted">{{ _("Do not disassociate stations based on excessive transmission failures.")  }}</small></label>
         </p>
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-6">
-        <label for="max_num_sta"><?php echo _("Maximum number of clients") ?></label>
-        <input type="text" id="max_num_sta" class="form-control" name="max_num_sta" placeholder="2007" value="<?php echo $arrConfig["max_num_sta"] ?>" aria-describedby="max_num_sta_help">
-        <small id="max_num_sta_help" class="text-muted"><?php echo _("Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies.") ?></small>
+        <label for="max_num_sta">{{ _("Maximum number of clients")  }}</label>
+        <input type="text" id="max_num_sta" class="form-control" name="max_num_sta" placeholder="2007" value="{{ $arrConfig["max_num_sta"]  }}" aria-describedby="max_num_sta_help">
+        <small id="max_num_sta_help" class="text-muted">{{ _("Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies.")  }}</small>
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-6">
-      <label for="cbxcountries"><?php echo _("Country Code"); ?></label>
-      <input type="hidden" id="selected_country" value="<?php echo htmlspecialchars($arrConfig['country_code'], ENT_QUOTES); ?>">
+      <label for="cbxcountries">{{ _("Country Code") }}</label>
+      <input type="hidden" id="selected_country" value="{{ $arrConfig['country_code'] }}">
       <select  class="form-control" id="cbxcountries" name="country_code" onchange="loadChannelSelect()">
         <option value="AF">Afghanistan</option>
         <option value="AX">Åland Islands</option>

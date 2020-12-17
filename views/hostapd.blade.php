@@ -35,8 +35,8 @@
           <div class="tab-content">
             @include("hostapd.basic")
             @include("hostapd.security")
-            {{--
             @include("hostapd.advanced")
+            {{--
             @include("hostapd.logging")
             --}}
           </div><!-- /.tab-content -->
