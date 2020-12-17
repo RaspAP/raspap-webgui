@@ -2,7 +2,7 @@
   <h4 class="mt-3">{{ _("Basic settings")  }}</h4>
   <div class="row">
     <div class="form-group col-md-6">
-      <label for="cbxinterface">{{ _("Interface")  }}  {{$arrConfig['interface']}}</label>
+      <label for="cbxinterface">{{ _("Interface") }}</label>
         @include('components.select', [
           'name'=>'interface', 
           'options' => $interfaces, 

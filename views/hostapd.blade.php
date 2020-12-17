@@ -36,9 +36,7 @@
             @include("hostapd.basic")
             @include("hostapd.security")
             @include("hostapd.advanced")
-            {{--
             @include("hostapd.logging")
-            --}}
           </div><!-- /.tab-content -->
 
           @if (!RASPI_MONITOR_ENABLED)
