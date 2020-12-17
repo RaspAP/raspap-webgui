@@ -114,9 +114,16 @@ function DisplayHostAPDConfig()
         }
     }
 
+    if ($arrHostapdConf['LogEnable'] == 1) {
+        exec('sudo /bin/chmod o+r /tmp/hostapd.log');
+        $hostapLog = file_get_contents('/tmp/hostapd.log');
+    } else {
+        $hostapLog = null;
+    }
 
     echo renderTemplate(
         "hostapd", compact(
+            "hostapLog",
             "status",
             "serviceStatus",
             "hostapdstatus",
