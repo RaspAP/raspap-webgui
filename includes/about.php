@@ -1,6 +1,6 @@
 <?php
 
-require_once "../app/lib/Parsedown.php";
+require_once "app/lib/Parsedown.php";
 
 
 /**
