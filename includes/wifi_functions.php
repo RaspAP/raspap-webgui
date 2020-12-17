@@ -9,7 +9,7 @@ function knownWifiStations(&$networks)
     foreach ($known_return as $line) {
         if (preg_match('/network\s*=/', $line)) {
             $network = array('visible' => false, 'configured' => true, 'connected' => false);
-        } elseif ($network !== null) {
+        } elseif (isset($network) && $network !== null) {
             if (preg_match('/^\s*}\s*$/', $line)) {
                 $networks[$ssid] = $network;
                 $network = null;

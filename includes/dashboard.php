@@ -2,11 +2,12 @@
 
 require_once 'includes/config.php';
 require_once 'includes/wifi_functions.php';
+require_once 'includes/functions.php';
 
 /**
  * Show dashboard page.
  */
-function DisplayDashboard(&$extraFooterScripts)
+function DisplayDashboard()
 {
     getWifiInterface();
     $status = new StatusMessages();
@@ -136,7 +137,7 @@ function DisplayDashboard(&$extraFooterScripts)
         if ($signalLevel >= 0) {
             $strLinkQuality = 100;
         } else {
-            $strLinkQuality = 100 + $signalLevel;
+            $strLinkQuality = 100 + intval($signalLevel);
         }
     }
 
@@ -178,8 +179,31 @@ function DisplayDashboard(&$extraFooterScripts)
         }
     }
 
+    // brought in from template
+
+    $clientInterface = $_SESSION['wifi_client_interface'];
+    $apInterface = $_SESSION['ap_interface'];
+    
+    $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
+
+    if (getBridgedState()) {
+        $moreLink = "hostapd_conf";
+        exec('iw dev ' . $apInterface . ' station dump | grep -oE ' . $MACPattern, $clients);
+    } else {
+        $moreLink = "dhcpd_conf";
+        exec('cat ' . RASPI_DNSMASQ_LEASES . '| grep -E $(iw dev ' . $apInterface . ' station dump | grep -oE ' . $MACPattern . ' | paste -sd "|")', $clients);
+    }
+    $ifaceStatus = $wlan0up ? "up" : "down";
+
+    //
+
     echo renderTemplate(
         "dashboard", compact(
+            "clients",
+            "moreLink",
+            "apInterface",
+            "clientInterface",
+            "ifaceStatus",
             "status",
             "ipv4Addrs",
             "ipv4Netmasks",
@@ -199,8 +223,6 @@ function DisplayDashboard(&$extraFooterScripts)
             "wlan0up"
         )
     );
-    $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);
-    $extraFooterScripts[] = array('src'=>'app/js/linkquality.js', 'defer'=>false);
 }
 
 

@@ -1,0 +1,101 @@
+<?php if(empty($networks)): ?>
+ <p class="lead text-center"><?php echo \htmlentities(_('No Wifi stations found'), ENT_QUOTES, 'UTF-8', false); ?></p>
+ <p class="text-center"><?php echo \htmlentities(_('Click "Rescan" to search for nearby Wifi stations.'), ENT_QUOTES, 'UTF-8', false); ?></p>
+<?php endif; ?>
+
+<?php $index = 0; ?>
+<div class="row ml-1 mr-1 w-100">
+ <?php $__currentLoopData = $networks; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $ssid => $network): $loop = $this->incrementLoopIndices();  ?>
+ 
+ <div class="<?php echo \htmlentities(count($networks) == 1 ? 'col-sm-12' : 'col-sm-6', ENT_QUOTES, 'UTF-8', false); ?> align-items-stretch mb-3">
+ <div class="card h-100 <?php echo \htmlentities(count($networks) == 1 ? 'w-50' : 'w-100', ENT_QUOTES, 'UTF-8', false); ?>">
+ <div class="card-body">
+ <input type="hidden" name="ssid<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" value="<?php echo \htmlentities($ssid, ENT_QUOTES, 'UTF-8', false); ?>" />
+ <?php if (strlen($ssid) == 0) {
+ $ssid = "(unknown)";
+ } ?>
+ <h5 class="card-title"><?php echo \htmlentities($ssid, ENT_QUOTES, 'UTF-8', false); ?></h5>
+
+ <div class="info-item-wifi"><?php echo \htmlentities(_("Status"), ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div>
+ <?php if($network['configured']): ?>
+ <i class="fas fa-check-circle"></i>
+ <?php endif; ?>
+ <?php if($network['connected']): ?>
+ <i class="fas fa-exchange-alt"></i>
+ <?php endif; ?>
+ <?php if(!$network['configured'] && !$network['connected']): ?>
+ <?php echo \htmlentities(_("Not configured"), ENT_QUOTES, 'UTF-8', false); ?>
+
+ <?php endif; ?>
+ </div>
+
+ <div class="info-item-wifi"><?php echo \htmlentities(_("Channel"), ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div>
+ <?php if($network['visible']): ?>
+ <?php echo \htmlentities($network['channel'], ENT_QUOTES, 'UTF-8', false); ?>
+
+ <?php else: ?>
+ <span class="label label-warning"> X </span>
+ <?php endif; ?>
+ </div>
+
+ <div class="info-item-wifi"><?php echo \htmlentities(_("RSSI"), ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div>
+ <?php if(isset($network['RSSI']) && $network['RSSI'] >= -200): ?> 
+ <?php echo \htmlentities($network['RSSI'], ENT_QUOTES, 'UTF-8', false); ?>dB (         
+ <?php if($network['RSSI'] >= -50): ?>
+ <?php echo \htmlentities(100, ENT_QUOTES, 'UTF-8', false); ?>
+
+ <?php elseif($network['RSSI'] <= -100): ?> 
+ <?php echo \htmlentities(0, ENT_QUOTES, 'UTF-8', false); ?>
+
+ <?php else: ?>
+ <?php echo \htmlentities(2*($network['RSSI'] + 100), ENT_QUOTES, 'UTF-8', false); ?>
+
+ <?php endif; ?>
+ %)
+ <?php else: ?>
+ not found
+ <?php endif; ?>
+ </div>
+
+ <?php if(array_key_exists('priority', $network)): ?>
+ <input type="hidden" name="priority<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" value="<?php echo \htmlentities($network['priority'], ENT_QUOTES, 'UTF-8', false); ?>" />
+ <?php endif; ?>
+ <input type="hidden" name="protocol<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" value="<?php echo \htmlentities($network['protocol'], ENT_QUOTES, 'UTF-8', false); ?>" />
+
+ <div class="info-item-wifi"><?php echo \htmlentities(_("Security"), ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div><?php echo \htmlentities($network['protocol'], ENT_QUOTES, 'UTF-8', false); ?></div>
+
+ <div class="form-group">
+ <div class="info-item-wifi"><?php echo \htmlentities(_("Passphrase"), ENT_QUOTES, 'UTF-8', false); ?></div>
+ <div class="input-group">
+ <?php if($network['protocol'] === 'Open'): ?>
+ <input type="password" disabled class="form-control" aria-describedby="passphrase" name="passphrase<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" value="" />
+ <?php else: ?>
+ <input type="password" class="form-control js-validate-psk" aria-describedby="passphrase" name="passphrase<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" value="<?php echo \htmlentities($network['passphrase'], ENT_QUOTES, 'UTF-8', false); ?>" data-target="#update<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" data-colors="#ffd0d0,#d0ffd0">
+ <div class="input-group-append">
+ <button class="btn btn-outline-secondary js-toggle-password" type="button" data-target="[name=passphrase<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>]" data-toggle-with="<?php echo \htmlentities(_("Hide"), ENT_QUOTES, 'UTF-8', false); ?>">Show</button>
+ </div>
+ <?php endif; ?>
+ </div>
+ </div>
+
+ <div class="btn-group btn-block ">
+ <?php if($network['configured']): ?>
+ <input type="submit" class="col-xs-4 col-md-4 btn btn-warning" value="<?php echo \htmlentities(_("Update"), ENT_QUOTES, 'UTF-8', false); ?>" id="update<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" name="update<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>"<?php echo \htmlentities($network['protocol'] === 'Open' ? ' disabled' : '', ENT_QUOTES, 'UTF-8', false); ?> />
+ <button type="submit" class="col-xs-4 col-md-4 btn btn-info" value="<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" name="connect"><?php echo \htmlentities(_("Connect"), ENT_QUOTES, 'UTF-8', false); ?></button>
+ <?php else: ?>
+ <input type="submit" class="col-xs-4 col-md-4 btn btn-info" value="<?php echo \htmlentities(_("Add"), ENT_QUOTES, 'UTF-8', false); ?>" id="update<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" name="update<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" <?php echo \htmlentities($network['protocol'] === 'Open' ? '' : ' disabled', ENT_QUOTES, 'UTF-8', false); ?> />
+ <?php endif; ?>
+ <input type="submit" class="col-xs-4 col-md-4 btn btn-danger" value="<?php echo \htmlentities(_("Delete"), ENT_QUOTES, 'UTF-8', false); ?>" name="delete<?php echo \htmlentities($index, ENT_QUOTES, 'UTF-8', false); ?>" <?php echo \htmlentities($network['configured'] ? '' : ' disabled', ENT_QUOTES, 'UTF-8', false); ?> />
+ </div><!-- /.btn-group -->
+ </div><!-- /.card-body -->
+ </div><!-- /.card -->
+ </div><!-- /.col-sm -->
+ <?php $index += 1; ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+</div><!-- /.row -->
+

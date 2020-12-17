@@ -1,0 +1,67 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+<div class="row">
+ <div class="col-lg-12">
+ <div class="card">
+
+ <div class="card-header">
+ <div class="row">
+ <div class="col">
+ <i class="far fa-dot-circle mr-2"></i><?php echo \htmlentities(_("Hotspot"), ENT_QUOTES, 'UTF-8', false); ?>
+
+ </div>
+ <div class="col">
+ <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+ <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo \htmlentities($serviceStatus, ENT_QUOTES, 'UTF-8', false); ?>"></i></span>
+ <span class="text service-status">hostapd <?php echo \htmlentities(_($serviceStatus), ENT_QUOTES, 'UTF-8', false); ?></span>
+ </button>
+ </div>
+ </div><!-- /.row -->
+ </div><!-- /.card-header -->
+
+ <div class="card-body">
+ <?php $status->showMessages(); ?>
+ <form role="form" action="hostapd_conf" method="POST">
+ <?php echo CSRFTokenFieldTag(); ?>
+
+
+ <!-- Nav tabs -->
+ <ul class="nav nav-tabs">
+ <li class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" data-toggle="tab"><?php echo \htmlentities(_("Basic"), ENT_QUOTES, 'UTF-8', false); ?></a></li>
+ <li class="nav-item"><a class="nav-link" id="securitytab" href="#security" data-toggle="tab"><?php echo \htmlentities(_("Security"), ENT_QUOTES, 'UTF-8', false); ?></a></li>
+ <li class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" data-toggle="tab"><?php echo \htmlentities(_("Advanced"), ENT_QUOTES, 'UTF-8', false); ?></a></li>
+ <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#logoutput" data-toggle="tab"><?php echo \htmlentities(_("Logging"), ENT_QUOTES, 'UTF-8', false); ?></a></li>
+ </ul>
+
+ <!-- Tab panes -->
+ <div class="tab-content">
+ <?php echo $this->runChild("hostapd.basic"); ?>
+ <?php echo $this->runChild("hostapd.security"); ?>
+ <?php /*
+ <?php echo $this->runChild("hostapd.advanced"); ?>
+ <?php echo $this->runChild("hostapd.logging"); ?>
+ */ ?>
+ </div><!-- /.tab-content -->
+
+ <?php if(!RASPI_MONITOR_ENABLED): ?>
+ <input type="submit" class="btn btn-outline btn-primary" name="SaveHostAPDSettings" value="<?php echo \htmlentities(_("Save settings"), ENT_QUOTES, 'UTF-8', false); ?>" />
+ <?php if($hostapdstatus[0] == 0): ?>
+ <input type="submit" class="btn btn-success" name="StartHotspot" value="<?php echo \htmlentities(_("Start hotspot"), ENT_QUOTES, 'UTF-8', false); ?>"/>
+ <?php else: ?>
+ <input type="submit" class="btn btn-warning" name="StopHotspot" value="<?php echo \htmlentities(_("Stop hotspot"), ENT_QUOTES, 'UTF-8', false); ?>"/>
+ <input type ="submit" class="btn btn-warning" name="RestartHotspot" value="<?php echo \htmlentities(_("Restart hotspot"), ENT_QUOTES, 'UTF-8', false); ?>"/>
+ <?php endif; ?>
+ <?php endif; ?>
+
+ </form>
+ </div><!-- /.card-body -->
+
+ <div class="card-footer"> <?php echo \htmlentities(_("Information provided by hostapd"), ENT_QUOTES, 'UTF-8', false); ?></div>
+
+ </div><!-- /.card -->
+ </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+<?php $this->stopSection(); ?>
+
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.app'); } ?>

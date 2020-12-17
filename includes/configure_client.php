@@ -97,5 +97,13 @@ function DisplayWPAConfig()
     connectedWifiStations($networks);
     sortNetworksByRSSI($networks);
 
-    echo renderTemplate("configure_client", compact("status"));
+    $clientInterface = $_SESSION['wifi_client_interface'];
+
+    exec('ip a show '.$clientInterface, $stdoutIp);
+    $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
+    $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
+    preg_match('/state (UP|DOWN)/i', $stdoutIpWRepeatedSpaces, $matchesState) || $matchesState[1] = 'unknown';
+    $ifaceStatus = strtolower($matchesState[1]) ? "up" : "down";
+
+    echo renderTemplate("configure_client", compact("status", "clientInterface", "ifaceStatus"));
 }
