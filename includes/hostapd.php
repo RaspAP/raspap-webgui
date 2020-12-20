@@ -192,9 +192,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     // Save previous Client mode status when Bridged
     $cfg['WifiAPEnable'] = ($bridgedEnable == 1 ? $arrHostapdConf['WifiAPEnable'] : $wifiAPEnable);
     $cfg['BridgedEnable'] = $bridgedEnable;
-    $cfg['WifiManaged'] = $_POST['interface'];
+    $cfg['WifiManaged'] = $ap_iface;
     write_php_ini($cfg, RASPI_CONFIG.'/hostapd.ini');
-    $_SESSION['ap_interface'] = $_POST['interface'];
+    $_SESSION['ap_interface'] = $ap_iface;
 
     // Verify input
     if (empty($_POST['ssid']) || strlen($_POST['ssid']) > 32) {
@@ -248,7 +248,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     $_POST['max_num_sta'] = $_POST['max_num_sta'] < 1 ? null : $_POST['max_num_sta'];
 
     if ($good_input) {
-        $return = updateHostapdConfig($ignore_broadcast_ssid);
+        $return = updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnble,$bridgedEnable);
 
         // Fetch dhcp-range, lease time from system config
         $syscfg = parse_ini_file(RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', false, INI_SCANNER_RAW);
@@ -358,7 +358,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
  *
  * @return boolean $result
  */
-function updateHostapdConfig($ignore_broadcast_ssid)
+function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnble,$bridgedEnable)
 {
     // Fixed values
     $country_code = $_POST['country_code'];
@@ -410,8 +410,7 @@ function updateHostapdConfig($ignore_broadcast_ssid)
         $config.='interface='.$_POST['interface'].PHP_EOL;
         $config.= 'bridge=br0'.PHP_EOL;
     } else {
-        $config.= 'interface='.$_POST['interface'].PHP_EOL;
-        $ap_iface = $_POST['interface'];
+        $config.= 'interface='.$_SESSION['ap_interface'].PHP_EOL;
     }
     $config.= 'wpa='.$_POST['wpa'].PHP_EOL;
     $config.= 'wpa_pairwise='.$_POST['wpa_pairwise'].PHP_EOL;
