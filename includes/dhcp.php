@@ -46,6 +46,8 @@ function DisplayDHCPConfig()
     }
     getWifiInterface();
     $serviceStatus = $dnsmasq_state ? "up" : "down";
+    exec('cat '. RASPI_DNSMASQ_PREFIX.'raspap.conf', $return);
+    $conf = ParseConfig($return);
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
     $ap_iface = $_SESSION['ap_interface'];
@@ -56,6 +58,7 @@ function DisplayDHCPConfig()
             "serviceStatus",
             "dnsmasq_state",
             "ap_iface",
+            "conf",
             "dhcpHost",
             "interfaces",
             "leases"
@@ -178,12 +181,6 @@ function updateDnsmasqConfig($iface,$status)
     foreach ($_POST['server'] as $server) {
         $config .= "server=$server".PHP_EOL;
     }
-    if ($_POST['log-dhcp'] == "1") {
-        $config .= "log-dhcp".PHP_EOL;
-    }
-    if ($_POST['log-queries'] == "1") {
-      $config .= "log-queries".PHP_EOL;
-    }
     if ($_POST['DNS1']) {
         $config .= "dhcp-option=6," . $_POST['DNS1'];
         if ($_POST['DNS2']) {
@@ -197,6 +194,22 @@ function updateDnsmasqConfig($iface,$status)
     if ($result == 0) {
         $status->addMessage('Dnsmasq configuration for '.$iface.' '.$msg.'.', 'success');
     }
+
+    // write default 090_raspap.conf
+    $config = '# RaspAP default config'.PHP_EOL;
+    $config .='log-facility=/tmp/dnsmasq.log'.PHP_EOL;
+    $config .='conf-dir=/etc/dnsmasq.d'.PHP_EOL;
+    // handle log option
+    if ($_POST['log-dhcp'] == "1") {
+        $config .= "log-dhcp".PHP_EOL;
+    }
+    if ($_POST['log-queries'] == "1") {
+      $config .= "log-queries".PHP_EOL;
+    }
+    $config .= PHP_EOL;
+    file_put_contents("/tmp/dnsmasqdata", $config);
+    system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.'raspap.conf', $result);
+
     return $result;
 }
 
