@@ -232,6 +232,18 @@ function loadChannel() {
     });
 }
 
+$('#hostapdModal').on('shown.bs.modal', function (e) {
+    var seconds = 9;
+    var countDown = setInterval(function(){
+      if(seconds <= 0){
+        clearInterval(countDown);
+      }
+      var pcg = Math.floor(100-(seconds*100/9));
+      document.getElementsByClassName('progress-bar').item(0).setAttribute('style','width:'+Number(pcg)+'%');
+      seconds --;
+    }, 1000);
+});
+
 /*
 Sets the wirelss channel select options based on hw_mode and country_code.
 

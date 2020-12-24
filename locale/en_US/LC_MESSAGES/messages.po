@@ -462,6 +462,12 @@ msgstr "Disable <code>disassoc_low_ack</code>"
 msgid "Do not disassociate stations based on excessive transmission failures."
 msgstr "Do not disassociate stations based on excessive transmission failures."
 
+msgid "RaspAP service start executing"
+msgstr "RaspAP service start executing"
+
+msgid "Close"
+msgstr "Close"
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
