@@ -296,14 +296,13 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $ip_address.= (!preg_match('/.*\/\d+/', $ip_address)) ? '/'.mask2cidr($netmask) : null;
 
         if ($bridgedEnable == 1) {
-            $config = defaultHeader();
+            $config = array_keys(getDefaultNetOpts('dhcp'));
             $config[] = PHP_EOL.'# RaspAP br0 configuration';
             $config[] = 'interface br0';
             $config[] = 'denyinterfaces eth0 wlan0';
             $config[] = PHP_EOL;
         } elseif ($wifiAPEnable == 1) {
-            // Enable uap0 configuration for ap-sta 
-            $config = defaultHeader();
+            $config = array_keys(getDefaultNetOpts('dhcp'));
             $config[] = PHP_EOL.'# RaspAP uap0 configuration';
             $config[] = 'interface uap0';
             $config[] = 'static ip_address='.$ip_address;
@@ -319,7 +318,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config[] = 'static domain_name_server='.$domain_name_server;
             if (! is_null($jsonData['Metric'])) { $config[] = 'metric '.$jsonData['Metric']; }
         }
-
         $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
         if ($bridgedEnable == 1 || $wifiAPEnable == 1) {
             $dhcp_cfg = join(PHP_EOL, $config);
