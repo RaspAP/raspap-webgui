@@ -52,10 +52,14 @@ body {
   font-weight: 500;
 }
 
-.card .card-header {
+.card .card-header, .modal-header {
   border-color: <?php echo $color; ?>;
   color: #fff;
   background-color: <?php echo $color; ?>;
+}
+
+.modal-header {
+  border-radius: 0px;
 }
 
 .btn-primary {
@@ -64,7 +68,7 @@ body {
   background-color: #fff;
 }
 
-.card-footer {
+.card-footer, .modal-footer {
   background-color: #f2f1f0;
 }
 

@@ -34,12 +34,12 @@ h5.card-title {
   color: #212529;
 }
 
-.card {
+.card, .modal-dialog {
   border-radius: 1px;
   border-color: #ff6600;
 }
 
-.card>.card-header {
+.card>.card-header, .modal-header {
   border-color: #ff6600;
   background-color: #ff6600;
   color: #000;
@@ -53,9 +53,18 @@ h5.card-title {
   font-size: 1.0rem;
 }
 
-.card-header [class^="fa"] {
+.card-header [class^="fa"], .modal-header [class^="fa"] {
   color: #fff;
   font-size: 1.0rem;
+}
+
+.modal-title {
+  color: #000;
+  font-size: 1.0rem;
+}
+
+.modal-content {
+  border-radius: 0px;
 }
 
 .sidebar-brand-text {

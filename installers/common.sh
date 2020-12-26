@@ -20,9 +20,11 @@ set -o errtrace
 readonly raspap_dir="/etc/raspap"
 readonly raspap_user="www-data"
 readonly raspap_sudoers="/etc/sudoers.d/090_raspap"
-readonly raspap_dnsmasq="/etc/dnsmasq.d/090_raspap.conf"
+readonly raspap_default="/etc/dnsmasq.d/090_raspap.conf"
+readonly raspap_wlan0="/etc/dnsmasq.d/090_wlan0.conf"
 readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
+readonly raspap_network="$raspap_dir/networking/"
 readonly rulesv4="/etc/iptables/rules.v4"
 readonly notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
 webroot_dir="/var/www/html"
@@ -167,11 +169,7 @@ function _create_raspap_directories() {
     # Create a directory to store networking configs
     echo "Creating $raspap_dir/networking"
     sudo mkdir -p "$raspap_dir/networking"
-    # Copy existing dhcpcd.conf to use as base config
-    echo "Adding /etc/dhcpcd.conf as base configuration"
-    cat /etc/dhcpcd.conf | sudo tee -a /etc/raspap/networking/defaults > /dev/null
-    echo "Changing file ownership of $raspap_dir"
-    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
+
 }
 
 # Generate hostapd logging and service control scripts
@@ -258,9 +256,9 @@ function _install_adblock() {
         echo "addn-hosts=$raspap_dir/adblock/hostnames.txt" | sudo tee -a "$raspap_adblock" > /dev/null || _install_status 1 "Unable to write to $raspap_adblock"
     fi
 
-    # Remove dhcp-option=6 in dnsmasq.d/090_raspap.conf to force local DNS resolution for DHCP clients
+    # Remove dhcp-option=6 in dnsmasq.d/090_wlan0.conf to force local DNS resolution for DHCP clients
     echo "Enabling local DNS name resolution for DHCP clients"
-    sudo sed -i '/dhcp-option=6/d' $raspap_dnsmasq || _install_status 1 "Unable to modify $raspap_dnsmasq"
+    sudo sed -i '/dhcp-option=6/d' $raspap_wlan0 || _install_status 1 "Unable to modify $raspap_dnsmasq"
 
     echo "Enabling ad blocking management option"
     sudo sed -i "s/\('RASPI_ADBLOCK_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
@@ -358,9 +356,14 @@ function _check_for_old_configs() {
             sudo ln -sf "$raspap_dir/backups/hostapd.conf.`date +%F-%R`" "$raspap_dir/backups/hostapd.conf"
         fi
 
-        if [ -f $raspap_dnsmasq ]; then
-            sudo cp $raspap_dnsmasq "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`"
-            sudo ln -sf "$raspap_dir/backups/dnsmasq.conf.`date +%F-%R`" "$raspap_dir/backups/dnsmasq.conf"
+        if [ -f $raspap_default ]; then
+            sudo cp $raspap_default "$raspap_dir/backups/090_raspap.conf.`date +%F-%R`"
+            sudo ln -sf "$raspap_dir/backups/090_raspap.conf.`date +%F-%R`" "$raspap_dir/backups/090_raspap.conf"
+        fi
+
+        if [ -f $raspap_wlan0 ]; then
+            sudo cp $raspap_wlan0 "$raspap_dir/backups/090_wlan0.conf.`date +%F-%R`"
+            sudo ln -sf "$raspap_dir/backups/090_wlan0.conf.`date +%F-%R`" "$raspap_dir/backups/090_wlan0.conf"
         fi
 
         if [ -f /etc/dhcpcd.conf ]; then
@@ -394,13 +397,15 @@ function _move_config_file() {
 function _default_configuration() {
     if [ "$upgrade" == 0 ]; then
         _install_log "Applying default configuration to installed services"
-        if [ -f /etc/default/hostapd ]; then
-            sudo mv /etc/default/hostapd /tmp/default_hostapd.old || _install_status 1 "Unable to remove old /etc/default/hostapd file"
-        fi
-        sudo cp $webroot_dir/config/default_hostapd /etc/default/hostapd || _install_status 1 "Unable to move hostapd defaults file"
+
         sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
-        sudo cp $webroot_dir/config/dnsmasq.conf $raspap_dnsmasq || _install_status 1 "Unable to move dnsmasq configuration file"
+        sudo cp $webroot_dir/config/090_raspap.conf $raspap_default || _install_status 1 "Unable to move dnsmasq default configuration file"
+        sudo cp $webroot_dir/config/090_wlan0.conf $raspap_wlan0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
+        sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
+
+        echo "Changing file ownership of $raspap_dir"
+        sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 
         echo "Checking for existence of /etc/dnsmasq.d"
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d

@@ -18,12 +18,6 @@
             // defaults to false
             $bridgedEnabled = $arrHostapdConf['BridgedEnable'];
             ?>
-          <?php if (!$bridgedEnabled) : // no interface details when bridged ?>
-                <?php foreach ($interfaces as $if): ?>
-                    <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
-          <li role="presentation" class="nav-item"><a class="nav-link" href="#<?php echo $if_quoted ?>" aria-controls="<?php echo $if_quoted ?>" role="tab" data-toggle="tab"><?php echo $if_quoted ?></a></li>
-                <?php endforeach ?>
-          <?php endif ?>
         </ul>
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="summary">

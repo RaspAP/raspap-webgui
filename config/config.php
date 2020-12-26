@@ -2,17 +2,17 @@
 
 define('RASPI_BRAND_TEXT', 'RaspAP');
 define('RASPI_CONFIG', '/etc/raspap');
-define('RASPI_CONFIG_NETWORKING', RASPI_CONFIG.'/networking');
+define('RASPI_CONFIG_NETWORK', RASPI_CONFIG.'/networking/defaults.json');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
 define('RASPI_WIFI_AP_INTERFACE', 'wlan0');
 define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
 
 // Constants for configuration file paths.
 // These are typical for default RPi installs. Modify if needed.
-define('RASPI_DNSMASQ_CONFIG', '/etc/dnsmasq.d/090_raspap.conf');
 define('RASPI_DNSMASQ_LEASES', '/var/lib/misc/dnsmasq.leases');
+define('RASPI_DNSMASQ_PREFIX', '/etc/dnsmasq.d/090_');
 define('RASPI_ADBLOCK_LISTPATH', '/etc/raspap/adblock/');
-define('RASPI_ADBLOCK_CONFIG', '/etc/dnsmasq.d/090_adblock.conf');
+define('RASPI_ADBLOCK_CONFIG', RASPI_DNSMASQ_PREFIX.'adblock.conf');
 define('RASPI_HOSTAPD_CONFIG', '/etc/hostapd/hostapd.conf');
 define('RASPI_DHCPCD_CONFIG', '/etc/dhcpcd.conf');
 define('RASPI_WPA_SUPPLICANT_CONFIG', '/etc/wpa_supplicant/wpa_supplicant.conf');

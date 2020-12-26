@@ -119,7 +119,7 @@ a:focus, a:hover {
   color: #d2d2d2;
 }
 
-.card>.card-header {
+.card>.card-header, .modal-content, .modal-header {
   border-color: #404040;
   background-color: #202020;
   color: #afafaf;
@@ -127,6 +127,10 @@ a:focus, a:hover {
   border-top-left-radius: 3px;
   font-size: 1.0rem;
   font-weight: 400;
+}
+
+.modal-body {
+  background-color: #141414;
 }
 
 .card>.card-header .fa {
@@ -197,9 +201,13 @@ hr {
   width: 6.5rem;
 }
 
-.card-footer {
+.card-footer, .modal-footer {
   background-color: #202020;
   border-top: 0px;
+}
+
+.modal-footer {
+  border-radius: 0.3rem;
 }
 
 .card>.card-header::before, .navbar-default::before {

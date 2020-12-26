@@ -6,18 +6,18 @@ if (!defined('RASPI_CONFIG')) {
 
 $defaults = [
   'RASPI_BRAND_TEXT' => 'RaspAP',
-  'RASPI_VERSION' => '2.5.2',
-  'RASPI_CONFIG_NETWORKING' => RASPI_CONFIG.'/networking',
+  'RASPI_VERSION' => '2.6-beta',
+  'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/defaults.json',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',
   'RASPI_WIFI_AP_INTERFACE' => 'wlan0',
   'RASPI_CACHE_PATH' => sys_get_temp_dir() . '/raspap',
 
   // Constants for configuration file paths.
   // These are typical for default RPi installs. Modify if needed.
-  'RASPI_DNSMASQ_CONFIG' => '/etc/dnsmasq.d/090_raspap.conf',
   'RASPI_DNSMASQ_LEASES' => '/var/lib/misc/dnsmasq.leases',
+  'RASPI_DNSMASQ_PREFIX' => '/etc/dnsmasq.d/090_',
   'RASPI_ADBLOCK_LISTPATH' => '/etc/raspap/adblock/',
-  'RASPI_ADBLOCK_CONFIG' => '/etc/dnsmasq.d/090_adblock.conf',
+  'RASPI_ADBLOCK_CONFIG' =>  RASPI_DNSMASQ_PREFIX.'adblock.conf',
   'RASPI_HOSTAPD_CONFIG' => '/etc/hostapd/hostapd.conf',
   'RASPI_DHCPCD_CONFIG' => '/etc/dhcpcd.conf',
   'RASPI_WPA_SUPPLICANT_CONFIG' => '/etc/wpa_supplicant/wpa_supplicant.conf',
