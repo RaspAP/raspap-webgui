@@ -238,8 +238,8 @@ $('#hostapdModal').on('shown.bs.modal', function (e) {
       if(seconds <= 0){
         clearInterval(countDown);
       }
-      var pcg = Math.floor(100-(seconds*100/9));
-      document.getElementsByClassName('progress-bar').item(0).setAttribute('style','width:'+Number(pcg)+'%');
+      var pct = Math.floor(100-(seconds*100/9));
+      document.getElementsByClassName('progress-bar').item(0).setAttribute('style','width:'+Number(pct)+'%');
       seconds --;
     }, 1000);
 });
