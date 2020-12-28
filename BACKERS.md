@@ -16,17 +16,17 @@ Recurring and one-time donors are vital to the continued development of this pro
 
 ## OpenCollective
 Navisense GmbH - $500  
-Wechaty - $20  
+Wechaty - "RaspAP is awesome!" -$20  
 Pheppy -  $10  
-Mark H - $10  
+Mark H - "I've used this project for some time, great in combi with a Sixfab LTE HAT." -$10  
 Phil K - $10  
 T.Paul L - $5  
 Wouter D - $20  
-Andy N - $20  
+Andy N - "This is a great solution with a very responsive lead. Thanks for all your hard work." -$20  
 Paul B - $20  
 
 ## PayPal
-Ray E - "This project is awesome and just works; saved me and my client tons of work. Thank you!" - $20  
+Ray E - "This project is awesome and just works; saved me and my client tons of work. Thank you!" -$20  
 Erin C - "Just got Raspap up and running, looks very cool, thanks!" -$20 CAD  
 Ralf J - "Thanks for RaspAP including OpenVPN. It was a big help for me." -€15  
 Felipe C - "Thanks for the good work on RaspAP!" -$6  
