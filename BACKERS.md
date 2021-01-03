@@ -33,3 +33,4 @@ Felipe C - "Thanks for the good work on RaspAP!" -$6
 Webagentur S - "Like what you and RaspAP are doing." -€20  
 Matthew B - "Great project, easy to set up." -£15  
 Mikko M - "Thanks for the great RaspAP." -€10  
+Oren G - "Needed to create an AP with my pi, this just worked so well! Thank you!" -$25  
