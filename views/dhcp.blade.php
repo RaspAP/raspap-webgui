@@ -34,11 +34,11 @@
 
           <!-- Tab panes -->
           <div class="tab-content">
-            {{--@include("dhcp.general") --}}
+            @include("dhcp.general")
             @include("dhcp.advanced")
             @include("dhcp.clients")
-            {{--@include("dhcp.static_leases") --}}
-            {{--@include("dhcp.logging") --}}
+            @include("dhcp.static_leases")
+            @include("dhcp.logging")
           </div><!-- /.tab-content -->
 
           @if(!RASPI_MONITOR_ENABLED)
