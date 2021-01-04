@@ -18,7 +18,7 @@
       </div>
 
       <div class="js-dhcp-upstream-servers">
-        @foreach upstreamServers as $server)
+        @foreach ($upstreamServers as $server)
           <div class="form-group input-group input-group-sm js-dhcp-upstream-server">
             <input type="text" class="form-control" name="server[]" value="{{ $server  }}">
             <div class="input-group-append">
