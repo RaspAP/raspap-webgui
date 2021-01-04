@@ -3,28 +3,28 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="card mb-3">
-        <div class="card-header"><?php echo _("Active DHCP leases"); ?></div>
+        <div class="card-header">{{ _("Active DHCP leases") }}</div>
         <!-- /.panel-heading -->
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th><?php echo _("Expire time"); ?></th>
-                  <th><?php echo _("MAC Address"); ?></th>
-                  <th><?php echo _("IP Address"); ?></th>
-                  <th><?php echo _("Host name"); ?></th>
-                  <th><?php echo _("Client ID"); ?></th>
+                  <th>{{ _("Expire time") }}</th>
+                  <th>{{ _("MAC Address") }}</th>
+                  <th>{{ _("IP Address") }}</th>
+                  <th>{{ _("Host name") }}</th>
+                  <th>{{ _("Client ID") }}</th>
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($leases as $lease) : ?>
+                @foreach ($leases as $lease)
                 <tr>
-                  <?php foreach (explode(' ', $lease) as $prop) : ?>
-                  <td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
-                  <?php endforeach ?>
+                  @foreach (explode(' ', $lease) as $prop)
+                  <td>{{ $prop }}</td>
+                  @endforeach
                 </tr>
-                <?php endforeach ?>
+                @endforeach
               </tbody>
             </table>
           </div><!-- /.table-responsive -->

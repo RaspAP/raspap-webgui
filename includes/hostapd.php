@@ -284,7 +284,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     $_POST['max_num_sta'] = $_POST['max_num_sta'] < 1 ? null : $_POST['max_num_sta'];
 
     if ($good_input) {
-        $return = updateHostapdConfig($ignore_broadcast_ssid);
+        $return = updateHostapdConfig($ignore_broadcast_ssid, $wifiAPEnable, $bridgedEnable);
 
         // Fetch dhcp-range, lease time from system config
         $syscfg = parse_ini_file(RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', false, INI_SCANNER_RAW);
@@ -394,7 +394,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
  *
  * @return boolean $result
  */
-function updateHostapdConfig($ignore_broadcast_ssid)
+function updateHostapdConfig($ignore_broadcast_ssid, $wifiAPEnable, $bridgedEnable)
 {
     // Fixed values
     $country_code = $_POST['country_code'];
