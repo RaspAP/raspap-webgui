@@ -7,4 +7,5 @@
   @else
     {{-- option --}}
     <option value="{{ $value }}">{{ is_int($key) ? $value : $key }}</option>
+  @endif
 @endforeach
