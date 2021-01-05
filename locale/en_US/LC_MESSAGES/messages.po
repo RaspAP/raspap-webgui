@@ -353,6 +353,9 @@ msgstr "Format"
 msgid "Choose a hosted server"
 msgstr "Choose a hosted server"
 
+msgid "Enable these options to log DHCP server activity."
+msgstr "Enable these options to log DHCP server activity."
+
 msgid "Log DHCP requests"
 msgstr "Log DHCP requests"
 
@@ -461,6 +464,15 @@ msgstr "Disable <code>disassoc_low_ack</code>"
 
 msgid "Do not disassociate stations based on excessive transmission failures."
 msgstr "Do not disassociate stations based on excessive transmission failures."
+
+msgid "Executing RaspAP service start"
+msgstr "Executing RaspAP service start"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Enable this option to log <code>hostapd</code> activity."
 
 #: includes/networking.php
 msgid "Summary"

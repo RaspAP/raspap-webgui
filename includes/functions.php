@@ -33,27 +33,6 @@ function cidr2mask($cidr)
 }
 
 /**
- * Returns a dhcp default config header
- *
- * @return array $config
- */
-function defaultHeader()
-{
-    $config = [ '# RaspAP default configuration' ];
-    $config[] = 'hostname';
-    $config[] = 'clientid';
-    $config[] = 'persistent';
-    $config[] = 'option rapid_commit';
-    $config[] = 'option domain_name_servers, domain_name, domain_search, host_name';
-    $config[] = 'option classless_static_routes';
-    $config[] = 'option ntp_servers';
-    $config[] = 'require dhcp_server_identifier';
-    $config[] = 'slaac private';
-    $config[] = 'nohook lookup-hostname';
-    return $config;
-}
-
-/**
  * Removes a dhcp configuration block for the specified interface
  *
  * @param string $iface
@@ -139,6 +118,22 @@ function getDefaultNetValue($svc,$iface,$key)
         return false;
     } else {
         return $json[$svc][$iface][$key][0];
+    }
+}
+
+/**
+ * Returns default options for the specified service
+ *
+ * @param string $svc
+ * @return object $json
+ */
+function getDefaultNetOpts($svc)
+{
+    $json = json_decode(file_get_contents(RASPI_CONFIG_NETWORK), true);
+    if ($json === null) {
+        return false;
+    } else {
+        return $json[$svc]['options'];
     }
 }
 

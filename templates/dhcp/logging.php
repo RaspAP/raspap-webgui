@@ -12,9 +12,17 @@
     <label class="custom-control-label" for="log-queries"><?php echo _("Log DNS queries") ?></label>
   </div>
 
-  <?php
-  exec('sudo chmod o+r /tmp/dnsmasq.log');
-  $log = file_get_contents('/tmp/dnsmasq.log');
-  echo '<textarea class="logoutput my-3">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
-  ?>
+  <div class="row">
+    <div class="form-group col-md-8 mt-2">
+      <?php
+      if ($conf['log-dhcp'] == 1 || $conf['log-queries'] == 1) {
+          exec('sudo chmod o+r /tmp/dnsmasq.log');
+          $log = file_get_contents('/tmp/dnsmasq.log');
+          echo '<textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
+      } else {
+          echo '<textarea class="logoutput my-3"></textarea>';
+      }
+      ?>
+    </div>
+  </div>
 </div><!-- /.tab-pane -->

@@ -18,7 +18,8 @@ set -o errtrace
 readonly raspap_dir="/etc/raspap"
 readonly raspap_user="www-data"
 readonly raspap_sudoers="/etc/sudoers.d/090_raspap"
-readonly raspap_dnsmasq="/etc/dnsmasq.d/090_wlan0.conf"
+readonly raspap_default="/etc/dnsmasq.d/090_raspap.conf"
+readonly raspap_wlan0="/etc/dnsmasq.d/090_wlan0.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_network="/etc/systemd/network/"
@@ -174,9 +175,13 @@ function _restore_networking() {
     fi
     echo "Done."
     # Remove dnsmasq and bridge configs
+    echo "Removing 090_raspap.conf from dnsmasq"
+    if [ -f $raspap_default ]; then
+        sudo rm "$raspap_default" || _install_error "Unable to remove $raspap_default"
+    fi
     echo "Removing 090_wlan0.conf from dnsmasq"
-    if [ -f $raspap_dnsmasq ]; then
-    	sudo rm "$raspap_dnsmasq" || _install_error "Unable to remove $raspap_dnsmasq"
+    if [ -f $raspap_wlan0 ]; then
+        sudo rm "$raspap_wlan0" || _install_error "Unable to remove $raspap_wlan0"
     fi
     echo "Removing raspap bridge configurations"
     sudo rm "$raspap_network"/raspap* || _install_error "Unable to remove bridge config"

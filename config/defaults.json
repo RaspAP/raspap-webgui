@@ -11,6 +11,19 @@
       "static routers": [ "192.168.50.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
+    },
+    "options": {
+      "# RaspAP default configuration": null,
+      "hostname": null,
+      "clientid": null,
+      "persistent": null,
+      "option rapid_commit": null,
+      "option domain_name_servers, domain_name, domain_search, host_name": null,
+      "option classless_static_routes": null,
+      "option ntp_servers": null,
+      "require dhcp_server_identifier": null,
+      "slaac private": null,
+      "nohook lookup-hostname": null
     }
   },
   "dnsmasq": {
@@ -22,3 +35,4 @@
     }
   }
 }
+

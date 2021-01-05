@@ -172,8 +172,14 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $status->addMessage('Attempting to set channel outside of permitted range', 'danger');
         $good_input = false;
     }
+<<<<<<< HEAD
+    
+    $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
+  
+=======
     $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
 
+>>>>>>> 885891f6f50f2cc0634f39ad95f686d557e89d61
     // Check for Bridged AP mode checkbox
     $bridgedEnable = 0;
     if ($arrHostapdConf['BridgedEnable'] == 0) {
@@ -283,7 +289,11 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     $_POST['max_num_sta'] = $_POST['max_num_sta'] < 1 ? null : $_POST['max_num_sta'];
 
     if ($good_input) {
+<<<<<<< HEAD
+        $return = updateHostapdConfig($ignore_broadcast_ssid, $wifiAPEnable, $bridgedEnable);
+=======
         $return = updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnble,$bridgedEnable);
+>>>>>>> 885891f6f50f2cc0634f39ad95f686d557e89d61
 
         // Fetch dhcp-range, lease time from system config
         $syscfg = parse_ini_file(RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', false, INI_SCANNER_RAW);
@@ -391,7 +401,11 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
  *
  * @return boolean $result
  */
+<<<<<<< HEAD
+function updateHostapdConfig($ignore_broadcast_ssid, $wifiAPEnable, $bridgedEnable)
+=======
 function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnble,$bridgedEnable)
+>>>>>>> 885891f6f50f2cc0634f39ad95f686d557e89d61
 {
     // Fixed values
     $country_code = $_POST['country_code'];
