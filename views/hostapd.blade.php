@@ -19,7 +19,7 @@
       </div><!-- /.card-header -->
 
       <div class="card-body">
-        <?php $status->showMessages(); ?>
+        {!! $status->showMessages() !!}
         <form role="form" action="hostapd_conf" method="POST">
           {!! CSRFTokenFieldTag() !!}
 
@@ -40,13 +40,32 @@
           </div><!-- /.tab-content -->
 
           @if (!RASPI_MONITOR_ENABLED)
-            <input type="submit" class="btn btn-outline btn-primary" name="SaveHostAPDSettings" value="{{_("Save settings")}}" />
+            <input type="submit" class="btn btn-outline btn-primary" name="SaveHostAPDSettings" value="{{ _("Save settings") }}" />
             @if ($hostapdstatus[0] == 0)
-              <input type="submit" class="btn btn-success" name="StartHotspot" value="{{_("Start hotspot")}}"/>
+              <input type="submit" class="btn btn-success" name="StartHotspot" value="<?php echo  _("Start hotspot"); $msg=_("Starting hotspot"); ?>" data-toggle="modal" data-target="#hostapdModal"/>
             @else
-              <input type="submit" class="btn btn-warning" name="StopHotspot" value="{{_("Stop hotspot")}}"/>
-              <input type ="submit" class="btn btn-warning" name="RestartHotspot" value="{{_("Restart hotspot")}}"/>
+              <input type="submit" class="btn btn-warning" name="StopHotspot" value="{{ _("Stop hotspot")  }}"/>
+              <input type ="submit" class="btn btn-warning" name="RestartHotspot" value="<?php echo _("Restart hotspot"); $msg=_("Restarting hotspot"); ?>" data-toggle="modal" data-target="#hostapdModal"/>
             @endif
+            <!-- Modal -->
+            <div class="modal fade" id="hostapdModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="modal-title" id="ModalLabel"><i class="fas fa-sync-alt mr-2"></i>{{ $msg }}</div>
+                  </div>
+                  <div class="modal-body">
+                    <div class="col-md-12 mb-3 mt-1">{{ _("Executing RaspAP service start")  }}...</div>
+                    <div class="progress" style="height: 20px;">
+                      <div class="progress-bar bg-info" role="progressbar" id="progressBar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="9"></div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-primary" data-dismiss="modal">{{ _("Close") }}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           @endif
 
         </form>
