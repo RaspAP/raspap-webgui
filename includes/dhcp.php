@@ -55,9 +55,11 @@ function DisplayDHCPConfig()
     // retrieve log from dnsmasq
     $dnsmasq_log = "";
     $dnsmasq_logifle = '/tmp/dnsmasq.log';
-    if (file_exists($dnsmasq_logifle)){
-        exec("sudo chmod o+r $dnsmasq_logifle");
-        $dnsmasq_log = file_get_contents($dnsmasq_logifle);
+    if ($conf['log-dhcp'] == 1 || $conf['log-queries'] == 1) {
+        if (file_exists($dnsmasq_logifle)){
+            exec("sudo chmod o+r $dnsmasq_logifle");
+            $dnsmasq_log = file_get_contents($dnsmasq_logifle);
+        }
     }
 
     echo renderTemplate(

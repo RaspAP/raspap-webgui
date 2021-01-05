@@ -20,14 +20,6 @@
     <div class="row">
       <div class="col-md-6 mb-2">
         <div class="custom-control custom-switch">
-          <input class="custom-control-input" id="chxlogenable" name="logEnable" type="checkbox" value="1" {{ $arrHostapdConf['LogEnable'] == 1 ? 'checked="checked"' : '' }} />
-          <label class="custom-control-label" for="chxlogenable">{{ _("Logfile output") }}</label>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 mb-2">
-        <div class="custom-control custom-switch">
           <input class="custom-control-input" id="chxhiddenssid" name="hiddenSSID" type="checkbox" value="1" {{ $arrConfig['ignore_broadcast_ssid'] == 1 || $arrConfig['ignore_broadcast_ssid'] == 2 ? 'checked="checked"' : '' }}/>
           <label class="custom-control-label" for="chxhiddenssid">{{ _("Hide SSID in broadcast") }}</label>
         </div>

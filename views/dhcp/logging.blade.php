@@ -13,6 +13,6 @@
     <label class="custom-control-label" for="log-queries">{{ _("Log DNS queries")  }}</label>
   </div>
 
-  <textarea class="logoutput my-3">{{ $dnsmasq_log }}</textarea>
+  <textarea class="logoutput {!! $dnsmasq_log ? "" : "my-3"!!}">{{ $dnsmasq_log }}</textarea>
 
 </div><!-- /.tab-pane -->
