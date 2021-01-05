@@ -16,7 +16,7 @@
 
 <select class="form-control" name="{{$name}}"
     @if(isset($id))
-        id="{!! $id !!}""
+        id="{!! $id !!}"
     @endif
     @if (isset($event))
         onChange="{!! $event !!}()"
