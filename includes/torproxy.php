@@ -19,8 +19,8 @@ function DisplayTorProxyConfig()
         }
     }
 
-    echo renderTemplate(
-        "torproxy", compact(
+    echo renderTemplate("torproxy", 
+        compact(
             "status",
             "torproxystatus"
         )

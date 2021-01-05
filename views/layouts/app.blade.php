@@ -86,7 +86,7 @@
           <a class="nav-link" href="dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label">{{ _("DHCP Server") }}</a>
         </li>
           @endif
-          @if (true || RASPI_ADBLOCK_ENABLED && !$bridgedEnable)
+          @if (RASPI_ADBLOCK_ENABLED && !$bridgedEnable)
         <li class="nav-item">
            <a class="nav-link" href="adblock_conf"><i class="far fa-hand-paper fa-fw mr-2"></i><span class="nav-label">{{ _("Ad Blocking") }}</a>
         </li>

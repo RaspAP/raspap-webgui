@@ -17,7 +17,7 @@
           </div><!-- /.row -->
         </div><!-- /.card-header -->
         <div class="card-body">
-        {{!! $status->showMessages() !!}}
+        {!! $status->showMessages() !!}
           <form role="form" action="adblock_conf" enctype="multipart/form-data" method="POST">
             {!! CSRFTokenFieldTag() !!}
             <!-- Nav tabs -->

@@ -86,10 +86,10 @@ function DisplayAdBlockConfig()
                 $adblock_log .= $line;
             }
         }
+        fclose($handle);
     } else {
         $adblock_log = "Unable to open log file";
     }
-    fclose($handle);
 
     echo renderTemplate(
         "adblock", compact(

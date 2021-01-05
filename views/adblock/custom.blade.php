@@ -24,7 +24,7 @@
       @if (strlen($adblock_custom) == 0) 
         {{ _("Custom blocklist not defined") }}
       @else
-        <textarea class="logoutput" name="adblock-custom-hosts">{{ $adblock_custom_content) }}</textarea>
+        <textarea class="logoutput" name="adblock-custom-hosts">{{ $adblock_custom_content }}</textarea>
       @endif
     </div>
   </div>

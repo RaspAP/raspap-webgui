@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@section('content')
     <div class="row">
     <div class="col-lg-12">
       <div class="card"> 
@@ -12,46 +14,46 @@
 
             <!-- Tab panes -->
             <div class="tab-content">
-                <p><?php echo $status; ?></p>
+                {!! $status !!}
 
                 <div class="tab-pane active" id="basic">
                     <h4>Basic settings</h4>
                     <form role="form" action="save_hostapd_conf" method="POST">
-                    <?php echo CSRFTokenFieldTag() ?>
+                    {!! CSRFTokenFieldTag() !!}
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">VirtualAddrNetwork</label>
-                            <input type="text" class="form-control" name="virtualaddrnetwork" value="<?php echo htmlspecialchars($arrConfig['VirtualAddrNetwork'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="virtualaddrnetwork" value="{{ $arrConfig['VirtualAddrNetwork'] }}" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">AutomapHostsSuffixes</label>
-                            <input type="text" class="form-control" name="automaphostssuffixes" value="<?php echo htmlspecialchars($arrConfig['AutomapHostsSuffixes'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="automaphostssuffixes" value="{{ $arrConfig['AutomapHostsSuffixes'] }}" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">AutomapHostsOnResolve</label>
-                            <input type="text" class="form-control" name="automaphostsonresolve" value="<?php echo htmlspecialchars($arrConfig['AutomapHostsOnResolve'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="automaphostsonresolve" value="{{ $arrConfig['AutomapHostsOnResolve'] }}" />
                         </div>
                     </div>  
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">TransListenAddress</label>
-                            <input type="text" class="form-control" name="translistenaddress" value="<?php echo htmlspecialchars($arrConfig['TransListenAddress'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="translistenaddress" value="{{ $arrConfig['TransListenAddress'] }}" />
                         </div>
                     </div>  
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">DNSPort</label>
-                            <input type="text" class="form-control" name="dnsport" value="<?php echo htmlspecialchars($arrConfig['DNSPort'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="dnsport" value="{{ $arrConfig['DNSPort'] }}" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">DNSListenAddress</label>
-                            <input type="text" class="form-control" name="dnslistenaddress" value="<?php echo htmlspecialchars($arrConfig['DNSListenAddress'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="dnslistenaddress" value="{{ $arrConfig['DNSListenAddress'] }}" />
                         </div>
                     </div>
                 </div>
@@ -60,53 +62,52 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">ORPort</label>
-                            <input type="text" class="form-control" name="orport" value="<?php echo htmlspecialchars($arrConfig['ORPort'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="orport" value="{{ $arrConfig['ORPort'] }}" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">ORListenAddress</label>
-                            <input type="text" class="form-control" name="orlistenaddress" value="<?php echo htmlspecialchars($arrConfig['ORListenAddress'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="orlistenaddress" value="{{ $arrConfig['ORListenAddress'] }}" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">Nickname</label>
-                            <input type="text" class="form-control" name="nickname" value="<?php echo htmlspecialchars($arrConfig['Nickname'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="nickname" value="{{ $arrConfig['Nickname'] }}" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">Address</label>
-                            <input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($arrConfig['Address'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="address" value="{{ $arrConfig['Address'] }}" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">RelayBandwidthRate</label>
-                            <input type="text" class="form-control" name="relaybandwidthrate" value="<?php echo htmlspecialchars($arrConfig['RelayBandwidthRate'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="relaybandwidthrate" value="{{ $arrConfig['RelayBandwidthRate'] }}" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="code">RelayBandwidthBurst</label>
-                            <input type="text" class="form-control" name="relaybandwidthburst" value="<?php echo htmlspecialchars($arrConfig['RelayBandwidthBurst'], ENT_QUOTES); ?>" />
+                            <input type="text" class="form-control" name="relaybandwidthburst" value="{{ $arrConfig['RelayBandwidthBurst'] }}" />
                         </div>
                     </div>
                 </div>
 
                 <input type="submit" class="btn btn-outline btn-primary" name="SaveTORProxySettings" value="Save settings" />
-                <?php
-                if ($torproxystatus[0] == 0) {
-                    echo '<input type="submit" class="btn btn-success" name="StartTOR" value="Start TOR" />' , PHP_EOL;
-                } else {
-                    echo '<input type="submit" class="btn btn-warning" name="StopTOR" value="Stop TOR" />' , PHP_EOL;
-                };
-                ?>
+                @if ($torproxystatus[0] == 0) 
+                    <input type="submit" class="btn btn-success" name="StartTOR" value="Start TOR" />
+                @else
+                    <input type="submit" class="btn btn-warning" name="StopTOR" value="Stop TOR" />
+                @endif
                 </form>
             </div><!-- /.tab-content -->
         </div><!-- /.card-body -->
         <div class="card-footer"> Information provided by tor</div>
 </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
+@endsection
 

@@ -424,7 +424,7 @@ function ConvertToSecurity($security)
  * @param bool $isAjax - If this value is true, then the function will not add the commonly required variables to
  * the viewData.  It assumes from this value that you will not extend 'layouts.app' because you just want a small chunk 
  * of ajax html.
- * @return mixed - the result of calling the (new Blade())->run() function
+ * @return string - the result of calling the (new Blade())->run() function
  */
 function renderTemplate($name, $viewData = [], $isAjax = false)
 {
