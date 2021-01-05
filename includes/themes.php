@@ -3,7 +3,7 @@
  *
  *
  */
-function DisplayThemeConfig(&$extraFooterScripts)
+function DisplayThemeConfig()
 {
     $themes = [
         "default"    => "RaspAP (default)",
@@ -19,6 +19,4 @@ function DisplayThemeConfig(&$extraFooterScripts)
 
     echo renderTemplate("themes", compact("themes", "selectedTheme"));
 
-    $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
-    $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
 }

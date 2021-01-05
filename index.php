@@ -91,10 +91,10 @@ $bridgedEnabled = getBridgedState();
             SaveTORAndVPNConfig();
             break;
         case "/theme_conf":
-            DisplayThemeConfig($extraFooterScripts);
+            DisplayThemeConfig();
             break;
         case "/data_use":
-            DisplayDataUsage($extraFooterScripts);
+            DisplayDataUsage();
             break;
         case "/system_info":
             DisplaySystem();

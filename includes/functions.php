@@ -416,30 +416,26 @@ function ConvertToSecurity($security)
 }
 
 /**
- * Renders a simple PHP template
+ * Renders a blade template from the views folder.
+ * @param string $name - The name of the view to render. A dot notated version of the path. (eg. dhcp.advanced)
+ * @param array $viewData - The data you want passed to your view.  Note that this 
+ * function adds some commonly required variables to the viewData which are used when 
+ * extending 'layouts.app'.  Check that the variable you need is not already included by this function.
+ * @param bool $isAjax - If this value is true, then the function will not add the commonly required variables to
+ * the viewData.  It assumes from this value that you will not extend 'layouts.app' because you just want a small chunk 
+ * of ajax html.
+ * @return mixed - the result of calling the (new Blade())->run() function
  */
 function renderTemplate($name, $viewData = [], $isAjax = false)
 {
-
-    /*
-    $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
-    if (!file_exists($file)) {
-        return "template $name ($file) not found";
-    }
-
-    if (is_array($viewData)) {
-        extract($viewData);
-    }
-
-    ob_start();
-    include $file;
-    return ob_get_clean();
-    */
 
     if (! $isAjax){
 
       // there is some data which is required by the layout, so add
       // it here to save every controller from having to retreive it.
+      // If you need a commonly required value, it may already be here,
+      // so check first. 
+
       $system = new System();
 
       $viewData['hostname'] = $system->hostname();
@@ -506,9 +502,7 @@ function renderTemplate($name, $viewData = [], $isAjax = false)
     $cache = __DIR__ . '/../compiles';
     //$blade = new BladeOne($views,$cache,BladeOne::MODE_DEBUG); // MODE_DEBUG allows to pinpoint troubles.
     $blade = new BladeOne($views,$cache);
-    return $blade->run($name, $viewData); // it calls /views/$name.blade.php
-
-
+    return $blade->run($name, $viewData); // it calls "/views/{$name}.blade.php"
 }
 
 function expandCacheKey($key)

@@ -44,7 +44,8 @@ function setupTabs() {
         var target = $(e.target).attr('href');
         if(!target.match('summary')) {
             var int = target.replace("#","");
-            loadCurrentSettings(int);
+            // FIXME: mp035 temporarilly removed this call because the function is undefined
+            // loadCurrentSettings(int);
         }
     });
 }

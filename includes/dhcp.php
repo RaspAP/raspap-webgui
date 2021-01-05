@@ -50,6 +50,14 @@ function DisplayDHCPConfig()
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
     $ap_iface = $_SESSION['ap_interface'];
 
+    // retrieve log from dnsmasq
+    $dnsmasq_log = "";
+    $dnsmasq_logifle = '/tmp/dnsmasq.log';
+    if (file_exists($dnsmasq_logifle)){
+        exec("sudo chmod o+r $dnsmasq_logifle");
+        $dnsmasq_log = file_get_contents($dnsmasq_logifle);
+    }
+
     echo renderTemplate(
         "dhcp", compact(
             "status",
@@ -58,7 +66,8 @@ function DisplayDHCPConfig()
             "ap_iface",
             "dhcpHost",
             "interfaces",
-            "leases"
+            "leases",
+            "dnsmasq_log"
         )
     );
 }
@@ -110,6 +119,8 @@ function saveDHCPConfig($status)
  */
 function validateDHCPInput()
 {
+    $errors = ""; // this will still return false on empty($errors) check.
+
     define('IFNAMSIZ', 16);
     $iface = $_POST['interface'];
     if (!preg_match('/^[a-zA-Z0-9]+$/', $iface)
