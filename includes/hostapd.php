@@ -356,7 +356,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
  *
  * @return boolean $result
  */
-function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnble,$bridgedEnable)
+function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable)
 {
     // Fixed values
     $country_code = $_POST['country_code'];
