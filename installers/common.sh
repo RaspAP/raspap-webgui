@@ -313,7 +313,7 @@ function _download_latest_files() {
     fi
 
     _install_log "Cloning latest files from github"
-    git clone --recurse_submodules --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || _install_status 1 "Unable to download files from github"
+    git clone --recurse-submodules --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || _install_status 1 "Unable to download files from github"
 
     sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to web root"
     if [ "$upgrade" == 1 ]; then
