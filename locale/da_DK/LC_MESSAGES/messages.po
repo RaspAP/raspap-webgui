@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-12 10:21\n"
-"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"PO-Revision-Date: 2021-01-13 08:19\n"
+"Last-Translator: Svend Skipper Andersen\n"
 "Language-Team: Danish\n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
 "X-Crowdin-Language: da\n"
 "X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 10\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -181,8 +183,8 @@ msgstr "Overførte pakker"
 msgid "Transferred Bytes"
 msgstr "Overførte bytes"
 
-msgid "Wireless Information"
-msgstr "Trådløs information"
+msgid "Wireless Client"
+msgstr "Trådløs klient"
 
 msgid "Connected To"
 msgstr "Forbundet til"
@@ -250,6 +252,12 @@ msgstr "Klientliste"
 
 msgid "Interface"
 msgstr "Interface"
+
+msgid "Enable DHCP for this interface"
+msgstr "Aktivér DHCP for denne grænseflade"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+msgstr "Aktivér denne indstilling hvis du ønsker at RaspAP skal tildele IP-adresser på den valgte grænseflade."
 
 msgid "DNS Server"
 msgstr "DNS-server"
@@ -343,6 +351,9 @@ msgstr "Format"
 
 msgid "Choose a hosted server"
 msgstr "Vælg en hostet server"
+
+msgid "Enable these options to log DHCP server activity."
+msgstr "Aktivér disse indstillinger for at logge DHCP-serveraktivitet."
 
 msgid "Log DHCP requests"
 msgstr "Log DHCP anmodninger"
@@ -444,9 +455,30 @@ msgstr "Maksimal klientantal"
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 msgstr "Konfigurerer max_num_sta i hostapd. Standard og maksimum er 2007. Hvis tom eller 0, bruges standard."
 
+msgid "Beacon interval"
+msgstr "Beaconinterval"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Deaktivér <code>disassoc_low_ack</code>"
+
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Undlad at frakoble stationer baseret på overdrevne transmissionsfejl."
+
+msgid "Executing RaspAP service start"
+msgstr "Udfører RaspAP servicestart"
+
+msgid "Close"
+msgstr "Luk"
+
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Aktivér denne indstilling for at logge <code>hostapd</code> aktivitet."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Oversigt"
+
+msgid "Internet connection"
+msgstr "Internetforbindelse"
 
 msgid "Current settings"
 msgstr "Nuværende indstillinger"
@@ -474,6 +506,9 @@ msgstr "Deaktiveret"
 
 msgid "Static IP Options"
 msgstr "Statiske IP-indstillinger"
+
+msgid "Metric"
+msgstr "Metrisk"
 
 msgid "Apply settings"
 msgstr "Anvend indstillinger"
@@ -527,12 +562,21 @@ msgstr "Systemet genstarter nu!"
 msgid "System Shutting Down Now!"
 msgstr "Systemet lukker ned nu!"
 
+msgid "Web server port"
+msgstr "Webserverport"
+
+msgid "Web server bind address"
+msgstr "Webserver bind-adresse"
+
 #: includes/themes.php
 msgid "Theme settings"
 msgstr "Temaindstillinger"
 
 msgid "Select a theme"
 msgstr "Vælg et tema"
+
+msgid "Color"
+msgstr "Farve"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -733,4 +777,25 @@ msgstr "Statistikker"
 
 msgid "Information provided by adblock"
 msgstr "Information leveret af adblock"
+
+msgid "Enable custom blocklist"
+msgstr "Aktiver brugerdefineret blokliste"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Definer brugerdefinerede værter, der skal blokeres ved at indtaste en IPv4- eller IPv6-adresse efterfulgt af blanke tegn (mellemrum eller faneblade) og værtsnavnet."
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 eksempel:</b> 0.0.0.0 badhost.com"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Denne indstilling tilføjer et <code>addn-værts</code> direktiv til dnsmasq-konfigurationen."
+
+msgid "Custom blocklist not defined"
+msgstr "Brugerdefineret blokliste ikke defineret"
+
+msgid "Invalid custom IP address found on line "
+msgstr "Ugyldig brugerdefineret IP-adresse fundet på linje "
+
+msgid "Invalid custom host found on line "
+msgstr "Ugyldig brugerdefineret vært fundet på linje "
 
