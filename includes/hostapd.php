@@ -192,7 +192,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     // Save previous Client mode status when Bridged
     $cfg['WifiAPEnable'] = ($bridgedEnable == 1 ? $arrHostapdConf['WifiAPEnable'] : $wifiAPEnable);
     $cfg['BridgedEnable'] = $bridgedEnable;
-    $cfg['WifiManaged'] = $ap_iface;
+    $cfg['WifiManaged'] = $_POST['interface'];
     write_php_ini($cfg, RASPI_CONFIG.'/hostapd.ini');
     $_SESSION['ap_interface'] = $ap_iface;
 
