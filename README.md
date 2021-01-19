@@ -50,7 +50,7 @@ Install RaspAP from your device's shell prompt:
 ```sh
 curl -sL https://install.raspap.com | bash
 ```
-The [installer](https://github.com/billz/raspap-webgui/wiki/Quick-Installer-usage) will complete the steps in the manual installation (below) for you.
+The [installer](https://docs.raspap.com/quick/) will complete the steps in the manual installation (below) for you.
 
 After the reboot at the end of the installation the wireless network will be
 configured as an access point as follows:
@@ -61,14 +61,14 @@ configured as an access point as follows:
 * SSID: `raspi-webgui`
 * Password: ChangeMe
 
-**Note:** As the name suggests, the Quick Installer is a great way to quickly setup a new AP. However, it does not automagically detect the unique configuration of your system. Best results are obtained by connecting to ethernet (`eth0`) or as a WiFi client, also known as managed mode, with `wlan0`. For the latter, refer to [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode). Special instructions for the Pi Zero W are [available here](https://github.com/billz/raspap-webgui/wiki/RPi-Zero-W-AP-STA-mode).
+**Note:** As the name suggests, the Quick Installer is a great way to quickly setup a new AP. However, it does not automagically detect the unique configuration of your system. Best results are obtained by connecting to ethernet (`eth0`) or as a WiFi client, also known as managed mode, with `wlan0`. For the latter, refer to [this FAQ](https://docs.raspap.com/faq/#headless). Special instructions for the Pi Zero W are [available here](https://docs.raspap.com/ap-sta/).
 
-Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting an issue.
+Please [read this](https://docs.raspap.com/issues/) before reporting an issue.
 
 ## Ad Blocking
 This feature uses DNS blacklisting to block requests for ads, trackers and other undesirable hosts. To enable ad blocking, simply respond to the prompt during the installation. As a beta release, we encourage testing and feedback from users of RaspAP.
 
-Details are [provided here](https://github.com/billz/raspap-webgui/wiki/Ad-blocking).
+Details are [provided here](https://docs.raspap.com/adblock/).
 
 ## Bridged AP
 By default RaspAP configures a routed AP for your clients to connect to. A bridged AP configuration is also possible. Slide the **Bridged AP mode** toggle under the **Advanced** tab of **Configure hotspot**, then save and restart the hotspot.
@@ -77,12 +77,12 @@ By default RaspAP configures a routed AP for your clients to connect to. A bridg
 
 **Note:** In bridged mode, all routing capabilities are handled by your upstream router. Because your router assigns IP addresses to your device's hotspot and its clients, you might not be able to reach the RaspAP web interface from the default `10.3.141.1` address. Instead use your RPi's hostname followed by `.local` to access the RaspAP web interface. With Raspbian default settings, this should look like `raspberrypi.local`. Alternate methods are [discussed here](https://www.raspberrypi.org/documentation/remote-access/ip-address.md).
 
-More information on Bridged AP mode is provided [on our wiki](https://github.com/billz/raspap-webgui/wiki/Bridged-AP-mode).
+More information on Bridged AP mode is provided [in our documentation](https://docs.raspap.com/bridged/).
 
 ## Simultaneous AP and Wifi client
-RaspAP lets you create an AP with a Wifi client configuration, often called [AP-STA mode](https://github.com/billz/raspap-webgui/wiki/RPi-Zero-W-AP-STA-mode). With your system configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
+RaspAP lets you create an AP with a Wifi client configuration, often called [AP-STA mode](https://docs.raspap.com/ap-sta/). With your system configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
 
-**Note:** This option is disabled until you configure your system as a wireless client. For a device operating in [managed mode](https://github.com/billz/raspap-webgui/wiki/FAQs#how-do-i-prepare-the-sd-card-to-connect-to-wifi-in-headless-mode) without an `eth0` connection, this configuration must be enabled [_before_ a reboot](https://github.com/billz/raspap-webgui/wiki/RPi-Zero-W-AP-STA-mode). 
+**Note:** This option is disabled until you configure your system as a wireless client. For a device operating in [managed mode](https://docs.raspap.com/faq/#headless) without an `eth0` connection, this configuration must be enabled [_before_ a reboot](https://docs.raspap.com/ap-sta/). 
 
 ## Support us
 RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal or commercial projects, please [become a GitHub sponsor](https://github.com/sponsors/billz), join the project on [Open Collective](https://opencollective.com/raspap) or make a one-time donation with [PayPal](https://www.paypal.com/paypalme2/billzgithub). Any of these options makes a big difference!
@@ -90,10 +90,10 @@ RaspAP is free software, but powered by your support. If you find RaspAP useful 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?style=for-the-badge&logo=paypal&link=https://www.paypal.com/paypalme2/billzgithub)](https://www.paypal.com/paypalme2/billzgithub)
 
 ## Manual installation
-Detailed manual setup instructions are provided [on our wiki](https://github.com/billz/raspap-webgui/wiki/Manual-installation).
+Detailed manual setup instructions are provided [on our documentation site](https://docs.raspap.com/manual/).
 
 ## 802.11ac 5GHz support
-RaspAP provides an 802.11ac wireless mode option for supported hardware (currently the RPi 3B+/4 and compatible Orange Pi models) and wireless regulatory domains. See [this FAQ](https://github.com/billz/raspap-webgui/wiki/FAQs#80211ac) for more information. 
+RaspAP provides an 802.11ac wireless mode option for supported hardware (currently the RPi 3B+/4 and compatible Orange Pi models) and wireless regulatory domains. See [this FAQ](https://docs.raspap.com/faq/#80211ac) for more information. 
 
 ## Supported operating systems
 RaspAP was originally made for Raspbian, but now also installs on the following Debian-based distros.
@@ -110,7 +110,7 @@ RaspAP was originally made for Raspbian, but now also installs on the following 
 We find Armbian particularly well-suited for this project. Please note that "supported" is not a guarantee. If you are able to improve support for your preferred distro, we encourage you to [actively contribute](#how-to-contribute) to the project.
 
 ## Multilingual support
-RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multilingual messages. In order to use RaspAP with one of our supported translations, you must configure a corresponding language package on your RPi. To list languages currently installed on your system, use `locale -a` at the shell prompt. To generate new locales, run `sudo dpkg-reconfigure locales` and select any other desired locales. Details are provided on our [wiki](https://github.com/billz/raspap-webgui/wiki/Translations#raspap-in-your-language). 
+RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multilingual messages. In order to use RaspAP with one of our supported translations, you must configure a corresponding language package on your RPi. To list languages currently installed on your system, use `locale -a` at the shell prompt. To generate new locales, run `sudo dpkg-reconfigure locales` and select any other desired locales. Details are provided on our [documentation site](https://docs.raspap.com/translations/) 
 
 The following translations are currently maintained by the project:
 
@@ -135,10 +135,10 @@ The following translations are currently maintained by the project:
 - Türkçe
 - Tiếng Việt (Vietnamese)
 
-If your language is not in the list above, why not [contribute a translation](https://github.com/billz/raspap-webgui/wiki/Translations#contributing-a-translation)? Contributors will receive credit as the original translators.
+If your language is not in the list above, why not [contribute a translation](https://docs.raspap.com/translations/#contributing-to-a-translation)? Contributors will receive credit as the original translators.
 
 ## HTTPS support
-The Quick Installer may be used to [generate SSL certificates](https://github.com/billz/raspap-webgui/wiki/SSL-certificates-(Quick-Installer)) with `mkcert`. The installer automates the manual steps [described in the wiki](https://github.com/billz/raspap-webgui/wiki/SSL-(Manual-steps)), including configuring lighttpd with SSL support. 
+The Quick Installer may be used to [generate SSL certificates](https://docs.raspap.com/ssl-quick/) with `mkcert`. The installer automates the manual steps [described here](https://docs.raspap.com/ssl-manual/), including configuring lighttpd with SSL support. 
 
 Simply append the `-c` or `--cert` option to the Quick Installer, like so:
 
@@ -148,14 +148,14 @@ curl -sL https://install.raspap.com | bash -s -- --cert
 
 **Note**: this only installs mkcert and generates an SSL certificate with the input you provide. It does *not* (re)install RaspAP.
 
-More information on SSL certificates and HTTPS support is available [on our wiki](https://github.com/billz/raspap-webgui/wiki/SSL-certificates-(Quick-Installer)). 
+More information on SSL certificates and HTTPS support is available [in our documentation](https://docs.raspap.com/ssl-quick/). 
 
 ## OpenVPN support
 OpenVPN may be optionally installed by the Quick Installer. Once this is done, you can manage client configuration and the `openvpn-client` service with RaspAP.
 
 To configure an OpenVPN client, upload a valid .ovpn file and, optionally, specify your login credentials. RaspAP will store your client configuration and add firewall rules to forward traffic from OpenVPN's `tun0` interface to your configured wireless interface. 
 
-**Note**: this feature is currently in beta. Please [read this](https://github.com/billz/raspap-webgui/wiki/FAQs#-openvpn-fails-to-start-andor-i-have-no-internet-help) before reporting an issue.
+**Note**: this feature is currently in beta. Please [read this](https://docs.raspap.com/faq/#openvpn-fails) before reporting an issue.
 
 ## How to contribute
 1. Fork the project in your account and create a new branch: `your-great-feature`.
@@ -166,7 +166,7 @@ To configure an OpenVPN client, upload a valid .ovpn file and, optionally, speci
 Find out more about our [coding style guidelines and recommended tools](CONTRIBUTING.md). 
 
 ## Reporting issues
-Please [read this](https://github.com/billz/raspap-webgui/wiki/Reporting-issues) before reporting a bug.
+Please [read this](https://docs.raspap.com/issues/) before reporting a bug.
 
 ## Contributors
 
