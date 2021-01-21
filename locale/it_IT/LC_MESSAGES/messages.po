@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-14 08:51\n"
-"Last-Translator: Marco Fantauzzo <marco97pa@live.it>\n"
+"PO-Revision-Date: 2021-01-21 10:40\n"
+"Last-Translator: Luca Sasdelli\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
 "X-Crowdin-Language: it\n"
 "X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 10\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -182,7 +184,7 @@ msgid "Transferred Bytes"
 msgstr "Bytes trasmessi"
 
 msgid "Wireless Client"
-msgstr ""
+msgstr "Client Wireless"
 
 msgid "Connected To"
 msgstr "Connesso a"
@@ -250,6 +252,12 @@ msgstr "Lista client"
 
 msgid "Interface"
 msgstr "Interfaccia"
+
+msgid "Enable DHCP for this interface"
+msgstr "Abilita DHCP per questa interfaccia"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+msgstr "Abilita questa opzione se vuoi che RaspAP assegni gli indirizzi IP nell'interfaccia selezionata."
 
 msgid "DNS Server"
 msgstr "Server DNS"
@@ -343,6 +351,9 @@ msgstr "Formato"
 
 msgid "Choose a hosted server"
 msgstr "Scegli un hosted server"
+
+msgid "Enable these options to log DHCP server activity."
+msgstr "Abilita queste opzioni per registrare l'attività del server DHCP."
 
 msgid "Log DHCP requests"
 msgstr "Registra le richieste DHCP"
@@ -444,9 +455,30 @@ msgstr "Numero massimo di client"
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 msgstr "Configura l'opzione max_num_sta di hostapd. Il valore predefinito e massimo è 2007. Se vuoto o 0, viene applicato il valore predefinito."
 
+msgid "Beacon interval"
+msgstr "Intervallo del faro"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Disabilita <code>disassoc_low_ack</code>"
+
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Non dissociare le stazioni sulla base di guasti di trasmissione eccessivi."
+
+msgid "Executing RaspAP service start"
+msgstr "Esecuzione avvio del servizio RaspAP"
+
+msgid "Close"
+msgstr "Chiudi"
+
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Abilita questa opzione per registrare l'attività <code>hostapd</code>."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Sommario"
+
+msgid "Internet connection"
+msgstr "Connessione Internet"
 
 msgid "Current settings"
 msgstr "Impostazioni attuali"
@@ -474,6 +506,9 @@ msgstr "Disabilitato"
 
 msgid "Static IP Options"
 msgstr "Opzioni IP statiche"
+
+msgid "Metric"
+msgstr "Metrico"
 
 msgid "Apply settings"
 msgstr "Applica le impostazioni"
@@ -527,12 +562,21 @@ msgstr "Il sistema si sta riavviando ora!"
 msgid "System Shutting Down Now!"
 msgstr "Il sistema si sta spegnendo ora!"
 
+msgid "Web server port"
+msgstr "Porta del web server"
+
+msgid "Web server bind address"
+msgstr "Indirizzo di bind del server Web"
+
 #: includes/themes.php
 msgid "Theme settings"
 msgstr "Impostazioni tema"
 
 msgid "Select a theme"
 msgstr "Seleziona un tema"
+
+msgid "Color"
+msgstr "Colore"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -733,4 +777,25 @@ msgstr "Statistiche"
 
 msgid "Information provided by adblock"
 msgstr "Informazioni fornite da Adblock"
+
+msgid "Enable custom blocklist"
+msgstr "Abilita blocklist personalizzata"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Definisci gli host personalizzati per essere bloccati inserendo un indirizzo IPv4 o IPv6 seguito da qualsiasi spazio bianco (spazi o schede) e il nome dell'host."
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>Esempio IPv4:</b> 0.0.0.0 host_da_bloccare.ext"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Questa opzione aggiunge conf-file e <code>addn-host</code> alla configurazione dnsmasq."
+
+msgid "Custom blocklist not defined"
+msgstr "Blocklist personalizzata non definita"
+
+msgid "Invalid custom IP address found on line "
+msgstr "Host personalizzato non valido trovato sulla riga "
+
+msgid "Invalid custom host found on line "
+msgstr "Host personalizzato non valido trovato sulla riga "
 
