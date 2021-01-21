@@ -2,6 +2,36 @@
 /* Functions for Networking */
 
 /**
+ * Get a human readable data size string from a number of bytes.
+ *
+ * @param  long $numbytes  The number of bytes.
+ * @param  int  $precision The number of numbers to round to after the dot/comma.
+ * @return string Data size in units: PB, TB, GB, MB or KB otherwise an empty string.
+ */
+function getHumanReadableDatasize($numbytes, $precision = 2)
+{
+    $humanDatasize = '';
+    $kib = 1024;
+    $mib = $kib * 1024;
+    $gib = $mib * 1024;
+    $tib = $gib * 1024;
+    $pib = $tib * 1024;
+    if ($numbytes >= $pib) {
+        $humanDatasize = ' ('.round($numbytes / $pib, $precision).' PB)';
+    } elseif ($numbytes >= $tib) {
+        $humanDatasize = ' ('.round($numbytes / $tib, $precision).' TB)';
+    } elseif ($numbytes >= $gib) {
+        $humanDatasize = ' ('.round($numbytes / $gib, $precision).' GB)';
+    } elseif ($numbytes >= $mib) {
+        $humanDatasize = ' ('.round($numbytes / $mib, $precision).' MB)';
+    } elseif ($numbytes >= $kib) {
+        $humanDatasize = ' ('.round($numbytes / $kib, $precision).' KB)';
+    }
+
+    return $humanDatasize;
+}
+
+/**
  * Converts a netmask to CIDR notation string
  *
  * @param string $mask
@@ -136,6 +166,13 @@ function getDefaultNetOpts($svc)
 
 /* Functions to write ini files */
 
+/**
+ * Writes a configuration to an .ini file
+ *
+ * @param array $array
+ * @param string $file
+ * @return boolean
+ */
 function write_php_ini($array, $file)
 {
     $res = array();
@@ -156,6 +193,13 @@ function write_php_ini($array, $file)
     }
 }
 
+/**
+ * Writes to a file without conflicts
+ *
+ * @param string $fileName
+ * @param string $dataToSave
+ * @return boolean
+ */
 function safefilerewrite($fileName, $dataToSave)
 {
     if ($fp = fopen($fileName, 'w')) {
