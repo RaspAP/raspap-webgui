@@ -4,7 +4,7 @@
 # Author: @billz <billzimmerman@gmail.com>
 # Author URI: https://github.com/billz/
 # License: GNU General Public License v3.0
-# License URI: https://github.com/billz/raspap-webgui/blob/master/LICENSE
+# License URI: https://github.com/billz/raspap/blob/master/LICENSE
 
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.

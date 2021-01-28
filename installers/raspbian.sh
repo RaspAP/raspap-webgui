@@ -4,7 +4,7 @@
 # Author: @billz <billzimmerman@gmail.com>
 # Author URI: https://github.com/billz/
 # License: GNU General Public License v3.0
-# License URI: https://github.com/billz/raspap-webgui/blob/master/LICENSE
+# License URI: https://github.com/billz/raspap/blob/master/LICENSE
 #
 # Usage: raspbian.sh options
 #
@@ -24,9 +24,9 @@
 # Depending on options passed to the installer, ONE of the following
 # additional shell scripts will be downloaded and sourced:
 #
-# https://raw.githubusercontent.com/billz/raspap-webgui/master/installers/common.sh
+# https://raw.githubusercontent.com/billz/raspap/master/installers/common.sh
 # - or -
-# https://raw.githubusercontent.com/billz/raspap-webgui/master/installers/mkcert.sh
+# https://raw.githubusercontent.com/billz/raspap/master/installers/mkcert.sh
 #
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.
@@ -35,7 +35,7 @@ set -eo pipefail
 
 function _main() {
     # set defaults
-    repo="billz/raspap-webgui" # override with -r, --repo option
+    repo="billz/raspap" # override with -r, --repo option
 
     _parse_params "$@"
     _setup_colors
