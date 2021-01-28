@@ -24,6 +24,7 @@ T.Paul L - $5
 Wouter D - $20  
 Andy N - "This is a great solution with a very responsive lead. Thanks for all your hard work." -$20  
 Paul B - $20  
+Bert S - "I use RaspAP for IoT devices in combination with OpenVPN. Works like a charm." -€25  
 
 ## PayPal
 Ray E - "This project is awesome and just works; saved me and my client tons of work. Thank you!" -$20  
@@ -35,3 +36,4 @@ Matthew B - "Great project, easy to set up." -£15
 Mikko M - "Thanks for the great RaspAP." -€10  
 Oren G - "Needed to create an AP with my pi, this just worked so well! Thank you!" -$25  
 Vince H - "Such a great project! Thank you and keep up the great work!" -$20  
+
