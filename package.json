@@ -1,11 +1,11 @@
 {
     "title": "RaspAP WiFi Configuration Portal",
-    "name": "raspap-webgui",
-    "version": "2.5.0",
+    "name": "raspap",
+    "version": "2.6",
     "scripts": {
         "start": "node_modules/.bin/gulp watch"
     },
-    "description": "A simple, responsive web interface to control wifi and hostapd on the Raspberry Pi",
+    "description": "Simple AP setup & WiFi management for Debian-based devices",
     "keywords": [
         "raspberry-pi",
         "hostapd",
@@ -16,9 +16,9 @@
         "admin",
         "app"
     ],
-    "homepage": "https://github.com/billz/raspap-webgui",
+    "homepage": "https://github.com/billz/raspap",
     "bugs": {
-        "url": "https://github.com/billz/raspap-webgui/issues"
+        "url": "https://github.com/billz/raspap/issues"
     },
     "license": "GPL-3.0",
     "author": "RaspAP Developers",
@@ -27,7 +27,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/billz/raspap-webgui.git"
+        "url": "https://github.com/billz/raspap.git"
     },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/"
