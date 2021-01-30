@@ -48,7 +48,6 @@ require_once 'includes/openvpn.php';
 require_once 'includes/torproxy.php';
 
 $output = $return = 0;
-//$page = $_GET['page'];
 $page = $_SERVER['REQUEST_URI'];
 
 $theme_url = getThemeOpt();
