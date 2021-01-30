@@ -44,6 +44,7 @@ function _install_raspap() {
     _change_file_ownership
     _create_hostapd_scripts
     _create_lighttpd_scripts
+    _install_lighttpd_configs
     _move_config_file
     _default_configuration
     _configure_networking
@@ -169,15 +170,6 @@ function _create_raspap_directories() {
     # Create a directory to store networking configs
     echo "Creating $raspap_dir/networking"
     sudo mkdir -p "$raspap_dir/networking"
-<<<<<<< HEAD
-
-=======
-    # Copy existing dhcpcd.conf to use as base config
-    echo "Adding /etc/dhcpcd.conf as base configuration"
-    cat /etc/dhcpcd.conf | sudo tee -a "$raspap_dir/networking/defaults" > /dev/null
-    echo "Changing file ownership of $raspap_dir"
-    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
->>>>>>> 26d0dbfe... Changed routing system to use the more common path approach instead of query strings.
 }
 
 # Generate hostapd logging and service control scripts
@@ -600,28 +592,3 @@ function _install_complete() {
     fi
 }
 
-<<<<<<< HEAD
-=======
-function _install_raspap() {
-    _display_welcome
-    _config_installation
-    _update_system_packages
-    _install_dependencies
-    _enable_php_lighttpd
-    _create_raspap_directories
-    _optimize_php
-    _check_for_old_configs
-    _download_latest_files
-    _change_file_ownership
-    _create_hostapd_scripts
-    _create_lighttpd_scripts
-    _install_lighttpd_configs
-    _move_config_file
-    _default_configuration
-    _configure_networking
-    _prompt_install_adblock
-    _prompt_install_openvpn
-    _patch_system_files
-    _install_complete
-}
->>>>>>> 26d0dbfe... Changed routing system to use the more common path approach instead of query strings.
