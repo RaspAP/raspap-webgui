@@ -202,7 +202,7 @@ function _create_lighttpd_scripts() {
     _install_status 0
 }
 
-# Copy extra config files required to configure lighthttpd
+# Copy extra config files required to configure lighttpd
 function _install_lighttpd_configs() {
     _install_log "Copying lighttpd extra config files"
 
@@ -210,7 +210,7 @@ function _install_lighttpd_configs() {
     echo "Copying 50-raspap-router.conf to /etc/lighttpd/conf-available"
     sudo cp "$webroot_dir/config/50-raspap-router.conf" "/etc/lighttpd/conf-available" || _install_status 1 "Unable to copy lighttpd config file."
     # link into conf-enabled
-    echo "Creating link to /etc/lighttpd/conf-enabled"|| _install_status 1 "Unable to copy lighthttpd config file."
+    echo "Creating link to /etc/lighttpd/conf-enabled"|| _install_status 1 "Unable to copy lighttpd config file."
     sudo ln -s "/etc/lighttpd/conf-available/50-raspap-router.conf" "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_status 1 "Unable to symlink lighttpd config file."
     sudo systemctl restart lighttpd.service || _install_status 1 "Unable to restart lighttpd"
     _install_status 0
