@@ -220,8 +220,11 @@ function _remove_sudoers() {
 }
 
 function _remove_lighttpd_config() {
-    echo "Removing ${raspap_sudoers}" 
-    sudo rm "/etc/lighttpd/conf-available/50-raspap-router.conf" "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_error "Unable to remove lighttpd config"
+    echo "Unlinking 50-raspap-router.conf from /etc/lighttpd/conf-enabled/"
+    sudo unlink "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_error "Unable to unlink lighttpd config"
+    echo "Removing 50-raspap-router.conf from /etc/lighttpd/conf-available/"
+    sudo rm "/etc/lighttpd/conf-available/50-raspap-router.conf" || _install_error "Unable to remove lighttpd config"
+    sudo systemctl restart lighttpd.service || _install_status 1 "Unable to restart lighttpd"
     echo "Done."
 }
 
