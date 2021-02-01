@@ -44,6 +44,7 @@ function _install_raspap() {
     _change_file_ownership
     _create_hostapd_scripts
     _create_lighttpd_scripts
+    _install_lighttpd_configs
     _move_config_file
     _default_configuration
     _configure_networking
@@ -169,7 +170,6 @@ function _create_raspap_directories() {
     # Create a directory to store networking configs
     echo "Creating $raspap_dir/networking"
     sudo mkdir -p "$raspap_dir/networking"
-
 }
 
 # Generate hostapd logging and service control scripts
@@ -199,6 +199,20 @@ function _create_lighttpd_scripts() {
     echo "Changing file ownership"
     sudo chown -c root:"$raspap_user" "$raspap_dir/lighttpd/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/lighttpd/"*.sh || _install_status 1 "Unable to change file permissions"
+    _install_status 0
+}
+
+# Copy extra config files required to configure lighttpd
+function _install_lighttpd_configs() {
+    _install_log "Copying lighttpd extra config files"
+
+    # Copy config files
+    echo "Copying 50-raspap-router.conf to /etc/lighttpd/conf-available"
+    sudo cp "$webroot_dir/config/50-raspap-router.conf" "/etc/lighttpd/conf-available" || _install_status 1 "Unable to copy lighttpd config file."
+    # link into conf-enabled
+    echo "Creating link to /etc/lighttpd/conf-enabled"|| _install_status 1 "Unable to copy lighttpd config file."
+    sudo ln -s "/etc/lighttpd/conf-available/50-raspap-router.conf" "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_status 1 "Unable to symlink lighttpd config file."
+    sudo systemctl restart lighttpd.service || _install_status 1 "Unable to restart lighttpd"
     _install_status 0
 }
 

@@ -10,7 +10,7 @@
       </div><!-- /.card-header -->
       <div class="card-body">
         <?php $status->showMessages(); ?>
-        <form role="form" action="?page=system_info" method="POST">
+        <form role="form" action="system_info" method="POST">
         <?php echo CSRFTokenFieldTag() ?>
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" role="tab" data-toggle="tab"><?php echo _("Basic"); ?></a></li>

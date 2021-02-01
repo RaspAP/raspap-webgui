@@ -48,7 +48,7 @@ require_once 'includes/openvpn.php';
 require_once 'includes/torproxy.php';
 
 $output = $return = 0;
-$page = $_GET['page'];
+$page = $_SERVER['REQUEST_URI'];
 
 $theme_url = getThemeOpt();
 $toggleState = getSidebarState();
@@ -107,7 +107,7 @@ $bridgedEnabled = getBridgedState();
       <!-- Sidebar -->
       <ul class="navbar-nav sidebar sidebar-light d-none d-md-block accordion <?php echo (isset($toggleState)) ? $toggleState : null ; ?>" id="accordionSidebar">
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?page=wlan0_info">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="wlan0_info">
           <div class="sidebar-brand-text ml-1"><?php echo RASPI_BRAND_TEXT; ?></div>
         </a>
         <!-- Divider -->
@@ -130,65 +130,65 @@ $bridgedEnabled = getBridgedState();
           </div>
         </div>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page=wlan0_info"><i class="fas fa-tachometer-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
+          <a class="nav-link" href="wlan0_info"><i class="fas fa-tachometer-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
         </li>
           <?php if (RASPI_HOTSPOT_ENABLED) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page=hostapd_conf"><i class="far fa-dot-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("Hotspot"); ?></a>
+          <a class="nav-link" href="hostapd_conf"><i class="far fa-dot-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("Hotspot"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_DHCP_ENABLED && !$bridgedEnabled) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page=dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("DHCP Server"); ?></a>
+          <a class="nav-link" href="dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("DHCP Server"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_ADBLOCK_ENABLED && !$bridgedEnabled) : ?>
         <li class="nav-item">
-           <a class="nav-link" href="index.php?page=adblock_conf"><i class="far fa-hand-paper fa-fw mr-2"></i><span class="nav-label"><?php echo _("Ad Blocking"); ?></a>
+           <a class="nav-link" href="adblock_conf"><i class="far fa-hand-paper fa-fw mr-2"></i><span class="nav-label"><?php echo _("Ad Blocking"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_NETWORK_ENABLED) : ?>
         <li class="nav-item">
-           <a class="nav-link" href="index.php?page=network_conf"><i class="fas fa-network-wired fa-fw mr-2"></i><span class="nav-label"><?php echo _("Networking"); ?></a>
+           <a class="nav-link" href="network_conf"><i class="fas fa-network-wired fa-fw mr-2"></i><span class="nav-label"><?php echo _("Networking"); ?></a>
         </li> 
           <?php endif; ?>
           <?php if (RASPI_WIFICLIENT_ENABLED && !$bridgedEnabled) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page=wpa_conf"><i class="fas fa-wifi fa-fw mr-2"></i><span class="nav-label"><?php echo _("WiFi client"); ?></span></a>
+          <a class="nav-link" href="wpa_conf"><i class="fas fa-wifi fa-fw mr-2"></i><span class="nav-label"><?php echo _("WiFi client"); ?></span></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_OPENVPN_ENABLED) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page=openvpn_conf"><i class="fas fa-key fa-fw mr-2"></i><span class="nav-label"><?php echo _("OpenVPN"); ?></a>
+          <a class="nav-link" href="openvpn_conf"><i class="fas fa-key fa-fw mr-2"></i><span class="nav-label"><?php echo _("OpenVPN"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_TORPROXY_ENABLED) : ?>
         <li class="nav-item">
-           <a class="nav-link" href="index.php?page=torproxy_conf"><i class="fas fa-eye-slash fa-fw mr-2"></i><span class="nav-label"><?php echo _("TOR proxy"); ?></a>
+           <a class="nav-link" href="torproxy_conf"><i class="fas fa-eye-slash fa-fw mr-2"></i><span class="nav-label"><?php echo _("TOR proxy"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_CONFAUTH_ENABLED) : ?>
         <li class="nav-item">
-        <a class="nav-link" href="index.php?page=auth_conf"><i class="fas fa-user-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Authentication"); ?></a>
+        <a class="nav-link" href="auth_conf"><i class="fas fa-user-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Authentication"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_CHANGETHEME_ENABLED) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page=theme_conf"><i class="fas fa-paint-brush fa-fw mr-2"></i><span class="nav-label"><?php echo _("Change Theme"); ?></a>
+          <a class="nav-link" href="theme_conf"><i class="fas fa-paint-brush fa-fw mr-2"></i><span class="nav-label"><?php echo _("Change Theme"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_VNSTAT_ENABLED) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page=data_use"><i class="fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
+          <a class="nav-link" href="data_use"><i class="fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
         </li>
           <?php endif; ?>
             <?php if (RASPI_SYSTEM_ENABLED) : ?>
           <li class="nav-item">
-          <a class="nav-link" href="index.php?page=system_info"><i class="fas fa-cube fa-fw mr-2"></i><span class="nav-label"><?php echo _("System"); ?></a>
+          <a class="nav-link" href="system_info"><i class="fas fa-cube fa-fw mr-2"></i><span class="nav-label"><?php echo _("System"); ?></a>
           </li>
             <?php endif; ?>
          <li class="nav-item">
-          <a class="nav-link" href="index.php?page=about"><i class="fas fa-info-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("About RaspAP"); ?></a>
+          <a class="nav-link" href="about"><i class="fas fa-info-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("About RaspAP"); ?></a>
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -218,7 +218,7 @@ $bridgedEnabled = getBridgedState();
           <div class="topbar-divider d-none d-sm-block"></div>
           <!-- Nav Item - User -->
           <li class="nav-item dropdown no-arrow">
-          <a class="nav-link" href="index.php?page=auth_conf">
+          <a class="nav-link" href="auth_conf">
             <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
             <i class="fas fa-user-circle fa-3x"></i>
           </a>
@@ -232,46 +232,46 @@ $bridgedEnabled = getBridgedState();
         $extraFooterScripts = array();
         // handle page actions
         switch ($page) {
-        case "wlan0_info":
+        case "/wlan0_info":
             DisplayDashboard($extraFooterScripts);
             break;
-        case "dhcpd_conf":
+        case "/dhcpd_conf":
             DisplayDHCPConfig();
             break;
-        case "wpa_conf":
+        case "/wpa_conf":
             DisplayWPAConfig();
             break;
-        case "network_conf":
+        case "/network_conf":
             DisplayNetworkingConfig();
             break;
-        case "hostapd_conf":
+        case "/hostapd_conf":
             DisplayHostAPDConfig();
             break;
-        case "adblock_conf":
+        case "/adblock_conf":
             DisplayAdBlockConfig();
             break;
-        case "openvpn_conf":
+        case "/openvpn_conf":
             DisplayOpenVPNConfig();
             break;
-        case "torproxy_conf":
+        case "/torproxy_conf":
             DisplayTorProxyConfig();
             break;
-        case "auth_conf":
+        case "/auth_conf":
             DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
             break;
-        case "save_hostapd_conf":
+        case "/save_hostapd_conf":
             SaveTORAndVPNConfig();
             break;
-        case "theme_conf":
+        case "/theme_conf":
             DisplayThemeConfig($extraFooterScripts);
             break;
-        case "data_use":
+        case "/data_use":
             DisplayDataUsage($extraFooterScripts);
             break;
-        case "system_info":
+        case "/system_info":
             DisplaySystem();
             break;
-        case "about":
+        case "/about":
             DisplayAbout();
             break;
         default:

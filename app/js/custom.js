@@ -145,8 +145,7 @@ function setCSRFTokenHeader(event, xhr, settings) {
 }
 
 function contentLoaded() {
-    pageCurrent = window.location.href.split("?")[1].split("=")[1];
-    pageCurrent = pageCurrent.replace("#","");
+    pageCurrent = window.location.href.split("/").pop();
     switch(pageCurrent) {
         case "network_conf":
             getAllInterfaces();
