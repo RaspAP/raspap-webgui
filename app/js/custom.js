@@ -245,6 +245,9 @@ $('#hostapdModal').on('shown.bs.modal', function (e) {
     }, 1000);
 });
 
+$('#configureClientModal').on('shown.bs.modal', function (e) {
+});
+
 /*
 Sets the wirelss channel select options based on hw_mode and country_code.
 
