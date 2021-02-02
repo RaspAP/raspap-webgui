@@ -1,19 +1,3 @@
-<?php
-$arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
-
-$client_interface = $_SESSION['wifi_client_interface'];
-
-$ap_iface = $_SESSION['ap_interface'];
-$MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
-if ($arrHostapdConf['BridgedEnable'] == 1) {
-    $moreLink = "hostapd_conf";
-    exec('iw dev '.$ap_iface.' station dump | grep -oE '.$MACPattern, $clients);
-} else {
-    $moreLink = "dhcpd_conf";
-    exec('cat '.RASPI_DNSMASQ_LEASES.'| grep -E $(iw dev '.$ap_iface.' station dump | grep -oE '.$MACPattern.' | paste -sd "|")', $clients);
-}
-$ifaceStatus = $wlan0up ? "up" : "down";
-?>
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
@@ -25,7 +9,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
     <div class="col">
       <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
         <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-        <span class="text service-status"><?php echo strtolower($ap_iface) .' '. _($ifaceStatus) ?></span>
+        <span class="text service-status"><?php echo strtolower($apInterface) .' '. _($ifaceStatus) ?></span>
       </button>
     </div>
         </div><!-- /.row -->
@@ -38,7 +22,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
             <div class="card mb-3">
               <div class="card-body">
                 <h4><?php echo _("Hourly traffic amount"); ?></h4>
-                <div id="divInterface" class="d-none"><?php echo $_SESSION['ap_interface']; ?></div>
+                <div id="divInterface" class="d-none"><?php echo $apInterface; ?></div>
                 <div class="col-md-12">
                   <canvas id="divDBChartBandwidthhourly"></canvas>
                 </div>
@@ -53,7 +37,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                 <div class="row justify-content-md-center">
                 <div class="col-md">
                 <div class="info-item"><?php echo _("Connected To"); ?></div><div><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Interface"); ?></div><div><?php echo htmlspecialchars($_SESSION['wifi_client_interface']); ?></div>
+                <div class="info-item"><?php echo _("Interface"); ?></div><div><?php echo htmlspecialchars($clientInterface); ?></div>
                 <div class="info-item"><?php echo _("AP Mac Address"); ?></div><div><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Bitrate"); ?></div><div><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
                 <div class="info-item"><?php echo _("Signal Level"); ?></div><div><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
@@ -78,7 +62,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <?php if ($arrHostapdConf['BridgedEnable'] == 1) : ?>
+                        <?php if ($bridgedEnable == 1) : ?>
                           <th><?php echo _("MAC Address"); ?></th>
                         <?php else : ?>
                           <th><?php echo _("Host name"); ?></th>
@@ -88,7 +72,7 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                       </tr>
                     </thead>
                     <tbody>
-                        <?php if ($arrHostapdConf['BridgedEnable'] == 1) : ?>
+                        <?php if ($bridgedEnable == 1) : ?>
                           <tr>
                             <td><small class="text-muted"><?php echo _("Bridged AP mode is enabled. For Hostname and IP, see your router's admin page.");?></small></td>
                           </tr>
@@ -126,12 +110,12 @@ $ifaceStatus = $wlan0up ? "up" : "down";
                 <?php echo CSRFTokenFieldTag() ?>
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
                     <?php if (!$wlan0up) : ?>
-                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$client_interface ?>" name="ifup_wlan0" />
+                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$clientInterface ?>" name="ifup_wlan0" />
                     <?php else : ?>
-                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$client_interface ?>"  name="ifdown_wlan0" />
+                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$clientInterface ?>"  name="ifdown_wlan0" />
                     <?php endif ?>
                 <?php endif ?>
-              <a href="<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+              <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
             </form>
           </div>
         </div>

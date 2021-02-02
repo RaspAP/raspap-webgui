@@ -35,12 +35,11 @@ include('includes/sysstats.php');
 
       <form action="system_info" method="POST">
         <?php echo CSRFTokenFieldTag() ?>
-            <a href="<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
-
         <?php if (!RASPI_MONITOR_ENABLED) : ?>
             <input type="submit" class="btn btn-warning" name="system_reboot"   value="<?php echo _("Reboot"); ?>" />
             <input type="submit" class="btn btn-warning" name="system_shutdown" value="<?php echo _("Shutdown"); ?>" />
         <?php endif ?>
+        <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
      </form>
       </div>
     </div>

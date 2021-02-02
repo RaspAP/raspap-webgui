@@ -21,13 +21,7 @@
     </div>
     <div class="row">
       <div class="form-group col-md-8">
-      <?php
-      $adblock_custom = file_get_contents(RASPI_ADBLOCK_LISTPATH .'custom.txt');
-      if (strlen($adblock_custom) == 0) {
-        $adblock_custom = _("Custom blocklist not defined");
-      }
-      echo '<textarea class="logoutput" name="adblock-custom-hosts">'.htmlspecialchars($adblock_custom, ENT_QUOTES).'</textarea>';
-      ?>
+      <?php echo '<textarea class="logoutput" name="adblock-custom-hosts">'.htmlspecialchars($adblock_custom_content, ENT_QUOTES).'</textarea>'; ?>
       </div>
   </div>
 </div><!-- /.tab-pane -->

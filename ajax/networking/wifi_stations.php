@@ -15,4 +15,4 @@ nearbyWifiStations($networks, !isset($_REQUEST["refresh"]));
 connectedWifiStations($networks);
 sortNetworksByRSSI($networks);
 
-echo renderTemplate('wifi_stations', compact('networks'));
+echo renderTemplate('wifi_stations', compact('networks'), true);

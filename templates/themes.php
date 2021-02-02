@@ -21,8 +21,8 @@
           </div>
         </div>
         <form action="system_info" method="POST">
-            <?php echo CSRFTokenFieldTag() ?>
-          <a href="<?php echo $_GET['page'] ?>" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh"); ?></a>
+          <?php echo CSRFTokenFieldTag() ?>
+          <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
         </form>
       </div><!-- /.card-body -->
       <div class="card-footer"></div>

@@ -75,13 +75,31 @@ function DisplayAdBlockConfig()
     $dnsmasq_state = ($dnsmasq[0] > 0);
     $serviceStatus = $dnsmasq_state && $enabled ? "up" : "down";
 
+    $adblock_custom_content = file_get_contents(RASPI_ADBLOCK_LISTPATH .'custom.txt');
+
+    $adblock_log = '';
+    exec('sudo chmod o+r /tmp/dnsmasq.log');
+    $handle = fopen("/tmp/dnsmasq.log", "r");
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            if (preg_match('/(0.0.0.0)/', $line)) {
+                $adblock_log .= $line;
+            }
+        }
+        fclose($handle);
+    } else {
+        $adblock_log = "Unable to open log file";
+    }
+
     echo renderTemplate(
         "adblock", compact(
         "status",
         "serviceStatus",
         "dnsmasq_state",
         "enabled",
-        "custom_enabled"
+        "custom_enabled",
+        "adblock_custom_content",
+        "adblock_log"
         )
     );
 }
