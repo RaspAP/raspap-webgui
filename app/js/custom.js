@@ -151,8 +151,10 @@ function contentLoaded() {
             getAllInterfaces();
             setupTabs();
             setupBtns();
+            break;
         case "hostapd_conf":
             loadChannel();
+            break;
         case "dhcpd_conf":
             loadInterfaceDHCPSelect();
         break;
@@ -255,7 +257,6 @@ Source: https://en.wikipedia.org/wiki/List_of_WLAN_channels
 Additional: https://git.kernel.org/pub/scm/linux/kernel/git/sforshee/wireless-regdb.git
 */
 function loadChannelSelect(selected) {
-
     // Fetch wireless regulatory data
     $.getJSON("config/wireless.json", function(json) {
         var hw_mode = $('#cbxhwmode').val();
