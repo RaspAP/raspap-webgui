@@ -492,9 +492,11 @@ function readCache($key)
 
 function writeCache($key, $data)
 {
-    mkdir(RASPI_CACHE_PATH, 0777, true);
-    $cacheKey = expandCacheKey($key);
-    file_put_contents($cacheKey, $data);
+    if (!file_exists(RASPI_CACHE_PATH)) {
+        mkdir(RASPI_CACHE_PATH, 0777, true);
+        $cacheKey = expandCacheKey($key);
+        file_put_contents($cacheKey, $data);
+    }
 }
 
 function deleteCache($key)
