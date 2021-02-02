@@ -47,6 +47,7 @@ require_once 'includes/about.php';
 require_once 'includes/openvpn.php';
 require_once 'includes/torproxy.php';
 
+$config = getConfig();
 $output = $return = 0;
 $page = $_SERVER['REQUEST_URI'];
 
