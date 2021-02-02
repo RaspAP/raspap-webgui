@@ -118,5 +118,13 @@ if [ $OPENVPNENABLED -eq 1 ]; then
     systemctl start openvpn-client@client
 fi
 
+# @mp035 found that the wifi client interface would stop every 8 seconds
+# for about 16 seconds. Reassociating seems to solve this
+if [ "${config[WifiAPEnable]}" = 1 ]; then
+    echo "Reassociating wifi client interface..."
+    sleep "${seconds}"
+    wpa_cli -i ${config[WifiManaged]} reassociate
+fi
+
 echo "RaspAP service start DONE"
 
