@@ -574,8 +574,8 @@ function _install_complete() {
     _install_log "Installation completed"
     echo "This project needs your help! Please consider supporting RaspAP on Open Collective or GitHub:"
     echo -e "${ANSI_RASPBERRY}"
-    echo "> https://opencollective.com/raspap"
-    echo "> https://github.com/sponsors/billz"
+    echo "> https://opencollective.com/RaspAP"
+    echo "> https://github.com/sponsors/RaspAP"
     echo -e "${ANSI_RESET}"
     if [ "$assume_yes" == 0 ]; then
         # Prompt to reboot if wired ethernet (eth0) is connected.
