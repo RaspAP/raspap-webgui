@@ -4,7 +4,7 @@
 # Author: @billz <billzimmerman@gmail.com>
 # Author URI: https://github.com/billz/
 # License: GNU General Public License v3.0
-# License URI: https://github.com/billz/raspap/blob/master/LICENSE
+# License URI: https://github.com/raspap/raspap-webgui/blob/master/LICENSE
 #
 # Usage: raspbian.sh options
 #
@@ -15,7 +15,7 @@
 # -c, --cert, --certficate          Installs mkcert and generates an SSL certificate for lighttpd
 # -o, --openvpn <flag>              Used with -y, --yes, sets OpenVPN install option (0=no install)
 # -a, --adblock <flag>              Used with -y, --yes, sets Adblock install option (0=no install)
-# -r, --repo, --repository <name>   Overrides the default GitHub repo (billz/raspap-webgui)
+# -r, --repo, --repository <name>   Overrides the default GitHub repo (raspap/raspap-webgui)
 # -b, --branch <name>               Overrides the default git branch (master)
 # -h, --help                        Outputs usage notes and exits
 # -u, --upgrade                     Upgrades an existing installation to the latest release version
@@ -24,9 +24,9 @@
 # Depending on options passed to the installer, ONE of the following
 # additional shell scripts will be downloaded and sourced:
 #
-# https://raw.githubusercontent.com/billz/raspap/master/installers/common.sh
+# https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/common.sh
 # - or -
-# https://raw.githubusercontent.com/billz/raspap/master/installers/mkcert.sh
+# https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/mkcert.sh
 #
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.
@@ -35,7 +35,7 @@ set -eo pipefail
 
 function _main() {
     # set defaults
-    repo="billz/raspap" # override with -r, --repo option
+    repo="raspap/raspap-webgui" # override with -r, --repo option
 
     _parse_params "$@"
     _setup_colors
@@ -123,7 +123,7 @@ OPTIONS:
 -c, --cert, --certificate           Installs an SSL certificate for lighttpd
 -o, --openvpn <flag>                Used with -y, --yes, sets OpenVPN install option (0=no install)
 -a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
--r, --repo, --repository <name>     Overrides the default GitHub repo (billz/raspap-webgui)
+-r, --repo, --repository <name>     Overrides the default GitHub repo (raspap/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
 -u, --upgrade                       Upgrades an existing installation to the latest release version
 -v, --version                       Outputs release info and exits

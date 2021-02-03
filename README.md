@@ -1,11 +1,11 @@
 ![](https://i.imgur.com/xeKD93p.png)
-[![Release 2.6](https://img.shields.io/badge/release-v2.6-green)](https://github.com/billz/raspap/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/github/billz/raspap-webgui/](https://api.travis-ci.com/billz/raspap.svg?branch=master) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
+[![Release 2.6](https://img.shields.io/badge/release-v2.6-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/github/raspap/raspap-webgui/](https://api.travis-ci.com/raspap/raspap-webgui.svg?branch=master) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
 
 RaspAP lets you quickly get a wireless access point up and running to share the connectivity of many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our popular [Quick installer](#quick-installer) creates a known-good default configuration that "just works" on all current Raspberry Pis with onboard wireless. A responsive interface gives you control over the relevant services and networking options. Advanced DHCP settings, OpenVPN client support, SSL, security audits, themes and multilingual options are included.
 
 RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
 
-We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/billz/raspap-awesome).
+We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/raspap/raspap-awesome).
 
 ![](https://i.imgur.com/ikWvsMG.gif)
 ![](https://i.imgur.com/EiIpdOS.gif)
@@ -173,7 +173,7 @@ Please [read this](https://docs.raspap.com/issues/) before reporting a bug.
 ### Code Contributors
 This project exists thanks to all the awesome people who [contribute](CONTRIBUTING.md) their time and expertise.
 
-<a href="https://github.com/billz/raspap/graphs/contributors"><img src="https://opencollective.com/raspap/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/raspap/raspap-webgui/graphs/contributors"><img src="https://opencollective.com/raspap/contributors.svg?width=890&button=false" /></a>
 
 ### Financial Contributors
 Become a [financial contributor](https://opencollective.com/raspap/contribute) and help us sustain our community. 

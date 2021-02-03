@@ -1,6 +1,6 @@
 {
-    "name": "billz/raspap-webgui",
-    "description": "Simple AP setup and wifi mangement for Debian-based devices",
+    "name": "raspap/raspap-webgui",
+    "description": "Simple wireless AP setup and mangement for Debian-based devices",
     "license": "GPL-3.0",
     "homepage": "https://raspap.com/",
     "keywords": ["raspberrypi", "debian", "armbian", "wifi"],

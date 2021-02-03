@@ -20,7 +20,7 @@ const pkg = require('./package.json');
 const banner = ['/*!\n',
   ' * RaspAP - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
   ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
-  ' * Licensed under <%= pkg.license %> (https://github.com/billz/raspap/<%= pkg.name %>/blob/master/LICENSE)\n',
+  ' * Licensed under <%= pkg.license %> (https://github.com/raspap/raspap-webgui/<%= pkg.name %>/blob/master/LICENSE)\n',
   ' */\n',
   '\n'
 ].join('');
