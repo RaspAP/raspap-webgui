@@ -85,9 +85,7 @@ RaspAP lets you create an AP with a Wifi client configuration, often called [AP-
 **Note:** This option is disabled until you configure your system as a wireless client. For a device operating in [managed mode](https://docs.raspap.com/faq/#headless) without an `eth0` connection, this configuration must be enabled [_before_ a reboot](https://docs.raspap.com/ap-sta/). 
 
 ## Support us
-RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal or commercial projects, please [become a GitHub sponsor](https://github.com/sponsors/billz), join the project on [Open Collective](https://opencollective.com/raspap) or make a one-time donation with [PayPal](https://www.paypal.com/paypalme2/billzgithub). Any of these options makes a big difference!
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?style=for-the-badge&logo=paypal&link=https://www.paypal.com/paypalme2/billzgithub)](https://www.paypal.com/paypalme2/billzgithub)
+RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal or commercial projects, [become a GitHub sponsor](https://github.com/sponsors/RaspAP/) or join the project on [Open Collective](https://opencollective.com/RaspAP). Either of these options makes a big difference!
 
 ## Manual installation
 Detailed manual setup instructions are provided [on our documentation site](https://docs.raspap.com/manual/).
