@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="wifiClientContent">
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
@@ -34,3 +34,21 @@
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
+
+<!-- Modal -->
+<div class="modal fade" id="configureClientModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="modal-title" id="ModalLabel"><i class="fas fa-sync-alt mr-2"></i><?php echo _("Configuring WiFi Client"); ?></div>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 mb-3 mt-1"><?php echo _("Configuring Wifi Client Interface..."); ?></div>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-outline btn-primary" data-dismiss="modal"><?php echo _("Close"); ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+
