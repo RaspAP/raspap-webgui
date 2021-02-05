@@ -3,8 +3,6 @@
 
 Welcome to RaspAP Insiders. You, the members of the Insiders community, support the sponsorware release strategy, which means that new features are first exclusively released to sponsors as part of Insiders. Read on for details about how this strategy works—and *thank you for joining us on this journey*.
 
-![](https://i.imgur.com/ikWvsMG.gif)
-
 ## Contents
 
  - [How sponsorship works](#how-sponsorship-works)
