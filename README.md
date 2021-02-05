@@ -22,7 +22,7 @@ Your sponsorship is through your individual or organization's GitHub account. By
 As part of the initial rollout of Insiders, all previous one-time backers of RaspAP on GitHub, PayPal or [Open Collective](https://opencollective.com/raspap) will receive unlimited access to Insiders. This is a small gesture for those early financial supporters who recognized the potential of this project.
 
 
-**Important**: If you're sponsoring [RaspAP](https://github.com/RaspAP/sponsors) through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account that should be added as a collaborator. <sup>[2](#footnote-2)</sup>
+> ℹ️ **Important**: If you're sponsoring [RaspAP](https://github.com/RaspAP/sponsors) through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account that should be added as a collaborator. <sup>[2](#footnote-2)</sup>
 
 ## Exclusive features
 When backers were asked which feature they'd most like to see added to RaspAP, the ability to manage multiple OpenVPN client configurations topped the list of requests. Therefore, we're adding this as the first feature exclusive to insiders. 
@@ -40,7 +40,7 @@ Following is a list of funding targets. When a funding target is reached, the fe
 ## Frequently asked questions
 
 ### Terms
-*We're using RaspAP to for a commercial project. Can we use Insiders under the same terms and conditions?*
+*We're using RaspAP for a commercial project. Can we use Insiders under the same terms and conditions?*
 
 Yes. Whether you're an individual or a company, you may use RaspAP Insiders precisely under the same terms as RaspAP, which are defined by the GNU GPL 3.0 license. However, we kindly ask you to respect the following guidelines:
 
@@ -52,6 +52,6 @@ See the [LICENSE](./LICENSE) file.
 
 ### Footnotes
 
-<sub><a name="#footnote-1"></a>1. If you cancel your sponsorship, GitHub schedules a cancellation request which will become effective at the end of the billing cycle, which ends at the 22nd of a month for monthly sponsorships. This means that even though you cancel your sponsorship, you will keep your access to Insiders as long as your cancellation isn't effective. All charges are processed by GitHub through Stripe. As we don't receive any information regarding your payment, and GitHub doesn't offer refunds, sponsorships are non-refundable.</sub>
+<sub><a name="footnote-1"></a>1. If you cancel your sponsorship, GitHub schedules a cancellation request which will become effective at the end of the billing cycle, which ends at the 22nd of a month for monthly sponsorships. This means that even though you cancel your sponsorship, you will keep your access to Insiders as long as your cancellation isn't effective. All charges are processed by GitHub through Stripe. As we don't receive any information regarding your payment, and GitHub doesn't offer refunds, sponsorships are non-refundable.</sub>
 
-<sub><a name="#footnote-2"></a>2. It's currently not possible to grant access to each member of an organization, as GitHub only allows for adding users. Thus, after sponsoring, please send an email to sponsors@raspap.com, stating which account should become a collaborator of the Insiders repository. We're working on a solution which will make access to organizations much simpler.</sub>
+<sub><a name="footnote-2"></a>2. It's currently not possible to grant access to each member of an organization, as GitHub only allows for adding users. Thus, after sponsoring, please send an email to sponsors@raspap.com, stating which account should become a collaborator of the Insiders repository. We're working on a solution which will make access to organizations much simpler.</sub>
