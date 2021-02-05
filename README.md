@@ -17,19 +17,19 @@ New features first land in Insiders, which means that *sponsors will have access
 Don't want to sponsor? No problem, RaspAP already has tons of features available, so chances are that most of your requirements are already satisfied. See the list of [exclusive features](#exclusive-features) to learn which features are currently only available to sponsors.
 
 ## About your sponsorship
-Your sponsorship is through your individual or organization's GitHub account. By visiting [**RaspAP's sponsor profile**](), you may change your sponsorship tier or cancel your sponsorship anytime. <sup>[1](#footnote-1)</sup>
+Your sponsorship is through your individual or organization's GitHub account. By visiting [**RaspAP's sponsor profile**](https://github.com/sponsors/RaspAP), you may change your sponsorship tier or cancel your sponsorship anytime. <sup>[1](#footnote-1)</sup>
 
 As part of the initial rollout of Insiders, all previous one-time backers of RaspAP on GitHub, PayPal or [Open Collective](https://opencollective.com/raspap) will receive unlimited access to Insiders. This is a small gesture for those early financial supporters who recognized the potential of this project.
 
 
-> ℹ️ **Important**: If you're sponsoring [RaspAP](https://github.com/RaspAP/sponsors) through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account that should be added as a collaborator. <sup>[2](#footnote-2)</sup>
+> ℹ️ **Important**: If you're [sponsoring](https://github.com/sponsors/RaspAP) RaspAP through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account that should be added as a collaborator. <sup>[2](#footnote-2)</sup>
 
 ## Exclusive features
 When backers were asked which feature they'd most like to see added to RaspAP, the ability to manage multiple OpenVPN client configurations topped the list of requests. Therefore, we're adding this as the first feature exclusive to insiders. 
 
  ✅ Manage OpenVPN client configs
 
-We feel that using input from our Insiders to drive the development of this project is a great approach. Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](/discussions) and let us know!
+Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](https://github.com/orgs/RaspAP/teams/insiders/discussions) and let us know!
 
 ## Funding targets
 Following is a list of funding targets. When a funding target is reached, the features that are tied to it are merged back into RaspAP and released to the public for general availability.
