@@ -1,12 +1,12 @@
 ![](https://i.imgur.com/DpgvLIO.png)
 [![Release 2.6](https://img.shields.io/badge/release-v2.6-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/github/raspap/raspap-webgui/](https://api.travis-ci.org/RaspAP/raspap-webgui.svg) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
 
-Welcome to RaspAP Insiders. You, the members of the Insiders community, support the sponsorware release strategy, which means that new features are first exclusively released to sponsors as part of Insiders. Read on for details about how this strategy works—and *thank you for joining us on this journey*.
+Welcome to **RaspAP Insiders**. You, the members of the Insiders community, support the sponsorware release model, which means that new features are first exclusively released to sponsors as part of Insiders. Read on for details about how this strategy works—and *thank you* for joining us on this journey.
 
 ## Contents
 
  - [How sponsorship works](#how-sponsorship-works)
- - [About your sponsorship](#about-your-sponsorhip)
+ - [About your sponsorship](#about-your-sponsorship)
  - [Exclusive features](#exclusive-features)
  - [Funding targets](#funding-targets)
  - [Frequently asked questions](#frequently-asked-questions)
@@ -42,7 +42,7 @@ Following is a list of funding targets. When a funding target is reached, the fe
 ### Terms
 *We're using RaspAP for a commercial project. Can we use Insiders under the same terms and conditions?*
 
-Yes. Whether you're an individual or a company, you may use RaspAP Insiders precisely under the same terms as RaspAP, which are defined by the GNU GPL 3.0 license. However, we kindly ask you to respect the following guidelines:
+Yes. Whether you're an individual or a company, you may use RaspAP Insiders precisely under the same terms as RaspAP, which are defined by the [GNU GPL-3.0 license](https://github.com/RaspAP/raspap-insiders/blob/master/LICENSE). However, we kindly ask you to respect the following guidelines:
 
 * Please **don't distribute the source code** of Insiders. You may freely use it for public, private or commercial projects, fork it, mirror it, do whatever you want with it, but please don't release the source code, as it would counteract the sponsorware strategy.
 * If you cancel your subscription, you're removed as a collaborator and will miss out on future updates of Insiders. However, you may *use the latest version* that's available to you as long as you like. Just remember that [GitHub deletes private forks](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/removing-a-collaborator-from-a-personal-repository).
