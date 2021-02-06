@@ -225,6 +225,43 @@ function safefilerewrite($fileName, $dataToSave)
 }
 
 /**
+ * Prepends data to a file if not exists
+ *
+ * @param string $filename
+ * @param string $dataToSave
+ * @return boolean
+ */
+function file_prepend_data($filename, $dataToSave)
+{
+    $context = stream_context_create();
+    $file = fopen($filename, 'r', 1, $context);
+    $file_data = readfile($file);
+
+    if (!preg_match('/^'.$dataToSave.'/', $file_data)) {
+        $tmp_file = tempnam(sys_get_temp_dir(), 'php_prepend_');
+        file_put_contents($tmp_file, $dataToSave);
+        file_put_contents($tmp_file, $file, FILE_APPEND);
+        fclose($file);
+        unlink($filename);
+        rename($tmp_file, $filename);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Callback function for array_filter
+ *
+ * @param string $var
+ * @return filtered value
+ */
+function filter_comments($var)
+{
+    return $var[0] != '#';
+}
+
+/**
  * Saves a CSRF token in the session
  */
 function ensureCSRFSessionToken()

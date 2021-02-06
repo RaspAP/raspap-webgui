@@ -47,8 +47,9 @@ function DisplayOpenVPNConfig()
 
     // parse client auth credentials
     if (!empty($auth)) {
-        $authUser = $auth[0];
-        $authPassword = $auth[1];
+        $auth = array_filter($auth, 'filter_comments');
+        $authUser = current($auth);
+        $authPassword = next($auth);
     }
 
     echo renderTemplate(
@@ -136,17 +137,24 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         ) {
             throw new RuntimeException('Unable to move uploaded file');
         }
+
+
         // Good file upload, update auth credentials if present
+        $prepend = '# filename '.pathinfo($file['name'], PATHINFO_FILENAME) .PHP_EOL;
         if (!empty($authUser) && !empty($authPassword)) {
             $auth_flag = 1;
             // Move tmp authdata to /etc/openvpn/login.conf
-            $auth = $authUser .PHP_EOL . $authPassword .PHP_EOL;
+            $auth.= $authUser .PHP_EOL . $authPassword .PHP_EOL;
             file_put_contents($tmp_authdata, $auth);
+            file_prepend_data($tmp_authdata, $prepend);
             system("sudo cp $tmp_authdata " . RASPI_OPENVPN_CLIENT_LOGIN, $return);
             if ($return !=0) {
                 $status->addMessage('Unable to save client auth credentials', 'danger');
             }
         }
+
+        // Prepend filname tag to .ovpn client config
+        file_prepend_data($tmp_ovpnclient, $prepend);
 
         // Set iptables rules and, optionally, auth-user-pass
         exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient $auth_flag " .$_SESSION['ap_interface'], $return);
