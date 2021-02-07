@@ -249,22 +249,14 @@ $('#configureClientModal').on('shown.bs.modal', function (e) {
 });
 
 $('#ovpn-confirm-delete').on('click', '.btn-delete', function (e) {
-    var modalDiv = $(e.delegateTarget);
     var cfg_id = $(this).data('recordId');
-    console.log(cfg_id);
-    //console.log(modalDiv.parent().find('.js-remove-openvpn-client').attr('data-record-id'));
-    //console.log(modalDiv.parent().find(
-
     $.post('ajax/openvpn/del_ovpncfg.php',{'cfg_id':cfg_id},function(data){
         jsonData = JSON.parse(data);
-        console.log(jsonData);
-        //$(this).closest('js-openvpn-client-row').fadeOut(300);
         $("#ovpn-confirm-delete").modal('hide');
-        if(jsonData['return'] == 0) {
-            // do something
-        } else if(jsonData['return'] == 2) {
-            // something else
-        }
+        var row = $(document.getElementById("openvpn-client-row-" + cfg_id));
+        row.fadeOut( "slow", function() {
+            row.remove();
+        });
     });
 });
 
