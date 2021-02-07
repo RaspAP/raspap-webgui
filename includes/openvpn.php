@@ -51,6 +51,7 @@ function DisplayOpenVPNConfig()
         $authUser = current($auth);
         $authPassword = next($auth);
     }
+    $clients = preg_grep('~\login.(conf)$~', scandir(pathinfo(RASPI_OPENVPN_CLIENT_LOGIN, PATHINFO_DIRNAME)));
 
     echo renderTemplate(
         "openvpn", compact(
@@ -59,7 +60,8 @@ function DisplayOpenVPNConfig()
             "openvpnstatus",
             "public_ip",
             "authUser",
-            "authPassword"
+            "authPassword",
+            "clients"
         )
     );
 }
@@ -147,6 +149,8 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
             $auth.= $authUser .PHP_EOL . $authPassword .PHP_EOL;
             file_put_contents($tmp_authdata, $auth);
             file_prepend_data($tmp_authdata, $prepend);
+            file_move_config(RASPI_OPENVPN_CLIENT_LOGIN);
+            chmod($tmp_authdata, 0644);
             system("sudo cp $tmp_authdata " . RASPI_OPENVPN_CLIENT_LOGIN, $return);
             if ($return !=0) {
                 $status->addMessage('Unable to save client auth credentials', 'danger');
@@ -163,6 +167,8 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         }
 
         // Copy tmp client config to /etc/openvpn/client
+        file_move_config(RASPI_OPENVPN_CLIENT_CONFIG);
+        chmod($tmp_ovpnclient, 0644);
         system("sudo cp $tmp_ovpnclient " . RASPI_OPENVPN_CLIENT_CONFIG, $return);
         if ($return ==0) {
             $status->addMessage('OpenVPN client.conf uploaded successfully', 'info');
