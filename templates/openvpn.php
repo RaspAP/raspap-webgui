@@ -33,7 +33,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-toggle="tab"><?php echo _("Client settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="configstab" href="#openvpnconfigs" data-toggle="tab"><?php echo _("Manage configs"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="configstab" href="#openvpnconfigs" data-toggle="tab"><?php echo _("Configurations"); ?></a></li>
                 <li class="nav-item"><a class="nav-link" id="loggingtab" href="#openvpnlogging" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
             </ul>
 
@@ -52,4 +52,40 @@
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
+
+<!-- modal confirm-delete-->
+<div class="modal fade" id="ovpn-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="modal-title" id="ModalLabel"><i class="far fa-trash-alt mr-2"></i><?php echo _("Delete OpenVPN client"); ?></div>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 mb-3 mt-1"><?php echo _("Delete client configuration? This cannot be undone."); ?></div>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
+      <button type="button" class="btn btn-outline-danger btn-delete"><?php echo _("Delete"); ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal confirm-enable -->
+<div class="modal fade" id="ovpn-confirm-activate" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="modal-title" id="ModalLabel"><i class="far fa-check-circle mr-2"></i><?php echo _("Activate OpenVPN client"); ?></div>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 mb-3 mt-1"><?php echo _("Activate client configuration? This will restart the openvpn-client service."); ?></div>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
+      <button type="button" class="btn btn-outline-success btn-activate"><?php echo _("Activate"); ?></button>
+      </div>
+    </div>
+  </div>
+</div>
 
