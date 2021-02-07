@@ -274,26 +274,18 @@ $('#ovpn-confirm-delete').on('show.bs.modal', function (e) {
 });
 
 $('#ovpn-confirm-activate').on('click', '.btn-activate', function (e) {
-    //var modalDiv = $(e.delegateTarget);
     var cfg_id = $(this).data('recordId');
-    console.log(cfg_id);
-
     $.post('ajax/openvpn/activate_ovpncfg.php',{'cfg_id':cfg_id},function(data){
         jsonData = JSON.parse(data);
-        console.log(jsonData);
-        //$(this).closest('js-openvpn-client-row').fadeOut(300);
         $("#ovpn-confirm-activate").modal('hide');
-        if(jsonData['return'] == 0) {
-            // do something
-        } else if(jsonData['return'] == 2) {
-            // something else
-        }
+        setTimeout(function(){
+            window.location.reload();
+        },300);
     });
 });
 
 $('#ovpn-confirm-activate').on('shown.bs.modal', function (e) {
     var data = $(e.relatedTarget).data();
-    console.log(data.recordId);
     $('.btn-activate', this).data('recordId', data.recordId);
 });
 

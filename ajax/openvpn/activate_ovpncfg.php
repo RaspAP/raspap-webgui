@@ -1,12 +1,9 @@
 <?php
 
-require_once '../../includes/status_messages.php';
 require_once '../../includes/config.php';
 require_once '../../includes/functions.php';
 
 if (isset($_POST['cfg_id'])) {
-    $status = new StatusMessages();
-
     $ovpncfg_id = $_POST['cfg_id'];
     $ovpncfg_path = pathinfo(RASPI_OPENVPN_CLIENT_LOGIN, PATHINFO_DIRNAME).'/';
     $ovpncfg_files = $ovpncfg_path .$ovpncfg_id.'_*.conf';
@@ -25,16 +22,12 @@ if (isset($_POST['cfg_id'])) {
     exec("sudo mv $ovpncfg_login ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
 
     // restart service
-    $status->addMessage('Attempting to restart OpenVPN', 'info');
-    exec('sudo /bin/systemctl stop openvpn-client@client', $return);
-    exec('sudo /bin/systemctl enable openvpn-client@client', $return);
-    exec('sudo /bin/systemctl start openvpn-client@client', $return);
+    exec("sudo /bin/systemctl stop openvpn-client@client", $return);
+    sleep(1);
+    exec("sudo /bin/systemctl enable openvpn-client@client", $return);
+    sleep(1);
+    exec("sudo /bin/systemctl start openvpn-client@client", $return);
 
-    foreach ($return as $line) {
-        $status->addMessage($line, 'info');
-    }
-    $return = $status;
-    $jsonData = ['return'=>$return];
-    echo json_encode($jsonData);
+    echo json_encode($return);
 }
 
