@@ -36,6 +36,7 @@ www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/disablelog.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/servicestart.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/lighttpd/configport.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/openvpn/configauth.sh
+www-data ALL=(ALL) NOPASSWD:/etc/raspap/openvpn/openvpnlog.sh
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/hostapd.log
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/dnsmasq.log
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/dnsmasqdata /etc/dnsmasq.d/090_adblock.conf

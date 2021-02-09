@@ -20,7 +20,9 @@ function DisplayOpenVPNConfig()
             if (isset($_POST['authPassword'])) {
                 $authPassword = strip_tags(trim($_POST['authPassword']));
             }
-            $return = SaveOpenVPNConfig($status, $_FILES['customFile'], $authUser, $authPassword);
+            if (is_uploaded_file( $_FILES["customFile"]["tmp_name"])) {
+                $return = SaveOpenVPNConfig($status, $_FILES['customFile'], $authUser, $authPassword);
+            }
         } elseif (isset($_POST['StartOpenVPN'])) {
             $status->addMessage('Attempting to start OpenVPN', 'info');
             exec('sudo /bin/systemctl start openvpn-client@client', $return);
@@ -53,11 +55,19 @@ function DisplayOpenVPNConfig()
     }
     $clients = preg_grep('~\login.(conf)$~', scandir(pathinfo(RASPI_OPENVPN_CLIENT_LOGIN, PATHINFO_DIRNAME)));
 
+    if (isset($_POST['log-openvpn'])) {
+        $logEnable = 1;
+        exec("sudo /etc/raspap/openvpn/openvpnlog.sh", $logOutput);
+        $logOutput = file_get_contents('/tmp/openvpn.log');
+    }
+
     echo renderTemplate(
         "openvpn", compact(
             "status",
             "serviceStatus",
             "openvpnstatus",
+            "logEnable",
+            "logOutput",
             "public_ip",
             "authUser",
             "authPassword",
