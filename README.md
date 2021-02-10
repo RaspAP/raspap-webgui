@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/DpgvLIO.png)
-[![Release 2.6](https://img.shields.io/badge/release-v2.6-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/github/raspap/raspap-webgui/](https://api.travis-ci.org/RaspAP/raspap-webgui.svg) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
+[![Release 2.7](https://img.shields.io/badge/release-v2.7-green)](https://github.com/raspap/raspap-insiders/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/github/raspap/raspap-webgui/](https://api.travis-ci.org/RaspAP/raspap-webgui.svg) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
 
 Welcome to **RaspAP Insiders**. You, the members of the Insiders community, support the sponsorware release model, which means that new features are first exclusively released to sponsors as part of Insiders. Read on for details about how this strategy works—and *thank you* for joining us on this journey.
 
@@ -27,7 +27,9 @@ As part of the initial rollout of Insiders, all previous one-time backers of Ras
 ## Exclusive features
 When backers were asked which feature they'd most like to see added to RaspAP, the ability to manage multiple OpenVPN client configurations topped the list of requests. Therefore, we're adding this as the first feature exclusive to insiders. 
 
- ✅ Manage OpenVPN client configs
+✅ Manage OpenVPN client configs
+✅ OpenVPN service logging
+⚙️ Traffic shaping (in progress)
 
 Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](https://github.com/orgs/RaspAP/teams/insiders/discussions) and let us know!
 
@@ -35,9 +37,31 @@ Look for the list above to grow as we add more exlcusive features. Have an idea 
 Following is a list of funding targets. When a funding target is reached, the features that are tied to it are merged back into RaspAP and released to the public for general availability.
 
 ### $500 
-✅ Manage OpenVPN client configs 
+✅ Manage OpenVPN client configs
+✅ OpenVPN service logging
+⚙️ Traffic shaping (in progress)
 
 ## Frequently asked questions
+
+### Upgrading
+*I have an existing RaspAP installation. How do I upgrade to Insiders?*
+
+Upgrading is easy. Simply invoke the Quick Installer with the `--upgrade` switch, specifying the private Insiders repo, like so:
+
+```
+curl -sL https://install.raspap.com | bash -s -- --upgrade --repo raspap/raspap-insiders
+```
+
+If you haven't [added SSH keys to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) you will be prompted to authenticate. If so, just enter your GitHub credentials during the install:
+
+```
+RaspAP Install: Cloning latest files from github
+Cloning into '/tmp/raspap-webgui'...
+Username for 'https://github.com': octocat
+Password for 'https://octocat@github.com':
+```
+
+> ℹ️  Note: your password is sent securely via SSH to GitHub. The above prompt is actually from GitHub, so the installer does not know your credentials.
 
 ### Terms
 *We're using RaspAP for a commercial project. Can we use Insiders under the same terms and conditions?*
