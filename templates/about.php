@@ -18,14 +18,14 @@ require_once 'app/lib/Parsedown.php';
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
           <li class="nav-item"><a class="nav-link active" href="#aboutgeneral" data-toggle="tab"><?php echo _("About"); ?></a></li>
-          <li class="nav-item"><a class="nav-link" href="#aboutsponsors" data-toggle="tab"><?php echo _("Sponsors"); ?></a></li>
+          <li class="nav-item"><a class="nav-link" href="#aboutsponsors" data-toggle="tab"><?php echo _("Insiders"); ?></a></li>
         </ul>
         <!-- /.nav-tabs -->
 
         <!-- Tab panes -->
         <div class="tab-content">
           <?php echo renderTemplate("about/general", $__template_data) ?>
-          <?php echo renderTemplate("about/sponsors", $__template_data) ?>
+          <?php echo renderTemplate("about/insiders", $__template_data) ?>
         </div>
         <!-- /.tab-content -->
 
