@@ -572,9 +572,8 @@ function _optimize_php() {
 
 function _install_complete() {
     _install_log "Installation completed"
-    echo "This project needs your help! Please consider supporting RaspAP on Open Collective or GitHub:"
+    echo "Join RaspAP Insiders for access to exclusive features:"
     echo -e "${ANSI_RASPBERRY}"
-    echo "> https://opencollective.com/RaspAP"
     echo "> https://github.com/sponsors/RaspAP"
     echo -e "${ANSI_RESET}"
     if [ "$assume_yes" == 0 ]; then
