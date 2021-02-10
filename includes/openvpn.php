@@ -55,7 +55,15 @@ function DisplayOpenVPNConfig()
     }
     $clients = preg_grep('~\login.(conf)$~', scandir(pathinfo(RASPI_OPENVPN_CLIENT_LOGIN, PATHINFO_DIRNAME)));
 
-    if (isset($_POST['log-openvpn'])) {
+    $logEnable = 0;
+    if (!empty($_POST) && !isset($_POST['log-openvpn'])) {
+        $logOutput = "";
+        $f = @fopen("/tmp/openvpn.log", "r+");
+        if ($f !== false) {
+            ftruncate($f, 0);
+            fclose($f);
+        }
+    } elseif (isset($_POST['log-openvpn']) || filesize('/tmp/openvpn.log') >0) {
         $logEnable = 1;
         exec("sudo /etc/raspap/openvpn/openvpnlog.sh", $logOutput);
         $logOutput = file_get_contents('/tmp/openvpn.log');
