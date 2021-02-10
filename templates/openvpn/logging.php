@@ -4,7 +4,7 @@
   <p><?php echo _("Enable this option to log <code>openvpn</code> activity.") ?></p>
 
   <div class="custom-control custom-switch">
-    <input class="custom-control-input" id="log-openvpn" type="checkbox" name="log-openvpn" value="<?php echo $logEnable; ?>" <?php echo $logEnable ? ' checked="checked"' : "" ?> aria-describedby="log-openvpn">
+    <input class="custom-control-input" id="log-openvpn" type="checkbox" name="log-openvpn" value="1" <?php echo $logEnable ? ' checked="checked"' : "" ?> aria-describedby="log-openvpn">
     <label class="custom-control-label" for="log-openvpn"><?php echo _("Enable logging") ?></label>
   </div>
   <div class="row">
