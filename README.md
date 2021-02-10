@@ -27,9 +27,9 @@ As part of the initial rollout of Insiders, all previous one-time backers of Ras
 ## Exclusive features
 When backers were asked which feature they'd most like to see added to RaspAP, the ability to manage multiple OpenVPN client configurations topped the list of requests. Therefore, we're adding this as the first feature exclusive to insiders. 
 
-✅ Manage OpenVPN client configs
-✅ OpenVPN service logging
-⚙️ Traffic shaping (in progress)
+✅ Manage OpenVPN client configs  
+✅ OpenVPN service logging  
+⚙️ Traffic shaping (in progress)  
 
 Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](https://github.com/orgs/RaspAP/teams/insiders/discussions) and let us know!
 
@@ -37,9 +37,9 @@ Look for the list above to grow as we add more exlcusive features. Have an idea 
 Following is a list of funding targets. When a funding target is reached, the features that are tied to it are merged back into RaspAP and released to the public for general availability.
 
 ### $500 
-✅ Manage OpenVPN client configs
-✅ OpenVPN service logging
-⚙️ Traffic shaping (in progress)
+✅ Manage OpenVPN client configs  
+✅ OpenVPN service logging  
+⚙️ Traffic shaping (in progress)  
 
 ## Frequently asked questions
 
