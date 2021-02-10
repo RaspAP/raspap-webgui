@@ -677,6 +677,42 @@ msgstr "Attempting to start openvpn"
 msgid "Attempting to stop openvpn"
 msgstr "Attempting to stop openvpn"
 
+msgid "Configurations"
+msgstr "Configurations"
+
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Currently available OpenVPN client configurations are displayed below."
+
+msgid "Activating a configuraton will restart the <code>openvpn-client</code> service."
+msgstr "Activating a configuraton will restart the <code>openvpn-client</code> service."
+
+msgid "Delete OpenVPN client"
+msgstr "Delete OpenVPN client"
+
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Delete client configuration? This cannot be undone."
+
+msgid "Activate OpenVPN client"
+msgstr "Activate OpenVPN client"
+
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Activate client configuration? This will restart the openvpn-client service."
+
+msgid "Activate"
+msgstr "Activate"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Enable this option to log <code>openvpn</code> activity."
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Cancel"
+msgstr "Cancel"
+
 #: includes/torproxy.php
 msgid "TOR is not running"
 msgstr "TOR is not running"

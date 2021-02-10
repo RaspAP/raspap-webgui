@@ -313,9 +313,10 @@ function _create_openvpn_scripts() {
     _install_log "Creating OpenVPN control scripts"
     sudo mkdir $raspap_dir/openvpn || _install_status 1 "Unable to create directory '$raspap_dir/openvpn'"
 
-   # Move service auth control shell scripts
+   # Move service auth control & logging shell scripts
     sudo cp "$webroot_dir/installers/"configauth.sh "$raspap_dir/openvpn" || _install_status 1 "Unable to move auth control script"
-    # Make configauth.sh writable by www-data group
+    sudo cp "$webroot_dir/installers/"openvpnlog.sh "$raspap_dir/openvpn" || _install_status 1 "Unable to move logging script"
+    # Make scripts executable by www-data group
     sudo chown -c root:"$raspap_user" "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable to change file permissions"
     _install_status 0

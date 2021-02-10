@@ -248,6 +248,40 @@ $('#hostapdModal').on('shown.bs.modal', function (e) {
 $('#configureClientModal').on('shown.bs.modal', function (e) {
 });
 
+$('#ovpn-confirm-delete').on('click', '.btn-delete', function (e) {
+    var cfg_id = $(this).data('recordId');
+    $.post('ajax/openvpn/del_ovpncfg.php',{'cfg_id':cfg_id},function(data){
+        jsonData = JSON.parse(data);
+        $("#ovpn-confirm-delete").modal('hide');
+        var row = $(document.getElementById("openvpn-client-row-" + cfg_id));
+        row.fadeOut( "slow", function() {
+            row.remove();
+        });
+    });
+});
+
+$('#ovpn-confirm-delete').on('show.bs.modal', function (e) {
+    var data = $(e.relatedTarget).data();
+    $('.btn-delete', this).data('recordId', data.recordId);
+});
+
+$('#ovpn-confirm-activate').on('click', '.btn-activate', function (e) {
+    var cfg_id = $(this).data('recordId');
+    $.post('ajax/openvpn/activate_ovpncfg.php',{'cfg_id':cfg_id},function(data){
+        jsonData = JSON.parse(data);
+        $("#ovpn-confirm-activate").modal('hide');
+        setTimeout(function(){
+            window.location.reload();
+        },300);
+    });
+});
+
+$('#ovpn-confirm-activate').on('shown.bs.modal', function (e) {
+    var data = $(e.relatedTarget).data();
+    $('.btn-activate', this).data('recordId', data.recordId);
+});
+
+
 /*
 Sets the wirelss channel select options based on hw_mode and country_code.
 
