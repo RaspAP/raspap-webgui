@@ -652,7 +652,7 @@ function getColorOpt()
 }
 function getSidebarState()
 {
-    if ($_COOKIE['sidebarToggled'] ?? 'false' == 'true' ) {
+    if (($_COOKIE['sidebarToggled'] ?? 'false') == 'true' ) {
         return"toggled";
     }
 }
