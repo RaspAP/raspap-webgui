@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-14 08:51\n"
-"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"PO-Revision-Date: 2021-02-12 14:34\n"
+"Last-Translator: yolateng0 https://github.com/yolateng0\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
 "X-Crowdin-Language: fr\n"
 "X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 10\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -35,16 +37,16 @@ msgid "Hotspot"
 msgstr "Hotspot"
 
 msgid "Memory Use"
-msgstr "Usage mémoire"
+msgstr "Mémoire utilisée"
 
 msgid "CPU Temp"
-msgstr "T°C CPU"
+msgstr "Temp du CPU"
 
 msgid "Networking"
 msgstr "Réseau"
 
 msgid "DHCP Server"
-msgstr "Server DHCP"
+msgstr "Serveur DHCP"
 
 msgid "OpenVPN"
 msgstr "OpenVPN"
@@ -127,7 +129,7 @@ msgid "Rescan"
 msgstr "Actualiser"
 
 msgid "Update"
-msgstr "Mise à jour"
+msgstr "Mettre à jour"
 
 msgid "Add"
 msgstr "Ajouter"
@@ -182,7 +184,7 @@ msgid "Transferred Bytes"
 msgstr "Octets transférés"
 
 msgid "Wireless Client"
-msgstr "Client WIFI"
+msgstr "Client sans fil"
 
 msgid "Connected To"
 msgstr "Connecté à"
@@ -230,13 +232,13 @@ msgid "Interface is down"
 msgstr "L'interface est arrêté"
 
 msgid "Interface already down"
-msgstr "Interface déjà arrêtée"
+msgstr "Interface déjà arrêté"
 
 msgid "Start wlan0"
 msgstr "Démarrer wlan0"
 
 msgid "Stop wlan0"
-msgstr "Arrêter wlan0"
+msgstr "Arrêtez wlan0"
 
 msgid "Connected Devices"
 msgstr "Appareils connectés"
@@ -250,6 +252,12 @@ msgstr "Liste des clients"
 
 msgid "Interface"
 msgstr "Interface"
+
+msgid "Enable DHCP for this interface"
+msgstr "Activer le DHCP pour cette interface"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+msgstr "Activez cette option si vous souhaitez que le RaspAP attribue des adresses IP sur l'interface sélectionnée."
 
 msgid "DNS Server"
 msgstr "Serveur DNS"
@@ -276,7 +284,7 @@ msgid "Active DHCP leases"
 msgstr "Baux DHCP actifs"
 
 msgid "Expire time"
-msgstr "Temps avant expiration"
+msgstr "Temps d'expiration"
 
 msgid "MAC Address"
 msgstr "Adresse Mac"
@@ -291,7 +299,7 @@ msgid "Information provided by Dnsmasq"
 msgstr "Informations fournies par Dnsmasq"
 
 msgid "Stop dnsmasq"
-msgstr "Arrêter dnsmasq"
+msgstr "Arrêtez dnsmasq"
 
 msgid "Start dnsmasq"
 msgstr "Démarrer dnsmasq"
@@ -324,25 +332,28 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq n'est pas en fonctionnement"
 
 msgid "Upstream DNS servers"
-msgstr "Serveurs DNS en amont"
+msgstr "Serveurs DNS amont"
 
 msgid "Only ever query DNS servers configured below"
 msgstr "Uniquement les serveurs DNS de requête configurés ci-dessous"
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Activer cette option si tu veux que RaspAP <b>envoie des requêtes DNS aux serveurs configurés ci-dessous exclusivement</b>. Par défaut, RaspAP utilise aussi les serveurs de noms du serveur DHCP amont."
+msgstr "Activer cette option si vous voulez que RaspAP <b>envoie des requêtes DNS aux serveurs configurés ci-dessous exclusivement</b>. Par défaut, RaspAP utilise aussi les serveurs de noms du serveur DHCP amont."
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
 msgstr "Cette option ajoute <code>no-resolv</code> à la configuration dnsmasq."
 
 msgid "Add upstream DNS server"
-msgstr "Ajouter un serveur DNS en amont"
+msgstr "Ajouter un serveur DNS amont"
 
 msgid "Format"
 msgstr "Format"
 
 msgid "Choose a hosted server"
 msgstr "Choisissez un serveur hébergé"
+
+msgid "Enable these options to log DHCP server activity."
+msgstr "Activer ces options pour enregistrer l'activité du serveur DHCP."
 
 msgid "Log DHCP requests"
 msgstr "Journaliser les requêtes DHCP"
@@ -418,7 +429,7 @@ msgid "Start hotspot"
 msgstr "Démarrer le point d'accès"
 
 msgid "Stop hotspot"
-msgstr "Arrêter le point d'accès"
+msgstr "Arrêté le point d'accès"
 
 msgid "Restart hotspot"
 msgstr "Redémarrer le point d'accès"
@@ -444,9 +455,30 @@ msgstr "Nombre maximum de clients"
 msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 msgstr "l'option max_num_sta de hostapd. La valeur par défaut et maximum est 2007. Si vide ou 0, la valeur par défaut s'applique."
 
+msgid "Beacon interval"
+msgstr "intervalle balise Beacon"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Désactiver <code>disassoc_low_ack</code>"
+
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Ne pas dissocier les points d'acces sur la base de défaillances de transmission excessives."
+
+msgid "Executing RaspAP service start"
+msgstr "Démarrage du service RaspAP"
+
+msgid "Close"
+msgstr "Fermé"
+
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Activer les logs d'activité avec l'option <code>hostapd</code>"
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Sommaire"
+
+msgid "Internet connection"
+msgstr "Connections Internet"
 
 msgid "Current settings"
 msgstr "Paramètres actuels"
@@ -475,6 +507,9 @@ msgstr "Désactivée"
 msgid "Static IP Options"
 msgstr "Options d'IP statique"
 
+msgid "Metric"
+msgstr "Métrique"
+
 msgid "Apply settings"
 msgstr "Appliquer les paramètres"
 
@@ -495,7 +530,7 @@ msgid "Select a language"
 msgstr "Sélectionnez une langue"
 
 msgid "Language setting saved"
-msgstr "Paramètre de langue enregistrée"
+msgstr "Paramètre de langue enregistré"
 
 msgid "Console"
 msgstr "Console"
@@ -527,12 +562,21 @@ msgstr "Redémarrage du système maintenant !"
 msgid "System Shutting Down Now!"
 msgstr "Arrêt du système maintenant !"
 
+msgid "Web server port"
+msgstr "Port du serveur Web"
+
+msgid "Web server bind address"
+msgstr "Adresse de liaison (Bind) du serveur web"
+
 #: includes/themes.php
 msgid "Theme settings"
 msgstr "Paramètres des thèmes"
 
 msgid "Select a theme"
 msgstr "Sélectionnez un thème"
+
+msgid "Color"
+msgstr "Couleur"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -687,10 +731,10 @@ msgid "Remove"
 msgstr "arrêté"
 
 msgid "up"
-msgstr "activé"
+msgstr "vers le haut"
 
 msgid "down"
-msgstr "désactivé"
+msgstr "vers le bas"
 
 msgid "adblock"
 msgstr "AdBlock"
@@ -723,7 +767,7 @@ msgid "Hostnames blocklist last updated"
 msgstr "Dernière mise à jour de la liste de blocage des noms d'hôtes"
 
 msgid "Domains blocklist last updated"
-msgstr "Dernière mise à jour de la liste de blocage des domaines"
+msgstr "Dernière mise à jour de la liste de blocage des noms d'hôtes"
 
 msgid "Update now"
 msgstr "Mettre à jour"
@@ -733,4 +777,25 @@ msgstr "Statistiques"
 
 msgid "Information provided by adblock"
 msgstr "Informations fournies par adblock"
+
+msgid "Enable custom blocklist"
+msgstr "Activer l'Antipub personnel"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Définissez les Hosts personnalisés à bloquer en entrant une adresse IPv4 ou IPv6 suivie d'un espace (espace ou tabulation) et du nom de l'hôte."
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 exemple:</b> 0.0.0.0 badhost.com"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Cette option ajoute une directive <code>addn-hosts</code> à la configuration de dnsmasq."
+
+msgid "Custom blocklist not defined"
+msgstr "Liste de blocage personnalisée non définie"
+
+msgid "Invalid custom IP address found on line "
+msgstr "Une adresse IP personnalisée non valide a été trouvée sur la ligne "
+
+msgid "Invalid custom host found on line "
+msgstr "Un Host personnalisée non valide a été trouvée sur la ligne "
 
