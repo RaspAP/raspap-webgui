@@ -214,8 +214,13 @@ $bridgedEnabled = getBridgedState();
           <i class="fa fa-bars"></i>
         </button>
         <!-- Topbar Navbar -->
-        <p class="text-left brand-title mt-3 ml-2"><?php //echo _("WiFi Configuration Portal"); ?></p>
+        <p class="text-left brand-title mt-3 ml-2"></p>
         <ul class="navbar-nav ml-auto">
+          <!-- Nav Item - Night mode -->
+          <div class="custom-control custom-switch mt-4">
+          <input type="checkbox" class="custom-control-input" id="night-mode" <?php echo getNightmode() ? 'checked' : null ; ?> >
+            <label class="custom-control-label" for="night-mode"></label>
+          </div>
           <div class="topbar-divider d-none d-sm-block"></div>
           <!-- Nav Item - User -->
           <li class="nav-item dropdown no-arrow">

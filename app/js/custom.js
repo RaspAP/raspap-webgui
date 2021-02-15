@@ -397,6 +397,17 @@ function set_theme(theme) {
     setCookie('theme',theme,90);
 }
 
+$(function() {
+    $('#night-mode').change(function() {
+        var state = $(this).is(':checked');
+        if (state == true && getCookie('theme') != 'lightsout.css') {
+            set_theme('lightsout.css');
+        } else {
+            set_theme('custom.php');
+        }
+   });
+});
+
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));

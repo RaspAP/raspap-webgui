@@ -720,3 +720,13 @@ function validate_host($host) {
   return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host);
 }
 
+// Gets night mode toggle value
+// @return boolean
+function getNightmode(){
+    if ($_COOKIE['theme'] == 'lightsout.css') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
