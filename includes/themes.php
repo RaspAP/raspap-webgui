@@ -7,13 +7,11 @@ function DisplayThemeConfig(&$extraFooterScripts)
 {
     $themes = [
         "default"    => "RaspAP (default)",
-        "hackernews" => "HackerNews",
-        "lightsout"  => "Lights Out"
+        "hackernews" => "HackerNews"
     ];
     $themeFiles = [
         "default"    => "custom.php",
-        "hackernews" => "hackernews.css",
-        "lightsout"  => "lightsout.css"
+        "hackernews" => "hackernews.css"
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
 
