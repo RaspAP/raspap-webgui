@@ -200,7 +200,7 @@ function _install_lighttpd_configs() {
     HTROOT=$(echo "$HTROOT" | sed -e 's/\/$//')
 
     # copy into place
-    awk "{gsub(\"/REPLACE_ME\",\"$HTROOT\")}1" $CONFSRC > /etc/lighttpd/conf-available 
+    awk "{gsub(\"/REPLACE_ME\",\"$HTROOT\")}1" $CONFSRC > /etc/lighttpd/conf-available/50-raspap-router.conf
 
     # link into conf-enabled
     echo "Creating link to /etc/lighttpd/conf-enabled"
