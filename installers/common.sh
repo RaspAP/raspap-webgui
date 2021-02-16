@@ -199,8 +199,12 @@ function _install_lighttpd_configs() {
     # remove trailing slash if present
     HTROOT=$(echo "$HTROOT" | sed -e 's/\/$//')
 
+    # substitute values
+    awk "{gsub(\"/REPLACE_ME\",\"$HTROOT\")}1" $CONFSRC > /tmp/50-raspap-router.conf
+
     # copy into place
-    awk "{gsub(\"/REPLACE_ME\",\"$HTROOT\")}1" $CONFSRC > /etc/lighttpd/conf-available/50-raspap-router.conf
+    sudo cp /tmp/50-raspap-router.conf /etc/lighttpd/conf-available/ || _install_status 1 "Unable to copy lighttpd config file into place."
+ 
 
     # link into conf-enabled
     echo "Creating link to /etc/lighttpd/conf-enabled"
