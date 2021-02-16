@@ -189,10 +189,22 @@ function _install_lighttpd_configs() {
 
     # Copy config files
     echo "Copying 50-raspap-router.conf to /etc/lighttpd/conf-available"
-    sudo cp "$webroot_dir/config/50-raspap-router.conf" "/etc/lighttpd/conf-available" || _install_status 1 "Unable to copy lighttpd config file."
+
+    CONFSRC="$webroot_dir/config/50-raspap-router.conf"
+    LTROOT=$(grep "server.document-root" /etc/lighttpd/lighttpd.conf | awk -F '=' '{print $2}' | tr -d " \"")
+
+    # compare values and get difference
+    HTROOT=${webroot_dir/$LTROOT}
+
+    # remove trailing slash if present
+    HTROOT=$(echo "$HTROOT" | sed -e 's/\/$//')
+
+    # copy into place
+    awk "{gsub(\"/REPLACE_ME\",\"$HTROOT\")}1" $CONFSRC > /etc/lighttpd/conf-available 
+
     # link into conf-enabled
-    echo "Creating link to /etc/lighttpd/conf-enabled"|| _install_status 1 "Unable to copy lighthttpd config file."
-    sudo ln -s "/etc/lighttpd/conf-available/50-raspap-router.conf" "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_status 1 "Unable to symlink lighttpd config file."
+    echo "Creating link to /etc/lighttpd/conf-enabled"
+    sudo ln -s "/etc/lighttpd/conf-available/50-raspap-router.conf" "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_status 1 "Unable to symlink lighttpd config file (this is normal if the link already exists)."
     sudo systemctl restart lighttpd.service || _install_status 1 "Unable to restart lighttpd"
     _install_status 0
 }
