@@ -218,8 +218,8 @@ $bridgedEnabled = getBridgedState();
         <ul class="navbar-nav ml-auto">
           <!-- Nav Item - Night mode -->
           <div class="custom-control custom-switch mt-4">
-          <input type="checkbox" class="custom-control-input" id="night-mode" <?php echo getNightmode() ? 'checked' : null ; ?> >
-            <label class="custom-control-label" for="night-mode"></label>
+            <input type="checkbox" class="custom-control-input" id="night-mode" <?php echo getNightmode() ? 'checked' : null ; ?> >
+            <label class="custom-control-label" for="night-mode"><i class="far fa-moon mr-1 text-muted"></i></label>
           </div>
           <div class="topbar-divider d-none d-sm-block"></div>
           <!-- Nav Item - User -->

@@ -8,7 +8,6 @@ License: GNU General Public License v3.0
 
 html * {
   font-family: Helvetica,Arial,sans-serif;
-  font-size: 1.0rem;
   color: #afafaf;
 }
 
@@ -369,13 +368,9 @@ tspan, rect {
   fill: #d2d2d2;
 }
 
-span.text.service-status {
-  font-size: 0.75rem;
-  margin-top: 0.2rem;
-}
-
-.text-muted {
-  font-size: 0.8rem;
+small {
+    font-size: 80%;
+    font-weight: 400;
 }
 
 .fas.fa-circle {
