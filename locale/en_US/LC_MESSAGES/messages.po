@@ -362,6 +362,24 @@ msgstr "Log DHCP requests"
 msgid "Log DNS queries"
 msgstr "Log DNS queries"
 
+msgid "Restrict access"
+msgstr "Restrict access"
+
+msgid "Limit network access to static clients"
+msgstr "Limit network access to static clients"
+
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Clients with a particular hardware MAC address can always be allocated the same IP address."
+
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Basic"
