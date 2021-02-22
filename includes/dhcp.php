@@ -175,7 +175,7 @@ function updateDnsmasqConfig($iface,$status)
         $mac = trim($_POST["static_leases"]["mac"][$i]);
         $ip  = trim($_POST["static_leases"]["ip"][$i]);
         if ($mac != "" && $ip != "") {
-            $config .= "dhcp-host=$mac,$ip".PHP_EOL;
+            $config .= "dhcp-host=$mac,$ip".",set:known".PHP_EOL;
         }
     }
     if ($_POST['no-resolv'] == "1") {
