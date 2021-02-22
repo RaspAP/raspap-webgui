@@ -45,12 +45,15 @@ function DisplayDHCPConfig()
         }
     }
     getWifiInterface();
+    $ap_iface = $_SESSION['ap_interface'];
     $serviceStatus = $dnsmasq_state ? "up" : "down";
     exec('cat '. RASPI_DNSMASQ_PREFIX.'raspap.conf', $return);
     $conf = ParseConfig($return);
+    exec('cat '. RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
+    $conf = array_merge(ParseConfig($return));
+    $hosts = (array)$conf['dhcp-host'];
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
-    $ap_iface = $_SESSION['ap_interface'];
 
     echo renderTemplate(
         "dhcp", compact(
@@ -59,7 +62,7 @@ function DisplayDHCPConfig()
             "dnsmasq_state",
             "ap_iface",
             "conf",
-            "dhcpHost",
+            "hosts",
             "interfaces",
             "leases"
         )

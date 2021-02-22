@@ -3,7 +3,7 @@
   <h4 class="mt-3 mb-3"><?php echo _("Static leases") ?></h4>
 
   <div class="dhcp-static-leases js-dhcp-static-lease-container">
-    <?php foreach ($dhcpHost as $host) : ?>
+    <?php foreach ($hosts as $host) : ?>
       <?php list($mac, $ip) = array_map("trim", explode(",", $host)); ?>
       <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
         <div class="col-md-5 col-xs-5">
