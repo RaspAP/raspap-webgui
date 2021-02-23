@@ -50,6 +50,7 @@ function DisplayWireGuardConfig()
                 $config[] = '[Interface]';
                 $config[] = 'Address = '.$_POST['wg_ipaddress'];
                 $config[] = 'ListenPort = '.$_POST['wg_port'];
+
                 $config[] = '';
                 $config[] = 'PrivateKey = '.$_POST['wg_privkey'];
                 $config[] = 'PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE';
@@ -102,8 +103,8 @@ function DisplayWireGuardConfig()
     // fetch wg config
     exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $return);
     $conf = ParseConfig($return);
-    $wg_port = $conf['ListenPort'];
-    $wg_ipaddress = $conf['Address'];
+    $wg_port = ($conf['ListenPort'] == '') ? getDefaultNetValue('wireguard','interface','listenport') : $conf['ListenPort'];
+    $wg_ipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','interface','address') : $conf['Address'];
     $wg_pubkey = $conf['PublicKey'];
     $wg_privkey = $conf['PrivateKey'];
     $wg_endpoint = $conf['Endpoint'];
