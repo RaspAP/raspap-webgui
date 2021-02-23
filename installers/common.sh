@@ -50,6 +50,7 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
+    _prompt_install_wireguard
     _patch_system_files
     _install_complete
 }
