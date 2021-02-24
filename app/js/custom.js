@@ -351,11 +351,13 @@ function clearBlocklistStatus() {
 
 // Handler for the wireguard generate key button
 $('.wg-keygen').click(function(){
-    var entity = $(this).parent('div').prev('input[type="text"]');
-    var updated = entity.attr('name')+"-pubkey-status";
-    $.post('ajax/networking/get_wgkey.php',{'entity':entity.attr('name') },function(data){
+    var entity_pub = $(this).parent('div').prev('input[type="text"]');
+    var entity_priv = $(this).parent('div').next('input[type="hidden"]');
+    var updated = entity_pub.attr('name')+"-pubkey-status";
+    $.post('ajax/networking/get_wgkey.php',{'entity':entity_pub.attr('name') },function(data){
         var jsonData = JSON.parse(data);
-        entity.val(jsonData);
+        entity_pub.val(jsonData.pubkey);
+        entity_priv.val(jsonData.privkey);
         $('#' + updated).removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
     })
 })
