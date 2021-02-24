@@ -348,6 +348,19 @@ function updateBlocklist() {
 function clearBlocklistStatus() {
     $('#cbxblocklist-status').removeClass('check-updated').addClass('check-hidden');
 }
+
+// Handler for the wireguard generate key button
+function generateWgKey() {
+    var entity = $('#wg-srvpubkey').attr('name');
+    console.log(entity);
+    $.post('ajax/networking/get_wgkey.php',{'entity':entity },function(data){
+        var jsonData = JSON.parse(data);
+        console.log(jsonData);
+        $('#wg-srvpubkey').val(jsonData);
+        $('#wg-srvpubkey-status').removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
+    })
+}
+
 // Static Array method
 Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
 
