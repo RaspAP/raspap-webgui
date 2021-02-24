@@ -41,8 +41,8 @@
       <div class="input-group col-md-12 mb-3">
         <input type="text" class="form-control" name="wg-peer" id="wg-peerpubkey" value="<?php echo htmlspecialchars($wg_peerpubkey, ENT_QUOTES); ?>" />
         <div class="input-group-append">
-          <button class="btn btn-sm btn-outline-secondary rounded-right" type="button" onclick="generateWgKey()"><?php echo _("Generate key"); ?></button>
-          <span id="cbxblocklist-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
+          <button class="btn btn-sm btn-outline-secondary rounded-right wg-keygen" type="button"><?php echo _("Generate key"); ?></button>
+          <span id="wg-peer-pubkey-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
         </div>
       </div>
     </div>

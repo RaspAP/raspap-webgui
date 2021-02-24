@@ -350,16 +350,15 @@ function clearBlocklistStatus() {
 }
 
 // Handler for the wireguard generate key button
-function generateWgKey() {
-    var entity = $('#wg-srvpubkey').attr('name');
-    console.log(entity);
-    $.post('ajax/networking/get_wgkey.php',{'entity':entity },function(data){
+$('.wg-keygen').click(function(){
+    var entity = $(this).parent('div').prev('input[type="text"]');
+    var updated = entity.attr('name')+"-pubkey-status";
+    $.post('ajax/networking/get_wgkey.php',{'entity':entity.attr('name') },function(data){
         var jsonData = JSON.parse(data);
-        console.log(jsonData);
-        $('#wg-srvpubkey').val(jsonData);
-        $('#wg-server-pubkey-status').removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
+        entity.val(jsonData);
+        $('#' + updated).removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
     })
-}
+})
 
 // Static Array method
 Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
