@@ -14,6 +14,20 @@
      </div>
 
     <div class="row">
+      <div class="col-xs-3 col-sm-6 mt-3">
+          <label for="code"><?php echo _("Peer public key"); ?></label>
+      </div>
+      <div class="input-group col-md-12">
+        <input type="text" class="form-control" name="wg-peer" id="wg-peerpubkey" value="<?php echo htmlspecialchars($wg_peerpubkey, ENT_QUOTES); ?>" />
+        <div class="input-group-append">
+          <button class="btn btn-sm btn-outline-secondary rounded-right wg-keygen" type="button"><?php echo _("Generate key"); ?></button>
+          <span id="wg-peer-pubkey-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
       <div class="form-group col-xs-3 col-sm-6 mt-3">
         <label for="code"><?php echo _("Endpoint address"); ?></label>
         <input type="text" class="form-control" name="wg_pendpoint" value="<?php echo htmlspecialchars($wg_pendpoint, ENT_QUOTES); ?>" />
@@ -34,20 +48,7 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-3 col-sm-6">
-          <label for="code"><?php echo _("Peer public key"); ?></label>
-      </div>
-      <div class="input-group col-md-12 mb-3">
-        <input type="text" class="form-control" name="wg-peer" id="wg-peerpubkey" value="<?php echo htmlspecialchars($wg_peerpubkey, ENT_QUOTES); ?>" />
-        <div class="input-group-append">
-          <button class="btn btn-sm btn-outline-secondary rounded-right wg-keygen" type="button"><?php echo _("Generate key"); ?></button>
-          <span id="wg-peer-pubkey-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
-        </div>
-      </div>
-    </div>
-
-    </div>
+  </div>
   </div><!-- /.row -->
 </div><!-- /.tab-pane | peers tab -->
 
