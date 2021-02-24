@@ -103,10 +103,10 @@ function DisplayWireGuardConfig()
     // fetch wg config
     exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $return);
     $conf = ParseConfig($return);
-    $wg_port = ($conf['ListenPort'] == '') ? getDefaultNetValue('wireguard','interface','listenport') : $conf['ListenPort'];
-    $wg_ipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','interface','address') : $conf['Address'];
-    $wg_pubkey = $conf['PublicKey'];
-    $wg_privkey = $conf['PrivateKey'];
+    $wg_srvport = ($conf['ListenPort'] == '') ? getDefaultNetValue('wireguard','server','ListenPort') : $conf['ListenPort'];
+    $wg_srvipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','server','Address') : $conf['Address'];
+    $wg_srvpubkey = $conf['PublicKey'];
+    $wg_srvprivkey = $conf['PrivateKey'];
     $wg_endpoint = $conf['Endpoint'];
     $wg_allowedips = $conf['AllowedIPs'];
     $wg_pkeepalive = $conf['PersistentKeepalive'];
@@ -124,10 +124,10 @@ function DisplayWireGuardConfig()
             "wg_log",
             "endpoint_enable",
             "peer_id",
-            "wg_port",
-            "wg_ipaddress",
-            "wg_pubkey",
-            "wg_privkey",
+            "wg_srvport",
+            "wg_srvipaddress",
+            "wg_srvpubkey",
+            "wg_srvprivkey",
             "wg_endpoint",
             "wg_allowedips",
             "wg_pkeepalive"
