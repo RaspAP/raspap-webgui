@@ -107,9 +107,9 @@ function DisplayWireGuardConfig()
     $wg_srvipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','server','Address') : $conf['Address'];
     $wg_srvpubkey = $conf['PublicKey'];
     $wg_srvprivkey = $conf['PrivateKey'];
-    $wg_endpoint = $conf['Endpoint'];
-    $wg_allowedips = $conf['AllowedIPs'];
-    $wg_pkeepalive = $conf['PersistentKeepalive'];
+    $wg_pendpoint = ($conf['Endpoint'] == '') ? getDefaultNetValue('wireguard','peer','Endpoint') : $conf['Endpoint'];
+    $wg_pallowedips = ($conf['AllowedIPs'] == '') ? getDefaultNetValue('wireguard','peer','AllowedIPs') : $conf['AllowedIPs'];
+    $wg_pkeepalive = ($conf['PersistentKeepalive'] == '') ? getDefaultNetValue('wireguard','peer','PersistentKeepalive') : $conf['PersistentKeepalive'];
 
     // fetch service status
     exec('pidof wg-crypt-wg0 | wc -l', $wgstatus);
@@ -128,8 +128,8 @@ function DisplayWireGuardConfig()
             "wg_srvipaddress",
             "wg_srvpubkey",
             "wg_srvprivkey",
-            "wg_endpoint",
-            "wg_allowedips",
+            "wg_pendpoint",
+            "wg_pallowedips",
             "wg_pkeepalive"
         )
     );

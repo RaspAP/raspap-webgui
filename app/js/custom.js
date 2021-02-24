@@ -357,7 +357,7 @@ function generateWgKey() {
         var jsonData = JSON.parse(data);
         console.log(jsonData);
         $('#wg-srvpubkey').val(jsonData);
-        $('#wg-srvpubkey-status').removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
+        $('#wg-server-pubkey-status').removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
     })
 }
 

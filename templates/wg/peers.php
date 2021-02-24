@@ -16,14 +16,14 @@
     <div class="row">
       <div class="form-group col-xs-3 col-sm-6 mt-3">
         <label for="code"><?php echo _("Endpoint address"); ?></label>
-        <input type="text" class="form-control" name="wg_endpoint" value="<?php echo htmlspecialchars($wg_endpoint, ENT_QUOTES); ?>" />
+        <input type="text" class="form-control" name="wg_pendpoint" value="<?php echo htmlspecialchars($wg_pendpoint, ENT_QUOTES); ?>" />
       </div>
     </div>
 
     <div class="row">
       <div class="col-xs-3 col-sm-6">
         <label for="code"><?php echo _("Allowed IPs"); ?></label>
-        <input type="text" class="form-control mb-3" name="wg_allowedips" placeholder="0.0.0.0/0" value="<?php echo htmlspecialchars($wg_allowedips, ENT_QUOTES); ?>" />
+        <input type="text" class="form-control mb-3" name="wg_pallowedips" placeholder="0.0.0.0/0" value="<?php echo htmlspecialchars($wg_pallowedips, ENT_QUOTES); ?>" />
       </div>
     </div>
 
@@ -39,14 +39,13 @@
           <label for="code"><?php echo _("Peer public key"); ?></label>
       </div>
       <div class="input-group col-md-12 mb-3">
-        <input type="text" class="form-control" name="wg_peerpubkey" value="<?php echo htmlspecialchars($wg_peerpubkey, ENT_QUOTES); ?>" />
+        <input type="text" class="form-control" name="wg-peer" id="wg-peerpubkey" value="<?php echo htmlspecialchars($wg_peerpubkey, ENT_QUOTES); ?>" />
         <div class="input-group-append">
-          <button class="btn btn-sm btn-outline-secondary rounded-right" type="button" onclick="updateBlocklist()"><?php echo _("Generate key"); ?></button>
+          <button class="btn btn-sm btn-outline-secondary rounded-right" type="button" onclick="generateWgKey()"><?php echo _("Generate key"); ?></button>
           <span id="cbxblocklist-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
         </div>
       </div>
     </div>
-
 
     </div>
   </div><!-- /.row -->
