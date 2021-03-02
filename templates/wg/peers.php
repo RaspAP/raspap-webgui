@@ -49,7 +49,7 @@
 
     <div class="col-md-6 mt-5">
       <figure class="figure">
-        <img src="app/img/wifi-qr-code.php" class="figure-img img-fluid" alt="RaspAP Wifi QR code" style="width:100%;">
+        <img src="app/img/wg-qr-code.php" class="figure-img img-fluid" alt="RaspAP Wifi QR code" style="width:100%;">
         <figcaption class="figure-caption"><?php echo _("Scan this QR code with your client to connect to this RaspAP."); ?></figcaption>
       </figure>
     </div>

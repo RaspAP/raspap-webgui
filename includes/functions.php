@@ -757,3 +757,11 @@ function getNightmode(){
     }
 }
 
+// Sanitizes a string for QR encoding
+// @param string $str
+// @return string
+function qr_encode($str)
+{
+    return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
+}
+
