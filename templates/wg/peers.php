@@ -1,6 +1,5 @@
 <!-- wireguard peers tab -->
 <div class="tab-pane fade" id="wgpeers">
-
   <div class="row">
     <div class="col-md-6">
       <h4 class="mt-3"><?php echo _("Peer"); ?></h4>
@@ -13,42 +12,48 @@
         </div>
      </div>
 
-    <div class="row">
-      <div class="col-xs-3 col-sm-6 mt-3">
+      <div class="row">
+        <div class="col-xs-3 col-sm-6 mt-3">
           <label for="code"><?php echo _("Peer public key"); ?></label>
+        </div>
+        <div class="input-group col-md-12">
+          <input type="text" class="form-control" name="wg-peer" id="wg-peerpubkey" value="<?php echo htmlspecialchars($wg_peerpubkey, ENT_QUOTES); ?>" />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary rounded-right wg-keygen" type="button"><i class="fas fa-magic"></i></button>
+            <span id="wg-peer-pubkey-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
+          </div>
+        </div>
       </div>
-      <div class="input-group col-md-12">
-        <input type="text" class="form-control" name="wg-peer" id="wg-peerpubkey" value="<?php echo htmlspecialchars($wg_peerpubkey, ENT_QUOTES); ?>" />
-        <div class="input-group-append">
-          <button class="btn btn-sm btn-outline-secondary rounded-right wg-keygen" type="button"><?php echo _("Generate key"); ?></button>
-          <span id="wg-peer-pubkey-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
+
+      <div class="row">
+        <div class="form-group col-xs-3 col-sm-6 mt-3">
+          <label for="code"><?php echo _("Endpoint address"); ?></label>
+          <input type="text" class="form-control" name="wg_pendpoint" value="<?php echo htmlspecialchars($wg_pendpoint, ENT_QUOTES); ?>" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-3 col-sm-6">
+          <label for="code"><?php echo _("Allowed IPs"); ?></label>
+          <input type="text" class="form-control mb-3" name="wg_pallowedips" placeholder="0.0.0.0/0" value="<?php echo htmlspecialchars($wg_pallowedips, ENT_QUOTES); ?>" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-3 col-sm-6">
+          <label for="code"><?php echo _("Persistent keepalive"); ?></label>
+          <input type="text" class="form-control col-sm-3 mb-3" name="wg_pkeepalive" placeholder="25" value="<?php echo htmlspecialchars($wg_pkeepalive, ENT_QUOTES); ?>" />
         </div>
       </div>
     </div>
 
-
-    <div class="row">
-      <div class="form-group col-xs-3 col-sm-6 mt-3">
-        <label for="code"><?php echo _("Endpoint address"); ?></label>
-        <input type="text" class="form-control" name="wg_pendpoint" value="<?php echo htmlspecialchars($wg_pendpoint, ENT_QUOTES); ?>" />
-      </div>
+    <div class="col-md-6 mt-5">
+      <figure class="figure">
+        <img src="app/img/wifi-qr-code.php" class="figure-img img-fluid" alt="RaspAP Wifi QR code" style="width:100%;">
+        <figcaption class="figure-caption"><?php echo _("Scan this QR code with your client to connect to this RaspAP."); ?></figcaption>
+      </figure>
     </div>
 
-    <div class="row">
-      <div class="col-xs-3 col-sm-6">
-        <label for="code"><?php echo _("Allowed IPs"); ?></label>
-        <input type="text" class="form-control mb-3" name="wg_pallowedips" placeholder="0.0.0.0/0" value="<?php echo htmlspecialchars($wg_pallowedips, ENT_QUOTES); ?>" />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-3 col-sm-6">
-        <label for="code"><?php echo _("Persistent keepalive"); ?></label>
-        <input type="text" class="form-control col-sm-3 mb-3" name="wg_pkeepalive" placeholder="25" value="<?php echo htmlspecialchars($wg_pkeepalive, ENT_QUOTES); ?>" />
-      </div>
-    </div>
-
-  </div>
   </div><!-- /.row -->
 </div><!-- /.tab-pane | peers tab -->
 
