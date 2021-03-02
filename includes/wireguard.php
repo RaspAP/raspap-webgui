@@ -47,6 +47,7 @@ function DisplayWireGuardConfig()
             }
             // Save settings
             if ($good_input) {
+                // server (wg0.conf)
                 $config[] = '[Interface]';
                 $config[] = 'Address = '.$_POST['wg_srvipaddress'];
                 $config[] = 'ListenPort = '.$_POST['wg_srvport'];
@@ -68,7 +69,23 @@ function DisplayWireGuardConfig()
 
                 file_put_contents("/tmp/wgdata", $config);
                 system('sudo cp /tmp/wgdata '.RASPI_WIREGUARD_CONFIG, $return);
-                
+
+                // client1 (client.conf)
+                $config = [];
+                $config[] = '[Interface]';
+                $config[] = 'Address = ';
+                $config[] = 'PrivateKey = ';
+                $config[] = '';
+                $config[] = '[Peer]';
+                $config[] = 'PublicKey = ';
+                $config[] = 'AllowedIPs = ';
+                $config[] = 'Endpoint = ';
+                $config[] = '';
+                $config = join(PHP_EOL, $config);
+
+                file_put_contents("/tmp/wgdata", $config);
+                system('sudo cp /tmp/wgdata '.RASPI_WIREGUARD_PATH.'client.conf', $return);
+
                 // handle log option
                 if ($_POST['wg_log'] == "1") {
                     exec("sudo /bin/systemctl status wg-quick@wg0 | sudo tee /tmp/wireguard.log > /dev/null");
