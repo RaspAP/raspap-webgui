@@ -36,12 +36,12 @@
   },
   "wireguard": {
     "server": {
-      "Address": [ "10.3.141.1/24" ],
+      "Address": [ "10.253.3.1/24" ],
       "ListenPort": [ "51820" ],
       "DNS": [ "10.3.141.1" ]
     },
     "peer": {
-      "Endpoint": [ "server ip:53" ],
+      "Endpoint": [ "10.253.3.1/24:51820" ],
       "AllowedIPs": ["0.0.0.0/0"],
       "PersistentKeepalive": [ "15" ]
     }
