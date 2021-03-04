@@ -49,7 +49,7 @@ require_once 'includes/torproxy.php';
 
 $config = getConfig();
 $output = $return = 0;
-$page = $_SERVER['REQUEST_URI'];
+$page = $_SERVER['PATH_INFO'];
 
 $theme_url = getThemeOpt();
 $toggleState = getSidebarState();

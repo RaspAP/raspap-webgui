@@ -17,9 +17,10 @@
 # -a, --adblock <flag>              Used with -y, --yes, sets Adblock install option (0=no install)
 # -r, --repo, --repository <name>   Overrides the default GitHub repo (raspap/raspap-webgui)
 # -b, --branch <name>               Overrides the default git branch (master)
-# -h, --help                        Outputs usage notes and exits
 # -u, --upgrade                     Upgrades an existing installation to the latest release version
+# -i, --insiders                    Installs from the Insiders Edition (raspap/raspap-insiders)
 # -v, --version                     Outputs release info and exits
+# -h, --help                        Outputs usage notes and exits
 #
 # Depending on options passed to the installer, ONE of the following
 # additional shell scripts will be downloaded and sourced:
@@ -81,6 +82,9 @@ function _parse_params() {
             -u|--upgrade)
             upgrade=1
             ;;
+            -i|--insiders)
+            repo="raspap/raspap-insiders"
+            ;;
             -v|--version)
             _version
             ;;
@@ -126,6 +130,7 @@ OPTIONS:
 -r, --repo, --repository <name>     Overrides the default GitHub repo (raspap/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
 -u, --upgrade                       Upgrades an existing installation to the latest release version
+-i, --insiders                      Installs from the Insiders Edition (raspap/raspap-insiders)
 -v, --version                       Outputs release info and exits
 -h, --help                          Outputs usage notes and exits
 
@@ -139,13 +144,16 @@ Examples:
     Invoke installer remotely, run non-interactively with option flags:
     curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --adblock 0
 
+    Invoke remotely, uprgrade an existing install to the Insiders Edition:
+    curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders
+
 EOF
     exit
 }
 
 function _version() {
     _get_release
-    echo -e "RaspAP v${RASPAP_LATEST} - Simple AP setup & WiFi management for Debian-based devices"
+    echo -e "RaspAP v${RASPAP_LATEST} - Simple wireless AP setup & management for Debian-based devices"
     exit
 }
 
@@ -166,7 +174,12 @@ function _display_welcome() {
 
 # Fetch latest release from GitHub API
 function _get_release() {
-    readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+    if [ "$repo" == "raspap/raspap-insiders" ]; then
+        readonly RASPAP_LATEST="Insiders"
+        branch="master"
+    else
+        readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+    fi
 }
 
 # Outputs a RaspAP Install log line
