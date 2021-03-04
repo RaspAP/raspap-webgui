@@ -22,7 +22,6 @@
             <button class="btn btn-outline-secondary rounded-right wg-keygen" type="button"><i class="fas fa-magic"></i></button>
             <span id="wg-peer-pubkey-status" class="input-group-addon check-hidden ml-2 mt-1"><i class="fas fa-check"></i></span>
           </div>
-          <input type="hidden" name="wg_peerprivkey" value="<?php echo htmlspecialchars($wg_peerprivkey, ENT_QUOTES); ?>" />
         </div>
       </div>
 

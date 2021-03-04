@@ -15,7 +15,6 @@ if (isset($entity)) {
      
     exec("sudo wg genkey | tee $privkey_tmp | wg pubkey > $pubkey_tmp", $return);
     $wgdata['pubkey'] = str_replace("\n",'',file_get_contents($pubkey_tmp));
-    $wgdata['privkey'] = str_replace("\n",'',file_get_contents($privkey_tmp));
     exec("sudo mv $privkey_tmp $privkey", $return);
     exec("sudo mv $pubkey_tmp $pubkey", $return);
 

@@ -357,7 +357,6 @@ $('.wg-keygen').click(function(){
     $.post('ajax/networking/get_wgkey.php',{'entity':entity_pub.attr('name') },function(data){
         var jsonData = JSON.parse(data);
         entity_pub.val(jsonData.pubkey);
-        entity_priv.val(jsonData.privkey);
         $('#' + updated).removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
     })
 })

@@ -110,11 +110,15 @@ function SaveWireGuardConfig($status)
     }
     // Save settings
     if ($good_input) {
+        // fetch private keys from filesytem
+        $wg_srvprivkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-private.key', $return);
+        $wg_peerprivkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-peer-private.key', $return);
+
         // server (wg0.conf)
         $config[] = '[Interface]';
         $config[] = 'Address = '.$_POST['wg_srvipaddress'];
         $config[] = 'ListenPort = '.$_POST['wg_srvport'];
-        $config[] = 'PrivateKey = '.$_POST['wg_srvprivkey'];
+        $config[] = 'PrivateKey = '.$wg_srvprivkey;
         $config[] = 'PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE';
         $config[] = 'PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o wlan0 -j MASQUERADE';
         $config[] = '';
@@ -139,7 +143,7 @@ function SaveWireGuardConfig($status)
         if ($_POST['wg_pendpoint'] !== '') {
             $config[] = 'Address = '.trim($_POST['wg_pendpoint']);
         }
-        $config[] = 'PrivateKey = '.$_POST['wg_peerprivkey'];
+        $config[] = 'PrivateKey = '.$wg_peerprivkey;
         $config[] = '';
         $config[] = '[Peer]';
         $config[] = 'PublicKey = '.$_POST['wg-server'];
