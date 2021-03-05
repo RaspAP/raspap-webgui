@@ -30,9 +30,9 @@ When backers were asked which feature they'd most like to see added to RaspAP, t
 ✅ Manage OpenVPN client configs  
 ✅ OpenVPN service logging  
 ✅ Night mode toggle  
-✅ Restrict network to static clients
-⚙️ WireGuard support (in progress)
-⚙️ Traffic shaping (in progress) 
+✅ Restrict network to static clients  
+⚙️ WireGuard support (in progress)  
+⚙️ Traffic shaping (in progress)  
 
 Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](https://github.com/orgs/RaspAP/teams/insiders/discussions) and let us know!
 
@@ -43,8 +43,8 @@ Following is a list of funding targets. When a funding target is reached, the fe
 ✅ Manage OpenVPN client configs  
 ✅ OpenVPN service logging  
 ✅ Night mode toggle  
-✅ Restrict network to static clients
-⚙️ WireGuard support (in progress)
+✅ Restrict network to static clients  
+⚙️ WireGuard support (in progress)  
 ⚙️ Traffic shaping (in progress) 
 
 ## Frequently asked questions
