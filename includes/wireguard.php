@@ -87,12 +87,12 @@ function SaveWireGuardConfig($status)
         }
     }
     if (isset($_POST['wg_pendpoint']) && strlen(trim($_POST['wg_pendpoint']) >0 )) {
-        if (!validateCidr($_POST['wg_pendpoint'])) {
+        if (!filter_var($_POST['wg_pendpoint'],FILTER_VALIDATE_IP)) {
             $status->addMessage('Invalid value for endpoint address', 'danger');
             $good_input = false;
         }
     }
-    if (isset($_POST['wg_pallowedips'])) {
+    if (isset($_POST['wg_pallowedips']) && strlen(trim($_POST['wg_pallowedips']) >0)) {
         if (!validateCidr($_POST['wg_pallowedips'])) {
             $status->addMessage('Invalid value for allowed IPs', 'danger');
             $good_input = false;
@@ -115,13 +115,13 @@ function SaveWireGuardConfig($status)
         $config[] = 'Address = '.$_POST['wg_srvipaddress'];
         $config[] = 'ListenPort = '.$_POST['wg_srvport'];
         $config[] = 'PrivateKey = '.$wg_srvprivkey;
-        $config[] = 'PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE';
-        $config[] = 'PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o wlan0 -j MASQUERADE';
+        $config[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUp');
+        $config[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
         $config[] = '';
         $config[] = '[Peer]';
         $config[] = 'PublicKey = '.$_POST['wg-peer'];
         if ($_POST['wg_pendpoint'] !== '') {
-            $config[] = 'Endpoint = '.trim($_POST['wg_pendpoint']);
+            $config[] = 'Endpoint = '.trim($_POST['wg_pendpoint']).':'.$_POST['wg_srvport'];
         }
         $config[] = 'AllowedIPs = '.$_POST['wg_pallowedips'];
         if ($_POST['wg_pkeepalive'] !== '') {
