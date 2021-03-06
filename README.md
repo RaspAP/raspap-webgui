@@ -52,10 +52,10 @@ Following is a list of funding targets. When a funding target is reached, the fe
 ### Upgrading
 *I have an existing RaspAP installation. How do I upgrade to Insiders?*
 
-Upgrading is easy. Simply invoke the Quick Installer with the `--upgrade` switch, specifying the private Insiders repo, like so:
+Upgrading is easy. Simply invoke the Quick Installer with the --upgrade switch, specifying the private Insiders Edition, like so:
 
 ```
-curl -sL https://install.raspap.com | bash -s -- --upgrade --repo raspap/raspap-insiders
+curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders
 ```
 
 If you haven't [added SSH keys to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) you will be prompted to authenticate. If so, just enter your GitHub credentials during the install:
