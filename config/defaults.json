@@ -36,15 +36,17 @@
   },
   "wireguard": {
     "server": {
-      "Address": [ "10.253.3.1/24" ],
+      "Address": [ "10.8.2.1/24" ],
       "ListenPort": [ "51820" ],
-      "DNS": [ "10.3.141.1" ],
+      "DNS": [ "9.9.9.9" ],
       "PostUp": [ "iptables -A FORWARD -i wlan0 -o wg0 -j ACCEPT; iptables -A FORWARD -i wg0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -A  POSTROUTING -o wg0 -j MASQUERADE" ],
       "PostDown": [ "iptables -D FORWARD -i wlan0 -o wg0 -j ACCEPT; iptables -D FORWARD -i wg0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -D  POSTROUTING -o wg0 -j MASQUERADE" ]
     },
     "peer": {
-      "Endpoint": [ "10.253.3.1" ],
-      "AllowedIPs": ["0.0.0.0/0"],
+      "Address": [ "10.8.1.2/24" ],
+      "Endpoint": [ "10.8.2.1" ],
+      "ListenPort": [ "21841" ],
+      "AllowedIPs": ["10.8.2.0/24"],
       "PersistentKeepalive": [ "15" ]
     }
   }
