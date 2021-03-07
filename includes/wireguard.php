@@ -33,11 +33,18 @@ function DisplayWireGuardConfig()
     $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
     $wg_srvport = ($conf['ListenPort'] == '') ? getDefaultNetValue('wireguard','server','ListenPort') : $conf['ListenPort'];
     $wg_srvipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','server','Address') : $conf['Address'];
+    $wg_srvdns = ($conf['DNS'] == '') ? getDefaultNetValue('wireguard','server','DNS') : $conf['DNS'];
+    $wg_peerpubkey = $conf['PublicKey'];
+
+    // todo: iterate multiple peer configs
+    exec('sudo cat '. RASPI_WIREGUARD_PATH.'client.conf', $preturn);
+    $conf = ParseConfig($preturn);
+    $wg_pipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','peer','Address') : $conf['Address'];
+    $wg_plistenport = ($conf['ListenPort'] == '') ? getDefaultNetValue('wireguard','peer','ListenPort') : $conf['ListenPort'];
     $wg_pendpoint = ($conf['Endpoint'] == '') ? getDefaultNetValue('wireguard','peer','Endpoint') : $conf['Endpoint'];
     $wg_pallowedips = ($conf['AllowedIPs'] == '') ? getDefaultNetValue('wireguard','peer','AllowedIPs') : $conf['AllowedIPs'];
     $wg_pkeepalive = ($conf['PersistentKeepalive'] == '') ? getDefaultNetValue('wireguard','peer','PersistentKeepalive') : $conf['PersistentKeepalive'];
-    $wg_peerpubkey = $conf['PublicKey'];
- 
+
     // fetch service status
     exec('pidof wg-crypt-wg0 | wc -l', $wgstatus);
     $serviceStatus = $wgstatus[0] == 0 ? "down" : "up";
@@ -54,6 +61,9 @@ function DisplayWireGuardConfig()
             "wg_srvpubkey",
             "wg_srvport",
             "wg_srvipaddress",
+            "wg_srvdns",
+            "wg_pipaddress",
+            "wg_plistenport",
             "wg_peerpubkey",
             "wg_pendpoint",
             "wg_pallowedips",
@@ -76,18 +86,37 @@ function SaveWireGuardConfig($status)
     // Validate input
     if (isset($_POST['wg_srvport'])) {
         if (strlen($_POST['wg_srvport']) > 5 || !is_numeric($_POST['wg_srvport'])) {
-            $status->addMessage('Invalid value for port number', 'danger');
+            $status->addMessage('Invalid value for server local port', 'danger');
+            $good_input = false;
+        }
+    }
+    if (isset($_POST['wg_plistenport'])) {
+        if (strlen($_POST['wg_plistenport']) > 5 || !is_numeric($_POST['wg_plistenport'])) {
+            $status->addMessage('Invalid value for peer local port', 'danger');
             $good_input = false;
         }
     }
     if (isset($_POST['wg_srvipaddress'])) {
         if (!validateCidr($_POST['wg_srvipaddress'])) {
-            $status->addMessage('Invalid value for IP address', 'danger');
+            $status->addMessage('Invalid value for server IP address', 'danger');
+            $good_input = false;
+        }
+    }
+    if (isset($_POST['wg_pipaddress'])) {
+        if (!validateCidr($_POST['wg_pipaddress'])) {
+            $status->addMessage('Invalid value for peer IP address', 'danger');
+            $good_input = false;
+        }
+    }
+    if (isset($_POST['wg_srvdns'])) {
+        if (!filter_var($_POST['wg_srvdns'],FILTER_VALIDATE_IP)) {
+            $status->addMessage('Invalid value for DNS', 'danger');
             $good_input = false;
         }
     }
     if (isset($_POST['wg_pendpoint']) && strlen(trim($_POST['wg_pendpoint']) >0 )) {
-        if (!filter_var($_POST['wg_pendpoint'],FILTER_VALIDATE_IP)) {
+        $wg_pendpoint_seg = substr($_POST['wg_pendpoint'],0,strpos($_POST['wg_pendpoint'],':'));
+        if (!filter_var($wg_pendpoint_seg,FILTER_VALIDATE_IP)) {
             $status->addMessage('Invalid value for endpoint address', 'danger');
             $good_input = false;
         }
@@ -114,15 +143,13 @@ function SaveWireGuardConfig($status)
         $config[] = '[Interface]';
         $config[] = 'Address = '.$_POST['wg_srvipaddress'];
         $config[] = 'ListenPort = '.$_POST['wg_srvport'];
+        $config[] = 'DNS = '.$_POST['wg_srvdns'];
         $config[] = 'PrivateKey = '.$wg_srvprivkey;
         $config[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUp');
         $config[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
         $config[] = '';
         $config[] = '[Peer]';
         $config[] = 'PublicKey = '.$_POST['wg-peer'];
-        if ($_POST['wg_pendpoint'] !== '') {
-            $config[] = 'Endpoint = '.trim($_POST['wg_pendpoint']).':'.$_POST['wg_srvport'];
-        }
         $config[] = 'AllowedIPs = '.$_POST['wg_pallowedips'];
         if ($_POST['wg_pkeepalive'] !== '') {
             $config[] = 'PersistentKeepalive = '.trim($_POST['wg_pkeepalive']);
@@ -136,15 +163,17 @@ function SaveWireGuardConfig($status)
         // client1 (client.conf)
         $config = [];
         $config[] = '[Interface]';
-        if ($_POST['wg_pendpoint'] !== '') {
-            $config[] = 'Address = '.trim($_POST['wg_pendpoint']);
-        }
+        $config[] = 'Address = '.trim($_POST['wg_pipaddress']);
         $config[] = 'PrivateKey = '.$wg_peerprivkey;
+        $config[] = 'ListenPort = '.$_POST['wg_plistenport'];
         $config[] = '';
         $config[] = '[Peer]';
         $config[] = 'PublicKey = '.$_POST['wg-server'];
         $config[] = 'AllowedIPs = '.$_POST['wg_pallowedips'];
-        $config[] = 'Endpoint = '.$_POST['wg_srvipaddress'];
+        $config[] = 'Endpoint = '.$_POST['wg_pendpoint'];
+        if ($_POST['wg_pkeepalive'] !== '') {
+            $config[] = 'PersistentKeepalive = '.trim($_POST['wg_pkeepalive']);
+        }
         $config[] = '';
         $config = join(PHP_EOL, $config);
 
