@@ -11,7 +11,8 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
 }
 
 exec("sudo cat " .RASPI_WIREGUARD_PATH.'client.conf', $return);
-$peer_conf = qr_encode(implode($return));
+$peer_conf = implode(PHP_EOL,$return);
+$peer_conf.= PHP_EOL;
 $command = "qrencode -t svg -m 0 -o - " . mb_escapeshellarg($peer_conf);
 $svg = shell_exec($command);
 $etag = hash('sha256', $peer_conf);
