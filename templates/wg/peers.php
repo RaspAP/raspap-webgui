@@ -26,7 +26,21 @@
       </div>
 
       <div class="row">
-        <div class="form-group col-xs-3 col-sm-6 mt-3">
+        <div class="form-group col-xs-3 col-sm-3 mt-3">
+          <label for="code"><?php echo _("Local Port"); ?></label>
+          <input type="text" class="form-control" name="wg_plistenport" value="<?php echo htmlspecialchars($wg_plistenport, ENT_QUOTES); ?>" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="code"><?php echo _("IP Address"); ?></label>
+          <input type="text" class="form-control" name="wg_pipaddress" value="<?php echo htmlspecialchars($wg_pipaddress, ENT_QUOTES); ?>" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-xs-3 col-sm-6">
           <label for="code"><?php echo _("Endpoint address"); ?></label>
           <input type="text" class="form-control" name="wg_pendpoint" value="<?php echo htmlspecialchars($wg_pendpoint, ENT_QUOTES); ?>" />
         </div>

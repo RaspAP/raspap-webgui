@@ -41,6 +41,13 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="code"><?php echo _("DNS"); ?></label>
+            <input type="text" class="form-control" name="wg_srvdns" value="<?php echo htmlspecialchars($wg_srvdns, ENT_QUOTES); ?>" />
+          </div>
+        </div>
+
     </div>
   </div><!-- /.row -->
 </div><!-- /.tab-pane | settings tab -->
