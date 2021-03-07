@@ -3,18 +3,17 @@
     <div class="card">
       <div class="card-header">
         <div class="row">
-    <div class="col">
-      <i class="fas fa-tachometer-alt fa-fw mr-2"></i><?php echo _("Dashboard"); ?>
-    </div>
-    <div class="col">
-      <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
-        <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-        <span class="text service-status"><?php echo strtolower($apInterface) .' '. _($ifaceStatus) ?></span>
-      </button>
-    </div>
+          <div class="col">
+            <i class="fas fa-tachometer-alt fa-fw mr-2"></i><?php echo _("Dashboard"); ?>
+          </div>
+          <div class="col">
+            <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+              <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
+              <span class="text service-status"><?php echo $type_name .' '. _($ifaceStatus) ?></span>
+            </button>
+          </div>
         </div><!-- /.row -->
       </div><!-- /.card-header -->
-
       <div class="card-body">
         <div class="row">
 
@@ -33,25 +32,54 @@
           <div class="col-sm-6 align-items-stretch">
             <div class="card h-100">
               <div class="card-body wireless">
-                <h4><?php echo _("Wireless Client"); ?></h4>
+                <h4><?php echo _("$client_title"); ?></h4>
                 <div class="row justify-content-md-center">
-                <div class="col-md">
-                <div class="info-item"><?php echo _("Connected To"); ?></div><div><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Interface"); ?></div><div><?php echo htmlspecialchars($clientInterface); ?></div>
-                <div class="info-item"><?php echo _("AP Mac Address"); ?></div><div><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Bitrate"); ?></div><div><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Signal Level"); ?></div><div><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Transmit Power"); ?></div><div><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Frequency"); ?></div><div><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
-              </div>
-              <div class="col-md mt-2 d-flex justify-content-center">
-                <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
-                <div class="chart-container">
-                  <canvas id="divChartLinkQ"></canvas>
-                </div>
+                  <div class="col-md">
+                    <?php if ($clientinfo["type"] == "wlan") : // WIRELESS ?>
+                      <div class="info-item"><?php echo _("Connected To"); ?></div><div><?php echo htmlspecialchars($clientinfo["ssid"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("AP Mac Address"); ?></div><div><?php echo htmlspecialchars($clientinfo["ap-mac"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("Bitrate"); ?></div><div><?php echo htmlspecialchars($clientinfo["bitrate"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("Signal Level"); ?></div><div><?php echo htmlspecialchars($clientinfo["signal"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("Transmit Power"); ?></div><div><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("Frequency"); ?></div><div><?php echo htmlspecialchars($clientinfo["freq"]." MHz", ENT_QUOTES); ?></div>
+                    <?php elseif ($clientinfo["type"] == "phone" ) : // Smartphones (tethering over USB) ?>
+                      <div class="info-item"><?php echo _("Device"); ?></div><div><?php echo htmlspecialchars($clientinfo["vendor"]." ".$clientinfo["model"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo htmlspecialchars($clientinfo["ipaddress"], ENT_QUOTES); ?></div>
+                    <?php elseif ($clientinfo["type"] == "hilink" ) : // MOBILE DATA - ROUTER MODE (HILINK) ?>
+                      <?php 
+                          exec('ip route list |  sed -rn "s/default via (([0-9]{1,3}\.){3}[0-9]{1,3}).*dev '.$clientinfo["name"].'.*/\1/p"',$gw); // get gateway
+                          $gw=empty($gw) ? "" : $gw[0]; 
+                      ?>
+                      <div class="info-item"><?php echo _("Device"); ?></div><div><?php echo htmlspecialchars($clientinfo["model"], ENT_QUOTES)." (Hilink)"; ?></div>
+                      <div class="info-item"><?php echo _("Connection mode"); ?></div><div><?php echo htmlspecialchars($clientinfo["mode"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("Signal quality"); ?></div><div><?php echo htmlspecialchars($clientinfo["signal"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("Network"); ?></div><div><?php echo htmlspecialchars($clientinfo["operator"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("WAN IP"); ?></div><div><?php echo htmlspecialchars($clientinfo["ipaddress"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("Web-GUI"); ?></div><div><?php if(!empty($gw)) echo '<a href="http://'.$gw.'" >'.$gw."</a>"; ?></div>
+                    <?php elseif ($clientinfo["type"] == "ppp" ) : // MOBILE DATA MODEM) ?>
+                      <div class="info-item"><?php echo _("Device"); ?></div><div><?php echo htmlspecialchars($clientinfo["model"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("Connection mode"); ?></div><div><?php echo htmlspecialchars($clientinfo["mode"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("Signal strength"); ?></div><div><?php echo htmlspecialchars($clientinfo["signal"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("Network"); ?></div><div><?php echo htmlspecialchars($clientinfo["operator"], ENT_QUOTES); ?></div>
+                    <?php elseif  ($clientinfo["type"] == "eth" ) : // ETHERNET ?>
+                      <div class="info-item"><?php echo _("Device"); ?></div><div><?php echo htmlspecialchars($clientinfo["vendor"]." ".$clientinfo["model"], ENT_QUOTES); ?></div>
+                      <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo htmlspecialchars($clientinfo["ipaddress"], ENT_QUOTES); ?></div>
+                    <?php else : // NO CLIENT ?>
+                      <div class="info-item"><?php echo _("No Client device found"); ?></div>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col-md mt-2 d-flex justify-content-center">
+                    <?php 
+                      preg_match("/.*\((\s*\d*)\s*%\s*\)/",$clientinfo["signal"],$match);
+                      $strLinkQuality=array_key_exists(1,$match) ? $match[1] : 0;
+                    ?>
+                    <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
+                    <div class="chart-container">
+                      <canvas id="divChartLinkQ"></canvas>
+                    </div>
+                  </div>
                 </div><!--row-->
-              </div>
-             </div><!-- /.card-body -->
+              </div><!-- /.card-body -->
             </div><!-- /.card -->
           </div><!-- /.col-md-6 -->
           <div class="col-sm-6">
@@ -103,23 +131,21 @@
             </div><!-- /.card -->
           </div><!-- /.col-md-6 -->
         </div><!-- /.row -->
-
         <div class="col-lg-12 mt-3">
           <div class="row">
             <form action="wlan0_info" method="POST">
                 <?php echo CSRFTokenFieldTag() ?>
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
-                    <?php if (!$wlan0up) : ?>
-                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$clientInterface ?>" name="ifup_wlan0" />
+                    <?php if ($ifaceStatus == "down") : ?>
+                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$type_name ?>" name="ifup_wlan0" />
                     <?php else : ?>
-                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$clientInterface ?>"  name="ifdown_wlan0" />
+                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$type_name ?>"  name="ifdown_wlan0" />
                     <?php endif ?>
                 <?php endif ?>
               <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
             </form>
           </div>
         </div>
-
       </div><!-- /.card-body -->
       <div class="card-footer"><?php echo _("Information provided by ip and iw and from system"); ?></div>
     </div><!-- /.card -->
