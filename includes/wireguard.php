@@ -44,6 +44,9 @@ function DisplayWireGuardConfig()
     $wg_pendpoint = ($conf['Endpoint'] == '') ? getDefaultNetValue('wireguard','peer','Endpoint') : $conf['Endpoint'];
     $wg_pallowedips = ($conf['AllowedIPs'] == '') ? getDefaultNetValue('wireguard','peer','AllowedIPs') : $conf['AllowedIPs'];
     $wg_pkeepalive = ($conf['PersistentKeepalive'] == '') ? getDefaultNetValue('wireguard','peer','PersistentKeepalive') : $conf['PersistentKeepalive'];
+    if (sizeof($conf) >0) {
+        $wg_penabled = true;
+    }
 
     // fetch service status
     exec('pidof wg-crypt-wg0 | wc -l', $wgstatus);
@@ -56,12 +59,12 @@ function DisplayWireGuardConfig()
             "wg_state",
             "serviceStatus",
             "wg_log",
-            "endpoint_enable",
             "peer_id",
             "wg_srvpubkey",
             "wg_srvport",
             "wg_srvipaddress",
             "wg_srvdns",
+            "wg_penabled",
             "wg_pipaddress",
             "wg_plistenport",
             "wg_peerpubkey",

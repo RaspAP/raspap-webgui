@@ -368,6 +368,7 @@ window.addEventListener('load', function() {
     // Loop over them and prevent submission
     var validation = Array.prototype.filter.call(forms, function(form) {
         form.addEventListener('submit', function(event) {
+          //console.log(event.submitter);
           if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();

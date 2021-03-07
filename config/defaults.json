@@ -44,7 +44,7 @@
     },
     "peer": {
       "Address": [ "10.8.1.2/24" ],
-      "Endpoint": [ "10.8.2.1" ],
+      "Endpoint": [ "10.8.2.1:51820" ],
       "ListenPort": [ "21841" ],
       "AllowedIPs": ["10.8.2.0/24"],
       "PersistentKeepalive": [ "15" ]
