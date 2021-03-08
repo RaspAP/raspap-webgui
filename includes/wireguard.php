@@ -191,9 +191,9 @@ function SaveWireGuardConfig($status)
             $status->addMessage($line, 'info');
         }
         if ($return == 0) {
-            $status->addMessage('Wireguard configuration updated successfully', 'success');
+            $status->addMessage('WireGuard configuration updated successfully', 'success');
         } else {
-            $status->addMessage('Wireguard configuration failed to be updated.', 'danger');
+            $status->addMessage('WireGuard configuration failed to be updated', 'danger');
         }
     }
 }

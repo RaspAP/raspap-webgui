@@ -65,7 +65,7 @@
       <figure class="figure">
         <?php if ($wg_penabled == true ) : ?>
         <img src="app/img/wg-qr-code.php" class="figure-img img-fluid" alt="RaspAP Wifi QR code" style="width:100%;">
-        <figcaption class="figure-caption"><?php echo _("Scan this QR code with your client to connect to this RaspAP."); ?></figcaption>
+        <figcaption class="figure-caption"><?php echo _("Scan this QR code with your client to connect to this tunnel"); ?></figcaption>
         <?php endif; ?>
       </figure>
     </div>
