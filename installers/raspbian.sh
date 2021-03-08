@@ -17,6 +17,7 @@
 # -a, --adblock <flag>              Used with -y, --yes, sets Adblock install option (0=no install)
 # -r, --repo, --repository <name>   Overrides the default GitHub repo (raspap/raspap-webgui)
 # -b, --branch <name>               Overrides the default git branch (master)
+# -t, --token <accesstoken>         Token to access a private repository
 # -u, --upgrade                     Upgrades an existing installation to the latest release version
 # -i, --insiders                    Installs from the Insiders Edition (raspap/raspap-insiders)
 # -v, --version                     Outputs release info and exits
@@ -37,7 +38,6 @@ set -eo pipefail
 function _main() {
     # set defaults
     repo="raspap/raspap-webgui" # override with -r, --repo option
-
     _parse_params "$@"
     _setup_colors
     _log_output
@@ -50,6 +50,7 @@ function _parse_params() {
     upgrade=0
     ovpn_option=1
     adblock_option=1
+    acctoken=""
 
     while :; do
         case "${1-}" in
@@ -84,6 +85,9 @@ function _parse_params() {
             ;;
             -i|--insiders)
             repo="raspap/raspap-insiders"
+            ;;
+            -t|--token)
+            acctoken="$2"
             ;;
             -v|--version)
             _version
@@ -176,7 +180,9 @@ function _display_welcome() {
 function _get_release() {
     if [ "$repo" == "raspap/raspap-insiders" ]; then
         readonly RASPAP_LATEST="Insiders"
-        branch="master"
+        if [ -z ${branch} ]; then
+           branch="master"
+		fi
     else
         readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
     fi
@@ -214,6 +220,7 @@ function _update_system_packages() {
 
 # Fetch required installer functions
 function _load_installer() {
+
     # fetch latest release tag
     _get_release
 
@@ -223,14 +230,18 @@ function _load_installer() {
     fi
 
     UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
+    header=()
+    if [[ ! -z "$acctoken" ]]; then
+        header=(--header "Authorization: token $acctoken")
+    fi
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"
-        wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
+        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _install_certificate || _install_status 1 "Unable to install certificate"
     else
         source="common"
-        wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
+        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh  -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _install_raspap || _install_status 1 "Unable to install RaspAP"
     fi
