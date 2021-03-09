@@ -221,7 +221,6 @@ function _update_system_packages() {
 
 # Fetch required installer functions
 function _load_installer() {
-
     # fetch latest release tag
     _get_release
 
@@ -230,11 +229,13 @@ function _load_installer() {
         branch=$RASPAP_LATEST
     fi
 
-    UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
+    # add optional auth token header if defined with -t, --token option
     header=()
     if [[ ! -z "$acctoken" ]]; then
         header=(--header "Authorization: token $acctoken")
     fi
+
+    UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
