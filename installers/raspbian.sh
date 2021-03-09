@@ -178,7 +178,7 @@ function _display_welcome() {
     echo -e "The Quick Installer will guide you through a few easy steps${ANSI_RESET}\n\n"
 }
 
-# Fetch latest release from GitHub API
+# Fetch latest release from GitHub or RaspAP Installer API
 function _get_release() {
     readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
     if [ "$insiders" == 1 ]; then
