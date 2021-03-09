@@ -17,7 +17,7 @@
 # -a, --adblock <flag>              Used with -y, --yes, sets Adblock install option (0=no install)
 # -r, --repo, --repository <name>   Overrides the default GitHub repo (raspap/raspap-webgui)
 # -b, --branch <name>               Overrides the default git branch (master)
-# -t, --token <accesstoken>         Token to access a private repository
+# -t, --token <accesstoken>         Specify a GitHub token to access a private repository
 # -u, --upgrade                     Upgrades an existing installation to the latest release version
 # -i, --insiders                    Installs from the Insiders Edition (raspap/raspap-insiders)
 # -v, --version                     Outputs release info and exits
@@ -134,7 +134,7 @@ OPTIONS:
 -a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
 -r, --repo, --repository <name>     Overrides the default GitHub repo (raspap/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
--t, --token <accesstoken>           Token to access a private repository
+-t, --token <accesstoken>           Specify a GitHub token to access a private repository
 -u, --upgrade                       Upgrades an existing installation to the latest release version
 -i, --insiders                      Installs from the Insiders Edition (raspap/raspap-insiders)
 -v, --version                       Outputs release info and exits
@@ -243,7 +243,7 @@ function _load_installer() {
         _install_certificate || _install_status 1 "Unable to install certificate"
     else
         source="common"
-        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh  -O /tmp/raspap_${source}.sh
+        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _install_raspap || _install_status 1 "Unable to install RaspAP"
     fi
