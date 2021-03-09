@@ -17,9 +17,11 @@
 # -a, --adblock <flag>              Used with -y, --yes, sets Adblock install option (0=no install)
 # -r, --repo, --repository <name>   Overrides the default GitHub repo (raspap/raspap-webgui)
 # -b, --branch <name>               Overrides the default git branch (master)
-# -h, --help                        Outputs usage notes and exits
+# -t, --token <accesstoken>         Token to access a private repository
 # -u, --upgrade                     Upgrades an existing installation to the latest release version
+# -i, --insiders                    Installs from the Insiders Edition (raspap/raspap-insiders)
 # -v, --version                     Outputs release info and exits
+# -h, --help                        Outputs usage notes and exits
 #
 # Depending on options passed to the installer, ONE of the following
 # additional shell scripts will be downloaded and sourced:
@@ -35,8 +37,7 @@ set -eo pipefail
 
 function _main() {
     # set defaults
-    repo="raspap/raspap-webgui" # override with -r, --repo option
-
+    repo="RaspAP/raspap-webgui" # override with -r, --repo option
     _parse_params "$@"
     _setup_colors
     _log_output
@@ -49,6 +50,8 @@ function _parse_params() {
     upgrade=0
     ovpn_option=1
     adblock_option=1
+    insiders=0
+    acctoken=""
 
     while :; do
         case "${1-}" in
@@ -80,6 +83,12 @@ function _parse_params() {
             ;;
             -u|--upgrade)
             upgrade=1
+            ;;
+            -i|--insiders)
+            insiders=1 
+            ;;
+            -t|--token)
+            acctoken="$2"
             ;;
             -v|--version)
             _version
@@ -125,7 +134,9 @@ OPTIONS:
 -a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
 -r, --repo, --repository <name>     Overrides the default GitHub repo (raspap/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
+-t, --token <accesstoken>           Token to access a private repository
 -u, --upgrade                       Upgrades an existing installation to the latest release version
+-i, --insiders                      Installs from the Insiders Edition (raspap/raspap-insiders)
 -v, --version                       Outputs release info and exits
 -h, --help                          Outputs usage notes and exits
 
@@ -139,13 +150,16 @@ Examples:
     Invoke installer remotely, run non-interactively with option flags:
     curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --adblock 0
 
+    Invoke remotely, uprgrade an existing install to the Insiders Edition:
+    curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders
+
 EOF
     exit
 }
 
 function _version() {
     _get_release
-    echo -e "RaspAP v${RASPAP_LATEST} - Simple AP setup & WiFi management for Debian-based devices"
+    echo -e "RaspAP v${RASPAP_RELEASE} - Simple wireless AP setup & management for Debian-based devices"
     exit
 }
 
@@ -159,14 +173,20 @@ function _display_welcome() {
     echo -e " 88     88 88.  .88       88 88.  .88 88     88   88"
     echo -e " dP     dP  88888P8  88888P  88Y888P  88     88   dP"
     echo -e "                             88"
-    echo -e "                             dP       version ${RASPAP_LATEST}"
+    echo -e "                             dP       version ${RASPAP_RELEASE}"
     echo -e "${ANSI_GREEN}"
     echo -e "The Quick Installer will guide you through a few easy steps${ANSI_RESET}\n\n"
 }
 
-# Fetch latest release from GitHub API
+# Fetch latest release from GitHub or RaspAP Installer API
 function _get_release() {
     readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+    if [ "$insiders" == 1 ]; then
+        RASPAP_INSIDERS_LATEST=$(curl -s "https://install.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")' )
+        RASPAP_RELEASE="${RASPAP_INSIDERS_LATEST} Insiders"
+    else
+        RASPAP_RELEASE="${RASPAP_LATEST}"
+    fi
 }
 
 # Outputs a RaspAP Install log line
@@ -201,6 +221,7 @@ function _update_system_packages() {
 
 # Fetch required installer functions
 function _load_installer() {
+
     # fetch latest release tag
     _get_release
 
@@ -210,14 +231,18 @@ function _load_installer() {
     fi
 
     UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
+    header=()
+    if [[ ! -z "$acctoken" ]]; then
+        header=(--header "Authorization: token $acctoken")
+    fi
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"
-        wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
+        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _install_certificate || _install_status 1 "Unable to install certificate"
     else
         source="common"
-        wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
+        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh  -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _install_raspap || _install_status 1 "Unable to install RaspAP"
     fi

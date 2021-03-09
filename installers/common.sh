@@ -28,7 +28,12 @@ readonly raspap_network="$raspap_dir/networking/"
 readonly rulesv4="/etc/iptables/rules.v4"
 readonly notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
 webroot_dir="/var/www/html"
-git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
+
+if [ "$insiders" == 1 ]; then
+    repo="RaspAP/raspap-insiders"
+    branch=${RASPAP_INSIDERS_LATEST}
+fi
+git_source_url="https://github.com/$repo"
 
 # NOTE: all the below functions are overloadable for system-specific installs
 function _install_raspap() {
@@ -78,7 +83,7 @@ function _config_installation() {
     fi
     echo "${opt[1]} lighttpd directory: ${webroot_dir}"
     if [ "$upgrade" == 1 ]; then
-        echo "This will upgrade your existing install to version ${RASPAP_LATEST}"
+        echo "This will upgrade your existing install to version ${RASPAP_RELEASE}"
         echo "Your configuration will NOT be changed"
     fi
     echo -n "Complete ${opt[2]} with these values? [Y/n]: "
@@ -171,6 +176,8 @@ function _create_raspap_directories() {
     # Create a directory to store networking configs
     echo "Creating $raspap_dir/networking"
     sudo mkdir -p "$raspap_dir/networking"
+    echo "Changing file ownership of $raspap_dir"
+    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 }
 
 # Generate hostapd logging and service control scripts
@@ -209,13 +216,29 @@ function _install_lighttpd_configs() {
 
     # Copy config files
     echo "Copying 50-raspap-router.conf to /etc/lighttpd/conf-available"
-    sudo cp "$webroot_dir/config/50-raspap-router.conf" "/etc/lighttpd/conf-available" || _install_status 1 "Unable to copy lighttpd config file."
+
+    CONFSRC="$webroot_dir/config/50-raspap-router.conf"
+    LTROOT=$(grep "server.document-root" /etc/lighttpd/lighttpd.conf | awk -F '=' '{print $2}' | tr -d " \"")
+
+    # compare values and get difference
+    HTROOT=${webroot_dir/$LTROOT}
+
+    # remove trailing slash if present
+    HTROOT=$(echo "$HTROOT" | sed -e 's/\/$//')
+
+    # substitute values
+    awk "{gsub(\"/REPLACE_ME\",\"$HTROOT\")}1" $CONFSRC > /tmp/50-raspap-router.conf
+
+    # copy into place
+    sudo cp /tmp/50-raspap-router.conf /etc/lighttpd/conf-available/ || _install_status 1 "Unable to copy lighttpd config file into place."
+
     # link into conf-enabled
-    echo "Creating link to /etc/lighttpd/conf-enabled"|| _install_status 1 "Unable to copy lighttpd config file."
-    sudo ln -s "/etc/lighttpd/conf-available/50-raspap-router.conf" "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_status 1 "Unable to symlink lighttpd config file."
+    echo "Creating link to /etc/lighttpd/conf-enabled"
+    sudo ln -s "/etc/lighttpd/conf-available/50-raspap-router.conf" "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_status 1 "Unable to symlink lighttpd config file (this is normal if the link already exists)."
     sudo systemctl restart lighttpd.service || _install_status 1 "Unable to restart lighttpd"
     _install_status 0
 }
+
 
 # Prompt to install ad blocking
 function _prompt_install_adblock() {
@@ -300,19 +323,21 @@ function _prompt_install_openvpn() {
 
 # Prompt to install WireGuard
 function _prompt_install_wireguard() {
-    _install_log "Configure WireGuard support"
-    echo -n "Install WireGuard and enable VPN tunnel configuration? [Y/n]: "
-    if [ "$assume_yes" == 0 ]; then
-        read answer < /dev/tty
-        if [ "$answer" != "${answer#[Nn]}" ]; then
-            echo -e
-        else
+    if [ "$insiders" == 1 ]; then
+        _install_log "Configure WireGuard support"
+        echo -n "Install WireGuard and enable VPN tunnel configuration? [Y/n]: "
+        if [ "$assume_yes" == 0 ]; then
+            read answer < /dev/tty
+            if [ "$answer" != "${answer#[Nn]}" ]; then
+                echo -e
+            else
+                _install_wireguard
+            fi
+        elif [ "$wg_option" == 1 ]; then
             _install_wireguard
+        else
+            echo "(Skipped)"
         fi
-    elif [ "$wg_option" == 1 ]; then
-        _install_wireguard
-    else
-        echo "(Skipped)"
     fi
 }
 

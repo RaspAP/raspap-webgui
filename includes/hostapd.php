@@ -306,8 +306,8 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         if ($bridgedEnable == 1) {
             $config = array_keys(getDefaultNetOpts('dhcp'));
             $config[] = PHP_EOL.'# RaspAP br0 configuration';
-            $config[] = 'interface br0';
             $config[] = 'denyinterfaces eth0 wlan0';
+            $config[] = 'interface br0';
             $config[] = PHP_EOL;
         } elseif ($wifiAPEnable == 1) {
             $config = array_keys(getDefaultNetOpts('dhcp'));

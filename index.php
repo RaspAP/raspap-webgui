@@ -14,7 +14,7 @@
  * @author  Lawrence Yau <sirlagz@gmail.com>
  * @author  Bill Zimmerman <billzimmerman@gmail.com>
  * @license GNU General Public License, version 3 (GPL-3.0)
- * @version 2.7
+ * @version 2.7.1
  * @link    https://github.com/raspap/raspap-insiders/
  * @link    https://raspap.com/
  * @see     http://sirlagz.net/2013/02/08/raspap-webgui/
@@ -50,7 +50,7 @@ require_once 'includes/torproxy.php';
 
 $config = getConfig();
 $output = $return = 0;
-$page = $_SERVER['REQUEST_URI'];
+$page = $_SERVER['PATH_INFO'];
 
 $theme_url = getThemeOpt();
 $toggleState = getSidebarState();

@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/DpgvLIO.png)
-[![Release 2.7](https://img.shields.io/badge/release-v2.7-green)](https://github.com/raspap/raspap-insiders/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/github/raspap/raspap-webgui/](https://api.travis-ci.org/RaspAP/raspap-webgui.svg) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
+[![Release 2.7.1](https://img.shields.io/badge/release-v2.7.1-green)](https://github.com/raspap/raspap-insiders/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Financial Contributors on Open Collective](https://opencollective.com/raspap/all/badge.svg?label=financial+contributors)](https://opencollective.com/raspap) ![https://travis-ci.com/github/raspap/raspap-webgui/](https://api.travis-ci.org/RaspAP/raspap-webgui.svg) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
 
 Welcome to **RaspAP Insiders**. You, the members of the Insiders community, support the sponsorware release model, which means that new features are first exclusively released to sponsors as part of Insiders. Read on for details about how this strategy works—and *thank you* for joining us on this journey.
 
@@ -30,6 +30,8 @@ When backers were asked which feature they'd most like to see added to RaspAP, t
 ✅ Manage OpenVPN client configs  
 ✅ OpenVPN service logging  
 ✅ Night mode toggle  
+✅ Restrict network to static clients  
+✅ WireGuard support  
 ⚙️ Traffic shaping (in progress)  
 
 Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](https://github.com/orgs/RaspAP/teams/insiders/discussions) and let us know!
@@ -41,17 +43,19 @@ Following is a list of funding targets. When a funding target is reached, the fe
 ✅ Manage OpenVPN client configs  
 ✅ OpenVPN service logging  
 ✅ Night mode toggle  
-⚙️ Traffic shaping (in progress)  
+✅ Restrict network to static clients  
+✅ WireGuard support  
+⚙️ Traffic shaping (in progress) 
 
 ## Frequently asked questions
 
 ### Upgrading
 *I have an existing RaspAP installation. How do I upgrade to Insiders?*
 
-Upgrading is easy. Simply invoke the Quick Installer with the `--upgrade` switch, specifying the private Insiders repo, like so:
+Upgrading is easy. Simply invoke the Quick Installer with the --upgrade switch, specifying the private Insiders Edition, like so:
 
 ```
-curl -sL https://install.raspap.com | bash -s -- --upgrade --repo raspap/raspap-insiders
+curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders
 ```
 
 If you haven't [added SSH keys to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) you will be prompted to authenticate. If so, just enter your GitHub credentials during the install:
