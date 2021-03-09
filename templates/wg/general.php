@@ -4,13 +4,13 @@
     <div class="col-md-6">
       <h4 class="mt-3"><?php echo _("Tunnel settings"); ?></h4>
         <div class="input-group">
-          <input type="hidden" name="tunnel-enable" value="0">
           <div class="custom-control custom-switch">
-            <input class="custom-control-input" id="tunnel-enable" type="checkbox" name="tunnel-enable" value="1" <?php echo $enabled ? ' checked="checked"' : "" ?> aria-describedby="tunnel-description">
-          <label class="custom-control-label" for="tunnel-enable"><?php echo _("Enable tunnel") ?></label>
+            <input class="custom-control-input" id="server_enabled" type="checkbox" name="wg_senabled" value="1" <?php echo $wg_senabled ? ' checked="checked"' : "" ?> aria-describedby="server-description">
+          <label class="custom-control-label" for="server_enabled"><?php echo _("Enable server") ?></label>
         </div>
         <p id="wg-description">
           <small><?php echo _("Enable this option to encrypt traffic by creating a tunnel between RaspAP and configured peers.") ?></small>
+          <small><?php echo _("This option adds <code>wg0.conf</code> to the WireGuard configuration.") ?></small>
         </p>
         </div>
 

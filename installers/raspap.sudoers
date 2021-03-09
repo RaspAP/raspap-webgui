@@ -50,4 +50,6 @@ www-data ALL=(ALL) NOPASSWD:/bin/systemctl * wg-quick@wg0
 www-data ALL=(ALL) NOPASSWD:/usr/bin/wg
 www-data ALL=(ALL) NOPASSWD:/bin/cat /etc/wireguard/*.conf
 www-data ALL=(ALL) NOPASSWD:/bin/cat /etc/wireguard/wg-*.key
+www-data ALL=(ALL) NOPASSWD:/bin/rm /etc/wireguard/*.conf
+www-data ALL=(ALL) NOPASSWD:/bin/rm /etc/wireguard/wg-*.key
 

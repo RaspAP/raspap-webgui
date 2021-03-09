@@ -4,12 +4,15 @@
     <div class="col-md-6">
       <h4 class="mt-3"><?php echo _("Peer"); ?></h4>
         <div class="input-group">
-          <input type="hidden" name="endpoint-enable" value="0">
           <input type="hidden" name="peer_id" value="1">
           <div class="custom-control custom-switch">
-            <input class="custom-control-input" id="endpoint_enable" type="checkbox" name="endpoint-enable" value="1" <?php echo $enabled ? ' checked="checked"' : "" ?> aria-describedby="endpoint-description">
-          <label class="custom-control-label" for="endpoint_enable"><?php echo _("Enable endpoint") ?></label>
+            <input class="custom-control-input" id="peer_enabled" type="checkbox" name="wg_penabled" value="1" <?php echo $wg_penabled ? ' checked="checked"' : "" ?> aria-describedby="endpoint-description">
+          <label class="custom-control-label" for="peer_enabled"><?php echo _("Enable peer") ?></label>
         </div>
+        <p id="wg-description">
+          <small><?php echo _("Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer.") ?></small>
+          <small><?php echo _("This option adds <code>client.conf</code> to the WireGuard configuration.") ?></small>
+        </p>
      </div>
 
       <div class="row">
