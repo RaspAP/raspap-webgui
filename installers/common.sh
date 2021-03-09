@@ -28,7 +28,12 @@ readonly raspap_network="$raspap_dir/networking/"
 readonly rulesv4="/etc/iptables/rules.v4"
 readonly notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
 webroot_dir="/var/www/html"
-git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
+
+if [ "$insiders" == 1 ]; then
+    repo="RaspAP/raspap-insiders"
+    branch=${RASPAP_INSIDERS_LATEST}
+fi
+git_source_url="https://github.com/$repo"
 
 # NOTE: all the below functions are overloadable for system-specific installs
 function _install_raspap() {
@@ -50,6 +55,7 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
+    _prompt_install_wireguard
     _patch_system_files
     _install_complete
 }
@@ -77,7 +83,7 @@ function _config_installation() {
     fi
     echo "${opt[1]} lighttpd directory: ${webroot_dir}"
     if [ "$upgrade" == 1 ]; then
-        echo "This will upgrade your existing install to version ${RASPAP_LATEST}"
+        echo "This will upgrade your existing install to version ${RASPAP_RELEASE}"
         echo "Your configuration will NOT be changed"
     fi
     echo -n "Complete ${opt[2]} with these values? [Y/n]: "
@@ -170,6 +176,8 @@ function _create_raspap_directories() {
     # Create a directory to store networking configs
     echo "Creating $raspap_dir/networking"
     sudo mkdir -p "$raspap_dir/networking"
+    echo "Changing file ownership of $raspap_dir"
+    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 }
 
 # Generate hostapd logging and service control scripts
@@ -311,6 +319,49 @@ function _prompt_install_openvpn() {
     else
         echo "(Skipped)"
     fi
+}
+
+# Prompt to install WireGuard
+function _prompt_install_wireguard() {
+    if [ "$insiders" == 1 ]; then
+        _install_log "Configure WireGuard support"
+        echo -n "Install WireGuard and enable VPN tunnel configuration? [Y/n]: "
+        if [ "$assume_yes" == 0 ]; then
+            read answer < /dev/tty
+            if [ "$answer" != "${answer#[Nn]}" ]; then
+                echo -e
+            else
+                _install_wireguard
+            fi
+        elif [ "$wg_option" == 1 ]; then
+            _install_wireguard
+        else
+            echo "(Skipped)"
+        fi
+    fi
+}
+
+# Install Wireguard from the Debian unstable distro
+function _install_wireguard() {
+    _install_log "Configure WireGuard support"
+    if [ "$OS" == "Raspbian" ]; then
+        echo "Installing raspberrypi-kernel-headers"
+        sudo apt-get install $apt_option raspberrypi-kernel-headers || _install_status 1 "Unable to install raspberrypi-kernel-headers"
+    fi
+    echo "Installing WireGuard from Debian unstable distro"
+    echo "Adding Debian distro"
+    echo "deb http://deb.debian.org/debian/ unstable main" | sudo tee --append /etc/apt/sources.list.d/unstable.list || _install_status 1 "Unable to append to sources.list"
+    sudo apt-get install dirmngr || _install_status 1 "Unable to install dirmngr"
+    echo "Adding Debian distro keys"
+    sudo wget -q -O - https://ftp-master.debian.org/keys/archive-key-$(lsb_release -sr).asc | sudo apt-key add - || _install_status 1 "Unable to add keys"
+    printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' | sudo tee --append /etc/apt/preferences.d/limit-unstable || _install_status 1 "Unable to append to preferences.d"
+    echo "Installing WireGuard"
+    sudo apt-get update && sudo apt-get install $apt_option wireguard || _install_status 1 "Unable to install wireguard"
+    echo "Enabling wg-quick@wg0"
+    sudo systemctl enable wg-quick@wg0 || _install_status 1 "Failed to enable wg-quick service"
+    echo "Enabling WireGuard management option"
+    sudo sed -i "s/\('RASPI_WIREGUARD_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
+    _install_status 0
 }
 
 # Install openvpn and enable client configuration option
