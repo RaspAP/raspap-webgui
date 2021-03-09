@@ -16,6 +16,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
 
  - [Prerequisites](#prerequisites)
  - [Quick installer](#quick-installer)
+ - [WireGuard support](#wireguard-support)
  - [Ad Blocking](#ad-blocking)
  - [Bridged AP](#bridged-ap)
  - [Simultaneous AP and Wifi client](#simultaneous-ap-and-wifi-client)
@@ -65,6 +66,16 @@ configured as an access point as follows:
 
 Please [read this](https://docs.raspap.com/issues/) before reporting an issue.
 
+## WireGuard support
+
+![](https://i.imgur.com/5YDv37e.png)
+
+WireGuard® is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography. It aims to be considerably more performant than OpenVPN, and is generally regarded as the most secure, easiest to use, and simplest VPN solution for modern Linux distributions.
+
+WireGuard may be optionally installed by the [Quick Installer](https://docs.raspap.com/quick/). Once this is done, you can manage local (server) settings, create a peer configuration and control the `wg-quick` service with RaspAP.
+
+Details are [provided here](https://docs.raspap.com/wireguard/).
+
 ## Ad Blocking
 This feature uses DNS blacklisting to block requests for ads, trackers and other undesirable hosts. To enable ad blocking, simply respond to the prompt during the installation. As a beta release, we encourage testing and feedback from users of RaspAP.
 
@@ -72,8 +83,6 @@ Details are [provided here](https://docs.raspap.com/adblock/).
 
 ## Bridged AP
 By default RaspAP configures a routed AP for your clients to connect to. A bridged AP configuration is also possible. Slide the **Bridged AP mode** toggle under the **Advanced** tab of **Configure hotspot**, then save and restart the hotspot.
-
-![](https://i.imgur.com/J5VKSay.png)
 
 **Note:** In bridged mode, all routing capabilities are handled by your upstream router. Because your router assigns IP addresses to your device's hotspot and its clients, you might not be able to reach the RaspAP web interface from the default `10.3.141.1` address. Instead use your RPi's hostname followed by `.local` to access the RaspAP web interface. With Raspbian default settings, this should look like `raspberrypi.local`. Alternate methods are [discussed here](https://www.raspberrypi.org/documentation/remote-access/ip-address.md).
 
@@ -85,7 +94,7 @@ RaspAP lets you create an AP with a Wifi client configuration, often called [AP-
 **Note:** This option is disabled until you configure your system as a wireless client. For a device operating in [managed mode](https://docs.raspap.com/faq/#headless) without an `eth0` connection, this configuration must be enabled [_before_ a reboot](https://docs.raspap.com/ap-sta/). 
 
 ## Support us
-RaspAP is free software, but powered by your support. If you find RaspAP useful for your personal or commercial projects, [become a GitHub sponsor](https://github.com/sponsors/RaspAP/) and get access to exclusive features in the [Insiders Edition](https://github.com/sponsors/RaspAP/).
+RaspAP is free software, but powered by _your_ support. If you find RaspAP useful for your personal or commercial projects, [become an Insider](https://github.com/sponsors/RaspAP/) and get early access to exclusive features in the [Insiders Edition](https://docs.raspap.com/insiders/).
 
 ## Manual installation
 Detailed manual setup instructions are provided [on our documentation site](https://docs.raspap.com/manual/).
@@ -155,7 +164,7 @@ Development of RaspAP is made possible thanks to a sponsorware release model. Th
 
 [![](https://i.imgur.com/azMTmuP.png)](https://github.com/sponsors/RaspAP/)  
 
-Learn more about [how sponsorship works](https://github.com/sponsors/RaspAP), and how easy it is to get access to Insiders.
+Learn more about [how sponsorship works](https://docs.raspap.com/insiders/#how-sponsorship-works), and how easy it is to get access to Insiders.
 
 ## License
 See the [LICENSE](./LICENSE) file.
