@@ -855,11 +855,14 @@ msgstr "Invalid custom host found on line "
 msgid "Tunnel settings"
 msgstr "Tunnel settings"
 
-msgid "Enable tunnel"
-msgstr "Enable tunnel"
+msgid "Enable server"
+msgstr "Enable server"
 
 msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and configured peers."
 msgstr "Enable this option to encrypt traffic by creating a tunnel between RaspAP and configured peers."
+
+msgid "This option adds <code>wg0.conf</code> to the WireGuard configuration."
+msgstr "This option adds <code>wg0.conf</code> to the WireGuard configuration."
 
 msgid "Local public key"
 msgstr "Local public key"
@@ -876,8 +879,14 @@ msgstr "DNS"
 msgid "Peer"
 msgstr "Peer"
 
-msgid "Enable endpoint"
-msgstr "Enable endpoint"
+msgid "Enable peer"
+msgstr "Enable peer"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "This option adds <code>client.conf</code> to the WireGuard configuration."
 
 msgid "Peer public key"
 msgstr "Peer public key"
