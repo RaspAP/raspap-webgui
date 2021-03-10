@@ -130,8 +130,8 @@ function setupBtns() {
     $('#btnSummaryRefresh').click(function(){getAllInterfaces();});
     $('.intsave').click(function(){
         var int = $(this).data('int');
-        saveNetDeviceSettings(int);
-        saveNetworkSettings(int);
+        var opts = $(this).data('opts');
+        saveNetDeviceSettings(int,opts);
     });
     $('.intapply').click(function(){
         applyNetworkSettings();

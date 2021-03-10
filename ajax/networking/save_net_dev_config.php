@@ -88,7 +88,7 @@ if (isset($_POST['interface'])) {
       $cfg['static'] = $_POST[$int.'-static'];
       $cfg['failover'] = $_POST[$int.'-failover'];
     }
-    if (write_php_ini($cfg, RASPI_CONFIG_NETWORKING.'/'.$file)) {
+    if (write_php_ini($cfg, RASPI_CONFIG.'/networking/'.$file)) {
         $jsonData = ['return'=>0,'output'=>['Successfully Updated Network Configuration']];
     } else {
         $jsonData = ['return'=>1,'output'=>['Error saving network configuration to file']];

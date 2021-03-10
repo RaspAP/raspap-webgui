@@ -96,12 +96,12 @@ function DisplayDashboard(&$extraFooterScripts)
     $clientinfo=array("name"=>"none","type"=>-1,"connected"=>"n");
     $raspi_client=$_SESSION['wifi_client_interface'];
     load_client_config();
-    $clients = getClients(false);
-    if(!empty($clients)) {
-        $ncl=$clients["clients"];
+    $client_devs = getClients(false);
+    if(!empty($client_devs)) {
+        $ncl=$client_devs["clients"];
         if($ncl > 0) {
             $ty=-1;
-            foreach($clients["device"] as $dev) {
+            foreach($client_devs["device"] as $dev) {
                if(($id=array_search($dev["type"],$_SESSION["net-device-types"])) > $ty && !$dev["isAP"]) {
                  $ty=$id;
                  $clientinfo=$dev;
@@ -162,6 +162,7 @@ function DisplayDashboard(&$extraFooterScripts)
         $client_interface = $clientinfo["name"];
     }
     $apInterface = $_SESSION['ap_interface'];
+	$clientInterface = $raspi_client;
     $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
     if (getBridgedState()) {
         $moreLink = "hostapd_conf";

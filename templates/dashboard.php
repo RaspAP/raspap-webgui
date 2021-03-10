@@ -107,7 +107,7 @@
                         <?php endif; ?>
                         <?php foreach (array_slice($clients,0, 2) as $client) : ?>
                         <tr>
-                          <?php if ($arrHostapdConf['BridgedEnable'] == 1): ?>
+                          <?php if ($bridgedEnable == 1): ?>
                             <td><?php echo htmlspecialchars($client, ENT_QUOTES) ?></td>
                           <?php else : ?>
                             <?php $props = explode(' ', $client) ?>

@@ -728,6 +728,8 @@ function getNightmode(){
     } else {
         return false;
     }
+}	
+	
 // search array for matching string and return only first matching group
 function preg_only_match($pat,$haystack) {
   $match = "";
@@ -738,5 +740,6 @@ function preg_only_match($pat,$haystack) {
   }
   return $match;
 }
-}
+
+?>
 

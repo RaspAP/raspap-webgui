@@ -25,6 +25,8 @@ define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
 define('RASPI_ACCESS_CHECK_IP', '1.1.1.1');
 define('RASPI_ACCESS_CHECK_DNS', 'one.one.one.one');
+define('RASPI_CLIENT_CONFIG_PATH', '/etc/raspap/networking/client_udev_prototypes.json');
+define('RASPI_CLIENT_SCRIPT_PATH', '/usr/local/sbin');
 
 // Constant for the 5GHz wireless regulatory domain
 define('RASPI_5GHZ_ISO_ALPHA2', array('NL','US'));

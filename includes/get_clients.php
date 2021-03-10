@@ -137,6 +137,10 @@ function getClients($simple=true) {
               break;
            default:
         }
+        if (!isset($cl["device"][$i]["signal"])){
+           $cl["device"][$i]["signal"]= $cl["device"][$i]["connected"] == "n" ? "-100 dB (0%)": "0 dB (100%)";;
+        }
+        if (!isset($cl["device"][$i]["isAP"])) $cl["device"][$i]["isAP"]=false;
       }
     }
     return $cl;
