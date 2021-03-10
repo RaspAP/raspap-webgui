@@ -640,9 +640,10 @@ function _optimize_php() {
 
 function _install_complete() {
     _install_log "Installation completed"
-    echo "Join RaspAP Insiders for access to exclusive features:"
+    echo "Join RaspAP Insiders for early access to exclusive features!"
     echo -e "${ANSI_RASPBERRY}"
-    echo "> https://github.com/sponsors/RaspAP"
+    echo "> https://docs.raspap.com/insiders/"
+    echo "> https://github.com/sponsors/RaspAP/"
     echo -e "${ANSI_RESET}"
     if [ "$assume_yes" == 0 ]; then
         # Prompt to reboot if wired ethernet (eth0) is connected.
