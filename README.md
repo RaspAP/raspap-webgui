@@ -17,6 +17,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [Prerequisites](#prerequisites)
  - [Quick installer](#quick-installer)
  - [WireGuard support](#wireguard-support)
+ - [OpenVPN support](#openvpn-support)
  - [Ad Blocking](#ad-blocking)
  - [Bridged AP](#bridged-ap)
  - [Simultaneous AP and Wifi client](#simultaneous-ap-and-wifi-client)
@@ -26,7 +27,6 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [Supported operating systems](#supported-operating-systems)
  - [Multilingual support](#multilingual-support)
  - [HTTPS support](#https-support)
- - [OpenVPN support](#openvpn-support)
  - [How to contribute](#how-to-contribute)
  - [Reporting issues](#reporting-issues)
  - [License](#license)
@@ -75,6 +75,14 @@ WireGuard® is an extremely simple yet fast and modern VPN that utilizes state-o
 WireGuard may be optionally installed by the [Quick Installer](https://docs.raspap.com/quick/). Once this is done, you can manage local (server) settings, create a peer configuration and control the `wg-quick` service with RaspAP.
 
 Details are [provided here](https://docs.raspap.com/wireguard/).
+
+## OpenVPN support
+OpenVPN may be optionally installed by the Quick Installer. Once this is done, you can [manage client configurations](https://docs.raspap.com/openvpn/) and the `openvpn-client` service with RaspAP.
+
+To configure an OpenVPN client, upload a valid .ovpn file and, optionally, specify your login credentials. RaspAP will store your client configuration and add firewall rules to forward traffic from OpenVPN's `tun0` interface to your configured wireless interface. 
+
+See our [OpenVPN documentation](https://docs.raspap.com/openvpn/) for more information.
+
 
 ## Ad Blocking
 This feature uses DNS blacklisting to block requests for ads, trackers and other undesirable hosts. To enable ad blocking, simply respond to the prompt during the installation. As a beta release, we encourage testing and feedback from users of RaspAP.
@@ -133,13 +141,6 @@ curl -sL https://install.raspap.com | bash -s -- --cert
 **Note**: this only installs mkcert and generates an SSL certificate with the input you provide. It does *not* (re)install RaspAP.
 
 More information on SSL certificates and HTTPS support is available [in our documentation](https://docs.raspap.com/ssl-quick/). 
-
-## OpenVPN support
-OpenVPN may be optionally installed by the Quick Installer. Once this is done, you can manage client configuration and the `openvpn-client` service with RaspAP.
-
-To configure an OpenVPN client, upload a valid .ovpn file and, optionally, specify your login credentials. RaspAP will store your client configuration and add firewall rules to forward traffic from OpenVPN's `tun0` interface to your configured wireless interface. 
-
-**Note**: this feature is currently in beta. Please [read this](https://docs.raspap.com/faq/#openvpn-fails) before reporting an issue.
 
 ## How to contribute
 1. Fork the project in your account and create a new branch: `your-great-feature`.
