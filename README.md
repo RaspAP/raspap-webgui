@@ -77,6 +77,9 @@ WireGuard may be optionally installed by the [Quick Installer](https://docs.rasp
 Details are [provided here](https://docs.raspap.com/wireguard/).
 
 ## OpenVPN support
+
+![](https://i.imgur.com/ta7tCon.png)
+
 OpenVPN may be optionally installed by the Quick Installer. Once this is done, you can [manage client configurations](https://docs.raspap.com/openvpn/) and the `openvpn-client` service with RaspAP.
 
 To configure an OpenVPN client, upload a valid .ovpn file and, optionally, specify your login credentials. RaspAP will store your client configuration and add firewall rules to forward traffic from OpenVPN's `tun0` interface to your configured wireless interface. 
