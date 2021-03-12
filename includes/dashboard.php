@@ -92,23 +92,13 @@ function DisplayDashboard(&$extraFooterScripts)
         $strTxBytes .= getHumanReadableDatasize($strTxBytes);
     }
 
-	// ------------------------ INFOS ABOUT THE CLIENT---------------------------------------------------------------
+    // ------------------------ INFOS ABOUT THE CLIENT---------------------------------------------------------------
     $clientinfo=array("name"=>"none","type"=>-1,"connected"=>"n");
     $raspi_client=$_SESSION['wifi_client_interface'];
     load_client_config();
-    $client_devs = getClients(false);
-    if(!empty($client_devs)) {
-        $ncl=$client_devs["clients"];
-        if($ncl > 0) {
-            $ty=-1;
-            foreach($client_devs["device"] as $dev) {
-               if(($id=array_search($dev["type"],$_SESSION["net-device-types"])) > $ty && !$dev["isAP"]) {
-                 $ty=$id;
-                 $clientinfo=$dev;
-               }
-            }
-        }
-    }
+    $all_clients = getClients(false);
+    $clientinfo = array("name" => "none", "connected" => "n");
+    if ( ($idx = findCurrentClientIndex($all_clients)) >= 0) $clientinfo = $all_clients["device"][$idx];
     if ($clientinfo["name"] != "none") $raspi_client = $clientinfo["name"];
     $interfaceState = $clientinfo["connected"] == "y" ? 'UP' : 'DOWN';
     $txPower="";
@@ -117,7 +107,7 @@ function DisplayDashboard(&$extraFooterScripts)
         exec('iw dev '.$clientinfo["name"].' info |  sed -rn "s/.*txpower ([0-9]*)[0-9\.]*( dBm).*/\1\2/p"', $stdoutIwInfo);
         if (!empty($stdoutIwInfo)) $txPower=$stdoutIwInfo[0];
     }
-	
+    
     $classMsgDevicestatus = 'warning';
     if ($interfaceState === 'UP') {
         $classMsgDevicestatus = 'success';
@@ -127,7 +117,8 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed stop button
             if ($interfaceState === 'UP') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
-                exec('sudo /usr/local/sbin/switchClientState.sh down');
+                setClientState("down");
+//                exec('sudo /usr/local/sbin/switchClientState.sh down');
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
             } elseif ($interfaceState === 'unknown') {
                 $status->addMessage(_('Interface state unknown.'), 'danger');
@@ -138,7 +129,8 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed start button
             if ($interfaceState === 'DOWN') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
-                exec('sudo /usr/local/sbin/switchClientState.sh up');
+                setClientState("up");
+//                exec('sudo /usr/local/sbin/switchClientState.sh up');
                 exec('sudo ip -s a f label ' . $raspi_client);
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
             } elseif ($interfaceState === 'unknown') {
@@ -151,8 +143,6 @@ function DisplayDashboard(&$extraFooterScripts)
         }
     }
 
-
-
     // brought in from template
     $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
     $bridgedEnable = $arrHostapdConf['BridgedEnable'];
@@ -162,7 +152,7 @@ function DisplayDashboard(&$extraFooterScripts)
         $client_interface = $clientinfo["name"];
     }
     $apInterface = $_SESSION['ap_interface'];
-	$clientInterface = $raspi_client;
+    $clientInterface = $raspi_client;
     $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
     if (getBridgedState()) {
         $moreLink = "hostapd_conf";
@@ -174,7 +164,7 @@ function DisplayDashboard(&$extraFooterScripts)
     $ifaceStatus = $clientinfo["connected"]=="y" ? "up" : "down";
     switch($clientinfo["type"]) {
         case "eth":
-	        $client_title = "Client: Ethernet cable";
+            $client_title = "Client: Ethernet cable";
             $type_name = "Ethernet";
             break;
         case "phone":
@@ -198,8 +188,8 @@ function DisplayDashboard(&$extraFooterScripts)
     echo renderTemplate(
         "dashboard", compact(
             "clients",
-			"client_title",
-			"type_name",
+            "client_title",
+            "type_name",
             "moreLink",
             "apInterface",
             "clientInterface",
@@ -215,7 +205,7 @@ function DisplayDashboard(&$extraFooterScripts)
             "strTxPackets",
             "strTxBytes",
             "txPower",
-			"clientinfo"
+            "clientinfo"
         )
     );
     $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);

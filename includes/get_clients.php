@@ -128,7 +128,10 @@ function getClients($simple=true) {
                 $cl["device"][$i]["connected"] = "y";
                 $cl["device"][$i]["wan_ip"] = $ipadd[0];
               }
-              else  $cl["device"][$i]["connected"] = "n";
+              else  {
+                $cl["device"][$i]["connected"] = "n";
+                $cl["device"][$i]["wan_ip"] = "-";
+              }
               unset($res);
               exec("$path/info_huawei.sh operator hilink $apiadd",$res);
               $cl["device"][$i]["operator"] = $res[0];
@@ -170,5 +173,52 @@ function load_client_config() {
     }
 }
 
-?>
+function findCurrentClientIndex($clients) {
+    $devid = -1;
+    if(!empty($clients)) {
+        $ncl=$clients["clients"];
+        if($ncl > 0) {
+            $ty=-1;
+            foreach($clients["device"] as $i => $dev) {
+               if(($id=array_search($dev["type"],$_SESSION["net-device-types"])) > $ty && !$dev["isAP"]) {
+                 $ty=$id;
+                 $devid=$i;
+               }
+            }
+        }
+    }
+    return $devid;
+}
 
+function setClientState($state) {
+    $clients=getClients();
+    if ( ($idx = findCurrentClientIndex($clients)) >= 0) {
+        $dev = $clients["device"][$idx];
+        exec('ifconfig -a | grep -i '.$dev["name"].' -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}[0-9]{1,3}"',$res);
+        if ( !empty($res)) $connected=$res[0];
+        switch($dev["type"]) {
+            case "wlan":
+                if($state =="up") exec('sudo ip link set '.$dev["name"].' up');
+                if(!empty($connected) && $state =="down") exec('sudo ip link set '.$dev["name"].' down');
+                break;
+            case "hilink":
+                preg_match("/^([0-9]{1,3}\.){3}/",$connected,$ipadd);
+                $ipadd = $ipadd[0].'1'; // ip address of the Hilink api
+                $mode = ($state == "up") ? 1 : 0;
+                if (file_exists(RASPI_CONFIG."/networking/mobiledata.ini")) {
+                    $dat = parse_ini_file(RASPI_CONFIG."/networking/mobiledata.ini");
+                    $pin = (isset($dat["pin"]) && preg_match("/^[0-9]*$/",$dat["pin"])) ? $dat["pin"] : "";
+                    exec('sudo '.RASPI_CLIENT_SCRIPT_PATH.'/onoff_huawei_hilink.sh -c '.$mode.' -h '.$ipadd.' -p '.$pin);
+                }
+                break;
+            case "ppp":
+                if($state == "up") exec('ipup '.$dev["name"]);
+                if(!empty($connected) && $state == "down") exec('ipup '.$dev["name"]);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+?>
