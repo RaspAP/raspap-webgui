@@ -25,7 +25,7 @@ As part of the initial rollout of Insiders, all previous one-time backers of Ras
 > ℹ️ **Important**: If you're [sponsoring](https://github.com/sponsors/RaspAP) RaspAP through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account that should be added as a collaborator. <sup>[2](#footnote-2)</sup>
 
 ## Exclusive features
-When backers were asked which feature they'd most like to see added to RaspAP, the ability to manage multiple OpenVPN client configurations topped the list of requests. Therefore, we're adding this as the first feature exclusive to insiders. 
+The following features are currently available exclusively to sponsors. A tangible side benefit of sponsorship is that Insiders are able to help steer future development of RaspAP. This is done through your Insiders access to discussions, feature requests, issues and pull requests in the private GitHub repository.
 
 ✅ Manage OpenVPN client configs  
 ✅ OpenVPN service logging  
@@ -34,7 +34,7 @@ When backers were asked which feature they'd most like to see added to RaspAP, t
 ✅ WireGuard support  
 ⚙️ Traffic shaping (in progress)  
 
-Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](https://github.com/orgs/RaspAP/teams/insiders/discussions) and let us know!
+Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](https://github.com/RaspAP/raspap-insiders/discussions) and let us know!
 
 ## Funding targets
 Following is a list of funding targets. When a funding target is reached, the features that are tied to it are merged back into RaspAP and released to the public for general availability.
