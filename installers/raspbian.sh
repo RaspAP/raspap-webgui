@@ -88,6 +88,7 @@ function _parse_params() {
             ;;
             -t|--token)
             acctoken="$2"
+			shift
             ;;
             -v|--version)
             _version
