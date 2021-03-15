@@ -190,6 +190,15 @@ function findCurrentClientIndex($clients) {
     return $devid;
 }
 
+function waitClientConnected($dev, $timeout=10) {
+    do {
+        exec('ifconfig -a | grep -i '.$dev.' -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}[0-9]{1,3}"',$res);
+        $connected= !empty($res);
+        if(!$connected) sleep(1);
+    } while(!$connected && --$timeout > 0);
+    return $connected;
+}
+
 function setClientState($state) {
     $clients=getClients();
     if ( ($idx = findCurrentClientIndex($clients)) >= 0) {
@@ -218,6 +227,7 @@ function setClientState($state) {
             default:
                 break;
         }
+        if($state=="up") waitClientConnected($dev["name"],15);
     }
 }
 
