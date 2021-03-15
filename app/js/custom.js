@@ -368,7 +368,6 @@ $('.wg-client-dl').click(function(){
     req.open('get', url, true);
     req.responseType = 'blob';
     req.setRequestHeader('Content-type', 'text/plain; charset=UTF-8');
-    console.log(req);
     req.onreadystatechange = function (event) {
         if(req.readyState == 4 && req.status == 200) {
             var blob = req.response;
