@@ -909,6 +909,12 @@ msgstr "Enable this option to display an updated WireGuard status."
 msgid "Scan this QR code with your client to connect to this tunnel"
 msgstr "Scan this QR code with your client to connect to this tunnel"
 
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "or download the <code>client.conf</code> file to your device."
+
+msgid "Download"
+msgstr "Download"
+
 msgid "Start WireGuard"
 msgstr "Start WireGuard"
 
