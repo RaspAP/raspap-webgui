@@ -24,6 +24,24 @@ function DisplayDashboard(&$extraFooterScripts)
         $status->showMessages();
         return;
     }
+
+    // ------------------------- Button pressed to switch client on/off ---------------------------------------------------------   
+    $switchedOn = false;
+    if (!RASPI_MONITOR_ENABLED) {
+        if (isset($_POST['ifdown_wlan0'])) {
+            // Pressed stop button
+            $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
+            setClientState("down");
+            $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
+        } elseif (isset($_POST['ifup_wlan0'])) {
+            // Pressed start button
+            $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
+            setClientState("up");
+            $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
+            $switchedOn = true;
+        }
+    }
+        
     
     // ----------------------------- INFOS ABOUT THE ACCESS POINT -------------------------------------------------------------
     
@@ -112,36 +130,8 @@ function DisplayDashboard(&$extraFooterScripts)
     if ($interfaceState === 'UP') {
         $classMsgDevicestatus = 'success';
     }
-    if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['ifdown_wlan0'])) {
-            // Pressed stop button
-            if ($interfaceState === 'UP') {
-                $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
-                setClientState("down");
-//                exec('sudo /usr/local/sbin/switchClientState.sh down');
-                $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
-            } elseif ($interfaceState === 'unknown') {
-                $status->addMessage(_('Interface state unknown.'), 'danger');
-            } else {
-                $status->addMessage(sprintf(_('Interface already %s.'), _('down')), 'warning');
-            }
-        } elseif (isset($_POST['ifup_wlan0'])) {
-            // Pressed start button
-            if ($interfaceState === 'DOWN') {
-                $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
-                setClientState("up");
-//                exec('sudo /usr/local/sbin/switchClientState.sh up');
-                exec('sudo ip -s a f label ' . $raspi_client);
-                $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
-            } elseif ($interfaceState === 'unknown') {
-                $status->addMessage(_('Interface state unknown.'), 'danger');
-            } else {
-                $status->addMessage(sprintf(_('Interface already %s.'), _('up')), 'warning');
-            }
-        } else {
-            $status->addMessage(sprintf(_('Interface is %s.'), strtolower($interfaceState)), $classMsgDevicestatus);
-        }
-    }
+
+    if ($switchedOn) exec('sudo ip -s a f label ' . $raspi_client);
 
     // brought in from template
     $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');

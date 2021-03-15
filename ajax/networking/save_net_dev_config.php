@@ -71,7 +71,7 @@ if (isset($_POST['interface'])) {
             if (!empty($rule) ) exec('echo \''.$rule.'\' | sudo /usr/bin/tee -a '.$udevfile);
           }
           $ret=print_r($ret,true);
-          $jsonData = ['return'=>0,'output'=>['Udev rules changed for device '.$dev ] ];
+          $jsonData = ['return'=>0,'output'=>['Settings changed for device '.$dev ] ];
           echo json_encode($jsonData);
           return;
         }
