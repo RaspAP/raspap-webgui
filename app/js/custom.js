@@ -361,6 +361,25 @@ $('.wg-keygen').click(function(){
     })
 })
 
+// Handler for wireguard client.conf download
+$('.wg-client-dl').click(function(){
+    var req = new XMLHttpRequest();
+    var url = 'ajax/networking/get_wgcfg.php';
+    req.open('get', url, true);
+    req.responseType = 'blob';
+    req.setRequestHeader('Content-type', 'text/plain; charset=UTF-8');
+    req.onreadystatechange = function (event) {
+        if(req.readyState == 4 && req.status == 200) {
+            var blob = req.response;
+            var link=document.createElement('a');
+            link.href=window.URL.createObjectURL(blob);
+            link.download = 'client.conf';
+            link.click();
+        }
+    }
+    req.send();
+})
+
 // Event listener for Bootstrap's form validation
 window.addEventListener('load', function() {
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
