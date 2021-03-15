@@ -18,7 +18,7 @@ Refer to the frequently asked questions (FAQ) and official documentation here:
 https://docs.raspap.com/faq/
 
 Do you have a question or want to suggest a new feature? Start a Discussion here:
-https://github.com/RaspAP/raspap-docker/discussions
+https://github.com/RaspAP/raspap-webgui/discussions
 
 Be sure there are no issues similar to yours that are already open. You can check this by searching the issues in this repository. If there is a duplicate issue, please close this one and add a comment to the existing issue instead.
 -->
@@ -37,7 +37,7 @@ Be sure there are no issues similar to yours that are already open. You can chec
 ## Your environment
 1. Operating System: **ENTER HERE** <!-- RPi OS 32-bit Lite, Armbian, Debian, etc. -->
 2. Hardware and version: <!-- RPi Zero/3B+/4, OrangePi 3, etc. -->
-3. RaspAP version (reported by the Quick Installer or About page): 
+3. RaspAP version: <!-- reported by the Quick Installer or About page -->
 4. Followed the project prerequisites? <!-- Yes/No -->
 5. RaspAP Quick Install or Manual setup? <!-- Quick Install/Manual -->
 6. Using default configuration? <!-- Yes/No -->
@@ -45,7 +45,7 @@ Be sure there are no issues similar to yours that are already open. You can chec
 8. Onboard wireless chipset or external adapter? <!-- Onboard/External -->
 9. Other software or services running with RaspAP? 
 
-## Steps to Reproduce
+## Steps to reproduce
 <!-- Tell us how to reproduce this issue. Provide as much detailed information as possible -->
 
 ## Screenshots
