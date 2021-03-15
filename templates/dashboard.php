@@ -135,15 +135,15 @@
         <div class="col-lg-12 mt-3">
           <div class="row">
             <form action="wlan0_info" method="POST">
-                <?php echo CSRFTokenFieldTag() ?>
+                <?php echo CSRFTokenFieldTag(); ?>
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
                     <?php if ($ifaceStatus == "down") : ?>
-                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$type_name ?>" name="ifup_wlan0" />
+                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$type_name ?>" name="ifup_wlan0" data-toggle="modal" data-target="#switchClientModal"/>
                     <?php else : ?>
-                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$type_name ?>"  name="ifdown_wlan0" />
+                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$type_name ?>"  name="ifdown_wlan0" data-toggle="modal" data-target="#switchClientModal"/>
                     <?php endif ?>
                 <?php endif ?>
-              <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+              <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></button>
             </form>
           </div>
         </div>
@@ -152,6 +152,21 @@
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
+
+<!-- Modal -->
+<div class="modal fade" id="switchClientModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="ModalLabel">
+            <i class="fas fa-sync-alt mr-2"></i>
+            <?php if($ifaceStatus=="down") echo _("Waiting for the interface to start ... might take a moment"); else  echo _("Stop the Interface"); ?>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
+      </div>
+  </div>
+</div>
+
 <script type="text/javascript"<?php //echo ' nonce="'.$csp_page_nonce.'"'; ?>>
 // js translations:
 var t = new Array();
