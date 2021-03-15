@@ -20,14 +20,14 @@ https://docs.raspap.com/faq/
 Do you have a question or want to suggest a new feature? Start a Discussion here:
 https://github.com/RaspAP/raspap-docker/discussions
 
-Be sure that there are no issues similar to yours already open. You can check this by searching the issues this repository. If there is a duplicate issue, please close this one and add a comment to the existing issue instead.
+Be sure there are no issues similar to yours that are already open. You can check this by searching the issues in this repository. If there is a duplicate issue, please close this one and add a comment to the existing issue instead.
 -->
 <!-- Provide a general summary of the issue in the Title above -->
 
 ## Checklist
 <!-- IMPORTANT! Fill in the boxes that apply by marking them like so: [x] -->
 - [ ] This is a bug report
-- [ ] I have searched this repository for existing issues and pull requests
+- [ ] I have searched this repository for existing issues
 - [ ] I checked the FAQ and official documentation before creating this issue
 - [ ] I have read and understand the issue reporting guidelines 
 
