@@ -51,9 +51,36 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
-    _install_client_config
+	_install_features
     _patch_system_files
     _install_complete
+}
+
+# search for optional installation files names install_feature_*.sh
+function _install_features() {
+        for feature in $(ls $webroot_dir/installers/install_feature_*.sh) ; do
+           source $feature
+           f=$(basename $feature)
+           func="_${f%.*}"
+           if declare -f -F $func > /dev/null; then
+				_install_log "Installing $func"
+				$func || _install_status 1 "Not able to install feature ($func)"
+			else
+				_install_status 1 "Install file $f is missing install function $func"
+           fi
+       done
+}
+
+function _install_features() {
+	path="$webroot_dir/installers"
+	foreach feature in $(ls "$path/install_feature*.sh"); do
+	    source $feature
+		f=$(basename $feature)
+		func="_${$f%.*}"
+		if declare -f -F $1 > /dev/null; then
+ 		    echo "Call $func"
+		fi
+	done
 }
 
 # Prompts user to set installation options
@@ -147,7 +174,7 @@ function _install_dependencies() {
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
     sudo apt-get install $apt_option lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package vnstat qrencode || _install_status 1 "Unable to install dependencies"
-    sudo apt-get install wvdial socat bc || _install_status 1 "Unable to install dependencies"
+#    sudo apt-get install wvdial socat bc || _install_status 1 "Unable to install dependencies"
     _install_status 0
 }
 
@@ -472,22 +499,22 @@ function _enable_raspap_daemon() {
     sudo systemctl enable raspapd.service || _install_status 1 "Failed to enable raspap.service"
 }
 
-function _install_client_config() {
-    _install_log "Install mobile client scripts and settings"
-    # Move scripts 
-    sudo cp "$webroot_dir/config/client_config/"*.sh "$raspap_client_scripts/" || _install_status 1 "Unable to move client scripts"
-    sudo chmod a+rx "$raspap_client_scripts/"*.sh  || _install_status 1 "Unable to chmod client scripts"
-    sudo cp "$webroot_dir/config/client_config/mcc-mnc-table.csv" "$raspap_client_scripts/" || _install_status 1 "Unable to move client data"
-    # wvdial settings
-    sudo cp "$webroot_dir/config/client_config/wvdial.conf" "/etc/" || _install_status 1 "Unable to install client configuration"
-    sudo cp "$webroot_dir/config/client_config/interfaces" "/etc/network/interfaces" || _install_status 1 "Unable to install interface settings"
-    # udev rules/services to auto start mobile data services
-    sudo cp "$webroot_dir/config/client_config/70-mobile-data-sticks.rules" "/etc/udev/rules.d/" || _install_status 1 "Unable to install client udev rules"
-    sudo cp "$webroot_dir/config/client_config/80-raspap-net-devices.rules" "/etc/udev/rules.d/" || _install_status 1 "Unable to install client udev rules"
-    sudo cp "$webroot_dir/config/client_config/"*.service "/etc/systemd/system/" || _install_status 1 "Unable to install client startup services"
-    # client configuration and udev rule templates
-    sudo cp "$webroot_dir/config/client_udev_prototypes.json" "/etc/raspap/networking/" || _install_status 1 "Unable to install client configuration"
-}
+#function _install_client_config() {
+#    _install_log "Install mobile client scripts and settings"
+#    # Move scripts 
+#    sudo cp "$webroot_dir/config/client_config/"*.sh "$raspap_client_scripts/" || _install_status 1 "Unable to move client scripts"
+#    sudo chmod a+rx "$raspap_client_scripts/"*.sh  || _install_status 1 "Unable to chmod client scripts"
+#    sudo cp "$webroot_dir/config/client_config/mcc-mnc-table.csv" "$raspap_client_scripts/" || _install_status 1 "Unable to move client data"
+#    # wvdial settings
+#    sudo cp "$webroot_dir/config/client_config/wvdial.conf" "/etc/" || _install_status 1 "Unable to install client configuration"
+#    sudo cp "$webroot_dir/config/client_config/interfaces" "/etc/network/interfaces" || _install_status 1 "Unable to install interface settings"
+#    # udev rules/services to auto start mobile data services
+#    sudo cp "$webroot_dir/config/client_config/70-mobile-data-sticks.rules" "/etc/udev/rules.d/" || _install_status 1 "Unable to install client udev rules"
+#    sudo cp "$webroot_dir/config/client_config/80-raspap-net-devices.rules" "/etc/udev/rules.d/" || _install_status 1 "Unable to install client udev rules"
+#    sudo cp "$webroot_dir/config/client_config/"*.service "/etc/systemd/system/" || _install_status 1 "Unable to install client startup services"
+#    # client configuration and udev rule templates
+#    sudo cp "$webroot_dir/config/client_udev_prototypes.json" "/etc/raspap/networking/" || _install_status 1 "Unable to install client configuration"
+#}
 
 # Configure IP forwarding, set IP tables rules, prompt to install RaspAP daemon
 function _configure_networking() {
