@@ -71,18 +71,6 @@ function _install_features() {
        done
 }
 
-function _install_features() {
-	path="$webroot_dir/installers"
-	foreach feature in $(ls "$path/install_feature*.sh"); do
-	    source $feature
-		f=$(basename $feature)
-		func="_${$f%.*}"
-		if declare -f -F $1 > /dev/null; then
- 		    echo "Call $func"
-		fi
-	done
-}
-
 # Prompts user to set installation options
 function _config_installation() {
     if [ "$upgrade" == 1 ]; then
