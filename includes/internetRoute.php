@@ -41,5 +41,4 @@ function getRouteInfo($checkAccess)
     }
     return $rInfo;
 }
-?>
 

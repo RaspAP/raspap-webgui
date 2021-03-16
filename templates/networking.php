@@ -81,7 +81,7 @@
 			  </div>
 			</div>
           </div>
-          <?php $arrMD = parse_ini_file('/etc/raspap/networking/mobiledata.ini');
+          <?php $arrMD = file_exists(($f = RASPI_CONFIG."/networking/mobiledata.ini")) ? parse_ini_file($f) : false;
                 if ($arrMD==false) { $arrMD=[]; $arrMD["pin"]=$arrMD["apn"]=$arrMD["apn_user"]=$arrMD["apn_pw"]=$arrMD["router_user"]=$arrMD["router_pw"]=""; }
           ?>
           <div role="tabpanel" class="tab-pane fade in" id="netdevices">

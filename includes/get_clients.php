@@ -214,11 +214,12 @@ function setClientState($state) {
                 preg_match("/^([0-9]{1,3}\.){3}/",$connected,$ipadd);
                 $ipadd = $ipadd[0].'1'; // ip address of the Hilink api
                 $mode = ($state == "up") ? 1 : 0;
-                if (file_exists(RASPI_CONFIG."/networking/mobiledata.ini")) {
-                    $dat = parse_ini_file(RASPI_CONFIG."/networking/mobiledata.ini");
+				$pin="";
+                if (file_exists(($f = RASPI_CONFIG."/networking/mobiledata.ini"))) {
+                    $dat = parse_ini_file($f);
                     $pin = (isset($dat["pin"]) && preg_match("/^[0-9]*$/",$dat["pin"])) ? $dat["pin"] : "";
-                    exec('sudo '.RASPI_CLIENT_SCRIPT_PATH.'/onoff_huawei_hilink.sh -c '.$mode.' -h '.$ipadd.' -p '.$pin);
                 }
+                exec('sudo '.RASPI_CLIENT_SCRIPT_PATH.'/onoff_huawei_hilink.sh -c '.$mode.' -h '.$ipadd.' -p '.$pin);
                 break;
             case "ppp":
                 if($state == "up") exec('sudo ifup '.$dev["name"]);
@@ -230,5 +231,3 @@ function setClientState($state) {
         if($state=="up") waitClientConnected($dev["name"],15);
     }
 }
-
-?>

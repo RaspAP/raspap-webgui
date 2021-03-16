@@ -21,14 +21,6 @@ $hostapd = parse_ini_file(RASPI_HOSTAPD_CONFIG, false, INI_SCANNER_RAW);
 $type = "WPA";
 $password = isset($hostapd['wpa_psk']) ? $hostapd['wpa_psk'] : $hostapd['wpa_passphrase'];
 
-// use wep if configured
-$wep_default_key = intval($hostapd['wep_default_key']);
-$wep_key = 'wep_key' . $wep_default_key;
-if (array_key_exists($wep_key, $hostapd)) {
-    $type = "WEP";
-    $password = $hostapd[$wep_key];
-}
-
 // if password is still empty, assume nopass
 if (empty($password)) {
     $type = "nopass";
@@ -54,5 +46,5 @@ header("Content-Length: $content_length");
 header("Last-Modified: $last_modified");
 header("ETag: \"$etag\"");
 header("X-QR-Code-Content: $data");
-echo shell_exec($command);
+echo $svg
 

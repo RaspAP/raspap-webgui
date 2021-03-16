@@ -740,6 +740,3 @@ function preg_only_match($pat,$haystack) {
   }
   return $match;
 }
-
-?>
-
