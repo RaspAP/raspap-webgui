@@ -44,7 +44,8 @@ $content_length = strlen($svg);
 header("Content-Type: image/svg+xml");
 header("Content-Length: $content_length");
 header("Last-Modified: $last_modified");
+header("Content-Disposition: attachment; filename=\"qr.svg\"");
 header("ETag: \"$etag\"");
 header("X-QR-Code-Content: $data");
-echo $svg
+echo $svg;
 
