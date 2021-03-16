@@ -26,7 +26,7 @@ readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_network="$raspap_dir/networking/"
 readonly rulesv4="/etc/iptables/rules.v4"
-readonly raspap_client_scripts="/usr/local/sbin"
+# readonly raspap_client_scripts="/usr/local/sbin"
 readonly notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
 webroot_dir="/var/www/html"
 git_source_url="https://github.com/$repo"  # $repo from install.raspap.com
@@ -51,7 +51,7 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
-	_install_features
+    _install_features
     _patch_system_files
     _install_complete
 }
@@ -63,10 +63,10 @@ function _install_features() {
            f=$(basename $feature)
            func="_${f%.*}"
            if declare -f -F $func > /dev/null; then
-				_install_log "Installing $func"
-				$func || _install_status 1 "Not able to install feature ($func)"
-			else
-				_install_status 1 "Install file $f is missing install function $func"
+                _install_log "Installing $func"
+                $func || _install_status 1 "Not able to install feature ($func)"
+            else
+                _install_status 1 "Install file $f is missing install function $func"
            fi
        done
 }
