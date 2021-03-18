@@ -154,6 +154,7 @@ function DisplayDashboard(&$extraFooterScripts)
     $ifaceStatus = $clientinfo["connected"]=="y" ? "up" : "down";
     switch($clientinfo["type"]) {
         case "eth":
+        case "usb":
             $client_title = "Client: Ethernet cable";
             $type_name = "Ethernet";
             break;

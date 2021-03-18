@@ -137,6 +137,8 @@ function getClients($simple=true) {
               $cl["device"][$i]["operator"] = $res[0];
               break;
            case "phone":
+           case "usb":
+              $cl["device"][$i]["connected"] = "y";
               break;
            default:
         }
