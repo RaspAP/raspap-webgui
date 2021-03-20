@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2021-01-21 10:40\n"
-"Last-Translator: Luca Sasdelli\n"
+"PO-Revision-Date: 2021-03-20 14:38\n"
+"Last-Translator: Ioma Taani (iomataani)\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
@@ -361,6 +361,24 @@ msgstr "Registra le richieste DHCP"
 msgid "Log DNS queries"
 msgstr "Registra query DNS"
 
+msgid "Restrict access"
+msgstr "Limita l'accesso"
+
+msgid "Limit network access to static clients"
+msgstr "Limita l'accesso di rete ai client statici"
+
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Abilita questa opzione se vuoi che RaspAP <b>ignori qualsiasi client</b> non sono specificato nell'elenco dei lease statici."
+
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Questa opzione aggiunge <code>dhcp-ignore</code> alla configurazione di dnsmasq."
+
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "I client con un particolare indirizzo MAC possono essere assegnati sempre allo stesso indirizzo IP."
+
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Questa opzione aggiunge <code>dhcp-host</code> alla configurazione dnsmasq."
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Base"
@@ -676,6 +694,36 @@ msgstr "Tentativo di avviare openvpn in corso"
 msgid "Attempting to stop openvpn"
 msgstr "Tentativo di arrestare openvpn in corso"
 
+msgid "Configurations"
+msgstr "Configurazioni"
+
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Le configurazioni client OpenVPN attualmente disponibili sono visualizzate di seguito."
+
+msgid "Activating a configuraton will restart the <code>openvpn-client</code> service."
+msgstr "Attivando la configurazione si riavvierà il servizio <code>openvpn-client</code>."
+
+msgid "Delete OpenVPN client"
+msgstr "Elimina client OpenVPN"
+
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Eliminare la configurazione del client? Questa operazione non può essere annullata."
+
+msgid "Activate OpenVPN client"
+msgstr "Attiva client OpenVPN"
+
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Attivare la configurazione del client? Questo riavvierà il servizio openvpn-client."
+
+msgid "Activate"
+msgstr "Attiva"
+
+msgid "Cancel"
+msgstr "Annulla"
+
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Abilita questa opzione per registrare l'attività di <code>openvpn</code>."
+
 #: includes/torproxy.php
 msgid "TOR is not running"
 msgstr "TOR non è in esecuzione"
@@ -798,4 +846,88 @@ msgstr "Host personalizzato non valido trovato sulla riga "
 
 msgid "Invalid custom host found on line "
 msgstr "Host personalizzato non valido trovato sulla riga "
+
+msgid "Tunnel settings"
+msgstr "Impostazioni del tunnel"
+
+msgid "Enable server"
+msgstr "Abilita il server"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and configured peers."
+msgstr "Abilita questa opzione per cifrare il traffico creando un tunnel tra RaspAP e peer configurati."
+
+msgid "This option adds <code>wg0.conf</code> to the WireGuard configuration."
+msgstr "Questa opzione aggiunge <code>wg0.conf</code> alla configurazione di WireGuard."
+
+msgid "Local public key"
+msgstr "Chiave pubblica locale"
+
+msgid "Local Port"
+msgstr "Porta locale"
+
+msgid "IP Address"
+msgstr "Indirizzo IP"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Peer"
+msgstr "Peer"
+
+msgid "Enable peer"
+msgstr "Abilita peer"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Abilita questa opzione per cifrare il traffico creando un tunnel tra RaspAP e questo peer."
+
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "Questa opzione aggiunge <code>client.conf</code> alla configurazione di WireGuard."
+
+msgid "Peer public key"
+msgstr "Chiave pubblica del peer"
+
+msgid "Endpoint address"
+msgstr "Indirizzo di endpoint"
+
+msgid "Allowed IPs"
+msgstr "IP consentiti"
+
+msgid "Persistent keepalive"
+msgstr "Keepalive permanente"
+
+msgid "Display WireGuard status"
+msgstr "Mostra lo stato di WireGuard"
+
+msgid "Enable this option to display an updated WireGuard status."
+msgstr "Abilita questa opzione per visualizzare lo stato aggiornato di WireGuard."
+
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Scansiona questo codice QR con il tuo client per connetterti a questo tunnel"
+
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "o scarica il file <code>client.conf</code> sul tuo dispositivo."
+
+msgid "Download"
+msgstr "Scarica"
+
+msgid "Start WireGuard"
+msgstr "Avvia WireGuard"
+
+msgid "Stop WireGuard"
+msgstr "Ferma WireGuard"
+
+msgid "Information provided by wireguard"
+msgstr "Informazioni fornite da wireguard"
+
+msgid "Attempting to start WireGuard"
+msgstr "Tentativo di avviare WireGuard in corso"
+
+msgid "Attempting to stop WireGuard"
+msgstr "Tentativo di arrestare WireGuard in corso"
+
+msgid "WireGuard configuration updated successfully"
+msgstr "Configurazione WireGuard aggiornata con successo"
+
+msgid "WireGuard configuration failed to be updated"
+msgstr "Impossibile aggiornare la configurazione di WireGuard"
 
