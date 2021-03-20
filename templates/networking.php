@@ -119,7 +119,8 @@
                                    if(isset($dev["isAP"]) && $dev["isAP"]) $ty="Access Point";
                                    echo "<td>".$ty."</td>\n";
                                    echo "<td>".$dev["mac"]."</td>\n";
-                                   echo "<td>".$dev["vid"]."/".$dev["pid"]."</td>\n";
+                                   if(isset($dev["vid"]) && !empty($dev["vid"])) echo "<td>".$dev["vid"]."/".$dev["pid"]."</td>\n";
+                                   else echo "<td> - </td>\n";
                                    $udevfile=$_SESSION["udevrules"]["udev_rules_file"];
                                    $isStatic=array();
                                    exec('find /etc/udev/rules.d/  -type f \( -iname "*.rules" ! -iname "'.basename($udevfile).'" \) -exec grep -i '.$dev["mac"].' {} \; ',$isStatic);

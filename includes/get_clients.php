@@ -32,6 +32,9 @@ function getClients($simple=true) {
           if(empty($model) || preg_match("/^[0-9a-f]{4}$/",$model) === 1) {
              $model = preg_only_match("/ID_MODEL_FROM_DATABASE=(.*)$/",$udevinfo);
           }
+          if(empty($model)) {
+             $model = preg_only_match("/ID_OUI_FROM_DATABASE=(.*)$/",$udevinfo);
+          }
           $vendor = preg_only_match("/ID_VENDOR_ENC=(.*)$/",$udevinfo);
           if(empty($vendor) || preg_match("/^[0-9a-f]{4}$/",$vendor) === 1) {
              $vendor = preg_only_match("/ID_VENDOR_FROM_DATABASE=(.*)$/",$udevinfo);
