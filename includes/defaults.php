@@ -6,7 +6,7 @@ if (!defined('RASPI_CONFIG')) {
 
 $defaults = [
   'RASPI_BRAND_TEXT' => 'RaspAP',
-  'RASPI_VERSION' => '2.7.1',
+  'RASPI_VERSION' => '2.7.2',
   'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/defaults.json',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',
   'RASPI_WIFI_AP_INTERFACE' => 'wlan0',
@@ -26,6 +26,8 @@ $defaults = [
   'RASPI_OPENVPN_CLIENT_CONFIG' => '/etc/openvpn/client/client.conf',
   'RASPI_OPENVPN_CLIENT_LOGIN' => '/etc/openvpn/client/login.conf',
   'RASPI_OPENVPN_SERVER_CONFIG' => '/etc/openvpn/server/server.conf',
+  'RASPI_WIREGUARD_PATH' => '/etc/wireguard/',
+  'RASPI_WIREGUARD_CONFIG' => RASPI_WIREGUARD_PATH.'wg0.conf',
   'RASPI_TORPROXY_CONFIG' => '/etc/tor/torrc',
   'RASPI_LIGHTTPD_CONFIG' => '/etc/lighttpd/lighttpd.conf',
   'RASPI_ACCESS_CHECK_IP' => '1.1.1.1',
@@ -42,6 +44,7 @@ $defaults = [
   'RASPI_DHCP_ENABLED' => true,
   'RASPI_ADBLOCK_ENABLED' => false,
   'RASPI_OPENVPN_ENABLED' => false,
+  'RASPI_WIREGUARD_ENABLED' => false,
   'RASPI_TORPROXY_ENABLED' => false,
   'RASPI_CONFAUTH_ENABLED' => true,
   'RASPI_CHANGETHEME_ENABLED' => true,

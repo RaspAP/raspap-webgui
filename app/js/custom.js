@@ -367,6 +367,55 @@ function updateBlocklist() {
 function clearBlocklistStatus() {
     $('#cbxblocklist-status').removeClass('check-updated').addClass('check-hidden');
 }
+
+// Handler for the wireguard generate key button
+$('.wg-keygen').click(function(){
+    var entity_pub = $(this).parent('div').prev('input[type="text"]');
+    var entity_priv = $(this).parent('div').next('input[type="hidden"]');
+    var updated = entity_pub.attr('name')+"-pubkey-status";
+    $.post('ajax/networking/get_wgkey.php',{'entity':entity_pub.attr('name') },function(data){
+        var jsonData = JSON.parse(data);
+        entity_pub.val(jsonData.pubkey);
+        $('#' + updated).removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
+    })
+})
+
+// Handler for wireguard client.conf download
+$('.wg-client-dl').click(function(){
+    var req = new XMLHttpRequest();
+    var url = 'ajax/networking/get_wgcfg.php';
+    req.open('get', url, true);
+    req.responseType = 'blob';
+    req.setRequestHeader('Content-type', 'text/plain; charset=UTF-8');
+    req.onreadystatechange = function (event) {
+        if(req.readyState == 4 && req.status == 200) {
+            var blob = req.response;
+            var link=document.createElement('a');
+            link.href=window.URL.createObjectURL(blob);
+            link.download = 'client.conf';
+            link.click();
+        }
+    }
+    req.send();
+})
+
+// Event listener for Bootstrap's form validation
+window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          //console.log(event.submitter);
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+    });
+}, false);
+
 // Static Array method
 Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
 

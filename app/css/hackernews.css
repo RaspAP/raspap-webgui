@@ -75,6 +75,9 @@ h5.card-title {
   font-family: Verdana, Geneva, sans-serif;
 }
 
+.sidebar-light hr.sidebar-divider {
+  padding-top: 0.5rem;
+}
 
 ul.nav-tabs, .nav-tabs .nav-link {
   background-color: #f6f6ef;
@@ -154,6 +157,7 @@ ul.nav-tabs, .nav-tabs .nav-link {
 .info-item-xs {
   font-size: 0.7rem;
   margin-left: 0.3rem;
+  line-height: 1.5em;
 }
 
 .info-item-wifi {
@@ -188,6 +192,10 @@ ul.nav-tabs, .nav-tabs .nav-link {
   50% {
     opacity: 0;
   }
+}
+
+.fas.fa-circle {
+    font-size: 0.5rem;
 }
 
 .logoutput {

@@ -14,7 +14,7 @@
  * @author  Lawrence Yau <sirlagz@gmail.com>
  * @author  Bill Zimmerman <billzimmerman@gmail.com>
  * @license GNU General Public License, version 3 (GPL-3.0)
- * @version 2.7.1
+ * @version 2.7.2
  * @link    https://github.com/raspap/raspap-insiders/
  * @link    https://raspap.com/
  * @see     http://sirlagz.net/2013/02/08/raspap-webgui/
@@ -45,6 +45,7 @@ require_once 'includes/themes.php';
 require_once 'includes/data_usage.php';
 require_once 'includes/about.php';
 require_once 'includes/openvpn.php';
+require_once 'includes/wireguard.php';
 require_once 'includes/torproxy.php';
 
 $config = getConfig();
@@ -81,6 +82,9 @@ $bridgedEnabled = getBridgedState();
 
     <!-- Custom Fonts -->
     <link href="dist/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- RaspAP Fonts -->
+    <link href="dist/raspap/css/style.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
     <link href="<?php echo $theme_url; ?>" title="main" rel="stylesheet">
@@ -161,6 +165,11 @@ $bridgedEnabled = getBridgedState();
           <?php if (RASPI_OPENVPN_ENABLED) : ?>
         <li class="nav-item">
           <a class="nav-link" href="openvpn_conf"><i class="fas fa-key fa-fw mr-2"></i><span class="nav-label"><?php echo _("OpenVPN"); ?></a>
+        </li>
+          <?php endif; ?>
+          <?php if (RASPI_WIREGUARD_ENABLED) : ?>
+        <li class="nav-item">
+          <a class="nav-link" href="wg_conf"><span class="ra-wireguard mr-2"></span><span class="nav-label"><?php echo _("WireGuard"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_TORPROXY_ENABLED) : ?>
@@ -258,6 +267,9 @@ $bridgedEnabled = getBridgedState();
             break;
         case "/openvpn_conf":
             DisplayOpenVPNConfig();
+            break;
+        case "/wg_conf":
+            DisplayWireGuardConfig();
             break;
         case "/torproxy_conf":
             DisplayTorProxyConfig();

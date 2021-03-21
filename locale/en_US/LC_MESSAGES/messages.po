@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-03-29 00:05+0000\n"
+"PO-Revision-Date: 2021-03-08 09:00+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -725,12 +725,6 @@ msgstr "Cancel"
 msgid "Enable this option to log <code>openvpn</code> activity."
 msgstr "Enable this option to log <code>openvpn</code> activity."
 
-msgid "Cancel"
-msgstr "Cancel"
-
-msgid "Cancel"
-msgstr "Cancel"
-
 #: includes/torproxy.php
 msgid "TOR is not running"
 msgstr "TOR is not running"
@@ -855,4 +849,90 @@ msgstr "Invalid custom IP address found on line "
 
 msgid "Invalid custom host found on line "
 msgstr "Invalid custom host found on line "
+
+#: includes/wireguard.php
+
+msgid "Tunnel settings"
+msgstr "Tunnel settings"
+
+msgid "Enable server"
+msgstr "Enable server"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and configured peers."
+msgstr "Enable this option to encrypt traffic by creating a tunnel between RaspAP and configured peers."
+
+msgid "This option adds <code>wg0.conf</code> to the WireGuard configuration."
+msgstr "This option adds <code>wg0.conf</code> to the WireGuard configuration."
+
+msgid "Local public key"
+msgstr "Local public key"
+
+msgid "Local Port"
+msgstr "Local Port"
+
+msgid "IP Address"
+msgstr "IP Address"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Peer"
+msgstr "Peer"
+
+msgid "Enable peer"
+msgstr "Enable peer"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "This option adds <code>client.conf</code> to the WireGuard configuration."
+
+msgid "Peer public key"
+msgstr "Peer public key"
+
+msgid "Endpoint address"
+msgstr "Endpoint address"
+
+msgid "Allowed IPs"
+msgstr "Allowed IPs"
+
+msgid "Persistent keepalive"
+msgstr "Persistent keepalive"
+
+msgid "Display WireGuard status"
+msgstr "Display WireGuard status"
+
+msgid "Enable this option to display an updated WireGuard status."
+msgstr "Enable this option to display an updated WireGuard status."
+
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Scan this QR code with your client to connect to this tunnel"
+
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "or download the <code>client.conf</code> file to your device."
+
+msgid "Download"
+msgstr "Download"
+
+msgid "Start WireGuard"
+msgstr "Start WireGuard"
+
+msgid "Stop WireGuard"
+msgstr "Stop WireGuard"
+
+msgid "Information provided by wireguard"
+msgstr "Information provided by wireguard"
+
+msgid "Attempting to start WireGuard"
+msgstr "Attempting to start WireGuard"
+
+msgid "Attempting to stop WireGuard"
+msgstr "Attempting to stop WireGuard"
+
+msgid "WireGuard configuration updated successfully"
+msgstr "WireGuard configuration updated successfully"
+
+msgid "WireGuard configuration failed to be updated"
+msgstr "WireGuard configuration failed to be updated"
 
