@@ -8,11 +8,11 @@
         </p>
         <div class="openvpn-configs js-openvpn-configs-container">
           <?php foreach ($clients as $client) :
-                if ($client == "login.conf") {
-                    $label = file_get_meta(RASPI_OPENVPN_CLIENT_LOGIN,'#\sfilename\s(.*)');
+                if ($client == "client.conf") {
+                    $label = file_get_meta(RASPI_OPENVPN_CLIENT_CONFIG,'#\sfilename\s(.*)');
                     $btn_class = "active";
                 } else {
-                    $label = trim(pathinfo($client, PATHINFO_FILENAME), "_login");
+                    $label = preg_replace('/_client$/','',pathinfo($client, PATHINFO_FILENAME));
                     $client = $label;
                     $btn_class = "disabled";
                 }?>

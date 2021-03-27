@@ -281,6 +281,22 @@ $('#ovpn-confirm-activate').on('shown.bs.modal', function (e) {
     $('.btn-activate', this).data('recordId', data.recordId);
 });
 
+$('#ovpn-userpw,#ovpn-certs').on('click', function (e) {
+//    e.stopPropagation();
+    if (this.id == 'ovpn-userpw') {
+        $('#PanelCerts').hide();
+        $('#PanelUserPW').show();
+    } else if (this.id == 'ovpn-certs') {
+        $('#PanelUserPW').hide();
+        $('#PanelCerts').show();
+    }
+});
+
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
 
 /*
 Sets the wirelss channel select options based on hw_mode and country_code.

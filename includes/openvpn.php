@@ -53,7 +53,7 @@ function DisplayOpenVPNConfig()
         $authUser = current($auth);
         $authPassword = next($auth);
     }
-    $clients = preg_grep('~\login.(conf)$~', scandir(pathinfo(RASPI_OPENVPN_CLIENT_LOGIN, PATHINFO_DIRNAME)));
+    $clients = preg_grep('/client.(conf)$/', scandir(pathinfo(RASPI_OPENVPN_CLIENT_CONFIG, PATHINFO_DIRNAME)));
 
     $logEnable = 0;
     if (!empty($_POST) && !isset($_POST['log-openvpn'])) {
