@@ -181,12 +181,13 @@ function _display_welcome() {
 
 # Fetch latest release from GitHub or RaspAP Installer API
 function _get_release() {
-    RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+    readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
     if [ "$insiders" == 1 ]; then
-        RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")' )
-        RASPAP_RELEASE="${RASPAP_INSIDERS_LATEST} Insiders"
+        repo="RaspAP/raspap-insiders"
+        readonly RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")' )
+        readonly RASPAP_RELEASE="${RASPAP_INSIDERS_LATEST} Insiders"
     else
-        RASPAP_RELEASE="${RASPAP_LATEST}"
+        readonly RASPAP_RELEASE="${RASPAP_LATEST}"
     fi
 }
 
