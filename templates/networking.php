@@ -137,7 +137,7 @@
                                    if(empty($devname)) $devname="";
                                    $isStatic = $isStatic || in_array($dev["type"],array("ppp","tun"));
                                    $txtdisabled=$isStatic ? "disabled":"";
-                                   echo '<td><select '.$txtdisabled.' class="selectpicker" id="int-new-type-'.$dev["name"].'">';
+                                   echo '<td><select '.$txtdisabled.' class="selectpicker form-control" id="int-new-type-'.$dev["name"].'">';
                                    foreach($_SESSION["net-device-types"] as $i => $type) {
                                      $txt=$_SESSION["net-device-types-info"][$i];
                                      $txtdisabled =   in_array($type,array("ppp","tun")) ? "disabled":"";
