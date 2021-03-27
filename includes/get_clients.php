@@ -7,40 +7,44 @@ function getClients($simple=true)
     exec('ifconfig -a | grep -oP "^(?!lo)(\w*)"', $rawdevs); // all devices except loopback
     $path=RASPI_CLIENT_SCRIPT_PATH;
     $cl=array();
-    if(!empty($rawdevs) && is_array($rawdevs)) {
+    if (!empty($rawdevs) && is_array($rawdevs)) {
         $cl["clients"]=count($rawdevs);
         // search for possibly not connected modem 
         exec("find /sys/bus/usb/devices/usb*/ -name dev ", $devtty); // search for ttyUSB
         $devtty = preg_only_match("/(ttyUSB0)/", $devtty);
-        if(empty(preg_only_match("/(ppp)[0-9]/", $rawdevs))) {
-            if(!empty($devtty)) {
+        if (empty(preg_only_match("/(ppp)[0-9]/", $rawdevs))) {
+            if (!empty($devtty)) {
                 $rawdevs[]="ppp0";
                 exec("udevadm info --name='$devtty' 2> /dev/null");
             }
         }
         foreach ($rawdevs as $i => $dev) {
             $cl["device"][$i]["name"]=$dev;
-            if (preg_match("/^(\w+)[0-9]$/", $dev, $nam) === 1) { $nam=$nam[1];
-            } else { $nam="none";
+            if (preg_match("/^(\w+)[0-9]$/", $dev, $nam) === 1) {
+                $nam=$nam[1];
+            } else {
+                $nam="none";
             }
-            if (($n = array_search($nam, $_SESSION["net-device-name-prefix"])) === false) { $n = count($_SESSION["net-device-types"])-1;
+            if (($n = array_search($nam, $_SESSION["net-device-name-prefix"])) === false) {
+                $n = count($_SESSION["net-device-types"])-1;
             }
             $ty = $_SESSION["net-device-types"][$n];
             $cl["device"][$i]["type"]=$ty;
             unset($udevinfo);
             exec("udevadm info /sys/class/net/$dev 2> /dev/null", $udevinfo);
-            if ($nam == "ppp" && isset($devtty)) {  exec("udevadm info --name='$devtty' 2> /dev/null", $udevinfo);
+            if ($nam == "ppp" && isset($devtty)) {
+                exec("udevadm info --name='$devtty' 2> /dev/null", $udevinfo);
             }
-            if(!empty($udevinfo) && is_array($udevinfo)) {
+            if (!empty($udevinfo) && is_array($udevinfo)) {
                 $model = preg_only_match("/ID_MODEL_ENC=(.*)$/", $udevinfo);
-                if(empty($model) || preg_match("/^[0-9a-f]{4}$/", $model) === 1) {
+                if (empty($model) || preg_match("/^[0-9a-f]{4}$/", $model) === 1) {
                      $model = preg_only_match("/ID_MODEL_FROM_DATABASE=(.*)$/", $udevinfo);
                 }
-                if(empty($model)) {
+                if (empty($model)) {
                     $model = preg_only_match("/ID_OUI_FROM_DATABASE=(.*)$/", $udevinfo);
                 }
                 $vendor = preg_only_match("/ID_VENDOR_ENC=(.*)$/", $udevinfo);
-                if(empty($vendor) || preg_match("/^[0-9a-f]{4}$/", $vendor) === 1) {
+                if (empty($vendor) || preg_match("/^[0-9a-f]{4}$/", $vendor) === 1) {
                     $vendor = preg_only_match("/ID_VENDOR_FROM_DATABASE=(.*)$/", $udevinfo);
                 }
                 $driver = preg_only_match("/ID_NET_DRIVER=(.*)$/", $udevinfo);
@@ -62,8 +66,10 @@ function getClients($simple=true)
             case "eth":
                 unset($res);
                 exec("ip link show $dev 2> /dev/null | grep -oP ' UP '", $res);
-                if(empty($res) && empty($ipadd)) { $cl["device"][$i]["connected"] = "n";
-                } else { $cl["device"][$i]["connected"] = "y";
+                if (empty($res) && empty($ipadd)) {
+                    $cl["device"][$i]["connected"] = "n";
+                } else {
+                    $cl["device"][$i]["connected"] = "y";
                 }
                 break;
             case "wlan":
@@ -72,30 +78,35 @@ function getClients($simple=true)
                 $cl["device"][$i]["isAP"] = !empty($retiw);
                 unset($retiw);
                 exec("iw dev $dev link 2> /dev/null", $retiw);
-                if(!$simple && !empty($ssid=preg_only_match("/.*SSID: ([\w ]*).*/", $retiw)) ) {
+                if (!$simple && !empty($ssid=preg_only_match("/.*SSID: ([\w ]*).*/", $retiw)) ) {
                     $cl["device"][$i]["connected"] = "y";
                     $cl["device"][$i]["ssid"] = $ssid;
                     $cl["device"][$i]["ap-mac"] = preg_only_match("/^Connected to ([0-9a-f\:]*).*$/", $retiw);
                     $sig = preg_only_match("/.*signal: (.*)$/", $retiw);
                     $val = preg_only_match("/^([0-9\.-]*).*$/", $sig);
-                    if (!is_numeric($val)) { $val = -100;
+                    if (!is_numeric($val)) {
+                        $val = -100;
                     }
-                    if($val >= -50 ) { $qual=100;
-                    } else if($val < -100) { $qual=0;
-                    } else { $qual=round($val*2+200);
+                    if ($val >= -50 ) {
+                        $qual=100;
+                    } else if ($val < -100) {
+                        $qual=0;
+                    } else {
+                        $qual=round($val*2+200);
                     }
                     $cl["device"][$i]["signal"] = "$sig (".$qual."%)";
                     $cl["device"][$i]["bitrate"] = preg_only_match("/.*bitrate: ([0-9\.]* \w*\/s).*$/", $retiw);
                     $cl["device"][$i]["freq"] = preg_only_match("/.*freq: (.*)$/", $retiw);
                     $cl["device"][$i]["ap-mac"] = preg_only_match("/^Connected to ([0-9a-f\:]*).*$/", $retiw);
-                } else { $cl["device"][$i]["connected"] = "n";
+                } else {
+                    $cl["device"][$i]["connected"] = "n";
                 }
                 break;
             case "ppp":
                 unset($res);
                 exec("ip link show $dev 2> /dev/null | grep -oP '( UP | UNKNOWN)'", $res);
-                if($simple) {
-                    if(empty($res)) {
+                if ($simple) {
+                    if (empty($res)) {
                         $cl["device"][$i]["connected"] = "n";
                         $cl["device"][$i]["signal"] =  "-100 dB (0%)";
                     } else {
@@ -104,15 +115,18 @@ function getClients($simple=true)
                     }
                     break;
                 }
-                if(empty($res) && empty($ipadd)) { $cl["device"][$i]["connected"] = "n";
-                } else { $cl["device"][$i]["connected"] = "y";
+                if (empty($res) && empty($ipadd)) {
+                    $cl["device"][$i]["connected"] = "n";
+                } else {
+                    $cl["device"][$i]["connected"] = "y";
                 }
                 unset($res);
                 exec("$path/info_huawei.sh mode modem", $res);
                 $cl["device"][$i]["mode"] = $res[0];
                 unset($res);
                 exec("$path/info_huawei.sh device modem", $res);
-                if($res[0] != "none" ) { $cl["device"][$i]["model"] = $res[0];
+                if ($res[0] != "none" ) {
+                    $cl["device"][$i]["model"] = $res[0];
                 }
                 unset($res);
                 exec("$path/info_huawei.sh signal modem", $res);
@@ -131,18 +145,18 @@ function getClients($simple=true)
                 $cl["device"][$i]["mode"] = $res[0];
                 unset($res);
                 exec("$path/info_huawei.sh device hilink $apiadd", $res);
-                if($res[0] != "none" ) { $cl["device"][$i]["model"] = $res[0];
+                if ($res[0] != "none" ) {
+                    $cl["device"][$i]["model"] = $res[0];
                 }
                 unset($res);
                 exec("$path/info_huawei.sh signal hilink $apiadd", $res);
                 $cl["device"][$i]["signal"] = $res[0];
                 unset($ipadd);
                 exec("$path/info_huawei.sh ipaddress hilink $apiadd", $ipadd);
-                if(!empty($ipadd) && $ipadd[0] !== "none" ) {
+                if (!empty($ipadd) && $ipadd[0] !== "none" ) {
                     $cl["device"][$i]["connected"] = "y";
                     $cl["device"][$i]["wan_ip"] = $ipadd[0];
-                }
-                else  {
+                } else {
                     $cl["device"][$i]["connected"] = "n";
                     $cl["device"][$i]["wan_ip"] = "-";
                 }
@@ -159,18 +173,18 @@ function getClients($simple=true)
             if (!isset($cl["device"][$i]["signal"])) {
                 $cl["device"][$i]["signal"]= $cl["device"][$i]["connected"] == "n" ? "-100 dB (0%)": "0 dB (100%)";;
             }
-            if (!isset($cl["device"][$i]["isAP"])) { $cl["device"][$i]["isAP"]=false;
+            if (!isset($cl["device"][$i]["isAP"])) {
+                $cl["device"][$i]["isAP"]=false;
             }
         }
     }
     return $cl;
 }
 
-function load_client_config()
+function loadClientConfig()
 {
     // load network device config file for UDEV rules into $_SESSION
-    if(true) {
-        //    if(!isset($_SESSION["udevrules"])) {
+    if (!isset($_SESSION["udevrules"])) {
         $_SESSION["net-device-types"]=array();
         $_SESSION["net-device-name-prefix"]=array();
         try {
@@ -194,14 +208,14 @@ function load_client_config()
 function findCurrentClientIndex($clients)
 {
     $devid = -1;
-    if(!empty($clients)) {
+    if (!empty($clients)) {
         $ncl=$clients["clients"];
-        if($ncl > 0) {
+        if ($ncl > 0) {
             $ty=-1;
-            foreach($clients["device"] as $i => $dev) {               
-				$id=array_search($dev["type"],$_SESSION["net-device-types"]);
-				if($id >=0 && $_SESSION["udevrules"]["network_devices"][$id]["clientid"] > $ty && !$dev["isAP"]) {
-					$ty=$id;
+            foreach ($clients["device"] as $i => $dev) {               
+                $id=array_search($dev["type"], $_SESSION["net-device-types"]);
+                if ($id >=0 && $_SESSION["udevrules"]["network_devices"][$id]["clientid"] > $ty && !$dev["isAP"]) {
+                    $ty=$id;
                     $devid=$i;
                 }
             }
@@ -215,9 +229,10 @@ function waitClientConnected($dev, $timeout=10)
     do {
         exec('ifconfig -a | grep -i '.$dev.' -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}[0-9]{1,3}"', $res);
         $connected= !empty($res);
-        if(!$connected) { sleep(1);
+        if (!$connected) {
+            sleep(1);
         }
-    } while(!$connected && --$timeout > 0);
+    } while (!$connected && --$timeout > 0);
     return $connected;
 }
 
@@ -227,13 +242,16 @@ function setClientState($state)
     if (($idx = findCurrentClientIndex($clients)) >= 0) {
         $dev = $clients["device"][$idx];
         exec('ifconfig -a | grep -i '.$dev["name"].' -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}[0-9]{1,3}"', $res);
-        if (!empty($res)) { $connected=$res[0];
+        if (!empty($res)) {
+            $connected=$res[0];
         }
         switch($dev["type"]) {
         case "wlan":
-            if($state =="up") { exec('sudo ip link set '.$dev["name"].' up');
+            if ($state =="up") {
+                exec('sudo ip link set '.$dev["name"].' up');
             }
-            if(!empty($connected) && $state =="down") { exec('sudo ip link set '.$dev["name"].' down');
+            if (!empty($connected) && $state =="down") {
+                exec('sudo ip link set '.$dev["name"].' down');
             }
             break;
         case "hilink":
@@ -248,15 +266,18 @@ function setClientState($state)
             exec('sudo '.RASPI_CLIENT_SCRIPT_PATH.'/onoff_huawei_hilink.sh -c '.$mode.' -h '.$ipadd.' -p '.$pin);
             break;
         case "ppp":
-            if($state == "up") { exec('sudo ifup '.$dev["name"]);
+            if ($state == "up") {
+                exec('sudo ifup '.$dev["name"]);
             }
-            if(!empty($connected) && $state == "down") { exec('sudo ifdown '.$dev["name"]);
+            if (!empty($connected) && $state == "down") {
+                exec('sudo ifdown '.$dev["name"]);
             }
             break;
         default:
             break;
         }
-        if($state=="up") { waitClientConnected($dev["name"], 15);
+        if ($state=="up") {
+            waitClientConnected($dev["name"], 15);
         }
     }
 }

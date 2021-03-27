@@ -26,7 +26,7 @@ php << _EOF_
 require_once("includes/config.php");
 require_once("includes/get_clients.php");
 
- load_client_config();
+ loadClientConfig();
  setClientState("$state");
 ?>
 _EOF_

@@ -22,7 +22,7 @@ function DisplayNetworkingConfig()
     foreach ($interfaces as $interface) {
         exec("ip a show $interface", $$interface);
     }
-    load_client_config();
+    loadClientConfig();
     $clients=getClients();
     echo renderTemplate("networking", compact(
         "status",

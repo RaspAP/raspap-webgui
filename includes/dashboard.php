@@ -113,7 +113,7 @@ function DisplayDashboard(&$extraFooterScripts)
     // ------------------------ INFOS ABOUT THE CLIENT---------------------------------------------------------------
     $clientinfo=array("name"=>"none","type"=>-1,"connected"=>"n");
     $raspi_client=$_SESSION['wifi_client_interface'];
-    load_client_config();
+    loadClientConfig();
     $all_clients = getClients(false);
     $clientinfo = array("name" => "none", "connected" => "n");
     if ( ($idx = findCurrentClientIndex($all_clients)) >= 0) $clientinfo = $all_clients["device"][$idx];
