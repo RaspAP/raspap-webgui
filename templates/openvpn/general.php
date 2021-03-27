@@ -8,7 +8,6 @@
             <div class="info-item"><?php echo htmlspecialchars($public_ip, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($public_ip); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ml-2"></i></a></div>
          </div>
       </div>
-      <form> 
       <h5><?php echo _("Authentification Method"); ?></h5>
       <div class="col-sm-12 mt-2 mb-2 form-check">
           <input class="form-check-input" id="ovpn-userpw" name="sel1" value="userpw" data-toggle="" data-parent="#clientsettings" data-target="#UserPW" type="radio" checked>
@@ -37,6 +36,9 @@
            </div> <!-- panel -->
            <div class="panel panel-default panel-collapse collapse in" id="PanelCerts" >
               <div class="panel-body">
+             <div class="panel-heading">
+               <h5 class="panel-title">Enter username and password</h5>
+             </div>
                     <h5 class="panel-title">Certificates in the configuration file</h5>
                     <p> RaspAP does not support the import of the required cerficates. Please paste them into the configuration file
                       <ul>
@@ -58,7 +60,6 @@
            </div>
          </div>
       </div> <!-- col -->
-      </form> 
     </div><!-- col-8 -->
     <div class="col-sm-auto">
         <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=36402&url_id=902"><img src="app/img/no-trace-200x200.png" class="float-left mb-3 mt-3"></a>
