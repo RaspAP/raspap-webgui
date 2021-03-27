@@ -9,7 +9,7 @@
           <div class="col">
             <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
               <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-              <span class="text service-status"><?php echo $type_name .' '. _($ifaceStatus) ?></span>
+              <span class="text service-status"><?php echo $type_name . ($ifaceStatus!="warn") echo ' '. _($ifaceStatus) ?></span>
             </button>
           </div>
         </div><!-- /.row -->
@@ -66,7 +66,7 @@
                       <div class="info-item"><?php echo _("Device"); ?></div><div><?php  $valEcho($clientinfo,"vendor")." ".$valEcho($clientinfo,"model"); ?></div>
                       <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo  $valEcho($clientinfo,"ipaddress"); ?></div>
                     <?php else : // NO CLIENT ?>
-                      <div class="info-item"><?php echo _("No Client device found"); ?></div>
+                      <div class="info-item"><?php echo _("No Client foudn or client is not unconfigured yet"); ?></div>
                     <?php endif; ?>
                   </div>
                   <div class="col-md mt-2 d-flex justify-content-center">
@@ -139,7 +139,7 @@
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
                     <?php if ($ifaceStatus == "down") : ?>
                     <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$type_name ?>" name="ifup_wlan0" data-toggle="modal" data-target="#switchClientModal"/>
-                    <?php else : ?>
+                    <?php elseif ($ifaceStatus == "up") : ?>
                     <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$type_name ?>"  name="ifdown_wlan0" data-toggle="modal" data-target="#switchClientModal"/>
                     <?php endif ?>
                 <?php endif ?>

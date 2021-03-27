@@ -135,12 +135,12 @@
                                       if(!empty($devname)) $devname=$devname[0];
                                    }
                                    if(empty($devname)) $devname="";
-                                   $isStatic = $isStatic || $dev["type"] === "ppp";
+                                   $isStatic = $isStatic || in_array($dev["type"],array("ppp","tun"));
                                    $txtdisabled=$isStatic ? "disabled":"";
                                    echo '<td><select '.$txtdisabled.' class="selectpicker" id="int-new-type-'.$dev["name"].'">';
                                    foreach($_SESSION["net-device-types"] as $i => $type) {
                                      $txt=$_SESSION["net-device-types-info"][$i];
-                                     $txtdisabled =  $type == "ppp" ? "disabled":"";
+                                     $txtdisabled =   in_array($type,array("ppp","tun")) ? "disabled":"";
                                      if(preg_match("/^".$_SESSION["net-device-name-prefix"][$i]."[0-9]*$/",$dev["name"])===1) echo '<option '.$txtdisabled.' selected value="'.$type.'">'.$txt.'</option>';
                                      else echo '<option '.$txtdisabled.' value="'.$type.'">'.$txt.'</option>';
                                    }

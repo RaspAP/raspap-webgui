@@ -173,7 +173,8 @@ function DisplayDashboard(&$extraFooterScripts)
             break;
         default: 
             $client_title = "No information for client available";
-            $type_name = "No Client";
+            $type_name = "Not configured";
+			$ifaceStatus = "warn";
     }
 
     echo renderTemplate(

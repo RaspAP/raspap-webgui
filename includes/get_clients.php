@@ -198,9 +198,10 @@ function findCurrentClientIndex($clients)
         $ncl=$clients["clients"];
         if($ncl > 0) {
             $ty=-1;
-            foreach($clients["device"] as $i => $dev) {
-                if(($id=array_search($dev["type"], $_SESSION["net-device-types"])) > $ty && !$dev["isAP"]) {
-                    $ty=$id;
+            foreach($clients["device"] as $i => $dev) {               
+				$id=array_search($dev["type"],$_SESSION["net-device-types"]);
+				if($id >=0 && $_SESSION["udevrules"]["network_devices"][$id]["clientid"] > $ty && !$dev["isAP"]) {
+					$ty=$id;
                     $devid=$i;
                 }
             }

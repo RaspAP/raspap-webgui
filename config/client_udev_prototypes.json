@@ -51,6 +51,13 @@
      "comment": "ethernet access provided by tethering from phone via USB",
      "name_prefix": "phone",
      "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\" "
+    },
+	{
+     "type": "tun", 
+     "type_info": "tunnel device", 
+     "clientid": -1,
+     "comment": "tunneling device used by OpenVPN",
+     "name_prefix": "tun",
     }
   ]
 }
