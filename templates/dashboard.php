@@ -9,7 +9,7 @@
           <div class="col">
             <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
               <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-              <span class="text service-status"><?php echo $type_name . ($ifaceStatus!="warn") echo ' '. _($ifaceStatus) ?></span>
+              <span class="text service-status"><?php echo $type_name . ($ifaceStatus!="warn") .' '. _($ifaceStatus); ?></span>
             </button>
           </div>
         </div><!-- /.row -->
