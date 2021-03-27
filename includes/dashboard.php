@@ -172,7 +172,7 @@ function DisplayDashboard(&$extraFooterScripts)
             $type_name = "Mobile Data";
             break;
         default: 
-            $client_title = "No information for client available";
+            $client_title = "No information available";
             $type_name = "Not configured";
 			$ifaceStatus = "warn";
     }

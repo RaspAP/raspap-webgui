@@ -66,7 +66,7 @@
                       <div class="info-item"><?php echo _("Device"); ?></div><div><?php  $valEcho($clientinfo,"vendor")." ".$valEcho($clientinfo,"model"); ?></div>
                       <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo  $valEcho($clientinfo,"ipaddress"); ?></div>
                     <?php else : // NO CLIENT ?>
-                      <div class="info-item"><?php echo _("No Client foudn or client is not unconfigured yet"); ?></div>
+                      <div class="info-item"><?php echo _("No Client found or client is not yet configured"); ?></div>
                     <?php endif; ?>
                   </div>
                   <div class="col-md mt-2 d-flex justify-content-center">
