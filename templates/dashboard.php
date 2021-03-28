@@ -9,7 +9,7 @@
           <div class="col">
             <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
               <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-              <span class="text service-status"><?php echo $type_name; if ($ifaceStatus!="warn") echo ' '. _($ifaceStatus); ?></span>
+              <span class="text service-status"><?php echo $type_name; if ($isConfigured=($ifaceStatus!="warn")) echo ' '. _($ifaceStatus); ?></span>
             </button>
           </div>
         </div><!-- /.row -->
@@ -66,19 +66,21 @@
                       <div class="info-item"><?php echo _("Device"); ?></div><div><?php  $valEcho($clientinfo,"vendor")." ".$valEcho($clientinfo,"model"); ?></div>
                       <div class="info-item"><?php echo _("IP Address"); ?></div><div><?php echo  $valEcho($clientinfo,"ipaddress"); ?></div>
                     <?php else : // NO CLIENT ?>
-                      <div class="info-item"><?php echo _("No Client found or client is not yet configured"); ?></div>
+                      <div class=""><?php echo _("No Client device or not yet configured"); ?></div>
                     <?php endif; ?>
                   </div>
-                  <div class="col-md mt-2 d-flex justify-content-center">
-                    <?php 
-                      preg_match("/.*\((\s*\d*)\s*%\s*\)/",$clientinfo["signal"],$match);
-                      $strLinkQuality=array_key_exists(1,$match) ? $match[1] : 0;
-                    ?>
-                    <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
-                    <div class="chart-container">
-                      <canvas id="divChartLinkQ"></canvas>
-                    </div>
-                  </div>
+                  <?php if ($isConfigured) : ?>
+                     <div class="col-md mt-2 d-flex justify-content-center">
+                        <?php
+                          preg_match("/.*\((\s*\d*)\s*%\s*\)/",$clientinfo["signal"],$match);
+                          $strLinkQuality=array_key_exists(1,$match) ? $match[1] : 0;
+                        ?>
+                        <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
+                        <div class="chart-container">
+                           <canvas id="divChartLinkQ"></canvas>
+                        </div>
+                     </div>
+                  <?php endif; ?>
                 </div><!--row-->
               </div><!-- /.card-body -->
             </div><!-- /.card -->
