@@ -152,6 +152,7 @@ function DisplayDashboard(&$extraFooterScripts)
         exec('cat ' . RASPI_DNSMASQ_LEASES . '| grep -E $(iw dev ' . $apInterface . ' station dump | grep -oE ' . $MACPattern . ' | paste -sd "|")', $clients);
     }
     $ifaceStatus = $clientinfo["connected"]=="y" ? "up" : "down";
+    $isClientConfigured = true;
     switch($clientinfo["type"]) {
         case "eth":
         case "usb":
@@ -174,7 +175,8 @@ function DisplayDashboard(&$extraFooterScripts)
         default: 
             $client_title = "No information available";
             $type_name = "Not configured";
-			$ifaceStatus = "warn";
+            $ifaceStatus = "warn";
+            $isClientConfigured = false;
     }
 
     echo renderTemplate(
@@ -197,7 +199,8 @@ function DisplayDashboard(&$extraFooterScripts)
             "strTxPackets",
             "strTxBytes",
             "txPower",
-            "clientinfo"
+            "clientinfo",
+            "isClientConfigured"
         )
     );
     $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);

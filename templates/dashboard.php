@@ -9,7 +9,7 @@
           <div class="col">
             <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
               <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-              <span class="text service-status"><?php echo $type_name; if ($isConfigured=($ifaceStatus!="warn")) echo ' '. _($ifaceStatus); ?></span>
+              <span class="text service-status"><?php echo $type_name; if ( $isClientConfigured ) echo ' '. _($ifaceStatus); ?></span>
             </button>
           </div>
         </div><!-- /.row -->
@@ -69,7 +69,7 @@
                       <div class=""><?php echo _("No Client device or not yet configured"); ?></div>
                     <?php endif; ?>
                   </div>
-                  <?php if ($isConfigured) : ?>
+                  <?php if ($isClientConfigured) : ?>
                      <div class="col-md mt-2 d-flex justify-content-center">
                         <?php
                           preg_match("/.*\((\s*\d*)\s*%\s*\)/",$clientinfo["signal"],$match);
