@@ -39,7 +39,9 @@ if (isset($_POST['interface'])) {
             $pid=$_POST["int-pid-".$dev];
             $mac=$_POST["int-mac-".$dev];
             $name=trim($_POST["int-name-".$dev]);
+			// limit device name to letters and numbers. Total length max 20
             $name=preg_replace("/[^a-z0-9]/", "", strtolower($name));
+            $name=substr($name, 0, min(strlen($name),20));
             $type=$_POST["int-type-".$dev];
             $newtype=$_POST["int-new-type-".$dev];
             $udevfile=$_SESSION["udevrules"]["udev_rules_file"]; // default file /etc/udev/rules.d/80-net-devices.rules";
@@ -72,7 +74,6 @@ if (isset($_POST['interface'])) {
                 if (!empty($name)) $rule = preg_replace("/\\\$DEVNAME\\\$/i",$name,$rule);
                 if (!empty($rule)) exec('echo \''.$rule.'\' | sudo /usr/bin/tee -a '.$udevfile);
             }
-            $ret=print_r($ret,true);
             $jsonData = ['return'=>0,'output'=>['Settings changed for device '.$dev. '<br>Changes will only be in effect after reconnecting the device'  ] ];
             echo json_encode($jsonData);
             return;
