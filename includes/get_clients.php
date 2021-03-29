@@ -20,16 +20,8 @@ function getClients($simple=true)
         }
         foreach ($rawdevs as $i => $dev) {
             $cl["device"][$i]["name"]=$dev;
-            if (preg_match("/^(\w+)[0-9]$/", $dev, $nam) === 1) {
-                $nam=$nam[1];
-            } else {
-                $nam="none";
-            }
-            if (($n = array_search($nam, $_SESSION["net-device-name-prefix"])) === false) {
-                $n = count($_SESSION["net-device-types"])-1;
-            }
-            $ty = $_SESSION["net-device-types"][$n];
-            $cl["device"][$i]["type"]=$ty;
+            $nam = (preg_match("/^(\w+)[0-9]$/",$dev,$nam) === 1) ? $nam=$nam[1] : "";
+            $cl["device"][$i]["type"]=$ty=getClientType($dev);
             unset($udevinfo);
             exec("udevadm info /sys/class/net/$dev 2> /dev/null", $udevinfo);
             if ($nam == "ppp" && isset($devtty)) {
@@ -179,6 +171,27 @@ function getClients($simple=true)
         }
     }
     return $cl;
+}
+
+function getClientType($dev) {
+    loadClientConfig();
+    // check if device type stored in DEVTYPE or raspapType (from UDEV rule) protperty of the device
+    exec("udevadm info /sys/class/net/$dev 2> /dev/null", $udevadm);
+    $type="none";
+    if (!empty($udevadm)) {
+         $type=preg_only_match("/raspapType=(\w*)/i",$udevadm);
+        if (empty($type)) {
+            $type=preg_only_match("/DEVTYPE=(\w*)/i",$udevadm);
+        }
+    }
+    if (empty($type) || array_search($type, $_SESSION["net-device-name-prefix"]) === false) {
+        // no device type yet -> get device type from device name 
+        if (preg_match("/^(\w+)[0-9]$/",$dev,$nam) === 1) $nam=$nam[1];
+        else $nam="none";
+        if (($n = array_search($nam, $_SESSION["net-device-name-prefix"])) === false) $n = count($_SESSION["net-device-types"])-1;
+        $type = $_SESSION["net-device-types"][$n];
+    }
+    return $type;
 }
 
 function loadClientConfig()

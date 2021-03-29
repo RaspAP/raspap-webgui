@@ -141,7 +141,7 @@
                                    foreach($_SESSION["net-device-types"] as $i => $type) {
                                      $txt=$_SESSION["net-device-types-info"][$i];
                                      $txtdisabled =   in_array($type,array("ppp","tun")) ? "disabled":"";
-                                     if(preg_match("/^".$_SESSION["net-device-name-prefix"][$i]."[0-9]*$/",$dev["name"])===1) echo '<option '.$txtdisabled.' selected value="'.$type.'">'.$txt.'</option>';
+                                     if(preg_match("/^".$_SESSION["net-device-name-prefix"][$i].".*$/",$dev["type"])===1) echo '<option '.$txtdisabled.' selected value="'.$type.'">'.$txt.'</option>';
                                      else echo '<option '.$txtdisabled.' value="'.$type.'">'.$txt.'</option>';
                                    }
                                    echo "</select></td>";

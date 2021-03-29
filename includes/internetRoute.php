@@ -46,7 +46,7 @@ function getRouteInfo($checkAccess)
                 $rInfo[$i]["access-ip"] = empty($okip) ? false : true;
                 unset($okdns);
                 exec('ping -W1 -c 1 -I ' . $prop[0] . ' ' . RASPI_ACCESS_CHECK_DNS . ' |  sed -rn "s/.*icmp_seq=1.*time=.*/OK/p"', $okdns);
-                 $rInfo[$i]["access-dns"] = empty($okdns) ? false : true;
+                $rInfo[$i]["access-dns"] = empty($okdns) ? false : true;
             }
         }
     } else {
