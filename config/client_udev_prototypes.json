@@ -9,7 +9,7 @@
      "clientid": 0,
      "comment": "standard ethernet port",
      "name_prefix": "eth",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", ATTR{address}==\"$MAC$\", NAME=\"$DEVNAME$\" "
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", ATTR{address}==\"$MAC$\", NAME=\"$DEVNAME$\", ENV{raspapType}="eth" "
     },
     {
      "type": "usb", 
@@ -17,7 +17,7 @@
      "clientid": 1,
      "comment": "network interface - e.g. USB tethering of an Android phone ",
      "name_prefix": "usb",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\" "
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}="eth"  "
     },
     {
      "type": "wlan", 
@@ -25,7 +25,7 @@
      "clientid": 2,
      "comment": "standard wireless interface",
      "name_prefix": "wlan",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", ATTR{address}==\"$MAC$\", NAME=\"$DEVNAME$\" "
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", ATTR{address}==\"$MAC$\", NAME=\"$DEVNAME$\", ENV{raspapType}="wlan"  "
     },
     {
      "type": "ppp", 
@@ -42,7 +42,7 @@
      "comment": "Huawei mobile data device in router mode. Control via HTTP",
      "name_prefix": "hilink",
      "default_ip": "192.168.8.1",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\",  TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"start start_huawei_hilink.service\" "
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}="hilink",  TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"start start_huawei_hilink.service\" "
     },
     {
      "type": "phone", 
@@ -50,7 +50,7 @@
      "clientid": 5,
      "comment": "ethernet access provided by tethering from phone via USB",
      "name_prefix": "phone",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\" "
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}="phone"  "
     },
 	{
      "type": "tun", 
