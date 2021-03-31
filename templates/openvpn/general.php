@@ -37,9 +37,8 @@
            <div class="panel panel-default panel-collapse collapse in" id="PanelCerts" >
               <div class="panel-body">
              <div class="panel-heading">
-               <h5 class="panel-title">Enter username and password</h5>
+               <h5 class="panel-title">Certificates in the configuration file</h5>
              </div>
-                    <h5 class="panel-title">Certificates in the configuration file</h5>
                     <p> RaspAP does not support the import of the required cerficates. Please paste them into the configuration file
                       <ul>
                         <li>Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags </li>
