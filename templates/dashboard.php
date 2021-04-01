@@ -21,7 +21,7 @@
           <div class="col-lg-12">
             <div class="card mb-3">
               <div class="card-body">
-                <h4><?php echo _("Hourly traffic amount"); ?></h4>
+                <h4 class="card-title"><?php echo _("Hourly traffic amount"); ?></h4>
                 <div id="divInterface" class="d-none"><?php echo $apInterface; ?></div>
                 <div class="col-md-12">
                   <canvas id="divDBChartBandwidthhourly"></canvas>
@@ -33,7 +33,7 @@
           <div class="col-sm-6 align-items-stretch">
             <div class="card h-100">
               <div class="card-body wireless">
-                <h4><?php echo _("Wireless Client"); ?></h4>
+                <h4 class="card-title"><?php echo _("Wireless Client"); ?></h4>
                 <div class="row justify-content-md-center">
                   <div class="col-md">
                     <div class="info-item"><?php echo _("Connected To"); ?></div><p><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></p>
@@ -57,7 +57,7 @@
           <div class="col-sm-6">
             <div class="card h-100 mb-3">
               <div class="card-body">
-                <h4><?php echo _("Connected Devices"); ?></h4>
+                <h4 class="card-title"><?php echo _("Connected Devices"); ?></h4>
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <thead>
