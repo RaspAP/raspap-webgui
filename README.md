@@ -67,7 +67,9 @@ configured as an access point as follows:
 Please [read this](https://docs.raspap.com/issues/) before reporting an issue.
 
 ## Join Insiders
-RaspAP is free software, but powered by _your_ support. If you find RaspAP useful for your personal or commercial projects, [become an Insider](https://github.com/sponsors/RaspAP/) and get early access to exclusive features in the [Insiders Edition](https://docs.raspap.com/insiders/).
+[![](https://i.imgur.com/eml7k0b.png)](https://github.com/sponsors/RaspAP/)  
+
+RaspAP is free software, but powered by _your_ support. If you find RaspAP useful for your personal or commercial projects, [become an Insider](https://github.com/sponsors/RaspAP/) and get early access to [exclusive features](https://docs.raspap.com/insiders/#exclusive-features) in the [Insiders Edition](https://docs.raspap.com/insiders/).
 
 A tangible side benefit of sponsorship is that **Insiders** are able to help _steer future development of RaspAP_. This is done through Insiders' team access to discussions, feature requests, issues and more in the private GitHub repository.
 
@@ -167,8 +169,6 @@ This project exists thanks to all the awesome people who [contribute](CONTRIBUTI
 
 ### Financial Contributors
 Development of RaspAP is made possible thanks to a sponsorware release model. This means that new features are first exclusively released to sponsors as part of [**Insiders**](https://github.com/sponsors/RaspAP).
-
-[![](https://i.imgur.com/azMTmuP.png)](https://github.com/sponsors/RaspAP/)  
 
 Learn more about [how sponsorship works](https://docs.raspap.com/insiders/#how-sponsorship-works), and how easy it is to get access to Insiders.
 
