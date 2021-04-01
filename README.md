@@ -1,7 +1,7 @@
 ![](https://i.imgur.com/xeKD93p.png)
-[![Release 2.6.3](https://img.shields.io/badge/release-v2.6.3-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Get Insiders](https://img.shields.io/static/v1?label=Get%20Insiders&message=%E2%9D%A4&logo=GitHub&color=ff69b4)](https://github.com/sponsors/RaspAP) ![https://travis-ci.com/github/raspap/raspap-webgui/](https://api.travis-ci.org/RaspAP/raspap-webgui.svg) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
+[![Release 2.6.3](https://img.shields.io/badge/release-v2.6.3-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Join Insiders](https://img.shields.io/static/v1?label=Join%20Insiders&message=%E2%9D%A4&logo=GitHub&color=ff69b4)](https://github.com/sponsors/RaspAP) ![https://travis-ci.com/github/raspap/raspap-webgui/](https://api.travis-ci.org/RaspAP/raspap-webgui.svg) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/)
 
-RaspAP lets you quickly get a wireless access point up and running to share the connectivity of many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our popular [Quick installer](#quick-installer) creates a known-good default configuration that "just works" on all current Raspberry Pis with onboard wireless. A responsive interface gives you control over the relevant services and networking options. Advanced DHCP settings, OpenVPN client support, SSL, security audits, themes and multilingual options are included.
+RaspAP is feature-rich wireless router software that _just works_ on many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our popular [Quick installer](#quick-installer) creates a known-good default configuration for all current Raspberry Pis with onboard wireless. A fully responsive, mobile-ready interface gives you control over the relevant services and networking options. Advanced DHCP settings, WireGuard and OpenVPN support, [SSL certificates](https://docs.raspap.com/ssl-quick/), security audits, [captive portal integration](https://docs.raspap.com/captive/), themes and [multilingual options](https://docs.raspap.com/translations/) are included.
 
 RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
 
@@ -16,12 +16,12 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
 
  - [Prerequisites](#prerequisites)
  - [Quick installer](#quick-installer)
+ - [Join Insiders](#join-insiders)
  - [WireGuard support](#wireguard-support)
  - [OpenVPN support](#openvpn-support)
  - [Ad Blocking](#ad-blocking)
  - [Bridged AP](#bridged-ap)
  - [Simultaneous AP and Wifi client](#simultaneous-ap-and-wifi-client)
- - [Support us](#support-us)
  - [Manual installation](#manual-installation)
  - [802.11ac 5GHz support](#80211ac-5ghz-support)
  - [Supported operating systems](#supported-operating-systems)
@@ -58,13 +58,18 @@ configured as an access point as follows:
 * IP address: 10.3.141.1
   * Username: admin
   * Password: secret
-* DHCP range: 10.3.141.50 to 10.3.141.255
+* DHCP range: 10.3.141.50 — 10.3.141.255
 * SSID: `raspi-webgui`
 * Password: ChangeMe
 
 **Note:** As the name suggests, the Quick Installer is a great way to quickly setup a new AP. However, it does not automagically detect the unique configuration of your system. Best results are obtained by connecting to ethernet (`eth0`) or as a WiFi client, also known as managed mode, with `wlan0`. For the latter, refer to [this FAQ](https://docs.raspap.com/faq/#headless). Special instructions for the Pi Zero W are [available here](https://docs.raspap.com/ap-sta/).
 
 Please [read this](https://docs.raspap.com/issues/) before reporting an issue.
+
+## Join Insiders
+RaspAP is free software, but powered by _your_ support. If you find RaspAP useful for your personal or commercial projects, [become an Insider](https://github.com/sponsors/RaspAP/) and get early access to exclusive features in the [Insiders Edition](https://docs.raspap.com/insiders/).
+
+A tangible side benefit of sponsorship is that **Insiders** are able to help _steer future development of RaspAP_. This is done through Insiders' team access to discussions, feature requests, issues and more in the private GitHub repository.
 
 ## WireGuard support
 
@@ -103,9 +108,6 @@ More information on Bridged AP mode is provided [in our documentation](https://d
 RaspAP lets you create an AP with a Wifi client configuration, often called [AP-STA mode](https://docs.raspap.com/ap-sta/). With your system configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
 
 **Note:** This option is disabled until you configure your system as a wireless client. For a device operating in [managed mode](https://docs.raspap.com/faq/#headless) without an `eth0` connection, this configuration must be enabled [_before_ a reboot](https://docs.raspap.com/ap-sta/). 
-
-## Support us
-RaspAP is free software, but powered by _your_ support. If you find RaspAP useful for your personal or commercial projects, [become an Insider](https://github.com/sponsors/RaspAP/) and get early access to exclusive features in the [Insiders Edition](https://docs.raspap.com/insiders/).
 
 ## Manual installation
 Detailed manual setup instructions are provided [on our documentation site](https://docs.raspap.com/manual/).
