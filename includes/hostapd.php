@@ -27,6 +27,8 @@ function DisplayHostAPDConfig()
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
     $managedModeEnabled = false;
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
+    sort($interfaces);
+
     exec("iw reg get | awk '/country / { sub(/:/,\"\",$2); print $2 }'", $country_code);
 
     if (!RASPI_MONITOR_ENABLED) {
