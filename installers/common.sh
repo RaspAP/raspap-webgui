@@ -25,6 +25,7 @@ readonly raspap_wlan0="/etc/dnsmasq.d/090_wlan0.conf"
 readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_network="$raspap_dir/networking/"
+readonly raspap_router="/etc/lighttpd/conf-available/50-raspap-router.conf"
 readonly rulesv4="/etc/iptables/rules.v4"
 readonly notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
 webroot_dir="/var/www/html"
@@ -220,20 +221,25 @@ function _install_lighttpd_configs() {
     CONFSRC="$webroot_dir/config/50-raspap-router.conf"
     LTROOT=$(grep "server.document-root" /etc/lighttpd/lighttpd.conf | awk -F '=' '{print $2}' | tr -d " \"")
 
-    # compare values and get difference
+    # Compare values and get difference
     HTROOT=${webroot_dir/$LTROOT}
 
-    # remove trailing slash if present
+    # Remove trailing slash if present
     HTROOT=$(echo "$HTROOT" | sed -e 's/\/$//')
 
-    # substitute values
+    # Substitute values
     awk "{gsub(\"/REPLACE_ME\",\"$HTROOT\")}1" $CONFSRC > /tmp/50-raspap-router.conf
 
-    # copy into place
+    # Copy into place
     sudo cp /tmp/50-raspap-router.conf /etc/lighttpd/conf-available/ || _install_status 1 "Unable to copy lighttpd config file into place."
 
-    # link into conf-enabled
+    # Link into conf-enabled
     echo "Creating link to /etc/lighttpd/conf-enabled"
+    if ! [ -L $raspap_router ]; then
+        echo "Existing 50-raspap-router.conf found. Unlinking."
+        sudo unlink "/etc/lighttpd/conf-enabled/50-raspap-router.conf"
+    fi
+    echo "Linking 50-raspap-router.conf to /etc/lighttpd/conf-enabled/"
     sudo ln -s "/etc/lighttpd/conf-available/50-raspap-router.conf" "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_status 1 "Unable to symlink lighttpd config file (this is normal if the link already exists)."
     sudo systemctl restart lighttpd.service || _install_status 1 "Unable to restart lighttpd"
     _install_status 0
