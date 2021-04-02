@@ -55,6 +55,18 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="form-group col-md-6">
+        <div class="custom-control custom-switch">
+          <input class="custom-control-input" id="default-route" type="checkbox" name="DefaultRoute" value="1" aria-describedby="default-route-description">
+          <label class="custom-control-label" for="default-route"><?php echo _("Install a default route for this interface") ?></label>
+        </div>
+        <p class="mb-0" id="default-route-description">
+          <small><?php echo _("This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration.") ?></small>
+        </p>
+    </div>
+  </div>
+
   <h5 class="mt-1">DHCP options</h5>
   <div class="row">
     <div class="form-group col-md-6">

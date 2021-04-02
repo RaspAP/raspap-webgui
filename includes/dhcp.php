@@ -244,6 +244,7 @@ function updateDHCPConfig($iface,$status)
         $cfg[] = 'profile static_'.$iface;
         $cfg[] = 'fallback static_'.$iface;
     }
+    $cfg[] = $_POST['DefaultRoute'] == '1' ? 'gateway' : 'nogateway';
     $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
     if (!preg_match('/^interface\s'.$iface.'$/m', $dhcp_cfg)) {
         $cfg[] = PHP_EOL;
