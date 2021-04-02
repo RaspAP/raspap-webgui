@@ -37,7 +37,7 @@
                 <div class="row justify-content-md-center">
                   <div class="col-md">
                     <div class="info-item"><?php echo _("Connected To"); ?></div><p><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></p>
-                    <div class="info-item"><?php echo _("Interface"); ?></div><div><?php echo htmlspecialchars($clientInterface); ?></div>
+                    <div class="info-item"><?php echo _("Interface"); ?></div><p><?php echo htmlspecialchars($clientInterface); ?></p>
                     <div class="info-item"><?php echo _("AP Mac Address"); ?></div><p><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></p>
                     <div class="info-item"><?php echo _("Bitrate"); ?></div><p><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></p>
                     <div class="info-item"><?php echo _("Signal Level"); ?></div><p><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></p>
