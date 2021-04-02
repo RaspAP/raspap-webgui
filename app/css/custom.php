@@ -119,8 +119,9 @@ i.fa.fa-bars:hover{
 }
 
 .info-item {
-  width: 10rem;
-  float: left;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  color: #858796;
 }
 
 .info-item-xs {

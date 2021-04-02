@@ -21,7 +21,7 @@
           <div class="col-lg-12">
             <div class="card mb-3">
               <div class="card-body">
-                <h4><?php echo _("Hourly traffic amount"); ?></h4>
+                <h4 class="card-title"><?php echo _("Hourly traffic amount"); ?></h4>
                 <div id="divInterface" class="d-none"><?php echo $apInterface; ?></div>
                 <div class="col-md-12">
                   <canvas id="divDBChartBandwidthhourly"></canvas>
@@ -33,31 +33,31 @@
           <div class="col-sm-6 align-items-stretch">
             <div class="card h-100">
               <div class="card-body wireless">
-                <h4><?php echo _("Wireless Client"); ?></h4>
+                <h4 class="card-title"><?php echo _("Wireless Client"); ?></h4>
                 <div class="row justify-content-md-center">
-                <div class="col-md">
-                <div class="info-item"><?php echo _("Connected To"); ?></div><div><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Interface"); ?></div><div><?php echo htmlspecialchars($clientInterface); ?></div>
-                <div class="info-item"><?php echo _("AP Mac Address"); ?></div><div><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Bitrate"); ?></div><div><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Signal Level"); ?></div><div><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Transmit Power"); ?></div><div><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
-                <div class="info-item"><?php echo _("Frequency"); ?></div><div><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
-              </div>
-              <div class="col-md mt-2 d-flex justify-content-center">
-                <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
-                <div class="chart-container">
-                  <canvas id="divChartLinkQ"></canvas>
-                </div>
+                  <div class="col-md">
+                    <div class="info-item"><?php echo _("Connected To"); ?></div><p><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></p>
+                    <div class="info-item"><?php echo _("Interface"); ?></div><div><?php echo htmlspecialchars($clientInterface); ?></div>
+                    <div class="info-item"><?php echo _("AP Mac Address"); ?></div><p><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></p>
+                    <div class="info-item"><?php echo _("Bitrate"); ?></div><p><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></p>
+                    <div class="info-item"><?php echo _("Signal Level"); ?></div><p><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></p>
+                    <div class="info-item"><?php echo _("Transmit Power"); ?></div><p><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></p>
+                    <div class="info-item"><?php echo _("Frequency"); ?></div><p><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></p>
+                  </div>
+                  <div class="col-md mt-2 d-flex justify-content-center">
+                    <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
+                    <div class="chart-container">
+                      <canvas id="divChartLinkQ"></canvas>
+                    </div>
+                  </div>
                 </div><!--row-->
-              </div>
-             </div><!-- /.card-body -->
+              </div><!-- /.card-body -->
             </div><!-- /.card -->
           </div><!-- /.col-md-6 -->
           <div class="col-sm-6">
             <div class="card h-100 mb-3">
               <div class="card-body">
-                <h4><?php echo _("Connected Devices"); ?></h4>
+                <h4 class="card-title"><?php echo _("Connected Devices"); ?></h4>
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <thead>
