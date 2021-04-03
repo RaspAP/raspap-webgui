@@ -17,7 +17,7 @@
           <div role="tabpanel" class="tab-pane active" id="summary">
             <h4 class="mt-3"><?php echo _("Internet connection"); ?></h4>
             <div class="row">
-             <div class="col-sm-12"">
+             <div class="col-sm-12">
               <div class="card ">
                 <div class="card-body">
                   <div class="table-responsive">
