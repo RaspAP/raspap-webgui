@@ -5,11 +5,11 @@ require_once '../../includes/functions.php';
 
 if (isset($_POST['cfg_id'])) {
     $ovpncfg_id = $_POST['cfg_id'];
-    $ovpncfg_path = pathinfo(RASPI_OPENVPN_CLIENT_LOGIN, PATHINFO_DIRNAME).'/';
+    $ovpncfg_path = pathinfo(RASPI_OPENVPN_CLIENT_CONFIG, PATHINFO_DIRNAME).'/';
     $ovpncfg_files = $ovpncfg_path .$ovpncfg_id.'_*.conf';
 
     // move currently active profile
-    $meta = file_get_meta(RASPI_OPENVPN_CLIENT_LOGIN,'#\sfilename\s(.*)');
+    $meta = file_get_meta(RASPI_OPENVPN_CLIENT_CONFIG,'#\sfilename\s(.*)');
     $ovpncfg_client = $ovpncfg_path .$meta.'_client.conf';
     $ovpncfg_login = $ovpncfg_path .$meta.'_login.conf';
     exec("sudo mv ".RASPI_OPENVPN_CLIENT_CONFIG." $ovpncfg_client", $return);
