@@ -186,6 +186,7 @@ function loadInterfaceDHCPSelect() {
         $('#txtsubnetmask').val(jsonData.SubnetMask);
         $('#txtgateway').val(jsonData.StaticRouters);
         $('#chkfallback')[0].checked = jsonData.FallbackEnabled;
+        $('#default-route').prop('checked', jsonData.DefaultRoute);
         $('#txtrangestart').val(jsonData.RangeStart);
         $('#txtrangeend').val(jsonData.RangeEnd);
         $('#txtrangeleasetime').val(jsonData.leaseTime);

@@ -150,8 +150,9 @@ ul.nav-tabs, .nav-tabs .nav-link {
 }
 
 .info-item {
-  width: 10rem;
-  float: left;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  color: #858796;
 }
 
 .info-item-xs {

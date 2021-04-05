@@ -380,6 +380,9 @@ msgstr "Clients with a particular hardware MAC address can always be allocated t
 msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
 msgstr "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
 
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Basic"
