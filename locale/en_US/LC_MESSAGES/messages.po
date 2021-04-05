@@ -362,6 +362,9 @@ msgstr "Log DHCP requests"
 msgid "Log DNS queries"
 msgstr "Log DNS queries"
 
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Basic"
