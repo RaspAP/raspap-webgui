@@ -45,12 +45,14 @@ if (isset($interface)) {
     preg_match('/static\srouters=(.*)/', $matched[0], $static_routers);
     preg_match('/static\sdomain_name_server=(.*)/', $matched[0], $static_dns);
     preg_match('/fallback\sstatic_'.$interface.'/', $matched[0], $fallback);
+    preg_match('/(?:no)?gateway/', $matched[0], $gateway);
     $dhcpdata['Metric'] = $metric[1];
     $dhcpdata['StaticIP'] = strpos($static_ip[1],'/') ?  substr($static_ip[1], 0, strpos($static_ip[1],'/')) : $static_ip[1];
     $dhcpdata['SubnetMask'] = cidr2mask($static_ip[1]);
     $dhcpdata['StaticRouters'] = $static_routers[1];
     $dhcpdata['StaticDNS'] = $static_dns[1];
     $dhcpdata['FallbackEnabled'] = empty($fallback) ? false: true;
+    $dhcpdata['DefaultRoute'] = empty($gateway) || $gateway[0] == "gateway";
 
     echo json_encode($dhcpdata);
 }
