@@ -255,6 +255,11 @@ hr {
   color: #858796;
 }
 
+.info-value {
+  font-size: 0.7rem;
+  margin-left: 0.7rem;
+}
+
 .info-item-xs {
   font-size: 0.7rem;
   line-height: 1.5em;
