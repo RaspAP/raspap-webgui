@@ -45,8 +45,7 @@
             </div><!-- /.tab-content -->
 
             <?php echo $buttons ?>
-            </form>
-          </div>
+          </form>
         </div><!-- /.card-body -->
       <div class="card-footer"><?php echo _("Information provided by openvpn"); ?></div>
     </div><!-- /.card -->
