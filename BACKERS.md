@@ -17,12 +17,13 @@ You can [become a sponsor](https://github.com/sponsors/RaspAP) using your indivi
 ### Exclusive features
 When backers were asked which feature they'd most like to see added to RaspAP, the ability to manage multiple OpenVPN client configurations topped the list of requests. We think this is a great idea, so we're adding this as the first feature exclusive to insiders. 
 
-✅ Multiple OpenVPN client configs  
-✅ OpenVPN service logging  
-✅ Night mode toggle  
-✅ Restrict network to static clients  
-✅ WireGuard support  
-⚙️  Traffic shaping (in progress)  
+ ✅ [Multiple OpenVPN client configs](https://docs.raspap.com/openvpn/#multiple-client-configs)  
+ ✅ [OpenVPN certificate authentication](https://docs.raspap.com/openvpn/#certificate-authentication)  
+ ✅ OpenVPN service logging  
+ ✅ Night mode toggle  
+ ✅ Restrict network to static clients  
+ ✅ [WireGuard support](https://docs.raspap.com/wireguard/)  
+⚙️ Traffic shaping (in progress)  
 
 Look for the list above to grow as we add more exclusive features. 
 
@@ -30,12 +31,7 @@ Look for the list above to grow as we add more exclusive features.
 Below is a list of funding targets. When a funding target is reached, the features that are tied to it are merged back into RaspAP and released to the public for general availability.
 
 #### $500 
-✅ Multiple OpenVPN client configs  
-✅ OpenVPN service logging  
-✅ Night mode toggle  
-✅ Restrict network to static clients  
-✅ WireGuard support  
-⚙️  Traffic shaping (in progress)  
+The first **Insiders Edition** includes the exclusive features listed above.
 
 ### Frequently asked questions
 
