@@ -58,7 +58,7 @@
                       <div class="info-item col-xs-3"><?php echo _("Frequency"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
                     </div>
                   </div>
-                  <div class="col-md mt-2 d-flex justify-content-center">
+                  <div class="col-md d-flex justify-content-center">
                     <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
                     <div class="chart-container">
                       <canvas id="divChartLinkQ"></canvas>
