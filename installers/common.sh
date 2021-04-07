@@ -366,7 +366,11 @@ function _install_wireguard() {
     echo "Enabling wg-quick@wg0"
     sudo systemctl enable wg-quick@wg0 || _install_status 1 "Failed to enable wg-quick service"
     echo "Enabling WireGuard management option"
-    sudo sed -i "s/\('RASPI_WIREGUARD_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
+    if grep -q 'RASPI_WIREGUARD_ENABLED' "$webroot_dir/includes/config.php"; then
+        sudo sed -i "s/\('RASPI_WIREGUARD_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
+    else
+        sudo sed -i "/define('RASPI_OPENVPN_ENABLED', true);/a define('RASPI_WIREGUARD_ENABLED', true);" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
+    fi
     _install_status 0
 }
 
