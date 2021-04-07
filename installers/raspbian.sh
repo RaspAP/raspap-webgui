@@ -38,6 +38,7 @@ set -eo pipefail
 function _main() {
     # set defaults
     repo="RaspAP/raspap-webgui" # override with -r, --repo option
+    repo_common="$repo"
     _parse_params "$@"
     _setup_colors
     _log_output
@@ -72,6 +73,7 @@ function _parse_params() {
             ;;
             -r|--repo|--repository)
             repo="$2"
+            repo_common="$repo"
             shift
             ;;
             -b|--branch)
@@ -184,6 +186,7 @@ function _get_release() {
     readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
     if [ "$insiders" == 1 ]; then
         repo="RaspAP/raspap-insiders"
+        repo_common="RaspAP/raspap-webgui"
         readonly RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")' )
         readonly RASPAP_RELEASE="${RASPAP_INSIDERS_LATEST} Insiders"
     else
@@ -237,7 +240,7 @@ function _load_installer() {
         header=(--header "Authorization: token $acctoken")
     fi
 
-    UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
+    UPDATE_URL="https://raw.githubusercontent.com/$repo_common/$branch/"
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
