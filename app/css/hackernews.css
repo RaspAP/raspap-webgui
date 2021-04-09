@@ -155,6 +155,11 @@ ul.nav-tabs, .nav-tabs .nav-link {
   color: #858796;
 }
 
+.info-value {
+  font-size: 0.7rem;
+  margin-left: 0.7rem;
+}
+
 .info-item-xs {
   font-size: 0.7rem;
   margin-left: 0.3rem;
