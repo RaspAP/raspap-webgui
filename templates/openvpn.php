@@ -29,13 +29,15 @@
                 <h4 class="mt-3"><?php echo _("Client settings"); ?></h4>
                 <div class="row">
                   <div class="col">
-                    <div class="row">
+                    <div class="row mb-2">
                       <div class="col-lg-12 mt-2 mb-2">
-                        <div class="info-item"><?php echo _("IPv4 Address"); ?></div>
-                        <div class="info-item"><?php echo htmlspecialchars($public_ip, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($public_ip); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ml-2"></i></a></div>
+                        <div class="row ml-1">
+                          <div class="info-item col-xs-3"><?php echo _("IPv4 Address"); ?></div>
+                          <div class="info-value col-xs-3"><?php echo htmlspecialchars($public_ip, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($public_ip); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ml-2"></i></a></div>
+                        </div>
                       </div>
                     </div>
-                    <div class="row">
+                      <div class="row">
                      <div class="form-group col-lg-12">
                       <label for="code"><?php echo _("Username"); ?></label>
                         <input type="text" class="form-control" name="authUser" value="<?php echo htmlspecialchars($authUser, ENT_QUOTES); ?>" />

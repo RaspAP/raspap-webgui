@@ -34,17 +34,31 @@
             <div class="card h-100">
               <div class="card-body wireless">
                 <h4 class="card-title"><?php echo _("Wireless Client"); ?></h4>
-                <div class="row justify-content-md-center">
-                  <div class="col-md">
-                    <div class="info-item"><?php echo _("Connected To"); ?></div><p><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></p>
-                    <div class="info-item"><?php echo _("Interface"); ?></div><p><?php echo htmlspecialchars($clientInterface); ?></p>
-                    <div class="info-item"><?php echo _("AP Mac Address"); ?></div><p><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></p>
-                    <div class="info-item"><?php echo _("Bitrate"); ?></div><p><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></p>
-                    <div class="info-item"><?php echo _("Signal Level"); ?></div><p><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></p>
-                    <div class="info-item"><?php echo _("Transmit Power"); ?></div><p><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></p>
-                    <div class="info-item"><?php echo _("Frequency"); ?></div><p><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></p>
+                <div class="row ml-1">
+                  <div class="col-sm">
+                    <div class="row mb-1">
+                      <div class="info-item col-xs-3"><?php echo _("Connected To"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
+                    </div>
+                    <div class="row mb-1">
+                      <div class="info-item col-xs-3"><?php echo _("Interface"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($clientInterface); ?></div>
+                    </div>
+                    <div class="row mb-1">
+                      <div class="info-item col-xs-3"><?php echo _("AP Mac Address"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
+                    </div>
+                    <div class="row mb-1">
+                      <div class="info-item col-xs-3"><?php echo _("Bitrate"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
+                    </div>
+                    <div class="row mb-1">
+                      <div class="info-item col-xs-3"><?php echo _("Signal Level"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
+                    </div>
+                    <div class="row mb-1">
+                      <div class="info-item col-xs-3"><?php echo _("Transmit Power"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
+                    </div>
+                    <div class="row mb-1">
+                      <div class="info-item col-xs-3"><?php echo _("Frequency"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
+                    </div>
                   </div>
-                  <div class="col-md mt-2 d-flex justify-content-center">
+                  <div class="col-md d-flex">
                     <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
                     <div class="chart-container">
                       <canvas id="divChartLinkQ"></canvas>
