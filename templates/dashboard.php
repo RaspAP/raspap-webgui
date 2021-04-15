@@ -39,29 +39,29 @@
                     <?php if ($clientinfo["type"] == "wlan") : // WIRELESS ?>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Connected To"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"ssid"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("AP Mac Address"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"ap-mac"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Bitrate"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"bitrate"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Signal Level"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"signal"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Transmit Power"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Frequency"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"freq"); ?></div>
-					            </div>
+                      </div>
                     <?php elseif ($clientinfo["type"] == "phone" ) : // Smartphones (tethering over USB) ?>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Device"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"vendor")." ". $valEcho($clientinfo,"model"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("IP Address"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"ipaddress"); ?></div>
-					            </div>
+                      </div>
                     <?php elseif ($clientinfo["type"] == "hilink" ) : // MOBILE DATA - ROUTER MODE (HILINK) ?>
                       <?php
                           exec('ip route list |  sed -rn "s/default via (([0-9]{1,3}\.){3}[0-9]{1,3}).*dev '.$clientinfo["name"].'.*/\1/p"',$gw); // get gateway
@@ -69,44 +69,46 @@
                       ?>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Device"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"model")." (Hilink)"; ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Connection mode"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"mode"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Signal quality"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"signal"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Network"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"operator"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("WAN IP"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"wan_ip"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Web-GUI"); ?></div><div class="info-value col-xs-3"><?php if(!empty($gw)) echo '<a href="http://'.$gw.'" >'.$gw."</a>"; ?></div>
-					            </div>
+                      </div>
                     <?php elseif ($clientinfo["type"] == "ppp" ) : // MOBILE DATA MODEM) ?>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Device"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"model"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Connection mode"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"mode"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Signal strength"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"signal"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Network"); ?></div><div class="info-value col-xs-3"><?php  $valEcho($clientinfo,"operator"); ?></div>
-					            </div>
+                      </div>
                     <?php elseif  ($clientinfo["type"] == "eth" ) : // ETHERNET ?>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("Device"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"vendor")." ".$valEcho($clientinfo,"model"); ?></div>
-					            </div>
+                      </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("IP Address"); ?></div><div class="info-value col-xs-3"><?php echo $valEcho($clientinfo,"ipaddress"); ?></div>
-					            </div>
+                      </div>
                     <?php else : // NO CLIENT ?>
-                      <div class=""><?php echo _("No Client device or not yet configured"); ?></div>
+                      <div class="row mb-1">
+                        <div class="info-item col-xs-3"><?php echo _("No Client device or not yet configured"); ?></div>
+                      </div>
                     <?php endif; ?>
                   </div>
                   <?php if ($isClientConfigured) : ?>
@@ -202,7 +204,7 @@
       <div class="modal-header">
         <div class="modal-title" id="ModalLabel">
             <i class="fas fa-sync-alt mr-2"></i>
-            <?php if($ifaceStatus=="down") echo _("Waiting for the interface to start ... might take a moment"); else  echo _("Stop the Interface"); ?>
+            <?php if($ifaceStatus=="down") echo _("Waiting for the interface to start ..."); else  echo _("Stop the Interface"); ?>
         </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
       </div>
