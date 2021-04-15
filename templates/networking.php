@@ -13,8 +13,8 @@
         <ul class="nav nav-tabs">
           <li role="presentation" class="nav-item"><a class="nav-link active" href="#summary" aria-controls="summary" role="tab" data-toggle="tab"><?php echo _("Summary"); ?></a></li>
           <?php if (!$bridgedEnabled) : // no interface details when bridged ?>
-            <li role="presentation" class="nav-item"><a class="nav-link" href="#netdevices" aria-controls="netdevices" role="tab" data-toggle="tab">Network Devices</a></li>
-            <li role="presentation" class="nav-item"><a class="nav-link" href="#mobiledata" aria-controls="mobiledata" role="tab" data-toggle="tab">Mobile Data Settings</a></li>
+            <li role="presentation" class="nav-item"><a class="nav-link" href="#netdevices" aria-controls="netdevices" role="tab" data-toggle="tab"><?php echo _("Network Devices"); ?></a></li>
+            <li role="presentation" class="nav-item"><a class="nav-link" href="#mobiledata" aria-controls="mobiledata" role="tab" data-toggle="tab"><?php echo _("Mobile Data Settings"); ?></a></li>
           <?php endif ?>
         </ul>
         <div class="tab-content">
