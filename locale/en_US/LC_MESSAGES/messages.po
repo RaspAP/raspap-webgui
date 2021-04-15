@@ -244,6 +244,60 @@ msgstr "Stop wlan0"
 msgid "Connected Devices"
 msgstr "Connected Devices"
 
+msgid "Client: Ethernet cable"
+msgstr "Client: Ethernet cable"
+
+msgid "Ethernet"
+msgstr "Ethernet"
+
+msgid "Client: Smartphone (USB tethering)"
+msgstr "Client: Smartphone (USB tethering)"
+
+msgid "Smartphone"
+msgstr "Smartphone"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Mobile Data Client"
+msgstr "Mobile Data Client"
+
+msgid "Mobile Data"
+msgstr "Mobile Data"
+
+msgid "No information available"
+msgstr "No information available"
+
+msgid "Interface name invalid"
+msgstr "Interface name invalid"
+
+msgid "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
+msgstr "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
+
+msgid "Waiting for the interface to start ..."
+msgstr "Waiting for the interface to start ..."
+
+msgid "Stop the Interface"
+msgstr "Stop the Interface"
+
+msgid "Connection mode"
+msgstr "Connection mode"
+
+msgid "Signal quality"
+msgstr "Signal quality"
+
+msgid "WAN IP"
+msgstr "WAN IP"
+
+msgid "Web-GUI"
+msgstr "Web-GUI"
+
+msgid "Signal strength"
+msgstr "Signal strength"
+
+msgid "No Client device or not yet configured"
+msgstr "No Client device or not yet configured"
+
 #: includes/dhcp.php
 msgid "DHCP server settings"
 msgstr "DHCP server settings"
@@ -537,6 +591,51 @@ msgstr "Apply settings"
 
 msgid "Information provided by /sys/class/net"
 msgstr "Information provided by /sys/class/net"
+
+msgid "Network Devices"
+msgstr "Network Devices"
+
+msgid "Mobile Data Settings"
+msgstr "Mobile Data Settings"
+
+msgid "Device"
+msgstr "Device"
+
+msgid "MAC"
+msgstr "MAC"
+
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+msgid "Device type"
+msgstr "Device type"
+
+msgid "Fixed name"
+msgstr "Fixed name"
+
+msgid "Settings for Mobile Data Devices"
+msgstr "Settings for Mobile Data Devices"
+
+msgid "PIN of SIM card"
+msgstr "PIN of SIM card"
+
+msgid "APN Settings (Modem device ppp0)"
+msgstr "APN Settings (Modem device ppp0)"
+
+msgid "Access Point Name (APN)"
+msgstr "Access Point Name (APN)"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Successfully Updated Network Configuration"
+msgstr "Successfully Updated Network Configuration"
+
+msgid "Error saving network configuration to file"
+msgstr "Error saving network configuration to file"
+
+msgid "Unable to detect interface"
+msgstr "Unable to detect interface"
 
 #: includes/system.php
 msgid "System Information"
