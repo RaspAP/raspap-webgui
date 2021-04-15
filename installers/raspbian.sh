@@ -38,6 +38,7 @@ set -eo pipefail
 function _main() {
     # set defaults
     repo="RaspAP/raspap-webgui" # override with -r, --repo option
+    repo_common="$repo"
     _parse_params "$@"
     _setup_colors
     _log_output
@@ -72,6 +73,7 @@ function _parse_params() {
             ;;
             -r|--repo|--repository)
             repo="$2"
+            repo_common="$repo"
             shift
             ;;
             -b|--branch)
@@ -90,10 +92,6 @@ function _parse_params() {
             -t|--token)
             acctoken="$2"
             shift
-            ;;
-            -t|--token)
-            acctoken="$2"
-			shift
             ;;
             -v|--version)
             _version
@@ -188,6 +186,7 @@ function _get_release() {
     readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
     if [ "$insiders" == 1 ]; then
         repo="RaspAP/raspap-insiders"
+        repo_common="RaspAP/raspap-webgui"
         readonly RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")' )
         readonly RASPAP_RELEASE="${RASPAP_INSIDERS_LATEST} Insiders"
     else
@@ -227,7 +226,6 @@ function _update_system_packages() {
 
 # Fetch required installer functions
 function _load_installer() {
-
     # fetch latest release tag
     _get_release
 
@@ -242,7 +240,7 @@ function _load_installer() {
         header=(--header "Authorization: token $acctoken")
     fi
 
-    UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
+    UPDATE_URL="https://raw.githubusercontent.com/$repo_common/$branch/"
     header=()
     if [[ ! -z "$acctoken" ]]; then
         header=(--header "Authorization: token $acctoken")
