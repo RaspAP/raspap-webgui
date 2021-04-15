@@ -56,14 +56,16 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
-    _install_features
+    _install_mobile_clients
     _prompt_install_wireguard
     _patch_system_files
     _install_complete
 }
 
 # search for optional installation files names install_feature_*.sh
-function _install_features() {
+function _install_mobile_clients() {
+    if [ "$insiders" == 1 ]; then
+        echo -n "Installing support for mobile data clients"
         for feature in $(ls $webroot_dir/installers/install_feature_*.sh) ; do
            source $feature
            f=$(basename $feature)
@@ -75,6 +77,7 @@ function _install_features() {
                 _install_status 1 "Install file $f is missing install function $func"
            fi
        done
+    fi
 }
 
 # Prompts user to set installation options
