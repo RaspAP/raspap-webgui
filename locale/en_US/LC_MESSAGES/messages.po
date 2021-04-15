@@ -380,6 +380,9 @@ msgstr "Clients with a particular hardware MAC address can always be allocated t
 msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
 msgstr "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
 
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Basic"
@@ -724,6 +727,36 @@ msgstr "Cancel"
 
 msgid "Enable this option to log <code>openvpn</code> activity."
 msgstr "Enable this option to log <code>openvpn</code> activity."
+
+msgid "Authentification Method"
+msgstr "Authentification Method"
+
+msgid "Username and password"
+msgstr "Username and password"
+
+msgid "Certificates"
+msgstr "Certificates"
+
+msgid "Enter username and password"
+msgstr "Enter username and password"
+
+msgid "Certificates in the configuration file"
+msgstr "Certificates in the configuration file"
+
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP supports certificates by including them in the configuration file."
+
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+
+msgid "Configuration File"
+msgstr "Configuration File"
 
 #: includes/torproxy.php
 msgid "TOR is not running"

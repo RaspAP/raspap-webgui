@@ -25,6 +25,7 @@ readonly raspap_wlan0="/etc/dnsmasq.d/090_wlan0.conf"
 readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_network="$raspap_dir/networking/"
+readonly raspap_router="/etc/lighttpd/conf-available/50-raspap-router.conf"
 readonly rulesv4="/etc/iptables/rules.v4"
 readonly notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
 webroot_dir="/var/www/html"
@@ -239,20 +240,25 @@ function _install_lighttpd_configs() {
     CONFSRC="$webroot_dir/config/50-raspap-router.conf"
     LTROOT=$(grep "server.document-root" /etc/lighttpd/lighttpd.conf | awk -F '=' '{print $2}' | tr -d " \"")
 
-    # compare values and get difference
+    # Compare values and get difference
     HTROOT=${webroot_dir/$LTROOT}
 
-    # remove trailing slash if present
+    # Remove trailing slash if present
     HTROOT=$(echo "$HTROOT" | sed -e 's/\/$//')
 
-    # substitute values
+    # Substitute values
     awk "{gsub(\"/REPLACE_ME\",\"$HTROOT\")}1" $CONFSRC > /tmp/50-raspap-router.conf
 
-    # copy into place
+    # Copy into place
     sudo cp /tmp/50-raspap-router.conf /etc/lighttpd/conf-available/ || _install_status 1 "Unable to copy lighttpd config file into place."
 
-    # link into conf-enabled
+    # Link into conf-enabled
     echo "Creating link to /etc/lighttpd/conf-enabled"
+    if ! [ -L $raspap_router ]; then
+        echo "Existing 50-raspap-router.conf found. Unlinking."
+        sudo unlink "/etc/lighttpd/conf-enabled/50-raspap-router.conf"
+    fi
+    echo "Linking 50-raspap-router.conf to /etc/lighttpd/conf-enabled/"
     sudo ln -s "/etc/lighttpd/conf-available/50-raspap-router.conf" "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_status 1 "Unable to symlink lighttpd config file (this is normal if the link already exists)."
     sudo systemctl restart lighttpd.service || _install_status 1 "Unable to restart lighttpd"
     _install_status 0
@@ -363,18 +369,10 @@ function _prompt_install_wireguard() {
 # Install Wireguard from the Debian unstable distro
 function _install_wireguard() {
     _install_log "Configure WireGuard support"
-    if [ "$OS" == "Raspbian" ]; then
-        echo "Installing raspberrypi-kernel-headers"
-        sudo apt-get install $apt_option raspberrypi-kernel-headers || _install_status 1 "Unable to install raspberrypi-kernel-headers"
+    if [ "$OS" == "Debian" ]; then
+        echo 'deb http://ftp.debian.org/debian buster-backports main' | sudo tee /etc/apt/sources.list.d/buster-backports.list || _install_status 1 "Unable to add Debian backports repo"
     fi
-    echo "Installing WireGuard from Debian unstable distro"
-    echo "Adding Debian distro"
-    echo "deb http://deb.debian.org/debian/ unstable main" | sudo tee --append /etc/apt/sources.list.d/unstable.list || _install_status 1 "Unable to append to sources.list"
-    sudo apt-get install dirmngr || _install_status 1 "Unable to install dirmngr"
-    echo "Adding Debian distro keys"
-    sudo wget -q -O - https://ftp-master.debian.org/keys/archive-key-$(lsb_release -sr).asc | sudo apt-key add - || _install_status 1 "Unable to add keys"
-    printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' | sudo tee --append /etc/apt/preferences.d/limit-unstable || _install_status 1 "Unable to append to preferences.d"
-    echo "Installing WireGuard"
+    echo "Installing wireguard from apt"
     sudo apt-get update && sudo apt-get install $apt_option wireguard || _install_status 1 "Unable to install wireguard"
     echo "Enabling wg-quick@wg0"
     sudo systemctl enable wg-quick@wg0 || _install_status 1 "Failed to enable wg-quick service"
@@ -659,9 +657,10 @@ function _optimize_php() {
 
 function _install_complete() {
     _install_log "Installation completed"
-    echo "Join RaspAP Insiders for access to exclusive features:"
+    echo "Join RaspAP Insiders for early access to exclusive features!"
     echo -e "${ANSI_RASPBERRY}"
-    echo "> https://github.com/sponsors/RaspAP"
+    echo "> https://docs.raspap.com/insiders/"
+    echo "> https://github.com/sponsors/RaspAP/"
     echo -e "${ANSI_RESET}"
     if [ "$assume_yes" == 0 ]; then
         # Prompt to reboot if wired ethernet (eth0) is connected.

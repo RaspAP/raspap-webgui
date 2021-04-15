@@ -205,6 +205,7 @@ function loadInterfaceDHCPSelect() {
         $('#txtsubnetmask').val(jsonData.SubnetMask);
         $('#txtgateway').val(jsonData.StaticRouters);
         $('#chkfallback')[0].checked = jsonData.FallbackEnabled;
+        $('#default-route').prop('checked', jsonData.DefaultRoute);
         $('#txtrangestart').val(jsonData.RangeStart);
         $('#txtrangeend').val(jsonData.RangeEnd);
         $('#txtrangeleasetime').val(jsonData.leaseTime);
@@ -298,6 +299,17 @@ $('#ovpn-confirm-activate').on('click', '.btn-activate', function (e) {
 $('#ovpn-confirm-activate').on('shown.bs.modal', function (e) {
     var data = $(e.relatedTarget).data();
     $('.btn-activate', this).data('recordId', data.recordId);
+});
+
+$('#ovpn-userpw,#ovpn-certs').on('click', function (e) {
+//    e.stopPropagation();
+    if (this.id == 'ovpn-userpw') {
+        $('#PanelCerts').hide();
+        $('#PanelUserPW').show();
+    } else if (this.id == 'ovpn-certs') {
+        $('#PanelUserPW').hide();
+        $('#PanelCerts').show();
+    }
 });
 
 // Add the following code if you want the name of the file appear on select
