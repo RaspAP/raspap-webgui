@@ -3,6 +3,7 @@
 require_once 'includes/config.php';
 require_once 'includes/wifi_functions.php';
 require_once 'includes/functions.php';
+require_once 'includes/get_clients.php';
 
 /**
  * Show dashboard page.
@@ -23,6 +24,27 @@ function DisplayDashboard(&$extraFooterScripts)
         $status->showMessages();
         return;
     }
+
+    // ------------------------- Button pressed to switch client on/off ---------------------------------------------------------   
+    $switchedOn = false;
+    if (!RASPI_MONITOR_ENABLED) {
+        if (isset($_POST['ifdown_wlan0'])) {
+            // Pressed stop button
+            $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
+            setClientState("down");
+            $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
+        } elseif (isset($_POST['ifup_wlan0'])) {
+            // Pressed start button
+            $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
+            setClientState("up");
+            $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
+            $switchedOn = true;
+        }
+    }
+        
+    
+    // ----------------------------- INFOS ABOUT THE ACCESS POINT -------------------------------------------------------------
+    
     exec('ip a show '.$_SESSION['ap_interface'], $stdoutIp);
     $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
     $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
@@ -88,103 +110,40 @@ function DisplayDashboard(&$extraFooterScripts)
         $strTxBytes .= getHumanReadableDatasize($strTxBytes);
     }
 
-    define('SSIDMAXLEN', 32);
-    // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
-    exec('iw dev ' .$_SESSION['wifi_client_interface']. ' link ', $stdoutIw);
-    $stdoutIwAllLinesGlued = implode('+', $stdoutIw); // Break lines with character illegal in SSID and MAC addr
-    $stdoutIwWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwAllLinesGlued);
-
-    preg_match('/Connected to (([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2}))/', $stdoutIwWRepSpaces, $matchesBSSID) || $matchesBSSID[1] = '';
-    $connectedBSSID = $matchesBSSID[1];
-    $connectedBSSID = empty($connectedBSSID) ? "-" : $connectedBSSID;
-
-    $wlanHasLink = false;
-    if ($interfaceState === 'UP') {
-        $wlanHasLink = true;
+    // ------------------------ INFOS ABOUT THE CLIENT---------------------------------------------------------------
+    $clientinfo=array("name"=>"none","type"=>-1,"connected"=>"n");
+    $raspi_client=$_SESSION['wifi_client_interface'];
+    loadClientConfig();
+    $all_clients = getClients(false);
+    $clientinfo = array("name" => "none", "connected" => "n");
+    if ( ($idx = findCurrentClientIndex($all_clients)) >= 0) $clientinfo = $all_clients["device"][$idx];
+    if ($clientinfo["name"] != "none") $raspi_client = $clientinfo["name"];
+    $interfaceState = $clientinfo["connected"] == "y" ? 'UP' : 'DOWN';
+    $txPower="";
+    if ($clientinfo["type"] == "wlan") {
+        // txpower is now displayed on iw dev(..) info command, not on link command.
+        exec('iw dev '.$clientinfo["name"].' info |  sed -rn "s/.*txpower ([0-9]*)[0-9\.]*( dBm).*/\1\2/p"', $stdoutIwInfo);
+        if (!empty($stdoutIwInfo)) $txPower=$stdoutIwInfo[0];
     }
-
-    if (!preg_match('/SSID: ([^+]{1,'.SSIDMAXLEN.'})/', $stdoutIwWRepSpaces, $matchesSSID)) {
-        $wlanHasLink = false;
-        $matchesSSID[1] = 'None';
-    }
-
-    $connectedSSID = $matchesSSID[1];
-
-    preg_match('/freq: (\d+)/i', $stdoutIwWRepSpaces, $matchesFrequency) || $matchesFrequency[1] = '';
-    $frequency = $matchesFrequency[1].' MHz';
-
-    preg_match('/signal: (-?[0-9]+ dBm)/i', $stdoutIwWRepSpaces, $matchesSignal) || $matchesSignal[1] = '';
-    $signalLevel = $matchesSignal[1];
-    $signalLevel = empty($signalLevel) ? "-" : $signalLevel;
-
-    preg_match('/tx bitrate: ([0-9\.]+ [KMGT]?Bit\/s)/', $stdoutIwWRepSpaces, $matchesBitrate) || $matchesBitrate[1] = '';
-    $bitrate = $matchesBitrate[1];
-    $bitrate = empty($bitrate) ? "-" : $bitrate;
-
-    // txpower is now displayed on iw dev(..) info command, not on link command.
-    exec('iw dev '.$_SESSION['wifi_client_interface'].' info ', $stdoutIwInfo);
-    $stdoutIwInfoAllLinesGlued = implode(' ', $stdoutIwInfo);
-    $stdoutIpInfoWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwInfoAllLinesGlued);
-
-    preg_match('/txpower ([0-9\.]+ dBm)/i', $stdoutIpInfoWRepSpaces, $matchesTxPower) || $matchesTxPower[1] = '';
-    $txPower = $matchesTxPower[1];
-
-    // iw does not have the "Link Quality". This is a is an aggregate value,
-    // and depends on the driver and hardware.
-    // Display link quality as signal quality for now.
-    $strLinkQuality = 0;
-    if ($signalLevel > -100 && $wlanHasLink) {
-        if ($signalLevel >= 0) {
-            $strLinkQuality = 100;
-        } else {
-            $strLinkQuality = 100 + intval($signalLevel);
-        }
-    }
-
-    $wlan0up = false;
+    
     $classMsgDevicestatus = 'warning';
     if ($interfaceState === 'UP') {
-        $wlan0up = true;
         $classMsgDevicestatus = 'success';
     }
 
-    if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['ifdown_wlan0'])) {
-            // Pressed stop button
-            if ($interfaceState === 'UP') {
-                $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
-                exec('sudo ip link set '.$_SESSION['wifi_client_interface'].' down');
-                $wlan0up = false;
-                $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
-            } elseif ($interfaceState === 'unknown') {
-                $status->addMessage(_('Interface state unknown.'), 'danger');
-            } else {
-                $status->addMessage(sprintf(_('Interface already %s.'), _('down')), 'warning');
-            }
-        } elseif (isset($_POST['ifup_wlan0'])) {
-            // Pressed start button
-            if ($interfaceState === 'DOWN') {
-                $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
-                exec('sudo ip link set ' .$_SESSION['wifi_client_interface']. ' up');
-                exec('sudo ip -s a f label ' . $_SESSION['wifi_client_interface']);
-                $wlan0up = true;
-                $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
-            } elseif ($interfaceState === 'unknown') {
-                $status->addMessage(_('Interface state unknown.'), 'danger');
-            } else {
-                $status->addMessage(sprintf(_('Interface already %s.'), _('up')), 'warning');
-            }
-        } else {
-            $status->addMessage(sprintf(_('Interface is %s.'), strtolower($interfaceState)), $classMsgDevicestatus);
-        }
-    }
+    if ($switchedOn) exec('sudo ip -s a f label ' . $raspi_client);
+
     // brought in from template
     $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
     $bridgedEnable = $arrHostapdConf['BridgedEnable'];
-    $clientInterface = $_SESSION['wifi_client_interface'];
+    if ($arrHostapdConf['WifiAPEnable'] == 1) {
+        $client_interface = 'uap0';
+    } else {
+        $client_interface = $clientinfo["name"];
+    }
     $apInterface = $_SESSION['ap_interface'];
+    $clientInterface = $raspi_client;
     $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
-
     if (getBridgedState()) {
         $moreLink = "hostapd_conf";
         exec('iw dev ' . $apInterface . ' station dump | grep -oE ' . $MACPattern, $clients);
@@ -192,11 +151,39 @@ function DisplayDashboard(&$extraFooterScripts)
         $moreLink = "dhcpd_conf";
         exec('cat ' . RASPI_DNSMASQ_LEASES . '| grep -E $(iw dev ' . $apInterface . ' station dump | grep -oE ' . $MACPattern . ' | paste -sd "|")', $clients);
     }
-    $ifaceStatus = $wlan0up ? "up" : "down";
+    $ifaceStatus = $clientinfo["connected"]=="y" ? "up" : "down";
+    $isClientConfigured = true;
+    switch($clientinfo["type"]) {
+        case "eth":
+        case "usb":
+            $client_title = "Client: Ethernet cable";
+            $type_name = "Ethernet";
+            break;
+        case "phone":
+            $client_title = "Client: Smartphone (USB tethering)";
+            $type_name = "Smartphone";
+            break;
+        case "wlan":
+            $client_title = "Wireless Client";
+            $type_name = "Wifi";
+            break;
+        case "ppp":
+        case "hilink":
+            $client_title = "Mobile Data Client";
+            $type_name = "Mobile Data";
+            break;
+        default: 
+            $client_title = "No information available";
+            $type_name = "Not configured";
+            $ifaceStatus = "warn";
+            $isClientConfigured = false;
+    }
 
     echo renderTemplate(
         "dashboard", compact(
             "clients",
+            "client_title",
+            "type_name",
             "moreLink",
             "apInterface",
             "clientInterface",
@@ -211,14 +198,9 @@ function DisplayDashboard(&$extraFooterScripts)
             "strRxBytes",
             "strTxPackets",
             "strTxBytes",
-            "connectedSSID",
-            "connectedBSSID",
-            "bitrate",
-            "signalLevel",
             "txPower",
-            "frequency",
-            "strLinkQuality",
-            "wlan0up"
+            "clientinfo",
+            "isClientConfigured"
         )
     );
     $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);

@@ -755,6 +755,17 @@ function getNightmode(){
     } else {
         return false;
     }
+}	
+	
+// search array for matching string and return only first matching group
+function preg_only_match($pat,$haystack) {
+  $match = "";
+  if(!empty($haystack) && !empty($pat)) {
+    if(!is_array($haystack)) $haystack = array($haystack);
+    $str = preg_grep($pat,$haystack);
+    if (!empty($str) && preg_match($pat,array_shift($str),$match) === 1 ) $match = $match[1];
+  }
+  return $match;
 }
 
 // Sanitizes a string for QR encoding
@@ -764,4 +775,3 @@ function qr_encode($str)
 {
     return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
 }
-

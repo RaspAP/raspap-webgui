@@ -1,0 +1,4 @@
+# mobile data modem - ttyUSB0 device appears 
+SUBSYSTEM=="tty", KERNEL=="ttyUSB0", TAG+="systemd", ENV{SYSTEMD_WANTS}="start start_ppp0_device.service"
+
+

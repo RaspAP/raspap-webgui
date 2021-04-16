@@ -1,0 +1,16 @@
+[Unit]
+Description=Start ppp0 interface
+BindsTo=dev-ttyUSB0.device
+After=dev-ttyUSB0.device
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+ExecStart=/sbin/ifup ppp0
+ExecStop=/sbin/ifdown ppp0
+
+[Install]
+Alias=startppp0.service
+WantedBy=multi-user.target
+
+
