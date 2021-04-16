@@ -154,7 +154,7 @@
                                    echo '<input type="hidden" class="form-control" id="int-type-'.$dev["name"].'" value="'.$dev["type"].'" >'."\n";
                                    echo '</td>'."\n";
                                    echo '<td>';
-                                   if (! $isStatic) echo '<a href="#" class="btn btn-secondary intsave" data-opts="'.$dev["name"].'" data-int="netdevices">Change</a>';
+                                   if (! $isStatic) echo '<a href="#" class="btn btn-secondary intsave" data-opts="'.$dev["name"].'" data-int="netdevices">' ._("Change").'</a>';
                                    echo "</td>\n";
                                    echo "</tr>\n";
                                  }

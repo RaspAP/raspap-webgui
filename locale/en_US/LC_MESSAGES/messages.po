@@ -598,6 +598,9 @@ msgstr "Network Devices"
 msgid "Mobile Data Settings"
 msgstr "Mobile Data Settings"
 
+msgid "Properties of network devices"
+msgstr "Properties of network devices"
+
 msgid "Device"
 msgstr "Device"
 
@@ -612,6 +615,9 @@ msgstr "Device type"
 
 msgid "Fixed name"
 msgstr "Fixed name"
+
+msgid "Change"
+msgstr "Change"
 
 msgid "Settings for Mobile Data Devices"
 msgstr "Settings for Mobile Data Devices"
