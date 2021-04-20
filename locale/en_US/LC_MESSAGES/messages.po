@@ -528,8 +528,8 @@ msgstr "Hide SSID in broadcast"
 msgid "Maximum number of clients"
 msgstr "Maximum number of clients"
 
-msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 
 msgid "Beacon interval"
 msgstr "Beacon interval"
@@ -548,6 +548,15 @@ msgstr "Close"
 
 msgid "Enable this option to log <code>hostapd</code> activity."
 msgstr "Enable this option to log <code>hostapd</code> activity."
+
+msgid "Transmit power (dBm)"
+msgstr "Transmit power (dBm)"
+
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "Sets the <code>txpower</code> option for the AP interface and the configured country."
+
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
 
 #: includes/networking.php
 msgid "Summary"
