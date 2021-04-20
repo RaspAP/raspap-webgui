@@ -32,6 +32,10 @@ function DisplayHostAPDConfig()
 
     exec("iw reg get | awk '/country / { sub(/:/,\"\",$2); print $2 }'", $country_code);
 
+    $cmd = "iw dev ".$_SESSION['ap_interface']." info | awk '$1==\"txpower\" {print $2}'";
+    exec($cmd, $txpower);
+    $txpower = intval($txpower[0]);
+
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveHostAPDSettings'])) {
             SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $status);
@@ -62,7 +66,7 @@ function DisplayHostAPDConfig()
     }
 
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
-    exec('iwgetid '. $_POST['interface']. ' -r', $wifiNetworkID);
+    exec('iwgetid '. $_POST['interface'].' -r', $wifiNetworkID);
     if (!empty($wifiNetworkID[0])) {
         $managedModeEnabled = true;
     }
@@ -90,6 +94,17 @@ function DisplayHostAPDConfig()
     if (!isset($arrConfig['country_code']) && isset($country_code[0])) {
         $arrConfig['country_code'] = $country_code[0];
     }
+    // set txpower with iw if value is non-default ('auto')
+    if (isset($_POST['txpower']) && ($_POST['txpower'] != 'auto')) {
+        $sdBm = $_POST['txpower'] * 100;
+        exec('sudo /sbin/iw dev '.$_POST['interface'].' set txpower fixed '.$sdBm, $return);
+        $status->addMessage('Setting transmit power to '.$_POST['txpower'].' dBm.', 'success');
+        $txpower = $_POST['txpower'];
+    } elseif ($_POST['txpower'] == 'auto') {
+        exec('sudo /sbin/iw dev '.$_POST['interface'].' set txpower auto', $return);
+        $status->addMessage('Setting transmit power to '.$_POST['txpower'].'.', 'success');
+        $txpower = $_POST['txpower'];
+    }
 
     echo renderTemplate(
         "hostapd", compact(
@@ -104,6 +119,7 @@ function DisplayHostAPDConfig()
             "arrSecurity",
             "arrEncType",
             "arrTxPower",
+            "txpower",
             "arrHostapdConf"
         )
     );
