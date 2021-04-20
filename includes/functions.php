@@ -152,15 +152,16 @@ function getDefaultNetValue($svc,$iface,$key)
  * Returns default options for the specified service
  *
  * @param string $svc
+ * @param string $key
  * @return object $json
  */
-function getDefaultNetOpts($svc)
+function getDefaultNetOpts($svc,$key)
 {
     $json = json_decode(file_get_contents(RASPI_CONFIG_NETWORK), true);
     if ($json === null) {
         return false;
     } else {
-        return $json[$svc]['options'];
+        return $json[$svc][$key];
     }
 }
 

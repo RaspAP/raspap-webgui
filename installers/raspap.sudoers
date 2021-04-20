@@ -32,6 +32,7 @@ www-data ALL=(ALL) NOPASSWD:/sbin/ip link set wlan[0-9] up
 www-data ALL=(ALL) NOPASSWD:/sbin/ip -s a f label wlan[0-9]
 www-data ALL=(ALL) NOPASSWD:/sbin/ifup *
 www-data ALL=(ALL) NOPASSWD:/sbin/ifdown *
+www-data ALL=(ALL) NOPASSWD:/sbin/iw
 www-data ALL=(ALL) NOPASSWD:/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/enablelog.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/disablelog.sh

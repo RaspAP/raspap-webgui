@@ -1,3 +1,4 @@
+<?php echo '<pre>' . var_export($arrTxPower, true) . '</pre>'; ?>
 <div class="tab-pane fade" id="advanced">
   <h4 class="mt-3"><?php echo _("Advanced settings"); ?></h4>
     <div class="row">
@@ -52,6 +53,17 @@
         </p>
       </div>
     </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="cbxtxpower"><?php echo _("Transmit power (dBm)") ?></label>
+        <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="right" title="<?php echo _("dBm is an abbreviation for decibel relative to one milliwatt. It is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW)."); ?>"></i>
+        <?php
+          SelectorOptions('txpower', $arrTxPower, 'auto', 'cbxtxpower');
+        ?>
+        <small id="txpower_help" class="text-muted"><?php echo _("Sets the txpower option for the AP interface and the configured country."); ?></small>
+      </div>
+    </div>
+
     <div class="row">
       <div class="form-group col-md-6">
         <label for="max_num_sta"><?php echo _("Maximum number of clients") ?></label>

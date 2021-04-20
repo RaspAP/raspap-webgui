@@ -25,6 +25,7 @@ function DisplayHostAPDConfig()
     ];
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
+    $arrTxPower = getDefaultNetOpts('txpower','dbm');
     $managedModeEnabled = false;
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     sort($interfaces);
@@ -102,6 +103,7 @@ function DisplayHostAPDConfig()
             "selectedHwMode",
             "arrSecurity",
             "arrEncType",
+            "arrTxPower",
             "arrHostapdConf"
         )
     );
@@ -306,13 +308,13 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $ip_address.= (!preg_match('/.*\/\d+/', $ip_address)) ? '/'.mask2cidr($netmask) : null;
 
         if ($bridgedEnable == 1) {
-            $config = array_keys(getDefaultNetOpts('dhcp'));
+            $config = array_keys(getDefaultNetOpts('dhcp','options'));
             $config[] = PHP_EOL.'# RaspAP br0 configuration';
             $config[] = 'denyinterfaces eth0 wlan0';
             $config[] = 'interface br0';
             $config[] = PHP_EOL;
         } elseif ($wifiAPEnable == 1) {
-            $config = array_keys(getDefaultNetOpts('dhcp'));
+            $config = array_keys(getDefaultNetOpts('dhcp','options'));
             $config[] = PHP_EOL.'# RaspAP uap0 configuration';
             $config[] = 'interface uap0';
             $config[] = 'static ip_address='.$ip_address;
