@@ -71,11 +71,9 @@
                 <?php endforeach ?>
               <?php endif ?>
             </div><!-- /.row -->
-            <div class="col-lg-12">
-              <div class="row">
-                <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
-              </div>
-            </div>
+
+            <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+
           </div>
         </div>
       </div><!-- /.card-body -->
