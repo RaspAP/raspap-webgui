@@ -60,8 +60,8 @@
               <?php if (!$bridgedEnabled) : // No interface details when bridged ?>
                 <?php foreach ($interfaces as $if): ?>
                   <?php $if_quoted = htmlspecialchars($if, ENT_QUOTES) ?>
-                  <div class="col-md-6 mb-3">
-                    <div class="card h-100">
+                  <div class="col-md mb-3">
+                    <div class="card h-100 w-100">
                       <div class="card-header"><?php echo $if_quoted ?></div>
                       <div class="card-body">
                         <pre class="unstyled" id="<?php echo $if_quoted ?>-summary"></pre>
