@@ -241,6 +241,10 @@ function _load_installer() {
     fi
 
     UPDATE_URL="https://raw.githubusercontent.com/$repo_common/$branch/"
+    header=()
+    if [[ ! -z "$acctoken" ]]; then
+        header=(--header "Authorization: token $acctoken")
+    fi
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
