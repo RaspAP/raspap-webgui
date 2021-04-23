@@ -49,6 +49,9 @@
       "AllowedIPs": ["10.8.2.0/24"],
       "PersistentKeepalive": [ "15" ]
     }
+  },
+  "txpower": {
+    "dbm": [ "auto", "30", "20", "17", "10", "6", "3", "1", "0" ]
   }
 }
 
