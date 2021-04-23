@@ -184,7 +184,7 @@ function getClientType($dev) {
             $type=preg_only_match("/DEVTYPE=(\w*)/i",$udevadm);
         }
     }
-    if (empty($type) || array_search($type, $_SESSION["net-device-name-prefix"]) === false) {
+    if (empty($type) || $type == "none" || array_search($type, $_SESSION["net-device-name-prefix"]) === false) {
         // no device type yet -> get device type from device name 
         if (preg_match("/^(\w+)[0-9]$/",$dev,$nam) === 1) $nam=$nam[1];
         else $nam="none";
