@@ -19,7 +19,7 @@ function _install_feature_clients() {
     _install_log "Install $name"
 
     _install_log " - required packages for mobile data clients"
-    sudo apt-get install wvdial socat bc || _install_status 1 "Unable to install dependencies for $name"
+    sudo apt-get -y install wvdial socat bc || _install_status 1 "Unable to install dependencies for $name"
 
     _install_log " - copy configuration files and scripts"
     # Move scripts 
