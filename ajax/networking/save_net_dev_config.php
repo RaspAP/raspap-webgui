@@ -67,7 +67,7 @@ if (isset($_POST['interface'])) {
             }
             // create new entry
             if ( ($type != $newtype) || !empty($name) ) { // new device type or new name
-                if (empty($name)) $name = $prefix."*";
+                if (empty($name)) $name = $prefix."%n";
                 if (!empty($mac)) $rule = preg_replace("/\\\$MAC\\\$/i", $mac, $rulenew);
                 if (!empty($vid)) $rule = preg_replace("/\\\$IDVENDOR\\\$/i", $vid, $rule);
                 if (!empty($pid)) $rule = preg_replace("/\\\$IDPRODUCT\\\$/i", $pid, $rule);
