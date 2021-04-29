@@ -2,6 +2,7 @@
   <div class="col-md-6 ml-6">
     <p class="lead text-center"><?php echo _('No Wifi stations found') ?></p>
     <p class="text-center"><?php echo _('Click "Rescan" to search for nearby Wifi stations.') ?></p>
+    <p class="text-center"><?php echo _('Click "Reinitialize" to force reinitialize <code>wpa_supplicant</code>.') ?></p>
   </div>
 <?php } elseif (count($networks) == 1) { 
     $prop_col = "col-sm-12";
