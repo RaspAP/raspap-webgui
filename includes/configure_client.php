@@ -20,8 +20,8 @@ function DisplayWPAConfig()
         exec('sudo wpa_cli -i ' . $_SESSION['wifi_client_interface'] . ' select_network '.strval($_POST['connect']));
         $status->addMessage('New network selected', 'success');
     } elseif (isset($_POST['wpa_reinit'])) {
-        $status->addMessage('Re-initializing wpa_supplicant', 'info', false);
-        $force_remove=true;
+        $status->addMessage('Reinitializing wpa_supplicant', 'info', false);
+        $force_remove = true;
         $result = reinitializeWPA($force_remove);
         $status->addMessage($result, 'info');
     } elseif (isset($_POST['client_settings'])) {

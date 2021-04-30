@@ -158,7 +158,8 @@ function getWifiInterface()
 }
 
 /*
- * Reinitializes wpa_supplicant for the wifi client interface
+ * Reinitializes wpa_supplicant for the wireless client interface
+ * The 'force' parameter deletes the socket in /var/run/wpa_supplicant/
  *
  * @param boolean $force
  */
