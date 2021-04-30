@@ -1,8 +1,8 @@
 <?php if (empty($networks)) { ?>
   <div class="col-md-6 ml-6">
     <p class="lead text-center"><?php echo _('No Wifi stations found') ?></p>
-    <p class="text-center"><?php echo _('Click "Rescan" to search for nearby Wifi stations.') ?></p>
-    <p class="text-center"><?php echo _('Click "Re-initialize" to force reinitialize <code>wpa_supplicant</code>.') ?></p>
+    <p class="text-center"><?php echo _("Click 'Rescan' to search for nearby Wifi stations.") ?></p>
+    <p class="text-center"><?php echo _("Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>.") ?></p>
     <form method="POST" action="wpa_conf" name="wpa_conf_form" class="row">
       <?php if (!RASPI_MONITOR_ENABLED) : ?>
         <?php echo CSRFTokenFieldTag() ?>
