@@ -59,9 +59,8 @@ function DisplayHostAPDConfig()
             }
         }
     }
-
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
-    exec('iwgetid '. $_POST['interface']. ' -r', $wifiNetworkID);
+    exec('iwgetid '. escapeshellarg($_POST['interface']). ' -r', $wifiNetworkID);
     if (!empty($wifiNetworkID[0])) {
         $managedModeEnabled = true;
     }
