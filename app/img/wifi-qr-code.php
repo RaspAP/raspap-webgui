@@ -12,7 +12,7 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
 
 function qr_encode($str)
 {
-    return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
+    return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', escapeshellarg($str));
 }
 
 $hostapd = parse_ini_file(RASPI_HOSTAPD_CONFIG, false, INI_SCANNER_RAW);
@@ -41,7 +41,7 @@ $ssid = qr_encode($ssid);
 $password = qr_encode($password);
 
 $data = "WIFI:S:$ssid;T:$type;P:$password;$hidden;";
-$command = "qrencode -t svg -m 0 -o - " . mb_escapeshellarg($data);
+$command = "qrencode -t svg -m 0 -o - " . escapeshellarg($data);
 $svg = shell_exec($command);
 
 $config_mtime  = filemtime(RASPI_HOSTAPD_CONFIG);

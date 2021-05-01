@@ -88,6 +88,7 @@ if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2)
 
 // activate the locale setting
 putenv("LANG=" . $_SESSION['locale']);
+putenv("LC_ALL=" . $_SESSION['locale']);
 setlocale(LC_ALL, $_SESSION['locale']);
 
 bindtextdomain(LOCALE_DOMAIN, LOCALE_ROOT);
