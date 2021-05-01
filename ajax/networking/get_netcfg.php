@@ -3,11 +3,11 @@
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
 
-$interface = $_GET['iface'];
+$interface = $_POST['iface'];
 
 if (isset($interface)) {
     // fetch dnsmasq.conf settings for interface
-    exec('cat '. RASPI_DNSMASQ_PREFIX.$interface.'.conf', $return);
+    exec('cat '. RASPI_DNSMASQ_PREFIX.escapeshellarg($interface).'.conf', $return);
     $conf = ParseConfig($return);
 
     $dhcpdata['DHCPEnabled'] = empty($conf) ? false : true;

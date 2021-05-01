@@ -178,8 +178,8 @@ Populates the DHCP server form fields
 Option toggles are set dynamically depending on the loaded configuration
 */
 function loadInterfaceDHCPSelect() {
-    var iface = $('#cbxdhcpiface').val();
-    $.get('ajax/networking/get_netcfg.php?iface='+iface,function(data){
+    var strInterface = $('#cbxdhcpiface').val();
+    $.post('ajax/networking/get_netcfg.php',{iface:strInterface},function(data){
         jsonData = JSON.parse(data);
         $('#dhcp-iface')[0].checked = jsonData.DHCPEnabled;
         $('#txtipaddress').val(jsonData.StaticIP);
