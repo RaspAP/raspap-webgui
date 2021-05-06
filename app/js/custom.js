@@ -179,7 +179,7 @@ Option toggles are set dynamically depending on the loaded configuration
 */
 function loadInterfaceDHCPSelect() {
     var strInterface = $('#cbxdhcpiface').val();
-    $.post('ajax/networking/get_netcfg.php',{iface:strInterface},function(data){
+    $.get('ajax/networking/get_netcfg.php?iface='+strInterface,function(data){
         jsonData = JSON.parse(data);
         $('#dhcp-iface')[0].checked = jsonData.DHCPEnabled;
         $('#txtipaddress').val(jsonData.StaticIP);

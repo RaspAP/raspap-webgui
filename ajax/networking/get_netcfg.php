@@ -3,7 +3,7 @@
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
 
-$interface = $_POST['iface'];
+$interface = $_GET['iface'];
 
 if (isset($interface)) {
     // fetch dnsmasq.conf settings for interface
