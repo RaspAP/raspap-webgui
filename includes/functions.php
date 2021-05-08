@@ -518,6 +518,18 @@ function cache($key, $callback)
     }
 }
 
+// insspired by
+// http://markushedlund.com/dev/php-escapeshellarg-with-unicodeutf-8-support
+function mb_escapeshellarg($arg)
+{
+    $isWindows = strtolower(substr(PHP_OS, 0, 3)) === 'win';
+    if ($isWindows) {
+        return '"' . str_replace(array('"', '%'), '', $arg) . '"';
+    } else {
+        return "'" . str_replace("'", "'\\''", $arg) . "'";
+    }
+}
+
 function dnsServers()
 {
     $data = json_decode(file_get_contents("./config/dns-servers.json"));
