@@ -2,15 +2,15 @@
   <div class="col-md-6 ml-6">
     <p class="lead text-center"><?php echo _('No Wifi stations found') ?></p>
     <p class="text-center"><?php echo _("Click 'Rescan' to search for nearby Wifi stations.") ?></p>
+    <?php if (!RASPI_MONITOR_ENABLED) : ?>
     <p class="text-center"><?php echo _("Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>.") ?></p>
     <form method="POST" action="wpa_conf" name="wpa_conf_form" class="row">
-      <?php if (!RASPI_MONITOR_ENABLED) : ?>
-        <?php echo CSRFTokenFieldTag() ?>
+      <?php echo CSRFTokenFieldTag() ?>
         <div class="col-xs mr-3 mb-3">
           <input type="submit" class="btn btn-warning btn-block float-right" name="wpa_reinit" value="<?php echo _("Re-initialize"); ?>" />
         </div>
-      <?php endif ?>
     </form>
+    <?php endif ?>
   </div>
 <?php } elseif (count($networks) == 1) { 
     $prop_col = "col-sm-12";
