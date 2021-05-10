@@ -524,11 +524,10 @@ function mb_escapeshellarg($arg)
 {
     $isWindows = strtolower(substr(PHP_OS, 0, 3)) === 'win';
     if ($isWindows) {
-        $escaped_arg = str_replace(array('"', '%'), '', $arg);
+        return '"' . str_replace(array('"', '%'), '', $arg) . '"';
     } else {
-        $escaped_arg = str_replace("'", "'\\''", $arg);
+        return "'" . str_replace("'", "'\\''", $arg) . "'";
     }
-    return "\"$escaped_arg\"";
 }
 
 function dnsServers()

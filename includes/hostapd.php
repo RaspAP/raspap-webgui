@@ -59,9 +59,8 @@ function DisplayHostAPDConfig()
             }
         }
     }
-
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
-    exec('iwgetid '. $_POST['interface']. ' -r', $wifiNetworkID);
+    exec('iwgetid '. escapeshellarg($_POST['interface']). ' -r', $wifiNetworkID);
     if (!empty($wifiNetworkID[0])) {
         $managedModeEnabled = true;
     }
@@ -213,10 +212,13 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $good_input = false;
     }
 
-    if ($_POST['wpa'] !== 'none' 
-        && (strlen($_POST['wpa_passphrase']) < 8 || strlen($_POST['wpa_passphrase']) > 63)
-    ) {
+    # NB: A pass-phrase is a sequence of between 8 and 63 ASCII-encoded characters (IEEE Std. 802.11i-2004)
+    # Each character in the pass-phrase must have an encoding in the range of 32 to 126 (decimal). (IEEE Std. 802.11i-2004, Annex H.4.1)
+    if ($_POST['wpa'] !== 'none' && (strlen($_POST['wpa_passphrase']) < 8 || strlen($_POST['wpa_passphrase']) > 63)) {
         $status->addMessage('WPA passphrase must be between 8 and 63 characters', 'danger');
+        $good_input = false;
+    } elseif (!ctype_print($_POST['wpa_passphrase'])) {
+        $status->addMessage('WPA passphrase must be comprised of printable ASCII characters', 'danger');
         $good_input = false;
     }
 

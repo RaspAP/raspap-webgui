@@ -213,7 +213,7 @@ function _create_hostapd_scripts() {
     # Move service control shell scripts
     sudo cp "$webroot_dir/installers/"service*.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move service control scripts"
     # Make enablelog.sh and disablelog.sh not writable by www-data group.
-    sudo chown -c root:"$raspap_user" "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable change owner and/or group"
+    sudo chown -c root:root "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable to change file permissions"
     _install_status 0
 }
@@ -228,7 +228,7 @@ function _create_lighttpd_scripts() {
     sudo cp "$webroot_dir/installers/"configport.sh "$raspap_dir/lighttpd" || _install_status 1 "Unable to move service control scripts"
     # Make configport.sh writable by www-data group
     echo "Changing file ownership"
-    sudo chown -c root:"$raspap_user" "$raspap_dir/lighttpd/"*.sh || _install_status 1 "Unable change owner and/or group"
+    sudo chown -c root:root "$raspap_dir/lighttpd/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/lighttpd/"*.sh || _install_status 1 "Unable to change file permissions"
     _install_status 0
 }
@@ -310,8 +310,9 @@ function _install_adblock() {
     echo "Moving and setting permissions for blocklist update script"
     sudo cp "$webroot_dir/installers/"update_blocklist.sh "$raspap_dir/adblock" || _install_status 1 "Unable to move blocklist update script"
 
-    # Make blocklists and update script writable by www-data group
-    sudo chown -c root:"$raspap_user" "$raspap_dir/adblock/"*.* || _install_status 1 "Unable to change owner/group"
+    # Make blocklists writable by www-data group, restrict update scripts to root
+    sudo chown -c root:"$raspap_user" "$raspap_dir/adblock/"*.txt || _install_status 1 "Unable to change owner/group"
+    sudo chown -c root:root "$raspap_dir/adblock/"*.sh || _install_status 1 "Unable to change owner/group"
     sudo chmod 750 "$raspap_dir/adblock/"*.sh || install_error "Unable to change file permissions"
 
     # Create 090_adblock.conf and write values to /etc/dnsmasq.d
@@ -400,11 +401,11 @@ function _create_openvpn_scripts() {
     _install_log "Creating OpenVPN control scripts"
     sudo mkdir $raspap_dir/openvpn || _install_status 1 "Unable to create directory '$raspap_dir/openvpn'"
 
-   # Move service auth control & logging shell scripts
+    # Move service auth control & logging shell scripts
     sudo cp "$webroot_dir/installers/"configauth.sh "$raspap_dir/openvpn" || _install_status 1 "Unable to move auth control script"
     sudo cp "$webroot_dir/installers/"openvpnlog.sh "$raspap_dir/openvpn" || _install_status 1 "Unable to move logging script"
-    # Make scripts executable by www-data group
-    sudo chown -c root:"$raspap_user" "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable change owner and/or group"
+    # Restrict script execution to root user
+    sudo chown -c root:root "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable to change file permissions"
     _install_status 0
 }
@@ -490,9 +491,10 @@ function _move_config_file() {
         _install_status 1 "'$raspap_dir' directory doesn't exist"
     fi
 
+    # Copy config file and make writable by www-data group
     _install_log "Moving configuration file to $raspap_dir"
     sudo cp "$webroot_dir"/raspap.php "$raspap_dir" || _install_status 1 "Unable to move files to '$raspap_dir'"
-    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
+    sudo chown -c $raspap_user:"$raspap_user" "$raspap_dir"/raspap.php || _install_status 1 "Unable change owner and/or group"
 }
 
 # Set up default configuration
@@ -506,8 +508,8 @@ function _default_configuration() {
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
         sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
 
-        echo "Changing file ownership of $raspap_dir"
-        sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
+        echo "Changing file ownership of ${raspap_network}/defaults.json"
+        sudo chown $raspap_user:$raspap_user "$raspap_network"/defaults.json || _install_status 1 "Unable to change file ownership for defaults.json"
 
         echo "Checking for existence of /etc/dnsmasq.d"
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d

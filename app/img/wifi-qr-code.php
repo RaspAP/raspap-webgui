@@ -41,7 +41,7 @@ $ssid = qr_encode($ssid);
 $password = qr_encode($password);
 
 $data = "WIFI:S:$ssid;T:$type;P:$password;$hidden;";
-$command = "qrencode -t svg -m 0 -o - " . mb_escapeshellarg($data);
+$command = "qrencode -t svg -m 1 -o - " . mb_escapeshellarg($data);
 $svg = shell_exec($command);
 
 $config_mtime  = filemtime(RASPI_HOSTAPD_CONFIG);
