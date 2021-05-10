@@ -3,7 +3,6 @@
 require_once '../../includes/config.php';
 require_once '../../includes/defaults.php';
 require_once '../../includes/functions.php';
-require_once '../../includes/locale.php';
 
 // prevent direct file access
 if (!isset($_SERVER['HTTP_REFERER'])) {
