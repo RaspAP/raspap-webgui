@@ -157,3 +157,20 @@ function getWifiInterface()
         } 
 }
 
+/*
+ * Reinitializes wpa_supplicant for the wireless client interface
+ * The 'force' parameter deletes the socket in /var/run/wpa_supplicant/
+ *
+ * @param boolean $force
+ */
+function reinitializeWPA($force)
+{
+    if ($force == true) {
+        $cmd = escapeshellcmd("sudo /bin/rm /var/run/wpa_supplicant/".$_SESSION['wifi_client_interface']);
+        $result = exec($cmd);
+    }
+    $cmd = escapeshellcmd("sudo /sbin/wpa_supplicant -B -Dnl80211 -c/etc/wpa_supplicant/wpa_supplicant.conf -i". $_SESSION['wifi_client_interface']);
+    $result = shell_exec($cmd);
+    return $result;
+}
+
