@@ -16,10 +16,6 @@ body {
   color: #212529;
 }
 
-.page-header {
-  margin: 20px 0 20px;
-}
-
 .navbar-logo {
   margin-top: 0.5em;
   margin-left: 0.5em;
@@ -90,7 +86,7 @@ a.nav-link.active {
 }
 
 .sidebar .nav-item .nav-link {
-  padding: 0.6rem 0.6rem 0.6rem 1.0rem;
+  padding: 0.6rem;
 }
 
 .alert-success {
@@ -160,7 +156,7 @@ i.fa.fa-bars:hover{
     opacity: 0;
   }
 }
- 
+
 .logoutput {
   width:100%;
   height: 20rem;
@@ -196,7 +192,8 @@ pre.unstyled {
 
 .sidebar.toggled .nav-item .nav-link span {
   display: none;
-} .sidebar .nav-item .nav-link i,
+}
+.sidebar .nav-item .nav-link i,
 .sidebar .nav-item .nav-link span {
     font-size: 1.0rem;
 }
@@ -235,16 +232,3 @@ canvas#divDBChartBandwidthhourly {
   opacity: 0;
   color: #90ee90;
 }
-
-.check-progress {
-  color: #999;
-}
-
-.fa-check {
-  color: #90ee90;
-}
-
-.fa-times {
-  color: #ff4500;
-}
-
