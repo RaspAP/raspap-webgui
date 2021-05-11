@@ -51,7 +51,7 @@ $config = getConfig();
 $output = $return = 0;
 $page = $_SERVER['PATH_INFO'];
 
-$theme_url = getThemeOpt();
+$theme = getThemeOpt();
 $toggleState = getSidebarState();
 $bridgedEnabled = getBridgedState();
 
