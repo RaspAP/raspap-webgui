@@ -8,7 +8,6 @@ License: GNU General Public License v3.0
 
 html * {
   font-family: Verdana, Geneva, sans-serif;
-  font-size: 0.9rem;
   color: #828282;
 }
 
@@ -16,17 +15,11 @@ a:focus, a:hover {
   color: #666;
 }
 
-h2 {
-  font-size: 2rem !important;
-}
-
 h4 {
-  font-size: 1.3rem;
   color: #212529;
 }
 
 h5.card-title {
-  font-size: 1.2rem;
   color: #212529;
 }
 
@@ -39,24 +32,19 @@ h5.card-title {
   border-color: #ff6600;
   background-color: #ff6600;
   color: #000;
-  font-size: 1.0rem;
-  font-weight: bold;
   border-radius: unset;
 }
 
 .card-header .col {
   color: #212529;
-  font-size: 1.0rem;
 }
 
 .card-header [class^="fa"], .modal-header [class^="fa"] {
   color: #fff;
-  font-size: 1.0rem;
 }
 
 .modal-title {
   color: #000;
-  font-size: 1.0rem;
 }
 
 .modal-content {
@@ -128,11 +116,6 @@ ul.nav-tabs, .nav-tabs .nav-link {
   text-align: center;
   padding: .6rem 1rem;
   width: 6.5rem;
-}
-
-.sidebar .nav-item .nav-link i,
-.sidebar .nav-item .nav-link span {
-  font-size: 0.9rem;
 }
 
 .toggle-off.btn {

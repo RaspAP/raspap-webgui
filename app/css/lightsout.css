@@ -8,20 +8,7 @@ License: GNU General Public License v3.0
 
 html * {
   font-family: Helvetica,Arial,sans-serif;
-  font-size: 1.0rem;
   color: #afafaf;
-}
-
-h2 {
-  font-size: 2rem !important;
-}
-
-h4 {
-  font-size: 1.3rem;
-}
-
-h5.card-title {
-  font-size: 1.2rem;
 }
 
 .navbar-logo {
@@ -46,10 +33,6 @@ h5.card-title {
 
 .nav-tabs {
   border-bottom: 1px solid #404040;
-}
-.nav-tabs .nav-link.active,
-.nav-tabs .nav-link {
-  font-size: 1.0rem;
 }
 
 .nav-tabs .nav-link:hover {
@@ -107,8 +90,6 @@ a:focus, a:hover {
   color: #afafaf;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
-  font-size: 1.0rem;
-  font-weight: 400;
 }
 
 .modal-body {
@@ -121,7 +102,6 @@ a:focus, a:hover {
 
 .card-header [class^="fa"] {
   color: #afafaf;
-  font-size: 1.0rem;
 }
 
 .col {
@@ -214,10 +194,6 @@ hr {
   padding-top: 0.5rem;
 }
 
-.sidebar .nav-item .nav-link span {
-  font-size: 1.0rem;
-}
-
 .topbar .topbar-divider {
   border-right: 1px solid #404040;
 }
@@ -276,8 +252,6 @@ span.label.label-warning {
 }
 
 .close {
-  font-size: 1.2em;
-  font-weight: 400;
   text-shadow: none;
   color: #d2d2d2;
 }
@@ -331,16 +305,7 @@ tspan, rect {
 }
 
 span.text.service-status {
-  font-size: 0.75rem;
   margin-top: 0.2rem;
-}
-
-.text-muted {
-  font-size: 0.8rem;
-}
-
-.fas.fa-circle {
-  font-size: 0.5rem;
 }
 
 pre {
