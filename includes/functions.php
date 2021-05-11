@@ -636,3 +636,10 @@ function validate_host($host) {
   return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host);
 }
 
+function availableThemes() {
+  return [
+    ""               => "RaspAP (default)",
+    "hackernews.css" => "HackerNews",
+    "lightsout.css"  => "Lights Out"
+  ];
+}

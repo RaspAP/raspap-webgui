@@ -1,21 +1,16 @@
 <?php
+
+require_once 'includes/functions.php';
+
 /**
  *
  *
  */
 function DisplayThemeConfig(&$extraFooterScripts)
 {
-    $themes = [
-        "default"    => "RaspAP (default)",
-        "hackernews" => "HackerNews",
-        "lightsout"  => "Lights Out"
-    ];
-    $themeFiles = [
-        "default"    => "custom.php",
-        "hackernews" => "hackernews.css",
-        "lightsout"  => "lightsout.css"
-    ];
-    $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
+    $themes = availableThemes();
+    $validTheme = in_array($_COOKIE['theme'], array_keys($themes));
+    $selectedTheme = $validTheme ?? $_COOKIE['theme'];
 
     echo renderTemplate("themes", compact("themes", "selectedTheme"));
 
