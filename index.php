@@ -83,7 +83,7 @@ $bridgedEnabled = getBridgedState();
     <link href="dist/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
-    <link href="app/css/cutom.php" title="main" rel="stylesheet">
+    <link href="app/css/custom.php" title="main" rel="stylesheet">
     <?php if (!empty($theme)): ?>
     <link href="app/css/<?php echo $theme; ?>" title="<?php echo $theme; ?>" rel="stylesheet">
     <?php endif ?>
