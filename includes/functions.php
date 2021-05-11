@@ -604,12 +604,7 @@ function formatDateAgo($datetime, $full = false)
 
 function getThemeOpt()
 {
-    if (!isset($_COOKIE['theme'])) {
-        $theme = "custom.php";
-    } else {
-        $theme = $_COOKIE['theme'];
-    }
-    return 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
+    return htmlspecialchars($theme, ENT_QUOTES);
 }
 
 function getColorOpt()

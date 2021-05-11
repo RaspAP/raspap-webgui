@@ -83,7 +83,10 @@ $bridgedEnabled = getBridgedState();
     <link href="dist/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
-    <link href="<?php echo $theme_url; ?>" title="main" rel="stylesheet">
+    <link href="app/css/cutom.php" title="main" rel="stylesheet">
+    <?php if (!empty($theme)): ?>
+    <link href="app/css/<?php echo $theme; ?>" title="<?php echo $theme; ?>" rel="stylesheet">
+    <?php endif ?>
 
     <link rel="shortcut icon" type="image/png" href="app/icons/favicon.png?ver=2.0">
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/apple-touch-icon.png">
