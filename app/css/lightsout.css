@@ -421,6 +421,12 @@ pre {
   margin-bottom: 0.5em;
 }
 
+.loading-spinner {
+  background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
+  min-height: 150px;
+  width: 100%;
+}
+
 .toggle-off.btn {
   padding-left: 1.2rem;
   font-size: 0.9rem!important;
