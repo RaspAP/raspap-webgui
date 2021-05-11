@@ -328,10 +328,10 @@ function SelectorOptions($name, $options, $selected = null, $id = null, $event =
     foreach ($options as $opt => $label) {
         $select = '';
         $key = isAssoc($options) ? $opt : $label;
-        if ($key == $selected) {
+        if ($key === $selected) {
             $select = ' selected="selected"';
         }
-        if ($key == $disabled) {
+        if ($key === $disabled) {
             $disabled = ' disabled';
         }
         echo '<option value="'.htmlspecialchars($key, ENT_QUOTES).'"'.$select.$disabled.'>'.
