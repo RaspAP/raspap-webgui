@@ -23,13 +23,34 @@ body {
 
 /* Small devices (portrait phones, up to 576px) */
 @media (max-width: 576px) {
-  .container-fluid, .card-body, .col-md-6 { padding-left: 0.5rem; padding-right: 0.5rem; }
-  .card .card-header { padding: .75rem .5rem; font-size: 1.0rem; }
-  .row { margin-left: 0rem; margin-right: 0rem; }
-  .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
-  .form-group.col-md-6 { margin-left: -0.5rem; }
-  .js-wifi-stations { margin-left: -0.5rem; margin-right: -0.5rem; }
-  h4.mt-3 { margin-left: 0.5rem; }
+  .container-fluid,
+  .card-body,
+  .col-md-6 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .card .card-header {
+    padding: .75rem .5rem;
+    font-size: 1.0rem;
+  }
+  .row {
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+  .col-lg-12 {
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+  }
+  .form-group.col-md-6 {
+    margin-left: -0.5rem;
+  }
+  .js-wifi-stations {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+  h4.mt-3 {
+    margin-left: 0.5rem;
+  }
 }
 
 .sidebar {
