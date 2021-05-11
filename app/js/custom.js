@@ -353,7 +353,7 @@ $(document).on("keyup", ".js-validate-psk", function(e) {
 
 $(document).on("change", "#theme-select", function(e) {
   $('link[data-type=theme]').prop('disabled', true)
-  $('link[href$='+e.target.value+']').prop('disabled', false)
+  $('link[href$="'+e.target.value+'"]').prop('disabled', false)
 })
 
 function setCookie(cname, cvalue, exdays) {
