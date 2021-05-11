@@ -604,7 +604,7 @@ function formatDateAgo($datetime, $full = false)
 
 function getThemeOpt()
 {
-    return htmlspecialchars($theme, ENT_QUOTES);
+    return htmlspecialchars($_COOKIE['theme'], ENT_QUOTES);
 }
 
 function getColorOpt()
