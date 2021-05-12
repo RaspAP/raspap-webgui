@@ -10,7 +10,7 @@ function DisplayThemeConfig(&$extraFooterScripts)
 {
     $themes = availableThemes();
     $validTheme = in_array($_COOKIE['theme'], array_keys($themes));
-    $selectedTheme = $validTheme ?? $_COOKIE['theme'];
+    $selectedTheme = $validTheme ? $_COOKIE['theme'] : null;
 
     echo renderTemplate("themes", compact("themes", "selectedTheme"));
 
