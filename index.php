@@ -85,8 +85,16 @@ $bridgedEnabled = getBridgedState();
     <!-- Custom CSS -->
     <link href="app/css/custom.php" title="main" rel="stylesheet">
     <?php foreach (array_slice(availableThemes(), 1) as $file => $name): ?>
-    <link href="app/css/<?php echo $file ?>" title="<?php echo $name ?>" data-type="theme" rel="stylesheet" <?php echo $file != $theme ? "disabled" : "" ?>>
+    <link href="app/css/<?php echo $file ?>" title="<?php echo $name ?>" data-type="theme" rel="stylesheet" disabled>
     <?php endforeach ?>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function() {
+        var cookies = "; " + document.cookie
+        var value = cookies.split("; theme=").pop().split(";").shift()
+        var stylesheet = document.querySelector('link[href$="'+value+'"]')
+        if (stylesheet) stylesheet.removeAttribute('disabled')
+      }, false)
+    </script>
 
     <link rel="shortcut icon" type="image/png" href="app/icons/favicon.png?ver=2.0">
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/apple-touch-icon.png">
