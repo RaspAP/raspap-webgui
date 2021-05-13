@@ -1,5 +1,12 @@
 <?php
 header("Content-Type: text/css; charset=utf-8");
+$filemtime = filemtime(__FILE__);
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s T', $filemtime));
+if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) >= $filemtime)
+{
+    header('HTTP/1.0 304 Not Modified');
+    exit;
+}
 require_once '../../includes/functions.php';
 $color = getColorOpt();
 ?>
