@@ -37,6 +37,7 @@ define('RASPI_NETWORK_ENABLED', true);
 define('RASPI_DHCP_ENABLED', true);
 define('RASPI_ADBLOCK_ENABLED', false);
 define('RASPI_OPENVPN_ENABLED', false);
+define('RASPI_WIREGUARD_ENABLED', false);
 define('RASPI_TORPROXY_ENABLED', false);
 define('RASPI_CONFAUTH_ENABLED', true);
 define('RASPI_CHANGETHEME_ENABLED', true);
