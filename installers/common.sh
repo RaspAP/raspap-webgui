@@ -583,12 +583,10 @@ function _configure_networking() {
 # Add sudoers file to /etc/sudoers.d/ and set file permissions
 function _patch_system_files() {
 
-    # Create sudoers if not present
-    if [ ! -f $raspap_sudoers ]; then
-        _install_log "Adding raspap.sudoers to ${raspap_sudoers}"
-        sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
-        sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
-    fi
+    # Create sudoers
+    _install_log "Adding raspap.sudoers to ${raspap_sudoers}"
+    sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
+    sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
 
     # Add symlink to prevent wpa_cli cmds from breaking with multiple wlan interfaces
     _install_log "Symlinked wpa_supplicant hooks for multiple wlan interfaces"
