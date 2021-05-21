@@ -5,28 +5,31 @@
 # $2 : (optional) type - hilink or modem (default: hilink)
 # $3 : (optional) for hilink: ip address of the device (default: 192.168.8.1)
 #                 for modem: tty interface for communication (default: /dev/ttypUSB2)
+# $4 : more options can be added for Hilink devices ('-u user -P password -p pin'). These are passed to the corresponding script 
 #
 # requires: bc
 # calls the scripts info_huawei_hilink.sh and info_huawei_modem.sh (same path as this script)
 #
 # zbchristian 2020
 #
+path=$(dirname "$0")
 opt="device"
 if [ ! -z "$1" ]; then opt=${1,,}; fi
 type="hilink"
 if [ ! -z "$2" ]; then type=${2,,}; fi
 
-path=$(dirname "$0")
+parms=""
 if [ "$type" = "hilink" ]; then
-  connect="192.168.8.1"
-  if [ ! -z "$3" ]; then connect=$3; fi
+  connect="-h 192.168.8.1"
+  if [ ! -z "$3" ]; then connect="-h $3"; fi
+  if [ ! -z "$4" ]; then parms="$4"; fi
   script="$path/info_huawei_hilink.sh"
 else
   connect="/dev/ttyUSB2"
   if [ ! -z "$3" ]; then connect=$3; fi
   script="$path/info_huawei_modem.sh"
 fi
-res=$($script $opt $connect)
+res=$($script $opt $connect $parms)
 
 # some results require special treatment
 case $opt in

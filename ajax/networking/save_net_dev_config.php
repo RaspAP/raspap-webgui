@@ -14,19 +14,26 @@ require_once '../../includes/functions.php';
 if (isset($_POST['interface'])) {
     $int = $_POST['interface'];
     $cfg = [];
-    $file = $int.".ini";
+    $file = $RASPI_MOBILEDATA_CONFIG;
     $cfgfile="/etc/wvdial.conf";
     if ( $int == "mobiledata") {
         $cfg['pin'] = $_POST["pin-mobile"];
         $cfg['apn'] = $_POST["apn-mobile"];
         $cfg['apn_user'] = $_POST["apn-user-mobile"];
         $cfg['apn_pw'] = $_POST["apn-pw-mobile"];
+        $cfg['router_user'] = $cfg['apn_user'] ;
+        $cfg['router_pw'] = $cfg['apn_pw'] ;
         if (file_exists($cfgfile)) {
             if($cfg["pin"] !== "") exec('sudo /bin/sed -i  "s/CPIN=\".*\"/CPIN=\"'.$cfg["pin"].'\"/gi" '.$cfgfile);
             if($cfg["apn"] !== "") exec('sudo /bin/sed -i "s/\"IP\"\,\".*\"/\"IP\"\,\"'.$cfg["apn"].'\"/gi" '.$cfgfile);
             if($cfg["apn_user"] !== "") exec('sudo /bin/sed -i "s/^username = .*$/Username = '.$cfg["apn_user"].'/gi" '.$cfgfile);
             if($cfg["apn_pw"] !== "") exec('sudo /bin/sed -i "s/^password = .*$/Password = '.$cfg["apn_pw"].'/gi" '.$cfgfile);
         }
+		if (write_php_ini($cfg, RASPI_MOBILEDATA_CONFIG)) {
+			$jsonData = ['return'=>0,'output'=>['Successfully saved mobile data settings']];
+		} else {
+			$jsonData = ['return'=>1,'output'=>['Error saving mobile data settings']];
+		}
     } else if ( preg_match("/netdevices/",$int)) {
         if(!isset($_POST['opts']) ) {
             $jsonData = ['return'=>0,'output'=>['No valid data to add/delete udev rule ']];
@@ -75,26 +82,9 @@ if (isset($_POST['interface'])) {
                 if (!empty($rule)) exec('echo \''.$rule.'\' | sudo /usr/bin/tee -a '.$udevfile);
             }
             $jsonData = ['return'=>0,'output'=>['Settings changed for device '.$dev. '<br>Changes will only be in effect after reconnecting the device'  ] ];
-            echo json_encode($jsonData);
-            return;
         }
     } else {
-        $ip = $_POST[$int.'-ipaddress'];
-        $netmask = mask2cidr($_POST[$int.'-netmask']);
-        $dns1 = $_POST[$int.'-dnssvr'];
-        $dns2 = $_POST[$int.'-dnssvralt'];
-
-        $cfg['interface'] = $int;
-        $cfg['routers'] = $_POST[$int.'-gateway'];
-        $cfg['ip_address'] = $ip."/".$netmask;
-        $cfg['domain_name_server'] = $dns1." ".$dns2;
-        $cfg['static'] = $_POST[$int.'-static'];
-        $cfg['failover'] = $_POST[$int.'-failover'];
-    }
-    if (write_php_ini($cfg, RASPI_CONFIG.'/networking/'.$file)) {
-        $jsonData = ['return'=>0,'output'=>['Successfully Updated Network Configuration']];
-    } else {
-        $jsonData = ['return'=>1,'output'=>['Error saving network configuration to file']];
+        $jsonData = ['return'=>1,'output'=>['Unknown network configuration']];
     }
 } else {
     $jsonData = ['return'=>2,'output'=>'Unable to detect interface'];
