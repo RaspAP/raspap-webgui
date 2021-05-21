@@ -284,7 +284,7 @@ function setClientState($state)
             $ipadd = $ipadd[0].'1'; // ip address of the Hilink api
             $mode = ($state == "up") ? 1 : 0;
             $pin=$user=$pw="";
-			getMobileLogin($pin,$pw,$user)
+			getMobileLogin($pin,$pw,$user);
             exec('sudo '.RASPI_CLIENT_SCRIPT_PATH.'/onoff_huawei_hilink.sh -c '.$mode.' -h '.$ipadd.' '.$pin.' '.$user.' '.$pw);
             break;
         case "ppp":

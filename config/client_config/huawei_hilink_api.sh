@@ -232,6 +232,7 @@ function _login() {
     if ! _sendRequest "api/user/state-login"; then return 1; fi
     pwtype=$(echo "$response" | sed  -rn 's/.*<password_type>([0-9])<\/password_type>.*/\1/pi')
     if [ -z "$pwtype" ];then pwtype=4; fi   # fallback is type 4
+	ret=1
     if [[ ! -z "$user" ]] && [[ ! -z "$pw" ]]; then
         # password encoding
         # type 3 : base64(pw) encoded
@@ -251,12 +252,11 @@ function _login() {
             tokenlist=( $(cat $header_file | sed -rn 's/^__RequestVerificationToken:\s*([0-9a-z#]*).*$/\1/pi' | sed 's/#/ /g') )
             _getToken
             sessID=$(cat $header_file  | grep -ioP 'SessionID=([a-z0-9]*)')
-            if [ ! -z "$sessID" ] &&  [ ! -z "$token" ]; then
-               return 0 
-            fi
+            if [ ! -z "$sessID" ] &&  [ ! -z "$token" ]; then ret=0; fi
         fi
+        rm -f $header_file		
     fi
-    return 1
+    return $ret
 }
 
 # logout of hilink device

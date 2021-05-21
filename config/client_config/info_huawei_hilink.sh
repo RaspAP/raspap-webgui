@@ -14,35 +14,37 @@
 # zbchristian 2021
 
 function _setAPIParams() {
-	if [ ! -z "$hostip" ]; then host="$hostip"; fi
-	if [ ! -z "$username" ]; then user="$username"; fi
-	if [ ! -z "$password" ]; then pw="$password"; fi
-	if [ ! -z "$simpin" ]; then pin="$simpin"; fi
+    if [ ! -z "$hostip" ]; then host="$hostip"; fi
+    if [ ! -z "$username" ]; then user="$username"; fi
+    if [ ! -z "$password" ]; then pw="$password"; fi
+    if [ ! -z "$simpin" ]; then pin="$simpin"; fi
 }
 
 if [ -z "$1" ]; then echo "none"; exit; fi
 opt="${1,,}"
 shift
+hostip="192.168.8.1"
 while [ -n "$1" ]; do
     case "$1" in
-        -u|--user) 		username="$2"; shift ;;
-        -P|--password) 	password="$2"; shift ;;
-        -p|--pin) 		simpin="$2"; shift ;;
-        -h|--host) 		hostip="$2"; shift ;;
+        -u|--user)      username="$2"; shift ;;
+        -P|--password)  password="$2"; shift ;;
+        -p|--pin)       simpin="$2"; shift ;;
+        -h|--host)      hostip="$2"; shift ;;
     esac
     shift
 done
 
 status="no valid option given"
 result="none"
+hostip="192.168.8.1"
 if [ "$opt" = "connected" ]; then
     source /usr/local/sbin/huawei_hilink_api.sh
-    if ! _initHilinkAPI; then echo "none"; exit; fi
     _setAPIParams
+    if ! _initHilinkAPI; then echo "none"; exit; fi
     result=$(_getMobileDataStatus)
     _closeHilinkAPI
 else
-    info_file="/tmp/huawei_infos_$host.dat"
+    info_file="/tmp/huawei_infos_${hostip}_${id -u}.dat"
     if [ -f "$info_file" ]; then
         age=$(( $(date +%s) - $(stat $info_file -c %Y) )) 
         if [[ $age -gt 5 ]]; then rm -f $info_file; fi
@@ -52,11 +54,11 @@ else
         infos=$(cat $info_file)
     else
         source /usr/local/sbin/huawei_hilink_api.sh
+        _setAPIParams
         if ! _initHilinkAPI; then echo "none"; exit; fi
-		_setAPIParams
         infos=$(_getAllInformations)
         _closeHilinkAPI
-        if [ ! -z "$infos" ]; then echo "$infos" > /tmp/huawei_infos_$host.dat; fi
+        if [ ! -z "$infos" ]; then echo "$infos" > $info_file; fi
     fi
 
     case "$opt" in
