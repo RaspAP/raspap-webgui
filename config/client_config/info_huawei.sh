@@ -47,7 +47,7 @@ case $opt in
     if [ ! "$res" = "none" ]; then
       if [ "$type" = "hilink" ]; then
         if [ "$res" = "LTE" ]; then res="4G"
-        elif [ "$res" = "WCDMA" ]]; then  res="3G";
+        elif [ "$res" = "WCDMA" ]; then  res="3G";
         else res="2G"; fi
       else
         if [ $res -eq 7 ]; then res="4G"

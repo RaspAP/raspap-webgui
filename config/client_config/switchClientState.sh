@@ -7,8 +7,10 @@
 
 # get webroot
 webroot=$(cat /etc/lighttpd/lighttpd.conf | sed -rn 's/server.document-root\s*=\s*\"(.*)\"\s*$/\1/p')
-if [ -z "$webroot" ] || [ ! -d "$webroot" ]; then
-  exit
+webuser=$(cat /etc/lighttpd/lighttpd.conf | sed -rn 's/server.username\s*=\s*\"(.*)\"\s*$/\1/p')
+if [ -z "$webroot" ] || [ ! -d "$webroot" ] || [ -z "$webuser" ]; then 
+    echo "$0 : Problem to obtain webroot directory and/or web user - exit" | systemd-cat 
+    exit
 fi
 cd $webroot
 
@@ -21,7 +23,7 @@ fi
 
 [ -z "$state" ] && exit
 
-php << _EOF_
+sudo -u $webuser php << _EOF_
 <?php
 require_once("includes/config.php");
 require_once("includes/get_clients.php");

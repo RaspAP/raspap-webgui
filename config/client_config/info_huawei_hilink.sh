@@ -21,7 +21,7 @@ function _setAPIParams() {
 }
 
 if [ -z "$1" ]; then echo "none"; exit; fi
-opt="${1,,}"
+property="${1,,}"
 shift
 hostip="192.168.8.1"
 while [ -n "$1" ]; do
@@ -47,7 +47,7 @@ else
     info_file="/tmp/huawei_infos_${hostip}_${id -u}.dat"
     if [ -f "$info_file" ]; then
         age=$(( $(date +%s) - $(stat $info_file -c %Y) )) 
-        if [[ $age -gt 5 ]]; then rm -f $info_file; fi
+        if [[ $age -gt 10 ]]; then rm -f $info_file; fi
     fi
 
     if [ -f "$info_file" ]; then
@@ -58,10 +58,10 @@ else
         if ! _initHilinkAPI; then echo "none"; exit; fi
         infos=$(_getAllInformations)
         _closeHilinkAPI
-        if [ ! -z "$infos" ]; then echo "$infos" > $info_file; fi
+        if [ ! -z "$infos" ]; then echo -n "$infos" > $info_file; fi
     fi
 
-    case "$opt" in
+    case "$property" in
         device|devicename)
           key="devicename"
           ;;
@@ -84,7 +84,7 @@ else
           key="fullname"
         ;;
         *)
-          key=""
+          key="device"
         ;;
       esac
       if [ -z "$key" ]; then result="none"; fi
