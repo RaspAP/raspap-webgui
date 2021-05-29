@@ -164,7 +164,15 @@ i.fa.fa-bars:hover{
 }
 
 .service-status {
-  border-width: 0;
+  display: flex;
+  align-items: center;
+}
+.service-status .icon,
+.service-status .text {
+  display: flex;
+  margin: 0.5rem;
+  font-size: 1rem;
+  padding: .3rem;
 }
 
 .service-status-up {
