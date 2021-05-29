@@ -176,15 +176,15 @@ i.fa.fa-bars:hover{
 }
 
 .service-status-up {
-  color: #a1ec38;
+  color: #a1ec38 !important;
 }
 
 .service-status-warn {
-  color: #f6f044;
+  color: #f6f044 !important;
 }
 
 .service-status-down {
-  color: #f80107;
+  color: #f80107 !important;
   animation: flash 1s linear infinite;
 }
 @keyframes flash {
