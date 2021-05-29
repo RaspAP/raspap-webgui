@@ -301,10 +301,6 @@ tspan, rect {
   fill: #d2d2d2;
 }
 
-span.text.service-status {
-  margin-top: 0.2rem;
-}
-
 pre {
   background-color: #202020;
   border: #202020;

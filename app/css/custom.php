@@ -165,14 +165,14 @@ i.fa.fa-bars:hover{
 
 .service-status {
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  justify-content: center;
 }
 .service-status .icon,
 .service-status .text {
   display: flex;
-  margin: 0.5rem;
-  font-size: 1rem;
-  padding: .3rem;
+  font-size: 0.8rem;
+  align-items: center;
 }
 
 .service-status-up {
