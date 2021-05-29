@@ -100,9 +100,6 @@ a:focus, a:hover {
   color: #202020;
 }
 
-.card-header [class^="fa"] {
-  color: #afafaf;
-}
 
 .col {
   color: #afafaf;
