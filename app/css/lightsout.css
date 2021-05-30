@@ -8,7 +8,6 @@ License: GNU General Public License v3.0
 
 html * {
   font-family: Helvetica,Arial,sans-serif;
-  font-size: 1.0rem;
   color: #afafaf;
 }
 
@@ -22,6 +21,10 @@ h4 {
 
 h5.card-title {
   font-size: 1.2rem;
+}
+
+.h-underlined {
+  border-bottom: 1px solid #343434;
 }
 
 .page-header {
@@ -425,6 +428,14 @@ pre {
   background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
   min-height: 150px;
   width: 100%;
+}
+
+.card-deck--wifi-stations {
+  justify-content: space-between;
+}
+.card-deck--wifi-stations .card {
+  flex: 0 46%;
+  margin-bottom: .75rem;
 }
 
 .toggle-off.btn {

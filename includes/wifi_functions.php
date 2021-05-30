@@ -18,6 +18,7 @@ function knownWifiStations(&$networks)
                 switch (strtolower($lineArr[0])) {
                 case 'ssid':
                     $ssid = trim($lineArr[1], '"');
+                    $network['ssid'] = $ssid;
                     break;
                 case 'psk':
                     if (array_key_exists('passphrase', $network)) {
@@ -79,6 +80,8 @@ function nearbyWifiStations(&$networks, $cached = true)
         if (preg_match('[\x00-\x1f\x7f-\xff\'\`\´\"]', $ssid)) {
             continue;
         }
+
+        $networks[$ssid]['ssid'] = $ssid;
 
         // If network is saved
         if (array_key_exists($ssid, $networks)) {
