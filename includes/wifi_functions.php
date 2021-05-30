@@ -75,6 +75,7 @@ function nearbyWifiStations(&$networks, $cached = true)
         }
 
         $ssid = trim($arrNetwork[4]);
+        $ssid = evalHexSequence($ssid);
         // filter SSID string: anything invisible in 7bit ASCII or quotes -> ignore network
         if (preg_match('[\x00-\x1f\x7f-\xff\'\`\´\"]', $ssid)) {
             continue;
