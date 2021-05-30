@@ -69,13 +69,15 @@ function nearbyWifiStations(&$networks, $cached = true)
 
     foreach (explode("\n", $scan_results) as $network) {
         $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
-        if (!array_key_exists(4, $arrNetwork) ||
-            trim($arrNetwork[4]) == $ap_ssid) {
-            continue;
-        }
 
         $ssid = trim($arrNetwork[4]);
         $ssid = evalHexSequence($ssid);
+
+        // exclude raspap ssid
+        if (empty($ssid) || $ssid == $ap_ssid) {
+            continue;
+        }
+
         // filter SSID string: anything invisible in 7bit ASCII or quotes -> ignore network
         if (preg_match('[\x00-\x1f\x7f-\xff\'\`\´\"]', $ssid)) {
             continue;
