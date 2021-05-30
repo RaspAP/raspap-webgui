@@ -98,10 +98,6 @@ function DisplayWPAConfig()
         }
     }
 
-    nearbyWifiStations($networks);
-    connectedWifiStations($networks);
-    sortNetworksByRSSI($networks);
-
     $clientInterface = $_SESSION['wifi_client_interface'];
 
     exec('ip a show '.$clientInterface, $stdoutIp);
