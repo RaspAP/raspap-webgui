@@ -78,8 +78,8 @@ function nearbyWifiStations(&$networks, $cached = true)
             continue;
         }
 
-        // filter SSID string: anything invisible in 7bit ASCII or quotes -> ignore network
-        if (preg_match('[\x00-\x1f\x7f-\xff\'\`\´\"]', $ssid)) {
+        // filter SSID string: unprintable 7bit ASCII control codes, delete or quotes -> ignore network
+        if (preg_match('[\x00-\x1f\x7f\'\`\´\"]', $ssid)) {
             continue;
         }
 
