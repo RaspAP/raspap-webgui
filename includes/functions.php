@@ -643,3 +643,10 @@ function availableThemes() {
     "lightsout.css"  => "Lights Out"
   ];
 }
+
+function evalHexSequence($string) {
+    $evaluator = function ($input) {
+	return hex2bin($input[1]);
+    };
+    return preg_replace_callback('/\\\x(..)/', $evaluator, $string);
+}

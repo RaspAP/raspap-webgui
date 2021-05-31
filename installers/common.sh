@@ -377,7 +377,7 @@ function _install_wireguard() {
         echo 'deb http://ftp.debian.org/debian buster-backports main' | sudo tee /etc/apt/sources.list.d/buster-backports.list || _install_status 1 "Unable to add Debian backports repo"
     fi
     echo "Installing wireguard from apt"
-    sudo apt-get update && sudo apt-get install $apt_option wireguard || _install_status 1 "Unable to install wireguard"
+    sudo apt-get install -y wireguard || _install_status 1 "Unable to install wireguard"
     echo "Enabling wg-quick@wg0"
     sudo systemctl enable wg-quick@wg0 || _install_status 1 "Failed to enable wg-quick service"
     echo "Enabling WireGuard management option"
@@ -585,12 +585,10 @@ function _configure_networking() {
 # Add sudoers file to /etc/sudoers.d/ and set file permissions
 function _patch_system_files() {
 
-    # Create sudoers if not present
-    if [ ! -f $raspap_sudoers ]; then
-        _install_log "Adding raspap.sudoers to ${raspap_sudoers}"
-        sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
-        sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
-    fi
+    # Create sudoers
+    _install_log "Adding raspap.sudoers to ${raspap_sudoers}"
+    sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
+    sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
 
     # Add symlink to prevent wpa_cli cmds from breaking with multiple wlan interfaces
     _install_log "Symlinked wpa_supplicant hooks for multiple wlan interfaces"
