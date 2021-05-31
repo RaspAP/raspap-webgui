@@ -24,10 +24,10 @@
             <button type="button" class="btn btn-info btn-block float-right js-reload-wifi-stations"><?php echo _("Rescan"); ?></button>
           </div>
         </div>
-        <form method="POST" action="wpa_conf" name="wpa_conf_form" class="row">
+        <form method="POST" action="wpa_conf" name="wpa_conf_form">
             <?php echo CSRFTokenFieldTag() ?>
           <input type="hidden" name="client_settings" ?>
-          <div class="row js-wifi-stations w-100 loading-spinner"></div>
+          <div class="js-wifi-stations w-100 loading-spinner"></div>
         </form>
       </div><!-- ./ card-body -->
       <div class="card-footer"><?php echo _("<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"); ?></div>

@@ -16,6 +16,10 @@ body {
   color: #212529;
 }
 
+.h-underlined {
+  border-bottom: 1px solid #343434;
+}
+
 .page-header {
   margin: 20px 0 20px;
 }
@@ -192,6 +196,13 @@ pre.unstyled {
 
 .js-reload-wifi-stations {
   min-width: 10rem;
+}
+.card-deck--wifi-stations {
+  justify-content: space-between;
+}
+.card-deck--wifi-stations .card {
+  flex: 0 46%;
+  margin-bottom: .75rem;
 }
 
 .sidebar.toggled .nav-item .nav-link span {

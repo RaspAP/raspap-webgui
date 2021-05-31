@@ -15,4 +15,8 @@ nearbyWifiStations($networks, !isset($_REQUEST["refresh"]));
 connectedWifiStations($networks);
 sortNetworksByRSSI($networks);
 
-echo renderTemplate('wifi_stations', compact('networks'), true);
+$connected = array_filter($networks, function($n) { return $n['connected']; } );
+$known     = array_filter($networks, function($n) { return !$n['connected'] && $n['configured']; } );
+$nearby    = array_filter($networks, function($n) { return !$n['configured']; } );
+
+echo renderTemplate('wifi_stations', compact('networks', 'connected', 'known', 'nearby'), true);
