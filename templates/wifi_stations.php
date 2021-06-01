@@ -18,7 +18,7 @@
 
 <?php if (!empty($connected)): ?>
 <h4 class="h-underlined my-3"><?php echo _("Connected") ?></h4>
-<div class="card-deck card-deck--wifi-stations">
+<div class="card-grid">
 	<?php foreach ($connected as $network) : ?>
 	<?php echo renderTemplate("wifi_stations/network", compact('network', 'index')) ?>
 	<?php $index++; ?>
@@ -28,7 +28,7 @@
 
 <?php if (!empty($known)): ?>
 <h4 class="h-underlined my-3"><?php echo _("Known") ?></h4>
-<div class="card-deck card-deck--wifi-stations">
+<div class="card-grid">
 	<?php foreach ($known as $network) : ?>
 	<?php echo renderTemplate("wifi_stations/network", compact('network', 'index')) ?>
 	<?php $index++; ?>
@@ -38,7 +38,7 @@
 
 <?php if (!empty($nearby)): ?>
 <h4 class="h-underlined my-3"><?php echo _("Nearby") ?></h4>
-<div class="card-deck card-deck--wifi-stations">
+<div class="card-grid">
 	<?php foreach ($nearby as $network) : ?>
 	<?php echo renderTemplate("wifi_stations/network", compact('network', 'index')) ?>
 	<?php $index++; ?>

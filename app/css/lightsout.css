@@ -429,12 +429,12 @@ pre {
   width: 100%;
 }
 
-.card-deck--wifi-stations {
-  justify-content: space-between;
-}
-.card-deck--wifi-stations .card {
-  flex: 0 46%;
-  margin-bottom: .75rem;
+@media (min-width: 576px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 50%;
+    grid-gap: 1rem;
+  }
 }
 
 .toggle-off.btn {
