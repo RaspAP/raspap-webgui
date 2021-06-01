@@ -8,7 +8,6 @@ License: GNU General Public License v3.0
 
 html * {
   font-family: Helvetica,Arial,sans-serif;
-  font-size: 1.0rem;
   color: #afafaf;
 }
 
@@ -22,6 +21,10 @@ h4 {
 
 h5.card-title {
   font-size: 1.2rem;
+}
+
+.h-underlined {
+  border-bottom: 1px solid #343434;
 }
 
 .page-header {
@@ -54,7 +57,6 @@ h5.card-title {
   .row { margin-left: 0rem; margin-right: 0rem; }
   .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
   .form-group.col-md-6 { margin-left: -0.5rem; }
-  .js-wifi-stations { margin-left: -0.5rem; margin-right: -0.5rem; }
   h4.mt-3 { margin-left: 0.5rem; }
 }
 
@@ -375,17 +377,16 @@ tspan, rect {
   fill: #d2d2d2;
 }
 
-span.text.service-status {
-  font-size: 0.75rem;
-  margin-top: 0.2rem;
-}
-
 .text-muted {
   font-size: 0.8rem;
 }
 
 .fas.fa-circle {
   font-size: 0.5rem;
+}
+
+.service-status {
+  align-items: center;
 }
 
 .service-status-up {
@@ -425,6 +426,14 @@ pre {
   background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
   min-height: 150px;
   width: 100%;
+}
+
+@media (min-width: 576px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 50%;
+    grid-gap: 1rem;
+  }
 }
 
 .toggle-off.btn {
