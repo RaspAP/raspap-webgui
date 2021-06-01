@@ -17,7 +17,8 @@ body {
 }
 
 .h-underlined {
-  border-bottom: 1px solid #343434;
+  border-bottom: 1px solid #e3e6f0;
+  padding-bottom: 0.3rem;
 }
 
 .page-header {
@@ -36,7 +37,6 @@ body {
   .row { margin-left: 0rem; margin-right: 0rem; }
   .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
   .form-group.col-md-6 { margin-left: -0.5rem; }
-  .js-wifi-stations { margin-left: -0.5rem; margin-right: -0.5rem; }
   h4.mt-3 { margin-left: 0.5rem; }
 }
 
@@ -145,6 +145,7 @@ i.fa.fa-bars:hover{
 
 .service-status {
   border-width: 0;
+  align-items: center;
 }
 
 .service-status-up {
@@ -194,8 +195,12 @@ pre.unstyled {
   width: 100%;
 }
 
-.js-reload-wifi-stations {
-  min-width: 10rem;
+@media (min-width: 576px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 50%;
+    grid-gap: 1rem;
+  }
 }
 .card-deck--wifi-stations {
   justify-content: space-between;
