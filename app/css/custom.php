@@ -17,7 +17,8 @@ body {
 }
 
 .h-underlined {
-  border-bottom: 1px solid #343434;
+  border-bottom: 1px solid #e3e6f0;
+  padding-bottom: 0.3rem;
 }
 
 .page-header {
