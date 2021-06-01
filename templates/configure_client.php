@@ -2,7 +2,7 @@
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col">
             <i class="fas fa-wifi mr-2"></i><?php echo _("WiFi client"); ?>
           </div>
@@ -18,7 +18,7 @@
         <?php $status->showMessages(); ?>
         <div class="row align-items-center">
           <div class="col">
-            <h4 class="m-0"><?php echo _("Client settings"); ?></h4>
+            <h4 class="m-0 text-nowrap"><?php echo _("Client settings"); ?></h4>
           </div>
           <div class="col">
             <button type="button" class="btn btn-info float-right js-reload-wifi-stations"><?php echo _("Rescan"); ?></button>
