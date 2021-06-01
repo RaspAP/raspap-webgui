@@ -178,6 +178,7 @@ ul.nav-tabs, .nav-tabs .nav-link {
 
 .service-status {
   border-width: 0;
+  align-items: center;
 }
 
 .service-status-up {

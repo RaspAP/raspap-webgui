@@ -144,6 +144,7 @@ i.fa.fa-bars:hover{
 
 .service-status {
   border-width: 0;
+  align-items: center;
 }
 
 .service-status-up {

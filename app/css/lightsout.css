@@ -377,17 +377,16 @@ tspan, rect {
   fill: #d2d2d2;
 }
 
-span.text.service-status {
-  font-size: 0.75rem;
-  margin-top: 0.2rem;
-}
-
 .text-muted {
   font-size: 0.8rem;
 }
 
 .fas.fa-circle {
   font-size: 0.5rem;
+}
+
+.service-status {
+  align-items: center;
 }
 
 .service-status-up {
