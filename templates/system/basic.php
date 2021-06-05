@@ -8,9 +8,19 @@ include('includes/sysstats.php');
   <div class="row">
     <div class="col-lg-6">
       <h4 class="mt-3"><?php echo _("System Information"); ?></h4>
-      <div class="info-item"><?php echo _("Hostname"); ?></div><div><?php echo htmlspecialchars($hostname, ENT_QUOTES); ?></div>
-      <div class="info-item"><?php echo _("Pi Revision"); ?></div><div><?php echo htmlspecialchars(RPiVersion(), ENT_QUOTES); ?></div>
-      <div class="info-item"><?php echo _("Uptime"); ?></div><div><?php echo htmlspecialchars($uptime, ENT_QUOTES); ?></div>
+        <div class="row ml-1">
+          <div class="col-sm">
+            <div class="row mb-1">
+              <div class="info-item col-xs-3"><?php echo _("Hostname"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($hostname, ENT_QUOTES); ?></div>
+            </div>
+            <div class="row mb-1">
+              <div class="info-item col-xs-3"><?php echo _("Pi Revision"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars(RPiVersion(), ENT_QUOTES); ?></div>
+            </div>
+            <div class="row mb-1">
+              <div class="info-item col-xs-3"><?php echo _("Uptime"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($uptime, ENT_QUOTES); ?></div>
+            </div>
+          </div>
+        </div>
       <div class="mb-1"><?php echo _("Memory Used"); ?></div>
       <div class="progress mb-2" style="height: 20px;">
         <div class="progress-bar bg-<?php echo htmlspecialchars($memused_status, ENT_QUOTES); ?>"

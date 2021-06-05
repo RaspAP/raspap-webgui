@@ -23,6 +23,11 @@ h5.card-title {
   font-size: 1.2rem;
 }
 
+.h-underlined {
+  border-bottom: 1px solid #e3e6f0;
+  padding-bottom: 0.3rem;
+}
+
 .page-header {
   padding: 0 20px;
   border-left: .01rem solid #d2d2d2;
@@ -53,7 +58,6 @@ h5.card-title {
   .row { margin-left: 0rem; margin-right: 0rem; }
   .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
   .form-group.col-md-6 { margin-left: -0.5rem; }
-  .js-wifi-stations { margin-left: -0.5rem; margin-right: -0.5rem; }
   h4.mt-3 { margin-left: 0.5rem; }
 }
 
@@ -374,13 +378,16 @@ tspan, rect {
   fill: #d2d2d2;
 }
 
-small {
-    font-size: 80%;
-    font-weight: 400;
+text-muted {
+  font-size: 0.8rem;
 }
 
 .fas.fa-circle {
   font-size: 0.5rem;
+}
+
+.service-status {
+  align-items: center;
 }
 
 .service-status-up {
@@ -414,6 +421,20 @@ pre {
 .dhcp-static-lease-row {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+}
+
+.loading-spinner {
+  background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
+  min-height: 150px;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 50%;
+    grid-gap: 1rem;
+  }
 }
 
 .toggle-off.btn {

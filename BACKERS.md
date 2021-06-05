@@ -17,12 +17,13 @@ You can [become a sponsor](https://github.com/sponsors/RaspAP) using your indivi
 ### Exclusive features
 When backers were asked which feature they'd most like to see added to RaspAP, the ability to manage multiple OpenVPN client configurations topped the list of requests. We think this is a great idea, so we're adding this as the first feature exclusive to insiders. 
 
-✅ Multiple OpenVPN client configs  
+✅ [Multiple OpenVPN client configs](https://docs.raspap.com/openvpn/#multiple-client-configs)  
+✅ [OpenVPN certificate authentication](https://docs.raspap.com/openvpn/#certificate-authentication)  
 ✅ OpenVPN service logging  
 ✅ Night mode toggle  
 ✅ Restrict network to static clients  
-✅ WireGuard support  
-⚙️  Traffic shaping (in progress)  
+✅ [WireGuard support](https://docs.raspap.com/wireguard/)  
+✅ [Set AP transmit power](https://docs.raspap.com/ap-basics/#transmit-power)  
 
 Look for the list above to grow as we add more exclusive features. 
 
@@ -30,22 +31,28 @@ Look for the list above to grow as we add more exclusive features.
 Below is a list of funding targets. When a funding target is reached, the features that are tied to it are merged back into RaspAP and released to the public for general availability.
 
 #### $500 
-✅ Multiple OpenVPN client configs  
-✅ OpenVPN service logging  
-✅ Night mode toggle  
-✅ Restrict network to static clients  
-✅ WireGuard support  
-⚙️  Traffic shaping (in progress)  
+The first **Insiders Edition** includes the exclusive features listed above.
 
 ### Frequently asked questions
+
+#### How do I install Insiders?
+*How do I install Insiders?*
+
+Invoke the [Quick Installer](https://docs.raspap.com/quick/) with the `--insiders` switch, like so:
+
+```
+curl -sL https://install.raspap.com | bash -s -- --insiders
+```
+
+This will automatically pull from the private Insiders repo during the installation process.
 
 #### Upgrading
 *I have an existing RaspAP installation. How do I upgrade to Insiders?*
 
-Upgrading is easy. Simply invoke the [Quick Installer](https://docs.raspap.com/quick/) with the `--upgrade` switch, specifying the private Insiders repo, like so:
+Upgrading is easy. Invoke the [Quick Installer](https://docs.raspap.com/quick/) with the `--upgrade` switch, specifying the private Insiders edition, like so:
 
 ```
-curl -sL https://install.raspap.com | bash -s -- --upgrade --repo raspap/raspap-insiders
+curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders
 ```
 
 If you haven't [added SSH keys to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) you will be prompted to authenticate. If so, just enter your GitHub credentials during the install:

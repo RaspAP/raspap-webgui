@@ -8,7 +8,6 @@ License: GNU General Public License v3.0
 
 html * {
   font-family: Verdana, Geneva, sans-serif;
-  font-size: 0.9rem;
   color: #828282;
 }
 
@@ -32,6 +31,11 @@ h4 {
 h5.card-title {
   font-size: 1.2rem;
   color: #212529;
+}
+
+.h-underlined {
+  border-bottom: 1px solid #e3e6f0;
+  padding-bottom: 0.3rem;
 }
 
 .card, .modal-dialog {
@@ -115,7 +119,6 @@ ul.nav-tabs, .nav-tabs .nav-link {
   .row { margin-left: 0rem; margin-right: 0rem; }
   .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
   .form-group.col-md-6 { margin-left: -0.5rem; }
-  .js-wifi-stations { margin-left: -0.5rem; margin-right: -0.5rem; }
   h4.mt-3 { margin-left: 0.5rem; }
 }
 
@@ -180,6 +183,7 @@ ul.nav-tabs, .nav-tabs .nav-link {
 
 .service-status {
   border-width: 0;
+  align-items: center;
 }
 
 .service-status-up {
@@ -231,8 +235,12 @@ pre.unstyled {
   width: 100%;
 }
 
-.js-reload-wifi-stations {
-  min-width: 10rem;
+@media (min-width: 576px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 50%;
+    grid-gap: 1rem;
+  }
 }
 
 .sidebar.toggled .nav-item .nav-link {

@@ -18,6 +18,7 @@ function knownWifiStations(&$networks)
                 switch (strtolower($lineArr[0])) {
                 case 'ssid':
                     $ssid = trim($lineArr[1], '"');
+                    $network['ssid'] = $ssid;
                     break;
                 case 'psk':
                     if (array_key_exists('passphrase', $network)) {
@@ -69,16 +70,21 @@ function nearbyWifiStations(&$networks, $cached = true)
 
     foreach (explode("\n", $scan_results) as $network) {
         $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
-        if (!array_key_exists(4, $arrNetwork) ||
-            trim($arrNetwork[4]) == $ap_ssid) {
+
+        $ssid = trim($arrNetwork[4]);
+        $ssid = evalHexSequence($ssid);
+
+        // exclude raspap ssid
+        if (empty($ssid) || $ssid == $ap_ssid) {
             continue;
         }
 
-        $ssid = trim($arrNetwork[4]);
-        // filter SSID string: anything invisible in 7bit ASCII or quotes -> ignore network
-        if (preg_match('[\x00-\x1f\x7f-\xff\'\`\´\"]', $ssid)) {
+        // filter SSID string: unprintable 7bit ASCII control codes, delete or quotes -> ignore network
+        if (preg_match('[\x00-\x1f\x7f\'\`\´\"]', $ssid)) {
             continue;
         }
+
+        $networks[$ssid]['ssid'] = $ssid;
 
         // If network is saved
         if (array_key_exists($ssid, $networks)) {
@@ -157,4 +163,20 @@ function getWifiInterface()
         } 
 }
 
-?>
+/*
+ * Reinitializes wpa_supplicant for the wireless client interface
+ * The 'force' parameter deletes the socket in /var/run/wpa_supplicant/
+ *
+ * @param boolean $force
+ */
+function reinitializeWPA($force)
+{
+    if ($force == true) {
+        $cmd = escapeshellcmd("sudo /bin/rm /var/run/wpa_supplicant/".$_SESSION['wifi_client_interface']);
+        $result = exec($cmd);
+    }
+    $cmd = escapeshellcmd("sudo /sbin/wpa_supplicant -B -Dnl80211 -c/etc/wpa_supplicant/wpa_supplicant.conf -i". $_SESSION['wifi_client_interface']);
+    $result = shell_exec($cmd);
+    return $result;
+}
+

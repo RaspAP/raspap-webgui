@@ -147,8 +147,32 @@ msgstr "Hide"
 msgid "Not configured"
 msgstr "Not configured"
 
+msgid "Connected"
+msgstr "Connected"
+
+msgid "Known"
+msgstr "Known"
+
+msgid "Nearby"
+msgstr "Nearby"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+
+msgid "No Wifi stations found"
+msgstr "No Wifi stations found"
+
+msgid "Reinitializing wpa_supplicant"
+msgstr "Reinitializing wpa_supplicant"
+
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Click 'Rescan' to search for nearby Wifi stations."
+
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+
+msgid "Reinitialize"
+msgstr "Reinitialize"
 
 #: includes/dashboard.php
 msgid "Interface Information"
