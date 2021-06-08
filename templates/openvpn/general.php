@@ -64,9 +64,7 @@
          </div>
       </div> <!-- col -->
     </div><!-- col-8 -->
-    <div class="col-sm-auto">
-      <a href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=36402&url_id=902"><img src="app/img/no-trace-200x200.png" class="float-left mb-3 mt-3"></a>
-    </div>
+    <div class="col-sm-auto"></div>
   </div><!-- /.row -->
 </div><!-- /.tab-pane | general tab -->
 

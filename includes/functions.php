@@ -271,28 +271,6 @@ function file_get_meta($filename, $pattern)
 }
 
 /**
- * Renames an openvpn client config with the 'filename' header comment
- *
- * @param string file
- * @return boolean
- */
-function file_move_config($file)
-{
-    if(file_exists($file)) {
-        $file_data = file_get_contents($file);
-        preg_match('/^#\sfilename\s(.*)/i', $file_data, $matched);
-        $renamed = pathinfo($file, PATHINFO_DIRNAME).'/'.
-            $matched[1] .'_'.pathinfo($file, PATHINFO_FILENAME).'.'.
-            pathinfo($file, PATHINFO_EXTENSION);
-        if (!file_exists($renamed)) {
-            $return = system("sudo mv $file $renamed", $return);
-        } else {
-            return false;
-        }
-    }
-}
-
-/**
  * Callback function for array_filter
  *
  * @param string $var
