@@ -539,7 +539,7 @@ msgid "System Information"
 msgstr "Informazioni di sistema"
 
 msgid "Language"
-msgstr "Linguaggio"
+msgstr "Lingua"
 
 msgid "Language settings"
 msgstr "Impostazioni lingua"
