@@ -291,7 +291,7 @@ $('#ovpn-confirm-delete').on('show.bs.modal', function (e) {
 });
 
 $('#ovpn-confirm-activate').on('click', '.btn-activate', function (e) {
-    var cfg_id = $(this).data('recordId');
+    var cfg_id = $(this).data('record-id');
     $.post('ajax/openvpn/activate_ovpncfg.php',{'cfg_id':cfg_id},function(data){
         jsonData = JSON.parse(data);
         $("#ovpn-confirm-activate").modal('hide');
