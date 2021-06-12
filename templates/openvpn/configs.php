@@ -7,10 +7,6 @@
           <br><small class="text-muted"><?php echo _("Activating a configuraton will restart the <code>openvpn-client</code> service.") ?></small>
         </p>
         <div class="openvpn-configs js-openvpn-configs-container">
-          <?php
-                exec("readlink ".RASPI_OPENVPN_CLIENT_CONFIG." | xargs basename", $ret);
-                $conf_default =  empty($ret) ? "none" : $ret[0];
-          ?>
           <?php foreach ($clients as $client) :
                 if ($client == $conf_default) {
                     $btn_class = "active";
