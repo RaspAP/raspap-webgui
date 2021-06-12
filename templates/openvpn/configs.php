@@ -12,14 +12,14 @@
                 $conf_default =  empty($ret) ? "none" : $ret[0];
           ?>
           <?php foreach ($clients as $client) :
-                if ($client == "client.conf") {
-                    $label = file_get_meta(RASPI_OPENVPN_CLIENT_CONFIG,'#\sfilename\s(.*)');
+                if ($client == $conf_default) {
                     $btn_class = "active";
                 } else {
-                    $label = preg_replace('/_client$/','',pathinfo($client, PATHINFO_FILENAME));
-                    $client = $label;
                     $btn_class = "disabled";
-                }?>
+                }
+                $label = preg_replace('/_client$/','',pathinfo($client, PATHINFO_FILENAME));
+                $client = $label;
+          ?>
             <div class="row mt-2" id="openvpn-client-row-<?php echo htmlspecialchars($client, ENT_QUOTES); ?>" >
               <div class="col-md-6 col-xs-4">
                 <label><?php echo htmlspecialchars($label, ENT_QUOTES); ?></label>
