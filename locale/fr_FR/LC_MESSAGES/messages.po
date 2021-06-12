@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2021-02-12 14:34\n"
-"Last-Translator: yolateng0 https://github.com/yolateng0\n"
+"PO-Revision-Date: 2021-06-12 19:03\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -19,13 +19,13 @@ msgstr ""
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
-msgstr "RaspAP Wifi Portail de Configuration"
+msgstr "RaspAP Configuration de Portail Wifi"
 
 msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
 msgid "RaspAP Wifi Portal"
-msgstr "RaspAP Wifi Portail"
+msgstr "RaspAP Portail Wifi"
 
 msgid "Dashboard"
 msgstr "Tableau de bord"
@@ -361,6 +361,27 @@ msgstr "Journaliser les requêtes DHCP"
 msgid "Log DNS queries"
 msgstr "Journaliser les requêtes DNS"
 
+msgid "Restrict access"
+msgstr "Accès restreint"
+
+msgid "Limit network access to static clients"
+msgstr "Limiter l'accès au réseau aux clients baux statiques"
+
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Activer cette option si tu veux que RaspAP <b>ignore les clients</b> qui ne sont pas spécifiés dans la liste des baux statiques."
+
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Cette option ajoute <code>no-resolv</code> à la configuration dnsmasq."
+
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Les clients avec une adresse MAC identifiée peuvent toujours être alloués à la même adresse IP."
+
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Cette option ajoute <code>no-resolv</code> à la configuration Dnsmasq."
+
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "Cela bascule l'option <code>gateway</code>/<code>nogateway</code> pour cette interface dans la configuration de DHCPCD."
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "De base"
@@ -676,6 +697,66 @@ msgstr "Essai de démarrage d'openvpn"
 msgid "Attempting to stop openvpn"
 msgstr "Essai d'arrêt d'openvpn"
 
+msgid "Configurations"
+msgstr "Configuration"
+
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Les configurations des fichiers OpenVPN actuellement disponibles sont affichées ci-dessous."
+
+msgid "Activating a configuraton will restart the <code>openvpn-client</code> service."
+msgstr "L'activation d'une configuration redémarrera le service <code>openvpn-client</code>."
+
+msgid "Delete OpenVPN client"
+msgstr "Supprimer le fichier client OpenVPN"
+
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Supprimer ce fichier ? Opération irréversible."
+
+msgid "Activate OpenVPN client"
+msgstr "Activer le fichier OpenVPN"
+
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "L'activation d'une configuration redémarrera le service openvpn-client."
+
+msgid "Activate"
+msgstr "Activer"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Activer cette option pour enregistrer l'activité <code>openvpn</code>."
+
+msgid "Authentification Method"
+msgstr "Méthode d'identification"
+
+msgid "Username and password"
+msgstr "Nom d'utilisateur et mot de passe"
+
+msgid "Certificates"
+msgstr "Certificats"
+
+msgid "Enter username and password"
+msgstr "Entrez votre nom d'utilisateur et votre mot de passe"
+
+msgid "Certificates in the configuration file"
+msgstr "Certificats dans le fichier de configuration"
+
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP prend en charge les certificats en les incluant dans le fichier de configuration."
+
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Certificat d'autorité de certification (CA) de signature (par exemple <code>ca.crt</code>) : joint dans <code>&lt;ca> ... &lt;/ca></code> balises."
+
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Certificat client (clé publique) (par exemple <code>client.crt</code>) : inclus dans <code>&lt;cert> ... &lt;/cert></code> balises."
+
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Clé privée du certificat client (par exemple <code>client.key</code>) : entourée de balises <code>&lt;clé> ... &lt;/key></code>."
+
+msgid "Configuration File"
+msgstr "Fichier de configuration"
+
 #: includes/torproxy.php
 msgid "TOR is not running"
 msgstr "TOR n'est pas en cours d'exécution"
@@ -798,4 +879,88 @@ msgstr "Une adresse IP personnalisée non valide a été trouvée sur la ligne "
 
 msgid "Invalid custom host found on line "
 msgstr "Un Host personnalisée non valide a été trouvée sur la ligne "
+
+msgid "Tunnel settings"
+msgstr "Paramètres du tunnel"
+
+msgid "Enable server"
+msgstr "Activer le serveur"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and configured peers."
+msgstr "Active cette option pour chiffrer le trafic en créant un tunnel entre RaspAP et les pairs configurés."
+
+msgid "This option adds <code>wg0.conf</code> to the WireGuard configuration."
+msgstr "Cette option ajoute <code>wg0.conf</code> à la configuration de WireGuard."
+
+msgid "Local public key"
+msgstr "Clé publique locale"
+
+msgid "Local Port"
+msgstr "Port local"
+
+msgid "IP Address"
+msgstr "Adresse IP"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Peer"
+msgstr "Pair"
+
+msgid "Enable peer"
+msgstr "Activer le pair"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Active cette option pour chiffrer le trafic en créant un tunnel entre RaspAP et ce pair."
+
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "Cette option ajoute <code>client.conf</code> à la configuration de WireGuard."
+
+msgid "Peer public key"
+msgstr "Clé publique du pair"
+
+msgid "Endpoint address"
+msgstr "Adresse de terminaison"
+
+msgid "Allowed IPs"
+msgstr "Adresses IP autorisées"
+
+msgid "Persistent keepalive"
+msgstr "Keepalive persistant"
+
+msgid "Display WireGuard status"
+msgstr "Afficher le statut WireGuard"
+
+msgid "Enable this option to display an updated WireGuard status."
+msgstr "Activer cette option pour afficher un statut WireGuard mis à jour."
+
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Scannez ce code QR avec votre client pour vous connecter à ce tunnel"
+
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "ou téléchargez le fichier <code>client.conf</code> sur votre appareil."
+
+msgid "Download"
+msgstr "Télécharger"
+
+msgid "Start WireGuard"
+msgstr "Démarrer WireGuard"
+
+msgid "Stop WireGuard"
+msgstr "Arrêter WireGuard"
+
+msgid "Information provided by wireguard"
+msgstr "Informations fournies par WireGuard"
+
+msgid "Attempting to start WireGuard"
+msgstr "Tentative de démarrage de WireGuard"
+
+msgid "Attempting to stop WireGuard"
+msgstr "Tentative d’arrêt de WireGuard"
+
+msgid "WireGuard configuration updated successfully"
+msgstr "Configuration de WireGuard mise à jour avec succès"
+
+msgid "WireGuard configuration failed to be updated"
+msgstr "La configuration WireGuard n'a pas pu être mise à jour"
 
