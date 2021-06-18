@@ -14,10 +14,10 @@
 # zbchristian 2021
 
 function _setAPIParams() {
-    if [ ! -z "$hostip" ]; then host="$hostip"; fi
-    if [ ! -z "$username" ]; then user="$username"; fi
-    if [ ! -z "$password" ]; then pw="$password"; fi
-    if [ ! -z "$simpin" ]; then pin="$simpin"; fi
+    if [ ! -z "$hostip" ]; then hilink_host="$hostip"; fi
+    if [ ! -z "$username" ]; then hilink_user="$username"; fi
+    if [ ! -z "$password" ]; then hilink_password="$password"; fi
+    if [ ! -z "$simpin" ]; then hilink_pin="$simpin"; fi
 }
 
 if [ -z "$1" ]; then echo "none"; exit; fi
@@ -44,7 +44,7 @@ if [ "$opt" = "connected" ]; then
     result=$(_getMobileDataStatus)
     _closeHilinkAPI
 else
-    info_file="/tmp/huawei_infos_${hostip}_${id -u}.dat"
+    info_file="/tmp/huawei_infos_${hostip}_$(id -u).dat"
     if [ -f "$info_file" ]; then
         age=$(( $(date +%s) - $(stat $info_file -c %Y) )) 
         if [[ $age -gt 10 ]]; then rm -f $info_file; fi
@@ -75,7 +75,7 @@ else
           key="msisdn"
           ;;
         imei|imsi|rssi|rsrq|rsrp|sinr|ecio)
-          key="$opt"
+          key="$property"
           ;;
         signal)
           key="rsrq"

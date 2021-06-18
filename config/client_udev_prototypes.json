@@ -39,10 +39,10 @@
      "type": "hilink",
      "type_info": "Huawei Hilink",
      "clientid": 4,
-     "comment": "Huawei mobile data device in router mode. Control via HTTP",
+     "comment": "Huawei mobile data device in router mode. Control via HTTP. Device is connecting via service",
      "name_prefix": "hilink",
      "default_ip": "192.168.8.1",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"hilink\", TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"start start_huawei_hilink.service\" "
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"hilink\", TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"start start_huawei_hilink@hilink%n.service\" "
     },
     {
      "type": "phone", 

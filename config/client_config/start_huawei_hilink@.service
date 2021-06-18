@@ -5,7 +5,7 @@ Description=Bring up HUAWEI mobile hilink device
 Type=oneshot
 RemainAfterExit=no
 ExecStart=/bin/sleep 15
-ExecStart=/usr/local/sbin/switchClientState.sh up
+ExecStart=/usr/local/sbin/onoff_huawei_hilink.sh -c 1 -d %i
 
 [Install]
 Alias=start_ltemodem.service
