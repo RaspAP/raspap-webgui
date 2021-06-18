@@ -33,12 +33,17 @@ while [ -n "$1" ]; do
     shift
 done
 
-if [ ! _loginState ] && [ -z "$hilink_password" ] || [ -z "$hilink_pin" ]; then _getAuthRouter; fi
-
 if [ ! -z "$devname" ]; then # get host IP for given device name
     gw=$(ip route list |  sed -rn "s/default via (([0-9]{1,3}\.){3}[0-9]{1,3}).*dev $devname.*/\1/p")
     if [ -z "$gw" ]; then exit; fi  # device name not found in routing list -> abort 
     hilink_host="$gw"
+fi
+
+if [ -z "$hilink_password" ] || [ -z "$hilink_pin" ]; then 
+    _getAuthRouter
+    if [ ! -z "$raspap_user" ]; then hilink_user="$raspap_user"; fi
+    if [ ! -z "$raspap_password" ]; then hilink_password="$raspap_password"; fi
+    if [ ! -z "$raspap_pin" ]; then hilink_pin="$raspap_pin"; fi
 fi
 
 echo  "Hilink: switch device at $hilink_host to mode $datamode" | systemd-cat
