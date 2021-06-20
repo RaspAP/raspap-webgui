@@ -8,7 +8,7 @@
           with the contributions of our <a href="https://github.com/raspap/raspap-webgui/graphs/contributors">developer community</a>
           and <a href="https://crowdin.com/project/raspap">language translators</a>.
           Learn more about joining the project as a <a href="https://docs.raspap.com/#get-involved">code contributor</a>,
-        <a href="https://docs.raspap.com/translations/">translator</a> or <a href="https://github.com/sponsors/RaspAP">financial sponsor</a> with immediate access to <a href="https://github.com/sponsors/RaspAP#exclusive-features">exclusive features</a> available to <strong>Insiders</strong>.</div>
+        <a href="https://docs.raspap.com/translations.html">translator</a> or <a href="https://github.com/sponsors/RaspAP">financial sponsor</a> with immediate access to <a href="https://github.com/sponsors/RaspAP#exclusive-features">exclusive features</a> available to <strong>Insiders</strong>.</div>
         <div class="mt-3">Project documentation is available at <a href="https://docs.raspap.com/">https://docs.raspap.com/</a></div>
         <div class="mt-3 project-links">
         <div class="row">
