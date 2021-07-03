@@ -3,6 +3,7 @@
 require_once 'includes/status_messages.php';
 require_once 'includes/config.php';
 require_once 'includes/wifi_functions.php';
+require_once 'app/lib/uploader.php';
 
 getWifiInterface();
 
@@ -87,6 +88,18 @@ function DisplayOpenVPNConfig()
     );
 }
 
+/* File upload callback object
+ *
+ */
+class validation {
+    public function check_name_length($object)
+    {
+		if (strlen($object->file['filename']) > 255) {
+			$object->set_error('File name is too long.');
+        }
+    }
+}
+
 /**
  * Validates uploaded .ovpn file, adds auth-user-pass and
  * stores auth credentials in login.conf. Copies files from
@@ -100,8 +113,10 @@ function DisplayOpenVPNConfig()
  */
 function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
 {
-    $tmp_ovpnclient = '/tmp/ovpnclient.ovpn';
-    $tmp_authdata = '/tmp/authdata';
+    define('KB', 1024);
+    $tmp_destdir = '/tmp/';
+    $tmp_ovpnclient = $tmp_destdir .'ovpn/ovpnclient.ovpn';
+    $tmp_authdata = $tmp_destdir .'ovpn/authdata';
     $auth_flag = 0;
 
     try {
@@ -110,61 +125,24 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
             throw new RuntimeException('Invalid parameters');
         }
 
-        // Parse returned errors
-        switch ($file['error']) {
-        case UPLOAD_ERR_OK:
-            break;
-        case UPLOAD_ERR_NO_FILE:
-            throw new RuntimeException('OpenVPN configuration file not sent');
-        case UPLOAD_ERR_INI_SIZE:
-        case UPLOAD_ERR_FORM_SIZE:
-            throw new RuntimeException('Exceeded filesize limit');
-        default:
-            throw new RuntimeException('Unknown errors');
-        }
+        $upload = Upload::factory('ovpn',$tmp_destdir);
+        $upload->set_max_file_size(64*KB);
+        $upload->set_allowed_mime_types(array('ovpn' => 'text/plain'));
+        $upload->file($file);
 
-        // Validate extension
-        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-        if ($ext != 'ovpn') {
-            throw new RuntimeException('Invalid file extension');
-        }
+        $validation = new validation;
+        $upload->callbacks($validation, array('check_name_length'));
+        $results = $upload->upload();
 
-        // Validate MIME type
-        $finfo = new finfo(FILEINFO_MIME_TYPE);
-        if (false === $ext = array_search(
-            $finfo->file($file['tmp_name']),
-            array(
-                'ovpn' => 'text/plain'
-            ),
-            true
-        )
-        ) {
-            throw new RuntimeException('Invalid file format');
+        if (!empty($results['errors'])) {
+            throw new RuntimeException($results['errors'][0]);
         }
-
-        // Validate filesize
-        define('KB', 1024);
-        if ($file['size'] > 64*KB) {
-            throw new RuntimeException('File size limit exceeded');
-        }
-
-        // Use safe filename, save to /tmp
-        if (!move_uploaded_file(
-            $file['tmp_name'],
-            sprintf(
-                '/tmp/%s.%s',
-                'ovpnclient',
-                $ext
-            )
-        )
-        ) {
-            throw new RuntimeException('Unable to move uploaded file');
-        }
+        echo '<pre>' . var_export($results, true) . '</pre>';
+        #die();
 
         // Good file upload, update auth credentials if present
         if (!empty($authUser) && !empty($authPassword)) {
             $auth_flag = 1;
-            // Move tmp authdata to /etc/openvpn/login.conf
             $auth.= $authUser .PHP_EOL . $authPassword .PHP_EOL;
             file_put_contents($tmp_authdata, $auth);
             chmod($tmp_authdata, 0644);
