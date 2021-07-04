@@ -12,6 +12,8 @@
  * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
  */
 
+namespace RaspAP\Uploader;
+
 class Upload
 {
 
@@ -130,7 +132,7 @@ class Upload
             throw new Exception('Upload: Unable to create destination. '.$this->root . $this->destination);
         }
         //create finfo object
-        $this->finfo = new finfo();
+        $this->finfo = new \finfo();
     }
 
     /**
