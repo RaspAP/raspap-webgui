@@ -88,18 +88,6 @@ function DisplayOpenVPNConfig()
     );
 }
 
-/* File upload callback object
- *
- */
-class validation {
-    public function check_name_length($object)
-    {
-		if (strlen($object->file['filename']) > 255) {
-			$object->set_error('File name is too long.');
-        }
-    }
-}
-
 /**
  * Validates uploaded .ovpn file, adds auth-user-pass and
  * stores auth credentials in login.conf. Copies files from
@@ -115,8 +103,6 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
 {
     define('KB', 1024);
     $tmp_destdir = '/tmp/';
-    $tmp_ovpnclient = $tmp_destdir .'ovpn/ovpnclient.ovpn';
-    $tmp_authdata = $tmp_destdir .'ovpn/authdata';
     $auth_flag = 0;
 
     try {
@@ -137,17 +123,16 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         if (!empty($results['errors'])) {
             throw new RuntimeException($results['errors'][0]);
         }
-        echo '<pre>' . var_export($results, true) . '</pre>';
-        #die();
 
         // Good file upload, update auth credentials if present
         if (!empty($authUser) && !empty($authPassword)) {
             $auth_flag = 1;
+            $tmp_authdata = $tmp_destdir .'ovpn/authdata';
             $auth.= $authUser .PHP_EOL . $authPassword .PHP_EOL;
             file_put_contents($tmp_authdata, $auth);
             chmod($tmp_authdata, 0644);
             $client_auth = RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_login.conf';
-            system("sudo cp $tmp_authdata $client_auth", $return);
+            system("sudo mv $tmp_authdata $client_auth", $return);
             system("sudo rm ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
             system("sudo ln -s $client_auth ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
             if ($return !=0) {
@@ -161,9 +146,11 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
             $status->addMessage($line, 'info');
         }
 
+        // Move uploaded ovpn config from /tmp and create symlink
         $client_ovpn = RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_client.conf';
+        $tmp_ovpn = $results['full_path'];
         chmod($tmp_ovpnclient, 0644);
-        system("sudo cp $tmp_ovpnclient $client_ovpn", $return);
+        system("sudo mv $tmp_ovpn $client_ovpn", $return);
         system("sudo rm ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
         system("sudo ln -s $client_ovpn ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
 
@@ -179,3 +166,16 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         return $status;
     }
 }
+
+/* File upload callback object
+ *
+ */
+class validation {
+    public function check_name_length($object)
+    {
+        if (strlen($object->file['filename']) > 255) {
+            $object->set_error('File name is too long.');
+        }
+    }
+}
+
