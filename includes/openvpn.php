@@ -111,7 +111,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
             throw new RuntimeException('Invalid parameters');
         }
 
-        $upload = Upload::factory('ovpn',$tmp_destdir);
+        $upload = \RaspAP\Uploader\Upload::factory('ovpn',$tmp_destdir);
         $upload->set_max_file_size(64*KB);
         $upload->set_allowed_mime_types(array('ovpn' => 'text/plain'));
         $upload->file($file);
@@ -128,7 +128,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         if (!empty($authUser) && !empty($authPassword)) {
             $auth_flag = 1;
             $tmp_authdata = $tmp_destdir .'ovpn/authdata';
-            $auth.= $authUser .PHP_EOL . $authPassword .PHP_EOL;
+            $auth = $authUser .PHP_EOL . $authPassword .PHP_EOL;
             file_put_contents($tmp_authdata, $auth);
             chmod($tmp_authdata, 0644);
             $client_auth = RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_login.conf';
@@ -141,15 +141,15 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         }
 
         // Set iptables rules and, optionally, auth-user-pass
-        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient $auth_flag " .$_SESSION['ap_interface'], $return);
+        $tmp_ovpn = $results['full_path'];
+        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpn $auth_flag " .$_SESSION['ap_interface'], $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
 
         // Move uploaded ovpn config from /tmp and create symlink
         $client_ovpn = RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_client.conf';
-        $tmp_ovpn = $results['full_path'];
-        chmod($tmp_ovpnclient, 0644);
+        chmod($tmp_ovpn, 0644);
         system("sudo mv $tmp_ovpn $client_ovpn", $return);
         system("sudo rm ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
         system("sudo ln -s $client_ovpn ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
