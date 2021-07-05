@@ -128,23 +128,26 @@ function getClients($simple=true)
                 $cl["device"][$i]["operator"] = $res[0];
                 break;
             case "hilink":
+				$pin=$user=$pw="";
+				getMobileLogin($pin,$pw,$user);
+				$opts=$pin.' '.$user.' '.$pw;
                 unset($res);
                 //              exec("ip link show $dev 2> /dev/null | grep -oP ' UP '",$res);
                 exec("ifconfig -a | grep -i $dev -A 1 | grep -oP '(?<=inet )([0-9]{1,3}\.){3}'", $apiadd);
                 $apiadd = !empty($apiadd) ? $apiadd[0]."1" : "";
                 unset($res);
-                exec("$path/info_huawei.sh mode hilink $apiadd", $res);
+                exec("$path/info_huawei.sh mode hilink $apiadd \"$opts\" ", $res);
                 $cl["device"][$i]["mode"] = $res[0];
                 unset($res);
-                exec("$path/info_huawei.sh device hilink $apiadd", $res);
+                exec("$path/info_huawei.sh device hilink $apiadd \"$opts\" ", $res);
                 if ($res[0] != "none" ) {
                     $cl["device"][$i]["model"] = $res[0];
                 }
                 unset($res);
-                exec("$path/info_huawei.sh signal hilink $apiadd", $res);
+                exec("$path/info_huawei.sh signal hilink $apiadd \"$opts\" ", $res);
                 $cl["device"][$i]["signal"] = $res[0];
                 unset($ipadd);
-                exec("$path/info_huawei.sh ipaddress hilink $apiadd", $ipadd);
+                exec("$path/info_huawei.sh ipaddress hilink $apiadd \"$opts\" ", $ipadd);
                 if (!empty($ipadd) && $ipadd[0] !== "none" ) {
                     $cl["device"][$i]["connected"] = "y";
                     $cl["device"][$i]["wan_ip"] = $ipadd[0];
@@ -153,7 +156,7 @@ function getClients($simple=true)
                     $cl["device"][$i]["wan_ip"] = "-";
                 }
                 unset($res);
-                exec("$path/info_huawei.sh operator hilink $apiadd", $res);
+                exec("$path/info_huawei.sh operator hilink $apiadd \"$opts\" ", $res);
                 $cl["device"][$i]["operator"] = $res[0];
                 break;
             case "phone":
@@ -192,6 +195,15 @@ function getClientType($dev) {
         $type = $_SESSION["net-device-types"][$n];
     }
     return $type;
+}
+
+function getMobileLogin(&$pin,&$pw,&$user) {
+	if (file_exists(($f = RASPI_MOBILEDATA_CONFIG))) {
+		$dat = parse_ini_file($f);
+		$pin = (isset($dat["pin"]) && preg_match("/^[0-9]*$/", $dat["pin"])) ? "-p ".$dat["pin"] : "";
+		$user = (isset($dat["router_user"]) && !empty($dat["router_user"]) ) ? "-u ".$dat["router_user"] : "";
+		$pw = (isset($dat["router_pw"]) && !empty($dat["router_pw"]) ) ? "-P ".$dat["router_pw"] : "";
+	}
 }
 
 function loadClientConfig()
@@ -271,12 +283,9 @@ function setClientState($state)
             preg_match("/^([0-9]{1,3}\.){3}/", $connected, $ipadd);
             $ipadd = $ipadd[0].'1'; // ip address of the Hilink api
             $mode = ($state == "up") ? 1 : 0;
-            $pin="";
-            if (file_exists(($f = RASPI_CONFIG."/networking/mobiledata.ini"))) {
-                $dat = parse_ini_file($f);
-                $pin = (isset($dat["pin"]) && preg_match("/^[0-9]*$/", $dat["pin"])) ? $dat["pin"] : "";
-            }
-            exec('sudo '.RASPI_CLIENT_SCRIPT_PATH.'/onoff_huawei_hilink.sh -c '.$mode.' -h '.$ipadd.' -p '.$pin);
+            $pin=$user=$pw="";
+			getMobileLogin($pin,$pw,$user);
+            exec('sudo '.RASPI_CLIENT_SCRIPT_PATH.'/onoff_huawei_hilink.sh -c '.$mode.' -h '.$ipadd.' '.$pin.' '.$user.' '.$pw);
             break;
         case "ppp":
             if ($state == "up") {
