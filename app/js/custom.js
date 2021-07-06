@@ -307,13 +307,22 @@ $('#ovpn-confirm-activate').on('shown.bs.modal', function (e) {
 });
 
 $('#ovpn-userpw,#ovpn-certs').on('click', function (e) {
-//    e.stopPropagation();
     if (this.id == 'ovpn-userpw') {
         $('#PanelCerts').hide();
         $('#PanelUserPW').show();
     } else if (this.id == 'ovpn-certs') {
         $('#PanelUserPW').hide();
         $('#PanelCerts').show();
+    }
+});
+
+$('#wg-upload,#wg-manual').on('click', function (e) {
+    if (this.id == 'wg-upload') {
+        $('#PanelManual').hide();
+        $('#PanelUpload').show();
+    } else if (this.id == 'wg-manual') {
+        $('#PanelUpload').hide();
+        $('#PanelManual').show();
     }
 });
 
