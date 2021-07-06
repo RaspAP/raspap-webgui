@@ -316,6 +316,10 @@ $('#ovpn-userpw,#ovpn-certs').on('click', function (e) {
     }
 });
 
+$(document).ready(function(){
+  $("#PanelManual").hide();
+});
+
 $('#wg-upload,#wg-manual').on('click', function (e) {
     if (this.id == 'wg-upload') {
         $('#PanelManual').hide();

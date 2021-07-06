@@ -9,21 +9,40 @@
           <label class="custom-control-label" for="server_enabled"><?php echo _("Enable server") ?></label>
         </div>
         <p id="wg-description">
-          <small><?php echo _("Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers.") ?></small>
+          <small><?php echo _("Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured endpoints.") ?></small>
         </p>
         </div>
         <h5><?php echo _("Configuration Method"); ?></h5>
         <div class="col-sm-12 mt-2 mb-2 form-check">
-          <input class="form-check-input" id="wg-manual" name="sel1" value="manual" data-toggle="" data-parent="#serversettings" data-target="#wgManual" type="radio" checked>
-          <label class="form-check-label"><?php echo _("Manual settings"); ?></label>
+          <input class="form-check-input" id="wg-upload" name="sel1" value="upload" data-toggle="" data-parent="#serversettings" data-target="#wgUpload" type="radio" checked>
+          <label class="form-check-label"><?php echo _("File upload"); ?></label>
         </div>
         <div class="col-sm-12 mt-2 mb-2 form-check">
-          <input class="form-check-input" id="wg-upload" name="sel1" value="upload" data-toggle="" data-parent="#serversettings" data-target="#wgUpload" type="radio">
-          <label class="form-check-label"><?php echo _("Upload <code>wg0.conf</code> file"); ?></label>
+          <input class="form-check-input" id="wg-manual" name="sel1" value="manual" data-toggle="" data-parent="#serversettings" data-target="#wgManual" type="radio">
+          <label class="form-check-label"><?php echo _("Create manually"); ?></label>
         </div>
 
         <div class="col-sm-12 ml-2">
           <div class="panel-group" id="serversettings">
+
+            <div class="panel panel-default panel-collapse" id="PanelUpload">
+              <div class="panel-heading">
+                <h5 class="panel-title"><?php echo _("Upload a WireGuard config"); ?></h5>
+                <p id="wg-description">
+                  <small><?php echo _("This option uploads an existing WireGuard <code>.conf</code> file to this device.") ?></small>
+                </p>
+              </div>
+              <div class="panel-body">
+                <div class="form-group">
+                  <h5 class="panel-title"><?php echo _("Configuration File"); ?></h4>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="wgFile" id="wgFile">
+                    <label class="custom-file-label" for="wgFile"><?php echo _("Select WireGuard configuration file (.conf)"); ?></label>
+                  </div>
+                </div>
+              </div><!-- /.panel-body -->
+            </div><!-- /.panel -->
+
             <div class="panel panel-default panel-collapse" id="PanelManual">
               <div class="panel-heading">
                 <h5 class="panel-title"><?php echo _("Create a local WireGuard config"); ?></h5>
@@ -46,12 +65,10 @@
                 <label for="code"><?php echo _("Local Port"); ?></label>
                 <input type="text" class="form-control" name="wg_srvport" value="<?php echo htmlspecialchars($wg_srvport, ENT_QUOTES); ?>" />
               </div>
-
               <div class="form-group col-md-6">
                 <label for="code"><?php echo _("IP Address"); ?></label>
                 <input type="text" class="form-control" name="wg_srvipaddress" value="<?php echo htmlspecialchars($wg_srvipaddress, ENT_QUOTES); ?>" />
               </div>
-
               <div class="form-group col-md-6">
                 <label for="code"><?php echo _("DNS"); ?></label>
                 <input type="text" class="form-control" name="wg_srvdns" value="<?php echo htmlspecialchars($wg_srvdns, ENT_QUOTES); ?>" />
@@ -59,27 +76,9 @@
             </div><!-- /.panel-body -->
           </div><!-- /.panel -->
 
-          <div class="panel panel-default panel-collapse" id="PanelUpload">
-            <div class="panel-heading">
-              <h5 class="panel-title"><?php echo _("Upload a WireGuard config"); ?></h5>
-              <p id="wg-description">
-                <small><?php echo _("This option uploads an existing WireGuard <code>.conf</code> file to this device.") ?></small>
-              </p>
-            </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <h5 class="panel-title"><?php echo _("Configuration File"); ?></h4>
-                <div class="custom-file">
-                 <input type="file" class="custom-file-input" name="wgFile" id="wgFile">
-                 <label class="custom-file-label" for="customFile"><?php echo _("Select WireGuard configuration file (.conf)"); ?></label>
-               </div>
-             </div>
-           </div><!-- /.panel-body -->
-          </div><!-- /.panel -->
         </div><!-- /.panel-group -->
       </div><!-- /.col -->
-    </div>
+    </div><!-- /.row -->
 
 </div><!-- /.tab-pane | settings tab -->
-
 
