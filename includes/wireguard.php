@@ -12,6 +12,8 @@ function DisplayWireGuardConfig()
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['savewgsettings'])) {
             SaveWireGuardConfig($status);
+        } elseif (is_uploaded_file( $_FILES["wgFile"]["tmp_name"])) {
+            SaveWireGuardUpload($status, $_FILES['wgFile']);
         } elseif (isset($_POST['startwg'])) {
             $status->addMessage('Attempting to start WireGuard', 'info');
             exec('sudo /bin/systemctl start wg-quick@wg0', $return);
@@ -77,6 +79,59 @@ function DisplayWireGuardConfig()
             "wg_pkeepalive"
         )
     );
+}
+
+/**
+ * Validates uploaded .conf file, adds iptables post-up and
+ * post-down rules.
+ *
+ * @param  object $status
+ * @param  object $file
+ * @return object $status
+ */
+function SaveWireGuardUpload($status, $file)
+{
+    define('KB', 1024);
+    $tmp_destdir = '/tmp/';
+    $auth_flag = 0;
+
+    try {
+        // If undefined or multiple files, treat as invalid
+        if (!isset($file['error']) || is_array($file['error'])) {
+            throw new RuntimeException('Invalid parameters');
+        }
+
+        $upload = \RaspAP\Uploader\Upload::factory('wg',$tmp_destdir);
+        $upload->set_max_file_size(64*KB);
+        $upload->set_allowed_mime_types(array('text/plain'));
+        $upload->file($file);
+
+        $validation = new validation;
+        $upload->callbacks($validation, array('check_name_length'));
+        $results = $upload->upload();
+
+        if (!empty($results['errors'])) {
+            throw new RuntimeException($results['errors'][0]);
+        }
+
+        // Good file upload, do any post-processing
+
+        // Set iptables rules
+
+        // Move uploaded .conf from /tmp to destination
+
+
+        if ($return ==0) {
+            $status->addMessage('WireGuard configuration uploaded successfully', 'info');
+        } else {
+            $status->addMessage('Unable to save WireGuard configuration', 'danger');
+        }
+        return $status;
+
+    } catch (RuntimeException $e) {
+        $status->addMessage($e->getMessage(), 'danger');
+        return $status;
+    }
 }
 
 /**
