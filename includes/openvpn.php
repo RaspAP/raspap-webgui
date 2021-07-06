@@ -167,15 +167,3 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
     }
 }
 
-/* File upload callback object
- *
- */
-class validation {
-    public function check_name_length($object)
-    {
-        if (strlen($object->file['filename']) > 255) {
-            $object->set_error('File name is too long.');
-        }
-    }
-}
-
