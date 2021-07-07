@@ -15,7 +15,7 @@
         <h5><?php echo _("Configuration Method"); ?></h5>
         <div class="col-sm-12 mt-2 mb-2 form-check">
           <input class="form-check-input" id="wg-upload" name="sel1" value="upload" data-toggle="" data-parent="#serversettings" data-target="#wgUpload" type="radio" checked>
-          <label class="form-check-label"><?php echo _("File upload"); ?></label>
+          <label class="form-check-label"><?php echo _("Upload file"); ?></label>
         </div>
         <div class="col-sm-12 mt-2 mb-2 form-check">
           <input class="form-check-input" id="wg-manual" name="sel1" value="manual" data-toggle="" data-parent="#serversettings" data-target="#wgManual" type="radio">
@@ -29,10 +29,23 @@
               <div class="panel-heading">
                 <h5 class="panel-title"><?php echo _("Upload a WireGuard config"); ?></h5>
                 <p id="wg-description">
-                  <small><?php echo _("This option uploads an existing WireGuard <code>.conf</code> file to this device.") ?></small>
+                  <small><?php echo _("This option uploads and installs an existing WireGuard <code>.conf</code> file on this device.") ?></small>
                 </p>
               </div>
               <div class="panel-body">
+
+                <div class="form-group col-sm-12">
+                  <div class="custom-control custom-switch">
+                    <?php $checked = $arrConfig['iptables_rules'] == 1 ? 'checked="checked"' : '' ?>
+                    <input class="custom-control-input" id="chxwgrules" name="wgRules" type="checkbox" value="1" <?php echo $checked ?> />
+                    <label class="custom-control-label" for="chxwgrules"><?php echo _("Apply iptables rules for AP interface"); ?></label>
+                    <i class="fas fa-question-circle text-muted" data-toggle="tooltip" data-placement="auto" title="<?php echo _("Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."); ?>"></i>
+                    <p id="wg-description">
+                      <small><?php printf(_("This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."), $_SESSION['ap_interface']) ?></small>
+                    </p>
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <h5 class="panel-title"><?php echo _("Configuration File"); ?></h4>
                   <div class="custom-file">
@@ -40,6 +53,8 @@
                     <label class="custom-file-label" for="wgFile"><?php echo _("Select WireGuard configuration file (.conf)"); ?></label>
                   </div>
                 </div>
+                <div class="row mb-2"></div>
+
               </div><!-- /.panel-body -->
             </div><!-- /.panel -->
 
