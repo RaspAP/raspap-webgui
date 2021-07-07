@@ -10,10 +10,11 @@ function DisplayWireGuardConfig()
 {
     $status = new StatusMessages();
     if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['savewgsettings'])) {
+        $optRules = $_POST['wgRules'];
+        if (isset($_POST['savewgsettings']) && !is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
             SaveWireGuardConfig($status);
-        } elseif (is_uploaded_file( $_FILES["wgFile"]["tmp_name"])) {
-            SaveWireGuardUpload($status, $_FILES['wgFile']);
+        } elseif (isset($_POST['savewgsettings']) && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
+            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules);
         } elseif (isset($_POST['startwg'])) {
             $status->addMessage('Attempting to start WireGuard', 'info');
             exec('sudo /bin/systemctl start wg-quick@wg0', $return);
@@ -63,6 +64,7 @@ function DisplayWireGuardConfig()
             "status",
             "wg_state",
             "serviceStatus",
+            "optRules",
             "wg_log",
             "peer_id",
             "wg_srvpubkey",
@@ -87,9 +89,10 @@ function DisplayWireGuardConfig()
  *
  * @param  object $status
  * @param  object $file
+ * @param  boolean $optRules
  * @return object $status
  */
-function SaveWireGuardUpload($status, $file)
+function SaveWireGuardUpload($status, $file, $optRules)
 {
     define('KB', 1024);
     $tmp_destdir = '/tmp/';
@@ -114,12 +117,23 @@ function SaveWireGuardUpload($status, $file)
             throw new RuntimeException($results['errors'][0]);
         }
 
-        // Good file upload, do any post-processing
+        // Valid upload, get file contents
+        $tmp_wgconfig = $results['full_path'];
+        $tmp_contents = file_get_contents($tmp_wgconfig);
 
         // Set iptables rules
+        if (isset($optRules) && !preg_match('/PostUp|PostDown/m',$tmp_contents)) {
+            $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUp');
+            $rules[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
+            $rules[] = '';
+            $rules = join(PHP_EOL, $rules);
+            $rules = preg_replace('/wlan0/m', $_SESSION['ap_interface'], $rules);
+            $tmp_contents = preg_replace('/^\s*$/ms', $rules, $tmp_contents, 1);
+            file_put_contents($tmp_wgconfig, $tmp_contents);
+        }
 
-        // Move uploaded .conf from /tmp to destination
-
+        // Move uploaded file from to destination
+        system("sudo mv $tmp_wgconfig ". RASPI_WIREGUARD_CONFIG, $return);
 
         if ($return ==0) {
             $status->addMessage('WireGuard configuration uploaded successfully', 'info');
