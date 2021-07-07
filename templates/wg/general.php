@@ -36,7 +36,7 @@
 
                 <div class="form-group col-sm-12">
                   <div class="custom-control custom-switch">
-                    <?php $checked = $arrConfig['iptables_rules'] == 1 ? 'checked="checked"' : '' ?>
+                    <?php $checked = $optRules == 1 ? 'checked="checked"' : '' ?>
                     <input class="custom-control-input" id="chxwgrules" name="wgRules" type="checkbox" value="1" <?php echo $checked ?> />
                     <label class="custom-control-label" for="chxwgrules"><?php echo _("Apply iptables rules for AP interface"); ?></label>
                     <i class="fas fa-question-circle text-muted" data-toggle="tooltip" data-placement="auto" title="<?php echo _("Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."); ?>"></i>
