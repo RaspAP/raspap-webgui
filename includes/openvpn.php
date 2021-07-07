@@ -42,11 +42,9 @@ function DisplayOpenVPNConfig()
     }
 
     exec('pidof openvpn | wc -l', $openvpnstatus);
-    exec('wget https://ipinfo.io/ip -qO -', $return);
-
     $serviceStatus = $openvpnstatus[0] == 0 ? "down" : "up";
     $auth = file(RASPI_OPENVPN_CLIENT_LOGIN, FILE_IGNORE_NEW_LINES);
-    $public_ip = $return[0];
+    $public_ip = get_public_ip();
 
     // parse client auth credentials
     if (!empty($auth)) {

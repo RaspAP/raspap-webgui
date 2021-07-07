@@ -3,6 +3,12 @@
   <div class="row">
     <div class="col-md-6">
       <h4 class="mt-3"><?php echo _("Tunnel settings"); ?></h4>
+        <div class="col-lg-12 mt-2">
+          <div class="row mt-3 mb-2">
+            <div class="info-item col-xs-3"><?php echo _("IPv4 Address"); ?></div>
+            <div class="info-value col-xs-3"><?php echo htmlspecialchars($public_ip, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($public_ip); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ml-2"></i></a></div>
+          </div>
+        </div>
         <div class="input-group">
           <div class="custom-control custom-switch">
             <input class="custom-control-input" id="server_enabled" type="checkbox" name="wg_senabled" value="1" <?php echo $wg_senabled ? ' checked="checked"' : "" ?> aria-describedby="server-description">

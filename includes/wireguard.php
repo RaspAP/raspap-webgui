@@ -58,12 +58,14 @@ function DisplayWireGuardConfig()
     exec('pidof wg-crypt-wg0 | wc -l', $wgstatus);
     $serviceStatus = $wgstatus[0] == 0 ? "down" : "up";
     $wg_state = ($wgstatus[0] > 0);
+    $public_ip = get_public_ip();
 
     echo renderTemplate(
         "wireguard", compact(
             "status",
             "wg_state",
             "serviceStatus",
+            "public_ip",
             "optRules",
             "wg_log",
             "peer_id",
@@ -132,7 +134,7 @@ function SaveWireGuardUpload($status, $file, $optRules)
             file_put_contents($tmp_wgconfig, $tmp_contents);
         }
 
-        // Move uploaded file from to destination
+        // Move processed file from tmp to destination
         system("sudo mv $tmp_wgconfig ". RASPI_WIREGUARD_CONFIG, $return);
 
         if ($return ==0) {
