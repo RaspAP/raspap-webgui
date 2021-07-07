@@ -778,3 +778,13 @@ class validation
     }
 }
 
+/* Resolves public IP address
+ *
+ * @return string $public_ip
+ */
+function get_public_ip()
+{
+    exec('wget https://ipinfo.io/ip -qO -', $public_ip);
+    return $public_ip[0];
+}
+
