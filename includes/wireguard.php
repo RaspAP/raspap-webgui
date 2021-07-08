@@ -10,10 +10,12 @@ function DisplayWireGuardConfig()
 {
     $status = new StatusMessages();
     if (!RASPI_MONITOR_ENABLED) {
-        $optRules = $_POST['wgRules'];
-        if (isset($_POST['savewgsettings']) && !is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
+        $optRules     = $_POST['wgRules'];
+        $optConf      = $_POST['wgCnfOpt'];
+        $optSrvEnable = $_POST['wgSrvEnable'];
+        if (isset($_POST['savewgsettings']) && $optConf == 'manual' && $optSrvEnable == 1 ) {
             SaveWireGuardConfig($status);
-        } elseif (isset($_POST['savewgsettings']) && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
+        } elseif (isset($_POST['savewgsettings']) && $optConf == 'upload' && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
             SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules);
         } elseif (isset($_POST['startwg'])) {
             $status->addMessage('Attempting to start WireGuard', 'info');
@@ -30,7 +32,7 @@ function DisplayWireGuardConfig()
         }
     }
 
-    // fetch wg config
+    // fetch server config
     exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $return);
     $conf = ParseConfig($return);
     $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
@@ -42,7 +44,7 @@ function DisplayWireGuardConfig()
         $wg_senabled = true;
     }
 
-    // todo: iterate multiple peer configs
+    // fetch client config
     exec('sudo cat '. RASPI_WIREGUARD_PATH.'client.conf', $preturn);
     $conf = ParseConfig($preturn);
     $wg_pipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','peer','Address') : $conf['Address'];

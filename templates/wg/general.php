@@ -9,22 +9,13 @@
             <div class="info-value col-xs-3"><?php echo htmlspecialchars($public_ip, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($public_ip); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ml-2"></i></a></div>
           </div>
         </div>
-        <div class="input-group">
-          <div class="custom-control custom-switch">
-            <input class="custom-control-input" id="server_enabled" type="checkbox" name="wg_senabled" value="1" <?php echo $wg_senabled ? ' checked="checked"' : "" ?> aria-describedby="server-description">
-          <label class="custom-control-label" for="server_enabled"><?php echo _("Enable server") ?></label>
-        </div>
-        <p id="wg-description">
-          <small><?php echo _("Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured endpoints.") ?></small>
-        </p>
-        </div>
         <h5><?php echo _("Configuration Method"); ?></h5>
         <div class="col-sm-12 mt-2 mb-2 form-check">
-          <input class="form-check-input" id="wg-upload" name="sel1" value="upload" data-toggle="" data-parent="#serversettings" data-target="#wgUpload" type="radio" checked>
+          <input class="form-check-input" id="wg-upload" name="wgCnfOpt" value="upload" data-toggle="" data-parent="#serversettings" data-target="#wgUpload" type="radio" checked>
           <label class="form-check-label"><?php echo _("Upload file"); ?></label>
         </div>
         <div class="col-sm-12 mt-2 mb-2 form-check">
-          <input class="form-check-input" id="wg-manual" name="sel1" value="manual" data-toggle="" data-parent="#serversettings" data-target="#wgManual" type="radio">
+          <input class="form-check-input" id="wg-manual" name="wgCnfOpt" value="manual" data-toggle="" data-parent="#serversettings" data-target="#wgManual" type="radio">
           <label class="form-check-label"><?php echo _("Create manually"); ?></label>
         </div>
 
@@ -67,10 +58,20 @@
             <div class="panel panel-default panel-collapse" id="PanelManual">
               <div class="panel-heading">
                 <h5 class="panel-title"><?php echo _("Create a local WireGuard config"); ?></h5>
-                <p id="wg-description">
-                  <small><?php echo _("This option generates a new <code>wg0.conf</code> WireGuard configuration on this device.") ?></small>
-                </p>
+                <div class="input-group">
+                  <div class="custom-control custom-switch">
+                    <input class="custom-control-input" id="server_enabled" type="checkbox" name="wgSrvEnable" value="1" <?php echo $wg_senabled ? ' checked="checked"' : "" ?> aria-describedby="server-description">
+                    <label class="custom-control-label" for="server_enabled"><?php echo _("Enable server") ?></label>
+                  </div>
+                  <p id="wg-description">
+                    <small>
+                      <?php echo _("Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers.") ?>
+                      <?php echo _("This setting generates a new WireGuard <code>.conf</code> file on this device.") ?>
+                    </small>
+                  </p>
+                </div>
               </div>
+
               <div class="panel-body">
                 <label for="code"><?php echo _("Local public key"); ?></label>
                 <div class="input-group col-md-12 mb-3">
@@ -94,6 +95,8 @@
                 <label for="code"><?php echo _("DNS"); ?></label>
                 <input type="text" class="form-control" name="wg_srvdns" value="<?php echo htmlspecialchars($wg_srvdns, ENT_QUOTES); ?>" />
               </div>
+              <div class="row mb-3"></div>
+
             </div><!-- /.panel-body -->
           </div><!-- /.panel -->
 
