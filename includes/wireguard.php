@@ -10,8 +10,13 @@ function DisplayWireGuardConfig()
 {
     $status = new StatusMessages();
     if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['savewgsettings'])) {
+        $optRules     = $_POST['wgRules'];
+        $optConf      = $_POST['wgCnfOpt'];
+        $optSrvEnable = $_POST['wgSrvEnable'];
+        if (isset($_POST['savewgsettings']) && $optConf == 'manual' && $optSrvEnable == 1 ) {
             SaveWireGuardConfig($status);
+        } elseif (isset($_POST['savewgsettings']) && $optConf == 'upload' && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
+            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules);
         } elseif (isset($_POST['startwg'])) {
             $status->addMessage('Attempting to start WireGuard', 'info');
             exec('sudo /bin/systemctl start wg-quick@wg0', $return);
@@ -27,7 +32,7 @@ function DisplayWireGuardConfig()
         }
     }
 
-    // fetch wg config
+    // fetch server config
     exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $return);
     $conf = ParseConfig($return);
     $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
@@ -39,7 +44,7 @@ function DisplayWireGuardConfig()
         $wg_senabled = true;
     }
 
-    // todo: iterate multiple peer configs
+    // fetch client config
     exec('sudo cat '. RASPI_WIREGUARD_PATH.'client.conf', $preturn);
     $conf = ParseConfig($preturn);
     $wg_pipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','peer','Address') : $conf['Address'];
@@ -55,12 +60,15 @@ function DisplayWireGuardConfig()
     exec('pidof wg-crypt-wg0 | wc -l', $wgstatus);
     $serviceStatus = $wgstatus[0] == 0 ? "down" : "up";
     $wg_state = ($wgstatus[0] > 0);
+    $public_ip = get_public_ip();
 
     echo renderTemplate(
         "wireguard", compact(
             "status",
             "wg_state",
             "serviceStatus",
+            "public_ip",
+            "optRules",
             "wg_log",
             "peer_id",
             "wg_srvpubkey",
@@ -77,6 +85,71 @@ function DisplayWireGuardConfig()
             "wg_pkeepalive"
         )
     );
+}
+
+/**
+ * Validates uploaded .conf file, adds iptables post-up and
+ * post-down rules.
+ *
+ * @param  object $status
+ * @param  object $file
+ * @param  boolean $optRules
+ * @return object $status
+ */
+function SaveWireGuardUpload($status, $file, $optRules)
+{
+    define('KB', 1024);
+    $tmp_destdir = '/tmp/';
+    $auth_flag = 0;
+
+    try {
+        // If undefined or multiple files, treat as invalid
+        if (!isset($file['error']) || is_array($file['error'])) {
+            throw new RuntimeException('Invalid parameters');
+        }
+
+        $upload = \RaspAP\Uploader\Upload::factory('wg',$tmp_destdir);
+        $upload->set_max_file_size(64*KB);
+        $upload->set_allowed_mime_types(array('text/plain'));
+        $upload->file($file);
+
+        $validation = new validation;
+        $upload->callbacks($validation, array('check_name_length'));
+        $results = $upload->upload();
+
+        if (!empty($results['errors'])) {
+            throw new RuntimeException($results['errors'][0]);
+        }
+
+        // Valid upload, get file contents
+        $tmp_wgconfig = $results['full_path'];
+        $tmp_contents = file_get_contents($tmp_wgconfig);
+
+        // Set iptables rules
+        if (isset($optRules) && !preg_match('/PostUp|PostDown/m',$tmp_contents)) {
+            $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUp');
+            $rules[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
+            $rules[] = '';
+            $rules = join(PHP_EOL, $rules);
+            $rules = preg_replace('/wlan0/m', $_SESSION['ap_interface'], $rules);
+            $tmp_contents = preg_replace('/^\s*$/ms', $rules, $tmp_contents, 1);
+            file_put_contents($tmp_wgconfig, $tmp_contents);
+        }
+
+        // Move processed file from tmp to destination
+        system("sudo mv $tmp_wgconfig ". RASPI_WIREGUARD_CONFIG, $return);
+
+        if ($return ==0) {
+            $status->addMessage('WireGuard configuration uploaded successfully', 'info');
+        } else {
+            $status->addMessage('Unable to save WireGuard configuration', 'danger');
+        }
+        return $status;
+
+    } catch (RuntimeException $e) {
+        $status->addMessage($e->getMessage(), 'danger');
+        return $status;
+    }
 }
 
 /**

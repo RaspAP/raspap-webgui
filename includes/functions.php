@@ -721,13 +721,15 @@ function validateCidr($cidr)
 }    
 
 // Validates a host or FQDN
-function validate_host($host) {
+function validate_host($host)
+{
   return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host);
 }
 
 // Gets night mode toggle value
 // @return boolean
-function getNightmode(){
+function getNightmode()
+{
     if ($_COOKIE['theme'] == 'lightsout.css') {
         return true;
     } else {
@@ -736,7 +738,8 @@ function getNightmode(){
 }	
 	
 // search array for matching string and return only first matching group
-function preg_only_match($pat,$haystack) {
+function preg_only_match($pat,$haystack)
+{
   $match = "";
   if(!empty($haystack) && !empty($pat)) {
     if(!is_array($haystack)) $haystack = array($haystack);
@@ -754,10 +757,34 @@ function qr_encode($str)
     return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
 }
 
-function evalHexSequence($string) {
+function evalHexSequence($string)
+{
     $evaluator = function ($input) {
 	return hex2bin($input[1]);
     };
     return preg_replace_callback('/\\\x(..)/', $evaluator, $string);
+}
+
+/* File upload callback object
+ *
+ */
+class validation
+{
+    public function check_name_length($object)
+    {
+        if (strlen($object->file['filename']) > 255) {
+            $object->set_error('File name is too long.');
+        }
+    }
+}
+
+/* Resolves public IP address
+ *
+ * @return string $public_ip
+ */
+function get_public_ip()
+{
+    exec('wget https://ipinfo.io/ip -qO -', $public_ip);
+    return $public_ip[0];
 }
 

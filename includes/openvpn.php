@@ -3,6 +3,7 @@
 require_once 'includes/status_messages.php';
 require_once 'includes/config.php';
 require_once 'includes/wifi_functions.php';
+require_once 'app/lib/uploader.php';
 
 getWifiInterface();
 
@@ -41,11 +42,9 @@ function DisplayOpenVPNConfig()
     }
 
     exec('pidof openvpn | wc -l', $openvpnstatus);
-    exec('wget https://ipinfo.io/ip -qO -', $return);
-
     $serviceStatus = $openvpnstatus[0] == 0 ? "down" : "up";
     $auth = file(RASPI_OPENVPN_CLIENT_LOGIN, FILE_IGNORE_NEW_LINES);
-    $public_ip = $return[0];
+    $public_ip = get_public_ip();
 
     // parse client auth credentials
     if (!empty($auth)) {
@@ -100,8 +99,8 @@ function DisplayOpenVPNConfig()
  */
 function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
 {
-    $tmp_ovpnclient = '/tmp/ovpnclient.ovpn';
-    $tmp_authdata = '/tmp/authdata';
+    define('KB', 1024);
+    $tmp_destdir = '/tmp/';
     $auth_flag = 0;
 
     try {
@@ -110,66 +109,28 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
             throw new RuntimeException('Invalid parameters');
         }
 
-        // Parse returned errors
-        switch ($file['error']) {
-        case UPLOAD_ERR_OK:
-            break;
-        case UPLOAD_ERR_NO_FILE:
-            throw new RuntimeException('OpenVPN configuration file not sent');
-        case UPLOAD_ERR_INI_SIZE:
-        case UPLOAD_ERR_FORM_SIZE:
-            throw new RuntimeException('Exceeded filesize limit');
-        default:
-            throw new RuntimeException('Unknown errors');
-        }
+        $upload = \RaspAP\Uploader\Upload::factory('ovpn',$tmp_destdir);
+        $upload->set_max_file_size(64*KB);
+        $upload->set_allowed_mime_types(array('ovpn' => 'text/plain'));
+        $upload->file($file);
 
-        // Validate extension
-        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-        if ($ext != 'ovpn') {
-            throw new RuntimeException('Invalid file extension');
-        }
+        $validation = new validation;
+        $upload->callbacks($validation, array('check_name_length'));
+        $results = $upload->upload();
 
-        // Validate MIME type
-        $finfo = new finfo(FILEINFO_MIME_TYPE);
-        if (false === $ext = array_search(
-            $finfo->file($file['tmp_name']),
-            array(
-                'ovpn' => 'text/plain'
-            ),
-            true
-        )
-        ) {
-            throw new RuntimeException('Invalid file format');
-        }
-
-        // Validate filesize
-        define('KB', 1024);
-        if ($file['size'] > 64*KB) {
-            throw new RuntimeException('File size limit exceeded');
-        }
-
-        // Use safe filename, save to /tmp
-        if (!move_uploaded_file(
-            $file['tmp_name'],
-            sprintf(
-                '/tmp/%s.%s',
-                'ovpnclient',
-                $ext
-            )
-        )
-        ) {
-            throw new RuntimeException('Unable to move uploaded file');
+        if (!empty($results['errors'])) {
+            throw new RuntimeException($results['errors'][0]);
         }
 
         // Good file upload, update auth credentials if present
         if (!empty($authUser) && !empty($authPassword)) {
             $auth_flag = 1;
-            // Move tmp authdata to /etc/openvpn/login.conf
-            $auth.= $authUser .PHP_EOL . $authPassword .PHP_EOL;
+            $tmp_authdata = $tmp_destdir .'ovpn/authdata';
+            $auth = $authUser .PHP_EOL . $authPassword .PHP_EOL;
             file_put_contents($tmp_authdata, $auth);
             chmod($tmp_authdata, 0644);
             $client_auth = RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_login.conf';
-            system("sudo cp $tmp_authdata $client_auth", $return);
+            system("sudo mv $tmp_authdata $client_auth", $return);
             system("sudo rm ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
             system("sudo ln -s $client_auth ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
             if ($return !=0) {
@@ -178,14 +139,16 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         }
 
         // Set iptables rules and, optionally, auth-user-pass
-        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpnclient $auth_flag " .$_SESSION['ap_interface'], $return);
+        $tmp_ovpn = $results['full_path'];
+        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpn $auth_flag " .$_SESSION['ap_interface'], $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
 
+        // Move uploaded ovpn config from /tmp and create symlink
         $client_ovpn = RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_client.conf';
-        chmod($tmp_ovpnclient, 0644);
-        system("sudo cp $tmp_ovpnclient $client_ovpn", $return);
+        chmod($tmp_ovpn, 0644);
+        system("sudo mv $tmp_ovpn $client_ovpn", $return);
         system("sudo rm ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
         system("sudo ln -s $client_ovpn ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
 
@@ -201,3 +164,4 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         return $status;
     }
 }
+
