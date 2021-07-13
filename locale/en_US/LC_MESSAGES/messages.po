@@ -1026,14 +1026,44 @@ msgstr "Invalid custom host found on line "
 msgid "Tunnel settings"
 msgstr "Tunnel settings"
 
+msgid "Configuration Method"
+msgstr "Configuration Method"
+
+msgid "Upload file"
+msgstr "Upload file"
+
+msgid "Create manually"
+msgstr "Create manually"
+
+msgid "Upload a WireGuard config"
+msgstr "Upload a WireGuard config"
+
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+
+msgid "Apply iptables rules for AP interface"
+msgstr "Apply iptables rules for AP interface"
+
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
+msgstr "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
+
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
+msgstr "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
+
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "Select WireGuard configuration file (.conf)"
+
+msgid "Create a local WireGuard config"
+msgstr "Create a local WireGuard config"
+
 msgid "Enable server"
 msgstr "Enable server"
 
-msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and configured peers."
-msgstr "Enable this option to encrypt traffic by creating a tunnel between RaspAP and configured peers."
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
 
-msgid "This option adds <code>wg0.conf</code> to the WireGuard configuration."
-msgstr "This option adds <code>wg0.conf</code> to the WireGuard configuration."
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "This setting generates a new WireGuard <code>.conf</code> file on this device."
 
 msgid "Local public key"
 msgstr "Local public key"
