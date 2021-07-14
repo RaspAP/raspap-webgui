@@ -1,7 +1,7 @@
 <!-- wireguard settings tab -->
 <div class="tab-pane active" id="wgsettings">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-lg-8">
       <h4 class="mt-3"><?php echo _("Tunnel settings"); ?></h4>
         <div class="col-lg-12 mt-2">
           <div class="row mt-3 mb-2">
@@ -31,7 +31,7 @@
               </div>
               <div class="panel-body">
 
-                <div class="form-group col-sm-12">
+                <div class="form-group">
                   <div class="custom-control custom-switch">
                     <?php $checked = $optRules == 1 ? 'checked="checked"' : '' ?>
                     <input class="custom-control-input" id="chxwgrules" name="wgRules" type="checkbox" value="1" <?php echo $checked ?> />
