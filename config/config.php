@@ -23,6 +23,7 @@ define('RASPI_OPENVPN_CLIENT_CONFIG', '/etc/openvpn/client/client.conf');
 define('RASPI_OPENVPN_CLIENT_LOGIN', '/etc/openvpn/client/login.conf');
 define('RASPI_WIREGUARD_PATH', '/etc/wireguard/');
 define('RASPI_WIREGUARD_CONFIG', RASPI_WIREGUARD_PATH.'wg0.conf');
+define('RASPI_FIREWALL_ENABLED', true);
 define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
 define('RASPI_ACCESS_CHECK_IP', '1.1.1.1');
