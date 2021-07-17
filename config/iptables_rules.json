@@ -95,12 +95,27 @@
             "dependson": [
                   { "var": "openvpn-enable", "type": "bool" },
                   { "var": "openvpn-serverip", "type": "string", "replace": "$IPADDRESS$" },
-                  { "var": "client-device", "type": "string", "replace": "$INTERFACE$" }
+                  { "var": "ap-device", "type": "string", "replace": "$INTERFACE$" }
             ],
             "rules": [
+                "-A INPUT -p udp -s $IPADDRESS$ -j ACCEPT",
                 "-A FORWARD -i tun+ -o $INTERFACE$ -m state --state RELATED,ESTABLISHED -j ACCEPT",
                 "-A FORWARD -i $INTERFACE$ -o tun+ -j ACCEPT",
                 "-t nat -A POSTROUTING -o tun+ -j MASQUERADE"
+            ]
+        },
+        {
+            "name": "wireguard",
+            "comment": "Rules for wireguard device (wg)",
+            "dependson": [
+                  { "var": "wireguard-enable", "type": "bool" },
+                  { "var": "wireguard-serverip", "type": "string", "replace": "$IPADDRESS$" },
+                  { "var": "client-device", "type": "string", "replace": "$INTERFACE$" }
+            ],
+            "rules": [
+                "-A INPUT -p udp -s $IPADDRESS$ -j ACCEPT",
+                "-A FORWARD -i wg+ -j ACCEPT",
+                "-t nat -A POSTROUTING -o $INTERFACE$ -j MASQUERADE"
             ]
         }
     ],
