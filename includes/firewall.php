@@ -72,7 +72,7 @@ function createRuleStr(&$sect, &$conf) {
    return $str;
 }
 
-function setFirewall() {
+function configureFirewall() {
     $json = file_get_contents(RASPAP_IPTABLES_CONF);
     $ipt  = json_decode($json, true);
     $conf = ReadFirewallConf();
@@ -135,6 +135,23 @@ function ReadFirewallConf() {
        $conf["client-device"] = "";
        $conf["restricted-ips"] = "";
     }
+    
+# get openvpn server IP (if existing)
+    if ( RASPI_OPENVPN_ENABLED && file_exists(RASPI_OPENVPN_CLIENT_CONFIG) ) {
+      exec('cat '.RASPI_OPENVPN_CLIENT_CONFIG.' |  sed -rn "s/^remote\s*([a-z0-9\.\-\_]*)\s*([0-9]*).*$/\1/ip" ', $ret);
+      if ( !empty($ret) ) {
+          $ip = $ret[0];
+          $ip = ( filter_var($ip, FILTER_VALIDATE_IP) !== false  ) ? $ip : gethostbyname($ip);
+          if ( !empty($ip) ) {
+              $conf["openvpn-serverip"] = "$ip";
+              $conf["openvpn-enable"] = true;
+          }
+      }
+    }    
+# get wireguard server IP (if existing)
+    if ( RASPI_WIREGUARD_ENABLED && file_exists(RASPI_WIREGUARD_CONFIG) ) {
+# search for endpoint       
+    }
     return $conf;
 }
 
@@ -162,7 +179,7 @@ function DisplayFirewallConfig()
         if ( isset($_POST['firewall-disable']) ) $status->addMessage(_('Firewall is now disabled'), 'warning');
         if ( isset($_POST['save-firewall']) )  $status->addMessage(_('Firewall settings saved. Firewall is still disabled.'), 'success');
         WriteFirewallConf($fw_conf);
-        setFirewall();
+        configureFirewall();
     }
     echo renderTemplate("firewall", compact(
                 "status",
