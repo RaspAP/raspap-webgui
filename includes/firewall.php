@@ -3,8 +3,6 @@
 require_once 'includes/status_messages.php';
 require_once 'includes/functions.php';
 
-define(RASPAP_FIREWALL_CONF,"/tmp/iptables.conf");
-define(RASPAP_IPTABLES_CONF,"/etc/raspap/networking/firewall/iptables_rules.json");
 define(RASPAP_IPTABLES_SCRIPT,"/tmp/iptables_raspap.sh");
 
 function getDependson(&$rule, &$conf) {
@@ -52,7 +50,6 @@ function createRuleStr(&$sect, &$conf) {
                    break;
             }
             if ( !empty($repl) && !empty($val) ) {
-//echo "replace $repl $val \n"; //print_r( $val); echo "\n";
                if ( is_array($val) ) {
                   foreach ( $val as $v ) $rr = array_merge($rr,str_replace($repl, $v, $r));
                }
@@ -76,9 +73,6 @@ function configureFirewall() {
     $json = file_get_contents(RASPAP_IPTABLES_CONF);
     $ipt  = json_decode($json, true);
     $conf = ReadFirewallConf();
-
-//echo "<pre>";
-// print_r($ipt);
     $txt = "#!/bin/bash\n";
     $txt .= "iptables -F\n";
     $txt .= "iptables -X\n";
@@ -88,10 +82,8 @@ function configureFirewall() {
     $count=0;
     foreach ( $ipt["order"] as $idx ) {
        if ( isset($ipt[$idx]) ) {
-//          echo "Handle $idx \n";
           foreach ( $ipt[$idx] as $i => $sect ) {
              if ( isRuleEnabled($sect, $conf) ) {
-//               echo "   rule $i name ".$sect["name"]."\n";
                $str_rules= createRuleStr($sect, $conf);
                if ( !empty($str_rules) ) {
                   file_put_contents(RASPAP_IPTABLES_SCRIPT, $str_rules, FILE_APPEND);
@@ -101,8 +93,6 @@ function configureFirewall() {
           }
        }
     }
-//    echo "Firewall ON";
-//echo "</pre>";
     if ( $count > 0 ) {
        exec("chmod +x ".RASPAP_IPTABLES_SCRIPT);
        exec("sudo ".RASPAP_IPTABLES_SCRIPT);
@@ -113,7 +103,14 @@ function configureFirewall() {
 }
 
 function WriteFirewallConf($conf) {
-     if ( is_array($conf) ) write_php_ini($conf,RASPAP_FIREWALL_CONF);
+	$ret = false;
+    if ( is_array($conf) ) {
+		write_php_ini($conf,"/tmp/fwdata");
+		exec('sudo /bin/cp /tmp/fwdata '. RASPAP_FIREWALL_CONF,$out);
+		$ret = empty($out);
+		unlink("/tmp/fwdata");
+	}
+	return $ret
 }
 
 
@@ -147,7 +144,7 @@ function ReadFirewallConf() {
               $conf["openvpn-enable"] = true;
           }
       }
-    }    
+    }
 # get wireguard server IP (if existing)
     if ( RASPI_WIREGUARD_ENABLED && file_exists(RASPI_WIREGUARD_CONFIG) ) {
 # search for endpoint       
