@@ -18,10 +18,9 @@
         <?php endif ?>
         <div class="row">
           <div class="col-md-6">
-            <p class="mr-2"><small><?php echo _("The default firewall will allow only outgoing and already established traffic. No UDP traffic is allowed.") ?></small></p>
+            <p class="mr-2"><small><?php echo _("The default firewall will allow only outgoing and already established traffic. No UDP traffic is allowed. There are no restrictions for the access point.") ?></small></p>
           </div>
         </div>
-
         <form id="frm-firewall" action="firewall_conf" method="POST" >
           <?php echo CSRFTokenFieldTag(); ?>
           <h5><?php echo _("Exceptions for Services"); ?></h4>
@@ -37,6 +36,16 @@
                 </div>
                 <p class="mb-0" id="exceptions-description">
                     <small><?php echo _("Allow access for some services from the client side.") ?></small>
+                </p>
+            </div>
+          </div>
+          <h5><?php echo _("Exclusions from the firewall"); ?></h4>
+          <div class="row">
+            <div class="form-group col-md-6">
+                <label for="excl-device"><?php echo _("Exclude device(s)") ?></label>
+                <input class="form-control" id="excl-devices" type="text" name="excl-devices" value="<?php echo $fw_conf["excl-devices"] ?>" aria-describedby="exclusion-description"  >
+                <p class="mb-0" id="exclusion-description">
+                    <small><?php echo _("Exclude the given network device(s) (separated by a comma) from firewall rules.<br>Current client devices: <code>$str_clients</code><br>The access point <code>". $ap_device ."</code> is per default excluded.") ?></small>
                 </p>
             </div>
           </div>

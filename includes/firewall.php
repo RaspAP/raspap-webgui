@@ -103,9 +103,9 @@ function configureFirewall() {
 }
 
 function WriteFirewallConf($conf) {
-    $ret = false;
-    if ( is_array($conf) ) $ret = write_php_ini($conf,RASPAP_FIREWALL_CONF);
-    return $ret;
+	$ret = false;
+     	if ( is_array($conf) ) write_php_ini($conf,RASPAP_FIREWALL_CONF);
+	return $ret;
 }
 
 
@@ -127,7 +127,7 @@ function ReadFirewallConf() {
        $conf["client-device"] = "";
        $conf["restricted-ips"] = "";
     }
-    
+
 # get openvpn server IP (if existing)
     if ( RASPI_OPENVPN_ENABLED && file_exists(RASPI_OPENVPN_CLIENT_CONFIG) ) {
       exec('cat '.RASPI_OPENVPN_CLIENT_CONFIG.' |  sed -rn "s/^remote\s*([a-z0-9\.\-\_]*)\s*([0-9]*).*$/\1/ip" ', $ret);
@@ -142,7 +142,7 @@ function ReadFirewallConf() {
     }
 # get wireguard server IP (if existing)
     if ( RASPI_WIREGUARD_ENABLED && file_exists(RASPI_WIREGUARD_CONFIG) ) {
-# search for endpoint       
+# search for endpoint
     }
     return $conf;
 }
@@ -158,6 +158,13 @@ function DisplayFirewallConfig()
     getWifiInterface();
     $ap_device = $_SESSION['ap_interface'];
     $clients = getClients();
+    $str_clients = "";
+    foreach( $clients["device"] as $dev ) {
+       if ( !$dev["isAP"] ) {
+          if ( !empty($str_clients) ) $str_clients .= ", ";
+          $str_clients .= $dev["name"];
+       }
+    }
     $fw_conf = ReadFirewallConf();
     $fw_conf["ap-device"] = $ap_device;
     $id=findCurrentClientIndex($clients);
@@ -170,13 +177,21 @@ function DisplayFirewallConfig()
         if ( isset($_POST['apply-firewall']) )  $status->addMessage(_('Firewall settings changed'), 'success');
         if ( isset($_POST['firewall-disable']) ) $status->addMessage(_('Firewall is now disabled'), 'warning');
         if ( isset($_POST['save-firewall']) )  $status->addMessage(_('Firewall settings saved. Firewall is still disabled.'), 'success');
+        if ( isset($_POST['excl-devices'])  ) {
+           $excl = filter_var($_POST['excl-devices'], FILTER_SANITIZE_STRING);
+           $excl = str_replace(' ', '', $excl);
+           if ( !empty($excl) && $fw_conf["excl-devices"] != $excl ) {
+               $status->addMessage(_('Exclude devices '. $excl), 'success');
+               $fw_conf["excl-devices"] = $excl;
+           }
+        }
         WriteFirewallConf($fw_conf);
         configureFirewall();
     }
     echo renderTemplate("firewall", compact(
                 "status",
                 "ap_device",
-                "clients",
+                "str_clients",
                 "fw_conf",
                 "ipt_rules")
     );
