@@ -3,7 +3,7 @@
 require_once 'includes/status_messages.php';
 require_once 'includes/functions.php';
 
-define(RASPAP_IPTABLES_SCRIPT,"/tmp/iptables_raspap.sh");
+define('RASPAP_IPTABLES_SCRIPT',"/tmp/iptables_raspap.sh");
 
 function getDependson(&$rule, &$conf) {
    if ( isset($rule["dependson"][0]) ) {
@@ -103,14 +103,9 @@ function configureFirewall() {
 }
 
 function WriteFirewallConf($conf) {
-	$ret = false;
-    if ( is_array($conf) ) {
-		write_php_ini($conf,"/tmp/fwdata");
-		exec('sudo /bin/cp /tmp/fwdata '. RASPAP_FIREWALL_CONF,$out);
-		$ret = empty($out);
-		unlink("/tmp/fwdata");
-	}
-	return $ret
+    $ret = false;
+    if ( is_array($conf) ) $ret = write_php_ini($conf,RASPAP_FIREWALL_CONF);
+    return $ret;
 }
 
 
