@@ -39,7 +39,7 @@ function createRuleStr(&$sect, &$conf) {
             $repl=$val="";
             switch ( $dep["type"] ) {
                case "list":
-                   if ( isset($dep["var"]) && !empty($conf[$dep["var"]]) ) $val = explode(',', $conf[$dep["var"]]);
+                   if ( isset($dep["var"]) && !empty($conf[$dep["var"]]) ) $val = explode(' ', $conf[$dep["var"]]);
                    if ( !empty($val) && isset($dep["replace"]) ) $repl=$dep["replace"];
                    break;
                case "string":
@@ -103,9 +103,9 @@ function configureFirewall() {
 }
 
 function WriteFirewallConf($conf) {
-	$ret = false;
-     	if ( is_array($conf) ) write_php_ini($conf,RASPAP_FIREWALL_CONF);
-	return $ret;
+    $ret = false;
+        if ( is_array($conf) ) write_php_ini($conf,RASPAP_FIREWALL_CONF);
+    return $ret;
 }
 
 
@@ -115,10 +115,6 @@ function ReadFirewallConf() {
     } else {
        $conf = array();
        $conf["firewall-enable"] = false;
-       $conf["openvpn-enable"] = false;
-       $conf["openvpn-serverip"] = "";
-       $conf["wireguard-enable"] = false;
-       $conf["wireguard-serverip"] = "";
        $conf["ssh-enable"] = false;
        $conf["http-enable"] = false;
        $conf["excl-devices"] = "";
@@ -127,25 +123,31 @@ function ReadFirewallConf() {
        $conf["client-device"] = "";
        $conf["restricted-ips"] = "";
     }
-
-# get openvpn server IP (if existing)
-    if ( RASPI_OPENVPN_ENABLED && file_exists(RASPI_OPENVPN_CLIENT_CONFIG) ) {
-      exec('cat '.RASPI_OPENVPN_CLIENT_CONFIG.' |  sed -rn "s/^remote\s*([a-z0-9\.\-\_]*)\s*([0-9]*).*$/\1/ip" ', $ret);
-      if ( !empty($ret) ) {
-          $ip = $ret[0];
-          $ip = ( filter_var($ip, FILTER_VALIDATE_IP) !== false  ) ? $ip : gethostbyname($ip);
-          if ( !empty($ip) ) {
-              $conf["openvpn-serverip"] = "$ip";
-              $conf["openvpn-enable"] = true;
-          }
-      }
-    }
-# get wireguard server IP (if existing)
-    if ( RASPI_WIREGUARD_ENABLED && file_exists(RASPI_WIREGUARD_CONFIG) ) {
-# search for endpoint
-    }
     return $conf;
 }
+
+function getVPN_IPs() {
+    $ips = "";
+    # get openvpn server IPs for UDP (if existing)
+    if ( RASPI_OPENVPN_ENABLED && ($fconf = glob(RASPI_OPENVPN_CLIENT_PATH ."/*.conf")) !== false && !empty($fconf) ) {
+      foreach ( $fconf as $f ) {
+         exec('cat '.$f.' |  sed -rn "s/^remote\s*([a-z0-9\.\-\_]*)\s*([0-9]*).*$/\1/ip" ', $result);
+         $ip = (isset($result[0])) ? $result[0] : "";
+         unset($result);
+         exec('cat '.$f.' |  sed -rn "s/^proto\s*([a-z]*).*$/\1/ip" ', $result);
+         $proto = (isset($result[0])) ? $result[0] : "";
+         if ( !empty($ip) && trim(strtolower($proto)) === "udp" ) {
+            $ip = gethostbyname($ip);
+            if ( filter_var($ip,FILTER_VALIDATE_IP) && strpos($ips, $ip) === false ) $ips .= " $ip";
+        }
+      }
+    }
+    # get wireguard server IPs for UDP (if existing)
+    if ( RASPI_WIREGUARD_ENABLED && ($fconf = glob(RASPI_WIREGUARD_PATH ."/*.conf")) !== false && !empty($fconf) ) {
+    }
+    return trim($ips);
+}
+
 
 function DisplayFirewallConfig()
 {
@@ -154,7 +156,6 @@ function DisplayFirewallConfig()
 
     $json = file_get_contents(RASPAP_IPTABLES_CONF);
     $ipt_rules = json_decode($json, true);
-
     getWifiInterface();
     $ap_device = $_SESSION['ap_interface'];
     $clients = getClients();
@@ -179,20 +180,41 @@ function DisplayFirewallConfig()
         if ( isset($_POST['save-firewall']) )  $status->addMessage(_('Firewall settings saved. Firewall is still disabled.'), 'success');
         if ( isset($_POST['excl-devices'])  ) {
            $excl = filter_var($_POST['excl-devices'], FILTER_SANITIZE_STRING);
-           $excl = str_replace(' ', '', $excl);
-           if ( !empty($excl) && $fw_conf["excl-devices"] != $excl ) {
+           $excl = str_replace(',', ' ', $excl);
+           $excl = trim(preg_replace('/\s+/', ' ', $excl));
+           if ( $fw_conf["excl-devices"] != $excl ) {
                $status->addMessage(_('Exclude devices '. $excl), 'success');
                $fw_conf["excl-devices"] = $excl;
+           }
+        }
+        if ( isset($_POST['excluded-ips'])  ) {
+           $excl = filter_var($_POST['excluded-ips'], FILTER_SANITIZE_STRING);
+           $excl = str_replace(',', ' ', $excl);
+           $excl = trim(preg_replace('/\s+/', ' ', $excl));
+           if ( !empty($excl) ) {
+              $excl = explode(' ',$excl);
+              $str_excl = "";
+              foreach ( $excl as $ip ) {
+                 if ( filter_var($ip,FILTER_VALIDATE_IP) ) $str_excl .= "$ip ";
+                 else $status->addMessage(_('Exclude IP address '. $ip . ' failed - not a valid IP address'), 'warning');
+              }
+          }
+          $str_excl = trim($str_excl);
+          if ( $fw_conf["excluded-ips"] != $str_excl ) {
+               $status->addMessage(_('Exclude IP address(es) '. $str_excl ), 'success');
+               $fw_conf["excluded-ips"] = $str_excl;
            }
         }
         WriteFirewallConf($fw_conf);
         configureFirewall();
     }
+    $vpn_ips = getVPN_IPs();
     echo renderTemplate("firewall", compact(
                 "status",
                 "ap_device",
                 "str_clients",
                 "fw_conf",
-                "ipt_rules")
+                "ipt_rules",
+                "vpn_ips")
     );
 }

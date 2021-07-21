@@ -18,34 +18,45 @@
         <?php endif ?>
         <div class="row">
           <div class="col-md-6">
-            <p class="mr-2"><small><?php echo _("The default firewall will allow only outgoing and already established traffic. No UDP traffic is allowed. There are no restrictions for the access point.") ?></small></p>
+            <p class="mr-2"><small><?php echo _("The default firewall will only allow outgoing and already established traffic.<br> No incoming UDP traffic is allowed.<br>There are no restrictions for the access point <code>$ap_device</code>.") ?></small></p>
           </div>
         </div>
         <form id="frm-firewall" action="firewall_conf" method="POST" >
           <?php echo CSRFTokenFieldTag(); ?>
-          <h5><?php echo _("Exceptions for Services"); ?></h4>
+          <h5><?php echo _("Exception: Service"); ?></h4>
           <div class="row">
             <div class="form-group col-md-6">
                 <div class="custom-control custom-switch">
-                    <input class="custom-control-input" id="ssh-enable" type="checkbox" name="ssh-enable" value="1" aria-describedby="exceptions-description" <?php if ($fw_conf["ssh-enable"]) echo "checked"; ?> >
+                    <input class="custom-control-input" id="ssh-enable" type="checkbox" name="ssh-enable" value="1" aria-describedby="exception-description" <?php if ($fw_conf["ssh-enable"]) echo "checked"; ?> >
                     <label class="custom-control-label" for="ssh-enable"><?php echo _("allow SSH access on port 22") ?></label>
                 </div>
                 <div class="custom-control custom-switch">
                     <input class="custom-control-input" id="http-enable" type="checkbox" name="http-enable" value="1" aria-describedby="exceptions-description" <?php if ($fw_conf["http-enable"]) echo "checked"; ?> >
-                    <label class="custom-control-label" for="http-enable"><?php echo _("allow access to the RaspAP GUI") ?></label>
+                    <label class="custom-control-label" for="http-enable"><?php echo _("allow access to the RaspAP GUI on port 80 or 443") ?></label>
                 </div>
                 <p class="mb-0" id="exceptions-description">
-                    <small><?php echo _("Allow access for some services from the client side.") ?></small>
+                    <small><?php echo _("Allow incoming connections for some services from the internet side.") ?></small>
                 </p>
             </div>
           </div>
-          <h5><?php echo _("Exclusions from the firewall"); ?></h4>
+          <h5><?php echo _("Exception: network device"); ?></h4>
           <div class="row">
             <div class="form-group col-md-6">
                 <label for="excl-device"><?php echo _("Exclude device(s)") ?></label>
                 <input class="form-control" id="excl-devices" type="text" name="excl-devices" value="<?php echo $fw_conf["excl-devices"] ?>" aria-describedby="exclusion-description"  >
                 <p class="mb-0" id="exclusion-description">
-                    <small><?php echo _("Exclude the given network device(s) (separated by a comma) from firewall rules.<br>Current client devices: <code>$str_clients</code><br>The access point <code>". $ap_device ."</code> is per default excluded.") ?></small>
+                    <small><?php echo _("Exclude the given network device(s) (separated by a blank or comma) from firewall rules.<br>Current client devices: <code>$str_clients</code><br>The access point <code>". $ap_device ."</code> is per default excluded.") ?></small>
+                </p>
+            </div>
+          </div>
+          <h5><?php echo _("Exception: IP-Address"); ?></h4>
+          <div class="row">
+            <div class="form-group col-md-6">
+                <label for="excluded-ips"><?php echo _("Allow incoming connections from") ?></label>
+                <input class="form-control" id="excluded-ips" type="text" name="excluded-ips" value="<?php echo $fw_conf["excluded-ips"] ?>" aria-describedby="excl-ips-description"  >
+                <p class="mb-0" id="excl-ips-description">
+                    <small><?php echo _("For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted.<br>This is required for an OpenVPN via UDP or Wireguard connection.") ?></small>
+                    <small><?php if ( !empty($vpn_ips) ) echo _("<br>The list of configured VPN server IP addresses: <code>". $vpn_ips. "</code>") ?></small>
                 </p>
             </div>
           </div>
