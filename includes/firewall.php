@@ -131,6 +131,7 @@ function getVPN_IPs() {
     # get openvpn server IPs for UDP (if existing)
     if ( RASPI_OPENVPN_ENABLED && ($fconf = glob(RASPI_OPENVPN_CLIENT_PATH ."/*.conf")) !== false && !empty($fconf) ) {
       foreach ( $fconf as $f ) {
+         unset($result);
          exec('cat '.$f.' |  sed -rn "s/^remote\s*([a-z0-9\.\-\_]*)\s*([0-9]*).*$/\1/ip" ', $result);
          $ip = (isset($result[0])) ? $result[0] : "";
          unset($result);

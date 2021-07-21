@@ -56,7 +56,7 @@
                 <input class="form-control" id="excluded-ips" type="text" name="excluded-ips" value="<?php echo $fw_conf["excluded-ips"] ?>" aria-describedby="excl-ips-description"  >
                 <p class="mb-0" id="excl-ips-description">
                     <small><?php echo _("For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted.<br>This is required for an OpenVPN via UDP or Wireguard connection.") ?></small>
-                    <small><?php if ( !empty($vpn_ips) ) echo _("<br>The list of configured VPN server IP addresses: <code>". $vpn_ips. "</code>") ?></small>
+                    <small><?php if ( !empty($vpn_ips) ) echo _("<br>The list of configured VPN server IP addresses: <code><b>". $vpn_ips. "</b></code>") ?></small>
                 </p>
             </div>
           </div>
