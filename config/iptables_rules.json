@@ -82,6 +82,13 @@
             ]
         },
         {
+            "name": "NAT for access point",
+            "comment": "Masquerading needed for access point",
+            "rules": [
+                "-t nat -A POSTROUTING -j MASQUERADE"
+            ]
+        },
+        {
             "name": "clients",
             "fw-state": true,
             "comment": "Rules for client interfaces (includes tun device)",
