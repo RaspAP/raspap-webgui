@@ -4,6 +4,7 @@ require_once 'includes/status_messages.php';
 require_once 'includes/functions.php';
 
 define('RASPAP_IPTABLES_SCRIPT',"/tmp/iptables_raspap.sh");
+define('RASPAP_IP6TABLES_SCRIPT',"/tmp/ip6tables_raspap.sh");
 
 function getDependson(&$rule, &$conf) {
    if ( isset($rule["dependson"][0]) ) {
@@ -64,9 +65,17 @@ function createRuleStr(&$sect, &$conf) {
    }
    $str="";
    foreach ( $rs as $r ) {
-      if ( !preg_match('/\$[a-z0-9]*\$/i',$r) ) $str .= "iptables ".$r."\n";
+      if ( !preg_match('/\$[a-z0-9]*\$/i',$r) ) $str .= '$IPT '.$r."\n";
    }
    return $str;
+}
+
+function isIPv4(&$rule) {
+    return !isset($rule["ip-version"]) || strstr($rule["ip-version"],"4") !== false; 
+}
+
+function isIPv6(&$rule) {
+    return !isset($rule["ip-version"]) || strstr($rule["ip-version"],"6") !== false; 
 }
 
 function configureFirewall() {
@@ -74,10 +83,15 @@ function configureFirewall() {
     $ipt  = json_decode($json, true);
     $conf = ReadFirewallConf();
     $txt = "#!/bin/bash\n";
-    $txt .= "iptables -F\n";
-    $txt .= "iptables -X\n";
-    $txt .= "iptables -t nat -F\n";
     file_put_contents(RASPAP_IPTABLES_SCRIPT, $txt);
+    file_put_contents(RASPAP_IP6TABLES_SCRIPT, $txt);
+    file_put_contents(RASPAP_IPTABLES_SCRIPT, 'IPT="iptables"'."\n", FILE_APPEND);
+    file_put_contents(RASPAP_IP6TABLES_SCRIPT, 'IPT="ip6tables"'."\n", FILE_APPEND);
+    $txt = "\$IPT -F\n";
+    $txt .= "\$IPT -X\n";
+    $txt .= "\$IPT -t nat -F\n";
+    file_put_contents(RASPAP_IPTABLES_SCRIPT, $txt, FILE_APPEND);
+    file_put_contents(RASPAP_IP6TABLES_SCRIPT, $txt, FILE_APPEND);
     if ( empty($conf) || empty($ipt) ) return false;
     $count=0;
     foreach ( $ipt["order"] as $idx ) {
@@ -86,7 +100,8 @@ function configureFirewall() {
              if ( isRuleEnabled($sect, $conf) ) {
                $str_rules= createRuleStr($sect, $conf);
                if ( !empty($str_rules) ) {
-                  file_put_contents(RASPAP_IPTABLES_SCRIPT, $str_rules, FILE_APPEND);
+                  if ( isIPv4($sect) ) file_put_contents(RASPAP_IPTABLES_SCRIPT, $str_rules, FILE_APPEND);
+                  if ( isIPv6($sect) ) file_put_contents(RASPAP_IP6TABLES_SCRIPT, $str_rules, FILE_APPEND);
                   ++$count;
                }
              }
@@ -98,6 +113,10 @@ function configureFirewall() {
        exec("sudo ".RASPAP_IPTABLES_SCRIPT);
 //       exec("sudo iptables-save > /etc/iptables/rules.v4");
 //       unlink(RASPAP_IPTABLES_SCRIPT);
+       exec("chmod +x ".RASPAP_IP6TABLES_SCRIPT);
+       exec("sudo ".RASPAP_IP6TABLES_SCRIPT);
+//       exec("sudo iptables-save > /etc/iptables/rules.v6");
+//       unlink(RASPAP_IP6TABLES_SCRIPT);
     }
     return ($count > 0);
 }

@@ -44,10 +44,21 @@
         {
             "name": "ping",
             "fw-state": true,
+            "ip-version": 4,
             "comment": "allow ping request and echo",
             "rules": [
                 "-A INPUT -p icmp --icmp-type 8/0 -j ACCEPT",
                 "-A INPUT -p icmp --icmp-type 0/0 -j ACCEPT"
+            ]
+        },
+        {
+            "name": "ping IPv6",
+            "fw-state": true,
+            "ip-version": 6,
+            "comment": "allow ping request and echo for IPv6",
+            "rules": [
+                "-A INPUT -p icmpv6 --icmpv6-type echo-request -j ACCEPT",
+                "-A INPUT -p icmpv6 --icmpv6-type echo-reply -j ACCEPT"
             ]
         },
         {
@@ -99,6 +110,7 @@
         {
             "name": "openvpn",
             "comment": "Rules for tunnel device (tun)",
+            "ip-version": 4,
             "dependson": [
                   { "var": "openvpn-enable", "type": "bool" },
                   { "var": "openvpn-serverip", "type": "string", "replace": "$IPADDRESS$" },
@@ -114,6 +126,7 @@
         {
             "name": "wireguard",
             "comment": "Rules for wireguard device (wg)",
+            "ip-version": 4,
             "dependson": [
                   { "var": "wireguard-enable", "type": "bool" },
                   { "var": "wireguard-serverip", "type": "string", "replace": "$IPADDRESS$" },
@@ -164,6 +177,7 @@
         {
             "name": "ipaddress",
             "fw-state": true,
+            "ip-version": 4,
             "comment": "allow access from/to IP",
             "dependson": [
                 { "var": "excluded-ips", "type": "list", "replace": "$IPADDRESS$" }
@@ -178,6 +192,7 @@
         {
             "name": "ipaddress",
             "fw-state": true,
+            "ip-version": 4,
             "dependson": [
                 { "var": "restricted-ips", "type": "list", "replace": "$IPADDRESS$" }
             ],
