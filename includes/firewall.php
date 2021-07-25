@@ -142,28 +142,47 @@ function ReadFirewallConf() {
        $conf["client-device"] = "";
        $conf["restricted-ips"] = "";
     }
+    exec('ifconfig | grep -E -i "tun+"', $ret);
+    $conf["openvpn-enable"] = !empty($ret);
+    unset($ret);
+    exec('ifconfig | grep -E -i "wg+"', $ret);
+    $conf["wireguard-enable"] = !empty($ret);
     return $conf;
 }
 
 function getVPN_IPs() {
     $ips = "";
-    # get openvpn server IPs for UDP (if existing)
+    # get openvpn and wireguard server IPs
     if ( RASPI_OPENVPN_ENABLED && ($fconf = glob(RASPI_OPENVPN_CLIENT_PATH ."/*.conf")) !== false && !empty($fconf) ) {
       foreach ( $fconf as $f ) {
-         unset($result);
-         exec('cat '.$f.' |  sed -rn "s/^remote\s*([a-z0-9\.\-\_]*)\s*([0-9]*).*$/\1/ip" ', $result);
-         $ip = (isset($result[0])) ? $result[0] : "";
-         unset($result);
-         exec('cat '.$f.' |  sed -rn "s/^proto\s*([a-z]*).*$/\1/ip" ', $result);
-         $proto = (isset($result[0])) ? $result[0] : "";
-         if ( !empty($ip) && trim(strtolower($proto)) === "udp" ) {
+        unset($result);
+        exec('cat '.$f.' |  sed -rn "s/^remote\s*([a-z0-9\.\-\_]*)\s*([0-9]*).*$/\1 \2/ip" ', $result);
+        if ( !empty($result) ) {
+          $result = explode(" ",$result[0]);
+          $ip = (isset($result[0])) ? $result[0] : "";
+          $port = (isset($result[1])) ? $result[1] : "";
+          if ( !empty($ip) ) {
             $ip = gethostbyname($ip);
             if ( filter_var($ip,FILTER_VALIDATE_IP) && strpos($ips, $ip) === false ) $ips .= " $ip";
+          }
         }
       }
     }
-    # get wireguard server IPs for UDP (if existing)
+    # get wireguard server IPs
     if ( RASPI_WIREGUARD_ENABLED && ($fconf = glob(RASPI_WIREGUARD_PATH ."/*.conf")) !== false && !empty($fconf) ) {
+      foreach ( $fconf as $f ) {
+        unset($result);
+        exec('sudo /bin/cat '.$f.' |  sed -rn "s/^endpoint\s*=\s*([a-z0-9\.\-\_]*:[0-9]*).*$/\1/ip" ', $result);
+        if ( !empty($result) ) {
+          $result = explode(":",$result[0]);
+          $ip = (isset($result[0])) ? $result[0] : "";
+          $port = (isset($result[1])) ? $result[1] : "";
+          if ( !empty($ip) ) {
+             $ip = gethostbyname($ip);
+             if ( filter_var($ip,FILTER_VALIDATE_IP) && strpos($ips, $ip) === false ) $ips .= " $ip";
+          }
+        }
+      }
     }
     return trim($ips);
 }
