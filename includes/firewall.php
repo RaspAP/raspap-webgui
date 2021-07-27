@@ -142,10 +142,10 @@ function ReadFirewallConf() {
        $conf["client-device"] = "";
        $conf["restricted-ips"] = "";
     }
-    exec('ifconfig | grep -E -i "^tun[0-9]"', $ret);
+    exec('ifconfig | grep -E -i "tun+"', $ret);
     $conf["openvpn-enable"] = !empty($ret);
     unset($ret);
-    exec('ifconfig | grep -E -i "^wg[0-9]"', $ret);
+    exec('ifconfig | grep -E -i "wg+"', $ret);
     $conf["wireguard-enable"] = !empty($ret);
     return $conf;
 }
@@ -156,7 +156,7 @@ function getVPN_IPs() {
     if ( RASPI_OPENVPN_ENABLED && ($fconf = glob(RASPI_OPENVPN_CLIENT_PATH ."/*.conf")) !== false && !empty($fconf) ) {
       foreach ( $fconf as $f ) {
         unset($result);
-        exec('cat '.$f.' |  sed -rn "s/^remote\s*([a-z0-9\.\-\_]*)\s*([0-9]*).*$/\1 \2/ip" ', $result);
+        exec('cat '.$f.' |  sed -rn "s/^remote\s*([a-z0-9\.\-\_:]*)\s*([0-9]*)\s*$/\1 \2/ip" ', $result);
         if ( !empty($result) ) {
           $result = explode(" ",$result[0]);
           $ip = (isset($result[0])) ? $result[0] : "";
@@ -172,9 +172,9 @@ function getVPN_IPs() {
     if ( RASPI_WIREGUARD_ENABLED && ($fconf = glob(RASPI_WIREGUARD_PATH ."/*.conf")) !== false && !empty($fconf) ) {
       foreach ( $fconf as $f ) {
         unset($result);
-        exec('sudo /bin/cat '.$f.' |  sed -rn "s/^endpoint\s*=\s*([a-z0-9\.\-\_]*:[0-9]*).*$/\1/ip" ', $result);
+        exec('sudo /bin/cat '.$f.' |  sed -rn "s/^endpoint\s*=\s*\[?([a-z0-9\.\-\_:]*)\]?:([0-9]*)\s*$/\1 \2/ip" ', $result);
         if ( !empty($result) ) {
-          $result = explode(":",$result[0]);
+          $result = explode(" ",$result[0]);
           $ip = (isset($result[0])) ? $result[0] : "";
           $port = (isset($result[1])) ? $result[1] : "";
           if ( !empty($ip) ) {
