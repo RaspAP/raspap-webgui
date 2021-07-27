@@ -142,10 +142,10 @@ function ReadFirewallConf() {
        $conf["client-device"] = "";
        $conf["restricted-ips"] = "";
     }
-    exec('ifconfig | grep -E -i "tun+"', $ret);
+    exec('ifconfig | grep -E -i "^tun[0-9]"', $ret);
     $conf["openvpn-enable"] = !empty($ret);
     unset($ret);
-    exec('ifconfig | grep -E -i "wg+"', $ret);
+    exec('ifconfig | grep -E -i "^wg[0-9]"', $ret);
     $conf["wireguard-enable"] = !empty($ret);
     return $conf;
 }
