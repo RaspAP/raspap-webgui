@@ -54,16 +54,19 @@ $(document).on("click", ".js-add-dhcp-static-lease", function(e) {
     var container = $(".js-new-dhcp-static-lease");
     var mac = $("input[name=mac]", container).val().trim();
     var ip  = $("input[name=ip]", container).val().trim();
+    var comment = $("input[name=comment]", container).val().trim();
     if (mac == "" || ip == "") {
         return;
     }
     var row = $("#js-dhcp-static-lease-row").html()
         .replace("{{ mac }}", mac)
-        .replace("{{ ip }}", ip);
+        .replace("{{ ip }}", ip)
+        .replace("{{ comment }}", comment);
     $(".js-dhcp-static-lease-container").append(row);
 
     $("input[name=mac]", container).val("");
     $("input[name=ip]", container).val("");
+    $("input[name=comment]", container).val("");
 });
 
 $(document).on("click", ".js-remove-dhcp-static-lease", function(e) {
