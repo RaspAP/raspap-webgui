@@ -19,7 +19,7 @@
               <input type="text" name="static_leases[ip][]" value="<?php echo htmlspecialchars($ip, ENT_QUOTES) ?>" placeholder="<?php echo _("IP address") ?>" class="form-control">
             </div>
             <div class="col-md-3 col-xs-3">
-              <input type="text" name="static_leases[comment][]" value="<?php echo htmlspecialchars($comment, ENT_QUOTES) ?>" placeholder="<?php echo _("Optional Comment") ?>" class="form-control">
+              <input type="text" name="static_leases[comment][]" value="<?php echo htmlspecialchars($comment, ENT_QUOTES) ?>" placeholder="<?php echo _("Optional comment") ?>" class="form-control">
             </div>
             <div class="col-md-2 col-xs-3">
               <button type="button" class="btn btn-outline-danger js-remove-dhcp-static-lease"><i class="far fa-trash-alt"></i></button>
@@ -36,7 +36,7 @@
           <input type="text" name="ip" value="" placeholder="<?php echo _("IP address") ?>" class="form-control">
         </div>
         <div class="col-md-3 col-xs-3">
-          <input type="text" name="comment" value="" placeholder="<?php echo _("Optional Comment") ?>" class="form-control">
+          <input type="text" name="comment" value="" placeholder="<?php echo _("Optional comment") ?>" class="form-control">
         </div>
         <div class="col-md-2 col-xs-3">
           <button type="button" class="btn btn-outline-success js-add-dhcp-static-lease"><i class="far fa-plus-square"></i></button>
@@ -67,7 +67,7 @@
           <input type="text" name="static_leases[ip][]" value="{{ ip }}" placeholder="<?php echo _("IP address") ?>" class="form-control">
         </div>
         <div class="col-md-3 col-xs-3">
-          <input type="text" name="static_leases[comment][]" value="{{ comment }}" placeholder="<?php echo _("Optional Comment") ?>" class="form-control">
+          <input type="text" name="static_leases[comment][]" value="{{ comment }}" placeholder="<?php echo _("Optional comment") ?>" class="form-control">
         </div>
         <div class="col-md-2 col-xs-3">
           <button type="button" class="btn btn-outline-danger js-remove-dhcp-static-lease"><i class="far fa-trash-alt"></i></button>
