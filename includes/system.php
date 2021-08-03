@@ -153,7 +153,7 @@ function DisplaySystem()
     );
 
     #fetch system status variables.
-    $system = new System();
+    $system = new \RaspAP\System\Sysinfo;
 
     $hostname = $system->hostname();
     $uptime   = $system->uptime();
