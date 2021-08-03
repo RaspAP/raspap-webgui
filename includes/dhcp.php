@@ -155,6 +155,20 @@ function validateDHCPInput()
 }
 
 /**
+ * Compares to string IPs
+ *
+ * @param string $ip1
+ * @param string $ip2
+ * @return boolean $result
+ */
+function compareIPs($ip1, $ip2)
+{
+    $ipu1 = sprintf('%u', ip2long($ip1["ip"])) + 0;
+    $ipu2 = sprintf('%u', ip2long($ip2["ip"])) + 0;
+    return $ipu1 > $ipu2;
+}
+
+/**
  * Updates a dnsmasq configuration
  *
  * @param string $iface
@@ -171,13 +185,25 @@ function updateDnsmasqConfig($iface,$status)
         $config .= $_POST['RangeLeaseTime'];
     }
     $config .= $_POST['RangeLeaseTimeUnits'].PHP_EOL;
+    //  Static leases
+    $staticLeases = array();
     for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
         $mac = trim($_POST["static_leases"]["mac"][$i]);
         $ip  = trim($_POST["static_leases"]["ip"][$i]);
+        $comment  = trim($_POST["static_leases"]["comment"][$i]);
         if ($mac != "" && $ip != "") {
-            $config .= "dhcp-host=$mac,$ip".",set:known".PHP_EOL;
+            $staticLeases[] = array('mac' => $mac, 'ip' => $ip, 'comment' => $comment);
         }
     }
+    //  Sort ascending by IPs
+    usort($staticLeases, "compareIPs");
+    //  Update config
+    for ($i = 0; $i < count($staticLeases); $i++) {
+        $mac = $staticLeases[$i]['mac'];
+        $ip = $staticLeases[$i]['ip'];
+        $comment = $staticLeases[$i]['comment'];
+        $config .= "dhcp-host=$mac,$ip # $comment".PHP_EOL;
+    } 
     if ($_POST['no-resolv'] == "1") {
         $config .= "no-resolv".PHP_EOL;
     }
@@ -190,9 +216,6 @@ function updateDnsmasqConfig($iface,$status)
             $config .= ','.$_POST['DNS2'];
         }
         $config .= PHP_EOL;
-    }
-    if ($_POST['dhcp-ignore'] == "1") {
-        $config .= 'dhcp-ignore=tag:!known'.PHP_EOL;
     }
     file_put_contents("/tmp/dnsmasqdata", $config);
     $msg = file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf') ? 'updated' : 'added';

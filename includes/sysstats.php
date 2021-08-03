@@ -2,7 +2,7 @@
 
 require_once 'app/lib/system.php';
 
-$system = new System();
+$system = new \RaspAP\System\Sysinfo;
 
 $hostname = $system->hostname();
 $uptime   = $system->uptime();
