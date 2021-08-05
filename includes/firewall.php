@@ -129,7 +129,7 @@ function isIPv6(&$rule)
  */
 function configureFirewall()
 {
-    $json = file_get_contents(RASPAP_IPTABLES_CONF);
+    $json = file_get_contents(RASPI_IPTABLES_CONF);
     $ipt  = json_decode($json, true);
     $conf = ReadFirewallConf();
     $txt = "#!/bin/bash\n";
@@ -182,7 +182,7 @@ function configureFirewall()
 function WriteFirewallConf($conf)
 {
     $ret = false;
-    if (is_array($conf) ) { write_php_ini($conf, RASPAP_FIREWALL_CONF);
+    if (is_array($conf) ) { write_php_ini($conf, RASPI_FIREWALL_CONF);
     }
     return $ret;
 }
@@ -193,8 +193,8 @@ function WriteFirewallConf($conf)
  */
 function ReadFirewallConf()
 {
-    if (file_exists(RASPAP_FIREWALL_CONF) ) {
-        $conf = parse_ini_file(RASPAP_FIREWALL_CONF);
+    if (file_exists(RASPI_FIREWALL_CONF) ) {
+        $conf = parse_ini_file(RASPI_FIREWALL_CONF);
     } else {
         $conf = array();
         $conf["firewall-enable"] = false;
@@ -266,7 +266,7 @@ function DisplayFirewallConfig()
 
     $status = new StatusMessages();
 
-    $json = file_get_contents(RASPAP_IPTABLES_CONF);
+    $json = file_get_contents(RASPI_IPTABLES_CONF);
     $ipt_rules = json_decode($json, true);
     getWifiInterface();
     $ap_device = $_SESSION['ap_interface'];
