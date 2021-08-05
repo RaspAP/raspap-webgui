@@ -77,7 +77,7 @@
               <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Apply changes"); ?>" name="apply-firewall" />
               <input type="submit" class="btn btn-warning firewall-apply" value="<?php echo _("Disable Firewall") ?>"  name="firewall-disable" data-toggle="modal" data-target="#firewallModal"/>
           <?php else : ?>
-              <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save"); ?>" name="save-firewall" />
+              <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="save-firewall" />
               <input type="submit" class="btn btn-success firewall-apply" value="<?php echo _("Enable Firewall") ?>" name="firewall-enable" data-toggle="modal" data-target="#firewallModal"/>
           <?php endif ?>
         </form>
@@ -93,11 +93,18 @@
     <div class="modal-content">
       <div class="modal-header">
         <div class="modal-title" id="ModalLabel">
-            <i class="fas fa-sync-alt mr-2"></i>
-            <?php if($fw_conf["firewall-enable"]) echo _("Disable the firewall ..."); else  echo _("Enable the Firewall ..."); ?>
+          <i class="fas fa-sync-alt mr-2"></i><?php echo _("Executing firewall option") ?>
         </div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
       </div>
+      <div class="modal-body">
+        <div class="col-md-12 mb-3 mt-1">
+          <?php if($fw_conf["firewall-enable"]) echo _("Disabling firewall").'...'; else echo _("Enabling firewall").'...'; ?>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline btn-primary" data-dismiss="modal"><?php echo _("Close"); ?></button>
+      </div>
+    </div>
   </div>
 </div>
 
