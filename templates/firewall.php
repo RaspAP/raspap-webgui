@@ -14,11 +14,17 @@
         <?php if ( $fw_conf["firewall-enable"]) : ?>
            <i class="fas fa-circle mr-2 service-status-up"></i><?php echo _("Firewall is ENABLED"); ?>
         <?php else : ?>
-           <i class="fas fa-circle mr-2 service-status-down"></i><?php echo _("Firewall is OFF "); ?>
+           <i class="fas fa-circle mr-2 service-status-down"></i><?php echo _("Firewall is OFF"); ?>
         <?php endif ?>
         <div class="row">
           <div class="col-md-6">
-            <p class="mr-2"><small><?php echo _("The default firewall will only allow outgoing and already established traffic.<br> No incoming UDP traffic is allowed.<br>There are no restrictions for the access point <code>$ap_device</code>.") ?></small></p>
+            <p class="mr-2">
+              <small>
+                <?php echo _("The default firewall will only allow outgoing and already established traffic."); ?><br />
+                <?php echo _("No incoming UDP traffic is allowed."); ?><br />
+                <?php printf(_("There are no restrictions for the access point <code>%s</code>."), $ap_device); ?>
+              </small>
+            </p>
           </div>
         </div>
         <form id="frm-firewall" action="firewall_conf" method="POST" >
@@ -45,7 +51,11 @@
                 <label for="excl-device"><?php echo _("Exclude device(s)") ?></label>
                 <input class="form-control" id="excl-devices" type="text" name="excl-devices" value="<?php echo $fw_conf["excl-devices"] ?>" aria-describedby="exclusion-description"  >
                 <p class="mb-0" id="exclusion-description">
-                    <small><?php echo _("Exclude the given network device(s) (separated by a blank or comma) from firewall rules.<br>Current client devices: <code>$str_clients</code><br>The access point <code>". $ap_device ."</code> is per default excluded.") ?></small>
+                  <small>
+                    <?php echo _("Exclude the given network device(s) (separated by a blank or comma) from firewall rules."); ?><br />
+                    <?php printf(_("Current client devices: <code>%s</code>"), $str_clients); ?><br />
+                    <?php printf(_("The access point <code>%s</code> is per default excluded."), $ap_device); ?>
+                  </small>
                 </p>
             </div>
           </div>
@@ -55,8 +65,11 @@
                 <label for="excluded-ips"><?php echo _("Allow incoming connections from") ?></label>
                 <input class="form-control" id="excluded-ips" type="text" name="excluded-ips" value="<?php echo $fw_conf["excluded-ips"] ?>" aria-describedby="excl-ips-description"  >
                 <p class="mb-0" id="excl-ips-description">
-                    <small><?php echo _("For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted.<br>This is required for an OpenVPN via UDP or Wireguard connection.") ?></small>
-                    <small><?php if ( !empty($vpn_ips) ) echo _("<br>The list of configured VPN server IP addresses: <code><b>". $vpn_ips. "</b></code>") ?></small>
+                  <small>
+                    <?php echo _("For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."); ?><br />
+                    <?php echo _("This is required for an OpenVPN via UDP or Wireguard connection."); ?><br />
+                    <?php if ( !empty($vpn_ips) ) printf (_("The list of configured VPN server IP addresses: <code><b>%s</b></code>"), $vpn_ips); ?>
+                  </small>
                 </p>
             </div>
           </div>
