@@ -6,6 +6,12 @@ require_once 'includes/functions.php';
 define('RASPAP_IPTABLES_SCRIPT', "/tmp/iptables_raspap.sh");
 define('RASPAP_IP6TABLES_SCRIPT', "/tmp/ip6tables_raspap.sh");
 
+/**
+ *
+ * @param  string $rule
+ * @param  string $conf
+ * @return string $don
+ */
 function getDependson(&$rule, &$conf)
 {
     if (isset($rule["dependson"][0]) ) {
@@ -19,6 +25,12 @@ function getDependson(&$rule, &$conf)
     return false;
 }
 
+/**
+ *
+ * @param  string $sect
+ * @param  string $conf
+ * @return string $active
+ */
 function isRuleEnabled(&$sect, &$conf)
 {
     $fw_on = isset($conf["firewall-enable"]) && $conf["firewall-enable"];
@@ -32,6 +44,12 @@ function isRuleEnabled(&$sect, &$conf)
     return $active;
 }
 
+/**
+ *
+ * @param  string $sect
+ * @param  string $conf
+ * @return string $str
+ */
 function createRuleStr(&$sect, &$conf)
 {
     if (!is_array($sect["rules"]) ) { return "";
@@ -84,16 +102,31 @@ function createRuleStr(&$sect, &$conf)
     return $str;
 }
 
+
+/**
+ *
+ * @param  string $rule
+ * @return string boolean
+ */
 function isIPv4(&$rule)
 {
     return !isset($rule["ip-version"]) || strstr($rule["ip-version"], "4") !== false; 
 }
 
+/**
+ *
+ * @param  string $rule
+ * @return boolean
+ */
 function isIPv6(&$rule)
 {
     return !isset($rule["ip-version"]) || strstr($rule["ip-version"], "6") !== false; 
 }
 
+/**
+ *
+ * @return string $count
+ */
 function configureFirewall()
 {
     $json = file_get_contents(RASPAP_IPTABLES_CONF);
@@ -141,6 +174,11 @@ function configureFirewall()
     return ($count > 0);
 }
 
+/**
+ *
+ * @param string $conf
+ * @return string $ret
+ */
 function WriteFirewallConf($conf)
 {
     $ret = false;
@@ -149,7 +187,10 @@ function WriteFirewallConf($conf)
     return $ret;
 }
 
-
+/**
+ *
+ * @return string $conf
+ */
 function ReadFirewallConf()
 {
     if (file_exists(RASPAP_FIREWALL_CONF) ) {
@@ -173,6 +214,10 @@ function ReadFirewallConf()
     return $conf;
 }
 
+/**
+ *
+ * @return string $ips
+ */
 function getVPN_IPs()
 {
     $ips = "";
@@ -213,7 +258,9 @@ function getVPN_IPs()
     return trim($ips);
 }
 
-
+/**
+ *
+ */
 function DisplayFirewallConfig()
 {
 
@@ -292,3 +339,4 @@ function DisplayFirewallConfig()
         )
     );
 }
+
