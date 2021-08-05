@@ -1140,3 +1140,74 @@ msgstr "WireGuard configuration updated successfully"
 msgid "WireGuard configuration failed to be updated"
 msgstr "WireGuard configuration failed to be updated"
 
+#: templates/firewall.php
+
+msgid "Client Firewall"
+msgstr "Client Firewall"
+
+msgid "Firewall is ENABLED"
+msgstr "Firewall is ENABLED"
+
+msgid "Firewall is OFF"
+msgstr "Firewall is OFF"
+
+msgid "The default firewall will only allow outgoing and already established traffic."
+msgstr "The default firewall will only allow outgoing and already established traffic."
+
+msgid "No incoming UDP traffic is allowed."
+msgstr "No incoming UDP traffic is allowed."
+
+msgid "There are no restrictions for the access point <code>%s</code>."
+msgstr "There are no restrictions for the access point <code>%s</code>."
+
+msgid "Exception: Service"
+msgstr "Exception: Service"
+
+msgid "allow SSH access on port 22"
+msgstr "allow SSH access on port 22"
+
+msgid "allow access to the RaspAP GUI on port 80 or 443"
+msgstr "allow access to the RaspAP GUI on port 80 or 443"
+
+msgid "Allow incoming connections for some services from the internet side."
+msgstr "Allow incoming connections for some services from the internet side."
+
+msgid "Exception: network device"
+msgstr "Exception: network device"
+
+msgid "Exclude device(s)"
+msgstr "Exclude device(s)"
+
+msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+msgstr "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+
+msgid "Current client devices: <code>%s</code>"
+msgstr "Current client devices: <code>%s</code>"
+
+msgid "The access point <code>%s</code> is per default excluded."
+msgstr "The access point <code>%s</code> is per default excluded."
+
+msgid "Exception: IP-Address"
+msgstr "Exception: IP-Address"
+
+msgid "Allow incoming connections from"
+msgstr "Allow incoming connections from"
+
+msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+msgstr "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+
+msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+msgstr "This is required for an OpenVPN via UDP or Wireguard connection."
+
+msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+msgstr "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+
+msgid "Disable Firewall"
+msgstr "Disable Firewall"
+
+msgid "Enable Firewall"
+msgstr "Enable Firewall"
+
+msgid "Apply changes"
+msgstr "Apply changes"
+:
