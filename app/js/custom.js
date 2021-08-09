@@ -278,7 +278,9 @@ function loadChannelSelect(selected) {
         var countries_5Ghz_max48ch = data["5Ghz_max48ch"].countries;
 
         // Map selected hw_mode and country to determine channel list
-        if (($.inArray(country_code, countries_2_4Ghz_max11ch) !== -1) && (hw_mode !== 'ac') ) {
+        if (hw_mode === 'a') {
+            selectablechannels = data["5Ghz_max48ch"].channels;
+        } else if (($.inArray(country_code, countries_2_4Ghz_max11ch) !== -1) && (hw_mode !== 'ac') ) {
             selectablechannels = data["2_4GHz_max11ch"].channels;
         } else if (($.inArray(country_code, countries_2_4Ghz_max14ch) !== -1) && (hw_mode === 'b')) {
             selectablechannels = data["2_4GHz_max14ch"].channels;
