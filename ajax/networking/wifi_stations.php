@@ -14,6 +14,7 @@ knownWifiStations($networks);
 nearbyWifiStations($networks, !isset($_REQUEST["refresh"]));
 connectedWifiStations($networks);
 sortNetworksByRSSI($networks);
+foreach ($networks as $ssid => $network) $networks[$ssid]["ssidutf8"] = ssid2utf8( $ssid ); 
 
 $connected = array_filter($networks, function($n) { return $n['connected']; } );
 $known     = array_filter($networks, function($n) { return !$n['connected'] && $n['configured']; } );

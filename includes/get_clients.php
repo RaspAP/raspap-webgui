@@ -1,6 +1,7 @@
 <?php
 
 require_once 'includes/functions.php';
+require_once 'includes/wifi_functions.php';
 
 function getClients($simple=true)
 {
@@ -73,6 +74,7 @@ function getClients($simple=true)
                 if (!$simple && !empty($ssid=preg_only_match("/.*SSID:\s*([^\"]*).*/", $retiw)) ) {
                     $cl["device"][$i]["connected"] = "y";
                     $cl["device"][$i]["ssid"] = $ssid;
+                    $cl["device"][$i]["ssidutf8"] = ssid2utf8($ssid);
                     $cl["device"][$i]["ap-mac"] = preg_only_match("/^Connected to ([0-9a-f\:]*).*$/", $retiw);
                     $sig = preg_only_match("/.*signal: (.*)$/", $retiw);
                     $val = preg_only_match("/^([0-9\.-]*).*$/", $sig);
