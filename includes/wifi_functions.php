@@ -181,3 +181,12 @@ function reinitializeWPA($force)
     return $result;
 }
 
+/*
+ * Replace escaped bytes (hex) by binary - assume UTF8 encoding
+ *
+ * @param string $ssid
+ */
+function ssid2utf8($ssid) {
+    return  evalHexSequence($ssid);
+}
+
