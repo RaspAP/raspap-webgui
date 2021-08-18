@@ -18,6 +18,7 @@ function knownWifiStations(&$networks)
                 switch (strtolower($lineArr[0])) {
                 case 'ssid':
                     $ssid = trim($lineArr[1], '"');
+                    $ssid = str_replace('P"','',$ssid);
                     $network['ssid'] = $ssid;
                     break;
                 case 'psk':
