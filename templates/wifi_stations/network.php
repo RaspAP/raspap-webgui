@@ -3,9 +3,8 @@
 		<input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo htmlentities($network['ssid'], ENT_QUOTES) ?>" />
 		<?php if (strlen($network['ssid']) == 0) {
 			$network['ssid'] = "(unknown)";
-        } ?>
-		<h5 class="card-title"><?php echo htmlspecialchars($network['ssid'], ENT_QUOTES); ?></h5>
-
+		} ?>
+		<h5 class="card-title"><?php echo htmlspecialchars($network['ssidutf8'], ENT_QUOTES); ?></h5>
 		<div class="info-item-wifi"><?php echo _("Status"); ?></div>
 		<div>
 			<?php if ($network['configured']) { ?>
