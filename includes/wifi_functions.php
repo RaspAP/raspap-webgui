@@ -81,7 +81,6 @@ function nearbyWifiStations(&$networks, $cached = true)
         $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
 
         $ssid = trim($arrNetwork[4]);
-        $ssid = evalHexSequence($ssid);
 
         // exclude raspap ssid
         if (empty($ssid) || $ssid == $ap_ssid) {
@@ -126,7 +125,7 @@ function connectedWifiStations(&$networks)
     exec('iwconfig ' .$_SESSION['wifi_client_interface'], $iwconfig_return);
     foreach ($iwconfig_return as $line) {
         if (preg_match('/ESSID:\"([^"]+)\"/i', $line, $iwconfig_ssid)) {
-            $networks[$iwconfig_ssid[1]]['connected'] = true;
+            $networks[hexSequence2lower($iwconfig_ssid[1])]['connected'] = true;
         }
     }
 }
