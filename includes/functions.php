@@ -765,6 +765,10 @@ function evalHexSequence($string)
     return preg_replace_callback('/\\\x(..)/', $evaluator, $string);
 }
 
+function hexSequence2lower($string) {
+ return preg_replace_callback('/\\\\x([0-9A-F]{2})/', function($b){ return '\x'.strtolower($b[1]); }, $string);
+}
+
 /* File upload callback object
  *
  */
