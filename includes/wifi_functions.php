@@ -6,9 +6,11 @@ function knownWifiStations(&$networks)
 {
     // Find currently configured networks
     exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
+    $index = 0;
     foreach ($known_return as $line) {
         if (preg_match('/network\s*=/', $line)) {
-            $network = array('visible' => false, 'configured' => true, 'connected' => false);
+            $network = array('visible' => false, 'configured' => true, 'connected' => false, 'index' => $index);
+            ++$index;
         } elseif (isset($network) && $network !== null) {
             if (preg_match('/^\s*}\s*$/', $line)) {
                 $networks[$ssid] = $network;
@@ -98,7 +100,8 @@ function nearbyWifiStations(&$networks, $cached = true)
                 'channel' => ConvertToChannel($arrNetwork[1]),
                 'passphrase' => '',
                 'visible' => true,
-                'connected' => false
+                'connected' => false,
+                'index' => -1
             );
         }
 
