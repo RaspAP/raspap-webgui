@@ -6,9 +6,11 @@ function knownWifiStations(&$networks)
 {
     // Find currently configured networks
     exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
+    $index = 0;
     foreach ($known_return as $line) {
         if (preg_match('/network\s*=/', $line)) {
-            $network = array('visible' => false, 'configured' => true, 'connected' => false);
+            $network = array('visible' => false, 'configured' => true, 'connected' => false, 'index' => $index);
+            ++$index;
         } elseif (isset($network) && $network !== null) {
             if (preg_match('/^\s*}\s*$/', $line)) {
                 $networks[$ssid] = $network;
@@ -68,6 +70,12 @@ function nearbyWifiStations(&$networks, $cached = true)
     exec('cat '.RASPI_HOSTAPD_CONFIG.' | sed -rn "s/ssid=(.*)\s*$/\1/p" ', $ap_ssid);
     $ap_ssid = $ap_ssid[0];
 
+    $index = 0;
+    if ( !empty($networks) ) {
+        $lastnet = end($networks);
+        if ( isset($lastnet['index']) ) $index = $lastnet['index'] + 1;
+    }
+    
     foreach (explode("\n", $scan_results) as $network) {
         $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
 
@@ -84,8 +92,6 @@ function nearbyWifiStations(&$networks, $cached = true)
             continue;
         }
 
-        $networks[$ssid]['ssid'] = $ssid;
-
         // If network is saved
         if (array_key_exists($ssid, $networks)) {
             $networks[$ssid]['visible'] = true;
@@ -93,13 +99,16 @@ function nearbyWifiStations(&$networks, $cached = true)
             // TODO What if the security has changed?
         } else {
             $networks[$ssid] = array(
+                'ssid' => $ssid,
                 'configured' => false,
                 'protocol' => ConvertToSecurity($arrNetwork[3]),
                 'channel' => ConvertToChannel($arrNetwork[1]),
                 'passphrase' => '',
                 'visible' => true,
-                'connected' => false
+                'connected' => false,
+                'index' => $index
             );
+            ++$index;
         }
 
         // Save RSSI, if the current value is larger than the already stored
