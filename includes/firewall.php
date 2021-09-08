@@ -8,9 +8,9 @@ define('RASPAP_IP6TABLES_SCRIPT', "/tmp/ip6tables_raspap.sh");
 
 /**
  *
- * @param  string $rule
- * @param  string $conf
- * @return string $don
+ * @param  array $rule
+ * @param  array $conf
+ * @return array $don
  */
 function getDependson(&$rule, &$conf)
 {
@@ -27,9 +27,9 @@ function getDependson(&$rule, &$conf)
 
 /**
  *
- * @param  string $sect
- * @param  string $conf
- * @return string $active
+ * @param  array $sect
+ * @param  array $conf
+ * @return boolean $active
  */
 function isRuleEnabled(&$sect, &$conf)
 {
@@ -46,8 +46,8 @@ function isRuleEnabled(&$sect, &$conf)
 
 /**
  *
- * @param  string $sect
- * @param  string $conf
+ * @param  array $sect
+ * @param  array $conf
  * @return string $str
  */
 function createRuleStr(&$sect, &$conf)
@@ -105,8 +105,8 @@ function createRuleStr(&$sect, &$conf)
 
 /**
  *
- * @param  string $rule
- * @return string boolean
+ * @param  array $rule
+ * @return boolean
  */
 function isIPv4(&$rule)
 {
@@ -115,7 +115,7 @@ function isIPv4(&$rule)
 
 /**
  *
- * @param  string $rule
+ * @param  array $rule
  * @return boolean
  */
 function isIPv6(&$rule)
@@ -125,7 +125,7 @@ function isIPv6(&$rule)
 
 /**
  *
- * @return string $count
+ * @return boolean 
  */
 function configureFirewall()
 {
@@ -164,19 +164,19 @@ function configureFirewall()
     if ($count > 0 ) {
         exec("chmod +x ".RASPAP_IPTABLES_SCRIPT);
         exec("sudo ".RASPAP_IPTABLES_SCRIPT);
-        //       exec("sudo iptables-save > /etc/iptables/rules.v4");
-        //       unlink(RASPAP_IPTABLES_SCRIPT);
+        exec("sudo iptables-save | sudo tee /etc/iptables/rules.v4");
+        unlink(RASPAP_IPTABLES_SCRIPT);
         exec("chmod +x ".RASPAP_IP6TABLES_SCRIPT);
         exec("sudo ".RASPAP_IP6TABLES_SCRIPT);
-        //       exec("sudo iptables-save > /etc/iptables/rules.v6");
-        //       unlink(RASPAP_IP6TABLES_SCRIPT);
+        exec("sudo ip6tables-save | sudo tee /etc/iptables/rules.v6");
+        unlink(RASPAP_IP6TABLES_SCRIPT);
     }
     return ($count > 0);
 }
 
 /**
  *
- * @param string $conf
+ * @param array $conf
  * @return string $ret
  */
 function WriteFirewallConf($conf)
@@ -189,14 +189,15 @@ function WriteFirewallConf($conf)
 
 /**
  *
- * @return string $conf
+ * @return array $conf
  */
 function ReadFirewallConf()
 {
+    $conf = array();
     if (file_exists(RASPI_FIREWALL_CONF) ) {
         $conf = parse_ini_file(RASPI_FIREWALL_CONF);
-    } else {
-        $conf = array();
+    }
+    if ( !isset($conf["firewall-enable"]) ) {
         $conf["firewall-enable"] = false;
         $conf["ssh-enable"] = false;
         $conf["http-enable"] = false;
@@ -260,14 +261,13 @@ function getVPN_IPs()
 
 /**
  *
+ * @return array $fw_conf
  */
-function DisplayFirewallConfig()
+function getFirewallConfiguration() 
 {
-
-    $status = new StatusMessages();
-
+    $fw_conf = ReadFirewallConf();
+    
     $json = file_get_contents(RASPI_IPTABLES_CONF);
-    $ipt_rules = json_decode($json, true);
     getWifiInterface();
     $ap_device = $_SESSION['ap_interface'];
     $clients = getClients();
@@ -279,11 +279,38 @@ function DisplayFirewallConfig()
             $str_clients .= $dev["name"];
         }
     }
-    $fw_conf = ReadFirewallConf();
     $fw_conf["ap-device"] = $ap_device;
+    $fw_conf["client-list"] = $str_clients;
     $id=findCurrentClientIndex($clients);
     if ($id >= 0 ) { $fw_conf["client-device"] = $clients["device"][$id]["name"];
     }
+    return $fw_conf;
+}
+
+/**
+ *
+ */
+function updateFirewall() 
+{
+    $fw_conf = getFirewallConfiguration();
+    if ( isset($fw_conf["firewall-enable"]) ) {
+        WriteFirewallConf($fw_conf);
+        configureFirewall();
+    }
+    return;
+}
+
+/**
+ *
+ */
+function DisplayFirewallConfig()
+{
+    $status = new StatusMessages();
+
+    $fw_conf = getFirewallConfiguration();
+    $ap_device = $fw_conf["ap-device"];
+    $str_clients = $fw_conf["client-list"];
+
     if (!empty($_POST)) {
         $fw_conf["ssh-enable"] = isset($_POST['ssh-enable']);
         $fw_conf["http-enable"] = isset($_POST['http-enable']);
@@ -334,7 +361,6 @@ function DisplayFirewallConfig()
             "ap_device",
             "str_clients",
             "fw_conf",
-            "ipt_rules",
             "vpn_ips"
         )
     );
