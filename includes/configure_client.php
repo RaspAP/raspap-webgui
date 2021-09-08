@@ -69,7 +69,7 @@ function DisplayWPAConfig()
                                 }
                                 fwrite($wpa_file, $line.PHP_EOL);
                             } else {
-                                if ( strpos($ssid, "\x") !== false  && strpos($line, "ssid=\"") !== false ) {
+                                if ( preg_match('/\\\\x[0-9A-Fa-f]{2}/',$ssid) && strpos($line, "ssid=\"") !== false ) {
                                      fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
                                 } else {
                                      fwrite($wpa_file, $line.PHP_EOL);
