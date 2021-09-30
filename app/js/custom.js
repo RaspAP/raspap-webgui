@@ -341,7 +341,7 @@ $(document).on("click", ".js-toggle-password", function(e) {
     }
 });
 
-$(document).on("keyup", ".js-validate-psk", function(e) {
+$(document).on("input", ".js-validate-psk", function(e) {
     var field  = $(e.target);
     var colors = field.data("colors").split(",");
     var target = $(field.data("target"));

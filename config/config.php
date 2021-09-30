@@ -1,6 +1,6 @@
 <?php
 
-define('RASPI_BRAND_TEXT', 'RaspAP');
+define('RASPI_BRAND_TEXT', 'Isobox');
 define('RASPI_CONFIG', '/etc/raspap');
 define('RASPI_CONFIG_NETWORK', RASPI_CONFIG.'/networking/defaults.json');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
@@ -36,14 +36,14 @@ define('RASPI_HOTSPOT_ENABLED', true);
 define('RASPI_NETWORK_ENABLED', true);
 define('RASPI_DHCP_ENABLED', true);
 define('RASPI_ADBLOCK_ENABLED', false);
-define('RASPI_OPENVPN_ENABLED', false);
+define('RASPI_OPENVPN_ENABLED', true);
 define('RASPI_WIREGUARD_ENABLED', false);
 define('RASPI_TORPROXY_ENABLED', false);
 define('RASPI_CONFAUTH_ENABLED', true);
 define('RASPI_CHANGETHEME_ENABLED', true);
 define('RASPI_VNSTAT_ENABLED', true);
 define('RASPI_SYSTEM_ENABLED', true);
-define('RASPI_MONITOR_ENABLED', false);
+define('RASPI_MONITOR_ENABLED', true);
 
 // Locale settings
 define('LOCALE_ROOT', 'locale');
