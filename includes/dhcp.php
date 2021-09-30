@@ -52,6 +52,7 @@ function DisplayDHCPConfig()
     exec('cat '. RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
     $conf = array_merge(ParseConfig($return));
     $hosts = (array)$conf['dhcp-host'];
+    $upstreamServers = (array)$conf['server'];
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
 
@@ -63,6 +64,7 @@ function DisplayDHCPConfig()
             "ap_iface",
             "conf",
             "hosts",
+            "upstreamServers",
             "interfaces",
             "leases"
         )
@@ -178,9 +180,7 @@ function compareIPs($ip1, $ip2)
 function updateDnsmasqConfig($iface,$status)
 {
     $config = '# RaspAP '.$iface.' configuration'.PHP_EOL;
-    $config .= 'interface='.$iface.PHP_EOL.
-        'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].
-        ',255.255.255.0,';
+    $config .= 'interface='.$iface.PHP_EOL.'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].','.$_POST['SubnetMask'].',';
     if ($_POST['RangeLeaseTimeUnits'] !== 'infinite') {
         $config .= $_POST['RangeLeaseTime'];
     }
