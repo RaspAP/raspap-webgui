@@ -609,7 +609,7 @@ function _optimize_php() {
     if [ "$upgrade" == 0 ]; then
         _install_log "Optimize PHP configuration"
         if [ ! -f "$phpcgiconf" ]; then
-            _install_warning "PHP configuration could not be found."
+            _install_status 1 "PHP configuration could not be found."
             return
         fi
 
