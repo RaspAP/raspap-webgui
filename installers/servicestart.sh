@@ -50,7 +50,8 @@ fi
 HOSTAPD_CONF="/etc/hostapd/hostapd.conf"
 
 old_ssid=$(grep ^ssid $HOSTAPD_CONF | cut -d "=" -f 2)
-new_ssid="isobox-$(cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2)"
+rpi_serial=$(cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2)
+new_ssid="isobox-$rpi_serial"
 
 if [[ "$old_ssid" != "$new_ssid" ]]; then
     sed -i "s/$old_ssid/$new_ssid/" $HOSTAPD_CONF
@@ -63,6 +64,15 @@ old_country_code=$(grep ^country_code $HOSTAPD_CONF | cut -d "=" -f 2)
 if [[ ! -z "$new_country_code" ]] && [[ "$old_country_code" != "$new_country_code" ]]; then
     sed -i "s/$old_country_code/$new_country_code/" $HOSTAPD_CONF
     echo "Updated country code: $new_country_code"
+fi
+
+old_hostname=$(hostname)
+new_hostname=$(isobox-$rpi_serial)
+
+if [[ "$old_hostname" != "$new_hostname" ]]; then
+    echo $new_hostname >/etc/hostname
+    sed -i "s/$old_hostname/$new_hostname/" /etc/hosts
+    hostname $new_hostname
 fi
 
 if [ -f "$DAEMONPATH" ] && [ ! -z "$interface" ]; then
