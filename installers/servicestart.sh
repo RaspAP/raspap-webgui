@@ -33,6 +33,35 @@ while [[ $# -gt 0 ]]; do
 done
 set -- "${positional[@]}"
 
+HOSTAPD_CONF="/etc/hostapd/hostapd.conf"
+
+new_country_code=$(curl -s -H "Authorization: Bearer 9da1eb466ed052" https://ipinfo.io/json | jq -r ".country // empty")
+old_country_code=$(grep ^country_code $HOSTAPD_CONF | cut -d "=" -f 2)
+
+if [[ ! -z "$new_country_code" ]] && [[ "$old_country_code" != "$new_country_code" ]]; then
+    sudo sed -i "s/country_code=$old_country_code/country_code=$new_country_code/" /etc/hostapd/hostapd.conf
+    echo "Updated country code: $new_country_code"
+fi
+
+old_ssid=$(grep ^ssid $HOSTAPD_CONF | cut -d "=" -f 2)
+rpi_serial=$(cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2)
+new_ssid="isobox-$rpi_serial"
+
+if [[ "$old_ssid" != "$new_ssid" ]]; then
+    sed -i "s/ssid=$old_ssid/ssid=$new_ssid/" $HOSTAPD_CONF
+    echo "Updated ssid: $new_ssid"
+fi
+
+old_hostname=$(hostname)
+new_hostname="isobox-$rpi_serial"
+
+if [[ "$old_hostname" != "$new_hostname" ]]; then
+    echo $new_hostname >/etc/hostname
+    sed -i "s/$old_hostname/$new_hostname/" /etc/hosts
+    hostname $new_hostname
+    echo "Updated hostname: $new_hostname"
+fi
+
 echo "Stopping network services..."
 if [ $OPENVPNENABLED -eq 1 ]; then
     systemctl stop openvpn-client@client
@@ -45,34 +74,6 @@ systemctl stop dhcpcd.service
 if [ "${action}" = "stop" ]; then
     echo "Services stopped. Exiting."
     exit 0
-fi
-
-HOSTAPD_CONF="/etc/hostapd/hostapd.conf"
-
-old_ssid=$(grep ^ssid $HOSTAPD_CONF | cut -d "=" -f 2)
-rpi_serial=$(cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2)
-new_ssid="isobox-$rpi_serial"
-
-if [[ "$old_ssid" != "$new_ssid" ]]; then
-    sed -i "s/$old_ssid/$new_ssid/" $HOSTAPD_CONF
-    echo "Updated ssid: $new_ssid"
-fi
-
-new_country_code=$(curl -s -H "Authorization: Bearer 9da1eb466ed052" https://ipinfo.io/json | jq -r ".country // empty")
-old_country_code=$(grep ^country_code $HOSTAPD_CONF | cut -d "=" -f 2)
-
-if [[ ! -z "$new_country_code" ]] && [[ "$old_country_code" != "$new_country_code" ]]; then
-    sed -i "s/$old_country_code/$new_country_code/" $HOSTAPD_CONF
-    echo "Updated country code: $new_country_code"
-fi
-
-old_hostname=$(hostname)
-new_hostname=$(isobox-$rpi_serial)
-
-if [[ "$old_hostname" != "$new_hostname" ]]; then
-    echo $new_hostname >/etc/hostname
-    sed -i "s/$old_hostname/$new_hostname/" /etc/hosts
-    hostname $new_hostname
 fi
 
 if [ -f "$DAEMONPATH" ] && [ ! -z "$interface" ]; then
