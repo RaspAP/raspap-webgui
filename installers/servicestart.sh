@@ -10,27 +10,26 @@ DAEMONPATH="/lib/systemd/system/raspapd.service"
 OPENVPNENABLED=$(pidof openvpn | wc -l)
 
 positional=()
-while [[ $# -gt 0 ]]
-do
-key="$1"
+while [[ $# -gt 0 ]]; do
+    key="$1"
 
-case $key in
-    -i|--interface)
-    interface="$2"
-    shift # past argument
-    shift # past value
-    ;;
-    -s|--seconds)
-    seconds="$2"
-    shift
-    shift
-    ;;
-    -a|--action)
-    action="$2"
-    shift
-    shift
-    ;;
-esac
+    case $key in
+    -i | --interface)
+        interface="$2"
+        shift # past argument
+        shift # past value
+        ;;
+    -s | --seconds)
+        seconds="$2"
+        shift
+        shift
+        ;;
+    -a | --action)
+        action="$2"
+        shift
+        shift
+        ;;
+    esac
 done
 set -- "${positional[@]}"
 
@@ -48,6 +47,24 @@ if [ "${action}" = "stop" ]; then
     exit 0
 fi
 
+HOSTAPD_CONF="/etc/hostapd/hostapd.conf"
+
+old_ssid=$(grep ^ssid $HOSTAPD_CONF | cut -d "=" -f 2)
+new_ssid="isobox-$(cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2)"
+
+if [[ "$old_ssid" != "$new_ssid" ]]; then
+    sed -i "s/$old_ssid/$new_ssid/" $HOSTAPD_CONF
+    echo "Updated ssid: $new_ssid"
+fi
+
+new_country_code=$(curl -s -H "Authorization: Bearer 9da1eb466ed052" https://ipinfo.io/json | jq -r ".country // empty")
+old_country_code=$(grep ^country_code $HOSTAPD_CONF | cut -d "=" -f 2)
+
+if [[ ! -z "$new_country_code" ]] && [[ "$old_country_code" != "$new_country_code" ]]; then
+    sed -i "s/$old_country_code/$new_country_code/" $HOSTAPD_CONF
+    echo "Updated country code: $new_country_code"
+fi
+
 if [ -f "$DAEMONPATH" ] && [ ! -z "$interface" ]; then
     echo "Changing RaspAP Daemon --interface to $interface"
     sed -i "s/\(--interface \)[[:alnum:]]*/\1$interface/" "$DAEMONPATH"
@@ -57,7 +74,7 @@ if [ -r "$CONFIGFILE" ]; then
     declare -A config
     while IFS=" = " read -r key value; do
         config["$key"]="$value"
-    done < "$CONFIGFILE"
+    done <"$CONFIGFILE"
 
     if [ "${config[BridgedEnable]}" = 1 ]; then
         if [ "${interface}" = "br0" ]; then
@@ -79,7 +96,7 @@ if [ -r "$CONFIGFILE" ]; then
         echo "Disabling systemd-networkd"
         systemctl disable systemd-networkd
 
-        ip link ls up | grep -q 'br0' &> /dev/null
+        ip link ls up | grep -q 'br0' &>/dev/null
         if [ $? == 0 ]; then
             echo "Removing br0 interface..."
             ip link set down br0
@@ -89,7 +106,7 @@ if [ -r "$CONFIGFILE" ]; then
         if [ "${config[WifiAPEnable]}" = 1 ]; then
             if [ "${interface}" = "uap0" ]; then
 
-                ip link ls up | grep -q 'uap0' &> /dev/null
+                ip link ls up | grep -q 'uap0' &>/dev/null
                 if [ $? == 0 ]; then
                     echo "Removing uap0 interface..."
                     iw dev uap0 del
@@ -127,4 +144,3 @@ if [ "${config[WifiAPEnable]}" = 1 ]; then
 fi
 
 echo "RaspAP service start DONE"
-
