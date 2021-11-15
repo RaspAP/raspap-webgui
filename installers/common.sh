@@ -142,7 +142,7 @@ function _set_php_package() {
         18.04|19.10) # Ubuntu Server
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
-        10*)
+        10*|11*)
             php_package="php7.3-cgi"
             phpcgiconf="/etc/php/7.3/cgi/php.ini" ;;
         9*)
