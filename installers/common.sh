@@ -139,7 +139,7 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        18.04|19.10) # Ubuntu Server
+       18.04|19.10|11*) # Ubuntu Server & Debian 11 
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
         10*)
@@ -159,7 +159,7 @@ function _set_php_package() {
 function _install_dependencies() {
     _install_log "Installing required packages"
     _set_php_package
-    if [ "$php_package" = "php7.4-cgi" ]; then
+   if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ]; then 
         echo "Adding apt-repository ppa:ondrej/php"
         sudo apt-get install $apt_option software-properties-common || _install_status 1 "Unable to install dependency"
         sudo add-apt-repository $apt_option ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
@@ -609,7 +609,7 @@ function _optimize_php() {
     if [ "$upgrade" == 0 ]; then
         _install_log "Optimize PHP configuration"
         if [ ! -f "$phpcgiconf" ]; then
-            _install_warning "PHP configuration could not be found."
+            _install_status 2 "PHP configuration could not be found."
             return
         fi
 
