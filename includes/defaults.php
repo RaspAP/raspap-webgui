@@ -6,7 +6,7 @@ if (!defined('RASPI_CONFIG')) {
 
 $defaults = [
   'RASPI_BRAND_TEXT' => 'RaspAP',
-  'RASPI_VERSION' => '2.6.8',
+  'RASPI_VERSION' => '2.6.9',
   'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/defaults.json',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',
   'RASPI_WIFI_AP_INTERFACE' => 'wlan0',
@@ -20,6 +20,7 @@ $defaults = [
   'RASPI_ADBLOCK_CONFIG' =>  RASPI_DNSMASQ_PREFIX.'adblock.conf',
   'RASPI_HOSTAPD_CONFIG' => '/etc/hostapd/hostapd.conf',
   'RASPI_DHCPCD_CONFIG' => '/etc/dhcpcd.conf',
+  'RASPI_DHCPCD_LOG' => '/var/log/dnsmasq.log',
   'RASPI_WPA_SUPPLICANT_CONFIG' => '/etc/wpa_supplicant/wpa_supplicant.conf',
   'RASPI_HOSTAPD_CTRL_INTERFACE' => '/var/run/hostapd',
   'RASPI_WPA_CTRL_INTERFACE' => '/var/run/wpa_supplicant',

@@ -78,7 +78,7 @@ function DisplayAdBlockConfig()
     $adblock_custom_content = file_get_contents(RASPI_ADBLOCK_LISTPATH .'custom.txt');
 
     $adblock_log = '';
-    exec('sudo chmod o+r /tmp/dnsmasq.log');
+    exec('sudo chmod o+r '. RASPI_DHCPCD_LOG);
     $handle = fopen("/tmp/dnsmasq.log", "r");
     if ($handle) {
         while (($line = fgets($handle)) !== false) {
