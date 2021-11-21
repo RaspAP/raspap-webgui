@@ -42,10 +42,10 @@ $jsonobj = json_decode($jsonstdoutvnstat[0], true);
 $timeunits = filter_input(INPUT_GET, 'tu');
 if ($timeunits === 'm') {
     // months
-    $jsonData = $jsonobj['interfaces'][0]['traffic']['months'];
+    $jsonData = $jsonobj['interfaces'][0]['traffic']['month'];
 } else {
     // default: days
-    $jsonData = $jsonobj['interfaces'][0]['traffic']['days'];
+    $jsonData = $jsonobj['interfaces'][0]['traffic']['day'];
 }
 
 $datasizeunits = filter_input(INPUT_GET, 'dsu');
