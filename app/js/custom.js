@@ -365,7 +365,9 @@ function loadChannelSelect(selected) {
         var countries_5Ghz_max48ch = data["5Ghz_max48ch"].countries;
 
         // Map selected hw_mode and country to determine channel list
-        if (($.inArray(country_code, countries_2_4Ghz_max11ch) !== -1) && (hw_mode !== 'ac') ) {
+        if (hw_mode === 'a') {
+            selectablechannels = data["5Ghz_max48ch"].channels;
+        } else if (($.inArray(country_code, countries_2_4Ghz_max11ch) !== -1) && (hw_mode !== 'ac') ) {
             selectablechannels = data["2_4GHz_max11ch"].channels;
         } else if (($.inArray(country_code, countries_2_4Ghz_max14ch) !== -1) && (hw_mode === 'b')) {
             selectablechannels = data["2_4GHz_max14ch"].channels;
@@ -474,19 +476,6 @@ $(document).on("click", ".js-toggle-password", function(e) {
             button.text(button.data("__toggle-with-initial"));
             field.attr("type", "password");
         }
-    }
-});
-
-$(document).on("keyup", ".js-validate-psk", function(e) {
-    var field  = $(e.target);
-    var colors = field.data("colors").split(",");
-    var target = $(field.data("target"));
-    if (field.val().length < 8 || field.val().length > 63) {
-        field.css("backgroundColor", colors[0]);
-        target.attr("disabled", true);
-    } else {
-        field.css("backgroundColor", colors[1]);
-        target.attr("disabled", false);
     }
 });
 
