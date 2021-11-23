@@ -343,19 +343,6 @@ $(document).on("click", ".js-toggle-password", function(e) {
     }
 });
 
-$(document).on("keyup", ".js-validate-psk", function(e) {
-    var field  = $(e.target);
-    var colors = field.data("colors").split(",");
-    var target = $(field.data("target"));
-    if (field.val().length < 8 || field.val().length > 63) {
-        field.css("backgroundColor", colors[0]);
-        target.attr("disabled", true);
-    } else {
-        field.css("backgroundColor", colors[1]);
-        target.attr("disabled", false);
-    }
-});
-
 $(function() {
     $('#theme-select').change(function() {
         var theme = themes[$( "#theme-select" ).val() ]; 
