@@ -38,7 +38,7 @@
                     <?php $valEcho=function($cl,$id) {$val = isset($cl[$id])&& !empty($cl[$id]) ? $cl[$id] : "-"; echo  htmlspecialchars($val,ENT_QUOTES);} ?>
                     <?php if ($clientinfo["type"] == "wlan") : // WIRELESS ?>
                       <div class="row mb-1">
-                        <div class="info-item col-xs-3"><?php echo _("Connected To"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"ssid"); ?></div>
+                        <div class="info-item col-xs-3"><?php echo _("Connected To"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"ssidutf8"); ?></div>
                       </div>
                       <div class="row mb-1">
                         <div class="info-item col-xs-3"><?php echo _("AP Mac Address"); ?></div><div class="info-value col-xs-3"><?php $valEcho($clientinfo,"ap-mac"); ?></div>

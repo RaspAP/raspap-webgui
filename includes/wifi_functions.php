@@ -20,6 +20,7 @@ function knownWifiStations(&$networks)
                 switch (strtolower($lineArr[0])) {
                 case 'ssid':
                     $ssid = trim($lineArr[1], '"');
+                    $ssid = str_replace('P"','',$ssid);
                     $network['ssid'] = $ssid;
                     break;
                 case 'psk':
@@ -80,7 +81,6 @@ function nearbyWifiStations(&$networks, $cached = true)
         $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
 
         $ssid = trim($arrNetwork[4]);
-        $ssid = evalHexSequence($ssid);
 
         // exclude raspap ssid
         if (empty($ssid) || $ssid == $ap_ssid) {
@@ -125,7 +125,7 @@ function connectedWifiStations(&$networks)
     exec('iwconfig ' .$_SESSION['wifi_client_interface'], $iwconfig_return);
     foreach ($iwconfig_return as $line) {
         if (preg_match('/ESSID:\"([^"]+)\"/i', $line, $iwconfig_ssid)) {
-            $networks[$iwconfig_ssid[1]]['connected'] = true;
+            $networks[hexSequence2lower($iwconfig_ssid[1])]['connected'] = true;
         }
     }
 }
@@ -187,5 +187,14 @@ function reinitializeWPA($force)
     $cmd = escapeshellcmd("sudo /sbin/wpa_supplicant -B -Dnl80211 -c/etc/wpa_supplicant/wpa_supplicant.conf -i". $_SESSION['wifi_client_interface']);
     $result = shell_exec($cmd);
     return $result;
+}
+
+/*
+ * Replace escaped bytes (hex) by binary - assume UTF8 encoding
+ *
+ * @param string $ssid
+ */
+function ssid2utf8($ssid) {
+    return  evalHexSequence($ssid);
 }
 

@@ -4,7 +4,7 @@
 		<?php if (strlen($network['ssid']) == 0) {
 			$network['ssid'] = "(unknown)";
 		} ?>
-		<h5 class="card-title"><?php echo htmlspecialchars($network['ssid'], ENT_QUOTES); ?></h5>
+		<h5 class="card-title"><?php echo htmlspecialchars($network['ssidutf8'], ENT_QUOTES); ?></h5>
 
 		<div class="info-item-wifi"><?php echo _("Status"); ?></div>
 		<div>
