@@ -10,11 +10,24 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
     exit;
 }
 
+function qr_encode($str)
+{
+    return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
+}
+
 $hostapd = parse_ini_file(RASPI_HOSTAPD_CONFIG, false, INI_SCANNER_RAW);
 
 // assume wpa encryption and get the passphrase
 $type = "WPA";
 $password = isset($hostapd['wpa_psk']) ? $hostapd['wpa_psk'] : $hostapd['wpa_passphrase'];
+
+// use wep if configured
+$wep_default_key = intval($hostapd['wep_default_key']);
+$wep_key = 'wep_key' . $wep_default_key;
+if (array_key_exists($wep_key, $hostapd)) {
+    $type = "WEP";
+    $password = $hostapd[$wep_key];
+}
 
 // if password is still empty, assume nopass
 if (empty($password)) {

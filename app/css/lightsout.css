@@ -378,7 +378,7 @@ tspan, rect {
   fill: #d2d2d2;
 }
 
-text-muted {
+.text-muted {
   font-size: 0.8rem;
 }
 
