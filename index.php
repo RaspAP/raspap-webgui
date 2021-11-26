@@ -180,7 +180,7 @@ $bridgedEnabled = getBridgedState();
           <?php endif; ?>
           <?php if (RASPI_FIREWALL_ENABLED) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="firewall_conf"><span class="fas fa-shield-alt mr-2"></span><span class="nav-label"><?php echo _("Firewall"); ?></a>
+          <a class="nav-link" href="firewall_conf"><i class="fas fa-shield-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Firewall"); ?></a>
         </li>
           <?php endif; ?>
           <?php if (RASPI_CONFAUTH_ENABLED) : ?>
