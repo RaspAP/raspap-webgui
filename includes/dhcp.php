@@ -180,9 +180,7 @@ function compareIPs($ip1, $ip2)
 function updateDnsmasqConfig($iface,$status)
 {
     $config = '# RaspAP '.$iface.' configuration'.PHP_EOL;
-    $config .= 'interface='.$iface.PHP_EOL.
-        'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].
-        ',255.255.255.0,';
+    $config .= 'interface='.$iface.PHP_EOL.'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].','.$_POST['SubnetMask'].',';
     if ($_POST['RangeLeaseTimeUnits'] !== 'infinite') {
         $config .= $_POST['RangeLeaseTime'];
     }
