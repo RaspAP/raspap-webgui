@@ -757,11 +757,6 @@ function qr_encode($str)
     return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
 }
 
-// Validates a host or FQDN
-function validate_host($host) {
-  return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host);
-}
-
 function evalHexSequence($string) {
     $evaluator = function ($input) {
 	return hex2bin($input[1]);
