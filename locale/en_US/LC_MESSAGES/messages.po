@@ -1104,11 +1104,11 @@ msgstr "Allowed IPs"
 msgid "Persistent keepalive"
 msgstr "Persistent keepalive"
 
-msgid "Display WireGuard debug log"
-msgstr "Display WireGuard debug log"
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Enable this option to display an updated <code>wg-quick</code> debug log."
 
-msgid "Enable this option to display an updated WireGuard debug log."
-msgstr "Enable this option to display an updated WireGuard debug log."
+msgid "WireGuard debug log updated"
+msgstr "WireGuard debug log updated"
 
 msgid "Scan this QR code with your client to connect to this tunnel"
 msgstr "Scan this QR code with your client to connect to this tunnel"
