@@ -13,6 +13,7 @@ function DisplayWireGuardConfig()
         $optRules     = $_POST['wgRules'];
         $optConf      = $_POST['wgCnfOpt'];
         $optSrvEnable = $_POST['wgSrvEnable'];
+        $optLogEnable = $_POST['wgLogEnable'];
         if (isset($_POST['savewgsettings']) && $optConf == 'manual' && $optSrvEnable == 1 ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['savewgsettings']) && $optConf == 'upload' && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
@@ -30,6 +31,7 @@ function DisplayWireGuardConfig()
                 $status->addMessage($line, 'info');
             }
         }
+        CheckWireGuardLog( $optLogEnable, $status );
     }
 
     // fetch server config
@@ -69,7 +71,7 @@ function DisplayWireGuardConfig()
             "serviceStatus",
             "public_ip",
             "optRules",
-            "wg_log",
+            "optLogEnable",
             "peer_id",
             "wg_srvpubkey",
             "wg_srvport",
@@ -218,8 +220,11 @@ function SaveWireGuardConfig($status)
             }
         }
     }
+
     // Save settings
     if ($good_input) {
+        var_dump($_POST);
+
         // server (wg0.conf)
         if ($_POST['wg_senabled'] == 1) {
             // fetch server private key from filesytem
@@ -278,10 +283,6 @@ function SaveWireGuardConfig($status)
             system('sudo rm '. RASPI_WIREGUARD_PATH.'client.conf', $return);
         }
 
-        // handle log option
-        if ($_POST['wg_log'] == "1") {
-            exec("sudo /bin/systemctl status wg-quick@wg0 | sudo tee /tmp/wireguard.log > /dev/null");
-        }
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
@@ -291,5 +292,19 @@ function SaveWireGuardConfig($status)
             $status->addMessage('WireGuard configuration failed to be updated', 'danger');
         }
     }
+}
+
+/**
+ *
+ * @return object $status
+ */
+function CheckWireGuardLog( $opt, $status )
+{
+   // handle log option
+    if ( $opt == "1") {
+        exec("sudo journalctl --identifier wg-quick > /tmp/wireguard.log");
+        $status->addMessage('WireGuard debug log updated', 'success');
+    }
+    return $status;
 }
 
