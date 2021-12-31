@@ -40,7 +40,7 @@ msgid "Memory Use"
 msgstr "Memorie utilizată"
 
 msgid "CPU Temp"
-msgstr "Temperatură CPU"
+msgstr "Temp CPU"
 
 msgid "Networking"
 msgstr "Reţele"
