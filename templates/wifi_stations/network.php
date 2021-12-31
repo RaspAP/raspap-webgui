@@ -5,7 +5,6 @@
 			$network['ssid'] = "(unknown)";
 		} ?>
 		<h5 class="card-title"><?php echo htmlspecialchars($network['ssidutf8'], ENT_QUOTES); ?></h5>
-
 		<div class="info-item-wifi"><?php echo _("Status"); ?></div>
 		<div>
 			<?php if ($network['configured']) { ?>

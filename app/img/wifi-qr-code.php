@@ -10,11 +10,6 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
     exit;
 }
 
-function qr_encode($str)
-{
-    return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
-}
-
 $hostapd = parse_ini_file(RASPI_HOSTAPD_CONFIG, false, INI_SCANNER_RAW);
 
 // assume wpa encryption and get the passphrase

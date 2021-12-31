@@ -73,8 +73,8 @@ function nearbyWifiStations(&$networks, $cached = true)
 
     $index = 0;
     if ( !empty($networks) ) {
-      $lastnet = end($networks);
-      if ( isset($lastnet['index']) ) $index = $lastnet['index'] + 1;
+        $lastnet = end($networks);
+        if ( isset($lastnet['index']) ) $index = $lastnet['index'] + 1;
     }
     
     foreach (explode("\n", $scan_results) as $network) {
