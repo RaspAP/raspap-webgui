@@ -1,0 +1,205 @@
+{
+    "info": "IPTABLES rules. $...$ expressions will be replaces automatically ($INTERFACE$, $PORT$, $IPADDRESS$)",
+    "rules_v4_file": "/etc/iptables/rules.v4",
+    "rules_v6_file": "/etc/iptables/rules.v6",
+    "order": [ "pre_rules", "restriction_rules", "main_rules", "exception_rules" ],
+    "pre_rules": [
+        {
+            "name": "firewall policies",
+            "fw-state": true,
+            "comment": "Policy rules (firewall)",
+            "rules": [
+                "-P INPUT DROP",
+                "-P FORWARD ACCEPT",
+                "-P OUTPUT ACCEPT",
+                "-t nat -P PREROUTING ACCEPT",
+                "-t nat -P POSTROUTING ACCEPT",
+                "-t nat -P INPUT ACCEPT",
+                "-t nat -P OUTPUT ACCEPT"
+            ]
+        },
+        {
+            "name": "policies",
+            "fw-state": false,
+            "comment": "Policy rules",
+            "rules": [
+                "-P INPUT ACCEPT",
+                "-P FORWARD ACCEPT",
+                "-P OUTPUT ACCEPT",
+                "-t nat -P PREROUTING ACCEPT",
+                "-t nat -P POSTROUTING ACCEPT",
+                "-t nat -P INPUT ACCEPT",
+                "-t nat -P OUTPUT ACCEPT"
+            ]
+        },
+        {
+            "name": "loopback",
+            "fw-state": true,
+            "comment": "allow loopback device",
+            "rules": [
+                "-A INPUT -i lo -j ACCEPT",
+                "-A OUTPUT -o lo -j ACCEPT"
+            ]
+        },
+        {
+            "name": "ping",
+            "fw-state": true,
+            "ip-version": 4,
+            "comment": "allow ping request and echo",
+            "rules": [
+                "-A INPUT -p icmp --icmp-type 8/0 -j ACCEPT",
+                "-A INPUT -p icmp --icmp-type 0/0 -j ACCEPT"
+            ]
+        },
+        {
+            "name": "ping IPv6",
+            "fw-state": true,
+            "ip-version": 6,
+            "comment": "allow ping request and echo for IPv6",
+            "rules": [
+                "-A INPUT -p icmpv6 --icmpv6-type echo-request -j ACCEPT",
+                "-A INPUT -p icmpv6 --icmpv6-type echo-reply -j ACCEPT"
+            ]
+        },
+        {
+            "name": "ntp",
+            "fw-state": true,
+            "comment": "allow ntp request via udp (tcp should work w/o rule)",
+            "rules": [
+                "-A INPUT -p udp --sport 123 -j ACCEPT"
+            ]
+        },
+        {
+            "name": "dns",
+            "fw-state": true,
+            "comment": "allow dns request via tcp and udp",
+            "rules": [
+                "-A INPUT -p udp -m multiport --sport 53,853 -j ACCEPT",
+                "-A INPUT -p tcp -m multiport --sport 53,853 -j ACCEPT"
+            ]
+        }
+    ],
+    "main_rules": [
+        {
+            "name": "accesspoint",
+            "fw-state": true,
+            "comment": "Access point interface by default no restrictions",
+            "dependson": [
+                    { "var": "ap-device", "type": "string", "replace": "$INTERFACE$" }
+            ],
+            "rules": [
+                    "-A INPUT -i $INTERFACE$ -j ACCEPT",
+                    "-A OUTPUT -o $INTERFACE$ -j ACCEPT"
+            ]
+        },
+        {
+            "name": "NAT for access point",
+            "comment": "Masquerading needed for access point",
+            "rules": [
+                "-t nat -A POSTROUTING -j MASQUERADE"
+            ]
+        },
+        {
+            "name": "clients",
+            "fw-state": true,
+            "comment": "Rules for client interfaces (includes tun device)",
+            "rules": [
+                "-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT"
+            ]
+        },
+        {
+            "name": "openvpn",
+            "comment": "Rules for tunnel device (tun)",
+            "ip-version": 4,
+            "dependson": [
+                  { "var": "openvpn-enable", "type": "bool" },
+                  { "var": "openvpn-serverip", "type": "string", "replace": "$IPADDRESS$" },
+                  { "var": "ap-device", "type": "string", "replace": "$INTERFACE$" }
+            ],
+            "rules": [
+                "-A INPUT -p udp -s $IPADDRESS$ -j ACCEPT",
+                "-A FORWARD -i tun+ -o $INTERFACE$ -m state --state RELATED,ESTABLISHED -j ACCEPT",
+                "-A FORWARD -i $INTERFACE$ -o tun+ -j ACCEPT",
+                "-t nat -A POSTROUTING -o tun+ -j MASQUERADE"
+            ]
+        },
+        {
+            "name": "wireguard",
+            "comment": "Rules for wireguard device (wg)",
+            "ip-version": 4,
+            "dependson": [
+                  { "var": "wireguard-enable", "type": "bool" },
+                  { "var": "wireguard-serverip", "type": "string", "replace": "$IPADDRESS$" },
+                  { "var": "client-device", "type": "string", "replace": "$INTERFACE$" }
+            ],
+            "rules": [
+                "-A INPUT -p udp -s $IPADDRESS$ -j ACCEPT",
+                "-A FORWARD -i wg+ -j ACCEPT",
+                "-t nat -A POSTROUTING -o $INTERFACE$ -j MASQUERADE"
+            ]
+        }
+    ],
+    "exception_rules": [
+        {
+            "name": "ssh",
+            "fw-state": true,
+            "comment": "Allow ssh access to RaspAP on port 22",
+            "dependson": [
+                { "var": "ssh-enable", "type": "bool" }
+            ],
+            "rules": [
+                "-A INPUT -p tcp --dport 22 -j ACCEPT"
+            ]
+        },
+        {
+            "name": "http",
+            "fw-state": true,
+            "comment": "Allow access to RaspAP GUI (https)",
+            "dependson": [
+                { "var": "http-enable", "type": "bool" }
+            ],
+            "rules": [
+                "-A INPUT -p tcp -m multiport --dports 80,443 -j ACCEPT"
+            ]
+        },
+        {
+            "name": "interface",
+            "fw-state": true,
+            "comment": "Exclude interface from firewall",
+            "dependson": [
+                { "var": "excl-devices", "type": "list", "replace": "$INTERFACE$" }
+            ],
+            "rules": [
+                "-A INPUT -i $INTERFACE$ -j ACCEPT",
+                "-A OUTPUT -o $INTERFACE$ -j ACCEPT"
+            ]
+        },
+        {
+            "name": "ipaddress",
+            "fw-state": true,
+            "ip-version": 4,
+            "comment": "allow access from/to IP",
+            "dependson": [
+                { "var": "excluded-ips", "type": "list", "replace": "$IPADDRESS$" }
+            ],
+            "rules": [
+                "-A INPUT -s $IPADDRESS$ -j ACCEPT",
+                "-A INPUT -d $IPADDRESS$ -j ACCEPT"
+            ]
+        }
+    ],
+    "restriction_rules": [
+        {
+            "name": "ipaddress",
+            "fw-state": true,
+            "ip-version": 4,
+            "dependson": [
+                { "var": "restricted-ips", "type": "list", "replace": "$IPADDRESS$" }
+            ],
+            "comment": "Block access from IP-address",
+            "rules": [
+                "-A INPUT -s $IPADDRESS$ -j DROP"
+            ]
+        }
+    ]
+}

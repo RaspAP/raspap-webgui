@@ -147,6 +147,7 @@ function DisplaySystem()
         'pl_PL.UTF-8' => 'Polskie',
         'pt_BR.UTF-8' => 'Português',
         'ru_RU.UTF-8' => 'Русский',
+        'ro_RO.UTF-8' => 'Română',
         'sv_SE.UTF-8' => 'Svenska',
         'tr_TR.UTF-8' => 'Türkçe',
         'vi_VN.UTF-8' => 'Tiếng Việt (Vietnamese)'

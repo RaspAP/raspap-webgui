@@ -11,10 +11,23 @@ function getRouteInfo($checkAccess)
     $rInfo = array();
     // get all default routes
     exec('ip route list |  sed -rn "s/default via (([0-9]{1,3}\.){3}[0-9]{1,3}).*dev (\w*).*src (([0-9]{1,3}\.){3}[0-9]{1,3}).*/\3 \4 \1/p"', $routes);
-    exec('ip route list |  sed -rn "s/default dev (\w*) scope link/\1/p"', $devs);
+    $devpat = array("tun", "ppp");  // routing in case of VPN and PPP connection are different
+    foreach ($devpat as $pat) {
+       exec('ip route list |  grep -oP "'.$pat.'[0-9]" | sort -u', $devs);
+    }
     if (!empty($devs)) {
-        foreach ($devs as $dev)
-            exec('ip route list |  sed -rn "s/(([0-9]{1,3}\.){3}[0-9]{1,3}).*dev.*("' . $dev . '").*scope link src (([0-9]{1,3}\.){3}[0-9]{1,3}).*/\3 \4 \1/p"', $routes);
+        foreach ($devs as $dev) {
+            unset($gateway);
+            unset($ipadd);
+            exec('ip route list |  sed -rn "s/^.*via (([0-9]{1,3}\.){3}[0-9]{1,3}) dev "' . $dev . '".*$/\1/p" | head -n 1', $gateway);
+            if (empty($gateway)) {
+                exec('ip route list | sed -rn "s/(([0-9]{1,3}\.){3}[0-9]{1,3}).*dev.*"' . $dev . '".*scope link src.*/\1/p"', $gateway);
+            }
+            exec('ifconfig -a | grep -i ' . $dev . ' -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}[0-9]{1,3}"', $ipadd);
+            if (!empty($gateway) && !empty($ipadd)) {
+                $routes[]="$dev $ipadd[0] $gateway[0]";
+            }
+        }
     }
     if (!empty($routes)) {
         foreach ($routes as $i => $route) {
@@ -41,5 +54,4 @@ function getRouteInfo($checkAccess)
     }
     return $rInfo;
 }
-?>
 

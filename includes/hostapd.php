@@ -25,11 +25,16 @@ function DisplayHostAPDConfig()
     ];
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
+    $arrTxPower = getDefaultNetOpts('txpower','dbm');
     $managedModeEnabled = false;
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     sort($interfaces);
 
     exec("iw reg get | awk '/country / { sub(/:/,\"\",$2); print $2 }'", $country_code);
+
+    $cmd = "iw dev ".$_SESSION['ap_interface']." info | awk '$1==\"txpower\" {print $2}'";
+    exec($cmd, $txpower);
+    $txpower = intval($txpower[0]);
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveHostAPDSettings'])) {
@@ -88,6 +93,17 @@ function DisplayHostAPDConfig()
     if (!isset($arrConfig['country_code']) && isset($country_code[0])) {
         $arrConfig['country_code'] = $country_code[0];
     }
+    // set txpower with iw if value is non-default ('auto')
+    if (isset($_POST['txpower']) && ($_POST['txpower'] != 'auto')) {
+        $sdBm = $_POST['txpower'] * 100;
+        exec('sudo /sbin/iw dev '.$_POST['interface'].' set txpower fixed '.$sdBm, $return);
+        $status->addMessage('Setting transmit power to '.$_POST['txpower'].' dBm.', 'success');
+        $txpower = $_POST['txpower'];
+    } elseif ($_POST['txpower'] == 'auto') {
+        exec('sudo /sbin/iw dev '.$_POST['interface'].' set txpower auto', $return);
+        $status->addMessage('Setting transmit power to '.$_POST['txpower'].'.', 'success');
+        $txpower = $_POST['txpower'];
+    }
 
     echo renderTemplate(
         "hostapd", compact(
@@ -101,6 +117,8 @@ function DisplayHostAPDConfig()
             "selectedHwMode",
             "arrSecurity",
             "arrEncType",
+            "arrTxPower",
+            "txpower",
             "arrHostapdConf"
         )
     );
@@ -308,13 +326,13 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         $ip_address.= (!preg_match('/.*\/\d+/', $ip_address)) ? '/'.mask2cidr($netmask) : null;
 
         if ($bridgedEnable == 1) {
-            $config = array_keys(getDefaultNetOpts('dhcp'));
+            $config = array_keys(getDefaultNetOpts('dhcp','options'));
             $config[] = PHP_EOL.'# RaspAP br0 configuration';
             $config[] = 'denyinterfaces eth0 wlan0';
             $config[] = 'interface br0';
             $config[] = PHP_EOL;
         } elseif ($wifiAPEnable == 1) {
-            $config = array_keys(getDefaultNetOpts('dhcp'));
+            $config = array_keys(getDefaultNetOpts('dhcp','options'));
             $config[] = PHP_EOL.'# RaspAP uap0 configuration';
             $config[] = 'interface uap0';
             $config[] = 'static ip_address='.$ip_address;

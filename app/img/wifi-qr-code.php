@@ -10,11 +10,6 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
     exit;
 }
 
-function qr_encode($str)
-{
-    return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
-}
-
 $hostapd = parse_ini_file(RASPI_HOSTAPD_CONFIG, false, INI_SCANNER_RAW);
 
 // assume wpa encryption and get the passphrase
@@ -52,7 +47,8 @@ $content_length = strlen($svg);
 header("Content-Type: image/svg+xml");
 header("Content-Length: $content_length");
 header("Last-Modified: $last_modified");
+header("Content-Disposition: attachment; filename=\"qr.svg\"");
 header("ETag: \"$etag\"");
 header("X-QR-Code-Content: $data");
-echo shell_exec($command);
+echo $svg;
 

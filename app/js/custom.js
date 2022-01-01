@@ -1,6 +1,5 @@
 function msgShow(retcode,msg) {
-    if(retcode == 0) {
-        var alertType = 'success';
+    if(retcode == 0) { var alertType = 'success';
     } else if(retcode == 2 || retcode == 1) {
         var alertType = 'danger';
     }
@@ -122,6 +121,11 @@ $(document).on("change", ".js-field-preset", function(e) {
 $(document).on("click", "#gen_wpa_passphrase", function(e) {
     $('#txtwpapassphrase').val(genPassword(63));
 });
+
+// Enable Bootstrap tooltips
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 
 function genPassword(pwdLen) {
     var pwdChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -252,6 +256,69 @@ $('#hostapdModal').on('shown.bs.modal', function (e) {
 $('#configureClientModal').on('shown.bs.modal', function (e) {
 });
 
+$('#ovpn-confirm-delete').on('click', '.btn-delete', function (e) {
+    var cfg_id = $(this).data('recordId');
+    $.post('ajax/openvpn/del_ovpncfg.php',{'cfg_id':cfg_id},function(data){
+        jsonData = JSON.parse(data);
+        $("#ovpn-confirm-delete").modal('hide');
+        var row = $(document.getElementById("openvpn-client-row-" + cfg_id));
+        row.fadeOut( "slow", function() {
+            row.remove();
+        });
+    });
+});
+
+$('#ovpn-confirm-delete').on('show.bs.modal', function (e) {
+    var data = $(e.relatedTarget).data();
+    $('.btn-delete', this).data('recordId', data.recordId);
+});
+
+$('#ovpn-confirm-activate').on('click', '.btn-activate', function (e) {
+    var cfg_id = $(this).data('record-id');
+    $.post('ajax/openvpn/activate_ovpncfg.php',{'cfg_id':cfg_id},function(data){
+        jsonData = JSON.parse(data);
+        $("#ovpn-confirm-activate").modal('hide');
+        setTimeout(function(){
+            window.location.reload();
+        },300);
+    });
+});
+
+$('#ovpn-confirm-activate').on('shown.bs.modal', function (e) {
+    var data = $(e.relatedTarget).data();
+    $('.btn-activate', this).data('recordId', data.recordId);
+});
+
+$('#ovpn-userpw,#ovpn-certs').on('click', function (e) {
+    if (this.id == 'ovpn-userpw') {
+        $('#PanelCerts').hide();
+        $('#PanelUserPW').show();
+    } else if (this.id == 'ovpn-certs') {
+        $('#PanelUserPW').hide();
+        $('#PanelCerts').show();
+    }
+});
+
+$(document).ready(function(){
+  $("#PanelManual").hide();
+});
+
+$('#wg-upload,#wg-manual').on('click', function (e) {
+    if (this.id == 'wg-upload') {
+        $('#PanelManual').hide();
+        $('#PanelUpload').show();
+    } else if (this.id == 'wg-manual') {
+        $('#PanelUpload').hide();
+        $('#PanelManual').show();
+    }
+});
+
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+
 /*
 Sets the wirelss channel select options based on hw_mode and country_code.
 
@@ -320,6 +387,55 @@ function updateBlocklist() {
 function clearBlocklistStatus() {
     $('#cbxblocklist-status').removeClass('check-updated').addClass('check-hidden');
 }
+
+// Handler for the wireguard generate key button
+$('.wg-keygen').click(function(){
+    var entity_pub = $(this).parent('div').prev('input[type="text"]');
+    var entity_priv = $(this).parent('div').next('input[type="hidden"]');
+    var updated = entity_pub.attr('name')+"-pubkey-status";
+    $.post('ajax/networking/get_wgkey.php',{'entity':entity_pub.attr('name') },function(data){
+        var jsonData = JSON.parse(data);
+        entity_pub.val(jsonData.pubkey);
+        $('#' + updated).removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
+    })
+})
+
+// Handler for wireguard client.conf download
+$('.wg-client-dl').click(function(){
+    var req = new XMLHttpRequest();
+    var url = 'ajax/networking/get_wgcfg.php';
+    req.open('get', url, true);
+    req.responseType = 'blob';
+    req.setRequestHeader('Content-type', 'text/plain; charset=UTF-8');
+    req.onreadystatechange = function (event) {
+        if(req.readyState == 4 && req.status == 200) {
+            var blob = req.response;
+            var link=document.createElement('a');
+            link.href=window.URL.createObjectURL(blob);
+            link.download = 'client.conf';
+            link.click();
+        }
+    }
+    req.send();
+})
+
+// Event listener for Bootstrap's form validation
+window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          //console.log(event.submitter);
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+    });
+}, false);
+
 // Static Array method
 Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
 
@@ -355,6 +471,17 @@ function set_theme(theme) {
     // persist selected theme in cookie 
     setCookie('theme',theme,90);
 }
+
+$(function() {
+    $('#night-mode').change(function() {
+        var state = $(this).is(':checked');
+        if (state == true && getCookie('theme') != 'lightsout.css') {
+            set_theme('lightsout.css');
+        } else {
+            set_theme('custom.php');
+        }
+   });
+});
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();

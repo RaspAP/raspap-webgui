@@ -1,26 +1,19 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-# 
-# Translators:
-# William Zimmerman <billzimmerman@gmail.com>, 2019
-# 
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
+"Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-25 17:42+0000\n"
-"Last-Translator: William Zimmerman <billzimmerman@gmail.com>, 2019\n"
-"Language-Team: Japanese (https://www.transifex.com/na-360/teams/104285/ja/)\n"
+"PO-Revision-Date: 2020-04-17 06:37\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Japanese\n"
+"Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: ja\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -40,6 +33,12 @@ msgstr "WiFiクライアント"
 
 msgid "Hotspot"
 msgstr "ホットスポット"
+
+msgid "Memory Use"
+msgstr "メモリ使用率"
+
+msgid "CPU Temp"
+msgstr "CPU温度"
 
 msgid "Networking"
 msgstr "ネットワーク"
@@ -115,9 +114,7 @@ msgstr "パスフレーズ"
 msgid "Wifi settings updated successfully"
 msgstr "Wifi設定が正常に更新されました"
 
-msgid ""
-"Wifi settings updated but cannot restart (cannot execute 'wpa_cli "
-"reconfigure')"
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
 msgstr "Wifi設定は更新されましたが、再起動できません（「wpa_cli reconfigure」を実行できません）"
 
 msgid "Wifi settings failed to be updated"
@@ -147,11 +144,8 @@ msgstr "隠す"
 msgid "Not configured"
 msgstr "設定されていません"
 
-msgid ""
-"<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not "
-"currently support connecting to WEP"
-msgstr ""
-"<strong>注：</strong> WEPアクセスポイントは「オープン」と表示されます。RaspAPは現在、WEPへの接続をサポートしていません"
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>注：</strong> WEPアクセスポイントは「オープン」と表示されます。RaspAPは現在、WEPへの接続をサポートしていません"
 
 #: includes/dashboard.php
 msgid "Interface Information"
@@ -187,8 +181,8 @@ msgstr "転送されたパケット"
 msgid "Transferred Bytes"
 msgstr "転送されたバイト"
 
-msgid "Wireless Information"
-msgstr "ワイヤレスの情報"
+msgid "Wireless Client"
+msgstr "無線クライアント"
 
 msgid "Connected To"
 msgstr "接続"
@@ -330,31 +324,31 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasqが実行されていません"
 
 msgid "Upstream DNS servers"
-msgstr "Upstream DNS servers"
+msgstr "アップストリームDNSサーバー"
 
 msgid "Only ever query DNS servers configured below"
-msgstr "Only ever query DNS servers configured below"
+msgstr ""
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
 
 msgid "Add upstream DNS server"
-msgstr "Add upstream DNS server"
+msgstr "アップストリームDNSサーバーを追加"
 
 msgid "Format"
-msgstr "Format"
+msgstr ""
 
 msgid "Choose a hosted server"
-msgstr "Choose a hosted server"
+msgstr ""
 
 msgid "Log DHCP requests"
-msgstr "Log DHCP requests"
+msgstr ""
 
 msgid "Log DNS queries"
-msgstr "Log DNS queries"
+msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -438,17 +432,17 @@ msgstr "ログファイル出力"
 msgid "WiFi client AP mode"
 msgstr "WiFiクライアントAPモード"
 
+msgid "Bridged AP mode"
+msgstr ""
+
 msgid "Hide SSID in broadcast"
 msgstr "ブロードキャストでSSIDを非表示"
 
 msgid "Maximum number of clients"
 msgstr "クライアントの最大数"
 
-msgid ""
-"Configures the max_num_sta option of hostapd. The default and maximum is "
-"2007. If empty or 0, the default applies."
-msgstr ""
-"hostapdのmax_num_staオプションを構成します。 デフォルトおよび最大値は2007です。空欄または0の場合、デフォルトが適用されます。"
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "hostapdのmax_num_staオプションを構成します。 デフォルトおよび最大値は2007です。空欄または0の場合、デフォルトが適用されます。"
 
 #: includes/networking.php
 msgid "Summary"
@@ -672,6 +666,10 @@ msgstr "TORを実行しようとしています"
 msgid "Attempting to stop TOR"
 msgstr "TORを停止しようとしています"
 
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr ""
+
 #: common form controls
 msgid "Save settings"
 msgstr "設定を保存"
@@ -693,3 +691,46 @@ msgstr "上"
 
 msgid "down"
 msgstr "下"
+
+msgid "adblock"
+msgstr "adblock"
+
+msgid "Ad Blocking"
+msgstr "広告ブロック"
+
+msgid "Start Ad Blocking"
+msgstr "広告ブロックを開始する"
+
+msgid "Restart Ad Blocking"
+msgstr "広告ブロックを再開する"
+
+msgid "Blocklist settings"
+msgstr ""
+
+msgid "Enable blocklists"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr ""
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Hostnames blocklist last updated"
+msgstr ""
+
+msgid "Domains blocklist last updated"
+msgstr ""
+
+msgid "Update now"
+msgstr "今すぐ更新する"
+
+msgid "Statistics"
+msgstr "統計"
+
+msgid "Information provided by adblock"
+msgstr ""
+
