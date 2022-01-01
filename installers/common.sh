@@ -352,21 +352,19 @@ function _prompt_install_openvpn() {
 
 # Prompt to install WireGuard
 function _prompt_install_wireguard() {
-    if [ "$insiders" == 1 ]; then
-        _install_log "Configure WireGuard support"
-        echo -n "Install WireGuard and enable VPN tunnel configuration? [Y/n]: "
-        if [ "$assume_yes" == 0 ]; then
-            read answer < /dev/tty
-            if [ "$answer" != "${answer#[Nn]}" ]; then
-                echo -e
-            else
-                _install_wireguard
-            fi
-        elif [ "$wg_option" == 1 ]; then
-            _install_wireguard
+    _install_log "Configure WireGuard support"
+    echo -n "Install WireGuard and enable VPN tunnel configuration? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo -e
         else
-            echo "(Skipped)"
+            _install_wireguard
         fi
+    elif [ "$wg_option" == 1 ]; then
+        _install_wireguard
+    else
+        echo "(Skipped)"
     fi
 }
 
