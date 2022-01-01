@@ -338,7 +338,7 @@ class Upload
     {
         if (!empty($object->mimes)) {
             if (!in_array($object->file['mime'], $object->mimes)) {
-                $object->set_error('Mime type not allowed.');
+                $object->set_error('MIME type not allowed.');
             }
         }
     }
