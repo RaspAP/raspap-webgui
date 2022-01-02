@@ -52,7 +52,7 @@ if (isset($interface)) {
     $dhcpdata['StaticRouters'] = $static_routers[1];
     $dhcpdata['StaticDNS'] = $static_dns[1];
     $dhcpdata['FallbackEnabled'] = empty($fallback) ? false: true;
-    $dhcpdata['DefaultRoute'] = empty($gateway) || $gateway[0] == "gateway";
+    $dhcpdata['DefaultRoute'] = $gateway[0] == "gateway";
 
     echo json_encode($dhcpdata);
 }
