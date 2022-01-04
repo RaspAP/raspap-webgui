@@ -320,7 +320,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         // Set dhcp values from system config, fallback to default if undefined
         $jsonData = json_decode(getNetConfig($ap_iface), true);
         $ip_address = ($jsonData['StaticIP'] == '') ? getDefaultNetValue('dhcp',$ap_iface,'static ip_address') : $jsonData['StaticIP'];
-        $domain_name_server = ($jsonData['StaticDNS'] =='') ? getDefaultNetValue('dhcp',$ap_iface,'static domain_name_server') : $jsonData['StaticDNS'];
+        $domain_name_server = ($jsonData['StaticDNS'] =='') ? getDefaultNetValue('dhcp','wlan0','static domain_name_server') : $jsonData['StaticDNS'];
         $routers = ($jsonData['StaticRouters'] == '') ? getDefaultNetValue('dhcp',$ap_iface,'static routers') : $jsonData['StaticRouters'];
         $netmask = ($jsonData['SubnetMask'] == '' || $jsonData['SubnetMask'] == '0.0.0.0') ? getDefaultNetValue('dhcp',$ap_iface,'subnetmask') : $jsonData['SubnetMask'];
         $ip_address.= (!preg_match('/.*\/\d+/', $ip_address)) ? '/'.mask2cidr($netmask) : null;
@@ -339,10 +339,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
             $config[] = 'nohook wpa_supplicant';
             $config[] = PHP_EOL;
         } else {
-            // Default wlan0 config
             $def_ip = array();
-            $config = [ '# RaspAP wlan0 configuration' ];
-            $config[] = 'interface wlan0';
+            $config = [ '# RaspAP '.$ap_iface.' configuration' ];
+            $config[] = 'interface '.$ap_iface;
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'static routers='.$routers;
             $config[] = 'static domain_name_server='.$domain_name_server;
