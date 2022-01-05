@@ -223,8 +223,6 @@ function SaveWireGuardConfig($status)
 
     // Save settings
     if ($good_input) {
-        var_dump($_POST);
-
         // server (wg0.conf)
         if ($_POST['wg_senabled'] == 1) {
             // fetch server private key from filesytem
