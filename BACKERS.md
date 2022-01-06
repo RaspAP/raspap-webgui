@@ -17,10 +17,10 @@ You can [become a sponsor](https://github.com/sponsors/RaspAP) using your indivi
 ### Exclusive features
 The following features are currently available exclusively to sponsors. A tangible side benefit of sponsorship is that Insiders are able to help steer future development of RaspAP. This is done through Insiders' access to discussions, feature requests, issues and pull requests in the private GitHub repository.
 
- ✅ [Network device management](https://docs.raspap.com/net-devices/)   
+ ✅ [Network device management](https://docs.raspap.com/net-devices/)    
  ✅ [Firewall settings](https://docs.raspap.com/firewall/)   
- ⚙️ 802.11w Protected Management Frames (in progress)  
- ⚙️ WPA3-Personal AP security (in progress)   
+ ✅ [WPA3-Personal AP security](https://docs.raspap.com/ap-basics/#wpa3-personal)  
+ ✅ [802.11w Protected Management Frames](https://docs.raspap.com/ap-basics/#80211w)    
  ⚙️ Traffic shaping (in progress)   
  ⚙️ Printable Wi-Fi signs (in progress)   
  
