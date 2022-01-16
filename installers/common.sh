@@ -43,9 +43,9 @@ function _install_raspap() {
     _update_system_packages
     _install_dependencies
     _enable_php_lighttpd
+    _check_for_old_configs
     _create_raspap_directories
     _optimize_php
-    _check_for_old_configs
     _download_latest_files
     _change_file_ownership
     _create_hostapd_scripts
@@ -425,6 +425,7 @@ function _download_latest_files() {
     if [ "$upgrade" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
         sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
+        sudo mv /tmp/raspap.auth $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
     fi
 
     _install_status 0
@@ -445,6 +446,7 @@ function _check_for_old_configs() {
     if [ "$upgrade" == 1 ]; then
         _install_log "Moving existing configuration to /tmp"
         sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
+        sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
     else
         _install_log "Backing up existing configs to ${raspap_dir}/backups"
         if [ -f /etc/network/interfaces ]; then
