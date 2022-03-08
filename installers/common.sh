@@ -675,7 +675,7 @@ function _install_complete() {
         # Prompt to reboot if wired ethernet (eth0) is connected.
         # With default_configuration this will create an active AP on restart.
         if ip a | grep -q ': eth0:.*state UP'; then
-            echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
+            echo -n "The system needs to be rebooted as a final step. Reboot now? [Y/n]: "
             read answer < /dev/tty
             if [ "$answer" != "${answer#[Nn]}" ]; then
                 echo "Installation reboot aborted."
