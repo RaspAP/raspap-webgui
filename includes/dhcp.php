@@ -226,7 +226,7 @@ function updateDnsmasqConfig($iface,$status)
 
     // write default 090_raspap.conf
     $config = '# RaspAP default config'.PHP_EOL;
-    $config .='log-facility=/tmp/dnsmasq.log'.PHP_EOL;
+    $config .='log-facility='.RASPI_DHCPCD_LOG.PHP_EOL;
     $config .='conf-dir=/etc/dnsmasq.d'.PHP_EOL;
     // handle log option
     if ($_POST['log-dhcp'] == "1") {

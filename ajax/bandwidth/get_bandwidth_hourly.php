@@ -34,19 +34,16 @@ if (filter_input(INPUT_GET, 'tu') == 'h') {
     23     => array('date' => '23:00', 'rx' => 0, 'tx' => 0)
     );
 
-
-
-
     exec(sprintf('vnstat -i %s --json h', escapeshellarg($interface)), $jsonstdoutvnstat, $exitcodedaily);
     if ($exitcodedaily !== 0) {
         exit('vnstat error');
     }
 
     $jsonobj = json_decode($jsonstdoutvnstat[0], true)['interfaces'][0];
-    $jsonData = $jsonobj['traffic']['hours'];
+    $jsonData = $jsonobj['traffic']['hour'];
     for ($i = count($jsonData) - 1; $i >= 0; --$i) {
-        $data_template[$jsonData[$i]['id']]['rx'] = round($jsonData[$i]['rx'] / 1024, 0);
-        $data_template[$jsonData[$i]['id']]['tx'] = round($jsonData[$i]['tx'] / 1024, 0);
+        $data_template[$jsonData[$i]['time']['hour']]['rx'] = round($jsonData[$i]['rx'] / 1024, 0);
+        $data_template[$jsonData[$i]['time']['hour']]['tx'] = round($jsonData[$i]['tx'] / 1024, 0);
     }
 
     $data = array();

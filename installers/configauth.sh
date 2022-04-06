@@ -35,7 +35,7 @@ echo "Checking iptables rules"
 rules=(
 "-A POSTROUTING -o tun0 -j MASQUERADE"
 "-A FORWARD -i tun0 -o ${interface} -m state --state RELATED,ESTABLISHED -j ACCEPT"
-"-A FORWARD -i wlan0 -o tun0 -j ACCEPT"
+"-A FORWARD -i ${interface} -o tun0 -j ACCEPT"
 )
 
 for rule in "${rules[@]}"; do

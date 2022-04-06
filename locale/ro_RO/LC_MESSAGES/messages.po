@@ -1,0 +1,1206 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: raspap\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2021-12-31 14:29\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Romanian\n"
+"Language: ro_RO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
+"X-Crowdin-Language: ro\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 10\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "Portal de configurare RaspAP Wi-Fi"
+
+msgid "Toggle navigation"
+msgstr "Comută navigarea"
+
+msgid "RaspAP Wifi Portal"
+msgstr "Portal Wifi RaspAP"
+
+msgid "Dashboard"
+msgstr "Tablou de bord"
+
+msgid "WiFi client"
+msgstr "Client Wi-Fi"
+
+msgid "Hotspot"
+msgstr "Hotspot"
+
+msgid "Memory Use"
+msgstr "Memorie utilizată"
+
+msgid "CPU Temp"
+msgstr "Temp CPU"
+
+msgid "Networking"
+msgstr "Reţele"
+
+msgid "DHCP Server"
+msgstr "Serverul DHCP"
+
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+msgid "TOR proxy"
+msgstr "Proxy TOR"
+
+msgid "Authentication"
+msgstr "Autentificare"
+
+msgid "Change Theme"
+msgstr "Schimbare temă"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "About RaspAP"
+msgstr "Despre RaspAP"
+
+#: includes/admin.php
+msgid "Authentication settings"
+msgstr "Setări de autentificare"
+
+msgid "New passwords do not match"
+msgstr "Parolele noi nu coincid"
+
+msgid "Username must not be empty"
+msgstr "Numele de utilizator trebuie să fie completat"
+
+msgid "Admin password updated"
+msgstr "Parolă de administrare actualizată"
+
+msgid "Failed to update admin password"
+msgstr "Actualizarea parolei de administrare a eșuat"
+
+msgid "Old password does not match"
+msgstr "Parola anterioară nu se potrivește"
+
+msgid "Username"
+msgstr "Nume de utilizator"
+
+msgid "Old password"
+msgstr "Parola anterioară"
+
+msgid "New password"
+msgstr "Parola nouă"
+
+msgid "Repeat new password"
+msgstr "Reintroduceți parola nouă"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "Setările clientului"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "Canal"
+
+msgid "Security"
+msgstr "Securitate"
+
+msgid "Passphrase"
+msgstr "Parolă"
+
+msgid "Wifi settings updated successfully"
+msgstr "Setările Wi-Fi actualizate cu succes"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "Setările Wi-Fi actualizate dar nu pot reporni (nu se poate executa 'wpa_cli reconfigurare')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Setările Wi-Fi nu au putut fi actualizate"
+
+msgid "Failed to update wifi settings"
+msgstr "Actualizarea setărilor Wi-Fi a eșuat"
+
+msgid "Rescan"
+msgstr "Scanează din nou"
+
+msgid "Update"
+msgstr "Actualizare"
+
+msgid "Add"
+msgstr "Adaugă"
+
+msgid "Delete"
+msgstr "Șterge"
+
+msgid "Show"
+msgstr "Afișează"
+
+msgid "Hide"
+msgstr "Ascunde"
+
+msgid "Not configured"
+msgstr "Neconfigurat"
+
+msgid "Connected"
+msgstr ""
+
+msgid "Known"
+msgstr ""
+
+msgid "Nearby"
+msgstr ""
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Notă:</strong> Punctele de acces WEP apar ca 'Open'. RaspAP nu acceptă conectarea la WEP"
+
+msgid "No Wifi stations found"
+msgstr ""
+
+msgid "Reinitializing wpa_supplicant"
+msgstr ""
+
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr ""
+
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr ""
+
+msgid "Reinitialize"
+msgstr ""
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "Informaţii Interfaţă"
+
+msgid "Interface Name"
+msgstr "Numele interfeței"
+
+msgid "IPv4 Address"
+msgstr "Adresă IPv4"
+
+msgid "IPv6 Address"
+msgstr "Adresă IPv6"
+
+msgid "Subnet Mask"
+msgstr "Mască subrețea"
+
+msgid "Mac Address"
+msgstr "Adresa Mac"
+
+msgid "Interface Statistics"
+msgstr "Statistici interfață"
+
+msgid "Received Packets"
+msgstr "Pachete primite"
+
+msgid "Received Bytes"
+msgstr "Octeți primiți"
+
+msgid "Transferred Packets"
+msgstr "Pachete transferate"
+
+msgid "Transferred Bytes"
+msgstr "Octeți transferați"
+
+msgid "Wireless Client"
+msgstr "Client wireless"
+
+msgid "Connected To"
+msgstr "Conectat la"
+
+msgid "AP Mac Address"
+msgstr "Adresă Mac a AP"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Signal Level"
+msgstr "Nivelul semnalului"
+
+msgid "Transmit Power"
+msgstr "Putere de transmisie"
+
+msgid "Frequency"
+msgstr "Frecvența"
+
+msgid "Link Quality"
+msgstr "Calitate legătură"
+
+msgid "Information provided by ip and iw and from system"
+msgstr "Informaţii furnizate de ip, iw şi de sistem"
+
+msgid "No MAC Address Found"
+msgstr "Nu s-a găsit nicio adresă MAC"
+
+msgid "No IP Address Found"
+msgstr "Nu s-a găsit nicio adresă IP"
+
+msgid "No Subnet Mask Found"
+msgstr "Nu s-a găsit nicio mască de subrețea"
+
+msgid "No Data"
+msgstr "Nu există date"
+
+msgid "Not connected"
+msgstr "Neconectat"
+
+msgid "Interface is up"
+msgstr "Interfață activă"
+
+msgid "Interface is down"
+msgstr "Interfață inactivă"
+
+msgid "Interface already down"
+msgstr "Interfața era inactivă"
+
+msgid "Start wlan0"
+msgstr "Pornire wlan0"
+
+msgid "Stop wlan0"
+msgstr "Oprire wlan0"
+
+msgid "Connected Devices"
+msgstr "Dispozitive conectate"
+
+msgid "Client: Ethernet cable"
+msgstr ""
+
+msgid "Ethernet"
+msgstr ""
+
+msgid "Client: Smartphone (USB tethering)"
+msgstr ""
+
+msgid "Smartphone"
+msgstr ""
+
+msgid "WiFi"
+msgstr ""
+
+msgid "Mobile Data Client"
+msgstr ""
+
+msgid "Mobile Data"
+msgstr ""
+
+msgid "No information available"
+msgstr ""
+
+msgid "Interface name invalid"
+msgstr ""
+
+msgid "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
+msgstr ""
+
+msgid "Waiting for the interface to start ..."
+msgstr ""
+
+msgid "Stop the Interface"
+msgstr ""
+
+msgid "Connection mode"
+msgstr ""
+
+msgid "Signal quality"
+msgstr ""
+
+msgid "WAN IP"
+msgstr ""
+
+msgid "Web-GUI"
+msgstr ""
+
+msgid "Signal strength"
+msgstr ""
+
+msgid "No Client device or not yet configured"
+msgstr ""
+
+#: includes/dhcp.php
+msgid "DHCP server settings"
+msgstr "Setări server DHCP"
+
+msgid "Client list"
+msgstr "Listă clienți"
+
+msgid "Interface"
+msgstr "Interfață"
+
+msgid "Enable DHCP for this interface"
+msgstr "Activează DHCP pentru această interfață"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+msgstr "Activați această opțiune dacă doriți ca RaspAP să atribuie adrese IP pe interfața selectată."
+
+msgid "DNS Server"
+msgstr "Server DNS"
+
+msgid "Starting IP Address"
+msgstr "Adresă IP de început"
+
+msgid "Ending IP Address"
+msgstr "Adresă IP finală"
+
+msgid "Static Leases"
+msgstr "Adrese atribuite static"
+
+msgid "Add static DHCP lease"
+msgstr "Adaugă adrese statice serverului DHCP"
+
+msgid "Lease Time"
+msgstr "Timp de atribuire"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Active DHCP leases"
+msgstr "Adrese atribuite DHCP"
+
+msgid "Expire time"
+msgstr "Timp de expirare"
+
+msgid "MAC Address"
+msgstr "Adresă MAC"
+
+msgid "Optional comment"
+msgstr ""
+
+msgid "Host name"
+msgstr "Denumire client"
+
+msgid "Client ID"
+msgstr "Identitatea clientului"
+
+msgid "Information provided by Dnsmasq"
+msgstr "Informații furnizate de Dnsmasq"
+
+msgid "Stop dnsmasq"
+msgstr "Oprire dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "Pornire Dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Configurarea dnsmasq actualizată cu succes"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq este pornit"
+
+msgid "Successfully started dnsmasq"
+msgstr "Dnsmasq pornit cu succes"
+
+msgid "Failed to start dnsmasq"
+msgstr "Pornirea dnsmasq a eșuat"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Dnsmasq oprit cu succes"
+
+msgid "Failed to stop dnsmasq"
+msgstr "Oprirea dnsmasq a eșuat"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq deja oprit"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq rulează"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq nu rulează"
+
+msgid "Upstream DNS servers"
+msgstr "Servere DNS upstream"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Numai serverele DNS configurate mai jos"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Activați această opțiune dacă doriți ca RaspAP să <b>trimită interogări DNS la serverele configurate mai jos exclusiv</b>. În mod implicit, RaspAP folosește și serverele sale DHCP upstream."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "Această opțiune adaugă <code>no-resolv</code> la configurația dnsmasq."
+
+msgid "Add upstream DNS server"
+msgstr "Adaugă server DNS upstream"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Alege un server"
+
+msgid "Enable these options to log DHCP server activity."
+msgstr "Activați aceste opțiuni pentru a înregistra activitatea serverului DHCP."
+
+msgid "Log DHCP requests"
+msgstr "Înregistrează cererile DHCP"
+
+msgid "Log DNS queries"
+msgstr "Înregistrează interogările DNS"
+
+msgid "Restrict access"
+msgstr "Restricționare acces"
+
+msgid "Limit network access to static clients"
+msgstr "Limitează accesul la rețea pentru clienții statici"
+
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Activați această opțiune dacă doriți ca RaspAP să <b>ignore orice clienți</b> care nu sunt specificați în lista de leasing static."
+
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Această opțiune adaugă <code>dhcp-ignore</code> la configurația dnsmasq."
+
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Clienților cu o anumită adresă MAC hardware li se poate atribui întotdeauna aceeași adresă IP."
+
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Această opţiune adaugă <code>dhcp-host</code> intrărilor la configuraţia dnsmasq."
+
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "Comută între <code>gateway</code>/<code>nogateway</code> pentru această interfaţă în configuraţia DHCPCD."
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "Setări de bază"
+
+msgid "Advanced"
+msgstr "Setări avansate"
+
+msgid "Basic settings"
+msgstr "Setări de bază"
+
+msgid "Wireless Mode"
+msgstr "Standard"
+
+msgid "Security settings"
+msgstr "Setări de securitate"
+
+msgid "Security type"
+msgstr "Tipul de securitate"
+
+msgid "Encryption Type"
+msgstr "Tipul de criptare"
+
+msgid "PSK"
+msgstr "PSK"
+
+msgid "Advanced settings"
+msgstr "Setări avansate"
+
+msgid "Country Code"
+msgstr "Codul țării"
+
+msgid "Information provided by hostapd"
+msgstr "Informații furnizate de hostapd"
+
+msgid "Attempting to start hotspot"
+msgstr "Se încearcă pornirea hotspot-ului"
+
+msgid "Attempting to stop hotspot"
+msgstr "Se încearcă oprirea hotspot-ului"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD nu rulează"
+
+msgid "HostAPD is running"
+msgstr "HostAPD rulează"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID trebuie să aibă între 1 și 32 de caractere"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "Parola WPA trebuie să aibă între 8 şi 63 de caractere"
+
+msgid "Unknown interface"
+msgstr "Interfață necunoscută"
+
+msgid "Country code must be blank or two characters"
+msgstr "Codul țării trebuie să fie necompletat sau format din două caractere"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Setările punctului de acces Wi-Fi sunt salvate"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "Nu s-au putut salva setările pentru punctul de acces Wi-Fi"
+
+msgid "Start hotspot"
+msgstr "Pornește punctul de acces"
+
+msgid "Stop hotspot"
+msgstr "Oprește punctul de acces"
+
+msgid "Restart hotspot"
+msgstr "Restarteaza punctul de acces"
+
+msgid "Enable logging"
+msgstr "Activează înregistrarea"
+
+msgid "Logfile output"
+msgstr "Jurnal"
+
+msgid "WiFi client AP mode"
+msgstr "Mod AP al clientului Wi-Fi"
+
+msgid "Bridged AP mode"
+msgstr "Mod bridged AP"
+
+msgid "Hide SSID in broadcast"
+msgstr "Ascunde transmiterea SSID"
+
+msgid "Maximum number of clients"
+msgstr "Număr maxim de clienți"
+
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr ""
+
+msgid "Beacon interval"
+msgstr "Interval semnalizator"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Dezactivează <code>disassoc_low_ack</code>"
+
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Nu disocia stațiile pe baza erorilor de transmisie excesive."
+
+msgid "Executing RaspAP service start"
+msgstr "Pornire serviciu RaspAP"
+
+msgid "Close"
+msgstr "Închide"
+
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Activează această opţiune pentru a înregistra activitatea <code>hostapd</code>."
+
+msgid "Transmit power (dBm)"
+msgstr ""
+
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr ""
+
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr ""
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Sumar"
+
+msgid "Internet connection"
+msgstr "Conexiune la internet"
+
+msgid "Current settings"
+msgstr "Setările curente"
+
+msgid "Default Gateway"
+msgstr "Gateway implicit"
+
+msgid "Alternate DNS Server"
+msgstr "Server DNS alternativ"
+
+msgid "Adapter IP Address Settings"
+msgstr "Setări adresă IP adaptor"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Utilizați o adresă statică dacă serverul nu răspunde"
+
+msgid "Static IP"
+msgstr "IP static"
+
+msgid "Enabled"
+msgstr "Activat"
+
+msgid "Disabled"
+msgstr "Dezactivat"
+
+msgid "Static IP Options"
+msgstr "Opțiuni IP static"
+
+msgid "Metric"
+msgstr "Metric"
+
+msgid "Apply settings"
+msgstr "Aplicare setări"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Informații furnizate de /sys/class/net"
+
+msgid "Network Devices"
+msgstr ""
+
+msgid "Mobile Data Settings"
+msgstr ""
+
+msgid "Properties of network devices"
+msgstr ""
+
+msgid "Device"
+msgstr ""
+
+msgid "MAC"
+msgstr ""
+
+msgid "USB vid/pid"
+msgstr ""
+
+msgid "Device type"
+msgstr ""
+
+msgid "Fixed name"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "Settings for Mobile Data Devices"
+msgstr ""
+
+msgid "PIN of SIM card"
+msgstr ""
+
+msgid "APN Settings (Modem device ppp0)"
+msgstr ""
+
+msgid "Access Point Name (APN)"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Successfully Updated Network Configuration"
+msgstr ""
+
+msgid "Error saving network configuration to file"
+msgstr ""
+
+msgid "Unable to detect interface"
+msgstr ""
+
+#: includes/system.php
+msgid "System Information"
+msgstr "Informații Sistem"
+
+msgid "Language"
+msgstr "Limbă"
+
+msgid "Language settings"
+msgstr "Setări limbă"
+
+msgid "Select a language"
+msgstr "Selectați limba"
+
+msgid "Language setting saved"
+msgstr "Setarea limbii salvată"
+
+msgid "Console"
+msgstr "Consolă"
+
+msgid "Hostname"
+msgstr "Nume gazdă"
+
+msgid "Pi Revision"
+msgstr "Model Pi"
+
+msgid "Uptime"
+msgstr "Timp de funcționare"
+
+msgid "Memory Used"
+msgstr "Memorie utilizată"
+
+msgid "CPU Load"
+msgstr "Încărcare procesor"
+
+msgid "Reboot"
+msgstr "Restartează"
+
+msgid "Shutdown"
+msgstr "Inchide"
+
+msgid "System Rebooting Now!"
+msgstr "Sistemul reporneşte acum!"
+
+msgid "System Shutting Down Now!"
+msgstr "Sistemul se închide acum!"
+
+msgid "Web server port"
+msgstr "Portul serverului web"
+
+msgid "Web server bind address"
+msgstr "Adresă de legătură server web"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "Setări temă"
+
+msgid "Select a theme"
+msgstr "Selectaţi o temă"
+
+msgid "Color"
+msgstr "Culoare"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Utilizarea datelor"
+
+msgid "Data usage monitoring"
+msgstr "Monitorizare utilizare date"
+
+msgid "Hourly traffic amount"
+msgstr "Trafic pe oră"
+
+msgid "Daily traffic amount"
+msgstr "Trafic zilnic"
+
+msgid "Monthly traffic amount"
+msgstr "Trafic lunar"
+
+msgid "Hourly"
+msgstr "Pe oră"
+
+msgid "Daily"
+msgstr "Zilnic"
+
+msgid "Monthly"
+msgstr "Lunar"
+
+msgid "interface"
+msgstr "interfață"
+
+msgid "date"
+msgstr "dată"
+
+msgid "Send MB"
+msgstr "MO trimiși"
+
+msgid "Receive MB"
+msgstr "MO recepționați"
+
+msgid "Information provided by vnstat"
+msgstr "Informaţii furnizate de vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Se încarcă {0} graficul lățimii de bandă"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Se afișează {0} la {1} din {2} intrări"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN nu funcționează"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN rulează"
+
+msgid "Server settings"
+msgstr "Setări server"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Selectaţi fişierul de configurare OpenVPN (.ovpn)"
+
+msgid "Client Log"
+msgstr "Jurnal client"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Protocol"
+msgstr "Protocol"
+
+msgid "Root CA certificate"
+msgstr "Certificat Root CA"
+
+msgid "Server certificate"
+msgstr "Certificat server"
+
+msgid "Diffie Hellman parameters"
+msgstr "Parametrii Diffie Hellman"
+
+msgid "KeepAlive"
+msgstr "Ține activ"
+
+msgid "Server log"
+msgstr "Jurnal server"
+
+msgid "Start OpenVPN"
+msgstr "Pornește OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Oprește OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Informaţii furnizate de openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Se încearcă pornirea openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Se încearcă oprirea openvpn"
+
+msgid "Configurations"
+msgstr "Configurații"
+
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Configurațiile clientului OpenVPN disponibile sunt afișate mai jos."
+
+msgid "Activating a configuraton will restart the <code>openvpn-client</code> service."
+msgstr "Activarea unei configurații va reporni serviciul <code>openvpn-client</code>."
+
+msgid "Delete OpenVPN client"
+msgstr "Ștergere client OpenVPN"
+
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Ștergeți configurarea clientului? Această acțiune nu poate fi anulată."
+
+msgid "Activate OpenVPN client"
+msgstr "Activare client OpenVPN"
+
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Activați configurarea clientului? Aceasta va reporni serviciul openvpn-client."
+
+msgid "Activate"
+msgstr "Activează"
+
+msgid "Cancel"
+msgstr "Anulează"
+
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Activați această opțiune pentru a înregistra activitatea <code>openvpn</code>."
+
+msgid "Authentification Method"
+msgstr "Metoda de autentificare"
+
+msgid "Username and password"
+msgstr "Nume utilizator și parolă"
+
+msgid "Certificates"
+msgstr "Certificate"
+
+msgid "Enter username and password"
+msgstr "Introduceți numele utilizator și parola"
+
+msgid "Certificates in the configuration file"
+msgstr "Certificate în fișierul de configurare"
+
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP acceptă certificate prin includerea lor în fișierul de configurare."
+
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Se semnează certificatul 'certification authority' (CA) (de ex. <code>ca.crt</code>): inclus în etichetele <code>&lt;ca> ... &lt;/ca></code>."
+
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Certificatul clientului (cheie publică) (de ex. <code>client.crt</code>): inclus în etichetele <code>&lt;cert> ... &lt;/cert></code>."
+
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Cheia privată a certificatului clientului (de ex. <code>client.key</code>): inclus în etichetele <code>&lt;key> ... &lt;/key></code>."
+
+msgid "Configuration File"
+msgstr "Fișier de configurare"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR nu rulează"
+
+msgid "TOR is running"
+msgstr "TOR rulează"
+
+msgid "Relay"
+msgstr "Releu"
+
+msgid "Relay settings"
+msgstr "Setări releu"
+
+msgid "Nickname"
+msgstr "Pseudonim"
+
+msgid "Address"
+msgstr "Adresă"
+
+msgid "Start TOR"
+msgstr "Pornește TOR"
+
+msgid "Stop TOR"
+msgstr "Oprește TOR"
+
+msgid "Information provided by tor"
+msgstr "Informaţii furnizate de tor"
+
+msgid "Attempting to start TOR"
+msgstr "Se încearcă pornirea TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Se încearcă oprirea TOR"
+
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr "Modul AP punte este activat. Pentru Nume gazdă și IP, vedeți pagina de administrare a routerului."
+
+#: common form controls
+msgid "Save settings"
+msgstr "Salvare setări"
+
+msgid "Refresh"
+msgstr "Reîmprospătare"
+
+msgid "running"
+msgstr "rulează"
+
+msgid "stopped"
+msgstr "oprit"
+
+msgid "Remove"
+msgstr "Șterge"
+
+msgid "up"
+msgstr "activ"
+
+msgid "down"
+msgstr "inactiv"
+
+msgid "adblock"
+msgstr "adblock"
+
+msgid "Ad Blocking"
+msgstr "Blocare reclame"
+
+msgid "Start Ad Blocking"
+msgstr "Pornește Blocarea Reclamelor"
+
+msgid "Restart Ad Blocking"
+msgstr "Repornește Blocarea Reclamelor"
+
+msgid "Blocklist settings"
+msgstr "Setari lista de blocați"
+
+msgid "Enable blocklists"
+msgstr "Activare lista de blocați"
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Activați această opțiune dacă doriți ca RaspAP să <b>blocheze cererile DNS pentru reclame, urmărire și alte gunoaie virtuale</b>. Listele de blocați sunt colectate din surse multiple, întreținute în mod activ și actualizate automat, curățate, optimizate și moderate zilnic."
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "Această opțiune adaugă <code>conf-file</code> și <code>addn-hosts</code> la configurația dnsmasq."
+
+msgid "Choose a blocklist provider"
+msgstr "Alegeți un furnizor de lista de blocați"
+
+msgid "Hostnames blocklist last updated"
+msgstr "Lista numelor gazdă blocate ultima dată actualizată"
+
+msgid "Domains blocklist last updated"
+msgstr "Ultima actualizare a listei de domenii blocate"
+
+msgid "Update now"
+msgstr "Actualizați acum"
+
+msgid "Statistics"
+msgstr "Statistici"
+
+msgid "Information provided by adblock"
+msgstr "Informaţie furnizateă de adblock"
+
+msgid "Enable custom blocklist"
+msgstr "Activează lista de blocare personalizată"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Definiţi gazdele personalizate care să fie blocate prin introducerea unei adrese IPv4 sau IPv6 urmată de orice spaţiu alb (spaţii sau taburi) şi numele gazdei."
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>exemplu IPv4:</b> 0.0.0.0 badhost.com"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Această opțiune adaugă o directivă <code>addn-hosts</code> la configurația dnsmasq."
+
+msgid "Custom blocklist not defined"
+msgstr "Lista de blocati personalizată nu este definită"
+
+msgid "Invalid custom IP address found on line "
+msgstr "Adresă IP particularizată nevalidă găsită în linie "
+
+msgid "Invalid custom host found on line "
+msgstr "Gazdă personalizată nevalidă în linie "
+
+msgid "Tunnel settings"
+msgstr "Setări tunel"
+
+msgid "Configuration Method"
+msgstr ""
+
+msgid "Upload file"
+msgstr ""
+
+msgid "Create manually"
+msgstr ""
+
+msgid "Upload a WireGuard config"
+msgstr ""
+
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr ""
+
+msgid "Apply iptables rules for AP interface"
+msgstr ""
+
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
+msgstr ""
+
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
+msgstr ""
+
+msgid "Select WireGuard configuration file (.conf)"
+msgstr ""
+
+msgid "Create a local WireGuard config"
+msgstr ""
+
+msgid "Enable server"
+msgstr "Activează serverul"
+
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr ""
+
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr ""
+
+msgid "Local public key"
+msgstr "Cheie publică locală"
+
+msgid "Local Port"
+msgstr "Port local"
+
+msgid "IP Address"
+msgstr "Adresă IP"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Peer"
+msgstr "Partener"
+
+msgid "Enable peer"
+msgstr "Activare partener"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Activați această opțiune pentru a cripta traficul prin crearea unui tunel între RaspAP și acest partener."
+
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "Această opţiune adaugă <code>client.conf</code> la configuraţia WireGuard."
+
+msgid "Peer public key"
+msgstr "Cheie publică partener"
+
+msgid "Endpoint address"
+msgstr "Adresă punct final"
+
+msgid "Allowed IPs"
+msgstr "IP-uri permise"
+
+msgid "Persistent keepalive"
+msgstr "Persistent keepalive"
+
+msgid "Display WireGuard debug log"
+msgstr ""
+
+msgid "Enable this option to display an updated WireGuard debug log."
+msgstr ""
+
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Scanați acest cod QR cu clientul pentru a vă conecta la acest tunel"
+
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "sau descărcați fișierul <code>client.conf</code> pe dispozitivul dvs."
+
+msgid "Download"
+msgstr "Descărcare"
+
+msgid "Start WireGuard"
+msgstr "Pornește WireGuard"
+
+msgid "Stop WireGuard"
+msgstr "Oprește WireGuard"
+
+msgid "Information provided by wireguard"
+msgstr "Informaţii oferite de wireguard"
+
+msgid "Attempting to start WireGuard"
+msgstr "Se încearcă pornirea WireGuard"
+
+msgid "Attempting to stop WireGuard"
+msgstr "Se încearcă oprirea WireGuard"
+
+msgid "WireGuard configuration updated successfully"
+msgstr "Configurarea WireGuard actualizată cu succes"
+
+msgid "WireGuard configuration failed to be updated"
+msgstr "Configurarea WireGuard nu a putut fi actualizată"
+
+msgid "Client Firewall"
+msgstr ""
+
+msgid "Firewall is ENABLED"
+msgstr ""
+
+msgid "Firewall is OFF"
+msgstr ""
+
+msgid "The default firewall will only allow outgoing and already established traffic."
+msgstr ""
+
+msgid "No incoming UDP traffic is allowed."
+msgstr ""
+
+msgid "There are no restrictions for the access point <code>%s</code>."
+msgstr ""
+
+msgid "Exception: Service"
+msgstr ""
+
+msgid "allow SSH access on port 22"
+msgstr ""
+
+msgid "allow access to the RaspAP GUI on port 80 or 443"
+msgstr ""
+
+msgid "Allow incoming connections for some services from the internet side."
+msgstr ""
+
+msgid "Exception: network device"
+msgstr ""
+
+msgid "Exclude device(s)"
+msgstr ""
+
+msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+msgstr ""
+
+msgid "Current client devices: <code>%s</code>"
+msgstr ""
+
+msgid "The access point <code>%s</code> is per default excluded."
+msgstr ""
+
+msgid "Exception: IP-Address"
+msgstr ""
+
+msgid "Allow incoming connections from"
+msgstr ""
+
+msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+msgstr ""
+
+msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+msgstr ""
+
+msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+msgstr ""
+
+msgid "Disable Firewall"
+msgstr ""
+
+msgid "Enable Firewall"
+msgstr ""
+
+msgid "Apply changes"
+msgstr ""
+

@@ -1,0 +1,3 @@
+SUBSYSTEM=="net", ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="14db", NAME="hilink%n",  TAG+="systemd", ENV{SYSTEMD_WANTS}="start start_huawei_hilink@hilink%n.service"
+
+

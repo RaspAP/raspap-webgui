@@ -54,9 +54,20 @@
     </div>
     <div class="row">
       <div class="form-group col-md-6">
+        <label for="cbxtxpower"><?php echo _("Transmit power (dBm)") ?></label>
+        <i class="fas fa-question-circle text-muted" data-toggle="tooltip" data-placement="auto" title="<?php echo _("dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."); ?>"></i>
+        <?php
+          SelectorOptions('txpower', $arrTxPower, $txpower, 'cbxtxpower');
+        ?>
+        <small id="txpower_help" class="text-muted"><?php echo _("Sets the <code>txpower</code> option for the AP interface and the configured country."); ?></small>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
         <label for="max_num_sta"><?php echo _("Maximum number of clients") ?></label>
         <input type="text" id="max_num_sta" class="form-control" name="max_num_sta" placeholder="2007" value="<?php echo $arrConfig["max_num_sta"] ?>" aria-describedby="max_num_sta_help">
-        <small id="max_num_sta_help" class="text-muted"><?php echo _("Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies.") ?></small>
+        <small id="max_num_sta_help" class="text-muted"><?php echo _("Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies.") ?></small>
       </div>
     </div>
     <div class="row">

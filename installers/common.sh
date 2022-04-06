@@ -43,9 +43,9 @@ function _install_raspap() {
     _update_system_packages
     _install_dependencies
     _enable_php_lighttpd
+    _check_for_old_configs
     _create_raspap_directories
     _optimize_php
-    _check_for_old_configs
     _download_latest_files
     _change_file_ownership
     _create_hostapd_scripts
@@ -139,10 +139,10 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        18.04|19.10) # Ubuntu Server
+        18.04|19.10|11*) # Ubuntu Server & Debian 11
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
-        10*)
+        10*|11*)
             php_package="php7.3-cgi"
             phpcgiconf="/etc/php/7.3/cgi/php.ini" ;;
         9*)
@@ -159,7 +159,7 @@ function _set_php_package() {
 function _install_dependencies() {
     _install_log "Installing required packages"
     _set_php_package
-    if [ "$php_package" = "php7.4-cgi" ]; then
+    if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ]; then
         echo "Adding apt-repository ppa:ondrej/php"
         sudo apt-get install $apt_option software-properties-common || _install_status 1 "Unable to install dependency"
         sudo add-apt-repository $apt_option ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
@@ -352,21 +352,19 @@ function _prompt_install_openvpn() {
 
 # Prompt to install WireGuard
 function _prompt_install_wireguard() {
-    if [ "$insiders" == 1 ]; then
-        _install_log "Configure WireGuard support"
-        echo -n "Install WireGuard and enable VPN tunnel configuration? [Y/n]: "
-        if [ "$assume_yes" == 0 ]; then
-            read answer < /dev/tty
-            if [ "$answer" != "${answer#[Nn]}" ]; then
-                echo -e
-            else
-                _install_wireguard
-            fi
-        elif [ "$wg_option" == 1 ]; then
-            _install_wireguard
+    _install_log "Configure WireGuard support"
+    echo -n "Install WireGuard and enable VPN tunnel configuration? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo -e
         else
-            echo "(Skipped)"
+            _install_wireguard
         fi
+    elif [ "$wg_option" == 1 ]; then
+        _install_wireguard
+    else
+        echo "(Skipped)"
     fi
 }
 
@@ -427,6 +425,10 @@ function _download_latest_files() {
     if [ "$upgrade" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
         sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
+        
+        if [ -f /tmp/raspap.auth ]; then
+            sudo mv /tmp/raspap.auth $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
+        fi
     fi
 
     _install_status 0
@@ -447,6 +449,10 @@ function _check_for_old_configs() {
     if [ "$upgrade" == 1 ]; then
         _install_log "Moving existing configuration to /tmp"
         sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
+
+        if [ -f $raspap_dir/raspap.auth ]; then
+            sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
+        fi
     else
         _install_log "Backing up existing configs to ${raspap_dir}/backups"
         if [ -f /etc/network/interfaces ]; then
@@ -609,7 +615,7 @@ function _optimize_php() {
     if [ "$upgrade" == 0 ]; then
         _install_log "Optimize PHP configuration"
         if [ ! -f "$phpcgiconf" ]; then
-            _install_status 1 "PHP configuration could not be found."
+            _install_status 2 "PHP configuration could not be found."
             return
         fi
 
@@ -669,7 +675,7 @@ function _install_complete() {
         # Prompt to reboot if wired ethernet (eth0) is connected.
         # With default_configuration this will create an active AP on restart.
         if ip a | grep -q ': eth0:.*state UP'; then
-            echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
+            echo -n "The system needs to be rebooted as a final step. Reboot now? [Y/n]: "
             read answer < /dev/tty
             if [ "$answer" != "${answer#[Nn]}" ]; then
                 echo "Installation reboot aborted."

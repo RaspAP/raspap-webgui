@@ -152,15 +152,16 @@ function getDefaultNetValue($svc,$iface,$key)
  * Returns default options for the specified service
  *
  * @param string $svc
+ * @param string $key
  * @return object $json
  */
-function getDefaultNetOpts($svc)
+function getDefaultNetOpts($svc,$key)
 {
     $json = json_decode(file_get_contents(RASPI_CONFIG_NETWORK), true);
     if ($json === null) {
         return false;
     } else {
-        return $json[$svc]['options'];
+        return $json[$svc][$key];
     }
 }
 
@@ -222,6 +223,62 @@ function safefilerewrite($fileName, $dataToSave)
     } else {
         return false;
     }
+}
+
+/**
+ * Prepends data to a file if not exists
+ *
+ * @param string $filename
+ * @param string $dataToSave
+ * @return boolean
+ */
+function file_prepend_data($filename, $dataToSave)
+{
+    $context = stream_context_create();
+    $file = fopen($filename, 'r', 1, $context);
+    $file_data = readfile($file);
+
+    if (!preg_match('/^'.$dataToSave.'/', $file_data)) {
+        $tmp_file = tempnam(sys_get_temp_dir(), 'php_prepend_');
+        file_put_contents($tmp_file, $dataToSave);
+        file_put_contents($tmp_file, $file, FILE_APPEND);
+        fclose($file);
+        unlink($filename);
+        rename($tmp_file, $filename);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Fetches a meta value from a file
+ *
+ * @param string $filename
+ * @param string $pattern
+ * @return string
+ */
+function file_get_meta($filename, $pattern)
+{
+    if(file_exists($filename)) {
+        $context = stream_context_create();
+        $file_data = file_get_contents($filename, false, $context);
+        preg_match('/^'.$pattern.'/', $file_data, $matched);
+        return $matched[1];
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Callback function for array_filter
+ *
+ * @param string $var
+ * @return filtered value
+ */
+function filter_comments($var)
+{
+    return $var[0] != '#';
 }
 
 /**
@@ -615,7 +672,7 @@ function getThemeOpt()
 function getColorOpt()
 {
     if (!isset($_COOKIE['color'])) {
-        $color = "#d8224c";
+        $color = "#2b8080";
     } else {
         $color = $_COOKIE['color'];
     }
@@ -636,9 +693,68 @@ function getBridgedState()
     return  $arrHostapdConf['BridgedEnable'];
 }
 
+/**
+ * Validates the format of a CIDR notation string
+ *
+ * @param string $cidr
+ * @return bool
+ */
+function validateCidr($cidr)
+{
+    $parts = explode('/', $cidr);
+    if(count($parts) != 2) {
+        return false;
+    }
+    $ip = $parts[0];
+    $netmask = intval($parts[1]);
+
+    if($netmask < 0) {
+        return false;
+    }
+    if(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+        return $netmask <= 32;
+    }
+    if(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+        return $netmask <= 128;
+    }
+    return false;
+}    
+
 // Validates a host or FQDN
-function validate_host($host) {
+function validate_host($host)
+{
   return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host);
+}
+
+// Gets night mode toggle value
+// @return boolean
+function getNightmode()
+{
+    if ($_COOKIE['theme'] == 'lightsout.css') {
+        return true;
+    } else {
+        return false;
+    }
+}	
+	
+// search array for matching string and return only first matching group
+function preg_only_match($pat,$haystack)
+{
+  $match = "";
+  if(!empty($haystack) && !empty($pat)) {
+    if(!is_array($haystack)) $haystack = array($haystack);
+    $str = preg_grep($pat,$haystack);
+    if (!empty($str) && preg_match($pat,array_shift($str),$match) === 1 ) $match = $match[1];
+  }
+  return $match;
+}
+
+// Sanitizes a string for QR encoding
+// @param string $str
+// @return string
+function qr_encode($str)
+{
+    return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
 }
 
 function evalHexSequence($string) {
@@ -646,5 +762,32 @@ function evalHexSequence($string) {
 	return hex2bin($input[1]);
     };
     return preg_replace_callback('/\\\x(..)/', $evaluator, $string);
+}
+
+function hexSequence2lower($string) {
+ return preg_replace_callback('/\\\\x([0-9A-F]{2})/', function($b){ return '\x'.strtolower($b[1]); }, $string);
+}
+
+/* File upload callback object
+ *
+ */
+class validation
+{
+    public function check_name_length($object)
+    {
+        if (strlen($object->file['filename']) > 255) {
+            $object->set_error('File name is too long.');
+        }
+    }
+}
+
+/* Resolves public IP address
+ *
+ * @return string $public_ip
+ */
+function get_public_ip()
+{
+    exec('wget https://ipinfo.io/ip -qO -', $public_ip);
+    return $public_ip[0];
 }
 

@@ -25,11 +25,16 @@ function DisplayHostAPDConfig()
     ];
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
+    $arrTxPower = getDefaultNetOpts('txpower','dbm');
     $managedModeEnabled = false;
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     sort($interfaces);
 
     exec("iw reg get | awk '/country / { sub(/:/,\"\",$2); print $2 }'", $country_code);
+
+    $cmd = "iw dev ".$_SESSION['ap_interface']." info | awk '$1==\"txpower\" {print $2}'";
+    exec($cmd, $txpower);
+    $txpower = intval($txpower[0]);
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveHostAPDSettings'])) {
@@ -85,8 +90,19 @@ function DisplayHostAPDConfig()
         $arrConfig['disassoc_low_ack_bool'] = 1;
     }
     // assign country_code from iw reg if not set in config
-    if (!isset($arrConfig['country_code']) && isset($country_code[0])) {
+    if (empty($arrConfig['country_code']) && isset($country_code[0])) {
         $arrConfig['country_code'] = $country_code[0];
+    }
+    // set txpower with iw if value is non-default ('auto')
+    if (isset($_POST['txpower']) && ($_POST['txpower'] != 'auto')) {
+        $sdBm = $_POST['txpower'] * 100;
+        exec('sudo /sbin/iw dev '.$_POST['interface'].' set txpower fixed '.$sdBm, $return);
+        $status->addMessage('Setting transmit power to '.$_POST['txpower'].' dBm.', 'success');
+        $txpower = $_POST['txpower'];
+    } elseif ($_POST['txpower'] == 'auto') {
+        exec('sudo /sbin/iw dev '.$_POST['interface'].' set txpower auto', $return);
+        $status->addMessage('Setting transmit power to '.$_POST['txpower'].'.', 'success');
+        $txpower = $_POST['txpower'];
     }
 
     echo renderTemplate(
@@ -101,6 +117,8 @@ function DisplayHostAPDConfig()
             "selectedHwMode",
             "arrSecurity",
             "arrEncType",
+            "arrTxPower",
+            "txpower",
             "arrHostapdConf"
         )
     );
@@ -207,7 +225,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 
     // Verify input
     if (empty($_POST['ssid']) || strlen($_POST['ssid']) > 32) {
-        // Not sure of all the restrictions of SSID
         $status->addMessage('SSID must be between 1 and 32 characters', 'danger');
         $good_input = false;
     }
@@ -237,8 +254,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     }
 
     if (! in_array($_POST['interface'], $interfaces)) {
-        // The user is probably up to something here but it may also be a
-        // genuine error.
         $status->addMessage('Unknown interface '.htmlspecialchars($_POST['interface'], ENT_QUOTES), 'danger');
         $good_input = false;
     }
@@ -302,29 +317,28 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
         // Set dhcp values from system config, fallback to default if undefined
         $jsonData = json_decode(getNetConfig($ap_iface), true);
         $ip_address = ($jsonData['StaticIP'] == '') ? getDefaultNetValue('dhcp',$ap_iface,'static ip_address') : $jsonData['StaticIP'];
-        $domain_name_server = ($jsonData['StaticDNS'] =='') ? getDefaultNetValue('dhcp',$ap_iface,'static domain_name_server') : $jsonData['StaticDNS'];
+        $domain_name_server = ($jsonData['StaticDNS'] =='') ? getDefaultNetValue('dhcp','wlan0','static domain_name_server') : $jsonData['StaticDNS'];
         $routers = ($jsonData['StaticRouters'] == '') ? getDefaultNetValue('dhcp',$ap_iface,'static routers') : $jsonData['StaticRouters'];
         $netmask = ($jsonData['SubnetMask'] == '' || $jsonData['SubnetMask'] == '0.0.0.0') ? getDefaultNetValue('dhcp',$ap_iface,'subnetmask') : $jsonData['SubnetMask'];
         $ip_address.= (!preg_match('/.*\/\d+/', $ip_address)) ? '/'.mask2cidr($netmask) : null;
 
         if ($bridgedEnable == 1) {
-            $config = array_keys(getDefaultNetOpts('dhcp'));
+            $config = array_keys(getDefaultNetOpts('dhcp','options'));
             $config[] = PHP_EOL.'# RaspAP br0 configuration';
             $config[] = 'denyinterfaces eth0 wlan0';
             $config[] = 'interface br0';
             $config[] = PHP_EOL;
         } elseif ($wifiAPEnable == 1) {
-            $config = array_keys(getDefaultNetOpts('dhcp'));
+            $config = array_keys(getDefaultNetOpts('dhcp','options'));
             $config[] = PHP_EOL.'# RaspAP uap0 configuration';
             $config[] = 'interface uap0';
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'nohook wpa_supplicant';
             $config[] = PHP_EOL;
         } else {
-            // Default wlan0 config
             $def_ip = array();
-            $config = [ '# RaspAP wlan0 configuration' ];
-            $config[] = 'interface wlan0';
+            $config = [ '# RaspAP '.$ap_iface.' configuration' ];
+            $config[] = 'interface '.$ap_iface;
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'static routers='.$routers;
             $config[] = 'static domain_name_server='.$domain_name_server;

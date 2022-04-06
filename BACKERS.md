@@ -15,23 +15,25 @@ You can [become a sponsor](https://github.com/sponsors/RaspAP) using your indivi
 > ℹ️  **Important**: If you're sponsoring [RaspAP](https://github.com/RaspAP/sponsors) through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account that should be added as a collaborator.
 
 ### Exclusive features
-When backers were asked which feature they'd most like to see added to RaspAP, the ability to manage multiple OpenVPN client configurations topped the list of requests. We think this is a great idea, so we're adding this as the first feature exclusive to insiders. 
+The following features are currently available exclusively to sponsors. A tangible side benefit of sponsorship is that Insiders are able to help steer future development of RaspAP. This is done through Insiders' access to discussions, feature requests, issues and pull requests in the private GitHub repository.
 
-✅ [Multiple OpenVPN client configs](https://docs.raspap.com/openvpn/#multiple-client-configs)  
-✅ [OpenVPN certificate authentication](https://docs.raspap.com/openvpn/#certificate-authentication)  
-✅ OpenVPN service logging  
-✅ Night mode toggle  
-✅ Restrict network to static clients  
-✅ [WireGuard support](https://docs.raspap.com/wireguard/)  
-✅ [Set AP transmit power](https://docs.raspap.com/ap-basics/#transmit-power)  
+ ✅ [Network device management](https://docs.raspap.com/net-devices/)    
+ ✅ [Firewall settings](https://docs.raspap.com/firewall/)  
+ ✅ [WPA3-Personal AP security](https://docs.raspap.com/ap-basics/#wpa3-personal)  
+ ✅ [802.11w Protected Management Frames](https://docs.raspap.com/ap-basics/#80211w)  
+ ✅ [Printable Wi-Fi signs](https://docs.raspap.com/ap-basics/#printable-signs)  
+ ⚙️ Traffic shaping (in progress)   
+ 
+Look for the list above to grow as we add more exclusive features. Be sure to visit this page from time to time to learn about what's new, check the [Insiders docs page](https://docs.raspap.com/insiders/) and follow [@RaspAP on Twitter](https://twitter.com/rasp_ap) to stay updated.
 
-Look for the list above to grow as we add more exclusive features. 
-
-### Funding targets
+## Funding targets
 Below is a list of funding targets. When a funding target is reached, the features that are tied to it are merged back into RaspAP and released to the public for general availability.
 
-#### $500 
-The first **Insiders Edition** includes the exclusive features listed above.
+### $1000 
+The second **Insiders Edition** includes the features listed above.
+
+### $500 
+The [first Insiders Edition goal](https://docs.raspap.com/insiders/#500-1st-insiders-edition) was reached in December 2021. Thank you sponsors!
 
 ### Frequently asked questions
 
@@ -73,4 +75,3 @@ Yes. Whether you're an individual or a company, you may use RaspAP Insiders prec
 
 * Please **don't distribute the source code** of Insiders. You may freely use it for public, private or commercial projects, fork it, mirror it, do whatever you want with it, but please don't release the source code, as it would counteract the sponsorware strategy.
 * If you cancel your subscription, you're removed as a collaborator and will miss out on future updates of Insiders. However, you may *use the latest version* that's available to you as long as you like. Just remember that [GitHub deletes private forks](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/removing-a-collaborator-from-a-personal-repository).
-

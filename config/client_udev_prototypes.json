@@ -1,0 +1,64 @@
+{
+  "info": "UDEV rules for different client types. $...$ expressions will be replaces automatically ($MAC$, $IDVENDOR$, $IDPRODUCT$, $DEVNAME$)",
+  "udev_rules_file": "/etc/udev/rules.d/80-raspap-net-devices.rules",
+  "script_path": "/usr/local/sbin",
+  "network_devices": [
+    {
+     "type": "eth", 
+     "type_info": "ethernet port", 
+     "clientid": 0,
+     "comment": "standard ethernet port",
+     "name_prefix": "eth",
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", ATTR{address}==\"$MAC$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"eth\" "
+    },
+    {
+     "type": "usb", 
+     "type_info": "usb network interface", 
+     "clientid": 1,
+     "comment": "network interface - e.g. USB tethering of an Android phone ",
+     "name_prefix": "usb",
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"eth\" "
+    },
+    {
+     "type": "wlan", 
+     "type_info": "wireless adapter", 
+     "clientid": 2,
+     "comment": "standard wireless interface",
+     "name_prefix": "wlan",
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", ATTR{address}==\"$MAC$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"wlan\" "
+    },
+    {
+     "type": "ppp", 
+     "type_info": "mobile data modem", 
+     "clientid": 3,
+     "name_prefix": "ppp",
+     "comment": "recognized mobile data modems are automatically named as ppp0-9. Renaming is not possible. Dialin service relies on the name",
+     "udev_rule": "SUBSYSTEM==\"tty\", KERNEL==\"ttyUSB0\", TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"start start_ppp0_device.service\" "
+    },
+    {
+     "type": "hilink",
+     "type_info": "Huawei Hilink",
+     "clientid": 4,
+     "comment": "Huawei mobile data device in router mode. Control via HTTP. Device is connecting via service",
+     "name_prefix": "hilink",
+     "default_ip": "192.168.8.1",
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"hilink\", TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"start start_huawei_hilink@hilink%n.service\" "
+    },
+    {
+     "type": "phone", 
+     "type_info": "USB tethered phone", 
+     "clientid": 5,
+     "comment": "ethernet access provided by tethering from phone via USB",
+     "name_prefix": "phone",
+     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"phone\" "
+    },
+    {
+     "type": "tun", 
+     "type_info": "tunnel device", 
+     "clientid": -1,
+     "comment": "tunneling device used by OpenVPN",
+     "name_prefix": "tun"
+    }
+  ]
+}
+

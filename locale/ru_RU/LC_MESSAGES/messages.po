@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-05-19 15:29\n"
-"Last-Translator: Denis Trifiniuc\n"
+"PO-Revision-Date: 2020-04-14 08:51\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -35,10 +35,10 @@ msgid "Hotspot"
 msgstr "Точка доступа"
 
 msgid "Memory Use"
-msgstr "Использование RAM"
+msgstr ""
 
 msgid "CPU Temp"
-msgstr "Температура ЦП"
+msgstr ""
 
 msgid "Networking"
 msgstr "Сетевые"
@@ -47,10 +47,10 @@ msgid "DHCP Server"
 msgstr "DHCP сервер"
 
 msgid "OpenVPN"
-msgstr "OpenVPN"
+msgstr ""
 
 msgid "TOR proxy"
-msgstr "TOR proxy"
+msgstr ""
 
 msgid "Authentication"
 msgstr "авторизации"
@@ -100,7 +100,7 @@ msgid "Client settings"
 msgstr "Настройки клиента"
 
 msgid "SSID"
-msgstr "SSID"
+msgstr ""
 
 msgid "Channel"
 msgstr "Канал"
@@ -182,7 +182,7 @@ msgid "Transferred Bytes"
 msgstr "Передано Байт"
 
 msgid "Wireless Client"
-msgstr "WiFi клиент"
+msgstr ""
 
 msgid "Connected To"
 msgstr "Подключено к"
@@ -324,31 +324,31 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq не запущена"
 
 msgid "Upstream DNS servers"
-msgstr "Пользовательские DNS-серверы"
+msgstr ""
 
 msgid "Only ever query DNS servers configured below"
-msgstr "Использовать только DNS-серверы, настроенные ниже"
+msgstr ""
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Включите эту опцию, если вы хотите, чтобы RaspAP <b>отправлял DNS-запросы только на серверы, настроенные ниже</b>. По умолчанию RaspAP также использует восходящие DNS-серверы, назначенные через DHCP."
+msgstr ""
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "Этот параметр добавляет <code>no-resolv</code> в конфигурацию dnsmasq."
+msgstr ""
 
 msgid "Add upstream DNS server"
-msgstr "Добавить сервер DNS"
+msgstr ""
 
 msgid "Format"
-msgstr "Формат"
+msgstr ""
 
 msgid "Choose a hosted server"
-msgstr "Общедоступный DNS-сервер"
+msgstr ""
 
 msgid "Log DHCP requests"
-msgstr "Журнал DHCP-запросов"
+msgstr ""
 
 msgid "Log DNS queries"
-msgstr "Журнал DNS-запросов"
+msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -373,7 +373,7 @@ msgid "Encryption Type"
 msgstr "Тип шифрования"
 
 msgid "PSK"
-msgstr "PSK"
+msgstr ""
 
 msgid "Advanced settings"
 msgstr "Расширенные настройки"
@@ -433,7 +433,7 @@ msgid "WiFi client AP mode"
 msgstr "Режим AP WiFi-клиента"
 
 msgid "Bridged AP mode"
-msgstr "Режим моста ТОЧКИ ДОСТУПА"
+msgstr ""
 
 msgid "Hide SSID in broadcast"
 msgstr "Скрыть SSID при трансляции"
@@ -668,7 +668,7 @@ msgstr "Попытка остановить TOR"
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
-msgstr "Мостовой режим ТОЧКИ ДОСТУПА включен. Для хоста и IP-адреса см. страницу администрирования маршрутизатора."
+msgstr ""
 
 #: common form controls
 msgid "Save settings"
@@ -693,44 +693,44 @@ msgid "down"
 msgstr "вниз"
 
 msgid "adblock"
-msgstr "Adblock"
+msgstr ""
 
 msgid "Ad Blocking"
-msgstr "Ad Blocking"
+msgstr ""
 
 msgid "Start Ad Blocking"
-msgstr "Запустить Ad Blocking"
+msgstr ""
 
 msgid "Restart Ad Blocking"
-msgstr "Перезапустить Ad Blocking"
+msgstr ""
 
 msgid "Blocklist settings"
-msgstr "Настройки блокировки"
+msgstr ""
 
 msgid "Enable blocklists"
-msgstr "Включить блокировку"
+msgstr ""
 
 msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr "Включите эту опцию, если вы хотите, чтобы RaspAP <b>блокировал DNS запросы для рекламы, отслеживания и другого виртуального мусора</b>. Блокирующие списки собираются из множества активно поддерживаемых источников и автоматически обновляются, очищаются, оптимизируются и модерируются ежедневно."
+msgstr ""
 
 msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
-msgstr "Эта опция добавляет в конфигурацию dnsmasq <code>conf-file</code> и <code>addn-hosts</code>."
+msgstr ""
 
 msgid "Choose a blocklist provider"
-msgstr "Выберите поставщика черного списка"
+msgstr ""
 
 msgid "Hostnames blocklist last updated"
-msgstr "Имена черного списка последнее обновление"
+msgstr ""
 
 msgid "Domains blocklist last updated"
-msgstr "Последнее обновление списка блокировки доменов"
+msgstr ""
 
 msgid "Update now"
-msgstr "Обновить сейчас"
+msgstr ""
 
 msgid "Statistics"
-msgstr "Статистика"
+msgstr ""
 
 msgid "Information provided by adblock"
-msgstr "Информация получена от Adblock"
+msgstr ""
 

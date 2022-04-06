@@ -202,7 +202,7 @@ function _remove_installed_packages() {
     fi
     echo -n "Remove the following installed packages? lighttpd hostapd iptables-persistent $php_package $dhcpcd_package vnstat qrencode [y/N]: "
     read answer
-    if [ "$answer" != 'n' ] && [ "$answer" != 'N' ]; then
+    if [ "$answer" == 'y' ] || [ "$answer" == 'Y' ]; then
         echo "Removing packages."
         sudo apt-get remove lighttpd hostapd iptables-persistent $php_package $dhcpcd_package vnstat qrencode || _install_error "Unable to remove installed packages"
         sudo apt-get autoremove || _install_error "Unable to run apt autoremove"

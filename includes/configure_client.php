@@ -61,7 +61,7 @@ function DisplayWPAConfig()
                     if (strlen($network['passphrase']) >=8 && strlen($network['passphrase']) <= 63) {
                         unset($wpa_passphrase);
                         unset($line);
-                        exec('wpa_passphrase '.escapeshellarg($ssid). ' ' . escapeshellarg($network['passphrase']), $wpa_passphrase);
+                        exec('wpa_passphrase '. ssid2utf8( escapeshellarg($ssid) ) . ' ' . escapeshellarg($network['passphrase']), $wpa_passphrase);
                         foreach ($wpa_passphrase as $line) {
                             if (preg_match('/^\s*}\s*$/', $line)) {
                                 if (array_key_exists('priority', $network)) {
@@ -69,7 +69,11 @@ function DisplayWPAConfig()
                                 }
                                 fwrite($wpa_file, $line.PHP_EOL);
                             } else {
-                                fwrite($wpa_file, $line.PHP_EOL);
+                                if ( preg_match('/\\\\x[0-9A-Fa-f]{2}/',$ssid) && strpos($line, "ssid=\"") !== false ) {
+                                     fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
+                                } else {
+                                     fwrite($wpa_file, $line.PHP_EOL);
+                                }
                             }
                         }
                     } else {
