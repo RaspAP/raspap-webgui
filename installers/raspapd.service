@@ -12,7 +12,7 @@
 [Unit]
 Description=RaspAP Service Daemon
 DefaultDependencies=no
-After=multi-user.target
+After=network.target
 
 [Service]
 Type=oneshot
