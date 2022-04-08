@@ -22,6 +22,7 @@ The following features are currently available exclusively to sponsors. A tangib
  ✅ [WPA3-Personal AP security](https://docs.raspap.com/ap-basics/#wpa3-personal)  
  ✅ [802.11w Protected Management Frames](https://docs.raspap.com/ap-basics/#80211w)  
  ✅ [Printable Wi-Fi signs](https://docs.raspap.com/ap-basics/#printable-signs)  
+ ✅ [Drag & drop dashboard widgets](https://docs.raspap.com/ap-basics/#drag-drop-widgets)  
  ⚙️ Traffic shaping (in progress)   
  
 Look for the list above to grow as we add more exclusive features. Be sure to visit this page from time to time to learn about what's new, check the [Insiders docs page](https://docs.raspap.com/insiders/) and follow [@RaspAP on Twitter](https://twitter.com/rasp_ap) to stay updated.
