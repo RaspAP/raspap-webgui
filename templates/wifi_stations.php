@@ -46,32 +46,3 @@
 	<?php endforeach ?>
 </div>
 <?php endif ?>
-
-<h4 class="h-underlined my-3"><?php echo _("Add Custom Network") ?></h4>
-<div class="card-grid">
-	<div class="card">
-		<div class="card-body">
-
-			<input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo htmlspecialchars($network ['protocol'], ENT_QUOTES); ?>" />
-
-			<div class="form-group">
-				<div class="info-item-wifi"><?php echo _("SSID"); ?></div>
-				<input type="text" class="form-control" name="ssid<?php echo $index ?>" data-colors="#ffd0d0,#d0ffd0"/>
-				<div class="info-item-wifi"><?php echo _("Passphrase"); ?></div>
-				<div class="input-group">
-					<input type="password" class="form-control js-validate-psk" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" data-target="#update<?php echo $index ?>" data-colors="#ffd0d0,#d0ffd0">
-					<div class="input-group-append">
-						<button class="btn btn-outline-secondary js-toggle-password" type="button" data-target="[name=passphrase<?php echo $index ?>]" data-toggle-with="<?php echo _("Hide") ?>">Show</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="btn-group btn-block ">
-				<input type="submit" class="col-xs-4 col-md-4 btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" data-toggle="modal" data-target="#configureClientModal" />
-			</div><!-- /.btn-group -->
-		</div><!-- /.card-body -->
-	</div><!-- /.card -->
-
-	<?php $index++; ?>
-
-</div>
