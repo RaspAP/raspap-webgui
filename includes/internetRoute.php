@@ -55,3 +55,14 @@ function getRouteInfo($checkAccess)
     return $rInfo;
 }
 
+/*
+ * Fetches raw output of ip route
+ *
+ * @return string
+ */
+function getRouteInfoRaw()
+{
+    exec('ip route list', $routes);
+    return $routes;
+}
+

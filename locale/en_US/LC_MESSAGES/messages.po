@@ -679,6 +679,12 @@ msgstr "Error saving network configuration to file"
 msgid "Unable to detect interface"
 msgstr "Unable to detect interface"
 
+msgid "Routing table"
+msgstr "Routing table"
+
+msgid "raw output"
+msgstr "raw output"
+
 #: includes/system.php
 msgid "System Information"
 msgstr "System Information"
