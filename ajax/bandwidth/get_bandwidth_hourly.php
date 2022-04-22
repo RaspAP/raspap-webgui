@@ -41,7 +41,7 @@ if (filter_input(INPUT_GET, 'tu') == 'h') {
 
     $jsonobj = json_decode($jsonstdoutvnstat[0], true)['interfaces'][0];
     $jsonData = $jsonobj['traffic']['hour'];
-    for ($i = count($jsonData) - 1; $i >= 0; --$i) {
+    for ($i = count($jsonData) - 1; $i >= 0 && $i >= count($jsonData)-25; --$i) {
         $data_template[$jsonData[$i]['time']['hour']]['rx'] = round($jsonData[$i]['rx'] / 1024, 0);
         $data_template[$jsonData[$i]['time']['hour']]['tx'] = round($jsonData[$i]['tx'] / 1024, 0);
     }
