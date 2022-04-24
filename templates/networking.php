@@ -55,6 +55,29 @@
                 </div>
               </div>
             </div>
+
+            <h4 class="mt-3"><?php echo _("Routing table"); ?></h4>
+            <div class="card h-100 w-100">
+              <div class="card-header"><?php echo _("raw output") ?></div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <tbody>
+                          <?php foreach($routeInfoRaw as $route): ?>
+                            <tr>
+                              <pre class="unstyled"><?php echo $route; ?></pre>
+                            </tr>
+                          <?php endforeach ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <h4 class="mt-3"><?php echo _("Current settings") ?></h4>
             <div class="row">
               <?php if (!$bridgedEnabled) : // No interface details when bridged ?>
