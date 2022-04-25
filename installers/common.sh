@@ -43,9 +43,14 @@ function _install_raspap() {
     _update_system_packages
     _install_dependencies
     _enable_php_lighttpd
-    _create_raspap_directories
+    if [ "$upgrade" == 1 ]; then
+        _check_for_old_configs
+        _create_raspap_directories
+    else
+        _create_raspap_directories
+        _check_for_old_configs
+    fi
     _optimize_php
-    _check_for_old_configs
     _download_latest_files
     _change_file_ownership
     _create_hostapd_scripts
