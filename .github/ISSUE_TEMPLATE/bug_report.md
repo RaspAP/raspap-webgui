@@ -11,10 +11,12 @@ assignees: ''
 <!--
 Thanks for reporting a bug for RaspAP.
 
-Before creating a new bug report, all submitters MUST read the issue reporting guidelines:
+Important: If you are NOT using a clean installation of a compatible OS, start with a fresh SD card, install RaspAP and replicate your bug BEFORE reporting an issue.
+
+All submitters MUST read the issue policy and reporting guidelines:
 https://docs.raspap.com/issues/
 
-Refer to the frequently asked questions (FAQ) and official documentation here:
+Refer to the frequently asked questions (FAQ) and official documentation:
 https://docs.raspap.com/faq/
 
 Do you have a question or want to suggest a new feature? Start a Discussion here:
@@ -27,6 +29,8 @@ Be sure there are no issues similar to yours that are already open. You can chec
 ## Checklist
 <!-- IMPORTANT! Fill in the boxes that apply by marking them like so: [x] -->
 - [ ] This is a bug report
+- [ ] I observed this bug on a clean install of the OS
+- [ ] I have followed the project prerequisites
 - [ ] I have searched this repository for existing issues
 - [ ] I checked the FAQ and official documentation before creating this issue
 - [ ] I have read and understand the issue reporting guidelines 
@@ -38,7 +42,7 @@ Be sure there are no issues similar to yours that are already open. You can chec
 1. Operating System: **ENTER HERE** <!-- RPi OS 32-bit Lite, Armbian, Debian, etc. -->
 2. Hardware and version: <!-- RPi Zero/3B+/4, OrangePi 3, etc. -->
 3. RaspAP version: <!-- reported by the Quick Installer or About page -->
-4. Followed the project prerequisites? <!-- Yes/No -->
+4. Clean install of a compatible operating system? <!-- Yes/No -->
 5. RaspAP Quick Install or Manual setup? <!-- Quick Install/Manual -->
 6. Using default configuration? <!-- Yes/No -->
 7. Simultaneous AP and managed mode? <!-- Yes/No -->
