@@ -43,8 +43,8 @@ function _install_raspap() {
     _update_system_packages
     _install_dependencies
     _enable_php_lighttpd
-    _check_for_old_configs
     _create_raspap_directories
+    _check_for_old_configs
     _optimize_php
     _download_latest_files
     _change_file_ownership
@@ -184,6 +184,13 @@ function _enable_php_lighttpd() {
 
 # Verifies existence and permissions of RaspAP directory
 function _create_raspap_directories() {
+    if [ "$upgrade" == 1 ]; then
+       if [ -f $raspap_dir/raspap.auth ]; then
+            _install_log "Moving existing raspap.auth file to /tmp"
+            sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
+        fi
+    fi
+
     _install_log "Creating RaspAP directories"
     if [ -d "$raspap_dir" ]; then
         sudo mv $raspap_dir "$raspap_dir.`date +%F-%R`" || _install_status 1 "Unable to move old '$raspap_dir' out of the way"
@@ -267,7 +274,6 @@ function _install_lighttpd_configs() {
     _install_status 0
 }
 
-
 # Prompt to install ad blocking
 function _prompt_install_adblock() {
     _install_log "Configure ad blocking (Beta)"
@@ -275,7 +281,7 @@ function _prompt_install_adblock() {
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            echo -e
+            _install_status 0 "(Skipped)"
         else
             _install_adblock
         fi
@@ -339,7 +345,7 @@ function _prompt_install_openvpn() {
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            echo -e
+            _install_status 0 "(Skipped)"
         else
             _install_openvpn
         fi
@@ -357,7 +363,7 @@ function _prompt_install_wireguard() {
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            echo -e
+            _install_status 0 "(Skipped)"
         else
             _install_wireguard
         fi
@@ -420,13 +426,14 @@ function _download_latest_files() {
 
     _install_log "Cloning latest files from github"
     git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || _install_status 1 "Unable to download files from github"
-
     sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to web root"
+
     if [ "$upgrade" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
         sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
         
         if [ -f /tmp/raspap.auth ]; then
+            _install_log "Applying existing authentication file to ${raspap_dir}"
             sudo mv /tmp/raspap.auth $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
         fi
     fi
@@ -449,10 +456,6 @@ function _check_for_old_configs() {
     if [ "$upgrade" == 1 ]; then
         _install_log "Moving existing configuration to /tmp"
         sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
-
-        if [ -f $raspap_dir/raspap.auth ]; then
-            sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
-        fi
     else
         _install_log "Backing up existing configs to ${raspap_dir}/backups"
         if [ -f /etc/network/interfaces ]; then
@@ -577,7 +580,7 @@ function _configure_networking() {
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            echo -e
+            _install_status 0 "(Skipped)"
         else
             _enable_raspap_daemon
         fi
