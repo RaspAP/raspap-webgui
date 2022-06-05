@@ -42,7 +42,7 @@ class Sysinfo
 
     public function usedMemory()
     {
-        $used = shell_exec("free -m | awk '/Mem:/ { total=$2 ; used=$3 } END { print used/total*100}'");
+        $used = shell_exec("free -m | awk 'NR==2{ total=$2 ; used=$3 } END { print used/total*100}'");
         return floor($used);
     }
 

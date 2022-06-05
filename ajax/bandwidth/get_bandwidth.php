@@ -49,6 +49,7 @@ if ($timeunits === 'm') {
 }
 
 $datasizeunits = filter_input(INPUT_GET, 'dsu');
+$dsu_factor = $datasizeunits == "mb" ? 1024 * 1024 : 1024;
 header('X-Content-Type-Options: nosniff');
 header('Content-Type: application/json');
 echo '[ ';
@@ -73,13 +74,8 @@ for ($i = count($jsonData) - 1; $i >= 0; --$i) {
         echo ',';
     }
 
-    if ($datasizeunits == 'mb') {
-        $datasend = round($jsonData[$i]['tx'] / 1024, 0);
-        $datareceived = round($jsonData[$i]['rx'] / 1024, 0);
-    } else {
-        $datasend = $jsonData[$i]['rx'];
-        $datareceived = $jsonData[$i]['rx'];
-    }
+    $datasend = round($jsonData[$i]['tx'] / $dsu_factor, 0);
+    $datareceived = round($jsonData[$i]['rx'] / $dsu_factor, 0);
 
     if ($timeunits === 'm') {
         echo '{ "date": "' , $dt->format('Y-m') , '", "rx": "' , $datareceived , 
