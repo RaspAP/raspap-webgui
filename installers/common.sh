@@ -139,7 +139,7 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        18.04|19.10|11*) # Ubuntu Server & Debian 11
+        20.04|18.04|19.10|11*) # Ubuntu Server, Debian 11 & Armbian 22.05
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
         10*|11*)
@@ -149,9 +149,11 @@ function _set_php_package() {
             php_package="php7.0-cgi"
             phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
         8)
-            _install_status 1 "${DESC} and php5 are not supported. Please upgrade." ;;
+            _install_status 1 "${DESC} and php5 are not supported. Please upgrade."
+            exit 1 ;;
         *)
-            _install_status 1 "${DESC} is unsupported. Please install on a supported distro." ;;
+            _install_status 1 "${DESC} is unsupported. Please install on a supported distro."
+            exit 1 ;;
     esac
 }
 
@@ -159,10 +161,12 @@ function _set_php_package() {
 function _install_dependencies() {
     _install_log "Installing required packages"
     _set_php_package
-    if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ]; then
+    if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(18.04|19.10|11) ]]; then
         echo "Adding apt-repository ppa:ondrej/php"
         sudo apt-get install $apt_option software-properties-common || _install_status 1 "Unable to install dependency"
         sudo add-apt-repository $apt_option ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
+    else
+        echo "PHP will be installed from the main deb sources list"
     fi
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
