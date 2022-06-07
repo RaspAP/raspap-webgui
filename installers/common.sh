@@ -163,45 +163,30 @@ function _set_php_package() {
 # On Ubuntu 20.04 / Armbian 22, the systemd-resolved service uses port 53
 # by default which prevents dnsmasq from starting.
 function _manage_systemd_services() { 
-    _install_log "Checking for systemd-networkd services"
+    _install_log "Checking for systemd network services"
 
-    # Prompt to disable systemd-networkd service
-    if systemctl is-active --quiet systemd-networkd.service; then
-        echo -n "Stop and disable systemd-networkd service? [Y/n]: "
-        if [ "$assume_yes" == 0 ]; then
-            read answer < /dev/tty
-            if [ "$answer" != "${answer#[Nn]}" ]; then
-                echo -e
+    services=( "systemd-networkd" "systemd-resolved" )
+    for svc in "${services[@]}"; do
+        # Prompt to disable systemd service
+        if systemctl is-active --quiet "$svc".service; then
+            echo -n "Stop and disable ${svc} service? [Y/n]: "
+            if [ "$assume_yes" == 0 ]; then
+                read answer < /dev/tty
+                if [ "$answer" != "${answer#[Nn]}" ]; then
+                    echo -e
+                else
+                    sudo systemctl stop "$svc".service
+                    sudo systemctl disable "$svc".service
+                fi
             else
-                sudo systemctl stop systemd-networkd.service
-                sudo systemctl disable systemd-networkd.service
+                sudo systemctl stop "$svc".service
+                sudo systemctl disable "$svc".service
             fi
         else
-            sudo systemctl stop systemd-networkd.service
-            sudo systemctl disable systemd-networkd.service
+            echo "${svc}.service is not running (OK)"
         fi
-    else
-        echo "systemd-networkd.service is not running (OK)"
-    fi
-
-    # Prompt to disable systemd-resolved service
-    if systemctl is-active --quiet systemd-resolved.service; then
-        echo -n "Stop and disable systemd-resolved service? [Y/n]: "
-        if [ "$assume_yes" == 0 ]; then
-            read answer < /dev/tty
-            if [ "$answer" != "${answer#[Nn]}" ]; then
-                echo -e
-            else
-                sudo systemctl stop systemd-resolved.service
-                sudo systemctl disable systemd-resolved.service
-            fi
-        else
-            sudo systemctl stop systemd-resolved.service
-            sudo systemctl disable systemd-resolved.service
-        fi
-    else
-        echo "systemd-resolved.service is not running (OK)"
-    fi
+    done
+    _install_status 0
 }
 
 # Runs a system software update to make sure we're using all fresh packages
@@ -213,7 +198,7 @@ function _install_dependencies() {
         sudo apt-get install $apt_option software-properties-common || _install_status 1 "Unable to install dependency"
         sudo add-apt-repository $apt_option ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
     else
-        echo "PHP will be installed from the main deb sources list"
+        echo "${php_package} will be installed from the main deb sources list"
     fi
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
