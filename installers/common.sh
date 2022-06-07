@@ -41,6 +41,7 @@ function _install_raspap() {
     _display_welcome
     _config_installation
     _update_system_packages
+    _manage_systemd_services
     _install_dependencies
     _enable_php_lighttpd
     _create_raspap_directories
@@ -155,6 +156,52 @@ function _set_php_package() {
             _install_status 1 "${DESC} is unsupported. Please install on a supported distro."
             exit 1 ;;
     esac
+}
+
+# Prompts the user to stop & disable Debian's systemd-networkd services
+# It isn't possible to mix Debian networking with dhcpcd
+# On Ubuntu 20.04 / Armbian 22, the systemd-resolved service uses port 53
+# by default which prevents dnsmasq from starting.
+function _manage_systemd_services() { 
+    _install_log "Checking for systemd-networkd services"
+
+    # Prompt to disable systemd-networkd service
+    if systemctl is-active --quiet systemd-networkd.service; then
+        echo -n "Stop and disable systemd-networkd service? [Y/n]: "
+        if [ "$assume_yes" == 0 ]; then
+            read answer < /dev/tty
+            if [ "$answer" != "${answer#[Nn]}" ]; then
+                echo -e
+            else
+                sudo systemctl stop systemd-networkd.service
+                sudo systemctl disable systemd-networkd.service
+            fi
+        else
+            sudo systemctl stop systemd-networkd.service
+            sudo systemctl disable systemd-networkd.service
+        fi
+    else
+        echo "systemd-networkd.service is not running (OK)"
+    fi
+
+    # Prompt to disable systemd-resolved service
+    if systemctl is-active --quiet systemd-resolved.service; then
+        echo -n "Stop and disable systemd-resolved service? [Y/n]: "
+        if [ "$assume_yes" == 0 ]; then
+            read answer < /dev/tty
+            if [ "$answer" != "${answer#[Nn]}" ]; then
+                echo -e
+            else
+                sudo systemctl stop systemd-resolved.service
+                sudo systemctl disable systemd-resolved.service
+            fi
+        else
+            sudo systemctl stop systemd-resolved.service
+            sudo systemctl disable systemd-resolved.service
+        fi
+    else
+        echo "systemd-resolved.service is not running (OK)"
+    fi
 }
 
 # Runs a system software update to make sure we're using all fresh packages
@@ -528,8 +575,6 @@ function _default_configuration() {
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
 
         echo "Copying bridged AP config to /etc/systemd/network"
-        sudo systemctl stop systemd-networkd
-        sudo systemctl disable systemd-networkd
         sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
         sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
 
