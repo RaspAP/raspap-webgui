@@ -737,6 +737,12 @@ msgstr "Web server port"
 msgid "Web server bind address"
 msgstr "Web server bind address"
 
+msgid "OS"
+msgstr "OS"
+
+msgid "Kernel"
+msgstr "Kernel"
+
 #: includes/themes.php
 msgid "Theme settings"
 msgstr "Theme settings"
