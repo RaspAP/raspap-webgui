@@ -7,6 +7,9 @@ require_once 'includes/config.php';
 
 getWifiInterface();
 
+$system = new \RaspAP\System\Sysinfo;
+$os = $system->operatingSystem();
+
 /**
  * Initialize hostapd values, display interface
  *
