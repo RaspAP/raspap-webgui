@@ -158,8 +158,8 @@ function _set_php_package() {
     esac
 }
 
-# Prompts the user to stop & disable Debian's systemd-networkd services
-# It isn't possible to mix Debian networking with dhcpcd
+# Prompts the user to stop & disable Debian's systemd-networkd services.
+# It isn't possible to mix Debian networking with dhcpcd.
 # On Ubuntu 20.04 / Armbian 22, the systemd-resolved service uses port 53
 # by default which prevents dnsmasq from starting.
 function _manage_systemd_services() { 
@@ -175,12 +175,12 @@ function _manage_systemd_services() {
                 if [ "$answer" != "${answer#[Nn]}" ]; then
                     echo -e
                 else
-                    sudo systemctl stop "$svc".service
-                    sudo systemctl disable "$svc".service
+                    sudo systemctl stop "$svc".service || _install_status 1 "Unable to stop ${svc}.service"
+                    sudo systemctl disable "$svc".service || _install_status 1 "Unable to disable ${svc}.service"
                 fi
             else
-                sudo systemctl stop "$svc".service
-                sudo systemctl disable "$svc".service
+                sudo systemctl stop "$svc".service || _install_status 1 "Unable to stop ${svc}.service"
+                sudo systemctl disable "$svc".service || _install_status 1 "Unable to disable ${svc}.service"
             fi
         else
             echo "${svc}.service is not running (OK)"
