@@ -553,15 +553,21 @@ function _default_configuration() {
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
         sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
 
-        echo "Changing file ownership of ${raspap_network}/defaults.json"
+        echo "Changing file ownership of ${raspap_network}defaults.json"
         sudo chown $raspap_user:$raspap_user "$raspap_network"/defaults.json || _install_status 1 "Unable to change file ownership for defaults.json"
 
         echo "Checking for existence of /etc/dnsmasq.d"
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
 
-        echo "Copying bridged AP config to /etc/systemd/network"
-        sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
-        sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
+        # Copy OS-specific bridge default config
+        if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(20.04|19.10|18.04) ]]; then
+            echo "Copying bridged AP config to /etc/netplan"
+            sudo cp $webroot_dir/config/raspap-bridge-br0.netplan /etc/netplan/raspap-bridge-br0.netplan || _install_status 1 "Unable to move br0 netplan file"
+        else
+            echo "Copying bridged AP config to /etc/systemd/network"
+            sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
+            sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
+        fi
 
         echo "Copying primary RaspAP config to includes/config.php"
         if [ ! -f "$webroot_dir/includes/config.php" ]; then
