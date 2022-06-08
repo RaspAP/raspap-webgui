@@ -75,5 +75,16 @@ class Sysinfo
         return $status;
     }
 
+    public function operatingSystem()
+    {
+        $os_desc = shell_exec("lsb_release -sd");
+        return $os_desc;
+    }
+
+    public function kernelVersion()
+    {
+        $kernel = shell_exec("uname -r");
+        return $kernel;
+    }
 }
 
