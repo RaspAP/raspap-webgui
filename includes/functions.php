@@ -787,7 +787,7 @@ class validation
  */
 function get_public_ip()
 {
-    exec('wget https://ipinfo.io/ip -qO -', $public_ip);
+    exec('wget --timeout=5 --tries=1 https://ipinfo.io/ip -qO -', $public_ip);
     return $public_ip[0];
 }
 
