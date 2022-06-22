@@ -18,6 +18,7 @@ function DisplayHostAPDConfig()
 {
     $status = new StatusMessages();
     $system = new \RaspAP\System\Sysinfo;
+    $operatingSystem = $system->operatingSystem();
     $arrConfig = array();
     $arr80211Standard = [
         'a' => '802.11a - 5 GHz',
@@ -122,7 +123,8 @@ function DisplayHostAPDConfig()
             "arrEncType",
             "arrTxPower",
             "txpower",
-            "arrHostapdConf"
+            "arrHostapdConf",
+            "operatingSystem"
         )
     );
 }
