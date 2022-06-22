@@ -183,7 +183,7 @@ function _manage_systemd_services() {
                 sudo systemctl disable "$svc".service || _install_status 1 "Unable to disable ${svc}.service"
             fi
         else
-            echo "${svc}.service is not running (OK)"
+            echo "${svc}.service is not running (ok)"
         fi
     done
     _install_status 0
