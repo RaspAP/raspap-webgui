@@ -140,7 +140,7 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        20.04|18.04|19.10|11*) # Ubuntu Server, Debian 11 & Armbian 22.05
+        22.04|20.04|18.04|19.10|11*) # Ubuntu Server, Debian 11 & Armbian 22.05
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
         10*|11*)
@@ -193,7 +193,7 @@ function _manage_systemd_services() {
 function _install_dependencies() {
     _install_log "Installing required packages"
     _set_php_package
-    if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(18.04|19.10|11) ]]; then
+    if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|18.04|19.10|11) ]]; then
         echo "Adding apt-repository ppa:ondrej/php"
         sudo apt-get install $apt_option software-properties-common || _install_status 1 "Unable to install dependency"
         sudo add-apt-repository $apt_option ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
@@ -560,7 +560,7 @@ function _default_configuration() {
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
 
         # Copy OS-specific bridge default config
-        if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(20.04|19.10|18.04) ]]; then
+        if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
             echo "Copying bridged AP config to /etc/netplan"
             sudo cp $webroot_dir/config/raspap-bridge-br0.netplan /etc/netplan/raspap-bridge-br0.netplan || _install_status 1 "Unable to move br0 netplan file"
         else
@@ -651,12 +651,12 @@ function _patch_system_files() {
     sudo systemctl enable hostapd.service
     
     # Set correct DAEMON_CONF path for hostapd (Ubuntu20 + Armbian22)
-    if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(20.04|19.10|18.04) ]]; then
+    if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
         conf="/etc/default/hostapd"
         key="DAEMON_CONF"
         value="/etc/hostapd/hostapd.conf"
         echo "Setting default ${key} path to ${value}"
-        sudo sed -i "/^$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
+        sudo sed -i -E "/^#?$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
     fi
     _install_status 0
 }
