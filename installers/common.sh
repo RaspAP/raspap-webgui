@@ -41,6 +41,7 @@ function _install_raspap() {
     _display_welcome
     _config_installation
     _update_system_packages
+    _manage_systemd_services
     _install_dependencies
     _enable_php_lighttpd
     _create_raspap_directories
@@ -157,6 +158,37 @@ function _set_php_package() {
     esac
 }
 
+# Prompts the user to stop & disable Debian's systemd-networkd services.
+# It isn't possible to mix Debian networking with dhcpcd.
+# On Ubuntu 20.04 / Armbian 22, the systemd-resolved service uses port 53
+# by default which prevents dnsmasq from starting.
+function _manage_systemd_services() { 
+    _install_log "Checking for systemd network services"
+
+    services=( "systemd-networkd" "systemd-resolved" )
+    for svc in "${services[@]}"; do
+        # Prompt to disable systemd service
+        if systemctl is-active --quiet "$svc".service; then
+            echo -n "Stop and disable ${svc} service? [Y/n]: "
+            if [ "$assume_yes" == 0 ]; then
+                read answer < /dev/tty
+                if [ "$answer" != "${answer#[Nn]}" ]; then
+                    echo -e
+                else
+                    sudo systemctl stop "$svc".service || _install_status 1 "Unable to stop ${svc}.service"
+                    sudo systemctl disable "$svc".service || _install_status 1 "Unable to disable ${svc}.service"
+                fi
+            else
+                sudo systemctl stop "$svc".service || _install_status 1 "Unable to stop ${svc}.service"
+                sudo systemctl disable "$svc".service || _install_status 1 "Unable to disable ${svc}.service"
+            fi
+        else
+            echo "${svc}.service is not running (ok)"
+        fi
+    done
+    _install_status 0
+}
+
 # Runs a system software update to make sure we're using all fresh packages
 function _install_dependencies() {
     _install_log "Installing required packages"
@@ -166,7 +198,7 @@ function _install_dependencies() {
         sudo apt-get install $apt_option software-properties-common || _install_status 1 "Unable to install dependency"
         sudo add-apt-repository $apt_option ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
     else
-        echo "PHP will be installed from the main deb sources list"
+        echo "${php_package} will be installed from the main deb sources list"
     fi
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
@@ -521,17 +553,21 @@ function _default_configuration() {
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
         sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
 
-        echo "Changing file ownership of ${raspap_network}/defaults.json"
+        echo "Changing file ownership of ${raspap_network}defaults.json"
         sudo chown $raspap_user:$raspap_user "$raspap_network"/defaults.json || _install_status 1 "Unable to change file ownership for defaults.json"
 
         echo "Checking for existence of /etc/dnsmasq.d"
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
 
-        echo "Copying bridged AP config to /etc/systemd/network"
-        sudo systemctl stop systemd-networkd
-        sudo systemctl disable systemd-networkd
-        sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
-        sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
+        # Copy OS-specific bridge default config
+        if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(20.04|19.10|18.04) ]]; then
+            echo "Copying bridged AP config to /etc/netplan"
+            sudo cp $webroot_dir/config/raspap-bridge-br0.netplan /etc/netplan/raspap-bridge-br0.netplan || _install_status 1 "Unable to move br0 netplan file"
+        else
+            echo "Copying bridged AP config to /etc/systemd/network"
+            sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
+            sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
+        fi
 
         echo "Copying primary RaspAP config to includes/config.php"
         if [ ! -f "$webroot_dir/includes/config.php" ]; then
@@ -613,6 +649,15 @@ function _patch_system_files() {
     _install_log "Unmasking and enabling hostapd service"
     sudo systemctl unmask hostapd.service
     sudo systemctl enable hostapd.service
+    
+    # Set correct DAEMON_CONF path for hostapd (Ubuntu20 + Armbian22)
+    if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(20.04|19.10|18.04) ]]; then
+        conf="/etc/default/hostapd"
+        key="DAEMON_CONF"
+        value="/etc/hostapd/hostapd.conf"
+        echo "Setting default ${key} path to ${value}"
+        sudo sed -i "/^$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
+    fi
     _install_status 0
 }
 
