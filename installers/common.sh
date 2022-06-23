@@ -649,6 +649,15 @@ function _patch_system_files() {
     _install_log "Unmasking and enabling hostapd service"
     sudo systemctl unmask hostapd.service
     sudo systemctl enable hostapd.service
+    
+    # Set correct DAEMON_CONF path for hostapd (Ubuntu20 + Armbian22)
+    if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(20.04|19.10|18.04) ]]; then
+        conf="/etc/default/hostapd"
+        key="DAEMON_CONF"
+        value="/etc/hostapd/hostapd.conf"
+        echo "Setting default ${key} path to ${value}"
+        sudo sed -i "/^$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
+    fi
     _install_status 0
 }
 
