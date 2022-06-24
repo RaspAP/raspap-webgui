@@ -5,16 +5,16 @@
  *
  * Simple AP setup & WiFi management for Debian-based devices.
  * Enables use of simple web interface rather than SSH to control WiFi and related services  on the Raspberry Pi.
- * Recommended distribution is Raspberry Pi OS (32-bit) Lite. Specific instructions to install the supported software are
+ * Recommended distribution is Raspberry Pi OS (64-bit) Lite. Specific instructions to install the supported software are
  * in the README and original post by @SirLagz. For a quick run through, the packages required for the WebGUI are:
  * lighttpd (version 1.4.59 installed via apt)
- * php-cgi (version 7.4.25 installed via apt)
+ * php-cgi (version 7.4.28 installed via apt)
  * along with their supporting packages, php7.3 will also need to be enabled.
  *
  * @author  Lawrence Yau <sirlagz@gmail.com>
  * @author  Bill Zimmerman <billzimmerman@gmail.com>
  * @license GNU General Public License, version 3 (GPL-3.0)
- * @version 2.8.4
+ * @version 2.8.5
  * @link    https://github.com/RaspAP/raspap-webgui/
  * @link    https://raspap.com/
  * @see     http://sirlagz.net/2013/02/08/raspap-webgui/
