@@ -120,7 +120,7 @@ function validateDHCPInput()
 {
     define('IFNAMSIZ', 16);
     $iface = $_POST['interface'];
-    if (!preg_match('/^[a-zA-Z0-9]+$/', $iface)
+    if (!preg_match('/^[^\s\/\\0]+$/', $iface)
         || strlen($iface) >= IFNAMSIZ
     ) {
         $errors .= _('Invalid interface name.').'<br />'.PHP_EOL;
