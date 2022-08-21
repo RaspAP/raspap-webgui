@@ -159,6 +159,8 @@ function DisplaySystem()
     $hostname = $system->hostname();
     $uptime   = $system->uptime();
     $cores    = $system->processorCount();
+    $os       = $system->operatingSystem();
+    $kernel   = $system->kernelVersion();
 
     // mem used
     $memused  = $system->usedMemory();
@@ -215,6 +217,8 @@ function DisplaySystem()
         "hostname",
         "uptime",
         "cores",
+        "os",
+        "kernel",
         "memused",
         "memused_status",
         "memused_led",

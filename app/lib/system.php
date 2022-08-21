@@ -42,7 +42,7 @@ class Sysinfo
 
     public function usedMemory()
     {
-        $used = shell_exec("free -m | awk '/Mem:/ { total=$2 ; used=$3 } END { print used/total*100}'");
+        $used = shell_exec("free -m | awk 'NR==2{ total=$2 ; used=$3 } END { print used/total*100}'");
         return floor($used);
     }
 
@@ -75,5 +75,16 @@ class Sysinfo
         return $status;
     }
 
+    public function operatingSystem()
+    {
+        $os_desc = shell_exec("lsb_release -sd");
+        return $os_desc;
+    }
+
+    public function kernelVersion()
+    {
+        $kernel = shell_exec("uname -r");
+        return $kernel;
+    }
 }
 

@@ -41,10 +41,11 @@ function _install_raspap() {
     _display_welcome
     _config_installation
     _update_system_packages
+    _manage_systemd_services
     _install_dependencies
     _enable_php_lighttpd
-    _check_for_old_configs
     _create_raspap_directories
+    _check_for_old_configs
     _optimize_php
     _download_latest_files
     _change_file_ownership
@@ -139,7 +140,7 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        18.04|19.10|11*) # Ubuntu Server & Debian 11
+        22.04|20.04|18.04|19.10|11*) # Ubuntu Server, Debian 11 & Armbian 22.05
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
         10*|11*)
@@ -149,20 +150,55 @@ function _set_php_package() {
             php_package="php7.0-cgi"
             phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
         8)
-            _install_status 1 "${DESC} and php5 are not supported. Please upgrade." ;;
+            _install_status 1 "${DESC} and php5 are not supported. Please upgrade."
+            exit 1 ;;
         *)
-            _install_status 1 "${DESC} is unsupported. Please install on a supported distro." ;;
+            _install_status 1 "${DESC} is unsupported. Please install on a supported distro."
+            exit 1 ;;
     esac
+}
+
+# Prompts the user to stop & disable Debian's systemd-networkd services.
+# It isn't possible to mix Debian networking with dhcpcd.
+# On Ubuntu 20.04 / Armbian 22, the systemd-resolved service uses port 53
+# by default which prevents dnsmasq from starting.
+function _manage_systemd_services() { 
+    _install_log "Checking for systemd network services"
+
+    services=( "systemd-networkd" "systemd-resolved" )
+    for svc in "${services[@]}"; do
+        # Prompt to disable systemd service
+        if systemctl is-active --quiet "$svc".service; then
+            echo -n "Stop and disable ${svc} service? [Y/n]: "
+            if [ "$assume_yes" == 0 ]; then
+                read answer < /dev/tty
+                if [ "$answer" != "${answer#[Nn]}" ]; then
+                    echo -e
+                else
+                    sudo systemctl stop "$svc".service || _install_status 1 "Unable to stop ${svc}.service"
+                    sudo systemctl disable "$svc".service || _install_status 1 "Unable to disable ${svc}.service"
+                fi
+            else
+                sudo systemctl stop "$svc".service || _install_status 1 "Unable to stop ${svc}.service"
+                sudo systemctl disable "$svc".service || _install_status 1 "Unable to disable ${svc}.service"
+            fi
+        else
+            echo "${svc}.service is not running (ok)"
+        fi
+    done
+    _install_status 0
 }
 
 # Runs a system software update to make sure we're using all fresh packages
 function _install_dependencies() {
     _install_log "Installing required packages"
     _set_php_package
-    if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ]; then
+    if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|18.04|19.10|11) ]]; then
         echo "Adding apt-repository ppa:ondrej/php"
         sudo apt-get install $apt_option software-properties-common || _install_status 1 "Unable to install dependency"
         sudo add-apt-repository $apt_option ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
+    else
+        echo "${php_package} will be installed from the main deb sources list"
     fi
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
@@ -184,6 +220,13 @@ function _enable_php_lighttpd() {
 
 # Verifies existence and permissions of RaspAP directory
 function _create_raspap_directories() {
+    if [ "$upgrade" == 1 ]; then
+       if [ -f $raspap_dir/raspap.auth ]; then
+            _install_log "Moving existing raspap.auth file to /tmp"
+            sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
+        fi
+    fi
+
     _install_log "Creating RaspAP directories"
     if [ -d "$raspap_dir" ]; then
         sudo mv $raspap_dir "$raspap_dir.`date +%F-%R`" || _install_status 1 "Unable to move old '$raspap_dir' out of the way"
@@ -267,7 +310,6 @@ function _install_lighttpd_configs() {
     _install_status 0
 }
 
-
 # Prompt to install ad blocking
 function _prompt_install_adblock() {
     _install_log "Configure ad blocking (Beta)"
@@ -275,7 +317,7 @@ function _prompt_install_adblock() {
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            echo -e
+            _install_status 0 "(Skipped)"
         else
             _install_adblock
         fi
@@ -339,7 +381,7 @@ function _prompt_install_openvpn() {
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            echo -e
+            _install_status 0 "(Skipped)"
         else
             _install_openvpn
         fi
@@ -357,7 +399,7 @@ function _prompt_install_wireguard() {
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            echo -e
+            _install_status 0 "(Skipped)"
         else
             _install_wireguard
         fi
@@ -420,13 +462,14 @@ function _download_latest_files() {
 
     _install_log "Cloning latest files from github"
     git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || _install_status 1 "Unable to download files from github"
-
     sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to web root"
+
     if [ "$upgrade" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
         sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
         
         if [ -f /tmp/raspap.auth ]; then
+            _install_log "Applying existing authentication file to ${raspap_dir}"
             sudo mv /tmp/raspap.auth $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
         fi
     fi
@@ -449,10 +492,6 @@ function _check_for_old_configs() {
     if [ "$upgrade" == 1 ]; then
         _install_log "Moving existing configuration to /tmp"
         sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
-
-        if [ -f $raspap_dir/raspap.auth ]; then
-            sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
-        fi
     else
         _install_log "Backing up existing configs to ${raspap_dir}/backups"
         if [ -f /etc/network/interfaces ]; then
@@ -514,17 +553,21 @@ function _default_configuration() {
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
         sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
 
-        echo "Changing file ownership of ${raspap_network}/defaults.json"
+        echo "Changing file ownership of ${raspap_network}defaults.json"
         sudo chown $raspap_user:$raspap_user "$raspap_network"/defaults.json || _install_status 1 "Unable to change file ownership for defaults.json"
 
         echo "Checking for existence of /etc/dnsmasq.d"
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
 
-        echo "Copying bridged AP config to /etc/systemd/network"
-        sudo systemctl stop systemd-networkd
-        sudo systemctl disable systemd-networkd
-        sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
-        sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
+        # Copy OS-specific bridge default config
+        if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
+            echo "Copying bridged AP config to /etc/netplan"
+            sudo cp $webroot_dir/config/raspap-bridge-br0.netplan /etc/netplan/raspap-bridge-br0.netplan || _install_status 1 "Unable to move br0 netplan file"
+        else
+            echo "Copying bridged AP config to /etc/systemd/network"
+            sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
+            sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
+        fi
 
         echo "Copying primary RaspAP config to includes/config.php"
         if [ ! -f "$webroot_dir/includes/config.php" ]; then
@@ -577,7 +620,7 @@ function _configure_networking() {
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            echo -e
+            _install_status 0 "(Skipped)"
         else
             _enable_raspap_daemon
         fi
@@ -606,6 +649,15 @@ function _patch_system_files() {
     _install_log "Unmasking and enabling hostapd service"
     sudo systemctl unmask hostapd.service
     sudo systemctl enable hostapd.service
+    
+    # Set correct DAEMON_CONF path for hostapd (Ubuntu20 + Armbian22)
+    if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
+        conf="/etc/default/hostapd"
+        key="DAEMON_CONF"
+        value="/etc/hostapd/hostapd.conf"
+        echo "Setting default ${key} path to ${value}"
+        sudo sed -i -E "/^#?$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
+    fi
     _install_status 0
 }
 
@@ -675,7 +727,7 @@ function _install_complete() {
         # Prompt to reboot if wired ethernet (eth0) is connected.
         # With default_configuration this will create an active AP on restart.
         if ip a | grep -q ': eth0:.*state UP'; then
-            echo -n "The system needs to be rebooted as a final step. Reboot now? [y/N]: "
+            echo -n "The system needs to be rebooted as a final step. Reboot now? [Y/n]: "
             read answer < /dev/tty
             if [ "$answer" != "${answer#[Nn]}" ]; then
                 echo "Installation reboot aborted."

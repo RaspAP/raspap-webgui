@@ -679,6 +679,12 @@ msgstr "Error saving network configuration to file"
 msgid "Unable to detect interface"
 msgstr "Unable to detect interface"
 
+msgid "Routing table"
+msgstr "Routing table"
+
+msgid "raw output"
+msgstr "raw output"
+
 #: includes/system.php
 msgid "System Information"
 msgstr "System Information"
@@ -730,6 +736,12 @@ msgstr "Web server port"
 
 msgid "Web server bind address"
 msgstr "Web server bind address"
+
+msgid "OS"
+msgstr "OS"
+
+msgid "Kernel"
+msgstr "Kernel"
 
 #: includes/themes.php
 msgid "Theme settings"

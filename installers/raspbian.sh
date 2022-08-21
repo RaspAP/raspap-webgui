@@ -21,6 +21,7 @@
 # -u, --upgrade                     Upgrades an existing installation to the latest release version
 # -i, --insiders                    Installs from the Insiders Edition (RaspAP/raspap-insiders)
 # -v, --version                     Outputs release info and exits
+# -n, --uninstall		    Loads and executes the uninstaller
 # -h, --help                        Outputs usage notes and exits
 #
 # Depending on options passed to the installer, ONE of the following
@@ -29,6 +30,8 @@
 # https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/common.sh
 # - or -
 # https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/mkcert.sh
+# - or -
+# https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/uninstall.sh
 #
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.
@@ -96,6 +99,9 @@ function _parse_params() {
             -v|--version)
             _version
             ;;
+            -n|--uninstall)
+            uninstall=1
+            ;;
             -*|--*)
             echo "Unknown option: $1"
             _usage
@@ -141,6 +147,7 @@ OPTIONS:
 -u, --upgrade                       Upgrades an existing installation to the latest release version
 -i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
 -v, --version                       Outputs release info and exits
+-n, --uninstall                     Loads and executes the uninstaller
 -h, --help                          Outputs usage notes and exits
 
 Examples:
@@ -245,11 +252,17 @@ function _load_installer() {
     if [[ ! -z "$acctoken" ]]; then
         header=(--header "Authorization: token $acctoken")
     fi
+
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _install_certificate || _install_status 1 "Unable to install certificate"
+    elif [ "${uninstall}" = 1 ]; then
+        source="uninstall"
+        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
+        source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
+        _remove_raspap || _install_status 1 "Unable to uninstall RaspAP"
     else
         source="common"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
