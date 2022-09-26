@@ -971,6 +971,9 @@ msgstr "up"
 msgid "down"
 msgstr "down"
 
+msgid "Clear log"
+msgstr "Clear log"
+
 #: includes/adblock.php
 
 msgid "adblock"
