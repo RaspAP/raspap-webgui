@@ -122,6 +122,13 @@ $(document).on("click", "#gen_wpa_passphrase", function(e) {
     $('#txtwpapassphrase').val(genPassword(63));
 });
 
+$(document).on("click", "#js-clearhostapd-log", function(e) {
+    $.post('ajax/logging/clearlog.php?',{'svc':'hostapd'},function(data){
+        jsonData = JSON.parse(data);
+        $("#hostapd-log").val("");
+    });
+});
+
 // Enable Bootstrap tooltips
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
