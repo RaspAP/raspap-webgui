@@ -122,6 +122,28 @@ $(document).on("click", "#gen_wpa_passphrase", function(e) {
     $('#txtwpapassphrase').val(genPassword(63));
 });
 
+$(document).on("click", "#js-clearhostapd-log", function(e) {
+    $.post('ajax/logging/clearlog.php?',{'logfile':'/tmp/hostapd.log'},function(data){
+        jsonData = JSON.parse(data);
+        $("#hostapd-log").val("");
+    });
+});
+
+$(document).on("click", "#js-cleardnsmasq-log", function(e) {
+    $.post('ajax/logging/clearlog.php?',{'logfile':'/var/log/dnsmasq.log'},function(data){
+        jsonData = JSON.parse(data);
+        $("#dnsmasq-log").val("");
+    });
+});
+
+$(document).on("click", "#js-clearopenvpn-log", function(e) {
+    $.post('ajax/logging/clearlog.php?',{'logfile':'/tmp/openvpn.log'},function(data){
+        jsonData = JSON.parse(data);
+        $("#openvpn-log").val("");
+    });
+});
+
+
 // Enable Bootstrap tooltips
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()

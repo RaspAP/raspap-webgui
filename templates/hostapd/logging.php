@@ -6,7 +6,8 @@
   <div class="custom-control custom-switch">
     <?php $checked = $arrHostapdConf['LogEnable'] == 1 ? 'checked="checked"' : '' ?>
     <input class="custom-control-input" id="chxlogenable" name="logEnable" type="checkbox" value="1" <?php echo $checked ?> />
-    <label class="custom-control-label" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
+    <label class="custom-control-label align-middle" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
+    <input type="button" class="btn btn-outline btn-warning btn-sm align-top ml-2" id="js-clearhostapd-log" value="<?php echo _("Clear log"); ?>" />
   </div>
 
   <div class="row">
@@ -15,7 +16,7 @@
       if ($arrHostapdConf['LogEnable'] == 1) {
           exec('sudo /bin/chmod o+r /tmp/hostapd.log');
           $log = file_get_contents('/tmp/hostapd.log');
-          echo '<textarea class="logoutput">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
+          echo '<textarea class="logoutput" id="hostapd-log">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
       } else {
           echo '<textarea class="logoutput my-3"></textarea>';
       }

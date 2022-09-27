@@ -5,11 +5,12 @@
 
   <div class="custom-control custom-switch">
     <input class="custom-control-input" id="log-openvpn" type="checkbox" name="log-openvpn" value="1" <?php echo $logEnable ? ' checked="checked"' : "" ?> aria-describedby="log-openvpn">
-    <label class="custom-control-label" for="log-openvpn"><?php echo _("Enable logging") ?></label>
+    <label class="custom-control-label align-middle" for="log-openvpn"><?php echo _("Enable logging") ?></label>
+    <input type="button" class="btn btn-outline btn-warning btn-sm align-top ml-2" id="js-clearopenvpn-log" value="<?php echo _("Clear log"); ?>" />
   </div>
   <div class="row">
     <div class="form-group col-md-8 mt-2">
-      <textarea class="logoutput"><?php echo htmlspecialchars($logOutput, ENT_QUOTES); ?></textarea>
+      <textarea class="logoutput" id="openvpn-log"><?php echo htmlspecialchars($logOutput, ENT_QUOTES); ?></textarea>
     </div>
   </div>
 </div><!-- /.tab-pane -->
