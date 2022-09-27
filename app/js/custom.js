@@ -123,9 +123,16 @@ $(document).on("click", "#gen_wpa_passphrase", function(e) {
 });
 
 $(document).on("click", "#js-clearhostapd-log", function(e) {
-    $.post('ajax/logging/clearlog.php?',{'svc':'hostapd'},function(data){
+    $.post('ajax/logging/clearlog.php?',{'logfile':'/tmp/hostapd.log'},function(data){
         jsonData = JSON.parse(data);
         $("#hostapd-log").val("");
+    });
+});
+
+$(document).on("click", "#js-cleardnsmasq-log", function(e) {
+    $.post('ajax/logging/clearlog.php?',{'logfile':'/var/log/dnsmasq.log'},function(data){
+        jsonData = JSON.parse(data);
+        $("#dnsmasq-log").val("");
     });
 });
 

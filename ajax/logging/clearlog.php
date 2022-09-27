@@ -3,10 +3,10 @@
 require_once '../../includes/config.php';
 require_once '../../includes/functions.php';
 
-if (isset($_POST['svc'])) {
-    $tmplog = '/tmp/' .$_POST['svc']. '.log';
+if (isset($_POST['logfile'])) {
+    $logfile = $_POST['logfile'];
 
-    // clear log for requested service
-    exec("sudo truncate -s 0 $tmplog", $return);
+    // truncate requested log file
+    exec("sudo truncate -s 0 $logfile", $return);
     echo json_encode($return);
 }
