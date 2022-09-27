@@ -136,6 +136,14 @@ $(document).on("click", "#js-cleardnsmasq-log", function(e) {
     });
 });
 
+$(document).on("click", "#js-clearopenvpn-log", function(e) {
+    $.post('ajax/logging/clearlog.php?',{'logfile':'/tmp/openvpn.log'},function(data){
+        jsonData = JSON.parse(data);
+        $("#openvpn-log").val("");
+    });
+});
+
+
 // Enable Bootstrap tooltips
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
