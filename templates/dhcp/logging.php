@@ -1,7 +1,7 @@
 <!-- logfile output tab -->
 <div class="tab-pane fade" id="logging">
   <h4><?php echo _("Logging") ?></h4>
-  <p><?php echo _("Enable these options to log DHCP server activity.") ?></p>
+  <p><?php echo _("Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity.") ?></p>
 
   <div class="custom-control custom-switch">
     <input class="custom-control-input" id="log-dhcp" type="checkbox" name="log-dhcp" value="1" <?php echo $conf['log-dhcp'] ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-requests">
