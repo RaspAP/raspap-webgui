@@ -434,8 +434,8 @@ msgstr "Format"
 msgid "Choose a hosted server"
 msgstr "Choose a hosted server"
 
-msgid "Enable these options to log DHCP server activity."
-msgstr "Enable these options to log DHCP server activity."
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
 
 msgid "Log DHCP requests"
 msgstr "Log DHCP requests"
