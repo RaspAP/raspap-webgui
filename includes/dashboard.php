@@ -107,8 +107,7 @@ function DisplayDashboard(&$extraFooterScripts)
         $wlanHasLink = false;
         $matchesSSID[1] = 'None';
     }
-
-    $connectedSSID = $matchesSSID[1];
+    $connectedSSID = str_replace('\x20', '', $matchesSSID[1]);
 
     preg_match('/freq: (\d+)/i', $stdoutIwWRepSpaces, $matchesFrequency) || $matchesFrequency[1] = '';
     $frequency = $matchesFrequency[1].' MHz';

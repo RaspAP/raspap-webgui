@@ -60,13 +60,10 @@ function nearbyWifiStations(&$networks, $cached = true)
             exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan');
             sleep(3);
 
-            exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan_results', $stdout);
-            array_shift($stdout);
-
-            return implode("\n", $stdout);
+            $stdout = shell_exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan_results');
+            return preg_split("/\n/", $stdout);
         }
     );
-
     // get the name of the AP. Should be excluded from nearby networks
     exec('cat '.RASPI_HOSTAPD_CONFIG.' | sed -rn "s/ssid=(.*)\s*$/\1/p" ', $ap_ssid);
     $ap_ssid = $ap_ssid[0];
@@ -76,11 +73,11 @@ function nearbyWifiStations(&$networks, $cached = true)
         $lastnet = end($networks);
         if ( isset($lastnet['index']) ) $index = $lastnet['index'] + 1;
     }
-    
-    foreach (explode("\n", $scan_results) as $network) {
-        $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
 
-        $ssid = trim($arrNetwork[4]);
+    array_shift($scan_results);
+    foreach ($scan_results as $network) {
+        $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
+        $ssid = $arrNetwork[4];
 
         // exclude raspap ssid
         if (empty($ssid) || $ssid == $ap_ssid) {
