@@ -10,7 +10,7 @@ function getRouteInfo($checkAccess)
 {
     $rInfo = array();
     // get all default routes
-    exec('ip route list |  sed -rn "s/default via (([0-9]{1,3}\.){3}[0-9]{1,3}).*dev (\w*).*src (([0-9]{1,3}\.){3}[0-9]{1,3}).*/\3 \4 \1/p"', $routes);
+    exec('ip route list |  sed -rn "s/default via (\b([0-9]{1,3}\.){3}[0-9]{1,3}).*dev (\w*)(.*((\b([0-9]{1,3}\.){3}[0-9]{1,3})))?/\3 \5 \1/p"', $routes);
     $devpat = array("tun", "ppp");  // routing in case of VPN and PPP connection are different
     foreach ($devpat as $pat) {
        exec('ip route list |  grep -oP "'.$pat.'[0-9]" | sort -u', $devs);
