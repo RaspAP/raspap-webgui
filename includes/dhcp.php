@@ -183,8 +183,10 @@ function updateDnsmasqConfig($iface,$status)
     $config .= 'interface='.$iface.PHP_EOL.'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].','.$_POST['SubnetMask'].',';
     if ($_POST['RangeLeaseTimeUnits'] !== 'i') {
         $config .= $_POST['RangeLeaseTime'];
+        $config .= $_POST['RangeLeaseTimeUnits'].PHP_EOL;
+    } else {
+        $config .= 'infinite'.PHP_EOL;
     }
-    $config .= $_POST['RangeLeaseTimeUnits'].PHP_EOL;
     //  Static leases
     $staticLeases = array();
     for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
