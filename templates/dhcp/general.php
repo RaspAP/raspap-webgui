@@ -107,7 +107,7 @@
         <option value="m"><?php echo _("Minute(s)"); ?></option>
         <option value="h"><?php echo _("Hour(s)"); ?></option>
         <option value="d"><?php echo _("Day(s)"); ?></option>
-        <option value="infinite"><?php echo _("Infinite"); ?></option>
+        <option value="i"><?php echo _("Infinite"); ?></option>
       </select>
     </div>
   </div>

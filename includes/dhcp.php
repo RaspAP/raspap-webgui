@@ -143,10 +143,10 @@ function validateDHCPInput()
         if (!filter_var($_POST['RangeEnd'], FILTER_VALIDATE_IP) && !empty($_POST['RangeEnd'])) {
             $errors .= _('Invalid DHCP range end.').'<br />'.PHP_EOL;
         }
-        if (!ctype_digit($_POST['RangeLeaseTime']) && $_POST['RangeLeaseTimeUnits'] !== 'infinite') {
+        if (!ctype_digit($_POST['RangeLeaseTime']) && $_POST['RangeLeaseTimeUnits'] !== 'i') {
             $errors .= _('Invalid DHCP lease time, not a number.').'<br />'.PHP_EOL;
         }
-        if (!in_array($_POST['RangeLeaseTimeUnits'], array('m', 'h', 'd', 'infinite'))) {
+        if (!in_array($_POST['RangeLeaseTimeUnits'], array('m', 'h', 'd', 'i'))) {
             $errors .= _('Unknown DHCP lease time unit.').'<br />'.PHP_EOL;
         }
         if ($_POST['Metric'] !== '' && !ctype_digit($_POST['Metric'])) {
@@ -181,10 +181,12 @@ function updateDnsmasqConfig($iface,$status)
 {
     $config = '# RaspAP '.$iface.' configuration'.PHP_EOL;
     $config .= 'interface='.$iface.PHP_EOL.'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].','.$_POST['SubnetMask'].',';
-    if ($_POST['RangeLeaseTimeUnits'] !== 'infinite') {
+    if ($_POST['RangeLeaseTimeUnits'] !== 'i') {
         $config .= $_POST['RangeLeaseTime'];
+        $config .= $_POST['RangeLeaseTimeUnits'].PHP_EOL;
+    } else {
+        $config .= 'infinite'.PHP_EOL;
     }
-    $config .= $_POST['RangeLeaseTimeUnits'].PHP_EOL;
     //  Static leases
     $staticLeases = array();
     for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
