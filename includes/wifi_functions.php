@@ -181,7 +181,7 @@ function reinitializeWPA($force)
         $cmd = escapeshellcmd("sudo /bin/rm /var/run/wpa_supplicant/".$_SESSION['wifi_client_interface']);
         $result = exec($cmd);
     }
-    $cmd = escapeshellcmd("sudo /sbin/wpa_supplicant -B -Dnl80211 -c/etc/wpa_supplicant/wpa_supplicant.conf -i". $_SESSION['wifi_client_interface']);
+    $cmd = escapeshellcmd("sudo /sbin/wpa_supplicant -B -Dnl80211,wext -c/etc/wpa_supplicant/wpa_supplicant.conf -i". $_SESSION['wifi_client_interface']);
     $result = shell_exec($cmd);
     return $result;
 }
