@@ -448,8 +448,8 @@ function ParseConfig($arrConfig)
  */
 function getNetConfig($interface)
 {
-    $URI = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'] .'/ajax/networking/get_netcfg.php?iface='.$interface;
-    $jsonData = file_get_contents($URI);
+    $URI = $_SERVER['REQUEST_SCHEME'].'://' .'localhost'. dirname($_SERVER['SCRIPT_NAME']) .'/ajax/networking/get_netcfg.php?iface='.$interface;
+    $jsonData = file_get_contents($URI, true);
     return $jsonData;
 }
 
@@ -757,7 +757,8 @@ function qr_encode($str)
     return preg_replace('/(?<!\\\)([\":;,])/', '\\\\\1', $str);
 }
 
-function evalHexSequence($string) {
+function evalHexSequence($string)
+{
     $evaluator = function ($input) {
 	return hex2bin($input[1]);
     };

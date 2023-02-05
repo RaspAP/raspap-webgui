@@ -133,8 +133,6 @@ function validateDHCPInput()
     }
     if (!filter_var($_POST['DefaultGateway'], FILTER_VALIDATE_IP) && !empty($_POST['DefaultGateway'])) {
         $errors .= _('Invalid default gateway.').'<br />'.PHP_EOL;
-        var_dump($_POST['DefaultGateway']);
-        die();
     }
     if (($_POST['dhcp-iface'] == "1")) {
         if (!filter_var($_POST['RangeStart'], FILTER_VALIDATE_IP) && !empty($_POST['RangeStart'])) {
