@@ -27,7 +27,7 @@
         </div><!-- /.card-header -->
         <div class="card-body">
         <?php $status->showMessages(); ?>
-          <form role="form" action="/wg_conf" enctype="multipart/form-data" method="POST">
+          <form role="form" action="wg_conf" enctype="multipart/form-data" method="POST">
             <?php echo CSRFTokenFieldTag() ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
