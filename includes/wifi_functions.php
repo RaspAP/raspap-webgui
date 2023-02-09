@@ -16,7 +16,7 @@ function knownWifiStations(&$networks)
                 $networks[$ssid] = $network;
                 $network = null;
                 $ssid = null;
-            } elseif ($lineArr = preg_split('/\s*=\s*/', trim($line))) {
+            } elseif ($lineArr = preg_split('/\s*=\s*/', trim($line), 2)) {
                 switch (strtolower($lineArr[0])) {
                 case 'ssid':
                     $ssid = trim($lineArr[1], '"');
