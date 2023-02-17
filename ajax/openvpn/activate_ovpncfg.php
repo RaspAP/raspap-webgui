@@ -5,7 +5,7 @@ require_once '../../includes/config.php';
 require_once '../../includes/functions.php';
 
 if (isset($_POST['cfg_id'])) {
-    $ovpncfg_id = $_POST['cfg_id'];
+    $ovpncfg_id = escapeshellcmd($_POST['cfg_id']);
     $ovpncfg_client = RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_client.conf';
     $ovpncfg_login = RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_login.conf';
 
