@@ -10,7 +10,7 @@ Don't want to sponsor? No problem, RaspAP already has tons of features available
 ## How to become a sponsor
 You can become a sponsor using your individual or organization's GitHub account. Just  pick any tier from $10/month and complete the checkout. Then, after a few hours, you will be added as a team member to the super-secret private GitHub repository containing the Insiders edition, which has all exclusive features. In addition, you get access to Insiders-only team discussions and content.
 
-> :information_source: **Important**: If you're sponsoring [RaspAP](https://github.com/RaspAP/sponsors) through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account that should be added as a collaborator. 
+**Important**: If you're sponsoring [RaspAP](https://github.com/RaspAP/sponsors) through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account that should be added as a collaborator. 
 
 ## Exclusive features
 The following features are currently available exclusively to sponsors. A tangible side benefit of sponsorship is that Insiders are able to help steer future development of RaspAP. This is done through Insiders' access to discussions, feature requests, issues and pull requests in the private GitHub repository.
@@ -21,8 +21,10 @@ The following features are currently available exclusively to sponsors. A tangib
  ✅ [802.11w Protected Management Frames](https://docs.raspap.com/ap-basics/#80211w)    
  ✅ [Printable Wi-Fi signs](https://docs.raspap.com/ap-basics/#printable-signs)  
  ✅ [Drag & drop dashboard widgets](https://docs.raspap.com/ap-basics/#drag-drop-widgets)  
- ⚙️ Traffic shaping (in progress)   
- 
+ ✅ [MAC address cloning](https://docs.raspap.com/net-devices/#changing-the-mac-address)  
+ ✅ [Network diagnostics](https://docs.raspap.com/net-devices/#diagnostics)  
+ ✅ [WireGuard VPN kill switch](https://docs.raspap.com/wireguard/#kill-switch)  
+
 Look for the list above to grow as we add more exclusive features. Be sure to visit this page from time to time to learn about what's new, check the [Insiders docs page](https://docs.raspap.com/insiders/) and follow [@RaspAP on Twitter](https://twitter.com/rasp_ap) to stay updated.
 
 ## Funding targets
