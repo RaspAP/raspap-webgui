@@ -225,6 +225,10 @@ $bridgedEnabled = getBridgedState();
         <!-- Topbar Navbar -->
         <p class="text-left brand-title mt-3 ml-2"></p>
         <ul class="navbar-nav ml-auto">
+          <!-- Nav Item - Insiders -->
+          <div class="insiders mt-4">
+            <a href="https://docs.raspap.com/insiders" target="blank"><i class="fas fa-heart mr-3" style="color: #e63946"></i></a>
+          </div>
           <!-- Nav Item - Night mode -->
           <div class="custom-control custom-switch mt-4">
             <input type="checkbox" class="custom-control-input" id="night-mode" <?php echo getNightmode() ? 'checked' : null ; ?> >
