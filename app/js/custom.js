@@ -183,6 +183,7 @@ function contentLoaded() {
             break;
         case "hostapd_conf":
             loadChannel();
+            setHardwareModeTooltip();
             break;
         case "dhcpd_conf":
             loadInterfaceDHCPSelect();
@@ -384,6 +385,17 @@ function loadChannelSelect(selected) {
             channel_select.append($("<option></option>").attr("value", value).text(value));
         });
         channel_select.val(selected);
+    });
+}
+
+/* Sets hardware mode tooltip text for selected interface.
+ * Messages are sent from ajax request for gettext locale support.
+ */
+function setHardwareModeTooltip() {
+    var iface = $('#cbxinterface').val();
+    $.post('ajax/networking/get_frequencies.php?',{'interface': iface},function(data){
+        responseText = JSON.parse(data);
+        $('#tiphwmode').attr('data-original-title', responseText);
     });
 }
 
