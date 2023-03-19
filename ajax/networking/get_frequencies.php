@@ -28,7 +28,7 @@ if (isset($_POST['interface'])) {
         $msg = _("The selected interface has support for the 2.4 GHz wireless band only.");
        break;
     case NL80211_BAND_5GHZ:
-        $msg = _("The selected interface has support for the 2.4 GHz wireless band only.");
+        $msg = _("The selected interface has support for the 5 GHz wireless band only.");
         break;
     case NL80211_BAND_24GHZ | NL80211_BAND_5GHZ:
         $msg = _("The selected interface has support for both the 2.4 and 5 GHz wireless bands.");
