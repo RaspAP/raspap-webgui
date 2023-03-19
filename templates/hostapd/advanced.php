@@ -56,7 +56,7 @@
     <div class="row">
       <div class="form-group col-md-6">
         <label for="cbxtxpower"><?php echo _("Transmit power (dBm)") ?></label>
-        <i class="fas fa-question-circle text-muted" data-toggle="tooltip" data-placement="auto" title="<?php echo _("dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."); ?>"></i>
+        <?php echo getTooltip('dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW.', 'tiptxpower'); ?>
         <?php
           SelectorOptions('txpower', $arrTxPower, $txpower, 'cbxtxpower');
         ?>

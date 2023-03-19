@@ -4,7 +4,7 @@
     <div class="form-group col-md-6">
       <label for="cbxinterface"><?php echo _("Interface") ;?></label>
       <?php
-        SelectorOptions('interface', $interfaces, $arrConfig['interface'], 'cbxinterface');
+        SelectorOptions('interface', $interfaces, $arrConfig['interface'], 'cbxinterface', 'setHardwareModeTooltip');
       ?>
     </div>
   </div>
@@ -17,6 +17,7 @@
   <div class="row">
     <div class="form-group col-md-6">
       <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
+      <?php echo getTooltip('Initial state.', 'tiphwmode', true); ?>
       <?php
       $countries_5Ghz_max48ch = RASPI_5GHZ_ISO_ALPHA2;
       $selectedHwMode = $arrConfig['hw_mode'];
