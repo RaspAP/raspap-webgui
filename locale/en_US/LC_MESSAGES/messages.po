@@ -585,6 +585,18 @@ msgstr "Sets the <code>txpower</code> option for the AP interface and the config
 msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
 msgstr "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
 
+msgid "The selected interface has support for the 2.4 GHz wireless band only."
+msgstr "The selected interface has support for the 2.4 GHz wireless band only."
+
+msgid "The selected interface has support for the 2.4 GHz wireless band only."
+msgstr "The selected interface has support for the 2.4 GHz wireless band only."
+
+msgid "The selected interface has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "The selected interface has support for both the 2.4 and 5 GHz wireless bands."
+
+msgid "The selected interface does not support wireless mode operation."
+msgstr "The selected interface does not support wireless mode operation."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
