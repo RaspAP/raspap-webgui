@@ -22,6 +22,20 @@ if (isset($_POST['interface'])) {
     if (count(preg_grep('/^5[0-9]{3}/i', $frequencies)) >0) {
         $flags += NL80211_BAND_5GHZ;
     }
-    echo json_encode($flags);
+
+    switch ($flags) {
+    case NL80211_BAND_24GHZ:
+        $msg = _("The selected interface has support for the 2.4 GHz wireless band only.");
+       break;
+    case NL80211_BAND_5GHZ:
+        $msg = _("The selected interface has support for the 2.4 GHz wireless band only.");
+        break;
+    case NL80211_BAND_24GHZ | NL80211_BAND_5GHZ:
+        $msg = _("The selected interface has support for both the 2.4 and 5 GHz wireless bands.");
+        break;
+    default:
+        $msg = _("The selected interface does not support wireless mode operation.");
+    }
+    echo json_encode($msg);
 }
 
