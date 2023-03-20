@@ -389,13 +389,17 @@ function loadChannelSelect(selected) {
 }
 
 /* Sets hardware mode tooltip text for selected interface.
- * Messages are sent from ajax request for gettext locale support.
  */
 function setHardwareModeTooltip() {
     var iface = $('#cbxinterface').val();
+    var hwmodeText = '';
+    // Explanatory text if 802.11ac is disabled
+    if ($('#cbxhwmode').find('option[value="ac"]').prop('disabled') == true ) {
+        var hwmodeText = $('#hwmode').attr('data-tooltip');
+    }
     $.post('ajax/networking/get_frequencies.php?',{'interface': iface},function(data){
-        responseText = JSON.parse(data);
-        $('#tiphwmode').attr('data-original-title', responseText);
+        var responseText = JSON.parse(data);
+        $('#tiphwmode').attr('data-original-title', responseText + '\n' + hwmodeText );
     });
 }
 

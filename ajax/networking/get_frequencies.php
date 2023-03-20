@@ -2,6 +2,7 @@
 
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
+require_once '../../includes/locale.php';
 
 if (isset($_POST['interface'])) {
 
@@ -25,16 +26,16 @@ if (isset($_POST['interface'])) {
 
     switch ($flags) {
     case NL80211_BAND_24GHZ:
-        $msg = _("The selected interface has support for the 2.4 GHz wireless band only.");
-       break;
+        $msg = sprintf(_("The selected interface (%s) has support for the 2.4 GHz wireless band only."), $iface);
+        break;
     case NL80211_BAND_5GHZ:
-        $msg = _("The selected interface has support for the 5 GHz wireless band only.");
+        $msg = sprintf(_("The selected interface (%s) has support for the 5 GHz wireless band only."), $iface);
         break;
     case NL80211_BAND_24GHZ | NL80211_BAND_5GHZ:
-        $msg = _("The selected interface has support for both the 2.4 and 5 GHz wireless bands.");
+        $msg = sprintf(_("The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."), $iface);
         break;
     default:
-        $msg = _("The selected interface does not support wireless mode operation.");
+        $msg = sprintf(_("The selected interface (%s) does not support wireless mode operation."), $iface);
     }
     echo json_encode($msg);
 }
