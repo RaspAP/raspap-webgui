@@ -56,10 +56,8 @@
     <div class="row">
       <div class="form-group col-md-6">
         <label for="cbxtxpower"><?php echo _("Transmit power (dBm)") ?></label>
-        <?php echo getTooltip('dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW.', 'tiptxpower'); ?>
-        <?php
-          SelectorOptions('txpower', $arrTxPower, $txpower, 'cbxtxpower');
-        ?>
+        <?php getTooltip('dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW.', 'tiptxpower'); ?>
+        <?php SelectorOptions('txpower', $arrTxPower, $txpower, 'cbxtxpower'); ?>
         <small id="txpower_help" class="text-muted"><?php echo _("Sets the <code>txpower</code> option for the AP interface and the configured country."); ?></small>
       </div>
     </div>
