@@ -183,6 +183,7 @@ function contentLoaded() {
             break;
         case "hostapd_conf":
             loadChannel();
+            setHardwareModeTooltip();
             break;
         case "dhcpd_conf":
             loadInterfaceDHCPSelect();
@@ -384,6 +385,21 @@ function loadChannelSelect(selected) {
             channel_select.append($("<option></option>").attr("value", value).text(value));
         });
         channel_select.val(selected);
+    });
+}
+
+/* Sets hardware mode tooltip text for selected interface.
+ */
+function setHardwareModeTooltip() {
+    var iface = $('#cbxinterface').val();
+    var hwmodeText = '';
+    // Explanatory text if 802.11ac is disabled
+    if ($('#cbxhwmode').find('option[value="ac"]').prop('disabled') == true ) {
+        var hwmodeText = $('#hwmode').attr('data-tooltip');
+    }
+    $.post('ajax/networking/get_frequencies.php?',{'interface': iface},function(data){
+        var responseText = JSON.parse(data);
+        $('#tiphwmode').attr('data-original-title', responseText + '\n' + hwmodeText );
     });
 }
 

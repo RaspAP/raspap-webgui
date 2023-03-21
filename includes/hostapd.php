@@ -25,7 +25,7 @@ function DisplayHostAPDConfig()
         'b' => '802.11b - 2.4 GHz',
         'g' => '802.11g - 2.4 GHz',
         'n' => '802.11n - 2.4 GHz',
-        'ac' => '802.11.ac - 5 GHz'
+        'ac' => '802.11ac - 5 GHz'
     ];
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
@@ -109,6 +109,30 @@ function DisplayHostAPDConfig()
         $txpower = $_POST['txpower'];
     }
 
+    $countries_5Ghz_max48ch = RASPI_5GHZ_ISO_ALPHA2;
+    $selectedHwMode = $arrConfig['hw_mode'];
+    if (isset($arrConfig['ieee80211n'])) {
+        if (strval($arrConfig['ieee80211n']) === '1') {
+            $selectedHwMode = 'n';
+        }
+    }
+    if (isset($arrConfig['ieee80211ac'])) {
+        if (strval($arrConfig['ieee80211ac']) === '1') {
+            $selectedHwMode = 'ac';
+        }
+    }
+    if (isset($arrConfig['ieee80211w'])) {
+        if (strval($arrConfig['ieee80211w']) === '2') {
+            $selectedHwMode = 'w';
+        }
+    }
+    if (!in_array($arrConfig['country_code'], $countries_5Ghz_max48ch)) {
+        $hwModeDisabled = 'ac';
+        if ($selectedHwMode === $hwModeDisabled) {
+            unset($selectedHwMode);
+        }
+    }
+
     echo renderTemplate(
         "hostapd", compact(
             "status",
@@ -124,7 +148,9 @@ function DisplayHostAPDConfig()
             "arrTxPower",
             "txpower",
             "arrHostapdConf",
-            "operatingSystem"
+            "operatingSystem",
+            "selectedHwMode",
+            "hwModeDisabled"
         )
     );
 }

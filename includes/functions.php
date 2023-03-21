@@ -792,3 +792,14 @@ function get_public_ip()
     return $public_ip[0];
 }
 
+/* Returns a standardized tooltip
+ *
+ * @return string $tooltip
+ */
+function getTooltip($msg, $id, $visible = true, $data_html = false)
+{
+    ($visible) ? $opt1 = 'visible' : $opt1 = 'invisible';
+    ($data_html) ? $opt2 = 'data-html="true"' : $opt2 = 'data-html="false"';
+    echo '<i class="fas fa-question-circle text-muted ' .$opt1.'" id="' .$id. '" data-toggle="tooltip" ' .$opt2. ' data-placement="auto" title="' . _($msg). '"></i>';
+}
+

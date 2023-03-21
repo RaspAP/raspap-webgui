@@ -3,9 +3,7 @@
   <div class="row">
     <div class="form-group col-md-6">
       <label for="cbxinterface"><?php echo _("Interface") ;?></label>
-      <?php
-        SelectorOptions('interface', $interfaces, $arrConfig['interface'], 'cbxinterface');
-      ?>
+      <?php SelectorOptions('interface', $interfaces, $arrConfig['interface'], 'cbxinterface', 'setHardwareModeTooltip'); ?>
     </div>
   </div>
   <div class="row">
@@ -17,32 +15,9 @@
   <div class="row">
     <div class="form-group col-md-6">
       <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
-      <?php
-      $countries_5Ghz_max48ch = RASPI_5GHZ_ISO_ALPHA2;
-      $selectedHwMode = $arrConfig['hw_mode'];
-      if (isset($arrConfig['ieee80211n'])) {
-          if (strval($arrConfig['ieee80211n']) === '1') {
-              $selectedHwMode = 'n';
-          }
-      }
-      if (isset($arrConfig['ieee80211ac'])) {
-          if (strval($arrConfig['ieee80211ac']) === '1') {
-              $selectedHwMode = 'ac';
-          }
-      }
-      if (isset($arrConfig['ieee80211w'])) {
-          if (strval($arrConfig['ieee80211w']) === '2') {
-              $selectedHwMode = 'w';
-          }
-      }
-
-      if (!in_array($arrConfig['country_code'], $countries_5Ghz_max48ch)) {
-          $hwModeDisabled = 'ac';
-          if ($selectedHwMode === $hwModeDisabled) {
-              unset($selectedHwMode);
-          }
-      }
-      SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode, 'cbxhwmode', 'loadChannelSelect', $hwModeDisabled); ?>
+      <?php getTooltip(null, 'tiphwmode', true); ?>
+      <?php SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode, 'cbxhwmode', 'loadChannelSelect', $hwModeDisabled); ?>
+      <div id="hwmode" data-tooltip="<?php echo _("The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."); ?>"></div>
     </div>
   </div>
   <div class="row">
