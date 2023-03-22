@@ -1,6 +1,7 @@
 <?php
 
 require_once 'includes/status_messages.php';
+require_once 'includes/functions.php';
 require_once 'config.php';
 require_once 'app/lib/system.php';
 
@@ -63,9 +64,8 @@ function RPiVersion()
 
 /**
  *
- *
  */
-function DisplaySystem()
+function DisplaySystem(&$extraFooterScripts)
 {
 
     $status = new StatusMessages();
@@ -128,30 +128,7 @@ function DisplaySystem()
     $serverBind = str_replace('"', '',$conf['server.bind']);
 
     // define locales
-    $arrLocales = array(
-        'en_GB.UTF-8' => 'English',
-        'cs_CZ.UTF-8' => 'Čeština',
-        'zh_TW.UTF-8' => '正體中文 (Chinese traditional)',
-        'zh_CN.UTF-8' => '简体中文 (Chinese simplified)',
-        'da_DK.UTF-8' => 'Dansk',
-        'de_DE.UTF-8' => 'Deutsch',
-        'es_MX.UTF-8' => 'Español',
-        'fi_FI.UTF-8' => 'Finnish',
-        'fr_FR.UTF-8' => 'Français',
-        'el_GR.UTF-8' => 'Ελληνικά',
-        'id_ID.UTF-8' => 'Indonesian',
-        'it_IT.UTF-8' => 'Italiano',
-        'ja_JP.UTF-8' => '日本語 (Japanese)',
-        'ko_KR.UTF-8' => '한국어 (Korean)',
-        'nl_NL.UTF-8' => 'Nederlands',
-        'pl_PL.UTF-8' => 'Polskie',
-        'pt_BR.UTF-8' => 'Português',
-        'ru_RU.UTF-8' => 'Русский',
-        'ro_RO.UTF-8' => 'Română',
-        'sv_SE.UTF-8' => 'Svenska',
-        'tr_TR.UTF-8' => 'Türkçe',
-        'vi_VN.UTF-8' => 'Tiếng Việt (Vietnamese)'
-    );
+    $arrLocales = getLocales();
 
     #fetch system status variables.
     $system = new \RaspAP\System\Sysinfo;
@@ -209,6 +186,20 @@ function DisplaySystem()
         $hostapd_led = "service-status-down";
     }
 
+    // theme options
+    $themes = [
+        "default"    => "RaspAP (default)",
+        "hackernews" => "HackerNews"
+    ];
+    $themeFiles = [
+        "default"    => "custom.php",
+        "hackernews" => "hackernews.css"
+    ];
+    $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
+
+    $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
+    $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
+
     echo renderTemplate("system", compact(
         "arrLocales",
         "status",
@@ -229,6 +220,8 @@ function DisplaySystem()
         "cputemp_led",
         "hostapd",
         "hostapd_status",
-        "hostapd_led"
+        "hostapd_led",
+        "themes",
+        "selectedTheme" 
     ));
 }
