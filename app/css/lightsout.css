@@ -6,6 +6,8 @@ Description: A dark mode theme for RaspAP
 License: GNU General Public License v3.0
 */
 
+@import url('all.css');
+
 html * {
   font-family: Helvetica,Arial,sans-serif;
   color: #afafaf;
@@ -23,20 +25,9 @@ h5.card-title {
   font-size: 1.2rem;
 }
 
-.h-underlined {
-  border-bottom: 1px solid #e3e6f0;
-  padding-bottom: 0.3rem;
-}
-
 .page-header {
-  padding: 0 20px;
   border-left: .01rem solid #d2d2d2;
-}
-
-.navbar-logo {
-  margin-top: 0.5em;
-  margin-left: 0.5em;
-  filter: brightness(70%);
+  border-bottom: .01rem solid #d2d2d2;
 }
 
 .sidebar-light .nav-item.active .nav-link i {
@@ -49,16 +40,6 @@ h5.card-title {
 
 #wrapper #content-wrapper #content {
   background-color: #202020;
-}
-
-/* Small devices (portait phones, up to 576px) */
-@media (max-width: 576px) {
-  .container-fluid, .card-body, .col-md-6 { padding-left: 0.5rem; padding-right: 0.5rem; }
-  .card .card-header { padding: .75rem .5rem; font-size: 1.0rem; }
-  .row { margin-left: 0rem; margin-right: 0rem; }
-  .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
-  .form-group.col-md-6 { margin-left: -0.5rem; }
-  h4.mt-3 { margin-left: 0.5rem; }
 }
 
 .topbar {
@@ -95,7 +76,6 @@ h5.card-title {
 }
 
 #content, .navbar, .sidebar, .footer, .sticky-footer {
-  background-image: url('/app/img/bg.png');
   background-attachment: scroll;
   background-repeat: repeat;
   background-size: auto;
@@ -159,18 +139,8 @@ hr {
   border-top: .01rem solid #d2d2d2;
 }
 
-.page-header {
-  font-size: 24pt;
-  margin: 10px 0 20px;
-  border-bottom: .01rem solid #d2d2d2;
-}
-
 .sidebar-brand-text {
-  text-transform: none;
-  color: #ac1b3d;
-  font-size: 2.0rem;
-  font-weight: 500;
-  font-family: inherit;
+  color: #2b8080 !important;
 }
 
 .ra-raspap:before {
@@ -250,28 +220,6 @@ hr {
 
 .topbar .topbar-divider {
   border-right: 1px solid #404040;
-}
-
-.info-item {
-  text-transform: uppercase;
-  font-size: 0.7em;
-  color: #858796;
-}
-
-.info-value {
-  font-size: 0.7rem;
-  margin-left: 0.7rem;
-}
-
-.info-item-xs {
-  font-size: 0.7rem;
-  line-height: 1.5em;
-  margin-left: 0.5rem;
-}
-
-.info-item-wifi {
-  width: 6rem;
-  float: left;
 }
 
 .label-warning {
@@ -367,15 +315,25 @@ color: #d2d2d2 !important
   background-color: #d2d2d2;
 }
 
-.logoutput {
-  width: 100%;
-  height: 300px;
-  background-color: #202020;
-  border-color: #404040;
+.figure-img {
+  filter: opacity(0.7);
 }
 
-tspan, rect {
-  fill: #d2d2d2;
+.ra-wireguard:before {
+  color: #404040 !important;
+}
+
+.ra-wireguard:hover:before {
+  color: #d1d3e2 !important;
+}
+
+.sidebar .nav-item.active .nav-link span.ra-wireguard:before {
+    color: #d2d2d2 !important;
+}
+
+.logoutput {
+  background-color: #202020;
+  border-color: #404040;
 }
 
 .text-muted {
@@ -383,29 +341,7 @@ tspan, rect {
 }
 
 .fas.fa-circle {
-  font-size: 0.5rem;
-}
-
-.service-status {
-  align-items: center;
-}
-
-.service-status-up {
-  color: #a1ec38 !important;
-}
-
-.service-status-warn {
-  color: #f6f044 !important;
-}
-
-.service-status-down {
-  color: #f80107 !important;
-  animation: flash 1s linear infinite;
-}
-@keyframes flash {
-  50% {
-    opacity: 0;
-  }
+  font-size: 0.7rem;
 }
 
 pre {
@@ -413,101 +349,7 @@ pre {
   border: #202020;
 }
 
-.dhcp-static-leases {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-.dhcp-static-lease-row {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-.loading-spinner {
-  background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
-  min-height: 150px;
-  width: 100%;
-}
-
-@media (min-width: 576px) {
-  .card-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 50%;
-    grid-gap: 1rem;
-  }
-}
-
-.toggle-off.btn {
-  padding-left: 1.2rem;
-  font-size: 0.9rem!important;
-}
-
-.toggle-on.btn {
-  font-size: 0.9rem!important;
-}
-
-canvas#divDBChartBandwidthhourly {
-  height: 350px!important;
-}
-
-.chart-container {
-  height: 150px;
-  width: 200px;
-}
-
-.table {
-  margin-bottom: 0rem;
-}
-
-.figure, .authors {
-  filter: brightness(70%) !important;
-}
-
-.check-hidden {
-  visibility: hidden;
-}
-
-.check-updated {
-  opacity: 0;
-  color: #1cc88a;
-}
-
-.check-progress {
-  color: #999;
-}
-
-.fa-check {
-  color: #90ee90;
-}
-
-.fa-times {
-  color: #ff4500;
-}
-
-.signal-icon {
-  margin-top: 2px;
-  height: 16px;
-  width: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-}
 .signal-icon .signal-bar {
-  width: 4px;
-  border-radius: 1px;
-  opacity: 30%;
   background: #2b8080;
 }
 
-.signal-icon .signal-bar:nth-child(1) { height: 40%; }
-.signal-icon .signal-bar:nth-child(2) { height: 70%; }
-.signal-icon .signal-bar:nth-child(3) { height: 100%; }
-
-.signal-icon.weak .signal-bar:nth-child(1),
-.signal-icon.medium .signal-bar:nth-child(1),
-.signal-icon.medium .signal-bar:nth-child(2),
-.signal-icon.strong .signal-bar:nth-child(1),
-.signal-icon.strong .signal-bar:nth-child(2),
-.signal-icon.strong .signal-bar:nth-child(3)
-{ opacity: 100%; }

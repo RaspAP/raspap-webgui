@@ -12,44 +12,14 @@ Description: Default theme for RaspAP
 License: GNU General Public License v3.0
 */
 
+@import url('all.css');
+
 body {
   color: #212529;
 }
 
-.h-underlined {
-  border-bottom: 1px solid #e3e6f0;
-  padding-bottom: 0.3rem;
-}
-
-.page-header {
-  margin: 20px 0 20px;
-}
-
-.navbar-logo {
-  margin-top: 0.5em;
-  margin-left: 0.5em;
-}
-
-/* Small devices (portrait phones, up to 576px) */
-@media (max-width: 576px) {
-  .container-fluid, .card-body, .col-md-6 { padding-left: 0.5rem; padding-right: 0.5rem; }
-  .card .card-header { padding: .75rem .5rem; font-size: 1.0rem; }
-  .row { margin-left: 0rem; margin-right: 0rem; }
-  .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
-  .form-group.col-md-6 { margin-left: -0.5rem; }
-  h4.mt-3 { margin-left: 0.5rem; }
-}
-
 .sidebar {
   background-color: #f8f9fc;
-}
-
-.sidebar-brand-text {
-  text-transform: none;
-  color: #212529;
-  font-size: 2.0rem;
-  font-weight: 500;
-  font-family: Helvetica, Arial, sans-serif;
 }
 
 .sidebar .nav-item.active .nav-link {
@@ -122,85 +92,10 @@ i.fa.fa-bars:hover{
   color: #6e707e;
 }
 
-.info-item {
-  text-transform: uppercase;
-  font-size: 0.7em;
-  color: #858796;
-}
-
-.info-value {
-  font-size: 0.7rem;
-  margin-left: 0.7rem;
-}
-
-.info-item-xs {
-  font-size: 0.7rem;
-  margin-left: 0.3rem;
-}
-
-.info-item-wifi {
-  width: 6rem;
-  float: left;
-}
-
-.service-status {
-  border-width: 0;
-  align-items: center;
-}
-
-.service-status-up {
-  color: #a1ec38;
-}
-
-.service-status-warn {
-  color: #f6f044;
-}
-
-.service-status-down {
-  color: #f80107;
-  animation: flash 1s linear infinite;
-}
-@keyframes flash {
-  50% {
-    opacity: 0;
-  }
-}
- 
-.logoutput {
-  width:100%;
-  height: 20rem;
-  border: 1px solid #d1d3e2;
-  border-radius: .35rem;
-}
-
 pre.unstyled {
   border-width: 0;
   background-color: transparent;
   padding: 0;
-}
-
-.dhcp-static-leases {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-.dhcp-static-lease-row {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-.loading-spinner {
-  background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
-  min-height: 150px;
-  width: 100%;
-}
-
-@media (min-width: 576px) {
-  .card-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 50%;
-    grid-gap: 1rem;
-  }
 }
 
 .sidebar.toggled .nav-item .nav-link span {
@@ -214,100 +109,7 @@ pre.unstyled {
     color: #000;
 }
 
-.toggle-off.btn {
-  padding-left: 1.2rem;
-  font-size: 0.9rem!important;
-}
-
-.toggle-on.btn {
-  font-size: 0.9rem!important;
-}
-
-canvas#divDBChartBandwidthhourly {
-  height: 350px!important;
-}
-
-.chart-container {
-  height: 150px;
-  width: 200px;
-}
-
-.table {
-  margin-bottom: 0rem;
-}
-
-.check-hidden {
-  visibility: hidden;
-}
-
-.check-updated {
-  opacity: 0;
-  color: #90ee90;
-}
-
-.check-progress {
-  color: #999;
-}
-
-.fa-check {
-  color: #90ee90;
-}
-
-.fa-times {
-  color: #ff4500;
-}
-
-.signal-icon {
-  margin-top: 2px;
-  height: 16px;
-  width: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-}
 .signal-icon .signal-bar {
-  width: 4px;
-  border-radius: 1px;
-  opacity: 30%;
   background: <?php echo $color; ?>;
 }
-
-.signal-icon .signal-bar:nth-child(1) { height: 40%; }
-.signal-icon .signal-bar:nth-child(2) { height: 70%; }
-.signal-icon .signal-bar:nth-child(3) { height: 100%; }
-
-.signal-icon.weak .signal-bar:nth-child(1),
-.signal-icon.medium .signal-bar:nth-child(1),
-.signal-icon.medium .signal-bar:nth-child(2),
-.signal-icon.strong .signal-bar:nth-child(1),
-.signal-icon.strong .signal-bar:nth-child(2),
-.signal-icon.strong .signal-bar:nth-child(3)
-{ opacity: 100%; }.signal-icon {
-  margin-top: 2px;
-  height: 16px;
-  width: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-}
-.signal-icon .signal-bar {
-  width: 4px;
-  border-radius: 1px;
-  opacity: 30%;
-  background: <?php echo $color; ?>;
-}
-
-.signal-icon .signal-bar:nth-child(1) { height: 40%; }
-.signal-icon .signal-bar:nth-child(2) { height: 70%; }
-.signal-icon .signal-bar:nth-child(3) { height: 100%; }
-
-.signal-icon.weak .signal-bar:nth-child(1),
-.signal-icon.medium .signal-bar:nth-child(1),
-.signal-icon.medium .signal-bar:nth-child(2),
-.signal-icon.strong .signal-bar:nth-child(1),
-.signal-icon.strong .signal-bar:nth-child(2),
-.signal-icon.strong .signal-bar:nth-child(3)
-{ opacity: 100%; }
 
