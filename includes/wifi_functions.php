@@ -2,6 +2,9 @@
 
 require_once 'functions.php';
 
+const MIN_RSSI = -100;
+const MAX_RSSI = -55;
+
 function knownWifiStations(&$networks)
 {
     // Find currently configured networks
@@ -191,7 +194,41 @@ function reinitializeWPA($force)
  *
  * @param string $ssid
  */
-function ssid2utf8($ssid) {
+function ssid2utf8($ssid)
+{
     return  evalHexSequence($ssid);
 }
 
+/*
+ * Returns a signal strength indicator based on RSSI value
+ *
+ * @param string $rssi
+ */
+function getSignalBars($rssi)
+{
+    // assign css class based on RSSI value
+    if ($rssi >= MAX_RSSI) {
+        $class = 'strong';
+    } elseif ($rssi >= -56) {
+        $class = 'medium';
+    } elseif ($rssi >= -67) {
+        $class = 'weak';
+    } elseif ($rssi >= -89) {
+        $class = '';
+    }
+
+    // calculate percent strength
+    if ($rssi >= -50) {
+        $pct =  100;
+    } elseif ($rssi <= MIN_RSSI) {
+        $pct = 0;
+    } else {
+        $pct = 2*($rssi + 100);
+    }
+    $elem = '<div data-toggle="tooltip" title="Signal strength: ' .$pct. '%" class="signal-icon ' .$class. '">'.PHP_EOL;
+    for ($n = 0; $n < 3; $n++ ) {
+        $elem .= '<div class="signal-bar"></div>'.PHP_EOL;
+    }
+    $elem .= '</div>'.PHP_EOL;
+    return $elem;
+}
