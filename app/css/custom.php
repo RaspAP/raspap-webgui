@@ -257,3 +257,57 @@ canvas#divDBChartBandwidthhourly {
   color: #ff4500;
 }
 
+.signal-icon {
+  margin-top: 2px;
+  height: 16px;
+  width: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.signal-icon .signal-bar {
+  width: 4px;
+  border-radius: 1px;
+  opacity: 30%;
+  background: <?php echo $color; ?>;
+}
+
+.signal-icon .signal-bar:nth-child(1) { height: 40%; }
+.signal-icon .signal-bar:nth-child(2) { height: 70%; }
+.signal-icon .signal-bar:nth-child(3) { height: 100%; }
+
+.signal-icon.weak .signal-bar:nth-child(1),
+.signal-icon.medium .signal-bar:nth-child(1),
+.signal-icon.medium .signal-bar:nth-child(2),
+.signal-icon.strong .signal-bar:nth-child(1),
+.signal-icon.strong .signal-bar:nth-child(2),
+.signal-icon.strong .signal-bar:nth-child(3)
+{ opacity: 100%; }.signal-icon {
+  margin-top: 2px;
+  height: 16px;
+  width: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.signal-icon .signal-bar {
+  width: 4px;
+  border-radius: 1px;
+  opacity: 30%;
+  background: <?php echo $color; ?>;
+}
+
+.signal-icon .signal-bar:nth-child(1) { height: 40%; }
+.signal-icon .signal-bar:nth-child(2) { height: 70%; }
+.signal-icon .signal-bar:nth-child(3) { height: 100%; }
+
+.signal-icon.weak .signal-bar:nth-child(1),
+.signal-icon.medium .signal-bar:nth-child(1),
+.signal-icon.medium .signal-bar:nth-child(2),
+.signal-icon.strong .signal-bar:nth-child(1),
+.signal-icon.strong .signal-bar:nth-child(2),
+.signal-icon.strong .signal-bar:nth-child(3)
+{ opacity: 100%; }
+
