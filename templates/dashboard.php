@@ -24,7 +24,9 @@
                 <h4 class="card-title"><?php echo _("Hourly traffic amount"); ?></h4>
                 <div id="divInterface" class="d-none"><?php echo $apInterface; ?></div>
                 <div class="col-md-12">
-                  <canvas id="divDBChartBandwidthhourly"></canvas>
+                  <div class="col dbChart">
+                    <canvas id="divDBChartBandwidthhourly"></canvas>
+                  </div>
                 </div>
               </div><!-- /.card-body -->
             </div><!-- /.card-->

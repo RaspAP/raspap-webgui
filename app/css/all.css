@@ -132,6 +132,11 @@ canvas#divDBChartBandwidthhourly {
   width: 200px;
 }
 
+.dbChart {
+  display: flex;
+  height: 80%;
+}
+
 .table {
   margin-bottom: 0rem;
 }
@@ -208,4 +213,14 @@ button.btn.btn-light.js-toggle-password {
 .signal-icon.strong .signal-bar:nth-child(2),
 .signal-icon.strong .signal-bar:nth-child(3)
 { opacity: 100%; }
+
+.gs-edit {
+  border: 1px dashed #ccc;
+  background-color: #f1faee;
+  border-radius: 4px;
+}
+
+figcaption.figure-caption a {
+  color: #858796;
+}
 
