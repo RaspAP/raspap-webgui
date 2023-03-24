@@ -49,14 +49,14 @@
         <div><?php echo empty($network['protocol']) ? "-" : $network['protocol'] ?></div>
 
 		<div class="form-group">
-			<div class="info-item-wifi"><?php echo _("Passphrase"); ?></div>
+			<div class="info-item-wifi mb-2"><?php echo _("Passphrase"); ?></div>
 			<div class="input-group">
 				<?php if ($network['protocol'] === 'Open') { ?>
 					<input type="password" disabled class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="" />
 				<?php } else { ?>
 					<input type="password" class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="<?php echo $network['passphrase'] ?>" data-target="#update<?php echo $index ?>" data-colors="#ffd0d0,#d0ffd0">
 					<div class="input-group-append">
-						<button class="btn btn-outline-secondary js-toggle-password" type="button" data-target="[name=passphrase<?php echo $index ?>]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
+						<button class="btn btn-light js-toggle-password" type="button" data-target="[name=passphrase<?php echo $index ?>]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
 					</div>
 				<?php } ?>
 			</div>

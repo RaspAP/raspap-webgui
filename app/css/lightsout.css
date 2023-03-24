@@ -349,6 +349,11 @@ pre {
   border: #202020;
 }
 
+button.btn.btn-light.js-toggle-password {
+  border: 1px solid #343434;
+}
+
+
 .signal-icon .signal-bar {
   background: #2b8080;
 }

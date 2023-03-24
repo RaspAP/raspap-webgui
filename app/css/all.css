@@ -152,6 +152,10 @@ canvas#divDBChartBandwidthhourly {
   color: #ff4500;
 }
 
+button.btn.btn-light.js-toggle-password {
+  border: 1px solid lightgrey;
+}
+
 .signal-icon {
   margin-top: 2px;
   height: 16px;
