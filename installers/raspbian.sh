@@ -20,16 +20,20 @@
 # -t, --token <accesstoken>         Specify a GitHub token to access a private repository
 # -u, --upgrade                     Upgrades an existing installation to the latest release version
 # -i, --insiders                    Installs from the Insiders Edition (RaspAP/raspap-insiders)
+# -m, --minwrite                    Configures a microSD card for minimum write operation
 # -v, --version                     Outputs release info and exits
-# -n, --uninstall		    Loads and executes the uninstaller
+# -n, --uninstall                   Loads and executes the uninstaller
 # -h, --help                        Outputs usage notes and exits
 #
+# NOTE
 # Depending on options passed to the installer, ONE of the following
 # additional shell scripts will be downloaded and sourced:
 #
 # https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/common.sh
 # - or -
 # https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/mkcert.sh
+# - or -
+# https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/minwrite.sh
 # - or -
 # https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/uninstall.sh
 #
@@ -55,6 +59,7 @@ function _parse_params() {
     ovpn_option=1
     adblock_option=1
     insiders=0
+    minwrite=0
     acctoken=""
 
     while :; do
@@ -91,6 +96,9 @@ function _parse_params() {
             ;;
             -i|--insiders)
             insiders=1 
+            ;;
+            -m|--minwrite)
+            minwrite=1
             ;;
             -t|--token)
             acctoken="$2"
@@ -146,6 +154,7 @@ OPTIONS:
 -t, --token <accesstoken>           Specify a GitHub token to access a private repository
 -u, --upgrade                       Upgrades an existing installation to the latest release version
 -i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
+-m, --minwrite                      Configures a microSD card for minimum write operation
 -v, --version                       Outputs release info and exits
 -n, --uninstall                     Loads and executes the uninstaller
 -h, --help                          Outputs usage notes and exits
@@ -203,7 +212,7 @@ function _get_release() {
 
 # Outputs a RaspAP Install log line
 function _install_log() {
-    echo -e "${ANSI_GREEN}RaspAP Install: $1${ANSI_RESET}"
+    echo -e "${ANSI_GREEN}RaspAP ${component}: $1${ANSI_RESET}"
 }
 
 # Outputs a RaspAP divider
@@ -255,16 +264,25 @@ function _load_installer() {
 
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"
+        component="mkcert"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _install_certificate || _install_status 1 "Unable to install certificate"
+    elif [ "${minwrite}" = 1 ]; then
+        source="minwrite"
+        component="Minwrite"
+        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
+        source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
+        _install_minwrite || _install_status 1 "Unable to execute minimal write install"
     elif [ "${uninstall}" = 1 ]; then
         source="uninstall"
+        component"Uninstall"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _remove_raspap || _install_status 1 "Unable to uninstall RaspAP"
     else
         source="common"
+        component="Install"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _install_raspap || _install_status 1 "Unable to install RaspAP"
