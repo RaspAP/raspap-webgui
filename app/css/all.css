@@ -224,3 +224,7 @@ figcaption.figure-caption a {
   color: #858796;
 }
 
+button > i.fas {
+  pointer-events: none;
+}
+
