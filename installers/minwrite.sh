@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# RaspAP minimal microSD card write opartion 
+# RaspAP minimal microSD card write operation
 # Original author: @zbchristian
 # Original source URI: https://github.com/RaspAP/raspap-tools
 # Modified by: @billz <billzimmerman@gmail.com>
@@ -8,6 +8,8 @@
 # License URI: https://github.com/raspap/raspap-webgui/blob/master/LICENSE
 #
 # Limits the microSD card write operation to a minimum by moving temporary and log files to RAM.
+# Several packages are removed and the default logging service is replaced.
+# The file system is still in read/write mode, so RaspAP settings can be saved.
 # Write access can be checked with "iotop -aoP".
 # Remaining access originates mainly from the ext4 journal update (process jbd2).
 
