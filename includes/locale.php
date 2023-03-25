@@ -94,3 +94,33 @@ bindtextdomain(LOCALE_DOMAIN, LOCALE_ROOT);
 bind_textdomain_codeset(LOCALE_DOMAIN, 'UTF-8');
 
 textdomain(LOCALE_DOMAIN);
+
+function getLocales()
+{
+    $arrLocales = array(
+        'en_GB.UTF-8' => 'English',
+        'cs_CZ.UTF-8' => 'Čeština',
+        'zh_TW.UTF-8' => '正體中文 (Chinese traditional)',
+        'zh_CN.UTF-8' => '简体中文 (Chinese simplified)',
+        'da_DK.UTF-8' => 'Dansk',
+        'de_DE.UTF-8' => 'Deutsch',
+        'es_MX.UTF-8' => 'Español',
+        'fi_FI.UTF-8' => 'Finnish',
+        'fr_FR.UTF-8' => 'Français',
+        'el_GR.UTF-8' => 'Ελληνικά',
+        'id_ID.UTF-8' => 'Indonesian',
+        'it_IT.UTF-8' => 'Italiano',
+        'ja_JP.UTF-8' => '日本語 (Japanese)',
+        'ko_KR.UTF-8' => '한국어 (Korean)',
+        'nl_NL.UTF-8' => 'Nederlands',
+        'pl_PL.UTF-8' => 'Polskie',
+        'pt_BR.UTF-8' => 'Português',
+        'ru_RU.UTF-8' => 'Русский',
+        'ro_RO.UTF-8' => 'Română',
+        'sv_SE.UTF-8' => 'Svenska',
+        'tr_TR.UTF-8' => 'Türkçe',
+        'vi_VN.UTF-8' => 'Tiếng Việt (Vietnamese)'
+    );
+    return $arrLocales; 
+}
+

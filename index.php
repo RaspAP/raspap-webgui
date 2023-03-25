@@ -41,7 +41,6 @@ require_once 'includes/system.php';
 require_once 'includes/sysstats.php';
 require_once 'includes/configure_client.php';
 require_once 'includes/networking.php';
-require_once 'includes/themes.php';
 require_once 'includes/data_usage.php';
 require_once 'includes/about.php';
 require_once 'includes/openvpn.php';
@@ -182,11 +181,6 @@ $bridgedEnabled = getBridgedState();
         <a class="nav-link" href="auth_conf"><i class="fas fa-user-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Authentication"); ?></a>
         </li>
           <?php endif; ?>
-          <?php if (RASPI_CHANGETHEME_ENABLED) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="theme_conf"><i class="fas fa-paint-brush fa-fw mr-2"></i><span class="nav-label"><?php echo _("Change Theme"); ?></a>
-        </li>
-          <?php endif; ?>
           <?php if (RASPI_VNSTAT_ENABLED) : ?>
         <li class="nav-item">
           <a class="nav-link" href="data_use"><i class="fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
@@ -287,14 +281,11 @@ $bridgedEnabled = getBridgedState();
         case "/save_hostapd_conf":
             SaveTORAndVPNConfig();
             break;
-        case "/theme_conf":
-            DisplayThemeConfig($extraFooterScripts);
-            break;
         case "/data_use":
             DisplayDataUsage($extraFooterScripts);
             break;
         case "/system_info":
-            DisplaySystem();
+            DisplaySystem($extraFooterScripts);
             break;
         case "/about":
             DisplayAbout();
