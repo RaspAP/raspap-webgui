@@ -480,18 +480,18 @@ Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + 
 $(document).on("click", ".js-toggle-password", function(e) {
     var button = $(e.target)
     var field  = $(button.data("target"));
+
     if (field.is(":input")) {
         e.preventDefault();
 
         if (!button.data("__toggle-with-initial")) {
-            button.data("__toggle-with-initial", button.text())
+            $("i", this).removeClass("fas fa-eye").addClass(button.attr("data-toggle-with"));
         }
 
         if (field.attr("type") === "password") {
-            button.text(button.data("toggle-with"));
             field.attr("type", "text");
         } else {
-            button.text(button.data("__toggle-with-initial"));
+            $("i", this).removeClass("fas fa-eye-slash").addClass("fas fa-eye");
             field.attr("type", "password");
         }
     }

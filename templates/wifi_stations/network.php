@@ -4,7 +4,7 @@
 		<?php if (strlen($network['ssid']) == 0) {
 			$network['ssid'] = "(unknown)";
 		} ?>
-		<h5 class="card-title"><?php echo htmlspecialchars($network['ssidutf8'], ENT_QUOTES); ?></h5>
+		<h5 class="card-title"><i class="fas fa-wifi mr-2"></i><?php echo htmlspecialchars($network['ssidutf8'], ENT_QUOTES); ?></h5>
 		<div class="info-item-wifi"><?php echo _("Status"); ?></div>
 		<div>
 			<?php if ($network['configured']) { ?>
@@ -29,21 +29,14 @@
 
 		<div class="info-item-wifi"><?php echo _("RSSI"); ?></div>
 		<div>
-			<?php
-			if (isset($network['RSSI']) && $network['RSSI'] >= -200) {
-				echo htmlspecialchars($network['RSSI'], ENT_QUOTES);
-				echo "dB (";
-				if ($network['RSSI'] >= -50) {
-					echo 100;
-				} elseif ($network['RSSI'] <= -100) {
-					echo 0;
-				} else {
-					echo  2*($network['RSSI'] + 100);
-				}
-				echo "%)";
+			<?php if (isset($network['RSSI']) && $network['RSSI'] >= -200) {
+                echo '<div class="d-flex justify-content-start">';
+                echo getSignalBars($network['RSSI']);
+                echo '<div class="ml-2">' .htmlspecialchars($network['RSSI'], ENT_QUOTES) . "dB" . "</div>";
+                echo '</div>';
 			} else {
 				echo " not found ";
-			}
+            }
 			?>
 		</div>
 
@@ -52,18 +45,18 @@
 		<?php } ?>
 		<input type="hidden" name="protocol<?php echo $index ?>" value="<?php echo htmlspecialchars($network['protocol'], ENT_QUOTES); ?>" />
 
-		<div class="info-item-wifi"><?php echo _("Security"); ?></div>
-		<div><?php echo empty($network['protocol']) ? "-" : $network['protocol'] ?></div>
+        <div class="info-item-wifi"><?php echo _("Security"); ?></div>
+        <div><?php echo empty($network['protocol']) ? "-" : $network['protocol'] ?></div>
 
 		<div class="form-group">
-			<div class="info-item-wifi"><?php echo _("Passphrase"); ?></div>
+			<div class="info-item-wifi mb-2"><?php echo _("Passphrase"); ?></div>
 			<div class="input-group">
 				<?php if ($network['protocol'] === 'Open') { ?>
 					<input type="password" disabled class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="" />
 				<?php } else { ?>
 					<input type="password" class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="<?php echo $network['passphrase'] ?>" data-target="#update<?php echo $index ?>" data-colors="#ffd0d0,#d0ffd0">
 					<div class="input-group-append">
-						<button class="btn btn-outline-secondary js-toggle-password" type="button" data-target="[name=passphrase<?php echo $index ?>]" data-toggle-with="<?php echo _("Hide") ?>">Show</button>
+						<button class="btn btn-light js-toggle-password" type="button" data-target="[name=passphrase<?php echo $index ?>]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
 					</div>
 				<?php } ?>
 			</div>
