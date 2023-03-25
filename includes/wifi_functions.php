@@ -225,10 +225,11 @@ function getSignalBars($rssi)
     } else {
         $pct = 2*($rssi + 100);
     }
-    $elem = '<div data-toggle="tooltip" title="Signal strength: ' .$pct. '%" class="signal-icon ' .$class. '">'.PHP_EOL;
+    $elem = '<div data-toggle="tooltip" title="' . _("Signal strength"). ': ' .$pct. '%" class="signal-icon ' .$class. '">'.PHP_EOL;
     for ($n = 0; $n < 3; $n++ ) {
         $elem .= '<div class="signal-bar"></div>'.PHP_EOL;
     }
     $elem .= '</div>'.PHP_EOL;
     return $elem;
 }
+
