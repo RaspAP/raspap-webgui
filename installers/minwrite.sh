@@ -74,8 +74,8 @@ function _remove_packages() {
         if [ "$answer" != "${answer#[Nn]}" ]; then
             _install_status 0 "(Skipped)"
         else
-            sudo apt -y remove --purge triggerhappy dphys-swapfile logrotate || _install_status 1 "Unable to remove packages"
-            sudo apt -y autoremove --purge || _install_status 1 "Unable to autoremove packages"
+            sudo apt-get -y remove --purge triggerhappy dphys-swapfile logrotate || _install_status 1 "Unable to remove packages"
+            sudo apt-get -y autoremove --purge || _install_status 1 "Unable to autoremove packages"
             _install_status 0
         fi
     else
@@ -92,10 +92,10 @@ function _disable_services() {
         if [ "$answer" != "${answer#[Nn]}" ]; then
             _install_status 0 "(Skipped)"
         else
-            sudo systemctl unmask bootlogd.service || _install_status 1 "Unable to disable bootlogd.service"
-            sudo systemctl disable bootlogs || _install_status 1 "Unable to disable bootlogs"
-            sudo systemctl disable console-setup || _install_status 1 "Unable to disable console-setup"
-            sudo systemctl disable apt-daily.service apt-daily.timer apt-daily-upgrade.timer apt-daily-upgrade.service || _install_status 1 "Unable to disable apt-daily"
+            sudo systemctl unmask bootlogd.service || _install_status 2 "Service bootlogd.service does not exist"
+            sudo systemctl disable bootlogs || _install_status 2 "Service bootlogs does not exist"
+            sudo systemctl disable console-setup || _install_status 2 "Service console-setup does not exist"
+            sudo systemctl disable apt-daily.service apt-daily.timer apt-daily-upgrade.timer apt-daily-upgrade.service || _install_status 2 "Service apt-daily does not exist"
             _install_status 0
         fi
     else
@@ -165,7 +165,7 @@ function _move_directories() {
 
 function _install_complete() {
     _install_log "Installation completed"
-    echo -e "${ANSI_RED}A system reboot should be performed now${ANSI_RESET}"
+    echo -e "${ANSI_RED}The system needs to be rebooted as a final step.${ANSI_RESET}"
     echo -n "Reboot now? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
