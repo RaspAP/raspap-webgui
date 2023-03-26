@@ -7,7 +7,7 @@
 # License: GNU General Public License v3.0
 # License URI: https://github.com/raspap/raspap-webgui/blob/master/LICENSE
 #
-# Limits the microSD card write operation to a minimum by moving temporary and log files to RAM.
+# Limits microSD card write operation to a minimum by moving temporary and log files to RAM.
 # Several packages are removed and the default logging service is replaced.
 # The file system is still in read/write mode, so RaspAP settings can be saved.
 # Write access can be checked with "iotop -aoP".
@@ -105,10 +105,20 @@ function _disable_services() {
 
 function _install_logger() {
     _install_log "Installing new logger"
-    echo -e "The new logger will be installed: ${ANSI_YELLOW}busybox-syslogd${ANSI_RESET}"
-    sudo apt-get -y install busybox-syslogd || _install_status 1 "Unable to install busybox-syslogd"
-    sudo dpkg --purge rsyslog || _install_status 1 "Unable to purge rsyslog"
-    _install_status 0
+    echo -e "The following new logger will be installed: ${ANSI_YELLOW}busybox-syslogd${ANSI_RESET}"
+    echo -n "Proceed? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            _install_status 0 "(Skipped)"
+        else
+            sudo apt-get -y install busybox-syslogd || _install_status 1 "Unable to install busybox-syslogd"
+            sudo dpkg --purge rsyslog || _install_status 1 "Unable to purge rsyslog"
+            _install_status 0
+        fi
+    else
+        echo "(Skipped)"
+    fi
 }
 
 function _disable_swap() {
@@ -120,10 +130,9 @@ function _disable_swap() {
         if [ "$answer" != "${answer#[Nn]}" ]; then
             _install_status 0 "(Skipped)"
         else
-            # disable swap
             if ! grep -q "noswap" $bootcmd; then
+                sudo sed -i '1 s/$/ fsck.mode=skip noswap/' $bootcmd || _install_status 1 "Unable to write to ${bootcmd}"
                 echo "Modified ${bootcmd} with noswap option"
-                sudo sed -i '1 s/$/ fsck.mode=skip noswap/' /boot/cmdline.txt || _install_status 1 "Unable to write to ${bootcmd}"
                 _install_status 0
             fi
         fi
