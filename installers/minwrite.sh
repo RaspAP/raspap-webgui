@@ -67,14 +67,14 @@ function _begin_install() {
 
 function _remove_packages() {
     _install_log "Removing packages"
-    echo -e "The following packages will be removed: ${ANSI_YELLOW}triggerhappy dphys-swapfile logrotate${ANSI_RESET}"
+    echo -e "The following packages will be removed: ${ANSI_YELLOW}dphys-swapfile logrotate${ANSI_RESET}"
     echo -n "Proceed? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
             _install_status 0 "(Skipped)"
         else
-            sudo apt-get -y remove --purge triggerhappy dphys-swapfile logrotate || _install_status 1 "Unable to remove packages"
+            sudo apt-get -y remove --purge dphys-swapfile logrotate || _install_status 1 "Unable to remove packages"
             sudo apt-get -y autoremove --purge || _install_status 1 "Unable to autoremove packages"
             _install_status 0
         fi
@@ -94,7 +94,6 @@ function _disable_services() {
         else
             sudo systemctl unmask bootlogd.service || _install_status 2 "Service bootlogd.service does not exist"
             sudo systemctl disable bootlogs || _install_status 2 "Service bootlogs does not exist"
-            sudo systemctl disable console-setup || _install_status 2 "Service console-setup does not exist"
             sudo systemctl disable apt-daily.service apt-daily.timer apt-daily-upgrade.timer apt-daily-upgrade.service || _install_status 2 "Service apt-daily does not exist"
             _install_status 0
         fi
@@ -174,7 +173,7 @@ function _install_complete() {
             exit 0
         fi
         echo "Rebooting..."
-        sudo shutdown -r now || _install_status 1 "Unable to execute shutdown"
+        sudo reboot || _install_status 1 "Unable to execute reboot"
     fi
 }
 
