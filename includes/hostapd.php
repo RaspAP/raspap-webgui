@@ -98,15 +98,15 @@ function DisplayHostAPDConfig()
         $arrConfig['country_code'] = $country_code[0];
     }
     // set txpower with iw if value is non-default ('auto')
-    if (isset($_POST['txpower']) && ($_POST['txpower'] != 'auto')) {
-        $sdBm = $_POST['txpower'] * 100;
-        exec('sudo /sbin/iw dev '.$_POST['interface'].' set txpower fixed '.$sdBm, $return);
-        $status->addMessage('Setting transmit power to '.$_POST['txpower'].' dBm.', 'success');
-        $txpower = $_POST['txpower'];
-    } elseif ($_POST['txpower'] == 'auto') {
-        exec('sudo /sbin/iw dev '.$_POST['interface'].' set txpower auto', $return);
-        $status->addMessage('Setting transmit power to '.$_POST['txpower'].'.', 'success');
-        $txpower = $_POST['txpower'];
+    $txpower = escapeshellarg($_POST['txpower']);
+    $interface = escapeshellarg($_POST['interface']);
+    if ($txpower) && ($txpower != 'auto')) {
+       $sdBm = $txpower * 100;
+        exec('sudo /sbin/iw dev '.$interface.' set txpower fixed '.$sdBm, $return);
+        $status->addMessage('Setting transmit power to '.$txpower.' dBm.', 'success');
+    } elseif ($txpower == 'auto') {
+        exec('sudo /sbin/iw dev '.$interface.' set txpower auto', $return);
+        $status->addMessage('Setting transmit power to '.$txpower.'.', 'success');
     }
 
     $countries_5Ghz_max48ch = RASPI_5GHZ_ISO_ALPHA2;
