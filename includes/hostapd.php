@@ -99,12 +99,13 @@ function DisplayHostAPDConfig()
     }
     // set txpower with iw if value is non-default ('auto')
     if (isset($_POST['txpower']) && ($_POST['txpower'] != 'auto')) {
-        $sdBm = $_POST['txpower'] * 100;
-        exec('sudo /sbin/iw dev '.$_POST['interface'].' set txpower fixed '.$sdBm, $return);
+        $txpower = intval($_POST['txpower']);
+        $sdBm = $txpower * 100;
+        exec('sudo /sbin/iw dev '.escapeshellarg($_POST['interface']).' set txpower fixed '.$sdBm, $return);
         $status->addMessage('Setting transmit power to '.$_POST['txpower'].' dBm.', 'success');
         $txpower = $_POST['txpower'];
     } elseif ($_POST['txpower'] == 'auto') {
-        exec('sudo /sbin/iw dev '.$_POST['interface'].' set txpower auto', $return);
+        exec('sudo /sbin/iw dev '.escapeshellarg($_POST['interface']).' set txpower auto', $return);
         $status->addMessage('Setting transmit power to '.$_POST['txpower'].'.', 'success');
         $txpower = $_POST['txpower'];
     }
