@@ -17,7 +17,9 @@ function DisplayWPAConfig()
 
     if (isset($_POST['connect'])) {
         $result = 0;
-        exec('sudo wpa_cli -i ' . $_SESSION['wifi_client_interface'] . ' select_network '.strval($_POST['connect']));
+        $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+        $netid = escapeshellarg(strval($_POST['connect']));
+        exec('sudo wpa_cli -i ' . $iface . ' select_network ' . $netid);
         $status->addMessage('New network selected', 'success');
     } elseif (isset($_POST['wpa_reinit'])) {
         $status->addMessage('Reinitializing wpa_supplicant', 'info', false);
