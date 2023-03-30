@@ -15,6 +15,7 @@
 # -c, --cert, --certficate          Installs mkcert and generates an SSL certificate for lighttpd
 # -o, --openvpn <flag>              Used with -y, --yes, sets OpenVPN install option (0=no install)
 # -a, --adblock <flag>              Used with -y, --yes, sets Adblock install option (0=no install)
+# -c, --cert, --certificate         Installs an SSL certificate with mkcert and configures lighttpd for HTTPS
 # -r, --repo, --repository <name>   Overrides the default GitHub repo (RaspAP/raspap-webgui)
 # -b, --branch <name>               Overrides the default git branch (master)
 # -t, --token <accesstoken>         Specify a GitHub token to access a private repository
@@ -142,13 +143,14 @@ function _usage() {
     cat << EOF
 Usage: raspbian.sh options
 
-Installs an instance of RaspAP.
+Installs an instance of RaspAP or a helper component.
 
 OPTIONS:
 -y, --yes, --assume-yes             Assumes "yes" as an answer to all prompts
 -c, --cert, --certificate           Installs an SSL certificate for lighttpd
 -o, --openvpn <flag>                Used with -y, --yes, sets OpenVPN install option (0=no install)
 -a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
+-c, --cert, --certificate           Installs an SSL certificate with mkcert and configures lighttpd for HTTPS
 -r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
 -t, --token <accesstoken>           Specify a GitHub token to access a private repository
