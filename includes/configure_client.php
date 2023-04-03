@@ -18,7 +18,7 @@ function DisplayWPAConfig()
     if (isset($_POST['connect'])) {
         $result = 0;
         $iface = escapeshellarg($_SESSION['wifi_client_interface']);
-        $netid = escapeshellarg(strval($_POST['connect']));
+        $netid = intval($_POST['connect']);
         if (is_numeric($netid)) {
             exec('sudo wpa_cli -i ' . $iface . ' select_network ' . $netid);
             $status->addMessage('New network selected', 'success');
