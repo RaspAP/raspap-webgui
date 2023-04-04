@@ -42,10 +42,10 @@
       <div class="modal-title" id="ModalLabel"><i class="fas fa-history mr-2"></i><?php echo _("System reset"); ?></div>
       </div>
       <div class="modal-body">
-        <div class="col-md-12 mb-3 mt-1" id="system-reset-message"><?php echo _("Reset RaspAP to its initial default settings? This action cannot be undone."); ?></div>
+        <div class="col-md-12 mb-3 mt-1" id="system-reset-message"><?php echo _("Reset RaspAP to its initial configuration? This action cannot be undone."); ?></div>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
+      <button type="button" id="js-system-reset-cancel" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
       <button type="button" id="js-system-reset-confirm" data-message="<?php echo _("System reset in progress..."); ?>" class="btn btn-outline-danger btn-delete"><?php echo _("Reset"); ?></button>
       </div>
     </div>
