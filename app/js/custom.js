@@ -324,13 +324,18 @@ $('#ovpn-userpw,#ovpn-certs').on('click', function (e) {
 
 $('#js-system-reset-confirm').on('click', function (e) {
     var resetHtml = $('#js-system-reset-confirm').attr('data-message');
+    var successHtml = $('#js-system-reset-message').attr('data-message');
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
     resetHtml += '<i class="fas fa-cog fa-spin ml-2"></i>';
     $('#system-reset-message').html(resetHtml);
-    $.post('ajax/networking/do_systemreset.php?',function(data){
-        var responseText = JSON.parse(data);
-        $('#system-reset-message').text(responseText);
+    $.post('ajax/networking/do_sys_reset.php?',{'csrf_token':csrfToken},function(data){
+        setTimeout(function(){
+            $('#system-reset-message').text('Reset complete. Restart the hotspot for the changes to take effect.');
+            var response = JSON.parse(data);
+            console.log(response);
+            //$('#system-reset-message').text(responseText);
+        },1000);
     });
-
 });
 
 $(document).ready(function(){
