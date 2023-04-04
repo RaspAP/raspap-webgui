@@ -25,8 +25,9 @@ if (isset($_POST['csrf_token'])) {
         } catch (Exception $e) {
             $return = $e->getCode();
         }
-    } 
-    echo json_encode($return);
+    }
+    $jsonData = ['return'=>$return];
+    echo json_encode($jsonData);
 
 } else {
     handleInvalidCSRFToken();
