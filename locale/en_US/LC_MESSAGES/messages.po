@@ -758,6 +758,36 @@ msgstr "OS"
 msgid "Kernel"
 msgstr "Kernel"
 
+msgid "System reset"
+msgstr "System reset"
+
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "Reset RaspAP to its initial configuration? This action cannot be undone."
+
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "Reset complete. Restart the hotspot for the changes to take effect."
+
+msgid "System reset in progress..."
+msgstr "System reset in progress..."
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Restore settings"
+msgstr "Restore settings"
+
+msgid "To reset RaspAP to its initial configuration, click or tap the button below."
+msgstr "To reset RaspAP to its initial configuration, click or tap the button below."
+
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+
+msgid "Perform reset"
+msgstr "Perform reset"
+
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+
 #: includes/themes.php
 msgid "Theme settings"
 msgstr "Theme settings"
