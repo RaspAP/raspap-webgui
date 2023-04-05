@@ -5,7 +5,9 @@
     <?php echo CSRFTokenFieldTag() ?>
       <div class="row">
         <div class="form-group col-lg-8 col-md-8">
-          <label for="cbxhwmode"><?php echo _("To reset RaspAP to its initial configuration, click or tap the button below.") ;?></label>
+          <label for="cbxhwmode">
+            <?php echo sprintf(_("To reset RaspAP to its <a href=\"%s\">%s</a>, click or tap the button below."), "https://docs.raspap.com/defaults/", "initial configuration"); ;?>
+          </label>
           <?php getTooltip('Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq.', 'tiphwmode', true); ?>
           <div class="small"> 
           <?php echo _("Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."); ?>
