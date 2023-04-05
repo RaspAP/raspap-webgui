@@ -322,11 +322,11 @@ $('#ovpn-userpw,#ovpn-certs').on('click', function (e) {
 });
 
 $('#js-system-reset-confirm').on('click', function (e) {
-    var progressHtml = $('#js-system-reset-confirm').attr('data-message');
+    var progressText = $('#js-system-reset-confirm').attr('data-message');
     var successHtml = $('#system-reset-message').attr('data-message');
     var closeHtml = $('#js-system-reset-cancel').attr('data-message');
     var csrfToken = $('meta[name=csrf_token]').attr('content');
-    progressHtml += '<i class="fas fa-cog fa-spin ml-2"></i>';
+    var progressHtml = $('<div>').text(progressText).html() + '<i class="fas fa-cog fa-spin ml-2"></i>';
     $('#system-reset-message').html(progressHtml);
     $.post('ajax/networking/do_sys_reset.php?',{'csrf_token':csrfToken},function(data){
         setTimeout(function(){
