@@ -6,7 +6,7 @@
       <div class="row">
         <div class="form-group col-lg-8 col-md-8">
           <label for="cbxhwmode">
-            <?php echo sprintf(_("To reset RaspAP to its <a href=\"%s\">%s</a>, click or tap the button below."), "https://docs.raspap.com/defaults/", "initial configuration"); ;?>
+            <?php echo sprintf(_("To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."), "https://docs.raspap.com/defaults/"); ;?>
           </label>
           <?php getTooltip('Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq.', 'tiphwmode', true); ?>
           <div class="small"> 
@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-danger" name="system-reset" data-toggle="modal" data-target="#system-confirm-reset" value="" /><?php echo _("Perform reset"); ?></button>
+      <button type="button" class="btn btn-danger" name="system-reset" data-toggle="modal" data-target="#system-confirm-reset" /><?php echo _("Perform reset"); ?></button>
     <?php endif ?>
 </div>
 

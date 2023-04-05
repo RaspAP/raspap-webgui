@@ -776,8 +776,8 @@ msgstr "Reset"
 msgid "Restore settings"
 msgstr "Restore settings"
 
-msgid "To reset RaspAP to its <a href=\"%s\">%s</a>, click or tap the button below."
-msgstr "To reset RaspAP to its <a href=\"%s\">%s</a>, click or tap the button below."
+msgid "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
+msgstr "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
 
 msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
 msgstr "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
@@ -788,7 +788,6 @@ msgstr "Perform reset"
 msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
 msgstr "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
 
-#: includes/themes.php
 msgid "Theme settings"
 msgstr "Theme settings"
 
