@@ -96,7 +96,7 @@ function _parse_params() {
             upgrade=1
             ;;
             -i|--insiders)
-            insiders=1 
+            insiders=1
             ;;
             -m|--minwrite)
             minwrite=1
@@ -278,7 +278,7 @@ function _load_installer() {
         _install_minwrite || _install_status 1 "Unable to execute minimal write install"
     elif [ "${uninstall}" = 1 ]; then
         source="uninstall"
-        component"Uninstall"
+        component="Uninstall"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _remove_raspap || _install_status 1 "Unable to uninstall RaspAP"
@@ -292,4 +292,3 @@ function _load_installer() {
 }
 
 _main "$@"
-
