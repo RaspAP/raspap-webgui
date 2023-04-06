@@ -20,7 +20,6 @@ function createNetmaskAddr(bitCount) {
 function loadSummary(strInterface) {
     $.post('ajax/networking/get_ip_summary.php',{interface:strInterface},function(data){
         jsonData = JSON.parse(data);
-        console.log(jsonData);
         if(jsonData['return'] == 0) {
             $('#'+strInterface+'-summary').html(jsonData['output'].join('<br />'));
         } else if(jsonData['return'] == 2) {
@@ -322,6 +321,27 @@ $('#ovpn-userpw,#ovpn-certs').on('click', function (e) {
     }
 });
 
+$('#js-system-reset-confirm').on('click', function (e) {
+    var progressText = $('#js-system-reset-confirm').attr('data-message');
+    var successHtml = $('#system-reset-message').attr('data-message');
+    var closeHtml = $('#js-system-reset-cancel').attr('data-message');
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    var progressHtml = $('<div>').text(progressText).html() + '<i class="fas fa-cog fa-spin ml-2"></i>';
+    $('#system-reset-message').html(progressHtml);
+    $.post('ajax/networking/do_sys_reset.php?',{'csrf_token':csrfToken},function(data){
+        setTimeout(function(){
+            jsonData = JSON.parse(data);
+            if(jsonData['return'] == 0) {
+                $('#system-reset-message').text(successHtml);
+            } else {
+                $('#system-reset-message').text('Error occured: '+ jsonData['return']);
+            }
+            $("#js-system-reset-confirm").hide();
+            $("#js-system-reset-cancel").text(closeHtml);
+        },750);
+    });
+});
+
 $(document).ready(function(){
   $("#PanelManual").hide();
 });
@@ -464,7 +484,6 @@ window.addEventListener('load', function() {
     // Loop over them and prevent submission
     var validation = Array.prototype.filter.call(forms, function(form) {
         form.addEventListener('submit', function(event) {
-          //console.log(event.submitter);
           if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
