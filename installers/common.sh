@@ -195,7 +195,7 @@ function _install_dependencies() {
     _set_php_package
     if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|18.04|19.10|11) ]]; then
         echo "Adding apt-repository ppa:ondrej/php"
-        sudo apt-get install $apt_option software-properties-common || _install_status 1 "Unable to install dependency"
+        sudo apt install $apt_option software-properties-common || _install_status 1 "Unable to install dependency"
         sudo add-apt-repository $apt_option ppa:ondrej/php || _install_status 1 "Unable to add-apt-repository ppa:ondrej/php"
     else
         echo "${php_package} will be installed from the main deb sources list"
