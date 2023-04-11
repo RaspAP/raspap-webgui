@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2018-05-17 17:15+0000\n"
+"PO-Revision-Date: 2021-08-04 00:35+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -31,26 +31,32 @@ msgstr "RaspAP Wifi Portal"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "Configure WiFi client"
-msgstr "Configure WiFi client"
+msgid "WiFi client"
+msgstr "WiFi client"
 
-msgid "Configure hotspot"
-msgstr "Configure hotspot"
+msgid "Hotspot"
+msgstr "Hotspot"
 
-msgid "Configure networking"
-msgstr "Configure networking"
+msgid "Memory Use"
+msgstr "Memory Use"
 
-msgid "Configure DHCP Server"
-msgstr "Configure DHCP Server"
+msgid "CPU Temp"
+msgstr "CPU Temp"
 
-msgid "Configure OpenVPN"
-msgstr "Configure OpenVPN"
+msgid "Networking"
+msgstr "Networking"
 
-msgid "Configure TOR proxy"
-msgstr "Configure TOR proxy"
+msgid "DHCP Server"
+msgstr "DHCP Server"
 
-msgid "Configure Auth"
-msgstr "Configure Auth"
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+msgid "TOR proxy"
+msgstr "TOR proxy"
+
+msgid "Authentication"
+msgstr "Authentication"
 
 msgid "Change Theme"
 msgstr "Change Theme"
@@ -141,8 +147,32 @@ msgstr "Hide"
 msgid "Not configured"
 msgstr "Not configured"
 
+msgid "Connected"
+msgstr "Connected"
+
+msgid "Known"
+msgstr "Known"
+
+msgid "Nearby"
+msgstr "Nearby"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+
+msgid "No Wifi stations found"
+msgstr "No Wifi stations found"
+
+msgid "Reinitializing wpa_supplicant"
+msgstr "Reinitializing wpa_supplicant"
+
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Click 'Rescan' to search for nearby Wifi stations."
+
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+
+msgid "Reinitialize"
+msgstr "Reinitialize"
 
 #: includes/dashboard.php
 msgid "Interface Information"
@@ -178,8 +208,8 @@ msgstr "Transferred Packets"
 msgid "Transferred Bytes"
 msgstr "Transferred Bytes"
 
-msgid "Wireless Information"
-msgstr "Wireless Information"
+msgid "Wireless Client"
+msgstr "Wireless Client"
 
 msgid "Connected To"
 msgstr "Connected To"
@@ -238,6 +268,60 @@ msgstr "Stop wlan0"
 msgid "Connected Devices"
 msgstr "Connected Devices"
 
+msgid "Client: Ethernet cable"
+msgstr "Client: Ethernet cable"
+
+msgid "Ethernet"
+msgstr "Ethernet"
+
+msgid "Client: Smartphone (USB tethering)"
+msgstr "Client: Smartphone (USB tethering)"
+
+msgid "Smartphone"
+msgstr "Smartphone"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Mobile Data Client"
+msgstr "Mobile Data Client"
+
+msgid "Mobile Data"
+msgstr "Mobile Data"
+
+msgid "No information available"
+msgstr "No information available"
+
+msgid "Interface name invalid"
+msgstr "Interface name invalid"
+
+msgid "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
+msgstr "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
+
+msgid "Waiting for the interface to start ..."
+msgstr "Waiting for the interface to start ..."
+
+msgid "Stop the Interface"
+msgstr "Stop the Interface"
+
+msgid "Connection mode"
+msgstr "Connection mode"
+
+msgid "Signal quality"
+msgstr "Signal quality"
+
+msgid "WAN IP"
+msgstr "WAN IP"
+
+msgid "Web-GUI"
+msgstr "Web-GUI"
+
+msgid "Signal strength"
+msgstr "Signal strength"
+
+msgid "No Client device or not yet configured"
+msgstr "No Client device or not yet configured"
+
 #: includes/dhcp.php
 msgid "DHCP server settings"
 msgstr "DHCP server settings"
@@ -247,6 +331,12 @@ msgstr "Client list"
 
 msgid "Interface"
 msgstr "Interface"
+
+msgid "Enable DHCP for this interface"
+msgstr "Enable DHCP for this interface"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+msgstr "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
 
 msgid "DNS Server"
 msgstr "DNS Server"
@@ -277,6 +367,9 @@ msgstr "Expire time"
 
 msgid "MAC Address"
 msgstr "MAC Address"
+
+msgid "Optional comment"
+msgstr "Optional comment"
 
 msgid "Host name"
 msgstr "Host name"
@@ -319,6 +412,57 @@ msgstr "Dnsmasq is running"
 
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq is not running"
+
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
+msgid "Restrict access"
+msgstr "Restrict access"
+
+msgid "Limit network access to static clients"
+msgstr "Limit network access to static clients"
+
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Clients with a particular hardware MAC address can always be allocated the same IP address."
+
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -390,6 +534,9 @@ msgstr "Start hotspot"
 msgid "Stop hotspot"
 msgstr "Stop hotspot"
 
+msgid "Restart hotspot"
+msgstr "Restart hotspot"
+
 msgid "Enable logging"
 msgstr "Enable logging"
 
@@ -399,18 +546,66 @@ msgstr "Logfile output"
 msgid "WiFi client AP mode"
 msgstr "WiFi client AP mode"
 
+msgid "Bridged AP mode"
+msgstr "Bridged AP mode"
+
 msgid "Hide SSID in broadcast"
 msgstr "Hide SSID in broadcast"
 
 msgid "Maximum number of clients"
 msgstr "Maximum number of clients"
 
-msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+
+msgid "Beacon interval"
+msgstr "Beacon interval"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Disable <code>disassoc_low_ack</code>"
+
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Do not disassociate stations based on excessive transmission failures."
+
+msgid "Executing RaspAP service start"
+msgstr "Executing RaspAP service start"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Enable this option to log <code>hostapd</code> activity."
+
+msgid "Transmit power (dBm)"
+msgstr "Transmit power (dBm)"
+
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "Sets the <code>txpower</code> option for the AP interface and the configured country."
+
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+
+msgid "The selected interface (%s) has support for the 2.5 GHz wireless band only."
+msgstr "The selected interface (%s) has support for the 2.5 GHz wireless band only."
+
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "The selected interface (%s) does not support wireless mode operation."
+
+msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
+msgstr "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
 
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
+
+msgid "Internet connection"
+msgstr "Internet connection"
 
 msgid "Current settings"
 msgstr "Current settings"
@@ -439,11 +634,71 @@ msgstr "Disabled"
 msgid "Static IP Options"
 msgstr "Static IP Options"
 
+msgid "Metric"
+msgstr "Metric"
+
 msgid "Apply settings"
 msgstr "Apply settings"
 
 msgid "Information provided by /sys/class/net"
 msgstr "Information provided by /sys/class/net"
+
+msgid "Network Devices"
+msgstr "Network Devices"
+
+msgid "Mobile Data Settings"
+msgstr "Mobile Data Settings"
+
+msgid "Properties of network devices"
+msgstr "Properties of network devices"
+
+msgid "Device"
+msgstr "Device"
+
+msgid "MAC"
+msgstr "MAC"
+
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+msgid "Device type"
+msgstr "Device type"
+
+msgid "Fixed name"
+msgstr "Fixed name"
+
+msgid "Change"
+msgstr "Change"
+
+msgid "Settings for Mobile Data Devices"
+msgstr "Settings for Mobile Data Devices"
+
+msgid "PIN of SIM card"
+msgstr "PIN of SIM card"
+
+msgid "APN Settings (Modem device ppp0)"
+msgstr "APN Settings (Modem device ppp0)"
+
+msgid "Access Point Name (APN)"
+msgstr "Access Point Name (APN)"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Successfully Updated Network Configuration"
+msgstr "Successfully Updated Network Configuration"
+
+msgid "Error saving network configuration to file"
+msgstr "Error saving network configuration to file"
+
+msgid "Unable to detect interface"
+msgstr "Unable to detect interface"
+
+msgid "Routing table"
+msgstr "Routing table"
+
+msgid "raw output"
+msgstr "raw output"
 
 #: includes/system.php
 msgid "System Information"
@@ -491,12 +746,56 @@ msgstr "System Rebooting Now!"
 msgid "System Shutting Down Now!"
 msgstr "System Shutting Down Now!"
 
-#: includes/themes.php
+msgid "Web server port"
+msgstr "Web server port"
+
+msgid "Web server bind address"
+msgstr "Web server bind address"
+
+msgid "OS"
+msgstr "OS"
+
+msgid "Kernel"
+msgstr "Kernel"
+
+msgid "System reset"
+msgstr "System reset"
+
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "Reset RaspAP to its initial configuration? This action cannot be undone."
+
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "Reset complete. Restart the hotspot for the changes to take effect."
+
+msgid "System reset in progress..."
+msgstr "System reset in progress..."
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Restore settings"
+msgstr "Restore settings"
+
+msgid "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
+msgstr "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
+
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+
+msgid "Perform reset"
+msgstr "Perform reset"
+
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+
 msgid "Theme settings"
 msgstr "Theme settings"
 
 msgid "Select a theme"
 msgstr "Select a theme"
+
+msgid "Color"
+msgstr "Color"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -596,6 +895,66 @@ msgstr "Attempting to start openvpn"
 msgid "Attempting to stop openvpn"
 msgstr "Attempting to stop openvpn"
 
+msgid "Configurations"
+msgstr "Configurations"
+
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Currently available OpenVPN client configurations are displayed below."
+
+msgid "Activating a configuraton will restart the <code>openvpn-client</code> service."
+msgstr "Activating a configuraton will restart the <code>openvpn-client</code> service."
+
+msgid "Delete OpenVPN client"
+msgstr "Delete OpenVPN client"
+
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Delete client configuration? This cannot be undone."
+
+msgid "Activate OpenVPN client"
+msgstr "Activate OpenVPN client"
+
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Activate client configuration? This will restart the openvpn-client service."
+
+msgid "Activate"
+msgstr "Activate"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Enable this option to log <code>openvpn</code> activity."
+
+msgid "Authentification Method"
+msgstr "Authentification Method"
+
+msgid "Username and password"
+msgstr "Username and password"
+
+msgid "Certificates"
+msgstr "Certificates"
+
+msgid "Enter username and password"
+msgstr "Enter username and password"
+
+msgid "Certificates in the configuration file"
+msgstr "Certificates in the configuration file"
+
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP supports certificates by including them in the configuration file."
+
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+
+msgid "Configuration File"
+msgstr "Configuration File"
+
 #: includes/torproxy.php
 msgid "TOR is not running"
 msgstr "TOR is not running"
@@ -630,6 +989,10 @@ msgstr "Attempting to start TOR"
 msgid "Attempting to stop TOR"
 msgstr "Attempting to stop TOR"
 
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+
 #: common form controls
 msgid "Save settings"
 msgstr "Save settings"
@@ -651,3 +1014,258 @@ msgstr "up"
 
 msgid "down"
 msgstr "down"
+
+msgid "Clear log"
+msgstr "Clear log"
+
+#: includes/adblock.php
+
+msgid "adblock"
+msgstr "adblock"
+
+msgid "Ad Blocking"
+msgstr "Ad Blocking"
+
+msgid "Start Ad Blocking"
+msgstr "Start Ad Blocking"
+
+msgid "Restart Ad Blocking"
+msgstr "Restart Ad Blocking"
+
+msgid "Blocklist settings"
+msgstr "Blocklist settings"
+
+msgid "Enable blocklists"
+msgstr "Enable blocklists"
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+
+msgid "Choose a blocklist provider"
+msgstr "Choose a blocklist provider"
+
+msgid "Hostnames blocklist last updated"
+msgstr "Hostnames blocklist last updated"
+
+msgid "Domains blocklist last updated"
+msgstr "Domains blocklist last updated"
+
+msgid "Update now"
+msgstr "Update now"
+
+msgid "Statistics"
+msgstr "Statistics"
+
+msgid "Information provided by adblock"
+msgstr "Information provided by adblock"
+
+msgid "Enable custom blocklist"
+msgstr "Enable custom blocklist"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+
+msgid "Custom blocklist not defined"
+msgstr "Custom blocklist not defined"
+
+msgid "Invalid custom IP address found on line "
+msgstr "Invalid custom IP address found on line "
+
+msgid "Invalid custom host found on line "
+msgstr "Invalid custom host found on line "
+
+#: includes/wireguard.php
+
+msgid "Tunnel settings"
+msgstr "Tunnel settings"
+
+msgid "Configuration Method"
+msgstr "Configuration Method"
+
+msgid "Upload file"
+msgstr "Upload file"
+
+msgid "Create manually"
+msgstr "Create manually"
+
+msgid "Upload a WireGuard config"
+msgstr "Upload a WireGuard config"
+
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+
+msgid "Apply iptables rules for AP interface"
+msgstr "Apply iptables rules for AP interface"
+
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
+msgstr "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
+
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
+msgstr "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
+
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "Select WireGuard configuration file (.conf)"
+
+msgid "Create a local WireGuard config"
+msgstr "Create a local WireGuard config"
+
+msgid "Enable server"
+msgstr "Enable server"
+
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "This setting generates a new WireGuard <code>.conf</code> file on this device."
+
+msgid "Local public key"
+msgstr "Local public key"
+
+msgid "Local Port"
+msgstr "Local Port"
+
+msgid "IP Address"
+msgstr "IP Address"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Peer"
+msgstr "Peer"
+
+msgid "Enable peer"
+msgstr "Enable peer"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "This option adds <code>client.conf</code> to the WireGuard configuration."
+
+msgid "Peer public key"
+msgstr "Peer public key"
+
+msgid "Endpoint address"
+msgstr "Endpoint address"
+
+msgid "Allowed IPs"
+msgstr "Allowed IPs"
+
+msgid "Persistent keepalive"
+msgstr "Persistent keepalive"
+
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Enable this option to display an updated <code>wg-quick</code> debug log."
+
+msgid "WireGuard debug log updated"
+msgstr "WireGuard debug log updated"
+
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Scan this QR code with your client to connect to this tunnel"
+
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "or download the <code>client.conf</code> file to your device."
+
+msgid "Download"
+msgstr "Download"
+
+msgid "Start WireGuard"
+msgstr "Start WireGuard"
+
+msgid "Stop WireGuard"
+msgstr "Stop WireGuard"
+
+msgid "Information provided by wireguard"
+msgstr "Information provided by wireguard"
+
+msgid "Attempting to start WireGuard"
+msgstr "Attempting to start WireGuard"
+
+msgid "Attempting to stop WireGuard"
+msgstr "Attempting to stop WireGuard"
+
+msgid "WireGuard configuration updated successfully"
+msgstr "WireGuard configuration updated successfully"
+
+msgid "WireGuard configuration failed to be updated"
+msgstr "WireGuard configuration failed to be updated"
+
+#: templates/firewall.php
+
+msgid "Client Firewall"
+msgstr "Client Firewall"
+
+msgid "Firewall is ENABLED"
+msgstr "Firewall is ENABLED"
+
+msgid "Firewall is OFF"
+msgstr "Firewall is OFF"
+
+msgid "The default firewall will only allow outgoing and already established traffic."
+msgstr "The default firewall will only allow outgoing and already established traffic."
+
+msgid "No incoming UDP traffic is allowed."
+msgstr "No incoming UDP traffic is allowed."
+
+msgid "There are no restrictions for the access point <code>%s</code>."
+msgstr "There are no restrictions for the access point <code>%s</code>."
+
+msgid "Exception: Service"
+msgstr "Exception: Service"
+
+msgid "allow SSH access on port 22"
+msgstr "allow SSH access on port 22"
+
+msgid "allow access to the RaspAP GUI on port 80 or 443"
+msgstr "allow access to the RaspAP GUI on port 80 or 443"
+
+msgid "Allow incoming connections for some services from the internet side."
+msgstr "Allow incoming connections for some services from the internet side."
+
+msgid "Exception: network device"
+msgstr "Exception: network device"
+
+msgid "Exclude device(s)"
+msgstr "Exclude device(s)"
+
+msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+msgstr "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+
+msgid "Current client devices: <code>%s</code>"
+msgstr "Current client devices: <code>%s</code>"
+
+msgid "The access point <code>%s</code> is per default excluded."
+msgstr "The access point <code>%s</code> is per default excluded."
+
+msgid "Exception: IP-Address"
+msgstr "Exception: IP-Address"
+
+msgid "Allow incoming connections from"
+msgstr "Allow incoming connections from"
+
+msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+msgstr "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+
+msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+msgstr "This is required for an OpenVPN via UDP or Wireguard connection."
+
+msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+msgstr "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+
+msgid "Disable Firewall"
+msgstr "Disable Firewall"
+
+msgid "Enable Firewall"
+msgstr "Enable Firewall"
+
+msgid "Apply changes"
+msgstr "Apply changes"

@@ -4,14 +4,14 @@
       <div class="card-header">
         <div class="row">
 	        <div class="col">
-						<i class="fas fa-user-lock mr-2"></i><?php echo _("Configure Auth"); ?>
+						<i class="fas fa-user-lock mr-2"></i><?php echo _("Authentication"); ?>
           </div>
         </div><!-- /.row -->
       </div><!-- /.card-header -->
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <h4><?php echo _("Authentication settings") ;?></h4>
-        <form role="form" action="?page=auth_conf" method="POST">
+        <form role="form" action="auth_conf" method="POST">
             <?php echo CSRFTokenFieldTag() ?>
           <div class="row">
             <div class="form-group col-md-6">

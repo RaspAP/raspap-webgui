@@ -1,6 +1,6 @@
 <?php
 
-require('../../includes/csrf.php');
+require '../../includes/csrf.php';
 
 require_once '../../includes/config.php';
 require_once RASPI_CONFIG.'/raspap.php';
@@ -30,35 +30,42 @@ if (strlen($interface) > IFNAMSIZ) {
 
 require_once './get_bandwidth_hourly.php';
 
-exec(sprintf('vnstat -i %s --json ', escapeshellarg($interface)), $jsonstdoutvnstat,
-     $exitcodedaily);
+exec(
+    sprintf('vnstat -i %s --json ', escapeshellarg($interface)), $jsonstdoutvnstat,
+    $exitcodedaily
+);
 if ($exitcodedaily !== 0) {
-  exit('vnstat error');
+    exit('vnstat error');
 }
 
 $jsonobj = json_decode($jsonstdoutvnstat[0], true);
 $timeunits = filter_input(INPUT_GET, 'tu');
 if ($timeunits === 'm') {
     // months
-    $jsonData = $jsonobj['interfaces'][0]['traffic']['months'];
+    $jsonData = $jsonobj['interfaces'][0]['traffic']['month'];
 } else {
     // default: days
-    $jsonData = $jsonobj['interfaces'][0]['traffic']['days'];
+    $jsonData = $jsonobj['interfaces'][0]['traffic']['day'];
 }
 
 $datasizeunits = filter_input(INPUT_GET, 'dsu');
+$dsu_factor = $datasizeunits == "mb" ? 1024 * 1024 : 1024;
 header('X-Content-Type-Options: nosniff');
 header('Content-Type: application/json');
 echo '[ ';
 $firstelm = true;
 for ($i = count($jsonData) - 1; $i >= 0; --$i) {
     if ($timeunits === 'm') {
-        $dt = DateTime::createFromFormat('Y n', $jsonData[$i]['date']['year'].' '.
-                                                      $jsonData[$i]['date']['month']);
+        $dt = DateTime::createFromFormat(
+            'Y n', $jsonData[$i]['date']['year'].' '.
+            $jsonData[$i]['date']['month']
+        );
     } else {
-        $dt = DateTime::createFromFormat('Y n j', $jsonData[$i]['date']['year'].' '.
+        $dt = DateTime::createFromFormat(
+            'Y n j', $jsonData[$i]['date']['year'].' '.
                                                       $jsonData[$i]['date']['month'].' '.
-                                                      $jsonData[$i]['date']['day']);
+            $jsonData[$i]['date']['day']
+        );
     }
 
     if ($firstelm) {
@@ -67,13 +74,8 @@ for ($i = count($jsonData) - 1; $i >= 0; --$i) {
         echo ',';
     }
 
-    if ($datasizeunits == 'mb') {
-        $datasend = round($jsonData[$i]['tx'] / 1024, 0);
-        $datareceived = round($jsonData[$i]['rx'] / 1024, 0);
-    } else {
-        $datasend = $jsonData[$i]['rx'];
-        $datareceived = $jsonData[$i]['rx'];
-    }
+    $datasend = round($jsonData[$i]['tx'] / $dsu_factor, 0);
+    $datareceived = round($jsonData[$i]['rx'] / $dsu_factor, 0);
 
     if ($timeunits === 'm') {
         echo '{ "date": "' , $dt->format('Y-m') , '", "rx": "' , $datareceived , 

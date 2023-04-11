@@ -35,25 +35,25 @@ msgstr "Cổng thông tin wifi RaspAP"
 msgid "Dashboard"
 msgstr "Bảng điều khiển"
 
-msgid "Configure WiFi client"
-msgstr "Định cấu hình WiFi cho máy khách"
+msgid "WiFi client"
+msgstr "WiFi cho máy khách"
 
-msgid "Configure hotspot"
-msgstr "Định cấu hình điểm phát wifi"
+msgid "Hotspot"
+msgstr "Điểm phát wifi"
 
-msgid "Configure networking"
-msgstr "Đặt cấu hình kết nối mạng"
+msgid "Networking"
+msgstr "Kết nối mạng"
 
-msgid "Configure DHCP Server"
-msgstr "Định cấu hình máy chủ DHCP"
+msgid "DHCP Server"
+msgstr "Chủ DHCP"
 
-msgid "Configure OpenVPN"
-msgstr "Định cấu hình OpenVPN"
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-msgid "Configure TOR proxy"
-msgstr "Định cấu hình proxy TOR"
+msgid "TOR proxy"
+msgstr "Proxy TOR"
 
-msgid "Configure Auth"
+msgid "Authentication"
 msgstr "Định cấu hình xác thực"
 
 msgid "Change Theme"
@@ -332,6 +332,33 @@ msgstr "Dnsmasq đang hoạt động"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq đang không hoạt động"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Cơ bản"
@@ -401,6 +428,9 @@ msgstr "Khởi động tính năng phát wifi"
 
 msgid "Stop hotspot"
 msgstr "Dừng điểm truy cập"
+
+msgid "Restart hotspot"
+msgstr "Khởi động lại wifi"
 
 msgid "Enable logging"
 msgstr "Bật ghi nhật ký"

@@ -1,0 +1,736 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: raspap\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2020-04-14 08:51\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Danish\n"
+"Language: da_DK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: da\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "RaspAP Wifi Konfigurationsportal"
+
+msgid "Toggle navigation"
+msgstr "Skift navigation"
+
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP Wifi Portal"
+
+msgid "Dashboard"
+msgstr "Oversigt"
+
+msgid "WiFi client"
+msgstr "WiFi-klient"
+
+msgid "Hotspot"
+msgstr "Hotspot"
+
+msgid "Memory Use"
+msgstr "Brugt hukommelse"
+
+msgid "CPU Temp"
+msgstr "CPU Temperatur"
+
+msgid "Networking"
+msgstr "Netværk"
+
+msgid "DHCP Server"
+msgstr "DHCP Server"
+
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+msgid "TOR proxy"
+msgstr "TOR proxy"
+
+msgid "Authentication"
+msgstr "Godkendelse"
+
+msgid "Change Theme"
+msgstr "Skift tema"
+
+msgid "System"
+msgstr "System"
+
+msgid "About RaspAP"
+msgstr "Om RaspAP"
+
+#: includes/admin.php
+msgid "Authentication settings"
+msgstr "Godkendelsesindstillinger"
+
+msgid "New passwords do not match"
+msgstr "Nye adgangskoder matcher ikke"
+
+msgid "Username must not be empty"
+msgstr "Brugernavn må ikke være tomt"
+
+msgid "Admin password updated"
+msgstr "Administratorkodeord opdateret"
+
+msgid "Failed to update admin password"
+msgstr "Opdatering af administratorkodeord mislykkedes"
+
+msgid "Old password does not match"
+msgstr "Gammelt kodeord ikke korrekt"
+
+msgid "Username"
+msgstr "Brugernavn"
+
+msgid "Old password"
+msgstr "Gammel adgangskode"
+
+msgid "New password"
+msgstr "Ny adgangskode"
+
+msgid "Repeat new password"
+msgstr "Gentag ny adgangskode"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "Klientindstilinger"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "Security"
+msgstr "Sikkerhed"
+
+msgid "Passphrase"
+msgstr "Adgangskode"
+
+msgid "Wifi settings updated successfully"
+msgstr "Wifi-indstillinger opdateret"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "Wifi-indstillinger opdateret, men kan ikke genstarte (kan ikke køre 'wpa_cli reconfigure')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Wifi-indstillinger kunne ikke opdateres"
+
+msgid "Failed to update wifi settings"
+msgstr "Opdatering af Wifi-indstillinger mislykkedes"
+
+msgid "Rescan"
+msgstr "Scan igen"
+
+msgid "Update"
+msgstr "Opdatér"
+
+msgid "Add"
+msgstr "Tilføj"
+
+msgid "Delete"
+msgstr "Slet"
+
+msgid "Show"
+msgstr "Vis"
+
+msgid "Hide"
+msgstr "Skjul"
+
+msgid "Not configured"
+msgstr "Ikke konfigureret"
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Note:</strong> WEP access points vises som 'Åben'. RaspAP understøtter i øjeblikket ikke forbindelser til WEP"
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "Interfaceinformation"
+
+msgid "Interface Name"
+msgstr "Interfacenavn"
+
+msgid "IPv4 Address"
+msgstr "IPv4 adresse"
+
+msgid "IPv6 Address"
+msgstr "IPv6 adresse"
+
+msgid "Subnet Mask"
+msgstr "Undernetmaske"
+
+msgid "Mac Address"
+msgstr "Mac-adresse"
+
+msgid "Interface Statistics"
+msgstr "Interfacestatistik"
+
+msgid "Received Packets"
+msgstr "Modtagne pakker"
+
+msgid "Received Bytes"
+msgstr "Modtagne bytes"
+
+msgid "Transferred Packets"
+msgstr "Overførte pakker"
+
+msgid "Transferred Bytes"
+msgstr "Overførte bytes"
+
+msgid "Wireless Client"
+msgstr "Trådløs klient"
+
+msgid "Connected To"
+msgstr "Forbundet til"
+
+msgid "AP Mac Address"
+msgstr "AP Mac-adresse"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Signal Level"
+msgstr "Signalniveau"
+
+msgid "Transmit Power"
+msgstr "Sendeeffekt"
+
+msgid "Frequency"
+msgstr "Frekvens"
+
+msgid "Link Quality"
+msgstr "Link-kvalitet"
+
+msgid "Information provided by ip and iw and from system"
+msgstr "Oplysninger leveret af ip og iw og fra system"
+
+msgid "No MAC Address Found"
+msgstr "Ingen MAC-adresse fundet"
+
+msgid "No IP Address Found"
+msgstr "Ingen IP-adresse fundet"
+
+msgid "No Subnet Mask Found"
+msgstr "Ingen undernetmaske fundet"
+
+msgid "No Data"
+msgstr "Ingen data"
+
+msgid "Not connected"
+msgstr "Ikke forbundet"
+
+msgid "Interface is up"
+msgstr "Interface kører"
+
+msgid "Interface is down"
+msgstr "Interface kører ikke"
+
+msgid "Interface already down"
+msgstr "Interface allerede nede"
+
+msgid "Start wlan0"
+msgstr "Start wlan0"
+
+msgid "Stop wlan0"
+msgstr "Stop wlan0"
+
+msgid "Connected Devices"
+msgstr "Forbundne enheder"
+
+#: includes/dhcp.php
+msgid "DHCP server settings"
+msgstr "DHCP-serverindstillinger"
+
+msgid "Client list"
+msgstr "Klientliste"
+
+msgid "Interface"
+msgstr "Interface"
+
+msgid "DNS Server"
+msgstr "DNS-server"
+
+msgid "Starting IP Address"
+msgstr "Start IP-adresse"
+
+msgid "Ending IP Address"
+msgstr "Slut IP-adresse"
+
+msgid "Static Leases"
+msgstr "Statiske Leases"
+
+msgid "Add static DHCP lease"
+msgstr "Tilføj statisk DHCP-lease"
+
+msgid "Lease Time"
+msgstr "Lease-tid"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Active DHCP leases"
+msgstr "Aktive DHCP-leases"
+
+msgid "Expire time"
+msgstr "Udløbstid"
+
+msgid "MAC Address"
+msgstr "MAC-adresse"
+
+msgid "Host name"
+msgstr "Hostnavn"
+
+msgid "Client ID"
+msgstr "Klient-ID"
+
+msgid "Information provided by Dnsmasq"
+msgstr "Oplysninger leveret af Dnsmasq"
+
+msgid "Stop dnsmasq"
+msgstr "Stop dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "Start dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Dnsmasq-konfiguration blev opdateret"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq kører allerede"
+
+msgid "Successfully started dnsmasq"
+msgstr "dnsmasq blev startet"
+
+msgid "Failed to start dnsmasq"
+msgstr "Kunne ikke starte dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Dnsmasq blev stoppet"
+
+msgid "Failed to stop dnsmasq"
+msgstr "Kunne ikke stoppe dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq er allerede stoppet"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq kører"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq kører ikke"
+
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS-servere"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Spørg kun følgende DNS-servere"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Aktivér denne indstilling, hvis du vil have RaspAP til <b>udelukkende at sende DNS-forespørgsler til serverne, der er konfigureret nedenfor </b>. Som standard bruger RaspAP også navneservere på den originale DHCP-server."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "Denne mulighed tilføjer <code>no-resolv</code> til dnsmasq konfigurationen."
+
+msgid "Add upstream DNS server"
+msgstr "Tilføj upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Vælg en hostet server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP anmodninger"
+
+msgid "Log DNS queries"
+msgstr "Log DNS-forespørgsler"
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "Grundindst"
+
+msgid "Advanced"
+msgstr "Avanceret"
+
+msgid "Basic settings"
+msgstr "Grundindstillinger"
+
+msgid "Wireless Mode"
+msgstr "Trådløs tilstand"
+
+msgid "Security settings"
+msgstr "Sikkerhedsindstillinger"
+
+msgid "Security type"
+msgstr "Sikkerhedstype"
+
+msgid "Encryption Type"
+msgstr "Krypteringstype"
+
+msgid "PSK"
+msgstr "PSK"
+
+msgid "Advanced settings"
+msgstr "Avancerede indstillinger"
+
+msgid "Country Code"
+msgstr "Landekode"
+
+msgid "Information provided by hostapd"
+msgstr "Oplysninger leveret af hostapd"
+
+msgid "Attempting to start hotspot"
+msgstr "Forsøger at starte hotspot"
+
+msgid "Attempting to stop hotspot"
+msgstr "Forsøger at standse hotspot"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD kører ikke"
+
+msgid "HostAPD is running"
+msgstr "HostAPD kører"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID skal være mellem 1 og 32 tegn"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "WPA kode skal være mellem 8 og 63 tegn"
+
+msgid "Unknown interface"
+msgstr "Ukendt interface"
+
+msgid "Country code must be blank or two characters"
+msgstr "Landekode skal være tomt, eller have to tegn"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Wifi Hotspot-indstillinger gemt"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "Kunne ikke gemme wifi-hotspot-indstillinger"
+
+msgid "Start hotspot"
+msgstr "Start hotspot"
+
+msgid "Stop hotspot"
+msgstr "Stop hotspot"
+
+msgid "Restart hotspot"
+msgstr "Genstart hotspot"
+
+msgid "Enable logging"
+msgstr "Aktivér logning"
+
+msgid "Logfile output"
+msgstr "Logfil output"
+
+msgid "WiFi client AP mode"
+msgstr "WiFi klient AP-tilstand"
+
+msgid "Bridged AP mode"
+msgstr "Bridged AP-tilstand"
+
+msgid "Hide SSID in broadcast"
+msgstr "Skjul SSID"
+
+msgid "Maximum number of clients"
+msgstr "Maksimal klientantal"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Konfigurerer max_num_sta i hostapd. Standard og maksimum er 2007. Hvis tom eller 0, bruges standard."
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Oversigt"
+
+msgid "Current settings"
+msgstr "Nuværende indstillinger"
+
+msgid "Default Gateway"
+msgstr "Standard-gateway"
+
+msgid "Alternate DNS Server"
+msgstr "Alternativ DNS-server"
+
+msgid "Adapter IP Address Settings"
+msgstr "Adapter IP-adresseindstillinger"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Aktivér Fallback til statisk mulighed"
+
+msgid "Static IP"
+msgstr "Statisk IP"
+
+msgid "Enabled"
+msgstr "Aktiveret"
+
+msgid "Disabled"
+msgstr "Deaktiveret"
+
+msgid "Static IP Options"
+msgstr "Statiske IP-indstillinger"
+
+msgid "Apply settings"
+msgstr "Anvend indstillinger"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Oplysninger leveret af /sys/class/net"
+
+#: includes/system.php
+msgid "System Information"
+msgstr "Systemoplysninger"
+
+msgid "Language"
+msgstr "Sprog"
+
+msgid "Language settings"
+msgstr "Sprogindstillinger"
+
+msgid "Select a language"
+msgstr "Vælg et sprog"
+
+msgid "Language setting saved"
+msgstr "Sprogindstillinger gemt"
+
+msgid "Console"
+msgstr "Konsol"
+
+msgid "Hostname"
+msgstr "Hostnavn"
+
+msgid "Pi Revision"
+msgstr "Pi-revision"
+
+msgid "Uptime"
+msgstr "Oppetid"
+
+msgid "Memory Used"
+msgstr "Brugt hukommelse"
+
+msgid "CPU Load"
+msgstr "CPU-belasting"
+
+msgid "Reboot"
+msgstr "Genstart"
+
+msgid "Shutdown"
+msgstr "Luk ned"
+
+msgid "System Rebooting Now!"
+msgstr "Systemet genstarter nu!"
+
+msgid "System Shutting Down Now!"
+msgstr "Systemet lukker ned nu!"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "Temaindstillinger"
+
+msgid "Select a theme"
+msgstr "Vælg et tema"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Dataforbrug"
+
+msgid "Data usage monitoring"
+msgstr "Overvågning af dataforbrug"
+
+msgid "Hourly traffic amount"
+msgstr "Timevis trafikmængde"
+
+msgid "Daily traffic amount"
+msgstr "Daglig trafikmængde"
+
+msgid "Monthly traffic amount"
+msgstr "Månedsvis trafikmængde"
+
+msgid "Hourly"
+msgstr "Timevis"
+
+msgid "Daily"
+msgstr "Daglig"
+
+msgid "Monthly"
+msgstr "Månedlig"
+
+msgid "interface"
+msgstr "Interface"
+
+msgid "date"
+msgstr "Dato"
+
+msgid "Send MB"
+msgstr "Sendte MB"
+
+msgid "Receive MB"
+msgstr "Modtagne MB"
+
+msgid "Information provided by vnstat"
+msgstr "Oplysninger leveret af vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Indlæser {0} båndbreddediagram"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Viser {0} til {1} ​​af {2} poster"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN kører ikke"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN kører"
+
+msgid "Server settings"
+msgstr "Serverindstillinger"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Vælg OpenVPN-konfigurationsfil (.ovpn)"
+
+msgid "Client Log"
+msgstr "Klientlog"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Protocol"
+msgstr "Protokol"
+
+msgid "Root CA certificate"
+msgstr "Root-CA-certifikat"
+
+msgid "Server certificate"
+msgstr "Servercertifikat"
+
+msgid "Diffie Hellman parameters"
+msgstr "Diffie Hellman-parametre"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Serverlog"
+
+msgid "Start OpenVPN"
+msgstr "Start OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Stop OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Oplysninger leveret af OpenVPN"
+
+msgid "Attempting to start openvpn"
+msgstr "Forsøger at starte OpenVPN"
+
+msgid "Attempting to stop openvpn"
+msgstr "Forsøger at stoppe OpenVPN"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR kører ikke"
+
+msgid "TOR is running"
+msgstr "TOR kører"
+
+msgid "Relay"
+msgstr "Relæ"
+
+msgid "Relay settings"
+msgstr "Relæindstillinger"
+
+msgid "Nickname"
+msgstr "Kaldenavn"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Start TOR"
+msgstr "Start TOR"
+
+msgid "Stop TOR"
+msgstr "Stop TOR"
+
+msgid "Information provided by tor"
+msgstr "Oplysninger leveret af TOR"
+
+msgid "Attempting to start TOR"
+msgstr "Forsøger at starte TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Forsøger at stoppe TOR"
+
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr "Bridged AP-tilstand er aktiveret. For værtsnavn og IP, se din routers administratorside."
+
+#: common form controls
+msgid "Save settings"
+msgstr "Gem indstillinger"
+
+msgid "Refresh"
+msgstr "Opdater"
+
+msgid "running"
+msgstr "Kører"
+
+msgid "stopped"
+msgstr "stoppet"
+
+msgid "Remove"
+msgstr "Fjern"
+
+msgid "up"
+msgstr "oppe"
+
+msgid "down"
+msgstr "nede"
+
+msgid "adblock"
+msgstr "adblock"
+
+msgid "Ad Blocking"
+msgstr "Annonceblokering"
+
+msgid "Start Ad Blocking"
+msgstr "Start annonceblokering"
+
+msgid "Restart Ad Blocking"
+msgstr "Genstart annonceblokering"
+
+msgid "Blocklist settings"
+msgstr "Blokeringslisteindstillinger"
+
+msgid "Enable blocklists"
+msgstr "Aktivér blokeringsliste"
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Aktivér denne indstilling, hvis du vil have RaspAP til at <b> blokere DNS-anmodninger om annoncer, sporing og andet virtuelt affald </b>. Blokeringslister samles fra flere, aktivt vedligeholdte kilder og opdateres, renses, optimeres og modereres automatisk dagligt."
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "Denne mulighed tilføjer <code> conf-file </code> og <code> addn-hosts </code> til dnsmasq-konfigurationen."
+
+msgid "Choose a blocklist provider"
+msgstr "Vælg en blokeringslisteudbyder"
+
+msgid "Hostnames blocklist last updated"
+msgstr "Hostnames blokeringsliste senest opdateret"
+
+msgid "Domains blocklist last updated"
+msgstr "Domæneblokeringsliste senest opdateret"
+
+msgid "Update now"
+msgstr "Opdater nu"
+
+msgid "Statistics"
+msgstr "Statistikker"
+
+msgid "Information provided by adblock"
+msgstr "Information leveret af adblock"
+

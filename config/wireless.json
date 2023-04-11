@@ -1,0 +1,17 @@
+{"wireless_regdb": {
+    "debug": "off",
+    "2_4GHz_max11ch": {
+        "countries": [ "AG", "BS", "BB", "BZ", "CR", "CU", "DM", "DO", "SV", "GD", "GT",
+        "HT", "HN", "JM", "MX", "NI", "PA", "KN", "LC", "VC", "TT", "US", "CA", "UZ", "CO" ],
+        "channels": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+    },
+    "2_4GHz_max14ch": { 
+        "countries": [ "JP", "NL" ],
+        "channels": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
+    },
+    "5Ghz_max48ch": {
+        "countries": [ "NL","US" ],
+        "channels": [ 36, 40, 44, 48 ]
+    }
+}} 
+

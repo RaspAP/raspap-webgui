@@ -7,39 +7,53 @@ assignees: ''
 
 ---
 
-**Before submitting an issue**
-Please read this first https://github.com/billz/raspap-webgui/wiki/Reporting-issues
+<!-- These comments will NOT appear in your issue, so it's OK to ignore them -->
+<!--
+Thanks for reporting a bug for RaspAP.
 
-* [x] This is a bug report
-* [ ] I searched existing issues before opening this one
-* [ ] I checked the FAQ before creating this issue
-* [ ] I have read and understand the issue reporting guidelines 
+Important: If you are NOT using a clean installation of a compatible OS, start with a fresh SD card, install RaspAP and replicate your bug BEFORE reporting an issue.
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+All submitters MUST read the issue policy and reporting guidelines:
+https://docs.raspap.com/issues/
 
-**Your environment**
-* Raspberry Pi hardware (examples: Pi 3 Model B+, Pi Zero W)  
-* Raspbian version (examples: Buster Lite, Buster Desktop)
-* Followed the project prerequisites? (Y/N)
-* Checked the project FAQ? (Y/N)
-* RaspAP Quick Install or Manual setup?
-* Using default configuration? (Y/N)
-* Simultaneous AP and managed mode? (Y/N)
-* Onboard wireless chipset or external adapter? 
-* Other software or services running with RaspAP?
+Refer to the frequently asked questions (FAQ) and official documentation:
+https://docs.raspap.com/faq/
 
-**Steps to reproduce**
-Tell us how to reproduce this issue. Provide as much detailed information as possible.
+Do you have a question or want to suggest a new feature? Start a Discussion here:
+https://github.com/RaspAP/raspap-webgui/discussions
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+Be sure there are no issues similar to yours that are already open. You can check this by searching the issues in this repository. If there is a duplicate issue, please close this one and add a comment to the existing issue instead.
+-->
+<!-- Provide a general summary of the issue in the Title above -->
 
-**Actual behavior**
-Tell us what you observed instead.
+## Checklist
+<!-- IMPORTANT! Fill in the boxes that apply by marking them like so: [x] -->
+- [ ] This is a bug report
+- [ ] I observed this bug on a clean install of the OS
+- [ ] I have followed the project prerequisites
+- [ ] I have searched this repository for existing issues
+- [ ] I checked the FAQ and official documentation before creating this issue
+- [ ] I have read and understand the issue reporting guidelines 
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## Bug description
+<!-- Provide a detailed description of the issue -->
 
-**Additional context**
-Add any other context about the problem here.
+## Your environment
+1. Operating System: **ENTER HERE** <!-- RPi OS 32-bit Lite, Armbian, Debian, etc. -->
+2. Hardware and version: <!-- RPi Zero/3B+/4, OrangePi 3, etc. -->
+3. RaspAP version: <!-- reported by the Quick Installer or About page -->
+4. Clean install of a compatible operating system? <!-- Yes/No -->
+5. RaspAP Quick Install or Manual setup? <!-- Quick Install/Manual -->
+6. Using default configuration? <!-- Yes/No -->
+7. Simultaneous AP and managed mode? <!-- Yes/No -->
+8. Onboard wireless chipset or external adapter? <!-- Onboard/External -->
+9. Other software or services running with RaspAP? 
+
+## Steps to reproduce
+<!-- Tell us how to reproduce this issue. Provide as much detailed information as possible -->
+
+## Screenshots
+<!-- If applicable, add screenshots to help explain your problem -->
+
+## Additional context
+<!-- Add any other context about the problem here -->

@@ -1,0 +1,3 @@
+files:
+  - source: /locale/en_US/LC_MESSAGES/messages.po
+    translation: /locale/%locale_with_underscore%/LC_MESSAGES/%original_file_name%

@@ -3,7 +3,7 @@
     "short_name": "RaspAP",
     "icons": [
         {
-            "src": "/dist/icons/android-chrome-192x192.png",
+            "src": "/app/icons/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         }

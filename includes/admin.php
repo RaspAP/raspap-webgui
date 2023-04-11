@@ -1,6 +1,6 @@
 <?php
 
-include_once('includes/status_messages.php');
+require_once 'includes/status_messages.php';
 
 function DisplayAuthConfig($username, $password)
 {

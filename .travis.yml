@@ -1,0 +1,23 @@
+sudo: false
+language: php
+
+matrix:
+  fast_finish: true
+
+  include:
+    - php: '7.0'
+    - php: '7.1'
+    - php: '7.2'
+    - php: '7.3'
+    - php: '7.4'
+    - php: 'nightly'
+
+  allow_failures:
+    - php: nightly
+
+before_script:
+  - composer install --prefer-source --quiet --no-interaction
+
+# Run test script commands.
+script:
+  - composer test

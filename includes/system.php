@@ -1,13 +1,13 @@
 <?php
 
-include_once('includes/status_messages.php');
-include_once('app/lib/system.php');
+require_once 'includes/status_messages.php';
+require_once 'includes/functions.php';
+require_once 'config.php';
+require_once 'app/lib/system.php';
 
 /**
- *
  * Find the version of the Raspberry Pi
  * Currently only used for the system information page but may useful elsewhere
- *
  */
 
 function RPiVersion()
@@ -53,19 +53,22 @@ function RPiVersion()
     if (array_key_exists($rev, $revisions)) {
         return $revisions[$rev];
     } else {
-        return 'Unknown Pi';
+        exec('cat /proc/device-tree/model', $model);
+        if (isset($model[0])) {
+            return $model[0];
+        } else {
+            return 'Unknown Device';
+        }
     }
 }
 
 /**
  *
- *
  */
-function DisplaySystem()
+function DisplaySystem(&$extraFooterScripts)
 {
 
     $status = new StatusMessages();
-    $system = new System();
 
     if (isset($_POST['SaveLanguage'])) {
         if (isset($_POST['locale'])) {
@@ -74,59 +77,151 @@ function DisplaySystem()
         }
     }
 
-    if (isset($_POST['SaveServerPort'])) {
-        if (isset($_POST['serverPort'])) {
-            if (strlen($_POST['serverPort']) > 4 || !is_numeric($_POST['serverPort'])) {
-                $status->addMessage('Invalid value for port number', 'danger');
-            } else {
-                $serverPort = escapeshellarg($_POST['serverPort']);
-                exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
+    if (!RASPI_MONITOR_ENABLED) {
+        if (isset($_POST['SaveServerSettings'])) {
+            $good_input = true;
+            // Validate server port
+            if (isset($_POST['serverPort'])) {
+                if (strlen($_POST['serverPort']) > 4 || !is_numeric($_POST['serverPort'])) {
+                    $status->addMessage('Invalid value for port number', 'danger');
+                    $good_input = false;
+                } else {
+                    $serverPort = escapeshellarg($_POST['serverPort']);
+               }
+            }
+            // Validate server bind address
+            $serverBind = escapeshellarg('');
+            if ($_POST['serverBind'] && $_POST['serverBind'] !== null ) {
+                if (!filter_var($_POST['serverBind'], FILTER_VALIDATE_IP)) {
+                    $status->addMessage('Invalid value for bind address', 'danger');
+                    $good_input = false;
+                } else {
+                    $serverBind = escapeshellarg($_POST['serverBind']);
+                }
+            }
+            // Save settings
+            if ($good_input) {
+                exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort $serverBind " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
                 foreach ($return as $line) {
                     $status->addMessage($line, 'info');
                 }
             }
         }
+
+        if (isset($_POST['system_reboot'])) {
+            $status->addMessage("System Rebooting Now!", "warning", false);
+            $result = shell_exec("sudo /sbin/reboot");
+        }
+        if (isset($_POST['system_shutdown'])) {
+            $status->addMessage("System Shutting Down Now!", "warning", false);
+            $result = shell_exec("sudo /sbin/shutdown -h now");
+        }
     }
 
     if (isset($_POST['RestartLighttpd'])) {
-        $status->addMessage('Restarting lighttpd in 3 seconds...','info');
+        $status->addMessage('Restarting lighttpd in 3 seconds...', 'info');
         exec('sudo /etc/raspap/lighttpd/configport.sh --restart');
     }
-
     exec('cat '. RASPI_LIGHTTPD_CONFIG, $return);
     $conf = ParseConfig($return);
-    $ServerPort = $conf['server.port'];
+    $serverPort = $conf['server.port'];
+    $serverBind = str_replace('"', '',$conf['server.bind']);
 
     // define locales
-    $arrLocales = array(
-        'en_GB.UTF-8' => 'English',
-        'de_DE.UTF-8' => 'Deutsch',
-        'fr_FR.UTF-8' => 'Français',
-        'it_IT.UTF-8' => 'Italiano',
-        'pt_BR.UTF-8' => 'Português',
-        'sv_SE.UTF-8' => 'Svenska',
-        'nl_NL.UTF-8' => 'Nederlands',
-        'zh_CN.UTF-8' => '简体中文 (Chinese simplified)',
-        'id_ID.UTF-8' => 'Indonesian',
-        'ko_KR.UTF-8' => '한국어 (Korean)',
-        'ja_JP.UTF-8' => '日本語 (Japanese)',
-        'vi_VN.UTF-8' => 'Tiếng Việt',
-        'cs_CZ.UTF-8' => 'Čeština',
-        'ru_RU.UTF-8' => 'Русский',
-        'es_MX.UTF-8' => 'Español',
-        'fi_FI.UTF-8' => 'Finnish',
-        'si_LK.UTF-8' => 'Sinhala',
-        'tr_TR.UTF-8' => 'Türkçe'
-    );
+    $arrLocales = getLocales();
 
-    if (isset($_POST['system_reboot'])) {
-        $status->addMessage("System Rebooting Now!", "warning", false);
-        $result = shell_exec("sudo /sbin/reboot");
-    }
-    if (isset($_POST['system_shutdown'])) {
-        $status->addMessage("System Shutting Down Now!", "warning", false);
-        $result = shell_exec("sudo /sbin/shutdown -h now");
+    #fetch system status variables.
+    $system = new \RaspAP\System\Sysinfo;
+
+    $hostname = $system->hostname();
+    $uptime   = $system->uptime();
+    $cores    = $system->processorCount();
+    $os       = $system->operatingSystem();
+    $kernel   = $system->kernelVersion();
+
+    // mem used
+    $memused  = $system->usedMemory();
+    $memused_status = "primary";
+    if ($memused > 90) {
+        $memused_status = "danger";
+        $memused_led = "service-status-down";
+    } elseif ($memused > 75) {
+        $memused_status = "warning";
+        $memused_led = "service-status-warn";
+    } elseif ($memused >  0) {
+        $memused_status = "success";
+        $memused_led = "service-status-up";
     }
 
-    echo renderTemplate("system", compact("arrLocales", "status", "system", "ServerPort"));
+    // cpu load
+    $cpuload = $system->systemLoadPercentage();
+    if ($cpuload > 90) {
+        $cpuload_status = "danger";
+    } elseif ($cpuload > 75) {
+        $cpuload_status = "warning";
+    } elseif ($cpuload >=  0) {
+        $cpuload_status = "success";
+    }
+
+    // cpu temp
+    $cputemp = $system->systemTemperature();
+    if ($cputemp > 70) {
+        $cputemp_status = "danger";
+        $cputemp_led = "service-status-down";
+    } elseif ($cputemp > 50) {
+        $cputemp_status = "warning";
+        $cputemp_led = "service-status-warn";
+    } else {
+        $cputemp_status = "success";
+        $cputemp_led = "service-status-up";
+    }
+
+    // hostapd status
+    $hostapd = $system->hostapdStatus();
+    if ($hostapd[0] == 1) {
+        $hostapd_status = "active";
+        $hostapd_led = "service-status-up";
+    } else {
+        $hostapd_status = "inactive";
+        $hostapd_led = "service-status-down";
+    }
+
+    // theme options
+    $themes = [
+        "default"    => "RaspAP (default)",
+        "hackernews" => "HackerNews"
+    ];
+    $themeFiles = [
+        "default"    => "custom.php",
+        "hackernews" => "hackernews.css"
+    ];
+    $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
+
+    $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
+    $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
+
+    echo renderTemplate("system", compact(
+        "arrLocales",
+        "status",
+        "serverPort",
+        "serverBind",
+        "hostname",
+        "uptime",
+        "cores",
+        "os",
+        "kernel",
+        "memused",
+        "memused_status",
+        "memused_led",
+        "cpuload",
+        "cpuload_status",
+        "cputemp",
+        "cputemp_status",
+        "cputemp_led",
+        "hostapd",
+        "hostapd_status",
+        "hostapd_led",
+        "themes",
+        "selectedTheme" 
+    ));
 }

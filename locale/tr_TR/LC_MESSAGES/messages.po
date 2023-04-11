@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
 "PO-Revision-Date: 2019-10-21 23:15+0000\n"
-"Last-Translator: Furkan 'Cuqer' Sarıboğa <cuqerr@gmail.com>\n"
+"Last-Translator: Furkan Sarıboğa <furkan.gnu@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
@@ -31,26 +31,26 @@ msgstr "RaspAP Wifi Portalı"
 msgid "Dashboard"
 msgstr "Kontrol Paneli"
 
-msgid "Configure WiFi client"
-msgstr "WiFi istemcisini yapılandır"
+msgid "WiFi client"
+msgstr "WiFi istemcisini"
 
-msgid "Configure hotspot"
-msgstr "Paylaşım noktasını yapılandır"
+msgid "Hotspot"
+msgstr "Paylaşım noktasını"
 
-msgid "Configure networking"
-msgstr "Ağı yapılandır"
+msgid "Networking"
+msgstr "Ağı"
 
-msgid "Configure DHCP Server"
-msgstr "DHCP sunucusunu yapılandır"
+msgid "DHCP Server"
+msgstr "DHCP sunucusunu"
 
-msgid "Configure OpenVPN"
-msgstr "OpenVPN'i yapılandır"
+msgid "OpenVPN"
+msgstr "OpenVPN'i"
 
-msgid "Configure TOR proxy"
-msgstr "TOR proxysini yapılandır"
+msgid "TOR proxy"
+msgstr "TOR proxysini"
 
-msgid "Configure Auth"
-msgstr "İzinleri yapılandır"
+msgid "Authentication"
+msgstr "İzinleri"
 
 msgid "Change Theme"
 msgstr "Temayı değiştir"
@@ -252,7 +252,7 @@ msgid "Starting IP Address"
 msgstr "Başlangıc IP Adresi"
 
 msgid "Ending IP Address"
-msgstr "Ending IP Adresi"
+msgstr "Bitiş IP Adresi"
 
 msgid "Static Leases"
 msgstr "Statik Kiralamalar"
@@ -270,10 +270,10 @@ msgid "Active DHCP leases"
 msgstr "Aktif DHCP kiraları"
 
 msgid "Expire time"
-msgstr "Aşım Zamanı"
+msgstr "Aşım zamanı"
 
 msgid "MAC Address"
-msgstr "MAC adresi"
+msgstr "MAC Adresi"
 
 msgid "Host name"
 msgstr "Sunucu adı"
@@ -317,6 +317,33 @@ msgstr "Dnsmasq çalışıyor"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq çalışmıyor"
 
+msgid "Upstream DNS servers"
+msgstr "Ana DNS sunucuları"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Yalnızca aşağıda yapılandırılmış DNS sunucularını sorgulayın"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Eğer RaspAP'ın <b>sadece aşağıda yapılandırılan sunuculara DNS sorgusu göndermesini istiyorsanız</b> bu ayarı aktifleştirin. Varsayılan olarak RaspAP aynı zamanda kendi ana DHCP sunucusunun isim sunucularını da kullanır."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "Bu ayar dnsmasq yapılandırmasına <code>no-resolv</code>'ı ekler."
+
+msgid "Add upstream DNS server"
+msgstr "Ana(Upstream) DNS sunucusu ekle"
+
+msgid "Format"
+msgstr "Biçimlendir"
+
+msgid "Choose a hosted server"
+msgstr "Bir kurulu sunucu seçin"
+
+msgid "Log DHCP requests"
+msgstr "DHCP isteklerini kaydet"
+
+msgid "Log DNS queries"
+msgstr "DNS sorgularını kaydet"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Basit"
@@ -352,10 +379,10 @@ msgid "Information provided by hostapd"
 msgstr "Bilgi hostapd tarafından sağlandı"
 
 msgid "Attempting to start hotspot"
-msgstr "paylaşım başlatılıyor"
+msgstr "Paylaşım noktası başlatılıyor"
 
 msgid "Attempting to stop hotspot"
-msgstr "Paylaşım durduruluyor"
+msgstr "Paylaşım noktası durduruluyor"
 
 msgid "HostAPD is not running"
 msgstr "HostAPD çalışmıyor"
@@ -386,6 +413,9 @@ msgstr "Paylaşımı başlat"
 
 msgid "Stop hotspot"
 msgstr "Paylaşımı durdur"
+
+msgid "Restart hotspot"
+msgstr "Paylaşımı yeniden başlat"
 
 msgid "Enable logging"
 msgstr "Günlük kaydını etkinleştir"
@@ -542,7 +572,7 @@ msgid "Loading {0} bandwidth chart"
 msgstr "{0} bant genişliği tablosu yükleniyor"
 
 msgid "Showing {0} to {1} of {2} entries"
-msgstr "{2} girdiden {0} ve {1} arası gösteriliyor"
+msgstr "{2} girdiden {0} ve {1} arasındakiler gösteriliyor"
 
 #: includes/openvpn.php
 msgid "OpenVPN is not running"

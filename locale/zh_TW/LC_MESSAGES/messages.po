@@ -1,0 +1,736 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: raspap\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2020-04-15 07:13\n"
+"Last-Translator: Mike Hsiao <squareface0323@gmail.com>\n"
+"Language-Team: Chinese Traditional\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: zh-TW\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "RaspAP Wi-Fi 設定中心"
+
+msgid "Toggle navigation"
+msgstr "切換導航"
+
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP Wi-Fi 中心"
+
+msgid "Dashboard"
+msgstr "總覽"
+
+msgid "WiFi client"
+msgstr "Wi-Fi 用戶端"
+
+msgid "Hotspot"
+msgstr "熱點"
+
+msgid "Memory Use"
+msgstr "記憶體使用量"
+
+msgid "CPU Temp"
+msgstr "CPU 溫度"
+
+msgid "Networking"
+msgstr "網路界面"
+
+msgid "DHCP Server"
+msgstr "DHCP 伺服器"
+
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+msgid "TOR proxy"
+msgstr "TOR 代理伺服器"
+
+msgid "Authentication"
+msgstr "使用者帳戶"
+
+msgid "Change Theme"
+msgstr "變更主題"
+
+msgid "System"
+msgstr "系統"
+
+msgid "About RaspAP"
+msgstr "關於 RaspAP"
+
+#: includes/admin.php
+msgid "Authentication settings"
+msgstr "認證設定"
+
+msgid "New passwords do not match"
+msgstr "兩次新密碼輸入不一致"
+
+msgid "Username must not be empty"
+msgstr "使用者名稱不能為空白"
+
+msgid "Admin password updated"
+msgstr "管理員密碼已更新"
+
+msgid "Failed to update admin password"
+msgstr "管理員密碼更新失敗"
+
+msgid "Old password does not match"
+msgstr "原有密碼輸入不正確"
+
+msgid "Username"
+msgstr "使用者名稱"
+
+msgid "Old password"
+msgstr "原有密碼"
+
+msgid "New password"
+msgstr "新密碼"
+
+msgid "Repeat new password"
+msgstr "請再輸入新的密碼"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "用戶端設定"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "頻道"
+
+msgid "Security"
+msgstr "安全性"
+
+msgid "Passphrase"
+msgstr "密碼"
+
+msgid "Wifi settings updated successfully"
+msgstr "Wi-Fi 設定更新成功"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "Wi-Fi 設定已更新，但無法重啟 (無法執行 'wpa_cli reconfigure')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Wi-Fi 設定更新失敗"
+
+msgid "Failed to update wifi settings"
+msgstr "Wi-Fi 設定更新失敗"
+
+msgid "Rescan"
+msgstr "重新掃瞄"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "Add"
+msgstr "新增"
+
+msgid "Delete"
+msgstr "刪除"
+
+msgid "Show"
+msgstr "顯示"
+
+msgid "Hide"
+msgstr "隱藏"
+
+msgid "Not configured"
+msgstr "未設定"
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>小提醒：</strong>使用 WEP 認證的基地台，密碼在建立連線後才輸入，因此連線前會顯示為不需認證。RaspAP 目前不支援 WEP 連線。"
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "介面資訊"
+
+msgid "Interface Name"
+msgstr "介面名稱"
+
+msgid "IPv4 Address"
+msgstr "IPv4 位址"
+
+msgid "IPv6 Address"
+msgstr "IPv6 位址"
+
+msgid "Subnet Mask"
+msgstr "子網路遮罩"
+
+msgid "Mac Address"
+msgstr "MAC 位址"
+
+msgid "Interface Statistics"
+msgstr "介面統計"
+
+msgid "Received Packets"
+msgstr "已接收封包"
+
+msgid "Received Bytes"
+msgstr "已接收位元組"
+
+msgid "Transferred Packets"
+msgstr "已傳送封包"
+
+msgid "Transferred Bytes"
+msgstr "已傳送位元組"
+
+msgid "Wireless Client"
+msgstr "無線用戶端"
+
+msgid "Connected To"
+msgstr "已連接至"
+
+msgid "AP Mac Address"
+msgstr "AP MAC 位址"
+
+msgid "Bitrate"
+msgstr "位元率"
+
+msgid "Signal Level"
+msgstr "信號強度"
+
+msgid "Transmit Power"
+msgstr "傳輸功率"
+
+msgid "Frequency"
+msgstr "頻率"
+
+msgid "Link Quality"
+msgstr "連線品質"
+
+msgid "Information provided by ip and iw and from system"
+msgstr "資訊自 ip、iw 及系統取得"
+
+msgid "No MAC Address Found"
+msgstr "找不到 MAC 位址"
+
+msgid "No IP Address Found"
+msgstr "找不到 IP 位址"
+
+msgid "No Subnet Mask Found"
+msgstr "找不到子網路遮罩"
+
+msgid "No Data"
+msgstr "無數據"
+
+msgid "Not connected"
+msgstr "尚未連線"
+
+msgid "Interface is up"
+msgstr "界面運作中"
+
+msgid "Interface is down"
+msgstr "界面停止中"
+
+msgid "Interface already down"
+msgstr "界面已停止運作"
+
+msgid "Start wlan0"
+msgstr "啟動 wlan0"
+
+msgid "Stop wlan0"
+msgstr "停止 wlan0"
+
+msgid "Connected Devices"
+msgstr "已連接裝置"
+
+#: includes/dhcp.php
+msgid "DHCP server settings"
+msgstr "DHCP 伺服器設定"
+
+msgid "Client list"
+msgstr "用戶端清單"
+
+msgid "Interface"
+msgstr "界面"
+
+msgid "DNS Server"
+msgstr "DNS 伺服器"
+
+msgid "Starting IP Address"
+msgstr "起始 IP 位址"
+
+msgid "Ending IP Address"
+msgstr "終止 IP 位址"
+
+msgid "Static Leases"
+msgstr "靜態租約"
+
+msgid "Add static DHCP lease"
+msgstr "加入靜態 DHCP 租約"
+
+msgid "Lease Time"
+msgstr "租約時間"
+
+msgid "Interval"
+msgstr "時間單位"
+
+msgid "Active DHCP leases"
+msgstr "使用中的 DHCP 租約"
+
+msgid "Expire time"
+msgstr "到期時間"
+
+msgid "MAC Address"
+msgstr "MAC 位址"
+
+msgid "Host name"
+msgstr "主機名稱"
+
+msgid "Client ID"
+msgstr "用戶 ID"
+
+msgid "Information provided by Dnsmasq"
+msgstr "資訊自 Dnsmasq 取得"
+
+msgid "Stop dnsmasq"
+msgstr "停止 dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "啟動 dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "dnsmasq 組態已成功更新"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq 已在執行中"
+
+msgid "Successfully started dnsmasq"
+msgstr "dnsmasq 已成功啟動"
+
+msgid "Failed to start dnsmasq"
+msgstr "無法啟動 dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "dnsmasq 已成功停止"
+
+msgid "Failed to stop dnsmasq"
+msgstr "無法停止 dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq 已停止"
+
+msgid "Dnsmasq is running"
+msgstr "dnsmasq 正在執行中"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq 未執行中"
+
+msgid "Upstream DNS servers"
+msgstr "上層 DNS 伺服器"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "僅使用以下 DNS 伺服器"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "啟用此選項會讓 RaspAP <b>只從下列 DNS 伺服器查詢網址的對應 IP</b>。RaspAP 預設使用其上層 DHCP 伺服器的 DNS 服務。"
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "此選項會將<code>no-resolv</code>加入 dnsmasq 組態中"
+
+msgid "Add upstream DNS server"
+msgstr "新增上層 DNS 伺服器"
+
+msgid "Format"
+msgstr "格式"
+
+msgid "Choose a hosted server"
+msgstr "選擇常用伺服器"
+
+msgid "Log DHCP requests"
+msgstr "記錄 DHCP 要求"
+
+msgid "Log DNS queries"
+msgstr "記錄 DNS 查詢"
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "基本"
+
+msgid "Advanced"
+msgstr "進階"
+
+msgid "Basic settings"
+msgstr "基本設定"
+
+msgid "Wireless Mode"
+msgstr "無線模式"
+
+msgid "Security settings"
+msgstr "安全性設定"
+
+msgid "Security type"
+msgstr "安全性類型"
+
+msgid "Encryption Type"
+msgstr "加密類型"
+
+msgid "PSK"
+msgstr "密碼"
+
+msgid "Advanced settings"
+msgstr "進階設定"
+
+msgid "Country Code"
+msgstr "國碼"
+
+msgid "Information provided by hostapd"
+msgstr "資訊自 hoastapd 取得"
+
+msgid "Attempting to start hotspot"
+msgstr "嘗試啟動熱點中"
+
+msgid "Attempting to stop hotspot"
+msgstr "嘗試停止熱點中"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD 未執行中"
+
+msgid "HostAPD is running"
+msgstr "HostAPD 執行中"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID 必須包含 1 至 32 個字元"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "WPA 密碼必須包含 8 至 63 個字元"
+
+msgid "Unknown interface"
+msgstr "未知界面"
+
+msgid "Country code must be blank or two characters"
+msgstr "國碼必須為空或兩個英文字母"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Wi-Fi 熱點設定已儲存"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "無法儲存 Wi-Fi 熱點設定"
+
+msgid "Start hotspot"
+msgstr "啟動熱點"
+
+msgid "Stop hotspot"
+msgstr "停止熱點"
+
+msgid "Restart hotspot"
+msgstr "重啟熱點"
+
+msgid "Enable logging"
+msgstr "啟用日誌記錄"
+
+msgid "Logfile output"
+msgstr "日誌紀錄"
+
+msgid "WiFi client AP mode"
+msgstr "Wi-Fi 用戶兼熱點模式"
+
+msgid "Bridged AP mode"
+msgstr "橋接模式"
+
+msgid "Hide SSID in broadcast"
+msgstr "隱藏 SSID 廣播"
+
+msgid "Maximum number of clients"
+msgstr "最大用戶數量"
+
+msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "設定於 hastapd 的 max_num_sta 參數，預設及最大值為 2007。設為 0 或空白則套用預設值。"
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "概要"
+
+msgid "Current settings"
+msgstr "目前設定"
+
+msgid "Default Gateway"
+msgstr "預設閘道"
+
+msgid "Alternate DNS Server"
+msgstr "備用 DNS 伺服器"
+
+msgid "Adapter IP Address Settings"
+msgstr "界面卡 IP 位址設定"
+
+msgid "Enable Fallback to Static Option"
+msgstr "DHCP 失敗時採用靜態 IP"
+
+msgid "Static IP"
+msgstr "靜態 IP"
+
+msgid "Enabled"
+msgstr "啟用"
+
+msgid "Disabled"
+msgstr "停用"
+
+msgid "Static IP Options"
+msgstr "靜態 IP 選項"
+
+msgid "Apply settings"
+msgstr "套用設定"
+
+msgid "Information provided by /sys/class/net"
+msgstr "資訊自 /sys/class/net 取得"
+
+#: includes/system.php
+msgid "System Information"
+msgstr "系統資訊"
+
+msgid "Language"
+msgstr "語言"
+
+msgid "Language settings"
+msgstr "語言設定"
+
+msgid "Select a language"
+msgstr "選擇語言"
+
+msgid "Language setting saved"
+msgstr "語言設定已儲存"
+
+msgid "Console"
+msgstr "命令列"
+
+msgid "Hostname"
+msgstr "主機名稱"
+
+msgid "Pi Revision"
+msgstr "樹苺派版本"
+
+msgid "Uptime"
+msgstr "上線時間"
+
+msgid "Memory Used"
+msgstr "記憶體用量"
+
+msgid "CPU Load"
+msgstr "CPU 使用率"
+
+msgid "Reboot"
+msgstr "重新啟動"
+
+msgid "Shutdown"
+msgstr "關機"
+
+msgid "System Rebooting Now!"
+msgstr "系統重啟中！"
+
+msgid "System Shutting Down Now!"
+msgstr "系統關機中！"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "主題設定"
+
+msgid "Select a theme"
+msgstr "選擇主題"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "數據用量"
+
+msgid "Data usage monitoring"
+msgstr "數據用量監控"
+
+msgid "Hourly traffic amount"
+msgstr "每小時數據用量"
+
+msgid "Daily traffic amount"
+msgstr "每日數據用量"
+
+msgid "Monthly traffic amount"
+msgstr "每月數據用量"
+
+msgid "Hourly"
+msgstr "每小時"
+
+msgid "Daily"
+msgstr "每日"
+
+msgid "Monthly"
+msgstr "每月"
+
+msgid "interface"
+msgstr "界面"
+
+msgid "date"
+msgstr "日期"
+
+msgid "Send MB"
+msgstr "傳送 MB"
+
+msgid "Receive MB"
+msgstr "接受 MB"
+
+msgid "Information provided by vnstat"
+msgstr "資訊自 vnstat 取得"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "載入 {0} 圖表中"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "顯示 {2} 個項目中的第 {0} 至 {1} 項"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN 未執行中"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN 執行中"
+
+msgid "Server settings"
+msgstr "伺服器設定"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "選擇 OpenVPN 組態檔案 (.ovpn)"
+
+msgid "Client Log"
+msgstr "用戶端日誌"
+
+msgid "Port"
+msgstr "埠"
+
+msgid "Protocol"
+msgstr "協定"
+
+msgid "Root CA certificate"
+msgstr "根憑證"
+
+msgid "Server certificate"
+msgstr "伺服器憑證"
+
+msgid "Diffie Hellman parameters"
+msgstr "Diffie-Hellman 參數"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "伺服器日誌"
+
+msgid "Start OpenVPN"
+msgstr "啟動 OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "停止 OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "資訊自 openvpn 取得"
+
+msgid "Attempting to start openvpn"
+msgstr "嘗試啟動 OpenVPN"
+
+msgid "Attempting to stop openvpn"
+msgstr "嘗試停止 OpenVPN"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR 未執行中"
+
+msgid "TOR is running"
+msgstr "TOR 執行中"
+
+msgid "Relay"
+msgstr "中繼"
+
+msgid "Relay settings"
+msgstr "中繼設定"
+
+msgid "Nickname"
+msgstr "暱稱"
+
+msgid "Address"
+msgstr "位址"
+
+msgid "Start TOR"
+msgstr "啟動 TOR"
+
+msgid "Stop TOR"
+msgstr "停止 TOR"
+
+msgid "Information provided by tor"
+msgstr "資訊自 tor 取得"
+
+msgid "Attempting to start TOR"
+msgstr "嘗試啟動 TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "嘗試停止 TOR"
+
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr "橋接模式已啟用。請由路由器的管理頁面查詢主機名稱及 IP。"
+
+#: common form controls
+msgid "Save settings"
+msgstr "儲存設定"
+
+msgid "Refresh"
+msgstr "重新整理"
+
+msgid "running"
+msgstr "執行中"
+
+msgid "stopped"
+msgstr "已停止"
+
+msgid "Remove"
+msgstr "移除"
+
+msgid "up"
+msgstr "執行中"
+
+msgid "down"
+msgstr "已停止"
+
+msgid "adblock"
+msgstr "adblock"
+
+msgid "Ad Blocking"
+msgstr "廣告攔截"
+
+msgid "Start Ad Blocking"
+msgstr "啟動廣告攔截"
+
+msgid "Restart Ad Blocking"
+msgstr "重啟廣告攔截"
+
+msgid "Blocklist settings"
+msgstr "攔截清單設定"
+
+msgid "Enable blocklists"
+msgstr "啟用攔截清單"
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "啟用此選項後，RaspAP會<b>攔截廣告、追蹤的 DNS 要求及其它虛擬垃圾</b>。攔截清單由多個維護中的來源集合而成，每天自動更新、清除、優化及調整。"
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "此選項將<code>conf-file</code>及<code>addn-hosts</code>加入 dnsmasq 組態中"
+
+msgid "Choose a blocklist provider"
+msgstr "選擇攔截清單來源"
+
+msgid "Hostnames blocklist last updated"
+msgstr "主機名稱清單最後更新"
+
+msgid "Domains blocklist last updated"
+msgstr "網域清單最後更新"
+
+msgid "Update now"
+msgstr "立即更新"
+
+msgid "Statistics"
+msgstr "統計"
+
+msgid "Information provided by adblock"
+msgstr "資訊自 adblock 取得"
+

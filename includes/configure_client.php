@@ -1,22 +1,31 @@
 <?php
 
-include_once('includes/status_messages.php');
-include_once('includes/wifi_functions.php');
+require_once 'includes/status_messages.php';
+require_once 'includes/wifi_functions.php';
 
 /**
-*
-*
-*/
+ *
+ *
+ */
 function DisplayWPAConfig()
 {
     $status = new StatusMessages();
     $networks = [];
 
+    getWifiInterface();
     knownWifiStations($networks);
 
     if (isset($_POST['connect'])) {
         $result = 0;
-        exec('sudo wpa_cli -i ' . RASPI_WPA_CTRL_INTERFACE . ' select_network '.strval($_POST['connect']));
+        $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+        $netid = intval($_POST['connect']);
+        exec('sudo wpa_cli -i ' . $iface . ' select_network ' . $netid);
+        $status->addMessage('New network selected', 'success');
+    } elseif (isset($_POST['wpa_reinit'])) {
+        $status->addMessage('Reinitializing wpa_supplicant', 'info', false);
+        $force_remove = true;
+        $result = reinitializeWPA($force_remove);
+        $status->addMessage($result, 'info');
     } elseif (isset($_POST['client_settings'])) {
         $tmp_networks = $networks;
         if ($wpa_file = fopen('/tmp/wifidata', 'w')) {
@@ -54,7 +63,7 @@ function DisplayWPAConfig()
                     if (strlen($network['passphrase']) >=8 && strlen($network['passphrase']) <= 63) {
                         unset($wpa_passphrase);
                         unset($line);
-                        exec('wpa_passphrase '.escapeshellarg($ssid). ' ' . escapeshellarg($network['passphrase']), $wpa_passphrase);
+                        exec('wpa_passphrase '. ssid2utf8( escapeshellarg($ssid) ) . ' ' . escapeshellarg($network['passphrase']), $wpa_passphrase);
                         foreach ($wpa_passphrase as $line) {
                             if (preg_match('/^\s*}\s*$/', $line)) {
                                 if (array_key_exists('priority', $network)) {
@@ -62,7 +71,11 @@ function DisplayWPAConfig()
                                 }
                                 fwrite($wpa_file, $line.PHP_EOL);
                             } else {
-                                fwrite($wpa_file, $line.PHP_EOL);
+                                if ( preg_match('/\\\\x[0-9A-Fa-f]{2}/',$ssid) && strpos($line, "ssid=\"") !== false ) {
+                                     fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
+                                } else {
+                                     fwrite($wpa_file, $line.PHP_EOL);
+                                }
                             }
                         }
                     } else {
@@ -75,7 +88,7 @@ function DisplayWPAConfig()
             if ($ok) {
                 system('sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval);
                 if ($returnval == 0) {
-                    exec('sudo wpa_cli -i ' . RASPI_WIFI_CLIENT_INTERFACE . ' reconfigure', $reconfigure_out, $reconfigure_return);
+                    exec('sudo wpa_cli -i ' . $_SESSION['wifi_client_interface'] . ' reconfigure', $reconfigure_out, $reconfigure_return);
                     if ($reconfigure_return == 0) {
                         $status->addMessage('Wifi settings updated successfully', 'success');
                         $networks = $tmp_networks;
@@ -91,8 +104,13 @@ function DisplayWPAConfig()
         }
     }
 
-    nearbyWifiStations($networks);
-    connectedWifiStations($networks);
+    $clientInterface = $_SESSION['wifi_client_interface'];
 
-    echo renderTemplate("configure_client", compact("status"));
+    exec('ip a show '.$clientInterface, $stdoutIp);
+    $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
+    $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
+    preg_match('/state (UP|DOWN)/i', $stdoutIpWRepeatedSpaces, $matchesState) || $matchesState[1] = 'unknown';
+    $ifaceStatus = strtolower($matchesState[1]) ? "up" : "down";
+
+    echo renderTemplate("configure_client", compact("status", "clientInterface", "ifaceStatus"));
 }

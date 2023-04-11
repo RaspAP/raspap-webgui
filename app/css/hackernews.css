@@ -1,6 +1,15 @@
+/*
+Theme Name: HackerNews
+Author: @billz
+Author URI: https://github.com/billz
+Description: A theme inspired by HackerNews for RaspAP
+License: GNU General Public License v3.0
+*/
+
+@import url('all.css');
+
 html * {
   font-family: Verdana, Geneva, sans-serif;
-  font-size: 0.9rem;
   color: #828282;
 }
 
@@ -10,6 +19,10 @@ body {
 
 a:focus, a:hover {
   color: #666;
+}
+
+h2 {
+  font-size: 2rem !important;
 }
 
 h4 {
@@ -22,12 +35,12 @@ h5.card-title {
   color: #212529;
 }
 
-.card {
-  border-radius: 1px;
+.card, .modal-dialog {
+  border-radius: 3px;
   border-color: #ff6600;
 }
 
-.card>.card-header {
+.card>.card-header, .modal-header {
   border-color: #ff6600;
   background-color: #ff6600;
   color: #000;
@@ -41,19 +54,23 @@ h5.card-title {
   font-size: 1.0rem;
 }
 
-.card-header [class^="fa"] {
+.card-header [class^="fa"], .modal-header [class^="fa"] {
   color: #fff;
   font-size: 1.0rem;
 }
 
-.sidebar-brand-text {
-  text-transform: none;
-  color: #212529;
-  font-size: 2.0rem;
-  font-weight: 500;
-  font-family: Verdana, Geneva, sans-serif;
+.modal-title {
+  color: #000;
+  font-size: 1.0rem;
 }
 
+.modal-content {
+  border-radius: 0px;
+}
+
+.sidebar-light hr.sidebar-divider {
+  padding-top: 0.5rem;
+}
 
 ul.nav-tabs, .nav-tabs .nav-link {
   background-color: #f6f6ef;
@@ -62,32 +79,17 @@ ul.nav-tabs, .nav-tabs .nav-link {
 
 .sidebar .nav-item .nav-link {
   padding: 0.6rem;
+  margin-left: 0.6rem;
 }
 
 .sidebar-light .nav-item.active .nav-link {
   font-weight: 300;
 }
 
-.page-header {
-  font-size: 26pt;
-  margin: 10px 0 20px;
-}
-
 #wrapper,#page-wrapper,
 #wrapper #content-wrapper,
 .nav>li>a,.nav {
   background-color: #fff;
-}
-
-/* Small devices (portrait phones, up to 576px) */
-@media (max-width: 576px) {
-  .container-fluid, .card-body, .col-md-6 { padding-left: 0.5rem; padding-right: 0.5rem; }
-  .card .card-header { padding: .75rem .5rem; font-size: 1.0rem; }
-  .row { margin-left: 0rem; margin-right: 0rem; }
-  .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
-  .form-group.col-md-6 { margin-left: -0.5rem; }
-  .js-wifi-stations { margin-left: -0.5rem; margin-right: -0.5rem; }
-  h4.mt-3 { margin-left: 0.5rem; }
 }
 
 .card-body {
@@ -120,44 +122,10 @@ ul.nav-tabs, .nav-tabs .nav-link {
   color: #eee;
 }
 
-.info-item {
-  width: 10rem;
-  float: left;
+.fas.fa-circle {
+  font-size: 0.7rem;
 }
 
-.info-item-wifi {
-  width: 6rem;
-  float: left;
-}
-
-.logoutput {
-  width: 100%;
-  height: 20rem;
-  border: 1px solid #d1d3e2;
-  border-radius: .35rem;
-}
-
-.service-status {
-  border-width: 0;
-}
-
-i.fas.fa-circle.service-status-up {
-  color: green;
-}
-
-i.fas.fa-circle.service-status-down {
-    color: red;
-}
-
-.service-status-down {
-  animation: flash 1s linear infinite;
-}
-@keyframes flash {
-  50% {
-    opacity: 0;
-  }
-}
- 
 .logoutput {
   width:100%;
   height:300px;
@@ -167,26 +135,6 @@ pre.unstyled {
   border-width: 0;
   background-color: transparent;
   padding: 0;
-}
-
-.dhcp-static-leases {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-.dhcp-static-lease-row {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-.loading-spinner {
-  background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
-  min-height: 150px;
-  width: 100%;
-}
-
-.js-reload-wifi-stations {
-  min-width: 10rem;
 }
 
 .sidebar.toggled .nav-item .nav-link {
@@ -206,12 +154,7 @@ pre.unstyled {
     color: #000;
 }
 
-.toggle-off.btn {
-  padding-left: 0.9rem;
-  font-size: 0.9rem!important;
-}
-
-.toggle-on.btn {
-  font-size: 0.9rem!important;
+.signal-icon .signal-bar {
+  background: #ff6600;
 }
 

@@ -1,3 +1,8 @@
+<?php
+
+require_once 'app/lib/Parsedown.php';
+
+?>
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
@@ -8,13 +13,22 @@
           </div>
         </div><!-- ./row -->
       </div><!-- ./card-header -->
-      <div class="card-body text-center">
-        <h3><?php echo _("RaspAP") . " v" . RASPI_VERSION; ?></h3>
-        <h5><a href="https://github.com/billz/raspap-webgui/blob/master/LICENSE">GNU General Public License v3.0</a></h5>
-        <p><img src="app/img/authors-8bit-200px.png"></p>
-        <p>RaspAP is a co-creation of <a href="https://github.com/billz">@billz</a> and <a href="https://github.com/sirlagz">@SirLagz</a><br />
-          with the contributions of our <a href="https://github.com/billz/raspap-webgui/graphs/contributors">community</a>.</p>
-          <p><i class="fab fa-github"></i> <a href="https://github.com/billz/raspap-webgui">https://github.com/billz/raspap-webgui</a></p>
+      <div class="card-body">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="nav-item"><a class="nav-link active" href="#aboutgeneral" data-toggle="tab"><?php echo _("About"); ?></a></li>
+          <li class="nav-item"><a class="nav-link" href="#aboutsponsors" data-toggle="tab"><?php echo _("Insiders"); ?></a></li>
+        </ul>
+        <!-- /.nav-tabs -->
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <?php echo renderTemplate("about/general", $__template_data) ?>
+          <?php echo renderTemplate("about/insiders", $__template_data) ?>
+        </div>
+        <!-- /.tab-content -->
+
       </div><!-- /.card-body -->
       <div class="card-footer"></div>
     </div><!-- /.card -->

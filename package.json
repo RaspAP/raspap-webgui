@@ -1,11 +1,11 @@
 {
     "title": "RaspAP WiFi Configuration Portal",
-    "name": "raspap-webgui",
-    "version": "2.1",
+    "name": "raspap",
+    "version": "2.6",
     "scripts": {
         "start": "node_modules/.bin/gulp watch"
     },
-    "description": "A simple, responsive web interface to control wifi and hostapd on the Raspberry Pi",
+    "description": "Simple wireless AP setup & management for Debian-based devices",
     "keywords": [
         "raspberry-pi",
         "hostapd",
@@ -16,34 +16,40 @@
         "admin",
         "app"
     ],
-    "homepage": "https://github.com/billz/raspap-webgui",
+    "homepage": "https://github.com/raspap/raspap-webgui",
     "bugs": {
-        "url": "https://github.com/billz/raspap-webgui/issues"
+        "url": "https://github.com/raspap/raspap-webgui/issues"
     },
-    "license": "MIT",
+    "license": "GPL-3.0",
     "author": "RaspAP Developers",
     "contributors": [
-        "Bill Zimmerman (https://github.com/billz)"
+        "Bill Zimmerman (https://github.com/billz)",
+        "Lawrence Yau (https://github.com/SirLagz)"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/billz/raspap-webgui.git"
+        "url": "https://github.com/raspap/raspap-webgui.git"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
     },
     "dependencies": {
-	"bootstrap4-toggle": "3.5.0",
-	"startbootstrap-sb-admin-2": "4.0.7"
-    },
-    "devDependencies": {
         "browser-sync": "^2.26.7",
         "del": "^5.1.0",
         "gulp": "^4.0.2",
         "gulp-autoprefixer": "^7.0.1",
-        "gulp-clean-css": "^4.2.0",
+        "gulp-clean-css": "^4.3.0",
         "gulp-header": "^2.0.9",
         "gulp-plumber": "^1.2.1",
-        "gulp-rename": "1.4.0",
-        "gulp-sass": "^4.0.2",
+        "gulp-rename": "^2.0.0",
         "gulp-uglify": "^3.0.2",
-        "merge-stream": "^2.0.0"
+        "huebee": "^2.1.0",
+        "jquery": "^3.5.0",
+        "merge-stream": "^2.0.0",
+        "node-gyp": "^7.0.0",
+        "startbootstrap-sb-admin-2": "4.0.7"
+    },
+    "devDependencies": {
+        "gulp-sass": "^4.0.2"
     }
 }

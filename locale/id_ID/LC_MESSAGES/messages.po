@@ -35,26 +35,26 @@ msgstr "Portal Wifi RaspAP"
 msgid "Dashboard"
 msgstr "Dasbor"
 
-msgid "Configure WiFi client"
-msgstr "Atur klien WiFi"
+msgid "WiFi client"
+msgstr "Klien WiFi"
 
-msgid "Configure hotspot"
-msgstr "Atur hotspot"
+msgid "Hotspot"
+msgstr "Hotspot"
 
-msgid "Configure networking"
-msgstr "Atur jaringan"
+msgid "Networking"
+msgstr "Jaringan"
 
-msgid "Configure DHCP Server"
-msgstr "Atur Server DHCP"
+msgid "DHCP Server"
+msgstr "Server DHCP"
 
-msgid "Configure OpenVPN"
-msgstr "Atur OpenVPN"
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-msgid "Configure TOR proxy"
-msgstr "Konfigurasikan proxy TOR"
+msgid "TOR proxy"
+msgstr "Proxy TOR"
 
-msgid "Configure Auth"
-msgstr "Konfigurasi Auth"
+msgid "Authentication"
+msgstr "Autentikasi"
 
 msgid "Change Theme"
 msgstr "Ganti Tema"
@@ -332,6 +332,33 @@ msgstr "Dnsmasq sedang berjalan"
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq tidak berjalan"
 
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS servers"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Only ever query DNS servers configured below"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+
+msgid "Add upstream DNS server"
+msgstr "Add upstream DNS server"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Choose a hosted server"
+msgstr "Choose a hosted server"
+
+msgid "Log DHCP requests"
+msgstr "Log DHCP requests"
+
+msgid "Log DNS queries"
+msgstr "Log DNS queries"
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Dasar"
@@ -400,7 +427,10 @@ msgid "Start hotspot"
 msgstr "Mulai hotspot"
 
 msgid "Stop hotspot"
-msgstr "Stop hotspot"
+msgstr "Hentikan hotspot"
+
+msgid "Restart hotspot"
+msgstr "Mulai ulang hotspot"
 
 msgid "Enable logging"
 msgstr "Aktifkan logging"

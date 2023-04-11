@@ -1,7 +1,7 @@
     <div class="row">
     <div class="col-lg-12">
       <div class="card"> 
-        <div class="card-header"><i class="fa fa-eye-slash fa-fw"></i> Configure TOR proxy</div>
+        <div class="card-header"><i class="fa fa-eye-slash fa-fw"></i> TOR proxy</div>
         <div class="card-body">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
@@ -16,7 +16,7 @@
 
                 <div class="tab-pane active" id="basic">
                     <h4>Basic settings</h4>
-                    <form role="form" action="?page=save_hostapd_conf" method="POST">
+                    <form role="form" action="save_hostapd_conf" method="POST">
                     <?php echo CSRFTokenFieldTag() ?>
                     <div class="row">
                         <div class="form-group col-md-6">

@@ -1,22 +1,19 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
+"Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-21 23:15+0000\n"
-"Last-Translator: Tom\n"
-"Language-Team: \n"
-"Language: nl\n"
+"PO-Revision-Date: 2020-04-14 08:51\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Dutch\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: nl\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -31,26 +28,32 @@ msgstr "RaspAP Wi-fi portaal"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "Configure WiFi client"
-msgstr "Configureer WiFi apparaat"
+msgid "WiFi client"
+msgstr "WiFi apparaat"
 
-msgid "Configure hotspot"
-msgstr "Configureer hotspot"
+msgid "Hotspot"
+msgstr "Hotspot"
 
-msgid "Configure networking"
-msgstr "Configureer netwerk"
+msgid "Memory Use"
+msgstr ""
 
-msgid "Configure DHCP Server"
-msgstr "Configureer DHCP server"
+msgid "CPU Temp"
+msgstr ""
 
-msgid "Configure OpenVPN"
-msgstr "Configureer OpenVPN"
+msgid "Networking"
+msgstr "Netwerk"
 
-msgid "Configure TOR proxy"
-msgstr "Configureer TOR proxy"
+msgid "DHCP Server"
+msgstr "DHCP server"
 
-msgid "Configure Auth"
-msgstr "Configureer autenticatie"
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+msgid "TOR proxy"
+msgstr "TOR proxy"
+
+msgid "Authentication"
+msgstr "Autenticatie"
 
 msgid "Change Theme"
 msgstr "Verander thema"
@@ -178,8 +181,8 @@ msgstr "Verzonden pakketen"
 msgid "Transferred Bytes"
 msgstr "Verzonden Bytes"
 
-msgid "Wireless Information"
-msgstr "Draadloze informatie"
+msgid "Wireless Client"
+msgstr ""
 
 msgid "Connected To"
 msgstr "Verbinden met"
@@ -224,7 +227,7 @@ msgid "Interface is up"
 msgstr "Interface is up"
 
 msgid "Interface is down"
-msgstr "Interface is down"
+msgstr ""
 
 msgid "Interface already down"
 msgstr "Interface reeds down"
@@ -247,6 +250,9 @@ msgstr "Clienten lijst"
 
 msgid "Interface"
 msgstr "Interface"
+
+msgid "DNS Server"
+msgstr "DNS server"
 
 msgid "Starting IP Address"
 msgstr "Beginnend ip adres"
@@ -279,16 +285,16 @@ msgid "Host name"
 msgstr "Hostnaam"
 
 msgid "Client ID"
-msgstr "Client ID"
+msgstr "Klant ID"
 
 msgid "Information provided by Dnsmasq"
 msgstr "Informatie gegeven door Dnsmasq"
 
 msgid "Stop dnsmasq"
-msgstr "Stop dnsmasq"
+msgstr ""
 
 msgid "Start dnsmasq"
-msgstr "Start dnsmasq"
+msgstr ""
 
 msgid "Dnsmasq configuration updated successfully"
 msgstr "Dnsmasq configuratie succesvol geupdate"
@@ -316,6 +322,33 @@ msgstr "Dnsmasq draait"
 
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq is gestopt"
+
+msgid "Upstream DNS servers"
+msgstr ""
+
+msgid "Only ever query DNS servers configured below"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Add upstream DNS server"
+msgstr ""
+
+msgid "Format"
+msgstr "Formaat"
+
+msgid "Choose a hosted server"
+msgstr ""
+
+msgid "Log DHCP requests"
+msgstr ""
+
+msgid "Log DNS queries"
+msgstr ""
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -382,10 +415,13 @@ msgid "Unable to save wifi hotspot settings"
 msgstr "Mislukt om Wi-FI Hotspot instellen op te slaan"
 
 msgid "Start hotspot"
-msgstr "Start hotspot"
+msgstr ""
 
 msgid "Stop hotspot"
 msgstr "Stop hotstop"
+
+msgid "Restart hotspot"
+msgstr "Restart hotstop"
 
 msgid "Enable logging"
 msgstr "Logboek inschakelen"
@@ -395,6 +431,9 @@ msgstr "Logboek uitvoer"
 
 msgid "WiFi client AP mode"
 msgstr "WiFi-client AP-modus"
+
+msgid "Bridged AP mode"
+msgstr ""
 
 msgid "Hide SSID in broadcast"
 msgstr "Verberg SSID in uitzending"
@@ -414,9 +453,6 @@ msgstr "Huidige instellingen"
 
 msgid "Default Gateway"
 msgstr "Standaard Gateway"
-
-msgid "DNS Server"
-msgstr "DNS Server"
 
 msgid "Alternate DNS Server"
 msgstr "Alternatieve DNS-server"
@@ -462,7 +498,7 @@ msgid "Language setting saved"
 msgstr "Taalinstellingen opgeslagen"
 
 msgid "Console"
-msgstr "Console"
+msgstr ""
 
 msgid "Hostname"
 msgstr "Hostnaam"
@@ -471,7 +507,7 @@ msgid "Pi Revision"
 msgstr "Pi-Revisie"
 
 msgid "Uptime"
-msgstr "Uptime"
+msgstr ""
 
 msgid "Memory Used"
 msgstr "Geheugen gebruik"
@@ -524,7 +560,7 @@ msgid "Monthly"
 msgstr "Per maand"
 
 msgid "interface"
-msgstr "interface"
+msgstr ""
 
 msgid "date"
 msgstr "datum"
@@ -604,7 +640,7 @@ msgid "TOR is running"
 msgstr "TOR draait"
 
 msgid "Relay"
-msgstr "Relay"
+msgstr ""
 
 msgid "Relay settings"
 msgstr "Relay-instellingen"
@@ -630,6 +666,10 @@ msgstr "We proberen TOR op te starten"
 msgid "Attempting to stop TOR"
 msgstr "We proberen TOR te stoppen"
 
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr ""
+
 #: common form controls
 msgid "Save settings"
 msgstr "Instellingen opslaan"
@@ -651,3 +691,46 @@ msgstr "omhoog"
 
 msgid "down"
 msgstr "omlaag"
+
+msgid "adblock"
+msgstr ""
+
+msgid "Ad Blocking"
+msgstr ""
+
+msgid "Start Ad Blocking"
+msgstr ""
+
+msgid "Restart Ad Blocking"
+msgstr ""
+
+msgid "Blocklist settings"
+msgstr ""
+
+msgid "Enable blocklists"
+msgstr ""
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr ""
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr ""
+
+msgid "Choose a blocklist provider"
+msgstr ""
+
+msgid "Hostnames blocklist last updated"
+msgstr ""
+
+msgid "Domains blocklist last updated"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Information provided by adblock"
+msgstr "Informatie verstrekt door adblock"
+

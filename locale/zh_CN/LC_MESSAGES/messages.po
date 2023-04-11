@@ -1,22 +1,19 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: raspap\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-21 23:15+0000\n"
+"PO-Revision-Date: 2020-04-14 08:51\n"
 "Last-Translator: BANKA2017 <kdwnil@hotmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -31,25 +28,31 @@ msgstr "RaspAP WLAN热点"
 msgid "Dashboard"
 msgstr "仪表板"
 
-msgid "Configure WiFi client"
+msgid "WiFi client"
 msgstr "WLAN客户端设置"
 
-msgid "Configure hotspot"
+msgid "Hotspot"
 msgstr "WLAN热点设置"
 
-msgid "Configure networking"
+msgid "Memory Use"
+msgstr "内存用量"
+
+msgid "CPU Temp"
+msgstr "CPU 温度"
+
+msgid "Networking"
 msgstr "网络设置"
 
-msgid "Configure DHCP Server"
+msgid "DHCP Server"
 msgstr "DHCP服务器设置"
 
-msgid "Configure OpenVPN"
+msgid "OpenVPN"
 msgstr "OpenVPN设置"
 
-msgid "Configure TOR proxy"
+msgid "TOR proxy"
 msgstr "TOR代理设置"
 
-msgid "Configure Auth"
+msgid "Authentication"
 msgstr "登录设置"
 
 msgid "Change Theme"
@@ -178,8 +181,8 @@ msgstr "传送包"
 msgid "Transferred Bytes"
 msgstr "传送数据"
 
-msgid "Wireless Information"
-msgstr "WLAN信息"
+msgid "Wireless Client"
+msgstr "无线客户端"
 
 msgid "Connected To"
 msgstr "已连接"
@@ -247,6 +250,9 @@ msgstr "客户端列表"
 
 msgid "Interface"
 msgstr "接口"
+
+msgid "DNS Server"
+msgstr "DNS服务器"
 
 msgid "Starting IP Address"
 msgstr "起始IP地址"
@@ -316,6 +322,33 @@ msgstr "Dnsmasq正在运行"
 
 msgid "Dnsmasq is not running"
 msgstr "Dnsmasq未在运行"
+
+msgid "Upstream DNS servers"
+msgstr "上游DNS服务器"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "仅使用下面配置的 DNS 服务器查询"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "如果您希望 RaspAP <b>只向下面配置的服务器发起 DNS 查询</b>，请启用此项。RaspAP 默认还使用上游 DHCP 服务器上的名称服务器"
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "此项将会添加 <code>no-resolv</code> 到 dnsmasq 配置"
+
+msgid "Add upstream DNS server"
+msgstr "添加上游DNS服务器"
+
+msgid "Format"
+msgstr "格式"
+
+msgid "Choose a hosted server"
+msgstr "选择托管服务器"
+
+msgid "Log DHCP requests"
+msgstr "记录 DHCP 请求"
+
+msgid "Log DNS queries"
+msgstr "记录 DNS 查询"
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -387,6 +420,9 @@ msgstr "开启WLAN热点"
 msgid "Stop hotspot"
 msgstr "关闭WLAN热点"
 
+msgid "Restart hotspot"
+msgstr "重新启动Wi-Fi热点"
+
 msgid "Enable logging"
 msgstr "开启log"
 
@@ -395,6 +431,9 @@ msgstr "log信息输出"
 
 msgid "WiFi client AP mode"
 msgstr "无线网客户端AP模式"
+
+msgid "Bridged AP mode"
+msgstr "桥接 AP 模式"
 
 msgid "Hide SSID in broadcast"
 msgstr "在广播中隐藏SSID"
@@ -414,9 +453,6 @@ msgstr "当前设置"
 
 msgid "Default Gateway"
 msgstr "默认网关"
-
-msgid "DNS Server"
-msgstr "DNS服务器"
 
 msgid "Alternate DNS Server"
 msgstr "备用DNS服务器"
@@ -630,6 +666,10 @@ msgstr "正尝试启动TOR"
 msgid "Attempting to stop TOR"
 msgstr "正尝试停止TOR"
 
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr "桥接 AP 模式已启用。对于主机名和 IP，请查看您的路由器管理页面。"
+
 #: common form controls
 msgid "Save settings"
 msgstr "保存设置"
@@ -651,3 +691,46 @@ msgstr "上"
 
 msgid "down"
 msgstr "下"
+
+msgid "adblock"
+msgstr "广告屏蔽"
+
+msgid "Ad Blocking"
+msgstr "广告屏蔽"
+
+msgid "Start Ad Blocking"
+msgstr "启用广告屏蔽服务"
+
+msgid "Restart Ad Blocking"
+msgstr "重启广告屏蔽服务"
+
+msgid "Blocklist settings"
+msgstr "屏蔽列表设置"
+
+msgid "Enable blocklists"
+msgstr "启用屏蔽列表"
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "如果您想 RaspAP <b>屏蔽广告、跟踪和其他虚拟垃圾的 DNS 请求</b>，请启用此选项。 屏蔽列表是从多个活跃的源收集的，并每日自动更新、清理、优化和调节。"
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "此项将会添加 <code>conf-file</code> 及 <code>addn-hosts</code> 到 dnsmasq 配置"
+
+msgid "Choose a blocklist provider"
+msgstr "选择一个屏蔽列表提供者"
+
+msgid "Hostnames blocklist last updated"
+msgstr "屏蔽主机名列表最近更新"
+
+msgid "Domains blocklist last updated"
+msgstr "屏蔽域名列表最后更新"
+
+msgid "Update now"
+msgstr "立即更新"
+
+msgid "Statistics"
+msgstr "统计"
+
+msgid "Information provided by adblock"
+msgstr "信息由 adblock 提供"
+
