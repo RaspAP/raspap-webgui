@@ -986,10 +986,10 @@ msgid "Remove"
 msgstr "arrêté"
 
 msgid "up"
-msgstr "vers le haut"
+msgstr "actif"
 
 msgid "down"
-msgstr "vers le bas"
+msgstr "désactivé"
 
 msgid "adblock"
 msgstr "AdBlock"
