@@ -3,7 +3,18 @@
     "debug": "off",
     "2_4GHz_max11ch": {
       "countries": [
-        "AE", "AG", "AL", "AR", "AU", "AW", "AZ", "BB", "BD", "BO", "BR", "BS", "BY", "BZ", "CA", "CL", "CN", "CO", "CR", "CU", "DM", "DO", "EC", "EG", "FJ", "FK", "GD", "GE", "GF", "GL", "GP", "GT", "GU", "GY", "HK", "HN", "HT", "ID", "IL", "IN", "IQ", "IR", "JM", "JO", "JP", "KE", "KH", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LK", "LT", "LU", "LV", "LY", "MA", "MD", "ME", "MG", "MK", "MM", "MN", "MO", "MP", "MQ", "MR", "MS", "MT", "MU", "MV", "MX", "MY", "MZ", "NC", "NE", "NF", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PR", "PT", "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SD", "SE", "SG", "SI", "SK", "SN", "SR", "SS", "SV", "SY", "TH", "TJ", "TM", "TN", "TR", "TT", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VG", "VI", "VN", "VU", "WS", "YE", "ZA", "ZM", "ZW"
+        "AE", "AG", "AL", "AR", "AU", "AW", "AZ", "BB", "BD", "BO", "BR", "BS", 
+        "BY", "BZ", "CA", "CL", "CN", "CO", "CR", "CU", "DM", "DO", "EC", "EG",
+        "FJ", "FK", "GD", "GE", "GF", "GL", "GP", "GT", "GU", "GY", "HK", "HN", 
+        "HT", "ID", "IL", "IN", "IQ", "IR", "JM", "JO", "JP", "KE", "KH", "KR",
+        "KW", "KY", "KZ", "LA", "LB", "LC", "LK", "LT", "LU", "LV", "LY", "MA",
+        "MD", "ME", "MG", "MK", "MM", "MN", "MO", "MP", "MQ", "MR", "MS", "MT",
+        "MU", "MV", "MX", "MY", "MZ", "NC", "NE", "NF", "NG", "NI", "NL", "NO",
+        "NP", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PR", "PT", 
+        "PW", "PY", "QA", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SD", "SE", 
+        "SG", "SI", "SK", "SN", "SR", "SS", "SV", "SY", "TH", "TJ", "TM", "TN", 
+        "TR", "TT", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VC", "VE", "VG", 
+        "VI", "VN", "VU", "WS", "YE", "ZA", "ZM", "ZW"
       ],
       "channels": [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
@@ -11,12 +22,36 @@
     },
     "2_4GHz_max14ch": {
       "countries": [
-        "JP"
+        "JP", "EU", "NL", "FR"
       ],
       "channels": [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
       ]
     },
-    "5Ghz_max48ch": {
+   "2_4GHz_max14ch": {
+      "countries": ["JP", "NL"],
+      "channels": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    },
+    "5GHz_max19ch": {
       "countries": [
-        "AE", "AG", "AL", "AR", "AT", "AU", "AW", "AZ", "BB", "BD", "BE", "BG", "BH", "BO", "BR", "BS", "BY", "BZ", "CA", "CH", "CL", "CN", "CO", "CR", "CU", "CW", "CY", "CZ", "DE", "DK", "DO", "DZ", "EC", "EE", "EG", "ES", "ET", "FI", "FJ", "FK", "FR", "GB", "GD", "GE
+        "US", "CA", "MX", "AG", "BS", "BB", "BZ", "CR", "CU", "DM",
+        "DO", "GD", "GT", "HT", "HN", "JM", "KN", "LC", "NI", "PA",
+        "TT", "VC", "AS", "GU", "MP", "PR", "UM", "VI", "AR", "BR",
+        "CL", "CO", "EC", "FK", "GF", "GY", "PE", "PY", "SR", "UY",
+        "VE", "RU", "CN", "HK", "ID", "IL", "IN", "JP", "KR", "MY",
+        "PH", "SG", "TW", "TH", "TR", "VN", "AL", "AT", "BE", "BG",
+        "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU",
+        "IS", "IE", "IT", "LV", "LI", "LT", "LU", "MT", "MD", "ME",
+        "NL", "NO", "PL", "PT", "RO", "RS", "SK", "SI", "ES", "SE",
+        "CH", "GB", "VA"
+      ],
+      "channels": [
+        36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116,
+        120, 124, 128, 132, 136, 140, 144, 149, 153, 157, 161, 165
+      ]
+    }
+  }
+}
+
+#Note that this list is not exhaustive and that regulations may vary by country and region. It is important to comply with local laws and regulations regarding the use of wireless bands.
+#Notez, cette liste n est pas exhaustive et que les réglementations peuvent varier selon les pays et les régions. Il est important de se conformer aux lois locales et aux réglementations en matière d'utilisation des bandes sans fil.
