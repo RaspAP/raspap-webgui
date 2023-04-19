@@ -71,7 +71,7 @@
     <div class="form-group col-md-6">
         <div class="custom-control custom-switch">
           <input class="custom-control-input" id="hook-wpa-supplicant" type="checkbox" name="HookWPASupplicant" value="1" aria-describedby="hook-wpa-supplicant-description">
-          <label class="custom-control-label" for="hook-wpa-supplicant"><?php echo _("Enable/Disable WPA_Supplicant dhcp hook for this interface") ?></label>
+          <label class="custom-control-label" for="hook-wpa-supplicant"><?php echo _("Enable WPA_Supplicant dhcp hook for this interface") ?></label>
         </div>
         <p class="mb-0" id="hook-wpa-supplicant-description">
           <small><?php echo _("This toggles the <code>hook wpa_supplicant</code>/<code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration.") ?></small>
