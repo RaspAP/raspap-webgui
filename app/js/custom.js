@@ -216,6 +216,12 @@ function loadInterfaceDHCPSelect() {
         $('#txtgateway').val(jsonData.StaticRouters);
         $('#chkfallback')[0].checked = jsonData.FallbackEnabled;
         $('#default-route').prop('checked', jsonData.DefaultRoute);
+        if (strInterface.startsWith("wl")) {
+            $('#hook-wpa-supplicant').parent().parent().parent().show()
+            $('#hook-wpa-supplicant').prop('checked', jsonData.HookWPASupplicant);
+        } else {
+            $('#hook-wpa-supplicant').parent().parent().parent().hide()
+        }
         $('#txtrangestart').val(jsonData.RangeStart);
         $('#txtrangeend').val(jsonData.RangeEnd);
         $('#txtrangeleasetime').val(jsonData.leaseTime);

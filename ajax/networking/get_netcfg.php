@@ -39,13 +39,14 @@ if (isset($interface)) {
 
     // fetch dhcpcd.conf settings for interface
     $conf = file_get_contents(RASPI_DHCPCD_CONFIG);
-    preg_match('/^#\sRaspAP\s'.$interface.'\s.*?(?=\s*+$)/ms', $conf, $matched);
+    preg_match('/^#\sRaspAP\s'.$interface.'\s.*?(?=\s*+($|#\sRaspAP))/ms', $conf, $matched);
     preg_match('/metric\s(\d*)/', $matched[0], $metric);
     preg_match('/static\sip_address=(.*)/', $matched[0], $static_ip);
     preg_match('/static\srouters=(.*)/', $matched[0], $static_routers);
     preg_match('/static\sdomain_name_server=(.*)/', $matched[0], $static_dns);
     preg_match('/fallback\sstatic_'.$interface.'/', $matched[0], $fallback);
     preg_match('/(?:no)?gateway/', $matched[0], $gateway);
+    preg_match('/(?:no)?hook wpa_supplicant/', $matched[0], $hook_wpa_supplicant);
     $dhcpdata['Metric'] = $metric[1];
     $dhcpdata['StaticIP'] = strpos($static_ip[1],'/') ?  substr($static_ip[1], 0, strpos($static_ip[1],'/')) : $static_ip[1];
     $dhcpdata['SubnetMask'] = cidr2mask($static_ip[1]);
@@ -53,6 +54,7 @@ if (isset($interface)) {
     $dhcpdata['StaticDNS'] = $static_dns[1];
     $dhcpdata['FallbackEnabled'] = empty($fallback) ? false: true;
     $dhcpdata['DefaultRoute'] = $gateway[0] == "gateway";
+    $dhcpdata['HookWPASupplicant'] = $hook_wpa_supplicant[0] !== "nohook wpa_supplicant";
 
     echo json_encode($dhcpdata);
 }

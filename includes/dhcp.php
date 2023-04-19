@@ -271,6 +271,11 @@ function updateDHCPConfig($iface,$status)
         $cfg[] = 'fallback static_'.$iface;
     }
     $cfg[] = $_POST['DefaultRoute'] == '1' ? 'gateway' : 'nogateway';
+
+    if (substr($iface, 0, 2) === "wl") {
+        $cfg[] = $_POST['HookWPASupplicant'] == '1' ? 'hook wpa_supplicant' : 'nohook wpa_supplicant';
+    }
+
     $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
     if (!preg_match('/^interface\s'.$iface.'$/m', $dhcp_cfg)) {
         $cfg[] = PHP_EOL;
