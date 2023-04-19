@@ -253,11 +253,11 @@ function updateDHCPConfig($iface,$status)
 {
     $cfg[] = '# RaspAP '.$iface.' configuration';
     $cfg[] = 'interface '.$iface;
-    if (isset($_POST['StaticIP'])) {
+    if (isset($_POST['StaticIP']) && $_POST['StaticIP'] !== '') {
         $mask = ($_POST['SubnetMask'] !== '' && $_POST['SubnetMask'] !== '0.0.0.0') ? '/'.mask2cidr($_POST['SubnetMask']) : null;
         $cfg[] = 'static ip_address='.$_POST['StaticIP'].$mask;
     }
-    if (isset($_POST['DefaultGateway'])) {
+    if (isset($_POST['DefaultGateway']) && $_POST['DefaultGateway'] !== '') {
       $cfg[] = 'static routers='.$_POST['DefaultGateway'];
     }
     if ($_POST['DNS1'] !== '' || $_POST['DNS2'] !== '') {
