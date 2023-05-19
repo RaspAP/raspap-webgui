@@ -46,6 +46,7 @@ if (isset($interface)) {
     preg_match('/static\sdomain_name_server=(.*)/', $matched[0], $static_dns);
     preg_match('/fallback\sstatic_'.$interface.'/', $matched[0], $fallback);
     preg_match('/(?:no)?gateway/', $matched[0], $gateway);
+    preg_match('/nohook\swpa_supplicant/', $matched[0], $nohook_wpa_supplicant);
     $dhcpdata['Metric'] = $metric[1];
     $dhcpdata['StaticIP'] = strpos($static_ip[1],'/') ?  substr($static_ip[1], 0, strpos($static_ip[1],'/')) : $static_ip[1];
     $dhcpdata['SubnetMask'] = cidr2mask($static_ip[1]);
@@ -53,6 +54,7 @@ if (isset($interface)) {
     $dhcpdata['StaticDNS'] = $static_dns[1];
     $dhcpdata['FallbackEnabled'] = empty($fallback) ? false: true;
     $dhcpdata['DefaultRoute'] = $gateway[0] == "gateway";
+    $dhcpdata['NoHookWPASupplicant'] = $nohook_wpa_supplicant[0] == "nohook wpa_supplicant";
 
     echo json_encode($dhcpdata);
 }
