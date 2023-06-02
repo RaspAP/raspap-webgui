@@ -140,7 +140,10 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        22.04|20.04|18.04|19.10|11*) # Ubuntu Server, Debian 11 & Armbian 22.05
+        23.05|23.04|12*) # Ubuntu Server 23.04, Debian 12 & Armbian 23.05
+            php_package="php8.2-cgi"
+            phpcgiconf="/etc/php/8.2/cgi/php.ini" ;;
+        22.04|20.04|18.04|19.10|11*) # Previous Ubuntu Server, Debian & Armbian distros
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
         10*|11*)
