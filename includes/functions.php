@@ -52,11 +52,15 @@ function mask2cidr($mask)
  */
 function cidr2mask($cidr)
 {
-    $ta = substr ($cidr, strpos ($cidr, '/') + 1) * 1;
-    $netmask = str_split (str_pad (str_pad ('', $ta, '1'), 32, '0'), 8);
-    foreach ($netmask as &$element)
-      $element = bindec ($element);
-    return join ('.', $netmask);
+    $ipParts = explode('/', $cidr);
+    $ip = $ipParts[0];
+    $prefixLength = $ipParts[1];
+
+    $ipLong = ip2long($ip);
+    $netmaskLong = bindec(str_pad(str_repeat('1', $prefixLength), 32, '0'));
+    $netmask = long2ip($netmaskLong);
+
+    return $netmask;
 }
 
 /**
