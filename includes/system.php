@@ -138,6 +138,7 @@ function DisplaySystem(&$extraFooterScripts)
     $cores    = $system->processorCount();
     $os       = $system->operatingSystem();
     $kernel   = $system->kernelVersion();
+    $systime  = $system->systime();
 
     // mem used
     $memused  = $system->usedMemory();
@@ -207,6 +208,7 @@ function DisplaySystem(&$extraFooterScripts)
         "serverBind",
         "hostname",
         "uptime",
+        "systime",
         "cores",
         "os",
         "kernel",
