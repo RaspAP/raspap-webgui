@@ -197,6 +197,7 @@ function _manage_systemd_services() {
     _install_status 0
 }
 
+# Notifies Ubuntu users of pre-install requirements
 function _check_notify_ubuntu() {
     if [ ${OS,,} = "ubuntu" ]; then
         _install_status 2 "Ubuntu Server requires manual pre- and post-install steps. See https://docs.raspap.com/manual/"
@@ -215,6 +216,8 @@ function _check_notify_ubuntu() {
 function _install_dependencies() {
     _install_log "Installing required packages"
     _set_php_package
+
+    # OS-specific packages
     if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|18.04|19.10|11) ]]; then
         echo "Adding apt-repository ppa:ondrej/php"
         sudo apt-get install -y software-properties-common || _install_status 1 "Unable to install dependency"
@@ -225,10 +228,14 @@ function _install_dependencies() {
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
     fi
+    if [ ${OS,,} = "ubuntu" ]; then
+        iw_package="iw"
+    fi
+
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package vnstat qrencode || _install_status 1 "Unable to install dependencies"
+    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package vnstat qrencode || _install_status 1 "Unable to install dependencies"
     _install_status 0
 }
 
