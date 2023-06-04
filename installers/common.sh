@@ -171,6 +171,8 @@ function _set_php_package() {
 function _manage_systemd_services() { 
     _install_log "Checking for systemd network services"
 
+    _check_notify_ubuntu
+
     services=( "systemd-networkd" "systemd-resolved" )
     for svc in "${services[@]}"; do
         # Prompt to disable systemd service
@@ -193,6 +195,20 @@ function _manage_systemd_services() {
         fi
     done
     _install_status 0
+}
+
+function _check_notify_ubuntu() {
+    if [ ${OS,,} = "ubuntu" ]; then
+        _install_status 2 "Ubuntu Server requires manual pre- and post-install steps. See https://docs.raspap.com/manual/"
+        echo -n "Proceed with installation? [Y/n]: "
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo "Installation aborted."
+            exit 0
+        else
+            _install_status 0
+        fi
+    fi
 }
 
 # Runs a system software update to make sure we're using all fresh packages
