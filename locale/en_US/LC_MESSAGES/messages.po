@@ -737,6 +737,9 @@ msgstr "Pi Revision"
 msgid "Uptime"
 msgstr "Uptime"
 
+msgid "System Time"
+msgstr "System Time"
+
 msgid "Memory Used"
 msgstr "Memory Used"
 
