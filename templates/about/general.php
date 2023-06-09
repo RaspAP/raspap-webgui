@@ -15,6 +15,7 @@
           <div class="col-md-6">GitHub <i class="fab fa-github"></i> <a href="https://github.com/RaspAP/">RaspAP</a></div>
           <div class="col-md-6">Twitter <span style="color: #55acee"><i class="fab fa-twitter"></i></span> <a href="https://twitter.com/rasp_ap">@RaspAP</a></div>
           <div class="col-md-6">Reddit <span style="color: #ff4500"><i class="fab fa-reddit"></i></span> <a href="https://www.reddit.com/r/RaspAP/">/r/raspap</a></div>
+          <div class="col-md-6">Gitter <span style="color: #ed1965"><i class="fab fa-gitter"></i></span> <a href="https://app.gitter.im/#/room/#RaspAP:gitter.im">/room/RaspAP</a></div>
           <div class="col-md-6">License <i class="fas fa-balance-scale"></i> <a href="https://github.com/raspap/raspap-webgui/blob/master/LICENSE">GPL-3.0</a></div>
         </div>
         </div>
