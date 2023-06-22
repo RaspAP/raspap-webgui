@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2023-02-22 08:17\n"
+"PO-Revision-Date: 2023-06-22 05:56\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -433,8 +433,8 @@ msgstr "Format"
 msgid "Choose a hosted server"
 msgstr "Gehosteten Server auswählen"
 
-msgid "Enable these options to log DHCP server activity."
-msgstr "Aktivieren Sie diese Optionen, um die DHCP-Serveraktivität zu protokollieren."
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Diese Optionen Aktivieren <code>dhcpcd</code> und <code>dnsmasq</code> Logging."
 
 msgid "Log DHCP requests"
 msgstr "DHCP-Anfragen protokollieren"
@@ -485,8 +485,8 @@ msgstr "Sicherheitstyp"
 msgid "Encryption Type"
 msgstr "Verschlüsselungstyp"
 
-msgid "Pre-shared key (PSK)"
-msgstr "Pre-Shared-Key (PSK)"
+msgid "PSK"
+msgstr "PSK"
 
 msgid "Advanced settings"
 msgstr "Erweiterte Einstellungen"
@@ -584,38 +584,20 @@ msgstr "Legt die Option <code>txpower</code> für die AP-Schnittstelle und das k
 msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
 msgstr "dBm ist eine Maßeinheit für das Leistungsverhältnis, die in Dezibel (dB) bezogen auf ein Milliwatt (mW) angegeben wird. 30 dBm entsprechen 1000 mW, während 0 dBm 1,25 mW entspricht."
 
-msgid "WPA and WPA2"
-msgstr "WPA und WPA2"
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "Die ausgewählte Schnittstelle (%s) unterstützt nur das 2,4 GHz Band."
 
-msgid "WPA2 and WPA3-Personal (transitional mode)"
-msgstr "WPA2- und WPA3-Personal (Übergangsmodus)"
+msgid "The selected interface (%s) has support for the 2.5 GHz wireless band only."
+msgstr "Die ausgewählte Schnittstelle (%s) unterstützt nur das 2,4 GHz Band."
 
-msgid "WPA3-Personal (required)"
-msgstr "WPA3-Personal (erforderlich)"
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "Die ausgewählte Schnittstelle (%s) unterstützt das 2,4 und 5 GHz Band."
 
-msgid "Enabled (for supported clients)"
-msgstr "Aktiviert (für unterstützte Clients)"
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "Die ausgewählte Schnittstelle (%s) hat kein drahtloses Interface."
 
-msgid "Required (for supported clients)"
-msgstr "Erforderlich (für unterstützte Clients)"
-
-msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
-msgstr "802.11w erweitert den Verschlüsselungsschutz auf ausgewählte robuste Management-Frames wie Deauthentifizierung, DisAssoziation und bestimmte Kategorien von Action-Management-Frames. Zusammen wird dies als „Management Frame Protection“ (MFP) bezeichnet."
-
-msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
-msgstr "QR-Code direkt scannen oder %s %sein Zeichen drucken%s für die Benutzer."
-
-msgid "Printable Wi-Fi sign"
-msgstr ""
-
-msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
-msgstr "Um sich mit dem Telefon oder Tablet zu verbinden, den obigen QR-Code mit der Kamera-App scannen."
-
-msgid "For other devices, use the login credentials below."
-msgstr "Für andere Geräte die Anmeldedaten unten verwenden."
-
-msgid "Network"
-msgstr "Netzwerk"
+msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
+msgstr "Die 5 GHz Option ist deaktiviert, bis eine kompatible Domain gesetzt ist."
 
 #: includes/networking.php
 msgid "Summary"
@@ -711,6 +693,12 @@ msgstr "Fehler beim Speichern der Netzwerkkonfiguration"
 msgid "Unable to detect interface"
 msgstr "Schnittstelle kann nicht gefunden werden"
 
+msgid "Routing table"
+msgstr "Routingtabelle"
+
+msgid "raw output"
+msgstr "Raw Output"
+
 #: includes/system.php
 msgid "System Information"
 msgstr "Systeminformationen"
@@ -762,6 +750,12 @@ msgstr "Port des Webservers"
 
 msgid "Web server bind address"
 msgstr "Webserver Bindungsadresse"
+
+msgid "OS"
+msgstr "Betriebssystem"
+
+msgid "Kernel"
+msgstr "Kernel"
 
 #: includes/themes.php
 msgid "Theme settings"
@@ -990,6 +984,9 @@ msgstr "oben"
 
 msgid "down"
 msgstr "unten"
+
+msgid "Clear log"
+msgstr "Log löschen"
 
 msgid "adblock"
 msgstr "Werbesperre"
