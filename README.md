@@ -32,7 +32,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [License](#license)
 
 ## Prerequisites
-Start with a clean install of the [latest release of Raspberry Pi OS (32-bit) Lite](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit). The Raspberry Pi OS desktop and 64-bit beta distros are unsupported.
+Start with a clean install of the [latest release of Raspberry Pi OS Lite](https://www.raspberrypi.com/software/operating-systems/). Both the 32- and 64-bit Lite versions are supported. The Raspberry Pi OS desktop distro is [unsupported](https://docs.raspap.com/faq/#distros).
 
 1. Update Raspbian, including the kernel and firmware, followed by a reboot:
 ```
