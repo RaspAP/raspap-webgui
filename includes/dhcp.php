@@ -187,12 +187,14 @@ function updateDnsmasqConfig($iface,$status)
     }
     //  Static leases
     $staticLeases = array();
-    for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
-        $mac = trim($_POST["static_leases"]["mac"][$i]);
-        $ip  = trim($_POST["static_leases"]["ip"][$i]);
-        $comment  = trim($_POST["static_leases"]["comment"][$i]);
-        if ($mac != "" && $ip != "") {
-            $staticLeases[] = array('mac' => $mac, 'ip' => $ip, 'comment' => $comment);
+    if (isset($_POST["static_leases"]["mac"])) {
+        for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
+            $mac = trim($_POST["static_leases"]["mac"][$i]);
+            $ip  = trim($_POST["static_leases"]["ip"][$i]);
+            $comment  = trim($_POST["static_leases"]["comment"][$i]);
+            if ($mac != "" && $ip != "") {
+                $staticLeases[] = array('mac' => $mac, 'ip' => $ip, 'comment' => $comment);
+            }
         }
     }
     //  Sort ascending by IPs

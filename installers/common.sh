@@ -140,7 +140,13 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        22.04|20.04|18.04|19.10|11*) # Ubuntu Server, Debian 11 & Armbian 22.05
+        23.05|12*) # Debian 12 & Armbian 23.05
+            php_package="php8.2-cgi"
+            phpcgiconf="/etc/php/8.2/cgi/php.ini" ;;
+        23.04) # Ubuntu Server 23.04
+            php_package="php8.1-cgi"
+            phpcgiconf="/etc/php/8.1/cgi/php.ini" ;;
+        22.04|20.04|18.04|19.10|11*) # Previous Ubuntu Server, Debian & Armbian distros
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
         10*|11*)
@@ -164,6 +170,8 @@ function _set_php_package() {
 # by default which prevents dnsmasq from starting.
 function _manage_systemd_services() { 
     _install_log "Checking for systemd network services"
+
+    _check_notify_ubuntu
 
     services=( "systemd-networkd" "systemd-resolved" )
     for svc in "${services[@]}"; do
@@ -189,10 +197,27 @@ function _manage_systemd_services() {
     _install_status 0
 }
 
+# Notifies Ubuntu users of pre-install requirements
+function _check_notify_ubuntu() {
+    if [ ${OS,,} = "ubuntu" ]; then
+        _install_status 2 "Ubuntu Server requires manual pre- and post-install steps. See https://docs.raspap.com/manual/"
+        echo -n "Proceed with installation? [Y/n]: "
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo "Installation aborted."
+            exit 0
+        else
+            _install_status 0
+        fi
+    fi
+}
+
 # Runs a system software update to make sure we're using all fresh packages
 function _install_dependencies() {
     _install_log "Installing required packages"
     _set_php_package
+
+    # OS-specific packages
     if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|18.04|19.10|11) ]]; then
         echo "Adding apt-repository ppa:ondrej/php"
         sudo apt-get install -y software-properties-common || _install_status 1 "Unable to install dependency"
@@ -203,10 +228,14 @@ function _install_dependencies() {
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
     fi
+    if [ ${OS,,} = "ubuntu" ]; then
+        iw_package="iw"
+    fi
+
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package vnstat qrencode || _install_status 1 "Unable to install dependencies"
+    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package vnstat qrencode || _install_status 1 "Unable to install dependencies"
     _install_status 0
 }
 
