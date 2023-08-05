@@ -625,10 +625,10 @@ msgid "Static IP"
 msgstr "Statická IP"
 
 msgid "Enabled"
-msgstr "Zapnuté"
+msgstr "Povolené"
 
 msgid "Disabled"
-msgstr "Vypnuté"
+msgstr "Nepovolené"
 
 msgid "Static IP Options"
 msgstr "Nastavenia statickej IP"
@@ -971,7 +971,7 @@ msgid "Refresh"
 msgstr "Obnoviť"
 
 msgid "running"
-msgstr "beží"
+msgstr "spustené"
 
 msgid "stopped"
 msgstr "vypnuté"
@@ -980,10 +980,10 @@ msgid "Remove"
 msgstr "Odstrániť"
 
 msgid "up"
-msgstr "zapnuté"
+msgstr "beží"
 
 msgid "down"
-msgstr "vypnuté"
+msgstr "dole"
 
 msgid "Clear log"
 msgstr "Vyčistiť záznam"
