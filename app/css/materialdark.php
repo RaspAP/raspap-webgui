@@ -4,6 +4,59 @@ require_once '../../includes/functions.php';
 $color = getColorOpt();
 ?>
 
+<?php
+// Base color
+$baseColor = $color; // Replace this with your desired color value
+
+// Function to darken a color by a percentage
+function darkenColor($color, $percent)
+{
+    $percent /= 100;
+    $r = hexdec(substr($color, 1, 2));
+    $g = hexdec(substr($color, 3, 2));
+    $b = hexdec(substr($color, 5, 2));
+
+    $r = round($r * (1 - $percent));
+    $g = round($g * (1 - $percent));
+    $b = round($b * (1 - $percent));
+
+    return sprintf("#%02x%02x%02x", $r, $g, $b);
+}
+
+// Function to lighten a color by a percentage
+function lightenColor($color, $percent)
+{
+    $percent /= 100;
+    $r = hexdec(substr($color, 1, 2));
+    $g = hexdec(substr($color, 3, 2));
+    $b = hexdec(substr($color, 5, 2));
+
+    $r = round($r + (255 - $r) * $percent);
+    $g = round($g + (255 - $g) * $percent);
+    $b = round($b + (255 - $b) * $percent);
+
+    return sprintf("#%02x%02x%02x", $r, $g, $b);
+}
+
+// Function to calculate luminance
+function calculateLuminance($color) {
+  $rgb = sscanf($color, "#%02x%02x%02x");
+  list($r, $g, $b) = $rgb;
+  return (0.299 * $r + 0.587 * $g + 0.114 * $b) / 255;
+}
+
+$luminance = calculateLuminance($backgroundColor);
+$textColor = $luminance > 0.5 ? 'black' : 'white';
+
+// Create other color variables
+$cardsColor = darkenColor($baseColor, 60);
+$secondaryColor = lightenColor($baseColor, 30);
+$primaryColor = $baseColor;
+$backgroundColor = darkenColor($baseColor, 90);
+
+// Now you can use these color variables in your CSS or any other parts of your PHP code.
+?>
+
 /*
 Theme Name: Material Dark
 Author: @marek-guran
@@ -15,12 +68,12 @@ License: GNU General Public License v3.0
 @import url('all.css');
 
 body {
-  background-color: #202020;
+  background-color: <?php echo $backgroundColor; ?>;
 }
 
 html * {
   font-family: Helvetica,Arial,sans-serif;
-  color: #afafaf;
+  color: <?php echo $textColor; ?>;
 }
 
 h2 {
@@ -36,12 +89,12 @@ h5.card-title {
 }
 
 .page-header {
-  border-left: .01rem solid #d2d2d2;
-  border-bottom: .01rem solid #d2d2d2;
+  border-left: .01rem solid <?php echo $secondaryColor; ?>;
+  border-bottom: .01rem solid <?php echo $secondaryColor; ?>;
 }
 
 .sidebar-light .nav-item.active .nav-link i {
-  color: #d2d2d2;
+  color: <?php echo $primaryColor; ?>;
 }
 
 .sidebar .nav-item.active .nav-link {
@@ -49,11 +102,11 @@ h5.card-title {
 }
 
 #wrapper #content-wrapper #content {
-  background-color: #202020;
+  background-color: <?php echo $backgroundColor; ?>;
 }
 
 .topbar {
-  background-color: #202020;
+  background-color: <?php echo $backgroundColor; ?>;
 }
 
 .col {
@@ -113,7 +166,7 @@ h5.card-title {
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #404040;
+  border-bottom: 1px solid <?php echo $secondaryColor; ?>;
 }
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link {
@@ -131,7 +184,7 @@ h5.card-title {
 }
 
 .navbar-default .navbar-toggle {
-  border-color: #d2d2d2;
+  border-color: transparent;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -140,7 +193,7 @@ h5.card-title {
 
 .navbar-default .navbar-toggle:focus,
 .navbar-default .navbar-toggle:hover {
-  background-color: #202020;
+  background-color: <?php echo $backgroundColor; ?>;
 }
 
 #content, .navbar, .sidebar, .footer, .sticky-footer {
@@ -161,9 +214,9 @@ h5.card-title {
 }
 
 .nav-tabs .nav-link.active {
-  color: #d2d2d2;
-  background-color: #141414;
-  border-color: #404040 #404040 #141414;
+  color: <?php echo $textColor; ?>;
+  background-color: <?php echo $secondaryColor; ?>;
+  border-color: transparent;
 }
 
 a:focus, a:hover {
@@ -171,16 +224,16 @@ a:focus, a:hover {
 }
 
 .card>.card-header, .modal-content, .modal-header {
-  border-color: <?php echo $color; ?>;
-  background-color: <?php echo $color; ?>;
-  color: #afafaf;
+  border-color: transparent;
+  background-color: <?php echo $primaryColor; ?>;
+  color: <?php echo $textColor; ?>;
   border-radius: 18px;
   font-size: 1.0rem;
   font-weight: 400;
 }
 
 .modal-body {
-  background-color: #141414;
+  background-color: <?php echo $backgroundColor; ?>;
 }
 
 .card-header {
@@ -189,26 +242,28 @@ a:focus, a:hover {
 }
 
 .card>.card-header .fa {
-  color: #202020;
+  color: <?php echo $backgroundColor; ?>;
 }
 
 .card-header [class^="fa"] {
-  color: #afafaf;
+  color: <?php echo $textColor; ?>;
   font-size: 1.0rem;
 }
 
 .card, .card-body {
-  border-color: #343434;
+  border-color: transparent;
   border-radius: 18px;
-  background-color: #141414;
+  background-color: <?php echo $cardsColor; ?>;
+  box-shadow: 0px -20px 20px rgba(0, 0, 0, 0.1),
+              0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 hr { 
-  border-top: .01rem solid #d2d2d2;
+  border-top: .01rem solid <?php echo $secondaryColor; ?>;
 }
 
 .sidebar-brand-text {
-  color: <?php echo $color; ?>;
+  color: <?php echo $textColor; ?>;
 }
 
 .ra-raspap:before {
@@ -216,20 +271,20 @@ hr {
 }
 
 .sidebar-light #sidebarToggle {
-  background-color: #202020;
-  border: 1px solid #afafaf !important
+  background-color: <?php echo $primaryColor; ?>;
+  border: 1px solid <?php echo $secondaryColor; ?>; !important
 }
 
 .sidebar-light #sidebarToggle::after {
-  color: #afafaf;
+  color: <?php echo $textColor; ?>;
 }
 
 .sidebar-light .nav-item .nav-link:hover i {
-  color: #d2d2d2;
+  color: <?php echo $textColor; ?>;
 }
 
 .sidebar-light #sidebarToggle:hover {
-  background-color: #202020;
+  background-color: <?php echo $secondaryColor; ?>;
 }
 
 .sidebar.toggled .nav-item .nav-link span {
@@ -243,7 +298,8 @@ hr {
 }
 
 .card-footer, .modal-footer {
-  background-color: #202020;
+  background-color: <?php echo $primaryColor; ?>;
+  color: <?php echo $textColor; ?>;
   border-top: 0px;
   border-bottom-right-radius: 18px!important;
   border-bottom-left-radius: 18px!important;
@@ -267,7 +323,7 @@ hr {
 }
 
 .sidebar-light, .sticky-footer {
-  background-color: #202020;
+  background-color: <?php echo $backgroundColor; ?>;
 }
 
 .sidebar-light .nav-item .nav-link i {
@@ -280,7 +336,7 @@ hr {
 }
 
 .sidebar-light hr.sidebar-divider {
-  border-top: 1px solid #404040;
+  border-top: 1px solid <?php echo $secondaryColor; ?>;
   padding-top: 0.5rem;
 }
 
@@ -289,7 +345,7 @@ hr {
 }
 
 .topbar .topbar-divider {
-  border-right: 1px solid #404040;
+  border-right: 1px solid <?php echo $secondaryColor; ?>;
 }
 
 .label-warning {
@@ -297,7 +353,7 @@ hr {
 }
 
 span.label.label-warning {
-  color: #202020;
+  color: <?php echo $backgroundColor; ?>;
 }
 
 .table>tbody>tr>td,
@@ -306,8 +362,8 @@ span.label.label-warning {
 .table>tfoot>tr>th,
 .table>thead>tr>td,
 .table>thead>tr>th {
-  background-color: #202020;
-  border-top: .01rem solid #202020;
+  background-color: <?php echo $primaryColor; ?>;
+  border-top: .01rem solid <?php echo $backgroundColor; ?>;
 }
 
 .table{
@@ -317,21 +373,21 @@ span.label.label-warning {
 
 .table>thead>tr>th {
   vertical-align: bottom;
-  border-bottom: 0 solid #d2d2d2;
+  border-bottom: 0 solid <?php echo $secondaryColor; ?>;
 }
 
 [class*="btn"], [class*="btn"]:focus, [class*="btn"]:disabled {
-  background-color: #202020;
-  border-color: #404040;
+  background-color: <?php echo $backgroundColor; ?>;
+  border-color: transparent;
   border-radius: 18px;
-  color: #d2d2d2;
+  color: <?php echo $textColor; ?>;
 }
 
 [class*="btn"]:hover {
   border-radius: 18px;
-  color: #d2d2d2;
-  background-color: #202020;
-  border-color: #afafaf;
+  color: <?php echo $textColor; ?>;
+  background-color: <?php echo $backgroundColor; ?>;
+  border-color: transparent;
 }
 
 [class*="btn"]:hover .disabled {
@@ -340,8 +396,8 @@ span.label.label-warning {
 
 [class*="alert"] {
   border-radius: 18px;
-  color: #d2d2d2;
-  background-color: #202020;
+  color: <?php echo $textColor; ?>;
+  background-color: <?php echo $backgroundColor; ?>;
   border: 1px solid #404040;
 }
 
@@ -349,21 +405,21 @@ span.label.label-warning {
   font-size: 1.2em;
   font-weight: 400;
   text-shadow: none;
-  color: #d2d2d2;
+  color: <?php echo $textColor; ?>;
 }
 
 .form-control,
 .form-control:focus,
 .custom-select {
-  color: #d2d2d2;
-  background-color: #202020;
-  border: 1px solid #404040;
+  color: <?php echo $textColor; ?>;
+  background-color: <?php echo $backgroundColor; ?>;
+  border: 1px solid <?php echo $secondaryColor; ?>;
   border-radius: 18px;
 }
 
 .form-control:disabled,
 .form-control[readonly] {
-  background-color: #202020;
+  background-color: <?php echo $backgroundColor; ?>;
   opacity: 0.5;
 }
 
@@ -378,16 +434,16 @@ span.label.label-warning {
 }
 
 input[type="text"]{
-color: #d2d2d2 !important
+color: <?php echo $textColor; ?>; !important
 }
 
 .progress {
-  background-color: #202020;
+  background-color: <?php echo $backgroundColor; ?>;
   border-radius: 18px;
 }
 
 .progress-bar {
-  color: #202020;
+  color: <?php echo $backgroundColor; ?>;
 }
 
 .progress .progress-bar {
@@ -395,7 +451,7 @@ color: #d2d2d2 !important
 }
 
 .progress-bar.progress-bar-info.progress-bar-striped.active {
-  background-color: #d2d2d2;
+  background-color: <?php echo $secondaryColor; ?>;
 }
 
 .figure-img {
@@ -415,9 +471,26 @@ color: #d2d2d2 !important
 }
 
 .logoutput {
-  background-color: #202020;
-  border-color: #404040;
+  background-color: <?php echo $backgroundColor; ?>;
+  border-color: transparent;
 }
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: <?php echo $secondaryColor; ?>;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: <?php echo $primaryColor; ?>;
+  border-color: <?php echo $primaryColor; ?>;
+}
+
+.wg-keygen {
+  background-color: <?php echo $primaryColor; ?>;
+  border: 1px solid yellow <?php echo $secondaryColor; ?>;
+  border-top-right-radius: 18px !important;
+  border-bottom-right-radius: 18px !important;
+}
+
 
 .text-muted {
   font-size: 0.8rem;
@@ -428,27 +501,39 @@ color: #d2d2d2 !important
 }
 
 pre {
-  background-color: #202020;
-  border: #202020;
+  background-color: <?php echo $backgroundColor; ?>;
+  border: <?php echo $backgroundColor; ?>;
 }
 
 button.btn.btn-light.js-toggle-password {
-  border: 1px solid #343434;
+  border: 1px solid <?php echo $secondaryColor; ?>;
 }
 
 .btn-primary {
-  color: <?php echo $color; ?>;
-  border-color: <?php echo $color; ?>;
-  background-color: #fff;
+  border-color: transparent;
+  background-color: <?php echo $primaryColor; ?>;
 }
 
 .btn-primary:hover {
-  background-color: <?php echo $color; ?>;
-  border-color: <?php echo $color; ?>;
+  background-color: <?php echo $secondaryColor; ?>;
+  border-color: transparent;
+}
+
+.btn.service-status {
+  background-color: <?php echo $backgroundColor; ?>;
+}
+
+input.btn.btn-success {
+  background-color: <?php echo $secondaryColor; ?>;
+}
+
+input.btn.btn-success:hover {
+  background-color: <?php echo $backgroundColor; ?>;
+  border-color: transparent;
 }
 
 .signal-icon .signal-bar {
-  background: #2b8080;
+  background: <?php echo $secondaryColor; ?>;
 }
 
 .figure-img {
@@ -465,5 +550,21 @@ button.btn.btn-light.js-toggle-password {
 }
 
 .signal-icon .signal-bar {
-  background: <?php echo $color; ?>;
+  background: <?php echo $secondaryColor; ?>;
+}
+
+input.btn.btn-warning {
+  background-color: <?php echo $secondaryColor; ?>;
+}
+
+input.btn.btn-warning:hover {
+  background-color: <?php echo $backgroundColor; ?>;!important
+}
+
+button.btn.btn-danger {
+  background-color: <?php echo $secondaryColor; ?>;
+}
+
+button.btn.btn-danger:hover {
+  background-color: <?php echo $backgroundColor; ?>;!important
 }
