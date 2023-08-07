@@ -491,6 +491,20 @@ color: <?php echo $textColor; ?>; !important
   border-bottom-right-radius: 18px !important;
 }
 
+.btn.btn-outline-secondary.js-add-dhcp-upstream-server {
+  background-color: <?php echo $primaryColor; ?>;
+  border: 1px solid <?php echo $secondaryColor; ?>;
+  border-top-right-radius: 18px !important;
+  border-bottom-right-radius: 18px !important;
+}
+
+.btn.btn-outline-success.js-add-dhcp-static-lease {
+  border: 1px solid <?php echo $secondaryColor; ?>;
+}
+
+.btn.btn-outline-success.js-add-dhcp-static-lease:hover {
+  background-color: <?php echo $primaryColor; ?>;
+}
 
 .text-muted {
   font-size: 0.8rem;
@@ -567,4 +581,18 @@ button.btn.btn-danger {
 
 button.btn.btn-danger:hover {
   background-color: <?php echo $backgroundColor; ?>;!important
+}
+
+.btn-group label.active {
+        background-color: <?php echo $primaryColor; ?>!important;
+        border-color:transparent!important;
+        color: <?php echo $textColor; ?>;!important
+}
+
+.btn-group {
+  background-color: <?php echo $cardsColor; ?>;!important
+}
+
+.btn-group:hover {
+  background-color: <?php echo $cardsColor; ?>;!important
 }
