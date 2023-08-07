@@ -229,7 +229,7 @@ hr {
 }
 
 .sidebar-brand-text {
-  color: <?php echo $textColor; ?>;
+  color: <?php echo $primaryColor; ?>;
 }
 
 .ra-raspap:before {
@@ -412,6 +412,10 @@ color: <?php echo $textColor; ?>; !important
   color: <?php echo $backgroundColor; ?>;
 }
 
+.progress-bar.bg-success {
+  background-color: <?php echo $primaryColor; ?>!important;
+}
+
 .progress .progress-bar {
   padding-left: 5px;
 }
@@ -434,11 +438,6 @@ color: <?php echo $textColor; ?>; !important
 
 .sidebar .nav-item.active .nav-link span.ra-wireguard:before {
     color: #d2d2d2 !important;
-}
-
-.logoutput {
-  background-color: <?php echo $backgroundColor; ?>;
-  border-color: transparent;
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {
@@ -522,6 +521,8 @@ input.btn.btn-success:hover {
 
 .logoutput {
   border-radius: 18px!important;
+  background-color: <?php echo $backgroundColor; ?>;
+  border: 1px solid <?php echo $primaryColor; ?>!important;
 }
 
 .btn-sm {
@@ -578,4 +579,9 @@ a.scroll-to-top.rounded {
 
 a.scroll-to-top.rounded i.fas.fa-angle-up {
   color: <?php echo $textColor; ?>;
+}
+
+.btn.btn-sm.btn-outline-secondary.rounded-right {
+  border: 1px solid <?php echo $secondaryColor; ?>;
+  background-color: <?php echo $primaryColor; ?>;
 }
