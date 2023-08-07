@@ -14,7 +14,7 @@ License: GNU General Public License v3.0
 
 <?php
 // Base color
-$baseColor = $color; // Replace this with your desired color value
+$baseColor = $color;
 
 // Function to darken a color by a percentage
 function darkenColor($color, $percent)
@@ -62,7 +62,6 @@ $secondaryColor = lightenColor($baseColor, 30);
 $primaryColor = $baseColor;
 $backgroundColor = darkenColor($baseColor, 90);
 
-// Now you can use these color variables in your CSS or any other parts of your PHP code.
 ?>
 
 @import url('all.css');
@@ -224,7 +223,7 @@ a:focus, a:hover {
   border-color: transparent;
   border-radius: 18px;
   background-color: <?php echo $cardsColor; ?>;
-  box-shadow: 0px -20px 20px rgba(0, 0, 0, 0.1),
+  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.1),
               0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -606,4 +605,11 @@ a.scroll-to-top.rounded i.fas.fa-angle-up {
 
 .text-muted {
   color: <?php echo $textColor; ?>!important;
+}
+
+.grid-stack-item-content {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  box-sizing: border-box;
 }
