@@ -113,56 +113,22 @@ h5.card-title {
   color: white;
 }
 
-.card-header .col i.fa-tachometer-alt {
-  color: white!important;
-}
-
-.card-header .col i.fa-dot-circle {
-  color: white!important;
-}
-
-.card-header .col i.fa-wifi {
-  color: white!important;
-}
-
-.card-header .col i.fa-exchange-alt {
-  color: white!important;
-}
-
-.card-header .col i.fa-hand-paper {
-  color: white!important;
-}
-
-.card-header .col i.fa-network-wired {
-  color: white!important;
-}
-
-.card-header .col i.fa-key {
-  color: white!important;
-}
-
-.card-header .ra-wireguard {
-  color: white!important;
-}
-
-.card-header .ra-wireguard:before {
-  color: white!important;
-}
-
-.card-header .col i.fa-user-lock {
-  color: white!important;
-}
-
-.card-header .col i.fa-chart-bar {
-  color: white!important;
-}
-
-.card-header .col i.fa-cube {
-  color: white!important;
-}
-
-.card-header .col i.fa-info-circle {
-  color: white!important;
+.card-header .col i.fa-tachometer-alt,
+.card-header .col i.fa-dot-circle,
+.card-header .col i.fa-wifi,
+.card-header .col i.fa-exchange-alt,
+.card-header .col i.fa-hand-paper,
+.card-header .col i.fa-network-wired,
+.card-header .col i.fa-key,
+.card-header .ra-wireguard,
+.card-header .ra-wireguard:before,
+.card-header .col i.fa-user-lock,
+.card-header .col i.fa-chart-bar,
+.card-header .col i.fa-cube,
+.card-header .col i.fa-info-circle,
+.card-header .col i.fa-globe,
+.card-header .col i.fa-shield-alt {
+  color: white <?php echo $textColor; ?>;
 }
 
 .nav-tabs {
@@ -595,4 +561,21 @@ button.btn.btn-danger:hover {
 
 .btn-group:hover {
   background-color: <?php echo $cardsColor; ?>;!important
+}
+
+.btn.btn-outline-secondary#gen_wpa_passphrase {
+  background-color: <?php echo $primaryColor; ?>;
+  border: 1px solid <?php echo $secondaryColor; ?>;
+  border-top-right-radius: 18px !important;
+  border-bottom-right-radius: 18px !important;
+}
+
+a.scroll-to-top.rounded {
+  display: inline;
+  background-color: <?php echo $secondaryColor; ?>;
+  border-radius: 18px!important;
+}
+
+a.scroll-to-top.rounded i.fas.fa-angle-up {
+  color: <?php echo $textColor; ?>;
 }
