@@ -4,6 +4,14 @@ require_once '../../includes/functions.php';
 $color = getColorOpt();
 ?>
 
+/*
+Theme Name: Material Dark
+Author: @marek-guran
+Author URI: https://github.com/marek-guran
+Description: Inspired by Google's Material You Design
+License: GNU General Public License v3.0
+*/
+
 <?php
 // Base color
 $baseColor = $color; // Replace this with your desired color value
@@ -57,14 +65,6 @@ $backgroundColor = darkenColor($baseColor, 90);
 // Now you can use these color variables in your CSS or any other parts of your PHP code.
 ?>
 
-/*
-Theme Name: Material Dark
-Author: @marek-guran
-Author URI: https://github.com/marek-guran
-Description: Inspired by Google's Material Design
-License: GNU General Public License v3.0
-*/
-
 @import url('all.css');
 
 body {
@@ -110,7 +110,7 @@ h5.card-title {
 }
 
 .col {
-  color: white;
+  color: <?php echo $textColor; ?>;
 }
 
 .card-header .col i.fa-tachometer-alt,
