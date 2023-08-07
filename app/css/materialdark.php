@@ -128,7 +128,11 @@ h5.card-title {
 .card-header .col i.fa-info-circle,
 .card-header .col i.fa-globe,
 .card-header .col i.fa-shield-alt {
-  color: white <?php echo $textColor; ?>;
+  color: <?php echo $textColor; ?>;
+}
+
+i.fa-bars {
+  color: <?php echo $primaryColor; ?>;
 }
 
 .nav-tabs {
@@ -222,6 +226,11 @@ a:focus, a:hover {
   background-color: <?php echo $cardsColor; ?>;
   box-shadow: 0px -20px 20px rgba(0, 0, 0, 0.1),
               0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.unstyled {
+  background-color: <?php echo $cardsColor; ?>;
+  color: <?php echo $textColor; ?>;
 }
 
 hr { 
@@ -412,8 +421,13 @@ color: <?php echo $textColor; ?>; !important
   color: <?php echo $backgroundColor; ?>;
 }
 
+#progressBar {
+  background-color: <?php echo $secondaryColor; ?>!important;
+}
+
 .progress-bar.bg-success {
   background-color: <?php echo $primaryColor; ?>!important;
+  color: <?php echo $textColor; ?>!important;
 }
 
 .progress .progress-bar {
@@ -584,4 +598,8 @@ a.scroll-to-top.rounded i.fas.fa-angle-up {
 .btn.btn-sm.btn-outline-secondary.rounded-right {
   border: 1px solid <?php echo $secondaryColor; ?>;
   background-color: <?php echo $primaryColor; ?>;
+}
+
+.info-item.col-xs-3 {
+  color: <?php echo $textColor; ?>;
 }
