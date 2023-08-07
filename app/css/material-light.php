@@ -613,3 +613,7 @@ a.scroll-to-top.rounded i.fas.fa-angle-up {
 .info-item.col-xs-3 {
   color: <?php echo $textColor; ?>;
 }
+
+.text-muted {
+  color: <?php echo $textColor; ?>!important;
+}
