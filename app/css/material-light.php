@@ -357,7 +357,7 @@ span.label.label-warning {
 }
 
 [class*="btn"], [class*="btn"]:focus, [class*="btn"]:disabled {
-  background-color: <?php echo $backgroundColor; ?>;
+  background-color: <?php echo $secondaryColor; ?>;
   border-color: transparent;
   border-radius: 18px;
   color: <?php echo $textColor; ?>;
