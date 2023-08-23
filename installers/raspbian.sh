@@ -1,4 +1,4 @@
-#!/bin/bash
+e!/bin/bash
 #
 # RaspAP Quick Installer
 # Author: @billz <billzimmerman@gmail.com>
@@ -234,6 +234,8 @@ function _install_status() {
         2)
         echo -e "[$ANSI_YELLOW \U26A0 warning $ANSI_RESET] $2"
         ;;
+        3)
+        echo -e "[$ANSI_RASPBERRY ! important $ANSI_RESET] $2"
     esac
 }
 

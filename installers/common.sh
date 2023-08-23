@@ -490,6 +490,10 @@ function _download_latest_files() {
     fi
 
     _install_log "Cloning latest files from github"
+    if [ "$repo" == "RaspAP/raspap-insiders" ]; then
+        _install_status 3
+        echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
+    fi
     git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || _install_status 1 "Unable to download files from github"
     sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to web root"
 
@@ -747,11 +751,17 @@ function _optimize_php() {
 
 function _install_complete() {
     _install_log "Installation completed"
-    echo "Join RaspAP Insiders for early access to exclusive features!"
-    echo -e "${ANSI_RASPBERRY}"
-    echo "> https://docs.raspap.com/insiders/"
-    echo "> https://github.com/sponsors/RaspAP/"
-    echo -e "${ANSI_RESET}"
+    if [ "$repo" == "RaspAP/raspap-insiders" ]; then
+        echo -e "${ANSI_RASPBERRY}"
+        echo "Thank you for supporting this project as an Insider!"
+        echo -e "${ANSI_RESET}"
+    else
+        echo "Join RaspAP Insiders for early access to exclusive features!"
+        echo -e "${ANSI_RASPBERRY}"
+        echo "> https://docs.raspap.com/insiders/"
+        echo "> https://github.com/sponsors/RaspAP/"
+        echo -e "${ANSI_RESET}"
+    fi
     if [ "$assume_yes" == 0 ]; then
         # Prompt to reboot if wired ethernet (eth0) is connected.
         # With default_configuration this will create an active AP on restart.
