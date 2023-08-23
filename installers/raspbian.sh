@@ -1,4 +1,4 @@
-e!/bin/bash
+#!/bin/bash
 #
 # RaspAP Quick Installer
 # Author: @billz <billzimmerman@gmail.com>
