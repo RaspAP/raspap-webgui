@@ -4,7 +4,7 @@
       <h4 class="mt-3 mb-3"><?php echo _("Configurations"); ?></h4>
         <p id="openvpnconfigs-description" class="mb-3">
           <small><?php echo _("Currently available OpenVPN client configurations are displayed below.") ?></small>
-          <br><small class="text-muted"><?php echo _("Activating a configuraton will restart the <code>openvpn-client</code> service.") ?></small>
+          <br><small class="text-muted"><?php echo _("Activating a configuration will restart the <code>openvpn-client</code> service.") ?></small>
         </p>
         <div class="openvpn-configs js-openvpn-configs-container">
           <?php foreach ($clients as $client) :
