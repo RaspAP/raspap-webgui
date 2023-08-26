@@ -844,7 +844,7 @@ msgstr "Configurații"
 msgid "Currently available OpenVPN client configurations are displayed below."
 msgstr "Configurațiile clientului OpenVPN disponibile sunt afișate mai jos."
 
-msgid "Activating a configuraton will restart the <code>openvpn-client</code> service."
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
 msgstr "Activarea unei configurații va reporni serviciul <code>openvpn-client</code>."
 
 msgid "Delete OpenVPN client"
