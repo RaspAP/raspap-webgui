@@ -564,6 +564,8 @@ var themes = {
     "default": "custom.php",
     "hackernews" : "hackernews.css",
     "lightsout" : "lightsout.css",
+    "material-light" : "material-light.php",
+    "material-dark" : "material-dark.php",
 }
 
 // Toggles the sidebar navigation.
