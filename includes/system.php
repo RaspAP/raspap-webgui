@@ -191,16 +191,17 @@ function DisplaySystem(&$extraFooterScripts)
     $themes = [
         "default"    => "RaspAP (default)",
         "hackernews" => "HackerNews",
-        "material-light" => "Material (light)",
-        "material-dark" => "Material (dark)"
+        "material-light" => "Material (Use dark colors)"
     ];
     $themeFiles = [
         "default"    => "custom.php",
         "hackernews" => "hackernews.css",
-        "material-light" => "material-light.php",
-        "material-dark" => "material-dark.php"
+        "material-light" => "material-light.php"
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
+
+    // widget options
+    $widgetOpt = $_SESSION["widgetOpt"];
 
     $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
     $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
@@ -228,6 +229,7 @@ function DisplaySystem(&$extraFooterScripts)
         "hostapd_status",
         "hostapd_led",
         "themes",
-        "selectedTheme" 
+        "selectedTheme",
+        "widgetOpt"
     ));
 }
