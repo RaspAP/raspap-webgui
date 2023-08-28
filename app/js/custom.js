@@ -536,12 +536,27 @@ function set_theme(theme) {
 }
 
 $(function() {
+    var currentTheme = getCookie('theme');
+    // Check if the current theme is a dark theme
+    var isDarkTheme = currentTheme === 'lightsout.css' || currentTheme === 'material-dark.php';
+
+    $('#night-mode').prop('checked', isDarkTheme);
     $('#night-mode').change(function() {
         var state = $(this).is(':checked');
-        if (state == true && getCookie('theme') != 'lightsout.css') {
-            set_theme('lightsout.css');
+        var currentTheme = getCookie('theme');
+        
+        if (state == true) {
+            if (currentTheme == 'custom.php') {
+                set_theme('lightsout.css');
+            } else if (currentTheme == 'material-light.php') {
+                set_theme('material-dark.php');
+            }
         } else {
-            set_theme('custom.php');
+            if (currentTheme == 'lightsout.css') {
+                set_theme('custom.php');
+            } else if (currentTheme == 'material-dark.php') {
+                set_theme('material-light.php');
+            }
         }
    });
 });
