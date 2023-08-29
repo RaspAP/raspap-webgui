@@ -46,16 +46,7 @@ function lightenColor($color, $percent)
     return sprintf("#%02x%02x%02x", $r, $g, $b);
 }
 
-// Function to calculate luminance
-function calculateLuminance($color) {
-  $rgb = sscanf($color, "#%02x%02x%02x");
-  list($r, $g, $b) = $rgb;
-  return (0.299 * $r + 0.587 * $g + 0.114 * $b) / 255;
-}
-
-$luminance = calculateLuminance($backgroundColor);
-$textColor = $luminance > 0.5 ? 'black' : 'white';
-
+$textColor = lightenColor($baseColor, 95);
 // Create other color variables
 $cardsColor = darkenColor($baseColor, 60);
 $secondaryColor = lightenColor($baseColor, 30);
@@ -73,6 +64,14 @@ body {
 html * {
   font-family: Helvetica,Arial,sans-serif;
   color: <?php echo $textColor; ?>;
+}
+
+.nav-item.active .nav-link {
+  position: relative;
+  background-color: <?php echo $secondaryColor; ?>;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
 }
 
 h2 {
@@ -93,7 +92,7 @@ h5.card-title {
 }
 
 .sidebar-light .nav-item.active .nav-link i {
-  color: <?php echo $primaryColor; ?>;
+  color: <?php echo $textColor; ?>;
 }
 
 .sidebar .nav-item.active .nav-link {
@@ -208,6 +207,8 @@ a:focus, a:hover {
 .card-header {
   border-bottom-left-radius: 0px!important;
   border-bottom-right-radius: 0px!important;
+  position: relative;
+  margin-bottom: -18px;
 }
 
 .card>.card-header .fa {
@@ -237,7 +238,7 @@ hr {
 }
 
 .sidebar-brand-text {
-  color: <?php echo $primaryColor; ?>;
+  color: <?php echo $secondaryColor; ?>;
 }
 
 .ra-raspap:before {
@@ -277,6 +278,8 @@ hr {
   border-top: 0px;
   border-bottom-right-radius: 18px!important;
   border-bottom-left-radius: 18px!important;
+  position: relative;
+  margin-top: -18px;
 }
 
 .modal-footer {
