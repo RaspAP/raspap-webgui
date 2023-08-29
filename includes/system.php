@@ -191,7 +191,7 @@ function DisplaySystem(&$extraFooterScripts)
     $themes = [
         "default"    => "RaspAP (default)",
         "hackernews" => "HackerNews",
-        "material-light" => "Material (Use dark colors)"
+        "material-light" => "Material"
     ];
     $themeFiles = [
         "default"    => "custom.php",
