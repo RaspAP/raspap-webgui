@@ -230,6 +230,11 @@ a:focus, a:hover {
               0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.card-body {
+  padding-top: 36px; /* 18px to move down + 18px space at the top */
+  padding-bottom: 36px; /* 18px space at the bottom */
+}
+
 .unstyled {
   background-color: <?php echo $cardsColor; ?>;
   color: <?php echo $textColor; ?>;
@@ -463,7 +468,7 @@ color: <?php echo $textColor; ?>; !important
 }
 
 .sidebar .nav-item.active .nav-link span.ra-wireguard:before {
-    color: <?php echo $primaryColor; ?>!important;
+    color: <?php echo $textColor; ?>!important;
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {

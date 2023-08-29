@@ -99,6 +99,10 @@ h5.card-title {
   font-weight: 400;
 }
 
+.sidebar .nav-item .nav-link span:hover {
+  color: <?php echo $textColor; ?>!important;
+}
+
 #wrapper #content-wrapper #content {
   background-color: <?php echo $backgroundColor; ?>;
 }
@@ -226,6 +230,11 @@ a:focus, a:hover {
   background-color: <?php echo $cardsColor; ?>;
   box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.1),
               0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding-top: 36px; /* 18px to move down + 18px space at the top */
+  padding-bottom: 36px; /* 18px space at the bottom */
 }
 
 .unstyled {
