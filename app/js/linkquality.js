@@ -7,6 +7,16 @@ if (theme == 'lightsout.css') {
   var bgColor2 = '#141414';
   var borderColor = 'rgba(37, 153, 63, 1)';
   var labelColor = 'rgba(37, 153, 63, 1)';
+} else if (theme == 'material-light.php') {
+  var bgColor1 = 'rgba(255, 255, 255, 0.5)';
+  var bgColor2 = 'rgba(0, 0, 0, 0.5)';
+  var borderColor = '#f2f2fb';
+  var labelColor = '#f2f2fb';
+} else if (theme == 'material-dark.php') {
+  var bgColor1 = 'rgba(255, 255, 255, 0.5)';
+  var bgColor2 = 'rgba(0, 0, 0, 0.5)';
+  var borderColor = '#f2f2fb';
+  var labelColor = '#f2f2fb';
 } else {
   var bgColor1 = '#d4edda';
   var bgColor2 = '#eaecf4';

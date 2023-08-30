@@ -190,11 +190,13 @@ function DisplaySystem(&$extraFooterScripts)
     // theme options
     $themes = [
         "default"    => "RaspAP (default)",
-        "hackernews" => "HackerNews"
+        "hackernews" => "HackerNews",
+        "material-light" => "Material"
     ];
     $themeFiles = [
         "default"    => "custom.php",
-        "hackernews" => "hackernews.css"
+        "hackernews" => "hackernews.css",
+        "material-light" => "material-light.php"
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
 
@@ -224,6 +226,6 @@ function DisplaySystem(&$extraFooterScripts)
         "hostapd_status",
         "hostapd_led",
         "themes",
-        "selectedTheme" 
+        "selectedTheme"
     ));
 }
