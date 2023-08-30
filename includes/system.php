@@ -226,7 +226,6 @@ function DisplaySystem(&$extraFooterScripts)
         "hostapd_status",
         "hostapd_led",
         "themes",
-        "selectedTheme",
-        "widgetOpt"
+        "selectedTheme"
     ));
 }
