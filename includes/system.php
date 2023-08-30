@@ -200,9 +200,6 @@ function DisplaySystem(&$extraFooterScripts)
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
 
-    // widget options
-    $widgetOpt = $_SESSION["widgetOpt"];
-
     $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
     $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
 
