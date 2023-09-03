@@ -58,7 +58,7 @@ function cidr2mask($cidr)
 
     $ipLong = ip2long($ip);
     $netmaskLong = bindec(str_pad(str_repeat('1', $prefixLength), 32, '0'));
-    $netmask = long2ip($netmaskLong);
+    $netmask = long2ip(intval($netmaskLong));
 
     return $netmask;
 }
@@ -430,8 +430,9 @@ function ParseConfig($arrConfig)
             continue;
         }
 
-        list($option, $value) = array_map("trim", explode("=", $line, 2));
-
+        if (strpos($line, "=") !== false) {
+            list($option, $value) = array_map("trim", explode("=", $line, 2));
+        }
         if (empty($config[$option])) {
             $config[$option] = $value ?: true;
         } else {

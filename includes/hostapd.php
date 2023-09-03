@@ -40,22 +40,25 @@ function DisplayHostAPDConfig()
     exec($cmd, $txpower);
     $txpower = intval($txpower[0]);
 
+    if (isset($_POST['interface'])) {
+        $interface = escapeshellarg($_POST['interface']);
+    }
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveHostAPDSettings'])) {
             SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $status);
         }
     }
-    $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
+    $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
 
     if (!RASPI_MONITOR_ENABLED) {
          if (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
             $status->addMessage('Attempting to start hotspot', 'info');
             if ($arrHostapdConf['BridgedEnable'] == 1) {
-                exec('sudo /etc/raspap/hostapd/servicestart.sh --interface br0 --seconds 3', $return);
+                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface br0 --seconds 3', $return);
             } elseif ($arrHostapdConf['WifiAPEnable'] == 1) {
-                exec('sudo /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 3', $return);
+                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface uap0 --seconds 3', $return);
             } else {
-                exec('sudo /etc/raspap/hostapd/servicestart.sh --seconds 3', $return);
+                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --seconds 3', $return);
             }
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');
@@ -69,9 +72,11 @@ function DisplayHostAPDConfig()
         }
     }
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
-    exec('iwgetid '. escapeshellarg($_POST['interface']). ' -r', $wifiNetworkID);
-    if (!empty($wifiNetworkID[0])) {
-        $managedModeEnabled = true;
+    if (isset($interface)) {
+        exec('iwgetid '. $interface. ' -r', $wifiNetworkID);
+        if (!empty($wifiNetworkID[0])) {
+            $managedModeEnabled = true;
+        }
     }
     $hostapdstatus = $system->hostapdStatus();
     $serviceStatus = $hostapdstatus[0] == 0 ? "down" : "up";
@@ -98,16 +103,18 @@ function DisplayHostAPDConfig()
         $arrConfig['country_code'] = $country_code[0];
     }
     // set txpower with iw if value is non-default ('auto')
-    if (isset($_POST['txpower']) && ($_POST['txpower'] != 'auto')) {
-        $txpower = intval($_POST['txpower']);
-        $sdBm = $txpower * 100;
-        exec('sudo /sbin/iw dev '.escapeshellarg($_POST['interface']).' set txpower fixed '.$sdBm, $return);
-        $status->addMessage('Setting transmit power to '.$_POST['txpower'].' dBm.', 'success');
-        $txpower = $_POST['txpower'];
-    } elseif ($_POST['txpower'] == 'auto') {
-        exec('sudo /sbin/iw dev '.escapeshellarg($_POST['interface']).' set txpower auto', $return);
-        $status->addMessage('Setting transmit power to '.$_POST['txpower'].'.', 'success');
-        $txpower = $_POST['txpower'];
+    if (isset($_POST['txpower'])) {
+        if ($_POST['txpower'] != 'auto') {
+            $txpower = intval($_POST['txpower']);
+            $sdBm = $txpower * 100;
+            exec('sudo /sbin/iw dev '.$interface.' set txpower fixed '.$sdBm, $return);
+            $status->addMessage('Setting transmit power to '.$_POST['txpower'].' dBm.', 'success');
+            $txpower = $_POST['txpower'];
+        } elseif ($_POST['txpower'] == 'auto') {
+            exec('sudo /sbin/iw dev '.$interface.' set txpower auto', $return);
+            $status->addMessage('Setting transmit power to '.$_POST['txpower'].'.', 'success');
+            $txpower = $_POST['txpower'];
+        }
     }
 
     $countries_5Ghz_max48ch = RASPI_5GHZ_ISO_ALPHA2;
@@ -132,6 +139,8 @@ function DisplayHostAPDConfig()
         if ($selectedHwMode === $hwModeDisabled) {
             unset($selectedHwMode);
         }
+    } else {
+        $hwModeDisabled = null;
     }
 
     echo renderTemplate(
@@ -168,13 +177,16 @@ function DisplayHostAPDConfig()
  */
 function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 {
-    // It should not be possible to send bad data for these fields so clearly
-    // someone is up to something if they fail. Fail silently.
+    // It should not be possible to send bad data for these fields. 
+    // If wpa fields are absent, return false and log securely.
     if (!(array_key_exists($_POST['wpa'], $wpa_array) 
         && array_key_exists($_POST['wpa_pairwise'], $enc_types) 
         && array_key_exists($_POST['hw_mode'], $modes))
     ) {
-        error_log("Attempting to set hostapd config with wpa='".$_POST['wpa']."', wpa_pairwise='".$_POST['wpa_pairwise']."' and hw_mode='".$_POST['hw_mode']."'");  // FIXME: log injection
+        $err  = "Attempting to set hostapd config with wpa='".escapeshellarg($_POST['wpa']);
+        $err .= "', wpa_pairwise='".$escapeshellarg(_POST['wpa_pairwise']);
+        $err .= "and hw_mode='".$escapeshellarg(_POST['hw_mode'])."'";
+        error_log($err);
         return false;
     }
     // Validate input
