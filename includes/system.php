@@ -125,7 +125,11 @@ function DisplaySystem(&$extraFooterScripts)
     exec('cat '. RASPI_LIGHTTPD_CONFIG, $return);
     $conf = ParseConfig($return);
     $serverPort = $conf['server.port'];
-    $serverBind = str_replace('"', '',$conf['server.bind']);
+    if (isset($conf['server.bind'])) {
+        $serverBind = str_replace('"', '',$conf['server.bind']);
+    } else {
+        $serverBind = '';
+    }
 
     // define locales
     $arrLocales = getLocales();
