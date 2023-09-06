@@ -9,6 +9,7 @@ if (isset($_POST['interface'])) {
     define( 'NL80211_BAND_24GHZ', 0x1 );
     define( 'NL80211_BAND_5GHZ', 0x2 );
     $iface = escapeshellcmd($_POST['interface']);
+    $flags = 0;
 
     // get physical device for selected interface
     exec("iw dev | awk '/$iface/ {print line}{line = $0}'", $return);

@@ -227,8 +227,6 @@ function _install_dependencies() {
     fi
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
-    fi
-    if [ ${OS,,} = "ubuntu" ]; then
         iw_package="iw"
     fi
 

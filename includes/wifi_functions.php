@@ -77,44 +77,46 @@ function nearbyWifiStations(&$networks, $cached = true)
         if ( isset($lastnet['index']) ) $index = $lastnet['index'] + 1;
     }
 
-    array_shift($scan_results);
-    foreach ($scan_results as $network) {
-        $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
-        $ssid = $arrNetwork[4];
+    if (is_array($scan_results)) {
+        array_shift($scan_results);
+        foreach ($scan_results as $network) {
+            $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
+            $ssid = $arrNetwork[4];
 
-        // exclude raspap ssid
-        if (empty($ssid) || $ssid == $ap_ssid) {
-            continue;
-        }
+            // exclude raspap ssid
+            if (empty($ssid) || $ssid == $ap_ssid) {
+                continue;
+            }
 
-        // filter SSID string: unprintable 7bit ASCII control codes, delete or quotes -> ignore network
-        if (preg_match('[\x00-\x1f\x7f\'\`\´\"]', $ssid)) {
-            continue;
-        }
+            // filter SSID string: unprintable 7bit ASCII control codes, delete or quotes -> ignore network
+            if (preg_match('[\x00-\x1f\x7f\'\`\´\"]', $ssid)) {
+                continue;
+            }
 
-        // If network is saved
-        if (array_key_exists($ssid, $networks)) {
-            $networks[$ssid]['visible'] = true;
-            $networks[$ssid]['channel'] = ConvertToChannel($arrNetwork[1]);
-            // TODO What if the security has changed?
-        } else {
-            $networks[$ssid] = array(
-                'ssid' => $ssid,
-                'configured' => false,
-                'protocol' => ConvertToSecurity($arrNetwork[3]),
-                'channel' => ConvertToChannel($arrNetwork[1]),
-                'passphrase' => '',
-                'visible' => true,
-                'connected' => false,
-                'index' => $index
-            );
-            ++$index;
-        }
+            // If network is saved
+            if (array_key_exists($ssid, $networks)) {
+                $networks[$ssid]['visible'] = true;
+                $networks[$ssid]['channel'] = ConvertToChannel($arrNetwork[1]);
+                // TODO What if the security has changed?
+            } else {
+                $networks[$ssid] = array(
+                    'ssid' => $ssid,
+                    'configured' => false,
+                    'protocol' => ConvertToSecurity($arrNetwork[3]),
+                    'channel' => ConvertToChannel($arrNetwork[1]),
+                    'passphrase' => '',
+                    'visible' => true,
+                    'connected' => false,
+                    'index' => $index
+                );
+                ++$index;
+            }
 
-        // Save RSSI, if the current value is larger than the already stored
-        if (array_key_exists(4, $arrNetwork) && array_key_exists($arrNetwork[4], $networks)) {
-            if (! array_key_exists('RSSI', $networks[$arrNetwork[4]]) || $networks[$ssid]['RSSI'] < $arrNetwork[2]) {
-                $networks[$ssid]['RSSI'] = $arrNetwork[2];
+            // Save RSSI, if the current value is larger than the already stored
+            if (array_key_exists(4, $arrNetwork) && array_key_exists($arrNetwork[4], $networks)) {
+                if (! array_key_exists('RSSI', $networks[$arrNetwork[4]]) || $networks[$ssid]['RSSI'] < $arrNetwork[2]) {
+                    $networks[$ssid]['RSSI'] = $arrNetwork[2];
+                }
             }
         }
     }
