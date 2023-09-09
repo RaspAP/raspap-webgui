@@ -217,7 +217,7 @@ msgid "AP Mac Address"
 msgstr "AP Mac Adresse"
 
 msgid "Bitrate"
-msgstr "Débit binaire"
+msgstr "Débit"
 
 msgid "Signal Level"
 msgstr "Niveau du signal"
@@ -244,7 +244,7 @@ msgid "No Subnet Mask Found"
 msgstr "Aucun masque de sous-réseau trouvé"
 
 msgid "No Data"
-msgstr "Pas de données"
+msgstr "Pas de donnée"
 
 msgid "Not connected"
 msgstr "Non connecté"
@@ -262,7 +262,7 @@ msgid "Start wlan0"
 msgstr "Démarrer wlan0"
 
 msgid "Stop wlan0"
-msgstr "Arrêtez wlan0"
+msgstr "Arrêter wlan0"
 
 msgid "Connected Devices"
 msgstr "Appareils connectés"
@@ -353,10 +353,10 @@ msgid "Add static DHCP lease"
 msgstr "Ajouter un bail DHCP statique"
 
 msgid "Lease Time"
-msgstr "Temps de bail"
+msgstr "Temps du bail"
 
 msgid "Interval"
-msgstr "Intervalle"
+msgstr "Interval"
 
 msgid "Active DHCP leases"
 msgstr "Baux DHCP actifs"
@@ -431,7 +431,7 @@ msgid "Format"
 msgstr "Format"
 
 msgid "Choose a hosted server"
-msgstr "Choisissez un serveur hébergé"
+msgstr "Choisisser un serveur hébergé"
 
 msgid "Enable these options to log DHCP server activity."
 msgstr "Activer ces options pour enregistrer l'activité du serveur DHCP."
@@ -637,7 +637,7 @@ msgid "Adapter IP Address Settings"
 msgstr "Paramètres d'adresse IP de l'adaptateur"
 
 msgid "Enable Fallback to Static Option"
-msgstr "Activer la repli vers l'option statique"
+msgstr "Activer vers l'option statique"
 
 msgid "Static IP"
 msgstr "IP statique"
