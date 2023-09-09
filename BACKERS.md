@@ -24,8 +24,9 @@ The following features are currently available exclusively to sponsors. A tangib
  ✅ [MAC address cloning](https://docs.raspap.com/net-devices/#changing-the-mac-address)  
  ✅ [Network diagnostics](https://docs.raspap.com/net-devices/#diagnostics)  
  ✅ [WireGuard VPN kill switch](https://docs.raspap.com/wireguard/#kill-switch)  
- ⚙️ Dynamic DNS support (in progress)   
-
+ ✅ [Dynamic DNS](https://docs.raspap.com/dynamicdns/)  
+ ✅ [Multiple WireGuard configs](https://docs.raspap.com/wireguard/#multiple-configs) 
+ 
 Look for the list above to grow as we add more exclusive features. Be sure to visit this page from time to time to learn about what's new, check the [Insiders docs page](https://docs.raspap.com/insiders/) and follow [@RaspAP on Twitter](https://twitter.com/rasp_ap) to stay updated.
 
 ## Funding targets

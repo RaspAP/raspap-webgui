@@ -67,6 +67,19 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="form-group col-md-6">
+        <div class="custom-control custom-switch">
+          <input class="custom-control-input" id="nohook-wpa-supplicant" type="checkbox" name="NoHookWPASupplicant" value="1" aria-describedby="hook-wpa-supplicant-description">
+          <label class="custom-control-label" for="nohook-wpa-supplicant"><?php echo _("Disable wpa_supplicant dhcp hook for this interface") ?></label>
+          <?php getTooltip('If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook.', 'tipnohook'); ?>
+        </div>
+        <p class="mb-0" id="hook-wpa-supplicant-description">
+          <small><?php echo _("This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration.") ?></small>
+        </p>
+    </div>
+  </div>
+
   <h5 class="mt-1">DHCP options</h5>
   <div class="row">
     <div class="form-group col-md-6">

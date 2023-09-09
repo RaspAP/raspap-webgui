@@ -140,7 +140,13 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        22.04|20.04|18.04|19.10|11*) # Ubuntu Server, Debian 11 & Armbian 22.05
+        23.05|12*) # Debian 12 & Armbian 23.05
+            php_package="php8.2-cgi"
+            phpcgiconf="/etc/php/8.2/cgi/php.ini" ;;
+        23.04) # Ubuntu Server 23.04
+            php_package="php8.1-cgi"
+            phpcgiconf="/etc/php/8.1/cgi/php.ini" ;;
+        22.04|20.04|18.04|19.10|11*) # Previous Ubuntu Server, Debian & Armbian distros
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
         10*|11*)
@@ -164,6 +170,8 @@ function _set_php_package() {
 # by default which prevents dnsmasq from starting.
 function _manage_systemd_services() { 
     _install_log "Checking for systemd network services"
+
+    _check_notify_ubuntu
 
     services=( "systemd-networkd" "systemd-resolved" )
     for svc in "${services[@]}"; do
@@ -189,10 +197,27 @@ function _manage_systemd_services() {
     _install_status 0
 }
 
+# Notifies Ubuntu users of pre-install requirements
+function _check_notify_ubuntu() {
+    if [ ${OS,,} = "ubuntu" ]; then
+        _install_status 2 "Ubuntu Server requires manual pre- and post-install steps. See https://docs.raspap.com/manual/"
+        echo -n "Proceed with installation? [Y/n]: "
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            echo "Installation aborted."
+            exit 0
+        else
+            _install_status 0
+        fi
+    fi
+}
+
 # Runs a system software update to make sure we're using all fresh packages
 function _install_dependencies() {
     _install_log "Installing required packages"
     _set_php_package
+
+    # OS-specific packages
     if [ "$php_package" = "php7.4-cgi" ] && [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|18.04|19.10|11) ]]; then
         echo "Adding apt-repository ppa:ondrej/php"
         sudo apt-get install -y software-properties-common || _install_status 1 "Unable to install dependency"
@@ -202,11 +227,13 @@ function _install_dependencies() {
     fi
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
+        iw_package="iw"
     fi
+
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package vnstat qrencode || _install_status 1 "Unable to install dependencies"
+    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package vnstat qrencode || _install_status 1 "Unable to install dependencies"
     _install_status 0
 }
 
@@ -461,6 +488,10 @@ function _download_latest_files() {
     fi
 
     _install_log "Cloning latest files from github"
+    if [ "$repo" == "RaspAP/raspap-insiders" ]; then
+        _install_status 3
+        echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
+    fi
     git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || _install_status 1 "Unable to download files from github"
     sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to web root"
 
@@ -718,11 +749,17 @@ function _optimize_php() {
 
 function _install_complete() {
     _install_log "Installation completed"
-    echo "Join RaspAP Insiders for early access to exclusive features!"
-    echo -e "${ANSI_RASPBERRY}"
-    echo "> https://docs.raspap.com/insiders/"
-    echo "> https://github.com/sponsors/RaspAP/"
-    echo -e "${ANSI_RESET}"
+    if [ "$repo" == "RaspAP/raspap-insiders" ]; then
+        echo -e "${ANSI_RASPBERRY}"
+        echo "Thank you for supporting this project as an Insider!"
+        echo -e "${ANSI_RESET}"
+    else
+        echo "Join RaspAP Insiders for early access to exclusive features!"
+        echo -e "${ANSI_RASPBERRY}"
+        echo "> https://docs.raspap.com/insiders/"
+        echo "> https://github.com/sponsors/RaspAP/"
+        echo -e "${ANSI_RESET}"
+    fi
     if [ "$assume_yes" == 0 ]; then
         # Prompt to reboot if wired ethernet (eth0) is connected.
         # With default_configuration this will create an active AP on restart.

@@ -125,7 +125,11 @@ function DisplaySystem(&$extraFooterScripts)
     exec('cat '. RASPI_LIGHTTPD_CONFIG, $return);
     $conf = ParseConfig($return);
     $serverPort = $conf['server.port'];
-    $serverBind = str_replace('"', '',$conf['server.bind']);
+    if (isset($conf['server.bind'])) {
+        $serverBind = str_replace('"', '',$conf['server.bind']);
+    } else {
+        $serverBind = '';
+    }
 
     // define locales
     $arrLocales = getLocales();
@@ -138,6 +142,7 @@ function DisplaySystem(&$extraFooterScripts)
     $cores    = $system->processorCount();
     $os       = $system->operatingSystem();
     $kernel   = $system->kernelVersion();
+    $systime  = $system->systime();
 
     // mem used
     $memused  = $system->usedMemory();
@@ -189,11 +194,13 @@ function DisplaySystem(&$extraFooterScripts)
     // theme options
     $themes = [
         "default"    => "RaspAP (default)",
-        "hackernews" => "HackerNews"
+        "hackernews" => "HackerNews",
+        "material-light" => "Material"
     ];
     $themeFiles = [
         "default"    => "custom.php",
-        "hackernews" => "hackernews.css"
+        "hackernews" => "hackernews.css",
+        "material-light" => "material-light.php"
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
 
@@ -207,6 +214,7 @@ function DisplaySystem(&$extraFooterScripts)
         "serverBind",
         "hostname",
         "uptime",
+        "systime",
         "cores",
         "os",
         "kernel",
@@ -222,6 +230,6 @@ function DisplaySystem(&$extraFooterScripts)
         "hostapd_status",
         "hostapd_led",
         "themes",
-        "selectedTheme" 
+        "selectedTheme"
     ));
 }

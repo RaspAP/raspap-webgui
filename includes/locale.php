@@ -75,6 +75,9 @@ if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2)
     case "pl":
         $locale = "pl_PL.UTF-8";
         break;
+    case "sk":
+        $locale = "sk_SK.UTF-8";
+        break;
     default:
         $locale = "en_GB.UTF-8";
         break;
@@ -117,10 +120,10 @@ function getLocales()
         'pt_BR.UTF-8' => 'Português',
         'ru_RU.UTF-8' => 'Русский',
         'ro_RO.UTF-8' => 'Română',
+        'sk_SK.UTF-8' => 'Slovenčina',
         'sv_SE.UTF-8' => 'Svenska',
         'tr_TR.UTF-8' => 'Türkçe',
         'vi_VN.UTF-8' => 'Tiếng Việt (Vietnamese)'
     );
-    return $arrLocales; 
+    return $arrLocales;
 }
-

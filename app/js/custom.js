@@ -216,6 +216,12 @@ function loadInterfaceDHCPSelect() {
         $('#txtgateway').val(jsonData.StaticRouters);
         $('#chkfallback')[0].checked = jsonData.FallbackEnabled;
         $('#default-route').prop('checked', jsonData.DefaultRoute);
+        if (strInterface.startsWith("wl")) {
+            $('#nohook-wpa-supplicant').parent().parent().parent().show()
+            $('#nohook-wpa-supplicant').prop('checked', jsonData.NoHookWPASupplicant);
+        } else {
+            $('#nohook-wpa-supplicant').parent().parent().parent().hide()
+        }
         $('#txtrangestart').val(jsonData.RangeStart);
         $('#txtrangeend').val(jsonData.RangeEnd);
         $('#txtrangeleasetime').val(jsonData.leaseTime);
@@ -530,12 +536,27 @@ function set_theme(theme) {
 }
 
 $(function() {
+    var currentTheme = getCookie('theme');
+    // Check if the current theme is a dark theme
+    var isDarkTheme = currentTheme === 'lightsout.css' || currentTheme === 'material-dark.php';
+
+    $('#night-mode').prop('checked', isDarkTheme);
     $('#night-mode').change(function() {
         var state = $(this).is(':checked');
-        if (state == true && getCookie('theme') != 'lightsout.css') {
-            set_theme('lightsout.css');
+        var currentTheme = getCookie('theme');
+        
+        if (state == true) {
+            if (currentTheme == 'custom.php') {
+                set_theme('lightsout.css');
+            } else if (currentTheme == 'material-light.php') {
+                set_theme('material-dark.php');
+            }
         } else {
-            set_theme('custom.php');
+            if (currentTheme == 'lightsout.css') {
+                set_theme('custom.php');
+            } else if (currentTheme == 'material-dark.php') {
+                set_theme('material-light.php');
+            }
         }
    });
 });
@@ -558,6 +579,8 @@ var themes = {
     "default": "custom.php",
     "hackernews" : "hackernews.css",
     "lightsout" : "lightsout.css",
+    "material-light" : "material-light.php",
+    "material-dark" : "material-dark.php",
 }
 
 // Toggles the sidebar navigation.

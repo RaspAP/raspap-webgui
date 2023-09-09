@@ -187,12 +187,14 @@ function updateDnsmasqConfig($iface,$status)
     }
     //  Static leases
     $staticLeases = array();
-    for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
-        $mac = trim($_POST["static_leases"]["mac"][$i]);
-        $ip  = trim($_POST["static_leases"]["ip"][$i]);
-        $comment  = trim($_POST["static_leases"]["comment"][$i]);
-        if ($mac != "" && $ip != "") {
-            $staticLeases[] = array('mac' => $mac, 'ip' => $ip, 'comment' => $comment);
+    if (isset($_POST["static_leases"]["mac"])) {
+        for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
+            $mac = trim($_POST["static_leases"]["mac"][$i]);
+            $ip  = trim($_POST["static_leases"]["ip"][$i]);
+            $comment  = trim($_POST["static_leases"]["comment"][$i]);
+            if ($mac != "" && $ip != "") {
+                $staticLeases[] = array('mac' => $mac, 'ip' => $ip, 'comment' => $comment);
+            }
         }
     }
     //  Sort ascending by IPs
@@ -253,24 +255,27 @@ function updateDHCPConfig($iface,$status)
 {
     $cfg[] = '# RaspAP '.$iface.' configuration';
     $cfg[] = 'interface '.$iface;
-    if (isset($_POST['StaticIP'])) {
+    if (isset($_POST['StaticIP']) && $_POST['StaticIP'] !== '') {
         $mask = ($_POST['SubnetMask'] !== '' && $_POST['SubnetMask'] !== '0.0.0.0') ? '/'.mask2cidr($_POST['SubnetMask']) : null;
         $cfg[] = 'static ip_address='.$_POST['StaticIP'].$mask;
     }
-    if (isset($_POST['DefaultGateway'])) {
-      $cfg[] = 'static routers='.$_POST['DefaultGateway'];
+    if (isset($_POST['DefaultGateway']) && $_POST['DefaultGateway'] !== '') {
+        $cfg[] = 'static routers='.$_POST['DefaultGateway'];
     }
     if ($_POST['DNS1'] !== '' || $_POST['DNS2'] !== '') {
         $cfg[] = 'static domain_name_server='.$_POST['DNS1'].' '.$_POST['DNS2'];
     }
     if ($_POST['Metric'] !== '') {
-      $cfg[] = 'metric '.$_POST['Metric'];
+        $cfg[] = 'metric '.$_POST['Metric'];
     }
     if ($_POST['Fallback'] == 1) {
         $cfg[] = 'profile static_'.$iface;
         $cfg[] = 'fallback static_'.$iface;
     }
     $cfg[] = $_POST['DefaultRoute'] == '1' ? 'gateway' : 'nogateway';
+    if (( substr($iface, 0, 2) === "wl") && $_POST['NoHookWPASupplicant'] == '1') {
+        $cfg[] = 'nohook wpa_supplicant';
+    }
     $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
     if (!preg_match('/^interface\s'.$iface.'$/m', $dhcp_cfg)) {
         $cfg[] = PHP_EOL;

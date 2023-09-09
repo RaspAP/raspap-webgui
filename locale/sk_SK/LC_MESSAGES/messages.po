@@ -1,0 +1,1236 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: raspap\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2017-10-19 08:56+0000\n"
+"PO-Revision-Date: 2023-08-03 15:53\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"Language-Team: Slovak\n"
+"Language: sk_SK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
+"X-Crowdin-Language: sk\n"
+"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 10\n"
+
+#: index.php
+msgid "RaspAP Wifi Configuration Portal"
+msgstr "RaspAP WiFi Konfiguračný Portál"
+
+msgid "Toggle navigation"
+msgstr "Spustiť navigáciu"
+
+msgid "RaspAP Wifi Portal"
+msgstr "RaspAP WiFi Portál"
+
+msgid "Dashboard"
+msgstr "Prehľad"
+
+msgid "WiFi client"
+msgstr "WiFi klient"
+
+msgid "Hotspot"
+msgstr "Hotspot"
+
+msgid "Memory Use"
+msgstr "Využitie Pamäte"
+
+msgid "CPU Temp"
+msgstr "Teplota CPU"
+
+msgid "Networking"
+msgstr "Sieť"
+
+msgid "DHCP Server"
+msgstr "Server DHCP"
+
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+msgid "TOR proxy"
+msgstr "TOR proxy"
+
+msgid "Authentication"
+msgstr "Autentifikácia"
+
+msgid "Change Theme"
+msgstr "Zmeniť Motív"
+
+msgid "System"
+msgstr "Systém"
+
+msgid "About RaspAP"
+msgstr "O RaspAP"
+
+#: includes/admin.php
+msgid "Authentication settings"
+msgstr "Nastavenia autentifikácie"
+
+msgid "New passwords do not match"
+msgstr "Nové heslá sa nezhodujú"
+
+msgid "Username must not be empty"
+msgstr "Užívateľské meno nesmie byť prázdne"
+
+msgid "Admin password updated"
+msgstr "Administrátorské heslo bolo aktualizované"
+
+msgid "Failed to update admin password"
+msgstr "Nastala chyba pri zmene administrátorskeho hesla"
+
+msgid "Old password does not match"
+msgstr "Staré heslo sa nezhoduje"
+
+msgid "Username"
+msgstr "Používateľské meno"
+
+msgid "Old password"
+msgstr "Staré heslo"
+
+msgid "New password"
+msgstr "Nové heslo"
+
+msgid "Repeat new password"
+msgstr "Zopakujte nové heslo"
+
+#: includes/configure_client.php
+msgid "Client settings"
+msgstr "Nastavenia klienta"
+
+msgid "SSID"
+msgstr "SSID"
+
+msgid "Channel"
+msgstr "Kanál"
+
+msgid "Security"
+msgstr "Zabezpečenie"
+
+msgid "Passphrase"
+msgstr "Heslo"
+
+msgid "Wifi settings updated successfully"
+msgstr "Nastavenia WiFi boli úspešne aktualizované"
+
+msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "WiFi nastavenia boli aktualizované ale neaplikované (nebolo možné spustiť 'wpa_cli reconfigure')"
+
+msgid "Wifi settings failed to be updated"
+msgstr "Aktualizácia nastavenia WiFi bola neúspešná"
+
+msgid "Failed to update wifi settings"
+msgstr "Nebolo možné aktualizovať nastavenia WiFi"
+
+msgid "Rescan"
+msgstr "Znova skenovať"
+
+msgid "Update"
+msgstr "Aktualizovať"
+
+msgid "Add"
+msgstr "Pridať"
+
+msgid "Delete"
+msgstr "Odstrániť"
+
+msgid "Show"
+msgstr "Ukázať"
+
+msgid "Hide"
+msgstr "Skryť"
+
+msgid "Not configured"
+msgstr "Nenakonfigurované"
+
+msgid "Connected"
+msgstr "Pripojené"
+
+msgid "Known"
+msgstr "Známe"
+
+msgid "Nearby"
+msgstr "V blízkosti"
+
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Poznámka:</strong> WEP prístupové body sú zobrazené, ako 'Otvorené'. RaspAP momentálne nepodporuje pripojenie k WEP sieťam"
+
+msgid "No Wifi stations found"
+msgstr "Nenašli sa žiadne WiFi siete"
+
+msgid "Reinitializing wpa_supplicant"
+msgstr "Opätovná inicializácia wpa_supplicant"
+
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Kliknutím 'Skenovať' sa vyhľadajú blízke WiFi siete."
+
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Kliknutím 'Znovu inicializovať' vynútiť novú inicializáciu <code>wpa_supplicant</code>."
+
+msgid "Reinitialize"
+msgstr "Resetovať"
+
+#: includes/dashboard.php
+msgid "Interface Information"
+msgstr "Informácie o rozhraní"
+
+msgid "Interface Name"
+msgstr "Názov Rozhrania"
+
+msgid "IPv4 Address"
+msgstr "IPv4 Adresa"
+
+msgid "IPv6 Address"
+msgstr "IPv6 Adresa"
+
+msgid "Subnet Mask"
+msgstr "Maska Podsiete"
+
+msgid "Mac Address"
+msgstr "Mac Adresa"
+
+msgid "Interface Statistics"
+msgstr "Štatistiky Rozhrania"
+
+msgid "Received Packets"
+msgstr "Prijaté Pakety"
+
+msgid "Received Bytes"
+msgstr "Prijatých Bajtov"
+
+msgid "Transferred Packets"
+msgstr "Prenesených Paketov"
+
+msgid "Transferred Bytes"
+msgstr "Prenesených Bajtov"
+
+msgid "Wireless Client"
+msgstr "Bezdrôtový Klient"
+
+msgid "Connected To"
+msgstr "Pripojené k"
+
+msgid "AP Mac Address"
+msgstr "AP Mac Adresa"
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Signal Level"
+msgstr "Sila Signálu"
+
+msgid "Transmit Power"
+msgstr "Výkon Prenosu"
+
+msgid "Frequency"
+msgstr "Frekvencia"
+
+msgid "Link Quality"
+msgstr "Kvalita Spojenia"
+
+msgid "Information provided by ip and iw and from system"
+msgstr "Informácie sú poskytnuté cez ip, iw a od systému"
+
+msgid "No MAC Address Found"
+msgstr "Nenašla sa MAC Adresa"
+
+msgid "No IP Address Found"
+msgstr "Nenašla sa IP Adresa"
+
+msgid "No Subnet Mask Found"
+msgstr "Nenašla sa Maska Podsiete"
+
+msgid "No Data"
+msgstr "Žiadne Dáta"
+
+msgid "Not connected"
+msgstr "Nepripojené"
+
+msgid "Interface is up"
+msgstr "Rozhranie je zapnuté"
+
+msgid "Interface is down"
+msgstr "Rozhranie je vypnuté"
+
+msgid "Interface already down"
+msgstr "Rozhranie je už vypnuté"
+
+msgid "Start wlan0"
+msgstr "Spustiť wlan0"
+
+msgid "Stop wlan0"
+msgstr "Vypnúť wlan0"
+
+msgid "Connected Devices"
+msgstr "Pripojené Zariadenia"
+
+msgid "Client: Ethernet cable"
+msgstr "Klient: Ethernetový kábel"
+
+msgid "Ethernet"
+msgstr "Ethernet"
+
+msgid "Client: Smartphone (USB tethering)"
+msgstr "Klient: Smartfón (USB tethering)"
+
+msgid "Smartphone"
+msgstr "Smartfón"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Mobile Data Client"
+msgstr "Mobilný Dátový Klient"
+
+msgid "Mobile Data"
+msgstr "Mobilné Dáta"
+
+msgid "No information available"
+msgstr "Nie sú k dispozícii žiadne informácie"
+
+msgid "Interface name invalid"
+msgstr "Názov rozhrania nie je platný"
+
+msgid "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
+msgstr "Požadovaná funkcia exec je zakázaná. Skontrolujte, či nie je exec pridaný do php <code>disable_functions</code>."
+
+msgid "Waiting for the interface to start ..."
+msgstr "Čaká sa na zapnutie rozhrania..."
+
+msgid "Stop the Interface"
+msgstr "Vypnúť Rozhranie"
+
+msgid "Connection mode"
+msgstr "Mód pripojenia"
+
+msgid "Signal quality"
+msgstr "Kvalita signálu"
+
+msgid "WAN IP"
+msgstr "WAN IP"
+
+msgid "Web-GUI"
+msgstr "Webové Rozhranie"
+
+msgid "Signal strength"
+msgstr "Sila signálu"
+
+msgid "No Client device or not yet configured"
+msgstr "Žiadne zariadenie klienta alebo zatiaľ ešte nie je nastavené"
+
+#: includes/dhcp.php
+msgid "DHCP server settings"
+msgstr "Nastavenia servera DHCP"
+
+msgid "Client list"
+msgstr "Klienti"
+
+msgid "Interface"
+msgstr "Rozhranie"
+
+msgid "Enable DHCP for this interface"
+msgstr "Povoliť DHCP pre toto rozhranie"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+msgstr "Ak chcete, aby RaspAP prideľoval IP adresy na vybranom rozhraní, povoľte túto možnosť."
+
+msgid "DNS Server"
+msgstr "DNS server"
+
+msgid "Starting IP Address"
+msgstr "Začínajúca IP Adresa"
+
+msgid "Ending IP Address"
+msgstr "Posledná IP Adresa"
+
+msgid "Static Leases"
+msgstr "Statické Adresy"
+
+msgid "Add static DHCP lease"
+msgstr "Pridať statickú DHCP adresu"
+
+msgid "Lease Time"
+msgstr "Čas prenájmu adresy"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Active DHCP leases"
+msgstr "Aktívne prenájmy adries DHCP"
+
+msgid "Expire time"
+msgstr "Čas expirácie"
+
+msgid "MAC Address"
+msgstr "MAC adresa"
+
+msgid "Optional comment"
+msgstr "Voliteľná poznámka"
+
+msgid "Host name"
+msgstr "Názov Zariadenia"
+
+msgid "Client ID"
+msgstr "ID klienta"
+
+msgid "Information provided by Dnsmasq"
+msgstr "Informácie poskytnuté cez Dnsmasq"
+
+msgid "Stop dnsmasq"
+msgstr "Zastaviť dnsmasq"
+
+msgid "Start dnsmasq"
+msgstr "Spustiť dnsmasq"
+
+msgid "Dnsmasq configuration updated successfully"
+msgstr "Konfigurácia dnsmasq bola úspešná"
+
+msgid "dnsmasq already running"
+msgstr "dnsmasq je už spustená"
+
+msgid "Successfully started dnsmasq"
+msgstr "Dnsmasq bolo úspešne spustené"
+
+msgid "Failed to start dnsmasq"
+msgstr "Nebolo možné spustiť dnsmasq"
+
+msgid "Successfully stopped dnsmasq"
+msgstr "Dnsmasq bolo zastavené"
+
+msgid "Failed to stop dnsmasq"
+msgstr "Nebolo možné zastaviť dnsmasq"
+
+msgid "dnsmasq already stopped"
+msgstr "dnsmasq je už zastavené"
+
+msgid "Dnsmasq is running"
+msgstr "Dnsmasq je spustené"
+
+msgid "Dnsmasq is not running"
+msgstr "Dnsmasq nie je spustené"
+
+msgid "Upstream DNS servers"
+msgstr "Nadriadené DNS servery"
+
+msgid "Only ever query DNS servers configured below"
+msgstr "Vždy používaj len DNS servery nastavené nižšie"
+
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Povoľte túto možnosť, ak chcete aby RaspAP <b>posielalo exkluzívne DNS požiadavky len dole nastaveným serverom.</b> V predvolenom nastavení RaspAP používa DNS servery nadriadeného DHCP servera."
+
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "Táto možnosť pridá <code>no-resolv</code> do konfigurácie dnsmasq."
+
+msgid "Add upstream DNS server"
+msgstr "Pridať nadriadený DNS server"
+
+msgid "Format"
+msgstr "Formát"
+
+msgid "Choose a hosted server"
+msgstr "Vyberte poskytovaný server"
+
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Povoľte tieto možnosti pre ukladanie aktivity <code>dhcpcd</code> a <code>dnsmasq</code>."
+
+msgid "Log DHCP requests"
+msgstr "Ukladať históriu DHCP požiadaviek"
+
+msgid "Log DNS queries"
+msgstr "Ukladať DNS požiadavky"
+
+msgid "Restrict access"
+msgstr "Zakázať prístup"
+
+msgid "Limit network access to static clients"
+msgstr "Obmedziť prístup na sieť, aby k nej mali prístup iba statický klienti"
+
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Ak chcete, aby RaspAP ignorovalo <b>ktorékoľvek zariadenie klienta</b>, ktoré nie je uvedené v zozname statických priradení, povoľte túto možnosť."
+
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Táto možnosť pridá <code>dhcp-ignore</code> do konfigurácie dnsmasq."
+
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Klientom s konkrétnou hardvérovou MAC adresou môže byť vždy pridelená rovnaká IP adresa."
+
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Táto možnosť pridá <code>dhcp-host</code> požiadavky do konfigurácie dnsmasq."
+
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "Týmto povolíte <code>gateway</code>/<code>nogateway</code> pre toto rozhranie v konfigurácii DHCPCD."
+
+#: includes/hostapd.php
+msgid "Basic"
+msgstr "Základné"
+
+msgid "Advanced"
+msgstr "Pokročilé"
+
+msgid "Basic settings"
+msgstr "Základné nastavenia"
+
+msgid "Wireless Mode"
+msgstr "Režim"
+
+msgid "Security settings"
+msgstr "Nastavenia zabezpečenia"
+
+msgid "Security type"
+msgstr "Typ zabezpečenia"
+
+msgid "Encryption Type"
+msgstr "Typ šifrovania"
+
+msgid "PSK"
+msgstr "PSK"
+
+msgid "Advanced settings"
+msgstr "Pokročilé nastavenia"
+
+msgid "Country Code"
+msgstr "Kód Krajiny"
+
+msgid "Information provided by hostapd"
+msgstr "Informácie poskytnuté cez hostapd"
+
+msgid "Attempting to start hotspot"
+msgstr "Hotspot sa spúšťa"
+
+msgid "Attempting to stop hotspot"
+msgstr "Vypínanie hotspotu"
+
+msgid "HostAPD is not running"
+msgstr "HostAPD nie je zapnuté"
+
+msgid "HostAPD is running"
+msgstr "HostAPD je zapnuté"
+
+msgid "SSID must be between 1 and 32 characters"
+msgstr "SSID názov musí mať aspoň 1 znak a maximálne 32 znakov"
+
+msgid "WPA passphrase must be between 8 and 63 characters"
+msgstr "WPA heslo musí mať minimálne 8 znakov a maximálne 63 znakov"
+
+msgid "Unknown interface"
+msgstr "Neznáme rozhranie"
+
+msgid "Country code must be blank or two characters"
+msgstr "Kód krajiny musí byť buď prázdny alebo obsahovať dva znaky"
+
+msgid "Wifi Hotspot settings saved"
+msgstr "Nastavenia WiFi Hotspotu boli uložené"
+
+msgid "Unable to save wifi hotspot settings"
+msgstr "Nebolo možné uložiť nastavenia wifi hotspotu"
+
+msgid "Start hotspot"
+msgstr "Spustiť hotspot"
+
+msgid "Stop hotspot"
+msgstr "Vypnúť hotspot"
+
+msgid "Restart hotspot"
+msgstr "Reštartovať hotspot"
+
+msgid "Enable logging"
+msgstr "Povoliť logovanie"
+
+msgid "Logfile output"
+msgstr "Výstup logov"
+
+msgid "WiFi client AP mode"
+msgstr "WiFi klient v režime AP"
+
+msgid "Bridged AP mode"
+msgstr "Režim mostu AP"
+
+msgid "Hide SSID in broadcast"
+msgstr "Skryť SSID"
+
+msgid "Maximum number of clients"
+msgstr "Maximálny počet pripojených zariadení"
+
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Nastavuje možnosť <code>max_num_sta</code> v hostapd. Predvolená hodnota a maximum je 2007. Ak je prázdne alebo 0, použije sa predvolená hodnota."
+
+msgid "Beacon interval"
+msgstr "Interval vysielania"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Vypnúť <code>disassoc_low_ack</code>"
+
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Nerušiť stanice na základe nadmerného počtu neúspešných prenosov."
+
+msgid "Executing RaspAP service start"
+msgstr "Spúšťam službu RaspAP"
+
+msgid "Close"
+msgstr "Zatvoriť"
+
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Povoľte túto možnosť pre logovanie aktivity <code>hostapd</code>."
+
+msgid "Transmit power (dBm)"
+msgstr "Výkon prenosu (dBm)"
+
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "Nastaví <code>txpower</code> možnosť pre AP rozhranie na základe nastavenej krajiny."
+
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "dBm je jednotka úrovne používaná na vyjadrenie pomeru výkonu v decibeloch (dB) s ohľadom na jeden miliwatt (mW). 30 dBm je rovnaké ako 1000 mW, zatiaľ čo 0 dBm je rovné 1,25 mW."
+
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "Vybrané rozhranie (%s) podporuje iba 2.4 GHz pásmo."
+
+msgid "The selected interface (%s) has support for the 2.5 GHz wireless band only."
+msgstr "Vybrané rozhranie (%s) podporuje iba 2.5 GHz pásmo."
+
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "Vybrané rozhranie (%s) podporuje obe 2.4 a 5 GHz pásma."
+
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "Vybrané rozhranie (%s) nepodporuje bezdrôtové operácie."
+
+msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
+msgstr "Voľba 802.11ac 5 GHz je zakázaná, kým nie je nastavená kompatibilná bezdrôtová regulačná oblasť."
+
+#: includes/networking.php
+msgid "Summary"
+msgstr "Súhrn"
+
+msgid "Internet connection"
+msgstr "Internetové pripojenie"
+
+msgid "Current settings"
+msgstr "Aktuálne nastavenia"
+
+msgid "Default Gateway"
+msgstr "Predvolená Brána"
+
+msgid "Alternate DNS Server"
+msgstr "Náhradný DNS server"
+
+msgid "Adapter IP Address Settings"
+msgstr "Nastavenia IP adresy adaptéra"
+
+msgid "Enable Fallback to Static Option"
+msgstr "Povoliť statické nastavenie pre prípad zlyhania"
+
+msgid "Static IP"
+msgstr "Statická IP"
+
+msgid "Enabled"
+msgstr "Povolené"
+
+msgid "Disabled"
+msgstr "Nepovolené"
+
+msgid "Static IP Options"
+msgstr "Nastavenia statickej IP"
+
+msgid "Metric"
+msgstr "Metrika"
+
+msgid "Apply settings"
+msgstr "Použiť nastavenia"
+
+msgid "Information provided by /sys/class/net"
+msgstr "Informácie poskytnuté cez /sys/class/net"
+
+msgid "Network Devices"
+msgstr "Sieťové Zariadenia"
+
+msgid "Mobile Data Settings"
+msgstr "Nastavenia Mobilných Dát"
+
+msgid "Properties of network devices"
+msgstr "Nastavenia sieťových zariadení"
+
+msgid "Device"
+msgstr "Zariadenie"
+
+msgid "MAC"
+msgstr "MAC"
+
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+msgid "Device type"
+msgstr "Typ zariadenia"
+
+msgid "Fixed name"
+msgstr "Priradené meno"
+
+msgid "Change"
+msgstr "Zmeniť"
+
+msgid "Settings for Mobile Data Devices"
+msgstr "Nastavenia pre mobilné dátové zariadenia"
+
+msgid "PIN of SIM card"
+msgstr "PIN kód SIM karty"
+
+msgid "APN Settings (Modem device ppp0)"
+msgstr "APN Nastavenia (Modem ppp0)"
+
+msgid "Access Point Name (APN)"
+msgstr "Názov Prístupového Bodu (APN)"
+
+msgid "Password"
+msgstr "Heslo"
+
+msgid "Successfully Updated Network Configuration"
+msgstr "Úspešne Aktualizovaná Konfigurácia Siete"
+
+msgid "Error saving network configuration to file"
+msgstr "Vyskytla sa chyba pri ukladaní konfigurácie pre sieť do súboru"
+
+msgid "Unable to detect interface"
+msgstr "Rozhranie nebolo možné nájsť"
+
+msgid "Routing table"
+msgstr "Mapa smerovania"
+
+msgid "raw output"
+msgstr "nespracovaný výstup"
+
+#: includes/system.php
+msgid "System Information"
+msgstr "Systémové Informácie"
+
+msgid "Language"
+msgstr "Jazyk"
+
+msgid "Language settings"
+msgstr "Nastavenia jazyka"
+
+msgid "Select a language"
+msgstr "Vybrať jazyk"
+
+msgid "Language setting saved"
+msgstr "Nastavenia jazyka boli uložené"
+
+msgid "Console"
+msgstr "Konzola"
+
+msgid "Hostname"
+msgstr "Názov Zariadenia"
+
+msgid "Pi Revision"
+msgstr "Pi Revízia"
+
+msgid "Uptime"
+msgstr "Čas spustenia"
+
+msgid "Memory Used"
+msgstr "Využitá Pamäť"
+
+msgid "CPU Load"
+msgstr "Využitie CPU"
+
+msgid "Reboot"
+msgstr "Reštartovať"
+
+msgid "Shutdown"
+msgstr "Vypnúť"
+
+msgid "System Rebooting Now!"
+msgstr "Systém sa Reštartuje!"
+
+msgid "System Shutting Down Now!"
+msgstr "Systém sa Vypína!"
+
+msgid "Web server port"
+msgstr "Port webového servera"
+
+msgid "Web server bind address"
+msgstr "Adresa spojenia webového servera"
+
+msgid "OS"
+msgstr "OS"
+
+msgid "Kernel"
+msgstr "Jadro"
+
+#: includes/themes.php
+msgid "Theme settings"
+msgstr "Nastavenia Tém"
+
+msgid "Select a theme"
+msgstr "Vybrať tému"
+
+msgid "Color"
+msgstr "Farba"
+
+#: includes/data_usage.php
+msgid "Data usage"
+msgstr "Využitie dát"
+
+msgid "Data usage monitoring"
+msgstr "Monitorovanie využitia dát"
+
+msgid "Hourly traffic amount"
+msgstr "Hodinové využitie"
+
+msgid "Daily traffic amount"
+msgstr "Denné využitie"
+
+msgid "Monthly traffic amount"
+msgstr "Mesačné využitie"
+
+msgid "Hourly"
+msgstr "Každú Hodinu"
+
+msgid "Daily"
+msgstr "Denne"
+
+msgid "Monthly"
+msgstr "Mesačne"
+
+msgid "interface"
+msgstr "rozhranie"
+
+msgid "date"
+msgstr "dátum"
+
+msgid "Send MB"
+msgstr "Odoslaných MB"
+
+msgid "Receive MB"
+msgstr "Prijatých MB"
+
+msgid "Information provided by vnstat"
+msgstr "Informácie poskytnuté cez vnstat"
+
+msgid "Loading {0} bandwidth chart"
+msgstr "Načítava sa {0} graf šírky pásma"
+
+msgid "Showing {0} to {1} of {2} entries"
+msgstr "Zobrazuje sa {0} až {1} z {2} záznamov"
+
+#: includes/openvpn.php
+msgid "OpenVPN is not running"
+msgstr "OpenVPN nie je zapnuté"
+
+msgid "OpenVPN is running"
+msgstr "OpenVPN je zapnuté"
+
+msgid "Server settings"
+msgstr "Nastavenia servera"
+
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Vyberte konfiguračný súbor OpenVPN (.ovpn)"
+
+msgid "Client Log"
+msgstr "Záznam Klienta"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Protocol"
+msgstr "Protokol"
+
+msgid "Root CA certificate"
+msgstr "Certifikát CA"
+
+msgid "Server certificate"
+msgstr "Certifikát servera"
+
+msgid "Diffie Hellman parameters"
+msgstr "Diffie Hellman parametre"
+
+msgid "KeepAlive"
+msgstr "KeepAlive"
+
+msgid "Server log"
+msgstr "Logy servera"
+
+msgid "Start OpenVPN"
+msgstr "Spustiť OpenVPN"
+
+msgid "Stop OpenVPN"
+msgstr "Vypnúť OpenVPN"
+
+msgid "Information provided by openvpn"
+msgstr "Informácie poskytnuté cez openvpn"
+
+msgid "Attempting to start openvpn"
+msgstr "Spúšťam openvpn"
+
+msgid "Attempting to stop openvpn"
+msgstr "Vypínam openvpn"
+
+msgid "Configurations"
+msgstr "Konfigurácie"
+
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Aktuálne dostupné konfigurácie klienta OpenVPN sú zobrazené nižšie."
+
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Aktivácia konfigurácie spôsobí reštart služby <code>openvpn-client</code>."
+
+msgid "Delete OpenVPN client"
+msgstr "Zmazať OpenVPN klienta"
+
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Zmazať konfiguráciu klienta? Táto akcia nemôže byť vrátená späť."
+
+msgid "Activate OpenVPN client"
+msgstr "Aktivovať OpenVPN klienta"
+
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Aktivovať konfiguráciu klienta? Týmto sa reštartuje služba openvpn-client."
+
+msgid "Activate"
+msgstr "Aktivovať"
+
+msgid "Cancel"
+msgstr "Zrušiť"
+
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Povoľte túto možnosť na zaznamenávanie aktivity <code>openvpn</code>."
+
+msgid "Authentification Method"
+msgstr "Metóda Autentifikácie"
+
+msgid "Username and password"
+msgstr "Používateľské meno a heslo"
+
+msgid "Certificates"
+msgstr "Certifikáty"
+
+msgid "Enter username and password"
+msgstr "Zadajte používateľské meno a heslo"
+
+msgid "Certificates in the configuration file"
+msgstr "Certifikáty v konfiguračnom súbore"
+
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP podporuje certifikáty zahrnutím ich do konfiguračného súboru."
+
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Podpisová certifikačná autorita (CA) certifikátov (napr. <code>ca.crt</code>): zahrnutý v značkách <code>&lt;ca> ... &lt;/ca></code>."
+
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Klientský certifikát (verejný kľúč) (napr. <code>client.crt</code>): zahrnutý v značkách <code>&lt;cert> ... &lt;/cert></code>."
+
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Súkromný kľúč klientského certifikátu (napr. <code>client.key</code>): zahrnutý v značkách <code>&lt;key> ... &lt;/key></code>."
+
+msgid "Configuration File"
+msgstr "Konfiguračný Súbor"
+
+#: includes/torproxy.php
+msgid "TOR is not running"
+msgstr "TOR je vypnutý"
+
+msgid "TOR is running"
+msgstr "TOR je zapnutý"
+
+msgid "Relay"
+msgstr "Relé"
+
+msgid "Relay settings"
+msgstr "Nastavenia relé"
+
+msgid "Nickname"
+msgstr "Prezývka"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Start TOR"
+msgstr "Zapnúť TOR"
+
+msgid "Stop TOR"
+msgstr "Vypnúť TOR"
+
+msgid "Information provided by tor"
+msgstr "Informácie poskytnuté cez tor"
+
+msgid "Attempting to start TOR"
+msgstr "Spúšťam TOR"
+
+msgid "Attempting to stop TOR"
+msgstr "Vypínam TOR"
+
+#: template/dashboard.php
+msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
+msgstr "Režim mostového prístupového bodu (Bridged AP) je povolený. Pre názov hostiteľa a IP adresu pozrite administrátorskú stránku vášho routeru."
+
+#: common form controls
+msgid "Save settings"
+msgstr "Uložiť nastavenia"
+
+msgid "Refresh"
+msgstr "Obnoviť"
+
+msgid "running"
+msgstr "spustené"
+
+msgid "stopped"
+msgstr "vypnuté"
+
+msgid "Remove"
+msgstr "Odstrániť"
+
+msgid "up"
+msgstr "beží"
+
+msgid "down"
+msgstr "dole"
+
+msgid "Clear log"
+msgstr "Vyčistiť záznam"
+
+msgid "adblock"
+msgstr "adblock"
+
+msgid "Ad Blocking"
+msgstr "Blokovanie Reklám"
+
+msgid "Start Ad Blocking"
+msgstr "Spustiť Blokovanie Reklám"
+
+msgid "Restart Ad Blocking"
+msgstr "Reštartovať Blokovanie Reklám"
+
+msgid "Blocklist settings"
+msgstr "Nastavenia zoznamu blokovaných"
+
+msgid "Enable blocklists"
+msgstr "Povoliť zoznam zablokovaných"
+
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Povoľte túto možnosť, ak chcete, aby RaspAP <b>blokovalo DNS požiadavky na reklamy, sledovanie a ďalší virtuálny odpad</b>. Zoznamy blokovacích pravidiel sa zhromažďujú z viacerých aktívne udržiavaných zdrojov a denne sa automaticky aktualizujú, čistia, optimalizujú a moderujú."
+
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "Táto možnosť pridá <code>conf-file</code> a <code>addn-hosts</code> do konfigurácie dnsmasq."
+
+msgid "Choose a blocklist provider"
+msgstr "Vyberte poskytovateľa blokovacieho listu"
+
+msgid "Hostnames blocklist last updated"
+msgstr "Posledná aktualizácia zoznamu blokovaných názvov hostiteľov"
+
+msgid "Domains blocklist last updated"
+msgstr "Posledná aktualizácia zoznamu blokovaných domén"
+
+msgid "Update now"
+msgstr "Aktualizovať"
+
+msgid "Statistics"
+msgstr "Štatistiky"
+
+msgid "Information provided by adblock"
+msgstr "Informácie poskytnuté od adblock"
+
+msgid "Enable custom blocklist"
+msgstr "Povoliť vlastný blokovací list"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Definujte vlastné hostiteľské názvy, ktoré majú byť blokované, zadajte IPv4 alebo IPv6 adresu a za nimi akýkoľvek biely znak (medzery alebo tabulátory) a názov hostiteľa."
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 príklad:</b> 0.0.0.0 badhost.com"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Táto možnosť pridáva direktívu <code>addn-hosts</code> do konfigurácie dnsmasq."
+
+msgid "Custom blocklist not defined"
+msgstr "Nie je definovaný vlastný zoznam blokovaných"
+
+msgid "Invalid custom IP address found on line "
+msgstr "Bola nájdená neplatná vlastná IP adresa na riadku "
+
+msgid "Invalid custom host found on line "
+msgstr "Bol nájdený neplatný vlastný hostiteľ na riadku "
+
+msgid "Tunnel settings"
+msgstr "Nastavenia tunela"
+
+msgid "Configuration Method"
+msgstr "Spôsob Konfigurácie"
+
+msgid "Upload file"
+msgstr "Nahrať súbor"
+
+msgid "Create manually"
+msgstr "Vytvoriť manuálne"
+
+msgid "Upload a WireGuard config"
+msgstr "Nahrať konfiguračný súbor WireGuard"
+
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "Táto možnosť nahrá a nainštaluje existujúci súbor <code>.conf</code> pre WireGuard na tomto zariadení."
+
+msgid "Apply iptables rules for AP interface"
+msgstr "Aplikovať pravidlá iptables pre rozhranie prístupového bodu"
+
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
+msgstr "Odporúčané, ak chcete preposielať dátový tok z rozhrania wg0 na klientov pripojených cez rozhranie prístupového bodu."
+
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
+msgstr "Táto možnosť pridáva <strong>iptables</strong> pravidlá <code>Postup</code> a <code>PostDown</code> pre nakonfigurované rozhranie AP (%s)."
+
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "Vyberte konfiguračný súbor WireGuard (.conf)"
+
+msgid "Create a local WireGuard config"
+msgstr "Vytvoriť lokálny konfiguračný súbor WireGuard"
+
+msgid "Enable server"
+msgstr "Povoliť server"
+
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "Povoľte túto možnosť na zabezpečenie sieťového prevodu vytvorením šifrovaného tunela medzi RaspAP a nakonfigurovanými uzlami."
+
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "Táto nastavenie vytvorí nový súbor <code>.conf</code> pre WireGuard na tomto zariadení."
+
+msgid "Local public key"
+msgstr "Lokálny verejný kľúč"
+
+msgid "Local Port"
+msgstr "Lokálny Port"
+
+msgid "IP Address"
+msgstr "IP Adresa"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Peer"
+msgstr "Uzol"
+
+msgid "Enable peer"
+msgstr "Povoliť uzol"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Povoľte túto možnosť na zašifrovanie prevádzky vytvorením tunela medzi RaspAP a týmto uzlom."
+
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "Táto možnosť pridá súbor <code>client.conf</code> do konfigurácie WireGuard."
+
+msgid "Peer public key"
+msgstr "Verejný kľúč uzla"
+
+msgid "Endpoint address"
+msgstr "Adresa koncového bodu"
+
+msgid "Allowed IPs"
+msgstr "Povolené IP adresy"
+
+msgid "Persistent keepalive"
+msgstr "Perzistentný keepalive"
+
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Povoľte túto možnosť na zobrazenie aktualizovaného debugovacieho protokolu <code>wg-quick</code>."
+
+msgid "WireGuard debug log updated"
+msgstr "Aktualizovaný debugovací protokol WireGuard"
+
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Naskenujte tento QR kód so svojím zariadením aby ste sa pripojili k tomuto tunelu"
+
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "alebo stiahnite súbor <code>client.conf</code> na vaše zariadenie."
+
+msgid "Download"
+msgstr "Stiahnuť"
+
+msgid "Start WireGuard"
+msgstr "Spustiť WireGuard"
+
+msgid "Stop WireGuard"
+msgstr "Vypnúť WireGuard"
+
+msgid "Information provided by wireguard"
+msgstr "Informácie poskytnuté cez wireguard"
+
+msgid "Attempting to start WireGuard"
+msgstr "Spúšťam WireGuard"
+
+msgid "Attempting to stop WireGuard"
+msgstr "Ukončujem WireGuard"
+
+msgid "WireGuard configuration updated successfully"
+msgstr "Konfigurácia WireGuard bola úspešne aktualizovaná"
+
+msgid "WireGuard configuration failed to be updated"
+msgstr "Aktualizácia konfigurácie WireGuard zlyhala"
+
+msgid "Client Firewall"
+msgstr "Firewall Klienta"
+
+msgid "Firewall is ENABLED"
+msgstr "Firewall je POVOLENÝ"
+
+msgid "Firewall is OFF"
+msgstr "Firewall je VYPNUTÝ"
+
+msgid "The default firewall will only allow outgoing and already established traffic."
+msgstr "Predvolené nastavenia firewallu budú povoľovať iba odchádzajúci a už naviazaný sieťový prevod."
+
+msgid "No incoming UDP traffic is allowed."
+msgstr "Nie je povolená prichádzajúca UDP sieťová prevádzka."
+
+msgid "There are no restrictions for the access point <code>%s</code>."
+msgstr "Nie sú žiadne obmedzenia pre prístupový bod <code>%s</code>."
+
+msgid "Exception: Service"
+msgstr "Výnimka: Služba"
+
+msgid "allow SSH access on port 22"
+msgstr "povoliť SSH prístup cez port 22"
+
+msgid "allow access to the RaspAP GUI on port 80 or 443"
+msgstr "povoliť prístup k RaspAP GUI na porte 80 alebo 443"
+
+msgid "Allow incoming connections for some services from the internet side."
+msgstr "Povoliť prichádzajúce pripojenia pre niektoré služby zo strany internetu."
+
+msgid "Exception: network device"
+msgstr "Výnimka: sieťové zariadenie"
+
+msgid "Exclude device(s)"
+msgstr "Vylúčiť zariadenie(-ia)"
+
+msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+msgstr "Vylúčiť zadané sieťové zariadenie(-ia) (oddelené medzerou alebo čiarkou) z pravidiel firewallu."
+
+msgid "Current client devices: <code>%s</code>"
+msgstr "Aktuálne pripojené zariadenia klienta: <code>%s</code>"
+
+msgid "The access point <code>%s</code> is per default excluded."
+msgstr "Prístupový bod <code>%s</code> je predvolene vylúčený."
+
+msgid "Exception: IP-Address"
+msgstr "Výnimka: IP Adresa"
+
+msgid "Allow incoming connections from"
+msgstr "Povoliť prichádzajúce pripojenia z"
+
+msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+msgstr "Pre zadané IP adresy (oddelené medzerou alebo čiarkou) sú pripojenia (cez TCP a UDP) akceptované."
+
+msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+msgstr "Toto je vyžadované pre OpenVPN cez UDP alebo WireGuard pripojenie."
+
+msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+msgstr "Zoznam nakonfigurovaných IP adries servera VPN: <code><b>%s</b></code>"
+
+msgid "Disable Firewall"
+msgstr "Vypnúť Firewall"
+
+msgid "Enable Firewall"
+msgstr "Zapnúť Firewall"
+
+msgid "Apply changes"
+msgstr "Použiť zmeny"
+

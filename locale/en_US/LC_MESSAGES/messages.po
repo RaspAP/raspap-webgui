@@ -464,6 +464,15 @@ msgstr "This option adds <code>dhcp-host</code> entries to the dnsmasq configura
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
 msgstr "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
 
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "Disable wpa_supplicant dhcp hook for this interface"
+
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Basic"
@@ -728,6 +737,9 @@ msgstr "Pi Revision"
 msgid "Uptime"
 msgstr "Uptime"
 
+msgid "System Time"
+msgstr "System Time"
+
 msgid "Memory Used"
 msgstr "Memory Used"
 
@@ -901,8 +913,8 @@ msgstr "Configurations"
 msgid "Currently available OpenVPN client configurations are displayed below."
 msgstr "Currently available OpenVPN client configurations are displayed below."
 
-msgid "Activating a configuraton will restart the <code>openvpn-client</code> service."
-msgstr "Activating a configuraton will restart the <code>openvpn-client</code> service."
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Activating a configuration will restart the <code>openvpn-client</code> service."
 
 msgid "Delete OpenVPN client"
 msgstr "Delete OpenVPN client"

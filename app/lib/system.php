@@ -40,10 +40,16 @@ class Sysinfo
         return $uptime;
     }
 
+    public function systime()
+    {
+        $systime = exec("date");
+        return $systime;
+    }
+
     public function usedMemory()
     {
         $used = shell_exec("free -m | awk 'NR==2{ total=$2 ; used=$3 } END { print used/total*100}'");
-        return floor($used);
+        return floor(intval($used));
     }
 
     public function processorCount()

@@ -64,7 +64,7 @@ function DisplayOpenVPNConfig()
             ftruncate($f, 0);
             fclose($f);
         }
-    } elseif (isset($_POST['log-openvpn']) || filesize('/tmp/openvpn.log') >0) {
+    } elseif (isset($_POST['log-openvpn']) || file_exists('/tmp/openvpn.log')) {
         $logEnable = 1;
         exec("sudo /etc/raspap/openvpn/openvpnlog.sh", $logOutput);
         $logOutput = file_get_contents('/tmp/openvpn.log');

@@ -52,11 +52,15 @@ function mask2cidr($mask)
  */
 function cidr2mask($cidr)
 {
-    $ta = substr ($cidr, strpos ($cidr, '/') + 1) * 1;
-    $netmask = str_split (str_pad (str_pad ('', $ta, '1'), 32, '0'), 8);
-    foreach ($netmask as &$element)
-      $element = bindec ($element);
-    return join ('.', $netmask);
+    $ipParts = explode('/', $cidr);
+    $ip = $ipParts[0];
+    $prefixLength = $ipParts[1];
+
+    $ipLong = ip2long($ip);
+    $netmaskLong = bindec(str_pad(str_repeat('1', $prefixLength), 32, '0'));
+    $netmask = long2ip(intval($netmaskLong));
+
+    return $netmask;
 }
 
 /**
@@ -314,23 +318,23 @@ function CSRFMetaTag()
  */
 function CSRFValidate()
 {
-    $post_token   = $_POST['csrf_token'];
-    $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'];
+    if(isset($_POST['csrf_token'])) {
+        $post_token   = $_POST['csrf_token'];
+        $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'];
 
-    if (empty($post_token) && empty($header_token)) {
-        return false;
-    }
-
-    $request_token = $post_token;
-    if (empty($post_token)) {
-        $request_token = $header_token;
-    }
-
-    if (hash_equals($_SESSION['csrf_token'], $request_token)) {
-        return true;
-    } else {
-        error_log('CSRF violation');
-        return false;
+        if (empty($post_token) && empty($header_token)) {
+            return false;
+        }
+        $request_token = $post_token;
+        if (empty($post_token)) {
+            $request_token = $header_token;
+        }
+        if (hash_equals($_SESSION['csrf_token'], $request_token)) {
+            return true;
+        } else {
+            error_log('CSRF violation');
+            return false;
+        }
     }
 }
 
@@ -426,8 +430,9 @@ function ParseConfig($arrConfig)
             continue;
         }
 
-        list($option, $value) = array_map("trim", explode("=", $line, 2));
-
+        if (strpos($line, "=") !== false) {
+            list($option, $value) = array_map("trim", explode("=", $line, 2));
+        }
         if (empty($config[$option])) {
             $config[$option] = $value ?: true;
         } else {
@@ -680,8 +685,10 @@ function getColorOpt()
 }
 function getSidebarState()
 {
-    if ($_COOKIE['sidebarToggled'] == 'true' ) {
-        return"toggled";
+    if(isset($_COOKIE['sidebarToggled'])) {
+        if ($_COOKIE['sidebarToggled'] == 'true' ) {
+            return "toggled";
+        }
     }
 }
 

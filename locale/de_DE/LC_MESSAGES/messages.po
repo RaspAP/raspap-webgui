@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2023-02-22 08:17\n"
+"PO-Revision-Date: 2023-06-22 05:56\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -433,8 +433,8 @@ msgstr "Format"
 msgid "Choose a hosted server"
 msgstr "Gehosteten Server auswählen"
 
-msgid "Enable these options to log DHCP server activity."
-msgstr "Aktivieren Sie diese Optionen, um die DHCP-Serveraktivität zu protokollieren."
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Diese Optionen Aktivieren <code>dhcpcd</code> und <code>dnsmasq</code> Logging."
 
 msgid "Log DHCP requests"
 msgstr "DHCP-Anfragen protokollieren"
@@ -485,8 +485,8 @@ msgstr "Sicherheitstyp"
 msgid "Encryption Type"
 msgstr "Verschlüsselungstyp"
 
-msgid "Pre-shared key (PSK)"
-msgstr "Pre-Shared-Key (PSK)"
+msgid "PSK"
+msgstr "PSK"
 
 msgid "Advanced settings"
 msgstr "Erweiterte Einstellungen"
@@ -606,7 +606,7 @@ msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
 msgstr "QR-Code direkt scannen oder %s %sein Zeichen drucken%s für die Benutzer."
 
 msgid "Printable Wi-Fi sign"
-msgstr ""
+msgstr "Printable Wi-Fi sign"
 
 msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
 msgstr "Um sich mit dem Telefon oder Tablet zu verbinden, den obigen QR-Code mit der Kamera-App scannen."
@@ -616,6 +616,21 @@ msgstr "Für andere Geräte die Anmeldedaten unten verwenden."
 
 msgid "Network"
 msgstr "Netzwerk"
+
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "Die ausgewählte Schnittstelle (%s) unterstützt nur das 2,4 GHz Band."
+
+msgid "The selected interface (%s) has support for the 2.5 GHz wireless band only."
+msgstr "Die ausgewählte Schnittstelle (%s) unterstützt nur das 2,4 GHz Band."
+
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "Die ausgewählte Schnittstelle (%s) unterstützt das 2,4 und 5 GHz Band."
+
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "Die ausgewählte Schnittstelle (%s) hat kein drahtloses Interface."
+
+msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
+msgstr "Die 5 GHz Option ist deaktiviert, bis eine kompatible Domain gesetzt ist."
 
 #: includes/networking.php
 msgid "Summary"
@@ -711,6 +726,12 @@ msgstr "Fehler beim Speichern der Netzwerkkonfiguration"
 msgid "Unable to detect interface"
 msgstr "Schnittstelle kann nicht gefunden werden"
 
+msgid "Routing table"
+msgstr "Routingtabelle"
+
+msgid "raw output"
+msgstr "Raw Output"
+
 #: includes/system.php
 msgid "System Information"
 msgstr "Systeminformationen"
@@ -762,6 +783,12 @@ msgstr "Port des Webservers"
 
 msgid "Web server bind address"
 msgstr "Webserver Bindungsadresse"
+
+msgid "OS"
+msgstr "Betriebssystem"
+
+msgid "Kernel"
+msgstr "Kernel"
 
 #: includes/themes.php
 msgid "Theme settings"
@@ -877,7 +904,7 @@ msgstr "Einstellungen"
 msgid "Currently available OpenVPN client configurations are displayed below."
 msgstr "Derzeit verfügbare OpenVPN-Client-Konfigurationen werden unten angezeigt."
 
-msgid "Activating a configuraton will restart the <code>openvpn-client</code> service."
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
 msgstr "Die Aktivierung einer Konfiguration startet den Dienst <code>openvpn-client</code> neu."
 
 msgid "Delete OpenVPN client"
@@ -990,6 +1017,9 @@ msgstr "oben"
 
 msgid "down"
 msgstr "unten"
+
+msgid "Clear log"
+msgstr "Log löschen"
 
 msgid "adblock"
 msgstr "Werbesperre"
