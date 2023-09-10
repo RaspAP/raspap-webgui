@@ -3,23 +3,15 @@
 // Support for dark theme
 theme = getCookie('theme');
 if (theme == 'lightsout.css') {
-  var bgColor1 = '#141414';
-  var bgColor2 = '#141414';
   var borderColor = 'rgba(37, 153, 63, 1)';
   var labelColor = 'rgba(37, 153, 63, 1)';
 } else if (theme == 'material-light.php') {
-  var bgColor1 = 'rgba(255, 255, 255, 0.5)';
-  var bgColor2 = 'rgba(0, 0, 0, 0.5)';
   var borderColor = '#f2f2fb';
   var labelColor = '#f2f2fb';
 } else if (theme == 'material-dark.php') {
-  var bgColor1 = 'rgba(255, 255, 255, 0.5)';
-  var bgColor2 = 'rgba(0, 0, 0, 0.5)';
   var borderColor = '#f2f2fb';
   var labelColor = '#f2f2fb';
 } else {
-  var bgColor1 = '#d4edda';
-  var bgColor2 = '#eaecf4';
   var borderColor = 'rgba(147, 210, 162, 1)';
   var labelColor = 'rgba(130, 130, 130, 1)';
 }
@@ -27,7 +19,7 @@ if (theme == 'lightsout.css') {
 let data1 = {
   datasets: [{
     data: [linkQ, 100-linkQ],
-    backgroundColor: [bgColor1, bgColor2],
+    backgroundColor: 'transparent',
     borderColor: borderColor,
   }],
 };
