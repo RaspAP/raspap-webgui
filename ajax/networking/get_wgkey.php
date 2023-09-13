@@ -5,7 +5,8 @@ require_once '../../includes/config.php';
 
 $entity = $_POST['entity'];
 
-if (isset($entity)) {
+// Validate and sanitize the entity name
+if (isset($entity)) && preg_match('/^[a-zA-Z0-9_-]+$/', $entity)){
    
     // generate public/private key pairs for entity
     $pubkey = RASPI_WIREGUARD_PATH.$entity.'-public.key';
