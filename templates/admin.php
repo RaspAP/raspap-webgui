@@ -25,7 +25,7 @@
               <div class="input-group">
                 <input type="password" class="form-control" name="oldpass"/>
                 <div class="input-group-append">
-				  <button class="btn btn-light js-toggle-password" type="button" data-target="[name=oldpass]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
+                  <button class="btn btn-light js-toggle-password" type="button" data-target="[name=oldpass]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
                 </div>
               </div>
             </div>
@@ -36,7 +36,7 @@
               <div class="input-group">
                 <input type="password" class="form-control" name="newpass"/>
                 <div class="input-group-append">
-				  <button class="btn btn-light js-toggle-password" type="button" data-target="[name=newpass]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
+                  <button class="btn btn-light js-toggle-password" type="button" data-target="[name=newpass]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
                 </div>
               </div>
             </div>
@@ -47,7 +47,7 @@
               <div class="input-group">
                 <input type="password" class="form-control" name="newpassagain"/>
                 <div class="input-group-append">
-				  <button class="btn btn-light js-toggle-password" type="button" data-target="[name=newpassagain]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
+                  <button class="btn btn-light js-toggle-password" type="button" data-target="[name=newpassagain]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
                 </div>
               </div>
             </div>
