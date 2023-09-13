@@ -2,9 +2,13 @@
 
 require_once 'includes/status_messages.php';
 
-function DisplayAuthConfig($username, $password)
+function DisplayAuthConfig($username)
 {
     $status = new StatusMessages();
+    $auth = new \RaspAP\Authenticate\HTTPAuth;
+    $config = $auth->getAuthConfig();
+    $password = $config['admin_pass'];
+
     if (isset($_POST['UpdateAdminPassword'])) {
         if (password_verify($_POST['oldpass'], $password)) {
             $new_username=trim($_POST['username']);
@@ -33,5 +37,10 @@ function DisplayAuthConfig($username, $password)
         }
     }
 
-    echo renderTemplate("admin", compact("status", "username"));
+    echo renderTemplate(
+        "admin", compact(
+            "status",
+            "username"
+        )
+    );
 }

@@ -668,6 +668,7 @@ function getThemeOpt()
 {
     if (!isset($_COOKIE['theme'])) {
         $theme = "custom.php";
+        setcookie('theme', $theme);
     } else {
         $theme = $_COOKIE['theme'];
     }
@@ -680,6 +681,7 @@ function getColorOpt()
         $color = "#2b8080";
     } else {
         $color = $_COOKIE['color'];
+        setcookie('color', $color);
     }
     return $color;
 }
@@ -737,7 +739,7 @@ function validate_host($host)
 // @return boolean
 function getNightmode()
 {
-    if ($_COOKIE['theme'] == 'lightsout.css') {
+    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'lightsout.css') {
         return true;
     } else {
         return false;

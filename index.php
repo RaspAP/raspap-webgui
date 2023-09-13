@@ -27,8 +27,8 @@ require 'includes/csrf.php';
 ensureCSRFSessionToken();
 
 require_once 'includes/config.php';
+require_once 'app/lib/Auth.php';
 require_once 'includes/defaults.php';
-require_once RASPI_CONFIG.'/raspap.php';
 require_once 'includes/locale.php';
 require_once 'includes/functions.php';
 require_once 'includes/dashboard.php';
@@ -47,7 +47,6 @@ require_once 'includes/openvpn.php';
 require_once 'includes/wireguard.php';
 require_once 'includes/torproxy.php';
 
-$config = getConfig();
 $output = $return = 0;
 $page = $_SERVER['PATH_INFO'];
 
@@ -232,7 +231,7 @@ $bridgedEnabled = getBridgedState();
           <!-- Nav Item - User -->
           <li class="nav-item dropdown no-arrow">
           <a class="nav-link" href="auth_conf">
-            <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($config['admin_user'], ENT_QUOTES); ?></span>
+            <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($_SESSION['user_id'], ENT_QUOTES); ?></span>
             <i class="fas fa-user-circle fa-3x"></i>
           </a>
           </li>
@@ -276,7 +275,7 @@ $bridgedEnabled = getBridgedState();
             DisplayTorProxyConfig();
             break;
         case "/auth_conf":
-            DisplayAuthConfig($config['admin_user'], $config['admin_pass']);
+            DisplayAuthConfig($_SESSION['user_id']);
             break;
         case "/save_hostapd_conf":
             SaveTORAndVPNConfig();

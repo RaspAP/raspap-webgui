@@ -3,12 +3,6 @@
 require '../../includes/csrf.php';
 
 require_once '../../includes/config.php';
-require_once RASPI_CONFIG.'/raspap.php';
-
-header('X-Frame-Options: DENY');
-header("Content-Security-Policy: default-src 'none'; connect-src 'self'");
-require_once '../../includes/authenticate.php';
-
 
 $interface = filter_input(INPUT_GET, 'inet', FILTER_SANITIZE_SPECIAL_CHARS);
 if (empty($interface)) {
