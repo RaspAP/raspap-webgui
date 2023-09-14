@@ -18,7 +18,8 @@ function createNetmaskAddr(bitCount) {
 }
 
 function loadSummary(strInterface) {
-    $.post('ajax/networking/get_ip_summary.php',{interface:strInterface},function(data){
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/networking/get_ip_summary.php',{'interface': strInterface, 'csrf_token': csrfToken},function(data){
         jsonData = JSON.parse(data);
         if(jsonData['return'] == 0) {
             $('#'+strInterface+'-summary').html(jsonData['output'].join('<br />'));
@@ -419,11 +420,12 @@ function loadChannelSelect(selected) {
 function setHardwareModeTooltip() {
     var iface = $('#cbxinterface').val();
     var hwmodeText = '';
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
     // Explanatory text if 802.11ac is disabled
     if ($('#cbxhwmode').find('option[value="ac"]').prop('disabled') == true ) {
         var hwmodeText = $('#hwmode').attr('data-tooltip');
     }
-    $.post('ajax/networking/get_frequencies.php?',{'interface': iface},function(data){
+    $.post('ajax/networking/get_frequencies.php?',{'interface': iface, 'csrf_token': csrfToken},function(data){
         var responseText = JSON.parse(data);
         $('#tiphwmode').attr('data-original-title', responseText + '\n' + hwmodeText );
     });
