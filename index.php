@@ -8,7 +8,7 @@
  * Recommended distribution is Raspberry Pi OS (64-bit) Lite. Specific instructions to install the supported software are
  * in the README and original post by @SirLagz. For a quick run through, the packages required for the WebGUI are:
  * lighttpd (version 1.4.59 installed via apt)
- * php-cgi (version 7.4.28 installed via apt)
+ * php-cgi (version 7.4.33 installed via apt)
  * along with their supporting packages, php7.3 will also need to be enabled.
  *
  * @author  Lawrence Yau <sirlagz@gmail.com>
