@@ -47,14 +47,9 @@ require_once 'includes/openvpn.php';
 require_once 'includes/wireguard.php';
 require_once 'includes/torproxy.php';
 
-$output = $return = 0;
-$page = $_SERVER['PATH_INFO'];
-
-$theme_url = getThemeOpt();
-$toggleState = getSidebarState();
-$bridgedEnabled = getBridgedState();
-
-?><!DOCTYPE html>
+initializeApp();
+?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -85,8 +80,7 @@ $bridgedEnabled = getBridgedState();
     <link href="dist/raspap/css/style.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
-    <link href="<?php echo $theme_url; ?>" title="main" rel="stylesheet">
-
+    <link href="<?php echo $_SESSION["theme_url"]; ?>" title="main" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="app/icons/favicon.png?ver=2.0">
     <link rel="apple-touch-icon" sizes="180x180" href="app/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="app/icons/favicon-32x32.png">
@@ -108,101 +102,8 @@ $bridgedEnabled = getBridgedState();
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-      <ul class="navbar-nav sidebar sidebar-light d-none d-md-block accordion <?php echo (isset($toggleState)) ? $toggleState : null ; ?>" id="accordionSidebar">
-        <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="wlan0_info">
-          <div class="sidebar-brand-text ml-1"><?php echo RASPI_BRAND_TEXT; ?></div>
-        </a>
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-        <div class="row">
-          <div class="col-xs ml-3 sidebar-brand-icon">
-            <img src="app/img/raspAP-logo.php" class="navbar-logo" width="64" height="64">
-          </div>
-          <div class="col-xs ml-2">
-            <div class="ml-1">Status</div>
-            <div class="info-item-xs"><span class="icon">
-              <i class="fas fa-circle <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
-            </div>
-            <div class="info-item-xs"><span class="icon">
-              <i class="fas fa-circle <?php echo ($memused_led); ?>"></i></span> <?php echo _("Memory Use").': '. htmlspecialchars($memused, ENT_QUOTES); ?>%
-            </div>
-            <div class="info-item-xs"><span class="icon">
-              <i class="fas fa-circle <?php echo ($cputemp_led); ?>"></i></span> <?php echo _("CPU Temp").': '. htmlspecialchars($cputemp, ENT_QUOTES); ?>°C
-            </div>
-          </div>
-        </div>
-        <li class="nav-item">
-          <a class="nav-link" href="wlan0_info"><i class="fas fa-tachometer-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
-        </li>
-          <?php if (RASPI_HOTSPOT_ENABLED) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="hostapd_conf"><i class="far fa-dot-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("Hotspot"); ?></a>
-        </li>
-          <?php endif; ?>
-          <?php if (RASPI_DHCP_ENABLED && !$bridgedEnabled) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="dhcpd_conf"><i class="fas fa-exchange-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("DHCP Server"); ?></a>
-        </li>
-          <?php endif; ?>
-          <?php if (RASPI_ADBLOCK_ENABLED && !$bridgedEnabled) : ?>
-        <li class="nav-item">
-           <a class="nav-link" href="adblock_conf"><i class="far fa-hand-paper fa-fw mr-2"></i><span class="nav-label"><?php echo _("Ad Blocking"); ?></a>
-        </li>
-          <?php endif; ?>
-          <?php if (RASPI_NETWORK_ENABLED) : ?>
-        <li class="nav-item">
-           <a class="nav-link" href="network_conf"><i class="fas fa-network-wired fa-fw mr-2"></i><span class="nav-label"><?php echo _("Networking"); ?></a>
-        </li> 
-          <?php endif; ?>
-          <?php if (RASPI_WIFICLIENT_ENABLED && !$bridgedEnabled) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="wpa_conf"><i class="fas fa-wifi fa-fw mr-2"></i><span class="nav-label"><?php echo _("WiFi client"); ?></span></a>
-        </li>
-          <?php endif; ?>
-          <?php if (RASPI_OPENVPN_ENABLED) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="openvpn_conf"><i class="fas fa-key fa-fw mr-2"></i><span class="nav-label"><?php echo _("OpenVPN"); ?></a>
-        </li>
-          <?php endif; ?>
-          <?php if (RASPI_WIREGUARD_ENABLED) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="wg_conf"><span class="ra-wireguard mr-2"></span><span class="nav-label"><?php echo _("WireGuard"); ?></a>
-        </li>
-          <?php endif; ?>
-          <?php if (RASPI_TORPROXY_ENABLED) : ?>
-        <li class="nav-item">
-           <a class="nav-link" href="torproxy_conf"><i class="fas fa-eye-slash fa-fw mr-2"></i><span class="nav-label"><?php echo _("TOR proxy"); ?></a>
-        </li>
-          <?php endif; ?>
-          <?php if (RASPI_CONFAUTH_ENABLED) : ?>
-        <li class="nav-item">
-        <a class="nav-link" href="auth_conf"><i class="fas fa-user-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Authentication"); ?></a>
-        </li>
-          <?php endif; ?>
-          <?php if (RASPI_VNSTAT_ENABLED) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="data_use"><i class="fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
-        </li>
-          <?php endif; ?>
-            <?php if (RASPI_SYSTEM_ENABLED) : ?>
-          <li class="nav-item">
-          <a class="nav-link" href="system_info"><i class="fas fa-cube fa-fw mr-2"></i><span class="nav-label"><?php echo _("System"); ?></a>
-          </li>
-            <?php endif; ?>
-         <li class="nav-item">
-          <a class="nav-link" href="about"><i class="fas fa-info-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("About RaspAP"); ?></a>
-        </li>
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-block">
-          <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
-
-    </ul>
-    <!-- End of Sidebar -->
+      <?php require_once 'includes/sidebar.php'; ?>
+      <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -210,89 +111,11 @@ $bridgedEnabled = getBridgedState();
     <!-- Main Content -->
     <div id="content">
       <!-- Topbar -->
-      <nav class="navbar navbar-expand navbar-light topbar mb-1 static-top">
-        <!-- Sidebar Toggle (Topbar) -->
-        <button id="sidebarToggleTopbar" class="btn btn-link d-md-none rounded-circle mr-3">
-          <i class="fa fa-bars"></i>
-        </button>
-        <!-- Topbar Navbar -->
-        <p class="text-left brand-title mt-3 ml-2"></p>
-        <ul class="navbar-nav ml-auto">
-          <!-- Nav Item - Insiders -->
-          <div class="insiders mt-4">
-            <a href="https://docs.raspap.com/insiders" target="blank"><i class="fas fa-heart mr-3" style="color: #e63946"></i></a>
-          </div>
-          <!-- Nav Item - Night mode -->
-          <div class="custom-control custom-switch mt-4">
-            <input type="checkbox" class="custom-control-input" id="night-mode" <?php echo getNightmode() ? 'checked' : null ; ?> >
-            <label class="custom-control-label" for="night-mode"><i class="far fa-moon mr-1 text-muted"></i></label>
-          </div>
-          <div class="topbar-divider d-none d-sm-block"></div>
-          <!-- Nav Item - User -->
-          <li class="nav-item dropdown no-arrow">
-          <a class="nav-link" href="auth_conf">
-            <span class="mr-2 d-none d-lg-inline small"><?php echo htmlspecialchars($_SESSION['user_id'], ENT_QUOTES); ?></span>
-            <i class="fas fa-user-circle fa-3x"></i>
-          </a>
-          </li>
-        </ul>
-      </nav>
+      <?php require_once 'includes/navbar.php'; ?>
       <!-- End of Topbar -->
       <!-- Begin Page Content -->
       <div class="container-fluid">
-      <?php
-        $extraFooterScripts = array();
-        // handle page actions
-        switch ($page) {
-        case "/wlan0_info":
-            DisplayDashboard($extraFooterScripts);
-            break;
-        case "/dhcpd_conf":
-            DisplayDHCPConfig();
-            break;
-        case "/wpa_conf":
-            DisplayWPAConfig();
-            break;
-        case "/network_conf":
-            DisplayNetworkingConfig();
-            break;
-        case "/hostapd_conf":
-            DisplayHostAPDConfig();
-            break;
-        case "/adblock_conf":
-            DisplayAdBlockConfig();
-            break;
-        case "/openvpn_conf":
-            DisplayOpenVPNConfig();
-            break;
-        case "/wg_conf":
-            DisplayWireGuardConfig();
-            break;
-        case "/torproxy_conf":
-            DisplayTorProxyConfig();
-            break;
-        case "/torproxy_conf":
-            DisplayTorProxyConfig();
-            break;
-        case "/auth_conf":
-            DisplayAuthConfig($_SESSION['user_id']);
-            break;
-        case "/save_hostapd_conf":
-            SaveTORAndVPNConfig();
-            break;
-        case "/data_use":
-            DisplayDataUsage($extraFooterScripts);
-            break;
-        case "/system_info":
-            DisplaySystem($extraFooterScripts);
-            break;
-        case "/about":
-            DisplayAbout();
-            break;
-        default:
-            DisplayDashboard($extraFooterScripts);
-        }
-        ?>
+      <?php require_once 'includes/page_actions.php'; ?>
       </div><!-- /.container-fluid -->
     </div><!-- End of Main Content -->
     <!-- Footer -->

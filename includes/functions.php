@@ -664,6 +664,13 @@ function formatDateAgo($datetime, $full = false)
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
+function initializeApp()
+{
+    $_SESSION["theme_url"] = getThemeOpt();
+    $_SESSION["toggleState"] = getSidebarState();
+    $_SESSION["bridgedEnabled"] = getBridgedState();
+}
+
 function getThemeOpt()
 {
     if (!isset($_COOKIE['theme'])) {
