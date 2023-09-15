@@ -13,7 +13,7 @@
             DisplayWPAConfig();
             break;
         case "/network_conf":
-            DisplayNetworkingConfig($extraFooterScripts);
+            DisplayNetworkingConfig();
             break;
         case "/hostapd_conf":
             DisplayHostAPDConfig();
@@ -29,12 +29,6 @@
             break;
         case "/torproxy_conf":
             DisplayTorProxyConfig();
-            break;
-        case "/firewall_conf":
-            DisplayFirewallConfig();
-            break;
-        case "/ddclient_conf":
-            DisplayDDClientConfig();
             break;
         case "/auth_conf":
             DisplayAuthConfig($_SESSION['user_id']);
@@ -54,4 +48,5 @@
         default:
             DisplayDashboard($extraFooterScripts);
         }
-        ?>
+      ?>
+

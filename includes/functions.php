@@ -819,3 +819,15 @@ function getTooltip($msg, $id, $visible = true, $data_html = false)
     echo '<i class="fas fa-question-circle text-muted ' .$opt1.'" id="' .$id. '" data-toggle="tooltip" ' .$opt2. ' data-placement="auto" title="' . _($msg). '"></i>';
 }
 
+// Load non default JS/ECMAScript in footer
+function loadFooterScripts($extraFooterScripts)
+{
+    foreach ($extraFooterScripts as $script) {
+        echo '<script type="text/javascript" src="' , $script['src'] , '"';
+        if ($script['defer']) {
+            echo ' defer="defer"';
+        }
+        echo '></script>' , PHP_EOL;
+    }
+}
+

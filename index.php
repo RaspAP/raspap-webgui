@@ -4,12 +4,12 @@
  * Raspbian WiFi Configuration Portal (RaspAP)
  *
  * Simple AP setup & WiFi management for Debian-based devices.
- * Enables use of simple web interface rather than SSH to control WiFi and related services  on the Raspberry Pi.
+ * Enables use of simple web interface rather than SSH to control WiFi and related services on the Raspberry Pi.
  * Recommended distribution is Raspberry Pi OS (64-bit) Lite. Specific instructions to install the supported software are
  * in the README and original post by @SirLagz. For a quick run through, the packages required for the WebGUI are:
  * lighttpd (version 1.4.59 installed via apt)
  * php-cgi (version 7.4.33 installed via apt)
- * along with their supporting packages, php7.3 will also need to be enabled.
+ * along with their supporting packages, php7.4 will also need to be enabled.
  *
  * @author  Lawrence Yau <sirlagz@gmail.com>
  * @author  Bill Zimmerman <billzimmerman@gmail.com>
@@ -104,30 +104,28 @@ initializeApp();
       <!-- Sidebar -->
       <?php require_once 'includes/sidebar.php'; ?>
       <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-    <!-- Main Content -->
-    <div id="content">
-      <!-- Topbar -->
-      <?php require_once 'includes/navbar.php'; ?>
-      <!-- End of Topbar -->
-      <!-- Begin Page Content -->
-      <div class="container-fluid">
-      <?php require_once 'includes/page_actions.php'; ?>
-      </div><!-- /.container-fluid -->
-    </div><!-- End of Main Content -->
-    <!-- Footer -->
-    <footer class="sticky-footer bg-grey-100">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span></span>
-        </div>
-      </div>
-    </footer>
-    <!-- End Footer -->
-    </div><!-- End of Content Wrapper -->
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          <?php require_once 'includes/navbar.php'; ?>
+          <!-- End of Topbar -->
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+          <?php require_once 'includes/page_actions.php'; ?>
+          </div><!-- /.container-fluid -->
+        </div><!-- End of Main Content -->
+        <!-- Footer -->
+        <footer class="sticky-footer bg-grey-100">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span></span>
+            </div>
+          </div>
+        </footer>
+        <!-- End Footer -->
+      </div><!-- End of Content Wrapper -->
     </div><!-- End of Page Wrapper -->
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top" style="display: inline;">
@@ -152,15 +150,6 @@ initializeApp();
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js"></script>
 
-    <?php
-    // Load non default JS/ECMAScript in footer.
-    foreach ($extraFooterScripts as $script) {
-        echo '<script type="text/javascript" src="' , $script['src'] , '"';
-        if ($script['defer']) {
-            echo ' defer="defer"';
-        }
-        echo '></script>' , PHP_EOL;
-    }
-    ?>
+    <?php loadFooterScripts($extraFooterScripts); ?>
   </body>
 </html>
