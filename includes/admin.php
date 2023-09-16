@@ -5,7 +5,7 @@ require_once 'includes/status_messages.php';
 function DisplayAuthConfig($username)
 {
     $status = new StatusMessages();
-    $auth = new \RaspAP\Authenticate\HTTPAuth;
+    $auth = new \RaspAP\Auth\HTTPAuth;
     $config = $auth->getAuthConfig();
     $password = $config['admin_pass'];
 

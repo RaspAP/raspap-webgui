@@ -112,7 +112,7 @@ function SaveWireGuardUpload($status, $file, $optRules)
             throw new RuntimeException('Invalid parameters');
         }
 
-        $upload = \RaspAP\Uploader\Upload::factory('wg',$tmp_destdir);
+        $upload = \RaspAP\Uploader\FileUpload::factory('wg',$tmp_destdir);
         $upload->set_max_file_size(64*KB);
         $upload->set_allowed_mime_types(array('text/plain'));
         $upload->file($file);

@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace RaspAP\Authenticate;
+namespace RaspAP\Auth;
 
 class HTTPAuth
 {

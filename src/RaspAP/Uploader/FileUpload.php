@@ -3,8 +3,6 @@
 /**
  * Simple PHP upload class
  *
- * Adapted from aivis/PHP-file-upload-class
- *
  * @description File upload class for RaspAP
  * @author      Bill Zimmerman <billzimmerman@gmail.com>
  * @author      Aivis Silins
@@ -14,7 +12,7 @@
 
 namespace RaspAP\Uploader;
 
-class Upload
+class FileUpload
 {
 
     /**
@@ -110,7 +108,7 @@ class Upload
      */
     public static function factory($destination, $root = false)
     {
-        return new Upload($destination, $root);
+        return new FileUpload($destination, $root);
     }
 
     /**

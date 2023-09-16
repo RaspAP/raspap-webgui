@@ -3,7 +3,6 @@
 require_once 'includes/status_messages.php';
 require_once 'includes/config.php';
 require_once 'includes/wifi_functions.php';
-require_once 'app/lib/uploader.php';
 
 getWifiInterface();
 
@@ -109,7 +108,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
             throw new RuntimeException('Invalid parameters');
         }
 
-        $upload = \RaspAP\Uploader\Upload::factory('ovpn',$tmp_destdir);
+        $upload = \RaspAP\Uploader\FileUpload::factory('ovpn',$tmp_destdir);
         $upload->set_max_file_size(64*KB);
         $upload->set_allowed_mime_types(array('ovpn' => 'text/plain'));
         $upload->file($file);

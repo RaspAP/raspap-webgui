@@ -1,7 +1,6 @@
 <?php
 
 require_once 'status_messages.php';
-require_once 'app/lib/system.php';
 require_once 'includes/wifi_functions.php';
 require_once 'includes/config.php';
 
