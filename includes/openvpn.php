@@ -1,6 +1,5 @@
 <?php
 
-require_once 'includes/status_messages.php';
 require_once 'includes/config.php';
 require_once 'includes/wifi_functions.php';
 
@@ -11,7 +10,7 @@ getWifiInterface();
  */
 function DisplayOpenVPNConfig()
 {
-    $status = new StatusMessages();
+    $status = new \RaspAP\Messages\StatusMessage;
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveOpenVPNSettings'])) {
             if (isset($_POST['authUser'])) {

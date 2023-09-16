@@ -1,6 +1,5 @@
 <?php
 
-require_once 'includes/status_messages.php';
 require_once 'includes/internetRoute.php';
 
 /**
@@ -9,8 +8,7 @@ require_once 'includes/internetRoute.php';
  */
 function DisplayNetworkingConfig()
 {
-
-    $status = new StatusMessages();
+    $status = new \RaspAP\Messages\StatusMessage;
 
     exec("ls /sys/class/net | grep -v lo", $interfaces);
     $routeInfo = getRouteInfo(true);

@@ -1,7 +1,5 @@
 <?php
 
-require_once 'includes/status_messages.php';
-
 /**
  * Manage Tor Proxy configuration
  */
