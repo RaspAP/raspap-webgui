@@ -1,6 +1,5 @@
 <?php
 
-require_once 'includes/status_messages.php';
 require_once 'config.php';
 
 /**
@@ -9,7 +8,7 @@ require_once 'config.php';
  */
 function DisplayAdBlockConfig()
 {
-    $status = new StatusMessages();
+    $status = new \RaspAP\Messages\StatusMessage;
     $enabled = false;
     $custom_enabled = false;
 

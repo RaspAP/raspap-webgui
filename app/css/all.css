@@ -228,3 +228,8 @@ button > i.fas {
   pointer-events: none;
 }
 
+.close {
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+

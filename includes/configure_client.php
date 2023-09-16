@@ -1,6 +1,5 @@
 <?php
 
-require_once 'includes/status_messages.php';
 require_once 'includes/wifi_functions.php';
 
 /**
@@ -9,7 +8,7 @@ require_once 'includes/wifi_functions.php';
  */
 function DisplayWPAConfig()
 {
-    $status = new StatusMessages();
+    $status = new \RaspAP\Messages\StatusMessage;
     $networks = [];
 
     getWifiInterface();

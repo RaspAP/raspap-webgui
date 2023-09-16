@@ -1,6 +1,5 @@
 <?php
 
-require_once 'includes/status_messages.php';
 require_once 'config.php';
 
 /**
@@ -8,7 +7,7 @@ require_once 'config.php';
  */
 function DisplayWireGuardConfig()
 {
-    $status = new StatusMessages();
+    $status = new \RaspAP\Messages\StatusMessage;
     if (!RASPI_MONITOR_ENABLED) {
         $optRules     = $_POST['wgRules'];
         $optConf      = $_POST['wgCnfOpt'];
@@ -112,7 +111,7 @@ function SaveWireGuardUpload($status, $file, $optRules)
             throw new RuntimeException('Invalid parameters');
         }
 
-        $upload = \RaspAP\Uploader\Upload::factory('wg',$tmp_destdir);
+        $upload = \RaspAP\Uploader\FileUpload::factory('wg',$tmp_destdir);
         $upload->set_max_file_size(64*KB);
         $upload->set_allowed_mime_types(array('text/plain'));
         $upload->file($file);

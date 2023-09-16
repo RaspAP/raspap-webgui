@@ -18,7 +18,8 @@ function createNetmaskAddr(bitCount) {
 }
 
 function loadSummary(strInterface) {
-    $.post('ajax/networking/get_ip_summary.php',{interface:strInterface},function(data){
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/networking/get_ip_summary.php',{'interface': strInterface, 'csrf_token': csrfToken},function(data){
         jsonData = JSON.parse(data);
         if(jsonData['return'] == 0) {
             $('#'+strInterface+'-summary').html(jsonData['output'].join('<br />'));
@@ -122,21 +123,24 @@ $(document).on("click", "#gen_wpa_passphrase", function(e) {
 });
 
 $(document).on("click", "#js-clearhostapd-log", function(e) {
-    $.post('ajax/logging/clearlog.php?',{'logfile':'/tmp/hostapd.log'},function(data){
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/logging/clearlog.php?',{'logfile':'/tmp/hostapd.log', 'csrf_token': csrfToken},function(data){
         jsonData = JSON.parse(data);
         $("#hostapd-log").val("");
     });
 });
 
 $(document).on("click", "#js-cleardnsmasq-log", function(e) {
-    $.post('ajax/logging/clearlog.php?',{'logfile':'/var/log/dnsmasq.log'},function(data){
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/logging/clearlog.php?',{'logfile':'/var/log/dnsmasq.log', 'csrf_token': csrfToken},function(data){
         jsonData = JSON.parse(data);
         $("#dnsmasq-log").val("");
     });
 });
 
 $(document).on("click", "#js-clearopenvpn-log", function(e) {
-    $.post('ajax/logging/clearlog.php?',{'logfile':'/tmp/openvpn.log'},function(data){
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/logging/clearlog.php?',{'logfile':'/tmp/openvpn.log', 'csrf_token': csrfToken},function(data){
         jsonData = JSON.parse(data);
         $("#openvpn-log").val("");
     });
@@ -286,7 +290,8 @@ $('#configureClientModal').on('shown.bs.modal', function (e) {
 
 $('#ovpn-confirm-delete').on('click', '.btn-delete', function (e) {
     var cfg_id = $(this).data('recordId');
-    $.post('ajax/openvpn/del_ovpncfg.php',{'cfg_id':cfg_id},function(data){
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/openvpn/del_ovpncfg.php',{'cfg_id':cfg_id, 'csrf_token': csrfToken},function(data){
         jsonData = JSON.parse(data);
         $("#ovpn-confirm-delete").modal('hide');
         var row = $(document.getElementById("openvpn-client-row-" + cfg_id));
@@ -303,7 +308,8 @@ $('#ovpn-confirm-delete').on('show.bs.modal', function (e) {
 
 $('#ovpn-confirm-activate').on('click', '.btn-activate', function (e) {
     var cfg_id = $(this).data('record-id');
-    $.post('ajax/openvpn/activate_ovpncfg.php',{'cfg_id':cfg_id},function(data){
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/openvpn/activate_ovpncfg.php',{'cfg_id':cfg_id, 'csrf_token': csrfToken},function(data){
         jsonData = JSON.parse(data);
         $("#ovpn-confirm-activate").modal('hide');
         setTimeout(function(){
@@ -419,11 +425,12 @@ function loadChannelSelect(selected) {
 function setHardwareModeTooltip() {
     var iface = $('#cbxinterface').val();
     var hwmodeText = '';
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
     // Explanatory text if 802.11ac is disabled
     if ($('#cbxhwmode').find('option[value="ac"]').prop('disabled') == true ) {
         var hwmodeText = $('#hwmode').attr('data-tooltip');
     }
-    $.post('ajax/networking/get_frequencies.php?',{'interface': iface},function(data){
+    $.post('ajax/networking/get_frequencies.php?',{'interface': iface, 'csrf_token': csrfToken},function(data){
         var responseText = JSON.parse(data);
         $('#tiphwmode').attr('data-original-title', responseText + '\n' + hwmodeText );
     });
@@ -435,10 +442,11 @@ function setHardwareModeTooltip() {
  */
 function updateBlocklist() {
     var blocklist_id = $('#cbxblocklist').val();
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
     if (blocklist_id == '') { return; }
     $('#cbxblocklist-status').find('i').removeClass('fas fa-check').addClass('fas fa-cog fa-spin');
     $('#cbxblocklist-status').removeClass('check-hidden').addClass('check-progress');
-    $.post('ajax/adblock/update_blocklist.php',{ 'blocklist_id':blocklist_id },function(data){
+    $.post('ajax/adblock/update_blocklist.php',{ 'blocklist_id':blocklist_id, 'csrf_token': csrfToken},function(data){
         var jsonData = JSON.parse(data);
         if (jsonData['return'] == '0') {
             $('#cbxblocklist-status').find('i').removeClass('fas fa-cog fa-spin').addClass('fas fa-check');
@@ -457,7 +465,8 @@ $('.wg-keygen').click(function(){
     var entity_pub = $(this).parent('div').prev('input[type="text"]');
     var entity_priv = $(this).parent('div').next('input[type="hidden"]');
     var updated = entity_pub.attr('name')+"-pubkey-status";
-    $.post('ajax/networking/get_wgkey.php',{'entity':entity_pub.attr('name') },function(data){
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/networking/get_wgkey.php',{'entity':entity_pub.attr('name'), 'csrf_token': csrfToken},function(data){
         var jsonData = JSON.parse(data);
         entity_pub.val(jsonData.pubkey);
         $('#' + updated).removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);

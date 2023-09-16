@@ -21,20 +21,35 @@
           </div>
           <div class="row">
             <div class="form-group col-md-6">
-              <label for="password"><?php echo _("Old password"); ?></label>
-              <input type="password" class="form-control" name="oldpass"/>
+              <div class="mb-2"><?php echo _("Old password"); ?></div>
+              <div class="input-group">
+                <input type="password" class="form-control" name="oldpass"/>
+                <div class="input-group-append">
+                  <button class="btn btn-light js-toggle-password" type="button" data-target="[name=oldpass]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-6">
-              <label for="password"><?php echo _("New password"); ?></label>
-              <input type="password" class="form-control" name="newpass"/>
+              <div class="mb-2"><?php echo _("New password"); ?></div>
+              <div class="input-group">
+                <input type="password" class="form-control" name="newpass"/>
+                <div class="input-group-append">
+                  <button class="btn btn-light js-toggle-password" type="button" data-target="[name=newpass]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
+                </div>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-6">
-              <label for="password"><?php echo _("Repeat new password"); ?></label>
-              <input type="password" class="form-control" name="newpassagain"/>
+              <div class="mb-2"><?php echo _("Repeat new password"); ?></div>
+              <div class="input-group">
+                <input type="password" class="form-control" name="newpassagain"/>
+                <div class="input-group-append">
+                  <button class="btn btn-light js-toggle-password" type="button" data-target="[name=newpassagain]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
+                </div>
+              </div>
             </div>
           </div>
           <input type="submit" class="btn btn-outline btn-primary" name="UpdateAdminPassword" value="<?php echo _("Save settings"); ?>" />

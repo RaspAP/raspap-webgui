@@ -664,10 +664,18 @@ function formatDateAgo($datetime, $full = false)
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
+function initializeApp()
+{
+    $_SESSION["theme_url"] = getThemeOpt();
+    $_SESSION["toggleState"] = getSidebarState();
+    $_SESSION["bridgedEnabled"] = getBridgedState();
+}
+
 function getThemeOpt()
 {
     if (!isset($_COOKIE['theme'])) {
         $theme = "custom.php";
+        setcookie('theme', $theme);
     } else {
         $theme = $_COOKIE['theme'];
     }
@@ -680,6 +688,7 @@ function getColorOpt()
         $color = "#2b8080";
     } else {
         $color = $_COOKIE['color'];
+        setcookie('color', $color);
     }
     return $color;
 }
@@ -737,7 +746,7 @@ function validate_host($host)
 // @return boolean
 function getNightmode()
 {
-    if ($_COOKIE['theme'] == 'lightsout.css') {
+    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'lightsout.css') {
         return true;
     } else {
         return false;
@@ -808,5 +817,17 @@ function getTooltip($msg, $id, $visible = true, $data_html = false)
     ($visible) ? $opt1 = 'visible' : $opt1 = 'invisible';
     ($data_html) ? $opt2 = 'data-html="true"' : $opt2 = 'data-html="false"';
     echo '<i class="fas fa-question-circle text-muted ' .$opt1.'" id="' .$id. '" data-toggle="tooltip" ' .$opt2. ' data-placement="auto" title="' . _($msg). '"></i>';
+}
+
+// Load non default JS/ECMAScript in footer
+function loadFooterScripts($extraFooterScripts)
+{
+    foreach ($extraFooterScripts as $script) {
+        echo '<script type="text/javascript" src="' , $script['src'] , '"';
+        if ($script['defer']) {
+            echo ' defer="defer"';
+        }
+        echo '></script>' , PHP_EOL;
+    }
 }
 

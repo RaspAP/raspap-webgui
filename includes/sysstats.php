@@ -1,7 +1,5 @@
 <?php
 
-require_once 'app/lib/system.php';
-
 $system = new \RaspAP\System\Sysinfo;
 
 $hostname = $system->hostname();

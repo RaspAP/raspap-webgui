@@ -1,5 +1,16 @@
 <?php
-class StatusMessages
+
+/**
+ * Status message class
+ *
+ * @description Status message class for RaspAP
+ * @author      Bill Zimmerman <billzimmerman@gmail.com>
+ * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
+ */
+
+namespace RaspAP\Messages;
+
+class StatusMessage
 {
     public $messages = array();
 

@@ -1,14 +1,9 @@
 <?php
 
-require_once 'status_messages.php';
-require_once 'app/lib/system.php';
 require_once 'includes/wifi_functions.php';
 require_once 'includes/config.php';
 
 getWifiInterface();
-
-$system = new \RaspAP\System\Sysinfo;
-$os = $system->operatingSystem();
 
 /**
  * Initialize hostapd values, display interface
@@ -16,7 +11,7 @@ $os = $system->operatingSystem();
  */
 function DisplayHostAPDConfig()
 {
-    $status = new StatusMessages();
+    $status = new \RaspAP\Messages\StatusMessage;
     $system = new \RaspAP\System\Sysinfo;
     $operatingSystem = $system->operatingSystem();
     $arrConfig = array();
