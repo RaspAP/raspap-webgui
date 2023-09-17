@@ -144,6 +144,9 @@ function DisplaySystem(&$extraFooterScripts)
         "material-light" => "material-light.php"
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
+    if (strpos($_COOKIE['theme'],'material') !== false) {
+        $selectedTheme = 'material-light';
+    }
 
     $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
     $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
