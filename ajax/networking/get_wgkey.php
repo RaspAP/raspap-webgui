@@ -3,7 +3,7 @@
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
 
-$entity = $_POST['entity'];
+$entity = escapeshellcmd($_POST['entity']);
 
 if (isset($entity)) {
    
