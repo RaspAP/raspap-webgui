@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2022-01-05 11:43\n"
+"PO-Revision-Date: 2023-09-17 15:33\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -147,31 +147,31 @@ msgid "Not configured"
 msgstr "환결설정 안됨"
 
 msgid "Connected"
-msgstr ""
+msgstr "연결됨"
 
 msgid "Known"
 msgstr ""
 
 msgid "Nearby"
-msgstr ""
+msgstr "근처"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>주의:</strong> WEP 접근점은 'Open'으로 표시됩니다. RaspAP은 현재 WEP 연결을 지원하지 않습니다"
 
 msgid "No Wifi stations found"
-msgstr ""
+msgstr "Wifi 스테이션을 찾을 수 없습니다."
 
 msgid "Reinitializing wpa_supplicant"
-msgstr ""
+msgstr "wpa_supplicant 재초기화"
 
 msgid "Click 'Rescan' to search for nearby Wifi stations."
-msgstr ""
+msgstr "근처 Wifi 스테이션을 검색하려면 '재검색'을 클릭하세요."
 
 msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
-msgstr ""
+msgstr "<code>wpa_supplicant</code>를 강제로 다시 초기화하려면 '재 초기화'를 클릭하십시오."
 
 msgid "Reinitialize"
-msgstr ""
+msgstr "재초기화"
 
 #: includes/dashboard.php
 msgid "Interface Information"
@@ -268,58 +268,58 @@ msgid "Connected Devices"
 msgstr "연결된 디바이스 "
 
 msgid "Client: Ethernet cable"
-msgstr ""
+msgstr "클라이언트: 이더넷 케이블"
 
 msgid "Ethernet"
-msgstr ""
+msgstr "이더넷"
 
 msgid "Client: Smartphone (USB tethering)"
-msgstr ""
+msgstr "클라이언트: 스마트폰(USB 테더링)"
 
 msgid "Smartphone"
-msgstr ""
+msgstr "스마트폰"
 
 msgid "WiFi"
-msgstr ""
+msgstr "WiFi"
 
 msgid "Mobile Data Client"
-msgstr ""
+msgstr "모바일 데이터 클라이언트"
 
 msgid "Mobile Data"
-msgstr ""
+msgstr "모바일 데이터"
 
 msgid "No information available"
-msgstr ""
+msgstr "사용 가능한 정보 없음"
 
 msgid "Interface name invalid"
-msgstr ""
+msgstr "인터페이스 이름이 잘못되었습니다."
 
 msgid "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
-msgstr ""
+msgstr "필수 실행 기능이 비활성화되었습니다. exec가 php <code>disable_functions</code>에 추가되지 않았는지 확인하십시오."
 
 msgid "Waiting for the interface to start ..."
-msgstr ""
+msgstr "인터페이스가 시작되기를 기다리는 중..."
 
 msgid "Stop the Interface"
-msgstr ""
+msgstr "인터페이스 중지"
 
 msgid "Connection mode"
-msgstr ""
+msgstr "연결 모드"
 
 msgid "Signal quality"
-msgstr ""
+msgstr "신호 품질"
 
 msgid "WAN IP"
-msgstr ""
+msgstr "WAN IP"
 
 msgid "Web-GUI"
-msgstr ""
+msgstr "웹-GUI"
 
 msgid "Signal strength"
-msgstr ""
+msgstr "신호 강도"
 
 msgid "No Client device or not yet configured"
-msgstr ""
+msgstr "클라이언트 장치가 없거나 아직 구성되지 않았습니다."
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
@@ -368,7 +368,7 @@ msgid "MAC Address"
 msgstr "MAC 주소"
 
 msgid "Optional comment"
-msgstr ""
+msgstr "추가 코멘트"
 
 msgid "Host name"
 msgstr "호스트명"
@@ -419,49 +419,58 @@ msgid "Only ever query DNS servers configured below"
 msgstr "아래에 구성된 DNS 서버 만 쿼리합니다."
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr ""
+msgstr "RaspAP가 <b>아래에 구성된 서버에만 DNS 쿼리를 보내도록</b> 하려면 이 옵션을 활성화하십시오. 기본적으로 RaspAP는 업스트림 DHCP 서버의 이름 서버도 사용합니다."
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "이 옵션은 dnsmasq 구성에 <code>no-resolv</code>를 추가합니다."
 
 msgid "Add upstream DNS server"
-msgstr ""
+msgstr "업스트림 DNS 서버 추가"
 
 msgid "Format"
 msgstr "규격"
 
 msgid "Choose a hosted server"
-msgstr ""
+msgstr "호스팅 서버 선택"
 
-msgid "Enable these options to log DHCP server activity."
-msgstr ""
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "<code>dhcpcd</code> 및 <code>dnsmasq</code> 활동을 기록하려면 이 옵션을 활성화하세요."
 
 msgid "Log DHCP requests"
-msgstr ""
+msgstr "DHCP 요청 로그"
 
 msgid "Log DNS queries"
-msgstr ""
+msgstr "DNS 쿼리 로그"
 
 msgid "Restrict access"
-msgstr ""
+msgstr "액세스 제한"
 
 msgid "Limit network access to static clients"
-msgstr ""
+msgstr "정적(static) 클라이언트에 대한 네트워크 액세스 제한"
 
 msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
-msgstr ""
+msgstr "RaspAP가 정적 임대 목록에 지정되지 않은 <b>모든 클라이언트를 무시</b>하도록 하려면 이 옵션을 활성화하십시오."
 
 msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "이 옵션은 dnsmasq 구성에 <code>dhcp-ignore</code>를 추가합니다."
 
 msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
-msgstr ""
+msgstr "특정 하드웨어 MAC 주소를 가진 클라이언트는 항상 동일한 IP 주소를 할당받을 수 있습니다."
 
 msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
-msgstr ""
+msgstr "이 옵션은 dnsmasq 구성에 <code>dhcp-host</code> 항목을 추가합니다."
 
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
-msgstr ""
+msgstr "이렇게 하면 DHCPCD 구성에서 이 인터페이스에 대한 <code>gateway</code>/<code>nogateway</code> 옵션이 전환됩니다."
+
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr "러면 DHCPCD 구성에서 이 인터페이스에 대한 <code>nohook wpa_supplicant</code> 옵션이 전환됩니다."
+
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "이 인터페이스에 대해 wpa_supplicant dhcp 후크를 비활성화합니다."
+
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "wpa_supplicant 자체로 무선 연결을 관리하는 경우 후크가 원치 않는 연결 이벤트를 생성할 수 있습니다. 이 옵션은 후크를 비활성화합니다."
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -485,8 +494,8 @@ msgstr "보안 유형 "
 msgid "Encryption Type"
 msgstr "암호화 유형"
 
-msgid "PSK"
-msgstr "PSK (암호키)"
+msgid "Pre-shared key (PSK)"
+msgstr "사전 공유 키(PSK)"
 
 msgid "Advanced settings"
 msgstr "고급 설정 "
@@ -555,41 +564,89 @@ msgid "Maximum number of clients"
 msgstr "클라이언트 최대 개수"
 
 msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr ""
+msgstr "hostapd의 <code>max_num_sta</code> 옵션을 구성합니다. 기본값 및 최대값은 2007입니다. 비어 있거나 0이면 기본값이 적용됩니다."
 
 msgid "Beacon interval"
-msgstr ""
+msgstr "비콘 간격"
 
 msgid "Disable <code>disassoc_low_ack</code>"
-msgstr ""
+msgstr "<code>비활성화</code>"
 
 msgid "Do not disassociate stations based on excessive transmission failures."
-msgstr ""
+msgstr "과도한 transmission 고장으로 인해 스테이션을 분리하지 마십시오."
 
 msgid "Executing RaspAP service start"
-msgstr ""
+msgstr "RaspAP 서비스 시작 실행"
 
 msgid "Close"
 msgstr "닫기"
 
 msgid "Enable this option to log <code>hostapd</code> activity."
-msgstr ""
+msgstr "<code>hostapd</code> 활동을 기록하려면 이 옵션을 활성화합니다."
 
 msgid "Transmit power (dBm)"
-msgstr ""
+msgstr "송신 전력 (dBm)"
 
 msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
-msgstr ""
+msgstr "AP 인터페이스 및 구성된 국가에 대한 <code>txpower</code> 옵션을 설정합니다."
 
 msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
-msgstr ""
+msgstr "dBm은 1밀리와트(mW) 를 기준으로 전력비를 데시벨(dB) 로 표시하는 데 사용되는 레벨 단위입니다. 30dBm은 1000mW이고 0dBm은 1.25mW입니다."
+
+msgid "WPA and WPA2"
+msgstr "WPA 및 WPA2"
+
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 및 WPA3-퍼스널 (전환 모드)"
+
+msgid "WPA3-Personal (required)"
+msgstr "WPA3-퍼스널 (WPA3-Personal)"
+
+msgid "Enabled (for supported clients)"
+msgstr "사용(지원되는 클라이언트용)"
+
+msgid "Required (for supported clients)"
+msgstr "필수(지원되는 클라이언트용)"
+
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "802.11w는 강력한 암호화 보호를 인증 해제, 연결 해제 및 특정 범주의 작업 관리 프레임을 포함하여 강력한 관리 프레임의 선택 세트로 확장합니다. 이를 통칭하여 MFP (관리 프레임 보호) 라고 합니다."
+
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "이 QR 코드를 직접 스캔하거나 사용자를 위해 %s %s인쇄%s하세요."
+
+msgid "Printable Wi-Fi sign"
+msgstr "인쇄 가능한 Wi-Fi 서명"
+
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "전화기 또는 태블릿에 연결하려면 카메라 앱으로 위의 QR 코드를 스캔하십시오."
+
+msgid "For other devices, use the login credentials below."
+msgstr "다른 장치의 경우 아래의 로그인 자격 증명을 사용합니다."
+
+msgid "Network"
+msgstr "네트워크"
+
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "선택한 인터페이스 (%s) 는 2.4GHz 무선 대역만 지원합니다."
+
+msgid "The selected interface (%s) has support for the 2.5 GHz wireless band only."
+msgstr "선택한 인터페이스 (%s) 는 2.5GHz 무선 대역만 지원합니다."
+
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "선택한 인터페이스 (%s) 는 2.4GHz 및 5GHz 무선 대역을 모두 지원합니다."
+
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "선택한 인터페이스 (%s) 는 무선 모드 작업을 지원하지 않습니다."
+
+msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
+msgstr "802.11ac 5GHz 옵션은 호환되는 무선 규제 도메인이 설정될 때까지 비활성화됩니다."
 
 #: includes/networking.php
 msgid "Summary"
 msgstr "요약 "
 
 msgid "Internet connection"
-msgstr ""
+msgstr "인터넷 연결"
 
 msgid "Current settings"
 msgstr "현재 설정"
@@ -619,7 +676,7 @@ msgid "Static IP Options"
 msgstr "고정 IP 옵션"
 
 msgid "Metric"
-msgstr ""
+msgstr "측정항목(Metric)"
 
 msgid "Apply settings"
 msgstr "설정 적용"
@@ -627,56 +684,95 @@ msgstr "설정 적용"
 msgid "Information provided by /sys/class/net"
 msgstr "/sys/class/net이 제공한 정보 "
 
-msgid "Network Devices"
-msgstr ""
+msgid "Devices"
+msgstr "디바이스"
 
-msgid "Mobile Data Settings"
-msgstr ""
+msgid "Diagnostics"
+msgstr "진단"
 
 msgid "Properties of network devices"
-msgstr ""
+msgstr "네트워크 장치의 속성"
 
 msgid "Device"
-msgstr ""
+msgstr "장치"
 
 msgid "MAC"
-msgstr ""
+msgstr "맥(MAC)"
 
 msgid "USB vid/pid"
-msgstr ""
+msgstr "USB vid/pid"
 
 msgid "Device type"
-msgstr ""
+msgstr "장치 유형"
 
 msgid "Fixed name"
-msgstr ""
+msgstr "고정 이름"
 
 msgid "Change"
-msgstr ""
+msgstr "변경"
 
 msgid "Settings for Mobile Data Devices"
-msgstr ""
+msgstr "모바일 데이터 장치 설정"
 
 msgid "PIN of SIM card"
-msgstr ""
+msgstr "SIM 카드의 PIN"
 
 msgid "APN Settings (Modem device ppp0)"
-msgstr ""
+msgstr "APN 설정(모뎀 장치 ppp0)"
 
 msgid "Access Point Name (APN)"
-msgstr ""
+msgstr "액세스 포인트 이름(APN)"
 
 msgid "Password"
-msgstr ""
+msgstr "비밀번호"
 
 msgid "Successfully Updated Network Configuration"
-msgstr ""
+msgstr "네트워크 구성을 성공적으로 업데이트했습니다."
 
 msgid "Error saving network configuration to file"
-msgstr ""
+msgstr "파일에 네트워크 구성을 저장하는 동안 오류가 발생했습니다."
 
 msgid "Unable to detect interface"
-msgstr ""
+msgstr "인터페이스를 감지할 수 없습니다."
+
+msgid "Routing table"
+msgstr "라우팅 테이블"
+
+msgid "raw output"
+msgstr "원시(raw) 출력"
+
+msgid "Speedtest"
+msgstr "속도테스트"
+
+msgid "Selecting a server"
+msgstr "서버를 선택하세요"
+
+msgid "Privacy"
+msgstr "개인정보"
+
+msgid "Server"
+msgstr "서버"
+
+msgid "ms"
+msgstr "밀리초(ms)"
+
+msgid "Mbps"
+msgstr "Mbps"
+
+msgid "Ping"
+msgstr "지연 시간(Ping)"
+
+msgid "Jitter"
+msgstr "지터(Jitter)"
+
+msgid "Upload"
+msgstr "업로드"
+
+msgid "Start"
+msgstr "시작"
+
+msgid "Abort"
+msgstr "중단"
 
 #: includes/system.php
 msgid "System Information"
@@ -706,6 +802,9 @@ msgstr "Pi 리비전"
 msgid "Uptime"
 msgstr "가동시간"
 
+msgid "System Time"
+msgstr "시스템 시간"
+
 msgid "Memory Used"
 msgstr "사용된 메모리"
 
@@ -730,7 +829,42 @@ msgstr "웹서버 포트"
 msgid "Web server bind address"
 msgstr "웹서버 바인드 주소"
 
-#: includes/themes.php
+msgid "OS"
+msgstr "OS"
+
+msgid "Kernel"
+msgstr "커널"
+
+msgid "System reset"
+msgstr "시스템 리셋"
+
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "RaspAP를 초기 구성으로 재설정하시겠습니까? 이 작업은 취소할 수 없습니다."
+
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "재설정이 완료되었습니다. 변경 사항을 적용하려면 핫스팟을 다시 시작하세요."
+
+msgid "System reset in progress..."
+msgstr "시스템 재설정 진행 중..."
+
+msgid "Reset"
+msgstr "리셋"
+
+msgid "Restore settings"
+msgstr "설정 복원"
+
+msgid "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
+msgstr "RaspAP를 <a href=\"%s\">초기 구성</a>으로 재설정하려면 아래 버튼을 클릭하거나 탭하세요."
+
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "광고 차단, WireGuard 또는 OpenVPN과 같은 선택적 구성 요소에 대한 사용자 정의 파일은 시스템에 유지됩니다."
+
+msgid "Perform reset"
+msgstr "초기화 수행"
+
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "모든 액세스 포인트(AP) 서비스 설정을 기본값으로 복원합니다. 이는 Hostapd, dhcpcd 및 dnsmasq에 적용됩니다."
+
 msgid "Theme settings"
 msgstr "테마 설정"
 
@@ -842,22 +976,22 @@ msgid "Configurations"
 msgstr "환경설정"
 
 msgid "Currently available OpenVPN client configurations are displayed below."
-msgstr ""
+msgstr "현재 사용 가능한 OpenVPN 클라이언트 구성이 아래에 표시됩니다."
 
 msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
-msgstr ""
+msgstr "구성을 활성화하면 <code>openvpn-client</code> 서비스가 다시 시작됩니다."
 
 msgid "Delete OpenVPN client"
-msgstr ""
+msgstr "OpenVPN 클라이언트 삭제"
 
 msgid "Delete client configuration? This cannot be undone."
-msgstr ""
+msgstr "클라이언트 구성을 삭제하시겠습니까? 이 취소 할 수 없습니다."
 
 msgid "Activate OpenVPN client"
-msgstr ""
+msgstr "OpenVPN 클라이언트 활성화"
 
 msgid "Activate client configuration? This will restart the openvpn-client service."
-msgstr ""
+msgstr "클라이언트 구성을 활성화하시겠습니까? 그러면 openvpn-client 서비스가 다시 시작됩니다."
 
 msgid "Activate"
 msgstr "활성화"
@@ -866,13 +1000,13 @@ msgid "Cancel"
 msgstr "취소"
 
 msgid "Enable this option to log <code>openvpn</code> activity."
-msgstr ""
+msgstr "<code>openvpn</code> 활동을 기록하려면 이 옵션을 활성화합니다."
 
 msgid "Authentification Method"
-msgstr ""
+msgstr "인증 방식"
 
 msgid "Username and password"
-msgstr ""
+msgstr "사용자 이름 및 암호"
 
 msgid "Certificates"
 msgstr "인증서"
@@ -884,16 +1018,16 @@ msgid "Certificates in the configuration file"
 msgstr "인증서의 구성파일"
 
 msgid "RaspAP supports certificates by including them in the configuration file."
-msgstr ""
+msgstr "RaspAP는 구성 파일에 인증서를 포함하여 인증서를 지원합니다."
 
 msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
-msgstr ""
+msgstr "서명 인증 기관(CA) 인증서(예: <code>ca.crt</code>): <code>&lt;ca> ... &lt;/ca></code> 태그로 묶입니다."
 
 msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
-msgstr ""
+msgstr "클라이언트 인증서(공개 키)(예: <code>client.crt</code>): <code>&lt;cert> ... &lt;/cert></code> 태그로 묶입니다."
 
 msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
-msgstr ""
+msgstr "클라이언트 인증서의 개인 키(예: <code>client.key</code>): <code>&lt;key> ... &lt;/key></code> 태그로 묶입니다."
 
 msgid "Configuration File"
 msgstr "설정 파일"
@@ -934,7 +1068,7 @@ msgstr "TOR 중지 시도 중입니다 "
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
-msgstr ""
+msgstr "브릿지(Bridged) AP 모드가 활성화되었습니다. 호스트 이름 및 IP는 라우터의 관리 페이지를 참조하십시오."
 
 #: common form controls
 msgid "Save settings"
@@ -958,6 +1092,9 @@ msgstr "작동"
 msgid "down"
 msgstr "다운"
 
+msgid "Clear log"
+msgstr "로그 삭제"
+
 msgid "adblock"
 msgstr "광고차단(adblock)"
 
@@ -977,19 +1114,19 @@ msgid "Enable blocklists"
 msgstr "차단리스트 활성화"
 
 msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr ""
+msgstr "RaspAP가 <b>광고, 추적 및 기타 가상 쓰레기(virtual garbage) 에 대한 DNS 요청을 차단</b>하도록 하려면 이 옵션을 활성화합니다. 차단 목록은 활발하게 유지 관리되는 여러 소스에서 수집되며 매일 자동으로 업데이트, 정리, 최적화 및 조정됩니다."
 
 msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "이 옵션은 dnsmasq 구성에 <code>conf-file</code> 및 <code>addn-hosts</code>를 추가합니다."
 
 msgid "Choose a blocklist provider"
-msgstr ""
+msgstr "차단 목록 공급자를 선택하십시오"
 
 msgid "Hostnames blocklist last updated"
-msgstr ""
+msgstr "마지막으로 업데이트된 호스트 이름 차단 목록"
 
 msgid "Domains blocklist last updated"
-msgstr ""
+msgstr "마지막으로 업데이트된 도메인 차단 목록(blocklist)"
 
 msgid "Update now"
 msgstr "지금 업데이트 시작"
@@ -998,70 +1135,70 @@ msgid "Statistics"
 msgstr "통계"
 
 msgid "Information provided by adblock"
-msgstr ""
+msgstr "애드블록에서 제공하는 정보"
 
 msgid "Enable custom blocklist"
-msgstr ""
+msgstr "사용자 지정 차단 목록(blocklist) 활성화"
 
 msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
-msgstr ""
+msgstr "IPv4 또는 IPv6 주소 뒤에 공백(공백 또는 탭) 과 호스트 이름을 입력하여 차단할 사용자 지정 호스트를 정의합니다."
 
 msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
-msgstr ""
+msgstr "<b>IPv4 예:</b> 0.0.0.0 badhost.com"
 
 msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
-msgstr ""
+msgstr "이 옵션은 dnsmasq 구성에 <code>addn-hosts</code> 지시문을 추가합니다."
 
 msgid "Custom blocklist not defined"
-msgstr ""
+msgstr "정의되지 않은 맞춤 차단 목록(blocklist)"
 
 msgid "Invalid custom IP address found on line "
-msgstr ""
+msgstr "이 행에 잘못된 사용자 정의 IP 주소 발견 "
 
 msgid "Invalid custom host found on line "
-msgstr ""
+msgstr "이 행에 잘못된 사용자 지정 호스트 주소 발견 "
 
 msgid "Tunnel settings"
-msgstr ""
+msgstr "터널 설정"
 
 msgid "Configuration Method"
-msgstr ""
+msgstr "구성 방법"
 
 msgid "Upload file"
-msgstr ""
+msgstr "파일 업로드"
 
 msgid "Create manually"
-msgstr ""
+msgstr "수동으로 만들기"
 
 msgid "Upload a WireGuard config"
-msgstr ""
+msgstr "WireGuard 구성(config) 업로드"
 
 msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
-msgstr ""
+msgstr "이 옵션은 이 장치에 기존 WireGuard <code>.conf</code> 파일을 업로드하고 설치합니다"
 
 msgid "Apply iptables rules for AP interface"
-msgstr ""
+msgstr "AP 인터페이스에 iptables 규칙 적용"
 
 msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
-msgstr ""
+msgstr "wg0 인터페이스에서 AP 인터페이스에 연결된 클라이언트로 네트워크 트래픽을 전달하려는 경우에 권장됩니다."
 
 msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
-msgstr ""
+msgstr "이 옵션은 구성된 AP 인터페이스(%s) 에 대한 <strong>iptables</strong> <code>Postup</code> 및 <code>PostDown</code> 규칙을 추가합니다."
 
 msgid "Select WireGuard configuration file (.conf)"
-msgstr ""
+msgstr "WireGuard 구성 파일(.conf) 선택"
 
 msgid "Create a local WireGuard config"
-msgstr ""
+msgstr "로컬 WireGuard 구성 만들기"
 
 msgid "Enable server"
 msgstr "활성화된 서버"
 
 msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
-msgstr ""
+msgstr "RaspAP와 구성된 피어 간에 암호화된 터널을 생성하여 네트워크 트래픽을 보호하려면 이 옵션을 활성화합니다."
 
 msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
-msgstr ""
+msgstr "이 설정은 이 장치에서 새 WireGuard <code>.conf</code> 파일을 생성합니다."
 
 msgid "Local public key"
 msgstr "로컬 공개키(public Key)"
@@ -1082,34 +1219,34 @@ msgid "Enable peer"
 msgstr "활성화된 피어"
 
 msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
-msgstr ""
+msgstr "RaspAP와 이 피어 사이에 터널을 만들어 트래픽을 암호화하려면 이 옵션을 활성화합니다."
 
 msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
-msgstr ""
+msgstr "이 옵션은 WireGuard 구성에 <code>client.conf</code>를 추가합니다."
 
 msgid "Peer public key"
 msgstr "피어 공개키(Public Key)"
 
 msgid "Endpoint address"
-msgstr ""
+msgstr "끝점(Endpoint) 주소"
 
 msgid "Allowed IPs"
-msgstr ""
+msgstr "허용된 IP"
 
 msgid "Persistent keepalive"
-msgstr ""
+msgstr "지속적 연결 유지(Persistent keepalive)"
 
 msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
-msgstr ""
+msgstr "업데이트된 <code>wg-quick</code> 디버그 로그를 표시하려면 이 옵션을 활성화하십시오."
 
 msgid "WireGuard debug log updated"
-msgstr ""
+msgstr "WireGuard 디버그 로그 업데이트됨"
 
 msgid "Scan this QR code with your client to connect to this tunnel"
-msgstr ""
+msgstr "클라이언트로 이 QR 코드를 스캔하여 이 터널에 연결하세요."
 
 msgid "or download the <code>client.conf</code> file to your device."
-msgstr ""
+msgstr "또는 <code>client.conf</code> 파일을 장치에 다운로드하십시오."
 
 msgid "Download"
 msgstr "다운로드"
@@ -1121,86 +1258,176 @@ msgid "Stop WireGuard"
 msgstr "WireGuard 정지"
 
 msgid "Information provided by wireguard"
-msgstr ""
+msgstr "wireguard에서 제공하는 정보"
 
 msgid "Attempting to start WireGuard"
-msgstr ""
+msgstr "WireGuard 시작 시도 중입니다"
 
 msgid "Attempting to stop WireGuard"
-msgstr ""
+msgstr "WireGuard 중지 시도 중입니다"
 
 msgid "WireGuard configuration updated successfully"
-msgstr ""
+msgstr "WireGuard 구성이 성공적으로 업데이트되었습니다."
 
 msgid "WireGuard configuration failed to be updated"
-msgstr ""
+msgstr "WireGuard 구성을 업데이트하지 못했습니다."
+
+msgid "Enable kill switch"
+msgstr "킬 스위치 활성화"
+
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured AP interface (%s)."
+msgstr "이 옵션은 구성된 AP 인터페이스 (%s) 에 대한 <strong>iptables</strong> <code>PostUp</code> 및 <code>PreDown</code> 규칙을 추가합니다."
+
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr "WireGuard가 아닌 인터페이스를 통해 암호화되지 않은 패킷의 흐름을 방지하려는 경우 권장됩니다."
+
+msgid "iptables rules added to WireGuard configuration"
+msgstr "WireGuard 구성에 iptables 규칙이 추가되었습니다."
+
+msgid "Existing iptables rules found in WireGuard configuration - not added"
+msgstr "WireGuard 구성에서 발견된 기존 iptables 규칙 - 추가되지 않음"
 
 msgid "Client Firewall"
-msgstr ""
+msgstr "클라이언트 방화벽"
 
 msgid "Firewall is ENABLED"
-msgstr ""
+msgstr "방화벽이 활성화됨"
 
 msgid "Firewall is OFF"
-msgstr ""
+msgstr "방화벽이 꺼져 있습니다."
 
 msgid "The default firewall will only allow outgoing and already established traffic."
-msgstr ""
+msgstr "기본 방화벽은 나가는 트래픽과 이미 설정된 트래픽만 허용합니다."
 
 msgid "No incoming UDP traffic is allowed."
-msgstr ""
+msgstr "수신 UDP 트래픽이 허용되지 않습니다."
 
 msgid "There are no restrictions for the access point <code>%s</code>."
-msgstr ""
+msgstr "액세스 포인트 <code>%s</code>에 대한 제한이 없습니다."
 
 msgid "Exception: Service"
-msgstr ""
+msgstr "예외: 서비스"
 
 msgid "allow SSH access on port 22"
-msgstr ""
+msgstr "포트 22에서 SSH 액세스 허용"
 
 msgid "allow access to the RaspAP GUI on port 80 or 443"
-msgstr ""
+msgstr "포트 80 또는 443에서 RaspAP GUI에 대한 액세스 허용"
 
 msgid "Allow incoming connections for some services from the internet side."
-msgstr ""
+msgstr "인터넷 측에서 일부 서비스에 대한 수신 연결을 허용합니다."
 
 msgid "Exception: network device"
-msgstr ""
+msgstr "예외: 네트워크 장치"
 
 msgid "Exclude device(s)"
-msgstr ""
+msgstr "장치 제외"
 
 msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-msgstr ""
+msgstr "방화벽 규칙에서 지정된 네트워크 장치(공백 또는 쉼표로 구분) 를 제외합니다."
 
 msgid "Current client devices: <code>%s</code>"
-msgstr ""
+msgstr "현재 클라이언트 장치: <code>%s</code>"
 
 msgid "The access point <code>%s</code> is per default excluded."
-msgstr ""
+msgstr "액세스 포인트 <code>%s</code>는 기본적으로 제외됩니다."
 
 msgid "Exception: IP-Address"
-msgstr ""
+msgstr "예외: IP 주소"
 
 msgid "Allow incoming connections from"
-msgstr ""
+msgstr "다음에서 들어오는 연결 허용"
 
 msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-msgstr ""
+msgstr "지정된 IP 주소(공백 또는 쉼표로 구분) 에 대해 들어오는 연결(TCP 및 UDP를 통해) 이 허용됩니다."
 
 msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-msgstr ""
+msgstr "이는 UDP 또는 Wireguard 연결을 통한 OpenVPN에 필요합니다."
 
 msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-msgstr ""
+msgstr "구성된 VPN 서버 IP 주소 목록: <code><b>%s</b></code>"
 
 msgid "Disable Firewall"
-msgstr ""
+msgstr "방화벽 비활성화"
 
 msgid "Enable Firewall"
-msgstr ""
+msgstr "방화벽 활성화"
 
 msgid "Apply changes"
-msgstr ""
+msgstr "변경 사항을 적용합니다"
+
+msgid "Dynamic DNS"
+msgstr "동적 DNS"
+
+msgid "Service provider"
+msgstr "서비스 제공 업체"
+
+msgid "Select a Dynamic DNS service supported by <strong>ddclient</strong> from the list below. Selecting a known service provider will populate the <code>protocol</code> and <code>server</code> fields. You may also configure the service manually."
+msgstr "아래 목록에서 <strong>ddclient</strong>가 지원하는 동적 DNS 서비스를 선택하세요. 알려진 서비스 제공업체를 선택하면 <code>프로토콜</code> 및 <code>서버</code> 필드가 채워집니다. 서비스를 수동으로 구성할 수도 있습니다."
+
+msgid "Method to obtain IP"
+msgstr "IP를 얻는 방법"
+
+msgid "Select the method used by <strong>ddclient</strong> to obtain an IP address. This value is specified in the <code>-use</code> option."
+msgstr "IP 주소를 얻기 위해 <strong>ddclient</strong>에서 사용하는 방법을 선택하세요. 이 값은 <code>-use</code> 옵션에 지정됩니다."
+
+msgid "Discovery page on the web"
+msgstr "웹의 검색 페이지"
+
+msgid "Network interface"
+msgstr "네트워크 인터페이스"
+
+msgid "Network address"
+msgstr "네트워크 주소"
+
+msgid "Firewall status page"
+msgstr "방화벽 상태 페이지"
+
+msgid "External command"
+msgstr "외부 명령"
+
+msgid "Web address"
+msgstr "웹 주소"
+
+msgid "Firewall"
+msgstr "방화벽"
+
+msgid "Command"
+msgstr "명령어"
+
+msgid "Example: <code>192.168.1.254/status.htm</code>."
+msgstr "예제: <code>192.168.1.254/status.htm</code>."
+
+msgid "Example: <code>/usr/local/bin/get-ip</code>."
+msgstr "예제: <code>/usr/local/bin/get-ip</code>."
+
+msgid "Domain"
+msgstr "도메인"
+
+msgid "Enable SSL"
+msgstr "SSL 활성화"
+
+msgid "Use an encrypted SSL connection for updates. Not supported by all providers."
+msgstr "업데이트에는 암호화된 SSL 연결을 사용하십시오. 모든 공급자가 지원하지는 않습니다."
+
+msgid "Value specified in milliseconds (ms). Default is 300."
+msgstr "밀리초(ms) 단위로 지정된 값입니다. 기본값은 300입니다."
+
+msgid "Use the <strong>Generate log</strong> button to output detailed <code>ddclient daemon</code> debug info"
+msgstr "<strong>로그 생성</strong> 버튼을 사용하여 자세한 <code>ddclient daemon</code> 디버그 정보를 출력하세요."
+
+msgid "Generate log"
+msgstr "로그 생성하기"
+
+msgid "Information provided by ddclient"
+msgstr "ddclient에서 제공하는 정보"
+
+msgid "Start Dynamic DNS"
+msgstr "동적 DNS 시작"
+
+msgid "Stop Dynamic DNS"
+msgstr "동적 DNS 중지"
+
+msgid "Restart Dynamic DNS"
+msgstr "동적 DNS 다시 시작"
 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2023-08-25 09:56\n"
+"PO-Revision-Date: 2023-09-17 15:33\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -463,6 +463,15 @@ msgstr "Esta opção adiciona entradas <code>dhcp-host</code> na configuração 
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
 msgstr "Isto alterna a opção <code>de gateway</code>/<code>nogateway</code> para essa interface na configuração do DHCPCD."
 
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr "Isso ativa/desativa a opção <code>nohook wpa_supplicant</code> para essa interface na configuração do DHCPCD."
+
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "Desativar wpa_supplicant dhcp hook para essa interface"
+
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "Se você gerenciar as conexões wireless utilizando o próprio wpa_supplicant, o hook pode criar eventos de conexão indesejados. Essa opção desabilita o hook."
+
 #: includes/hostapd.php
 msgid "Basic"
 msgstr "Básico"
@@ -485,8 +494,8 @@ msgstr "Tipo de Segurança"
 msgid "Encryption Type"
 msgstr "Tipo de Criptografia"
 
-msgid "PSK"
-msgstr "PSK"
+msgid "Pre-shared key (PSK)"
+msgstr "Chave pré-compartilhada (PSK)"
 
 msgid "Advanced settings"
 msgstr "Configurações avançadas"
@@ -584,6 +593,39 @@ msgstr "Define a opção <code>txpower</code> para a interface AP e o país conf
 msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
 msgstr "dBm é uma unidade de nível usada para indicar que uma taxa de potência é expressa em decibéis (dB) com referência a um miliwatt (mW). 30 dBm é igual a 1000 mW, enquanto 0 dBm é igual a 1.25 mW."
 
+msgid "WPA and WPA2"
+msgstr "WPA e WPA2"
+
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 e WPA3-Personal (modo de transição)"
+
+msgid "WPA3-Personal (required)"
+msgstr "WPA3-Personal (Nesse modo, o suporte ao WPA3 é obrigatório)"
+
+msgid "Enabled (for supported clients)"
+msgstr "Habilitado (para clientes suportados)"
+
+msgid "Required (for supported clients)"
+msgstr "Necessário (para clientes suportados)"
+
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "O 802.11w estende uma forte proteção criptográfica a um conjunto seleto de Robust Management Frames (RMF), incluindo desautenticação, desassociação e certas categorias de Action Management Frames. Colectivamente, isto é conhecido como Management Frame Protection (MFP)."
+
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Escaneie esse QR Code diretamente ou %s %simprima uma placa%s para os usuários da rede."
+
+msgid "Printable Wi-Fi sign"
+msgstr "Placa imprimível Wi-Fi"
+
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Para conectar com o seu telefone ou tablet, escaneie o QR Code acima com o seu app de câmera."
+
+msgid "For other devices, use the login credentials below."
+msgstr "Para outros dispositivos, use as informações de login abaixo."
+
+msgid "Network"
+msgstr "Rede"
+
 msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
 msgstr "A interface selecionada (%s) tem suporte apenas para banda sem fio de 2.4 GHz."
 
@@ -642,11 +684,11 @@ msgstr "Aplicar Configurações"
 msgid "Information provided by /sys/class/net"
 msgstr "Informação Provida por /sys/class/net"
 
-msgid "Network Devices"
-msgstr "Dispositivos de Rede"
+msgid "Devices"
+msgstr "Dispositivos"
 
-msgid "Mobile Data Settings"
-msgstr "Configurações de Dados Móveis"
+msgid "Diagnostics"
+msgstr "Diagnósticos"
 
 msgid "Properties of network devices"
 msgstr "Propriedades dos dispositivos de rede"
@@ -699,6 +741,39 @@ msgstr "Tabela de roteamento"
 msgid "raw output"
 msgstr "raw output"
 
+msgid "Speedtest"
+msgstr "Teste de velocidade"
+
+msgid "Selecting a server"
+msgstr "Selecionando um servidor"
+
+msgid "Privacy"
+msgstr "Privacidade"
+
+msgid "Server"
+msgstr "Servidor"
+
+msgid "ms"
+msgstr "ms"
+
+msgid "Mbps"
+msgstr "Mbps"
+
+msgid "Ping"
+msgstr "Ping"
+
+msgid "Jitter"
+msgstr "Jitter"
+
+msgid "Upload"
+msgstr "Upload"
+
+msgid "Start"
+msgstr "Iniciar"
+
+msgid "Abort"
+msgstr "Interromper"
+
 #: includes/system.php
 msgid "System Information"
 msgstr "Informação do sistema"
@@ -726,6 +801,9 @@ msgstr "Revisão do Pi"
 
 msgid "Uptime"
 msgstr "Tempo de atividade"
+
+msgid "System Time"
+msgstr "Horário do sistema"
 
 msgid "Memory Used"
 msgstr "Memória utilizada"
@@ -757,7 +835,36 @@ msgstr "OS [Sistema operacional]"
 msgid "Kernel"
 msgstr "Kernel"
 
-#: includes/themes.php
+msgid "System reset"
+msgstr "Resetar sistema"
+
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "Resetar o RaspAP para a sua configuração inicial? Essa ação não pode ser desfeita."
+
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "Restauração completa. Reinicie o hotspot para as mudanças terem efeito."
+
+msgid "System reset in progress..."
+msgstr "Restauração do sistema em progresso..."
+
+msgid "Reset"
+msgstr "Resetar"
+
+msgid "Restore settings"
+msgstr "Restaurar configurações"
+
+msgid "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
+msgstr "Para resetar o RaspAP para a sua <a href=\"%s\">configuração original</a>, clique ou toque no botão abaixo."
+
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Arquivos personalizados para componentes opcionais, como AdBlock, WireGuard e/ou OpenVPN permanecerão no sistema."
+
+msgid "Perform reset"
+msgstr "Executar restauração"
+
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Restaura todas as configurações de serviço do ponto de acesso (AP) para seus valores padrão. Isto aplica-se ao hostapd, dhcpcd e dnsmasq."
+
 msgid "Theme settings"
 msgstr "Configurações de tema"
 
@@ -1165,6 +1272,21 @@ msgstr "Configuração do Wireguard atualizada com sucesso"
 msgid "WireGuard configuration failed to be updated"
 msgstr "A configuração do WireGuard falhou ao ser atualizada"
 
+msgid "Enable kill switch"
+msgstr "Ativar kill switch"
+
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured AP interface (%s)."
+msgstr "Esta opção adiciona as regras do <strong>iptables</strong>, <code>Postup</code> e <code>PostDown</code> para a interface AP configurada (%s)."
+
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr "Recomendado se você quer evitar o fluxo de pacotes não criptografados através de interfaces sem WireGuard."
+
+msgid "iptables rules added to WireGuard configuration"
+msgstr "Regras do iptable adicionadas à configuração do WireGuard"
+
+msgid "Existing iptables rules found in WireGuard configuration - not added"
+msgstr "Regras do iptable existentes encontradas na configuração do WireGuard - não adicionado"
+
 msgid "Client Firewall"
 msgstr "Firewall do Cliente"
 
@@ -1233,4 +1355,79 @@ msgstr "Ativar Firewall"
 
 msgid "Apply changes"
 msgstr "Aplicar alterações"
+
+msgid "Dynamic DNS"
+msgstr "DNS dinâmico (Dynamic DNS)"
+
+msgid "Service provider"
+msgstr "Provedor de serviços"
+
+msgid "Select a Dynamic DNS service supported by <strong>ddclient</strong> from the list below. Selecting a known service provider will populate the <code>protocol</code> and <code>server</code> fields. You may also configure the service manually."
+msgstr "Selecione um serviço de DNS dinâmico suportado por <strong>ddclient</strong> na lista abaixo. Selecionar um provedor de serviço conhecido preencherá os campos <code>protocolo</code> e <code>servidor</code>. Você também pode configurar o serviço manualmente."
+
+msgid "Method to obtain IP"
+msgstr "Método para obter o IP"
+
+msgid "Select the method used by <strong>ddclient</strong> to obtain an IP address. This value is specified in the <code>-use</code> option."
+msgstr "Selecione o método usado pelo <strong>ddclient</strong> para obter um endereço IP. Este valor é especificado na opção <code>-use</code>."
+
+msgid "Discovery page on the web"
+msgstr ""
+
+msgid "Network interface"
+msgstr ""
+
+msgid "Network address"
+msgstr ""
+
+msgid "Firewall status page"
+msgstr ""
+
+msgid "External command"
+msgstr ""
+
+msgid "Web address"
+msgstr ""
+
+msgid "Firewall"
+msgstr ""
+
+msgid "Command"
+msgstr ""
+
+msgid "Example: <code>192.168.1.254/status.htm</code>."
+msgstr ""
+
+msgid "Example: <code>/usr/local/bin/get-ip</code>."
+msgstr ""
+
+msgid "Domain"
+msgstr ""
+
+msgid "Enable SSL"
+msgstr ""
+
+msgid "Use an encrypted SSL connection for updates. Not supported by all providers."
+msgstr ""
+
+msgid "Value specified in milliseconds (ms). Default is 300."
+msgstr ""
+
+msgid "Use the <strong>Generate log</strong> button to output detailed <code>ddclient daemon</code> debug info"
+msgstr ""
+
+msgid "Generate log"
+msgstr ""
+
+msgid "Information provided by ddclient"
+msgstr ""
+
+msgid "Start Dynamic DNS"
+msgstr ""
+
+msgid "Stop Dynamic DNS"
+msgstr ""
+
+msgid "Restart Dynamic DNS"
+msgstr ""
 
