@@ -15,7 +15,7 @@ update_url=$1
 file=$2
 destination=$3
 
-wget -q ${update_url} -O ${destination}${file} &> /dev/null
+wget -q --no-use-server-timestamps ${update_url} -O ${destination}${file} &> /dev/null
 
 echo "$?"
 
