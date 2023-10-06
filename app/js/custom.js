@@ -441,7 +441,8 @@ function setHardwareModeTooltip() {
  * Interface elements are updated to indicate current progress, status.
  */
 function updateBlocklist() {
-    var blocklist_id = $('#cbxblocklist').val();
+    var opt = $('#cbxblocklist option:selected');
+    var blocklist_id = opt.val();
     var csrfToken = $('meta[name=csrf_token]').attr('content');
     if (blocklist_id == '') { return; }
     $('#cbxblocklist-status').find('i').removeClass('fas fa-check').addClass('fas fa-cog fa-spin');
@@ -451,7 +452,7 @@ function updateBlocklist() {
         if (jsonData['return'] == '0') {
             $('#cbxblocklist-status').find('i').removeClass('fas fa-cog fa-spin').addClass('fas fa-check');
             $('#cbxblocklist-status').removeClass('check-progress').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
-            $('#'+blocklist_id).text("Just now");
+            $('#blocklist-'+jsonData['list']).text("Just now");
         }
     })
 }

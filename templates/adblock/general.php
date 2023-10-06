@@ -19,9 +19,9 @@
         <div class="row">
           <div class="col-md-12">
             <p id="blocklist-updated">
-              <div><small><?php echo _("Hostnames blocklist last updated") ?>: <span class="font-weight-bold" id="notracking-hostnames">
+              <div><small><?php echo _("Hostnames blocklist last updated") ?>: <span class="font-weight-bold" id="blocklist-hostnames">
                 <?php echo blocklistUpdated('hostnames.txt') ?></span></small></div>
-              <div><small><?php echo _("Domains blocklist last updated") ?>: <span class="font-weight-bold" id="notracking-domains">
+              <div><small><?php echo _("Domains blocklist last updated") ?>: <span class="font-weight-bold" id="blocklist-domains">
                 <?php echo blocklistUpdated('domains.txt') ?></b></small></div>
             </p>
             <div class="input-group col-md-12 mb-4">
