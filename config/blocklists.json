@@ -1,6 +1,17 @@
 {
-  "notracking/hosts-blocklist": [
-    "notracking-hostnames",
-    "notracking-domains"
-  ]
+    "StevenBlack/hosts": [
+        "StevenBlack/hosts (default)"
+    ],
+    "badmojr/hosts": [
+        "badmojr/1Hosts (Mini)",
+        "badmojr/1Hosts (Lite)",
+        "badmojr/1Hosts (Pro)",
+        "badmojr/1Hosts (Xtra)"
+    ],
+    "OISD/domains": [
+        "oisd/big (default)",
+        "oisd/small",
+        "oisd/nsfw"
+    ]
 }
+
