@@ -27,9 +27,9 @@ function knownWifiStations(&$networks)
                     $network['ssid'] = $ssid;
                     break;
                 case 'psk':
-                    if (array_key_exists('passphrase', $network)) {
-                        break;
-                    }
+                    $network['passkey'] = trim($lineArr[1]);
+                    $network['protocol'] = 'WPA';
+                    break;
                 case '#psk':
                     $network['protocol'] = 'WPA';
                 case 'wep_key0': // Untested

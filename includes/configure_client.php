@@ -77,6 +77,12 @@ function DisplayWPAConfig()
                                 }
                             }
                         }
+                    } elseif (strlen($network['passphrase']) == 0 && strlen($network['passkey']) == 64) {
+                        $line = "\tpsk=" . $network['passkey'];
+                        fwrite($wpa_file, "network={".PHP_EOL);
+                        fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                        fwrite($wpa_file, $line.PHP_EOL);
+                        fwrite($wpa_file, "}".PHP_EOL);
                     } else {
                         $status->addMessage('WPA passphrase must be between 8 and 63 characters', 'danger');
                         $ok = false;
