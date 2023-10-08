@@ -84,7 +84,7 @@ function DisplayAdBlockConfig()
     $handle = fopen(RASPI_DHCPCD_LOG, "r");
     if ($handle) {
         while (($line = fgets($handle)) !== false) {
-            if (preg_match('/(0.0.0.0)/', $line)) {
+            if (preg_match('/(is 0.0.0.0)|(using only locally-known addresses)/', $line)) {
                 $adblock_log .= $line;
             }
         }

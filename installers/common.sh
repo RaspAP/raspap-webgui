@@ -27,7 +27,8 @@ readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_network="$raspap_dir/networking/"
 readonly raspap_router="/etc/lighttpd/conf-available/50-raspap-router.conf"
 readonly rulesv4="/etc/iptables/rules.v4"
-readonly notracking_url="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/"
+readonly blocklist_hosts="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+readonly blocklist_domains="https://big.oisd.nl/dnsmasq"
 webroot_dir="/var/www/html"
 
 if [ "$insiders" == 1 ]; then
@@ -338,7 +339,7 @@ function _install_lighttpd_configs() {
 
 # Prompt to install ad blocking
 function _prompt_install_adblock() {
-    _install_log "Configure ad blocking (Beta)"
+    _install_log "Configure ad blocking"
     echo -n "Install ad blocking and enable list management? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
@@ -354,7 +355,7 @@ function _prompt_install_adblock() {
     fi
 }
 
-# Download notracking adblock lists and enable option
+# Download adblock lists and enable option
 function _install_adblock() {
     _install_log "Creating ad blocking base configuration (Beta)"
     if [ ! -d "$raspap_dir/adblock" ]; then
@@ -363,12 +364,12 @@ function _install_adblock() {
     fi
     if [ ! -f /tmp/hostnames.txt ]; then
         echo "Fetching latest hostnames list"
-        wget ${notracking_url}hostnames.txt -q --show-progress --progress=bar:force -O /tmp/hostnames.txt 2>&1 \
+        wget ${blocklist_hosts} -q --show-progress --progress=bar:force -O /tmp/hostnames.txt 2>&1 \
             || _install_status 1 "Unable to download notracking hostnames"
     fi
     if [ ! -f /tmp/domains.txt ]; then
         echo "Fetching latest domains list"
-        wget ${notracking_url}domains.txt -q --show-progress --progress=bar:force -O /tmp/domains.txt 2>&1 \
+        wget ${blocklist_domains} -q --show-progress --progress=bar:force -O /tmp/domains.txt 2>&1 \
             || _install_status 1 "Unable to download notracking domains"
     fi
     echo "Adding blocklists to $raspap_dir/adblock"
