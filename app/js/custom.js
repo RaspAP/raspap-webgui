@@ -354,6 +354,15 @@ $('#js-system-reset-confirm').on('click', function (e) {
     });
 });
 
+$('#js-sys-reboot, #js-sys-shutdown').on('click', function (e) {
+    e.preventDefault();
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    var action = $(this).data('action');
+    $.post('ajax/system/sys_actions.php?',{'a': action, 'csrf_token': csrfToken},function(data){
+        var response = JSON.parse(data);
+    });
+});
+
 $(document).ready(function(){
   $("#PanelManual").hide();
 });
