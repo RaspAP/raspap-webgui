@@ -52,3 +52,39 @@
   </div>
 </div>
 
+<!-- modal confirm-reboot-->
+<div class="modal fade" id="system-confirm-reboot" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="modal-title" id="ModalLabel"><i class="fas fa-sync mr-2"></i><?php echo _("System reboot"); ?></div>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 mb-3 mt-1" id="system-reboot-message"><?php echo _("Reboot now? The system will be temporarily unavailable."); ?></div>
+      </div>
+      <div class="modal-footer">
+      <button type="button" data-message="<?php echo _("Close"); ?>" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
+      <button type="button" id="js-sys-reboot" data-action="reboot" class="btn btn-outline-danger btn-delete"><?php echo _("Reboot"); ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal confirm-shutdown-->
+<div class="modal fade" id="system-confirm-shutdown" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="modal-title" id="ModalLabel"><i class="fas fa-power-off mr-2"></i><?php echo _("System shutdown"); ?></div>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 mb-3 mt-1" id="system-reboot-message"><?php echo _("Shutdown now? The system will be unavailable."); ?></div>
+      </div>
+      <div class="modal-footer">
+      <button type="button" data-message="<?php echo _("Close"); ?>" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
+      <button type="button" id="js-sys-shutdown" data-action="shutdown" class="btn btn-outline-danger btn-delete"><?php echo _("Shutdown"); ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+

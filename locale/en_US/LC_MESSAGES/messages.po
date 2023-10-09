@@ -752,6 +752,18 @@ msgstr "Reboot"
 msgid "Shutdown"
 msgstr "Shutdown"
 
+msgid "System reboot"
+msgstr "System reboot"
+
+msgid "System shutdown"
+msgstr "System shutdown"
+
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr "Reboot now? The system will be temporarily unavailable."
+
+msgid "Shutdown now? The system will be unavailable."
+msgstr "Shutdown now? The system will be unavailable."
+
 msgid "System Rebooting Now!"
 msgstr "System Rebooting Now!"
 
