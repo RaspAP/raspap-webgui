@@ -1,0 +1,14 @@
+{
+    "providers": [
+        {
+            "id": 1,
+            "name": "ExpressVPN",
+            "bin_path": "/usr/bin/expressvpn"
+        },
+        {
+            "id": 2,
+            "name": "NordVPN",
+            "bin_path": "/usr/bin/nordvpn"
+        }
+    ]
+}
