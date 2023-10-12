@@ -3,12 +3,14 @@
         {
             "id": 1,
             "name": "ExpressVPN",
-            "bin_path": "/usr/bin/expressvpn"
+            "bin_path": "/usr/bin/expressvpn",
+            "commands": "connect disconnect status version"
         },
         {
             "id": 2,
             "name": "NordVPN",
-            "bin_path": "/usr/bin/nordvpn"
+            "bin_path": "/usr/bin/nordvpn",
+            "commands": "connect disconnect status version"
         }
     ]
 }
