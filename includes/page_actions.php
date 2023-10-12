@@ -27,6 +27,9 @@
         case "/wg_conf":
             DisplayWireGuardConfig();
             break;
+        case "/provider_conf":
+            DisplayProviderConfig();
+            break;
         case "/torproxy_conf":
             DisplayTorProxyConfig();
             break;

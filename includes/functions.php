@@ -169,6 +169,24 @@ function getDefaultNetOpts($svc,$key)
     }
 }
 
+/**
+ * Returns a value for the specified VPN provider
+ *
+ * @param numeric $id
+ * @param string $key
+ * @return object $json
+ */
+function getProviderValue($id,$key)
+{
+    $obj = json_decode(file_get_contents(RASPI_CONFIG_PROVIDERS), true);
+    if ($obj === null) {
+        return false;
+    } else {
+        $id--;
+        return $obj['providers'][$id][$key];
+    }
+}
+
 /* Functions to write ini files */
 
 /**
@@ -669,6 +687,7 @@ function initializeApp()
     $_SESSION["theme_url"] = getThemeOpt();
     $_SESSION["toggleState"] = getSidebarState();
     $_SESSION["bridgedEnabled"] = getBridgedState();
+    $_SESSION["providerID"] = getProviderID();
 }
 
 function getThemeOpt()
@@ -707,6 +726,17 @@ function getBridgedState()
     $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
     // defaults to false
     return  $arrHostapdConf['BridgedEnable'];
+}
+
+// Returns VPN provider ID, if defined
+function getProviderID()
+{
+    if (RASPI_VPN_PROVIDER_ENABLED) {
+        $arrProvider = parse_ini_file(RASPI_CONFIG.'/provider.ini');
+        if (isset($arrProvider['providerID'])) {
+            return $arrProvider['providerID'];
+        }
+    }
 }
 
 /**
