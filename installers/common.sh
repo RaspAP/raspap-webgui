@@ -411,53 +411,58 @@ function _prompt_install_vpn_providers() {
         if [ "$answer" != "${answer#[Nn]}" ]; then
             _install_status 0 "(Skipped)"
         else
-            echo -e "Select an option from the list:"
-            while true; do
-                json="$webroot_dir/config/"vpn-providers.json
-                while IFS='|' read -r key value; do
-                    options["$key"]="$value"
-                done< <(jq -r '.providers[] | "\(.id)|\(.name)|\(.bin_path)"' "$json")
-
-                # display provider options
-                for key in "${!options[@]}"; do
-                    echo "  $key) ${options[$key]%%|*}"
-                done
-                echo "  0) None"
-                echo -n "Choose an option: "
-                read answer < /dev/tty
-
-                if [ "$answer" != "${answer#[0]}" ]; then
-                    _install_status 0 "(Skipped)"
-                    break
-                elif [[ "$answer" =~ ^[0-9]+$ ]] && [[ -n ${options[$answer]+abc} ]]; then
-                    selected="${options[$answer]}"
-                    echo "Configuring support for ${selected%%|*}"
-                    bin_path=${selected#*|}
-                    if ! grep -q "$bin_path" "$webroot_dir/installers/raspap.sudoers"; then
-                        echo "Adding $bin_path to raspap.sudoers"
-                        echo "www-data ALL=(ALL) NOPASSWD:$bin_path" | sudo tee -a "$webroot_dir/installers/raspap.sudoers" > /dev/null || _install_status 1 "Unable to modify raspap.sudoers"
-                    fi
-                    echo "Enabling administration option for ${selected%%|*}"
-                    sudo sed -i "s/\('RASPI_VPN_PROVIDER_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
-
-                    echo "Adding VPN provider to $raspap_dir/provider.ini"
-                    if [ ! -f "$raspap_dir/provider.ini" ]; then
-                        sudo touch "$raspap_dir/provider.ini"
-                        echo "providerID = $answer" | sudo tee "$raspap_dir/provider.ini" > /dev/null || _install_status 1 "Unable to create $raspap_dir/provider.ini" 
-                    elif ! grep -q "providerID = $answer" "$raspap_dir/provider.ini"; then
-                        echo "providerID = $answer" | sudo tee "$raspap_dir/provider.ini" > /dev/null || _install_status 1 "Unable to write to $raspap_dir/provider.ini"
-                    fi
-
-                    _install_status 0
-                    break
-                else
-                    echo "Invalid choice. Select a valid option:"
-                fi
-            done
+            _install_provider
         fi
     else
         echo "(Skipped)"
     fi
+}
+
+# Install VPN provider client configuration
+function _install_provider() {
+    echo -e "Select an option from the list:"
+    while true; do
+        json="$webroot_dir/config/"vpn-providers.json
+        while IFS='|' read -r key value; do
+            options["$key"]="$value"
+        done< <(jq -r '.providers[] | "\(.id)|\(.name)|\(.bin_path)"' "$json")
+
+        # display provider options
+        for key in "${!options[@]}"; do
+            echo "  $key) ${options[$key]%%|*}"
+        done
+        echo "  0) None"
+        echo -n "Choose an option: "
+        read answer < /dev/tty
+
+        if [ "$answer" != "${answer#[0]}" ]; then
+            _install_status 0 "(Skipped)"
+            break
+        elif [[ "$answer" =~ ^[0-9]+$ ]] && [[ -n ${options[$answer]+abc} ]]; then
+            selected="${options[$answer]}"
+            echo "Configuring support for ${selected%%|*}"
+            bin_path=${selected#*|}
+            if ! grep -q "$bin_path" "$webroot_dir/installers/raspap.sudoers"; then
+                echo "Adding $bin_path to raspap.sudoers"
+                echo "www-data ALL=(ALL) NOPASSWD:$bin_path" | sudo tee -a "$webroot_dir/installers/raspap.sudoers" > /dev/null || _install_status 1 "Unable to modify raspap.sudoers"
+            fi
+            echo "Enabling administration option for ${selected%%|*}"
+            sudo sed -i "s/\('RASPI_VPN_PROVIDER_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
+
+            echo "Adding VPN provider to $raspap_dir/provider.ini"
+            if [ ! -f "$raspap_dir/provider.ini" ]; then
+                sudo touch "$raspap_dir/provider.ini"
+                echo "providerID = $answer" | sudo tee "$raspap_dir/provider.ini" > /dev/null || _install_status 1 "Unable to create $raspap_dir/provider.ini" 
+            elif ! grep -q "providerID = $answer" "$raspap_dir/provider.ini"; then
+                echo "providerID = $answer" | sudo tee "$raspap_dir/provider.ini" > /dev/null || _install_status 1 "Unable to write to $raspap_dir/provider.ini"
+            fi
+
+            _install_status 0
+            break
+        else
+            echo "Invalid choice. Select a valid option:"
+        fi
+    done
 }
 
 # Prompt to install openvpn
