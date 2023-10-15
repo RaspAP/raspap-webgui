@@ -4,29 +4,41 @@
             "id": 1,
             "name": "ExpressVPN",
             "bin_path": "/usr/bin/expressvpn",
-            "install_page": "",
-            "commands": "connect disconnect status version"
+            "install_page": "https://www.expressvpn.com/support/vpn-setup/app-for-linux/",
+            "cmd_overrides": {
+               "countries": "list"
+            },
+            "status": {
+                "connected": "connected"
+            }
         },
         {
             "id": 2,
             "name": "Mullvad VPN",
             "bin_path": "/usr/bin/mullvad",
             "install_page": "https://mullvad.net/en/download/vpn/linux",
-            "commands": "connect disconnect status version"
+            "cmd_overrides": {
+            }
         },
         {
             "id": 3,
             "name": "NordVPN",
             "bin_path": "/usr/bin/nordvpn",
             "install_page": "https://nordvpn.com/download/linux/",
-            "commands": "connect disconnect status version"
+            "cmd_overrides": {
+            },
+            "status": {
+                "connected": "connected",
+                "disconnected": "disconnected"
+            }
         },
         {
             "id": 4,
             "name": "Proton VPN",
             "bin_path": "/usr/bin/protonvpn-cli",
             "install_page": "https://protonvpn.com/support/linux-vpn-tool/",
-            "commands": "connect disconnect status version"
+            "cmd_overrides": {
+            }
         }
     ]
 }
