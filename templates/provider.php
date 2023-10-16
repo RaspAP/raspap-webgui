@@ -20,7 +20,7 @@
             <div class="col">
               <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
                 <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
-                <span class="text service-status"><?php echo strtolower($providerName); ?> <?php echo _($serviceStatus) ?></span>
+                <span class="text service-status"><?php echo strtolower($providerName); ?> <?php echo _($statusDisplay) ?></span>
               </button>
             </div>
           </div><!-- /.row -->
@@ -31,7 +31,7 @@
             <?php echo CSRFTokenFieldTag() ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#providerclient" data-toggle="tab"><?php echo _("Provider settings"); ?></a></li>
+                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#providerclient" data-toggle="tab"><?php echo _("Settings"); ?></a></li>
                 <li class="nav-item"><a class="nav-link" id="loggingtab" href="#providerstatus" data-toggle="tab"><?php echo _("Status"); ?></a></li>
             </ul>
 

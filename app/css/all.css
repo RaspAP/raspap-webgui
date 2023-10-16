@@ -75,8 +75,8 @@ License: GNU General Public License v3.0
 
 .service-status-down {
   color: #f80107 !important;
-  animation: flash 1s linear infinite;
 }
+
 @keyframes flash {
   50% {
     opacity: 0;

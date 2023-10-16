@@ -1,5 +1,5 @@
 <div class="tab-pane active" id="providerclient">
-  <h4 class="mt-3"><?php echo _("VPN provider settings") ;?></h4>
+  <h4 class="mt-3"><?php echo sprintf(_("%s settings"), $providerName) ;?></h4>
   <div class="row">
     <div class="col-lg-8">
       <div class="row mb-2">
@@ -9,7 +9,7 @@
                <i class="fas fa-globe mr-1"></i><?php echo _("IPv4 Address"); ?>
              </div>
              <div class="info-value col-xs-3">
-               <?php echo htmlspecialchars($public_ip, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($public_ip); ?>" target="_blank" rel="noopener         noreferrer"><i class="fas fa-external-link-alt ml-2"></i></a>
+               <?php echo htmlspecialchars($publicIP, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($publicIP); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ml-2"></i></a>
              </div>
            </div>
          </div>
