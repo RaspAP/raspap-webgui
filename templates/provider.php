@@ -1,7 +1,7 @@
   <?php ob_start() ?>
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
-        <input type="submit" <?php echo $ctlState; ?> class="btn btn-outline btn-primary <?php echo $ctlState; ?>" name="SaveProviderConfig" value="Save settings" />
-        <?php if ($serviceStatus[0] == 0) : ?>
+        <input type="submit" <?php echo $ctlState; ?> class="btn btn-outline btn-primary <?php echo $ctlState; ?>" name="SaveProviderSettings" value="Save settings" />
+        <?php if ($serviceStatus == 'down') : ?>
         <input type="submit" <?php echo $ctlState; ?> class="btn btn-success <?php echo $ctlState; ?>" name="StartProviderVPN" value="Connect <?php echo $providerName; ?>" />
         <?php else : ?>
         <input type="submit" <?php echo $ctlState; ?> class="btn btn-warning <?php echo $ctlState; ?>" name="StopProviderVPN" value="Disconnect <?php echo $providerName; ?>" />
@@ -57,7 +57,7 @@
       <div class="modal-title" id="ModalLabel"><i class="fas fa-sync mr-2"></i><?php echo sprintf(_("Logout %s"), $providerName); ?></div>
       </div>
       <div class="modal-body">
-        <div class="col-md-12 mb-3 mt-1" id="system-reboot-message"><?php echo sprintf(_("Logout now? This will disconnect the %s connection."), $providerName); ?></div>
+        <div class="col-md-12 mb-3 mt-1" id="system-reboot-message"><?php echo sprintf(_("Logout now? This will disconnect %s."), $providerName); ?></div>
       </div>
       <div class="modal-footer">
       <button type="button" data-message="<?php echo _("Close"); ?>" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>

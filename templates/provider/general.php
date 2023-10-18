@@ -6,7 +6,7 @@
          <div class="col-lg-12 mt-2 mb-2">
            <div class="row ml-1">
              <div class="info-item col-xs-3">
-               <i class="fas fa-globe mr-1"></i><?php echo _("IPv4 Address"); ?>
+               <i class="fas fa-globe-americas mr-1"></i><?php echo _("IPv4 Address"); ?>
              </div>
              <div class="info-value col-xs-3">
                <?php echo htmlspecialchars($publicIP, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($publicIP); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ml-2"></i></a>
@@ -33,8 +33,11 @@
   <div class="row">
     <div class="form-group col-md-6 mt-3">
       <h5><?php echo _("Server location"); ?></h5>
+      <div class="mb-2">
+        <small><?php echo _("Choosing <strong>Save settings</strong> will connect to the selected country."); ?></small>
+      </div>
       <label for="cbxhwmode"><?php echo _("Country") ;?></label>
-        <?php SelectorOptions('countries', $countries, $arrConfig['country'], 'cbxcountry'); ?>
+      <?php SelectorOptions('country', $countries, $country, 'cbxcountry'); ?>
     </div>
   </div>
 </div><!-- /.tab-pane | general tab -->

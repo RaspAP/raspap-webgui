@@ -1,6 +1,6 @@
 <!-- logging tab -->
 <div class="tab-pane fade" id="providerstatus">
-  <h4 class="mt-3 mb-3"><?php echo _("Status") ?></h4>
+  <h4 class="mt-3 mb-3"><?php echo sprintf(_("%s status"), $providerName) ;?></h4>
 
   <p><?php echo _("Installed Linux CLI: <code>".$providerVersion."</code>") ?></p>
   <p><?php echo _("Current <code>".strtolower($providerName)."</code> connection status is displayed below.") ?></p>
