@@ -32,9 +32,7 @@ function DisplayProviderConfig()
         $providerVersion = shell_exec("sudo $binPath -v");
 
         // fetch account info
-        $cmd = getCliOverride($id, 'cmd_overrides', 'account');
-        exec("sudo $binPath $cmd", $acct);
-        $accountInfo = stripArtifacts($acct);
+        $accountInfo = getAccountInfo($id, $binPath, $providerName);
 
         // fetch available countries
         $countries = getCountries($id, $binPath);
@@ -150,11 +148,13 @@ function getCliOverride($id, $group, $item)
 function getProviderStatus($id, $binPath)
 {
     $cmd = getCliOverride($id, 'cmd_overrides', 'status');
+    $pattern = getCliOverride($id, 'regex', 'status');
     exec("sudo $binPath $cmd", $cmd_raw);
-    $cmd_raw = stripArtifacts($cmd_raw[0]);
-    if (preg_match('/Status: (\w+)/', $cmd_raw, $match)) {
-        $cli = getCliOverride($id, 'status', 'connected');
-        $status = strtolower($match[1]) == $cli ? "up" : "down";
+    $cmd_raw = strtolower(stripArtifacts($cmd_raw[0]));
+    if (preg_match($pattern, $cmd_raw, $match)) {
+        $status =  "down";
+    } else {
+        $status = "up";
     }
     return $status;
 }
@@ -168,16 +168,39 @@ function getProviderStatus($id, $binPath)
  */
 function getCountries($id, $binPath)
 {
+    $countries = [];
     $cmd = getCliOverride($id, 'cmd_overrides', 'countries');
-    $output = shell_exec("sudo $binPath $cmd");
-    $output = stripArtifacts($output, '\s');
-    $arrTmp = explode(",", $output);
-    $countries = array_combine($arrTmp, $arrTmp);
+    $pattern = getCliOverride($id, 'regex', 'pattern');
+    $replace = getCliOverride($id, 'regex', 'replace');
+    $slice = getCliOverride($id, 'regex', 'slice');
+    exec("sudo $binPath $cmd", $output);
+
+    // CLI country output differs considerably between different providers.
+    // Ideally, custom parsing would be avoided in favor of a pure regex solution
+    switch ($id) {
+    case 1: // expressvpn
+        $output = array_slice($output, $slice);
+        foreach ($output as $item) {
+            $item = preg_replace($pattern, $replace, $item);
+            $parts = explode(',', $item);
+            $key = trim($parts[0]);
+            $value = trim($parts[1]);
+            $countries[$key] = $value;
+        }
+        break;
+    case 3: // nordvpn
+        $output = stripArtifacts($output,'\s');
+        $arrTmp = explode(",", $output[0]);
+        $countries = array_combine($arrTmp, $arrTmp);
+        foreach ($countries as $key => $value) {
+            $countries[$key] = str_replace("_", " ", $value);
+        }
+        break;
+    default:
+        break;
+    }
     $select = array(' ' => 'Select a country...');
     $countries = $select + $countries;
-    foreach ($countries as $key => $value) {
-        $countries[$key] = str_replace("_", " ", $value);
-    }
     return $countries;
 }
 
@@ -191,7 +214,7 @@ function getCountries($id, $binPath)
  */
 function getProviderLog($id, $binPath, &$country)
 {
-    $cmd = getCliOverride($id, 'cmd_overrides', 'status');
+    $cmd = getCliOverride($id, 'cmd_overrides', 'log');
     exec("sudo $binPath $cmd", $cmd_raw);
     $output = stripArtifacts($cmd_raw);
     foreach ($output as $item) {
@@ -201,5 +224,25 @@ function getProviderLog($id, $binPath, &$country)
         $providerLog.= ltrim($item) .PHP_EOL;
     }
     return $providerLog;
+}
+
+/**
+ * Retrieves provider account info
+ *
+ * @param integer $id
+ * @param string $binPath
+ * @param string $providerName
+ * @return array
+ */
+function getAccountInfo($id, $binPath, $providerName)
+{
+    $cmd = getCliOverride($id, 'cmd_overrides', 'account');
+    exec("sudo $binPath $cmd", $acct);
+    $accountInfo = stripArtifacts($acct);
+    if (empty($accountInfo)) {
+        $msg = sprintf(_("Account details not available from %s's Linux CLI."), $providerName);
+        $accountInfo[] = $msg;
+    }
+    return $accountInfo;
 }
 

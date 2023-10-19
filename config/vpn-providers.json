@@ -6,10 +6,14 @@
             "bin_path": "/usr/bin/expressvpn",
             "install_page": "https://www.expressvpn.com/support/vpn-setup/app-for-linux/",
             "cmd_overrides": {
-               "countries": "list"
+               "countries": "list all",
+               "log": "diagnostics"
             },
-            "status": {
-                "connected": "connected"
+            "regex": {
+                "status": "\/not connected\/",
+                "pattern": "\/^(.{2,5})\\s(?:.{1,28})(.{1,26}).*$\/",
+                "replace": "$1,$2",
+                "slice": 3
             }
         },
         {
@@ -26,10 +30,12 @@
             "bin_path": "/usr/bin/nordvpn",
             "install_page": "https://nordvpn.com/download/linux/",
             "cmd_overrides": {
+                "log": "status"
             },
-            "status": {
-                "connected": "connected",
-                "disconnected": "disconnected"
+            "regex": {
+                "status": "\/status: (\\w+)\/",
+                "pattern": "(\\w+)\\s+",
+                "replace": "$1,$1\\n"
             }
         },
         {
