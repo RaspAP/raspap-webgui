@@ -240,7 +240,7 @@ function getAccountInfo($id, $binPath, $providerName)
     exec("sudo $binPath $cmd", $acct);
     $accountInfo = stripArtifacts($acct);
     if (empty($accountInfo)) {
-        $msg = sprintf(_("Account details not available from %s's Linux CLI."), $providerName);
+        $msg = sprintf(_("Account information not available from %s's Linux CLI."), $providerName);
         $accountInfo[] = $msg;
     }
     return $accountInfo;
