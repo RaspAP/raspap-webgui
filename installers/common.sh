@@ -136,6 +136,17 @@ function _get_linux_distro() {
     else
         _install_status 1 "Unsupported Linux distribution"
     fi
+
+    if [ ${OS,,} = "raspbian" ] && [[ ${RELEASE} =~ ^(12) ]]; then
+        echo "Detected OS: ${DESC} 32-bit"
+        echo "This OS introduces breaking changes to dhcpcd and is unsupported."
+        echo "If Raspberry Pi OS Lite (32-bit) is wanted, downgrade to bullseye."
+        echo "Note: Raspbian GNU/Linux 12 (bookworm) 64-bit is fully supported."
+        echo "See: https://docs.raspap.com/#compatible-operating-systems"
+        echo "The installer cannot continue."
+        _install_status 1 "Unsupported Linux distribution"
+        exit 0
+    fi
 }
 
 # Sets php package option based on Linux version, abort if unsupported distro
@@ -229,6 +240,7 @@ function _install_dependencies() {
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
         iw_package="iw"
+        echo "${dhcpcd_package} and ${iw_package} will be installed from the main deb sources list"
     fi
 
     # Set dconf-set-selections
