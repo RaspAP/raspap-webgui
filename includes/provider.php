@@ -29,7 +29,7 @@ function DisplayProviderConfig()
         $providerLog = getProviderLog($id, $binPath, $country);
 
         // fetch provider version
-        $providerVersion = shell_exec("sudo $binPath -v");
+        $providerVersion = getProviderVersion($id, $binPath);
 
         // fetch account info
         $accountInfo = getAccountInfo($id, $binPath, $providerName);
@@ -45,7 +45,7 @@ function DisplayProviderConfig()
                 if (strlen($country) == 0) {
                     $status->addMessage('Select a country from the server location list', 'danger');
                 }
-                $return = saveProviderConfig($status, $binPath, $country);
+                $return = saveProviderConfig($status, $binPath, $country, $id);
             }
         } elseif (isset($_POST['StartProviderVPN'])) {
             $status->addMessage('Attempting to connect VPN provider', 'info');
@@ -87,18 +87,29 @@ function DisplayProviderConfig()
 /**
  * Validates VPN provider settings 
  *
- * @param  object $status
- * @return string $someVar
+ * @param object $status
+ * @param string $binPath
+ * @param string $country
+ * @param integer $id (optional)
  */
-function saveProviderConfig($status, $binPath, $country)
+function saveProviderConfig($status, $binPath, $country, $id = null)
 {
     $status->addMessage('Attempting to connect to '.$country, 'info');
     $cmd = getCliOverride($id, 'cmd_overrides', 'connect');
-    exec("sudo $binPath $cmd $country", $return);
-    sleep(3); // required for connect delay
+    if ($id == 2) { // mullvad requires location set
+        exec("sudo $binPath set location $country", $return);
+        sleep(1);
+        exec("sudo $binPath $cmd $country", $return);
+        sleep(3); // required for connect delay
+    } else {
+        exec("sudo $binPath $cmd $country", $return);
+        sleep(3);
+    }
     $return = stripArtifacts($return);
     foreach ($return as $line) {
-        $status->addMessage($line, 'info');
+        if ( strlen(trim($line)) >0 ) {
+            $status->addMessage($line, 'info');
+        }
     }
 }
 
@@ -188,6 +199,26 @@ function getCountries($id, $binPath)
             $countries[$key] = $value;
         }
         break;
+    case 2: // mullvad
+        foreach ($output as $item) {
+            $item = preg_replace($pattern, $replace, $item);
+            if (strlen(trim($item) >0)) {
+                preg_match('/\s+([a-z0-9-]+)\s.*$/', $item, $match);
+                if (count($match) > 1) {
+                    $key = $match[1];
+                    $item = str_pad($item, strlen($item)+16,' ', STR_PAD_LEFT);
+                    $countries[$key] = $item;
+                } else {
+                    preg_match('/\(([a-z]+)\)/', $item, $match);
+                    $key = $match[1];
+                    if (strlen($match[1]) == 3) {
+                        $item = str_pad($item, strlen($item)+8,' ', STR_PAD_LEFT);
+                    }
+                    $countries[$key] = $item;
+                }
+            }
+        }
+        break;
     case 3: // nordvpn
         $output = stripArtifacts($output,'\s');
         $arrTmp = explode(",", $output[0]);
@@ -224,6 +255,20 @@ function getProviderLog($id, $binPath, &$country)
         $providerLog.= ltrim($item) .PHP_EOL;
     }
     return $providerLog;
+}
+
+/**
+ * Retrieves provider version information
+ *
+ * @param integer $id
+ * @param string $binPath
+ * @return string $version
+ */
+function getProviderVersion($id, $binPath)
+{
+    $cmd = getCliOverride($id, 'cmd_overrides', 'version');
+    $version = shell_exec("sudo $binPath $cmd");
+    return $version;
 }
 
 /**

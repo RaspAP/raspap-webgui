@@ -22,6 +22,15 @@
             "bin_path": "/usr/bin/mullvad",
             "install_page": "https://mullvad.net/en/download/vpn/linux",
             "cmd_overrides": {
+                "account": "account get",
+                "countries": "relay list",
+                "log": "status -v",
+                "version": "--version"
+            },
+            "regex": {
+                "status": "\/disconnected\/",
+                "pattern": "\/^(.*),.*$\/",
+                "replace": "$1"
             }
         },
         {
