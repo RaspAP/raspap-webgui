@@ -49,11 +49,11 @@ function DisplayHostAPDConfig()
          if (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
             $status->addMessage('Attempting to start hotspot', 'info');
             if ($arrHostapdConf['BridgedEnable'] == 1) {
-                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface br0 --seconds 3', $return);
+                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface br0 --seconds 2', $return);
             } elseif ($arrHostapdConf['WifiAPEnable'] == 1) {
-                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface uap0 --seconds 3', $return);
+                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface uap0 --seconds 2', $return);
             } else {
-                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --seconds 3', $return);
+                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --seconds 2', $return);
             }
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');

@@ -274,15 +274,16 @@ function loadChannel() {
 }
 
 $('#hostapdModal').on('shown.bs.modal', function (e) {
-    var seconds = 9;
+    var seconds = 3;
+    var pct = 0;
     var countDown = setInterval(function(){
       if(seconds <= 0){
         clearInterval(countDown);
       }
-      var pct = Math.floor(100-(seconds*100/9));
       document.getElementsByClassName('progress-bar').item(0).setAttribute('style','width:'+Number(pct)+'%');
       seconds --;
-    }, 1000);
+      pct = Math.floor(100-(seconds*100/4));
+    }, 500);
 });
 
 $('#configureClientModal').on('shown.bs.modal', function (e) {
