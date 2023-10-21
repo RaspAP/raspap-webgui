@@ -12,7 +12,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <div class="modal-title" id="ModalLabel"><i class="fas fa-sync-alt mr-2"></i><?php echo $msg ?></div>
+            <div class="modal-title" id="ModalLabel"><i class="fas fa-sync-alt fa-spin mr-2"></i><?php echo $msg ?></div>
           </div>
           <div class="modal-body">
             <div class="col-md-12 mb-3 mt-1"><?php echo _("Executing RaspAP service start") ?>...</div>
