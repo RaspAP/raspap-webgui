@@ -12,7 +12,7 @@ if (isset($_POST['interface'])) {
     $flags = 0;
 
     // get physical device for selected interface
-    exec("iw dev | awk '/$iface/ {print line}{line = $0}'", $return);
+    exec("iw dev | awk -v iface=".$iface." '/^phy#/ { phy = $0 } $1 == \"Interface\" { interface = $2 } interface == iface { print phy }'", $return);
     $phy = $return[0];
 
     // get frequencies supported by device
