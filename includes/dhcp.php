@@ -47,6 +47,8 @@ function DisplayDHCPConfig()
     $ap_iface = $_SESSION['ap_interface'];
     $serviceStatus = $dnsmasq_state ? "up" : "down";
     exec('cat '. RASPI_DNSMASQ_PREFIX.'raspap.conf', $return);
+    $log_dhcp = (preg_grep('/log-dhcp/', $return));
+    $log_queries = (preg_grep('/log-queries/', $return));
     $conf = ParseConfig($return);
     exec('cat '. RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
     $conf = array_merge(ParseConfig($return));
@@ -54,6 +56,9 @@ function DisplayDHCPConfig()
     $upstreamServers = (array)$conf['server'];
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
+
+    count($log_dhcp) > 0 ? $conf['log-dhcp'] = true : false ;
+    count($log_queries) > 0 ? $conf['log-queries'] = true : false ;
 
     echo renderTemplate(
         "dhcp", compact(
