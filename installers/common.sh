@@ -136,17 +136,6 @@ function _get_linux_distro() {
     else
         _install_status 1 "Unsupported Linux distribution"
     fi
-
-    if [ ${OS,,} = "raspbian" ] && [[ ${RELEASE} =~ ^(12) ]]; then
-        echo "Detected OS: ${DESC} 32-bit"
-        echo "This OS introduces breaking changes to dhcpcd and is unsupported."
-        echo "If Raspberry Pi OS Lite (32-bit) is wanted, downgrade to bullseye."
-        echo "Note: Raspbian GNU/Linux 12 (bookworm) 64-bit is fully supported."
-        echo "See: https://docs.raspap.com/#compatible-operating-systems"
-        echo "The installer cannot continue."
-        _install_status 1 "Unsupported Linux distribution"
-        exit 0
-    fi
 }
 
 # Sets php package option based on Linux version, abort if unsupported distro
@@ -241,6 +230,11 @@ function _install_dependencies() {
         dhcpcd_package="dhcpcd5"
         iw_package="iw"
         echo "${dhcpcd_package} and ${iw_package} will be installed from the main deb sources list"
+    fi
+
+    if [ ${OS,,} = "raspbian" ] && [[ ${RELEASE} =~ ^(12) ]]; then
+        dhcpcd_package="dhcpcd dhcpcd-base"
+        echo "${dhcpcd_package} will be installed from the main deb sources list"
     fi
 
     # Set dconf-set-selections
@@ -633,6 +627,7 @@ function _check_for_old_configs() {
                 sudo ln -sf "${raspap_dir}/backups/${filename}.`date +%F-%R`" "${raspap_dir}/backups/${filename}"
             fi
         done
+
     fi
     _install_status 0
 }
@@ -668,7 +663,16 @@ function _default_configuration() {
         if [ ! -f "$webroot_dir/includes/config.php" ]; then
             sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
         fi
+
+        if [ ${OS,,} = "raspbian" ] && [[ ${RELEASE} =~ ^(12) ]]; then
+            echo "Moving dhcpcd systemd unit control file to /lib/systemd/system/"
+            sudo mv $webroot_dir/installers/dhcpcd.service /lib/systemd/system/ || _install_status 1 "Unable to move dhcpcd.service file"
+            sudo systemctl daemon-reload
+            sudo systemctl enable dhcpcd.service || _install_status 1 "Failed to enable raspap.service"
+        fi
+
         _install_status 0
+        exit 0
     fi
 }
 
