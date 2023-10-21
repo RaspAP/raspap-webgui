@@ -627,7 +627,6 @@ function _check_for_old_configs() {
                 sudo ln -sf "${raspap_dir}/backups/${filename}.`date +%F-%R`" "${raspap_dir}/backups/${filename}"
             fi
         done
-
     fi
     _install_status 0
 }
@@ -672,7 +671,6 @@ function _default_configuration() {
         fi
 
         _install_status 0
-        exit 0
     fi
 }
 
