@@ -122,7 +122,7 @@ function saveProviderConfig($status, $binPath, $country, $id = null)
  */
 function stripArtifacts($output, $pattern = null)
 {
-    $result = preg_replace('/[-\/\n\t\\\\'.$pattern.'|]/', '', $output);
+    $result = preg_replace('/[-\/\n\t\\\\'.$pattern.'|\[0m\[1;33;49m]/', '', $output);
     return $result;
 }
 
