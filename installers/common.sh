@@ -228,6 +228,12 @@ function _install_dependencies() {
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
         iw_package="iw"
+        echo "${dhcpcd_package} and ${iw_package} will be installed from the main deb sources list"
+    fi
+
+    if [ ${OS,,} = "raspbian" ] && [[ ${RELEASE} =~ ^(12) ]]; then
+        dhcpcd_package="dhcpcd dhcpcd-base"
+        echo "${dhcpcd_package} will be installed from the main deb sources list"
     fi
 
     # Set dconf-set-selections
@@ -592,6 +598,14 @@ function _default_configuration() {
         if [ ! -f "$webroot_dir/includes/config.php" ]; then
             sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
         fi
+
+        if [ ${OS,,} = "raspbian" ] && [[ ${RELEASE} =~ ^(12) ]]; then
+            echo "Moving dhcpcd systemd unit control file to /lib/systemd/system/"
+            sudo mv $webroot_dir/installers/dhcpcd.service /lib/systemd/system/ || _install_status 1 "Unable to move dhcpcd.service file"
+            sudo systemctl daemon-reload
+            sudo systemctl enable dhcpcd.service || _install_status 1 "Failed to enable raspap.service"
+        fi
+
         _install_status 0
     fi
 }
