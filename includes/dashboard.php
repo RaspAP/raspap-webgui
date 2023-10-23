@@ -88,6 +88,11 @@ function DisplayDashboard(&$extraFooterScripts)
         $strTxBytes .= getHumanReadableDatasize($strTxBytes);
     }
 
+    exec ('vnstat --dbiflist', $stdoutVnStatDB);
+    if (!preg_match('/'.$_SESSION['ap_interface'].'/', $stdoutVnStatDB[0])) {
+        exec('sudo vnstat --add --iface '.$_SESSION['ap_interface'], $return);
+    }
+
     define('SSIDMAXLEN', 32);
     // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
     exec('iw dev ' .$_SESSION['wifi_client_interface']. ' link ', $stdoutIw);
