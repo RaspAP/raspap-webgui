@@ -72,6 +72,7 @@ function DisplayProviderConfig()
             $return = stripArtifacts($return);
             foreach ($return as $line) {
                 if (strlen(trim($line)) > 0) {
+                    $line = preg_replace('/\[1;33;49m(.*)\[0m/', '$1', $line);
                     $status->addMessage($line, 'info');
                 }
             }
