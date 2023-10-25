@@ -1,10 +1,10 @@
   <?php ob_start() ?>
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
-        <input type="submit" <?php echo $ctlState; ?> class="btn btn-outline btn-primary <?php echo $ctlState; ?>" name="SaveProviderSettings" value="Save settings" />
+    <input type="submit" <?php echo $ctlState; ?> class="btn btn-outline btn-primary <?php echo $ctlState; ?>" name="SaveProviderSettings" value="<?php echo _("Save settings"); ?>" />
         <?php if ($serviceStatus == 'down') : ?>
-        <input type="submit" <?php echo $ctlState; ?> class="btn btn-success <?php echo $ctlState; ?>" name="StartProviderVPN" value="Connect <?php echo $providerName; ?>" />
+        <input type="submit" <?php echo $ctlState; ?> class="btn btn-success <?php echo $ctlState; ?>" name="StartProviderVPN" value="<?php echo sprintf(_("Connect %s"), $providerName); ?>" />
         <?php else : ?>
-        <input type="submit" <?php echo $ctlState; ?> class="btn btn-warning <?php echo $ctlState; ?>" name="StopProviderVPN" value="Disconnect <?php echo $providerName; ?>" />
+        <input type="submit" <?php echo $ctlState; ?> class="btn btn-warning <?php echo $ctlState; ?>" name="StopProviderVPN" value="<?php echo sprintf(_("Disconnect %s"), $providerName); ?>" />
         <?php endif; ?>
     <?php endif ?>
   <?php $buttons = ob_get_clean(); ob_end_clean() ?>
@@ -44,26 +44,8 @@
             <?php echo $buttons ?>
           </form>
         </div><!-- /.card-body -->
-      <div class="card-footer"><?php echo _("Information provided by " .strtolower($providerName)); ?></div>
+      <div class="card-footer"><?php echo sprintf( _("Information provided by %s"), strtolower($providerName)); ?></div>
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
-
-<!-- modal confirm-logout-->
-<div class="modal fade" id="provider-confirm-logout" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-      <div class="modal-title" id="ModalLabel"><i class="fas fa-sync mr-2"></i><?php echo sprintf(_("Logout %s"), $providerName); ?></div>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12 mb-3 mt-1" id="system-reboot-message"><?php echo sprintf(_("Logout now? This will disconnect %s."), $providerName); ?></div>
-      </div>
-      <div class="modal-footer">
-      <button type="button" data-message="<?php echo _("Close"); ?>" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
-      <button type="button" id="js-provider-logout" data-action="logout" class="btn btn-outline-danger btn-delete"><?php echo _("Logout"); ?></button>
-      </div>
-    </div>
-  </div>
-</div>
 

@@ -1332,9 +1332,24 @@ msgstr "Expected %s binary not found at: %s"
 msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
 msgstr "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
 
+msgid "Unable to execute %s binary found at: %s"
+msgstr "Unable to execute %s binary found at: %s"
+
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "Check that binary is executable and permissions exist in raspap.sudoers"
+
 msgid "Installed Linux CLI: <code>%s</code>"
 msgstr "Installed Linux CLI: <code>%s</code>"
 
 msgid "Current <code>%s</code> connection status is displayed below."
 msgstr "Current <code>%s</code> connection status is displayed below."
+
+msgid "Information provided by %s"
+msgstr "Information provided by %s"
+
+msgid "Connect %s"
+msgstr "Connect %s"
+
+msgid "Disconnect %s"
+msgstr "Disconnect %s"
 

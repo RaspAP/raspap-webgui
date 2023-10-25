@@ -2,8 +2,8 @@
 <div class="tab-pane fade" id="providerstatus">
   <h4 class="mt-3 mb-3"><?php echo sprintf(_("%s status"), $providerName) ;?></h4>
 
-  <p><?php echo _("Installed Linux CLI: <code>".$providerVersion."</code>") ?></p>
-  <p><?php echo _("Current <code>".strtolower($providerName)."</code> connection status is displayed below.") ?></p>
+  <p><?php echo sprintf(_("Installed Linux CLI: <code>%s</code>"), $providerVersion); ?></p>
+  <p><?php echo sprintf(_("Current <code>%s</code> connection status is displayed below."), strtolower($providerName)); ?></p>
 
   <div class="row">
     <div class="form-group col-md-8 mt-2">

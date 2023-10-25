@@ -16,20 +16,21 @@
       </div>
     </div>
   </div>
+  <?php if (!empty($accountInfo)) : ?>
   <div class="row">
     <div class="col-md-6 mt-1">
       <div class="card">
 	    <div class="card-body">
-
           <h5><?php echo _("Account details"); ?></h5>
             <?php foreach ($accountInfo as $item) {
                 echo '<small>'. $item .'</small><br>';
             } ?>
-            <input type="button" class="btn btn-warning mt-2" data-toggle="modal" data-target="#provider-confirm-logout" value="<?php echo _("Logout"); ?>" />
+            <a href="<?php echo($accountLink); ?>" target="_blank" class="btn btn-warning btn-sm mt-2"><i class="fas fa-external-link-alt ml-1 mr-1"></i><?php echo _("My account") ?></a>
         </div><!-- /.card-body -->
       </div><!-- /.card -->
     </div>
   </div>
+  <?php endif; ?>
   <div class="row">
     <div class="form-group col-md-6 mt-3">
       <h5><?php echo _("Server location"); ?></h5>
