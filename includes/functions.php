@@ -427,6 +427,7 @@ function ParseConfig($arrConfig)
     foreach ($arrConfig as $line) {
         $line = trim($line);
         if ($line == "" || $line[0] == "#") {
+            $config[$option] = null;
             continue;
         }
 
