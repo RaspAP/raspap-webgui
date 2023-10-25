@@ -46,7 +46,7 @@
                 "log": "status"
             },
             "regex": {
-                "status": "\/status: (\\w+)\/",
+                "status": "\/status: disconnected\/",
                 "pattern": "(\\w+)\\s+",
                 "replace": "$1,$1\\n"
             }

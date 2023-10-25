@@ -52,8 +52,9 @@ function DisplayProviderConfig()
                 $country = trim($_POST['country']);
                 if (strlen($country) == 0) {
                     $status->addMessage('Select a country from the server location list', 'danger');
+                } else {
+                    $return = saveProviderConfig($status, $binPath, $country, $id);
                 }
-                $return = saveProviderConfig($status, $binPath, $country, $id);
             }
         } elseif (isset($_POST['StartProviderVPN'])) {
             $status->addMessage('Attempting to connect VPN provider', 'info');
@@ -70,7 +71,9 @@ function DisplayProviderConfig()
             exec("sudo $binPath $cmd", $return);
             $return = stripArtifacts($return);
             foreach ($return as $line) {
-                $status->addMessage($line, 'info');
+                if (strlen(trim($line)) > 0) {
+                    $status->addMessage($line, 'info');
+                }
             }
         }
     }
@@ -103,7 +106,7 @@ function DisplayProviderConfig()
  */
 function saveProviderConfig($status, $binPath, $country, $id = null)
 {
-    $status->addMessage(sprintf(_('Attempting to connect to %s',$country)), 'info');
+    $status->addMessage(sprintf(_('Attempting to connect to %s'),$country), 'info');
     $cmd = getCliOverride($id, 'cmd_overrides', 'connect');
     if ($id == 2) { // mullvad requires location set
         exec("sudo $binPath set location $country", $return);
@@ -171,6 +174,7 @@ function getProviderStatus($id, $binPath)
     $pattern = getCliOverride($id, 'regex', 'status');
     exec("sudo $binPath $cmd", $cmd_raw);
     $cmd_raw = strtolower(stripArtifacts($cmd_raw[0]));
+
     if (!empty($cmd_raw[0])) {
         if (preg_match($pattern, $cmd_raw, $match)) {
             $status =  "down";
