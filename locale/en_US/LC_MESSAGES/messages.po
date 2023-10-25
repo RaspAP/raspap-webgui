@@ -1293,3 +1293,48 @@ msgstr "Enable Firewall"
 
 msgid "Apply changes"
 msgstr "Apply changes"
+
+#: includes/provider.php
+
+msgid "Account details"
+msgstr "Account details"
+
+msgid "My account"
+msgstr "My account"
+
+msgid "Server location"
+msgstr "Server location"
+
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "Choosing <strong>Save settings</strong> will connect to the selected country."
+
+msgid "Select a country from the server location list"
+msgstr "Select a country from the server location list"
+
+msgid "Select a country..."
+msgstr "Select a country..."
+
+msgid "Account information not available from %s's Linux CLI."
+msgstr "Account information not available from %s's Linux CLI."
+
+msgid "Attempting to connect to %s"
+msgstr "Attempting to connect to %s"
+
+msgid "Attempting to connect VPN provider"
+msgstr "Attempting to connect VPN provider"
+
+msgid "Attempting to disconnect VPN provider"
+msgstr "Attempting to disconnect VPN provider"
+
+msgid "Expected %s binary not found at: %s"
+msgstr "Expected %s binary not found at: %s"
+
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Installed Linux CLI: <code>%s</code>"
+
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Current <code>%s</code> connection status is displayed below."
+
