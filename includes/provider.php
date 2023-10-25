@@ -3,21 +3,31 @@
 require_once 'includes/config.php';
 
 /*
- * Manage VPN provider configuration
+ * Display VPN provider configuration
  */
 function DisplayProviderConfig()
 {
+    // initialize status object
     $status = new \RaspAP\Messages\StatusMessage;
 
+    // set defaults
     $id = $_SESSION["providerID"];
-    $providerName = getProviderValue($id, "name");
     $binPath = getProviderValue($id, "bin_path");
+    $providerName = getProviderValue($id, "name");
+    $providerVersion = getProviderVersion($id, $binPath);
+    $installPage = getProviderValue($id, "install_page");
     $publicIP = get_public_ip();
+    $serviceStatus = 'down';
+    $statusDisplay = 'down';
 
     if (!file_exists($binPath)) {
-        $installPage = getProviderValue($id, "install_page");
-        $status->addMessage('Expected '.$providerName.' binary not found at: '.$binPath, 'warning');
-        $status->addMessage('Visit the <a href="'.$installPage.'" target="_blank">installation instructions</a> for '.$providerName.'\'s Linux CLI.', 'warning');
+        $status->addMessage(sprintf(_('Expected %s binary not found at: %s'), $providerName, $binPath), 'warning');
+        $status->addMessage(sprintf(_('Visit the <a href="%s" target="_blank">installation instructions</a> for %s\'s Linux CLI.'), $installPage, $providerName), 'warning');
+        $ctlState = 'disabled';
+        $providerVersion = 'not found';
+    } elseif (empty($providerVersion)) {
+        $status->addMessage(sprintf(_('Unable to execute %s binary found at: %s'), $providerName, $binPath), 'warning');
+        $status->addMessage(_('Check that binary is executable and permissions exist in raspap.sudoers'), 'warning');
         $ctlState = 'disabled';
         $providerVersion = 'not found';
     } else {
@@ -28,11 +38,9 @@ function DisplayProviderConfig()
         // fetch provider log
         $providerLog = getProviderLog($id, $binPath, $country);
 
-        // fetch provider version
-        $providerVersion = getProviderVersion($id, $binPath);
-
         // fetch account info
         $accountInfo = getAccountInfo($id, $binPath, $providerName);
+        $accountLink = getProviderValue($id, "account_page");
 
         // fetch available countries
         $countries = getCountries($id, $binPath);
@@ -75,6 +83,7 @@ function DisplayProviderConfig()
             "providerName",
             "providerVersion",
             "accountInfo",
+            "accountLink",
             "countries",
             "country",
             "providerLog",
@@ -94,7 +103,7 @@ function DisplayProviderConfig()
  */
 function saveProviderConfig($status, $binPath, $country, $id = null)
 {
-    $status->addMessage('Attempting to connect to '.$country, 'info');
+    $status->addMessage(sprintf(_('Attempting to connect to %s',$country)), 'info');
     $cmd = getCliOverride($id, 'cmd_overrides', 'connect');
     if ($id == 2) { // mullvad requires location set
         exec("sudo $binPath set location $country", $return);
@@ -122,7 +131,7 @@ function saveProviderConfig($status, $binPath, $country, $id = null)
  */
 function stripArtifacts($output, $pattern = null)
 {
-    $result = preg_replace('/[-\/\n\t\\\\'.$pattern.'|\[0m\[1;33;49m]/', '', $output);
+    $result = preg_replace('/[-\/\n\t\\\\'.$pattern.'|]/', '', $output);
     return $result;
 }
 
@@ -162,10 +171,14 @@ function getProviderStatus($id, $binPath)
     $pattern = getCliOverride($id, 'regex', 'status');
     exec("sudo $binPath $cmd", $cmd_raw);
     $cmd_raw = strtolower(stripArtifacts($cmd_raw[0]));
-    if (preg_match($pattern, $cmd_raw, $match)) {
-        $status =  "down";
+    if (!empty($cmd_raw[0])) {
+        if (preg_match($pattern, $cmd_raw, $match)) {
+            $status =  "down";
+        } else {
+            $status = "up";
+        }
     } else {
-        $status = "up";
+        $status = "down";
     }
     return $status;
 }
@@ -230,7 +243,7 @@ function getCountries($id, $binPath)
     default:
         break;
     }
-    $select = array(' ' => 'Select a country...');
+    $select = array(' ' => _("Select a country..."));
     $countries = $select + $countries;
     return $countries;
 }
@@ -268,6 +281,7 @@ function getProviderVersion($id, $binPath)
 {
     $cmd = getCliOverride($id, 'cmd_overrides', 'version');
     $version = shell_exec("sudo $binPath $cmd");
+    $version = preg_replace('/^[^\w]+\s*/', '', $version);
     return $version;
 }
 
@@ -283,11 +297,14 @@ function getAccountInfo($id, $binPath, $providerName)
 {
     $cmd = getCliOverride($id, 'cmd_overrides', 'account');
     exec("sudo $binPath $cmd", $acct);
-    $accountInfo = stripArtifacts($acct);
-    if (empty($accountInfo)) {
-        $msg = sprintf(_("Account information not available from %s's Linux CLI."), $providerName);
-        $accountInfo[] = $msg;
+
+    foreach ($acct as &$item) {
+        $item = preg_replace('/^[^\w]+\s*/', '', $item);
     }
-    return $accountInfo;
+    if (empty($acct)) {
+        $msg = sprintf(_("Account information not available from %s's Linux CLI."), $providerName);
+        $acct[] = $msg;
+    }
+    return $acct;
 }
 
