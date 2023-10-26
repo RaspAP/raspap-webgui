@@ -60,10 +60,13 @@ function DisplayProviderConfig()
             $status->addMessage('Attempting to connect VPN provider', 'info');
             $cmd = getCliOverride($id, 'cmd_overrides', 'connect');
             exec("sudo $binPath $cmd", $return);
-            sleep(3); // required for connect delay
             $return = stripArtifacts($return);
             foreach ($return as $line) {
-                $status->addMessage($line, 'info');
+                if (strlen(trim($line)) > 0) {
+                    $line = preg_replace('/\e\[\?[0-9]*l\s(.*)\e.*$/', '$1', $line);
+                    $line = preg_replace('/\e\[0m\e\[[0-9;]*m(.*)/', '$1', $line);
+                    $status->addMessage($line, 'info');
+                }
             }
         } elseif (isset($_POST['StopProviderVPN'])) {
             $status->addMessage('Attempting to disconnect VPN provider', 'info');
