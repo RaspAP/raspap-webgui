@@ -112,14 +112,12 @@ function saveProviderConfig($status, $binPath, $country, $id = null)
 {
     $status->addMessage(sprintf(_('Attempting to connect to %s'),$country), 'info');
     $cmd = getCliOverride($id, 'cmd_overrides', 'connect');
-    if ($id == 2) { // mullvad requires location set
-        exec("sudo $binPath set location $country", $return);
-        sleep(1);
-        exec("sudo $binPath $cmd $country", $return);
-        sleep(3); // required for connect delay
+    // mullvad requires relay set location before connect
+    if ($id == 2) {
+        exec("sudo $binPath relay set location $country", $return);
+        exec("sudo $binPath $cmd", $return);
     } else {
         exec("sudo $binPath $cmd $country", $return);
-        sleep(3);
     }
     $return = stripArtifacts($return);
     foreach ($return as $line) {
