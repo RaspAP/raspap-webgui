@@ -240,7 +240,7 @@ function _install_dependencies() {
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package vnstat qrencode || _install_status 1 "Unable to install dependencies"
+    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package vnstat qrencode jq || _install_status 1 "Unable to install dependencies"
     _install_status 0
 }
 
@@ -410,7 +410,7 @@ function _install_adblock() {
 
 # Prompt to install VPN providers
 function _prompt_install_vpn_providers() {
-    _install_log "Configure VPN provider support"
+    _install_log "Configure VPN provider support (Beta)"
     echo -n "Enable VPN provider client configuration? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
@@ -450,7 +450,7 @@ function _install_provider() {
             bin_path=${selected#*|}
             if ! grep -q "$bin_path" "$webroot_dir/installers/raspap.sudoers"; then
                 echo "Adding $bin_path to raspap.sudoers"
-                echo "www-data ALL=(ALL) NOPASSWD:$bin_path" | sudo tee -a "$webroot_dir/installers/raspap.sudoers" > /dev/null || _install_status 1 "Unable to modify raspap.sudoers"
+                echo "www-data ALL=(ALL) NOPASSWD:$bin_path *" | sudo tee -a "$webroot_dir/installers/raspap.sudoers" > /dev/null || _install_status 1 "Unable to modify raspap.sudoers"
             fi
             echo "Enabling administration option for ${selected%%|*}"
             sudo sed -i "s/\('RASPI_VPN_PROVIDER_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
