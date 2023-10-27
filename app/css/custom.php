@@ -42,6 +42,12 @@ body {
   background-color: #fff;
 }
 
+.btn-primary.disabled {
+  color: <?php echo $color; ?> !important;
+  border-color: <?php echo $color; ?> !important;
+  background-color: #fff !important;
+}
+
 .card-footer, .modal-footer {
   background-color: #f2f1f0;
 }

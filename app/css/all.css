@@ -75,8 +75,8 @@ License: GNU General Public License v3.0
 
 .service-status-down {
   color: #f80107 !important;
-  animation: flash 1s linear infinite;
 }
+
 @keyframes flash {
   50% {
     opacity: 0;
@@ -88,6 +88,8 @@ License: GNU General Public License v3.0
   height: 20rem;
   border: 1px solid #d1d3e2;
   border-radius: .35rem;
+  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace;
+  font-size: 0.8rem;
 }
 
 .dhcp-static-leases {

@@ -1,0 +1,55 @@
+{
+    "providers": [
+        {
+            "id": 1,
+            "name": "ExpressVPN",
+            "bin_path": "/usr/bin/expressvpn",
+            "install_page": "https://www.expressvpn.com/support/vpn-setup/app-for-linux/",
+            "account_page": "https://www.expressvpn.com/subscriptions",
+            "cmd_overrides": {
+               "countries": "list all",
+               "log": "diagnostics",
+               "version": "-v"
+            },
+            "regex": {
+                "status": "\/not connected\/",
+                "pattern": "\/^(.{2,5})\\s(?:.{1,28})(.{1,26}).*$\/",
+                "replace": "$1,$2",
+                "slice": 3
+            }
+        },
+        {
+            "id": 2,
+            "name": "Mullvad VPN",
+            "bin_path": "/usr/bin/mullvad",
+            "install_page": "https://mullvad.net/en/download/vpn/linux",
+            "account_page": "https://mullvad.net/en/account",
+            "cmd_overrides": {
+                "account": "account get",
+                "countries": "relay list",
+                "log": "status -v",
+                "version": "--version"
+            },
+            "regex": {
+                "status": "\/disconnected\/",
+                "pattern": "\/^(.*),.*$\/",
+                "replace": "$1"
+            }
+        },
+        {
+            "id": 3,
+            "name": "NordVPN",
+            "bin_path": "/usr/bin/nordvpn",
+            "install_page": "https://nordvpn.com/download/linux/",
+            "account_page": "https://my.nordaccount.com/dashboard/",
+            "cmd_overrides": {
+                "log": "status"
+            },
+            "regex": {
+                "status": "\/status: disconnected\/",
+                "pattern": "(\\w+)\\s+",
+                "replace": "$1,$1\\n"
+            }
+        }
+    ]
+}
