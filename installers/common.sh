@@ -91,7 +91,7 @@ function _config_installation() {
     fi
     _install_log "Configure ${opt[2]}"
     _get_linux_distro
-    echo "Detected OS: ${DESC}"
+    echo "Detected OS: ${DESC} ${LONG_BIT}-bit"
     echo "Using GitHub repository: ${repo} ${branch} branch"
     echo "Configuration directory: ${raspap_dir}"
     echo -n "lighttpd root: ${webroot_dir}? [Y/n]: "
@@ -127,6 +127,7 @@ function _get_linux_distro() {
         RELEASE=$(lsb_release -sr)
         CODENAME=$(lsb_release -sc)
         DESC=$(lsb_release -sd)
+        LONG_BIT=$(getconf LONG_BIT)
     elif [ -f /etc/os-release ]; then # freedesktop.org
         . /etc/os-release
         OS=$ID
