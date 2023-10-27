@@ -562,7 +562,13 @@ function _download_latest_files() {
         _install_status 3
         echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
     fi
-    git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || _install_status 1 "Unable to download files from github"
+    git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || clone=false
+    if [ "$clone" = false ]; then
+        _install_status 1 "Unable to download files from github"
+        echo "The installer cannot continue." >&2
+        exit 1
+    fi
+
     sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to web root"
 
     if [ "$upgrade" == 1 ]; then
