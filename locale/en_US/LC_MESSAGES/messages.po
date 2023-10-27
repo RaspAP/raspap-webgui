@@ -1308,6 +1308,9 @@ msgstr "Server location"
 msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
 msgstr "Choosing <strong>Save settings</strong> will connect to the selected country."
 
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+
 msgid "Select a country from the server location list"
 msgstr "Select a country from the server location list"
 

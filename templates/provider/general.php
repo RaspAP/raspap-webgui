@@ -34,8 +34,11 @@
   <div class="row">
     <div class="form-group col-md-6 mt-3">
       <h5><?php echo _("Server location"); ?></h5>
-      <div class="mb-2">
+      <div>
         <small><?php echo _("Choosing <strong>Save settings</strong> will connect to the selected country."); ?></small>
+      </div>
+      <div class="mb-2">
+        <small><?php echo sprintf(_("Choosing <strong>Connect %s</strong> will connect to a recommended server."), $providerName); ?></small>
       </div>
       <label for="cbxhwmode"><?php echo _("Country") ;?></label>
       <?php SelectorOptions('country', $countries, $country, 'cbxcountry'); ?>
