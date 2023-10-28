@@ -19,6 +19,7 @@ function DisplayProviderConfig()
     $publicIP = get_public_ip();
     $serviceStatus = 'down';
     $statusDisplay = 'down';
+    $ctlState = '';
 
     if (!file_exists($binPath)) {
         $status->addMessage(sprintf(_('Expected %s binary not found at: %s'), $providerName, $binPath), 'warning');
@@ -155,7 +156,7 @@ function getCliOverride($id, $group, $item)
         return false;
     } else {
         $id--;
-        if ($obj['providers'][$id][$group][$item] === null) {
+        if (empty($obj['providers'][$id][$group][$item])) {
             return $item;
         } else {
             return $obj['providers'][$id][$group][$item];
@@ -202,13 +203,13 @@ function getCountries($id, $binPath)
     $cmd = getCliOverride($id, 'cmd_overrides', 'countries');
     $pattern = getCliOverride($id, 'regex', 'pattern');
     $replace = getCliOverride($id, 'regex', 'replace');
-    $slice = getCliOverride($id, 'regex', 'slice');
     exec("sudo $binPath $cmd", $output);
 
     // CLI country output differs considerably between different providers.
     // Ideally, custom parsing would be avoided in favor of a pure regex solution
     switch ($id) {
     case 1: // expressvpn
+        $slice = getCliOverride($id, 'regex', 'slice');
         $output = array_slice($output, $slice);
         foreach ($output as $item) {
             $item = preg_replace($pattern, $replace, $item);
@@ -264,6 +265,7 @@ function getCountries($id, $binPath)
  */
 function getProviderLog($id, $binPath, &$country)
 {
+    $providerLog = '';
     $cmd = getCliOverride($id, 'cmd_overrides', 'log');
     exec("sudo $binPath $cmd", $cmd_raw);
     $output = stripArtifacts($cmd_raw);

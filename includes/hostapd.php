@@ -92,6 +92,8 @@ function DisplayHostAPDConfig()
     // assign disassoc_low_ack boolean if value is set
     if (isset($arrConfig['disassoc_low_ack'])) {
         $arrConfig['disassoc_low_ack_bool'] = 1;
+    } else {
+        $arrConfig['disassoc_low_ack_bool'] = 0;
     }
     // assign country_code from iw reg if not set in config
     if (empty($arrConfig['country_code']) && isset($country_code[0])) {
