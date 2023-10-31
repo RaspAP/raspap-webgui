@@ -35,7 +35,6 @@ readonly DNSMASQ_D_DIR="/etc/dnsmasq.d"
 readonly RASPAP_DHCDPCD="/etc/dhcpcd.conf"
 readonly RASPAP_HOSTAPD="$RASPAP_DIR/hostapd.ini"
 readonly RASPAP_PROVIDER="$RASPAP_DIR/provider.ini"
-readonly RASPAP_LOGFILE="raspap_debug.log"
 readonly RASPAP_DEBUG_VERSION="1.0"
 
 readonly PREAMBLE="
@@ -104,8 +103,6 @@ function _parse_params() {
 function _generate_log() {
     timestamp=$(date)
     _log_write "Debug log generation started at ${timestamp}"
-    _log_write "Writing log to ${logfile_path}/${RASPAP_LOGFILE}"
-
     _system_info
     _packages_info
     _raspap_info
@@ -115,9 +112,7 @@ function _generate_log() {
     _iw_dev_info
     _iw_reg_info
     _systemd_info
-  
     _log_write "RaspAP debug log generation complete."
-    echo "${logfile_path}/${RASPAP_LOGFILE}"
     exit 0
 }
 
@@ -202,13 +197,13 @@ function _routing_info() {
     _log_write "${stdout}"
 }
 
+# Status of systemd services
 function _systemd_info() {
     local SYSTEMD_SERVICES=(
         "hostapd"
         "dnsmasq"
         "dhcpcd"
         "systemd-networkd"
-        "systemd-resolved"
         "wg-quick@wg0"
         "openvpn-client@client"
         "lighttpd")
@@ -245,12 +240,7 @@ function _get_linux_distro() {
     KERNEL=$(uname -a)
 }
 
-# Initialized log for writing
 function _initialize() {
-    if [ -e "${logfile_path}/${RASPAP_LOGFILE}" ]; then
-        echo "Existing debug log found. Re-initializing..."
-        rm "${logfile_path}/${RASPAP_LOGFILE}"
-    fi
     _get_linux_distro
 }
 
@@ -265,9 +255,8 @@ function _log_separator(){
     _log_write $separator
 }
 
-# Writes to logfile and stdout
 function _log_write() {
-    echo -e "${@}" | tee -a $logfile_path/$RASPAP_LOGFILE
+    echo -e "${@}"
 }
 
 _main "$@"
