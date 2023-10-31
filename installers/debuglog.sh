@@ -1,0 +1,272 @@
+#!/bin/bash
+#
+# RaspAP Debug log generator
+# Author: @billz <billzimmerman@gmail.com>
+# Author URI: https://github.com/billz/
+# License: GNU General Public License v3.0
+# License URI: https://github.com/raspap/raspap-webgui/blob/master/LICENSE
+#
+# Typically used in an ajax call from the RaspAP UI, this utility may also
+# be invoked directly to generate a detailed system debug log.
+#
+# Usage: debuglog.sh [options]
+#
+# OPTIONS:
+# -p, --path        Overrides the debug logfile write path (/tmp)
+# -i, --install     Overrides the default RaspAP install location (/var/www/html)
+#
+# NOTE
+# Detailed system information is gathered for debugging and/or troubleshooting
+# purposes only. Passwords or other sensitive data are NOT included.
+#
+# You are not obligated to bundle the LICENSE file with your RaspAP projects as long
+# as you leave these references intact in the header comments of your source files.
+
+# Exit on error
+set -o errexit
+# Exit on error inside functions
+set -o errtrace
+# Turn on traces, disabled by default
+# set -o xtrace
+
+# Set defaults
+readonly RASPAP_DIR="/etc/raspap"
+readonly DNSMASQ_D_DIR="/etc/dnsmasq.d"
+readonly RASPAP_DHCDPCD="/etc/dhcpcd.conf"
+readonly RASPAP_HOSTAPD="$RASPAP_DIR/hostapd.ini"
+readonly RASPAP_PROVIDER="$RASPAP_DIR/provider.ini"
+readonly RASPAP_LOGFILE="raspap_debug.log"
+readonly RASPAP_DEBUG_VERSION="1.0"
+
+readonly PREAMBLE="
+   888888ba                              .d888888   888888ba
+   88     8b                            d8     88   88     8b
+  a88aaaa8P' .d8888b. .d8888b. 88d888b. 88aaaaa88a a88aaaa8P
+   88    8b. 88    88 Y8ooooo. 88    88 88     88   88
+   88     88 88.  .88       88 88.  .88 88     88   88
+   dP     dP  88888P8  88888P  88Y888P  88     88   dP
+                               88
+                               dP     Debug Log Generator $RASPAP_DEBUG_VERSION
+
+This process collects debug and troubleshooting information about your RaspAP installation.
+It is intended to assist users with a self-diagnosis of their installations, as well as 
+provide useful information as a starting point for others to assist with troubleshooting.
+Debug log information contains the RaspAP version, current state and configuration of AP
+related services, relevant installed package versions, Linux kernel version and local
+networking configuration details. 
+
+If you wish to share your debug info, paste the output to one of the following:
+  https://pastebin.com/
+  https://paste.ubuntu.com/
+
+Please do NOT paste the log in its entirety to RaspAP's discussions, issues or other
+support channels. Use one of the above links instead.
+
+DISCLAIMER: This log DOES contain details about your system, including networking
+settings. However, NO passwords or other sensitive data are included in the debug output.
+========================================================================================="
+
+function _main() {
+    _parse_params "$@"
+    _initialize
+    _output_preamble
+    _generate_log
+}
+
+function _parse_params() {
+    # default option values
+    logfile_path="/tmp"
+    install_dir="/var/www/html"
+
+    while :; do
+        case "${1-}" in
+            -p|--path)
+            logfile_path="$2"
+            shift
+            ;;
+            -i|--install)
+            install_dir="$2"
+            shift
+            ;;
+            -*|--*)
+            echo "Unknown option: $1"
+            _usage
+            exit 1
+            ;;
+            *)
+            break
+            ;;
+        esac
+        shift
+    done
+}
+
+function _generate_log() {
+    timestamp=$(date)
+    _log_write "Debug log generation started at ${timestamp}"
+    _log_write "Writing log to ${logfile_path}/${RASPAP_LOGFILE}"
+
+    _system_info
+    _packages_info
+    _raspap_info
+    _dnsmasq_info
+    _interface_info
+    _routing_info
+    _iw_dev_info
+    _iw_reg_info
+    _systemd_info
+  
+    _log_write "RaspAP debug log generation complete."
+    exit 0
+}
+
+function _system_info() {
+    local model=$(tr -d '\0' < /proc/device-tree/model)
+    local system_uptime=$(uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/){if ($9=="min") {d=$6;m=$8} else {d=$6;h=$8;m=$9}} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes"}')
+    local free_mem=$(free -m | awk 'NR==2{ total=$2 ; used=$3 } END { print used/total*100}')
+    _log_separator "SYSTEM INFO"
+    _log_write "Hardware: ${model}"
+    _log_write "Detected OS: ${DESC} ${LONG_BIT}-bit"
+    _log_write "Kernel: ${KERNEL}"
+    _log_write "System Uptime: ${system_uptime}"
+    _log_write "Memory Usage: ${free_mem}%"
+}
+
+function _packages_info() {
+    local php_version=$(php -v | grep -oP "PHP \K[0-9]+\.[0-9]+.*")
+    local dnsmasq_version=$(dnsmasq -v | grep -oP "Dnsmasq version \K[0-9]+\.[0-9]+")
+    local dhcpcd_version=$(dhcpcd --version | grep -oP '\d+\.\d+\.\d+')
+    local lighttpd_version=$(lighttpd -v | grep -oP '(\d+\.\d+\.\d+)')
+    local vnstat_version=$(vnstat -v | grep -oP "vnStat \K[0-9]+\.[0-9]+")
+    _log_separator "INSTALLED PACKAGES"
+    _log_write "PHP Version: ${php_version}"
+    _log_write "Dnsmasq Version: ${dnsmasq_version}"
+    _log_write "dhcpcd Version: ${dhcpcd_version}"
+    _log_write "lighttpd Version: ${lighttpd_version}"
+    _log_write "vnStat Version: ${vnstat_version}"
+}
+
+function _raspap_info() {
+    local version=$(grep "RASPI_VERSION" $install_dir/includes/defaults.php | awk -F"'" '{print $4}')
+    local hostapd_ini=$(cat ${RASPAP_HOSTAPD} || echo "Not present")
+    local provider_ini=$(cat ${RASPAP_PROVIDER} || echo "Not present")
+    _log_separator "RASPAP INSTALL"
+    _log_write "RaspAP Version: ${version}"
+    _log_write "RaspAP Installation Directory: ${install_dir}"
+    _log_write "RaspAP hostapd.ini contents:\n${hostapd_ini}"
+    _log_write "RaspAP provider.ini: ${provider_ini}"
+}
+
+function _dnsmasq_info() {
+    local stdout=$(ls -h ${DNSMASQ_D_DIR}/090_*.conf)
+    local contents
+    _log_separator "DNSMASQ CONTENTS"
+    _log_write "${stdout}"
+    IFS= # set IFS to empty
+    if [ -d "${DNSMASQ_D_DIR}" ]; then
+        for file in "${DNSMASQ_D_DIR}"/090_*.conf; do
+            if [ -f "$file" ]; then
+                contents+="\n$file contents:\n"
+                contents+="$(cat $file)"
+                contents="${contents}$\n"
+            fi
+        done
+        _log_write $contents
+    else
+        _log_write "Not found: ${DNSMASQ_D_DIR}"
+    fi
+}
+
+function _interface_info() {
+    local stdout=$(ip a)
+    _log_separator "INTERFACES"
+    _log_write "${stdout}"
+}
+
+function _iw_reg_info() {
+     local stdout=$(iw reg get)
+    _log_separator "IW REGULATORY INFO"
+    _log_write "${stdout}"
+}
+
+function _iw_dev_info() {
+     local stdout=$(iw dev)
+    _log_separator "IW DEVICE INFO"
+    _log_write "${stdout}"
+}
+
+function _routing_info() {
+    local stdout=$(ip route)
+    _log_separator "ROUTING TABLE"
+    _log_write "${stdout}"
+}
+
+function _systemd_info() {
+    local SYSTEMD_SERVICES=(
+        "hostapd"
+        "dnsmasq"
+        "dhcpcd"
+        "systemd-networkd"
+        "systemd-resolved"
+        "wg-quick@wg0"
+        "openvpn-client@client"
+        "lighttpd")
+
+    _log_separator "SYSTEMD SERVICES"
+    for i in "${!SYSTEMD_SERVICES[@]}"; do
+        _log_write "${SYSTEMD_SERVICES[$i]} status:"
+        stdout=$(systemctl status "${SYSTEMD_SERVICES[$i]}" || echo "")
+        _log_write "${stdout}\n"
+    done
+}
+
+function _output_preamble() {
+    _log_write "${PREAMBLE}\n"
+}
+
+# Determines host Linux distribution details
+function _get_linux_distro() {
+    if type lsb_release >/dev/null 2>&1; then # linuxbase.org
+        OS=$(lsb_release -si)
+        RELEASE=$(lsb_release -sr)
+        CODENAME=$(lsb_release -sc)
+        DESC=$(lsb_release -sd)
+        LONG_BIT=$(getconf LONG_BIT)
+    elif [ -f /etc/os-release ]; then # freedesktop.org
+        . /etc/os-release
+        OS=$ID
+        RELEASE=$VERSION_ID
+        CODENAME=$VERSION_CODENAME
+        DESC=$PRETTY_NAME
+    else
+        OS="Unsupported Linux distribution"
+    fi
+    KERNEL=$(uname -a)
+}
+
+# Initialized log for writing
+function _initialize() {
+    if [ -e "${logfile_path}/${RASPAP_LOGFILE}" ]; then
+        echo "Existing debug log found. Re-initializing..."
+        rm "${logfile_path}/${RASPAP_LOGFILE}"
+    fi
+    _get_linux_distro
+}
+
+function _log_separator(){
+    local separator=""
+    local msg="$1"
+    local length=${#msg}
+    _log_write "\n$1"
+    for ((i=1; i<=length; i++)); do
+         separator+="="
+    done
+    _log_write $separator
+}
+
+# Writes to logfile and stdout
+function _log_write() {
+    echo -e "${@}" | tee -a $logfile_path/$RASPAP_LOGFILE
+}
+
+_main "$@"
