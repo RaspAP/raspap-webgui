@@ -96,10 +96,10 @@
       <div class="modal-title" id="ModalLabel"><i class="fas fa-ambulance mr-2"></i><?php echo _("Generate debug log"); ?></div>
       </div>
       <div class="modal-body">
-        <div class="col-md-12 mb-3 mt-1" id="system-debug-message"><?php echo _("System debug log generation in progress..."); ?></div>
+        <div class="col-md-12 mb-3 mt-1" id="system-debug-message"><?php echo _("Debug log generation in progress..."); ?></div>
       </div>
       <div class="modal-footer">
-      <button type="button" data-message="<?php echo _("Close"); ?>" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
+      <button type="button" data-message="<?php echo _("Close"); ?>" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Close"); ?></button>
       </div>
     </div>
   </div>
