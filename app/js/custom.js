@@ -260,10 +260,8 @@ function setDHCPToggles(state) {
     if ($('#dhcp-iface').is(':checked') && !state) {
         $('#dhcp-iface').prop('checked', state);
     }
-
     $('#chkfallback').prop('disabled', state);
     $('#dhcp-iface').prop('disabled', !state);
-    //$('#dhcp-iface').prop('checked', state);
 }
 
 function loadChannel() {
@@ -272,6 +270,15 @@ function loadChannel() {
         loadChannelSelect(jsonData);
     });
 }
+
+$('#debugModal').on('shown.bs.modal', function (e) {
+  var csrfToken = $('meta[name=csrf_token]').attr('content');
+  $.post('ajax/system/sys_debug.php',{'csrf_token': csrfToken},function(data){
+        var filePath = JSON.parse(data);
+        window.location.replace('/ajax/system/sys_get_logfile.php?filePath='+filePath);
+        $('#debugModal').modal('hide');
+    });
+});
 
 $('#hostapdModal').on('shown.bs.modal', function (e) {
     var seconds = 3;

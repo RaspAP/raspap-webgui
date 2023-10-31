@@ -8,7 +8,16 @@ if (isset($_POST['csrf_token'])) {
         handleInvalidCSRFToken();
     }
     exec( RASPI_CONFIG.'/system/debuglog.sh', $return);
-    echo json_encode(end($return));
+
+    $logOutput = implode(PHP_EOL, $return);
+    $filename = "raspap_debug.log";
+    $tempDir = sys_get_temp_dir();
+    $filePath = $tempDir . DIRECTORY_SEPARATOR . $filename;
+    $handle = fopen($filePath, "w");
+    fwrite($handle, $logOutput);
+    fclose($handle);
+    echo json_encode($filePath);
+
 } else {
     handleInvalidCSRFToken();
 }
