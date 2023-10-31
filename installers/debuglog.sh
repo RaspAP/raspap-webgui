@@ -117,6 +117,7 @@ function _generate_log() {
     _systemd_info
   
     _log_write "RaspAP debug log generation complete."
+    echo "${logfile_path}/${RASPAP_LOGFILE}"
     exit 0
 }
 
