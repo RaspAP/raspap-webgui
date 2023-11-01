@@ -14,7 +14,9 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-warning mb-3" name="debug-log" data-toggle="modal" data-target="#debugModal" /><?php echo _("Generate debug log"); ?></button>
+      <button type="button" class="btn btn-warning mb-3" name="debug-log" data-toggle="modal" data-target="#debugModal" />
+        <i class="fas fa-ambulance ml-1 mr-2"></i><?php echo _("Generate debug log"); ?>
+      </button>
 
       <div class="row">
         <div class="form-group col-lg-8 col-md-8">
@@ -27,7 +29,9 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-danger" name="system-reset" data-toggle="modal" data-target="#system-confirm-reset" /><?php echo _("Perform reset"); ?></button>
+      <button type="button" class="btn btn-danger" name="system-reset" data-toggle="modal" data-target="#system-confirm-reset" />
+        <i class="fas fa-history ml-1 mr-2"></i><?php echo _("Perform reset"); ?>
+      </button>
 
     <?php endif ?>
 </div>
