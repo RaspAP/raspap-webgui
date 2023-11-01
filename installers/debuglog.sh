@@ -64,7 +64,7 @@ support channels. Use one of the above links instead.
 
 DISCLAIMER: This log DOES contain details about your system, including networking
 settings. However, NO passwords or other sensitive data are included in the debug output.
-========================================================================================="
+========================================================================================"
 
 function _main() {
     _parse_params "$@"
@@ -130,14 +130,31 @@ function _system_info() {
     _log_write "Memory Usage: ${free_mem}%"
 }
 
-# Outputs installed package versions
+# Fetch installed package versions
 function _packages_info() {
-    local php_version=$(php -v | grep -oP "PHP \K[0-9]+\.[0-9]+.*")
-    local dnsmasq_version=$(dnsmasq -v | grep -oP "Dnsmasq version \K[0-9]+\.[0-9]+")
-    local dhcpcd_version=$(dhcpcd --version | grep -oP '\d+\.\d+\.\d+')
-    local lighttpd_version=$(lighttpd -v | grep -oP '(\d+\.\d+\.\d+)')
-    local vnstat_version=$(vnstat -v | grep -oP "vnStat \K[0-9]+\.[0-9]+")
-    _log_separator "Installed Packaged"
+    local php_version="Not present"
+    local dnsmasq_version="Not present"
+    local dhcpcd_version="Not present"
+    local lighttpd_version="Not present"
+    local vnstat_version="Not present"
+
+    if [ -x "$(command -v php)" ]; then
+        php_version=$(php -v | grep -oP "PHP \K[0-9]+\.[0-9]+.*")
+    fi
+    if [ -x "$(command -v dnsmasq)" ]; then
+        dnsmasq_version=$(dnsmasq -v | grep -oP "Dnsmasq version \K[0-9]+\.[0-9]+")
+    fi
+    if [ -x "$(command -v dhcpcd)" ]; then
+        dhcpcd_version=$(dhcpcd --version | grep -oP '\d+\.\d+\.\d+')
+    fi
+    if [ -x "$(command -v dhcpcd)" ]; then
+        lighttpd_version=$(lighttpd -v | grep -oP '(\d+\.\d+\.\d+)')
+    fi
+    if [ -x "$(command -v dhcpcd)" ]; then
+        vnstat_version=$(vnstat -v | grep -oP "vnStat \K[0-9]+\.[0-9]+")
+    fi
+
+    _log_separator "Installed Packages"
     _log_write "PHP Version: ${php_version}"
     _log_write "Dnsmasq Version: ${dnsmasq_version}"
     _log_write "dhcpcd Version: ${dhcpcd_version}"
@@ -147,9 +164,20 @@ function _packages_info() {
 
 # Outputs installed RaspAP version & settings 
 function _raspap_info() {
-    local version=$(grep "RASPI_VERSION" $install_dir/includes/defaults.php | awk -F"'" '{print $4}')
-    local hostapd_ini=$(cat ${RASPAP_HOSTAPD} || echo "Not present")
-    local provider_ini=$(cat ${RASPAP_PROVIDER} || echo "Not present")
+    local version="Not present"
+    local hostapd_ini="Not present"
+    local provider_ini="Not present"
+
+    if [ -f ${install_dir}/includes/defaults.php ]; then
+        version=$(grep "RASPI_VERSION" $install_dir/includes/defaults.php | awk -F"'" '{print $4}')
+    fi
+    if [ -f ${RASPAP_HOSTAPD} ]; then
+        hostapd_ini=$(cat ${RASPAP_HOSTAPD})
+    fi
+    if [ -f ${RASPAP_PROVIDER} ]; then
+        provider_ini=$(cat ${RASPAP_PROVIDER})
+    fi
+
     _log_separator "RaspAP Install"
     _log_write "RaspAP Version: ${version}"
     _log_write "RaspAP Installation Directory: ${install_dir}"
@@ -210,7 +238,7 @@ function _iw_dev_info() {
 
 function _routing_info() {
     local stdout=$(ip route)
-    _log_separator "Routing Info"
+    _log_separator "Routing Table"
     _log_write "${stdout}"
 }
 
