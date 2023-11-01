@@ -830,8 +830,8 @@ msgstr "System tools"
 msgid "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
 msgstr "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
 
-msgid "Debug log information contains the RaspAP version, current state and configuratin of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
-msgstr "Debug log information contains the RaspAP version, current state and configuratin of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
 
 msgid "Generate debug log"
 msgstr "Generate debug log"

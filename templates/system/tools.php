@@ -10,7 +10,7 @@
             <?php echo sprintf(_("To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."), "https://docs.raspap.com/ap-basics/#debug-log/"); ;?>
           </label>
           <div class="small"> 
-          <?php echo _("Debug log information contains the RaspAP version, current state and configuratin of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."); ?>
+          <?php echo _("Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."); ?>
           </div>
         </div>
       </div>
