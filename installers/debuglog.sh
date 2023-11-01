@@ -12,7 +12,7 @@
 # Usage: debuglog.sh [options]
 #
 # OPTIONS:
-# -p, --path        Overrides the debug logfile write path (/tmp)
+# -w, --write       Writes the debug log to /tmp (useful if sourced directly)
 # -i, --install     Overrides the default RaspAP install location (/var/www/html)
 #
 # NOTE
@@ -35,8 +35,9 @@ readonly DNSMASQ_D_DIR="/etc/dnsmasq.d"
 readonly RASPAP_DHCDPCD="/etc/dhcpcd.conf"
 readonly RASPAP_HOSTAPD="$RASPAP_DIR/hostapd.ini"
 readonly RASPAP_PROVIDER="$RASPAP_DIR/provider.ini"
+readonly RASPAP_LOGPATH="/tmp"
+readonly RASPAP_LOGFILE="$RASPAP_LOGPATH/raspap_debug.log"
 readonly RASPAP_DEBUG_VERSION="1.0"
-
 readonly PREAMBLE="
    888888ba                              .d888888   888888ba
    88     8b                            d8     88   88     8b
@@ -74,14 +75,13 @@ function _main() {
 
 function _parse_params() {
     # default option values
-    logfile_path="/tmp"
     install_dir="/var/www/html"
+    writelog=0
 
     while :; do
         case "${1-}" in
-            -p|--path)
-            logfile_path="$2"
-            shift
+            -w|--write)
+            writelog=1
             ;;
             -i|--install)
             install_dir="$2"
@@ -101,11 +101,12 @@ function _parse_params() {
 }
 
 function _generate_log() {
-    timestamp=$(date)
-    _log_write "Debug log generation started at ${timestamp}"
+    _log_write "Debug log generation started at $(date)"
     _system_info
     _packages_info
     _raspap_info
+    _usb_info
+    _wpa_info
     _dnsmasq_info
     _interface_info
     _routing_info
@@ -116,6 +117,7 @@ function _generate_log() {
     exit 0
 }
 
+# Fetches hardware, OS, uptime & used memory
 function _system_info() {
     local model=$(tr -d '\0' < /proc/device-tree/model)
     local system_uptime=$(uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/){if ($9=="min") {d=$6;m=$8} else {d=$6;h=$8;m=$9}} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes"}')
@@ -128,6 +130,7 @@ function _system_info() {
     _log_write "Memory Usage: ${free_mem}%"
 }
 
+# Outputs installed package versions
 function _packages_info() {
     local php_version=$(php -v | grep -oP "PHP \K[0-9]+\.[0-9]+.*")
     local dnsmasq_version=$(dnsmasq -v | grep -oP "Dnsmasq version \K[0-9]+\.[0-9]+")
@@ -142,6 +145,7 @@ function _packages_info() {
     _log_write "vnStat Version: ${vnstat_version}"
 }
 
+# Outputs installed RaspAP version & settings 
 function _raspap_info() {
     local version=$(grep "RASPI_VERSION" $install_dir/includes/defaults.php | awk -F"'" '{print $4}')
     local hostapd_ini=$(cat ${RASPAP_HOSTAPD} || echo "Not present")
@@ -153,6 +157,19 @@ function _raspap_info() {
     _log_write "RaspAP provider.ini: ${provider_ini}"
 }
 
+function _usb_info() {
+    local stdout=$(lsusb)
+    _log_separator "USB DEVICES"
+    _log_write "${stdout}"
+}
+
+function _wpa_info() {
+    local stdout=$(wpa_cli status)
+    _log_separator "WPA SUPPLICANT"
+    _log_write "${stdout}"
+}
+
+# Iterates the contents of RaspAP's 090_*.conf files in dnsmasq.d
 function _dnsmasq_info() {
     local stdout=$(ls -h ${DNSMASQ_D_DIR}/090_*.conf)
     local contents
@@ -220,7 +237,7 @@ function _output_preamble() {
     _log_write "${PREAMBLE}\n"
 }
 
-# Determines host Linux distribution details
+# Fetches host Linux distribution details
 function _get_linux_distro() {
     if type lsb_release >/dev/null 2>&1; then # linuxbase.org
         OS=$(lsb_release -si)
@@ -241,6 +258,9 @@ function _get_linux_distro() {
 }
 
 function _initialize() {
+    if [ -e "${RASPAP_LOGFILE}" ]; then
+        rm "${RASPAP_LOGFILE}"
+    fi
     _get_linux_distro
 }
 
@@ -256,7 +276,12 @@ function _log_separator(){
 }
 
 function _log_write() {
-    echo -e "${@}"
+    if [ "${writelog}" = 1 ]; then
+        echo -e "${@}" | tee -a $RASPAP_LOGFILE
+    else
+        echo -e "${@}"
+    fi
 }
 
 _main "$@"
+
