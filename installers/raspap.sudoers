@@ -41,6 +41,7 @@ www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/servicestart.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/lighttpd/configport.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/openvpn/configauth.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/openvpn/openvpnlog.sh
+www-data ALL=(ALL) NOPASSWD:/etc/raspap/system/debuglog.sh
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/hostapd.log
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /var/log/dnsmasq.log
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/wireguard.log
