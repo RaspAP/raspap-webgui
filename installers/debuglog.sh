@@ -122,7 +122,7 @@ function _system_info() {
     local model=$(tr -d '\0' < /proc/device-tree/model)
     local system_uptime=$(uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/){if ($9=="min") {d=$6;m=$8} else {d=$6;h=$8;m=$9}} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes"}')
     local free_mem=$(free -m | awk 'NR==2{ total=$2 ; used=$3 } END { print used/total*100}')
-    _log_separator "SYSTEM INFO"
+    _log_separator "System Info"
     _log_write "Hardware: ${model}"
     _log_write "Detected OS: ${DESC} ${LONG_BIT}-bit"
     _log_write "Kernel: ${KERNEL}"
@@ -137,7 +137,7 @@ function _packages_info() {
     local dhcpcd_version=$(dhcpcd --version | grep -oP '\d+\.\d+\.\d+')
     local lighttpd_version=$(lighttpd -v | grep -oP '(\d+\.\d+\.\d+)')
     local vnstat_version=$(vnstat -v | grep -oP "vnStat \K[0-9]+\.[0-9]+")
-    _log_separator "INSTALLED PACKAGES"
+    _log_separator "Installed Packaged"
     _log_write "PHP Version: ${php_version}"
     _log_write "Dnsmasq Version: ${dnsmasq_version}"
     _log_write "dhcpcd Version: ${dhcpcd_version}"
@@ -150,7 +150,7 @@ function _raspap_info() {
     local version=$(grep "RASPI_VERSION" $install_dir/includes/defaults.php | awk -F"'" '{print $4}')
     local hostapd_ini=$(cat ${RASPAP_HOSTAPD} || echo "Not present")
     local provider_ini=$(cat ${RASPAP_PROVIDER} || echo "Not present")
-    _log_separator "RASPAP INSTALL"
+    _log_separator "RaspAP Install"
     _log_write "RaspAP Version: ${version}"
     _log_write "RaspAP Installation Directory: ${install_dir}"
     _log_write "RaspAP hostapd.ini contents:\n${hostapd_ini}"
@@ -159,13 +159,13 @@ function _raspap_info() {
 
 function _usb_info() {
     local stdout=$(lsusb)
-    _log_separator "USB DEVICES"
+    _log_separator "USB Devices"
     _log_write "${stdout}"
 }
 
 function _wpa_info() {
     local stdout=$(wpa_cli status)
-    _log_separator "WPA SUPPLICANT"
+    _log_separator "WPA Supplicant"
     _log_write "${stdout}"
 }
 
@@ -173,7 +173,7 @@ function _wpa_info() {
 function _dnsmasq_info() {
     local stdout=$(ls -h ${DNSMASQ_D_DIR}/090_*.conf)
     local contents
-    _log_separator "DNSMASQ CONTENTS"
+    _log_separator "Dnsmasq Contents"
     _log_write "${stdout}"
     IFS= # set IFS to empty
     if [ -d "${DNSMASQ_D_DIR}" ]; then
@@ -192,25 +192,25 @@ function _dnsmasq_info() {
 
 function _interface_info() {
     local stdout=$(ip a)
-    _log_separator "INTERFACES"
+    _log_separator "Interfaces"
     _log_write "${stdout}"
 }
 
 function _iw_reg_info() {
      local stdout=$(iw reg get)
-    _log_separator "IW REGULATORY INFO"
+    _log_separator "IW Regulatory Info"
     _log_write "${stdout}"
 }
 
 function _iw_dev_info() {
      local stdout=$(iw dev)
-    _log_separator "IW DEVICE INFO"
+    _log_separator "IW Device Info"
     _log_write "${stdout}"
 }
 
 function _routing_info() {
     local stdout=$(ip route)
-    _log_separator "ROUTING TABLE"
+    _log_separator "Routing Info"
     _log_write "${stdout}"
 }
 
@@ -224,8 +224,7 @@ function _systemd_info() {
         "wg-quick@wg0"
         "openvpn-client@client"
         "lighttpd")
-
-    _log_separator "SYSTEMD SERVICES"
+    _log_separator "Systemd Services"
     for i in "${!SYSTEMD_SERVICES[@]}"; do
         _log_write "${SYSTEMD_SERVICES[$i]} status:"
         stdout=$(systemctl status "${SYSTEMD_SERVICES[$i]}" || echo "")
@@ -258,7 +257,7 @@ function _get_linux_distro() {
 }
 
 function _initialize() {
-    if [ -e "${RASPAP_LOGFILE}" ]; then
+    if [ -e "${RASPAP_LOGFILE}" ] && [ "${writelog}" = 1 ]; then
         rm "${RASPAP_LOGFILE}"
     fi
     _get_linux_distro
