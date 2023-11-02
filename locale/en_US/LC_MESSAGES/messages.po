@@ -821,6 +821,24 @@ msgstr "Select a theme"
 msgid "Color"
 msgstr "Color"
 
+msgid "Tools"
+msgstr "Tools"
+
+msgid "System tools"
+msgstr "System tools"
+
+msgid "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
+msgstr "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
+
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+
+msgid "Generate debug log"
+msgstr "Generate debug log"
+
+msgid "Debug log generation in progress..."
+msgstr "Debug log generation in progress..."
+
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "Data usage"
