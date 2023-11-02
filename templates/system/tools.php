@@ -7,7 +7,7 @@
       <div class="row">
         <div class="form-group col-lg-8 col-md-8">
           <label for="debug">
-            <?php echo sprintf(_("To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."), "https://docs.raspap.com/ap-basics/#debug-log/"); ;?>
+            <?php echo sprintf(_("To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."), "https://docs.raspap.com/ap-basics/#debug-log"); ;?>
           </label>
           <div class="small"> 
           <?php echo _("Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."); ?>
@@ -21,7 +21,7 @@
       <div class="row">
         <div class="form-group col-lg-8 col-md-8">
           <label for="reset">
-            <?php echo sprintf(_("To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."), "https://docs.raspap.com/defaults/"); ;?>
+            <?php echo sprintf(_("To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."), "https://docs.raspap.com/defaults/"); ;?>
           </label>
           <?php getTooltip('Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq.', 'tiphwmode', true); ?>
           <div class="small"> 
