@@ -108,6 +108,7 @@ function _generate_log() {
     _usb_info
     _wpa_info
     _dnsmasq_info
+    _dhcpcd_info
     _interface_info
     _routing_info
     _iw_dev_info
@@ -215,6 +216,17 @@ function _dnsmasq_info() {
         _log_write $contents
     else
         _log_write "Not found: ${DNSMASQ_D_DIR}"
+    fi
+}
+
+function _dhcpcd_info() {
+    _log_separator "Dhcpcd Contents"
+    if [ -f "${RASPAP_DHCDPCD}" ]; then
+        local stdout=$(cat ${RASPAP_DHCDPCD});
+        _log_write "${stdout}"
+
+    else
+        _log_write "${RASPAP_DHCDPCD} not present"
     fi
 }
 
