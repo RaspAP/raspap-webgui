@@ -6,7 +6,7 @@
 # License: GNU General Public License v3.0
 # License URI: https://github.com/raspap/raspap-webgui/blob/master/LICENSE
 #
-# Usage: raspbian.sh options
+# Usage: raspbian.sh [options]
 #
 # Installs an instance of RaspAP.
 #
@@ -15,6 +15,7 @@
 # -c, --cert, --certficate          Installs mkcert and generates an SSL certificate for lighttpd
 # -o, --openvpn <flag>              Used with -y, --yes, sets OpenVPN install option (0=no install)
 # -a, --adblock <flag>              Used with -y, --yes, sets Adblock install option (0=no install)
+# -w, --wireguard <flag>            Used with -y, --yes, sets WireGuard install option (0=no install)
 # -c, --cert, --certificate         Installs an SSL certificate with mkcert and configures lighttpd for HTTPS
 # -r, --repo, --repository <name>   Overrides the default GitHub repo (RaspAP/raspap-webgui)
 # -b, --branch <name>               Overrides the default git branch (master)
@@ -59,6 +60,7 @@ function _parse_params() {
     upgrade=0
     ovpn_option=1
     adblock_option=1
+    wg_option=1
     insiders=0
     minwrite=0
     acctoken=""
@@ -75,6 +77,10 @@ function _parse_params() {
             ;;
             -a|--adblock)
             adblock_option="$2"
+            shift
+            ;;
+            -w|--wireguard)
+            wg_option="$2"
             shift
             ;;
             -c|--cert|--certificate)
@@ -150,6 +156,7 @@ OPTIONS:
 -c, --cert, --certificate           Installs an SSL certificate for lighttpd
 -o, --openvpn <flag>                Used with -y, --yes, sets OpenVPN install option (0=no install)
 -a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
+-w, --wireguard <flag>              Used with -y, --yes, sets WireGuard install option (0=no install)
 -c, --cert, --certificate           Installs an SSL certificate with mkcert and configures lighttpd for HTTPS
 -r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
