@@ -286,11 +286,12 @@ function _create_hostapd_scripts() {
     _install_log "Creating hostapd logging & control scripts"
     sudo mkdir $raspap_dir/hostapd || _install_status 1 "Unable to create directory '$raspap_dir/hostapd'"
 
-    # Move logging shell scripts 
-    sudo cp "$webroot_dir/installers/"*log.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move logging scripts"
-    # Move service control shell scripts
-    sudo cp "$webroot_dir/installers/"service*.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move service control scripts"
-    # Make enablelog.sh and disablelog.sh not writable by www-data group.
+    # Copy logging shell scripts
+    sudo cp "$webroot_dir/installers/"enablelog.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move logging scripts"
+    sudo cp "$webroot_dir/installers/"disablelog.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move logging scripts"
+    # Copy service control shell scripts
+    sudo cp "$webroot_dir/installers/"servicestart.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move service control scripts"
+    # Change ownership and permissions of hostapd control scripts
     sudo chown -c root:root "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable to change file permissions"
     _install_status 0
@@ -301,10 +302,10 @@ function _create_lighttpd_scripts() {
     _install_log "Creating lighttpd control scripts"
     sudo mkdir $raspap_dir/lighttpd || _install_status 1 "Unable to create directory '$raspap_dir/lighttpd"
 
-    # Move service control shell scripts
+    # Copy service control shell scripts
     echo "Copying configport.sh to $raspap_dir/lighttpd"
     sudo cp "$webroot_dir/installers/"configport.sh "$raspap_dir/lighttpd" || _install_status 1 "Unable to move service control scripts"
-    # Make configport.sh writable by www-data group
+    # Change ownership and permissions of lighttpd scripts
     echo "Changing file ownership"
     sudo chown -c root:root "$raspap_dir/lighttpd/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/lighttpd/"*.sh || _install_status 1 "Unable to change file permissions"
@@ -539,18 +540,12 @@ function _create_openvpn_scripts() {
     _install_log "Creating OpenVPN control scripts"
     sudo mkdir $raspap_dir/openvpn || _install_status 1 "Unable to create directory '$raspap_dir/openvpn'"
 
-    _install_log "Creating RaspAP debug log control script"
-    sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
-
-    # Move service auth control, logging and debug shell scripts
+    # Copy service auth control and logging scripts
     sudo cp "$webroot_dir/installers/"configauth.sh "$raspap_dir/openvpn" || _install_status 1 "Unable to move auth control script"
     sudo cp "$webroot_dir/installers/"openvpnlog.sh "$raspap_dir/openvpn" || _install_status 1 "Unable to move logging script"
-    sudo cp "$webroot_dir/installers/"debuglog.sh "$raspap_dir/system" || _install_status 1 "Unable to move debug logging script"
     # Restrict script execution to root user
     sudo chown -c root:root "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable to change file permissions"
-    sudo chown -c root:root "$raspap_dir/system/"*.sh || _install_status 1 "Unable change owner and/or group"
-    sudo chmod 750 "$raspap_dir/system/"*.sh || _install_status 1 "Unable to change file permissions"
 
     _install_status 0
 }
@@ -749,6 +744,16 @@ function _patch_system_files() {
     _install_log "Adding raspap.sudoers to ${raspap_sudoers}"
     sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
     sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
+
+    install_log "Creating RaspAP debug log control script"
+    sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
+
+    # Copy debug shell script
+    sudo cp "$webroot_dir/installers/"debuglog.sh "$raspap_dir/system" || _install_status 1 "Unable to move debug logging script"
+
+    # Set ownership and permissions
+    sudo chown -c root:root "$raspap_dir/system/"*.sh || _install_status 1 "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/system/"*.sh || _install_status 1 "Unable to change file permissions"
 
     # Add symlink to prevent wpa_cli cmds from breaking with multiple wlan interfaces
     _install_log "Symlinked wpa_supplicant hooks for multiple wlan interfaces"
