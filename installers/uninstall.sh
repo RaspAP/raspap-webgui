@@ -26,13 +26,14 @@ readonly raspap_network="/etc/systemd/network/"
 readonly rulesv4="/etc/iptables/rules.v4"
 webroot_dir="/var/www/html"
 
-# Determines host Linux distrubtion details
+# Determines host Linux distribution details
 function _get_linux_distro() {
     if type lsb_release >/dev/null 2>&1; then # linuxbase.org
         OS=$(lsb_release -si)
         RELEASE=$(lsb_release -sr)
         CODENAME=$(lsb_release -sc)
         DESC=$(lsb_release -sd)
+        LONG_BIT=$(getconf LONG_BIT)
     elif [ -f /etc/os-release ]; then # freedesktop.org
         . /etc/os-release
         OS=$ID
@@ -47,15 +48,27 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        18.04|19.10) # Ubuntu Server
+        23.05|12*) # Debian 12 & Armbian 23.05
+            php_package="php8.2-cgi"
+            phpcgiconf="/etc/php/8.2/cgi/php.ini" ;;
+        23.04) # Ubuntu Server 23.04
+            php_package="php8.1-cgi"
+            phpcgiconf="/etc/php/8.1/cgi/php.ini" ;;
+        22.04|20.04|18.04|19.10|11*) # Previous Ubuntu Server, Debian & Armbian distros
             php_package="php7.4-cgi"
             phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
-        10*)
+        10*|11*)
             php_package="php7.3-cgi"
             phpcgiconf="/etc/php/7.3/cgi/php.ini" ;;
         9*)
             php_package="php7.0-cgi"
             phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
+        8)
+            _install_error "${DESC} and php5 are unsupported."
+            exit 1 ;;
+        *)
+            _install_error "${DESC} is unsupported."
+            exit 1 ;;
     esac
 }
 
@@ -74,7 +87,7 @@ function _install_error() {
 function _config_uninstallation() {
     _install_log "Configure uninstall of RaspAP"
     _get_linux_distro
-    echo "Detected ${DESC}" 
+    echo "Detected OS: ${DESC} ${LONG_BIT}-bit"
     echo "RaspAP install directory: ${raspap_dir}"
     echo -n "Lighttpd install directory: ${webroot_dir}? [Y/n]: "
     read answer
@@ -195,16 +208,23 @@ function _restore_networking() {
 function _remove_installed_packages() {
     _install_log "Removing installed packages"
     _set_php_package
+
+    # Set default
+    dhcpcd_package="dnsmasq"
+
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
-    else
-        dhcpcd_package="dnsmasq"
+        iw_package="iw"
     fi
-    echo -n "Remove the following installed packages? lighttpd hostapd iptables-persistent $php_package $dhcpcd_package vnstat qrencode [y/N]: "
+    if [ ${OS,,} = "raspbian" ] && [[ ${RELEASE} =~ ^(12) ]]; then
+        dhcpcd_package="dhcpcd dhcpcd-base"
+    fi
+
+    echo -n "Remove the following installed packages? lighttpd hostapd iptables-persistent $php_package $dhcpcd_package $iw_package vnstat qrencode jq [y/N]: "
     read answer
     if [ "$answer" == 'y' ] || [ "$answer" == 'Y' ]; then
         echo "Removing packages."
-        sudo apt-get remove lighttpd hostapd iptables-persistent $php_package $dhcpcd_package vnstat qrencode || _install_error "Unable to remove installed packages"
+        sudo apt-get remove lighttpd hostapd iptables-persistent $php_package $dhcpcd_package $iw_package vnstat qrencode jq || _install_error "Unable to remove installed packages"
         sudo apt-get autoremove || _install_error "Unable to run apt autoremove"
     else
         echo "Leaving packages installed."
@@ -230,7 +250,13 @@ function _remove_lighttpd_config() {
 
 function _uninstall_complete() {
     _install_log "Uninstall completed"
-    echo "It is recommended that you reboot your system as a final step."
+    echo "The system needs to be rebooted as a final step. Reboot now? [Y/n]: "
+    read answer < /dev/tty
+    if [ "$answer" != "${answer#[Nn]}" ]; then
+        echo "Uninstall reboot aborted."
+        exit 0
+    fi
+    sudo shutdown -r now || _install_status 1 "Unable to execute reboot"
 }
 
 function _remove_raspap() {
