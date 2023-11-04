@@ -22,6 +22,9 @@ function DisplayHostAPDConfig()
         'n' => '802.11n - 2.4 GHz',
         'ac' => '802.11ac - 5 GHz'
     ];
+    $languageCode = strtok($_SESSION['locale'], '_');
+    $countryCodes = getCountryCodes($languageCode);
+
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
     $arrTxPower = getDefaultNetOpts('txpower','dbm');
@@ -157,7 +160,8 @@ function DisplayHostAPDConfig()
             "arrHostapdConf",
             "operatingSystem",
             "selectedHwMode",
-            "hwModeDisabled"
+            "hwModeDisabled",
+            "countryCodes"
         )
     );
 }

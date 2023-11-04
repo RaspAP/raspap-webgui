@@ -862,3 +862,33 @@ function loadFooterScripts($extraFooterScripts)
     }
 }
 
+/**
+ * Returns ISO standard 2-letter country codes
+ *
+ * @param string $locale
+ * @param boolean $flag
+*/
+function getCountryCodes($locale = 'en', $flag = true) {
+    $output = [];
+    if ($flag) {
+        $opt = '--flag';
+    }
+    exec("isoquery $opt --locale $locale", $output);
+
+    $countryData = [];
+    foreach ($output as $line) {
+        $parts = explode("\t", $line);
+        if (count($parts) >= 2) {
+            $countryCode = $parts[0];
+            if ($flag) {
+                $countryFlag = $parts[3] . ' ';
+                $countryName = $parts[4];
+            } else {
+                $countryName = $parts[3];
+            }
+            $countryData[$countryCode] = $countryFlag .$countryName;
+        }
+    }
+    return $countryData;
+}
+
