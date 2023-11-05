@@ -42,7 +42,7 @@ body {
   background-color: #fff;
 }
 
-.btn-primary.disabled {
+.btn-primary:disabled {
   color: <?php echo $color; ?> !important;
   border-color: <?php echo $color; ?> !important;
   background-color: #fff !important;
