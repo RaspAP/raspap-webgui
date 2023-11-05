@@ -28,7 +28,6 @@ class IwParser {
     }
 
     public function parseIwList() {
-        
         /**
          * (no IR): the AP won't Initiate Radiation until a DFS scan (or similar) is complete on these bands.
          * (radar detection): the specified channels are shared with radar equipment.
