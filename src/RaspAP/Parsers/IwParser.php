@@ -13,26 +13,33 @@ declare(strict_types=1);
 
 namespace RaspAP\Parsers;
 
-class IwParser {
+class IwParser
+{
     private $iw_output;
 
-    public function __construct(string $interface = 'wlan0') {
+    public function __construct(string $interface = 'wlan0')
+    {
 
         // Resolve physical device for selected interface
         $iface = escapeshellarg($interface);
-        exec("iw dev | awk -v iface=".$iface." '/^phy#/ { phy = $0 } $1 == \"Interface\" { interface = $2 } interface == iface { print phy }'", $return);
+        $pattern = "iw dev | awk -v iface=".$iface." '/^phy#/ { phy = $0 } $1 == \"Interface\" { interface = $2 } interface == iface { print phy }'";
+        exec($pattern, $return);
         $phy = $return[0];
 
         // Fetch 'iw info' output for phy
         $this->iw_output = shell_exec("iw $phy info");
     }
 
-    public function parseIwList() {
-        /**
-         * (no IR): the AP won't Initiate Radiation until a DFS scan (or similar) is complete on these bands.
-         * (radar detection): the specified channels are shared with radar equipment.
-         * (disabled): self-explanatory.
-         */
+    /**
+     * Parses raw output of 'iw info' command, filtering supported frequencies.
+     *
+     * Frequencies with the following regulatory restrictions are excluded:
+     * (no IR): the AP won't Initiate Radiation until a DFS scan (or similar) is complete on these bands.
+     * (radar detection): the specified channels are shared with radar equipment.
+     * (disabled): self-explanatory.
+     */
+    public function parseIwInfo()
+    {
         $excluded = array(
             "(no IR, radar detection)",
             "(radar detection)",
