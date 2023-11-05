@@ -881,12 +881,12 @@ function getCountryCodes($locale = 'en', $flag = true) {
         if (count($parts) >= 2) {
             $countryCode = $parts[0];
             if ($flag) {
-                $countryFlag = $parts[3] . ' ';
-                $countryName = $parts[4];
+                $countryFlag = $parts[3];
+                $countryName = $parts[4] .' ';
             } else {
                 $countryName = $parts[3];
             }
-            $countryData[$countryCode] = $countryFlag .$countryName;
+            $countryData[$countryCode] = $countryName.$countryFlag;
         }
     }
     return $countryData;
