@@ -40,12 +40,12 @@ class IwParser
      */
     public function parseIwInfo()
     {
-        $excluded = array(
+        $excluded = [
             "(no IR, radar detection)",
             "(radar detection)",
             "(disabled)",
             "(no IR)"
-        );
+        ];
         $excluded_pattern = implode('|', array_map('preg_quote', $excluded));
         $pattern = '/\*\s+(\d+)\s+MHz \[(\d+)\] \(([\d.]+) dBm\)\s(?!' .$excluded_pattern. ')/';
         $supportedFrequencies = [];
@@ -53,13 +53,21 @@ class IwParser
         // Match iw_output containing supported frequencies
         preg_match_all($pattern, $this->iw_output, $matches, PREG_SET_ORDER, 0);
 
+        /* For frequencies > 5500 MHz only the following "channels" are allowed:
+         * 100 108 116 124 132 140 149 157 184 192
+         * @see https://w1.fi/cgit/hostap/tree/src/common/hw_features_common.c
+         */
+        $allowed = [100, 108, 116, 124, 132, 140, 149, 157, 184, 192];
+
         foreach ($matches as $match) {
-            $frequency = [
-                'MHz' => (int)$match[1],
-                'Channel' => (int)$match[2],
-                'dBm' => (float)$match[3],
-            ];
-            $supportedFrequencies[] = $frequency;
+            if ( (int)$match[1] >= 5500 && in_array((int)$match[2],$allowed) ) {
+                $frequency = [
+                    'MHz' => (int)$match[1],
+                    'Channel' => (int)$match[2],
+                    'dBm' => (float)$match[3],
+                ];
+                $supportedFrequencies[] = $frequency;
+            }
         }
         return $supportedFrequencies;
     }
