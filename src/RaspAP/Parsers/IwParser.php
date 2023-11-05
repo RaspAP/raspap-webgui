@@ -60,12 +60,13 @@ class IwParser
         $allowed = [100, 108, 116, 124, 132, 140, 149, 157, 184, 192];
 
         foreach ($matches as $match) {
-            if ( (int)$match[1] >= 5500 && in_array((int)$match[2],$allowed) ) {
-                $frequency = [
-                    'MHz' => (int)$match[1],
-                    'Channel' => (int)$match[2],
-                    'dBm' => (float)$match[3],
-                ];
+            $frequency = [
+                'MHz' => (int)$match[1],
+                'Channel' => (int)$match[2],
+                'dBm' => (float)$match[3],
+            ];
+            if ( ($frequency['MHz'] >= 5500 && in_array($frequency['Channel'], $allowed))
+                || $frequency['MHz'] < 5500 ) {
                 $supportedFrequencies[] = $frequency;
             }
         }
