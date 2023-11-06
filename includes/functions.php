@@ -873,7 +873,7 @@ function getCountryCodes($locale = 'en', $flag = true) {
     if ($flag) {
         $opt = '--flag';
     }
-    exec("isoquery $opt --locale $locale", $output);
+    exec("isoquery $opt --locale $locale | awk -F'\t' '{print $5 \"\t\" $0}' | sort | cut -f2-", $output);
 
     $countryData = [];
     foreach ($output as $line) {
