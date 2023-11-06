@@ -250,13 +250,7 @@ function _remove_lighttpd_config() {
 
 function _uninstall_complete() {
     _install_log "Uninstall completed"
-    echo "The system needs to be rebooted as a final step. Reboot now? [Y/n]: "
-    read answer < /dev/tty
-    if [ "$answer" != "${answer#[Nn]}" ]; then
-        echo "Uninstall reboot aborted."
-        exit 0
-    fi
-    sudo shutdown -r now || _install_status 1 "Unable to execute reboot"
+    echo "Check your network configuration before rebooting to ensure access."
 }
 
 function _remove_raspap() {
