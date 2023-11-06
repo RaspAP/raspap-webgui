@@ -126,9 +126,9 @@
                 <?php echo CSRFTokenFieldTag() ?>
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
                     <?php if (!$wlan0up) : ?>
-                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$clientInterface ?>" name="ifup_wlan0" />
+                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$apInterface ?>" name="ifup_wlan0" />
                     <?php else : ?>
-                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$clientInterface ?>"  name="ifdown_wlan0" />
+                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$apInterface ?>"  name="ifdown_wlan0" />
                     <?php endif ?>
                 <?php endif ?>
               <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
