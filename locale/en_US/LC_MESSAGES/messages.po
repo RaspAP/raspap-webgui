@@ -1374,3 +1374,14 @@ msgstr "Connect %s"
 msgid "Disconnect %s"
 msgstr "Disconnect %s"
 
+#: includes/about.php
+
+msgid "About"
+msgstr "About"
+
+msgid "Insiders"
+msgstr "Insiders"
+
+msgid "Contributing"
+msgstr "Contributing"
+
