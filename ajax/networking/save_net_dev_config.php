@@ -65,12 +65,12 @@ if (isset($_POST['interface'])) {
             // check for an existing rule and delete lines with same MAC or same VID/PID
             if (!empty($vid) && !empty($pid)) {
                 $rule = '^.*ATTRS{idVendor}==\"' . $vid . '\".*ATTRS{idProduct}==\"' . $pid . '\".*$';
-                exec('sudo sed -i "/'.$rule.'/Id" '.$udevfile);  // clear all entries with this VID/PID
+                exec('sudo sed -i "/'.escapeshellarg($rule).'/Id" '.escapeshellarg($udevfile));  // clear all entries with this VID/PID
                 $rule = '^.*ATTRS{idProduct}==\"' . $pid . '\".*ATTRS{idVendor}==\"' . $vid . '\".*$';
-                exec('sudo sed -i "/'.$rule.'/Id" '.$udevfile);  // clear all entries with this VID/PID
+                exec('sudo sed -i "/'.escapeshellarg($rule).'/Id" '.escapeshellarg($udevfile));  // clear all entries with this VID/PID
             }
             if (!empty($mac)) {
-                exec('sudo sed -i "/^.*'.$mac.'.*$/d" '.$udevfile);  // clear all entries with same MAC
+                exec('sudo sed -i "/^.*'.escapeshellarg($mac).'.*$/d" '.escapeshellarg($udevfile));  // clear all entries with same MAC
             }
             // create new entry
             if ( ($type != $newtype) || !empty($name) ) { // new device type or new name
