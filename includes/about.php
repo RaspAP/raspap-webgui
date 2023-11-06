@@ -11,6 +11,14 @@ function DisplayAbout()
     $strContent = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/BACKERS.md');
     $sponsorsHtml = $Parsedown->text($strContent);
 
-    echo renderTemplate("about", compact('sponsorsHtml'));
+    $strContent = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/CONTRIBUTING.md');
+    $contributingHtml = $Parsedown->text($strContent);
+
+    echo renderTemplate(
+        "about", compact(
+            'sponsorsHtml',
+            'contributingHtml'
+        )
+    );
 }
 
