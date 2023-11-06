@@ -443,6 +443,14 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
     }
     $config.= 'ssid='.$_POST['ssid'].PHP_EOL;
     $config.= 'channel='.$_POST['channel'].PHP_EOL;
+
+    // Set VHT center frequency segment value
+    if ((int)$_POST['channel'] < HOSTAPD_5GHZ_CHANNEL_MIN) {
+        $vht_freq_idx = 42;
+    } else {
+        $vht_freq_idx =  155;
+    }
+
     if ($_POST['hw_mode'] === 'n') {
         $config.= 'hw_mode=g'.PHP_EOL;
         $config.= 'ieee80211n=1'.PHP_EOL;
@@ -461,7 +469,7 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
         $config.= 'ieee80211h=0'.PHP_EOL;
         $config.= 'vht_capab=[MAX-AMSDU-3839][SHORT-GI-80]'.PHP_EOL;
         $config.= 'vht_oper_chwidth=1'.PHP_EOL;
-        $config.= 'vht_oper_centr_freq_seg0_idx=42'.PHP_EOL.PHP_EOL;
+        $config.= 'vht_oper_centr_freq_seg0_idx='.$vht_freq_idx.PHP_EOL.PHP_EOL;
     } elseif ($_POST['hw_mode'] === 'w') {
         $config.= 'ieee80211w=2'.PHP_EOL;
         $config.= 'wpa_key_mgmt=WPA-EAP-SHA256'.PHP_EOL;
