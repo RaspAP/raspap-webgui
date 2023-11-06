@@ -67,9 +67,6 @@ msgstr "System"
 msgid "About RaspAP"
 msgstr "About RaspAP"
 
-msgid "Setting wireless regulatory domain to %s"
-msgstr "Setting wireless regulatory domain to %s"
-
 #: includes/admin.php
 msgid "Authentication settings"
 msgstr "Authentication settings"

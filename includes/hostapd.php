@@ -509,9 +509,9 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
  */
 function iwRegSet(string $country_code, $status)
 {
-    $country_code = escapeshellarg($country_code);
-    $result = shell_exec("sudo iw reg set $country_code");
-    $status->addMessage(sprintf(_('Setting wireless regulatory domain to %s'), $country_code, 'success'));
-    return $result;
+        $status->addMessage('Setting wireless regulatory domain to '. $country_code, 'success');
+        $country_code = escapeshellarg($country_code);
+        $result = shell_exec("sudo iw reg set $country_code");
+        return $result;
 }
 
