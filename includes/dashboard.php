@@ -39,7 +39,6 @@ function DisplayDashboard(&$extraFooterScripts)
             $address = $inet[1];
             $suffix  = (int) $inet[2];
             $netmask = long2ip(-1 << (32 - $suffix));
-
             $ipv4Addrs    .= " $address";
             $ipv4Netmasks .= " $netmask";
         }
@@ -157,7 +156,7 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed stop button
             if ($interfaceState === 'UP') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
-                exec('sudo ip link set '.$_SESSION['wifi_client_interface'].' down');
+                exec('sudo ip link set '.$_SESSION['ap_interface'].' down');
                 $wlan0up = false;
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
             } elseif ($interfaceState === 'unknown') {
@@ -169,8 +168,8 @@ function DisplayDashboard(&$extraFooterScripts)
             // Pressed start button
             if ($interfaceState === 'DOWN') {
                 $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
-                exec('sudo ip link set ' .$_SESSION['wifi_client_interface']. ' up');
-                exec('sudo ip -s a f label ' . $_SESSION['wifi_client_interface']);
+                exec('sudo ip link set ' .$_SESSION['ap_interface']. ' up');
+                exec('sudo ip -s a f label ' .$_SESSION['ap_interface']);
                 $wlan0up = true;
                 $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
             } elseif ($interfaceState === 'unknown') {
