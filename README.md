@@ -148,7 +148,7 @@ curl -sL https://install.raspap.com | bash -s -- --cert
 
 **Note**: this only installs mkcert and generates an SSL certificate with the input you provide. It does *not* (re)install RaspAP.
 
-More information on SSL certificates and HTTPS support is available [in our documentation](https://docs.raspap.com/ssl-quick/). 
+More information on SSL certificates and HTTPS support is available [in our documentation](https://docs.raspap.com/ssl/). 
 
 ## How to contribute
 1. Fork the project in your account and create a new branch: `your-great-feature`.
