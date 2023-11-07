@@ -8,10 +8,10 @@ RaspAP has been featured on sites such as [Instructables](http://www.instructabl
 We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/raspap/raspap-awesome).
 
 ![](https://i.imgur.com/uhBFoOB.png)
-![](https://i.imgur.com/EiIpdOS.gif)
-![](https://i.imgur.com/eCjUS1H.gif)
-![](https://i.imgur.com/5FT2BcS.gif)
-![](https://i.imgur.com/RKaBFrZ.gif)
+![](https://github.com/RaspAP/raspap-webgui/assets/229399/e8a246d7-08ba-4a14-9df2-7743bfe1c7a2)
+![](https://github.com/RaspAP/raspap-webgui/assets/229399/5f50d8db-265c-475b-ad53-af4491189e1a)
+![](https://github.com/RaspAP/raspap-webgui/assets/229399/0035e542-5457-4576-aee4-6240764846f2)
+![](https://github.com/RaspAP/raspap-webgui/assets/229399/8f99d89c-d996-460a-bf93-96f33a5eddb3)
 ## Contents
 
  - [Prerequisites](#prerequisites)
