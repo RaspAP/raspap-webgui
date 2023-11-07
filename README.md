@@ -128,11 +128,13 @@ RaspAP was originally made for Raspbian, but now also installs on the following 
 
 | Distribution | Release  | Architecture | Support |
 |---|:---:|:---:|:---:|
-| Raspberry Pi OS | (32-bit) Lite Bullseye | ARM | Official |
+| Raspberry Pi OS | (64-bit) Lite Bookworm	| ARM | Official |
+| Raspberry Pi OS | (32-bit) Lite Bookworm | ARM | Official |
 | Raspberry Pi OS | (64-bit) Lite Bullseye | ARM | Official |
-| Armbian | Bullseye | [ARM](https://docs.armbian.com/#supported-socs) | Official |
-| Debian  |  Bullseye | ARM / x86_64  | Beta |
-| Ubuntu  |  18.04 LTS / 19.10 | ARM / x86_64  | Beta |
+| Raspberry Pi OS | (32-bit) Lite Bullseye | ARM | Official |
+| Armbian | 23.05 (Suni) | [ARM](https://docs.armbian.com/#supported-socs) | Official |
+| Debian  |  Bookworm | ARM / x86_64  | Beta |
+| Ubuntu  |  Server 23.04 (Lunar) | ARM / x86_64  | Beta |
 
 ![](https://i.imgur.com/luiyYNw.png)
 
