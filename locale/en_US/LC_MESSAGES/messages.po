@@ -709,6 +709,9 @@ msgstr "Routing table"
 msgid "raw output"
 msgstr "raw output"
 
+msgid "Setting wireless regulatory domain to %s"
+msgstr "Setting wireless regulatory domain to %s"
+
 #: includes/system.php
 msgid "System Information"
 msgstr "System Information"

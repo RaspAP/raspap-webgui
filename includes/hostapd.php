@@ -22,6 +22,9 @@ function DisplayHostAPDConfig()
         'n' => '802.11n - 2.4 GHz',
         'ac' => '802.11ac - 5 GHz'
     ];
+    $languageCode = strtok($_SESSION['locale'], '_');
+    $countryCodes = getCountryCodes($languageCode);
+
     $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => 'WPA+WPA2', 'none' => _("None"));
     $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
     $arrTxPower = getDefaultNetOpts('txpower','dbm');
@@ -29,7 +32,7 @@ function DisplayHostAPDConfig()
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     sort($interfaces);
 
-    exec("iw reg get | awk '/country / { sub(/:/,\"\",$2); print $2 }'", $country_code);
+    $reg_domain = shell_exec("iw reg get | grep -o 'country [A-Z]\{2\}' | awk 'NR==1{print $2}'");
 
     $cmd = "iw dev ".$_SESSION['ap_interface']." info | awk '$1==\"txpower\" {print $2}'";
     exec($cmd, $txpower);
@@ -40,7 +43,7 @@ function DisplayHostAPDConfig()
     }
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveHostAPDSettings'])) {
-            SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $status);
+            SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $reg_domain, $status);
         }
     }
     $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
@@ -95,10 +98,12 @@ function DisplayHostAPDConfig()
     } else {
         $arrConfig['disassoc_low_ack_bool'] = 0;
     }
+
     // assign country_code from iw reg if not set in config
     if (empty($arrConfig['country_code']) && isset($country_code[0])) {
         $arrConfig['country_code'] = $country_code[0];
     }
+
     // set txpower with iw if value is non-default ('auto')
     if (isset($_POST['txpower'])) {
         if ($_POST['txpower'] != 'auto') {
@@ -114,7 +119,6 @@ function DisplayHostAPDConfig()
         }
     }
 
-    $countries_5Ghz_max48ch = RASPI_5GHZ_ISO_ALPHA2;
     $selectedHwMode = $arrConfig['hw_mode'];
     if (isset($arrConfig['ieee80211n'])) {
         if (strval($arrConfig['ieee80211n']) === '1') {
@@ -130,14 +134,6 @@ function DisplayHostAPDConfig()
         if (strval($arrConfig['ieee80211w']) === '2') {
             $selectedHwMode = 'w';
         }
-    }
-    if (!in_array($arrConfig['country_code'], $countries_5Ghz_max48ch)) {
-        $hwModeDisabled = 'ac';
-        if ($selectedHwMode === $hwModeDisabled) {
-            unset($selectedHwMode);
-        }
-    } else {
-        $hwModeDisabled = null;
     }
 
     echo renderTemplate(
@@ -157,7 +153,7 @@ function DisplayHostAPDConfig()
             "arrHostapdConf",
             "operatingSystem",
             "selectedHwMode",
-            "hwModeDisabled"
+            "countryCodes"
         )
     );
 }
@@ -169,10 +165,11 @@ function DisplayHostAPDConfig()
  * @param array $enc_types
  * @param array $modes
  * @param string $interface
+ * @param string $reg_domain
  * @param object $status
  * @return boolean
  */
-function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
+function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_domain, $status)
 {
     // It should not be possible to send bad data for these fields. 
     // If wpa fields are absent, return false and log securely.
@@ -301,6 +298,8 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
     if (strlen($_POST['country_code']) !== 0 && strlen($_POST['country_code']) != 2) {
         $status->addMessage('Country code must be blank or two characters', 'danger');
         $good_input = false;
+    } else {
+        $country_code = $_POST['country_code'];
     }
     if (isset($_POST['beaconintervalEnable'])) {
         if (!is_numeric($_POST['beacon_interval'])) {
@@ -317,6 +316,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $status)
 
     if ($good_input) {
         $return = updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable);
+
+        if (trim($country_code) != trim($reg_domain)) {
+            $return = iwRegSet($country_code, $status);
+        }
 
         // Fetch dhcp-range, lease time from system config
         $syscfg = parse_ini_file(RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', false, INI_SCANNER_RAW);
@@ -440,6 +443,14 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
     }
     $config.= 'ssid='.$_POST['ssid'].PHP_EOL;
     $config.= 'channel='.$_POST['channel'].PHP_EOL;
+
+    // Set VHT center frequency segment value
+    if ((int)$_POST['channel'] < HOSTAPD_5GHZ_CHANNEL_MIN) {
+        $vht_freq_idx = 42;
+    } else {
+        $vht_freq_idx =  155;
+    }
+
     if ($_POST['hw_mode'] === 'n') {
         $config.= 'hw_mode=g'.PHP_EOL;
         $config.= 'ieee80211n=1'.PHP_EOL;
@@ -458,7 +469,7 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
         $config.= 'ieee80211h=0'.PHP_EOL;
         $config.= 'vht_capab=[MAX-AMSDU-3839][SHORT-GI-80]'.PHP_EOL;
         $config.= 'vht_oper_chwidth=1'.PHP_EOL;
-        $config.= 'vht_oper_centr_freq_seg0_idx=42'.PHP_EOL.PHP_EOL;
+        $config.= 'vht_oper_centr_freq_seg0_idx='.$vht_freq_idx.PHP_EOL.PHP_EOL;
     } elseif ($_POST['hw_mode'] === 'w') {
         $config.= 'ieee80211w=2'.PHP_EOL;
         $config.= 'wpa_key_mgmt=WPA-EAP-SHA256'.PHP_EOL;
@@ -486,6 +497,21 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
     }
     file_put_contents("/tmp/hostapddata", $config);
     system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $result);
+    return $result;
+}
+
+/**
+ * Executes iw to set the specified ISO 2-letter country code
+ *
+ * @param string $country_code
+ * @param object $status
+ * @return boolean $result
+ */
+function iwRegSet(string $country_code, $status)
+{
+    $country_code = escapeshellarg($country_code);
+    $result = shell_exec("sudo iw reg set $country_code");
+    $status->addMessage(sprintf(_('Setting wireless regulatory domain to %s'), $country_code, 'success'));
     return $result;
 }
 

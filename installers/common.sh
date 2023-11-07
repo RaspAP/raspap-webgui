@@ -241,7 +241,7 @@ function _install_dependencies() {
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package vnstat qrencode jq || _install_status 1 "Unable to install dependencies"
+    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
     _install_status 0
 }
 
