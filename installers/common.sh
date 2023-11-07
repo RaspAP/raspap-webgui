@@ -745,7 +745,7 @@ function _patch_system_files() {
     sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
     sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
 
-    install_log "Creating RaspAP debug log control script"
+    _install_log "Creating RaspAP debug log control script"
     sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
 
     # Copy debug shell script
