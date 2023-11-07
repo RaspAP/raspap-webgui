@@ -6,7 +6,7 @@ if (!defined('RASPI_CONFIG')) {
 
 $defaults = [
   'RASPI_BRAND_TEXT' => 'RaspAP',
-  'RASPI_VERSION' => '2.9.9',
+  'RASPI_VERSION' => '3.0-beta',
   'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/defaults.json',
   'RASPI_CONFIG_PROVIDERS' => 'config/vpn-providers.json',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',
@@ -36,8 +36,9 @@ $defaults = [
   'RASPI_ACCESS_CHECK_IP' => '1.1.1.1',
   'RASPI_ACCESS_CHECK_DNS' => 'one.one.one.one',
 
-  // Constant for the 5GHz wireless regulatory domain
-  'HOSTAPD_5GHZ_CHANNEL_MIN' => 100,
+  // Constants for the 5GHz wireless regulatory domain
+  'RASPI_5GHZ_CHANNEL_MIN' => 100,
+  'RASPI_5GHZ_CHANNEL_MAX' => 192,
 
   // Enable basic authentication for the web admin.
   'RASPI_AUTH_ENABLED' => true,
