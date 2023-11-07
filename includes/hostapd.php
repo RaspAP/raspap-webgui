@@ -190,7 +190,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
         $status->addMessage('Attempting to set channel to invalid number.', 'danger');
         $good_input = false;
     }
-    if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > RASPI_5GHZ_MAX_CHANNEL) {
+    if (intval($_POST['channel']) < 1 || intval($_POST['channel']) > RASPI_5GHZ_CHANNEL_MAX) {
         $status->addMessage('Attempting to set channel outside of permitted range', 'danger');
         $good_input = false;
     }
@@ -445,7 +445,7 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
     $config.= 'channel='.$_POST['channel'].PHP_EOL;
 
     // Set VHT center frequency segment value
-    if ((int)$_POST['channel'] < HOSTAPD_5GHZ_CHANNEL_MIN) {
+    if ((int)$_POST['channel'] < RASPI_5GHZ_CHANNEL_MIN) {
         $vht_freq_idx = 42;
     } else {
         $vht_freq_idx =  155;
