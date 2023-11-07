@@ -7,7 +7,7 @@ RaspAP has been featured on sites such as [Instructables](http://www.instructabl
 
 We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/raspap/raspap-awesome).
 
-![](https://i.imgur.com/uhBFoOB.png)
+![](https://github.com/RaspAP/raspap-webgui/assets/229399/3df0d9c2-3c22-46f9-b5ac-8a5ea1626cb6)
 ![](https://github.com/RaspAP/raspap-webgui/assets/229399/e8a246d7-08ba-4a14-9df2-7743bfe1c7a2)
 ![](https://github.com/RaspAP/raspap-webgui/assets/229399/5f50d8db-265c-475b-ad53-af4491189e1a)
 ![](https://github.com/RaspAP/raspap-webgui/assets/229399/0035e542-5457-4576-aee4-6240764846f2)
@@ -19,6 +19,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [Join Insiders](#join-insiders)
  - [WireGuard support](#wireguard-support)
  - [OpenVPN support](#openvpn-support)
+ - [VPN Provider support](#vpn-provider-support)
  - [Ad Blocking](#ad-blocking)
  - [Bridged AP](#bridged-ap)
  - [Simultaneous AP and Wifi client](#simultaneous-ap-and-wifi-client)
@@ -93,6 +94,11 @@ To configure an OpenVPN client, upload a valid .ovpn file and, optionally, speci
 
 See our [OpenVPN documentation](https://docs.raspap.com/openvpn/) for more information.
 
+## VPN provider support
+
+Several popular VPN providers include a Linux Command Line Interface (CLI) for interacting with their services. As a new beta feature, you may optionally control these VPN services from within RaspAP. After your provider's CLI is installed on your system you may administer it thereafter by using RaspAP's UI.
+
+See our [VPN provider documentation](https://docs.raspap.com/providers/) for more information.
 
 ## Ad Blocking
 This feature uses DNS blacklisting to block requests for ads, trackers and other undesirable hosts. To enable ad blocking, simply respond to the prompt during the installation. As a beta release, we encourage testing and feedback from users of RaspAP.
