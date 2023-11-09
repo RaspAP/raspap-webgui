@@ -368,7 +368,15 @@ $('#js-sys-reboot, #js-sys-shutdown').on('click', function (e) {
 });
 
 $(document).ready(function(){
-  $("#PanelManual").hide();
+    $("#PanelManual").hide();
+    $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
+        translation: {
+            'Z': {
+                pattern: /[0-9]/, optional: true
+            }
+        },
+        placeholder: "___.___.___.___"
+    });
 });
 
 $('#wg-upload,#wg-manual').on('click', function (e) {

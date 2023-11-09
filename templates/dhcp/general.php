@@ -37,7 +37,7 @@
   <div class="row">
     <div class="form-group col-md-6" required>
       <label for="code"><?php echo _("IP Address"); ?></label>
-      <input type="text" class="form-control" id="txtipaddress" name="StaticIP" />
+      <input type="text" class="form-control ip_address" id="txtipaddress" name="StaticIP" maxlength="15" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid IP Address."); ?>
       </div>
@@ -47,7 +47,7 @@
   <div class="row">
     <div class="form-group col-md-6">
       <label for="code"><?php echo _("Subnet Mask"); ?></label>
-      <input type="text" class="form-control" id="txtsubnetmask" name="SubnetMask" />
+      <input type="text" class="form-control ip_address" id="txtsubnetmask" name="SubnetMask" maxlength="15" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid Subnet mask."); ?>
       </div>
@@ -57,7 +57,7 @@
   <div class="row">
     <div class="form-group col-md-6">
       <label for="code"><?php echo _("Default gateway"); ?></label>
-      <input type="text" class="form-control" id="txtgateway" name="DefaultGateway" />
+      <input type="text" class="form-control ip_address" id="txtgateway" name="DefaultGateway" maxlength="15" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid Default gateway."); ?>
       </div>
@@ -107,7 +107,7 @@
   <div class="row">
     <div class="form-group col-md-6">
       <label for="code"><?php echo _("Starting IP Address"); ?></label>
-      <input type="text" class="form-control" id="txtrangestart" name="RangeStart" />
+      <input type="text" class="form-control ip_address" id="txtrangestart" name="RangeStart" maxlength="15" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid Starting IP Address."); ?>
       </div>
@@ -117,7 +117,7 @@
   <div class="row">
     <div class="form-group col-md-6">
       <label for="code"><?php echo _("Ending IP Address"); ?></label>
-      <input type="text" class="form-control" id="txtrangeend" name="RangeEnd" />
+      <input type="text" class="form-control ip_address" id="txtrangeend" name="RangeEnd" maxlength="15" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid Ending IP Address."); ?>
       </div>
