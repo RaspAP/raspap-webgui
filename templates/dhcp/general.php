@@ -35,9 +35,12 @@
 
   <h5 class="mt-1">Static IP options</h5>
   <div class="row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6" required>
       <label for="code"><?php echo _("IP Address"); ?></label>
       <input type="text" class="form-control" id="txtipaddress" name="StaticIP" />
+      <div class="invalid-feedback">
+        <?php echo _("Please provide a valid IP Address."); ?>
+      </div>
     </div>
   </div>
 
@@ -45,6 +48,9 @@
     <div class="form-group col-md-6">
       <label for="code"><?php echo _("Subnet Mask"); ?></label>
       <input type="text" class="form-control" id="txtsubnetmask" name="SubnetMask" />
+      <div class="invalid-feedback">
+        <?php echo _("Please provide a valid Subnet mask."); ?>
+      </div>
     </div>
   </div>
 
@@ -52,6 +58,9 @@
     <div class="form-group col-md-6">
       <label for="code"><?php echo _("Default gateway"); ?></label>
       <input type="text" class="form-control" id="txtgateway" name="DefaultGateway" />
+      <div class="invalid-feedback">
+        <?php echo _("Please provide a valid Default gateway."); ?>
+      </div>
     </div>
   </div>
 
@@ -99,6 +108,9 @@
     <div class="form-group col-md-6">
       <label for="code"><?php echo _("Starting IP Address"); ?></label>
       <input type="text" class="form-control" id="txtrangestart" name="RangeStart" />
+      <div class="invalid-feedback">
+        <?php echo _("Please provide a valid Starting IP Address."); ?>
+      </div>
     </div>
   </div>
 
@@ -106,6 +118,9 @@
     <div class="form-group col-md-6">
       <label for="code"><?php echo _("Ending IP Address"); ?></label>
       <input type="text" class="form-control" id="txtrangeend" name="RangeEnd" />
+      <div class="invalid-feedback">
+        <?php echo _("Please provide a valid Ending IP Address."); ?>
+      </div>
     </div>
   </div>
 
@@ -113,6 +128,9 @@
     <div class="form-group col-xs-3 col-sm-3">
       <label for="code"><?php echo _("Lease Time"); ?></label>
       <input type="text" class="form-control" id="txtrangeleasetime" name="RangeLeaseTime" />
+      <div class="invalid-feedback">
+        <?php echo _("Please provide a valid Lease Time."); ?>
+      </div>
     </div>
     <div class="col-xs-3 col-sm-3">
       <label for="code"><?php echo _("Interval"); ?></label>
@@ -122,6 +140,9 @@
         <option value="d"><?php echo _("Day(s)"); ?></option>
         <option value="i"><?php echo _("Infinite"); ?></option>
       </select>
+      <div class="invalid-feedback">
+        <?php echo _("Please provide a valid Interval."); ?>
+      </div>
     </div>
   </div>
 
