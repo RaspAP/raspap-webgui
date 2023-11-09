@@ -435,18 +435,25 @@ function GetDistString($input, $string, $offset, $separator)
 }
 
 /**
- *
- * @param  array $arrConfig
+ * Parses a configuration file
+ * Options and values are mapped with "=" characters
+ * Optional $wg flag is used for parsing WireGuard .conf files
+ * @param  array   $arrConfig
+ * @param  boolean $wg
  * @return $config
  */
-function ParseConfig($arrConfig)
+function ParseConfig($arrConfig, $wg = false)
 {
     $config = array();
     foreach ($arrConfig as $line) {
         $line = trim($line);
         if ($line == "" || $line[0] == "#") {
-            $config[$option] = null;
-            continue;
+            if ($wg) {
+                $config[$option] = null;
+                continue;
+            } else {
+                continue;
+            }
         }
 
         if (strpos($line, "=") !== false) {

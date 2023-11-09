@@ -8,6 +8,7 @@ require_once 'config.php';
 function DisplayWireGuardConfig()
 {
     $status = new \RaspAP\Messages\StatusMessage;
+    $parseFlag = true;
     if (!RASPI_MONITOR_ENABLED) {
         $optRules     = $_POST['wgRules'];
         $optConf      = $_POST['wgCnfOpt'];
@@ -37,7 +38,7 @@ function DisplayWireGuardConfig()
 
     // fetch server config
     exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $return);
-    $conf = ParseConfig($return);
+    $conf = ParseConfig($return, $parseFlag);
     $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
     $wg_srvport = ($conf['ListenPort'] == '') ? getDefaultNetValue('wireguard','server','ListenPort') : $conf['ListenPort'];
     $wg_srvipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','server','Address') : $conf['Address'];
@@ -49,7 +50,7 @@ function DisplayWireGuardConfig()
 
     // fetch client config
     exec('sudo cat '. RASPI_WIREGUARD_PATH.'client.conf', $preturn);
-    $conf = ParseConfig($preturn);
+    $conf = ParseConfig($preturn, $parseFlag);
     $wg_pipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','peer','Address') : $conf['Address'];
     $wg_plistenport = ($conf['ListenPort'] == '') ? getDefaultNetValue('wireguard','peer','ListenPort') : $conf['ListenPort'];
     $wg_pendpoint = ($conf['Endpoint'] == '') ? getDefaultNetValue('wireguard','peer','Endpoint') : $conf['Endpoint'];
