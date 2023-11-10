@@ -531,6 +531,21 @@ msgstr "Unknown interface"
 msgid "Country code must be blank or two characters"
 msgstr "Country code must be blank or two characters"
 
+msgid "DHCP configuration for %s enabled."
+msgstr "DHCP configuration for %s enabled."
+
+msgid "DHCP configuration for %s added."
+msgstr "DHCP configuration for %s added."
+
+msgid "DHCP configuration for %s updated."
+msgstr "DHCP configuration for %s updated."
+
+msgid "Interface %s has no default settings."
+msgstr "Interface %s has no default settings."
+
+msgid "Configure settings in <strong>DHCP Server</strong> before starting AP."
+msgstr "Configure settings in <strong>DHCP Server</strong> before starting AP."
+
 msgid "Wifi Hotspot settings saved"
 msgstr "Wifi Hotspot settings saved"
 
