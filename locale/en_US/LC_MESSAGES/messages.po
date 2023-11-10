@@ -98,6 +98,18 @@ msgstr "New password"
 msgid "Repeat new password"
 msgstr "Repeat new password"
 
+msgid "Please provide a valid username."
+msgstr "Please provide a valid username."
+
+msgid "Please enter your old password."
+msgstr "Please enter your old password."
+
+msgid "Please enter a new password."
+msgstr "Please enter a new password."
+
+msgid "Please re-enter your new password."
+msgstr "Please re-enter your new password."
+
 #: includes/configure_client.php
 msgid "Client settings"
 msgstr "Client settings"
