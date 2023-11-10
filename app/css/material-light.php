@@ -204,6 +204,7 @@ a:focus, a:hover {
 
 .modal-body {
   background-color: <?php echo $backgroundColor; ?>;
+  min-height: 8rem;
 }
 
 .card-header {
