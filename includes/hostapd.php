@@ -364,7 +364,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
         $domain_name_server = ($jsonData['StaticDNS'] =='') ? getDefaultNetValue('dhcp',$ap_iface,'static domain_name_server') : $jsonData['StaticDNS'];
         $routers = ($jsonData['StaticRouters'] == '') ? getDefaultNetValue('dhcp',$ap_iface,'static routers') : $jsonData['StaticRouters'];
         $netmask = ($jsonData['SubnetMask'] == '' || $jsonData['SubnetMask'] == '0.0.0.0') ? getDefaultNetValue('dhcp',$ap_iface,'subnetmask') : $jsonData['SubnetMask'];
-        $ip_address.= (!preg_match('/.*\/\d+/', $ip_address)) ? '/'.mask2cidr($netmask) : null;
+        if (isset($ip_address) && !preg_match('/.*\/\d+/', $ip_address)) {
+            $ip_address.='/'.mask2cidr($netmask);
+        }
 
         if ($bridgedEnable == 1) {
             $config = array_keys(getDefaultNetOpts('dhcp','options'));
@@ -389,30 +391,38 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             if (! is_null($jsonData['Metric'])) { $config[] = 'metric '.$jsonData['Metric']; }
         }
         $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
-        if ($bridgedEnable == 1 || $wifiAPEnable == 1) {
+
+        if (preg_match('/wlan[2-9]\d*|wlan[1-9]\d+/', $ap_iface)) {
+            $skip_dhcp = true;;
+        } elseif ($bridgedEnable == 1 || $wifiAPEnable == 1) {
             $dhcp_cfg = join(PHP_EOL, $config);
-            $status->addMessage('DHCP configuration for '.$ap_iface.' enabled.', 'success');
+            $status->addMessage(sprintf(_('DHCP configuration for %s enabled.'), $ap_iface), 'success');
         } elseif (!preg_match('/^interface\s'.$ap_iface.'$/m', $dhcp_cfg)) {
             $config[] = PHP_EOL;
             $config= join(PHP_EOL, $config);
             $dhcp_cfg = removeDHCPIface($dhcp_cfg,'br0');
             $dhcp_cfg = removeDHCPIface($dhcp_cfg,'uap0');
             $dhcp_cfg .= $config;
-            $status->addMessage('DHCP configuration for '.$ap_iface.' added.', 'success');
+            $status->addMessage(sprintf(_('DHCP configuration for %s added.'), $ap_iface), 'success');
         } else {
             $config = join(PHP_EOL, $config);
             $dhcp_cfg = removeDHCPIface($dhcp_cfg,'br0');
             $dhcp_cfg = removeDHCPIface($dhcp_cfg,'uap0');
             $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$ap_iface.'\s.*?(?=\s*^\s*$)/ms', $config, $dhcp_cfg, 1);
-            $status->addMessage('DHCP configuration for '.$ap_iface.' updated.', 'success');
+            $status->addMessage(sprintf(_('DHCP configuration for %s updated.'), $ap_iface), 'success');
         }
-        file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
-        system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
-
-        if ($return == 0) {
-            $status->addMessage('Wifi Hotspot settings saved', 'success');
+        if (!$skip_dhcp) {
+            file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
+            system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
+            if ($return == 0) {
+                $status->addMessage('Wifi Hotspot settings saved', 'success');
+            } else {
+                $status->addMessage('Unable to save wifi hotspot settings', 'danger');
+            }
         } else {
-            $status->addMessage('Unable to save wifi hotspot settings', 'danger');
+            $status->addMessage(sprintf(_('Interface %s has no default settings.'), $ap_iface), 'warning');
+            $status->addMessage(('Configure settings in <strong>DHCP Server</strong> before starting AP.'), 'warning');
+            $status->addMessage('Wifi Hotspot settings saved', 'success');
         }
     } else {
         $status->addMessage('Unable to save wifi hotspot settings', 'danger');
