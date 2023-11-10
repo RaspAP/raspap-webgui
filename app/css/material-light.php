@@ -204,6 +204,7 @@ a:focus, a:hover {
 
 .modal-body {
   background-color: <?php echo $backgroundColor; ?>;
+  min-height: 8rem;
 }
 
 .card-header {
@@ -226,8 +227,6 @@ a:focus, a:hover {
   border-color: transparent;
   border-radius: 18px;
   background-color: <?php echo $cardsColor; ?>;
-  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.1),
-              0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-body {
@@ -286,11 +285,13 @@ hr {
   border-bottom-right-radius: 18px!important;
   border-bottom-left-radius: 18px!important;
   position: relative;
-  margin-top: -18px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1),
+              0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .modal-footer {
-  border-radius: 18px;
+  margin-top: 0px;
+  height: 3.5rem;
 }
 
 .card>.card-header::before, .navbar-default::before {
@@ -554,6 +555,7 @@ input.btn.btn-success:hover {
   border-radius: 18px!important;
   background-color: <?php echo $backgroundColor; ?>;
   border: 1px solid <?php echo $primaryColor; ?>!important;
+  padding: 0.5rem;
 }
 
 .btn-sm {
