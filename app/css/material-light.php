@@ -204,6 +204,7 @@ a:focus, a:hover {
 
 .modal-body {
   background-color: <?php echo $backgroundColor; ?>;
+  min-height: 8rem;
 }
 
 .card-header {
@@ -226,8 +227,6 @@ a:focus, a:hover {
   border-color: transparent;
   border-radius: 18px;
   background-color: <?php echo $cardsColor; ?>;
-  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.1),
-              0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-body {
@@ -286,6 +285,8 @@ hr {
   border-bottom-right-radius: 18px!important;
   border-bottom-left-radius: 18px!important;
   position: relative;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1),
+              0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .modal-footer {
