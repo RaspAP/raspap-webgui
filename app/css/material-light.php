@@ -286,11 +286,11 @@ hr {
   border-bottom-right-radius: 18px!important;
   border-bottom-left-radius: 18px!important;
   position: relative;
-  margin-top: -18px;
 }
 
 .modal-footer {
-  border-radius: 18px;
+  margin-top: 0px;
+  height: 3.5rem;
 }
 
 .card>.card-header::before, .navbar-default::before {
@@ -554,6 +554,7 @@ input.btn.btn-success:hover {
   border-radius: 18px!important;
   background-color: <?php echo $backgroundColor; ?>;
   border: 1px solid <?php echo $primaryColor; ?>!important;
+  padding: 0.5rem;
 }
 
 .btn-sm {
