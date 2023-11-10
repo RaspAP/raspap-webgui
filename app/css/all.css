@@ -52,7 +52,11 @@ License: GNU General Public License v3.0
 
 .info-item-xs {
   font-size: 0.7rem;
-  margin-left: 0.3rem;
+  margin-left: 0.75rem;
+}
+
+.sb-status {
+  margin-left: 0.75rem!important;
 }
 
 .info-item-wifi {

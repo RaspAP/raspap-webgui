@@ -46,10 +46,10 @@ if ($cputemp > 70) {
 // hostapd status
 $hostapd = $system->hostapdStatus();
 if ($hostapd[0] ==1) {
-    $hostapd_status = "active";
+    $hostapd_status = "up";
     $hostapd_led = "service-status-up";
 } else {
-    $hostapd_status = "inactive";
+    $hostapd_status = "down";
     $hostapd_led = "service-status-down";
 }
 
