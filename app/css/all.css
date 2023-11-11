@@ -16,6 +16,10 @@ License: GNU General Public License v3.0
   h4.mt-3 { margin-left: 0.5rem; }
 }
 
+.sidebar.toggled .nav-item .nav-link {
+  padding: 0.65rem 1rem;
+}
+
 .sidebar-brand-text {
   text-transform: none;
   color: #212529;

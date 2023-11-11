@@ -57,7 +57,7 @@
         <?php endif; ?>
         <?php if (RASPI_WIREGUARD_ENABLED) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="wg_conf"><span class="ra-wireguard mr-2"></span><span class="nav-label"><?php echo _("WireGuard"); ?></a>
+          <a class="nav-link" href="wg_conf"><i class="ra-wireguard mr-2"></i><span class="nav-label"><?php echo _("WireGuard"); ?></a>
         </li>
         <?php endif; ?>
         <?php if (RASPI_VPN_PROVIDER_ENABLED) : ?>
