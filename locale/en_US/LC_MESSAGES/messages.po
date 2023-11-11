@@ -491,9 +491,6 @@ msgstr "Please provide a valid IP Address."
 msgid "Please provide a valid Default gateway."
 msgstr "Please provide a valid Default gateway."
 
-msgid "Please provide a valid Default gateway."
-msgstr "Please provide a valid Default gateway."
-
 msgid "Please provide a valid Starting IP Address."
 msgstr "Please provide a valid Starting IP Address."
 
@@ -506,17 +503,11 @@ msgstr "Please provide a valid Lease Time."
 msgid "Invalid interface name."
 msgstr "Invalid interface name."
 
-msgid "Invalid interface name."
-msgstr "Invalid interface name."
-
 msgid "Invalid static IP address."
 msgstr "Invalid static IP address."
 
 msgid "Invalid default gateway."
 msgstr "Invalid default gateway."
-
-msgid "Invalid DHCP range start."
-msgstr "Invalid DHCP range start."
 
 msgid "Invalid DHCP range end."
 msgstr "Invalid DHCP range end."
@@ -529,12 +520,6 @@ msgstr "Unknown DHCP lease time unit."
 
 msgid "Invalid metric value, not a number."
 msgstr "Invalid metric value, not a number."
-
-msgid "DHCP configuration for %s added."
-msgstr "DHCP configuration for %s added."
-
-msgid "DHCP configuration for %s updated."
-msgstr "DHCP configuration for %s updated."
 
 #: includes/hostapd.php
 msgid "Basic"
