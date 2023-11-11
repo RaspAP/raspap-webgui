@@ -7,9 +7,12 @@
     </div>
   </div>
   <div class="row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6" required>
       <label for="txtssid"><?php echo _("SSID"); ?></label>
-      <input type="text" id="txtssid" class="form-control" name="ssid" value="<?php echo htmlspecialchars($arrConfig['ssid'], ENT_QUOTES); ?>" />
+      <input type="text" id="txtssid" class="form-control" name="ssid" value="<?php echo htmlspecialchars($arrConfig['ssid'], ENT_QUOTES); ?>" required />
+      <div class="invalid-feedback">
+        <?php echo _("Please provide a valid SSID."); ?>
+      </div>
     </div>
   </div>
   <div class="row">

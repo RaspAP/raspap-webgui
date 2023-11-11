@@ -12,9 +12,12 @@
       </div>
       <label for="txtwpapassphrase"><?php echo _("PSK"); ?></label>
       <div class="input-group">
-        <input type="text" class="form-control" id="txtwpapassphrase" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" />
+        <input type="text" class="form-control" id="txtwpapassphrase" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" required />
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="gen_wpa_passphrase"><i class="fas fa-magic"></i></button>
+        </div>
+        <div class="invalid-feedback">
+          <?php echo _("Please provide a valid PSK."); ?>
         </div>
       </div>
     </div>

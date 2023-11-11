@@ -29,7 +29,7 @@
 
       <div class="card-body">
         <?php $status->showMessages(); ?>
-        <form method="POST" action="dhcpd_conf" class="js-dhcp-settings-form">
+        <form method="POST" action="dhcpd_conf" class="js-dhcp-settings-form needs-validation" novalidate>
           <?php echo CSRFTokenFieldTag() ?>
 
           <!-- Nav tabs -->

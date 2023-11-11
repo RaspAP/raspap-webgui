@@ -241,6 +241,7 @@ function loadInterfaceDHCPSelect() {
             $('#chkstatic').closest('.btn').button('toggle').blur();
             $('#chkstatic').blur();
             $('#chkfallback').prop('disabled', true);
+            $('#dhcp-iface').removeAttr('disabled');
         } else {
             $('#chkdhcp').closest('.btn').button('toggle');
             $('#chkdhcp').closest('.btn').button('toggle').blur();
@@ -249,6 +250,7 @@ function loadInterfaceDHCPSelect() {
         }
         if (jsonData.FallbackEnabled || $('#chkdhcp').is(':checked')) {
             $('#dhcp-iface').prop('disabled', true);
+            setDhcpFieldsDisabled();
         }
     });
 }
@@ -259,6 +261,7 @@ function setDHCPToggles(state) {
     }
     if ($('#dhcp-iface').is(':checked') && !state) {
         $('#dhcp-iface').prop('checked', state);
+        setDhcpFieldsDisabled();
     }
     $('#chkfallback').prop('disabled', state);
     $('#dhcp-iface').prop('disabled', !state);
@@ -365,7 +368,15 @@ $('#js-sys-reboot, #js-sys-shutdown').on('click', function (e) {
 });
 
 $(document).ready(function(){
-  $("#PanelManual").hide();
+    $("#PanelManual").hide();
+    $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
+        translation: {
+            'Z': {
+                pattern: /[0-9]/, optional: true
+            }
+        },
+        placeholder: "___.___.___.___"
+    });
 });
 
 $('#wg-upload,#wg-manual').on('click', function (e) {
@@ -541,6 +552,77 @@ window.addEventListener('load', function() {
         }, false);
     });
 }, false);
+
+// DHCP or Static IP option group
+$('#chkstatic').on('change', function() {
+    if (this.checked) {
+        setStaticFieldsEnabled();
+    }
+});
+
+$('#chkdhcp').on('change', function() {
+    this.checked ? setStaticFieldsDisabled() : null;
+});
+
+
+$('input[name="dhcp-iface"]').change(function() {
+    if ($('input[name="dhcp-iface"]:checked').val() == '1') {
+        setDhcpFieldsEnabled();
+    } else {
+        setDhcpFieldsDisabled();
+    }
+});
+
+
+function setStaticFieldsEnabled() {
+    $('#txtipaddress').prop('required', true);
+    $('#txtsubnetmask').prop('required', true);
+    $('#txtgateway').prop('required', true);
+
+    $('#txtipaddress').removeAttr('disabled');
+    $('#txtsubnetmask').removeAttr('disabled');
+    $('#txtgateway').removeAttr('disabled');
+}
+
+function setStaticFieldsDisabled() {
+    $('#txtipaddress').prop('disabled', true);
+    $('#txtsubnetmask').prop('disabled', true);
+    $('#txtgateway').prop('disabled', true);
+
+    $('#txtipaddress').removeAttr('required');
+    $('#txtsubnetmask').removeAttr('required');
+    $('#txtgateway').removeAttr('required');
+}
+
+function setDhcpFieldsEnabled() {
+    $('#txtrangestart').prop('required', true);
+    $('#txtrangeend').prop('required', true);
+    $('#txtrangeleasetime').prop('required', true);
+    $('#cbxrangeleasetimeunits').prop('required', true);
+
+    $('#txtrangestart').removeAttr('disabled');
+    $('#txtrangeend').removeAttr('disabled');
+    $('#txtrangeleasetime').removeAttr('disabled');
+    $('#cbxrangeleasetimeunits').removeAttr('disabled');
+    $('#txtdns1').removeAttr('disabled');
+    $('#txtdns2').removeAttr('disabled');
+    $('#txtmetric').removeAttr('disabled');
+}
+
+function setDhcpFieldsDisabled() {
+    $('#txtrangestart').removeAttr('required');
+    $('#txtrangeend').removeAttr('required');
+    $('#txtrangeleasetime').removeAttr('required');
+    $('#cbxrangeleasetimeunits').removeAttr('required');
+
+    $('#txtrangestart').prop('disabled', true);
+    $('#txtrangeend').prop('disabled', true);
+    $('#txtrangeleasetime').prop('disabled', true);
+    $('#cbxrangeleasetimeunits').prop('disabled', true);
+    $('#txtdns1').prop('disabled', true);
+    $('#txtdns2').prop('disabled', true);
+    $('#txtmetric').prop('disabled', true);
+}
 
 // Static Array method
 Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);

@@ -95,7 +95,9 @@ function saveDHCPConfig($status)
         if (empty($errors)) {
             $return = updateDHCPConfig($iface,$status);
         } else {
-            $status->addMessage($errors, 'danger');
+            foreach ($errors as $error) {
+                $status->addMessage($error, 'danger');
+            }
         }
         if ($return == 1) {
             $status->addMessage('Dnsmasq configuration failed to be updated.', 'danger');
@@ -118,41 +120,42 @@ function saveDHCPConfig($status)
 /**
  * Validates DHCP user input from the $_POST object
  *
- * @return string $errors
+ * @return array $errors
  */
 function validateDHCPInput()
 {
+    $errors = [];
     define('IFNAMSIZ', 16);
     $iface = $_POST['interface'];
     if (!preg_match('/^[^\s\/\\0]+$/', $iface)
         || strlen($iface) >= IFNAMSIZ
     ) {
-        $errors .= _('Invalid interface name.').'<br />'.PHP_EOL;
+        $errors[] = _('Invalid interface name.');
     }
     if (!filter_var($_POST['StaticIP'], FILTER_VALIDATE_IP) && !empty($_POST['StaticIP'])) {
-        $errors .= _('Invalid static IP address.').'<br />'.PHP_EOL;
+        $errors[] = _('Invalid static IP address.');
     }
     if (!filter_var($_POST['SubnetMask'], FILTER_VALIDATE_IP) && !empty($_POST['SubnetMask'])) {
-        $errors .= _('Invalid subnet mask.').'<br />'.PHP_EOL;
+        $errors[] = _('Invalid subnet mask.');
     }
     if (!filter_var($_POST['DefaultGateway'], FILTER_VALIDATE_IP) && !empty($_POST['DefaultGateway'])) {
-        $errors .= _('Invalid default gateway.').'<br />'.PHP_EOL;
+        $errors[] = _('Invalid default gateway.');
     }
     if (($_POST['dhcp-iface'] == "1")) {
         if (!filter_var($_POST['RangeStart'], FILTER_VALIDATE_IP) && !empty($_POST['RangeStart'])) {
-            $errors .= _('Invalid DHCP range start.').'<br />'.PHP_EOL;
+            $errors[] = _('Invalid DHCP range start.');
         }
         if (!filter_var($_POST['RangeEnd'], FILTER_VALIDATE_IP) && !empty($_POST['RangeEnd'])) {
-            $errors .= _('Invalid DHCP range end.').'<br />'.PHP_EOL;
+            $errors[] = _('Invalid DHCP range end.');
         }
         if (!ctype_digit($_POST['RangeLeaseTime']) && $_POST['RangeLeaseTimeUnits'] !== 'i') {
-            $errors .= _('Invalid DHCP lease time, not a number.').'<br />'.PHP_EOL;
+            $errors[] = _('Invalid DHCP lease time, not a number.');
         }
         if (!in_array($_POST['RangeLeaseTimeUnits'], array('m', 'h', 'd', 'i'))) {
-            $errors .= _('Unknown DHCP lease time unit.').'<br />'.PHP_EOL;
+            $errors[] = _('Unknown DHCP lease time unit.');
         }
         if ($_POST['Metric'] !== '' && !ctype_digit($_POST['Metric'])) {
-            $errors .= _('Invalid metric value, not a number.').'<br />'.PHP_EOL;
+            $errors[] = _('Invalid metric value, not a number.');
         }
     }
     return $errors;
