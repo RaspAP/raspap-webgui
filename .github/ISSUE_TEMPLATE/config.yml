@@ -3,6 +3,3 @@ contact_links:
   - name: RaspAP Community Support
     url: https://github.com/RaspAP/raspap-webgui/discussions
     about: Please ask and answer questions here.
-  - name: RaspAP Security Policy
-    url: https://github.com/RaspAP/raspap-webgui/blob/master/SECURITY.md
-    about: Please report security vulnerabilities here.
