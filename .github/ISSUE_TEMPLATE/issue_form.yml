@@ -1,0 +1,169 @@
+name: Bug Report
+description: Create a report to help us improve RaspAP
+title: "[Bug]: "
+labels: ["bug-report", "triage"]
+projects: ["RaspAP-webgui"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug for RaspAP.
+
+        **Important:** If you are NOT using a clean installation of a compatible OS, start with a fresh SD card, install RaspAP and replicate your bug BEFORE reporting an issue.
+
+        All submitters MUST read the [issue policy and reporting guidelines](https://docs.raspap.com/issues/). Bug reports that do not follow the issue policy will be marked as `invalid` and closed (no hard feelings).
+        
+        Be sure there are no issues similar to yours that are already open. You can check this by searching the issues in this repository.
+        If there is a duplicate issue, please comment on the existing issue instead.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/RaspAP/raspap-webgui/blob/master/CODE_OF_CONDUCT.md).
+      options:
+        - label: I agree to follow this project's Code of Conduct.
+          required: true
+  - type: checkboxes
+    id: policies
+    attributes:
+      label: Issue reporting checklist
+      options:
+        - label: I have read and understand the [issue reporting policy](https://docs.raspap.com/issues/).
+          required: true
+        - label: I observed this bug on a clean install of a [supported OS](https://docs.raspap.com/#compatible-operating-systems).
+          required: true
+        - label: I have followed the [project prerequisites](https://docs.raspap.com/#quick-start).
+          required: true
+        - label: I have searched this repository for existing issues.
+          required: true
+        - label: I checked the [FAQ](https://docs.raspap.com/faq/) and [official documentation](https://docs.raspap.com/).
+          required: true
+        - label: I have generated a [RaspAP debug log](https://docs.raspap.com/ap-basics/#debug-log) and performed a [self-diagnosis](https://docs.raspap.com/ap-basics/#diagnosing-problems).
+          required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - Raspberry Pi OS	(64-bit) Lite Bookworm	
+        - Raspberry Pi OS	(32-bit) Lite Bookworm
+        - Raspberry Pi OS	(64-bit) Lite Bullseye	
+        - Raspberry Pi OS	(32-bit) Lite Bullseye
+        - Armbian	23.05 (Suni)	
+        - Debian	Bookworm
+        - Ubuntu	Server 23.04 (Lunar)
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: Quick install or Manual setup?
+      options:
+        - Quick install	
+        - Manual setup
+    validations:
+      required: true
+  - type: dropdown
+    id: adapter
+    attributes:
+      label: Onboard wireless chipset or external adapter?
+      options:
+        - Onboard wireless chipset
+        - External adapter
+    validations:
+      required: true
+  - type: dropdown
+    id: hardware
+    attributes:
+      label: Hardware
+      options:
+        - Raspberry Pi 5
+        - Raspberry Pi 4 Model B
+        - Raspberry Pi 3 Model B+
+        - Raspberry Pi 3 Model A+
+        - Raspberry Pi 3 Model B
+        - Raspberry Pi Zero 2 W 
+        - Raspberry Pi Zero W 
+        - Orange Pi family
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: RaspAP version
+      options:
+        - 3.0 (Latest)
+        - 3.0-beta
+        - 2.9.9
+        - 2.9.8
+        - 2.9.7
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: software
+    attributes:
+      label: Other software or services running with RaspAP?
+      options:
+        - Yes (specify below)
+        - No other software
+        - Not sure
+    validations:
+      required: true
+      
+  - type: input
+    id: contact
+    attributes:
+      label: Contact details (optional)
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug description
+      description: Also tell us, what did you expect to happen?
+      placeholder: Provide a detailed description of the issue.
+      value:
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Tell us how to reproduce this issue.
+      placeholder: Provide as much detailed information as possible.
+      value:
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+      placeholder: Upload your screenshot(s) here.
+      value:
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: 
+      placeholder: Add any other context about the problem here.
+      value:
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+    validations:
+      required: false
+  
