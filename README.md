@@ -121,7 +121,7 @@ RaspAP lets you create an AP with a Wifi client configuration, often called [AP-
 Detailed manual setup instructions are provided [on our documentation site](https://docs.raspap.com/manual/).
 
 ## 802.11ac 5GHz support
-RaspAP provides an 802.11ac wireless mode option for supported hardware (currently the RPi 3B+/4 and compatible Orange Pi models) and wireless regulatory domains. See [this FAQ](https://docs.raspap.com/faq/#80211ac) for more information. 
+RaspAP provides an 802.11ac wireless mode option for supported hardware (currently the RPi 3B+/4 and compatible Orange Pi models) and wireless regulatory domains. See [this](https://docs.raspap.com/ap-basics/#80211ac-5-ghz) for more information.
 
 ## Supported operating systems
 RaspAP was originally made for Raspbian, but now also installs on the following Debian-based distros.
