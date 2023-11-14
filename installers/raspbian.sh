@@ -20,7 +20,10 @@
 # -r, --repo, --repository <name>   Overrides the default GitHub repo (RaspAP/raspap-webgui)
 # -b, --branch <name>               Overrides the default git branch (master)
 # -t, --token <accesstoken>         Specify a GitHub token to access a private repository
+# -n, --name <username>             Specify a GitHub username to access a private repository
 # -u, --upgrade                     Upgrades an existing installation to the latest release version
+# -d, --update                      Updates an existing installation to the latest release version
+# -p, --path                        Used with -d, --update, sets the existing install path
 # -i, --insiders                    Installs from the Insiders Edition (RaspAP/raspap-insiders)
 # -m, --minwrite                    Configures a microSD card for minimum write operation
 # -v, --version                     Outputs release info and exits
@@ -58,12 +61,14 @@ function _parse_params() {
     # default option values
     assume_yes=0
     upgrade=0
+    update=0
     ovpn_option=1
     adblock_option=1
     wg_option=1
     insiders=0
     minwrite=0
     acctoken=""
+    path=""
 
     while :; do
         case "${1-}" in
@@ -109,6 +114,17 @@ function _parse_params() {
             ;;
             -t|--token)
             acctoken="$2"
+            shift
+            ;;
+            -n|--name)
+            username="$2"
+            shift
+            ;;
+            -d|--update)
+            update=1
+            ;;
+            -p|--path)
+            path="$2"
             shift
             ;;
             -v|--version)
@@ -161,7 +177,10 @@ OPTIONS:
 -r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
 -t, --token <accesstoken>           Specify a GitHub token to access a private repository
+-n, --name <username>               Specify a GitHub username to access a private repository
 -u, --upgrade                       Upgrades an existing installation to the latest release version
+-d, --update                        Updates an existing installation to the latest release version
+-p, --path                          Used with -d, --update, sets the existing install path
 -i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
 -m, --minwrite                      Configures a microSD card for minimum write operation
 -v, --version                       Outputs release info and exits
@@ -260,18 +279,7 @@ function _load_installer() {
     if [ -z ${branch} ]; then
         branch=$RASPAP_LATEST
     fi
-
-    # add optional auth token header if defined with -t, --token option
-    header=()
-    if [[ ! -z "$acctoken" ]]; then
-        header=(--header "Authorization: token $acctoken")
-    fi
-
     UPDATE_URL="https://raw.githubusercontent.com/$repo_common/$branch/"
-    header=()
-    if [[ ! -z "$acctoken" ]]; then
-        header=(--header "Authorization: token $acctoken")
-    fi
 
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"
@@ -296,8 +304,13 @@ function _load_installer() {
         component="Install"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
-        _install_raspap || _install_status 1 "Unable to install RaspAP"
+        if [ "$update" == 1 ]; then
+            _update_raspap || _install_status 1 "Unable to update RaspAP"
+        else
+            _install_raspap || _install_status 1 "Unable to install RaspAP"
+        fi
     fi
 }
 
 _main "$@"
+

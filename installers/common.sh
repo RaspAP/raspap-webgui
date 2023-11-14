@@ -64,6 +64,22 @@ function _install_raspap() {
     _install_complete
 }
 
+# Performs a minimal update of an existing installation to the latest release version.
+# NOTE: the user is not prompted to install new RaspAP components.
+# The -y, --yes and -p, --path switches may be used for an unattended update.
+function _update_raspap() {
+    _display_welcome
+    _config_installation
+    _update_system_packages
+    _install_dependencies
+    _create_raspap_directories
+    _check_for_old_configs
+    _download_latest_files
+    _change_file_ownership
+    _patch_system_files
+    _install_complete
+}
+
 # search for optional installation files names install_feature_*.sh
 function _install_mobile_clients() {
     if [ "$insiders" == 1 ]; then
@@ -86,8 +102,14 @@ function _install_mobile_clients() {
 function _config_installation() {
     if [ "$upgrade" == 1 ]; then
         opt=(Upgrade Upgrading upgrade)
+    elif [ "$update" == 1 ]; then
+        opt=(Update Updating update)
     else
         opt=(Install Installing installation)
+    fi
+    if [ -n "$path" ]; then
+        echo "Setting install path to ${path}"
+        webroot_dir=$path
     fi
     _install_log "Configure ${opt[2]}"
     _get_linux_distro
@@ -106,6 +128,9 @@ function _config_installation() {
     echo "${opt[1]} lighttpd directory: ${webroot_dir}"
     if [ "$upgrade" == 1 ]; then
         echo "This will upgrade your existing install to version ${RASPAP_RELEASE}"
+        echo "Your configuration will NOT be changed"
+    elif [ "$update" == 1 ]; then
+        echo "This will update your existing install to version ${RASPAP_RELEASE}"
         echo "Your configuration will NOT be changed"
     fi
     echo -n "Complete ${opt[2]} with these values? [Y/n]: "
@@ -255,7 +280,7 @@ function _enable_php_lighttpd() {
 
 # Verifies existence and permissions of RaspAP directory
 function _create_raspap_directories() {
-    if [ "$upgrade" == 1 ]; then
+    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
        if [ -f $raspap_dir/raspap.auth ]; then
             _install_log "Moving existing raspap.auth file to /tmp"
             sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
@@ -562,10 +587,17 @@ function _download_latest_files() {
 
     _install_log "Cloning latest files from github"
     if [ "$repo" == "RaspAP/raspap-insiders" ]; then
-        _install_status 3
-        echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
+        if [ -n "$username" ] && [ -n "$acctoken" ]; then
+            insiders_source_url="https://${username}:${acctoken}@github.com/$repo"
+            git clone --branch $branch --depth 1 -c advice.detachedHead=false $insiders_source_url /tmp/raspap-webgui || clone=false
+        else
+            _install_status 3
+            echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
+        fi
     fi
-    git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || clone=false
+    if [ -z "$insiders_source_url" ]; then
+        git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || clone=false
+    fi
     if [ "$clone" = false ]; then
         _install_status 1 "Unable to download files from github"
         echo "The installer cannot continue." >&2
@@ -599,7 +631,7 @@ function _change_file_ownership() {
 
 # Check for existing configuration files
 function _check_for_old_configs() {
-    if [ "$upgrade" == 1 ]; then
+    if [ "$upgrade" == 1 ] || ["$update" == 1 ]; then
         _install_log "Moving existing configuration to /tmp"
         sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
     else
