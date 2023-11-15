@@ -1,14 +1,21 @@
 #!/bin/bash
 #
-# RaspAP Quick Installer
+# RaspAP Quick Installer - Installs and updates RaspAP
 # Author: @billz <billzimmerman@gmail.com>
-# Author URI: https://github.com/billz/
+# Author URI: https://github.com/billz
+# Project URI: https://github.com/RaspAP/
 # License: GNU General Public License v3.0
-# License URI: https://github.com/raspap/raspap-webgui/blob/master/LICENSE
+# License URI: https://github.com/RaspAP/raspap-webgui/blob/master/LICENSE
 #
 # Usage: raspbian.sh [options]
 #
-# Installs an instance of RaspAP.
+# See below for options and usage examples.
+#
+# This program is free software: you may copy, redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, unser version 3 of the License. You are not
+# obligated to bundle the LICENSE file with your RaspAP projects as long as
+# you leave these references intact in the header comments of your source files.
 #
 # NOTE
 # Depending on options passed to the installer, ONE of the following
@@ -21,13 +28,10 @@
 # https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/minwrite.sh
 # - or -
 # https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/uninstall.sh
-#
-# You are not obligated to bundle the LICENSE file with your RaspAP projects as long
-# as you leave these references intact in the header comments of your source files.
 
 function _usage() {
     cat << EOF
-Usage: raspbian.sh options
+Usage: raspbian.sh [options]
 
 Installs an instance of RaspAP or a helper component.
 
@@ -58,10 +62,13 @@ Examples:
     raspbian.sh --version
 
     Invoke installer remotely, run non-interactively with option flags:
-    curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --adblock 0
+    curl -sL https://install.raspap.com | bash -s -- --yes --wireguard 1 --adblock 0
 
     Invoke remotely, uprgrade an existing install to the Insiders Edition:
-    curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders
+    curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders --name <name> --token <token>
+
+    Invoke remotely, perform an unattended update to the latest release version:
+    curl -sL https://install.raspap.com | bash -s -- --yes --update --path /var/www/html
 
 EOF
     exit
