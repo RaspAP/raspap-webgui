@@ -65,14 +65,13 @@ function _install_raspap() {
 }
 
 # Performs a minimal update of an existing installation to the latest release version.
-# NOTE: the user is not prompted to install new RaspAP components.
+# The user is not prompted to install new RaspAP components.
 # The -y, --yes and -p, --path switches may be used for an unattended update.
 function _update_raspap() {
     _display_welcome
     _config_installation
     _update_system_packages
     _install_dependencies
-    _create_raspap_directories
     _check_for_old_configs
     _download_latest_files
     _change_file_ownership
@@ -107,15 +106,15 @@ function _config_installation() {
     else
         opt=(Install Installing installation)
     fi
-    if [ -n "$path" ]; then
-        echo "Setting install path to ${path}"
-        webroot_dir=$path
-    fi
     _install_log "Configure ${opt[2]}"
     _get_linux_distro
     echo "Detected OS: ${DESC} ${LONG_BIT}-bit"
     echo "Using GitHub repository: ${repo} ${branch} branch"
     echo "Configuration directory: ${raspap_dir}"
+    if [ -n "$path" ]; then
+        echo "Setting install path to ${path}"
+        webroot_dir=$path
+    fi
     echo -n "lighttpd root: ${webroot_dir}? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
@@ -126,11 +125,8 @@ function _config_installation() {
         echo -e
     fi
     echo "${opt[1]} lighttpd directory: ${webroot_dir}"
-    if [ "$upgrade" == 1 ]; then
-        echo "This will upgrade your existing install to version ${RASPAP_RELEASE}"
-        echo "Your configuration will NOT be changed"
-    elif [ "$update" == 1 ]; then
-        echo "This will update your existing install to version ${RASPAP_RELEASE}"
+    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+        echo "This will ${opt[2]} your existing install to version ${RASPAP_RELEASE}"
         echo "Your configuration will NOT be changed"
     fi
     echo -n "Complete ${opt[2]} with these values? [Y/n]: "
@@ -280,13 +276,6 @@ function _enable_php_lighttpd() {
 
 # Verifies existence and permissions of RaspAP directory
 function _create_raspap_directories() {
-    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
-       if [ -f $raspap_dir/raspap.auth ]; then
-            _install_log "Moving existing raspap.auth file to /tmp"
-            sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
-        fi
-    fi
-
     _install_log "Creating RaspAP directories"
     if [ -d "$raspap_dir" ]; then
         sudo mv $raspap_dir "$raspap_dir.`date +%F-%R`" || _install_status 1 "Unable to move old '$raspap_dir' out of the way"
@@ -580,12 +569,13 @@ function _download_latest_files() {
     if [ ! -d "$webroot_dir" ]; then
         sudo mkdir -p $webroot_dir || _install_status 1 "Unable to create new webroot directory"
     fi
-
-    if [ -d "$webroot_dir" ]; then
+    if [ -d "$webroot_dir" ] && [ -z "$update" ]; then
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to remove old webroot directory"
+    elif [ "$update" == 1 ]; then
+        sudo rm -rf "$webroot_dir"
     fi
 
-    _install_log "Cloning latest files from github"
+    _install_log "Cloning latest files from GitHub"
     if [ "$repo" == "RaspAP/raspap-insiders" ]; then
         if [ -n "$username" ] && [ -n "$acctoken" ]; then
             insiders_source_url="https://${username}:${acctoken}@github.com/$repo"
@@ -604,9 +594,9 @@ function _download_latest_files() {
         exit 1
     fi
 
-    sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to web root"
+    sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to $webroot_dir"
 
-    if [ "$upgrade" == 1 ]; then
+    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
         sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
         
@@ -631,9 +621,13 @@ function _change_file_ownership() {
 
 # Check for existing configuration files
 function _check_for_old_configs() {
-    if [ "$upgrade" == 1 ] || ["$update" == 1 ]; then
+    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
         _install_log "Moving existing configuration to /tmp"
         sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
+       if [ -f $raspap_dir/raspap.auth ]; then
+            _install_log "Moving existing raspap.auth file to /tmp"
+            sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
+        fi
     else
         _install_log "Backing up existing configs to ${raspap_dir}/backups"
         if [ -f /etc/network/interfaces ]; then
@@ -681,7 +675,6 @@ function _default_configuration() {
         sudo cp $webroot_dir/config/090_raspap.conf $raspap_default || _install_status 1 "Unable to move dnsmasq default configuration file"
         sudo cp $webroot_dir/config/090_wlan0.conf $raspap_wlan0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
-        sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
 
         echo "Changing file ownership of ${raspap_network}defaults.json"
         sudo chown $raspap_user:$raspap_user "$raspap_network"/defaults.json || _install_status 1 "Unable to change file ownership for defaults.json"
@@ -713,6 +706,9 @@ function _default_configuration() {
 
         _install_status 0
     fi
+    _install_log "Copying defaults.json to $raspap_network"
+    sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
+
 }
 
 # Install and enable RaspAP daemon
@@ -777,8 +773,10 @@ function _patch_system_files() {
     sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
     sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
 
-    _install_log "Creating RaspAP debug log control script"
-    sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
+    if [ ! -d "$raspap_dir" ]; then
+        _install_log "Creating RaspAP debug log control script"
+        sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
+    fi
 
     # Copy debug shell script
     sudo cp "$webroot_dir/installers/"debuglog.sh "$raspap_dir/system" || _install_status 1 "Unable to move debug logging script"
