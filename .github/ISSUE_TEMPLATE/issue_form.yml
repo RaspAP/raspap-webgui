@@ -11,7 +11,8 @@ body:
 
         **Important:** If you are NOT using a clean installation of a compatible OS, start with a fresh SD card, install RaspAP and replicate your bug BEFORE reporting an issue.
 
-        All submitters MUST read the [issue policy and reporting guidelines](https://docs.raspap.com/issues/). Bug reports that do not follow the issue policy will be marked as `invalid` and closed (no hard feelings).
+        All submitters MUST read the [issue policy and reporting guidelines](https://docs.raspap.com/issues/). Bug reports that do not follow the issue policy will be marked as `invalid` and closed. Likewise, bug reports missing required fields will be marked `incomplete` and closed (no hard feelings).
+        In this event, we ask you to re-submit a complete bug report.
         
         Be sure there are no issues similar to yours that are already open. You can check this by searching the issues in this repository.
         If there is a duplicate issue, please comment on the existing issue instead.
