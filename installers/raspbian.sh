@@ -10,26 +10,6 @@
 #
 # Installs an instance of RaspAP.
 #
-# OPTIONS:
-# -y, --yes, --assume-yes           Assume "yes" as answer to all prompts and run non-interactively
-# -c, --cert, --certficate          Installs mkcert and generates an SSL certificate for lighttpd
-# -o, --openvpn <flag>              Used with -y, --yes, sets OpenVPN install option (0=no install)
-# -a, --adblock <flag>              Used with -y, --yes, sets Adblock install option (0=no install)
-# -w, --wireguard <flag>            Used with -y, --yes, sets WireGuard install option (0=no install)
-# -c, --cert, --certificate         Installs an SSL certificate with mkcert and configures lighttpd for HTTPS
-# -r, --repo, --repository <name>   Overrides the default GitHub repo (RaspAP/raspap-webgui)
-# -b, --branch <name>               Overrides the default git branch (master)
-# -t, --token <accesstoken>         Specify a GitHub token to access a private repository
-# -n, --name <username>             Specify a GitHub username to access a private repository
-# -u, --upgrade                     Upgrades an existing installation to the latest release version
-# -d, --update                      Updates an existing installation to the latest release version
-# -p, --path                        Used with -d, --update, sets the existing install path
-# -i, --insiders                    Installs from the Insiders Edition (RaspAP/raspap-insiders)
-# -m, --minwrite                    Configures a microSD card for minimum write operation
-# -v, --version                     Outputs release info and exits
-# -n, --uninstall                   Loads and executes the uninstaller
-# -h, --help                        Outputs usage notes and exits
-#
 # NOTE
 # Depending on options passed to the installer, ONE of the following
 # additional shell scripts will be downloaded and sourced:
@@ -44,6 +24,48 @@
 #
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.
+
+function _usage() {
+    cat << EOF
+Usage: raspbian.sh options
+
+Installs an instance of RaspAP or a helper component.
+
+OPTIONS:
+-y, --yes, --assume-yes             Assumes "yes" as an answer to all prompts
+-c, --cert, --certificate           Installs an SSL certificate for lighttpd
+-o, --openvpn <flag>                Used with -y, --yes, sets OpenVPN install option (0=no install)
+-a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
+-w, --wireguard <flag>              Used with -y, --yes, sets WireGuard install option (0=no install)
+-r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
+-b, --branch <name>                 Overrides the default git branch (latest release)
+-t, --token <accesstoken>           Specify a GitHub token to access a private repository
+-n, --name <username>               Specify a GitHub username to access a private repository
+-u, --upgrade                       Upgrades an existing installation to the latest release version
+-d, --update                        Updates an existing installation to the latest release version
+-p, --path                          Used with -d, --update, sets the existing install path
+-i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
+-m, --minwrite                      Configures a microSD card for minimum write operation
+-v, --version                       Outputs release info and exits
+-n, --uninstall                     Loads and executes the uninstaller
+-h, --help                          Outputs usage notes and exits
+
+Examples:
+    Run locally specifying GitHub repo and branch:
+    raspbian.sh --repo foo/bar --branch my/branch
+
+    Run locally requesting release info:
+    raspbian.sh --version
+
+    Invoke installer remotely, run non-interactively with option flags:
+    curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --adblock 0
+
+    Invoke remotely, uprgrade an existing install to the Insiders Edition:
+    curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders
+
+EOF
+    exit
+}
 
 set -eo pipefail
 
@@ -159,49 +181,6 @@ function _log_output() {
     readonly LOGFILE_PATH="/tmp"
     exec > >(tee -i $LOGFILE_PATH/raspap_install.log)
     exec 2>&1
-}
-
-function _usage() {
-    cat << EOF
-Usage: raspbian.sh options
-
-Installs an instance of RaspAP or a helper component.
-
-OPTIONS:
--y, --yes, --assume-yes             Assumes "yes" as an answer to all prompts
--c, --cert, --certificate           Installs an SSL certificate for lighttpd
--o, --openvpn <flag>                Used with -y, --yes, sets OpenVPN install option (0=no install)
--a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
--w, --wireguard <flag>              Used with -y, --yes, sets WireGuard install option (0=no install)
--c, --cert, --certificate           Installs an SSL certificate with mkcert and configures lighttpd for HTTPS
--r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
--b, --branch <name>                 Overrides the default git branch (latest release)
--t, --token <accesstoken>           Specify a GitHub token to access a private repository
--n, --name <username>               Specify a GitHub username to access a private repository
--u, --upgrade                       Upgrades an existing installation to the latest release version
--d, --update                        Updates an existing installation to the latest release version
--p, --path                          Used with -d, --update, sets the existing install path
--i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
--m, --minwrite                      Configures a microSD card for minimum write operation
--v, --version                       Outputs release info and exits
--n, --uninstall                     Loads and executes the uninstaller
--h, --help                          Outputs usage notes and exits
-
-Examples:
-    Run locally specifying GitHub repo and branch:
-    raspbian.sh --repo foo/bar --branch my/branch
-
-    Run locally requesting release info:
-    raspbian.sh --version
-
-    Invoke installer remotely, run non-interactively with option flags:
-    curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --adblock 0
-
-    Invoke remotely, uprgrade an existing install to the Insiders Edition:
-    curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders
-
-EOF
-    exit
 }
 
 function _version() {
