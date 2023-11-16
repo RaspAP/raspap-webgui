@@ -563,9 +563,9 @@ function _create_openvpn_scripts() {
 
 # Fetches latest files from github to webroot
 function _download_latest_files() {
-    if [ -d "$webroot_dir" ] && [ -z "$update" ]; then
+    if [ -d "$webroot_dir" ] && [ "$update" == 0 ]; then
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to remove old webroot directory"
-    elif [ "$update" == 1 ]; then
+    elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
         sudo rm -rf "$webroot_dir"
     fi
 
