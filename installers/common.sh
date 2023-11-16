@@ -288,9 +288,6 @@ function _create_raspap_directories() {
     # Create a directory to store networking configs
     echo "Creating $raspap_dir/networking"
     sudo mkdir -p "$raspap_dir/networking"
-    # Copy existing dhcpcd.conf to use as base config
-    echo "Adding /etc/dhcpcd.conf as base configuration"
-    cat /etc/dhcpcd.conf | sudo tee -a /etc/raspap/networking/defaults > /dev/null
     echo "Changing file ownership of $raspap_dir"
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 }
@@ -566,9 +563,6 @@ function _create_openvpn_scripts() {
 
 # Fetches latest files from github to webroot
 function _download_latest_files() {
-    if [ ! -d "$webroot_dir" ]; then
-        sudo mkdir -p $webroot_dir || _install_status 1 "Unable to create new webroot directory"
-    fi
     if [ -d "$webroot_dir" ] && [ -z "$update" ]; then
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to remove old webroot directory"
     elif [ "$update" == 1 ]; then
@@ -594,6 +588,7 @@ function _download_latest_files() {
         exit 1
     fi
 
+    _install_log "Installing application to $webroot_dir"
     sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to $webroot_dir"
 
     if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
@@ -629,7 +624,7 @@ function _check_for_old_configs() {
             sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
         fi
     else
-        _install_log "Backing up existing configs to ${raspap_dir}/backups"
+        _install_log "Checking for existing configs"
         if [ -f /etc/network/interfaces ]; then
             sudo cp /etc/network/interfaces "$raspap_dir/backups/interfaces.`date +%F-%R`"
             sudo ln -sf "$raspap_dir/backups/interfaces.`date +%F-%R`" "$raspap_dir/backups/interfaces"
@@ -671,16 +666,26 @@ function _default_configuration() {
     if [ "$upgrade" == 0 ]; then
         _install_log "Applying default configuration to installed services"
 
-        sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
-        sudo cp $webroot_dir/config/090_raspap.conf $raspap_default || _install_status 1 "Unable to move dnsmasq default configuration file"
-        sudo cp $webroot_dir/config/090_wlan0.conf $raspap_wlan0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
-        sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
-
-        echo "Changing file ownership of ${raspap_network}defaults.json"
-        sudo chown $raspap_user:$raspap_user "$raspap_network"/defaults.json || _install_status 1 "Unable to change file ownership for defaults.json"
-
         echo "Checking for existence of /etc/dnsmasq.d"
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
+
+        echo "Copying $webroot_dir/config/hostapd.conf to /etc/hostapd/hostapd.conf"
+        sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
+
+        echo "Copying $webroot_dir/config/090_raspap.conf to $raspap_default"
+        sudo cp $webroot_dir/config/090_raspap.conf $raspap_default || _install_status 1 "Unable to move dnsmasq default configuration file"
+
+        echo "Copying $webroot_dir/config/090_wlan0.conf to $raspap_wlan0"
+        sudo cp $webroot_dir/config/090_wlan0.conf $raspap_wlan0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
+
+        echo "Copying $webroot_dir/config/dhcpcd.conf to /etc/dhcpcd.conf"
+        sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
+
+        echo "Copying $webroot_dir/defaults.json to $raspap_network"
+        sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
+
+        echo "Changing file ownership of ${raspap_network}defaults.json"
+        sudo chown $raspap_user:$raspap_user "$raspap_network"defaults.json || _install_status 1 "Unable to change file ownership for defaults.json"
 
         # Copy OS-specific bridge default config
         if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
@@ -704,11 +709,24 @@ function _default_configuration() {
             sudo systemctl enable dhcpcd.service || _install_status 1 "Failed to enable raspap.service"
         fi
 
-        _install_status 0
-    fi
-    _install_log "Copying defaults.json to $raspap_network"
-    sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
+        # Set correct DAEMON_CONF path for hostapd (Ubuntu20 + Armbian22)
+        if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
+            conf="/etc/default/hostapd"
+            key="DAEMON_CONF"
+            value="/etc/hostapd/hostapd.conf"
+            echo "Setting default ${key} path to ${value}"
+            sudo sed -i -E "/^#?$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
+        fi
 
+        _install_log "Unmasking and enabling hostapd service"
+        sudo systemctl unmask hostapd.service
+        sudo systemctl enable hostapd.service
+
+        _install_status 0
+    else
+        _install_log "Copying defaults.json to $raspap_network"
+        sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
+    fi
 }
 
 # Install and enable RaspAP daemon
@@ -773,12 +791,11 @@ function _patch_system_files() {
     sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
     sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
 
-    if [ ! -d "$raspap_dir" ]; then
-        _install_log "Creating RaspAP debug log control script"
+    if [ ! -d "$raspap_dir/system" ]; then
         sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
     fi
 
-    # Copy debug shell script
+    _install_log "Creating RaspAP debug log control script"
     sudo cp "$webroot_dir/installers/"debuglog.sh "$raspap_dir/system" || _install_status 1 "Unable to move debug logging script"
 
     # Set ownership and permissions
@@ -791,19 +808,6 @@ function _patch_system_files() {
         sudo ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /etc/dhcp/dhclient-enter-hooks.d/
     fi
 
-    # Unmask and enable hostapd.service
-    _install_log "Unmasking and enabling hostapd service"
-    sudo systemctl unmask hostapd.service
-    sudo systemctl enable hostapd.service
-    
-    # Set correct DAEMON_CONF path for hostapd (Ubuntu20 + Armbian22)
-    if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
-        conf="/etc/default/hostapd"
-        key="DAEMON_CONF"
-        value="/etc/hostapd/hostapd.conf"
-        echo "Setting default ${key} path to ${value}"
-        sudo sed -i -E "/^#?$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
-    fi
     _install_status 0
 }
 
