@@ -11,9 +11,10 @@
 #
 # See below for options and usage examples.
 #
-# This program is free software: you may copy, redistribute it and/or modify
+#                    GNU GENERAL PUBLIC LICENSE
+# This program is free software: you may copy, redistribute and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, unser version 3 of the License. You are not
+# the Free Software Foundation, under version 3 of the License. You are not
 # obligated to bundle the LICENSE file with your RaspAP projects as long as
 # you leave these references intact in the header comments of your source files.
 #
