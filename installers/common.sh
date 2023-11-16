@@ -57,7 +57,7 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
-    _install_mobile_clients
+    _install_extra_features
     _prompt_install_wireguard
     _prompt_install_vpn_providers
     _patch_system_files
@@ -77,24 +77,6 @@ function _update_raspap() {
     _change_file_ownership
     _patch_system_files
     _install_complete
-}
-
-# search for optional installation files names install_feature_*.sh
-function _install_mobile_clients() {
-    if [ "$insiders" == 1 ]; then
-        _install_log "Installing support for mobile data clients"
-        for feature in $(ls $webroot_dir/installers/install_feature_*.sh) ; do
-           source $feature
-           f=$(basename $feature)
-           func="_${f%.*}"
-           if declare -f -F $func > /dev/null; then
-                echo "Installing $func"
-                $func || _install_status 1 "Unable to install feature ($func)"
-            else
-                _install_status 1 "Install file $f is missing install function $func"
-           fi
-       done
-    fi
 }
 
 # Prompts user to set installation options
@@ -863,6 +845,23 @@ function _optimize_php() {
                 fi
             fi
         fi
+    fi
+}
+
+# search for optional installation files names install_feature_*.sh
+function _install_extra_features() {
+    if [ "$insiders" == 1 ]; then
+        _install_log "Installing additional features (Insiders)"
+        for feature in $(ls $webroot_dir/installers/install_feature_*.sh) ; do
+           source $feature
+           f=$(basename $feature)
+           func="_${f%.*}"
+           if declare -f -F $func > /dev/null; then
+                $func || _install_status 1 "Unable to install feature ($func)"
+            else
+                _install_status 1 "Install file $f is missing install function $func"
+           fi
+       done
     fi
 }
 
