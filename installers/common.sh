@@ -573,13 +573,18 @@ function _download_latest_files() {
     _install_log "Installing application to $webroot_dir"
     sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to $webroot_dir"
 
-    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+    if [ "$update" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
         sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
         
         if [ -f /tmp/raspap.auth ]; then
             _install_log "Applying existing authentication file to ${raspap_dir}"
             sudo mv /tmp/raspap.auth $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
+        fi
+    else
+        echo "Copying primary RaspAP config to includes/config.php"
+        if [ ! -f "$webroot_dir/includes/config.php" ]; then
+            sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
         fi
     fi
 
@@ -598,7 +603,7 @@ function _change_file_ownership() {
 
 # Check for existing configuration files
 function _check_for_old_configs() {
-    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+    if [ "$update" == 1 ]; then
         _install_log "Moving existing configuration to /tmp"
         sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
        if [ -f $raspap_dir/raspap.auth ]; then
@@ -651,19 +656,19 @@ function _default_configuration() {
         echo "Checking for existence of /etc/dnsmasq.d"
         [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
 
-        echo "Copying $webroot_dir/config/hostapd.conf to /etc/hostapd/hostapd.conf"
+        echo "Copying config/hostapd.conf to /etc/hostapd/hostapd.conf"
         sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
 
-        echo "Copying $webroot_dir/config/090_raspap.conf to $raspap_default"
+        echo "Copying config/090_raspap.conf to $raspap_default"
         sudo cp $webroot_dir/config/090_raspap.conf $raspap_default || _install_status 1 "Unable to move dnsmasq default configuration file"
 
-        echo "Copying $webroot_dir/config/090_wlan0.conf to $raspap_wlan0"
+        echo "Copying config/090_wlan0.conf to $raspap_wlan0"
         sudo cp $webroot_dir/config/090_wlan0.conf $raspap_wlan0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
 
-        echo "Copying $webroot_dir/config/dhcpcd.conf to /etc/dhcpcd.conf"
+        echo "Copying config/dhcpcd.conf to /etc/dhcpcd.conf"
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
 
-        echo "Copying $webroot_dir/defaults.json to $raspap_network"
+        echo "Copying config/defaults.json to $raspap_network"
         sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
 
         echo "Changing file ownership of ${raspap_network}defaults.json"
@@ -677,11 +682,6 @@ function _default_configuration() {
             echo "Copying bridged AP config to /etc/systemd/network"
             sudo cp $webroot_dir/config/raspap-bridge-br0.netdev /etc/systemd/network/raspap-bridge-br0.netdev || _install_status 1 "Unable to move br0 netdev file"
             sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
-        fi
-
-        echo "Copying primary RaspAP config to includes/config.php"
-        if [ ! -f "$webroot_dir/includes/config.php" ]; then
-            sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
         fi
 
         if [ ${OS,,} = "raspbian" ] && [[ ${RELEASE} =~ ^(12) ]]; then
