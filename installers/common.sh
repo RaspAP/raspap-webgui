@@ -57,35 +57,34 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
-    _install_mobile_clients
+    _install_extra_features
     _prompt_install_wireguard
     _prompt_install_vpn_providers
     _patch_system_files
     _install_complete
 }
 
-# search for optional installation files names install_feature_*.sh
-function _install_mobile_clients() {
-    if [ "$insiders" == 1 ]; then
-        _install_log "Installing support for mobile data clients"
-        for feature in $(ls $webroot_dir/installers/install_feature_*.sh) ; do
-           source $feature
-           f=$(basename $feature)
-           func="_${f%.*}"
-           if declare -f -F $func > /dev/null; then
-                echo "Installing $func"
-                $func || _install_status 1 "Unable to install feature ($func)"
-            else
-                _install_status 1 "Install file $f is missing install function $func"
-           fi
-       done
-    fi
+# Performs a minimal update of an existing installation to the latest release version.
+# The user is not prompted to install new RaspAP components.
+# The -y, --yes and -p, --path switches may be used for an unattended update.
+function _update_raspap() {
+    _display_welcome
+    _config_installation
+    _update_system_packages
+    _install_dependencies
+    _check_for_old_configs
+    _download_latest_files
+    _change_file_ownership
+    _patch_system_files
+    _install_complete
 }
 
 # Prompts user to set installation options
 function _config_installation() {
     if [ "$upgrade" == 1 ]; then
         opt=(Upgrade Upgrading upgrade)
+    elif [ "$update" == 1 ]; then
+        opt=(Update Updating update)
     else
         opt=(Install Installing installation)
     fi
@@ -94,6 +93,10 @@ function _config_installation() {
     echo "Detected OS: ${DESC} ${LONG_BIT}-bit"
     echo "Using GitHub repository: ${repo} ${branch} branch"
     echo "Configuration directory: ${raspap_dir}"
+    if [ -n "$path" ]; then
+        echo "Setting install path to ${path}"
+        webroot_dir=$path
+    fi
     echo -n "lighttpd root: ${webroot_dir}? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
@@ -104,8 +107,8 @@ function _config_installation() {
         echo -e
     fi
     echo "${opt[1]} lighttpd directory: ${webroot_dir}"
-    if [ "$upgrade" == 1 ]; then
-        echo "This will upgrade your existing install to version ${RASPAP_RELEASE}"
+    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+        echo "This will ${opt[2]} your existing install to version ${RASPAP_RELEASE}"
         echo "Your configuration will NOT be changed"
     fi
     echo -n "Complete ${opt[2]} with these values? [Y/n]: "
@@ -255,13 +258,6 @@ function _enable_php_lighttpd() {
 
 # Verifies existence and permissions of RaspAP directory
 function _create_raspap_directories() {
-    if [ "$upgrade" == 1 ]; then
-       if [ -f $raspap_dir/raspap.auth ]; then
-            _install_log "Moving existing raspap.auth file to /tmp"
-            sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
-        fi
-    fi
-
     _install_log "Creating RaspAP directories"
     if [ -d "$raspap_dir" ]; then
         sudo mv $raspap_dir "$raspap_dir.`date +%F-%R`" || _install_status 1 "Unable to move old '$raspap_dir' out of the way"
@@ -274,9 +270,6 @@ function _create_raspap_directories() {
     # Create a directory to store networking configs
     echo "Creating $raspap_dir/networking"
     sudo mkdir -p "$raspap_dir/networking"
-    # Copy existing dhcpcd.conf to use as base config
-    echo "Adding /etc/dhcpcd.conf as base configuration"
-    cat /etc/dhcpcd.conf | sudo tee -a /etc/raspap/networking/defaults > /dev/null
     echo "Changing file ownership of $raspap_dir"
     sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
 }
@@ -552,35 +545,46 @@ function _create_openvpn_scripts() {
 
 # Fetches latest files from github to webroot
 function _download_latest_files() {
-    if [ ! -d "$webroot_dir" ]; then
-        sudo mkdir -p $webroot_dir || _install_status 1 "Unable to create new webroot directory"
-    fi
-
-    if [ -d "$webroot_dir" ]; then
+    if [ -d "$webroot_dir" ] && [ "$update" == 0 ]; then
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to remove old webroot directory"
+    elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+        sudo rm -rf "$webroot_dir"
     fi
 
-    _install_log "Cloning latest files from github"
+    _install_log "Cloning latest files from GitHub"
     if [ "$repo" == "RaspAP/raspap-insiders" ]; then
-        _install_status 3
-        echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
+        if [ -n "$username" ] && [ -n "$acctoken" ]; then
+            insiders_source_url="https://${username}:${acctoken}@github.com/$repo"
+            git clone --branch $branch --depth 1 -c advice.detachedHead=false $insiders_source_url /tmp/raspap-webgui || clone=false
+        else
+            _install_status 3
+            echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
+        fi
     fi
-    git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || clone=false
+    if [ -z "$insiders_source_url" ]; then
+        git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || clone=false
+    fi
     if [ "$clone" = false ]; then
         _install_status 1 "Unable to download files from github"
         echo "The installer cannot continue." >&2
         exit 1
     fi
 
-    sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to web root"
+    _install_log "Installing application to $webroot_dir"
+    sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to $webroot_dir"
 
-    if [ "$upgrade" == 1 ]; then
+    if [ "$update" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
         sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
         
         if [ -f /tmp/raspap.auth ]; then
             _install_log "Applying existing authentication file to ${raspap_dir}"
             sudo mv /tmp/raspap.auth $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
+        fi
+    else
+        echo "Copying primary RaspAP config to includes/config.php"
+        if [ ! -f "$webroot_dir/includes/config.php" ]; then
+            sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
         fi
     fi
 
@@ -599,11 +603,15 @@ function _change_file_ownership() {
 
 # Check for existing configuration files
 function _check_for_old_configs() {
-    if [ "$upgrade" == 1 ]; then
+    if [ "$update" == 1 ]; then
         _install_log "Moving existing configuration to /tmp"
         sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
+       if [ -f $raspap_dir/raspap.auth ]; then
+            _install_log "Moving existing raspap.auth file to /tmp"
+            sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
+        fi
     else
-        _install_log "Backing up existing configs to ${raspap_dir}/backups"
+        _install_log "Checking for existing configs"
         if [ -f /etc/network/interfaces ]; then
             sudo cp /etc/network/interfaces "$raspap_dir/backups/interfaces.`date +%F-%R`"
             sudo ln -sf "$raspap_dir/backups/interfaces.`date +%F-%R`" "$raspap_dir/backups/interfaces"
@@ -645,17 +653,26 @@ function _default_configuration() {
     if [ "$upgrade" == 0 ]; then
         _install_log "Applying default configuration to installed services"
 
+        echo "Checking for existence of /etc/dnsmasq.d"
+        [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
+
+        echo "Copying config/hostapd.conf to /etc/hostapd/hostapd.conf"
         sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
+
+        echo "Copying config/090_raspap.conf to $raspap_default"
         sudo cp $webroot_dir/config/090_raspap.conf $raspap_default || _install_status 1 "Unable to move dnsmasq default configuration file"
+
+        echo "Copying config/090_wlan0.conf to $raspap_wlan0"
         sudo cp $webroot_dir/config/090_wlan0.conf $raspap_wlan0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
+
+        echo "Copying config/dhcpcd.conf to /etc/dhcpcd.conf"
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
+
+        echo "Copying config/defaults.json to $raspap_network"
         sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
 
         echo "Changing file ownership of ${raspap_network}defaults.json"
-        sudo chown $raspap_user:$raspap_user "$raspap_network"/defaults.json || _install_status 1 "Unable to change file ownership for defaults.json"
-
-        echo "Checking for existence of /etc/dnsmasq.d"
-        [ -d /etc/dnsmasq.d ] || sudo mkdir /etc/dnsmasq.d
+        sudo chown $raspap_user:$raspap_user "$raspap_network"defaults.json || _install_status 1 "Unable to change file ownership for defaults.json"
 
         # Copy OS-specific bridge default config
         if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
@@ -667,11 +684,6 @@ function _default_configuration() {
             sudo cp $webroot_dir/config/raspap-br0-member-eth0.network /etc/systemd/network/raspap-br0-member-eth0.network || _install_status 1 "Unable to move br0 member file"
         fi
 
-        echo "Copying primary RaspAP config to includes/config.php"
-        if [ ! -f "$webroot_dir/includes/config.php" ]; then
-            sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
-        fi
-
         if [ ${OS,,} = "raspbian" ] && [[ ${RELEASE} =~ ^(12) ]]; then
             echo "Moving dhcpcd systemd unit control file to /lib/systemd/system/"
             sudo mv $webroot_dir/installers/dhcpcd.service /lib/systemd/system/ || _install_status 1 "Unable to move dhcpcd.service file"
@@ -679,7 +691,23 @@ function _default_configuration() {
             sudo systemctl enable dhcpcd.service || _install_status 1 "Failed to enable raspap.service"
         fi
 
+        # Set correct DAEMON_CONF path for hostapd (Ubuntu20 + Armbian22)
+        if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
+            conf="/etc/default/hostapd"
+            key="DAEMON_CONF"
+            value="/etc/hostapd/hostapd.conf"
+            echo "Setting default ${key} path to ${value}"
+            sudo sed -i -E "/^#?$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
+        fi
+
+        _install_log "Unmasking and enabling hostapd service"
+        sudo systemctl unmask hostapd.service
+        sudo systemctl enable hostapd.service
+
         _install_status 0
+    else
+        _install_log "Copying defaults.json to $raspap_network"
+        sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
     fi
 }
 
@@ -745,10 +773,11 @@ function _patch_system_files() {
     sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
     sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
 
-    _install_log "Creating RaspAP debug log control script"
-    sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
+    if [ ! -d "$raspap_dir/system" ]; then
+        sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
+    fi
 
-    # Copy debug shell script
+    _install_log "Creating RaspAP debug log control script"
     sudo cp "$webroot_dir/installers/"debuglog.sh "$raspap_dir/system" || _install_status 1 "Unable to move debug logging script"
 
     # Set ownership and permissions
@@ -761,19 +790,6 @@ function _patch_system_files() {
         sudo ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /etc/dhcp/dhclient-enter-hooks.d/
     fi
 
-    # Unmask and enable hostapd.service
-    _install_log "Unmasking and enabling hostapd service"
-    sudo systemctl unmask hostapd.service
-    sudo systemctl enable hostapd.service
-    
-    # Set correct DAEMON_CONF path for hostapd (Ubuntu20 + Armbian22)
-    if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
-        conf="/etc/default/hostapd"
-        key="DAEMON_CONF"
-        value="/etc/hostapd/hostapd.conf"
-        echo "Setting default ${key} path to ${value}"
-        sudo sed -i -E "/^#?$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
-    fi
     _install_status 0
 }
 
@@ -829,6 +845,23 @@ function _optimize_php() {
                 fi
             fi
         fi
+    fi
+}
+
+# search for optional installation files names install_feature_*.sh
+function _install_extra_features() {
+    if [ "$insiders" == 1 ]; then
+        _install_log "Installing additional features (Insiders)"
+        for feature in $(ls $webroot_dir/installers/install_feature_*.sh) ; do
+           source $feature
+           f=$(basename $feature)
+           func="_${f%.*}"
+           if declare -f -F $func > /dev/null; then
+                $func || _install_status 1 "Unable to install feature ($func)"
+            else
+                _install_status 1 "Install file $f is missing install function $func"
+           fi
+       done
     fi
 }
 

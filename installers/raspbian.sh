@@ -1,31 +1,22 @@
 #!/bin/bash
 #
-# RaspAP Quick Installer
+# RaspAP Quick Installer - Installs and updates RaspAP
 # Author: @billz <billzimmerman@gmail.com>
-# Author URI: https://github.com/billz/
+# Author URI: https://github.com/billz
+# Project URI: https://github.com/RaspAP/
 # License: GNU General Public License v3.0
-# License URI: https://github.com/raspap/raspap-webgui/blob/master/LICENSE
+# License URI: https://github.com/RaspAP/raspap-webgui/blob/master/LICENSE
 #
 # Usage: raspbian.sh [options]
 #
-# Installs an instance of RaspAP.
+# See below for options and usage examples.
 #
-# OPTIONS:
-# -y, --yes, --assume-yes           Assume "yes" as answer to all prompts and run non-interactively
-# -c, --cert, --certficate          Installs mkcert and generates an SSL certificate for lighttpd
-# -o, --openvpn <flag>              Used with -y, --yes, sets OpenVPN install option (0=no install)
-# -a, --adblock <flag>              Used with -y, --yes, sets Adblock install option (0=no install)
-# -w, --wireguard <flag>            Used with -y, --yes, sets WireGuard install option (0=no install)
-# -c, --cert, --certificate         Installs an SSL certificate with mkcert and configures lighttpd for HTTPS
-# -r, --repo, --repository <name>   Overrides the default GitHub repo (RaspAP/raspap-webgui)
-# -b, --branch <name>               Overrides the default git branch (master)
-# -t, --token <accesstoken>         Specify a GitHub token to access a private repository
-# -u, --upgrade                     Upgrades an existing installation to the latest release version
-# -i, --insiders                    Installs from the Insiders Edition (RaspAP/raspap-insiders)
-# -m, --minwrite                    Configures a microSD card for minimum write operation
-# -v, --version                     Outputs release info and exits
-# -n, --uninstall                   Loads and executes the uninstaller
-# -h, --help                        Outputs usage notes and exits
+#                    GNU GENERAL PUBLIC LICENSE
+# This program is free software: you may copy, redistribute and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, under version 3 of the License. You are not
+# obligated to bundle the LICENSE file with your RaspAP projects as long as
+# you leave these references intact in the header comments of your source files.
 #
 # NOTE
 # Depending on options passed to the installer, ONE of the following
@@ -38,9 +29,51 @@
 # https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/minwrite.sh
 # - or -
 # https://raw.githubusercontent.com/raspap/raspap-webgui/master/installers/uninstall.sh
-#
-# You are not obligated to bundle the LICENSE file with your RaspAP projects as long
-# as you leave these references intact in the header comments of your source files.
+
+function _usage() {
+    cat << EOF
+Usage: raspbian.sh [options]
+
+Installs an instance of RaspAP or a helper component.
+
+OPTIONS:
+-y, --yes, --assume-yes             Assumes "yes" as an answer to all prompts
+-c, --cert, --certificate           Installs an SSL certificate for lighttpd
+-o, --openvpn <flag>                Used with -y, --yes, sets OpenVPN install option (0=no install)
+-a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
+-w, --wireguard <flag>              Used with -y, --yes, sets WireGuard install option (0=no install)
+-r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
+-b, --branch <name>                 Overrides the default git branch (latest release)
+-t, --token <accesstoken>           Specify a GitHub token to access a private repository
+-n, --name <username>               Specify a GitHub username to access a private repository
+-u, --upgrade                       Upgrades an existing installation to the latest release version
+-d, --update                        Updates an existing installation to the latest release version
+-p, --path                          Used with -d, --update, sets the existing install path
+-i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
+-m, --minwrite                      Configures a microSD card for minimum write operation
+-v, --version                       Outputs release info and exits
+-n, --uninstall                     Loads and executes the uninstaller
+-h, --help                          Outputs usage notes and exits
+
+Examples:
+    Run locally specifying GitHub repo and branch:
+    raspbian.sh --repo foo/bar --branch my/branch
+
+    Run locally requesting release info:
+    raspbian.sh --version
+
+    Invoke installer remotely, run non-interactively with option flags:
+    curl -sL https://install.raspap.com | bash -s -- --yes --wireguard 1 --adblock 0
+
+    Invoke remotely, uprgrade an existing install to the Insiders Edition:
+    curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders --name <name> --token <token>
+
+    Invoke remotely, perform an unattended update to the latest release version:
+    curl -sL https://install.raspap.com | bash -s -- --yes --update --path /var/www/html
+
+EOF
+    exit
+}
 
 set -eo pipefail
 
@@ -58,12 +91,14 @@ function _parse_params() {
     # default option values
     assume_yes=0
     upgrade=0
+    update=0
     ovpn_option=1
     adblock_option=1
     wg_option=1
     insiders=0
     minwrite=0
     acctoken=""
+    path=""
 
     while :; do
         case "${1-}" in
@@ -111,6 +146,17 @@ function _parse_params() {
             acctoken="$2"
             shift
             ;;
+            -n|--name)
+            username="$2"
+            shift
+            ;;
+            -d|--update)
+            update=1
+            ;;
+            -p|--path)
+            path="$2"
+            shift
+            ;;
             -v|--version)
             _version
             ;;
@@ -143,46 +189,6 @@ function _log_output() {
     readonly LOGFILE_PATH="/tmp"
     exec > >(tee -i $LOGFILE_PATH/raspap_install.log)
     exec 2>&1
-}
-
-function _usage() {
-    cat << EOF
-Usage: raspbian.sh options
-
-Installs an instance of RaspAP or a helper component.
-
-OPTIONS:
--y, --yes, --assume-yes             Assumes "yes" as an answer to all prompts
--c, --cert, --certificate           Installs an SSL certificate for lighttpd
--o, --openvpn <flag>                Used with -y, --yes, sets OpenVPN install option (0=no install)
--a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
--w, --wireguard <flag>              Used with -y, --yes, sets WireGuard install option (0=no install)
--c, --cert, --certificate           Installs an SSL certificate with mkcert and configures lighttpd for HTTPS
--r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
--b, --branch <name>                 Overrides the default git branch (latest release)
--t, --token <accesstoken>           Specify a GitHub token to access a private repository
--u, --upgrade                       Upgrades an existing installation to the latest release version
--i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
--m, --minwrite                      Configures a microSD card for minimum write operation
--v, --version                       Outputs release info and exits
--n, --uninstall                     Loads and executes the uninstaller
--h, --help                          Outputs usage notes and exits
-
-Examples:
-    Run locally specifying GitHub repo and branch:
-    raspbian.sh --repo foo/bar --branch my/branch
-
-    Run locally requesting release info:
-    raspbian.sh --version
-
-    Invoke installer remotely, run non-interactively with option flags:
-    curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --adblock 0
-
-    Invoke remotely, uprgrade an existing install to the Insiders Edition:
-    curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders
-
-EOF
-    exit
 }
 
 function _version() {
@@ -260,18 +266,7 @@ function _load_installer() {
     if [ -z ${branch} ]; then
         branch=$RASPAP_LATEST
     fi
-
-    # add optional auth token header if defined with -t, --token option
-    header=()
-    if [[ ! -z "$acctoken" ]]; then
-        header=(--header "Authorization: token $acctoken")
-    fi
-
     UPDATE_URL="https://raw.githubusercontent.com/$repo_common/$branch/"
-    header=()
-    if [[ ! -z "$acctoken" ]]; then
-        header=(--header "Authorization: token $acctoken")
-    fi
 
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"
@@ -296,8 +291,13 @@ function _load_installer() {
         component="Install"
         wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
-        _install_raspap || _install_status 1 "Unable to install RaspAP"
+        if [ "$update" == 1 ]; then
+            _update_raspap || _install_status 1 "Unable to update RaspAP"
+        else
+            _install_raspap || _install_status 1 "Unable to install RaspAP"
+        fi
     fi
 }
 
 _main "$@"
+
