@@ -48,7 +48,7 @@ OPTIONS:
 -n, --name <username>               Specify a GitHub username to access a private repository
 -u, --upgrade                       Upgrades an existing installation to the latest release version
 -d, --update                        Updates an existing installation to the latest release version
--p, --path                          Used with -d, --update, sets the existing install path
+-p, --path <path>                   Used with -d, --update, sets the existing install path
 -i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
 -m, --minwrite                      Configures a microSD card for minimum write operation
 -v, --version                       Outputs release info and exits
