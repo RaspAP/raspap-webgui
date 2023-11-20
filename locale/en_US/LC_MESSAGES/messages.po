@@ -1466,6 +1466,9 @@ msgstr "New release check in progress..."
 msgid "A new release is available: Version"
 msgstr "A new release is available: Version"
 
+msgid "Installed version is the latest release."
+msgstr "Installed version is the latest release."
+
 msgid "GitHub authentication"
 msgstr "GitHub authentication"
 
