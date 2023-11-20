@@ -1,9 +1,19 @@
 <!-- about general tab -->
 <div class="tab-pane active" id="aboutgeneral">
   <div class="row">
-    <div class="col-md-8">
-      <h2 class="mt-3"><?php echo _("RaspAP") ." v".RASPI_VERSION; ?></h2>
-        <div class="ml-5 mt-3"><img class="about-logo" src="app/img/raspAP-logo.php" style="width: 175px; height:175px"></div>
+    <div class="col-md-6 mt-3">
+      <div class="card">
+	    <div class="card-body">
+          <div class="ml-5 mt-2"><img class="about-logo" src="app/img/raspAP-logo.php" style="width: 175px; height:175px"></div>
+          <h2 class="mt-3 ml-4"><?php echo _("RaspAP") ." v".RASPI_VERSION; ?></h2>
+          <button type="button" class="btn btn-warning ml-4 mt-2" name="check-update" data-toggle="modal" data-target="#chkupdateModal" />
+            <i class="fas fa-sync-alt ml-1 mr-2"></i><?php echo _("Check for update"); ?>
+          </button>
+        </div>
+      </div>
+     </div>
+     <div class="col-md-8">
+
         <div class="mt-3">RaspAP is a co-creation of <a href="https://github.com/billz">billz</a> and <a href="https://github.com/sirlagz">SirLagz</a>
           with the contributions of our <a href="https://github.com/raspap/raspap-webgui/graphs/contributors">developer community</a>
           and <a href="https://crowdin.com/project/raspap">language translators</a>.

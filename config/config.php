@@ -31,6 +31,9 @@ define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
 define('RASPI_ACCESS_CHECK_IP', '1.1.1.1');
 define('RASPI_ACCESS_CHECK_DNS', 'one.one.one.one');
 
+// Constant for the GitHub API latest release endpoint
+define('RASPI_API_ENDPOINT', 'https://api.github.com/repos/RaspAP/raspap-webgui/releases/latest');
+
 // Constant for the 5GHz wireless regulatory domain
 define("RASPI_5GHZ_CHANNEL_MIN", 100);
 define("RASPI_5GHZ_CHANNEL_MAX", 192);

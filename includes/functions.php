@@ -899,3 +899,28 @@ function getCountryCodes($locale = 'en', $flag = true) {
     return $countryData;
 }
 
+/**
+ * Compares the current release with the latest available release
+ *
+ * @param string $installed
+ * @param string $latest
+ * @return boolean
+ */
+function checkReleaseVersion($installed, $latest) {
+    $installedArray = explode('.', $installed);
+    $latestArray = explode('.', $latest);
+
+    // compare segments of the version number
+    for ($i = 0; $i < max(count($installedArray), count($latestArray)); $i++) {
+        $installedSegment = (int)($installedArray[$i] ?? 0);
+        $latestSegment = (int)($latestArray[$i] ?? 0);
+
+        if ($installedSegment < $latestSegment) {
+            return true;
+        } elseif ($installedSegment > $latestSegment) {
+            return false;
+        }
+    }
+    return false;
+}
+

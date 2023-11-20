@@ -1457,3 +1457,36 @@ msgstr "Insiders"
 msgid "Contributing"
 msgstr "Contributing"
 
+msgid "Check for update"
+msgstr "Check for update"
+
+msgid "New release check in progress..."
+msgstr "New release check in progress..."
+
+msgid "A new release is available: Version"
+msgstr "A new release is available: Version"
+
+msgid "GitHub authentication"
+msgstr "GitHub authentication"
+
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Updating Insiders requires GitHub authentication."
+
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+
+msgid "Personal Access Token"
+msgstr "Personal Access Token"
+
+msgid "Please provide a valid token."
+msgstr "Please provide a valid token."
+
+msgid "Get update command"
+msgstr "Get update command"
+
+msgid "Copy the following and execute it in the terminal:"
+msgstr "Copy the following and execute it in the terminal:"
+
+msgid "Copy"
+msgstr "Copy"
+

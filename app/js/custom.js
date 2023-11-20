@@ -276,6 +276,63 @@ $('#debugModal').on('shown.bs.modal', function (e) {
     });
 });
 
+$('#chkupdateModal').on('shown.bs.modal', function (e) {
+  var csrfToken = $('meta[name=csrf_token]').attr('content');
+  $.post('ajax/system/sys_chk_update.php',{'csrf_token': csrfToken},function(data){
+        var response = JSON.parse(data);
+        var tag = response.tag;
+        var update = response.update;
+        var msg;
+        var msgUpdate = $('#msgUpdate').data('message');
+        var msgLatest = $('#msgLatest').data('message');
+        var msgInstall = $('#msgInstall').data('message');
+        var msgDismiss = $('#js-check-dismiss').data('message');
+        var faCheck = '<i class="fas fa-check ml-2"></i><br />';
+        $(".fas.fa-sync-alt").removeClass("fa-spin");
+        if (update === true) {
+            msg = msgUpdate +' '+tag;
+            $("#msg-check-update").html(msg);
+            $("#msg-check-update").append(faCheck);
+            $("#msg-check-update").append("<p>"+msgInstall+"</p>");
+            $("#js-sys-check-update").removeClass("collapse");
+        } else {
+            msg = msgLatest;
+            dismiss = $("#js-check-dismiss");
+            $("#msg-check-update").html(msg);
+            $("#msg-check-update").append(faCheck);
+            $("#js-sys-check-update").remove();
+            dismiss.text(msgDismiss);
+            dismiss.removeClass("btn-outline-secondary");
+            dismiss.addClass("btn-primary");
+        }
+    });
+});
+
+$('#js-sys-check-update').click(function() {
+    $('#chkupdateModal').modal('hide');
+    $('#cmdupdateModal').modal('show');
+});
+
+$('#cmdupdateModal').on('shown.bs.modal', function (e) {
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/system/sys_perform_update.php',{
+        'csrf_token': csrfToken
+    },function(data){
+        var response = JSON.parse(data);
+        $('#shellCmd').val(response);
+    });
+});
+
+$('#js-cmd-copy').click(function() {
+    $('#shellCmd').select();
+    document.execCommand('copy');
+    var btnCancel = $('#cmdupdateCancel');
+    var btnText = btnCancel.data('message');
+    btnCancel.text(btnText);
+    btnCancel.removeClass("btn-outline-secondary");
+    btnCancel.addClass("btn-primary");
+});
+
 $('#hostapdModal').on('shown.bs.modal', function (e) {
     var seconds = 3;
     var pct = 0;
