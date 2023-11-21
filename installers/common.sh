@@ -545,12 +545,6 @@ function _create_openvpn_scripts() {
 
 # Fetches latest files from github to webroot
 function _download_latest_files() {
-    if [ -d "$webroot_dir" ] && [ "$update" == 0 ]; then
-        sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to remove old webroot directory"
-    elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
-        sudo rm -rf "$webroot_dir"
-    fi
-
     _install_log "Cloning latest files from GitHub"
     if [ "$repo" == "RaspAP/raspap-insiders" ]; then
         if [ -n "$username" ] && [ -n "$acctoken" ]; then
@@ -568,6 +562,12 @@ function _download_latest_files() {
         _install_status 1 "Unable to download files from github"
         echo "The installer cannot continue." >&2
         exit 1
+    fi
+
+    if [ -d "$webroot_dir" ] && [ "$update" == 0 ]; then
+        sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to remove old webroot directory"
+    elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+        sudo rm -rf "$webroot_dir"
     fi
 
     _install_log "Installing application to $webroot_dir"
@@ -779,6 +779,9 @@ function _patch_system_files() {
 
     _install_log "Creating RaspAP debug log control script"
     sudo cp "$webroot_dir/installers/"debuglog.sh "$raspap_dir/system" || _install_status 1 "Unable to move debug logging script"
+
+    _install_log "Creating RaspAP application update script"
+    sudo cp "$webroot_dir/installers/"app-update.sh "$raspap_dir/system" || _install_status 1 "Unable to move application update script"
 
     # Set ownership and permissions
     sudo chown -c root:root "$raspap_dir/system/"*.sh || _install_status 1 "Unable change owner and/or group"
