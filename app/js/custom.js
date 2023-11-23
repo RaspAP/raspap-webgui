@@ -314,6 +314,7 @@ $('#js-sys-check-update').click(function() {
 });
 
 $('#performupdateModal').on('shown.bs.modal', function (e) {
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
     $.post('ajax/system/sys_perform_update.php',{
         'csrf_token': csrfToken,
     })
