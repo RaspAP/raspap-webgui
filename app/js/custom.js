@@ -320,27 +320,39 @@ $('#performupdateModal').on('shown.bs.modal', function (e) {
 
 function fetchUpdateResponse() {
     const xhr = new XMLHttpRequest();
+    const complete = 6;
+    const error = 7;
     let phpFile = 'ajax/system/sys_read_logfile.php';
     $.ajax({
         url: phpFile,
         type: 'GET',
         success: function(response) {
+            let endPolling = false;
             for (let i = 1; i <= 6; i++) {
                 let divId = '#updateStep' + i;
-                if (response.includes(i)) {
+                if (response.includes(i.toString())) {
                     $(divId).removeClass('invisible');
-                    if (response.includes('6')) {
-                        $('#updateStep6').removeClass('invisible');
-                        $('#updateSync2').removeClass("fa-spin");
-                        break;
-                    } else {
-                        setTimeout(fetchUpdateResponse, 1000);
-                    }
                 }
+                if (response.includes(complete)) {
+                    $('#updateStep6').removeClass('invisible');
+                    $('#updateSync2').removeClass("fa-spin");
+                    endPolling = true;
+                    break;
+                } else if (response.includes(error)) {
+                    var errorMsg = $('#errorMsg').data('message');
+                    $('#updateErr').after('<span class="small">' + errorMsg + '</span>');
+                    $('#updateErr').removeClass('invisible');
+                    $('#updateSync2').removeClass("fa-spin");
+                    endPolling = true;
+                    break;
+                }
+            }
+            if (!endPolling) {
+                setTimeout(fetchUpdateResponse, 500);
             }
         },
         error: function(xhr, status, error) {
-            setTimeout(fetchUpdateResponse, 1000);
+            console.error(error);
         }
     });
 }
