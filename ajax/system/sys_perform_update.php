@@ -9,10 +9,13 @@ if (isset($_POST['csrf_token'])) {
     // set installer path + options
     $path = getenv("DOCUMENT_ROOT");
     $opts = " --update --path $path --yes";
-    $installer = "curl -sL https://install.raspap.com | bash -s -- ";
+    $installer = "sudo /etc/raspap/system/app-update.sh";
     $execUpdate = $installer.$opts;
-    echo json_encode($execUpdate);
+
+    $response = shell_exec($execUpdate);
+    echo json_encode($response);
 
 } else {
     handleInvalidCSRFToken();
 }
+
