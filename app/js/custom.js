@@ -315,7 +315,6 @@ $('#js-sys-check-update').click(function() {
 
 $('#performupdateModal').on('shown.bs.modal', function (e) {
     fetchUpdateResponse();
-    setInterval(fetchUpdateResponse, 500);
 });
 
 function fetchUpdateResponse() {
