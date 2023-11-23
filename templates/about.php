@@ -122,11 +122,12 @@ require_once 'app/lib/Parsedown.php';
         <div class="ml-5"><i class="fas fa-check mr-2 invisible" id="updateStep4"></i><?php echo _("Downloading latest files"); ?></div>
         <div class="ml-5"><i class="fas fa-check mr-2 invisible" id="updateStep5"></i><?php echo _("Installing application"); ?></div>
         <div class="ml-5 mb-1"><i class="fas fa-check mr-2 invisible" id="updateStep6"></i><?php echo _("Update complete"); ?></div>
-        <div class="ml-5 mb-3"><i class="fas fa-times mr-2 invisible" id="updateErr"></i></div>
+        <div class="ml-5 mb-3"><i class="fas mr-2 invisible" id="updateMsg"></i></div>
         <div id="errorMsg" data-message="<?php echo _("An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"); ?>"></div>
+        <div id="successMsg" data-message="<?php echo _("Success. Refresh this page to confirm the new version."); ?>"></div>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-outline btn-primary" data-dismiss="modal" /><?php echo _("OK"); ?></button>
+      <button type="button" class="btn btn-outline btn-primary" data-dismiss="modal" disabled id="updateOk" /><?php echo _("OK"); ?></button>
       </div>
     </div>
   </div>

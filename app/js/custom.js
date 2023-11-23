@@ -337,15 +337,22 @@ function fetchUpdateResponse() {
                     $(divId).removeClass('invisible');
                 }
                 if (response.includes(complete)) {
+                    var successMsg = $('#successMsg').data('message');
+                    $('#updateMsg').after('<span class="small">' + successMsg + '</span>');
+                    $('#updateMsg').addClass('fa-check');
+                    $('#updateMsg').removeClass('invisible');
                     $('#updateStep6').removeClass('invisible');
                     $('#updateSync2').removeClass("fa-spin");
+                    $('#updateOk').removeAttr('disabled');
                     endPolling = true;
                     break;
                 } else if (response.includes(error)) {
                     var errorMsg = $('#errorMsg').data('message');
-                    $('#updateErr').after('<span class="small">' + errorMsg + '</span>');
-                    $('#updateErr').removeClass('invisible');
+                    $('#updateMsg').after('<span class="small">' + errorMsg + '</span>');
+                    $('#updateMsg').addClass('fa-times');
+                    $('#updateMsg').removeClass('invisible');
                     $('#updateSync2').removeClass("fa-spin");
+                    $('#updateOk').removeAttr('disabled');
                     endPolling = true;
                     break;
                 }
