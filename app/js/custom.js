@@ -288,7 +288,7 @@ $('#chkupdateModal').on('shown.bs.modal', function (e) {
         var msgInstall = $('#msgInstall').data('message');
         var msgDismiss = $('#js-check-dismiss').data('message');
         var faCheck = '<i class="fas fa-check ml-2"></i><br />';
-        $(".fas.fa-sync-alt").removeClass("fa-spin");
+        $("#updateSync").removeClass("fa-spin");
         if (update === true) {
             msg = msgUpdate +' '+tag;
             $("#msg-check-update").html(msg);
@@ -310,28 +310,40 @@ $('#chkupdateModal').on('shown.bs.modal', function (e) {
 
 $('#js-sys-check-update').click(function() {
     $('#chkupdateModal').modal('hide');
-    $('#cmdupdateModal').modal('show');
+    $('#performupdateModal').modal('show');
 });
 
-$('#cmdupdateModal').on('shown.bs.modal', function (e) {
-    var csrfToken = $('meta[name=csrf_token]').attr('content');
-    $.post('ajax/system/sys_perform_update.php',{
-        'csrf_token': csrfToken
-    },function(data){
-        var response = JSON.parse(data);
-        $('#shellCmd').val(response);
+$('#performupdateModal').on('shown.bs.modal', function (e) {
+    fetchUpdateResponse();
+    setInterval(fetchUpdateResponse, 500);
+});
+
+function fetchUpdateResponse() {
+    const xhr = new XMLHttpRequest();
+    let phpFile = 'ajax/system/sys_read_logfile.php';
+    $.ajax({
+        url: phpFile,
+        type: 'GET',
+        success: function(response) {
+            for (let i = 1; i <= 6; i++) {
+                let divId = '#updateStep' + i;
+                if (response.includes(i)) {
+                    $(divId).removeClass('invisible');
+                    if (response.includes('6')) {
+                        $('#updateStep6').removeClass('invisible');
+                        $('#updateSync2').removeClass("fa-spin");
+                        break;
+                    } else {
+                        setTimeout(fetchUpdateResponse, 1000);
+                    }
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            setTimeout(fetchUpdateResponse, 1000);
+        }
     });
-});
-
-$('#js-cmd-copy').click(function() {
-    $('#shellCmd').select();
-    document.execCommand('copy');
-    var btnCancel = $('#cmdupdateCancel');
-    var btnText = btnCancel.data('message');
-    btnCancel.text(btnText);
-    btnCancel.removeClass("btn-outline-secondary");
-    btnCancel.addClass("btn-primary");
-});
+}
 
 $('#hostapdModal').on('shown.bs.modal', function (e) {
     var seconds = 3;
