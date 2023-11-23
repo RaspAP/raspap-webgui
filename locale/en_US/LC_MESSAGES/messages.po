@@ -1484,12 +1484,33 @@ msgstr "Personal Access Token"
 msgid "Please provide a valid token."
 msgstr "Please provide a valid token."
 
-msgid "Get update command"
-msgstr "Get update command"
+msgid "Perform update"
+msgstr "Perform update"
 
-msgid "Copy the following and execute it in the terminal:"
-msgstr "Copy the following and execute it in the terminal:"
+msgid "Update in progress"
+msgstr "Update in progress"
 
-msgid "Copy"
-msgstr "Copy"
+msgid "Application is being updated..."
+msgstr "Application is being updated..."
+
+msgid "Configuring update"
+msgstr "Configuring update"
+
+msgid "Updating sources"
+msgstr "Updating sources"
+
+msgid "Installing package updates"
+msgstr "Installing package updates"
+
+msgid "Downloading latest files"
+msgstr "Downloading latest files"
+
+msgid "Installing application"
+msgstr "Installing application"
+
+msgid "Update complete"
+msgstr "Update complete"
+
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 
