@@ -781,11 +781,11 @@ function _patch_system_files() {
         sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
     fi
 
-    _install_log "Creating RaspAP debug log control script"
+    _install_log "Copying RaspAP debug log control script"
     sudo cp "$webroot_dir/installers/"debuglog.sh "$raspap_dir/system" || _install_status 1 "Unable to move debug logging script"
 
-    _install_log "Creating RaspAP application update script"
-    sudo cp "$webroot_dir/installers/"app-update.sh "$raspap_dir/system" || _install_status 1 "Unable to move application update script"
+    _install_log "Copying RaspAP install loader"
+    sudo cp "$webroot_dir/installers/"raspbian.sh "$raspap_dir/system" || _install_status 1 "Unable to move application update script"
 
     # Set ownership and permissions
     sudo chown -c root:root "$raspap_dir/system/"*.sh || _install_status 1 "Unable change owner and/or group"

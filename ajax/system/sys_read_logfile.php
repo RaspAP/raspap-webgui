@@ -9,7 +9,7 @@ $searchStrings = [
     'Installation completed' => 6,
     'error' => 7
 ];
-sleep(1);
+usleep(500);
 
 if (file_exists($logFile)) {
     $handle = fopen($logFile, 'r');
@@ -39,5 +39,4 @@ if (file_exists($logFile)) {
 } else {
     echo json_encode("File does not exist: $logFile");
 }
-
 
