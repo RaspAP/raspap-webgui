@@ -13,6 +13,7 @@ $defaults = [
   'RASPI_WIFI_AP_INTERFACE' => 'wlan0',
   'RASPI_CACHE_PATH' => sys_get_temp_dir() . '/raspap',
   'RASPI_DEBUG_LOG' => 'raspap_debug.log',
+  'RASPI_INSTALL_LOG' => 'raspap_install.log',
 
   // Constants for configuration file paths.
   // These are typical for default RPi installs. Modify if needed.

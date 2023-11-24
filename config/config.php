@@ -8,6 +8,7 @@ define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
 define('RASPI_WIFI_AP_INTERFACE', 'wlan0');
 define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
 define('RASPI_DEBUG_LOG', 'raspap_debug.log');
+define('RASPI_INSTALL_LOG', 'raspap_install.log');
 
 // Constants for configuration file paths.
 // These are typical for default RPi installs. Modify if needed.

@@ -1,5 +1,5 @@
 <?php
-$logFile = '/tmp/raspap_install.log';
+$logFile = '/tmp/'.RASPI_INSTALL_LOG;
 $searchStrings = [
     'Configure update' => 1,
     'Updating sources' => 2,
