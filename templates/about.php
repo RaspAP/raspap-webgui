@@ -41,66 +41,19 @@ require_once 'app/lib/Parsedown.php';
 <div class="modal fade" id="chkupdateModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-      <div class="modal-title" id="ModalLabel"><i class="fas fa-sync-alt fa-spin mr-2" id="updateSync"></i><?php echo _("Check for update"); ?></div>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12 mb-3 mt-1" id="msg-check-update"><?php echo _("New release check in progress..."); ?></div>
-      </div>
-      <div class="modal-footer">
-      <div id="msgUpdate" data-message="<?php echo _("A new release is available: Version"); ?>"></div>
-      <div id="msgLatest" data-message="<?php echo _("Installed version is the latest release."); ?>"></div>
-      <div id="msgInstall" data-message="<?php echo _("Install this update now?"); ?>"></div>
-      <button type="button" data-message="<?php echo _("OK"); ?>" id="js-check-dismiss" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
-      <button type="button" data-message="<?php echo _("OK"); ?>" id="js-sys-check-update" class="btn btn-outline btn-primary collapse"><?php echo _("OK"); ?></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- modal auth-credentials-->
-<div class="modal fade" id="authupdateModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <form id="authUpdate" class="needs-validation" novalidate>
+      <form id="performUpdate" class="needs-validation" novalidate>
         <div class="modal-header">
-          <div class="modal-title" id="ModalLabel"><i class="fab fa-github mr-2"></i><?php echo _("GitHub authentication"); ?></div>
+          <div class="modal-title" id="ModalLabel"><i class="fas fa-sync-alt fa-spin mr-2" id="updateSync"></i><?php echo _("Check for update"); ?></div>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-md-12 mb-2 mt-1 ml-4" id="msg-github-auth"><?php echo _("Updating Insiders requires GitHub authentication."); ?></div>
-          </div>
-          <div class="row">
-            <div class="col-xs mb-3 ml-3 mt-3">
-              <i class="fas fa-exclamation-circle" style="color: #f6c23e; font-size: 1.35em;"></i>
-            </div>
-            <div class="col-md mb-2 mt-1 mr-3">
-              <small><?php echo _("Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."); ?></small>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-md-10 mt-2 ml-5">
-              <label for="username"><?php echo _("Username"); ?></label>
-              <input type="text" class="form-control" id="ghUser" required />
-              <div class="invalid-feedback"><?php echo _("Please provide a valid username."); ?></div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-md-10 ml-5 mb-4">
-              <div class="mb-2"><?php echo _("Personal Access Token"); ?></div>
-              <div class="input-group">
-                <input type="password" class="form-control" id="ghToken" required />
-                <div class="input-group-append">
-                  <button class="btn btn-light js-toggle-password" type="button" data-target="[id=ghToken]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
-                </div>
-                <div class="invalid-feedback"><?php echo _("Please provide a valid token."); ?></div>
-              </div>
-            </div>
-          </div>
-        </div><!-- /.modal-body -->
+          <div class="col-md-12 mb-3 mt-1" id="msg-check-update"><?php echo _("New release check in progress..."); ?></div>
+        </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
-          <button type="submit" class="btn btn-outline btn-primary"><?php echo _("Perform update"); ?></button>
+          <div id="msgUpdate" data-message="<?php echo _("A new release is available: Version"); ?>"></div>
+          <div id="msgLatest" data-message="<?php echo _("Installed version is the latest release."); ?>"></div>
+          <div id="msgInstall" data-message="<?php echo _("Install this update now?"); ?>"></div>
+          <button type="button" data-message="<?php echo _("OK"); ?>" id="js-check-dismiss" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
+          <button type="submit" id="js-sys-check-update" class="btn btn-outline btn-primary collapse"><?php echo _("OK"); ?></button>
         </div>
       </form>
     </div>

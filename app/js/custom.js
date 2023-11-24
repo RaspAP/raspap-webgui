@@ -308,16 +308,17 @@ $('#chkupdateModal').on('shown.bs.modal', function (e) {
     });
 });
 
-$('#js-sys-check-update').click(function() {
+$('#performUpdate').on('submit', function(event) {
+    event.preventDefault();
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/system/sys_perform_update.php',{
+        'csrf_token': csrfToken
+    })
     $('#chkupdateModal').modal('hide');
     $('#performupdateModal').modal('show');
 });
 
 $('#performupdateModal').on('shown.bs.modal', function (e) {
-    var csrfToken = $('meta[name=csrf_token]').attr('content');
-    $.post('ajax/system/sys_perform_update.php',{
-        'csrf_token': csrfToken,
-    })
     fetchUpdateResponse();
 });
 
