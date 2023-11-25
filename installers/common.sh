@@ -547,6 +547,10 @@ function _create_openvpn_scripts() {
 function _download_latest_files() {
     _install_log "Cloning latest files from GitHub"
     source_dir="/tmp/raspap-webgui"
+    if [ -d "$source_dir" ]; then
+        echo "Temporary download destination $source_dir exists. Removing..."
+        rm -r "$source_dir"
+    fi
     if [ "$repo" == "RaspAP/raspap-insiders" ]; then
         if [ -n "$username" ] && [ -n "$acctoken" ]; then
             insiders_source_url="https://${username}:${acctoken}@github.com/$repo"
@@ -560,7 +564,7 @@ function _download_latest_files() {
         git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url $source_dir || clone=false
     fi
     if [ "$clone" = false ]; then
-        _install_status 1 "Unable to download files from github"
+        _install_status 1 "Unable to download files from GitHub"
         echo "The installer cannot continue." >&2
         exit 1
     fi

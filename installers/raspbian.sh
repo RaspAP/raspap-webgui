@@ -188,7 +188,7 @@ function _setup_colors() {
 function _log_output() {
     readonly LOGFILE_PATH="/tmp"
     if [ -f "$LOGFILE_PATH/raspap_install.log" ]; then
-        rm "$LOGFILE_PATH/raspap_install.log"
+        sudo rm "$LOGFILE_PATH/raspap_install.log"
     fi
     exec > >(tee -i $LOGFILE_PATH/raspap_install.log)
     exec 2>&1
