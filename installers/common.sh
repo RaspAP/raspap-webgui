@@ -577,7 +577,7 @@ function _download_latest_files() {
     fi
 
     _install_log "Installing application to $webroot_dir"
-    sudo rsync -av --exclude='/ajax/system/sys_read_logfile.php' "$source_dir"/ "$webroot_dir"/ >/dev/null 2>&1 || _install_status 1 "Unable to install files to $webroot_dir"
+    sudo rsync -av --exclude='ajax/system/sys_read_logfile.php' "$source_dir"/ "$webroot_dir"/ >/dev/null 2>&1 || _install_status 1 "Unable to install files to $webroot_dir"
 
     if [ "$update" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
