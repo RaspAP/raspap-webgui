@@ -1,8 +1,6 @@
 <?php
 
-require_once '../../includes/config.php';
-
-$logFile = '/tmp/'.RASPI_INSTALL_LOG;
+$logFile = '/tmp/raspap_install.log';
 $searchStrings = [
     'Configure update' => 1,
     'Updating sources' => 2,
