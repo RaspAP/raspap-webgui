@@ -1457,3 +1457,60 @@ msgstr "Insiders"
 msgid "Contributing"
 msgstr "Contributing"
 
+msgid "Check for update"
+msgstr "Check for update"
+
+msgid "New release check in progress..."
+msgstr "New release check in progress..."
+
+msgid "A new release is available: Version"
+msgstr "A new release is available: Version"
+
+msgid "Installed version is the latest release."
+msgstr "Installed version is the latest release."
+
+msgid "GitHub authentication"
+msgstr "GitHub authentication"
+
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Updating Insiders requires GitHub authentication."
+
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+
+msgid "Personal Access Token"
+msgstr "Personal Access Token"
+
+msgid "Please provide a valid token."
+msgstr "Please provide a valid token."
+
+msgid "Perform update"
+msgstr "Perform update"
+
+msgid "Update in progress"
+msgstr "Update in progress"
+
+msgid "Application is being updated..."
+msgstr "Application is being updated..."
+
+msgid "Configuring update"
+msgstr "Configuring update"
+
+msgid "Updating sources"
+msgstr "Updating sources"
+
+msgid "Installing package updates"
+msgstr "Installing package updates"
+
+msgid "Downloading latest files"
+msgstr "Downloading latest files"
+
+msgid "Installing application"
+msgstr "Installing application"
+
+msgid "Update complete"
+msgstr "Update complete"
+
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+

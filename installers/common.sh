@@ -545,33 +545,39 @@ function _create_openvpn_scripts() {
 
 # Fetches latest files from github to webroot
 function _download_latest_files() {
-    if [ -d "$webroot_dir" ] && [ "$update" == 0 ]; then
-        sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to remove old webroot directory"
-    elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
-        sudo rm -rf "$webroot_dir"
-    fi
-
     _install_log "Cloning latest files from GitHub"
+    source_dir="/tmp/raspap-webgui"
+    if [ -d "$source_dir" ]; then
+        echo "Temporary download destination $source_dir exists. Removing..."
+        rm -r "$source_dir"
+    fi
     if [ "$repo" == "RaspAP/raspap-insiders" ]; then
         if [ -n "$username" ] && [ -n "$acctoken" ]; then
             insiders_source_url="https://${username}:${acctoken}@github.com/$repo"
-            git clone --branch $branch --depth 1 -c advice.detachedHead=false $insiders_source_url /tmp/raspap-webgui || clone=false
+            git clone --branch $branch --depth 1 -c advice.detachedHead=false $insiders_source_url $source_dir || clone=false
         else
             _install_status 3
             echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
         fi
     fi
     if [ -z "$insiders_source_url" ]; then
-        git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || clone=false
+        git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url $source_dir || clone=false
     fi
     if [ "$clone" = false ]; then
-        _install_status 1 "Unable to download files from github"
+        _install_status 1 "Unable to download files from GitHub"
         echo "The installer cannot continue." >&2
         exit 1
     fi
 
+    if [ -d "$webroot_dir" ] && [ "$update" == 0 ]; then
+        sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to move existing webroot directory"
+    elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+        shopt -s extglob
+        sudo find "$webroot_dir" ! -path "${webroot_dir}/ajax/system/sys_read_logfile.php" -delete 2>/dev/null
+    fi
+
     _install_log "Installing application to $webroot_dir"
-    sudo mv /tmp/raspap-webgui $webroot_dir || _install_status 1 "Unable to move raspap-webgui to $webroot_dir"
+    sudo rsync -av --exclude='ajax/system/sys_read_logfile.php' "$source_dir"/ "$webroot_dir"/ >/dev/null 2>&1 || _install_status 1 "Unable to install files to $webroot_dir"
 
     if [ "$update" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
@@ -582,11 +588,13 @@ function _download_latest_files() {
             sudo mv /tmp/raspap.auth $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
         fi
     else
-        echo "Copying primary RaspAP config to includes/config.php"
+        echo "Copying primary RaspAP config to ${webroot_dir}/includes/config.php"
         if [ ! -f "$webroot_dir/includes/config.php" ]; then
             sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
         fi
     fi
+    echo "Removing source files at ${source_dir}"
+    sudo rm -rf $source_dir
 
     _install_status 0
 }
@@ -777,8 +785,11 @@ function _patch_system_files() {
         sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
     fi
 
-    _install_log "Creating RaspAP debug log control script"
+    _install_log "Copying RaspAP debug log control script"
     sudo cp "$webroot_dir/installers/"debuglog.sh "$raspap_dir/system" || _install_status 1 "Unable to move debug logging script"
+
+    _install_log "Copying RaspAP install loader"
+    sudo cp "$webroot_dir/installers/"raspbian.sh "$raspap_dir/system" || _install_status 1 "Unable to move application update script"
 
     # Set ownership and permissions
     sudo chown -c root:root "$raspap_dir/system/"*.sh || _install_status 1 "Unable change owner and/or group"
