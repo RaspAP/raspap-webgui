@@ -1,4 +1,4 @@
-# RaspAP Portable Object file
+ KB# RaspAP Portable Object file
 # Project home: https://github.com/billz/raspap-webgui
 # Licensed under the GNU General Public License v3.0
 # This file is distributed under the same license as the RaspAP package
@@ -910,6 +910,12 @@ msgstr "Generate debug log"
 
 msgid "Debug log generation in progress..."
 msgstr "Debug log generation in progress..."
+
+msgid "Diagnostic log size limit (KB)"
+msgstr "Diagnostic log size limit (KB)"
+
+msgid "Changing log limit size to %s KB"
+msgstr "Changing log limit size to %s KB"
 
 #: includes/data_usage.php
 msgid "Data usage"
