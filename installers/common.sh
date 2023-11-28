@@ -509,7 +509,7 @@ function _install_wireguard() {
         echo 'deb http://ftp.debian.org/debian buster-backports main' | sudo tee /etc/apt/sources.list.d/buster-backports.list || _install_status 1 "Unable to add Debian backports repo"
     fi
     echo "Installing wireguard from apt"
-    sudo apt-get install -y wireguard || _install_status 1 "Unable to install wireguard"
+    sudo apt-get install -y wireguard resolvconf || _install_status 1 "Unable to install wireguard"
     echo "Enabling wg-quick@wg0"
     sudo systemctl enable wg-quick@wg0 || _install_status 1 "Failed to enable wg-quick service"
     echo "Enabling WireGuard management option"
