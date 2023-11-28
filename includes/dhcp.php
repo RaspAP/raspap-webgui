@@ -60,6 +60,9 @@ function DisplayDHCPConfig()
     count($log_dhcp) > 0 ? $conf['log-dhcp'] = true : false ;
     count($log_queries) > 0 ? $conf['log-queries'] = true : false ;
 
+    exec('sudo /bin/chmod o+r '.RASPI_DHCPCD_LOG);
+    $logdata = getLogLimited(RASPI_DHCPCD_LOG);
+
     echo renderTemplate(
         "dhcp", compact(
             "status",
@@ -70,7 +73,8 @@ function DisplayDHCPConfig()
             "hosts",
             "upstreamServers",
             "interfaces",
-            "leases"
+            "leases",
+            "logdata"
         )
     );
 }

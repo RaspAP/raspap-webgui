@@ -92,6 +92,7 @@ function DisplayAdBlockConfig()
     } else {
         $adblock_log = "Unable to open log file";
     }
+    $logdata = getLogLimited(RASPI_DHCPCD_LOG, $adblock_log);
 
     echo renderTemplate(
         "adblock", compact(
@@ -101,7 +102,7 @@ function DisplayAdBlockConfig()
         "enabled",
         "custom_enabled",
         "adblock_custom_content",
-        "adblock_log"
+        "logdata"
         )
     );
 }

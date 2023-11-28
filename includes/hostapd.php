@@ -135,6 +135,8 @@ function DisplayHostAPDConfig()
             $selectedHwMode = 'w';
         }
     }
+    exec('sudo /bin/chmod o+r '.RASPI_HOSTAPD_LOG);
+    $logdata = getLogLimited(RASPI_HOSTAPD_LOG);
 
     echo renderTemplate(
         "hostapd", compact(
@@ -153,7 +155,8 @@ function DisplayHostAPDConfig()
             "arrHostapdConf",
             "operatingSystem",
             "selectedHwMode",
-            "countryCodes"
+            "countryCodes",
+            "logdata"
         )
     );
 }
