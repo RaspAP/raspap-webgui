@@ -17,9 +17,7 @@
     <div class="form-group col-md-8 mt-2">
       <?php
       if ($conf['log-dhcp'] == 1 || $conf['log-queries'] == 1) {
-          exec('sudo /bin/chmod o+r '.RASPI_DHCPCD_LOG);
-          $log = file_get_contents(RASPI_DHCPCD_LOG);
-          echo '<textarea class="logoutput" id="dnsmasq-log">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
+          echo '<textarea class="logoutput" id="dnsmasq-log">'.htmlspecialchars($logdata, ENT_QUOTES).'</textarea>';
       } else {
           echo '<textarea class="logoutput my-3"></textarea>';
       }

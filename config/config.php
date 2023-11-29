@@ -8,6 +8,7 @@ define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
 define('RASPI_WIFI_AP_INTERFACE', 'wlan0');
 define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
 define('RASPI_DEBUG_LOG', 'raspap_debug.log');
+define('RASPI_LOG_SIZE_LIMIT', 64);
 
 // Constants for configuration file paths.
 // These are typical for default RPi installs. Modify if needed.
@@ -18,6 +19,7 @@ define('RASPI_ADBLOCK_CONFIG', RASPI_DNSMASQ_PREFIX.'adblock.conf');
 define('RASPI_HOSTAPD_CONFIG', '/etc/hostapd/hostapd.conf');
 define('RASPI_DHCPCD_CONFIG', '/etc/dhcpcd.conf');
 define('RASPI_DHCPCD_LOG', '/var/log/dnsmasq.log');
+define('RASPI_HOSTAPD_LOG', '/tmp/hostapd.log');
 define('RASPI_WPA_SUPPLICANT_CONFIG', '/etc/wpa_supplicant/wpa_supplicant.conf');
 define('RASPI_HOSTAPD_CTRL_INTERFACE', '/var/run/hostapd');
 define('RASPI_WPA_CTRL_INTERFACE', '/var/run/wpa_supplicant');

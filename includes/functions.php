@@ -924,3 +924,26 @@ function checkReleaseVersion($installed, $latest) {
     return false;
 }
 
+/**
+ * Returns logfile contents up to a maximum defined limit, in kilobytes
+ *
+ * @param string $file_path
+ * @param string $file_data optional
+ * @return string $log_limited
+ */
+function getLogLimited($file_path, $file_data = null) {
+    $limit_in_kb = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
+    $limit = $limit_in_kb * 1024; // convert KB to bytes
+
+    if ($file_data === null) {
+        $file_size = filesize($file_path);
+        $start_position = max(0, $file_size - $limit);
+        $log_limited = file_get_contents($file_path, false, null, $start_position);
+    } else {
+        $file_size = strlen($file_data);
+        $start_position = max(0, $file_size - $limit);
+        $log_limited = substr($file_data, $start_position);
+    }
+    return $log_limited;
+}
+

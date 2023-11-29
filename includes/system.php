@@ -39,6 +39,16 @@ function DisplaySystem(&$extraFooterScripts)
                     $serverBind = escapeshellarg($_POST['serverBind']);
                 }
             }
+            // Validate log limit
+            if (isset($_POST['logLimit'])) {
+                if ( strlen($_POST['logLimit']) > 4 || !is_numeric($_POST['logLimit']) ) {
+                    $status->addMessage('Invalid value for log size limit', 'danger');
+                    $good_input = false;
+                } else {
+                    $_SESSION['log_limit'] = intval($_POST['logLimit']);
+                    $status->addMessage(sprintf(_('Changing log limit size to %s KB'), $_SESSION['log_limit']), 'info');
+                }
+            }
             // Save settings
             if ($good_input) {
                 exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort $serverBind " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
@@ -141,6 +151,7 @@ function DisplaySystem(&$extraFooterScripts)
 
     $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
     $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
+    $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
 
     echo renderTemplate("system", compact(
         "arrLocales",
@@ -166,6 +177,7 @@ function DisplaySystem(&$extraFooterScripts)
         "hostapd_status",
         "hostapd_led",
         "themes",
-        "selectedTheme"
+        "selectedTheme",
+        "logLimit"
     ));
 }

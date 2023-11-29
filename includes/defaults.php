@@ -13,6 +13,7 @@ $defaults = [
   'RASPI_WIFI_AP_INTERFACE' => 'wlan0',
   'RASPI_CACHE_PATH' => sys_get_temp_dir() . '/raspap',
   'RASPI_DEBUG_LOG' => 'raspap_debug.log',
+  'RASPI_LOG_SIZE_LIMIT' =>  64,
 
   // Constants for configuration file paths.
   // These are typical for default RPi installs. Modify if needed.
@@ -23,6 +24,7 @@ $defaults = [
   'RASPI_HOSTAPD_CONFIG' => '/etc/hostapd/hostapd.conf',
   'RASPI_DHCPCD_CONFIG' => '/etc/dhcpcd.conf',
   'RASPI_DHCPCD_LOG' => '/var/log/dnsmasq.log',
+  'RASPI_HOSTAPD_LOG' => '/tmp/hostapd.log',
   'RASPI_WPA_SUPPLICANT_CONFIG' => '/etc/wpa_supplicant/wpa_supplicant.conf',
   'RASPI_HOSTAPD_CTRL_INTERFACE' => '/var/run/hostapd',
   'RASPI_WPA_CTRL_INTERFACE' => '/var/run/wpa_supplicant',
