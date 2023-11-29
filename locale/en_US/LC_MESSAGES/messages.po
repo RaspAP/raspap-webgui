@@ -911,6 +911,12 @@ msgstr "Generate debug log"
 msgid "Debug log generation in progress..."
 msgstr "Debug log generation in progress..."
 
+msgid "Diagnostic log size limit (KB)"
+msgstr "Diagnostic log size limit (KB)"
+
+msgid "Changing log limit size to %s KB"
+msgstr "Changing log limit size to %s KB"
+
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "Data usage"

@@ -16,10 +16,15 @@
           <input type="text" class="form-control" name="serverBind" value="<?php echo htmlspecialchars($serverBind, ENT_QUOTES); ?>" />
         </div>
       </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="code"><?php echo _("Diagnostic log size limit (KB)") ;?></label>
+          <input type="text" class="form-control" name="logLimit" value="<?php echo htmlspecialchars($logLimit, ENT_QUOTES); ?>" />
+        </div>
+      </div>
       <input type="submit" class="btn btn-outline btn-primary" name="SaveServerSettings" value="<?php echo _("Save settings"); ?>" />
       <input type="submit" class="btn btn-warning" name="RestartLighttpd" value="<?php echo _("Restart lighttpd"); ?>" />
     </form>
     <?php endif ?>
 </div>
-
 
