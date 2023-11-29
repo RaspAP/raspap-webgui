@@ -3,7 +3,6 @@
 require_once '../../includes/functions.php';
 $color = getColorOpt();
 ?>
-
 /*
 Theme Name: RaspAP default
 Author: @billz
@@ -24,6 +23,10 @@ body {
 
 .sidebar .nav-item.active .nav-link {
   font-weight: 500;
+}
+
+.sidebar-brand-text {
+  color: <?php echo $color; ?>;
 }
 
 .card .card-header, .modal-header {
