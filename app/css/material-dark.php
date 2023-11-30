@@ -16,43 +16,12 @@ License: GNU General Public License v3.0
 // Base color
 $baseColor = $color;
 
-// Function to darken a color by a percentage
-function darkenColor($color, $percent)
-{
-    $percent /= 100;
-    $r = hexdec(substr($color, 1, 2));
-    $g = hexdec(substr($color, 3, 2));
-    $b = hexdec(substr($color, 5, 2));
-
-    $r = round($r * (1 - $percent));
-    $g = round($g * (1 - $percent));
-    $b = round($b * (1 - $percent));
-
-    return sprintf("#%02x%02x%02x", $r, $g, $b);
-}
-
-// Function to lighten a color by a percentage
-function lightenColor($color, $percent)
-{
-    $percent /= 100;
-    $r = hexdec(substr($color, 1, 2));
-    $g = hexdec(substr($color, 3, 2));
-    $b = hexdec(substr($color, 5, 2));
-
-    $r = round($r + (255 - $r) * $percent);
-    $g = round($g + (255 - $g) * $percent);
-    $b = round($b + (255 - $b) * $percent);
-
-    return sprintf("#%02x%02x%02x", $r, $g, $b);
-}
-
 $textColor = lightenColor($baseColor, 95);
 // Create other color variables
 $cardsColor = darkenColor($baseColor, 60);
 $secondaryColor = lightenColor($baseColor, 30);
 $primaryColor = $baseColor;
 $backgroundColor = darkenColor($baseColor, 90);
-
 ?>
 
 @import url('all.css');

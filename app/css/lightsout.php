@@ -1,3 +1,9 @@
+<?php header("Content-Type: text/css; charset=utf-8"); ?>
+<?php
+require_once '../../includes/functions.php';
+$color = getColorOpt();
+?>
+
 /*
 Theme Name: Lights Out
 Author: @billz
@@ -5,6 +11,13 @@ Author URI: https://github.com/billz
 Description: A dark mode theme for RaspAP
 License: GNU General Public License v3.0
 */
+
+<?php
+// Base color
+$baseColor = $color;
+$textColor = lightenColor($baseColor, 95);
+$secondaryColor = lightenColor($baseColor, 30);
+?>
 
 @import url('all.css');
 
@@ -31,11 +44,15 @@ h5.card-title {
 }
 
 .sidebar-light .nav-item.active .nav-link i {
-  color: #d2d2d2;
+  color: <?php echo $secondaryColor; ?>;
 }
 
 .sidebar .nav-item.active .nav-link {
   font-weight: 400;
+}
+
+.sidebar-brand-text {
+  color: <?php echo $color; ?>;
 }
 
 #wrapper #content-wrapper #content {
@@ -139,10 +156,6 @@ hr {
   border-top: .01rem solid #d2d2d2;
 }
 
-.sidebar-brand-text {
-  color: #2b8080 !important;
-}
-
 .ra-raspap:before {
   color: #ac1b3d !important;
 }
@@ -201,7 +214,7 @@ hr {
 }
 
 .sidebar-light .nav-item .nav-link i {
-  color: rgba(230, 230, 230, .3);
+color: <?php echo $color; ?>
 }
 
 .sidebar .nav-item .nav-link {
@@ -319,16 +332,16 @@ color: #d2d2d2 !important
   filter: opacity(0.7);
 }
 
-.ra-wireguard:before {
-  color: #404040 !important;
-}
-
 .ra-wireguard:hover:before {
   color: #d1d3e2 !important;
 }
 
-.sidebar .nav-item.active .nav-link span.ra-wireguard:before {
-    color: #d2d2d2 !important;
+.sidebar-light .nav-link span.ra-wireguard:before {
+    color: <?php echo $color; ?>!important;
+}
+
+.sidebar-light .nav-item.active .nav-link span.ra-wireguard:before {
+  color: <?php echo $textColor; ?>;
 }
 
 .logoutput {

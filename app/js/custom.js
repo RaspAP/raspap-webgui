@@ -755,7 +755,7 @@ function set_theme(theme) {
 $(function() {
     var currentTheme = getCookie('theme');
     // Check if the current theme is a dark theme
-    var isDarkTheme = currentTheme === 'lightsout.css' || currentTheme === 'material-dark.php';
+    var isDarkTheme = currentTheme === 'lightsout.php' || currentTheme === 'material-dark.php';
 
     $('#night-mode').prop('checked', isDarkTheme);
     $('#night-mode').change(function() {
@@ -764,12 +764,12 @@ $(function() {
         
         if (state == true) {
             if (currentTheme == 'custom.php') {
-                set_theme('lightsout.css');
+                set_theme('lightsout.php');
             } else if (currentTheme == 'material-light.php') {
                 set_theme('material-dark.php');
             }
         } else {
-            if (currentTheme == 'lightsout.css') {
+            if (currentTheme == 'lightsout.php') {
                 set_theme('custom.php');
             } else if (currentTheme == 'material-dark.php') {
                 set_theme('material-light.php');
@@ -795,7 +795,7 @@ function getCookie(cname) {
 var themes = {
     "default": "custom.php",
     "hackernews" : "hackernews.css",
-    "lightsout" : "lightsout.css",
+    "lightsout" : "lightsout.php",
     "material-light" : "material-light.php",
     "material-dark" : "material-dark.php",
 }

@@ -715,10 +715,10 @@ function getColorOpt()
         $color = "#2b8080";
     } else {
         $color = $_COOKIE['color'];
-        setcookie('color', $color);
     }
     return $color;
 }
+
 function getSidebarState()
 {
     if(isset($_COOKIE['sidebarToggled'])) {
@@ -784,7 +784,7 @@ function validate_host($host)
 // @return boolean
 function getNightmode()
 {
-    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'lightsout.css') {
+    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'lightsout.php') {
         return true;
     } else {
         return false;
@@ -924,7 +924,7 @@ function checkReleaseVersion($installed, $latest) {
     return false;
 }
 
-/**
+ /**
  * Returns logfile contents up to a maximum defined limit, in kilobytes
  *
  * @param string $file_path
@@ -945,5 +945,42 @@ function getLogLimited($file_path, $file_data = null) {
         $log_limited = substr($file_data, $start_position);
     }
     return $log_limited;
+ }
+
+/**
+ * Function to darken a color by a percentage
+ * From @marek-guran's material-dark theme for RaspAP
+ * Author URI: https://github.com/marek-guran
+ */
+function darkenColor($color, $percent)
+{
+    $percent /= 100;
+    $r = hexdec(substr($color, 1, 2));
+    $g = hexdec(substr($color, 3, 2));
+    $b = hexdec(substr($color, 5, 2));
+
+    $r = round($r * (1 - $percent));
+    $g = round($g * (1 - $percent));
+    $b = round($b * (1 - $percent));
+
+    return sprintf("#%02x%02x%02x", $r, $g, $b);
 }
 
+/**
+ * Function to lighten a color by a percentage
+ * From @marek-guran's material-dark theme for RaspAP
+ * Author URI: https://github.com/marek-guran
+ */
+function lightenColor($color, $percent)
+{
+    $percent /= 100;
+    $r = hexdec(substr($color, 1, 2));
+    $g = hexdec(substr($color, 3, 2));
+    $b = hexdec(substr($color, 5, 2));
+
+    $r = round($r + (255 - $r) * $percent);
+    $g = round($g + (255 - $g) * $percent);
+    $b = round($b + (255 - $b) * $percent);
+
+    return sprintf("#%02x%02x%02x", $r, $g, $b);
+}
