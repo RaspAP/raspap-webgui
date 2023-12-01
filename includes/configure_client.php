@@ -18,8 +18,12 @@ function DisplayWPAConfig()
         $result = 0;
         $iface = escapeshellarg($_SESSION['wifi_client_interface']);
         $netid = intval($_POST['connect']);
-        exec('sudo wpa_cli -i ' . $iface . ' select_network ' . $netid);
-        $status->addMessage('New network selected', 'success');
+        $return = shell_exec('sudo wpa_cli -i ' .$iface. ' select_network ' . $netid);
+        if (trim($return) == "FAIL") {
+            $status->addMessage('WPA command line client returned failure. Check your adapter.', 'danger');
+        } else {
+            $status->addMessage('New network selected', 'success');
+        }
     } elseif (isset($_POST['wpa_reinit'])) {
         $status->addMessage('Reinitializing wpa_supplicant', 'info', false);
         $force_remove = true;
