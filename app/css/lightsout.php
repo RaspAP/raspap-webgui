@@ -123,8 +123,8 @@ a:focus, a:hover {
   border-color: #404040;
   background-color: #202020;
   color: #afafaf;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
+  border-top-right-radius: 0.35rem;
+  border-top-left-radius: 0.35rem;
   font-size: 1.0rem;
   font-weight: 400;
 }
@@ -148,7 +148,7 @@ a:focus, a:hover {
 
 .card, .card-body {
   border-color: #343434;
-  border-radius: 3px;
+  border-radius: 0.35rem;
   background-color: #141414;
 }
 
@@ -261,7 +261,7 @@ span.label.label-warning {
 [class*="btn"], [class*="btn"]:focus, [class*="btn"]:disabled {
   background-color: #202020;
   border-color: #404040;
-  border-radius: 3px;
+  border-radius: 0.35rem;
   color: #d2d2d2;
 }
 
