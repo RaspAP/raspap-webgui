@@ -874,10 +874,15 @@ function loadFooterScripts($extraFooterScripts)
  *
  * @param string $locale
  * @param boolean $flag
+ * @see   https://salsa.debian.org/debian/isoquery/
 */
 function getCountryCodes($locale = 'en', $flag = true) {
+    define("FLAG_SUPPORT", "3.3.0");
     $output = [];
-    if ($flag) {
+    $version = shell_exec("isoquery --version | grep -oP '(?<=isoquery )\d+\.\d+\.\d+'");
+    $compat = checkReleaseVersion(FLAG_SUPPORT, $version);
+
+    if ($flag && $compat) {
         $opt = '--flag';
     }
     exec("isoquery $opt --locale $locale | awk -F'\t' '{print $5 \"\t\" $0}' | sort | cut -f2-", $output);
