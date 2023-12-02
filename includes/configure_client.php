@@ -13,6 +13,7 @@ function DisplayWPAConfig()
 
     getWifiInterface();
     knownWifiStations($networks);
+    setKnownStationsWPA($networks);
 
     if (isset($_POST['connect'])) {
         $result = 0;
