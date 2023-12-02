@@ -24,7 +24,7 @@
             <button type="button" class="btn btn-info float-right js-reload-wifi-stations"><?php echo _("Rescan"); ?></button>
           </div>
         </div>
-        <div class="row">
+        <div class="row" id="wpaConf">
           <div class="col">
             <form method="POST" action="wpa_conf" name="wpa_conf_form">
               <?php echo CSRFTokenFieldTag() ?>

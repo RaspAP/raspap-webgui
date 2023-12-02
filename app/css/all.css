@@ -110,10 +110,31 @@ License: GNU General Public License v3.0
   margin-bottom: 0.5em;
 }
 
-.loading-spinner {
-  background: url("../../app/img/loading-spinner.gif") no-repeat scroll center center transparent;
-  min-height: 450px;
+#wifiClientContent #wpaConf {
+  min-height: calc(100vh / 3);
+}
+
+.loading-spinner::before {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: calc(100vh / 4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #858796;
+  content: "\f1ce"; /* Unicode for the circle-notch icon */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900; /* Adjust as needed */
+  font-size: 54px; /* Adjust icon size as needed */
+  animation: spin 1.5s linear infinite;
+  width: 100%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 @media (min-width: 576px) {
