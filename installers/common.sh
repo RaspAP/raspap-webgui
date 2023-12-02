@@ -571,7 +571,10 @@ function _download_latest_files() {
 
     if [ -d "$webroot_dir" ] && [ "$update" == 0 ]; then
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to move existing webroot directory"
-    elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+    elif [ ! -d "$webroot_dir" ]; then
+        sudo mkdir -p $webroot_dir ||  _install_status 1 "Unable to create directory $webroot_dir"
+    fi
+    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
         shopt -s extglob
         sudo find "$webroot_dir" ! -path "${webroot_dir}/ajax/system/sys_read_logfile.php" -delete 2>/dev/null
     fi
