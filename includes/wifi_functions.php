@@ -62,7 +62,6 @@ function nearbyWifiStations(&$networks, $cached = true)
         $cacheKey, function () {
             exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan');
             sleep(3);
-
             $stdout = shell_exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan_results');
             return preg_split("/\n/", $stdout);
         }
@@ -183,11 +182,12 @@ function getWifiInterface()
 function reinitializeWPA($force)
 {
     if ($force == true) {
-        $cmd = escapeshellcmd("sudo /bin/rm /var/run/wpa_supplicant/".$_SESSION['wifi_client_interface']);
-        $result = exec($cmd);
+        $cmd = "sudo /bin/rm /var/run/wpa_supplicant/".escapeshellarg($_SESSION['wifi_client_interface']);
+        $result = shell_exec($cmd);
     }
-    $cmd = escapeshellcmd("sudo /sbin/wpa_supplicant -B -Dnl80211,wext -c/etc/wpa_supplicant/wpa_supplicant.conf -i". $_SESSION['wifi_client_interface']);
+    $cmd = "sudo /sbin/wpa_supplicant -B -Dnl80211,wext -c/etc/wpa_supplicant/wpa_supplicant.conf -i".escapeshellarg($_SESSION['wifi_client_interface']);
     $result = shell_exec($cmd);
+    sleep(2);
     return $result;
 }
 
