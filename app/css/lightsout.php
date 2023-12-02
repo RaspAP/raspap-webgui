@@ -30,14 +30,6 @@ h2 {
   font-size: 2rem !important;
 }
 
-h4 {
-  font-size: 1.3rem;
-}
-
-h5.card-title {
-  font-size: 1.2rem;
-}
-
 .page-header {
   border-left: .01rem solid #d2d2d2;
   border-bottom: .01rem solid #d2d2d2;
@@ -69,6 +61,10 @@ h5.card-title {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link {
   font-size: 1.0rem;
+}
+
+.nav-link.active {
+    font-weight: bolder;
 }
 
 .nav-tabs .nav-link:hover {
@@ -366,6 +362,11 @@ button.btn.btn-light.js-toggle-password {
   border: 1px solid #343434;
 }
 
+.btn-light {
+  border-color: #343434;
+  border-radius: 0.35rem;
+  background-color: #141414;
+}
 
 .signal-icon .signal-bar {
   background: #2b8080;
