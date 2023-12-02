@@ -235,3 +235,60 @@ function getSignalBars($rssi)
     return $elem;
 }
 
+/*
+ * Parses output of wpa_cli list_networks, compares with known networks
+ * from wpa_supplicant, and adds with wpa_cli if not found
+ *
+ * @param array $networks
+ */
+function setKnownStationsWPA($networks)
+{
+    $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+    $output = shell_exec("sudo wpa_cli -i $iface list_networks");
+    $lines = explode("\n", $output);
+    $header = array_shift($lines);
+    $wpaCliNetworks = [];
+
+    foreach ($lines as $line) {
+        $data = explode("\t", trim($line));
+        if (!empty($data) && count($data) >= 2) {
+            $id = $data[0];
+            $ssid = $data[1];
+            $item = [
+                'id' => $id,
+                'ssid' => $ssid
+            ];
+            $wpaCliNetworks[] = $item;
+        }
+    }
+    foreach ($networks as $network) {
+        $ssid = $network['ssid'];
+        if (!networkExists($ssid, $wpaCliNetworks)) {
+            $ssid = escapeshellarg('"'.$network['ssid'].'"');
+            $psk = escapeshellarg('"'.$network['passphrase'].'"');
+            $netid = trim(shell_exec("sudo wpa_cli -i $iface add_network"));
+            if (isset($netid) && !isset($known[$netid])) {
+                $commands = [
+                    "sudo wpa_cli -i $iface set_network $netid ssid $ssid",
+                    "sudo wpa_cli -i $iface set_network $netid psk $psk",
+                    "sudo wpa_cli -i $iface enable_network $netid"
+                ];
+                foreach ($commands as $cmd) {
+                    exec($cmd);
+                    usleep(1000);
+                }
+            }
+        }
+    }
+}
+
+function networkExists($ssid, $collection)
+{
+    foreach ($collection as $network) {
+        if ($network['ssid'] === $ssid) {
+            return true;
+        }
+    }
+    return false;
+}
+
