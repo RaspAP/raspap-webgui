@@ -9,10 +9,10 @@ function knownWifiStations(&$networks)
 {
     // Find currently configured networks
     exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
-    $index = 0;
+    //$index = 0;
     foreach ($known_return as $line) {
         if (preg_match('/network\s*=/', $line)) {
-            $network = array('visible' => false, 'configured' => true, 'connected' => false, 'index' => $index);
+            $network = array('visible' => false, 'configured' => true, 'connected' => false, 'index' => null);
             ++$index;
         } elseif (isset($network) && $network !== null) {
             if (preg_match('/^\s*}\s*$/', $line)) {
@@ -25,6 +25,8 @@ function knownWifiStations(&$networks)
                     $ssid = trim($lineArr[1], '"');
                     $ssid = str_replace('P"','',$ssid);
                     $network['ssid'] = $ssid;
+                    $index = getNetworkIdBySSID($ssid);
+                    $network['index'] = $index;
                     break;
                 case 'psk':
                     $network['passkey'] = trim($lineArr[1]);
@@ -246,7 +248,7 @@ function setKnownStationsWPA($networks)
     $iface = escapeshellarg($_SESSION['wifi_client_interface']);
     $output = shell_exec("sudo wpa_cli -i $iface list_networks");
     $lines = explode("\n", $output);
-    $header = array_shift($lines);
+    array_shift($lines);
     $wpaCliNetworks = [];
 
     foreach ($lines as $line) {
@@ -280,6 +282,28 @@ function setKnownStationsWPA($networks)
             }
         }
     }
+}
+
+/*
+ * Parses wpa_cli list_networks output and returns the id
+ * of a corresponding network SSID
+ *
+ * @param string $ssid
+ * @return integer id
+ */
+function getNetworkIdBySSID($ssid) {
+    $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+    $cmd = "sudo wpa_cli -i $iface list_networks";
+    $output = [];
+    exec($cmd, $output);
+    array_shift($output);
+    foreach ($output as $line) {
+        $columns = preg_split('/\t/', $line);
+        if (count($columns) >= 4 && trim($columns[1]) === trim($ssid)) {
+            return $columns[0]; // return network ID
+        }
+    }
+    return null;
 }
 
 function networkExists($ssid, $collection)
