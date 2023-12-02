@@ -25,19 +25,25 @@ function DisplayWPAConfig()
             $status->addMessage('New network selected', 'success');
         }
     } elseif (isset($_POST['wpa_reinit'])) {
-        $status->addMessage('Reinitializing wpa_supplicant', 'info', false);
+        $status->addMessage('Attempting to reinitialize wpa_supplicant', 'warning');
         $force_remove = true;
         $result = reinitializeWPA($force_remove);
-        $status->addMessage($result, 'info');
     } elseif (isset($_POST['client_settings'])) {
         $tmp_networks = $networks;
+        $iface = escapeshellarg($_SESSION['wifi_client_interface']);
         if ($wpa_file = fopen('/tmp/wifidata', 'w')) {
             fwrite($wpa_file, 'ctrl_interface=DIR=' . RASPI_WPA_CTRL_INTERFACE . ' GROUP=netdev' . PHP_EOL);
             fwrite($wpa_file, 'update_config=1' . PHP_EOL);
 
             foreach (array_keys($_POST) as $post) {
+
                 if (preg_match('/delete(\d+)/', $post, $post_match)) {
+                    $network = $tmp_networks[$_POST['ssid' . $post_match[1]]];
+                    $netid = $network['index'];
+                    exec('sudo wpa_cli -i ' . $iface . ' disconnect ' . $netid);
+                    exec('sudo wpa_cli -i ' . $iface . ' remove_network ' . $netid);
                     unset($tmp_networks[$_POST['ssid' . $post_match[1]]]);
+
                 } elseif (preg_match('/update(\d+)/', $post, $post_match)) {
                     // NB, multiple protocols are separated with a forward slash ('/')
                     $tmp_networks[$_POST['ssid' . $post_match[1]]] = array(
@@ -47,6 +53,22 @@ function DisplayWPAConfig()
                     );
                     if (array_key_exists('priority' . $post_match[1], $_POST)) {
                         $tmp_networks[$_POST['ssid' . $post_match[1]]]['priority'] = $_POST['priority' . $post_match[1]];
+                    }
+                    $network = $tmp_networks[$_POST['ssid' . $post_match[1]]];
+                    $ssid = escapeshellarg('"'.$_POST['ssid' . $post_match[1]].'"');
+                    $psk = escapeshellarg('"'.$_POST['passphrase' . $post_match[1]].'"');
+                    $netid = trim(shell_exec("sudo wpa_cli -i $iface add_network"));
+                    if (isset($netid)) {
+                        $commands = [
+                            "sudo wpa_cli -i $iface set_network $netid ssid $ssid",
+                            "sudo wpa_cli -i $iface set_network $netid psk $psk",
+                            "sudo wpa_cli -i $iface enable_network $netid"
+                        ];
+                        foreach ($commands as $cmd) {
+                            exec($cmd);
+                        }
+                    } else {
+                        $status->addMessage('Unable to add network with WPA command line client', 'warning');
                     }
                 }
             }
