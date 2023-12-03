@@ -128,7 +128,7 @@ License: GNU General Public License v3.0
   font-family: "Font Awesome 5 Free";
   font-weight: 900; /* Adjust as needed */
   font-size: 54px; /* Adjust icon size as needed */
-  animation: spin 1.5s linear infinite;
+  animation: spin 1.2s linear infinite;
   width: 100%;
 }
 
