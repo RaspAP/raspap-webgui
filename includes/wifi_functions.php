@@ -9,10 +9,10 @@ function knownWifiStations(&$networks)
 {
     // Find currently configured networks
     exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
-    $index = 0;
+    //$index = 0;
     foreach ($known_return as $line) {
         if (preg_match('/network\s*=/', $line)) {
-            $network = array('visible' => false, 'configured' => true, 'connected' => false, 'index' => $index);
+            $network = array('visible' => false, 'configured' => true, 'connected' => false, 'index' => null);
             ++$index;
         } elseif (isset($network) && $network !== null) {
             if (preg_match('/^\s*}\s*$/', $line)) {
@@ -25,6 +25,8 @@ function knownWifiStations(&$networks)
                     $ssid = trim($lineArr[1], '"');
                     $ssid = str_replace('P"','',$ssid);
                     $network['ssid'] = $ssid;
+                    $index = getNetworkIdBySSID($ssid);
+                    $network['index'] = $index;
                     break;
                 case 'psk':
                     $network['passkey'] = trim($lineArr[1]);
@@ -62,7 +64,6 @@ function nearbyWifiStations(&$networks, $cached = true)
         $cacheKey, function () {
             exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan');
             sleep(3);
-
             $stdout = shell_exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan_results');
             return preg_split("/\n/", $stdout);
         }
@@ -182,12 +183,14 @@ function getWifiInterface()
  */
 function reinitializeWPA($force)
 {
+    $iface = escapeshellarg($_SESSION['wifi_client_interface']);
     if ($force == true) {
-        $cmd = escapeshellcmd("sudo /bin/rm /var/run/wpa_supplicant/".$_SESSION['wifi_client_interface']);
-        $result = exec($cmd);
+        $cmd = "sudo /bin/rm /var/run/wpa_supplicant/$iface";
+        $result = shell_exec($cmd);
     }
-    $cmd = escapeshellcmd("sudo /sbin/wpa_supplicant -B -Dnl80211,wext -c/etc/wpa_supplicant/wpa_supplicant.conf -i". $_SESSION['wifi_client_interface']);
+    $cmd = "sudo wpa_cli -i $iface reconfigure";
     $result = shell_exec($cmd);
+    sleep(1);
     return $result;
 }
 
@@ -233,5 +236,84 @@ function getSignalBars($rssi)
     }
     $elem .= '</div>'.PHP_EOL;
     return $elem;
+}
+
+/*
+ * Parses output of wpa_cli list_networks, compares with known networks
+ * from wpa_supplicant, and adds with wpa_cli if not found
+ *
+ * @param array $networks
+ */
+function setKnownStationsWPA($networks)
+{
+    $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+    $output = shell_exec("sudo wpa_cli -i $iface list_networks");
+    $lines = explode("\n", $output);
+    array_shift($lines);
+    $wpaCliNetworks = [];
+
+    foreach ($lines as $line) {
+        $data = explode("\t", trim($line));
+        if (!empty($data) && count($data) >= 2) {
+            $id = $data[0];
+            $ssid = $data[1];
+            $item = [
+                'id' => $id,
+                'ssid' => $ssid
+            ];
+            $wpaCliNetworks[] = $item;
+        }
+    }
+    foreach ($networks as $network) {
+        $ssid = $network['ssid'];
+        if (!networkExists($ssid, $wpaCliNetworks)) {
+            $ssid = escapeshellarg('"'.$network['ssid'].'"');
+            $psk = escapeshellarg('"'.$network['passphrase'].'"');
+            $netid = trim(shell_exec("sudo wpa_cli -i $iface add_network"));
+            if (isset($netid) && !isset($known[$netid])) {
+                $commands = [
+                    "sudo wpa_cli -i $iface set_network $netid ssid $ssid",
+                    "sudo wpa_cli -i $iface set_network $netid psk $psk",
+                    "sudo wpa_cli -i $iface enable_network $netid"
+                ];
+                foreach ($commands as $cmd) {
+                    exec($cmd);
+                    usleep(1000);
+                }
+            }
+        }
+    }
+}
+
+/*
+ * Parses wpa_cli list_networks output and returns the id
+ * of a corresponding network SSID
+ *
+ * @param string $ssid
+ * @return integer id
+ */
+function getNetworkIdBySSID($ssid) {
+    $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+    $cmd = "sudo wpa_cli -i $iface list_networks";
+    $output = [];
+    exec($cmd, $output);
+    array_shift($output);
+    foreach ($output as $line) {
+        $columns = preg_split('/\t/', $line);
+        if (count($columns) >= 4 && trim($columns[1]) === trim($ssid)) {
+            return $columns[0]; // return network ID
+        }
+    }
+    return null;
+}
+
+function networkExists($ssid, $collection)
+{
+    foreach ($collection as $network) {
+        if ($network['ssid'] === $ssid) {
+            return true;
+        }
+    }
+    return false;
 }
 
