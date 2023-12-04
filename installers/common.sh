@@ -235,16 +235,19 @@ function _install_dependencies() {
         iw_package="iw"
         echo "${dhcpcd_package} and ${iw_package} will be installed from the main deb sources list"
     fi
-
     if [ ${OS,,} = "raspbian" ] && [[ ${RELEASE} =~ ^(12) ]]; then
         dhcpcd_package="dhcpcd dhcpcd-base"
         echo "${dhcpcd_package} will be installed from the main deb sources list"
+    fi
+    if [ "$insiders" == 1 ]; then
+        network_tools="curl dnsutils nmap"
+        echo "${network_tools} will be installed from the main deb sources list"
     fi
 
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
+    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $network_tools vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
     _install_status 0
 }
 
