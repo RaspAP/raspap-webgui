@@ -183,13 +183,14 @@ function getWifiInterface()
  */
 function reinitializeWPA($force)
 {
+    $iface = escapeshellarg($_SESSION['wifi_client_interface']);
     if ($force == true) {
-        $cmd = "sudo /bin/rm /var/run/wpa_supplicant/".escapeshellarg($_SESSION['wifi_client_interface']);
+        $cmd = "sudo /bin/rm /var/run/wpa_supplicant/$iface";
         $result = shell_exec($cmd);
     }
-    $cmd = "sudo /sbin/wpa_supplicant -B -Dnl80211,wext -c/etc/wpa_supplicant/wpa_supplicant.conf -i".escapeshellarg($_SESSION['wifi_client_interface']);
+    $cmd = "sudo wpa_cli -i $iface reconfigure";
     $result = shell_exec($cmd);
-    sleep(2);
+    sleep(1);
     return $result;
 }
 
