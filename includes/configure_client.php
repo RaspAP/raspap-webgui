@@ -15,11 +15,13 @@ function DisplayWPAConfig()
     knownWifiStations($networks);
     setKnownStationsWPA($networks);
 
+    $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+
     if (isset($_POST['connect'])) {
-        $result = 0;
-        $iface = escapeshellarg($_SESSION['wifi_client_interface']);
         $netid = intval($_POST['connect']);
-        $return = shell_exec('sudo wpa_cli -i ' .$iface. ' select_network ' . $netid);
+        $cmd = "sudo wpa_cli -i $iface select_network $netid";
+        $return = shell_exec($cmd);
+        sleep(2);
         if (trim($return) == "FAIL") {
             $status->addMessage('WPA command line client returned failure. Check your adapter.', 'danger');
         } else {
@@ -31,7 +33,6 @@ function DisplayWPAConfig()
         $result = reinitializeWPA($force_remove);
     } elseif (isset($_POST['client_settings'])) {
         $tmp_networks = $networks;
-        $iface = escapeshellarg($_SESSION['wifi_client_interface']);
         if ($wpa_file = fopen('/tmp/wifidata', 'w')) {
             fwrite($wpa_file, 'ctrl_interface=DIR=' . RASPI_WPA_CTRL_INTERFACE . ' GROUP=netdev' . PHP_EOL);
             fwrite($wpa_file, 'update_config=1' . PHP_EOL);
