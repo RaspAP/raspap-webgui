@@ -93,6 +93,7 @@ function _config_installation() {
     echo "Detected OS: ${DESC} ${LONG_BIT}-bit"
     echo "Using GitHub repository: ${repo} ${branch} branch"
     echo "Configuration directory: ${raspap_dir}"
+
     if [ -n "$path" ]; then
         echo "Setting install path to ${path}"
         webroot_dir=$path
@@ -505,11 +506,12 @@ function _prompt_install_wireguard() {
 # Install Wireguard from the Debian unstable distro
 function _install_wireguard() {
     _install_log "Configure WireGuard support"
-    if [ "$OS" == "Debian" ]; then
-        echo 'deb http://ftp.debian.org/debian buster-backports main' | sudo tee /etc/apt/sources.list.d/buster-backports.list || _install_status 1 "Unable to add Debian backports repo"
+    if { [ "$OS" == "Debian" ] && [ "$RELEASE" == 12 ]; } ||
+       { [ "$OS" == "Ubuntu" ] && [ "$RELEASE" == "22.04" ]; }; then
+        wg_dep="resolvconf"
     fi
     echo "Installing wireguard from apt"
-    sudo apt-get install -y wireguard || _install_status 1 "Unable to install wireguard"
+    sudo apt-get install -y wireguard $wg_dep || _install_status 1 "Unable to install wireguard"
     echo "Enabling wg-quick@wg0"
     sudo systemctl enable wg-quick@wg0 || _install_status 1 "Failed to enable wg-quick service"
     echo "Enabling WireGuard management option"
