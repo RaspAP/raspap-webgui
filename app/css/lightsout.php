@@ -30,14 +30,6 @@ h2 {
   font-size: 2rem !important;
 }
 
-h4 {
-  font-size: 1.3rem;
-}
-
-h5.card-title {
-  font-size: 1.2rem;
-}
-
 .page-header {
   border-left: .01rem solid #d2d2d2;
   border-bottom: .01rem solid #d2d2d2;
@@ -69,6 +61,10 @@ h5.card-title {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link {
   font-size: 1.0rem;
+}
+
+.nav-link.active {
+    font-weight: bolder;
 }
 
 .nav-tabs .nav-link:hover {
@@ -123,8 +119,8 @@ a:focus, a:hover {
   border-color: #404040;
   background-color: #202020;
   color: #afafaf;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
+  border-top-right-radius: 0.35rem;
+  border-top-left-radius: 0.35rem;
   font-size: 1.0rem;
   font-weight: 400;
 }
@@ -148,7 +144,7 @@ a:focus, a:hover {
 
 .card, .card-body {
   border-color: #343434;
-  border-radius: 3px;
+  border-radius: 0.35rem;
   background-color: #141414;
 }
 
@@ -261,7 +257,7 @@ span.label.label-warning {
 [class*="btn"], [class*="btn"]:focus, [class*="btn"]:disabled {
   background-color: #202020;
   border-color: #404040;
-  border-radius: 3px;
+  border-radius: 0.35rem;
   color: #d2d2d2;
 }
 
@@ -366,6 +362,11 @@ button.btn.btn-light.js-toggle-password {
   border: 1px solid #343434;
 }
 
+.btn-light {
+  border-color: #343434;
+  border-radius: 0.35rem;
+  background-color: #141414;
+}
 
 .signal-icon .signal-bar {
   background: #2b8080;
