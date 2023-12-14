@@ -78,7 +78,7 @@ License: GNU General Public License v3.0
 }
 
 .service-status-warn {
-  color: #f6f044 !important;
+  color: #ffbf00 !important;
 }
 
 .service-status-down {
