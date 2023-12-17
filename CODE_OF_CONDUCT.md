@@ -4,11 +4,10 @@
 
 RaspAP is an open source community project devoted to building simple yet 
 powerful wireless router software for Debian-based devices. We as members, contributors,
-and leaders pledge to make participation in our community a harassment-free experience
-for everyone.
+and leaders pledge to make participation in our community an experience consisent with 
+the norms of civil behavior and respectful discourse.
 
-To this end, we pledge to act and interact in ways that contribute to an open,
-welcoming, inclusive, and healthy community.
+To this end, we pledge to act and interact in ways that uphold the following standards.
 
 ## Our Standards
 
@@ -16,32 +15,28 @@ Examples of behavior that contributes to a positive environment for our
 community include:
 
 * Being excellent to one another (treat others as you wish to be treated)
-* Being respectful of differing opinions, viewpoints, and experiences
 * Giving and accepting constructive feedback
-* Showing empathy towards other community members
+* Being respectful of differing opinions and viewpoints
 * Focusing on what is best not just for us as individuals, but for the
   overall community
 
-Examples of unacceptable behavior include:
+Examples of unacceptable behavior are provided below. Quotes in parantheses
+are portions of actual comments or issues that have been posted to this project:
 
-* The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
+* Unconstructive comments (this software "fails miserably")
+* Complaining and/or emotional language ("I'm pulling my hair out!")
+* Comments that are derogatory, trolling or are personal attacks ("what's wrong with you guys?")
+* Public or private harassment of any kind
 * Publishing others' private information, such as a physical or email
   address, without their explicit permission
 * Other conduct which could reasonably be considered inappropriate in a
   professional setting
 
-We will not tolerate harassment. Harassment is any unwelcome or hostile behavior
-towards another person for any reason. This includes, but is not limited to, offensive
-verbal comments related to personal characteristics or choices, deliberate intimidation,
-bullying, stalking, sustained disruption of discussion or events, or nonconsensual
-publication of private comments.
+We have a zero tolerance policy for any and all of the above behavior.
 
 ## Enforcement Responsibilities
 
-We reserve the right to remove, edit, or reject comments, commits, code, issues,
+We reserve the right to remove, edit, or reject comments, issues, commits, 
 discussions and other contributions that are not consistent with this Code of Conduct.
 We may ban, temporarily or permanently, any contributor for violating this code, as appropriate.
 
