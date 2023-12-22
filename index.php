@@ -23,9 +23,11 @@
  * as you leave these references intact in the header comments of your source files.
  */
 
+
 require 'includes/csrf.php';
 ensureCSRFSessionToken();
 
+require_once 'includes/exceptions.php';
 require_once 'includes/config.php';
 require_once 'includes/autoload.php';
 require_once 'includes/defaults.php';
