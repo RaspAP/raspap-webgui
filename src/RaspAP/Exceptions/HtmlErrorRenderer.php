@@ -37,7 +37,6 @@ class HtmlErrorRenderer
             header('X-Debug-Exception: '. rawurlencode($message));
             header('X-Debug-Exception-File: '. rawurlencode($file).':'.$line);
         }
-
         $__template_data = compact(
             "message",
             "code",

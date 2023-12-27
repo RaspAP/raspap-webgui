@@ -33,7 +33,7 @@ class ExceptionHandler
             $exception->getLine() . PHP_EOL
         );
         // Log the exception
-        error_log($errorMessage, 3, 'error.log');
+        error_log($errorMessage, 3, RASPI_ERROR_LOG);
 
         $renderer = new HtmlErrorRenderer();
         $renderer->render($exception);
@@ -49,7 +49,7 @@ class ExceptionHandler
                 $error['file'] . ' on line ' .
                 $error['line'] . PHP_EOL
             );
-            error_log($errorMessage, 3, 'error.log');
+            error_log($errorMessage, 3, RASPI_ERROR_LOG);
 
             $renderer = new HtmlErrorRenderer();
             $renderer->render($exception);
