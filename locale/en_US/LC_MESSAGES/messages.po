@@ -1520,3 +1520,11 @@ msgstr "Update complete"
 msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 msgstr "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 
+#: includes/exceptions.php
+
+msgid "RaspAP Exception"
+msgstr "RaspAP Exception"
+
+msgid "An exception occurred"
+msgstr "An exception occurred"
+
