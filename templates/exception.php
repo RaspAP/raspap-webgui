@@ -6,10 +6,18 @@
     <link href="dist/sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
   </head>
   <body id="page-top">
-    <div class="row">
-      <div class="col-lg-12">
-        <h3 class="mt-3"><?php echo _("An exception occurred"); ?></h3>
-        <?php echo '<pre>'; print_r($trace); echo '</pre>'; ?>
+    <div id="wrapper">
+      <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <h3 class="mt-3"><?php echo _("An exception occurred"); ?></h3>
+                <pre><?php print_r($trace); ?></pre>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
