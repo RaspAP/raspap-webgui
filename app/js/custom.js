@@ -270,8 +270,7 @@ function setDHCPToggles(state) {
 $('#debugModal').on('shown.bs.modal', function (e) {
   var csrfToken = $('meta[name=csrf_token]').attr('content');
   $.post('ajax/system/sys_debug.php',{'csrf_token': csrfToken},function(data){
-        var filePath = JSON.parse(data);
-        window.location.replace('/ajax/system/sys_get_logfile.php?filePath='+filePath);
+        window.location.replace('/ajax/system/sys_get_logfile.php');
         $('#debugModal').modal('hide');
     });
 });

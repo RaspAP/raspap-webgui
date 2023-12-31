@@ -3,9 +3,10 @@
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
 
-$filePath = $_GET['filePath'];
+$tempDir = sys_get_temp_dir();
+$filePath = $tempDir . DIRECTORY_SEPARATOR . RASPI_DEBUG_LOG;
 
-if (isset($filePath) && strpos($filePath, RASPI_DEBUG_LOG) !== false) {
+if (isset($filePath)) {
     header('Content-Type: application/octet-stream');
     header('Content-Disposition: attachment; filename='.basename($filePath));
     header('Expires: 0');
