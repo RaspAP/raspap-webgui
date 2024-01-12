@@ -108,9 +108,18 @@ function saveDHCPConfig($status)
             return false;
         }
 
-        if (($_POST['dhcp-iface'] == "1")) {
-            $return = updateDnsmasqConfig($iface,$status);
+        if (($_POST['dhcp-iface'] == "1") || (isset($_POST['mac']))) {
+            $errors = validateDnsmasqInput();
+            if (empty($errors)) {
+                $return = updateDnsmasqConfig($iface,$status);
+            } else {
+                foreach ($errors as $error) {
+                    $status->addMessage($error, 'danger');
+                }
+                $return = 1;
+            }
         }
+
         if ($return == 0) {
             $status->addMessage('Dnsmasq configuration updated successfully.', 'success');
         } else {
@@ -180,6 +189,34 @@ function compareIPs($ip1, $ip2)
 }
 
 /**
+ * Validates Dnsmasq user input from the $_POST object
+ *
+ * @return array $errors
+ */
+function validateDnsmasqInput()
+{
+    $errors = [];
+    $encounteredIPs = [];
+
+    if (isset($_POST["static_leases"]["mac"])) {
+        for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
+            $mac = trim($_POST["static_leases"]["mac"][$i]);
+            $ip  = trim($_POST["static_leases"]["ip"][$i]);
+            if (!validateMac($mac)) {
+                $errors[] = _('Invalid MAC address: '.$mac);
+            }
+            if (in_array($ip, $encounteredIPs)) {
+                $errors[] = _('Duplicate IP address entered: ' . $ip);
+            } else {
+                $encounteredIPs[] = $ip;
+            }
+        }
+    }
+    return $errors;
+}
+
+
+/**
  * Updates a dnsmasq configuration
  *
  * @param string $iface
@@ -188,6 +225,7 @@ function compareIPs($ip1, $ip2)
  */
 function updateDnsmasqConfig($iface,$status)
 {
+
     $config = '# RaspAP '.$iface.' configuration'.PHP_EOL;
     $config .= 'interface='.$iface.PHP_EOL.'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].','.$_POST['SubnetMask'].',';
     if ($_POST['RangeLeaseTimeUnits'] !== 'i') {
