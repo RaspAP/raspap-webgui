@@ -468,6 +468,14 @@ $(document).ready(function(){
         },
         placeholder: "___.___.___.___"
     });
+    $('.date').mask('FF:FF:FF:FF:FF:FF', {
+        translation: {
+            "F": {
+                pattern: /[0-9a-z]/, optional: true
+            }
+        },
+        placeholder: "__:__:__:__:__:__"
+    });
 });
 
 $('#wg-upload,#wg-manual').on('click', function (e) {
