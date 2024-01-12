@@ -28,6 +28,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [Supported operating systems](#supported-operating-systems)
  - [Multilingual support](#multilingual-support)
  - [HTTPS support](#https-support)
+ - [Docker support](#docker-support)
  - [How to contribute](#how-to-contribute)
  - [Reporting issues](#reporting-issues)
  - [License](#license)
@@ -157,6 +158,13 @@ curl -sL https://install.raspap.com | bash -s -- --cert
 **Note**: this only installs mkcert and generates an SSL certificate with the input you provide. It does *not* (re)install RaspAP.
 
 More information on SSL certificates and HTTPS support is available [in our documentation](https://docs.raspap.com/ssl/). 
+
+## Docker support
+<img src="https://github.com/RaspAP/raspap-webgui/assets/229399/dc40dfc4-e9b8-405f-8ffb-6c5f88482b8e" width="450">
+
+As an alternative to the [Quick installer](#quick-installer), RaspAP may be run in an isolated, portable [Docker container](https://www.docker.com/resources/what-container/).
+
+See the [RaspAP-docker repo](https://github.com/RaspAP/raspap-docker/) for more information.
 
 ## How to contribute
 1. Fork the project in your account and create a new branch: `your-great-feature`.
