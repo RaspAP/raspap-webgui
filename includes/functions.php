@@ -780,6 +780,23 @@ function validate_host($host)
   return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host);
 }
 
+/**
+ * Validates a MAC address
+ *
+ * @param string $mac
+ * @return bool
+ */
+function validateMac($mac) {
+    $macAddress = strtoupper(preg_replace('/[^a-fA-F0-9]/', '', $mac));
+    if (strlen($macAddress) !== 12) {
+        return false;
+    }
+    if (!ctype_xdigit($macAddress)) {
+        return false;
+    }
+    return true;
+}
+
 // Gets night mode toggle value
 // @return boolean
 function getNightmode()
