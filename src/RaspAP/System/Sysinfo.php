@@ -130,7 +130,7 @@ class Sysinfo
         'a02100' => 'Compute Module 3+',
         'a03111' => 'Model 4B Revision 1.1 (1 GB)',
         'b03111' => 'Model 4B Revision 1.1 (2 GB)',
-        'c03111' => 'Model 4B Revision 1.1 (4 GB)'
+        'c03111' => 'Model 4B Revision 1.1 (4 GB)',
         'a03140' => 'Compute Module 4 (1 GB)',
         'b03140' => 'Compute Module 4 (2 GB)',
         'c03140' => 'Compute Module 4 (4 GB)',
