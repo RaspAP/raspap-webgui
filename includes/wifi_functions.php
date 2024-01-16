@@ -188,7 +188,7 @@ function reinitializeWPA($force)
         $cmd = "sudo /bin/rm /var/run/wpa_supplicant/$iface";
         $result = shell_exec($cmd);
     }
-    $cmd = "sudo wpa_cli -i $iface reconfigure";
+    $cmd = "sudo wpa_supplicant -B -Dnl80211 -c/etc/wpa_supplicant/wpa_supplicant.conf -i$iface";
     $result = shell_exec($cmd);
     sleep(1);
     return $result;
