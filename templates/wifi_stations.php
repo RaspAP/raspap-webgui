@@ -7,7 +7,7 @@
     <form method="POST" action="wpa_conf" name="wpa_conf_form" class="row">
       <?php echo CSRFTokenFieldTag() ?>
         <div class="col-xs mr-3 mb-3">
-          <input type="submit" class="btn btn-warning btn-block float-right" name="wpa_reinit" value="<?php echo _("Re-initialize"); ?>" />
+          <input type="submit" class="btn btn-warning btn-block float-right" name="wpa_reinit" value="<?php echo _("Reinitialize"); ?>" />
         </div>
     </form>
     <?php endif ?>

@@ -174,8 +174,8 @@ msgstr "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does n
 msgid "No Wifi stations found"
 msgstr "No Wifi stations found"
 
-msgid "Reinitializing wpa_supplicant"
-msgstr "Reinitializing wpa_supplicant"
+msgid "Reinitialized wpa_supplicant. Choose <strong>Rescan</strong>."
+msgstr "Reinitialized wpa_supplicant. Choose <strong>Rescan</strong>."
 
 msgid "Click 'Rescan' to search for nearby Wifi stations."
 msgstr "Click 'Rescan' to search for nearby Wifi stations."
