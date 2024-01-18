@@ -1,7 +1,7 @@
 ![](https://i.imgur.com/xeKD93p.png)
 [![Release 3.0.5](https://img.shields.io/badge/release-v3.0.5-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Join Insiders](https://img.shields.io/static/v1?label=Join%20Insiders&message=%E2%9D%A4&logo=GitHub&color=ff69b4)](https://github.com/sponsors/RaspAP) [![Build Status](https://app.travis-ci.com/RaspAP/raspap-webgui.svg?branch=master)](https://app.travis-ci.com/RaspAP/raspap-webgui) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/RaspAP?style=social)](https://www.reddit.com/r/RaspAP/) [![Join the chat at https://app.gitter.im/#/room/#RaspAP:gitter.im](https://img.shields.io/badge/chat-on%20gitter-brightgreen)](https://app.gitter.im/#/room/#RaspAP:gitter.im)
 
-RaspAP is feature-rich wireless router software that _just works_ on many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our popular [Quick installer](#quick-installer) creates a known-good default configuration for all current Raspberry Pis with onboard wireless. A fully responsive, mobile-ready interface gives you control over the relevant services and networking options. Advanced DHCP settings, WireGuard and OpenVPN support, [SSL certificates](https://docs.raspap.com/ssl-quick/), security audits, [captive portal integration](https://docs.raspap.com/captive/), themes and [multilingual options](https://docs.raspap.com/translations/) are included.
+RaspAP is feature-rich wireless router software that _just works_ on many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our popular [Quick installer](#quick-installer) and [Docker container](#docker-support) create a known-good default configuration for all current Raspberry Pis with onboard wireless. A fully responsive, mobile-ready interface gives you control over the relevant services and networking options. Advanced DHCP settings, WireGuard and OpenVPN support, [SSL certificates](https://docs.raspap.com/ssl-quick/), security audits, [captive portal integration](https://docs.raspap.com/captive/), themes and [multilingual options](https://docs.raspap.com/translations/) are included.
 
 RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
 
@@ -26,9 +26,9 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [Manual installation](#manual-installation)
  - [802.11ac 5GHz support](#80211ac-5ghz-support)
  - [Supported operating systems](#supported-operating-systems)
- - [Multilingual support](#multilingual-support)
  - [HTTPS support](#https-support)
  - [Docker support](#docker-support)
+ - [Multilingual support](#multilingual-support)
  - [How to contribute](#how-to-contribute)
  - [Reporting issues](#reporting-issues)
  - [License](#license)
@@ -137,14 +137,9 @@ RaspAP was originally made for Raspbian, but now also installs on the following 
 | Debian  |  Bookworm | ARM / x86_64  | Beta |
 | Ubuntu  |  Server 23.04 (Lunar) | ARM / x86_64  | Beta |
 
-![](https://i.imgur.com/luiyYNw.png)
+<img src="https://github.com/RaspAP/raspap-webgui/assets/229399/6fe62f2d-631a-46c9-8ceb-83ebf0ade6a9" style="width:640px;" />
 
-We find Armbian particularly well-suited for this project. Please note that "supported" is not a guarantee. If you are able to improve support for your preferred distro, we encourage you to [actively contribute](#how-to-contribute) to the project.
-
-## Multilingual support
-RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multilingual messages. In order to use RaspAP with one of our supported translations, you must configure a corresponding language package on your RPi. To list languages currently installed on your system, use `locale -a` at the shell prompt. To generate new locales, run `sudo dpkg-reconfigure locales` and select any other desired locales. Details are provided on our [documentation site](https://docs.raspap.com/translations/).
-
-See this list of [supported languages](https://docs.raspap.com/translations/#supported-languages) that are actively maintained by volunteer translators. If your language is not supported, why not [contribute a translation](https://docs.raspap.com/translations/#contributing-to-a-translation)? Contributors will receive credit as the original translators.
+You are also encouraged to use RaspAP's community-led [Docker container](#docker-support). Please note that "supported" is not a guarantee. If you are able to improve support for your preferred distro, we encourage you to [actively contribute](#how-to-contribute) to the project.
 
 ## HTTPS support
 The Quick Installer may be used to [generate SSL certificates](https://docs.raspap.com/ssl-quick/) with `mkcert`. The installer automates the manual steps [described here](https://docs.raspap.com/ssl-manual/), including configuring lighttpd with SSL support. 
@@ -162,9 +157,14 @@ More information on SSL certificates and HTTPS support is available [in our docu
 ## Docker support
 <img src="https://github.com/RaspAP/raspap-webgui/assets/229399/dc40dfc4-e9b8-405f-8ffb-6c5f88482b8e" width="450">
 
-As an alternative to the [Quick installer](#quick-installer), RaspAP may be run in an isolated, portable [Docker container](https://www.docker.com/resources/what-container/).
+As an alternative to the [Quick installer](#quick-installer), RaspAP may be run in an isolated, portable [Docker container](https://docs.raspap.com/docker/).
 
 See the [RaspAP-docker repo](https://github.com/RaspAP/raspap-docker/) for more information.
+
+## Multilingual support
+RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multilingual messages. In order to use RaspAP with one of our supported translations, you must configure a corresponding language package on your RPi. To list languages currently installed on your system, use `locale -a` at the shell prompt. To generate new locales, run `sudo dpkg-reconfigure locales` and select any other desired locales. Details are provided on our [documentation site](https://docs.raspap.com/translations/).
+
+See this list of [supported languages](https://docs.raspap.com/translations/#supported-languages) that are actively maintained by volunteer translators. If your language is not supported, why not [contribute a translation](https://docs.raspap.com/translations/#contributing-to-a-translation)? Contributors will receive credit as the original translators.
 
 ## How to contribute
 1. Fork the project in your account and create a new branch: `your-great-feature`.
