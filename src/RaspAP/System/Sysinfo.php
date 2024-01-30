@@ -83,7 +83,7 @@ class Sysinfo
 
     public function operatingSystem()
     {
-        $os_desc = shell_exec("lsb_release -sd");
+        $os_desc = shell_exec("cat /etc/os-release | awk -F= '/^PRETTY_NAME/ {print $2}' | sed 's/\"//g'");
         return $os_desc;
     }
 
