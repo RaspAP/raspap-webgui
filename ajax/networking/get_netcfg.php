@@ -11,7 +11,7 @@ if (isset($interface)) {
     $conf = ParseConfig($return);
 
     $dhcpdata['DHCPEnabled'] = empty($conf) ? false : true;
-    $arrRange = explode(",", $conf['dhcp-range']);
+    $arrRange = explode(",", $conf['dhcp-range'][0]);
     $dhcpdata['RangeStart'] = $arrRange[0];
     $dhcpdata['RangeEnd'] = $arrRange[1];
     $dhcpdata['RangeMask'] = $arrRange[2];
