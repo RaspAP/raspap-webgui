@@ -42,6 +42,7 @@ OPTIONS:
 -o, --openvpn <flag>                Used with -y, --yes, sets OpenVPN install option (0=no install)
 -a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
 -w, --wireguard <flag>              Used with -y, --yes, sets WireGuard install option (0=no install)
+-e, --provider <value>              Used with -y, --yes, sets the VPN provider install option
 -r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
 -t, --token <accesstoken>           Specify a GitHub token to access a private repository
@@ -116,6 +117,10 @@ function _parse_params() {
             ;;
             -w|--wireguard)
             wg_option="$2"
+            shift
+            ;;
+            -e|--provider)
+            pv_option="$2"
             shift
             ;;
             -c|--cert|--certificate)
