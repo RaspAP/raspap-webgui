@@ -1,8 +1,10 @@
 <!-- logfile output tab -->
 <div class="tab-pane fade" id="logoutput">
-  <h4 class="mt-3"><?php echo _("Logging"); ?></h4>
+  <div class="d-flex">
+    <h4 class="mt-3"><?php echo _("Logging") ;?></h4>
+    <a href="https://docs.raspap.com/ap-basics/#troubleshooting" target="_blank"><i class="fas fa-book ml-2 mt-4 text-muted"></i></a>
+  </div>
   <p><?php echo _("Enable this option to log <code>hostapd</code> activity.") ?></p>
-
   <div class="custom-control custom-switch">
     <?php $checked = $arrHostapdConf['LogEnable'] == 1 ? 'checked="checked"' : '' ?>
     <input class="custom-control-input" id="chxlogenable" name="logEnable" type="checkbox" value="1" <?php echo $checked ?> />

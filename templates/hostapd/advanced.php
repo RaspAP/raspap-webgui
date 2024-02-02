@@ -1,5 +1,8 @@
 <div class="tab-pane fade" id="advanced">
-  <h4 class="mt-3"><?php echo _("Advanced settings"); ?></h4>
+  <div class="d-flex">
+    <h4 class="mt-3"><?php echo _("Advanced settings") ;?></h4>
+    <a href="https://docs.raspap.com/ap-basics/#advanced-options" target="_blank"><i class="fas fa-book ml-2 mt-4 text-muted"></i></a>
+  </div>
     <div class="row">
       <div class="col-md-6 mb-2">
         <div class="custom-control custom-switch">
