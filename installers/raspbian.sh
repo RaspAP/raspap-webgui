@@ -40,6 +40,7 @@ OPTIONS:
 -y, --yes, --assume-yes             Assumes "yes" as an answer to all prompts
 -c, --cert, --certificate           Installs an SSL certificate for lighttpd
 -o, --openvpn <flag>                Used with -y, --yes, sets OpenVPN install option (0=no install)
+--rest <flag>                       Used with -y, --yes, sets RestAPI install option (0=no install)
 -a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
 -w, --wireguard <flag>              Used with -y, --yes, sets WireGuard install option (0=no install)
 -e, --provider <value>              Used with -y, --yes, sets the VPN provider install option
