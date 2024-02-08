@@ -96,6 +96,7 @@ class HTTPAuth
             if ($auth_details = fopen(RASPI_CONFIG . '/raspap.auth', 'r')) {
                 $config['admin_user'] = trim(fgets($auth_details));
                 $config['admin_pass'] = trim(fgets($auth_details));
+                $_SESSION['user_id'] = $config['admin_user'];
                 fclose($auth_details);
             }
         }
