@@ -15,7 +15,7 @@ This project follows the [PSR-2](http://www.php-fig.org/psr/psr-2/) coding style
 RaspAP is made possible by a strong [community of developers](https://github.com/RaspAP/raspap-webgui/graphs/contributors). If you have any questions or would like to get involved in RaspAP, dive into any of these channels:
 
 * [GitHub discussions](https://github.com/RaspAP/raspap-webgui/discussions)
-* [Gitter chat](https://app.gitter.im/#/room/#RaspAP:gitter.im)
+* [Discord chat](https://discord.gg/rth5Yzzm)
 * [Twitter](https://twitter.com/rasp_ap)
 * [Reddit](https://www.reddit.com/r/RaspAP/)
 
