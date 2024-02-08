@@ -5,6 +5,7 @@ function DisplayAuthConfig($username)
     $status = new \RaspAP\Messages\StatusMessage;
     $auth = new \RaspAP\Auth\HTTPAuth;
     $config = $auth->getAuthConfig();
+    $username = $config['admin_user'];
     $password = $config['admin_pass'];
 
     if (isset($_POST['UpdateAdminPassword'])) {
