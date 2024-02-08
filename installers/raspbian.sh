@@ -94,6 +94,7 @@ function _parse_params() {
     upgrade=0
     update=0
     ovpn_option=1
+    restapi_option=0
     adblock_option=1
     wg_option=1
     insiders=0
@@ -109,6 +110,10 @@ function _parse_params() {
             ;;
             -o|--openvpn)
             ovpn_option="$2"
+            shift
+            ;;
+            --api|--rest|--restapi)
+            restapi_option="$2"
             shift
             ;;
             -a|--adblock)

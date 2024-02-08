@@ -57,6 +57,7 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
+    _prompt_isntall_restapi
     _install_extra_features
     _prompt_install_wireguard
     _prompt_install_vpn_providers
@@ -502,6 +503,23 @@ function _prompt_install_openvpn() {
     fi
 }
 
+# Prompt to install restapi
+function _prompt_install_restapi() {
+    _install_log "Configure restapi"
+    echo -n "Install and enable RestAPI? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            _install_status 0 "(Skipped)"
+        else
+            _install_restapi
+        elif [ "$restapi_option" == 1 ]; then
+        _install_restapi
+    else
+        echo "(Skipped)"
+    fi
+}
+
 # Prompt to install WireGuard
 function _prompt_install_wireguard() {
     _install_log "Configure WireGuard support"
@@ -558,6 +576,20 @@ function _create_openvpn_scripts() {
     # Restrict script execution to root user
     sudo chown -c root:root "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable to change file permissions"
+
+    _install_status 0
+}
+
+# Install and enable RestAPI configuration option
+function _install_restapi() {
+    _install_log "Installing and enabling RestAPI"
+    sudo cp -r "$webroot_dir/api" "$raspap_dir/api"  || _install_status 1 "Unable to move api folder"
+    python -m pip install -r "$raspap_dir/api/requirements.txt" || _install_status 1 " Unable to install pip modules"
+    
+    echo "Moving restapi systemd unit control file to /lib/systemd/system/"
+    sudo mv $webroot_dir/installers/restapi.service /lib/systemd/system/ || _install_status 1 "Unable to move restapi.service file"
+    sudo systemctl daemon-reload
+    sudo systemctl enable restapi.service || _install_status 1 "Failed to enable restapi.service"
 
     _install_status 0
 }
