@@ -57,7 +57,7 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
-    _prompt_isntall_restapi
+    _prompt_install_restapi
     _install_extra_features
     _prompt_install_wireguard
     _prompt_install_vpn_providers
