@@ -57,7 +57,7 @@ function _install_raspap() {
     _configure_networking
     _prompt_install_adblock
     _prompt_install_openvpn
-    _prompt_install_restapi
+    _prompt_itall_restapi
     _install_extra_features
     _prompt_install_wireguard
     _prompt_install_vpn_providers
@@ -513,7 +513,7 @@ function _prompt_install_restapi() {
             _install_status 0 "(Skipped)"
         else
             _install_restapi
-        elif [ "$restapi_option" == 1 ]; then
+    elif [ "$restapi_option" == 1 ]; then
         _install_restapi
     else
         echo "(Skipped)"
