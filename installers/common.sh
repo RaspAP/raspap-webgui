@@ -584,7 +584,7 @@ function _create_openvpn_scripts() {
 function _install_restapi() {
     _install_log "Installing and enabling RestAPI"
     sudo cp -r "$webroot_dir/api" "$raspap_dir/api"  || _install_status 1 "Unable to move api folder"
-    python -m pip install -r "$raspap_dir/api/requirements.txt" || _install_status 1 " Unable to install pip modules"
+    python -m pip install -r "$raspap_dir/api/requirements.txt" --break-system-packages || _install_status 1 " Unable to install pip modules"
     
     echo "Moving restapi systemd unit control file to /lib/systemd/system/"
     sudo mv $webroot_dir/installers/restapi.service /lib/systemd/system/ || _install_status 1 "Unable to move restapi.service file"
