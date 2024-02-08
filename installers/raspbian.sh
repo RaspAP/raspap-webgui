@@ -95,7 +95,7 @@ function _parse_params() {
     upgrade=0
     update=0
     ovpn_option=1
-    restapi_option=0
+    restapi_option=1
     adblock_option=1
     wg_option=1
     insiders=0
