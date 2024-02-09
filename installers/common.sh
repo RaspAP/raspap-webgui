@@ -513,6 +513,7 @@ function _prompt_install_restapi() {
             _install_status 0 "(Skipped)"
         else
             _install_restapi
+        fi
     elif [ "$restapi_option" == 1 ]; then
         _install_restapi
     else
