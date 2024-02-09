@@ -6,7 +6,7 @@ After=network.target
 User=root
 WorkingDirectory=/etc/raspap/api
 LimitNOFILE=4096
-ExecStart=/usr/bin/python3 uvicorn main:app --host 0.0.0.0 --port 8081
+ExecStart=/usr/bin/python3 -m uvicorn main:app --host 0.0.0.0 --port 8081
 Restart=on-failure
 RestartSec=5s
 
