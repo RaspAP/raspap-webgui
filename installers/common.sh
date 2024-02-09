@@ -716,7 +716,7 @@ function _default_configuration() {
             echo "Moving dhcpcd systemd unit control file to /lib/systemd/system/"
             sudo mv $webroot_dir/installers/dhcpcd.service /lib/systemd/system/ || _install_status 1 "Unable to move dhcpcd.service file"
             sudo systemctl daemon-reload
-            sudo systemctl enable dhcpcd.service || _install_status 1 "Failed to enable raspap.service"
+            sudo systemctl enable dhcpcd.service || _install_status 1 "Failed to enable dhcpcd.service"
         fi
 
         # Set correct DAEMON_CONF path for hostapd (Ubuntu20 + Armbian22)
