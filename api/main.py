@@ -14,18 +14,9 @@ import modules.firewall as firewall
 import modules.networking as networking
 import modules.openvpn as openvpn
 import modules.wireguard as wireguard
-import modules.restart as restart
 
 
 tags_metadata = [
-    {
-        "name": "system",
-        "description": "All information regarding the underlying system."
-    },
-    {
-        "name": "accesspoint/hostpost",
-        "description": "Get and change all information regarding the hotspot"
-    }
 ]
 app = FastAPI(
     title="API for Raspap",
@@ -37,7 +28,7 @@ app = FastAPI(
     }
 )
 
-@app.get("/system", tags=["system"])
+@app.get("/system", tags=["system"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_system():
     return{
 'hostname': system.hostname(),
@@ -54,7 +45,7 @@ async def get_system():
 'rpiRevision': system.rpiRevision()
 }
 
-@app.get("/ap", tags=["accesspoint/hostpost"])
+@app.get("/ap", tags=["accesspoint/hostpost"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_ap():
     return{
 'driver': ap.driver(),
@@ -75,66 +66,14 @@ async def get_ap():
 'ignore_broadcast_ssid': ap.ignore_broadcast_ssid()
 }
 
-@app.post("/ap", tags=["accesspoint/hostpost"])
-async def post_ap(driver=None,
-                  ctrl_interface=None,
-                  ctrl_interface_group=None,
-                  auth_algs=None,
-                  wpa_key_mgmt=None,
-                  beacon_int=None,
-                  ssid=None,
-                  channel=None,
-                  hw_mode=None,
-                  ieee80211n=None,
-                  wpa_passphrase=None,
-                  interface=None,
-                  wpa=None,
-                  wpa_pairwise=None,
-                  country_code=None,
-                  ignore_broadcast_ssid=None,
-                  api_key: APIKey = Depends(auth.get_api_key)):
-    if driver != None:
-        ap.set_driver(driver)
-    if ctrl_interface != None:
-        ap.set_ctrl_interface(ctrl_interface)
-    if ctrl_interface_group !=None:
-        ap.set_ctrl_interface_group(ctrl_interface_group)
-    if auth_algs != None:
-        ap.set_auth_algs(auth_algs)
-    if wpa_key_mgmt != None:
-        ap.set_wpa_key_mgmt(wpa_key_mgmt)
-    if beacon_int != None:
-        ap.set_beacon_int(beacon_int)
-    if ssid != None:
-        ap.set_ssid(ssid)
-    if channel != None:
-        ap.set_channel(channel)
-    if hw_mode != None:
-        ap.set_hw_mode(hw_mode)
-    if ieee80211n != None:
-        ap.set_ieee80211n(ieee80211n)
-    if wpa_passphrase != None:
-        ap.set_wpa_passphrase(wpa_passphrase)
-    if interface != None:
-        ap.set_interface(interface)
-    if wpa != None:
-        ap.set_wpa(wpa)
-    if wpa_pairwise != None:
-        ap.set_wpa_pairwise(wpa_pairwise)
-    if country_code != None:
-        ap.set_country_code(country_code)
-    if ignore_broadcast_ssid != None:
-        ap.set_ignore_broadcast_ssid(ignore_broadcast_ssid)
-    
-
-@app.get("/clients/{wireless_interface}", tags=["Clients"])
+@app.get("/clients/{wireless_interface}", tags=["Clients"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_clients(wireless_interface):
     return{
 'active_clients_amount': client.get_active_clients_amount(wireless_interface),
 'active_clients': json.loads(client.get_active_clients(wireless_interface))
 }
 
-@app.get("/dhcp", tags=["DHCP"])
+@app.get("/dhcp", tags=["DHCP"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_dhcp():
     return{
 'range_start': dhcp.range_start(),
@@ -145,29 +84,30 @@ async def get_dhcp():
 'range_nameservers': dhcp.range_nameservers()
 }
 
-@app.get("/dns/domains", tags=["DNS"])
+@app.get("/dns/domains", tags=["DNS"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_domains():
     return{
 'domains': json.loads(dns.adblockdomains())
 }
-@app.get("/dns/hostnames", tags=["DNS"])
+
+@app.get("/dns/hostnames", tags=["DNS"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_hostnames():
     return{
 'hostnames': json.loads(dns.adblockhostnames())
 }
 
-@app.get("/dns/upstream", tags=["DNS"])
+@app.get("/dns/upstream", tags=["DNS"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_upstream():
     return{
 'upstream_nameserver': dns.upstream_nameserver()
 }
 
-@app.get("/dns/logs", tags=["DNS"])
+@app.get("/dns/logs", tags=["DNS"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_dnsmasq_logs():
     return(dns.dnsmasq_logs())
 
 
-@app.get("/ddns", tags=["DDNS"])
+@app.get("/ddns", tags=["DDNS"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_ddns():
     return{
 'use': ddns.use(),
@@ -179,18 +119,18 @@ async def get_ddns():
 'domain': ddns.domain()
 }
 
-@app.get("/firewall", tags=["Firewall"])
+@app.get("/firewall", tags=["Firewall"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_firewall():
     return json.loads(firewall.firewall_rules())
 
-@app.get("/networking", tags=["Networking"])
+@app.get("/networking", tags=["Networking"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_networking():
     return{
 'interfaces': json.loads(networking.interfaces()),
 'throughput': json.loads(networking.throughput())
 }
 
-@app.get("/openvpn", tags=["OpenVPN"])
+@app.get("/openvpn", tags=["OpenVPN"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_openvpn():
     return{
 'client_configs': openvpn.client_configs(),
@@ -200,13 +140,13 @@ async def get_openvpn():
 'client_login_active': openvpn.client_login_active()
 }
 
-@app.get("/openvpn/{config}", tags=["OpenVPN"])
+@app.get("/openvpn/{config}", tags=["OpenVPN"], api_key: APIKey = Depends(auth.get_api_key)
 async def client_config_list(config):
     return{
 'client_config': openvpn.client_config_list(config)
 }
 
-@app.get("/wireguard", tags=["WireGuard"])
+@app.get("/wireguard", tags=["WireGuard"], api_key: APIKey = Depends(auth.get_api_key)
 async def get_wireguard():
     return{
 'client_configs': wireguard.configs(),
@@ -214,16 +154,8 @@ async def get_wireguard():
 'client_config_active': wireguard.client_config_active()
 }
 
-@app.get("/wireguard/{config}", tags=["WireGuard"])
+@app.get("/wireguard/{config}", tags=["WireGuard"], api_key: APIKey = Depends(auth.get_api_key)
 async def client_config_list(config):
     return{
 'client_config': wireguard.client_config_list(config)
 }
-
-@app.post("/restart/webgui")
-async def restart_webgui():
-    restart.webgui()
-
-@app.post("/restart/adblock")
-async def restart_adblock():
-    restart.adblock()
