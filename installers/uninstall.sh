@@ -264,4 +264,3 @@ function _remove_raspap() {
     _uninstall_complete
 }
 
-_remove_raspap
