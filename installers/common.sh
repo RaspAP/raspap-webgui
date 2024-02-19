@@ -602,6 +602,8 @@ function _install_restapi() {
     sudo mv $webroot_dir/installers/restapi.service /lib/systemd/system/ || _install_status 1 "Unable to move restapi.service file"
     sudo systemctl daemon-reload
     sudo systemctl enable restapi.service || _install_status 1 "Failed to enable restapi.service"
+    echo "Enabling RestAPI management option"
+    sudo sed -i "s/\('RASPI_RESTAPI_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
 
     _install_status 0
 }

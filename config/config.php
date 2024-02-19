@@ -59,6 +59,7 @@ define('RASPI_CHANGETHEME_ENABLED', true);
 define('RASPI_VNSTAT_ENABLED', true);
 define('RASPI_SYSTEM_ENABLED', true);
 define('RASPI_MONITOR_ENABLED', false);
+define('RASPI_RESTAPI_ENABLED', false);
 
 // Locale settings
 define('LOCALE_ROOT', 'locale');
