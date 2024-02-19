@@ -19,7 +19,7 @@ import modules.wireguard as wireguard
 tags_metadata = [
 ]
 app = FastAPI(
-    title="API for Raspap",
+    title="API for RaspAP",
     openapi_tags=tags_metadata,
     version="0.0.1",
     license_info={
