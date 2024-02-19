@@ -17,16 +17,22 @@
             <div class="col">
               <i class="fas fa-puzzle-piece mr-2"></i><?php echo _("RestAPI"); ?>
             </div>
+            <div class="col">
+              <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+                <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
+                <span class="text service-status">raspap-api <?php echo _($serviceStatus) ?></span>
+              </button>
+            </div>
           </div><!-- /.row -->
         </div><!-- /.card-header -->
         <div class="card-body">
         <?php $status->showMessages(); ?>
-          <form role="form" action="restapi_conf" enctype="multipart/form-data" method="POST">
+          <form role="form" action="restapi_conf" method="POST" class="needs-validation" novalidate>
             <?php echo CSRFTokenFieldTag() ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="settingstab" href="#restapisettings" data-toggle="tab"><?php echo _("Settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#restapistatus" data-toggle="tab"><?php echo _("Status"); ?></a></li>
+                <li class="nav-item"><a class="nav-link active" id="restapisettingstab" href="#restapisettings" data-toggle="tab"><?php echo _("Settings"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="restapistatustab" href="#restapistatus" data-toggle="tab"><?php echo _("Status"); ?></a></li>
             </ul>
 
             <!-- Tab panes -->
