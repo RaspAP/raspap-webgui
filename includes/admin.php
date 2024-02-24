@@ -26,6 +26,7 @@ function DisplayAuthConfig($username)
                     fwrite($auth_file, password_hash($_POST['newpass'], PASSWORD_BCRYPT).PHP_EOL);
                     fclose($auth_file);
                     $username = $new_username;
+                    $_SESSION['user_id'] = $username;
                     $status->addMessage('Admin password updated');
                 } else {
                     $status->addMessage('Failed to update admin password', 'danger');
