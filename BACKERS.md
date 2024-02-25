@@ -28,7 +28,8 @@ The following features are currently available exclusively to sponsors. A tangib
  ✅ [Multiple WireGuard configs](https://docs.raspap.com/wireguard/#multiple-configs)  
  ✅ [Wireless LAN routing](https://docs.raspap.com/wlanrouting/)  
  ✅ Custom user avatars  
-
+ ✅ [WiFi repeater mode](https://docs.raspap.com/ap-basics/#wifi-repeater-mode)  
+ 
 Look for the list above to grow as we add more exclusive features. Be sure to visit this page from time to time to learn about what's new, check the [Insiders docs page](https://docs.raspap.com/insiders/) and follow [@RaspAP on Twitter](https://twitter.com/rasp_ap) to stay updated.
 
 ## Funding targets
