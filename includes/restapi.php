@@ -3,6 +3,10 @@
 require_once 'includes/functions.php';
 require_once 'config.php';
 
+$env = dirname(__DIR__, 1);
+$dotenv = Dotenv\Dotenv::createImmutable($env);
+$dotenv->safeLoad();
+
 /**
  * Handler for RestAPI settings
  */
@@ -12,7 +16,7 @@ function DisplayRestAPI()
     $status = new \RaspAP\Messages\StatusMessage;
 
     // set defaults
-    $apiKey = "Hx80npaPTol9fKeBnPwX7ib2"; //placeholder
+    $apiKey = $_ENV['RASPAP_API_KEY'];
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveAPIsettings'])) {
