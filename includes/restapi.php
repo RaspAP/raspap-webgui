@@ -3,10 +3,6 @@
 require_once 'includes/functions.php';
 require_once 'config.php';
 
-$env = dirname(__DIR__, 1);
-$dotenv = Dotenv\Dotenv::createImmutable($env);
-$dotenv->safeLoad();
-
 /**
  * Handler for RestAPI settings
  */
@@ -14,6 +10,10 @@ function DisplayRestAPI()
 {
     // initialize status object
     $status = new \RaspAP\Messages\StatusMessage;
+
+    // create instance of DotEnv
+    $dotenv = new \RaspAP\DotEnv\DotEnv;
+    $dotenv->load();
 
     // set defaults
     $apiKey = $_ENV['RASPAP_API_KEY'];
@@ -25,7 +25,7 @@ function DisplayRestAPI()
                 if (strlen($apiKey) == 0) {
                     $status->addMessage('Please enter a valid API key', 'danger');
                 } else {
-                    $return = saveAPISettings($status, $apiKey);
+                    $return = saveAPISettings($status, $apiKey, $dotenv);
                 }
             }
         } elseif (isset($_POST['StartRestAPIservice'])) {
@@ -57,12 +57,14 @@ function DisplayRestAPI()
  * Saves RestAPI settings
  *
  * @param object status
+ * @param object dotenv
  * @param string $apiKey
  */
-function saveAPISettings($status, $apiKey)
+function saveAPISettings($status, $apiKey, $dotenv)
 {
     $status->addMessage('Saving API key', 'info');
-    // TODO: update API key. location defined from constant
+    $dotenv->set('RASPAP_API_KEY', $apiKey);
 
     return $status;
 }
+
