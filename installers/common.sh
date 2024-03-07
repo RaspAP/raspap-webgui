@@ -584,7 +584,7 @@ function _create_openvpn_scripts() {
 # Install and enable RestAPI configuration option
 function _install_restapi() {
     _install_log "Installing and enabling RestAPI"
-    sudo cp -r "$webroot_dir/api" "$raspap_dir/api"  || _install_status 1 "Unable to move api folder"
+    sudo mv -r "$webroot_dir/api" "$raspap_dir/api"  || _install_status 1 "Unable to move api folder"
 
     if ! command -v python3 &> /dev/null; then
         echo "Python is not installed. Installing Python..."
