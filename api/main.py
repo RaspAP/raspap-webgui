@@ -28,8 +28,8 @@ app = FastAPI(
     }
 )
 
-@app.get("/system", tags=["system"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_system():
+@app.get("/system", tags=["system"])
+async def get_system(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'hostname': system.hostname(),
 'uptime': system.uptime(),
@@ -45,8 +45,8 @@ async def get_system():
 'rpiRevision': system.rpiRevision()
 }
 
-@app.get("/ap", tags=["accesspoint/hostpost"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_ap():
+@app.get("/ap", tags=["accesspoint/hostpost"])
+async def get_ap(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'driver': ap.driver(),
 'ctrl_interface': ap.ctrl_interface(),
@@ -66,15 +66,15 @@ async def get_ap():
 'ignore_broadcast_ssid': ap.ignore_broadcast_ssid()
 }
 
-@app.get("/clients/{wireless_interface}", tags=["Clients"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_clients(wireless_interface):
+@app.get("/clients/{wireless_interface}", tags=["Clients"]) 
+async def get_clients(wireless_interface, api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'active_clients_amount': client.get_active_clients_amount(wireless_interface),
 'active_clients': json.loads(client.get_active_clients(wireless_interface))
 }
 
-@app.get("/dhcp", tags=["DHCP"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_dhcp():
+@app.get("/dhcp", tags=["DHCP"])
+async def get_dhcp(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'range_start': dhcp.range_start(),
 'range_end': dhcp.range_end(),
@@ -84,31 +84,31 @@ async def get_dhcp():
 'range_nameservers': dhcp.range_nameservers()
 }
 
-@app.get("/dns/domains", tags=["DNS"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_domains():
+@app.get("/dns/domains", tags=["DNS"])
+async def get_domains(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'domains': json.loads(dns.adblockdomains())
 }
 
-@app.get("/dns/hostnames", tags=["DNS"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_hostnames():
+@app.get("/dns/hostnames", tags=["DNS"])
+async def get_hostnames(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'hostnames': json.loads(dns.adblockhostnames())
 }
 
-@app.get("/dns/upstream", tags=["DNS"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_upstream():
+@app.get("/dns/upstream", tags=["DNS"]) 
+async def get_upstream(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'upstream_nameserver': dns.upstream_nameserver()
 }
 
-@app.get("/dns/logs", tags=["DNS"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_dnsmasq_logs():
+@app.get("/dns/logs", tags=["DNS"]) 
+async def get_dnsmasq_logs(api_key: APIKey = Depends(auth.get_api_key)):
     return(dns.dnsmasq_logs())
 
 
-@app.get("/ddns", tags=["DDNS"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_ddns():
+@app.get("/ddns", tags=["DDNS"]) 
+async def get_ddns(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'use': ddns.use(),
 'method': ddns.method(),
@@ -119,19 +119,19 @@ async def get_ddns():
 'domain': ddns.domain()
 }
 
-@app.get("/firewall", tags=["Firewall"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_firewall():
+@app.get("/firewall", tags=["Firewall"]) 
+async def get_firewall(api_key: APIKey = Depends(auth.get_api_key)):
     return json.loads(firewall.firewall_rules())
 
-@app.get("/networking", tags=["Networking"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_networking():
+@app.get("/networking", tags=["Networking"]) 
+async def get_networking(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'interfaces': json.loads(networking.interfaces()),
 'throughput': json.loads(networking.throughput())
 }
 
-@app.get("/openvpn", tags=["OpenVPN"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_openvpn():
+@app.get("/openvpn", tags=["OpenVPN"]) 
+async def get_openvpn(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'client_configs': openvpn.client_configs(),
 'client_config_names': openvpn.client_config_names(),
@@ -140,22 +140,22 @@ async def get_openvpn():
 'client_login_active': openvpn.client_login_active()
 }
 
-@app.get("/openvpn/{config}", tags=["OpenVPN"], api_key: APIKey = Depends(auth.get_api_key)
-async def client_config_list(config):
+@app.get("/openvpn/{config}", tags=["OpenVPN"]) 
+async def client_config_list(config, api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'client_config': openvpn.client_config_list(config)
 }
 
-@app.get("/wireguard", tags=["WireGuard"], api_key: APIKey = Depends(auth.get_api_key)
-async def get_wireguard():
+@app.get("/wireguard", tags=["WireGuard"]) 
+async def get_wireguard(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'client_configs': wireguard.configs(),
 'client_config_names': wireguard.client_config_names(),
 'client_config_active': wireguard.client_config_active()
 }
 
-@app.get("/wireguard/{config}", tags=["WireGuard"], api_key: APIKey = Depends(auth.get_api_key)
-async def client_config_list(config):
+@app.get("/wireguard/{config}", tags=["WireGuard"])
+async def client_config_list(config, api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'client_config': wireguard.client_config_list(config)
 }
