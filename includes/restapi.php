@@ -29,21 +29,21 @@ function DisplayRestAPI()
                 }
             }
         } elseif (isset($_POST['StartRestAPIservice'])) {
-            $status->addMessage('Attempting to start raspap-restapi.service', 'info');
-            exec('sudo /bin/systemctl start raspap-restapi', $return);
+            $status->addMessage('Attempting to start restapi.service', 'info');
+            exec('sudo /bin/systemctl start restapi.service', $return);
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');
             }
         } elseif (isset($_POST['StopRestAPIservice'])) {
-            $status->addMessage('Attempting to stop raspap-restapi.service', 'info');
-            exec('sudo /bin/systemctl stop raspap-restapi.service', $return);
+            $status->addMessage('Attempting to stop restapi.service', 'info');
+            exec('sudo /bin/systemctl stop restapi.service', $return);
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');
             }
         }
     }
-    exec('pidof uvicorn | wc -l', $uvicorn);
-    $serviceStatus = $uvicorn[0] == 0 ? "down" : "up";
+    exec("ps aux | grep -v grep | grep uvicorn", $output, $return);
+    $serviceStatus = !empty($output) ? "up" : "down";
 
     echo renderTemplate("restapi", compact(
         "status",
