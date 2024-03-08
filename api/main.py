@@ -45,7 +45,7 @@ async def get_system(api_key: APIKey = Depends(auth.get_api_key)):
 'rpiRevision': system.rpiRevision()
 }
 
-@app.get("/ap", tags=["accesspoint/hostpost"])
+@app.get("/ap", tags=["accesspoint/hotspot"])
 async def get_ap(api_key: APIKey = Depends(auth.get_api_key)):
     return{
 'driver': ap.driver(),
