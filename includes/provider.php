@@ -50,7 +50,7 @@ function DisplayProviderConfig()
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveProviderSettings'])) {
             if (isset($_POST['country'])) {
-                $country = trim($_POST['country']);
+                $country = escapeshellarg(trim($_POST['country']));
                 if (strlen($country) == 0) {
                     $status->addMessage('Select a country from the server location list', 'danger');
                 } else {
