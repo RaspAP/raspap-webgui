@@ -46,6 +46,7 @@ function DisplayRestAPI()
     $serviceStatus = !empty($output) ? "up" : "down";
 
     exec("sudo systemctl status restapi.service", $output, $return);
+    array_shift($output);
     $serviceLog = implode("\n", $output);
 
     echo renderTemplate("restapi", compact(
