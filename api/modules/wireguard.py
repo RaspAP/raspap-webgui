@@ -1,4 +1,5 @@
 import subprocess
+import re
 
 def configs():
     #ignore symlinks, because wg0.conf is in production the main config, but in insiders it is a symlink
@@ -19,6 +20,10 @@ def client_config_active():
     return(active_config[1])
 
 def client_config_list(client_config):
+    pattern = r'^[a-zA-Z0-9_-]+$'
+    if not re.match(pattern, client_config):
+        raise ValueError("Invalid client_config")
+
     config_path = f"/etc/wireguard/{client_config}"
     try:
         with open(config_path, 'r') as f:
