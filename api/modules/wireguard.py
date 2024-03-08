@@ -19,18 +19,5 @@ def client_config_active():
     active_config = output.split("/etc/wireguard/")
     return(active_config[1])
 
-def client_config_list(client_config):
-    pattern = r'^[a-zA-Z0-9_-]+$'
-    if not re.match(pattern, client_config):
-        raise ValueError("Invalid client_config")
-
-    config_path = f"/etc/wireguard/{client_config}"
-    try:
-        with open(config_path, 'r') as f:
-            output = f.read().strip()
-            return output.split('\n')
-    except FileNotFoundError:
-        raise FileNotFoundError("Client configuration file not found")
-
 #TODO: where is the logfile??
 #TODO: is service connected?

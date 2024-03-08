@@ -154,8 +154,3 @@ async def get_wireguard(api_key: APIKey = Depends(auth.get_api_key)):
 'client_config_active': wireguard.client_config_active()
 }
 
-@app.get("/wireguard/{config}", tags=["WireGuard"])
-async def client_config_list(config, api_key: APIKey = Depends(auth.get_api_key)):
-    return{
-'client_config': wireguard.client_config_list(config)
-}
