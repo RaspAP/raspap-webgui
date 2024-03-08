@@ -122,6 +122,10 @@ $(document).on("click", "#gen_wpa_passphrase", function(e) {
     $('#txtwpapassphrase').val(genPassword(63));
 });
 
+$(document).on("click", "#gen_apikey", function(e) {
+    $('#txtapikey').val(genPassword(32).toLowerCase());
+});
+
 $(document).on("click", "#js-clearhostapd-log", function(e) {
     var csrfToken = $('meta[name=csrf_token]').attr('content');
     $.post('ajax/logging/clearlog.php?',{'logfile':'/tmp/hostapd.log', 'csrf_token': csrfToken},function(data){

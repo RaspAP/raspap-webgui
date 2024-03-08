@@ -2,9 +2,9 @@
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
     <input type="submit" class="btn btn-outline btn-primary" name="SaveAPIsettings" value="<?php echo _("Save settings"); ?>" />
         <?php if ($serviceStatus == 'down') : ?>
-        <input type="submit" <?php echo $svcState; ?> class="btn btn-success <?php echo $svcState; ?>" name="StartRestAPIservice" value="<?php echo _("Start RestAPI service"); ?>" />
+        <input type="submit" class="btn btn-success" name="StartRestAPIservice" value="<?php echo _("Start RestAPI service"); ?>" />
         <?php else : ?>
-        <input type="submit" <?php echo $ctlState; ?> class="btn btn-warning <?php echo $svcState; ?>" name="StopRestAPIservice" value="<?php echo _("Stop RestAPI service"); ?>" />
+        <input type="submit" class="btn btn-warning" name="StopRestAPIservice" value="<?php echo _("Stop RestAPI service"); ?>" />
         <?php endif; ?>
     <?php endif ?>
   <?php $buttons = ob_get_clean(); ob_end_clean() ?>
