@@ -9,6 +9,7 @@ $defaults = [
   'RASPI_VERSION' => '3.0.8',
   'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/defaults.json',
   'RASPI_CONFIG_PROVIDERS' => 'config/vpn-providers.json',
+  'RASPI_CONFIG_API' => RASPI_CONFIG.'/api',
   'RASPI_ADMIN_DETAILS' => RASPI_CONFIG.'/raspap.auth',
   'RASPI_WIFI_AP_INTERFACE' => 'wlan0',
   'RASPI_CACHE_PATH' => sys_get_temp_dir() . '/raspap',

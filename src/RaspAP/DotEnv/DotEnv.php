@@ -17,13 +17,17 @@ class DotEnv
     protected $envFile;
     protected $data = [];
 
-    public function __construct($envFile = '.env')
+    public function __construct($envFile = RASPI_CONFIG_API. '/.env')
     {
         $this->envFile = $envFile;
     }
 
     public function load()
     {
+        if (!file_exists($this->envFile)) {
+            $this->createEnv();
+        }
+
         if (file_exists($this->envFile)) {
             $this->data = parse_ini_file($this->envFile);
             foreach ($this->data as $key => $value) {
@@ -68,7 +72,19 @@ class DotEnv
             // if key doesn't exist, append it
             $content .= "$key=$value\n";
         }
-        file_put_contents($this->envFile, $content);
+        file_put_contents("/tmp/.env", $content);
+        system('sudo mv /tmp/.env '.$this->envFile, $result);
+        if ($result !== 0) {
+            throw new Exception("Unable to move .env file: ". $this->envFile);
+        }
+    }
+
+    protected function createEnv()
+    {
+        exec('sudo touch '. escapeshellarg($this->envFile), $output, $result);
+        if ($result !== 0) {
+            throw new Exception("Unable to create .env file: ". $this->envFile);
+        }
     }
 }
 
