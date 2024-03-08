@@ -1,6 +1,5 @@
 import subprocess
 import re
-import os
 
 def configs():
     #ignore symlinks, because wg0.conf is in production the main config, but in insiders it is a symlink
@@ -25,16 +24,13 @@ def client_config_list(client_config):
     if not re.match(pattern, client_config):
         raise ValueError("Invalid client_config")
 
-    # sanitize path to prevent directory traversal
-    client_config = os.path.basename(client_config)
-
-    config_path = os.path.join("/etc/wireguard/", client_config)
-    if not os.path.exists(config_path):
+    config_path = f"/etc/wireguard/{client_config}"
+    try:
+        with open(config_path, 'r') as f:
+            output = f.read().strip()
+            return output.split('\n')
+    except FileNotFoundError:
         raise FileNotFoundError("Client configuration file not found")
-
-    with open(config_path, 'r') as f:
-        output = f.read().strip()
-        return output.split('\n')
 
 #TODO: where is the logfile??
 #TODO: is service connected?
