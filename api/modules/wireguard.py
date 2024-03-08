@@ -19,8 +19,13 @@ def client_config_active():
     return(active_config[1])
 
 def client_config_list(client_config):
-    output = subprocess.run(f"cat /etc/wireguard/{client_config}", shell=True, capture_output=True, text=True).stdout.strip()
-    return output.split('\n')
+    config_path = f"/etc/wireguard/{client_config}"
+    try:
+        with open(config_path, 'r') as f:
+            output = f.read().strip()
+            return output.split('\n')
+    except FileNotFoundError:
+        raise FileNotFoundError("Client configuration file not found")
 
 #TODO: where is the logfile??
 #TODO: is service connected?

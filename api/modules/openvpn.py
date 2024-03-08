@@ -34,7 +34,7 @@ def client_login_active():
     return(active_config[1])
 
 def client_config_list(client_config):
-    output = subprocess.run(f"cat /etc/openvpn/client/{client_config}", shell=True, capture_output=True, text=True).stdout.strip()
+    output = subprocess.run(["cat", f"/etc/openvpn/client/{client_config}"], capture_output=True, text=True).stdout.strip()
     return output.split('\n')
 
 #TODO: where is the logfile??
