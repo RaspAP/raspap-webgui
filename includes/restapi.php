@@ -45,6 +45,9 @@ function DisplayRestAPI()
     exec("ps aux | grep -v grep | grep uvicorn", $output, $return);
     $serviceStatus = !empty($output) ? "up" : "down";
 
+    exec("sudo systemctl status restapi.service", $output, $return);
+    $serviceLog = implode("\n", $output);
+
     echo renderTemplate("restapi", compact(
         "status",
         "apiKey",
