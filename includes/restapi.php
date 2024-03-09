@@ -26,6 +26,10 @@ function DisplayRestAPI()
                     $status->addMessage('Please enter a valid API key', 'danger');
                 } else {
                     $return = saveAPISettings($status, $apiKey, $dotenv);
+                    $status->addMessage('Restarting restapi.service', 'info');
+                    exec('sudo /bin/systemctl stop restapi.service', $return);
+                    sleep(1);
+                    exec('sudo /bin/systemctl start restapi.service', $return);
                 }
             }
         } elseif (isset($_POST['StartRestAPIservice'])) {
@@ -75,7 +79,6 @@ function saveAPISettings($status, $apiKey, $dotenv)
 {
     $status->addMessage('Saving API key', 'info');
     $dotenv->set('RASPAP_API_KEY', $apiKey);
-
     return $status;
 }
 
