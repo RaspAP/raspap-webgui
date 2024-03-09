@@ -505,7 +505,7 @@ function _prompt_install_openvpn() {
 
 # Prompt to install restapi
 function _prompt_install_restapi() {
-    _install_log "Configure restapi"
+    _install_log "Configure RestAPI"
     echo -n "Install and enable RestAPI? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
