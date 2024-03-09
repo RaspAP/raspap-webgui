@@ -49,11 +49,18 @@ function DisplayRestAPI()
     array_shift($output);
     $serviceLog = implode("\n", $output);
 
+    if ($serviceStatus == "up") {
+        $docUrl = getDocUrl();
+        $faicon = "<i class=\"text-gray-500 fas fa-external-link-alt ml-1\"></i>"; 
+        $docMsg = sprintf(_("RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"),$docUrl, $faicon);
+    }
+
     echo renderTemplate("restapi", compact(
         "status",
         "apiKey",
         "serviceStatus",
-        "serviceLog"
+        "serviceLog",
+        "docMsg"
     ));
 }
 
@@ -70,5 +77,15 @@ function saveAPISettings($status, $apiKey, $dotenv)
     $dotenv->set('RASPAP_API_KEY', $apiKey);
 
     return $status;
+}
+
+// Returns a url for fastapi's automatic docs
+function getDocUrl()
+{
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+    $server_name = $_SERVER['SERVER_NAME'];
+    $port = 8081;
+    $url = $protocol . $server_name .':'. $port . '/docs';
+    return $url;
 }
 
