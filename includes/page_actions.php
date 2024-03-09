@@ -45,6 +45,9 @@
         case "/system_info":
             DisplaySystem($extraFooterScripts);
             break;
+        case "/restapi_conf":
+            DisplayRestAPI();
+            break;
         case "/about":
             DisplayAbout();
             break;

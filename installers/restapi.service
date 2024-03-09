@@ -1,0 +1,16 @@
+[Unit]
+Description=raspap-restapi
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/etc/raspap/api
+LimitNOFILE=4096
+ExecStart=/usr/bin/python3 -m uvicorn main:app --host 0.0.0.0 --port 8081
+ExecStop=/bin/kill -HUP ${MAINPID}
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+

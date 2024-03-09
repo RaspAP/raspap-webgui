@@ -5,3 +5,4 @@ yarn-error.log
 includes/config.php
 rootCA.pem
 vendor
+.env

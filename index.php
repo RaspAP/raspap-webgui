@@ -47,6 +47,7 @@ require_once 'includes/about.php';
 require_once 'includes/openvpn.php';
 require_once 'includes/wireguard.php';
 require_once 'includes/provider.php';
+require_once 'includes/restapi.php';
 require_once 'includes/torproxy.php';
 
 initializeApp();

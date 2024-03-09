@@ -80,12 +80,17 @@
           <a class="nav-link" href="data_use"><i class="fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
         </li>
         <?php endif; ?>
+        <?php if (RASPI_RESTAPI_ENABLED) : ?>
+        <li class="nav-item">
+          <a class="nav-link" href="restapi_conf"><i class="fas fa-puzzle-piece mr-2"></i><span class="nav-label"><?php echo _("RestAPI"); ?></a>
+        </li>
+        <?php endif; ?>
         <?php if (RASPI_SYSTEM_ENABLED) : ?>
         <li class="nav-item">
           <a class="nav-link" href="system_info"><i class="fas fa-cube fa-fw mr-2"></i><span class="nav-label"><?php echo _("System"); ?></a>
         </li>
         <?php endif; ?>
-         <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="about"><i class="fas fa-info-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("About RaspAP"); ?></a>
         </li>
         <!-- Divider -->

@@ -1528,3 +1528,35 @@ msgstr "RaspAP Exception"
 msgid "An exception occurred"
 msgstr "An exception occurred"
 
+#: includes/restapi.php
+
+msgid "RestAPI"
+msgstr "RestAPI"
+
+msgid "RestAPI settings"
+msgstr "RestAPI settings"
+
+msgid "Start RestAPI service"
+msgstr "Start RestAPI service"
+
+msgid "Stop RestAPI service"
+msgstr "Stop RestAPI service"
+
+msgid "API Key"
+msgstr "API Key"
+
+msgid "Saving API key"
+msgstr "Saving API key"
+
+msgid "RestAPI status"
+msgstr "RestAPI status"
+
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "Current <code>restapi.service</code> status is displayed below."
+
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
+msgstr "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
+
+msgid "Restarting restapi.service"
+msgstr "Restarting restapi.service"
+

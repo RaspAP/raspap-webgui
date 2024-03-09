@@ -4,6 +4,7 @@ define('RASPI_BRAND_TEXT', 'RaspAP');
 define('RASPI_CONFIG', '/etc/raspap');
 define('RASPI_CONFIG_NETWORK', RASPI_CONFIG.'/networking/defaults.json');
 define('RASPI_CONFIG_PROVIDERS', 'config/vpn-providers.json');
+define('RASPI_CONFIG_API', RASPI_CONFIG.'/api');
 define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
 define('RASPI_WIFI_AP_INTERFACE', 'wlan0');
 define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
@@ -59,6 +60,7 @@ define('RASPI_CHANGETHEME_ENABLED', true);
 define('RASPI_VNSTAT_ENABLED', true);
 define('RASPI_SYSTEM_ENABLED', true);
 define('RASPI_MONITOR_ENABLED', false);
+define('RASPI_RESTAPI_ENABLED', false);
 
 // Locale settings
 define('LOCALE_ROOT', 'locale');
