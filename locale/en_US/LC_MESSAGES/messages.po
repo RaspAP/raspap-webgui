@@ -1557,3 +1557,6 @@ msgstr "Current <code>restapi.service</code> status is displayed below."
 msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
 msgstr "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
 
+msgid "Restarting restapi.service"
+msgstr "Restarting restapi.service"
+
