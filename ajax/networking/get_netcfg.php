@@ -2,8 +2,9 @@
 
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
+require_once '../../includes/authenticate.php';
 
-$interface = $_GET['iface'];
+$interface = $_POST['iface'];
 
 if (isset($interface)) {
     // fetch dnsmasq.conf settings for interface

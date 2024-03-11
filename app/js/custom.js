@@ -216,7 +216,7 @@ Option toggles are set dynamically depending on the loaded configuration
 */
 function loadInterfaceDHCPSelect() {
     var strInterface = $('#cbxdhcpiface').val();
-    $.get('ajax/networking/get_netcfg.php?iface='+strInterface,function(data){
+    $.post('ajax/networking/get_netcfg.php', {iface : strInterface}, function(data){
         jsonData = JSON.parse(data);
         $('#dhcp-iface')[0].checked = jsonData.DHCPEnabled;
         $('#txtipaddress').val(jsonData.StaticIP);
@@ -752,14 +752,14 @@ $(document).on("click", ".js-toggle-password", function(e) {
 
 $(function() {
     $('#theme-select').change(function() {
-        var theme = themes[$( "#theme-select" ).val() ]; 
+        var theme = themes[$( "#theme-select" ).val() ];
         set_theme(theme);
    });
 });
 
 function set_theme(theme) {
     $('link[title="main"]').attr('href', 'app/css/' + theme);
-    // persist selected theme in cookie 
+    // persist selected theme in cookie
     setCookie('theme',theme,90);
 }
 
@@ -772,7 +772,7 @@ $(function() {
     $('#night-mode').change(function() {
         var state = $(this).is(':checked');
         var currentTheme = getCookie('theme');
-        
+
         if (state == true) {
             if (currentTheme == 'custom.php') {
                 set_theme('lightsout.php');

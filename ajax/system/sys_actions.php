@@ -1,6 +1,8 @@
 <?php
 
 require '../../includes/csrf.php';
+require_once '../../includes/config.php';
+require_once '../../includes/authenticate.php';
 
 $action = escapeshellcmd($_POST['a']);
 
@@ -18,4 +20,3 @@ if (isset($action)) {
     }
     echo json_encode($response);
 }
-

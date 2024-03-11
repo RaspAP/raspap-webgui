@@ -2,6 +2,7 @@
 
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
+require_once '../../includes/authenticate.php';
 
 if (isset($_POST['blocklist_id'])) {
     $blocklist_id = escapeshellcmd($_POST['blocklist_id']);
@@ -50,4 +51,3 @@ if (isset($_POST['blocklist_id'])) {
     $jsonData = ['return'=>2,'output'=>['Error getting data']];
     echo json_encode($jsonData);
 }
-

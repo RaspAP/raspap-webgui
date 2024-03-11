@@ -1,6 +1,8 @@
-<?php 
+<?php
 
 require '../../includes/csrf.php';
+require_once '../../includes/config.php';
+require_once '../../includes/authenticate.php';
 
 if (filter_input(INPUT_GET, 'tu') == 'h') {
 

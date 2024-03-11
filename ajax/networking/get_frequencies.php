@@ -1,6 +1,8 @@
 <?php
 
 require '../../includes/csrf.php';
+require_once '../../includes/config.php';
+require_once '../../includes/authenticate.php';
 require '../../src/RaspAP/Parsers/IwParser.php';
 
 if (isset($_POST['interface'])) {
@@ -11,4 +13,3 @@ if (isset($_POST['interface'])) {
 
     echo json_encode($supportedFrequencies);
 }
-

@@ -2,6 +2,7 @@
 
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
+require_once '../../includes/authenticate.php';
 require_once '../../includes/functions.php';
 
 if (isset($_POST['cfg_id'])) {
@@ -11,4 +12,3 @@ if (isset($_POST['cfg_id'])) {
     $jsonData = ['return'=>$return];
     echo json_encode($jsonData);
 }
-
