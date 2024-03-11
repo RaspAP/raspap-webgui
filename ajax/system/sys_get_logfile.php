@@ -1,7 +1,9 @@
-<?php 
+<?php
 
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
+require_once '../../src/RaspAP/Auth/HTTPAuth.php';
+require_once '../../includes/authenticate.php';
 
 $tempDir = sys_get_temp_dir();
 $filePath = $tempDir . DIRECTORY_SEPARATOR . RASPI_DEBUG_LOG;
@@ -19,4 +21,3 @@ if (isset($filePath)) {
     header('Location: '.'/system_info');
     exit();
 }
-

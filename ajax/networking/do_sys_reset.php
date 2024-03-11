@@ -1,6 +1,8 @@
 <?php
 
 require_once '../../includes/config.php';
+require_once '../../src/RaspAP/Auth/HTTPAuth.php';
+require_once '../../includes/authenticate.php';
 require_once '../../includes/session.php';
 require_once '../../includes/functions.php';
 
@@ -16,7 +18,7 @@ if (isset($_POST['csrf_token'])) {
         array("src" => $path .'/090_wlan0.conf', "tmp" => "/tmp/dnsmasqdata", "dest" => RASPI_DNSMASQ_PREFIX.'wlan0.conf'),
         array("src" => $path .'/090_raspap.conf', "tmp" => "/tmp/dnsmasqdata", "dest" => RASPI_DNSMASQ_PREFIX.'raspap.conf'),
     );
-    
+
     foreach ($configs as $config) {
         try {
             $tmp = file_get_contents($config["src"]);
@@ -32,4 +34,3 @@ if (isset($_POST['csrf_token'])) {
 } else {
     handleInvalidCSRFToken();
 }
-

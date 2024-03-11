@@ -2,6 +2,8 @@
 
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
+require_once '../../src/RaspAP/Auth/HTTPAuth.php';
+require_once '../../includes/authenticate.php';
 require_once '../../includes/defaults.php';
 require_once '../../includes/functions.php';
 require_once '../../includes/wifi_functions.php';
@@ -14,7 +16,7 @@ knownWifiStations($networks);
 nearbyWifiStations($networks, !isset($_REQUEST["refresh"]));
 connectedWifiStations($networks);
 sortNetworksByRSSI($networks);
-foreach ($networks as $ssid => $network) $networks[$ssid]["ssidutf8"] = ssid2utf8( $ssid ); 
+foreach ($networks as $ssid => $network) $networks[$ssid]["ssidutf8"] = ssid2utf8( $ssid );
 
 $connected = array_filter($networks, function($n) { return $n['connected']; } );
 $known     = array_filter($networks, function($n) { return !$n['connected'] && $n['configured']; } );

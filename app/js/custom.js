@@ -216,7 +216,8 @@ Option toggles are set dynamically depending on the loaded configuration
 */
 function loadInterfaceDHCPSelect() {
     var strInterface = $('#cbxdhcpiface').val();
-    $.get('ajax/networking/get_netcfg.php?iface='+strInterface,function(data){
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/networking/get_netcfg.php', {'iface' : strInterface, 'csrf_token': csrfToken}, function(data){
         jsonData = JSON.parse(data);
         $('#dhcp-iface')[0].checked = jsonData.DHCPEnabled;
         $('#txtipaddress').val(jsonData.StaticIP);
