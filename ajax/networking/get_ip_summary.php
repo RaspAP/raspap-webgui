@@ -3,6 +3,9 @@
 require '../../includes/csrf.php';
 
 require_once '../../includes/functions.php';
+require_once '../../includes/config.php';
+require_once '../../src/RaspAP/Auth/HTTPAuth.php';
+require_once '../../includes/authenticate.php';
 
 if (isset($_POST['interface'])) {
     $int = preg_replace('/[^a-z0-9]/', '', $_POST['interface']);

@@ -1,8 +1,9 @@
 <?php
 
 require '../../includes/csrf.php';
-
 require_once '../../includes/config.php';
+require_once '../../src/RaspAP/Auth/HTTPAuth.php';
+require_once '../../includes/authenticate.php';
 
 $interface = filter_input(INPUT_GET, 'inet', FILTER_SANITIZE_SPECIAL_CHARS);
 if (empty($interface)) {
@@ -13,8 +14,7 @@ if (empty($interface)) {
     } else {
         exit('No network interfaces found.');
     }
-} 
-
+}
 define('IFNAMSIZ', 16);
 if (strlen($interface) > IFNAMSIZ) {
     exit('Interface name too long.');
@@ -72,14 +72,12 @@ for ($i = count($jsonData) - 1; $i >= 0; --$i) {
     $datareceived = round($jsonData[$i]['rx'] / $dsu_factor, 0);
 
     if ($timeunits === 'm') {
-        echo '{ "date": "' , $dt->format('Y-m') , '", "rx": "' , $datareceived , 
+        echo '{ "date": "' , $dt->format('Y-m') , '", "rx": "' , $datareceived ,
         '", "tx": "' , $datasend , '" }';
     } else {
-        echo '{ "date": "' , $dt->format('Y-m-d') , '", "rx": "' , $datareceived , 
+        echo '{ "date": "' , $dt->format('Y-m-d') , '", "rx": "' , $datareceived ,
         '", "tx": "' , $datasend , '" }';
     }
 }
 
 echo ' ]';
-
-

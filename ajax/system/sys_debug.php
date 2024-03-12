@@ -2,6 +2,8 @@
 
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
+require_once '../../src/RaspAP/Auth/HTTPAuth.php';
+require_once '../../includes/authenticate.php';
 
 if (isset($_POST['csrf_token'])) {
     if (csrfValidateRequest() && !CSRFValidate()) {
@@ -20,4 +22,3 @@ if (isset($_POST['csrf_token'])) {
 } else {
     handleInvalidCSRFToken();
 }
-

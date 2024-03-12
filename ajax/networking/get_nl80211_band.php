@@ -2,12 +2,19 @@
 
 require '../../includes/csrf.php';
 require_once '../../includes/config.php';
+require_once '../../src/RaspAP/Auth/HTTPAuth.php';
+require_once '../../includes/authenticate.php';
 require_once '../../includes/locale.php';
 
 if (isset($_POST['interface'])) {
 
     define( 'NL80211_BAND_24GHZ', 0x1 );
     define( 'NL80211_BAND_5GHZ', 0x2 );
+
+    if(!preg_match('/^[a-zA-Z0-9]+$/', $_POST['interface'])) {
+      exit('Invalid interface name.');
+    }
+
     $iface = escapeshellcmd($_POST['interface']);
     $flags = 0;
 
@@ -17,7 +24,7 @@ if (isset($_POST['interface'])) {
 
     // get frequencies supported by device
     exec('iw '.$phy.' info | sed -rn "s/^.*\*\s([0-9]{4})\sMHz.*/\1/p"', $frequencies);
-    
+
     if (count(preg_grep('/^24[0-9]{2}/i', $frequencies)) >0) {
         $flags += NL80211_BAND_24GHZ;
     }
@@ -40,4 +47,3 @@ if (isset($_POST['interface'])) {
     }
     echo json_encode($msg);
 }
-
