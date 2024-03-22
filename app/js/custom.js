@@ -753,8 +753,21 @@ $(document).on("click", ".js-toggle-password", function(e) {
 
 $(function() {
     $('#theme-select').change(function() {
-        var theme = themes[$( "#theme-select" ).val() ]; 
-        set_theme(theme);
+        var theme = themes[$( "#theme-select" ).val() ];
+
+        var hasDarkTheme = theme === 'custom.php' ||
+            theme === 'material-light.php';
+        var nightModeChecked = $("#night-mode").prop("checked");
+        
+        if (nightModeChecked && hasDarkTheme) {
+            if (theme === "custom.php") {
+                set_theme("lightsout.php");
+            } else if (theme === "material-light.php") {
+                set_theme("material-dark.php");
+            }
+        } else {
+            set_theme(theme);
+        }
    });
 });
 
