@@ -29,13 +29,13 @@ readonly raspap_router="/etc/lighttpd/conf-available/50-raspap-router.conf"
 readonly rulesv4="/etc/iptables/rules.v4"
 readonly blocklist_hosts="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
 readonly blocklist_domains="https://big.oisd.nl/dnsmasq"
-webroot_dir="/var/www/html"
 
 if [ "$insiders" == 1 ]; then
     repo="RaspAP/raspap-insiders"
     branch=${RASPAP_INSIDERS_LATEST}
 fi
 git_source_url="https://github.com/$repo"
+webroot_dir="/var/www/html"
 
 # NOTE: all the below functions are overloadable for system-specific installs
 function _install_raspap() {
@@ -55,12 +55,8 @@ function _install_raspap() {
     _install_lighttpd_configs
     _default_configuration
     _configure_networking
-    _prompt_install_adblock
-    _prompt_install_openvpn
-    _prompt_install_restapi
+    _prompt_install_features
     _install_extra_features
-    _prompt_install_wireguard
-    _prompt_install_vpn_providers
     _patch_system_files
     _install_complete
 }
@@ -345,19 +341,37 @@ function _install_lighttpd_configs() {
     _install_status 0
 }
 
-# Prompt to install ad blocking
-function _prompt_install_adblock() {
-    _install_log "Configure ad blocking"
-    echo -n "Install ad blocking and enable list management? [Y/n]: "
+function _prompt_install_features() {
+    readonly features=(
+      "Ad blocking:Install Ad blocking and enable list management:adblock:_install_adblock"
+      "OpenVPN:Install OpenVPN and enable client configuration:ovpn:_install_openvpn"
+      "RestAPI:Install and enable RestAPI:restapi:_install_restapi"
+      "WireGuard:Install WireGuard and enable VPN tunnel configuration:wg:_install_wireguard"
+      "VPN provider:Enable VPN provider client configuration:pv:_install_provider"
+    )
+    for feature in "${features[@]}"; do
+      IFS=':' read -r -a feature_details <<< "$feature"
+      _prompt_install_feature "${feature_details[@]}"
+    done
+}
+
+# Prompt to install optional feature
+function _prompt_install_feature() {
+    local feature="$1"
+    local prompt="$2"
+    local opt="$3"
+    local function="$4"
+    _install_log "Configure $feature support"
+    echo -n "$prompt? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
             _install_status 0 "(Skipped)"
         else
-            _install_adblock
+            $function
         fi
-    elif [ "$adblock_option" == 1 ]; then
-        _install_adblock
+    elif [ "${opt}_option" == 1 ]; then
+        $function
     else
         echo "(Skipped)"
     fi
@@ -409,27 +423,9 @@ function _install_adblock() {
     _install_status 0
 }
 
-# Prompt to install VPN providers
-function _prompt_install_vpn_providers() {
-    _install_log "Configure VPN provider support (Beta)"
-    echo -n "Enable VPN provider client configuration? [Y/n]: "
-    if [ "$assume_yes" == 0 ]; then
-        read answer < /dev/tty
-        if [ "$answer" != "${answer#[Nn]}" ]; then
-            _install_status 0 "(Skipped)"
-        else
-            _install_provider
-        fi
-    elif [[ "$pv_option" =~ ^[0-9]+$ ]]; then
-        _install_provider
-    else
-        echo "(Skipped)"
-    fi
-}
-
 # Install VPN provider client configuration
 function _install_provider() {
-
+    _install_log "Installing VPN provider support"
     json="$webroot_dir/config/"vpn-providers.json
     while IFS='|' read -r key value; do
         options["$key"]="$value"
@@ -485,63 +481,9 @@ function _install_provider() {
     _install_status 0
 }
 
-# Prompt to install openvpn
-function _prompt_install_openvpn() {
-    _install_log "Configure OpenVPN support"
-    echo -n "Install OpenVPN and enable client configuration? [Y/n]: "
-    if [ "$assume_yes" == 0 ]; then
-        read answer < /dev/tty
-        if [ "$answer" != "${answer#[Nn]}" ]; then
-            _install_status 0 "(Skipped)"
-        else
-            _install_openvpn
-        fi
-    elif [ "$ovpn_option" == 1 ]; then
-        _install_openvpn
-    else
-        echo "(Skipped)"
-    fi
-}
-
-# Prompt to install restapi
-function _prompt_install_restapi() {
-    _install_log "Configure RestAPI"
-    echo -n "Install and enable RestAPI? [Y/n]: "
-    if [ "$assume_yes" == 0 ]; then
-        read answer < /dev/tty
-        if [ "$answer" != "${answer#[Nn]}" ]; then
-            _install_status 0 "(Skipped)"
-        else
-            _install_restapi
-        fi
-    elif [ "$restapi_option" == 1 ]; then
-        _install_restapi
-    else
-        echo "(Skipped)"
-    fi
-}
-
-# Prompt to install WireGuard
-function _prompt_install_wireguard() {
-    _install_log "Configure WireGuard support"
-    echo -n "Install WireGuard and enable VPN tunnel configuration? [Y/n]: "
-    if [ "$assume_yes" == 0 ]; then
-        read answer < /dev/tty
-        if [ "$answer" != "${answer#[Nn]}" ]; then
-            _install_status 0 "(Skipped)"
-        else
-            _install_wireguard
-        fi
-    elif [ "$wg_option" == 1 ]; then
-        _install_wireguard
-    else
-        echo "(Skipped)"
-    fi
-}
-
 # Install Wireguard from the Debian unstable distro
 function _install_wireguard() {
-    _install_log "Configure WireGuard support"
+    _install_log "Configuring WireGuard support"
     if { [ "$OS" == "Debian" ] && [ "$RELEASE" == 12 ]; } ||
        { [ "$OS" == "Ubuntu" ] && [ "$RELEASE" == "22.04" ]; }; then
         wg_dep="resolvconf"
