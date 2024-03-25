@@ -95,11 +95,11 @@ function _config_installation() {
         echo "Setting install path to ${path}"
         webroot_dir=$path
     fi
-    echo -n "lighttpd root: ${webroot_dir}? [Y/n]: "
+    echo -n "Installation directory: ${webroot_dir}? [Y/n]: "
     if [ "$assume_yes" == 0 ]; then
         read answer < /dev/tty
         if [ "$answer" != "${answer#[Nn]}" ]; then
-            read -e -p < /dev/tty "Enter alternate lighttpd directory: " -i "/var/www/html" webroot_dir
+            read -e -p < /dev/tty "Enter alternate install directory: " -i "/var/www/html" webroot_dir
         fi
     else
         echo -e
@@ -137,7 +137,29 @@ function _get_linux_distro() {
         DESC=$PRETTY_NAME
     else
         _install_status 1 "Unsupported Linux distribution"
+        exit 0
     fi
+
+    _check_incompatible_distro "$OS"
+}
+
+# Checks for incompatible Desktop distros
+function _check_incompatible_distro() {
+    local distro="$1"
+    local status_err="Unsupported Desktop distro detected. Please see the docs."
+    echo "OS compatibility check"
+    if [ "$distro" == "Debian" ]; then
+        if ! dpkg -l raspberrypi-ui-mods &> /dev/null; then
+            _install_status 1 "$status_err"
+            exit 0
+        fi
+    elif [ "$distro" == "Ubuntu" ]; then
+        if ! dpkg -l ubuntu-mate-core &> /dev/null || dpkg -l ubuntu-desktop &> /dev/null; then
+            _install_status 1 "$status_err"
+            exit 0
+        fi
+    fi
+    _install_status 0
 }
 
 # Sets php package option based on Linux version, abort if unsupported distro
