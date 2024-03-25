@@ -149,12 +149,12 @@ function _check_incompatible_distro() {
     local status_err="Unsupported Desktop distro detected. Please see the docs."
     echo "OS compatibility check"
     if [ "$distro" == "Debian" ]; then
-        if ! dpkg -l raspberrypi-ui-mods &> /dev/null; then
+        if ! dpkg-query -W -f='${Status}' raspberrypi-ui-mods 2>/dev/null | grep -q 'not-installed'; then
             _install_status 1 "$status_err"
             exit 0
         fi
     elif [ "$distro" == "Ubuntu" ]; then
-        if ! dpkg -l ubuntu-mate-core &> /dev/null || dpkg -l ubuntu-desktop &> /dev/null; then
+        if ! dpkg-query -W -f='${Status}' ubuntu-desktop 2>/dev/null | grep -q 'not-installed'; then
             _install_status 1 "$status_err"
             exit 0
         fi
