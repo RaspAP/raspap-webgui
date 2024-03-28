@@ -6,7 +6,7 @@ if (!defined('RASPI_CONFIG')) {
 
 $defaults = [
   'RASPI_BRAND_TEXT' => 'RaspAP',
-  'RASPI_VERSION' => '3.1.0',
+  'RASPI_VERSION' => '3.1.1',
   'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/defaults.json',
   'RASPI_CONFIG_PROVIDERS' => 'config/vpn-providers.json',
   'RASPI_CONFIG_API' => RASPI_CONFIG.'/api',
