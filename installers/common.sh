@@ -139,27 +139,6 @@ function _get_linux_distro() {
         _install_status 1 "Unsupported Linux distribution"
         exit 0
     fi
-
-    _check_incompatible_distro "$OS"
-}
-
-# Checks for incompatible Desktop distros
-function _check_incompatible_distro() {
-    local distro="$1"
-    local status_err="Unsupported Desktop distro detected. Please see the docs."
-    echo "OS compatibility check"
-    if [ "$distro" == "Debian" ]; then
-        if ! dpkg-query -W -f='${Status}' raspberrypi-ui-mods 2>/dev/null | grep -q 'not-installed'; then
-            _install_status 1 "$status_err"
-            exit 0
-        fi
-    elif [ "$distro" == "Ubuntu" ]; then
-        if ! dpkg-query -W -f='${Status}' ubuntu-desktop 2>/dev/null | grep -q 'not-installed'; then
-            _install_status 1 "$status_err"
-            exit 0
-        fi
-    fi
-    _install_status 0
 }
 
 # Sets php package option based on Linux version, abort if unsupported distro
