@@ -344,11 +344,11 @@ function _install_lighttpd_configs() {
 
 function _prompt_install_features() {
     readonly features=(
-      "Ad blocking:Install Ad blocking and enable list management:adblock:_install_adblock"
-      "OpenVPN:Install OpenVPN and enable client configuration:ovpn:_install_openvpn"
-      "RestAPI:Install and enable RestAPI:restapi:_install_restapi"
-      "WireGuard:Install WireGuard and enable VPN tunnel configuration:wg:_install_wireguard"
-      "VPN provider:Enable VPN provider client configuration:pv:_install_provider"
+      "Ad blocking:Install Ad blocking and enable list management:adblock_option:_install_adblock"
+      "OpenVPN:Install OpenVPN and enable client configuration:ovpn_option:_install_openvpn"
+      "RestAPI:Install and enable RestAPI:restapi_option:_install_restapi"
+      "WireGuard:Install WireGuard and enable VPN tunnel configuration:wg_option:_install_wireguard"
+      "VPN provider:Enable VPN provider client configuration:pv_option:_install_provider"
     )
     for feature in "${features[@]}"; do
       IFS=':' read -r -a feature_details <<< "$feature"
@@ -371,7 +371,7 @@ function _prompt_install_feature() {
         else
             $function
         fi
-    elif [ "${opt}_option" == 1 ]; then
+    elif [ "${!opt}" == 1 ]; then
         $function
     else
         echo "(Skipped)"
