@@ -106,6 +106,7 @@ function _generate_log() {
     _packages_info
     _raspap_info
     _usb_info
+    _rfkill_info
     _wpa_info
     _dnsmasq_info
     _dhcpcd_info
@@ -190,6 +191,12 @@ function _usb_info() {
     local stdout=$(lsusb)
     _log_separator "USB Devices"
     _log_write "${stdout}"
+}
+
+function _rfkill_info() {
+    local stdout=$(rfkill list)
+     _log_separator "rfkill"
+     _log_write "${stdout}"
 }
 
 function _wpa_info() {
