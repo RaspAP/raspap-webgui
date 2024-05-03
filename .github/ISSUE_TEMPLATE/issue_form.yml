@@ -40,6 +40,8 @@ body:
           required: true
         - label: I checked the [FAQ](https://docs.raspap.com/faq/) and [official documentation](https://docs.raspap.com/).
           required: true
+        - label: I am using an [external wireless adapter](https://docs.raspap.com/issues/#external-hardware).
+          required: true
         - label: I have generated a [RaspAP debug log](https://docs.raspap.com/ap-basics/#debug-log) and performed a [self-diagnosis](https://docs.raspap.com/ap-basics/#diagnosing-problems).
           required: true
 
