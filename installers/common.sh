@@ -239,6 +239,10 @@ function _install_dependencies() {
         dhcpcd_package="dhcpcd dhcpcd-base"
         echo "${dhcpcd_package} will be installed from the main deb sources list"
     fi
+    if [ ${OS,,} = "armbian" ]; then
+        ifconfig_package="net-tools"
+        echo "${ifconfig_package} will be installed from the main deb sources list"
+    fi
     if [ "$insiders" == 1 ]; then
         network_tools="curl dnsutils nmap"
         echo "${network_tools} will be installed from the main deb sources list"
@@ -247,7 +251,7 @@ function _install_dependencies() {
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $rsync_package $network_tools vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
+    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $rsync_package $network_tools $ifconfig_package vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
     _install_status 0
 }
 
