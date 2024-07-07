@@ -64,9 +64,9 @@ function DisplayWireGuardConfig()
     }
 
     // fetch service status
-    exec('pidof wg-crypt-wg0 | wc -l', $wgstatus);
-    $serviceStatus = $wgstatus[0] == 0 ? "down" : "up";
-    $wg_state = ($wgstatus[0] > 0);
+    exec('systemctl is-active wg-quick@wg0', $wgstatus);
+    $serviceStatus = $wgstatus[0] == 'inactive' ? "down" : "up";
+    $wg_state = ($wgstatus[0] == 'active' ? true : false );
     $public_ip = get_public_ip();
 
     echo renderTemplate(
