@@ -269,6 +269,7 @@ function setKnownStationsWPA($networks)
         if (!networkExists($ssid, $wpaCliNetworks)) {
             $ssid = escapeshellarg('"'.$network['ssid'].'"');
             $psk = escapeshellarg('"'.$network['passphrase'].'"');
+            $protocol = $network['protocol'];
             $netid = trim(shell_exec("sudo wpa_cli -i $iface add_network"));
             if (isset($netid) && !isset($known[$netid])) {
                 $commands = [
@@ -276,6 +277,9 @@ function setKnownStationsWPA($networks)
                     "sudo wpa_cli -i $iface set_network $netid psk $psk",
                     "sudo wpa_cli -i $iface enable_network $netid"
                 ];
+                if ($protocol === 'Open') {
+                    $commands[1] = "sudo wpa_cli -i $iface set_network $netid key_mgmt NONE";
+                }
                 foreach ($commands as $cmd) {
                     exec($cmd);
                     usleep(1000);
