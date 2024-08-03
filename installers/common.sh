@@ -544,9 +544,10 @@ function _install_restapi() {
         
     fi
     python3 -m pip install -r "$raspap_dir/api/requirements.txt" --break-system-packages || _install_status 1 " Unable to install pip modules"
-    
-    echo "Moving restapi systemd unit control file to /lib/systemd/system/"
+   
+    echo "Setting permissions on restapi systemd unit control file"
     sudo chown -c root:root $webroot_dir/installers/restapi.service || _install_status 1 "Unable change owner and/or group"
+    echo "Moving restapi systemd unit control file to /lib/systemd/system/"
     sudo mv $webroot_dir/installers/restapi.service /lib/systemd/system/ || _install_status 1 "Unable to move restapi.service file"
     sudo systemctl daemon-reload
     sudo systemctl enable restapi.service || _install_status 1 "Failed to enable restapi.service"
