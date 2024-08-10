@@ -102,7 +102,7 @@ function DisplayProviderConfig()
 }
 
 /**
- * Validates VPN provider settings 
+ * Validates VPN provider settings
  *
  * @param object $status
  * @param string $binPath
@@ -240,11 +240,9 @@ function getCountries($id, $binPath)
         }
         break;
     case 3: // nordvpn
-        $output = stripArtifacts($output,'\s');
         $arrTmp = explode(",", $output[0]);
-        $countries = array_combine($arrTmp, $arrTmp);
-        foreach ($countries as $key => $value) {
-            $countries[$key] = str_replace("_", " ", $value);
+        foreach ($output as $key => $value) {
+            $countries[$value] = str_replace("_", " ", $value);
         }
         break;
     default:
