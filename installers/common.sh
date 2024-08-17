@@ -55,6 +55,7 @@ function _install_raspap() {
     _install_lighttpd_configs
     _default_configuration
     _configure_networking
+    _prompt_configure_tcp_bbr
     _prompt_install_features
     _install_extra_features
     _patch_system_files
@@ -787,6 +788,67 @@ function _configure_networking() {
     fi
     _install_status 0
  }
+
+# Prompt to configure TCP BBR option
+function _prompt_configure_tcp_bbr() {
+    _install_log "Configure TCP BBR congestion control"
+    echo "Network performance can be improved by changing TCP congestion control to BBR (Bottleneck Bandwidth and RTT)"
+    echo -n "Enable TCP BBR congestion control algorithm (Recommended)? [Y/n]: "
+    if [ "$assume_yes" == 0 ]; then
+        read answer < /dev/tty
+        if [ "$answer" != "${answer#[Nn]}" ]; then
+            _install_status 0 "(Skipped)"
+        else
+            _configure_tcp_bbr
+        fi
+    elif [ "${bbr_option}" == 1 ]; then
+        _configure_tcp_bbr
+    else
+        echo "(Skipped)"
+    fi
+}
+
+function _configure_tcp_bbr() {
+    echo "Checking kernel support for the TCP BBR algorithm..."
+    _check_tcp_bbr_available
+    if [ $? -eq 0 ]; then
+        echo "TCP BBR option found. Enabling configuration"
+        # Load the BBR module
+        echo "Loading BBR kernel module"
+        sudo modprobe tcp_bbr || _install_status 1 "Unable to execute modprobe tcp_bbr"
+        # Add BBR configuration to sysctl.conf if not present
+        echo "Adding BBR configuration to /etc/sysctl.conf if not present"
+        if ! grep -q "net.core.default_qdisc=fq" /etc/sysctl.conf; then
+            echo "net.core.default_qdisc=fq" | sudo tee -a /etc/sysctl.conf || _install_status 1 "Unable to modify /etc/sysctl.conf"
+        fi
+        if ! grep -q "net.ipv4.tcp_congestion_control=bbr" /etc/sysctl.conf; then
+            echo "net.ipv4.tcp_congestion_control=bbr" | sudo tee -a /etc/sysctl.conf || _install_status 1 "Unable to modify /etc/sysctl.conf"
+        fi
+        # Apply the sysctl changes
+        echo "Applying changes"
+        sudo sysctl -p
+
+        # Verify if BBR is enabled
+        current_cc=$(sysctl net.ipv4.tcp_congestion_control | awk '{print $3}')
+        if [ "$current_cc" == "bbr" ]; then
+            echo "TCP BBR has been successfully enabled"
+        else
+            _install_status 1 "Failed to enable TCP BBR"
+        fi
+    else
+        _install_status 2 "TCP BBR option is not available (Skipped)"
+    fi
+    _install_status 0
+}
+
+function _check_tcp_bbr_available() {
+    config_file="/boot/config-$(uname -r)"
+    if grep -q 'CONFIG_TCP_CONG_BBR' "$config_file" && grep -q 'CONFIG_NET_SCH_FQ' "$config_file"; then
+        return 0
+    else
+        return 1
+    fi
+}
 
 # Add sudoers file to /etc/sudoers.d/ and set file permissions
 function _patch_system_files() {
