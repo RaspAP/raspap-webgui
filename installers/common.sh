@@ -826,12 +826,12 @@ function _configure_tcp_bbr() {
         fi
         # Apply the sysctl changes
         echo "Applying changes"
-        sudo sysctl -p
+        sudo sysctl -p || _install_status 1 "Unable to execute sysctl"
 
         # Verify if BBR is enabled
-        current_cc=$(sysctl net.ipv4.tcp_congestion_control | awk '{print $3}')
-        if [ "$current_cc" == "bbr" ]; then
-            echo "TCP BBR has been successfully enabled"
+        cc=$(sysctl net.ipv4.tcp_congestion_control | awk '{print $3}')
+        if [ "$cc" == "bbr" ]; then
+            echo "TCP BBR successfully enabled"
         else
             _install_status 1 "Failed to enable TCP BBR"
         fi
