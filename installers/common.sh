@@ -842,8 +842,7 @@ function _configure_tcp_bbr() {
 }
 
 function _check_tcp_bbr_available() {
-    config_file="/boot/config-$(uname -r)"
-    if grep -q 'CONFIG_TCP_CONG_BBR' "$config_file" && grep -q 'CONFIG_NET_SCH_FQ' "$config_file"; then
+    if [[ "$(modinfo -F intree tcp_bbr)" == "y" ]]; then
         return 0
     else
         return 1
