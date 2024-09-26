@@ -135,6 +135,7 @@ function DisplayHostAPDConfig()
             $selectedHwMode = 'w';
         }
     }
+
     exec('sudo /bin/chmod o+r '.RASPI_HOSTAPD_LOG);
     $logdata = getLogLimited(RASPI_HOSTAPD_LOG);
 
@@ -395,8 +396,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
         }
         $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
 
+        $skip_dhcp = false;
         if (preg_match('/wlan[2-9]\d*|wlan[1-9]\d+/', $ap_iface)) {
-            $skip_dhcp = true;;
+            $skip_dhcp = true;
         } elseif ($bridgedEnable == 1 || $wifiAPEnable == 1) {
             $dhcp_cfg = join(PHP_EOL, $config);
             $status->addMessage(sprintf(_('DHCP configuration for %s enabled.'), $ap_iface), 'success');
@@ -508,6 +510,21 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
     if (isset($_POST['max_num_sta'])) {
         $config.= 'max_num_sta='.$_POST['max_num_sta'].PHP_EOL;
     }
+
+    // Parse optional /etc/hostapd/hostapd.conf.users file
+    if (file_exists(RASPI_HOSTAPD_CONFIG . '.users')) {
+        exec('cat '. RASPI_HOSTAPD_CONFIG . '.users', $hostapdconfigusers);
+        foreach ($hostapdconfigusers as $hostapdconfigusersline) {
+            if (strlen($hostapdconfigusersline) === 0) {
+                continue;
+            }
+            if ($hostapdconfigusersline[0] != "#") {
+                $arrLine = explode("=", $hostapdconfigusersline);
+                $config.= $arrLine[0]."=".$arrLine[1].PHP_EOL;;
+            }
+        }
+    }
+
     file_put_contents("/tmp/hostapddata", $config);
     system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $result);
     return $result;
