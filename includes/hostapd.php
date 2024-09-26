@@ -511,19 +511,7 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
         $config.= 'max_num_sta='.$_POST['max_num_sta'].PHP_EOL;
     }
 
-    // Parse optional /etc/hostapd/hostapd.conf.users file
-    if (file_exists(RASPI_HOSTAPD_CONFIG . '.users')) {
-        exec('cat '. RASPI_HOSTAPD_CONFIG . '.users', $hostapdconfigusers);
-        foreach ($hostapdconfigusers as $hostapdconfigusersline) {
-            if (strlen($hostapdconfigusersline) === 0) {
-                continue;
-            }
-            if ($hostapdconfigusersline[0] != "#") {
-                $arrLine = explode("=", $hostapdconfigusersline);
-                $config.= $arrLine[0]."=".$arrLine[1].PHP_EOL;;
-            }
-        }
-    }
+    $config.= parseUserHostapdCfg();
 
     file_put_contents("/tmp/hostapddata", $config);
     system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $result);
@@ -543,5 +531,27 @@ function iwRegSet(string $country_code, $status)
     $result = shell_exec("sudo iw reg set $country_code");
     $status->addMessage(sprintf(_('Setting wireless regulatory domain to %s'), $country_code, 'success'));
     return $result;
+}
+
+/**
+ * Parses optional /etc/hostapd/hostapd.conf.users file
+ *
+ * @return string $tmp
+ */
+function parseUserHostapdCfg()
+{
+    if (file_exists(RASPI_HOSTAPD_CONFIG . '.users')) {
+        exec('cat '. RASPI_HOSTAPD_CONFIG . '.users', $hostapdconfigusers);
+        foreach ($hostapdconfigusers as $hostapdconfigusersline) {
+            if (strlen($hostapdconfigusersline) === 0) {
+                continue;
+            }
+            if ($hostapdconfigusersline[0] != "#") {
+                $arrLine = explode("=", $hostapdconfigusersline);
+                $tmp.= $arrLine[0]."=".$arrLine[1].PHP_EOL;;
+            }
+        }
+        return $tmp;
+    }
 }
 
