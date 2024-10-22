@@ -32,7 +32,7 @@ def ieee80211n():
     return subprocess.run("cat /etc/hostapd/hostapd.conf | grep ieee80211n= | cut -d'=' -f2", shell=True, capture_output=True, text=True).stdout.strip()
 
 def wpa_passphrase():
-    return subprocess.run("cat /etc/hostapd/hostapd.conf | grep wpa_passphrase= | cut -d'=' -f2", shell=True, capture_output=True, text=True).stdout.strip()
+    return subprocess.run("sed -En 's/wpa_passphrase=(.*)/\1/p' /etc/hostapd/hostapd.conf", shell=True, capture_output=True, text=True).stdout.strip()
 
 def interface():
     return subprocess.run("cat /etc/hostapd/hostapd.conf | grep interface= | cut -d'=' -f2 | head -1", shell=True, capture_output=True, text=True).stdout.strip()
