@@ -39,25 +39,25 @@
                 <div class="row ms-1">
                   <div class="col-sm">
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Connected To"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("Connected To"); ?></div><div class="info-value col"><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Interface"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($clientInterface); ?></div>
+                      <div class="info-item col"><?php echo _("Interface"); ?></div><div class="info-value col"><?php echo htmlspecialchars($clientInterface); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("AP Mac Address"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("AP Mac Address"); ?></div><div class="info-value col"><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Bitrate"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("Bitrate"); ?></div><div class="info-value col"><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Signal Level"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("Signal Level"); ?></div><div class="info-value col"><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Transmit Power"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("Transmit Power"); ?></div><div class="info-value col"><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Frequency"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("Frequency"); ?></div><div class="info-value col"><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
                     </div>
                   </div>
                   <div class="col-md d-flex">
