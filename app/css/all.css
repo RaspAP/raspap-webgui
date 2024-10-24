@@ -291,3 +291,17 @@ button > i.fas {
     border-bottom-right-radius: 0.35rem;
 }
 
+@keyframes heart {
+  0%, 40%, 80%, 100% {
+    transform: scale(1);
+  }
+  20%, 60% {
+    transform: scale(1.15);
+  }
+}
+
+.heart {
+  color: #e63946;
+  animation: heart 1000ms infinite;
+}
+
