@@ -2,11 +2,11 @@
   <h4 class="mt-3"><?php echo _("Security settings"); ?></h4>
   <div class="row">
     <div class="col-md-6">
-      <div class="form-group">
+      <div class="mb-3">
         <label for="cbxwpa"><?php echo _("Security type"); ?></label>
         <?php SelectorOptions('wpa', $arrSecurity, $arrConfig['wpa'], 'cbxwpa'); ?>
       </div>
-      <div class="form-group">
+      <div class="mb-3">
         <label for="cbxwpapairwise"><?php echo _("Encryption Type"); ?></label>
         <?php SelectorOptions('wpa_pairwise', $arrEncType, $arrConfig['wpa_pairwise'], 'cbxwpapairwise'); ?>
       </div>

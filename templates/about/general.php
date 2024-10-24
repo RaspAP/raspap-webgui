@@ -4,11 +4,11 @@
     <div class="col-md-6 mt-3">
       <div class="card">
 	    <div class="card-body">
-          <div class="ml-5 mt-2"><img class="about-logo" src="app/img/raspAP-logo.php" style="width: 175px; height:175px"></div>
-          <h2 class="mt-3 ml-4"><?php echo _("RaspAP") ." v".RASPI_VERSION; ?></h2>
+          <div class="ms-5 mt-2"><img class="about-logo" src="app/img/raspAP-logo.php" style="width: 175px; height:175px"></div>
+          <h2 class="mt-3 ms-4"><?php echo _("RaspAP") ." v".RASPI_VERSION; ?></h2>
           <?php if (!RASPI_MONITOR_ENABLED) : ?>
-          <button type="button" class="btn btn-warning ml-4 mt-2" name="check-update" data-toggle="modal" data-target="#chkupdateModal" />
-            <i class="fas fa-sync-alt ml-1 mr-2"></i><?php echo _("Check for update"); ?>
+          <button type="button" class="btn btn-warning ms-4 mt-2" name="check-update" data-bs-toggle="modal" data-bs-target="#chkupdateModal" />
+            <i class="fas fa-sync-alt ms-1 me-2"></i><?php echo _("Check for update"); ?>
           </button>
           <?php endif; ?>
         </div>

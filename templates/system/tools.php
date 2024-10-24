@@ -5,7 +5,7 @@
     <?php echo CSRFTokenFieldTag() ?>
 
       <div class="row">
-        <div class="form-group col-lg-8 col-md-8">
+        <div class="mb-3 col-lg-8 col-md-8">
           <label for="debug">
             <?php echo sprintf(_("To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."), "https://docs.raspap.com/ap-basics/#debug-log"); ;?>
           </label>
@@ -14,12 +14,12 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-warning mb-3" name="debug-log" data-toggle="modal" data-target="#debugModal" />
-        <i class="fas fa-ambulance ml-1 mr-2"></i><?php echo _("Generate debug log"); ?>
+      <button type="button" class="btn btn-warning mb-3" name="debug-log" data-bs-toggle="modal" data-bs-target="#debugModal" />
+        <i class="fas fa-ambulance ms-1 me-2"></i><?php echo _("Generate debug log"); ?>
       </button>
 
       <div class="row">
-        <div class="form-group col-lg-8 col-md-8">
+        <div class="mb-3 col-lg-8 col-md-8">
           <label for="reset">
             <?php echo sprintf(_("To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."), "https://docs.raspap.com/defaults/"); ;?>
           </label>
@@ -29,8 +29,8 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-danger" name="system-reset" data-toggle="modal" data-target="#system-confirm-reset" />
-        <i class="fas fa-history ml-1 mr-2"></i><?php echo _("Perform reset"); ?>
+      <button type="button" class="btn btn-danger" name="system-reset" data-bs-toggle="modal" data-bs-target="#system-confirm-reset" />
+        <i class="fas fa-history ms-1 me-2"></i><?php echo _("Perform reset"); ?>
       </button>
 
     <?php endif ?>

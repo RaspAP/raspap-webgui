@@ -5,7 +5,7 @@
       <div class="card-header">
         <div class="row">
           <div class="col">
-            <i class="fas fa-network-wired mr-2"></i><?php echo _("Networking"); ?>
+            <i class="fas fa-network-wired me-2"></i><?php echo _("Networking"); ?>
           </div>
         </div><!-- ./row -->
       </div><!-- ./card-header -->
@@ -13,7 +13,7 @@
       <div class="card-body">
         <div id="msgNetworking"></div>
         <ul class="nav nav-tabs">
-          <li role="presentation" class="nav-item"><a class="nav-link active" href="#summary" aria-controls="summary" role="tab" data-toggle="tab"><?php echo _("Summary"); ?></a></li>
+          <li role="presentation" class="nav-item"><a class="nav-link active" href="#summary" aria-controls="summary" role="tab" data-bs-toggle="tab"><?php echo _("Summary"); ?></a></li>
         </ul>
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="summary">

@@ -4,9 +4,9 @@
     <div class="col-md-12">
       <h4 class="mt-3"><?php echo _("Logging"); ?></h4>
         <p><?php echo _("Enable this option to display an updated <code>wg-quick</code> debug log.") ?></p>
-        <div class="custom-control custom-switch">
-          <input class="custom-control-input" id="wgLogEnable" type="checkbox" name="wgLogEnable" value="1" <?php echo $optLogEnable ? ' checked="checked"' : "" ?> aria-describedby="wgLogEnable">
-          <label class="custom-control-label" for="wgLogEnable"><?php echo _("Logfile output") ?></label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" id="wgLogEnable" type="checkbox" name="wgLogEnable" value="1" <?php echo $optLogEnable ? ' checked="checked"' : "" ?> aria-describedby="wgLogEnable">
+          <label class="form-check-label" for="wgLogEnable"><?php echo _("Logfile output") ?></label>
         </div>
         <?php
           exec('sudo chmod o+r /tmp/wireguard.log');

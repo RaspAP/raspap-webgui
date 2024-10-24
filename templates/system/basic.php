@@ -8,7 +8,7 @@ include('includes/sysstats.php');
   <div class="row">
     <div class="col-lg-6">
       <h4 class="mt-3"><?php echo _("System Information"); ?></h4>
-        <div class="row ml-1">
+        <div class="row ms-1">
           <div class="col-sm">
             <div class="row mb-1">
               <div class="info-item col-xs-3"><?php echo _("Hostname"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($hostname, ENT_QUOTES); ?></div>
@@ -55,8 +55,8 @@ include('includes/sysstats.php');
       <form action="system_info" method="POST">
         <?php echo CSRFTokenFieldTag() ?>
         <?php if (!RASPI_MONITOR_ENABLED) : ?>
-            <input type="button" class="btn btn-warning" data-toggle="modal" data-target="#system-confirm-reboot" value="<?php echo _("Reboot"); ?>" />
-            <input type="button" class="btn btn-warning" data-toggle="modal" data-target="#system-confirm-shutdown" value="<?php echo _("Shutdown"); ?>" />
+            <input type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#system-confirm-reboot" value="<?php echo _("Reboot"); ?>" />
+            <input type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#system-confirm-shutdown" value="<?php echo _("Shutdown"); ?>" />
         <?php endif ?>
         <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
      </form>

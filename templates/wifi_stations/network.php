@@ -4,7 +4,7 @@
 		<?php if (strlen($network['ssid']) == 0) {
 			$network['ssid'] = "(unknown)";
 		} ?>
-		<h5 class="card-title"><i class="fas fa-wifi mr-2"></i><?php echo htmlspecialchars($network['ssidutf8'], ENT_QUOTES); ?></h5>
+		<h5 class="card-title"><i class="fas fa-wifi me-2"></i><?php echo htmlspecialchars($network['ssidutf8'], ENT_QUOTES); ?></h5>
 		<div class="info-item-wifi"><?php echo _("Status"); ?></div>
 		<div>
 			<?php if ($network['configured']) { ?>
@@ -32,7 +32,7 @@
 			<?php if (isset($network['RSSI']) && $network['RSSI'] >= -200) {
                 echo '<div class="d-flex justify-content-start">';
                 echo getSignalBars($network['RSSI']);
-                echo '<div class="ml-2">' .htmlspecialchars($network['RSSI'], ENT_QUOTES) . "dB" . "</div>";
+                echo '<div class="ms-2">' .htmlspecialchars($network['RSSI'], ENT_QUOTES) . "dB" . "</div>";
                 echo '</div>';
 			} else {
 				echo " not found ";
@@ -48,15 +48,15 @@
         <div class="info-item-wifi"><?php echo _("Security"); ?></div>
         <div><?php echo empty($network['protocol']) ? "-" : $network['protocol'] ?></div>
 
-		<div class="form-group">
+		<div class="mb-3">
 			<div class="info-item-wifi mb-2"><?php echo _("Passphrase"); ?></div>
 			<div class="input-group">
 				<?php if ($network['protocol'] === 'Open') { ?>
 					<input type="password" disabled class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="" />
 				<?php } else { ?>
-					<input type="password" class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="<?php echo htmlspecialchars($network['passphrase']); ?>" data-target="#update<?php echo $index ?>" data-colors="#ffd0d0,#d0ffd0">
+					<input type="password" class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="<?php echo htmlspecialchars($network['passphrase']); ?>" data-bs-target="#update<?php echo $index ?>" data-colors="#ffd0d0,#d0ffd0">
 					<div class="input-group-append">
-						<button class="btn btn-light js-toggle-password" type="button" data-target="[name=passphrase<?php echo $index ?>]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
+						<button class="btn btn-light js-toggle-password" type="button" data-bs-target="[name=passphrase<?php echo $index ?>]" data-toggle-with="fas fa-eye-slash"><i class="fas fa-eye mx-2"></i></button>
 					</div>
 				<?php } ?>
 			</div>
@@ -64,12 +64,12 @@
 
 		<div class="btn-group btn-block ">
 			<?php if ($network['configured']) { ?>
-				<input type="submit" class="col-xs-4 col-md-4 btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> data-toggle="modal" data-target="#configureClientModal" />
+				<input type="submit" class="col-xs-4 col-md-4 btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
 				<button type="submit" class="col-xs-4 col-md-4 btn btn-info" value="<?php echo $index?>" name="connect"><?php echo _("Connect"); ?></button>
 			<?php } else { ?>
-				<input type="submit" class="col-xs-4 col-md-4 btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" data-toggle="modal" data-target="#configureClientModal" />
+				<input type="submit" class="col-xs-4 col-md-4 btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" data-bs-toggle="modal" data-bs-target="#configureClientModal" />
 			<?php } ?>
-			<input type="submit" class="col-xs-4 col-md-4 btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> data-toggle="modal" data-target="#configureClientModal" />
+			<input type="submit" class="col-xs-4 col-md-4 btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
 		</div><!-- /.btn-group -->
 	</div><!-- /.card-body -->
 </div><!-- /.card -->
