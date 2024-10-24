@@ -10,7 +10,7 @@
   </div>
   <div class="row">
     <div class="mb-3 col-md-8 mt-2">
-      <textarea class="logoutput" id="openvpn-log"><?php echo htmlspecialchars($logOutput, ENT_QUOTES); ?></textarea>
+      <textarea class="logoutput text-secondary" id="openvpn-log"><?php echo htmlspecialchars($logOutput, ENT_QUOTES); ?></textarea>
     </div>
   </div>
 </div><!-- /.tab-pane -->

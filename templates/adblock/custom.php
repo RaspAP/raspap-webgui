@@ -21,7 +21,7 @@
     </div>
     <div class="row">
       <div class="mb-3 col-md-8">
-      <?php echo '<textarea class="logoutput" name="adblock-custom-hosts">'.htmlspecialchars($adblock_custom_content, ENT_QUOTES).'</textarea>'; ?>
+      <?php echo '<textarea class="logoutput text-secondary" name="adblock-custom-hosts">'.htmlspecialchars($adblock_custom_content, ENT_QUOTES).'</textarea>'; ?>
       </div>
   </div>
 </div><!-- /.tab-pane -->

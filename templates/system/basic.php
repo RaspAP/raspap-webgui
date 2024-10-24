@@ -9,7 +9,7 @@ include('includes/sysstats.php');
     <div class="col-lg-6">
       <h4 class="mt-3"><?php echo _("System Information"); ?></h4>
         <div class="row ms-1">
-          <div class="col-sm-8">
+          <div class="col-sm-10">
             <div class="row mb-1">
               <div class="info-item col"><?php echo _("Hostname"); ?></div><div class="info-value col"><?php echo htmlspecialchars($hostname, ENT_QUOTES); ?></div>
             </div>

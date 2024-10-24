@@ -11,7 +11,7 @@
         <?php
           exec('sudo chmod o+r /tmp/wireguard.log');
           $log = file_get_contents('/tmp/wireguard.log');
-          echo '<textarea class="logoutput my-3">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
+          echo '<textarea class="logoutput text-secondary my-3">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
         ?>
     </div>
   </div><!-- /.row -->
