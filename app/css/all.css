@@ -6,16 +6,6 @@ Description: Classes shared by all themes
 License: GNU General Public License v3.0
 */
 
-/* Small devices (portrait phones, up to 576px) */
-@media (max-width: 576px) {
-  .container-fluid, .card-body, .col-md-6 { padding-left: 0.5rem; padding-right: 0.5rem; }
-  .card .card-header { padding: .75rem .5rem; font-size: 1.0rem; }
-  .row { margin-left: 0rem; margin-right: 0rem; }
-  .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
-  .form-group.col-md-6 { margin-left: -0.5rem; }
-  h4.mt-3 { margin-left: 0.5rem; }
-}
-
 a {
     color: #2b8080;
     text-decoration: none;
@@ -26,7 +16,7 @@ a {
   padding-bottom: 0.6rem;
 }
 
-.sb-sidenav-light .sb-sidenav-menu .nav-link {
+.sb-sidenav-light .sb-sidenav-menu .nav-link, .card-title, h4 {
   color: #495057;
 }
 

@@ -118,9 +118,9 @@ initializeApp();
         <footer class="py-4 bg-light mt-auto">
           <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
-              <div class="text-muted">Created by the <a href="https://github.com/RaspAP">RaspAP Team</a></div>
+              <div class="text-muted">Created by the <a href="https://github.com/RaspAP" target="_blank" rel="noopener">RaspAP Team</a></div>
               <div class="text-muted">
-                <i class="fas fa-heart heart"></i> <a href="https://docs.raspap.com/insiders" target="_blank">Get Insiders</a>
+                <i class="fas fa-heart heart"></i> <a href="https://docs.raspap.com/insiders" target="_blank" rel="noopener">Get Insiders</a>
               </div>
             </div>
           </div>
