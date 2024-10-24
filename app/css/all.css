@@ -16,6 +16,11 @@ License: GNU General Public License v3.0
   h4.mt-3 { margin-left: 0.5rem; }
 }
 
+a {
+    color: #2b8080;
+    text-decoration: none;
+}
+
 .sb-sidenav .sb-sidenav-menu .nav .nav-link {
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
@@ -289,6 +294,12 @@ button > i.fas {
 .input-group>.input-group-append:not(:last-child)>.btn {
   border-top-right-radius: 0.35rem;
   border-bottom-right-radius: 0.35rem;
+}
+
+.nav-user {
+  position: relative;
+  bottom: 11px;
+  right: 3px;
 }
 
 .bg-dark {

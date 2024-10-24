@@ -18,6 +18,10 @@ body {
   background-color: #f8f9fc;
 }
 
+a {
+    color: <?php echo $color; ?>;
+    text-decoration: none;
+}
 .sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
     color: <?php echo $color; ?>;
 }
