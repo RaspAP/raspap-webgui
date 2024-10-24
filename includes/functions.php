@@ -396,7 +396,7 @@ function isAssoc($arr)
  */
 function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null)
 {
-    echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
+    echo '<select class="form-select" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
     if (isset($id)) {
         echo ' id="' . htmlspecialchars($id, ENT_QUOTES) .'"';
     }
