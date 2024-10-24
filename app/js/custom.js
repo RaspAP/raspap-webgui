@@ -858,7 +858,7 @@ $(window).on("load resize",function(e) {
 // Adds active class to current nav-item
 $(window).bind("load", function() {
     var url = window.location;
-    $('ul.navbar-nav a').filter(function() {
+    $('.sb-nav-link-icon a').filter(function() {
       return this.href == url;
     }).parent().addClass('active');
 });

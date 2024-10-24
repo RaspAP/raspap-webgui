@@ -15,10 +15,19 @@ License: GNU General Public License v3.0
 
 body {
   color: #212529;
+  background-color: #f8f9fc;
+}
+
+.sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
+    color: <?php echo $color; ?>;
 }
 
 .sidebar {
   background-color: #f8f9fc;
+}
+
+.sb-nav-link-icon.active {
+  font-weight: 600;
 }
 
 .sidebar .nav-item.active .nav-link {

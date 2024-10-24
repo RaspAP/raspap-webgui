@@ -16,10 +16,18 @@ License: GNU General Public License v3.0
   h4.mt-3 { margin-left: 0.5rem; }
 }
 
-.sidebar.toggled .nav-item .nav-link {
-  padding: 0.65rem 1rem;
+.sb-sidenav .sb-sidenav-menu .nav .nav-link {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
 }
 
+.sb-sidenav-light .sb-sidenav-menu .nav-link {
+  color: #495057;
+}
+
+.sb-topnav.navbar-light #sidebarToggle {
+  color: #495057;
+}
 .sidebar-brand-text {
   text-transform: none;
   color: #212529;
