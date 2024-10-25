@@ -10,7 +10,7 @@
   <h5 class="mt-1"><?php echo _("Adapter IP Address Settings"); ?></h5>
   <div class="row">
     <div class="mb-3 col-md-6">
-      <div class="btn-group" data-bs-toggle="buttons">
+      <div class="btn-group" role="group" data-bs-toggle="buttons">
         <label class="btn btn-light active" checked onclick="setDHCPToggles(false)">
           <input type="radio" name="adapter-ip" id="chkdhcp" autocomplete="off"> DHCP
         </label>

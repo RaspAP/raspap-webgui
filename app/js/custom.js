@@ -242,15 +242,15 @@ function loadInterfaceDHCPSelect() {
         $('#txtmetric').val(jsonData.Metric);
 
         if (jsonData.StaticIP !== null && jsonData.StaticIP !== '' && !jsonData.FallbackEnabled) {
-            $('#chkstatic').closest('.btn').button('toggle');
-            $('#chkstatic').closest('.btn').button('toggle').blur();
-            $('#chkstatic').blur();
+            $('#chkstatic').prop('checked', true);
+            $('#chkstatic').closest('.btn').addClass('active').removeClass('btn-light');
+            $('#chkdhcp').closest('.btn').removeClass('active').addClass('btn-light');
             $('#chkfallback').prop('disabled', true);
             $('#dhcp-iface').removeAttr('disabled');
         } else {
-            $('#chkdhcp').closest('.btn').button('toggle');
-            $('#chkdhcp').closest('.btn').button('toggle').blur();
-            $('#chkdhcp').blur();
+            $('#chkdhcp').prop('checked', true);
+            $('#chkdhcp').closest('.btn').addClass('active').removeClass('btn-light');
+            $('#chkstatic').closest('.btn').removeClass('active').addClass('btn-light');
             $('#chkfallback').prop('disabled', false);
         }
         if (jsonData.FallbackEnabled || $('#chkdhcp').is(':checked')) {
