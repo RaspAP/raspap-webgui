@@ -18,11 +18,11 @@ class StatusMessage
     {
         $status = '<div class="alert alert-'.$level;
         if ($dismissable) {
-            $status .= ' alert-dismissable';
+            $status .= ' alert-dismissible';
         }
-        $status .= '">'. _($message);
+        $status .= ' fade show" role="alert">'. _($message);
         if ($dismissable) {
-            $status .= '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>';
+            $status .= '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>';
         }
         $status .= '</div>';
 
