@@ -94,10 +94,6 @@ a.nav-link.active {
   padding: 0.6rem 0.6rem 0.6rem 1.0rem;
 }
 
-.alert-success {
-  background-color: #d4edda;
-}
-
 .btn-primary {
   background-color: #fff;
 }
