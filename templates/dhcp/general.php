@@ -81,7 +81,7 @@
         <div class="form-check form-switch">
           <input class="form-check-input" id="nohook-wpa-supplicant" type="checkbox" name="NoHookWPASupplicant" value="1" aria-describedby="hook-wpa-supplicant-description">
           <label class="form-check-label" for="nohook-wpa-supplicant"><?php echo _("Disable wpa_supplicant dhcp hook for this interface") ?></label>
-          <?php getTooltip('If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook.', 'tipnohook'); ?>
+          <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."); ?>"></i>
         </div>
         <p class="mb-0" id="hook-wpa-supplicant-description">
           <small><?php echo _("This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration.") ?></small>

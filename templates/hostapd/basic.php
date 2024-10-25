@@ -18,10 +18,9 @@
   <div class="row">
     <div class="mb-3 col-md-6">
       <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
-      <?php getTooltip(null, 'tiphwmode', true); ?>
+      <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."); ?>"></i>
       <?php SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode, 'cbxhwmode', 'getChannel'); ?>
-      <div id="hwmode" data-tooltip="<?php echo _("The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."); ?>"></div>
-    </div>
+        </div>
   </div>
   <div class="row">
     <div class="mb-3 col-md-6">

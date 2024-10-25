@@ -23,7 +23,7 @@
           <label for="reset">
             <?php echo sprintf(_("To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."), "https://docs.raspap.com/defaults/"); ;?>
           </label>
-          <?php getTooltip('Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq.', 'tiphwmode', true); ?>
+          <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."); ?>"></i>
           <div class="small"> 
           <?php echo _("Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."); ?>
           </div>
