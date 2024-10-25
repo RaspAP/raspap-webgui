@@ -62,14 +62,14 @@
 			</div>
 		</div>
 
-		<div class="btn-group btn-block ">
+		<div class="btn-group btn-block d-flex">
 			<?php if ($network['configured']) { ?>
-				<input type="submit" class="col-xs-4 col-md-4 btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
-				<button type="submit" class="col-xs-4 col-md-4 btn btn-info" value="<?php echo $index?>" name="connect"><?php echo _("Connect"); ?></button>
+				<input type="submit" class="btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
+				<button type="submit" class="btn btn-info" value="<?php echo $index?>" name="connect"><?php echo _("Connect"); ?></button>
 			<?php } else { ?>
-				<input type="submit" class="col-xs-4 col-md-4 btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" data-bs-toggle="modal" data-bs-target="#configureClientModal" />
+				<input type="submit" class="btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" data-bs-toggle="modal" data-bs-target="#configureClientModal" />
 			<?php } ?>
-			<input type="submit" class="col-xs-4 col-md-4 btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
+			<input type="submit" class="btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
 		</div><!-- /.btn-group -->
 	</div><!-- /.card-body -->
 </div><!-- /.card -->
