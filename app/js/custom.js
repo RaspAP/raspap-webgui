@@ -732,20 +732,19 @@ function setDhcpFieldsDisabled() {
 Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
 
 $(document).on("click", ".js-toggle-password", function(e) {
-    var button = $(e.target)
-    var field  = $(button.data("target"));
-
+    var button = $(e.currentTarget);
+    var field  = $(button.data("bsTarget"));
     if (field.is(":input")) {
         e.preventDefault();
 
         if (!button.data("__toggle-with-initial")) {
-            $("i", this).removeClass("fas fa-eye").addClass(button.attr("data-toggle-with"));
+            $("i", button).removeClass("fas fa-eye").addClass(button.attr("data-toggle-with"));
         }
 
         if (field.attr("type") === "password") {
             field.attr("type", "text");
         } else {
-            $("i", this).removeClass("fas fa-eye-slash").addClass("fas fa-eye");
+            $("i", button).removeClass("fas fa-eye-slash").addClass("fas fa-eye");
             field.attr("type", "password");
         }
     }
@@ -755,15 +754,12 @@ $(function() {
     $('#theme-select').change(function() {
         var theme = themes[$( "#theme-select" ).val() ];
 
-        var hasDarkTheme = theme === 'custom.php' ||
-            theme === 'material-light.php';
+        var hasDarkTheme = theme === 'custom.php';
         var nightModeChecked = $("#night-mode").prop("checked");
         
         if (nightModeChecked && hasDarkTheme) {
             if (theme === "custom.php") {
                 set_theme("lightsout.php");
-            } else if (theme === "material-light.php") {
-                set_theme("material-dark.php");
             }
         } else {
             set_theme(theme);
@@ -780,7 +776,7 @@ function set_theme(theme) {
 $(function() {
     var currentTheme = getCookie('theme');
     // Check if the current theme is a dark theme
-    var isDarkTheme = currentTheme === 'lightsout.php' || currentTheme === 'material-dark.php';
+    var isDarkTheme = currentTheme === 'lightsout.php';
 
     $('#night-mode').prop('checked', isDarkTheme);
     $('#night-mode').change(function() {
@@ -790,14 +786,10 @@ $(function() {
         if (state == true) {
             if (currentTheme == 'custom.php') {
                 set_theme('lightsout.php');
-            } else if (currentTheme == 'material-light.php') {
-                set_theme('material-dark.php');
             }
         } else {
             if (currentTheme == 'lightsout.php') {
                 set_theme('custom.php');
-            } else if (currentTheme == 'material-dark.php') {
-                set_theme('material-light.php');
             }
         }
    });
