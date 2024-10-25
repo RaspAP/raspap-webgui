@@ -1,5 +1,5 @@
         <div class="row g-0">
-            <div class="col-6 col-md-4 gx-2 sidebar-brand-icon">
+            <div class="col-4 ms-2 sidebar-brand-icon">
                 <img src="app/img/raspAP-logo.php" class="navbar-logo" width="60" height="60">
             </div>
           <div class="col ml-2">
