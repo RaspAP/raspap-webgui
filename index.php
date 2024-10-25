@@ -115,7 +115,7 @@ initializeApp();
             <?php require_once 'includes/page_actions.php'; ?>
           </div>
         </main>
-        <footer class="py-4 bg-light mt-auto">
+        <footer class="py-4 mt-auto">
           <div class="container-fluid px-4">
             <?php require_once 'includes/footer.php'; ?>
           </div>
