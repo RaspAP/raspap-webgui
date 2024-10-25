@@ -11,22 +11,22 @@ include('includes/sysstats.php');
         <div class="row ms-1">
           <div class="col-sm-10">
             <div class="row mb-1">
-              <div class="info-item col"><?php echo _("Hostname"); ?></div><div class="info-value col"><?php echo htmlspecialchars($hostname, ENT_QUOTES); ?></div>
+              <div class="info-item col-4"><?php echo _("Hostname"); ?></div><div class="info-value col"><?php echo htmlspecialchars($hostname, ENT_QUOTES); ?></div>
             </div>
             <div class="row mb-1">
-              <div class="info-item col"><?php echo _("Pi Revision"); ?></div><div class="info-value col"><?php echo htmlspecialchars($revision, ENT_QUOTES); ?></div>
+              <div class="info-item col-4"><?php echo _("Pi Revision"); ?></div><div class="info-value col"><?php echo htmlspecialchars($revision, ENT_QUOTES); ?></div>
             </div>
             <div class="row mb-1">
-              <div class="info-item col"><?php echo _("OS"); ?></div><div class="info-value col"><?php echo htmlspecialchars($os, ENT_QUOTES); ?></div>
+              <div class="info-item col-4"><?php echo _("OS"); ?></div><div class="info-value col"><?php echo htmlspecialchars($os, ENT_QUOTES); ?></div>
             </div>
             <div class="row mb-1">
-              <div class="info-item col"><?php echo _("Kernel"); ?></div><div class="info-value col"><?php echo htmlspecialchars($kernel, ENT_QUOTES); ?></div>
+              <div class="info-item col-4"><?php echo _("Kernel"); ?></div><div class="info-value col"><?php echo htmlspecialchars($kernel, ENT_QUOTES); ?></div>
             </div>
             <div class="row mb-1">
-              <div class="info-item col"><?php echo _("Uptime"); ?></div><div class="info-value col"><?php echo htmlspecialchars($uptime, ENT_QUOTES); ?></div>
+              <div class="info-item col-4"><?php echo _("Uptime"); ?></div><div class="info-value col"><?php echo htmlspecialchars($uptime, ENT_QUOTES); ?></div>
 	    </div>
 	    <div class="row mb-1">
-              <div class="info-item col"><?php echo _("System Time"); ?></div><div class="info-value col"><?php echo htmlspecialchars($systime, ENT_QUOTES); ?></div>
+              <div class="info-item col-4"><?php echo _("System Time"); ?></div><div class="info-value col"><?php echo htmlspecialchars($systime, ENT_QUOTES); ?></div>
             </div>
           </div>
         </div>
