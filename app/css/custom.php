@@ -26,6 +26,11 @@ a {
     color: <?php echo $color; ?>;
 }
 
+.form-check-input:checked {
+    background-color: <?php echo $color; ?>;
+    border-color: <?php echo $color; ?>;
+}
+
 .sidebar {
   background-color: #f8f9fc;
 }
