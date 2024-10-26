@@ -20,8 +20,7 @@
         <?php foreach ($upstreamServers as $server): ?>
           <div class="mb-3 input-group input-group-sm js-dhcp-upstream-server">
             <input type="text" class="form-control" name="server[]" value="<?php echo $server ?>">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
+            <div class="input-group-text js-remove-dhcp-upstream-server"><i class="fas fa-minus"></i></div>
             </div>
           </div>
         <?php endforeach ?>
@@ -31,9 +30,7 @@
         <label for="add-dhcp-upstream-server-field"><?php echo _("Add upstream DNS server") ?></label>
         <div class="input-group">
           <input type="text" class="form-control" id="add-dhcp-upstream-server-field" aria-describedby="new-dhcp-upstream-server" placeholder="<?php printf(_("e.g. %s"), "208.67.222.222") ?>">
-          <div class="input-group-append">
-            <button type="button" class="btn btn-outline-secondary js-add-dhcp-upstream-server"><i class="fas fa-plus"></i></button>
-          </div>
+          <div class="input-group-text js-add-dhcp-upstream-server"><i class="fas fa-plus"></i></div>
         </div>
         <p id="new-dhcp-upstream-server" class="form-text text-muted">
           <small>
@@ -52,9 +49,7 @@
     <template id="dhcp-upstream-server">
       <div class="mb-3 input-group input-group-sm js-dhcp-upstream-server">
         <input type="text" class="form-control" name="server[]" value="{{ server }}">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary js-remove-dhcp-upstream-server" type="button"><i class="fas fa-minus"></i></button>
-        </div>
+        <div class="input-group-text js-remove-dhcp-upstream-server"><i class="fas fa-minus"></i></div>
       </div>
     </template>
   </div><!-- /.row -->

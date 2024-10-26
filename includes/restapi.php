@@ -56,7 +56,7 @@ function DisplayRestAPI()
     if ($serviceStatus == "up") {
         $docUrl = getDocUrl();
         $faicon = "<i class=\"text-gray-500 fas fa-external-link-alt ml-1\"></i>"; 
-        $docMsg = sprintf(_("RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"),$docUrl, $faicon);
+        $docMsg = sprintf(_("RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"),$docUrl, $faicon);
     }
 
     echo renderTemplate("restapi", compact(
