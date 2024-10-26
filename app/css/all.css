@@ -6,8 +6,14 @@ Description: Classes shared by all themes
 License: GNU General Public License v3.0
 */
 
+:root {
+  --raspap-content-main: #495057;
+  --raspap-text-muted: #858796;
+  --raspap-brand-color: #2b8080;
+}
+
 a {
-    color: #2b8080;
+    color: var(--raspap-brand-color);
     text-decoration: none;
 }
 
@@ -17,22 +23,21 @@ a {
 }
 
 .sb-sidenav-light .sb-sidenav-menu .nav-link, .card-title, h4 {
-  color: #495057;
+  color: var(--raspap-content-main);
 }
 
 .sb-topnav.navbar-light #sidebarToggle {
-  color: #495057;
+  color: var(--raspap-content-main);
 }
 .sidebar-brand-text {
   text-transform: none;
-  color: #212529;
   font-size: 2.0rem;
   font-weight: 500;
   font-family: Helvetica, Arial, sans-serif;
 }
 
 th {
-  color: #495057 !important;
+  color: var(--raspap-content-main) !important;
 }
 
 .h-underlined {
@@ -53,7 +58,7 @@ th {
 .info-item {
   text-transform: uppercase;
   font-size: 0.7em;
-  color: #858796;
+  color: var(--raspap-text-muted);
 }
 
 .info-value {
@@ -130,7 +135,7 @@ th {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #858796;
+  color: var(--raspap-text-muted);
   content: "\f1ce"; /* Unicode for the circle-notch icon */
   font-family: "Font Awesome 5 Free";
   font-weight: 900; /* Adjust as needed */
@@ -212,7 +217,6 @@ button.btn.btn-light.js-toggle-password {
   width: 4px;
   border-radius: 1px;
   opacity: 30%;
-  background: <?php echo $color; ?>;
 }
 
 .signal-icon .signal-bar:nth-child(1) { height: 40%; }
@@ -259,7 +263,7 @@ button.btn.btn-light.js-toggle-password {
 }
 
 figcaption.figure-caption a {
-  color: #858796;
+  color: var(--raspap-text-muted);
 }
 
 button > i.fas {
