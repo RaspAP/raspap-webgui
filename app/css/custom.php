@@ -93,10 +93,6 @@ a:focus, a:hover {
   background-color: #f2f1f0;
 }
 
-.nav-item {
-  font-size: 0.85rem;
-}
-
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link {
   font-size: 1.0rem;

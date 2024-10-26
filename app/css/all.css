@@ -300,6 +300,10 @@ button > i.fas {
   right: 3px;
 }
 
+.nav-item {
+  font-size: 0.85rem;
+}
+
 /* Font Awesome 5 brands */
 .fa-reddit {
     color: #ff4500;
@@ -312,10 +316,6 @@ button > i.fas {
 }
 .fa-github {
     color: #151b23
-}
-
-.bg-dark {
-  border-radius: 5px;
 }
 
 @keyframes heart {

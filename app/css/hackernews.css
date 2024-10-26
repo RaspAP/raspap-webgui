@@ -40,7 +40,7 @@ h5.card-title {
 }
 
 .card, .modal-dialog {
-  border-radius: 3px;
+  border-radius: 5px;
   border-color: #ff6600;
 }
 
@@ -99,12 +99,6 @@ code {
 
 .sidebar-light .nav-item.active .nav-link {
   font-weight: 300;
-}
-
-#wrapper,#page-wrapper,
-#wrapper #content-wrapper,
-.nav>li>a,.nav {
-  background-color: #fff;
 }
 
 .card-body {
