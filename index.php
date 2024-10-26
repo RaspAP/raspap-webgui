@@ -73,8 +73,8 @@ initializeApp();
     <!-- Huebee CSS -->
     <link href="dist/huebee/huebee.min.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="dist/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Font Awesome -->
+    <link href="dist/font-awesome/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- RaspAP Fonts -->
     <link href="dist/raspap/css/style.css" rel="stylesheet" type="text/css">

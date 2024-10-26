@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="sb-nav-link-icon px-2">
-          <a class="nav-link" href="wlan0_info"><i class="sb-nav-link-icon fas fa-tachometer-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
+          <a class="nav-link" href="wlan0_info"><i class="sb-nav-link-icon fa-solid fa-gauge-high fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
         </div>
           <?php if (RASPI_HOTSPOT_ENABLED) : ?>
         <div class="sb-nav-link-icon px-2">
@@ -70,7 +70,7 @@
           <?php endif; ?>
           <?php if (RASPI_VNSTAT_ENABLED) : ?>
         <div class="sb-nav-link-icon px-2">
-          <a class="nav-link" href="data_use"><i class="sb-nav-link-icon fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
+          <a class="nav-link" href="data_use"><i class="sb-nav-link-icon fas fa-chart-area fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
         </div>
         <?php endif; ?>
         <?php if (RASPI_RESTAPI_ENABLED) : ?>

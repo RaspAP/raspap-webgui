@@ -13,7 +13,7 @@
       <label for="txtwpapassphrase"><?php echo _("PSK"); ?></label>
       <div class="input-group has-validation">
         <input type="text" class="form-control" id="txtwpapassphrase" name="wpa_passphrase" value="<?php echo htmlspecialchars($arrConfig['wpa_passphrase'], ENT_QUOTES); ?>" aria-describedby="gen_wpa_passphrase" required />
-        <div class="input-group-text" id="gen_wpa_passphrase"><i class="fas fa-magic"></i></div>
+        <div class="input-group-text" id="gen_wpa_passphrase"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
         <div class="invalid-feedback">
           <?php echo _("Please provide a valid PSK."); ?>
         </div>
