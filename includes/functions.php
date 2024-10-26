@@ -801,13 +801,23 @@ function validateMac($mac) {
 // @return boolean
 function getNightmode()
 {
-    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'lightsout.php') {
+    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'dark.css') {
         return true;
     } else {
         return false;
     }
 }	
-	
+
+// Sets data-bs-theme
+// @return string
+function setTheme()
+{
+    if (getNightmode()) {
+        echo 'data-bs-theme="dark"';
+    } else {
+        echo 'data-bs-theme="light"';
+    }
+}
 // search array for matching string and return only first matching group
 function preg_only_match($pat,$haystack)
 {

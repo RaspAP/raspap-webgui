@@ -7,8 +7,8 @@
   <ul class="navbar-nav ms-auto ms-md-0 me-2 me-lg-4">
     <!-- Display mode -->
     <div class="form-check form-switch p-4 mt-1">
-      <input type="checkbox" class="form-check-input" id="darkModeSwitch" <?php echo getNightmode() ? 'checked' : null ; ?> >
-      <label class="form-check-label" for="darkModeSwitch"><i class="far fa-moon mr-1 text-muted"></i></label>
+      <input type="checkbox" class="form-check-input" id="night-mode" <?php echo getNightmode() ? 'checked' : null ; ?> >
+      <label class="form-check-label" for="night-mode"><i class="far fa-moon mr-1 text-muted"></i></label>
     </div>
     <!-- Auth user -->
     <li class="nav-item mt-1">
