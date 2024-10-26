@@ -759,7 +759,7 @@ $(function() {
         
         if (nightModeChecked && hasDarkTheme) {
             if (theme === "custom.php") {
-                set_theme("lightsout.php");
+                set_theme("dark.css");
             }
         } else {
             set_theme(theme);
@@ -776,7 +776,7 @@ function set_theme(theme) {
 $(function() {
     var currentTheme = getCookie('theme');
     // Check if the current theme is a dark theme
-    var isDarkTheme = currentTheme === 'lightsout.php';
+    var isDarkTheme = currentTheme === 'dark.css';
 
     $('#night-mode').prop('checked', isDarkTheme);
     $('#night-mode').change(function() {
@@ -785,10 +785,10 @@ $(function() {
         
         if (state == true) {
             if (currentTheme == 'custom.php') {
-                set_theme('lightsout.php');
+                set_theme('dark.css');
             }
         } else {
-            if (currentTheme == 'lightsout.php') {
+            if (currentTheme == 'dark.css') {
                 set_theme('custom.php');
             }
         }
@@ -853,6 +853,17 @@ $(window).bind("load", function() {
     $('.sb-nav-link-icon a').filter(function() {
       return this.href == url;
     }).parent().addClass('active');
+});
+
+$(document).ready(function() {
+    const $htmlElement = $('html');
+    const $modeswitch = $('#night-mode');
+    $modeswitch.on('change', function() {
+        const isChecked = $(this).is(':checked');
+        const newTheme = isChecked ? 'dark' : 'light';
+        $htmlElement.attr('data-bs-theme', newTheme);
+        localStorage.setItem('bsTheme', newTheme);
+    });
 });
 
 $(document)

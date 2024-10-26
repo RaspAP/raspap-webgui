@@ -53,7 +53,7 @@ require_once 'includes/torproxy.php';
 initializeApp();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" <?php setTheme();?>>
   <head>
     <meta charset="utf-8">
     <?php echo CSRFMetaTag() ?>
