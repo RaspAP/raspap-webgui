@@ -24,7 +24,8 @@ html[data-bs-theme="dark"] .card-footer {
 
 html[data-bs-theme="dark"] .card-body,
 html[data-bs-theme="dark"] .card-footer,
-html[data-bs-theme="dark"] .info-item-xs {
+html[data-bs-theme="dark"] .info-item-xs,
+html[data-bs-theme="dark"] .table>:not(caption)>*>* {
   color: var(--bs-secondary);
 }
 
@@ -35,7 +36,12 @@ html[data-bs-theme="dark"] .sb-topnav.navbar {
 
 html[data-bs-theme="dark"] .sb-topnav.navbar,
 html[data-bs-theme="dark"] .sb-topnav.navbar a {
-  color: var(--bs-light) !important;
+  color: var(--raspap-theme-color) !important;
+}
+
+html[data-bs-theme="dark"] .sb-topnav.navbar a:hover,
+html[data-bs-theme="dark"] .sb-topnav.navbar a:focus {
+  color: var(--raspap-theme-darker) !important;
 }
 
 html[data-bs-theme="dark"] .sb-topnav.navbar {

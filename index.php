@@ -99,7 +99,7 @@ initializeApp();
     <!-- End of Navbar -->
     <div id="layoutSidenav">
       <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-light id="sidenavAccordion">
+        <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
           <div class="sb-sidenav-menu">
             <div class="nav">
               <!-- Sidebar -->
