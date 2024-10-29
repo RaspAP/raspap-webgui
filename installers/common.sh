@@ -842,7 +842,7 @@ function _configure_tcp_bbr() {
 }
 
 function _check_tcp_bbr_available() {
-    if [[ "$(modinfo -F intree tcp_bbr)" == "y" ]]; then
+    if [[ "$(modinfo -F intree tcp_bbr)" =~ ^[Yy]$ ]]; then
         return 0
     else
         return 1
