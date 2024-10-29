@@ -80,6 +80,7 @@ ul.nav-tabs, .nav-tabs .nav-link {
   background-color: #f6f6ef;
   border-bottom: 1px solid #dddfeb;
   color: #495057;
+  font-size: 1.0rem;
 }
 
 .form-switch .form-check-input:checked {
