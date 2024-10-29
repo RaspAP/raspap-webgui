@@ -15,21 +15,22 @@ You can become a sponsor using your individual or organization's GitHub account.
 ## Exclusive features
 The following features are currently available exclusively to sponsors. A tangible side benefit of sponsorship is that Insiders are able to help steer future development of RaspAP. This is done through Insiders' access to discussions, feature requests, issues and pull requests in the private GitHub repository.
 
- ✅ [Network device management](https://docs.raspap.com/net-devices/)    
- ✅ [Firewall settings](https://docs.raspap.com/firewall/)   
+ ✅ [Network device management](https://docs.raspap.com/net-devices/)  
+ ✅ [Firewall settings](https://docs.raspap.com/firewall/)  
  ✅ [WPA3-Personal AP security](https://docs.raspap.com/ap-basics/#wpa3-personal)  
- ✅ [802.11w Protected Management Frames](https://docs.raspap.com/ap-basics/#80211w)    
+ ✅ [802.11w Protected Management Frames](https://docs.raspap.com/ap-basics/#80211w)  
  ✅ [Printable Wi-Fi signs](https://docs.raspap.com/ap-basics/#printable-signs)  
  ✅ [Drag & drop dashboard widgets](https://docs.raspap.com/ap-basics/#drag-drop-widgets)  
  ✅ [MAC address cloning](https://docs.raspap.com/net-devices/#changing-the-mac-address)  
  ✅ [Network diagnostics](https://docs.raspap.com/net-devices/#diagnostics)  
  ✅ [WireGuard VPN kill switch](https://docs.raspap.com/wireguard/#kill-switch)  
- ✅ [Dynamic DNS](https://docs.raspap.com/dynamicdns/)  
+ ✅ [Dynamic DNS support](https://docs.raspap.com/dynamicdns/)  
  ✅ [Multiple WireGuard configs](https://docs.raspap.com/wireguard/#multiple-configs)  
  ✅ [Wireless LAN routing](https://docs.raspap.com/wlanrouting/)  
- ✅ Custom user avatars  
+ ✅ [Custom user avatars](https://docs.raspap.com/authentication/#custom-user-avatars)  
  ✅ [WiFi repeater mode](https://docs.raspap.com/ap-basics/#wifi-repeater-mode)  
  ✅ [Time synchronization](https://docs.raspap.com/time/)  
+ ✅ [Limited privilege user role](https://docs.raspap.com/authentication/#limited-privilege-user-role) 
 
 Look for the list above to grow as we add more exclusive features. Be sure to visit this page from time to time to learn about what's new, check the [Insiders docs page](https://docs.raspap.com/insiders/) and follow [@RaspAP on Twitter](https://twitter.com/rasp_ap) to stay updated.
 
