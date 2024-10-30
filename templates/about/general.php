@@ -22,12 +22,12 @@
       <a href="https://docs.raspap.com/translations/">translator</a> or <a href="https://github.com/sponsors/RaspAP">financial sponsor</a> with immediate access to <a href="https://docs.raspap.com/insiders/#whats-in-it-for-me">exclusive features</a> available to <strong>Insiders</strong>.</div>
       <div class="mt-3 project-links">
         <div class="row">
-          <div class="col-md-6">GitHub <i class="fa-brands fa-github"></i> <a href="https://github.com/RaspAP/" target="_blank" rel="noopener">RaspAP</a></div>
-          <div class="col-md-6">X <i class="fa-brands fa-square-x-twitter"></i> <a href="https://x.com/rasp_ap" target="_blank" rel="noopener">@RaspAP</a></div>
-          <div class="col-md-6">Reddit <i class="fa-brands fa-reddit"></i> <a href="https://www.reddit.com/r/RaspAP/" target="_blank" rel="noopener">/r/RaspAP</a></div>
-          <div class="col-md-6">Discord <i class="fa-brands fa-discord"></i> <a href="https://discord.gg/KVAsaAR" target="_blank" rel="noopener">RaspAP</a></div>
-          <div class="col-md-6">Docs <i class="fas fa-book-reader"></i> <a href="https://docs.raspap.com/" target="_blank" rel="noopener">docs.raspap.com</a></div>
-          <div class="col-md-6">License <i class="fas fa-balance-scale"></i> <a href="https://github.com/raspap/raspap-webgui/blob/master/LICENSE" target="_blank" rel="noopener">GPL-3.0</a></div>
+          <div class="col-6">GitHub <i class="fa-brands fa-github"></i> <a href="https://github.com/RaspAP/" target="_blank" rel="noopener">RaspAP</a></div>
+          <div class="col-6">X <i class="fa-brands fa-square-x-twitter"></i> <a href="https://x.com/rasp_ap" target="_blank" rel="noopener">@RaspAP</a></div>
+          <div class="col-6">Reddit <i class="fa-brands fa-reddit"></i> <a href="https://www.reddit.com/r/RaspAP/" target="_blank" rel="noopener">/r/RaspAP</a></div>
+          <div class="col-6">Discord <i class="fa-brands fa-discord"></i> <a href="https://discord.gg/KVAsaAR" target="_blank" rel="noopener">RaspAP</a></div>
+          <div class="col-6">Docs <i class="fas fa-book-reader"></i> <a href="https://docs.raspap.com/" target="_blank" rel="noopener">docs.raspap.com</a></div>
+          <div class="col-6">License <i class="fas fa-balance-scale"></i> <a href="https://github.com/raspap/raspap-webgui/blob/master/LICENSE" target="_blank" rel="noopener">GPL-3.0</a></div>
         </div>
       </div>
     </div>
