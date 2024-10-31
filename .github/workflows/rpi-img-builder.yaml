@@ -44,9 +44,9 @@ jobs:
         curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1
         
     - name: Set output
-      run: echo "::set-output name=image-path::${{ steps.build.outputs.image-path }}"
+      run: echo "image-path=${{ steps.build.outputs.image-path }}" >> $GITHUB_OUTPUT
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: pi-gen-image
         path: ${{ steps.build.outputs.image-path }}
