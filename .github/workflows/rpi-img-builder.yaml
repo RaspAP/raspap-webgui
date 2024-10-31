@@ -6,11 +6,11 @@ on:
       - BUILDER #remove after push to prod
       
 jobs:
-  prepareRASPAP:
+  build:
     runs-on: ubuntu-latest
     steps:
-      # Create a stage 'test-stage' instructing to add Nodesource repo and install nodejs as dependency
-      - run: |
+      - name: prepareRASPAP
+        run: |
           mkdir -p test-stage/package-test &&
           {
           cat > test-stage/package-test/00-run-chroot.sh <<-EOF
