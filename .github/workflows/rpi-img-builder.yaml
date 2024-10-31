@@ -7,13 +7,8 @@ on:
       
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - name: fix archiveraspberrypicom
-        run: |
-            cat /etc/resolv.conf
-            cat /etc/dhcpcd.conf
-          
       - name: prepareRASPAP
         run: |
           mkdir -p test-stage/package-test &&
