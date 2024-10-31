@@ -21,13 +21,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Add Custom Stage
+        run: |
+          mkdir -p custom_stage_raspap/package-raspap &&
+          {
+          cat > custom_stage_raspap/package-raspap/00-run-chroot.sh <<-EOF
+          #!/bin/bash
+          curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1
+          EOF
+          } &&
+          chmod +x custom_stage_raspap/package-raspap/00-run-chroot.sh &&
+          {
+          cat > custom_stage_raspap/prerun.sh <<-EOF
+          #!/bin/bash -e
+          if [ ! -d "\${ROOTFS_DIR}" ]; then
+            copy_previous
+          fi
+          EOF
+          } &&
+          chmod +x custom_stage_raspap/prerun.sh
+
       - name: Build RaspAP Image
         id: build
         uses: usimd/pi-gen-action@v1
         with:
           image-name: "raspap-${{ github.ref_name }}-${{ matrix.arch }}"
           enable-ssh: 1
-          stage-list: stage0 stage1 stage2
+          stage-list: stage0 stage1 stage2 ./custom_stage_raspap
           verbose-output: true
           pi-gen-version: ${{ matrix.pi_gen_version }}
 
