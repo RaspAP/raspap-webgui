@@ -63,10 +63,10 @@ jobs:
           verbose-output: true #change after pushing to prod
           stage-list: stage0 stage1 stage2 ./test-stage
       
-    - name: Set output
-      run: echo "image-path=${{ steps.build.outputs.image-path }}" >> $GITHUB_OUTPUT
+      - name: Set output
+        run: echo "image-path=${{ steps.build.outputs.image-path }}" >> $GITHUB_OUTPUT
 
-    - uses: actions/upload-artifact@v4
-      with:
-        name: pi-gen-image
-        path: ${{ steps.build.outputs.image-path }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pi-gen-image
+          path: ${{ steps.build.outputs.image-path }}
