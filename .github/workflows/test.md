@@ -1,0 +1,37 @@
+name: testtest
+on:
+  push: 
+    branches: 
+      - master
+      - BUILDER #remove after push to prod
+      
+jobs:
+  pi-gen-nodejs:
+    runs-on: ubuntu-latest
+    steps:
+      # Create a stage 'test-stage' instructing to add Nodesource repo and install nodejs as dependency
+      - run: |
+          mkdir -p test-stage/package-test &&
+          {
+          cat > test-stage/package-test/00-run-chroot.sh <<-EOF
+          #!/bin/bash
+          apt-get install -y curl
+          curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+          EOF
+          } &&
+          chmod +x test-stage/package-test/00-run-chroot.sh &&
+          echo "nodejs" > test-stage/package-test/01-packages &&
+          {
+          cat > test-stage/prerun.sh <<-EOF
+          #!/bin/bash -e
+          if [ ! -d "\${ROOTFS_DIR}" ]; then
+            copy_previous
+          fi
+          EOF
+          } &&
+          chmod +x test-stage/prerun.sh
+
+      - uses: usimd/pi-gen-action@v1
+        with:
+          image-name: test
+          stage-list: stage0 stage1 stage2 ./test-stage
