@@ -30,10 +30,7 @@ jobs:
           EOF
           } &&
           chmod +x test-stage/prerun.sh
-  
-  build:
-    runs-on: ubuntu-latest
-    steps:
+
     - name: Build amd64 image
       id: build
       uses: usimd/pi-gen-action@v1
