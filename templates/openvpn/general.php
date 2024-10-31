@@ -5,8 +5,8 @@
       <div class="row mb-2">
          <div class="col-lg-12 mt-2 mb-2">
            <div class="row ms-1">
-            <div class="info-item col-xs-3"><?php echo _("IPv4 Address"); ?></div>
-            <div class="info-value col-xs-3"><?php echo htmlspecialchars($public_ip, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($public_ip); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ms-2"></i></a></div>
+            <div class="info-item col-3"><?php echo _("IPv4 Address"); ?></div>
+            <div class="info-value col-4"><?php echo htmlspecialchars($public_ip, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($public_ip); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ms-2"></i></a></div>
            </div>
          </div>
       </div>

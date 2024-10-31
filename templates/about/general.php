@@ -8,7 +8,7 @@
           <h2 class="mt-3 ms-4"><?php echo _("RaspAP") ." v".RASPI_VERSION; ?></h2>
           <?php if (!RASPI_MONITOR_ENABLED) : ?>
           <button type="button" class="btn btn-warning ms-4 mt-2" name="check-update" data-bs-toggle="modal" data-bs-target="#chkupdateModal" />
-            <i class="fas fa-sync-alt ms-1 me-2"></i><?php echo _("Check for update"); ?>
+            <i class="fa-solid fa-cloud-arrow-down ms-1 me-2"></i><?php echo _("Check for update"); ?>
           </button>
           <?php endif; ?>
         </div>
