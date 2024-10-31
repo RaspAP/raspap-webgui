@@ -11,22 +11,18 @@ jobs:
     steps:
       - run: |
           mkdir -p test-stage/raspap-install &&
-          {
           cat > test-stage/raspap-install/00-run.sh <<-EOF
           #!/bin/bash
           apt-get install -y curl
-          curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1 | bash -
+          curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1
           EOF
-          } &&
           chmod +x test-stage/raspap-install/00-run.sh &&
-          {
           cat > test-stage/prerun.sh <<-EOF
           #!/bin/bash -e
           if [ ! -d "\${ROOTFS_DIR}" ]; then
             copy_previous
           fi
           EOF
-          } &&
           chmod +x test-stage/prerun.sh
   
   build:
