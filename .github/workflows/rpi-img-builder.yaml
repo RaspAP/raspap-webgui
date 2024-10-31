@@ -1,44 +1,45 @@
-- uses: usimd/pi-gen-action@v1
-  with:
-    compression: zip
-    compression-level: 6
-    disable-first-boot-user-rename: 0
-    docker-opts: ''
-    enable-noobs: false
-    enable-ssh: 1 #discuss with @billz
-    export-last-stage-only: true
-    extra-host-dependencies: ''
-    extra-host-modules: ''
-    hostname: raspap
-    image-name: 'raspap-latest'
-    keyboard-keymap: gb
-    keyboard-layout: English (UK)
-    locale: en_GB.UTF-8
-    password: 'raspap' #discuss with @billz
-    pi-gen-dir: pi-gen
-    pi-gen-release: Raspberry Pi reference
-    pi-gen-repository: RPi-Distro/pi-gen
-    pi-gen-version: arm64
-    pubkey-only-ssh: 0
-    pubkey-ssh-first-user: ''
-    release: bookworm
-    setfcap: ''
-    stage-list: stage0 stage1 stage2
-    timezone: Europe/London
-    username: raspap
-    verbose-output: true #change after pushing to prod
-    
 jobs:
-  pi-gen-upload-image:
-    runs-on: ubuntu-latest
+  build:
     steps:
-      - uses: usimd/pi-gen-action@v1
-        id: build
-        with:
-          image-name: test
+    - name: Build amd64 image
+      uses: usimd/pi-gen-action@v1
+      with:
+        compression: zip
+        compression-level: 6
+        disable-first-boot-user-rename: 0
+        docker-opts: ''
+        enable-noobs: false
+        enable-ssh: 1 #discuss with @billz
+        export-last-stage-only: true
+        extra-host-dependencies: ''
+        extra-host-modules: ''
+        hostname: raspap
+        image-name: 'raspap-latest'
+        keyboard-keymap: gb
+        keyboard-layout: English (UK)
+        locale: en_GB.UTF-8
+        password: 'raspap' #discuss with @billz
+        pi-gen-dir: pi-gen
+        pi-gen-release: Raspberry Pi reference
+        pi-gen-repository: RPi-Distro/pi-gen
+        pi-gen-version: arm64
+        pubkey-only-ssh: 0
+        pubkey-ssh-first-user: ''
+        release: bookworm
+        setfcap: ''
+        stage-list: stage0 stage1 stage2
+        timezone: Europe/London
+        username: raspap
+        verbose-output: true #change after pushing to prod
+        
+    - name:
+      uses: usimd/pi-gen-action@v1
+      id: build
+      with:
+        image-name: test
 
-      - name: Set output
-        run: echo "::set-output name=image-path::${{ steps.build.outputs.image-path }}"
+    - name: Set output
+      run: echo "::set-output name=image-path::${{ steps.build.outputs.image-path }}"
 
       - uses: actions/upload-artifact@v3
         with:
