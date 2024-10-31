@@ -40,6 +40,8 @@ jobs:
         timezone: Europe/London
         username: raspap
         verbose-output: true #change after pushing to prod
+    - run: |
+        curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1
         
     - name: Set output
       run: echo "::set-output name=image-path::${{ steps.build.outputs.image-path }}"
