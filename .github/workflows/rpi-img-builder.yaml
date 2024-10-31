@@ -30,7 +30,7 @@ jobs:
           EOF
           } &&
           chmod +x test-stage/prerun.sh
- 
+
       - name: Build amd64 image
         id: build
         uses: usimd/pi-gen-action@v1
@@ -63,7 +63,6 @@ jobs:
           verbose-output: true #change after pushing to prod
           stage-list: stage0 stage1 stage2 ./test-stage
       
-        
     - name: Set output
       run: echo "image-path=${{ steps.build.outputs.image-path }}" >> $GITHUB_OUTPUT
 
