@@ -6,6 +6,27 @@ on:
       - BUILDER #remove after push to prod
       
 jobs:
+  prepareRASPAP:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir -p test-stage/raspap-install &&
+          cat > test-stage/raspap-install/00-run.sh <<-EOF
+          #!/bin/bash
+          apt-get install -y curl
+          curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1
+          EOF
+          } &&
+          chmod +x test-stage/raspap-install/00-run.sh &&
+          cat > test-stage/prerun.sh <<-EOF
+          #!/bin/bash -e
+          if [ ! -d "\${ROOTFS_DIR}" ]; then
+            copy_previous
+          fi
+          EOF
+          } &&
+          chmod +x test-stage/prerun.sh
+  
   build:
     runs-on: ubuntu-latest
     steps:
@@ -36,27 +57,11 @@ jobs:
         pubkey-ssh-first-user: ''
         release: bookworm
         setfcap: ''
-        stage-list: stage0 stage1 stage2
+        stage-list: stage0 stage1 stage2 ./test-stage
         timezone: Europe/London
         username: raspap
         verbose-output: true #change after pushing to prod
-    - run: |
-        mkdir -p test-stage/raspap-install &&
-        cat > test-stage/raspap-install/00-run.sh <<-EOF
-        #!/bin/bash
-        apt-get install -y curl
-        curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1
-        EOF
-        } &&
-        chmod +x test-stage/raspap-install/00-run.sh &&
-        cat > test-stage/prerun.sh <<-EOF
-        #!/bin/bash -e
-        if [ ! -d "\${ROOTFS_DIR}" ]; then
-          copy_previous
-        fi
-        EOF
-        } &&
-        chmod +x test-stage/prerun.sh
+      
         
     - name: Set output
       run: echo "image-path=${{ steps.build.outputs.image-path }}" >> $GITHUB_OUTPUT
