@@ -31,11 +31,16 @@ jobs:
           verbose-output: true
           pi-gen-version: ${{ matrix.pi_gen_version }}
 
+      - name: Unzip and Rename Image File
+        run: |
+          unzip ${{ steps.build.outputs.image-path }} -d extracted_image
+          mv "$(find extracted_image -name "*.img")" "raspap-image-${{ github.ref_name }}-${{ matrix.arch }}.img"
+
       - name: Upload Artifact
         uses: svenstaro/upload-release-action@v2
         with:
-          asset_name: raspap-image-${{ github.ref_name }}-${{ matrix.arch }}.zip
-          file: ${{ steps.build.outputs.image-path }}
+          file: raspap-image-${{ github.ref_name }}-${{ matrix.arch }}.img
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
           overwrite: true
+          file_glob: true
