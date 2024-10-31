@@ -2,6 +2,7 @@ jobs:
   build:
     steps:
     - name: Build amd64 image
+      id: build
       uses: usimd/pi-gen-action@v1
       with:
         compression: zip
@@ -32,16 +33,10 @@ jobs:
         username: raspap
         verbose-output: true #change after pushing to prod
         
-    - name:
-      uses: usimd/pi-gen-action@v1
-      id: build
-      with:
-        image-name: test
-
     - name: Set output
       run: echo "::set-output name=image-path::${{ steps.build.outputs.image-path }}"
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: pi-gen-image
-          path: ${{ steps.build.outputs.image-path }}
+    - uses: actions/upload-artifact@v3
+      with:
+        name: pi-gen-image
+        path: ${{ steps.build.outputs.image-path }}
