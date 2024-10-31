@@ -1,3 +1,8 @@
+name: Build arm images for RPI
+on:
+  push: 
+    branches: 
+      - master
 jobs:
   build:
     steps:
