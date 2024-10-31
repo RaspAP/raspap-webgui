@@ -11,6 +11,7 @@ jobs:
     steps:
       - run: |
           mkdir -p test-stage/raspap-install &&
+          {
           cat > test-stage/raspap-install/00-run.sh <<-EOF
           #!/bin/bash
           apt-get install -y curl
@@ -18,6 +19,7 @@ jobs:
           EOF
           } &&
           chmod +x test-stage/raspap-install/00-run.sh &&
+          {
           cat > test-stage/prerun.sh <<-EOF
           #!/bin/bash -e
           if [ ! -d "\${ROOTFS_DIR}" ]; then
