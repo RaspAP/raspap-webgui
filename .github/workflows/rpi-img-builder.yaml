@@ -11,10 +11,8 @@ jobs:
     steps:
       - name: fix archiveraspberrypicom
         run: |
-            su root
-            echo ${{ secrets.USERPWD }} | sudo -S echo "nameserver 1.1.1.1" > /etc/resolv.conf
-            echo ${{ secrets.USERPWD }} | sudo -S echo "static domain_name_servers=1.1.1.1 1.0.0.1" >> /etc/dhcpcd.conf
-            echo ${{ secrets.USERPWD }} | sudo -S service dhcpcd restart
+            cat /etc/resolv.conf
+            cat /etc/dhcpcd.conf
           
       - name: prepareRASPAP
         run: |
