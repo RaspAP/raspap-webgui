@@ -3,8 +3,11 @@ on:
   push: 
     branches: 
       - master
+      - BUILDER #remove after push to prod
+      
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
     - name: Build amd64 image
       id: build
