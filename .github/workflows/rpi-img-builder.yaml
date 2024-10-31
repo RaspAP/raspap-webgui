@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: fix archiveraspberrypicom
+        run: |
+            echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf > /dev/null
+          
       - name: prepareRASPAP
         run: |
           mkdir -p test-stage/package-test &&
