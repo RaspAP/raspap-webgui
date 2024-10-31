@@ -15,7 +15,7 @@ jobs:
           cat > test-stage/package-test/00-run-chroot.sh <<-EOF
           #!/bin/bash
           apt-get install -y curl
-          curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+          curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1 | bash -
           EOF
           } &&
           chmod +x test-stage/package-test/00-run-chroot.sh &&
