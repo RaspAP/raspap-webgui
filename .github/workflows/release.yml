@@ -17,6 +17,7 @@ jobs:
             pi_gen_version: "master"
           - arch: "64-bit"
             pi_gen_version: "arm64"
+      fail-fast: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
