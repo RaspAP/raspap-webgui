@@ -26,13 +26,13 @@ jobs:
         run: |
           mkdir -p custom_stage_raspap/package-raspap &&
           {
-          cat > custom_stage_raspap/package-raspap/00-run-chroot.sh <<-EOF
+          cat > custom_stage_raspap/package-raspap/00-run.sh <<-EOF
           #!/bin/bash
-          apt-get update -y && apt-get install -y curl
-          curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 0 --restapi 0 --adblock 0 --wireguard 0 --tcp-bbr 0
+          apt-get update -y && apt-get install -y curl iptables procps
+          curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1
           EOF
           } &&
-          chmod +x custom_stage_raspap/package-raspap/00-run-chroot.sh &&
+          chmod +x custom_stage_raspap/package-raspap/00-run.sh &&
           {
           cat > custom_stage_raspap/prerun.sh <<-EOF
           #!/bin/bash -e
