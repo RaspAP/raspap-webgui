@@ -917,6 +917,9 @@ msgstr "Diagnostic log size limit (KB)"
 msgid "Changing log limit size to %s KB"
 msgstr "Changing log limit size to %s KB"
 
+msgid "Information provided by raspap.sysinfo"
+msgstr "Information provided by raspap.sysinfo"
+
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "Data usage"
@@ -1559,4 +1562,7 @@ msgstr "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
 
 msgid "Restarting restapi.service"
 msgstr "Restarting restapi.service"
+
+msgid "Information provided by restapi.service"
+msgstr "Information provided by restapi.service"
 

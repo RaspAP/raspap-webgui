@@ -5,9 +5,9 @@
       <div class="col-md-6">
         <div class="input-group">
           <input type="hidden" name="adblock-custom-enable" value="0">
-          <div class="custom-control custom-switch">
-            <input class="custom-control-input" id="adblock-custom-enable" type="checkbox" name="adblock-custom-enable" value="1" <?php echo $custom_enabled ? ' checked="checked"' : "" ?> aria-describedby="adblock-description">
-          <label class="custom-control-label" for="adblock-custom-enable"><?php echo _("Enable custom blocklist") ?></label>
+          <div class="form-check form-switch">
+            <input class="form-check-input" id="adblock-custom-enable" type="checkbox" name="adblock-custom-enable" value="1" <?php echo $custom_enabled ? ' checked="checked"' : "" ?> aria-describedby="adblock-description">
+          <label class="form-check-label" for="adblock-custom-enable"><?php echo _("Enable custom blocklist") ?></label>
           </div>
         </div>
         <p id="adblock-description">
@@ -20,8 +20,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-md-8">
-      <?php echo '<textarea class="logoutput" name="adblock-custom-hosts">'.htmlspecialchars($adblock_custom_content, ENT_QUOTES).'</textarea>'; ?>
+      <div class="mb-3 col-md-8">
+      <?php echo '<textarea class="logoutput text-secondary" name="adblock-custom-hosts">'.htmlspecialchars($adblock_custom_content, ENT_QUOTES).'</textarea>'; ?>
       </div>
   </div>
 </div><!-- /.tab-pane -->

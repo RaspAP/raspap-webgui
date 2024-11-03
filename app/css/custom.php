@@ -13,12 +13,46 @@ License: GNU General Public License v3.0
 
 @import url('all.css');
 
+:root {
+  --raspap-theme-color: <?php echo $color; ?>;
+  --raspap-theme-lighter: <?php echo lightenColor($color, 20); ?>;
+  --raspap-theme-darker: <?php echo darkenColor($color, 20); ?>;
+}
+
 body {
   color: #212529;
+  background-color: #f8f9fc;
+}
+
+a {
+  color: var(--raspap-theme-color);
+  text-decoration: none;
+}
+
+a:focus, a:hover {
+  color: var(--raspap-theme-darker);
+}
+
+.sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
+  color: var(--raspap-theme-color);
+}
+
+.sidebar-brand-text:focus,
+.sidebar-brand-text:hover {
+  color: var(--raspap-theme-darker);
+}
+
+.form-check-input:checked {
+  background-color: var(--raspap-theme-color); 
+  border-color: var(--raspap-theme-color); 
 }
 
 .sidebar {
   background-color: #f8f9fc;
+}
+
+.sb-nav-link-icon.active {
+  font-weight: 600;
 }
 
 .sidebar .nav-item.active .nav-link {
@@ -26,13 +60,13 @@ body {
 }
 
 .sidebar-brand-text {
-  color: <?php echo $color; ?>;
+  color: var(--raspap-theme-color); 
 }
 
 .card .card-header, .modal-header {
-  border-color: <?php echo $color; ?>;
+  border-color: var(--raspap-theme-color); 
   color: #fff;
-  background-color: <?php echo $color; ?>;
+  background-color: var(--raspap-theme-color); 
 }
 
 .modal-header {
@@ -40,23 +74,23 @@ body {
 }
 
 .btn-primary {
-  color: <?php echo $color; ?>;
-  border-color: <?php echo $color; ?>;
+  color: var(--raspap-theme-color); 
+  border-color: var(--raspap-theme-color); 
   background-color: #fff;
 }
 
 .btn-primary:disabled {
-  color: <?php echo $color; ?> !important;
-  border-color: <?php echo $color; ?> !important;
+  color: var(--raspap-theme-color) !important;
+  border-color: var(--raspap-theme-color) !important;
   background-color: #fff !important;
+}
+
+.card-body {
+  color: #495057;
 }
 
 .card-footer, .modal-footer {
   background-color: #f2f1f0;
-}
-
-.nav-item {
-  font-size: 0.85rem;
 }
 
 .nav-tabs .nav-link.active,
@@ -76,10 +110,6 @@ a.nav-link.active {
   padding: 0.6rem 0.6rem 0.6rem 1.0rem;
 }
 
-.alert-success {
-  background-color: #d4edda;
-}
-
 .btn-primary {
   background-color: #fff;
 }
@@ -89,8 +119,8 @@ a.nav-link.active {
 }
 
 .btn-primary:hover {
-  background-color: <?php echo $color; ?>;
-  border-color: <?php echo $color; ?>;
+  background-color: var(--raspap-theme-color); 
+  border-color: var(--raspap-theme-color); 
 }
 
 i.fa.fa-bars {
@@ -119,6 +149,6 @@ pre.unstyled {
 }
 
 .signal-icon .signal-bar {
-  background: <?php echo $color; ?>;
+  background: var(--raspap-theme-color); 
 }
 

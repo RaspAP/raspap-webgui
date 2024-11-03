@@ -137,18 +137,12 @@ function DisplaySystem(&$extraFooterScripts)
     $themes = [
         "default"    => "RaspAP (default)",
         "hackernews" => "HackerNews",
-        "material-light" => "Material"
     ];
     $themeFiles = [
         "default"    => "custom.php",
         "hackernews" => "hackernews.css",
-        "material-light" => "material-light.php"
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
-    if (strpos($_COOKIE['theme'],'material') !== false) {
-        $selectedTheme = 'material-light';
-    }
-
     $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
     $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
     $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;

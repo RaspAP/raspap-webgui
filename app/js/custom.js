@@ -3,7 +3,7 @@ function msgShow(retcode,msg) {
     } else if(retcode == 2 || retcode == 1) {
         var alertType = 'danger';
     }
-    var htmlMsg = '<div class="alert alert-'+alertType+' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+msg+'</div>';
+    var htmlMsg = '<div class="alert alert-'+alertType+' alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+msg+'</div>';
     return htmlMsg;
 }
 
@@ -24,7 +24,7 @@ function loadSummary(strInterface) {
         if(jsonData['return'] == 0) {
             $('#'+strInterface+'-summary').html(jsonData['output'].join('<br />'));
         } else if(jsonData['return'] == 2) {
-            $('#'+strInterface+'-summary').append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+jsonData['output'].join('<br />')+'</div>');
+            $('#'+strInterface+'-summary').append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+jsonData['output'].join('<br />')+'</div>');
         }
     });
 }
@@ -39,7 +39,7 @@ function getAllInterfaces() {
 }
 
 function setupTabs() {
-    $('a[data-toggle="tab"]').on('shown.bs.tab',function(e){
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab',function(e){
         var target = $(e.target).attr('href');
         if(!target.match('summary')) {
             var int = target.replace("#","");
@@ -153,7 +153,7 @@ $(document).on("click", "#js-clearopenvpn-log", function(e) {
 
 // Enable Bootstrap tooltips
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-bs-toggle="tooltip"]').tooltip()
 })
 
 function genPassword(pwdLen) {
@@ -296,7 +296,7 @@ $('#chkupdateModal').on('shown.bs.modal', function (e) {
         var msgLatest = $('#msgLatest').data('message');
         var msgInstall = $('#msgInstall').data('message');
         var msgDismiss = $('#js-check-dismiss').data('message');
-        var faCheck = '<i class="fas fa-check ml-2"></i><br />';
+        var faCheck = '<i class="fas fa-check ms-2"></i><br />';
         $("#updateSync").removeClass("fa-spin");
         if (update === true) {
             msg = msgUpdate +' '+tag;
@@ -443,7 +443,7 @@ $('#js-system-reset-confirm').on('click', function (e) {
     var successHtml = $('#system-reset-message').attr('data-message');
     var closeHtml = $('#js-system-reset-cancel').attr('data-message');
     var csrfToken = $('meta[name=csrf_token]').attr('content');
-    var progressHtml = $('<div>').text(progressText).html() + '<i class="fas fa-cog fa-spin ml-2"></i>';
+    var progressHtml = $('<div>').text(progressText).html() + '<i class="fas fa-cog fa-spin ms-2"></i>';
     $('#system-reset-message').html(progressHtml);
     $.post('ajax/networking/do_sys_reset.php?',{'csrf_token':csrfToken},function(data){
         setTimeout(function(){
@@ -737,20 +737,19 @@ function setDhcpFieldsDisabled() {
 Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
 
 $(document).on("click", ".js-toggle-password", function(e) {
-    var button = $(e.target)
-    var field  = $(button.data("target"));
-
+    var button = $(e.currentTarget);
+    var field  = $(button.data("bsTarget"));
     if (field.is(":input")) {
         e.preventDefault();
 
         if (!button.data("__toggle-with-initial")) {
-            $("i", this).removeClass("fas fa-eye").addClass(button.attr("data-toggle-with"));
+            $("i", button).removeClass("fas fa-eye").addClass(button.attr("data-toggle-with"));
         }
 
         if (field.attr("type") === "password") {
             field.attr("type", "text");
         } else {
-            $("i", this).removeClass("fas fa-eye-slash").addClass("fas fa-eye");
+            $("i", button).removeClass("fas fa-eye-slash").addClass("fas fa-eye");
             field.attr("type", "password");
         }
     }
@@ -760,15 +759,12 @@ $(function() {
     $('#theme-select').change(function() {
         var theme = themes[$( "#theme-select" ).val() ];
 
-        var hasDarkTheme = theme === 'custom.php' ||
-            theme === 'material-light.php';
+        var hasDarkTheme = theme === 'custom.php';
         var nightModeChecked = $("#night-mode").prop("checked");
         
         if (nightModeChecked && hasDarkTheme) {
             if (theme === "custom.php") {
-                set_theme("lightsout.php");
-            } else if (theme === "material-light.php") {
-                set_theme("material-dark.php");
+                set_theme("dark.css");
             }
         } else {
             set_theme(theme);
@@ -785,7 +781,7 @@ function set_theme(theme) {
 $(function() {
     var currentTheme = getCookie('theme');
     // Check if the current theme is a dark theme
-    var isDarkTheme = currentTheme === 'lightsout.php' || currentTheme === 'material-dark.php';
+    var isDarkTheme = currentTheme === 'dark.css';
 
     $('#night-mode').prop('checked', isDarkTheme);
     $('#night-mode').change(function() {
@@ -794,15 +790,11 @@ $(function() {
         
         if (state == true) {
             if (currentTheme == 'custom.php') {
-                set_theme('lightsout.php');
-            } else if (currentTheme == 'material-light.php') {
-                set_theme('material-dark.php');
+                set_theme('dark.css');
             }
         } else {
-            if (currentTheme == 'lightsout.php') {
+            if (currentTheme == 'dark.css') {
                 set_theme('custom.php');
-            } else if (currentTheme == 'material-dark.php') {
-                set_theme('material-light.php');
             }
         }
    });
@@ -863,9 +855,20 @@ $(window).on("load resize",function(e) {
 // Adds active class to current nav-item
 $(window).bind("load", function() {
     var url = window.location;
-    $('ul.navbar-nav a').filter(function() {
+    $('.sb-nav-link-icon a').filter(function() {
       return this.href == url;
     }).parent().addClass('active');
+});
+
+$(document).ready(function() {
+    const $htmlElement = $('html');
+    const $modeswitch = $('#night-mode');
+    $modeswitch.on('change', function() {
+        const isChecked = $(this).is(':checked');
+        const newTheme = isChecked ? 'dark' : 'light';
+        $htmlElement.attr('data-bs-theme', newTheme);
+        localStorage.setItem('bsTheme', newTheme);
+    });
 });
 
 $(document)

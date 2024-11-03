@@ -8,7 +8,7 @@
  * Recommended distribution is Raspberry Pi OS (64-bit) Lite. Specific instructions to install the supported software are
  * in the README and original post by @SirLagz. For a quick run through, the packages required for the WebGUI are:
  * lighttpd (version 1.4.69 installed via apt)
- * php-cgi (version 8.2.20 installed via apt)
+ * php-cgi (version 8.2.24 installed via apt)
  * along with their supporting packages, php8.2 will also need to be enabled.
  *
  * @author  Lawrence Yau <sirlagz@gmail.com>
@@ -53,31 +53,28 @@ require_once 'includes/torproxy.php';
 initializeApp();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" <?php setTheme();?>>
   <head>
     <meta charset="utf-8">
     <?php echo CSRFMetaTag() ?>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title><?php echo _("RaspAP WiFi Configuration Portal"); ?></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="dist/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- SB-Admin-2 CSS -->
-    <link href="dist/sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link href="dist/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- SB-Admin CSS -->
+    <link href="dist/sb-admin/css/styles.css" rel="stylesheet">
 
     <!-- Huebee CSS -->
     <link href="dist/huebee/huebee.min.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="dist/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Font Awesome -->
+    <link href="dist/font-awesome/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- RaspAP Fonts -->
     <link href="dist/raspap/css/style.css" rel="stylesheet" type="text/css">
@@ -94,47 +91,37 @@ initializeApp();
     <meta name="msapplication-config" content="app/icons/browserconfig.xml">
     <meta name="msapplication-TileColor" content="#b91d47">
     <meta name="theme-color" content="#ffffff">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
-  <body id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-      <!-- Sidebar -->
-      <?php require_once 'includes/sidebar.php'; ?>
-      <!-- End of Sidebar -->
-      <!-- Content Wrapper -->
-      <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Main Content -->
-        <div id="content">
-          <!-- Topbar -->
-          <?php require_once 'includes/navbar.php'; ?>
-          <!-- End of Topbar -->
-          <!-- Begin Page Content -->
-          <div class="container-fluid">
-          <?php require_once 'includes/page_actions.php'; ?>
-          </div><!-- /.container-fluid -->
-        </div><!-- End of Main Content -->
-        <!-- Footer -->
-        <footer class="sticky-footer bg-grey-100">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span></span>
+
+  <body class="sb-nav-fixed">
+    <!-- Navbar -->
+    <?php require_once 'includes/navbar.php'; ?>
+    <!-- End of Navbar -->
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <!-- Sidebar -->
+              <?php require_once 'includes/sidebar.php'; ?>
+              <!-- End of Sidebar -->
             </div>
           </div>
+        </nav>
+      </div>
+      <div id="layoutSidenav_content">
+        <main>
+          <div class="container-fluid mt-2">
+            <?php require_once 'includes/page_actions.php'; ?>
+          </div>
+        </main>
+        <footer class="py-4 mt-auto">
+          <div class="container-fluid px-4">
+            <?php require_once 'includes/footer.php'; ?>
+          </div>
         </footer>
-        <!-- End Footer -->
-      </div><!-- End of Content Wrapper -->
-    </div><!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top" style="display: inline;">
-      <i class="fas fa-angle-up"></i>
-    </a> 
-
+      </div>
+    </div>
     <!-- jQuery -->
     <script src="dist/jquery/jquery.min.js"></script>
 
@@ -147,8 +134,8 @@ initializeApp();
     <!-- Chart.js JavaScript -->
     <script src="dist/chart.js/Chart.min.js"></script>
 
-    <!-- SB-Admin-2 JavaScript -->
-    <script src="dist/sb-admin-2/js/sb-admin-2.js"></script>
+    <!-- SB-Admin JavaScript -->
+    <script src="dist/sb-admin/js/scripts.js"></script>
 
     <!-- jQuery Mask plugin -->
     <script src="dist/jquery-mask/jquery.mask.min.js"></script>
@@ -159,3 +146,4 @@ initializeApp();
     <?php loadFooterScripts($extraFooterScripts); ?>
   </body>
 </html>
+

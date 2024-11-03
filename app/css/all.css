@@ -6,26 +6,38 @@ Description: Classes shared by all themes
 License: GNU General Public License v3.0
 */
 
-/* Small devices (portrait phones, up to 576px) */
-@media (max-width: 576px) {
-  .container-fluid, .card-body, .col-md-6 { padding-left: 0.5rem; padding-right: 0.5rem; }
-  .card .card-header { padding: .75rem .5rem; font-size: 1.0rem; }
-  .row { margin-left: 0rem; margin-right: 0rem; }
-  .col-lg-12 { padding-right: 0.25rem; padding-left: 0.25rem; }
-  .form-group.col-md-6 { margin-left: -0.5rem; }
-  h4.mt-3 { margin-left: 0.5rem; }
+:root {
+  --raspap-content-main: #495057;
+  --raspap-text-muted: #858796;
+  --raspap-brand-color: #2b8080;
 }
 
-.sidebar.toggled .nav-item .nav-link {
-  padding: 0.65rem 1rem;
+a {
+    color: var(--raspap-brand-color);
+    text-decoration: none;
 }
 
+.sb-sidenav .sb-sidenav-menu .nav .nav-link {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.sb-sidenav-light .sb-sidenav-menu .nav-link, .card-title, h4 {
+  color: var(--raspap-content-main);
+}
+
+.sb-topnav.navbar-light #sidebarToggle {
+  color: var(--raspap-content-main);
+}
 .sidebar-brand-text {
   text-transform: none;
-  color: #212529;
   font-size: 2.0rem;
   font-weight: 500;
   font-family: Helvetica, Arial, sans-serif;
+}
+
+th {
+  color: var(--raspap-content-main) !important;
 }
 
 .h-underlined {
@@ -46,7 +58,7 @@ License: GNU General Public License v3.0
 .info-item {
   text-transform: uppercase;
   font-size: 0.7em;
-  color: #858796;
+  color: var(--raspap-text-muted);
 }
 
 .info-value {
@@ -123,7 +135,7 @@ License: GNU General Public License v3.0
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #858796;
+  color: var(--raspap-text-muted);
   content: "\f1ce"; /* Unicode for the circle-notch icon */
   font-family: "Font Awesome 5 Free";
   font-weight: 900; /* Adjust as needed */
@@ -205,7 +217,6 @@ button.btn.btn-light.js-toggle-password {
   width: 4px;
   border-radius: 1px;
   opacity: 30%;
-  background: <?php echo $color; ?>;
 }
 
 .signal-icon .signal-bar:nth-child(1) { height: 40%; }
@@ -252,7 +263,7 @@ button.btn.btn-light.js-toggle-password {
 }
 
 figcaption.figure-caption a {
-  color: #858796;
+  color: var(--raspap-text-muted);
 }
 
 button > i.fas {
@@ -266,20 +277,58 @@ button > i.fas {
 
 .was-validated .form-control:valid,
 .was-validated .form-control:invalid {
-    background-position: center right calc(.375em + .4875rem);
+  background-position: center right calc(.375em + .4875rem);
 }
 
 .was-validated .form-control:invalid {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
-    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 
 .was-validated .form-control:valid {
-    background-size: calc(0.6em + 0.375rem) calc(0.6em + 0.375rem);
+  background-size: calc(0.6em + 0.375rem) calc(0.6em + 0.375rem);
 }
 
 .input-group>.input-group-append:not(:last-child)>.btn {
-    border-top-right-radius: 0.35rem;
-    border-bottom-right-radius: 0.35rem;
+  border-top-right-radius: 0.35rem;
+  border-bottom-right-radius: 0.35rem;
+}
+
+.nav-user {
+  position: relative;
+  bottom: 11px;
+  right: 3px;
+}
+
+.nav-item {
+  font-size: 0.85rem;
+}
+
+/* Font Awesome 5 brands */
+.fa-reddit {
+    color: #ff4500;
+}
+.fa-twitter {
+    color: #55acee
+}
+.fa-discord {
+    color: #7289da
+}
+.fa-github {
+    color: #151b23
+}
+
+@keyframes heart {
+  0%, 40%, 80%, 100% {
+    transform: scale(1);
+  }
+  20%, 60% {
+    transform: scale(1.15);
+  }
+}
+
+.heart {
+  color: #e63946;
+  animation: heart 1000ms infinite;
 }
 

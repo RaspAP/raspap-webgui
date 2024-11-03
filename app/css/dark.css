@@ -1,0 +1,83 @@
+/*
+Theme Name: Lights Out
+Author: @billz
+Author URI: https://github.com/billz
+Description: A Bootstrap dark mode theme for RaspAP
+License: GNU General Public License v3.0
+*/
+
+@import url('custom.php');
+
+html[data-bs-theme="dark"] {
+  background-color: var(--bs-dark);
+  color: var(--bs-light);
+}
+
+html[data-bs-theme="dark"] body,
+html[data-bs-theme="dark"] footer,
+html[data-bs-theme="dark"] .sb-sidenav,
+html[data-bs-theme="dark"] .sb-topnav,
+html[data-bs-theme="dark"] .card,
+html[data-bs-theme="dark"] .card-footer {
+  background-color: var(--bs-dark);
+}
+
+html[data-bs-theme="dark"] .card-body,
+html[data-bs-theme="dark"] .card-footer,
+html[data-bs-theme="dark"] .info-item-xs,
+html[data-bs-theme="dark"] .table>:not(caption)>*>* {
+  color: var(--bs-secondary);
+}
+
+html[data-bs-theme="dark"] .sb-topnav.navbar {
+  background-color: var(--bs-dark) !important;
+  color: var(--bs-light);
+}
+
+html[data-bs-theme="dark"] .sb-topnav.navbar,
+html[data-bs-theme="dark"] .sb-topnav.navbar a {
+  color: var(--raspap-theme-color) !important;
+}
+
+html[data-bs-theme="dark"] .sb-topnav.navbar a:hover,
+html[data-bs-theme="dark"] .sb-topnav.navbar a:focus {
+  color: var(--raspap-theme-darker) !important;
+}
+
+html[data-bs-theme="dark"] .sb-topnav.navbar {
+  --bs-navbar-bg: var(--bs-dark);
+}
+
+html[data-bs-theme="dark"] .sb-topnav.navbar.navbar-light {
+  color: var(--bs-light);
+}
+
+html[data-bs-theme="dark"] .card {
+  border-color: var(--bs-secondary);
+  color: var(--bs-light);
+}
+
+html[data-bs-theme="dark"] .card-footer {
+  border-color: var(--bs-secondary);
+}
+
+html[data-bs-theme="dark"] .nav-tabs {
+  --bs-nav-tabs-link-active-color: var(--bs-light);
+  --bs-nav-tabs-link-active-bg: var(--bs-dark);
+  --bs-nav-tabs-link-active-border-color: var(--bs-secondary) var(--bs-secondary) var(--bs-dark);
+  --bs-nav-tabs-border-color: var(--bs-secondary);
+  --bs-nav-tabs-link-hover-border-color: var(--bs-secondary);
+}
+
+html[data-bs-theme="dark"] .btn {
+  color: var(--bs-gray-800);
+  opacity: 75%;
+}
+
+html[data-bs-theme="dark"] select,
+html[data-bs-theme="dark"] .form-control {
+  background-color: var(--bs-dark);
+  border-color: var(--bs-secondary);
+  color: var(--bs-light);
+}
+

@@ -35,8 +35,12 @@ h5.card-title {
   color: #212529;
 }
 
+.sb-sidenav-menu, footer {
+  background-color: var(--bs-body-bg);
+}
+
 .card, .modal-dialog {
-  border-radius: 3px;
+  border-radius: 5px;
   border-color: #ff6600;
 }
 
@@ -75,8 +79,20 @@ h5.card-title {
 ul.nav-tabs, .nav-tabs .nav-link {
   background-color: #f6f6ef;
   border-bottom: 1px solid #dddfeb;
+  color: #495057;
+  font-size: 1.0rem;
 }
 
+.form-switch .form-check-input:checked {
+  background-color: #ff6600;
+  border-color: #828282;
+}
+
+code {
+    font-size: 0.875em;
+    color: var(--bs-code-color);
+    word-wrap: break-word;
+}
 .sidebar .nav-item .nav-link {
   padding: 0.6rem;
   margin-left: 0.6rem;
@@ -86,16 +102,14 @@ ul.nav-tabs, .nav-tabs .nav-link {
   font-weight: 300;
 }
 
-#wrapper,#page-wrapper,
-#wrapper #content-wrapper,
-.nav>li>a,.nav {
-  background-color: #fff;
-}
-
 .card-body {
   background-color: #f6f6ef;
+  border-radius: 5px;
 }
 
+th {
+  color: #495057 !important;
+}
 .card-footer {
   background-color: #eee;
 }

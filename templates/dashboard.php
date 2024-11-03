@@ -4,10 +4,10 @@
       <div class="card-header">
         <div class="row">
     <div class="col">
-      <i class="fas fa-tachometer-alt fa-fw mr-2"></i><?php echo _("Dashboard"); ?>
+      <i class="fas fa-tachometer-alt fa-fw me-2"></i><?php echo _("Dashboard"); ?>
     </div>
     <div class="col">
-      <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+      <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
         <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
         <span class="text service-status"><?php echo strtolower($apInterface) .' '. _($ifaceStatus) ?></span>
       </button>
@@ -36,28 +36,28 @@
             <div class="card h-100">
               <div class="card-body wireless">
                 <h4 class="card-title"><?php echo _("Wireless Client"); ?></h4>
-                <div class="row ml-1">
+                <div class="row ms-1">
                   <div class="col-sm">
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Connected To"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("Connected To"); ?></div><div class="info-value col"><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Interface"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($clientInterface); ?></div>
+                      <div class="info-item col"><?php echo _("Interface"); ?></div><div class="info-value col"><?php echo htmlspecialchars($clientInterface); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("AP Mac Address"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("AP Mac Address"); ?></div><div class="info-value col"><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Bitrate"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("Bitrate"); ?></div><div class="info-value col"><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Signal Level"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("Signal Level"); ?></div><div class="info-value col"><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Transmit Power"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("Transmit Power"); ?></div><div class="info-value col"><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
                     </div>
                     <div class="row mb-1">
-                      <div class="info-item col-xs-3"><?php echo _("Frequency"); ?></div><div class="info-value col-xs-3"><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
+                      <div class="info-item col"><?php echo _("Frequency"); ?></div><div class="info-value col"><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
                     </div>
                   </div>
                   <div class="col-md d-flex">
@@ -108,7 +108,7 @@
                     </tbody>
                   </table>
                   <?php if (sizeof($clients) >2) : ?>
-                      <div class="col-lg-12 float-right">
+                      <div class="col-lg-12 float-end">
                         <a class="btn btn-outline-info" role="button" href="<?php echo $moreLink ?>"><?php echo _("More");?>  <i class="fas fa-chevron-right"></i></a>
                       </div>
                   <?php elseif (sizeof($clients) ==0) : ?>

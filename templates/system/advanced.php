@@ -5,19 +5,19 @@
     <form action="system_info" method="POST">
     <?php echo CSRFTokenFieldTag() ?>
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="mb-3 col-md-6">
           <label for="code"><?php echo _("Web server port") ;?></label>
           <input type="text" class="form-control" name="serverPort" value="<?php echo htmlspecialchars($serverPort, ENT_QUOTES); ?>" />
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="mb-3 col-md-6">
           <label for="code"><?php echo _("Web server bind address") ;?></label>
           <input type="text" class="form-control" name="serverBind" value="<?php echo htmlspecialchars($serverBind, ENT_QUOTES); ?>" />
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-6">
+        <div class="mb-3 col-md-6">
           <label for="code"><?php echo _("Diagnostic log size limit (KB)") ;?></label>
           <input type="text" class="form-control" name="logLimit" value="<?php echo htmlspecialchars($logLimit, ENT_QUOTES); ?>" />
         </div>

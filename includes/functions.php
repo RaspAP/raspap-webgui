@@ -396,7 +396,7 @@ function isAssoc($arr)
  */
 function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null)
 {
-    echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
+    echo '<select class="form-select" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
     if (isset($id)) {
         echo ' id="' . htmlspecialchars($id, ENT_QUOTES) .'"';
     }
@@ -801,13 +801,23 @@ function validateMac($mac) {
 // @return boolean
 function getNightmode()
 {
-    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'lightsout.php') {
+    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'dark.css') {
         return true;
     } else {
         return false;
     }
 }	
-	
+
+// Sets data-bs-theme
+// @return string
+function setTheme()
+{
+    if (getNightmode()) {
+        echo 'data-bs-theme="dark"';
+    } else {
+        echo 'data-bs-theme="light"';
+    }
+}
 // search array for matching string and return only first matching group
 function preg_only_match($pat,$haystack)
 {
@@ -861,17 +871,6 @@ function get_public_ip()
 {
     exec('wget --timeout=5 --tries=1 https://ipinfo.io/ip -qO -', $public_ip);
     return $public_ip[0];
-}
-
-/* Returns a standardized tooltip
- *
- * @return string $tooltip
- */
-function getTooltip($msg, $id, $visible = true, $data_html = false)
-{
-    ($visible) ? $opt1 = 'visible' : $opt1 = 'invisible';
-    ($data_html) ? $opt2 = 'data-html="true"' : $opt2 = 'data-html="false"';
-    echo '<i class="fas fa-question-circle text-muted ' .$opt1.'" id="' .$id. '" data-toggle="tooltip" ' .$opt2. ' data-placement="auto" title="' . _($msg). '"></i>';
 }
 
 // Load non default JS/ECMAScript in footer
