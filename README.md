@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/xeKD93p.png)
-[![Release 3.2.0](https://img.shields.io/badge/release-v3.2.0-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Join Insiders](https://img.shields.io/static/v1?label=Join%20Insiders&message=%E2%9D%A4&logo=GitHub&color=ff69b4)](https://github.com/sponsors/RaspAP) [![Build Status](https://app.travis-ci.com/RaspAP/raspap-webgui.svg?branch=master)](https://app.travis-ci.com/RaspAP/raspap-webgui) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Reddit](https://img.shields.io/badge/%2Fr%2FRaspAP-e05d44?style=flat&logo=Reddit&logoColor=white&labelColor=e05d44&color=b14835)](https://reddit.com/r/RaspAP) [![Discord](https://img.shields.io/discord/642436993451819018?color=7289DA&label=Discord&logo=discord&style=flat)](https://discord.gg/KVAsaAR)
+[![Release 3.2.0](https://img.shields.io/badge/release-v3.2.0-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Join Insiders](https://img.shields.io/static/v1?label=Insiders&message=%E2%9D%A4&logo=GitHub&color=ff69b4)](https://github.com/sponsors/RaspAP) [![Build Status](https://app.travis-ci.com/RaspAP/raspap-webgui.svg?branch=master)](https://app.travis-ci.com/RaspAP/raspap-webgui) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Reddit](https://img.shields.io/badge/%2Fr%2FRaspAP-e05d44?style=flat&logo=Reddit&logoColor=white&labelColor=e05d44&color=b14835)](https://reddit.com/r/RaspAP) [![Discord](https://img.shields.io/discord/642436993451819018?color=7289DA&label=Discord&logo=discord&style=flat)](https://discord.gg/KVAsaAR)
 
 
 RaspAP is feature-rich wireless router software that _just works_ on many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our popular [Quick installer](#quick-installer) and [Docker container](#docker-support) create a known-good default configuration for all current Raspberry Pis with onboard wireless. A fully responsive, mobile-ready interface gives you control over the relevant services and networking options. Advanced DHCP settings, WireGuard and OpenVPN support, [SSL certificates](https://docs.raspap.com/ssl-quick/), security audits, [captive portal integration](https://docs.raspap.com/captive/), themes and [multilingual options](https://docs.raspap.com/translations/) are included.
@@ -8,11 +8,14 @@ RaspAP has been featured on sites such as [Instructables](http://www.instructabl
 
 We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/raspap/raspap-awesome).
 
-![](https://github.com/RaspAP/raspap-webgui/assets/229399/3df0d9c2-3c22-46f9-b5ac-8a5ea1626cb6)
-![](https://github.com/RaspAP/raspap-webgui/assets/229399/e8a246d7-08ba-4a14-9df2-7743bfe1c7a2)
-![](https://github.com/RaspAP/raspap-webgui/assets/229399/5f50d8db-265c-475b-ad53-af4491189e1a)
-![](https://github.com/RaspAP/raspap-webgui/assets/229399/0035e542-5457-4576-aee4-6240764846f2)
-![](https://github.com/RaspAP/raspap-webgui/assets/229399/8f99d89c-d996-460a-bf93-96f33a5eddb3)
+![](https://github.com/user-attachments/assets/c9bb0386-0b10-48cc-8b42-0a587a84fc37)
+<img width="33%" alt="Wifi Client" src="https://github.com/user-attachments/assets/95696ddc-da84-4339-97cc-f2a173054664">
+<img width="33%" alt="Hotspot" src="https://github.com/user-attachments/assets/c1c4de15-3ff2-4d3c-a7af-339c24896749">
+<img width="33%" alt="Adblock" src="https://github.com/user-attachments/assets/ab925687-8407-4bec-a952-9dc6a2675f49">
+<img width="33%" alt="About" src="https://github.com/user-attachments/assets/ba62d8bb-34f0-44ee-9fe8-504763a03726">
+<img width="33%" alt="Wireguard" src="https://github.com/user-attachments/assets/4ba16118-8671-4654-9a36-92ac7bc8507f">
+<img width="33%" alt="System" src="https://github.com/user-attachments/assets/f54e04fc-dc2c-4a21-903b-23641795822b">
+
 ## Contents
 
  - [Prerequisites](#prerequisites)
