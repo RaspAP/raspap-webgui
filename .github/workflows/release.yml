@@ -22,26 +22,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Add Custom Stage
+      - name: Add RaspAP Stage
         run: |
-          mkdir -p custom_stage_raspap/package-raspap &&
+          mkdir -p stage-raspap/package-raspap &&
           {
-          cat > custom_stage_raspap/package-raspap/00-run.sh <<-EOF
+          cat > stage-raspap/package-raspap/00-run-chroot.sh <<-EOF
           #!/bin/bash
-          apt-get update -y && apt-get install -y curl iptables procps
+          apt-get update -y && apt-get install -y curl dhcpcd5 iptables procps
           curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1
           EOF
           } &&
-          chmod +x custom_stage_raspap/package-raspap/00-run.sh &&
+          chmod +x stage-raspap/package-raspap/00-run-chroot.sh &&
           {
-          cat > custom_stage_raspap/prerun.sh <<-EOF
+          cat > stage-raspap/prerun.sh <<-EOF
           #!/bin/bash -e
           if [ ! -d "\${ROOTFS_DIR}" ]; then
             copy_previous
           fi
           EOF
           } &&
-          chmod +x custom_stage_raspap/prerun.sh
+          chmod +x stage-raspap/prerun.sh
 
       - name: Build RaspAP Image
         id: build
@@ -49,9 +49,10 @@ jobs:
         with:
           image-name: "raspap-${{ github.ref_name }}-${{ matrix.arch }}"
           enable-ssh: 1
-          stage-list: stage0 stage1 stage2 ./custom_stage_raspap
+          stage-list: stage0 stage1 stage2 ./stage-raspap
           verbose-output: true
           pi-gen-version: ${{ matrix.pi_gen_version }}
+          pi-gen-repository: RaspAP/pi-gen
 
       - name: Upload Artifact
         uses: svenstaro/upload-release-action@v2
