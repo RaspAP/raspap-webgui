@@ -21,11 +21,5 @@ interface PluginInterface {
      * @param Sidebar $sidebar Sidebar instance for adding items
      */
     public function initialize(Sidebar $sidebar): void;
-
-    /**
-     * Provide template data for rendering
-     * @return array
-     */
-    public function getTemplateData(): array;
 }
 

@@ -42,12 +42,12 @@ class PluginManager {
         foreach ($directories as $dir) {
             $pluginName = basename($dir);
             $pluginFile = "$dir/$pluginName.php";
+            $pluginClass = "RaspAP\\Plugins\\$pluginName\\$pluginName"; // fully qualified class name
 
             if (file_exists($pluginFile)) {
                 require_once $pluginFile;
-                $className = "RaspAP\\Plugins\\$pluginName\\$pluginName"; // Fully qualified class name
-                if (class_exists($className)) {
-                    $plugin = new $className();
+                if (class_exists($pluginClass)) {
+                    $plugin = new $pluginClass($this->pluginPath, $pluginName);
                     $this->registerPlugin($plugin);
                 }
             }
@@ -90,31 +90,60 @@ class PluginManager {
         return $this->sidebar;
     }
 
-    // Forwards the page to the responsible plugin
-    public function handlePageAction(string $page): void {
-        foreach ($this->getInstalledPlugins() as $plugin) {
-            if (str_starts_with($page, "/plugin__" . $plugin . "__")) {
-                require_once($this->pluginPath . "/" . $plugin . "/functions.php");
-                $function = '\\' . $plugin . '\\pluginHandlePageAction';
-                $function($page);
+    /**
+     * Iterate over each registered plugin and calls its associated method
+     * @param string $page
+     * @return boolean
+     */
+    public function handlePageAction(string $page) {
+        foreach ($this->getInstalledPlugins() as $pluginClass) {
+            $pluginName = (new \ReflectionClass($pluginClass))->getShortName();
+            $plugin = new $pluginClass($this->pluginPath, $pluginName);
+
+            if ($plugin instanceof PluginInterface) {
+                // check if the page matches this plugin's action
+                if (strpos($page, "/plugin__{$plugin->getName()}") === 0) {
+                    $functions = "{$this->pluginPath}/{$plugin->getName()}/functions.php";
+
+                    if (file_exists($functions)) {
+                        require_once $functions;
+
+                        // define the namespaced function
+                        $function = '\\' . $plugin->getName() . '\\handlePageAction';
+
+                        // call the function if it exists, passing the page and PluginManager instance
+                        if (function_exists($function)) {
+                            $function($page, $this, $pluginName);
+                            return true;
+                        }
+                    } else {
+                        throw new \Exception("Functions file not found for plugin: {$plugin->getName()}");
+                    }
+                }
             }
         }
     }
 
-    // Returns all installed plugins
+    // Returns all installed plugins with full class names
     public function getInstalledPlugins(): array {
         $plugins = [];
         if (file_exists($this->pluginPath)) {
-            $files = scandir($this->pluginPath);
-            foreach ($files as $file) {
-                if ($file === "." || $file === "..") continue;
-                $filePath = $this->pluginPath . '/' . $file;
-                if (is_dir($filePath)) {
-                    $plugins[] = $file;
+            $directories = scandir($this->pluginPath);
+
+            foreach ($directories as $directory) {
+                if ($directory === "." || $directory === "..") continue;
+
+                $pluginClass = "RaspAP\\Plugins\\$directory\\$directory";
+                $pluginFile = $this->pluginPath . "/$directory/$directory.php";
+
+                // Check if the file and class exist
+                if (file_exists($pluginFile) && class_exists($pluginClass)) {
+                    $plugins[] = $pluginClass;
                 }
             }
         }
         return $plugins;
     }
+
 }
 
