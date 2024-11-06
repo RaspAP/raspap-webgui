@@ -49,7 +49,7 @@ class Sidebar {
         $this->addItem(_('RestAPI'), 'fas fa-puzzle-piece', 'restapi_conf', 120,
             fn() => defined('RASPI_VNSTAT_ENABLED') && RASPI_VNSTAT_ENABLED
         );
-        $this->addItem(_('System'), 'fas fa-cube', 'data_use', 130,
+        $this->addItem(_('System'), 'fas fa-cube', 'system_info', 130,
             fn() => defined('RASPI_SYSTEM_ENABLED') && RASPI_SYSTEM_ENABLED
         );
         $this->addItem(_('About RaspAP'), 'fas fa-info-circle', 'about', 140);
