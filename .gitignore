@@ -3,6 +3,7 @@ node_modules
 yarn-error.log
 *.swp
 includes/config.php
+plugins/
 rootCA.pem
 vendor
 .env
