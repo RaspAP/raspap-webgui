@@ -542,11 +542,15 @@ function ConvertToSecurity($security)
 /**
  * Renders a simple PHP template
  */
-function renderTemplate($name, $__template_data = [])
+function renderTemplate($name, $__template_data = [], $pluginName = null)
 {
-    $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
+    if (isset($pluginName)) {
+        $file = realpath(dirname(__FILE__) . "/../plugins/$pluginName/templates/$name.php");
+    } else {
+        $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
+    }
     if (!file_exists($file)) {
-        return "template $name ($file) not found";
+        return "<br>template $name ($file) not found";
     }
 
     if (is_array($__template_data)) {
@@ -1027,5 +1031,12 @@ function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cp
       </div>
     </div>
     <?php
+}
+
+// Returns a classname without its associated namespace
+function getClassName($class)
+{
+    if ($pos = strrpos($class, '\\')) return substr($class, $pos + 1);
+    return $pos;
 }
 
