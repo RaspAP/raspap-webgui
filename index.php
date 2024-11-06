@@ -32,7 +32,6 @@ require_once 'includes/autoload.php';
 require_once 'includes/defaults.php';
 require_once 'includes/locale.php';
 require_once 'includes/functions.php';
-require_once 'includes/plugins.php';
 
 // Default page actions
 require_once 'includes/dashboard.php';
