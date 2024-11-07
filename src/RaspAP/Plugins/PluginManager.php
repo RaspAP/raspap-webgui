@@ -3,7 +3,7 @@
 /**
  * Plugin Manager class
  *
- * @description Architecture to support user plugins for RaspAP
+ * @description Class supporting user plugins to extend RaspAP
  * @author      Bill Zimmerman <billzimmerman@gmail.com>
  *              Special thanks to GitHub user @assachs
  * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
@@ -66,32 +66,6 @@ class PluginManager
         $this->plugins[] = $plugin; // store the plugin instance
     }
 
-    /**
-     * Renders a template from inside a plugin directory
-     * @param string $pluginName
-     * @param string $templateName
-     * @param array $__data
-     */
-    public function renderTemplate(string $pluginName, string $templateName, array $__data = []): string
-    {
-        // Construct the file path for the template
-        $templateFile = "{$this->pluginPath}/{$pluginName}/templates/{$templateName}.php";
-
-        if (!file_exists($templateFile)) {
-            return "Template file {$templateFile} not found.";
-        }
-
-        // Extract the data for use in the template
-        if (!empty($__data)) {
-            extract($__data);
-        }
-
-        // Start output buffering to capture the template output
-        ob_start();
-        include $templateFile;
-        return ob_get_clean(); // return the output
-    }
-
     // Returns the sidebar
     public function getSidebar(): Sidebar
     {
@@ -106,13 +80,10 @@ class PluginManager
     {
         foreach ($this->getInstalledPlugins() as $pluginClass) {
             $plugin = new $pluginClass($this->pluginPath, $pluginClass);
-
-            if ($plugin instanceof PluginInterface) {
-                if ($plugin->handlePageAction($page, $this)) {
-                    return true;
-                } else {
-                    return false;
-                }
+            if ($plugin instanceof PluginInterface && $plugin->handlePageAction($page)) {
+                return true;
+            } else {
+                continue;
             }
         }
     }
