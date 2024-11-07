@@ -1033,10 +1033,3 @@ function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cp
     <?php
 }
 
-// Returns a classname without its associated namespace
-function getClassName($class)
-{
-    if ($pos = strrpos($class, '\\')) return substr($class, $pos + 1);
-    return $pos;
-}
-

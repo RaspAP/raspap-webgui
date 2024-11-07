@@ -5,6 +5,7 @@
  *
  * @description Architecture to support user plugins for RaspAP
  * @author      Bill Zimmerman <billzimmerman@gmail.com>
+ *              Special thanks to GitHub user @assachs
  * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
  */
 
@@ -91,39 +92,23 @@ class PluginManager {
     }
 
     /**
-     * Iterate over each registered plugin and calls its associated method
+     * Iterates over registered plugins and calls its associated method
      * @param string $page
-     * @return boolean
      */
-    public function handlePageAction(string $page) {
+    public function handlePageAction(string $page): bool {
         foreach ($this->getInstalledPlugins() as $pluginClass) {
-            $pluginName = (new \ReflectionClass($pluginClass))->getShortName();
-            $plugin = new $pluginClass($this->pluginPath, $pluginName);
+            $plugin = new $pluginClass($this->pluginPath, $pluginClass);
 
             if ($plugin instanceof PluginInterface) {
-                // check if the page matches this plugin's action
-                if (strpos($page, "/plugin__{$plugin->getName()}") === 0) {
-                    $functions = "{$this->pluginPath}/{$plugin->getName()}/functions.php";
-
-                    if (file_exists($functions)) {
-                        require_once $functions;
-
-                        // define the namespaced function
-                        $function = '\\' . $plugin->getName() . '\\handlePageAction';
-
-                        // call the function if it exists, passing the page and PluginManager instance
-                        if (function_exists($function)) {
-                            $function($page, $this, $pluginName);
-                            return true;
-                        }
-                    } else {
-                        throw new \Exception("Functions file not found for plugin: {$plugin->getName()}");
-                    }
+                if ($plugin->handlePageAction($page, $this)) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
         }
     }
-
+   
     // Returns all installed plugins with full class names
     public function getInstalledPlugins(): array {
         $plugins = [];
