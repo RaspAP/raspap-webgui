@@ -15,7 +15,8 @@ namespace RaspAP\Plugins;
 
 use RaspAP\UI\Sidebar;
 
-interface PluginInterface {
+interface PluginInterface
+{
     /**
      * Initialize the plugin
      * @param Sidebar $sidebar Sidebar instance for adding items

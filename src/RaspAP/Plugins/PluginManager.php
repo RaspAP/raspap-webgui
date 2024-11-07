@@ -15,19 +15,22 @@ namespace RaspAP\Plugins;
 
 use RaspAP\UI\Sidebar;
 
-class PluginManager {
+class PluginManager
+{
     private static $instance = null;
     private $plugins = [];
     private $sidebar;
 
-    private function __construct() {
+    private function __construct()
+    {
         $this->pluginPath = 'plugins';
         $this->sidebar = new Sidebar();
         $this->autoloadPlugins(); // autoload plugins on instantiation
     }
 
     // Get the single instance of PluginManager
-    public static function getInstance(): PluginManager {
+    public static function getInstance(): PluginManager
+    {
         if (self::$instance === null) {
             self::$instance = new PluginManager();
         }
@@ -35,7 +38,8 @@ class PluginManager {
     }
 
     // Autoload plugins found in pluginPath
-    private function autoloadPlugins(): void {
+    private function autoloadPlugins(): void
+    {
         if (!is_dir($this->pluginPath)) {
             return;
         }
@@ -56,7 +60,8 @@ class PluginManager {
     }
 
     // Registers a plugin by its interface implementation 
-    private function registerPlugin(PluginInterface $plugin) {
+    private function registerPlugin(PluginInterface $plugin)
+    {
         $plugin->initialize($this->sidebar); // pass sidebar to initialize method 
         $this->plugins[] = $plugin; // store the plugin instance
     }
@@ -67,7 +72,8 @@ class PluginManager {
      * @param string $templateName
      * @param array $__data
      */
-    public function renderTemplate(string $pluginName, string $templateName, array $__data = []): string {
+    public function renderTemplate(string $pluginName, string $templateName, array $__data = []): string
+    {
         // Construct the file path for the template
         $templateFile = "{$this->pluginPath}/{$pluginName}/templates/{$templateName}.php";
 
@@ -87,7 +93,8 @@ class PluginManager {
     }
 
     // Returns the sidebar
-    public function getSidebar(): Sidebar {
+    public function getSidebar(): Sidebar
+    {
         return $this->sidebar;
     }
 
@@ -95,7 +102,8 @@ class PluginManager {
      * Iterates over registered plugins and calls its associated method
      * @param string $page
      */
-    public function handlePageAction(string $page): bool {
+    public function handlePageAction(string $page): bool
+    {
         foreach ($this->getInstalledPlugins() as $pluginClass) {
             $plugin = new $pluginClass($this->pluginPath, $pluginClass);
 
@@ -110,7 +118,8 @@ class PluginManager {
     }
    
     // Returns all installed plugins with full class names
-    public function getInstalledPlugins(): array {
+    public function getInstalledPlugins(): array
+    {
         $plugins = [];
         if (file_exists($this->pluginPath)) {
             $directories = scandir($this->pluginPath);
