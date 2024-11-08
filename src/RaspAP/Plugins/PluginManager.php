@@ -80,14 +80,17 @@ class PluginManager
     {
         foreach ($this->getInstalledPlugins() as $pluginClass) {
             $plugin = new $pluginClass($this->pluginPath, $pluginClass);
-            if ($plugin instanceof PluginInterface && $plugin->handlePageAction($page)) {
-                return true;
-            } else {
-                continue;
+
+            if ($plugin instanceof PluginInterface) {
+                // Check if this plugin can handle the page action
+                if ($plugin->handlePageAction($page)) {
+                    return true;
+                }
             }
         }
+        return false; // no plugins handled the page
     }
-   
+
     // Returns all installed plugins with full class names
     public function getInstalledPlugins(): array
     {
