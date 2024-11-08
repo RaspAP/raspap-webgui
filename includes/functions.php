@@ -544,7 +544,7 @@ function ConvertToSecurity($security)
  */
 function renderTemplate($name, $__template_data = [], $pluginName = null)
 {
-    if (isset($pluginName)) {
+    if (is_string($pluginName)) {
         $file = realpath(dirname(__FILE__) . "/../plugins/$pluginName/templates/$name.php");
     } else {
         $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
