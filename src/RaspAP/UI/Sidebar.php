@@ -17,40 +17,40 @@ class Sidebar {
         // Load default sidebar items
         $this->addItem(_('Dashboard'), 'fa-solid fa-gauge-high', 'wlan0_info', 10);
         $this->addItem(_('Hotspot'), 'far fa-dot-circle', 'hostapd_conf', 20,
-            fn() => defined('RASPI_HOTSPOT_ENABLED') && RASPI_HOTSPOT_ENABLED 
+            fn() => RASPI_HOTSPOT_ENABLED
         );
         $this->addItem(_('DHCP Server'), 'fas fa-exchange-alt', 'dhcpd_conf', 30,
-            fn() => defined('RASPI_DHCP_ENABLED') && RASPI_DHCP_ENABLED && !$_SESSION["bridgedEnabled"] 
+            fn() => RASPI_DHCP_ENABLED && !$_SESSION["bridgedEnabled"]
         );
         $this->addItem(_('Ad Blocking'), 'far fa-hand-paper', 'adblock_conf', 40,
-            fn() => defined('RASPI_ADBLOCK_ENABLED') && RASPI_HOTSPOT_ENABLED && !$_SESSION["bridgedEnabled"] 
+            fn() => RASPI_ADBLOCK_ENABLED && RASPI_HOTSPOT_ENABLED && !$_SESSION["bridgedEnabled"]
         );
         $this->addItem(_('Networking'), 'fas fa-network-wired', 'network_conf', 50,
-            fn() => defined('RASPI_NETWORK_ENABLED') && RASPI_NETWORK_ENABLED 
+            fn() => RASPI_NETWORK_ENABLED
         );
         $this->addItem(_('WiFi client'), 'fas fa-wifi', 'wpa_conf', 60,
-            fn() => defined('RASPI_WIFICLIENT_ENABLED') && RASPI_WIFICLIENT_ENABLED && !$_SESSION["bridgedEnabled"]
+            fn() => RASPI_WIFICLIENT_ENABLED && !$_SESSION["bridgedEnabled"]
         );
         $this->addItem(_('OpenVPN'), 'fas fa-key', 'openvpn_conf', 70,
-            fn() => defined('RASPI_OPENVPN_ENABLED') && RASPI_OPENVPN_ENABLED
+            fn() => RASPI_OPENVPN_ENABLED
         );
         $this->addItem(_('WireGuard'), 'ra-wireguard', 'wg_conf', 80,
-            fn() => defined('RASPI_WIREGUARD_ENABLED') && RASPI_WIREGUARD_ENABLED
+            fn() => RASPI_WIREGUARD_ENABLED
         );
         $this->addItem(_(getProviderValue($_SESSION["providerID"], "name")), 'fas fa-shield-alt', 'provider_conf', 90,
-            fn() => defined('RASPI_VPN_PROVIDER_ENABLED') && RASPI_VPN_PROVIDER_ENABLED
+            fn() => RASPI_VPN_PROVIDER_ENABLED
         );
          $this->addItem(_('Authentication'), 'fas fa-user-lock', 'auth_conf', 100,
-            fn() => defined('RASPI_CONFAUTH_ENABLED') && RASPI_CONFAUTH_ENABLED 
+            fn() => RASPI_CONFAUTH_ENABLED
         );
         $this->addItem(_('Data usage'), 'fas fa-chart-area', 'data_use', 110,
-            fn() => defined('RASPI_VNSTAT_ENABLED') && RASPI_VNSTAT_ENABLED
+            fn() => RASPI_VNSTAT_ENABLED
         );
         $this->addItem(_('RestAPI'), 'fas fa-puzzle-piece', 'restapi_conf', 120,
-            fn() => defined('RASPI_VNSTAT_ENABLED') && RASPI_VNSTAT_ENABLED
+            fn() => RASPI_RESTAPI_ENABLED
         );
         $this->addItem(_('System'), 'fas fa-cube', 'system_info', 130,
-            fn() => defined('RASPI_SYSTEM_ENABLED') && RASPI_SYSTEM_ENABLED
+            fn() => RASPI_SYSTEM_ENABLED
         );
         $this->addItem(_('About RaspAP'), 'fas fa-info-circle', 'about', 140);
     }
