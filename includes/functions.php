@@ -550,7 +550,7 @@ function renderTemplate($name, $__template_data = [], $pluginName = null)
         $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
     }
     if (!file_exists($file)) {
-        return "<br>template $name ($file) not found";
+        return "template $name ($file) not found";
     }
 
     if (is_array($__template_data)) {
