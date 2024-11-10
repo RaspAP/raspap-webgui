@@ -542,9 +542,13 @@ function ConvertToSecurity($security)
 /**
  * Renders a simple PHP template
  */
-function renderTemplate($name, $__template_data = [])
+function renderTemplate($name, $__template_data = [], $pluginName = null)
 {
-    $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
+    if (is_string($pluginName)) {
+        $file = realpath(dirname(__FILE__) . "/../plugins/$pluginName/templates/$name.php");
+    } else {
+        $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
+    }
     if (!file_exists($file)) {
         return "template $name ($file) not found";
     }
@@ -1005,3 +1009,27 @@ function lightenColor($color, $percent)
 
     return sprintf("#%02x%02x%02x", $r, $g, $b);
 }
+
+function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cputemp_led, $cputemp)
+{
+    ?>
+    <div class="row g-0">
+      <div class="col-4 ms-2 sidebar-brand-icon">
+        <img src="app/img/raspAP-logo.php" class="navbar-logo" width="60" height="60">
+      </div>
+      <div class="col ml-2">
+        <div class="ml-1 sb-status">Status</div>
+        <div class="info-item-xs"><span class="icon">
+          <i class="fas fa-circle <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
+        </div>
+        <div class="info-item-xs"><span class="icon">
+          <i class="fas fa-circle <?php echo ($memused_led); ?>"></i></span> <?php echo _("Mem Use").': '. htmlspecialchars(strval($memused), ENT_QUOTES); ?>%
+        </div>
+        <div class="info-item-xs"><span class="icon">
+          <i class="fas fa-circle <?php echo ($cputemp_led); ?>"></i></span> <?php echo _("CPU").': '. htmlspecialchars($cputemp, ENT_QUOTES); ?>°C
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
