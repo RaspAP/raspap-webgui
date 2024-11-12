@@ -29,7 +29,7 @@ The following features are currently available exclusively to sponsors. A tangib
  ✅ [Wireless LAN routing](https://docs.raspap.com/wlanrouting/)  
  ✅ [Custom user avatars](https://docs.raspap.com/authentication/#custom-user-avatars)  
  ✅ [WiFi repeater mode](https://docs.raspap.com/ap-basics/#wifi-repeater-mode)  
- ✅ [Time synchronization](https://docs.raspap.com/time/)  
+ ✅ [NTP Service](https://docs.raspap.com/ntp/)  
  ✅ [Limited privilege user role](https://docs.raspap.com/authentication/#limited-privilege-user-role) 
 
 Look for the list above to grow as we add more exclusive features. Be sure to visit this page from time to time to learn about what's new, check the [Insiders docs page](https://docs.raspap.com/insiders/) and follow [@RaspAP on Twitter](https://twitter.com/rasp_ap) to stay updated.
