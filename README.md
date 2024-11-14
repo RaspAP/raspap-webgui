@@ -32,6 +32,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [Supported operating systems](#supported-operating-systems)
  - [HTTPS support](#https-support)
  - [Docker support](#docker-support)
+ - [Custom user plugins](#custom-user-plugins)
  - [Multilingual support](#multilingual-support)
  - [How to contribute](#how-to-contribute)
  - [Reporting issues](#reporting-issues)
@@ -165,6 +166,9 @@ More information on SSL certificates and HTTPS support is available [in our docu
 As an alternative to the [Quick installer](#quick-installer), RaspAP may be run in an isolated, portable [Docker container](https://docs.raspap.com/docker/).
 
 See the [RaspAP-docker repo](https://github.com/RaspAP/raspap-docker/) for more information.
+
+## Custom user plugins
+RaspAP's integrated `PluginManager` provides a framework for developers to create custom plugins. To facilitate this, a `SamplePlugin` [repository](https://github.com/RaspAP/SamplePlugin) is available to get developers started on the right track. If you'd like to develop your own plugin for RaspAP, see the [documentation](https://docs.raspap.com/custom-plugins/) or get started right away by forking the [SamplePlugin](https://github.com/RaspAP/SamplePlugin).
 
 ## Multilingual support
 RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multilingual messages. In order to use RaspAP with one of our supported translations, you must configure a corresponding language package on your RPi. To list languages currently installed on your system, use `locale -a` at the shell prompt. To generate new locales, run `sudo dpkg-reconfigure locales` and select any other desired locales. Details are provided on our [documentation site](https://docs.raspap.com/translations/).
