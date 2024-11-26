@@ -245,6 +245,41 @@ function getCountries($id, $binPath)
             $countries[$value] = str_replace("_", " ", $value);
         }
         break;
+    case 4: // AdGuard
+        $raw_countries = [];
+        $totalLines = count($output);
+        foreach ($output as $index => $item) {
+            if ($index === 0 || $index === $totalLines - 1) {
+                // exclude first and last lines
+                continue;
+            }
+            // $item = preg_replace($pattern, $replace, $item);
+            preg_match($pattern, $item, $matches);
+            $item_country = trim($matches[1]);
+            $item_city =  trim($matches[2]);
+            $item_key = str_replace(" ", "_", $item_city);
+	        if ( strlen($item_key) > 0 ){
+                $countries[$item_key] = "{$item_country} {$item_city}";
+                if (!isset($raw_countries[$item_country])) {
+                    $raw_countries[$item_country] = [];
+                }
+                $raw_countries[$item_country][] = $item_city;
+            }
+        }
+        // sort countries alphabetically
+        ksort($raw_countries);
+        // sort cities within each country
+        foreach ($raw_countries as $country => $cities) {
+            sort($raw_countries[$country]); // Trier les villes par ordre alphabétique
+        }
+        // display results sorted by country, then by city
+        foreach ($raw_countries as $country => $cities) {
+            foreach ($cities as $city) {
+                $item_key = str_replace(" ", "_", $city);
+                $countries[$item_key] = "{$country} {$city}";
+            }
+        }
+        break;
     default:
         break;
     }
