@@ -129,16 +129,33 @@ function saveProviderConfig($status, $binPath, $country, $id = null)
 }
 
 /**
- * Removes artifacts from shell_exec string values
+ * Removes artifacts from shell_exec string values and lines with ANSI escape sequences
  *
- * @param string $output
- * @param string $pattern
- * @return string $result
+ * @param string|array $output
+ * @param string|null $pattern
+ * @return string|array $result
  */
 function stripArtifacts($output, $pattern = null)
 {
-    $result = preg_replace('/[-\/\n\t\\\\'.$pattern.'|]/', '', $output);
-    return $result;
+    if (is_array($output)) {
+        return array_map(function ($line) use ($pattern) {
+            return stripArtifacts($line, $pattern);
+        }, $output);
+    }
+    if (!is_string($output)) {
+        return $output;
+    }
+
+    $lines = explode("\n", $output);
+    $lines = array_filter($lines, function ($line) use ($pattern) {
+        // remove ANSI escape sequences
+        if (preg_match('/\x1b\[[0-9;]*[a-zA-Z]/', $line)) {
+            return false;
+        }
+        $line = preg_replace('/[-\/\t\\\\' . preg_quote($pattern, '/') . '|]/', '', $line);
+        return trim($line) !== '';
+    });
+    return implode("\n", $lines);
 }
 
 /**
