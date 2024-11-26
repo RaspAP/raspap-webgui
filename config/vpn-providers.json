@@ -58,8 +58,8 @@
             "install_page": "https://adguard-vpn.com/kb/adguard-vpn-for-linux/installation/",
             "account_page": "https://my.adguard-vpn.com/en/account/product/vpn",
             "cmd_overrides": {
-                "account": "account get",
                 "countries": "list-locations",
+                "connect": "connect -y -l",
                 "log": "status",
                 "version": "--version"
             },
