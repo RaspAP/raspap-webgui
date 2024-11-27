@@ -61,10 +61,11 @@
                 "countries": "list-locations",
                 "connect": "connect -y -l",
                 "log": "status",
+                "account": "license",
                 "version": "--version"
             },
             "regex": {
-                "status": "\/VPN is disconnected\/",
+                "status": "\/vpn is disconnected\/",
                 "pattern": "/^([A-Z]{2})\\s+.*?\\s([A-Za-z]+(?:\\s[A-Za-z]+)?)\\s+\\d+$/m",
                 "replace": "$2",
 		        "slice": 3
