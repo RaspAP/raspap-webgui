@@ -16,36 +16,9 @@ function DisplayProviderConfig()
     $providerName = getProviderValue($id, "name");
     $providerVersion = getProviderVersion($id, $binPath);
     $installPage = getProviderValue($id, "install_page");
-    $publicIP = get_public_ip();
     $serviceStatus = 'down';
     $statusDisplay = 'down';
     $ctlState = '';
-
-    if (!file_exists($binPath)) {
-        $status->addMessage(sprintf(_('Expected %s binary not found at: %s'), $providerName, $binPath), 'warning');
-        $status->addMessage(sprintf(_('Visit the <a href="%s" target="_blank">installation instructions</a> for %s\'s Linux CLI.'), $installPage, $providerName), 'warning');
-        $ctlState = 'disabled';
-        $providerVersion = 'not found';
-    } elseif (empty($providerVersion)) {
-        $status->addMessage(sprintf(_('Unable to execute %s binary found at: %s'), $providerName, $binPath), 'warning');
-        $status->addMessage(_('Check that binary is executable and permissions exist in raspap.sudoers'), 'warning');
-        $ctlState = 'disabled';
-        $providerVersion = 'not found';
-    } else {
-        // fetch provider status
-        $serviceStatus = getProviderStatus($id, $binPath);
-        $statusDisplay = $serviceStatus == "down" ? "inactive" : "active";
-
-        // fetch provider log
-        $providerLog = getProviderLog($id, $binPath, $country);
-
-        // fetch account info
-        $accountInfo = getAccountInfo($id, $binPath, $providerName);
-        $accountLink = getProviderValue($id, "account_page");
-
-        // fetch available countries
-        $countries = getCountries($id, $binPath);
-    }
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveProviderSettings'])) {
@@ -60,7 +33,11 @@ function DisplayProviderConfig()
         } elseif (isset($_POST['StartProviderVPN'])) {
             $status->addMessage('Attempting to connect VPN provider', 'info');
             $cmd = getCliOverride($id, 'cmd_overrides', 'connect');
-            exec("sudo $binPath $cmd", $return);
+            $country = escapeshellarg(trim($_POST['country']));
+            if ($id = 4) { // AdGuard requires country argument on connect
+                $arg = escapeshellarg(trim($_POST['country']));
+            }
+            exec("sudo $binPath $cmd $arg", $return);
             $return = stripArtifacts($return);
             foreach ($return as $line) {
                 if (strlen(trim($line)) > 0) {
@@ -82,6 +59,33 @@ function DisplayProviderConfig()
             }
         }
     }
+
+    if (!file_exists($binPath)) {
+        $status->addMessage(sprintf(_('Expected %s binary not found at: %s'), $providerName, $binPath), 'warning');
+        $status->addMessage(sprintf(_('Visit the <a href="%s" target="_blank">installation instructions</a> for %s\'s Linux CLI.'), $installPage, $providerName), 'warning');
+        $ctlState = 'disabled';
+        $providerVersion = 'not found';
+    } elseif (empty($providerVersion)) {
+        $status->addMessage(sprintf(_('Unable to execute %s binary found at: %s'), $providerName, $binPath), 'warning');
+        $status->addMessage(_('Check that binary is executable and permissions exist in raspap.sudoers'), 'warning');
+        $ctlState = 'disabled';
+        $providerVersion = 'not found';
+    } else {
+        // fetch provider status
+        $serviceStatus = getProviderStatus($id, $binPath);
+        $statusDisplay = $serviceStatus == "down" ? "inactive" : "active";
+
+        // fetch account info
+        $accountInfo = getAccountInfo($id, $binPath, $providerName);
+        $accountLink = getProviderValue($id, "account_page");
+
+        // fetch available countries
+        $countries = getCountries($id, $binPath);
+
+        // fetch provider log
+        $providerLog = getProviderLog($id, $binPath, $country);
+    }
+    $publicIP = get_public_ip();
 
     echo renderTemplate(
         "provider", compact(
@@ -193,8 +197,7 @@ function getProviderStatus($id, $binPath)
     $cmd = getCliOverride($id, 'cmd_overrides', 'status');
     $pattern = getCliOverride($id, 'regex', 'status');
     exec("sudo $binPath $cmd", $cmd_raw);
-    $cmd_raw = strtolower(stripArtifacts($cmd_raw[0]));
-
+    $cmd_raw = strtolower(($cmd_raw[0]));
     if (!empty($cmd_raw[0])) {
         if (preg_match($pattern, $cmd_raw, $match)) {
             $status =  "down";
@@ -318,7 +321,9 @@ function getProviderLog($id, $binPath, &$country)
     $providerLog = '';
     $cmd = getCliOverride($id, 'cmd_overrides', 'log');
     exec("sudo $binPath $cmd", $cmd_raw);
-    $output = stripArtifacts($cmd_raw);
+    $output = array_map(function ($line) {
+        return preg_replace('/\x1b\[[0-9;]*[a-zA-Z]/', '', $line);
+    }, $cmd_raw);
     foreach ($output as $item) {
         if (preg_match('/Country: (\w+)/', $item, $match)) {
             $country = $match[1];
@@ -356,6 +361,9 @@ function getAccountInfo($id, $binPath, $providerName)
     $cmd = getCliOverride($id, 'cmd_overrides', 'account');
     exec("sudo $binPath $cmd", $acct);
 
+    $acct = array_map(function ($line) {
+        return preg_replace('/\x1b\[[0-9;]*[a-zA-Z]/', '', $line);
+    }, $acct);
     foreach ($acct as &$item) {
         $item = preg_replace('/^[^\w]+\s*/', '', $item);
     }
