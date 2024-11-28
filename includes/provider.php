@@ -20,6 +20,7 @@ function DisplayProviderConfig()
     $statusDisplay = 'down';
     $ctlState = '';
 
+    // handle page actions
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveProviderSettings'])) {
             if (isset($_POST['country'])) {
@@ -163,6 +164,18 @@ function stripArtifacts($output, $pattern = null)
 }
 
 /**
+ * Removes ANSI escape sequences and preserves CLI return values
+ *
+ * @param array $output
+ */
+function stripAnsiSequence($output)
+{
+    return array_map(function ($line) {
+        return preg_replace('/\x1b\[[0-9;]*[a-zA-Z]/', '', $line);
+    }, $output);
+}
+
+/**
  * Retrieves an override for provider CLI
  *
  * @param integer $id
@@ -265,7 +278,7 @@ function getCountries($id, $binPath)
             $countries[$value] = str_replace("_", " ", $value);
         }
         break;
-    case 4: // AdGuard
+    case 4: // adguard
         $raw_countries = [];
         $totalLines = count($output);
         foreach ($output as $index => $item) {
@@ -273,7 +286,6 @@ function getCountries($id, $binPath)
                 // exclude first and last lines
                 continue;
             }
-            // $item = preg_replace($pattern, $replace, $item);
             preg_match($pattern, $item, $matches);
             $item_country = trim($matches[1]);
             $item_city =  trim($matches[2]);
@@ -292,7 +304,7 @@ function getCountries($id, $binPath)
         foreach ($raw_countries as $country => $cities) {
             sort($raw_countries[$country]); // Trier les villes par ordre alphabétique
         }
-        // display results sorted by country, then by city
+        // sort results by country, then by city
         foreach ($raw_countries as $country => $cities) {
             foreach ($cities as $city) {
                 $item_key = str_replace(" ", "_", $city);
@@ -321,9 +333,7 @@ function getProviderLog($id, $binPath, &$country)
     $providerLog = '';
     $cmd = getCliOverride($id, 'cmd_overrides', 'log');
     exec("sudo $binPath $cmd", $cmd_raw);
-    $output = array_map(function ($line) {
-        return preg_replace('/\x1b\[[0-9;]*[a-zA-Z]/', '', $line);
-    }, $cmd_raw);
+    $output = stripAnsiSequence($cmd_raw);
     foreach ($output as $item) {
         if (preg_match('/Country: (\w+)/', $item, $match)) {
             $country = $match[1];
@@ -360,10 +370,7 @@ function getAccountInfo($id, $binPath, $providerName)
 {
     $cmd = getCliOverride($id, 'cmd_overrides', 'account');
     exec("sudo $binPath $cmd", $acct);
-
-    $acct = array_map(function ($line) {
-        return preg_replace('/\x1b\[[0-9;]*[a-zA-Z]/', '', $line);
-    }, $acct);
+    $acct = stripAnsiSequence($acct);
     foreach ($acct as &$item) {
         $item = preg_replace('/^[^\w]+\s*/', '', $item);
     }
