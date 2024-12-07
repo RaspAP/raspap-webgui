@@ -278,6 +278,10 @@ function getCountries($id, $binPath)
             $countries[$value] = str_replace("_", " ", $value);
         }
         break;
+    /**
+     * Thanks to GitHub user @easylo who contributed this portion
+     * of the AdGuard CLI country output parsing
+     */
     case 4: // adguard
         $raw_countries = [];
         $totalLines = count($output);
@@ -302,7 +306,7 @@ function getCountries($id, $binPath)
         ksort($raw_countries);
         // sort cities within each country
         foreach ($raw_countries as $country => $cities) {
-            sort($raw_countries[$country]); // Trier les villes par ordre alphabétique
+            sort($raw_countries[$country]);
         }
         // sort results by country, then by city
         foreach ($raw_countries as $country => $cities) {
