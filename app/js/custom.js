@@ -488,6 +488,15 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function() {
+    $('.cidr').mask('099.099.099.099/099', {
+        translation: {
+            '0': { pattern: /[0-9]/ }
+        },
+        placeholder: "___.___.___.___/___"
+    });
+});
+
 $('#wg-upload,#wg-manual').on('click', function (e) {
     if (this.id == 'wg-upload') {
         $('#PanelManual').hide();
