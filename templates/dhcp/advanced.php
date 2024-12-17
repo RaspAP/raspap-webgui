@@ -7,7 +7,7 @@
       <div class="input-group">
         <input type="hidden" name="no-resolv" value="0">
         <div class="form-check form-switch">
-          <input class="form-check-input" id="no-resolv" type="checkbox" name="no-resolv" value="1" <?php echo $conf['no-resolv'] ? ' checked="checked"' : "" ?> aria-describedby="no-resolv-description">
+          <input class="form-check-input" id="no-resolv" type="checkbox" name="no-resolv" value="1" <?php echo ($conf['no-resolv'] ?? false) ? ' checked="checked"' : '' ?> aria-describedby="no-resolv-description">
           <label class="form-check-label" for="no-resolv"><?php echo _("Only ever query DNS servers configured below") ?></label>
         </div>
         <p id="no-resolv-description">

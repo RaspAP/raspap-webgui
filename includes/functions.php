@@ -338,9 +338,9 @@ function CSRFValidate()
 {
     if(isset($_POST['csrf_token'])) {
         $post_token   = $_POST['csrf_token'];
-        $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'];
+        $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? null;
 
-        if (empty($post_token) && empty($header_token)) {
+        if (empty($post_token) && is_null($header_token)) {
             return false;
         }
         $request_token = $post_token;
