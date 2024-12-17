@@ -7,7 +7,7 @@
       <div class="input-group">
         <input type="hidden" name="no-resolv" value="0">
         <div class="form-check form-switch">
-          <input class="form-check-input" id="no-resolv" type="checkbox" name="no-resolv" value="1" <?php echo $conf['no-resolv'] ? ' checked="checked"' : "" ?> aria-describedby="no-resolv-description">
+          <input class="form-check-input" id="no-resolv" type="checkbox" name="no-resolv" value="1" <?php echo ($conf['no-resolv'] ?? false) ? ' checked="checked"' : '' ?> aria-describedby="no-resolv-description">
           <label class="form-check-label" for="no-resolv"><?php echo _("Only ever query DNS servers configured below") ?></label>
         </div>
         <p id="no-resolv-description">
@@ -19,9 +19,8 @@
       <div class="js-dhcp-upstream-servers">
         <?php foreach ($upstreamServers as $server): ?>
           <div class="mb-3 input-group input-group-sm js-dhcp-upstream-server">
-            <input type="text" class="form-control" name="server[]" value="<?php echo $server ?>">
+            <input type="text" class="form-control" name="server[]" value="<?php echo $server; ?>">
             <div class="input-group-text js-remove-dhcp-upstream-server"><i class="fas fa-minus"></i></div>
-            </div>
           </div>
         <?php endforeach ?>
       </div>

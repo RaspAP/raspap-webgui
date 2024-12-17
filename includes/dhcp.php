@@ -52,8 +52,8 @@ function DisplayDHCPConfig()
     $conf = ParseConfig($return);
     exec('cat '. RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
     $conf = array_merge(ParseConfig($return));
-    $hosts = (array)$conf['dhcp-host'];
-    $upstreamServers = (array)$conf['server'];
+    $hosts = (array)($conf['dhcp-host'] ?? []);
+    $upstreamServers = (array)($conf['server'] ?? []);
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
 
@@ -280,10 +280,10 @@ function updateDnsmasqConfig($iface,$status)
     $config .='log-facility='.RASPI_DHCPCD_LOG.PHP_EOL;
     $config .='conf-dir=/etc/dnsmasq.d'.PHP_EOL;
     // handle log option
-    if ($_POST['log-dhcp'] == "1") {
+    if (($_POST['log-dhcp'] ?? '') == "1") {
         $config .= "log-dhcp".PHP_EOL;
     }
-    if ($_POST['log-queries'] == "1") {
+    if (($_POST['log-queries'] ?? '') == "1") {
       $config .= "log-queries".PHP_EOL;
     }
     $config .= PHP_EOL;
@@ -317,12 +317,12 @@ function updateDHCPConfig($iface,$status)
     if ($_POST['Metric'] !== '') {
         $cfg[] = 'metric '.$_POST['Metric'];
     }
-    if ($_POST['Fallback'] == 1) {
+    if (($_POST['Fallback'] ?? 0) == 1) {
         $cfg[] = 'profile static_'.$iface;
         $cfg[] = 'fallback static_'.$iface;
     }
-    $cfg[] = $_POST['DefaultRoute'] == '1' ? 'gateway' : 'nogateway';
-    if (( substr($iface, 0, 2) === "wl") && $_POST['NoHookWPASupplicant'] == '1') {
+    $cfg[] = ($_POST['DefaultRoute'] ?? '') == '1' ? 'gateway' : 'nogateway';
+    if (substr($iface, 0, 2) === "wl" && ($_POST['NoHookWPASupplicant'] ?? '') == '1') {
         $cfg[] = 'nohook wpa_supplicant';
     }
     $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);

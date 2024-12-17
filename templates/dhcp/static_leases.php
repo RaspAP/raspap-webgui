@@ -47,7 +47,7 @@
         <div class="input-group">
           <input type="hidden" name="dhcp-ignore" value="0">
             <div class="form-check form-switch">
-              <input class="form-check-input" id="dhcp-ignore" type="checkbox" name="dhcp-ignore" value="1" <?php echo $conf['dhcp-ignore'] ? ' checked="checked"' : "" ?> aria-describedby="dhcp-ignore-description">
+              <input class="form-check-input" id="dhcp-ignore" type="checkbox" name="dhcp-ignore" value="1" <?php echo !empty($conf['dhcp-ignore']) ? ' checked="checked"' : "" ?> aria-describedby="dhcp-ignore-description">
               <label class="form-check-label" for="dhcp-ignore"><?php echo _("Limit network access to static clients") ?></label>
             </div>
             <p id="dhcp-ignore-description">
