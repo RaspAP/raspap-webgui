@@ -52,8 +52,8 @@ function DisplayDHCPConfig()
     $conf = ParseConfig($return);
     exec('cat '. RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
     $conf = array_merge(ParseConfig($return));
-    $hosts = (array)$conf['dhcp-host'];
-    $upstreamServers = (array)$conf['server'];
+    $hosts = (array)($conf['dhcp-host'] ?? []);
+    $upstreamServers = (array)($conf['server'] ?? []);
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
 
