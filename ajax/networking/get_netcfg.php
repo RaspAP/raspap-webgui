@@ -18,14 +18,14 @@ if (isset($interface)) {
     } else {
         $arrRange = explode(",", $conf['dhcp-range'][0]);
     }
-    $dhcpdata['RangeStart'] = $arrRange[0];
-    $dhcpdata['RangeEnd'] = $arrRange[1];
-    $dhcpdata['RangeMask'] = $arrRange[2];
-    $dhcpdata['leaseTime'] = $arrRange[3];
-    $dhcpHost = $conf["dhcp-host"];
+    $dhcpdata['RangeStart'] = $arrRange[0] ?? null;
+    $dhcpdata['RangeEnd'] = $arrRange[1] ?? null;
+    $dhcpdata['RangeMask'] = $arrRange[2] ?? null;
+    $dhcpdata['leaseTime'] = $arrRange[3] ?? null;
+    $dhcpHost = $conf["dhcp-host"] ?? null;
     $dhcpHost = empty($dhcpHost) ? [] : $dhcpHost;
     $dhcpdata['dhcpHost'] = is_array($dhcpHost) ? $dhcpHost : [ $dhcpHost ];
-    $upstreamServers = is_array($conf['server']) ? $conf['server'] : [ $conf['server'] ];
+    $upstreamServers = is_array($conf['server'] ?? null) ? $conf['server'] : [ $conf['server'] ?? '' ];
     $dhcpdata['upstreamServersEnabled'] = empty($conf['server']) ? false: true;
     $dhcpdata['upstreamServers'] = array_filter($upstreamServers);
     preg_match('/([0-9]*)([a-z])/i', $dhcpdata['leaseTime'], $arrRangeLeaseTime);
@@ -35,10 +35,10 @@ if (isset($interface)) {
         $arrDns = explode(",", $conf['dhcp-option']);
         if ($arrDns[0] == '6') {
             if (count($arrDns) > 1) {
-                $dhcpdata['DNS1'] = $arrDns[1];
+                $dhcpdata['DNS1'] = $arrDns[1] ?? null;
             }
             if (count($arrDns) > 2) {
-                $dhcpdata['DNS2'] = $arrDns[2];
+                $dhcpdata['DNS2'] = $arrDns[2] ?? null;
             }
         }
     }
@@ -53,13 +53,15 @@ if (isset($interface)) {
     preg_match('/fallback\sstatic_'.$interface.'/', $matched[0], $fallback);
     preg_match('/(?:no)?gateway/', $matched[0], $gateway);
     preg_match('/nohook\swpa_supplicant/', $matched[0], $nohook_wpa_supplicant);
-    $dhcpdata['Metric'] = $metric[1];
-    $dhcpdata['StaticIP'] = strpos($static_ip[1],'/') ?  substr($static_ip[1], 0, strpos($static_ip[1],'/')) : $static_ip[1];
-    $dhcpdata['SubnetMask'] = cidr2mask($static_ip[1]);
-    $dhcpdata['StaticRouters'] = $static_routers[1];
-    $dhcpdata['StaticDNS'] = $static_dns[1];
+    $dhcpdata['Metric'] = $metric[1] ?? null;
+    $dhcpdata['StaticIP'] = isset($static_ip[1]) && strpos($static_ip[1], '/') !== false
+        ? substr($static_ip[1], 0, strpos($static_ip[1], '/'))
+        : ($static_ip[1] ?? '');
+    $dhcpdata['SubnetMask'] = cidr2mask($static_ip[1] ?? '');
+    $dhcpdata['StaticRouters'] = $static_routers[1] ?? null;
+    $dhcpdata['StaticDNS'] = $static_dns[1] ?? null;
     $dhcpdata['FallbackEnabled'] = empty($fallback) ? false: true;
     $dhcpdata['DefaultRoute'] = $gateway[0] == "gateway";
-    $dhcpdata['NoHookWPASupplicant'] = $nohook_wpa_supplicant[0] == "nohook wpa_supplicant";
+    $dhcpdata['NoHookWPASupplicant'] = ($nohook_wpa_supplicant[0] ?? '') == "nohook wpa_supplicant";
     echo json_encode($dhcpdata);
 }
