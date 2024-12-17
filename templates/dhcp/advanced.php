@@ -19,9 +19,8 @@
       <div class="js-dhcp-upstream-servers">
         <?php foreach ($upstreamServers as $server): ?>
           <div class="mb-3 input-group input-group-sm js-dhcp-upstream-server">
-            <input type="text" class="form-control" name="server[]" value="<?php echo $server ?>">
+            <input type="text" class="form-control" name="server[]" value="<?php echo $server; ?>">
             <div class="input-group-text js-remove-dhcp-upstream-server"><i class="fas fa-minus"></i></div>
-            </div>
           </div>
         <?php endforeach ?>
       </div>
