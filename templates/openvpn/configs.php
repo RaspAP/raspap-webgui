@@ -11,7 +11,7 @@
                 if ($client == $conf_default) {
                     $btn_class = "active";
                 } else {
-                    $btn_class = "disabled";
+                    $btn_class = "";
                 }
                 $label = preg_replace('/_client$/','',pathinfo($client, PATHINFO_FILENAME));
                 $client = $label;
