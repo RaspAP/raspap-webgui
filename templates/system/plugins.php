@@ -7,27 +7,14 @@
       <div class="row">
         <div class="form-group col-lg-8 col-md-8">
           <label>
-            <?php echo _("Available plugins"); ?>
+            <?php echo _("The following user plugins are available to extend RaspAP's functionality."); ?>
           </label>
-          <div class="small">
-          <?php echo _("The plugins below have been verified by RaspAP."); ?>
+          <div class="small mt-3">
+          <?php echo _("Choose <strong>Install</strong> to download and activate a plugin from the list. <strong>Uninstall</strong> removes an existing plugin."); ?>
           </div>
+          <?php echo $pluginsTable; ?>
         </div>
       </div>
-
-      <div class="row mt-3">
-        <div class="form-group col-lg-8 col-md-8">
-          <label for="reset">
-            <?php echo _("Upload a user plugin"); ?>
-          </label>
-          <div class="small">
-          <?php echo _("Custom user plugins may also be uploaded."); ?>
-          </div>
-        </div>
-      </div>
-      <button type="button" class="btn btn-outline btn-primary mt-3" name="plugin-upload" data-toggle="modal" data-target="#system-plugin-upload" />
-        <i class="fas fa-upload ml-1"></i> <?php echo _("Upload plugin"); ?>
-      </button>
 
     <?php endif ?>
 </div>
