@@ -85,53 +85,22 @@ function DisplaySystem(&$extraFooterScripts)
     $kernel   = $system->kernelVersion();
     $systime  = $system->systime();
     $revision = $system->rpiRevision();
-    
-    // mem used
+
+    // memory use
     $memused  = $system->usedMemory();
-    $memused_status = "primary";
-    if ($memused > 90) {
-        $memused_status = "danger";
-        $memused_led = "service-status-down";
-    } elseif ($memused > 75) {
-        $memused_status = "warning";
-        $memused_led = "service-status-warn";
-    } elseif ($memused >  0) {
-        $memused_status = "success";
-        $memused_led = "service-status-up";
-    }
+    $memStatus = getMemStatus($memused);
+    $memused_status = $memStatus['status'];
+    $memused_led = $memStatus['led'];
 
     // cpu load
     $cpuload = $system->systemLoadPercentage();
-    if ($cpuload > 90) {
-        $cpuload_status = "danger";
-    } elseif ($cpuload > 75) {
-        $cpuload_status = "warning";
-    } elseif ($cpuload >=  0) {
-        $cpuload_status = "success";
-    }
+    $cpuload_status = getCPULoadStatus($cpuload);
 
     // cpu temp
     $cputemp = $system->systemTemperature();
-    if ($cputemp > 70) {
-        $cputemp_status = "danger";
-        $cputemp_led = "service-status-down";
-    } elseif ($cputemp > 50) {
-        $cputemp_status = "warning";
-        $cputemp_led = "service-status-warn";
-    } else {
-        $cputemp_status = "success";
-        $cputemp_led = "service-status-up";
-    }
-
-    // hostapd status
-    $hostapd = $system->hostapdStatus();
-    if ($hostapd[0] == 1) {
-        $hostapd_status = "active";
-        $hostapd_led = "service-status-up";
-    } else {
-        $hostapd_status = "inactive";
-        $hostapd_led = "service-status-down";
-    }
+    $cpuStatus = getCPUTempStatus($cputemp);
+    $cputemp_status = $cpuStatus['status'];
+    $cputemp_led =  $cpuStatus['led'];
 
     // theme options
     $themes = [
@@ -146,6 +115,9 @@ function DisplaySystem(&$extraFooterScripts)
     $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
     $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
     $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
+
+    $plugins = getUserPlugins();
+    $pluginsTable = getHTMLPluginsTable($plugins);
 
     echo renderTemplate("system", compact(
         "arrLocales",
@@ -167,11 +139,187 @@ function DisplaySystem(&$extraFooterScripts)
         "cputemp",
         "cputemp_status",
         "cputemp_led",
-        "hostapd",
-        "hostapd_status",
-        "hostapd_led",
         "themes",
         "selectedTheme",
-        "logLimit"
+        "logLimit",
+        "pluginsTable"
     ));
 }
+
+/**
+ * Returns user plugin details from associated manifest.json files
+ *
+ * @return array $plugins
+ */
+function getUserPlugins()
+{
+    try {
+        $submodules = getSubmodules(RASPI_PLUGINS_URL);
+        $plugins = [];
+        foreach ($submodules as $submodule) {
+            $manifestUrl = $submodule['url'] .'/blob/master/manifest.json?raw=true';
+            $manifest = getPluginManifest($manifestUrl);
+
+            if ($manifest) {
+                $plugins[] = [
+                    'version' => $manifest['version'] ?? 'unknown',
+                    'name' => $manifest['name'] ?? 'unknown',
+                    'description' => $manifest['description'] ?? 'No description provided',
+                    'plugin_uri' => $manifest['plugin_uri'] ?? $submodule['url'],
+                    'fa-icon' => $manifest['icon'] ?? 'fas fa-plug',
+                ];
+            }
+        }
+        return $plugins;
+    } catch (Exception $e) {
+        echo "An error occured: " .$e->getMessage();
+    }
+}
+
+/**
+ * Returns git submodules for the specified repository
+ *
+ * @param string $repoURL
+ * @return array $submodules
+ */
+function getSubmodules(string $repoUrl): array
+{
+    $gitmodulesUrl = $repoUrl . '/refs/heads/master/.gitmodules';
+    $gitmodulesContent = file_get_contents($gitmodulesUrl);
+
+    if ($gitmodulesContent === false) {
+        throw new Exception('Unable to fetch .gitmodules file from the repository');
+    }
+
+    $submodules = [];
+    $lines = explode("\n", $gitmodulesContent);
+    $currentSubmodule = [];
+
+    foreach ($lines as $line) {
+        $line = trim($line);
+
+        if (strpos($line, '[submodule "') === 0) {
+            if (!empty($currentSubmodule)) {
+                $submodules[] = $currentSubmodule;
+            }
+            $currentSubmodule = [];
+        } elseif (strpos($line, 'path = ') === 0) {
+            $currentSubmodule['path'] = substr($line, strlen('path = '));
+        } elseif (strpos($line, 'url = ') === 0) {
+            $currentSubmodule['url'] = substr($line, strlen('url = '));
+        }
+    }
+
+    if (!empty($currentSubmodule)) {
+        $submodules[] = $currentSubmodule;
+    }
+
+    return $submodules;
+}
+
+/**
+ * Returns a plugin's associated manifest in JSON format
+ *
+ * @param string $url
+ * @return array $json
+ */
+function getPluginManifest(string $url): ?array
+{
+    $options = [
+        'http' => [
+            'method' => 'GET',
+            'follow_location' => 1,
+        ],
+    ];
+
+    $context = stream_context_create($options);
+    $content= file_get_contents($url, false, $context);
+
+    if ($content === false) {
+        return null;
+    }
+    $json = json_decode($content, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        return null;
+    }
+    return $json;
+}
+
+/**
+ * Returns a list of available plugins formatted as an HTML table
+ *
+ * @param array $plugins
+ * @return string $html
+ */
+function getHTMLPluginsTable(array $plugins): string
+{
+    $html = '<table class="table table-striped table-hover">';
+    $html .= '<thead><tr>';
+    $html .= '<th scope="col">Name</th>';
+    $html .= '<th scope="col">Version</th>';
+    $html .= '<th scope="col">Description</th>';
+    $html .= '</tr></thead></tbody>';
+
+    foreach ($plugins as $plugin) {
+        $name = '<i class="' . htmlspecialchars($plugin['fa-icon']) . ' link-secondary me-2"></i><a href="' . htmlspecialchars($plugin['plugin_uri']) . '" target="_blank">'. htmlspecialchars($plugin['name']). '</a>';
+        $html .= '<tr><td>' . $name . '</td>';
+        $html .= '<td>' . htmlspecialchars($plugin['version']) . '</td>';
+        $html .= '<td>' . htmlspecialchars($plugin['description']) . '</td>';
+    }
+    $html .= '</tbody></table>';
+    return $html;
+}
+
+function getMemStatus($memused): array
+{
+    $memused_status = "primary";
+    $memused_led = "";
+
+    if ($memused > 90) {
+        $memused_status = "danger";
+        $memused_led = "service-status-down";
+    } elseif ($memused > 75) {
+        $memused_status = "warning";
+        $memused_led = "service-status-warn";
+    } elseif ($memused > 0) {
+        $memused_status = "success";
+        $memused_led = "service-status-up";
+    }
+
+    return [
+        'status' => $memused_status,
+        'led' => $memused_led
+    ];
+}
+
+function getCPULoadStatus($cpuload): string
+{
+    if ($cpuload > 90) {
+        $status = "danger";
+    } elseif ($cpuload > 75) {
+        $status = "warning";
+    } elseif ($cpuload >=  0) {
+        $status = "success";
+    }
+    return $status;
+}
+
+function getCPUTempStatus($cputemp): array
+{
+    if ($cputemp > 70) {
+        $cputemp_status = "danger";
+        $cputemp_led = "service-status-down";
+    } elseif ($cputemp > 50) {
+        $cputemp_status = "warning";
+        $cputemp_led = "service-status-warn";
+    } else {
+        $cputemp_status = "success";
+        $cputemp_led = "service-status-up";
+    }
+    return [
+        'status' => $cputemp_status,
+        'led' => $cputemp_led
+    ];
+}
+
