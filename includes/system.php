@@ -153,6 +153,9 @@ function DisplaySystem(&$extraFooterScripts)
  */
 function getUserPlugins()
 {
+    $pluginInstaller = \RaspAP\Plugins\PluginInstaller::getInstance();
+    $installedPlugins = $pluginInstaller->getPlugins();
+
     try {
         $submodules = getSubmodules(RASPI_PLUGINS_URL);
         $plugins = [];
@@ -161,12 +164,24 @@ function getUserPlugins()
             $manifest = getPluginManifest($manifestUrl);
 
             if ($manifest) {
+                $namespace = $manifest['namespace'] ?? '';
+                $installed = false;
+
+                foreach ($installedPlugins as $plugin) {
+                    if (str_contains($plugin, $namespace)) {
+                        $installed = true;
+                        break;
+                    }
+                }
+
                 $plugins[] = [
                     'version' => $manifest['version'] ?? 'unknown',
                     'name' => $manifest['name'] ?? 'unknown',
                     'description' => $manifest['description'] ?? 'No description provided',
                     'plugin_uri' => $manifest['plugin_uri'] ?? $submodule['url'],
+                    'namespace' => $namespace,
                     'fa-icon' => $manifest['icon'] ?? 'fas fa-plug',
+                    'installed' => $installed
                 ];
             }
         }
@@ -218,7 +233,8 @@ function getSubmodules(string $repoUrl): array
 }
 
 /**
- * Returns a plugin's associated manifest in JSON format
+ * Decodes a plugin's associated manifest JSON.
+ * Returns an array of key-value pairs
  *
  * @param string $url
  * @return array $json
@@ -233,7 +249,7 @@ function getPluginManifest(string $url): ?array
     ];
 
     $context = stream_context_create($options);
-    $content= file_get_contents($url, false, $context);
+    $content = file_get_contents($url, false, $context);
 
     if ($content === false) {
         return null;
@@ -259,13 +275,26 @@ function getHTMLPluginsTable(array $plugins): string
     $html .= '<th scope="col">Name</th>';
     $html .= '<th scope="col">Version</th>';
     $html .= '<th scope="col">Description</th>';
+    $html .= '<th scope="col"></th>';
     $html .= '</tr></thead></tbody>';
 
     foreach ($plugins as $plugin) {
-        $name = '<i class="' . htmlspecialchars($plugin['fa-icon']) . ' link-secondary me-2"></i><a href="' . htmlspecialchars($plugin['plugin_uri']) . '" target="_blank">'. htmlspecialchars($plugin['name']). '</a>';
-        $html .= '<tr><td>' . $name . '</td>';
-        $html .= '<td>' . htmlspecialchars($plugin['version']) . '</td>';
-        $html .= '<td>' . htmlspecialchars($plugin['description']) . '</td>';
+        $installed = $plugin['installed'];
+        if ($installed === true ) {
+            $status = 'Installed';
+        } else {
+            $status = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
+                name="install-plugin" data-bs-toggle="modal" data-bs-target="#installPlugin" />'
+                . _("Install now") .'</button>';
+        }
+        $name = '<i class="' . htmlspecialchars($plugin['fa-icon']) . ' link-secondary me-2"></i><a href="'
+            . htmlspecialchars($plugin['plugin_uri'])
+            . '" target="_blank">'
+            . htmlspecialchars($plugin['name']). '</a>';
+        $html .= '<tr><td>' .$name. '</td>';
+        $html .= '<td>' .htmlspecialchars($plugin['version']). '</td>';
+        $html .= '<td>' .htmlspecialchars($plugin['description']). '</td>';
+        $html .= '<td>' .$status. '</td>';
     }
     $html .= '</tbody></table>';
     return $html;
