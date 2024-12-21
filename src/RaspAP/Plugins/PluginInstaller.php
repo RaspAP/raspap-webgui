@@ -30,6 +30,40 @@ class PluginInstaller
         return self::$instance;
     }
 
+    /**
+     * Decodes a plugin's associated manifest JSON.
+     * Returns an array of key-value pairs
+     *
+     * @param string $url
+     * @return array $json
+     */
+    public function getPluginManifest(string $url): ?array
+    {
+        $options = [
+            'http' => [
+                'method' => 'GET',
+                'follow_location' => 1,
+            ],
+        ];
+
+        $context = stream_context_create($options);
+        $content = file_get_contents($url, false, $context);
+
+        if ($content === false) {
+            return null;
+        }
+        $json = json_decode($content, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return null;
+        }
+        return $json;
+    }
+
+    /** Returns an array of installed plugins in pluginPath
+     *
+     * @return array $plugins
+     */ 
     public function getPlugins(): array
     {
         $plugins = [];

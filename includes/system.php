@@ -161,7 +161,7 @@ function getUserPlugins()
         $plugins = [];
         foreach ($submodules as $submodule) {
             $manifestUrl = $submodule['url'] .'/blob/master/manifest.json?raw=true';
-            $manifest = getPluginManifest($manifestUrl);
+            $manifest = $pluginInstaller->getPluginManifest($manifestUrl);
 
             if ($manifest) {
                 $namespace = $manifest['namespace'] ?? '';
@@ -233,36 +233,6 @@ function getSubmodules(string $repoUrl): array
 }
 
 /**
- * Decodes a plugin's associated manifest JSON.
- * Returns an array of key-value pairs
- *
- * @param string $url
- * @return array $json
- */
-function getPluginManifest(string $url): ?array
-{
-    $options = [
-        'http' => [
-            'method' => 'GET',
-            'follow_location' => 1,
-        ],
-    ];
-
-    $context = stream_context_create($options);
-    $content = file_get_contents($url, false, $context);
-
-    if ($content === false) {
-        return null;
-    }
-    $json = json_decode($content, true);
-
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        return null;
-    }
-    return $json;
-}
-
-/**
  * Returns a list of available plugins formatted as an HTML table
  *
  * @param array $plugins
@@ -284,8 +254,8 @@ function getHTMLPluginsTable(array $plugins): string
             $status = 'Installed';
         } else {
             $status = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
-                name="install-plugin" data-bs-toggle="modal" data-bs-target="#installPlugin" />'
-                . _("Install now") .'</button>';
+                name="install-plugin" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
+                data-record-id="'.htmlspecialchars($plugin['plugin_uri']).'" />' . _("Install now") .'</button>';
         }
         $name = '<i class="' . htmlspecialchars($plugin['fa-icon']) . ' link-secondary me-2"></i><a href="'
             . htmlspecialchars($plugin['plugin_uri'])
