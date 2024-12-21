@@ -1,4 +1,4 @@
-<!-- reset tab -->
+<!-- tools tab -->
 <div role="tabpanel" class="tab-pane" id="tools">
   <h4 class="mt-3"><?php echo _("System tools") ;?></h4>
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
@@ -35,5 +35,4 @@
 
     <?php endif ?>
 </div>
-
 
