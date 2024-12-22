@@ -468,6 +468,48 @@ $('#js-sys-reboot, #js-sys-shutdown').on('click', function (e) {
     });
 });
 
+$('#install-user-plugin').on('shown.bs.modal', function (e) {
+    var button = $(e.relatedTarget);
+    var manifestData = button.data('plugin-manifest');
+
+        if (manifestData) {
+            $('#plugin-icon').attr('class', `${manifestData.icon || 'fas fa-plug'} link-secondary h5 me-2`);
+            $('#plugin-name').text(manifestData.name || 'Unknown');
+            $('#plugin-version').text(manifestData.version || 'Unknown');
+            $('#plugin-description').text(manifestData.description || 'No description provided');
+            $('#plugin-author').html(manifestData.author
+                    ? manifestData.author + (manifestData.author_uri
+                    ? ` (<a href="${manifestData.author_uri}" target="_blank">profile</a>)` : '') : 'Unknown'
+                );
+            $('#plugin-license').text(manifestData.license || 'Unknown');
+            $('#plugin-locale').text(manifestData.default_locale || 'Unknown');
+            $('#plugin-configuration').html(formatProperty(manifestData.configuration || {}));
+            $('#plugin-dependencies').html(formatProperty(manifestData.dependencies || {}));
+            $('#plugin-sudoers').html(formatProperty(manifestData.sudoers || []));
+            $('#plugin-user-name').html(manifestData.user_nonprivileged.name || {});
+            console.log(manifestData);
+        }
+});
+
+function formatProperty(prop) {
+    if (Array.isArray(prop)) {
+        if (typeof prop[0] === 'object') {
+            return prop.map(item => {
+                return Object.entries(item)
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join('<br/>');
+            }).join('<br/><br/>');
+        }
+        return prop.map(line => `${line}<br/>`).join('');
+    }
+    if (typeof prop === 'object') {
+        return Object.entries(prop)
+            .map(([key, value]) => `${key}: ${value}`)
+            .join('<br/>');
+    }
+    return prop || 'None';
+}
+
 $(document).ready(function(){
     $("#PanelManual").hide();
     $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
@@ -507,7 +549,6 @@ $('#wg-upload,#wg-manual').on('click', function (e) {
     }
 });
 
-// Add the following code if you want the name of the file appear on select
 $(".custom-file-input").on("change", function() {
   var fileName = $(this).val().split("\\").pop();
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
