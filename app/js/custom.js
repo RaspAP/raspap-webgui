@@ -473,6 +473,10 @@ $('#install-user-plugin').on('shown.bs.modal', function (e) {
     var manifestData = button.data('plugin-manifest');
 
         if (manifestData) {
+            $('#plugin-uri').html(manifestData.plugin_uri
+                ? `<a href="${manifestData.plugin_uri}" target="_blank">${manifestData.plugin_uri}</a>`
+                : 'Unknown'
+            );
             $('#plugin-icon').attr('class', `${manifestData.icon || 'fas fa-plug'} link-secondary h5 me-2`);
             $('#plugin-name').text(manifestData.name || 'Unknown');
             $('#plugin-version').text(manifestData.version || 'Unknown');
@@ -487,7 +491,6 @@ $('#install-user-plugin').on('shown.bs.modal', function (e) {
             $('#plugin-dependencies').html(formatProperty(manifestData.dependencies || {}));
             $('#plugin-sudoers').html(formatProperty(manifestData.sudoers || []));
             $('#plugin-user-name').html(manifestData.user_nonprivileged.name || {});
-            console.log(manifestData);
         }
 });
 

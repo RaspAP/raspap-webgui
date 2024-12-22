@@ -112,7 +112,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-      <div class="modal-title" id="ModalLabel"><i class="fas fa-download me-2"></i><?php echo _("Install user plugin"); ?></div>
+      <div class="modal-title" id="ModalLabel"><i class="fas fa-download me-2"></i><?php echo _("Plugin installer"); ?></div>
       </div>
       <div class="modal-body">
 
@@ -121,6 +121,10 @@
 
         <table class="table table-bordered">
           <tbody>
+            <tr>
+              <th><?php echo _("Plugin source"); ?></th>
+              <td><span id="plugin-uri"></span></td>
+            </tr>
             <tr>
               <th><?php echo _("Version"); ?></th>
               <td><span id="plugin-version"></span></td>
@@ -139,7 +143,7 @@
             </tr>
             <tr>
               <th><?php echo _("Configuration files"); ?></th>
-              <td><span id="plugin-configuration" class="mb-0"></span></td>
+              <td><small><code><span id="plugin-configuration" class="mb-0"></span></code></small></td>
               </td>
             </tr>
             <tr>
