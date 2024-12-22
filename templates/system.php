@@ -107,3 +107,62 @@
   </div>
 </div>
 
+<!-- modal install-plugin -->
+<div class="modal fade" id="install-user-plugin" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="modal-title" id="ModalLabel"><i class="fas fa-download me-2"></i><?php echo _("Install user plugin"); ?></div>
+      </div>
+      <div class="modal-body">
+
+        <i id="plugin-icon" class="fas fa-plug link-secondary me-2"></i><span id="plugin-name" class="h4 mb-0"></span>
+        <p id="plugin-description" class="mb-3"></p>
+
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th><?php echo _("Version"); ?></th>
+              <td><span id="plugin-version"></span></td>
+            </tr>
+            <tr>
+              <th><?php echo _("Author"); ?></th>
+              <td><span id="plugin-author"></span></td>
+            </tr>
+            <tr>
+              <th><?php echo _("License"); ?></th>
+              <td><span id="plugin-license"></span></td>
+            </tr>
+            <tr>
+              <th><?php echo _("Language locale"); ?></th>
+              <td><span id="plugin-locale"></span></td>
+            </tr>
+            <tr>
+              <th><?php echo _("Configuration files"); ?></th>
+              <td><span id="plugin-configuration" class="mb-0"></span></td>
+              </td>
+            </tr>
+            <tr>
+              <th><?php echo _("Dependencies"); ?></th>
+              <td><small><code><span id="plugin-dependencies" class="mb-0"></span></code></small></td>
+            </tr>
+            <tr>
+              <th><?php echo _("Permissions"); ?></th>
+              <td><small><code><span id="plugin-sudoers" class="mb-0"></span></code></small></td>
+            </tr>
+            <tr>
+              <th><?php echo _("Non-privileged users"); ?></th>
+              <td><small><code><span id="plugin-user-name"></span></small></code></p></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
+      <button type="button" class="btn btn-outline-success btn-activate"><?php echo _("Install now"); ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+
