@@ -9,6 +9,7 @@ require_once 'config.php';
 function DisplaySystem(&$extraFooterScripts)
 {
     $status = new \RaspAP\Messages\StatusMessage;
+    $pluginInstaller = \RaspAP\Plugins\PluginInstaller::getInstance();
 
     if (isset($_POST['SaveLanguage'])) {
         if (isset($_POST['locale'])) {
@@ -116,8 +117,8 @@ function DisplaySystem(&$extraFooterScripts)
     $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
     $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
 
-    $plugins = getUserPlugins();
-    $pluginsTable = getHTMLPluginsTable($plugins);
+    $plugins = $pluginInstaller->getUserPlugins();
+    $pluginsTable = $pluginInstaller->getHTMLPluginsTable($plugins);
 
     echo renderTemplate("system", compact(
         "arrLocales",
@@ -144,130 +145,6 @@ function DisplaySystem(&$extraFooterScripts)
         "logLimit",
         "pluginsTable"
     ));
-}
-
-/**
- * Returns user plugin details from associated manifest.json files
- *
- * @return array $plugins
- */
-function getUserPlugins()
-{
-    $pluginInstaller = \RaspAP\Plugins\PluginInstaller::getInstance();
-    $installedPlugins = $pluginInstaller->getPlugins();
-
-    try {
-        $submodules = getSubmodules(RASPI_PLUGINS_URL);
-        $plugins = [];
-        foreach ($submodules as $submodule) {
-            $manifestUrl = $submodule['url'] .'/blob/master/manifest.json?raw=true';
-            $manifest = $pluginInstaller->getPluginManifest($manifestUrl);
-
-            if ($manifest) {
-                $namespace = $manifest['namespace'] ?? '';
-                $installed = false;
-
-                foreach ($installedPlugins as $plugin) {
-                    if (str_contains($plugin, $namespace)) {
-                        $installed = true;
-                        break;
-                    }
-                }
-
-                $plugins[] = [
-                    'version' => $manifest['version'] ?? 'unknown',
-                    'name' => $manifest['name'] ?? 'unknown',
-                    'description' => $manifest['description'] ?? 'No description provided',
-                    'plugin_uri' => $manifest['plugin_uri'] ?? $submodule['url'],
-                    'namespace' => $namespace,
-                    'fa-icon' => $manifest['icon'] ?? 'fas fa-plug',
-                    'installed' => $installed
-                ];
-            }
-        }
-        return $plugins;
-    } catch (Exception $e) {
-        echo "An error occured: " .$e->getMessage();
-    }
-}
-
-/**
- * Returns git submodules for the specified repository
- *
- * @param string $repoURL
- * @return array $submodules
- */
-function getSubmodules(string $repoUrl): array
-{
-    $gitmodulesUrl = $repoUrl . '/refs/heads/master/.gitmodules';
-    $gitmodulesContent = file_get_contents($gitmodulesUrl);
-
-    if ($gitmodulesContent === false) {
-        throw new Exception('Unable to fetch .gitmodules file from the repository');
-    }
-
-    $submodules = [];
-    $lines = explode("\n", $gitmodulesContent);
-    $currentSubmodule = [];
-
-    foreach ($lines as $line) {
-        $line = trim($line);
-
-        if (strpos($line, '[submodule "') === 0) {
-            if (!empty($currentSubmodule)) {
-                $submodules[] = $currentSubmodule;
-            }
-            $currentSubmodule = [];
-        } elseif (strpos($line, 'path = ') === 0) {
-            $currentSubmodule['path'] = substr($line, strlen('path = '));
-        } elseif (strpos($line, 'url = ') === 0) {
-            $currentSubmodule['url'] = substr($line, strlen('url = '));
-        }
-    }
-
-    if (!empty($currentSubmodule)) {
-        $submodules[] = $currentSubmodule;
-    }
-
-    return $submodules;
-}
-
-/**
- * Returns a list of available plugins formatted as an HTML table
- *
- * @param array $plugins
- * @return string $html
- */
-function getHTMLPluginsTable(array $plugins): string
-{
-    $html = '<table class="table table-striped table-hover">';
-    $html .= '<thead><tr>';
-    $html .= '<th scope="col">Name</th>';
-    $html .= '<th scope="col">Version</th>';
-    $html .= '<th scope="col">Description</th>';
-    $html .= '<th scope="col"></th>';
-    $html .= '</tr></thead></tbody>';
-
-    foreach ($plugins as $plugin) {
-        $installed = $plugin['installed'];
-        if ($installed === true ) {
-            $status = 'Installed';
-        } else {
-            $status = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
-                name="install-plugin" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
-                data-record-id="'.htmlspecialchars($plugin['plugin_uri']).'" />' . _("Install now") .'</button>';
-        }
-        $name = '<i class="' . htmlspecialchars($plugin['fa-icon']) . ' link-secondary me-2"></i><a href="'
-            . htmlspecialchars($plugin['plugin_uri'])
-            . '" target="_blank">'
-            . htmlspecialchars($plugin['name']). '</a>';
-        $html .= '<tr><td>' .$name. '</td>';
-        $html .= '<td>' .htmlspecialchars($plugin['version']). '</td>';
-        $html .= '<td>' .htmlspecialchars($plugin['description']). '</td>';
-        $html .= '<td>' .$status. '</td>';
-    }
-    $html .= '</tbody></table>';
-    return $html;
 }
 
 function getMemStatus($memused): array
