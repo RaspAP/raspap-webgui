@@ -112,7 +112,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-      <div class="modal-title" id="ModalLabel"><i class="fas fa-download me-2"></i><?php echo _("Plugin installer"); ?></div>
+      <div class="modal-title" id="ModalLabel"><i class="fas fa-plug me-2"></i><?php echo _("Plugin details"); ?></div>
       </div>
       <div class="modal-body">
 
@@ -139,7 +139,7 @@
             </tr>
             <tr>
               <th><?php echo _("Language locale"); ?></th>
-              <td><span id="plugin-locale"></span></td>
+              <td><small><code><span id="plugin-locale"></span></span></code></td>
             </tr>
             <tr>
               <th><?php echo _("Configuration files"); ?></th>
@@ -164,7 +164,25 @@
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
-      <button type="button" class="btn btn-outline-success btn-activate"><?php echo _("Install now"); ?></button>
+      <button type="button" id="js-install-plugin-confirm" data-message="<?php echo _("Plugin installation in progress..."); ?>" class="btn btn-outline-success btn-activate"><?php echo _("Install now"); ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal plugin-install-progress -->
+<div class="modal fade" id="install-plugin-progress" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="modal-title" id="ModalLabel"><i class="fas fa-download me-2"></i><?php echo _("Installing plugin"); ?></div>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 mb-3 mt-1" data-message="<?php echo _("Plugin install completed."); ?>" id="plugin-install-message"><?php echo _("Plugin installation in progress..."); ?><i class="fas fa-cog fa-spin link-secondary ms-2"></i></div>
+      </div>
+      <div class="modal-footer">
+      <button type="button" id="js-plugin-reset-cancel" data-message="<?php echo _("Close"); ?>" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
+      <button type="button" id="js-system-reset-confirm" data-message="<?php echo _("System reset in progress..."); ?>" class="btn btn-outline-success btn-activate"><?php echo _("Reset"); ?></button>
       </div>
     </div>
   </div>
