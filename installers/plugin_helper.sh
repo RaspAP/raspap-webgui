@@ -7,6 +7,8 @@
 # Exit on error
 set -o errexit
 
+readonly raspap_user="www-data"
+
 [ $# -lt 1 ] && { echo "Usage: $0 <action> [parameters...]"; exit 1; }
 
 action="$1"  # action to perform
@@ -58,13 +60,54 @@ case "$action" in
     echo "OK"
     ;;
 
+  "config")
+    [ $# -lt 2 ] && { echo "Usage: $0 config <source> <destination>"; exit 1; }
+
+    source=$1
+    destination=$2
+
+    if [ ! -f "$source" ]; then
+        echo "Source file $source does not exist."
+        exit 1
+    fi
+
+    mkdir -p "$(dirname "$destination")"
+    cp "$source" "$destination"
+
+    echo "OK"
+    ;;
+
+  "plugin")
+    [ $# -lt 2 ] && { echo "Usage: $0 plugin <source> <destination>"; exit 1; }
+
+    source=$1
+    destination=$2
+
+    if [ ! -d "$source" ]; then
+        echo "Source directory $source does not exist."
+        exit 1
+    fi
+
+    plugin_dir=$(dirname "$destination")
+    if [ ! -d "$lugin_dir" ]; then
+        mkdir -p "$plugin_dir"
+    fi
+
+    cp -R "$source" "$destination"
+    chown -R $raspap_user:$raspap_user "$plugin_dir"
+
+    echo "OK"
+    ;;
+
   *)
     echo "Invalid action: $action"
     echo "Usage: $0 <action> [parameters...]"
     echo "Actions:"
-    echo "  sudoers <file>       Install a sudoers file"
-    echo "  packages <packages>  Install APT package(s)"
-    echo "  user <name> <pass>   Add user non-interactively" 
+    echo "  sudoers <file>                 Install a sudoers file"
+    echo "  packages <packages>            Install aptitude package(s)"
+    echo "  user <name> <password>         Add user non-interactively"
+    echo "  config <source <destination>   Applies a config file"
+    echo "  plugin <source <destination>   Copies a plugin directory"
     exit 1
     ;;
 esac
