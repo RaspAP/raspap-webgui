@@ -9,7 +9,7 @@
             <?php echo _("The following user plugins are available to extend RaspAP's functionality."); ?>
           </label>
           <div class="small mt-2">
-          <?php echo _("Choose <strong>Details</strong> for more information and to install a plugin. <strong>Uninstall</strong> removes an existing plugin."); ?>
+          <?php echo _("Choose <strong>Details</strong> for more information and to install a plugin."); ?>
           </div>
           <?php echo $pluginsTable; ?>
         </div>
