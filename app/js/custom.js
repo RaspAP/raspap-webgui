@@ -517,7 +517,7 @@ $('#js-install-plugin-confirm').on('click', function (e) {
             setTimeout(function(){
                 response = JSON.parse(data);
                 if (response === true) {
-                    $('#plugin-install-message').contents().first().replaceWith(successHtml);
+                    $('#plugin-install-message').contents().first().text(successHtml);
                     $('#plugin-install-message').find('i')
                     .removeClass('fas fa-cog fa-spin link-secondary')
                     .addClass('fas fa-check');
