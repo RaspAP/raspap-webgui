@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # PluginInstaller helper for RaspAP 
-# # @author billz
+# @author billz
 # license: GNU General Public License v3.0
 
 # Exit on error

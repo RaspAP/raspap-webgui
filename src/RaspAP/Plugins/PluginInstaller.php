@@ -428,7 +428,7 @@ class PluginInstaller
             if ($installed === true ) {
                 $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
                     name="plugin-details" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
-                    data-plugin-manifest="' .$manifest. '"> ' . _("Installed") .'</button>';
+                    data-plugin-manifest="' .$manifest. '" data-plugin-installed="' .$installed. '"> ' . _("Installed") .'</button>';
             } else {
                 $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
                     name="install-plugin" data-bs-toggle="modal" data-bs-target="#install-user-plugin"

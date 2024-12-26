@@ -471,54 +471,65 @@ $('#js-sys-reboot, #js-sys-shutdown').on('click', function (e) {
 $('#install-user-plugin').on('shown.bs.modal', function (e) {
     var button = $(e.relatedTarget);
     var manifestData = button.data('plugin-manifest');
+    var installed = button.data('plugin-installed');
 
-        if (manifestData) {
-            $('#plugin-uri').html(manifestData.plugin_uri
-                ? `<a href="${manifestData.plugin_uri}" target="_blank">${manifestData.plugin_uri}</a>`
-                : 'Unknown'
+    if (manifestData) {
+        $('#plugin-uri').html(manifestData.plugin_uri
+            ? `<a href="${manifestData.plugin_uri}" target="_blank">${manifestData.plugin_uri}</a>`
+            : 'Unknown'
+        );
+        $('#plugin-icon').attr('class', `${manifestData.icon || 'fas fa-plug'} link-secondary h5 me-2`);
+        $('#plugin-name').text(manifestData.name || 'Unknown');
+        $('#plugin-version').text(manifestData.version || 'Unknown');
+        $('#plugin-description').text(manifestData.description || 'No description provided');
+        $('#plugin-author').html(manifestData.author
+                ? manifestData.author + (manifestData.author_uri
+                ? ` (<a href="${manifestData.author_uri}" target="_blank">profile</a>)` : '') : 'Unknown'
             );
-            $('#plugin-icon').attr('class', `${manifestData.icon || 'fas fa-plug'} link-secondary h5 me-2`);
-            $('#plugin-name').text(manifestData.name || 'Unknown');
-            $('#plugin-version').text(manifestData.version || 'Unknown');
-            $('#plugin-description').text(manifestData.description || 'No description provided');
-            $('#plugin-author').html(manifestData.author
-                    ? manifestData.author + (manifestData.author_uri
-                    ? ` (<a href="${manifestData.author_uri}" target="_blank">profile</a>)` : '') : 'Unknown'
-                );
-            $('#plugin-license').text(manifestData.license || 'Unknown');
-            $('#plugin-locale').text(manifestData.default_locale || 'Unknown');
-            $('#plugin-configuration').html(formatProperty(manifestData.configuration || {}));
-            $('#plugin-dependencies').html(formatProperty(manifestData.dependencies || {}));
-            $('#plugin-sudoers').html(formatProperty(manifestData.sudoers || []));
-            $('#plugin-user-name').html(manifestData.user_nonprivileged.name || 'None');
-        }
+        $('#plugin-license').text(manifestData.license || 'Unknown');
+        $('#plugin-locale').text(manifestData.default_locale || 'Unknown');
+        $('#plugin-configuration').html(formatProperty(manifestData.configuration || {}));
+        $('#plugin-dependencies').html(formatProperty(manifestData.dependencies || {}));
+        $('#plugin-sudoers').html(formatProperty(manifestData.sudoers || []));
+        $('#plugin-user-name').html(manifestData.user_nonprivileged.name || 'None');
+    }
+    if (installed) {
+        $('#js-install-plugin-confirm').html('OK');
+    } else {
+        $('#js-install-plugin-confirm').html('Install now');
+    }
 });
 
 $('#js-install-plugin-confirm').on('click', function (e) {
     var progressText = $('#js-install-plugin-confirm').attr('data-message');
     var successHtml = $('#plugin-install-message').attr('data-message');
-    var closeHtml = $('#js-system-reset-cancel').attr('data-message');
     var pluginUri = $('#plugin-uri a').attr('href');
     var pluginVersion = $('#plugin-version').text();
     var csrfToken = $('meta[name=csrf_token]').attr('content');
 
     $("#install-user-plugin").modal('hide');
-    $("#install-plugin-progress").modal('show');
 
-    $.post('ajax/plugins/do_plugin_install.php?',{'plugin_uri': pluginUri, 'plugin_version': pluginVersion, 'csrf_token': csrfToken},function(data){
-        setTimeout(function(){
-            response = JSON.parse(data);
-            if(response === true) {
-                $('#plugin-install-message').text(successHtml);
-                $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary').addClass('fas fa-check');
-                $('#js-install-plugin-ok').removeAttr("disabled");
-            } else {
-                $('#plugin-install-message').text('An error occurred installing the plugin.');
-                $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
-                $('#js-install-plugin-ok').removeAttr("disabled");
-            }
-        },300);
-    });
+    if ($('#js-install-plugin-confirm').text() === 'Install now') {
+        $("#install-plugin-progress").modal('show');
+
+        $.post('ajax/plugins/do_plugin_install.php?',{'plugin_uri': pluginUri,
+            'plugin_version': pluginVersion, 'csrf_token': csrfToken},function(data){
+            setTimeout(function(){
+                response = JSON.parse(data);
+                if (response === true) {
+                    $('#plugin-install-message').contents().first().replaceWith(successHtml);
+                    $('#plugin-install-message').find('i')
+                    .removeClass('fas fa-cog fa-spin link-secondary')
+                    .addClass('fas fa-check');
+                    $('#js-install-plugin-ok').removeAttr("disabled");
+                } else {
+                    $('#plugin-install-message').contents().first().replaceWith('An error occurred installing the plugin.');
+                    $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
+                    $('#js-install-plugin-ok').removeAttr("disabled");
+                }
+            },200);
+        });
+    }
 });
 
 $('#js-install-plugin-ok').on('click', function (e) {
