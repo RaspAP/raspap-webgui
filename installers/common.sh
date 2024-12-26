@@ -51,6 +51,7 @@ function _install_raspap() {
     _download_latest_files
     _change_file_ownership
     _create_hostapd_scripts
+    _create_plugin_scripts
     _create_lighttpd_scripts
     _install_lighttpd_configs
     _default_configuration
@@ -295,6 +296,19 @@ function _create_hostapd_scripts() {
     # Change ownership and permissions of hostapd control scripts
     sudo chown -c root:root "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable to change file permissions"
+    _install_status 0
+}
+
+# Generate plugin helper scripts
+function _create_plugin_scripts() {
+    _install_log "Creating plugin helper scripts"
+    sudo mkdir $raspap_dir/plugins || _install_status 1 "Unable to create directory '$raspap_dir/plugins'"
+
+    # Copy plugin helper script
+    sudo cp "$webroot_dir/installers/"plugin_helper.sh "$raspap_dir/plugins" || _install_status 1 "Unable to move plugin script"
+    # Change ownership and permissions of plugin script
+    sudo chown -c root:root "$raspap_dir/plugins/"*.sh || _install_status 1 "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/plugins/"*.sh || _install_status 1 "Unable to change file permissions"
     _install_status 0
 }
 
