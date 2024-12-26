@@ -61,12 +61,11 @@ class PluginInstaller
                     $installed = false;
 
                     foreach ($installedPlugins as $plugin) {
-                        if (str_contains($plugin, $plugins['manifest']['namespace'])) {
+                        if (str_contains($plugin, $manifest['namespace'])) {
                             $installed = true;
                             break;
                         }
                     }
-
                     $plugins[] = [
                         'manifest' => $manifest,
                         'installed' => $installed
@@ -427,7 +426,9 @@ class PluginInstaller
             $manifest = htmlspecialchars(json_encode($plugin['manifest']), ENT_QUOTES, 'UTF-8');
             $installed = $plugin['installed'];
             if ($installed === true ) {
-                $status = 'Installed';
+                $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
+                    name="plugin-details" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
+                    data-plugin-manifest="' .$manifest. '"> ' . _("Installed") .'</button>';
             } else {
                 $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
                     name="install-plugin" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
