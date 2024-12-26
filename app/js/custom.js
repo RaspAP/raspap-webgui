@@ -490,8 +490,40 @@ $('#install-user-plugin').on('shown.bs.modal', function (e) {
             $('#plugin-configuration').html(formatProperty(manifestData.configuration || {}));
             $('#plugin-dependencies').html(formatProperty(manifestData.dependencies || {}));
             $('#plugin-sudoers').html(formatProperty(manifestData.sudoers || []));
-            $('#plugin-user-name').html(manifestData.user_nonprivileged.name || {});
+            $('#plugin-user-name').html(manifestData.user_nonprivileged.name || 'None');
         }
+});
+
+$('#js-install-plugin-confirm').on('click', function (e) {
+    var progressText = $('#js-install-plugin-confirm').attr('data-message');
+    var successHtml = $('#plugin-install-message').attr('data-message');
+    var closeHtml = $('#js-system-reset-cancel').attr('data-message');
+    var pluginUri = $('#plugin-uri a').attr('href');
+    var pluginVersion = $('#plugin-version').text();
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+
+    $("#install-user-plugin").modal('hide');
+    $("#install-plugin-progress").modal('show');
+
+    $.post('ajax/plugins/do_plugin_install.php?',{'plugin_uri': pluginUri, 'plugin_version': pluginVersion, 'csrf_token': csrfToken},function(data){
+        setTimeout(function(){
+            response = JSON.parse(data);
+            if(response === true) {
+                $('#plugin-install-message').text(successHtml);
+                $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary').addClass('fas fa-check');
+                $('#js-install-plugin-ok').removeAttr("disabled");
+            } else {
+                $('#plugin-install-message').text('An error occurred installing the plugin.');
+                $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
+                $('#js-install-plugin-ok').removeAttr("disabled");
+            }
+        },300);
+    });
+});
+
+$('#js-install-plugin-ok').on('click', function (e) {
+    $("#install-plugin-progress").modal('hide');
+    window.location.reload();
 });
 
 function formatProperty(prop) {
