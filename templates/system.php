@@ -181,8 +181,7 @@
         <div class="col-md-12 mb-3 mt-1" data-message="<?php echo _("Plugin install completed."); ?>" id="plugin-install-message"><?php echo _("Plugin installation in progress..."); ?><i class="fas fa-cog fa-spin link-secondary ms-2"></i></div>
       </div>
       <div class="modal-footer">
-      <button type="button" id="js-plugin-reset-cancel" data-message="<?php echo _("Close"); ?>" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
-      <button type="button" id="js-system-reset-confirm" data-message="<?php echo _("System reset in progress..."); ?>" class="btn btn-outline-success btn-activate"><?php echo _("Reset"); ?></button>
+      <button type="button" id="js-install-plugin-ok" class="btn btn-outline-success btn-activate" disabled><?php echo _("OK"); ?></button>
       </div>
     </div>
   </div>
