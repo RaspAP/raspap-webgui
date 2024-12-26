@@ -164,7 +164,7 @@
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
-      <button type="button" id="js-install-plugin-confirm" data-message="<?php echo _("Plugin installation in progress..."); ?>" class="btn btn-outline-success btn-activate"></button>
+      <button type="button" id="js-install-plugin-confirm" class="btn btn-outline-success btn-activate"></button>
       </div>
     </div>
   </div>

@@ -503,6 +503,7 @@ $('#install-user-plugin').on('shown.bs.modal', function (e) {
 $('#js-install-plugin-confirm').on('click', function (e) {
     var progressText = $('#js-install-plugin-confirm').attr('data-message');
     var successHtml = $('#plugin-install-message').attr('data-message');
+    var successText = $('<div>').text(successHtml).text();
     var pluginUri = $('#plugin-uri a').attr('href');
     var pluginVersion = $('#plugin-version').text();
     var csrfToken = $('meta[name=csrf_token]').attr('content');
@@ -517,7 +518,7 @@ $('#js-install-plugin-confirm').on('click', function (e) {
             setTimeout(function(){
                 response = JSON.parse(data);
                 if (response === true) {
-                    $('#plugin-install-message').contents().first().text(successHtml);
+                    $('#plugin-install-message').contents().first().replaceWith(successText);
                     $('#plugin-install-message').find('i')
                     .removeClass('fas fa-cog fa-spin link-secondary')
                     .addClass('fas fa-check');
