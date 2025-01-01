@@ -623,18 +623,18 @@ function clearBlocklistStatus() {
     $('#cbxblocklist-status').removeClass('check-updated').addClass('check-hidden');
 }
 
-// Handler for the wireguard generate key button
+// Handler for the WireGuard generate key button
 $('.wg-keygen').click(function(){
-    var entity_pub = $(this).parent('div').prev('input[type="text"]');
-    var entity_priv = $(this).parent('div').next('input[type="hidden"]');
+    var parentGroup = $(this).closest('.input-group');
+    var entity_pub = parentGroup.find('input[type="text"]');
     var updated = entity_pub.attr('name')+"-pubkey-status";
-    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    var csrfToken = $('meta[name="csrf_token"]').attr('content');
     $.post('ajax/networking/get_wgkey.php',{'entity':entity_pub.attr('name'), 'csrf_token': csrfToken},function(data){
         var jsonData = JSON.parse(data);
         entity_pub.val(jsonData.pubkey);
         $('#' + updated).removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
-    })
-})
+    });
+});
 
 // Handler for wireguard client.conf download
 $('.wg-client-dl').click(function(){
