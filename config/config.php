@@ -38,6 +38,9 @@ define('RASPI_ACCESS_CHECK_DNS', 'one.one.one.one');
 // Constant for the GitHub API latest release endpoint
 define('RASPI_API_ENDPOINT', 'https://api.github.com/repos/RaspAP/raspap-webgui/releases/latest');
 
+// Constant for the GitHub plugin submodules URL
+define("RASPI_PLUGINS_URL", "https://raw.githubusercontent.com/RaspAP/plugins");
+
 // Constant for the 5GHz wireless regulatory domain
 define("RASPI_5GHZ_CHANNEL_MIN", 100);
 define("RASPI_5GHZ_CHANNEL_MAX", 192);
