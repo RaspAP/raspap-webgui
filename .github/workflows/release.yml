@@ -1,0 +1,63 @@
+name: Build and publish RaspAP images
+
+permissions:
+  contents: write
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-raspap-image:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: "32-bit"
+            pi_gen_version: "master"
+          - arch: "64-bit"
+            pi_gen_version: "arm64"
+      fail-fast: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add Custom Stage
+        run: |
+          mkdir -p custom_stage_raspap/package-raspap &&
+          {
+          cat > custom_stage_raspap/package-raspap/00-run.sh <<-EOF
+          #!/bin/bash
+          apt-get update -y && apt-get install -y curl iptables procps
+          curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1
+          EOF
+          } &&
+          chmod +x custom_stage_raspap/package-raspap/00-run.sh &&
+          {
+          cat > custom_stage_raspap/prerun.sh <<-EOF
+          #!/bin/bash -e
+          if [ ! -d "\${ROOTFS_DIR}" ]; then
+            copy_previous
+          fi
+          EOF
+          } &&
+          chmod +x custom_stage_raspap/prerun.sh
+
+      - name: Build RaspAP Image
+        id: build
+        uses: usimd/pi-gen-action@v1
+        with:
+          image-name: "raspap-${{ github.ref_name }}-${{ matrix.arch }}"
+          enable-ssh: 1
+          stage-list: stage0 stage1 stage2 ./custom_stage_raspap
+          verbose-output: true
+          pi-gen-version: ${{ matrix.pi_gen_version }}
+
+      - name: Upload Artifact
+        uses: svenstaro/upload-release-action@v2
+        with:
+          asset_name: raspap-image-${{ github.ref_name }}-${{ matrix.arch }}.zip
+          file: ${{ steps.build.outputs.image-path }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          overwrite: true
