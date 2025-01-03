@@ -30,10 +30,8 @@
                 <option disabled="disabled"></option>
                 <?php echo optionsForSelect(blocklistProviders()) ?>
               </select>
-              <div class="input-group-append">
-                <button class="btn btn-sm btn-outline-secondary rounded-end" type="button" onclick="updateBlocklist()"><?php echo _("Update now"); ?></button>
-                <span id="cbxblocklist-status" class="input-group-addon check-hidden ms-2 mt-1"><i class="fas fa-check"></i></span>
-              </div>
+              <button class="btn btn-sm btn-outline-secondary rounded-end" type="button" onclick="updateBlocklist()"><?php echo _("Update now"); ?></button>
+              <span id="cbxblocklist-status" class="input-group-addon check-hidden ms-2 mt-1"><i class="fas fa-check"></i></span>
             </div>
           </div>
         </div>
