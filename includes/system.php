@@ -117,8 +117,20 @@ function DisplaySystem(&$extraFooterScripts)
     $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
     $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
 
-    $plugins = $pluginInstaller->getUserPlugins();
-    $pluginsTable = $pluginInstaller->getHTMLPluginsTable($plugins);
+    try {
+        $plugins = callbackTimeout(fn() => $pluginInstaller->getUserPlugins(), 2000);
+        $pluginsTable = $pluginInstaller->getHTMLPluginsTable($plugins);
+    } catch (\Exception $e) {
+        $errResponse = sprintf(
+            '<div class="mt-3 mb-2"><strong>%s:</strong> %s. <strong>%s</strong> %s.</div>',
+            _('Error'),
+            _('Unable to load plugins'),
+            _('Reload'),
+            _('and try again')
+        );
+        $errResponse.= '<button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> '. _("Reload") .'</a>';
+        $pluginsTable = $errResponse;
+    }
 
     echo renderTemplate("system", compact(
         "arrLocales",
