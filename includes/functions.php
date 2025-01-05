@@ -1036,3 +1036,25 @@ function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cp
     <?php
 }
 
+
+/**
+ * Executes a callback with a timeout
+ *
+ * @param callable $callback function to execute
+ * @param int $interval timeout in milliseconds
+ * @return mixed result of the callback
+ * @throws \Exception if the execution exceeds the timeout or an error occurs
+ */
+function callbackTimeout(callable $callback, int $interval)
+{
+    $startTime = microtime(true); // use high-resolution timer
+    $result = $callback();
+    $elapsed = (microtime(true) - $startTime) * 1000;
+
+    if ($elapsed > $interval) {
+        throw new \Exception('Operation timed out');
+    }
+
+    return $result;
+}
+
