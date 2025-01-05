@@ -926,6 +926,18 @@ msgstr "The following user plugins are available to extend RaspAP's functionalit
 msgid "Choose <strong>Details</strong> for more information and to install a plugin."
 msgstr "Choose <strong>Details</strong> for more information and to install a plugin."
 
+msgid "Error"
+msgstr "Error"
+
+msgid "Unable to load plugins"
+msgstr "Unable to load plugins"
+
+msgid "Reload"
+msgstr "Reload"
+
+msgid "and try again"
+msgstr "and try again"
+
 msgid "Plugins"
 msgstr "Plugins"
 
