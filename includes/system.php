@@ -118,12 +118,12 @@ function DisplaySystem(&$extraFooterScripts)
     $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
 
     try {
-        $plugins = callbackTimeout(fn() => $pluginInstaller->getUserPlugins(), 2000);
+        $plugins = callbackTimeout(fn() => $pluginInstaller->getUserPlugins(), 3000);
         $pluginsTable = $pluginInstaller->getHTMLPluginsTable($plugins);
     } catch (\Exception $e) {
         $errResponse = sprintf(
             '<div class="mt-3 mb-2"><strong>%s:</strong> %s. <strong>%s</strong> %s.</div>',
-            _('Error'),
+            _('Network error'),
             _('Unable to load plugins'),
             _('Reload'),
             _('and try again')
