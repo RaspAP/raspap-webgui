@@ -23,6 +23,7 @@
  * as you leave these references intact in the header comments of your source files.
  */
 
+require 'includes/session.php';
 require 'includes/csrf.php';
 ensureCSRFSessionToken();
 
