@@ -671,6 +671,28 @@ window.addEventListener('load', function() {
     });
 }, false);
 
+let sessionCheckInterval = setInterval(checkSession, 5000);
+
+function checkSession() {
+    $.get('ajax/session/do_check_session.php', function (data) {
+        if (data.status === 'session_expired') {
+            clearInterval(sessionCheckInterval);
+            showSessionExpiredModal();
+        }
+    }).fail(function (jqXHR, status, err) {
+        console.error("Error checking session status:", status, err);
+    });
+}
+
+function showSessionExpiredModal() {
+    $('#sessionTimeoutModal').modal('show');
+}
+
+$(document).on("click", "#js-session-expired-login", function(e) {
+    console.log('clicked!');
+    window.location.href = '/login';
+});
+
 // DHCP or Static IP option group
 $('#chkstatic').on('change', function() {
     if (this.checked) {
