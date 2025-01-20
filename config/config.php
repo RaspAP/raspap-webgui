@@ -11,6 +11,7 @@ define('RASPI_CACHE_PATH', sys_get_temp_dir() . '/raspap');
 define('RASPI_ERROR_LOG', sys_get_temp_dir() . '/raspap_error.log');
 define('RASPI_DEBUG_LOG', 'raspap_debug.log');
 define('RASPI_LOG_SIZE_LIMIT', 64);
+define('RASPI_SESSION_TIMEOUT', 1440);
 
 // Constants for configuration file paths.
 // These are typical for default RPi installs. Modify if needed.

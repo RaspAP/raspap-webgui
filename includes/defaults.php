@@ -16,6 +16,7 @@ $defaults = [
   'RASPI_ERROR_LOG' => sys_get_temp_dir() . '/raspap_error.log',
   'RASPI_DEBUG_LOG' => 'raspap_debug.log',
   'RASPI_LOG_SIZE_LIMIT' =>  64,
+  'RASPI_SESSION_TIMEOUT' => 1440,
 
   // Constants for configuration file paths.
   // These are typical for default RPi installs. Modify if needed.
