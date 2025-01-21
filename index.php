@@ -36,6 +36,7 @@ require_once 'includes/functions.php';
 
 // Default page actions
 require_once 'includes/dashboard.php';
+require_once 'includes/login.php';
 require_once 'includes/authenticate.php';
 require_once 'includes/admin.php';
 require_once 'includes/dhcp.php';
@@ -97,6 +98,7 @@ initializeApp();
 
   <body class="sb-nav-fixed">
     <!-- Navbar -->
+    <?php ob_start(); ?>
     <?php require_once 'includes/navbar.php'; ?>
     <!-- End of Navbar -->
     <div id="layoutSidenav">
@@ -124,6 +126,7 @@ initializeApp();
         </footer>
       </div>
     </div>
+    <?php ob_end_flush(); ?>
     <!-- jQuery -->
     <script src="dist/jquery/jquery.min.js"></script>
 
