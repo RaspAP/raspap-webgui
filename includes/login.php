@@ -10,6 +10,8 @@ function DisplayLogin()
 {
     // initialize auth object
     $auth = new \RaspAP\Auth\HTTPAuth;
+    $status = null;
+    $redirectUrl = null;
 
     // handle page action
     if (RASPI_AUTH_ENABLED) {
