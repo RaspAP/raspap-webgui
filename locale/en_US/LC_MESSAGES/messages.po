@@ -1566,3 +1566,23 @@ msgstr "Restarting restapi.service"
 msgid "Information provided by restapi.service"
 msgstr "Information provided by restapi.service"
 
+#: includes/login.php
+
+msgid "Session Expired"
+msgstr "Session Expired"
+
+msgid "Your session has expired. Please login to continue."
+msgstr "Your session has expired. Please login to continue."
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Administrator login"
+msgstr "Administrator login"
+
+msgid "Forgot password"
+msgstr "Forgot password"
+
+msgid "Login failed"
+msgstr "Login failed"
+
