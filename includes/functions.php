@@ -1,3 +1,4 @@
+<?php require_once 'session.php'; ?>
 <?php
 /* Functions for Networking */
 
