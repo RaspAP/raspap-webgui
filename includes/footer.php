@@ -1,6 +1,6 @@
 <?php $_SESSION['lastActivity'] = time(); ?>
 
- <div class="d-flex align-items-center justify-content-between small">
+<div class="d-flex align-items-center justify-content-between small">
   <div class="text-muted">
     <span class="pe-2"><a href="/about">v<?php echo RASPI_VERSION; ?></a></span>  |
     <span class="ps-2">Created by the <a href="https://github.com/RaspAP" target="_blank" rel="noopener">RaspAP Team</a></span>
@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="sessionTimeoutModal" tabindex="-1" aria-labelledby="sessionTimeoutLabel" aria-hidden="true">
+<div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="sessionTimeoutModal" tabindex="-1" aria-labelledby="sessionTimeoutLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
