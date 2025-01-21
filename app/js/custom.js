@@ -674,6 +674,10 @@ window.addEventListener('load', function() {
 let sessionCheckInterval = setInterval(checkSession, 5000);
 
 function checkSession() {
+    // skip session check if on login page
+    if (window.location.pathname === '/login') {
+        return;
+    }
     $.get('ajax/session/do_check_session.php', function (data) {
         if (data.status === 'session_expired') {
             clearInterval(sessionCheckInterval);
@@ -689,8 +693,19 @@ function showSessionExpiredModal() {
 }
 
 $(document).on("click", "#js-session-expired-login", function(e) {
-    console.log('clicked!');
-    window.location.href = '/login';
+    const loginModal = $('#modal-admin-login');
+    const redirectUrl = window.location.pathname;
+    window.location.href = `/login?action=${encodeURIComponent(redirectUrl)}`;
+});
+
+// show modal login on page load
+$(document).ready(function () {
+    const params = new URLSearchParams(window.location.search);
+    const redirectUrl = $('#redirect-url').val() || params.get('action') || '/';
+    $('#modal-admin-login').modal('show');
+    $('#redirect-url').val(redirectUrl);
+    $('#username').focus();
+    $('#username').addClass("focusedInput");
 });
 
 // DHCP or Static IP option group
