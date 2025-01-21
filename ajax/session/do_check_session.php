@@ -19,8 +19,7 @@ header('Pragma: no-cache');
 $response = [
     'status' => $status,
     'last_activity' => $lastActivity,
-    'session_lifetime' => $sessionLifetime,
-    'timeout_duration' => RASPI_SESSION_TIMEOUT
+    'session_lifetime' => $sessionLifetime
 ];
 
 echo json_encode($response);
