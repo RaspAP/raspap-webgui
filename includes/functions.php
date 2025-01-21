@@ -336,23 +336,26 @@ function CSRFMetaTag()
  */
 function CSRFValidate()
 {
-    if(isset($_POST['csrf_token'])) {
-        $post_token   = $_POST['csrf_token'];
-        $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? null;
+    if (empty($_SESSION['csrf_token']) || !is_string($_SESSION['csrf_token'])) {
+        error_log('Session expired or CSRF token is missing.');
+        header('Location: /login');
+        exit;
+    }
 
-        if (empty($post_token) && is_null($header_token)) {
-            return false;
-        }
-        $request_token = $post_token;
-        if (empty($post_token)) {
-            $request_token = $header_token;
-        }
-        if (hash_equals($_SESSION['csrf_token'], $request_token)) {
-            return true;
-        } else {
-            error_log('CSRF violation');
-            return false;
-        }
+    $post_token = $_POST['csrf_token'] ?? null;
+    $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? null;
+
+    if (empty($post_token) && is_null($header_token)) {
+        error_log('CSRF token missing in the request');
+        return false;
+    }
+    $request_token = $post_token ?: $header_token;
+
+    if (hash_equals($_SESSION['csrf_token'], $request_token)) {
+        return true;
+    } else {
+        error_log('CSRF token mismatch');
+        return false;
     }
 }
 
