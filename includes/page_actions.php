@@ -70,6 +70,9 @@ function handleCorePageAction(string $page, array &$extraFooterScripts): void
         case "/about":
             DisplayAbout();
             break;
+        case "/login":
+            DisplayLogin();
+            break;
         default:
             DisplayDashboard($extraFooterScripts);
     }

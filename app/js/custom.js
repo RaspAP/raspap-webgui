@@ -671,6 +671,44 @@ window.addEventListener('load', function() {
     });
 }, false);
 
+let sessionCheckInterval = setInterval(checkSession, 5000);
+
+function checkSession() {
+    // skip session check if on login page
+    if (window.location.pathname === '/login') {
+        return;
+    }
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/session/do_check_session.php',{'csrf_token': csrfToken},function (data) {
+        if (data.status === 'session_expired') {
+            clearInterval(sessionCheckInterval);
+            showSessionExpiredModal();
+        }
+    }).fail(function (jqXHR, status, err) {
+        console.error("Error checking session status:", status, err);
+    });
+}
+
+function showSessionExpiredModal() {
+    $('#sessionTimeoutModal').modal('show');
+}
+
+$(document).on("click", "#js-session-expired-login", function(e) {
+    const loginModal = $('#modal-admin-login');
+    const redirectUrl = window.location.pathname;
+    window.location.href = `/login?action=${encodeURIComponent(redirectUrl)}`;
+});
+
+// show modal login on page load
+$(document).ready(function () {
+    const params = new URLSearchParams(window.location.search);
+    const redirectUrl = $('#redirect-url').val() || params.get('action') || '/';
+    $('#modal-admin-login').modal('show');
+    $('#redirect-url').val(redirectUrl);
+    $('#username').focus();
+    $('#username').addClass("focusedInput");
+});
+
 // DHCP or Static IP option group
 $('#chkstatic').on('change', function() {
     if (this.checked) {
