@@ -334,8 +334,7 @@ button > i.fas {
 }
 
 #modal-admin-login .modal-content {
-  background: rgb(8,55,55);
-  background: radial-gradient(circle, rgba(8,55,55,1) 50%, rgba(27,112,112,1) 100%);
+  background: radial-gradient(circle at 120% -20%, #032626, #052c2c, #073232, #0a3838, #0d3f3f, #114545, #144c4c);
   align-items: center;
 }
 
