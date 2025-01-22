@@ -65,7 +65,7 @@ initializeApp();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo _("RaspAP WiFi Configuration Portal"); ?></title>
+    <title><?php echo RASPI_BRAND_TITLE; ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
