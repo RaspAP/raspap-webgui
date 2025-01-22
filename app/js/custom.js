@@ -678,7 +678,8 @@ function checkSession() {
     if (window.location.pathname === '/login') {
         return;
     }
-    $.get('ajax/session/do_check_session.php', function (data) {
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/session/do_check_session.php',{'csrf_token': csrfToken},function (data) {
         if (data.status === 'session_expired') {
             clearInterval(sessionCheckInterval);
             showSessionExpiredModal();
