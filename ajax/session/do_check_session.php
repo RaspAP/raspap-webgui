@@ -10,7 +10,7 @@ $lastActivity = $_SESSION['lastActivity'] ?? time();
 $sessionLifetime = time() - $lastActivity;
 $status = $sessionLifetime >= RASPI_SESSION_TIMEOUT ? 'session_expired' : 'active';
 
-if ($status = 'session_expired') {
+if ($status === 'session_expired') {
     session_unset(); // unset all session variables
     session_destroy(); // destroy the session
 }
