@@ -7,3 +7,4 @@ plugins/
 rootCA.pem
 vendor
 .env
+locale/**/*.mo
