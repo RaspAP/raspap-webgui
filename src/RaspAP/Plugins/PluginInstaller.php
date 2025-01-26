@@ -67,12 +67,13 @@ class PluginInstaller
             $installedPlugins = $this->getPlugins();
 
             $plugins = [];
+
             foreach ($manifestData as $pluginManifest) {
                 $installed = false;
 
                 // Check if the plugin is installed
                 foreach ($installedPlugins as $plugin) {
-                    if (str_contains($plugin, $pluginManifest['namespace'])) {
+                    if (str_contains($plugin, $pluginManifest[0]['namespace'])) {
                         $installed = true;
                         break;
                     }
