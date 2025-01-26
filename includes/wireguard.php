@@ -207,7 +207,10 @@ function SaveWireGuardConfig($status)
         }
         if (isset($_POST['wg_pendpoint']) && strlen(trim($_POST['wg_pendpoint']) >0 )) {
             $wg_pendpoint_seg = substr($_POST['wg_pendpoint'],0,strpos($_POST['wg_pendpoint'],':'));
-            if (!filter_var($wg_pendpoint_seg,FILTER_VALIDATE_IP)) {
+            $host_port = explode(':', $wg_pendpoint_seg);
+            $hostname = $host_port[0];
+            if (!filter_var($hostname, FILTER_VALIDATE_IP) && 
+                !filter_var($hostname, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME)) {
                 $status->addMessage('Invalid value for endpoint address', 'danger');
                 $good_input = false;
             }

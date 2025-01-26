@@ -1,7 +1,7 @@
 <?php
 
 require '../../includes/csrf.php';
-
+require_once '../../includes/session.php';
 require_once '../../includes/functions.php';
 require_once '../../includes/config.php';
 require_once '../../src/RaspAP/Auth/HTTPAuth.php';

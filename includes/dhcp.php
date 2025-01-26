@@ -268,6 +268,9 @@ function updateDnsmasqConfig($iface,$status)
         }
         $config .= PHP_EOL;
     }
+    if ($_POST['dhcp-ignore'] == "1") {
+        $config .= 'dhcp-ignore=tag:!known'.PHP_EOL;
+    }
     file_put_contents("/tmp/dnsmasqdata", $config);
     $msg = file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf') ? 'updated' : 'added';
     system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);

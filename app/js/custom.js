@@ -736,18 +736,18 @@ function clearBlocklistStatus() {
     $('#cbxblocklist-status').removeClass('check-updated').addClass('check-hidden');
 }
 
-// Handler for the wireguard generate key button
+// Handler for the WireGuard generate key button
 $('.wg-keygen').click(function(){
-    var entity_pub = $(this).parent('div').prev('input[type="text"]');
-    var entity_priv = $(this).parent('div').next('input[type="hidden"]');
+    var parentGroup = $(this).closest('.input-group');
+    var entity_pub = parentGroup.find('input[type="text"]');
     var updated = entity_pub.attr('name')+"-pubkey-status";
-    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    var csrfToken = $('meta[name="csrf_token"]').attr('content');
     $.post('ajax/networking/get_wgkey.php',{'entity':entity_pub.attr('name'), 'csrf_token': csrfToken},function(data){
         var jsonData = JSON.parse(data);
         entity_pub.val(jsonData.pubkey);
         $('#' + updated).removeClass('check-hidden').addClass('check-updated').delay(500).animate({ opacity: 1 }, 700);
-    })
-})
+    });
+});
 
 // Handler for wireguard client.conf download
 $('.wg-client-dl').click(function(){
@@ -783,6 +783,44 @@ window.addEventListener('load', function() {
         }, false);
     });
 }, false);
+
+let sessionCheckInterval = setInterval(checkSession, 5000);
+
+function checkSession() {
+    // skip session check if on login page
+    if (window.location.pathname === '/login') {
+        return;
+    }
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/session/do_check_session.php',{'csrf_token': csrfToken},function (data) {
+        if (data.status === 'session_expired') {
+            clearInterval(sessionCheckInterval);
+            showSessionExpiredModal();
+        }
+    }).fail(function (jqXHR, status, err) {
+        console.error("Error checking session status:", status, err);
+    });
+}
+
+function showSessionExpiredModal() {
+    $('#sessionTimeoutModal').modal('show');
+}
+
+$(document).on("click", "#js-session-expired-login", function(e) {
+    const loginModal = $('#modal-admin-login');
+    const redirectUrl = window.location.pathname;
+    window.location.href = `/login?action=${encodeURIComponent(redirectUrl)}`;
+});
+
+// show modal login on page load
+$(document).ready(function () {
+    const params = new URLSearchParams(window.location.search);
+    const redirectUrl = $('#redirect-url').val() || params.get('action') || '/';
+    $('#modal-admin-login').modal('show');
+    $('#redirect-url').val(redirectUrl);
+    $('#username').focus();
+    $('#username').addClass("focusedInput");
+});
 
 // DHCP or Static IP option group
 $('#chkstatic').on('change', function() {

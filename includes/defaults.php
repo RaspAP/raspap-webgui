@@ -6,7 +6,8 @@ if (!defined('RASPI_CONFIG')) {
 
 $defaults = [
   'RASPI_BRAND_TEXT' => 'RaspAP',
-  'RASPI_VERSION' => '3.2.4',
+  'RASPI_BRAND_TITLE' => RASPI_BRAND_TEXT.' Admin Panel',
+  'RASPI_VERSION' => '3.2.5',
   'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/defaults.json',
   'RASPI_CONFIG_PROVIDERS' => 'config/vpn-providers.json',
   'RASPI_CONFIG_API' => RASPI_CONFIG.'/api',
@@ -16,6 +17,7 @@ $defaults = [
   'RASPI_ERROR_LOG' => sys_get_temp_dir() . '/raspap_error.log',
   'RASPI_DEBUG_LOG' => 'raspap_debug.log',
   'RASPI_LOG_SIZE_LIMIT' =>  64,
+  'RASPI_SESSION_TIMEOUT' => 1440,
 
   // Constants for configuration file paths.
   // These are typical for default RPi installs. Modify if needed.

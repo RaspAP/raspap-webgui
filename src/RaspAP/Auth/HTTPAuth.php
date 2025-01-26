@@ -15,12 +15,6 @@ namespace RaspAP\Auth;
 
 class HTTPAuth
 {
-
-    /**
-     * @var string $realm
-     */
-    public $realm = 'Authentication Required';
-
     /**
      * Stored login credentials
      * @var array $auth_config
@@ -57,15 +51,11 @@ class HTTPAuth
     public function authenticate()
     {
         if (!$this->isLogged()) {
-            header('HTTP/1.0 401 Unauthorized');
-            header('WWW-Authenticate: Basic realm="'.$this->realm.'"');
-            if (function_exists('http_response_code')) {
-                // http_response_code will respond with proper HTTP version
-                http_response_code(401);
-            } else {
-                header('HTTP/1.0 401 Unauthorized');
+            $redirectUrl = $_SERVER['REQUEST_URI'];
+            if (strpos($redirectUrl, '/login') === false) {
+                header('Location: /login?action=' . urlencode($redirectUrl));
+                exit();
             }
-            exit('Not authorized'.PHP_EOL);
         }
     }
 

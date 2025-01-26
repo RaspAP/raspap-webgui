@@ -14,7 +14,7 @@
  * @author  Lawrence Yau <sirlagz@gmail.com>
  * @author  Bill Zimmerman <billzimmerman@gmail.com>
  * @license GNU General Public License, version 3 (GPL-3.0)
- * @version 3.2.4
+ * @version 3.2.5
  * @link    https://github.com/RaspAP/raspap-webgui/
  * @link    https://raspap.com/
  * @see     http://sirlagz.net/2013/02/08/raspap-webgui/
@@ -23,6 +23,7 @@
  * as you leave these references intact in the header comments of your source files.
  */
 
+require 'includes/session.php';
 require 'includes/csrf.php';
 ensureCSRFSessionToken();
 
@@ -35,6 +36,7 @@ require_once 'includes/functions.php';
 
 // Default page actions
 require_once 'includes/dashboard.php';
+require_once 'includes/login.php';
 require_once 'includes/authenticate.php';
 require_once 'includes/admin.php';
 require_once 'includes/dhcp.php';
@@ -63,7 +65,7 @@ initializeApp();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo _("RaspAP WiFi Configuration Portal"); ?></title>
+    <title><?php echo RASPI_BRAND_TITLE; ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -96,6 +98,7 @@ initializeApp();
 
   <body class="sb-nav-fixed">
     <!-- Navbar -->
+    <?php ob_start(); ?>
     <?php require_once 'includes/navbar.php'; ?>
     <!-- End of Navbar -->
     <div id="layoutSidenav">
@@ -123,6 +126,7 @@ initializeApp();
         </footer>
       </div>
     </div>
+    <?php ob_end_flush(); ?>
     <!-- jQuery -->
     <script src="dist/jquery/jquery.min.js"></script>
 

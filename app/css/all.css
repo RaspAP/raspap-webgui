@@ -10,6 +10,7 @@ License: GNU General Public License v3.0
   --raspap-content-main: #495057;
   --raspap-text-muted: #858796;
   --raspap-brand-color: #2b8080;
+  --raspap-offwhite: #faf9f6;
 }
 
 a {
@@ -306,16 +307,16 @@ button > i.fas {
 
 /* Font Awesome 5 brands */
 .fa-reddit {
-    color: #ff4500;
+  color: #ff4500;
 }
 .fa-twitter {
-    color: #55acee
+  color: #55acee
 }
 .fa-discord {
-    color: #7289da
+  color: #7289da
 }
 .fa-github {
-    color: #151b23
+  color: #151b23
 }
 
 @keyframes heart {
@@ -332,15 +333,58 @@ button > i.fas {
   animation: heart 1000ms infinite;
 }
 
-textarea.plugin-log {
-    width: 100%;
-    height: 150px;
-    resize: none;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    background-color: #f8f9fa;
-    font-family: monospace;
-    font-size: 0.9rem;
+#modal-admin-login .modal-content {
+  background: radial-gradient(circle at 120% -20%, #032626, #052c2c, #073232, #0a3838, #0d3f3f, #114545, #144c4c);
+  align-items: center;
 }
 
+#modal-admin-login .modal-body {
+  min-width: 330px;
+}
+
+.login-brand {
+  color: var(--raspap-theme-color);
+  filter: brightness(150%);
+}
+
+.admin-login {
+  color: var(--raspap-offwhite);
+  font-size: 1.2em
+}
+
+.btn-admin-login {
+  color: var(--raspap-offwhite);
+  background-color: var(--raspap-theme-color);
+}
+
+.btn-admin-login:hover {
+  color: var(--raspap-offwhite);
+  background-color: #236969;
+}
+
+.no-right-radius {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.btn-passwd-append {
+  border: 1px solid #ced4da;
+}
+
+#passwd-toggle:active,
+#passwd-toggle:hover,
+#passwd-toggle:focus {
+  border: 1px solid #ced4da;
+}
+
+textarea.plugin-log {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
