@@ -84,7 +84,8 @@ class PluginInstaller
             }
             return $plugins;
         } catch (\Exception $e) {
-            echo "An error occurred: " . $e->getMessage();
+            error_log("An error occurred: " . $e->getMessage());
+            throw $e;  // re-throw to global ExceptionHandler
             return [];
         }
     }
@@ -117,9 +118,14 @@ class PluginInstaller
      *
      * @param string $archiveUrl
      * @return boolean
+     * @throws \Exception
      */
     public function installPlugin($archiveUrl): bool
     {
+        $tempFile = null;
+        $extractDir = null;
+        $pluginDir = null;
+
         try {
             list($tempFile, $extractDir, $pluginDir) = $this->getPluginArchive($archiveUrl);
 
@@ -151,18 +157,19 @@ class PluginInstaller
 
             } catch (\Exception $e) {
                 //$this->rollback($rollbackStack, $manifest, $pluginDir);
+                throw new \Exception('Installation step failed: ' . $e->getMessage());
                 error_log('Plugin installation failed: ' . $e->getMessage());
-                return false;
             }
 
         } catch (\Exception $e) {
-            throw new \Exception('error: ' .$e->getMessage());
+            error_log('An error occured: ' .$e->getMessage());
+            throw new \Exception( $e->getMessage());
+            //throw $e;
         } finally {
-            // cleanup tmp files
-            if (file_exists($tempFile)) {
+            if (!empty($tempFile) && file_exists($tempFile)) {
                 unlink($tempFile);
             }
-            if (is_dir($extractDir)) {
+            if (!empty($extractDir) && is_dir($extractDir)) {
                 $this->deleteDir($extractDir);
             }
         }
@@ -295,17 +302,21 @@ class PluginInstaller
      *
      * @param string $archiveUrl
      * @return array
+     * @throws \Exception
      */
     private function getPluginArchive(string $archiveUrl): array
     {
-        try {
+        $tempFile = '';
+        $extractDir = '';
 
+        try {
             $tempFile = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('plugin_', true) . '.zip';
             $extractDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('plugin_', true);
-            $data = file_get_contents($archiveUrl);
+            $data = @file_get_contents($archiveUrl); // suppress PHP warnings for better exception handling
 
             if ($data === false) {
-                throw new \Exception('Failed to download archive.');
+                $error = error_get_last();
+                throw new \Exception('Failed to download archive: ' . ($error['message'] ?? 'Unknown error'));
             }
 
             file_put_contents($tempFile, $data);
@@ -317,19 +328,25 @@ class PluginInstaller
             $cmd = escapeshellcmd("unzip -o $tempFile -d $extractDir");
             $output = shell_exec($cmd);
             if ($output === null) {
-                throw new \Exception('Failed to extract archive.');
+                throw new \Exception('Failed to extract plugin archive.');
             }
 
             $extractedDirs = glob($extractDir . DIRECTORY_SEPARATOR . '*', GLOB_ONLYDIR);
             if (empty($extractedDirs)) {
-                throw new \Exception('No directories found in archive.');
+                throw new \Exception('No directories found in plugin archive.');
             }
+
             $pluginDir = $extractedDirs[0];
 
             return [$tempFile, $extractDir, $pluginDir];
-
         } catch (\Exception $e) {
-            throw new \Exception('Error occurred: ' .$e->getMessage());
+            if (!empty($tempFile) && file_exists($tempFile)) {
+            unlink($tempFile);
+            }
+            if (!empty($extractDir) && is_dir($extractDir)) {
+                rmdir($extractDir);
+            }
+            throw new \Exception('Error occurred during plugin archive retrieval: ' . $e->getMessage());
         }
     }
 
