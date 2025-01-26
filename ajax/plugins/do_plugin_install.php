@@ -17,13 +17,12 @@ if (isset($plugin_uri) && isset($plugin_version)) {
     try {
         $return = $pluginInstaller->installPlugin($archiveUrl);
         echo json_encode($return);
-
     } catch (Exception $e) {
-        http_response_code(500);
+        http_response_code(422); // Unprocessable Content
         echo json_encode(['error' => $e->getMessage()]);
     }
 } else {
-    http_response_code(400);
+    http_response_code(400); // Bad Request
     echo json_encode(['error' => 'Plugin URI and version are required']);
     exit;
 }
