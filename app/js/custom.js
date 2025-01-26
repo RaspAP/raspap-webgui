@@ -513,22 +513,47 @@ $('#js-install-plugin-confirm').on('click', function (e) {
     if ($('#js-install-plugin-confirm').text() === 'Install now') {
         $("#install-plugin-progress").modal('show');
 
-        $.post('ajax/plugins/do_plugin_install.php?',{'plugin_uri': pluginUri,
-            'plugin_version': pluginVersion, 'csrf_token': csrfToken},function(data){
-            setTimeout(function(){
-                response = JSON.parse(data);
-                if (response === true) {
-                    $('#plugin-install-message').contents().first().replaceWith(successText);
-                    $('#plugin-install-message').find('i')
-                    .removeClass('fas fa-cog fa-spin link-secondary')
-                    .addClass('fas fa-check');
-                    $('#js-install-plugin-ok').removeAttr("disabled");
-                } else {
-                    $('#plugin-install-message').contents().first().replaceWith('An error occurred installing the plugin.');
-                    $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
-                    $('#js-install-plugin-ok').removeAttr("disabled");
-                }
-            },200);
+        $.post(
+            'ajax/plugins/do_plugin_install.php',
+            {
+                'plugin_uri': pluginUri,
+                'plugin_version': pluginVersion,
+                'csrf_token': csrfToken
+            },
+            function (data) {
+                setTimeout(function () {
+                    response = JSON.parse(data);
+                    if (response === true) {
+                        $('#plugin-install-message').contents().first().replaceWith(successText);
+                        $('#plugin-install-message')
+                            .find('i')
+                            .removeClass('fas fa-cog fa-spin link-secondary')
+                            .addClass('fas fa-check');
+                        $('#js-install-plugin-ok').removeAttr("disabled");
+                    } else {
+                        const errorMessage = jsonData.error || 'An unknown error occurred.';
+                        var errorLog = '<textarea class="plugin-log text-secondary" readonly>' + errorMessage + '</textarea>';
+                        $('#plugin-install-message')
+                            .contents()
+                            .first()
+                            .replaceWith('An error occurred installing the plugin:');
+                        $('#plugin-install-message').append(errorLog);
+                        $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
+                        $('#js-install-plugin-ok').removeAttr("disabled");
+                    }
+                }, 200);
+            }
+        ).fail(function (xhr) {
+            const jsonData = JSON.parse(xhr.responseText);
+            const errorMessage = jsonData.error || 'An unknown error occurred.';
+            $('#plugin-install-message')
+                .contents()
+                .first()
+                .replaceWith('An error occurred installing the plugin:');
+            var errorLog = '<textarea class="plugin-log text-secondary" readonly>' + errorMessage + '</textarea>';
+            $('#plugin-install-message').append(errorLog);
+            $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
+            $('#js-install-plugin-ok').removeAttr("disabled");
         });
     }
 });
