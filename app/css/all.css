@@ -332,3 +332,15 @@ button > i.fas {
   animation: heart 1000ms infinite;
 }
 
+textarea.plugin-log {
+    width: 100%;
+    height: 150px;
+    resize: none;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
