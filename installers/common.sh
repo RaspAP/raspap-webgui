@@ -583,14 +583,14 @@ function _download_latest_files() {
     if [ "$repo" == "RaspAP/raspap-insiders" ]; then
         if [ -n "$username" ] && [ -n "$acctoken" ]; then
             insiders_source_url="https://${username}:${acctoken}@github.com/$repo"
-            git clone --branch $branch --depth 1 -c advice.detachedHead=false $insiders_source_url $source_dir || clone=false
+            git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $insiders_source_url $source_dir || clone=false
         else
             _install_status 3
             echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
         fi
     fi
     if [ -z "$insiders_source_url" ]; then
-        git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url $source_dir || clone=false
+        git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url $source_dir || clone=false
     fi
     if [ "$clone" = false ]; then
         _install_status 1 "Unable to download files from GitHub"
