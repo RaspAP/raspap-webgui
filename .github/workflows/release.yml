@@ -1,0 +1,64 @@
+name: Build and publish RaspAP images
+
+permissions:
+  contents: write
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-raspap-image:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: "32-bit"
+            pi_gen_version: "master"
+          - arch: "64-bit"
+            pi_gen_version: "arm64"
+      fail-fast: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add RaspAP Stage
+        run: |
+          mkdir -p stage-raspap/package-raspap &&
+          {
+          cat > stage-raspap/package-raspap/00-run-chroot.sh <<-EOF
+          #!/bin/bash
+          apt-get update -y && apt-get install -y curl dhcpcd5 iptables procps
+          curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1
+          EOF
+          } &&
+          chmod +x stage-raspap/package-raspap/00-run-chroot.sh &&
+          {
+          cat > stage-raspap/prerun.sh <<-EOF
+          #!/bin/bash -e
+          if [ ! -d "\${ROOTFS_DIR}" ]; then
+            copy_previous
+          fi
+          EOF
+          } &&
+          chmod +x stage-raspap/prerun.sh
+
+      - name: Build RaspAP Image
+        id: build
+        uses: usimd/pi-gen-action@v1
+        with:
+          image-name: "raspap-${{ github.ref_name }}-${{ matrix.arch }}"
+          enable-ssh: 1
+          stage-list: stage0 stage1 stage2 ./stage-raspap
+          verbose-output: true
+          pi-gen-version: ${{ matrix.pi_gen_version }}
+          pi-gen-repository: RaspAP/pi-gen
+
+      - name: Upload Artifact
+        uses: svenstaro/upload-release-action@v2
+        with:
+          asset_name: raspap-image-${{ github.ref_name }}-${{ matrix.arch }}.zip
+          file: ${{ steps.build.outputs.image-path }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          overwrite: true
