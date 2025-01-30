@@ -217,10 +217,10 @@ function _dnsmasq_info() {
             if [ -f "$file" ]; then
                 contents+="\n$file contents:\n"
                 contents+="$(cat $file)"
-                contents="${contents}$\n"
+                contents+=$'\n'
             fi
         done
-        _log_write $contents
+        _log_write "$contents"
     else
         _log_write "Not found: ${DNSMASQ_D_DIR}"
     fi
