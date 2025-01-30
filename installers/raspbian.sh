@@ -274,6 +274,7 @@ function _install_status() {
 }
 
 function _check_internet() {
+    component="Install"
     _install_log "Checking internet connectivity..."
 
     # spinner frames
