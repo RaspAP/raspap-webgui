@@ -81,11 +81,13 @@ EOF
 set -eo pipefail
 
 function _main() {
+    _setup_colors
+    _check_internet
+
     # set defaults
     repo="RaspAP/raspap-webgui" # override with -r, --repo option
     repo_common="$repo"
     _parse_params "$@"
-    _setup_colors
     _log_output
     _load_installer
 }
@@ -269,6 +271,38 @@ function _install_status() {
         3)
         echo -e "[$ANSI_RASPBERRY ! important $ANSI_RESET] $2"
     esac
+}
+
+function _check_internet() {
+    _install_log "Checking internet connectivity..."
+
+    # spinner frames
+    local spinner='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+    local i=0
+
+    tput civis # hide cursor
+
+    # run check in background
+    ( curl -Is --connect-timeout 3 --max-time 5 https://github.com | head -n 1 | grep "HTTP/2 200" >/dev/null ) &
+    local pid=$!
+
+    # display spinner while curl runs
+    while kill -0 $pid 2>/dev/null; do
+        printf "\r%s" "${spinner:i++%${#spinner}:1}"
+        sleep 0.05
+    done
+    printf "\r"
+
+    # check exit status of curl
+    wait $pid || exit_code=$?
+
+    tput cnorm # restore cursor
+
+    if [[ $exit_code -ne 0 ]]; then
+        _install_status 1 "No internet connection or unable to reach GitHub"
+        exit 1
+    fi
+    _install_status 0
 }
 
 function _update_system_packages() {
