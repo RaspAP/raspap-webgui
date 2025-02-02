@@ -235,11 +235,25 @@ function _display_welcome() {
 
 # Fetch latest release from GitHub or RaspAP Installer API
 function _get_release() {
-    readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+    local response
+    local host="api.github.com"
+    response=$(curl -s "https://$host/repos/$repo/releases/latest")
+
+    if echo "$response" | grep -q '"API rate limit exceeded"'; then
+        _install_status 1 "GitHub API rate limit exceeded. Try again later or use a GitHub token."
+        return 1
+    fi
+    readonly RASPAP_LATEST=$(echo "$response" | grep -Po '"tag_name": "\K.*?(?=")')
+
+    if [ -z "$RASPAP_LATEST" ]; then
+        _install_status 1 "Failed to fetch latest release. Check network connectivity."
+        return 1
+    fi
+
     if [ "$insiders" == 1 ]; then
         repo="RaspAP/raspap-insiders"
         repo_common="RaspAP/raspap-webgui"
-        readonly RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")' )
+        readonly RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")')
         readonly RASPAP_RELEASE="${RASPAP_INSIDERS_LATEST} Insiders"
     else
         readonly RASPAP_RELEASE="${RASPAP_LATEST}"
@@ -273,6 +287,7 @@ function _install_status() {
     esac
 }
 
+# Checks connectivity to github.com
 function _check_internet() {
     component="Install"
     _install_log "Checking internet connectivity..."
