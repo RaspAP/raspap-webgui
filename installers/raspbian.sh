@@ -239,7 +239,7 @@ function _get_release() {
     local host="api.github.com"
     response=$(curl -s "https://$host/repos/$repo/releases/latest")
 
-    if echo "$response" | grep -q '"API rate limit exceeded"'; then
+    if echo "$response" | grep -q 'API rate limit exceeded'; then
         _install_status 1 "GitHub API rate limit exceeded. Try again later or use a GitHub token."
         return 1
     fi
