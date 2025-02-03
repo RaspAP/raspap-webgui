@@ -81,11 +81,13 @@ EOF
 set -eo pipefail
 
 function _main() {
+    _setup_colors
+    _check_internet
+
     # set defaults
     repo="RaspAP/raspap-webgui" # override with -r, --repo option
     repo_common="$repo"
     _parse_params "$@"
-    _setup_colors
     _log_output
     _load_installer
 }
@@ -233,11 +235,25 @@ function _display_welcome() {
 
 # Fetch latest release from GitHub or RaspAP Installer API
 function _get_release() {
-    readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+    local response
+    local host="api.github.com"
+    response=$(curl -s "https://$host/repos/$repo/releases/latest")
+
+    if echo "$response" | grep -q 'API rate limit exceeded'; then
+        _install_status 1 "GitHub API rate limit exceeded. Try again later or use a GitHub token."
+        return 1
+    fi
+    readonly RASPAP_LATEST=$(echo "$response" | grep -Po '"tag_name": "\K.*?(?=")')
+
+    if [ -z "$RASPAP_LATEST" ]; then
+        _install_status 1 "Failed to fetch latest release. Check network connectivity."
+        return 1
+    fi
+
     if [ "$insiders" == 1 ]; then
         repo="RaspAP/raspap-insiders"
         repo_common="RaspAP/raspap-webgui"
-        readonly RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")' )
+        readonly RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")')
         readonly RASPAP_RELEASE="${RASPAP_INSIDERS_LATEST} Insiders"
     else
         readonly RASPAP_RELEASE="${RASPAP_LATEST}"
@@ -269,6 +285,40 @@ function _install_status() {
         3)
         echo -e "[$ANSI_RASPBERRY ! important $ANSI_RESET] $2"
     esac
+}
+
+# Checks connectivity to github.com
+function _check_internet() {
+    component="Install"
+    _install_log "Checking internet connectivity..."
+
+    # spinner frames
+    local spinner='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+    local i=0
+
+    tput civis # hide cursor
+
+    # run check in background
+    ( curl -Is --connect-timeout 3 --max-time 5 https://github.com | head -n 1 | grep "HTTP/2 200" >/dev/null ) &
+    local pid=$!
+
+    # display spinner while curl runs
+    while kill -0 $pid 2>/dev/null; do
+        printf "\r%s" "${spinner:i++%${#spinner}:1}"
+        sleep 0.05
+    done
+    printf "\r"
+
+    # check exit status of curl
+    wait $pid || exit_code=$?
+
+    tput cnorm # restore cursor
+
+    if [[ $exit_code -ne 0 ]]; then
+        _install_status 1 "No internet connection or unable to reach GitHub"
+        exit 1
+    fi
+    _install_status 0
 }
 
 function _update_system_packages() {
