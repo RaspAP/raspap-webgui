@@ -243,7 +243,22 @@ function _install_dependencies() {
     if [ ${OS,,} = "armbian" ]; then
         ifconfig_package="net-tools"
         echo "${ifconfig_package} will be installed from the main deb sources list"
+
+        # Manually install isoquery
+        _install_log "Installing isoquery from the Debian package repository"
+        isoquery_deb="https://ftp.debian.org/debian/pool/main/i/isoquery"
+        if [ "$LONG_BIT" = "64" ]; then
+            isoquery_pkg="isoquery_3.3.4-1+b1_arm64.deb"
+        else
+            isoquery_pkg="isoquery_3.3.4-1_armhf.deb"
+        fi
+        echo "isoquery ARM ${LONG_BIT}-bit package selected"
+        wget $isoquery_deb/$isoquery_pkg -q --show-progress --progress=bar:force -P /tmp || _install_status 1 "Failed to download isoquery"
+        sudo dpkg -x /tmp/$isoquery_pkg /tmp/isoquery/ || _install_status 1 "Failed to extract isoquery"
+        sudo cp /tmp/isoquery/usr/bin/isoquery /usr/local/bin/ || _install_status 1 "Failed to copy isoquery binary"
+        sudo chmod +x /usr/local/bin/isoquery || _install_status 1 "Failed to set executable permissions on isoquery"
     fi
+
     if [ "$insiders" == 1 ]; then
         network_tools="curl dnsutils nmap"
         echo "${network_tools} will be installed from the main deb sources list"
