@@ -18,7 +18,9 @@
           <li role="presentation" class="nav-item"><a class="nav-link" id="themetab" href="#theme" aria-controls="theme" role="tab" data-bs-toggle="tab"><?php echo _("Theme"); ?></a></li>
           <li role="presentation" class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" aria-controls="advanced" role="tab" data-bs-toggle="tab"><?php echo _("Advanced"); ?></a></li>
           <li role="presentation" class="nav-item"><a class="nav-link" id="toolstab" href="#tools" aria-controls="tools" role="tab" data-bs-toggle="tab"><?php echo _("Tools"); ?></a></li>
+          <?php if (RASPI_PLUGINS_ENABLED) : ?>
           <li role="presentation" class="nav-item"><a class="nav-link" id="pluginstab" href="#plugins" aria-controls="plugins" role="tab" data-bs-toggle="tab"><?php echo _("Plugins"); ?></a></li>
+          <?php endif ?>
         </ul>
           <!-- Tab panes -->
           <div class="tab-content">
@@ -27,7 +29,9 @@
             <?php echo renderTemplate("system/theme", $__template_data) ?>
             <?php echo renderTemplate("system/advanced", $__template_data) ?>
             <?php echo renderTemplate("system/tools", $__template_data) ?>
+            <?php if (RASPI_PLUGINS_ENABLED) : ?>
             <?php echo renderTemplate("system/plugins", $__template_data) ?>
+            <?php endif ?>
           </div><!-- /.tab-content -->
         </form>
       </div><!-- /.card-body -->
