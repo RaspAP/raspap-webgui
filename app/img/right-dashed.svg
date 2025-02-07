@@ -1,0 +1,8 @@
+<svg width="314" height="594" viewBox="0 0 314 594" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="dashed">
+<line id="horizontal" y1="-0.75" x2="308" y2="-0.75" transform="matrix(4.37114e-08 1 1 -4.37114e-08 114 144)" stroke="#7D7E7E" stroke-width="4" stroke-dasharray="4 4"/>
+<line id="top" y1="-0.75" x2="113.231" y2="-0.75" transform="matrix(1 8.74228e-08 8.74228e-08 -1 114 144)" stroke="#7D7E7E" stroke-width="4" stroke-dasharray="4 4"/>
+<line id="out" y1="-0.75" x2="113.231" y2="-0.75" transform="matrix(1 8.74228e-08 8.74228e-08 -1 -0.000305176 297)" stroke="#7D7E7E" stroke-width="4" stroke-dasharray="4 4"/>
+<line id="bottom" y1="-0.75" x2="113.231" y2="-0.75" transform="matrix(1 8.74228e-08 8.74228e-08 -1 113 450)" stroke="#7D7E7E" stroke-width="4" stroke-dasharray="4 4"/>
+</g>
+</svg>
