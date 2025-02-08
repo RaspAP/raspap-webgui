@@ -54,6 +54,7 @@ OPTIONS:
 -p, --path <path>                   Used with -d, --update, sets the existing install path
 -i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
 -m, --minwrite                      Configures a microSD card for minimum write operation
+-k, --check <flag>                  Sets the connectivity check flag (default is 1=perform check)
 -v, --version                       Outputs release info and exits
 -n, --uninstall                     Loads and executes the uninstaller
 -h, --help                          Outputs usage notes and exits
@@ -81,13 +82,16 @@ EOF
 set -eo pipefail
 
 function _main() {
-    _setup_colors
-    _check_internet
-
     # set defaults
     repo="RaspAP/raspap-webgui" # override with -r, --repo option
     repo_common="$repo"
+
     _parse_params "$@"
+    _setup_colors
+    if [ "${check}" == 1 ]; then
+        _check_internet
+    fi
+
     _log_output
     _load_installer
 }
@@ -105,6 +109,7 @@ function _parse_params() {
     minwrite=0
     acctoken=""
     path=""
+    check=1
 
     while :; do
         case "${1-}" in
@@ -173,6 +178,10 @@ function _parse_params() {
             ;;
             -p|--path)
             path="$2"
+            shift
+            ;;
+            -k|--check)
+            check="$2"
             shift
             ;;
             -v|--version)
