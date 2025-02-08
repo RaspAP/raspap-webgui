@@ -468,6 +468,120 @@ $('#js-sys-reboot, #js-sys-shutdown').on('click', function (e) {
     });
 });
 
+$('#install-user-plugin').on('shown.bs.modal', function (e) {
+    var button = $(e.relatedTarget);
+    var manifestData = button.data('plugin-manifest');
+    var installed = button.data('plugin-installed');
+
+    if (manifestData) {
+        $('#plugin-uri').html(manifestData.plugin_uri
+            ? `<a href="${manifestData.plugin_uri}" target="_blank">${manifestData.plugin_uri}</a>`
+            : 'Unknown'
+        );
+        $('#plugin-icon').attr('class', `${manifestData.icon || 'fas fa-plug'} link-secondary h5 me-2`);
+        $('#plugin-name').text(manifestData.name || 'Unknown');
+        $('#plugin-version').text(manifestData.version || 'Unknown');
+        $('#plugin-description').text(manifestData.description || 'No description provided');
+        $('#plugin-author').html(manifestData.author
+                ? manifestData.author + (manifestData.author_uri
+                ? ` (<a href="${manifestData.author_uri}" target="_blank">profile</a>)` : '') : 'Unknown'
+            );
+        $('#plugin-license').text(manifestData.license || 'Unknown');
+        $('#plugin-locale').text(manifestData.default_locale || 'Unknown');
+        $('#plugin-configuration').html(formatProperty(manifestData.configuration || {}));
+        $('#plugin-dependencies').html(formatProperty(manifestData.dependencies || {}));
+        $('#plugin-sudoers').html(formatProperty(manifestData.sudoers || []));
+        $('#plugin-user-name').html(manifestData.user_nonprivileged.name || 'None');
+    }
+    if (installed) {
+        $('#js-install-plugin-confirm').html('OK');
+    } else {
+        $('#js-install-plugin-confirm').html('Install now');
+    }
+});
+
+$('#js-install-plugin-confirm').on('click', function (e) {
+    var progressText = $('#js-install-plugin-confirm').attr('data-message');
+    var successHtml = $('#plugin-install-message').attr('data-message');
+    var successText = $('<div>').text(successHtml).text();
+    var pluginUri = $('#plugin-uri a').attr('href');
+    var pluginVersion = $('#plugin-version').text();
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+
+    $("#install-user-plugin").modal('hide');
+
+    if ($('#js-install-plugin-confirm').text() === 'Install now') {
+        $("#install-plugin-progress").modal('show');
+
+        $.post(
+            'ajax/plugins/do_plugin_install.php',
+            {
+                'plugin_uri': pluginUri,
+                'plugin_version': pluginVersion,
+                'csrf_token': csrfToken
+            },
+            function (data) {
+                setTimeout(function () {
+                    response = JSON.parse(data);
+                    if (response === true) {
+                        $('#plugin-install-message').contents().first().text(successText);
+                        $('#plugin-install-message')
+                            .find('i')
+                            .removeClass('fas fa-cog fa-spin link-secondary')
+                            .addClass('fas fa-check');
+                        $('#js-install-plugin-ok').removeAttr("disabled");
+                    } else {
+                        const errorMessage = jsonData.error || 'An unknown error occurred.';
+                        var errorLog = '<textarea class="plugin-log text-secondary" readonly>' + errorMessage + '</textarea>';
+                        $('#plugin-install-message')
+                            .contents()
+                            .first()
+                            .replaceWith('An error occurred installing the plugin:');
+                        $('#plugin-install-message').append(errorLog);
+                        $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
+                        $('#js-install-plugin-ok').removeAttr("disabled");
+                    }
+                }, 200);
+            }
+        ).fail(function (xhr) {
+            const jsonData = JSON.parse(xhr.responseText);
+            const errorMessage = jsonData.error || 'An unknown error occurred.';
+            $('#plugin-install-message')
+                .contents()
+                .first()
+                .replaceWith('An error occurred installing the plugin:');
+            var errorLog = '<textarea class="plugin-log text-secondary" readonly>' + errorMessage + '</textarea>';
+            $('#plugin-install-message').append(errorLog);
+            $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
+            $('#js-install-plugin-ok').removeAttr("disabled");
+        });
+    }
+});
+
+$('#js-install-plugin-ok').on('click', function (e) {
+    $("#install-plugin-progress").modal('hide');
+    window.location.reload();
+});
+
+function formatProperty(prop) {
+    if (Array.isArray(prop)) {
+        if (typeof prop[0] === 'object') {
+            return prop.map(item => {
+                return Object.entries(item)
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join('<br/>');
+            }).join('<br/><br/>');
+        }
+        return prop.map(line => `${line}<br/>`).join('');
+    }
+    if (typeof prop === 'object') {
+        return Object.entries(prop)
+            .map(([key, value]) => `${key}: ${value}`)
+            .join('<br/>');
+    }
+    return prop || 'None';
+}
+
 $(document).ready(function(){
     $("#PanelManual").hide();
     $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
@@ -507,7 +621,6 @@ $('#wg-upload,#wg-manual').on('click', function (e) {
     }
 });
 
-// Add the following code if you want the name of the file appear on select
 $(".custom-file-input").on("change", function() {
   var fileName = $(this).val().split("\\").pop();
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

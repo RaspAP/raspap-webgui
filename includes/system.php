@@ -9,6 +9,7 @@ require_once 'config.php';
 function DisplaySystem(&$extraFooterScripts)
 {
     $status = new \RaspAP\Messages\StatusMessage;
+    $pluginInstaller = \RaspAP\Plugins\PluginInstaller::getInstance();
 
     if (isset($_POST['SaveLanguage'])) {
         if (isset($_POST['locale'])) {
@@ -85,53 +86,22 @@ function DisplaySystem(&$extraFooterScripts)
     $kernel   = $system->kernelVersion();
     $systime  = $system->systime();
     $revision = $system->rpiRevision();
-    
-    // mem used
+
+    // memory use
     $memused  = $system->usedMemory();
-    $memused_status = "primary";
-    if ($memused > 90) {
-        $memused_status = "danger";
-        $memused_led = "service-status-down";
-    } elseif ($memused > 75) {
-        $memused_status = "warning";
-        $memused_led = "service-status-warn";
-    } elseif ($memused >  0) {
-        $memused_status = "success";
-        $memused_led = "service-status-up";
-    }
+    $memStatus = getMemStatus($memused);
+    $memused_status = $memStatus['status'];
+    $memused_led = $memStatus['led'];
 
     // cpu load
     $cpuload = $system->systemLoadPercentage();
-    if ($cpuload > 90) {
-        $cpuload_status = "danger";
-    } elseif ($cpuload > 75) {
-        $cpuload_status = "warning";
-    } elseif ($cpuload >=  0) {
-        $cpuload_status = "success";
-    }
+    $cpuload_status = getCPULoadStatus($cpuload);
 
     // cpu temp
     $cputemp = $system->systemTemperature();
-    if ($cputemp > 70) {
-        $cputemp_status = "danger";
-        $cputemp_led = "service-status-down";
-    } elseif ($cputemp > 50) {
-        $cputemp_status = "warning";
-        $cputemp_led = "service-status-warn";
-    } else {
-        $cputemp_status = "success";
-        $cputemp_led = "service-status-up";
-    }
-
-    // hostapd status
-    $hostapd = $system->hostapdStatus();
-    if ($hostapd[0] == 1) {
-        $hostapd_status = "active";
-        $hostapd_led = "service-status-up";
-    } else {
-        $hostapd_status = "inactive";
-        $hostapd_led = "service-status-down";
-    }
+    $cpuStatus = getCPUTempStatus($cputemp);
+    $cputemp_status = $cpuStatus['status'];
+    $cputemp_led =  $cpuStatus['led'];
 
     // theme options
     $themes = [
@@ -146,6 +116,9 @@ function DisplaySystem(&$extraFooterScripts)
     $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
     $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
     $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
+
+    $plugins = $pluginInstaller->getUserPlugins();
+    $pluginsTable = $pluginInstaller->getHTMLPluginsTable($plugins);
 
     echo renderTemplate("system", compact(
         "arrLocales",
@@ -167,11 +140,62 @@ function DisplaySystem(&$extraFooterScripts)
         "cputemp",
         "cputemp_status",
         "cputemp_led",
-        "hostapd",
-        "hostapd_status",
-        "hostapd_led",
         "themes",
         "selectedTheme",
-        "logLimit"
+        "logLimit",
+        "pluginsTable"
     ));
 }
+
+function getMemStatus($memused): array
+{
+    $memused_status = "primary";
+    $memused_led = "";
+
+    if ($memused > 90) {
+        $memused_status = "danger";
+        $memused_led = "service-status-down";
+    } elseif ($memused > 75) {
+        $memused_status = "warning";
+        $memused_led = "service-status-warn";
+    } elseif ($memused > 0) {
+        $memused_status = "success";
+        $memused_led = "service-status-up";
+    }
+
+    return [
+        'status' => $memused_status,
+        'led' => $memused_led
+    ];
+}
+
+function getCPULoadStatus($cpuload): string
+{
+    if ($cpuload > 90) {
+        $status = "danger";
+    } elseif ($cpuload > 75) {
+        $status = "warning";
+    } elseif ($cpuload >=  0) {
+        $status = "success";
+    }
+    return $status;
+}
+
+function getCPUTempStatus($cputemp): array
+{
+    if ($cputemp > 70) {
+        $cputemp_status = "danger";
+        $cputemp_led = "service-status-down";
+    } elseif ($cputemp > 50) {
+        $cputemp_status = "warning";
+        $cputemp_led = "service-status-warn";
+    } else {
+        $cputemp_status = "success";
+        $cputemp_led = "service-status-up";
+    }
+    return [
+        'status' => $cputemp_status,
+        'led' => $cputemp_led
+    ];
+}
+

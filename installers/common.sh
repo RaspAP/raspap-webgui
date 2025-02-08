@@ -51,6 +51,7 @@ function _install_raspap() {
     _download_latest_files
     _change_file_ownership
     _create_hostapd_scripts
+    _create_plugin_scripts
     _create_lighttpd_scripts
     _install_lighttpd_configs
     _default_configuration
@@ -310,6 +311,19 @@ function _create_hostapd_scripts() {
     # Change ownership and permissions of hostapd control scripts
     sudo chown -c root:root "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/hostapd/"*.sh || _install_status 1 "Unable to change file permissions"
+    _install_status 0
+}
+
+# Generate plugin helper scripts
+function _create_plugin_scripts() {
+    _install_log "Creating plugin helper scripts"
+    sudo mkdir $raspap_dir/plugins || _install_status 1 "Unable to create directory '$raspap_dir/plugins'"
+
+    # Copy plugin helper script
+    sudo cp "$webroot_dir/installers/"plugin_helper.sh "$raspap_dir/plugins" || _install_status 1 "Unable to move plugin script"
+    # Change ownership and permissions of plugin script
+    sudo chown -c root:root "$raspap_dir/plugins/"*.sh || _install_status 1 "Unable change owner and/or group"
+    sudo chmod 750 "$raspap_dir/plugins/"*.sh || _install_status 1 "Unable to change file permissions"
     _install_status 0
 }
 
@@ -584,14 +598,14 @@ function _download_latest_files() {
     if [ "$repo" == "RaspAP/raspap-insiders" ]; then
         if [ -n "$username" ] && [ -n "$acctoken" ]; then
             insiders_source_url="https://${username}:${acctoken}@github.com/$repo"
-            git clone --branch $branch --depth 1 -c advice.detachedHead=false $insiders_source_url $source_dir || clone=false
+            git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $insiders_source_url $source_dir || clone=false
         else
             _install_status 3
             echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
         fi
     fi
     if [ -z "$insiders_source_url" ]; then
-        git clone --branch $branch --depth 1 -c advice.detachedHead=false $git_source_url $source_dir || clone=false
+        git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url $source_dir || clone=false
     fi
     if [ "$clone" = false ]; then
         _install_status 1 "Unable to download files from GitHub"

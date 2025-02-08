@@ -920,6 +920,81 @@ msgstr "Changing log limit size to %s KB"
 msgid "Information provided by raspap.sysinfo"
 msgstr "Information provided by raspap.sysinfo"
 
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "The following user plugins are available to extend RaspAP's functionality."
+
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Choose <strong>Details</strong> for more information and to install a plugin."
+
+msgid "Network error"
+msgstr "Network error"
+
+msgid "Unable to load plugins"
+msgstr "Unable to load plugins"
+
+msgid "Reload"
+msgstr "Reload"
+
+msgid "and try again"
+msgstr "and try again"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Plugin details"
+msgstr "Plugin details"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Plugin source"
+msgstr "Plugin source"
+
+msgid "Author"
+msgstr "Author"
+
+msgid "License"
+msgstr "License"
+
+msgid "Language locale"
+msgstr "Language locale"
+
+msgid "Configuration files"
+msgstr "Configuration files"
+
+msgid "Dependencies"
+msgstr "Dependencies"
+
+msgid "Permissions"
+msgstr "Permissions"
+
+msgid "Non-privileged users"
+msgstr "Non-privileged users"
+
+msgid "Install now"
+msgstr "Install now"
+
+msgid "Installing plugin"
+msgstr "Installing plugin"
+
+msgid "Plugin installation in progress..."
+msgstr "Plugin installation in progress..."
+
+msgid "Plugin install completed."
+msgstr "Plugin install completed."
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Installed"
+msgstr "Installed"
+
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "Data usage"
