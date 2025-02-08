@@ -47,7 +47,7 @@ jobs:
         id: build
         uses: usimd/pi-gen-action@v1
         with:
-          image-name: "raspap-${{ github.ref_name }}-${{ matrix.arch }}"
+          image-name: "raspap-bookworm-${{ matrix.arch == '32-bit' && 'armhf' || 'arm64' }}-lite-${{ github.event.inputs.tag || github.ref_name }}"
           enable-ssh: 1
           stage-list: stage0 stage1 stage2 ./stage-raspap
           verbose-output: true
@@ -57,8 +57,8 @@ jobs:
       - name: Upload Artifact
         uses: svenstaro/upload-release-action@v2
         with:
-          asset_name: raspap-image-${{ github.ref_name }}-${{ matrix.arch }}.zip
+          asset_name: "raspap-bookworm-${{ matrix.arch == '32-bit' && 'armhf' || 'arm64' }}-lite-${{ github.event.inputs.tag || github.ref_name }}.img.zip"
           file: ${{ steps.build.outputs.image-path }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref }}
+          tag: ${{ github.event.inputs.tag || github.ref }}
           overwrite: true
