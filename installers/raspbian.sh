@@ -82,15 +82,16 @@ EOF
 set -eo pipefail
 
 function _main() {
+    # set defaults
+    repo="RaspAP/raspap-webgui" # override with -r, --repo option
+    repo_common="$repo"
+
     _parse_params "$@"
     _setup_colors
     if [ "${check}" == 1 ]; then
         _check_internet
     fi
 
-    # set defaults
-    repo="RaspAP/raspap-webgui" # override with -r, --repo option
-    repo_common="$repo"
     _log_output
     _load_installer
 }
