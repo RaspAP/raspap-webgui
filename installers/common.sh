@@ -75,6 +75,7 @@ function _update_raspap() {
     _download_latest_files
     _change_file_ownership
     _patch_system_files
+    _create_plugin_scripts
     _install_complete
 }
 
