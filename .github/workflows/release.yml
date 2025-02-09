@@ -30,6 +30,9 @@ jobs:
           #!/bin/bash
           apt-get update -y && apt-get install -y curl dhcpcd5 iptables procps
           curl -sL https://install.raspap.com | bash -s -- --yes --openvpn 1 --restapi 1 --adblock 1 --wireguard 1 --tcp-bbr 1 --check 0
+
+          # Set Wi-Fi country to prevent RF kill
+          raspi-config nonint do_wifi_country "US"
           EOF
           } &&
           chmod +x stage-raspap/package-raspap/00-run-chroot.sh &&
