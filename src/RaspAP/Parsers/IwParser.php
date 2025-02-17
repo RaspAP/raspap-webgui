@@ -47,7 +47,7 @@ class IwParser
             "(no IR)"
         ];
         $excluded_pattern = implode('|', array_map('preg_quote', $excluded));
-        $pattern = '/\*\s+(\d+)\s+MHz \[(\d+)\] \(([\d.]+) dBm\)\s(?!' .$excluded_pattern. ')/';
+        $pattern = '/\*\s+([\d.]+)\s+MHz \[(\d+)\] \(([\d.]+) dBm\)\s(?!' .$excluded_pattern. ')/';
         $supportedFrequencies = [];
 
         // Match iw_output containing supported frequencies
