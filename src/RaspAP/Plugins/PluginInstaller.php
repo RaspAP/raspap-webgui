@@ -63,31 +63,36 @@ class PluginInstaller
             if (json_last_error() !== JSON_ERROR_NONE) {
                 throw new \Exception("Error parsing manifest.json: " . json_last_error_msg());
             }
+
             // fetch installed plugins
             $installedPlugins = $this->getPlugins();
-
             $plugins = [];
 
             foreach ($manifestData as $pluginManifest) {
-                $installed = false;
+                $pluginEntries = [];
 
-                // Check if the plugin is installed
-                foreach ($installedPlugins as $plugin) {
-                    if (str_contains($plugin, $pluginManifest[0]['namespace'])) {
-                        $installed = true;
-                        break;
+                foreach ($pluginManifest as $plugin) {
+                    $installed = false;
+
+                    if (!empty($plugin['namespace'])) {
+                        foreach ($installedPlugins as $installedPlugin) {
+                            if (str_contains($installedPlugin, $plugin['namespace'])) {
+                                $installed = true;
+                                break;
+                            }
+                        }
                     }
+                    $pluginEntries[] = [
+                        'manifest' => $plugin,
+                        'installed' => $installed
+                    ];
                 }
-                $plugins[] = [
-                    'manifest' => $pluginManifest,
-                    'installed' => $installed
-                ];
+                $plugins[] = $pluginEntries;
             }
-            return $plugins;
+            return array_merge(...$plugins);
         } catch (\Exception $e) {
             error_log("An error occurred: " . $e->getMessage());
-            throw $e;  // re-throw to global ExceptionHandler
-            return [];
+            throw $e; // re-throw to global ExceptionHandler
         }
     }
 
@@ -150,6 +155,10 @@ class PluginInstaller
                 if (!empty($manifest['configuration'])) {
                     $this->copyConfigFiles($manifest['configuration'], $pluginDir);
                     $rollbackStack[] = 'removeConfigFiles';
+                }
+                if (!empty($manifest['javascript'])) {
+                    $this->copyJavaScriptFiles($manifest['javascript'], $this->rootPath);
+                    $rollbackStack[] = 'removeJavaScript';
                 }
                 $this->copyPluginFiles($pluginDir, $this->rootPath);
                 $rollbackStack[] = 'removePluginFiles';
@@ -259,6 +268,26 @@ class PluginInstaller
             }
         }
     }
+
+    /**
+     * Copies plugin JavaScript files to their destination
+     *
+     * @param array $javascript
+     * @param string $pluginDir
+     */
+    private function copyJavaScriptFiles(array $javascript, string $destination): void
+    {
+        foreach ($javascript as $js) {
+            $source = escapeshellarg($pluginDir . DIRECTORY_SEPARATOR . $js['source']);
+            $destination = escapeshellarg($destination . DIRECTORY_SEPARATOR . 'app/js/plugins' . DIRECTORY_SEPARATOR);
+            $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh javascript %s %s', $source, $destination);
+            $return = shell_exec($cmd);
+            if (strpos(strtolower($return), 'ok') === false) {
+                throw new \Exception("Failed to copy JavaScript file: $source");
+            }
+        }
+    }
+
 
     /**
      * Copies an extracted plugin directory from /tmp to /plugins
@@ -381,11 +410,10 @@ class PluginInstaller
         $html .= '</tr></thead><tbody>';
 
         foreach ($plugins as $plugin) {
-
-            $manifestData = $plugin['manifest'][0] ?? []; // Access the first manifest entry or default to an empty array
-
+            $manifestData = $plugin['manifest'] ?? [];
+            $installed = $plugin['installed'] ?? false;
             $manifest = htmlspecialchars(json_encode($manifestData), ENT_QUOTES, 'UTF-8');
-            $installed = $plugin['installed'];
+
             if ($installed === true) {
                 $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
                     name="plugin-details" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
