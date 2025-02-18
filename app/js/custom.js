@@ -470,55 +470,66 @@ $('#js-sys-reboot, #js-sys-shutdown').on('click', function (e) {
 
 $('#install-user-plugin').on('shown.bs.modal', function (e) {
     var button = $(e.relatedTarget);
+    $(this).data('button', button);
     var manifestData = button.data('plugin-manifest');
-    var installed = button.data('plugin-installed');
+    var installed = button.data('plugin-installed') || false;
+    var repoPublic = button.data('repo-public') || false;
+    var installPath = manifestData.install_path;
 
+    if (!installed && repoPublic && installPath === 'plugins-available') {
+        insidersHTML = 'Available with <i class="fas fa-heart heart me-1"></i><a href="https://docs.raspap.com/insiders" target="_blank" rel="noopener">Insiders</a>';
+        $('#plugin-additional').html(insidersHTML);
+    } else {
+        $('#plugin-additional').empty();
+    }
     if (manifestData) {
-        $('#plugin-uri').html(manifestData.plugin_uri
-            ? `<a href="${manifestData.plugin_uri}" target="_blank">${manifestData.plugin_uri}</a>`
-            : 'Unknown'
-        );
+        $('#plugin-docs').html(manifestData.plugin_docs
+            ? `<a href="${manifestData.plugin_docs}" target="_blank">${manifestData.plugin_docs}</a>`
+            : 'Unknown');
         $('#plugin-icon').attr('class', `${manifestData.icon || 'fas fa-plug'} link-secondary h5 me-2`);
         $('#plugin-name').text(manifestData.name || 'Unknown');
         $('#plugin-version').text(manifestData.version || 'Unknown');
         $('#plugin-description').text(manifestData.description || 'No description provided');
         $('#plugin-author').html(manifestData.author
-                ? manifestData.author + (manifestData.author_uri
-                ? ` (<a href="${manifestData.author_uri}" target="_blank">profile</a>)` : '') : 'Unknown'
-            );
+            ? manifestData.author + (manifestData.author_uri
+            ? ` (<a href="${manifestData.author_uri}" target="_blank">profile</a>)` : '') : 'Unknown');
         $('#plugin-license').text(manifestData.license || 'Unknown');
         $('#plugin-locale').text(manifestData.default_locale || 'Unknown');
         $('#plugin-configuration').html(formatProperty(manifestData.configuration || 'None'));
         $('#plugin-dependencies').html(formatProperty(manifestData.dependencies || 'None'));
         $('#plugin-javascript').html(formatProperty(manifestData.javascript || 'None'));
         $('#plugin-sudoers').html(formatProperty(manifestData.sudoers || 'None'));
-        $('#plugin-user-name').html(manifestData.user_nonprivileged.name || 'None');
+        $('#plugin-user-name').html((manifestData.user_nonprivileged && manifestData.user_nonprivileged.name) || 'None');
     }
     if (installed) {
         $('#js-install-plugin-confirm').html('OK');
+    } else if (!installed && repoPublic && installPath == 'plugins-available') {
+        $('#js-install-plugin-confirm').html('Get Insiders');
     } else {
         $('#js-install-plugin-confirm').html('Install now');
     }
 });
 
 $('#js-install-plugin-confirm').on('click', function (e) {
+    var button = $('#install-user-plugin').data('button');
+    var manifestData = button.data('plugin-manifest');
+    var installPath = manifestData.install_path;
+    var pluginUri = manifestData.plugin_uri;
+    var pluginVersion = manifestData.version;
     var progressText = $('#js-install-plugin-confirm').attr('data-message');
     var successHtml = $('#plugin-install-message').attr('data-message');
     var successText = $('<div>').text(successHtml).text();
-    var pluginUri = $('#plugin-uri a').attr('href');
-    var pluginVersion = $('#plugin-version').text();
     var csrfToken = $('meta[name=csrf_token]').attr('content');
 
-    $("#install-user-plugin").modal('hide');
-
     if ($('#js-install-plugin-confirm').text() === 'Install now') {
+        $("#install-user-plugin").modal('hide');
         $("#install-plugin-progress").modal('show');
-
         $.post(
             'ajax/plugins/do_plugin_install.php',
             {
                 'plugin_uri': pluginUri,
                 'plugin_version': pluginVersion,
+                'install_path': installPath,
                 'csrf_token': csrfToken
             },
             function (data) {
@@ -556,6 +567,9 @@ $('#js-install-plugin-confirm').on('click', function (e) {
             $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
             $('#js-install-plugin-ok').removeAttr("disabled");
         });
+    } else if ($(this).text() === 'Get Insiders') {
+        window.open('https://docs.raspap.com/insiders/', '_blank');
+        return;
     }
 });
 
