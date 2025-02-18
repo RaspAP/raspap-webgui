@@ -488,9 +488,10 @@ $('#install-user-plugin').on('shown.bs.modal', function (e) {
             );
         $('#plugin-license').text(manifestData.license || 'Unknown');
         $('#plugin-locale').text(manifestData.default_locale || 'Unknown');
-        $('#plugin-configuration').html(formatProperty(manifestData.configuration || {}));
-        $('#plugin-dependencies').html(formatProperty(manifestData.dependencies || {}));
-        $('#plugin-sudoers').html(formatProperty(manifestData.sudoers || []));
+        $('#plugin-configuration').html(formatProperty(manifestData.configuration || 'None'));
+        $('#plugin-dependencies').html(formatProperty(manifestData.dependencies || 'None'));
+        $('#plugin-javascript').html(formatProperty(manifestData.javascript || 'None'));
+        $('#plugin-sudoers').html(formatProperty(manifestData.sudoers || 'None'));
         $('#plugin-user-name').html(manifestData.user_nonprivileged.name || 'None');
     }
     if (installed) {
