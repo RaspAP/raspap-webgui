@@ -22,6 +22,7 @@ class PluginInstaller
     private $refModules;
     private $rootPath;
     private $pluginsManifest;
+    private $repoPublic;
 
     public function __construct()
     {
@@ -32,6 +33,7 @@ class PluginInstaller
         $this->refModules = '/refs/heads/master/.gitmodules';
         $this->rootPath = $_SERVER['DOCUMENT_ROOT'];
         $this->pluginsManifest = '/plugins/manifest.json';
+        $this->repoPublic = $this->getRepository();
     }
 
     // Returns a single instance of PluginInstaller
@@ -64,8 +66,11 @@ class PluginInstaller
                 throw new \Exception("Error parsing manifest.json: " . json_last_error_msg());
             }
 
-            // fetch installed plugins
-            $installedPlugins = $this->getPlugins();
+            // fetch installed & available plugins
+            $installedPlugins = array_merge(
+                $this->getPlugins(),
+                $this->getPlugins('plugins-available')
+            );
             $plugins = [];
 
             foreach ($manifestData as $pluginManifest) {
@@ -76,7 +81,7 @@ class PluginInstaller
 
                     if (!empty($plugin['namespace'])) {
                         foreach ($installedPlugins as $installedPlugin) {
-                            if (str_contains($installedPlugin, $plugin['namespace'])) {
+                            if (str_contains($installedPlugin['class'], $plugin['namespace'])) {
                                 $installed = true;
                                 break;
                             }
@@ -99,20 +104,34 @@ class PluginInstaller
     /**
      * Returns an array of installed plugins in pluginPath
      *
+     * @param string|null $path; optional path to search for plugins. Defaults to $this->pluginPath.
      * @return array $plugins
-     */ 
-    public function getPlugins(): array
+     */
+    public function getPlugins(?string $path = null): array
     {
         $plugins = [];
-        if (file_exists($this->pluginPath)) {
-            $directories = scandir($this->pluginPath);
+        $pluginPath = $path ?? $this->pluginPath;
+
+        if (file_exists($pluginPath)) {
+            $directories = scandir($pluginPath);
 
             foreach ($directories as $directory) {
+                if ($directory === '.' || $directory === '..') {
+                    continue;
+                }
                 $pluginClass = "RaspAP\\Plugins\\$directory\\$directory";
-                $pluginFile = $this->pluginPath . "/$directory/$directory.php";
+                $pluginFile = "$pluginPath/$directory/$directory.php";
 
-                if (file_exists($pluginFile) && class_exists($pluginClass)) {
-                    $plugins[] = $pluginClass;
+                if (file_exists($pluginFile)) {
+                    if ($path === 'plugins-available') {
+                        require_once $pluginFile;
+                    }
+                    if (class_exists($pluginClass)) {
+                        $plugins[] = [
+                            'class' => $pluginClass,
+                            'installPath' => $pluginPath
+                        ];
+                    }
                 }
             }
         }
@@ -417,21 +436,20 @@ class PluginInstaller
             if ($installed === true) {
                 $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
                     name="plugin-details" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
-                    data-plugin-manifest="' .$manifest. '" data-plugin-installed="' .$installed. '"> ' . _("Installed") .'</button>';
+                    data-plugin-manifest="' .$manifest. '" data-plugin-installed="' .$installed. '">' . _("Installed") .'</button>';
             } elseif (!RASPI_MONITOR_ENABLED) {
                 $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
                     name="install-plugin" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
-                    data-plugin-manifest="' .$manifest. '"> ' . _("Details") .'</button>';
+                    data-plugin-manifest="' .$manifest. '" data-repo-public="' .$this->repoPublic. '">' . _("Details") .'</button>';
             }
 
             $icon = htmlspecialchars($manifestData['icon'] ?? '');
             $pluginUri = htmlspecialchars($manifestData['plugin_uri'] ?? '');
             $nameText = htmlspecialchars($manifestData['name'] ?? 'Unknown Plugin');
-
-            $name = '<i class="' . $icon . ' link-secondary me-2"></i><a href="'
-                . $pluginUri
-                . '" target="_blank">'
-                . $nameText. '</a>';
+            $name = '<i class="' .$icon. ' link-secondary me-2"></i><a href="'
+                .$pluginUri
+                .'" target="_blank">'
+                .$nameText. '</a>';
 
             $version = htmlspecialchars($manifestData['version'] ?? 'N/A');
             $description = htmlspecialchars($manifestData['description'] ?? 'No description available');
@@ -444,6 +462,25 @@ class PluginInstaller
         $html .= '</tbody></table>';
         return $html;
     }
-}
 
+    /**
+     * Determines remote repository of installed application
+     *
+     * @return boolean; true if public repo
+     */
+    public function getRepository(): bool
+    {
+        $output = [];
+        exec('git -C ' . escapeshellarg($this->rootPath) . ' remote -v', $output);
+
+        foreach ($output as $line) {
+            if (preg_match('#github\.com/RaspAP/(raspap-\w+)#', $line, $matches)) {
+                $repo = $matches[1];
+                $public = ($repo === 'raspap-webgui');
+                return $public;
+            }
+        }
+        return false;
+    }
+}
 
