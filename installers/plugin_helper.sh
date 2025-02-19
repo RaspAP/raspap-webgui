@@ -73,6 +73,7 @@ case "$action" in
 
     mkdir -p "$(dirname "$destination")"
     cp "$source" "$destination"
+    chown -R $raspap_user:$raspap_user "$destination"
 
     echo "OK"
     ;;
