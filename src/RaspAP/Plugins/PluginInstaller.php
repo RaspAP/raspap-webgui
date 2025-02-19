@@ -66,11 +66,8 @@ class PluginInstaller
                 throw new \Exception("Error parsing manifest.json: " . json_last_error_msg());
             }
 
-            // fetch installed & available plugins
-            $installedPlugins = array_merge(
-                $this->getPlugins(),
-                $this->getPlugins('plugins-available')
-            );
+            // fetch installed plugins
+            $installedPlugins = $this->getPlugins();
             $plugins = [];
 
             foreach ($manifestData as $pluginManifest) {
@@ -139,24 +136,51 @@ class PluginInstaller
     }
 
     /**
-     * Retrieves a plugin archive and performs install actions defined in the manifest
+     * Installs a plugin by either extracting an archive or creating a symlink,
+     * then performs required actions as defined in the plugin manifest
      *
-     * @param string $archiveUrl
+     * @param string $pluginUri
+     * @param string $pluginVersion
+     * @param string $installPath
      * @return boolean
      * @throws \Exception
      */
-    public function installPlugin($archiveUrl): bool
+    public function installPlugin(string $pluginUri, string $pluginVersion, string $installPath): bool
     {
         $tempFile = null;
         $extractDir = null;
         $pluginDir = null;
 
         try {
-            list($tempFile, $extractDir, $pluginDir) = $this->getPluginArchive($archiveUrl);
+            if ($installPath === 'plugins-available') {
+                // extract plugin name from URI
+                $pluginName = basename($pluginUri);
+                $sourcePath = $this->rootPath . '/plugins-available/' . $pluginName;
+                $targetPath = $this->rootPath . '/plugins/' . $pluginName;
+
+                if (!is_dir($sourcePath)) {
+                    throw new \Exception("Plugin '$pluginName' not found in plugins-available");
+                }
+
+                // ensure target does not already exist
+                if (file_exists($targetPath)) {
+                    throw new \Exception("Plugin '$pluginName' is already installed.");
+                }
+
+                // create symlink
+                if (!symlink($sourcePath, $targetPath)) {
+                    throw new \Exception("Failed to symlink '$pluginName' to plugins/");
+                }
+                $pluginDir = $targetPath;
+            } else {
+                // fetch and extract the plugin archive
+                $archiveUrl = rtrim($pluginUri, '/') . '/archive/refs/tags/' .$pluginVersion.'.zip';
+                list($tempFile, $extractDir, $pluginDir) = $this->getPluginArchive($archiveUrl);
+            }
 
             $manifest = $this->parseManifest($pluginDir);
             $this->pluginName = preg_replace('/\s+/', '', $manifest['name']);
-            $rollbackStack = []; // store actions to rollback on failure
+            $rollbackStack = []; // Store actions to rollback on failure
 
             try {
                 if (!empty($manifest['sudoers'])) {
@@ -176,29 +200,22 @@ class PluginInstaller
                     $rollbackStack[] = 'removeConfigFiles';
                 }
                 if (!empty($manifest['javascript'])) {
-                    $this->copyJavaScriptFiles($manifest['javascript'], $this->rootPath);
+                    $this->copyJavaScriptFiles($manifest['javascript'], $pluginDir);
                     $rollbackStack[] = 'removeJavaScript';
                 }
-                $this->copyPluginFiles($pluginDir, $this->rootPath);
-                $rollbackStack[] = 'removePluginFiles';
 
                 return true;
-
             } catch (\Exception $e) {
-                //$this->rollback($rollbackStack, $manifest, $pluginDir);
                 throw new \Exception('Installation step failed: ' . $e->getMessage());
-                error_log('Plugin installation failed: ' . $e->getMessage());
             }
-
         } catch (\Exception $e) {
-            error_log('An error occured: ' .$e->getMessage());
-            throw new \Exception( $e->getMessage());
-            //throw $e;
+            error_log('Plugin installation failed: ' . $e->getMessage());
+            throw new \Exception($e->getMessage());
         } finally {
-            if (!empty($tempFile) && file_exists($tempFile)) {
+            if (isset($tempFile) && file_exists($tempFile)) {
                 unlink($tempFile);
             }
-            if (!empty($extractDir) && is_dir($extractDir)) {
+            if (isset($extractDir) && is_dir($extractDir)) {
                 $this->deleteDir($extractDir);
             }
         }
@@ -294,11 +311,11 @@ class PluginInstaller
      * @param array $javascript
      * @param string $pluginDir
      */
-    private function copyJavaScriptFiles(array $javascript, string $destination): void
+    private function copyJavaScriptFiles(array $javascript, string $pluginDir): void
     {
         foreach ($javascript as $js) {
-            $source = escapeshellarg($pluginDir . DIRECTORY_SEPARATOR . $js['source']);
-            $destination = escapeshellarg($destination . DIRECTORY_SEPARATOR . 'app/js/plugins' . DIRECTORY_SEPARATOR);
+            $source = escapeshellarg($pluginDir . DIRECTORY_SEPARATOR . $js);
+            $destination = escapeshellarg($this->rootPath . DIRECTORY_SEPARATOR . 'app/js/plugins/');
             $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh javascript %s %s', $source, $destination);
             $return = shell_exec($cmd);
             if (strpos(strtolower($return), 'ok') === false) {
@@ -306,7 +323,6 @@ class PluginInstaller
             }
         }
     }
-
 
     /**
      * Copies an extracted plugin directory from /tmp to /plugins
@@ -444,10 +460,10 @@ class PluginInstaller
             }
 
             $icon = htmlspecialchars($manifestData['icon'] ?? '');
-            $pluginUri = htmlspecialchars($manifestData['plugin_uri'] ?? '');
+            $pluginDocs = htmlspecialchars($manifestData['plugin_docs'] ?? '');
             $nameText = htmlspecialchars($manifestData['name'] ?? 'Unknown Plugin');
             $name = '<i class="' .$icon. ' link-secondary me-2"></i><a href="'
-                .$pluginUri
+                .$pluginDocs
                 .'" target="_blank">'
                 .$nameText. '</a>';
 
