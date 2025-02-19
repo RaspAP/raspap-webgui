@@ -300,7 +300,12 @@ class PluginInstaller
     {
         foreach ($configurations as $config) {
             $source = escapeshellarg($pluginDir . DIRECTORY_SEPARATOR . $config['source']);
-            $destination = escapeshellarg($config['destination']);
+            $destination = $config['destination'];
+
+            if (!str_starts_with($destination, '/')) {
+                $destination = $this->rootPath . '/' . ltrim($destination, '/');
+            }
+            $destination = escapeshellarg($destination);
             $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh config %s %s', $source, $destination);
             $return = shell_exec($cmd);
             if (strpos(strtolower($return), 'ok') === false) {
