@@ -22,6 +22,7 @@ class PluginInstaller
     private $refModules;
     private $rootPath;
     private $pluginsManifest;
+    private $repoPublic;
 
     public function __construct()
     {
@@ -32,6 +33,7 @@ class PluginInstaller
         $this->refModules = '/refs/heads/master/.gitmodules';
         $this->rootPath = $_SERVER['DOCUMENT_ROOT'];
         $this->pluginsManifest = '/plugins/manifest.json';
+        $this->repoPublic = $this->getRepository();
     }
 
     // Returns a single instance of PluginInstaller
@@ -63,51 +65,70 @@ class PluginInstaller
             if (json_last_error() !== JSON_ERROR_NONE) {
                 throw new \Exception("Error parsing manifest.json: " . json_last_error_msg());
             }
+
             // fetch installed plugins
             $installedPlugins = $this->getPlugins();
-
             $plugins = [];
 
             foreach ($manifestData as $pluginManifest) {
-                $installed = false;
+                $pluginEntries = [];
 
-                // Check if the plugin is installed
-                foreach ($installedPlugins as $plugin) {
-                    if (str_contains($plugin, $pluginManifest[0]['namespace'])) {
-                        $installed = true;
-                        break;
+                foreach ($pluginManifest as $plugin) {
+                    $installed = false;
+
+                    if (!empty($plugin['namespace'])) {
+                        foreach ($installedPlugins as $installedPlugin) {
+                            if (str_contains($installedPlugin['class'], $plugin['namespace'])) {
+                                $installed = true;
+                                break;
+                            }
+                        }
                     }
+                    $pluginEntries[] = [
+                        'manifest' => $plugin,
+                        'installed' => $installed
+                    ];
                 }
-                $plugins[] = [
-                    'manifest' => $pluginManifest,
-                    'installed' => $installed
-                ];
+                $plugins[] = $pluginEntries;
             }
-            return $plugins;
+            return array_merge(...$plugins);
         } catch (\Exception $e) {
             error_log("An error occurred: " . $e->getMessage());
-            throw $e;  // re-throw to global ExceptionHandler
-            return [];
+            throw $e; // re-throw to global ExceptionHandler
         }
     }
 
     /**
      * Returns an array of installed plugins in pluginPath
      *
+     * @param string|null $path; optional path to search for plugins. Defaults to $this->pluginPath.
      * @return array $plugins
-     */ 
-    public function getPlugins(): array
+     */
+    public function getPlugins(?string $path = null): array
     {
         $plugins = [];
-        if (file_exists($this->pluginPath)) {
-            $directories = scandir($this->pluginPath);
+        $pluginPath = $path ?? $this->pluginPath;
+
+        if (file_exists($pluginPath)) {
+            $directories = scandir($pluginPath);
 
             foreach ($directories as $directory) {
+                if ($directory === '.' || $directory === '..') {
+                    continue;
+                }
                 $pluginClass = "RaspAP\\Plugins\\$directory\\$directory";
-                $pluginFile = $this->pluginPath . "/$directory/$directory.php";
+                $pluginFile = "$pluginPath/$directory/$directory.php";
 
-                if (file_exists($pluginFile) && class_exists($pluginClass)) {
-                    $plugins[] = $pluginClass;
+                if (file_exists($pluginFile)) {
+                    if ($path === 'plugins-available') {
+                        require_once $pluginFile;
+                    }
+                    if (class_exists($pluginClass)) {
+                        $plugins[] = [
+                            'class' => $pluginClass,
+                            'installPath' => $pluginPath
+                        ];
+                    }
                 }
             }
         }
@@ -115,24 +136,51 @@ class PluginInstaller
     }
 
     /**
-     * Retrieves a plugin archive and performs install actions defined in the manifest
+     * Installs a plugin by either extracting an archive or creating a symlink,
+     * then performs required actions as defined in the plugin manifest
      *
-     * @param string $archiveUrl
+     * @param string $pluginUri
+     * @param string $pluginVersion
+     * @param string $installPath
      * @return boolean
      * @throws \Exception
      */
-    public function installPlugin($archiveUrl): bool
+    public function installPlugin(string $pluginUri, string $pluginVersion, string $installPath): bool
     {
         $tempFile = null;
         $extractDir = null;
         $pluginDir = null;
 
         try {
-            list($tempFile, $extractDir, $pluginDir) = $this->getPluginArchive($archiveUrl);
+            if ($installPath === 'plugins-available') {
+                // extract plugin name from URI
+                $pluginName = basename($pluginUri);
+                $sourcePath = $this->rootPath . '/plugins-available/' . $pluginName;
+                $targetPath = $this->rootPath . '/plugins/' . $pluginName;
+
+                if (!is_dir($sourcePath)) {
+                    throw new \Exception("Plugin '$pluginName' not found in plugins-available");
+                }
+
+                // ensure target does not already exist
+                if (file_exists($targetPath)) {
+                    throw new \Exception("Plugin '$pluginName' is already installed.");
+                }
+
+                // create symlink
+                if (!symlink($sourcePath, $targetPath)) {
+                    throw new \Exception("Failed to symlink '$pluginName' to plugins/");
+                }
+                $pluginDir = $targetPath;
+            } else {
+                // fetch and extract the plugin archive
+                $archiveUrl = rtrim($pluginUri, '/') . '/archive/refs/tags/' .$pluginVersion.'.zip';
+                list($tempFile, $extractDir, $pluginDir) = $this->getPluginArchive($archiveUrl);
+            }
 
             $manifest = $this->parseManifest($pluginDir);
             $this->pluginName = preg_replace('/\s+/', '', $manifest['name']);
-            $rollbackStack = []; // store actions to rollback on failure
+            $rollbackStack = []; // Store actions to rollback on failure
 
             try {
                 if (!empty($manifest['sudoers'])) {
@@ -151,26 +199,27 @@ class PluginInstaller
                     $this->copyConfigFiles($manifest['configuration'], $pluginDir);
                     $rollbackStack[] = 'removeConfigFiles';
                 }
-                $this->copyPluginFiles($pluginDir, $this->rootPath);
-                $rollbackStack[] = 'removePluginFiles';
+                if (!empty($manifest['javascript'])) {
+                    $this->copyJavaScriptFiles($manifest['javascript'], $pluginDir);
+                    $rollbackStack[] = 'removeJavaScript';
+                }
+                if ($installPath === 'plugins') {
+                    $this->copyPluginFiles($pluginDir, $this->rootPath);
+                    $rollbackStack[] = 'removePluginFiles';
+                }
 
                 return true;
-
             } catch (\Exception $e) {
-                //$this->rollback($rollbackStack, $manifest, $pluginDir);
                 throw new \Exception('Installation step failed: ' . $e->getMessage());
-                error_log('Plugin installation failed: ' . $e->getMessage());
             }
-
         } catch (\Exception $e) {
-            error_log('An error occured: ' .$e->getMessage());
-            throw new \Exception( $e->getMessage());
-            //throw $e;
+            error_log('Plugin installation failed: ' . $e->getMessage());
+            throw new \Exception($e->getMessage());
         } finally {
-            if (!empty($tempFile) && file_exists($tempFile)) {
+            if (isset($tempFile) && file_exists($tempFile)) {
                 unlink($tempFile);
             }
-            if (!empty($extractDir) && is_dir($extractDir)) {
+            if (isset($extractDir) && is_dir($extractDir)) {
                 $this->deleteDir($extractDir);
             }
         }
@@ -251,11 +300,35 @@ class PluginInstaller
     {
         foreach ($configurations as $config) {
             $source = escapeshellarg($pluginDir . DIRECTORY_SEPARATOR . $config['source']);
-            $destination = escapeshellarg($config['destination']);
+            $destination = $config['destination'];
+
+            if (!str_starts_with($destination, '/')) {
+                $destination = $this->rootPath . '/' . ltrim($destination, '/');
+            }
+            $destination = escapeshellarg($destination);
             $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh config %s %s', $source, $destination);
             $return = shell_exec($cmd);
             if (strpos(strtolower($return), 'ok') === false) {
                 throw new \Exception("Failed to copy configuration file: $source to $destination");
+            }
+        }
+    }
+
+    /**
+     * Copies plugin JavaScript files to their destination
+     *
+     * @param array $javascript
+     * @param string $pluginDir
+     */
+    private function copyJavaScriptFiles(array $javascript, string $pluginDir): void
+    {
+        foreach ($javascript as $js) {
+            $source = escapeshellarg($pluginDir . DIRECTORY_SEPARATOR . $js);
+            $destination = escapeshellarg($this->rootPath . DIRECTORY_SEPARATOR . 'app/js/plugins/');
+            $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh javascript %s %s', $source, $destination);
+            $return = shell_exec($cmd);
+            if (strpos(strtolower($return), 'ok') === false) {
+                throw new \Exception("Failed to copy JavaScript file: $source");
             }
         }
     }
@@ -313,6 +386,7 @@ class PluginInstaller
         try {
             $tempFile = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('plugin_', true) . '.zip';
             $extractDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('plugin_', true);
+
             $data = @file_get_contents($archiveUrl); // suppress PHP warnings for better exception handling
 
             if ($data === false) {
@@ -381,29 +455,27 @@ class PluginInstaller
         $html .= '</tr></thead><tbody>';
 
         foreach ($plugins as $plugin) {
-
-            $manifestData = $plugin['manifest'][0] ?? []; // Access the first manifest entry or default to an empty array
-
+            $manifestData = $plugin['manifest'] ?? [];
+            $installed = $plugin['installed'] ?? false;
             $manifest = htmlspecialchars(json_encode($manifestData), ENT_QUOTES, 'UTF-8');
-            $installed = $plugin['installed'];
+
             if ($installed === true) {
                 $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
                     name="plugin-details" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
-                    data-plugin-manifest="' .$manifest. '" data-plugin-installed="' .$installed. '"> ' . _("Installed") .'</button>';
+                    data-plugin-manifest="' .$manifest. '" data-plugin-installed="' .$installed. '">' . _("Installed") .'</button>';
             } elseif (!RASPI_MONITOR_ENABLED) {
                 $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
                     name="install-plugin" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
-                    data-plugin-manifest="' .$manifest. '"> ' . _("Details") .'</button>';
+                    data-plugin-manifest="' .$manifest. '" data-repo-public="' .$this->repoPublic. '">' . _("Details") .'</button>';
             }
 
             $icon = htmlspecialchars($manifestData['icon'] ?? '');
-            $pluginUri = htmlspecialchars($manifestData['plugin_uri'] ?? '');
+            $pluginDocs = htmlspecialchars($manifestData['plugin_docs'] ?? '');
             $nameText = htmlspecialchars($manifestData['name'] ?? 'Unknown Plugin');
-
-            $name = '<i class="' . $icon . ' link-secondary me-2"></i><a href="'
-                . $pluginUri
-                . '" target="_blank">'
-                . $nameText. '</a>';
+            $name = '<i class="' .$icon. ' link-secondary me-2"></i><a href="'
+                .$pluginDocs
+                .'" target="_blank">'
+                .$nameText. '</a>';
 
             $version = htmlspecialchars($manifestData['version'] ?? 'N/A');
             $description = htmlspecialchars($manifestData['description'] ?? 'No description available');
@@ -416,6 +488,25 @@ class PluginInstaller
         $html .= '</tbody></table>';
         return $html;
     }
-}
 
+    /**
+     * Determines remote repository of installed application
+     *
+     * @return boolean; true if public repo
+     */
+    public function getRepository(): bool
+    {
+        $output = [];
+        exec('git -C ' . escapeshellarg($this->rootPath) . ' remote -v', $output);
+
+        foreach ($output as $line) {
+            if (preg_match('#github\.com/RaspAP/(raspap-\w+)#', $line, $matches)) {
+                $repo = $matches[1];
+                $public = ($repo === 'raspap-webgui');
+                return $public;
+            }
+        }
+        return false;
+    }
+}
 

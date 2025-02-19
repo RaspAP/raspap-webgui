@@ -629,6 +629,13 @@ function mb_escapeshellarg($arg)
     }
 }
 
+function safeOutputValue($def, $arr)
+{
+    if (array_key_exists($def, $arr)) {
+        echo htmlspecialchars($arr[$def], ENT_QUOTES);
+    }
+}
+
 function dnsServers()
 {
     $data = json_decode(file_get_contents("./config/dns-servers.json"));

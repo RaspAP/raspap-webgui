@@ -121,13 +121,14 @@
       <div class="modal-body">
 
         <i id="plugin-icon" class="fas fa-plug link-secondary me-2"></i><span id="plugin-name" class="h4 mb-0"></span>
-        <p id="plugin-description" class="mb-3"></p>
+        <p id="plugin-description" class="mb-1"></p>
+        <p id="plugin-additional" class="mb-3"></p>
 
         <table class="table table-bordered">
           <tbody>
             <tr>
-              <th><?php echo _("Plugin source"); ?></th>
-              <td><span id="plugin-uri"></span></td>
+              <th><?php echo _("Plugin docs"); ?></th>
+              <td><span id="plugin-docs"></span></td>
             </tr>
             <tr>
               <th><?php echo _("Version"); ?></th>
@@ -153,6 +154,10 @@
             <tr>
               <th><?php echo _("Dependencies"); ?></th>
               <td><small><code><span id="plugin-dependencies" class="mb-0"></span></code></small></td>
+            </tr>
+            <tr>
+              <th><?php echo _("JavaScript"); ?></th>
+              <td><small><code><span id="plugin-javascript" class="mb-0"></span></code></small></td>
             </tr>
             <tr>
               <th><?php echo _("Permissions"); ?></th>
