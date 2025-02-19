@@ -88,13 +88,12 @@ case "$action" in
         exit 1
     fi
 
-    plugin_js_dir=$(dirname "$destination")
-    if [ ! -d "$plugin_js_dir" ]; then
-        mkdir -p "$plugin_js_dir"
+    if [ ! -d "$destination" ]; then
+        mkdir -p "$destination"
     fi
 
     cp "$source" "$destination"
-    chown -R $raspap_user:$raspap_user "$plugin_js_dir"
+    chown -R $raspap_user:$raspap_user "$destination"
 
     echo "OK"
     ;;
