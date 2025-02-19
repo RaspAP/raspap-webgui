@@ -203,6 +203,10 @@ class PluginInstaller
                     $this->copyJavaScriptFiles($manifest['javascript'], $pluginDir);
                     $rollbackStack[] = 'removeJavaScript';
                 }
+                if ($installPath === 'plugins') {
+                    $this->copyPluginFiles($pluginDir, $this->rootPath);
+                    $rollbackStack[] = 'removePluginFiles';
+                }
 
                 return true;
             } catch (\Exception $e) {
@@ -377,6 +381,7 @@ class PluginInstaller
         try {
             $tempFile = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('plugin_', true) . '.zip';
             $extractDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('plugin_', true);
+
             $data = @file_get_contents($archiveUrl); // suppress PHP warnings for better exception handling
 
             if ($data === false) {
