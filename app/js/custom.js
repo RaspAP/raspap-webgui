@@ -516,12 +516,13 @@ $('#js-install-plugin-confirm').on('click', function (e) {
     var installPath = manifestData.install_path;
     var pluginUri = manifestData.plugin_uri;
     var pluginVersion = manifestData.version;
+    var pluginConfirm = $('#js-install-plugin-confirm').text();
     var progressText = $('#js-install-plugin-confirm').attr('data-message');
     var successHtml = $('#plugin-install-message').attr('data-message');
     var successText = $('<div>').text(successHtml).text();
     var csrfToken = $('meta[name=csrf_token]').attr('content');
 
-    if ($('#js-install-plugin-confirm').text() === 'Install now') {
+    if (pluginConfirm  === 'Install now') {
         $("#install-user-plugin").modal('hide');
         $("#install-plugin-progress").modal('show');
         $.post(
@@ -567,9 +568,11 @@ $('#js-install-plugin-confirm').on('click', function (e) {
             $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
             $('#js-install-plugin-ok').removeAttr("disabled");
         });
-    } else if ($(this).text() === 'Get Insiders') {
+    } else if (pluginConfirm  === 'Get Insiders') {
         window.open('https://docs.raspap.com/insiders/', '_blank');
         return;
+    } else if (pluginConfirm === 'OK') {
+        $("#install-user-plugin").modal('hide');
     }
 });
 
