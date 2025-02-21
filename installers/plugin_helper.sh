@@ -73,9 +73,32 @@ case "$action" in
 
     mkdir -p "$(dirname "$destination")"
     cp "$source" "$destination"
+    chown -R $raspap_user:$raspap_user "$destination"
 
     echo "OK"
     ;;
+
+  "javascript")
+    [ $# -lt 2 ] && { echo "Usage: $0 javascript <source> <destination>"; exit 1; }
+
+    source=$1
+    destination=$2
+
+    if [ ! -f "$source" ]; then
+        echo "Source file $source does not exist."
+        exit 1
+    fi
+
+    if [ ! -d "$destination" ]; then
+        mkdir -p "$destination"
+    fi
+
+    cp "$source" "$destination"
+    chown -R $raspap_user:$raspap_user "$destination"
+
+    echo "OK"
+    ;;
+
 
   "plugin")
     [ $# -lt 2 ] && { echo "Usage: $0 plugin <source> <destination>"; exit 1; }
@@ -89,7 +112,7 @@ case "$action" in
     fi
 
     plugin_dir=$(dirname "$destination")
-    if [ ! -d "$lugin_dir" ]; then
+    if [ ! -d "$plugin_dir" ]; then
         mkdir -p "$plugin_dir"
     fi
 
@@ -103,11 +126,12 @@ case "$action" in
     echo "Invalid action: $action"
     echo "Usage: $0 <action> [parameters...]"
     echo "Actions:"
-    echo "  sudoers <file>                 Install a sudoers file"
-    echo "  packages <packages>            Install aptitude package(s)"
-    echo "  user <name> <password>         Add user non-interactively"
-    echo "  config <source <destination>   Applies a config file"
-    echo "  plugin <source <destination>   Copies a plugin directory"
+    echo "  sudoers <file>                      Install a sudoers file"
+    echo "  packages <packages>                 Install aptitude package(s)"
+    echo "  user <name> <password>              Add user non-interactively"
+    echo "  config <source <destination>        Applies a config file"
+    echo "  javascript <source> <destination>   Applies a JavaScript file"
+    echo "  plugin <source <destination>        Copies a plugin directory"
     exit 1
     ;;
 esac
