@@ -42,7 +42,7 @@ body:
           required: true
         - label: I am using an [external wireless adapter](https://docs.raspap.com/issues/#external-hardware).
           required: true
-        - label: I have generated a [RaspAP debug log](https://docs.raspap.com/ap-basics/#debug-log) and performed a [self-diagnosis](https://docs.raspap.com/ap-basics/#diagnosing-problems).
+        - label: I have generated a [RaspAP debug log](https://docs.raspap.com/troubleshooting/#debug-log) and performed a [self-diagnosis](https://docs.raspap.com/troubleshooting/#diagnosing-problems).
           required: true
 
   - type: dropdown
