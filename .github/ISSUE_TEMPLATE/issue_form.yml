@@ -56,15 +56,15 @@ body:
         - Raspberry Pi OS	(64-bit) Lite Bullseye	
         - Raspberry Pi OS	(32-bit) Lite Bullseye
         - Armbian	23.05 (Suni)	
-        - Debian	Bookworm
-        - Ubuntu	Server 23.04 (Lunar)
+        - Debian Bookworm
     validations:
       required: true
   - type: dropdown
     id: install
     attributes:
-      label: Quick install or Manual setup?
+      label: Installation method
       options:
+        - Pre-built image
         - Quick install	
         - Manual setup
     validations:
@@ -99,8 +99,8 @@ body:
     attributes:
       label: RaspAP version
       options:
-        - 3.2.5 (Latest)
-        - Other
+        - Latest
+        - Other (specify below)
     validations:
       required: true
   - type: dropdown
@@ -113,7 +113,6 @@ body:
         - Not sure
     validations:
       required: true
-      
   - type: input
     id: contact
     attributes:
