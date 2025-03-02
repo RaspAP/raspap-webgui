@@ -46,7 +46,7 @@ case "$action" in
 
     username=$1
     password=$2
-    
+
     if id "$username" &>/dev/null; then # user already exists
         echo "OK"
         exit 0
@@ -72,6 +72,7 @@ case "$action" in
     fi
 
     mkdir -p "$(dirname "$destination")"
+    chown -R "$raspap_user:$raspap_user" "$(dirname "$destination")"
     cp "$source" "$destination"
     chown -R $raspap_user:$raspap_user "$destination"
 
