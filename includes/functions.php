@@ -177,15 +177,17 @@ function getDefaultNetOpts($svc,$key)
  * @param string $key
  * @return object $json
  */
-function getProviderValue($id,$key)
+function getProviderValue($id, $key)
 {
     $obj = json_decode(file_get_contents(RASPI_CONFIG_PROVIDERS), true);
-    if ($obj === null) {
+    if (!isset($obj['providers']) || !is_array($obj['providers'])) {
         return false;
-    } else {
-        $id--;
-        return $obj['providers'][$id][$key];
     }
+    $id--;
+    if (!isset($obj['providers'][$id]) || !is_array($obj['providers'][$id])) {
+        return false;
+    }
+    return $obj['providers'][$id][$key] ?? false;
 }
 
 /* Functions to write ini files */
