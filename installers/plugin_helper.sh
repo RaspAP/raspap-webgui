@@ -123,30 +123,36 @@ case "$action" in
     ;;
 
   "keys")
-    [ $# -ne 2 ] && { echo "Usage: $0 keys <repo> <keyUrl>"; exit 1; }
+    [ $# -ne 4 ] && { echo "Usage: $0 keys <key_url> <keyring> <repo> <sources>"; exit 1; }
 
-    repo="$1"
-    keyUrl="$2"
+    key_url="$1"
+    keyring="$2"
+    repo="$3"
+    list_file="$4"
 
-    keyringDir="/etc/apt/keyrings"
-    keyringPath="$keyringDir/$(basename "$keyUrl")"
+    # add repository GPG key if it doesn't already exist
+    if [ ! -f "$keyring" ]; then
+        echo "Downloading GPG key from $key_url..."
+        curl -fsSL "$key_url" | sudo tee "$keyring" > /dev/null || { echo "Error: Failed to download GPG key."; exit 1; }
+    else
+        echo "Repository GPG key already exists at $keyring"
+    fi
 
-    # ensure the keyring directory exists
-    sudo mkdir -p "$keyringDir"
+    # add repository list if not present
+    if [ ! -f "$list_file" ]; then
+        echo "Adding repository $repo to sources list"
+        curl -fsSL "$repo" | sudo tee "$list_file" > /dev/null || { echo "Error: Failed to add repository to sources list."; exit 1; }
+        update_required=1
+    else
+        echo "Repository already exists in sources list"
+    fi
 
-    # download key and save it to the keyring
-    echo "Downloading GPG key for $repo from $keyUrl..."
-    sudo curl -fsSL "$keyUrl" -o "$keyringPath" || { echo "Failed to download GPG key for $repo"; exit 1; }
+    # update apt package list if required
+    if [ "$update_required" == "1" ]; then
+        sudo apt-get update || { echo "Error: Failed to update apt"; exit 1; }
+    fi
 
-    # add the repository to the sources list with signed-by option
-    repoListFile="/etc/apt/sources.list.d/$(basename "$repo").list"
-    echo "deb [signed-by=$keyringPath] $repo" | sudo tee "$repoListFile" > /dev/null || { echo "Failed to add repository for $repo"; exit 1; }
-
-    echo "Successfully added $repo with key from $keyUrl"
-
-    # update apt package list
-    sudo apt-get update || { echo "Error: Failed to update apt"; exit 1; }
-
+    echo "Successfully added $repo with GPG key from $key_url to sources"
     echo "OK"
     ;;
 
@@ -154,13 +160,13 @@ case "$action" in
     echo "Invalid action: $action"
     echo "Usage: $0 <action> [parameters...]"
     echo "Actions:"
-    echo "  sudoers <file>                      Install a sudoers file"
-    echo "  packages <packages>                 Install aptitude package(s)"
-    echo "  user <name> <password>              Add user non-interactively"
-    echo "  config <source <destination>        Applies a config file"
-    echo "  javascript <source> <destination>   Applies a JavaScript file"
-    echo "  plugin <source> <destination>       Copies a plugin directory"
-    echo "  keys <repo> <keyUrl>                Installs a GPG key for a third-party repo"
+    echo "  sudoers <file>                              Install a sudoers file"
+    echo "  packages <packages>                         Install aptitude package(s)"
+    echo "  user <name> <password>                      Add user non-interactively"
+    echo "  config <source <destination>                Applies a config file"
+    echo "  javascript <source> <destination>           Applies a JavaScript file"
+    echo "  plugin <source> <destination>               Copies a plugin directory"
+    echo "  keys <key_url> <keyring> <repo> <sources>   Installs a GPG key for a third-party repo"
     exit 1
     ;;
 esac
