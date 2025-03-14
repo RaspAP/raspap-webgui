@@ -191,6 +191,7 @@ class PluginInstaller
                 }
                 if (!empty($manifest['keys'])) {
                     $this->installRepositoryKeys($manifest['keys']);
+                    $rollbackStack[] = 'uninstallRepositoryKeys';
                 }
                 if (!empty($manifest['dependencies'])) {
                     $this->installDependencies($manifest['dependencies']);
@@ -212,7 +213,6 @@ class PluginInstaller
                     $this->copyPluginFiles($pluginDir, $this->rootPath);
                     $rollbackStack[] = 'removePluginFiles';
                 }
-
                 return true;
             } catch (\Exception $e) {
                 throw new \Exception('Installation step failed: ' . $e->getMessage());
@@ -356,20 +356,30 @@ class PluginInstaller
     }
 
     /**
-     * Install repository keys for third-party apt packages 
+     * Installs repository keys for third-party apt packages
      *
-     * @param array $keys Array of repository URLs and their associated key URLs
-     * @throws Exception If the key installation fails.
+     * @param array $keys Array containing key_url, keyring, repo, and sources
+     * @throws Exception on key installation failure
      */
     public function installRepositoryKeys(array $keys)
     {
-        foreach ($keys as $repo => $keyUrl) {
-            $repoUrl = escapeshellarg($repo);
-            $keyUrl = escapeshellarg($keyUrl);
-            $cmd = sprintf('sudo %s keys %s %s', escapeshellarg($this->helperScriptPath), $repoUrl, $keyUrl);
+        error_log("executing installRepositoryKeys()");
+
+        foreach ($keys as $keyData) {
+            if (!isset($keyData['key_url'], $keyData['keyring'], $keyData['repo'], $keyData['sources'])) {
+                throw new \Exception("Invalid repository key structure");
+            }
+            $cmd = sprintf(
+                'sudo %s keys %s %s %s %s',
+                escapeshellarg($this->helperScriptPath),
+                escapeshellarg($keyData['key_url']),
+                escapeshellarg($keyData['keyring']),
+                escapeshellarg($keyData['repo']),
+                escapeshellarg($keyData['sources'])
+            );
             $return = shell_exec($cmd);
             if (strpos(strtolower($return), 'ok') === false) {
-                throw new \Exception("Failed to add repository and key for $repo");
+                throw new \Exception("Failed to add repository and key for {$keyData['repo']}");
             }
         }
     }
