@@ -122,6 +122,34 @@ case "$action" in
     echo "OK"
     ;;
 
+  "keys")
+    [ $# -ne 2 ] && { echo "Usage: $0 keys <repo> <keyUrl>"; exit 1; }
+
+    repo="$1"
+    keyUrl="$2"
+
+    keyringDir="/etc/apt/keyrings"
+    keyringPath="$keyringDir/$(basename "$keyUrl")"
+
+    # ensure the keyring directory exists
+    sudo mkdir -p "$keyringDir"
+
+    # download key and save it to the keyring
+    echo "Downloading GPG key for $repo from $keyUrl..."
+    sudo curl -fsSL "$keyUrl" -o "$keyringPath" || { echo "Failed to download GPG key for $repo"; exit 1; }
+
+    # add the repository to the sources list with signed-by option
+    repoListFile="/etc/apt/sources.list.d/$(basename "$repo").list"
+    echo "deb [signed-by=$keyringPath] $repo" | sudo tee "$repoListFile" > /dev/null || { echo "Failed to add repository for $repo"; exit 1; }
+
+    echo "Successfully added $repo with key from $keyUrl"
+
+    # update apt package list
+    sudo apt-get update || { echo "Error: Failed to update apt"; exit 1; }
+
+    echo "OK"
+    ;;
+
   *)
     echo "Invalid action: $action"
     echo "Usage: $0 <action> [parameters...]"
@@ -131,7 +159,8 @@ case "$action" in
     echo "  user <name> <password>              Add user non-interactively"
     echo "  config <source <destination>        Applies a config file"
     echo "  javascript <source> <destination>   Applies a JavaScript file"
-    echo "  plugin <source <destination>        Copies a plugin directory"
+    echo "  plugin <source> <destination>       Copies a plugin directory"
+    echo "  keys <repo> <keyUrl>                Installs a GPG key for a third-party repo"
     exit 1
     ;;
 esac
