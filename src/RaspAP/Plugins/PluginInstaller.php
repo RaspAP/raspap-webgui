@@ -23,6 +23,7 @@ class PluginInstaller
     private $rootPath;
     private $pluginsManifest;
     private $repoPublic;
+    private $helperScriptPath;
 
     public function __construct()
     {
@@ -34,6 +35,7 @@ class PluginInstaller
         $this->rootPath = $_SERVER['DOCUMENT_ROOT'];
         $this->pluginsManifest = '/plugins/manifest.json';
         $this->repoPublic = $this->getRepository();
+        $this->helperScriptPath = RASPI_CONFIG.'/plugins/plugin_helper.sh';
     }
 
     // Returns a single instance of PluginInstaller
@@ -187,6 +189,9 @@ class PluginInstaller
                     $this->addSudoers($manifest['sudoers']);
                     $rollbackStack[] = 'removeSudoers';
                 }
+                if (!empty($manifest['keys'])) {
+                    $this->installRepositoryKeys($manifest['keys']);
+                }
                 if (!empty($manifest['dependencies'])) {
                     $this->installDependencies($manifest['dependencies']);
                     $rollbackStack[] = 'uninstallDependencies';
@@ -243,7 +248,7 @@ class PluginInstaller
         $cmd = sprintf('sudo visudo -cf %s', escapeshellarg($tmpSudoers));
         $return = shell_exec($cmd);
         if (strpos(strtolower($return), 'parsed ok') !== false) {
-            $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh sudoers %s', escapeshellarg($tmpSudoers));
+            $cmd = sprintf('sudo %s sudoers %s', escapeshellarg($this->helperScriptPath), escapeshellarg($tmpSudoers));
             $return = shell_exec($cmd);
             if (strpos(strtolower($return), 'ok') === false) {
                 throw new \Exception('Plugin helper failed to install sudoers.');
@@ -263,7 +268,7 @@ class PluginInstaller
         $packages = array_keys($dependencies);
         $packageList = implode(' ', $packages);
 
-        $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh packages %s', escapeshellarg($packageList));
+        $cmd = sprintf('sudo %s packages %s', escapeshellarg($this->helperScriptPath), escapeshellarg($packageList));
         $return = shell_exec($cmd);
         if (strpos(strtolower($return), 'ok') === false) {
             throw new \Exception('Plugin helper failed to install depedencies.');
@@ -283,7 +288,7 @@ class PluginInstaller
         $username = escapeshellarg($user['name']);
         $password = escapeshellarg($user['pass']);
 
-        $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh user %s %s', $username, $password);
+        $cmd = sprintf('sudo %s user %s %s', escapeshellarg($this->helperScriptPath), $username, $password);
         $return = shell_exec($cmd);
         if (strpos(strtolower($return), 'ok') === false) {
             throw new \Exception('Plugin helper failed to create user: ' . $user['name']);
@@ -306,7 +311,7 @@ class PluginInstaller
                 $destination = $this->rootPath . '/' . ltrim($destination, '/');
             }
             $destination = escapeshellarg($destination);
-            $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh config %s %s', $source, $destination);
+            $cmd = sprintf('sudo %s config %s %s', escapeshellarg($this->helperScriptPath), $source, $destination);
             $return = shell_exec($cmd);
             if (strpos(strtolower($return), 'ok') === false) {
                 throw new \Exception("Failed to copy configuration file: $source to $destination");
@@ -325,7 +330,7 @@ class PluginInstaller
         foreach ($javascript as $js) {
             $source = escapeshellarg($pluginDir . DIRECTORY_SEPARATOR . $js);
             $destination = escapeshellarg($this->rootPath . DIRECTORY_SEPARATOR . 'app/js/plugins/');
-            $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh javascript %s %s', $source, $destination);
+            $cmd = sprintf('sudo %s javascript %s %s', escapeshellarg($this->helperScriptPath), $source, $destination);
             $return = shell_exec($cmd);
             if (strpos(strtolower($return), 'ok') === false) {
                 throw new \Exception("Failed to copy JavaScript file: $source");
@@ -343,10 +348,29 @@ class PluginInstaller
     {
         $source = escapeshellarg($source);
         $destination = escapeshellarg($destination . DIRECTORY_SEPARATOR .$this->pluginPath . DIRECTORY_SEPARATOR . $this->pluginName);
-        $cmd = sprintf('sudo /etc/raspap/plugins/plugin_helper.sh plugin %s %s', $source, $destination);
+        $cmd = sprintf('sudo %s plugin %s %s', escapeshellarg($this->helperScriptPath), $source, $destination);
         $return = shell_exec($cmd);
         if (strpos(strtolower($return), 'ok') === false) {
             throw new \Exception('Failed to copy plugin files to: ' . $destination);
+        }
+    }
+
+    /**
+     * Install repository keys for third-party apt packages 
+     *
+     * @param array $keys Array of repository URLs and their associated key URLs
+     * @throws Exception If the key installation fails.
+     */
+    public function installRepositoryKeys(array $keys)
+    {
+        foreach ($keys as $repo => $keyUrl) {
+            $repoUrl = escapeshellarg($repo);
+            $keyUrl = escapeshellarg($keyUrl);
+            $cmd = sprintf('sudo %s keys %s %s', escapeshellarg($this->helperScriptPath), $repoUrl, $keyUrl);
+            $return = shell_exec($cmd);
+            if (strpos(strtolower($return), 'ok') === false) {
+                throw new \Exception("Failed to add repository and key for $repo");
+            }
         }
     }
 
