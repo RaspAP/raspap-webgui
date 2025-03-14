@@ -152,6 +152,10 @@
               </td>
             </tr>
             <tr>
+              <th><?php echo _("Signed Packages"); ?></th>
+              <td><small><code><span id="plugin-packages" class="mb-0"></span></code></small></td>
+            </tr>
+            <tr>
               <th><?php echo _("Dependencies"); ?></th>
               <td><small><code><span id="plugin-dependencies" class="mb-0"></span></code></small></td>
             </tr>
