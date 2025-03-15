@@ -9,6 +9,9 @@ include('includes/sysstats.php');
     <div class="col-lg-6">
       <h4 class="mt-3"><?php echo _("System Information"); ?></h4>
         <div class="row ms-1">
+          <div class="col-sm-4">
+            <img class="device-illustration mx-3 my-2" src="app/img/device.svg" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
+          </div>
           <div class="col-sm-10">
             <div class="row mb-1">
               <div class="info-item col-4"><?php echo _("Hostname"); ?></div><div class="info-value col"><?php echo htmlspecialchars($hostname, ENT_QUOTES); ?></div>
