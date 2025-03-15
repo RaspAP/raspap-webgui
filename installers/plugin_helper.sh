@@ -152,7 +152,6 @@ case "$action" in
         sudo apt-get update || { echo "Error: Failed to update apt"; exit 1; }
     fi
 
-    echo "Successfully added $repo with GPG key from $key_url to sources"
     echo "OK"
     ;;
 
