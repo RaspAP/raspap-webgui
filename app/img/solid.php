@@ -45,7 +45,7 @@ if ($showJoint) {
 ?>
 
 <?php if ($showDevice1): ?>
-<line x1="113.231" y1="0.75" x2="7.69496e-06" y2="0.75001" stroke="#008281" stroke-width="4" id="device-1"/>
+<line x1="113.231" y1="0.75" x2="7.69496e-06" y2="0.75001" stroke="#008281" stroke-width="6" id="device-1"/>
 <?php endif; ?>
 <?php if ($showOut): ?>
 <line x1="226.231" y1="297.75" x2="113" y2="297.75" stroke="#008281" stroke-width="4" id="out"/>
