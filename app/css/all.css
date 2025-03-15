@@ -9,6 +9,7 @@ License: GNU General Public License v3.0
 :root {
   --raspap-content-main: #495057;
   --raspap-text-muted: #858796;
+  --raspap-text-light: #7d7e7e;
   --raspap-brand-color: #2b8080;
   --raspap-offwhite: #faf9f6;
 }
@@ -377,8 +378,6 @@ button > i.fas {
   border: 1px solid #ced4da;
 }
 
-
-
 .card-wrapper {
   margin: 1rem;
 }
@@ -400,14 +399,17 @@ button > i.fas {
 }
 
 .connection-item {
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   z-index: 5;
+  color: var(--raspap-text-light);
 }
 
 .connection-right {
-  justify-content: flex-end;
+  align-items: center;
+  margin-left: 10rem;
 }
 
 .connections-left i {
@@ -495,14 +497,14 @@ button > i.fas {
 }
 
 .band.active {
-  border-color: #008281;
-  color: #008281;
+  border-color: var(--raspap-brand-color);
+  color: var(--raspap-brand-color);
 }
 
 .device-label {
   font-size: 1.5rem;
   text-align: center;
-  color: #008281;
+  color: var(--raspap-brand-color);
   margin-top: 1rem;
 }
 
@@ -511,6 +513,7 @@ button > i.fas {
   flex-direction: column;
   align-items: center;
   gap: 1.3rem;
+  color: var(--raspap-text-light);
 }
 
 .bottom {
@@ -522,11 +525,15 @@ button > i.fas {
 }
 
 .connection-item>i {
-  color: #7D7E7E;
+  color: var(--raspap-text-light);
+}
+
+.connection-item .fa-stack {
+  min-width: 2.5em;
 }
 
 .connections-left>.connection-item>span {
-  color: #7D7E7E;
+  color: var(--raspap-text-light);
   margin-right: 0.5rem;
 }
 
@@ -555,16 +562,16 @@ button > i.fas {
   }
 }
 .connection-item.active > span {
-  color: #008281!important;
+  color: var(--raspap-brand-color)!important;
 }
 .connection-item.active > i {
-  color: #008281!important;
+  color: var(--raspap-brand-color)!important;
 }
 .status-item.active > span {
-  color: #008281!important;
+  color: var(--raspap-brand-color)!important;
 }
 .status-item.active > i {
-  color: #008281!important;
+  color: var(--raspap-brand-color)!important;
 }
 .clients-mobile {
   display: none;
@@ -582,7 +589,7 @@ button > i.fas {
 
 .client-type i {
   font-size: 1.5rem;
-  color: #008281;
+  color: var(--raspap-brand-color);
   background: #fff;
   width: 45px;
   height: 45px;
@@ -590,12 +597,12 @@ button > i.fas {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #008281;
+  border: 2px solid var(--raspap-brand-color);
 }
 
 .client-type i.badge-icon {
   font-size: 0.7rem;
-  background: #008281;
+  background: var(--raspap-brand-color);
   color: white;
   width: 20px;
   height: 20px;
@@ -616,3 +623,9 @@ button > i.fas {
   justify-content: center;
   font-size: 0.8rem;
 }
+
+.device-illustration {
+  min-width: 220px;
+}
+
+
