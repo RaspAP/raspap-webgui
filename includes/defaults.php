@@ -7,7 +7,7 @@ if (!defined('RASPI_CONFIG')) {
 $defaults = [
   'RASPI_BRAND_TEXT' => 'RaspAP',
   'RASPI_BRAND_TITLE' => RASPI_BRAND_TEXT.' Admin Panel',
-  'RASPI_VERSION' => '3.2.5',
+  'RASPI_VERSION' => '3.2.9',
   'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/defaults.json',
   'RASPI_CONFIG_PROVIDERS' => 'config/vpn-providers.json',
   'RASPI_CONFIG_API' => RASPI_CONFIG.'/api',
@@ -65,6 +65,7 @@ $defaults = [
   'RASPI_SYSTEM_ENABLED' => true,
   'RASPI_MONITOR_ENABLED' => false,
   'RASPI_RESTAPI_ENABLED' => false,
+  'RASPI_PLUGINS_ENABLED' => true,
 
   // Locale settings
   'LOCALE_ROOT' => 'locale',

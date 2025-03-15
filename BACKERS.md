@@ -1,4 +1,4 @@
-<img width="465" alt="Insiders logo" src="https://user-images.githubusercontent.com/229399/115766971-e19e1900-a3a8-11eb-8c6f-379deb4313d2.png"> 
+<img width="465" alt="Insiders logo" src="https://i.imgur.com/62TMUy5.png">
 
 Development of RaspAP is made possible thanks to a sponsorware release model. This means that new features are first exclusively released to sponsors as part of **Insiders**. Read on to learn how sponsorship works, and how easy it is to get access to Insiders.
 

@@ -1,10 +1,9 @@
-![](https://i.imgur.com/xeKD93p.png)
-[![Release 3.2.5](https://img.shields.io/badge/release-v3.2.5-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Join Insiders](https://img.shields.io/static/v1?label=Insiders&message=%E2%9D%A4&logo=GitHub&color=ff69b4)](https://github.com/sponsors/RaspAP) [![Build Status](https://app.travis-ci.com/RaspAP/raspap-webgui.svg?branch=master)](https://app.travis-ci.com/RaspAP/raspap-webgui) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Reddit](https://img.shields.io/badge/%2Fr%2FRaspAP-e05d44?style=flat&logo=Reddit&logoColor=white&labelColor=e05d44&color=b14835)](https://reddit.com/r/RaspAP) [![Discord](https://img.shields.io/discord/642436993451819018?color=7289DA&label=Discord&logo=discord&style=flat)](https://discord.gg/KVAsaAR)
+![RaspAP Custom OS images](https://github.com/user-attachments/assets/e871adf1-123c-450b-94eb-80a185c242cc)
+[![Release 3.2.9](https://img.shields.io/badge/release-v3.2.9-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Join Insiders](https://img.shields.io/static/v1?label=Insiders&message=%E2%9D%A4&logo=GitHub&color=ff69b4)](https://github.com/sponsors/RaspAP) [![Build Status](https://app.travis-ci.com/RaspAP/raspap-webgui.svg?branch=master)](https://app.travis-ci.com/RaspAP/raspap-webgui) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Reddit](https://img.shields.io/badge/%2Fr%2FRaspAP-e05d44?style=flat&logo=Reddit&logoColor=white&labelColor=e05d44&color=b14835)](https://reddit.com/r/RaspAP) [![Discord](https://img.shields.io/discord/642436993451819018?color=7289DA&label=Discord&logo=discord&style=flat)](https://discord.gg/KVAsaAR)
 
+RaspAP is feature-rich wireless router software that _just works_ on many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our [custom OS images](#pre-built-image), [Quick installer](#quick-installer) and [Docker container](#docker-support) create a known-good default configuration for all current Raspberry Pis with onboard wireless. A fully responsive, mobile-ready interface gives you control over the relevant services and networking options. Advanced DHCP settings, WireGuard and OpenVPN support, [SSL certificates](https://docs.raspap.com/ssl/), [ad blocking](#ad-blocking), security audits, [captive portal integration](https://docs.raspap.com/captive/), themes and [multilingual options](https://docs.raspap.com/translations/) are included.
 
-RaspAP is feature-rich wireless router software that _just works_ on many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our popular [Quick installer](#quick-installer) and [Docker container](#docker-support) create a known-good default configuration for all current Raspberry Pis with onboard wireless. A fully responsive, mobile-ready interface gives you control over the relevant services and networking options. Advanced DHCP settings, WireGuard and OpenVPN support, [SSL certificates](https://docs.raspap.com/ssl/), security audits, [captive portal integration](https://docs.raspap.com/captive/), themes and [multilingual options](https://docs.raspap.com/translations/) are included.
-
-RaspAP has been featured on sites such as [Instructables](http://www.instructables.com/id/Raspberry-Pi-As-Completely-Wireless-Router/), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/) and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in countless projects.
+RaspAP has been featured by [PC World](https://www.pcwelt.de/article/1789512/raspberry-pi-als-wlan-router.html), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/), and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in [countless projects](https://github.com/RaspAP/raspap-awesome#projects).
 
 We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/raspap/raspap-awesome).
 
@@ -18,15 +17,13 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
 
 ## Contents
 
- - [Prerequisites](#prerequisites)
- - [Quick installer](#quick-installer)
+ - [Quick start](#quick-start)
  - [Join Insiders](#join-insiders)
  - [WireGuard support](#wireguard-support)
  - [OpenVPN support](#openvpn-support)
  - [VPN Provider support](#vpn-provider-support)
  - [Ad Blocking](#ad-blocking)
  - [Bridged AP](#bridged-ap)
- - [Simultaneous AP and Wifi client](#simultaneous-ap-and-wifi-client)
  - [Manual installation](#manual-installation)
  - [802.11ac 5GHz support](#80211ac-5ghz-support)
  - [Supported operating systems](#supported-operating-systems)
@@ -38,30 +35,43 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [Reporting issues](#reporting-issues)
  - [License](#license)
 
-## Prerequisites
-Start with a clean install of the [latest release of Raspberry Pi OS Lite](https://www.raspberrypi.com/software/operating-systems/). Both the 32- and 64-bit Lite versions are supported. The Raspberry Pi OS desktop distro is [unsupported](https://docs.raspap.com/faq/#distros).
+## Quick start
+RaspAP gives you two different ways to get up and running quickly. The simplest and recommended approach is to use a custom Raspberry Pi OS image with RaspAP preinstalled. This option eliminates guesswork and gives you a base upon which to build. Alternatively, you may execute the Quick installer on an existing [compatible OS](https://docs.raspap.com/#compatible-operating-systems).
 
-1. Update Raspbian, including the kernel and firmware, followed by a reboot:
+### Pre-built image
+Custom Raspberry Pi OS Lite images with the latest RaspAP are available for [direct download](https://github.com/RaspAP/raspap-webgui/releases/latest). This includes both 32- and 64-bit builds for ARM architectures.
+
+| Operating system     | Debian version | Kernel version  | RaspAP version | Size  |
+| ---------------------| ---------------|-----------------|----------------|-------|
+| Raspberry Pi OS (64-bit) Lite | 12 (bookworm)  | 6.6             | Latest         | 777 MB|
+| Raspberry Pi OS (32-bit) Lite | 12 (bookworm)  | 6.6             | Latest         | 805 MB|
+
+These images are automatically generated with each release of RaspAP. You may choose between an `arm64` or `armhf` (32-bit) based build. Refer to [this resource](https://www.raspberrypi.com/software/operating-systems/) to ensure compatibility with your hardware.
+
+After downloading your desired image from the [latest release page](https://github.com/RaspAP/raspap-webgui/releases/latest), use a utility such as the Raspberry Pi Imager or [balenaEtcher](https://www.balena.io/etcher) to flash the OS image onto a microSD card. Insert the card into your device and boot it up. The latest RaspAP release version with the most popular optional components will be active and ready for you to configure.
+
+### Quick installer
+Alternatively, start with a clean install of a [latest release of Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/). Both the 32- and 64-bit release versions are supported, as well as the latest 64-bit Desktop distribution.
+
+Update RPi OS to its latest version, including the kernel and firmware, followed by a reboot:
+
 ```
 sudo apt-get update
 sudo apt-get full-upgrade
 sudo reboot
 ```
-2. Set the "WLAN country" option in `raspi-config`'s **Localisation Options**: `sudo raspi-config`
+Set the WiFi country in raspi-config's **Localisation Options**: `sudo raspi-config`.
 
-3. If you have a device without an onboard wireless chipset, the [**Edimax Wireless 802.11b/g/n nano USB adapter**](https://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_n150/ew-7811un) is an excellent option – it's small, cheap and has good driver support.
-
-With the prerequisites done, you can proceed with either the Quick installer or Manual installation steps below.
-
-## Quick installer
 Install RaspAP from your device's shell prompt:
 ```sh
 curl -sL https://install.raspap.com | bash
 ```
-The [installer](https://docs.raspap.com/quick/) will complete the steps in the manual installation (below) for you.
 
-After the reboot at the end of the installation the wireless network will be
-configured as an access point as follows:
+The Quick installer will respond to several [command line arguments](https://docs.raspap.com/quick/), or switches, to customize your installation in a variety of ways, or install one of RaspAP's optional helper tools.
+
+### Initial settings
+After completing either of these setup options, the wireless AP network will be configured as follows:
+
 * IP address: 10.3.141.1
   * Username: admin
   * Password: secret
@@ -69,7 +79,7 @@ configured as an access point as follows:
 * SSID: `raspi-webgui`
 * Password: ChangeMe
 
-**Note:** As the name suggests, the Quick Installer is a great way to quickly setup a new AP. However, it does not automagically detect the unique configuration of your system. Best results are obtained by connecting to ethernet (`eth0`) or as a WiFi client, also known as managed mode, with `wlan0`. For the latter, refer to [this FAQ](https://docs.raspap.com/faq/#headless). Special instructions for the Pi Zero W are [available here](https://docs.raspap.com/ap-sta/).
+It's _strongly recommended_ that your first post-install action is to change the default admin [authentication](https://docs.raspap.com/authentication/) settings. Thereafter, your AP's [basic settings](https://docs.raspap.com/ap-basics/) and many [advanced options](https://docs.raspap.com/ap-basics#advanced-options) are now ready to be modified by RaspAP.
 
 Please [read this](https://docs.raspap.com/issues/) before reporting an issue.
 
@@ -118,11 +128,6 @@ By default RaspAP configures a routed AP for your clients to connect to. A bridg
 
 More information on Bridged AP mode is provided [in our documentation](https://docs.raspap.com/bridged/).
 
-## Simultaneous AP and Wifi client
-RaspAP lets you create an AP with a Wifi client configuration, often called [AP-STA mode](https://docs.raspap.com/ap-sta/). With your system configured in managed mode, enable the AP from the **Advanced** tab of **Configure hotspot** by sliding the **Wifi client AP mode** toggle. Save settings and start the hotspot. The managed mode AP is functional without restart.
-
-**Note:** This option is disabled until you configure your system as a wireless client. For a device operating in [managed mode](https://docs.raspap.com/faq/#headless) without an `eth0` connection, this configuration must be enabled [_before_ a reboot](https://docs.raspap.com/ap-sta/). 
-
 ## Manual installation
 Detailed manual setup instructions are provided [on our documentation site](https://docs.raspap.com/manual/).
 
@@ -139,11 +144,10 @@ RaspAP was originally made for Raspbian, but now also installs on the following 
 | Raspberry Pi OS | (64-bit) Desktop Bookworm | ARM | Official |
 | Raspberry Pi OS | (64-bit) Lite Bullseye | ARM | Official |
 | Raspberry Pi OS | (32-bit) Lite Bullseye | ARM | Official |
-| Armbian | 23.11 (Jammy) | [ARM](https://docs.armbian.com/#supported-socs) | Official |
+| Armbian | 23.11 (Jammy) | [ARM](https://docs.armbian.com/#supported-socs) | Beta |
 | Debian  |  Bookworm | ARM / x86_64  | Beta |
-| Ubuntu  |  Server 23.04 (Lunar) | ARM / x86_64  | Beta |
 
-<img src="https://github.com/RaspAP/raspap-webgui/assets/229399/6fe62f2d-631a-46c9-8ceb-83ebf0ade6a9" style="width:640px;" />
+<img src="https://i.imgur.com/XiAJNKb.png" style="width:480px;" />
 
 You are also encouraged to use RaspAP's community-led [Docker container](#docker-support). Please note that "supported" is not a guarantee. If you are able to improve support for your preferred distro, we encourage you to [actively contribute](#how-to-contribute) to the project.
 

@@ -177,15 +177,17 @@ function getDefaultNetOpts($svc,$key)
  * @param string $key
  * @return object $json
  */
-function getProviderValue($id,$key)
+function getProviderValue($id, $key)
 {
     $obj = json_decode(file_get_contents(RASPI_CONFIG_PROVIDERS), true);
-    if ($obj === null) {
+    if (!isset($obj['providers']) || !is_array($obj['providers'])) {
         return false;
-    } else {
-        $id--;
-        return $obj['providers'][$id][$key];
     }
+    $id--;
+    if (!isset($obj['providers'][$id]) || !is_array($obj['providers'][$id])) {
+        return false;
+    }
+    return $obj['providers'][$id][$key] ?? false;
 }
 
 /* Functions to write ini files */
@@ -629,6 +631,13 @@ function mb_escapeshellarg($arg)
     }
 }
 
+function safeOutputValue($def, $arr)
+{
+    if (array_key_exists($def, $arr)) {
+        echo htmlspecialchars($arr[$def], ENT_QUOTES);
+    }
+}
+
 function dnsServers()
 {
     $data = json_decode(file_get_contents("./config/dns-servers.json"));
@@ -1038,5 +1047,27 @@ function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cp
       </div>
     </div>
     <?php
+}
+
+
+/**
+ * Executes a callback with a timeout
+ *
+ * @param callable $callback function to execute
+ * @param int $interval timeout in milliseconds
+ * @return mixed result of the callback
+ * @throws \Exception if the execution exceeds the timeout or an error occurs
+ */
+function callbackTimeout(callable $callback, int $interval)
+{
+    $startTime = microtime(true); // use high-resolution timer
+    $result = $callback();
+    $elapsed = (microtime(true) - $startTime) * 1000;
+
+    if ($elapsed > $interval) {
+        throw new \Exception('Operation timed out');
+    }
+
+    return $result;
 }
 
