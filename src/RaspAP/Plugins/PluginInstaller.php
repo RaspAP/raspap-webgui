@@ -361,13 +361,14 @@ class PluginInstaller
      * @param array $keys Array containing key_url, keyring, repo, and sources
      * @throws Exception on key installation failure
      */
-    public function installRepositoryKeys(array $keys)
+    public function installRepositoryKeys(array $keys): void
     {
-        error_log("executing installRepositoryKeys()");
-
+        if (!is_array($keys)) {
+            throw new \Exception("Invalid repository key structure: array expected");
+        }
         foreach ($keys as $keyData) {
             if (!isset($keyData['key_url'], $keyData['keyring'], $keyData['repo'], $keyData['sources'])) {
-                throw new \Exception("Invalid repository key structure");
+                throw new \Exception("Invalid repository key structure: " . json_encode($keyData));
             }
             $cmd = sprintf(
                 'sudo %s keys %s %s %s %s',
@@ -379,7 +380,7 @@ class PluginInstaller
             );
             $return = shell_exec($cmd);
             if (strpos(strtolower($return), 'ok') === false) {
-                throw new \Exception("Failed to add repository and key for {$keyData['repo']}");
+                throw new \Exception("Failed to add repository and key");
             }
         }
     }
