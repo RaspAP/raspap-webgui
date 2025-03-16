@@ -20,65 +20,61 @@
       <div class="card-wrapper">
 
         <div class="card">
-
           <div class="card-body">
             <h4 class="card-title">
               <?php echo _('Current status'); ?>
             </h4>
-
             <div class="dashboard-container row">
+
               <div class="connections-left col-lg-4">
                 <div class="connection-item active">
-                  <span>Ethernet</span>
+                <span><?php echo _("Ethernet"); ?></span>
                   <i class="fas fa-ethernet fa-2xl"></i>
                 </div>
                 <div class="connection-item">
-                  <span>Repeater</span>
+                  <span><?php echo _("Repeater"); ?></span>
                   <i class="fas fa-wifi fa-2xl"></i>
                 </div>
                 <div class="connection-item">
-                  <span>Tethering</span>
+                  <span><?php echo _("Tethering"); ?></span>
                   <i class="fas fa-mobile-alt fa-2xl"></i>
                 </div>
                 <div class="connection-item">
-                  <span>Cellular</span>
+                  <span><?php echo _("Cellular"); ?></span>
                   <i class="fas fa-broadcast-tower fa-2xl"></i>
                 </div>
                 <img src="app/img/dashed.svg" class="dashed-lines" alt="">
-                <img src="app/img/solid.php?joint&device-1&out&device-2" class="solid-lines" alt="">
+                <img src="app/img/solid.php?joint&device-1&out&device-3" class="solid-lines" alt="">
               </div>
-
               <div class="center-device col-12 col-lg-4">
                 <div class="top" style="margin-bottom: 50px">
-                  <img class="device-illustration" src="app/img/device.svg" alt="Raspberry Pi">
-                  <div class="device-label">Raspberry Pi 3 Model B+</div>
+                  <a href="/system_info"><img class="device-illustration" src="app/img/device.svg" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
+                  <div class="device-label"><a href="/system_info"><?php echo htmlspecialchars($revision, ENT_QUOTES); ?></a></div>
                 </div>
 
                 <div class="bottom">
-                  <div class="device-status ">
+                  <div class="device-status">
+                    <a href="/hostapd_conf">
                     <div class="status-item active">
                       <i class="fas fa-bullseye fa-2xl"></i>
-                      <span>
-                        <?php echo _('AP'); ?>
-                      </span>
+                      <span><?php echo _('AP'); ?></span>
                     </div>
+                    </a>
+                    <a href="/hostapd_conf">
                     <div class="status-item">
                       <i class="fas fa-bridge fa-2xl"></i>
-                      <span>
-                        <?php echo _('Bridged'); ?>
-                      </span>
+                      <span><?php echo _('Bridged'); ?></span>
                     </div>
-                    <div class="status-item">
-                      <i class="fas fa-hand-paper fa-2xl"></i>
-                      <span>
-                        <?php echo _('Adblock'); ?>
-                      </span>
+                    </a>
+                    <a href="/adblock_conf">
+                    <div class="status-item active">
+                      <i class="far fa-hand-paper fa-2xl"></i>
+                      <span><?php echo _('Adblock'); ?></span>
                     </div>
+                    </a>
                     <div class="status-item">
                       <i class="fas fa-shield-alt fa-2xl"></i>
-                      <span>
-                        <?php echo _('VPN'); ?>
-                      </span>
+                      <span><?php echo _('VPN'); ?></span>
                     </div>
                     <div class="status-item disabled">
                       <span class="fa-stack fa-2xl" style="line-height: 0!important;height: 100%!important;">
@@ -116,16 +112,16 @@
                   <div class="connection-item connection-right">
                     <span class="fa-stack">
                       <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
-                      <i class="fas fa-wifi fa-stack-1x fa-xl" style="line-height: 0!important;"></i>
+                      <i class="fas fa-wifi fa-stack-1x fa-xs"></i>
                     </span>
-                    <span>3 WLAN Clients</span>
+                    <span class="text-nowrap">3 WLAN Clients</span>
                   </div>
                   <div class="connection-item connection-right">
                     <span class="fa-stack">
                       <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
-                      <i class="fas fa-wifi fa-stack-1x fa-xl" style="line-height: 0!important;"></i>
+                      <i class="fas fa-ethernet fa-stack-1x fa-xs"></i>
                     </span>
-                    <span>1 LAN Client</span>
+                    <span class="text-nowrap">1 LAN Client</span>
                   </div>
                 </div>
 
@@ -153,10 +149,7 @@
           </form>
         </div>
       </div>
-
-
-
-      <div class="card-footer"><?php echo _("Information provided by ip and iw and from system"); ?></div>
+      <div class="card-footer"><?php echo _("Information provided by raspap.sysinfo"); ?></div>
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
