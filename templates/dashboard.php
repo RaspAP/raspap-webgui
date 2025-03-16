@@ -47,27 +47,29 @@
                 <img src="app/img/solid.php?joint&device-1&out&device-3" class="solid-lines" alt="">
               </div>
               <div class="center-device col-12 col-lg-4">
-                <div class="top" style="margin-bottom: 50px">
+                <div class="center-device-top">
                   <a href="/system_info"><img class="device-illustration" src="app/img/device.svg" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
                   <div class="device-label"><a href="/system_info"><?php echo htmlspecialchars($revision, ENT_QUOTES); ?></a></div>
+                  <div class="mt-1">IP address: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Addrs, ENT_QUOTES); ?></a></div>
+                  <div>SSID: <a href="/hostapd_conf"><?php echo htmlspecialchars("RaspAP", ENT_QUOTES); ?></a></div>
                 </div>
 
                 <div class="bottom">
                   <div class="device-status">
                     <a href="/hostapd_conf">
-                    <div class="status-item active">
+                    <div class="status-item <?php echo $hostapdStatus; ?>">
                       <i class="fas fa-bullseye fa-2xl"></i>
                       <span><?php echo _('AP'); ?></span>
                     </div>
                     </a>
                     <a href="/hostapd_conf">
-                    <div class="status-item">
+                    <div class="status-item <?php echo $bridgedStatus; ?>">
                       <i class="fas fa-bridge fa-2xl"></i>
                       <span><?php echo _('Bridged'); ?></span>
                     </div>
                     </a>
                     <a href="/adblock_conf">
-                    <div class="status-item active">
+                    <div class="status-item <?php echo $adblockStatus; ?>">
                       <i class="far fa-hand-paper fa-2xl"></i>
                       <span><?php echo _('Adblock'); ?></span>
                     </div>
@@ -76,10 +78,10 @@
                       <i class="fas fa-shield-alt fa-2xl"></i>
                       <span><?php echo _('VPN'); ?></span>
                     </div>
-                    <div class="status-item disabled">
+                    <div class="status-item <?php echo $firewallStatus; ?>">
                       <span class="fa-stack fa-2xl" style="line-height: 0!important;height: 100%!important;">
                         <i class="fas fa-fire-flame-curved fa-stack-1x"></i>
-                        <i class="fas fa-slash fa-stack-1x"></i>
+                        <?php echo $firewallStack; ?>
                       </span>
                       <span>
                         <?php echo _('Firewall'); ?>
@@ -153,10 +155,4 @@
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
-<script type="text/javascript"<?php //echo ' nonce="'.$csp_page_nonce.'"'; ?>>
-// js translations:
-var t = new Array();
-  t[' send'] = '<?php echo addslashes(_(' Send')); ?>';
-  t['receive'] = '
-    <? php echo addslashes(_('Receive')); ?> ';
-</script>
+

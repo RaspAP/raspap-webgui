@@ -9,10 +9,15 @@ require_once 'includes/functions.php';
  */
 function DisplayDashboard()
 {
+    // instantiate RaspAP objects
     $status = new \RaspAP\Messages\StatusMessage;
     $system = new \RaspAP\System\Sysinfo;
+    $pluginManager = \RaspAP\Plugins\PluginManager::getInstance();
+
     $hostname = $system->hostname();
     $revision = $system->rpiRevision();
+    $hostapd = $system->hostapdStatus();
+    $adblock = $system->adBlockStatus();
 
     getWifiInterface();
 
@@ -26,7 +31,7 @@ function DisplayDashboard()
     $ipv4Addrs = '';
     $ipv4Netmasks = '';
     if (!preg_match_all('/inet (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/([0-3][0-9])/i', $stdoutIpWRepeatedSpaces, $matchesIpv4AddrAndSubnet, PREG_SET_ORDER)) {
-        $ipv4Addrs = _('No IPv4 Address Found');
+        $ipv4Addrs = _('None');
     } else {
         foreach ($matchesIpv4AddrAndSubnet as $inet) {
             $address = $inet[1];
@@ -152,6 +157,15 @@ function DisplayDashboard()
         exec('cat ' . RASPI_DNSMASQ_LEASES . '| grep -E $(iw dev ' . $apInterface . ' station dump | grep -oE ' . $MACPattern . ' | paste -sd "|")', $clients);
     }
     $ifaceStatus = $wlan0up ? "up" : "down";
+
+    $plugins = $pluginManager->getInstalledPlugins();
+    $bridgedStatus = ($bridgedEnable == 1) ? "active" : "";
+    $hostapdStatus = ($hostapd[0] == 1) ?  "active" : "";
+    $adblockStatus = ($adblock == true) ?  "active" : "";
+    $firewallInstalled = array_filter($plugins, fn($p) => str_ends_with($p, 'Firewall')) ? true : false;
+    if (!$firewallInstalled) {
+        $firewallStack = '<i class="fas fa-slash fa-stack-1x"></i>';
+    }
     echo renderTemplate(
         "dashboard", compact(
             "clients",
@@ -159,7 +173,10 @@ function DisplayDashboard()
             "apInterface",
             "clientInterface",
             "ifaceStatus",
-            "bridgedEnable",
+            "bridgedStatus",
+            "hostapdStatus",
+            "adblockStatus",
+            "firewallStack",
             "status",
             "ipv4Addrs",
             "ipv4Netmasks",
