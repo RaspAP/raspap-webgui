@@ -78,7 +78,7 @@ class PluginInstaller
 
                     if (!empty($plugin['namespace'])) {
                         foreach ($installedPlugins as $installedPlugin) {
-                            if (str_contains($installedPlugin['class'], $plugin['namespace'])) {
+                            if (strpos($installedPlugin['class'], $plugin['namespace']) !== false) {
                                 $installed = true;
                                 break;
                             }
