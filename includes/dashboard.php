@@ -5,24 +5,17 @@ require_once 'includes/wifi_functions.php';
 require_once 'includes/functions.php';
 
 /**
- * Show dashboard page.
+ * Displays the dashboard
  */
-function DisplayDashboard(&$extraFooterScripts)
+function DisplayDashboard()
 {
-    getWifiInterface();
     $status = new \RaspAP\Messages\StatusMessage;
-    // Need this check interface name for proper shell execution.
-    if (!preg_match('/^([a-zA-Z0-9]+)$/', $_SESSION['wifi_client_interface'])) {
-        $status->addMessage(_('Interface name invalid.'), 'danger');
-        $status->showMessages();
-        return;
-    }
+    $system = new \RaspAP\System\Sysinfo;
+    $hostname = $system->hostname();
+    $revision = $system->rpiRevision();
 
-    if (!function_exists('exec')) {
-        $status->addMessage(_('Required exec function is disabled. Check if exec is not added to php disable_functions.'), 'danger');
-        $status->showMessages();
-        return;
-    }
+    getWifiInterface();
+
     exec('ip a show '.$_SESSION['ap_interface'], $stdoutIp);
     $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
     $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
@@ -59,43 +52,10 @@ function DisplayDashboard(&$extraFooterScripts)
     preg_match('/state (UP|DOWN)/i', $stdoutIpWRepeatedSpaces, $matchesState) || $matchesState[1] = 'unknown';
     $interfaceState = $matchesState[1];
 
-    // Because of table layout used in the ip output we get the interface statistics directly from
-    // the system. One advantage of this is that it could work when interface is disable.
-    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/rx_packets ', $stdoutCatRxPackets);
-    $strRxPackets = _('No data');
-    if (ctype_digit($stdoutCatRxPackets[0])) {
-        $strRxPackets = $stdoutCatRxPackets[0];
-    }
-
-    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/tx_packets ', $stdoutCatTxPackets);
-    $strTxPackets = _('No data');
-    if (ctype_digit($stdoutCatTxPackets[0])) {
-        $strTxPackets = $stdoutCatTxPackets[0];
-    }
-
-    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/rx_bytes ', $stdoutCatRxBytes);
-    $strRxBytes = _('No data');
-    if (ctype_digit($stdoutCatRxBytes[0])) {
-        $strRxBytes = $stdoutCatRxBytes[0];
-        $strRxBytes .= getHumanReadableDatasize($strRxBytes);
-    }
-
-    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/tx_bytes ', $stdoutCatTxBytes);
-    $strTxBytes = _('No data');
-    if (ctype_digit($stdoutCatTxBytes[0])) {
-        $strTxBytes = $stdoutCatTxBytes[0];
-        $strTxBytes .= getHumanReadableDatasize($strTxBytes);
-    }
-
-    exec ('vnstat --dbiflist', $stdoutVnStatDB);
-    if (!preg_match('/'.$_SESSION['ap_interface'].'/', $stdoutVnStatDB[0])) {
-        exec('sudo vnstat --add --iface '.$_SESSION['ap_interface'], $return);
-    }
 
     define('SSIDMAXLEN', 32);
-    // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
-    exec('iw dev ' .$_SESSION['wifi_client_interface']. ' link ', $stdoutIw);
-    $stdoutIwAllLinesGlued = implode('+', $stdoutIw); // Break lines with character illegal in SSID and MAC addr
+    exec('iw dev ' .$_SESSION['ap_interface']. ' info ', $stdoutIw);
+    $stdoutIwAllLinesGlued = implode('+', $stdoutIw);
     $stdoutIwWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwAllLinesGlued);
 
     preg_match('/Connected to (([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2}))/', $stdoutIwWRepSpaces, $matchesBSSID) || $matchesBSSID[1] = '';
@@ -132,9 +92,6 @@ function DisplayDashboard(&$extraFooterScripts)
     preg_match('/txpower ([0-9\.]+ dBm)/i', $stdoutIpInfoWRepSpaces, $matchesTxPower) || $matchesTxPower[1] = '';
     $txPower = $matchesTxPower[1];
 
-    // iw does not have the "Link Quality". This is a is an aggregate value,
-    // and depends on the driver and hardware.
-    // Display link quality as signal quality for now.
     $strLinkQuality = 0;
     if ($signalLevel > -100 && $wlanHasLink) {
         if ($signalLevel >= 0) {
@@ -181,7 +138,6 @@ function DisplayDashboard(&$extraFooterScripts)
             $status->addMessage(sprintf(_('Interface is %s.'), strtolower($interfaceState)), $classMsgDevicestatus);
         }
     }
-    // brought in from template
     $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
     $bridgedEnable = $arrHostapdConf['BridgedEnable'];
     $clientInterface = $_SESSION['wifi_client_interface'];
@@ -196,7 +152,6 @@ function DisplayDashboard(&$extraFooterScripts)
         exec('cat ' . RASPI_DNSMASQ_LEASES . '| grep -E $(iw dev ' . $apInterface . ' station dump | grep -oE ' . $MACPattern . ' | paste -sd "|")', $clients);
     }
     $ifaceStatus = $wlan0up ? "up" : "down";
-
     echo renderTemplate(
         "dashboard", compact(
             "clients",
@@ -210,21 +165,12 @@ function DisplayDashboard(&$extraFooterScripts)
             "ipv4Netmasks",
             "ipv6Addrs",
             "macAddr",
-            "strRxPackets",
-            "strRxBytes",
-            "strTxPackets",
-            "strTxBytes",
             "connectedSSID",
             "connectedBSSID",
-            "bitrate",
-            "signalLevel",
-            "txPower",
             "frequency",
-            "strLinkQuality",
+            "revision",
             "wlan0up"
         )
     );
-    $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);
-    $extraFooterScripts[] = array('src'=>'app/js/linkquality.js', 'defer'=>false);
 }
 
