@@ -318,7 +318,7 @@ function _create_hostapd_scripts() {
 # Generate plugin helper scripts
 function _create_plugin_scripts() {
     _install_log "Creating plugin helper scripts"
-    sudo mkdir $raspap_dir/plugins || _install_status 1 "Unable to create directory '$raspap_dir/plugins'"
+    sudo mkdir -p $raspap_dir/plugins || _install_status 1 "Unable to create directory '$raspap_dir/plugins'"
 
     # Copy plugin helper script
     sudo cp "$webroot_dir/installers/"plugin_helper.sh "$raspap_dir/plugins" || _install_status 1 "Unable to move plugin script"
