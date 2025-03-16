@@ -12,7 +12,7 @@ if (isset($_POST['csrf_token'])) {
     }
     // set installer path + options
     $path = getenv("DOCUMENT_ROOT");
-    $opts = " --update --yes --path $path";
+    $opts = " --update --yes --check 0 --path $path";
     $installer = "sudo /etc/raspap/system/raspbian.sh";
     $execUpdate = $installer.$opts;
 
