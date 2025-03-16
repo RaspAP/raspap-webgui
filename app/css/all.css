@@ -9,7 +9,7 @@ License: GNU General Public License v3.0
 :root {
   --raspap-content-main: #495057;
   --raspap-text-muted: #858796;
-  --raspap-text-light: #7d7e7e;
+  --raspap-text-light: #999999;
   --raspap-brand-color: #2b8080;
   --raspap-offwhite: #faf9f6;
 }
@@ -448,6 +448,10 @@ textarea.plugin-log {
   z-index: 1;
 }
 
+.center-device-top {
+  margin-bottom: 30px;
+}
+
 .client-group {
   display: flex;
   align-items: center;
@@ -491,7 +495,7 @@ textarea.plugin-log {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  margin: 1rem 0;
+  margin: 0.8rem 0;
 }
 
 .wifi-bands {
@@ -501,11 +505,11 @@ textarea.plugin-log {
 
 .band {
   padding: 0.25rem 1rem;
-  border: 2px solid #7D7E7E;
+  border: 2px solid var(--raspap-text-light);
   border-radius: 4px;
   background: transparent;
   font-weight: 600;
-  color: #7D7E7E;
+  color: var(--raspap-text-light);
 }
 
 .band.active {
