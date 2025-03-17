@@ -172,11 +172,6 @@ canvas#divDBChartBandwidthhourly {
   height: 350px!important;
 }
 
-.chart-container {
-  height: 150px;
-  width: 200px;
-}
-
 .dbChart {
   display: flex;
   height: 80%;
@@ -191,7 +186,7 @@ canvas#divDBChartBandwidthhourly {
 }
 
 .check-progress {
-  color: #999;
+  color: var(--raspap-text-light);
 }
 
 .fa-check {
@@ -518,7 +513,7 @@ textarea.plugin-log {
 }
 
 .device-label {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-align: center;
   color: var(--raspap-brand-color);
   margin-top: 1rem;
@@ -589,6 +584,7 @@ textarea.plugin-log {
 .status-item.active > i {
   color: var(--raspap-brand-color)!important;
 }
+
 .clients-mobile {
   display: none;
   flex-direction: column;
@@ -642,4 +638,6 @@ textarea.plugin-log {
 
 .device-illustration {
   min-width: 220px;
+  max-width: 250px;
 }
+
