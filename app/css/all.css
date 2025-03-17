@@ -508,14 +508,14 @@ textarea.plugin-log {
 }
 
 .band.active {
-  border-color: var(--raspap-brand-color);
-  color: var(--raspap-brand-color);
+  border-color: var(--raspap-theme-color);
+  color: var(--raspap-theme-color);
 }
 
 .device-label {
   font-size: 1.3rem;
   text-align: center;
-  color: var(--raspap-brand-color);
+  color: var(--raspap-theme-color);
   margin-top: 1rem;
 }
 
@@ -573,16 +573,16 @@ textarea.plugin-log {
   }
 }
 .connection-item.active > span {
-  color: var(--raspap-brand-color)!important;
+  color: var(--raspap-theme-color)!important;
 }
 .connection-item.active > i {
-  color: var(--raspap-brand-color)!important;
+  color: var(--raspap-theme-color)!important;
 }
 .status-item.active > span {
-  color: var(--raspap-brand-color)!important;
+  color: var(--raspap-theme-color)!important;
 }
 .status-item.active > i {
-  color: var(--raspap-brand-color)!important;
+  color: var(--raspap-theme-color)!important;
 }
 
 .clients-mobile {
@@ -601,7 +601,7 @@ textarea.plugin-log {
 
 .client-type i {
   font-size: 1.5rem;
-  color: var(--raspap-brand-color);
+  color: var(--raspap-theme-color);
   background: #fff;
   width: 45px;
   height: 45px;
@@ -609,12 +609,12 @@ textarea.plugin-log {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--raspap-brand-color);
+  border: 2px solid var(--raspap-theme-color);
 }
 
 .client-type i.badge-icon {
   font-size: 0.7rem;
-  background: var(--raspap-brand-color);
+  background: var(--raspap-theme-color);
   color: white;
   width: 20px;
   height: 20px;
