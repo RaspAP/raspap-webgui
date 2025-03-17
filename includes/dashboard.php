@@ -256,26 +256,31 @@ function getWirelessClients() {
 }
 
 /*
- * Parses output from the system ARP cache to obtain a list of
- * IPv4 network neighbors
+ * Retrieves ethernet neighbors from ARP cache, parses DHCP leases 
+ * to find matching MAC addresses and returns only clients that
+ * exist in both sources
  *
- * @return integer $clientCount
+ * @return int $clients
  */
-function getEthernetClients() {
-    exec('arp -n', $output, $status);
+function getEthernetClients(): int {
+    $arpOutput = shell_exec("ip neigh show | awk '{print $5}' | sort -u");
+    $arpMacs = array_filter(explode("\n", trim($arpOutput)));
 
-    if ($status !== 0) {
-        return 0; // Return 0 if the command fails
-    }
-    // enumerate IP addresses (ethernet 'neighbors') in the output
-    $clientCount = 0;
-    foreach ($output as $line) {
-        // skip the first line (header)
-        if (strpos($line, 'Address') === false) {
-            $clientCount++;
+    $leaseFile = RASPI_DNSMASQ_LEASES;
+    $dhcpMacs = [];
+
+    if (file_exists($leaseFile)) {
+        $leases = file($leaseFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($leases as $lease) {
+            $parts = explode(' ', $lease);
+            if (isset($parts[1])) {
+                $dhcpMacs[] = $parts[1]; // MAC address from DHCP leases
+            }
         }
     }
-    return $clientCount;
+    // filter ARP results to include only DHCP clients
+    $clients = array_intersect($arpMacs, $dhcpMacs);
+    return count($clients);
 }
 
 function formatClientLabel($clientCount) {
