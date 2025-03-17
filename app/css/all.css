@@ -477,12 +477,19 @@ textarea.plugin-log {
   object-fit: contain;
   padding: 1rem;
   left: 112px;
-  z-index: 0;
 }
 
 .dashed-lines-right,
 .solid-lines-right {
   left: -80px;
+}
+
+.solid-lines, .solid-lines-right {
+  z-index: 3;
+}
+
+.dashed-lines, .dashed-lines-right {
+  z-index 0;
 }
 
 .device-status {
