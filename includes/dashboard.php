@@ -28,7 +28,11 @@ function DisplayDashboard(): void
     $details = getInterfaceDetails($interface);
     $wireless = getWirelessDetails($interface);
     $connectedBSSID = getConnectedBSSID($interface);
+    $connectionType = getConnectionType();
     $state = strtolower($details['state']);
+    $wirelessClientCount = getWirelessClients();
+    $ethernetClientCount = getEthernetClients();
+    $totalClients = $wirelessClientCount + $ethernetClientCount;
     $plugins = $pluginManager->getInstalledPlugins();
 
     $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
@@ -46,9 +50,15 @@ function DisplayDashboard(): void
     $ipv4Netmask = $details['ipv4_netmask'];
     $macAddress = $details['mac'];
     $ssid = $wireless['ssid'];
+    $ethernetActive = ($connectionType === 'ethernet') ? "active" : "";
+    $wirelessActive = ($connectionType === 'wireless') ? "active" : "";
+    $tetheringActive = ($connectionType === 'tethering') ? "active" : "";
+    $cellularActive = ($connectionType === 'cellular') ? "active" : "";
     $bridgedStatus = ($bridgedEnable == 1) ? "active" : "";
     $hostapdStatus = ($hostapd[0] == 1) ?  "active" : "";
     $adblockStatus = ($adblock == true) ?  "active" : "";
+    $wirelessClientLabel = $wirelessClientCount. ' WLAN '.formatClientLabel($wirelessClientCount);
+    $ethernetClientLabel = $ethernetClientCount. ' LAN '.formatClientLabel($ethernerClientCount);
     $varName = "freq" . str_replace('.', '', $frequency) . "active";
     $$varName = "active";
     $vpnStatus = $vpn ? "active" : "inactive";
@@ -59,6 +69,7 @@ function DisplayDashboard(): void
     if (!$firewallInstalled) {
         $firewallUnavailable = '<i class="fas fa-slash fa-stack-1x"></i>';
     }
+
     echo renderTemplate(
         "dashboard", compact(
             "clients",
@@ -81,6 +92,14 @@ function DisplayDashboard(): void
             "frequency",
             "freq5active",
             "freq24active",
+            "wirelessClientLabel",
+            "ethernetClientLabel",
+            "totalClients",
+            "connectionType",
+            "ethernetActive",
+            "wirelessActive",
+            "tetheringActive",
+            "cellularActive",
             "revision"
         )
     );
@@ -213,6 +232,92 @@ function getSSID(string $output): string {
     return preg_match('/ssid ([^\n\s]+)/i', $output, $matches)
         ? $matches[1]
         : '-';
+}
+
+/*
+ * Parses the output of iw to obtain a list of wireless clients
+ *
+ * @return integer $clientCount
+ */
+function getWirelessClients() {
+    exec('iw dev wlan0 station dump', $output, $status);
+
+    if ($status !== 0) {
+        return 0;
+    }
+    // enumerate 'station' entries (each represents a wireless client)
+    $clientCount = 0;
+    foreach ($output as $line) {
+        if (strpos($line, 'Station') === 0) {
+            $clientCount++;
+        }
+    }
+    return $clientCount;
+}
+
+/*
+ * Parses output from the system ARP cache to obtain a list of
+ * IPv4 network neighbors
+ *
+ * @return integer $clientCount
+ */
+function getEthernetClients() {
+    exec('arp -n', $output, $status);
+
+    if ($status !== 0) {
+        return 0; // Return 0 if the command fails
+    }
+    // enumerate IP addresses (ethernet 'neighbors') in the output
+    $clientCount = 0;
+    foreach ($output as $line) {
+        // skip the first line (header)
+        if (strpos($line, 'Address') === false) {
+            $clientCount++;
+        }
+    }
+    return $clientCount;
+}
+
+function formatClientLabel($clientCount) {
+    return $clientCount === 1 ? 'client' : 'clients';
+}
+
+/*
+ * Determines the device's primary connection type by
+ * parsing the output of ip route; the interface listed
+ * as the default gateway is used for internet connectivity.
+ * 
+ * The following interface classifications are assumed:
+ * - ethernet (eth0, en*)
+ * - wireless (wlan0, wlan1, wlp*)
+ * - tethered USB (usb*, eth1)
+ * - cellular (ppp0, wwan0, wwp*)
+ * - fallback
+ * @return string
+ */ 
+function getConnectionType() {
+    // get the interface associated with the default route
+    $interface = trim(shell_exec("ip route show default | awk '{print $5}'"));
+
+    if (empty($interface)) {
+        return 'unknown';
+    }
+    // classify interface type
+    if (preg_match('/^eth\d+|enp\d+s\d+/', $interface)) {
+        return 'ethernet';
+    }
+    if (preg_match('/^wlan\d+|wlp\d+s\d+/', $interface)) {
+        return 'wireless';
+    }
+    if (preg_match('/^usb\d+|eth1$/', $interface)) {
+        return 'tethering';
+    }
+    if (preg_match('/^ppp\d+|wwan\d+|wwp\d+s\d+/', $interface)) {
+        return 'cellular';
+    }
+
+    // if none match, return the interface name as a fallback
+    return "other ($interface)";
 }
 
 /**
