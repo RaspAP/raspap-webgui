@@ -326,6 +326,27 @@ function getConnectionType() {
 }
 
 /**
+ * Renders a URL for an svg solid line representing the associated
+ * connection type
+ *
+ * @param string $connectionType
+ * @return string
+ */
+function renderConnection(string $connectionType): string
+{
+    $deviceMap = [
+        'ethernet'  => 'device-1',
+        'wireless'  => 'device-2',
+        'tethering' => 'device-3',
+        'cellular'  => 'device-4'
+    ];
+    $device = $deviceMap[$connectionType] ?? 'device-unknown';
+
+    // return generated URL for solid.php
+    return sprintf('app/img/solid.php?joint&%s&out', $device);
+}
+
+/**
  * Handles dashboard page actions
  *
  * @param string $state

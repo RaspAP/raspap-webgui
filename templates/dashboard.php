@@ -46,7 +46,7 @@
                   <span><?php echo _("Wireless"); ?></span>
                   <i class="fas fa-wifi fa-2xl"></i>
                 </div>
-                <div class="connection-item" <?php echo $tetheringActive; ?>>
+                <div class="connection-item <?php echo $tetheringActive; ?>">
                   <span><?php echo _("Tethering"); ?></span>
                   <i class="fas fa-mobile-alt fa-2xl"></i>
                 </div>
@@ -55,7 +55,7 @@
                   <i class="fas fa-broadcast-tower fa-2xl"></i>
                 </div>
                 <img src="app/img/dashed.svg" class="dashed-lines" alt="">
-                <img src="app/img/solid.php?joint&device-1&out" class="solid-lines" alt="">
+                <img src="<?php echo htmlspecialchars(renderConnection($connectionType)); ?>" class="solid-lines" alt="Network connection">
               </div>
               <div class="center-device col-12 col-lg-4">
                 <div class="center-device-top">
