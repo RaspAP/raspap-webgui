@@ -59,7 +59,7 @@
               </div>
               <div class="center-device col-12 col-lg-4">
                 <div class="center-device-top">
-                  <a href="/system_info"><img class="device-illustration" src="app/img/device.svg" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
+                  <a href="/system_info"><img class="device-illustration" src="app/img/device.php" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
                   <div class="device-label"><a href="/system_info"><?php echo htmlspecialchars($revision, ENT_QUOTES); ?></a></div>
                   <div class="mt-1 small">IP address: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Address, ENT_QUOTES); ?></a></div>
                   <div class="small">Netmask: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Netmask, ENT_QUOTES); ?></a></div>
@@ -142,7 +142,7 @@
                   </div>
                 </div>
 
-                <img src="app/img/right-solid.php?device-1&out" class="solid-lines solid-lines-right" alt="">
+                <img src="app/img/right-solid.php?device-1&out&device-2&out" class="solid-lines solid-lines-right" alt="">
                 <img src="app/img/right-dashed.svg" class="dashed-lines dashed-lines-right" alt="">
               </div>
             </div>
