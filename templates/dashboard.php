@@ -1,3 +1,14 @@
+<?php ob_start() ?>
+    <?php if (!RASPI_MONITOR_ENABLED) : ?>
+      <?php if ($state === "down") : ?>
+        <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$interface ?>" name="ifup_wlan0" />
+      <?php else : ?>
+        <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$interface ?>"  name="ifdown_wlan0" />
+      <?php endif ?>
+    <?php endif ?>
+    <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+<?php $buttons = ob_get_clean(); ob_end_clean() ?>
+
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
@@ -9,9 +20,9 @@
           </div>
           <div class="col">
             <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
-              <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
+              <span class="icon"><i class="fas fa-circle service-status-<?php echo $state ?>"></i></span>
               <span class="text service-status">
-                <?php echo strtolower($apInterface) .' '. _($ifaceStatus) ?>
+                <?php echo strtolower($interface) .' '. _($state) ?>
               </span>
             </button>
           </div>
@@ -21,11 +32,11 @@
 
         <div class="card">
           <div class="card-body">
+            <?php $status->showMessages(); ?>
             <h4 class="card-title">
               <?php echo _('Current status'); ?>
             </h4>
             <div class="dashboard-container row">
-
               <div class="connections-left col-lg-4">
                 <div class="connection-item active">
                 <span><?php echo _("Ethernet"); ?></span>
@@ -50,8 +61,10 @@
                 <div class="center-device-top">
                   <a href="/system_info"><img class="device-illustration" src="app/img/device.svg" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
                   <div class="device-label"><a href="/system_info"><?php echo htmlspecialchars($revision, ENT_QUOTES); ?></a></div>
-                  <div class="mt-1">IP address: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Addrs, ENT_QUOTES); ?></a></div>
-                  <div>SSID: <a href="/hostapd_conf"><?php echo htmlspecialchars("RaspAP", ENT_QUOTES); ?></a></div>
+                  <div class="mt-1 small">IP address: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Address, ENT_QUOTES); ?></a></div>
+                  <div class="small">Netmask: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Netmask, ENT_QUOTES); ?></a></div>
+                  <div class="small">MAC address: <a href="/dhcpd_conf"><?php echo htmlspecialchars($macAddress, ENT_QUOTES); ?></a></div>
+                  <div class="small">SSID: <a href="/hostapd_conf"><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></a></div>
                 </div>
 
                 <div class="bottom">
@@ -74,14 +87,16 @@
                       <span><?php echo _('Adblock'); ?></span>
                     </div>
                     </a>
-                    <div class="status-item">
+                    <a href="<?php echo $vpnManaged; ?>">
+                    <div class="status-item <?php echo $vpnStatus; ?>">
                       <i class="fas fa-shield-alt fa-2xl"></i>
                       <span><?php echo _('VPN'); ?></span>
                     </div>
+                    </a>
                     <div class="status-item <?php echo $firewallStatus; ?>">
                       <span class="fa-stack fa-2xl" style="line-height: 0!important;height: 100%!important;">
                         <i class="fas fa-fire-flame-curved fa-stack-1x"></i>
-                        <?php echo $firewallStack; ?>
+                        <?php echo $firewallUnavailable; ?>
                       </span>
                       <span>
                         <?php echo _('Firewall'); ?>
@@ -90,8 +105,8 @@
                   </div>
 
                   <div class="wifi-bands">
-                    <span class="band active">5G</span>
-                    <span class="band">2.4G</span>
+                    <a href="/hostapd_conf"><span class="band <?php echo $freq5active; ?>">5G</span></a>
+                    <a href="/hostapd_conf"><span class="band <?php echo $freq24active; ?>">2.4G</span></a>
                   </div>
                 </div>
 
@@ -140,14 +155,7 @@
         <div class="row">
           <form action="wlan0_info" method="POST">
             <?php echo CSRFTokenFieldTag() ?>
-            <?php if (!RASPI_MONITOR_ENABLED) : ?>
-            <?php if (!$wlan0up) : ?>
-            <input type="submit" class="btn btn-success" value="<?php echo _(" Start").' '.$apInterface ?>" name="ifup_wlan0" />
-                  <?php else : ?>
-                  <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$apInterface ?>"  name="ifdown_wlan0" />
-                  <?php endif ?>
-              <?php endif ?>
-            <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+            <?php echo $buttons ?>
           </form>
         </div>
       </div>
