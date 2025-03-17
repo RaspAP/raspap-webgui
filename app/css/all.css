@@ -609,7 +609,6 @@ textarea.plugin-log {
 .client-type i {
   font-size: 1.5rem;
   color: var(--raspap-theme-color);
-  background: #fff;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -622,7 +621,7 @@ textarea.plugin-log {
 .client-type i.badge-icon {
   font-size: 0.7rem;
   background: var(--raspap-theme-color);
-  color: white;
+  color: var(--raspap-offwhite);
   width: 20px;
   height: 20px;
   border: none;
@@ -632,8 +631,8 @@ textarea.plugin-log {
   position: absolute;
   top: -5px;
   right: -5px;
-  background: #008281;
-  color: white;
+  background: var(--raspap-theme-color);
+  color: var(--raspap-offwhite);
   border-radius: 50%;
   width: 20px;
   height: 20px;
