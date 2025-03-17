@@ -43,7 +43,7 @@
                   <i class="fas fa-ethernet fa-2xl"></i>
                 </div>
                 <div class="connection-item <?php echo $wirelessActive; ?>">
-                  <span><?php echo _("Wireless"); ?></span>
+                  <span><?php echo _("Repeater"); ?></span>
                   <i class="fas fa-wifi fa-2xl"></i>
                 </div>
                 <div class="connection-item <?php echo $tetheringActive; ?>">
@@ -98,9 +98,7 @@
                         <i class="fas fa-fire-flame-curved fa-stack-1x"></i>
                         <?php echo $firewallUnavailable; ?>
                       </span>
-                      <span>
-                        <?php echo _('Firewall'); ?>
-                      </span>
+                      <span><?php echo _('Firewall'); ?></span>
                     </div>
                   </div>
 
@@ -114,7 +112,7 @@
                   <div class="client-type">
                     <i class="fas fa-globe"></i>
                     <div class="client-count">
-                      <i class="fas fa-ethernet badge-icon"></i>
+                    <i class="fas <?php echo $connectionIcon; ?> badge-icon"></i>
                     </div>
                   </div>
                   <div class="client-type">
@@ -141,8 +139,7 @@
                     <span class="text-nowrap"><?php echo $ethernetClientLabel; ?></span>
                   </div>
                 </div>
-
-                <img src="app/img/right-solid.php?device-1&out&device-2&out" class="solid-lines solid-lines-right" alt="">
+                <?php echo renderClientConnections($wirelessClients, $ethernetClients); ?>
                 <img src="app/img/right-dashed.svg" class="dashed-lines dashed-lines-right" alt="">
               </div>
             </div>
