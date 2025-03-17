@@ -50,6 +50,6 @@ if ($hostapd[0] ==1) {
     $hostapd_led = "service-status-up";
 } else {
     $hostapd_status = "down";
-    $hostapd_led = "service-status-down";
+    $hostapd_led = "service-status-warn";
 }
 
