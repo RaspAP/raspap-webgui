@@ -38,24 +38,24 @@
             </h4>
             <div class="dashboard-container row">
               <div class="connections-left col-lg-4">
-                <div class="connection-item active">
+              <div class="connection-item <?php echo $ethernetActive; ?>">
                 <span><?php echo _("Ethernet"); ?></span>
                   <i class="fas fa-ethernet fa-2xl"></i>
                 </div>
-                <div class="connection-item">
-                  <span><?php echo _("Repeater"); ?></span>
+                <div class="connection-item <?php echo $wirelessActive; ?>">
+                  <span><?php echo _("Wireless"); ?></span>
                   <i class="fas fa-wifi fa-2xl"></i>
                 </div>
-                <div class="connection-item">
+                <div class="connection-item" <?php echo $tetheringActive; ?>>
                   <span><?php echo _("Tethering"); ?></span>
                   <i class="fas fa-mobile-alt fa-2xl"></i>
                 </div>
-                <div class="connection-item">
+                <div class="connection-item <?php echo $cellularActive; ?>">
                   <span><?php echo _("Cellular"); ?></span>
                   <i class="fas fa-broadcast-tower fa-2xl"></i>
                 </div>
                 <img src="app/img/dashed.svg" class="dashed-lines" alt="">
-                <img src="app/img/solid.php?joint&device-1&out&device-3" class="solid-lines" alt="">
+                <img src="app/img/solid.php?joint&device-1&out" class="solid-lines" alt="">
               </div>
               <div class="center-device col-12 col-lg-4">
                 <div class="center-device-top">
@@ -119,7 +119,7 @@
                   </div>
                   <div class="client-type">
                     <i class="fas fa-laptop"></i>
-                    <span class="client-count">3</span>
+                    <span class="client-count"><?php echo $totalClients; ?></span>
                   </div>
                 </div>
               </div>
@@ -131,14 +131,14 @@
                       <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
                       <i class="fas fa-wifi fa-stack-1x fa-xs"></i>
                     </span>
-                    <span class="text-nowrap">3 WLAN Clients</span>
+                    <span class="text-nowrap"><?php echo $wirelessClientLabel; ?></span>
                   </div>
                   <div class="connection-item connection-right">
                     <span class="fa-stack">
                       <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
                       <i class="fas fa-ethernet fa-stack-1x fa-xs"></i>
                     </span>
-                    <span class="text-nowrap">1 LAN Client</span>
+                    <span class="text-nowrap"><?php echo $ethernetClientLabel; ?></span>
                   </div>
                 </div>
 
@@ -148,9 +148,7 @@
             </div>
           </div>
         </div>
-
         <div class="col-lg-12 mt-3">
-
         </div>
         <div class="row">
           <form action="wlan0_info" method="POST">
