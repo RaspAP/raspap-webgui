@@ -29,12 +29,12 @@ function DisplayDashboard(): void
     $wireless = getWirelessDetails($interface);
     $connectedBSSID = getConnectedBSSID($interface);
     $connectionType = getConnectionType();
+    $connectionIcon = getConnectionIcon($connectionType);
     $state = strtolower($details['state']);
-    $wirelessClientCount = getWirelessClients();
-    $ethernetClientCount = getEthernetClients();
-    $totalClients = $wirelessClientCount + $ethernetClientCount;
+    $wirelessClients = getWirelessClients();
+    $ethernetClients = getEthernetClients();
+    $totalClients = $wirelessClients + $ethernetClients;
     $plugins = $pluginManager->getInstalledPlugins();
-
     $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
     $bridgedEnable = $arrHostapdConf['BridgedEnable'];
 
@@ -57,8 +57,8 @@ function DisplayDashboard(): void
     $bridgedStatus = ($bridgedEnable == 1) ? "active" : "";
     $hostapdStatus = ($hostapd[0] == 1) ?  "active" : "";
     $adblockStatus = ($adblock == true) ?  "active" : "";
-    $wirelessClientLabel = $wirelessClientCount. ' WLAN '.formatClientLabel($wirelessClientCount);
-    $ethernetClientLabel = $ethernetClientCount. ' LAN '.formatClientLabel($ethernerClientCount);
+    $wirelessClientLabel = $wirelessClients. ' WLAN '.formatClientLabel($wirelessClients);
+    $ethernetClientLabel = $ethernetClients. ' LAN '.formatClientLabel($ethernetClients);
     $varName = "freq" . str_replace('.', '', $frequency) . "active";
     $$varName = "active";
     $vpnStatus = $vpn ? "active" : "inactive";
@@ -72,7 +72,7 @@ function DisplayDashboard(): void
 
     echo renderTemplate(
         "dashboard", compact(
-            "clients",
+            "revision",
             "interface",
             "clientInterface",
             "state",
@@ -82,7 +82,6 @@ function DisplayDashboard(): void
             "vpnStatus",
             "vpnManaged",
             "firewallUnavailable",
-            "status",
             "ipv4Address",
             "ipv4Netmask",
             "ipv6Address",
@@ -92,15 +91,18 @@ function DisplayDashboard(): void
             "frequency",
             "freq5active",
             "freq24active",
+            "wirelessClients",
+            "ethernetClients",
             "wirelessClientLabel",
             "ethernetClientLabel",
             "totalClients",
             "connectionType",
+            "connectionIcon",
             "ethernetActive",
             "wirelessActive",
             "tetheringActive",
             "cellularActive",
-            "revision"
+            "status"
         )
     );
 }
@@ -155,7 +157,8 @@ function getFrequencyBand(string $interface): ?string
  * @param string $interface
  * @return array
  */
-function getInterfaceDetails(string $interface): array {
+function getInterfaceDetails(string $interface): array
+{
     $output = shell_exec('ip a show ' . escapeshellarg($interface));
     if (!$output) {
         return [
@@ -177,11 +180,13 @@ function getInterfaceDetails(string $interface): array {
     ];
 }
 
-function getMacAddress(string $output): string {
+function getMacAddress(string $output): string
+{
     return preg_match('/link\/ether ([0-9a-f:]+)/i', $output, $matches) ? $matches[1] : _('No MAC Address Found');
 }
 
-function getIPv4Addresses(string $output): string {
+function getIPv4Addresses(string $output): string
+{
     if (!preg_match_all('/inet (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/([0-3][0-9])/i', $output, $matches, PREG_SET_ORDER)) {
         return 'None';
     }
@@ -190,7 +195,8 @@ function getIPv4Addresses(string $output): string {
     return implode(' ', $addresses);
 }
 
-function getIPv4Netmasks(string $output): string {
+function getIPv4Netmasks(string $output): string
+{
     if (!preg_match_all('/inet (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/([0-3][0-9])/i', $output, $matches, PREG_SET_ORDER)) {
         return '-';
     }
@@ -199,17 +205,20 @@ function getIPv4Netmasks(string $output): string {
     return implode(' ', $netmasks);
 }
 
-function getIPv6Addresses(string $output): string {
+function getIPv6Addresses(string $output): string
+{
     return preg_match_all('/inet6 ([a-f0-9:]+)/i', $output, $matches) && isset($matches[1])
         ? implode(' ', $matches[1])
         : _('No IPv6 Address Found');
 }
 
-function getInterfaceState(string $output): string {
+function getInterfaceState(string $output): string
+{
     return preg_match('/state (UP|DOWN)/i', $output, $matches) ? $matches[1] : 'unknown';
 }
 
-function getWirelessDetails(string $interface): array {
+function getWirelessDetails(string $interface): array
+{
     $output = shell_exec('iw dev ' . escapeshellarg($interface) . ' info');
     if (!$output) {
         return ['bssid' => '-', 'ssid' => '-'];
@@ -222,13 +231,15 @@ function getWirelessDetails(string $interface): array {
     ];
 }
 
-function getConnectedBSSID(string $output): string {
+function getConnectedBSSID(string $output): string
+{
     return preg_match('/Connected to (([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2}))/i', $output, $matches)
         ? $matches[1]
         : '-';
 }
 
-function getSSID(string $output): string {
+function getSSID(string $output): string
+{
     return preg_match('/ssid ([^\n\s]+)/i', $output, $matches)
         ? $matches[1]
         : '-';
@@ -239,7 +250,8 @@ function getSSID(string $output): string {
  *
  * @return integer $clientCount
  */
-function getWirelessClients() {
+function getWirelessClients()
+{
     exec('iw dev wlan0 station dump', $output, $status);
 
     if ($status !== 0) {
@@ -262,7 +274,8 @@ function getWirelessClients() {
  *
  * @return int $clients
  */
-function getEthernetClients(): int {
+function getEthernetClients(): int
+{
     $arpOutput = shell_exec("ip neigh show | awk '{print $5}' | sort -u");
     $arpMacs = array_filter(explode("\n", trim($arpOutput)));
 
@@ -283,7 +296,8 @@ function getEthernetClients(): int {
     return count($clients);
 }
 
-function formatClientLabel($clientCount) {
+function formatClientLabel($clientCount)
+{
     return $clientCount === 1 ? 'client' : 'clients';
 }
 
@@ -300,7 +314,8 @@ function formatClientLabel($clientCount) {
  * - fallback
  * @return string
  */ 
-function getConnectionType() {
+function getConnectionType(): string
+{
     // get the interface associated with the default route
     $interface = trim(shell_exec("ip route show default | awk '{print $5}'"));
 
@@ -326,6 +341,29 @@ function getConnectionType() {
 }
 
 /**
+ * Returns a fontawesome icon associated with a connection
+ * type/class
+ *
+ * @param $type
+ * @return string
+ */
+function getConnectionIcon($type): string
+{
+    switch (strtolower($type)) {
+        case 'ethernet':
+            return 'fa-ethernet';
+        case 'wireless':
+            return 'fa-wifi';
+        case 'tethering':
+            return 'fa-mobile-alt';
+        case 'cellular':
+            return 'fa-broadcast-tower';
+        default:
+            return 'fa-question-circle'; // unknown
+    }
+}
+
+/**
  * Renders a URL for an svg solid line representing the associated
  * connection type
  *
@@ -344,6 +382,30 @@ function renderConnection(string $connectionType): string
 
     // return generated URL for solid.php
     return sprintf('app/img/solid.php?joint&%s&out', $device);
+}
+
+/**
+ * Renders a URL for an svg solid line representing associated
+ * client connection(s)
+ *
+ * @param int $wirelessClients
+ * @param int $ethernetClients
+ * @return string
+ */
+function renderClientConnections(int $wirelessClients, int $ethernetClients): string
+{
+    $devices = [];
+
+    if ($wirelessClients > 0) {
+        $devices[] = 'device-1&out';
+    }
+    if ($ethernetClients > 0) {
+        $devices[] = 'device-2&out';
+    }
+    return empty($devices) ? '' : sprintf(
+        '<img src="app/img/right-solid.php?%s" class="solid-lines solid-lines-right" alt="Client connections">',
+        implode('&', $devices)
+    );
 }
 
 /**
