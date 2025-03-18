@@ -283,6 +283,9 @@ msgstr "Connected Devices"
 msgid "Client: Ethernet cable"
 msgstr "Client: Ethernet cable"
 
+msgid "Current status"
+msgstr "Current status"
+
 msgid "Ethernet"
 msgstr "Ethernet"
 
@@ -374,6 +377,16 @@ msgstr "Signal strength"
 
 msgid "No Client device or not yet configured"
 msgstr "No Client device or not yet configured"
+
+#: includes/footer.php
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+msgid "RaspAP Team"
+msgstr "RaspAP Team"
+
+msgid "Get Insiders"
+msgstr "Get Insiders"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
