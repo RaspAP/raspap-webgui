@@ -75,7 +75,7 @@
                         <span><?php echo _('AP'); ?></span>
                       </div>
                     </a>
-                    <a href="/hostapd_conf">
+                    <a href="/hostapd_conf?tab=advanced">
                       <div class="status-item <?php echo $bridgedStatus; ?>">
                         <i class="fas fa-bridge fa-2xl"></i>
                         <span><?php echo _('Bridged'); ?></span>
@@ -131,22 +131,22 @@
               <div class="connections-right col-lg-4">
                 <div class="d-flex flex-column justify-content-around h-100">
                   <div class="connection-item connection-right">
-                    <a href="/dhcpd_conf" class="<?php echo $wirelessClientActive; ?>">
+                    <a href="/dhcpd_conf?tab=client-list" class="<?php echo $wirelessClientActive; ?>">
                       <span class="fa-stack">
                         <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
                         <i class="fas fa-wifi fa-stack-1x fa-xs"></i>
                       </span>
                     </a>
-                    <a href="/dhcpd_conf"><span class="text-nowrap <?php echo $wirelessClientActive; ?>"><?php echo $wirelessClientLabel; ?></span></a>
+                    <a href="/dhcpd_conf?tab=client-list"><span class="text-nowrap <?php echo $wirelessClientActive; ?>"><?php echo $wirelessClientLabel; ?></span></a>
                   </div>
                   <div class="connection-item connection-right">
-                    <a href="/dhcpd_conf" class="<?php echo $ethernetClientActive; ?>">
+                    <a href="/dhcpd_conf?tab=client-list" class="<?php echo $ethernetClientActive; ?>">
                       <span class="fa-stack">
                         <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
                         <i class="fas fa-ethernet fa-stack-1x fa-xs"></i>
                       </span>
                     </a>
-                    <a href="/dhcpd_conf"><span class="text-nowrap <?php echo $ethernetClientActive; ?>"><?php echo $ethernetClientLabel; ?></span></a>
+                    <a href="/dhcpd_conf?tab=client-list"><span class="text-nowrap <?php echo $ethernetClientActive; ?>"><?php echo $ethernetClientLabel; ?></span></a>
                   </div>
                 </div>
                 <?php echo renderClientConnections($wirelessClients, $ethernetClients); ?>
