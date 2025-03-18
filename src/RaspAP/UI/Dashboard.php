@@ -208,7 +208,7 @@ class Dashboard {
 
     public function formatClientLabel($clientCount)
     {
-        return $clientCount === 1 ? 'client' : 'clients';
+        return ngettext('client', 'clients', $clientCount);
     }
 
     /*

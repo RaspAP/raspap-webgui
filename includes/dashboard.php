@@ -58,9 +58,17 @@ function DisplayDashboard(): void
     $hostapdStatus = ($hostapd[0] == 1) ?  "active" : "";
     $adblockStatus = ($adblock == true) ?  "active" : "";
     $wirelessClientActive = ($wirelessClients > 0) ? "active" : "inactive";
-    $wirelessClientLabel = $wirelessClients. ' WLAN '.$dashboard->formatClientLabel($wirelessClients);
+    $wirelessClientLabel = sprintf(
+        _('%d WLAN %s'),
+        $wirelessClients,
+        $dashboard->formatClientLabel($wirelessClients)
+    );
     $ethernetClientActive = ($ethernetClients > 0) ? "active" : "inactive";
-    $ethernetClientLabel = $ethernetClients. ' LAN '.$dashboard->formatClientLabel($ethernetClients);
+    $ethernetClientLabel = sprintf(
+        _('%d LAN %s'),
+        $ethernetClients,
+        $dashboard->formatClientLabel($ethernetClients)
+    );
     $totalClientsActive = ($totalClients > 0) ? "active": "inactive";
     $freq5active = $freq24active = "";
     $varName = "freq" . str_replace('.', '', $frequency) . "active";
