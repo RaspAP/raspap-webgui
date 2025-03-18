@@ -50,15 +50,18 @@ function DisplayDashboard(): void
     $ipv4Netmask = $details['ipv4_netmask'];
     $macAddress = $details['mac'];
     $ssid = $wireless['ssid'];
-    $ethernetActive = ($connectionType === 'ethernet') ? "active" : "";
-    $wirelessActive = ($connectionType === 'wireless') ? "active" : "";
-    $tetheringActive = ($connectionType === 'tethering') ? "active" : "";
-    $cellularActive = ($connectionType === 'cellular') ? "active" : "";
+    $ethernetActive = ($connectionType === 'ethernet') ? "active" : "inactive";
+    $wirelessActive = ($connectionType === 'wireless') ? "active" : "inactive";
+    $tetheringActive = ($connectionType === 'tethering') ? "active" : "inactive";
+    $cellularActive = ($connectionType === 'cellular') ? "active" : "inactive";
     $bridgedStatus = ($bridgedEnable == 1) ? "active" : "";
     $hostapdStatus = ($hostapd[0] == 1) ?  "active" : "";
     $adblockStatus = ($adblock == true) ?  "active" : "";
+    $wirelessClientActive = ($wirelessClients > 0) ? "active" : "inactive";
     $wirelessClientLabel = $wirelessClients. ' WLAN '.$dashboard->formatClientLabel($wirelessClients);
+    $ethernetClientActive = ($ethernetClients > 0) ? "active" : "inactive";
     $ethernetClientLabel = $ethernetClients. ' LAN '.$dashboard->formatClientLabel($ethernetClients);
+    $totalClientsActive = ($totalClients > 0) ? "active": "inactive";
     $freq5active = $freq24active = "";
     $varName = "freq" . str_replace('.', '', $frequency) . "active";
     $$varName = "active";
@@ -95,10 +98,13 @@ function DisplayDashboard(): void
             "freq5active",
             "freq24active",
             "wirelessClients",
-            "ethernetClients",
             "wirelessClientLabel",
+            "wirelessClientActive",
+            "ethernetClients",
             "ethernetClientLabel",
+            "ethernetClientActive",
             "totalClients",
+            "totalClientsActive",
             "connectionType",
             "connectionIcon",
             "ethernetActive",
