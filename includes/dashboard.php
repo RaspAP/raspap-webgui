@@ -77,7 +77,7 @@ function DisplayDashboard(): void
     if ($vpn) {
         $vpnManaged = $dashboard->getVpnManged($vpn);
     }
-    $firewallStatus = "";
+    $firewallManaged = $firewallStatus = "";
     $firewallInstalled = array_filter($plugins, fn($p) => str_ends_with($p, 'Firewall')) ? true : false;
     if (!$firewallInstalled) {
         $firewallUnavailable = '<i class="fas fa-slash fa-stack-1x"></i>';
