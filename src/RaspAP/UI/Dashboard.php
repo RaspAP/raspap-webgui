@@ -27,9 +27,9 @@ class Dashboard {
     public function getVpnManged(?string $interface = null): ?string
     {
         return match ($interface) {
-            'wg0' => 'wg_conf',
-            'tun0' => 'openvpn_conf',
-            'tailscale0' => 'plugin__Tailscale',
+            'wg0' => '/wg_conf',
+            'tun0' => '/openvpn_conf',
+            'tailscale0' => '/plugin__Tailscale',
             default => null,
         };
     }
