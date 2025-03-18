@@ -543,6 +543,10 @@ textarea.plugin-log {
   width: 100%;
 }
 
+.status-item .fa-stack {
+  width: 1.5em!important;
+}
+
 .connection-item>i {
   color: var(--raspap-text-light);
 }
