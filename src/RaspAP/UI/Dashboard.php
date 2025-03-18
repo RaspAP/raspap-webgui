@@ -284,7 +284,7 @@ class Dashboard {
         if (file_exists($this->firewallConfig) ) {
             $conf = parse_ini_file($this->firewallConfig);
         }
-        if ( isset($conf["firewall-enable"]) ) {
+        if ($conf["firewall-enable"] == 1) {
             return true;
         }
         return false;
