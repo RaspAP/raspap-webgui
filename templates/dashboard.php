@@ -93,13 +93,15 @@
                         <span><?php echo _('VPN'); ?></span>
                       </div>
                     </a>
-                    <div class="status-item <?php echo $firewallStatus; ?>">
-                      <span class="fa-stack fa-2xl" style="line-height: 0!important;height: 100%!important;">
-                        <i class="fas fa-fire-flame-curved fa-stack-1x"></i>
-                        <?php echo $firewallUnavailable; ?>
-                      </span>
-                      <span><?php echo _('Firewall'); ?></span>
-                    </div>
+                    <?php echo $firewallManaged; ?>
+                      <div class="status-item <?php echo $firewallStatus; ?>">
+                        <span class="fa-stack fa-2xl" style="line-height: 0!important;height: 100%!important;">
+                          <i class="fas fa-fire-flame-curved fa-stack-1x"></i>
+                          <?php echo $firewallUnavailable; ?>
+                        </span>
+                        <span><?php echo _('Firewall'); ?></span>
+                      </div>
+                    </a>
                   </div>
 
                   <div class="wifi-bands">

@@ -82,6 +82,7 @@ function DisplayDashboard(): void
     if (!$firewallInstalled) {
         $firewallUnavailable = '<i class="fas fa-slash fa-stack-1x"></i>';
     } else {
+        $firewallManaged = '<a href="/plugin__Firewall">';
         $firewallStatus = ($dashboard->firewallEnabled() == true) ? "active" : "";
     }
 
@@ -98,6 +99,7 @@ function DisplayDashboard(): void
             "vpnManaged",
             "firewallUnavailable",
             "firewallStatus",
+            "firewallManaged",
             "ipv4Address",
             "ipv4Netmask",
             "macAddress",
