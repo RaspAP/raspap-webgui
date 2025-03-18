@@ -432,6 +432,7 @@ textarea.plugin-log {
 
 .connections-left i:last-child {
   margin-bottom: 0;
+  margin-left: 0.5rem;
 }
 
 .center-device {
@@ -555,8 +556,17 @@ textarea.plugin-log {
   margin-right: 0.5rem;
 }
 
+.inactive {
+    color: var(--raspap-text-light)!important;
+}
+
+a.inactive:hover,
+a.inactive:focus {
+    color: var(--raspap-text-light) !important;
+}
+
 @media (max-width: 1200px) {
-  .connection-item > span:not(.fa-stack) {
+  .connection-item a > span:not(.fa-stack) {
     display: none!important;
   }
 }
