@@ -61,10 +61,10 @@
                 <div class="center-device-top">
                   <a href="/system_info"><img class="device-illustration" src="app/img/device.php" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
                   <div class="device-label"><a href="/system_info"><?php echo htmlspecialchars($revision, ENT_QUOTES); ?></a></div>
-                  <div class="mt-1 small">IP address: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Address, ENT_QUOTES); ?></a></div>
-                  <div class="small">Netmask: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Netmask, ENT_QUOTES); ?></a></div>
-                  <div class="small">MAC address: <a href="/dhcpd_conf"><?php echo htmlspecialchars($macAddress, ENT_QUOTES); ?></a></div>
-                  <div class="small">SSID: <a href="/hostapd_conf"><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></a></div>
+                  <div class="mt-1 small"><?php echo _("IP Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Address, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("Netmask"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Netmask, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("MAC Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($macAddress, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("SSID"); ?>: <a href="/hostapd_conf"><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></a></div>
                 </div>
 
                 <div class="bottom">
@@ -103,8 +103,8 @@
                   </div>
 
                   <div class="wifi-bands">
-                    <a href="/hostapd_conf"><span class="band <?php echo $freq5active; ?>">5G</span></a>
-                    <a href="/hostapd_conf"><span class="band <?php echo $freq24active; ?>">2.4G</span></a>
+                    <a href="/hostapd_conf"><span class="band <?php echo $freq5active; ?>"><?php echo _("5G"); ?></span></a>
+                    <a href="/hostapd_conf"><span class="band <?php echo $freq24active; ?>"><?php echo _("2.4G"); ?></span></a>
                   </div>
                 </div>
 
