@@ -38,21 +38,21 @@
             </h4>
             <div class="dashboard-container row">
               <div class="connections-left col-lg-4">
-              <div class="connection-item <?php echo $ethernetActive; ?>">
-                <span><?php echo _("Ethernet"); ?></span>
-                  <i class="fas fa-ethernet fa-2xl"></i>
+                <div class="connection-item">
+                  <a href="/network_conf" class="<?php echo $ethernetActive; ?>"><span><?php echo _("Ethernet"); ?></span></a>
+                  <a href="/network_conf" class="<?php echo $ethernetActive; ?>"><i class="fas fa-ethernet fa-2xl"></i></a>
                 </div>
-                <div class="connection-item <?php echo $wirelessActive; ?>">
-                  <span><?php echo _("Repeater"); ?></span>
-                  <i class="fas fa-wifi fa-2xl"></i>
+                <div class="connection-item">
+                  <a href="/network_conf" class="<?php echo $wirelessActive; ?>"><span><?php echo _("Repeater"); ?></span>
+                  <a href="/network_conf" class="<?php echo $wirelessActive; ?>"><i class="fas fa-wifi fa-2xl"></i></a>
                 </div>
-                <div class="connection-item <?php echo $tetheringActive; ?>">
-                  <span><?php echo _("Tethering"); ?></span>
-                  <i class="fas fa-mobile-alt fa-2xl"></i>
+                <div class="connection-item">
+                  <a href="/network_conf" class="<?php echo $tetheringActive; ?>"><span><?php echo _("Tethering"); ?></span></a>
+                  <a href="/network_conf" class="<?php echo $tetheringActive; ?>"><i class="fas fa-mobile-alt fa-2xl"></i></a>
                 </div>
-                <div class="connection-item <?php echo $cellularActive; ?>">
-                  <span><?php echo _("Cellular"); ?></span>
-                  <i class="fas fa-broadcast-tower fa-2xl"></i>
+                <div class="connection-item">
+                  <a href="/network_conf" class="<?php echo $cellularActive; ?>"><span><?php echo _("Cellular"); ?></span></a>
+                  <a href="/network_conf" class="<?php echo $cellularActive; ?>"><i class="fas fa-broadcast-tower fa-2xl"></i></a>
                 </div>
                 <img src="app/img/dashed.svg" class="dashed-lines" alt="">
                 <img src="<?php echo htmlspecialchars(renderConnection($connectionType)); ?>" class="solid-lines" alt="Network connection">
@@ -110,14 +110,18 @@
 
                 <div class="clients-mobile">
                   <div class="client-type">
-                    <i class="fas fa-globe"></i>
-                    <div class="client-count">
-                    <i class="fas <?php echo $connectionIcon; ?> badge-icon"></i>
-                    </div>
+                    <a href="/network_conf">
+                      <i class="fas fa-globe"></i>
+                      <div class="client-count">
+                        <i class="fas <?php echo $connectionIcon; ?> badge-icon"></i>
+                      </div>
+                    </a>
                   </div>
                   <div class="client-type">
-                    <i class="fas fa-laptop"></i>
-                    <span class="client-count"><?php echo $totalClients; ?></span>
+                    <a href="/dhcpd_conf">
+                      <i class="fas fa-laptop <?php echo $totalClientsActive; ?>"></i>
+                      <span class="client-count"><?php echo $totalClients; ?></span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -125,18 +129,22 @@
               <div class="connections-right col-lg-4">
                 <div class="d-flex flex-column justify-content-around h-100">
                   <div class="connection-item connection-right">
-                    <span class="fa-stack">
-                      <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
-                      <i class="fas fa-wifi fa-stack-1x fa-xs"></i>
-                    </span>
-                    <span class="text-nowrap"><?php echo $wirelessClientLabel; ?></span>
+                    <a href="/dhcpd_conf" class="<?php echo $wirelessClientActive; ?>">
+                      <span class="fa-stack">
+                        <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
+                        <i class="fas fa-wifi fa-stack-1x fa-xs"></i>
+                      </span>
+                    </a>
+                    <a href="/dhcpd_conf"><span class="text-nowrap <?php echo $wirelessClientActive; ?>"><?php echo $wirelessClientLabel; ?></span></a>
                   </div>
                   <div class="connection-item connection-right">
-                    <span class="fa-stack">
-                      <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
-                      <i class="fas fa-ethernet fa-stack-1x fa-xs"></i>
-                    </span>
-                    <span class="text-nowrap"><?php echo $ethernetClientLabel; ?></span>
+                    <a href="/dhcpd_conf" class="<?php echo $ethernetClientActive; ?>">
+                      <span class="fa-stack">
+                        <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
+                        <i class="fas fa-ethernet fa-stack-1x fa-xs"></i>
+                      </span>
+                    </a>
+                    <a href="/dhcpd_conf"><span class="text-nowrap <?php echo $ethernetClientActive; ?>"><?php echo $ethernetClientLabel; ?></span></a>
                   </div>
                 </div>
                 <?php echo renderClientConnections($wirelessClients, $ethernetClients); ?>
