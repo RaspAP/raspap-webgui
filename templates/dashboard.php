@@ -70,28 +70,28 @@
                 <div class="bottom">
                   <div class="device-status">
                     <a href="/hostapd_conf">
-                    <div class="status-item <?php echo $hostapdStatus; ?>">
-                      <i class="fas fa-bullseye fa-2xl"></i>
-                      <span><?php echo _('AP'); ?></span>
-                    </div>
+                      <div class="status-item <?php echo $hostapdStatus; ?>">
+                        <i class="fas fa-bullseye fa-2xl"></i>
+                        <span><?php echo _('AP'); ?></span>
+                      </div>
                     </a>
                     <a href="/hostapd_conf">
-                    <div class="status-item <?php echo $bridgedStatus; ?>">
-                      <i class="fas fa-bridge fa-2xl"></i>
-                      <span><?php echo _('Bridged'); ?></span>
-                    </div>
+                      <div class="status-item <?php echo $bridgedStatus; ?>">
+                        <i class="fas fa-bridge fa-2xl"></i>
+                        <span><?php echo _('Bridged'); ?></span>
+                      </div>
                     </a>
                     <a href="/adblock_conf">
-                    <div class="status-item <?php echo $adblockStatus; ?>">
-                      <i class="far fa-hand-paper fa-2xl"></i>
-                      <span><?php echo _('Adblock'); ?></span>
-                    </div>
+                      <div class="status-item <?php echo $adblockStatus; ?>">
+                        <i class="far fa-hand-paper fa-2xl"></i>
+                        <span><?php echo _('Adblock'); ?></span>
+                      </div>
                     </a>
                     <a href="<?php echo $vpnManaged; ?>">
-                    <div class="status-item <?php echo $vpnStatus; ?>">
-                      <i class="fas fa-shield-alt fa-2xl"></i>
-                      <span><?php echo _('VPN'); ?></span>
-                    </div>
+                      <div class="status-item <?php echo $vpnStatus; ?>">
+                        <i class="fas fa-shield-alt fa-2xl"></i>
+                        <span><?php echo _('VPN'); ?></span>
+                      </div>
                     </a>
                     <div class="status-item <?php echo $firewallStatus; ?>">
                       <span class="fa-stack fa-2xl" style="line-height: 0!important;height: 100%!important;">
