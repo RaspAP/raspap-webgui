@@ -34,7 +34,7 @@
           <div class="card-body">
             <?php $status->showMessages(); ?>
             <h4 class="card-title">
-              <?php echo _('Current status'); ?>
+              <?php echo _("Current status"); ?>
             </h4>
             <div class="dashboard-container row">
               <div class="connections-left col-lg-4">
