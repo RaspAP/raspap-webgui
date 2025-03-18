@@ -182,28 +182,43 @@ class Dashboard {
      * to find matching MAC addresses and returns only clients that
      * exist in both sources
      *
-     * @return int $clients
+     * @return int $ethernetClients
      */
     public function getEthernetClients(): int
     {
-        $arpOutput = shell_exec("ip neigh show | awk '{print $5}' | sort -u");
-        $arpMacs = array_filter(explode("\n", trim($arpOutput)));
+        $ethernetClients = [];
 
-        $leaseFile = RASPI_DNSMASQ_LEASES;
-        $dhcpMacs = [];
-
-        if (file_exists($leaseFile)) {
-            $leases = file($leaseFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            foreach ($leases as $lease) {
-                $parts = explode(' ', $lease);
-                if (isset($parts[1])) {
-                    $dhcpMacs[] = $parts[1]; // MAC address from DHCP leases
+        // Get ARP table entries and filter ethernet clients
+        $arpOutput = shell_exec("ip neigh show");
+        if ($arpOutput) {
+            foreach (explode("\n", trim($arpOutput)) as $line) {
+                /* match both traditional interface names (eth0...n) and predictable names like
+                 * enp3s0 (PCI ethernet)
+                 * eno1 (onboard ethernet)
+                 * ens160, etc.
+                 * ...ignoring STALE entries
+                 */
+                if (preg_match('/^(\S+) dev (eth[0-9]+|en\w+) lladdr (\S+) (REACHABLE|DELAY|PROBE)/', $line, $matches)) {
+                    $ethernetClients[$matches[3]] = $matches[1]; // MAC => IP
                 }
             }
         }
-        // filter ARP results to include only DHCP clients
-        $clients = array_intersect($arpMacs, $dhcpMacs);
-        return count($clients);
+
+        // compare against active DHCP leases
+        $leaseFile = RASPI_DNSMASQ_LEASES;
+        if (file_exists($leaseFile)) {
+            $leases = file($leaseFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            $activeLeases = [];
+            foreach ($leases as $lease) {
+                $fields = preg_split('/\s+/', $lease);
+                if (count($fields) >= 3) {
+                    $activeLeases[$fields[1]] = true; // MAC as key
+                }
+            }
+            // keep only clients that exist in the DHCP lease file
+            $ethernetClients = array_intersect_key($ethernetClients, $activeLeases);
+        }
+        return count($ethernetClients);
     }
 
     public function formatClientLabel($clientCount)
