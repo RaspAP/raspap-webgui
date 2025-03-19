@@ -1,149 +1,171 @@
+<?php ob_start() ?>
+    <?php if (!RASPI_MONITOR_ENABLED) : ?>
+      <?php if ($state === "down") : ?>
+        <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$interface ?>" name="ifup_wlan0" />
+      <?php else : ?>
+        <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$interface ?>"  name="ifdown_wlan0" />
+      <?php endif ?>
+    <?php endif ?>
+    <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+<?php $buttons = ob_get_clean(); ob_end_clean() ?>
+
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
         <div class="row">
-    <div class="col">
-      <i class="fas fa-tachometer-alt fa-fw me-2"></i><?php echo _("Dashboard"); ?>
-    </div>
-    <div class="col">
-      <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
-        <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-        <span class="text service-status"><?php echo strtolower($apInterface) .' '. _($ifaceStatus) ?></span>
-      </button>
-    </div>
+          <div class="col">
+            <i class="fas fa-tachometer-alt fa-fw me-2"></i>
+            <?php echo _("Dashboard"); ?>
+          </div>
+          <div class="col">
+            <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
+              <span class="icon"><i class="fas fa-circle service-status-<?php echo $state ?>"></i></span>
+              <span class="text service-status">
+                <?php echo strtolower($interface) .' '. _($state) ?>
+              </span>
+            </button>
+          </div>
         </div><!-- /.row -->
       </div><!-- /.card-header -->
+      <div class="card-wrapper">
 
-      <div class="card-body">
-        <div class="row">
+        <div class="card">
+          <div class="card-body">
+            <?php $status->showMessages(); ?>
+            <h4 class="card-title">
+              <?php echo _("Current status"); ?>
+            </h4>
+            <div class="dashboard-container row">
+              <div class="connections-left col-lg-4">
+                <div class="connection-item">
+                  <a href="/network_conf" class="<?php echo $ethernetActive; ?>"><span><?php echo _("Ethernet"); ?></span></a>
+                  <a href="/network_conf" class="<?php echo $ethernetActive; ?>"><i class="fas fa-ethernet fa-2xl"></i></a>
+                </div>
+                <div class="connection-item">
+                  <a href="/network_conf" class="<?php echo $wirelessActive; ?>"><span><?php echo _("Repeater"); ?></span>
+                  <a href="/network_conf" class="<?php echo $wirelessActive; ?>"><i class="fas fa-wifi fa-2xl"></i></a>
+                </div>
+                <div class="connection-item">
+                  <a href="/network_conf" class="<?php echo $tetheringActive; ?>"><span><?php echo _("Tethering"); ?></span></a>
+                  <a href="/network_conf" class="<?php echo $tetheringActive; ?>"><i class="fas fa-mobile-alt fa-2xl"></i></a>
+                </div>
+                <div class="connection-item">
+                  <a href="/network_conf" class="<?php echo $cellularActive; ?>"><span><?php echo _("Cellular"); ?></span></a>
+                  <a href="/network_conf" class="<?php echo $cellularActive; ?>"><i class="fas fa-broadcast-tower fa-2xl"></i></a>
+                </div>
+                <img src="app/img/dashed.svg" class="dashed-lines" alt="">
+                <img src="<?php echo htmlspecialchars(renderConnection($connectionType)); ?>" class="solid-lines" alt="Network connection">
+              </div>
+              <div class="center-device col-12 col-lg-4">
+                <div class="center-device-top">
+                  <a href="/system_info"><img class="device-illustration" src="app/img/device.php" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
+                  <div class="device-label"><a href="/system_info"><?php echo htmlspecialchars($revision, ENT_QUOTES); ?></a></div>
+                  <div class="mt-1 small"><?php echo _("IP Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Address, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("Netmask"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Netmask, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("MAC Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($macAddress, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("SSID"); ?>: <a href="/hostapd_conf"><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></a></div>
+                </div>
 
-          <div class="col-lg-12">
-            <div class="card mb-3">
-              <div class="card-body">
-                <h4 class="card-title"><?php echo _("Hourly traffic amount"); ?></h4>
-                <div id="divInterface" class="d-none"><?php echo $apInterface; ?></div>
-                <div class="col-md-12">
-                  <div class="col dbChart">
-                    <canvas id="divDBChartBandwidthhourly"></canvas>
+                <div class="bottom">
+                  <div class="device-status">
+                    <a href="/hostapd_conf">
+                      <div class="status-item <?php echo $hostapdStatus; ?>">
+                        <i class="fas fa-bullseye fa-2xl"></i>
+                        <span><?php echo _('AP'); ?></span>
+                      </div>
+                    </a>
+                    <a href="/hostapd_conf?tab=advanced">
+                      <div class="status-item <?php echo $bridgedStatus; ?>">
+                        <i class="fas fa-bridge fa-2xl"></i>
+                        <span><?php echo _('Bridged'); ?></span>
+                      </div>
+                    </a>
+                    <a href="/adblock_conf">
+                      <div class="status-item <?php echo $adblockStatus; ?>">
+                        <i class="far fa-hand-paper fa-2xl"></i>
+                        <span><?php echo _('Adblock'); ?></span>
+                      </div>
+                    </a>
+                    <a href="<?php echo $vpnManaged; ?>">
+                      <div class="status-item <?php echo $vpnStatus; ?>">
+                        <i class="fas fa-shield-alt fa-2xl"></i>
+                        <span><?php echo _('VPN'); ?></span>
+                      </div>
+                    </a>
+                    <?php echo $firewallManaged; ?>
+                      <div class="status-item <?php echo $firewallStatus; ?>">
+                        <span class="fa-stack fa-2xl" style="line-height: 0!important;height: 100%!important;">
+                          <i class="fas fa-fire-flame-curved fa-stack-1x"></i>
+                          <?php echo $firewallUnavailable; ?>
+                        </span>
+                        <span><?php echo _('Firewall'); ?></span>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div class="wifi-bands">
+                    <a href="/hostapd_conf"><span class="band <?php echo $freq5active; ?>"><?php echo _("5G"); ?></span></a>
+                    <a href="/hostapd_conf"><span class="band <?php echo $freq24active; ?>"><?php echo _("2.4G"); ?></span></a>
                   </div>
                 </div>
-              </div><!-- /.card-body -->
-            </div><!-- /.card-->
-          </div>
 
-          <div class="col-sm-6 align-items-stretch">
-            <div class="card h-100">
-              <div class="card-body wireless">
-                <h4 class="card-title"><?php echo _("Wireless Client"); ?></h4>
-                <div class="row ms-1">
-                  <div class="col-sm">
-                    <div class="row mb-1">
-                      <div class="info-item col"><?php echo _("Connected To"); ?></div><div class="info-value col"><?php echo htmlspecialchars($connectedSSID, ENT_QUOTES); ?></div>
-                    </div>
-                    <div class="row mb-1">
-                      <div class="info-item col"><?php echo _("Interface"); ?></div><div class="info-value col"><?php echo htmlspecialchars($clientInterface); ?></div>
-                    </div>
-                    <div class="row mb-1">
-                      <div class="info-item col"><?php echo _("AP Mac Address"); ?></div><div class="info-value col"><?php echo htmlspecialchars($connectedBSSID, ENT_QUOTES); ?></div>
-                    </div>
-                    <div class="row mb-1">
-                      <div class="info-item col"><?php echo _("Bitrate"); ?></div><div class="info-value col"><?php echo htmlspecialchars($bitrate, ENT_QUOTES); ?></div>
-                    </div>
-                    <div class="row mb-1">
-                      <div class="info-item col"><?php echo _("Signal Level"); ?></div><div class="info-value col"><?php echo htmlspecialchars($signalLevel, ENT_QUOTES); ?></div>
-                    </div>
-                    <div class="row mb-1">
-                      <div class="info-item col"><?php echo _("Transmit Power"); ?></div><div class="info-value col"><?php echo htmlspecialchars($txPower, ENT_QUOTES); ?></div>
-                    </div>
-                    <div class="row mb-1">
-                      <div class="info-item col"><?php echo _("Frequency"); ?></div><div class="info-value col"><?php echo htmlspecialchars($frequency, ENT_QUOTES); ?></div>
-                    </div>
-                  </div>
-                  <div class="col-md d-flex">
-                    <script>var linkQ = <?php echo json_encode($strLinkQuality); ?>;</script>
-                    <div class="chart-container">
-                      <canvas id="divChartLinkQ"></canvas>
-                    </div>
-                  </div>
-                </div><!--row-->
-              </div><!-- /.card-body -->
-            </div><!-- /.card -->
-          </div><!-- /.col-md-6 -->
-          <div class="col-sm-6">
-            <div class="card h-100 mb-3">
-              <div class="card-body">
-                <h4 class="card-title"><?php echo _("Connected Devices"); ?></h4>
-                <div class="table-responsive">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <?php if ($bridgedEnable == 1) : ?>
-                          <th><?php echo _("MAC Address"); ?></th>
-                        <?php else : ?>
-                          <th><?php echo _("Host name"); ?></th>
-                          <th><?php echo _("IP Address"); ?></th>
-                          <th><?php echo _("MAC Address"); ?></th>
-                        <?php endif; ?>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <?php if ($bridgedEnable == 1) : ?>
-                          <tr>
-                            <td><small class="text-muted"><?php echo _("Bridged AP mode is enabled. For Hostname and IP, see your router's admin page.");?></small></td>
-                          </tr>
-                        <?php endif; ?>
-                        <?php foreach (array_slice($clients,0, 2) as $client) : ?>
-                        <tr>
-                          <?php if ($arrHostapdConf['BridgedEnable'] == 1): ?>
-                            <td><?php echo htmlspecialchars($client, ENT_QUOTES) ?></td>
-                          <?php else : ?>
-                            <?php $props = explode(' ', $client) ?>
-                            <td><?php echo htmlspecialchars($props[3], ENT_QUOTES) ?></td>
-                            <td><?php echo htmlspecialchars($props[2], ENT_QUOTES) ?></td>
-                            <td><?php echo htmlspecialchars($props[1], ENT_QUOTES) ?></td>
-                          <?php endif; ?>
-                        </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                  </table>
-                  <?php if (sizeof($clients) >2) : ?>
-                      <div class="col-lg-12 float-end">
-                        <a class="btn btn-outline-info" role="button" href="<?php echo $moreLink ?>"><?php echo _("More");?>  <i class="fas fa-chevron-right"></i></a>
+                <div class="clients-mobile">
+                  <div class="client-type">
+                    <a href="/network_conf">
+                      <i class="fas fa-globe"></i>
+                      <div class="client-count">
+                        <i class="fas <?php echo $connectionIcon; ?> badge-icon"></i>
                       </div>
-                  <?php elseif (sizeof($clients) ==0) : ?>
-                      <div class="col-lg-12 mt-3"><?php echo _("No connected devices");?></div>
-                  <?php endif; ?>
-                </div><!-- /.table-responsive -->
-              </div><!-- /.card-body -->
-            </div><!-- /.card -->
-          </div><!-- /.col-md-6 -->
-        </div><!-- /.row -->
+                    </a>
+                  </div>
+                  <div class="client-type">
+                    <a href="/dhcpd_conf">
+                      <i class="fas fa-laptop <?php echo $totalClientsActive; ?>"></i>
+                      <span class="client-count"><?php echo $totalClients; ?></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
 
-        <div class="col-lg-12 mt-3">
-          <div class="row">
-            <form action="wlan0_info" method="POST">
-                <?php echo CSRFTokenFieldTag() ?>
-                <?php if (!RASPI_MONITOR_ENABLED) : ?>
-                    <?php if (!$wlan0up) : ?>
-                    <input type="submit" class="btn btn-success" value="<?php echo _("Start").' '.$apInterface ?>" name="ifup_wlan0" />
-                    <?php else : ?>
-                    <input type="submit" class="btn btn-warning" value="<?php echo _("Stop").' '.$apInterface ?>"  name="ifdown_wlan0" />
-                    <?php endif ?>
-                <?php endif ?>
-              <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
-            </form>
+              <div class="connections-right col-lg-4">
+                <div class="d-flex flex-column justify-content-around h-100">
+                  <div class="connection-item connection-right">
+                    <a href="/dhcpd_conf?tab=client-list" class="<?php echo $wirelessClientActive; ?>">
+                      <span class="fa-stack">
+                        <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
+                        <i class="fas fa-wifi fa-stack-1x fa-xs"></i>
+                      </span>
+                    </a>
+                    <a href="/dhcpd_conf?tab=client-list"><span class="text-nowrap <?php echo $wirelessClientActive; ?>"><?php echo $wirelessClientLabel; ?></span></a>
+                  </div>
+                  <div class="connection-item connection-right">
+                    <a href="/dhcpd_conf?tab=client-list" class="<?php echo $ethernetClientActive; ?>">
+                      <span class="fa-stack">
+                        <i class="fas fa-laptop fa-stack-1x fa-2xl"></i>
+                        <i class="fas fa-ethernet fa-stack-1x fa-xs"></i>
+                      </span>
+                    </a>
+                    <a href="/dhcpd_conf?tab=client-list"><span class="text-nowrap <?php echo $ethernetClientActive; ?>"><?php echo $ethernetClientLabel; ?></span></a>
+                  </div>
+                </div>
+                <?php echo renderClientConnections($wirelessClients, $ethernetClients); ?>
+                <img src="app/img/right-dashed.svg" class="dashed-lines dashed-lines-right" alt="">
+              </div>
+            </div>
           </div>
         </div>
-
-      </div><!-- /.card-body -->
-      <div class="card-footer"><?php echo _("Information provided by ip and iw and from system"); ?></div>
+        <div class="col-lg-12 mt-3">
+        </div>
+        <div class="row">
+          <form action="wlan0_info" method="POST">
+            <?php echo CSRFTokenFieldTag() ?>
+            <?php echo $buttons ?>
+          </form>
+        </div>
+      </div>
+      <div class="card-footer"><?php echo _("Information provided by raspap.sysinfo"); ?></div>
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
-<script type="text/javascript"<?php //echo ' nonce="'.$csp_page_nonce.'"'; ?>>
-// js translations:
-var t = new Array();
-t['send'] = '<?php echo addslashes(_('Send')); ?>';
-t['receive'] = '<?php echo addslashes(_('Receive')); ?>';
-</script>
+

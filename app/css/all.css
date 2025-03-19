@@ -9,6 +9,7 @@ License: GNU General Public License v3.0
 :root {
   --raspap-content-main: #495057;
   --raspap-text-muted: #858796;
+  --raspap-text-light: #999999;
   --raspap-brand-color: #2b8080;
   --raspap-offwhite: #faf9f6;
 }
@@ -171,11 +172,6 @@ canvas#divDBChartBandwidthhourly {
   height: 350px!important;
 }
 
-.chart-container {
-  height: 150px;
-  width: 200px;
-}
-
 .dbChart {
   display: flex;
   height: 80%;
@@ -190,7 +186,7 @@ canvas#divDBChartBandwidthhourly {
 }
 
 .check-progress {
-  color: #999;
+  color: var(--raspap-text-light);
 }
 
 .fa-check {
@@ -388,3 +384,280 @@ textarea.plugin-log {
   font-family: monospace;
   font-size: 0.9rem;
 }
+
+.card-wrapper {
+  margin: 1rem;
+}
+
+.dashboard-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  padding: 2rem;
+}
+
+.connections-left,
+.connections-right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.connection-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 5;
+  color: var(--raspap-text-light);
+}
+
+.connection-right {
+  align-items: center;
+  margin-left: 10rem;
+}
+
+.connections-left i {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.connections-left i:first-child {
+  margin-top: 0;
+}
+
+.connections-left i:last-child {
+  margin-bottom: 0;
+  margin-left: 0.5rem;
+}
+
+.center-device {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.center-device-top {
+  margin-bottom: 30px;
+}
+
+.client-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 0.5rem;
+}
+
+.client-count {
+  text-align: right;
+}
+
+.clients-status {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-right: 1rem;
+}
+
+.dashed-lines,
+.solid-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+  left: 112px;
+}
+
+.dashed-lines-right,
+.solid-lines-right {
+  left: -80px;
+}
+
+.solid-lines, .solid-lines-right {
+  z-index: 3;
+}
+
+.dashed-lines, .dashed-lines-right {
+  z-index 0;
+}
+
+.device-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 0.8rem 0;
+}
+
+.wifi-bands {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.band {
+  padding: 0.25rem 1rem;
+  border: 2px solid var(--raspap-text-light);
+  border-radius: 4px;
+  background: transparent;
+  font-weight: 600;
+  color: var(--raspap-text-light);
+}
+
+.band.active {
+  border-color: var(--raspap-theme-color);
+  color: var(--raspap-theme-color);
+}
+
+.device-label {
+  font-size: 1.3rem;
+  text-align: center;
+  color: var(--raspap-theme-color);
+  margin-top: 1rem;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.3rem;
+  color: var(--raspap-text-light);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.3rem;
+  width: 100%;
+}
+
+.status-item .fa-stack {
+  width: 1.5em!important;
+}
+
+.connection-item>i {
+  color: var(--raspap-text-light);
+}
+
+.connection-item .fa-stack {
+  min-width: 2.5em;
+}
+
+.connections-left>.connection-item>span {
+  color: var(--raspap-text-light);
+  margin-right: 0.5rem;
+}
+
+.inactive {
+    color: var(--raspap-text-light)!important;
+}
+
+a.inactive:hover,
+a.inactive:focus {
+    color: var(--raspap-text-light) !important;
+}
+
+@media (max-width: 1200px) {
+  .connection-item a > span:not(.fa-stack) {
+    display: none!important;
+  }
+}
+
+@media (max-width: 991px) {
+  .connections-right,
+  .connections-left {
+    display: none!important;
+  }
+  .dashboard-container {
+    width: auto;
+    padding: 0;
+
+  }
+  .device-status {
+    gap: 0.5rem;
+  }
+  .clients-mobile {
+    display: flex!important;
+    flex-direction: row!important;
+  }
+}
+.connection-item.active > span {
+  color: var(--raspap-theme-color)!important;
+}
+.connection-item.active > i {
+  color: var(--raspap-theme-color)!important;
+}
+.status-item.active > span {
+  color: var(--raspap-theme-color)!important;
+}
+.status-item.active > i {
+  color: var(--raspap-theme-color)!important;
+}
+
+.clients-mobile {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.client-type {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.client-type i {
+  font-size: 1.5rem;
+  color: var(--raspap-theme-color);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--raspap-theme-color);
+}
+
+.client-type i.badge-icon {
+  font-size: 0.7rem;
+  background: var(--raspap-theme-color);
+  color: var(--raspap-offwhite);
+  width: 20px;
+  height: 20px;
+  border: none;
+}
+
+.client-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--raspap-theme-color);
+  color: var(--raspap-offwhite);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.device-illustration {
+  min-width: 220px;
+  max-width: 250px;
+}
+

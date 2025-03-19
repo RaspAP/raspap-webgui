@@ -20,11 +20,17 @@
               <tbody>
                 <?php foreach ($leases as $lease) : ?>
                 <tr>
-                  <?php foreach (explode(' ', $lease) as $prop) : ?>
-                  <td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
-                  <?php endforeach ?>
+                    <?php
+                    $props = explode(' ', $lease);
+                    if (!empty($props)) {
+                        $props[0] = date('Y-m-d H:i:s', (int)$props[0]);
+                    }
+                    ?>
+                    <?php foreach ($props as $prop) : ?>
+                        <td><?php echo htmlspecialchars($prop, ENT_QUOTES) ?></td>
+                    <?php endforeach ?>
                 </tr>
-                <?php endforeach ?>
+            <?php endforeach ?>
               </tbody>
             </table>
           </div><!-- /.table-responsive -->

@@ -994,41 +994,8 @@ function getCookie(cname) {
 // Define themes
 var themes = {
     "default": "custom.php",
-    "hackernews" : "hackernews.css",
-    "lightsout" : "lightsout.php",
-    "material-light" : "material-light.php",
-    "material-dark" : "material-dark.php",
+    "hackernews" : "hackernews.css"
 }
-
-// Toggles the sidebar navigation.
-// Overrides the default SB Admin 2 behavior
-$("#sidebarToggleTopbar").on('click', function(e) {
-    $("body").toggleClass("sidebar-toggled");
-    $(".sidebar").toggleClass("toggled d-none");
-});
-
-// Overrides SB Admin 2
-$("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
-    var toggled = $(".sidebar").hasClass("toggled");
-    // Persist state in cookie
-    setCookie('sidebarToggled',toggled, 90);
-});
-
-$(function() {
-    if ($(window).width() < 768) {
-        $('.sidebar').addClass('toggled');
-        setCookie('sidebarToggled',false, 90);
-    }
-});
-
-$(window).on("load resize",function(e) {
-    if ($(window).width() > 768) {
-        $('.sidebar').removeClass('d-none d-md-block');
-        if (getCookie('sidebarToggled') == 'false') {
-            $('.sidebar').removeClass('toggled');
-        }
-    }
-});
 
 // Adds active class to current nav-item
 $(window).bind("load", function() {
@@ -1036,6 +1003,19 @@ $(window).bind("load", function() {
     $('.sb-nav-link-icon a').filter(function() {
       return this.href == url;
     }).parent().addClass('active');
+});
+
+// Sets focus on a specified tab
+document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const targetTab = params.get("tab");
+    if (targetTab) {
+        let tabElement = document.querySelector(`[data-bs-toggle="tab"][href="#${targetTab}"]`);
+        if (tabElement) {
+            let tab = new bootstrap.Tab(tabElement);
+            tab.show();
+        }
+    }
 });
 
 $(document).ready(function() {

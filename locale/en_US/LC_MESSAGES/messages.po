@@ -25,8 +25,8 @@ msgstr "RaspAP Wifi Configuration Portal"
 msgid "Toggle navigation"
 msgstr "Toggle navigation"
 
-msgid "RaspAP Wifi Portal"
-msgstr "RaspAP Wifi Portal"
+msgid "RaspAP Admin Panel"
+msgstr "RaspAP Admin Panel"
 
 msgid "Dashboard"
 msgstr "Dashboard"
@@ -244,8 +244,8 @@ msgstr "Frequency"
 msgid "Link Quality"
 msgstr "Link Quality"
 
-msgid "Information provided by ip and iw and from system"
-msgstr "Information provided by ip and iw and from system"
+msgid "Information provided by raspap.system"
+msgstr "Information provided by raspap.system"
 
 msgid "No MAC Address Found"
 msgstr "No MAC Address Found"
@@ -283,8 +283,52 @@ msgstr "Connected Devices"
 msgid "Client: Ethernet cable"
 msgstr "Client: Ethernet cable"
 
+msgid "Current status"
+msgstr "Current status"
+
 msgid "Ethernet"
 msgstr "Ethernet"
+
+msgid "Repeater"
+msgstr "Repeater"
+
+msgid "Tethering"
+msgstr "Tethering"
+
+msgid "Cellular"
+msgstr "Cellular"
+
+msgid "AP"
+msgstr "AP"
+
+msgid "Bridged"
+msgstr "Bridged"
+
+msgid "Adblock"
+msgstr "Adblock"
+
+msgid "VPN"
+msgstr "VPN"
+
+msgid "Firewall"
+msgstr "Firewall"
+
+msgid "Netmask"
+msgstr "Netmask"
+
+msgid "5G"
+msgstr "5G"
+
+msgid "2.4G"
+msgstr "2.4G"
+
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
+
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "client"
+msgstr[1] "clients"
 
 msgid "Client: Smartphone (USB tethering)"
 msgstr "Client: Smartphone (USB tethering)"
@@ -333,6 +377,16 @@ msgstr "Signal strength"
 
 msgid "No Client device or not yet configured"
 msgstr "No Client device or not yet configured"
+
+#: includes/footer.php
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+msgid "RaspAP Team"
+msgstr "RaspAP Team"
+
+msgid "Get Insiders"
+msgstr "Get Insiders"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"

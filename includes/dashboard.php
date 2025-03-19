@@ -5,226 +5,170 @@ require_once 'includes/wifi_functions.php';
 require_once 'includes/functions.php';
 
 /**
- * Show dashboard page.
+ * Displays the dashboard
  */
-function DisplayDashboard(&$extraFooterScripts)
+function DisplayDashboard(): void
 {
-    getWifiInterface();
+    // instantiate RaspAP objects
+    $system = new \RaspAP\System\Sysinfo;
+    $dashboard = new \RaspAP\UI\Dashboard;
     $status = new \RaspAP\Messages\StatusMessage;
-    // Need this check interface name for proper shell execution.
-    if (!preg_match('/^([a-zA-Z0-9]+)$/', $_SESSION['wifi_client_interface'])) {
-        $status->addMessage(_('Interface name invalid.'), 'danger');
-        $status->showMessages();
-        return;
-    }
+    $pluginManager = \RaspAP\Plugins\PluginManager::getInstance();
 
-    if (!function_exists('exec')) {
-        $status->addMessage(_('Required exec function is disabled. Check if exec is not added to php disable_functions.'), 'danger');
-        $status->showMessages();
-        return;
-    }
-    exec('ip a show '.$_SESSION['ap_interface'], $stdoutIp);
-    $stdoutIpAllLinesGlued = implode(" ", $stdoutIp);
-    $stdoutIpWRepeatedSpaces = preg_replace('/\s\s+/', ' ', $stdoutIpAllLinesGlued);
+    // set AP and client interface session vars
+    getWifiInterface();
 
-    preg_match('/link\/ether ([0-9a-f:]+)/i', $stdoutIpWRepeatedSpaces, $matchesMacAddr) || $matchesMacAddr[1] = _('No MAC Address Found');
-    $macAddr = $matchesMacAddr[1];
-
-    $ipv4Addrs = '';
-    $ipv4Netmasks = '';
-    if (!preg_match_all('/inet (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/([0-3][0-9])/i', $stdoutIpWRepeatedSpaces, $matchesIpv4AddrAndSubnet, PREG_SET_ORDER)) {
-        $ipv4Addrs = _('No IPv4 Address Found');
-    } else {
-        foreach ($matchesIpv4AddrAndSubnet as $inet) {
-            $address = $inet[1];
-            $suffix  = (int) $inet[2];
-            $netmask = long2ip(-1 << (32 - $suffix));
-            $ipv4Addrs    .= " $address";
-            $ipv4Netmasks .= " $netmask";
-        }
-        $ipv4Addrs    = trim($ipv4Addrs);
-        $ipv4Netmasks = trim($ipv4Netmasks);
-    }
-    $ipv4Netmasks = empty($ipv4Netmasks) ? "-" : $ipv4Netmasks;
-
-    $ipv6Addrs = '';
-    if (!preg_match_all('/inet6 ([a-f0-9:]+)/i', $stdoutIpWRepeatedSpaces, $matchesIpv6Addr)) {
-        $ipv6Addrs = _('No IPv6 Address Found');
-    } else {
-        if (isset($matchesIpv6Addr[1])) {
-            $ipv6Addrs = implode(' ', $matchesIpv6Addr[1]);
-        }
-    }
-
-    preg_match('/state (UP|DOWN)/i', $stdoutIpWRepeatedSpaces, $matchesState) || $matchesState[1] = 'unknown';
-    $interfaceState = $matchesState[1];
-
-    // Because of table layout used in the ip output we get the interface statistics directly from
-    // the system. One advantage of this is that it could work when interface is disable.
-    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/rx_packets ', $stdoutCatRxPackets);
-    $strRxPackets = _('No data');
-    if (ctype_digit($stdoutCatRxPackets[0])) {
-        $strRxPackets = $stdoutCatRxPackets[0];
-    }
-
-    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/tx_packets ', $stdoutCatTxPackets);
-    $strTxPackets = _('No data');
-    if (ctype_digit($stdoutCatTxPackets[0])) {
-        $strTxPackets = $stdoutCatTxPackets[0];
-    }
-
-    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/rx_bytes ', $stdoutCatRxBytes);
-    $strRxBytes = _('No data');
-    if (ctype_digit($stdoutCatRxBytes[0])) {
-        $strRxBytes = $stdoutCatRxBytes[0];
-        $strRxBytes .= getHumanReadableDatasize($strRxBytes);
-    }
-
-    exec('cat /sys/class/net/'.$_SESSION['ap_interface'].'/statistics/tx_bytes ', $stdoutCatTxBytes);
-    $strTxBytes = _('No data');
-    if (ctype_digit($stdoutCatTxBytes[0])) {
-        $strTxBytes = $stdoutCatTxBytes[0];
-        $strTxBytes .= getHumanReadableDatasize($strTxBytes);
-    }
-
-    exec ('vnstat --dbiflist', $stdoutVnStatDB);
-    if (!preg_match('/'.$_SESSION['ap_interface'].'/', $stdoutVnStatDB[0])) {
-        exec('sudo vnstat --add --iface '.$_SESSION['ap_interface'], $return);
-    }
-
-    define('SSIDMAXLEN', 32);
-    // Warning iw comes with: "Do NOT screenscrape this tool, we don't consider its output stable."
-    exec('iw dev ' .$_SESSION['wifi_client_interface']. ' link ', $stdoutIw);
-    $stdoutIwAllLinesGlued = implode('+', $stdoutIw); // Break lines with character illegal in SSID and MAC addr
-    $stdoutIwWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwAllLinesGlued);
-
-    preg_match('/Connected to (([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2}))/', $stdoutIwWRepSpaces, $matchesBSSID) || $matchesBSSID[1] = '';
-    $connectedBSSID = $matchesBSSID[1];
-    $connectedBSSID = empty($connectedBSSID) ? "-" : $connectedBSSID;
-
-    $wlanHasLink = false;
-    if ($interfaceState === 'UP') {
-        $wlanHasLink = true;
-    }
-
-    if (!preg_match('/SSID: ([^+]{1,'.SSIDMAXLEN.'})/', $stdoutIwWRepSpaces, $matchesSSID)) {
-        $wlanHasLink = false;
-        $matchesSSID[1] = 'None';
-    }
-    $connectedSSID = str_replace('\x20', '', $matchesSSID[1]);
-
-    preg_match('/freq: (\d+)/i', $stdoutIwWRepSpaces, $matchesFrequency) || $matchesFrequency[1] = '';
-    $frequency = $matchesFrequency[1].' MHz';
-
-    preg_match('/signal: (-?[0-9]+ dBm)/i', $stdoutIwWRepSpaces, $matchesSignal) || $matchesSignal[1] = '';
-    $signalLevel = $matchesSignal[1];
-    $signalLevel = empty($signalLevel) ? "-" : $signalLevel;
-
-    preg_match('/tx bitrate: ([0-9\.]+ [KMGT]?Bit\/s)/', $stdoutIwWRepSpaces, $matchesBitrate) || $matchesBitrate[1] = '';
-    $bitrate = $matchesBitrate[1];
-    $bitrate = empty($bitrate) ? "-" : $bitrate;
-
-    // txpower is now displayed on iw dev(..) info command, not on link command.
-    exec('iw dev '.$_SESSION['wifi_client_interface'].' info ', $stdoutIwInfo);
-    $stdoutIwInfoAllLinesGlued = implode(' ', $stdoutIwInfo);
-    $stdoutIpInfoWRepSpaces = preg_replace('/\s\s+/', ' ', $stdoutIwInfoAllLinesGlued);
-
-    preg_match('/txpower ([0-9\.]+ dBm)/i', $stdoutIpInfoWRepSpaces, $matchesTxPower) || $matchesTxPower[1] = '';
-    $txPower = $matchesTxPower[1];
-
-    // iw does not have the "Link Quality". This is a is an aggregate value,
-    // and depends on the driver and hardware.
-    // Display link quality as signal quality for now.
-    $strLinkQuality = 0;
-    if ($signalLevel > -100 && $wlanHasLink) {
-        if ($signalLevel >= 0) {
-            $strLinkQuality = 100;
-        } else {
-            $strLinkQuality = 100 + intval($signalLevel);
-        }
-    }
-
-    $wlan0up = false;
-    $classMsgDevicestatus = 'warning';
-    if ($interfaceState === 'UP') {
-        $wlan0up = true;
-        $classMsgDevicestatus = 'success';
-    }
-
-    if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['ifdown_wlan0'])) {
-            // Pressed stop button
-            if ($interfaceState === 'UP') {
-                $status->addMessage(sprintf(_('Interface is going %s.'), _('down')), 'warning');
-                exec('sudo ip link set '.$_SESSION['ap_interface'].' down');
-                $wlan0up = false;
-                $status->addMessage(sprintf(_('Interface is now %s.'), _('down')), 'success');
-            } elseif ($interfaceState === 'unknown') {
-                $status->addMessage(_('Interface state unknown.'), 'danger');
-            } else {
-                $status->addMessage(sprintf(_('Interface already %s.'), _('down')), 'warning');
-            }
-        } elseif (isset($_POST['ifup_wlan0'])) {
-            // Pressed start button
-            if ($interfaceState === 'DOWN') {
-                $status->addMessage(sprintf(_('Interface is going %s.'), _('up')), 'warning');
-                exec('sudo ip link set ' .$_SESSION['ap_interface']. ' up');
-                exec('sudo ip -s a f label ' .$_SESSION['ap_interface']);
-                $wlan0up = true;
-                $status->addMessage(sprintf(_('Interface is now %s.'), _('up')), 'success');
-            } elseif ($interfaceState === 'unknown') {
-                $status->addMessage(_('Interface state unknown.'), 'danger');
-            } else {
-                $status->addMessage(sprintf(_('Interface already %s.'), _('up')), 'warning');
-            }
-        } else {
-            $status->addMessage(sprintf(_('Interface is %s.'), strtolower($interfaceState)), $classMsgDevicestatus);
-        }
-    }
-    // brought in from template
+    $interface = $_SESSION['ap_interface'] ?? 'wlan0';
+    $clientInterface = $_SESSION['wifi_client_interface'];
+    $hostname = $system->hostname();
+    $revision = $system->rpiRevision();
+    $hostapd = $system->hostapdStatus();
+    $adblock = $system->adBlockStatus();
+    $vpn = $system->getActiveVpnInterface();
+    $frequency = $dashboard->getFrequencyBand($interface);
+    $details = $dashboard->getInterfaceDetails($interface);
+    $wireless = $dashboard->getWirelessDetails($interface);
+    $connectionType = $dashboard->getConnectionType();
+    $connectionIcon = $dashboard->getConnectionIcon($connectionType);
+    $state = strtolower($details['state']);
+    $wirelessClients = $dashboard->getWirelessClients();
+    $ethernetClients = $dashboard->getEthernetClients();
+    $totalClients = $wirelessClients + $ethernetClients;
+    $plugins = $pluginManager->getInstalledPlugins();
     $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
     $bridgedEnable = $arrHostapdConf['BridgedEnable'];
-    $clientInterface = $_SESSION['wifi_client_interface'];
-    $apInterface = $_SESSION['ap_interface'];
-    $MACPattern = '"([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}"';
 
-    if (getBridgedState()) {
-        $moreLink = "hostapd_conf";
-        exec('iw dev ' . $apInterface . ' station dump | grep -oE ' . $MACPattern, $clients);
-    } else {
-        $moreLink = "dhcpd_conf";
-        exec('cat ' . RASPI_DNSMASQ_LEASES . '| grep -E $(iw dev ' . $apInterface . ' station dump | grep -oE ' . $MACPattern . ' | paste -sd "|")', $clients);
+    // handle page actions
+    if (!empty($_POST)) {
+        $status = $dashboard->handlePageAction($state, $_POST, $status, $interface);
+        // refresh interface details + state
+        $details = $dashboard->getInterfaceDetails($interface);
+        $state = strtolower($details['state']);
     }
-    $ifaceStatus = $wlan0up ? "up" : "down";
+
+    $ipv4Address = $details['ipv4'];
+    $ipv4Netmask = $details['ipv4_netmask'];
+    $macAddress = $details['mac'];
+    $ssid = $wireless['ssid'];
+    $ethernetActive = ($connectionType === 'ethernet') ? "active" : "inactive";
+    $wirelessActive = ($connectionType === 'wireless') ? "active" : "inactive";
+    $tetheringActive = ($connectionType === 'tethering') ? "active" : "inactive";
+    $cellularActive = ($connectionType === 'cellular') ? "active" : "inactive";
+    $bridgedStatus = ($bridgedEnable == 1) ? "active" : "";
+    $hostapdStatus = ($hostapd[0] == 1) ?  "active" : "";
+    $adblockStatus = ($adblock == true) ?  "active" : "";
+    $wirelessClientActive = ($wirelessClients > 0) ? "active" : "inactive";
+    $wirelessClientLabel = sprintf(
+        _('%d WLAN %s'),
+        $wirelessClients,
+        $dashboard->formatClientLabel($wirelessClients)
+    );
+    $ethernetClientActive = ($ethernetClients > 0) ? "active" : "inactive";
+    $ethernetClientLabel = sprintf(
+        _('%d LAN %s'),
+        $ethernetClients,
+        $dashboard->formatClientLabel($ethernetClients)
+    );
+    $totalClientsActive = ($totalClients > 0) ? "active": "inactive";
+    $freq5active = $freq24active = "";
+    $varName = "freq" . str_replace('.', '', $frequency) . "active";
+    $$varName = "active";
+    $vpnStatus = $vpn ? "active" : "inactive";
+    if ($vpn) {
+        $vpnManaged = $dashboard->getVpnManged($vpn);
+    }
+    $firewallManaged = $firewallStatus = "";
+    $firewallInstalled = array_filter($plugins, fn($p) => str_ends_with($p, 'Firewall')) ? true : false;
+    if (!$firewallInstalled) {
+        $firewallUnavailable = '<i class="fas fa-slash fa-stack-1x"></i>';
+    } else {
+        $firewallManaged = '<a href="/plugin__Firewall">';
+        $firewallStatus = ($dashboard->firewallEnabled() == true) ? "active" : "";
+    }
 
     echo renderTemplate(
         "dashboard", compact(
-            "clients",
-            "moreLink",
-            "apInterface",
+            "revision",
+            "interface",
             "clientInterface",
-            "ifaceStatus",
-            "bridgedEnable",
-            "status",
-            "ipv4Addrs",
-            "ipv4Netmasks",
-            "ipv6Addrs",
-            "macAddr",
-            "strRxPackets",
-            "strRxBytes",
-            "strTxPackets",
-            "strTxBytes",
-            "connectedSSID",
-            "connectedBSSID",
-            "bitrate",
-            "signalLevel",
-            "txPower",
+            "state",
+            "bridgedStatus",
+            "hostapdStatus",
+            "adblockStatus",
+            "vpnStatus",
+            "vpnManaged",
+            "firewallUnavailable",
+            "firewallStatus",
+            "firewallManaged",
+            "ipv4Address",
+            "ipv4Netmask",
+            "macAddress",
+            "ssid",
             "frequency",
-            "strLinkQuality",
-            "wlan0up"
+            "freq5active",
+            "freq24active",
+            "wirelessClients",
+            "wirelessClientLabel",
+            "wirelessClientActive",
+            "ethernetClients",
+            "ethernetClientLabel",
+            "ethernetClientActive",
+            "totalClients",
+            "totalClientsActive",
+            "connectionType",
+            "connectionIcon",
+            "ethernetActive",
+            "wirelessActive",
+            "tetheringActive",
+            "cellularActive",
+            "status"
         )
     );
-    $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);
-    $extraFooterScripts[] = array('src'=>'app/js/linkquality.js', 'defer'=>false);
 }
+
+/**
+ * Renders a URL for an svg solid line representing the associated
+ * connection type
+ *
+ * @param string $connectionType
+ * @return string
+ */
+function renderConnection(string $connectionType): string
+{
+    $deviceMap = [
+        'ethernet'  => 'device-1',
+        'wireless'  => 'device-2',
+        'tethering' => 'device-3',
+        'cellular'  => 'device-4'
+    ];
+    $device = $deviceMap[$connectionType] ?? 'device-unknown';
+
+    // return generated URL for solid.php
+    return sprintf('app/img/solid.php?joint&%s&out', $device);
+}
+
+/**
+ * Renders a URL for an svg solid line representing associated
+ * client connection(s)
+ *
+ * @param int $wirelessClients
+ * @param int $ethernetClients
+ * @return string
+ */
+function renderClientConnections(int $wirelessClients, int $ethernetClients): string
+{
+    $devices = [];
+
+    if ($wirelessClients > 0) {
+        $devices[] = 'device-1&out';
+    }
+    if ($ethernetClients > 0) {
+        $devices[] = 'device-2&out';
+    }
+    return empty($devices) ? '' : sprintf(
+        '<img src="app/img/right-solid.php?%s" class="solid-lines solid-lines-right" alt="Client connections">',
+        implode('&', $devices)
+    );
+}
+
 
