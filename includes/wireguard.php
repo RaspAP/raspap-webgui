@@ -10,10 +10,10 @@ function DisplayWireGuardConfig()
     $status = new \RaspAP\Messages\StatusMessage;
     $parseFlag = true;
     if (!RASPI_MONITOR_ENABLED) {
-        $optRules     = $_POST['wgRules'];
-        $optConf      = $_POST['wgCnfOpt'];
-        $optSrvEnable = $_POST['wgSrvEnable'];
-        $optLogEnable = $_POST['wgLogEnable'];
+        $optRules     = isset($_POST['wgRules']) ? $_POST['wgRules'] : null;
+        $optConf      = isset($_POST['wgCnfOpt']) ? $_POST['wgCnfOpt'] : null;
+        $optSrvEnable = isset($_POST['wgSrvEnable']) ? $_POST['wgSrvEnable'] : null;
+        $optLogEnable = isset($_POST['wgLogEnable']) ? $_POST['wgLogEnable'] : null;
         if (isset($_POST['savewgsettings']) && $optConf == 'manual' && $optSrvEnable == 1 ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['savewgsettings']) && $optConf == 'upload' && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
@@ -69,6 +69,14 @@ function DisplayWireGuardConfig()
     $wg_state = ($wgstatus[0] == 'active' ? true : false );
     $public_ip = get_public_ip();
 
+    // retrieve wg log
+    $wg_log = "";
+    if (file_exists('/tmp/wireguard.log')) {
+        exec('sudo chmod o+r /tmp/wireguard.log');
+        $wg_log = file_get_contents('/tmp/wireguard.log');
+    }
+    $peer_id = $peer_id ?? "1";
+
     echo renderTemplate(
         "wireguard", compact(
             "status",
@@ -89,7 +97,8 @@ function DisplayWireGuardConfig()
             "wg_peerpubkey",
             "wg_pendpoint",
             "wg_pallowedips",
-            "wg_pkeepalive"
+            "wg_pkeepalive",
+            "wg_log"
         )
     );
 }

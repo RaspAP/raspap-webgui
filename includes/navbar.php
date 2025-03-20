@@ -13,7 +13,7 @@
     <!-- Auth user -->
     <li class="nav-item mt-1">
       <a class="nav-link" href="auth_conf">
-        <span class="mr-2 small nav-user"><?php echo htmlspecialchars($_SESSION['user_id'], ENT_QUOTES); ?></span>
+        <span class="mr-2 small nav-user"><?php echo htmlspecialchars($_SESSION['user_id'] ?? '', ENT_QUOTES); ?></span>
         <i class="fas fa-user-circle text-muted mt-2 fa-3x"></i>
       </a>
     </li>

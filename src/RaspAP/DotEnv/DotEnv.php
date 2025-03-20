@@ -37,7 +37,7 @@ class DotEnv
                 }
             }
         } else {
-            throw new Exception(".env file '{$this->envFile}' not found.");
+            throw new \Exception(".env file '{$this->envFile}' not found.");
         }
     }
 
@@ -75,7 +75,7 @@ class DotEnv
         file_put_contents("/tmp/.env", $content);
         system('sudo mv /tmp/.env '.$this->envFile, $result);
         if ($result !== 0) {
-            throw new Exception("Unable to move .env file: ". $this->envFile);
+            throw new \Exception("Unable to move .env file: ". $this->envFile);
         }
     }
 
@@ -83,7 +83,7 @@ class DotEnv
     {
         exec('sudo touch '. escapeshellarg($this->envFile), $output, $result);
         if ($result !== 0) {
-            throw new Exception("Unable to create .env file: ". $this->envFile);
+            throw new \Exception("Unable to create .env file: ". $this->envFile);
         }
     }
 }

@@ -35,8 +35,7 @@ function DisplayDashboard(): void
     $ethernetClients = $dashboard->getEthernetClients();
     $totalClients = $wirelessClients + $ethernetClients;
     $plugins = $pluginManager->getInstalledPlugins();
-    $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
-    $bridgedEnable = $arrHostapdConf['BridgedEnable'];
+    $bridgedEnable = getBridgedState();
 
     // handle page actions
     if (!empty($_POST)) {
