@@ -71,8 +71,14 @@ case "$action" in
         exit 1
     fi
 
-    mkdir -p "$(dirname "$destination")"
-    chown -R "$raspap_user:$raspap_user" "$(dirname "$destination")"
+    dest_dir="$(dirname "$destination")"
+    if [ -z "$dest_dir" ] || [ "$dest_dir" = "/" ]; then
+        echo "Error: Unsafe destination path."
+        exit 1
+    fi
+
+    mkdir -p "$dest_dir"
+    chown -R "$raspap_user:$raspap_user" "$dest_dir"
     cp "$source" "$destination"
 
     echo "OK"
