@@ -600,6 +600,7 @@ function _download_latest_files() {
         if [ -n "$username" ] && [ -n "$acctoken" ]; then
             insiders_source_url="https://${username}:${acctoken}@github.com/$repo"
             git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $insiders_source_url $source_dir || clone=false
+            git -C $source_dir submodule update --remote plugins || clone=false
         else
             _install_status 3
             echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
@@ -607,6 +608,7 @@ function _download_latest_files() {
     fi
     if [ -z "$insiders_source_url" ]; then
         git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url $source_dir || clone=false
+        git -C $source_dir submodule update --remote plugins || clone=false
     fi
     if [ "$clone" = false ]; then
         _install_status 1 "Unable to download files from GitHub"
