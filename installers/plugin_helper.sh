@@ -123,16 +123,50 @@ case "$action" in
     echo "OK"
     ;;
 
+  "keys")
+    [ $# -ne 4 ] && { echo "Usage: $0 keys <key_url> <keyring> <repo> <sources>"; exit 1; }
+
+    key_url="$1"
+    keyring="$2"
+    repo="$3"
+    list_file="$4"
+
+    # add repository GPG key if it doesn't already exist
+    if [ ! -f "$keyring" ]; then
+        echo "Downloading GPG key from $key_url..."
+        curl -fsSL "$key_url" | sudo tee "$keyring" > /dev/null || { echo "Error: Failed to download GPG key."; exit 1; }
+    else
+        echo "Repository GPG key already exists at $keyring"
+    fi
+
+    # add repository list if not present
+    if [ ! -f "$list_file" ]; then
+        echo "Adding repository $repo to sources list"
+        curl -fsSL "$repo" | sudo tee "$list_file" > /dev/null || { echo "Error: Failed to add repository to sources list."; exit 1; }
+        update_required=1
+    else
+        echo "Repository already exists in sources list"
+    fi
+
+    # update apt package list if required
+    if [ "$update_required" == "1" ]; then
+        sudo apt-get update || { echo "Error: Failed to update apt"; exit 1; }
+    fi
+
+    echo "OK"
+    ;;
+
   *)
     echo "Invalid action: $action"
     echo "Usage: $0 <action> [parameters...]"
     echo "Actions:"
-    echo "  sudoers <file>                      Install a sudoers file"
-    echo "  packages <packages>                 Install aptitude package(s)"
-    echo "  user <name> <password>              Add user non-interactively"
-    echo "  config <source <destination>        Applies a config file"
-    echo "  javascript <source> <destination>   Applies a JavaScript file"
-    echo "  plugin <source <destination>        Copies a plugin directory"
+    echo "  sudoers <file>                              Install a sudoers file"
+    echo "  packages <packages>                         Install aptitude package(s)"
+    echo "  user <name> <password>                      Add user non-interactively"
+    echo "  config <source <destination>                Applies a config file"
+    echo "  javascript <source> <destination>           Applies a JavaScript file"
+    echo "  plugin <source> <destination>               Copies a plugin directory"
+    echo "  keys <key_url> <keyring> <repo> <sources>   Installs a GPG key for a third-party repo"
     exit 1
     ;;
 esac
