@@ -11,7 +11,7 @@
  *
  * Refer to: https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4
  */
-if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2) {
+if (empty($_SESSION['locale']) && !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2) {
     $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     switch ($lang) {
     case "de":
@@ -90,9 +90,10 @@ if (empty($_SESSION['locale']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2)
 // Use: 'sudo raspi-configure' and select 'Localisation Options'
 
 // activate the locale setting
-putenv("LANG=" . $_SESSION['locale']);
-setlocale(LC_ALL, $_SESSION['locale']);
-
+if (!empty($_SESSION['locale'])) {
+    putenv("LANG=" . $_SESSION['locale']);
+    setlocale(LC_ALL, $_SESSION['locale']);
+}
 bindtextdomain(LOCALE_DOMAIN, LOCALE_ROOT);
 bind_textdomain_codeset(LOCALE_DOMAIN, 'UTF-8');
 
