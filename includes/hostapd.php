@@ -297,21 +297,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
         $status->addMessage('Parameter hiddenSSID contains an invalid configuration value.', 'danger');
         $good_input = false;
     }
-    /*
-    if (isset($_POST['hiddenSSID'])) {
-        if (!is_int((int)$_POST['hiddenSSID'])) {
-            $status->addMessage('Parameter hiddenSSID not a number.', 'danger');
-            $good_input = false;
-        } elseif ((int)$_POST['hiddenSSID'] < 0 || (int)$_POST['hiddenSSID'] >= 3) {
-            $status->addMessage('Parameter hiddenSSID contains invalid configuratie value.', 'danger');
-            $good_input = false;
-        } else {
-            $ignore_broadcast_ssid = $_POST['hiddenSSID'];
-        }
-    } else {
-        $ignore_broadcast_ssid = '0';
-    }
-    */
 
     if (! in_array($_POST['interface'], $interfaces)) {
         $status->addMessage('Unknown interface '.htmlspecialchars($_POST['interface'], ENT_QUOTES), 'danger');
