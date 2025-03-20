@@ -46,7 +46,12 @@ function DisplayHostAPDConfig()
             SaveHostAPDConfig($arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $reg_domain, $status);
         }
     }
-    $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
+
+    $arrHostapdConf = [];
+    $hostapdIni = RASPI_CONFIG . '/hostapd.ini';
+	if (file_exists($hostapdIni)) {
+        $arrHostapdConf = parse_ini_file($hostapdIni);
+    }
 
     if (!RASPI_MONITOR_ENABLED) {
          if (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
@@ -136,6 +141,9 @@ function DisplayHostAPDConfig()
         }
     }
 
+    $arrConfig['ignore_broadcast_ssid'] ??= 0;
+    $arrConfig['max_num_sta'] ??= 0;
+    $arrConfig['wep_default_key'] ??= 0;
     exec('sudo /bin/chmod o+r '.RASPI_HOSTAPD_LOG);
     $logdata = getLogLimited(RASPI_HOSTAPD_LOG);
 
@@ -281,6 +289,15 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
         $good_input = false;
     }
 
+    $ignore_broadcast_ssid = $_POST['hiddenSSID'] ?? '0';
+    if (!ctype_digit($ignore_broadcast_ssid)) {
+        $status->addMessage('Parameter hiddenSSID not a number.', 'danger');
+        $good_input = false;
+    } elseif ((int)$ignore_broadcast_ssid < 0 || (int)$ignore_broadcast_ssid >= 3) {
+        $status->addMessage('Parameter hiddenSSID contains an invalid configuration value.', 'danger');
+        $good_input = false;
+    }
+    /*
     if (isset($_POST['hiddenSSID'])) {
         if (!is_int((int)$_POST['hiddenSSID'])) {
             $status->addMessage('Parameter hiddenSSID not a number.', 'danger');
@@ -294,6 +311,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
     } else {
         $ignore_broadcast_ssid = '0';
     }
+    */
 
     if (! in_array($_POST['interface'], $interfaces)) {
         $status->addMessage('Unknown interface '.htmlspecialchars($_POST['interface'], ENT_QUOTES), 'danger');
@@ -364,14 +382,17 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
 
         // Set dhcp values from system config, fallback to default if undefined
         $jsonData = json_decode(getNetConfig($ap_iface), true);
-        $ip_address = ($jsonData['StaticIP'] == '') ? getDefaultNetValue('dhcp',$ap_iface,'static ip_address') : $jsonData['StaticIP'];
-        $domain_name_server = ($jsonData['StaticDNS'] =='') ? getDefaultNetValue('dhcp',$ap_iface,'static domain_name_server') : $jsonData['StaticDNS'];
-        $routers = ($jsonData['StaticRouters'] == '') ? getDefaultNetValue('dhcp',$ap_iface,'static routers') : $jsonData['StaticRouters'];
-        $netmask = ($jsonData['SubnetMask'] == '' || $jsonData['SubnetMask'] == '0.0.0.0') ? getDefaultNetValue('dhcp',$ap_iface,'subnetmask') : $jsonData['SubnetMask'];
+        $ip_address = empty($jsonData['StaticIP'])
+            ? getDefaultNetValue('dhcp', $ap_iface, 'static ip_address') : $jsonData['StaticIP'];
+        $domain_name_server = empty($jsonData['StaticDNS']) 
+            ? getDefaultNetValue('dhcp', $ap_iface, 'static domain_name_server') : $jsonData['StaticDNS'];
+        $routers = empty($jsonData['StaticRouters']) 
+            ? getDefaultNetValue('dhcp', $ap_iface, 'static routers') : $jsonData['StaticRouters'];
+        $netmask = (empty($jsonData['SubnetMask']) || $jsonData['SubnetMask'] === '0.0.0.0') 
+            ? getDefaultNetValue('dhcp', $ap_iface, 'subnetmask') : $jsonData['SubnetMask'];
         if (isset($ip_address) && !preg_match('/.*\/\d+/', $ip_address)) {
             $ip_address.='/'.mask2cidr($netmask);
         }
-
         if ($bridgedEnable == 1) {
             $config = array_keys(getDefaultNetOpts('dhcp','options'));
             $config[] = PHP_EOL.'# RaspAP br0 configuration';
@@ -392,7 +413,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'static routers='.$routers;
             $config[] = 'static domain_name_server='.$domain_name_server;
-            if (! is_null($jsonData['Metric'])) { $config[] = 'metric '.$jsonData['Metric']; }
+            if (!empty($jsonData['Metric'])) {
+                $config[] = 'metric ' . $jsonData['Metric'];
+            }
         }
         $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
 
