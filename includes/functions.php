@@ -713,7 +713,6 @@ function formatDateAgo($datetime, $full = false)
 function initializeApp()
 {
     $_SESSION["theme_url"] = getThemeOpt();
-    $_SESSION["toggleState"] = getSidebarState();
     $_SESSION["bridgedEnabled"] = getBridgedState();
     $_SESSION["providerID"] = getProviderID();
 }
@@ -739,22 +738,17 @@ function getColorOpt()
     return $color;
 }
 
-function getSidebarState()
-{
-    if(isset($_COOKIE['sidebarToggled'])) {
-        if ($_COOKIE['sidebarToggled'] == 'true' ) {
-            return "toggled";
-        }
-    }
-}
-
-// Returns bridged AP mode status
 function getBridgedState()
 {
-    $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
-    // defaults to false
+
+	$hostapdIni = RASPI_CONFIG . '/hostapd.ini';
+	if (!file_exists($hostapdIni)) {
+		return 0;
+	} else {
+		$arrHostapdConf = parse_ini_file($hostapdIni);
+	}
     return  $arrHostapdConf['BridgedEnable'];
-}
+ }
 
 // Returns VPN provider ID, if defined
 function getProviderID()
