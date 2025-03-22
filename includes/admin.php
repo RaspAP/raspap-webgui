@@ -35,6 +35,8 @@ function DisplayAuthConfig($username)
         } else {
             $status->addMessage('Old password does not match', 'danger');
         }
+    } elseif (isset($_POST['logout'])) {
+        $auth->logout();
     }
 
     echo renderTemplate(

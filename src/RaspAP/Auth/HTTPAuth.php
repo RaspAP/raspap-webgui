@@ -75,6 +75,20 @@ class HTTPAuth
     }
 
     /*
+     * Logs out the administrative user
+     */
+    public function logout(): void
+    {
+        session_unset(); // unset all session variables
+        session_destroy(); // destroy the session
+        $redirectUrl = $_SERVER['REQUEST_URI'];
+        if (strpos($redirectUrl, '/login') === false) {
+            header('Location: /login?action=' . urlencode($redirectUrl));
+            exit();
+        }
+    }
+
+    /*
      * Gets the current authentication config
      * return array $config
      */

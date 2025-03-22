@@ -1,10 +1,17 @@
+<?php ob_start() ?>
+  <?php if (!RASPI_MONITOR_ENABLED) : ?>
+    <input type="submit" class="btn btn-outline btn-primary" name="UpdateAdminPassword" value="<?php echo _("Save settings"); ?>" />
+    <input type="submit" class="btn btn-warning" name="logout" value="<?php echo _("Logout") ?>" onclick="disableValidation(this.form)"/>
+  <?php endif ?>
+<?php $buttons = ob_get_clean(); ob_end_clean() ?>
+
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
         <div class="row">
-	        <div class="col">
-						<i class="fas fa-user-lock me-2"></i><?php echo _("Authentication"); ?>
+	      <div class="col">
+            <i class="fas fa-user-lock me-2"></i><?php echo _("Authentication"); ?>
           </div>
         </div><!-- /.row -->
       </div><!-- /.card-header -->
@@ -58,7 +65,7 @@
               </div>
             </div>
           </div>
-          <input type="submit" class="btn btn-outline btn-primary" name="UpdateAdminPassword" value="<?php echo _("Save settings"); ?>" />
+          <?php echo $buttons ?>
         </form>
       </div><!-- /.card-body -->
       <div class="card-footer"></div>
