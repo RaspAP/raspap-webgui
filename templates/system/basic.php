@@ -10,7 +10,7 @@ include('includes/sysstats.php');
       <h4 class="mt-3"><?php echo _("System Information"); ?></h4>
         <div class="row ms-1">
           <div class="col-4">
-            <img class="device-illustration mx-3 my-2" src="app/img/device.php" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
+            <img class="device-illustration mx-3 my-2" src="app/img/devices/<?php echo $deviceImage; ?>" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
           </div>
           <div class="col-sm-10">
             <div class="row mb-1">
