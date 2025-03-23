@@ -95,7 +95,7 @@ class Sysinfo
 
     /*
      * Returns RPi Model and PCB Revision from Pi Revision Code (cpuinfo)
-     * @see http://www.raspberrypi-spy.co.uk/2012/09/checking-your-raspberry-pi-board-version/
+     * @see https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/raspberry-pi/revision-codes.adoc
      */
     public function rpiRevision()
     {
@@ -113,24 +113,26 @@ class Sysinfo
         '000f' => 'Raspberry Pi Model B Rev 2.0',
         '0010' => 'Raspberry Pi Model B+',
         '0013' => 'Raspberry Pi Model B+',
-        '0011' => 'Compute Module',
+        '0011' => 'Compute Module 1',
         '0012' => 'Raspberry Pi Model A+',
-        'a01041' => 'a01041',
-        'a21041' => 'a21041',
+        'a01041' => 'Raspberry Pi 2 Model B',
+        'a21041' => 'Raspberry Pi 2 Model B',
         '900092' => 'Raspberry Pi Zero 1.2',
         '900093' => 'Raspberry Pi Zero 1.3',
         '9000c1' => 'Raspberry Pi Zero W',
         'a02082' => 'Raspberry Pi 3 Model B',
         'a22082' => 'Raspberry Pi 3 Model B',
         'a32082' => 'Raspberry Pi 3 Model B',
-        'a52082' => 'Raspberry Pi 3 Model B',
-        'a020d3' => 'Raspberry Pi 3 Model B+',
-        'a220a0' => 'Compute Module 3',
-        'a020a0' => 'Compute Module 3',
+        'a52082' => 'Raspberry Pi 3 Model B+',
+        '9020e0' => 'Raspberry Pi 3 Model A+',
         'a02100' => 'Compute Module 3+',
-        'a03111' => 'Raspberry Pi 4B Rev 1.1 (1 GB)',
-        'b03111' => 'Raspberry Pi 4B Rev 1.1 (2 GB)',
-        'c03111' => 'Raspberry Pi 4B Rev 1.1 (4 GB)',
+        'a03111' => 'Raspberry Pi 4 Model B (1 GB)',
+        'b03111' => 'Raspberry Pi 4 Model B (2 GB)',
+        'c03111' => 'Raspberry Pi 4 Model B (4 GB)',
+        'b03112' => 'Raspberry Pi 4 Model B (2 GB)',
+        'c03112' => 'Raspberry Pi 4 Model B (4 GB)',
+        'd03114' => 'Raspberry Pi 4 Model B (8 GB)',
+        '902120' => 'Raspberry Pi Zero 2 W',
         'a03140' => 'Compute Module 4 (1 GB)',
         'b03140' => 'Compute Module 4 (2 GB)',
         'c03140' => 'Compute Module 4 (4 GB)',
