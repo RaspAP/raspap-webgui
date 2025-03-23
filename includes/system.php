@@ -9,6 +9,7 @@ require_once 'config.php';
 function DisplaySystem(&$extraFooterScripts)
 {
     $status = new \RaspAP\Messages\StatusMessage;
+    $dashboard = new \RaspAP\UI\Dashboard;
     $pluginInstaller = \RaspAP\Plugins\PluginInstaller::getInstance();
 
     if (isset($_POST['SaveLanguage'])) {
@@ -86,6 +87,7 @@ function DisplaySystem(&$extraFooterScripts)
     $kernel   = $system->kernelVersion();
     $systime  = $system->systime();
     $revision = $system->rpiRevision();
+    $deviceImage = $dashboard->getDeviceImage($revision);
 
     // memory use
     $memused  = $system->usedMemory();
@@ -129,6 +131,7 @@ function DisplaySystem(&$extraFooterScripts)
         "uptime",
         "systime",
         "revision",
+        "deviceImage",
         "cores",
         "os",
         "kernel",
