@@ -19,7 +19,7 @@ function DisplayHostAPDConfig()
         'a' => '802.11a - 5 GHz',
         'b' => '802.11b - 2.4 GHz',
         'g' => '802.11g - 2.4 GHz',
-        'n' => '802.11n - 2.4 GHz',
+        'n' => '802.11n - 2.4/5 GHz',
         'ac' => '802.11ac - 5 GHz'
     ];
     $languageCode = strtok($_SESSION['locale'], '_');
