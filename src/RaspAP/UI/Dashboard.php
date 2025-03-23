@@ -319,8 +319,7 @@ class Dashboard {
         if (stripos($deviceName, 'compute') !== false) {
             return 'compute.php';
         }
-        //return 'default.php';
-        return 'zero.php';
+        return 'default.php';
     }
 
     /**
