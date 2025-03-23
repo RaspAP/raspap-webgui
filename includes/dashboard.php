@@ -7,7 +7,7 @@ require_once 'includes/functions.php';
 /**
  * Displays the dashboard
  */
-function DisplayDashboard(): void
+function DisplayDashboard(&$extraFooterScripts): void
 {
     // instantiate RaspAP objects
     $system = new \RaspAP\System\Sysinfo;
@@ -123,6 +123,7 @@ function DisplayDashboard(): void
             "status"
         )
     );
+    $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);
 }
 
 /**
