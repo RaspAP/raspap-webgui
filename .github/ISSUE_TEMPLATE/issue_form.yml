@@ -34,14 +34,14 @@ body:
           required: true
         - label: I observed this bug on a clean install of a [supported OS](https://docs.raspap.com/#compatible-operating-systems).
           required: true
-        - label: I have followed the [project prerequisites](https://docs.raspap.com/#quick-start).
+        - label: I have followed the [project prerequisites](https://docs.raspap.com/quick_start/#quick-install).
           required: true
         - label: I have searched this repository for existing issues.
           required: true
         - label: I checked the [FAQ](https://docs.raspap.com/faq/) and [official documentation](https://docs.raspap.com/).
           required: true
         - label: I am using an [external wireless adapter](https://docs.raspap.com/issues/#external-hardware).
-          required: true
+          required: false
         - label: I have generated a [RaspAP debug log](https://docs.raspap.com/troubleshooting/#debug-log) and performed a [self-diagnosis](https://docs.raspap.com/troubleshooting/#diagnosing-problems).
           required: true
 
@@ -90,6 +90,7 @@ body:
         - Raspberry Pi 3 Model B
         - Raspberry Pi Zero 2 W 
         - Raspberry Pi Zero W 
+        - Raspberry Pi Compute Module
         - Orange Pi family
         - Other
     validations:
