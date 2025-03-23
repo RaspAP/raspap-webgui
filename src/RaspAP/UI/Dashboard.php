@@ -305,6 +305,24 @@ class Dashboard {
         return false;
     }
 
+    /*
+     * Returns an SVG resource associated with a Pi revision
+     *
+     * @param string $deviceName
+     * @return string
+     */
+    public function getDeviceImage($deviceName): string
+    {
+        if (stripos($deviceName, 'zero') !== false) {
+            return 'zero.php';
+        }
+        if (stripos($deviceName, 'compute') !== false) {
+            return 'compute.php';
+        }
+        //return 'default.php';
+        return 'zero.php';
+    }
+
     /**
      * Handles dashboard page actions
      *
