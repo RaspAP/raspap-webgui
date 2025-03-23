@@ -22,6 +22,7 @@ function DisplayDashboard(): void
     $clientInterface = $_SESSION['wifi_client_interface'];
     $hostname = $system->hostname();
     $revision = $system->rpiRevision();
+    $deviceImage = $dashboard->getDeviceImage($revision);
     $hostapd = $system->hostapdStatus();
     $adblock = $system->adBlockStatus();
     $vpn = $system->getActiveVpnInterface();
@@ -88,6 +89,7 @@ function DisplayDashboard(): void
     echo renderTemplate(
         "dashboard", compact(
             "revision",
+            "deviceImage",
             "interface",
             "clientInterface",
             "state",
