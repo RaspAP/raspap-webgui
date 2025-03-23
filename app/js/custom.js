@@ -1019,6 +1019,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+function disableValidation(form) {
+    form.removeAttribute("novalidate");
+    form.classList.remove("needs-validation");
+    form.querySelectorAll("[required]").forEach(function (field) {
+        field.removeAttribute("required");
+    });
+}
+
 $(document).ready(function() {
     const $htmlElement = $('html');
     const $modeswitch = $('#night-mode');

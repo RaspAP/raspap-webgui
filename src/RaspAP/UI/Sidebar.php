@@ -40,9 +40,6 @@ class Sidebar {
         $this->addItem(_(getProviderValue($_SESSION["providerID"], "name")), 'fas fa-shield-alt', 'provider_conf', 90,
             fn() => RASPI_VPN_PROVIDER_ENABLED
         );
-         $this->addItem(_('Authentication'), 'fas fa-user-lock', 'auth_conf', 100,
-            fn() => RASPI_CONFAUTH_ENABLED
-        );
         $this->addItem(_('Data usage'), 'fas fa-chart-area', 'data_use', 110,
             fn() => RASPI_VNSTAT_ENABLED
         );
