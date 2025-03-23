@@ -25,7 +25,7 @@
     </div>
     <div class="center-device col-12 col-lg-4">
       <div class="center-device-top">
-        <a href="/system_info"><img class="device-illustration" src="app/img/device.php" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
+        <a href="/system_info"><img class="device-illustration" src="app/img/devices/<?php echo $deviceImage; ?>" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
         <div class="device-label"><a href="/system_info"><?php echo htmlspecialchars($revision, ENT_QUOTES); ?></a></div>
         <div class="mt-1 small"><?php echo _("IP Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Address, ENT_QUOTES); ?></a></div>
         <div class="small"><?php echo _("Netmask"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Netmask, ENT_QUOTES); ?></a></div>
