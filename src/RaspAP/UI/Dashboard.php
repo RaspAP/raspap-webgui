@@ -231,11 +231,11 @@ class Dashboard {
      * parsing the output of ip route; the interface listed
      * as the default gateway is used for internet connectivity.
      * 
-     * The following interface classifications are assumed:
-     * - ethernet (eth0, en*)
-     * - wireless (wlan0, wlan1, wlp*)
-     * - tethered USB (usb*, eth1)
-     * - cellular (ppp0, wwan0, wwp*)
+     * The following interface classifications are matched:
+     * - ethernet (eth0, enp*, ens*, enx*)
+     * - wireless (wlan*, wlp*, wlx*)
+     * - tethered USB (usb*, eth1-9)
+     * - cellular (ppp*, wwan*, wwp*)
      * - fallback
      * @return string
      */ 
@@ -248,13 +248,13 @@ class Dashboard {
             return 'unknown';
         }
         // classify interface type
-        if (preg_match('/^eth\d+|enp\d+s\d+/', $interface)) {
+        if (preg_match('/^eth0|enp\d+s\d+|ens\d+s\d+|enx[0-9a-f]*/', $interface)) {
             return 'ethernet';
         }
-        if (preg_match('/^wlan\d+|wlp\d+s\d+/', $interface)) {
+        if (preg_match('/^wlan\d+|wlp\d+s\d+|wlx[0-9a-f]*/', $interface)) {
             return 'wireless';
         }
-        if (preg_match('/^usb\d+|eth1$/', $interface)) {
+        if (preg_match('/^usb\d+|^eth[1-9]\d*/', $interface)) {
             return 'tethering';
         }
         if (preg_match('/^ppp\d+|wwan\d+|wwp\d+s\d+/', $interface)) {
