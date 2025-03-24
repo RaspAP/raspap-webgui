@@ -332,47 +332,42 @@ $('#performupdateModal').on('shown.bs.modal', function (e) {
 });
 
 function fetchUpdateResponse() {
-    const xhr = new XMLHttpRequest();
     const complete = 6;
     const error = 7;
     let phpFile = 'ajax/system/sys_read_logfile.php';
+
     $.ajax({
         url: phpFile,
         type: 'GET',
-        success: function(response) {
-            let endPolling = false;
+        success: function(response) { 
             for (let i = 1; i <= 6; i++) {
                 let divId = '#updateStep' + i;
                 if (response.includes(i.toString())) {
                     $(divId).removeClass('invisible');
                 }
-                if (response.includes(complete)) {
-                    var successMsg = $('#successMsg').data('message');
-                    $('#updateMsg').after('<span class="small">' + successMsg + '</span>');
-                    $('#updateMsg').addClass('fa-check');
-                    $('#updateMsg').removeClass('invisible');
-                    $('#updateStep6').removeClass('invisible');
-                    $('#updateSync2').removeClass("fa-spin");
-                    $('#updateOk').removeAttr('disabled');
-                    endPolling = true;
-                    break;
-                } else if (response.includes(error)) {
-                    var errorMsg = $('#errorMsg').data('message');
-                    $('#updateMsg').after('<span class="small">' + errorMsg + '</span>');
-                    $('#updateMsg').addClass('fa-times');
-                    $('#updateMsg').removeClass('invisible');
-                    $('#updateSync2').removeClass("fa-spin");
-                    $('#updateOk').removeAttr('disabled');
-                    endPolling = true;
-                    break;
-                }
             }
-            if (!endPolling) {
+            // check if the update is complete or if there's an error
+            if (response.includes(complete)) {
+                var successMsg = $('#successMsg').data('message');
+                $('#updateMsg').after('<span class="small">' + successMsg + '</span>');
+                $('#updateMsg').addClass('fa-check');
+                $('#updateMsg').removeClass('invisible');
+                $('#updateStep6').removeClass('invisible');
+                $('#updateSync2').removeClass("fa-spin");
+                $('#updateOk').removeAttr('disabled');
+            } else if (response.includes(error)) {
+                var errorMsg = $('#errorMsg').data('message');
+                $('#updateMsg').after('<span class="small">' + errorMsg + '</span>');
+                $('#updateMsg').addClass('fa-times');
+                $('#updateMsg').removeClass('invisible');
+                $('#updateSync2').removeClass("fa-spin");
+                $('#updateOk').removeAttr('disabled');
+            } else {
                 setTimeout(fetchUpdateResponse, 500);
             }
         },
         error: function(xhr, status, error) {
-            console.error(error);
+            console.error("AJAX Error:", error);
         }
     });
 }
