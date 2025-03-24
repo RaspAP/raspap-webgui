@@ -7,7 +7,7 @@ RaspAP has been featured by [PC World](https://www.pcwelt.de/article/1789512/ras
 
 We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/raspap/raspap-awesome).
 
-![dashboard](https://github.com/user-attachments/assets/5ee9d18b-a4f9-49cc-bbab-5609f26a2e3f)
+![dashboard](https://github.com/user-attachments/assets/f7cf5c32-4d95-4ac8-8a30-6d892d7ac6ed)
 <img width="32.5%" alt="Wifi Client" src="https://github.com/user-attachments/assets/95696ddc-da84-4339-97cc-f2a173054664">
 <img width="32.5%" alt="Hotspot" src="https://github.com/user-attachments/assets/c1c4de15-3ff2-4d3c-a7af-339c24896749">
 <img width="32.5%" alt="Adblock" src="https://github.com/user-attachments/assets/ab925687-8407-4bec-a952-9dc6a2675f49">
