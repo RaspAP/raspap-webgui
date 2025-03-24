@@ -20,7 +20,6 @@ The following features are currently available exclusively to sponsors. A tangib
  ✅ [WPA3-Personal AP security](https://docs.raspap.com/ap-basics/#wpa3-personal)  
  ✅ [802.11w Protected Management Frames](https://docs.raspap.com/ap-basics/#80211w)  
  ✅ [Printable Wi-Fi signs](https://docs.raspap.com/ap-basics/#printable-signs)  
- ✅ [Drag & drop dashboard widgets](https://docs.raspap.com/ap-basics/#drag-drop-widgets)  
  ✅ [MAC address cloning](https://docs.raspap.com/net-devices/#changing-the-mac-address)  
  ✅ [Network diagnostics](https://docs.raspap.com/net-devices/#diagnostics)  
  ✅ [WireGuard VPN kill switch](https://docs.raspap.com/wireguard/#kill-switch)  
