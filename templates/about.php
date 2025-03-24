@@ -69,7 +69,7 @@ require_once 'app/lib/Parsedown.php';
       </div>
       <div class="modal-body">
         <div class="col-md-12 mb-3 mt-1" id="msg-check-update"><?php echo _("Application is being updated..."); ?></div>
-        <div class="ms-5"><i class="fas fa-check me-2 invisible" id="updateStep1"></i><?php echo _("Configuring update"); ?></div>
+        <div class="ms-5"><i class="fas fa-check me-2" id="updateStep1"></i><?php echo _("Configuring update"); ?></div>
         <div class="ms-5"><i class="fas fa-check me-2 invisible" id="updateStep2"></i><?php echo _("Updating sources"); ?></div>
         <div class="ms-5"><i class="fas fa-check me-2 invisible" id="updateStep3"></i><?php echo _("Installing package updates"); ?></div>
         <div class="ms-5"><i class="fas fa-check me-2 invisible" id="updateStep4"></i><?php echo _("Downloading latest files"); ?></div>
