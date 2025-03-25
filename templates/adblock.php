@@ -28,7 +28,7 @@
         <div class="card-body">
         <?php $status->showMessages(); ?>
           <form role="form" action="adblock_conf" enctype="multipart/form-data" method="POST">
-            <?php echo $token->CSRFTokenFieldTag(); ?>
+            <?php echo \RaspAP\Tokens\CSRF::hiddenField();?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" id="blocklisttab" href="#adblocklistsettings" data-bs-toggle="tab"><?php echo _("Blocklist settings"); ?></a></li>

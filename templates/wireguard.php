@@ -28,7 +28,7 @@
         <div class="card-body">
         <?php $status->showMessages(); ?>
           <form role="form" action="wg_conf" enctype="multipart/form-data" method="POST">
-            <?php echo $token->CSRFTokenFieldTag() ?>
+            <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" id="settingstab" href="#wgsettings" data-bs-toggle="tab"><?php echo _("Settings"); ?></a></li>

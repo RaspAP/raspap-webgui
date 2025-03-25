@@ -30,7 +30,7 @@
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <form method="POST" action="dhcpd_conf" class="js-dhcp-settings-form needs-validation" novalidate>
-          <?php echo $token->CSRFTokenFieldTag() ?>
+          <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs mb-3">

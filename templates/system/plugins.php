@@ -1,7 +1,7 @@
 <!-- plugins tab -->
 <div role="tabpanel" class="tab-pane" id="plugins">
   <h4 class="mt-3"><?php echo _("Plugins") ;?></h4>
-  <?php echo $token->CSRFTokenFieldTag() ?>
+  <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
   <div class="row">
     <div class="form-group col-lg-8 col-md-8">
     <label>

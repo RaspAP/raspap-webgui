@@ -50,7 +50,7 @@
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <form role="form" action="hostapd_conf" method="POST" class="needs-validation" novalidate>
-          <?php echo $token->CSRFTokenFieldTag() ?>
+          <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">

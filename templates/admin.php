@@ -19,7 +19,7 @@
         <?php $status->showMessages(); ?>
         <h4><?php echo _("Authentication settings") ;?></h4>
         <form role="form" action="auth_conf" method="POST" class="needs-validation" novalidate>
-            <?php echo $token->CSRFTokenFieldTag() ?>
+            <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
           <div class="row">
             <div class="mb-3 col-md-6">
               <label for="username"><?php echo _("Username"); ?></label>

@@ -30,7 +30,7 @@
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <form action="wlan0_info" method="POST">
-          <?php echo $token->CSRFTokenFieldTag() ?>
+          <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">

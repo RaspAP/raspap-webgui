@@ -27,7 +27,7 @@
         <div class="row" id="wpaConf">
           <div class="col">
             <form method="POST" action="wpa_conf" name="wpa_conf_form">
-              <?php echo $token->CSRFTokenFieldTag() ?>
+              <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
               <input type="hidden" name="client_settings" ?>
               <div class="js-wifi-stations loading-spinner"></div>
             </form>
