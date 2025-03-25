@@ -13,14 +13,13 @@ declare(strict_types=1);
 
 namespace RaspAP\Tokens;
 
-class CSRFTokenizer
-{
+class CSRFTokenizer {
 
     // Constructor
     public function __construct()
     {
         $this->ensureSession();
-        if ($this->csrfValidateRequest() && !$this->CSRFValidate()) {
+        if ($this->csrfValidateRequest() && !$this->CSRFValidate($_SESSION['csrf_token'])) {
             $this->handleInvalidCSRFToken();
         }
     }
@@ -36,7 +35,7 @@ class CSRFTokenizer
     }
 
     /**
-     * Add CSRF Token to form
+     * Adds a CSRF Token to form
      */
     public function CSRFTokenFieldTag(): string
     {
@@ -49,8 +48,16 @@ class CSRFTokenizer
      */
     public function CSRFMetaTag(): string
     {
-        $token = htmlspecialchars($_SESSION['csrf_token']);
-        return '<meta name="csrf_token" content="' . $token . '">';
+        // if session has expired or user has logged out,
+        // create a new session and token
+        if (empty($_SESSION['csrf_token'])) {
+            $this->ensureSession();
+            $this->ensureCSRFSessionToken();
+            return $_SESSION['csrf_token'];
+        } else {
+            $token = htmlspecialchars($_SESSION['csrf_token']);
+            return '<meta name="csrf_token" content="' . $token . '">';
+        }
     }
 
     /**
@@ -60,8 +67,8 @@ class CSRFTokenizer
      */
     public function CSRFValidate(string $token): bool
     {
-        if(isset($token) {
-            $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'];
+        if(isset($token)) {
+            $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
 
             if (empty($token) && empty($header_token)) {
                 return false;
@@ -82,7 +89,7 @@ class CSRFTokenizer
     /**
      * Should the request be CSRF-validated?
      */
-    public function csrfValidateRequest(): string
+    public function csrfValidateRequest(): bool
     {
         $request_method = strtolower($_SERVER['REQUEST_METHOD']);
         return in_array($request_method, [ "post", "put", "patch", "delete" ]);
@@ -108,6 +115,7 @@ class CSRFTokenizer
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
+            session_regenerate_id(true);
         }
     } 
 }
