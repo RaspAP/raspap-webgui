@@ -25,6 +25,7 @@
 
 require_once 'includes/config.php';
 require_once 'includes/autoload.php';
+require_once 'includes/CSRF.php';
 $handler = new RaspAP\Exceptions\ExceptionHandler;
 $token = new RaspAP\Tokens\CSRFTokenizer;
 
@@ -58,7 +59,7 @@ initializeApp();
 <html lang="en" <?php setTheme();?>>
   <head>
     <meta charset="utf-8">
-    <?php echo $token->CSRFMetaTag() ?>
+    <?php echo \RaspAP\Tokens\CSRF::metaTag(); ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
