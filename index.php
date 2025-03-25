@@ -23,13 +23,12 @@
  * as you leave these references intact in the header comments of your source files.
  */
 
-require 'includes/session.php';
-require 'includes/csrf.php';
-ensureCSRFSessionToken();
-
-require_once 'includes/exceptions.php';
 require_once 'includes/config.php';
 require_once 'includes/autoload.php';
+$handler = new RaspAP\Exceptions\ExceptionHandler;
+$token = new RaspAP\Tokens\CSRFTokenizer;
+
+require_once 'includes/session.php';
 require_once 'includes/defaults.php';
 require_once 'includes/locale.php';
 require_once 'includes/functions.php';
@@ -59,7 +58,7 @@ initializeApp();
 <html lang="en" <?php setTheme();?>>
   <head>
     <meta charset="utf-8">
-    <?php echo CSRFMetaTag() ?>
+    <?php echo $token->CSRFMetaTag() ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
