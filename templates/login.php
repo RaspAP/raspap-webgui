@@ -15,7 +15,7 @@
             </div>
             <div class="text-center mb-4">
               <form id="admin-login-form" action="login" method="POST" class="needs-validation" novalidate>
-              <?php echo CSRFTokenFieldTag() ?>
+              <?php echo $token->CSRFTokenFieldTag() ?>
                 <div class="form-group">
                   <input type="hidden" name="login-auth">
                   <input type="hidden" id="redirect-url" name="redirect-url" value="<?php echo htmlspecialchars($redirectUrl, ENT_QUOTES, 'UTF-8'); ?>">

@@ -30,7 +30,7 @@
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <form action="wlan0_info" method="POST">
-          <?php echo CSRFTokenFieldTag() ?>
+          <?php echo $token->CSRFTokenFieldTag() ?>
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">

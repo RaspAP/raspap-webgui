@@ -50,7 +50,7 @@
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <form role="form" action="hostapd_conf" method="POST" class="needs-validation" novalidate>
-          <?php echo CSRFTokenFieldTag() ?>
+          <?php echo $token->CSRFTokenFieldTag() ?>
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">

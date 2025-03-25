@@ -3,7 +3,7 @@
   <h4 class="mt-3"><?php echo _("Advanced settings") ;?></h4>
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
     <form action="system_info" method="POST">
-    <?php echo CSRFTokenFieldTag() ?>
+    <?php echo $token->CSRFTokenFieldTag() ?>
       <div class="row">
         <div class="mb-3 col-md-6">
           <label for="code"><?php echo _("Web server port") ;?></label>
