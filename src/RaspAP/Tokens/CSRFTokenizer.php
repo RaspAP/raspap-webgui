@@ -22,7 +22,7 @@ class CSRFTokenizer {
 
         // ensure a CSRF token exists in the session
         if (empty($_SESSION['csrf_token'])) {
-            $this->ensureCSRFSessionToken;
+            $this->ensureCSRFSessionToken();
         }
 
         if ($this->csrfValidateRequest() && !$this->CSRFValidate($_SESSION['csrf_token'])) {
