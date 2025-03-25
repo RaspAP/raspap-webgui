@@ -1,6 +1,6 @@
 <?php
 
-function DisplayAuthConfig($username, $token)
+function DisplayAuthConfig($username)
 {
     $status = new \RaspAP\Messages\StatusMessage;
     $auth = new \RaspAP\Auth\HTTPAuth;
@@ -42,8 +42,7 @@ function DisplayAuthConfig($username, $token)
     echo renderTemplate(
         "admin", compact(
             "status",
-            "username",
-            "token"
+            "username"
         )
     );
 }

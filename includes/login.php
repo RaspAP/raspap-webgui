@@ -6,7 +6,7 @@ require_once 'includes/functions.php';
 /**
  * Handler for administrative user login
  */
-function DisplayLogin($token)
+function DisplayLogin()
 {
     // initialize auth object
     $auth = new \RaspAP\Auth\HTTPAuth;
@@ -33,8 +33,7 @@ function DisplayLogin($token)
     echo renderTemplate(
         "login", compact(
             "status",
-            "redirectUrl",
-            "token"
+            "redirectUrl"
         )
     );
 }

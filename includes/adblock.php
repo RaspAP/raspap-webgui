@@ -6,7 +6,7 @@ require_once 'config.php';
  * Manages ad blocking (dnsmasq) configuration
  *
  */
-function DisplayAdBlockConfig($token)
+function DisplayAdBlockConfig()
 {
     $status = new \RaspAP\Messages\StatusMessage;
     $enabled = false;
@@ -93,6 +93,7 @@ function DisplayAdBlockConfig($token)
         $adblock_log = "Unable to open log file";
     }
     $logdata = getLogLimited(RASPI_DHCPCD_LOG, $adblock_log);
+
     echo renderTemplate(
         "adblock", compact(
         "status",
@@ -101,8 +102,7 @@ function DisplayAdBlockConfig($token)
         "enabled",
         "custom_enabled",
         "adblock_custom_content",
-        "logdata",
-        "token"
+        "logdata"
         )
     );
 }
