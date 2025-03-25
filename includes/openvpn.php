@@ -8,7 +8,7 @@ getWifiInterface();
 /**
  * Manage OpenVPN configuration
  */
-function DisplayOpenVPNConfig()
+function DisplayOpenVPNConfig($token)
 {
     $status = new \RaspAP\Messages\StatusMessage;
     if (!RASPI_MONITOR_ENABLED) {
@@ -79,7 +79,8 @@ function DisplayOpenVPNConfig()
             "authUser",
             "authPassword",
             "clients",
-            "conf_default"
+            "conf_default",
+            "token"
         )
     );
 }

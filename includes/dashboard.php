@@ -7,7 +7,7 @@ require_once 'includes/functions.php';
 /**
  * Displays the dashboard
  */
-function DisplayDashboard(&$extraFooterScripts): void
+function DisplayDashboard(&$extraFooterScripts, $token): void
 {
     // instantiate RaspAP objects
     $system = new \RaspAP\System\Sysinfo;
@@ -74,9 +74,7 @@ function DisplayDashboard(&$extraFooterScripts): void
     $varName = "freq" . str_replace('.', '', $frequency) . "active";
     $$varName = "active";
     $vpnStatus = $vpn ? "active" : "inactive";
-    if ($vpn) {
-        $vpnManaged = $dashboard->getVpnManged($vpn);
-    }
+    $vpnManaged = $vpn ? $dashboard->getVpnManaged($vpn) : null;
     $firewallManaged = $firewallStatus = "";
     $firewallInstalled = array_filter($plugins, fn($p) => str_ends_with($p, 'Firewall')) ? true : false;
     if (!$firewallInstalled) {
@@ -122,7 +120,8 @@ function DisplayDashboard(&$extraFooterScripts): void
             "wirelessActive",
             "tetheringActive",
             "cellularActive",
-            "status"
+            "status",
+            "token"
         )
     );
     $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);

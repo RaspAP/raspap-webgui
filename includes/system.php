@@ -6,7 +6,7 @@ require_once 'config.php';
 /**
  *
  */
-function DisplaySystem(&$extraFooterScripts)
+function DisplaySystem(&$extraFooterScripts, $token)
 {
     $status = new \RaspAP\Messages\StatusMessage;
     $dashboard = new \RaspAP\UI\Dashboard;
@@ -146,7 +146,8 @@ function DisplaySystem(&$extraFooterScripts)
         "themes",
         "selectedTheme",
         "logLimit",
-        "pluginsTable"
+        "pluginsTable",
+        "token"
     ));
 }
 

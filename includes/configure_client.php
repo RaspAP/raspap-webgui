@@ -6,7 +6,7 @@ require_once 'includes/wifi_functions.php';
  *
  *
  */
-function DisplayWPAConfig()
+function DisplayWPAConfig($token)
 {
     $status = new \RaspAP\Messages\StatusMessage;
     $networks = [];
@@ -148,5 +148,12 @@ function DisplayWPAConfig()
     preg_match('/state (UP|DOWN)/i', $stdoutIpWRepeatedSpaces, $matchesState) || $matchesState[1] = 'unknown';
     $ifaceStatus = strtolower($matchesState[1]) ? "up" : "down";
 
-    echo renderTemplate("configure_client", compact("status", "clientInterface", "ifaceStatus"));
+    echo renderTemplate(
+        "configure_client", compact(
+            "status",
+            "clientInterface",
+            "ifaceStatus",
+            "token"
+        )
+    );
 }

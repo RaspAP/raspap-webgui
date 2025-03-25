@@ -9,7 +9,7 @@ getWifiInterface();
  * Initialize hostapd values, display interface
  *
  */
-function DisplayHostAPDConfig()
+function DisplayHostAPDConfig($token)
 {
     $status = new \RaspAP\Messages\StatusMessage;
     $system = new \RaspAP\System\Sysinfo;
@@ -165,7 +165,8 @@ function DisplayHostAPDConfig()
             "operatingSystem",
             "selectedHwMode",
             "countryCodes",
-            "logdata"
+            "logdata",
+            "token"
         )
     );
 }

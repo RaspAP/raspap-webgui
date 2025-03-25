@@ -5,7 +5,7 @@ require_once 'config.php';
 /**
  * Manage DHCP configuration
  */
-function DisplayDHCPConfig()
+function DisplayDHCPConfig($token)
 {
     $status = new \RaspAP\Messages\StatusMessage;
     if (!RASPI_MONITOR_ENABLED) {
@@ -74,7 +74,8 @@ function DisplayDHCPConfig()
             "upstreamServers",
             "interfaces",
             "leases",
-            "logdata"
+            "logdata",
+            "token"
         )
     );
 }

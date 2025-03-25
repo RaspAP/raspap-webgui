@@ -9,7 +9,7 @@ $page = $_SERVER['PATH_INFO'];
 // Check if any plugin wants to handle the request
 if (!$pluginManager->handlePageAction($page)) {
     // If no plugin is available fall back to core page action handlers
-    handleCorePageAction($page, $extraFooterScripts);
+    handleCorePageAction($page, $extraFooterScripts, $token);
 }
 
 /**
@@ -17,64 +17,65 @@ if (!$pluginManager->handlePageAction($page)) {
  *
  * @param string $page
  * @param array $extraFooterScripts
+ * @param object $token
  * @return void
  */
-function handleCorePageAction(string $page, array &$extraFooterScripts): void
+function handleCorePageAction(string $page, array &$extraFooterScripts, object $token): void
 {
     switch ($page) {
         case "/wlan0_info":
-            DisplayDashboard($extraFooterScripts);
+            DisplayDashboard($extraFooterScripts, $token);
             break;
         case "/dhcpd_conf":
-            DisplayDHCPConfig();
+            DisplayDHCPConfig($token);
             break;
         case "/wpa_conf":
-            DisplayWPAConfig();
+            DisplayWPAConfig($token);
             break;
         case "/network_conf":
-            DisplayNetworkingConfig();
+            DisplayNetworkingConfig($token);
             break;
         case "/hostapd_conf":
-            DisplayHostAPDConfig();
+            DisplayHostAPDConfig($token);
             break;
         case "/adblock_conf":
-            DisplayAdBlockConfig();
+            DisplayAdBlockConfig($token);
             break;
         case "/openvpn_conf":
-            DisplayOpenVPNConfig();
+            DisplayOpenVPNConfig($token);
             break;
         case "/wg_conf":
-            DisplayWireGuardConfig();
+            DisplayWireGuardConfig($token);
             break;
         case "/provider_conf":
-            DisplayProviderConfig();
+            DisplayProviderConfig($token);
             break;
         case "/torproxy_conf":
-            DisplayTorProxyConfig();
+            DisplayTorProxyConfig($token);
             break;
         case "/auth_conf":
-            DisplayAuthConfig($_SESSION['user_id']);
+            DisplayAuthConfig($_SESSION['user_id'], $token);
             break;
         case "/save_hostapd_conf":
-            SaveTORAndVPNConfig();
+            SaveTORAndVPNConfig($token);
             break;
         case "/data_use":
-            DisplayDataUsage($extraFooterScripts);
+            DisplayDataUsage($extraFooterScripts, $token);
             break;
         case "/system_info":
-            DisplaySystem($extraFooterScripts);
+            DisplaySystem($extraFooterScripts, $token);
             break;
         case "/restapi_conf":
-            DisplayRestAPI();
+            DisplayRestAPI($token);
             break;
         case "/about":
-            DisplayAbout();
+            DisplayAbout($token);
             break;
         case "/login":
-            DisplayLogin();
+            DisplayLogin($token);
             break;
         default:
-            DisplayDashboard($extraFooterScripts);
+            DisplayDashboard($extraFooterScripts, $token);
     }
 }
 

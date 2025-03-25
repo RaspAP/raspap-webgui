@@ -5,7 +5,7 @@ require_once 'config.php';
 /**
  * Displays wireguard server & peer configuration
  */
-function DisplayWireGuardConfig()
+function DisplayWireGuardConfig($token)
 {
     $status = new \RaspAP\Messages\StatusMessage;
     $parseFlag = true;
@@ -98,7 +98,8 @@ function DisplayWireGuardConfig()
             "wg_pendpoint",
             "wg_pallowedips",
             "wg_pkeepalive",
-            "wg_log"
+            "wg_log",
+            "token"
         )
     );
 }

@@ -5,7 +5,7 @@ require_once "app/lib/Parsedown.php";
 /**
  * Displays info about the RaspAP project
  */
-function DisplayAbout()
+function DisplayAbout($token)
 {
     $Parsedown = new Parsedown();
     $strContent = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/BACKERS.md');
@@ -17,7 +17,8 @@ function DisplayAbout()
     echo renderTemplate(
         "about", compact(
             'sponsorsHtml',
-            'contributingHtml'
+            'contributingHtml',
+            'token'
         )
     );
 }

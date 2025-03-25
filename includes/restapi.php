@@ -6,7 +6,7 @@ require_once 'config.php';
 /**
  * Handler for RestAPI settings
  */
-function DisplayRestAPI()
+function DisplayRestAPI($token)
 {
     // initialize status object
     $status = new \RaspAP\Messages\StatusMessage;
@@ -59,13 +59,16 @@ function DisplayRestAPI()
         $docMsg = sprintf(_("RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"),$docUrl, $faicon);
     }
 
-    echo renderTemplate("restapi", compact(
-        "status",
-        "apiKey",
-        "serviceStatus",
-        "serviceLog",
-        "docMsg"
-    ));
+    echo renderTemplate(
+        "restapi", compact(
+            "status",
+            "apiKey",
+            "serviceStatus",
+            "serviceLog",
+            "docMsg",
+            "token"
+        )
+    );
 }
 
 /**
