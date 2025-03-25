@@ -1,15 +1,14 @@
 <?php
-
+require_once '../../includes/autoload.php';
 require_once '../../includes/config.php';
 require_once '../../includes/session.php';
-require_once '../../src/RaspAP/Auth/HTTPAuth.php';
 require_once '../../includes/authenticate.php';
 require_once '../../includes/session.php';
 require_once '../../includes/functions.php';
 
 if (isset($_POST['csrf_token'])) {
-    if (csrfValidateRequest() && !CSRFValidate()) {
-        handleInvalidCSRFToken();
+    if ($token->csrfValidateRequest() && !$token->CSRFValidate()) {
+        $token->handleInvalidCSRFToken();
     }
     $return = 0;
     $path = "../../config";
@@ -33,5 +32,6 @@ if (isset($_POST['csrf_token'])) {
     echo json_encode($jsonData);
 
 } else {
-    handleInvalidCSRFToken();
+    $token->handleInvalidCSRFToken();
 }
+
