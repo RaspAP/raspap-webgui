@@ -25,10 +25,9 @@
 
 require_once 'includes/config.php';
 require_once 'includes/autoload.php';
-require_once 'includes/CSRF.php';
 $handler = new RaspAP\Exceptions\ExceptionHandler;
-$token = new RaspAP\Tokens\CSRFTokenizer;
 
+require_once 'includes/CSRF.php';
 require_once 'includes/session.php';
 require_once 'includes/defaults.php';
 require_once 'includes/locale.php';
