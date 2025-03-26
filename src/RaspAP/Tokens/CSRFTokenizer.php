@@ -23,6 +23,8 @@ class CSRFTokenizer {
         // ensure a CSRF token exists in the session
         if (empty($_SESSION['csrf_token'])) {
             $this->ensureCSRFSessionToken();
+            header("Location: " .$_SERVER['REQUEST_URI']);
+            exit;
         }
 
         if ($this->csrfValidateRequest()) {
@@ -40,7 +42,6 @@ class CSRFTokenizer {
     {
         if (empty($_SESSION['csrf_token'])) {
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-            $token = $_SESSION['csrf_token'];
         }
     }
 
