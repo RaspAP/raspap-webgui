@@ -11,7 +11,7 @@
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <form role="form" action="system_info" method="POST">
-        <?php echo CSRFTokenFieldTag() ?>
+        <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" role="tab" data-bs-toggle="tab"><?php echo _("Basic"); ?></a></li>
           <li role="presentation" class="nav-item"><a class="nav-link" id="languagetab" href="#language" aria-controls="language" role="tab" data-bs-toggle="tab"><?php echo _("Language"); ?></a></li>

@@ -56,7 +56,7 @@ include('includes/sysstats.php');
       </div>
 
       <form action="system_info" method="POST">
-        <?php echo CSRFTokenFieldTag() ?>
+        <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
         <?php if (!RASPI_MONITOR_ENABLED) : ?>
             <input type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#system-confirm-reboot" value="<?php echo _("Reboot"); ?>" />
             <input type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#system-confirm-shutdown" value="<?php echo _("Shutdown"); ?>" />

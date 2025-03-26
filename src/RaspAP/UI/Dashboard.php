@@ -24,7 +24,7 @@ class Dashboard {
      * @param string $interface
      * @return string
      */
-    public function getVpnManged(?string $interface = null): ?string
+    public function getVpnManaged(?string $interface = null): ?string
     {
         switch ($interface) {
             case 'wg0':

@@ -12,7 +12,7 @@
     </div>
     </div>
     <form action="system_info" method="POST">
-    <?php echo CSRFTokenFieldTag() ?>
+    <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
     <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
     </form>
 </div>

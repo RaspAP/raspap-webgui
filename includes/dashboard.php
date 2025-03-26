@@ -74,9 +74,7 @@ function DisplayDashboard(&$extraFooterScripts): void
     $varName = "freq" . str_replace('.', '', $frequency) . "active";
     $$varName = "active";
     $vpnStatus = $vpn ? "active" : "inactive";
-    if ($vpn) {
-        $vpnManaged = $dashboard->getVpnManged($vpn);
-    }
+    $vpnManaged = $vpn ? $dashboard->getVpnManaged($vpn) : null;
     $firewallManaged = $firewallStatus = "";
     $firewallInstalled = array_filter($plugins, fn($p) => str_ends_with($p, 'Firewall')) ? true : false;
     if (!$firewallInstalled) {
