@@ -25,8 +25,11 @@ class CSRFTokenizer {
             $this->ensureCSRFSessionToken();
         }
 
-        if ($this->csrfValidateRequest() && !$this->CSRFValidate($_SESSION['csrf_token'])) {
-            $this->handleInvalidCSRFToken();
+        if ($this->csrfValidateRequest()) {
+            $token = $_POST['csrf_token'] ?? $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+            if (!$this->CSRFValidate($token)) {
+                $this->handleInvalidCSRFToken();
+            }
         }
     }
 
@@ -37,6 +40,7 @@ class CSRFTokenizer {
     {
         if (empty($_SESSION['csrf_token'])) {
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            $token = $_SESSION['csrf_token'];
         }
     }
 
@@ -73,22 +77,26 @@ class CSRFTokenizer {
      */
     public function CSRFValidate(string $token): bool
     {
-        if(isset($token)) {
-            $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+        if (empty($_SESSION['csrf_token']) || !is_string($_SESSION['csrf_token'])) {
+            error_log('Session expired or CSRF token is missing.');
+            header('Location: /login');
+            exit;
+        }
 
-            if (empty($token) && empty($header_token)) {
-                return false;
-            }
-            $request_token = $token;
-            if (empty($token)) {
-                $request_token = $header_token;
-            }
-            if (hash_equals($_SESSION['csrf_token'], $request_token)) {
-                return true;
-            } else {
-                error_log('CSRF violation');
-                return false;
-            }
+        $post_token = $token ?? null;
+        $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? null;
+
+        if (empty($post_token) && is_null($header_token)) {
+            error_log('CSRF token missing in the request');
+            return false;
+        }
+        $request_token = $post_token ?: $header_token;
+
+        if (hash_equals($_SESSION['csrf_token'], $request_token)) {
+            return true;
+        } else {
+            error_log('CSRF token mismatch');
+            return false;
         }
     }
 
@@ -121,7 +129,6 @@ class CSRFTokenizer {
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
-            session_regenerate_id(true);
         }
     } 
 }
