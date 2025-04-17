@@ -40,7 +40,6 @@ function DisplayAdBlockConfig()
                 file_put_contents("/tmp/dnsmasq_custom", $_POST['adblock-custom-hosts'].PHP_EOL);
                 system("sudo cp /tmp/dnsmasq_custom " .RASPI_ADBLOCK_LISTPATH .'custom.txt', $return);
                 $config.= 'addn-hosts=' .RASPI_ADBLOCK_LISTPATH .'custom.txt'.PHP_EOL;
-                $custom_enabled = true;
             }
 
             if (empty($errors)) {
@@ -62,6 +61,13 @@ function DisplayAdBlockConfig()
                 $status->addMessage('Adblock failed to restart.', 'danger');
             }
         }
+    }
+
+    $custom_list = RASPI_ADBLOCK_LISTPATH . 'custom.txt';
+    $custom_enabled = false;
+
+    if (file_exists($custom_list) && filesize($custom_list) > 0) {
+        $custom_enabled = true;
     }
 
     exec('cat '. RASPI_ADBLOCK_CONFIG, $return);
