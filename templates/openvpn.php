@@ -29,7 +29,7 @@
         <div class="card-body">
         <?php $status->showMessages(); ?>
           <form role="form" action="openvpn_conf" enctype="multipart/form-data" method="POST">
-            <?php echo CSRFTokenFieldTag() ?>
+            <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-bs-toggle="tab"><?php echo _("Client settings"); ?></a></li>

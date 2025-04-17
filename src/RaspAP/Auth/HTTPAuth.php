@@ -79,6 +79,7 @@ class HTTPAuth
      */
     public function logout(): void
     {
+        session_regenerate_id(true); // generate a new session id
         session_unset(); // unset all session variables
         session_destroy(); // destroy the session
         $redirectUrl = $_SERVER['REQUEST_URI'];

@@ -15,7 +15,7 @@
             </div>
             <div class="text-center mb-4">
               <form id="admin-login-form" action="login" method="POST" class="needs-validation" novalidate>
-              <?php echo CSRFTokenFieldTag() ?>
+              <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
                 <div class="form-group">
                   <input type="hidden" name="login-auth">
                   <input type="hidden" id="redirect-url" name="redirect-url" value="<?php echo htmlspecialchars($redirectUrl, ENT_QUOTES, 'UTF-8'); ?>">

@@ -9,31 +9,13 @@
  */
 spl_autoload_register(function ($class) {
 
-    // project-specific namespace prefix
-    $prefix = '';
+    // base directory where all class files are stored
+    $base_dir = __DIR__ . '/../src/';
 
-    // base directory for the namespace prefix
-    $base_dir = 'src/';
+    // convert the fully qualified class name into a file path
+    $file = $base_dir . str_replace('\\', '/', $class) . '.php';
 
-    // normalize the base directory with a trailing separator
-    $base_dir = rtrim($base_dir, DIRECTORY_SEPARATOR) . '/';
-
-    // does the class use the namespace prefix?
-    $len = strlen($prefix);
-    if (strncmp($prefix, $class, $len) !== 0) {
-        // no, move to the next registered autoloader
-        return;
-    }
-
-    // get the relative class name
-    $relative_class = substr($class, $len);
-
-    // replace the namespace prefix with the base directory, replace namespace
-    // separators with directory separators in the relative class name, append
-    // with .php
-    $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
-
-    // if the file exists, require it
+    // require the file if it exists
     if (file_exists($file)) {
         require $file;
     }
