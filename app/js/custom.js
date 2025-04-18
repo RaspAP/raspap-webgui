@@ -1022,6 +1022,30 @@ function disableValidation(form) {
     });
 }
 
+function updateActivityLED() {
+  fetch('/app/net_activity')
+    .then(res => res.text())
+    .then(data => {
+      const activity = parseInt(data.trim());
+      console.log(activity);
+      const led = document.getElementById('hostapd-led');
+
+      if (!isNaN(activity)) {
+        if (activity > 170) {
+          led.setAttribute('data-active', 'true');
+          setTimeout(() => led.removeAttribute('data-active'), 50);
+          led.classList.add('led-pulse');
+        } else {
+          led.classList.remove('led-pulse');
+        }
+      } else {
+        console.warn('Unexpected data:', data);
+      }
+    })
+    .catch(() => { /* ignore fetch errors */ });
+}
+setInterval(updateActivityLED, 200);
+
 $(document).ready(function() {
     const $htmlElement = $('html');
     const $modeswitch = $('#night-mode');
