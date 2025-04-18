@@ -20,9 +20,9 @@ set -o errtrace
 
 IFACE="${1:-wlan0}"              # default to wlan0 if not specified
 TMPFILE="/dev/shm/net_activity"  # tmpfs that resides in RAM 
-INTERVAL=0.05 # 50 ms
+INTERVAL=0.05                    # 50 ms
 
-# Initialize
+# initialize
 prev_rx=0
 prev_tx=0
 
@@ -44,7 +44,6 @@ while true; do
   rx_diff=$((rx - prev_rx))
   tx_diff=$((tx - prev_tx))
   total_diff=$((rx_diff + tx_diff))
-  echo "$total_diff"
   echo "$total_diff" > "$TMPFILE"
 
   prev_rx=$rx
