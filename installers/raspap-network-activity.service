@@ -1,0 +1,15 @@
+# Author: BillZ <billzimmerman@gmail.com>
+
+[Unit]
+Description=RaspAP Network Activity Monitor
+After=network.target
+
+[Service]
+ExecStart=/bin/bash /etc/raspap/hostapd/network-activity.sh --interface wlan0
+Restart=always
+RestartSec=2
+User=root
+
+[Install]
+WantedBy=multi-user.target
+
