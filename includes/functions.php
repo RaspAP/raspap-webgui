@@ -954,7 +954,7 @@ function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cp
       <div class="col ml-2">
         <div class="ml-1 sb-status">Status</div>
         <div class="info-item-xs"><span class="icon">
-          <i id="hostapd-led" class="fas fa-circle <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
+          <i class="fas fa-circle hostapd-led <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
         </div>
         <div class="info-item-xs"><span class="icon">
           <i class="fas fa-circle <?php echo ($memused_led); ?>"></i></span> <?php echo _("Mem Use").': '. htmlspecialchars(strval($memused), ENT_QUOTES); ?>%
