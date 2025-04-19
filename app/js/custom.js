@@ -1023,28 +1023,32 @@ function disableValidation(form) {
 }
 
 function updateActivityLED() {
+  const threshold_bytes = 300;
   fetch('/app/net_activity')
     .then(res => res.text())
     .then(data => {
       const activity = parseInt(data.trim());
-      console.log(activity);
-      const led = document.getElementById('hostapd-led');
+      const leds = document.querySelectorAll('.hostapd-led');
 
       if (!isNaN(activity)) {
-        if (activity > 170) {
-          led.setAttribute('data-active', 'true');
-          setTimeout(() => led.removeAttribute('data-active'), 50);
-          led.classList.add('led-pulse');
-        } else {
-          led.classList.remove('led-pulse');
-        }
-      } else {
-        console.warn('Unexpected data:', data);
+        leds.forEach(led => {
+          if (activity > threshold_bytes) {
+            led.setAttribute('data-active', 'true');
+            led.classList.add('led-pulse');
+            setTimeout(() => {
+              led.removeAttribute('data-active');
+              led.classList.remove('led-pulse');
+            }, 50);
+          } else {
+            led.classList.remove('led-pulse');
+            led.removeAttribute('data-active');
+          }
+        });
       }
     })
     .catch(() => { /* ignore fetch errors */ });
 }
-setInterval(updateActivityLED, 200);
+setInterval(updateActivityLED, 100);
 
 $(document).ready(function() {
     const $htmlElement = $('html');
