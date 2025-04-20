@@ -5,7 +5,7 @@ Description=RaspAP Network Activity Monitor
 After=network.target
 
 [Service]
-ExecStart=/bin/bash /etc/raspap/hostapd/network-activity.sh --interface wlan0
+ExecStart=/bin/bash /etc/raspap/hostapd/network-activity.sh
 Restart=always
 RestartSec=2
 User=root
