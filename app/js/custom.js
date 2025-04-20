@@ -1033,15 +1033,12 @@ function updateActivityLED() {
       if (!isNaN(activity)) {
         leds.forEach(led => {
           if (activity > threshold_bytes) {
-            led.setAttribute('data-active', 'true');
             led.classList.add('led-pulse');
             setTimeout(() => {
-              led.removeAttribute('data-active');
               led.classList.remove('led-pulse');
             }, 50);
           } else {
             led.classList.remove('led-pulse');
-            led.removeAttribute('data-active');
           }
         });
       }
