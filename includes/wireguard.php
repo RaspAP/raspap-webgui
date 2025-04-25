@@ -11,13 +11,14 @@ function DisplayWireGuardConfig()
     $parseFlag = true;
     if (!RASPI_MONITOR_ENABLED) {
         $optRules     = isset($_POST['wgRules']) ? $_POST['wgRules'] : null;
+        $optInterface = isset($_POST['wgInterface']) ? $_POST['wgInterface'] : null;
         $optConf      = isset($_POST['wgCnfOpt']) ? $_POST['wgCnfOpt'] : null;
         $optSrvEnable = isset($_POST['wgSrvEnable']) ? $_POST['wgSrvEnable'] : null;
         $optLogEnable = isset($_POST['wgLogEnable']) ? $_POST['wgLogEnable'] : null;
         if (isset($_POST['savewgsettings']) && $optConf == 'manual' && $optSrvEnable == 1 ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['savewgsettings']) && $optConf == 'upload' && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
-            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules);
+            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optInterface);
         } elseif (isset($_POST['savewgsettings']) && isset($_POST['wg_penabled']) ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['startwg'])) {
@@ -77,12 +78,17 @@ function DisplayWireGuardConfig()
     }
     $peer_id = $peer_id ?? "1";
 
+    // fetch available interfaces
+    exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
+    sort($interfaces);
+
     echo renderTemplate(
         "wireguard", compact(
             "status",
             "wg_state",
             "serviceStatus",
             "public_ip",
+            "interfaces",
             "optRules",
             "optLogEnable",
             "peer_id",
@@ -110,9 +116,10 @@ function DisplayWireGuardConfig()
  * @param  object $status
  * @param  object $file
  * @param  boolean $optRules
+ * @param  string $optInterface
  * @return object $status
  */
-function SaveWireGuardUpload($status, $file, $optRules)
+function SaveWireGuardUpload($status, $file, $optRules, $optInterface)
 {
     define('KB', 1024);
     $tmp_destdir = '/tmp/';
@@ -147,7 +154,7 @@ function SaveWireGuardUpload($status, $file, $optRules)
             $rules[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
             $rules[] = '';
             $rules = join(PHP_EOL, $rules);
-            $rules = preg_replace('/wlan0/m', $_SESSION['ap_interface'], $rules);
+            $rules = preg_replace('/wlan0/m', $optInterface, $rules);
             $tmp_contents = preg_replace('/^\s*$/ms', $rules, $tmp_contents, 1);
             file_put_contents($tmp_wgconfig, $tmp_contents);
         }

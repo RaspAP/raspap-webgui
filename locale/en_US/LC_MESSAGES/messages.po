@@ -1355,14 +1355,14 @@ msgstr "Upload a WireGuard config"
 msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
 msgstr "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
 
-msgid "Apply iptables rules for AP interface"
-msgstr "Apply iptables rules for AP interface"
+msgid "Apply iptables rules to the selected interface"
+msgstr "Apply iptables rules to the selected interface"
 
-msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
-msgstr "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
 
-msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
-msgstr "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
 
 msgid "Select WireGuard configuration file (.conf)"
 msgstr "Select WireGuard configuration file (.conf)"
