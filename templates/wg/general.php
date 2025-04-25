@@ -35,17 +35,20 @@
                   <div class="form-check form-switch">
                     <?php $checked = $optRules == 1 ? 'checked="checked"' : '' ?>
                     <input class="form-check-input" id="chxwgrules" name="wgRules" type="checkbox" value="1" <?php echo $checked ?> />
-                    <label class="form-check-label" for="chxwgrules"><?php echo _("Apply iptables rules for AP interface"); ?></label>
-                    <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."); ?>"></i>
+                    <label class="form-check-label" for="chxwgrules"><?php echo _("Apply iptables rules to the selected interface"); ?></label>
+                    <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."); ?>"></i>
                     <p id="wg-description">
-                      <small><?php printf(_("This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."), $_SESSION['ap_interface']) ?></small>
+                      <small><?php echo _("This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."); ?></small>
+                      <div class="col-sm-6">
+                        <?php SelectorOptions('wgInterface', $interfaces, $_SESSION['ap_interface'], 'cbxinterface'); ?>
+                      </div>
                     </p>
                   </div>
                 </div>
 
                 <div class="mb-3">
                   <h5 class="panel-title"><?php echo _("Configuration File"); ?></h4>
-                  <div class="custom-file">
+                  <div class="col-sm-8 custom-file">
                     <input type="file" class="form-control" name="wgFile" id="wgFile">
                     <label class="form-label" for="wgFile"><?php echo _("Select WireGuard configuration file (.conf)"); ?></label>
                   </div>

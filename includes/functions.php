@@ -824,6 +824,23 @@ function loadFooterScripts($extraFooterScripts)
 }
 
 /**
+ * Validate whether the given network interface exists on the system.
+ * This function retrieves all currently available network interfaces using the `ip link show` command
+ * and checks if the provided interface name is in the list.
+ */
+function validateInterface($interface)
+{
+    // Retrieve all available network interfaces
+    $valid_interfaces = shell_exec('ip -o link show | awk -F": " \'{print $2}\'');
+
+    // Convert to array (one interface per line)
+    $valid_interfaces = explode("\n", trim($valid_interfaces));
+
+    // Check if the provided interface exists in the list
+    return in_array($interface, $valid_interfaces, true);
+}
+
+/**
  * Returns ISO standard 2-letter country codes
  *
  * @param string $locale
