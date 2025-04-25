@@ -34,7 +34,7 @@ function DisplayHostAPDConfig()
 
     $reg_domain = shell_exec("iw reg get | grep -o 'country [A-Z]\{2\}' | awk 'NR==1{print $2}'");
 
-    $cmd = "iw dev ".$_SESSION['ap_interface']." info | awk '$1==\"txpower\" {print $2}'";
+    $cmd = "iw dev ".escapeshellarg($_SESSION['ap_interface'])." info | awk '$1==\"txpower\" {print $2}'";
     exec($cmd, $txpower);
     $txpower = intval($txpower[0]);
 
@@ -76,7 +76,7 @@ function DisplayHostAPDConfig()
     }
     exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
     if (isset($_SESSION['wifi_client_interface'])) {
-        exec('iwgetid '.$_SESSION['wifi_client_interface']. ' -r', $wifiNetworkID);
+        exec('iwgetid '.escapeshellarg($_SESSION['wifi_client_interface']). ' -r', $wifiNetworkID);
         if (!empty($wifiNetworkID[0])) {
             $managedModeEnabled = true;
         }
@@ -249,17 +249,18 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             exec('sudo '.RASPI_CONFIG.'/hostapd/disablelog.sh');
         }
     }
+
     // set AP interface default, override for ap-sta & bridged options
-    $ap_iface = $_POST['interface']; // the hostap AP interface
-    $cli_iface = $_POST['interface']; // the wifi client interface
-    $session_iface = $_POST['interface']; // the interface that the UI needs to monitor for data usage etc.
+    $iface = validateInterface($_POST['interface']) ? $_POST['interface'] : RASPI_WIFI_AP_INTERFACE;
+
+    $ap_iface = $iface; // the hostap AP interface
+    $cli_iface = $iface; // the wifi client interface
+    $session_iface = $iface; // the interface that the UI needs to monitor for data usage etc.
     if ($wifiAPEnable) { // for AP-STA we monitor the uap0 interface, which is always the ap interface.
-        $ap_iface = 'uap0';
-        $session_iface = 'uap0';
+        $ap_iface = $session_iface = 'uap0';
     }
     if ($bridgedEnable) { // for bridged mode we monitor the bridge, but keep the selected interface as AP.
-        $session_iface = 'br0';
-        $cli_iface = 'br0';
+        $cli_iface = $session_iface = 'br0';
     }
 
     // persist user options to /etc/raspap
