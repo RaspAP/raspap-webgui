@@ -75,7 +75,7 @@ function _update_raspap() {
     _download_latest_files
     _change_file_ownership
     _patch_system_files
-    _symlink_net_activity
+    _enable_network_activity_monitor
     _create_plugin_scripts
     _install_complete
 }
@@ -829,20 +829,21 @@ function _configure_networking() {
 # Install and enable RaspAP network activity monitor
 function _enable_network_activity_monitor() {
     _install_log "Enabling RaspAP network activity monitor"
-    sudo cp $webroot_dir/installers/network-activity.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to copy network-activity.sh"
+    echo "Compiling raspap-network-monitor.c to /usr/local/bin/"
+    sudo gcc -O2 -o /usr/local/bin/raspap-network-monitor $webroot_dir/installers/raspap-network-monitor.c || _install_status 1 "Failed to compile raspap-network-monitor.c"
+    echo "Copying raspap-network-activity@.service to /lib/systemd/system/"
     sudo cp $webroot_dir/installers/raspap-network-activity@.service /lib/systemd/system/ || _install_status 1 "Unable to move raspap-network-activity.service file"
     sudo systemctl daemon-reload
+    echo "Enabling raspap-network-activity@wlan0.service"
     sudo systemctl enable raspap-network-activity@wlan0.service || _install_status 1 "Failed to enable raspap-network-activity.service"
+    echo "Starting raspap-network-activity@wlan0.service"
     sudo systemctl start raspap-network-activity@wlan0.service || _install_status 1 "Failed to start raspap-network-activity.service"
     sleep 0.5
-    _symlink_net_activity
-    echo "Network activity monitor enabled"
-}
-
-function _symlink_net_activity() {
     echo "Symlinking /dev/shm/net_activity to $webroot_dir/app/net_activity"
     sudo ln -sf /dev/shm/net_activity $webroot_dir/app/net_activity || _install_status 1 "Failed to link net_activity to ${webroot_dir}/app"
+    echo "Setting ownership for ${raspap_user} on ${webroot_dir}/app/net_activity"
     sudo chown -R $raspap_user:$raspap_user $webroot_dir/app/net_activity || _install_status 1 "Unable to set ownership of ${webroot_dir}/app/net_activity"
+    echo "Network activity monitor enabled"
 }
 
 # Prompt to configure TCP BBR option
