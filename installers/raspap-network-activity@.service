@@ -1,11 +1,11 @@
 # Author: BillZ <billzimmerman@gmail.com>
 
 [Unit]
-Description=RaspAP Network Activity Monitor for %i
+Description=RaspAP Network Activity Monitor for %I
 After=network.target
 
 [Service]
-ExecStart=/bin/bash /etc/raspap/hostapd/network-activity.sh --interface %i
+ExecStart=/usr/local/bin/raspap-network-monitor %i
 Restart=always
 RestartSec=2
 User=root
