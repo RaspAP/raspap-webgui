@@ -1,4 +1,4 @@
-// network-monitor.c
+// raspap-network-monitor.c
 
 /*
 RaspAP Network Activity Monitor
@@ -6,6 +6,8 @@ Author: @billz <billzimmerman@gmail.com>
 Author URI: https://github.com/billz/
 License: GNU General Public License v3.0
 License URI: https://github.com/raspap/raspap-webgui/blob/master/LICENSE
+
+Usage: raspap-network-monitor [interface]
 */
 
 #define _GNU_SOURCE
