@@ -58,10 +58,19 @@ function DisplayHostAPDConfig()
             $status->addMessage('Attempting to start hotspot', 'info');
             if ($arrHostapdConf['BridgedEnable'] == 1) {
                 exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface br0 --seconds 2', $return);
+                exec('sudo systemctl stop "raspap-network-activity@*.service"');
+                exec("sudo systemctl start raspap-network-activity@br0.service");
             } elseif ($arrHostapdConf['WifiAPEnable'] == 1) {
                 exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface uap0 --seconds 2', $return);
+                exec('sudo systemctl stop "raspap-network-activity@*.service"');
+                exec("sudo systemctl start raspap-network-activity@uap0.service");
             } else {
                 exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --seconds 2', $return);
+                exec('sudo systemctl stop "raspap-network-activity@*.service"');
+                if (!empty($_SESSION['ap_interface'])) {
+                    $iface = escapeshellarg($_SESSION['ap_interface']);
+                    exec("sudo systemctl start raspap-network-activity@{$iface}.service");
+                }
             }
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');
@@ -69,6 +78,7 @@ function DisplayHostAPDConfig()
         } elseif (isset($_POST['StopHotspot'])) {
             $status->addMessage('Attempting to stop hotspot', 'info');
             exec('sudo /bin/systemctl stop hostapd.service', $return);
+            exec('sudo systemctl stop "raspap-network-activity@*.service"');
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');
             }
