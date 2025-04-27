@@ -80,3 +80,5 @@ www-data ALL=(ALL) NOPASSWD:/bin/truncate -s 0 /tmp/*.log,/bin/truncate -s 0 /va
 www-data ALL=(ALL) NOPASSWD:/usr/bin/vnstat *
 www-data ALL=(ALL) NOPASSWD:/usr/sbin/visudo -cf *
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/plugins/plugin_helper.sh
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl start raspap-network-activity@*.service
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl stop raspap-network-activity@*.service
