@@ -16,7 +16,7 @@ After=multi-user.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash /etc/raspap/hostapd/servicestart.sh --interface uap0 --seconds 3
+ExecStart=/bin/bash /etc/raspap/hostapd/servicestart.sh --seconds 1
 RemainAfterExit=no
 
 [Install]
