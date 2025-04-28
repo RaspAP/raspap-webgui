@@ -830,6 +830,11 @@ function _configure_networking() {
 function _enable_network_activity_monitor() {
     _install_log "Enabling RaspAP network activity monitor"
     echo "Compiling raspap-network-monitor.c to /usr/local/bin/"
+    if ! command -v gcc >/dev/null 2>&1; then
+        echo "gcc not found, installing..."
+        sudo apt-get update
+        sudo apt-get install -y gcc || _install_status 1 "Failed to install gcc"
+    fi
     sudo gcc -O2 -o /usr/local/bin/raspap-network-monitor $webroot_dir/installers/raspap-network-monitor.c || _install_status 1 "Failed to compile raspap-network-monitor.c"
     echo "Copying raspap-network-activity@.service to /lib/systemd/system/"
     sudo cp $webroot_dir/installers/raspap-network-activity@.service /lib/systemd/system/ || _install_status 1 "Unable to move raspap-network-activity.service file"
