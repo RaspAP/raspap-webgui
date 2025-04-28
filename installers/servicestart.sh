@@ -42,6 +42,7 @@ systemctl stop systemd-networkd
 systemctl stop hostapd.service
 systemctl stop dnsmasq.service
 systemctl stop dhcpcd.service
+systemctl stop 'raspap-network-activity@*.service'
 
 if [ "${action}" = "stop" ]; then
     echo "Services stopped. Exiting."
@@ -113,6 +114,9 @@ systemctl start dhcpcd.service
 sleep "${seconds}"
 
 systemctl start dnsmasq.service
+
+echo "Starting raspap-network-activity@${interface}.service"
+systemctl start raspap-network-activity@${interface}.service
 
 if [ $OPENVPNENABLED -eq 1 ]; then
     systemctl start openvpn-client@client
