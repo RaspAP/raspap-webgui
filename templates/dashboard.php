@@ -20,7 +20,7 @@
           </div>
           <div class="col">
             <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
-              <span class="icon"><i class="fas fa-circle service-status-<?php echo $state ?>"></i></span>
+              <span class="icon"><i class="fas fa-circle hostapd-led service-status-<?php echo $state ?>"></i></span>
               <span class="text service-status"><?php echo strtolower($interface) .' '. _($state) ?></span>
             </button>
           </div>

@@ -57,11 +57,17 @@ function DisplayHostAPDConfig()
          if (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
             $status->addMessage('Attempting to start hotspot', 'info');
             if ($arrHostapdConf['BridgedEnable'] == 1) {
-                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface br0 --seconds 2', $return);
+                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface br0 --seconds 1', $return);
             } elseif ($arrHostapdConf['WifiAPEnable'] == 1) {
-                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface uap0 --seconds 2', $return);
+                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface uap0 --seconds 1', $return);
             } else {
-                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --seconds 2', $return);
+                // systemctl expects a unit name like raspap-network-activity@wlan0.service, no extra quotes
+                $iface_nonescaped = $_POST['interface'];
+                if (preg_match('/^[a-zA-Z0-9_-]+$/', $iface_nonescaped)) { // validate interface name
+                    exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface ' .$iface_nonescaped. ' --seconds 1', $return);
+                } else {
+                    throw new \Exception('Invalid network interface');
+                }
             }
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');
@@ -69,6 +75,7 @@ function DisplayHostAPDConfig()
         } elseif (isset($_POST['StopHotspot'])) {
             $status->addMessage('Attempting to stop hotspot', 'info');
             exec('sudo /bin/systemctl stop hostapd.service', $return);
+            exec('sudo systemctl stop "raspap-network-activity@*.service"');
             foreach ($return as $line) {
                 $status->addMessage($line, 'info');
             }

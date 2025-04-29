@@ -661,3 +661,13 @@ a.inactive:focus {
   max-width: 250px;
 }
 
+.led-pulse {
+  opacity: 0.3 !important;
+}
+
+.hostapd-led {
+  color: #28a745;
+  opacity: 1;
+  transition: opacity 0.05s;
+}
+
