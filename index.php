@@ -83,15 +83,11 @@ initializeApp();
 
     <!-- Custom CSS -->
     <link href="<?php echo $_SESSION["theme_url"]; ?>" title="main" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="app/icons/favicon.png?ver=2.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="app/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="app/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="app/icons/favicon-16x16.png">
-    <link rel="icon" type="image/png" href="app/icons/favicon.png" />
-    <link rel="manifest" href="app/icons/site.webmanifest">
-    <link rel="mask-icon" href="app/icons/safari-pinned-tab.svg" color="#b91d47">
-    <meta name="msapplication-config" content="app/icons/browserconfig.xml">
-    <meta name="msapplication-TileColor" content="#b91d47">
+    <link rel="icon" type="image/png" href="/app/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/app/icons/favicon.svg" />
+    <link rel="shortcut icon" href="/app/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="RaspAP" />
     <meta name="theme-color" content="#ffffff">
   </head>
 
