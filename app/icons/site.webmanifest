@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "RaspAP Admin Panel",
+  "short_name": "RaspAP",
   "icons": [
     {
       "src": "/app/icons/web-app-manifest-192x192.png",
