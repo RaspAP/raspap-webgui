@@ -833,7 +833,7 @@ function _enable_network_activity_monitor() {
     if ! command -v gcc >/dev/null 2>&1; then
         echo "gcc not found, installing..."
         sudo apt-get update
-        sudo apt-get install -y gcc || _install_status 1 "Failed to install gcc"
+        sudo apt-get install -y build-essential || _install_status 1 "Failed to install build tools"
     fi
     sudo gcc -O2 -o /usr/local/bin/raspap-network-monitor $webroot_dir/installers/raspap-network-monitor.c || _install_status 1 "Failed to compile raspap-network-monitor.c"
     echo "Copying raspap-network-activity@.service to /lib/systemd/system/"
