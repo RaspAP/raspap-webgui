@@ -43,9 +43,14 @@ if [ -r "$CONFIGFILE" ]; then
 fi
 
 # Set interface from config if not set by parameter
-if [ -z "$interface" ] && [ -n "${config[WifiInterface]}" ]; then
-    interface="${config[WifiInterface]}"
-    echo "Interface not provided. Using interface from config: $interface"
+if [ -z "$interface" ]; then
+    if [ -n "${config[WifiInterface]}" ]; then
+        interface="${config[WifiInterface]}"
+        echo "Interface not provided. Using interface from config: $interface"
+    else
+        interface="wlan0"
+        echo "Interface not provided and not found in config. Defaulting to: $interface"
+    fi
 fi
 
 echo "Stopping network services..."
