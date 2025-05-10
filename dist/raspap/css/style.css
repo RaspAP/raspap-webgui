@@ -4,20 +4,20 @@
  */
 @font-face {
   font-family: 'RaspAP';
-  src:  url('fonts/RaspAP.eot?e76qs3');
-  src:  url('fonts/RaspAP.eot?e76qs3#iefix') format('embedded-opentype'),
-    url('fonts/RaspAP.ttf?e76qs3') format('truetype'),
-    url('fonts/RaspAP.woff?e76qs3') format('woff'),
-    url('fonts/RaspAP.svg?e76qs3#RaspAP') format('svg');
+  src:  url('fonts/RaspAP.eot?y6nk3g');
+  src:  url('fonts/RaspAP.eot?y6nk3g#iefix') format('embedded-opentype'),
+    url('fonts/RaspAP.ttf?y6nk3g') format('truetype'),
+    url('fonts/RaspAP.woff?y6nk3g') format('woff'),
+    url('fonts/RaspAP.svg?y6nk3g#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
 [class^="ra-"], [class*=" ra-"] {
-  /* use !important to prevent issues with browser extensions that change ..webfonts */
+  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'RaspAP' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -35,19 +35,91 @@
   vertical-align: middle;
 }
 
-.card-header .ra-wireguard:before {
-  color: #fff;
-}
-
-.sidebar .nav-item.active .nav-link
-span.ra-wireguard:before {
-  color: #6e707e;
-}
-
 .ra-raspap:before {
   font-size: 4.35rem;
   content: "\e901";
   color: #2b8080;
   margin-left: 0.1em;
+}
+
+.ra-tailscale .path1:before {
+  font-size: 1.0rem;
+  content: "\e90a";
+  color: currentColor;
+  opacity: 0.3;
+}
+.ra-tailscale .path2:before {
+  font-size: 1.0rem;
+  content: "\e90b";
+  margin-left: -1em;
+  color: currentColor;
+}
+.ra-tailscale .path3:before {
+  font-size: 1.0rem;
+  content: "\e90c";
+  margin-left: -1em;
+  color: currentColor;
+  opacity: 0.3;
+}
+.ra-tailscale .path4:before {
+  font-size: 1.0rem;
+  content: "\e90d";
+  margin-left: -1.5em;
+  color: currentColor;
+}
+.ra-tailscale .path5:before {
+  font-size: 1.0rem;
+  content: "\e90e";
+  margin-left: -1em;
+  color: currentColor;
+}
+
+.ra-tailscale .path6:before {
+  font-size: 1.0rem;
+  content: "\e90f";
+  margin-left: -1em;
+  color: currentColor;
+  opacity: 0.3;
+}
+.ra-tailscale .path7:before {
+  font-size: 1.0rem;
+  content: "\e910";
+  margin-left: -1.5em;
+  color: currentColor;
+  opacity: 0.3;
+}
+.ra-tailscale .path8:before {
+  font-size: 1.0rem;
+  content: "\e911";
+  margin-left: -1em;
+  color: currentColor;
+}
+.ra-tailscale .path9:before {
+  font-size: 1.0rem;
+  content: "\e912";
+  margin-left: -1em;
+  color: currentColor; 
+  opacity: 0.3;
+}
+
+span.ra-tailscale {
+  padding-right: 0.6em;
+}
+.card-header .ra-wireguard:before,
+.card-header .ra-tailscale:before {
+  color: #fff;
+}
+
+.sidebar .nav-item.active .nav-link span.ra-wireguard:before,
+.sidebar .nav-item.active .nav-link span.ra-tailscale:before {
+  color: #6e707e;
+}
+
+[data-bs-theme="dark"] span.ra-tailscale {
+  color: #adb5bd;
+}
+
+[data-bs-theme="light"] span.ra-tailscale {
+  color: #adb5bd;
 }
 
