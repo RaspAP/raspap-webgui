@@ -13,7 +13,8 @@ namespace RaspAP\UI;
 class Sidebar {
     private $items = [];
 
-    public function __construct() {
+    public function __construct()
+    {
         // Load default sidebar items
         $this->addItem(_('Dashboard'), 'fa-solid fa-gauge-high', 'wlan0_info', 10);
         $this->addItem(_('Hotspot'), 'fas fa-bullseye', 'hostapd_conf', 20,
@@ -60,7 +61,8 @@ class Sidebar {
      * @param int $priority
      * @param callable $condition
      */
-    public function addItem(string $label, string $iconClass, string $link, int $priority, callable $condition = null) {
+    public function addItem(string $label, string $iconClass, string $link, int $priority, callable $condition = null)
+    {
         $this->items[] = [
             'label' => $label,
             'icon' => $iconClass,
@@ -70,7 +72,8 @@ class Sidebar {
         ];
     }
 
-    public function getItems(): array {
+    public function getItems(): array
+    {
         // Sort items by priority and filter by enabled condition
         $filteredItems = array_filter($this->items, function ($item) {
             return $item['condition'] === null || call_user_func($item['condition']);
@@ -81,14 +84,19 @@ class Sidebar {
         return $filteredItems;
     }
 
-    public function render() {
+    public function render()
+    {
         foreach ($this->getItems() as $item) {
+            $icon = $item['icon'];
+            $iconHtml = (str_starts_with(trim($icon), '<'))
+                ? $icon
+                : "<i class=\"sb-nav-link-icon {$icon} fa-fw mr-2\"></i>";
             echo "<div class=\"sb-nav-link-icon px-2\">
-                  <a class=\"nav-link\" href=\"{$item['link']}\">
-                    <i class=\"sb-nav-link-icon {$item['icon']} fa-fw mr-2\"></i>
-                    <span class=\"nav-label\">{$item['label']}</span>
-                  </a>
-                  </div>";
+                <a class=\"nav-link\" href=\"{$item['link']}\">
+                  {$iconHtml}
+                  <span class=\"nav-label\">{$item['label']}</span>
+                </a>
+              </div>";
         }
     }
 }
