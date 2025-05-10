@@ -120,7 +120,7 @@ span.ra-tailscale {
 }
 
 [data-bs-theme="dark"] span.ra-tailscale {
-  color: #fff;
+  color: #adb5bd;
 }
 
 [data-bs-theme="light"] .card-header span.ra-tailscale {
