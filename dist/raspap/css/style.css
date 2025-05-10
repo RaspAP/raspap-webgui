@@ -115,11 +115,15 @@ span.ra-tailscale {
   color: #6e707e;
 }
 
-[data-bs-theme="dark"] span.ra-tailscale {
+[data-bs-theme="light"] span.ra-tailscale {
   color: #adb5bd;
 }
 
-[data-bs-theme="light"] span.ra-tailscale {
-  color: #adb5bd;
+[data-bs-theme="dark"] span.ra-tailscale {
+  color: #fff;
+}
+
+[data-bs-theme="light"] .card-header span.ra-tailscale {
+  color: #fff;
 }
 
