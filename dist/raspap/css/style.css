@@ -1,23 +1,19 @@
- /*!
- * RaspAP-Brands Brand Icons - https://raspap.com
- * License - https://github.com/billz/RaspAP-Brands-webgui/blob/master/LICENSE
- */
 @font-face {
   font-family: 'RaspAP';
-  src:  url('fonts/RaspAP.eot?e76qs3');
-  src:  url('fonts/RaspAP.eot?e76qs3#iefix') format('embedded-opentype'),
-    url('fonts/RaspAP.ttf?e76qs3') format('truetype'),
-    url('fonts/RaspAP.woff?e76qs3') format('woff'),
-    url('fonts/RaspAP.svg?e76qs3#RaspAP') format('svg');
+  src:  url('fonts/RaspAP.eot?hszbb1');
+  src:  url('fonts/RaspAP.eot?hszbb1#iefix') format('embedded-opentype'),
+    url('fonts/RaspAP.ttf?hszbb1') format('truetype'),
+    url('fonts/RaspAP.woff?hszbb1') format('woff'),
+    url('fonts/RaspAP.svg?hszbb1#RaspAP') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
 [class^="ra-"], [class*=" ra-"] {
-  /* use !important to prevent issues with browser extensions that change ..webfonts */
+  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'RaspAP' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -30,24 +26,32 @@
 }
 
 .ra-wireguard:before {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   content: "\e900";
   vertical-align: middle;
 }
-
-.card-header .ra-wireguard:before {
-  color: #fff;
-}
-
-.sidebar .nav-item.active .nav-link
-span.ra-wireguard:before {
-  color: #6e707e;
-}
-
 .ra-raspap:before {
-  font-size: 4.35rem;
   content: "\e901";
   color: #2b8080;
   margin-left: 0.1em;
+}
+.ra-tailscale:before {
+  font-size: 1.1rem;
+  content: "\e902";
+  vertical-align: top;
+}
+
+.card-header .ra-wireguard:before,
+.card-header .ra-tailscale:before {
+  color: #fff;
+}
+
+.sidebar .nav-item.active .nav-link span.ra-wireguard:before,
+.sidebar .nav-item.active .nav-link span.ra-tailscale:before {
+  color: #6e707e;
+}
+
+.sb-nav-link-icon .ra-tailscale {
+    margin-bottom: 0.4rem;
 }
 
