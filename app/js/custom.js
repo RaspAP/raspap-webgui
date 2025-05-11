@@ -584,7 +584,7 @@ function formatProperty(prop) {
                 return Object.entries(item)
                     .map(([key, value]) => `${key}: ${value}`)
                     .join('<br/>');
-            }).join('<br/><br/>');
+            }).join('<br/>');
         }
         return prop.map(line => `${line}<br/>`).join('');
     }
