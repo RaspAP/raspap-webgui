@@ -78,6 +78,25 @@ case "$action" in
     echo "OK"
     ;;
 
+  "permissions")
+    [ $# -lt 4 ] && { echo "Usage: $0 permissions <filepath> <user> <group> <mode>"; exit 1; }
+
+    filepath="$1"
+    user="$2"
+    group="$3"
+    mode="$4"
+
+    if [ ! -e "$filepath" ]; then
+        echo "File not found: $filepath" >&2
+        exit 1
+    fi
+
+    chown "$user:$group" "$filepath" || exit 1
+    chmod "$mode" "$filepath" || exit 1
+
+    echo "OK"
+    ;;
+
   "javascript")
     [ $# -lt 2 ] && { echo "Usage: $0 javascript <source> <destination>"; exit 1; }
 
