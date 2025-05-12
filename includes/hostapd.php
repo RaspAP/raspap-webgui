@@ -399,17 +399,11 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             $config[] = 'static ip_address='.$ip_address;
             $config[] = 'nohook wpa_supplicant';
             $config[] = PHP_EOL;
+
         } else {
-            $def_ip = array();
-            $config = [ '# RaspAP '.$ap_iface.' configuration' ];
-            $config[] = 'interface '.$ap_iface;
-            $config[] = 'static ip_address='.$ip_address;
-            $config[] = 'static routers='.$routers;
-            $config[] = 'static domain_name_server='.$domain_name_server;
-            if (!empty($jsonData['Metric'])) {
-                $config[] = 'metric ' . $jsonData['Metric'];
-            }
+            $config = updateDhcpcdConfig($ap_iface, $jsonData, $ip_address, $routers, $domain_name_server);
         }
+
         $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
 
         $skip_dhcp = false;
@@ -532,6 +526,70 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
     file_put_contents("/tmp/hostapddata", $config);
     system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $result);
     return $result;
+}
+
+/**
+ * Updates the dhcpcd configuration for a given interface, preserving existing settings
+ *
+ * @param string $ap_iface
+ * @param array $jsonData
+ * @param string $ip_address
+ * @param string $routers
+ * @param string $domain_name_server
+ * @return array updated configuration
+ */
+function updateDhcpcdConfig($ap_iface, $jsonData, $ip_address, $routers, $domain_name_server) {
+    $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
+    $existing_config = [];
+    $section_regex = '/^#\sRaspAP\s'.preg_quote($ap_iface, '/').'\s.*?(?=\s*^\s*$)/ms';
+
+    // extract existing interface configuration
+    if (preg_match($section_regex, $dhcp_cfg, $matches)) {
+        $lines = explode(PHP_EOL, $matches[0]);
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if (preg_match('/^(interface|static|metric|nogateway|nohook)/', $line)) {
+                $existing_config[] = $line;
+            }
+        }
+    }
+
+    // initialize with comment
+    $config = [ '# RaspAP '.$ap_iface.' configuration' ];
+    $config[] = 'interface '.$ap_iface;
+    $static_settings = [
+        'static ip_address' => $ip_address,
+        'static routers' => $routers,
+        'static domain_name_server' => $domain_name_server
+    ];
+
+    // merge existing settings with updates
+    foreach ($existing_config as $line) {
+        $matched = false;
+        foreach ($static_settings as $key => $value) {
+            if (strpos($line, $key) === 0) {
+                $config[] = "$key=$value";
+                $matched = true;
+                unset($static_settings[$key]);
+                break;
+            }
+        }
+        if (!$matched && !preg_match('/^interface/', $line)) {
+            $config[] = $line;
+        }
+    }
+
+    // add any new static settings
+    foreach ($static_settings as $key => $value) {
+        $config[] = "$key=$value";
+    }
+
+    // add metric if provided
+    if (!empty($jsonData['Metric']) && !in_array('metric '.$jsonData['Metric'], $config)) {
+        $config[] = 'metric '.$jsonData['Metric'];
+    }
+
+    return $config;
 }
 
 /**
