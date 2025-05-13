@@ -32,6 +32,8 @@ body:
       options:
         - label: I have read and understand the [issue reporting policy](https://docs.raspap.com/issues/).
           required: true
+        - label: I have read and followed the [common sense checklist](https://docs.raspap.com/troubleshooting/#dos-and-donts).
+          required: true
         - label: I observed this bug on a clean install of a [supported OS](https://docs.raspap.com/#compatible-operating-systems).
           required: true
         - label: I have followed the [project prerequisites](https://docs.raspap.com/quick_start/#quick-install).
