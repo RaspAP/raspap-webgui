@@ -63,7 +63,7 @@ class CSRF
 
 if (\RaspAP\Tokens\CSRF::validateRequest()) {
     if (!\RaspAP\Tokens\CSRF::verify()) {
-        error_log("CSRF verification failed. Token: " . ($_POST['csrf_token'] ?? 'not provided'));
+        error_log("CSRF verification failed: Token missing or invalid");
         \RaspAP\Tokens\CSRF::handleInvalidToken();
     }
 }
