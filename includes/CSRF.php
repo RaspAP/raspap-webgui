@@ -26,9 +26,11 @@ class CSRF
 
     public static function verify(): bool
     {
-        $token = $_POST['csrf_token'];
+        if (!isset($_POST['csrf_token'])) {
+            return false;
+        }
         return self::instance()->csrfValidateRequest() &&
-               self::instance()->CSRFValidate($_POST['csrf_token'] ?? '');
+           self::instance()->CSRFValidate($_POST['csrf_token']);
     }
 
     public static function metaTag(): string
@@ -53,7 +55,9 @@ class CSRF
      */
     public static function validateRequest(): bool
     {
-        return self::instance()->csrfValidateRequest();
+        $methods = ['POST', 'PUT', 'DELETE', 'PATCH'];
+        return in_array($_SERVER['REQUEST_METHOD'], $methods) &&
+           self::instance()->csrfValidateRequest();
     }
 }
 
