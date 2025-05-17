@@ -44,7 +44,7 @@ OPTIONS:
 -a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
 -w, --wireguard <flag>              Used with -y, --yes, sets WireGuard install option (0=no install)
 -e, --provider <value>              Used with -y, --yes, sets the VPN provider install option
--g, --tcp-bbr <value>               Used with -y, --yes, sets the TCP BBR congestion control algorithm option 
+-g, --tcp-bbr <value>               Used with -y, --yes, sets the TCP BBR congestion control algorithm option
 -r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
 -t, --token <accesstoken>           Specify a GitHub token to access a private repository
@@ -137,7 +137,7 @@ function _parse_params() {
             pv_option="$2"
             shift
             ;;
-            -g|--tcp-bbr) 
+            -g|--tcp-bbr)
             bbr_option="$2"
             shift
             ;;
@@ -207,7 +207,7 @@ function _setup_colors() {
     ANSI_RED="\033[0;31m"
     ANSI_GREEN="\033[0;32m"
     ANSI_YELLOW="\033[0;33m"
-    ANSI_RASPBERRY="\033[0;35m"
+    ANSI_AQUA="\033[38;5;30m"
     ANSI_ERROR="\033[1;37;41m"
     ANSI_RESET="\033[m"
 }
@@ -229,7 +229,7 @@ function _version() {
 
 # Outputs a welcome message
 function _display_welcome() {
-    echo -e "${ANSI_RASPBERRY}\n"
+    echo -e "${ANSI_AQUA}\n"
     echo -e " 888888ba                              .d888888   888888ba"
     echo -e " 88     8b                            d8     88   88     8b"
     echo -e "a88aaaa8P' .d8888b. .d8888b. 88d888b. 88aaaaa88a a88aaaa8P"
@@ -292,7 +292,7 @@ function _install_status() {
         echo -e "[$ANSI_YELLOW \U26A0 warning $ANSI_RESET] $2"
         ;;
         3)
-        echo -e "[$ANSI_RASPBERRY ! important $ANSI_RESET] $2"
+        echo -e "[$ANSI_AQUA ! important $ANSI_RESET] $2"
     esac
 }
 
