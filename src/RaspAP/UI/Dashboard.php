@@ -162,11 +162,13 @@ class Dashboard {
     /*
      * Parses the output of iw to obtain a list of wireless clients
      *
+     * @param string $interface
      * @return integer $clientCount
      */
-    public function getWirelessClients()
+    public function getWirelessClients($interface): int
     {
-        exec('iw dev wlan0 station dump', $output, $status);
+        $cmd = 'iw dev '. escapeshellarg($interface) .' station dump';
+        exec($cmd, $output, $status);
 
         if ($status !== 0) {
             return 0;
