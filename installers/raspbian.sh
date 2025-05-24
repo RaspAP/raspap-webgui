@@ -205,9 +205,9 @@ function _parse_params() {
 
 function _setup_colors() {
     ANSI_RED="\033[0;31m"
-    ANSI_GREEN="\033[0;32m"
+    ANSI_AQUA="\033[38;5;44m"
     ANSI_YELLOW="\033[0;33m"
-    ANSI_AQUA="\033[38;5;30m"
+    ANSI_LT_AQUA="\033[38;5;30m"
     ANSI_ERROR="\033[1;37;41m"
     ANSI_RESET="\033[m"
 }
@@ -238,7 +238,7 @@ function _display_welcome() {
     echo -e " dP     dP  88888P8  88888P  88Y888P  88     88   dP"
     echo -e "                             88"
     echo -e "                             dP      version ${RASPAP_RELEASE}"
-    echo -e "${ANSI_GREEN}"
+    echo -e "${ANSI_LT_AQUA}"
     echo -e "The Quick Installer will guide you through a few easy steps${ANSI_RESET}\n\n"
 }
 
@@ -271,7 +271,7 @@ function _get_release() {
 
 # Outputs a RaspAP Install log line
 function _install_log() {
-    echo -e "${ANSI_GREEN}RaspAP ${component}: $1${ANSI_RESET}"
+    echo -e "${ANSI_LT_AQUA}RaspAP ${component}: $1${ANSI_RESET}"
 }
 
 # Outputs a RaspAP divider
@@ -283,7 +283,7 @@ function _install_divider() {
 function _install_status() {
     case $1 in
         0)
-        echo -e "[$ANSI_GREEN \U2713 ok $ANSI_RESET] $2"
+        echo -e "[$ANSI_LT_AQUA \U2713 ok $ANSI_RESET] $2"
         ;;
         1)
         echo -e "[$ANSI_RED \U2718 error $ANSI_RESET] $ANSI_ERROR $2 $ANSI_RESET"
