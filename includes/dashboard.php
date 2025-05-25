@@ -32,7 +32,7 @@ function DisplayDashboard(&$extraFooterScripts): void
     $connectionType = $dashboard->getConnectionType();
     $connectionIcon = $dashboard->getConnectionIcon($connectionType);
     $state = strtolower($details['state']);
-    $wirelessClients = $dashboard->getWirelessClients();
+    $wirelessClients = $dashboard->getWirelessClients($interface);
     $ethernetClients = $dashboard->getEthernetClients();
     $totalClients = $wirelessClients + $ethernetClients;
     $plugins = $pluginManager->getInstalledPlugins();
