@@ -1,14 +1,15 @@
 @font-face {
   font-family: 'RaspAP';
-  src:  url('fonts/RaspAP.eot?hszbb1');
-  src:  url('fonts/RaspAP.eot?hszbb1#iefix') format('embedded-opentype'),
-    url('fonts/RaspAP.ttf?hszbb1') format('truetype'),
-    url('fonts/RaspAP.woff?hszbb1') format('woff'),
-    url('fonts/RaspAP.svg?hszbb1#RaspAP') format('svg');
+  src:  url('fonts/RaspAP.eot?3vjloy');
+  src:  url('fonts/RaspAP.eot?3vjloy#iefix') format('embedded-opentype'),
+    url('fonts/RaspAP.ttf?3vjloy') format('truetype'),
+    url('fonts/RaspAP.woff?3vjloy') format('woff'),
+    url('fonts/RaspAP.svg?3vjloy#RaspAP') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
+
 
 [class^="ra-"], [class*=" ra-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
@@ -40,14 +41,20 @@
   content: "\e902";
   vertical-align: top;
 }
-
+.ra-torproxy:before {
+  font-size: 1.3rem;
+  content: "\e903";
+  vertical-align: top;
+}
 .card-header .ra-wireguard:before,
-.card-header .ra-tailscale:before {
+.card-header .ra-tailscale:before,
+.card-header .ra-torproxy:before {
   color: #fff;
 }
 
 .sidebar .nav-item.active .nav-link span.ra-wireguard:before,
-.sidebar .nav-item.active .nav-link span.ra-tailscale:before {
+.sidebar .nav-item.active .nav-link span.ra-tailscale:before,
+.sidebar .nav-item.active .nav-link span.ra-torproxy:before {
   color: #6e707e;
 }
 
