@@ -269,10 +269,16 @@ class PluginInstaller
      */
     private function installDependencies(array $dependencies): void
     {
-        $packages = array_keys($dependencies);
-        $packageList = implode(' ', $packages);
+        if (empty($dependencies)) {
+            return; // nothing to do
+        }
 
-        $cmd = sprintf('sudo %s packages %s', escapeshellarg($this->helperScriptPath), escapeshellarg($packageList));
+        $packageList = implode(' ', array_map('escapeshellarg', array_keys($dependencies)));
+        $cmd = sprintf(
+            'sudo %s packages %s',
+            escapeshellarg($this->helperScriptPath),
+            $packageList
+        );
         $return = shell_exec($cmd);
         if (strpos(strtolower($return), 'ok') === false) {
             throw new \Exception('Plugin helper failed to install depedencies.');
