@@ -1,17 +1,45 @@
 {
-    "StevenBlack/hosts": [
-        "StevenBlack/hosts (default)"
-    ],
-    "badmojr/hosts": [
-        "badmojr/1Hosts (Mini)",
-        "badmojr/1Hosts (Lite)",
-        "badmojr/1Hosts (Pro)",
-        "badmojr/1Hosts (Xtra)"
-    ],
-    "OISD/domains": [
-        "oisd/big (default)",
-        "oisd/small",
-        "oisd/nsfw"
-    ]
+  "StevenBlack/hosts": {
+    "StevenBlack/hosts (default)": {
+      "list_url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
+      "dest_file": "hostnames.txt"
+    }
+  },
+  "HaGeZi/hosts": {
+    "hagezi/hosts (Light)": {
+      "list_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/light.txt",
+      "dest_file": "hostnames.txt"
+    },
+    "hagezi/hosts (Normal)": {
+      "list_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/multi.txt",
+      "dest_file": "hostnames.txt"
+    },
+    "hagezi/hosts (Pro)": {
+      "list_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/pro.txt",
+      "dest_file": "hostnames.txt"
+    },
+    "hagezi/hosts (Pro++)": {
+      "list_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/pro.plus.txt",
+      "dest_file": "hostnames.txt"
+    },
+    "hagezi/hosts (Ultimate)": {
+      "list_url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/ultimate.txt",
+      "dest_file": "hostnames.txt"
+    }
+  },
+  "OISD/domains": {
+    "oisd/big (default)": {
+      "list_url": "https://big.oisd.nl/dnsmasq",
+      "dest_file": "domains.txt"
+    },
+    "oisd/small": {
+      "list_url": "https://small.oisd.nl/dnsmasq",
+      "dest_file": "domains.txt"
+    },
+    "oisd/nsfw": {
+      "list_url": "https://nsfw.oisd.nl/dnsmasq",
+      "dest_file": "domains.txt"
+    }
+  }
 }
 
