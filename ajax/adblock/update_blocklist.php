@@ -29,9 +29,21 @@ if (isset($_POST['blocklist_id'])) {
     $list_url = escapeshellcmd($flatList[$blocklist_id]['list_url']);
     $dest_file = escapeshellcmd($flatList[$blocklist_id]['dest_file']);
     $dest = pathinfo($dest_file, PATHINFO_FILENAME);
+    $scriptPath = RASPI_CONFIG . '/adblock/update_blocklist.sh';
 
-    exec("sudo /etc/raspap/adblock/update_blocklist.sh $list_url $dest_file " . RASPI_ADBLOCK_LISTPATH, $output, $return_var);
-    echo json_encode(['return' => $return_var, 'output' => $output, 'list' => $dest]);
+    if (!file_exists($scriptPath)) {
+        echo json_encode([
+            'return' => 5,
+            'output' => ["Update script not found: $scriptPath"]
+        ]);
+        exit;
+    }
+    exec("sudo $scriptPath $list_url $dest_file " . RASPI_ADBLOCK_LISTPATH, $output, $return_var);
+    echo json_encode([
+        'return' => $return_var,
+        'output' => $output,
+        'list' => $dest
+    ]);
 
 } else {
     echo json_encode(['return' => 2, 'output' => ['No blocklist ID provided']]);
