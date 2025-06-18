@@ -791,7 +791,6 @@ function updateBlocklist() {
     }
 }
 
-
 function clearBlocklistStatus() {
     $('#cbxblocklist-status').removeClass('check-updated').addClass('check-hidden');
 }
