@@ -570,8 +570,13 @@ function dnsServers()
 
 function blocklistProviders()
 {
-    $data = json_decode(file_get_contents("./config/blocklists.json"));
-    return (array) $data;
+    $raw = json_decode(file_get_contents("./config/blocklists.json"), true);
+    $result = [];
+
+    foreach ($raw as $group => $entries) {
+        $result[$group] = array_keys($entries);
+    }
+    return $result;
 }
 
 function optionsForSelect($options)

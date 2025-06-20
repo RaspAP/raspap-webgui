@@ -5,50 +5,57 @@ require_once '../../includes/session.php';
 require_once '../../includes/config.php';
 require_once '../../includes/authenticate.php';
 
+define('BLOCKLISTS_FILE', __DIR__ . '/../../config/blocklists.json');
+
 if (isset($_POST['blocklist_id'])) {
-    $blocklist_id = escapeshellcmd($_POST['blocklist_id']);
+    $blocklist_id = $_POST['blocklist_id'];
+    $json = file_get_contents(BLOCKLISTS_FILE);
+    $allLists = json_decode($json, true);
 
-    switch ($blocklist_id) {
-    case "StevenBlack/hosts \(default\)":
-        $list_url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
-        $dest_file = "hostnames.txt";
-        break;
-    case "badmojr/1Hosts \(Mini\)":
-        $list_url = "https://badmojr.github.io/1Hosts/mini/hosts.txt";
-        $dest_file = "hostnames.txt";
-        break;
-    case "badmojr/1Hosts \(Lite\)":
-        $list_url = "https://badmojr.github.io/1Hosts/Lite/hosts.txt";
-        $dest_file = "hostnames.txt";
-        break;
-    case "badmojr/1Hosts \(Pro\)":
-        $list_url = "https://badmojr.github.io/1Hosts/Pro/hosts.txt";
-        $dest_file = "hostnames.txt";
-        break;
-    case "badmojr/1Hosts \(Xtra\)":
-        $list_url = "https://badmojr.github.io/1Hosts/Xtra/hosts.txt";
-        $dest_file = "hostnames.txt";
-        break;
-    case "oisd/big \(default\)":
-        $list_url = "https://big.oisd.nl/dnsmasq";
-        $dest_file = "domains.txt";
-        break;
-    case "oisd/small":
-        $list_url = "https://small.oisd.nl/dnsmasq";
-        $dest_file = "domains.txt";
-        break;
-    case "oisd/nsfw":
-        $list_url = "https://nsfw.oisd.nl/dnsmasq";
-        $dest_file = "domains.txt";
-        break;
+    if ($allLists === null) {
+        echo json_encode([
+            'return' => 3,
+            'output' => ['Failed to parse blocklists.json']
+        ]);
+        exit;
     }
-    $blocklist = $list_url . $dest_file;
-    $dest = substr($dest_file, 0, strrpos($dest_file, "."));
+    $flatList = flattenList($allLists);
 
-    exec("sudo /etc/raspap/adblock/update_blocklist.sh $list_url $dest_file " .RASPI_ADBLOCK_LISTPATH, $return);
-    $jsonData = ['return'=>$return,'list'=>$dest];
-    echo json_encode($jsonData);
+    if (!isset($flatList[$blocklist_id])) {
+        echo json_encode(['return' => 1, 'output' => ['Invalid blocklist ID']]);
+        exit;
+    }
+
+    $list_url = escapeshellcmd($flatList[$blocklist_id]['list_url']);
+    $dest_file = escapeshellcmd($flatList[$blocklist_id]['dest_file']);
+    $dest = pathinfo($dest_file, PATHINFO_FILENAME);
+    $scriptPath = RASPI_CONFIG . '/adblock/update_blocklist.sh';
+
+    if (!file_exists($scriptPath)) {
+        echo json_encode([
+            'return' => 5,
+            'output' => ["Update script not found: $scriptPath"]
+        ]);
+        exit;
+    }
+    exec("sudo $scriptPath $list_url $dest_file " . RASPI_ADBLOCK_LISTPATH, $output, $return_var);
+    echo json_encode([
+        'return' => $return_var,
+        'output' => $output,
+        'list' => $dest
+    ]);
+
 } else {
-    $jsonData = ['return'=>2,'output'=>['Error getting data']];
-    echo json_encode($jsonData);
+    echo json_encode(['return' => 2, 'output' => ['No blocklist ID provided']]);
 }
+
+function flattenList(array $grouped): array {
+    $flat = [];
+    foreach ($grouped as $group) {
+        foreach ($group as $name => $meta) {
+            $flat[$name] = $meta;
+        }
+    }
+    return $flat;
+}
+
