@@ -46,10 +46,16 @@ class Sysinfo
         return $systime;
     }
 
-    public function usedMemory()
+    public function usedMemory(): int
     {
         $used = shell_exec("free -m | awk 'NR==2{ total=$2 ; used=$3 } END { print used/total*100}'");
         return floor(intval($used));
+    }
+
+    public function usedDisk(): int
+    {
+        $output = shell_exec("df -h / | awk 'NR==2 {print $5}'");
+        return intval(str_replace('%', '', trim($output)));
     }
 
     public function processorCount()
