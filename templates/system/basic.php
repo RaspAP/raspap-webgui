@@ -40,6 +40,13 @@ include('includes/sysstats.php');
             style="width: <?php echo htmlspecialchars($memused, ENT_QUOTES); ?>%"><?php echo htmlspecialchars($memused, ENT_QUOTES); ?>%
         </div>
       </div>
+      <div class="mb-1"><?php echo _("Storage Used"); ?></div>
+      <div class="progress mb-2" style="height: 20px;">
+        <div class="progress-bar bg-<?php echo htmlspecialchars($diskused_status, ENT_QUOTES); ?>"
+            role="progressbar" aria-valuenow="<?php echo htmlspecialchars($diskused, ENT_QUOTES); ?>" aria-valuemin="0" aria-valuemax="100"
+            style="width: <?php echo htmlspecialchars($diskused, ENT_QUOTES); ?>%"><?php echo htmlspecialchars($diskused, ENT_QUOTES); ?>%
+        </div>
+      </div>
       <div class="mb-1"><?php echo _("CPU Load"); ?></div>
       <div class="progress mb-2" style="height: 20px;">
         <div class="progress-bar bg-<?php echo htmlspecialchars($cpuload_status, ENT_QUOTES); ?>"

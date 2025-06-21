@@ -91,9 +91,15 @@ function DisplaySystem(&$extraFooterScripts)
 
     // memory use
     $memused  = $system->usedMemory();
-    $memStatus = getMemStatus($memused);
+    $memStatus = getResourceStatus($memused);
     $memused_status = $memStatus['status'];
     $memused_led = $memStatus['led'];
+
+    // disk storage use
+    $diskused  = $system->usedDisk();
+    $diskStatus = getResourceStatus($diskused);
+    $diskused_status = $diskStatus['status'];
+    $diskused_led = $diskStatus['led'];
 
     // cpu load
     $cpuload = $system->systemLoadPercentage();
@@ -138,6 +144,9 @@ function DisplaySystem(&$extraFooterScripts)
         "memused",
         "memused_status",
         "memused_led",
+        "diskused",
+        "diskused_status",
+        "diskused_led",
         "cpuload",
         "cpuload_status",
         "cputemp",
@@ -150,25 +159,25 @@ function DisplaySystem(&$extraFooterScripts)
     ));
 }
 
-function getMemStatus($memused): array
+function getResourceStatus($used): array
 {
-    $memused_status = "primary";
-    $memused_led = "";
+    $used_status = "primary";
+    $used_led = "";
 
-    if ($memused > 90) {
-        $memused_status = "danger";
-        $memused_led = "service-status-down";
-    } elseif ($memused > 75) {
-        $memused_status = "warning";
-        $memused_led = "service-status-warn";
-    } elseif ($memused > 0) {
-        $memused_status = "success";
-        $memused_led = "service-status-up";
+    if ($used > 90) {
+        $used_status = "danger";
+        $used_led = "service-status-down";
+    } elseif ($used > 75) {
+        $used_status = "warning";
+        $used_led = "service-status-warn";
+    } elseif ($used > 0) {
+        $used_status = "success";
+        $used_led = "service-status-up";
     }
 
     return [
-        'status' => $memused_status,
-        'led' => $memused_led
+        'status' => $used_status,
+        'led' => $used_led
     ];
 }
 

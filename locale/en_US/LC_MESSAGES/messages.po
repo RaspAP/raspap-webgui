@@ -1064,6 +1064,9 @@ msgstr "System Time"
 msgid "Memory Used"
 msgstr "Memory Used"
 
+msgid "Storage Used"
+msgstr "Storage Used"
+
 msgid "CPU Load"
 msgstr "CPU Load"
 
