@@ -5,7 +5,21 @@ require_once '../../includes/session.php';
 require_once '../../includes/config.php';
 require_once '../../includes/authenticate.php';
 
-$entity = escapeshellcmd($_POST['entity']);
+function sanitize_entity(string $raw): string {
+    // Step 1: Remove dangerous shell characters by escaping, then trimming quotes
+    $escaped = escapeshellarg($raw);
+    $clean = trim($escaped, " \t\n\r\0\x0B'\"");
+    // Step 2: Replace all non-alphanum/hyphen/underscore characters with underscores
+    $clean = preg_replace('/[^a-zA-Z0-9_-]/', '_', $clean ?? '');
+    // Step 3: Handle null result from preg_replace (rare edge case)
+    if (!is_string($clean)) $clean = '';
+    // Step 4: Truncate to 32 characters (safely)
+    $clean = substr($clean, 0, 32) ?: ''; 
+    // Step 5: Fallback: if string becomes empty, use md5 hash of raw input
+    return strlen($clean) > 0 ? $clean : md5($raw);
+}
+
+$entity = sanitize_entity($_POST['entity']);
 
 if (isset($entity)) {
 
