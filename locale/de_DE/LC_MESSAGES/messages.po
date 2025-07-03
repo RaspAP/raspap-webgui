@@ -149,7 +149,7 @@ msgid "Limited user password"
 msgstr ""
 
 msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
-msgstr "Dieser Vorgang wird die Anmeldedaten des eingeschränkten Nutzers speichern und den aktuellen Admin-Nutzer abmelden. Speichern und Begrenzten-Berechtigungsmodus aktivieren?"
+msgstr "Dieser Vorgang wird die Anmeldedaten des eingeschränkten Nutzers speichern und den aktuellen Admin-Nutzer abmelden. Speichern und Modus mit eingeschränkten Berechtigungen aktivieren?"
 
 msgid "Save and logout"
 msgstr "Speichern und abmelden"
