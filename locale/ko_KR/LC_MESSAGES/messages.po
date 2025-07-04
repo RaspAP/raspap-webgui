@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2024-11-14 10:23\n"
+"PO-Revision-Date: 2025-07-03 05:44\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -24,8 +24,8 @@ msgstr "RaspAP WiFi 환경설정 포탈"
 msgid "Toggle navigation"
 msgstr "토글 내비게이션"
 
-msgid "RaspAP Wifi Portal"
-msgstr "RaspAP WiFi 포탈"
+msgid "RaspAP Admin Panel"
+msgstr "RaspAP 관리자 패널"
 
 msgid "Dashboard"
 msgstr "대시보드 "
@@ -294,8 +294,8 @@ msgstr "주파수 "
 msgid "Link Quality"
 msgstr "링크 품질 "
 
-msgid "Information provided by ip and iw and from system"
-msgstr "ip 및 iw, 시스템에서 제공한 정보"
+msgid "Information provided by raspap.system"
+msgstr "raspap.system에서 제공한 정보"
 
 msgid "No MAC Address Found"
 msgstr "MAC 주소를 찾을 수 없습니다"
@@ -333,6 +333,9 @@ msgstr "연결된 디바이스 "
 msgid "Client: Ethernet cable"
 msgstr "클라이언트: 이더넷 케이블"
 
+msgid "Current status"
+msgstr "현재 상태"
+
 msgid "Ethernet"
 msgstr "이더넷"
 
@@ -344,6 +347,43 @@ msgstr "스마트폰"
 
 msgid "WiFi"
 msgstr "WiFi"
+
+msgid "Repeater"
+msgstr "리피터"
+
+msgid "Tethering"
+msgstr "테더링"
+
+msgid "Cellular"
+msgstr "셀룰러"
+
+msgid "AP"
+msgstr "AP(Access Point)"
+
+msgid "Bridged"
+msgstr "브릿지"
+
+msgid "Adblock"
+msgstr "광고차단(adblock)"
+
+msgid "VPN"
+msgstr "VPN"
+
+msgid "Netmask"
+msgstr "넷마스크"
+
+msgid "5G"
+msgstr "5G"
+
+msgid "2.4G"
+msgstr "2.4G"
+
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
+
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "클라이언트"
 
 msgid "Mobile Data Client"
 msgstr "모바일 데이터 클라이언트"
@@ -386,6 +426,19 @@ msgstr "클라이언트 장치가 없거나 아직 구성되지 않았습니다.
 
 msgid "No Client device found"
 msgstr "클라이언트 장치가 발견되지 않았습니다."
+
+#: includes/footer.php
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "<a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>에 의해 생성됨"
+
+msgid "RaspAP Team"
+msgstr "RaspAP 팀"
+
+msgid "Get Insiders"
+msgstr "인사이더 받기"
+
+msgid "Thanks for being an Insider"
+msgstr "인사이더가 되어 주셔서 감사합니다"
 
 #: includes/dhcp.php
 msgid "DHCP server settings"
@@ -1120,6 +1173,81 @@ msgstr "로그 크기 제한을 %s KB로 변경 중입니다."
 msgid "Information provided by raspap.sysinfo"
 msgstr "raspap.sysinfo에서 제공된 정보"
 
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "다음 사용자 플러그인을 통해 RaspAP의 기능을 확장할 수 있습니다."
+
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "자세한 정보 확인 및 플러그인 설치를 위해 <strong>자세히</strong>를 선택하세요."
+
+msgid "Network error"
+msgstr "네트워크 오류"
+
+msgid "Unable to load plugins"
+msgstr "플러그인을 불러올 수 없습니다"
+
+msgid "Reload"
+msgstr "새로고침"
+
+msgid "and try again"
+msgstr "다시 시도하세요"
+
+msgid "Plugins"
+msgstr "플러그인"
+
+msgid "Plugin details"
+msgstr "플러그인 세부정보"
+
+msgid "Name"
+msgstr "이름"
+
+msgid "Version"
+msgstr "버전"
+
+msgid "Description"
+msgstr "설명"
+
+msgid "Plugin source"
+msgstr "플러그인 소스"
+
+msgid "Author"
+msgstr "작성자"
+
+msgid "License"
+msgstr "라이선스"
+
+msgid "Language locale"
+msgstr "언어 로케일"
+
+msgid "Configuration files"
+msgstr "구성 파일"
+
+msgid "Dependencies"
+msgstr "종속성"
+
+msgid "Permissions"
+msgstr "권한"
+
+msgid "Non-privileged users"
+msgstr "비권한 사용자"
+
+msgid "Install now"
+msgstr "지금 설치하기"
+
+msgid "Installing plugin"
+msgstr "플러그인 설치 중"
+
+msgid "Plugin installation in progress..."
+msgstr "플러그인 설치 진행 중..."
+
+msgid "Plugin install completed."
+msgstr "플러그인 설치가 완료되었습니다."
+
+msgid "Details"
+msgstr "자세히"
+
+msgid "Installed"
+msgstr "설치됨"
+
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "데이터 사용량 "
@@ -1422,14 +1550,14 @@ msgstr "WireGuard 구성(config) 업로드"
 msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
 msgstr "이 옵션은 이 장치에 기존 WireGuard <code>.conf</code> 파일을 업로드하고 설치합니다"
 
-msgid "Apply iptables rules for AP interface"
-msgstr "AP 인터페이스에 iptables 규칙 적용"
+msgid "Apply iptables rules to the selected interface"
+msgstr "선택한 인터페이스에 iptables 규칙 적용"
 
-msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
-msgstr "wg0 인터페이스에서 AP 인터페이스에 연결된 클라이언트로 네트워크 트래픽을 전달하려는 경우에 권장됩니다."
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "wg0 인터페이스에서 원하는 인터페이스에 연결된 클라이언트로 네트워크 트래픽을 포워딩하려는 경우에 권장됩니다. 기본값은 활성화된 AP 인터페이스입니다."
 
-msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
-msgstr "이 옵션은 구성된 AP 인터페이스(%s) 에 대한 <strong>iptables</strong> <code>Postup</code> 및 <code>PostDown</code> 규칙을 추가합니다."
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "이 옵션은 아래에서 선택한 인터페이스에 대해 <strong>iptables</strong> <code>Postup</code> 및 <code>PostDown</code> 규칙을 추가합니다."
 
 msgid "Select WireGuard configuration file (.conf)"
 msgstr "WireGuard 구성 파일(.conf) 선택"
@@ -1521,8 +1649,8 @@ msgstr "WireGuard 구성을 업데이트하지 못했습니다."
 msgid "Enable kill switch"
 msgstr "킬 스위치 활성화"
 
-msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured AP interface (%s)."
-msgstr "이 옵션은 구성된 AP 인터페이스(%s) 에 대해 <strong>iptables</strong> <code>PostUp</code> 및 <code>PreDown</code> 규칙을 추가합니다."
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr "이 옵션은 구성된 인터페이스에 대해 <strong>iptables</strong> <code>PostUp</code> 및 <code>PreDown</code> 규칙을 추가합니다."
 
 msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
 msgstr "WireGuard 인터페이스가 아닌 다른 인터페이스를 통한 암호화되지 않은 패킷 흐름을 방지하려는 경우 권장됩니다."
@@ -1604,6 +1732,12 @@ msgstr "방화벽 비활성화"
 
 msgid "Enable Firewall"
 msgstr "방화벽 활성화"
+
+msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "방화벽 상태를 변경하면 수신 트래픽이 차단되거나 허용될 수 있습니다. 계속하려면 <strong>계속</strong>을 선택하세요."
+
+msgid "Proceed"
+msgstr "진행"
 
 msgid "Apply changes"
 msgstr "변경 사항을 적용합니다"
@@ -1848,6 +1982,24 @@ msgstr "restapi.service를 재시작하는 중입니다."
 msgid "Information provided by restapi.service"
 msgstr "restapi.service에서 제공한 정보"
 
+msgid "Session Expired"
+msgstr "세션 만료됨"
+
+msgid "Your session has expired. Please login to continue."
+msgstr "세션이 만료되었습니다. 계속하려면 로그인해 주세요."
+
+msgid "Login"
+msgstr "로그인"
+
+msgid "Administrator login"
+msgstr "관리자 로그인"
+
+msgid "Forgot password"
+msgstr "비밀번호 찾기"
+
+msgid "Login failed"
+msgstr "로그인 실패"
+
 msgid "NTP Server"
 msgstr "NTP 서버"
 
@@ -1910,4 +2062,187 @@ msgstr "NTP 구성을 %s에서 찾을 수 없습니다."
 
 msgid "NTP configuration updated"
 msgstr "NTP 구성이 업데이트되었습니다."
+
+msgid "Advertising device as a Tailscale exit node"
+msgstr "Tailscale 종료 노드로 디바이스 광고 중"
+
+msgid "Attempting to optimize UDP throughput"
+msgstr "UDP 처리량 최적화를 시도하는 중"
+
+msgid "Kernel transport layer offloads enabled for UDP"
+msgstr "UDP에 대해 커널 전송 계층 오프로딩이 활성화됨"
+
+msgid "Failed to enable kernel transport layer offloads for UDP"
+msgstr "UDP에 대한 커널 전송 계층 오프로딩을 활성화하지 못했습니다"
+
+msgid "Attempting to set tailscale up"
+msgstr "Tailscale 설정을 시도하는 중"
+
+msgid "Attempting to set tailscale down"
+msgstr "Tailscale 비활성화를 시도하는 중"
+
+msgid "Attempting to disconnect from tailscale"
+msgstr "Tailscale 연결 해제를 시도하는 중"
+
+msgid "Disconnected from tailscale and expired node key"
+msgstr "Tailscale에서 연결이 해제되었으며 노드 키가 만료되었습니다"
+
+msgid "Unable to disconnect from tailscale"
+msgstr "Tailscale에서 연결을 해제할 수 없습니다"
+
+msgid "Expected tailscale binary not found at: %"
+msgstr "예상된 Tailscale 바이너리가 다음 위치에 없습니다: %"
+
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "RaspAP용 Tailscale VPN 종료 노드 확장 프로그램"
+
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Tailscale 로그인 정보를 가져올 수 없습니다. 계속하려면 <strong>%s</strong>을 선택하세요."
+
+msgid "Start Tailscale"
+msgstr "Tailscale 시작"
+
+msgid "Stop Tailscale"
+msgstr "Tailscale 중지"
+
+msgid "Next"
+msgstr "다음"
+
+msgid "Device approved and activated as a Tailscale exit node"
+msgstr "디바이스가 승인되어 Tailscale 종료 노드로 활성화되었습니다"
+
+msgid "Not connected: Login required."
+msgstr "연결되지 않음: 로그인 필요."
+
+msgid "Tailscale VPN"
+msgstr "Tailscale VPN"
+
+msgid "Exit node activated"
+msgstr "출구 노드가 활성화되었습니다"
+
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "디바이스 <code>%s</code>는 주소 <code>%s</code>로 연결되어 있으며 <strong>출구 노드</strong>를 제공합니다."
+
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "이 출구 노드를 디바이스와 함께 사용하는 방법은 %s를 참조하세요."
+
+msgid "Allow exit node"
+msgstr "출구 노드 허용"
+
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "디바이스 <code>%s</code>는 출구 노드로 승인 대기 중입니다."
+
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "머신 목록에서 <code>%s</code> <strong>출구 노드</strong> 배지(badge)를 찾으세요."
+
+msgid "Open Tailscale Machines"
+msgstr "Tailscale 머신 열기"
+
+msgid "To allow this device as an exit node, choose <strong>Open Tailscale Machines</strong>."
+msgstr "이 디바이스를 출구 노드로 허용하려면 <strong>Tailscale 머신 열기</strong>를 선택하세요."
+
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "출구 노드의 %s 아이콘 메뉴에서 %s 패널을 여세요."
+
+msgid "Edit route settings"
+msgstr "라우팅 설정 편집"
+
+msgid "Login to Tailscale"
+msgstr "Tailscale에 로그인"
+
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "디바이스 %s를 tailnet에 연결하려면 %s를 선택하세요."
+
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "로그인 후, 계속하려면 <strong>다음</strong>을 선택하세요."
+
+msgid "Configure exit node"
+msgstr "출구 노드 구성"
+
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "디바이스 <code>%s</code>는 주소 <code>%s</code>로 tailnet에 연결되어 있습니다."
+
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as a <strong>exit node</strong>"
+msgstr "기본적으로 Tailscale은 설치된 디바이스 간의 트래픽만 라우팅합니다. 네트워크의 디바이스를 <strong>출구 노드</strong>로 구성하면 모든 공용 인터넷 트래픽도 라우팅할 수 있습니다"
+
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "모든 트래픽을 출구 노드를 통해 라우팅하면, 일반적인 VPN을 사용할 때처럼 기본 경로(0.0.0.0/0, ::/0)를 사용하는 것과 동일한 방식으로 동작하게 됩니다."
+
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "이 디바이스를 출구 노드로 구성하거나, tailnet 내의 다른 출구 노드를 사용할 수 있습니다."
+
+msgid "Select an existing exit node on your tailnet"
+msgstr "tailnet에서 기존 출구 노드를 선택하세요"
+
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "예를 들어 이 디바이스를 VPN 여행 라우터로 사용할 경우, 이는 일반적인 구성입니다."
+
+msgid "Configure this device as a new exit node"
+msgstr "이 디바이스를 새로운 출구 노드로 구성하세요"
+
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet will be routed through it."
+msgstr "이 디바이스를 출구 노드로 구성하면, tailnet에 연결된 디바이스의 공용 인터넷 트래픽이 이 디바이스를 통해 라우팅됩니다."
+
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "보안상의 이유로 출구 노드 기능을 활성화하려면 사용자가 직접 동의해야 합니다. 첫 번째 단계는 <code>%s</code>를 tailnet에서 출구 노드로 광고하는 것입니다. 다음 단계에서는 이 디바이스를 출구 노드로 허용하게 됩니다."
+
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "<code>%s</code>를 출구 노드로 광고"
+
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "이는 Tailscale을 VPN으로 구성하여 실제 위치를 숨기거나, 지역 제한 콘텐츠에 접근하거나, 신뢰되지 않은 네트워크에서 연결할 때 프라이버시를 강화하는 데 효과적입니다."
+
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "이 옵션은 Tailscale에 디바이스가 트래픽을 라우팅할 준비가 되었음을 알립니다."
+
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Linux 6.2 이상 커널을 사용하는 Tailscale 출구 노드에 권장되며, UDP 일반 수신 오프로딩(GRO) 포워딩을 사용하여 CPU 부하를 줄입니다."
+
+msgid "This option enables transport layer offloads for better performance."
+msgstr "이 옵션은 더 나은 성능을 위해 전송 계층 오프로딩을 활성화합니다."
+
+msgid "Select an exit node"
+msgstr "출구 노드를 선택하세요"
+
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "<code>%s</code>를 VPN 게이트웨이로 사용하려면, Tailscale에서 출구 노드를 사용하도록 구성하세요. Tailscale이 추천하는 노드는 별표로 표시됩니다."
+
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "활성화된 <code>%s</code> AP 인터페이스에 대해 <strong>서브넷 라우트</strong>를 광고하세요"
+
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "서브넷 라우트를 사용하면 Tailscale 네트워크(즉, tailnet)를 Tailscale 클라이언트를 실행할 수 없거나 실행하지 않는 디바이스까지 확장할 수 있습니다."
+
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "서브넷 라우트는 tailnet과 물리적 서브넷 간의 게이트웨이 역할을 합니다. 활성화된 AP 인터페이스의 서브넷이 아래에 미리 구성되어 있으며, 필요에 따라 수정할 수 있습니다."
+
+msgid "Route LAN traffic through the exit node."
+msgstr "LAN 트래픽을 출구 노드를 통해 라우팅하세요."
+
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "이 설정은 모든 LAN 트래픽을 출구 노드를 통해서만 전달하도록 합니다."
+
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node."
+msgstr "선택한 출구 노드를 사용하도록 <code>%s</code>를 구성하려면 <strong>다음</strong>을 선택하세요."
+
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "tailnet에서 출구 노드를 찾을 수 없습니다. 계속하려면 <strong>뒤로</strong>를 선택하세요."
+
+msgid "Using exit node"
+msgstr "출구 노드 사용 중"
+
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "디바이스 <code>%s</code>는 출구 노드 <code>%s</code>를 사용하도록 구성되어 있습니다. Tailscale MagicDNS 주소는 <code>%s</code>입니다."
+
+msgid "Choose <strong>Save settings</strong> to continue."
+msgstr "계속하려면 <strong>설정 저장</strong>을 선택하세요."
+
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "계속하려면 <strong>다음</strong>을 선택하세요."
+
+msgid "Tailnet status"
+msgstr "Tailnet 상태"
+
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "현재 <code>tailnet</code> 상태가 아래에 표시됩니다."
 
