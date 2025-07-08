@@ -64,7 +64,8 @@ function DisplayHostAPDConfig()
                 // systemctl expects a unit name like raspap-network-activity@wlan0.service, no extra quotes
                 $iface_nonescaped = $_POST['interface'];
                 if (preg_match('/^[a-zA-Z0-9_-]+$/', $iface_nonescaped)) { // validate interface name
-                    exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface ' .$iface_nonescaped. ' --seconds 1', $return);
+                    $command = 'sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface ' . escapeshellarg($iface_nonescaped) . ' --seconds 1';
+                    exec($command, $return);
                 } else {
                     throw new \Exception('Invalid network interface');
                 }
@@ -121,11 +122,13 @@ function DisplayHostAPDConfig()
         if ($_POST['txpower'] != 'auto') {
             $txpower = intval($_POST['txpower']);
             $sdBm = $txpower * 100;
-            exec('sudo /sbin/iw dev '.$interface.' set txpower fixed '.$sdBm, $return);
+$command = 'sudo /sbin/iw dev ' . $interface . ' set txpower fixed ' . escapeshellarg($sdBm);
+exec($command, $return);
             $status->addMessage('Setting transmit power to '.$_POST['txpower'].' dBm.', 'success');
             $txpower = $_POST['txpower'];
         } elseif ($_POST['txpower'] == 'auto') {
-            exec('sudo /sbin/iw dev '.$interface.' set txpower auto', $return);
+$command = 'sudo /sbin/iw dev ' . $interface . ' set txpower auto';
+exec($command, $return);
             $status->addMessage('Setting transmit power to '.$_POST['txpower'].'.', 'success');
             $txpower = $_POST['txpower'];
         }

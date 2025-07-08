@@ -6,7 +6,7 @@ require_once '../../includes/config.php';
 require_once '../../includes/authenticate.php';
 require_once '../../includes/functions.php';
 
-$interface = $_POST['iface'];
+$interface = escapeshellarg($_POST['iface']);
 
 if (isset($interface)) {
     // fetch dnsmasq.conf settings for interface
