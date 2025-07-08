@@ -41,7 +41,7 @@ function DisplayWPAConfig()
 
                 if (preg_match('/delete(\d+)/', $post, $post_match)) {
                     $network = $tmp_networks[$_POST['ssid' . $post_match[1]]];
-                    $netid = $network['index'];
+                    $netid = intval($network['index']);
                     exec('sudo wpa_cli -i ' . $iface . ' disconnect ' . $netid);
                     exec('sudo wpa_cli -i ' . $iface . ' remove_network ' . $netid);
                     unset($tmp_networks[$_POST['ssid' . $post_match[1]]]);

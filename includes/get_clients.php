@@ -16,7 +16,7 @@ function getClients($simple=true)
         if (empty(preg_only_match("/(ppp)[0-9]/", $rawdevs))) {
             if (!empty($devtty)) {
                 $rawdevs[]="ppp0";
-                exec("udevadm info --name='$devtty' 2> /dev/null");
+                exec("udevadm info --name=".escapeshellarg($devtty)." 2> /dev/null");
             }
         }
         foreach ($rawdevs as $i => $dev) {
@@ -24,9 +24,9 @@ function getClients($simple=true)
             $nam = (preg_match("/^(\w+)[0-9]$/",$dev,$nam) === 1) ? $nam=$nam[1] : "";
             $cl["device"][$i]["type"]=$ty=getClientType($dev);
             unset($udevinfo);
-            exec("udevadm info /sys/class/net/$dev 2> /dev/null", $udevinfo);
+            exec("udevadm info /sys/class/net/".escapeshellarg($dev)." 2> /dev/null", $udevinfo);
             if ($nam == "ppp" && isset($devtty)) {
-                exec("udevadm info --name='$devtty' 2> /dev/null", $udevinfo);
+                exec("udevadm info --name=".escapeshellarg($devtty)." 2> /dev/null", $udevinfo);
             }
             if (!empty($udevinfo) && is_array($udevinfo)) {
                 $model = preg_only_match("/ID_MODEL_ENC=(.*)$/", $udevinfo);
@@ -49,16 +49,16 @@ function getClients($simple=true)
             $cl["device"][$i]["vid"] = $vendorid;
             $cl["device"][$i]["pid"] = $productid;
             unset($mac);
-            exec("cat /sys/class/net/$dev/address 2> /dev/null", $mac);
+            exec("cat /sys/class/net/".escapeshellarg($dev)."/address 2> /dev/null", $mac);
             $cl["device"][$i]["mac"] = empty($mac) ? "":$mac[0];
             unset($ip);
-            exec("ifconfig $dev 2> /dev/null", $ip);
+            exec("ifconfig ".escapeshellarg($dev)." 2> /dev/null", $ip);
             $cl["device"][$i]["ipaddress"] =  preg_only_match("/.*inet ([0-9\.]+) .*/", $ip);
 
             switch($ty) {
             case "eth":
                 unset($res);
-                exec("ip link show $dev 2> /dev/null | grep -oP ' UP '", $res);
+                exec("ip link show ".escapeshellarg($dev)." 2> /dev/null | grep -oP ' UP '", $res);
                 if (empty($res) && empty($ipadd)) {
                     $cl["device"][$i]["connected"] = "n";
                 } else {
@@ -67,10 +67,10 @@ function getClients($simple=true)
                 break;
             case "wlan":
                 unset($retiw);
-                exec("iwconfig $dev 2> /dev/null | sed -rn 's/.*(mode:master).*/1/ip'", $retiw);
+                exec("iwconfig ".escapeshellarg($dev)." 2> /dev/null | sed -rn 's/.*(mode:master).*/1/ip'", $retiw);
                 $cl["device"][$i]["isAP"] = !empty($retiw);
                 unset($retiw);
-                exec("iw dev $dev link 2> /dev/null", $retiw);
+                exec("iw dev ".escapeshellarg($dev)." link 2> /dev/null", $retiw);
                 if (!$simple && !empty($ssid=preg_only_match("/.*SSID:\s*([^\"]*).*/", $retiw)) ) {
                     $cl["device"][$i]["connected"] = "y";
                     $cl["device"][$i]["ssid"] = $ssid;
@@ -98,7 +98,7 @@ function getClients($simple=true)
                 break;
             case "ppp":
                 unset($res);
-                exec("ip link show $dev 2> /dev/null | grep -oP '( UP | UNKNOWN)'", $res);
+                exec("ip link show ".escapeshellarg($dev)." 2> /dev/null | grep -oP '( UP | UNKNOWN)'", $res);
                 if ($simple) {
                     if (empty($res)) {
                         $cl["device"][$i]["connected"] = "n";
@@ -134,8 +134,8 @@ function getClients($simple=true)
 				getMobileLogin($pin,$pw,$user);
 				$opts=$pin.' '.$user.' '.$pw;
                 unset($res);
-                //              exec("ip link show $dev 2> /dev/null | grep -oP ' UP '",$res);
-                exec("ifconfig -a | grep -i $dev -A 1 | grep -oP '(?<=inet )([0-9]{1,3}\.){3}'", $apiadd);
+                //              exec("ip link show ".escapeshellarg($dev)." 2> /dev/null | grep -oP ' UP '",$res);
+                exec("ifconfig -a | grep -i ".escapeshellarg($dev)." -A 1 | grep -oP '(?<=inet )([0-9]{1,3}\.){3}'", $apiadd);
                 $apiadd = !empty($apiadd) ? $apiadd[0]."1" : "";
                 unset($res);
                 exec("$path/info_huawei.sh mode hilink $apiadd \"$opts\" ", $res);
@@ -181,7 +181,7 @@ function getClients($simple=true)
 function getClientType($dev) {
     loadClientConfig();
     // check if device type stored in DEVTYPE or raspapType (from UDEV rule) protperty of the device
-    exec("udevadm info /sys/class/net/$dev 2> /dev/null", $udevadm);
+    exec("udevadm info /sys/class/net/".escapeshellarg($dev)." 2> /dev/null", $udevadm);
     $type="none";
     if (!empty($udevadm)) {
          $type=preg_only_match("/raspapType=(\w*)/i",$udevadm);
@@ -254,7 +254,7 @@ function findCurrentClientIndex($clients)
 function waitClientConnected($dev, $timeout=10)
 {
     do {
-        exec('ifconfig -a | grep -i '.$dev.' -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}[0-9]{1,3}"', $res);
+        exec('ifconfig -a | grep -i '.escapeshellarg($dev).' -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}[0-9]{1,3}"', $res);
         $connected= !empty($res);
         if (!$connected) {
             sleep(1);
@@ -268,17 +268,17 @@ function setClientState($state)
     $clients=getClients();
     if (($idx = findCurrentClientIndex($clients)) >= 0) {
         $dev = $clients["device"][$idx];
-        exec('ifconfig -a | grep -i '.$dev["name"].' -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}[0-9]{1,3}"', $res);
+        exec('ifconfig -a | grep -i '.escapeshellarg($dev["name"]).' -A 1 | grep -oP "(?<=inet )([0-9]{1,3}\.){3}[0-9]{1,3}"', $res);
         if (!empty($res)) {
             $connected=$res[0];
         }
         switch($dev["type"]) {
         case "wlan":
             if ($state =="up") {
-                exec('sudo ip link set '.$dev["name"].' up');
+                exec('sudo ip link set '.escapeshellarg($dev["name"]).' up');
             }
             if (!empty($connected) && $state =="down") {
-                exec('sudo ip link set '.$dev["name"].' down');
+                exec('sudo ip link set '.escapeshellarg($dev["name"]).' down');
             }
             break;
         case "hilink":
@@ -287,14 +287,14 @@ function setClientState($state)
             $mode = ($state == "up") ? 1 : 0;
             $pin=$user=$pw="";
 			getMobileLogin($pin,$pw,$user);
-            exec('sudo '.RASPI_CLIENT_SCRIPT_PATH.'/onoff_huawei_hilink.sh -c '.$mode.' -h '.$ipadd.' '.$pin.' '.$user.' '.$pw);
+            exec('sudo '.RASPI_CLIENT_SCRIPT_PATH.'/onoff_huawei_hilink.sh -c '.escapeshellarg($mode).' -h '.escapeshellarg($ipadd).' '.escapeshellarg($pin).' '.escapeshellarg($user).' '.escapeshellarg($pw));
             break;
         case "ppp":
             if ($state == "up") {
-                exec('sudo ifup '.$dev["name"]);
+                exec('sudo ifup '.escapeshellarg($dev["name"]));
             }
             if (!empty($connected) && $state == "down") {
-                exec('sudo ifdown '.$dev["name"]);
+                exec('sudo ifdown '.escapeshellarg($dev["name"]));
             }
             break;
         default:
