@@ -38,7 +38,7 @@ function DisplayProviderConfig()
             if ($id = 4) { // AdGuard requires country argument on connect
                 $arg = escapeshellarg(trim($_POST['country']));
             }
-            exec("sudo $binPath $cmd $arg", $return);
+            exec("sudo ".escapeshellarg($binPath)." ".escapeshellarg($cmd)." ".escapeshellarg($arg), $return);
             $return = stripArtifacts($return);
             foreach ($return as $line) {
                 if (strlen(trim($line)) > 0) {
@@ -50,7 +50,7 @@ function DisplayProviderConfig()
         } elseif (isset($_POST['StopProviderVPN'])) {
             $status->addMessage('Attempting to disconnect VPN provider', 'info');
             $cmd = getCliOverride($id, 'cmd_overrides', 'disconnect');
-            exec("sudo $binPath $cmd", $return);
+            exec("sudo ".escapeshellarg($binPath)." ".escapeshellarg($cmd), $return);
             $return = stripArtifacts($return);
             foreach ($return as $line) {
                 if (strlen(trim($line)) > 0) {
@@ -120,10 +120,10 @@ function saveProviderConfig($status, $binPath, $country, $id = null)
     $cmd = getCliOverride($id, 'cmd_overrides', 'connect');
     // mullvad requires relay set location before connect
     if ($id == 2) {
-        exec("sudo $binPath relay set location $country", $return);
-        exec("sudo $binPath $cmd", $return);
+        exec("sudo ".escapeshellarg($binPath)." relay set location ".escapeshellarg($country), $return);
+        exec("sudo ".escapeshellarg($binPath)." ".escapeshellarg($cmd), $return);
     } else {
-        exec("sudo $binPath $cmd $country", $return);
+        exec("sudo ".escapeshellarg($binPath)." ".escapeshellarg($cmd)." ".escapeshellarg($country), $return);
     }
     $return = stripArtifacts($return);
     foreach ($return as $line) {
@@ -209,7 +209,7 @@ function getProviderStatus($id, $binPath)
 {
     $cmd = getCliOverride($id, 'cmd_overrides', 'status');
     $pattern = getCliOverride($id, 'regex', 'status');
-    exec("sudo $binPath $cmd", $cmd_raw);
+    exec("sudo ".escapeshellarg($binPath)." ".escapeshellarg($cmd), $cmd_raw);
     $cmd_raw = strtolower(($cmd_raw[0]));
     if (!empty($cmd_raw[0])) {
         if (preg_match($pattern, $cmd_raw, $match)) {
@@ -236,7 +236,7 @@ function getCountries($id, $binPath)
     $cmd = getCliOverride($id, 'cmd_overrides', 'countries');
     $pattern = getCliOverride($id, 'regex', 'pattern');
     $replace = getCliOverride($id, 'regex', 'replace');
-    exec("sudo $binPath $cmd", $output);
+    exec("sudo ".escapeshellarg($binPath)." ".escapeshellarg($cmd), $output);
 
     // CLI country output differs considerably between different providers.
     // Ideally, custom parsing would be avoided in favor of a pure regex solution
@@ -336,7 +336,7 @@ function getProviderLog($id, $binPath, &$country)
 {
     $providerLog = '';
     $cmd = getCliOverride($id, 'cmd_overrides', 'log');
-    exec("sudo $binPath $cmd", $cmd_raw);
+    exec("sudo ".escapeshellarg($binPath)." ".escapeshellarg($cmd), $cmd_raw);
     $output = stripAnsiSequence($cmd_raw);
     foreach ($output as $item) {
         if (preg_match('/Country: (\w+)/', $item, $match)) {
@@ -357,7 +357,7 @@ function getProviderLog($id, $binPath, &$country)
 function getProviderVersion($id, $binPath)
 {
     $cmd = getCliOverride($id, 'cmd_overrides', 'version');
-    $version = shell_exec("sudo $binPath $cmd");
+    $version = shell_exec("sudo ".escapeshellarg($binPath)." ".escapeshellarg($cmd));
     $version = preg_replace('/^[^\w]+\s*/', '', $version);
     return $version;
 }
@@ -373,7 +373,7 @@ function getProviderVersion($id, $binPath)
 function getAccountInfo($id, $binPath, $providerName)
 {
     $cmd = getCliOverride($id, 'cmd_overrides', 'account');
-    exec("sudo $binPath $cmd", $acct);
+    exec("sudo ".escapeshellarg($binPath)." ".escapeshellarg($cmd), $acct);
     $acct = stripAnsiSequence($acct);
     foreach ($acct as &$item) {
         $item = preg_replace('/^[^\w]+\s*/', '', $item);

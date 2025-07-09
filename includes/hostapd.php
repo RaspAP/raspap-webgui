@@ -64,7 +64,8 @@ function DisplayHostAPDConfig()
                 // systemctl expects a unit name like raspap-network-activity@wlan0.service, no extra quotes
                 $iface_nonescaped = $_POST['interface'];
                 if (preg_match('/^[a-zA-Z0-9_-]+$/', $iface_nonescaped)) { // validate interface name
-                    exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface ' .$iface_nonescaped. ' --seconds 1', $return);
+                    $command = 'sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface ' . escapeshellarg($iface_nonescaped) . ' --seconds 1';
+                    exec($command, $return);
                 } else {
                     throw new \Exception('Invalid network interface');
                 }
@@ -121,11 +122,13 @@ function DisplayHostAPDConfig()
         if ($_POST['txpower'] != 'auto') {
             $txpower = intval($_POST['txpower']);
             $sdBm = $txpower * 100;
-            exec('sudo /sbin/iw dev '.$interface.' set txpower fixed '.$sdBm, $return);
+$command = 'sudo /sbin/iw dev ' . $interface . ' set txpower fixed ' . escapeshellarg($sdBm);
+exec($command, $return);
             $status->addMessage('Setting transmit power to '.$_POST['txpower'].' dBm.', 'success');
             $txpower = $_POST['txpower'];
         } elseif ($_POST['txpower'] == 'auto') {
-            exec('sudo /sbin/iw dev '.$interface.' set txpower auto', $return);
+$command = 'sudo /sbin/iw dev ' . $interface . ' set txpower auto';
+exec($command, $return);
             $status->addMessage('Setting transmit power to '.$_POST['txpower'].'.', 'success');
             $txpower = $_POST['txpower'];
         }
@@ -310,7 +313,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
         $status->addMessage('Unknown interface '.htmlspecialchars($_POST['interface'], ENT_QUOTES), 'danger');
         $good_input = false;
     }
-    if (strlen($_POST['country_code']) !== 0 && strlen($_POST['country_code']) != 2) {
+    if (strlen($_POST['country_code']) !== 0 && !preg_match('/^[A-Z]{2}$/', $_POST['country_code'])) {
         $status->addMessage('Country code must be blank or two characters', 'danger');
         $good_input = false;
     } else {
@@ -330,6 +333,7 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
     $_POST['max_num_sta'] = $_POST['max_num_sta'] < 1 ? null : $_POST['max_num_sta'];
 
     if ($good_input) {
+        $interface = escapeshellarg($_POST['interface']);
         $return = updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable);
 
         if (trim($country_code) != trim($reg_domain)) {
@@ -357,7 +361,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             scanConfigDir('/etc/dnsmasq.d/','uap0',$status);
             $config = join(PHP_EOL, $config);
             file_put_contents("/tmp/dnsmasqdata", $config);
-            system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
+            $destination = RASPI_DNSMASQ_PREFIX . escapeshellarg($ap_iface . '.conf');
+            $command = sprintf('sudo cp /tmp/dnsmasqdata %s', $destination);
+            system($command, $return);
         } elseif ($bridgedEnable !==1) {
             $dhcp_range = ($syscfg['dhcp-range'] =='') ? getDefaultNetValue('dnsmasq',$ap_iface,'dhcp-range') : $syscfg['dhcp-range'];
             $config = [ '# RaspAP '.$_POST['interface'].' configuration' ];
@@ -370,7 +376,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             $config[] = PHP_EOL;
             $config = join(PHP_EOL, $config);
             file_put_contents("/tmp/dnsmasqdata", $config);
-            system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
+            $destination = RASPI_DNSMASQ_PREFIX . escapeshellarg($ap_iface . '.conf');
+            $command = sprintf('sudo cp /tmp/dnsmasqdata %s', $destination);
+            system($command, $return);
         }
 
         // Set dhcp values from system config, fallback to default if undefined
@@ -524,7 +532,9 @@ function updateHostapdConfig($ignore_broadcast_ssid,$wifiAPEnable,$bridgedEnable
     $config.= parseUserHostapdCfg();
 
     file_put_contents("/tmp/hostapddata", $config);
-    system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $result);
+    $destination = escapeshellarg(RASPI_HOSTAPD_CONFIG);
+    $command = sprintf("sudo cp /tmp/hostapddata %s", $destination);
+    system($command, $result);
     return $result;
 }
 

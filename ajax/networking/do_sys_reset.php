@@ -19,7 +19,7 @@ foreach ($configs as $config) {
     try {
         $tmp = file_get_contents($config["src"]);
         file_put_contents($config["tmp"], $tmp);
-        system("sudo cp ".$config["tmp"]. " ".$config["dest"]);
+        system("sudo cp ".escapeshellarg($config["tmp"]). " ".escapeshellarg($config["dest"]));
     } catch (Exception $e) {
         $return = $e->getCode();
     }

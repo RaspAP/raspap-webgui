@@ -87,6 +87,10 @@ function DisplayDHCPConfig()
 function saveDHCPConfig($status)
 {
     $iface = $_POST['interface'];
+    if (!validateInterface($iface)) {
+        $status->addMessage('Invalid interface name provided.', 'danger');
+        return false;
+    }
     $return = 1;
 
     // handle disable dhcp option
@@ -140,7 +144,7 @@ function validateDHCPInput()
     $errors = [];
     define('IFNAMSIZ', 16);
     $iface = $_POST['interface'];
-    if (!preg_match('/^[^\s\/\\0]+$/', $iface)
+    if (!preg_match('/^[a-zA-Z0-9_-]+$/', $iface)
         || strlen($iface) >= IFNAMSIZ
     ) {
         $errors[] = _('Invalid interface name.');
@@ -273,7 +277,9 @@ function updateDnsmasqConfig($iface,$status)
     }
     file_put_contents("/tmp/dnsmasqdata", $config);
     $msg = file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf') ? 'updated' : 'added';
-    system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);
+    $destination = RASPI_DNSMASQ_PREFIX . escapeshellarg($iface . '.conf');
+    $command = sprintf('sudo cp /tmp/dnsmasqdata %s', $destination);
+    system($command, $result);
     if ($result == 0) {
         $status->addMessage('Dnsmasq configuration for '.$iface.' '.$msg.'.', 'success');
     }
@@ -291,7 +297,9 @@ function updateDnsmasqConfig($iface,$status)
     }
     $config .= PHP_EOL;
     file_put_contents("/tmp/dnsmasqdata", $config);
-    system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.'raspap.conf', $result);
+    $destination = escapeshellarg(RASPI_DNSMASQ_PREFIX . 'raspap.conf');
+    $command = sprintf('sudo cp /tmp/dnsmasqdata %s', $destination);
+    system($command, $result);
 
     return $result;
 }
@@ -340,7 +348,9 @@ function updateDHCPConfig($iface,$status)
         $status->addMessage('DHCP configuration for '.$iface.' updated.', 'success');
     }
     file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
-    system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $result);
+    $destination = escapeshellarg(RASPI_DHCPCD_CONFIG);
+    $command = sprintf('sudo cp /tmp/dhcpddata %s', $destination);
+    system($command, $result);
 
     return $result;
 }
