@@ -51,6 +51,7 @@ function _install_raspap() {
     _download_latest_files
     _change_file_ownership
     _create_hostapd_scripts
+    _install_raspap_hostapd
     _create_plugin_scripts
     _create_lighttpd_scripts
     _install_lighttpd_configs
@@ -775,6 +776,14 @@ function _enable_raspap_daemon() {
     sudo cp $webroot_dir/installers/raspapd.service /lib/systemd/system/ || _install_status 1 "Unable to move raspap.service file"
     sudo systemctl daemon-reload
     sudo systemctl enable raspapd.service || _install_status 1 "Failed to enable raspap.service"
+}
+
+# Install hostapd@.service
+function _install_raspap_hostapd() {
+    _install_log "Installing RaspAP hostapd@.service"
+    sudo cp $webroot_dir/installers/hostapd@.service /etc/systemd/system/ || _install_status 1 "Unable to copy hostapd@.service file"
+    sudo systemctl daemon-reload
+    _install_status 0
 }
 
 # Configure IP forwarding, set IP tables rules, prompt to install RaspAP daemon
