@@ -70,29 +70,56 @@ function detectBrowserLocale(): string
         return 'en_GB.UTF-8';
     }
 
-    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-    return match ($lang) {
-        'de' => 'de_DE.UTF-8',
-        'fr' => 'fr_FR.UTF-8',
-        'it' => 'it_IT.UTF-8',
-        'pt' => 'pt_BR.UTF-8',
-        'sv' => 'sv_SE.UTF-8',
-        'nl' => 'nl_NL.UTF-8',
-        'zh' => ($_SERVER['HTTP_ACCEPT_LANGUAGE'] === 'zh_TW') ? 'zh_TW.UTF-8' : 'zh_CN.UTF-8',
-        'cs' => 'cs_CZ.UTF-8',
-        'ru' => 'ru_RU.UTF-8',
-        'es' => 'es_MX.UTF-8',
-        'fi' => 'fi_FI.UTF-8',
-        'da' => 'da_DK.UTF-8',
-        'tr' => 'tr_TR.UTF-8',
-        'id' => 'id_ID.UTF-8',
-        'ko' => 'ko_KR.UTF-8',
-        'ja' => 'ja_JP.UTF-8',
-        'vi' => 'vi_VN.UTF-8',
-        'el' => 'el_GR.UTF-8',
-        'pl' => 'pl_PL.UTF-8',
-        'sk' => 'sk_SK.UTF-8',
-        default => 'en_GB.UTF-8',
-    };
+    $acceptLang = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+    $lang = strtolower(substr($acceptLang, 0, 2));
+
+    if ($lang === 'zh' && strpos($acceptLang, 'zh-TW') === 0) {
+        return 'zh_TW.UTF-8';
+    }
+
+    switch ($lang) {
+        case 'de':
+            return 'de_DE.UTF-8';
+        case 'fr':
+            return 'fr_FR.UTF-8';
+        case 'it':
+            return 'it_IT.UTF-8';
+        case 'pt':
+            return 'pt_BR.UTF-8';
+        case 'sv':
+            return 'sv_SE.UTF-8';
+        case 'nl':
+            return 'nl_NL.UTF-8';
+        case 'zh':
+            return 'zh_CN.UTF-8';
+        case 'cs':
+            return 'cs_CZ.UTF-8';
+        case 'ru':
+            return 'ru_RU.UTF-8';
+        case 'es':
+            return 'es_MX.UTF-8';
+        case 'fi':
+            return 'fi_FI.UTF-8';
+        case 'da':
+            return 'da_DK.UTF-8';
+        case 'tr':
+            return 'tr_TR.UTF-8';
+        case 'id':
+            return 'id_ID.UTF-8';
+        case 'ko':
+            return 'ko_KR.UTF-8';
+        case 'ja':
+            return 'ja_JP.UTF-8';
+        case 'vi':
+            return 'vi_VN.UTF-8';
+        case 'el':
+            return 'el_GR.UTF-8';
+        case 'pl':
+            return 'pl_PL.UTF-8';
+        case 'sk':
+            return 'sk_SK.UTF-8';
+        default:
+            return 'en_GB.UTF-8';
+    }
 }
 
