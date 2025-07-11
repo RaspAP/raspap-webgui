@@ -23,6 +23,7 @@
  * as you leave these references intact in the header comments of your source files.
  */
 
+require_once 'includes/bootstrap.php';
 require_once 'includes/config.php';
 require_once 'includes/autoload.php';
 $handler = new RaspAP\Exceptions\ExceptionHandler;
@@ -67,19 +68,19 @@ initializeApp();
     <title><?php echo RASPI_BRAND_TITLE; ?></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/bootstrap/css/bootstrap.min.css?v=<?= filemtime('dist/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
 
     <!-- SB-Admin CSS -->
-    <link href="dist/sb-admin/css/styles.css" rel="stylesheet">
+    <link href="dist/sb-admin/css/styles.css?v=<?= filemtime('dist/sb-admin/css/styles.css'); ?>" rel="stylesheet">
 
     <!-- Huebee CSS -->
-    <link href="dist/huebee/huebee.min.css" rel="stylesheet">
+    <link href="dist/huebee/huebee.min.css?v=<?= filemtime('dist/huebee/huebee.min.css'); ?>" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link href="dist/font-awesome/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="dist/font-awesome/css/all.min.css?v=<?= filemtime('dist/font-awesome/css/all.min.css'); ?>" rel="stylesheet" type="text/css">
 
     <!-- RaspAP Fonts -->
-    <link href="dist/raspap/css/style.css" rel="stylesheet" type="text/css">
+    <link href="dist/raspap/css/style.css?v=<?= filemtime('dist/raspap/css/style.css'); ?>" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
     <link href="<?php echo $_SESSION["theme_url"]; ?>" title="main" rel="stylesheet">
@@ -123,25 +124,25 @@ initializeApp();
     </div>
     <?php ob_end_flush(); ?>
     <!-- jQuery -->
-    <script src="dist/jquery/jquery.min.js"></script>
+    <script src="dist/jquery/jquery.min.js?v=<?= filemtime('dist/jquery/jquery.min.js'); ?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="dist/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/bootstrap/js/bootstrap.bundle.min.js?v=<?= filemtime('dist/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
     <!-- Core plugin JavaScript -->
-    <script src="dist/jquery-easing/jquery.easing.min.js"></script>
+    <script src="dist/jquery-easing/jquery.easing.min.js?v=<?= filemtime('dist/jquery-easing/jquery.easing.min.js'); ?>"></script>
 
     <!-- Chart.js JavaScript -->
-    <script src="dist/chart.js/Chart.min.js"></script>
+    <script src="dist/chart.js/Chart.min.js?v=<?= filemtime('dist/chart.js/Chart.min.js'); ?>"></script>
 
     <!-- SB-Admin JavaScript -->
-    <script src="dist/sb-admin/js/scripts.js"></script>
+    <script src="dist/sb-admin/js/scripts.js?v=<?= filemtime('dist/sb-admin/js/scripts.js'); ?>"></script>
 
     <!-- jQuery Mask plugin -->
-    <script src="dist/jquery-mask/jquery.mask.min.js"></script>
+    <script src="dist/jquery-mask/jquery.mask.min.js?v=<?= filemtime('dist/jquery-mask/jquery.mask.min.js'); ?>"></script>
 
     <!-- Custom RaspAP JS -->
-    <script src="app/js/custom.js"></script>
+    <script src="app/js/custom.js?v=<?= filemtime('app/js/custom.js'); ?>"></script>
 
     <?php loadFooterScripts($extraFooterScripts); ?>
   </body>
