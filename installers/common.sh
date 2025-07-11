@@ -783,6 +783,7 @@ function _install_raspap_hostapd() {
     _install_log "Installing RaspAP hostapd@.service"
     sudo cp $webroot_dir/installers/hostapd@.service /etc/systemd/system/ || _install_status 1 "Unable to copy hostapd@.service file"
     sudo systemctl daemon-reload
+    _install_status 0
 }
 
 # Configure IP forwarding, set IP tables rules, prompt to install RaspAP daemon
