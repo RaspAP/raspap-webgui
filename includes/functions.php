@@ -664,6 +664,16 @@ function getColorOpt()
     } else {
         $color = $_COOKIE['color'];
     }
+
+    // Define the regex pattern for valid CSS color formats
+    $colorPattern = "/^(#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})|rgb\((\s*\d+\s*,){2}\s*\d+\s*\)|rgba\((\s*\d+\s*,){3}\s*(0|0\.\d+|1)\)|[a-zA-Z]+)$/i";
+
+    // Validate the color
+    if (!preg_match($colorPattern, $color)) {
+        // Return a default color if validation fails
+        $color = "#2b8080";
+    }
+
     return $color;
 }
 

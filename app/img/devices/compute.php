@@ -8,78 +8,78 @@ $color = getColorOpt();
 	 viewBox="0 0 291.5 203.2" style="enable-background:new 0 0 291.5 203.2;" xml:space="preserve">
 <style type="text/css">
 	.st0{clip-path:url(#SVGID_2_);}
-	.st1{clip-path:url(#SVGID_4_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st2{clip-path:url(#SVGID_6_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st3{clip-path:url(#SVGID_8_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st4{clip-path:url(#SVGID_10_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st5{clip-path:url(#SVGID_12_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st6{clip-path:url(#SVGID_14_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st7{clip-path:url(#SVGID_16_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st8{clip-path:url(#SVGID_18_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st9{clip-path:url(#SVGID_20_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st10{clip-path:url(#SVGID_22_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st11{clip-path:url(#SVGID_24_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st12{clip-path:url(#SVGID_26_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st13{clip-path:url(#SVGID_28_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st14{clip-path:url(#SVGID_30_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st15{clip-path:url(#SVGID_32_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st16{clip-path:url(#SVGID_34_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st17{clip-path:url(#SVGID_36_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st1{clip-path:url(#SVGID_4_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st2{clip-path:url(#SVGID_6_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st3{clip-path:url(#SVGID_8_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st4{clip-path:url(#SVGID_10_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st5{clip-path:url(#SVGID_12_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st6{clip-path:url(#SVGID_14_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st7{clip-path:url(#SVGID_16_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st8{clip-path:url(#SVGID_18_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st9{clip-path:url(#SVGID_20_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st10{clip-path:url(#SVGID_22_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st11{clip-path:url(#SVGID_24_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st12{clip-path:url(#SVGID_26_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st13{clip-path:url(#SVGID_28_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st14{clip-path:url(#SVGID_30_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st15{clip-path:url(#SVGID_32_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st16{clip-path:url(#SVGID_34_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st17{clip-path:url(#SVGID_36_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
 	.st18{clip-path:url(#SVGID_38_);}
-	.st19{clip-path:url(#SVGID_40_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st20{clip-path:url(#SVGID_42_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st21{clip-path:url(#SVGID_44_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st22{clip-path:url(#SVGID_46_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st23{clip-path:url(#SVGID_48_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st24{clip-path:url(#SVGID_50_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st25{clip-path:url(#SVGID_52_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st26{clip-path:url(#SVGID_54_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st27{clip-path:url(#SVGID_56_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st28{clip-path:url(#SVGID_58_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st29{clip-path:url(#SVGID_60_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st30{clip-path:url(#SVGID_62_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st31{clip-path:url(#SVGID_64_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st32{clip-path:url(#SVGID_66_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st33{clip-path:url(#SVGID_68_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st34{clip-path:url(#SVGID_70_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st35{clip-path:url(#SVGID_72_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st36{clip-path:url(#SVGID_74_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st19{clip-path:url(#SVGID_40_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st20{clip-path:url(#SVGID_42_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st21{clip-path:url(#SVGID_44_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st22{clip-path:url(#SVGID_46_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st23{clip-path:url(#SVGID_48_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st24{clip-path:url(#SVGID_50_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st25{clip-path:url(#SVGID_52_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st26{clip-path:url(#SVGID_54_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st27{clip-path:url(#SVGID_56_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st28{clip-path:url(#SVGID_58_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st29{clip-path:url(#SVGID_60_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st30{clip-path:url(#SVGID_62_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st31{clip-path:url(#SVGID_64_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st32{clip-path:url(#SVGID_66_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st33{clip-path:url(#SVGID_68_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st34{clip-path:url(#SVGID_70_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st35{clip-path:url(#SVGID_72_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st36{clip-path:url(#SVGID_74_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
 	.st37{clip-path:url(#SVGID_76_);}
-	.st38{clip-path:url(#SVGID_78_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st39{clip-path:url(#SVGID_80_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st40{clip-path:url(#SVGID_82_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st41{clip-path:url(#SVGID_84_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st42{clip-path:url(#SVGID_86_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st43{clip-path:url(#SVGID_88_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st44{clip-path:url(#SVGID_90_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st45{clip-path:url(#SVGID_92_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st46{clip-path:url(#SVGID_94_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st47{clip-path:url(#SVGID_96_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st48{clip-path:url(#SVGID_98_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st49{clip-path:url(#SVGID_100_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st50{clip-path:url(#SVGID_102_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st51{clip-path:url(#SVGID_104_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st52{clip-path:url(#SVGID_106_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st53{clip-path:url(#SVGID_108_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st54{clip-path:url(#SVGID_110_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st55{clip-path:url(#SVGID_112_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st56{clip-path:url(#SVGID_114_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st57{clip-path:url(#SVGID_116_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st58{clip-path:url(#SVGID_118_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st59{clip-path:url(#SVGID_120_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st60{clip-path:url(#SVGID_122_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st61{clip-path:url(#SVGID_124_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st62{clip-path:url(#SVGID_126_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st63{clip-path:url(#SVGID_128_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st64{clip-path:url(#SVGID_130_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st65{clip-path:url(#SVGID_132_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st66{clip-path:url(#SVGID_134_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st67{clip-path:url(#SVGID_136_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st68{clip-path:url(#SVGID_138_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st69{clip-path:url(#SVGID_140_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st70{clip-path:url(#SVGID_142_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st71{clip-path:url(#SVGID_144_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
-	.st72{clip-path:url(#SVGID_146_);fill:none;stroke:<?php echo $color; ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st38{clip-path:url(#SVGID_78_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st39{clip-path:url(#SVGID_80_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st40{clip-path:url(#SVGID_82_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st41{clip-path:url(#SVGID_84_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st42{clip-path:url(#SVGID_86_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st43{clip-path:url(#SVGID_88_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st44{clip-path:url(#SVGID_90_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st45{clip-path:url(#SVGID_92_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st46{clip-path:url(#SVGID_94_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st47{clip-path:url(#SVGID_96_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st48{clip-path:url(#SVGID_98_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st49{clip-path:url(#SVGID_100_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st50{clip-path:url(#SVGID_102_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st51{clip-path:url(#SVGID_104_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st52{clip-path:url(#SVGID_106_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st53{clip-path:url(#SVGID_108_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st54{clip-path:url(#SVGID_110_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st55{clip-path:url(#SVGID_112_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st56{clip-path:url(#SVGID_114_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st57{clip-path:url(#SVGID_116_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st58{clip-path:url(#SVGID_118_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st59{clip-path:url(#SVGID_120_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st60{clip-path:url(#SVGID_122_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st61{clip-path:url(#SVGID_124_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st62{clip-path:url(#SVGID_126_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st63{clip-path:url(#SVGID_128_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st64{clip-path:url(#SVGID_130_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st65{clip-path:url(#SVGID_132_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st66{clip-path:url(#SVGID_134_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st67{clip-path:url(#SVGID_136_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st68{clip-path:url(#SVGID_138_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st69{clip-path:url(#SVGID_140_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st70{clip-path:url(#SVGID_142_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st71{clip-path:url(#SVGID_144_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
+	.st72{clip-path:url(#SVGID_146_);fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.75;stroke-miterlimit:10;}
 </style>
 <g>
 	<g>
