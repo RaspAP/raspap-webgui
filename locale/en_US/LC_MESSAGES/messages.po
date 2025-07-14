@@ -581,11 +581,14 @@ msgstr "Clients with a particular hardware MAC address can always be allocated t
 msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
 msgstr "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
 
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
-msgstr "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
 
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
 msgstr "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr "Enable this only if you want your device to use this interface as its primary route to the internet."
 
 msgid "Disable wpa_supplicant dhcp hook for this interface"
 msgstr "Disable wpa_supplicant dhcp hook for this interface"
