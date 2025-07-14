@@ -37,10 +37,16 @@ $defaults = [
   'RASPI_OPENVPN_CLIENT_LOGIN' => '/etc/openvpn/client/login.conf',
   'RASPI_WIREGUARD_PATH' => '/etc/wireguard/',
   'RASPI_WIREGUARD_CONFIG' => RASPI_WIREGUARD_PATH.'wg0.conf',
+  'RASPI_IPTABLES_CONF' => RASPI_CONFIG.'/networking/iptables_rules.json',
+  'RASPI_TORPROXY_ENABLED' => false,
   'RASPI_TORPROXY_CONFIG' => '/etc/tor/torrc',
   'RASPI_LIGHTTPD_CONFIG' => '/etc/lighttpd/lighttpd.conf',
   'RASPI_ACCESS_CHECK_IP' => '1.1.1.1',
   'RASPI_ACCESS_CHECK_DNS' => 'one.one.one.one',
+
+  // Captive portal detection - returns 204 or 200 is successful
+  'RASPI_ACCESS_CHECK_URL' => 'http://detectportal.firefox.com',
+  'RASPI_ACCESS_CHECK_URL_CODE' => 200,
 
   // Constants for the 5GHz wireless regulatory domain
   'RASPI_5GHZ_CHANNEL_MIN' => 100,
@@ -58,7 +64,6 @@ $defaults = [
   'RASPI_OPENVPN_ENABLED' => false,
   'RASPI_VPN_PROVIDER_ENABLED' => false,
   'RASPI_WIREGUARD_ENABLED' => false,
-  'RASPI_TORPROXY_ENABLED' => false,
   'RASPI_CONFAUTH_ENABLED' => true,
   'RASPI_CHANGETHEME_ENABLED' => true,
   'RASPI_VNSTAT_ENABLED' => true,

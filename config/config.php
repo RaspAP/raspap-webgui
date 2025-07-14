@@ -32,6 +32,7 @@ define('RASPI_OPENVPN_CLIENT_CONFIG', '/etc/openvpn/client/client.conf');
 define('RASPI_OPENVPN_CLIENT_LOGIN', '/etc/openvpn/client/login.conf');
 define('RASPI_WIREGUARD_PATH', '/etc/wireguard/');
 define('RASPI_WIREGUARD_CONFIG', RASPI_WIREGUARD_PATH.'wg0.conf');
+define('RASPI_IPTABLES_CONF', RASPI_CONFIG.'/networking/iptables_rules.json');
 define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
 define('RASPI_ACCESS_CHECK_IP', '1.1.1.1');
@@ -39,6 +40,10 @@ define('RASPI_ACCESS_CHECK_DNS', 'one.one.one.one');
 
 // Constant for the GitHub API latest release endpoint
 define('RASPI_API_ENDPOINT', 'https://api.github.com/repos/RaspAP/raspap-webgui/releases/latest');
+
+// Captive portal detection - returns 204 or 200 is successful
+define('RASPI_ACCESS_CHECK_URL', 'http://detectportal.firefox.com');
+define('RASPI_ACCESS_CHECK_URL_CODE', 200);
 
 // Constant for the 5GHz wireless regulatory domain
 define("RASPI_5GHZ_CHANNEL_MIN", 100);
