@@ -79,6 +79,9 @@ initializeApp();
     <!-- Font Awesome -->
     <link href="dist/font-awesome/css/all.min.css?v=<?= filemtime('dist/font-awesome/css/all.min.css'); ?>" rel="stylesheet" type="text/css">
 
+    <!-- Librespeed CSS -->
+    <link href="dist/speedtest/speedtest.css?v=<?= filemtime('dist/speedtest/speedtest.css'); ?>" rel="stylesheet" />
+
     <!-- RaspAP Fonts -->
     <link href="dist/raspap/css/style.css?v=<?= filemtime('dist/raspap/css/style.css'); ?>" rel="stylesheet" type="text/css">
 
@@ -140,6 +143,9 @@ initializeApp();
 
     <!-- jQuery Mask plugin -->
     <script src="dist/jquery-mask/jquery.mask.min.js?v=<?= filemtime('dist/jquery-mask/jquery.mask.min.js'); ?>"></script>
+
+    <!-- Librespeed JavaScript -->
+    <script src="dist/speedtest/speedtest.js?v=<?= filemtime('dist/speedtest/speedtest.js'); ?>"></script>
 
     <!-- Custom RaspAP JS -->
     <script src="app/js/custom.js?v=<?= filemtime('app/js/custom.js'); ?>"></script>
