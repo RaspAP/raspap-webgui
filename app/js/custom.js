@@ -606,10 +606,10 @@ $(document).ready(function(){
         },
         placeholder: "___.___.___.___"
     });
-    $('.date').mask('FF:FF:FF:FF:FF:FF', {
+    $('.mac_address').mask('FF:FF:FF:FF:FF:FF', {
         translation: {
-            "F": {
-                pattern: /[0-9a-z]/, optional: true
+            'F': {
+                pattern: /[0-9a-fA-F]/, optional: false
             }
         },
         placeholder: "__:__:__:__:__:__"
