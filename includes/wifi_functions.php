@@ -51,6 +51,12 @@ function knownWifiStations(&$networks)
     }
 }
 
+/**
+ * Scans for nearby WiFi networks using `iw` and updates the reference array
+ *
+ * @param array $networks Reference to the array of known and discovered networks.
+ * @param bool $cached    If false, bypasses the cache and performs a fresh scan.
+ */
 function nearbyWifiStations(&$networks, $cached = true)
 {
     $cacheTime = filemtime(RASPI_WPA_SUPPLICANT_CONFIG);
@@ -60,67 +66,99 @@ function nearbyWifiStations(&$networks, $cached = true)
         deleteCache($cacheKey);
     }
 
+    $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+
     $scan_results = cache(
-        $cacheKey, function () {
-            exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan');
-            sleep(3);
-            $stdout = shell_exec('sudo wpa_cli -i ' .$_SESSION['wifi_client_interface']. ' scan_results');
+        $cacheKey,
+        function () use ($iface) {
+            $stdout = shell_exec("sudo iw dev $iface scan");
             return preg_split("/\n/", $stdout);
         }
     );
-    // get the name of the AP. Should be excluded from nearby networks
-    exec('cat '.RASPI_HOSTAPD_CONFIG.' | sed -rn "s/ssid=(.*)\s*$/\1/p" ', $ap_ssid);
-    $ap_ssid = $ap_ssid[0];
+
+    // exclude the AP from nearby networks
+    exec('sed -rn "s/ssid=(.*)\s*$/\1/p" ' . escapeshellarg(RASPI_HOSTAPD_CONFIG), $ap_ssid);
+    $ap_ssid = $ap_ssid[0] ?? '';
 
     $index = 0;
-    if ( !empty($networks) ) {
+    if (!empty($networks)) {
         $lastnet = end($networks);
-        if ( isset($lastnet['index']) ) $index = $lastnet['index'] + 1;
-    }
-
-    if (is_array($scan_results)) {
-        array_shift($scan_results);
-        foreach ($scan_results as $network) {
-            $arrNetwork = preg_split("/[\t]+/", $network);  // split result into array
-            $ssid = $arrNetwork[4];
-
-            // exclude raspap ssid
-            if (empty($ssid) || $ssid == $ap_ssid) {
-                continue;
-            }
-
-            // filter SSID string: unprintable 7bit ASCII control codes, delete or quotes -> ignore network
-            if (preg_match('[\x00-\x1f\x7f\'\`\´\"]', $ssid)) {
-                continue;
-            }
-
-            // If network is saved
-            if (array_key_exists($ssid, $networks)) {
-                $networks[$ssid]['visible'] = true;
-                $networks[$ssid]['channel'] = ConvertToChannel($arrNetwork[1]);
-                // TODO What if the security has changed?
-            } else {
-                $networks[$ssid] = array(
-                    'ssid' => $ssid,
-                    'configured' => false,
-                    'protocol' => ConvertToSecurity($arrNetwork[3]),
-                    'channel' => ConvertToChannel($arrNetwork[1]),
-                    'passphrase' => '',
-                    'visible' => true,
-                    'connected' => false,
-                    'index' => $index
-                );
-                ++$index;
-            }
-
-            // Save RSSI, if the current value is larger than the already stored
-            if (array_key_exists(4, $arrNetwork) && array_key_exists($arrNetwork[4], $networks)) {
-                if (! array_key_exists('RSSI', $networks[$arrNetwork[4]]) || $networks[$ssid]['RSSI'] < $arrNetwork[2]) {
-                    $networks[$ssid]['RSSI'] = $arrNetwork[2];
-                }
-            }
+        if (isset($lastnet['index'])) {
+            $index = $lastnet['index'] + 1;
         }
     }
+
+    $current = [];
+    $commitCurrent = function () use (&$current, &$networks, &$index, $ap_ssid) {
+        if (empty($current['ssid'])) {
+            return;
+        }
+
+        $ssid = $current['ssid'];
+
+        // unprintable 7bit ASCII control codes, delete or quotes -> ignore network
+        if ($ssid === $ap_ssid || preg_match('/[\x00-\x1f\x7f\'`\´"]/', $ssid)) {
+            return;
+        }
+
+        $channel = ConvertToChannel($current['freq'] ?? 0);
+        $rssi = $current['signal'] ?? -100;
+
+        // if network is saved
+        if (array_key_exists($ssid, $networks)) {
+            $networks[$ssid]['visible'] = true;
+            $networks[$ssid]['channel'] = $channel;
+            if (!isset($networks[$ssid]['RSSI']) || $networks[$ssid]['RSSI'] < $rssi) {
+                $networks[$ssid]['RSSI'] = $rssi;
+            }
+        } else {
+            $networks[$ssid] = [
+                'ssid' => $ssid,
+                'configured' => false,
+                'protocol' => $current['security'] ?? 'OPEN',
+                'channel' => $channel,
+                'passphrase' => '',
+                'visible' => true,
+                'connected' => false,
+                'RSSI' => $rssi,
+                'index' => $index
+            ];
+            ++$index;
+        }
+    };
+
+    foreach ($scan_results as $line) {
+        $line = trim($line);
+
+        if (preg_match('/^BSS\s+([0-9a-f:]{17})/', $line, $match)) {
+            $commitCurrent(); // commit previous
+            $current = [
+                'bssid' => $match[1],
+                'ssid' => '',
+                'signal' => null,
+                'freq' => null,
+                'security' => 'OPEN'
+            ];
+            continue;
+        }
+        if (preg_match('/^SSID:\s*(.*)$/', $line, $match)) {
+            $current['ssid'] = $match[1];
+            continue;
+        }
+        if (preg_match('/^signal:\s*(-?\d+\.\d+)/', $line, $match)) {
+            $current['signal'] = (float)$match[1];
+            continue;
+        }
+        if (preg_match('/^freq:\s*(\d+)/', $line, $match)) {
+            $current['freq'] = (int)$match[1];
+            continue;
+        }
+        if (preg_match('/^RSN:/', $line) || preg_match('/^WPA:/', $line)) {
+            $current['security'] = 'WPA/WPA2';
+            continue;
+        }
+    }
+    $commitCurrent();
 }
 
 function connectedWifiStations(&$networks)
