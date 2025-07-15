@@ -32,7 +32,7 @@ function handleCorePageAction(string $page, array &$extraFooterScripts): void
             DisplayWPAConfig();
             break;
         case "/network_conf":
-            DisplayNetworkingConfig();
+            DisplayNetworkingConfig($extraFooterScripts);
             break;
         case "/hostapd_conf":
             DisplayHostAPDConfig();

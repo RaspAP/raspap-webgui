@@ -1,0 +1,231 @@
+#testWrapper {
+  text-align: center;
+}
+
+#loading {
+  background-color: #FFFFFF;
+  color: #404040;
+  text-align: center;
+}
+
+span.loadCircle {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  vertical-align: middle;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAP1BMVEUAAAB2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZyFzwnAAAAFHRSTlMAEvRFvX406baecwbf0casimhSHyiwmqgAAADpSURBVHja7dbJbQMxAENRahnN5lkc//5rDRAkDeRgHszXgACJoKiIiIiIiIiIiIiIiIiIiIj4HHspsrpAVhdVVguzrA4OWc10WcEqpwKbnBo0OU1Q5NSpsoJFTgOecrrdEag85DRgktNqfoEdTjnd7hrEHMEJvmRUYJbTYk5Agy6nau6Abp5Cm7mDBtRdPi9gyKdU7w4p1fsLvyqs8hl4z9/w3n/Hmr9WoQ65lAU4d7lMYOz//QboRR5jBZibLMZdAR6O/Vfa1PlxNr3XdS3HzK/HVPRu/KnLs8iAOh993VpRRERERMT/fAN60wwWaVyWwAAAAABJRU5ErkJggg==');
+  background-size: 2em 2em;
+  margin-right: 0.5em;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+#startStopBtn {
+  display: inline-block;
+  margin: 0 auto;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  width: 8em;
+  line-height: 2.5em;
+  cursor: pointer;
+}
+
+#startStopBtn.running {
+  background-color: #FF3030;
+  border-color: #FF3030;
+  color: #FFFFFF;
+  line-height: 2.5em;
+}
+
+#startStopBtn:before {
+  content: "Start";
+}
+
+#startStopBtn.running:before {
+  content: "Abort";
+}
+
+#serverArea {
+  margin-top: 1em;
+}
+
+#server {
+  font-size: 1em;
+  padding: 0.2em;
+}
+
+#test {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+div.testArea {
+  display: inline-block;
+  width: 16em;
+  height: 12.5em;
+  position: relative;
+  box-sizing: border-box;
+}
+
+div.testArea2 {
+  display: inline-block;
+  width: 14em;
+  height: 7em;
+  position: relative;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+div.testArea div.testName {
+  position: absolute;
+  top: -0.3em;
+  left: 0;
+  width: 100%;
+  font-size: 1.4em;
+  z-index: 9;
+}
+
+div.testArea2 div.testName {
+  display: block;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+div.testArea div.meterText {
+  position: absolute;
+  bottom: 1.55em;
+  left: 0;
+  width: 100%;
+  font-size: 2.5em;
+  z-index: 9;
+}
+
+div.testArea2 div.meterText {
+  display: inline-block;
+  font-size: 2.5em;
+}
+
+div.meterText:empty:before {
+  content: "0.00";
+}
+
+div.testArea div.unit {
+  position: absolute;
+  bottom: 2em;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+div.testArea2 div.unit {
+  display: inline-block;
+}
+
+div.testArea canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+div.testGroup {
+  display: block;
+  margin: 0 auto;
+}
+
+#shareArea {
+  width: 95%;
+  max-width: 40em;
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
+#shareArea>* {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0.25em 0;
+}
+
+#privacyPolicy {
+  position: fixed;
+  top: 2em;
+  bottom: 2em;
+  left: 2em;
+  right: 2em;
+  overflow-y: auto;
+  margin: 0 auto;
+  width: 50%;
+  height: auto;
+  box-shadow: 0 0 3em 1em #333;
+  z-index: 999999;
+  text-align: left;
+  background-color: #FFFFFF;
+  padding: 1em;
+  border-radius: 0.3em;
+  color: #858796;
+}
+
+#privacyPolicy h4, h5 {
+  color: #212529;
+}
+
+a.privacy {
+  text-align: center;
+  font-size: 0.8em;
+  color: #808080;
+  display: block;
+}
+
+@media all and (max-width:40em) {
+  body {
+    font-size: 0.8em;
+  }
+}
+
+div.visible {
+  animation: fadeIn 0.4s;
+  display: block;
+}
+
+div.hidden {
+  animation: fadeOut 0.4s;
+  display: none;
+}
+
+div.centered {
+  margin: 0 auto;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+
+  100% {
+    display: block;
+    opacity: 0;
+  }
+}

@@ -43,7 +43,7 @@ function setupTabs() {
         var target = $(e.target).attr('href');
         if(!target.match('summary')) {
             var int = target.replace("#","");
-            loadCurrentSettings(int);
+            // loadCurrentSettings(int);
         }
     });
 }
