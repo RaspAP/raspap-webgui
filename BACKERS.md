@@ -13,38 +13,46 @@ You can become a sponsor using your individual or organization's GitHub account.
 **Important**: If you're sponsoring [RaspAP](https://github.com/RaspAP/sponsors) through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account that should be added as a collaborator. 
 
 ## Exclusive features
-The following features are currently available exclusively to sponsors. A tangible side benefit of sponsorship is that Insiders are able to help steer future development of RaspAP. This is done through Insiders' access to discussions, feature requests, issues and pull requests in the private GitHub repository.
+The following features are currently available exclusively to sponsors. A tangible side benefit of sponsorship is that Insiders are able to help steer future development of RaspAP. This is done through your Insiders access to discussions, feature requests, issues and pull requests in the private GitHub repository.
 
  ✅ [Network device management](https://docs.raspap.com/net-devices/)  
- ✅ [Firewall settings](https://docs.raspap.com/firewall/)  
- ✅ [WPA3-Personal AP security](https://docs.raspap.com/ap-basics/#wpa3-personal)  
- ✅ [802.11w Protected Management Frames](https://docs.raspap.com/ap-basics/#80211w)  
- ✅ [Printable Wi-Fi signs](https://docs.raspap.com/ap-basics/#printable-signs)  
  ✅ [MAC address cloning](https://docs.raspap.com/net-devices/#changing-the-mac-address)  
- ✅ [Network diagnostics](https://docs.raspap.com/net-devices/#diagnostics)  
- ✅ [WireGuard VPN kill switch](https://docs.raspap.com/wireguard/#kill-switch)  
- ✅ [Dynamic DNS support](https://docs.raspap.com/dynamicdns/)  
  ✅ [Multiple WireGuard configs](https://docs.raspap.com/wireguard/#multiple-configs)  
  ✅ [Wireless LAN routing](https://docs.raspap.com/wlanrouting/)  
  ✅ [Custom user avatars](https://docs.raspap.com/authentication/#custom-user-avatars)  
  ✅ [WiFi repeater mode](https://docs.raspap.com/ap-basics/#wifi-repeater-mode)  
- ✅ [NTP Service](https://docs.raspap.com/ntp/)  
  ✅ [Limited privilege user role](https://docs.raspap.com/authentication/#limited-privilege-user-role)  
  ✅ [Tailscale VPN](https://docs.raspap.com/tailscale/)  
 
-Look for the list above to grow as we add more exclusive features. Be sure to visit this page from time to time to learn about what's new, check the [Insiders docs page](https://docs.raspap.com/insiders/) and follow [@RaspAP on Twitter](https://twitter.com/rasp_ap) to stay updated.
+Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](https://github.com/RaspAP/raspap-insiders/discussions) and let us know!
 
 ## Funding targets
 Below is a list of funding targets. When a funding target is reached, the features that are tied to it are merged back into RaspAP and released to the public for general availability.
 
-### $1000 
-The second **Insiders Edition** includes the features listed above.
+### $1,500 - 3rd Insiders Edition
+The **3rd Insiders Edition** includes the exclusive features listed above.
 
-### $500 
-The [first Insiders Edition goal](https://docs.raspap.com/insiders/#500-1st-insiders-edition) was reached in December 2021. Thank you sponsors!
+### $500 - 1st Insiders Edition (completed)
+✅ Multiple OpenVPN client configs  
+✅ OpenVPN certificate authentication  
+✅ OpenVPN service logging  
+✅ Night mode toggle  
+✅ Restrict network to static clients  
+✅ WireGuard support  
+✅ Set AP transmit power  
+
+### $1,000 - 2nd Insiders Edition (completed)
+✅ Firewall settings  
+✅ WPA3-Personal AP security  
+✅ 802.11w Protected Management Frames  
+✅ Printable Wi-Fi signs  
+✅ Network diagnostics  
+✅ Dynamic DNS  
+✅ WireGuard kill switch  
+✅ NTP Service  
 
 ## Quarterly giving
-Beginning in 2022, each quarter 15% of all proceeds from Insiders will be donated directly to the [Raspberry Pi Foundation](https://www.raspberrypi.org/). The Raspberry Pi Foundation is a UK-based charity that works to put the power of computing and digital making into the hands of people all over the world.
+Each quarter, 15% of all proceeds from Insiders are [donated directly to the Raspberry Pi Foundation](https://docs.raspap.com/insiders/#quarterly-giving). The Raspberry Pi Foundation is a UK-based charity that works to put the power of computing and digital making into the hands of people all over the world.
 
 [![Get involved with the Raspberry Pi Foundation](https://img.youtube.com/vi/dEzg92g1LHw/0.jpg)](https://www.youtube.com/watch?v=dEzg92g1LHw)
 
