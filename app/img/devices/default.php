@@ -7,9 +7,9 @@ $color = getColorOpt();
 	 viewBox="0 0 431 321" style="enable-background:new 0 0 431 321;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;enable-background:new;}
-	.st1{fill:none;stroke:<?php echo $color; ?>;stroke-width:0.9453;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.3333;}
+	.st1{fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.9453;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.3333;}
 	
-		.st2{fill:none;stroke:<?php echo $color; ?>;stroke-width:0.9453;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.3333;enable-background:new    ;}
+		.st2{fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.9453;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.3333;enable-background:new    ;}
 </style>
 <path class="st0" d="M0,0"/>
 <g id="g20028">

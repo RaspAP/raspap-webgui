@@ -42,24 +42,24 @@ if ($showJoint) {
     for ($i = 1; $i < count($activeYs); $i++) {
         $y1 = $activeYs[$i-1];
         $y2 = $activeYs[$i];
-        echo "<line x1='112.75' y1='$y1' x2='112.75' y2='$y2' stroke='$color' stroke-width='4'/>";
+        echo "<line x1='112.75' y1='$y1' x2='112.75' y2='$y2' stroke='" . htmlspecialchars($color, ENT_QUOTES, 'UTF-8') . "' stroke-width='4'/>";
     }
 }
 ?>
 
 <?php if ($showDevice1): ?>
-<line x1="113.231" y1="0.75" x2="7.69496e-06" y2="0.75001" stroke="<?php echo $color; ?>" stroke-width="6" id="device-1"/>
+<line x1="113.231" y1="0.75" x2="7.69496e-06" y2="0.75001" stroke="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="6" id="device-1"/>
 <?php endif; ?>
 <?php if ($showOut): ?>
-<line x1="226.231" y1="297.75" x2="113" y2="297.75" stroke="<?php echo $color; ?>" stroke-width="4" id="out"/>
+<line x1="226.231" y1="297.75" x2="113" y2="297.75" stroke="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="4" id="out"/>
 <?php endif; ?>
 <?php if ($showDevice2): ?>
-<line x1="113.231" y1="198.75" x2="7.69496e-06" y2="198.75" stroke="<?php echo $color; ?>" stroke-width="4" id="device-2"/>
+<line x1="113.231" y1="198.75" x2="7.69496e-06" y2="198.75" stroke="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="4" id="device-2"/>
 <?php endif; ?>
 <?php if ($showDevice3): ?>
-<line x1="113.231" y1="397.058" x2="7.69496e-06" y2="397.058" stroke="<?php echo $color; ?>" stroke-width="4" id="device-3"/>
+<line x1="113.231" y1="397.058" x2="7.69496e-06" y2="397.058" stroke="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="4" id="device-3"/>
 <?php endif; ?>
 <?php if ($showDevice4): ?>
-<line x1="113.231" y1="595.211" x2="7.69496e-06" y2="595.211" stroke="<?php echo $color; ?>" stroke-width="4" id="device-4"/>
+<line x1="113.231" y1="595.211" x2="7.69496e-06" y2="595.211" stroke="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="4" id="device-4"/>
 <?php endif; ?>
 </svg>
