@@ -9,5 +9,5 @@ function DisplayDataUsage(&$extraFooterScripts)
     echo renderTemplate("data_usage", [ "interfaces" => $interfacesWlo ]);
 
     $extraFooterScripts[] = array('src'=>'dist/datatables/jquery.dataTables.min.js', 'defer'=>false);
-    $extraFooterScripts[] = array('src'=>'app/js/bandwidthcharts.js', 'defer'=>false);
+    $extraFooterScripts[] = array('src'=>'app/js/vendor/bandwidthcharts.js', 'defer'=>false);
 }
