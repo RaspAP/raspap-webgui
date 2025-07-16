@@ -8,3 +8,4 @@ vendor
 .env
 locale/**/*.mo
 app/net_activity
+app/js/plugins/
