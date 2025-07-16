@@ -666,7 +666,12 @@ function getColorOpt()
     }
 
     // Define the regex pattern for valid CSS color formats
-    $colorPattern = "/^(#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})|rgb\((\s*\d+\s*,){2}\s*\d+\s*\)|rgba\((\s*\d+\s*,){3}\s*(0|0\.\d+|1)\)|[a-zA-Z]+)$/i";
+    $colorPattern = "/^(" .
+        "#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})" . "|" .           // Hex colors (#RGB or #RRGGBB)
+        "rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)" . "|" .     // RGB format
+        "rgba\(\s*(?:\d{1,3}\s*,\s*){3}\s*(0|0\.\d+|1)\s*\)" . "|" . // RGBA format
+        "[a-zA-Z]+" .                                         // Named colors
+    ")$/i";
 
     // Validate the color
     if (!preg_match($colorPattern, $color)) {
@@ -1020,4 +1025,3 @@ function callbackTimeout(callable $callback, int $interval)
 
     return $result;
 }
-
