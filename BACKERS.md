@@ -23,6 +23,7 @@ The following features are currently available exclusively to sponsors. A tangib
  ✅ [WiFi repeater mode](https://docs.raspap.com/ap-basics/#wifi-repeater-mode)  
  ✅ [Limited privilege user role](https://docs.raspap.com/authentication/#limited-privilege-user-role)  
  ✅ [Tailscale VPN](https://docs.raspap.com/tailscale/)  
+ ✅ [Inspect network adapters](https://docs.raspap.com/troubleshooting/#inspect-network-adapters)  
 
 Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](https://github.com/RaspAP/raspap-insiders/discussions) and let us know!
 
