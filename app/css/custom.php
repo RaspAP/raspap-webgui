@@ -14,9 +14,9 @@ License: GNU General Public License v3.0
 @import url('all.css');
 
 :root {
-  --raspap-theme-color: <?php echo $color; ?>;
-  --raspap-theme-lighter: <?php echo lightenColor($color, 20); ?>;
-  --raspap-theme-darker: <?php echo darkenColor($color, 20); ?>;
+  --raspap-theme-color: <?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;
+  --raspap-theme-lighter: <?php echo htmlspecialchars(lightenColor($color, 20), ENT_QUOTES, 'UTF-8'); ?>;
+  --raspap-theme-darker: <?php echo htmlspecialchars(darkenColor($color, 20), ENT_QUOTES, 'UTF-8'); ?>;
 }
 
 body {
