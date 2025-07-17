@@ -123,7 +123,7 @@ function DisplayDashboard(&$extraFooterScripts): void
             "status"
         )
     );
-    $extraFooterScripts[] = array('src'=>'app/js/dashboardchart.js', 'defer'=>false);
+    $extraFooterScripts[] = array('src'=>'app/js/vendor/dashboardchart.js', 'defer'=>false);
 }
 
 /**

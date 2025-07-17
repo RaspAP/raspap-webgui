@@ -23,5 +23,5 @@ function DisplayNetworkingConfig(&$extraFooterScripts)
         "routeInfoRaw",
         "bridgedEnabled")
     );
-    $extraFooterScripts[] = array('src'=>'app/js/speedtestUI.js', 'defer'=>false);
+    $extraFooterScripts[] = array('src'=>'app/js/vendor/speedtestUI.js', 'defer'=>false);
 }

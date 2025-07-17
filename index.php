@@ -147,8 +147,9 @@ initializeApp();
     <!-- Librespeed JavaScript -->
     <script src="dist/speedtest/speedtest.js?v=<?= filemtime('dist/speedtest/speedtest.js'); ?>"></script>
 
-    <!-- Custom RaspAP JS -->
-    <script src="app/js/custom.js?v=<?= filemtime('app/js/custom.js'); ?>"></script>
+    <!-- RaspAP JavaScript -->
+    <script src="app/js/ajax/main.js?v=<?= filemtime('app/js/ajax/main.js'); ?>"></script>
+    <script src="app/js/ui/main.js?v=<?= filemtime('app/js/ui/main.js'); ?>"></script>
 
     <?php loadFooterScripts($extraFooterScripts); ?>
   </body>
