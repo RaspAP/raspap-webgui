@@ -408,6 +408,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             $config[] = 'interface='.$_POST['interface'];
             $config[] = 'domain-needed';
             $config[] = 'dhcp-range='.$dhcp_range;
+            if (!empty($syscfg['dhcp-host'])) {
+                $config[] = 'dhcp-host='.$syscfg['dhcp-host'];
+            }
             if (!empty($syscfg['dhcp-option'])) {
                 $config[] = 'dhcp-option='.$syscfg['dhcp-option'];
             }
