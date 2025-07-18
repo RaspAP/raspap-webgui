@@ -22,6 +22,7 @@ www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop hostapd.service
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl start dnsmasq.service
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop dnsmasq.service
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl restart dnsmasq.service
+www-data ALL=(ALL) NOPASSWD:/bin/systemctl reload dnsmasq.service
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl start openvpn-client@client
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl enable openvpn-client@client
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop openvpn-client@client
