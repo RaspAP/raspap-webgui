@@ -3,6 +3,9 @@
 require_once 'includes/wifi_functions.php';
 require_once 'includes/config.php';
 
+use RaspAP\Networking\Hotspot\DnsmasqManager;
+use RaspAP\Networking\Hotspot\HostapdManager;
+
 getWifiInterface();
 
 /**
@@ -85,39 +88,24 @@ function DisplayHostAPDConfig()
             }
         }
     }
-    exec('cat '. RASPI_HOSTAPD_CONFIG, $hostapdconfig);
     if (isset($_SESSION['wifi_client_interface'])) {
         exec('iwgetid '.escapeshellarg($_SESSION['wifi_client_interface']). ' -r', $wifiNetworkID);
         if (!empty($wifiNetworkID[0])) {
             $managedModeEnabled = true;
         }
     }
+
+    // Parse hostapd configuration
+    $hostapd = new HostapdManager();
+    try {
+        $arrConfig = $hostapd->getConfig();
+    } catch (\RuntimeException $e) {
+        error_log('Error: ' . $e->getMessage());
+    }
+
     $hostapdstatus = $system->hostapdStatus();
     $serviceStatus = $hostapdstatus[0] == 0 ? "down" : "up";
-
-    foreach ($hostapdconfig as $hostapdconfigline) {
-        if (strlen($hostapdconfigline) === 0) {
-            continue;
-        }
-        if ($hostapdconfigline[0] != "#") {
-            $arrLine = explode("=", $hostapdconfigline);
-            $arrConfig[$arrLine[0]]=$arrLine[1];
-        }
-    };
-    // assign beacon_int boolean if value is set
-    if (isset($arrConfig['beacon_int'])) {
-        $arrConfig['beacon_interval_bool'] = 1;
-    }
-    // assign disassoc_low_ack boolean if value is set
-    if (isset($arrConfig['disassoc_low_ack'])) {
-        $arrConfig['disassoc_low_ack_bool'] = 1;
-    } else {
-        $arrConfig['disassoc_low_ack_bool'] = 0;
-    }
-    // assign country_code from iw reg if not set in config
-    if (empty($arrConfig['country_code']) && isset($country_code[0])) {
-        $arrConfig['country_code'] = $country_code[0];
-    }
+    
     // set txpower with iw if value is non-default ('auto')
     if (isset($_POST['txpower'])) {
         if ($_POST['txpower'] != 'auto') {
@@ -132,33 +120,6 @@ function DisplayHostAPDConfig()
             $txpower = $_POST['txpower'];
         }
     } 
-    // map wpa_key_mgmt to security types
-    if ($arrConfig['wpa_key_mgmt'] == 'WPA-PSK WPA-PSK-SHA256 SAE') {
-        $arrConfig['wpa'] = 4;
-    } elseif ($arrConfig['wpa_key_mgmt'] == 'SAE') {
-        $arrConfig['wpa'] = 5;
-    }
-
-    $selectedHwMode = $arrConfig['hw_mode'];
-    if (isset($arrConfig['ieee80211n'])) {
-        if (strval($arrConfig['ieee80211n']) === '1') {
-            $selectedHwMode = 'n';
-        }
-    }
-    if (isset($arrConfig['ieee80211ac'])) {
-        if (strval($arrConfig['ieee80211ac']) === '1') {
-            $selectedHwMode = 'ac';
-        }
-    }
-    if (isset($arrConfig['ieee80211w'])) {
-        if (strval($arrConfig['ieee80211w']) === '2') {
-            $selectedHwMode = 'w';
-        }
-    }
-
-    $arrConfig['ignore_broadcast_ssid'] ??= 0;
-    $arrConfig['max_num_sta'] ??= 0;
-    $arrConfig['wep_default_key'] ??= 0;
     exec('sudo /bin/chmod o+r '.RASPI_HOSTAPD_LOG);
     $logdata = getLogLimited(RASPI_HOSTAPD_LOG);
 
@@ -223,6 +184,8 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
         $good_input = false;
     }
     $arrHostapdConf = parse_ini_file('/etc/raspap/hostapd.ini');
+
+    $dualAPEnable = false;
 
     // Check for Bridged AP mode checkbox
     $bridgedEnable = 0;
@@ -351,8 +314,10 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
     $_POST['max_num_sta'] = $_POST['max_num_sta'] > 2007 ? 2007 : $_POST['max_num_sta'];
     $_POST['max_num_sta'] = $_POST['max_num_sta'] < 1 ? null : $_POST['max_num_sta'];
 
+    $hostapd = new HostapdManager();
+
     if ($good_input) {
-        $config = buildHostapdConfig([
+        $config = $hostapd->buildConfig([
             'interface' => $_POST['interface'],
             'ssid' => $_POST['ssid'],
             'channel' => $_POST['channel'],
@@ -369,19 +334,23 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             'bridge' => $bridgedEnable ? 'br0' : null
         ]);
 
-        file_put_contents('/tmp/hostapddata', $config);
-        if ($dualAPEnable) {
-            system("sudo cp /tmp/hostapddata " . '/etc/hostapd/hostapd-'.$_POST['interface'].'.conf', $result);
-        } else {
-            system("sudo cp /tmp/hostapddata " . RASPI_HOSTAPD_CONFIG, $result);
+        try {
+            $arrConfig = $hostapd->saveConfig($config, $dualAPEnable, $ap_iface);
+        } catch (\RuntimeException $e) {
+            error_log('Error: ' . $e->getMessage());
         }
 
         if (trim($country_code) != trim($reg_domain)) {
             $return = iwRegSet($country_code, $status);
         }
 
-        // Fetch dhcp-range, lease time from system config
-        $syscfg = parse_ini_file(RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', false, INI_SCANNER_RAW);
+        // Parse dnsmasq config for selected interface 
+        $dnsmasq = new DnsmasqManager();
+        try {
+            $syscfg = $dnsmasq->getConfig($ap_iface ?? RASPI_WIFI_AP_INTERFACE);
+        } catch (\RuntimeException $e) {
+            error_log('Error: ' . $e->getMessage());
+        }
 
         if ($wifiAPEnable == 1) {
             // Enable uap0 configuration for ap-sta mode
@@ -408,13 +377,27 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             $config[] = 'interface='.$_POST['interface'];
             $config[] = 'domain-needed';
             $config[] = 'dhcp-range='.$dhcp_range;
+            // handle multiple dhcp-host + option entries
+            if (!empty($syscfg['dhcp-host'])) {
+                if (is_array($syscfg['dhcp-host'])) {
+                    foreach ($syscfg['dhcp-host'] as $host) {
+                        $config[] = 'dhcp-host=' . $host;
+                    }
+                } else {
+                    $config[] = 'dhcp-host=' . $syscfg['dhcp-host'];
+                }
+            }
             if (!empty($syscfg['dhcp-option'])) {
-                $config[] = 'dhcp-option='.$syscfg['dhcp-option'];
+                if (is_array($syscfg['dhcp-option'])) {
+                    foreach ($syscfg['dhcp-option'] as $opt) {
+                        $config[] = 'dhcp-option=' . $opt;
+                    }
+                } else {
+                    $config[] = 'dhcp-option=' . $syscfg['dhcp-option'];
+                }
             }
             $config[] = PHP_EOL;
-            $config = join(PHP_EOL, $config);
-            file_put_contents("/tmp/dnsmasqdata", $config);
-            system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
+            $dnsmasq->saveConfig($config, $ap_iface);
         }
 
         // Set dhcp values from system config, fallback to default if undefined
@@ -559,108 +542,6 @@ function getIfaceMetric($iface)
     } else {
         return false;
     }
-}
-
-/**
- * Builds a hostapd configuration string for a given interface
- *
- * @param array $params Associative array of config values
- * @return string
- */
-function buildHostapdConfig(array $params): string
-{
-    $config = [];
-    $config[] = 'driver=nl80211';
-    $config[] = 'ctrl_interface=' . RASPI_HOSTAPD_CTRL_INTERFACE;
-    $config[] = 'ctrl_interface_group=0';
-    $config[] = 'auth_algs=1';
-
-    $wpa = $params['wpa'];
-    $wpa_key_mgmt = 'WPA-PSK';
-
-    if ($wpa == 4) {
-        $config[] = 'ieee80211w=1';
-        $wpa_key_mgmt = 'WPA-PSK WPA-PSK-SHA256 SAE';
-        $wpa = 2;
-    } elseif ($wpa == 5) {
-        $config[] = 'ieee80211w=2';
-        $wpa_key_mgmt = 'SAE';
-        $wpa = 2;
-    }
-
-    if ($params['80211w'] == 1) {
-        $config[] = 'ieee80211w=1';
-        $wpa_key_mgmt = 'WPA-PSK';
-    } elseif ($params['80211w'] == 2) {
-        $config[] = 'ieee80211w=2';
-        $wpa_key_mgmt = 'WPA-PSK-SHA256';
-    }
-
-    $config[] = 'wpa_key_mgmt=' . $wpa_key_mgmt;
-
-    if (!empty($params['beacon_interval'])) {
-        $config[] = 'beacon_int=' . $params['beacon_interval'];
-    }
-
-    if (!empty($params['disassoc_low_ack'])) {
-        $config[] = 'disassoc_low_ack=0';
-    }
-
-    $config[] = 'ssid=' . $params['ssid'];
-    $config[] = 'channel=' . $params['channel'];
-
-    // Choose VHT segment index (fallback only if required)
-    $vht_freq_idx = ($params['channel'] < RASPI_5GHZ_CHANNEL_MIN) ? 42 : 155;
-
-    switch ($params['hw_mode']) {
-        case 'n':
-            $config[] = 'hw_mode=g';
-            $config[] = 'ieee80211n=1';
-            $config[] = 'wmm_enabled=1';
-            break;
-        case 'ac':
-            $config[] = 'hw_mode=a';
-            $config[] = '# N';
-            $config[] = 'ieee80211n=1';
-            $config[] = 'require_ht=1';
-            $config[] = 'ht_capab=[MAX-AMSDU-3839][HT40+][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40]';
-            $config[] = '# AC';
-            $config[] = 'ieee80211ac=1';
-            $config[] = 'require_vht=1';
-            $config[] = 'ieee80211d=0';
-            $config[] = 'ieee80211h=0';
-            $config[] = 'vht_capab=[MAX-AMSDU-3839][SHORT-GI-80]';
-            $config[] = 'vht_oper_chwidth=1';
-            $config[] = 'vht_oper_centr_freq_seg0_idx=' . $vht_freq_idx;
-            break;
-        default:
-            $config[] = 'hw_mode=' . $params['hw_mode'];
-            $config[] = 'ieee80211n=0';
-    }
-
-    if ($params['wpa'] !== 'none') {
-        $config[] = 'wpa_passphrase=' . $params['wpa_passphrase'];
-    }
-
-    if (!empty($params['bridge'])) {
-        $config[] = 'interface=' . $params['interface'];
-        $config[] = 'bridge=' . $params['bridge'];
-    } else {
-        $config[] = 'interface=' . $params['interface'];
-    }
-
-    $config[] = 'wpa=' . $wpa;
-    $config[] = 'wpa_pairwise=' . $params['wpa_pairwise'];
-    $config[] = 'country_code=' . $params['country_code'];
-    $config[] = 'ignore_broadcast_ssid=' . $params['hiddenSSID'];
-    if (!empty($params['max_num_sta'])) {
-        $config[] = 'max_num_sta=' . (int)$params['max_num_sta'];
-    }
-    
-    // Optional additional user config
-    $config[] = parseUserHostapdCfg();
-
-    return implode(PHP_EOL, $config) . PHP_EOL;
 }
 
 /**
