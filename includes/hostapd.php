@@ -380,8 +380,9 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             $return = iwRegSet($country_code, $status);
         }
 
-        // Fetch dhcp-range, lease time from system config
-        $syscfg = parse_ini_file(RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', false, INI_SCANNER_RAW);
+        // Parse dnsmasq config for selected interface
+        exec('cat '.RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $lines);
+        $syscfg = ParseConfig($lines);
 
         if ($wifiAPEnable == 1) {
             // Enable uap0 configuration for ap-sta mode
@@ -402,21 +403,39 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
             $config = join(PHP_EOL, $config);
             file_put_contents("/tmp/dnsmasqdata", $config);
             system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
-        } elseif ($bridgedEnable !==1) {
-            $dhcp_range = ($syscfg['dhcp-range'] =='') ? getDefaultNetValue('dnsmasq',$ap_iface,'dhcp-range') : $syscfg['dhcp-range'];
-            $config = [ '# RaspAP '.$_POST['interface'].' configuration' ];
-            $config[] = 'interface='.$_POST['interface'];
+
+        } elseif ($bridgedEnable !== 1) {
+            $dhcp_range = ($syscfg['dhcp-range'] == '')
+                ? getDefaultNetValue('dnsmasq', $ap_iface, 'dhcp-range')
+                : $syscfg['dhcp-range'];
+            $config = [ '# RaspAP ' . $_POST['interface'] . ' configuration' ];
+            $config[] = 'interface=' . $_POST['interface'];
             $config[] = 'domain-needed';
-            $config[] = 'dhcp-range='.$dhcp_range;
+            $config[] = 'dhcp-range=' . $dhcp_range;
+            // handle multiple dhcp-host + option entries
+            if (!empty($syscfg['dhcp-host'])) {
+                if (is_array($syscfg['dhcp-host'])) {
+                    foreach ($syscfg['dhcp-host'] as $host) {
+                        $config[] = 'dhcp-host=' . $host;
+                    }
+                } else {
+                    $config[] = 'dhcp-host=' . $syscfg['dhcp-host'];
+                }
+            }
             if (!empty($syscfg['dhcp-option'])) {
-                $config[] = 'dhcp-option='.$syscfg['dhcp-option'];
+                if (is_array($syscfg['dhcp-option'])) {
+                    foreach ($syscfg['dhcp-option'] as $opt) {
+                        $config[] = 'dhcp-option=' . $opt;
+                    }
+                } else {
+                    $config[] = 'dhcp-option=' . $syscfg['dhcp-option'];
+                }
             }
             $config[] = PHP_EOL;
             $config = join(PHP_EOL, $config);
             file_put_contents("/tmp/dnsmasqdata", $config);
-            system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
+            //system('sudo cp /tmp/dnsmasqdata ' . RASPI_DNSMASQ_PREFIX . $ap_iface . '.conf', $return);
         }
-
         // Set dhcp values from system config, fallback to default if undefined
         $jsonData = json_decode(getNetConfig($ap_iface), true);
         $ip_address = empty($jsonData['StaticIP'])
@@ -763,3 +782,4 @@ function parseUserHostapdCfg()
         return $tmp;
     }
 }
+
