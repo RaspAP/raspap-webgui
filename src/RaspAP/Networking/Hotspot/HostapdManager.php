@@ -18,12 +18,72 @@ class HostapdManager
     private const CONF_PATH_PREFIX = '/etc/hostapd/hostapd-';
     private const CONF_TMP = '/tmp/hostapddata';
 
+    // IEEE 802.11 standards
+    private const IEEE_80211_STANDARD = [
+        'a'  => '802.11a - 5 GHz',
+        'b'  => '802.11b - 2.4 GHz',
+        'g'  => '802.11g - 2.4 GHz',
+        'n'  => '802.11n - 2.4/5 GHz',
+        'ac' => '802.11ac - 5 GHz'
+    ];
+
+    // encryption types
+    private const ENC_TYPES = [
+        'TKIP'       => 'TKIP',
+        'CCMP'       => 'CCMP',
+        'TKIP CCMP'  => 'TKIP+CCMP'
+    ];
+
     /** @var HostapdValidator */
     private $validator;
 
     public function __construct(?HostapdValidator $validator = null)
     {
         $this->validator = $validator ?: new HostapdValidator();
+    }
+
+    /**
+     * Returns IEEE 802.11 standards
+     */
+    public static function get80211Standards(): array
+    {
+        return self::IEEE_80211_STANDARD;
+    }
+
+    /**
+     * Returns encryption types
+     */
+    public static function getEncTypes(): array
+    {
+        return self::ENC_TYPES;
+    }
+
+    /**
+     * Returns translated security modes.
+     */
+    public static function getSecurityModes(): array
+    {
+        // Build each call to ensure translation occurs under current locale.
+        return [
+            1      => 'WPA',
+            2      => 'WPA2',
+            3      => _('WPA and WPA2'),
+            4      => _('WPA2 and WPA3-Personal (transitional mode)'),
+            5      => 'WPA3-Personal (required)',
+            'none' => _('None'),
+        ];
+    }
+
+    /**
+     * Returns translated 802.11w options
+     */
+    public static function get80211wOptions(): array
+    {
+        return [
+            3 => _('Disabled'),
+            1 => _('Enabled (for supported clients)'),
+            2 => _('Required (for supported clients)'),
+        ];
     }
 
     /**
@@ -46,7 +106,6 @@ class HostapdManager
         if ($status !== 0 || empty($hostapdconfig)) {
             throw new \RuntimeException("Failed to read hostapd config: $configFile");
         }
-        //error_log("HostapdManager::getConfig() hostapdconfig =" . print_r($hostapdconfig, true));
 
         foreach ($hostapdconfig as $hostapdconfigline) {
             if (strlen($hostapdconfigline) === 0) {
@@ -76,29 +135,36 @@ class HostapdManager
         } elseif ($config['wpa_key_mgmt'] == 'SAE') {
             $config['wpa'] = 5;
         }
-        $selectedHwMode = $config['hw_mode'];
-        if (isset($config['ieee80211n'])) {
-            if (strval($config['ieee80211n']) === '1') {
-                $selectedHwMode = 'n';
-            }
-        }
-        if (isset($config['ieee80211ac'])) {
-            if (strval($config['ieee80211ac']) === '1') {
-                $selectedHwMode = 'ac';
-            }
-        }
-        if (isset($config['ieee80211w'])) {
-            if (strval($config['ieee80211w']) === '2') {
-                $selectedHwMode = 'w';
-            }
-        }
-        $config['selected_hw_mode'] = $selectedHwMode;
+        $config['selected_hw_mode'] = $this->resolveHwMode($config);
         $config['ignore_broadcast_ssid'] ??= 0;
         $config['max_num_sta'] ??= 0;
         $config['wep_default_key'] ??= 0;
 
         return $config;
 
+    }
+
+    /**
+     * Determines the selected hardware mode based on config
+     *
+     * @param array $config
+     * @return string
+     */
+    private function resolveHwMode(array $config): string
+    {
+        $selected = $config['hw_mode'] ?? 'g'; // default fallback
+
+        if (!empty($config['ieee80211n']) && strval($config['ieee80211n']) === '1') {
+            $selected = 'n';
+        }
+        if (!empty($config['ieee80211ac']) && strval($config['ieee80211ac']) === '1') {
+            $selected = 'ac';
+        }
+        if (!empty($config['ieee80211w']) && strval($config['ieee80211w']) === '2') {
+            $selected = 'w';
+        }
+
+        return $selected;
     }
 
     /**
@@ -128,10 +194,11 @@ class HostapdManager
     /**
      * Builds hostapd configuration text from array
      *
-     * @param array $params
+     * @param array         $params
+     * @param StatusMessage $status
      * @return string
      */
-    public function buildConfig(array $params): string
+    public function buildConfig(array $params, StatusMessage $status): string
     {
         $config = [];
         $config[] = 'driver=nl80211';
@@ -220,8 +287,10 @@ class HostapdManager
         if (!empty($params['max_num_sta'])) {
             $config[] = 'max_num_sta=' . (int)$params['max_num_sta'];
         }
-        
-        // Optional additional user config
+
+        $result = $this->maybeSetRegDomain($params['country_code'], $status);
+
+        // optional additional user config
         $config[] = $this->parseUserHostapdCfg();
 
         return implode(PHP_EOL, $config) . PHP_EOL;
@@ -232,7 +301,7 @@ class HostapdManager
      *
      * @param string $config, rendered hostapd.conf
      * @param string $interface, named interface
-     * @param bool $dualMode, dual-band AP mode enabled
+     * @param bool   $dualMode, dual-band AP mode enabled
      * @param bool   $restart, option to restart hostapd@<iface> after save
      * @return bool
      * @throws \RuntimeException
@@ -262,8 +331,8 @@ class HostapdManager
     /**
      * Derives mode checkbox states from POST + existing ini
      *
-     * @param array $post raw $_POST
-     * @param array $currentIni parsed hostapd.ini
+     * @param array  $post raw $_POST
+     * @param array  $currentIni parsed hostapd.ini
      * @return array normalized states
      */
     public function deriveModeStates(array $post, array $currentIni): array
@@ -332,29 +401,6 @@ class HostapdManager
     {
         $script = $logEnable === 1 ? 'enablelog.sh' : 'disablelog.sh';
         exec('sudo ' . RASPI_CONFIG . '/hostapd/' . $script);
-    }
-
-    /**
-     * Sets transmit power for an interface
-     *
-     * @param string $iface
-     * @param int|string $dbm
-     * @return bool
-     */
-    public function setTxPower(string $iface, $dbm): bool
-    {
-        return false;
-    }
-
-    /**
-     * Sets regulatory domain
-     *
-     * @param string $countryCode
-     * @return bool
-     */
-    public function setRegDomain(string $countryCode): bool
-    {
-        return false;
     }
 
     /**
@@ -467,20 +513,112 @@ class HostapdManager
     }
 
     /**
-     * Executes iw to set the specified ISO 2-letter country code
+     * Sets transmit power for an interface
      *
-     * @param string $country_code
-     * @param object $status
-     * @return boolean $result
+     * @param string $iface
+     * @param int|string $dbm
+     * @param StatusMessage $status
+     * @return bool
      */
-    public function iwRegSet(string $country_code, $status): bool
+    public function maybeSetTxPower(string $iface, $dbm, StatusMessage $status): bool
     {
-        $country_code = escapeshellarg($country_code);
-        $result = shell_exec("sudo iw reg set $country_code");
-        $status->addMessage(sprintf(_('Setting wireless regulatory domain to %s'), $country_code, 'success'));
-        return $result;
+        $currentTxPower = $this->getTxPower($iface);
+
+        if ($currentTxPower === $dbm) {
+            return true;
+        }
+
+        if ($dbm === 'auto') {
+            exec('sudo /sbin/iw dev ' . escapeshellarg($iface) . ' set txpower auto', $return);
+            $status->addMessage('Setting transmit power to auto.', 'success');
+        } else {
+            $sdBm = (int)$dbm * 100;
+            exec('sudo /sbin/iw dev ' . escapeshellarg($iface) . ' set txpower fixed ' . $sdBm, $return);
+            $status->addMessage('Setting transmit power to ' . $dbm . ' dBm.', 'success');
+        }
+        return true;
     }
 
+    /**
+     * Gets transmit power for an interface
+     *
+     * @param string $iface
+     * @return string
+     */
+    public function getTxPower(string $iface): string
+    {
+        $cmd = "iw dev ".escapeshellarg($iface)." info | awk '$1==\"txpower\" {print $2}'";
+        exec($cmd, $txpower);
+        return intval($txpower[0]);
+    }
+
+    /**
+     * Sets a new regulatory domain if value has changed
+     *
+     * @param string $countryCode
+     * @return bool
+     */
+    public function maybeSetRegDomain($countryCode, StatusMessage $status): bool
+    {
+        $currentDomain = $this->getRegDomain();
+        if (trim($countryCode) !== trim($currentDomain)) {
+            $result = $this->setRegDomain($countryCode, $status);
+            if ($result !== true) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Gets the current regulatory domain
+     *
+     * @return string
+     */
+    public function getRegDomain(): string
+    {
+        $domain = shell_exec("iw reg get | grep -o 'country [A-Z]\{2\}' | awk 'NR==1{print $2}'");
+        return $domain;
+    }
+
+    /**
+     * Sets the specified wireless regulatory domain
+     *
+     * @param string $country_code ISO 2-letter country code
+     * @param object $status       StatusMessage object
+     * @return boolean $result
+     */
+    public function setRegDomain(string $country_code, StatusMessage $status): bool
+    {
+        $country_code = escapeshellarg($country_code);
+        exec("sudo iw reg set $country_code", $output, $result);
+        if ($result !== 0) {
+            $status->addMessage(sprintf(_('Unable to set wireless regulatory domain to %s'), $country_code, 'warning'));
+            return false;
+        } else {
+            $status->addMessage(sprintf(_('Setting wireless regulatory domain to %s'), $country_code, 'success'));
+            return true; 
+        }
+    }
+
+    /**
+     * Enumerates available network interfaces
+     *
+     * @return array $interfaces
+     */
+    public function getInterfaces(): array
+    {
+        exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
+
+        // filter out loopback, docker, bridges + other virtual interfaces 
+        // that are incapable of hosting an AP
+        $interfaces = array_filter($interfaces, function ($iface) {
+            return !preg_match('/^(lo|docker|br-|veth|tun|tap|tailscale)/', $iface);
+        });
+        sort($interfaces);
+
+        return array_values($interfaces);
+    }
 
 }
 
