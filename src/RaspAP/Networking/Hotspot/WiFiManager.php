@@ -4,7 +4,7 @@ namespace RaspAP\Networking\Hotspot;
 
 /**
  * Wireless utility class
- * @description A collection of wireless utlity methods for RaspAP
+ * @description A collection of wireless utility methods for RaspAP
  * @author      Bill Zimmerman <billzimmerman@gmail.com>
  * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
  */

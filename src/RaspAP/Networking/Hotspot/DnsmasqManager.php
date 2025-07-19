@@ -3,8 +3,13 @@
 namespace RaspAP\Networking\Hotspot;
 
 /**
- * Manages dnsmasq configuration for DHCP/DNS services
+ * A dnsmasq configuration manager for RaspAP
+ *
+ * @description Class methods to get, build and save dnsmasq configs 
+ * @author      Bill Zimmerman <billzimmerman@gmail.com>
+ * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
  */
+
 class DnsmasqManager
 {
     private const CONF_SUFFIX = '.conf';
