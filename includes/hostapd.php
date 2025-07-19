@@ -16,40 +16,31 @@ $wifi->getWifiInterface();
  */
 function DisplayHostAPDConfig()
 {
+    $hostapd = new HostapdManager();
     $status = new StatusMessage();
     $system = new Sysinfo();
     $operatingSystem = $system->operatingSystem();
 
     $arrConfig = array();
-    $arr80211Standard = [
-        'a' => '802.11a - 5 GHz',
-        'b' => '802.11b - 2.4 GHz',
-        'g' => '802.11g - 2.4 GHz',
-        'n' => '802.11n - 2.4/5 GHz',
-        'ac' => '802.11ac - 5 GHz'
-    ];
+    $arr80211Standard = $hostapd->get80211Standards();
+    $arrSecurity = $hostapd->getSecurityModes();
+    $arrEncType = $hostapd->getEncTypes();
+    $arr80211w = $hostapd->get80211wOptions();
     $languageCode = strtok($_SESSION['locale'], '_');
     $countryCodes = getCountryCodes($languageCode);
+    $reg_domain = $hostapd->getRegDomain();
+    $interfaces = $hostapd->getInterfaces();
 
-    $arrSecurity = array(1 => 'WPA', 2 => 'WPA2', 3 => _("WPA and WPA2"));
-    $arrSecurity += [4 => _("WPA2 and WPA3-Personal (transitional mode)")];
-    $arrSecurity += [5 => 'WPA3-Personal (required)'];
-    $arrSecurity += ['none' => _("None")];
-    $arrEncType = array('TKIP' => 'TKIP', 'CCMP' => 'CCMP', 'TKIP CCMP' => 'TKIP+CCMP');
-    $arr80211w = array(3 => _("Disabled"), 1 => _("Enabled (for supported clients)"), 2 => _("Required (for supported clients)"));
+    // set defaults
     $arrTxPower = getDefaultNetOpts('txpower','dbm');
     $managedModeEnabled = false;
-    exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
-    sort($interfaces);
-
-    $reg_domain = shell_exec("iw reg get | grep -o 'country [A-Z]\{2\}' | awk 'NR==1{print $2}'");
-    $cmd = "iw dev ".escapeshellarg($_SESSION['ap_interface'])." info | awk '$1==\"txpower\" {print $2}'";
-    exec($cmd, $txpower);
-    $txpower = intval($txpower[0]);
 
     if (isset($_POST['interface'])) {
-        $interface = escapeshellarg($_POST['interface']);
+        $interface = $_POST['interface'];
+    } else {
+        $interface = $_SESSION['ap_interface'];
     }
+    $txpower = $hostapd->getTxPower($interface);
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveHostAPDSettings'])) {
@@ -98,31 +89,29 @@ function DisplayHostAPDConfig()
         }
     }
 
-    // Parse hostapd configuration
-    $hostapd = new HostapdManager();
+    // process txpower user input 
+    if (isset($_POST['txpower'])) {
+        if ($_POST['txpower'] != 'auto') {
+            $txpower = intval($_POST['txpower']);
+            $hostapd->maybeSetTxPower($interface, $txpower, $status);
+        } elseif ($_POST['txpower'] == 'auto') {
+            $hostapd->maybeSetTxPower($interface, 'auto', $status);
+        }
+        $txpower = $_POST['txpower'];
+    }
+
+    // parse hostapd configuration
     try {
         $arrConfig = $hostapd->getConfig();
     } catch (\RuntimeException $e) {
         error_log('Error: ' . $e->getMessage());
     }
 
+    // assign disassoc_low_ack boolean if value is set
+    $arrConfig['disassoc_low_ack_bool'] = isset($arrConfig['disassoc_low_ack']) ? 1 : 0;
     $hostapdstatus = $system->hostapdStatus();
     $serviceStatus = $hostapdstatus[0] == 0 ? "down" : "up";
     
-    // set txpower with iw if value is non-default ('auto')
-    if (isset($_POST['txpower'])) {
-        if ($_POST['txpower'] != 'auto') {
-            $txpower = intval($_POST['txpower']);
-            $sdBm = $txpower * 100;
-            exec('sudo /sbin/iw dev '.$interface.' set txpower fixed '.$sdBm, $return);
-            $status->addMessage('Setting transmit power to '.$_POST['txpower'].' dBm.', 'success');
-            $txpower = $_POST['txpower'];
-        } elseif ($_POST['txpower'] == 'auto') {
-            exec('sudo /sbin/iw dev '.$interface.' set txpower auto', $return);
-            $status->addMessage('Setting transmit power to '.$_POST['txpower'].'.', 'success');
-            $txpower = $_POST['txpower'];
-        }
-    } 
     exec('sudo /bin/chmod o+r '.RASPI_HOSTAPD_LOG);
     $logdata = getLogLimited(RASPI_HOSTAPD_LOG);
 
@@ -142,7 +131,6 @@ function DisplayHostAPDConfig()
             "txpower",
             "arrHostapdConf",
             "operatingSystem",
-            "selectedHwMode",
             "countryCodes",
             "logdata"
         )
@@ -192,11 +180,11 @@ function saveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
         try {
             $validated['interface'] = $apIface;
             $validated['bridge']    = $states['BridgedEnable'] ? 'br0' : null;
-
-            $config = $hostapd->buildConfig($validated);
+            $validated['txpower']   = $txpower;
+            // build and save configuration
+            $config = $hostapd->buildConfig($validated, $status);
             $hostapd->saveConfig($config, $dualAPEnable, $validated['interface']);
             $status->addMessage('WiFi hotspot settings saved.', 'success');
-
         } catch (\RuntimeException $e) {
             error_log('Error: ' . $e->getMessage());
         }
