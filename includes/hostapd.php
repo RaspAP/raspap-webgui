@@ -1,12 +1,12 @@
 <?php
 
-require_once 'includes/wifi_functions.php';
-require_once 'includes/config.php';
-
 use RaspAP\Networking\Hotspot\DnsmasqManager;
 use RaspAP\Networking\Hotspot\HostapdManager;
+use RaspAP\Networking\Hotspot\DhcpcdManager;
+use RaspAP\Networking\Hotspot\WiFiManager;
 
-getWifiInterface();
+$wifi = new WiFiManager();
+$wifi->getWifiInterface();
 
 /**
  * Initialize hostapd values, display interface
@@ -132,7 +132,6 @@ function DisplayHostAPDConfig()
             "interfaces",
             "arrConfig",
             "arr80211Standard",
-            "selectedHwMode",
             "arrSecurity",
             "arrEncType",
             "arr80211w",
@@ -160,8 +159,10 @@ function DisplayHostAPDConfig()
  */
 function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_domain, $status)
 {
-    // It should not be possible to send bad data for these fields. 
-    // If wpa fields are absent, return false and log securely.
+    $hostapd = new HostapdManager();
+    $dnsmasq = new DnsmasqManager();
+
+    // If wpa fields are absent, return false and log securely
     if (!(array_key_exists($_POST['wpa'], $wpa_array) 
         && array_key_exists($_POST['wpa_pairwise'], $enc_types) 
         && array_key_exists($_POST['hw_mode'], $modes))
@@ -255,16 +256,8 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
         $cli_iface = $session_iface = 'br0';
     }
 
-    // persist user options to /etc/raspap
-    $cfg = [];
-    $cfg['WifiInterface'] = $ap_iface;
-    $cfg['LogEnable'] = $logEnable;
-    // Save previous Client mode status when Bridged
-    $cfg['WifiAPEnable'] = ($bridgedEnable == 1 ? $arrHostapdConf['WifiAPEnable'] : $wifiAPEnable);
-    $cfg['BridgedEnable'] = $bridgedEnable;
-    $cfg['RepeaterEnable'] = $repeaterEnable;
-    $cfg['WifiManaged'] = $cli_iface;
-    write_php_ini($cfg, RASPI_CONFIG.'/hostapd.ini');
+    $hostapd->persistHostapdIni($ap_iface, $logEnable, $bridgedEnable, $arrHostapdConf['WifiAPEnable'], $wifiAPEnable, $repeaterEnable, $cli_iface);
+
     $_SESSION['ap_interface'] = $session_iface;
 
     // Verify input
@@ -314,8 +307,6 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
     $_POST['max_num_sta'] = $_POST['max_num_sta'] > 2007 ? 2007 : $_POST['max_num_sta'];
     $_POST['max_num_sta'] = $_POST['max_num_sta'] < 1 ? null : $_POST['max_num_sta'];
 
-    $hostapd = new HostapdManager();
-
     if ($good_input) {
         $config = $hostapd->buildConfig([
             'interface' => $_POST['interface'],
@@ -345,59 +336,17 @@ function SaveHostAPDConfig($wpa_array, $enc_types, $modes, $interfaces, $reg_dom
         }
 
         // Parse dnsmasq config for selected interface 
-        $dnsmasq = new DnsmasqManager();
         try {
             $syscfg = $dnsmasq->getConfig($ap_iface ?? RASPI_WIFI_AP_INTERFACE);
         } catch (\RuntimeException $e) {
             error_log('Error: ' . $e->getMessage());
         }
-
-        if ($wifiAPEnable == 1) {
-            // Enable uap0 configuration for ap-sta mode
-            // Set dhcp-range from system config, fallback to default if undefined
-            $dhcp_range = ($syscfg['dhcp-range'] == '') ? getDefaultNetValue('dnsmasq','uap0','dhcp-range') : $syscfg['dhcp-range'];
-            $config = [ '# RaspAP uap0 configuration' ];
-            $config[] = 'interface=lo,uap0               # Enable uap0 interface for wireless client AP mode';
-            $config[] = 'bind-dynamic                    # Hybrid between --bind-interfaces and default';
-            $config[] = 'server=8.8.8.8                  # Forward DNS requests to Google DNS';
-            $config[] = 'domain-needed                   # Don\'t forward short names';
-            $config[] = 'bogus-priv                      # Never forward addresses in the non-routed address spaces';
-            $config[] = 'dhcp-range='.$dhcp_range;
-            if (!empty($syscfg['dhcp-option'])) {
-                $config[] = 'dhcp-option='.$syscfg['dhcp-option'];
-            }
-            $config[] = PHP_EOL;
-            scanConfigDir('/etc/dnsmasq.d/','uap0',$status);
-            $config = join(PHP_EOL, $config);
-            file_put_contents("/tmp/dnsmasqdata", $config);
-            system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
-        } elseif ($bridgedEnable !==1) {
-            $dhcp_range = ($syscfg['dhcp-range'] =='') ? getDefaultNetValue('dnsmasq',$ap_iface,'dhcp-range') : $syscfg['dhcp-range'];
-            $config = [ '# RaspAP '.$_POST['interface'].' configuration' ];
-            $config[] = 'interface='.$_POST['interface'];
-            $config[] = 'domain-needed';
-            $config[] = 'dhcp-range='.$dhcp_range;
-            // handle multiple dhcp-host + option entries
-            if (!empty($syscfg['dhcp-host'])) {
-                if (is_array($syscfg['dhcp-host'])) {
-                    foreach ($syscfg['dhcp-host'] as $host) {
-                        $config[] = 'dhcp-host=' . $host;
-                    }
-                } else {
-                    $config[] = 'dhcp-host=' . $syscfg['dhcp-host'];
-                }
-            }
-            if (!empty($syscfg['dhcp-option'])) {
-                if (is_array($syscfg['dhcp-option'])) {
-                    foreach ($syscfg['dhcp-option'] as $opt) {
-                        $config[] = 'dhcp-option=' . $opt;
-                    }
-                } else {
-                    $config[] = 'dhcp-option=' . $syscfg['dhcp-option'];
-                }
-            }
-            $config[] = PHP_EOL;
+        // Build and save dsnmasq config
+        try {
+            $config = $dnsmasq->buildConfig($syscfg, $ap_iface, $wifiAPEnable, $bridgedEnable);
             $dnsmasq->saveConfig($config, $ap_iface);
+        } catch (\RuntimeException $e) {
+            error_log('Error: ' . $e->getMessage());
         }
 
         // Set dhcp values from system config, fallback to default if undefined
