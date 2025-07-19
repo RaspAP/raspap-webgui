@@ -1,3 +1,9 @@
+<?php
+
+use RaspAP\Networking\Hotspot\WiFiManager;
+$wifi = new WiFiManager();
+
+?>
 <div class="card">
 	<div class="card-body">
 		<input type="hidden" name="ssid<?php echo $index ?>" value="<?php echo htmlentities($network['ssid'], ENT_QUOTES) ?>" />
@@ -31,7 +37,7 @@
 		<div>
 			<?php if (isset($network['RSSI']) && $network['RSSI'] >= -200) {
                 echo '<div class="d-flex justify-content-start">';
-                echo getSignalBars($network['RSSI']);
+                echo $wifi->getSignalBars($network['RSSI']);
                 echo '<div class="ms-2">' .htmlspecialchars($network['RSSI'], ENT_QUOTES) . "dB" . "</div>";
                 echo '</div>';
 			} else {
