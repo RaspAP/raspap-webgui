@@ -42,6 +42,63 @@ class DnsmasqManager
     }
 
     /**
+     * Builds a dnsmasq configuration
+     * @param array   $syscfg
+     * @param string  $iface
+     * @param bool    $wifiAPEnable
+     * @param bool    $bridgedEnable
+     * @return array  $config
+     * @throws \RuntimeException
+     */
+    public function buildConfig(array $syscfg, string $iface, bool $wifiAPEnable, bool $bridgedEnable): array
+    {
+        if ($wifiAPEnable == 1) {
+            // Enable uap0 configuration for ap-sta mode
+            // Set dhcp-range from system config, fallback to default if undefined
+            $dhcp_range = ($syscfg['dhcp-range'] == '') ? getDefaultNetValue('dnsmasq','uap0','dhcp-range') : $syscfg['dhcp-range'];
+            $config = [ '# RaspAP uap0 configuration' ];
+            $config[] = 'interface=lo,uap0               # Enable uap0 interface for wireless client AP mode';
+            $config[] = 'bind-dynamic                    # Hybrid between --bind-interfaces and default';
+            $config[] = 'server=8.8.8.8                  # Forward DNS requests to Google DNS';
+            $config[] = 'domain-needed                   # Don\'t forward short names';
+            $config[] = 'bogus-priv                      # Never forward addresses in the non-routed address spaces';
+            $config[] = 'dhcp-range='.$dhcp_range;
+            if (!empty($syscfg['dhcp-option'])) {
+                $config[] = 'dhcp-option='.$syscfg['dhcp-option'];
+            }
+            $config[] = PHP_EOL;
+            scanConfigDir('/etc/dnsmasq.d/','uap0',$status);
+        } elseif ($bridgedEnable !==1) {
+            $dhcp_range = ($syscfg['dhcp-range'] =='') ? getDefaultNetValue('dnsmasq',$iface,'dhcp-range') : $syscfg['dhcp-range'];
+            $config = [ '# RaspAP '.$_POST['interface'].' configuration' ];
+            $config[] = 'interface='.$_POST['interface'];
+            $config[] = 'domain-needed';
+            $config[] = 'dhcp-range='.$dhcp_range;
+            // handle multiple dhcp-host + option entries
+            if (!empty($syscfg['dhcp-host'])) {
+                if (is_array($syscfg['dhcp-host'])) {
+                    foreach ($syscfg['dhcp-host'] as $host) {
+                        $config[] = 'dhcp-host=' . $host;
+                    }
+                } else {
+                    $config[] = 'dhcp-host=' . $syscfg['dhcp-host'];
+                }
+            }
+            if (!empty($syscfg['dhcp-option'])) {
+                if (is_array($syscfg['dhcp-option'])) {
+                    foreach ($syscfg['dhcp-option'] as $opt) {
+                        $config[] = 'dhcp-option=' . $opt;
+                    }
+                } else {
+                    $config[] = 'dhcp-option=' . $syscfg['dhcp-option'];
+                }
+            }
+            $config[] = PHP_EOL;
+        }
+        return $config;
+    }
+
+    /**
      * Saves dnsmasq configuration for an interface
      *
      * @param array $config
