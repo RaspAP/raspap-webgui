@@ -76,6 +76,7 @@ class HostapdManager
                 $selectedHwMode = 'w';
             }
         }
+        $config['selected_hw_mode'] = $selectedHwMode;
         $config['ignore_broadcast_ssid'] ??= 0;
         $config['max_num_sta'] ??= 0;
         $config['wep_default_key'] ??= 0;
@@ -199,8 +200,7 @@ class HostapdManager
     public function saveConfig(string $config, bool $dualMode, string $iface, bool $restart = false): bool
     {
         $configFile = $this->resolveConfigPath($iface, $dualMode); 
-        //$configFile = self::CONF_DEFAULT;
-        $tempFile   = self::CONF_TMP;
+        $tempFile   = SELF::CONF_TMP;
 
 
         if (file_put_contents($tempFile, $config) === false) {
@@ -308,6 +308,34 @@ class HostapdManager
         }
 
         throw new \RuntimeException("Failed to restart hostapd (tried instance + fallback).");
+    }
+
+    /**
+     * Persists options to /etc/raspap/
+     *
+     * @param string $apIface
+     * @param bool   $logEnable
+     * @param bool   $bridgedEnable
+     * @param bool   $cfgWifiAPEnable
+     * @param bool   $wifiAPEnable
+     * @param bool   $repeaterEnable
+     * @param string $cliIface
+     * @return bool
+     */
+    public function persistHostapdIni($apIface, $logEnable, $bridgedEnable, $cfgWifiAPEnable, $wifiAPEnable, $repeaterEnable, $cliIface): bool
+    {
+        $cfg = [];
+        $cfg['WifiInterface'] = $apIface;
+        $cfg['LogEnable'] = $logEnable;
+        $cfg['WifiAPEnable'] = ($bridgedEnable == 1 ? $cfgWifiAPEnable : $wifiAPEnable);
+        $cfg['BridgedEnable'] = $bridgedEnable;
+        $cfg['RepeaterEnable'] = $repeaterEnable;
+        $cfg['WifiManaged'] = $cliIface;
+        $success = write_php_ini($cfg, RASPI_CONFIG.'/hostapd.ini');
+        if (!$success) {
+            throw new \RuntimeException("Unable to write to hostapd.ini");
+        }
+        return true; 
     }
 
 }
