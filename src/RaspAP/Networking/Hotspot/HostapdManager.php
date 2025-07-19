@@ -343,21 +343,19 @@ class HostapdManager
         $wifiAPEnable   = 0;
 
         if ($bridgedEnable === 0) {
-            // Only meaningful when not bridged
+            // only meaningful when not bridged
             $repeaterEnable = isset($post['repeaterEnable']) ? 1 : 0;
             $wifiAPEnable   = isset($post['wifiAPEnable'])   ? 1 : 0;
         }
 
         $logEnable = isset($post['logEnable']) ? 1 : 0;
-
         $effectiveWifiAPEnable = $bridgedEnable === 1 ? $prevWifiAPEnable : $wifiAPEnable;
 
         return [
             'BridgedEnable'  => $bridgedEnable,
             'RepeaterEnable' => $repeaterEnable,
             'WifiAPEnable'   => $effectiveWifiAPEnable,
-            'LogEnable'      => $logEnable,
-            '_rawPostedWifiAPEnable' => $wifiAPEnable
+            'LogEnable'      => $logEnable
         ];
     }
 
@@ -472,6 +470,20 @@ class HostapdManager
     }
 
     /**
+     * Gets system hostapd.ini
+     *
+     * @return array $config
+     */
+    public function getHostapdIni()
+    {
+        $hostapdIni = RASPI_CONFIG . '/hostapd.ini';
+        if (file_exists($hostapdIni)) {
+            $config = parse_ini_file($hostapdIni);
+            return $config;
+        }
+    }
+
+    /**
      * Persist hostapd.ini with mode / interface user settings
      *
      * @param array $states states from deriveModeStates()
@@ -491,6 +503,7 @@ class HostapdManager
             'WifiAPEnable'   => $states['WifiAPEnable'],
             'BridgedEnable'  => $states['BridgedEnable'],
             'RepeaterEnable' => $states['RepeaterEnable'],
+            'DualAPEnable'   => $states['DualAPEnable'],
             'WifiManaged'    => $cliIface
         ];
         foreach ($previousIni as $k => $v) {
@@ -620,6 +633,16 @@ class HostapdManager
         return array_values($interfaces);
     }
 
-}
+    /**
+     * Returns a count of hostapd-<interface>.conf files
+     *
+     * @return int 
+     */
+    private function countHostapdConfigs(): int
+    {
+        $configs = glob('/etc/hostapd/hostapd-*.conf');
+        return is_array($configs) ? count($configs) : 0;
+    }
 
+}
 
