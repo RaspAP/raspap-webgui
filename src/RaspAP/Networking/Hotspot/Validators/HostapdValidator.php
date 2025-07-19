@@ -133,7 +133,7 @@ class HostapdValidator
             'max_num_sta'      => $post['max_num_sta'],
             'beacon_interval'  => $post['beacon_interval'] ?? null,
             'disassoc_low_ack' => $post['disassoc_low_ackEnable'] ?? null,
-            'bridge'           => $post['bridgedEnable'] ? 'br0' : null,
+            'bridge'           => ($post['bridgedEnable'] ?? false) ? 'br0' : null
         ];
     }
 
