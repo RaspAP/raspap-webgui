@@ -2,12 +2,18 @@
 
 require_once 'config.php';
 
+use RaspAP\Networking\Hotspot\WiFiManager;
+use RaspAP\Messages\StatusMessage;
+
 /**
  * Manage DHCP configuration
  */
 function DisplayDHCPConfig()
 {
-    $status = new \RaspAP\Messages\StatusMessage;
+    $status = new StatusMessage();
+    $wifi = new WiFiManager();
+    $wifi->getWifiInterface();
+
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['savedhcpdsettings'])) {
             saveDHCPConfig($status);
@@ -43,7 +49,6 @@ function DisplayDHCPConfig()
             }
         }
     }
-    getWifiInterface();
     $ap_iface = $_SESSION['ap_interface'];
     $serviceStatus = $dnsmasq_state ? "up" : "down";
     exec('cat '. RASPI_DNSMASQ_PREFIX.'raspap.conf', $return);
