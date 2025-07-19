@@ -2,8 +2,15 @@
 
 namespace RaspAP\Networking\Hotspot;
 
+use RaspAP\Networking\Hotspot\Validators\HostapdValidator;
+use RaspAP\Messages\StatusMessage;
+
 /**
- * Manages hostapd configurations and runtime settings
+ * Hostapd manager class for RaspAP
+ *
+ * @description Manages hostapd configurations and runtime settings
+ * @author      Bill Zimmerman <billzimmerman@gmail.com>
+ * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
  */
 class HostapdManager
 {
@@ -11,10 +18,19 @@ class HostapdManager
     private const CONF_PATH_PREFIX = '/etc/hostapd/hostapd-';
     private const CONF_TMP = '/tmp/hostapddata';
 
+    /** @var HostapdValidator */
+    private $validator;
+
+    public function __construct(?HostapdValidator $validator = null)
+    {
+        $this->validator = $validator ?: new HostapdValidator();
+    }
+
     /**
      * Retrieves current hostapd config
      *
      * @return array
+     * @throws \RuntimeException
      */
     public function getConfig(): array
     {
@@ -83,6 +99,30 @@ class HostapdManager
 
         return $config;
 
+    }
+
+    /**
+     * Validates a hostapd configuration
+     *
+     * @param array $post            raw $_POST object
+     * @param array $wpaArray        allowed WPA values
+     * @param array $encTypes        allowed encryption types
+     * @param array $modes           allowed hardware modes
+     * @param array $interfaces      valid interface list
+     * @param string $regDomain      regulatory domain
+     * @param StatusMessage $status  Status message collector
+     * @return array|false           validated configuration array or false on failure
+     */
+    public function validate(
+        array $post,
+        array $wpaArray,
+        array $encTypes,
+        array $modes,
+        array $interfaces,
+        string $regDomain,
+        StatusMessage $status
+    ) {
+        return $this->validator->validate($post, $wpaArray, $encTypes, $modes, $interfaces, $regDomain, $status);
     }
 
     /**
@@ -182,7 +222,7 @@ class HostapdManager
         }
         
         // Optional additional user config
-        $config[] = parseUserHostapdCfg();
+        $config[] = $this->parseUserHostapdCfg();
 
         return implode(PHP_EOL, $config) . PHP_EOL;
     }
@@ -220,6 +260,81 @@ class HostapdManager
     }
 
     /**
+     * Derives mode checkbox states from POST + existing ini
+     *
+     * @param array $post raw $_POST
+     * @param array $currentIni parsed hostapd.ini
+     * @return array normalized states
+     */
+    public function deriveModeStates(array $post, array $currentIni): array
+    {
+        $prevWifiAPEnable = (int)($currentIni['WifiAPEnable'] ?? 0);
+        $bridgedEnable  = isset($post['bridgedEnable'])  ? 1 : 0;
+        $repeaterEnable = 0;
+        $wifiAPEnable   = 0;
+
+        if ($bridgedEnable === 0) {
+            // Only meaningful when not bridged
+            $repeaterEnable = isset($post['repeaterEnable']) ? 1 : 0;
+            $wifiAPEnable   = isset($post['wifiAPEnable'])   ? 1 : 0;
+        }
+
+        $logEnable = isset($post['logEnable']) ? 1 : 0;
+
+        $effectiveWifiAPEnable = $bridgedEnable === 1 ? $prevWifiAPEnable : $wifiAPEnable;
+
+        return [
+            'BridgedEnable'  => $bridgedEnable,
+            'RepeaterEnable' => $repeaterEnable,
+            'WifiAPEnable'   => $effectiveWifiAPEnable,
+            'LogEnable'      => $logEnable,
+            '_rawPostedWifiAPEnable' => $wifiAPEnable
+        ];
+    }
+
+    /**
+     * Determine AP interface, client (managed) interface and session/monitor interface
+     * Uses these semantics:
+     *  - Base interface = user selection (validated) or RASPI_WIFI_AP_INTERFACE
+     *  - AP-STA mode (WifiAPEnable=1): AP is 'uap0', client is base iface
+     *  - Bridged mode: client/session use 'br0', AP remains base iface
+     *
+     * @param string $baseIface Selected interface from form
+     * @param array $states Output from deriveModeStates()
+     * @return array [ap_iface, cli_iface, session_iface]
+     */
+    public function deriveInterfaces(string $baseIface, array $states): array
+    {
+        $apIface      = $baseIface;
+        $cliIface     = $baseIface;
+        $sessionIface = $baseIface;
+
+        if ($states['WifiAPEnable'] === 1 && $states['BridgedEnable'] === 0) {
+            // client AP (AP-STA) – uap0 is AP, base iface remains client
+            $apIface      = 'uap0';
+            $sessionIface = 'uap0';
+            $cliIface     = $baseIface;
+        } elseif ($states['BridgedEnable'] === 1) {
+            // bridged mode – monitor br0, AP stays as base wireless iface
+            $cliIface     = 'br0';
+            $sessionIface = 'br0';
+        }
+
+        return [$apIface, $cliIface, $sessionIface];
+    }
+
+    /**
+     * Enables or disables hostapd logging
+     *
+     * @param int $logEnable
+     */
+    private function handleLogState(int $logEnable): void
+    {
+        $script = $logEnable === 1 ? 'enablelog.sh' : 'disablelog.sh';
+        exec('sudo ' . RASPI_CONFIG . '/hostapd/' . $script);
+    }
+
+    /**
      * Sets transmit power for an interface
      *
      * @param string $iface
@@ -247,10 +362,10 @@ class HostapdManager
      *
      * @return string $tmp
      */
-    function parseUserHostapdCfg()
+    private function parseUserHostapdCfg()
     {
-        if (file_exists(CONF_DEFAULT . '.users')) {
-            exec('cat '. CONF_DEFAULT . '.users', $hostapdconfigusers);
+        if (file_exists(SELF::CONF_DEFAULT . '.users')) {
+            exec('cat '. SELF::CONF_DEFAULT . '.users', $hostapdconfigusers);
             foreach ($hostapdconfigusers as $hostapdconfigusersline) {
                 if (strlen($hostapdconfigusersline) === 0) {
                     continue;
@@ -311,32 +426,61 @@ class HostapdManager
     }
 
     /**
-     * Persists options to /etc/raspap/
+     * Persist hostapd.ini with mode / interface user settings
      *
-     * @param string $apIface
-     * @param bool   $logEnable
-     * @param bool   $bridgedEnable
-     * @param bool   $cfgWifiAPEnable
-     * @param bool   $wifiAPEnable
-     * @param bool   $repeaterEnable
-     * @param string $cliIface
+     * @param array $states states from deriveModeStates()
+     * @param string $apIface the AP interface
+     * @param string $cliIface the managed interface
+     * @param array $previousIni existing ini
      * @return bool
      */
-    public function persistHostapdIni($apIface, $logEnable, $bridgedEnable, $cfgWifiAPEnable, $wifiAPEnable, $repeaterEnable, $cliIface): bool
+    public function persistHostapdIni(array $states, string $apIface, string $cliIface, array $previousIni = []): bool
     {
-        $cfg = [];
-        $cfg['WifiInterface'] = $apIface;
-        $cfg['LogEnable'] = $logEnable;
-        $cfg['WifiAPEnable'] = ($bridgedEnable == 1 ? $cfgWifiAPEnable : $wifiAPEnable);
-        $cfg['BridgedEnable'] = $bridgedEnable;
-        $cfg['RepeaterEnable'] = $repeaterEnable;
-        $cfg['WifiManaged'] = $cliIface;
-        $success = write_php_ini($cfg, RASPI_CONFIG.'/hostapd.ini');
-        if (!$success) {
-            throw new \RuntimeException("Unable to write to hostapd.ini");
+        $this->applyLogState($states['LogEnable']);
+
+        // compose new ini payload
+        $cfg = [
+            'WifiInterface'  => $apIface,
+            'LogEnable'      => $states['LogEnable'],
+            'WifiAPEnable'   => $states['WifiAPEnable'],
+            'BridgedEnable'  => $states['BridgedEnable'],
+            'RepeaterEnable' => $states['RepeaterEnable'],
+            'WifiManaged'    => $cliIface
+        ];
+        foreach ($previousIni as $k => $v) {
+            if (!array_key_exists($k, $cfg)) {
+                $cfg[$k] = $v;
+            }
         }
-        return true; 
+        return write_php_ini($cfg, RASPI_CONFIG . '/hostapd.ini');
     }
+
+    /**
+     * Enables or disables hostapd logging
+     *
+     * @param int $logEnable 1 = enable, 0 = disable
+     */
+    private function applyLogState(int $logEnable): void
+    {
+        $script = $logEnable === 1 ? 'enablelog.sh' : 'disablelog.sh';
+        exec('sudo ' . RASPI_CONFIG . '/hostapd/' . $script);
+    }
+
+    /**
+     * Executes iw to set the specified ISO 2-letter country code
+     *
+     * @param string $country_code
+     * @param object $status
+     * @return boolean $result
+     */
+    public function iwRegSet(string $country_code, $status): bool
+    {
+        $country_code = escapeshellarg($country_code);
+        $result = shell_exec("sudo iw reg set $country_code");
+        $status->addMessage(sprintf(_('Setting wireless regulatory domain to %s'), $country_code, 'success'));
+        return $result;
+    }
+
 
 }
 
