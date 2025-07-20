@@ -294,10 +294,11 @@ class DnsmasqManager
         system('sudo rm '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);
         if ($result == 0) {
             $status->addMessage('Dnsmasq configuration for '.$iface.' removed.', 'success');
+            return true;
         } else {
             $status->addMessage('Failed to remove dnsmasq configuration for '.$iface.'.', 'danger');
+            return false;
         }
-        return $result;
     }
 
     /**
