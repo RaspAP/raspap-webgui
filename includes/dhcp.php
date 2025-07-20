@@ -2,11 +2,13 @@
 
 require_once 'config.php';
 
+use RaspAP\Networking\Hotspot\DhcpcdManager;
+use RaspAP\Networking\Hotspot\DnsmasqManager;
 use RaspAP\Networking\Hotspot\WiFiManager;
 use RaspAP\Messages\StatusMessage;
 
 /**
- * Manage DHCP configuration
+ * Displays DHCP configuration
  */
 function DisplayDHCPConfig()
 {
@@ -91,32 +93,38 @@ function DisplayDHCPConfig()
  */
 function saveDHCPConfig($status)
 {
+    $dhcpcd = new DhcpcdManager();
+    $dnsmasq = new DnsmasqManager();
     $iface = $_POST['interface'];
     $return = 1;
 
-    // handle disable dhcp option
+    // dhcp
     if (!isset($_POST['dhcp-iface']) && file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf')) {
         // remove dhcp + dnsmasq configs for selected interface
-        $return = removeDHCPConfig($iface,$status);
-        $return = removeDnsmasqConfig($iface,$status);
+        $return = $dhcpcd->remove($iface, $status);
+        $return = $dnsmasq->remove($iface, $status);
     } else {
-        $errors = validateDHCPInput();
+        $errors = $dhcpcd->validate($_POST);
         if (empty($errors)) {
-            $return = updateDHCPConfig($iface,$status);
+            $return = updateDHCPConfig($iface, $status);
         } else {
             foreach ($errors as $error) {
                 $status->addMessage($error, 'danger');
             }
         }
         if ($return == 1) {
-            $status->addMessage('Dnsmasq configuration failed to be updated.', 'danger');
+            $status->addMessage('DHCP configuration failed to be updated.', 'danger');
             return false;
         }
 
+        // dnsmasq
         if (($_POST['dhcp-iface'] == "1") || (isset($_POST['mac']))) {
-            $errors = validateDnsmasqInput();
+            $errors = $dnsmasq->validate($_POST);
             if (empty($errors)) {
-                $return = updateDnsmasqConfig($iface,$status);
+                $config = $dnsmasq->buildEx($iface, $_POST);
+                $return = $dnsmasq->saveConfig($config, $iface);
+                $config = $dnsmasq->buildDefault();
+                $return = $dnsmasq->saveConfigDefault($config);
             } else {
                 foreach ($errors as $error) {
                     $status->addMessage($error, 'danger');
@@ -124,181 +132,8 @@ function saveDHCPConfig($status)
                 $return = 1;
             }
         }
-
-        if ($return == 0) {
-            $status->addMessage('Dnsmasq configuration updated successfully.', 'success');
-        } else {
-            $status->addMessage('Dnsmasq configuration failed to be updated.', 'danger');
-            return false;
-        }
         return true;
     }
-}
-
-/**
- * Validates DHCP user input from the $_POST object
- *
- * @return array $errors
- */
-function validateDHCPInput()
-{
-    $errors = [];
-    define('IFNAMSIZ', 16);
-    $iface = $_POST['interface'];
-    if (!preg_match('/^[^\s\/\\0]+$/', $iface)
-        || strlen($iface) >= IFNAMSIZ
-    ) {
-        $errors[] = _('Invalid interface name.');
-    }
-    if (!filter_var($_POST['StaticIP'], FILTER_VALIDATE_IP) && !empty($_POST['StaticIP'])) {
-        $errors[] = _('Invalid static IP address.');
-    }
-    if (!filter_var($_POST['SubnetMask'], FILTER_VALIDATE_IP) && !empty($_POST['SubnetMask'])) {
-        $errors[] = _('Invalid subnet mask.');
-    }
-    if (!filter_var($_POST['DefaultGateway'], FILTER_VALIDATE_IP) && !empty($_POST['DefaultGateway'])) {
-        $errors[] = _('Invalid default gateway.');
-    }
-    if (($_POST['dhcp-iface'] == "1")) {
-        if (!filter_var($_POST['RangeStart'], FILTER_VALIDATE_IP) && !empty($_POST['RangeStart'])) {
-            $errors[] = _('Invalid DHCP range start.');
-        }
-        if (!filter_var($_POST['RangeEnd'], FILTER_VALIDATE_IP) && !empty($_POST['RangeEnd'])) {
-            $errors[] = _('Invalid DHCP range end.');
-        }
-        if (!ctype_digit($_POST['RangeLeaseTime']) && $_POST['RangeLeaseTimeUnits'] !== 'i') {
-            $errors[] = _('Invalid DHCP lease time, not a number.');
-        }
-        if (!in_array($_POST['RangeLeaseTimeUnits'], array('m', 'h', 'd', 'i'))) {
-            $errors[] = _('Unknown DHCP lease time unit.');
-        }
-        if ($_POST['Metric'] !== '' && !ctype_digit($_POST['Metric'])) {
-            $errors[] = _('Invalid metric value, not a number.');
-        }
-    }
-    return $errors;
-}
-
-/**
- * Compares to string IPs
- *
- * @param string $ip1
- * @param string $ip2
- * @return boolean $result
- */
-function compareIPs($ip1, $ip2)
-{
-    $ipu1 = sprintf('%u', ip2long($ip1["ip"])) + 0;
-    $ipu2 = sprintf('%u', ip2long($ip2["ip"])) + 0;
-    return $ipu1 > $ipu2;
-}
-
-/**
- * Validates Dnsmasq user input from the $_POST object
- *
- * @return array $errors
- */
-function validateDnsmasqInput()
-{
-    $errors = [];
-    $encounteredIPs = [];
-
-    if (isset($_POST["static_leases"]["mac"])) {
-        for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
-            $mac = trim($_POST["static_leases"]["mac"][$i]);
-            $ip  = trim($_POST["static_leases"]["ip"][$i]);
-            if (!validateMac($mac)) {
-                $errors[] = _('Invalid MAC address: '.$mac);
-            }
-            if (in_array($ip, $encounteredIPs)) {
-                $errors[] = _('Duplicate IP address entered: ' . $ip);
-            } else {
-                $encounteredIPs[] = $ip;
-            }
-        }
-    }
-    return $errors;
-}
-
-
-/**
- * Updates a dnsmasq configuration
- *
- * @param string $iface
- * @param object $status
- * @return boolean $result
- */
-function updateDnsmasqConfig($iface,$status)
-{
-
-    $config = '# RaspAP '.$iface.' configuration'.PHP_EOL;
-    $config .= 'interface='.$iface.PHP_EOL.'dhcp-range='.$_POST['RangeStart'].','.$_POST['RangeEnd'].','.$_POST['SubnetMask'].',';
-    if ($_POST['RangeLeaseTimeUnits'] !== 'i') {
-        $config .= $_POST['RangeLeaseTime'];
-        $config .= $_POST['RangeLeaseTimeUnits'].PHP_EOL;
-    } else {
-        $config .= 'infinite'.PHP_EOL;
-    }
-    //  Static leases
-    $staticLeases = array();
-    if (isset($_POST["static_leases"]["mac"])) {
-        for ($i=0; $i < count($_POST["static_leases"]["mac"]); $i++) {
-            $mac = trim($_POST["static_leases"]["mac"][$i]);
-            $ip  = trim($_POST["static_leases"]["ip"][$i]);
-            $comment  = trim($_POST["static_leases"]["comment"][$i]);
-            if ($mac != "" && $ip != "") {
-                $staticLeases[] = array('mac' => $mac, 'ip' => $ip, 'comment' => $comment);
-            }
-        }
-    }
-    //  Sort ascending by IPs
-    usort($staticLeases, "compareIPs");
-    //  Update config
-    for ($i = 0; $i < count($staticLeases); $i++) {
-        $mac = $staticLeases[$i]['mac'];
-        $ip = $staticLeases[$i]['ip'];
-        $comment = $staticLeases[$i]['comment'];
-        $config .= "dhcp-host=$mac,$ip # $comment".PHP_EOL;
-    } 
-    if ($_POST['no-resolv'] == "1") {
-        $config .= "no-resolv".PHP_EOL;
-    }
-    foreach ($_POST['server'] as $server) {
-        $config .= "server=$server".PHP_EOL;
-    }
-    if ($_POST['DNS1']) {
-        $config .= "dhcp-option=6," . $_POST['DNS1'];
-        if ($_POST['DNS2']) {
-            $config .= ','.$_POST['DNS2'];
-        }
-        $config .= PHP_EOL;
-    }
-    if ($_POST['dhcp-ignore'] == "1") {
-        $config .= 'dhcp-ignore=tag:!known'.PHP_EOL;
-    }
-    file_put_contents("/tmp/dnsmasqdata", $config);
-    $msg = file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf') ? 'updated' : 'added';
-    system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);
-    if ($result == 0) {
-        $status->addMessage('Dnsmasq configuration for '.$iface.' '.$msg.'.', 'success');
-    }
-
-    // write default 090_raspap.conf
-    $config = '# RaspAP default config'.PHP_EOL;
-    $config .='log-facility='.RASPI_DHCPCD_LOG.PHP_EOL;
-    $config .='conf-dir=/etc/dnsmasq.d'.PHP_EOL;
-    // handle log option
-    if (($_POST['log-dhcp'] ?? '') == "1") {
-        $config .= "log-dhcp".PHP_EOL;
-    }
-    if (($_POST['log-queries'] ?? '') == "1") {
-      $config .= "log-queries".PHP_EOL;
-    }
-    $config .= PHP_EOL;
-    file_put_contents("/tmp/dnsmasqdata", $config);
-    system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.'raspap.conf', $result);
-
-    return $result;
 }
 
 /**
