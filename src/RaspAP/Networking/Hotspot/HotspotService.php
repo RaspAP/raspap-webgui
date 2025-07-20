@@ -20,7 +20,6 @@ namespace RaspAP\Networking\Hotspot;
 use RaspAP\Networking\Hotspot\Validators\HostapdValidator;
 use RaspAP\Messages\StatusMessage;
 
-
 class HotspotService
 {
     protected HostapdManager $hostapd;
@@ -168,7 +167,7 @@ class HotspotService
                         $validated['apsta'],
                         $validated['bridge']
                     );
-                    $this->dnsmasq->saveConfig($dnsmasqConfig, $validated['interface']);
+                    $this->dnsmasq->saveConfig($dnsmasqConfig, $validated['interface'], $status);
                 } catch (\RuntimeException $e) {
                     error_log('Error: ' . $e->getMessage());
                 }
@@ -181,7 +180,7 @@ class HotspotService
                         $validated['repeater'],
                         $validated['apsta'],
                         $validated['dualmode'],
-                        $status
+                        $status,
                     );
                 } catch (\RuntimeException $e) {
                     error_log('Error: ' . $e->getMessage());
@@ -322,48 +321,44 @@ class HotspotService
     }
 
     /**
-     * Start hotspot services for given interface.
+     * Starts services for given interface
      *
      * @param string $iface
      * @return bool
      */
     public function start(string $iface): bool
     {
-        // TODO: implement systemctl or service logic
         return false;
     }
 
     /**
-     * Stop hotspot services.
+     * Stops hotspot services
      *
      * @return bool
      */
     public function stop(): bool
     {
-        // TODO: implement
         return false;
     }
 
     /**
-     * Restart hotspot services for given interface.
+     * Restart hotspot services for given interface
      *
      * @param string $iface
      * @return bool
      */
     public function restart(string $iface): bool
     {
-        // TODO: implement
         return false;
     }
 
     /**
-     * Get current hotspot status.
+     * Get current hotspot status
      *
      * @return array
      */
     public function getStatus(): array
     {
-        // TODO: query service state + configs
         return [];
     }
 }
