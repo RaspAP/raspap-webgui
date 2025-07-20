@@ -85,6 +85,7 @@ class DnsmasqManager
             $config[] = 'interface='.$_POST['interface'];
             $config[] = 'domain-needed';
             $config[] = 'dhcp-range='.$dhcp_range;
+
             // handle multiple dhcp-host + option entries
             if (!empty($syscfg['dhcp-host'])) {
                 if (is_array($syscfg['dhcp-host'])) {
@@ -114,18 +115,19 @@ class DnsmasqManager
      *
      * @param string $iface
      * @param array $post_data
-     * @return string $config //todo: standardize return type as array
+     * @return array $config
      */
-    public function buildEx(string $iface, array $post_data): string
+    public function buildConfigEx(string $iface, array $post_data): array
     {
-        $config = '# RaspAP '. $iface .' configuration'.PHP_EOL;
-        $config .= 'interface='. $iface . PHP_EOL .'dhcp-range='.$post_data['RangeStart'].','.$post_data['RangeEnd'].','.$post_data['SubnetMask'].',';
-        if ($post_data['RangeLeaseTimeUnits'] !== 'i') {
-            $config .= $post_data['RangeLeaseTime'];
-            $config .= $post_data['RangeLeaseTimeUnits'].PHP_EOL;
-        } else {
-            $config .= 'infinite'.PHP_EOL;
-        }
+        $config[] = '# RaspAP '. $iface .' configuration';
+        $config[] = 'interface='. $iface;
+        $leaseTime = ($post_data['RangeLeaseTimeUnits'] !== 'i')
+            ? $post_data['RangeLeaseTime'] . $post_data['RangeLeaseTimeUnits']
+            : 'infinite';
+        $config[] = 'dhcp-range=' . $post_data['RangeStart'] . ',' .
+            $post_data['RangeEnd'] . ',' .
+            $post_data['SubnetMask'] . ',' .
+            $leaseTime;
         //  Static leases
         $staticLeases = array();
         if (isset($post_data["static_leases"]["mac"])) {
@@ -145,23 +147,23 @@ class DnsmasqManager
             $mac = $staticLeases[$i]['mac'];
             $ip = $staticLeases[$i]['ip'];
             $comment = $staticLeases[$i]['comment'];
-            $config .= "dhcp-host=$mac,$ip # $comment".PHP_EOL;
+            $config[] = "dhcp-host=$mac,$ip # $comment";
         }
         if ($post_data['no-resolv'] == "1") {
-            $config .= "no-resolv".PHP_EOL;
+            $config[] = "no-resolv";
         }
         foreach ($post_data['server'] as $server) {
-            $config .= "server=$server".PHP_EOL;
+            $config[] = "server=$server";
         }
         if ($post_data['DNS1']) {
-            $config .= "dhcp-option=6," . $post_data['DNS1'];
+            $config[] = "dhcp-option=6," . $post_data['DNS1'];
             if ($post_data['DNS2']) {
-                $config .= ','.$post_data['DNS2'];
+                $config[] = ','.$post_data['DNS2'];
             }
-            $config .= PHP_EOL;
+            $config[]= PHP_EOL;
         }
         if ($post_data['dhcp-ignore'] == "1") {
-            $config .= 'dhcp-ignore=tag:!known'.PHP_EOL;
+            $config[] = 'dhcp-ignore=tag:!known';
         }
 
         return $config;
@@ -171,21 +173,24 @@ class DnsmasqManager
      * Builds a RaspAP default dnsmasq config
      * Written to 090_raspap.conf
      *
-     * @return string $config //todo: standardize return type as array
+     * @param array $post_data
+     * @return array $config
      */
-    public function buildDefault(): string
+    public function buildDefault(array $post_data): array
     {
-        $config = '# RaspAP default config'. PHP_EOL;
-        $config .='log-facility='. RASPI_DHCPCD_LOG . PHP_EOL;
-        $config .='conf-dir=/etc/dnsmasq.d'. PHP_EOL;
+        // preamble
+        $config[] = '# RaspAP default config';
+        $config[] = 'log-facility='. RASPI_DHCPCD_LOG;
+        $config[] = 'conf-dir=/etc/dnsmasq.d';
+
         // handle log option
         if (($post_data['log-dhcp'] ?? '') == "1") {
-            $config .= "log-dhcp".PHP_EOL;
+            $config[] = "log-dhcp";
         }
         if (($post_data['log-queries'] ?? '') == "1") {
-          $config .= "log-queries".PHP_EOL;
+          $config[] = "log-queries";
         }
-        $config .= PHP_EOL;
+        $config[] = PHP_EOL;
 
         return $config; 
     }
@@ -193,15 +198,16 @@ class DnsmasqManager
     /**
      * Saves dnsmasq configuration for an interface
      *
-     * @param string $config
+     * @param array $config
      * @param string $iface
      * @return bool
      */
-    public function saveConfig(string $config, string $iface): bool
+    public function saveConfig(array $config, string $iface): bool
     {
         $configFile = RASPI_DNSMASQ_PREFIX . $iface . SELF::CONF_SUFFIX;
         $tempFile = SELF::CONF_TMP; 
 
+        $config = join(PHP_EOL, $config);
         file_put_contents($tempFile, $config);
         $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));
         exec($cmd, $output, $status);
@@ -222,14 +228,15 @@ class DnsmasqManager
     /**
      * Saves dnsmasq default configuration
      *
-     * @param string $config
+     * @param array $config
      * @return bool
      */
-    public function saveConfigDefault(string $config): bool
+    public function saveConfigDefault(array $config): bool
     {
         $configFile = SELF::CONF_DEFAULT . SELF::CONF_RASPAP . SELF::CONF_SUFFIX;
         $tempFile = SELF::CONF_TMP; 
 
+        $config = join(PHP_EOL, $config);
         file_put_contents($tempFile, $config);
         $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));
         exec($cmd, $output, $status);
