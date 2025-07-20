@@ -1,38 +1,25 @@
 <?php
 
-namespace RaspAP\Networking\Hotspot;
-
-use RaspAP\Networking\Hotspot\Validators\HostapdValidator;
-use RaspAP\Messages\StatusMessage;
-
 /**
- * Hostapd manager class for RaspAP
+ * A hostapd manager class for RaspAP
  *
  * @description Manages hostapd configurations and runtime settings
  * @author      Bill Zimmerman <billzimmerman@gmail.com>
  * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
  */
+
+declare(strict_types=1);
+
+namespace RaspAP\Networking\Hotspot;
+
+use RaspAP\Networking\Hotspot\Validators\HostapdValidator;
+use RaspAP\Messages\StatusMessage;
+
 class HostapdManager
 {
     private const CONF_DEFAULT = RASPI_HOSTAPD_CONFIG;
     private const CONF_PATH_PREFIX = '/etc/hostapd/hostapd-';
     private const CONF_TMP = '/tmp/hostapddata';
-
-    // IEEE 802.11 standards
-    private const IEEE_80211_STANDARD = [
-        'a'  => '802.11a - 5 GHz',
-        'b'  => '802.11b - 2.4 GHz',
-        'g'  => '802.11g - 2.4 GHz',
-        'n'  => '802.11n - 2.4/5 GHz',
-        'ac' => '802.11ac - 5 GHz'
-    ];
-
-    // encryption types
-    private const ENC_TYPES = [
-        'TKIP'       => 'TKIP',
-        'CCMP'       => 'CCMP',
-        'TKIP CCMP'  => 'TKIP+CCMP'
-    ];
 
     /** @var HostapdValidator */
     private $validator;
@@ -40,50 +27,6 @@ class HostapdManager
     public function __construct(?HostapdValidator $validator = null)
     {
         $this->validator = $validator ?: new HostapdValidator();
-    }
-
-    /**
-     * Returns IEEE 802.11 standards
-     */
-    public static function get80211Standards(): array
-    {
-        return self::IEEE_80211_STANDARD;
-    }
-
-    /**
-     * Returns encryption types
-     */
-    public static function getEncTypes(): array
-    {
-        return self::ENC_TYPES;
-    }
-
-    /**
-     * Returns translated security modes.
-     */
-    public static function getSecurityModes(): array
-    {
-        // Build each call to ensure translation occurs under current locale.
-        return [
-            1      => 'WPA',
-            2      => 'WPA2',
-            3      => _('WPA and WPA2'),
-            4      => _('WPA2 and WPA3-Personal (transitional mode)'),
-            5      => 'WPA3-Personal (required)',
-            'none' => _('None'),
-        ];
-    }
-
-    /**
-     * Returns translated 802.11w options
-     */
-    public static function get80211wOptions(): array
-    {
-        return [
-            3 => _('Disabled'),
-            1 => _('Enabled (for supported clients)'),
-            2 => _('Required (for supported clients)'),
-        ];
     }
 
     /**
@@ -141,7 +84,6 @@ class HostapdManager
         $config['wep_default_key'] ??= 0;
 
         return $config;
-
     }
 
     /**
@@ -287,8 +229,6 @@ class HostapdManager
         if (!empty($params['max_num_sta'])) {
             $config[] = 'max_num_sta=' . (int)$params['max_num_sta'];
         }
-
-        $result = $this->maybeSetRegDomain($params['country_code'], $status);
 
         // optional additional user config
         $config[] = $this->parseUserHostapdCfg();
@@ -470,20 +410,6 @@ class HostapdManager
     }
 
     /**
-     * Gets system hostapd.ini
-     *
-     * @return array $config
-     */
-    public function getHostapdIni()
-    {
-        $hostapdIni = RASPI_CONFIG . '/hostapd.ini';
-        if (file_exists($hostapdIni)) {
-            $config = parse_ini_file($hostapdIni);
-            return $config;
-        }
-    }
-
-    /**
      * Persist hostapd.ini with mode / interface user settings
      *
      * @param array $states states from deriveModeStates()
@@ -499,11 +425,11 @@ class HostapdManager
         // compose new ini payload
         $cfg = [
             'WifiInterface'  => $apIface,
-            'LogEnable'      => $states['LogEnable'],
-            'WifiAPEnable'   => $states['WifiAPEnable'],
-            'BridgedEnable'  => $states['BridgedEnable'],
-            'RepeaterEnable' => $states['RepeaterEnable'],
-            'DualAPEnable'   => $states['DualAPEnable'],
+            'LogEnable'      => $states['LogEnable'] ?? false,
+            'WifiAPEnable'   => $states['WifiAPEnable'] ?? false,
+            'BridgedEnable'  => $states['BridgedEnable'] ?? false,
+            'RepeaterEnable' => $states['RepeaterEnable'] ?? false,
+            'DualAPEnable'   => $states['DualAPEnable'] ?? false,
             'WifiManaged'    => $cliIface
         ];
         foreach ($previousIni as $k => $v) {
@@ -523,114 +449,6 @@ class HostapdManager
     {
         $script = $logEnable === 1 ? 'enablelog.sh' : 'disablelog.sh';
         exec('sudo ' . RASPI_CONFIG . '/hostapd/' . $script);
-    }
-
-    /**
-     * Sets transmit power for an interface
-     *
-     * @param string $iface
-     * @param int|string $dbm
-     * @param StatusMessage $status
-     * @return bool
-     */
-    public function maybeSetTxPower(string $iface, $dbm, StatusMessage $status): bool
-    {
-        $currentTxPower = $this->getTxPower($iface);
-
-        if ($currentTxPower === $dbm) {
-            return true;
-        }
-
-        if ($dbm === 'auto') {
-            exec('sudo /sbin/iw dev ' . escapeshellarg($iface) . ' set txpower auto', $return);
-            $status->addMessage('Setting transmit power to auto.', 'success');
-        } else {
-            $sdBm = (int)$dbm * 100;
-            exec('sudo /sbin/iw dev ' . escapeshellarg($iface) . ' set txpower fixed ' . $sdBm, $return);
-            $status->addMessage('Setting transmit power to ' . $dbm . ' dBm.', 'success');
-        }
-        return true;
-    }
-
-    /**
-     * Gets transmit power for an interface
-     *
-     * @param string $iface
-     * @return string
-     */
-    public function getTxPower(string $iface): string
-    {
-        $cmd = "iw dev ".escapeshellarg($iface)." info | awk '$1==\"txpower\" {print $2}'";
-        exec($cmd, $txpower);
-        return intval($txpower[0]);
-    }
-
-    /**
-     * Sets a new regulatory domain if value has changed
-     *
-     * @param string $countryCode
-     * @return bool
-     */
-    public function maybeSetRegDomain($countryCode, StatusMessage $status): bool
-    {
-        $currentDomain = $this->getRegDomain();
-        if (trim($countryCode) !== trim($currentDomain)) {
-            $result = $this->setRegDomain($countryCode, $status);
-            if ($result !== true) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Gets the current regulatory domain
-     *
-     * @return string
-     */
-    public function getRegDomain(): string
-    {
-        $domain = shell_exec("iw reg get | grep -o 'country [A-Z]\{2\}' | awk 'NR==1{print $2}'");
-        return $domain;
-    }
-
-    /**
-     * Sets the specified wireless regulatory domain
-     *
-     * @param string $country_code ISO 2-letter country code
-     * @param object $status       StatusMessage object
-     * @return boolean $result
-     */
-    public function setRegDomain(string $country_code, StatusMessage $status): bool
-    {
-        $country_code = escapeshellarg($country_code);
-        exec("sudo iw reg set $country_code", $output, $result);
-        if ($result !== 0) {
-            $status->addMessage(sprintf(_('Unable to set wireless regulatory domain to %s'), $country_code, 'warning'));
-            return false;
-        } else {
-            $status->addMessage(sprintf(_('Setting wireless regulatory domain to %s'), $country_code, 'success'));
-            return true; 
-        }
-    }
-
-    /**
-     * Enumerates available network interfaces
-     *
-     * @return array $interfaces
-     */
-    public function getInterfaces(): array
-    {
-        exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
-
-        // filter out loopback, docker, bridges + other virtual interfaces 
-        // that are incapable of hosting an AP
-        $interfaces = array_filter($interfaces, function ($iface) {
-            return !preg_match('/^(lo|docker|br-|veth|tun|tap|tailscale)/', $iface);
-        });
-        sort($interfaces);
-
-        return array_values($interfaces);
     }
 
     /**
