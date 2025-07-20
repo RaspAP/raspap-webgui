@@ -116,13 +116,13 @@ class DhcpcdManager
         } elseif (!preg_match('/^interface\s'.$ap_iface.'$/m', $dhcp_cfg)) {
             $config[] = PHP_EOL;
             $config= join(PHP_EOL, $config);
-            $dhcp_cfg = removeDHCPIface($dhcp_cfg,'br0');
-            $dhcp_cfg = removeDHCPIface($dhcp_cfg,'uap0');
+            $dhcp_cfg = $this->removeIface($dhcp_cfg,'br0');
+            $dhcp_cfg = $this->removeIface($dhcp_cfg,'uap0');
             $dhcp_cfg .= $config;
         } else {
             $config = join(PHP_EOL, $config);
-            $dhcp_cfg = removeDHCPIface($dhcp_cfg,'br0');
-            $dhcp_cfg = removeDHCPIface($dhcp_cfg,'uap0');
+            $dhcp_cfg = $this->removeIface($dhcp_cfg,'br0');
+            $dhcp_cfg = $this->removeIface($dhcp_cfg,'uap0');
             if (!strpos($dhcp_cfg, 'metric')) {
                 $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$ap_iface.'\s.*?(?=(?:\s*^\s*$|\s*nogateway))/ms', $config, $dhcp_cfg, 1);
             } else {
@@ -141,6 +141,51 @@ class DhcpcdManager
             $status->addMessage('WiFi hotspot settings saved.', 'success');
         }
         return true;
+    }
+
+    /**
+     * Validates DHCP user input from $_POST data
+     *
+     * @param array $post_data
+     * @return array $errors
+     */
+    public function validate(array $post_data): array
+    {
+        $errors = [];
+        define('IFNAMSIZ', 16);
+        $iface = $post_data['interface'];
+        if (!preg_match('/^[^\s\/\\0]+$/', $iface)
+            || strlen($iface) >= IFNAMSIZ
+        ) {
+            $errors[] = _('Invalid interface name.');
+        }
+        if (!filter_var($post_data['StaticIP'], FILTER_VALIDATE_IP) && !empty($post_data['StaticIP'])) {
+            $errors[] = _('Invalid static IP address.');
+        }
+        if (!filter_var($post_data['SubnetMask'], FILTER_VALIDATE_IP) && !empty($post_data['SubnetMask'])) {
+            $errors[] = _('Invalid subnet mask.');
+        }
+        if (!filter_var($post_data['DefaultGateway'], FILTER_VALIDATE_IP) && !empty($post_data['DefaultGateway'])) {
+            $errors[] = _('Invalid default gateway.');
+        }
+        if (($post_data['dhcp-iface'] == "1")) {
+            if (!filter_var($post_data['RangeStart'], FILTER_VALIDATE_IP) && !empty($post_data['RangeStart'])) {
+                $errors[] = _('Invalid DHCP range start.');
+            }
+            if (!filter_var($post_data['RangeEnd'], FILTER_VALIDATE_IP) && !empty($post_data['RangeEnd'])) {
+                $errors[] = _('Invalid DHCP range end.');
+            }
+            if (!ctype_digit($post_data['RangeLeaseTime']) && $post_data['RangeLeaseTimeUnits'] !== 'i') {
+                $errors[] = _('Invalid DHCP lease time, not a number.');
+            }
+            if (!in_array($post_data['RangeLeaseTimeUnits'], array('m', 'h', 'd', 'i'))) {
+                $errors[] = _('Unknown DHCP lease time unit.');
+            }
+            if ($post_data['Metric'] !== '' && !ctype_digit($post_data['Metric'])) {
+                $errors[] = _('Invalid metric value, not a number.');
+            }
+        }
+        return $errors;
     }
 
     /**
@@ -164,6 +209,49 @@ class DhcpcdManager
         }
         $status->addMessage(sprintf(_('DHCP configuration for %s updated.'), $iface), 'success');
         return true;
+    }
+
+    /**
+     * Removes a dhcp configuration block for the specified interface
+     *
+     * @param string $iface
+     * @param StatusMessage $status
+     * @return bool $result
+     */
+    public function remove(string $iface, StatusMessage $status): bool
+    {
+        $configFile = SELF::CONF_DEFAULT; 
+        $tempFile = SELF::CONF_TMP; 
+
+        $dhcp_cfg = file_get_contents($configFile);
+        $modified_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
+        if ($modified_cfg !== $dhcp_cfg) {
+            file_put_contents($tempFile, $modified_cfg);
+
+            $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));
+            exec($cmd, $output, $result);
+     
+            if ($result == 0) {
+                $status->addMessage('DHCP configuration for '.$iface.'  removed', 'success');
+                return true;
+            } else {
+                $status->addMessage('Failed to remove DHCP configuration for '.$iface, 'danger');
+                return false;
+            }
+        }
+    }
+
+    /**
+     * Removes a dhcp configuration block for the specified interface
+     *
+     * @param string $dhcp_cfg
+     * @param string $iface
+     * @return string $dhcp_cfg
+     */
+    public function removeIface(string $dhcp_cfg, string $iface): string
+    {
+        $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
+        return $dhcp_cfg;
     }
 
     /**
