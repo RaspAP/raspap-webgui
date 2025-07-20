@@ -144,6 +144,53 @@ class DhcpcdManager
     }
 
     /**
+     * (Re)builds an existing dhcp configuration
+     *
+     * @param string $iface
+     * @param StatusMessage $status
+     * @param array $post_data
+     * @return string $dhcp_cfg
+     */
+    public function buildConfigEx(string $iface, array $post_data, StatusMessage $status): string
+    {
+        $cfg[] = '# RaspAP '.$iface.' configuration';
+        $cfg[] = 'interface '.$iface;
+        if (isset($post_data['StaticIP']) && $post_data['StaticIP'] !== '') {
+            $mask = ($post_data['SubnetMask'] !== '' && $post_data['SubnetMask'] !== '0.0.0.0') ? '/'.mask2cidr($post_data['SubnetMask']) : null;
+            $cfg[] = 'static ip_address='.$post_data['StaticIP'].$mask;
+        }
+        if (isset($post_data['DefaultGateway']) && $post_data['DefaultGateway'] !== '') {
+            $cfg[] = 'static routers='.$post_data['DefaultGateway'];
+        }
+        if ($post_data['DNS1'] !== '' || $post_data['DNS2'] !== '') {
+            $cfg[] = 'static domain_name_server='.$post_data['DNS1'].' '.$post_data['DNS2'];
+        }
+        if ($post_data['Metric'] !== '') {
+            $cfg[] = 'metric '.$post_data['Metric'];
+        }
+        if (($post_data['Fallback'] ?? 0) == 1) {
+            $cfg[] = 'profile static_'.$iface;
+            $cfg[] = 'fallback static_'.$iface;
+        }
+        $cfg[] = ($post_data['DefaultRoute'] ?? '') == '1' ? 'gateway' : 'nogateway';
+        if (substr($iface, 0, 2) === "wl" && ($post_data['NoHookWPASupplicant'] ?? '') == '1') {
+            $cfg[] = 'nohook wpa_supplicant';
+        }
+        $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
+        if (!preg_match('/^interface\s'.$iface.'$/m', $dhcp_cfg)) {
+            $cfg[] = PHP_EOL;
+            $cfg = join(PHP_EOL, $cfg);
+            $dhcp_cfg .= $cfg;
+            $status->addMessage('DHCP configuration for '.$iface.' added.', 'success');
+        } else {
+            $cfg = join(PHP_EOL, $cfg);
+            $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)/ms', $cfg, $dhcp_cfg, 1);
+        }
+
+        return $dhcp_cfg;
+    }
+
+    /**
      * Validates DHCP user input from $_POST data
      *
      * @param array $post_data
