@@ -12,10 +12,14 @@ declare(strict_types=1);
 
 namespace RaspAP\Networking\Hotspot;
 
+use RaspAP\Messages\StatusMessage;
+
 class DnsmasqManager
 {
+    private const CONF_DEFAULT = '/etc/dnsmasq.d/';
     private const CONF_SUFFIX = '.conf';
     private const CONF_TMP = '/tmp/dnsmasqdata';
+    private const CONF_RASPAP = '090_raspap';
 
     /**
      * Retrieves dnsmasq configuration for an interface
@@ -74,7 +78,7 @@ class DnsmasqManager
                 $config[] = 'dhcp-option='.$syscfg['dhcp-option'];
             }
             $config[] = PHP_EOL;
-            scanConfigDir('/etc/dnsmasq.d/','uap0',$status);
+            $this->scanConfigDir(SELF::CONF_DEFAULT,'uap0',$status);
         } elseif ($bridgedEnable !==1) {
             $dhcp_range = ($syscfg['dhcp-range'] =='') ? getDefaultNetValue('dnsmasq',$iface,'dhcp-range') : $syscfg['dhcp-range'];
             $config = [ '# RaspAP '.$_POST['interface'].' configuration' ];
@@ -106,23 +110,104 @@ class DnsmasqManager
     }
 
     /**
+     * Builds an extended dnsmasq configuration
+     *
+     * @param string $iface
+     * @param array $post_data
+     * @return string $config //todo: standardize return type as array
+     */
+    public function buildEx(string $iface, array $post_data): string
+    {
+        $config = '# RaspAP '. $iface .' configuration'.PHP_EOL;
+        $config .= 'interface='. $iface . PHP_EOL .'dhcp-range='.$post_data['RangeStart'].','.$post_data['RangeEnd'].','.$post_data['SubnetMask'].',';
+        if ($post_data['RangeLeaseTimeUnits'] !== 'i') {
+            $config .= $post_data['RangeLeaseTime'];
+            $config .= $post_data['RangeLeaseTimeUnits'].PHP_EOL;
+        } else {
+            $config .= 'infinite'.PHP_EOL;
+        }
+        //  Static leases
+        $staticLeases = array();
+        if (isset($post_data["static_leases"]["mac"])) {
+            for ($i=0; $i < count($post_data["static_leases"]["mac"]); $i++) {
+                $mac = trim($post_data["static_leases"]["mac"][$i]);
+                $ip  = trim($post_data["static_leases"]["ip"][$i]);
+                $comment  = trim($post_data["static_leases"]["comment"][$i]);
+                if ($mac != "" && $ip != "") {
+                    $staticLeases[] = array('mac' => $mac, 'ip' => $ip, 'comment' => $comment);
+                }
+            }
+        }
+        //  Sort ascending by IPs
+        usort($staticLeases, [$this, 'compareIPs']);
+        //  Update config
+        for ($i = 0; $i < count($staticLeases); $i++) {
+            $mac = $staticLeases[$i]['mac'];
+            $ip = $staticLeases[$i]['ip'];
+            $comment = $staticLeases[$i]['comment'];
+            $config .= "dhcp-host=$mac,$ip # $comment".PHP_EOL;
+        }
+        if ($post_data['no-resolv'] == "1") {
+            $config .= "no-resolv".PHP_EOL;
+        }
+        foreach ($post_data['server'] as $server) {
+            $config .= "server=$server".PHP_EOL;
+        }
+        if ($post_data['DNS1']) {
+            $config .= "dhcp-option=6," . $post_data['DNS1'];
+            if ($post_data['DNS2']) {
+                $config .= ','.$post_data['DNS2'];
+            }
+            $config .= PHP_EOL;
+        }
+        if ($post_data['dhcp-ignore'] == "1") {
+            $config .= 'dhcp-ignore=tag:!known'.PHP_EOL;
+        }
+
+        return $config;
+    }
+
+    /**
+     * Builds a RaspAP default dnsmasq config
+     * Written to 090_raspap.conf
+     *
+     * @return string $config //todo: standardize return type as array
+     */
+    public function buildDefault(): string
+    {
+        $config = '# RaspAP default config'. PHP_EOL;
+        $config .='log-facility='. RASPI_DHCPCD_LOG . PHP_EOL;
+        $config .='conf-dir=/etc/dnsmasq.d'. PHP_EOL;
+        // handle log option
+        if (($post_data['log-dhcp'] ?? '') == "1") {
+            $config .= "log-dhcp".PHP_EOL;
+        }
+        if (($post_data['log-queries'] ?? '') == "1") {
+          $config .= "log-queries".PHP_EOL;
+        }
+        $config .= PHP_EOL;
+
+        return $config; 
+    }
+
+    /**
      * Saves dnsmasq configuration for an interface
      *
-     * @param array $config
+     * @param string $config
      * @param string $iface
      * @return bool
      */
-    public function saveConfig(array $config, string $iface = self::DEFAULT_IFACE): bool
+    public function saveConfig(string $config, string $iface): bool
     {
-        $configFile = RASPI_DNSMASQ_PREFIX . $iface . self::CONF_SUFFIX;
+        $configFile = RASPI_DNSMASQ_PREFIX . $iface . SELF::CONF_SUFFIX;
         $tempFile = SELF::CONF_TMP; 
-        $config = join(PHP_EOL, $config);
 
         file_put_contents($tempFile, $config);
         $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));
         exec($cmd, $output, $status);
         if ($status !== 0) {
             throw new \RuntimeException("Failed to copy temp config to $configFile");
+            return false;
         }
 
         // reload dnsmasq to apply changes
@@ -132,6 +217,113 @@ class DnsmasqManager
         }
 
         return true;
+    }
+
+    /**
+     * Saves dnsmasq default configuration
+     *
+     * @param string $config
+     * @return bool
+     */
+    public function saveConfigDefault(string $config): bool
+    {
+        $configFile = SELF::CONF_DEFAULT . SELF::CONF_RASPAP . SELF::CONF_SUFFIX;
+        $tempFile = SELF::CONF_TMP; 
+
+        file_put_contents($tempFile, $config);
+        $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));
+        exec($cmd, $output, $status);
+        if ($status !== 0) {
+            throw new \RuntimeException("Failed to copy temp config to $configFile");
+            return false;
+        }
+
+        // reload dnsmasq to apply changes
+        exec('sudo systemctl reload dnsmasq.service', $output, $status);
+        if ($status !== 0) {
+            throw new \RuntimeException("Failed to reload dnsmasq service");
+        }
+
+        return true;
+    }
+
+    /**
+     * Validates dnsmasq user input from $_POST object
+     *
+     * @param array $post_data
+     * @return array $errors
+     */
+    public function validate(array $post_data): array
+    {
+        $errors = [];
+        $encounteredIPs = [];
+
+        if (isset($post_data["static_leases"]["mac"])) {
+            for ($i=0; $i < count($post_data["static_leases"]["mac"]); $i++) {
+                $mac = trim($post_data["static_leases"]["mac"][$i]);
+                $ip  = trim($post_data["static_leases"]["ip"][$i]);
+                if (!validateMac($mac)) {
+                    $errors[] = _('Invalid MAC address: '.$mac);
+                }
+                if (in_array($ip, $encounteredIPs)) {
+                    $errors[] = _('Duplicate IP address entered: ' . $ip);
+                } else {
+                    $encounteredIPs[] = $ip;
+                }
+            }
+        }
+        return $errors;
+    }
+
+    /**
+     * Removes a configuration block for the specified interface
+     *
+     * @param string $iface
+     * @param StatusMessage $status
+     * @return bool $result
+     */
+    public function remove(string $iface, StatusMessage $status): bool
+    {
+        system('sudo rm '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);
+        if ($result == 0) {
+            $status->addMessage('Dnsmasq configuration for '.$iface.' removed.', 'success');
+        } else {
+            $status->addMessage('Failed to remove dnsmasq configuration for '.$iface.'.', 'danger');
+        }
+        return $result;
+    }
+
+    /**
+     * Scans configuration dir for the specified interface
+     * Non-matching configs are removed, optional adblock.conf is protected
+     *
+     * @param string $dir_conf
+     * @param string $interface
+     * @return bool
+     */
+    public function scanConfigDir(string $dir_conf, string $interface): bool
+    {
+        $syscnf = preg_grep('~\.(conf)$~', scandir($dir_conf));
+        foreach ($syscnf as $cnf) {
+            if ($cnf !== '090_adblock.conf' && !preg_match('/.*_'.$interface.'.conf/', $cnf)) {
+                system('sudo rm /etc/dnsmasq.d/'.$cnf, $result);
+                return true;
+            }
+        }
+    }
+
+    /**
+     * Compares two IPs
+     *
+     * @param array $ip1
+     * @param array $ip2
+     * @return int
+     */
+    private function compareIPs(array $ip1, array $ip2): int
+    {
+        $ipu1 = sprintf('%u', ip2long($ip1["ip"])) + 0;
+        $ipu2 = sprintf('%u', ip2long($ip2["ip"])) + 0;
+        return $ipu1 <=> $ipu2;
     }
 
     /**
@@ -145,7 +337,6 @@ class DnsmasqManager
      */
     public function addStaticLease(string $iface, string $mac, string $ip, ?string $comment = null): bool
     {
-        // TODO: append to conf
         return false;
     }
 }
