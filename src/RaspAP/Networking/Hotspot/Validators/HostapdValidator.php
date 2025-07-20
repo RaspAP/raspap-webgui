@@ -1,9 +1,5 @@
 <?php
 
-namespace RaspAP\Networking\Hotspot\Validators;
-
-use RaspAP\Messages\StatusMessage;
-
 /**
  * Hostapd validator class for RaspAP
  *  
@@ -11,6 +7,13 @@ use RaspAP\Messages\StatusMessage;
  * @author      Bill Zimmerman <billzimmerman@gmail.com>
  * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
  */
+
+declare(strict_types=1);
+
+namespace RaspAP\Networking\Hotspot\Validators;
+
+use RaspAP\Messages\StatusMessage;
+
 class HostapdValidator
 {
 

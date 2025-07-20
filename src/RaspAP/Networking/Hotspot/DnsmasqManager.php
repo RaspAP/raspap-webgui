@@ -1,7 +1,5 @@
 <?php
 
-namespace RaspAP\Networking\Hotspot;
-
 /**
  * A dnsmasq configuration manager for RaspAP
  *
@@ -9,6 +7,10 @@ namespace RaspAP\Networking\Hotspot;
  * @author      Bill Zimmerman <billzimmerman@gmail.com>
  * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
  */
+
+declare(strict_types=1);
+
+namespace RaspAP\Networking\Hotspot;
 
 class DnsmasqManager
 {
@@ -115,7 +117,6 @@ class DnsmasqManager
         $configFile = RASPI_DNSMASQ_PREFIX . $iface . self::CONF_SUFFIX;
         $tempFile = SELF::CONF_TMP; 
         $config = join(PHP_EOL, $config);
-        error_log('[DnsmasqManager::saveConfig] $config = ' . var_export($config, true));
 
         file_put_contents($tempFile, $config);
         $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));

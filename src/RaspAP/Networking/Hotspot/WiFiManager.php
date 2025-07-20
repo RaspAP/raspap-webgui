@@ -1,13 +1,15 @@
 <?php
 
-namespace RaspAP\Networking\Hotspot;
-
 /**
- * Wireless utility class
- * @description A collection of wireless utility methods for RaspAP
+ * A wireless utility class for RaspAP
+ * @description A collection of wireless utility methods
  * @author      Bill Zimmerman <billzimmerman@gmail.com>
  * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
  */
+
+declare(strict_types=1);
+
+namespace RaspAP\Networking\Hotspot;
 
 class WiFiManager
 {

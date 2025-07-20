@@ -1,12 +1,19 @@
 <?php
 
+/**
+ * A dhcpcd configuration class for RaspAP
+ *
+ * @description Handles building, saving and safe updating of dhcpcd configs
+ * @author      Bill Zimmerman <billzimmerman@gmail.com>
+ * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
+ */
+
+declare(strict_types=1);
+
 namespace RaspAP\Networking\Hotspot;
 
 use RaspAP\Messages\StatusMessage;
 
-/**
- * Handles dhcpcd.conf interface configuration.
- */
 class DhcpcdManager
 {
     private const CONF_DEFAULT = RASPI_DHCPCD_CONFIG;
@@ -99,6 +106,7 @@ class DhcpcdManager
             );
         }
         $dhcp_cfg = file_get_contents(SELF::CONF_DEFAULT);
+        $skip_dhcp = false;
 
         if (preg_match('/wlan[3-9]\d*|wlan[1-9]\d+/', $ap_iface)) {
             $skip_dhcp = true;
@@ -280,8 +288,7 @@ class DhcpcdManager
             $lines = [];
             exec('cat ' . escapeshellarg($dnsmasqFile), $lines);
             if (!function_exists('ParseConfig')) {
-                // ensure legacy parser available
-                require_once RASPI_CONFIG . '/functions.php';
+                require_once 'includes/functions.php';
             }
             $conf = ParseConfig($lines);
 
