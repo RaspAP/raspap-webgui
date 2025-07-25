@@ -4,7 +4,7 @@ function msgShow(retcode,msg) {
     } else if(retcode == 2 || retcode == 1) {
         var alertType = 'danger';
     }
-    var htmlMsg = '<div class="alert alert-'+alertType+' alert-dismissible" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+msg+'</div>';
+    var htmlMsg = '<div class="alert alert-'+alertType+' alert-dismissible" role="alert"><button type="button" class="btn-close" data-dismiss="alert" data-bs-dismiss="alert" aria-label="Close"></button>'+msg+'</div>';
     return htmlMsg;
 }
 
@@ -581,3 +581,9 @@ $(document)
     .ready(contentLoaded)
     .ready(loadWifiStations());
 
+// To auto-close Bootstrap alerts; time is in milliseconds
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+}, 5000);
