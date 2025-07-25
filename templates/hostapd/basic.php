@@ -19,7 +19,7 @@
     <div class="mb-3 col-md-6">
       <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
       <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."); ?>"></i>
-      <?php SelectorOptions('hw_mode', $arr80211Standard, $selectedHwMode, 'cbxhwmode', 'getChannel'); ?>
+      <?php SelectorOptions('hw_mode', $arr80211Standard, $arrConfig['selected_hw_mode'], 'cbxhwmode', 'getChannel'); ?>
         </div>
   </div>
   <div class="row">

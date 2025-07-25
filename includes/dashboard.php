@@ -1,8 +1,13 @@
 <?php
 
 require_once 'includes/config.php';
-require_once 'includes/wifi_functions.php';
 require_once 'includes/functions.php';
+
+use RaspAP\System\Sysinfo;
+use RaspAP\UI\Dashboard;
+use RaspAP\Messages\StatusMessage;
+use RaspAP\Plugins\PluginManager;
+use RaspAP\Networking\Hotspot\WiFiManager;
 
 /**
  * Displays the dashboard
@@ -10,13 +15,14 @@ require_once 'includes/functions.php';
 function DisplayDashboard(&$extraFooterScripts): void
 {
     // instantiate RaspAP objects
-    $system = new \RaspAP\System\Sysinfo;
-    $dashboard = new \RaspAP\UI\Dashboard;
-    $status = new \RaspAP\Messages\StatusMessage;
-    $pluginManager = \RaspAP\Plugins\PluginManager::getInstance();
+    $system = new Sysinfo();
+    $dashboard = new Dashboard();
+    $status = new StatusMessage();
+    $pluginManager = PluginManager::getInstance();
+    $wifi = new WiFiManager();
 
     // set AP and client interface session vars
-    getWifiInterface();
+    $wifi->getWifiInterface();
 
     $interface = $_SESSION['ap_interface'] ?? 'wlan0';
     $clientInterface = $_SESSION['wifi_client_interface'];

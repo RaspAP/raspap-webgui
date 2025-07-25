@@ -1,9 +1,11 @@
 <?php
 
-require_once 'includes/wifi_functions.php';
 require_once 'includes/config.php';
 
-getWifiInterface();
+use RaspAP\Networking\Hotspot\WiFiManager;
+
+$wifi = new WiFiManager();
+$wifi->getWifiInterface();
 
 /**
  * Displays wireguard server & peer configuration
