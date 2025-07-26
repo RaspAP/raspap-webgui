@@ -15,7 +15,20 @@ function DisplaySystem(&$extraFooterScripts)
     // set defaults
     $optAutoclose = true;
     $alertTimeout = 5000;
+    $good_input = true;
+    $config_port = false;
 
+    // set alert_timeout from cookie if valid
+    if (isset($_COOKIE['alert_timeout']) && is_numeric($_COOKIE['alert_timeout'])) {
+        $cookieTimeout = (int) $_COOKIE['alert_timeout'];
+
+        if ($cookieTimeout > 0) {
+            $alertTimeout = $cookieTimeout;
+        } else {
+            // A value of 0 means auto-close is disabled
+            $optAutoclose = false;
+        }
+    }
     if (isset($_POST['SaveLanguage'])) {
         if (isset($_POST['locale'])) {
             $_SESSION['locale'] = $_POST['locale'];
@@ -25,7 +38,6 @@ function DisplaySystem(&$extraFooterScripts)
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveServerSettings'])) {
-            $good_input = true;
             // Validate server port
             if (isset($_POST['serverPort'])) {
                 if (strlen($_POST['serverPort']) > 4 || !is_numeric($_POST['serverPort'])) {
@@ -36,13 +48,13 @@ function DisplaySystem(&$extraFooterScripts)
                }
             }
             // Validate server bind address
-            $serverBind = escapeshellarg('');
-            if ($_POST['serverBind'] && $_POST['serverBind'] !== null ) {
-                if (!filter_var($_POST['serverBind'], FILTER_VALIDATE_IP)) {
+            if (isset($_POST['serverBind']) && $_POST['serverBind'] !== '') {
+                $inputBind = trim($_POST['serverBind']);
+                if (!filter_var($inputBind, FILTER_VALIDATE_IP)) {
                     $status->addMessage('Invalid value for bind address', 'danger');
                     $good_input = false;
                 } else {
-                    $serverBind = escapeshellarg($_POST['serverBind']);
+                    $serverBind = escapeshellarg($inputBind);
                 }
             }
             // Validate log limit
@@ -55,6 +67,14 @@ function DisplaySystem(&$extraFooterScripts)
                     $status->addMessage(sprintf(_('Changing log limit size to %s KB'), $_SESSION['log_limit']), 'info');
                 }
             }
+            // Save settings
+            if ($good_input) {
+                exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort $serverBind " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
+                foreach ($return as $line) {
+                    $status->addMessage($line, 'info');
+                }
+            }
+        } elseif (isset($_POST['savethemeSettings'])) {
             // Validate alert timout
             if (isset($_POST['autoClose'])) {
                 $alertTimeout = trim($_POST['alertTimeout'] ?? '');
@@ -68,14 +88,6 @@ function DisplaySystem(&$extraFooterScripts)
             } else {
                 setcookie('alert_timeout', '', time() - 3600, '/');
                 $optAutoclose = false;
-            }
-
-            // Save settings
-            if ($good_input) {
-                exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort $serverBind " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
-                foreach ($return as $line) {
-                    $status->addMessage($line, 'info');
-                }
             }
         }
     }
