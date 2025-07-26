@@ -58,9 +58,6 @@ msgstr "TOR proxy"
 msgid "Authentication"
 msgstr "Authentication"
 
-msgid "Change Theme"
-msgstr "Change Theme"
-
 msgid "System"
 msgstr "System"
 
@@ -1255,6 +1252,9 @@ msgstr "Details"
 
 msgid "Installed"
 msgstr "Installed"
+
+msgid "Alert messages"
+msgstr "Alert messages"
 
 msgid "Automatically close alerts after a specified timeout"
 msgstr "Automatically close alerts after a specified timeout"
