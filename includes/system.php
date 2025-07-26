@@ -12,6 +12,10 @@ function DisplaySystem(&$extraFooterScripts)
     $dashboard = new \RaspAP\UI\Dashboard;
     $pluginInstaller = \RaspAP\Plugins\PluginInstaller::getInstance();
 
+    // set defaults
+    $optAutoclose = true;
+    $alertTimeout = 5000;
+
     if (isset($_POST['SaveLanguage'])) {
         if (isset($_POST['locale'])) {
             $_SESSION['locale'] = $_POST['locale'];
@@ -51,6 +55,21 @@ function DisplaySystem(&$extraFooterScripts)
                     $status->addMessage(sprintf(_('Changing log limit size to %s KB'), $_SESSION['log_limit']), 'info');
                 }
             }
+            // Validate alert timout
+            if (isset($_POST['autoClose'])) {
+                $alertTimeout = trim($_POST['alertTimeout'] ?? '');
+                if (strlen($alertTimeout) > 7 || !is_numeric($alertTimeout)) {
+                    $status->addMessage('Invalid value for alert close timeout', 'danger');
+                    $good_input = false;
+                } else {
+                    setcookie('alert_timeout', (int) $alertTimeout);
+                    $status->addMessage(sprintf(_('Changing alert close timeout to %s ms'), $alertTimeout), 'info');
+                }
+            } else {
+                setcookie('alert_timeout', '', time() - 3600, '/');
+                $optAutoclose = false;
+            }
+
             // Save settings
             if ($good_input) {
                 exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort $serverBind " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
@@ -155,7 +174,9 @@ function DisplaySystem(&$extraFooterScripts)
         "themes",
         "selectedTheme",
         "logLimit",
-        "pluginsTable"
+        "pluginsTable",
+        "optAutoclose",
+        "alertTimeout"
     ));
 }
 

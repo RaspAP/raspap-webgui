@@ -582,8 +582,13 @@ $(document)
     .ready(loadWifiStations());
 
 // To auto-close Bootstrap alerts; time is in milliseconds
-window.setTimeout(function() {
+const alertTimeout = parseInt(getCookie('alert_timeout'), 10);
+
+if (!isNaN(alertTimeout) && alertTimeout > 0) {
+  window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove();
+      $(this).remove();
     });
-}, 5000);
+  }, alertTimeout);
+}
+
