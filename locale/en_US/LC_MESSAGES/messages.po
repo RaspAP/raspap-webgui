@@ -1256,6 +1256,12 @@ msgstr "Details"
 msgid "Installed"
 msgstr "Installed"
 
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Automatically close alerts after a specified timeout"
+
+msgid "Alert close timeout (milliseconds)"
+msgstr "Alert close timeout (milliseconds)"
+
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "Data usage"
