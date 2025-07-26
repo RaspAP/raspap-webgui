@@ -49,7 +49,9 @@
       "ListenPort": [ "51820" ],
       "DNS": [ "9.9.9.9" ],
       "PostUp": [ "iptables -A FORWARD -i wlan0 -o wg0 -j ACCEPT; iptables -A FORWARD -i wg0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -A  POSTROUTING -o wg0 -j MASQUERADE" ],
-      "PostDown": [ "iptables -D FORWARD -i wlan0 -o wg0 -j ACCEPT; iptables -D FORWARD -i wg0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -D  POSTROUTING -o wg0 -j MASQUERADE" ]
+      "PostDown": [ "iptables -D FORWARD -i wlan0 -o wg0 -j ACCEPT; iptables -D FORWARD -i wg0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -D  POSTROUTING -o wg0 -j MASQUERADE" ],
+      "PostUpEx": [ "iptables -I OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL ! -d %s -j REJECT" ],
+      "PreDown": [ "iptables -D OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL ! -d %s -j REJECT" ]
     },
     "peer": {
       "Address": [ "10.8.1.2/24" ],
