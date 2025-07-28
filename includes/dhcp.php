@@ -37,6 +37,18 @@ function DisplayDHCPConfig()
                     $status->addMessage('Failed to start dnsmasq', 'danger');
                 }
             }
+        } elseif (isset($_POST['restartdhcpd'])) {
+            if ($dnsmasq_state) {
+                exec('sudo /bin/systemctl restart dnsmasq.service', $dnsmasq, $return);
+                if ($return == 0) {
+                    $status->addMessage('Successfully restarted dnsmasq', 'success');
+                    $dnsmasq_state = false;
+                } else {
+                    $status->addMessage('Failed to restart dnsmasq', 'danger');
+                }
+            } else {
+                $status->addMessage('dnsmasq already stopped', 'info');
+            }
         } elseif (isset($_POST['stopdhcpd'])) {
             if ($dnsmasq_state) {
                 exec('sudo /bin/systemctl stop dnsmasq.service', $dnsmasq, $return);
