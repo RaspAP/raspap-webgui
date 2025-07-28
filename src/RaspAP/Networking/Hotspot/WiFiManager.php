@@ -304,55 +304,140 @@ class WiFiManager
         return $elem;
     }
 
-    /*
+    /**
      * Parses output of wpa_cli list_networks, compares with known networks
      * from wpa_supplicant, and adds with wpa_cli if not found
      *
      * @param array $networks
+     * @throws Exception on wpa_cli command failure
      */
     public function setKnownStationsWPA($networks)
     {
         $iface = escapeshellarg($_SESSION['wifi_client_interface']);
-        $output = shell_exec("sudo wpa_cli -i $iface list_networks");
-        $lines = explode("\n", $output);
-        array_shift($lines);
-        $wpaCliNetworks = [];
+        $output = shell_exec("sudo wpa_cli -i $iface list_networks 2>&1");
 
-        foreach ($lines as $line) {
-            $data = explode("\t", trim($line));
-            if (!empty($data) && count($data) >= 2) {
-                $id = $data[0];
-                $ssid = $data[1];
-                $item = [
-                    'id' => $id,
-                    'ssid' => $ssid
-                ];
-                $wpaCliNetworks[] = $item;
+        if ($output === null) {
+            throw new \Exception("Failed to execute wpa_cli command - command returned null");
+        }
+
+        // check for common wpa_cli errors and try to fix them
+        if (strpos($output, 'Failed to connect') !== false || strpos($output, 'No such file or directory') !== false) {
+            error_log("wpa_supplicant not available for interface, attempting to start it");
+
+            // try starting wpa_supplicant for this interface
+            $unescapedIface = trim($iface, "'\"");
+            $startCmd = "sudo /sbin/wpa_supplicant -i $unescapedIface -c /etc/wpa_supplicant/wpa_supplicant.conf -B 2>&1";
+            $startResult = shell_exec($startCmd);
+            sleep(2);
+
+            // retry
+            $output = shell_exec("sudo wpa_cli -i $iface list_networks 2>&1");
+
+            // tf it still fails, throw an exception
+            if ($output === null || strpos($output, 'Failed to connect') !== false) {
+                throw new \Exception("Failed to start wpa_supplicant for interface: " . trim($startResult ?? 'unknown error'));
             }
         }
-        foreach ($networks as $network) {
-            $ssid = $network['ssid'];
-            if (!$this->networkExists($ssid, $wpaCliNetworks)) {
-                $ssid = escapeshellarg('"'.$network['ssid'].'"');
-                $psk = escapeshellarg('"'.$network['passphrase'].'"');
-                $protocol = $network['protocol'];
-                $netid = trim(shell_exec("sudo wpa_cli -i $iface add_network"));
-                if (isset($netid) && !isset($known[$netid])) {
-                    $commands = [
-                        "sudo wpa_cli -i $iface set_network $netid ssid $ssid",
-                        "sudo wpa_cli -i $iface set_network $netid psk $psk",
-                        "sudo wpa_cli -i $iface enable_network $netid"
-                    ];
-                    if ($protocol === 'Open') {
-                        $commands[1] = "sudo wpa_cli -i $iface set_network $netid key_mgmt NONE";
-                    }
-                    foreach ($commands as $cmd) {
-                        exec($cmd);
-                        usleep(1000);
+
+        // split output into lines
+        $lines = explode("\n", trim($output));
+
+        // check for header line
+        if (empty($lines) || count($lines) < 1) {
+            error_log("wpa_cli list_networks returned no output");
+            $wpaCliNetworks = [];
+        } else {
+            // remove header line if it exists
+            $headerLine = trim($lines[0]);
+            if (strpos($headerLine, 'network id') !== false || strpos($headerLine, 'id') !== false) {
+                array_shift($lines);
+            }
+
+            $wpaCliNetworks = [];
+            foreach ($lines as $line) {
+                $trimmedLine = trim($line);
+
+                // skip empty lines
+                if (empty($trimmedLine)) {
+                    continue;
+                }
+
+                $data = explode("\t", $trimmedLine);
+                if (count($data) >= 2) {
+                    $id = trim($data[0]);
+                    $ssid = trim($data[1]);
+
+                    // add if we have valid data
+                    if ($id !== '' && $ssid !== '') {
+                        $wpaCliNetworks[] = [
+                            'id' => $id,
+                            'ssid' => $ssid
+                        ];
                     }
                 }
             }
         }
+
+        // process networks to add
+        foreach ($networks as $network) {
+            if (!isset($network['ssid']) || empty($network['ssid'])) {
+                error_log("Skipping network with missing or empty SSID");
+                continue;
+            }
+
+            $ssid = $network['ssid'];
+            if (!$this->networkExists($ssid, $wpaCliNetworks)) {
+                $this->addWpaNetwork($network, $iface);
+            }
+        }
+    }
+
+    /**
+     * Helper method to add a single network to wpa_supplicant
+     *
+     * @param array $network Network configuration
+     * @param string $iface Escaped shell argument for interface
+     */
+    private function addWpaNetwork($network, $iface)
+    {
+        $ssid = escapeshellarg('"' . $network['ssid'] . '"');
+        $psk = escapeshellarg('"' . $network['passphrase'] . '"');
+        $protocol = $network['protocol'] ?? 'WPA';
+
+        // add network and get its ID
+        $netid = trim(shell_exec("sudo wpa_cli -i $iface add_network 2>&1"));
+
+        // validate network ID
+        if (!$netid || !is_numeric($netid)) {
+            error_log("Failed to add network '{$network['ssid']}': Invalid network ID returned: '$netid'");
+            return;
+        }
+
+        // prepare command based on protocol
+        $commands = [
+            "sudo wpa_cli -i $iface set_network $netid ssid $ssid",
+        ];
+
+        if (strtolower($protocol) === 'open') {
+            $commands[] = "sudo wpa_cli -i $iface set_network $netid key_mgmt NONE";
+        } else {
+            $commands[] = "sudo wpa_cli -i $iface set_network $netid psk $psk";
+        }
+
+        $commands[] = "sudo wpa_cli -i $iface enable_network $netid";
+
+        // execute commands, checking errors
+        foreach ($commands as $cmd) {
+            $result = shell_exec("$cmd 2>&1");
+            if ($result === null || strpos($result, 'FAIL') !== false) {
+                error_log("Command failed: $cmd - Result: " . ($result ?? 'null'));
+                // remove the failed network
+                shell_exec("sudo wpa_cli -i $iface remove_network $netid 2>&1");
+                return;
+            }
+            usleep(1000);
+        }
+        error_log("Successfully added network: {$network['ssid']}");
     }
 
     /*
