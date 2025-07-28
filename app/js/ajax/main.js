@@ -110,7 +110,6 @@ function loadInterfaceDHCPSelect() {
                 const [mainPart, commentPart] = entry.split('#');
                 const comment = commentPart ? commentPart.trim() : '';
                 const [mac, ip] = mainPart.split(',').map(part => part.trim());
-                console.log(`Lease ${index}: MAC=${mac}, IP=${ip}, Comment=${comment}`);
                 const row = `
                 <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
                     <div class="col-md-4 col-xs-3">
