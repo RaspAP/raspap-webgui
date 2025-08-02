@@ -97,12 +97,19 @@ class DnsmasqManager
                 }
             }
             if (!empty($syscfg['dhcp-option'])) {
-                if (is_array($syscfg['dhcp-option'])) {
-                    foreach ($syscfg['dhcp-option'] as $opt) {
-                        $config[] = 'dhcp-option=' . $opt;
+                $dhcpOptions = (array) $syscfg['dhcp-option'];
+                $grouped = [];
+
+                foreach ($dhcpOptions as $opt) {
+                    $parts = explode(',', $opt, 2);
+                    if (count($parts) < 2) {
+                        continue; // skip malformed option
                     }
-                } else {
-                    $config[] = 'dhcp-option=' . $syscfg['dhcp-option'];
+                    list($code, $value) = $parts;
+                    $grouped[$code][] = $value;
+                }
+                foreach ($grouped as $code => $values) {
+                    $config[] = 'dhcp-option=' . $code . ',' . implode(',', $values);
                 }
             }
             $config[] = PHP_EOL;
@@ -155,17 +162,17 @@ class DnsmasqManager
         foreach ($post_data['server'] as $server) {
             $config[] = "server=$server";
         }
-        if ($post_data['DNS1']) {
-            $config[] = "dhcp-option=6," . $post_data['DNS1'];
-            if ($post_data['DNS2']) {
-                $config[] = ','.$post_data['DNS2'];
+        if (!empty($post_data['DNS1'])) {
+            $dnsOption = "dhcp-option=6," . $post_data['DNS1'];
+            if (!empty($post_data['DNS2'])) {
+                $dnsOption .= ',' . $post_data['DNS2'];
             }
-            $config[]= PHP_EOL;
+            $config[] = $dnsOption;
         }
         if ($post_data['dhcp-ignore'] == "1") {
             $config[] = 'dhcp-ignore=tag:!known';
         }
-
+        $config[]= PHP_EOL;
         return $config;
     }
 
