@@ -94,11 +94,39 @@ function loadInterfaceDHCPSelect() {
             $('#dhcp-iface').removeAttr('disabled');
         } else {
             $('#chkdhcp').closest('.btn').addClass('active');
-            $('#chkdhcp').closest('.btn').button.blur();
+            $('#chkdhcp').closest('.btn').blur();
         }
         if (jsonData.FallbackEnabled || $('#chkdhcp').is(':checked')) {
             $('#dhcp-iface').prop('disabled', true);
             setDhcpFieldsDisabled();
+        }
+
+        const leaseContainer = $('.js-dhcp-static-lease-container');
+        leaseContainer.empty();
+
+        if (jsonData.dhcpHost && jsonData.dhcpHost.length > 0) {
+            const leases = jsonData.dhcpHost || [];
+                leases.forEach((entry, index) => {
+                const [mainPart, commentPart] = entry.split('#');
+                const comment = commentPart ? commentPart.trim() : '';
+                const [mac, ip] = mainPart.split(',').map(part => part.trim());
+                const row = `
+                <div class="row dhcp-static-lease-row js-dhcp-static-lease-row">
+                    <div class="col-md-4 col-xs-3">
+                        <input type="text" name="static_leases[mac][]" value="${mac}" placeholder="MAC address" class="form-control">
+                    </div>
+                    <div class="col-md-3 col-xs-3">
+                        <input type="text" name="static_leases[ip][]" value="${ip}" placeholder="IP address" class="form-control">
+                    </div>
+                    <div class="col-md-3 col-xs-3">
+                        <input type="text" name="static_leases[comment][]" value="${comment || ''}" placeholder="Optional comment" class="form-control">
+                    </div>
+                    <div class="col-md-2 col-xs-3">
+                        <button type="button" class="btn btn-outline-danger js-remove-dhcp-static-lease"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                </div>`;
+                leaseContainer.append(row);
+            });
         }
     });
 }

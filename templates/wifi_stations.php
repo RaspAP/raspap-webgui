@@ -5,7 +5,7 @@
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
     <p class="text-center"><?php echo _("Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>.") ?></p>
     <form method="POST" action="wpa_conf" name="wpa_conf_form" class="row">
-      <?php echo CSRFTokenFieldTag() ?>
+      <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
         <div class="col-xs me-3 mb-3">
           <input type="submit" class="btn btn-warning btn-block float-end" name="wpa_reinit" value="<?php echo _("Reinitialize"); ?>" />
         </div>

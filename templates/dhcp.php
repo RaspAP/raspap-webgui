@@ -3,6 +3,7 @@
       <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
       <?php if ($dnsmasq_state) : ?>
         <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
+        <input type="submit" class="btn btn-warning" value="<?php echo _("Restart dnsmasq") ?>" name="restartdhcpd" />
       <?php else : ?>
         <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
       <?php endif ?>

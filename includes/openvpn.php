@@ -1,9 +1,10 @@
 <?php
 
 require_once 'includes/config.php';
-require_once 'includes/wifi_functions.php';
 
-getWifiInterface();
+use RaspAP\Networking\Hotspot\WiFiManager;
+$wifi = new WiFiManager();
+$wifi->getWifiInterface();
 
 /**
  * Manage OpenVPN configuration
