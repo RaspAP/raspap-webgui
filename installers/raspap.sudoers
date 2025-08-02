@@ -5,6 +5,7 @@ www-data ALL=(ALL) NOPASSWD:/bin/cat /etc/wpa_supplicant/wpa_supplicant-[a-zA-Z0
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant.conf
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/wifidata /etc/wpa_supplicant/wpa_supplicant-wl*.conf
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_supplicant -B -Dnl80211 -c/etc/wpa_supplicant/wpa_supplicant.conf -i[a-zA-Z0-9]*
+www-data ALL=(ALL) NOPASSWD:/sbin/wpa_supplicant -i [a-zA-Z0-9]* -c /etc/wpa_supplicant/wpa_supplicant.conf -B
 www-data ALL=(ALL) NOPASSWD:/bin/rm /var/run/wpa_supplicant/[a-zA-Z0-9]*
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* scan_results
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* scan

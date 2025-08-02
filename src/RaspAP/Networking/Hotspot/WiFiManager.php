@@ -183,7 +183,7 @@ class WiFiManager
             if (preg_match('/ESSID:\"([^"]+)\"/i', $line, $iwconfig_ssid)) {
                 $ssid=hexSequence2lower($iwconfig_ssid[1]);
                 $networks[$ssid]['connected'] = true;
-                $check=detectCaptivePortal($_SESSION['wifi_client_interface']);
+                //$check=detectCaptivePortal($_SESSION['wifi_client_interface']);
                 $networks[$ssid]["portal-url"]=$check["URL"];
             }
         }
@@ -248,9 +248,9 @@ class WiFiManager
      */
     public function reinitializeWPA($force)
     {
-        $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+        $iface = $_SESSION['wifi_client_interface'];
         if ($force == true) {
-            $cmd = "sudo wpa_supplicant -B -Dnl80211 -c/etc/wpa_supplicant/wpa_supplicant.conf -i$iface";
+            $cmd = "sudo /sbin/wpa_supplicant -i $unescapedIface -c /etc/wpa_supplicant/wpa_supplicant.conf -B 2>&1";
             $result = shell_exec($cmd);
         }
         $cmd = "sudo wpa_cli -i $iface reconfigure";
@@ -333,7 +333,7 @@ class WiFiManager
             // retry
             $output = shell_exec("sudo wpa_cli -i $iface list_networks 2>&1");
 
-            // tf it still fails, throw an exception
+            // if it still fails, throw an exception
             if ($output === null || strpos($output, 'Failed to connect') !== false) {
                 throw new \Exception("Failed to start wpa_supplicant for interface: " . trim($startResult ?? 'unknown error'));
             }
