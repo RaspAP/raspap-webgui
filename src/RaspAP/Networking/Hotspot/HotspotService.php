@@ -205,13 +205,13 @@ class HotspotService
      *
      * @return array $config
      */
-    public function getHostapdIni()
+    public function getHostapdIni(): array
     {
         $hostapdIni = RASPI_CONFIG . '/hostapd.ini';
         if (file_exists($hostapdIni)) {
-            $config = parse_ini_file($hostapdIni);
-            return $config;
+            return parse_ini_file($hostapdIni) ?: [];
         }
+        return [];
     }
 
     /**
