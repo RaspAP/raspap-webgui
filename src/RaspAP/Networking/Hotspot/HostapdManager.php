@@ -143,78 +143,87 @@ class HostapdManager
     public function buildConfig(array $params, StatusMessage $status): string
     {
         $config = [];
+
+        // core static values
         $config[] = 'driver=nl80211';
         $config[] = 'ctrl_interface=' . RASPI_HOSTAPD_CTRL_INTERFACE;
         $config[] = 'ctrl_interface_group=0';
         $config[] = 'auth_algs=1';
 
-        $wpa = $params['wpa'];
-        $wpa_key_mgmt = 'WPA-PSK';
+        $mappings = getDefaultNetValue('hostapd', 'mappings', 'all') ?? [];
 
-        if ($wpa == 4) {
-            $config[] = 'ieee80211w=1';
-            $wpa_key_mgmt = 'WPA-PSK WPA-PSK-SHA256 SAE';
-            $wpa = 2;
-        } elseif ($wpa == 5) {
-            $config[] = 'ieee80211w=2';
-            $wpa_key_mgmt = 'SAE';
-            $wpa = 2;
+        $wpa = isset($params['wpa']) ? $params['wpa'] : 'none';
+
+        $ieee80211w = null;
+        if (isset($params['80211w']) && $params['80211w'] !== '') {
+            $ieee80211w = (string)$params['80211w'];
+        } elseif (!empty($mappings['ieee80211w_wpa']) && isset($mappings['ieee80211w_wpa'][(string)$wpaCode])) {
+            $ieee80211w = (string)$mappings['ieee80211w_wpa'][(string)$wpaCode];
         }
 
-        if ($params['80211w'] == 1) {
-            $config[] = 'ieee80211w=1';
+        if ($ieee80211w !== null && $ieee80211w !== '' && $ieee80211w !== '0') {
+            $config[] = 'ieee80211w=' . $ieee80211w;
+        }
+
+        $wpa_key_mgmt = null;
+        if (!empty($params['wpa_key_mgmt'])) {
+            $wpa_key_mgmt = $params['wpa_key_mgmt'];
+        } elseif (!empty($mappings['wpa_key_mgmt']) && isset($mappings['wpa_key_mgmt'][(string)$wpaCode])) {
+            $wpa_key_mgmt = $mappings['wpa_key_mgmt'][(string)$wpaCode];
+        } elseif ($wpaCode !== 'none') {
+            // fallback sensible default
             $wpa_key_mgmt = 'WPA-PSK';
-        } elseif ($params['80211w'] == 2) {
-            $config[] = 'ieee80211w=2';
-            $wpa_key_mgmt = 'WPA-PSK-SHA256';
         }
 
-        $config[] = 'wpa_key_mgmt=' . $wpa_key_mgmt;
+        if ($wpa_key_mgmt !== null) {
+            $config[] = 'wpa_key_mgmt=' . $wpa_key_mgmt;
+        }
+
+        $wpa_numeric = $wpa;
+        if (!empty($mappings['wpa_numeric']) && isset($mappings['wpa_numeric'][(string)$wpa])) {
+            $wpa_numeric = (int)$mappings['wpa_numeric'][(string)$wpa];
+        } else {
+            // ensure int or none
+            $wpa_numeric = ($wpa === 'none') ? 'none' : (int)$wpa;
+        }
 
         if (!empty($params['beacon_interval'])) {
-            $config[] = 'beacon_int=' . $params['beacon_interval'];
+            $config[] = 'beacon_int=' . intval($params['beacon_interval']);
         }
 
         if (!empty($params['disassoc_low_ack'])) {
             $config[] = 'disassoc_low_ack=0';
         }
 
+        // SSID and channel (required)
         $config[] = 'ssid=' . $params['ssid'];
         $config[] = 'channel=' . $params['channel'];
 
-        // Choose VHT segment index (fallback only if required)
+        // choose VHT segment index (fallback only if required)
         $vht_freq_idx = ($params['channel'] < RASPI_5GHZ_CHANNEL_MIN) ? 42 : 155;
 
-        switch ($params['hw_mode']) {
-            case 'n':
-                $config[] = 'hw_mode=g';
-                $config[] = 'ieee80211n=1';
-                $config[] = 'wmm_enabled=1';
-                break;
-            case 'ac':
-                $config[] = 'hw_mode=a';
-                $config[] = '# N';
-                $config[] = 'ieee80211n=1';
-                $config[] = 'require_ht=1';
-                $config[] = 'ht_capab=[MAX-AMSDU-3839][HT40+][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40]';
-                $config[] = '# AC';
-                $config[] = 'ieee80211ac=1';
-                $config[] = 'require_vht=1';
-                $config[] = 'ieee80211d=0';
-                $config[] = 'ieee80211h=0';
-                $config[] = 'vht_capab=[MAX-AMSDU-3839][SHORT-GI-80]';
-                $config[] = 'vht_oper_chwidth=1';
-                $config[] = 'vht_oper_centr_freq_seg0_idx=' . $vht_freq_idx;
-                break;
-            default:
-                $config[] = 'hw_mode=' . $params['hw_mode'];
-                $config[] = 'ieee80211n=0';
+        $hwMode = isset($params['hw_mode']) ? $params['hw_mode'] : '';
+
+        // fetch settings for selected mode
+        $modeSettings = getDefaultNetOpts('hostapd', 'modes', $hwMode);
+        $settings = $modeSettings[$hwMode]['settings'] ?? [];
+
+        if (!empty($settings)) {
+            foreach ($settings as $line) {
+                if (!is_string($line)) {
+                    continue;
+                }
+                $replaced = str_replace('{VHT_FREQ_IDX}', (string) $vht_freq_idx ?? '',$line);
+                $config[] = $replaced;
+            }
         }
 
-        if ($params['wpa'] !== 'none') {
+        // WPA passphrase
+        if ($wpa_numeric !== 'none' && !empty($params['wpa_passphrase'])) {
             $config[] = 'wpa_passphrase=' . $params['wpa_passphrase'];
         }
 
+        // bridge handling
         if (!empty($params['bridge'])) {
             $config[] = 'interface=' . $params['interface'];
             $config[] = 'bridge=' . $params['bridge'];
@@ -222,10 +231,11 @@ class HostapdManager
             $config[] = 'interface=' . $params['interface'];
         }
 
-        $config[] = 'wpa=' . $wpa;
-        $config[] = 'wpa_pairwise=' . $params['wpa_pairwise'];
-        $config[] = 'country_code=' . $params['country_code'];
-        $config[] = 'ignore_broadcast_ssid=' . $params['hiddenSSID'];
+        $config[] = 'wpa=' . $wpa_numeric;
+        $config[] = 'wpa_pairwise=' . ($params['wpa_pairwise'] ?? '');
+        $config[] = 'country_code=' . ($params['country_code'] ?? '');
+        $config[] = 'ignore_broadcast_ssid=' . ($params['hiddenSSID'] ?? 0);
+
         if (!empty($params['max_num_sta'])) {
             $config[] = 'max_num_sta=' . (int)$params['max_num_sta'];
         }
@@ -233,7 +243,7 @@ class HostapdManager
         // optional additional user config
         $config[] = $this->parseUserHostapdCfg();
 
-        return implode(PHP_EOL, $config) . PHP_EOL;
+        return implode(PHP_EOL, array_filter($config, function ($v) { return $v !== null && $v !== ''; })) . PHP_EOL;
     }
 
     /**
