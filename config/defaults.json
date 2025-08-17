@@ -36,30 +36,12 @@
           "hw_mode=a",
           "ieee80211n=0"
         ]
-      }
-    },
-    "mappings":{
-      "wpa_key_mgmt":{
-        "0":"NONE",
-        "1":"WPA-PSK",
-        "2":"WPA-PSK WPA-PSK-SHA256 SAE",
-        "3":"SAE"
       },
-      "ieee80211w_wpa":{
-        "1":"0",
-        "2":"0",
-        "3":"2",
-        "4":"1",
-        "5":"2"
-      },
-      "wpa_numeric":{
-        "0":"0",
-        "1":1,
-        "2":2,
-        "3":2,
-        "4":2,
-        "5":2,
-        "none":"none"
+      "b":{
+        "settings":[
+          "hw_mode=b",
+          "ieee80211n=0"
+        ]
       }
     },
     "dhcp":{
