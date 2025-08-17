@@ -150,42 +150,28 @@ class HostapdManager
         $config[] = 'ctrl_interface_group=0';
         $config[] = 'auth_algs=1';
 
-        $mappings = getDefaultNetValue('hostapd', 'mappings', 'all') ?? [];
+        $wpa = $params['wpa'];
+        $wpa_key_mgmt = 'WPA-PSK';
 
-        $wpa = isset($params['wpa']) ? $params['wpa'] : 'none';
-
-        $ieee80211w = null;
-        if (isset($params['80211w']) && $params['80211w'] !== '') {
-            $ieee80211w = (string)$params['80211w'];
-        } elseif (!empty($mappings['ieee80211w_wpa']) && isset($mappings['ieee80211w_wpa'][(string)$wpaCode])) {
-            $ieee80211w = (string)$mappings['ieee80211w_wpa'][(string)$wpaCode];
+        if ($wpa == 4) {
+            $config[] = 'ieee80211w=1';
+            $wpa_key_mgmt = 'WPA-PSK WPA-PSK-SHA256 SAE';
+            $wpa = 2;
+        } elseif ($wpa == 5) {
+            $config[] = 'ieee80211w=2';
+            $wpa_key_mgmt = 'SAE';
+            $wpa = 2;
         }
 
-        if ($ieee80211w !== null && $ieee80211w !== '' && $ieee80211w !== '0') {
-            $config[] = 'ieee80211w=' . $ieee80211w;
-        }
-
-        $wpa_key_mgmt = null;
-        if (!empty($params['wpa_key_mgmt'])) {
-            $wpa_key_mgmt = $params['wpa_key_mgmt'];
-        } elseif (!empty($mappings['wpa_key_mgmt']) && isset($mappings['wpa_key_mgmt'][(string)$wpaCode])) {
-            $wpa_key_mgmt = $mappings['wpa_key_mgmt'][(string)$wpaCode];
-        } elseif ($wpaCode !== 'none') {
-            // fallback sensible default
+        if ($params['80211w'] == 1) {
+            $config[] = 'ieee80211w=1';
             $wpa_key_mgmt = 'WPA-PSK';
+        } elseif ($params['80211w'] == 2) {
+            $config[] = 'ieee80211w=2';
+            $wpa_key_mgmt = 'WPA-PSK-SHA256';
         }
 
-        if ($wpa_key_mgmt !== null) {
-            $config[] = 'wpa_key_mgmt=' . $wpa_key_mgmt;
-        }
-
-        $wpa_numeric = $wpa;
-        if (!empty($mappings['wpa_numeric']) && isset($mappings['wpa_numeric'][(string)$wpa])) {
-            $wpa_numeric = (int)$mappings['wpa_numeric'][(string)$wpa];
-        } else {
-            // ensure int or none
-            $wpa_numeric = ($wpa === 'none') ? 'none' : (int)$wpa;
-        }
+        $config[] = 'wpa_key_mgmt=' . $wpa_key_mgmt;
 
         if (!empty($params['beacon_interval'])) {
             $config[] = 'beacon_int=' . intval($params['beacon_interval']);
@@ -201,7 +187,6 @@ class HostapdManager
 
         // choose VHT segment index (fallback only if required)
         $vht_freq_idx = ($params['channel'] < RASPI_5GHZ_CHANNEL_MIN) ? 42 : 155;
-
         $hwMode = isset($params['hw_mode']) ? $params['hw_mode'] : '';
 
         // fetch settings for selected mode
@@ -231,7 +216,7 @@ class HostapdManager
             $config[] = 'interface=' . $params['interface'];
         }
 
-        $config[] = 'wpa=' . $wpa_numeric;
+        $config[] = 'wpa=' . $wpa;
         $config[] = 'wpa_pairwise=' . ($params['wpa_pairwise'] ?? '');
         $config[] = 'country_code=' . ($params['country_code'] ?? '');
         $config[] = 'ignore_broadcast_ssid=' . ($params['hiddenSSID'] ?? 0);
