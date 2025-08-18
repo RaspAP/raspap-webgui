@@ -30,6 +30,16 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-md-6 mb-2">
+        <div class="form-check form-switch">
+          <?php $checked = $arrConfig['ap_isolate'] == 1 ? 'checked="checked"' : '' ?>
+          <input class="form-check-input" id="chxapisolate" name="ap_isolate" type="checkbox" value="1" <?php echo $checked ?> />
+          <label class="form-check-label" for="chxapisolate"><?php echo _("Enable AP isolation"); ?></label>
+          <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."); ?>"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-xs-3 col-sm-3">
         <div class="form-check form-switch">
           <?php $checked = $arrConfig['beacon_interval_bool'] == 1 ? 'checked="checked"' : '' ?>
