@@ -144,6 +144,7 @@ class HotspotService
                 $validated['apsta']     = !empty($states['WifiAPEnable']);
                 $validated['repeater']  = !empty($states['RepeaterEnable']);
                 $validated['dualmode']  = !empty($states['DualAPEnable']);
+                $validated['apisolate'] = !empty($states['APIsolateEnable']);
                 $validated['txpower']   = $post_data['txpower'];
 
                 // hostapd

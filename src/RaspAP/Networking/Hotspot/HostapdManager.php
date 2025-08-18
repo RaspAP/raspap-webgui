@@ -220,7 +220,9 @@ class HostapdManager
         $config[] = 'wpa_pairwise=' . ($params['wpa_pairwise'] ?? '');
         $config[] = 'country_code=' . ($params['country_code'] ?? '');
         $config[] = 'ignore_broadcast_ssid=' . ($params['hiddenSSID'] ?? 0);
-
+        if (!empty($params['apisolate'])) {
+            $config[] = 'ap_isolate=' . $params['apisolate'];
+        }
         if (!empty($params['max_num_sta'])) {
             $config[] = 'max_num_sta=' . (int)$params['max_num_sta'];
         }
@@ -273,9 +275,10 @@ class HostapdManager
     public function deriveModeStates(array $post, array $currentIni): array
     {
         $prevWifiAPEnable = (int)($currentIni['WifiAPEnable'] ?? 0);
-        $bridgedEnable  = isset($post['bridgedEnable'])  ? 1 : 0;
-        $repeaterEnable = 0;
-        $wifiAPEnable   = 0;
+        $bridgedEnable    = isset($post['bridgedEnable'])  ? 1 : 0;
+        $apIsolation      = isset($post['ap_isolate']) ? 1 : 0;
+        $repeaterEnable   = 0;
+        $wifiAPEnable     = 0;
 
         if ($bridgedEnable === 0) {
             // only meaningful when not bridged
@@ -287,10 +290,11 @@ class HostapdManager
         $effectiveWifiAPEnable = $bridgedEnable === 1 ? $prevWifiAPEnable : $wifiAPEnable;
 
         return [
-            'BridgedEnable'  => $bridgedEnable,
-            'RepeaterEnable' => $repeaterEnable,
-            'WifiAPEnable'   => $effectiveWifiAPEnable,
-            'LogEnable'      => $logEnable
+            'BridgedEnable'   => $bridgedEnable,
+            'RepeaterEnable'  => $repeaterEnable,
+            'WifiAPEnable'    => $effectiveWifiAPEnable,
+            'APIsolateEnable' => $apIsolation,
+            'LogEnable'       => $logEnable
         ];
     }
 
