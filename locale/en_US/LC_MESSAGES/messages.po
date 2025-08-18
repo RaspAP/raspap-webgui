@@ -837,6 +837,12 @@ msgstr "Parameter hiddenSSID contains invalid configuration value."
 msgid "Parameter hiddenSSID is not a number."
 msgstr "Parameter hiddenSSID is not a number."
 
+msgid "Enable AP isolation"
+msgstr "Enable AP isolation"
+
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
