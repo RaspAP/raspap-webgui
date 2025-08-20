@@ -4,7 +4,7 @@ $pluginManager = \RaspAP\Plugins\PluginManager::getInstance();
 
 // Get the requested page
 $extraFooterScripts = array();
-$page = $_SERVER['PATH_INFO'];
+$page = $_SERVER['PATH_INFO'] ?? '';
 
 // Check if any plugin wants to handle the request
 if (!$pluginManager->handlePageAction($page)) {
