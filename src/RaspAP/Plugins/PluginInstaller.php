@@ -32,7 +32,7 @@ class PluginInstaller
         $this->tempSudoers = '/tmp/090_';
         $this->destSudoers = '/etc/sudoers.d/';
         $this->refModules = '/refs/heads/master/.gitmodules';
-        $this->rootPath = $_SERVER['DOCUMENT_ROOT'];
+        $this->rootPath = dirname(__DIR__, 3);
         $this->pluginsManifest = '/plugins/manifest.json';
         $this->repoPublic = $this->getRepository();
         $this->helperScriptPath = RASPI_CONFIG.'/plugins/plugin_helper.sh';

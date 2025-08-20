@@ -542,7 +542,7 @@ function disableValidation(form) {
 
 function updateActivityLED() {
   const threshold_bytes = 300;
-  fetch('/app/net_activity')
+  fetch('app/net_activity')
     .then(res => res.text())
     .then(data => {
       const activity = parseInt(data.trim());
