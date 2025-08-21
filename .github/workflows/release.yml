@@ -44,3 +44,15 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.event.inputs.tag || github.ref }}
           overwrite: true
+          
+  torrent:
+    needs: build-raspap-image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Generate torrents for release
+        uses: devopsx/action-torrent@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          local: false
