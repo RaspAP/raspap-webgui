@@ -1,7 +1,9 @@
 <?php header("Content-Type: image/svg+xml; charset=utf-8"); ?>
 <?php
+require_once '../../includes/config.php';
 require_once '../../includes/functions.php';
 $color = getColorOpt();
+$static = defined('RASPI_UI_STATIC_LOGO') && RASPI_UI_STATIC_LOGO === true;
 ?>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
@@ -14,7 +16,7 @@ $color = getColorOpt();
    xml:space="preserve"
    id="svg2"
    version="1.1">
-<!--svg viewBox="0 0 312 312" xmlns="http://www.w3.org/2000/svg"-->
+<?php if (!$static): ?>
   <style>
     .wave {
       opacity: 0;
@@ -30,6 +32,7 @@ $color = getColorOpt();
       100% { opacity: 0; }
     }
   </style>
+<?php endif; ?>
 
   <!-- inner solid circle -->
   <circle cx="128" cy="384" r="60" fill="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>"/>
