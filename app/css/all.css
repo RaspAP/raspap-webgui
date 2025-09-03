@@ -52,6 +52,12 @@ th {
   margin-left: 0.7em;
 }
 
+.login-logo {
+  width: 70px;
+  height: 70px;
+  margin-left: 1.2rem;
+}
+
 .page-header {
   font-size: 26pt;
   margin: 20px 0 20px;
