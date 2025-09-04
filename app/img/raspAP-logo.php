@@ -3,7 +3,8 @@
 require_once '../../includes/config.php';
 require_once '../../includes/functions.php';
 $color = getColorOpt();
-$static = defined('RASPI_UI_STATIC_LOGO') && RASPI_UI_STATIC_LOGO === true;
+$static = (isset($_GET['static']) && $_GET['static'] == '1') ||
+    (defined('RASPI_UI_STATIC_LOGO') && RASPI_UI_STATIC_LOGO === true);
 ?>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
@@ -16,23 +17,27 @@ $static = defined('RASPI_UI_STATIC_LOGO') && RASPI_UI_STATIC_LOGO === true;
    xml:space="preserve"
    id="svg2"
    version="1.1">
+<style>
 <?php if (!$static): ?>
-  <style>
     .wave {
-      opacity: 0;
+      opacity: 0.4;
       animation: pulse 1.8s infinite;
     }
     .wave1 { animation-delay: 0.3s; }
     .wave2 { animation-delay: 0.6s; }
 
     @keyframes pulse {
-      0%   { opacity: 0; }
+      0%   { opacity: 0.4; }
       20%  { opacity: 1; }
-      60%  { opacity: 0; }
-      100% { opacity: 0; }
+      60%  { opacity: 0.4; }
+      100% { opacity: 0.4; }
     }
-  </style>
+<?php else: ?>
+    .wave {
+      opacity: 1.0;
+    }
 <?php endif; ?>
+</style>
 
   <!-- inner solid circle -->
   <circle cx="128" cy="384" r="60" fill="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>"/>
