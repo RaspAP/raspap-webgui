@@ -915,7 +915,7 @@ function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cp
     ?>
     <div class="row g-0">
       <div class="col-4 ms-2 sidebar-brand-icon">
-        <img src="app/img/raspAP-logo.php" class="navbar-logo" width="60" height="60">
+        <img src="app/img/raspAP-logo.php?static=1" class="navbar-logo" width="70" height="70">
       </div>
       <div class="col ml-2">
         <div class="ml-1 sb-status">Status</div>

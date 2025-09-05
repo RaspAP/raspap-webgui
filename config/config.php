@@ -69,6 +69,7 @@ define('RASPI_SYSTEM_ENABLED', true);
 define('RASPI_MONITOR_ENABLED', false);
 define('RASPI_RESTAPI_ENABLED', false);
 define('RASPI_PLUGINS_ENABLED', true);
+define('RASPI_UI_STATIC_LOGO', false);
 
 // Locale settings
 define('LOCALE_ROOT', 'locale');
