@@ -14,10 +14,14 @@ function DisplayAbout()
     $strContent = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/CONTRIBUTING.md');
     $contributingHtml = $Parsedown->text($strContent);
 
+    $strContent = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/COOKBOOK.md');
+    $cookbookHtml = $Parsedown->text($strContent);
+
     echo renderTemplate(
         "about", compact(
             'sponsorsHtml',
-            'contributingHtml'
+            'contributingHtml',
+            'cookbookHtml'
         )
     );
 }

@@ -19,6 +19,7 @@ require_once 'app/lib/Parsedown.php';
         <ul class="nav nav-tabs">
           <li class="nav-item"><a class="nav-link active" href="#aboutgeneral" data-bs-toggle="tab"><?php echo _("About"); ?></a></li>
           <li class="nav-item"><a class="nav-link" href="#aboutsponsors" data-bs-toggle="tab"><?php echo _("Insiders"); ?></a></li>
+          <li class="nav-item"><a class="nav-link" href="#aboutcookbook" data-bs-toggle="tab"><?php echo _("Cookbook"); ?></a></li>
           <li class="nav-item"><a class="nav-link" href="#aboutcontrib" data-bs-toggle="tab"><?php echo _("Contributing"); ?></a></li>
         </ul>
         <!-- /.nav-tabs -->
@@ -27,6 +28,7 @@ require_once 'app/lib/Parsedown.php';
         <div class="tab-content">
           <?php echo renderTemplate("about/general", $__template_data) ?>
           <?php echo renderTemplate("about/insiders", $__template_data) ?>
+          <?php echo renderTemplate("about/cookbook", $__template_data) ?>
           <?php echo renderTemplate("about/contributing", $__template_data) ?>
         </div>
         <!-- /.tab-content -->
