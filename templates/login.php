@@ -8,7 +8,7 @@
           <div class="col-12">
             <!-- branding -->
             <div class="text-center mb-3">
-              <img src="app/img/raspAP-logo.php" class="navbar-logo" alt="RaspAP logo" class="img-fluid" style="max-width: 100px;">
+              <img src="app/img/raspAP-logo.php" class="login-logo" alt="RaspAP logo" class="img-fluid" style="max-width: 100px;">
               <h2 class="login-brand"><?php echo htmlspecialchars(RASPI_BRAND_TEXT); ?></h2>
               <div class="mt-2 admin-login"><?php echo _("Administrator login") ?></div>
               <div class="text-center text-danger mt-1 mb-3"><?php echo $status ?></div>

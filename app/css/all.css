@@ -48,8 +48,15 @@ th {
 }
 
 .navbar-logo {
-  margin-top: 0.5em;
-  margin-left: 0.5em;
+  margin-top: 0.2em;
+  margin-left: 0.7em;
+}
+
+.login-logo {
+  width: 70px;
+  height: 70px;
+  margin-left: 1.2rem;
+  margin-bottom: -0.5rem;
 }
 
 .page-header {
