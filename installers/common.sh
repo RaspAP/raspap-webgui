@@ -149,7 +149,7 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        "n/a") # Debian trixie/sid
+        "13") # Debian trixie 13
             php_package="php8.4-cgi"
             phpcgiconf="/etc/php/8.4/cgi/php.ini" ;;
         23.05|12*) # Debian 12 & Armbian 23.05
