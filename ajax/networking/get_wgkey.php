@@ -5,7 +5,7 @@ require_once '../../includes/session.php';
 require_once '../../includes/config.php';
 require_once '../../includes/authenticate.php';
 
-$entity = escapeshellcmd($_POST['entity']);
+$entity = escapeshellarg($_POST['entity']);
 
 if (isset($entity)) {
 

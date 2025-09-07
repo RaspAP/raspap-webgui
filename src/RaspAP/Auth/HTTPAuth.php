@@ -82,9 +82,10 @@ class HTTPAuth
         session_regenerate_id(true); // generate a new session id
         session_unset(); // unset all session variables
         session_destroy(); // destroy the session
+        $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
         $redirectUrl = $_SERVER['REQUEST_URI'];
         if (strpos($redirectUrl, '/login') === false) {
-            header('Location: /login?action=' . urlencode($redirectUrl));
+            header('Location: ' . $basePath . '/login?action=' . urlencode(basename($redirectUrl)));
             exit();
         }
     }

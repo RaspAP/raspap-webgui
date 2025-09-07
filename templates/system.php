@@ -149,7 +149,6 @@
             <tr>
               <th><?php echo _("Configuration files"); ?></th>
               <td><small><code><span id="plugin-configuration" class="mb-0"></span></code></small></td>
-              </td>
             </tr>
             <tr>
               <th><?php echo _("Signed Packages"); ?></th>
@@ -164,7 +163,7 @@
               <td><small><code><span id="plugin-javascript" class="mb-0"></span></code></small></td>
             </tr>
             <tr>
-              <th><?php echo _("Permissions"); ?></th>
+              <th><?php echo _("Sudoers"); ?></th>
               <td><small><code><span id="plugin-sudoers" class="mb-0"></span></code></small></td>
             </tr>
             <tr>

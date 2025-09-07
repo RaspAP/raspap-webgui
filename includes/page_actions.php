@@ -4,7 +4,7 @@ $pluginManager = \RaspAP\Plugins\PluginManager::getInstance();
 
 // Get the requested page
 $extraFooterScripts = array();
-$page = $_SERVER['PATH_INFO'];
+$page = $_SERVER['PATH_INFO'] ?? '';
 
 // Check if any plugin wants to handle the request
 if (!$pluginManager->handlePageAction($page)) {
@@ -32,7 +32,7 @@ function handleCorePageAction(string $page, array &$extraFooterScripts): void
             DisplayWPAConfig();
             break;
         case "/network_conf":
-            DisplayNetworkingConfig();
+            DisplayNetworkingConfig($extraFooterScripts);
             break;
         case "/hostapd_conf":
             DisplayHostAPDConfig();

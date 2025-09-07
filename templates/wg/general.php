@@ -39,9 +39,18 @@
                     <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."); ?>"></i>
                     <p id="wg-description">
                       <small><?php echo _("This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."); ?></small>
-                      <div class="col-sm-6">
+                    </p>
+                    <div class="col-sm-6 mb-3">
                         <?php SelectorOptions('wgInterface', $interfaces, $_SESSION['ap_interface'], 'cbxinterface'); ?>
                       </div>
+                  </div>
+                  <div class="form-check form-switch">
+                    <?php $checked = $optKSwitch == 1 ? 'checked="checked"' : '' ?>
+                    <input class="form-check-input" id="chxwgkswitch" name="wgKSwitch" type="checkbox" value="1" <?php echo $checked ?> />
+                    <label class="form-check-label" for="chxwgkswitch"><?php echo _("Enable kill switch"); ?></label>
+                    <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."); ?>"></i>
+                    <p id="wg-description">
+                      <small><?php echo _("This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."); ?></small>
                     </p>
                   </div>
                 </div>

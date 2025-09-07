@@ -1,0 +1,12 @@
+[Unit]
+Description=Hostapd access point for %i
+After=network.target
+
+[Service]
+ExecStart=/usr/sbin/hostapd -P /run/hostapd_%i.pid /etc/hostapd/hostapd-%i.conf
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

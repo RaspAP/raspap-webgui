@@ -19,7 +19,7 @@ class HtmlErrorRenderer
     public function __construct()
     {
         $this->charset = 'UTF-8';
-        $this->projectDir = $_SERVER['DOCUMENT_ROOT'];
+        $this->projectDir = dirname(__DIR__, 3);
         $this->template = '/templates/exception.php';
         $this->debug = true;
     }

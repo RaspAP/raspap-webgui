@@ -1,107 +1,43 @@
 <?php
 /**
- * Sets locale information for i18n support
- */
-
-/**
- * Rudimentary language detection via the browser.
+ * Sets locale information for i18n support, with secure input validation.
+ *
+ * Rudimentary language detection is performed via the browser.
  * Accept-Language returns a list of weighted values with a quality (or 'q') parameter.
  * A better method would parse the list of preferred languages and match this with
  * the languages supported by our platform.
+ * @see https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4
  *
- * Refer to: https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4
+ * Uses $validLocales to mitigate OS Command Injection (CWE-78)
+ * @see Vulnerability Report for JVN #27202136
  */
-if (empty($_SESSION['locale']) && !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) && strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) >= 2) {
-    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-    switch ($lang) {
-    case "de":
-        $locale = "de_DE.UTF-8";
-        break;
-    case "fr":
-        $locale = "fr_FR.UTF-8";
-        break;
-    case "it":
-        $locale = "it_IT.UTF-8";
-        break;
-    case "pt":
-        $locale = "pt_BR.UTF-8";
-        break;
-    case "sv":
-        $locale = "sv_SE.UTF-8";
-        break;
-    case "nl":
-        $locale = "nl_NL.UTF-8";
-        break;
-    case "zh":
-        if ($_SERVER['HTTP_ACCEPT_LANGUAGE'] == 'zh_TW') {
-            $locale = "zh_TW.UTF-8";
-        } else {
-            $locale = "zh_CN.UTF-8";
-        }
-        break;
-    case "cs":
-        $locale = "cs_CZ.UTF-8";
-        break;
-    case "ru":
-        $locale = "ru_RU.UTF-8";
-        break;
-    case "es":
-        $locale = "es_MX.UTF-8";
-        break;
-    case "fi":
-        $locale = "fi_FI.UTF-8";
-        break;
-    case "da":
-        $locale = "da_DK.UTF-8";
-        break;
-    case "tr":
-        $locale = "tr_TR.UTF-8";
-        break;
-    case "id":
-        $locale = "id_ID.UTF-8";
-        break;
-    case "ko":
-        $locale = "ko_KR.UTF-8";
-        break;
-    case "ja":
-        $locale = "ja_JP.UTF-8";
-        break;
-    case "vi":
-        $locale = "vi_VN.UTF-8";
-        break;
-    case "el":
-        $locale = "el_GR.UTF-8";
-        break;
-    case "pl":
-        $locale = "pl_PL.UTF-8";
-        break;
-    case "sk":
-        $locale = "sk_SK.UTF-8";
-        break;
-    default:
-        $locale = "en_GB.UTF-8";
-        break;
-    }
 
-    $_SESSION['locale'] = $locale;
+// Set locale from POST, if provided and valid
+$validLocales = array_keys(getLocales());
+if (!empty($_POST['locale']) && in_array($_POST['locale'], $validLocales, true)) {
+    $_SESSION['locale'] = $_POST['locale'];
 }
 
-// Note: the associated locale must be installed on the RPi
-// Use: 'sudo raspi-configure' and select 'Localisation Options'
-
-// activate the locale setting
-if (!empty($_SESSION['locale'])) {
-    putenv("LANG=" . $_SESSION['locale']);
-    setlocale(LC_ALL, $_SESSION['locale']);
+// Set locale from browser detection, if not already set
+if (empty($_SESSION['locale'])) {
+    $_SESSION['locale'] = detectBrowserLocale();
 }
+
+// Enforce only valid locale values in session
+if (!in_array($_SESSION['locale'], $validLocales, true)) {
+    $_SESSION['locale'] = 'en_GB.UTF-8';
+}
+
+// Apply locale settings
+putenv("LANG=" . escapeshellarg($_SESSION['locale']));
+setlocale(LC_ALL, $_SESSION['locale']);
 bindtextdomain(LOCALE_DOMAIN, LOCALE_ROOT);
 bind_textdomain_codeset(LOCALE_DOMAIN, 'UTF-8');
-
 textdomain(LOCALE_DOMAIN);
 
-function getLocales()
+function getLocales(): array
 {
-    $arrLocales = array(
+    return [
         'en_GB.UTF-8' => 'English',
         'cs_CZ.UTF-8' => 'Čeština',
         'zh_TW.UTF-8' => '正體中文 (Chinese traditional)',
@@ -125,6 +61,65 @@ function getLocales()
         'sv_SE.UTF-8' => 'Svenska',
         'tr_TR.UTF-8' => 'Türkçe',
         'vi_VN.UTF-8' => 'Tiếng Việt (Vietnamese)'
-    );
-    return $arrLocales;
+    ];
 }
+
+function detectBrowserLocale(): string
+{
+    if (empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) || strlen($_SERVER['HTTP_ACCEPT_LANGUAGE']) < 2) {
+        return 'en_GB.UTF-8';
+    }
+
+    $acceptLang = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+    $lang = strtolower(substr($acceptLang, 0, 2));
+
+    if ($lang === 'zh' && strpos($acceptLang, 'zh-TW') === 0) {
+        return 'zh_TW.UTF-8';
+    }
+
+    switch ($lang) {
+        case 'de':
+            return 'de_DE.UTF-8';
+        case 'fr':
+            return 'fr_FR.UTF-8';
+        case 'it':
+            return 'it_IT.UTF-8';
+        case 'pt':
+            return 'pt_BR.UTF-8';
+        case 'sv':
+            return 'sv_SE.UTF-8';
+        case 'nl':
+            return 'nl_NL.UTF-8';
+        case 'zh':
+            return 'zh_CN.UTF-8';
+        case 'cs':
+            return 'cs_CZ.UTF-8';
+        case 'ru':
+            return 'ru_RU.UTF-8';
+        case 'es':
+            return 'es_MX.UTF-8';
+        case 'fi':
+            return 'fi_FI.UTF-8';
+        case 'da':
+            return 'da_DK.UTF-8';
+        case 'tr':
+            return 'tr_TR.UTF-8';
+        case 'id':
+            return 'id_ID.UTF-8';
+        case 'ko':
+            return 'ko_KR.UTF-8';
+        case 'ja':
+            return 'ja_JP.UTF-8';
+        case 'vi':
+            return 'vi_VN.UTF-8';
+        case 'el':
+            return 'el_GR.UTF-8';
+        case 'pl':
+            return 'pl_PL.UTF-8';
+        case 'sk':
+            return 'sk_SK.UTF-8';
+        default:
+            return 'en_GB.UTF-8';
+    }
+}
+

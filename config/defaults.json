@@ -1,66 +1,114 @@
 {
-  "dhcp": {
-    "wlan0": { 
-      "static ip_address": [ "10.3.141.1/24" ],
-      "static routers": [ "10.3.141.1" ],
-      "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
-      "subnetmask": [ "255.255.255.0" ]
+  "hostapd":{
+    "modes":{
+      "n":{
+        "settings":[
+          "hw_mode=g",
+          "ieee80211n=1",
+          "wmm_enabled=1"
+        ]
+      },
+      "ac":{
+        "settings":[
+          "hw_mode=a",
+          "# N",
+          "ieee80211n=1",
+          "require_ht=1",
+          "ht_capab=[MAX-AMSDU-3839][HT40+][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40]",
+          "# AC",
+          "ieee80211ac=1",
+          "require_vht=1",
+          "ieee80211d=0",
+          "ieee80211h=0",
+          "vht_capab=[MAX-AMSDU-3839][SHORT-GI-80]",
+          "vht_oper_chwidth=1",
+          "vht_oper_centr_freq_seg0_idx={VHT_FREQ_IDX}"
+        ]
+      },
+      "g":{
+        "settings":[
+          "hw_mode=g",
+          "ieee80211n=0"
+        ]
+      },
+      "a":{
+        "settings":[
+          "hw_mode=a",
+          "ieee80211n=0"
+        ]
+      },
+      "b":{
+        "settings":[
+          "hw_mode=b",
+          "ieee80211n=0"
+        ]
+      }
     },
-    "wlan1": {
-      "static ip_address": [ "10.9.141.1/24" ],
-      "static routers": [ "10.9.141.1" ],
-      "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
-      "subnetmask": [ "255.255.255.0" ]
+    "dhcp":{
+      "wlan0":{
+        "static ip_address":[ "10.3.141.1/24" ],
+        "static routers":[ "10.3.141.1" ],
+        "static domain_name_server":[ "1.1.1.1 8.8.8.8" ],
+        "subnetmask":[ "255.255.255.0" ]
+      },
+      "wlan1":{
+        "static ip_address":[  "10.9.141.1/24" ],
+        "static routers":[ "10.9.141.1" ],
+        "static domain_name_server":[  "1.1.1.1 8.8.8.8" ],
+        "subnetmask":[ "255.255.255.0" ]
+      },
+      "uap0":{
+        "static ip_address":[ "192.168.50.1/24" ],
+        "static routers":[ "192.168.50.1" ],
+        "static domain_name_server":[ "1.1.1.1 8.8.8.8" ],
+        "subnetmask":[ "255.255.255.0" ]
+      },
+      "options":{
+        "# RaspAP default configuration":null,
+        "hostname":null,
+        "clientid":null,
+        "persistent":null,
+        "option rapid_commit":null,
+        "option domain_name_servers, domain_name, domain_search, host_name":null,
+        "option classless_static_routes":null,
+        "option ntp_servers":null,
+        "require dhcp_server_identifier":null,
+        "slaac private":null,
+        "nohook lookup-hostname":null
+      }
     },
-    "uap0": {
-      "static ip_address": [ "192.168.50.1/24" ],
-      "static routers": [ "192.168.50.1" ],
-      "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
-      "subnetmask": [ "255.255.255.0" ]
+    "dnsmasq":{
+      "wlan0":{
+        "dhcp-range":[  "10.3.141.50,10.3.141.254,255.255.255.0,12h" ]
+      },
+      "wlan1":{
+        "dhcp-range":[ "10.9.141.50,10.9.141.254,255.255.255.0,12h" ]
+      },
+      "uap0":{
+        "dhcp-range":[  "192.168.50.50,192.168.50.150,12h" ]
+      }
     },
-    "options": {
-      "# RaspAP default configuration": null,
-      "hostname": null,
-      "clientid": null,
-      "persistent": null,
-      "option rapid_commit": null,
-      "option domain_name_servers, domain_name, domain_search, host_name": null,
-      "option classless_static_routes": null,
-      "option ntp_servers": null,
-      "require dhcp_server_identifier": null,
-      "slaac private": null,
-      "nohook lookup-hostname": null
-    }
-  },
-  "dnsmasq": {
-    "wlan0": {
-      "dhcp-range": [ "10.3.141.50,10.3.141.254,255.255.255.0,12h" ]
-    },
-    "wlan1": {
-      "dhcp-range": [ "10.9.141.50,10.9.141.254,255.255.255.0,12h" ]
-    },
-    "uap0": {
-      "dhcp-range": [ "192.168.50.50,192.168.50.150,12h" ]
-    }
-  },
-  "wireguard": {
-    "server": {
-      "Address": [ "10.8.2.1/24" ],
-      "ListenPort": [ "51820" ],
-      "DNS": [ "9.9.9.9" ],
-      "PostUp": [ "iptables -A FORWARD -i wlan0 -o wg0 -j ACCEPT; iptables -A FORWARD -i wg0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -A  POSTROUTING -o wg0 -j MASQUERADE" ],
-      "PostDown": [ "iptables -D FORWARD -i wlan0 -o wg0 -j ACCEPT; iptables -D FORWARD -i wg0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -D  POSTROUTING -o wg0 -j MASQUERADE" ]
-    },
-    "peer": {
-      "Address": [ "10.8.1.2/24" ],
-      "Endpoint": [ "10.8.2.1:51820" ],
-      "ListenPort": [ "21841" ],
-      "AllowedIPs": ["10.8.2.0/24"],
-      "PersistentKeepalive": [ "15" ]
-    }
-  },
-  "txpower": {
-    "dbm": [ "auto", "30", "20", "17", "10", "6", "3", "1", "0" ]
+    "wireguard":{
+      "server":{
+        "Address":[  "10.8.2.1/24" ],
+        "ListenPort":[  "51820" ],
+        "DNS":[ "9.9.9.9" ],
+        "PostUp":[ "iptables -A FORWARD -i wlan0 -o wg0 -j ACCEPT; iptables -A FORWARD -i wg0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -A  POSTROUTING -o wg0 -j MASQUERADE" ],
+        "PostDown":[ "iptables -D FORWARD -i wlan0 -o wg0 -j ACCEPT; iptables -D FORWARD -i wg0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -D  POSTROUTING -o wg0 -j MASQUERADE" ],
+        "PostUpEx":[ "iptables -I OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL ! -d %s -j REJECT" ],
+        "PreDown":[ "iptables -D OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL ! -d %s -j REJECT" ]
+      },
+      "peer":{
+        "Address":[ "10.8.1.2/24" ],
+        "Endpoint":[ "10.8.2.1:51820" ],
+        "ListenPort":[ "21841" ],
+        "AllowedIPs":[  "10.8.2.0/24" ],
+        "PersistentKeepalive":[ "15" ]
+      }
+		},
+		  "txpower": {
+		    "dbm": [ "auto", "30", "20", "17", "10", "6", "3", "1", "0" ]
+		}
   }
 }
 

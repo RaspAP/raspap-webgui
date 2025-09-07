@@ -76,8 +76,10 @@ class PluginManager
      * Iterates over registered plugins and calls its associated method
      * @param string $page
      */
-    public function handlePageAction(string $page): bool
+    public function handlePageAction(?string $page): bool
     {
+        $page = $page ?? '';
+
         foreach ($this->getInstalledPlugins() as $pluginClass) {
             $plugin = new $pluginClass($this->pluginPath, $pluginClass);
 

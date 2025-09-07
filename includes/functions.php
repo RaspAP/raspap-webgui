@@ -65,77 +65,6 @@ function cidr2mask($cidr)
 }
 
 /**
- * Removes a dhcp configuration block for the specified interface
- *
- * @param string $iface
- * @param object $status
- * @return boolean $result
- */
-function removeDHCPConfig($iface,$status)
-{
-    $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
-    $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
-    file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
-    system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $result);
-    if ($result == 0) {
-        $status->addMessage('DHCP configuration for '.$iface.'  removed.', 'success');
-    } else {
-        $status->addMessage('Failed to remove DHCP configuration for '.$iface.'.', 'danger');
-        return $result;
-    }
-}
-
-/**
- * Removes a dhcp configuration block for the specified interface
- *
- * @param string $dhcp_cfg
- * @param string $iface
- * @return string $dhcp_cfg
- */
-function removeDHCPIface($dhcp_cfg,$iface)
-{
-    $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
-    return $dhcp_cfg;
-}
-
-/**
- * Removes a dnsmasq configuration block for the specified interface
- *
- * @param string $iface
- * @param object $status
- * @return boolean $result
- */
-function removeDnsmasqConfig($iface,$status)
-{
-    system('sudo rm '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);
-    if ($result == 0) {
-        $status->addMessage('Dnsmasq configuration for '.$iface.' removed.', 'success');
-    } else {
-        $status->addMessage('Failed to remove dnsmasq configuration for '.$iface.'.', 'danger');
-    }
-    return $result;
-}
-
-/**
- * Scans dnsmasq configuration dir for the specified interface
- * Non-matching configs are removed, optional adblock.conf is protected
- *
- * @param string $dir_conf
- * @param string $interface
- * @param object $status
- */
-function scanConfigDir($dir_conf,$interface,$status)
-{
-    $syscnf = preg_grep('~\.(conf)$~', scandir($dir_conf));
-    foreach ($syscnf as $cnf) {
-        if ($cnf !== '090_adblock.conf' && !preg_match('/.*_'.$interface.'.conf/', $cnf)) {
-            system('sudo rm /etc/dnsmasq.d/'.$cnf, $result);
-        }
-    }
-    return $status;
-}
-
-/**
  * Returns a default (fallback) value for the selected service, interface & setting
  * from /etc/raspap/networking/defaults.json
  *
@@ -570,8 +499,13 @@ function dnsServers()
 
 function blocklistProviders()
 {
-    $data = json_decode(file_get_contents("./config/blocklists.json"));
-    return (array) $data;
+    $raw = json_decode(file_get_contents("./config/blocklists.json"), true);
+    $result = [];
+
+    foreach ($raw as $group => $entries) {
+        $result[$group] = array_keys($entries);
+    }
+    return $result;
 }
 
 function optionsForSelect($options)
@@ -659,6 +593,21 @@ function getColorOpt()
     } else {
         $color = $_COOKIE['color'];
     }
+
+    // Define the regex pattern for valid CSS color formats
+    $colorPattern = "/^(" .
+        "#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})" . "|" .           // Hex colors (#RGB or #RRGGBB)
+        "rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)" . "|" .     // RGB format
+        "rgba\(\s*(?:\d{1,3}\s*,\s*){3}\s*(0|0\.\d+|1)\s*\)" . "|" . // RGBA format
+        "[a-zA-Z]+" .                                         // Named colors
+    ")$/i";
+
+    // Validate the color
+    if (!preg_match($colorPattern, $color)) {
+        // Return a default color if validation fails
+        $color = "#2b8080";
+    }
+
     return $color;
 }
 
@@ -966,12 +915,12 @@ function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cp
     ?>
     <div class="row g-0">
       <div class="col-4 ms-2 sidebar-brand-icon">
-        <img src="app/img/raspAP-logo.php" class="navbar-logo" width="60" height="60">
+        <img src="app/img/raspAP-logo.php?static=1" class="navbar-logo" width="70" height="70">
       </div>
       <div class="col ml-2">
         <div class="ml-1 sb-status">Status</div>
         <div class="info-item-xs"><span class="icon">
-          <i class="fas fa-circle <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
+          <i class="fas fa-circle hostapd-led <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
         </div>
         <div class="info-item-xs"><span class="icon">
           <i class="fas fa-circle <?php echo ($memused_led); ?>"></i></span> <?php echo _("Mem Use").': '. htmlspecialchars(strval($memused), ENT_QUOTES); ?>%
@@ -1005,4 +954,3 @@ function callbackTimeout(callable $callback, int $interval)
 
     return $result;
 }
-

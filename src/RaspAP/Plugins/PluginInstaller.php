@@ -32,7 +32,7 @@ class PluginInstaller
         $this->tempSudoers = '/tmp/090_';
         $this->destSudoers = '/etc/sudoers.d/';
         $this->refModules = '/refs/heads/master/.gitmodules';
-        $this->rootPath = $_SERVER['DOCUMENT_ROOT'];
+        $this->rootPath = dirname(__DIR__, 3);
         $this->pluginsManifest = '/plugins/manifest.json';
         $this->repoPublic = $this->getRepository();
         $this->helperScriptPath = RASPI_CONFIG.'/plugins/plugin_helper.sh';
@@ -205,6 +205,10 @@ class PluginInstaller
                     $this->copyConfigFiles($manifest['configuration'], $pluginDir);
                     $rollbackStack[] = 'removeConfigFiles';
                 }
+                if (!empty($manifest['permissions'])) {
+                    $this->setFilePermissions($manifest['permissions']);
+                    $rollbackStack[] = 'revertFilePermissions';
+                }
                 if (!empty($manifest['javascript'])) {
                     $this->copyJavaScriptFiles($manifest['javascript'], $pluginDir);
                     $rollbackStack[] = 'removeJavaScript';
@@ -265,10 +269,16 @@ class PluginInstaller
      */
     private function installDependencies(array $dependencies): void
     {
-        $packages = array_keys($dependencies);
-        $packageList = implode(' ', $packages);
+        if (empty($dependencies)) {
+            return; // nothing to do
+        }
 
-        $cmd = sprintf('sudo %s packages %s', escapeshellarg($this->helperScriptPath), escapeshellarg($packageList));
+        $packageList = implode(' ', array_map('escapeshellarg', array_keys($dependencies)));
+        $cmd = sprintf(
+            'sudo %s packages %s',
+            escapeshellarg($this->helperScriptPath),
+            $packageList
+        );
         $return = shell_exec($cmd);
         if (strpos(strtolower($return), 'ok') === false) {
             throw new \Exception('Plugin helper failed to install depedencies.');
@@ -315,6 +325,38 @@ class PluginInstaller
             $return = shell_exec($cmd);
             if (strpos(strtolower($return), 'ok') === false) {
                 throw new \Exception("Failed to copy configuration file: $source to $destination");
+            }
+        }
+    }
+
+    /**
+     * Sets permissions on a specified file, including owner/group and mode
+     *
+     * @param array $permissions): void
+     */
+    private function setFilePermissions(array $permissions): void
+    {
+        foreach ($permissions as $entry) {
+            $file = $entry['file'] ?? null;
+            $owner = $entry['owner'] ?? null;
+            $group = $entry['group'] ?? null;
+            $mode = $entry['mode'] ?? null;
+
+            if (!$file || !$owner || !$group || !$mode) {
+                error_log("Incomplete permission entry for file: " . json_encode($entry));
+                continue;
+            }
+
+            $cmd = escapeshellcmd('sudo '.RASPI_CONFIG.'/plugins/plugin_helper.sh') .
+                ' permissions ' .
+                escapeshellarg($file) .' '.
+                escapeshellarg($owner) .' '.
+                escapeshellarg($group) .' '.
+                escapeshellarg($mode);
+            exec($cmd . ' 2>&1', $output, $return);
+
+            if ($return !== 0) {
+                throw new \Exception("Failed to set permissions on $file: " . implode("\n", $output));
             }
         }
     }
@@ -503,7 +545,7 @@ class PluginInstaller
                     name="install-plugin" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
                     data-plugin-manifest="' .$manifest. '" data-repo-public="' .$this->repoPublic. '">' . _("Details") .'</button>';
             }
-
+    
             $icon = htmlspecialchars($manifestData['icon'] ?? '');
             $pluginDocs = htmlspecialchars($manifestData['plugin_docs'] ?? '');
             $nameText = htmlspecialchars($manifestData['name'] ?? 'Unknown Plugin');
@@ -511,7 +553,6 @@ class PluginInstaller
                 .$pluginDocs
                 .'" target="_blank">'
                 .$nameText. '</a>';
-
             $version = htmlspecialchars($manifestData['version'] ?? 'N/A');
             $description = htmlspecialchars($manifestData['description'] ?? 'No description available');
 

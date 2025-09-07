@@ -12,6 +12,23 @@ function DisplaySystem(&$extraFooterScripts)
     $dashboard = new \RaspAP\UI\Dashboard;
     $pluginInstaller = \RaspAP\Plugins\PluginInstaller::getInstance();
 
+    // set defaults
+    $optAutoclose = true;
+    $alertTimeout = 5000;
+    $good_input = true;
+    $config_port = false;
+
+    // set alert_timeout from cookie if valid
+    if (isset($_COOKIE['alert_timeout']) && is_numeric($_COOKIE['alert_timeout'])) {
+        $cookieTimeout = (int) $_COOKIE['alert_timeout'];
+
+        if ($cookieTimeout > 0) {
+            $alertTimeout = $cookieTimeout;
+        } else {
+            // A value of 0 means auto-close is disabled
+            $optAutoclose = false;
+        }
+    }
     if (isset($_POST['SaveLanguage'])) {
         if (isset($_POST['locale'])) {
             $_SESSION['locale'] = $_POST['locale'];
@@ -21,7 +38,6 @@ function DisplaySystem(&$extraFooterScripts)
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveServerSettings'])) {
-            $good_input = true;
             // Validate server port
             if (isset($_POST['serverPort'])) {
                 if (strlen($_POST['serverPort']) > 4 || !is_numeric($_POST['serverPort'])) {
@@ -32,13 +48,13 @@ function DisplaySystem(&$extraFooterScripts)
                }
             }
             // Validate server bind address
-            $serverBind = escapeshellarg('');
-            if ($_POST['serverBind'] && $_POST['serverBind'] !== null ) {
-                if (!filter_var($_POST['serverBind'], FILTER_VALIDATE_IP)) {
+            if (isset($_POST['serverBind']) && $_POST['serverBind'] !== '') {
+                $inputBind = trim($_POST['serverBind']);
+                if (!filter_var($inputBind, FILTER_VALIDATE_IP)) {
                     $status->addMessage('Invalid value for bind address', 'danger');
                     $good_input = false;
                 } else {
-                    $serverBind = escapeshellarg($_POST['serverBind']);
+                    $serverBind = escapeshellarg($inputBind);
                 }
             }
             // Validate log limit
@@ -57,6 +73,21 @@ function DisplaySystem(&$extraFooterScripts)
                 foreach ($return as $line) {
                     $status->addMessage($line, 'info');
                 }
+            }
+        } elseif (isset($_POST['savethemeSettings'])) {
+            // Validate alert timout
+            if (isset($_POST['autoClose'])) {
+                $alertTimeout = trim($_POST['alertTimeout'] ?? '');
+                if (strlen($alertTimeout) > 7 || !is_numeric($alertTimeout)) {
+                    $status->addMessage('Invalid value for alert close timeout', 'danger');
+                    $good_input = false;
+                } else {
+                    setcookie('alert_timeout', (int) $alertTimeout);
+                    $status->addMessage(sprintf(_('Changing alert close timeout to %s ms'), $alertTimeout), 'info');
+                }
+            } else {
+                setcookie('alert_timeout', '', time() - 3600, '/');
+                $optAutoclose = false;
             }
         }
     }
@@ -91,9 +122,15 @@ function DisplaySystem(&$extraFooterScripts)
 
     // memory use
     $memused  = $system->usedMemory();
-    $memStatus = getMemStatus($memused);
+    $memStatus = getResourceStatus($memused);
     $memused_status = $memStatus['status'];
     $memused_led = $memStatus['led'];
+
+    // disk storage use
+    $diskused  = $system->usedDisk();
+    $diskStatus = getResourceStatus($diskused);
+    $diskused_status = $diskStatus['status'];
+    $diskused_led = $diskStatus['led'];
 
     // cpu load
     $cpuload = $system->systemLoadPercentage();
@@ -116,7 +153,7 @@ function DisplaySystem(&$extraFooterScripts)
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
     $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
-    $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
+    $extraFooterScripts[] = array('src'=>'app/js/vendor/huebee.js', 'defer'=>false);
     $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
 
     $plugins = $pluginInstaller->getUserPlugins();
@@ -138,6 +175,9 @@ function DisplaySystem(&$extraFooterScripts)
         "memused",
         "memused_status",
         "memused_led",
+        "diskused",
+        "diskused_status",
+        "diskused_led",
         "cpuload",
         "cpuload_status",
         "cputemp",
@@ -146,29 +186,31 @@ function DisplaySystem(&$extraFooterScripts)
         "themes",
         "selectedTheme",
         "logLimit",
-        "pluginsTable"
+        "pluginsTable",
+        "optAutoclose",
+        "alertTimeout"
     ));
 }
 
-function getMemStatus($memused): array
+function getResourceStatus($used): array
 {
-    $memused_status = "primary";
-    $memused_led = "";
+    $used_status = "primary";
+    $used_led = "";
 
-    if ($memused > 90) {
-        $memused_status = "danger";
-        $memused_led = "service-status-down";
-    } elseif ($memused > 75) {
-        $memused_status = "warning";
-        $memused_led = "service-status-warn";
-    } elseif ($memused > 0) {
-        $memused_status = "success";
-        $memused_led = "service-status-up";
+    if ($used > 90) {
+        $used_status = "danger";
+        $used_led = "service-status-down";
+    } elseif ($used > 75) {
+        $used_status = "warning";
+        $used_led = "service-status-warn";
+    } elseif ($used > 0) {
+        $used_status = "success";
+        $used_led = "service-status-up";
     }
 
     return [
-        'status' => $memused_status,
-        'led' => $memused_led
+        'status' => $used_status,
+        'led' => $used_led
     ];
 }
 

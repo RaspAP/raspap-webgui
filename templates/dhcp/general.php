@@ -69,9 +69,10 @@
         <div class="form-check form-switch">
           <input class="form-check-input" id="default-route" type="checkbox" name="DefaultRoute" value="1" aria-describedby="default-route-description">
           <label class="form-check-label" for="default-route"><?php echo _("Install a default route for this interface") ?></label>
+          <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Enable this only if you want your device to use this interface as its primary route to the internet."); ?>"></i>
         </div>
         <p class="mb-0" id="default-route-description">
-          <small><?php echo _("This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration.") ?></small>
+          <small><?php echo _("This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file.") ?></small>
         </p>
     </div>
   </div>
@@ -84,7 +85,7 @@
           <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."); ?>"></i>
         </div>
         <p class="mb-0" id="hook-wpa-supplicant-description">
-          <small><?php echo _("This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration.") ?></small>
+          <small><?php echo _("This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file.") ?></small>
         </p>
     </div>
   </div>

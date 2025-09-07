@@ -51,6 +51,7 @@ function _install_raspap() {
     _download_latest_files
     _change_file_ownership
     _create_hostapd_scripts
+    _install_raspap_hostapd
     _create_plugin_scripts
     _create_lighttpd_scripts
     _install_lighttpd_configs
@@ -75,6 +76,7 @@ function _update_raspap() {
     _download_latest_files
     _change_file_ownership
     _patch_system_files
+    _enable_network_activity_monitor
     _create_plugin_scripts
     _install_complete
 }
@@ -779,6 +781,14 @@ function _enable_raspap_daemon() {
     sudo systemctl enable raspapd.service || _install_status 1 "Failed to enable raspap.service"
 }
 
+# Install hostapd@.service
+function _install_raspap_hostapd() {
+    _install_log "Installing RaspAP hostapd@.service"
+    sudo cp $webroot_dir/installers/hostapd@.service /etc/systemd/system/ || _install_status 1 "Unable to copy hostapd@.service file"
+    sudo systemctl daemon-reload
+    _install_status 0
+}
+
 # Configure IP forwarding, set IP tables rules, prompt to install RaspAP daemon
 function _configure_networking() {
     _install_log "Configuring networking"
@@ -821,8 +831,37 @@ function _configure_networking() {
         echo -e
         _enable_raspap_daemon
     fi
+
+    # Enable RaspAP network activity monitor
+    _enable_network_activity_monitor
+
     _install_status 0
  }
+
+# Install and enable RaspAP network activity monitor
+function _enable_network_activity_monitor() {
+    _install_log "Enabling RaspAP network activity monitor"
+    echo "Compiling raspap-network-monitor.c to /usr/local/bin/"
+    if ! command -v gcc >/dev/null 2>&1; then
+        echo "gcc not found, installing..."
+        sudo apt-get update
+        sudo apt-get install -y build-essential || _install_status 1 "Failed to install build tools"
+    fi
+    sudo gcc -O2 -o /usr/local/bin/raspap-network-monitor $webroot_dir/installers/raspap-network-monitor.c || _install_status 1 "Failed to compile raspap-network-monitor.c"
+    echo "Copying raspap-network-activity@.service to /lib/systemd/system/"
+    sudo cp $webroot_dir/installers/raspap-network-activity@.service /lib/systemd/system/ || _install_status 1 "Unable to move raspap-network-activity.service file"
+    sudo systemctl daemon-reload
+    echo "Enabling raspap-network-activity@wlan0.service"
+    sudo systemctl enable raspap-network-activity@wlan0.service || _install_status 1 "Failed to enable raspap-network-activity.service"
+    echo "Starting raspap-network-activity@wlan0.service"
+    sudo systemctl start raspap-network-activity@wlan0.service || _install_status 1 "Failed to start raspap-network-activity.service"
+    sleep 0.5
+    echo "Symlinking /dev/shm/net_activity to $webroot_dir/app/net_activity"
+    sudo ln -sf /dev/shm/net_activity $webroot_dir/app/net_activity || _install_status 1 "Failed to link net_activity to ${webroot_dir}/app"
+    echo "Setting ownership for ${raspap_user} on ${webroot_dir}/app/net_activity"
+    sudo chown -R $raspap_user:$raspap_user $webroot_dir/app/net_activity || _install_status 1 "Unable to set ownership of ${webroot_dir}/app/net_activity"
+    echo "Network activity monitor enabled"
+}
 
 # Prompt to configure TCP BBR option
 function _prompt_configure_tcp_bbr() {

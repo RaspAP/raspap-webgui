@@ -16,7 +16,7 @@ RaspAP is made possible by a strong [community of developers](https://github.com
 
 * [GitHub discussions](https://github.com/RaspAP/raspap-webgui/discussions)
 * [Discord chat](https://discord.gg/KVAsaAR)
-* [Twitter](https://twitter.com/rasp_ap)
+* [X](https://x.com/rasp_ap)
 * [Reddit](https://www.reddit.com/r/RaspAP/)
 
 If you enjoy using RaspAP and would like to support our work financially, consider becoming an [Insider](https://github.com/sponsors/RaspAP).

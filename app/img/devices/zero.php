@@ -7,7 +7,7 @@ $color = getColorOpt();
 <svg version="1.1" id="Zero_BLANK" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 218.03 144.11" style="enable-background:new 0 0 218.03 144.11;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:<?php echo $color; ?>;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st0{fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
 <g id="LINE_1238_">
 	<line class="st0" x1="96.57" y1="105.12" x2="97.06" y2="105.29"/>
