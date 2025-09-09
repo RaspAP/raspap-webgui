@@ -1,5 +1,5 @@
-<div style="display: flex; gap: 2rem; margin: 2rem 1rem;">
-  <div style="flex: 0 0 320px;">
+<div style="display: flex; gap: 1.5rem; margin: 1.5rem 1rem;">
+  <div style="flex: 0 0 330px;">
     <a href="https://nostarch.com/wireless-cookbook" target="_blank">
       <img src="app/img/WirelessCookbook.jpg" alt="The Wireless Cookbook Cover" style="width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px;">
     </a>
