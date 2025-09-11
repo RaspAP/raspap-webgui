@@ -41,7 +41,7 @@ class DhcpcdManager
     {
         // determine static IP, routers, DNS
         $jsonData = $this->getInterfaceConfig($ap_iface);
-        //error_log("DhcpcdManager::buildConfig() jsonData =" . print_r($jsonData, true));
+
         $ip_address = empty($jsonData['StaticIP'])
             ? getDefaultNetValue('dhcp', $ap_iface, 'static ip_address')
             : $jsonData['StaticIP'];
@@ -485,6 +485,21 @@ class DhcpcdManager
                     }
                 }
             }
+        } else {
+            // fallback to defaults
+            $rangeRaw = getDefaultNetValue('dnsmasq', $iface, 'dhcp-range');
+            if ($rangeRaw) {
+                $result['DHCPEnabled'] = true;
+                $rangeParts = explode(',', $rangeRaw);
+                $result['RangeStart'] = $rangeParts[0] ?? null;
+                $result['RangeEnd']   = $rangeParts[1] ?? null;
+                $result['RangeMask']  = $rangeParts[2] ?? null;
+                $leaseSpec            = $rangeParts[3] ?? null;
+                if ($leaseSpec && preg_match('/^(\d+)([smhd])?$/i', $leaseSpec, $m)) {
+                    $result['leaseTime']         = $m[1];
+                    $result['leaseTimeInterval'] = $m[2] ?? 'h';
+                }
+            }
         }
 
         // dhcpcd
@@ -513,6 +528,11 @@ class DhcpcdManager
                 $result['FallbackEnabled']     = (bool) preg_match('/fallback\s+static_' . preg_quote($iface, '/') . '/i', $block);
                 $result['DefaultRoute']        = (bool) preg_match('/\bgateway\b/', $block);
                 $result['NoHookWPASupplicant'] = (bool) preg_match('/nohook\s+wpa_supplicant/i', $block);
+            } else {
+                $result['StaticIP']      = getDefaultNetValue('dhcp', $iface, 'static ip_address');
+                $result['SubnetMask']    = getDefaultNetValue('dhcp', $iface, 'subnetmask');
+                $result['StaticRouters'] = getDefaultNetValue('dhcp', $iface, 'static routers');
+                $result['StaticDNS']     = getDefaultNetValue('dhcp', $iface, 'static domain_name_server');
             }
         }
         return $result;

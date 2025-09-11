@@ -61,8 +61,17 @@ class DnsmasqManager
      * @return array  $config
      * @throws \RuntimeException
      */
-    public function buildConfig(array $syscfg, string $iface, bool $wifiAPEnable, bool $bridgedEnable): array
+    public function buildConfig(?array $syscfg, string $iface, bool $wifiAPEnable, bool $bridgedEnable): array
     {
+        // fallback: if no syscfg for interface seed with defaults
+        if ($syscfg === null) {
+            $syscfg = [];
+            $dhcp_range = getDefaultNetValue('dnsmasq', $iface, 'dhcp-range');
+            if ($dhcp_range !== false) {
+                $syscfg['dhcp-range'] = $dhcp_range;
+            }
+        }
+
         if ($wifiAPEnable == 1) {
             // Enable uap0 configuration for ap-sta mode
             // Set dhcp-range from system config, fallback to default if undefined
