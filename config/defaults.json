@@ -53,31 +53,31 @@
       "subnetmask": [ "255.255.255.0" ]
     },
     "wlan1": {
-      "static ip_address": [ "10.9.141.1/24" ],
+      "static ip_address": [ "10.9.141.1" ],
       "static routers": [ "10.9.141.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
     "wlan2": {
-      "static ip_address": [ "10.6.141.1/24" ],
+      "static ip_address": [ "10.6.141.1" ],
       "static routers": [ "10.6.141.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
     "uap0": {
-      "static ip_address": ["192.168.50.1/24" ],
+      "static ip_address": ["192.168.50.1" ],
       "static routers": [ "192.168.50.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
     "eth0": {
-      "static ip_address": [ "192.168.55.1/24" ],
+      "static ip_address": [ "192.168.55.1" ],
       "static routers": [ "192.168.55.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
     "enx": {
-      "static ip_address": [ "192.168.60.1/24" ],
+      "static ip_address": [ "192.168.60.1" ],
       "static routers": [ "192.168.60.1" ],
       "static domain_name_server": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
