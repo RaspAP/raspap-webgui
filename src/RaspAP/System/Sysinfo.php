@@ -173,12 +173,14 @@ class Sysinfo
     {
         exec('cat '. RASPI_ADBLOCK_CONFIG, $return);
         $arrConf = ParseConfig($return);
+        $enabled = false;
         if (sizeof($arrConf) > 0) {
             $enabled = true;
         }
         exec('pidof dnsmasq | wc -l', $dnsmasq);
         $dnsmasq_state = ($dnsmasq[0] > 0);
-        $status = $dnsmasq_state && $enabled ? true : false;
+
+        $status = $dnsmasq_state && $enabled;
         return $status;
     }
 

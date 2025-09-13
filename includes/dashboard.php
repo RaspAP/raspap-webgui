@@ -88,6 +88,7 @@ function DisplayDashboard(&$extraFooterScripts): void
     } else {
         $firewallManaged = '<a href="/plugin__Firewall">';
         $firewallStatus = ($dashboard->firewallEnabled() == true) ? "active" : "";
+        $firewallUnavailable = null;
     }
 
     echo renderTemplate(

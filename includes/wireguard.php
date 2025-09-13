@@ -49,7 +49,9 @@ function DisplayWireGuardConfig()
     exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $return);
     $conf = ParseConfig($return, $parseFlag);
     $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
-    $wg_srvport = ($conf['ListenPort'] == '') ? getDefaultNetValue('wireguard','server','ListenPort') : $conf['ListenPort'];
+    $wg_srvport = ($conf['ListenPort'] ?? '') === ''
+        ? getDefaultNetValue('wireguard','server','ListenPort')
+        : $conf['ListenPort'];
     $wg_srvipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','server','Address') : $conf['Address'];
     $wg_srvdns = ($conf['DNS'] == '') ? getDefaultNetValue('wireguard','server','DNS') : $conf['DNS'];
     if (is_array($wg_srvdns)) {
