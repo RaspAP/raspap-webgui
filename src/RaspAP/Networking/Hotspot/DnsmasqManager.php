@@ -168,7 +168,7 @@ class DnsmasqManager
         if ($post_data['no-resolv'] == "1") {
             $config[] = "no-resolv";
         }
-        foreach ($post_data['server'] as $server) {
+        foreach (($post_data['server'] ?? []) as $server) {
             $config[] = "server=$server";
         }
         if (!empty($post_data['DNS1'])) {

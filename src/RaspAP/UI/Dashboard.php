@@ -301,14 +301,12 @@ class Dashboard {
      */
     public function firewallEnabled(): bool
     {
-        $conf = array();
-        if (file_exists($this->firewallConfig) ) {
-            $conf = parse_ini_file($this->firewallConfig);
+        if (!file_exists($this->firewallConfig)) {
+            return false;
         }
-        if ($conf["firewall-enable"] == 1) {
-            return true;
-        }
-        return false;
+
+        $conf = parse_ini_file($this->firewallConfig) ?: [];
+        return !empty($conf['firewall-enable']) && (int)$conf['firewall-enable'] === 1;
     }
 
     /*

@@ -8,7 +8,7 @@
           <input class="form-check-input" id="wgLogEnable" type="checkbox" name="wgLogEnable" value="1" <?php echo $optLogEnable ? ' checked="checked"' : "" ?> aria-describedby="wgLogEnable">
           <label class="form-check-label" for="wgLogEnable"><?php echo _("Logfile output") ?></label>
         </div>
-        <?php echo '<textarea class="logoutput text-secondary my-3">'.htmlspecialchars($wg_log, ENT_QUOTES).'</textarea>';
+        <?php echo '<textarea class="logoutput text-secondary my-3">'.htmlspecialchars($log, ENT_QUOTES).'</textarea>';
         ?>
     </div>
   </div><!-- /.row -->
