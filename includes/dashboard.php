@@ -82,7 +82,9 @@ function DisplayDashboard(&$extraFooterScripts): void
     $vpnStatus = $vpn ? "active" : "inactive";
     $vpnManaged = $vpn ? $dashboard->getVpnManaged($vpn) : null;
     $firewallManaged = $firewallStatus = "";
-    $firewallInstalled = array_filter($plugins, fn($p) => str_ends_with($p, 'Firewall')) ? true : false;
+    $firewallInstalled = (bool) array_filter($plugins, function($p) {
+        return substr($p, -strlen('Firewall')) === 'Firewall';
+    });
     if (!$firewallInstalled) {
         $firewallUnavailable = '<i class="fas fa-slash fa-stack-1x"></i>';
     } else {
