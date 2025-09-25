@@ -149,21 +149,24 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
+        13) # Debian 13 trixie
+            php_package="php8.4-fpm"
+            phpiniconf="/etc/php/8.4/fpm/php.ini" ;;
         23.05|12*) # Debian 12 & Armbian 23.05
             php_package="php8.2-cgi"
-            phpcgiconf="/etc/php/8.2/cgi/php.ini" ;;
+            phpiniconf="/etc/php/8.2/cgi/php.ini" ;;
         23.04) # Ubuntu Server 23.04
             php_package="php8.1-cgi"
-            phpcgiconf="/etc/php/8.1/cgi/php.ini" ;;
+            phpiniconf="/etc/php/8.1/cgi/php.ini" ;;
         22.04|20.04|18.04|19.10|11*) # Previous Ubuntu Server, Debian & Armbian distros
             php_package="php7.4-cgi"
-            phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
+            phpiniconf="/etc/php/7.4/cgi/php.ini" ;;
         10*|11*)
             php_package="php7.3-cgi"
-            phpcgiconf="/etc/php/7.3/cgi/php.ini" ;;
+            phpiniconf="/etc/php/7.3/cgi/php.ini" ;;
         9*)
             php_package="php7.0-cgi"
-            phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
+            phpiniconf="/etc/php/7.0/cgi/php.ini" ;;
         8)
             _install_status 1 "${DESC} and php5 are not supported. Please upgrade."
             exit 1 ;;
@@ -272,6 +275,12 @@ function _install_dependencies() {
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
     sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $rsync_package $network_tools $ifconfig_package vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
+
+    if [[ "$php_package" == *"-fpm" ]]; then
+        install_log "Enabling lighttpd fastcgi-php-fpm module for $php_package"
+        sudo lighty-enable-mod fastcgi-php-fpm || install_status 1 "Unable to enable fastcgi-php-fpm module"
+    fi
+
     _install_status 0
 }
 
@@ -956,14 +965,14 @@ function _patch_system_files() {
 function _optimize_php() {
     if [ "$upgrade" == 0 ]; then
         _install_log "Optimize PHP configuration"
-        if [ ! -f "$phpcgiconf" ]; then
+        if [ ! -f "$phpiniconf" ]; then
             _install_status 2 "PHP configuration could not be found."
             return
         fi
 
         # Backup php.ini and create symlink for restoring.
         datetimephpconf=$(date +%F-%R)
-        sudo cp "$phpcgiconf" "$raspap_dir/backups/php.ini.$datetimephpconf"
+        sudo cp "$phpiniconf" "$raspap_dir/backups/php.ini.$datetimephpconf"
         sudo ln -sf "$raspap_dir/backups/php.ini.$datetimephpconf" "$raspap_dir/backups/php.ini"
 
         echo -n "Enable HttpOnly for session cookies (Recommended)? [Y/n]: "
@@ -978,7 +987,7 @@ function _optimize_php() {
 
         if [ "$assume_yes" == 1 ] || [ "$php_session_cookie" == 1 ]; then
             echo "Php-cgi enabling session.cookie_httponly."
-            sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpcgiconf"
+            sudo sed -i -E 's/^session\.cookie_httponly\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/session.cookie_httponly = 1/' "$phpiniconf"
         fi
 
         if [ "$php_package" = "php7.1-cgi" ]; then
@@ -994,7 +1003,7 @@ function _optimize_php() {
 
             if [ "$assume_yes" == 1 ] || [ "$phpopcache" == 1 ]; then
                 echo -e "Php-cgi enabling opcache.enable."
-                sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpcgiconf"
+                sudo sed -i -E 's/^;?opcache\.enable\s*=\s*(0|([O|o]ff)|([F|f]alse)|([N|n]o))\s*$/opcache.enable = 1/' "$phpiniconf"
                 # Make sure opcache extension is turned on.
                 if [ -f "/usr/sbin/phpenmod" ]; then
                     sudo phpenmod opcache
