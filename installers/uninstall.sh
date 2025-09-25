@@ -48,21 +48,24 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
+        13) # Debian 13 trixie
+            php_package="php8.4-fpm"
+            phpiniconf="/etc/php/8.4/fpm/php.ini" ;;
         23.05|12*) # Debian 12 & Armbian 23.05
             php_package="php8.2-cgi"
-            phpcgiconf="/etc/php/8.2/cgi/php.ini" ;;
+            phpiniconf="/etc/php/8.2/cgi/php.ini" ;;
         23.04) # Ubuntu Server 23.04
             php_package="php8.1-cgi"
-            phpcgiconf="/etc/php/8.1/cgi/php.ini" ;;
+            phpiniconf="/etc/php/8.1/cgi/php.ini" ;;
         22.04|20.04|18.04|19.10|11*) # Previous Ubuntu Server, Debian & Armbian distros
             php_package="php7.4-cgi"
-            phpcgiconf="/etc/php/7.4/cgi/php.ini" ;;
+            phpiniconf="/etc/php/7.4/cgi/php.ini" ;;
         10*|11*)
             php_package="php7.3-cgi"
-            phpcgiconf="/etc/php/7.3/cgi/php.ini" ;;
+            phpiniconf="/etc/php/7.3/cgi/php.ini" ;;
         9*)
             php_package="php7.0-cgi"
-            phpcgiconf="/etc/php/7.0/cgi/php.ini" ;;
+            phpiniconf="/etc/php/7.0/cgi/php.ini" ;;
         8)
             _install_error "${DESC} and php5 are unsupported."
             exit 1 ;;
@@ -127,11 +130,11 @@ function _check_for_backups() {
                 sudo cp "$raspap_dir/backups/dhcpcd.conf" /etc/dhcpcd.conf
             fi
         fi
-        if [ -f "$raspap_dir/backups/php.ini" ] && [ -f "$phpcgiconf" ]; then
+        if [ -f "$raspap_dir/backups/php.ini" ] && [ -f "$phpiniconf" ]; then
             echo -n "Restore the last php.ini file? [y/N]: "
             read answer
             if [[ $answer -eq 'y' ]]; then
-                sudo cp "$raspap_dir/backups/php.ini" "$phpcgiconf"
+                sudo cp "$raspap_dir/backups/php.ini" "$phpiniconf"
             fi
         fi
     fi
