@@ -308,7 +308,10 @@ function _check_internet() {
     tput civis # hide cursor
 
     # run check in background
-    ( curl -Is --connect-timeout 3 --max-time 15 https://github.com | head -n 1 | grep "HTTP/2 200" >/dev/null ) &
+    (
+      curl -Is --connect-timeout 3 --max-time 15 https://github.com \
+        | grep -q "^HTTP/2 200"
+    ) &
     local pid=$!
 
     # display spinner while curl runs
@@ -318,8 +321,9 @@ function _check_internet() {
     done
     printf "\r"
 
-    # check exit status of curl
-    wait $pid || exit_code=$?
+    # capture exit status
+    wait "$pid"
+    exit_code=$?
 
     tput cnorm # restore cursor
 

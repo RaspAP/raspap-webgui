@@ -313,6 +313,8 @@ class WiFiManager
      */
     public function setKnownStationsWPA($networks)
     {
+        $this->ensureWpaSupplicant();
+
         $iface = escapeshellarg($_SESSION['wifi_client_interface']);
         $output = shell_exec("sudo wpa_cli -i $iface list_networks 2>&1");
 
@@ -473,6 +475,42 @@ class WiFiManager
             }
         }
         return false;
+    }
+
+    /**
+     * Ensures /etc/wpa_supplicant/wpa_supplicant.conf exists with minimal safe contents
+     * Does not overwrite an existing file
+     *
+     * @throws \RuntimeException on permission or write failure
+     */
+    public function ensureWpaSupplicant(): void
+    {
+        $confPath = '/etc/wpa_supplicant/wpa_supplicant.conf';
+
+        if (file_exists($confPath)) {
+            return;
+        }
+
+        $contents = <<<CONF
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+CONF;
+
+        $tmpFile = tempnam(sys_get_temp_dir(), 'wpa_conf_');
+        if ($tmpFile === false) {
+            throw new \RuntimeException("Failed to create temporary file for wpa_supplicant.conf");
+        }
+
+        file_put_contents($tmpFile, $contents);
+        chmod($tmpFile, 0600);
+
+        $cmd = escapeshellcmd("sudo cp $tmpFile $confPath");
+        exec($cmd, $output, $exitCode);
+        unlink($tmpFile);
+
+        if ($exitCode !== 0) {
+            throw new \RuntimeException("Failed to initialize wpa_supplicant.conf:  " . implode("\n", $output));
+        }
     }
 
 }
