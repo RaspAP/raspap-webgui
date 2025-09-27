@@ -313,7 +313,7 @@ class WiFiManager
      */
     public function setKnownStationsWPA($networks)
     {
-        $this->ensureWpaSupplicantConf();
+        $this->ensureWpaSupplicant();
 
         $iface = escapeshellarg($_SESSION['wifi_client_interface']);
         $output = shell_exec("sudo wpa_cli -i $iface list_networks 2>&1");
@@ -483,12 +483,11 @@ class WiFiManager
      *
      * @throws \RuntimeException on permission or write failure
      */
-    public function ensureWpaSupplicantConf(): void
+    public function ensureWpaSupplicant(): void
     {
         $confPath = '/etc/wpa_supplicant/wpa_supplicant.conf';
 
         if (file_exists($confPath)) {
-            // Already exists, do nothing
             return;
         }
 
