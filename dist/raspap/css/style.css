@@ -1,15 +1,14 @@
 @font-face {
   font-family: 'RaspAP';
-  src:  url('fonts/RaspAP.eot?3vjloy');
-  src:  url('fonts/RaspAP.eot?3vjloy#iefix') format('embedded-opentype'),
-    url('fonts/RaspAP.ttf?3vjloy') format('truetype'),
-    url('fonts/RaspAP.woff?3vjloy') format('woff'),
-    url('fonts/RaspAP.svg?3vjloy#RaspAP') format('svg');
+  src:  url('fonts/RaspAP.eot?8h3d6d');
+  src:  url('fonts/RaspAP.eot?8h3d6d#iefix') format('embedded-opentype'),
+    url('fonts/RaspAP.ttf?8h3d6d') format('truetype'),
+    url('fonts/RaspAP.woff?8h3d6d') format('woff'),
+    url('fonts/RaspAP.svg?8h3d6d#RaspAP') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
-
 
 [class^="ra-"], [class*=" ra-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
@@ -26,10 +25,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ra-wireshark:before {
+  font-size: 1.3rem;
+  font-weight: bold;
+  content: "\e904";
+  vertical-align: bottom;
+}
 .ra-wireguard:before {
   font-size: 1.1rem;
   content: "\e900";
-  vertical-align: middle;
 }
 .ra-raspap:before {
   content: "\e901";
@@ -46,19 +50,3 @@
   content: "\e903";
   vertical-align: top;
 }
-.card-header .ra-wireguard:before,
-.card-header .ra-tailscale:before,
-.card-header .ra-torproxy:before {
-  color: #fff;
-}
-
-.sidebar .nav-item.active .nav-link span.ra-wireguard:before,
-.sidebar .nav-item.active .nav-link span.ra-tailscale:before,
-.sidebar .nav-item.active .nav-link span.ra-torproxy:before {
-  color: #6e707e;
-}
-
-.sb-nav-link-icon .ra-tailscale {
-    margin-bottom: 0.4rem;
-}
-
