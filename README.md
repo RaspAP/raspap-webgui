@@ -139,6 +139,8 @@ RaspAP was originally made for Raspbian, but now also installs on the following 
 
 | Distribution | Release  | Architecture | Support |
 |---|:---:|:---:|:---:|
+| Raspberry Pi OS | (64-bit) Lite Trixie   | ARM	| Official |
+| Raspberry Pi OS | (32-bit) Lite Trixie   | ARM | Official |
 | Raspberry Pi OS | (64-bit) Lite Bookworm	| ARM | Official |
 | Raspberry Pi OS | (32-bit) Lite Bookworm | ARM | Official |
 | Raspberry Pi OS | (64-bit) Desktop Bookworm | ARM | Official |
