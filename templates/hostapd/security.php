@@ -1,5 +1,8 @@
 <div class="tab-pane fade" id="security">
-  <h4 class="mt-3"><?php echo _("Security settings"); ?></h4>
+  <div class="d-flex">
+    <h4 class="mt-3"><?php echo _("Security settings") ;?></h4>
+    <a href="https://docs.raspap.com/ap-basics/#security-settings" target="_blank"><i class="fas fa-book ml-2 mt-4 text-muted"></i></a>
+  </div>
   <div class="row">
     <div class="col-md-6">
       <div class="mb-3">
