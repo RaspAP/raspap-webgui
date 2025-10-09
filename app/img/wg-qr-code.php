@@ -13,6 +13,7 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
 exec("sudo cat " .RASPI_WIREGUARD_PATH.'client.conf', $return);
 $peer_conf = implode(PHP_EOL,$return);
 $peer_conf.= PHP_EOL;
+$peer_conf_sanitized = str_replace(["\r", "\n"], '', $peer_conf);
 $command = "qrencode -t svg -m 0 -o - " . mb_escapeshellarg($peer_conf);
 $svg = shell_exec($command);
 $etag = hash('sha256', $peer_conf);
@@ -23,6 +24,6 @@ header("Content-Type: image/svg+xml");
 header("Content-Length: $content_length");
 header("Last-Modified: $last_modified");
 header("ETag: \"$etag\"");
-header("X-QR-Code-Content: $peer_conf");
+header("X-QR-Code-Content: $peer_conf_sanitized");
 echo shell_exec($command);
 

@@ -32,15 +32,19 @@ body:
       options:
         - label: I have read and understand the [issue reporting policy](https://docs.raspap.com/issues/).
           required: true
+        - label: I have read and followed the [common sense checklist](https://docs.raspap.com/troubleshooting/#dos-and-donts).
+          required: true
         - label: I observed this bug on a clean install of a [supported OS](https://docs.raspap.com/#compatible-operating-systems).
           required: true
-        - label: I have followed the [project prerequisites](https://docs.raspap.com/#quick-start).
+        - label: I have followed the [project prerequisites](https://docs.raspap.com/quick_start/#quick-install).
           required: true
         - label: I have searched this repository for existing issues.
           required: true
         - label: I checked the [FAQ](https://docs.raspap.com/faq/) and [official documentation](https://docs.raspap.com/).
           required: true
-        - label: I have generated a [RaspAP debug log](https://docs.raspap.com/ap-basics/#debug-log) and performed a [self-diagnosis](https://docs.raspap.com/ap-basics/#diagnosing-problems).
+        - label: I am using an [external wireless adapter](https://docs.raspap.com/issues/#external-hardware).
+          required: false
+        - label: I have generated a [RaspAP debug log](https://docs.raspap.com/troubleshooting/#debug-log) and performed a [self-diagnosis](https://docs.raspap.com/troubleshooting/#diagnosing-problems).
           required: true
 
   - type: dropdown
@@ -50,18 +54,19 @@ body:
       options:
         - Raspberry Pi OS	(64-bit) Lite Bookworm	
         - Raspberry Pi OS	(32-bit) Lite Bookworm
+        - Raspberry Pi OS	(64-bit) Desktop Bookwom
         - Raspberry Pi OS	(64-bit) Lite Bullseye	
         - Raspberry Pi OS	(32-bit) Lite Bullseye
         - Armbian	23.05 (Suni)	
-        - Debian	Bookworm
-        - Ubuntu	Server 23.04 (Lunar)
+        - Debian Bookworm
     validations:
       required: true
   - type: dropdown
     id: install
     attributes:
-      label: Quick install or Manual setup?
+      label: Installation method
       options:
+        - Pre-built image
         - Quick install	
         - Manual setup
     validations:
@@ -87,6 +92,7 @@ body:
         - Raspberry Pi 3 Model B
         - Raspberry Pi Zero 2 W 
         - Raspberry Pi Zero W 
+        - Raspberry Pi Compute Module
         - Orange Pi family
         - Other
     validations:
@@ -96,12 +102,8 @@ body:
     attributes:
       label: RaspAP version
       options:
-        - 3.0 (Latest)
-        - 3.0-beta
-        - 2.9.9
-        - 2.9.8
-        - 2.9.7
-        - Other
+        - Latest
+        - Other (specify below)
     validations:
       required: true
   - type: dropdown
@@ -114,7 +116,6 @@ body:
         - Not sure
     validations:
       required: true
-      
   - type: input
     id: contact
     attributes:

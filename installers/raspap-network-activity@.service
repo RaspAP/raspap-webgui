@@ -1,0 +1,15 @@
+# Author: BillZ <billzimmerman@gmail.com>
+
+[Unit]
+Description=RaspAP Network Activity Monitor for %I
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/raspap-network-monitor %i
+Restart=always
+RestartSec=2
+User=root
+
+[Install]
+WantedBy=multi-user.target
+

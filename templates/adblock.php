@@ -15,10 +15,10 @@
         <div class="card-header">
           <div class="row">
             <div class="col">
-              <i class="far fa-hand-paper mr-2"></i><?php echo _("Ad Blocking"); ?>
+              <i class="far fa-hand-paper me-2"></i><?php echo _("Ad Blocking"); ?>
             </div>
             <div class="col">
-              <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+              <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
                 <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
                 <span class="text service-status">adblock <?php echo _($serviceStatus) ?></span>
               </button>
@@ -28,12 +28,12 @@
         <div class="card-body">
         <?php $status->showMessages(); ?>
           <form role="form" action="adblock_conf" enctype="multipart/form-data" method="POST">
-            <?php echo CSRFTokenFieldTag() ?>
+            <?php echo \RaspAP\Tokens\CSRF::hiddenField();?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="blocklisttab" href="#adblocklistsettings" data-toggle="tab"><?php echo _("Blocklist settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="customtab" href="#adblockcustom" data-toggle="tab"><?php echo _("Custom blocklist"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#adblocklogfileoutput" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
+                <li class="nav-item"><a class="nav-link active" id="blocklisttab" href="#adblocklistsettings" data-bs-toggle="tab"><?php echo _("Blocklist settings"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="customtab" href="#adblockcustom" data-bs-toggle="tab"><?php echo _("Custom blocklist"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#adblocklogfileoutput" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
             </ul>
 
             <!-- Tab panes -->

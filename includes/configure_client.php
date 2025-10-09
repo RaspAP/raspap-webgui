@@ -1,6 +1,6 @@
 <?php
 
-require_once 'includes/wifi_functions.php';
+use RaspAP\Networking\Hotspot\WiFiManager;
 
 /**
  *
@@ -8,12 +8,13 @@ require_once 'includes/wifi_functions.php';
  */
 function DisplayWPAConfig()
 {
+    $wifi = new WiFiManager();
     $status = new \RaspAP\Messages\StatusMessage;
     $networks = [];
 
-    getWifiInterface();
-    knownWifiStations($networks);
-    setKnownStationsWPA($networks);
+    $wifi->getWifiInterface();
+    $wifi->knownWifiStations($networks);
+    $wifi->setKnownStationsWPA($networks);
 
     $iface = escapeshellarg($_SESSION['wifi_client_interface']);
 
@@ -30,7 +31,7 @@ function DisplayWPAConfig()
     } elseif (isset($_POST['wpa_reinit'])) {
         $status->addMessage('Attempting to reinitialize wpa_supplicant', 'warning');
         $force_remove = true;
-        $result = reinitializeWPA($force_remove);
+        $result = $wifi->reinitializeWPA($force_remove);
     } elseif (isset($_POST['client_settings'])) {
         $tmp_networks = $networks;
         if ($wpa_file = fopen('/tmp/wifidata', 'w')) {
@@ -90,7 +91,7 @@ function DisplayWPAConfig()
                     if (strlen($network['passphrase']) >=8 && strlen($network['passphrase']) <= 63) {
                         unset($wpa_passphrase);
                         unset($line);
-                        exec('wpa_passphrase '. ssid2utf8( escapeshellarg($ssid) ) . ' ' . escapeshellarg($network['passphrase']), $wpa_passphrase);
+                        exec('wpa_passphrase '. $wifi->ssid2utf8( escapeshellarg($ssid) ) . ' ' . escapeshellarg($network['passphrase']), $wpa_passphrase);
                         foreach ($wpa_passphrase as $line) {
                             if (preg_match('/^\s*}\s*$/', $line)) {
                                 if (array_key_exists('priority', $network)) {

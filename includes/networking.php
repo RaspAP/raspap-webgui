@@ -1,12 +1,12 @@
 <?php
 
 require_once 'includes/internetRoute.php';
+require_once 'includes/functions.php';
 
 /**
- *
- *
+ * Displays a networking summary and network diagnostic tools
  */
-function DisplayNetworkingConfig()
+function DisplayNetworkingConfig(&$extraFooterScripts)
 {
     $status = new \RaspAP\Messages\StatusMessage;
 
@@ -23,4 +23,5 @@ function DisplayNetworkingConfig()
         "routeInfoRaw",
         "bridgedEnabled")
     );
+    $extraFooterScripts[] = array('src'=>'app/js/vendor/speedtestUI.js', 'defer'=>false);
 }

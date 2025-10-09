@@ -3,6 +3,7 @@
       <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
       <?php if ($dnsmasq_state) : ?>
         <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
+        <input type="submit" class="btn btn-warning" value="<?php echo _("Restart dnsmasq") ?>" name="restartdhcpd" />
       <?php else : ?>
         <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
       <?php endif ?>
@@ -16,10 +17,10 @@
       <div class="card-header">
         <div class="row">
           <div class="col">
-            <i class="fas fa-exchange-alt mr-2"></i><?php echo _("DHCP Server"); ?>
+            <i class="fas fa-exchange-alt me-2"></i><?php echo _("DHCP Server"); ?>
           </div>
           <div class="col">
-            <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+            <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
               <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
               <span class="text service-status">dnsmasq <?php echo _($serviceStatus) ?></span>
             </button>
@@ -30,15 +31,15 @@
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <form method="POST" action="dhcpd_conf" class="js-dhcp-settings-form needs-validation" novalidate>
-          <?php echo CSRFTokenFieldTag() ?>
+          <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs mb-3">
-            <li class="nav-item"><a class="nav-link active" href="#server-settings" data-toggle="tab"><?php echo _("Server settings"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="#static-leases" data-toggle="tab"><?php echo _("Static Leases") ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="#client-list" data-toggle="tab"><?php echo _("Client list"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="#logging" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
+            <li class="nav-item"><a class="nav-link active" href="#server-settings" data-bs-toggle="tab"><?php echo _("Server settings"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#advanced" data-bs-toggle="tab"><?php echo _("Advanced"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#static-leases" data-bs-toggle="tab"><?php echo _("Static Leases") ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#client-list" data-bs-toggle="tab"><?php echo _("Client list"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#logging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
           </ul>
 
           <!-- Tab panes -->

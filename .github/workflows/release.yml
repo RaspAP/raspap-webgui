@@ -1,0 +1,58 @@
+name: Build and publish RaspAP images
+
+permissions:
+  contents: write
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-raspap-image:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: "32-bit"
+            pi_gen_version: "master"
+          - arch: "64-bit"
+            pi_gen_version: "arm64"
+      fail-fast: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add RaspAP Stage
+        run: sh ./.github/scripts/add-raspap-stage.sh
+
+      - name: Build RaspAP Image
+        id: build
+        uses: usimd/pi-gen-action@v1
+        with:
+          image-name: "raspap-bookworm-${{ matrix.arch == '32-bit' && 'armhf' || 'arm64' }}-lite-${{ github.event.inputs.tag || github.ref_name }}"
+          enable-ssh: 1
+          stage-list: stage0 stage1 stage2 ./stage-raspap
+          verbose-output: true
+          pi-gen-version: ${{ matrix.pi_gen_version }}
+          pi-gen-repository: RaspAP/pi-gen
+
+      - name: Upload Artifact
+        uses: svenstaro/upload-release-action@v2
+        with:
+          asset_name: "raspap-bookworm-${{ matrix.arch == '32-bit' && 'armhf' || 'arm64' }}-lite-${{ github.event.inputs.tag || github.ref_name }}.img.zip"
+          file: ${{ steps.build.outputs.image-path }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.event.inputs.tag || github.ref }}
+          overwrite: true
+          
+  torrent:
+    needs: build-raspap-image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Generate torrents for release
+        uses: devopsx/action-torrent@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          local: false

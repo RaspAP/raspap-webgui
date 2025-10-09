@@ -9,7 +9,26 @@ require_once 'config.php';
 function DisplaySystem(&$extraFooterScripts)
 {
     $status = new \RaspAP\Messages\StatusMessage;
+    $dashboard = new \RaspAP\UI\Dashboard;
+    $pluginInstaller = \RaspAP\Plugins\PluginInstaller::getInstance();
 
+    // set defaults
+    $optAutoclose = true;
+    $alertTimeout = 5000;
+    $good_input = true;
+    $config_port = false;
+
+    // set alert_timeout from cookie if valid
+    if (isset($_COOKIE['alert_timeout']) && is_numeric($_COOKIE['alert_timeout'])) {
+        $cookieTimeout = (int) $_COOKIE['alert_timeout'];
+
+        if ($cookieTimeout > 0) {
+            $alertTimeout = $cookieTimeout;
+        } else {
+            // A value of 0 means auto-close is disabled
+            $optAutoclose = false;
+        }
+    }
     if (isset($_POST['SaveLanguage'])) {
         if (isset($_POST['locale'])) {
             $_SESSION['locale'] = $_POST['locale'];
@@ -19,7 +38,6 @@ function DisplaySystem(&$extraFooterScripts)
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveServerSettings'])) {
-            $good_input = true;
             // Validate server port
             if (isset($_POST['serverPort'])) {
                 if (strlen($_POST['serverPort']) > 4 || !is_numeric($_POST['serverPort'])) {
@@ -30,13 +48,13 @@ function DisplaySystem(&$extraFooterScripts)
                }
             }
             // Validate server bind address
-            $serverBind = escapeshellarg('');
-            if ($_POST['serverBind'] && $_POST['serverBind'] !== null ) {
-                if (!filter_var($_POST['serverBind'], FILTER_VALIDATE_IP)) {
+            if (isset($_POST['serverBind']) && $_POST['serverBind'] !== '') {
+                $inputBind = trim($_POST['serverBind']);
+                if (!filter_var($inputBind, FILTER_VALIDATE_IP)) {
                     $status->addMessage('Invalid value for bind address', 'danger');
                     $good_input = false;
                 } else {
-                    $serverBind = escapeshellarg($_POST['serverBind']);
+                    $serverBind = escapeshellarg($inputBind);
                 }
             }
             // Validate log limit
@@ -55,6 +73,21 @@ function DisplaySystem(&$extraFooterScripts)
                 foreach ($return as $line) {
                     $status->addMessage($line, 'info');
                 }
+            }
+        } elseif (isset($_POST['savethemeSettings'])) {
+            // Validate alert timout
+            if (isset($_POST['autoClose'])) {
+                $alertTimeout = trim($_POST['alertTimeout'] ?? '');
+                if (strlen($alertTimeout) > 7 || !is_numeric($alertTimeout)) {
+                    $status->addMessage('Invalid value for alert close timeout', 'danger');
+                    $good_input = false;
+                } else {
+                    setcookie('alert_timeout', (int) $alertTimeout);
+                    $status->addMessage(sprintf(_('Changing alert close timeout to %s ms'), $alertTimeout), 'info');
+                }
+            } else {
+                setcookie('alert_timeout', '', time() - 3600, '/');
+                $optAutoclose = false;
             }
         }
     }
@@ -85,73 +118,46 @@ function DisplaySystem(&$extraFooterScripts)
     $kernel   = $system->kernelVersion();
     $systime  = $system->systime();
     $revision = $system->rpiRevision();
-    
-    // mem used
+    $deviceImage = $dashboard->getDeviceImage($revision);
+
+    // memory use
     $memused  = $system->usedMemory();
-    $memused_status = "primary";
-    if ($memused > 90) {
-        $memused_status = "danger";
-        $memused_led = "service-status-down";
-    } elseif ($memused > 75) {
-        $memused_status = "warning";
-        $memused_led = "service-status-warn";
-    } elseif ($memused >  0) {
-        $memused_status = "success";
-        $memused_led = "service-status-up";
-    }
+    $memStatus = getResourceStatus($memused);
+    $memused_status = $memStatus['status'];
+    $memused_led = $memStatus['led'];
+
+    // disk storage use
+    $diskused  = $system->usedDisk();
+    $diskStatus = getResourceStatus($diskused);
+    $diskused_status = $diskStatus['status'];
+    $diskused_led = $diskStatus['led'];
 
     // cpu load
     $cpuload = $system->systemLoadPercentage();
-    if ($cpuload > 90) {
-        $cpuload_status = "danger";
-    } elseif ($cpuload > 75) {
-        $cpuload_status = "warning";
-    } elseif ($cpuload >=  0) {
-        $cpuload_status = "success";
-    }
+    $cpuload_status = getCPULoadStatus($cpuload);
 
     // cpu temp
     $cputemp = $system->systemTemperature();
-    if ($cputemp > 70) {
-        $cputemp_status = "danger";
-        $cputemp_led = "service-status-down";
-    } elseif ($cputemp > 50) {
-        $cputemp_status = "warning";
-        $cputemp_led = "service-status-warn";
-    } else {
-        $cputemp_status = "success";
-        $cputemp_led = "service-status-up";
-    }
-
-    // hostapd status
-    $hostapd = $system->hostapdStatus();
-    if ($hostapd[0] == 1) {
-        $hostapd_status = "active";
-        $hostapd_led = "service-status-up";
-    } else {
-        $hostapd_status = "inactive";
-        $hostapd_led = "service-status-down";
-    }
+    $cpuStatus = getCPUTempStatus($cputemp);
+    $cputemp_status = $cpuStatus['status'];
+    $cputemp_led =  $cpuStatus['led'];
 
     // theme options
     $themes = [
         "default"    => "RaspAP (default)",
         "hackernews" => "HackerNews",
-        "material-light" => "Material"
     ];
     $themeFiles = [
         "default"    => "custom.php",
         "hackernews" => "hackernews.css",
-        "material-light" => "material-light.php"
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
-    if (strpos($_COOKIE['theme'],'material') !== false) {
-        $selectedTheme = 'material-light';
-    }
-
     $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
-    $extraFooterScripts[] = array('src'=>'app/js/huebee.js', 'defer'=>false);
+    $extraFooterScripts[] = array('src'=>'app/js/vendor/huebee.js', 'defer'=>false);
     $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
+
+    $plugins = $pluginInstaller->getUserPlugins();
+    $pluginsTable = $pluginInstaller->getHTMLPluginsTable($plugins);
 
     echo renderTemplate("system", compact(
         "arrLocales",
@@ -162,22 +168,79 @@ function DisplaySystem(&$extraFooterScripts)
         "uptime",
         "systime",
         "revision",
+        "deviceImage",
         "cores",
         "os",
         "kernel",
         "memused",
         "memused_status",
         "memused_led",
+        "diskused",
+        "diskused_status",
+        "diskused_led",
         "cpuload",
         "cpuload_status",
         "cputemp",
         "cputemp_status",
         "cputemp_led",
-        "hostapd",
-        "hostapd_status",
-        "hostapd_led",
         "themes",
         "selectedTheme",
-        "logLimit"
+        "logLimit",
+        "pluginsTable",
+        "optAutoclose",
+        "alertTimeout"
     ));
 }
+
+function getResourceStatus($used): array
+{
+    $used_status = "primary";
+    $used_led = "";
+
+    if ($used > 90) {
+        $used_status = "danger";
+        $used_led = "service-status-down";
+    } elseif ($used > 75) {
+        $used_status = "warning";
+        $used_led = "service-status-warn";
+    } elseif ($used > 0) {
+        $used_status = "success";
+        $used_led = "service-status-up";
+    }
+
+    return [
+        'status' => $used_status,
+        'led' => $used_led
+    ];
+}
+
+function getCPULoadStatus($cpuload): string
+{
+    if ($cpuload > 90) {
+        $status = "danger";
+    } elseif ($cpuload > 75) {
+        $status = "warning";
+    } elseif ($cpuload >=  0) {
+        $status = "success";
+    }
+    return $status;
+}
+
+function getCPUTempStatus($cputemp): array
+{
+    if ($cputemp > 70) {
+        $cputemp_status = "danger";
+        $cputemp_led = "service-status-down";
+    } elseif ($cputemp > 50) {
+        $cputemp_status = "warning";
+        $cputemp_led = "service-status-warn";
+    } else {
+        $cputemp_status = "success";
+        $cputemp_led = "service-status-up";
+    }
+    return [
+        'status' => $cputemp_status,
+        'led' => $cputemp_led
+    ];
+}
+

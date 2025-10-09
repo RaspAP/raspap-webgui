@@ -30,7 +30,7 @@
 
       <div class="row dhcp-static-lease-row js-new-dhcp-static-lease">
         <div class="col-md-4 col-xs-3">
-          <input type="text" name="mac" value="" placeholder="<?php echo _("MAC address") ?>" class="form-control date" autofocus="autofocus">
+          <input type="text" name="mac" value="" placeholder="<?php echo _("MAC address") ?>" class="form-control mac_address" autofocus="autofocus">
         </div>
         <div class="col-md-3 col-xs-3">
           <input type="text" name="ip" value="" placeholder="<?php echo _("IP address") ?>" class="form-control ip_address" maxlength="15">
@@ -46,9 +46,9 @@
       <h5 class="mt-3 mb-3"><?php echo _("Restrict access") ?></h5>
         <div class="input-group">
           <input type="hidden" name="dhcp-ignore" value="0">
-            <div class="custom-control custom-switch">
-              <input class="custom-control-input" id="dhcp-ignore" type="checkbox" name="dhcp-ignore" value="1" <?php echo $conf['dhcp-ignore'] ? ' checked="checked"' : "" ?> aria-describedby="dhcp-ignore-description">
-              <label class="custom-control-label" for="dhcp-ignore"><?php echo _("Limit network access to static clients") ?></label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" id="dhcp-ignore" type="checkbox" name="dhcp-ignore" value="1" <?php echo !empty($conf['dhcp-ignore']) ? ' checked="checked"' : "" ?> aria-describedby="dhcp-ignore-description">
+              <label class="form-check-label" for="dhcp-ignore"><?php echo _("Limit network access to static clients") ?></label>
             </div>
             <p id="dhcp-ignore-description">
               <small><?php echo _("Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list.") ?></small>

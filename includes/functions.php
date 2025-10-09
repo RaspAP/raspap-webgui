@@ -1,3 +1,4 @@
+<?php require_once 'session.php'; ?>
 <?php
 /* Functions for Networking */
 
@@ -54,84 +55,13 @@ function cidr2mask($cidr)
 {
     $ipParts = explode('/', $cidr);
     $ip = $ipParts[0];
-    $prefixLength = $ipParts[1];
+    $prefixLength = $ipParts[1] ?? null;
 
     $ipLong = ip2long($ip);
     $netmaskLong = bindec(str_pad(str_repeat('1', $prefixLength), 32, '0'));
     $netmask = long2ip(intval($netmaskLong));
 
     return $netmask;
-}
-
-/**
- * Removes a dhcp configuration block for the specified interface
- *
- * @param string $iface
- * @param object $status
- * @return boolean $result
- */
-function removeDHCPConfig($iface,$status)
-{
-    $dhcp_cfg = file_get_contents(RASPI_DHCPCD_CONFIG);
-    $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
-    file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
-    system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $result);
-    if ($result == 0) {
-        $status->addMessage('DHCP configuration for '.$iface.'  removed.', 'success');
-    } else {
-        $status->addMessage('Failed to remove DHCP configuration for '.$iface.'.', 'danger');
-        return $result;
-    }
-}
-
-/**
- * Removes a dhcp configuration block for the specified interface
- *
- * @param string $dhcp_cfg
- * @param string $iface
- * @return string $dhcp_cfg
- */
-function removeDHCPIface($dhcp_cfg,$iface)
-{
-    $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
-    return $dhcp_cfg;
-}
-
-/**
- * Removes a dnsmasq configuration block for the specified interface
- *
- * @param string $iface
- * @param object $status
- * @return boolean $result
- */
-function removeDnsmasqConfig($iface,$status)
-{
-    system('sudo rm '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);
-    if ($result == 0) {
-        $status->addMessage('Dnsmasq configuration for '.$iface.' removed.', 'success');
-    } else {
-        $status->addMessage('Failed to remove dnsmasq configuration for '.$iface.'.', 'danger');
-    }
-    return $result;
-}
-
-/**
- * Scans dnsmasq configuration dir for the specified interface
- * Non-matching configs are removed, optional adblock.conf is protected
- *
- * @param string $dir_conf
- * @param string $interface
- * @param object $status
- */
-function scanConfigDir($dir_conf,$interface,$status)
-{
-    $syscnf = preg_grep('~\.(conf)$~', scandir($dir_conf));
-    foreach ($syscnf as $cnf) {
-        if ($cnf !== '090_adblock.conf' && !preg_match('/.*_'.$interface.'.conf/', $cnf)) {
-            system('sudo rm /etc/dnsmasq.d/'.$cnf, $result);
-        }
-    }
-    return $status;
 }
 
 /**
@@ -176,15 +106,17 @@ function getDefaultNetOpts($svc,$key)
  * @param string $key
  * @return object $json
  */
-function getProviderValue($id,$key)
+function getProviderValue($id, $key)
 {
     $obj = json_decode(file_get_contents(RASPI_CONFIG_PROVIDERS), true);
-    if ($obj === null) {
+    if (!isset($obj['providers']) || !is_array($obj['providers'])) {
         return false;
-    } else {
-        $id--;
-        return $obj['providers'][$id][$key];
     }
+    $id--;
+    if (!isset($obj['providers'][$id]) || !is_array($obj['providers'][$id])) {
+        return false;
+    }
+    return $obj['providers'][$id][$key] ?? false;
 }
 
 /* Functions to write ini files */
@@ -304,79 +236,6 @@ function filter_comments($var)
 }
 
 /**
- * Saves a CSRF token in the session
- */
-function ensureCSRFSessionToken()
-{
-    if (empty($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-    }
-}
-
-/**
- * Add CSRF Token to form
- */
-function CSRFTokenFieldTag()
-{
-    $token = htmlspecialchars($_SESSION['csrf_token']);
-    return '<input type="hidden" name="csrf_token" value="' . $token . '">';
-}
-
-/**
- * Retuns a CSRF meta tag (for use with xhr, for example)
- */
-function CSRFMetaTag()
-{
-    $token = htmlspecialchars($_SESSION['csrf_token']);
-    return '<meta name="csrf_token" content="' . $token . '">';
-}
-
-/**
- * Validate CSRF Token
- */
-function CSRFValidate()
-{
-    if(isset($_POST['csrf_token'])) {
-        $post_token   = $_POST['csrf_token'];
-        $header_token = $_SERVER['HTTP_X_CSRF_TOKEN'];
-
-        if (empty($post_token) && empty($header_token)) {
-            return false;
-        }
-        $request_token = $post_token;
-        if (empty($post_token)) {
-            $request_token = $header_token;
-        }
-        if (hash_equals($_SESSION['csrf_token'], $request_token)) {
-            return true;
-        } else {
-            error_log('CSRF violation');
-            return false;
-        }
-    }
-}
-
-/**
- * Should the request be CSRF-validated?
- */
-function csrfValidateRequest()
-{
-    $request_method = strtolower($_SERVER['REQUEST_METHOD']);
-    return in_array($request_method, [ "post", "put", "patch", "delete" ]);
-}
-
-/**
- * Handle invalid CSRF
- */
-function handleInvalidCSRFToken()
-{
-    header('HTTP/1.1 500 Internal Server Error');
-    header('Content-Type: text/plain');
-    echo 'Invalid CSRF token';
-    exit;
-}
-
-/**
  * Test whether array is associative
  */
 function isAssoc($arr)
@@ -396,7 +255,7 @@ function isAssoc($arr)
  */
 function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null)
 {
-    echo '<select class="form-control" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
+    echo '<select class="form-select" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
     if (isset($id)) {
         echo ' id="' . htmlspecialchars($id, ENT_QUOTES) .'"';
     }
@@ -458,6 +317,9 @@ function ParseConfig($arrConfig, $wg = false)
 
         if (strpos($line, "=") !== false) {
             list($option, $value) = array_map("trim", explode("=", $line, 2));
+        } else {
+            $option = $line;
+            $value = "";
         }
         if (empty($config[$option])) {
             $config[$option] = $value ?: true;
@@ -542,9 +404,13 @@ function ConvertToSecurity($security)
 /**
  * Renders a simple PHP template
  */
-function renderTemplate($name, $__template_data = [])
+function renderTemplate($name, $__template_data = [], $pluginName = null)
 {
-    $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
+    if (is_string($pluginName)) {
+        $file = realpath(dirname(__FILE__) . "/../plugins/$pluginName/templates/$name.php");
+    } else {
+        $file = realpath(dirname(__FILE__) . "/../templates/$name.php");
+    }
     if (!file_exists($file)) {
         return "template $name ($file) not found";
     }
@@ -618,6 +484,13 @@ function mb_escapeshellarg($arg)
     }
 }
 
+function safeOutputValue($def, $arr)
+{
+    if (array_key_exists($def, $arr)) {
+        echo htmlspecialchars($arr[$def], ENT_QUOTES);
+    }
+}
+
 function dnsServers()
 {
     $data = json_decode(file_get_contents("./config/dns-servers.json"));
@@ -626,8 +499,13 @@ function dnsServers()
 
 function blocklistProviders()
 {
-    $data = json_decode(file_get_contents("./config/blocklists.json"));
-    return (array) $data;
+    $raw = json_decode(file_get_contents("./config/blocklists.json"), true);
+    $result = [];
+
+    foreach ($raw as $group => $entries) {
+        $result[$group] = array_keys($entries);
+    }
+    return $result;
 }
 
 function optionsForSelect($options)
@@ -693,7 +571,6 @@ function formatDateAgo($datetime, $full = false)
 function initializeApp()
 {
     $_SESSION["theme_url"] = getThemeOpt();
-    $_SESSION["toggleState"] = getSidebarState();
     $_SESSION["bridgedEnabled"] = getBridgedState();
     $_SESSION["providerID"] = getProviderID();
 }
@@ -716,25 +593,35 @@ function getColorOpt()
     } else {
         $color = $_COOKIE['color'];
     }
+
+    // Define the regex pattern for valid CSS color formats
+    $colorPattern = "/^(" .
+        "#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})" . "|" .           // Hex colors (#RGB or #RRGGBB)
+        "rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)" . "|" .     // RGB format
+        "rgba\(\s*(?:\d{1,3}\s*,\s*){3}\s*(0|0\.\d+|1)\s*\)" . "|" . // RGBA format
+        "[a-zA-Z]+" .                                         // Named colors
+    ")$/i";
+
+    // Validate the color
+    if (!preg_match($colorPattern, $color)) {
+        // Return a default color if validation fails
+        $color = "#2b8080";
+    }
+
     return $color;
 }
 
-function getSidebarState()
-{
-    if(isset($_COOKIE['sidebarToggled'])) {
-        if ($_COOKIE['sidebarToggled'] == 'true' ) {
-            return "toggled";
-        }
-    }
-}
-
-// Returns bridged AP mode status
 function getBridgedState()
 {
-    $arrHostapdConf = parse_ini_file(RASPI_CONFIG.'/hostapd.ini');
-    // defaults to false
+
+	$hostapdIni = RASPI_CONFIG . '/hostapd.ini';
+	if (!file_exists($hostapdIni)) {
+		return 0;
+	} else {
+		$arrHostapdConf = parse_ini_file($hostapdIni);
+	}
     return  $arrHostapdConf['BridgedEnable'];
-}
+ }
 
 // Returns VPN provider ID, if defined
 function getProviderID()
@@ -801,13 +688,23 @@ function validateMac($mac) {
 // @return boolean
 function getNightmode()
 {
-    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'lightsout.php') {
+    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'dark.css') {
         return true;
     } else {
         return false;
     }
 }	
-	
+
+// Sets data-bs-theme
+// @return string
+function setTheme()
+{
+    if (getNightmode()) {
+        echo 'data-bs-theme="dark"';
+    } else {
+        echo 'data-bs-theme="light"';
+    }
+}
 // search array for matching string and return only first matching group
 function preg_only_match($pat,$haystack)
 {
@@ -863,17 +760,6 @@ function get_public_ip()
     return $public_ip[0];
 }
 
-/* Returns a standardized tooltip
- *
- * @return string $tooltip
- */
-function getTooltip($msg, $id, $visible = true, $data_html = false)
-{
-    ($visible) ? $opt1 = 'visible' : $opt1 = 'invisible';
-    ($data_html) ? $opt2 = 'data-html="true"' : $opt2 = 'data-html="false"';
-    echo '<i class="fas fa-question-circle text-muted ' .$opt1.'" id="' .$id. '" data-toggle="tooltip" ' .$opt2. ' data-placement="auto" title="' . _($msg). '"></i>';
-}
-
 // Load non default JS/ECMAScript in footer
 function loadFooterScripts($extraFooterScripts)
 {
@@ -884,6 +770,23 @@ function loadFooterScripts($extraFooterScripts)
         }
         echo '></script>' , PHP_EOL;
     }
+}
+
+/**
+ * Validate whether the given network interface exists on the system.
+ * This function retrieves all currently available network interfaces using the `ip link show` command
+ * and checks if the provided interface name is in the list.
+ */
+function validateInterface($interface)
+{
+    // Retrieve all available network interfaces
+    $valid_interfaces = shell_exec('ip -o link show | awk -F": " \'{print $2}\'');
+
+    // Convert to array (one interface per line)
+    $valid_interfaces = explode("\n", trim($valid_interfaces));
+
+    // Check if the provided interface exists in the list
+    return in_array($interface, $valid_interfaces, true);
 }
 
 /**
@@ -1005,4 +908,49 @@ function lightenColor($color, $percent)
     $b = round($b + (255 - $b) * $percent);
 
     return sprintf("#%02x%02x%02x", $r, $g, $b);
+}
+
+function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cputemp_led, $cputemp)
+{
+    ?>
+    <div class="row g-0">
+      <div class="col-4 ms-2 sidebar-brand-icon">
+        <img src="app/img/raspAP-logo.php?static=1" class="navbar-logo" width="70" height="70">
+      </div>
+      <div class="col ml-2">
+        <div class="ml-1 sb-status">Status</div>
+        <div class="info-item-xs"><span class="icon">
+          <i class="fas fa-circle hostapd-led <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
+        </div>
+        <div class="info-item-xs"><span class="icon">
+          <i class="fas fa-circle <?php echo ($memused_led); ?>"></i></span> <?php echo _("Mem Use").': '. htmlspecialchars(strval($memused), ENT_QUOTES); ?>%
+        </div>
+        <div class="info-item-xs"><span class="icon">
+          <i class="fas fa-circle <?php echo ($cputemp_led); ?>"></i></span> <?php echo _("CPU").': '. htmlspecialchars($cputemp, ENT_QUOTES); ?>°C
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+
+/**
+ * Executes a callback with a timeout
+ *
+ * @param callable $callback function to execute
+ * @param int $interval timeout in milliseconds
+ * @return mixed result of the callback
+ * @throws \Exception if the execution exceeds the timeout or an error occurs
+ */
+function callbackTimeout(callable $callback, int $interval)
+{
+    $startTime = microtime(true); // use high-resolution timer
+    $result = $callback();
+    $elapsed = (microtime(true) - $startTime) * 1000;
+
+    if ($elapsed > $interval) {
+        throw new \Exception('Operation timed out');
+    }
+
+    return $result;
 }

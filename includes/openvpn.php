@@ -1,9 +1,10 @@
 <?php
 
 require_once 'includes/config.php';
-require_once 'includes/wifi_functions.php';
 
-getWifiInterface();
+use RaspAP\Networking\Hotspot\WiFiManager;
+$wifi = new WiFiManager();
+$wifi->getWifiInterface();
 
 /**
  * Manage OpenVPN configuration
@@ -62,7 +63,7 @@ function DisplayOpenVPNConfig()
             ftruncate($f, 0);
             fclose($f);
         }
-    } elseif (isset($_POST['log-openvpn']) || file_exists('/tmp/openvpn.log')) {
+    } elseif (isset($_POST['log-openvpn']) || filesize('/tmp/openvpn.log') >0) {
         $logEnable = 1;
         exec("sudo /etc/raspap/openvpn/openvpnlog.sh", $logOutput);
         $logOutput = file_get_contents('/tmp/openvpn.log');
@@ -127,7 +128,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
             $auth = $authUser .PHP_EOL . $authPassword .PHP_EOL;
             file_put_contents($tmp_authdata, $auth);
             chmod($tmp_authdata, 0644);
-            $client_auth = RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_login.conf';
+            $client_auth = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_login.conf');
             system("sudo mv $tmp_authdata $client_auth", $return);
             system("sudo rm ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
             system("sudo ln -s $client_auth ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
@@ -144,7 +145,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
         }
 
         // Move uploaded ovpn config from /tmp and create symlink
-        $client_ovpn = RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_client.conf';
+        $client_ovpn = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_client.conf');
         chmod($tmp_ovpn, 0644);
         system("sudo mv $tmp_ovpn $client_ovpn", $return);
         system("sudo rm ".RASPI_OPENVPN_CLIENT_CONFIG, $return);

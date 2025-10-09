@@ -1,6 +1,9 @@
-<?php 
-
-require '../../includes/csrf.php';
+<?php
+require_once '../../includes/autoload.php';
+require_once '../../includes/CSRF.php';
+require_once '../../includes/session.php';
+require_once '../../includes/config.php';
+require_once '../../includes/authenticate.php';
 
 if (filter_input(INPUT_GET, 'tu') == 'h') {
 

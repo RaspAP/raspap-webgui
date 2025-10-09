@@ -40,9 +40,11 @@ OPTIONS:
 -y, --yes, --assume-yes             Assumes "yes" as an answer to all prompts
 -c, --cert, --certificate           Installs an SSL certificate for lighttpd
 -o, --openvpn <flag>                Used with -y, --yes, sets OpenVPN install option (0=no install)
+-s, --rest, --restapi <flag>        Used with -y, --yes, sets RestAPI install option (0=no install)
 -a, --adblock <flag>                Used with -y, --yes, sets Adblock install option (0=no install)
 -w, --wireguard <flag>              Used with -y, --yes, sets WireGuard install option (0=no install)
 -e, --provider <value>              Used with -y, --yes, sets the VPN provider install option
+-g, --tcp-bbr <value>               Used with -y, --yes, sets the TCP BBR congestion control algorithm option
 -r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
 -t, --token <accesstoken>           Specify a GitHub token to access a private repository
@@ -52,6 +54,7 @@ OPTIONS:
 -p, --path <path>                   Used with -d, --update, sets the existing install path
 -i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
 -m, --minwrite                      Configures a microSD card for minimum write operation
+-k, --check <flag>                  Sets the connectivity check flag (default is 1=perform check)
 -v, --version                       Outputs release info and exits
 -n, --uninstall                     Loads and executes the uninstaller
 -h, --help                          Outputs usage notes and exits
@@ -82,8 +85,13 @@ function _main() {
     # set defaults
     repo="RaspAP/raspap-webgui" # override with -r, --repo option
     repo_common="$repo"
+
     _parse_params "$@"
     _setup_colors
+    if [ "${check}" == 1 ]; then
+        _check_internet
+    fi
+
     _log_output
     _load_installer
 }
@@ -94,12 +102,14 @@ function _parse_params() {
     upgrade=0
     update=0
     ovpn_option=1
+    restapi_option=1
     adblock_option=1
     wg_option=1
     insiders=0
     minwrite=0
     acctoken=""
     path=""
+    check=1
 
     while :; do
         case "${1-}" in
@@ -109,6 +119,10 @@ function _parse_params() {
             ;;
             -o|--openvpn)
             ovpn_option="$2"
+            shift
+            ;;
+            -s|--rest|--restapi)
+            restapi_option="$2"
             shift
             ;;
             -a|--adblock)
@@ -121,6 +135,10 @@ function _parse_params() {
             ;;
             -e|--provider)
             pv_option="$2"
+            shift
+            ;;
+            -g|--tcp-bbr)
+            bbr_option="$2"
             shift
             ;;
             -c|--cert|--certificate)
@@ -162,6 +180,10 @@ function _parse_params() {
             path="$2"
             shift
             ;;
+            -k|--check)
+            check="$2"
+            shift
+            ;;
             -v|--version)
             _version
             ;;
@@ -183,9 +205,9 @@ function _parse_params() {
 
 function _setup_colors() {
     ANSI_RED="\033[0;31m"
-    ANSI_GREEN="\033[0;32m"
+    ANSI_AQUA="\033[38;5;44m"
     ANSI_YELLOW="\033[0;33m"
-    ANSI_RASPBERRY="\033[0;35m"
+    ANSI_LT_AQUA="\033[38;5;30m"
     ANSI_ERROR="\033[1;37;41m"
     ANSI_RESET="\033[m"
 }
@@ -207,7 +229,7 @@ function _version() {
 
 # Outputs a welcome message
 function _display_welcome() {
-    echo -e "${ANSI_RASPBERRY}\n"
+    echo -e "${ANSI_AQUA}\n"
     echo -e " 888888ba                              .d888888   888888ba"
     echo -e " 88     8b                            d8     88   88     8b"
     echo -e "a88aaaa8P' .d8888b. .d8888b. 88d888b. 88aaaaa88a a88aaaa8P"
@@ -216,17 +238,31 @@ function _display_welcome() {
     echo -e " dP     dP  88888P8  88888P  88Y888P  88     88   dP"
     echo -e "                             88"
     echo -e "                             dP      version ${RASPAP_RELEASE}"
-    echo -e "${ANSI_GREEN}"
+    echo -e "${ANSI_LT_AQUA}"
     echo -e "The Quick Installer will guide you through a few easy steps${ANSI_RESET}\n\n"
 }
 
 # Fetch latest release from GitHub or RaspAP Installer API
 function _get_release() {
-    readonly RASPAP_LATEST=$(curl -s "https://api.github.com/repos/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")' )
+    local response
+    local host="api.github.com"
+    response=$(curl -s "https://$host/repos/$repo/releases/latest")
+
+    if echo "$response" | grep -q 'API rate limit exceeded'; then
+        _install_status 1 "GitHub API rate limit exceeded. Try again later or use a GitHub token."
+        return 1
+    fi
+    readonly RASPAP_LATEST=$(echo "$response" | grep -Po '"tag_name": "\K.*?(?=")')
+
+    if [ -z "$RASPAP_LATEST" ]; then
+        _install_status 1 "Failed to fetch latest release. Check network connectivity."
+        return 1
+    fi
+
     if [ "$insiders" == 1 ]; then
         repo="RaspAP/raspap-insiders"
         repo_common="RaspAP/raspap-webgui"
-        readonly RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")' )
+        readonly RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")')
         readonly RASPAP_RELEASE="${RASPAP_INSIDERS_LATEST} Insiders"
     else
         readonly RASPAP_RELEASE="${RASPAP_LATEST}"
@@ -235,7 +271,7 @@ function _get_release() {
 
 # Outputs a RaspAP Install log line
 function _install_log() {
-    echo -e "${ANSI_GREEN}RaspAP ${component}: $1${ANSI_RESET}"
+    echo -e "${ANSI_LT_AQUA}RaspAP ${component}: $1${ANSI_RESET}"
 }
 
 # Outputs a RaspAP divider
@@ -247,7 +283,7 @@ function _install_divider() {
 function _install_status() {
     case $1 in
         0)
-        echo -e "[$ANSI_GREEN \U2713 ok $ANSI_RESET] $2"
+        echo -e "[$ANSI_LT_AQUA \U2713 ok $ANSI_RESET] $2"
         ;;
         1)
         echo -e "[$ANSI_RED \U2718 error $ANSI_RESET] $ANSI_ERROR $2 $ANSI_RESET"
@@ -256,8 +292,46 @@ function _install_status() {
         echo -e "[$ANSI_YELLOW \U26A0 warning $ANSI_RESET] $2"
         ;;
         3)
-        echo -e "[$ANSI_RASPBERRY ! important $ANSI_RESET] $2"
+        echo -e "[$ANSI_AQUA ! important $ANSI_RESET] $2"
     esac
+}
+
+# Checks connectivity to github.com
+function _check_internet() {
+    component="Install"
+    _install_log "Checking internet connectivity..."
+
+    # spinner frames
+    local spinner='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+    local i=0
+
+    tput civis # hide cursor
+
+    # run check in background
+    (
+      curl -Is --connect-timeout 3 --max-time 15 https://github.com \
+        | grep -q "^HTTP/2 200"
+    ) &
+    local pid=$!
+
+    # display spinner while curl runs
+    while kill -0 $pid 2>/dev/null; do
+        printf "\r%s" "${spinner:i++%${#spinner}:1}"
+        sleep 0.05
+    done
+    printf "\r"
+
+    # capture exit status
+    wait "$pid"
+    exit_code=$?
+
+    tput cnorm # restore cursor
+
+    if [[ $exit_code -ne 0 ]]; then
+        _install_status 1 "No internet connection or unable to reach GitHub"
+        exit 1
+    fi
+    _install_status 0
 }
 
 function _update_system_packages() {

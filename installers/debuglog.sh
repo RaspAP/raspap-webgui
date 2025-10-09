@@ -106,6 +106,7 @@ function _generate_log() {
     _packages_info
     _raspap_info
     _usb_info
+    _rfkill_info
     _wpa_info
     _dnsmasq_info
     _dhcpcd_info
@@ -192,6 +193,12 @@ function _usb_info() {
     _log_write "${stdout}"
 }
 
+function _rfkill_info() {
+    local stdout=$(rfkill list)
+     _log_separator "rfkill"
+     _log_write "${stdout}"
+}
+
 function _wpa_info() {
     local stdout=$(wpa_cli status)
     _log_separator "WPA Supplicant"
@@ -210,10 +217,10 @@ function _dnsmasq_info() {
             if [ -f "$file" ]; then
                 contents+="\n$file contents:\n"
                 contents+="$(cat $file)"
-                contents="${contents}$\n"
+                contents+=$'\n'
             fi
         done
-        _log_write $contents
+        _log_write "$contents"
     else
         _log_write "Not found: ${DNSMASQ_D_DIR}"
     fi

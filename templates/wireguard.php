@@ -15,10 +15,10 @@
         <div class="card-header">
           <div class="row">
             <div class="col">
-              <span class="ra-wireguard mr-2"></span><?php echo _("WireGuard"); ?>
+              <span class="ra-wireguard me-2"></span><?php echo _("WireGuard"); ?>
             </div>
             <div class="col">
-              <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+              <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
                 <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
                 <span class="text service-status">wg <?php echo _($serviceStatus) ?></span>
               </button>
@@ -28,12 +28,12 @@
         <div class="card-body">
         <?php $status->showMessages(); ?>
           <form role="form" action="wg_conf" enctype="multipart/form-data" method="POST">
-            <?php echo CSRFTokenFieldTag() ?>
+            <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="settingstab" href="#wgsettings" data-toggle="tab"><?php echo _("Settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="peertab" href="#wgpeers" data-toggle="tab"><?php echo _("Peer"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#wglogging" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
+                <li class="nav-item"><a class="nav-link active" id="settingstab" href="#wgsettings" data-bs-toggle="tab"><?php echo _("Settings"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="peertab" href="#wgpeers" data-bs-toggle="tab"><?php echo _("Peer"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#wglogging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
             </ul>
 
             <!-- Tab panes -->

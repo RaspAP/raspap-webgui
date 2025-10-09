@@ -4,12 +4,12 @@
     <div class="col-lg-8">
       <div class="row mb-2">
          <div class="col-lg-12 mt-2 mb-2">
-           <div class="row ml-1">
-             <div class="info-item col-xs-3">
-               <i class="fas fa-globe-americas mr-1"></i><?php echo _("IPv4 Address"); ?>
+           <div class="row ms-1">
+             <div class="info-item col-3">
+               <i class="fas fa-globe-americas me-1"></i><?php echo _("IPv4 Address"); ?>
              </div>
-             <div class="info-value col-xs-3">
-               <?php echo htmlspecialchars($publicIP, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($publicIP); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ml-2"></i></a>
+             <div class="info-value col-4">
+               <?php echo htmlspecialchars($publicIP, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($publicIP); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ms-2"></i></a>
              </div>
            </div>
          </div>
@@ -25,14 +25,14 @@
             <?php foreach ($accountInfo as $item) {
                 echo '<small>'. $item .'</small><br>';
             } ?>
-            <a href="<?php echo($accountLink); ?>" target="_blank" class="btn btn-warning btn-sm mt-2"><i class="fas fa-external-link-alt ml-1 mr-1"></i><?php echo _("My account") ?></a>
+            <a href="<?php echo($accountLink); ?>" target="_blank" class="btn btn-warning btn-sm mt-2"><i class="fas fa-external-link-alt ms-1 me-1"></i><?php echo _("My account") ?></a>
         </div><!-- /.card-body -->
       </div><!-- /.card -->
     </div>
   </div>
   <?php endif; ?>
   <div class="row">
-    <div class="form-group col-md-6 mt-3">
+    <div class="mb-3 col-md-6 mt-3">
       <h5><?php echo _("Server location"); ?></h5>
       <div>
         <small><?php echo _("Choosing <strong>Save settings</strong> will connect to the selected country."); ?></small>

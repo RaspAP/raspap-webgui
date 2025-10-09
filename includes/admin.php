@@ -5,6 +5,7 @@ function DisplayAuthConfig($username)
     $status = new \RaspAP\Messages\StatusMessage;
     $auth = new \RaspAP\Auth\HTTPAuth;
     $config = $auth->getAuthConfig();
+    $username = $config['admin_user'];
     $password = $config['admin_pass'];
 
     if (isset($_POST['UpdateAdminPassword'])) {
@@ -25,6 +26,7 @@ function DisplayAuthConfig($username)
                     fwrite($auth_file, password_hash($_POST['newpass'], PASSWORD_BCRYPT).PHP_EOL);
                     fclose($auth_file);
                     $username = $new_username;
+                    $_SESSION['user_id'] = $username;
                     $status->addMessage('Admin password updated');
                 } else {
                     $status->addMessage('Failed to update admin password', 'danger');
@@ -33,6 +35,8 @@ function DisplayAuthConfig($username)
         } else {
             $status->addMessage('Old password does not match', 'danger');
         }
+    } elseif (isset($_POST['logout'])) {
+        $auth->logout();
     }
 
     echo renderTemplate(

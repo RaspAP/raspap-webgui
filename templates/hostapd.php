@@ -2,17 +2,17 @@
   <?php if (!RASPI_MONITOR_ENABLED) : ?>
     <input type="submit" class="btn btn-outline btn-primary" id="btnSaveHostapd" name="SaveHostAPDSettings" value="<?php echo _("Save settings"); ?>" />
     <?php if ($hostapdstatus[0] == 0) : ?>
-      <input type="submit" class="btn btn-success" name="StartHotspot" value="<?php echo  _("Start hotspot"); $msg=_("Starting hotspot"); ?>" data-toggle="modal" data-target="#hostapdModal"/>
+      <input type="submit" class="btn btn-success" name="StartHotspot" value="<?php echo  _("Start hotspot"); $msg=_("Starting hotspot"); ?>" data-bs-toggle="modal" data-bs-target="#hostapdModal"/>
     <?php else : ?>
       <input type="submit" class="btn btn-warning" name="StopHotspot" value="<?php echo _("Stop hotspot") ?>"/>
-      <input type ="submit" class="btn btn-warning" name="RestartHotspot" value="<?php echo _("Restart hotspot"); $msg=_("Restarting hotspot"); ?>" data-toggle="modal" data-target="#hostapdModal"/>
+      <input type ="submit" class="btn btn-warning" name="RestartHotspot" value="<?php echo _("Restart hotspot"); $msg=_("Restarting hotspot"); ?>" data-bs-toggle="modal" data-bs-target="#hostapdModal"/>
     <?php endif ?>
     <!-- Modal -->
     <div class="modal fade" id="hostapdModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <div class="modal-title" id="ModalLabel"><i class="fas fa-sync-alt fa-spin mr-2"></i><?php echo $msg ?></div>
+            <div class="modal-title" id="ModalLabel"><i class="fas fa-sync-alt fa-spin me-2"></i><?php echo $msg ?></div>
           </div>
           <div class="modal-body">
             <div class="col-md-12 mb-3 mt-1"><?php echo _("Executing RaspAP service start") ?>...</div>
@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline btn-primary" data-dismiss="modal"><?php echo _("Close"); ?></button>
+            <button type="button" class="btn btn-outline btn-primary" data-bs-dismiss="modal"><?php echo _("Close"); ?></button>
           </div>
         </div>
       </div>
@@ -36,11 +36,11 @@
       <div class="card-header">
         <div class="row">
           <div class="col">
-            <i class="far fa-dot-circle mr-2"></i><?php echo _("Hotspot"); ?>
+            <i class="fas fa-bullseye me-2"></i><?php echo _("Hotspot"); ?>
           </div>
           <div class="col">
-            <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
-              <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
+            <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
+              <span class="icon text-gray-600"><i class="fas fa-circle hostapd-led service-status-<?php echo $serviceStatus ?>"></i></span>
               <span class="text service-status">hostapd <?php echo _($serviceStatus) ?></span>
             </button>
           </div>
@@ -50,14 +50,14 @@
       <div class="card-body">
         <?php $status->showMessages(); ?>
         <form role="form" action="hostapd_conf" method="POST" class="needs-validation" novalidate>
-          <?php echo CSRFTokenFieldTag() ?>
+          <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" data-toggle="tab"><?php echo _("Basic"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" id="securitytab" href="#security" data-toggle="tab"><?php echo _("Security"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" data-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#logoutput" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
+            <li class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" data-bs-toggle="tab"><?php echo _("Basic"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" id="securitytab" href="#security" data-bs-toggle="tab"><?php echo _("Security"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" data-bs-toggle="tab"><?php echo _("Advanced"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#logoutput" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
           </ul>
 
           <!-- Tab panes -->

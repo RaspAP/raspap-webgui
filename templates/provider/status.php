@@ -6,8 +6,8 @@
   <p><?php echo sprintf(_("Current <code>%s</code> connection status is displayed below."), strtolower($providerName)); ?></p>
 
   <div class="row">
-    <div class="form-group col-md-8 mt-2">
-      <textarea class="logoutput"><?php echo htmlspecialchars($providerLog, ENT_QUOTES); ?></textarea>
+    <div class="mb-3 col-md-8 mt-2">
+      <textarea class="logoutput text-secondary"><?php echo htmlspecialchars($providerLog, ENT_QUOTES); ?></textarea>
     </div>
   </div>
 </div><!-- /.tab-pane -->

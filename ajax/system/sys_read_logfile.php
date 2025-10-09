@@ -1,5 +1,10 @@
 <?php
 
+require_once '../../includes/autoload.php';
+require_once '../../includes/session.php';
+require_once '../../includes/config.php';
+require_once '../../includes/authenticate.php';
+
 $logFile = '/tmp/raspap_install.log';
 $searchStrings = [
     'Configure update' => 1,
@@ -40,4 +45,3 @@ if (file_exists($logFile)) {
 } else {
     echo json_encode("File does not exist: $logFile");
 }
-

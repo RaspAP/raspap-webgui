@@ -14,9 +14,9 @@
         <div id="content">
           <div class="row">
             <div class="col-lg-12">
-              <p class="text-light bg-danger pl-3 p-1"><?php echo _("RaspAP Exception"); ?></p>
+              <p class="text-light bg-danger ps-3 p-1"><?php echo _("RaspAP Exception"); ?></p>
             </div>
-            <div class="col-lg-12 ml-3">
+            <div class="col-lg-12 ms-3">
               <h3 class="mt-2"><?php echo _("An exception occurred"); ?></h3>
               <h5>Stack trace:</h5>
               <pre><?php print_r($trace); ?></pre>

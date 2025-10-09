@@ -1,8 +1,27 @@
-      <?php
-        $extraFooterScripts = array();
-        $page = $_SERVER['PATH_INFO'];
-        // handle page actions
-        switch ($page) {
+<?php
+
+$pluginManager = \RaspAP\Plugins\PluginManager::getInstance();
+
+// Get the requested page
+$extraFooterScripts = array();
+$page = $_SERVER['PATH_INFO'] ?? '';
+
+// Check if any plugin wants to handle the request
+if (!$pluginManager->handlePageAction($page)) {
+    // If no plugin is available fall back to core page action handlers
+    handleCorePageAction($page, $extraFooterScripts);
+}
+
+/**
+ * Core application page handling
+ *
+ * @param string $page
+ * @param array $extraFooterScripts
+ * @return void
+ */
+function handleCorePageAction(string $page, array &$extraFooterScripts): void
+{
+    switch ($page) {
         case "/wlan0_info":
             DisplayDashboard($extraFooterScripts);
             break;
@@ -13,7 +32,7 @@
             DisplayWPAConfig();
             break;
         case "/network_conf":
-            DisplayNetworkingConfig();
+            DisplayNetworkingConfig($extraFooterScripts);
             break;
         case "/hostapd_conf":
             DisplayHostAPDConfig();
@@ -45,11 +64,17 @@
         case "/system_info":
             DisplaySystem($extraFooterScripts);
             break;
+        case "/restapi_conf":
+            DisplayRestAPI();
+            break;
         case "/about":
             DisplayAbout();
             break;
+        case "/login":
+            DisplayLogin();
+            break;
         default:
             DisplayDashboard($extraFooterScripts);
-        }
-      ?>
+    }
+}
 

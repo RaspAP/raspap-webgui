@@ -50,6 +50,26 @@
                 "pattern": "(\\w+)\\s+",
                 "replace": "$1,$1\\n"
             }
+        },
+        {
+            "id": 4,
+            "name": "AdGuard VPN",
+            "bin_path": "/usr/local/bin/adguardvpn-cli",
+            "install_page": "https://adguard-vpn.com/kb/adguard-vpn-for-linux/installation/",
+            "account_page": "https://my.adguard-vpn.com/en/account/product/vpn",
+            "cmd_overrides": {
+                "countries": "list-locations",
+                "connect": "connect -y -l",
+                "log": "status",
+                "account": "license",
+                "version": "--version"
+            },
+            "regex": {
+                "status": "\/vpn is disconnected\/",
+                "pattern": "/^([A-Z]{2})\\s+.*?\\s([A-Za-z]+(?:\\s[A-Za-z]+)?)\\s+\\d+$/m",
+                "replace": "$2",
+		        "slice": 3
+            }
         }
     ]
 }

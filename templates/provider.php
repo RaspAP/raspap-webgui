@@ -15,10 +15,10 @@
         <div class="card-header">
           <div class="row">
             <div class="col">
-              <i class="fas fa-shield-alt fa-fw mr-2"></i><?php echo _($providerName); ?>
+              <i class="fas fa-shield-alt fa-fw me-2"></i><?php echo _($providerName); ?>
             </div>
             <div class="col">
-              <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+              <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
                 <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
                 <span class="text service-status"><?php echo strtolower($providerName); ?> <?php echo _($statusDisplay) ?></span>
               </button>
@@ -28,11 +28,11 @@
         <div class="card-body">
         <?php $status->showMessages(); ?>
           <form role="form" action="provider_conf" enctype="multipart/form-data" method="POST">
-            <?php echo CSRFTokenFieldTag() ?>
+            <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#providerclient" data-toggle="tab"><?php echo _("Settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#providerstatus" data-toggle="tab"><?php echo _("Status"); ?></a></li>
+                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#providerclient" data-bs-toggle="tab"><?php echo _("Settings"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#providerstatus" data-bs-toggle="tab"><?php echo _("Status"); ?></a></li>
             </ul>
 
             <!-- Tab panes -->

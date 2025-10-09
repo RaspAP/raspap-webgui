@@ -16,10 +16,10 @@
         <div class="card-header">
           <div class="row">
             <div class="col">
-              <i class="fas fa-key fa-fw mr-2"></i><?php echo _("OpenVPN"); ?>
+              <i class="fas fa-key fa-fw me-2"></i><?php echo _("OpenVPN"); ?>
             </div>
             <div class="col">
-              <button class="btn btn-light btn-icon-split btn-sm service-status float-right">
+              <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
                 <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
                 <span class="text service-status">openvpn <?php echo _($serviceStatus) ?></span>
               </button>
@@ -29,12 +29,12 @@
         <div class="card-body">
         <?php $status->showMessages(); ?>
           <form role="form" action="openvpn_conf" enctype="multipart/form-data" method="POST">
-            <?php echo CSRFTokenFieldTag() ?>
+            <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-toggle="tab"><?php echo _("Client settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="configstab" href="#openvpnconfigs" data-toggle="tab"><?php echo _("Configurations"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#openvpnlogging" data-toggle="tab"><?php echo _("Logging"); ?></a></li>
+                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-bs-toggle="tab"><?php echo _("Client settings"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="configstab" href="#openvpnconfigs" data-bs-toggle="tab"><?php echo _("Configurations"); ?></a></li>
+                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#openvpnlogging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -57,13 +57,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-      <div class="modal-title" id="ModalLabel"><i class="far fa-trash-alt mr-2"></i><?php echo _("Delete OpenVPN client"); ?></div>
+      <div class="modal-title" id="ModalLabel"><i class="far fa-trash-alt me-2"></i><?php echo _("Delete OpenVPN client"); ?></div>
       </div>
       <div class="modal-body">
         <div class="col-md-12 mb-3 mt-1"><?php echo _("Delete client configuration? This cannot be undone."); ?></div>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
+      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
       <button type="button" class="btn btn-outline-danger btn-delete"><?php echo _("Delete"); ?></button>
       </div>
     </div>
@@ -75,13 +75,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-      <div class="modal-title" id="ModalLabel"><i class="far fa-check-circle mr-2"></i><?php echo _("Activate OpenVPN client"); ?></div>
+      <div class="modal-title" id="ModalLabel"><i class="far fa-check-circle me-2"></i><?php echo _("Activate OpenVPN client"); ?></div>
       </div>
       <div class="modal-body">
         <div class="col-md-12 mb-3 mt-1"><?php echo _("Activate client configuration? This will restart the openvpn-client service."); ?></div>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><?php echo _("Cancel"); ?></button>
+      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
       <button type="button" class="btn btn-outline-success btn-activate"><?php echo _("Activate"); ?></button>
       </div>
     </div>
