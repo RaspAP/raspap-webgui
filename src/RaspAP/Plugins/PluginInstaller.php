@@ -197,6 +197,10 @@ class PluginInstaller
                     $this->installDependencies($manifest['dependencies']);
                     $rollbackStack[] = 'uninstallDependencies';
                 }
+                if (!empty($manifest['dpkgs'])) {
+                    $this->installDebianPackages($manifest['dpkgs'], $pluginDir);
+                    $rollbackStack[] = 'uninstallDebianPackages';
+                }
                 if (!empty($manifest['user_nonprivileged'])) {
                     $this->createUser($manifest['user_nonprivileged']);
                     $rollbackStack[] = 'deleteUser';
@@ -283,6 +287,54 @@ class PluginInstaller
         if (strpos(strtolower($return), 'ok') === false) {
             throw new \Exception('Plugin helper failed to install depedencies.');
         }
+    }
+
+    /**
+     * Installs a Debian package (.deb) for the current architecture
+     *
+     * @param array $dpkgs
+     * @param string $pluginDir
+     * @return void
+     * @throws \Exception
+     */
+    private function installDebianPackages(array $dpkgs, string $pluginDir): void
+    {
+        $arch = trim(shell_exec('dpkg --print-architecture'));
+        if (empty($arch)) {
+            throw new \Exception('Unable to detect system architecture');
+        }
+
+        // match .deb file for current arch
+        $debFile = null;
+        foreach ($dpkgs as $pkg) {
+            if (strpos($pkg, $arch) !== false) {
+                $debFile = $pkg;
+                break;
+            }
+        }
+
+        if (!$debFile) {
+            throw new \Exception("No matching .deb package found for architecture: $arch");
+        }
+
+        $debPath = realpath(rtrim($pluginDir, '/') . '/dpkgs/' . $debFile);
+        if ($debPath === false || !is_file($debPath)) {
+            throw new \Exception("Debian package not found: $debFile");
+        }
+
+        // invoke the plugin-helper
+        $cmd = sprintf(
+            'sudo %s deb %s 2>&1',
+            escapeshellcmd($this->helperScriptPath), escapeshellarg($debPath)
+        );
+        $return = shell_exec($cmd);
+
+        // check for success
+        if (stripos($return, 'ok') === false) {
+            throw new \Exception("Plugin helper failed to install .deb package: $debFile\nOutput: $return");
+        }
+
+        error_log("Installed Debian package: $debFile for arch $arch");
     }
 
     /**
