@@ -621,7 +621,7 @@ function _download_latest_files() {
         _install_status 0 "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
     fi
 
-    git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url /tmp/raspap-webgui || clone=false
+    git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url $source_dir || clone=false
     git -C $source_dir submodule update --remote plugins || clone=false
 
     if [ "$clone" = false ]; then
