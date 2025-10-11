@@ -369,7 +369,7 @@ class PluginInstaller
             $source = escapeshellarg($pluginDir . DIRECTORY_SEPARATOR . $config['source']);
             $destination = $config['destination'];
 
-            if (!str_starts_with($destination, '/')) {
+            if (strncmp($destination, '/', 1) !== 0) {
                 $destination = $this->rootPath . '/' . ltrim($destination, '/');
             }
             $destination = escapeshellarg($destination);
