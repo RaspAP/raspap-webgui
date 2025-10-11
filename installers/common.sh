@@ -34,7 +34,16 @@ if [ "$insiders" == 1 ]; then
     repo="RaspAP/raspap-insiders"
     branch=${RASPAP_INSIDERS_LATEST}
 fi
-git_source_url="https://github.com/$repo"
+
+#Use ssh IF $ssh is set AND $username and $acctoken IS NOT set
+if [ -n "$username" ] && [ -n "$acctoken" ]; then
+    git_source_url="https://${username}:${acctoken}@github.com/$repo"
+    ssh=0
+elif [ "$ssh" == 1 ]; then 
+    git_source_url="git@github.com:$repo"
+else 
+    git_source_url="https://github.com/$repo"
+fi
 webroot_dir="/var/www/html"
 
 # NOTE: all the below functions are overloadable for system-specific installs
@@ -277,8 +286,8 @@ function _install_dependencies() {
     sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $rsync_package $network_tools $ifconfig_package vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
 
     if [[ "$php_package" == *"-fpm" ]]; then
-        install_log "Enabling lighttpd fastcgi-php-fpm module for $php_package"
-        sudo lighty-enable-mod fastcgi-php-fpm || install_status 1 "Unable to enable fastcgi-php-fpm module"
+        _install_log "Enabling lighttpd fastcgi-php-fpm module for $php_package"
+        sudo lighty-enable-mod fastcgi-php-fpm || _install_status 1 "Unable to enable fastcgi-php-fpm module"
     fi
 
     _install_status 0
@@ -605,22 +614,16 @@ function _download_latest_files() {
     source_dir="/tmp/raspap-webgui"
     if [ -d "$source_dir" ]; then
         echo "Temporary download destination $source_dir exists. Removing..."
-        rm -r "$source_dir"
+        rm -rf "$source_dir"
     fi
-    if [ "$repo" == "RaspAP/raspap-insiders" ]; then
-        if [ -n "$username" ] && [ -n "$acctoken" ]; then
-            insiders_source_url="https://${username}:${acctoken}@github.com/$repo"
-            git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $insiders_source_url $source_dir || clone=false
-            git -C $source_dir submodule update --remote plugins || clone=false
-        else
-            _install_status 3
-            echo "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
-        fi
+    if [ "$insiders" == 1 ] && [ "$ssh" != 1 ] && [[ -z "$username"  ||  -z "$acctoken" ]]; then
+        _install_status 3
+        _install_status 0 "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
     fi
-    if [ -z "$insiders_source_url" ]; then
-        git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url $source_dir || clone=false
-        git -C $source_dir submodule update --remote plugins || clone=false
-    fi
+
+    git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url $source_dir || clone=false
+    git -C $source_dir submodule update --remote plugins || clone=false
+
     if [ "$clone" = false ]; then
         _install_status 1 "Unable to download files from GitHub"
         echo "The installer cannot continue." >&2

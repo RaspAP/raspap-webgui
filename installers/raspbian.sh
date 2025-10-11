@@ -49,6 +49,7 @@ OPTIONS:
 -b, --branch <name>                 Overrides the default git branch (latest release)
 -t, --token <accesstoken>           Specify a GitHub token to access a private repository
 -n, --name <username>               Specify a GitHub username to access a private repository
+-x, --use-ssh                       Use ssh instead of https for git
 -u, --upgrade                       Upgrades an existing installation to the latest release version
 -d, --update                        Updates an existing installation to the latest release version
 -p, --path <path>                   Used with -d, --update, sets the existing install path
@@ -56,7 +57,7 @@ OPTIONS:
 -m, --minwrite                      Configures a microSD card for minimum write operation
 -k, --check <flag>                  Sets the connectivity check flag (default is 1=perform check)
 -v, --version                       Outputs release info and exits
--n, --uninstall                     Loads and executes the uninstaller
+-z, --uninstall                     Loads and executes the uninstaller
 -h, --help                          Outputs usage notes and exits
 
 Examples:
@@ -106,6 +107,7 @@ function _parse_params() {
     adblock_option=1
     wg_option=1
     insiders=0
+    ssh=0
     minwrite=0
     acctoken=""
     path=""
@@ -165,6 +167,9 @@ function _parse_params() {
             -m|--minwrite)
             minwrite=1
             ;;
+            -x|--use-ssh)
+            ssh=1
+            ;;
             -t|--token)
             acctoken="$2"
             shift
@@ -187,7 +192,7 @@ function _parse_params() {
             -v|--version)
             _version
             ;;
-            -n|--uninstall)
+            -z|--uninstall)
             uninstall=1
             ;;
             -*|--*)
