@@ -41,6 +41,21 @@ case "$action" in
     echo "OK"
     ;;
 
+  "deb")
+    [ $# -lt 1 ] && { echo "Usage: $0 deb <deb_file>"; exit 1; }
+    deb_file="$1"
+
+    if [ ! -f "$deb_file" ]; then
+        echo "Error: File not found: $deb_file"
+        exit 1
+    fi
+
+    echo "Installing .deb package: $deb_file"
+    dpkg -i "$deb_file"
+
+    echo "OK"
+    ;;
+
   "user")
     [ $# -lt 2 ] && { echo "Usage: $0 user <username> <password>."; exit 1; }
 
