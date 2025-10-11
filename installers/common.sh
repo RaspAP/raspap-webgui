@@ -507,6 +507,7 @@ function _install_provider() {
 
             if [ "$answer" != "${answer#[0]}" ]; then
                 _install_status 0 "(Skipped)"
+                skip=true
                 break
             elif [[ "$answer" =~ ^[0-9]+$ ]] && [[ -n ${options[$answer]+abc} ]]; then
                 break
@@ -515,25 +516,25 @@ function _install_provider() {
             fi
         done
     fi
+    if ! [ "$skip" ]; then
+        selected="${options[$answer]}"
+        echo "Configuring support for ${selected%%|*}"
+        bin_path=${selected#*|}
+        if ! grep -q "$bin_path" "$webroot_dir/installers/raspap.sudoers"; then
+            echo "Adding $bin_path to raspap.sudoers"
+            echo "www-data ALL=(ALL) NOPASSWD:$bin_path *" | sudo tee -a "$webroot_dir/installers/raspap.sudoers" > /dev/null || _install_status 1 "Unable to modify raspap.sudoers"
+        fi
+        echo "Enabling administration option for ${selected%%|*}"
+        sudo sed -i "s/\('RASPI_VPN_PROVIDER_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
 
-    selected="${options[$answer]}"
-    echo "Configuring support for ${selected%%|*}"
-    bin_path=${selected#*|}
-    if ! grep -q "$bin_path" "$webroot_dir/installers/raspap.sudoers"; then
-        echo "Adding $bin_path to raspap.sudoers"
-        echo "www-data ALL=(ALL) NOPASSWD:$bin_path *" | sudo tee -a "$webroot_dir/installers/raspap.sudoers" > /dev/null || _install_status 1 "Unable to modify raspap.sudoers"
-    fi
-    echo "Enabling administration option for ${selected%%|*}"
-    sudo sed -i "s/\('RASPI_VPN_PROVIDER_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
-
-    echo "Adding VPN provider to $raspap_dir/provider.ini"
-    if [ ! -f "$raspap_dir/provider.ini" ]; then
-        sudo touch "$raspap_dir/provider.ini"
-        echo "providerID = $answer" | sudo tee "$raspap_dir/provider.ini" > /dev/null || _install_status 1 "Unable to create $raspap_dir/provider.ini"
-    elif ! grep -q "providerID = $answer" "$raspap_dir/provider.ini"; then
-        echo "providerID = $answer" | sudo tee "$raspap_dir/provider.ini" > /dev/null || _install_status 1 "Unable to write to $raspap_dir/provider.ini"
-    fi
-
+        echo "Adding VPN provider to $raspap_dir/provider.ini"
+        if [ ! -f "$raspap_dir/provider.ini" ]; then
+            sudo touch "$raspap_dir/provider.ini"
+            echo "providerID = $answer" | sudo tee "$raspap_dir/provider.ini" > /dev/null || _install_status 1 "Unable to create $raspap_dir/provider.ini"
+        elif ! grep -q "providerID = $answer" "$raspap_dir/provider.ini"; then
+            echo "providerID = $answer" | sudo tee "$raspap_dir/provider.ini" > /dev/null || _install_status 1 "Unable to write to $raspap_dir/provider.ini"
+        fi
+    fi    
     _install_status 0
 }
 
