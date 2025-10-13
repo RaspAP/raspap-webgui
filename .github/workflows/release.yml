@@ -27,7 +27,7 @@ jobs:
 
       - name: Build RaspAP Image
         id: build
-        uses: usimd/pi-gen-action@v1
+        uses: usimd/pi-gen-action@v1.11.0
         with:
           image-name: "raspap-bookworm-${{ matrix.arch == '32-bit' && 'armhf' || 'arm64' }}-lite-${{ github.event.inputs.tag || github.ref_name }}"
           enable-ssh: 1
