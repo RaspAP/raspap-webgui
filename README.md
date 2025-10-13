@@ -41,10 +41,10 @@ RaspAP gives you two different ways to get up and running quickly. The simplest 
 ### Pre-built image
 Custom Raspberry Pi OS Lite images with the latest RaspAP are available for [direct download](https://github.com/RaspAP/raspap-webgui/releases/latest). This includes both 32- and 64-bit builds for ARM architectures.
 
-| Operating system     | Debian version | Kernel version  | RaspAP version | Size  |
-| ---------------------| ---------------|-----------------|----------------|-------|
-| Raspberry Pi OS (64-bit) Lite | 12 (bookworm)  | 6.6             | Latest         | 777 MB|
-| Raspberry Pi OS (32-bit) Lite | 12 (bookworm)  | 6.6             | Latest         | 805 MB|
+| Operating system | Debian version | Kernel version | RaspAP version | Size |
+| ------------ | -------------- | -------------- | -------------- | ---- |
+| Raspberry Pi OS (64-bit) Lite | 13 (trixie) | 6.12 | Latest | 826 MB |
+| Raspberry Pi OS (32-bit) Lite | 13 (trixie) | 6.12 | Latest | 799 MB |
 
 These images are automatically generated with each release of RaspAP. You may choose between an `arm64` or `armhf` (32-bit) based build. Refer to [this resource](https://www.raspberrypi.com/software/operating-systems/) to ensure compatibility with your hardware.
 
@@ -84,15 +84,14 @@ It's _strongly recommended_ that your first post-install action is to change the
 Please [read this](https://docs.raspap.com/issues/) before reporting an issue.
 
 ## Join Insiders
-[![](https://i.imgur.com/eml7k0b.png)](https://github.com/sponsors/RaspAP/)  
+
+[<img src="https://github.com/user-attachments/assets/832f1f0d-517a-4d73-8b62-068cf1a2041d" width="320">](https://github.com/sponsors/RaspAP/)  
 
 RaspAP is free software, but powered by _your_ support. If you find RaspAP useful for your personal or commercial projects, [become an Insider](https://github.com/sponsors/RaspAP/) and get early access to [exclusive features](https://docs.raspap.com/insiders/#exclusive-features) in the [Insiders Edition](https://docs.raspap.com/insiders/).
 
 A tangible side benefit of sponsorship is that **Insiders** are able to help _steer future development of RaspAP_. This is done through Insiders' team access to discussions, feature requests, issues and more in the private GitHub repository.
 
 ## WireGuard support
-
-![](https://i.imgur.com/5YDv37e.png)
 
 WireGuard® is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography. It aims to be considerably more performant than OpenVPN, and is generally regarded as the most secure, easiest to use, and simplest VPN solution for modern Linux distributions.
 
@@ -101,8 +100,6 @@ WireGuard may be optionally installed by the [Quick Installer](https://docs.rasp
 Details are [provided here](https://docs.raspap.com/wireguard/).
 
 ## OpenVPN support
-
-![](https://i.imgur.com/ta7tCon.png)
 
 OpenVPN may be optionally installed by the Quick Installer. Once this is done, you can [manage client configurations](https://docs.raspap.com/openvpn/) and the `openvpn-client` service with RaspAP.
 
@@ -137,17 +134,17 @@ RaspAP provides an 802.11ac wireless mode option for supported hardware (current
 ## Supported operating systems
 RaspAP was originally made for Raspbian, but now also installs on the following Debian-based distros.
 
-| Distribution | Release  | Architecture | Support |
-|---|:---:|:---:|:---:|
-| Raspberry Pi OS | (64-bit) Lite Trixie   | ARM	| Official |
-| Raspberry Pi OS | (32-bit) Lite Trixie   | ARM | Official |
-| Raspberry Pi OS | (64-bit) Lite Bookworm	| ARM | Official |
-| Raspberry Pi OS | (32-bit) Lite Bookworm | ARM | Official |
-| Raspberry Pi OS | (64-bit) Desktop Bookworm | ARM | Official |
-| Raspberry Pi OS | (64-bit) Lite Bullseye | ARM | Official |
-| Raspberry Pi OS | (32-bit) Lite Bullseye | ARM | Official |
-| Armbian | 23.11 (Jammy) | [ARM](https://docs.armbian.com/#supported-socs) | Beta |
-| Debian  |  Bookworm | ARM / x86_64  | Beta |
+| Distribution | Release | Architecture | Support | 
+| ------------ | ------- | ------------ | ------- |
+| Raspberry Pi OS Lite | 64-bit Debian 13 (trixie) | ARM | Official | 
+| Raspberry Pi OS Lite | 32-bit Debian 13 (trixie) | ARM | Official | 
+| Raspberry Pi OS Lite | 64-bit Debian 12 (bookworm) | ARM | Official | 
+| Raspberry Pi OS Lite | 32-bit Debian 12 (bookworm) | ARM | Official | 
+| Raspberry Pi OS Desktop | 64-bit Debian 12 (bookworm) | ARM | Official | 
+| Raspberry Pi OS Lite | 64-bit Debian 11 (bullseye) | ARM | Official | 
+| Raspberry Pi OS Lite | 32-bit Debian 11 (bullseye) | ARM | Official | 
+| Armbian  | 23.11 (jammy)  | ARM  | Beta  |
+| Debian | 12 (bookworm) | ARM / x86_64 | Beta |
 
 <img src="https://i.imgur.com/XiAJNKb.png" style="width:480px;" />
 
