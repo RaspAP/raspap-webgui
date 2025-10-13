@@ -15,8 +15,10 @@ jobs:
         include:
           - arch: "32-bit"
             pi_gen_version: "master"
+            release: "trixie"
           - arch: "64-bit"
             pi_gen_version: "arm64"
+            release: "trixie"
       fail-fast: false
     steps:
       - name: Checkout repository
