@@ -10,6 +10,54 @@
         </div>
       </div>
     </div>
+
+    <div class="row" id="bridgeStaticIpSection" style="display: <?php echo $arrHostapdConf['BridgedEnable'] == 1 ? 'block' : 'none' ?>;">
+      <div class="col-md-12 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title"><?php echo _("Bridge network settings"); ?></h6>
+            <p class="text-muted small mb-3">
+              <?php echo _("Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridged mode. Leave blank to use DHCP (not recommended)."); ?>
+            </p>
+            
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="bridgeStaticIp" class="form-label"><?php echo _("Static IP Address"); ?></label>
+                <input type="text" class="form-control ip_address" id="bridgeStaticIp" name="bridgeStaticIp" 
+                       value="<?php echo htmlspecialchars($arrHostapdConf['BridgeStaticIP'] ?? '', ENT_QUOTES); ?>" 
+                       placeholder="192.168.1.100" />
+                <div class="form-text"><?php echo _("Example: 192.168.1.100"); ?></div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="bridgeNetmask" class="form-label"><?php echo _("Netmask / CIDR"); ?></label>
+                <input type="text" class="form-control" id="bridgeNetmask" name="bridgeNetmask" 
+                       value="<?php echo htmlspecialchars($arrHostapdConf['BridgeNetmask'] ?? '24', ENT_QUOTES); ?>" 
+                       placeholder="24" />
+                <div class="form-text"><?php echo _("CIDR notation (e.g., 24 for 255.255.255.0)"); ?></div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="bridgeGateway" class="form-label"><?php echo _("Gateway"); ?></label>
+                <input type="text" class="form-control ip_address" id="bridgeGateway" name="bridgeGateway" 
+                       value="<?php echo htmlspecialchars($arrHostapdConf['BridgeGateway'] ?? '', ENT_QUOTES); ?>" 
+                       placeholder="192.168.1.1" />
+                <div class="form-text"><?php echo _("Your router's IP address"); ?></div>
+              </div>
+              
+              <div class="col-md-6">
+                <label for="bridgeDNS" class="form-label"><?php echo _("DNS Server"); ?></label>
+                <input type="text" class="form-control ip_address" id="bridgeDNS" name="bridgeDNS" 
+                       value="<?php echo htmlspecialchars($arrHostapdConf['BridgeDNS'] ?? '', ENT_QUOTES); ?>" 
+                       placeholder="192.168.1.1" />
+                <div class="form-text"><?php echo _("Usually same as gateway"); ?></div>
+              </div>
+            </div>
+              </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-md-6 mb-2">
         <div class="form-check form-switch">

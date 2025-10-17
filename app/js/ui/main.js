@@ -78,6 +78,38 @@ $(document).on("submit", ".js-dhcp-settings-form", function(e) {
     $(".js-add-dhcp-upstream-server").trigger("click");
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  const bridgeCheckbox = document.getElementById('chxbridgedenable');
+  const bridgeSection = document.getElementById('bridgeStaticIpSection');
+  const staticIpInput = document.getElementById('bridgeStaticIp');
+  const previewIp = document.getElementById('previewStaticIp');
+  
+  // toggle visibility
+  bridgeCheckbox.addEventListener('change', function() {
+    bridgeSection.style.display = this.checked ? 'block' : 'none';
+  });
+  
+  staticIpInput.addEventListener('input', function() {
+    previewIp.textContent = this.value || 'your-static-ip';
+  });
+  
+  const form = bridgeCheckbox.closest('form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      if (bridgeCheckbox.checked) {
+        const staticIp = staticIpInput.value.trim();
+        const gateway = document.getElementById('bridgeGateway').value.trim();
+        
+        if (staticIp && !gateway) {
+          e.preventDefault();
+          // raise alert
+          return false;
+        }
+      }
+    });
+  }
+});
+
 /**
  * mark a form field, e.g. a select box, with the class `.js-field-preset`
  * and give it an attribute `data-field-preset-target` with a text field's
