@@ -16,9 +16,9 @@
       <div class="col-md-12 mb-3">
         <div class="card">
           <div class="card-body">
-            <h6 class="card-title"><?php echo _("Bridge Network Configuration"); ?></h6>
+            <h6 class="card-title"><?php echo _("Bridge interface configuration"); ?></h6>
             <p class="text-muted small mb-3">
-              <?php echo _("Configure a static IP address for the br0 interface to maintain connectivity during bridge mode activation. Leave blank to use DHCP (not recommended)."); ?>
+              <?php echo _("Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."); ?>
             </p>
             
             <div class="row g-3">
