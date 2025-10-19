@@ -99,6 +99,15 @@ document.addEventListener('DOMContentLoaded', function() {
       bridgeInputs.forEach(input => input.removeAttribute('required'));
     }
   });
+
+  // auto-populate DNS when gateway loses focus
+  gatewayInput.addEventListener('blur', function() {
+    const gatewayVal = this.value.trim();
+    if (gatewayVal !== '' && dnsInput.value.trim() === '') {
+      dnsInput.value = gatewayVal;
+    }
+  });
+
 });
 
 /**
