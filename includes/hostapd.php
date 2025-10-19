@@ -3,6 +3,7 @@
 use RaspAP\Networking\Hotspot\HostapdManager;
 use RaspAP\Networking\Hotspot\HotspotService;
 use RaspAP\Networking\Hotspot\WiFiManager;
+use RaspAP\Networking\Hotspot\DhcpcdManager;
 use RaspAP\Messages\StatusMessage;
 use RaspAP\System\Sysinfo;
 
@@ -18,6 +19,7 @@ function DisplayHostAPDConfig()
     $hostapd = new HostapdManager();
     $hotspot = new HotspotService();
     $status = new StatusMessage();
+    $dhcpcd = new DhcpcdManager();
     $system = new Sysinfo();
     $operatingSystem = $system->operatingSystem();
 
@@ -102,6 +104,30 @@ function DisplayHostAPDConfig()
         $arrConfig = $hostapd->getConfig();
     } catch (\RuntimeException $e) {
         error_log('Error: ' . $e->getMessage());
+    }
+
+    // bridge configuration
+    if (!empty($arrHostapdConf['BridgedEnable']) && (int)$arrHostapdConf['BridgedEnable'] === 1) {
+        $iface = 'br0';
+        $bridgeConfig = $dhcpcd->getInterfaceConfig($iface);
+
+        if (is_array($bridgeConfig) && !empty($bridgeConfig)) {
+            $arrConfig['bridgeStaticIP'] = !empty($bridgeConfig['StaticIP'])
+                ? $bridgeConfig['StaticIP']
+                : '192.168.1.10';
+
+            $arrConfig['bridgeNetmask'] = !empty($bridgeConfig['SubnetMask'])
+                ? mask2cidr($bridgeConfig['SubnetMask'])
+                : '24';
+
+            $arrConfig['bridgeGateway'] = !empty($bridgeConfig['StaticRouters'])
+                ? $bridgeConfig['StaticRouters']
+                : '192.168.1.1';
+
+            $arrConfig['bridgeDNS'] = !empty($bridgeConfig['StaticDNS'])
+                ? $bridgeConfig['StaticDNS']
+                : '192.168.1.1';
+        }
     }
 
     // assign disassoc_low_ack boolean if value is set
