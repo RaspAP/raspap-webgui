@@ -26,7 +26,7 @@
                 <label for="bridgeStaticIp" class="form-label"><?php echo _("Static IP Address"); ?></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control ip_address" id="bridgeStaticIp" name="bridgeStaticIp"
-                         value="<?php echo htmlspecialchars($arrHostapdConf['BridgeStaticIP'] ?? '', ENT_QUOTES); ?>"
+                         value="<?php echo htmlspecialchars($arrConfig['bridgeStaticIP'] ?? '', ENT_QUOTES); ?>"
                          placeholder="192.168.1.100" />
                   <div class="invalid-feedback">
                     <?php echo _("Please enter a valid IPv4 address"); ?>
@@ -39,7 +39,7 @@
                 <label for="bridgeNetmask" class="form-label"><?php echo _("Netmask / CIDR"); ?></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control" id="bridgeNetmask" name="bridgeNetmask"
-                         value="<?php echo htmlspecialchars($arrHostapdConf['BridgeNetmask'] ?? '24', ENT_QUOTES); ?>"
+                         value="<?php echo htmlspecialchars($arrConfig['bridgeNetmask'] ?? '24', ENT_QUOTES); ?>"
                          placeholder="24" />
                   <div class="invalid-feedback">
                     <?php echo _("Please enter a valid netmask"); ?>
@@ -52,7 +52,7 @@
                 <label for="bridgeGateway" class="form-label"><?php echo _("Gateway"); ?></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control ip_address" id="bridgeGateway" name="bridgeGateway"
-                         value="<?php echo htmlspecialchars($arrHostapdConf['BridgeGateway'] ?? '', ENT_QUOTES); ?>"
+                         value="<?php echo htmlspecialchars($arrConfig['bridgeGateway'] ?? '', ENT_QUOTES); ?>"
                          placeholder="192.168.1.1" />
                   <div class="invalid-feedback">
                     <?php echo _("Please enter a valid IPv4 address"); ?>
@@ -65,7 +65,7 @@
                 <label for="bridgeDNS" class="form-label"><?php echo _("DNS Server"); ?></label>
                 <div class="input-group has-validation">
                   <input type="text" class="form-control ip_address" id="bridgeDNS" name="bridgeDNS"
-                         value="<?php echo htmlspecialchars($arrHostapdConf['BridgeDNS'] ?? '', ENT_QUOTES); ?>"
+                         value="<?php echo htmlspecialchars($arrConfig['bridgeDNS'] ?? '', ENT_QUOTES); ?>"
                          placeholder="192.168.1.1" />
                   <div class="invalid-feedback">
                     <?php echo _("Please enter a valid IPv4 address"); ?>
