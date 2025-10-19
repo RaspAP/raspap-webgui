@@ -61,7 +61,15 @@ function DisplayHostAPDConfig()
                 $status->addMessage($line, 'info');
             }
         } elseif (isset($_POST['SaveHostAPDSettings'])) {
-            $hotspot->saveSettings($_POST, $arrSecurity, $arrEncType, $arr80211Standard, $interfaces, $reg_domain, $status);
+            $result = $hotspot->saveSettings(
+                $_POST,
+                $arrSecurity,
+                $arrEncType,
+                $arr80211Standard,
+                $interfaces,
+                $reg_domain,
+                $status
+            );
         } elseif (isset($_POST['StopHotspot'])) {
             $status->addMessage('Attempting to stop hotspot', 'info');
             exec('sudo /bin/systemctl stop hostapd.service', $return);
