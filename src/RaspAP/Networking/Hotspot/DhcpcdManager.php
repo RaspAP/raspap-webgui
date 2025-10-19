@@ -36,6 +36,7 @@ class DhcpcdManager
         bool $repeaterEnable,
         bool $wifiAPEnable,
         bool $dualAPEnable,
+        ?array $bridgeConfig = null,
         StatusMessage $status
         ): bool
     {
@@ -64,6 +65,9 @@ class DhcpcdManager
             $config[] = '# RaspAP br0 configuration';
             $config[] = 'denyinterfaces eth0 wlan0';
             $config[] = 'interface br0';
+            $config[] = 'static ip_address='.$bridgeConfig['staticIp'] . '/'. $bridgeConfig['netmask'];
+            $config[] = 'static routers='.$bridgeConfig['gateway'];
+            $config[] = 'static domain_name_servers='.$bridgeConfig['dns'];
         } elseif ($repeaterEnable) {
             $config = [
                 '# RaspAP ' . $ap_iface . ' configuration',
