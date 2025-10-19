@@ -117,6 +117,66 @@ class HostapdValidator
         $post['max_num_sta'] = $post['max_num_sta'] > 2007 ? 2007 : $post['max_num_sta'];
         $post['max_num_sta'] = $post['max_num_sta'] < 1 ? null : $post['max_num_sta'];
 
+        // validate bridged mode static IP configuration
+        $bridgedEnable = !empty($post['bridgedEnable']);
+        $bridgeStaticIp = trim($post['bridgeStaticIp'] ?? '');
+        $bridgeNetmask = trim($post['bridgeNetmask'] ?? '');
+        $bridgeGateway = trim($post['bridgeGateway'] ?? '');
+        $bridgeDNS = trim($post['bridgeDNS'] ?? '');
+
+        if ($bridgedEnable) {
+            // validate static IP address
+            if (!filter_var($bridgeStaticIp, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                $status->addMessage('Bridge static IP address must be a valid IPv4 address', 'danger');
+                $goodInput = false;
+            }
+
+            // validate netmask (CIDR notation)
+            if (!empty($bridgeNetmask)) {
+                if (!ctype_digit($bridgeNetmask) || (int)$bridgeNetmask < 1 || (int)$bridgeNetmask > 32) {
+                    $status->addMessage('Bridge netmask must be a number between 1 and 32', 'danger');
+                    $goodInput = false;
+                }
+            } else {
+                $status->addMessage('Bridge netmask is required when using static IP', 'danger');
+                $goodInput = false;
+            }
+
+            // validate gateway
+            if (!empty($bridgeGateway)) {
+                if (!filter_var($bridgeGateway, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                    $status->addMessage('Bridge gateway must be a valid IPv4 address', 'danger');
+                    $goodInput = false;
+                }
+            } else {
+                $status->addMessage('Bridge gateway is required when using static IP', 'danger');
+                $goodInput = false;
+            }
+
+            // validate DNS server
+            if (!empty($bridgeDNS)) {
+                if (!filter_var($bridgeDNS, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                    $status->addMessage('Bridge DNS server must be a valid IPv4 address', 'danger');
+                    $goodInput = false;
+                }
+            } else {
+                $status->addMessage('Bridge DNS server is required when using static IP', 'danger');
+                $goodInput = false;
+            }
+
+            // validate that static IP and gateway are in the same subnet
+            if ($goodInput && !empty($bridgeStaticIp) && !empty($bridgeGateway) && !empty($bridgeNetmask)) {
+                $ipLong = ip2long($bridgeStaticIp);
+                $gatewayLong = ip2long($bridgeGateway);
+                $mask = -1 << (32 - (int)$bridgeNetmask);
+
+                if (($ipLong & $mask) !== ($gatewayLong & $mask)) {
+                    $status->addMessage('Bridge static IP and gateway must be in the same subnet', 'danger');
+                    $goodInput = false;
+                }
+            }
+        }
+
         if (!$goodInput) {
             return false;
         }
@@ -136,7 +196,11 @@ class HostapdValidator
             'max_num_sta'      => $post['max_num_sta'],
             'beacon_interval'  => $post['beacon_interval'] ?? null,
             'disassoc_low_ack' => $post['disassoc_low_ackEnable'] ?? null,
-            'bridge'           => ($post['bridgedEnable'] ?? false) ? 'br0' : null
+            'bridge'           => ($post['bridgedEnable'] ?? false) ? 'br0' : null,
+            'bridgeStaticIp'   => ($post['bridgeStaticIp']),
+            'bridgeNetmask'    => ($post['bridgeNetmask']),
+            'bridgeGateway'    => ($post['bridgeGateway']),
+            'bridgeDNS'        => ($post['bridgeDNS'])
         ];
     }
 
