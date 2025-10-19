@@ -82,32 +82,23 @@ document.addEventListener('DOMContentLoaded', function() {
   const bridgeCheckbox = document.getElementById('chxbridgedenable');
   const bridgeSection = document.getElementById('bridgeStaticIpSection');
   const staticIpInput = document.getElementById('bridgeStaticIp');
+  const netmaskInput = document.getElementById('bridgeNetmask');
+  const gatewayInput = document.getElementById('bridgeGateway');
+  const dnsInput = document.getElementById('bridgeDNS');
   const previewIp = document.getElementById('previewStaticIp');
   
-  // toggle visibility
+  const bridgeInputs = [staticIpInput, netmaskInput, gatewayInput, dnsInput];
+  
+  // toggle visibility and required fields
   bridgeCheckbox.addEventListener('change', function() {
-    bridgeSection.style.display = this.checked ? 'block' : 'none';
+    if (this.checked) {
+      bridgeSection.style.display = 'block';
+      bridgeInputs.forEach(input => input.setAttribute('required', 'required'));
+    } else {
+      bridgeSection.style.display = 'none';
+      bridgeInputs.forEach(input => input.removeAttribute('required'));
+    }
   });
-  
-  staticIpInput.addEventListener('input', function() {
-    previewIp.textContent = this.value || 'your-static-ip';
-  });
-  
-  const form = bridgeCheckbox.closest('form');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      if (bridgeCheckbox.checked) {
-        const staticIp = staticIpInput.value.trim();
-        const gateway = document.getElementById('bridgeGateway').value.trim();
-        
-        if (staticIp && !gateway) {
-          e.preventDefault();
-          // raise alert
-          return false;
-        }
-      }
-    });
-  }
 });
 
 /**
