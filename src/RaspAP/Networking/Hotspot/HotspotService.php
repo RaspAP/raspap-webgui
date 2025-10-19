@@ -136,65 +136,84 @@ class HotspotService
         // validate config from post data
         $validated = $this->hostapd->validate($post_data, $wpa_array, $enc_types, $modes, $interfaces, $reg_domain, $status);
 
-        if ($validated !== false) {
+        if ($validated === false) {
+            $status->addMessage('Unable to save WiFi hotspot settings due to validation errors', 'danger');
+            error_log("HotspotService::validate() -> validated = false");
+            return false;
+        }
+
+        try {
+            // normalize state flags
+            $validated['interface'] = $apIface;
+            $validated['bridge']    = !empty($states['BridgedEnable']);
+            $validated['apsta']     = !empty($states['WifiAPEnable']);
+            $validated['repeater']  = !empty($states['RepeaterEnable']);
+            $validated['dualmode']  = !empty($states['DualAPEnable']);
+            $validated['txpower']   = $post_data['txpower'];
+
+            // hostapd
+            $config = $this->hostapd->buildConfig($validated, $status);
+            $this->hostapd->saveConfig($config, $dualAPEnable, $validated['interface']);
+            $this->maybeSetRegDomain($post_data['country_code'], $status);
+
+            $status->addMessage('WiFi hotspot settings saved.', 'success');
+
+            // dnsmasq
             try {
-                // normalize state flags
-                $validated['interface'] = $apIface;
-                $validated['bridge']    = !empty($states['BridgedEnable']);
-                $validated['apsta']     = !empty($states['WifiAPEnable']);
-                $validated['repeater']  = !empty($states['RepeaterEnable']);
-                $validated['dualmode']  = !empty($states['DualAPEnable']);
-                $validated['txpower']   = $post_data['txpower'];
-
-                // hostapd
-                $config = $this->hostapd->buildConfig($validated, $status);
-                $this->hostapd->saveConfig($config, $dualAPEnable, $validated['interface']);
-                $this->maybeSetRegDomain($post_data['country_code'], $status);
-
-                $status->addMessage('WiFi hotspot settings saved.', 'success');
-
-                // dnsmasq
-                try {
-                    $syscfg = $this->dnsmasq->getConfig($validated['interface'] ?? RASPI_WIFI_AP_INTERFACE);
-                } catch (\RuntimeException $e) {
-                    error_log('Error: ' . $e->getMessage());
-                }
-
-                try {
-                    $dnsmasqConfig = $this->dnsmasq->buildConfig(
-                        $syscfg,
-                        $validated['interface'],
-                        $validated['apsta'],
-                        $validated['bridge']
-                    );
-                    $this->dnsmasq->saveConfig($dnsmasqConfig, $validated['interface'], $status);
-                } catch (\RuntimeException $e) {
-                    error_log('Error: ' . $e->getMessage());
-                }
-
-                // dhcpcd
-                try {
-                    $return = $this->dhcpcd->buildConfig(
-                        $validated['interface'],
-                        $validated['bridge'],
-                        $validated['repeater'],
-                        $validated['apsta'],
-                        $validated['dualmode'],
-                        $status,
-                    );
-                } catch (\RuntimeException $e) {
-                    error_log('Error: ' . $e->getMessage());
-                }
-            } catch (\Throwable $e) {
-                error_log(sprintf(
-                    "Error: %s in %s on line %d\nStack trace:\n%s",
-                    $e->getMessage(),
-                    $e->getFile(),
-                    $e->getLine(),
-                    $e->getTraceAsString()
-                ));
-                $status->addMessage('Unable to save WiFi hotspot settings', 'danger');
+                $syscfg = $this->dnsmasq->getConfig($validated['interface'] ?? RASPI_WIFI_AP_INTERFACE);
+            } catch (\RuntimeException $e) {
+                error_log('Error: ' . $e->getMessage());
             }
+
+            try {
+                $dnsmasqConfig = $this->dnsmasq->buildConfig(
+                    $syscfg,
+                    $validated['interface'],
+                    $validated['apsta'],
+                    $validated['bridge']
+                );
+                $this->dnsmasq->saveConfig($dnsmasqConfig, $validated['interface'], $status);
+            } catch (\RuntimeException $e) {
+                error_log('Error: ' . $e->getMessage());
+            }
+
+            // dhcpcd
+            // pass bridge configuration if available
+            try {
+                $bridgeConfig = null;
+                if ($validated['bridge'] && !empty($validated['bridgeStaticIp'])) {
+                    $bridgeConfig = [
+                        'staticIp'  => $validated['bridgeStaticIp'],
+                        'netmask'   => $validated['bridgeNetmask'],
+                        'gateway'   => $validated['bridgeGateway'],
+                        'dns'       => $validated['bridgeDNS']
+                    ];
+                }
+
+                $return = $this->dhcpcd->buildConfig(
+                    $validated['interface'],
+                    $validated['bridge'],
+                    $validated['repeater'],
+                    $validated['apsta'],
+                    $validated['dualmode'],
+                    $bridgeConfig,
+                    $status,
+                );
+            } catch (\RuntimeException $e) {
+                error_log('Error: ' . $e->getMessage());
+                $status->addMessage('Error configuring DHCP: ' . $e->getMessage(), 'danger');
+                return false;
+            }
+
+        } catch (\Throwable $e) {
+            error_log(sprintf(
+                "Error: %s in %s on line %d\nStack trace:\n%s",
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine(),
+                $e->getTraceAsString()
+            ));
+            $status->addMessage('Unable to save WiFi hotspot settings', 'danger');
         }
 
         return true;
