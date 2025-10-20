@@ -414,9 +414,6 @@ msgstr "Signal quality"
 msgid "WAN IP"
 msgstr "WAN IP"
 
-msgid "Web-GUI"
-msgstr "Web-GUI"
-
 msgid "Signal strength"
 msgstr "Signal strength"
 
@@ -581,11 +578,8 @@ msgstr "This option adds <code>dhcp-host</code> entries to the dnsmasq configura
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
 msgstr "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
 
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
-msgstr "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
-
-msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
 
 msgid "Disable wpa_supplicant dhcp hook for this interface"
 msgstr "Disable wpa_supplicant dhcp hook for this interface"
@@ -735,6 +729,9 @@ msgstr "Bridged AP mode"
 msgid "WiFi repeater mode"
 msgstr "WiFi repeater mode"
 
+msgid "Dual band AP mode"
+msgstr "Dual band AP mode"
+
 msgid "Hide SSID in broadcast"
 msgstr "Hide SSID in broadcast"
 
@@ -837,6 +834,12 @@ msgstr "Parameter hiddenSSID contains invalid configuration value."
 msgid "Parameter hiddenSSID is not a number."
 msgstr "Parameter hiddenSSID is not a number."
 
+msgid "Enable AP isolation"
+msgstr "Enable AP isolation"
+
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
@@ -886,14 +889,14 @@ msgstr "Devices"
 msgid "Diagnostics"
 msgstr "Diagnostics"
 
-msgid "Properties of network devices"
-msgstr "Properties of network devices"
+msgid "Network devices"
+msgstr "Network devices"
 
 msgid "Device"
 msgstr "Device"
 
-msgid "MAC"
-msgstr "MAC"
+msgid "MAC address"
+msgstr "MAC address"
 
 msgid "USB vid/pid"
 msgstr "USB vid/pid"
@@ -907,11 +910,11 @@ msgstr "Fixed name"
 msgid "Change"
 msgstr "Change"
 
-msgid "Settings for Mobile Data Devices"
-msgstr "Settings for Mobile Data Devices"
+msgid "Mobile data settings"
+msgstr "Mobile data settings"
 
-msgid "PIN of SIM card"
-msgstr "PIN of SIM card"
+msgid "SIM card PIN number"
+msgstr "SIM card PIN number"
 
 msgid "APN Settings (Modem device ppp0)"
 msgstr "APN Settings (Modem device ppp0)"
@@ -1256,11 +1259,29 @@ msgstr "Installed"
 msgid "Alert messages"
 msgstr "Alert messages"
 
+msgid "Alert close timeout (milliseconds)"
+msgstr "Alert close timeout (milliseconds)"
+
 msgid "Automatically close alerts after a specified timeout"
 msgstr "Automatically close alerts after a specified timeout"
 
-msgid "Alert close timeout (milliseconds)"
-msgstr "Alert close timeout (milliseconds)"
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+
+msgid "Choose a network interface to inspect"
+msgstr "Choose a network interface to inspect"
+
+msgid "Select an interface..."
+msgstr "Select an interface..."
+
+msgid "Adapter health check"
+msgstr "Adapter health check"
+
+msgid "Inspect adapters"
+msgstr "Inspect adapters"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -2198,11 +2219,29 @@ msgstr "Configure exit node"
 msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
 msgstr "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
 
-msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. By configuring <code>%s</code> as an <strong>exit node</strong>, your public internet traffic will be routed through this device"
-msgstr "By default, Tailscale only routes traffic between the devices on which it's been installed. By configuring <code>%s</code> as an <strong>exit node</strong>, your public internet traffic will be routed through this device"
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as a <strong>exit node</strong>"
+msgstr "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as a <strong>exit node</strong>"
 
 msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
 msgstr "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+
+msgid "Select an existing exit node on your tailnet"
+msgstr "Select an existing exit node on your tailnet"
+
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "This is a typical configuration if you're using this device as a VPN travel router, for example."
+
+msgid "Configure this device as a new exit node"
+msgstr "Configure this device as a new exit node"
+
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet will be routed through it."
+msgstr "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet will be routed through it."
+
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
 
 msgid "Advertise <code>%s</code> as an exit node"
 msgstr "Advertise <code>%s</code> as an exit node"
@@ -2219,12 +2258,370 @@ msgstr "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, th
 msgid "This option enables transport layer offloads for better performance."
 msgstr "This option enables transport layer offloads for better performance."
 
+msgid "Select an exit node"
+msgstr "Select an exit node"
+
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+
+msgid "Route LAN traffic through the exit node."
+msgstr "Route LAN traffic through the exit node."
+
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "This will direct all LAN traffic to go through your exit node only."
+
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+
+msgid "Using exit node"
+msgstr "Using exit node"
+
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+
 msgid "Choose <strong>Save settings</strong> to continue."
 msgstr "Choose <strong>Save settings</strong> to continue."
+
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Choose <strong>Next</strong> to continue."
 
 msgid "Tailnet status"
 msgstr "Tailnet status"
 
 msgid "Current <code>tailnet</code> status is displayed below."
 msgstr "Current <code>tailnet</code> status is displayed below."
+
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Use Tailscale DNS settings (default)."
+
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Do not use Tailscale subnets (default on Linux)."
+
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "If keys expire for a device, connections to/from the given endpoint will stop working."
+
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "This option uses <code>--force-reauth</code> to renew the keys for this device."
+
+#: wireshark plugin
+
+msgid "Start capture"
+msgstr "Start capture"
+
+msgid "Stop capture"
+msgstr "Stop capture"
+
+msgid "Capture files"
+msgstr "Capture files"
+
+msgid "Capture interface"
+msgstr "Capture interface"
+
+msgid "Output file"
+msgstr "Output file"
+
+msgid "Path where capture file will be saved (.pcap format)"
+msgstr "Path where capture file will be saved (.pcap format)"
+
+msgid "File will be saved with .pcap extension"
+msgstr "File will be saved with .pcap extension"
+
+msgid "Capture filter (BPF syntax)"
+msgstr "Capture filter (BPF syntax)"
+
+msgid "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
+msgstr "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
+
+msgid "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
+msgstr "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
+
+msgid "Capture limits"
+msgstr "Capture limits"
+
+msgid "Packet count limit"
+msgstr "Packet count limit"
+
+msgid "Stop capture after this many packets. Leave empty for unlimited."
+msgstr "Stop capture after this many packets. Leave empty for unlimited."
+
+msgid "Duration limit (seconds)"
+msgstr "Duration limit (seconds)"
+
+msgid "Stop capture after this many seconds. Leave empty for unlimited."
+msgstr "Stop capture after this many seconds. Leave empty for unlimited."
+
+msgid "Ring buffer settings"
+msgstr "Ring buffer settings"
+
+msgid "File size (KB)"
+msgstr "File size (KB)"
+
+msgid "Create new file when this size is reached. Leave empty to disable."
+msgstr "Create new file when this size is reached. Leave empty to disable."
+
+msgid "10000 = 10 MB per file"
+msgstr "10000 = 10 MB per file"
+
+msgid "Number of files"
+msgstr "Number of files"
+
+msgid "Maximum number of ring buffer files to keep. Oldest files are deleted."
+msgstr "Maximum number of ring buffer files to keep. Oldest files are deleted."
+
+msgid "Advanced options"
+msgstr "Advanced options"
+
+msgid "Snapshot length (bytes)"
+msgstr "Snapshot length (bytes)"
+
+msgid "Limit the amount of data captured per packet. Leave empty for full packets."
+msgstr "Limit the amount of data captured per packet. Leave empty for full packets."
+
+msgid "96 bytes captures headers only, reduces file size"
+msgstr "96 bytes captures headers only, reduces file size"
+
+msgid "Promiscuous mode"
+msgstr "Promiscuous mode"
+
+msgid "Capture all packets on the network segment, not just those destined for this interface"
+msgstr "Capture all packets on the network segment, not just those destined for this interface"
+
+msgid "Quick filter presets"
+msgstr "Quick filter presets"
+
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Capture files generated by <code>tshark</code> are displayed below."
+
+msgid "No capture files found in /tmp directory"
+msgstr "No capture files found in /tmp directory"
+
+msgid "Filename"
+msgstr "Filename"
+
+msgid "Size"
+msgstr "Size"
+
+msgid "Modified"
+msgstr "Modified"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Download file"
+msgstr "Download file"
+
+msgid "Delete file"
+msgstr "Delete file"
+
+msgid "Confirm deletion"
+msgstr "Confirm deletion"
+
+msgid "Are you sure you want to delete this file?"
+msgstr "Are you sure you want to delete this file?"
+
+msgid "All Traffic"
+msgstr "All Traffic"
+
+msgid "HTTP/HTTPS"
+msgstr "HTTP/HTTPS"
+
+msgid "ICMP (Ping)"
+msgstr "ICMP (Ping)"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Exclude SSH"
+msgstr "Exclude SSH"
+
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "A Wireshark (TShark) CLI packet capture for RaspAP"
+
+msgid "Information provided by tshark"
+msgstr "Information provided by tshark"
+
+msgid "Total: %d file(s), %s"
+msgstr "Total: %d file(s), %s"
+
+#: captive portal plugin
+
+msgid "Captive portal"
+msgstr "Captive portal"
+
+msgid "Gateway interface"
+msgstr "Gateway interface"
+
+msgid "Gateway name"
+msgstr "Gateway name"
+
+msgid "Gateway address"
+msgstr "Gateway address"
+
+msgid "Gateway port"
+msgstr "Gateway port"
+
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "Defaults to the active AP interface, typically <code>wlan0</code>"
+
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Auto-detected from gateway interface if not specified"
+
+msgid "Start portal"
+msgstr "Start portal"
+
+msgid "Stop portal"
+msgstr "Stop portal"
+
+msgid "Information provided by nodogsplash"
+msgstr "Information provided by nodogsplash"
+
+msgid "Stop portal service"
+msgstr "Stop portal service"
+
+msgid "Start portal service"
+msgstr "Start portal service"
+
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+
+msgid "Interface to be managed by the portal"
+msgstr "Interface to be managed by the portal"
+
+msgid "Name of your gateway (available as \\$gatewayname variable)"
+msgstr "Name of your gateway (available as \\$gatewayname variable)"
+
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "IP address of the router. Leave empty for auto-detection"
+
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Port for Nodogsplash HTTP server"
+
+msgid "Maximum clients"
+msgstr "Maximum clients"
+
+msgid "Session timeout (minutes)"
+msgstr "Session timeout (minutes)"
+
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "Pre-auth idle timeout (minutes)"
+
+msgid "Does not include users on the trusted MAC list"
+msgstr "Does not include users on the trusted MAC list"
+
+msgid "Auth idle timeout (minutes)"
+msgstr "Auth idle timeout (minutes)"
+
+msgid "Check interval (seconds)"
+msgstr "Check interval (seconds)"
+
+msgid "MAC address control"
+msgstr "MAC address control"
+
+msgid "MAC mechanism"
+msgstr "MAC mechanism"
+
+msgid "Blocked MAC list"
+msgstr "Blocked MAC list"
+
+msgid "Trusted MAC list"
+msgstr "Trusted MAC list"
+
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "These devices are not subject to authentication or firewall rules"
+
+msgid "Maximum number of concurrent authenticated users"
+msgstr "Maximum number of concurrent authenticated users"
+
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "Default session length in minutes. 0 = unlimited"
+
+msgid "Time before unauthenticated idle users are removed"
+msgstr "Time before unauthenticated idle users are removed"
+
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "Time before authenticated idle users are deauthenticated"
+
+msgid "How often to check client timeouts"
+msgstr "How often to check client timeouts"
+
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "Comma-separated MAC addresses that bypass authentication entirely"
+
+msgid "Block (blocklist mode)"
+msgstr "Block (blocklist mode)"
+
+msgid "Allow (allowlist mode)"
+msgstr "Allow (allowlist mode)"
+
+msgid "Gateway IP range"
+msgstr "Gateway IP range"
+
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Default: 0.0.0.0/0 (all addresses)"
+
+msgid "Debug level"
+msgstr "Debug level"
+
+msgid "Firewall settings"
+msgstr "Firewall settings"
+
+msgid "Allow all traffic for authenticated users"
+msgstr "Allow all traffic for authenticated users"
+
+msgid "Allow DNS for pre-authenticated users"
+msgstr "Allow DNS for pre-authenticated users"
+
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "IP range to manage in CIDR notation. Leave empty for all addresses"
+
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Amount of logging detail reported by the nodogsplash.service"
+
+msgid "0 - Errors only"
+msgstr "0 - Errors only"
+
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Errors, warnings, infos"
+
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Errors, warnings, infos, verbose"
+
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Errors, warnings, infos, verbose, debug"
+
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "When enabled, authenticated users have unrestricted access"
+
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Required for clients to resolve domain names before authentication"
+
+msgid "Portal status"
+msgstr "Portal status"
+
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "Current <code>nodogsplash</code> status is displayed below."
 
