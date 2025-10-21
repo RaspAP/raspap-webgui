@@ -36,6 +36,7 @@ class DhcpcdManager
         bool $repeaterEnable,
         bool $wifiAPEnable,
         bool $dualAPEnable,
+        ?array $bridgeConfig = null,
         StatusMessage $status
         ): bool
     {
@@ -61,9 +62,14 @@ class DhcpcdManager
 
         if ($bridgedEnable) {
             $config = array_keys(getDefaultNetOpts('dhcp', 'options'));
+            $config[] = '';
             $config[] = '# RaspAP br0 configuration';
             $config[] = 'denyinterfaces eth0 wlan0';
             $config[] = 'interface br0';
+            $config[] = 'static ip_address='.$bridgeConfig['staticIp'] . '/'. $bridgeConfig['netmask'];
+            $config[] = 'static routers='.$bridgeConfig['gateway'];
+            $config[] = 'static domain_name_server='.$bridgeConfig['dns'];
+            $config[] = PHP_EOL;
         } elseif ($repeaterEnable) {
             $config = [
                 '# RaspAP ' . $ap_iface . ' configuration',
@@ -110,7 +116,10 @@ class DhcpcdManager
 
         if (preg_match('/wlan[3-9]\d*|wlan[1-9]\d+/', $ap_iface)) {
             $skip_dhcp = true;
-        } elseif ($bridgedEnable == 1 || $wifiAPEnable == 1) {
+        } elseif ($bridgedEnable == 1) {
+            $dhcp_cfg = join(PHP_EOL, $config);
+            $status->addMessage('DHCP configuration for br0 enabled', 'success');
+        } elseif ($wifiAPEnable == 1) {
             $dhcp_cfg = join(PHP_EOL, $config);
             $status->addMessage(sprintf(_('DHCP configuration for %s enabled.'), $ap_iface), 'success');
         } elseif (!preg_match('/^interface\s'.$ap_iface.'$/m', $dhcp_cfg)) {

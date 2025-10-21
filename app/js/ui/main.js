@@ -78,6 +78,38 @@ $(document).on("submit", ".js-dhcp-settings-form", function(e) {
     $(".js-add-dhcp-upstream-server").trigger("click");
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  const bridgeCheckbox = document.getElementById('chxbridgedenable');
+  const bridgeSection = document.getElementById('bridgeStaticIpSection');
+  const staticIpInput = document.getElementById('bridgeStaticIp');
+  const netmaskInput = document.getElementById('bridgeNetmask');
+  const gatewayInput = document.getElementById('bridgeGateway');
+  const dnsInput = document.getElementById('bridgeDNS');
+  const previewIp = document.getElementById('previewStaticIp');
+  
+  const bridgeInputs = [staticIpInput, netmaskInput, gatewayInput, dnsInput];
+  
+  // toggle visibility and required fields
+  bridgeCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+      bridgeSection.style.display = 'block';
+      bridgeInputs.forEach(input => input.setAttribute('required', 'required'));
+    } else {
+      bridgeSection.style.display = 'none';
+      bridgeInputs.forEach(input => input.removeAttribute('required'));
+    }
+  });
+
+  // auto-populate DNS when gateway loses focus
+  gatewayInput.addEventListener('blur', function() {
+    const gatewayVal = this.value.trim();
+    if (gatewayVal !== '' && dnsInput.value.trim() === '') {
+      dnsInput.value = gatewayVal;
+    }
+  });
+
+});
+
 /**
  * mark a form field, e.g. a select box, with the class `.js-field-preset`
  * and give it an attribute `data-field-preset-target` with a text field's

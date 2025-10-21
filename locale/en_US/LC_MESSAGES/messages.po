@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2022-01-05 20:35+0000\n"
+"PO-Revision-Date: 2025-10-20 08:35+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -833,6 +833,69 @@ msgstr "Parameter hiddenSSID contains invalid configuration value."
 
 msgid "Parameter hiddenSSID is not a number."
 msgstr "Parameter hiddenSSID is not a number."
+
+msgid "Bridge interface configuration"
+msgstr "Bridge interface configuration"
+
+msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+msgstr "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+
+msgid "Static IP Address"
+msgstr "Static IP Address"
+
+msgid "Netmask / CIDR"
+msgstr "Netmask / CIDR"
+
+msgid "Example: 192.168.1.100"
+msgstr "Example: 192.168.1.100"
+
+msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
+msgstr "CIDR notation (e.g., 24 for 255.255.255.0)"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "Your router's IP address"
+msgstr "Your router's IP address"
+
+msgid "Usually same as gateway"
+msgstr "Usually same as gateway"
+
+msgid "Bridge static IP address must be a valid IPv4 address"
+msgstr "Bridge static IP address must be a valid IPv4 address"
+
+msgid "Bridge netmask must be a number between 1 and 32"
+msgstr "Bridge netmask must be a number between 1 and 32"
+
+msgid "Bridge netmask is required when using static IP"
+msgstr "Bridge netmask is required when using static IP"
+
+msgid "Bridge gateway must be a valid IPv4 address"
+msgstr "Bridge gateway must be a valid IPv4 address"
+
+msgid "Bridge gateway is required when using static IP"
+msgstr "Bridge gateway is required when using static IP"
+
+msgid "Bridge DNS server must be a valid IPv4 address"
+msgstr "Bridge DNS server must be a valid IPv4 address"
+
+msgid "Bridge DNS server is required when using static IP"
+msgstr "Bridge DNS server is required when using static IP"
+
+msgid "Bridge static IP and gateway must be in the same subnet"
+msgstr "Bridge static IP and gateway must be in the same subnet"
+
+msgid "Please enter a valid IPv4 address"
+msgstr "Please enter a valid IPv4 address"
+
+msgid "Please enter a valid netmask"
+msgstr "Please enter a valid netmask"
+
+msgid "DHCP configuration for br0 enabled"
+msgstr "DHCP configuration for br0 enabled"
+
+msgid "Unable to save WiFi hotspot settings due to validation errors"
+msgstr "Unable to save WiFi hotspot settings due to validation errors"
 
 msgid "Enable AP isolation"
 msgstr "Enable AP isolation"
