@@ -246,6 +246,11 @@ function _install_dependencies() {
     else
         echo "${php_package} will be installed from the main deb sources list"
     fi
+    # Add openresolv for Debian 13+ (Trixie) to support wg-quick
+    if [ ${OS,,} = "debian" ] && [[ ${RELEASE} =~ ^(13) ]]; then
+        openresolv_package="openresolv"
+        echo "${openresolv_package} will be installed from the main deb sources list"
+    fi
     if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
         dhcpcd_package="dhcpcd5"
         iw_package="iw"
@@ -283,7 +288,7 @@ function _install_dependencies() {
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $rsync_package $network_tools $ifconfig_package vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
+    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $rsync_package $network_tools $ifconfig_package $openresolv_package vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
 
     if [[ "$php_package" == *"-fpm" ]]; then
         _install_log "Enabling lighttpd fastcgi-php-fpm module for $php_package"
