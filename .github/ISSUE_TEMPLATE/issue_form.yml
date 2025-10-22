@@ -52,13 +52,15 @@ body:
     attributes:
       label: Operating System
       options:
-        - Raspberry Pi OS	(64-bit) Lite Bookworm	
-        - Raspberry Pi OS	(32-bit) Lite Bookworm
-        - Raspberry Pi OS	(64-bit) Desktop Bookwom
-        - Raspberry Pi OS	(64-bit) Lite Bullseye	
-        - Raspberry Pi OS	(32-bit) Lite Bullseye
-        - Armbian	23.05 (Suni)	
-        - Debian Bookworm
+        - Raspberry Pi OS	Lite 64-bit Debian 13 (trixie)
+        - Raspberry Pi OS	Lite 32-bit Debian 13 (trixie)
+        - Raspberry Pi OS	Lite 64-bit Debian 12 (bookworm)
+        - Raspberry Pi OS	Lite 32-bit Debian 12 (bookworm)
+        - Raspberry Pi OS Desktop	64-bit Debian 12 (bookworm)
+        - Raspberry Pi OS Lite	64-bit Debian 11 (bullseye)
+        - Raspberry Pi OS Lite	32-bit Debian 11 (bullseye)
+        - Armbian	23.11 (jammy)
+        - Debian 12 (bookworm)
     validations:
       required: true
   - type: dropdown
