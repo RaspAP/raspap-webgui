@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-22 06:44\n"
+"PO-Revision-Date: 2025-10-22 14:14\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -773,6 +773,9 @@ msgstr "WPA et WPA2"
 msgid "WPA2 and WPA3-Personal (transitional mode)"
 msgstr "WPA2 et WPA3-Personnel (mode transitionnel)"
 
+msgid "WPA3-Personal (required)"
+msgstr "WPA3-Personnel (obligatoire)"
+
 msgid "Enabled (for supported clients)"
 msgstr "Activé (pour les clients supportés)"
 
@@ -1259,7 +1262,7 @@ msgid "and try again"
 msgstr "et réessayer"
 
 msgid "Plugins"
-msgstr "Plugins"
+msgstr "Extensions"
 
 msgid "Plugin details"
 msgstr "Détails du plugin"
@@ -1292,7 +1295,7 @@ msgid "Dependencies"
 msgstr "Dépendances"
 
 msgid "Permissions"
-msgstr "Permissions"
+msgstr "Autorisations"
 
 msgid "Non-privileged users"
 msgstr "Utilisateurs non privilégiés"
@@ -1832,6 +1835,9 @@ msgstr "La modification de l'état du pare-feu peut perturber ou autoriser le tr
 
 msgid "Proceed"
 msgstr "Continuer"
+
+msgid "Apply changes"
+msgstr "Appliquer les modifications"
 
 msgid "Dynamic DNS"
 msgstr "DNS dynamique"
@@ -2654,3 +2660,4 @@ msgstr "État du portail"
 
 msgid "Current <code>nodogsplash</code> status is displayed below."
 msgstr "L'état actuel de <code>nodogsplash</code> est affiché ci-dessous."
+
