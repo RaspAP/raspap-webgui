@@ -16,16 +16,24 @@
 $validLocales = array_keys(getLocales());
 if (!empty($_POST['locale']) && in_array($_POST['locale'], $validLocales, true)) {
     $_SESSION['locale'] = $_POST['locale'];
+    setcookie('locale', $_POST['locale'], time() + (86400 * 30), '/', '', false, true);
 }
 
-// Set locale from browser detection, if not already set
+// Set locale from cookie or browser detection, if not already set in session
 if (empty($_SESSION['locale'])) {
-    $_SESSION['locale'] = detectBrowserLocale();
+    if (isset($_COOKIE['locale']) && in_array($_COOKIE['locale'], $validLocales, true)) {
+        $_SESSION['locale'] = $_COOKIE['locale'];
+    } else {
+        $_SESSION['locale'] = detectBrowserLocale();
+        setcookie('locale', $_SESSION['locale'], time() + (86400 * 30), '/', '', false, true);
+    }
 }
 
 // Enforce only valid locale values in session
 if (!in_array($_SESSION['locale'], $validLocales, true)) {
     $_SESSION['locale'] = 'en_GB.UTF-8';
+    // Update cookie with default locale
+    setcookie('locale', $_SESSION['locale'], time() + (86400 * 30), '/', '', false, true);
 }
 
 // Apply locale settings
