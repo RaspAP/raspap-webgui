@@ -1344,7 +1344,7 @@ msgstr "Inspecter les adaptateurs"
 
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr "Utilisation des données"
+msgstr "Données utilisées"
 
 msgid "Data usage monitoring"
 msgstr "Surveillance de l'utilisation des données"
