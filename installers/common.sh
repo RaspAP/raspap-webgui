@@ -547,6 +547,13 @@ function _install_wireguard() {
     fi
     echo "Installing wireguard from apt"
     sudo apt-get install -y wireguard $wg_dep || _install_status 1 "Unable to install wireguard"
+
+    # create shim for resolvconf under debian 13
+    if { ! command -v resolvconf >/dev/null || [ "$RELEASE" == 13 ]; } then
+        echo "Applying resolvconf shim to prevent DNS conflicts"
+        sudo ln -sf /usr/bin/true /usr/local/bin/resolvconf || _install_status 1 "Failed to apply resolvconf shim"
+    fi
+
     echo "Enabling wg-quick@wg0"
     sudo systemctl enable wg-quick@wg0 || _install_status 1 "Failed to enable wg-quick service"
     echo "Enabling WireGuard management option"
