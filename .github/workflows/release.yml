@@ -37,7 +37,7 @@ jobs:
           stage-list: stage0 stage1 stage2 ./stage-raspap
           verbose-output: true
           pi-gen-version: ${{ matrix.pi_gen_version }}
-          pi-gen-repository: RaspAP/pi-gen
+          pi-gen-repository: billz/pi-gen
 
       - name: Upload Artifact
         uses: svenstaro/upload-release-action@v2
