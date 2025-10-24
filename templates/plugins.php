@@ -4,7 +4,7 @@
       <div class="card-header">
         <div class="row">
 	      <div class="col">
-            <i class="fas fa-plug"></i><?php echo _("Plugins"); ?>
+            <i class="fas fa-plug-circle-bolt me-2"></i><?php echo _("Plugins"); ?>
           </div>
         </div><!-- /.row -->
       </div><!-- /.card-header -->

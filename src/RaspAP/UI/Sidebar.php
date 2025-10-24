@@ -46,7 +46,7 @@ class Sidebar {
         $this->addItem(_('RestAPI'), 'fas fa-puzzle-piece', 'restapi_conf', 120,
             fn() => RASPI_RESTAPI_ENABLED
 	);
-        $this->addItem(_('Plugins'), 'fas fa-plug', 'plugin_conf', 125,
+        $this->addItem(_('Plugins'), 'fas fa-plug-circle-bolt', 'plugin_conf', 125,
             fn() => RASPI_PLUGINS_ENABLED
         );
         $this->addItem(_('System'), 'fas fa-cube', 'system_info', 130,
