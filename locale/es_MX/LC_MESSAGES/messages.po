@@ -34,7 +34,13 @@ msgid "WiFi client"
 msgstr "Cliente wiFi"
 
 msgid "Hotspot"
-msgstr "Punto de acceso"
+msgstr "Punto AP"
+
+msgid "Logging"
+msgstr "Registro"
+
+msgid "Status"
+msgstr "Estado"
 
 msgid "Mem Use"
 msgstr "Uso de mem"
@@ -355,13 +361,13 @@ msgid "Cellular"
 msgstr "Celular"
 
 msgid "AP"
-msgstr "Punto de acceso"
+msgstr "AP"
 
 msgid "Bridged"
 msgstr "Puente"
 
 msgid "Adblock"
-msgstr "Bloqueador de anuncios"
+msgstr "Adblock"
 
 msgid "VPN"
 msgstr "VPN"
@@ -1570,7 +1576,7 @@ msgid "adblock"
 msgstr "Bloqueador de anuncios"
 
 msgid "Ad Blocking"
-msgstr "Bloqueo de anuncios"
+msgstr "Ad Blocking"
 
 msgid "Start Ad Blocking"
 msgstr "Iniciar bloqueo de anuncios"
