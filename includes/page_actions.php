@@ -66,6 +66,9 @@ function handleCorePageAction(string $page, array &$extraFooterScripts): void
             break;
         case "/restapi_conf":
             DisplayRestAPI();
+	    break;
+	case "/plugin_conf":
+            DisplayPlugins();
             break;
         case "/about":
             DisplayAbout();
