@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-22 14:14\n"
+"PO-Revision-Date: 2025-10-25 16:03\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -35,6 +35,12 @@ msgstr "Client WiFi"
 
 msgid "Hotspot"
 msgstr "Hotspot"
+
+msgid "Logging"
+msgstr "Journalisation"
+
+msgid "Status"
+msgstr "État"
 
 msgid "Mem Use"
 msgstr "Mémoire"
@@ -438,6 +444,24 @@ msgstr "Merci d'être un Insider"
 #: includes/dhcp.php
 msgid "DHCP server settings"
 msgstr "Paramètres du serveur DHCP"
+
+msgid "Default gateway"
+msgstr "Passerelle par défaut"
+
+msgid "Install a default route for this interface"
+msgstr "Installer une route par défaut pour cette interface"
+
+msgid "Static IP options"
+msgstr "Options d'IP statique"
+
+msgid "DHCP options"
+msgstr "Options DHCP"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Activez cette option si vous souhaitez que RaspAP attribue des adresses IP aux clients sur l'interface sélectionnée. Une adresse IP statique est requise pour cette option."
+
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr "Activez cette option uniquement si vous voulez que votre appareil utilise cette interface comme route principale vers Internet."
 
 msgid "Client list"
 msgstr "Liste des clients"
@@ -921,8 +945,11 @@ msgstr "Serveur DNS alternatif"
 msgid "Adapter IP Address Settings"
 msgstr "Paramètres d'adresse IP de l'adaptateur"
 
-msgid "Enable Fallback to Static Option"
+msgid "Enable fallback to static option"
 msgstr "Activer la repli vers l'option statique"
+
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Activer cette option pour configurer un profil statique et y revenir lorsque le bail DHCP échoue."
 
 msgid "Static IP"
 msgstr "IP statique"
@@ -1134,6 +1161,9 @@ msgstr "Stockage utilisé"
 
 msgid "CPU Load"
 msgstr "Charge du processeur"
+
+msgid "CPU Temp"
+msgstr "Température du CPU"
 
 msgid "Reboot"
 msgstr "Redémarrer"
@@ -1570,7 +1600,7 @@ msgid "adblock"
 msgstr "AdBlock"
 
 msgid "Ad Blocking"
-msgstr "Blocage de la pub"
+msgstr "Ad Blocking"
 
 msgid "Start Ad Blocking"
 msgstr "Lancer le blocage des publicités"
@@ -2039,6 +2069,27 @@ msgstr "Mise à jour terminée"
 
 msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 msgstr "Une erreur s'est produite. Vérifiez le journal à <code>/tmp/raspap_install.log</code>"
+
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP est une co-création de %1$s et %2$s avec les contributions de nos %3$s et %4$s. Pour en savoir plus sur la façon de rejoindre le projet en tant que %5$s, %6$s ou %7$s avec un accès immédiat à %8$s disponible à %9$s."
+
+msgid "developer community"
+msgstr "communauté des développeurs"
+
+msgid "language translators"
+msgstr "traducteurs de langues"
+
+msgid "code contributor"
+msgstr "contributeur du code"
+
+msgid "translator"
+msgstr "traducteur"
+
+msgid "financial sponsor"
+msgstr "sponsor financier"
+
+msgid "exclusive features"
+msgstr "fonctionnalités exclusives"
 
 msgid "RaspAP Exception"
 msgstr "Exception RaspAP"
