@@ -131,7 +131,7 @@ msgid "Enable limited privilege user"
 msgstr "Benutzer mit eingeschränkten Rechten aktivieren"
 
 msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
-msgstr "Diese Option aktiviert einen Nicht-Administrator-Benutzer, der auf die Verwaltung von RaspAP zugreifen kann, aber über eine <strong>beschränkte Möglichkeit verfügt, die vorhandene Konfiguration</strong>zu ändern. Dieser Benutzer wird aktiv, wenn der aktuelle Administrator abgemeldet wird."
+msgstr "Diese Option aktiviert einen Nicht-Administrator-Benutzer, der auf die Verwaltung von RaspAP zugreifen kann, aber über eine <strong>eingeschränkte Möglichkeit verfügt, die vorhandene Konfiguration</strong>zu ändern. Dieser Benutzer wird aktiv, wenn der aktuelle Administrator abgemeldet wird."
 
 msgid "Admin login failed. Please try again."
 msgstr "Admin-Login fehlgeschlagen. Bitte versuchen Sie es erneut."
@@ -2080,13 +2080,13 @@ msgid "language translators"
 msgstr "Sprachübersetzer"
 
 msgid "code contributor"
-msgstr "code-Beitragender"
+msgstr "Code-Beitragender"
 
 msgid "translator"
 msgstr "Übersetzer"
 
 msgid "financial sponsor"
-msgstr "finanzieller Sponsor"
+msgstr "Finanzieller Sponsor"
 
 msgid "exclusive features"
 msgstr "Exklusive Funktionen"
