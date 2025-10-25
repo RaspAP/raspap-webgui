@@ -361,7 +361,7 @@ msgid "Cellular"
 msgstr "Mobile Daten"
 
 msgid "AP"
-msgstr "Access Point"
+msgstr "AP"
 
 msgid "Bridged"
 msgstr "Brücken"
