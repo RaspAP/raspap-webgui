@@ -12,7 +12,7 @@
       </div>
       <div class="mb-3">
         <label for="cbx80211w"><?php echo _("802.11w"); ?></label>
-        <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."></i>
+        <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."); ?>"></i>
         <?php SelectorOptions('80211w', $arr80211w, $arrConfig['ieee80211w'] ?? 0, 'cbx80211w'); ?>
      </div>
 

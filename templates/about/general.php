@@ -15,11 +15,20 @@
       </div>
      </div>
      <div class="col-md-8">
-      <div class="mt-3">RaspAP is a co-creation of <a href="https://github.com/billz">billz</a> and <a href="https://github.com/sirlagz">SirLagz</a>
-        with the contributions of our <a href="https://github.com/raspap/raspap-webgui/graphs/contributors">developer community</a>
-        and <a href="https://crowdin.com/project/raspap">language translators</a>.
-        Learn more about joining the project as a <a href="https://docs.raspap.com/#get-involved">code contributor</a>,
-      <a href="https://docs.raspap.com/translations/">translator</a> or <a href="https://github.com/sponsors/RaspAP">financial sponsor</a> with immediate access to <a href="https://docs.raspap.com/insiders/#whats-in-it-for-me">exclusive features</a> available to <strong>Insiders</strong>.</div>
+      <div class="mt-3">
+        <?php echo sprintf(
+        _('RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s.'),
+        '<a href="https://github.com/billz">billz</a>',
+        '<a href="https://github.com/sirlagz">SirLagz</a>',
+        '<a href="https://github.com/raspap/raspap-webgui/graphs/contributors">' . _('developer community') . '</a>',
+        '<a href="https://crowdin.com/project/raspap">' . _('language translators') . '</a>',
+        '<a href="https://docs.raspap.com/#get-involved">' . _('code contributor') . '</a>',
+        '<a href="https://docs.raspap.com/translations/">' . _('translator') . '</a>',
+        '<a href="https://github.com/sponsors/RaspAP">' . _('financial sponsor') . '</a>',
+        '<a href="https://docs.raspap.com/insiders/#whats-in-it-for-me">' . _('exclusive features') . '</a>',
+        '<strong>' . _('Insiders') . '</strong>'
+        ); ?>
+      </div>
       <div class="mt-3 project-links">
         <div class="row">
           <div class="col-6">GitHub <i class="fa-brands fa-github"></i> <a href="https://github.com/RaspAP/" target="_blank" rel="noopener">RaspAP</a></div>
