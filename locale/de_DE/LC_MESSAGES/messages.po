@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-21 06:26\n"
+"PO-Revision-Date: 2025-10-25 16:03\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -35,6 +35,12 @@ msgstr "WLAN Client"
 
 msgid "Hotspot"
 msgstr "Hotspot"
+
+msgid "Logging"
+msgstr "Protokollierung"
+
+msgid "Status"
+msgstr "Status"
 
 msgid "Mem Use"
 msgstr "RAM Nutzung"
@@ -116,7 +122,7 @@ msgid "Click or tap to upload a new user avatar."
 msgstr "Klicken oder tippen, um einen neuen Avatar hochzuladen."
 
 msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
-msgstr ""
+msgstr "Bilddateien vom Typ <code>JPG, GIF oder PNG</code> werden akzeptiert. Maximale Dateigröße: 2 MB."
 
 msgid "Reset avatar"
 msgstr "Profilbild zurücksetzen"
@@ -125,7 +131,7 @@ msgid "Enable limited privilege user"
 msgstr "Benutzer mit eingeschränkten Rechten aktivieren"
 
 msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
-msgstr "Diese Option aktiviert einen Nicht-Administrator-Benutzer, der auf die Verwaltung von RaspAP zugreifen kann, aber über eine <strong>eingeschränkte Möglichkeit verfügt, die vorhandene Konfiguration</strong>zu ändern. Dieser Benutzer wird aktiv, wenn der aktuelle Administrator abgemeldet wird."
+msgstr "Diese Option aktiviert einen Nicht-Administrator-Benutzer, der auf die Verwaltung von RaspAP zugreifen kann, aber über eine <strong>beschränkte Möglichkeit verfügt, die vorhandene Konfiguration</strong>zu ändern. Dieser Benutzer wird aktiv, wenn der aktuelle Administrator abgemeldet wird."
 
 msgid "Admin login failed. Please try again."
 msgstr "Admin-Login fehlgeschlagen. Bitte versuchen Sie es erneut."
@@ -222,7 +228,7 @@ msgid "No Wifi stations found"
 msgstr "Keine WLAN-Sender gefunden"
 
 msgid "Reinitialized wpa_supplicant. Choose <strong>Rescan</strong>."
-msgstr ""
+msgstr "wpa_supplicant neu initialisiert. Wählen Sie <strong>Aktualisieren</strong>."
 
 msgid "Click 'Rescan' to search for nearby Wifi stations."
 msgstr "Auf „Rescan“ klicken, um nach WLAN-Sendern in der Nähe zu suchen."
@@ -439,6 +445,24 @@ msgstr "Vielen Dank, dass Sie ein Insider sind"
 msgid "DHCP server settings"
 msgstr "DHCP-Servereinstellungen"
 
+msgid "Default gateway"
+msgstr "Standard-Gateway"
+
+msgid "Install a default route for this interface"
+msgstr "Eine Standardroute für diese Schnittstelle installieren"
+
+msgid "Static IP options"
+msgstr "Statische IP-Optionen"
+
+msgid "DHCP options"
+msgstr "DHCP-Optionen"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Aktivieren Sie diese Option, wenn Sie möchten, dass RaspAP den Clients an der ausgewählten Schnittstelle IP-Adressen zuweist. Eine statische IP-Adresse ist für diese Option erforderlich."
+
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr "Aktivieren Sie dies nur, wenn Ihr Gerät diese Schnittstelle als primäre Route zum Internet verwenden soll."
+
 msgid "Client list"
 msgstr "Client Liste"
 
@@ -575,10 +599,10 @@ msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configurat
 msgstr "Diese Option fügt <code>dhcp-host</code>-Einträge zur dnsmasq-Konfiguration hinzu."
 
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Dies schaltet die Option <code>gateway</code>/<code>nogateway</code> für diese Schnittstelle in der dhcpcd.conf-Datei um."
 
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Dies schaltet die Option <code>nohook wpa_supplicant</code> für diese Schnittstelle in der dhcpcd.conf-Datei um."
 
 msgid "Disable wpa_supplicant dhcp hook for this interface"
 msgstr "Deaktiviere wpa_supplicant dhcp Hook für diese Schnittstelle"
@@ -729,7 +753,7 @@ msgid "WiFi repeater mode"
 msgstr "WLAN-Verstärker Modus"
 
 msgid "Dual band AP mode"
-msgstr ""
+msgstr "Dual-Band-AP-Modus"
 
 msgid "Hide SSID in broadcast"
 msgstr "SSID in der Übertragung ausblenden"
@@ -921,8 +945,11 @@ msgstr "DNS-Server wechseln"
 msgid "Adapter IP Address Settings"
 msgstr "IP-Adressen Einstellungen für Adapter"
 
-msgid "Enable Fallback to Static Option"
-msgstr "Aktiviere Fallback zur Statischen Option"
+msgid "Enable fallback to static option"
+msgstr "Fallback auf statische Option aktivieren"
+
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Aktivieren Sie dies nur, wenn Ihr Gerät diese Schnittstelle als primäre Route zum Internet verwenden soll."
 
 msgid "Static IP"
 msgstr "Statische IP"
@@ -1078,7 +1105,7 @@ msgid "Attempting to disable routing between %s and %s interfaces"
 msgstr "Versuche Routing zwischen den Schnittstellen %s und %s zu deaktivieren"
 
 msgid "No default DHCP configuration exists for the %s interface"
-msgstr "Keine Standard-DHCP-Konfiguration für die Schnittstelle %s vorhanden"
+msgstr ""
 
 msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
 msgstr "Konfigurieren Sie eine statische IP und DHCP für diese Schnittstelle in den DHCP-Server-Einstellungen"
@@ -1134,6 +1161,9 @@ msgstr "Genutzter Speicher"
 
 msgid "CPU Load"
 msgstr "CPU-Auslastung"
+
+msgid "CPU Temp"
+msgstr "CPU Temp"
 
 msgid "Reboot"
 msgstr "Neustarten"
@@ -1223,7 +1253,7 @@ msgid "System tools"
 msgstr "Systemwerkzeuge"
 
 msgid "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
-msgstr "Um ein System-<a href=\"%s\">Debug-Protokoll</a> zu erstellen, klicken oder tippen Sie auf die Schaltfläche unten."
+msgstr "."
 
 msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
 msgstr "Debug-Protokollinformationen enthalten die RaspAP-Version, den aktuellen Status und die Konfiguration von AP-bezogenen Diensten, installierte Systempakete, Linux-Kernel-Version und Netzwerkdetails. Keine Passwörter oder andere sensible Daten sind enthalten."
@@ -1239,6 +1269,9 @@ msgstr "Größenbeschränkung für Diagnoseprotokoll (KB)"
 
 msgid "Changing log limit size to %s KB"
 msgstr "Protokollgrößenbeschränkung wird auf %s KB geändert"
+
+msgid "Information provided by raspap.sysinfo"
+msgstr "Informationen von raspap.sysinfo"
 
 msgid "The following user plugins are available to extend RaspAP's functionality."
 msgstr "Die folgenden Benutzer-Plugins sind verfügbar, um die Funktionalität von RaspAP zu erweitern."
@@ -1291,14 +1324,17 @@ msgstr "Konfigurationsdateien"
 msgid "Dependencies"
 msgstr "Abhängigkeiten"
 
+msgid "Permissions"
+msgstr "Berechtigungen"
+
 msgid "Non-privileged users"
-msgstr "Benutzer ohne Privilegien"
+msgstr "Nicht-privilegierte Benutzer"
 
 msgid "Install now"
-msgstr "Jetzt installieren"
+msgstr "Installation beginnen"
 
 msgid "Installing plugin"
-msgstr "Plugin wird installiert"
+msgstr "Plugin installieren"
 
 msgid "Plugin installation in progress..."
 msgstr "Plugin-Installation läuft..."
@@ -1825,7 +1861,7 @@ msgid "Enable Firewall"
 msgstr "Firewall aktivieren"
 
 msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
-msgstr ""
+msgstr "Das Ändern des Firewall-Status kann eingehenden Verkehr unterbrechen oder zulassen. Wählen Sie <strong>Fortfahren</strong>, um fortzufahren."
 
 msgid "Proceed"
 msgstr "Fortfahren"
@@ -1840,7 +1876,7 @@ msgid "Service provider"
 msgstr "Dienstanbieter"
 
 msgid "Select a Dynamic DNS service supported by <strong>ddclient</strong> from the list below. Selecting a known service provider will populate the <code>protocol</code> and <code>server</code> fields. You may also configure the service manually."
-msgstr ""
+msgstr "Wählen Sie einen von <strong>ddclient</strong> unterstützten Dynamic-DNS-Dienst aus der Liste unten aus. Durch Auswahl eines bekannten Dienstanbieters werden die Felder <code>protocol</code> und <code>server</code> ausgefüllt. Sie können den Dienst auch manuell konfigurieren."
 
 msgid "Method to obtain IP"
 msgstr "Methode zum Abrufen der IP"
@@ -1908,6 +1944,15 @@ msgstr "Dynamisches DNS stoppen"
 msgid "Restart Dynamic DNS"
 msgstr "Dynamisches DNS neu starten"
 
+msgid "Account details"
+msgstr "Kontodetails"
+
+msgid "My account"
+msgstr "Mein Benutzerkonto"
+
+msgid "Server location"
+msgstr "Server-Standort"
+
 msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
 msgstr "Durch Auswahl von <strong>Einstellungen speichern</strong> wird eine Verbindung zum ausgewählten Land hergestellt."
 
@@ -1922,6 +1967,15 @@ msgstr "Wählen Sie ein Land..."
 
 msgid "Account information not available from %s's Linux CLI."
 msgstr "Kontoinformationen sind über die Linux-CLI von %s nicht verfügbar."
+
+msgid "Attempting to connect to %s"
+msgstr "Versuche mit %s zu verbinden"
+
+msgid "Attempting to connect VPN provider"
+msgstr "Versuche VPN-Anbieter zu verbinden"
+
+msgid "Attempting to disconnect VPN provider"
+msgstr "Versuche VPN-Anbieter zu trennen"
 
 msgid "Expected %s binary not found at: %s"
 msgstr "Erwartete %s-Binärdatei nicht gefunden unter: %s"
@@ -2015,6 +2069,27 @@ msgstr "Update abgeschlossen"
 
 msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 msgstr "Ein Fehler ist aufgetreten. Überprüfen Sie das Protokoll unter <code>/tmp/raspap_install.log</code>"
+
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP ist eine gemeinsame Kreation von %1$s und %2$s mit den Beiträgen unserer %3$s und %4$s. Erfahren Sie mehr darüber, wie Sie dem Projekt als %5$s, %6$s oder %7$s beitreten können, und erhalten Sie sofortigen Zugang zu %8$s, der für %9$sverfügbar ist."
+
+msgid "developer community"
+msgstr "Entwickler Community"
+
+msgid "language translators"
+msgstr "Sprachübersetzer"
+
+msgid "code contributor"
+msgstr "code-Beitragender"
+
+msgid "translator"
+msgstr "Übersetzer"
+
+msgid "financial sponsor"
+msgstr "finanzieller Sponsor"
+
+msgid "exclusive features"
+msgstr "Exklusive Funktionen"
 
 msgid "RaspAP Exception"
 msgstr "RaspAP-Ausnahme"
@@ -2112,8 +2187,8 @@ msgstr "Öffentliche NTP-Server, die Network Time Security (NTS) unterstützen, 
 msgid "Examples of valid server entries include <code>%s</code>, <code>%s</code> and <code>%s</code>."
 msgstr "Beispiele für gültige Servereinträge sind <code>%s</code>, <code>%s</code> und <code>%s</code>."
 
-msgid "Current <code>ntpq peer</code> status is displayed below. An asterisk (<code></code>) indicates the preferred server."
-msgstr "Der aktuelle Status von <code>ntpq peer</code> wird unten angezeigt. Ein Sternchen (<code></code>) kennzeichnet den bevorzugten Server."
+msgid "Current <code>ntpq peer</code> status is displayed below. An asterisk (<code>*</code>) indicates the preferred server."
+msgstr "Der aktuelle Status von <code>ntpq peer</code> wird unten angezeigt. Ein Sternchen (<code>*</code>) kennzeichnet den bevorzugten Server."
 
 msgid "NTP configuration cannot be empty"
 msgstr "NTP-Konfiguration darf nicht leer sein"
@@ -2517,8 +2592,8 @@ msgstr "Das Ändern des Portaldienstes wird den Client-Verkehr kurzzeitig unterb
 msgid "Interface to be managed by the portal"
 msgstr "Vom Portal zu verwaltende Schnittstelle"
 
-msgid "Name of your gateway (available as $gatewayname variable)"
-msgstr "Name Ihres Gateways (verfügbar als $gatewayname Variable)"
+msgid "Name of your gateway (available as \\$gatewayname variable)"
+msgstr "Name Ihres Gateways (verfügbar als \\\\$gatewayname Variable)"
 
 msgid "IP address of the router. Leave empty for auto-detection"
 msgstr "IP-Adresse des Routers. Leer lassen für automatische Erkennung"
@@ -2636,3 +2711,4 @@ msgstr "Portal-Status"
 
 msgid "Current <code>nodogsplash</code> status is displayed below."
 msgstr "Der aktuelle <code>nodogsplash</code>-Status wird unten angezeigt."
+
