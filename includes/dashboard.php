@@ -44,6 +44,12 @@ function DisplayDashboard(&$extraFooterScripts): void
     $plugins = $pluginManager->getInstalledPlugins();
     $bridgedEnable = getBridgedState();
 
+    if ($bridgedEnable) {
+        $interface = 'br0';
+        $details = $dashboard->getInterfaceDetails($interface);
+        $connectionType = 'ethernet';
+    }
+
     // handle page actions
     if (!empty($_POST)) {
         $status = $dashboard->handlePageAction($state, $_POST, $status, $interface);
