@@ -1,5 +1,5 @@
 <div class="tab-pane fade" id="client-list">
-  <h4 class="mt-3 mb-3">Client list</h4>
+<h4 class="mt-3 mb-3"><?php echo _("Client list"); ?></h4>
   <div class="row">
     <div class="col-lg-12">
       <div class="card mb-3">

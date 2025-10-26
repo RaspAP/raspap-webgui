@@ -1,8 +1,8 @@
 <div class="tab-pane active" id="server-settings">
-  <h4 class="mt-3">DHCP server settings</h4>
+  <h4 class="mt-3"><?php echo _("DHCP server settings"); ?></h4>
   <div class="row">
     <div class="mb-3 col-md-6">
-      <label for="code">Interface</label>
+      <label for="code"><?php echo _("Interface"); ?></label>
         <?php SelectorOptions('interface', $interfaces, $ap_iface, 'cbxdhcpiface', 'loadInterfaceDHCPSelect'); ?>
     </div>
   </div>
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <h5 class="mt-1">Static IP options</h5>
+  <h5 class="mt-1"><?php echo _("Static IP options"); ?></h5>
   <div class="row">
     <div class="mb-3 col-md-6" required>
       <label for="code"><?php echo _("IP Address"); ?></label>
@@ -90,7 +90,7 @@
     </div>
   </div>
 
-  <h5 class="mt-1">DHCP options</h5>
+  <h5 class="mt-1"><?php echo _("DHCP options"); ?></h5>
   <div class="row">
     <div class="mb-3 col-md-6">
       <div class="input-group">
