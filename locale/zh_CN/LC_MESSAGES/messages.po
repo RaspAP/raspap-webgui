@@ -1357,7 +1357,7 @@ msgid "Automatically close alerts after a specified timeout"
 msgstr "在指定超时后自动关闭警报"
 
 msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "要<a href=\"%s\" target=\"_blank\">检查</a>连接到此设备的<a href=\" %s \" target=\"_blank\">适配器</a>，请单击或点击下面的按钮。"
+msgstr "要<a href=\"%s\" target=\"_blank\">检查连接到此设备的适配器</a>，请单击或点击下面的按钮。"
 
 msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
 msgstr "适配器检查工具返回外部 WLAN 设备的详细信息，包括驱动程序、支持的模式等。"
@@ -1373,6 +1373,9 @@ msgstr "适配器健康检查"
 
 msgid "Inspect adapters"
 msgstr "检查适配器"
+
+msgid "Theme"
+msgstr "主题"
 
 #: includes/data_usage.php
 msgid "Data usage"
