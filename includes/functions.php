@@ -918,7 +918,7 @@ function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cp
         <img src="app/img/raspAP-logo.php?static=1" class="navbar-logo" width="70" height="70">
       </div>
       <div class="col ml-2">
-        <div class="ml-1 sb-status">Status</div>
+        <div class="ml-1 sb-status"><?php echo _("Status"); ?></div>
         <div class="info-item-xs"><span class="icon">
           <i class="fas fa-circle hostapd-led <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
         </div>
