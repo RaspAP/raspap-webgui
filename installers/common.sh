@@ -630,17 +630,7 @@ function _download_latest_files() {
     fi
 
     git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url $source_dir || clone=false
-
-    # For updates/upgrades, fetch only the plugins manifest
-    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
-        # Initialize plugins submodule without checking out plugin directories
-        git -C $source_dir submodule update --init plugins || clone=false
-        git -C $source_dir/plugins sparse-checkout init --cone || clone=false
-        git -C $source_dir/plugins sparse-checkout set manifest.json README.md LICENSE .github || clone=false
-    else
-        # Update plugins submodule normally
-        git -C $source_dir submodule update --remote plugins || clone=false
-    fi
+    git -C $source_dir submodule update --remote plugins || clone=false
 
     if [ "$clone" = false ]; then
         _install_status 1 "Unable to download files from GitHub"
@@ -648,12 +638,19 @@ function _download_latest_files() {
         exit 1
     fi
 
+    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+        if [ -d "$source_dir/plugins" ]; then
+            find "$source_dir/plugins" -mindepth 1 -maxdepth 1 -type d ! -name '.git*' -exec rm -rf {} + 2>/dev/null
+        fi
+    fi
+
     if [ -d "$webroot_dir" ] && [ "$update" == 0 ]; then
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to move existing webroot directory"
     elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
-        exclude='--exclude=ajax/system/sys_read_logfile.php --exclude=plugins'
+        exclude='--exclude=ajax/system/sys_read_logfile.php'
         shopt -s extglob
-        sudo find "$webroot_dir" ! -path "${webroot_dir}/ajax/system/sys_read_logfile.php" ! -path "${webroot_dir}/plugins" ! -path "${webroot_dir}/plugins/*" -delete 2>/dev/null
+        sudo find "$webroot_dir" -mindepth 1 ! -path "${webroot_dir}/ajax" ! -path "${webroot_dir}/ajax/*" ! -path "${webroot_dir}/plugins" ! -path "${webroot_dir}/plugins/*" -delete 2>/dev/null
+        sudo find "$webroot_dir/ajax" ! -path "${webroot_dir}/ajax/system/sys_read_logfile.php" -delete 2>/dev/null
     fi
 
     _install_log "Installing application to $webroot_dir"
