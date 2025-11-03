@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-20 08:35+0000\n"
+"PO-Revision-Date: 2025-10-25 08:35+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -39,6 +39,9 @@ msgstr "Status"
 
 msgid "Hotspot"
 msgstr "Hotspot"
+
+msgid "Logging"
+msgstr "Logging"
 
 msgid "Mem Use"
 msgstr "Mem Use"
@@ -443,6 +446,24 @@ msgstr "Thanks for being an Insider"
 msgid "DHCP server settings"
 msgstr "DHCP server settings"
 
+msgid "Default gateway"
+msgstr "Default gateway"
+
+msgid "Install a default route for this interface"
+msgstr "Install a default route for this interface"
+
+msgid "Static IP options"
+msgstr "Static IP options"
+
+msgid "DHCP options"
+msgstr "DHCP options"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr "Enable this only if you want your device to use this interface as its primary route to the internet."
+
 msgid "Client list"
 msgstr "Client list"
 
@@ -837,12 +858,6 @@ msgstr "Parameter hiddenSSID contains invalid configuration value."
 msgid "Parameter hiddenSSID is not a number."
 msgstr "Parameter hiddenSSID is not a number."
 
-msgid "Enable AP isolation"
-msgstr "Enable AP isolation"
-
-msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
-msgstr "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
-
 msgid "Bridge interface configuration"
 msgstr "Bridge interface configuration"
 
@@ -906,6 +921,12 @@ msgstr "DHCP configuration for br0 enabled"
 msgid "Unable to save WiFi hotspot settings due to validation errors"
 msgstr "Unable to save WiFi hotspot settings due to validation errors"
 
+msgid "Enable AP isolation"
+msgstr "Enable AP isolation"
+
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
@@ -925,8 +946,11 @@ msgstr "Alternate DNS Server"
 msgid "Adapter IP Address Settings"
 msgstr "Adapter IP Address Settings"
 
-msgid "Enable Fallback to Static Option"
-msgstr "Enable Fallback to Static Option"
+msgid "Enable fallback to static option"
+msgstr "Enable fallback to static option"
+
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
 
 msgid "Static IP"
 msgstr "Static IP"
@@ -1138,6 +1162,9 @@ msgstr "Storage Used"
 
 msgid "CPU Load"
 msgstr "CPU Load"
+
+msgid "CPU Temp"
+msgstr "CPU Temp"
 
 msgid "Reboot"
 msgstr "Reboot"
@@ -2058,6 +2085,27 @@ msgstr "Update complete"
 
 msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 msgstr "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+
+msgid "developer community"
+msgstr "developer community"
+
+msgid "language translators"
+msgstr "language translators"
+
+msgid "code contributor"
+msgstr "code contributor"
+
+msgid "translator"
+msgstr "translator"
+
+msgid "financial sponsor"
+msgstr "financial sponsor"
+
+msgid "exclusive features"
+msgstr "exclusive features"
 
 #: includes/exceptions.php
 
