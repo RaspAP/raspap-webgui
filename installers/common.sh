@@ -648,13 +648,30 @@ function _download_latest_files() {
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to move existing webroot directory"
     elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
         exclude='--exclude=ajax/system/sys_read_logfile.php'
+
+        # Preserve user plugins in /tmp
+        if [ -d "$webroot_dir/plugins" ]; then
+            sudo cp -r "$webroot_dir/plugins" "/tmp/raspap-user-plugins"
+        fi
+
         shopt -s extglob
+
         sudo find "$webroot_dir" -mindepth 1 ! -path "${webroot_dir}/ajax" ! -path "${webroot_dir}/ajax/*" ! -path "${webroot_dir}/plugins" ! -path "${webroot_dir}/plugins/*" -delete 2>/dev/null
         sudo find "$webroot_dir/ajax" ! -path "${webroot_dir}/ajax/system/sys_read_logfile.php" -delete 2>/dev/null
+        # Remove plugins to permit clean rsync
+        sudo rm -rf "$webroot_dir/plugins"
     fi
 
     _install_log "Installing application to $webroot_dir"
     sudo rsync -av $exclude "$source_dir"/ "$webroot_dir"/ >/dev/null 2>&1 || _install_status 1 "Unable to install files to $webroot_dir"
+
+    # Restore user plugins after rsync
+    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+        if [ -d "/tmp/raspap-user-plugins" ]; then
+            sudo cp -r /tmp/raspap-user-plugins/* "$webroot_dir/plugins/" 2>/dev/null
+            sudo rm -rf "/tmp/raspap-user-plugins"
+        fi
+    fi
 
     if [ "$update" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
