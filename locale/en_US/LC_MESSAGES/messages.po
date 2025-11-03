@@ -34,14 +34,14 @@ msgstr "Dashboard"
 msgid "WiFi client"
 msgstr "WiFi client"
 
+msgid "Status"
+msgstr "Status"
+
 msgid "Hotspot"
 msgstr "Hotspot"
 
 msgid "Logging"
 msgstr "Logging"
-
-msgid "Status"
-msgstr "Status"
 
 msgid "Mem Use"
 msgstr "Mem Use"
@@ -1375,6 +1375,9 @@ msgstr "Adapter health check"
 
 msgid "Inspect adapters"
 msgstr "Inspect adapters"
+
+msgid "Theme"
+msgstr "Theme"
 
 #: includes/data_usage.php
 msgid "Data usage"
