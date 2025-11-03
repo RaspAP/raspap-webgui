@@ -630,7 +630,17 @@ function _download_latest_files() {
     fi
 
     git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url $source_dir || clone=false
-    git -C $source_dir submodule update --remote plugins || clone=false
+
+    # For updates/upgrades, fetch only the plugins manifest
+    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+        # Initialize plugins submodule without checking out plugin directories
+        git -C $source_dir submodule update --init plugins || clone=false
+        git -C $source_dir/plugins sparse-checkout init --cone || clone=false
+        git -C $source_dir/plugins sparse-checkout set manifest.json README.md LICENSE .github || clone=false
+    else
+        # Update plugins submodule normally
+        git -C $source_dir submodule update --remote plugins || clone=false
+    fi
 
     if [ "$clone" = false ]; then
         _install_status 1 "Unable to download files from GitHub"
@@ -641,9 +651,9 @@ function _download_latest_files() {
     if [ -d "$webroot_dir" ] && [ "$update" == 0 ]; then
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to move existing webroot directory"
     elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
-        exclude='--exclude=ajax/system/sys_read_logfile.php'
+        exclude='--exclude=ajax/system/sys_read_logfile.php --exclude=plugins'
         shopt -s extglob
-        sudo find "$webroot_dir" ! -path "${webroot_dir}/ajax/system/sys_read_logfile.php" -delete 2>/dev/null
+        sudo find "$webroot_dir" ! -path "${webroot_dir}/ajax/system/sys_read_logfile.php" ! -path "${webroot_dir}/plugins" ! -path "${webroot_dir}/plugins/*" -delete 2>/dev/null
     fi
 
     _install_log "Installing application to $webroot_dir"
@@ -652,7 +662,7 @@ function _download_latest_files() {
     if [ "$update" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
         sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
-        
+
         if [ -f /tmp/raspap.auth ]; then
             _install_log "Applying existing authentication file to ${raspap_dir}"
             sudo mv /tmp/raspap.auth $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
