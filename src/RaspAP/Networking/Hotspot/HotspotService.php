@@ -295,10 +295,22 @@ class HotspotService
      * Gets the current regulatory domain
      *
      * @return string
+     * @throws RuntimeException if unable to determine regulatory domain
      */
     public function getRegDomain(): string
     {
         $domain = shell_exec("iw reg get | grep -o 'country [A-Z]\{2\}' | awk 'NR==1{print $2}'");
+
+        if ($domain === null) {
+            throw new \RuntimeException('Failed to execute regulatory domain command');
+        }
+
+        $domain = trim($domain);
+
+        if (empty($domain)) {
+            throw new \RuntimeException('Unable to determine regulatory domain');
+        }
+
         return $domain;
     }
 
