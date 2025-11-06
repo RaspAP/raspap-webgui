@@ -16,6 +16,7 @@ $wifi->getWifiInterface();
  */
 function DisplayHostAPDConfig()
 {
+    $reg_domain = 'GB';
     $hostapd = new HostapdManager();
     $hotspot = new HotspotService();
     $status = new StatusMessage();
@@ -30,10 +31,14 @@ function DisplayHostAPDConfig()
     $arr80211w = $hotspot->get80211wOptions();
     $languageCode = strtok($_SESSION['locale'], '_');
     $countryCodes = getCountryCodes($languageCode);
-    $reg_domain = $hotspot->getRegDomain();
     $interfaces = $hotspot->getInterfaces();
     $arrTxPower = getDefaultNetOpts('txpower','dbm');
     $managedModeEnabled = false;
+    try {
+        $reg_domain = $hotspot->getRegDomain();
+    } catch (RuntimeException $e) {
+        error_log('Failed to get regulatory domain: ' . $e->getMessage());
+    }
 
     if (isset($_POST['interface'])) {
         $interface = $_POST['interface'];
