@@ -102,6 +102,12 @@ class HostapdManager
         if (!empty($config['ieee80211ac']) && strval($config['ieee80211ac']) === '1') {
             $selected = 'ac';
         }
+        if (!empty($config['ieee80211ax']) && strval($config['ieee80211ax']) === '1') {
+            $selected = 'ax';
+        }
+        if (!empty($config['ieee80211be']) && strval($config['ieee80211be']) === '1') {
+            $selected = 'be';
+        }
         if (!empty($config['ieee80211w']) && strval($config['ieee80211w']) === '2') {
             $selected = 'w';
         }
@@ -189,9 +195,23 @@ class HostapdManager
         $vht_freq_idx = ($params['channel'] < RASPI_5GHZ_CHANNEL_MIN) ? 42 : 155;
         $hwMode = isset($params['hw_mode']) ? $params['hw_mode'] : '';
 
+        // validate channel width for 802.11ax/be
+        if (in_array($hwMode, ['ax', 'be'])) {
+            // for 6GHz band (channels 1-233) wider bandwidths are available
+            $is6GHz = ($params['channel'] >= 1 && $params['channel'] <= 233);
+
+            // for 802.11be, 320 MHz only available on 6GHz
+            if ($hwMode === 'be' && !$is6GHz && isset($params['eht_oper_chwidth']) && $params['eht_oper_chwidth'] == 4) {
+                // reset to 160 MHz if 320 MHz requested on non-6GHz
+                $params['eht_oper_chwidth'] = 2;
+            }
+        }
+
         // fetch settings for selected mode
         $modeSettings = getDefaultNetOpts('hostapd', 'modes', $hwMode);
         $settings = $modeSettings[$hwMode]['settings'] ?? [];
+
+        error_log("HostapdManager::buildConfig() -> settings\n" . var_export($settings, true));
 
         if (!empty($settings)) {
             foreach ($settings as $line) {
@@ -455,6 +475,27 @@ class HostapdManager
     {
         $configs = glob('/etc/hostapd/hostapd-*.conf');
         return is_array($configs) ? count($configs) : 0;
+    }
+
+    /**
+     * Gets capabilities for a given IEEE 802.11 mode
+     *
+     * @param string $mode
+     * @return array
+     */
+    public function getModeCapabilities(string $mode): array
+    {
+        $capabilities = [
+            'a'  => ['bands' => ['5'], 'max_width' => 20],
+            'b'  => ['bands' => ['2.4'], 'max_width' => 22],
+            'g'  => ['bands' => ['2.4'], 'max_width' => 20],
+            'n'  => ['bands' => ['2.4', '5'], 'max_width' => 40],
+            'ac' => ['bands' => ['5'], 'max_width' => 160],
+            'ax' => ['bands' => ['2.4', '5', '6'], 'max_width' => 160],
+            'be' => ['bands' => ['2.4', '5', '6'], 'max_width' => 320]
+        ];
+
+        return $capabilities[$mode] ?? $capabilities['g'];
     }
 
 }
