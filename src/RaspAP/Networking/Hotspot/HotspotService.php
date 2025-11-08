@@ -32,7 +32,9 @@ class HotspotService
         'b'  => '802.11b - 2.4 GHz',
         'g'  => '802.11g - 2.4 GHz',
         'n'  => '802.11n - 2.4/5 GHz',
-        'ac' => '802.11ac - 5 GHz'
+        'ac' => '802.11ac - 5 GHz',
+        'ax' => '802.11ax (Wi-Fi 6) - 2.4/5/6 GHz',
+        // 'be' => '802.11be (Wi-Fi 7) - 2.4/5/6 GHz'
     ];
 
     // encryption types
@@ -42,6 +44,21 @@ class HotspotService
         'TKIP CCMP'  => 'TKIP+CCMP'
     ];
 
+    // 802.11ax (Wi-Fi 6) channel widths
+    private const HE_CHANNEL_WIDTHS = [
+        0 => '20/40 MHz',
+        1 => '80 MHz',
+        2 => '160 MHz'
+    ];
+
+    // 802.11be (Wi-Fi 7) channel widths
+    private const EHT_CHANNEL_WIDTHS = [
+        0 => '20 MHz',
+        1 => '40 MHz',
+        2 => '80 MHz',
+        3 => '160 MHz',
+        4 => '320 MHz (6 GHz only)'
+    ];
 
     public function __construct()
     {
@@ -67,7 +84,23 @@ class HotspotService
     }
 
     /**
-     * Returns translated security modes.
+     * Returns 802.11ax (Wi-Fi 6) channel widths
+     */
+    public static function getHeChannelWidths(): array
+    {
+        return self::HE_CHANNEL_WIDTHS;
+    }
+
+    /**
+     * Returns 802.11be (Wi-Fi 7) channel widths
+     */
+    public static function getEhtChannelWidths(): array
+    {
+        return self::EHT_CHANNEL_WIDTHS;
+    }
+
+    /**
+     * Returns translated security modes
      */
     public static function getSecurityModes(): array
     {
@@ -94,6 +127,26 @@ class HotspotService
         ];
     }
 
+    /**
+     * Checks if hardware mode supports advanced features
+     *
+     * @param string $mode
+     * @return array capabilities
+     */
+    public static function getModeCapabilities(string $mode): array
+    {
+        $capabilities = [
+            'a'  => ['wifi_generation' => 1, 'max_width' => 20, 'bands' => ['5']],
+            'b'  => ['wifi_generation' => 2, 'max_width' => 22, 'bands' => ['2.4']],
+            'g'  => ['wifi_generation' => 3, 'max_width' => 20, 'bands' => ['2.4']],
+            'n'  => ['wifi_generation' => 4, 'max_width' => 40, 'bands' => ['2.4', '5']],
+            'ac' => ['wifi_generation' => 5, 'max_width' => 160, 'bands' => ['5']],
+            'ax' => ['wifi_generation' => 6, 'max_width' => 160, 'bands' => ['2.4', '5', '6'], 'supports_he' => true],
+            'be' => ['wifi_generation' => 7, 'max_width' => 320, 'bands' => ['2.4', '5', '6'], 'supports_he' => true, 'supports_eht' => true]
+        ];
+
+        return $capabilities[$mode] ?? $capabilities['g'];
+    }
 
     /**
      * Validates user input + saves configs for hostapd, dnsmasq & dhcp
@@ -150,6 +203,23 @@ class HotspotService
             $validated['repeater']  = !empty($states['RepeaterEnable']);
             $validated['dualmode']  = !empty($states['DualAPEnable']);
             $validated['txpower']   = $post_data['txpower'];
+
+            error_log("HotspotService::saveSettings() -> validated\n" . var_export($validated, true));
+
+            // add 802.11ax/be specific parameters if present
+            if (in_array($validated['hw_mode'], ['ax', 'be'])) {
+                // Log advanced mode configuration
+                error_log(sprintf(
+                    "Configuring advanced WiFi mode: %s with channel %d",
+                    $validated['hw_mode'],
+                    $validated['channel']
+                ));
+
+                // Validate WPA3 for WiFi 6/7
+                if ($validated['wpa'] < 4 && $validated['hw_mode'] === 'be') {
+                    $status->addMessage('Note: WiFi 7 works best with WPA3 security', 'info');
+                }
+            }
 
             // hostapd
             $config = $this->hostapd->buildConfig($validated, $status);
