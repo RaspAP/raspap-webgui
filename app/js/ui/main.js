@@ -457,6 +457,36 @@ function setDhcpFieldsDisabled() {
     $('#txtmetric').prop('disabled', true);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const dhcpCheckbox = document.getElementById('dhcp-iface');
+    const rangeStart = document.getElementById('txtrangestart');
+    const rangeEnd = document.getElementById('txtrangeend');
+    const leaseTime = document.getElementById('txtrangeleasetime');
+
+    function updateRequiredFields() {
+        const isChecked = dhcpCheckbox.checked === true;
+
+        if (isChecked) {
+            rangeStart.setAttribute('required', 'required');
+            rangeEnd.setAttribute('required', 'required');
+            leaseTime.setAttribute('required', 'required');
+        } else {
+            rangeStart.removeAttribute('required');
+            rangeEnd.removeAttribute('required');
+            leaseTime.removeAttribute('required');
+
+            rangeStart.classList.remove('is-invalid', 'is-valid');
+            rangeEnd.classList.remove('is-invalid', 'is-valid');
+            leaseTime.classList.remove('is-invalid', 'is-valid');
+        }
+    }
+
+    // set initial state
+    updateRequiredFields();
+    setTimeout(updateRequiredFields, 100);
+    dhcpCheckbox.addEventListener('change', updateRequiredFields);
+});
+
 // Static Array method
 Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
 
