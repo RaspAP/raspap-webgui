@@ -107,34 +107,32 @@
   
   <div class="row">
     <div class="mb-3 col-md-6">
-      <label for="code"><?php echo _("Starting IP Address"); ?></label>
+      <label for="txtrangestart"><?php echo _("Starting IP Address"); ?></label>
       <input type="text" class="form-control ip_address" id="txtrangestart" name="RangeStart" maxlength="15" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid Starting IP Address."); ?>
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="mb-3 col-md-6">
-      <label for="code"><?php echo _("Ending IP Address"); ?></label>
+      <label for="txtrangeend"><?php echo _("Ending IP Address"); ?></label>
       <input type="text" class="form-control ip_address" id="txtrangeend" name="RangeEnd" maxlength="15" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid Ending IP Address."); ?>
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="mb-3 col-xs-3 col-sm-3">
-      <label for="code"><?php echo _("Lease Time"); ?></label>
+      <label for="txtrangeleasetime"><?php echo _("Lease Time"); ?></label>
       <input type="text" class="form-control" id="txtrangeleasetime" name="RangeLeaseTime" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid Lease Time."); ?>
       </div>
     </div>
     <div class="col-xs-3 col-sm-3">
-      <label for="code"><?php echo _("Interval"); ?></label>
+      <label for="cbxrangeleasetimeunits"><?php echo _("Interval"); ?></label>
       <select id="cbxrangeleasetimeunits" name="RangeLeaseTimeUnits" class="form-select" >
         <option value="m"><?php echo _("Minute(s)"); ?></option>
         <option value="h"><?php echo _("Hour(s)"); ?></option>
