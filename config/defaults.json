@@ -30,6 +30,7 @@
           "# Basic settings",
           "hw_mode=a",
           "# Enable 802.11n/ac",
+          "ieee80211d=1",
           "ieee80211n=1",
           "ieee80211ac=1",
           "# Enable 802.11ax",
@@ -40,8 +41,11 @@
           "he_mu_beamformer=1",
           "# BSS color for spatial reuse, value 1-63",
           "he_bss_color=1",
-          "he_oper_chwidth=2",
-          "he_oper_centr_freq_seg0_idx={VHT_FREQ_IDX}",
+          "he_oper_chwidth=1",
+          "ht_capab=[HT40+][SHORT-GI-20][SHORT-GI-40]",
+          "vht_capab=[SHORT-GI-80]",
+          "he_oper_centr_freq_seg0_idx=155",
+          "vht_oper_centr_freq_seg0_idx=155",
           "wmm_enabled=1"
         ]
       },
