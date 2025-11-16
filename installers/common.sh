@@ -325,9 +325,6 @@ function _create_hostapd_scripts() {
     _install_log "Creating hostapd logging & control scripts"
     sudo mkdir $raspap_dir/hostapd || _install_status 1 "Unable to create directory '$raspap_dir/hostapd'"
 
-    # Copy logging shell scripts
-    sudo cp "$webroot_dir/installers/"enablelog.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move logging scripts"
-    sudo cp "$webroot_dir/installers/"disablelog.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move logging scripts"
     # Copy service control shell scripts
     sudo cp "$webroot_dir/installers/"servicestart.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move service control scripts"
     # Change ownership and permissions of hostapd control scripts
