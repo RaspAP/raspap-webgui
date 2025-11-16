@@ -28,7 +28,6 @@ $defaults = [
   'RASPI_HOSTAPD_CONFIG' => '/etc/hostapd/hostapd.conf',
   'RASPI_DHCPCD_CONFIG' => '/etc/dhcpcd.conf',
   'RASPI_DHCPCD_LOG' => '/var/log/dnsmasq.log',
-  'RASPI_HOSTAPD_LOG' => '/tmp/hostapd.log',
   'RASPI_WPA_SUPPLICANT_CONFIG' => '/etc/wpa_supplicant/wpa_supplicant.conf',
   'RASPI_HOSTAPD_CTRL_INTERFACE' => '/var/run/hostapd',
   'RASPI_WPA_CTRL_INTERFACE' => '/var/run/wpa_supplicant',
