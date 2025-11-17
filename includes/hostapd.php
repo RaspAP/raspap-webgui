@@ -45,8 +45,10 @@ function DisplayHostAPDConfig()
     } else {
         $interface = $_SESSION['ap_interface'];
     }
+
     $txpower = $hotspot->getTxPower($interface);
     $arrHostapdConf = $hotspot->getHostapdIni();
+    $logOutput = [];
 
     if (!RASPI_MONITOR_ENABLED) {
          if (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
@@ -77,6 +79,10 @@ function DisplayHostAPDConfig()
                 $reg_domain,
                 $status
             );
+
+            // reload hostapi.ini
+            $arrHostapdConf = $hotspot->getHostapdIni();
+
         } elseif (isset($_POST['StopHotspot'])) {
             $status->addMessage('Attempting to stop hotspot', 'info');
             exec('sudo /bin/systemctl stop hostapd.service', $return);
@@ -136,8 +142,7 @@ function DisplayHostAPDConfig()
     }
 
     // fetch hostapd logs if enabled
-    $logOutput = [];
-    if (!empty($arrHostapdConf['LogEnable']) && (int)$arrHostapdConf['LogEnable'] === 1) {
+    if ((string)$arrHostapdConf['LogEnable'] === "1") {
         $logResult = $hotspot->getHostapdLogs(5000);
         if ($logResult['success']) {
             $joined = implode("\n", $logResult['logs']);
