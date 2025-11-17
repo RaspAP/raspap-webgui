@@ -352,6 +352,36 @@ class HotspotService
     }
 
     /**
+     * Retrieves hostapd service logs from systemd journal
+     *
+     * @param int $lines number of log lines to retrieve (default: 100, max: 1000)
+     * @param bool $follow return command for real-time following (tbd)
+     * @return array ['success' => bool, 'logs' => array, 'command' => string]
+     */
+    public function getHostapdLogs(int $lines = 100, bool $follow = false): array
+    {
+        // sanitize and limit line count
+        $lines = max(1, min(1000, $lines));
+
+        if ($follow) {
+            return [
+                'success' => true,
+                'logs' => [],
+                'command' => 'journalctl -u hostapd.service -f --no-pager'
+            ];
+        }
+
+        $cmd = sprintf('sudo journalctl -u hostapd.service -n %d --no-pager 2>&1', $lines);
+        exec($cmd, $output, $status);
+
+        return [
+            'success' => $status === 0,
+            'logs' => $output,
+            'line_count' => count($output)
+        ];
+    }
+
+    /**
      * Starts services for given interface
      *
      * @param string $iface

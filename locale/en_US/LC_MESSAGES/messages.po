@@ -744,6 +744,27 @@ msgstr "Enable logging"
 msgid "Logfile output"
 msgstr "Logfile output"
 
+msgid "Log level"
+msgstr "Log level"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Higher levels reduce log verbosity. Informational is recommended."
+
+msgid "Verbose debugging"
+msgstr "Verbose debugging"
+
+msgid "Debugging"
+msgstr "Debugging"
+
+msgid "Informational"
+msgstr "Informational"
+
+msgid "Notification"
+msgstr "Notification"
+
+msgid "Warning"
+msgstr "Warning"
+
 msgid "WiFi client AP mode"
 msgstr "WiFi client AP mode"
 
