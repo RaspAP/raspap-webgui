@@ -72,12 +72,12 @@ The Quick installer will respond to several [command line arguments](https://doc
 ### Initial settings
 After completing either of these setup options, the wireless AP network will be configured as follows:
 
-* IP address: 10.3.141.1
-  * Username: admin
-  * Password: secret
-* DHCP range: 10.3.141.50 — 10.3.141.254
-* SSID: `raspi-webgui`
-* Password: ChangeMe
+* IP address: `10.3.141.1`
+  * Username: `admin`
+  * Password: `secret`
+* DHCP range: `10.3.141.50` — `10.3.141.254`
+* SSID: `RaspAP`
+* Password: `ChangeMe`
 
 It's _strongly recommended_ that your first post-install action is to change the default admin [authentication](https://docs.raspap.com/authentication/) settings. Thereafter, your AP's [basic settings](https://docs.raspap.com/ap-basics/) and many [advanced options](https://docs.raspap.com/ap-basics#advanced-options) are now ready to be modified by RaspAP.
 
@@ -95,13 +95,13 @@ A tangible side benefit of sponsorship is that **Insiders** are able to help _st
 
 WireGuard® is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography. It aims to be considerably more performant than OpenVPN, and is generally regarded as the most secure, easiest to use, and simplest VPN solution for modern Linux distributions.
 
-WireGuard may be optionally installed by the [Quick Installer](https://docs.raspap.com/quick/). Once this is done, you can manage local (server) settings, create a peer configuration and control the `wg-quick` service with RaspAP.
+WireGuard is included in the pre-built OS and may be optionally installed by the [Quick Installer](https://docs.raspap.com/quick/). Once this is done, you can manage local (server) settings, create a peer configuration and control the `wg-quick` service with RaspAP.
 
 Details are [provided here](https://docs.raspap.com/wireguard/).
 
 ## OpenVPN support
 
-OpenVPN may be optionally installed by the Quick Installer. Once this is done, you can [manage client configurations](https://docs.raspap.com/openvpn/) and the `openvpn-client` service with RaspAP.
+OpenVPN is included in the pre-built OS and may be optionally installed by the Quick Installer. Once this is done, you can [manage client configurations](https://docs.raspap.com/openvpn/) and the `openvpn-client` service with RaspAP.
 
 To configure an OpenVPN client, upload a valid .ovpn file and, optionally, specify your login credentials. RaspAP will store your client configuration and add firewall rules to forward traffic from OpenVPN's `tun0` interface to your configured wireless interface. 
 
@@ -114,22 +114,20 @@ Several popular VPN providers include a Linux Command Line Interface (CLI) for i
 See our [VPN provider documentation](https://docs.raspap.com/providers/) for more information.
 
 ## Ad Blocking
-This feature uses DNS blacklisting to block requests for ads, trackers and other undesirable hosts. To enable ad blocking, simply respond to the prompt during the installation. As a beta release, we encourage testing and feedback from users of RaspAP.
+This feature uses DNS blacklisting to block requests for ads, trackers and other undesirable hosts. Ad blocking is included in the pre-built OS and may be optionally installed by the [Quick Installer](https://docs.raspap.com/quick/). Thereafter, you may choose between several of the best available [blocklist sources](https://docs.raspap.com/features-core/adblock/#blocklist-sources) to suit your needs.
 
 Details are [provided here](https://docs.raspap.com/adblock/).
 
 ## Bridged AP
-By default RaspAP configures a routed AP for your clients to connect to. A bridged AP configuration is also possible. Slide the **Bridged AP mode** toggle under the **Advanced** tab of **Configure hotspot**, then save and restart the hotspot.
+By default RaspAP configures a routed AP for your clients to connect to. A bridged AP configuration is also possible. Select the **Bridged AP mode** toggle under the **Advanced** tab of **Hotspot**, configure a static IP address for the bridge interface, then save and restart the AP.
 
-**Note:** In bridged mode, all routing capabilities are handled by your upstream router. Because your router assigns IP addresses to your device's hotspot and its clients, you might not be able to reach the RaspAP web interface from the default `10.3.141.1` address. Instead use your RPi's hostname followed by `.local` to access the RaspAP web interface. With Raspbian default settings, this should look like `raspberrypi.local`. Alternate methods are [discussed here](https://www.raspberrypi.org/documentation/remote-access/ip-address.md).
-
-More information on Bridged AP mode is provided [in our documentation](https://docs.raspap.com/bridged/).
+Details on Bridged AP mode are [provided here](https://docs.raspap.com/bridged/).
 
 ## Manual installation
-Detailed manual setup instructions are provided [on our documentation site](https://docs.raspap.com/manual/).
+Detailed manual setup instructions are [provided here](https://docs.raspap.com/manual/).
 
 ## 802.11ac 5GHz support
-RaspAP provides an 802.11ac wireless mode option for supported hardware (currently the RPi 3B+/4 and compatible Orange Pi models) and wireless regulatory domains. See [this](https://docs.raspap.com/ap-basics/#80211ac-5-ghz) for more information.
+RaspAP provides an 802.11ac wireless mode option for supported hardware (currently the RPi 3B+, 4, 5 and compatible Orange Pi models) and wireless regulatory domains. See [this](https://docs.raspap.com/ap-basics/#80211ac-5-ghz) for more information.
 
 ## Supported operating systems
 RaspAP was originally made for Raspbian, but now also installs on the following Debian-based distros.
@@ -164,8 +162,6 @@ curl -sL https://install.raspap.com | bash -s -- --cert
 More information on SSL certificates and HTTPS support is available [in our documentation](https://docs.raspap.com/ssl/). 
 
 ## Docker support
-<img src="https://github.com/RaspAP/raspap-webgui/assets/229399/dc40dfc4-e9b8-405f-8ffb-6c5f88482b8e" width="450">
-
 As an alternative to the [Quick installer](#quick-installer), RaspAP may be run in an isolated, portable [Docker container](https://docs.raspap.com/docker/).
 
 See the [RaspAP-docker repo](https://github.com/RaspAP/raspap-docker/) for more information.
@@ -174,7 +170,9 @@ See the [RaspAP-docker repo](https://github.com/RaspAP/raspap-docker/) for more 
 RaspAP's integrated `PluginManager` provides a framework for developers to create custom plugins. To facilitate this, a `SamplePlugin` [repository](https://github.com/RaspAP/SamplePlugin) is available to get developers started on the right track. If you'd like to develop your own plugin for RaspAP, see the [documentation](https://docs.raspap.com/custom-plugins/) or get started right away by forking the [SamplePlugin](https://github.com/RaspAP/SamplePlugin).
 
 ## Multilingual support
-RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multilingual messages. In order to use RaspAP with one of our supported translations, you must configure a corresponding language package on your RPi. To list languages currently installed on your system, use `locale -a` at the shell prompt. To generate new locales, run `sudo dpkg-reconfigure locales` and select any other desired locales. Details are provided on our [documentation site](https://docs.raspap.com/translations/).
+RaspAP uses [GNU Gettext](https://www.gnu.org/software/gettext/) to manage multilingual messages. Our pre-built OS includes the `locales-all` package, eliminating the need to manually generate locales.
+
+If you're using the Quick Installer or Manual setup methods, you must configure a corresponding language package for your system. To list languages currently installed on your system, use `locale -a` at the shell prompt. To generate new locales, run `sudo dpkg-reconfigure locales` and select any other desired locales. Details are provided [here](https://docs.raspap.com/translations/).
 
 See this list of [supported languages](https://docs.raspap.com/translations/#supported-languages) that are actively maintained by volunteer translators. If your language is not supported, why not [contribute a translation](https://docs.raspap.com/translations/#contributing-to-a-translation)? Contributors will receive credit as the original translators.
 
