@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-25 16:03\n"
+"PO-Revision-Date: 2025-11-20 12:20\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -33,14 +33,14 @@ msgstr "Übersicht"
 msgid "WiFi client"
 msgstr "WLAN Client"
 
+msgid "Status"
+msgstr "Status"
+
 msgid "Hotspot"
 msgstr "Hotspot"
 
 msgid "Logging"
 msgstr "Protokollierung"
-
-msgid "Status"
-msgstr "Status"
 
 msgid "Mem Use"
 msgstr "RAM Nutzung"
@@ -131,7 +131,7 @@ msgid "Enable limited privilege user"
 msgstr "Benutzer mit eingeschränkten Rechten aktivieren"
 
 msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
-msgstr "Diese Option aktiviert einen Nicht-Administrator-Benutzer, der auf die Verwaltung von RaspAP zugreifen kann, aber über eine <strong>eingeschränkte Möglichkeit verfügt, die vorhandene Konfiguration</strong>zu ändern. Dieser Benutzer wird aktiv, wenn der aktuelle Administrator abgemeldet wird."
+msgstr "Diese Option aktiviert einen Nicht-Administrator-Benutzer, der auf die Verwaltung von RaspAP zugreifen kann, aber über eine <strong>beschränkte Möglichkeit verfügt, die vorhandene Konfiguration</strong>zu ändern. Dieser Benutzer wird aktiv, wenn der aktuelle Administrator abgemeldet wird."
 
 msgid "Admin login failed. Please try again."
 msgstr "Admin-Login fehlgeschlagen. Bitte versuchen Sie es erneut."
@@ -140,7 +140,7 @@ msgid "Limited privilege user mode enabled"
 msgstr "Eingeschränkter Berechtigungsmodus aktiviert"
 
 msgid "Failed to enable limited privilege user mode"
-msgstr "Fehler beim Aktivieren des eingeschränkten Benutzermodus"
+msgstr "Fehler beim Aktivieren des eingeschränkten Berechtigungsbenutzermodus"
 
 msgid "Logout and enable limited user mode"
 msgstr "Abmelden und Aktivieren des eingeschränkten Benutzermodus"
@@ -152,7 +152,7 @@ msgid "Limited user password"
 msgstr "Eingeschränktes Benutzerpasswort"
 
 msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
-msgstr "Dieser Vorgang wird die Anmeldedaten des eingeschränkten Benutzermodus speichern und den aktuellen Admin-Nutzer abmelden. Speichern und Begrenzten-Berechtigungsmodus aktivieren?"
+msgstr "Dieser Vorgang wird die Anmeldedaten des beschränkten Nutzers speichern und den aktuellen Admin-Nutzer abmelden. Speichern und Begrenzten-Berechtigungsmodus aktivieren?"
 
 msgid "Save and logout"
 msgstr "Speichern und abmelden"
@@ -361,7 +361,7 @@ msgid "Cellular"
 msgstr "Mobile Daten"
 
 msgid "AP"
-msgstr "AP"
+msgstr "Access Point"
 
 msgid "Bridged"
 msgstr "Brücken"
@@ -742,6 +742,27 @@ msgstr "Aktiviere Protokoll"
 
 msgid "Logfile output"
 msgstr "Logfile Ausgabe"
+
+msgid "Log level"
+msgstr "Log-Stufe"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Höhere Stufen reduzieren die Ausführlichkeit des Protokolls. Informational wird empfohlen."
+
+msgid "Verbose debugging"
+msgstr "Ausführliche Fehlersuche"
+
+msgid "Debugging"
+msgstr "Fehlersuche"
+
+msgid "Informational"
+msgstr "Informativ"
+
+msgid "Notification"
+msgstr "Benachrichtigung"
+
+msgid "Warning"
+msgstr "Warnung"
 
 msgid "WiFi client AP mode"
 msgstr "AP-Modus von WiFI-Client"
@@ -1374,6 +1395,9 @@ msgstr "Adapter-Zustandsprüfung"
 
 msgid "Inspect adapters"
 msgstr "Adapter überprüfen"
+
+msgid "Theme"
+msgstr "Thema"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -2080,13 +2104,13 @@ msgid "language translators"
 msgstr "Sprachübersetzer"
 
 msgid "code contributor"
-msgstr "Code-Beitragender"
+msgstr "code-Beitragender"
 
 msgid "translator"
 msgstr "Übersetzer"
 
 msgid "financial sponsor"
-msgstr "Finanzieller Sponsor"
+msgstr "finanzieller Sponsor"
 
 msgid "exclusive features"
 msgstr "Exklusive Funktionen"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-11-10 07:51\n"
+"PO-Revision-Date: 2025-11-20 12:21\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -487,7 +487,7 @@ msgid "Ending IP Address"
 msgstr "Конечный IP-адрес"
 
 msgid "Static Leases"
-msgstr "Статические аренды"
+msgstr "Договоры аренды статических адресов"
 
 msgid "Add static DHCP lease"
 msgstr "Добавить статическую аренду DHCP"
@@ -744,6 +744,27 @@ msgstr "Включить журналирование"
 
 msgid "Logfile output"
 msgstr "Записи журнала"
+
+msgid "Log level"
+msgstr "Уровень журнала"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Более высокие уровни уменьшают многословность журнала. Рекомендуется информационный."
+
+msgid "Verbose debugging"
+msgstr "Подробная отладка"
+
+msgid "Debugging"
+msgstr "Отладка"
+
+msgid "Informational"
+msgstr "Информация"
+
+msgid "Notification"
+msgstr "Уведомление"
+
+msgid "Warning"
+msgstr "Внимание"
 
 msgid "WiFi client AP mode"
 msgstr "Режим AP WiFi-клиента"
@@ -1385,7 +1406,7 @@ msgid "Data usage"
 msgstr "Использование данных"
 
 msgid "Data usage monitoring"
-msgstr "Использование данных"
+msgstr "Мониторинг использования данных"
 
 msgid "Hourly traffic amount"
 msgstr "Объем трафика за час"

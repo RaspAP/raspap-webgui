@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-25 14:18\n"
+"PO-Revision-Date: 2025-11-20 12:20\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -33,14 +33,14 @@ msgstr "Dashboard"
 msgid "WiFi client"
 msgstr "Client WiFi"
 
+msgid "Status"
+msgstr "Stato"
+
 msgid "Hotspot"
 msgstr "Hotspot"
 
 msgid "Logging"
 msgstr "Registrazione"
-
-msgid "Status"
-msgstr "Stato"
 
 msgid "Mem Use"
 msgstr "Uso Mem"
@@ -67,7 +67,7 @@ msgid "System"
 msgstr "Sistema"
 
 msgid "About RaspAP"
-msgstr "Info RaspAP"
+msgstr "Informazioni su RaspAP"
 
 #: includes/admin.php
 msgid "Authentication settings"
@@ -743,6 +743,27 @@ msgstr "Abilita la registrazione"
 msgid "Logfile output"
 msgstr "File di log in uscita"
 
+msgid "Log level"
+msgstr "Livello di registro"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Livelli più alti riducono la verbosità dei registri. Si consiglia di utilizzare il livello informativo."
+
+msgid "Verbose debugging"
+msgstr "Debug verboso"
+
+msgid "Debugging"
+msgstr "Debug"
+
+msgid "Informational"
+msgstr "Informativo"
+
+msgid "Notification"
+msgstr "Notifica"
+
+msgid "Warning"
+msgstr "Avvertenze"
+
 msgid "WiFi client AP mode"
 msgstr "AP WiFi modalità client"
 
@@ -1163,7 +1184,7 @@ msgid "CPU Load"
 msgstr "Carico CPU"
 
 msgid "CPU Temp"
-msgstr "Temperatura CPU"
+msgstr "Temp. CPU"
 
 msgid "Reboot"
 msgstr "Riavvia"
@@ -1374,6 +1395,9 @@ msgstr "Controllo dello stato di salute dell'adattatore"
 
 msgid "Inspect adapters"
 msgstr "Ispezionare gli adattatori"
+
+msgid "Theme"
+msgstr "Tema"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -1600,13 +1624,13 @@ msgid "adblock"
 msgstr "AdBlock"
 
 msgid "Ad Blocking"
-msgstr "Ad Blocking"
+msgstr "Blocco degli annunci"
 
 msgid "Start Ad Blocking"
-msgstr "Avvia Ad Blocking"
+msgstr "Avvia blocco degli annunci"
 
 msgid "Restart Ad Blocking"
-msgstr "Riavvia Ad Blocking"
+msgstr "Riavvia blocco degli annunci"
 
 msgid "Blocklist settings"
 msgstr "Impostazioni Blocklist"
