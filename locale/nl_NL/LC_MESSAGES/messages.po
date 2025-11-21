@@ -1379,7 +1379,7 @@ msgid "Automatically close alerts after a specified timeout"
 msgstr "Meldingen automatisch sluiten na een opgegeven time-out"
 
 msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "Klik of tik op de onderstaande knop om <a href=\"%s\" target=\"_blank\">de adapters</a> die op dit apparaat zijn aangesloten <a href=\" %s \" target=\"_blank\">te inspecteren</a>."
+msgstr "Klik of tik op de onderstaande knop om <a href=\"%s\" target=\"_blank\">de adapters te inspecteren</a> die op dit apparaat zijn aangesloten."
 
 msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
 msgstr "Het hulpmiddel voor adapterinspectie geeft details over externe WLAN-apparaten, inclusief stuurprogramma's, ondersteunde modi enzovoort."
