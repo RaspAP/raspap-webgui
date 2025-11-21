@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-25 12:16\n"
+"PO-Revision-Date: 2025-11-20 12:19\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -33,14 +33,14 @@ msgstr "仪表板"
 msgid "WiFi client"
 msgstr "WLAN客户端设置"
 
+msgid "Status"
+msgstr "状态"
+
 msgid "Hotspot"
 msgstr "WLAN热点设置"
 
 msgid "Logging"
-msgstr "日志记录"
-
-msgid "Status"
-msgstr "状态"
+msgstr "记录"
 
 msgid "Mem Use"
 msgstr "内存使用"
@@ -716,7 +716,7 @@ msgid "DHCP configuration for %s updated."
 msgstr "%s 的 DHCP 配置已更新。"
 
 msgid "Interface %s has no default settings."
-msgstr "接口 %s 没有默认设置。"
+msgstr "界面 %s 没有默认设置。"
 
 msgid "Configure settings in <strong>DHCP Server</strong> before starting AP."
 msgstr "启动 AP 前在<strong>DHCP 服务器</strong>中配置设置。"
@@ -741,6 +741,27 @@ msgstr "开启log"
 
 msgid "Logfile output"
 msgstr "log信息输出"
+
+msgid "Log level"
+msgstr "日志级别"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "级别越高，日志的冗长程度越低。建议使用 \"信息 \"级别。"
+
+msgid "Verbose debugging"
+msgstr "详细调试"
+
+msgid "Debugging"
+msgstr "调试"
+
+msgid "Informational"
+msgstr "信息"
+
+msgid "Notification"
+msgstr "通知"
+
+msgid "Warning"
+msgstr "警告"
 
 msgid "WiFi client AP mode"
 msgstr "无线网客户端AP模式"
@@ -1357,7 +1378,7 @@ msgid "Automatically close alerts after a specified timeout"
 msgstr "在指定超时后自动关闭警报"
 
 msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "要<a href=\"%s\" target=\"_blank\">检查连接到此设备的适配器</a>，请单击或点击下面的按钮。"
+msgstr "要<a href=\"%s\" target=\"_blank\">检查</a>连接到此设备的<a href=\" %s \" target=\"_blank\">适配器</a>，请单击或点击下面的按钮。"
 
 msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
 msgstr "适配器检查工具返回外部 WLAN 设备的详细信息，包括驱动程序、支持的模式等。"

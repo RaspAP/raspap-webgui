@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-11-09 08:27\n"
+"PO-Revision-Date: 2025-11-20 12:20\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -61,7 +61,7 @@ msgid "TOR proxy"
 msgstr "TORプロキシ"
 
 msgid "Authentication"
-msgstr "認証"
+msgstr "認証を構成する"
 
 msgid "System"
 msgstr "システム"
@@ -116,7 +116,7 @@ msgid "Please re-enter your new password."
 msgstr "新しいパスワードを再入力してください。"
 
 msgid "Avatar"
-msgstr "アバター"
+msgstr "アイコン"
 
 msgid "Click or tap to upload a new user avatar."
 msgstr "クリックまたはタップして新しいユーザーアバターをアップロードします。"
@@ -131,7 +131,7 @@ msgid "Enable limited privilege user"
 msgstr "限定特権ユーザを有効にする"
 
 msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
-msgstr "このオプションは、RaspAPの管理インターフェースにアクセスできるが、<strong>既存のコンフィギュレーションを変更する能力が制限されて</strong>いる非管理ユーザーを有効にする。このユーザは、現在の管理ユーザがログアウトしたときにアクティブになります。"
+msgstr "このオプションは、ラズパップの管理インターフェースにアクセスできるが、<strong>既存のコンフィギュレーションを変更する能力が制限されて</strong>いる非管理ユーザーを有効にする。このユーザは、現在の管理ユーザがログアウトしたときにアクティブになります。"
 
 msgid "Admin login failed. Please try again."
 msgstr "管理者ログインに失敗しました。再試行してください。"
@@ -262,7 +262,7 @@ msgid "Interface Statistics"
 msgstr "インターフェース統計"
 
 msgid "Received Packets"
-msgstr "受信パケット"
+msgstr "受診パケット"
 
 msgid "Received Bytes"
 msgstr "受信バイト"
@@ -292,7 +292,7 @@ msgid "Transmit Power"
 msgstr "送信電力"
 
 msgid "Frequency"
-msgstr "周波数"
+msgstr "頻度"
 
 msgid "Link Quality"
 msgstr "リンク品質"
@@ -586,7 +586,7 @@ msgid "Limit network access to static clients"
 msgstr "ネットワークへのアクセスを静的クライアントに制限"
 
 msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
-msgstr "静的リースリストに指定されていない<b>クライアントを</b>RaspAPに<b>無視さ</b>せたい場合は、このオプションを有効にします。"
+msgstr "静的リースリストに指定されていない<b>クライアントを</b>ラズパップに<b>無視さ</b>せたい場合は、このオプションを有効にします。"
 
 msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
 msgstr "このオプションは、 <code>dhcp-ignore</code> をdnsmasq 構成に追加します。"
@@ -741,6 +741,27 @@ msgstr "ロギングを有効にする"
 
 msgid "Logfile output"
 msgstr "ログファイル出力"
+
+msgid "Log level"
+msgstr "ログレベル"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "レベルを上げるとログの冗長性が減る。情報提供を推奨する。"
+
+msgid "Verbose debugging"
+msgstr "詳細なデバッグ"
+
+msgid "Debugging"
+msgstr "デバッグ"
+
+msgid "Informational"
+msgstr "情報提供"
+
+msgid "Notification"
+msgstr "お知らせ"
+
+msgid "Warning"
+msgstr "警告"
 
 msgid "WiFi client AP mode"
 msgstr "WiFiクライアントAPモード"
@@ -1219,7 +1240,7 @@ msgid "Restore settings"
 msgstr "設定の復元"
 
 msgid "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
-msgstr "RaspAPを<a href=\"%s\">初期</a>設定に戻すには、以下のボタンをクリックまたはタップしてください。"
+msgstr "ラズパップを<a href=\"%s\">初期</a>設定に戻すには、以下のボタンをクリックまたはタップしてください。"
 
 msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
 msgstr "広告ブロック、WireGuard、OpenVPNなどのオプションコンポーネントのカスタムファイルはシステムに残ります。"
@@ -1255,7 +1276,7 @@ msgid "To generate a system <a href=\"%s\">debug log</a>, click or tap the butto
 msgstr "<a href=\"%s\">システムデバッグログを</a>生成するには、以下のボタンをクリックまたはタップします。"
 
 msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
-msgstr "デバッグログ情報には、RaspAPのバージョン、AP関連サービスの現在の状態と設定、インストールされているシステムパッケージ、Linuxカーネルのバージョン、ネットワークの詳細が含まれる。パスワードやその他の機密データは含まれていません。"
+msgstr "デバッグログ情報には、ラズパップのバージョン、AP関連サービスの現在の状態と設定、インストールされているシステムパッケージ、Linuxカーネルのバージョン、ネットワークの詳細が含まれる。パスワードやその他の機密データは含まれていません。"
 
 msgid "Generate debug log"
 msgstr "デバッグ・ログの生成"
@@ -1273,7 +1294,7 @@ msgid "Information provided by raspap.sysinfo"
 msgstr "raspap.sysinfoが提供する情報"
 
 msgid "The following user plugins are available to extend RaspAP's functionality."
-msgstr "RaspAPの機能を拡張するために、以下のユーザープラグインが利用できます。"
+msgstr "ラズパップの機能を拡張するために、以下のユーザープラグインが利用できます。"
 
 msgid "Choose <strong>Details</strong> for more information and to install a plugin."
 msgstr "詳細とプラグインのインストールについては、<strong>「詳細</strong>」を選択してください。"
@@ -1617,7 +1638,7 @@ msgid "Enable blocklists"
 msgstr "ブロックリストを有効にする"
 
 msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr "RaspAPに<b>広告、トラッキング、その他の仮想ゴミのDNSリクエストをブロックさ</b>せたい場合は、このオプションを有効にします。ブロックリストは、アクティブに維持されている複数のソースから収集され、毎日自動的に更新、クリーニング、最適化、およびモデレートされます。"
+msgstr "ラズパップに<b>広告、トラッキング、その他の仮想ゴミのDNSリクエストをブロックさ</b>せたい場合は、このオプションを有効にします。ブロックリストは、アクティブに維持されている複数のソースから収集され、毎日自動的に更新、クリーニング、最適化、およびモデレートされます。"
 
 msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
 msgstr "このオプションは、dnsmasq設定に<code>conf-fileと</code> <code>addn-hostsを</code>追加する。"
@@ -1698,7 +1719,7 @@ msgid "Enable server"
 msgstr "サーバーを有効化"
 
 msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
-msgstr "このオプションを有効にすると、RaspAPと設定されたピアとの間に暗号化されたトンネルが作成され、ネットワークトラフィックが保護されます。"
+msgstr "このオプションを有効にすると、ラズパップと設定されたピアとの間に暗号化されたトンネルが作成され、ネットワークトラフィックが保護されます。"
 
 msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
 msgstr "この設定により、このデバイス上に新しいWireGuard<code>.conf</code>ファイルが生成されます。"
@@ -1722,7 +1743,7 @@ msgid "Enable peer"
 msgstr "ピアの有効化"
 
 msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
-msgstr "このオプションを有効にすると、RaspAPとこのピアとの間にトンネルが作成され、トラフィックが暗号化されます。"
+msgstr "このオプションを有効にすると、ラズパップとこのピアとの間にトンネルが作成され、トラフィックが暗号化されます。"
 
 msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
 msgstr "このオプションは、WireGuard設定に<code>client.confを</code>追加します。"
@@ -2094,7 +2115,7 @@ msgid "exclusive features"
 msgstr "専用機能"
 
 msgid "RaspAP Exception"
-msgstr "RaspAP例外"
+msgstr "ラズパップ例外"
 
 msgid "An exception occurred"
 msgstr "例外が発生した"
@@ -2511,10 +2532,10 @@ msgid "Size"
 msgstr "サイズ"
 
 msgid "Modified"
-msgstr "更新日時"
+msgstr "変形"
 
 msgid "Actions"
-msgstr "操作"
+msgstr "行動"
 
 msgid "Download file"
 msgstr "ダウンロードファイル"
@@ -2529,7 +2550,7 @@ msgid "Are you sure you want to delete this file?"
 msgstr "本当にこのファイルを削除しますか？"
 
 msgid "All Traffic"
-msgstr "すべてのトラフィック"
+msgstr "すべての交通"
 
 msgid "HTTP/HTTPS"
 msgstr "HTTP/HTTPS"
