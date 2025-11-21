@@ -1639,7 +1639,7 @@ msgid "Enable blocklists"
 msgstr "Blokkeerlijsten inschakelen"
 
 msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr "Schakel deze optie in als u wilt dat RaspAP <b>DNS-verzoeken voor advertenties, tracking en andere virtuele garbage</b>blokkeert. Blokklijsten worden verzameld uit meervoudige en actief onderhouden bronnen en worden dagelijks geüpdatet, opgeruimd, geoptimaliseerd en gemodereerd."
+msgstr "Schakel deze optie in als u wilt dat RaspAP <b>DNS-verzoeken voor advertenties, tracking en andere virtuele garbage</b> blokkeert. Blokklijsten worden verzameld uit meervoudige en actief onderhouden bronnen en worden dagelijks geüpdatet, opgeruimd, geoptimaliseerd en gemodereerd."
 
 msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
 msgstr "Deze optie voegt <code>conf-file</code> en <code>addn-hosts</code> toe aan de dnsmasq configuratie."
@@ -1661,6 +1661,9 @@ msgstr "Statistieken"
 
 msgid "Information provided by adblock"
 msgstr "Informatie verstrekt door adblock"
+
+msgid "Custom blocklist"
+msgstr "Custom blokkeerlijst"
 
 msgid "Enable custom blocklist"
 msgstr "Aangepaste blokkeerlijst inschakelen"
