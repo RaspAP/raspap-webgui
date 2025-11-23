@@ -78,7 +78,7 @@ function DisplayWPAConfig()
 
             $ok = true;
             foreach ($tmp_networks as $ssid => $network) {
-                if ($network['protocol'] === 'Open') {
+                if ($network['protocol'] === $wifi::SECURITY_OPEN) {
                     fwrite($wpa_file, "network={".PHP_EOL);
                     fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
                     fwrite($wpa_file, "\tkey_mgmt=NONE".PHP_EOL);
