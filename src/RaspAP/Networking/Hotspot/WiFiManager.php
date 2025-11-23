@@ -16,6 +16,7 @@ class WiFiManager
 
     private const MIN_RSSI = -100;
     private const MAX_RSSI = -55;
+    const SECURITY_OPEN = 'OPEN';
 
     public function knownWifiStations(&$networks)
     {
@@ -127,7 +128,7 @@ class WiFiManager
                 $networks[$ssid] = [
                     'ssid' => $ssid,
                     'configured' => false,
-                    'protocol' => $current['security'] ?? 'OPEN',
+                    'protocol' => $current['security'] ?? self::SECURITY_OPEN,
                     'channel' => $channel,
                     'passphrase' => '',
                     'visible' => true,
@@ -138,6 +139,10 @@ class WiFiManager
                 ++$index;
             }
         };
+        
+        if (is_string($scan_results)) {
+            $scan_results = explode("\n", trim($scan_results));
+        }
 
         foreach ($scan_results as $line) {
             $line = trim($line);
@@ -149,7 +154,7 @@ class WiFiManager
                     'ssid' => '',
                     'signal' => null,
                     'freq' => null,
-                    'security' => 'OPEN'
+                    'security' => self::SECURITY_OPEN
                 ];
                 continue;
             }
