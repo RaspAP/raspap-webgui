@@ -47,6 +47,7 @@ www-data ALL=(ALL) NOPASSWD:/sbin/ip -s a f label wl*
 www-data ALL=(ALL) NOPASSWD:/sbin/ifup *
 www-data ALL=(ALL) NOPASSWD:/sbin/ifdown *
 www-data ALL=(ALL) NOPASSWD:/sbin/iw dev*
+www-data ALL=(ALL) NOPASSWD:/sbin/iw reg set*
 www-data ALL=(ALL) NOPASSWD:/bin/cp /etc/raspap/networking/dhcpcd.conf /etc/dhcpcd.conf
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/enablelog.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/hostapd/disablelog.sh
