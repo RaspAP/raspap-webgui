@@ -85,6 +85,10 @@ class WiFiManager
             $cacheKey,
             function () use ($iface) {
                 $stdout = shell_exec("sudo iw dev $iface scan");
+                sleep(1);
+                if ($stdout === null) {
+                    return [];
+                }
                 return preg_split("/\n/", $stdout);
             }
         );
@@ -184,7 +188,6 @@ class WiFiManager
             if (preg_match('/ESSID:\"([^"]+)\"/i', $line, $iwconfig_ssid)) {
                 $ssid=hexSequence2lower($iwconfig_ssid[1]);
                 $networks[$ssid]['connected'] = true;
-                //$check=detectCaptivePortal($_SESSION['wifi_client_interface']);
                 $networks[$ssid]["portal-url"]=$check["URL"];
             }
         }
@@ -251,7 +254,9 @@ class WiFiManager
     {
         $iface = $_SESSION['wifi_client_interface'];
         if ($force == true) {
-            $cmd = "sudo /sbin/wpa_supplicant -i $unescapedIface -c /etc/wpa_supplicant/wpa_supplicant.conf -B 2>&1";
+            $cmd = "sudo rm -f /var/run/wpa_supplicant/" . $iface;
+            $result = shell_exec($cmd);
+            $cmd = "sudo /sbin/wpa_supplicant -i $iface -c /etc/wpa_supplicant/wpa_supplicant.conf -B 2>&1";
             $result = shell_exec($cmd);
         }
         $cmd = "sudo wpa_cli -i $iface reconfigure";
