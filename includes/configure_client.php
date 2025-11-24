@@ -20,6 +20,8 @@ function DisplayWPAConfig()
 
     if (isset($_POST['connect'])) {
         $netid = intval($_POST['connect']);
+        $force_remove = true;
+        $result = $wifi->reinitializeWPA($force_remove);
         $cmd = "sudo wpa_cli -i $iface select_network $netid";
         $return = shell_exec($cmd);
         sleep(2);
