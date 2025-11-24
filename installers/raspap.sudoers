@@ -17,6 +17,7 @@ www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i disconnect [0-9]
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* select_network [0-9]
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* set_network [0-9] *
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* remove_network [0-9]
+www-data ALL=(ALL) NOPASSWD:/bin/rm -f /var/run/wpa_supplicant/wlan[0-9]
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/hostapddata /etc/hostapd/hostapd.conf
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl start hostapd.service
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop hostapd.service
