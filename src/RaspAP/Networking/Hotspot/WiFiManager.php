@@ -93,13 +93,16 @@ class WiFiManager
         exec('sed -rn "s/ssid=(.*)\s*$/\1/p" ' . escapeshellarg(RASPI_HOSTAPD_CONFIG), $ap_ssid);
         $ap_ssid = $ap_ssid[0] ?? '';
 
-        $index = 0;
+        // determine the next index that follows the indexes of the known networks
+        $index = -1;
         if (!empty($networks)) {
-            $lastnet = end($networks);
-            if (isset($lastnet['index'])) {
-                $index = $lastnet['index'] + 1;
+            foreach ($networks as $network) {
+                if (isset($network['index']) && ($network['index'] > $index)) {
+                    $index = $network['index'];
+                }
             }
         }
+        $index++;
 
         $current = [];
         $commitCurrent = function () use (&$current, &$networks, &$index, $ap_ssid) {
