@@ -50,7 +50,7 @@ function DisplayWPAConfig()
                 } elseif (preg_match('/update(\d+)/', $post, $post_match)) {
                     // NB, multiple protocols are separated with a forward slash ('/')
                     $tmp_networks[$_POST['ssid' . $post_match[1]]] = array(
-                    'protocol' => ( $_POST['protocol' . $post_match[1]] === 'Open' ? 'Open' : 'WPA' ),
+                    'protocol' => ( $_POST['protocol' . $post_match[1]] === $wifi::SECURITY_OPEN ? $wifi::SECURITY_OPEN : 'WPA' ),
                     'passphrase' => $_POST['passphrase' . $post_match[1]],
                     'configured' => true
                     );
