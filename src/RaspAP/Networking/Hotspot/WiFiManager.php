@@ -22,11 +22,9 @@ class WiFiManager
     {
         // find currently configured networks
         exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
-        $index = 0;
         foreach ($known_return as $line) {
             if (preg_match('/network\s*=/', $line)) {
                 $network = array('visible' => false, 'configured' => true, 'connected' => false, 'index' => null);
-                ++$index;
             } elseif (isset($network) && $network !== null) {
                 if (preg_match('/^\s*}\s*$/', $line)) {
                     $networks[$ssid] = $network;
@@ -38,8 +36,7 @@ class WiFiManager
                         $ssid = trim($lineArr[1], '"');
                         $ssid = str_replace('P"','',$ssid);
                         $network['ssid'] = $ssid;
-                        $index = $this->getNetworkIdBySSID($ssid);
-                        $network['index'] = $index;
+                        $network['index'] = $this->getNetworkIdBySSID($ssid);
                         break;
                     case 'psk':
                         $network['passkey'] = trim($lineArr[1]);
