@@ -52,7 +52,7 @@ class WiFiManager
                         break;
                     case 'key_mgmt':
                         if (! array_key_exists('passphrase', $network) && $lineArr[1] === 'NONE') {
-                            $network['protocol'] = 'Open';
+                            $network['protocol'] = self::SECURITY_OPEN;
                         }
                         break;
                     case 'priority':
@@ -89,10 +89,6 @@ class WiFiManager
             }
         );
 
-        // exclude the AP from nearby networks
-        exec('sed -rn "s/ssid=(.*)\s*$/\1/p" ' . escapeshellarg(RASPI_HOSTAPD_CONFIG), $ap_ssid);
-        $ap_ssid = $ap_ssid[0] ?? '';
-
         $index = 0;
         if (!empty($networks)) {
             $lastnet = end($networks);
@@ -102,7 +98,7 @@ class WiFiManager
         }
 
         $current = [];
-        $commitCurrent = function () use (&$current, &$networks, &$index, $ap_ssid) {
+        $commitCurrent = function () use (&$current, &$networks, &$index) {
             if (empty($current['ssid'])) {
                 return;
             }
@@ -110,7 +106,7 @@ class WiFiManager
             $ssid = $current['ssid'];
 
             // unprintable 7bit ASCII control codes, delete or quotes -> ignore network
-            if ($ssid === $ap_ssid || preg_match('/[\x00-\x1f\x7f\'`\´"]/', $ssid)) {
+            if (preg_match('/[\x00-\x1f\x7f\'`\´"]/', $ssid)) {
                 return;
             }
 
@@ -425,7 +421,7 @@ class WiFiManager
             "sudo wpa_cli -i $iface set_network $netid ssid $ssid",
         ];
 
-        if (strtolower($protocol) === 'open') {
+        if ($protocol === self::SECURITY_OPEN) {
             $commands[] = "sudo wpa_cli -i $iface set_network $netid key_mgmt NONE";
         } else {
             $commands[] = "sudo wpa_cli -i $iface set_network $netid psk $psk";
