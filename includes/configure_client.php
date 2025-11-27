@@ -17,10 +17,10 @@ function DisplayWPAConfig()
     $wifi->setKnownStationsWPA($networks);
 
     $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+    $clientInterface = $_SESSION['wifi_client_interface'];
 
     if (isset($_POST['connect'])) {
         $netid = intval($_POST['connect']);
-        $clientInterface = $_SESSION['wifi_client_interface'];
 
         if ($wifi->connectToNetwork($clientInterface, $netid)) {
             $status->addMessage('New network selected', 'success');
@@ -39,13 +39,11 @@ function DisplayWPAConfig()
             if (preg_match('/delete(\d+)/', $post, $post_match)) {
                 $network = $tmp_networks[$_POST['ssid' . $post_match[1]]];
                 $netid = $network['index'];
-                $clientInterface = $_SESSION['wifi_client_interface'];
                 $wifi->deleteNetwork($clientInterface, $netid);
                 unset($tmp_networks[$_POST['ssid' . $post_match[1]]]);
             } elseif (preg_match('/disconnect(\d+)/', $post, $post_match)) {
                 $network = $tmp_networks[$_POST['ssid' . $post_match[1]]];
                 $netid = $network['index'];
-                $clientInterface = $_SESSION['wifi_client_interface'];
                 $wifi->disconnectNetwork($clientInterface, $netid);
             } elseif (preg_match('/update(\d+)/', $post, $post_match)) {
                 // NB, multiple protocols are separated with a forward slash ('/')
@@ -60,7 +58,6 @@ function DisplayWPAConfig()
                 }
                 $network = $tmp_networks[$_POST['ssid' . $post_match[1]]];
 
-                $clientInterface = $_SESSION['wifi_client_interface'];
                 $ssid = $_POST['ssid' . $post_match[1]];
                 $passphrase = $_POST['passphrase' . $post_match[1]] ?? '';
 
@@ -71,7 +68,6 @@ function DisplayWPAConfig()
             }
         }
 
-        $clientInterface = $_SESSION['wifi_client_interface'];
         $result = $wifi->writeWpaSupplicant($tmp_networks, $clientInterface);
 
         if ($result['success']) {
@@ -82,7 +78,6 @@ function DisplayWPAConfig()
         }
     }
 
-    $clientInterface = $_SESSION['wifi_client_interface'];
     $ifaceStatus = $wifi->getInterfaceStatus($clientInterface);
 
     echo renderTemplate("configure_client", compact("status", "clientInterface", "ifaceStatus"));
