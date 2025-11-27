@@ -447,12 +447,12 @@ class WiFiManager
         error_log("Successfully added network: {$network['ssid']}");
     }
 
-    /*
+    /**
      * Parses wpa_cli list_networks output and returns the id
      * of a corresponding network SSID
      *
      * @param string $ssid
-     * @return integer id
+     * @return integer id or null
      */
     public function getNetworkIdBySSID($ssid) {
         $iface = escapeshellarg($_SESSION['wifi_client_interface']);
@@ -460,10 +460,11 @@ class WiFiManager
         $output = [];
         exec($cmd, $output);
         array_shift($output);
+
         foreach ($output as $line) {
             $columns = preg_split('/\t/', $line);
-            if (count($columns) >= 4 && trim($columns[1]) === trim($ssid)) {
-                return $columns[0]; // return network ID
+            if (count($columns) >= 2 && trim($columns[1]) === trim($ssid)) {
+                return (int)$columns[0];
             }
         }
         return null;
