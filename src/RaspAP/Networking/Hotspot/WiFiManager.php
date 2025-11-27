@@ -22,11 +22,9 @@ class WiFiManager
     {
         // find currently configured networks
         exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
-        $index = 0;
         foreach ($known_return as $line) {
             if (preg_match('/network\s*=/', $line)) {
                 $network = array('visible' => false, 'configured' => true, 'connected' => false, 'index' => null);
-                ++$index;
             } elseif (isset($network) && $network !== null) {
                 if (preg_match('/^\s*}\s*$/', $line)) {
                     $networks[$ssid] = $network;
@@ -38,8 +36,7 @@ class WiFiManager
                         $ssid = trim($lineArr[1], '"');
                         $ssid = str_replace('P"','',$ssid);
                         $network['ssid'] = $ssid;
-                        $index = $this->getNetworkIdBySSID($ssid);
-                        $network['index'] = $index;
+                        $network['index'] = $this->getNetworkIdBySSID($ssid);
                         break;
                     case 'psk':
                         $network['passkey'] = trim($lineArr[1]);
@@ -93,13 +90,16 @@ class WiFiManager
             }
         );
 
+        // determine the next index that follows the indexes of the known networks
         $index = 0;
         if (!empty($networks)) {
-            $lastnet = end($networks);
-            if (isset($lastnet['index'])) {
-                $index = $lastnet['index'] + 1;
+            foreach ($networks as $network) {
+                if (isset($network['index']) && is_numeric($network['index']) && ($network['index'] > $index)) {
+                    $index = (int)$network['index'];
+                }
             }
         }
+        $index++;
 
         $current = [];
         $commitCurrent = function () use (&$current, &$networks, &$index) {
@@ -136,7 +136,7 @@ class WiFiManager
                     'RSSI' => $rssi,
                     'index' => $index
                 ];
-                ++$index;
+                $index++; // increment for next new network
             }
         };
         
@@ -177,19 +177,50 @@ class WiFiManager
         }
         $commitCurrent();
     }
-
     /**
-     *
+     * Check if networks are connected via wpa_cli status
+     * NB: iwconfig shows the last associated SSID even when connection is inactive
      */
     public function connectedWifiStations(&$networks)
     {
-        exec('iwconfig ' .$_SESSION['wifi_client_interface'], $iwconfig_return);
-        foreach ($iwconfig_return as $line) {
-            if (preg_match('/ESSID:\"([^"]+)\"/i', $line, $iwconfig_ssid)) {
-                $ssid=hexSequence2lower($iwconfig_ssid[1]);
-                $networks[$ssid]['connected'] = true;
-                $networks[$ssid]["portal-url"]=$check["URL"];
+        $wpa_state = null;
+        $connected_ssid = null;
+        $iface = $_SESSION['wifi_client_interface'];
+        
+        $cmd = "sudo wpa_cli -i $iface status";
+        $status_output = shell_exec($cmd);
+
+        if ($status_output === null || empty($status_output)) {
+            error_log("WiFiManager::connectedWifiStations: wpa_cli command failed or returned no output");
+            return;
+        }
+        $lines = explode("\n", trim($status_output));
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if (preg_match('/^wpa_state=(.+)$/', $line, $matches)) {
+                $wpa_state = trim($matches[1]);
             }
+            if (preg_match('/^ssid=(.+)$/', $line, $matches)) {
+                $connected_ssid = trim($matches[1]);
+            }
+        }        
+        
+        if ($wpa_state === 'COMPLETED' && !empty($connected_ssid)) {
+            $ssid = hexSequence2lower($connected_ssid);
+
+            // check if this SSID exists in networks array
+            if (array_key_exists($ssid, $networks)) {
+                $networks[$ssid]['connected'] = true;
+            } else {
+                error_log("WiFiManager::connectedWifiStations: SSID '$ssid' not found. SSIDs: " . implode(', ', array_keys($networks)));
+            }
+
+            // captive portal detection
+            // $check = detectCaptivePortal($iface);
+            // if (isset($check["URL"])) {
+            //     $networks[$ssid]["portal-url"] = $check["URL"];
+            // }
         }
     }
 
@@ -258,6 +289,7 @@ class WiFiManager
             $result = shell_exec($cmd);
             $cmd = "sudo /sbin/wpa_supplicant -i $iface -c /etc/wpa_supplicant/wpa_supplicant.conf -B 2>&1";
             $result = shell_exec($cmd);
+            sleep(2);
         }
         $cmd = "sudo wpa_cli -i $iface reconfigure";
         $result = shell_exec($cmd);
