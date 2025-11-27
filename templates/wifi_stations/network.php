@@ -13,8 +13,6 @@ $network['visible'] = $network['visible'] ?? false;
 $network['channel'] = $network['channel'] ?? '';
 $network['protocol'] = $network['protocol'] ?? $wifi::SECURITY_OPEN;
 $network['passphrase'] = $network['passphrase'] ?? '';
-
-error_log("\ntemplates/wifi_stations/network.php -> network\n" . var_export($network, true));
 ?>
 <div class="card">
 	<div class="card-body">
