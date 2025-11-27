@@ -112,6 +112,9 @@ function getProviderValue($id, $key)
     if (!isset($obj['providers']) || !is_array($obj['providers'])) {
         return false;
     }
+    if ($id === null || !is_numeric($id)) {
+        return false;
+    }
     $id--;
     if (!isset($obj['providers'][$id]) || !is_array($obj['providers'][$id])) {
         return false;
