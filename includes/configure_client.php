@@ -19,16 +19,12 @@ function DisplayWPAConfig()
     $iface = escapeshellarg($_SESSION['wifi_client_interface']);
 
     if (isset($_POST['connect'])) {
-        error_log("\nconfigure_client:DisplayWPAConfig() -> ******* Caught connect ****** \n");
         $netid = intval($_POST['connect']);
-        error_log("\nconfigure_client:DisplayWPAConfig() -> connecting to $netid\n");
-        $force_remove = true;
-        $return = $wifi->reinitializeWPA($force_remove);
-        //$cmd = "sudo wpa_cli -i $iface select_network $netid";
-        //$return = shell_exec($cmd);
+        $cmd = "sudo wpa_cli -i $iface select_network $netid";
+        $return = shell_exec($cmd);
         sleep(3);
-        //$cmd = "sudo wpa_cli -i $iface reassociate";
-        //$return = shell_exec($cmd);
+        $cmd = "sudo wpa_cli -i $iface reassociate";
+        $return = shell_exec($cmd);
         if (trim($return) == "FAIL") {
             $status->addMessage('WPA command line client returned failure. Check your adapter.', 'danger');
         } else {
@@ -44,28 +40,20 @@ function DisplayWPAConfig()
             fwrite($wpa_file, 'ctrl_interface=DIR=' . RASPI_WPA_CTRL_INTERFACE . ' GROUP=netdev' . PHP_EOL);
             fwrite($wpa_file, 'update_config=1' . PHP_EOL);
 
-            error_log("\nconfigure_client:DisplayWPAConfig() -> _POST\n" . var_export($_POST, true));
-
             foreach (array_keys($_POST) as $post) {
 
                 if (preg_match('/delete(\d+)/', $post, $post_match)) {
-                    $network = $tmp_networks[$_POST['ssid-' . $post_match[1]]];
+                    $network = $tmp_networks[$_POST['ssid' . $post_match[1]]];
                     $netid = $network['index'];
-                    error_log("\nconfigure_client:DisplayWPAConfig() -> netid: $netid\n");
-                   
                     exec('sudo wpa_cli -i ' . $iface . ' disconnect ' . $netid);
                     exec('sudo wpa_cli -i ' . $iface . ' remove_network ' . $netid);
                     unset($tmp_networks[$_POST['ssid' . $post_match[1]]]);
                 } elseif (preg_match('/disconnect(\d+)/', $post, $post_match)) {
-                    error_log("\nconfigure_client:DisplayWPAConfig() -> ******* Caught disconnect ****** \n");
                     $network = $tmp_networks[$_POST['ssid' . $post_match[1]]];
                     $netid = $network['index'];
-                    error_log("\nconfigure_client:DisplayWPAConfig() -> netid: $netid\n");
                     exec('sudo wpa_cli -i ' . $iface . ' disconnect ' . $netid);
                     exec('sudo wpa_cli -i ' . $iface . ' remove_network ' . $netid);
                     sleep(2);
-                    //$force_remove = true;
-                    //$result = $wifi->reinitializeWPA($force_remove);
                 } elseif (preg_match('/update(\d+)/', $post, $post_match)) {
                     // NB, multiple protocols are separated with a forward slash ('/')
                     $tmp_networks[$_POST['ssid' . $post_match[1]]] = array(
