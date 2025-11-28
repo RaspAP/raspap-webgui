@@ -556,8 +556,8 @@ CONF;
     /**
      * Gets the operational status of a network interface
      *
-     * @param string $interface The network interface name
-     * @return string Returns 'up', 'down', or 'unknown'
+     * @param string $interface network interface name
+     * @return string returns up, down, or unknown
      */
     public function getInterfaceStatus(string $interface): string
     {

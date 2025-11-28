@@ -3,7 +3,7 @@
 use RaspAP\Networking\Hotspot\WiFiManager;
 
 /**
- *
+ * WiFi client configuration page handler
  *
  */
 function DisplayWPAConfig()
@@ -16,7 +16,6 @@ function DisplayWPAConfig()
     $wifi->knownWifiStations($networks);
     $wifi->setKnownStationsWPA($networks);
 
-    $iface = escapeshellarg($_SESSION['wifi_client_interface']);
     $clientInterface = $_SESSION['wifi_client_interface'];
 
     if (isset($_POST['connect'])) {
