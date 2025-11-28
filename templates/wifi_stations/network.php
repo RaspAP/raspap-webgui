@@ -3,6 +3,15 @@
 use RaspAP\Networking\Hotspot\WiFiManager;
 $wifi = new WiFiManager();
 
+// fix: re-apply locale settings in this template context
+if (!empty($_SESSION['locale'])) {
+    putenv("LANG=" . $_SESSION['locale']);
+    setlocale(LC_ALL, $_SESSION['locale']);
+    bindtextdomain('messages', realpath(__DIR__ . '/../../locale'));
+    bind_textdomain_codeset('messages', 'UTF-8');
+    textdomain('messages');
+}
+
 // set defaults
 $network = $network ?? [];
 $network['ssid'] = $network['ssid'] ?? '';
