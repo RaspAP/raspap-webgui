@@ -158,7 +158,7 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        13) # Debian 13 trixie
+        13|2025.*) # Debian 13 trixie, Kali Linux 2025
             php_package="php8.4-fpm"
             phpiniconf="/etc/php/8.4/fpm/php.ini" ;;
         23.05|12*) # Debian 12 & Armbian 23.05
@@ -246,7 +246,7 @@ function _install_dependencies() {
     else
         echo "${php_package} will be installed from the main deb sources list"
     fi
-    if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
+    if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" || ${OS,,} = "kali" ]; then
         dhcpcd_package="dhcpcd5"
         iw_package="iw"
         rsync_package="rsync"
