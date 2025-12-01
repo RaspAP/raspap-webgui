@@ -246,7 +246,7 @@ function _install_dependencies() {
     else
         echo "${php_package} will be installed from the main deb sources list"
     fi
-    if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" || ${OS,,} = "kali" ]; then
+    if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ] || [ ${OS,,} = "kali" ]; then
         dhcpcd_package="dhcpcd5"
         iw_package="iw"
         rsync_package="rsync"
