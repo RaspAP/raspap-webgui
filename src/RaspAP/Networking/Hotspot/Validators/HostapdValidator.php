@@ -16,6 +16,15 @@ use RaspAP\Messages\StatusMessage;
 
 class HostapdValidator
 {
+    // Valid channel widths for 802.11ax (HE)
+    private const HE_VALID_CHWIDTHS = [0, 1, 2]; // 20/40, 80, 160 MHz
+
+    // Valid channel widths for 802.11be (EHT)
+    private const EHT_VALID_CHWIDTHS = [0, 1, 2, 3, 4]; // 20, 40, 80, 160, 320 MHz
+
+    // 6 GHz channel range (US)
+    private const CHANNEL_6GHZ_MIN = 1;
+    private const CHANNEL_6GHZ_MAX = 233;
 
     /**
      * Validates full hostapd parameter set
@@ -61,6 +70,16 @@ class HostapdValidator
         }
         if ((int)$post['channel'] < 1 || (int)$post['channel'] > RASPI_5GHZ_CHANNEL_MAX) {
             $status->addMessage('Attempting to set channel outside of permitted range', 'danger');
+            $goodInput = false;
+        }
+
+        // validate 802.11ax specific parameters
+        if ($post['hw_mode'] === 'ax' && !$this->validateAxParams($post, $status)) {
+            $goodInput = false;
+        }
+
+        // validate 802.11be specific parameters
+        if ($post['hw_mode'] === 'be' && !$this->validateBeParams($post, $status)) {
             $goodInput = false;
         }
 
@@ -200,8 +219,96 @@ class HostapdValidator
             'bridgeStaticIp'   => ($post['bridgeStaticIp']),
             'bridgeNetmask'    => ($post['bridgeNetmask']),
             'bridgeGateway'    => ($post['bridgeGateway']),
-            'bridgeDNS'        => ($post['bridgeDNS'])
+            'bridgeDNS'        => ($post['bridgeDNS']),
+            'he_oper_chwidth'  => $post['he_oper_chwidth'] ?? null, // 802.11ax parameters
+            'he_bss_color'     => $post['he_bss_color'] ?? null, // 802.11be parameters
+            'eht_oper_chwidth' => $post['eht_oper_chwidth'] ?? null
         ];
+    }
+
+    /**
+     * Validates 802.11ax (Wi-Fi 6) specific parameters
+     *
+     * @param array $post
+     * @param StatusMessage $status
+     * @return bool
+     */
+    private function validateAxParams(array $post, StatusMessage $status): bool
+    {
+        $valid = true;
+
+        // Validate HE channel width
+        if (isset($post['he_oper_chwidth'])) {
+            $chwidth = (int)$post['he_oper_chwidth'];
+            if (!in_array($chwidth, self::HE_VALID_CHWIDTHS, true)) {
+                $status->addMessage('Invalid 802.11ax channel width. Must be 0 (20/40 MHz), 1 (80 MHz), or 2 (160 MHz)', 'danger');
+                $valid = false;
+            }
+        }
+
+        // Validate BSS color (1-63)
+        if (isset($post['he_bss_color'])) {
+            $bssColor = (int)$post['he_bss_color'];
+            if ($bssColor < 1 || $bssColor > 63) {
+                $status->addMessage('802.11ax BSS color must be between 1 and 63', 'danger');
+                $valid = false;
+            }
+        }
+
+        return $valid;
+    }
+
+    /**
+     * Validates 802.11be (Wi-Fi 7) specific parameters
+     *
+     * @param array $post
+     * @param StatusMessage $status
+     * @return bool
+     */
+    private function validateBeParams(array $post, StatusMessage $status): bool
+    {
+        $valid = true;
+        $channel = (int)$post['channel'];
+
+        // Validate EHT channel width
+        if (isset($post['eht_oper_chwidth'])) {
+            $chwidth = (int)$post['eht_oper_chwidth'];
+
+            if (!in_array($chwidth, self::EHT_VALID_CHWIDTHS, true)) {
+                $status->addMessage('Invalid 802.11be channel width. Must be 0-4 (20, 40, 80, 160, or 320 MHz)', 'danger');
+                $valid = false;
+            }
+
+            // 320 MHz only valid on 6 GHz band
+            if ($chwidth === 4) {
+                if ($channel < self::CHANNEL_6GHZ_MIN || $channel > self::CHANNEL_6GHZ_MAX) {
+                    $status->addMessage('802.11be 320 MHz channel width is only available on 6 GHz band (channels 1-233)', 'danger');
+                    $valid = false;
+                }
+            }
+        }
+
+        // Validate BSS color (same as 802.11ax, inherited)
+        if (isset($post['he_bss_color'])) {
+            $bssColor = (int)$post['he_bss_color'];
+            if ($bssColor < 1 || $bssColor > 63) {
+                $status->addMessage('BSS color must be between 1 and 63', 'danger');
+                $valid = false;
+            }
+        }
+
+        return $valid;
+    }
+
+    /**
+     * Checks if channel is in 6GHz band
+     *
+     * @param int $channel
+     * @return bool
+     */
+    private function is6GHzChannel(int $channel): bool
+    {
+        return $channel >= self::CHANNEL_6GHZ_MIN && $channel <= self::CHANNEL_6GHZ_MAX;
     }
 
 }
