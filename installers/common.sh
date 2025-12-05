@@ -837,7 +837,7 @@ function _configure_networking() {
     )
     for rule in "${rules[@]}"; do
         if sudo grep -- "$rule" $rulesv4 > /dev/null; then
-            echo "Rule already exits: ${rule}"
+            echo "Rule already exists: ${rule}"
         else
             rule=$(sed -e 's/^\(-A POSTROUTING\)/-t nat \1/' <<< $rule)
             echo "Adding rule: ${rule}"
