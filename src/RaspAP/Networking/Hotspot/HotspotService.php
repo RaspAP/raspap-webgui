@@ -145,6 +145,7 @@ class HotspotService
         try {
             // normalize state flags
             $validated['interface'] = $apIface;
+            $validated["bridgeName"] = !empty($states["BridgedEnable"]) ? "br0" : null;
             $validated['bridge']    = !empty($states['BridgedEnable']);
             $validated['apsta']     = !empty($states['WifiAPEnable']);
             $validated['repeater']  = !empty($states['RepeaterEnable']);

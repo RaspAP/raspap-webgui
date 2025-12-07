@@ -209,9 +209,9 @@ class HostapdManager
         }
 
         // bridge handling
-        if (!empty($params['bridge'])) {
+        if (!empty($params['bridgeName'])) {
             $config[] = 'interface=' . $params['interface'];
-            $config[] = 'bridge=' . $params['bridge'];
+            $config[] = 'bridge=' . $params['bridgeName'];
         } else {
             $config[] = 'interface=' . $params['interface'];
         }
