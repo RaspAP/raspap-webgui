@@ -381,12 +381,15 @@ function loadChannelSelect(selected) {
         // Map selected hw_mode to available channels
         if (hw_mode === 'a') {
             selectableChannels = data.filter(item => item.MHz.toString().startsWith('5'));
-        } else if (hw_mode !== 'ac') {
-            selectableChannels = data.filter(item => item.MHz.toString().startsWith('24'));
-        } else if (hw_mode === 'b') {
-            selectableChannels = data.filter(item => item.MHz.toString().startsWith('24'));
         } else if (hw_mode === 'ac') {
             selectableChannels = data.filter(item => item.MHz.toString().startsWith('5'));
+        } else if (hw_mode === 'ax') {
+            selectableChannels = data.filter(item => item.MHz.toString().startsWith('5'));
+        } else if (hw_mode === 'be') {
+            selectableChannels = data.filter(item => item.MHz.toString().startsWith('5'));
+        } else {
+            // hw_mode 'b', 'g', or default to 2.4GHz
+            selectableChannels = data.filter(item => item.MHz.toString().startsWith('24'));
         }
 
         // If selected channel doeesn't exist in allowed channels, set default or null (unsupported)
