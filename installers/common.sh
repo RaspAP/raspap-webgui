@@ -422,9 +422,29 @@ function _prompt_install_feature() {
         if [ "$answer" != "${answer#[Nn]}" ]; then
             _install_status 0 "(Skipped)"
         else
+            echo -e
             $function
         fi
+    elif [ "$opt" == "pv_option" ]; then
+        # Iterate over the VPN provider options
+        valid_ids=($(jq -r '.providers[].id' "$webroot_dir/config/vpn-providers.json"))
+        # check if pv_option is defined
+        local value=${!opt}
+        local found=0
+        for id in "${valid_ids[@]}"; do
+            if [ "$id" == "$value" ]; then
+                found=1
+                break   # we found a match
+            fi
+        done
+        if [ $found == 1 ]; then
+            echo -e
+            $function
+        else
+            _install_status 0 "Invalid VPN provider ID ${!opt} - (Skipped)"
+        fi
     elif [ "${!opt}" == 1 ]; then
+        echo -e
         $function
     else
         echo "(Skipped)"
