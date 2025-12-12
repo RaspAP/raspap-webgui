@@ -422,7 +422,6 @@ function _prompt_install_feature() {
         if [ "$answer" != "${answer#[Nn]}" ]; then
             _install_status 0 "(Skipped)"
         else
-            echo -e
             $function
         fi
     elif [ "$opt" == "pv_option" ]; then
