@@ -441,7 +441,7 @@ function _prompt_install_feature() {
             echo -e
             $function
         else
-            _install_status 0 "Invalid VPN provider ID ${!opt} - (Skipped)"
+            _install_status 1 "Invalid VPN provider ID ${!opt} - (Skipped)"
         fi
     elif [ "${!opt}" == 1 ]; then
         echo -e
