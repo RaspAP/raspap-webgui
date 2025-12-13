@@ -425,22 +425,26 @@ function _prompt_install_feature() {
             $function
         fi
     elif [ "$opt" == "pv_option" ]; then
-        # Iterate over the VPN provider options
-        valid_ids=($(jq -r '.providers[].id' "$webroot_dir/config/vpn-providers.json"))
-        # check if pv_option is defined
-        local value=${!opt}
-        local found=0
-        for id in "${valid_ids[@]}"; do
-            if [ "$id" == "$value" ]; then
-                found=1
-                break   # we found a match
-            fi
-        done
-        if [ $found == 1 ]; then
-            echo -e
-            $function
+        local opt_value=${!opt}
+        # Skip silently if not requested (opt_value is 0)
+        if [ "$opt_value" == 0 ]; then
+            echo "(Skipped)"
         else
-            _install_status 1 "Invalid VPN provider ID ${!opt} - (Skipped)"
+            # Iterate over the VPN provider options
+            local valid_ids=($(jq -r '.providers[].id' "$webroot_dir/config/vpn-providers.json"))
+            local found=0
+            for id in "${valid_ids[@]}"; do
+                if [ "$id" == "$opt_value" ]; then
+                    found=1
+                    break
+                fi
+            done
+            if [ $found == 1 ]; then
+                echo -e
+                $function
+            else
+                _install_status 1 "Invalid VPN provider ID $opt_value - (Skipped)"
+            fi
         fi
     elif [ "${!opt}" == 1 ]; then
         echo -e
@@ -500,8 +504,8 @@ function _install_adblock() {
 function _install_provider() {
     _install_log "Installing VPN provider support"
     json="$webroot_dir/config/"vpn-providers.json
-    while IFS='|' read -r key value; do
-        options["$key"]="$value"
+    while IFS='|' read -r key opt_value; do
+        options["$key"]="$opt_value"
     done< <(jq -r '.providers[] | "\(.id)|\(.name)|\(.bin_path)"' "$json")
 
     if [ -n "$pv_option" ]; then
@@ -808,9 +812,9 @@ function _default_configuration() {
         if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
             conf="/etc/default/hostapd"
             key="DAEMON_CONF"
-            value="/etc/hostapd/hostapd.conf"
-            echo "Setting default ${key} path to ${value}"
-            sudo sed -i -E "/^#?$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
+            opt_value="/etc/hostapd/hostapd.conf"
+            echo "Setting default ${key} path to ${opt_value}"
+            sudo sed -i -E "/^#?$key/ { s/^#//; s%=.*%=\"$opt_value\"%; }" "$conf" || _install_status 1 "Unable to set opt_value in ${conf}"
         fi
 
         _install_log "Unmasking and enabling hostapd service"
