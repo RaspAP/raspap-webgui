@@ -13,7 +13,9 @@ foreach ($hostapdconfig as $hostapdconfigline) {
         continue;
     }
     $arrLine = explode("=", $hostapdconfigline);
-    $arrConfig[$arrLine[0]]=$arrLine[1];
+    if (count($arrLine) >= 2) {
+        $arrConfig[$arrLine[0]]=$arrLine[1];
+    }
 };
 $channel = intval($arrConfig['channel']);
 echo json_encode($channel);
