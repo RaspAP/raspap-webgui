@@ -504,8 +504,8 @@ function _install_adblock() {
 function _install_provider() {
     _install_log "Installing VPN provider support"
     json="$webroot_dir/config/"vpn-providers.json
-    while IFS='|' read -r key opt_value; do
-        options["$key"]="$opt_value"
+    while IFS='|' read -r key value; do
+        options["$key"]="$value"
     done< <(jq -r '.providers[] | "\(.id)|\(.name)|\(.bin_path)"' "$json")
 
     if [ -n "$pv_option" ]; then
@@ -812,9 +812,9 @@ function _default_configuration() {
         if [ ${OS,,} = "ubuntu" ] && [[ ${RELEASE} =~ ^(22.04|20.04|19.10|18.04) ]]; then
             conf="/etc/default/hostapd"
             key="DAEMON_CONF"
-            opt_value="/etc/hostapd/hostapd.conf"
-            echo "Setting default ${key} path to ${opt_value}"
-            sudo sed -i -E "/^#?$key/ { s/^#//; s%=.*%=\"$opt_value\"%; }" "$conf" || _install_status 1 "Unable to set opt_value in ${conf}"
+            value="/etc/hostapd/hostapd.conf"
+            echo "Setting default ${key} path to ${value}"
+            sudo sed -i -E "/^#?$key/ { s/^#//; s%=.*%=\"$value\"%; }" "$conf" || _install_status 1 "Unable to set value in ${conf}"
         fi
 
         _install_log "Unmasking and enabling hostapd service"
