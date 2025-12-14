@@ -108,9 +108,6 @@ class HostapdManager
         if (!empty($config['ieee80211be']) && strval($config['ieee80211be']) === '1') {
             $selected = 'be';
         }
-        if (!empty($config['ieee80211w']) && strval($config['ieee80211w']) === '2') {
-            $selected = 'w';
-        }
 
         return $selected;
     }
