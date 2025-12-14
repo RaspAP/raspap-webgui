@@ -34,7 +34,7 @@ class HotspotService
         'n'  => '802.11n - 2.4/5 GHz',
         'ac' => '802.11ac - 5 GHz',
         'ax' => '802.11ax (Wi-Fi 6) - 2.4/5/6 GHz',
-        // 'be' => '802.11be (Wi-Fi 7) - 2.4/5/6 GHz'
+        'be' => '802.11be (Wi-Fi 7) - 2.4/5/6 GHz'
     ];
 
     // encryption types
@@ -191,7 +191,6 @@ class HotspotService
 
         if ($validated === false) {
             $status->addMessage('Unable to save WiFi hotspot settings due to validation errors', 'danger');
-            error_log("HotspotService::validate() -> validated = false");
             return false;
         }
 
@@ -203,8 +202,6 @@ class HotspotService
             $validated['repeater']  = !empty($states['RepeaterEnable']);
             $validated['dualmode']  = !empty($states['DualAPEnable']);
             $validated['txpower']   = $post_data['txpower'];
-
-            error_log("HotspotService::saveSettings() -> validated\n" . var_export($validated, true));
 
             // add 802.11ax/be specific parameters if present
             if (in_array($validated['hw_mode'], ['ax', 'be'])) {
