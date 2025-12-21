@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-14 08:51\n"
+"PO-Revision-Date: 2025-11-20 12:21\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -12,8 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 10\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -22,8 +24,8 @@ msgstr "Портал настройки RaspAP Wifi"
 msgid "Toggle navigation"
 msgstr "Переключение навигации"
 
-msgid "RaspAP Wifi Portal"
-msgstr "Портал RaspAP Wifi"
+msgid "RaspAP Admin Panel"
+msgstr "Панель администратора RaspAP"
 
 msgid "Dashboard"
 msgstr "Приборная панель"
@@ -31,14 +33,20 @@ msgstr "Приборная панель"
 msgid "WiFi client"
 msgstr "WiFi клиента"
 
+msgid "Status"
+msgstr "Статус"
+
 msgid "Hotspot"
 msgstr "Точка доступа"
 
-msgid "Memory Use"
-msgstr ""
+msgid "Logging"
+msgstr "Журналирование"
 
-msgid "CPU Temp"
-msgstr ""
+msgid "Mem Use"
+msgstr "Память"
+
+msgid "CPU"
+msgstr "ЦП"
 
 msgid "Networking"
 msgstr "Сетевые"
@@ -47,16 +55,13 @@ msgid "DHCP Server"
 msgstr "DHCP сервер"
 
 msgid "OpenVPN"
-msgstr ""
+msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr ""
+msgstr "TOR proxy"
 
 msgid "Authentication"
 msgstr "авторизации"
-
-msgid "Change Theme"
-msgstr "Сменить тему"
 
 msgid "System"
 msgstr "Система"
@@ -95,12 +100,75 @@ msgstr "Новый пароль"
 msgid "Repeat new password"
 msgstr "Повторить новый пароль"
 
+msgid "Please provide a valid username."
+msgstr "Укажите действительное имя пользователя."
+
+msgid "Please provide a valid password."
+msgstr "Укажите действительный пароль."
+
+msgid "Please enter your old password."
+msgstr "Введите старый пароль."
+
+msgid "Please enter a new password."
+msgstr "Введите новый пароль."
+
+msgid "Please re-enter your new password."
+msgstr "Введите новый пароль ещё раз."
+
+msgid "Avatar"
+msgstr "Аватар"
+
+msgid "Click or tap to upload a new user avatar."
+msgstr "Нажмите, чтобы загрузить новый аватар пользователя."
+
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "Принимаются файлы изображений типа <code>JPG, GIF или PNG</code>. Максимальный размер файла: 2 МБ."
+
+msgid "Reset avatar"
+msgstr "Сбросить аватар"
+
+msgid "Enable limited privilege user"
+msgstr "Включить пользователя с ограниченными правами"
+
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "Эта опция создаёт пользователя без прав администратора, который может получить доступ к интерфейсу управления RaspAP, но имеет <strong>ограниченные возможности по изменению существующей конфигурации</strong>. Этот пользователь становится активным, когда администратор выходит из системы."
+
+msgid "Admin login failed. Please try again."
+msgstr "Вход администратора не выполнен. Попробуйте ещё раз."
+
+msgid "Limited privilege user mode enabled"
+msgstr "Режим пользователя с ограниченными правами включён"
+
+msgid "Failed to enable limited privilege user mode"
+msgstr "Не удалось включить режим пользователя с ограниченными правами"
+
+msgid "Logout and enable limited user mode"
+msgstr "Выйти и включить режим ограниченного пользователя"
+
+msgid "Limited user login"
+msgstr "Логин ограниченного пользователя"
+
+msgid "Limited user password"
+msgstr "Пароль ограниченного пользователя"
+
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr "Это действие сохранит учётные данные ограниченного пользователя и выполнит выход администратора. Сохранить и включить режим ограниченных прав?"
+
+msgid "Save and logout"
+msgstr "Сохранить и выйти"
+
+msgid "Admin credentials updated successfully"
+msgstr "Учётные данные администратора успешно обновлены"
+
+msgid "Limited user credentials updated successfully"
+msgstr "Учётные данные ограниченного пользователя успешно обновлены"
+
 #: includes/configure_client.php
 msgid "Client settings"
 msgstr "Настройки клиента"
 
 msgid "SSID"
-msgstr ""
+msgstr "SSID"
 
 msgid "Channel"
 msgstr "Канал"
@@ -144,8 +212,32 @@ msgstr "Скрыть"
 msgid "Not configured"
 msgstr "Не настроено"
 
+msgid "Connected"
+msgstr "Подключено"
+
+msgid "Known"
+msgstr "Известная"
+
+msgid "Nearby"
+msgstr "Поблизости"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>Note:</strong> точки доступа WEP показаны как 'Открытые'. RaspAP в данный момент не поддерживает подключение WEP"
+
+msgid "No Wifi stations found"
+msgstr "Станции WiFi не найдены"
+
+msgid "Reinitialized wpa_supplicant. Choose <strong>Rescan</strong>."
+msgstr "wpa_supplicant переинициализирован. Выберите <strong>Повторить сканирование</strong>."
+
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Нажмите 'Повторить сканирование' для поиска ближайших станций WiFi."
+
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Нажмите 'Переинициализировать', чтобы принудительно переинициализировать <code>wpa_supplicant</code>."
+
+msgid "Reinitialize"
+msgstr "Переинициализировать"
 
 #: includes/dashboard.php
 msgid "Interface Information"
@@ -182,7 +274,7 @@ msgid "Transferred Bytes"
 msgstr "Передано Байт"
 
 msgid "Wireless Client"
-msgstr ""
+msgstr "WiFi клиент"
 
 msgid "Connected To"
 msgstr "Подключено к"
@@ -205,8 +297,8 @@ msgstr "Частота"
 msgid "Link Quality"
 msgstr "Качество соединения"
 
-msgid "Information provided by ip and iw and from system"
-msgstr "Информация, представленная IP и IW и из системы"
+msgid "Information provided by raspap.system"
+msgstr "Информация предоставлена raspap.system"
 
 msgid "No MAC Address Found"
 msgstr "MAC-адрес не найден"
@@ -241,15 +333,149 @@ msgstr "Остановка wlan0"
 msgid "Connected Devices"
 msgstr "Подключенные устройства"
 
+msgid "Client: Ethernet cable"
+msgstr "Клиент: Кабель Ethernet"
+
+msgid "Current status"
+msgstr "Текущее состояние"
+
+msgid "Ethernet"
+msgstr "Ethernet"
+
+msgid "Client: Smartphone (USB tethering)"
+msgstr "Клиент: Смартфон (USB-соединение)"
+
+msgid "Smartphone"
+msgstr "Смартфон"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Repeater"
+msgstr "Ретранслятор"
+
+msgid "Tethering"
+msgstr "Тетеринг"
+
+msgid "Cellular"
+msgstr "Сотовая связь"
+
+msgid "AP"
+msgstr "AP"
+
+msgid "Bridged"
+msgstr "Мостовая"
+
+msgid "Adblock"
+msgstr "Adblock"
+
+msgid "VPN"
+msgstr "VPN"
+
+msgid "Netmask"
+msgstr "Маска подсети"
+
+msgid "5G"
+msgstr "5G"
+
+msgid "2.4G"
+msgstr "2.4G"
+
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
+
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "клиент"
+msgstr[1] "клиенты"
+msgstr[2] "клиенты"
+msgstr[3] "клиенты"
+
+msgid "Mobile Data Client"
+msgstr "Мобильный клиент данных"
+
+msgid "Mobile Data"
+msgstr "Мобильные данные"
+
+msgid "No information available"
+msgstr "Информация отсутствует"
+
+msgid "Interface name invalid"
+msgstr "Неверное имя интерфейса"
+
+msgid "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
+msgstr "Необходимая функция exec отключена. Проверьте, не добавлена ли функция exec в php <code>disable_functions</code>."
+
+msgid "Waiting for the interface to start ..."
+msgstr "Ожидание запуска интерфейса ..."
+
+msgid "Stop the Interface"
+msgstr "Остановите интерфейс"
+
+msgid "Connection mode"
+msgstr "Режим подключения"
+
+msgid "Signal quality"
+msgstr "Качество сигнала"
+
+msgid "WAN IP"
+msgstr "WAN IP"
+
+msgid "Signal strength"
+msgstr "Сила сигнала"
+
+msgid "No Client device or not yet configured"
+msgstr "Нет клиентского устройства или оно еще не настроено"
+
+msgid "No Client device found"
+msgstr "Клиентское устройство не найдено"
+
+#: includes/footer.php
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "Создано <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+msgid "RaspAP Team"
+msgstr "Команда RaspAP"
+
+msgid "Get Insiders"
+msgstr "Получить инсайдеров"
+
+msgid "Thanks for being an Insider"
+msgstr "Спасибо, что стали инсайдером"
+
 #: includes/dhcp.php
 msgid "DHCP server settings"
 msgstr "Настройки сервера DHCP"
+
+msgid "Default gateway"
+msgstr "Шлюз по умолчанию"
+
+msgid "Install a default route for this interface"
+msgstr "Установите маршрут по умолчанию для этого интерфейса"
+
+msgid "Static IP options"
+msgstr "Параметры статического IP-адреса"
+
+msgid "DHCP options"
+msgstr "Параметры DHCP"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Включите эту опцию, если вы хотите, чтобы RaspAP назначал IP-адреса клиентам на выбранном интерфейсе. Для этой опции требуется статический IP-адрес."
+
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr "Включите этот параметр, только если вы хотите, чтобы устройство использовало этот интерфейс в качестве основного маршрута в Интернет."
 
 msgid "Client list"
 msgstr "Список клиентов"
 
 msgid "Interface"
 msgstr "Интерфейс"
+
+msgid "Enable DHCP for this interface"
+msgstr "Включить DHCP для этого интерфейса"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+msgstr "Отметьте этот флажок, если хотите, чтобы RaspAP назначал IP адреса на выбранном интерфейсе."
 
 msgid "DNS Server"
 msgstr "DNS сервер"
@@ -280,6 +506,9 @@ msgstr "Время окончания"
 
 msgid "MAC Address"
 msgstr "MAC-адрес"
+
+msgid "Optional comment"
+msgstr "Необязательный комментарий"
 
 msgid "Host name"
 msgstr "Имя хоста"
@@ -324,31 +553,103 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq не запущена"
 
 msgid "Upstream DNS servers"
-msgstr ""
+msgstr "Пользовательские DNS-серверы"
 
 msgid "Only ever query DNS servers configured below"
-msgstr ""
+msgstr "Использовать только DNS-серверы, настроенные ниже"
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr ""
+msgstr "Включите эту опцию, если вы хотите, чтобы RaspAP <b>отправлял DNS-запросы только на серверы, настроенные ниже</b>. По умолчанию RaspAP также использует восходящие DNS-серверы, назначенные через DHCP."
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "Этот параметр добавляет <code>no-resolv</code> в конфигурацию dnsmasq."
 
 msgid "Add upstream DNS server"
-msgstr ""
+msgstr "Добавить сервер DNS"
 
 msgid "Format"
-msgstr ""
+msgstr "Формат"
 
 msgid "Choose a hosted server"
-msgstr ""
+msgstr "Общедоступный DNS-сервер"
+
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Включите эти опции для регистрации активности <code>dhcpcd</code> и <code>dnsmasq</code>."
 
 msgid "Log DHCP requests"
-msgstr ""
+msgstr "Журнал DHCP-запросов"
 
 msgid "Log DNS queries"
-msgstr ""
+msgstr "Журнал DNS-запросов"
+
+msgid "Restrict access"
+msgstr "Запретить доступ"
+
+msgid "Limit network access to static clients"
+msgstr "Ограничить доступ к сети статическим клиентам"
+
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Включите эту опцию, если вы хотите, чтобы RaspAP <b>игнорировал любых клиентов</b>, которые не указаны в списке статических аренд."
+
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Эта опция добавляет <code>dhcp-ignore</code> в конфигурацию dnsmasq."
+
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Клиенты с определенным MAC-адресом могут всегда получать одиин и тот же IP-адрес."
+
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Эта опция добавляет <code>dhcp-host</code> в конфигурацию dnsmasq."
+
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr "Отключает опцию <code>шлюза/ногатевея</code> для этого интерфейса в файле dhcpcd.conf."
+
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr "Отключает опцию <code>nohook wpa_supplicant</code> для этого интерфейса в файле dhcpcd.conf."
+
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "Отключить wpa_supplicant dhcp для этого интерфейса"
+
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "Если вы управляете беспроводными соединениями с помощью самого wpa_supplicant, крючок может создавать нежелательные события подключения. Эта опция отключает хук."
+
+msgid "Please provide a valid IP Address."
+msgstr "Укажите действительный IP-адрес."
+
+msgid "Please provide a valid Default gateway."
+msgstr "Укажите действительный шлюз по умолчанию."
+
+msgid "Please provide a valid Starting IP Address."
+msgstr "Укажите действительный начальный IP-адрес."
+
+msgid "Please provide a valid Ending IP Address."
+msgstr "Укажите действительный конечный IP-адрес."
+
+msgid "Please provide a valid Lease Time."
+msgstr "Укажите действительное время аренды."
+
+msgid "Invalid interface name."
+msgstr "Недопустимое имя интерфейса."
+
+msgid "Invalid static IP address."
+msgstr "Неверный статический IP-адрес."
+
+msgid "Invalid default gateway."
+msgstr "Неверный шлюз по умолчанию."
+
+msgid "Invalid DHCP range start."
+msgstr "Неверное начало диапазона DHCP."
+
+msgid "Invalid DHCP range end."
+msgstr "Недопустимый конец диапазона DHCP."
+
+msgid "Invalid DHCP lease time, not a number."
+msgstr "Неверное время аренды DHCP, не число."
+
+msgid "Unknown DHCP lease time unit."
+msgstr "Неизвестная единица времени аренды DHCP."
+
+msgid "Invalid metric value, not a number."
+msgstr "Неверное значение метрики, не число."
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -372,8 +673,8 @@ msgstr "Стандарт безопасности"
 msgid "Encryption Type"
 msgstr "Тип шифрования"
 
-msgid "PSK"
-msgstr ""
+msgid "Pre-shared key (PSK)"
+msgstr "Предварительный ключ (PSK)"
 
 msgid "Advanced settings"
 msgstr "Расширенные настройки"
@@ -408,11 +709,26 @@ msgstr "Неизвестный интерфейс"
 msgid "Country code must be blank or two characters"
 msgstr "Код страны должен быть пустым или двухсимвольным"
 
-msgid "Wifi Hotspot settings saved"
-msgstr "Настройки Wifi-точки сохранены"
+msgid "DHCP configuration for %s enabled."
+msgstr "Настройка DHCP для %s включена."
 
-msgid "Unable to save wifi hotspot settings"
-msgstr "Невозможно сохранить настройки wifi-точки"
+msgid "DHCP configuration for %s added."
+msgstr "Добавлена настройка DHCP для %s ."
+
+msgid "DHCP configuration for %s updated."
+msgstr "Обновлена конфигурация DHCP для %s ."
+
+msgid "Interface %s has no default settings."
+msgstr "Интерфейс %s не имеет настроек по умолчанию."
+
+msgid "Configure settings in <strong>DHCP Server</strong> before starting AP."
+msgstr "Настройте параметры <strong>DHCP-сервера</strong> перед запуском точки доступа."
+
+msgid "Wifi hotspot settings saved."
+msgstr "Настройки точки доступа Wifi сохраняются."
+
+msgid "Unable to save WiFi hotspot settings."
+msgstr "Невозможно сохранить настройки точки доступа WiFi."
 
 msgid "Start hotspot"
 msgstr "Запуск точки доступа"
@@ -429,11 +745,38 @@ msgstr "Включить журналирование"
 msgid "Logfile output"
 msgstr "Записи журнала"
 
+msgid "Log level"
+msgstr "Уровень журнала"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Более высокие уровни уменьшают многословность журнала. Рекомендуется информационный."
+
+msgid "Verbose debugging"
+msgstr "Подробная отладка"
+
+msgid "Debugging"
+msgstr "Отладка"
+
+msgid "Informational"
+msgstr "Информация"
+
+msgid "Notification"
+msgstr "Уведомление"
+
+msgid "Warning"
+msgstr "Внимание"
+
 msgid "WiFi client AP mode"
 msgstr "Режим AP WiFi-клиента"
 
 msgid "Bridged AP mode"
-msgstr ""
+msgstr "Режим моста ТОЧКИ ДОСТУПА"
+
+msgid "WiFi repeater mode"
+msgstr "Режим ретранслятора WiFi"
+
+msgid "Dual band AP mode"
+msgstr "Режим двухдиапазонной точки доступа"
 
 msgid "Hide SSID in broadcast"
 msgstr "Скрыть SSID при трансляции"
@@ -441,12 +784,177 @@ msgstr "Скрыть SSID при трансляции"
 msgid "Maximum number of clients"
 msgstr "Максимальное количество клиентов"
 
-msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Настраивает параметр max_num_sta в hostapd. По умолчанию и максимум — 2007. Если пусто или 0, применяется значение по умолчанию."
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Настраивает параметр <code>max_num_sta</code> в hostapd. По умолчанию максимальное значение - 2007. Если значение пустое или равно 0, применяется значение по умолчанию."
+
+msgid "Beacon interval"
+msgstr "Интервал маяка"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Отключить <code>disassoc_low_ack</code>"
+
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Не разъединяйте станции на основе чрезмерного количества отказов передачи."
+
+msgid "Executing RaspAP service start"
+msgstr "Выполнение запуска службы RaspAP"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Включите эту опцию для регистрации активности <code>hostapd</code>."
+
+msgid "Transmit power (dBm)"
+msgstr "Мощность передачи (дБм)"
+
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "Устанавливает параметр <code>txpower</code> для интерфейса точки доступа и настроенной страны."
+
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "ДБм - это единица измерения уровня, используемая для обозначения отношения мощности в децибелах (дБ) к одному милливатту (мВт). 30 дБм равны 1000 мВт, а 0 дБм - 1,25 мВт."
+
+msgid "WPA and WPA2"
+msgstr "WPA и WPA2"
+
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 и WPA3-Personal (переходный режим)"
+
+msgid "WPA3-Personal (required)"
+msgstr "WPA3-Personal (требуется)"
+
+msgid "Enabled (for supported clients)"
+msgstr "Включено (для поддерживаемых клиентов)"
+
+msgid "Required (for supported clients)"
+msgstr "Требуется (для поддерживаемых клиентов)"
+
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "Стандарт 802.11w распространяет надежную криптографическую защиту на определенный набор надежных кадров управления, включая кадры деаутентификации, дезассоциации и некоторые категории кадров управления действиями. Все вместе это известно как защита кадров управления (MFP)."
+
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Сканируйте этот QR-код напрямую или %s %sраспечатайте табличку%s для ваших пользователей."
+
+msgid "Printable Wi-Fi sign"
+msgstr "Печатный знак Wi-Fi"
+
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Чтобы подключиться с помощью телефона или планшета, отсканируйте QR-код выше с помощью приложения для камеры."
+
+msgid "For other devices, use the login credentials below."
+msgstr "Для других устройств используйте указанные ниже учетные данные."
+
+msgid "Network"
+msgstr "Сеть"
+
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "Выбранный интерфейс (%s) поддерживает только беспроводной диапазон 2,4 ГГц."
+
+msgid "The selected interface (%s) has support for the 2.5 GHz wireless band only."
+msgstr "Выбранный интерфейс (%s) поддерживает только беспроводной диапазон 2,5 ГГц."
+
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "Выбранный интерфейс (%s) поддерживает беспроводные диапазоны 2,4 и 5 ГГц."
+
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "Выбранный интерфейс (%s) не поддерживает работу в беспроводном режиме."
+
+msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
+msgstr "Опция 802.11ac 5 ГГц отключена до тех пор, пока не будет установлен совместимый домен регулирования беспроводной связи."
+
+msgid "WiFi repeater mode: A metric value is already defined for DHCP."
+msgstr "Режим ретранслятора WiFi: Значение метрики уже определено для DHCP."
+
+msgid "Restart hotspot to enable WiFi repeater mode."
+msgstr "Перезапустите точку доступа, чтобы включить режим ретранслятора WiFi."
+
+msgid "Unable to obtain metric value for client interface. Repeater mode inactive."
+msgstr "Невозможно получить значение метрики для клиентского интерфейса. Режим повторителя неактивен."
+
+msgid "Metric value configured for the %s interface."
+msgstr "Значение метрики, настроенное для интерфейса %s ."
+
+msgid "Parameter hiddenSSID contains invalid configuration value."
+msgstr "Параметр hiddenSSID содержит недопустимое значение конфигурации."
+
+msgid "Parameter hiddenSSID is not a number."
+msgstr "Параметр hiddenSSID не является числом."
+
+msgid "Bridge interface configuration"
+msgstr "Конфигурация интерфейса моста"
+
+msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+msgstr "Настройте статический IP-адрес для интерфейса <code>br0</code>, чтобы поддерживать связь во время активации режима моста."
+
+msgid "Static IP Address"
+msgstr "Статический IP-адрес"
+
+msgid "Netmask / CIDR"
+msgstr "Маска сети / CIDR"
+
+msgid "Example: 192.168.1.100"
+msgstr "Пример: 192.168.1.100"
+
+msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
+msgstr "Нотация CIDR (например, 24 для 255.255.255.0)"
+
+msgid "Gateway"
+msgstr "Шлюз"
+
+msgid "Your router's IP address"
+msgstr "IP-адрес вашего маршрутизатора"
+
+msgid "Usually same as gateway"
+msgstr "Обычно такой же, как шлюз"
+
+msgid "Bridge static IP address must be a valid IPv4 address"
+msgstr "Статический IP-адрес моста должен быть действительным адресом IPv4."
+
+msgid "Bridge netmask must be a number between 1 and 32"
+msgstr "Сетевая маска моста должна быть числом от 1 до 32"
+
+msgid "Bridge netmask is required when using static IP"
+msgstr "При использовании статического IP требуется сетевая маска моста."
+
+msgid "Bridge gateway must be a valid IPv4 address"
+msgstr "Шлюз моста должен быть действительным адресом IPv4"
+
+msgid "Bridge gateway is required when using static IP"
+msgstr "Мостовой шлюз необходим при использовании статического IP"
+
+msgid "Bridge DNS server must be a valid IPv4 address"
+msgstr "DNS-сервер моста должен быть действительным адресом IPv4"
+
+msgid "Bridge DNS server is required when using static IP"
+msgstr "Мостовой DNS-сервер необходим при использовании статического IP"
+
+msgid "Bridge static IP and gateway must be in the same subnet"
+msgstr "Статический IP-адрес моста и шлюз должны находиться в одной подсети"
+
+msgid "Please enter a valid IPv4 address"
+msgstr "Введите действительный IPv4-адрес"
+
+msgid "Please enter a valid netmask"
+msgstr "Пожалуйста, введите действительную сетевую маску"
+
+msgid "DHCP configuration for br0 enabled"
+msgstr "Конфигурация DHCP для br0 включена"
+
+msgid "Unable to save WiFi hotspot settings due to validation errors"
+msgstr "Невозможно сохранить настройки точки доступа WiFi из-за ошибок проверки"
+
+msgid "Enable AP isolation"
+msgstr "Включить изоляцию точки доступа"
+
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "Блокирует возможность беспроводных клиентов видеть друг друга или подключаться к ним. Рекомендуется для гостевых сетей и публичных точек доступа."
 
 #: includes/networking.php
 msgid "Summary"
 msgstr "Сводка"
+
+msgid "Internet connection"
+msgstr "Подключение к Интернету"
 
 msgid "Current settings"
 msgstr "Текущие настройки"
@@ -460,8 +968,11 @@ msgstr "Альтернативный DNS-сервер"
 msgid "Adapter IP Address Settings"
 msgstr "Настройки IP-адреса адаптера"
 
-msgid "Enable Fallback to Static Option"
-msgstr "Включить опцию статического резервирования IP"
+msgid "Enable fallback to static option"
+msgstr "Включить возврат к статическим параметрам"
+
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Включите эту опцию, чтобы настроить статический профиль и вернуться к нему, когда аренда DHCP не удастся."
 
 msgid "Static IP"
 msgstr "Статический IP"
@@ -475,11 +986,164 @@ msgstr "Отключено"
 msgid "Static IP Options"
 msgstr "Настройки статического IP"
 
+msgid "Metric"
+msgstr "Метрика"
+
 msgid "Apply settings"
 msgstr "Применить настройки"
 
 msgid "Information provided by /sys/class/net"
 msgstr "Информация получена от /sys/class/net"
+
+msgid "Devices"
+msgstr "Устройства"
+
+msgid "Diagnostics"
+msgstr "Диагностика"
+
+msgid "Network devices"
+msgstr "Сетевые устройства"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid "MAC address"
+msgstr "MAC-адрес"
+
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+msgid "Device type"
+msgstr "Тип устройства"
+
+msgid "Fixed name"
+msgstr "Исправленное имя"
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "Mobile data settings"
+msgstr "Настройки мобильных данных"
+
+msgid "SIM card PIN number"
+msgstr "PIN-код SIM-карты"
+
+msgid "APN Settings (Modem device ppp0)"
+msgstr "Настройки APN (модемное устройство ppp0)"
+
+msgid "Access Point Name (APN)"
+msgstr "Имя точки доступа (APN)"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Successfully Updated Network Configuration"
+msgstr "Успешное обновление конфигурации сети"
+
+msgid "Error saving network configuration to file"
+msgstr "Ошибка при сохранении сетевой конфигурации в файл"
+
+msgid "Unable to detect interface"
+msgstr "Невозможно обнаружить интерфейс"
+
+msgid "Routing table"
+msgstr "Таблица маршрутизации"
+
+msgid "raw output"
+msgstr "необработанный выход"
+
+msgid "Setting wireless regulatory domain to %s"
+msgstr "Установка домена регулирования беспроводной связи на %s"
+
+msgid "Please provide a valid SSID."
+msgstr "Укажите действительный идентификатор SSID."
+
+msgid "Please provide a valid PSK."
+msgstr "Укажите действительный PSK."
+
+msgid "Speedtest"
+msgstr "Speedtest"
+
+msgid "Selecting a server"
+msgstr "Выбор сервера"
+
+msgid "Privacy"
+msgstr "Конфиденциальность"
+
+msgid "Server"
+msgstr "Сервер"
+
+msgid "ms"
+msgstr "мс"
+
+msgid "Mbps"
+msgstr "Мбит/с"
+
+msgid "Ping"
+msgstr "Пинг"
+
+msgid "Jitter"
+msgstr "Джиттер"
+
+msgid "Upload"
+msgstr "Загрузить"
+
+msgid "Start"
+msgstr "Начало"
+
+msgid "Abort"
+msgstr "Прервать"
+
+msgid "Wireless LAN routing"
+msgstr "Маршрутизация беспроводных локальных сетей"
+
+msgid "Stop WLAN routing"
+msgstr "Остановить маршрутизацию WLAN"
+
+msgid "Start WLAN routing"
+msgstr "Запуск маршрутизации WLAN"
+
+msgid "Restart WLAN routing"
+msgstr "Перезапуск маршрутизации WLAN"
+
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Эта опция настраивает RaspAP на <b>маршрутизацию сетевого трафика с интерфейса беспроводного клиента (STA)</b> на другой доступный интерфейс."
+
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Когда выбран выходной интерфейс, добавляются правила <code>iptables</code> для маршрутизации пакетов с использованием трансляции сетевых адресов (NAT). Это часто делается для совместного использования интернет-подключения из WLAN с устройствами на интерфейсах <code>eth0</code>, <code>usb0</code> или предсказуемом <code>enx</code>."
+
+msgid "Wireless client interface"
+msgstr "Интерфейс беспроводного клиента"
+
+msgid "Output interface"
+msgstr "Выходной интерфейс"
+
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Настройка статического IP-адреса и DHCP для выходного интерфейса"
+
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "Попытка включить маршрутизацию между интерфейсами %s и %s ."
+
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "Попытка отключить маршрутизацию между интерфейсами %s и %s ."
+
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "Для интерфейса %s не существует конфигурации DHCP по умолчанию."
+
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "Настройте статический IP и DHCP для этого интерфейса в настройках DHCP Server."
+
+msgid "WLAN routing configuration saved"
+msgstr "Сохранение конфигурации маршрутизации WLAN"
+
+msgid "Unable to save WLAN routing configuration"
+msgstr "Невозможно сохранить конфигурацию маршрутизации WLAN"
+
+msgid "Successfully restarted dnsmasq"
+msgstr "Успешный перезапуск dnsmasq"
+
+msgid "Failed to restart dnsmasq"
+msgstr "Не удалось перезапустить dnsmasq"
 
 #: includes/system.php
 msgid "System Information"
@@ -509,11 +1173,20 @@ msgstr "Пересмотр Pi"
 msgid "Uptime"
 msgstr "Время работы"
 
+msgid "System Time"
+msgstr "Системное время"
+
 msgid "Memory Used"
 msgstr "Использовано памяти"
 
+msgid "Storage Used"
+msgstr "Используемое хранилище"
+
 msgid "CPU Load"
 msgstr "Нагрузка CPU"
+
+msgid "CPU Temp"
+msgstr "Температура процессора"
 
 msgid "Reboot"
 msgstr "Перезапуск"
@@ -521,18 +1194,212 @@ msgstr "Перезапуск"
 msgid "Shutdown"
 msgstr "Выключить"
 
+msgid "System reboot"
+msgstr "Перезагрузка системы"
+
+msgid "System shutdown"
+msgstr "Выключение системы"
+
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr "Перезагрузиться сейчас? Система будет временно недоступна."
+
+msgid "Shutdown now? The system will be unavailable."
+msgstr "Выключить сейчас? Система будет недоступна."
+
 msgid "System Rebooting Now!"
 msgstr "Система перезапускается!"
 
 msgid "System Shutting Down Now!"
 msgstr "Система выключается!"
 
-#: includes/themes.php
+msgid "Web server port"
+msgstr "Порт веб-сервера"
+
+msgid "Web server bind address"
+msgstr "Адрес привязки веб-сервера"
+
+msgid "OS"
+msgstr "OS"
+
+msgid "Kernel"
+msgstr "Ядро"
+
+msgid "System reset"
+msgstr "Сброс системы"
+
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "Сбросить RaspAP к начальной конфигурации? Это действие нельзя отменить."
+
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "Сброс настроек завершен. Перезапустите точку доступа, чтобы изменения вступили в силу."
+
+msgid "System reset in progress..."
+msgstr "Идет сброс системы..."
+
+msgid "Reset"
+msgstr "Сброс"
+
+msgid "Restore settings"
+msgstr "Восстановление настроек"
+
+msgid "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
+msgstr "Чтобы вернуть RaspAP к <a href=\"%s\">исходной конфигурации</a>, нажмите или коснитесь кнопки ниже."
+
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Пользовательские файлы для дополнительных компонентов, таких как блокировка рекламы, WireGuard или OpenVPN, останутся в системе."
+
+msgid "Perform reset"
+msgstr "Выполните сброс"
+
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Восстанавливает все настройки служб точки доступа (AP) до значений по умолчанию. Это относится к hostapd, dhcpcd и dnsmasq."
+
 msgid "Theme settings"
 msgstr "Настройки темы"
 
 msgid "Select a theme"
 msgstr "Выбор темы"
+
+msgid "Color"
+msgstr "Цвет"
+
+msgid "Enable this option for resizable, drag and drop widgets. Best for large displays."
+msgstr "Включите эту опцию для виджетов с изменяемыми размерами и возможностью перетаскивания. Лучше всего подходит для больших дисплеев."
+
+msgid "Dynamic widgets"
+msgstr "Динамические виджеты"
+
+msgid "Tools"
+msgstr "Инструменты"
+
+msgid "System tools"
+msgstr "Системные инструменты"
+
+msgid "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
+msgstr "Чтобы создать <a href=\"%s\">журнал отладки</a> системы, нажмите или коснитесь кнопки ниже."
+
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Информация отладочного журнала содержит версию RaspAP, текущее состояние и конфигурацию служб, связанных с AP, установленные системные пакеты, версию ядра Linux и сетевые данные. Никаких паролей или других конфиденциальных данных не содержится."
+
+msgid "Generate debug log"
+msgstr "Создание журнала отладки"
+
+msgid "Debug log generation in progress..."
+msgstr "Идет генерация журнала отладки..."
+
+msgid "Diagnostic log size limit (KB)"
+msgstr "Ограничение размера журнала диагностики (КБ)"
+
+msgid "Changing log limit size to %s KB"
+msgstr "Изменение предельного размера журнала на %s КБ"
+
+msgid "Information provided by raspap.sysinfo"
+msgstr "Информация предоставлена raspap.sysinfo"
+
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "Для расширения функциональности RaspAP доступны следующие пользовательские плагины."
+
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Выберите <strong>\"Подробности\"</strong>, чтобы получить дополнительную информацию и установить плагин."
+
+msgid "Network error"
+msgstr "Ошибка сети"
+
+msgid "Unable to load plugins"
+msgstr "Невозможно загрузить плагины"
+
+msgid "Reload"
+msgstr "Перезагрузка"
+
+msgid "and try again"
+msgstr "и попробуйте еще раз"
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "Plugin details"
+msgstr "Детали плагина"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Plugin source"
+msgstr "Источник плагина"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "License"
+msgstr "Лицензия"
+
+msgid "Language locale"
+msgstr "Языковая локаль"
+
+msgid "Configuration files"
+msgstr "Конфигурационные файлы"
+
+msgid "Dependencies"
+msgstr "Зависимости"
+
+msgid "Permissions"
+msgstr "Разрешения"
+
+msgid "Non-privileged users"
+msgstr "Непривилегированные пользователи"
+
+msgid "Install now"
+msgstr "Установите сейчас"
+
+msgid "Installing plugin"
+msgstr "Установка плагина"
+
+msgid "Plugin installation in progress..."
+msgstr "Установка плагина продолжается..."
+
+msgid "Plugin install completed."
+msgstr "Установка плагина завершена."
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Installed"
+msgstr "Установлено"
+
+msgid "Alert messages"
+msgstr "Предупреждающие сообщения"
+
+msgid "Alert close timeout (milliseconds)"
+msgstr "Таймаут закрытия предупреждения (миллисекунды)"
+
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Автоматическое закрытие оповещений по истечении заданного времени"
+
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Чтобы <a href=\"%s\" target=\"_blank\">просмотреть адаптеры</a>, подключенные к этому устройству, нажмите или коснитесь кнопки ниже."
+
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Инструмент проверки адаптера позволяет получить подробную информацию о внешних устройствах WLAN, включая драйверы, поддерживаемые режимы и т. д."
+
+msgid "Choose a network interface to inspect"
+msgstr "Выберите сетевой интерфейс для проверки"
+
+msgid "Select an interface..."
+msgstr "Выберите интерфейс..."
+
+msgid "Adapter health check"
+msgstr "Проверка работоспособности адаптера"
+
+msgid "Inspect adapters"
+msgstr "Осмотрите адаптеры"
+
+msgid "Theme"
+msgstr "Тема"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -632,6 +1499,66 @@ msgstr "Попытка запуска openvpn"
 msgid "Attempting to stop openvpn"
 msgstr "Попытка остановить openvpn"
 
+msgid "Configurations"
+msgstr "Конфигурации"
+
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Ниже показаны доступные на данный момент конфигурации клиентов OpenVPN."
+
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Активация конфигурации приведет к перезапуску службы <code>openvpn-client</code>."
+
+msgid "Delete OpenVPN client"
+msgstr "Удаление клиента OpenVPN"
+
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Удалить конфигурацию клиента? Это нельзя отменить."
+
+msgid "Activate OpenVPN client"
+msgstr "Активируйте клиент OpenVPN"
+
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Активировать конфигурацию клиента? Это перезапустит службу openvpn-client."
+
+msgid "Activate"
+msgstr "Активировать"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Включите эту опцию для регистрации активности <code>openvpn</code>."
+
+msgid "Authentification Method"
+msgstr "Метод аутентификации"
+
+msgid "Username and password"
+msgstr "Имя пользователя и пароль"
+
+msgid "Certificates"
+msgstr "Сертификаты"
+
+msgid "Enter username and password"
+msgstr "Введите имя пользователя и пароль"
+
+msgid "Certificates in the configuration file"
+msgstr "Сертификаты в конфигурационном файле"
+
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP поддерживает сертификаты путем включения их в конфигурационный файл."
+
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Подписание сертификата центра сертификации (ЦС) (например, <code>ca.crt</code>): заключено в теги <code>&lt;ca> ... &lt;/ca></code> теги."
+
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Сертификат клиента (открытый ключ) (например, <code>client.crt</code>): заключен в теги <code>&lt;cert> ... &lt;/cert></code> тегами."
+
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Закрытый ключ сертификата клиента (например, <code>client.key</code>): заключен в теги <code>&lt;key> ... &lt;/key></code> тегами."
+
+msgid "Configuration File"
+msgstr "Файл конфигурации"
+
 #: includes/torproxy.php
 msgid "TOR is not running"
 msgstr "TOR не запущен"
@@ -668,7 +1595,7 @@ msgstr "Попытка остановить TOR"
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
-msgstr ""
+msgstr "Мостовой режим ТОЧКИ ДОСТУПА включен. Для хоста и IP-адреса см. страницу администрирования маршрутизатора."
 
 #: common form controls
 msgid "Save settings"
@@ -692,45 +1619,1122 @@ msgstr "вверх"
 msgid "down"
 msgstr "вниз"
 
+msgid "Clear log"
+msgstr "Очистить журнал"
+
 msgid "adblock"
-msgstr ""
+msgstr "Adblock"
 
 msgid "Ad Blocking"
-msgstr ""
+msgstr "Ad Blocking"
 
 msgid "Start Ad Blocking"
-msgstr ""
+msgstr "Запустить Ad Blocking"
 
 msgid "Restart Ad Blocking"
-msgstr ""
+msgstr "Перезапустить Ad Blocking"
 
 msgid "Blocklist settings"
-msgstr ""
+msgstr "Настройки блокировки"
 
 msgid "Enable blocklists"
-msgstr ""
+msgstr "Включить блокировку"
 
 msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr ""
+msgstr "Включите эту опцию, если вы хотите, чтобы RaspAP <b>блокировал DNS запросы для рекламы, отслеживания и другого виртуального мусора</b>. Блокирующие списки собираются из множества активно поддерживаемых источников и автоматически обновляются, очищаются, оптимизируются и модерируются ежедневно."
 
 msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "Эта опция добавляет в конфигурацию dnsmasq <code>conf-file</code> и <code>addn-hosts</code>."
 
 msgid "Choose a blocklist provider"
-msgstr ""
+msgstr "Выберите поставщика черного списка"
 
 msgid "Hostnames blocklist last updated"
-msgstr ""
+msgstr "Имена черного списка последнее обновление"
 
 msgid "Domains blocklist last updated"
-msgstr ""
+msgstr "Последнее обновление списка блокировки доменов"
 
 msgid "Update now"
-msgstr ""
+msgstr "Обновить сейчас"
 
 msgid "Statistics"
-msgstr ""
+msgstr "Статистика"
 
 msgid "Information provided by adblock"
-msgstr ""
+msgstr "Информация получена от Adblock"
+
+msgid "Enable custom blocklist"
+msgstr "Включить пользовательский список блоков"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Определите пользовательские узлы для блокировки, введя IPv4- или IPv6-адрес, за которым следуют пробелы (пробелы или табуляции) и имя узла."
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>Пример IPv4:</b> 0.0.0.0 badhost.com"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Эта опция добавляет директиву <code>addn-hosts</code> в конфигурацию dnsmasq."
+
+msgid "Custom blocklist not defined"
+msgstr "Пользовательский список блоков не определен"
+
+msgid "Invalid custom IP address found on line "
+msgstr "В строке найден недопустимый пользовательский IP-адрес "
+
+msgid "Invalid custom host found on line "
+msgstr "В строке найден недопустимый пользовательский хост "
+
+msgid "Tunnel settings"
+msgstr "Настройки туннеля"
+
+msgid "Configuration Method"
+msgstr "Метод конфигурации"
+
+msgid "Upload file"
+msgstr "Загрузить файл"
+
+msgid "Create manually"
+msgstr "Создать вручную"
+
+msgid "Upload a WireGuard config"
+msgstr "Загрузка конфигурации WireGuard"
+
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "Эта опция загружает и устанавливает существующий файл WireGuard <code>.conf</code> на данном устройстве <code>.</code>"
+
+msgid "Apply iptables rules to the selected interface"
+msgstr "Применить правила iptables к выбранному интерфейсу"
+
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "Рекомендуется, если вы хотите перенаправить сетевой трафик с интерфейса wg0 на клиентов, подключенных к нужному интерфейсу. По умолчанию используется активный интерфейс точки доступа."
+
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "Эта опция добавляет правила <strong>iptables</strong> <code>Postup</code> и <code>PostDown</code> для выбранного ниже интерфейса."
+
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "Выберите файл конфигурации WireGuard (.conf)."
+
+msgid "Create a local WireGuard config"
+msgstr "Создайте локальную конфигурацию WireGuard"
+
+msgid "Enable server"
+msgstr "Включить сервер"
+
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "Включите эту опцию для защиты сетевого трафика путем создания зашифрованного туннеля между RaspAP и настроенными аналогами."
+
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "Этот параметр создает новый файл WireGuard <code>.conf</code> на этом устройстве <code>.</code>"
+
+msgid "Local public key"
+msgstr "Локальный открытый ключ"
+
+msgid "Local Port"
+msgstr "Местный порт"
+
+msgid "IP Address"
+msgstr "IP-адрес"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Peer"
+msgstr "Сверстник"
+
+msgid "Enable peer"
+msgstr "Включить одноранговую сеть"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Включите эту опцию для шифрования трафика путем создания туннеля между RaspAP и этим аналогом."
+
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "Эта опция добавляет <code>файл client.conf</code> в конфигурацию WireGuard."
+
+msgid "Peer public key"
+msgstr "Открытый ключ коллеги"
+
+msgid "Endpoint address"
+msgstr "Адрес конечной точки"
+
+msgid "Allowed IPs"
+msgstr "Разрешенные IP-адреса"
+
+msgid "Persistent keepalive"
+msgstr "Постоянное обновление"
+
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Включите эту опцию, чтобы отобразить обновленный журнал отладки <code>wg-quick</code>."
+
+msgid "WireGuard debug log updated"
+msgstr "Обновлен журнал отладки WireGuard"
+
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Отсканируйте этот QR-код с помощью вашего клиента, чтобы подключиться к этому туннелю"
+
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "или загрузите файл <code>client.conf</code> на ваше устройство."
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "Start WireGuard"
+msgstr "Запустите WireGuard"
+
+msgid "Stop WireGuard"
+msgstr "Остановка WireGuard"
+
+msgid "Information provided by wireguard"
+msgstr "Информация предоставлена компанией wireguard"
+
+msgid "Attempting to start WireGuard"
+msgstr "Попытка запуска WireGuard"
+
+msgid "Attempting to stop WireGuard"
+msgstr "Попытка остановить WireGuard"
+
+msgid "WireGuard configuration updated successfully"
+msgstr "Конфигурация WireGuard успешно обновлена"
+
+msgid "WireGuard configuration failed to be updated"
+msgstr "Не удалось обновить конфигурацию WireGuard"
+
+msgid "Enable kill switch"
+msgstr "Включить аварийный выключатель"
+
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr "Эта опция добавляет правила <strong>iptables</strong> <code>PostUp</code> и <code>PreDown</code> для настроенного интерфейса."
+
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr "Рекомендуется, если вы хотите предотвратить поток незашифрованных пакетов через интерфейсы, не относящиеся к WireGuard."
+
+msgid "iptables rules added to WireGuard configuration"
+msgstr "Правила iptables добавлены в конфигурацию WireGuard"
+
+msgid "Existing iptables rules found in WireGuard configuration - not added"
+msgstr "Существующие правила iptables, найденные в конфигурации WireGuard, не добавляются"
+
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "Ниже показаны доступные на данный момент конфигурации файлов WireGuard."
+
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "Активация конфигурации приведет к перезапуску службы <code>wg-quick</code>."
+
+msgid "Client Firewall"
+msgstr "Брандмауэр клиента"
+
+msgid "Firewall is ENABLED"
+msgstr "Брандмауэр включен"
+
+msgid "Firewall is OFF"
+msgstr "Брандмауэр выключен"
+
+msgid "The default firewall will only allow outgoing and already established traffic."
+msgstr "Брандмауэр по умолчанию разрешает только исходящий и уже установленный трафик."
+
+msgid "No incoming UDP traffic is allowed."
+msgstr "Входящий UDP-трафик запрещен."
+
+msgid "There are no restrictions for the access point <code>%s</code>."
+msgstr "Для точки доступа нет никаких ограничений <code>%s</code>."
+
+msgid "Exception: Service"
+msgstr "Исключение: Сервис"
+
+msgid "allow SSH access on port 22"
+msgstr "разрешить доступ по SSH через порт 22"
+
+msgid "allow access to the RaspAP GUI on port 80 or 443"
+msgstr "разрешить доступ к графическому интерфейсу RaspAP на порту 80 или 443"
+
+msgid "Allow incoming connections for some services from the internet side."
+msgstr "Разрешите входящие соединения для некоторых служб со стороны Интернета."
+
+msgid "Exception: network device"
+msgstr "Исключение: сетевое устройство"
+
+msgid "Exclude device(s)"
+msgstr "Исключить устройство (устройства)"
+
+msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+msgstr "Исключите указанное сетевое устройство (устройства) (разделенные пробелом или запятой) из правил брандмауэра."
+
+msgid "Current client devices: <code>%s</code>"
+msgstr "Текущие клиентские устройства: <code>%s</code>"
+
+msgid "The access point <code>%s</code> is per default excluded."
+msgstr "Точка доступа <code>%s</code> по умолчанию исключена."
+
+msgid "Exception: IP-Address"
+msgstr "Исключение: IP-адрес"
+
+msgid "Allow incoming connections from"
+msgstr "Разрешить входящие соединения из"
+
+msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+msgstr "Для заданных IP-адресов (разделенных пробелом или запятой) принимается входящее соединение (по TCP и UDP)."
+
+msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+msgstr "Это необходимо для подключения OpenVPN через UDP или Wireguard."
+
+msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+msgstr "Список настроенных IP-адресов VPN-серверов: <code><b>%s</b></code>"
+
+msgid "Disable Firewall"
+msgstr "Отключить брандмауэр"
+
+msgid "Enable Firewall"
+msgstr "Включить брандмауэр"
+
+msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Изменение состояния брандмауэра может нарушить или разрешить входящий трафик. Выберите <strong>Приступить</strong>, чтобы продолжить."
+
+msgid "Proceed"
+msgstr "Приступить"
+
+msgid "Apply changes"
+msgstr "Применить изменения"
+
+msgid "Dynamic DNS"
+msgstr "Динамический DNS"
+
+msgid "Service provider"
+msgstr "Поставщик услуг"
+
+msgid "Select a Dynamic DNS service supported by <strong>ddclient</strong> from the list below. Selecting a known service provider will populate the <code>protocol</code> and <code>server</code> fields. You may also configure the service manually."
+msgstr "Выберите службу Dynamic DNS, поддерживаемую <strong>ddclient</strong>, из списка ниже. При выборе известного поставщика услуг будут заполнены поля <code>протокола</code> и <code>сервера</code>. Вы также можете настроить службу вручную."
+
+msgid "Method to obtain IP"
+msgstr "Метод получения IP"
+
+msgid "Select the method used by <strong>ddclient</strong> to obtain an IP address. This value is specified in the <code>-use</code> option."
+msgstr "Выберите метод, используемый <strong>ddclient</strong> для получения IP-адреса. Это значение указывается в параметре <code>-use</code>."
+
+msgid "Discovery page on the web"
+msgstr "Страница открытия в Интернете"
+
+msgid "Network interface"
+msgstr "Сетевой интерфейс"
+
+msgid "Network address"
+msgstr "Сетевой адрес"
+
+msgid "Firewall status page"
+msgstr "Страница состояния брандмауэра"
+
+msgid "External command"
+msgstr "Внешняя команда"
+
+msgid "Web address"
+msgstr "Веб-адрес"
+
+msgid "Firewall"
+msgstr "Брандмауэр"
+
+msgid "Command"
+msgstr "Команда"
+
+msgid "Example: <code>192.168.1.254/status.htm</code>."
+msgstr "Example: <code>192.168.1.254/status.htm</code>."
+
+msgid "Example: <code>/usr/local/bin/get-ip</code>."
+msgstr "Пример: <code>/usr/local/bin/get-ip</code>."
+
+msgid "Domain"
+msgstr "Домен"
+
+msgid "Enable SSL"
+msgstr "Включить SSL"
+
+msgid "Use an encrypted SSL connection for updates. Not supported by all providers."
+msgstr "Используйте зашифрованное SSL-соединение для обновлений. Поддерживается не всеми провайдерами."
+
+msgid "Value specified in milliseconds (ms). Default is 300."
+msgstr "Значение указывается в миллисекундах (мс). По умолчанию - 300."
+
+msgid "Use the <strong>Generate log</strong> button to output detailed <code>ddclient daemon</code> debug info"
+msgstr "Используйте кнопку <strong>Генерировать журнал</strong> для вывода подробной отладочной информации о <code>демоне ddclient</code>."
+
+msgid "Generate log"
+msgstr "Создать журнал"
+
+msgid "Information provided by ddclient"
+msgstr "Информация предоставлена ddclient"
+
+msgid "Start Dynamic DNS"
+msgstr "Запуск динамического DNS"
+
+msgid "Stop Dynamic DNS"
+msgstr "Остановить динамический DNS"
+
+msgid "Restart Dynamic DNS"
+msgstr "Перезапуск динамического DNS"
+
+msgid "Account details"
+msgstr "Детали счета"
+
+msgid "My account"
+msgstr "Мой счет"
+
+msgid "Server location"
+msgstr "Расположение сервера"
+
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "При выборе пункта <strong>Сохранить настройки</strong> будет установлено соединение с выбранной страной."
+
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Выбрав <strong>Connect %s</strong>, вы подключитесь к рекомендуемому серверу."
+
+msgid "Select a country from the server location list"
+msgstr "Выберите страну из списка местоположения сервера"
+
+msgid "Select a country..."
+msgstr "Выберите страну..."
+
+msgid "Account information not available from %s's Linux CLI."
+msgstr "Информация об учетной записи, недоступная из %s'Linux CLI."
+
+msgid "Attempting to connect to %s"
+msgstr "Попытка подключения к %s"
+
+msgid "Attempting to connect VPN provider"
+msgstr "Попытка подключения к VPN-провайдеру"
+
+msgid "Attempting to disconnect VPN provider"
+msgstr "Попытка отключения VPN-провайдера"
+
+msgid "Expected %s binary not found at: %s"
+msgstr "Ожидаемый двоичный файл %s не найден по адресу: %s"
+
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "Посетите <a href=\"%s\" target=\"_blank\">инструкцию по установке</a> %s'Linux CLI."
+
+msgid "Unable to execute %s binary found at: %s"
+msgstr "Невозможно выполнить двоичный файл %s , найденный по адресу: %s"
+
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "Проверьте, что двоичный файл исполняемый и разрешения существуют в raspap.sudoers"
+
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Установлен Linux CLI: <code>%s</code>"
+
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Текущий <code>%s</code> Ниже отображается текущее состояние соединения."
+
+msgid "Information provided by %s"
+msgstr "Информация предоставлена сайтом %s"
+
+msgid "Connect %s"
+msgstr "Подключайтесь %s"
+
+msgid "Disconnect %s"
+msgstr "Отключить %s"
+
+msgid "About"
+msgstr "О сайте"
+
+msgid "Insiders"
+msgstr "Инсайдеры"
+
+msgid "Contributing"
+msgstr "Вклад"
+
+msgid "Check for update"
+msgstr "Проверьте наличие обновления"
+
+msgid "New release check in progress..."
+msgstr "Проверка нового релиза продолжается..."
+
+msgid "A new release is available: Version"
+msgstr "Доступен новый выпуск: Версия"
+
+msgid "Installed version is the latest release."
+msgstr "Установленная версия - это последняя версия."
+
+msgid "GitHub authentication"
+msgstr "Аутентификация на GitHub"
+
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Обновление Insiders требует аутентификации на GitHub."
+
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Ваши учетные данные будут отправлены на GitHub в безопасном режиме с использованием SSL. Однако будьте осторожны, если ваша установка RaspAP находится в WLAN, которую совместно используют недоверенные пользователи."
+
+msgid "Personal Access Token"
+msgstr "Токен персонального доступа"
+
+msgid "Please provide a valid token."
+msgstr "Пожалуйста, укажите действительный токен."
+
+msgid "Perform update"
+msgstr "Выполнить обновление"
+
+msgid "Update in progress"
+msgstr "Обновление в процессе"
+
+msgid "Application is being updated..."
+msgstr "Приложение находится в стадии обновления..."
+
+msgid "Configuring update"
+msgstr "Обновление конфигурации"
+
+msgid "Updating sources"
+msgstr "Обновление источников"
+
+msgid "Installing package updates"
+msgstr "Установка обновлений пакетов"
+
+msgid "Downloading latest files"
+msgstr "Загрузка последних файлов"
+
+msgid "Installing application"
+msgstr "Установка приложения"
+
+msgid "Update complete"
+msgstr "Обновление завершено"
+
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Произошла ошибка. Проверьте журнал по адресу <code>/tmp/raspap_install.log</code>"
+
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP - это совместное творение %1$s и %2$s при участии наших %3$s и %4$s. Узнайте больше о присоединении к проекту в качестве %5$s, %6$s или %7$s с немедленным доступом к %8$s , доступным на %9$s."
+
+msgid "developer community"
+msgstr "сообщество разработчиков"
+
+msgid "language translators"
+msgstr "языковые переводчики"
+
+msgid "code contributor"
+msgstr "автор кода"
+
+msgid "translator"
+msgstr "переводчик"
+
+msgid "financial sponsor"
+msgstr "финансовый спонсор"
+
+msgid "exclusive features"
+msgstr "эксклюзивные функции"
+
+msgid "RaspAP Exception"
+msgstr "Исключение RaspAP"
+
+msgid "An exception occurred"
+msgstr "Произошло исключение"
+
+msgid "RestAPI"
+msgstr "RestAPI"
+
+msgid "RestAPI settings"
+msgstr "Настройки RestAPI"
+
+msgid "Start RestAPI service"
+msgstr "Запустите службу RestAPI"
+
+msgid "Stop RestAPI service"
+msgstr "Остановите службу RestAPI"
+
+msgid "API Key"
+msgstr "Ключ API"
+
+msgid "Saving API key"
+msgstr "Сохранение ключа API"
+
+msgid "RestAPI status"
+msgstr "Статус RestAPI"
+
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "Текущее состояние <code>службы restapi.service</code> отображается ниже."
+
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
+msgstr "Документация по RestAPI доступна <a href=\"%s\" target=\"_blank\">здесь%s. </a>"
+
+msgid "Restarting restapi.service"
+msgstr "Перезапуск службы restapi.service"
+
+msgid "Information provided by restapi.service"
+msgstr "Информация предоставлена сервисом restapi.service"
+
+msgid "Session Expired"
+msgstr "Сессия истекла"
+
+msgid "Your session has expired. Please login to continue."
+msgstr "Срок действия вашей сессии истек. Пожалуйста, войдите в систему, чтобы продолжить."
+
+msgid "Login"
+msgstr "Войти"
+
+msgid "Administrator login"
+msgstr "Вход в систему администратора"
+
+msgid "Forgot password"
+msgstr "Забыли пароль"
+
+msgid "Login failed"
+msgstr "Вход в систему не удался"
+
+msgid "NTP Server"
+msgstr "Сервер NTP"
+
+msgid "NTP Server settings"
+msgstr "Настройки сервера NTP"
+
+msgid "NTP daemon"
+msgstr "Демон NTP"
+
+msgid "Synchronized time"
+msgstr "Синхронизированное время"
+
+msgid "NTP servers"
+msgstr "Серверы NTP"
+
+msgid "Add an NTP server"
+msgstr "Добавьте сервер NTP"
+
+msgid "Start NTP service"
+msgstr "Запустите службу NTP"
+
+msgid "Stop NTP service"
+msgstr "Остановите службу NTP"
+
+msgid "Edit mode"
+msgstr "Режим редактирования"
+
+msgid "Use the <strong>Edit mode</strong> toggle to manually edit the current <code>ntp.config</code> configuration."
+msgstr "Используйте переключатель <strong>Edit mode</strong> для ручного редактирования текущей конфигурации <code>ntp.config.</code>"
+
+msgid "Specify a public NTP server or a private one on your local network. IPv4 and IPv6 address, or a fully qualified domain name (FQDN) are acceptable values."
+msgstr "Укажите публичный или частный сервер NTP в локальной сети. Допустимыми значениями являются адреса IPv4 и IPv6 или полностью определенное доменное имя (FQDN)."
+
+msgid "Public NTP servers supporting Network Time Security (NTS) may be specified with the <code>nts</code> suffix."
+msgstr "Публичные NTP-серверы с поддержкой Network Time Security (NTS) могут быть указаны с суффиксом <code>nts</code>."
+
+msgid "Examples of valid server entries include <code>%s</code>, <code>%s</code> and <code>%s</code>."
+msgstr "Примеры допустимых записей сервера включают <code>%s</code>, <code>%s</code> и <code>%s</code>."
+
+msgid "Current <code>ntpq peer</code> status is displayed below. An asterisk (<code>*</code>) indicates the preferred server."
+msgstr "Текущий статус <code>ntpq peer</code> отображается ниже. Звездочка<code>(*</code>) указывает на предпочтительный сервер."
+
+msgid "NTP configuration cannot be empty"
+msgstr "Конфигурация NTP не может быть пустой"
+
+msgid "Restarting ntpd.service"
+msgstr "Перезапуск службы ntpd.service"
+
+msgid "Please enter a valid NTP server"
+msgstr "Введите действительный сервер NTP"
+
+msgid "Attempting to start ntp.service"
+msgstr "Попытка запуска службы ntp.service"
+
+msgid "Attempting to stop ntp.service"
+msgstr "Попытка остановить службу ntp.service"
+
+msgid "NTP configuration not found at %s"
+msgstr "Конфигурация NTP не найдена по адресу %s."
+
+msgid "NTP configuration updated"
+msgstr "Обновление конфигурации NTP"
+
+msgid "Advertising device as a Tailscale exit node"
+msgstr "Реклама устройства как узла выхода Tailscale"
+
+msgid "Attempting to optimize UDP throughput"
+msgstr "Попытка оптимизировать пропускную способность UDP"
+
+msgid "Kernel transport layer offloads enabled for UDP"
+msgstr "Разгрузка транспортного уровня ядра включена для UDP"
+
+msgid "Failed to enable kernel transport layer offloads for UDP"
+msgstr "Не удалось включить разгрузку транспортного уровня ядра для UDP"
+
+msgid "Attempting to set tailscale up"
+msgstr "Попытка установить шкалу хвостов"
+
+msgid "Attempting to set tailscale down"
+msgstr "Попытка уменьшить масштаб хвоста"
+
+msgid "Attempting to disconnect from tailscale"
+msgstr "Попытка отключиться от tailscale"
+
+msgid "Disconnected from tailscale and expired node key"
+msgstr "Отключился от tailscale и истек срок действия ключа узла"
+
+msgid "Unable to disconnect from tailscale"
+msgstr "Невозможно отключиться от tailscale"
+
+msgid "Expected tailscale binary not found at: %"
+msgstr "Ожидаемый двоичный файл tailscale не найден по адресу: %"
+
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "Расширение выходного узла Tailscale VPN для RaspAP"
+
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Невозможно получить логин Tailscale. Выберите <strong>%s</strong> чтобы продолжить."
+
+msgid "Start Tailscale"
+msgstr "Начать шкалу хвостов"
+
+msgid "Stop Tailscale"
+msgstr "Остановить шкалу хвостов"
+
+msgid "Next"
+msgstr "Следующий"
+
+msgid "Device approved and activated as a Tailscale exit node"
+msgstr "Устройство утверждено и активировано в качестве узла выхода Tailscale"
+
+msgid "Not connected: Login required."
+msgstr "Не подключен: Требуется вход в систему."
+
+msgid "Tailscale VPN"
+msgstr "Tailscale VPN"
+
+msgid "Exit node activated"
+msgstr "Выходной узел активирован"
+
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "Устройство <code>%s</code> связано с адресом <code>%s</code> и предлагает <strong>узел выхода</strong>."
+
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "О том, как использовать этот узел выхода с вашими устройствами, читайте на сайте %s ."
+
+msgid "Allow exit node"
+msgstr "Разрешить выходной узел"
+
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Устройство <code>%s</code> ожидает утверждения в качестве узла выхода."
+
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Найдите значок <code>%s</code> Значок <strong>Exit Node</strong> в списке машин."
+
+msgid "Open Tailscale Machines"
+msgstr "Открытые хвостовые машины"
+
+msgid "To allow this device as an exit node, choose <strong>Open Tailscale Machines</strong>."
+msgstr "Чтобы разрешить использовать это устройство в качестве выходного узла, выберите <strong>Open Tailscale Machines</strong>."
+
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "В меню значка %s узла выхода откройте панель %s ."
+
+msgid "Edit route settings"
+msgstr "Редактирование настроек маршрута"
+
+msgid "Login to Tailscale"
+msgstr "Вход в Tailscale"
+
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Чтобы подключить устройство %s к хвостовой сетке, выберите %s."
+
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "После входа в систему выберите <strong>Далее</strong>, чтобы продолжить."
+
+msgid "Configure exit node"
+msgstr "Настройка узла выхода"
+
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Устройство <code>%s</code> подключено к вашей хвостовой сети с адресом <code>%s</code>."
+
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as a <strong>exit node</strong>"
+msgstr "По умолчанию Tailscale маршрутизирует трафик только между устройствами, на которых он установлен. Вы также можете маршрутизировать весь публичный интернет-трафик, настроив устройство в вашей сети в качестве <strong>узла выхода</strong>"
+
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Когда вы направляете весь трафик через выходной узел, вы эффективно используете маршруты по умолчанию (0.0.0.0/0, ::/0), аналогично тому, как это делается при использовании обычной VPN."
+
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "У вас есть возможность настроить это устройство в качестве узла выхода или использовать другой узел выхода в хвостовой сети."
+
+msgid "Select an existing exit node on your tailnet"
+msgstr "Выберите существующий узел выхода в вашей хвостовой сети"
+
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Это типичная конфигурация, если вы используете это устройство, например, в качестве маршрутизатора для путешествий с VPN."
+
+msgid "Configure this device as a new exit node"
+msgstr "Настройте это устройство в качестве нового узла выхода"
+
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet will be routed through it."
+msgstr "Если настроить это устройство как выходной узел, через него будет направляться публичный интернет-трафик от устройств, подключенных в вашей хвостовой сети."
+
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "По соображениям безопасности, чтобы включить функциональность узла выхода, вы должны зарегистрироваться. Первым шагом будет реклама <code>%s</code> в качестве узла выхода в вашей хвостовой сети. На следующем этапе вы разрешите этому устройству быть узлом выхода."
+
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Рекламируйте <code>%s</code> как узел выхода"
+
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Это позволяет эффективно настроить Tailscale как VPN для маскировки вашего реального местоположения, доступа к контенту с региональными ограничениями или повышения конфиденциальности при подключении из недоверенных сетей."
+
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Эта опция позволяет Tailscale узнать, что ваше устройство готово к маршрутизации трафика."
+
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Рекомендуется для выходных узлов Tailscale с ядрами Linux 6.2 или более поздних версий, использует переадресацию UDP generic receive offload (GRO) для снижения нагрузки на процессор."
+
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Эта опция включает разгрузку транспортного уровня для повышения производительности."
+
+msgid "Select an exit node"
+msgstr "Выберите узел выхода"
+
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "Чтобы использовать <code>%s</code> в качестве VPN-шлюза, настройте Tailscale на использование узла выхода. Предлагаемый Tailscale узел обозначен звездочкой."
+
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Рекламируйте <strong>маршрут подсети</strong> для активного <code>%s</code> интерфейс точки доступа"
+
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "Маршруты подсети позволяют расширить сеть Tailscale (так называемую tailnet), включив в нее устройства, на которых нет или не может работать клиент Tailscale."
+
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "Маршрут подсети действует как шлюз между хвостовой сетью и физической подсетью. Ниже приведена предварительная настройка подсети активного интерфейса точки доступа; при необходимости отредактируйте ее."
+
+msgid "Route LAN traffic through the exit node."
+msgstr "Направьте трафик локальной сети через выходной узел."
+
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "Это направит весь трафик локальной сети только через ваш выходной узел."
+
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Выберите <strong>Далее</strong>, чтобы настроить <code>%s</code> для использования выбранного узла выхода с этими параметрами."
+
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "В вашей хвостовой сети не обнаружено узлов выхода. Выберите <strong>Назад</strong>, чтобы продолжить."
+
+msgid "Using exit node"
+msgstr "Использование узла выхода"
+
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Устройство <code>%s</code> настроено на использование узла выхода <code>%s</code>. У него есть адрес Tailscale MagicDNS <code>%s</code>."
+
+msgid "Choose <strong>Save settings</strong> to continue."
+msgstr "Выберите <strong>Сохранить настройки</strong>, чтобы продолжить."
+
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Выберите <strong>Далее</strong>, чтобы продолжить."
+
+msgid "Tailnet status"
+msgstr "Состояние хвостовой части"
+
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "Текущее состояние <code>хвостовой части</code> отображается ниже."
+
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Использовать настройки Tailscale DNS (по умолчанию)."
+
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Снимите флажок, чтобы использовать локальный DNS. При этом устанавливается <code>--accept-dns=false</code>."
+
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Не используйте подсети Tailscale (по умолчанию в Linux)."
+
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "Если для вашей хвостовой сети существуют маршруты подсети, вы можете направить трафик вашего устройства на маршрутизатор подсети. Включение этого параметра устанавливает значение <code>--accept-routes=true</code>."
+
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "Если срок действия ключей для устройства истекает, соединения с/из данной конечной точки перестают работать."
+
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "Эта опция использует <code>--force-reauth</code> для обновления ключей для этого устройства."
+
+msgid "Start capture"
+msgstr "Начать захват"
+
+msgid "Stop capture"
+msgstr "Остановить захват"
+
+msgid "Capture files"
+msgstr "Захват файлов"
+
+msgid "Capture interface"
+msgstr "Интерфейс захвата"
+
+msgid "Output file"
+msgstr "Выходной файл"
+
+msgid "Path where capture file will be saved (.pcap format)"
+msgstr "Путь, по которому будет сохранен файл захвата (формат .pcap)"
+
+msgid "File will be saved with .pcap extension"
+msgstr "Файл будет сохранен с расширением .pcap"
+
+msgid "Capture filter (BPF syntax)"
+msgstr "Фильтр захвата (синтаксис BPF)"
+
+msgid "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
+msgstr "Синтаксис пакетного фильтра Berkeley. Оставьте пустым, чтобы перехватывать весь трафик."
+
+msgid "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
+msgstr "Примеры: <code>порт 80</code>, <code>хост 192.168.1.1</code>, <code>tcp, но не порт 22</code>."
+
+msgid "Capture limits"
+msgstr "Ограничения захвата"
+
+msgid "Packet count limit"
+msgstr "Ограничение количества пакетов"
+
+msgid "Stop capture after this many packets. Leave empty for unlimited."
+msgstr "Остановить захват после этого количества пакетов. Оставьте пустым для неограниченного количества."
+
+msgid "Duration limit (seconds)"
+msgstr "Ограничение продолжительности (секунды)"
+
+msgid "Stop capture after this many seconds. Leave empty for unlimited."
+msgstr "Остановить захват после этого количества секунд. Оставьте пустым для неограниченного времени."
+
+msgid "Ring buffer settings"
+msgstr "Настройки кольцевого буфера"
+
+msgid "File size (KB)"
+msgstr "Размер файла (КБ)"
+
+msgid "Create new file when this size is reached. Leave empty to disable."
+msgstr "Создавать новый файл при достижении этого размера. Оставьте пустым, чтобы отключить."
+
+msgid "10000 = 10 MB per file"
+msgstr "10000 = 10 МБ на файл"
+
+msgid "Number of files"
+msgstr "Количество файлов"
+
+msgid "Maximum number of ring buffer files to keep. Oldest files are deleted."
+msgstr "Максимальное количество файлов кольцевого буфера для хранения. Самые старые файлы удаляются."
+
+msgid "Advanced options"
+msgstr "Дополнительные опции"
+
+msgid "Snapshot length (bytes)"
+msgstr "Длина снимка (байты)"
+
+msgid "Limit the amount of data captured per packet. Leave empty for full packets."
+msgstr "Ограничить количество данных, захватываемых на пакет. Оставьте пустым для полных пакетов."
+
+msgid "96 bytes captures headers only, reduces file size"
+msgstr "96 байт захватывает только заголовки, уменьшает размер файла"
+
+msgid "Promiscuous mode"
+msgstr "Неразборчивый режим"
+
+msgid "Capture all packets on the network segment, not just those destined for this interface"
+msgstr "Захватывать все пакеты в сегменте сети, а не только те, которые предназначены для этого интерфейса"
+
+msgid "Quick filter presets"
+msgstr "Быстрые предустановки фильтров"
+
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Файлы захвата, созданные <code>tshark</code>, отображаются ниже."
+
+msgid "No capture files found in /tmp directory"
+msgstr "В каталоге /tmp не найдено файлов захвата"
+
+msgid "Filename"
+msgstr "Имя файла"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Modified"
+msgstr "Изменён"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "Download file"
+msgstr "Скачать файл"
+
+msgid "Delete file"
+msgstr "Удалить файл"
+
+msgid "Confirm deletion"
+msgstr "Подтвердите удаление"
+
+msgid "Are you sure you want to delete this file?"
+msgstr "Вы уверены, что хотите удалить этот файл?"
+
+msgid "All Traffic"
+msgstr "Весь трафик"
+
+msgid "HTTP/HTTPS"
+msgstr "HTTP/HTTPS"
+
+msgid "ICMP (Ping)"
+msgstr "ICMP (Ping)"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Exclude SSH"
+msgstr "Исключить SSH"
+
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "Перехват пакетов Wireshark (TShark) CLI для RaspAP"
+
+msgid "Information provided by tshark"
+msgstr "Информация предоставлена tshark"
+
+msgid "Total: %d file(s), %s"
+msgstr "Всего: %d файл(ов), %s"
+
+msgid "Captive portal"
+msgstr "Каптивный портал"
+
+msgid "Gateway interface"
+msgstr "Интерфейс шлюза"
+
+msgid "Gateway name"
+msgstr "Имя шлюза"
+
+msgid "Gateway address"
+msgstr "Адрес шлюза"
+
+msgid "Gateway port"
+msgstr "Порт шлюза"
+
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "По умолчанию - активный интерфейс точки доступа, обычно <code>wlan0</code>"
+
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Автоматически определяется из интерфейса шлюза, если не указан"
+
+msgid "Start portal"
+msgstr "Запустить портал"
+
+msgid "Stop portal"
+msgstr "Остановить портал"
+
+msgid "Information provided by nodogsplash"
+msgstr "Информация предоставлена nodogsplash"
+
+msgid "Stop portal service"
+msgstr "Остановить службу портала"
+
+msgid "Start portal service"
+msgstr "Запустить службу портала"
+
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Изменение службы портала временно нарушит клиентский трафик. Выберите <strong>Приступить</strong>, чтобы продолжить."
+
+msgid "Interface to be managed by the portal"
+msgstr "Интерфейс, которым будет управлять портал"
+
+msgid "Name of your gateway (available as \\$gatewayname variable)"
+msgstr "Имя вашего шлюза (доступно как переменная \\$gatewayname)"
+
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "IP-адрес маршрутизатора. Оставьте пустым для автоопределения"
+
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Порт для HTTP-сервера Nodogsplash"
+
+msgid "Maximum clients"
+msgstr "Максимум клиентов"
+
+msgid "Session timeout (minutes)"
+msgstr "Тайм-аут сеанса (минуты)"
+
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "Тайм-аут простоя перед авторизацией (минуты)"
+
+msgid "Does not include users on the trusted MAC list"
+msgstr "Не включает пользователей из списка доверенных MAC-адресов"
+
+msgid "Auth idle timeout (minutes)"
+msgstr "Тайм-аут простоя авторизации (минуты)"
+
+msgid "Check interval (seconds)"
+msgstr "Интервал проверки (секунды)"
+
+msgid "MAC address control"
+msgstr "Контроль MAC-адресов"
+
+msgid "MAC mechanism"
+msgstr "Механизм MAC"
+
+msgid "Blocked MAC list"
+msgstr "Список заблокированных MAC-адресов"
+
+msgid "Trusted MAC list"
+msgstr "Список доверенных MAC-адресов"
+
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "На эти устройства не распространяются правила аутентификации и брандмауэра"
+
+msgid "Maximum number of concurrent authenticated users"
+msgstr "Максимальное количество одновременно аутентифицированных пользователей"
+
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "Длительность сеанса по умолчанию в минутах. 0 = неограниченно"
+
+msgid "Time before unauthenticated idle users are removed"
+msgstr "Время до удаления неаутентифицированных неактивных пользователей"
+
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "Время до деаутентификации аутентифицированных неактивных пользователей"
+
+msgid "How often to check client timeouts"
+msgstr "Как часто проверять тайм-ауты клиентов"
+
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Блокировать: заблокированные MAC-адреса блокируются. Разрешить: разрешены только разрешённые MAC-адреса"
+
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "Пример: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "MAC-адреса через запятую, которые полностью обходят аутентификацию"
+
+msgid "Block (blocklist mode)"
+msgstr "Блокировать (режим чёрного списка)"
+
+msgid "Allow (allowlist mode)"
+msgstr "Разрешить (режим белого списка)"
+
+msgid "Gateway IP range"
+msgstr "Диапазон IP-адресов шлюза"
+
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "По умолчанию: 0.0.0.0/0 (все адреса)"
+
+msgid "Debug level"
+msgstr "Уровень отладки"
+
+msgid "Firewall settings"
+msgstr "Настройки брандмауэра"
+
+msgid "Allow all traffic for authenticated users"
+msgstr "Разрешить весь трафик для аутентифицированных пользователей"
+
+msgid "Allow DNS for pre-authenticated users"
+msgstr "Разрешить DNS для предварительно аутентифицированных пользователей"
+
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "Диапазон IP-адресов для управления в нотации CIDR. Оставьте пустым для всех адресов"
+
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Объём детализации журналирования, сообщаемый службой nodogsplash.service"
+
+msgid "0 - Errors only"
+msgstr "0 - Только ошибки"
+
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Ошибки, предупреждения, информация"
+
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Ошибки, предупреждения, информация, подробно"
+
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Ошибки, предупреждения, информация, подробно, отладка"
+
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "При включении аутентифицированные пользователи имеют неограниченный доступ"
+
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Требуется для разрешения клиентами доменных имён перед аутентификацией"
+
+msgid "Portal status"
+msgstr "Статус портала"
+
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "Текущий статус <code>nodogsplash</code> отображается ниже."
 

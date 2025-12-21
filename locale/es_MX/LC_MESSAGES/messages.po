@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-24 10:03\n"
+"PO-Revision-Date: 2025-11-20 12:21\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -31,16 +31,16 @@ msgid "Dashboard"
 msgstr "Tablero"
 
 msgid "WiFi client"
-msgstr "Cliente WiFi"
-
-msgid "Hotspot"
-msgstr "Punto AP"
-
-msgid "Logging"
-msgstr "Registro"
+msgstr "Cliente wiFi"
 
 msgid "Status"
 msgstr "Estado"
+
+msgid "Hotspot"
+msgstr "Punto de acceso"
+
+msgid "Logging"
+msgstr "Registro"
 
 msgid "Mem Use"
 msgstr "Uso de mem"
@@ -361,13 +361,13 @@ msgid "Cellular"
 msgstr "Celular"
 
 msgid "AP"
-msgstr "AP"
+msgstr "Punto de acceso"
 
 msgid "Bridged"
 msgstr "Puente"
 
 msgid "Adblock"
-msgstr "Adblock"
+msgstr "Bloqueador de anuncios"
 
 msgid "VPN"
 msgstr "VPN"
@@ -743,6 +743,27 @@ msgstr "Habilitar registro"
 msgid "Logfile output"
 msgstr "Salida del archivo de registro"
 
+msgid "Log level"
+msgstr "Nivel de registro"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Los niveles más altos reducen la verbosidad del registro. Se recomienda el nivel informativo."
+
+msgid "Verbose debugging"
+msgstr "Depuración detallada"
+
+msgid "Debugging"
+msgstr "Depuración"
+
+msgid "Informational"
+msgstr "Información"
+
+msgid "Notification"
+msgstr "Notificación"
+
+msgid "Warning"
+msgstr "Advertencia"
+
 msgid "WiFi client AP mode"
 msgstr "Modo AP de WiFi de cliente"
 
@@ -1012,7 +1033,7 @@ msgid "Access Point Name (APN)"
 msgstr "Nombre del punto de acceso (APN)"
 
 msgid "Password"
-msgstr "Contraseña"
+msgstr "Password"
 
 msgid "Successfully Updated Network Configuration"
 msgstr "Configuración de red actualizada correctamente"
@@ -1375,15 +1396,15 @@ msgstr "Verificación de salud del adaptador"
 msgid "Inspect adapters"
 msgstr "Inspeccionar adaptadores"
 
+msgid "Theme"
+msgstr "Temas"
+
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "Uso de datos"
 
 msgid "Data usage monitoring"
 msgstr "Monitor de uso de datos"
-
-msgid "Hourly traffic"
-msgstr "Tráfico por hora"
 
 msgid "Hourly traffic amount"
 msgstr "Cantidad de tráfico por hora"
@@ -1576,7 +1597,7 @@ msgstr "Modo AP Bridged habilitado. Para Hostname e IP, consulte la página de a
 
 #: common form controls
 msgid "Save settings"
-msgstr "Guardar configuraciones"
+msgstr "Guardar Configuraciones"
 
 msgid "Refresh"
 msgstr "Refrescar"
@@ -1603,7 +1624,7 @@ msgid "adblock"
 msgstr "Bloqueador de anuncios"
 
 msgid "Ad Blocking"
-msgstr "Ad Blocking"
+msgstr "Bloqueo de anuncios"
 
 msgid "Start Ad Blocking"
 msgstr "Iniciar bloqueo de anuncios"
@@ -2007,8 +2028,6 @@ msgstr "Conectar %s"
 msgid "Disconnect %s"
 msgstr "Desconectar %s"
 
-#: includes/about.php
-
 msgid "About"
 msgstr "Acerca de"
 
@@ -2096,15 +2115,11 @@ msgstr "patrocinador financiero"
 msgid "exclusive features"
 msgstr "funciones exclusivas"
 
-#: includes/exceptions.php
-
 msgid "RaspAP Exception"
 msgstr "Excepción de RaspAP"
 
 msgid "An exception occurred"
 msgstr "Ocurrió una excepción"
-
-#: includes/restapi.php
 
 msgid "RestAPI"
 msgstr "RestAPI"
@@ -2139,8 +2154,6 @@ msgstr "Reiniciando restapi.service"
 msgid "Information provided by restapi.service"
 msgstr "Información proporcionada por restapi.service"
 
-#: includes/login.php
-
 msgid "Session Expired"
 msgstr "Sesión expirada"
 
@@ -2158,8 +2171,6 @@ msgstr "Olvidé mi contraseña"
 
 msgid "Login failed"
 msgstr "Error de inicio de sesión"
-
-#: includes/ntp.php
 
 msgid "NTP Server"
 msgstr "Servidor NTP"
@@ -2223,8 +2234,6 @@ msgstr "Configuración NTP no encontrada en %s"
 
 msgid "NTP configuration updated"
 msgstr "Configuración NTP actualizada"
-
-#: tailscale plugin
 
 msgid "Advertising device as a Tailscale exit node"
 msgstr "Anunciando dispositivo como nodo de salida de Tailscale"
@@ -2427,8 +2436,6 @@ msgstr "Si las claves expiran para un dispositivo, las conexiones hacia/desde el
 msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
 msgstr "Esta opción usa <code>--force-reauth</code> para renovar las claves para este dispositivo."
 
-#: wireshark plugin
-
 msgid "Start capture"
 msgstr "Iniciar captura"
 
@@ -2566,8 +2573,6 @@ msgstr "Información proporcionada por tshark"
 
 msgid "Total: %d file(s), %s"
 msgstr "Total: %d archivo(s), %s"
-
-#: captive portal plugin
 
 msgid "Captive portal"
 msgstr "Portal cautivo"

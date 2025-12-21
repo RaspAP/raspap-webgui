@@ -28,7 +28,7 @@ class DhcpcdManager
      * @param bool $wifiAPEnable
      * @param bool $dualAPEnable
      * @param StatusMessage $status
-     * @return string 
+     * @return string
      */
     public function buildConfig(
         string $ap_iface,
@@ -111,6 +111,8 @@ class DhcpcdManager
                 $domain_name_server
             );
         }
+
+
         $dhcp_cfg = file_get_contents(SELF::CONF_DEFAULT);
         $skip_dhcp = false;
 
@@ -129,11 +131,15 @@ class DhcpcdManager
             $dhcp_cfg = $this->removeIface($dhcp_cfg,'uap0');
             $dhcp_cfg .= $config;
         } else {
+            if (strpos($dhcp_cfg, 'interface '.$ap_iface) !== false &&
+                strpos($dhcp_cfg, 'nogateway') !== false) {
+                $config[] = 'nogateway';
+            }
             $config = join(PHP_EOL, $config);
             $dhcp_cfg = $this->removeIface($dhcp_cfg,'br0');
             $dhcp_cfg = $this->removeIface($dhcp_cfg,'uap0');
             if (!strpos($dhcp_cfg, 'metric')) {
-                $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$ap_iface.'\s.*?(?=(?:\s*^\s*$|\s*nogateway))/ms', $config, $dhcp_cfg, 1);
+                $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$ap_iface.'\s.*?(?:\s*^\s*$|\s*nogateway)/ms', $config, $dhcp_cfg, 1);
             } else {
                 $metrics = true;
             }
@@ -193,7 +199,12 @@ class DhcpcdManager
             $status->addMessage('DHCP configuration for '.$iface.' added.', 'success');
         } else {
             $cfg = join(PHP_EOL, $cfg);
-            $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)/ms', $cfg, $dhcp_cfg, 1);
+            $dhcp_cfg = preg_replace(
+                '/^#\sRaspAP\s'.$iface.'\s.*?(?=\n*(?:^#\sRaspAP|^interface\s(?!'.$iface.'$)|\z))/ms',
+                $cfg . PHP_EOL,
+                $dhcp_cfg,
+                1
+            );
         }
 
         return $dhcp_cfg;
@@ -276,8 +287,8 @@ class DhcpcdManager
      */
     public function remove(string $iface, StatusMessage $status): bool
     {
-        $configFile = SELF::CONF_DEFAULT; 
-        $tempFile = SELF::CONF_TMP; 
+        $configFile = SELF::CONF_DEFAULT;
+        $tempFile = SELF::CONF_TMP;
 
         $dhcp_cfg = file_get_contents($configFile);
         $modified_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
@@ -286,7 +297,7 @@ class DhcpcdManager
 
             $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));
             exec($cmd, $output, $result);
-     
+
             if ($result == 0) {
                 $status->addMessage('DHCP configuration for '.$iface.'  removed', 'success');
                 return true;

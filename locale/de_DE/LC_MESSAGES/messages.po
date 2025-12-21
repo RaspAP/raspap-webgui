@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-25 16:03\n"
+"PO-Revision-Date: 2025-11-20 12:20\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -33,14 +33,14 @@ msgstr "Übersicht"
 msgid "WiFi client"
 msgstr "WLAN Client"
 
+msgid "Status"
+msgstr "Status"
+
 msgid "Hotspot"
 msgstr "Hotspot"
 
 msgid "Logging"
 msgstr "Protokollierung"
-
-msgid "Status"
-msgstr "Status"
 
 msgid "Mem Use"
 msgstr "RAM Nutzung"
@@ -743,6 +743,27 @@ msgstr "Aktiviere Protokoll"
 msgid "Logfile output"
 msgstr "Logfile Ausgabe"
 
+msgid "Log level"
+msgstr "Log-Stufe"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Höhere Stufen reduzieren die Ausführlichkeit des Protokolls. Informational wird empfohlen."
+
+msgid "Verbose debugging"
+msgstr "Ausführliche Fehlersuche"
+
+msgid "Debugging"
+msgstr "Fehlersuche"
+
+msgid "Informational"
+msgstr "Informativ"
+
+msgid "Notification"
+msgstr "Benachrichtigung"
+
+msgid "Warning"
+msgstr "Warnung"
+
 msgid "WiFi client AP mode"
 msgstr "AP-Modus von WiFI-Client"
 
@@ -1374,6 +1395,9 @@ msgstr "Adapter-Zustandsprüfung"
 
 msgid "Inspect adapters"
 msgstr "Adapter überprüfen"
+
+msgid "Theme"
+msgstr "Thema"
 
 #: includes/data_usage.php
 msgid "Data usage"

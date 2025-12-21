@@ -7,7 +7,7 @@ if (!defined('RASPI_CONFIG')) {
 $defaults = [
   'RASPI_BRAND_TEXT' => 'RaspAP',
   'RASPI_BRAND_TITLE' => RASPI_BRAND_TEXT.' Admin Panel',
-  'RASPI_VERSION' => '3.4.6',
+  'RASPI_VERSION' => '3.5.0',
   'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/defaults.json',
   'RASPI_CONFIG_PROVIDERS' => 'config/vpn-providers.json',
   'RASPI_CONFIG_API' => RASPI_CONFIG.'/api',
@@ -28,7 +28,6 @@ $defaults = [
   'RASPI_HOSTAPD_CONFIG' => '/etc/hostapd/hostapd.conf',
   'RASPI_DHCPCD_CONFIG' => '/etc/dhcpcd.conf',
   'RASPI_DHCPCD_LOG' => '/var/log/dnsmasq.log',
-  'RASPI_HOSTAPD_LOG' => '/tmp/hostapd.log',
   'RASPI_WPA_SUPPLICANT_CONFIG' => '/etc/wpa_supplicant/wpa_supplicant.conf',
   'RASPI_HOSTAPD_CTRL_INTERFACE' => '/var/run/hostapd',
   'RASPI_WPA_CTRL_INTERFACE' => '/var/run/wpa_supplicant',

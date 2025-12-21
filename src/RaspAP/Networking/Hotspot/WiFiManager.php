@@ -16,16 +16,15 @@ class WiFiManager
 
     private const MIN_RSSI = -100;
     private const MAX_RSSI = -55;
+    const SECURITY_OPEN = 'OPEN';
 
     public function knownWifiStations(&$networks)
     {
         // find currently configured networks
         exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
-        $index = 0;
         foreach ($known_return as $line) {
             if (preg_match('/network\s*=/', $line)) {
                 $network = array('visible' => false, 'configured' => true, 'connected' => false, 'index' => null);
-                ++$index;
             } elseif (isset($network) && $network !== null) {
                 if (preg_match('/^\s*}\s*$/', $line)) {
                     $networks[$ssid] = $network;
@@ -37,8 +36,7 @@ class WiFiManager
                         $ssid = trim($lineArr[1], '"');
                         $ssid = str_replace('P"','',$ssid);
                         $network['ssid'] = $ssid;
-                        $index = $this->getNetworkIdBySSID($ssid);
-                        $network['index'] = $index;
+                        $network['index'] = $this->getNetworkIdBySSID($ssid);
                         break;
                     case 'psk':
                         $network['passkey'] = trim($lineArr[1]);
@@ -51,7 +49,7 @@ class WiFiManager
                         break;
                     case 'key_mgmt':
                         if (! array_key_exists('passphrase', $network) && $lineArr[1] === 'NONE') {
-                            $network['protocol'] = 'Open';
+                            $network['protocol'] = self::SECURITY_OPEN;
                         }
                         break;
                     case 'priority':
@@ -84,24 +82,27 @@ class WiFiManager
             $cacheKey,
             function () use ($iface) {
                 $stdout = shell_exec("sudo iw dev $iface scan");
+                sleep(1);
+                if ($stdout === null) {
+                    return [];
+                }
                 return preg_split("/\n/", $stdout);
             }
         );
 
-        // exclude the AP from nearby networks
-        exec('sed -rn "s/ssid=(.*)\s*$/\1/p" ' . escapeshellarg(RASPI_HOSTAPD_CONFIG), $ap_ssid);
-        $ap_ssid = $ap_ssid[0] ?? '';
-
+        // determine the next index that follows the indexes of the known networks
         $index = 0;
         if (!empty($networks)) {
-            $lastnet = end($networks);
-            if (isset($lastnet['index'])) {
-                $index = $lastnet['index'] + 1;
+            foreach ($networks as $network) {
+                if (isset($network['index']) && is_numeric($network['index']) && ($network['index'] > $index)) {
+                    $index = (int)$network['index'];
+                }
             }
         }
+        $index++;
 
         $current = [];
-        $commitCurrent = function () use (&$current, &$networks, &$index, $ap_ssid) {
+        $commitCurrent = function () use (&$current, &$networks, &$index) {
             if (empty($current['ssid'])) {
                 return;
             }
@@ -109,7 +110,7 @@ class WiFiManager
             $ssid = $current['ssid'];
 
             // unprintable 7bit ASCII control codes, delete or quotes -> ignore network
-            if ($ssid === $ap_ssid || preg_match('/[\x00-\x1f\x7f\'`\´"]/', $ssid)) {
+            if (preg_match('/[\x00-\x1f\x7f\'`\´"]/', $ssid)) {
                 return;
             }
 
@@ -127,7 +128,7 @@ class WiFiManager
                 $networks[$ssid] = [
                     'ssid' => $ssid,
                     'configured' => false,
-                    'protocol' => $current['security'] ?? 'OPEN',
+                    'protocol' => $current['security'] ?? self::SECURITY_OPEN,
                     'channel' => $channel,
                     'passphrase' => '',
                     'visible' => true,
@@ -135,9 +136,13 @@ class WiFiManager
                     'RSSI' => $rssi,
                     'index' => $index
                 ];
-                ++$index;
+                $index++; // increment for next new network
             }
         };
+        
+        if (is_string($scan_results)) {
+            $scan_results = explode("\n", trim($scan_results));
+        }
 
         foreach ($scan_results as $line) {
             $line = trim($line);
@@ -149,7 +154,7 @@ class WiFiManager
                     'ssid' => '',
                     'signal' => null,
                     'freq' => null,
-                    'security' => 'OPEN'
+                    'security' => self::SECURITY_OPEN
                 ];
                 continue;
             }
@@ -172,20 +177,50 @@ class WiFiManager
         }
         $commitCurrent();
     }
-
     /**
-     *
+     * Check if networks are connected via wpa_cli status
+     * NB: iwconfig shows the last associated SSID even when connection is inactive
      */
     public function connectedWifiStations(&$networks)
     {
-        exec('iwconfig ' .$_SESSION['wifi_client_interface'], $iwconfig_return);
-        foreach ($iwconfig_return as $line) {
-            if (preg_match('/ESSID:\"([^"]+)\"/i', $line, $iwconfig_ssid)) {
-                $ssid=hexSequence2lower($iwconfig_ssid[1]);
-                $networks[$ssid]['connected'] = true;
-                //$check=detectCaptivePortal($_SESSION['wifi_client_interface']);
-                $networks[$ssid]["portal-url"]=$check["URL"];
+        $wpa_state = null;
+        $connected_ssid = null;
+        $iface = $_SESSION['wifi_client_interface'];
+        
+        $cmd = "sudo wpa_cli -i $iface status";
+        $status_output = shell_exec($cmd);
+
+        if ($status_output === null || empty($status_output)) {
+            error_log("WiFiManager::connectedWifiStations: wpa_cli command failed or returned no output");
+            return;
+        }
+        $lines = explode("\n", trim($status_output));
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if (preg_match('/^wpa_state=(.+)$/', $line, $matches)) {
+                $wpa_state = trim($matches[1]);
             }
+            if (preg_match('/^ssid=(.+)$/', $line, $matches)) {
+                $connected_ssid = trim($matches[1]);
+            }
+        }        
+        
+        if ($wpa_state === 'COMPLETED' && !empty($connected_ssid)) {
+            $ssid = hexSequence2lower($connected_ssid);
+
+            // check if this SSID exists in networks array
+            if (array_key_exists($ssid, $networks)) {
+                $networks[$ssid]['connected'] = true;
+            } else {
+                error_log("WiFiManager::connectedWifiStations: SSID '$ssid' not found. SSIDs: " . implode(', ', array_keys($networks)));
+            }
+
+            // captive portal detection
+            // $check = detectCaptivePortal($iface);
+            // if (isset($check["URL"])) {
+            //     $networks[$ssid]["portal-url"] = $check["URL"];
+            // }
         }
     }
 
@@ -250,8 +285,11 @@ class WiFiManager
     {
         $iface = $_SESSION['wifi_client_interface'];
         if ($force == true) {
-            $cmd = "sudo /sbin/wpa_supplicant -i $unescapedIface -c /etc/wpa_supplicant/wpa_supplicant.conf -B 2>&1";
+            $cmd = "sudo rm -f /var/run/wpa_supplicant/" . $iface;
             $result = shell_exec($cmd);
+            $cmd = "sudo /sbin/wpa_supplicant -i $iface -c /etc/wpa_supplicant/wpa_supplicant.conf -B 2>&1";
+            $result = shell_exec($cmd);
+            sleep(2);
         }
         $cmd = "sudo wpa_cli -i $iface reconfigure";
         $result = shell_exec($cmd);
@@ -420,7 +458,7 @@ class WiFiManager
             "sudo wpa_cli -i $iface set_network $netid ssid $ssid",
         ];
 
-        if (strtolower($protocol) === 'open') {
+        if ($protocol === self::SECURITY_OPEN) {
             $commands[] = "sudo wpa_cli -i $iface set_network $netid key_mgmt NONE";
         } else {
             $commands[] = "sudo wpa_cli -i $iface set_network $netid psk $psk";
@@ -442,12 +480,12 @@ class WiFiManager
         error_log("Successfully added network: {$network['ssid']}");
     }
 
-    /*
+    /**
      * Parses wpa_cli list_networks output and returns the id
      * of a corresponding network SSID
      *
      * @param string $ssid
-     * @return integer id
+     * @return integer id or null
      */
     public function getNetworkIdBySSID($ssid) {
         $iface = escapeshellarg($_SESSION['wifi_client_interface']);
@@ -455,10 +493,11 @@ class WiFiManager
         $output = [];
         exec($cmd, $output);
         array_shift($output);
+
         foreach ($output as $line) {
             $columns = preg_split('/\t/', $line);
-            if (count($columns) >= 4 && trim($columns[1]) === trim($ssid)) {
-                return $columns[0]; // return network ID
+            if (count($columns) >= 2 && trim($columns[1]) === trim($ssid)) {
+                return (int)$columns[0]; // return network ID
             }
         }
         return null;
@@ -513,5 +552,211 @@ CONF;
         }
     }
 
-}
 
+    /**
+     * Gets the operational status of a network interface
+     *
+     * @param string $interface network interface name
+     * @return string returns up, down, or unknown
+     */
+    public function getInterfaceStatus(string $interface): string
+    {
+        exec('ip a show ' . escapeshellarg($interface), $output);
+        $outputGlued = implode(" ", $output);
+        $outputNormalized = preg_replace('/\s\s+/', ' ', $outputGlued);
+
+        if (preg_match('/state (UP|DOWN)/i', $outputNormalized, $matches)) {
+            return strtolower($matches[1]);
+        }
+
+        return 'unknown';
+    }
+
+    /**
+     * Connects to a network using wpa_cli
+     *
+     * @param string $interface network interface name
+     * @param int $netid network ID to connect to
+     * @return bool true on success, false on failure
+     */
+    public function connectToNetwork(string $interface, int $netid): bool
+    {
+        $iface = escapeshellarg($interface);
+
+        $cmd = "sudo wpa_cli -i $iface select_network $netid";
+        $selectResult = shell_exec($cmd);
+
+        if ($selectResult === null || trim($selectResult) === "FAIL") {
+            return false;
+        }
+        sleep(3);
+
+        $cmd = "sudo wpa_cli -i $iface reassociate";
+        $reassociateResult = shell_exec($cmd);
+
+        if ($reassociateResult !== null) {
+            $trimmed = trim($reassociateResult);
+            if ($trimmed === "FAIL") {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Deletes a network from wpa_cli
+     *
+     * @param string $interface network interface name
+     * @param int $netid network ID to delete
+     * @return void
+     */
+    public function deleteNetwork(string $interface, int $netid): void
+    {
+        $iface = escapeshellarg($interface);
+
+        exec("sudo wpa_cli -i $iface disconnect $netid");
+        exec("sudo wpa_cli -i $iface remove_network $netid");
+    }
+
+    /**
+     * Disconnects from a network using wpa_cli
+     *
+     * @param string $interface network interface name
+     * @param int $netid network ID to disconnect from
+     * @return void
+     */
+    public function disconnectNetwork(string $interface, int $netid): void
+    {
+        $iface = escapeshellarg($interface);
+
+        exec("sudo wpa_cli -i $iface disconnect $netid");
+        exec("sudo wpa_cli -i $iface remove_network $netid");
+        sleep(2);
+    }
+
+    /**
+     * Updates/adds a network via wpa_cli
+     *
+     * @param string $interface network interface name
+     * @param string $ssid network SSID
+     * @param string $passphrase network passphrase
+     * @param string $protocol security protocol (OPEN or WPA)
+     * @return int|null network ID on success, null on failure
+     */
+    public function updateNetwork(string $interface, string $ssid, string $passphrase, string $protocol = 'WPA'): ?int
+    {
+        $iface = escapeshellarg($interface);
+        $escapedSsid = escapeshellarg('"' . $ssid . '"');
+
+        $netid = shell_exec("sudo wpa_cli -i $iface add_network");
+
+        if ($netid === null || !is_numeric(trim($netid))) {
+            return null;
+        }
+
+        $netid = trim($netid);
+        $commands = [
+            "sudo wpa_cli -i $iface set_network $netid ssid $escapedSsid"
+        ];
+
+        if ($protocol === self::SECURITY_OPEN) {
+            $commands[] = "sudo wpa_cli -i $iface set_network $netid key_mgmt NONE";
+        } else {
+            $escapedPsk = escapeshellarg('"' . $passphrase . '"');
+            $commands[] = "sudo wpa_cli -i $iface set_network $netid psk $escapedPsk";
+        }
+
+        $commands[] = "sudo wpa_cli -i $iface enable_network $netid";
+
+        foreach ($commands as $cmd) {
+            exec($cmd);
+        }
+
+        return (int)$netid;
+    }
+
+    /**
+     * Writes a wpa_supplicant configuration and applies it
+     *
+     * @param array $networks array of network configurations
+     * @param string $interface the network interface name
+     * @return array Array with 'success' (bool) and 'message' (string)
+     */
+    public function writeWpaSupplicant(array $networks, string $interface): array
+    {
+        $wpa_file = fopen('/tmp/wifidata', 'w');
+        if (!$wpa_file) {
+            return ['success' => false, 'message' => 'Failed to update wifi settings'];
+        }
+
+        fwrite($wpa_file, 'ctrl_interface=DIR=' . RASPI_WPA_CTRL_INTERFACE . ' GROUP=netdev' . PHP_EOL);
+        fwrite($wpa_file, 'update_config=1' . PHP_EOL);
+
+        $ok = true;
+        foreach ($networks as $ssid => $network) {
+            if ($network['protocol'] === self::SECURITY_OPEN) {
+                fwrite($wpa_file, "network={".PHP_EOL);
+                fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                fwrite($wpa_file, "\tkey_mgmt=NONE".PHP_EOL);
+                fwrite($wpa_file, "\tscan_ssid=1".PHP_EOL);
+                if (array_key_exists('priority', $network)) {
+                    fwrite($wpa_file, "\tpriority=".$network['priority'].PHP_EOL);
+                }
+                fwrite($wpa_file, "}".PHP_EOL);
+            } else {
+                if (strlen($network['passphrase']) >= 8 && strlen($network['passphrase']) <= 63) {
+                    unset($wpa_passphrase);
+                    unset($line);
+                    exec('wpa_passphrase '. $this->ssid2utf8(escapeshellarg($ssid)) . ' ' . escapeshellarg($network['passphrase']), $wpa_passphrase);
+                    foreach ($wpa_passphrase as $line) {
+                        if (preg_match('/^\s*}\s*$/', $line)) {
+                            if (array_key_exists('priority', $network)) {
+                                fwrite($wpa_file, "\tpriority=".$network['priority'].PHP_EOL);
+                            }
+                            fwrite($wpa_file, $line.PHP_EOL);
+                        } else {
+                            if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid) && strpos($line, "ssid=\"") !== false) {
+                                fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
+                            } else {
+                                fwrite($wpa_file, $line.PHP_EOL);
+                            }
+                        }
+                    }
+                } elseif (strlen($network['passphrase']) == 0 && strlen($network['passkey']) == 64) {
+                    $line = "\tpsk=" . $network['passkey'];
+                    fwrite($wpa_file, "network={".PHP_EOL);
+                    fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                    fwrite($wpa_file, $line.PHP_EOL);
+                    if (array_key_exists('priority', $network)) {
+                        fwrite($wpa_file, "\tpriority=".$network['priority'].PHP_EOL);
+                    }
+                    fwrite($wpa_file, "}".PHP_EOL);
+                } else {
+                    $ok = false;
+                    fclose($wpa_file);
+                    return ['success' => false, 'message' => 'WPA passphrase must be between 8 and 63 characters'];
+                }
+            }
+        }
+
+        fclose($wpa_file);
+
+        if ($ok) {
+            system('sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval);
+            if ($returnval == 0) {
+                exec('sudo wpa_cli -i ' . escapeshellarg($interface) . ' reconfigure', $reconfigure_out, $reconfigure_return);
+                if ($reconfigure_return == 0) {
+                    return ['success' => true, 'message' => 'Wifi settings updated successfully'];
+                } else {
+                    return ['success' => false, 'message' => 'Wifi settings updated but cannot restart (cannot execute "wpa_cli reconfigure")'];
+                }
+            } else {
+                return ['success' => false, 'message' => 'Wifi settings failed to be updated'];
+            }
+        }
+
+        return ['success' => false, 'message' => 'Unknown error'];
+    }
+
+}

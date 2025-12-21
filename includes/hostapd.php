@@ -45,8 +45,10 @@ function DisplayHostAPDConfig()
     } else {
         $interface = $_SESSION['ap_interface'];
     }
+
     $txpower = $hotspot->getTxPower($interface);
     $arrHostapdConf = $hotspot->getHostapdIni();
+    $logOutput = [];
 
     if (!RASPI_MONITOR_ENABLED) {
          if (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
@@ -77,6 +79,10 @@ function DisplayHostAPDConfig()
                 $reg_domain,
                 $status
             );
+
+            // reload hostapi.ini
+            $arrHostapdConf = $hotspot->getHostapdIni();
+
         } elseif (isset($_POST['StopHotspot'])) {
             $status->addMessage('Attempting to stop hotspot', 'info');
             exec('sudo /bin/systemctl stop hostapd.service', $return);
@@ -135,14 +141,20 @@ function DisplayHostAPDConfig()
         }
     }
 
+    // fetch hostapd logs if enabled
+    if ((string)$arrHostapdConf['LogEnable'] === "1") {
+        $logResult = $hotspot->getHostapdLogs(5000);
+        if ($logResult['success']) {
+            $joined = implode("\n", $logResult['logs']);
+            $limited = getLogLimited('', $joined);
+            $logOutput = explode("\n", $limited);
+        }
+    }
+
     // assign disassoc_low_ack boolean if value is set
     $arrConfig['disassoc_low_ack_bool'] = isset($arrConfig['disassoc_low_ack']) ? 1 : 0;
     $hostapdstatus = $system->hostapdStatus();
     $serviceStatus = $hostapdstatus[0] == 0 ? "down" : "up";
-
-    // ensure log is writeable 
-    exec('sudo /bin/chmod o+r '.RASPI_HOSTAPD_LOG);
-    $logdata = getLogLimited(RASPI_HOSTAPD_LOG);
 
     echo renderTemplate(
         "hostapd", compact(
@@ -161,7 +173,7 @@ function DisplayHostAPDConfig()
             "arrHostapdConf",
             "operatingSystem",
             "countryCodes",
-            "logdata"
+            "logOutput"
         )
     );
 }

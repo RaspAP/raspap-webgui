@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2023-09-17 15:33\n"
+"PO-Revision-Date: 2025-11-09 09:06\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
@@ -24,8 +24,8 @@ msgstr "Portal de Configuração de WiFi RaspAP"
 msgid "Toggle navigation"
 msgstr "Alternar navegação"
 
-msgid "RaspAP Wifi Portal"
-msgstr "Portal WiFi RaspAP"
+msgid "RaspAP Admin Panel"
+msgstr "Painel de administração do RaspAP"
 
 msgid "Dashboard"
 msgstr "Painel"
@@ -33,14 +33,20 @@ msgstr "Painel"
 msgid "WiFi client"
 msgstr "Cliente WiFi"
 
+msgid "Status"
+msgstr "Status"
+
 msgid "Hotspot"
-msgstr "Ponto de acesso"
+msgstr "Hotspot"
 
-msgid "Memory Use"
-msgstr "Uso da memória"
+msgid "Logging"
+msgstr "Registro em log"
 
-msgid "CPU Temp"
-msgstr "Temp CPU"
+msgid "Mem Use"
+msgstr "Uso de mem"
+
+msgid "CPU"
+msgstr "CPU"
 
 msgid "Networking"
 msgstr "Rede"
@@ -56,9 +62,6 @@ msgstr "Proxy TOR"
 
 msgid "Authentication"
 msgstr "Autenticação"
-
-msgid "Change Theme"
-msgstr "Alterar Tema"
 
 msgid "System"
 msgstr "Sistema"
@@ -96,6 +99,69 @@ msgstr "Nova senha"
 
 msgid "Repeat new password"
 msgstr "Repita a nova senha"
+
+msgid "Please provide a valid username."
+msgstr "Forneça um nome de usuário válido."
+
+msgid "Please provide a valid password."
+msgstr "Forneça uma senha válida."
+
+msgid "Please enter your old password."
+msgstr "Digite sua senha antiga."
+
+msgid "Please enter a new password."
+msgstr "Digite uma nova senha."
+
+msgid "Please re-enter your new password."
+msgstr "Digite novamente sua nova senha."
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Click or tap to upload a new user avatar."
+msgstr "Clique ou toque para carregar um novo avatar de usuário."
+
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "São aceitos arquivos de imagem do tipo <code>JPG, GIF ou PNG</code>. Tamanho máximo do arquivo: 2 MB."
+
+msgid "Reset avatar"
+msgstr "Redefinir avatar"
+
+msgid "Enable limited privilege user"
+msgstr "Habilitar usuário com privilégios limitados"
+
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "Essa opção habilita um usuário não administrador que pode acessar a interface de gerenciamento do RaspAP, mas tem <strong>capacidade limitada para modificar a configuração existente</strong>. Esse usuário se torna ativo quando o usuário administrador atual é desconectado."
+
+msgid "Admin login failed. Please try again."
+msgstr "Falha no login do administrador. Tente novamente."
+
+msgid "Limited privilege user mode enabled"
+msgstr "Modo de usuário com privilégio limitado ativado"
+
+msgid "Failed to enable limited privilege user mode"
+msgstr "Falha ao ativar o modo de usuário com privilégio limitado"
+
+msgid "Logout and enable limited user mode"
+msgstr "Fazer logout e ativar o modo de usuário limitado"
+
+msgid "Limited user login"
+msgstr "Login de usuário limitado"
+
+msgid "Limited user password"
+msgstr "Senha de usuário limitada"
+
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr "Essa ação salvará as credenciais do usuário limitado e fará o logout do usuário administrador atual. Salvar e ativar o modo de privilégio limitado?"
+
+msgid "Save and logout"
+msgstr "Salvar e fazer logout"
+
+msgid "Admin credentials updated successfully"
+msgstr "Credenciais de administrador atualizadas com sucesso"
+
+msgid "Limited user credentials updated successfully"
+msgstr "Credenciais de usuário limitadas atualizadas com sucesso"
 
 #: includes/configure_client.php
 msgid "Client settings"
@@ -161,8 +227,8 @@ msgstr "<strong>Nota:</strong> pontos de acesso WEP aparecem como 'Open'. Atualm
 msgid "No Wifi stations found"
 msgstr "Nenhuma estação Wi-Fi encontrada"
 
-msgid "Reinitializing wpa_supplicant"
-msgstr "Reinicializando wpa_supplicante"
+msgid "Reinitialized wpa_supplicant. Choose <strong>Rescan</strong>."
+msgstr "Reinicialização do wpa_supplicant. Selecione <strong>Escanear Novamente</strong>."
 
 msgid "Click 'Rescan' to search for nearby Wifi stations."
 msgstr "Clique em 'Reescanear' para procurar por estações Wi-Fi próximas."
@@ -231,8 +297,8 @@ msgstr "Frequência"
 msgid "Link Quality"
 msgstr "Qualidade de Link"
 
-msgid "Information provided by ip and iw and from system"
-msgstr "Informações fornecidas por ip e iw e do system"
+msgid "Information provided by raspap.system"
+msgstr "Informações fornecidas por raspap.system"
 
 msgid "No MAC Address Found"
 msgstr "Endereço MAC Não Encontrado"
@@ -250,13 +316,13 @@ msgid "Not connected"
 msgstr "Não conectado"
 
 msgid "Interface is up"
-msgstr "Interface está up"
+msgstr "Interface está ativa"
 
 msgid "Interface is down"
-msgstr "Interface está down"
+msgstr "Interface está inativa"
 
 msgid "Interface already down"
-msgstr "Interface já está down"
+msgstr "Interface já está inativa"
 
 msgid "Start wlan0"
 msgstr "Iniciar wlan0"
@@ -270,17 +336,58 @@ msgstr "Dispositivos Conectados"
 msgid "Client: Ethernet cable"
 msgstr "Cliente: Cabo Ethernet"
 
+msgid "Current status"
+msgstr "Status atual"
+
 msgid "Ethernet"
 msgstr "Ethernet"
 
 msgid "Client: Smartphone (USB tethering)"
-msgstr "Cliente: Smartphone (ligação USB)"
+msgstr "Cliente: Smartphone (compartilhamento USB)"
 
 msgid "Smartphone"
 msgstr "Smartphone"
 
 msgid "WiFi"
 msgstr "WiFi"
+
+msgid "Repeater"
+msgstr "Repetidor"
+
+msgid "Tethering"
+msgstr "Tethering"
+
+msgid "Cellular"
+msgstr "Celular"
+
+msgid "AP"
+msgstr "AP"
+
+msgid "Bridged"
+msgstr "Em ponte"
+
+msgid "Adblock"
+msgstr "Adblock"
+
+msgid "VPN"
+msgstr "VPN"
+
+msgid "Netmask"
+msgstr "Máscara de rede"
+
+msgid "5G"
+msgstr "5G"
+
+msgid "2.4G"
+msgstr "2.4G"
+
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
+
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "cliente"
+msgstr[1] "clientes"
 
 msgid "Mobile Data Client"
 msgstr "Cliente de dados móveis"
@@ -312,18 +419,49 @@ msgstr "Qualidade do sinal"
 msgid "WAN IP"
 msgstr "WAN IP"
 
-msgid "Web-GUI"
-msgstr "Web-GUI"
-
 msgid "Signal strength"
 msgstr "Intensidade do sinal"
 
 msgid "No Client device or not yet configured"
 msgstr "Nenhum dispositivo cliente ou ainda não configurado"
 
+msgid "No Client device found"
+msgstr "Nenhum dispositivo cliente encontrado"
+
+#: includes/footer.php
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "Criado pela <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+msgid "RaspAP Team"
+msgstr "Equipe RaspAP"
+
+msgid "Get Insiders"
+msgstr "Obter informações privilegiadas"
+
+msgid "Thanks for being an Insider"
+msgstr "Obrigado por ser um Insider"
+
 #: includes/dhcp.php
 msgid "DHCP server settings"
 msgstr "Configurações do servidor DHCP"
+
+msgid "Default gateway"
+msgstr "Gateway padrão"
+
+msgid "Install a default route for this interface"
+msgstr "Instalar uma rota padrão para essa interface"
+
+msgid "Static IP options"
+msgstr "Opções de IP estático"
+
+msgid "DHCP options"
+msgstr "Opções de DHCP"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Ative essa opção se você quiser que o RaspAP atribua endereços IP aos clientes na interface selecionada. É necessário um endereço IP estático para essa opção."
+
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr "Ative essa opção somente se quiser que o dispositivo use essa interface como rota principal para a Internet."
 
 msgid "Client list"
 msgstr "Lista de Clientes"
@@ -460,17 +598,56 @@ msgstr "Os clientes com um endereço MAC de hardware específico podem sempre te
 msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
 msgstr "Esta opção adiciona entradas <code>dhcp-host</code> na configuração do dnsmasq."
 
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
-msgstr "Isto alterna a opção <code>de gateway</code>/<code>nogateway</code> para essa interface na configuração do DHCPCD."
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr "Isso ativa a opção <code>gateway/nogateway</code> para essa interface no arquivo dhcpcd.conf."
 
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
-msgstr "Isso ativa/desativa a opção <code>nohook wpa_supplicant</code> para essa interface na configuração do DHCPCD."
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr "Isso ativa a opção <code>nohook wpa_supplicant</code> para essa interface no arquivo dhcpcd.conf."
 
 msgid "Disable wpa_supplicant dhcp hook for this interface"
 msgstr "Desativar wpa_supplicant dhcp hook para essa interface"
 
 msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
 msgstr "Se você gerenciar as conexões wireless utilizando o próprio wpa_supplicant, o hook pode criar eventos de conexão indesejados. Essa opção desabilita o hook."
+
+msgid "Please provide a valid IP Address."
+msgstr "Forneça um endereço IP válido."
+
+msgid "Please provide a valid Default gateway."
+msgstr "Forneça um gateway padrão válido."
+
+msgid "Please provide a valid Starting IP Address."
+msgstr "Forneça um endereço IP inicial válido."
+
+msgid "Please provide a valid Ending IP Address."
+msgstr "Forneça um endereço IP final válido."
+
+msgid "Please provide a valid Lease Time."
+msgstr "Forneça um horário de locação válido."
+
+msgid "Invalid interface name."
+msgstr "Nome de interface inválido."
+
+msgid "Invalid static IP address."
+msgstr "Endereço IP estático inválido."
+
+msgid "Invalid default gateway."
+msgstr "Gateway padrão inválido."
+
+msgid "Invalid DHCP range start."
+msgstr "Início de intervalo DHCP inválido."
+
+msgid "Invalid DHCP range end."
+msgstr "Fim do intervalo DHCP inválido."
+
+msgid "Invalid DHCP lease time, not a number."
+msgstr "Tempo de concessão de DHCP inválido, não um número."
+
+msgid "Unknown DHCP lease time unit."
+msgstr "Unidade de tempo de concessão DHCP desconhecida."
+
+msgid "Invalid metric value, not a number."
+msgstr "Valor métrico inválido, não é um número."
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -530,11 +707,26 @@ msgstr "Interface desconhecida"
 msgid "Country code must be blank or two characters"
 msgstr "Código de país deve ser vazio ou dois caracteres"
 
-msgid "Wifi Hotspot settings saved"
-msgstr "Configurações de ponto de acesso Wifi salvas"
+msgid "DHCP configuration for %s enabled."
+msgstr "Configuração DHCP para %s ativada."
 
-msgid "Unable to save wifi hotspot settings"
-msgstr "Não foi possível salvar as configurações de ponto de acesso WiFi"
+msgid "DHCP configuration for %s added."
+msgstr "Adicionada a configuração DHCP para %s ."
+
+msgid "DHCP configuration for %s updated."
+msgstr "Configuração DHCP para %s atualizada."
+
+msgid "Interface %s has no default settings."
+msgstr "A interface %s não tem configurações padrão."
+
+msgid "Configure settings in <strong>DHCP Server</strong> before starting AP."
+msgstr "Defina as configurações no <strong>servidor DHCP</strong> antes de iniciar o AP."
+
+msgid "Wifi hotspot settings saved."
+msgstr "Configurações de ponto de acesso Wi-Fi salvas."
+
+msgid "Unable to save WiFi hotspot settings."
+msgstr "Não é possível salvar as configurações do ponto de acesso WiFi."
 
 msgid "Start hotspot"
 msgstr "Iniciar ponto de acesso"
@@ -556,6 +748,12 @@ msgstr "WiFi modo cliente AP"
 
 msgid "Bridged AP mode"
 msgstr "Modo AP Bridged"
+
+msgid "WiFi repeater mode"
+msgstr "Modo repetidor de WiFi"
+
+msgid "Dual band AP mode"
+msgstr "Modo AP de banda dupla"
 
 msgid "Hide SSID in broadcast"
 msgstr "Esconder SSID em transmissão"
@@ -600,28 +798,28 @@ msgid "WPA2 and WPA3-Personal (transitional mode)"
 msgstr "WPA2 e WPA3-Personal (modo de transição)"
 
 msgid "WPA3-Personal (required)"
-msgstr "WPA3-Personal (Nesse modo, o suporte ao WPA3 é obrigatório)"
+msgstr "WPA3-Personal (obrigatório)"
 
 msgid "Enabled (for supported clients)"
-msgstr "Habilitado (para clientes suportados)"
+msgstr "Ativado (para clientes compatíveis)"
 
 msgid "Required (for supported clients)"
-msgstr "Necessário (para clientes suportados)"
+msgstr "Obrigatório (para clientes com suporte)"
 
 msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
-msgstr "O 802.11w estende uma forte proteção criptográfica a um conjunto seleto de Robust Management Frames (RMF), incluindo desautenticação, desassociação e certas categorias de Action Management Frames. Colectivamente, isto é conhecido como Management Frame Protection (MFP)."
+msgstr "O 802.11w estende a proteção criptográfica forte a um conjunto selecionado de quadros de gerenciamento robustos, incluindo Deauthentication, Disassociation e determinadas categorias de quadros Action Management. Coletivamente, isso é conhecido como Management Frame Protection (MFP)."
 
 msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
-msgstr "Escaneie esse QR Code diretamente ou %s %simprima uma placa%s para os usuários da rede."
+msgstr "Digitalize este código QR diretamente ou imprima um sinal%s para seus usuários em %s %s."
 
 msgid "Printable Wi-Fi sign"
-msgstr "Placa imprimível Wi-Fi"
+msgstr "Sinal de Wi-Fi para impressão"
 
 msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
-msgstr "Para conectar com o seu telefone ou tablet, escaneie o QR Code acima com o seu app de câmera."
+msgstr "Para se conectar com seu telefone ou tablet, escaneie o código QR acima com seu aplicativo de câmera."
 
 msgid "For other devices, use the login credentials below."
-msgstr "Para outros dispositivos, use as informações de login abaixo."
+msgstr "Para outros dispositivos, use as credenciais de login abaixo."
 
 msgid "Network"
 msgstr "Rede"
@@ -640,6 +838,93 @@ msgstr "A interface selecionada (%s) não suporta operar no modo sem fio."
 
 msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
 msgstr "A opção 802.11ac 5 GHz está desativada até que seja configurada a regulação local."
+
+msgid "WiFi repeater mode: A metric value is already defined for DHCP."
+msgstr "Modo repetidor WiFi: Um valor de métrica já está definido para o DHCP."
+
+msgid "Restart hotspot to enable WiFi repeater mode."
+msgstr "Reinicie o ponto de acesso para ativar o modo repetidor de WiFi."
+
+msgid "Unable to obtain metric value for client interface. Repeater mode inactive."
+msgstr "Não é possível obter o valor da métrica para a interface do cliente. Modo repetidor inativo."
+
+msgid "Metric value configured for the %s interface."
+msgstr "Valor de métrica configurado para a interface %s ."
+
+msgid "Parameter hiddenSSID contains invalid configuration value."
+msgstr "O parâmetro hiddenSSID contém um valor de configuração inválido."
+
+msgid "Parameter hiddenSSID is not a number."
+msgstr "O parâmetro hiddenSSID não é um número."
+
+msgid "Bridge interface configuration"
+msgstr "Configuração da interface de ponte"
+
+msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+msgstr "Configure um endereço IP estático para a interface <code>br0</code> para manter a conectividade durante a ativação do modo bridge."
+
+msgid "Static IP Address"
+msgstr "Endereço IP estático"
+
+msgid "Netmask / CIDR"
+msgstr "Máscara de rede / CIDR"
+
+msgid "Example: 192.168.1.100"
+msgstr "Exemplo: 192.168.1.100"
+
+msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
+msgstr "Notação CIDR (por exemplo, 24 para 255.255.255.0)"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "Your router's IP address"
+msgstr "O endereço IP de seu roteador"
+
+msgid "Usually same as gateway"
+msgstr "Geralmente igual ao gateway"
+
+msgid "Bridge static IP address must be a valid IPv4 address"
+msgstr "O endereço IP estático da ponte deve ser um endereço IPv4 válido"
+
+msgid "Bridge netmask must be a number between 1 and 32"
+msgstr "A máscara de rede da ponte deve ser um número entre 1 e 32"
+
+msgid "Bridge netmask is required when using static IP"
+msgstr "A máscara de rede da ponte é necessária ao usar IP estático"
+
+msgid "Bridge gateway must be a valid IPv4 address"
+msgstr "O gateway da ponte deve ser um endereço IPv4 válido"
+
+msgid "Bridge gateway is required when using static IP"
+msgstr "O gateway de ponte é necessário ao usar IP estático"
+
+msgid "Bridge DNS server must be a valid IPv4 address"
+msgstr "O servidor DNS da ponte deve ser um endereço IPv4 válido"
+
+msgid "Bridge DNS server is required when using static IP"
+msgstr "O servidor Bridge DNS é necessário ao usar IP estático"
+
+msgid "Bridge static IP and gateway must be in the same subnet"
+msgstr "O IP estático da ponte e o gateway devem estar na mesma sub-rede"
+
+msgid "Please enter a valid IPv4 address"
+msgstr "Digite um endereço IPv4 válido"
+
+msgid "Please enter a valid netmask"
+msgstr "Digite uma máscara de rede válida"
+
+msgid "DHCP configuration for br0 enabled"
+msgstr "Configuração de DHCP para br0 ativada"
+
+msgid "Unable to save WiFi hotspot settings due to validation errors"
+msgstr "Não é possível salvar as configurações do ponto de acesso WiFi devido a erros de validação"
+
+msgid "Enable AP isolation"
+msgstr "Ativar o isolamento do AP"
+
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "Impede que os clientes sem fio vejam ou se conectem uns aos outros. Recomendado para redes de convidados e pontos de acesso públicos."
 
 #: includes/networking.php
 msgid "Summary"
@@ -660,8 +945,11 @@ msgstr "Servidor DNS Alternativo"
 msgid "Adapter IP Address Settings"
 msgstr "Configurações IP do Adaptador"
 
-msgid "Enable Fallback to Static Option"
-msgstr "Habilitar Volta Para Opção Estática"
+msgid "Enable fallback to static option"
+msgstr "Ativar fallback para a opção estática"
+
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Ative essa opção para configurar um perfil estático e voltar a ele quando houver falha na concessão do DHCP."
 
 msgid "Static IP"
 msgstr "IP Estático"
@@ -688,16 +976,16 @@ msgid "Devices"
 msgstr "Dispositivos"
 
 msgid "Diagnostics"
-msgstr "Diagnósticos"
+msgstr "Diagnóstico"
 
-msgid "Properties of network devices"
-msgstr "Propriedades dos dispositivos de rede"
+msgid "Network devices"
+msgstr "Dispositivos de rede"
 
 msgid "Device"
 msgstr "Dispositivo"
 
-msgid "MAC"
-msgstr "MAC"
+msgid "MAC address"
+msgstr "Endereço MAC"
 
 msgid "USB vid/pid"
 msgstr "USB vid/pid"
@@ -711,11 +999,11 @@ msgstr "Nome fixo"
 msgid "Change"
 msgstr "Alterar"
 
-msgid "Settings for Mobile Data Devices"
-msgstr "Configurações para dispositivos de dados móveis"
+msgid "Mobile data settings"
+msgstr "Configurações de dados móveis"
 
-msgid "PIN of SIM card"
-msgstr "PIN do cartão SIM"
+msgid "SIM card PIN number"
+msgstr "Número PIN do cartão SIM"
 
 msgid "APN Settings (Modem device ppp0)"
 msgstr "Configurações do APN (dispositivo Modem ppp0)"
@@ -741,11 +1029,20 @@ msgstr "Tabela de roteamento"
 msgid "raw output"
 msgstr "raw output"
 
+msgid "Setting wireless regulatory domain to %s"
+msgstr "Configuração do domínio regulatório sem fio para %s"
+
+msgid "Please provide a valid SSID."
+msgstr "Forneça um SSID válido."
+
+msgid "Please provide a valid PSK."
+msgstr "Forneça um PSK válido."
+
 msgid "Speedtest"
 msgstr "Teste de velocidade"
 
 msgid "Selecting a server"
-msgstr "Selecionando um servidor"
+msgstr "Seleção de um servidor"
 
 msgid "Privacy"
 msgstr "Privacidade"
@@ -766,13 +1063,64 @@ msgid "Jitter"
 msgstr "Jitter"
 
 msgid "Upload"
-msgstr "Upload"
+msgstr "Carregar"
 
 msgid "Start"
-msgstr "Iniciar"
+msgstr "Início"
 
 msgid "Abort"
-msgstr "Interromper"
+msgstr "Abortar"
+
+msgid "Wireless LAN routing"
+msgstr "Roteamento de LAN sem fio"
+
+msgid "Stop WLAN routing"
+msgstr "Interromper o roteamento de WLAN"
+
+msgid "Start WLAN routing"
+msgstr "Iniciar o roteamento de WLAN"
+
+msgid "Restart WLAN routing"
+msgstr "Reiniciar o roteamento de WLAN"
+
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Essa opção configura o RaspAP para <b>rotear o tráfego de rede da interface do cliente sem fio (STA)</b> para outra interface disponível."
+
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Quando uma interface de saída é selecionada, as regras <code>do iptables</code> são adicionadas para rotear os pacotes usando a tradução de endereços de rede (NAT). Isso geralmente é feito para compartilhar a conectividade com a Internet de uma WLAN com dispositivos em uma interface <code>eth0</code>, <code>usb0</code> ou <code>enx</code> previsível."
+
+msgid "Wireless client interface"
+msgstr "Interface de cliente sem fio"
+
+msgid "Output interface"
+msgstr "Interface de saída"
+
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Configurar um endereço IP estático e DHCP para a interface de saída"
+
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "Tentativa de ativar o roteamento entre as interfaces %s e %s"
+
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "Tentativa de desativar o roteamento entre as interfaces %s e %s"
+
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "Não existe nenhuma configuração DHCP padrão para a interface %s"
+
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "Configure um IP estático e DHCP para essa interface nas configurações do servidor DHCP"
+
+msgid "WLAN routing configuration saved"
+msgstr "Configuração de roteamento de WLAN salva"
+
+msgid "Unable to save WLAN routing configuration"
+msgstr "Não é possível salvar a configuração de roteamento de WLAN"
+
+msgid "Successfully restarted dnsmasq"
+msgstr "Reiniciou o dnsmasq com sucesso"
+
+msgid "Failed to restart dnsmasq"
+msgstr "Falha ao reiniciar o dnsmasq"
 
 #: includes/system.php
 msgid "System Information"
@@ -808,14 +1156,32 @@ msgstr "Horário do sistema"
 msgid "Memory Used"
 msgstr "Memória utilizada"
 
+msgid "Storage Used"
+msgstr "Armazenamento utilizado"
+
 msgid "CPU Load"
 msgstr "Carga de CPU"
+
+msgid "CPU Temp"
+msgstr "Temperatura da CPU"
 
 msgid "Reboot"
 msgstr "Reiniciar"
 
 msgid "Shutdown"
 msgstr "Desligar"
+
+msgid "System reboot"
+msgstr "Reinicialização do sistema"
+
+msgid "System shutdown"
+msgstr "Desligamento do sistema"
+
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr "Reiniciar agora? O sistema ficará temporariamente indisponível."
+
+msgid "Shutdown now? The system will be unavailable."
+msgstr "Desligar agora? O sistema ficará indisponível."
 
 msgid "System Rebooting Now!"
 msgstr "Sistema Reiniciando Agora!"
@@ -873,6 +1239,144 @@ msgstr "Selecione um tema"
 
 msgid "Color"
 msgstr "Cor"
+
+msgid "Enable this option for resizable, drag and drop widgets. Best for large displays."
+msgstr "Ative essa opção para widgets redimensionáveis, do tipo arrastar e soltar. Ideal para telas grandes."
+
+msgid "Dynamic widgets"
+msgstr "Widgets dinâmicos"
+
+msgid "Tools"
+msgstr "Ferramentas"
+
+msgid "System tools"
+msgstr "Ferramentas do sistema"
+
+msgid "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
+msgstr "Para gerar um <a href=\"%s\">registro de depuração</a> do sistema, clique ou toque no botão abaixo."
+
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "As informações do registro de depuração contêm a versão do RaspAP, o estado atual e a configuração dos serviços relacionados ao AP, os pacotes de sistema instalados, a versão do kernel do Linux e os detalhes da rede. Nenhuma senha ou outros dados confidenciais são incluídos."
+
+msgid "Generate debug log"
+msgstr "Gerar registro de depuração"
+
+msgid "Debug log generation in progress..."
+msgstr "Geração de registro de depuração em andamento..."
+
+msgid "Diagnostic log size limit (KB)"
+msgstr "Limite de tamanho do registro de diagnóstico (KB)"
+
+msgid "Changing log limit size to %s KB"
+msgstr "Alteração do tamanho do limite de registro para %s KB"
+
+msgid "Information provided by raspap.sysinfo"
+msgstr "Informações fornecidas por raspap.sysinfo"
+
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "Os seguintes plug-ins de usuário estão disponíveis para ampliar a funcionalidade do RaspAP."
+
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Selecione <strong>Detalhes</strong> para obter mais informações e instalar um plug-in."
+
+msgid "Network error"
+msgstr "Erro de rede"
+
+msgid "Unable to load plugins"
+msgstr "Não é possível carregar plug-ins"
+
+msgid "Reload"
+msgstr "Recarregar"
+
+msgid "and try again"
+msgstr "e tente novamente"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Plugin details"
+msgstr "Detalhes do plug-in"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Version"
+msgstr "Versão"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Plugin source"
+msgstr "Fonte do plug-in"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "License"
+msgstr "Licença"
+
+msgid "Language locale"
+msgstr "Localidade do idioma"
+
+msgid "Configuration files"
+msgstr "Arquivos de configuração"
+
+msgid "Dependencies"
+msgstr "Dependências"
+
+msgid "Permissions"
+msgstr "Permissões"
+
+msgid "Non-privileged users"
+msgstr "Usuários não privilegiados"
+
+msgid "Install now"
+msgstr "Instalar agora"
+
+msgid "Installing plugin"
+msgstr "Instalação do plug-in"
+
+msgid "Plugin installation in progress..."
+msgstr "Instalação do plug-in em andamento..."
+
+msgid "Plugin install completed."
+msgstr "Instalação do plug-in concluída."
+
+msgid "Details"
+msgstr "Detalhes"
+
+msgid "Installed"
+msgstr "Instalado"
+
+msgid "Alert messages"
+msgstr "Mensagens de alerta"
+
+msgid "Alert close timeout (milliseconds)"
+msgstr "Tempo limite de fechamento do alerta (milissegundos)"
+
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Fechar automaticamente os alertas após um tempo limite especificado"
+
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Para <a href=\"%s\" target=\"_blank\">inspecionar os adaptadores</a> conectados a esse dispositivo, clique ou toque no botão abaixo."
+
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "A ferramenta de inspeção do adaptador retorna detalhes sobre dispositivos WLAN externos, incluindo drivers, modos suportados e assim por diante."
+
+msgid "Choose a network interface to inspect"
+msgstr "Escolha uma interface de rede para inspecionar"
+
+msgid "Select an interface..."
+msgstr "Selecione uma interface..."
+
+msgid "Adapter health check"
+msgstr "Verificação da integridade do adaptador"
+
+msgid "Inspect adapters"
+msgstr "Inspecionar adaptadores"
+
+msgid "Theme"
+msgstr "Tema"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -1099,16 +1603,16 @@ msgid "adblock"
 msgstr "adBlock"
 
 msgid "Ad Blocking"
-msgstr "Bloqueador de anúncios"
+msgstr "Ad Blocking"
 
 msgid "Start Ad Blocking"
-msgstr "Iniciar o Bloqueador de Anúncios"
+msgstr "Iniciar o Ad Blocking"
 
 msgid "Restart Ad Blocking"
-msgstr "Reiniciar o Bloqueador de anúncios"
+msgstr "Reiniciar o Ad Blocking"
 
 msgid "Blocklist settings"
-msgstr "Configurações da lista de bloqueio"
+msgstr "Configurações da lista de Adblock"
 
 msgid "Enable blocklists"
 msgstr "Habilitar lista de bloqueio"
@@ -1176,14 +1680,14 @@ msgstr "Enviar uma configuração do WireGuard"
 msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
 msgstr "Esta opção carrega e instala um arquivo existente do WireGuard <code>.conf</code> neste dispositivo."
 
-msgid "Apply iptables rules for AP interface"
-msgstr "Aplicar regras do iptables para a interface AP"
+msgid "Apply iptables rules to the selected interface"
+msgstr "Aplicar regras do iptables à interface selecionada"
 
-msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
-msgstr "Recomendado se você deseja encaminhar tráfego de rede da interface wg0 para os clientes conectados na interface de AP."
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "Recomendado se você quiser encaminhar o tráfego de rede da interface wg0 para clientes conectados em uma interface desejada. A interface de AP ativa é a padrão."
 
-msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
-msgstr "Esta opção adiciona as regras do <strong>iptables</strong> <code>Postup</code> e <code>PostDown</code> para a interface AP configurada (%s)."
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "Essa opção adiciona regras <code>de Postup</code> e <code>PostDown</code> do <strong>iptables</strong> para a interface selecionada abaixo."
 
 msgid "Select WireGuard configuration file (.conf)"
 msgstr "Selecionar arquivo de configuração do WireGuard (.conf)"
@@ -1273,19 +1777,25 @@ msgid "WireGuard configuration failed to be updated"
 msgstr "A configuração do WireGuard falhou ao ser atualizada"
 
 msgid "Enable kill switch"
-msgstr "Ativar kill switch"
+msgstr "Ativar o kill switch"
 
-msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured AP interface (%s)."
-msgstr "Esta opção adiciona as regras do <strong>iptables</strong>, <code>Postup</code> e <code>PostDown</code> para a interface AP configurada (%s)."
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr "Essa opção adiciona regras <code>PostUp</code> e <code>PreDown</code> do <strong>iptables</strong> para a interface configurada."
 
 msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
-msgstr "Recomendado se você quer evitar o fluxo de pacotes não criptografados através de interfaces sem WireGuard."
+msgstr "Recomendado se você quiser impedir o fluxo de pacotes não criptografados por meio de interfaces não-WireGuard."
 
 msgid "iptables rules added to WireGuard configuration"
-msgstr "Regras do iptable adicionadas à configuração do WireGuard"
+msgstr "Regras do iptables adicionadas à configuração do WireGuard"
 
 msgid "Existing iptables rules found in WireGuard configuration - not added"
-msgstr "Regras do iptable existentes encontradas na configuração do WireGuard - não adicionado"
+msgstr "Regras do iptables existentes encontradas na configuração do WireGuard - não adicionadas"
+
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "As configurações de arquivo do WireGuard atualmente disponíveis são exibidas abaixo."
+
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "A ativação de uma configuração reiniciará o serviço <code>wg-quick</code>."
 
 msgid "Client Firewall"
 msgstr "Firewall do Cliente"
@@ -1297,7 +1807,7 @@ msgid "Firewall is OFF"
 msgstr "O Firewall está DESATIVADO"
 
 msgid "The default firewall will only allow outgoing and already established traffic."
-msgstr "O firewall padrão só permitirá tráfego de saída e o tráfego já foi estabelecido."
+msgstr "O firewall padrão só permitirá tráfego de saída e tráfego já estabelecido."
 
 msgid "No incoming UDP traffic is allowed."
 msgstr "Nenhum tráfego UDP de entrada é permitido."
@@ -1353,81 +1863,855 @@ msgstr "Desativar Firewall"
 msgid "Enable Firewall"
 msgstr "Ativar Firewall"
 
+msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "A alteração do status do firewall pode interromper ou permitir o tráfego de entrada. Selecione <strong>Prosseguir</strong> para continuar."
+
+msgid "Proceed"
+msgstr "Prosseguir"
+
 msgid "Apply changes"
 msgstr "Aplicar alterações"
 
 msgid "Dynamic DNS"
-msgstr "DNS dinâmico (Dynamic DNS)"
+msgstr "DNS dinâmico"
 
 msgid "Service provider"
 msgstr "Provedor de serviços"
 
 msgid "Select a Dynamic DNS service supported by <strong>ddclient</strong> from the list below. Selecting a known service provider will populate the <code>protocol</code> and <code>server</code> fields. You may also configure the service manually."
-msgstr "Selecione um serviço de DNS dinâmico suportado por <strong>ddclient</strong> na lista abaixo. Selecionar um provedor de serviço conhecido preencherá os campos <code>protocolo</code> e <code>servidor</code>. Você também pode configurar o serviço manualmente."
+msgstr "Selecione um serviço de DNS dinâmico compatível com o <strong>ddclient</strong> na lista abaixo. A seleção de um provedor de serviços conhecido preencherá os campos <code>de protocolo</code> e <code>servidor</code>. Você também pode configurar o serviço manualmente."
 
 msgid "Method to obtain IP"
 msgstr "Método para obter o IP"
 
 msgid "Select the method used by <strong>ddclient</strong> to obtain an IP address. This value is specified in the <code>-use</code> option."
-msgstr "Selecione o método usado pelo <strong>ddclient</strong> para obter um endereço IP. Este valor é especificado na opção <code>-use</code>."
+msgstr "Selecione o método usado pelo <strong>ddclient</strong> para obter um endereço IP. Esse valor é especificado na opção <code>-use</code>."
 
 msgid "Discovery page on the web"
-msgstr ""
+msgstr "Página de descoberta na Web"
 
 msgid "Network interface"
-msgstr ""
+msgstr "Interface de rede"
 
 msgid "Network address"
-msgstr ""
+msgstr "Endereço de rede"
 
 msgid "Firewall status page"
-msgstr ""
+msgstr "Página de status do firewall"
 
 msgid "External command"
-msgstr ""
+msgstr "Comando externo"
 
 msgid "Web address"
-msgstr ""
+msgstr "Endereço da Web"
 
 msgid "Firewall"
-msgstr ""
+msgstr "Firewall"
 
 msgid "Command"
-msgstr ""
+msgstr "Comando"
 
 msgid "Example: <code>192.168.1.254/status.htm</code>."
-msgstr ""
+msgstr "Exemplo: <code>192.168.1.254/status.htm</code>."
 
 msgid "Example: <code>/usr/local/bin/get-ip</code>."
-msgstr ""
+msgstr "Exemplo: <code>/usr/local/bin/get-ip</code>."
 
 msgid "Domain"
-msgstr ""
+msgstr "Domínio"
 
 msgid "Enable SSL"
-msgstr ""
+msgstr "Ativar SSL"
 
 msgid "Use an encrypted SSL connection for updates. Not supported by all providers."
-msgstr ""
+msgstr "Use uma conexão SSL criptografada para atualizações. Não é suportado por todos os provedores."
 
 msgid "Value specified in milliseconds (ms). Default is 300."
-msgstr ""
+msgstr "Valor especificado em milissegundos (ms). O padrão é 300."
 
 msgid "Use the <strong>Generate log</strong> button to output detailed <code>ddclient daemon</code> debug info"
-msgstr ""
+msgstr "Use o botão <strong>Gerar registro</strong> para gerar informações detalhadas de depuração <code>do daemon ddclient</code>"
 
 msgid "Generate log"
-msgstr ""
+msgstr "Gerar registro"
 
 msgid "Information provided by ddclient"
-msgstr ""
+msgstr "Informações fornecidas pelo ddclient"
 
 msgid "Start Dynamic DNS"
-msgstr ""
+msgstr "Iniciar o DNS dinâmico"
 
 msgid "Stop Dynamic DNS"
-msgstr ""
+msgstr "Interromper o DNS dinâmico"
 
 msgid "Restart Dynamic DNS"
-msgstr ""
+msgstr "Reiniciar o DNS dinâmico"
+
+msgid "Account details"
+msgstr "Detalhes da conta"
+
+msgid "My account"
+msgstr "Minha conta"
+
+msgid "Server location"
+msgstr "Localização do servidor"
+
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "Ao selecionar <strong>Salvar configurações</strong>, você se conectará ao país selecionado."
+
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Ao selecionar <strong>Connect %s</strong>, você se conectará a um servidor recomendado."
+
+msgid "Select a country from the server location list"
+msgstr "Selecione um país na lista de localização do servidor"
+
+msgid "Select a country..."
+msgstr "Selecione um país..."
+
+msgid "Account information not available from %s's Linux CLI."
+msgstr "Informações da conta não disponíveis na CLI do Linux do %s."
+
+msgid "Attempting to connect to %s"
+msgstr "Tentativa de conexão com %s"
+
+msgid "Attempting to connect VPN provider"
+msgstr "Tentativa de conexão com o provedor de VPN"
+
+msgid "Attempting to disconnect VPN provider"
+msgstr "Tentativa de desconectar o provedor de VPN"
+
+msgid "Expected %s binary not found at: %s"
+msgstr "O binário esperado de %s não foi encontrado em: %s"
+
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "Acesse as <a href=\"%s\" target=\"_blank\">instruções de instalação</a> da CLI do Linux do %s."
+
+msgid "Unable to execute %s binary found at: %s"
+msgstr "Não foi possível executar o binário %s encontrado em: %s"
+
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "Verifique se o binário é executável e se as permissões existem em raspap.sudoers"
+
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "CLI do Linux instalada: <code>%s</code>"
+
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Atual <code>%s</code> O status atual da conexão é exibido abaixo."
+
+msgid "Information provided by %s"
+msgstr "Informações fornecidas por %s"
+
+msgid "Connect %s"
+msgstr "Conecte %s"
+
+msgid "Disconnect %s"
+msgstr "Desconecte %s"
+
+msgid "About"
+msgstr "Sobre"
+
+msgid "Insiders"
+msgstr "Insiders"
+
+msgid "Contributing"
+msgstr "Contribuição"
+
+msgid "Check for update"
+msgstr "Verificar se há atualizações"
+
+msgid "New release check in progress..."
+msgstr "Verificação de nova versão em andamento..."
+
+msgid "A new release is available: Version"
+msgstr "Uma nova versão está disponível: Versão"
+
+msgid "Installed version is the latest release."
+msgstr "A versão instalada é a última versão."
+
+msgid "GitHub authentication"
+msgstr "Autenticação do GitHub"
+
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "A atualização de Insiders requer a autenticação do GitHub."
+
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Suas credenciais serão enviadas para o GitHub de forma segura com SSL. No entanto, tenha cuidado se a instalação do RaspAP estiver em uma WLAN compartilhada por usuários não confiáveis."
+
+msgid "Personal Access Token"
+msgstr "Token de acesso pessoal"
+
+msgid "Please provide a valid token."
+msgstr "Forneça um token válido."
+
+msgid "Perform update"
+msgstr "Realizar atualização"
+
+msgid "Update in progress"
+msgstr "Atualização em andamento"
+
+msgid "Application is being updated..."
+msgstr "O aplicativo está sendo atualizado..."
+
+msgid "Configuring update"
+msgstr "Configuração de atualização"
+
+msgid "Updating sources"
+msgstr "Atualização de fontes"
+
+msgid "Installing package updates"
+msgstr "Instalação de atualizações de pacotes"
+
+msgid "Downloading latest files"
+msgstr "Download dos arquivos mais recentes"
+
+msgid "Installing application"
+msgstr "Instalação do aplicativo"
+
+msgid "Update complete"
+msgstr "Atualização concluída"
+
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Ocorreu um erro. Verifique o registro em <code>/tmp/raspap_install.log</code>"
+
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "O RaspAP é uma cocriação de %1$s e %2$s com as contribuições de nossos %3$s e %4$s. Saiba mais sobre como participar do projeto como um %5$s, %6$s ou %7$s com acesso imediato a %8$s disponível para %9$s."
+
+msgid "developer community"
+msgstr "comunidade de desenvolvedores"
+
+msgid "language translators"
+msgstr "tradutores de idiomas"
+
+msgid "code contributor"
+msgstr "colaborador de código"
+
+msgid "translator"
+msgstr "tradutor"
+
+msgid "financial sponsor"
+msgstr "patrocinador financeiro"
+
+msgid "exclusive features"
+msgstr "recursos exclusivos"
+
+msgid "RaspAP Exception"
+msgstr "Exceção RaspAP"
+
+msgid "An exception occurred"
+msgstr "Ocorreu uma exceção"
+
+msgid "RestAPI"
+msgstr "RestAPI"
+
+msgid "RestAPI settings"
+msgstr "Configurações da RestAPI"
+
+msgid "Start RestAPI service"
+msgstr "Iniciar o serviço RestAPI"
+
+msgid "Stop RestAPI service"
+msgstr "Interromper o serviço RestAPI"
+
+msgid "API Key"
+msgstr "Chave da API"
+
+msgid "Saving API key"
+msgstr "Salvando a chave da API"
+
+msgid "RestAPI status"
+msgstr "Status da RestAPI"
+
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "O status atual <code>do restapi.service</code> é exibido abaixo."
+
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
+msgstr "Os documentos da RestAPI podem ser acessados <a href=\"%s\" target=\"_blank\">aqui%s</a>"
+
+msgid "Restarting restapi.service"
+msgstr "Reiniciar o restapi.service"
+
+msgid "Information provided by restapi.service"
+msgstr "Informações fornecidas por restapi.service"
+
+msgid "Session Expired"
+msgstr "Sessão expirada"
+
+msgid "Your session has expired. Please login to continue."
+msgstr "Sua sessão expirou. Faça login para continuar."
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Administrator login"
+msgstr "Login de administrador"
+
+msgid "Forgot password"
+msgstr "Esqueci minha senha"
+
+msgid "Login failed"
+msgstr "Falha no login"
+
+msgid "NTP Server"
+msgstr "Servidor NTP"
+
+msgid "NTP Server settings"
+msgstr "Configurações do servidor NTP"
+
+msgid "NTP daemon"
+msgstr "Daemon NTP"
+
+msgid "Synchronized time"
+msgstr "Hora sincronizada"
+
+msgid "NTP servers"
+msgstr "Servidores NTP"
+
+msgid "Add an NTP server"
+msgstr "Adicionar um servidor NTP"
+
+msgid "Start NTP service"
+msgstr "Iniciar o serviço NTP"
+
+msgid "Stop NTP service"
+msgstr "Interromper o serviço NTP"
+
+msgid "Edit mode"
+msgstr "Modo de edição"
+
+msgid "Use the <strong>Edit mode</strong> toggle to manually edit the current <code>ntp.config</code> configuration."
+msgstr "Use o botão de alternância <strong>do modo Editar</strong> para editar manualmente a configuração atual <code>do ntp.config</code>."
+
+msgid "Specify a public NTP server or a private one on your local network. IPv4 and IPv6 address, or a fully qualified domain name (FQDN) are acceptable values."
+msgstr "Especifique um servidor NTP público ou um servidor privado em sua rede local. O endereço IPv4 e IPv6 ou um nome de domínio totalmente qualificado (FQDN) são valores aceitáveis."
+
+msgid "Public NTP servers supporting Network Time Security (NTS) may be specified with the <code>nts</code> suffix."
+msgstr "Os servidores NTP públicos que oferecem suporte ao Network Time Security (NTS) podem ser especificados com o sufixo <code>nts</code>."
+
+msgid "Examples of valid server entries include <code>%s</code>, <code>%s</code> and <code>%s</code>."
+msgstr "Exemplos de entradas de servidor válidas incluem <code>%s</code>, <code>%s</code> e <code>%s</code>."
+
+msgid "Current <code>ntpq peer</code> status is displayed below. An asterisk (<code>*</code>) indicates the preferred server."
+msgstr "O status atual <code>do par ntpq</code> é exibido abaixo. Um asterisco<code>(*</code>) indica o servidor preferencial."
+
+msgid "NTP configuration cannot be empty"
+msgstr "A configuração do NTP não pode estar vazia"
+
+msgid "Restarting ntpd.service"
+msgstr "Reiniciar o ntpd.service"
+
+msgid "Please enter a valid NTP server"
+msgstr "Digite um servidor NTP válido"
+
+msgid "Attempting to start ntp.service"
+msgstr "Tentativa de iniciar o ntp.service"
+
+msgid "Attempting to stop ntp.service"
+msgstr "Tentativa de interromper o ntp.service"
+
+msgid "NTP configuration not found at %s"
+msgstr "Configuração de NTP não encontrada em %s"
+
+msgid "NTP configuration updated"
+msgstr "Configuração NTP atualizada"
+
+msgid "Advertising device as a Tailscale exit node"
+msgstr "Dispositivo de publicidade como um nó de saída do Tailscale"
+
+msgid "Attempting to optimize UDP throughput"
+msgstr "Tentativa de otimizar a taxa de transferência UDP"
+
+msgid "Kernel transport layer offloads enabled for UDP"
+msgstr "Descargas da camada de transporte do kernel ativadas para UDP"
+
+msgid "Failed to enable kernel transport layer offloads for UDP"
+msgstr "Falha ao ativar as descargas da camada de transporte do kernel para UDP"
+
+msgid "Attempting to set tailscale up"
+msgstr "Tentativa de configurar o tailscale"
+
+msgid "Attempting to set tailscale down"
+msgstr "Tentativa de reduzir o tailscale"
+
+msgid "Attempting to disconnect from tailscale"
+msgstr "Tentativa de desconectar-se do tailscale"
+
+msgid "Disconnected from tailscale and expired node key"
+msgstr "Desconectado do tailscale e com a chave de nó expirada"
+
+msgid "Unable to disconnect from tailscale"
+msgstr "Não é possível desconectar do tailscale"
+
+msgid "Expected tailscale binary not found at: %"
+msgstr "O binário esperado do tailscale não foi encontrado em: %"
+
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "Uma extensão de nó de saída VPN Tailscale para RaspAP"
+
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Não foi possível recuperar o login do Tailscale. Selecione <strong>%s</strong> para continuar."
+
+msgid "Start Tailscale"
+msgstr "Iniciar Tailscale"
+
+msgid "Stop Tailscale"
+msgstr "Parar o Tailscale"
+
+msgid "Next"
+msgstr "Próximo"
+
+msgid "Device approved and activated as a Tailscale exit node"
+msgstr "Dispositivo aprovado e ativado como um nó de saída Tailscale"
+
+msgid "Not connected: Login required."
+msgstr "Não conectado: É necessário fazer login."
+
+msgid "Tailscale VPN"
+msgstr "VPN em escala de cauda"
+
+msgid "Exit node activated"
+msgstr "Nó de saída ativado"
+
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "O dispositivo <code>%s</code> está conectado com o endereço <code>%s</code> e oferece um <strong>nó de saída</strong>."
+
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "Consulte o site %s para saber como usar esse nó de saída com seus dispositivos."
+
+msgid "Allow exit node"
+msgstr "Permitir nó de saída"
+
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "O dispositivo <code>%s</code> está aguardando aprovação como um nó de saída."
+
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Localize o emblema <code>%s</code> <strong>Exit Node (Nó de saída</strong> ) na lista de máquinas."
+
+msgid "Open Tailscale Machines"
+msgstr "Máquinas abertas em escala de cauda"
+
+msgid "To allow this device as an exit node, choose <strong>Open Tailscale Machines</strong>."
+msgstr "Para permitir esse dispositivo como um nó de saída, selecione <strong>Abrir máquinas em escala de cauda</strong>."
+
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "No menu de ícones %s do nó de saída, abra o painel %s ."
+
+msgid "Edit route settings"
+msgstr "Editar configurações de rota"
+
+msgid "Login to Tailscale"
+msgstr "Faça login no Tailscale"
+
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Para conectar o dispositivo %s à sua rede traseira, selecione %s."
+
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "Depois de fazer o login, selecione <strong>Próximo</strong> para continuar."
+
+msgid "Configure exit node"
+msgstr "Configurar o nó de saída"
+
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "O dispositivo <code>%s</code> está conectado à sua tailnet com o endereço <code>%s</code>."
+
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as a <strong>exit node</strong>"
+msgstr "Por padrão, o Tailscale roteia apenas o tráfego entre os dispositivos nos quais foi instalado. Você também pode rotear todo o tráfego público da Internet configurando um dispositivo em sua rede como um <strong>nó de saída</strong>"
+
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Quando você roteia todo o tráfego por meio de um nó de saída, está efetivamente usando rotas padrão (0.0.0.0/0, ::/0), da mesma forma que faria se estivesse usando uma VPN típica."
+
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "Você tem a opção de configurar esse dispositivo como um nó de saída ou usar outro nó de saída em sua tailnet."
+
+msgid "Select an existing exit node on your tailnet"
+msgstr "Selecione um nó de saída existente em sua tailnet"
+
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Essa é uma configuração típica se você estiver usando esse dispositivo como um roteador de viagem VPN, por exemplo."
+
+msgid "Configure this device as a new exit node"
+msgstr "Configurar esse dispositivo como um novo nó de saída"
+
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet will be routed through it."
+msgstr "Ao configurar esse dispositivo como um nó de saída, o tráfego público da Internet de dispositivos conectados em sua tailnet será roteado por ele."
+
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "Por motivos de segurança, você deve optar por ativar a funcionalidade do nó de saída. A primeira etapa é anunciar <code>%s</code> como um nó de saída em sua tailnet. Na próxima etapa, você permitirá que esse dispositivo seja um nó de saída."
+
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Anunciar <code>%s</code> como um nó de saída"
+
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Isso configura efetivamente o Tailscale como uma VPN para mascarar sua localização real, acessar conteúdo restrito por região ou aumentar a privacidade ao se conectar a partir de redes não confiáveis."
+
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Essa opção permite que o Tailscale saiba que seu dispositivo está pronto para rotear o tráfego."
+
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Recomendado para nós de saída do Tailscale com kernels Linux 6.2 ou posteriores, ele usa o encaminhamento de descarga de recebimento genérico (GRO) UDP para reduzir a sobrecarga da CPU."
+
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Essa opção habilita as descargas da camada de transporte para melhorar o desempenho."
+
+msgid "Select an exit node"
+msgstr "Selecione um nó de saída"
+
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "Para usar o <code>%s</code> como um gateway de VPN, configure o Tailscale para usar um nó de saída. O nó sugerido pelo Tailscale é indicado por uma estrela."
+
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Anunciar uma <strong>rota de sub-rede</strong> para a <code>%s</code> interface AP ativa"
+
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "As rotas de sub-rede permitem que você estenda sua rede Tailscale (conhecida como tailnet) para incluir dispositivos que não executam ou não podem executar o cliente Tailscale."
+
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "Uma rota de sub-rede funciona como um gateway entre sua tailnet e uma sub-rede física. A sub-rede da interface AP ativa está pré-configurada abaixo; edite-a, se necessário."
+
+msgid "Route LAN traffic through the exit node."
+msgstr "Encaminhar o tráfego da LAN pelo nó de saída."
+
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "Isso direcionará todo o tráfego da LAN para passar somente pelo seu nó de saída."
+
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Selecione <strong>Próximo</strong> para configurar <code>%s</code> para usar o nó de saída selecionado com essas opções."
+
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "Nenhum nó de saída foi encontrado em sua tailnet. Selecione <strong>Voltar</strong> para continuar."
+
+msgid "Using exit node"
+msgstr "Usando o nó de saída"
+
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "O dispositivo <code>%s</code> está configurado para usar o nó de saída <code>%s</code>. Ele tem o endereço Tailscale MagicDNS <code>%s</code>."
+
+msgid "Choose <strong>Save settings</strong> to continue."
+msgstr "Selecione <strong>Salvar configurações</strong> para continuar."
+
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Selecione <strong>Próximo</strong> para continuar."
+
+msgid "Tailnet status"
+msgstr "Status da tampa traseira"
+
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "O status atual <code>do capô traseiro</code> é exibido abaixo."
+
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Usar as configurações de DNS do Tailscale (padrão)."
+
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Desmarque para usar o DNS local. Isso define <code>--accept-dns=false</code>."
+
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Não use sub-redes Tailscale (padrão no Linux)."
+
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "Se houver rotas de sub-rede para a sua tailnet, você poderá rotear o tráfego do seu dispositivo para um roteador de sub-rede. A ativação dessa opção define <code>--accept-routes=true</code>."
+
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "Se as chaves expirarem para um dispositivo, as conexões de/para o endpoint fornecido deixarão de funcionar."
+
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "Essa opção usa <code>--force-reauth</code> para renovar as chaves desse dispositivo."
+
+msgid "Start capture"
+msgstr "Iniciar captura"
+
+msgid "Stop capture"
+msgstr "Parar a captura"
+
+msgid "Capture files"
+msgstr "Capturar arquivos"
+
+msgid "Capture interface"
+msgstr "Interface de captura"
+
+msgid "Output file"
+msgstr "Arquivo de saída"
+
+msgid "Path where capture file will be saved (.pcap format)"
+msgstr "Caminho onde o arquivo de captura será salvo (formato .pcap)"
+
+msgid "File will be saved with .pcap extension"
+msgstr "O arquivo será salvo com a extensão .pcap"
+
+msgid "Capture filter (BPF syntax)"
+msgstr "Filtro de captura (sintaxe BPF)"
+
+msgid "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
+msgstr "Sintaxe do Berkeley Packet Filter. Deixe em branco para capturar todo o tráfego."
+
+msgid "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
+msgstr "Exemplos: <code>porta 80</code>, <code>host 192.168.1.1</code>, <code>tcp e não porta 22</code>"
+
+msgid "Capture limits"
+msgstr "Limites de captura"
+
+msgid "Packet count limit"
+msgstr "Limite de contagem de pacotes"
+
+msgid "Stop capture after this many packets. Leave empty for unlimited."
+msgstr "Interrompa a captura após essa quantidade de pacotes. Deixe em branco para ilimitado."
+
+msgid "Duration limit (seconds)"
+msgstr "Limite de duração (segundos)"
+
+msgid "Stop capture after this many seconds. Leave empty for unlimited."
+msgstr "Interrompa a captura após esse número de segundos. Deixe em branco para ilimitado."
+
+msgid "Ring buffer settings"
+msgstr "Configurações do buffer de anel"
+
+msgid "File size (KB)"
+msgstr "Tamanho do arquivo (KB)"
+
+msgid "Create new file when this size is reached. Leave empty to disable."
+msgstr "Criar novo arquivo quando esse tamanho for atingido. Deixe em branco para desativar."
+
+msgid "10000 = 10 MB per file"
+msgstr "10000 = 10 MB por arquivo"
+
+msgid "Number of files"
+msgstr "Número de arquivos"
+
+msgid "Maximum number of ring buffer files to keep. Oldest files are deleted."
+msgstr "Número máximo de arquivos do buffer de anel a serem mantidos. Os arquivos mais antigos são excluídos."
+
+msgid "Advanced options"
+msgstr "Opções avançadas"
+
+msgid "Snapshot length (bytes)"
+msgstr "Comprimento do instantâneo (bytes)"
+
+msgid "Limit the amount of data captured per packet. Leave empty for full packets."
+msgstr "Limite a quantidade de dados capturados por pacote. Deixe em branco para pacotes completos."
+
+msgid "96 bytes captures headers only, reduces file size"
+msgstr "96 bytes capturam apenas os cabeçalhos, reduzindo o tamanho do arquivo"
+
+msgid "Promiscuous mode"
+msgstr "Modo promíscuo"
+
+msgid "Capture all packets on the network segment, not just those destined for this interface"
+msgstr "Capturar todos os pacotes no segmento de rede, não apenas aqueles destinados a essa interface"
+
+msgid "Quick filter presets"
+msgstr "Predefinições rápidas de filtro"
+
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Os arquivos de captura gerados pelo <code>tshark</code> são exibidos abaixo."
+
+msgid "No capture files found in /tmp directory"
+msgstr "Nenhum arquivo de captura encontrado no diretório /tmp"
+
+msgid "Filename"
+msgstr "Nome do arquivo"
+
+msgid "Size"
+msgstr "Tamanho"
+
+msgid "Modified"
+msgstr "Modificado"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "Download file"
+msgstr "Baixar arquivo"
+
+msgid "Delete file"
+msgstr "Excluir arquivo"
+
+msgid "Confirm deletion"
+msgstr "Confirmar a exclusão"
+
+msgid "Are you sure you want to delete this file?"
+msgstr "Tem certeza de que deseja excluir esse arquivo?"
+
+msgid "All Traffic"
+msgstr "Todo o tráfego"
+
+msgid "HTTP/HTTPS"
+msgstr "HTTP/HTTPS"
+
+msgid "ICMP (Ping)"
+msgstr "ICMP (Ping)"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Exclude SSH"
+msgstr "Excluir SSH"
+
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "Uma captura de pacote da CLI do Wireshark (TShark) para o RaspAP"
+
+msgid "Information provided by tshark"
+msgstr "Informações fornecidas pelo tshark"
+
+msgid "Total: %d file(s), %s"
+msgstr "Total: %d arquivo(s), %s"
+
+msgid "Captive portal"
+msgstr "Portal cativo"
+
+msgid "Gateway interface"
+msgstr "Interface de gateway"
+
+msgid "Gateway name"
+msgstr "Nome do gateway"
+
+msgid "Gateway address"
+msgstr "Endereço do gateway"
+
+msgid "Gateway port"
+msgstr "Porta de gateway"
+
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "O padrão é a interface de AP ativa, normalmente <code>wlan0</code>"
+
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Detectado automaticamente a partir da interface do gateway, se não for especificado"
+
+msgid "Start portal"
+msgstr "Iniciar portal"
+
+msgid "Stop portal"
+msgstr "Parar o portal"
+
+msgid "Information provided by nodogsplash"
+msgstr "Informações fornecidas por nodogsplash"
+
+msgid "Stop portal service"
+msgstr "Interromper o serviço do portal"
+
+msgid "Start portal service"
+msgstr "Iniciar o serviço do portal"
+
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "A alteração do serviço do portal interromperá momentaneamente o tráfego de clientes. Selecione <strong>Prosseguir</strong> para continuar."
+
+msgid "Interface to be managed by the portal"
+msgstr "Interface a ser gerenciada pelo portal"
+
+msgid "Name of your gateway (available as \\$gatewayname variable)"
+msgstr "Nome do seu gateway (disponível como variável \\$gatewayname)"
+
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "Endereço IP do roteador. Deixe em branco para a detecção automática"
+
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Porta do servidor HTTP do Nodogsplash"
+
+msgid "Maximum clients"
+msgstr "Máximo de clientes"
+
+msgid "Session timeout (minutes)"
+msgstr "Tempo limite da sessão (minutos)"
+
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "Tempo limite de inatividade da pré-autenticação (minutos)"
+
+msgid "Does not include users on the trusted MAC list"
+msgstr "Não inclui usuários na lista de MACs confiáveis"
+
+msgid "Auth idle timeout (minutes)"
+msgstr "Tempo limite de inatividade da autenticação (minutos)"
+
+msgid "Check interval (seconds)"
+msgstr "Intervalo de verificação (segundos)"
+
+msgid "MAC address control"
+msgstr "Controle de endereço MAC"
+
+msgid "MAC mechanism"
+msgstr "Mecanismo MAC"
+
+msgid "Blocked MAC list"
+msgstr "Lista de MACs bloqueados"
+
+msgid "Trusted MAC list"
+msgstr "Lista de MACs confiáveis"
+
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "Esses dispositivos não estão sujeitos a regras de autenticação ou de firewall"
+
+msgid "Maximum number of concurrent authenticated users"
+msgstr "Número máximo de usuários autenticados simultâneos"
+
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "Duração padrão da sessão em minutos. 0 = ilimitado"
+
+msgid "Time before unauthenticated idle users are removed"
+msgstr "Tempo até que os usuários inativos não autenticados sejam removidos"
+
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "Tempo antes que os usuários ociosos autenticados sejam desautenticados"
+
+msgid "How often to check client timeouts"
+msgstr "Com que frequência verificar os tempos limite do cliente"
+
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Block: os MACs listados na blocklist são bloqueados. Allow: somente os MACs da lista de permissões são permitidos"
+
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "Exemplo: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "Endereços MAC separados por vírgula que ignoram totalmente a autenticação"
+
+msgid "Block (blocklist mode)"
+msgstr "Bloqueio (modo de lista de bloqueio)"
+
+msgid "Allow (allowlist mode)"
+msgstr "Permitir (modo de lista de permissões)"
+
+msgid "Gateway IP range"
+msgstr "Faixa de IP do gateway"
+
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Padrão: 0.0.0.0/0 (todos os endereços)"
+
+msgid "Debug level"
+msgstr "Nível de depuração"
+
+msgid "Firewall settings"
+msgstr "Configurações de firewall"
+
+msgid "Allow all traffic for authenticated users"
+msgstr "Permitir todo o tráfego para usuários autenticados"
+
+msgid "Allow DNS for pre-authenticated users"
+msgstr "Permitir DNS para usuários pré-autenticados"
+
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "Faixa de IP a ser gerenciada na notação CIDR. Deixe em branco para todos os endereços"
+
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Quantidade de detalhes de registro relatados pelo nodogsplash.service"
+
+msgid "0 - Errors only"
+msgstr "0 - Somente erros"
+
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Erros, avisos, informações"
+
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Erros, avisos, informações, detalhado"
+
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Erros, avisos, informações, detalhamento, depuração"
+
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "Quando ativado, os usuários autenticados têm acesso irrestrito"
+
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Necessário para que os clientes resolvam os nomes de domínio antes da autenticação"
+
+msgid "Portal status"
+msgstr "Status do portal"
+
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "O status atual <code>do nodogsplash</code> é exibido abaixo."
 

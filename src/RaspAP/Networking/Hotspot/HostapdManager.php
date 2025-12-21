@@ -234,9 +234,9 @@ class HostapdManager
         }
 
         // bridge handling
-        if (!empty($params['bridge'])) {
+        if (!empty($params['bridgeName'])) {
             $config[] = 'interface=' . $params['interface'];
-            $config[] = 'bridge=' . $params['bridge'];
+            $config[] = 'bridge=' . $params['bridgeName'];
         } else {
             $config[] = 'interface=' . $params['interface'];
         }
@@ -248,6 +248,12 @@ class HostapdManager
 
         if (!empty($params['max_num_sta'])) {
             $config[] = 'max_num_sta=' . (int)$params['max_num_sta'];
+        }
+
+        // add logging configuration if enabled
+        if (!empty($params['log_enable'])) {
+            $config[] = 'logger_syslog=-1';
+            $config[] = 'logger_syslog_level=0';
         }
 
         // optional additional user config
@@ -351,17 +357,6 @@ class HostapdManager
     }
 
     /**
-     * Enables or disables hostapd logging
-     *
-     * @param int $logEnable
-     */
-    private function handleLogState(int $logEnable): void
-    {
-        $script = $logEnable === 1 ? 'enablelog.sh' : 'disablelog.sh';
-        exec('sudo ' . RASPI_CONFIG . '/hostapd/' . $script);
-    }
-
-    /**
      * Parses optional /etc/hostapd/hostapd.conf.users file
      *
      * @return string $tmp
@@ -440,8 +435,6 @@ class HostapdManager
      */
     public function persistHostapdIni(array $states, string $apIface, string $cliIface, array $previousIni = []): bool
     {
-        $this->applyLogState($states['LogEnable']);
-
         // compose new ini payload
         $cfg = [
             'WifiInterface'  => $apIface,
@@ -458,17 +451,6 @@ class HostapdManager
             }
         }
         return write_php_ini($cfg, RASPI_CONFIG . '/hostapd.ini');
-    }
-
-    /**
-     * Enables or disables hostapd logging
-     *
-     * @param int $logEnable 1 = enable, 0 = disable
-     */
-    private function applyLogState(int $logEnable): void
-    {
-        $script = $logEnable === 1 ? 'enablelog.sh' : 'disablelog.sh';
-        exec('sudo ' . RASPI_CONFIG . '/hostapd/' . $script);
     }
 
     /**

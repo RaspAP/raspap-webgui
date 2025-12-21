@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-25 16:03\n"
+"PO-Revision-Date: 2025-11-20 12:20\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -33,14 +33,14 @@ msgstr "Tableau de bord"
 msgid "WiFi client"
 msgstr "Client WiFi"
 
+msgid "Status"
+msgstr "État"
+
 msgid "Hotspot"
 msgstr "Hotspot"
 
 msgid "Logging"
 msgstr "Journalisation"
-
-msgid "Status"
-msgstr "État"
 
 msgid "Mem Use"
 msgstr "Mémoire"
@@ -743,6 +743,27 @@ msgstr "Activer la journalisation"
 msgid "Logfile output"
 msgstr "Sortie de journal"
 
+msgid "Log level"
+msgstr "Niveau d'enregistrement"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Des niveaux plus élevés réduisent la verbosité des journaux. Il est recommandé d'opter pour un niveau d'information."
+
+msgid "Verbose debugging"
+msgstr "Débogage verbeux"
+
+msgid "Debugging"
+msgstr "Débogage"
+
+msgid "Informational"
+msgstr "Information"
+
+msgid "Notification"
+msgstr "Notification"
+
+msgid "Warning"
+msgstr "Avertissement"
+
 msgid "WiFi client AP mode"
 msgstr "Mode AP client WiFi"
 
@@ -976,7 +997,7 @@ msgid "Devices"
 msgstr "Appareils"
 
 msgid "Diagnostics"
-msgstr "Diagnostics"
+msgstr "Diagnostiques"
 
 msgid "Network devices"
 msgstr "Appareils réseau"
@@ -1163,7 +1184,7 @@ msgid "CPU Load"
 msgstr "Charge du processeur"
 
 msgid "CPU Temp"
-msgstr "Température du CPU"
+msgstr "Temp. CPU"
 
 msgid "Reboot"
 msgstr "Redémarrer"
@@ -1375,9 +1396,12 @@ msgstr "Vérification de l'état de l'adaptateur"
 msgid "Inspect adapters"
 msgstr "Inspecter les adaptateurs"
 
+msgid "Theme"
+msgstr "Thème"
+
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr "Données utilisées"
+msgstr "Utilisation des données"
 
 msgid "Data usage monitoring"
 msgstr "Surveillance de l'utilisation des données"
@@ -1600,7 +1624,7 @@ msgid "adblock"
 msgstr "AdBlock"
 
 msgid "Ad Blocking"
-msgstr "Ad Blocking"
+msgstr "Blocage de la pub"
 
 msgid "Start Ad Blocking"
 msgstr "Lancer le blocage des publicités"
