@@ -375,7 +375,6 @@ class DhcpcdManager
                 }
             }
             if (!$matched && !preg_match('/^interface/', $line)) {
-                // check if this line matches a key we've already processed (prevents duplicates)
                 $is_duplicate = false;
                 foreach ($processed_keys as $processed_key) {
                     if (strpos($line, $processed_key) === 0) {
@@ -383,7 +382,6 @@ class DhcpcdManager
                         break;
                     }
                 }
-                // also check if the line already exists in config (for non-static settings like nogateway)
                 if (!$is_duplicate && !in_array($line, $config, true)) {
                     $config[] = $line;
                 }
