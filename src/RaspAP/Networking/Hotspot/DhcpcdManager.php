@@ -131,15 +131,15 @@ class DhcpcdManager
             $dhcp_cfg = $this->removeIface($dhcp_cfg,'uap0');
             $dhcp_cfg .= $config;
         } else {
-            if (strpos($dhcp_cfg, 'interface '.$ap_iface) !== false &&
-                strpos($dhcp_cfg, 'nogateway') !== false) {
-                $config[] = 'nogateway';
-            }
             $config = join(PHP_EOL, $config);
             $dhcp_cfg = $this->removeIface($dhcp_cfg,'br0');
             $dhcp_cfg = $this->removeIface($dhcp_cfg,'uap0');
             if (!strpos($dhcp_cfg, 'metric')) {
-                $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$ap_iface.'\s.*?(?:\s*^\s*$|\s*nogateway)/ms', $config, $dhcp_cfg, 1);
+                $pattern = '/^#\sRaspAP\s' . preg_quote($ap_iface, '/') . '\sconfiguration\n' .
+                          '(?:.*\n)*?' .
+                          '(?:\n)*' .
+                          '(?=#\sRaspAP\s|\z)/m';
+                $dhcp_cfg = preg_replace($pattern, $config . "\n\n", $dhcp_cfg, 1);
             } else {
                 $metrics = true;
             }
@@ -199,12 +199,11 @@ class DhcpcdManager
             $status->addMessage('DHCP configuration for '.$iface.' added.', 'success');
         } else {
             $cfg = join(PHP_EOL, $cfg);
-            $dhcp_cfg = preg_replace(
-                '/^#\sRaspAP\s'.$iface.'\s.*?(?=\n*(?:^#\sRaspAP|^interface\s(?!'.$iface.'$)|\z))/ms',
-                $cfg . PHP_EOL,
-                $dhcp_cfg,
-                1
-            );
+            $pattern = '/^#\sRaspAP\s' . preg_quote($iface, '/') . '\sconfiguration\n' .
+                      '(?:.*\n)*?' .
+                      '(?:\n)*' .
+                      '(?=#\sRaspAP\s|\z)/m';
+            $dhcp_cfg = preg_replace($pattern, $cfg . "\n\n", $dhcp_cfg, 1);
         }
 
         return $dhcp_cfg;
@@ -363,18 +362,31 @@ class DhcpcdManager
         ];
 
         // merge existing settings with updates
+        $processed_keys = [];
         foreach ($existing_config as $line) {
             $matched = false;
             foreach ($static_settings as $key => $value) {
                 if (strpos($line, $key) === 0) {
                     $config[] = "$key=$value";
                     $matched = true;
+                    $processed_keys[] = $key;
                     unset($static_settings[$key]);
                     break;
                 }
             }
             if (!$matched && !preg_match('/^interface/', $line)) {
-                $config[] = $line;
+                // check if this line matches a key we've already processed (prevents duplicates)
+                $is_duplicate = false;
+                foreach ($processed_keys as $processed_key) {
+                    if (strpos($line, $processed_key) === 0) {
+                        $is_duplicate = true;
+                        break;
+                    }
+                }
+                // also check if the line already exists in config (for non-static settings like nogateway)
+                if (!$is_duplicate && !in_array($line, $config, true)) {
+                    $config[] = $line;
+                }
             }
         }
 
