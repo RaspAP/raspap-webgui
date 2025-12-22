@@ -57,8 +57,10 @@ body:
         - Raspberry Pi OS	Lite 64-bit Debian 12 (bookworm)
         - Raspberry Pi OS	Lite 32-bit Debian 12 (bookworm)
         - Raspberry Pi OS Desktop	64-bit Debian 12 (bookworm)
-        - Raspberry Pi OS Lite	64-bit Debian 11 (bullseye)
-        - Raspberry Pi OS Lite	32-bit Debian 11 (bullseye)
+        - Raspberry Pi OS Lite 64-bit Debian 11 (bullseye)
+        - Raspberry Pi OS Lite 32-bit Debian 11 (bullseye)
+        - Kali Linux 2025.3 64-bit
+        - Kali Linux 2025.3 32-bit
         - Armbian	23.11 (jammy)
         - Debian 12 (bookworm)
     validations:
