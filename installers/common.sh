@@ -425,13 +425,10 @@ function _prompt_install_feature() {
             $function
         fi
     elif [ "$opt" == "pv_option" ]; then
-        # pv_option has multiple options and is not a normal binary flag [enabled(1)/disabled(0)].
-        # We must evaluate the input flag and its value in this block
-        local opt_value=${!opt:-0} # Default to zero if somehow pv_option is still unassigned.
+        local opt_value=${!opt:-0}
         if [ "$opt_value" == 0 ]; then
-            echo "(Skipped)" # Skip if VPN Provider not selected / unassigned
+            echo "(Skipped)"
         else
-            # Iterate over the defined VPN Providers by pulling the valid providers from the config file
             local valid_ids=($(jq -r '.providers[].id' "$webroot_dir/config/vpn-providers.json"))
             local found=0
             for id in "${valid_ids[@]}"; do
@@ -441,14 +438,14 @@ function _prompt_install_feature() {
                 fi
             done
             if [ $found == 1 ]; then
-                echo -e # Newline for UI / clean output
+                echo -e
                 $function
             else
                 _install_status 1 "Invalid VPN provider ID $opt_value - (Skipped)"
             fi
         fi
     elif [ "${!opt}" == 1 ]; then
-        echo -e # Newline for UI / clean output
+        echo -e
         $function
     else
         echo "(Skipped)"
