@@ -32,7 +32,9 @@ class HotspotService
         'b'  => '802.11b - 2.4 GHz',
         'g'  => '802.11g - 2.4 GHz',
         'n'  => '802.11n - 2.4/5 GHz',
-        'ac' => '802.11ac - 5 GHz'
+        'ac' => '802.11ac - 5 GHz',
+        'ax' => '802.11ax - 2.4/5/6 GHz',
+        'be' => '802.11be - 2.4/5/6 GHz'
     ];
 
     // encryption types
@@ -42,6 +44,21 @@ class HotspotService
         'TKIP CCMP'  => 'TKIP+CCMP'
     ];
 
+    // 802.11ax (Wi-Fi 6) channel widths
+    private const HE_CHANNEL_WIDTHS = [
+        0 => '20/40 MHz',
+        1 => '80 MHz',
+        2 => '160 MHz'
+    ];
+
+    // 802.11be (Wi-Fi 7) channel widths
+    private const EHT_CHANNEL_WIDTHS = [
+        0 => '20 MHz',
+        1 => '40 MHz',
+        2 => '80 MHz',
+        3 => '160 MHz',
+        4 => '320 MHz (6 GHz only)'
+    ];
 
     public function __construct()
     {
@@ -67,7 +84,23 @@ class HotspotService
     }
 
     /**
-     * Returns translated security modes.
+     * Returns 802.11ax (Wi-Fi 6) channel widths
+     */
+    public static function getHeChannelWidths(): array
+    {
+        return self::HE_CHANNEL_WIDTHS;
+    }
+
+    /**
+     * Returns 802.11be (Wi-Fi 7) channel widths
+     */
+    public static function getEhtChannelWidths(): array
+    {
+        return self::EHT_CHANNEL_WIDTHS;
+    }
+
+    /**
+     * Returns translated security modes
      */
     public static function getSecurityModes(): array
     {
@@ -93,7 +126,6 @@ class HotspotService
             2 => _('Required (for supported clients)'),
         ];
     }
-
 
     /**
      * Validates user input + saves configs for hostapd, dnsmasq & dhcp
@@ -138,7 +170,6 @@ class HotspotService
 
         if ($validated === false) {
             $status->addMessage('Unable to save WiFi hotspot settings due to validation errors', 'danger');
-            error_log("HotspotService::validate() -> validated = false");
             return false;
         }
 
@@ -151,6 +182,13 @@ class HotspotService
             $validated['repeater']  = !empty($states['RepeaterEnable']);
             $validated['dualmode']  = !empty($states['DualAPEnable']);
             $validated['txpower']   = $post_data['txpower'];
+
+            // add 802.11ax/be specific parameters if present
+            if (in_array($validated['hw_mode'], ['ax', 'be'])) {
+                if ($validated['wpa'] < 4 && $validated['hw_mode'] === 'be') {
+                    $status->addMessage('Note: WiFi 7 works best with WPA3 security', 'info');
+                }
+            }
 
             // hostapd
             $config = $this->hostapd->buildConfig($validated, $status);
