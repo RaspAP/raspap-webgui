@@ -154,6 +154,7 @@ class HostapdManager
         $config[] = 'auth_algs=1';
 
         $wpa = $params['wpa'];
+        $wpa_numeric = $wpa;
         $wpa_key_mgmt = 'WPA-PSK';
 
         if ($wpa == 4) {
