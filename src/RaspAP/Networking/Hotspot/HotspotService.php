@@ -33,8 +33,8 @@ class HotspotService
         'g'  => '802.11g - 2.4 GHz',
         'n'  => '802.11n - 2.4/5 GHz',
         'ac' => '802.11ac - 5 GHz',
-        'ax' => '802.11ax (Wi-Fi 6) - 2.4/5/6 GHz',
-        'be' => '802.11be (Wi-Fi 7) - 2.4/5/6 GHz'
+        'ax' => '802.11ax - 2.4/5/6 GHz',
+        'be' => '802.11be - 2.4/5/6 GHz'
     ];
 
     // encryption types
