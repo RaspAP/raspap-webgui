@@ -128,27 +128,6 @@ class HotspotService
     }
 
     /**
-     * Checks if hardware mode supports advanced features
-     *
-     * @param string $mode
-     * @return array capabilities
-     */
-    public static function getModeCapabilities(string $mode): array
-    {
-        $capabilities = [
-            'a'  => ['wifi_generation' => 1, 'max_width' => 20, 'bands' => ['5']],
-            'b'  => ['wifi_generation' => 2, 'max_width' => 22, 'bands' => ['2.4']],
-            'g'  => ['wifi_generation' => 3, 'max_width' => 20, 'bands' => ['2.4']],
-            'n'  => ['wifi_generation' => 4, 'max_width' => 40, 'bands' => ['2.4', '5']],
-            'ac' => ['wifi_generation' => 5, 'max_width' => 160, 'bands' => ['5']],
-            'ax' => ['wifi_generation' => 6, 'max_width' => 160, 'bands' => ['2.4', '5', '6'], 'supports_he' => true],
-            'be' => ['wifi_generation' => 7, 'max_width' => 320, 'bands' => ['2.4', '5', '6'], 'supports_he' => true, 'supports_eht' => true]
-        ];
-
-        return $capabilities[$mode] ?? $capabilities['g'];
-    }
-
-    /**
      * Validates user input + saves configs for hostapd, dnsmasq & dhcp
      *
      * @param array         $wpa_array
@@ -206,14 +185,6 @@ class HotspotService
 
             // add 802.11ax/be specific parameters if present
             if (in_array($validated['hw_mode'], ['ax', 'be'])) {
-                // Log advanced mode configuration
-                error_log(sprintf(
-                    "Configuring advanced WiFi mode: %s with channel %d",
-                    $validated['hw_mode'],
-                    $validated['channel']
-                ));
-
-                // Validate WPA3 for WiFi 6/7
                 if ($validated['wpa'] < 4 && $validated['hw_mode'] === 'be') {
                     $status->addMessage('Note: WiFi 7 works best with WPA3 security', 'info');
                 }
