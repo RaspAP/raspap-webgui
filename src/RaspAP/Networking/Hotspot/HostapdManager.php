@@ -466,27 +466,6 @@ class HostapdManager
     }
 
     /**
-     * Gets capabilities for a given IEEE 802.11 mode
-     *
-     * @param string $mode
-     * @return array
-     */
-    public function getModeCapabilities(string $mode): array
-    {
-        $capabilities = [
-            'a'  => ['bands' => ['5'], 'max_width' => 20],
-            'b'  => ['bands' => ['2.4'], 'max_width' => 22],
-            'g'  => ['bands' => ['2.4'], 'max_width' => 20],
-            'n'  => ['bands' => ['2.4', '5'], 'max_width' => 40],
-            'ac' => ['bands' => ['5'], 'max_width' => 160],
-            'ax' => ['bands' => ['2.4', '5', '6'], 'max_width' => 160],
-            'be' => ['bands' => ['2.4', '5', '6'], 'max_width' => 320]
-        ];
-
-        return $capabilities[$mode] ?? $capabilities['g'];
-    }
-
-    /**
      * Extracts channel width from mode settings
      *
      * @param array $settings mode settings array
