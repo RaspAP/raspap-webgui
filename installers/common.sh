@@ -158,7 +158,7 @@ function _get_linux_distro() {
 # Sets php package option based on Linux version, abort if unsupported distro
 function _set_php_package() {
     case $RELEASE in
-        13) # Debian 13 trixie
+        13|2025.*) # Debian 13 trixie, Kali Linux 2025
             php_package="php8.4-fpm"
             phpiniconf="/etc/php/8.4/fpm/php.ini" ;;
         23.05|12*) # Debian 12 & Armbian 23.05
@@ -246,7 +246,7 @@ function _install_dependencies() {
     else
         echo "${php_package} will be installed from the main deb sources list"
     fi
-    if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ]; then
+    if [ ${OS,,} = "debian" ] || [ ${OS,,} = "ubuntu" ] || [ ${OS,,} = "kali" ]; then
         dhcpcd_package="dhcpcd5"
         iw_package="iw"
         rsync_package="rsync"
@@ -287,9 +287,10 @@ function _install_dependencies() {
 
     if [[ "$php_package" == *"-fpm" ]]; then
         _install_log "Enabling lighttpd fastcgi-php-fpm module for $php_package"
-        sudo lighty-enable-mod fastcgi-php-fpm || _install_status 1 "Unable to enable fastcgi-php-fpm module"
+        sudo lighty-enable-mod fastcgi-php-fpm 2>&1 | grep -qE "already enabled" || \
+            _install_status 1 "Unable to enable fastcgi-php-fpm module"
+        sudo systemctl restart $php_package.service || _install_status 1 "Unable to restart $php_package.service"
     fi
-
     _install_status 0
 }
 
@@ -324,9 +325,6 @@ function _create_hostapd_scripts() {
     _install_log "Creating hostapd logging & control scripts"
     sudo mkdir $raspap_dir/hostapd || _install_status 1 "Unable to create directory '$raspap_dir/hostapd'"
 
-    # Copy logging shell scripts
-    sudo cp "$webroot_dir/installers/"enablelog.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move logging scripts"
-    sudo cp "$webroot_dir/installers/"disablelog.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move logging scripts"
     # Copy service control shell scripts
     sudo cp "$webroot_dir/installers/"servicestart.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move service control scripts"
     # Change ownership and permissions of hostapd control scripts
@@ -426,7 +424,28 @@ function _prompt_install_feature() {
         else
             $function
         fi
+    elif [ "$opt" == "pv_option" ]; then
+        local opt_value=${!opt:-0}
+        if [ "$opt_value" == 0 ]; then
+            echo "(Skipped)"
+        else
+            local valid_ids=($(jq -r '.providers[].id' "$webroot_dir/config/vpn-providers.json"))
+            local found=0
+            for id in "${valid_ids[@]}"; do
+                if [ "$id" == "$opt_value" ]; then
+                    found=1
+                    break
+                fi
+            done
+            if [ $found == 1 ]; then
+                echo -e
+                $function
+            else
+                _install_status 1 "Invalid VPN provider ID $opt_value - (Skipped)"
+            fi
+        fi
     elif [ "${!opt}" == 1 ]; then
+        echo -e
         $function
     else
         echo "(Skipped)"
@@ -641,18 +660,36 @@ function _download_latest_files() {
     if [ -d "$webroot_dir" ] && [ "$update" == 0 ]; then
         sudo mv $webroot_dir "$webroot_dir.`date +%F-%R`" || _install_status 1 "Unable to move existing webroot directory"
     elif [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
-        exclude='--exclude=ajax/system/sys_read_logfile.php'
-        shopt -s extglob
-        sudo find "$webroot_dir" ! -path "${webroot_dir}/ajax/system/sys_read_logfile.php" -delete 2>/dev/null
+        # Preserve user plugins temporarily
+        if [ -d "$webroot_dir/plugins" ]; then
+            sudo cp -r "$webroot_dir/plugins" "/tmp/raspap-user-plugins"
+        fi
+
+        sudo find "$webroot_dir" -mindepth 1 \
+          ! -path "${webroot_dir}/ajax/system/sys_read_logfile.php" \
+          ! -path "${webroot_dir}/plugins" \
+          ! -path "${webroot_dir}/plugins/*" \
+          -delete 2>/dev/null
+
+        # Remove plugins to permit clean rsync
+        sudo rm -rf "$webroot_dir/plugins"
     fi
 
     _install_log "Installing application to $webroot_dir"
     sudo rsync -av $exclude "$source_dir"/ "$webroot_dir"/ >/dev/null 2>&1 || _install_status 1 "Unable to install files to $webroot_dir"
 
+    # Restore user plugins after rsync
+    if [ "$upgrade" == 1 ] || [ "$update" == 1 ]; then
+        if [ -d "/tmp/raspap-user-plugins" ]; then
+            sudo find /tmp/raspap-user-plugins -mindepth 1 -maxdepth 1 -type d -exec cp -r {} "$webroot_dir/plugins/" \; 2>/dev/null
+            sudo rm -rf "/tmp/raspap-user-plugins"
+        fi
+    fi
+
     if [ "$update" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
         sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
-        
+
         if [ -f /tmp/raspap.auth ]; then
             _install_log "Applying existing authentication file to ${raspap_dir}"
             sudo mv /tmp/raspap.auth $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
@@ -820,8 +857,8 @@ function _configure_networking() {
     "-A POSTROUTING -s 192.168.50.0/24 ! -d 192.168.50.0/24 -j MASQUERADE"
     )
     for rule in "${rules[@]}"; do
-        if grep -- "$rule" $rulesv4 > /dev/null; then
-            echo "Rule already exits: ${rule}"
+        if sudo grep -- "$rule" $rulesv4 > /dev/null; then
+            echo "Rule already exists: ${rule}"
         else
             rule=$(sed -e 's/^\(-A POSTROUTING\)/-t nat \1/' <<< $rule)
             echo "Adding rule: ${rule}"

@@ -1,8 +1,8 @@
 <div class="tab-pane active" id="server-settings">
-  <h4 class="mt-3">DHCP server settings</h4>
+  <h4 class="mt-3"><?php echo _("DHCP server settings"); ?></h4>
   <div class="row">
     <div class="mb-3 col-md-6">
-      <label for="code">Interface</label>
+      <label for="code"><?php echo _("Interface"); ?></label>
         <?php SelectorOptions('interface', $interfaces, $ap_iface, 'cbxdhcpiface', 'loadInterfaceDHCPSelect'); ?>
     </div>
   </div>
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <h5 class="mt-1">Static IP options</h5>
+  <h5 class="mt-1"><?php echo _("Static IP options"); ?></h5>
   <div class="row">
     <div class="mb-3 col-md-6" required>
       <label for="code"><?php echo _("IP Address"); ?></label>
@@ -90,7 +90,7 @@
     </div>
   </div>
 
-  <h5 class="mt-1">DHCP options</h5>
+  <h5 class="mt-1"><?php echo _("DHCP options"); ?></h5>
   <div class="row">
     <div class="mb-3 col-md-6">
       <div class="input-group">
@@ -107,34 +107,32 @@
   
   <div class="row">
     <div class="mb-3 col-md-6">
-      <label for="code"><?php echo _("Starting IP Address"); ?></label>
+      <label for="txtrangestart"><?php echo _("Starting IP Address"); ?></label>
       <input type="text" class="form-control ip_address" id="txtrangestart" name="RangeStart" maxlength="15" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid Starting IP Address."); ?>
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="mb-3 col-md-6">
-      <label for="code"><?php echo _("Ending IP Address"); ?></label>
+      <label for="txtrangeend"><?php echo _("Ending IP Address"); ?></label>
       <input type="text" class="form-control ip_address" id="txtrangeend" name="RangeEnd" maxlength="15" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid Ending IP Address."); ?>
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="mb-3 col-xs-3 col-sm-3">
-      <label for="code"><?php echo _("Lease Time"); ?></label>
+      <label for="txtrangeleasetime"><?php echo _("Lease Time"); ?></label>
       <input type="text" class="form-control" id="txtrangeleasetime" name="RangeLeaseTime" />
       <div class="invalid-feedback">
         <?php echo _("Please provide a valid Lease Time."); ?>
       </div>
     </div>
     <div class="col-xs-3 col-sm-3">
-      <label for="code"><?php echo _("Interval"); ?></label>
+      <label for="cbxrangeleasetimeunits"><?php echo _("Interval"); ?></label>
       <select id="cbxrangeleasetimeunits" name="RangeLeaseTimeUnits" class="form-select" >
         <option value="m"><?php echo _("Minute(s)"); ?></option>
         <option value="h"><?php echo _("Hour(s)"); ?></option>

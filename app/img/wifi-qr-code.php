@@ -12,6 +12,12 @@ if (!isset($_SERVER['HTTP_REFERER'])) {
 
 $hostapd = parse_ini_file(RASPI_HOSTAPD_CONFIG, false, INI_SCANNER_RAW);
 
+// handle parse failure
+if ($hostapd === false) {
+    header('HTTP/1.0 500 Internal Server Error');
+    exit('Error: Unable to parse hostapd configuration');
+}
+
 // assume WPA encryption and get the passphrase
 $type = "WPA";
 $password = isset($hostapd['wpa_psk']) ? $hostapd['wpa_psk'] : $hostapd['wpa_passphrase'];

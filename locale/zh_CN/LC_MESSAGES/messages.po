@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-14 08:51\n"
-"Last-Translator: BANKA2017 <kdwnil@hotmail.com>\n"
+"PO-Revision-Date: 2025-11-20 12:19\n"
+"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
 "X-Crowdin-Language: zh-CN\n"
 "X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 10\n"
 
 #: index.php
 msgid "RaspAP Wifi Configuration Portal"
@@ -22,8 +24,8 @@ msgstr "RaspAP WLAN热点设置中心"
 msgid "Toggle navigation"
 msgstr "响应式导航"
 
-msgid "RaspAP Wifi Portal"
-msgstr "RaspAP WLAN热点"
+msgid "RaspAP Admin Panel"
+msgstr "RaspAP 管理面板"
 
 msgid "Dashboard"
 msgstr "仪表板"
@@ -31,14 +33,20 @@ msgstr "仪表板"
 msgid "WiFi client"
 msgstr "WLAN客户端设置"
 
+msgid "Status"
+msgstr "状态"
+
 msgid "Hotspot"
 msgstr "WLAN热点设置"
 
-msgid "Memory Use"
-msgstr "内存用量"
+msgid "Logging"
+msgstr "记录"
 
-msgid "CPU Temp"
-msgstr "CPU 温度"
+msgid "Mem Use"
+msgstr "内存使用"
+
+msgid "CPU"
+msgstr "CPU"
 
 msgid "Networking"
 msgstr "网络设置"
@@ -54,9 +62,6 @@ msgstr "TOR代理设置"
 
 msgid "Authentication"
 msgstr "登录设置"
-
-msgid "Change Theme"
-msgstr "主题中心"
 
 msgid "System"
 msgstr "系统"
@@ -94,6 +99,69 @@ msgstr "新密码"
 
 msgid "Repeat new password"
 msgstr "重复新密码"
+
+msgid "Please provide a valid username."
+msgstr "请提供有效的用户名。"
+
+msgid "Please provide a valid password."
+msgstr "请提供有效密码。"
+
+msgid "Please enter your old password."
+msgstr "请输入您的旧密码。"
+
+msgid "Please enter a new password."
+msgstr "请输入新密码。"
+
+msgid "Please re-enter your new password."
+msgstr "请重新输入您的新密码。"
+
+msgid "Avatar"
+msgstr "头像"
+
+msgid "Click or tap to upload a new user avatar."
+msgstr "点击或轻点上传新的用户头像。"
+
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "接受<code>JPG、GIF 或 PNG</code>类型的图像文件。最大文件大小：2 MB。"
+
+msgid "Reset avatar"
+msgstr "重置头像"
+
+msgid "Enable limited privilege user"
+msgstr "启用有限权限用户"
+
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "该选项启用一个非管理员用户，该用户可以访问 RaspAP 的管理界面，但<strong>修改现有配置的能力有限</strong>。该用户在当前管理员用户注销后激活。"
+
+msgid "Admin login failed. Please try again."
+msgstr "管理员登录失败。请重试。"
+
+msgid "Limited privilege user mode enabled"
+msgstr "已启用有限权限用户模式"
+
+msgid "Failed to enable limited privilege user mode"
+msgstr "启用有限权限用户模式失败"
+
+msgid "Logout and enable limited user mode"
+msgstr "注销并启用有限用户模式"
+
+msgid "Limited user login"
+msgstr "限制用户登录"
+
+msgid "Limited user password"
+msgstr "有限用户密码"
+
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr "此操作将保存受限用户的凭证并注销当前管理员用户。保存并启用有限权限模式？"
+
+msgid "Save and logout"
+msgstr "保存并注销"
+
+msgid "Admin credentials updated successfully"
+msgstr "管理员证书更新成功"
+
+msgid "Limited user credentials updated successfully"
+msgstr "有限用户证书更新成功"
 
 #: includes/configure_client.php
 msgid "Client settings"
@@ -144,8 +212,32 @@ msgstr "隐藏"
 msgid "Not configured"
 msgstr "未配置"
 
+msgid "Connected"
+msgstr "连接"
+
+msgid "Known"
+msgstr "已知"
+
+msgid "Nearby"
+msgstr "附近"
+
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
 msgstr "<strong>提示:</strong> 若目标热点已打开WEP登录验证，本程序将不支持连接到此类网络"
+
+msgid "No Wifi stations found"
+msgstr "未找到 Wifi 站"
+
+msgid "Reinitialized wpa_supplicant. Choose <strong>Rescan</strong>."
+msgstr "重新初始化 wpa_supplicant。选择<strong>重新扫描</strong>。"
+
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "点击 \"重新扫描 \"搜索附近的 Wifi 站。"
+
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "单击 \"重新初始化 \"强制重新初始化<code>wpa_supplicant</code>。"
+
+msgid "Reinitialize"
+msgstr "重新初始化"
 
 #: includes/dashboard.php
 msgid "Interface Information"
@@ -205,8 +297,8 @@ msgstr "频率"
 msgid "Link Quality"
 msgstr "连接质量"
 
-msgid "Information provided by ip and iw and from system"
-msgstr "ip和iw以及系统所提供的信息"
+msgid "Information provided by raspap.system"
+msgstr "由 raspap.system 提供的信息"
 
 msgid "No MAC Address Found"
 msgstr "没有找到MAC地址"
@@ -241,15 +333,146 @@ msgstr "关闭wlan0接口"
 msgid "Connected Devices"
 msgstr "连接设备"
 
+msgid "Client: Ethernet cable"
+msgstr "客户端：以太网电缆"
+
+msgid "Current status"
+msgstr "当前状态"
+
+msgid "Ethernet"
+msgstr "以太网"
+
+msgid "Client: Smartphone (USB tethering)"
+msgstr "客户端：智能手机（USB 连接）"
+
+msgid "Smartphone"
+msgstr "智能手机"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Repeater"
+msgstr "中继器"
+
+msgid "Tethering"
+msgstr "系绳"
+
+msgid "Cellular"
+msgstr "手机"
+
+msgid "AP"
+msgstr "AP"
+
+msgid "Bridged"
+msgstr "桥接"
+
+msgid "Adblock"
+msgstr "广告拦截"
+
+msgid "VPN"
+msgstr "VPN"
+
+msgid "Netmask"
+msgstr "网络掩码"
+
+msgid "5G"
+msgstr "5G"
+
+msgid "2.4G"
+msgstr "2.4G"
+
+msgid "%d WLAN %s"
+msgstr "%d 无线局域网 %s"
+
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "客户"
+
+msgid "Mobile Data Client"
+msgstr "移动数据客户端"
+
+msgid "Mobile Data"
+msgstr "移动数据"
+
+msgid "No information available"
+msgstr "无可用信息"
+
+msgid "Interface name invalid"
+msgstr "接口名称无效"
+
+msgid "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
+msgstr "所需的 exec 函数已禁用。检查 exec 是否未添加到 php<code>disable_functions</code>。"
+
+msgid "Waiting for the interface to start ..."
+msgstr "等待界面启动..."
+
+msgid "Stop the Interface"
+msgstr "停止界面"
+
+msgid "Connection mode"
+msgstr "连接模式"
+
+msgid "Signal quality"
+msgstr "信号质量"
+
+msgid "WAN IP"
+msgstr "广域网 IP"
+
+msgid "Signal strength"
+msgstr "信号强度"
+
+msgid "No Client device or not yet configured"
+msgstr "无客户端设备或尚未配置"
+
+msgid "No Client device found"
+msgstr "未找到客户端设备"
+
+#: includes/footer.php
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "由 <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+msgid "RaspAP Team"
+msgstr "RaspAP 团队"
+
+msgid "Get Insiders"
+msgstr "获取内部人员"
+
+msgid "Thanks for being an Insider"
+msgstr "感谢成为内部人员"
+
 #: includes/dhcp.php
 msgid "DHCP server settings"
 msgstr "DHCP服务器设置"
+
+msgid "Default gateway"
+msgstr "默认网关"
+
+msgid "Install a default route for this interface"
+msgstr "为该接口安装默认路由"
+
+msgid "Static IP options"
+msgstr "静态 IP 选项"
+
+msgid "DHCP options"
+msgstr "DHCP 选项"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "如果希望 RaspAP 为所选接口上的客户端分配 IP 地址，请启用此选项。该选项需要一个静态 IP 地址。"
+
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr "仅当您希望设备将此接口作为连接互联网的主要路由时才启用。"
 
 msgid "Client list"
 msgstr "客户端列表"
 
 msgid "Interface"
 msgstr "接口"
+
+msgid "Enable DHCP for this interface"
+msgstr "为该接口启用 DHCP"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+msgstr "如果希望 RaspAP 在所选接口上分配 IP 地址，请启用此选项。"
 
 msgid "DNS Server"
 msgstr "DNS服务器"
@@ -280,6 +503,9 @@ msgstr "生存时间"
 
 msgid "MAC Address"
 msgstr "MAC地址"
+
+msgid "Optional comment"
+msgstr "可选注释"
 
 msgid "Host name"
 msgstr "设备名称"
@@ -344,11 +570,83 @@ msgstr "格式"
 msgid "Choose a hosted server"
 msgstr "选择托管服务器"
 
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "启用这些选项可记录<code>dhcpcd</code>和<code>dnsmasq</code>活动。"
+
 msgid "Log DHCP requests"
 msgstr "记录 DHCP 请求"
 
 msgid "Log DNS queries"
 msgstr "记录 DNS 查询"
+
+msgid "Restrict access"
+msgstr "限制访问"
+
+msgid "Limit network access to static clients"
+msgstr "限制静态客户端访问网络"
+
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "如果希望 RaspAP<b>忽略任何</b>未在静态租约列表中指定的<b>客户端</b>，请启用此选项。"
+
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "该选项将<code>dhcp-ignore</code>添加到 dnsmasq 配置中。"
+
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "具有特定硬件 MAC 地址的客户端总是可以分配到相同的 IP 地址。"
+
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "该选项将<code>dhcp-host</code>条目添加到 dnsmasq 配置中。"
+
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr "在 dhcpcd.conf 文件中切换此接口的<code>网关</code><code>/</code> <code>网关</code>选项。"
+
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr "此选项可在 dhcpcd.conf 文件中切换此接口的<code>nohook wpa_supplicant</code>选项。"
+
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "禁用此接口的 wpa_supplicant dhcp 钩子"
+
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "如果使用 wpa_supplicant 本身管理无线连接，钩子可能会产生不必要的连接事件。此选项将禁用钩子。"
+
+msgid "Please provide a valid IP Address."
+msgstr "请提供有效的 IP 地址。"
+
+msgid "Please provide a valid Default gateway."
+msgstr "请提供有效的默认网关。"
+
+msgid "Please provide a valid Starting IP Address."
+msgstr "请提供有效的起始 IP 地址。"
+
+msgid "Please provide a valid Ending IP Address."
+msgstr "请提供有效的结束 IP 地址。"
+
+msgid "Please provide a valid Lease Time."
+msgstr "请提供有效的租用时间。"
+
+msgid "Invalid interface name."
+msgstr "无效接口名称。"
+
+msgid "Invalid static IP address."
+msgstr "静态 IP 地址无效。"
+
+msgid "Invalid default gateway."
+msgstr "默认网关无效。"
+
+msgid "Invalid DHCP range start."
+msgstr "无效的 DHCP 范围起始。"
+
+msgid "Invalid DHCP range end."
+msgstr "无效的 DHCP 范围结束。"
+
+msgid "Invalid DHCP lease time, not a number."
+msgstr "DHCP 租约时间无效，不是数字。"
+
+msgid "Unknown DHCP lease time unit."
+msgstr "未知 DHCP 租约时间单位。"
+
+msgid "Invalid metric value, not a number."
+msgstr "度量值无效，不是数字。"
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -372,8 +670,8 @@ msgstr "安全性"
 msgid "Encryption Type"
 msgstr "加密模式"
 
-msgid "PSK"
-msgstr "密码"
+msgid "Pre-shared key (PSK)"
+msgstr "预共享密钥 (PSK)"
 
 msgid "Advanced settings"
 msgstr "高级设置"
@@ -408,11 +706,26 @@ msgstr "未知接口"
 msgid "Country code must be blank or two characters"
 msgstr "地区代号只能为空或两个字符"
 
-msgid "Wifi Hotspot settings saved"
-msgstr "WLAN热点设置已保存"
+msgid "DHCP configuration for %s enabled."
+msgstr "已启用 %s 的 DHCP 配置。"
 
-msgid "Unable to save wifi hotspot settings"
-msgstr "WLAN热点设置保存失败"
+msgid "DHCP configuration for %s added."
+msgstr "添加了 %s 的 DHCP 配置。"
+
+msgid "DHCP configuration for %s updated."
+msgstr "%s 的 DHCP 配置已更新。"
+
+msgid "Interface %s has no default settings."
+msgstr "界面 %s 没有默认设置。"
+
+msgid "Configure settings in <strong>DHCP Server</strong> before starting AP."
+msgstr "启动 AP 前在<strong>DHCP 服务器</strong>中配置设置。"
+
+msgid "Wifi hotspot settings saved."
+msgstr "已保存 Wifi 热点设置。"
+
+msgid "Unable to save WiFi hotspot settings."
+msgstr "无法保存 WiFi 热点设置。"
 
 msgid "Start hotspot"
 msgstr "开启WLAN热点"
@@ -429,11 +742,38 @@ msgstr "开启log"
 msgid "Logfile output"
 msgstr "log信息输出"
 
+msgid "Log level"
+msgstr "日志级别"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "级别越高，日志的冗长程度越低。建议使用 \"信息 \"级别。"
+
+msgid "Verbose debugging"
+msgstr "详细调试"
+
+msgid "Debugging"
+msgstr "调试"
+
+msgid "Informational"
+msgstr "信息"
+
+msgid "Notification"
+msgstr "通知"
+
+msgid "Warning"
+msgstr "警告"
+
 msgid "WiFi client AP mode"
 msgstr "无线网客户端AP模式"
 
 msgid "Bridged AP mode"
 msgstr "桥接 AP 模式"
+
+msgid "WiFi repeater mode"
+msgstr "WiFi 中继器模式"
+
+msgid "Dual band AP mode"
+msgstr "双频 AP 模式"
 
 msgid "Hide SSID in broadcast"
 msgstr "在广播中隐藏SSID"
@@ -441,12 +781,177 @@ msgstr "在广播中隐藏SSID"
 msgid "Maximum number of clients"
 msgstr "客户端最大数量"
 
-msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "设置hostapd上的max_num_sta选项。默认值和最大值是2007。如果为空或为0，则应用默认值。"
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "配置 hostapd 的<code>max_num_sta</code>选项。默认最大值为 2007。如果为空或 0，则使用默认值。"
+
+msgid "Beacon interval"
+msgstr "信标间隔"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "禁用<code>disassoc_low_ack</code>"
+
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "不要因为过多的传输失败而解散站点。"
+
+msgid "Executing RaspAP service start"
+msgstr "执行 RaspAP 服务启动"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "启用此选项可记录<code>hostapd</code>活动。"
+
+msgid "Transmit power (dBm)"
+msgstr "发射功率（dBm）"
+
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "为 AP 接口和配置的国家设置<code>txpower</code>选项。"
+
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "dBm 是一种电平单位，用于表示功率比以 1 毫瓦（mW）为基准，用分贝（dB）表示。30 dBm 等于 1000 mW，而 0 dBm 等于 1.25 mW。"
+
+msgid "WPA and WPA2"
+msgstr "WPA 和 WPA2"
+
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 和 WPA3-个人（过渡模式）"
+
+msgid "WPA3-Personal (required)"
+msgstr "WPA3-个人（必填）"
+
+msgid "Enabled (for supported clients)"
+msgstr "已启用（适用于支持的客户端）"
+
+msgid "Required (for supported clients)"
+msgstr "必须填写（适用于受支持的客户端）"
+
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "802.11w 将强加密保护扩展到一组精选的稳健管理帧，包括取消认证、解除关联和某些类别的 \"动作管理 \"帧。统称为管理帧保护 (MFP)。"
+
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "直接扫描此二维码或 %s %s打印一个标志%s 给您的用户。"
+
+msgid "Printable Wi-Fi sign"
+msgstr "可打印 Wi-Fi 标志"
+
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "要与手机或平板电脑连接，请使用相机应用程序扫描上面的二维码。"
+
+msgid "For other devices, use the login credentials below."
+msgstr "对于其他设备，请使用下面的登录凭证。"
+
+msgid "Network"
+msgstr "网络"
+
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "所选接口 (%s) 仅支持 2.4 GHz 无线频段。"
+
+msgid "The selected interface (%s) has support for the 2.5 GHz wireless band only."
+msgstr "所选接口 (%s) 仅支持 2.5 GHz 无线频段。"
+
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "所选接口 (%s) 同时支持 2.4 和 5 GHz 无线频段。"
+
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "所选接口 (%s) 不支持无线模式操作。"
+
+msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
+msgstr "在设置兼容的无线监管域之前，802.11ac 5 GHz 选项将被禁用。"
+
+msgid "WiFi repeater mode: A metric value is already defined for DHCP."
+msgstr "WiFi 中继器模式：已为 DHCP 定义度量值。"
+
+msgid "Restart hotspot to enable WiFi repeater mode."
+msgstr "重启热点以启用 WiFi 中继器模式。"
+
+msgid "Unable to obtain metric value for client interface. Repeater mode inactive."
+msgstr "无法获取客户端接口的度量值。中继器模式未激活。"
+
+msgid "Metric value configured for the %s interface."
+msgstr "为 %s 接口配置的度量值。"
+
+msgid "Parameter hiddenSSID contains invalid configuration value."
+msgstr "参数 hiddenSSID 包含无效配置值。"
+
+msgid "Parameter hiddenSSID is not a number."
+msgstr "参数 hiddenSSID 不是数字。"
+
+msgid "Bridge interface configuration"
+msgstr "网桥接口配置"
+
+msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+msgstr "为<code>br0</code>接口配置静态 IP 地址，以便在网桥模式激活期间保持连接。"
+
+msgid "Static IP Address"
+msgstr "静态 IP 地址"
+
+msgid "Netmask / CIDR"
+msgstr "网络掩码/CIDR"
+
+msgid "Example: 192.168.1.100"
+msgstr "示例：192.168.1.100"
+
+msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
+msgstr "CIDR 符号（例如，24 表示 255.255.255.0）"
+
+msgid "Gateway"
+msgstr "网关"
+
+msgid "Your router's IP address"
+msgstr "路由器 IP 地址"
+
+msgid "Usually same as gateway"
+msgstr "通常与网关相同"
+
+msgid "Bridge static IP address must be a valid IPv4 address"
+msgstr "网桥静态 IP 地址必须是有效的 IPv4 地址"
+
+msgid "Bridge netmask must be a number between 1 and 32"
+msgstr "网桥掩码必须是 1 到 32 之间的数字"
+
+msgid "Bridge netmask is required when using static IP"
+msgstr "使用静态 IP 时需要网桥掩码"
+
+msgid "Bridge gateway must be a valid IPv4 address"
+msgstr "网桥网关必须是有效的 IPv4 地址"
+
+msgid "Bridge gateway is required when using static IP"
+msgstr "使用静态 IP 时需要网桥网关"
+
+msgid "Bridge DNS server must be a valid IPv4 address"
+msgstr "桥接 DNS 服务器必须是有效的 IPv4 地址"
+
+msgid "Bridge DNS server is required when using static IP"
+msgstr "使用静态 IP 时需要桥接 DNS 服务器"
+
+msgid "Bridge static IP and gateway must be in the same subnet"
+msgstr "网桥静态 IP 和网关必须在同一子网中"
+
+msgid "Please enter a valid IPv4 address"
+msgstr "请输入有效的 IPv4 地址"
+
+msgid "Please enter a valid netmask"
+msgstr "请输入有效的网络掩码"
+
+msgid "DHCP configuration for br0 enabled"
+msgstr "已启用 br0 的 DHCP 配置"
+
+msgid "Unable to save WiFi hotspot settings due to validation errors"
+msgstr "由于验证错误，无法保存 WiFi 热点设置"
+
+msgid "Enable AP isolation"
+msgstr "启用 AP 隔离"
+
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "阻止无线客户端相互看到或连接。建议用于访客网络和公共接入点。"
 
 #: includes/networking.php
 msgid "Summary"
 msgstr "摘要"
+
+msgid "Internet connection"
+msgstr "网络连接"
 
 msgid "Current settings"
 msgstr "当前设置"
@@ -460,8 +965,11 @@ msgstr "备用DNS服务器"
 msgid "Adapter IP Address Settings"
 msgstr "适配器IP地址设置"
 
-msgid "Enable Fallback to Static Option"
-msgstr "启用退回静态的选项"
+msgid "Enable fallback to static option"
+msgstr "启用回退到静态选项"
+
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "启用此选项可配置静态配置文件，并在 DHCP 租约失败时返回该配置文件。"
 
 msgid "Static IP"
 msgstr "静态IP"
@@ -475,11 +983,164 @@ msgstr "已禁用"
 msgid "Static IP Options"
 msgstr "静态IP设置"
 
+msgid "Metric"
+msgstr "指标"
+
 msgid "Apply settings"
 msgstr "请求设置"
 
 msgid "Information provided by /sys/class/net"
 msgstr "信息由 /sys/class/net 提供"
+
+msgid "Devices"
+msgstr "设备"
+
+msgid "Diagnostics"
+msgstr "诊断"
+
+msgid "Network devices"
+msgstr "网络设备"
+
+msgid "Device"
+msgstr "设备"
+
+msgid "MAC address"
+msgstr "MAC 地址"
+
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+msgid "Device type"
+msgstr "设备类型"
+
+msgid "Fixed name"
+msgstr "固定名称"
+
+msgid "Change"
+msgstr "更改"
+
+msgid "Mobile data settings"
+msgstr "移动数据设置"
+
+msgid "SIM card PIN number"
+msgstr "SIM 卡 PIN 码"
+
+msgid "APN Settings (Modem device ppp0)"
+msgstr "APN 设置（调制解调器设备 ppp0）"
+
+msgid "Access Point Name (APN)"
+msgstr "接入点名称 (APN)"
+
+msgid "Password"
+msgstr "密码"
+
+msgid "Successfully Updated Network Configuration"
+msgstr "成功更新网络配置"
+
+msgid "Error saving network configuration to file"
+msgstr "将网络配置保存到文件时出错"
+
+msgid "Unable to detect interface"
+msgstr "无法检测接口"
+
+msgid "Routing table"
+msgstr "路由表"
+
+msgid "raw output"
+msgstr "原始输出"
+
+msgid "Setting wireless regulatory domain to %s"
+msgstr "将无线监管域设置为 %s"
+
+msgid "Please provide a valid SSID."
+msgstr "请提供有效的 SSID。"
+
+msgid "Please provide a valid PSK."
+msgstr "请提供有效的 PSK。"
+
+msgid "Speedtest"
+msgstr "速度测试"
+
+msgid "Selecting a server"
+msgstr "选择服务器"
+
+msgid "Privacy"
+msgstr "隐私保护"
+
+msgid "Server"
+msgstr "服务器"
+
+msgid "ms"
+msgstr "ms"
+
+msgid "Mbps"
+msgstr "Mbps"
+
+msgid "Ping"
+msgstr "平"
+
+msgid "Jitter"
+msgstr "抖动"
+
+msgid "Upload"
+msgstr "上传"
+
+msgid "Start"
+msgstr "开始"
+
+msgid "Abort"
+msgstr "终止"
+
+msgid "Wireless LAN routing"
+msgstr "无线局域网路由"
+
+msgid "Stop WLAN routing"
+msgstr "停止 WLAN 路由"
+
+msgid "Start WLAN routing"
+msgstr "启动 WLAN 路由"
+
+msgid "Restart WLAN routing"
+msgstr "重启 WLAN 路由"
+
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "该选项配置 RaspAP 将<b>无线客户端（STA）接口的网络流量路由</b>到另一个可用接口。"
+
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "选择输出接口时，会添加<code>iptables</code>规则，以使用网络地址转换（NAT）路由数据包。这样做通常是为了与使用<code>eth0</code>、<code>usb0</code>或可预测<code>enx</code>接口的设备共享 WLAN 的互联网连接。"
+
+msgid "Wireless client interface"
+msgstr "无线客户端界面"
+
+msgid "Output interface"
+msgstr "输出接口"
+
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "为输出接口配置静态 IP 地址和 DHCP"
+
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "试图启用 %s 和 %s 接口之间的路由选择"
+
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "试图禁用 %s 和 %s 接口之间的路由选择"
+
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "%s 接口不存在默认 DHCP 配置"
+
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "在 DHCP 服务器设置中为此接口配置静态 IP 和 DHCP"
+
+msgid "WLAN routing configuration saved"
+msgstr "已保存 WLAN 路由配置"
+
+msgid "Unable to save WLAN routing configuration"
+msgstr "无法保存 WLAN 路由配置"
+
+msgid "Successfully restarted dnsmasq"
+msgstr "成功重启 dnsmasq"
+
+msgid "Failed to restart dnsmasq"
+msgstr "重启 dnsmasq 失败"
 
 #: includes/system.php
 msgid "System Information"
@@ -509,11 +1170,20 @@ msgstr "树莓派型号"
 msgid "Uptime"
 msgstr "已开机时间"
 
+msgid "System Time"
+msgstr "系统时间"
+
 msgid "Memory Used"
 msgstr "内存占用"
 
+msgid "Storage Used"
+msgstr "使用的存储空间"
+
 msgid "CPU Load"
 msgstr "CPU负荷"
+
+msgid "CPU Temp"
+msgstr "CPU 温度"
 
 msgid "Reboot"
 msgstr "重启"
@@ -521,18 +1191,212 @@ msgstr "重启"
 msgid "Shutdown"
 msgstr "关闭"
 
+msgid "System reboot"
+msgstr "系统重启"
+
+msgid "System shutdown"
+msgstr "系统关闭"
+
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr "现在重启？系统将暂时不可用。"
+
+msgid "Shutdown now? The system will be unavailable."
+msgstr "现在关闭？系统将不可用。"
+
 msgid "System Rebooting Now!"
 msgstr "系统现在正在重启！"
 
 msgid "System Shutting Down Now!"
 msgstr "系统现在正在关闭！"
 
-#: includes/themes.php
+msgid "Web server port"
+msgstr "网络服务器端口"
+
+msgid "Web server bind address"
+msgstr "网络服务器绑定地址"
+
+msgid "OS"
+msgstr "操作系统"
+
+msgid "Kernel"
+msgstr "内核"
+
+msgid "System reset"
+msgstr "系统重置"
+
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "将 RaspAP 重置为初始配置？此操作不可撤销。"
+
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "重置完成。重新启动热点，使更改生效。"
+
+msgid "System reset in progress..."
+msgstr "系统重置中..."
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Restore settings"
+msgstr "恢复设置"
+
+msgid "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
+msgstr "要将 RaspAP 重置为<a href=\"%s\">初始配置</a>，请单击或点击下面的按钮。"
+
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "广告拦截、WireGuard 或 OpenVPN 等可选组件的自定义文件将保留在系统中。"
+
+msgid "Perform reset"
+msgstr "执行重置"
+
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "将所有接入点 (AP) 服务设置恢复为默认值。这适用于 hostapd、dhcpcd 和 dnsmasq。"
+
 msgid "Theme settings"
 msgstr "主题设置"
 
 msgid "Select a theme"
 msgstr "选择一个主题"
+
+msgid "Color"
+msgstr "颜色"
+
+msgid "Enable this option for resizable, drag and drop widgets. Best for large displays."
+msgstr "启用此选项可调整拖放部件的大小。最适合大型显示器。"
+
+msgid "Dynamic widgets"
+msgstr "动态部件"
+
+msgid "Tools"
+msgstr "工具"
+
+msgid "System tools"
+msgstr "系统工具"
+
+msgid "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
+msgstr "要生成系统<a href=\"%s\">调试日志</a>，请单击或点击下面的按钮。"
+
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "调试日志信息包含 RaspAP 版本、AP 相关服务的当前状态和配置、已安装的系统软件包、Linux 内核版本和网络详情。不包括密码或其他敏感数据。"
+
+msgid "Generate debug log"
+msgstr "生成调试日志"
+
+msgid "Debug log generation in progress..."
+msgstr "调试日志生成中..."
+
+msgid "Diagnostic log size limit (KB)"
+msgstr "诊断日志大小限制（KB）"
+
+msgid "Changing log limit size to %s KB"
+msgstr "将日志限制大小更改为 %s KB"
+
+msgid "Information provided by raspap.sysinfo"
+msgstr "由 raspap.sysinfo 提供的信息"
+
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "以下用户插件可用于扩展 RaspAP 的功能。"
+
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "选择 \"<strong>详细信息</strong>\"获取更多信息并安装插件。"
+
+msgid "Network error"
+msgstr "网络错误"
+
+msgid "Unable to load plugins"
+msgstr "无法加载插件"
+
+msgid "Reload"
+msgstr "重新加载"
+
+msgid "and try again"
+msgstr "再试一次"
+
+msgid "Plugins"
+msgstr "插件"
+
+msgid "Plugin details"
+msgstr "插件详情"
+
+msgid "Name"
+msgstr "文本名称"
+
+msgid "Version"
+msgstr "版本"
+
+msgid "Description"
+msgstr "说明"
+
+msgid "Plugin source"
+msgstr "插件来源"
+
+msgid "Author"
+msgstr "作者"
+
+msgid "License"
+msgstr "许可证"
+
+msgid "Language locale"
+msgstr "语言"
+
+msgid "Configuration files"
+msgstr "配置文件"
+
+msgid "Dependencies"
+msgstr "依赖关系"
+
+msgid "Permissions"
+msgstr "权限"
+
+msgid "Non-privileged users"
+msgstr "非特权用户"
+
+msgid "Install now"
+msgstr "立即安装"
+
+msgid "Installing plugin"
+msgstr "安装插件"
+
+msgid "Plugin installation in progress..."
+msgstr "插件安装中..."
+
+msgid "Plugin install completed."
+msgstr "插件安装完成。"
+
+msgid "Details"
+msgstr "详细信息"
+
+msgid "Installed"
+msgstr "已安装"
+
+msgid "Alert messages"
+msgstr "警报信息"
+
+msgid "Alert close timeout (milliseconds)"
+msgstr "警报关闭超时（毫秒）"
+
+msgid "Automatically close alerts after a specified timeout"
+msgstr "在指定超时后自动关闭警报"
+
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "要<a href=\"%s\" target=\"_blank\">检查</a>连接到此设备的<a href=\" %s \" target=\"_blank\">适配器</a>，请单击或点击下面的按钮。"
+
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "适配器检查工具返回外部 WLAN 设备的详细信息，包括驱动程序、支持的模式等。"
+
+msgid "Choose a network interface to inspect"
+msgstr "选择要检查的网络接口"
+
+msgid "Select an interface..."
+msgstr "选择接口..."
+
+msgid "Adapter health check"
+msgstr "适配器健康检查"
+
+msgid "Inspect adapters"
+msgstr "检查适配器"
+
+msgid "Theme"
+msgstr "主题"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -632,6 +1496,66 @@ msgstr "正尝试启动openvpn"
 msgid "Attempting to stop openvpn"
 msgstr "正尝试停止openvpn"
 
+msgid "Configurations"
+msgstr "配置"
+
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "当前可用的 OpenVPN 客户端配置显示如下。"
+
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "激活配置将重启<code>openvpn-client</code>服务。"
+
+msgid "Delete OpenVPN client"
+msgstr "删除 OpenVPN 客户端"
+
+msgid "Delete client configuration? This cannot be undone."
+msgstr "删除客户端配置？无法撤销。"
+
+msgid "Activate OpenVPN client"
+msgstr "激活 OpenVPN 客户端"
+
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "激活客户端配置？这将重启 openvpn-client 服务。"
+
+msgid "Activate"
+msgstr "激活"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "启用此选项可记录<code>openvpn</code>活动。"
+
+msgid "Authentification Method"
+msgstr "验证方法"
+
+msgid "Username and password"
+msgstr "用户名和密码"
+
+msgid "Certificates"
+msgstr "认证"
+
+msgid "Enter username and password"
+msgstr "输入用户名和密码"
+
+msgid "Certificates in the configuration file"
+msgstr "配置文件中的证书"
+
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP 通过在配置文件中加入证书来支持证书。"
+
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "签名认证机构 (CA) 证书（如 ca.<code>crt</code>）：由<code>&lt;ca> ...</code>所括弧。 <code> &lt;/ca></code>标记中。"
+
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "客户证书（公钥）（如<code>client.crt</code>）：由<code>&lt;cert> ...</code>所括弧。 <code> &lt;/cert></code>标记。"
+
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "客户端证书的私钥（如<code>client</code>.key）：用<code><key> ... </key></code>标记。"
+
+msgid "Configuration File"
+msgstr "配置文件"
+
 #: includes/torproxy.php
 msgid "TOR is not running"
 msgstr "TOR不在运行"
@@ -692,6 +1616,9 @@ msgstr "上"
 msgid "down"
 msgstr "下"
 
+msgid "Clear log"
+msgstr "清除日志"
+
 msgid "adblock"
 msgstr "广告屏蔽"
 
@@ -733,4 +1660,1078 @@ msgstr "统计"
 
 msgid "Information provided by adblock"
 msgstr "信息由 adblock 提供"
+
+msgid "Enable custom blocklist"
+msgstr "启用自定义屏蔽列表"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "通过输入 IPv4 或 IPv6 地址，然后输入空白（空格或制表符）和主机名，定义要封堵的自定义主机。"
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 示例：</b>0.0.0.0 badhost.com"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "该选项为 dnsmasq 配置添加了<code>addn-hosts</code>指令。"
+
+msgid "Custom blocklist not defined"
+msgstr "未定义自定义屏蔽列表"
+
+msgid "Invalid custom IP address found on line "
+msgstr "在行中发现无效的自定义 IP 地址 "
+
+msgid "Invalid custom host found on line "
+msgstr "在行中发现无效的自定义主机 "
+
+msgid "Tunnel settings"
+msgstr "隧道设置"
+
+msgid "Configuration Method"
+msgstr "配置方法"
+
+msgid "Upload file"
+msgstr "上传文件"
+
+msgid "Create manually"
+msgstr "手动创建"
+
+msgid "Upload a WireGuard config"
+msgstr "上传 WireGuard 配置"
+
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "此选项上传并在此设备上安装现有的 WireGuard<code>.conf</code>文件。"
+
+msgid "Apply iptables rules to the selected interface"
+msgstr "对选定接口应用 iptables 规则"
+
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "如果希望将 wg0 接口上的网络流量转发给连接到所需接口上的客户端，建议使用此文本。默认为活动 AP 接口。"
+
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "该选项为下面选择的接口添加<strong>iptables</strong> <code>Postup</code>和<code>PostDown</code>规则。"
+
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "选择 WireGuard 配置文件 (.conf)"
+
+msgid "Create a local WireGuard config"
+msgstr "创建本地 WireGuard 配置"
+
+msgid "Enable server"
+msgstr "启用服务器"
+
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "启用该选项可在 RaspAP 和配置的对等设备之间创建加密隧道，从而确保网络通信安全。"
+
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "此设置将在此设备上生成一个新的 WireGuard<code>.conf</code>文件。"
+
+msgid "Local public key"
+msgstr "本地公钥"
+
+msgid "Local Port"
+msgstr "本地端口"
+
+msgid "IP Address"
+msgstr "IP 地址"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Peer"
+msgstr "同级"
+
+msgid "Enable peer"
+msgstr "启用同行"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "启用此选项可通过在 RaspAP 和该对等设备之间创建隧道来加密流量。"
+
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "该选项将<code>client.conf</code>添加到 WireGuard 配置中。"
+
+msgid "Peer public key"
+msgstr "对等公钥"
+
+msgid "Endpoint address"
+msgstr "端点地址"
+
+msgid "Allowed IPs"
+msgstr "允许的 IP"
+
+msgid "Persistent keepalive"
+msgstr "持续保持"
+
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "启用此选项可显示更新的<code>wg-quick</code>调试日志。"
+
+msgid "WireGuard debug log updated"
+msgstr "更新了 WireGuard 调试日志"
+
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "用客户端扫描此二维码，连接到此隧道"
+
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "或下载<code>client.conf</code>文件到您的设备。"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Start WireGuard"
+msgstr "启动 WireGuard"
+
+msgid "Stop WireGuard"
+msgstr "停止 WireGuard"
+
+msgid "Information provided by wireguard"
+msgstr "信息由 wireguard 提供"
+
+msgid "Attempting to start WireGuard"
+msgstr "试图启动 WireGuard"
+
+msgid "Attempting to stop WireGuard"
+msgstr "试图停止 WireGuard"
+
+msgid "WireGuard configuration updated successfully"
+msgstr "成功更新 WireGuard 配置"
+
+msgid "WireGuard configuration failed to be updated"
+msgstr "WireGuard 配置更新失败"
+
+msgid "Enable kill switch"
+msgstr "启用锁定开关"
+
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr "该选项为配置的接口添加<strong>iptables</strong> <code>PostUp</code>和<code>PreDown</code>规则。"
+
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr "如果希望防止未加密数据包流经非 WireGuard 接口，建议使用此文本。"
+
+msgid "iptables rules added to WireGuard configuration"
+msgstr "在 WireGuard 配置中添加了 iptables 规则"
+
+msgid "Existing iptables rules found in WireGuard configuration - not added"
+msgstr "在 WireGuard 配置中发现的现有 iptables 规则 - 未添加"
+
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "当前可用的 WireGuard 文件配置显示如下。"
+
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "激活配置将重启<code>wg-quick</code>服务。"
+
+msgid "Client Firewall"
+msgstr "客户端防火墙"
+
+msgid "Firewall is ENABLED"
+msgstr "防火墙已启用"
+
+msgid "Firewall is OFF"
+msgstr "防火墙关闭"
+
+msgid "The default firewall will only allow outgoing and already established traffic."
+msgstr "默认防火墙只允许传出和已建立的流量。"
+
+msgid "No incoming UDP traffic is allowed."
+msgstr "不允许输入 UDP 流量。"
+
+msgid "There are no restrictions for the access point <code>%s</code>."
+msgstr "接入点没有限制 <code>%s</code>。"
+
+msgid "Exception: Service"
+msgstr "异常：服务"
+
+msgid "allow SSH access on port 22"
+msgstr "允许 SSH 访问 22 端口"
+
+msgid "allow access to the RaspAP GUI on port 80 or 443"
+msgstr "允许通过 80 或 443 端口访问 RaspAP GUI"
+
+msgid "Allow incoming connections for some services from the internet side."
+msgstr "允许从互联网端传入某些服务的连接。"
+
+msgid "Exception: network device"
+msgstr "异常：网络设备"
+
+msgid "Exclude device(s)"
+msgstr "排除设备"
+
+msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+msgstr "从防火墙规则中排除给定的网络设备（用空格或逗号分隔）。"
+
+msgid "Current client devices: <code>%s</code>"
+msgstr "当前客户端设备： <code>%s</code>"
+
+msgid "The access point <code>%s</code> is per default excluded."
+msgstr "接入点 <code>%s</code>默认排除在外。"
+
+msgid "Exception: IP-Address"
+msgstr "异常：IP 地址"
+
+msgid "Allow incoming connections from"
+msgstr "允许来自"
+
+msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+msgstr "对于给定的 IP 地址（用空格或逗号分隔），接受传入连接（通过 TCP 和 UDP）。"
+
+msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+msgstr "通过 UDP 或 Wireguard 连接 OpenVPN 时需要使用此文本。"
+
+msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+msgstr "已配置的 VPN 服务器 IP 地址列表： <code><b>%s</b></code>"
+
+msgid "Disable Firewall"
+msgstr "禁用防火墙"
+
+msgid "Enable Firewall"
+msgstr "启用防火墙"
+
+msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "更改防火墙状态可能会中断或允许传入流量。选择<strong>继续</strong>。"
+
+msgid "Proceed"
+msgstr "继续"
+
+msgid "Apply changes"
+msgstr "应用更改"
+
+msgid "Dynamic DNS"
+msgstr "动态 DNS"
+
+msgid "Service provider"
+msgstr "服务提供商"
+
+msgid "Select a Dynamic DNS service supported by <strong>ddclient</strong> from the list below. Selecting a known service provider will populate the <code>protocol</code> and <code>server</code> fields. You may also configure the service manually."
+msgstr "从以下列表中选择<strong>ddclient</strong>支持的动态 DNS 服务。选择已知的服务提供商将填充<code>协议</code>和<code>服务器</code>字段。您也可以手动配置服务。"
+
+msgid "Method to obtain IP"
+msgstr "获取 IP 的方法"
+
+msgid "Select the method used by <strong>ddclient</strong> to obtain an IP address. This value is specified in the <code>-use</code> option."
+msgstr "选择<strong>ddclient</strong>用于获取 IP 地址的方法。该值在<code>-use</code>选项中指定。"
+
+msgid "Discovery page on the web"
+msgstr "网页上的发现页面"
+
+msgid "Network interface"
+msgstr "网络接口"
+
+msgid "Network address"
+msgstr "网络地址"
+
+msgid "Firewall status page"
+msgstr "防火墙状态页面"
+
+msgid "External command"
+msgstr "外部命令"
+
+msgid "Web address"
+msgstr "网址"
+
+msgid "Firewall"
+msgstr "防火墙"
+
+msgid "Command"
+msgstr "指令"
+
+msgid "Example: <code>192.168.1.254/status.htm</code>."
+msgstr "Example:<code>192.168.1.254/status.htm</code>。"
+
+msgid "Example: <code>/usr/local/bin/get-ip</code>."
+msgstr "示例：/usr/local/bin/get-ip：<code>/usr/local/bin/get-ip</code>。"
+
+msgid "Domain"
+msgstr "域"
+
+msgid "Enable SSL"
+msgstr "启用 SSL"
+
+msgid "Use an encrypted SSL connection for updates. Not supported by all providers."
+msgstr "使用加密 SSL 连接进行更新。并非所有提供商都支持。"
+
+msgid "Value specified in milliseconds (ms). Default is 300."
+msgstr "以毫秒（ms）为单位指定的值。默认值为 300。"
+
+msgid "Use the <strong>Generate log</strong> button to output detailed <code>ddclient daemon</code> debug info"
+msgstr "使用<strong>生成日志</strong>按钮输出详细的<code>ddclient 守护进程</code>调试信息"
+
+msgid "Generate log"
+msgstr "生成日志"
+
+msgid "Information provided by ddclient"
+msgstr "由 ddclient 提供的信息"
+
+msgid "Start Dynamic DNS"
+msgstr "启动动态 DNS"
+
+msgid "Stop Dynamic DNS"
+msgstr "停止动态 DNS"
+
+msgid "Restart Dynamic DNS"
+msgstr "重启动态 DNS"
+
+msgid "Account details"
+msgstr "账户详细信息"
+
+msgid "My account"
+msgstr "我的账户"
+
+msgid "Server location"
+msgstr "服务器位置"
+
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "选择<strong>保存设置</strong>将连接到所选国家。"
+
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "选择<strong>连接 %s</strong>将连接到推荐的服务器。"
+
+msgid "Select a country from the server location list"
+msgstr "从服务器位置列表中选择一个国家"
+
+msgid "Select a country..."
+msgstr "选择国家..."
+
+msgid "Account information not available from %s's Linux CLI."
+msgstr "%s的 Linux CLI 无法提供账户信息。"
+
+msgid "Attempting to connect to %s"
+msgstr "尝试连接 %s"
+
+msgid "Attempting to connect VPN provider"
+msgstr "尝试连接 VPN 提供商"
+
+msgid "Attempting to disconnect VPN provider"
+msgstr "试图断开 VPN 提供商连接"
+
+msgid "Expected %s binary not found at: %s"
+msgstr "未找到预期的 %s 二进制文件： %s"
+
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "请访问 %s的 Linux CLI<a href=\"%s\" target=\"_blank\">安装说明</a>。"
+
+msgid "Unable to execute %s binary found at: %s"
+msgstr "无法执行 %s 二进制文件： %s"
+
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "检查二进制文件是否可执行，权限是否存在于 raspap.sudoers 中。"
+
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "已安装 Linux CLI： <code>%s</code>"
+
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "当前 <code>%s</code>连接状态显示在下方。"
+
+msgid "Information provided by %s"
+msgstr "信息由 %s提供"
+
+msgid "Connect %s"
+msgstr "连接 %s"
+
+msgid "Disconnect %s"
+msgstr "断开 %s"
+
+msgid "About"
+msgstr "关于"
+
+msgid "Insiders"
+msgstr "内部人员"
+
+msgid "Contributing"
+msgstr "贡献"
+
+msgid "Check for update"
+msgstr "检查更新"
+
+msgid "New release check in progress..."
+msgstr "新版本检查中..."
+
+msgid "A new release is available: Version"
+msgstr "新版本发布：版本"
+
+msgid "Installed version is the latest release."
+msgstr "安装版本为最新版本。"
+
+msgid "GitHub authentication"
+msgstr "GitHub 认证"
+
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "更新 Insiders 需要 GitHub 认证。"
+
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "您的证书将通过 SSL 安全发送到 GitHub。但是，如果您的 RaspAP 安装在由不信任用户共享的 WLAN 上，请谨慎操作。"
+
+msgid "Personal Access Token"
+msgstr "个人访问令牌"
+
+msgid "Please provide a valid token."
+msgstr "请提供有效令牌。"
+
+msgid "Perform update"
+msgstr "执行更新"
+
+msgid "Update in progress"
+msgstr "更新中"
+
+msgid "Application is being updated..."
+msgstr "应用程序正在更新..."
+
+msgid "Configuring update"
+msgstr "配置更新"
+
+msgid "Updating sources"
+msgstr "更新来源"
+
+msgid "Installing package updates"
+msgstr "安装软件包更新"
+
+msgid "Downloading latest files"
+msgstr "下载最新文件"
+
+msgid "Installing application"
+msgstr "安装应用程序"
+
+msgid "Update complete"
+msgstr "更新完成"
+
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "发生错误。检查<code>/tmp/raspap_install.log</code>中的日志"
+
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP 由 %1$s 和 %2$s 共同创建，并得到了 %3$s 和 %4$s的贡献。欲了解更多有关加入该项目的信息，请访问 %5$s, %6$s 或 %7$s ，可立即访问 %8$s ， %9$s。"
+
+msgid "developer community"
+msgstr "开发者社区"
+
+msgid "language translators"
+msgstr "语言翻译"
+
+msgid "code contributor"
+msgstr "代码贡献者"
+
+msgid "translator"
+msgstr "译者"
+
+msgid "financial sponsor"
+msgstr "财务赞助商"
+
+msgid "exclusive features"
+msgstr "专属功能"
+
+msgid "RaspAP Exception"
+msgstr "RaspAP 异常"
+
+msgid "An exception occurred"
+msgstr "出现异常"
+
+msgid "RestAPI"
+msgstr "RestAPI"
+
+msgid "RestAPI settings"
+msgstr "RestAPI 设置"
+
+msgid "Start RestAPI service"
+msgstr "启动 RestAPI 服务"
+
+msgid "Stop RestAPI service"
+msgstr "停止 RestAPI 服务"
+
+msgid "API Key"
+msgstr "API 密钥"
+
+msgid "Saving API key"
+msgstr "保存 API 密钥"
+
+msgid "RestAPI status"
+msgstr "RestAPI 状态"
+
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "当前<code>restapi.service</code>状态显示如下。"
+
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
+msgstr "可<a href=\"%s\" target=\"_blank\">在此处 </a>访问 RestAPI 文档<a href=\" %s \" target=\"_blank\">%s</a>"
+
+msgid "Restarting restapi.service"
+msgstr "重启 restapi.service"
+
+msgid "Information provided by restapi.service"
+msgstr "由 restapi.service 提供的信息"
+
+msgid "Session Expired"
+msgstr "会话已过期"
+
+msgid "Your session has expired. Please login to continue."
+msgstr "您的会话已过期。请登录以继续。"
+
+msgid "Login"
+msgstr "登录"
+
+msgid "Administrator login"
+msgstr "管理员登录"
+
+msgid "Forgot password"
+msgstr "忘记密码"
+
+msgid "Login failed"
+msgstr "登录失败"
+
+msgid "NTP Server"
+msgstr "NTP 服务器"
+
+msgid "NTP Server settings"
+msgstr "NTP 服务器设置"
+
+msgid "NTP daemon"
+msgstr "NTP 守护进程"
+
+msgid "Synchronized time"
+msgstr "同步时间"
+
+msgid "NTP servers"
+msgstr "NTP 服务器"
+
+msgid "Add an NTP server"
+msgstr "添加 NTP 服务器"
+
+msgid "Start NTP service"
+msgstr "启动 NTP 服务"
+
+msgid "Stop NTP service"
+msgstr "停止 NTP 服务"
+
+msgid "Edit mode"
+msgstr "编辑模式"
+
+msgid "Use the <strong>Edit mode</strong> toggle to manually edit the current <code>ntp.config</code> configuration."
+msgstr "使用<strong>编辑模式</strong>切换键手动编辑当前的<code>ntp.config 配置</code>。"
+
+msgid "Specify a public NTP server or a private one on your local network. IPv4 and IPv6 address, or a fully qualified domain name (FQDN) are acceptable values."
+msgstr "指定公共 NTP 服务器或本地网络中的私有 NTP 服务器。IPv4 和 IPv6 地址或完全合格域名 (FQDN) 均可接受。"
+
+msgid "Public NTP servers supporting Network Time Security (NTS) may be specified with the <code>nts</code> suffix."
+msgstr "可使用后缀<code>nts</code>指定支持网络时间安全（NTS）的公共 NTP 服务器。"
+
+msgid "Examples of valid server entries include <code>%s</code>, <code>%s</code> and <code>%s</code>."
+msgstr "有效服务器条目示例包括 <code>%s</code>, <code>%s</code>和 <code>%s</code>。"
+
+msgid "Current <code>ntpq peer</code> status is displayed below. An asterisk (<code>*</code>) indicates the preferred server."
+msgstr "当前<code>ntpq 对等</code>状态显示如下。星号<code>（*</code>）表示首选服务器。"
+
+msgid "NTP configuration cannot be empty"
+msgstr "NTP 配置不能为空"
+
+msgid "Restarting ntpd.service"
+msgstr "重启 ntpd.service"
+
+msgid "Please enter a valid NTP server"
+msgstr "请输入有效的 NTP 服务器"
+
+msgid "Attempting to start ntp.service"
+msgstr "试图启动 ntp.service"
+
+msgid "Attempting to stop ntp.service"
+msgstr "试图停止 ntp.service"
+
+msgid "NTP configuration not found at %s"
+msgstr "未在 %s找到 NTP 配置"
+
+msgid "NTP configuration updated"
+msgstr "更新了 NTP 配置"
+
+msgid "Advertising device as a Tailscale exit node"
+msgstr "将设备宣传为 Tailscale 退出节点"
+
+msgid "Attempting to optimize UDP throughput"
+msgstr "尝试优化 UDP 吞吐量"
+
+msgid "Kernel transport layer offloads enabled for UDP"
+msgstr "为 UDP 启用了内核传输层卸载"
+
+msgid "Failed to enable kernel transport layer offloads for UDP"
+msgstr "启用 UDP 内核传输层卸载失败"
+
+msgid "Attempting to set tailscale up"
+msgstr "尝试设置尾标"
+
+msgid "Attempting to set tailscale down"
+msgstr "尝试向下设置尾标"
+
+msgid "Attempting to disconnect from tailscale"
+msgstr "试图断开与 tailscale 的连接"
+
+msgid "Disconnected from tailscale and expired node key"
+msgstr "与 tailscale 断开连接，节点密钥过期"
+
+msgid "Unable to disconnect from tailscale"
+msgstr "无法断开与 tailscale 的连接"
+
+msgid "Expected tailscale binary not found at: %"
+msgstr "未找到预期的尾标二进制文件：%"
+
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "RaspAP 的 Tailscale VPN 出口节点扩展"
+
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "无法检索 Tailscale 登录。选择 <strong>%s</strong>继续。"
+
+msgid "Start Tailscale"
+msgstr "开始尾标"
+
+msgid "Stop Tailscale"
+msgstr "停止尾标"
+
+msgid "Next"
+msgstr "下一页"
+
+msgid "Device approved and activated as a Tailscale exit node"
+msgstr "设备被批准并激活为 Tailscale 出口节点"
+
+msgid "Not connected: Login required."
+msgstr "未连接：需要登录。"
+
+msgid "Tailscale VPN"
+msgstr "尾标 VPN"
+
+msgid "Exit node activated"
+msgstr "已激活退出节点"
+
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "设备 <code>%s</code>与地址 <code>%s</code>并提供<strong>退出节点</strong>。"
+
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "有关如何在设备中使用此退出节点，请参阅 %s。"
+
+msgid "Allow exit node"
+msgstr "允许退出节点"
+
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "设备 <code>%s</code>正等待批准成为退出节点。"
+
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "在机器列表中找到 <code>%s</code><strong>退出节点</strong>徽章。"
+
+msgid "Open Tailscale Machines"
+msgstr "开放式尾规模机器"
+
+msgid "To allow this device as an exit node, choose <strong>Open Tailscale Machines</strong>."
+msgstr "要允许此设备作为退出节点，请选择 \"<strong>打开尾标机\"</strong>。"
+
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "从退出节点的 %s 图标菜单中，打开 %s 面板。"
+
+msgid "Edit route settings"
+msgstr "编辑路由设置"
+
+msgid "Login to Tailscale"
+msgstr "登录 Tailscale"
+
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "要将设备 %s 连接到尾网，请选择 %s。"
+
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "登录后，选择 \"<strong>下一步</strong>\"继续。"
+
+msgid "Configure exit node"
+msgstr "配置退出节点"
+
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "设备 <code>%s</code>连接到您的尾网，地址为 <code>%s</code>。"
+
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as a <strong>exit node</strong>"
+msgstr "默认情况下，Tailscale 只路由安装了它的设备之间的流量。你也可以将网络上的设备配置为<strong>出口节点</strong>，从而路由所有公共互联网流量。"
+
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "当你通过出口节点路由所有流量时，你实际上是在使用默认路由（0.0.0.0/0、::/0），类似于使用典型的 VPN。"
+
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "您可以选择将此设备配置为出口节点，或使用尾网中的其他出口节点。"
+
+msgid "Select an existing exit node on your tailnet"
+msgstr "选择尾网上现有的退出节点"
+
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "如果将此设备用作 VPN 旅行路由器，这是一种典型的配置。"
+
+msgid "Configure this device as a new exit node"
+msgstr "将此设备配置为新的退出节点"
+
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet will be routed through it."
+msgstr "将此设备配置为出口节点后，来自尾网中连接的设备的公共互联网流量将通过它路由。"
+
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "出于安全考虑，您必须选择启用退出节点功能。第一步是将 <code>%s</code>作为尾网的出口节点。下一步，您将允许此设备成为出口节点。"
+
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "广告 <code>%s</code>作为退出节点"
+
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "这可有效地将 Tailscale 配置为 VPN，以掩盖你的真实位置、访问受地区限制的内容，或在从不受信任的网络连接时加强隐私保护。"
+
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "该选项可让 Tailscale 知道你的设备已准备好路由流量。"
+
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "建议使用 Linux 6.2 或更高版本内核的 Tailscale 退出节点采用 UDP 通用接收卸载（GRO）转发，以减少 CPU 开销。"
+
+msgid "This option enables transport layer offloads for better performance."
+msgstr "该选项可启用传输层卸载，以提高性能。"
+
+msgid "Select an exit node"
+msgstr "选择退出节点"
+
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "要将 <code>%s</code>作为 VPN 网关，请将 Tailscale 配置为使用出口节点。Tailscale 建议的节点用星号表示。"
+
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "为活动的 <code>%s</code>AP 接口的子网路由"
+
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "子网路由可让你扩展你的 Tailscale 网络（称为 tailnet），以包括不运行或不能运行 Tailscale 客户端的设备。"
+
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "子网路由是尾网与物理子网之间的网关。活动 AP 接口的子网预配置如下；如有必要，可进行编辑。"
+
+msgid "Route LAN traffic through the exit node."
+msgstr "通过出口节点路由 LAN 流量。"
+
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "这将引导所有局域网流量只通过你的出口节点。"
+
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "选择 \"<strong>下一步 \"</strong>配置 <code>%s</code>以使用所选的退出节点和这些选项。"
+
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "在您的尾网上未找到退出节点。选择 \"<strong>返回 \"</strong>继续。"
+
+msgid "Using exit node"
+msgstr "使用退出节点"
+
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "设备 <code>%s</code>配置为使用退出节点 <code>%s</code>.它具有 Tailscale MagicDNS 地址 <code>%s</code>。"
+
+msgid "Choose <strong>Save settings</strong> to continue."
+msgstr "选择 \"<strong>保存设置 \"</strong>继续。"
+
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "选择 \"<strong>下一步</strong>\"继续。"
+
+msgid "Tailnet status"
+msgstr "尾网状态"
+
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "当前<code>尾网</code>状态显示如下。"
+
+msgid "Use Tailscale DNS settings (default)."
+msgstr "使用 Tailscale DNS 设置（默认）。"
+
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "取消选中以使用本地 DNS。这将设置<code>--accept-dns=false</code>。"
+
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "不使用 Tailscale 子网（Linux 默认）。"
+
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "如果尾网存在子网路由，则可以将设备流量路由至子网路由器。启用此功能可设置<code>--accept-routes=true</code>。"
+
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "如果设备的密钥过期，与给定端点之间的连接将停止工作。"
+
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "该选项使用<code>--force-reauth</code>来更新该设备的密钥。"
+
+msgid "Start capture"
+msgstr "开始捕获"
+
+msgid "Stop capture"
+msgstr "停止捕获"
+
+msgid "Capture files"
+msgstr "捕获文件"
+
+msgid "Capture interface"
+msgstr "捕获界面"
+
+msgid "Output file"
+msgstr "输出文件"
+
+msgid "Path where capture file will be saved (.pcap format)"
+msgstr "保存捕获文件的路径（.pcap 格式）"
+
+msgid "File will be saved with .pcap extension"
+msgstr "文件将以 .pcap 扩展名保存"
+
+msgid "Capture filter (BPF syntax)"
+msgstr "捕获过滤器（BPF 语法）"
+
+msgid "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
+msgstr "伯克利包过滤语法。留空表示捕获所有流量。"
+
+msgid "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
+msgstr "示例：<code>端口 80</code>、<code>主机 192.168.1.1</code>、<code>tcp，而非端口 22</code>"
+
+msgid "Capture limits"
+msgstr "捕获限制"
+
+msgid "Packet count limit"
+msgstr "数据包数量限制"
+
+msgid "Stop capture after this many packets. Leave empty for unlimited."
+msgstr "捕获这么多数据包后停止捕获。留空表示无限制。"
+
+msgid "Duration limit (seconds)"
+msgstr "持续时间限制（秒）"
+
+msgid "Stop capture after this many seconds. Leave empty for unlimited."
+msgstr "几秒后停止捕捉。留空表示无限制。"
+
+msgid "Ring buffer settings"
+msgstr "环形缓冲区设置"
+
+msgid "File size (KB)"
+msgstr "文件大小（KB）"
+
+msgid "Create new file when this size is reached. Leave empty to disable."
+msgstr "达到此大小时创建新文件。留空表示禁用。"
+
+msgid "10000 = 10 MB per file"
+msgstr "10000 = 每个文件 10 MB"
+
+msgid "Number of files"
+msgstr "文件数量"
+
+msgid "Maximum number of ring buffer files to keep. Oldest files are deleted."
+msgstr "保留的最大环形缓冲区文件数。最旧的文件将被删除。"
+
+msgid "Advanced options"
+msgstr "高级选项"
+
+msgid "Snapshot length (bytes)"
+msgstr "快照长度（字节）"
+
+msgid "Limit the amount of data captured per packet. Leave empty for full packets."
+msgstr "限制每个数据包捕获的数据量。数据包满时留空。"
+
+msgid "96 bytes captures headers only, reduces file size"
+msgstr "96 字节，仅捕获标题，减小文件大小"
+
+msgid "Promiscuous mode"
+msgstr "杂交模式"
+
+msgid "Capture all packets on the network segment, not just those destined for this interface"
+msgstr "捕获网段上的所有数据包，而不仅仅是以该接口为目的地的数据包"
+
+msgid "Quick filter presets"
+msgstr "快速滤镜预设"
+
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "由<code>tshark</code>生成的捕获文件显示如下。"
+
+msgid "No capture files found in /tmp directory"
+msgstr "在 /tmp 目录中未发现捕获文件"
+
+msgid "Filename"
+msgstr "文件名"
+
+msgid "Size"
+msgstr "大小"
+
+msgid "Modified"
+msgstr "已修改"
+
+msgid "Actions"
+msgstr "行动"
+
+msgid "Download file"
+msgstr "下载文件"
+
+msgid "Delete file"
+msgstr "删除文件"
+
+msgid "Confirm deletion"
+msgstr "确认删除"
+
+msgid "Are you sure you want to delete this file?"
+msgstr "您确定要删除此文件吗？"
+
+msgid "All Traffic"
+msgstr "所有流量"
+
+msgid "HTTP/HTTPS"
+msgstr "HTTP/HTTPS"
+
+msgid "ICMP (Ping)"
+msgstr "ICMP（Ping）"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Exclude SSH"
+msgstr "排除 SSH"
+
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "RaspAP 的 Wireshark (TShark) CLI 数据包捕获"
+
+msgid "Information provided by tshark"
+msgstr "信息由 tshark 提供"
+
+msgid "Total: %d file(s), %s"
+msgstr "共计： %d 文件， %s"
+
+msgid "Captive portal"
+msgstr "自带门户"
+
+msgid "Gateway interface"
+msgstr "网关接口"
+
+msgid "Gateway name"
+msgstr "网关名称"
+
+msgid "Gateway address"
+msgstr "网关地址"
+
+msgid "Gateway port"
+msgstr "网关端口"
+
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "默认为活动 AP 接口，通常为<code>wlan0</code>"
+
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "如果未指定，则从网关接口自动检测"
+
+msgid "Start portal"
+msgstr "起始门户"
+
+msgid "Stop portal"
+msgstr "停止门户"
+
+msgid "Information provided by nodogsplash"
+msgstr "信息由 nodogsplash 提供"
+
+msgid "Stop portal service"
+msgstr "停止门户服务"
+
+msgid "Start portal service"
+msgstr "启动门户服务"
+
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "更改门户服务会暂时中断客户端流量。选择 \"<strong>继续</strong>\"继续。"
+
+msgid "Interface to be managed by the portal"
+msgstr "由门户管理的接口"
+
+msgid "Name of your gateway (available as \\$gatewayname variable)"
+msgstr "网关名称（可作为$gatewayname 变量使用）"
+
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "路由器的 IP 地址。留空用于自动检测"
+
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Nodogsplash HTTP 服务器端口"
+
+msgid "Maximum clients"
+msgstr "最大客户数"
+
+msgid "Session timeout (minutes)"
+msgstr "会话超时（分钟）"
+
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "验证前空闲超时（分钟）"
+
+msgid "Does not include users on the trusted MAC list"
+msgstr "不包括受信任 MAC 列表中的用户"
+
+msgid "Auth idle timeout (minutes)"
+msgstr "认证空闲超时（分钟）"
+
+msgid "Check interval (seconds)"
+msgstr "检查间隔（秒）"
+
+msgid "MAC address control"
+msgstr "MAC 地址控制"
+
+msgid "MAC mechanism"
+msgstr "MAC 机制"
+
+msgid "Blocked MAC list"
+msgstr "被阻止的 MAC 列表"
+
+msgid "Trusted MAC list"
+msgstr "可信 MAC 列表"
+
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "这些设备不受身份验证或防火墙规则的限制"
+
+msgid "Maximum number of concurrent authenticated users"
+msgstr "最大并发认证用户数"
+
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "默认会话长度（分钟）。0 = 无限制"
+
+msgid "Time before unauthenticated idle users are removed"
+msgstr "删除未认证闲置用户前的时间"
+
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "已通过身份验证的空闲用户解除身份验证前的时间"
+
+msgid "How often to check client timeouts"
+msgstr "检查客户端超时的频率"
+
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "阻止：阻止列表中的 MAC。允许：只允许允许列表中的 MAC"
+
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "示例：<code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "完全绕过验证的逗号分隔 MAC 地址"
+
+msgid "Block (blocklist mode)"
+msgstr "块（块列表模式）"
+
+msgid "Allow (allowlist mode)"
+msgstr "允许（允许列表模式）"
+
+msgid "Gateway IP range"
+msgstr "网关 IP 范围"
+
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "默认值：0.0.0.0/0（所有地址）"
+
+msgid "Debug level"
+msgstr "调试级别"
+
+msgid "Firewall settings"
+msgstr "防火墙设置"
+
+msgid "Allow all traffic for authenticated users"
+msgstr "允许已验证用户的所有流量"
+
+msgid "Allow DNS for pre-authenticated users"
+msgstr "允许预认证用户使用 DNS"
+
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "使用 CIDR 符号管理的 IP 范围。所有地址留空"
+
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "nodogsplash.service 报告的日志详情数量"
+
+msgid "0 - Errors only"
+msgstr "0 - 仅有错误"
+
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - 错误、警告、信息"
+
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - 错误、警告、信息、详细说明"
+
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - 错误、警告、信息、冗长、调试"
+
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "启用后，通过身份验证的用户可以不受限制地访问"
+
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "要求客户端在验证前解析域名"
+
+msgid "Portal status"
+msgstr "门户状态"
+
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "当前<code></code>状态显示如下。"
 

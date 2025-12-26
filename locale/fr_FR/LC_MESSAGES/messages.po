@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-10-22 14:14\n"
+"PO-Revision-Date: 2025-11-20 12:20\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -33,8 +33,14 @@ msgstr "Tableau de bord"
 msgid "WiFi client"
 msgstr "Client WiFi"
 
+msgid "Status"
+msgstr "État"
+
 msgid "Hotspot"
 msgstr "Hotspot"
+
+msgid "Logging"
+msgstr "Journalisation"
 
 msgid "Mem Use"
 msgstr "Mémoire"
@@ -439,6 +445,24 @@ msgstr "Merci d'être un Insider"
 msgid "DHCP server settings"
 msgstr "Paramètres du serveur DHCP"
 
+msgid "Default gateway"
+msgstr "Passerelle par défaut"
+
+msgid "Install a default route for this interface"
+msgstr "Installer une route par défaut pour cette interface"
+
+msgid "Static IP options"
+msgstr "Options d'IP statique"
+
+msgid "DHCP options"
+msgstr "Options DHCP"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Activez cette option si vous souhaitez que RaspAP attribue des adresses IP aux clients sur l'interface sélectionnée. Une adresse IP statique est requise pour cette option."
+
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr "Activez cette option uniquement si vous voulez que votre appareil utilise cette interface comme route principale vers Internet."
+
 msgid "Client list"
 msgstr "Liste des clients"
 
@@ -719,6 +743,27 @@ msgstr "Activer la journalisation"
 msgid "Logfile output"
 msgstr "Sortie de journal"
 
+msgid "Log level"
+msgstr "Niveau d'enregistrement"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Des niveaux plus élevés réduisent la verbosité des journaux. Il est recommandé d'opter pour un niveau d'information."
+
+msgid "Verbose debugging"
+msgstr "Débogage verbeux"
+
+msgid "Debugging"
+msgstr "Débogage"
+
+msgid "Informational"
+msgstr "Information"
+
+msgid "Notification"
+msgstr "Notification"
+
+msgid "Warning"
+msgstr "Avertissement"
+
 msgid "WiFi client AP mode"
 msgstr "Mode AP client WiFi"
 
@@ -921,8 +966,11 @@ msgstr "Serveur DNS alternatif"
 msgid "Adapter IP Address Settings"
 msgstr "Paramètres d'adresse IP de l'adaptateur"
 
-msgid "Enable Fallback to Static Option"
+msgid "Enable fallback to static option"
 msgstr "Activer la repli vers l'option statique"
+
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Activer cette option pour configurer un profil statique et y revenir lorsque le bail DHCP échoue."
 
 msgid "Static IP"
 msgstr "IP statique"
@@ -949,7 +997,7 @@ msgid "Devices"
 msgstr "Appareils"
 
 msgid "Diagnostics"
-msgstr "Diagnostics"
+msgstr "Diagnostiques"
 
 msgid "Network devices"
 msgstr "Appareils réseau"
@@ -1134,6 +1182,9 @@ msgstr "Stockage utilisé"
 
 msgid "CPU Load"
 msgstr "Charge du processeur"
+
+msgid "CPU Temp"
+msgstr "Temp. CPU"
 
 msgid "Reboot"
 msgstr "Redémarrer"
@@ -1345,9 +1396,12 @@ msgstr "Vérification de l'état de l'adaptateur"
 msgid "Inspect adapters"
 msgstr "Inspecter les adaptateurs"
 
+msgid "Theme"
+msgstr "Thème"
+
 #: includes/data_usage.php
 msgid "Data usage"
-msgstr "Données utilisées"
+msgstr "Utilisation des données"
 
 msgid "Data usage monitoring"
 msgstr "Surveillance de l'utilisation des données"
@@ -2039,6 +2093,27 @@ msgstr "Mise à jour terminée"
 
 msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 msgstr "Une erreur s'est produite. Vérifiez le journal à <code>/tmp/raspap_install.log</code>"
+
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP est une co-création de %1$s et %2$s avec les contributions de nos %3$s et %4$s. Pour en savoir plus sur la façon de rejoindre le projet en tant que %5$s, %6$s ou %7$s avec un accès immédiat à %8$s disponible à %9$s."
+
+msgid "developer community"
+msgstr "communauté des développeurs"
+
+msgid "language translators"
+msgstr "traducteurs de langues"
+
+msgid "code contributor"
+msgstr "contributeur du code"
+
+msgid "translator"
+msgstr "traducteur"
+
+msgid "financial sponsor"
+msgstr "sponsor financier"
+
+msgid "exclusive features"
+msgstr "fonctionnalités exclusives"
 
 msgid "RaspAP Exception"
 msgstr "Exception RaspAP"

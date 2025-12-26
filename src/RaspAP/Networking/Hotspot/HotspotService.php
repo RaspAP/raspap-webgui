@@ -32,7 +32,9 @@ class HotspotService
         'b'  => '802.11b - 2.4 GHz',
         'g'  => '802.11g - 2.4 GHz',
         'n'  => '802.11n - 2.4/5 GHz',
-        'ac' => '802.11ac - 5 GHz'
+        'ac' => '802.11ac - 5 GHz',
+        'ax' => '802.11ax - 2.4/5/6 GHz',
+        'be' => '802.11be - 2.4/5/6 GHz'
     ];
 
     // encryption types
@@ -42,6 +44,21 @@ class HotspotService
         'TKIP CCMP'  => 'TKIP+CCMP'
     ];
 
+    // 802.11ax (Wi-Fi 6) channel widths
+    private const HE_CHANNEL_WIDTHS = [
+        0 => '20/40 MHz',
+        1 => '80 MHz',
+        2 => '160 MHz'
+    ];
+
+    // 802.11be (Wi-Fi 7) channel widths
+    private const EHT_CHANNEL_WIDTHS = [
+        0 => '20 MHz',
+        1 => '40 MHz',
+        2 => '80 MHz',
+        3 => '160 MHz',
+        4 => '320 MHz (6 GHz only)'
+    ];
 
     public function __construct()
     {
@@ -67,7 +84,23 @@ class HotspotService
     }
 
     /**
-     * Returns translated security modes.
+     * Returns 802.11ax (Wi-Fi 6) channel widths
+     */
+    public static function getHeChannelWidths(): array
+    {
+        return self::HE_CHANNEL_WIDTHS;
+    }
+
+    /**
+     * Returns 802.11be (Wi-Fi 7) channel widths
+     */
+    public static function getEhtChannelWidths(): array
+    {
+        return self::EHT_CHANNEL_WIDTHS;
+    }
+
+    /**
+     * Returns translated security modes
      */
     public static function getSecurityModes(): array
     {
@@ -93,7 +126,6 @@ class HotspotService
             2 => _('Required (for supported clients)'),
         ];
     }
-
 
     /**
      * Validates user input + saves configs for hostapd, dnsmasq & dhcp
@@ -138,18 +170,25 @@ class HotspotService
 
         if ($validated === false) {
             $status->addMessage('Unable to save WiFi hotspot settings due to validation errors', 'danger');
-            error_log("HotspotService::validate() -> validated = false");
             return false;
         }
 
         try {
             // normalize state flags
             $validated['interface'] = $apIface;
+            $validated["bridgeName"] = !empty($states["BridgedEnable"]) ? "br0" : null;
             $validated['bridge']    = !empty($states['BridgedEnable']);
             $validated['apsta']     = !empty($states['WifiAPEnable']);
             $validated['repeater']  = !empty($states['RepeaterEnable']);
             $validated['dualmode']  = !empty($states['DualAPEnable']);
             $validated['txpower']   = $post_data['txpower'];
+
+            // add 802.11ax/be specific parameters if present
+            if (in_array($validated['hw_mode'], ['ax', 'be'])) {
+                if ($validated['wpa'] < 4 && $validated['hw_mode'] === 'be') {
+                    $status->addMessage('Note: WiFi 7 works best with WPA3 security', 'info');
+                }
+            }
 
             // hostapd
             $config = $this->hostapd->buildConfig($validated, $status);
@@ -295,10 +334,22 @@ class HotspotService
      * Gets the current regulatory domain
      *
      * @return string
+     * @throws RuntimeException if unable to determine regulatory domain
      */
     public function getRegDomain(): string
     {
         $domain = shell_exec("iw reg get | grep -o 'country [A-Z]\{2\}' | awk 'NR==1{print $2}'");
+
+        if ($domain === null) {
+            throw new \RuntimeException('Failed to execute regulatory domain command');
+        }
+
+        $domain = trim($domain);
+
+        if (empty($domain)) {
+            throw new \RuntimeException('Unable to determine regulatory domain');
+        }
+
         return $domain;
     }
 
@@ -337,6 +388,36 @@ class HotspotService
         sort($interfaces);
 
         return array_values($interfaces);
+    }
+
+    /**
+     * Retrieves hostapd service logs from systemd journal
+     *
+     * @param int $lines number of log lines to retrieve (default: 100, max: 1000)
+     * @param bool $follow return command for real-time following (tbd)
+     * @return array ['success' => bool, 'logs' => array, 'command' => string]
+     */
+    public function getHostapdLogs(int $lines = 100, bool $follow = false): array
+    {
+        // sanitize and limit line count
+        $lines = max(1, min(1000, $lines));
+
+        if ($follow) {
+            return [
+                'success' => true,
+                'logs' => [],
+                'command' => 'journalctl -u hostapd.service -f --no-pager'
+            ];
+        }
+
+        $cmd = sprintf('sudo journalctl -u hostapd.service -n %d --no-pager 2>&1', $lines);
+        exec($cmd, $output, $status);
+
+        return [
+            'success' => $status === 0,
+            'logs' => $output,
+            'line_count' => count($output)
+        ];
     }
 
     /**

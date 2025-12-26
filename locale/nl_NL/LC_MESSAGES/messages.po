@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2020-04-14 08:51\n"
+"PO-Revision-Date: 2025-11-20 08:36\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -12,51 +12,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
 "X-Crowdin-Language: nl\n"
 "X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 10\n"
 
 #: index.php
-msgid "RaspAP Wifi Configuration Portal"
-msgstr "RaspAP Wi-Fi configuratie portaal"
+msgid "RaspAP WiFi-Configuration Portal"
+msgstr "RaspAP WiFi-configuratieportaal"
 
 msgid "Toggle navigation"
-msgstr "Toon navigatie"
+msgstr "Navigatie tonen/verbergen"
 
-msgid "RaspAP Wifi Portal"
-msgstr "RaspAP Wi-fi portaal"
+msgid "RaspAP Admin Panel"
+msgstr "RaspAP Beheerpaneel"
 
 msgid "Dashboard"
 msgstr "Dashboard"
 
 msgid "WiFi client"
-msgstr "WiFi apparaat"
+msgstr "WiFi-client"
+
+msgid "Status"
+msgstr "Status"
 
 msgid "Hotspot"
 msgstr "Hotspot"
 
-msgid "Memory Use"
-msgstr ""
+msgid "Logging"
+msgstr "Logboek"
 
-msgid "CPU Temp"
-msgstr ""
+msgid "Mem Use"
+msgstr "Geheugen"
+
+msgid "CPU"
+msgstr "CPU"
 
 msgid "Networking"
 msgstr "Netwerk"
 
 msgid "DHCP Server"
-msgstr "DHCP server"
+msgstr "DHCP-server"
 
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
 msgid "TOR proxy"
-msgstr "TOR proxy"
+msgstr "TOR-proxy"
 
 msgid "Authentication"
-msgstr "Autenticatie"
-
-msgid "Change Theme"
-msgstr "Verander thema"
+msgstr "Authenticatie"
 
 msgid "System"
 msgstr "Systeem"
@@ -66,22 +71,22 @@ msgstr "Over RaspAP"
 
 #: includes/admin.php
 msgid "Authentication settings"
-msgstr "Verificatie-instellingen"
+msgstr "Authenticatie-instellingen"
 
 msgid "New passwords do not match"
-msgstr "Nieuw wachtwoord komt niet overeen"
+msgstr "Nieuwe wachtwoorden komen niet overeen"
 
 msgid "Username must not be empty"
 msgstr "Gebruikersnaam mag niet leeg zijn"
 
 msgid "Admin password updated"
-msgstr "Admin wachtwoord geupdate"
+msgstr "Beheerderswachtwoord bijgewerkt"
 
 msgid "Failed to update admin password"
-msgstr "Mislukt om admin wachtwoord te updaten"
+msgstr "Bijwerken beheerderswachtwoord mislukt"
 
 msgid "Old password does not match"
-msgstr "Oud wachtwoord is niet hetzelfde"
+msgstr "Oud wachtwoord komt niet overeen"
 
 msgid "Username"
 msgstr "Gebruikersnaam"
@@ -95,9 +100,72 @@ msgstr "Nieuw wachtwoord"
 msgid "Repeat new password"
 msgstr "Herhaal nieuw wachtwoord"
 
+msgid "Please provide a valid username."
+msgstr "Geef een geldige gebruikersnaam op."
+
+msgid "Please provide a valid password."
+msgstr "Geef een geldig wachtwoord op."
+
+msgid "Please enter your old password."
+msgstr "Voer uw oude wachtwoord in."
+
+msgid "Please enter a new password."
+msgstr "Voer een nieuw wachtwoord in."
+
+msgid "Please re-enter your new password."
+msgstr "Voer uw nieuwe wachtwoord opnieuw in."
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Click or tap to upload a new user avatar."
+msgstr "Klik of tik om een nieuwe gebruikersavatar te uploaden."
+
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "Afbeeldingsbestanden van het type <code>JPG, GIF of PNG</code> worden geaccepteerd. Maximale bestandsgrootte: 2 MB."
+
+msgid "Reset avatar"
+msgstr "Avatar herstellen"
+
+msgid "Enable limited privilege user"
+msgstr "Gebruiker met beperkte rechten inschakelen"
+
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "Deze optie schakelt een niet-beheerdersgebruiker in die toegang heeft tot de RaspAP beheerinterface, maar <strong>beperkte mogelijkheden heeft om de bestaande configuratie te wijzigen</strong>. Deze gebruiker wordt actief wanneer de huidige beheerder is uitgelogd."
+
+msgid "Admin login failed. Please try again."
+msgstr "Beheerder login mislukt. Probeer het opnieuw."
+
+msgid "Limited privilege user mode enabled"
+msgstr "Gebruikersmodus met beperkte rechten ingeschakeld"
+
+msgid "Failed to enable limited privilege user mode"
+msgstr "Inschakelen gebruikersmodus met beperkte rechten mislukt"
+
+msgid "Logout and enable limited user mode"
+msgstr "Uitloggen en gebruikersmodus met beperkte rechten inschakelen"
+
+msgid "Limited user login"
+msgstr "Gebruikerslogin met beperkte rechten"
+
+msgid "Limited user password"
+msgstr "Wachtwoord gebruiker met beperkte rechten"
+
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr "Deze actie slaat de inloggegevens van de gebruiker met beperkte rechten op en logt de huidige beheerder uit. Opslaan en gebruikersmodus met beperkte rechten inschakelen?"
+
+msgid "Save and logout"
+msgstr "Opslaan en uitloggen"
+
+msgid "Admin credentials updated successfully"
+msgstr "Beheerdersgegevens succesvol bijgewerkt"
+
+msgid "Limited user credentials updated successfully"
+msgstr "Inloggegevens gebruiker met beperkte rechten succesvol bijgewerkt"
+
 #: includes/configure_client.php
 msgid "Client settings"
-msgstr "Client instellingen"
+msgstr "Clientinstellingen"
 
 msgid "SSID"
 msgstr "SSID"
@@ -111,48 +179,72 @@ msgstr "Beveiliging"
 msgid "Passphrase"
 msgstr "Wachtwoordzin"
 
-msgid "Wifi settings updated successfully"
-msgstr "Wifi instellingen succesvol opgeslagen."
+msgid "WiFi-settings updated successfully"
+msgstr "WiFi-instellingen succesvol bijgewerkt"
 
-msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr "Wi-Fi instellingen geupdate maar kan niet herstarten (kan niet uitvoeren van 'wpa_cli reconfigure')"
+msgid "WiFi-settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
+msgstr "WiFi-instellingen bijgewerkt maar kan niet herstarten (kan 'wpa_cli reconfigure' niet uitvoeren)"
 
-msgid "Wifi settings failed to be updated"
-msgstr "Wi-Fi instellingen konden niet geupdate worden"
+msgid "WiFi-settings failed to be updated"
+msgstr "WiFi-instellingen konden niet worden bijgewerkt"
 
-msgid "Failed to update wifi settings"
-msgstr "Mislukt op wi-fi instellingen te updaten"
+msgid "Failed to update WiFi-settings"
+msgstr "Bijwerken WiFi-instellingen mislukt"
 
 msgid "Rescan"
-msgstr "Herscan"
+msgstr "Opnieuw scannen"
 
 msgid "Update"
-msgstr "Update"
+msgstr "Bijwerken"
 
 msgid "Add"
-msgstr "Voeg toe"
+msgstr "Toevoegen"
 
 msgid "Delete"
-msgstr "Verwijder"
+msgstr "Verwijderen"
 
 msgid "Show"
-msgstr "Toon"
+msgstr "Tonen"
 
 msgid "Hide"
 msgstr "Verbergen"
 
 msgid "Not configured"
-msgstr "Niet ingesteld"
+msgstr "Niet geconfigureerd"
+
+msgid "Connected"
+msgstr "Verbonden"
+
+msgid "Known"
+msgstr "Bekend"
+
+msgid "Nearby"
+msgstr "In de buurt"
 
 msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>Opmerking</strong> WEP beveiligde toegangspunten worden als 'Open' getoond. RaspAP heeft geen ondersteuning voor het verbinden met WEP beveiliging."
+msgstr "<strong>Opmerking:</strong> WEP-toegangspunten worden getoond als 'Open'. RaspAP ondersteunt momenteel geen verbindingen met WEP"
+
+msgid "No WiFi-stations found"
+msgstr "Geen WiFi-stations gevonden"
+
+msgid "Reinitialized wpa_supplicant. Choose <strong>Rescan</strong>."
+msgstr "wpa_supplicant opnieuw geïnitialiseerd. Kies <strong>Opnieuw scannen</strong>."
+
+msgid "Click 'Rescan' to search for nearby WiFi-stations."
+msgstr "Klik op 'Opnieuw scannen' om te zoeken naar WiFi-stations in de buurt."
+
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Klik op 'Opnieuw initialiseren' om <code>wpa_supplicant</code> geforceerd opnieuw te initialiseren."
+
+msgid "Reinitialize"
+msgstr "Opnieuw initialiseren"
 
 #: includes/dashboard.php
 msgid "Interface Information"
-msgstr "Interface informatie"
+msgstr "Interface-informatie"
 
 msgid "Interface Name"
-msgstr "Interface naam"
+msgstr "Interfacenaam"
 
 msgid "IPv4 Address"
 msgstr "IPv4-adres"
@@ -161,34 +253,34 @@ msgid "IPv6 Address"
 msgstr "IPv6-adres"
 
 msgid "Subnet Mask"
-msgstr "Subnet mask"
+msgstr "Subnetmasker"
 
 msgid "Mac Address"
-msgstr "mac adres"
+msgstr "MAC-adres"
 
 msgid "Interface Statistics"
-msgstr "Interface statenstieken"
+msgstr "Interface-statistieken"
 
 msgid "Received Packets"
-msgstr "Ontvangen pakketen"
+msgstr "Ontvangen pakketten"
 
 msgid "Received Bytes"
-msgstr "Ontvangen Bytes"
+msgstr "Ontvangen bytes"
 
 msgid "Transferred Packets"
-msgstr "Verzonden pakketen"
+msgstr "Verzonden pakketten"
 
 msgid "Transferred Bytes"
-msgstr "Verzonden Bytes"
+msgstr "Verzonden bytes"
 
 msgid "Wireless Client"
-msgstr ""
+msgstr "Draadloze client"
 
 msgid "Connected To"
-msgstr "Verbinden met"
+msgstr "Verbonden met"
 
 msgid "AP Mac Address"
-msgstr "AP Mac adres"
+msgstr "AP MAC-adres"
 
 msgid "Bitrate"
 msgstr "bitrate"
@@ -205,8 +297,8 @@ msgstr "Frequentie"
 msgid "Link Quality"
 msgstr "Signaal kwaliteit"
 
-msgid "Information provided by ip and iw and from system"
-msgstr "Informatie verstrekt door ip en iw en vanuit het systeem"
+msgid "Information provided by raspap.system"
+msgstr "Informatie verstrekt door raspap.system"
 
 msgid "No MAC Address Found"
 msgstr "Geen MAC adres gevonden"
@@ -227,7 +319,7 @@ msgid "Interface is up"
 msgstr "Interface is up"
 
 msgid "Interface is down"
-msgstr ""
+msgstr "Interface is niet beschikbaar"
 
 msgid "Interface already down"
 msgstr "Interface reeds down"
@@ -241,15 +333,147 @@ msgstr "Stop wlan0"
 msgid "Connected Devices"
 msgstr "Verbonden Apparaten"
 
+msgid "Client: Ethernet cable"
+msgstr "Client: Ethernet kabel"
+
+msgid "Current status"
+msgstr "Huidige status"
+
+msgid "Ethernet"
+msgstr "Ethernet"
+
+msgid "Client: Smartphone (USB tethering)"
+msgstr "Client: Smartphone (USB tethering)"
+
+msgid "Smartphone"
+msgstr "Smartphone"
+
+msgid "WiFi"
+msgstr "WiFi"
+
+msgid "Repeater"
+msgstr "Repeater"
+
+msgid "Tethering"
+msgstr "Tethering"
+
+msgid "Cellular"
+msgstr "Cellulair"
+
+msgid "AP"
+msgstr "AP"
+
+msgid "Bridged"
+msgstr "Overbrugd"
+
+msgid "Adblock"
+msgstr "Adblock"
+
+msgid "VPN"
+msgstr "VPN"
+
+msgid "Netmask"
+msgstr "Netmasker"
+
+msgid "5G"
+msgstr "5G"
+
+msgid "2.4G"
+msgstr "2.4G"
+
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
+
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "klant"
+msgstr[1] "klanten"
+
+msgid "Mobile Data Client"
+msgstr "Mobiele Data Client"
+
+msgid "Mobile Data"
+msgstr "Mobiele Data"
+
+msgid "No information available"
+msgstr "Geen informatie beschikbaar"
+
+msgid "Interface name invalid"
+msgstr "Interface naam niet ongeldig"
+
+msgid "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
+msgstr "Benodigde exec functie gedeactiveerd. Controleer of exec niet is toegevoegd aan php <code>disable_functions</code>."
+
+msgid "Waiting for the interface to start ..."
+msgstr "Wachten tot de interface start ..."
+
+msgid "Stop the Interface"
+msgstr "Stop de interface"
+
+msgid "Connection mode"
+msgstr "Connectie modus"
+
+msgid "Signal quality"
+msgstr "Signaal kwaliteit"
+
+msgid "WAN IP"
+msgstr "WAN IP"
+
+msgid "Signal strength"
+msgstr "Signaal sterkte"
+
+msgid "No Client device or not yet configured"
+msgstr "Geen client toestel of nog niet geconfigureerd"
+
+msgid "No Client device found"
+msgstr "Geen client toestel gevonden"
+
+#: includes/footer.php
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "Gemaakt door de <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+msgid "RaspAP Team"
+msgstr "RaspAP-team"
+
+msgid "Get Insiders"
+msgstr "Insiders krijgen"
+
+msgid "Thanks for being an Insider"
+msgstr "Bedankt dat je een Insider bent"
+
 #: includes/dhcp.php
 msgid "DHCP server settings"
 msgstr "DHCP-serverinstellingen"
+
+msgid "Default gateway"
+msgstr "Standaard gateway"
+
+msgid "Install a default route for this interface"
+msgstr "Installeer een standaard route voor deze interface"
+
+msgid "Static IP options"
+msgstr "Statische IP-opties"
+
+msgid "DHCP options"
+msgstr "DHCP-opties"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Schakel deze optie in als u wilt dat RaspAP IP-adressen toekent aan clients op de geselecteerde interface. Een statisch IP adres is vereist voor deze optie."
+
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr "Schakel dit alleen in als je wilt dat je apparaat deze interface als primaire route naar het internet gebruikt."
 
 msgid "Client list"
 msgstr "Clienten lijst"
 
 msgid "Interface"
 msgstr "Interface"
+
+msgid "Enable DHCP for this interface"
+msgstr "Schakel DHCP in voor deze interface"
+
+msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
+msgstr "Schakel deze optie in als je wilt dat RaspAP IP-adressen toewijst op de geselecteerde interface."
 
 msgid "DNS Server"
 msgstr "DNS server"
@@ -281,6 +505,9 @@ msgstr "Verloop tijd"
 msgid "MAC Address"
 msgstr "MAC adres"
 
+msgid "Optional comment"
+msgstr "Optionele commentaar"
+
 msgid "Host name"
 msgstr "Hostnaam"
 
@@ -291,10 +518,10 @@ msgid "Information provided by Dnsmasq"
 msgstr "Informatie gegeven door Dnsmasq"
 
 msgid "Stop dnsmasq"
-msgstr ""
+msgstr "Stop dnsmasq"
 
 msgid "Start dnsmasq"
-msgstr ""
+msgstr "Start dnsmasq"
 
 msgid "Dnsmasq configuration updated successfully"
 msgstr "Dnsmasq configuratie succesvol geupdate"
@@ -324,31 +551,103 @@ msgid "Dnsmasq is not running"
 msgstr "Dnsmasq is gestopt"
 
 msgid "Upstream DNS servers"
-msgstr ""
+msgstr "Upstream DNS server toevoegen"
 
 msgid "Only ever query DNS servers configured below"
-msgstr ""
+msgstr "Alleen DNS-servers hieronder geconfigureerd bevragen"
 
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr ""
+msgstr "Schakel deze optie in als u RaspAP wilt om <b>DNS-query's te sturen naar de servers hieronder exclusief</b>. Standaard gebruikt RaspAP ook de upstream van de DHCP-server van de naamservers."
 
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "Deze optie voegt <code>no-resolv</code> toe aan de dnsmasq configuratie."
 
 msgid "Add upstream DNS server"
-msgstr ""
+msgstr "Upstream DNS server toevoegen"
 
 msgid "Format"
 msgstr "Formaat"
 
 msgid "Choose a hosted server"
-msgstr ""
+msgstr "Kies een gehoste server"
+
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Activeer deze optie om de activiteit van <code>dhcpcd</code> en <code>dnsmasq</code> te loggen."
 
 msgid "Log DHCP requests"
-msgstr ""
+msgstr "DHCP-aanvragen registreren"
 
 msgid "Log DNS queries"
-msgstr ""
+msgstr "Log DNS-zoekopdrachten"
+
+msgid "Restrict access"
+msgstr "Beperkte toegang"
+
+msgid "Limit network access to static clients"
+msgstr "Beperkt netwerk toegang tot statische cliënten"
+
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Activeer deze optie als je wil dat RaspAP <b> gelijk welke client negeert</b> die niet in de statische leases lijst."
+
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Deze optie voegt <code>dhcp-ignore</code> toe aan de dnsmasq configuratie."
+
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Cliënten met een specifieke hardware MAC-adres kunnen steeds hetzelfde IP-adres toegewezen krijgen."
+
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Deze optie voegt <code>dhcp-host</code> entries toe aan de dnsmasq configuratie."
+
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr "Dit schakelt de <code>gateway/nogateway</code> optie in voor deze interface in het dhcpcd.conf bestand."
+
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr "Dit schakelt de <code>nohook wpa_supplicant</code> optie in voor deze interface in het dhcpcd.conf bestand."
+
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "Schakel wpa_supplicant dhcp hook uit voor deze interface"
+
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "Als je draadloze verbindingen beheert met wpa_supplicant zelf, dan kan de hook ongewenste verbindingsgebeurtenissen creëren. Deze optie schakelt de haak uit."
+
+msgid "Please provide a valid IP Address."
+msgstr "Geef een geldig IP-adres op."
+
+msgid "Please provide a valid Default gateway."
+msgstr "Geef een geldige standaardgateway op."
+
+msgid "Please provide a valid Starting IP Address."
+msgstr "Geef een geldig start-IP-adres op."
+
+msgid "Please provide a valid Ending IP Address."
+msgstr "Geef een geldig eind-IP-adres op."
+
+msgid "Please provide a valid Lease Time."
+msgstr "Geef een geldige leasetijd op."
+
+msgid "Invalid interface name."
+msgstr "Ongeldige interfacenaam."
+
+msgid "Invalid static IP address."
+msgstr "Ongeldig statisch IP-adres."
+
+msgid "Invalid default gateway."
+msgstr "Ongeldige standaard gateway."
+
+msgid "Invalid DHCP range start."
+msgstr "Ongeldige start DHCP-bereik."
+
+msgid "Invalid DHCP range end."
+msgstr "Ongeldig einde DHCP-bereik."
+
+msgid "Invalid DHCP lease time, not a number."
+msgstr "Ongeldige DHCP leasetijd, geen getal."
+
+msgid "Unknown DHCP lease time unit."
+msgstr "Onbekende leasetijdseenheid voor DHCP."
+
+msgid "Invalid metric value, not a number."
+msgstr "Ongeldige metrische waarde, geen getal."
 
 #: includes/hostapd.php
 msgid "Basic"
@@ -372,8 +671,8 @@ msgstr "Beveiliging type"
 msgid "Encryption Type"
 msgstr "Encryptie modus"
 
-msgid "PSK"
-msgstr "PSK"
+msgid "Pre-shared key (PSK)"
+msgstr "Vooraf gedeelde sleutel (PSK)"
 
 msgid "Advanced settings"
 msgstr "Gevanceerde instellingen"
@@ -408,14 +707,29 @@ msgstr "Onbekende interface"
 msgid "Country code must be blank or two characters"
 msgstr "Land code moet leeg zijn of twee tekens"
 
-msgid "Wifi Hotspot settings saved"
-msgstr "Wi-Fi hostspot instellingen opgeslagen"
+msgid "DHCP configuration for %s enabled."
+msgstr "DHCP-configuratie voor %s ingeschakeld."
 
-msgid "Unable to save wifi hotspot settings"
-msgstr "Mislukt om Wi-FI Hotspot instellen op te slaan"
+msgid "DHCP configuration for %s added."
+msgstr "DHCP-configuratie voor %s toegevoegd."
+
+msgid "DHCP configuration for %s updated."
+msgstr "DHCP-configuratie voor %s bijgewerkt."
+
+msgid "Interface %s has no default settings."
+msgstr "Interface %s heeft geen standaardinstellingen."
+
+msgid "Configure settings in <strong>DHCP Server</strong> before starting AP."
+msgstr "Configureer de instellingen in <strong>DHCP Server</strong> voordat u AP start."
+
+msgid "WiFi-hotspot settings saved."
+msgstr "Wifi-hotspotinstellingen opgeslagen."
+
+msgid "Unable to save WiFi hotspot settings."
+msgstr "Kan WiFi-hotspotinstellingen niet opslaan."
 
 msgid "Start hotspot"
-msgstr ""
+msgstr "Hotspot starten"
 
 msgid "Stop hotspot"
 msgstr "Stop hotstop"
@@ -429,11 +743,38 @@ msgstr "Logboek inschakelen"
 msgid "Logfile output"
 msgstr "Logboek uitvoer"
 
+msgid "Log level"
+msgstr "Logniveau"
+
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Hogere niveaus verminderen de verbositeit van het logboek. Informatief wordt aanbevolen."
+
+msgid "Verbose debugging"
+msgstr "Uitgebreid debuggen"
+
+msgid "Debugging"
+msgstr "Debuggen op"
+
+msgid "Informational"
+msgstr "Informatief"
+
+msgid "Notification"
+msgstr "Melding"
+
+msgid "Warning"
+msgstr "Waarschuwing"
+
 msgid "WiFi client AP mode"
 msgstr "WiFi-client AP-modus"
 
 msgid "Bridged AP mode"
-msgstr ""
+msgstr "Brug AP modus"
+
+msgid "WiFi repeater mode"
+msgstr "WiFi-repeatermodus"
+
+msgid "Dual band AP mode"
+msgstr "Dubbele band AP-modus"
 
 msgid "Hide SSID in broadcast"
 msgstr "Verberg SSID in uitzending"
@@ -441,12 +782,177 @@ msgstr "Verberg SSID in uitzending"
 msgid "Maximum number of clients"
 msgstr "Maximaal aantal klanten"
 
-msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Configureert de optie 'max_num_sta' van hostapd. Standaard is de maximale waarde van 2007 ingesteld. Indien leeg of 0 wordt de standaard toegepast."
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Configureert de <code>max_num_sta</code> optie van hostapd. De standaardwaarde en het maximum is 2007. Als het leeg is of 0, geldt de standaardwaarde."
+
+msgid "Beacon interval"
+msgstr "Baken interval"
+
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Schakel <code>disassoc_low_ack</code> uit"
+
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Ontkoppel stations niet op basis van buitensporige transmissiefouten."
+
+msgid "Executing RaspAP service start"
+msgstr "RaspAP-service starten"
+
+msgid "Close"
+msgstr "Sluiten"
+
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Schakel deze optie in om <code>hostapd</code> activiteit te loggen."
+
+msgid "Transmit power (dBm)"
+msgstr "Zendvermogen (dBm)"
+
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "Stelt de <code>txpower</code> optie in voor de AP interface en het geconfigureerde land."
+
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "dBm is een niveau-eenheid die wordt gebruikt om aan te geven dat een vermogensverhouding wordt uitgedrukt in decibel (dB) ten opzichte van één milliwatt (mW). 30 dBm is gelijk aan 1000 mW, terwijl 0 dBm gelijk is aan 1,25 mW."
+
+msgid "WPA and WPA2"
+msgstr "WPA en WPA2"
+
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 en WPA3-Personal (overgangsmodus)"
+
+msgid "WPA3-Personal (required)"
+msgstr "WPA3-Personal (vereist)"
+
+msgid "Enabled (for supported clients)"
+msgstr "Ingeschakeld (voor ondersteunde clients)"
+
+msgid "Required (for supported clients)"
+msgstr "Vereist (voor ondersteunde klanten)"
+
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "802.11w breidt sterke cryptografische bescherming uit naar een selecte set robuuste beheerframes, waaronder Deauthentication, Disassociation en bepaalde categorieën van Action Management frames. Samen staat dit bekend als Management Frame Protection (MFP)."
+
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Scan deze QR code direct of %s %sprint een bord%s voor je gebruikers."
+
+msgid "Printable WiFi sign"
+msgstr "Printbaar WiFi-bord"
+
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Om verbinding te maken met je telefoon of tablet, scan je de QR-code hierboven met je camera-app."
+
+msgid "For other devices, use the login credentials below."
+msgstr "Gebruik de onderstaande aanmeldingsgegevens voor andere apparaten."
+
+msgid "Network"
+msgstr "Netwerk"
+
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "De geselecteerde interface (%s) biedt alleen ondersteuning voor de 2,4 GHz draadloze band."
+
+msgid "The selected interface (%s) has support for the 2.5 GHz wireless band only."
+msgstr "De geselecteerde interface (%s) ondersteunt alleen de 2,5 GHz draadloze band."
+
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "De geselecteerde interface (%s) heeft ondersteuning voor zowel de 2.4 als de 5 GHz draadloze band."
+
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "De geselecteerde interface (%s) ondersteunt de draadloze modus niet."
+
+msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
+msgstr "De 802.11ac 5 GHz optie is uitgeschakeld totdat een compatibel draadloos reguleringsdomein is ingesteld."
+
+msgid "WiFi repeater mode: A metric value is already defined for DHCP."
+msgstr "WiFi-repeatermodus: Er is al een metrische waarde gedefinieerd voor DHCP."
+
+msgid "Restart hotspot to enable WiFi repeater mode."
+msgstr "Herstart hotspot om WiFi repeater-modus in te schakelen."
+
+msgid "Unable to obtain metric value for client interface. Repeater mode inactive."
+msgstr "Kan metrische waarde voor clientinterface niet verkrijgen. Repeater-modus inactief."
+
+msgid "Metric value configured for the %s interface."
+msgstr "Metric waarde geconfigureerd voor de %s interface."
+
+msgid "Parameter hiddenSSID contains invalid configuration value."
+msgstr "Parameter hiddenSSID bevat ongeldige configuratiewaarde."
+
+msgid "Parameter hiddenSSID is not a number."
+msgstr "Parameter hiddenSSID is geen getal."
+
+msgid "Bridge interface configuration"
+msgstr "Configuratie van de bridge-interface"
+
+msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+msgstr "Configureer een statisch IP adres voor de <code>br0</code> interface om de connectiviteit te behouden tijdens het activeren van bridge-modus."
+
+msgid "Static IP Address"
+msgstr "Statisch IP-adres"
+
+msgid "Netmask / CIDR"
+msgstr "Netmasker / CIDR"
+
+msgid "Example: 192.168.1.100"
+msgstr "Voorbeeld: 192.168.1.100"
+
+msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
+msgstr "CIDR-notatie (bijvoorbeeld 24 voor 255.255.255.0)"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "Your router's IP address"
+msgstr "Het IP-adres van je router"
+
+msgid "Usually same as gateway"
+msgstr "Meestal hetzelfde als gateway"
+
+msgid "Bridge static IP address must be a valid IPv4 address"
+msgstr "Het statische IP-adres van de brug moet een geldig IPv4-adres zijn."
+
+msgid "Bridge netmask must be a number between 1 and 32"
+msgstr "Het bridge netmask moet een getal zijn tussen 1 en 32"
+
+msgid "Bridge netmask is required when using static IP"
+msgstr "Het bridge netmask is nodig bij gebruik van statische IP"
+
+msgid "Bridge gateway must be a valid IPv4 address"
+msgstr "De gateway van de bridge moet een geldig IPv4-adres zijn"
+
+msgid "Bridge gateway is required when using static IP"
+msgstr "Bridge Gateway is vereist bij gebruik van statische IP"
+
+msgid "Bridge DNS server must be a valid IPv4 address"
+msgstr "De DNS-server van de brug moet een geldig IPv4-adres zijn."
+
+msgid "Bridge DNS server is required when using static IP"
+msgstr "Brug DNS server is nodig bij gebruik van statische IP"
+
+msgid "Bridge static IP and gateway must be in the same subnet"
+msgstr "Het statische IP van de brug en de gateway moeten in hetzelfde subnet liggen"
+
+msgid "Please enter a valid IPv4 address"
+msgstr "Voer een geldig IPv4-adres in"
+
+msgid "Please enter a valid netmask"
+msgstr "Voer een geldig netmask in"
+
+msgid "DHCP configuration for br0 enabled"
+msgstr "DHCP-configuratie voor br0 ingeschakeld"
+
+msgid "Unable to save WiFi hotspot settings due to validation errors"
+msgstr "Kan WiFi-hotspotinstellingen niet opslaan vanwege validatiefouten"
+
+msgid "Enable AP isolation"
+msgstr "AP-isolatie inschakelen"
+
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "Blokkeert draadloze clients om elkaar te zien of om verbinding met elkaar te maken. Aanbevolen voor gastnetwerken en openbare toegangspunten."
 
 #: includes/networking.php
 msgid "Summary"
 msgstr "Samenvatting"
+
+msgid "Internet connection"
+msgstr "Internetverbinding"
 
 msgid "Current settings"
 msgstr "Huidige instellingen"
@@ -460,8 +966,11 @@ msgstr "Alternatieve DNS-server"
 msgid "Adapter IP Address Settings"
 msgstr "IP-adresinstellingen van adapter"
 
-msgid "Enable Fallback to Static Option"
-msgstr "Terugvallen op statische optie inschakelen"
+msgid "Enable fallback to static option"
+msgstr "Terugval naar statische optie inschakelen"
+
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Schakel deze optie in om een statisch profiel te configureren en hierop terug te vallen als de DHCP lease mislukt."
 
 msgid "Static IP"
 msgstr "Statische IP"
@@ -475,11 +984,164 @@ msgstr "Uitgeschakeld"
 msgid "Static IP Options"
 msgstr "Statische IP-opties"
 
+msgid "Metric"
+msgstr "Meeteenheid"
+
 msgid "Apply settings"
 msgstr "Instellingen toepassen"
 
 msgid "Information provided by /sys/class/net"
 msgstr "Informatie verstrekt door /sys/class/net"
+
+msgid "Devices"
+msgstr "Apparaten"
+
+msgid "Diagnostics"
+msgstr "Diagnostiek"
+
+msgid "Network devices"
+msgstr "Netwerkapparaten"
+
+msgid "Device"
+msgstr "Apparaat"
+
+msgid "MAC address"
+msgstr "MAC-adres"
+
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+msgid "Device type"
+msgstr "Type apparaat"
+
+msgid "Fixed name"
+msgstr "Vaste naam"
+
+msgid "Change"
+msgstr "Verander"
+
+msgid "Mobile data settings"
+msgstr "Instellingen mobiele gegevens"
+
+msgid "SIM card PIN number"
+msgstr "PIN-code SIM-kaart"
+
+msgid "APN Settings (Modem device ppp0)"
+msgstr "APN-instellingen (modemapparaat ppp0)"
+
+msgid "Access Point Name (APN)"
+msgstr "Naam toegangspunt (APN)"
+
+msgid "Password"
+msgstr "Wachtwoord"
+
+msgid "Successfully Updated Network Configuration"
+msgstr "Succesvol bijgewerkte netwerkconfiguratie"
+
+msgid "Error saving network configuration to file"
+msgstr "Fout bij het opslaan van netwerkconfiguratie in bestand"
+
+msgid "Unable to detect interface"
+msgstr "Interface kan niet worden gedetecteerd"
+
+msgid "Routing table"
+msgstr "Routeertabel"
+
+msgid "raw output"
+msgstr "ruwe output"
+
+msgid "Setting wireless regulatory domain to %s"
+msgstr "Draadloos reguleringsdomein instellen op %s"
+
+msgid "Please provide a valid SSID."
+msgstr "Geef een geldige SSID op."
+
+msgid "Please provide a valid PSK."
+msgstr "Geef een geldige PSK op."
+
+msgid "Speedtest"
+msgstr "Snelheidstest"
+
+msgid "Selecting a server"
+msgstr "Een server selecteren"
+
+msgid "Privacy"
+msgstr "Privacy"
+
+msgid "Server"
+msgstr "Server"
+
+msgid "ms"
+msgstr "ms"
+
+msgid "Mbps"
+msgstr "Mbps"
+
+msgid "Ping"
+msgstr "Ping"
+
+msgid "Jitter"
+msgstr "Jitter"
+
+msgid "Upload"
+msgstr "Uploaden"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "Abort"
+msgstr "Afbreken"
+
+msgid "Wireless LAN routing"
+msgstr "Draadloze LAN-routering"
+
+msgid "Stop WLAN routing"
+msgstr "WLAN-routering stoppen"
+
+msgid "Start WLAN routing"
+msgstr "WLAN-routering starten"
+
+msgid "Restart WLAN routing"
+msgstr "WLAN-routering opnieuw starten"
+
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Deze optie configureert RaspAP om <b>netwerkverkeer van je draadloze client (STA) interface</b> naar een andere beschikbare interface <b>te routeren</b>."
+
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Wanneer een uitvoerinterface wordt geselecteerd, worden <code>iptables</code> regels toegevoegd om pakketten te routeren met behulp van network address translation (NAT). Dit wordt vaak gedaan om internetconnectiviteit van een WLAN te delen met apparaten op een <code>eth0</code>, <code>usb0</code> of voorspelbare <code>enx</code> interface."
+
+msgid "Wireless client interface"
+msgstr "Draadloze cliëntinterface"
+
+msgid "Output interface"
+msgstr "Uitvoerinterface"
+
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Een statisch IP-adres en DHCP configureren voor de uitvoerinterface"
+
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "Poging om routing in te schakelen tussen %s en %s interfaces"
+
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "Poging om routing uit te schakelen tussen %s en %s interfaces"
+
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "Er bestaat geen standaard DHCP-configuratie voor de interface %s ."
+
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "Configureer een statische IP en DHCP voor deze interface in DHCP-serverinstellingen"
+
+msgid "WLAN routing configuration saved"
+msgstr "WLAN-routeringsconfiguratie opgeslagen"
+
+msgid "Unable to save WLAN routing configuration"
+msgstr "WLAN-routeringsconfiguratie kan niet worden opgeslagen"
+
+msgid "Successfully restarted dnsmasq"
+msgstr "Succesvol herstarten van dnsmasq"
+
+msgid "Failed to restart dnsmasq"
+msgstr "Het herstarten van dnsmasq is mislukt"
 
 #: includes/system.php
 msgid "System Information"
@@ -498,7 +1160,7 @@ msgid "Language setting saved"
 msgstr "Taalinstellingen opgeslagen"
 
 msgid "Console"
-msgstr ""
+msgstr "Console"
 
 msgid "Hostname"
 msgstr "Hostnaam"
@@ -507,13 +1169,22 @@ msgid "Pi Revision"
 msgstr "Pi-Revisie"
 
 msgid "Uptime"
-msgstr ""
+msgstr "Uptime"
+
+msgid "System Time"
+msgstr "Systeem Tijd"
 
 msgid "Memory Used"
 msgstr "Geheugen gebruik"
 
+msgid "Storage Used"
+msgstr "Gebruikte opslag"
+
 msgid "CPU Load"
 msgstr "CPU-belasting"
+
+msgid "CPU Temp"
+msgstr "CPU-temp"
 
 msgid "Reboot"
 msgstr "Opnieuw opstarten"
@@ -521,18 +1192,212 @@ msgstr "Opnieuw opstarten"
 msgid "Shutdown"
 msgstr "Afsluiten"
 
+msgid "System reboot"
+msgstr "Systeem herstarten"
+
+msgid "System shutdown"
+msgstr "Systeem uitschakelen"
+
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr "Nu herstarten? Het systeem zal tijdelijk niet beschikbaar zijn."
+
+msgid "Shutdown now? The system will be unavailable."
+msgstr "Nu afsluiten? Het systeem zal niet beschikbaar zijn."
+
 msgid "System Rebooting Now!"
 msgstr "Systeem start nu opnieuw op!"
 
 msgid "System Shutting Down Now!"
 msgstr "Systeem wordt nu uitgeschakeld!"
 
-#: includes/themes.php
+msgid "Web server port"
+msgstr "Web server poort"
+
+msgid "Web server bind address"
+msgstr "Adres binding webserver"
+
+msgid "OS"
+msgstr "OS"
+
+msgid "Kernel"
+msgstr "Kernel"
+
+msgid "System reset"
+msgstr "Systeem resetten"
+
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "RaspAP terugzetten naar de initiële configuratie? Deze actie kan niet ongedaan worden gemaakt."
+
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "Reset voltooid. Start de hotspot opnieuw op om de wijzigingen van kracht te laten worden."
+
+msgid "System reset in progress..."
+msgstr "Systeem wordt gereset..."
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Restore settings"
+msgstr "Instellingen herstellen"
+
+msgid "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
+msgstr "Klik of tik op de onderstaande knop om RaspAP terug te zetten naar de <a href=\"%s\">beginconfiguratie</a>."
+
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Aangepaste bestanden voor optionele onderdelen zoals Ad Blocking, WireGuard of OpenVPN blijven op het systeem staan."
+
+msgid "Perform reset"
+msgstr "Reset uitvoeren"
+
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Herstelt alle service-instellingen van het toegangspunt (AP) naar hun standaardwaarden. Dit geldt voor hostapd, dhcpcd en dnsmasq."
+
 msgid "Theme settings"
 msgstr "Thema-instellingen"
 
 msgid "Select a theme"
 msgstr "Selecteer een thema"
+
+msgid "Color"
+msgstr "Kleur"
+
+msgid "Enable this option for resizable, drag and drop widgets. Best for large displays."
+msgstr "Schakel deze optie in voor aanpasbare, versleepbare widgets. Het beste voor grote beeldschermen."
+
+msgid "Dynamic widgets"
+msgstr "Dynamische widgets"
+
+msgid "Tools"
+msgstr "Gereedschap"
+
+msgid "System tools"
+msgstr "Systeemtools"
+
+msgid "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
+msgstr "Klik of tik op de onderstaande knop om een <a href=\"%s\">debuglog</a> van het systeem te genereren."
+
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Debug log informatie bevat de RaspAP versie, huidige status en configuratie van AP gerelateerde diensten, geïnstalleerde systeempakketten, Linux kernel versie en netwerkdetails. Er worden geen wachtwoorden of andere gevoelige gegevens opgenomen."
+
+msgid "Generate debug log"
+msgstr "Debug-logboek genereren"
+
+msgid "Debug log generation in progress..."
+msgstr "Debug log genereren bezig..."
+
+msgid "Diagnostic log size limit (KB)"
+msgstr "Limiet diagnostische loggrootte (KB)"
+
+msgid "Changing log limit size to %s KB"
+msgstr "Logboeklimiet wijzigen naar %s KB"
+
+msgid "Information provided by raspap.sysinfo"
+msgstr "Informatie geleverd door raspap.sysinfo"
+
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "De volgende gebruikersplugins zijn beschikbaar om de functionaliteit van RaspAP uit te breiden."
+
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Kies <strong>Details</strong> voor meer informatie en om een plugin te installeren."
+
+msgid "Network error"
+msgstr "Netwerkfout"
+
+msgid "Unable to load plugins"
+msgstr "Kan geen plugins laden"
+
+msgid "Reload"
+msgstr "Herladen"
+
+msgid "and try again"
+msgstr "en probeer het opnieuw"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Plugin details"
+msgstr "Plugin details"
+
+msgid "Name"
+msgstr "Naam"
+
+msgid "Version"
+msgstr "Versie"
+
+msgid "Description"
+msgstr "Beschrijving"
+
+msgid "Plugin source"
+msgstr "Plugin bron"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "License"
+msgstr "Licentie"
+
+msgid "Language locale"
+msgstr "Taal locale"
+
+msgid "Configuration files"
+msgstr "Configuratiebestanden"
+
+msgid "Dependencies"
+msgstr "Afhankelijkheden"
+
+msgid "Permissions"
+msgstr "Rechten"
+
+msgid "Non-privileged users"
+msgstr "Niet-geprivilegieerde gebruikers"
+
+msgid "Install now"
+msgstr "Nu installeren"
+
+msgid "Installing plugin"
+msgstr "Plugin installeren"
+
+msgid "Plugin installation in progress..."
+msgstr "Plugin installatie bezig..."
+
+msgid "Plugin install completed."
+msgstr "Installatie van plugin voltooid."
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Installed"
+msgstr "Geïnstalleerd"
+
+msgid "Alert messages"
+msgstr "Waarschuwingsberichten"
+
+msgid "Alert close timeout (milliseconds)"
+msgstr "Time-out waarschuwing sluiten (milliseconden)"
+
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Meldingen automatisch sluiten na een opgegeven time-out"
+
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Klik of tik op de onderstaande knop om <a href=\"%s\" target=\"_blank\">de adapters te inspecteren</a> die op dit apparaat zijn aangesloten."
+
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Het hulpmiddel voor adapterinspectie geeft details over externe WLAN-apparaten, inclusief stuurprogramma's, ondersteunde modi enzovoort."
+
+msgid "Choose a network interface to inspect"
+msgstr "Kies een netwerkinterface om te inspecteren"
+
+msgid "Select an interface..."
+msgstr "Selecteer een interface..."
+
+msgid "Adapter health check"
+msgstr "Gezondheidscontrole adapter"
+
+msgid "Inspect adapters"
+msgstr "Adapters inspecteren"
+
+msgid "Theme"
+msgstr "Thema"
 
 #: includes/data_usage.php
 msgid "Data usage"
@@ -551,7 +1416,7 @@ msgid "Monthly traffic amount"
 msgstr "Verkeer per maand"
 
 msgid "Hourly"
-msgstr "Pur uur"
+msgstr "Per uur"
 
 msgid "Daily"
 msgstr "Per dag"
@@ -560,7 +1425,7 @@ msgid "Monthly"
 msgstr "Per maand"
 
 msgid "interface"
-msgstr ""
+msgstr "interface"
 
 msgid "date"
 msgstr "datum"
@@ -632,6 +1497,66 @@ msgstr "We proberen openvpn op te starten"
 msgid "Attempting to stop openvpn"
 msgstr "We proberen openvpn te stoppen"
 
+msgid "Configurations"
+msgstr "Configuraties"
+
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Momenteel beschikbare OpenVPN-clientconfiguraties worden hieronder weergegeven."
+
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Het activeren van een configuratie herstart de <code>openvpn-client</code> service."
+
+msgid "Delete OpenVPN client"
+msgstr "OpenVPN-client verwijderen"
+
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Clientconfiguratie verwijderen? Dit kan niet ongedaan worden gemaakt."
+
+msgid "Activate OpenVPN client"
+msgstr "OpenVPN-client activeren"
+
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Clientconfiguratie activeren? Dit herstart de openvpn-client service."
+
+msgid "Activate"
+msgstr "Activeer"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Schakel deze optie in om <code>openvpn-activiteit</code> te loggen."
+
+msgid "Authentification Method"
+msgstr "Authentificatiemethode"
+
+msgid "Username and password"
+msgstr "Gebruikersnaam en wachtwoord"
+
+msgid "Certificates"
+msgstr "Certificaten"
+
+msgid "Enter username and password"
+msgstr "Voer gebruikersnaam en wachtwoord in"
+
+msgid "Certificates in the configuration file"
+msgstr "Certificaten in het configuratiebestand"
+
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP ondersteunt certificaten door ze op te nemen in het configuratiebestand."
+
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Certificaat van de ondertekenende certificeringsautoriteit (CA) (bijv. <code>ca.crt</code>): ingesloten in <code>&lt;ca> ... &lt;/ca></code> tags."
+
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Clientcertificaat (openbare sleutel) (bijv. <code>client.crt</code>): ingesloten in <code>&lt;cert> ... &lt;/cert></code> tags."
+
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Privésleutel van het cliëntcertificaat (bijv. <code>client.key</code>): ingesloten in <code>&lt;key> ... &lt;/key></code> tags."
+
+msgid "Configuration File"
+msgstr "Configuratiebestand"
+
 #: includes/torproxy.php
 msgid "TOR is not running"
 msgstr "TOR draait niet"
@@ -640,7 +1565,7 @@ msgid "TOR is running"
 msgstr "TOR draait"
 
 msgid "Relay"
-msgstr ""
+msgstr "Relay"
 
 msgid "Relay settings"
 msgstr "Relay-instellingen"
@@ -668,7 +1593,7 @@ msgstr "We proberen TOR te stoppen"
 
 #: template/dashboard.php
 msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
-msgstr ""
+msgstr "Brug AP modus is ingeschakeld. Voor hostnaam en IP, zie de beheerderspagina van uw router."
 
 #: common form controls
 msgid "Save settings"
@@ -692,45 +1617,1125 @@ msgstr "omhoog"
 msgid "down"
 msgstr "omlaag"
 
+msgid "Clear log"
+msgstr "Log wissen"
+
 msgid "adblock"
-msgstr ""
+msgstr "adblock"
 
 msgid "Ad Blocking"
-msgstr ""
+msgstr "Ad Blocking"
 
 msgid "Start Ad Blocking"
-msgstr ""
+msgstr "Start Ad Blocking"
 
 msgid "Restart Ad Blocking"
-msgstr ""
+msgstr "Herstart Ad Blocking"
 
 msgid "Blocklist settings"
-msgstr ""
+msgstr "Blokkeerlijst instellingen"
 
 msgid "Enable blocklists"
-msgstr ""
+msgstr "Blokkeerlijsten inschakelen"
 
 msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr ""
+msgstr "Schakel deze optie in als u wilt dat RaspAP <b>DNS-verzoeken voor advertenties, tracking en andere virtuele garbage</b> blokkeert. Blokklijsten worden verzameld uit meervoudige en actief onderhouden bronnen en worden dagelijks geüpdatet, opgeruimd, geoptimaliseerd en gemodereerd."
 
 msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "Deze optie voegt <code>conf-file</code> en <code>addn-hosts</code> toe aan de dnsmasq configuratie."
 
 msgid "Choose a blocklist provider"
-msgstr ""
+msgstr "Kies een aanbieder voor blokkeringslijsten"
 
 msgid "Hostnames blocklist last updated"
-msgstr ""
+msgstr "Blokkeerlijst van hostnamen laatst bijgewerkt"
 
 msgid "Domains blocklist last updated"
-msgstr ""
+msgstr "Domeinen blokkeerlijst laatst bijgewerkt"
 
 msgid "Update now"
-msgstr ""
+msgstr "Nu bijwerken"
 
 msgid "Statistics"
-msgstr ""
+msgstr "Statistieken"
 
 msgid "Information provided by adblock"
 msgstr "Informatie verstrekt door adblock"
+
+msgid "Custom blocklist"
+msgstr "Custom blokkeerlijst"
+
+msgid "Enable custom blocklist"
+msgstr "Aangepaste blokkeerlijst inschakelen"
+
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Definieer aangepaste hosts die geblokkeerd moeten worden door het invoeren van een IPv4 of IPv6 adres gevolgd door een spatie of tab, en de hostnaam."
+
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 voorbeeld:</b> 0.0.0.0 badhost.com"
+
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Deze optie voegt een <code>addn-hosts</code> richtlijn toe aan de dnsmasq configuratie."
+
+msgid "Custom blocklist not defined"
+msgstr "Aangepaste blokkeringslijst niet gedefinieerd"
+
+msgid "Invalid custom IP address found on line "
+msgstr "Ongeldig aangepast IP-adres gevonden in de regel "
+
+msgid "Invalid custom host found on line "
+msgstr "Ongeldige aangepaste host gevonden op regel "
+
+msgid "Tunnel settings"
+msgstr "Tunnelinstellingen"
+
+msgid "Configuration Method"
+msgstr "Configuratiemethode"
+
+msgid "Upload file"
+msgstr "Bestand uploaden"
+
+msgid "Create manually"
+msgstr "Handmatig aanmaken"
+
+msgid "Upload a WireGuard config"
+msgstr "Een WireGuard configuratie uploaden"
+
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "Deze optie uploadt en installeert een bestaand WireGuard <code>.conf</code> bestand op dit apparaat."
+
+msgid "Apply iptables rules to the selected interface"
+msgstr "iptables-regels toepassen op de geselecteerde interface"
+
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "Aanbevolen als je netwerkverkeer wil doorsturen van de wg0 interface naar clients die verbonden zijn met een gewenste interface. De actieve AP interface is de standaard."
+
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "Deze optie voegt <strong>iptables</strong> <code>Postup</code> en <code>PostDown</code> regels toe voor de hieronder geselecteerde interface."
+
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "Selecteer het WireGuard-configuratiebestand (.conf)"
+
+msgid "Create a local WireGuard config"
+msgstr "Een lokale WireGuard configuratie aanmaken"
+
+msgid "Enable server"
+msgstr "Server inschakelen"
+
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "Schakel deze optie in om netwerkverkeer te beveiligen door een versleutelde tunnel aan te maken tussen RaspAP en geconfigureerde peers."
+
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "Deze instelling genereert een nieuw WireGuard <code>.conf</code> bestand op dit apparaat."
+
+msgid "Local public key"
+msgstr "Lokale openbare sleutel"
+
+msgid "Local Port"
+msgstr "Lokale haven"
+
+msgid "IP Address"
+msgstr "IP-adres"
+
+msgid "DNS"
+msgstr "DNS"
+
+msgid "Peer"
+msgstr "Peer"
+
+msgid "Enable peer"
+msgstr "Peer inschakelen"
+
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Schakel deze optie in om verkeer te versleutelen door een tunnel te creëren tussen RaspAP en deze peer."
+
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "Deze optie voegt <code>client.conf</code> toe aan de WireGuard configuratie."
+
+msgid "Peer public key"
+msgstr "Openbare sleutel van peer"
+
+msgid "Endpoint address"
+msgstr "Adres eindpunt"
+
+msgid "Allowed IPs"
+msgstr "Toegestane IP's"
+
+msgid "Persistent keepalive"
+msgstr "Aanhoudende keepalive"
+
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Schakel deze optie in om een bijgewerkt <code>wg-quick</code> debug-logboek weer te geven."
+
+msgid "WireGuard debug log updated"
+msgstr "WireGuard debug-log bijgewerkt"
+
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Scan deze QR-code met je client om verbinding te maken met deze tunnel"
+
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "of download het <code>client.conf</code> bestand naar je apparaat."
+
+msgid "Download"
+msgstr "Downloaden"
+
+msgid "Start WireGuard"
+msgstr "WireGuard starten"
+
+msgid "Stop WireGuard"
+msgstr "Stop WireGuard"
+
+msgid "Information provided by wireguard"
+msgstr "Informatie verstrekt door wireguard"
+
+msgid "Attempting to start WireGuard"
+msgstr "Poging om WireGuard te starten"
+
+msgid "Attempting to stop WireGuard"
+msgstr "WireGuard proberen te stoppen"
+
+msgid "WireGuard configuration updated successfully"
+msgstr "WireGuard-configuratie succesvol bijgewerkt"
+
+msgid "WireGuard configuration failed to be updated"
+msgstr "WireGuard-configuratie is niet bijgewerkt"
+
+msgid "Enable kill switch"
+msgstr "Noodstopschakelaar inschakelen"
+
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr "Deze optie voegt <strong>iptables</strong> <code>PostUp</code> en <code>PreDown</code> regels toe voor de geconfigureerde interface."
+
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr "Aanbevolen als u de stroom van niet-versleutelde pakketten door niet-WireGuard interfaces wilt voorkomen."
+
+msgid "iptables rules added to WireGuard configuration"
+msgstr "iptables-regels toegevoegd aan WireGuard-configuratie"
+
+msgid "Existing iptables rules found in WireGuard configuration - not added"
+msgstr "Bestaande iptables regels gevonden in WireGuard configuratie - niet toegevoegd"
+
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "De momenteel beschikbare WireGuard-bestandsconfiguraties worden hieronder weergegeven."
+
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "Het activeren van een configuratie herstart de <code>wg-quick</code> service."
+
+msgid "Client Firewall"
+msgstr "Firewall voor de klant"
+
+msgid "Firewall is ENABLED"
+msgstr "Firewall is ingeschakeld"
+
+msgid "Firewall is OFF"
+msgstr "Firewall is UIT"
+
+msgid "The default firewall will only allow outgoing and already established traffic."
+msgstr "De standaard firewall staat alleen uitgaand en reeds tot stand gebracht verkeer toe."
+
+msgid "No incoming UDP traffic is allowed."
+msgstr "Inkomend UDP-verkeer is niet toegestaan."
+
+msgid "There are no restrictions for the access point <code>%s</code>."
+msgstr "Er zijn geen beperkingen voor het toegangspunt <code>%s</code>."
+
+msgid "Exception: Service"
+msgstr "Uitzondering: Service"
+
+msgid "allow SSH access on port 22"
+msgstr "SSH-toegang toestaan op poort 22"
+
+msgid "allow access to the RaspAP GUI on port 80 or 443"
+msgstr "toegang verlenen tot de RaspAP GUI op poort 80 of 443"
+
+msgid "Allow incoming connections for some services from the internet side."
+msgstr "Sta inkomende verbindingen toe voor sommige services vanaf de internetzijde."
+
+msgid "Exception: network device"
+msgstr "Uitzondering: netwerkapparaat"
+
+msgid "Exclude device(s)"
+msgstr "Apparaat uitsluiten"
+
+msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+msgstr "Sluit het (de) opgegeven netwerkapparaat (-apparaten) (gescheiden door een spatie of komma) uit van de firewallregels."
+
+msgid "Current client devices: <code>%s</code>"
+msgstr "Huidige clientapparaten: <code>%s</code>"
+
+msgid "The access point <code>%s</code> is per default excluded."
+msgstr "Het toegangspunt <code>%s</code> is standaard uitgesloten."
+
+msgid "Exception: IP-Address"
+msgstr "Uitzondering: IP-Adres"
+
+msgid "Allow incoming connections from"
+msgstr "Sta inkomende verbindingen toe van"
+
+msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+msgstr "Voor de opgegeven IP-adressen (gescheiden door een spatie of komma) wordt de inkomende verbinding (via TCP en UDP) geaccepteerd."
+
+msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+msgstr "Dit is vereist voor een OpenVPN via UDP of Wireguard verbinding."
+
+msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+msgstr "De lijst met geconfigureerde IP-adressen van VPN-servers: <code><b>%s</b></code>"
+
+msgid "Disable Firewall"
+msgstr "Firewall uitschakelen"
+
+msgid "Enable Firewall"
+msgstr "Firewall inschakelen"
+
+msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Het wijzigen van de firewallstatus kan inkomend verkeer verstoren of toestaan. Kies <strong>Proceed</strong> om verder te gaan."
+
+msgid "Proceed"
+msgstr "Ga verder"
+
+msgid "Apply changes"
+msgstr "Wijzigingen toepassen"
+
+msgid "Dynamic DNS"
+msgstr "Dynamisch DNS"
+
+msgid "Service provider"
+msgstr "Dienstverlener"
+
+msgid "Select a Dynamic DNS service supported by <strong>ddclient</strong> from the list below. Selecting a known service provider will populate the <code>protocol</code> and <code>server</code> fields. You may also configure the service manually."
+msgstr "Selecteer een Dynamische DNS-service die wordt ondersteund door <strong>ddclient</strong> uit de onderstaande lijst. Als je een bekende serviceprovider selecteert, worden de velden voor <code>protocol</code> en <code>server</code> ingevuld. Je kunt de dienst ook handmatig configureren."
+
+msgid "Method to obtain IP"
+msgstr "Methode om IP te verkrijgen"
+
+msgid "Select the method used by <strong>ddclient</strong> to obtain an IP address. This value is specified in the <code>-use</code> option."
+msgstr "Selecteer de methode die <strong>ddclient</strong> gebruikt om een IP-adres te verkrijgen. Deze waarde wordt opgegeven in de optie <code>-use</code>."
+
+msgid "Discovery page on the web"
+msgstr "Ontdekkingspagina op het web"
+
+msgid "Network interface"
+msgstr "Netwerkinterface"
+
+msgid "Network address"
+msgstr "Netwerkadres"
+
+msgid "Firewall status page"
+msgstr "Statuspagina firewall"
+
+msgid "External command"
+msgstr "Extern commando"
+
+msgid "Web address"
+msgstr "Webadres"
+
+msgid "Firewall"
+msgstr "Firewall"
+
+msgid "Command"
+msgstr "Opdracht"
+
+msgid "Example: <code>192.168.1.254/status.htm</code>."
+msgstr "Example: <code>192.168.1.254/status.htm</code>."
+
+msgid "Example: <code>/usr/local/bin/get-ip</code>."
+msgstr "Voorbeeld: <code>/usr/local/bin/get-ip</code>."
+
+msgid "Domain"
+msgstr "Domein"
+
+msgid "Enable SSL"
+msgstr "SSL inschakelen"
+
+msgid "Use an encrypted SSL connection for updates. Not supported by all providers."
+msgstr "Gebruik een gecodeerde SSL-verbinding voor updates. Niet ondersteund door alle providers."
+
+msgid "Value specified in milliseconds (ms). Default is 300."
+msgstr "Waarde opgegeven in milliseconden (ms). De standaardwaarde is 300."
+
+msgid "Use the <strong>Generate log</strong> button to output detailed <code>ddclient daemon</code> debug info"
+msgstr "Gebruik de knop <strong>Generate log</strong> om gedetailleerde <code>ddclient daemon</code> debug-informatie uit te voeren"
+
+msgid "Generate log"
+msgstr "Logboek genereren"
+
+msgid "Information provided by ddclient"
+msgstr "Informatie geleverd door ddclient"
+
+msgid "Start Dynamic DNS"
+msgstr "Dynamische DNS starten"
+
+msgid "Stop Dynamic DNS"
+msgstr "Dynamische DNS stoppen"
+
+msgid "Restart Dynamic DNS"
+msgstr "Dynamisch DNS herstarten"
+
+msgid "Account details"
+msgstr "Accountgegevens"
+
+msgid "My account"
+msgstr "Mijn account"
+
+msgid "Server location"
+msgstr "Serverlocatie"
+
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "Als u <strong>Instellingen opslaan</strong> kiest, wordt er verbinding gemaakt met het geselecteerde land."
+
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Als je <strong>Connect %s</strong> kiest, maak je <strong>verbinding </strong> met een aanbevolen server."
+
+msgid "Select a country from the server location list"
+msgstr "Selecteer een land in de lijst met serverlocaties"
+
+msgid "Select a country..."
+msgstr "Selecteer een land..."
+
+msgid "Account information not available from %s's Linux CLI."
+msgstr "Accountinformatie niet beschikbaar via %s's Linux CLI."
+
+msgid "Attempting to connect to %s"
+msgstr "Ik probeer verbinding te maken met %s"
+
+msgid "Attempting to connect VPN provider"
+msgstr "Poging tot verbinding met VPN-provider"
+
+msgid "Attempting to disconnect VPN provider"
+msgstr "Verbinding met VPN-provider verbroken"
+
+msgid "Expected %s binary not found at: %s"
+msgstr "Verwacht %s binair niet gevonden op: %s"
+
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "Ga naar de <a href=\"%s\" target=\"_blank\">installatie-instructies</a> voor %s's Linux CLI."
+
+msgid "Unable to execute %s binary found at: %s"
+msgstr "Kan %s binary gevonden op niet uitvoeren: %s"
+
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "Controleer of het binaire bestand uitvoerbaar is en of er rechten bestaan in raspap.sudoers"
+
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Linux CLI geïnstalleerd: <code>%s</code>"
+
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "De huidige <code>%s</code> verbindingsstatus wordt hieronder weergegeven."
+
+msgid "Information provided by %s"
+msgstr "Informatie verstrekt door %s"
+
+msgid "Connect %s"
+msgstr "Maak verbinding met %s"
+
+msgid "Disconnect %s"
+msgstr "Ontkoppelen %s"
+
+msgid "About"
+msgstr "Over"
+
+msgid "Insiders"
+msgstr "Insiders"
+
+msgid "Contributing"
+msgstr "Bijdragen"
+
+msgid "Check for update"
+msgstr "Controleren op update"
+
+msgid "New release check in progress..."
+msgstr "Nieuwe releasecontrole aan de gang..."
+
+msgid "A new release is available: Version"
+msgstr "Er is een nieuwe versie beschikbaar: Versie"
+
+msgid "Installed version is the latest release."
+msgstr "De geïnstalleerde versie is de nieuwste release."
+
+msgid "GitHub authentication"
+msgstr "GitHub verificatie"
+
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Insiders updaten vereist GitHub authenticatie."
+
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Je gegevens worden veilig met SSL naar GitHub gestuurd. Wees echter voorzichtig als je RaspAP installatie op een WLAN staat dat gedeeld wordt door niet-vertrouwde gebruikers."
+
+msgid "Personal Access Token"
+msgstr "Persoonlijk toegangssymbool"
+
+msgid "Please provide a valid token."
+msgstr "Geef een geldig token op."
+
+msgid "Perform update"
+msgstr "Update uitvoeren"
+
+msgid "Update in progress"
+msgstr "Update wordt uitgevoerd"
+
+msgid "Application is being updated..."
+msgstr "Aanvraag wordt bijgewerkt..."
+
+msgid "Configuring update"
+msgstr "Update configureren"
+
+msgid "Updating sources"
+msgstr "Bronnen bijwerken"
+
+msgid "Installing package updates"
+msgstr "Pakketupdates installeren"
+
+msgid "Downloading latest files"
+msgstr "De nieuwste bestanden downloaden"
+
+msgid "Installing application"
+msgstr "Toepassing installeren"
+
+msgid "Update complete"
+msgstr "Update voltooid"
+
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Er is een fout opgetreden. Controleer de log in <code>/tmp/raspap_install.log</code>"
+
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP is een co-creatie van %1$s en %2$s met de bijdragen van onze %3$s en %4$s. Lees meer over deelname aan het project als %5$s, %6$s of %7$s met onmiddellijke toegang tot %8$s beschikbaar voor %9$s."
+
+msgid "developer community"
+msgstr "ontwikkelaarsgemeenschap"
+
+msgid "language translators"
+msgstr "taalvertalers"
+
+msgid "code contributor"
+msgstr "code medewerker"
+
+msgid "translator"
+msgstr "vertaler"
+
+msgid "financial sponsor"
+msgstr "financiële sponsor"
+
+msgid "exclusive features"
+msgstr "exclusieve functies"
+
+msgid "RaspAP Exception"
+msgstr "RaspAP Uitzondering"
+
+msgid "An exception occurred"
+msgstr "Er heeft zich een uitzondering voorgedaan"
+
+msgid "RestAPI"
+msgstr "RestAPI"
+
+msgid "RestAPI settings"
+msgstr "RestAPI-instellingen"
+
+msgid "Start RestAPI service"
+msgstr "RestAPI-service starten"
+
+msgid "Stop RestAPI service"
+msgstr "RestAPI-service stoppen"
+
+msgid "API Key"
+msgstr "API-sleutel"
+
+msgid "Saving API key"
+msgstr "API-sleutel opslaan"
+
+msgid "RestAPI status"
+msgstr "RestAPI status"
+
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "De huidige status van <code>restapi.service</code> wordt hieronder weergegeven."
+
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
+msgstr "RestAPI-documenten zijn <a href=\"%s\" target=\"_blank\">hier </a> toegankelijk <a href=\" %s \" target=\"_blank\">%s</a>"
+
+msgid "Restarting restapi.service"
+msgstr "Restapi.service herstarten"
+
+msgid "Information provided by restapi.service"
+msgstr "Informatie geleverd door restapi.service"
+
+msgid "Session Expired"
+msgstr "Sessie Verlopen"
+
+msgid "Your session has expired. Please login to continue."
+msgstr "Uw sessie is verlopen. Log in om door te gaan."
+
+msgid "Login"
+msgstr "Inloggen"
+
+msgid "Administrator login"
+msgstr "Inloggen als beheerder"
+
+msgid "Forgot password"
+msgstr "Wachtwoord vergeten"
+
+msgid "Login failed"
+msgstr "Inloggen mislukt"
+
+msgid "NTP Server"
+msgstr "NTP-server"
+
+msgid "NTP Server settings"
+msgstr "Instellingen NTP-server"
+
+msgid "NTP daemon"
+msgstr "NTP-daemon"
+
+msgid "Synchronized time"
+msgstr "Gesynchroniseerde tijd"
+
+msgid "NTP servers"
+msgstr "NTP-servers"
+
+msgid "Add an NTP server"
+msgstr "Een NTP-server toevoegen"
+
+msgid "Start NTP service"
+msgstr "NTP-service starten"
+
+msgid "Stop NTP service"
+msgstr "NTP-service stoppen"
+
+msgid "Edit mode"
+msgstr "Bewerkingsmodus"
+
+msgid "Use the <strong>Edit mode</strong> toggle to manually edit the current <code>ntp.config</code> configuration."
+msgstr "Gebruik de <strong>bewerkingsmodus</strong> om handmatig de huidige <code>ntp.config</code> configuratie te bewerken."
+
+msgid "Specify a public NTP server or a private one on your local network. IPv4 and IPv6 address, or a fully qualified domain name (FQDN) are acceptable values."
+msgstr "Geef een openbare NTP-server op of een privé server op je lokale netwerk. IPv4 en IPv6 adressen of een volledig gekwalificeerde domeinnaam (FQDN) zijn aanvaardbare waarden."
+
+msgid "Public NTP servers supporting Network Time Security (NTS) may be specified with the <code>nts</code> suffix."
+msgstr "Openbare NTP servers die Network Time Security (NTS) ondersteunen kunnen gespecificeerd worden met het <code>nts</code> achtervoegsel."
+
+msgid "Examples of valid server entries include <code>%s</code>, <code>%s</code> and <code>%s</code>."
+msgstr "Voorbeelden van geldige serververmeldingen zijn <code>%s</code>, <code>%s</code> en <code>%s</code>."
+
+msgid "Current <code>ntpq peer</code> status is displayed below. An asterisk (<code>*</code>) indicates the preferred server."
+msgstr "De huidige <code>ntpq peer</code> status wordt hieronder weergegeven. Een sterretje<code>(*</code>) geeft de voorkeursserver aan."
+
+msgid "NTP configuration cannot be empty"
+msgstr "NTP-configuratie kan niet leeg zijn"
+
+msgid "Restarting ntpd.service"
+msgstr "ntpd.service opnieuw starten"
+
+msgid "Please enter a valid NTP server"
+msgstr "Voer een geldige NTP-server in"
+
+msgid "Attempting to start ntp.service"
+msgstr "Poging om ntp.service te starten"
+
+msgid "Attempting to stop ntp.service"
+msgstr "Poging om ntp.service te stoppen"
+
+msgid "NTP configuration not found at %s"
+msgstr "NTP-configuratie niet gevonden op %s"
+
+msgid "NTP configuration updated"
+msgstr "NTP-configuratie bijgewerkt"
+
+msgid "Advertising device as a Tailscale exit node"
+msgstr "Apparaat adverteren als Tailscale uitgangsknooppunt"
+
+msgid "Attempting to optimize UDP throughput"
+msgstr "UDP-doorvoer proberen te optimaliseren"
+
+msgid "Kernel transport layer offloads enabled for UDP"
+msgstr "Kernel transportlaag offloads ingeschakeld voor UDP"
+
+msgid "Failed to enable kernel transport layer offloads for UDP"
+msgstr "Mislukt om kernel transportlaag offloads voor UDP in te schakelen"
+
+msgid "Attempting to set tailscale up"
+msgstr "Ik probeer tailscale in te stellen"
+
+msgid "Attempting to set tailscale down"
+msgstr "Poging om tailscale omlaag te zetten"
+
+msgid "Attempting to disconnect from tailscale"
+msgstr "De verbinding met tailscale wordt verbroken"
+
+msgid "Disconnected from tailscale and expired node key"
+msgstr "Verbinding met tailscale verbroken en knooppuntsleutel verlopen"
+
+msgid "Unable to disconnect from tailscale"
+msgstr "Kan de verbinding met tailscale niet verbreken"
+
+msgid "Expected tailscale binary not found at: %"
+msgstr "Verwachte tailscale binair niet gevonden op: %"
+
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "Een Tailscale VPN-exitknooppuntuitbreiding voor RaspAP"
+
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Kan de Tailscale login niet ophalen. Kies <strong>%s</strong> om door te gaan."
+
+msgid "Start Tailscale"
+msgstr "Start Tailscale"
+
+msgid "Stop Tailscale"
+msgstr "Staartschaal stoppen"
+
+msgid "Next"
+msgstr "Volgende"
+
+msgid "Device approved and activated as a Tailscale exit node"
+msgstr "Apparaat goedgekeurd en geactiveerd als Tailscale uitgangsknooppunt"
+
+msgid "Not connected: Login required."
+msgstr "Geen verbinding: Inloggen vereist."
+
+msgid "Tailscale VPN"
+msgstr "Tailscale VPN"
+
+msgid "Exit node activated"
+msgstr "Knooppunt verlaten geactiveerd"
+
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "Het apparaat <code>%s</code> is verbonden met het adres <code>%s</code> en biedt een <strong>uitgangsknooppunt</strong>."
+
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "Zie %s voor meer informatie over het gebruik van deze uitgangsknoop met je apparaten."
+
+msgid "Allow exit node"
+msgstr "Knooppunt verlaten toestaan"
+
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Het apparaat <code>%s</code> is in afwachting van goedkeuring als uitgangsknooppunt."
+
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Zoek de <code>%s</code> <strong>Exit Node</strong> badge in de machinelijst."
+
+msgid "Open Tailscale Machines"
+msgstr "Open Tailscale Machines"
+
+msgid "To allow this device as an exit node, choose <strong>Open Tailscale Machines</strong>."
+msgstr "Kies <strong>Open Tailscale Machines</strong> om dit apparaat toe te staan als uitgangsknooppunt."
+
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "Open het paneel %s in het pictogrammenu %s van het knooppunt Afsluiten."
+
+msgid "Edit route settings"
+msgstr "Route-instellingen bewerken"
+
+msgid "Login to Tailscale"
+msgstr "Inloggen op Tailscale"
+
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Om apparaat %s aan te sluiten op uw achterklep, kiest u %s."
+
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "Kies na het inloggen <strong>Volgende</strong> om verder te gaan."
+
+msgid "Configure exit node"
+msgstr "Uitgangsknooppunt configureren"
+
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Het apparaat <code>%s</code> is verbonden met uw tailnet met het adres <code>%s</code>."
+
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as a <strong>exit node</strong>"
+msgstr "Standaard routeert Tailscale alleen verkeer tussen de apparaten waarop het is geïnstalleerd. Je kunt ook al je openbare internetverkeer routeren door een apparaat op je netwerk te configureren als een <strong>exit node</strong>"
+
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Wanneer je al het verkeer door een exit knooppunt routeert, gebruik je effectief standaard routes (0.0.0.0/0, ::/0), vergelijkbaar met hoe je zou doen als je een typisch VPN zou gebruiken."
+
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "U kunt dit apparaat configureren als een uitgangsknooppunt of een ander uitgangsknooppunt in uw staartnet gebruiken."
+
+msgid "Select an existing exit node on your tailnet"
+msgstr "Selecteer een bestaand uitgangsknooppunt op uw tailnet"
+
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Dit is een typische configuratie als je dit apparaat bijvoorbeeld gebruikt als een VPN-router voor op reis."
+
+msgid "Configure this device as a new exit node"
+msgstr "Dit apparaat configureren als een nieuw uitgangsknooppunt"
+
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet will be routed through it."
+msgstr "Door dit apparaat te configureren als een uitgangsknooppunt, wordt het openbare internetverkeer van apparaten die zijn aangesloten op je tailnet er doorheen geleid."
+
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "Om veiligheidsredenen moet u zich aanmelden om de functionaliteit van exit node in te schakelen. De eerste stap is het adverteren <code>%s</code> als een exit knooppunt in je tailnet. In de volgende stap geef je dit apparaat toestemming om een exit node te zijn."
+
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Adverteren <code>%s</code> als een exit-knooppunt"
+
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Dit configureert Tailscale effectief als een VPN om je echte locatie te maskeren, toegang te krijgen tot inhoud met regiobeperkingen of je privacy te verbeteren wanneer je verbinding maakt vanaf niet-vertrouwde netwerken."
+
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Deze optie laat Tailscale weten dat je apparaat klaar is om verkeer te routeren."
+
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Aanbevolen voor Tailscale exit nodes met Linux 6.2 of latere kernels, dit gebruikt UDP generic receive offload (GRO) doorsturen om CPU overhead te verminderen."
+
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Deze optie schakelt transportlaag offloads in voor betere prestaties."
+
+msgid "Select an exit node"
+msgstr "Selecteer een uitgangsknooppunt"
+
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "Om <code>%s</code> als VPN-gateway te gebruiken, moet Tailscale geconfigureerd worden om een uitgangsknooppunt te gebruiken. Het voorgestelde knooppunt van Tailscale wordt aangegeven met een ster."
+
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Adverteer een <strong>subnet route</strong> voor de actieve <code>%s</code> AP-interface"
+
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "Met subnetroutes kunt u uw Tailscale netwerk (bekend als een tailnet) uitbreiden met apparaten waarop de Tailscale client niet draait of kan draaien."
+
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "Een subnet route werkt als een gateway tussen je tailnet en een fysiek subnet. Het subnet van de actieve AP-interface is hieronder vooraf geconfigureerd; wijzig dit indien nodig."
+
+msgid "Route LAN traffic through the exit node."
+msgstr "Leid LAN-verkeer door het exit knooppunt."
+
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "Dit zorgt ervoor dat al het LAN verkeer alleen via je exit node gaat."
+
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Kies <strong>Volgende</strong> om <code>%s</code> om het geselecteerde uitgangsknooppunt met deze opties te gebruiken."
+
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "Geen uitgangsknooppunten gevonden op uw staartnet. Kies <strong>Terug</strong> om verder te gaan."
+
+msgid "Using exit node"
+msgstr "Uitgangsknooppunt gebruiken"
+
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Het apparaat <code>%s</code> is geconfigureerd om uitgangsknooppunt <code>%s</code>. Het heeft het Tailscale MagicDNS-adres <code>%s</code>."
+
+msgid "Choose <strong>Save settings</strong> to continue."
+msgstr "Kies <strong>Instellingen opslaan</strong> om verder te gaan."
+
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Kies <strong>Volgende</strong> om verder te gaan."
+
+msgid "Tailnet status"
+msgstr "Status achterklep"
+
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "De huidige status van <code>het achterklepje</code> wordt hieronder weergegeven."
+
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Gebruik de Tailscale DNS-instellingen (standaard)."
+
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Vink uit om lokale DNS te gebruiken. Dit stelt <code>--accept-dns=false</code> in."
+
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Gebruik geen Tailscale subnetten (standaard op Linux)."
+
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "Als er subnetroutes bestaan voor je tailnet, kun je het verkeer van je apparaat naar een subnetrouter routeren. Als je dit inschakelt, wordt <code>--accept-routes=true</code> ingesteld."
+
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "Als sleutels voor een apparaat verlopen, zullen verbindingen van/naar het opgegeven eindpunt niet meer werken."
+
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "Deze optie gebruikt <code>--force-reauth</code> om de sleutels voor dit apparaat te vernieuwen."
+
+msgid "Start capture"
+msgstr "Begin met vastleggen"
+
+msgid "Stop capture"
+msgstr "Stop het vastleggen"
+
+msgid "Capture files"
+msgstr "Bestanden vastleggen"
+
+msgid "Capture interface"
+msgstr "Interface vastleggen"
+
+msgid "Output file"
+msgstr "Uitvoerbestand"
+
+msgid "Path where capture file will be saved (.pcap format)"
+msgstr "Pad waar capturebestand wordt opgeslagen (.pcap-indeling)"
+
+msgid "File will be saved with .pcap extension"
+msgstr "Bestand wordt opgeslagen met de extensie .pcap"
+
+msgid "Capture filter (BPF syntax)"
+msgstr "Opvangfilter (BPF-syntaxis)"
+
+msgid "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
+msgstr "Berkeley Pakketfilter syntaxis. Laat leeg om al het verkeer vast te leggen."
+
+msgid "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
+msgstr "Voorbeelden: <code>poort 80</code>, <code>host 192.168.1.1</code>, <code>tcp en niet poort 22</code>"
+
+msgid "Capture limits"
+msgstr "Grenzen vastleggen"
+
+msgid "Packet count limit"
+msgstr "Limiet aantal pakketten"
+
+msgid "Stop capture after this many packets. Leave empty for unlimited."
+msgstr "Stop het vastleggen na dit aantal pakketten. Laat leeg voor onbeperkt."
+
+msgid "Duration limit (seconds)"
+msgstr "Duurlimiet (seconden)"
+
+msgid "Stop capture after this many seconds. Leave empty for unlimited."
+msgstr "Stop de opname na dit aantal seconden. Laat leeg voor onbeperkt."
+
+msgid "Ring buffer settings"
+msgstr "Instellingen ringbuffer"
+
+msgid "File size (KB)"
+msgstr "Bestandsgrootte (KB)"
+
+msgid "Create new file when this size is reached. Leave empty to disable."
+msgstr "Maak een nieuw bestand wanneer deze grootte is bereikt. Leeg laten om uit te schakelen."
+
+msgid "10000 = 10 MB per file"
+msgstr "10000 = 10 MB per bestand"
+
+msgid "Number of files"
+msgstr "Aantal bestanden"
+
+msgid "Maximum number of ring buffer files to keep. Oldest files are deleted."
+msgstr "Maximum aantal te bewaren ringbufferbestanden. Oudste bestanden worden verwijderd."
+
+msgid "Advanced options"
+msgstr "Geavanceerde opties"
+
+msgid "Snapshot length (bytes)"
+msgstr "Snapshotlengte (bytes)"
+
+msgid "Limit the amount of data captured per packet. Leave empty for full packets."
+msgstr "Beperk de hoeveelheid gegevens die per pakket worden vastgelegd. Laat leeg voor volle pakketten."
+
+msgid "96 bytes captures headers only, reduces file size"
+msgstr "96 bytes vangt alleen headers op, verkleint bestand"
+
+msgid "Promiscuous mode"
+msgstr "Promiscue modus"
+
+msgid "Capture all packets on the network segment, not just those destined for this interface"
+msgstr "Vang alle pakketten op het netwerksegment, niet alleen die bestemd zijn voor deze interface"
+
+msgid "Quick filter presets"
+msgstr "Snelle filtervoorinstellingen"
+
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Capturebestanden gegenereerd door <code>tshark</code> worden hieronder weergegeven."
+
+msgid "No capture files found in /tmp directory"
+msgstr "Geen vastleggingsbestanden gevonden in de map /tmp"
+
+msgid "Filename"
+msgstr "Bestandsnaam"
+
+msgid "Size"
+msgstr "Maat"
+
+msgid "Modified"
+msgstr "Gewijzigd"
+
+msgid "Actions"
+msgstr "Acties"
+
+msgid "Download file"
+msgstr "Bestand downloaden"
+
+msgid "Delete file"
+msgstr "Bestand verwijderen"
+
+msgid "Confirm deletion"
+msgstr "Verwijdering bevestigen"
+
+msgid "Are you sure you want to delete this file?"
+msgstr "Weet je zeker dat je dit bestand wilt verwijderen?"
+
+msgid "All Traffic"
+msgstr "Alle verkeer"
+
+msgid "HTTP/HTTPS"
+msgstr "HTTP/HTTPS"
+
+msgid "ICMP (Ping)"
+msgstr "ICMP (Ping)"
+
+msgid "SSH"
+msgstr "SSH"
+
+msgid "Exclude SSH"
+msgstr "SSH uitsluiten"
+
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "Een Wireshark (TShark) CLI pakketopname voor RaspAP"
+
+msgid "Information provided by tshark"
+msgstr "Informatie verstrekt door tshark"
+
+msgid "Total: %d file(s), %s"
+msgstr "Totaal: %d bestand(en), %s"
+
+msgid "Captive portal"
+msgstr "Captive portaal"
+
+msgid "Gateway interface"
+msgstr "Gateway-interface"
+
+msgid "Gateway name"
+msgstr "Naam gateway"
+
+msgid "Gateway address"
+msgstr "Adres gateway"
+
+msgid "Gateway port"
+msgstr "Poort"
+
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "Wordt standaard ingesteld op de actieve AP-interface, meestal <code>wlan0</code>"
+
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Automatisch gedetecteerd vanaf gateway-interface indien niet gespecificeerd"
+
+msgid "Start portal"
+msgstr "Start portaal"
+
+msgid "Stop portal"
+msgstr "Stop portaal"
+
+msgid "Information provided by nodogsplash"
+msgstr "Informatie verstrekt door nodogsplash"
+
+msgid "Stop portal service"
+msgstr "Portaalservice stoppen"
+
+msgid "Start portal service"
+msgstr "Portaalservice starten"
+
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Het wijzigen van de portaalservice zal het clientverkeer tijdelijk verstoren. Kies <strong>Proceed</strong> om door te gaan."
+
+msgid "Interface to be managed by the portal"
+msgstr "Interface die door de portal moet worden beheerd"
+
+msgid "Name of your gateway (available as \\$gatewayname variable)"
+msgstr "Naam van je gateway (beschikbaar als$gatewayname variabele)"
+
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "IP-adres van de router. Leeg laten voor automatische detectie"
+
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Poort voor Nodogsplash HTTP-server"
+
+msgid "Maximum clients"
+msgstr "Maximale klanten"
+
+msgid "Session timeout (minutes)"
+msgstr "Time-out sessie (minuten)"
+
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "Pre-auth idle timeout (minuten)"
+
+msgid "Does not include users on the trusted MAC list"
+msgstr "Bevat geen gebruikers op de vertrouwde MAC-lijst"
+
+msgid "Auth idle timeout (minutes)"
+msgstr "Auth idle timeout (minuten)"
+
+msgid "Check interval (seconds)"
+msgstr "Controle-interval (seconden)"
+
+msgid "MAC address control"
+msgstr "MAC-adrescontrole"
+
+msgid "MAC mechanism"
+msgstr "MAC-mechanisme"
+
+msgid "Blocked MAC list"
+msgstr "Geblokkeerde MAC-lijst"
+
+msgid "Trusted MAC list"
+msgstr "Vertrouwde MAC-lijst"
+
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "Deze apparaten zijn niet onderworpen aan verificatie- of firewallregels"
+
+msgid "Maximum number of concurrent authenticated users"
+msgstr "Maximum aantal gelijktijdige geauthenticeerde gebruikers"
+
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "Standaard sessielengte in minuten. 0 = onbeperkt"
+
+msgid "Time before unauthenticated idle users are removed"
+msgstr "Tijd voordat niet-geauthenticeerde inactieve gebruikers worden verwijderd"
+
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "Tijd voordat geauthenticeerde inactieve gebruikers worden gedeauthenticeerd"
+
+msgid "How often to check client timeouts"
+msgstr "Hoe vaak time-outs van clients controleren"
+
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Blokkeren: MAC's op de geblokkeerde lijst worden geblokkeerd. Toestaan: alleen MAC's op de toegestane lijst zijn toegestaan."
+
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "Voorbeeld: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "Komma-gescheiden MAC-adressen die de verificatie volledig omzeilen"
+
+msgid "Block (blocklist mode)"
+msgstr "Blokkeren (bloklijstmodus)"
+
+msgid "Allow (allowlist mode)"
+msgstr "Toestaan (modus toestaanlijst)"
+
+msgid "Gateway IP range"
+msgstr "Gateway IP-bereik"
+
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Standaard: 0.0.0.0/0 (alle adressen)"
+
+msgid "Debug level"
+msgstr "Debug-niveau"
+
+msgid "Firewall settings"
+msgstr "Instellingen firewall"
+
+msgid "Allow all traffic for authenticated users"
+msgstr "Sta alle verkeer toe voor geverifieerde gebruikers"
+
+msgid "Allow DNS for pre-authenticated users"
+msgstr "DNS toestaan voor vooraf geauthenticeerde gebruikers"
+
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "IP-bereik om te beheren in CIDR-notatie. Leeg laten voor alle adressen"
+
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Hoeveelheid logboekgegevens gerapporteerd door de nodogsplash.service"
+
+msgid "0 - Errors only"
+msgstr "0 - Alleen fouten"
+
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Fouten, waarschuwingen, info"
+
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Fouten, waarschuwingen, info, uitgebreid"
+
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Fouten, waarschuwingen, info, uitgebreid, debug"
+
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "Indien ingeschakeld, hebben geverifieerde gebruikers onbeperkte toegang"
+
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Vereist voor clients om domeinnamen op te lossen voor authenticatie"
+
+msgid "Portal status"
+msgstr "Status portaal"
+
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "De huidige status van <code>nodogsplash</code> wordt hieronder weergegeven."
 
