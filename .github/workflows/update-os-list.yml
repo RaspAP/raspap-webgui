@@ -1,0 +1,59 @@
+name: Update OS List for RPi Imager
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  update-os-list:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get release information
+        id: release
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            VERSION="${{ github.event.release.tag_name }}"
+            RELEASE_DATE=$(echo "${{ github.event.release.published_at }}" | cut -d'T' -f1)
+          else
+            RESPONSE=$(curl -s "https://api.github.com/repos/${{ github.repository }}/releases/latest")
+            VERSION=$(echo "$RESPONSE" | jq -r '.tag_name')
+            RELEASE_DATE=$(echo "$RESPONSE" | jq -r '.published_at' | cut -d'T' -f1)
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "release_date=$RELEASE_DATE" >> $GITHUB_OUTPUT
+          echo "Found release: $VERSION (published: $RELEASE_DATE)"
+
+      - name: Download release assets and generate OS list
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
+          RELEASE_DATE: ${{ steps.release.outputs.release_date }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd installers
+          echo "Downloading release assets for $VERSION..."
+          gh release download "$VERSION" \
+            --pattern "raspap-trixie-armhf-lite-*.img.zip" \
+            --pattern "raspap-trixie-arm64-lite-*.img.zip"
+          chmod +x ./generate_os_list.sh
+          ./generate_os_list.sh
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add installers/os-sublist-raspap.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update OS list for RPi Imager (${{ steps.release.outputs.version }})"
+            git push
+          fi
