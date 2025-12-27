@@ -19,6 +19,7 @@ WEBSITE="https://raspap.com/"
 ICON="https://raspap.com/assets/images/raspAP-logo.svg"
 DESCRIPTION="The easiest, full-featured wireless router for Debian-based devices."
 REPO="RaspAP/raspap-webgui"
+FILENAME="os-subitem-raspap.json"
 
 # Fetch latest release from GitHub (adapted from RaspAP installer)
 _get_release() {
@@ -120,7 +121,7 @@ ARM64_DOWNLOAD_SIZE=$(_get_size "$ARM64_ZIP")
 ARM64_DOWNLOAD_SHA=$(_get_sha256 "$ARM64_ZIP")
 
 # Generate JSON
-cat > os-sublist-raspap.json << EOF
+cat > $FILENAME << EOF
 {
   "name": "${NAME}",
   "description": "${DESCRIPTION}",
@@ -168,6 +169,6 @@ cat > os-sublist-raspap.json << EOF
 }
 EOF
 
-echo "Generated os-sublist-raspap.json"
-cat os-sublist-raspap.json
+echo "${FILENAME}"
+cat $FILENAME
 
