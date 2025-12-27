@@ -19,7 +19,7 @@ WEBSITE="https://raspap.com/"
 ICON="https://raspap.com/assets/images/raspAP-logo.svg"
 DESCRIPTION="The easiest, full-featured wireless router for Debian-based devices."
 REPO="RaspAP/raspap-webgui"
-FILENAME="os-subitem-raspap.json"
+FILENAME="os-subitem.json"
 
 # Fetch latest release from GitHub (adapted from RaspAP installer)
 _get_release() {
