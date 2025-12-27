@@ -1,0 +1,45 @@
+{
+  "name": "RaspAP",
+  "description": "The easiest, full-featured wireless router for Debian-based devices.",
+  "icon": "https://raspap.com/assets/images/raspAP-logo.svg",
+  "random": false,
+  "subitems": [
+    {
+      "name": "RaspAP 32-bit (armhf)",
+      "description": "The easiest, full-featured wireless router for Debian-based devices.",
+      "icon": "https://raspap.com/assets/images/raspAP-logo.svg",
+      "url": "https://github.com/RaspAP/raspap-webgui/releases/download/3.5.1/raspap-trixie-armhf-lite-3.5.1.img.zip",
+      "extract_size": 3145728000,
+      "extract_sha256": "829108b2633db237ee030cad0c0b59038a7c2909c9f0f9758f4a10a01ced79c1",
+      "image_download_size": 901984669,
+      "image_download_sha256": "2fe3a7322c14fd489e821a917b36d308723bc853cbf1c860838f15aa712320e5",
+      "release_date": "2025-12-26",
+      "init_format": "systemd",
+      "devices": [
+        "pi5-32bit",
+        "pi4-32bit",
+        "pi3-32bit",
+        "pi2-32bit"
+      ],
+      "capabilities": []
+    },
+    {
+      "name": "RaspAP 64-bit (arm64)",
+      "description": "The easiest, full-featured wireless router for Debian-based devices.",
+      "icon": "https://raspap.com/assets/images/raspAP-logo.svg",
+      "url": "https://github.com/RaspAP/raspap-webgui/releases/download/3.5.1/raspap-trixie-arm64-lite-3.5.1.img.zip",
+      "extract_size": 3481272320,
+      "extract_sha256": "7180da24527af3c2bf9ca4c94e2200044de475689551afa3c86d0f1be48575b3",
+      "image_download_size": 932400865,
+      "image_download_sha256": "c7a1a75c91e3ef12defec6538c5f0a9110fbc0e6ef391cb8b1daf819683ea737",
+      "release_date": "2025-12-26",
+      "init_format": "systemd",
+      "devices": [
+        "pi5-64bit",
+        "pi4-64bit",
+        "pi3-64bit"
+      ],
+      "capabilities": []
+    }
+  ]
+}
