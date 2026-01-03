@@ -1,8 +1,18 @@
 #!/bin/bash
+#
+# RaspAP service start script
+#
+# Author: @billz <billzimmerman@gmail.com>
+# Author URI: https://github.com/billz/
+# License: GNU General Public License v3.0
+# License URI: https://github.com/raspap/raspap-webgui/blob/master/LICENSE
+#
 # When wireless client AP or Bridge mode is enabled, this script handles starting
 # up network services in a specific order and timing to avoid race conditions.
+# Detects wireless adapter hardware and applies adapter-specific configuration.
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+WEBROOT_DIR="/var/www/html"
 NAME=raspapd
 DESC="Service control for RaspAP"
 CONFIGFILE="/etc/raspap/hostapd.ini"
@@ -50,6 +60,30 @@ if [ -z "$interface" ]; then
     else
         interface="wlan0"
         echo "Interface not provided and not found in config. Defaulting to: $interface"
+    fi
+fi
+
+# Hardware adapter detection
+if [ -x "$WEBROOT_DIR/installers/detect_adapter.sh" ]; then
+    ADAPTER_INFO=$($WEBROOT_DIR/installers/detect_adapter.sh "$interface" 2>/dev/null)
+    DETECT_STATUS=$?
+
+    if [ $DETECT_STATUS -eq 0 ]; then
+        eval "$ADAPTER_INFO"
+
+        if [ -n "$ADAPTER_PROFILE" ]; then
+            PROFILE_PATH="$WEBROOT_DIR/config/$ADAPTER_PROFILE"
+
+            if [ -f "$PROFILE_PATH" ]; then
+                echo "Detected hardware profile: $ADAPTER_PROFILE"
+                echo "Applying adapter-specific configuration for $interface..."
+
+                # Apply profile configuration
+                if [ -x "$WEBROOT_DIR/installers/apply_profile.sh" ]; then
+                    $WEBROOT_DIR/installers/apply_profile.sh "$interface" "$PROFILE_PATH"
+                fi
+            fi
+        fi
     fi
 fi
 
