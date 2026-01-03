@@ -287,7 +287,7 @@ function _install_dependencies() {
 
     if [[ "$php_package" == *"-fpm" ]]; then
         _install_log "Enabling lighttpd fastcgi-php-fpm module for $php_package"
-        sudo lighty-enable-mod fastcgi-php-fpm 2>&1 | grep -qE "already enabled" || \
+        sudo lighty-enable-mod fastcgi-php-fpm || \
             _install_status 1 "Unable to enable fastcgi-php-fpm module"
         sudo systemctl restart $php_package.service || _install_status 1 "Unable to restart $php_package.service"
     fi
