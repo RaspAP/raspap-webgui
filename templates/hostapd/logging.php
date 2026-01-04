@@ -14,7 +14,7 @@
     <div class="mb-3 col-md-8 mt-2">
       <?php
       if ($arrHostapdConf['LogEnable'] == 1) {
-          echo '<textarea class="logoutput text-secondary" id="hostapd-log">'.htmlspecialchars(implode("\n", $logOutput), ENT_QUOTES).'</textarea>';
+          echo '<textarea class="logoutput text-secondary" id="hostapd-log" readonly>'.htmlspecialchars(implode("\n", $logOutput), ENT_QUOTES).'</textarea>';
       } else {
           echo '<textarea class="logoutput my-3"></textarea>';
       }
