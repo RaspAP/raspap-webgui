@@ -12,7 +12,8 @@
 [Unit]
 Description=RaspAP Service Daemon
 DefaultDependencies=no
-After=multi-user.target
+After=multi-user.target network.target systemd-udev-settle.service
+Wants=network.target systemd-udev-settle.service
 
 [Service]
 Type=oneshot
