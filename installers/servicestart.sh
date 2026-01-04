@@ -52,7 +52,55 @@ if [ -r "$CONFIGFILE" ]; then
     done < "$CONFIGFILE"
 fi
 
-# Set interface from config if not set by parameter
+# Detect mt7921u adapter on any wireless interface
+MT7921U_DETECTED=0
+if [ -z "$interface" ] && [ -x "$WEBROOT_DIR/installers/detect_adapter.sh" ]; then
+    echo "Scanning for mt7921u compatible adapter..."
+
+    # Find all wireless interfaces
+    for iface in /sys/class/net/*/wireless; do
+        if [ -d "$iface" ]; then
+            iface_name=$(basename $(dirname "$iface"))
+
+            ADAPTER_INFO=$($WEBROOT_DIR/installers/detect_adapter.sh "$iface_name" 2>/dev/null)
+            DETECT_STATUS=$?
+
+            if [ $DETECT_STATUS -eq 0 ]; then
+                eval "$ADAPTER_INFO"
+
+                if [ "$DRIVER" = "mt7921u" ]; then
+                    echo "Found mt7921u adapter on interface: $iface_name"
+                    interface="$iface_name"
+                    MT7921U_DETECTED=1
+
+                    if [ -n "$ADAPTER_PROFILE" ]; then
+                        PROFILE_PATH="$WEBROOT_DIR/config/$ADAPTER_PROFILE"
+
+                        if [ -f "$PROFILE_PATH" ]; then
+                            echo "Detected hardware profile: $ADAPTER_PROFILE"
+                            echo "Applying adapter-specific configuration for $interface..."
+
+                            # Apply profile configuration
+                            if [ -x "$WEBROOT_DIR/installers/apply_profile.sh" ]; then
+                                $WEBROOT_DIR/installers/apply_profile.sh "$interface" "$PROFILE_PATH"
+                            fi
+                        fi
+                    fi
+
+                    if [ -w "$CONFIGFILE" ]; then
+                        sed -i '/^WifiInterface *= */d' "$CONFIGFILE"
+                        echo "WifiInterface = $iface_name" >> "$CONFIGFILE"
+                        echo "Updated $CONFIGFILE with WifiInterface = $iface_name"
+                    fi
+
+                    break
+                fi
+            fi
+        fi
+    done
+fi
+
+# Set interface from config if not set by parameter or auto-detection
 if [ -z "$interface" ]; then
     if [ -n "${config[WifiInterface]}" ]; then
         interface="${config[WifiInterface]}"
@@ -60,30 +108,6 @@ if [ -z "$interface" ]; then
     else
         interface="wlan0"
         echo "Interface not provided and not found in config. Defaulting to: $interface"
-    fi
-fi
-
-# Hardware adapter detection
-if [ -x "$WEBROOT_DIR/installers/detect_adapter.sh" ]; then
-    ADAPTER_INFO=$($WEBROOT_DIR/installers/detect_adapter.sh "$interface" 2>/dev/null)
-    DETECT_STATUS=$?
-
-    if [ $DETECT_STATUS -eq 0 ]; then
-        eval "$ADAPTER_INFO"
-
-        if [ -n "$ADAPTER_PROFILE" ]; then
-            PROFILE_PATH="$WEBROOT_DIR/config/$ADAPTER_PROFILE"
-
-            if [ -f "$PROFILE_PATH" ]; then
-                echo "Detected hardware profile: $ADAPTER_PROFILE"
-                echo "Applying adapter-specific configuration for $interface..."
-
-                # Apply profile configuration
-                if [ -x "$WEBROOT_DIR/installers/apply_profile.sh" ]; then
-                    $WEBROOT_DIR/installers/apply_profile.sh "$interface" "$PROFILE_PATH"
-                fi
-            fi
-        fi
     fi
 fi
 
