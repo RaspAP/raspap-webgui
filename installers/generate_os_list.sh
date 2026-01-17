@@ -125,48 +125,40 @@ cat > $FILENAME << EOF
 {
   "os_list": [
     {
-      "name": "${NAME}",
+      "name": "${NAME} 64-bit (arm64)",
       "description": "${DESCRIPTION}",
       "icon": "${ICON}",
-      "random": false,
-      "subitems": [
-        {
-          "name": "${NAME} 32-bit (armhf)",
-          "description": "${DESCRIPTION}",
-          "icon": "${ICON}",
-          "url": "${BASE_URL}/${ARMHF_ZIP}",
-          "extract_size": ${ARMHF_EXTRACT_SIZE},
-          "extract_sha256": "${ARMHF_EXTRACT_SHA}",
-          "image_download_size": ${ARMHF_DOWNLOAD_SIZE},
-          "image_download_sha256": "${ARMHF_DOWNLOAD_SHA}",
-          "release_date": "${RELEASE_DATE}",
-          "init_format": "systemd",
-          "devices": [
-            "pi5-32bit",
-            "pi4-32bit",
-            "pi3-32bit",
-            "pi2-32bit"
-          ],
-          "capabilities": []
-        },
-        {
-          "name": "${NAME} 64-bit (arm64)",
-          "description": "${DESCRIPTION}",
-          "icon": "${ICON}",
-          "url": "${BASE_URL}/${ARM64_ZIP}",
-          "extract_size": ${ARM64_EXTRACT_SIZE},
-          "extract_sha256": "${ARM64_EXTRACT_SHA}",
-          "image_download_size": ${ARM64_DOWNLOAD_SIZE},
-          "image_download_sha256": "${ARM64_DOWNLOAD_SHA}",
-          "release_date": "${RELEASE_DATE}",
-          "init_format": "systemd",
-          "devices": [
-            "pi5-64bit",
-            "pi4-64bit",
-            "pi3-64bit"
-          ],
-          "capabilities": []
-        }
+      "url": "${BASE_URL}/${ARM64_ZIP}",
+      "website": "${WEBSITE}",
+      "extract_size": ${ARM64_EXTRACT_SIZE},
+      "extract_sha256": "${ARM64_EXTRACT_SHA}",
+      "image_download_size": ${ARM64_DOWNLOAD_SIZE},
+      "image_download_sha256": "${ARM64_DOWNLOAD_SHA}",
+      "release_date": "${RELEASE_DATE}",
+      "init_format": "systemd",
+      "devices": [
+        "pi5-64bit",
+        "pi4-64bit",
+        "pi3-64bit"
+      ]
+    },
+    {
+      "name": "${NAME} 32-bit (armhf)",
+      "description": "${DESCRIPTION}",
+      "icon": "${ICON}",
+      "url": "${BASE_URL}/${ARMHF_ZIP}",
+      "website": "${WEBSITE}",
+      "extract_size": ${ARMHF_EXTRACT_SIZE},
+      "extract_sha256": "${ARMHF_EXTRACT_SHA}",
+      "image_download_size": ${ARMHF_DOWNLOAD_SIZE},
+      "image_download_sha256": "${ARMHF_DOWNLOAD_SHA}",
+      "release_date": "${RELEASE_DATE}",
+      "init_format": "systemd",
+      "devices": [
+        "pi5-32bit",
+        "pi4-32bit",
+        "pi3-32bit",
+        "pi2-32bit"
       ]
     }
   ]
