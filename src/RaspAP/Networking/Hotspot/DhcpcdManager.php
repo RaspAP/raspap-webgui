@@ -46,8 +46,8 @@ class DhcpcdManager
         $ip_address = empty($jsonData['StaticIP'])
             ? getDefaultNetValue('dhcp', $ap_iface, 'static ip_address')
             : $jsonData['StaticIP'];
-        $domain_name_server = empty($jsonData['StaticDNS'])
-            ? getDefaultNetValue('dhcp', $ap_iface, 'static domain_name_server')
+        $domain_name_servers = empty($jsonData['StaticDNS'])
+            ? getDefaultNetValue('dhcp', $ap_iface, 'static domain_name_servers')
             : $jsonData['StaticDNS'];
         $routers = empty($jsonData['StaticRouters'])
             ? getDefaultNetValue('dhcp', $ap_iface, 'static routers')
@@ -68,7 +68,7 @@ class DhcpcdManager
             $config[] = 'interface br0';
             $config[] = 'static ip_address='.$bridgeConfig['staticIp'] . '/'. $bridgeConfig['netmask'];
             $config[] = 'static routers='.$bridgeConfig['gateway'];
-            $config[] = 'static domain_name_server='.$bridgeConfig['dns'];
+            $config[] = 'static domain_name_servers='.$bridgeConfig['dns'];
             $config[] = PHP_EOL;
         } elseif ($repeaterEnable) {
             $config = [
@@ -76,7 +76,7 @@ class DhcpcdManager
                 'interface ' . $ap_iface,
                 'static ip_address=' . $ip_address,
                 'static routers=' . $routers,
-                'static domain_name_server=' . $domain_name_server
+                'static domain_name_servers=' . $domain_name_servers
             ];
             $client_metric = getIfaceMetric($_SESSION['wifi_client_interface']);
             if (is_int($client_metric)) {
@@ -99,7 +99,7 @@ class DhcpcdManager
                 'interface ' . $ap_iface,
                 'static ip_address=' . $ip_address,
                 'static routers=' . $routers,
-                'static domain_name_server=' . $domain_name_server,
+                'static domain_name_servers=' . $domain_name_servers,
                 'nogateway'
             ];
         } else {
@@ -108,7 +108,7 @@ class DhcpcdManager
                 $jsonData,
                 $ip_address,
                 $routers,
-                $domain_name_server
+                $domain_name_servers
             );
         }
 
@@ -178,7 +178,7 @@ class DhcpcdManager
             $cfg[] = 'static routers='.$post_data['DefaultGateway'];
         }
         if ($post_data['DNS1'] !== '' || $post_data['DNS2'] !== '') {
-            $cfg[] = 'static domain_name_server='.$post_data['DNS1'].' '.$post_data['DNS2'];
+            $cfg[] = 'static domain_name_servers='.$post_data['DNS1'].' '.$post_data['DNS2'];
         }
         if ($post_data['Metric'] !== '') {
             $cfg[] = 'metric '.$post_data['Metric'];
@@ -327,7 +327,7 @@ class DhcpcdManager
     * @param array $jsonData
     * @param string $ip_address
     * @param string $routers
-    * @param string $domain_name_server
+    * @param string $domain_name_servers
     * @return array updated configuration
     */
     private function updateDhcpcdConfig(
@@ -335,7 +335,7 @@ class DhcpcdManager
         array $jsonData,
         string $ip_address,
         string $routers,
-        string $domain_name_server): array
+        string $domain_name_servers): array
     {
         $dhcp_cfg = file_get_contents(self::CONF_DEFAULT);
         $existing_config = [];
@@ -358,7 +358,7 @@ class DhcpcdManager
         $static_settings = [
             'static ip_address' => $ip_address,
             'static routers' => $routers,
-            'static domain_name_server' => $domain_name_server
+            'static domain_name_servers' => $domain_name_servers
         ];
 
         // merge existing settings with updates
@@ -544,7 +544,7 @@ class DhcpcdManager
                 $result['Metric'] = $this->matchFirst('/\bmetric\s+(\d+)/i', $block);
                 $staticIPLine     = $this->matchFirst('/static\s+ip_address=([^\r\n]+)/i', $block);
                 $staticRouters    = $this->matchFirst('/static\s+routers=([^\r\n]+)/i', $block);
-                $staticDNS        = $this->matchFirst('/static\s+domain_name_server=([^\r\n]+)/i', $block);
+                $staticDNS        = $this->matchFirst('/static\s+domain_name_servers=([^\r\n]+)/i', $block);
 
                 $result['StaticIP']       = $staticIPLine ? (strpos($staticIPLine,'/') !== false
                     ? substr($staticIPLine, 0, strpos($staticIPLine,'/'))
@@ -562,7 +562,7 @@ class DhcpcdManager
                 $result['StaticIP']      = getDefaultNetValue('dhcp', $iface, 'static ip_address');
                 $result['SubnetMask']    = getDefaultNetValue('dhcp', $iface, 'subnetmask');
                 $result['StaticRouters'] = getDefaultNetValue('dhcp', $iface, 'static routers');
-                $result['StaticDNS']     = getDefaultNetValue('dhcp', $iface, 'static domain_name_server');
+                $result['StaticDNS']     = getDefaultNetValue('dhcp', $iface, 'static domain_name_servers');
             }
         }
         return $result;
