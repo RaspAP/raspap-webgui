@@ -17,7 +17,7 @@ set -o errtrace
 NAME="RaspAP"
 WEBSITE="https://raspap.com/"
 ICON="https://raspap.com/assets/images/raspAP-logo.svg"
-DESCRIPTION="The easiest, full-featured wireless router for Debian-based devices."
+DESCRIPTION="Turn your Raspberry Pi into a full-featured wireless router."
 REPO="RaspAP/raspap-webgui"
 FILENAME="os-subitem.json"
 
