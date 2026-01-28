@@ -2,7 +2,7 @@
   "os_list": [
     {
       "name": "RaspAP 64-bit (arm64)",
-      "description": "The easiest, full-featured wireless router for Debian-based devices.",
+      "description": "Turn your Raspberry Pi into a full-featured wireless router.",
       "icon": "https://raspap.com/assets/images/raspAP-logo.svg",
       "url": "https://github.com/RaspAP/raspap-webgui/releases/download/3.5.2/raspap-trixie-arm64-lite-3.5.2.img.zip",
       "website": "https://raspap.com/",
@@ -10,7 +10,7 @@
       "extract_sha256": "a2adb256b263c9d4a09c51f1a9ece81eb6f38d1e46db2610deeabb9208f038ec",
       "image_download_size": 932897736,
       "image_download_sha256": "38e5e02f27fccd81788f505788396ab5d64ce2654aeb22e9155fd81e3b069e5a",
-      "release_date": "2025-01-19",
+      "release_date": "2026-01-19",
       "init_format": "systemd",
       "devices": [
         "pi5-64bit",
@@ -20,7 +20,7 @@
     },
     {
       "name": "RaspAP 32-bit (armhf)",
-      "description": "The easiest, full-featured wireless router for Debian-based devices.",
+      "description": "Turn your Raspberry Pi into a full-featured wireless router.",
       "icon": "https://raspap.com/assets/images/raspAP-logo.svg",
       "url": "https://github.com/RaspAP/raspap-webgui/releases/download/3.5.2/raspap-trixie-armhf-lite-3.5.2.img.zip",
       "website": "https://raspap.com/",
@@ -28,7 +28,7 @@
       "extract_sha256": "ae8cb04bd5587c296a729d5fa3c3cbfcd9c754d12d71ada604d0c8a53b87ff1d",
       "image_download_size": 902362069,
       "image_download_sha256": "929499e820c12c257794da818968b6aa35cb2d6bdab4cf7ccb46e7da8742dadf",
-      "release_date": "2025-01-19",
+      "release_date": "2026-01-19",
       "init_format": "systemd",
       "devices": [
         "pi5-32bit",
