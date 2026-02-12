@@ -3,7 +3,7 @@ import json
 
 def get_active_clients_amount(interface):
     arp_output = subprocess.run(['arp', '-i', interface], capture_output=True, text=True)
-    mac_addresses = arp_output.stdout.splitlines()
+    mac_addresses = mac_addresses = set(line.split()[2] for line in arp_output.stdout.splitlines()[1:])
 
     if mac_addresses:
         grep_pattern = '|'.join(mac_addresses)
