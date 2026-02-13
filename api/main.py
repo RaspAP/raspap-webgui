@@ -69,11 +69,20 @@ async def get_ap(api_key: APIKey = Depends(auth.get_api_key)):
 'ignore_broadcast_ssid': ap.ignore_broadcast_ssid()
 }
 
+@app.get("/clients", tags=["Clients"]) 
+async def get_clients(api_key: APIKey = Depends(auth.get_api_key)):
+    return{
+'active_clients_amount': client.get_active_clients_amount(),
+'active_wireless_clients_amount': client.get_active_wireless_clients_amount(),
+'active_ethernet_clients_amount': client.get_active_ethernet_clients_amount(),
+'active_clients': json.loads(client.get_active_clients())
+}
+
 @app.get("/clients/{wireless_interface}", tags=["Clients"]) 
 async def get_clients(wireless_interface, api_key: APIKey = Depends(auth.get_api_key)):
     return{
-'active_clients_amount': client.get_active_clients_amount(wireless_interface),
-'active_clients': json.loads(client.get_active_clients(wireless_interface))
+'active_clients_amount': client.get_active_clients_amount_by_interface(wireless_interface),
+'active_clients': json.loads(client.get_active_clients_by_interface(wireless_interface))
 }
 
 @app.get("/dhcp", tags=["DHCP"])
