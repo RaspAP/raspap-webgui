@@ -35,6 +35,7 @@ async def get_system(api_key: APIKey = Depends(auth.get_api_key)):
 'uptime': system.uptime(),
 'systime': system.systime(),
 'usedMemory': system.usedMemory(),
+'usedDisk': system.usedDisk(),
 'processorCount': system.processorCount(),
 'LoadAvg1Min': system.LoadAvg1Min(),
 'systemLoadPercentage': system.systemLoadPercentage(),
@@ -42,7 +43,8 @@ async def get_system(api_key: APIKey = Depends(auth.get_api_key)):
 'hostapdStatus': system.hostapdStatus(),
 'operatingSystem': system.operatingSystem(),
 'kernelVersion': system.kernelVersion(),
-'rpiRevision': system.rpiRevision()
+'rpiRevision': system.rpiRevision(),
+'raspapVersion': system.raspapVersion()
 }
 
 @app.get("/ap", tags=["accesspoint/hotspot"])
@@ -58,6 +60,7 @@ async def get_ap(api_key: APIKey = Depends(auth.get_api_key)):
 'channel': ap.channel(),
 'hw_mode': ap.hw_mode(),
 'ieee80211n': ap.ieee80211n(),
+'frequency_band': ap.frequency_band(),
 'wpa_passphrase': ap.wpa_passphrase(),
 'interface': ap.interface(),
 'wpa': ap.wpa(),
@@ -66,11 +69,20 @@ async def get_ap(api_key: APIKey = Depends(auth.get_api_key)):
 'ignore_broadcast_ssid': ap.ignore_broadcast_ssid()
 }
 
+@app.get("/clients", tags=["Clients"]) 
+async def get_clients(api_key: APIKey = Depends(auth.get_api_key)):
+    return{
+'active_clients_amount': client.get_active_clients_amount(),
+'active_wireless_clients_amount': client.get_active_wireless_clients_amount(),
+'active_ethernet_clients_amount': client.get_active_ethernet_clients_amount(),
+'active_clients': json.loads(client.get_active_clients())
+}
+
 @app.get("/clients/{wireless_interface}", tags=["Clients"]) 
 async def get_clients(wireless_interface, api_key: APIKey = Depends(auth.get_api_key)):
     return{
-'active_clients_amount': client.get_active_clients_amount(wireless_interface),
-'active_clients': json.loads(client.get_active_clients(wireless_interface))
+'active_clients_amount': client.get_active_clients_amount_by_interface(wireless_interface),
+'active_clients': json.loads(client.get_active_clients_by_interface(wireless_interface))
 }
 
 @app.get("/dhcp", tags=["DHCP"])
