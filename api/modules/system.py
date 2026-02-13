@@ -53,6 +53,9 @@ def systime():
 def usedMemory():
     return round(float(subprocess.run("free -m | awk 'NR==2{total=$2 ; used=$3 } END { print used/total*100}'", shell=True, capture_output=True, text=True).stdout.strip()),2)
 
+def usedDisk():
+    return float(subprocess.run("df -h / | awk 'NR==2 {print $5}' | sed 's/%$//'", shell=True, capture_output=True, text=True).stdout.strip())
+
 def processorCount():
     return int(subprocess.run("nproc --all", shell=True, capture_output=True, text=True).stdout.strip())
 
@@ -84,3 +87,6 @@ def rpiRevision():
         return revisions[output]
     except KeyError:
         return 'Unknown Device'
+
+def raspapVersion():
+    return subprocess.run("grep 'RASPI_VERSION' /var/www/html/includes/defaults.php | awk -F\"'\" '{print $4}'", shell=True, capture_output=True, text=True).stdout.strip()
