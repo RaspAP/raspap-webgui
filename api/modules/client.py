@@ -31,7 +31,7 @@ def get_active_wireless_clients_amount():
 def get_active_ethernet_clients_mac():
     arp_macs = []
 
-    arp_output = subprocess.run(['ip', 'neight', 'show'], capture_output=True, text=True)
+    arp_output = subprocess.run(['ip', 'neigh', 'show'], capture_output=True, text=True)
     if arp_output.stdout:
         for line in arp_output.stdout.splitlines():
             line = line.strip()
