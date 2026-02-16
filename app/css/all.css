@@ -298,12 +298,6 @@ button > i.fas {
   border-bottom-right-radius: 0.35rem;
 }
 
-.nav-user {
-  position: relative;
-  bottom: 11px;
-  right: 3px;
-}
-
 .nav-item {
   font-size: 0.85rem;
 }
