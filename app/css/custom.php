@@ -94,6 +94,15 @@ a:focus, a:hover {
   background-color: #f2f1f0;
 }
 
+.nav-tabs {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link {
   font-size: 1.0rem;
@@ -101,6 +110,7 @@ a:focus, a:hover {
 
 .nav-tabs a.nav-link {
   color: #6e707e;
+  white-space: nowrap;
 }
 
 a.nav-link.active {
