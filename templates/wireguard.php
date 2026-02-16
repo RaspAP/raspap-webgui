@@ -13,7 +13,7 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col">
               <span class="ra-wireguard me-2"></span><?php echo _("WireGuard"); ?>
             </div>
@@ -43,7 +43,9 @@
               <?php echo renderTemplate("wg/logging", $__template_data) ?>
             </div><!-- /.tab-content -->
 
-          <?php echo $buttons ?>
+            <div class="d-flex flex-wrap gap-2">
+              <?php echo $buttons ?>
+            </div>
           </form>
         </div><!-- /.card-body -->
         <div class="card-footer"><?php echo _("Information provided by wireguard"); ?></div>

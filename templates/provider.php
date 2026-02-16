@@ -13,7 +13,7 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col">
               <i class="fas fa-shield-alt fa-fw me-2"></i><?php echo _($providerName); ?>
             </div>
@@ -41,7 +41,9 @@
               <?php echo renderTemplate("provider/status", $__template_data) ?>
             </div><!-- /.tab-content -->
 
-            <?php echo $buttons ?>
+            <div class="d-flex flex-wrap gap-2">
+              <?php echo $buttons ?>
+            </div>
           </form>
         </div><!-- /.card-body -->
       <div class="card-footer"><?php echo sprintf( _("Information provided by %s"), strtolower($providerName)); ?></div>

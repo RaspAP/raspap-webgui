@@ -13,27 +13,29 @@
         <input class="form-control color-input" value="#2b8080" aria-label="color" />
       </div>
     </div>
-      <div class="row">
-        <div class="col-md-6 mb-2">
-        <h5 class="mt-1"><?php echo _("Alert messages"); ?></h5>          
-          <div class="form-check form-switch">
-            <?php $checked = $optAutoclose == 1 ? 'checked="checked"' : '' ?>
-            <input class="form-check-input" id="chxautoclose" name="autoClose" type="checkbox" value="1" <?php echo $checked ?> />
-            <label class="form-check-label" for="chxautoclose"><?php echo _("Automatically close alerts after a specified timeout"); ?></label>
-          </div>
+    <div class="row">
+      <div class="col-md-6 mb-2">
+      <h5 class="mt-1"><?php echo _("Alert messages"); ?></h5>          
+        <div class="form-check form-switch">
+          <?php $checked = $optAutoclose == 1 ? 'checked="checked"' : '' ?>
+          <input class="form-check-input" id="chxautoclose" name="autoClose" type="checkbox" value="1" <?php echo $checked ?> />
+          <label class="form-check-label" for="chxautoclose"><?php echo _("Automatically close alerts after a specified timeout"); ?></label>
         </div>
       </div>
-      <div class="row">
-        <div class="mb-3 col-md-6">
-          <label for="code"><?php echo _("Alert close timeout (milliseconds)") ;?></label>
-          <input type="text" class="form-control" name="alertTimeout" value="<?php echo htmlspecialchars($alertTimeout, ENT_QUOTES); ?>" />
-        </div>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-6">
+        <label for="code"><?php echo _("Alert close timeout (milliseconds)") ;?></label>
+        <input type="text" class="form-control" name="alertTimeout" value="<?php echo htmlspecialchars($alertTimeout, ENT_QUOTES); ?>" />
       </div>
+    </div>
+    <div class="d-flex flex-wrap gap-2">
       <?php if (!RASPI_MONITOR_ENABLED) : ?>
       <input type="submit" class="btn btn-outline btn-primary" name="savethemeSettings" value="<?php echo _("Save settings"); ?>" />
       <?php endif; ?>
-      <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
-    </form>
+      <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></button>
+    </div>
+  </form>
 </div>
 
 
