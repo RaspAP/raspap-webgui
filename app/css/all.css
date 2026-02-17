@@ -122,6 +122,10 @@ th {
   font-size: 0.8rem;
 }
 
+.page-card-header, .modal-title {
+    font-size: 16px;
+}
+
 .dhcp-static-leases {
   margin-top: 1em;
   margin-bottom: 1em;

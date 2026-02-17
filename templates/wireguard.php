@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
-        <div class="card-header">
+        <div class="card-header page-card-header">
           <div class="row align-items-center">
             <div class="col">
               <span class="ra-wireguard me-2"></span><?php echo _("WireGuard"); ?>
