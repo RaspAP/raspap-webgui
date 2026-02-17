@@ -185,6 +185,14 @@ function contentLoaded() {
 }
 
 function setDHCPToggles(state) {
+    if (state) {
+        $('#chkdhcp').closest('.btn').addClass('btn-outline');
+        $('#chkstatic').closest('.btn').removeClass('btn-outline');
+    } else {
+        $('#chkdhcp').closest('.btn').removeClass('btn-outline');
+        $('#chkstatic').closest('.btn').addClass('btn-outline');
+    }
+
     if ($('#chkfallback').is(':checked') && state) {
         $('#chkfallback').prop('checked', state);
     }
