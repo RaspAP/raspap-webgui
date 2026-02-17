@@ -88,12 +88,11 @@ function loadInterfaceDHCPSelect() {
         $('#txtmetric').val(jsonData.Metric);
 
         if (jsonData.StaticIP !== null && jsonData.StaticIP !== '' && !jsonData.FallbackEnabled) {
-            $('#chkstatic').prop('checked', true).closest('.btn').removeClass('btn-outline');
-            $('#chkdhcp').prop('checked', false).closest('.btn').addClass('btn-outline');
+            $('#chkstatic').prop('checked', true).trigger('change');
+            $('#chkdhcp').prop('checked', false).trigger('change');
             $('#chkfallback').prop('disabled', true);
             $('#dhcp-iface').removeAttr('disabled');
         } else {
-            $('#chkdhcp').closest('.btn').removeClass('btn-outline');
             $('#chkdhcp').closest('.btn').blur();
         }
         if (jsonData.FallbackEnabled || $('#chkdhcp').is(':checked')) {

@@ -185,14 +185,6 @@ function contentLoaded() {
 }
 
 function setDHCPToggles(state) {
-    if (state) {
-        $('#chkdhcp').closest('.btn').addClass('btn-outline');
-        $('#chkstatic').closest('.btn').removeClass('btn-outline');
-    } else {
-        $('#chkdhcp').closest('.btn').removeClass('btn-outline');
-        $('#chkstatic').closest('.btn').addClass('btn-outline');
-    }
-
     if ($('#chkfallback').is(':checked') && state) {
         $('#chkfallback').prop('checked', state);
     }
@@ -397,12 +389,24 @@ $(document).ready(function () {
 // DHCP or Static IP option group
 $('#chkstatic').on('change', function() {
     if (this.checked) {
+        $('#chkstatic').closest('.btn').removeClass('btn-outline');
+        $('#chkdhcp').closest('.btn').addClass('btn-outline');
         setStaticFieldsEnabled();
+    } else {
+        $('#chkstatic').closest('.btn').addClass('btn-outline');
+        $('#chkdhcp').closest('.btn').removeClass('btn-outline');
     }
 });
 
 $('#chkdhcp').on('change', function() {
-    this.checked ? setStaticFieldsDisabled() : null;
+    if (this.checked) {
+        $('#chkdhcp').closest('.btn').removeClass('btn-outline');
+        $('#chkstatic').closest('.btn').addClass('btn-outline');
+        setStaticFieldsDisabled();
+    } else {
+        $('#chkdhcp').closest('.btn').addClass('btn-outline');
+        $('#chkstatic').closest('.btn').removeClass('btn-outline');
+    }
 });
 
 
