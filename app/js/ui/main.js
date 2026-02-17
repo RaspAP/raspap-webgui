@@ -582,15 +582,17 @@ $(window).bind("load", function() {
 });
 
 // Sets focus on a specified tab
-document.addEventListener("DOMContentLoaded", function () {
-    const params = new URLSearchParams(window.location.search);
-    const targetTab = params.get("tab");
-    if (targetTab) {
-        let tabElement = document.querySelector(`[data-bs-toggle="tab"][href="#${targetTab}"]`);
-        if (tabElement) {
-            let tab = new bootstrap.Tab(tabElement);
-            tab.show();
-        }
+jQuery(function() {
+    // Store hash in URL
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var hash = $(e.target).attr('href');
+        history.pushState(null, null, hash);
+    });
+
+    // Activate tab based on URL hash
+    var hash = window.location.hash;
+    if (hash) {
+        $('.nav-link[href="' + hash + '"]').tab('show');
     }
 });
 
