@@ -3,7 +3,7 @@
   <div class="row">
     <div class="mb-3 col-md-6">
       <label for="code"><?php echo _("Interface"); ?></label>
-        <?php SelectorOptions('interface', $interfaces, $ap_iface, 'cbxdhcpiface', 'loadInterfaceDHCPSelect'); ?>
+        <?php SelectorOptions('interface', $interfaces, $initial_iface, 'cbxdhcpiface', 'loadInterfaceDHCPSelect'); ?>
     </div>
   </div>
 
