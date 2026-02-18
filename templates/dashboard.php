@@ -33,10 +33,12 @@
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
-          <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link active" id="statustab" href="#status" aria-controls="status" data-bs-toggle="tab"><?php echo _("Status"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" id="datatab" href="#data" data-bs-toggle="tab"><?php echo _("Data usage"); ?></a></li>
-          </ul>
+          <div class="nav-tabs-wrapper">
+            <ul class="nav nav-tabs">
+              <li class="nav-item"><a class="nav-link active" id="statustab" href="#status" aria-controls="status" data-bs-toggle="tab"><?php echo _("Status"); ?></a></li>
+              <li class="nav-item"><a class="nav-link" id="datatab" href="#data" data-bs-toggle="tab"><?php echo _("Data usage"); ?></a></li>
+            </ul>
+          </div>
 
           <!-- Tab panes -->
           <div class="tab-content">

@@ -34,13 +34,15 @@
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
-          <ul class="nav nav-tabs mb-3">
-            <li class="nav-item"><a class="nav-link active" href="#server-settings" data-bs-toggle="tab"><?php echo _("Server settings"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="#advanced" data-bs-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="#static-leases" data-bs-toggle="tab"><?php echo _("Static Leases") ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="#client-list" data-bs-toggle="tab"><?php echo _("Client list"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="#logging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
-          </ul>
+          <div class="nav-tabs-wrapper">
+            <ul class="nav nav-tabs mb-3">
+              <li class="nav-item"><a class="nav-link active" href="#server-settings" data-bs-toggle="tab"><?php echo _("Server settings"); ?></a></li>
+              <li class="nav-item"><a class="nav-link" href="#advanced" data-bs-toggle="tab"><?php echo _("Advanced"); ?></a></li>
+              <li class="nav-item"><a class="nav-link" href="#static-leases" data-bs-toggle="tab"><?php echo _("Static Leases") ?></a></li>
+              <li class="nav-item"><a class="nav-link" href="#client-list" data-bs-toggle="tab"><?php echo _("Client list"); ?></a></li>
+              <li class="nav-item"><a class="nav-link" href="#logging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
+            </ul>
+          </div>
 
           <!-- Tab panes -->
           <div class="tab-content">

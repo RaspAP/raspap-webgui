@@ -12,16 +12,18 @@
         <?php $status->showMessages(); ?>
         <form role="form" action="system_info" method="POST">
         <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" role="tab" data-bs-toggle="tab"><?php echo _("Basic"); ?></a></li>
-          <li role="presentation" class="nav-item"><a class="nav-link" id="languagetab" href="#language" aria-controls="language" role="tab" data-bs-toggle="tab"><?php echo _("Language"); ?></a></li>
-          <li role="presentation" class="nav-item"><a class="nav-link" id="themetab" href="#theme" aria-controls="theme" role="tab" data-bs-toggle="tab"><?php echo _("Theme"); ?></a></li>
-          <li role="presentation" class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" aria-controls="advanced" role="tab" data-bs-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-          <li role="presentation" class="nav-item"><a class="nav-link" id="toolstab" href="#tools" aria-controls="tools" role="tab" data-bs-toggle="tab"><?php echo _("Tools"); ?></a></li>
-          <?php if (RASPI_PLUGINS_ENABLED) : ?>
-          <li role="presentation" class="nav-item"><a class="nav-link" id="pluginstab" href="#plugins" aria-controls="plugins" role="tab" data-bs-toggle="tab"><?php echo _("Plugins"); ?></a></li>
-          <?php endif ?>
-        </ul>
+        <div class="nav-tabs-wrapper">
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" role="tab" data-bs-toggle="tab"><?php echo _("Basic"); ?></a></li>
+            <li role="presentation" class="nav-item"><a class="nav-link" id="languagetab" href="#language" aria-controls="language" role="tab" data-bs-toggle="tab"><?php echo _("Language"); ?></a></li>
+            <li role="presentation" class="nav-item"><a class="nav-link" id="themetab" href="#theme" aria-controls="theme" role="tab" data-bs-toggle="tab"><?php echo _("Theme"); ?></a></li>
+            <li role="presentation" class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" aria-controls="advanced" role="tab" data-bs-toggle="tab"><?php echo _("Advanced"); ?></a></li>
+            <li role="presentation" class="nav-item"><a class="nav-link" id="toolstab" href="#tools" aria-controls="tools" role="tab" data-bs-toggle="tab"><?php echo _("Tools"); ?></a></li>
+            <?php if (RASPI_PLUGINS_ENABLED) : ?>
+            <li role="presentation" class="nav-item"><a class="nav-link" id="pluginstab" href="#plugins" aria-controls="plugins" role="tab" data-bs-toggle="tab"><?php echo _("Plugins"); ?></a></li>
+            <?php endif ?>
+          </ul>
+        </div>
           <!-- Tab panes -->
           <div class="tab-content">
             <?php echo renderTemplate("system/basic", $__template_data) ?>

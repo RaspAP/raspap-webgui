@@ -30,11 +30,13 @@
           <form role="form" action="wg_conf" enctype="multipart/form-data" method="POST">
             <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="settingstab" href="#wgsettings" data-bs-toggle="tab"><?php echo _("Settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="peertab" href="#wgpeers" data-bs-toggle="tab"><?php echo _("Peer"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#wglogging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
-            </ul>
+            <div class="nav-tabs-wrapper">
+              <ul class="nav nav-tabs">
+                  <li class="nav-item"><a class="nav-link active" id="settingstab" href="#wgsettings" data-bs-toggle="tab"><?php echo _("Settings"); ?></a></li>
+                  <li class="nav-item"><a class="nav-link" id="peertab" href="#wgpeers" data-bs-toggle="tab"><?php echo _("Peer"); ?></a></li>
+                  <li class="nav-item"><a class="nav-link" id="loggingtab" href="#wglogging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
+              </ul>
+            </div>
 
             <!-- Tab panes -->
             <div class="tab-content">

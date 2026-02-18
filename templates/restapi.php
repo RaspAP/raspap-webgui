@@ -30,10 +30,12 @@
           <form role="form" action="restapi_conf" method="POST" class="needs-validation" novalidate>
             <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="restapisettingstab" href="#restapisettings" data-bs-toggle="tab"><?php echo _("Settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="restapistatustab" href="#restapistatus" data-bs-toggle="tab"><?php echo _("Status"); ?></a></li>
-            </ul>
+            <div class="nav-tabs-wrapper">
+              <ul class="nav nav-tabs">
+                  <li class="nav-item"><a class="nav-link active" id="restapisettingstab" href="#restapisettings" data-bs-toggle="tab"><?php echo _("Settings"); ?></a></li>
+                  <li class="nav-item"><a class="nav-link" id="restapistatustab" href="#restapistatus" data-bs-toggle="tab"><?php echo _("Status"); ?></a></li>
+              </ul>
+            </div>
 
             <!-- Tab panes -->
             <div class="tab-content">

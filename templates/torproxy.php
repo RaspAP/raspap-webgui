@@ -4,11 +4,13 @@
         <div class="card-header page-card-header"><i class="fa fa-eye-slash fa-fw"></i> TOR proxy</div>
         <div class="card-body">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" href="#basic" data-bs-toggle="tab">Basic</a></li>
-                <li class="nav-item"><a class="nav-link" href="#relay" data-bs-toggle="tab">Relay</a>
-                </li>
-            </ul>
+            <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" href="#basic" data-bs-toggle="tab">Basic</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#relay" data-bs-toggle="tab">Relay</a>
+                    </li>
+                </ul>
+            </div>
 
             <!-- Tab panes -->
             <div class="tab-content">

@@ -105,13 +105,17 @@ a:focus, a:hover {
   background-color: #f2f1f0;
 }
 
-.nav-tabs {
-  flex-wrap: nowrap;
+.nav-tabs-wrapper {
+  width: 100%;
   overflow-x: auto;
-  overflow-y: hidden;
 }
-.nav-tabs::-webkit-scrollbar {
+.nav-tabs-wrapper::-webkit-scrollbar {
   display: none;
+}
+.nav-tabs-wrapper > .nav-tabs {
+  flex-wrap: nowrap;
+  min-width: 100%;
+  width: min-content;
 }
 
 .nav-tabs .nav-link.active,

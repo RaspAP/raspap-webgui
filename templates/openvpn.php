@@ -32,11 +32,13 @@
           <form role="form" action="openvpn_conf" enctype="multipart/form-data" method="POST">
             <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-bs-toggle="tab"><?php echo _("Client settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="configstab" href="#openvpnconfigs" data-bs-toggle="tab"><?php echo _("Configurations"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#openvpnlogging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
-            </ul>
+            <div class="nav-tabs-wrapper">
+              <ul class="nav nav-tabs">
+                  <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-bs-toggle="tab"><?php echo _("Client settings"); ?></a></li>
+                  <li class="nav-item"><a class="nav-link" id="configstab" href="#openvpnconfigs" data-bs-toggle="tab"><?php echo _("Configurations"); ?></a></li>
+                  <li class="nav-item"><a class="nav-link" id="loggingtab" href="#openvpnlogging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
+              </ul>
+            </div>
 
             <!-- Tab panes -->
             <div class="tab-content">
