@@ -117,11 +117,16 @@
                   { "var": "ap-device", "type": "string", "replace": "$INTERFACE$" }
             ],
             "rules": [
-                "-A INPUT -p udp -s $IPADDRESS$ -j ACCEPT",
-                "-A FORWARD -i tun+ -o $INTERFACE$ -m state --state RELATED,ESTABLISHED -j ACCEPT",
-                "-A FORWARD -i $INTERFACE$ -o tun+ -j ACCEPT",
-                "-t nat -A POSTROUTING -o tun+ -j MASQUERADE"
+                "-A INPUT -s $IPADDRESS$ -j ACCEPT",
+                "-A FORWARD -i tun+ -o wlan+ -j ACCEPT",
+                "-A FORWARD -i tun+ -o tun+ -j DROP",
+                "-A FORWARD -i wlan+ -o tun+ -j ACCEPT",
+                "-A FORWARD -i eth+ -o tun+ -j ACCEPT",
+                "-A FORWARD -i tun+ -o eth+ -j ACCEPT",
+                "-t nat -A POSTROUTING -o $INTERFACE$ -j MASQUERADE",
+                "-P FORWARD DROP"
             ]
+
         },
         {
             "name": "wireguard",
@@ -134,8 +139,13 @@
             ],
             "rules": [
                 "-A INPUT -p udp -s $IPADDRESS$ -j ACCEPT",
-                "-A FORWARD -i wg+ -j ACCEPT",
-                "-t nat -A POSTROUTING -o $INTERFACE$ -j MASQUERADE"
+                "-A FORWARD -i wg+ -o wlan+ -j ACCEPT",
+                "-A FORWARD -i wg+ -o wg+ -j DROP",
+                "-A FORWARD -i wlan+ -o wg+ -j ACCEPT",
+                "-A FORWARD -i eth+ -o wg+ -j ACCEPT",
+                "-A FORWARD -i wg+ -o eth+ -j ACCEPT",
+                "-t nat -A POSTROUTING -o $INTERFACE$ -j MASQUERADE",
+                "-P FORWARD DROP"
             ]
         }
     ],
