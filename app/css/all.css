@@ -400,8 +400,10 @@ textarea.plugin-log {
   display: flex;
   position: relative;
   width: 100%;
+  max-width: 1230px;
   min-height: 400px;
   padding: 2rem;
+  margin: 0 auto;
 }
 
 .connections-left,
@@ -413,7 +415,6 @@ textarea.plugin-log {
 }
 
 .connection-item {
-  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
