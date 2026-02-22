@@ -59,6 +59,7 @@
           </div>
         </form>
       </div><!-- /.card-body -->
+      
       <div class="card-footer"><?php echo _("Information provided by adblock"); ?></div>
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
