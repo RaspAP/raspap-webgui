@@ -9,8 +9,8 @@
     <div class="card">
 
       <div class="card-header page-card-header">
-        <div class="row align-items-center">
-          <div class="col">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
             <span class="ra-wireguard me-2"></span><?php echo _("WireGuard"); ?>
           </div>
           <form method="POST" action="wg_conf">
@@ -33,7 +33,6 @@
               </button>
             </div>
           </form>
-          </div>
         </div><!-- /.row -->
       </div><!-- /.card-header -->
 
