@@ -86,6 +86,10 @@ a:focus, a:hover {
   background-color: #fff !important;
 }
 
+.btn-light {
+  color: var(--raspap-theme-darker) !important;
+}
+
 .card-body {
   color: #495057;
 }
