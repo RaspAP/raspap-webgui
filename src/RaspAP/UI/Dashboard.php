@@ -325,44 +325,5 @@ class Dashboard {
         }
         return 'default.php';
     }
-
-    /**
-     * Handles dashboard page actions
-     *
-     * @param string $state
-     * @param array $post
-     * @param object $status
-     * @param string $interface
-     */
-    public function handlePageAction(string $state, array $post, $status, string $interface): object
-    {
-        if (!RASPI_MONITOR_ENABLED) {
-            if (isset($post['ifdown_wlan0'])) {
-                if ($state === 'up') {
-                    $status->addMessage(sprintf(_('Interface %s is going %s'), $interface, _('down')), 'warning');
-                    exec('sudo ip link set ' .escapeshellarg($interface). ' down');
-                    $status->addMessage(sprintf(_('Interface %s is %s'), $interface, _('down')), 'success');
-                } elseif ($details['state'] === 'unknown') {
-                    $status->addMessage(_('Interface state unknown'), 'danger');
-                } else {
-                    $status->addMessage(sprintf(_('Interface %s is already %s'), $interface, _('down')), 'warning');
-                }
-            } elseif (isset($post['ifup_wlan0'])) {
-                if ($state === 'down') {
-                    $status->addMessage(sprintf(_('Interface %s is going %s'), $interface, _('up')), 'warning');
-                    exec('sudo ip link set ' .escapeshellarg($interface). ' up');
-                    exec('sudo ip -s a f label ' .escapeshellarg($interface));
-                    usleep(250000);
-                    $status->addMessage(sprintf(_('Interface %s is %s'), $interface, _('up')), 'success');
-                } elseif ($state === 'unknown') {
-                    $status->addMessage(_('Interface state unknown'), 'danger');
-                } else {
-                    $status->addMessage(sprintf(_('Interface %s is already %s'), $interface, _('up')), 'warning');
-                }
-            }
-            return $status;
-        }
-    }
-
 }
 
