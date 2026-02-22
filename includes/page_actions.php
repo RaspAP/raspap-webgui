@@ -22,8 +22,8 @@ if (!$pluginManager->handlePageAction($page)) {
 function handleCorePageAction(string $page, array &$extraFooterScripts): void
 {
     switch ($page) {
-        case "/wlan0_info":
-            DisplayDashboard($extraFooterScripts);
+        case "/" ?? "/dashboard":
+            DisplayDashboard();
             break;
         case "/dhcpd_conf":
             DisplayDHCPConfig();
@@ -74,7 +74,7 @@ function handleCorePageAction(string $page, array &$extraFooterScripts): void
             DisplayLogin();
             break;
         default:
-            DisplayDashboard($extraFooterScripts);
+            DisplayDashboard();
     }
 }
 
