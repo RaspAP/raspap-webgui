@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      
+
       <div class="card-header page-card-header">
         <div class="d-flex justify-content-between align-items-center">
           <div>
@@ -60,6 +60,7 @@
           </div>
         </form>
       </div><!-- /.card-body -->
+      
       <div class="card-footer"><?php echo _("Information provided by adblock"); ?></div>
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->

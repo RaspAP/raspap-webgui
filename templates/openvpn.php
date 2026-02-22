@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      
+
       <div class="card-header page-card-header">
         <div class="d-flex justify-content-between align-items-center">
           <div>
@@ -54,7 +54,9 @@
             <?php echo renderTemplate("openvpn/logging", $__template_data) ?>
           </div><!-- /.tab-content -->
 
-          <?php echo $buttons ?>
+          <div class="d-flex flex-wrap gap-2">
+            <?php echo $buttons ?>
+          </div>
         </form>
       </div><!-- /.card-body -->
 
