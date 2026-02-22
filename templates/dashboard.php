@@ -12,8 +12,8 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header">
-        <div class="row">
+      <div class="card-header page-card-header">
+        <div class="row align-items-center">
           <div class="col">
             <i class="fas fa-tachometer-alt fa-fw me-2"></i>
             <?php echo _("Dashboard"); ?>
@@ -33,10 +33,12 @@
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
-          <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link active" id="statustab" href="#status" aria-controls="status" data-bs-toggle="tab"><?php echo _("Status"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" id="datatab" href="#data" data-bs-toggle="tab"><?php echo _("Data usage"); ?></a></li>
-          </ul>
+          <div class="nav-tabs-wrapper">
+            <ul class="nav nav-tabs">
+              <li class="nav-item"><a class="nav-link active" id="statustab" href="#status" aria-controls="status" data-bs-toggle="tab"><?php echo _("Status"); ?></a></li>
+              <li class="nav-item"><a class="nav-link" id="datatab" href="#data" data-bs-toggle="tab"><?php echo _("Data usage"); ?></a></li>
+            </ul>
+          </div>
 
           <!-- Tab panes -->
           <div class="tab-content">
@@ -44,7 +46,9 @@
             <?php echo renderTemplate("dashboard/data", $__template_data) ?>
           </div><!-- /.tab-content -->
 
-          <?php echo $buttons ?>
+          <div class="d-flex flex-wrap gap-2">
+            <?php echo $buttons ?>
+          </div>
         </form>
       </div><!-- /.card-body -->
 

@@ -55,10 +55,11 @@
             <?php echo renderTemplate("adblock/logging", $__template_data) ?>
           </div><!-- /.tab-content -->
 
-          <?php echo $buttons ?>
+          <div class="d-flex flex-wrap gap-2">
+            <?php echo $buttons ?>
+          </div>
         </form>
       </div><!-- /.card-body -->
-
       <div class="card-footer"><?php echo _("Information provided by adblock"); ?></div>
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
