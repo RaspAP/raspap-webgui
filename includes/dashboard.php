@@ -12,7 +12,7 @@ use RaspAP\Networking\Hotspot\WiFiManager;
 /**
  * Displays the dashboard
  */
-function DisplayDashboard(&$extraFooterScripts): void
+function DisplayDashboard(): void
 {
     // instantiate RaspAP objects
     $system = new Sysinfo();
@@ -37,7 +37,6 @@ function DisplayDashboard(&$extraFooterScripts): void
     $wireless = $dashboard->getWirelessDetails($interface);
     $connectionType = $dashboard->getConnectionType();
     $connectionIcon = $dashboard->getConnectionIcon($connectionType);
-    $state = strtolower($details['state']);
     $wirelessClients = $dashboard->getWirelessClients($interface);
     $ethernetClients = $dashboard->getEthernetClients();
     $totalClients = $wirelessClients + $ethernetClients;
@@ -49,15 +48,7 @@ function DisplayDashboard(&$extraFooterScripts): void
         $details = $dashboard->getInterfaceDetails($interface);
         $connectionType = 'ethernet';
     }
-
-    // handle page actions
-    if (!empty($_POST)) {
-        $status = $dashboard->handlePageAction($state, $_POST, $status, $interface);
-        // refresh interface details + state
-        $details = $dashboard->getInterfaceDetails($interface);
-        $state = strtolower($details['state']);
-    }
-
+    
     $ipv4Address = $details['ipv4'];
     $ipv4Netmask = $details['ipv4_netmask'];
     $macAddress = $details['mac'];
@@ -105,7 +96,6 @@ function DisplayDashboard(&$extraFooterScripts): void
             "deviceImage",
             "interface",
             "clientInterface",
-            "state",
             "bridgedStatus",
             "hostapdStatus",
             "adblockStatus",
@@ -138,7 +128,6 @@ function DisplayDashboard(&$extraFooterScripts): void
             "status"
         )
     );
-    $extraFooterScripts[] = array('src'=>'app/js/vendor/dashboardchart.js', 'defer'=>false);
 }
 
 /**
@@ -185,5 +174,4 @@ function renderClientConnections(int $wirelessClients, int $ethernetClients): st
         implode('&', $devices)
     );
 }
-
 
