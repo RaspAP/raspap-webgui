@@ -15,7 +15,7 @@ class Sidebar {
 
     public function __construct() {
         // Load default sidebar items
-        $this->addItem(_('Dashboard'), 'fa-solid fa-gauge-high', 'wlan0_info', 10);
+        $this->addItem(_('Dashboard'), 'fa-solid fa-gauge-high', 'dashboard', 10);
         $this->addItem(_('Hotspot'), 'fas fa-bullseye', 'hostapd_conf', 20,
             fn() => RASPI_HOTSPOT_ENABLED
         );
