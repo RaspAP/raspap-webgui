@@ -14,8 +14,8 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
-        <div class="card-header">
-          <div class="row">
+        <div class="card-header page-card-header">
+          <div class="row align-items-center">
             <div class="col">
               <i class="fas fa-key fa-fw me-2"></i><?php echo _("OpenVPN"); ?>
             </div>
@@ -32,11 +32,13 @@
           <form role="form" action="openvpn_conf" enctype="multipart/form-data" method="POST">
             <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-bs-toggle="tab"><?php echo _("Client settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="configstab" href="#openvpnconfigs" data-bs-toggle="tab"><?php echo _("Configurations"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#openvpnlogging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
-            </ul>
+            <div class="nav-tabs-wrapper">
+              <ul class="nav nav-tabs">
+                  <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-bs-toggle="tab"><?php echo _("Client settings"); ?></a></li>
+                  <li class="nav-item"><a class="nav-link" id="configstab" href="#openvpnconfigs" data-bs-toggle="tab"><?php echo _("Configurations"); ?></a></li>
+                  <li class="nav-item"><a class="nav-link" id="loggingtab" href="#openvpnlogging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
+              </ul>
+            </div>
 
             <!-- Tab panes -->
             <div class="tab-content">
@@ -45,7 +47,9 @@
               <?php echo renderTemplate("openvpn/logging", $__template_data) ?>
             </div><!-- /.tab-content -->
 
-            <?php echo $buttons ?>
+            <div class="d-flex flex-wrap gap-2">
+              <?php echo $buttons ?>
+            </div>
           </form>
         </div><!-- /.card-body -->
       <div class="card-footer"><?php echo _("Information provided by openvpn"); ?></div>

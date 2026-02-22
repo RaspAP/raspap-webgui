@@ -64,6 +64,7 @@ function DisplayDHCPConfig()
         }
     }
     $ap_iface = $_SESSION['ap_interface'];
+    $initial_iface = isset($_POST['interface']) ? $_POST['interface'] : $ap_iface;
     $serviceStatus = $dnsmasq_state ? "up" : "down";
     exec('cat '. RASPI_DNSMASQ_PREFIX.'raspap.conf', $return);
     $log_dhcp = (preg_grep('/log-dhcp/', $return));
@@ -87,7 +88,7 @@ function DisplayDHCPConfig()
             "status",
             "serviceStatus",
             "dnsmasq_state",
-            "ap_iface",
+            "initial_iface",
             "conf",
             "hosts",
             "upstreamServers",

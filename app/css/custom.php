@@ -75,12 +75,23 @@ a:focus, a:hover {
 }
 
 .btn-primary {
-  color: var(--raspap-theme-color); 
-  border-color: var(--raspap-theme-color); 
-  background-color: #fff;
+  border-color: var(--raspap-theme-color) !important; 
+  background-color: var(--raspap-theme-color) !important;
 }
 
-.btn-primary:disabled {
+.btn-primary.btn-outline {
+  color: var(--raspap-theme-color) !important; 
+  border-color: var(--raspap-theme-color) !important; 
+  background-color: #fff !important;
+}
+
+.btn-primary:hover {
+  color: #fff !important;
+  border-color: var(--raspap-theme-color) !important;
+  background-color: var(--raspap-theme-color) !important; 
+}
+
+.btn-primary.btn-outline:disabled {
   color: var(--raspap-theme-color) !important;
   border-color: var(--raspap-theme-color) !important;
   background-color: #fff !important;
@@ -98,6 +109,19 @@ a:focus, a:hover {
   background-color: #f2f1f0;
 }
 
+.nav-tabs-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+.nav-tabs-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.nav-tabs-wrapper > .nav-tabs {
+  flex-wrap: nowrap;
+  min-width: 100%;
+  width: min-content;
+}
+
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link {
   font-size: 1.0rem;
@@ -105,6 +129,7 @@ a:focus, a:hover {
 
 .nav-tabs a.nav-link {
   color: #6e707e;
+  white-space: nowrap;
 }
 
 a.nav-link.active {
@@ -115,17 +140,8 @@ a.nav-link.active {
   padding: 0.6rem 0.6rem 0.6rem 1.0rem;
 }
 
-.btn-primary {
-  background-color: #fff;
-}
-
 .btn-warning {
   color: #333;
-}
-
-.btn-primary:hover {
-  background-color: var(--raspap-theme-color); 
-  border-color: var(--raspap-theme-color); 
 }
 
 i.fa.fa-bars {

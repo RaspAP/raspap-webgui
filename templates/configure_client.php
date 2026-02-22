@@ -1,7 +1,7 @@
 <div class="row" id="wifiClientContent">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header page-card-header">
         <div class="row align-items-center">
           <div class="col">
             <i class="fas fa-wifi me-2"></i><?php echo _("WiFi client"); ?>
