@@ -51,7 +51,7 @@ function DisplayHostAPDConfig()
     $logOutput = [];
 
     if (!RASPI_MONITOR_ENABLED) {
-         if (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
+        if (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
             $status->addMessage('Attempting to start hotspot', 'info');
             if ($arrHostapdConf['BridgedEnable'] == 1) {
                 exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface br0 --seconds 1', $return);
@@ -59,7 +59,7 @@ function DisplayHostAPDConfig()
                 exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface uap0 --seconds 1', $return);
             } else {
                 // systemctl expects a unit name like raspap-network-activity@wlan0.service
-                $iface_nonescaped = $_POST['interface'];
+                $iface_nonescaped = $interface;
                 if (preg_match('/^[a-zA-Z0-9_-]+$/', $iface_nonescaped)) { // validate interface name
                     exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface ' .$iface_nonescaped. ' --seconds 1', $return);
                 } else {
