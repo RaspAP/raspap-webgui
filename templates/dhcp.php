@@ -1,12 +1,6 @@
 <?php ob_start() ?>
   <?php if (!RASPI_MONITOR_ENABLED) : ?>
       <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
-      <?php if ($dnsmasq_state) : ?>
-        <input type="submit" class="btn btn-warning" value="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" />
-        <input type="submit" class="btn btn-warning" value="<?php echo _("Restart dnsmasq") ?>" name="restartdhcpd" />
-      <?php else : ?>
-        <input type="submit" class="btn btn-success" value="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" />
-      <?php endif ?>
   <?php endif ?>
 <?php $buttons = ob_get_clean(); ob_end_clean() ?>
 
@@ -15,16 +9,33 @@
     <div class="card">
 
       <div class="card-header page-card-header">
-        <div class="row align-items-center">
-          <div class="col">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
             <i class="fas fa-exchange-alt me-2"></i><?php echo _("DHCP Server"); ?>
           </div>
-          <div class="col">
-            <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
-              <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
-              <span class="text service-status">dnsmasq <?php echo _($serviceStatus) ?></span>
-            </button>
-          </div>
+          <form method="POST" action="dhcpd_conf">
+            <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
+            <div class="btn-group" role="group">
+              <?php if (!RASPI_MONITOR_ENABLED) : ?>
+                  <?php if ($dnsmasq_state) : ?>
+                    <button type="submit" class="btn btn-sm btn-danger" title="<?php echo _("Stop dnsmasq") ?>" name="stopdhcpd" >
+                      <i class="fas fa-stop"></i>
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-warning" title="<?php echo _("Restart dnsmasq") ?>" name="restartdhcpd" >
+                      <i class="fas fa-sync-alt"></i>
+                    </button>
+                  <?php else : ?>
+                    <button type="submit" class="btn btn-sm btn-light" title="<?php echo _("Start dnsmasq") ?>" name="startdhcpd" >
+                      <i class="fas fa-play"></i>
+                    </button>
+                  <?php endif ?>
+              <?php endif ?>
+              <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
+                <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
+                <span class="text service-status">dnsmasq <?php echo _($serviceStatus) ?></span>
+              </button>
+            </div>
+          </form>
         </div><!-- /.row -->
       </div><!-- /.card-header -->
 
