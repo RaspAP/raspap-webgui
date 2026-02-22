@@ -8,7 +8,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header page-card-header">
         <div class="row">
 	      <div class="col">
             <i class="fas fa-user-lock me-2"></i><?php echo _("Authentication"); ?>

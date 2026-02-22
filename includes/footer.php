@@ -1,6 +1,6 @@
 <?php $_SESSION['lastActivity'] = time(); ?>
 
-<div class="d-flex align-items-center justify-content-between small">
+<div class="d-flex flex-column flex-sm-row align-items-center justify-content-between small">
   <div class="text-muted">
     <span class="pe-2"><a href="/about">v<?php echo RASPI_VERSION; ?></a></span>  |
     <span class="ps-2"><?php echo sprintf(_('Created by the <a href="%s" target="_blank" rel="noopener">%s</a>'), 'https://github.com/RaspAP', _('RaspAP Team')); ?></span>

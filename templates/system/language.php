@@ -1,13 +1,15 @@
 <!-- language tab -->  
 <div role="tabpanel" class="tab-pane" id="language">
-    <h4 class="mt-3"><?php echo _("Language settings") ;?></h4>
-    <div class="row">
-      <div class="mb-3 col-md-6">
-        <label for="code"><?php echo _("Select a language"); ?></label>
-        <?php SelectorOptions('locale', $arrLocales, $_SESSION['locale']); ?>
-      </div>
+  <h4 class="mt-3"><?php echo _("Language settings") ;?></h4>
+  <div class="row">
+    <div class="mb-3 col-md-6">
+      <label for="code"><?php echo _("Select a language"); ?></label>
+      <?php SelectorOptions('locale', $arrLocales, $_SESSION['locale']); ?>
     </div>
+  </div>
+  <div class="d-flex flex-wrap gap-2">
     <input type="submit" class="btn btn-outline btn-primary" name="SaveLanguage" value="<?php echo _("Save settings"); ?>" />
-    <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+    <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></button>
+  </div>
 </div>
 

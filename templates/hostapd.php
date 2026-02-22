@@ -33,8 +33,8 @@
   <div class="col-lg-12">
     <div class="card">
 
-      <div class="card-header">
-        <div class="row">
+      <div class="card-header page-card-header">
+        <div class="row align-items-center">
           <div class="col">
             <i class="fas fa-bullseye me-2"></i><?php echo _("Hotspot"); ?>
           </div>
@@ -53,12 +53,14 @@
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
-          <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" data-bs-toggle="tab"><?php echo _("Basic"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" id="securitytab" href="#security" data-bs-toggle="tab"><?php echo _("Security"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" data-bs-toggle="tab"><?php echo _("Advanced"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#logoutput" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
-          </ul>
+          <div class="nav-tabs-wrapper">
+            <ul class="nav nav-tabs">
+              <li class="nav-item"><a class="nav-link active" id="basictab" href="#basic" aria-controls="basic" data-bs-toggle="tab"><?php echo _("Basic"); ?></a></li>
+              <li class="nav-item"><a class="nav-link" id="securitytab" href="#security" data-bs-toggle="tab"><?php echo _("Security"); ?></a></li>
+              <li class="nav-item"><a class="nav-link" id="advancedtab" href="#advanced" data-bs-toggle="tab"><?php echo _("Advanced"); ?></a></li>
+              <li class="nav-item"><a class="nav-link" id="logoutputtab" href="#logoutput" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
+            </ul>
+          </div>
 
           <!-- Tab panes -->
           <div class="tab-content">
@@ -68,7 +70,9 @@
             <?php echo renderTemplate("hostapd/logging", $__template_data) ?>
           </div><!-- /.tab-content -->
 
-          <?php echo $buttons ?>
+          <div class="d-flex flex-wrap gap-2">
+            <?php echo $buttons ?>
+          </div>
         </form>
       </div><!-- /.card-body -->
 

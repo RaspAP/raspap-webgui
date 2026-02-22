@@ -3,7 +3,7 @@
   <div class="row">
     <div class="mb-3 col-md-6">
       <label for="code"><?php echo _("Interface"); ?></label>
-        <?php SelectorOptions('interface', $interfaces, $ap_iface, 'cbxdhcpiface', 'loadInterfaceDHCPSelect'); ?>
+        <?php SelectorOptions('interface', $interfaces, $initial_iface, 'cbxdhcpiface', 'loadInterfaceDHCPSelect'); ?>
     </div>
   </div>
 
@@ -11,11 +11,11 @@
   <div class="row">
     <div class="mb-3 col-md-6">
       <div class="btn-group" role="group" data-bs-toggle="buttons">
-        <label class="btn btn-light active" checked onclick="setDHCPToggles(false)">
-          <input type="radio" name="adapter-ip" id="chkdhcp" autocomplete="off"> DHCP
+        <label class="btn btn-primary btn-outline" onclick="setDHCPToggles(false)">
+          <input type="radio" name="adapter-ip" id="chkdhcp" autocomplete="off" class="d-none"> DHCP
         </label>
-        <label class="btn btn-light" onclick="setDHCPToggles(true)">
-          <input type="radio" name="adapter-ip" id="chkstatic" autocomplete="off"> Static IP
+        <label class="btn btn-primary btn-outline" onclick="setDHCPToggles(true)">
+          <input type="radio" name="adapter-ip" id="chkstatic" autocomplete="off" class="d-none"> Static IP
         </label>
       </div>
     </div>

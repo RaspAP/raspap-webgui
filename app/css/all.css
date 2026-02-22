@@ -22,6 +22,7 @@ a {
 .sb-sidenav .sb-sidenav-menu .nav .nav-link {
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
+  font-size: 16px;
 }
 
 .sb-sidenav-light .sb-sidenav-menu .nav-link, .card-title, h4 {
@@ -119,6 +120,10 @@ th {
   border-radius: .35rem;
   font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace;
   font-size: 0.8rem;
+}
+
+.page-card-header, .modal-title {
+    font-size: 16px;
 }
 
 .dhcp-static-leases {
@@ -296,12 +301,6 @@ button > i.fas {
 .input-group>.input-group-append:not(:last-child)>.btn {
   border-top-right-radius: 0.35rem;
   border-bottom-right-radius: 0.35rem;
-}
-
-.nav-user {
-  position: relative;
-  bottom: 11px;
-  right: 3px;
 }
 
 .nav-item {

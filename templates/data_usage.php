@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header page-card-header">
         <div class="row">
           <div class="col">
             <i class="fas fa-chart-area me-2"></i><?php echo _("Data usage monitoring"); ?>
@@ -9,11 +9,13 @@
         </div><!-- /.row -->
       </div><!-- /.card-header -->
 			<div class="card-body">
-				<ul id="tabbarBandwidth" class="nav nav-tabs" role="tablist">
-					<li class="nav-item"><a class="nav-link active" href="#hourly" aria-controls="hourly" role="tab" data-bs-toggle="tab"><?php echo _("Hourly"); ?></a></li>
-					<li class="nav-item"><a class="nav-link" href="#daily" aria-controls="daily" role="tab" data-bs-toggle="tab"><?php echo _("Daily"); ?></a></li>
-					<li class="nav-item"><a class="nav-link" href="#monthly" aria-controls="monthly" role="tab" data-bs-toggle="tab"><?php echo _("Monthly"); ?></a></li>
-				</ul>
+				<div class="nav-tabs-wrapper">
+					<ul id="tabbarBandwidth" class="nav nav-tabs" role="tablist">
+						<li class="nav-item"><a class="nav-link active" href="#hourly" aria-controls="hourly" role="tab" data-bs-toggle="tab"><?php echo _("Hourly"); ?></a></li>
+						<li class="nav-item"><a class="nav-link" href="#daily" aria-controls="daily" role="tab" data-bs-toggle="tab"><?php echo _("Daily"); ?></a></li>
+						<li class="nav-item"><a class="nav-link" href="#monthly" aria-controls="monthly" role="tab" data-bs-toggle="tab"><?php echo _("Monthly"); ?></a></li>
+					</ul>
+				</div>
 				<div id="tabsBandwidth" class="tabcontenttraffic tab-content">
 					<div role="tabpanel" class="tab-pane active" id="hourly">
 						<div class="row">
