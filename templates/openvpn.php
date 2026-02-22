@@ -1,53 +1,63 @@
-  <?php ob_start() ?>
-    <?php ob_start() ?>
-    <?php if (!RASPI_MONITOR_ENABLED) : ?>
-        <input type="submit" class="btn btn-outline btn-primary" name="SaveOpenVPNSettings" value="<?php echo _("Save settings"); ?>" />
-        <?php if ($openvpnstatus[0] == 0) {
-            echo '<input type="submit" class="btn btn-success" name="StartOpenVPN" value="' . _("Start OpenVPN") . '" />' , PHP_EOL;
-          } else {
-            echo '<input type="submit" class="btn btn-warning" name="StopOpenVPN" value="' . _("Stop OpenVPN") . '" />' , PHP_EOL;
-          }
-        ?>
-    <?php endif ?>
-  <?php $buttons = ob_get_clean(); ob_end_clean() ?>
+<?php ob_start() ?>
+  <?php if (!RASPI_MONITOR_ENABLED) : ?>
+    <input type="submit" class="btn btn-outline btn-primary" name="SaveOpenVPNSettings" value="<?php echo _("Save settings"); ?>" />
+  <?php endif ?>
+<?php $buttons = ob_get_clean(); ob_end_clean() ?>
  
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <div class="card-header">
-          <div class="row">
-            <div class="col">
-              <i class="fas fa-key fa-fw me-2"></i><?php echo _("OpenVPN"); ?>
-            </div>
-            <div class="col">
-              <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
-                <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
-                <span class="text service-status">openvpn <?php echo _($serviceStatus) ?></span>
-              </button>
-            </div>
-          </div><!-- /.row -->
-        </div><!-- /.card-header -->
-        <div class="card-body">
-        <?php $status->showMessages(); ?>
-          <form role="form" action="openvpn_conf" enctype="multipart/form-data" method="POST">
-            <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-bs-toggle="tab"><?php echo _("Client settings"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="configstab" href="#openvpnconfigs" data-bs-toggle="tab"><?php echo _("Configurations"); ?></a></li>
-                <li class="nav-item"><a class="nav-link" id="loggingtab" href="#openvpnlogging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <?php echo renderTemplate("openvpn/general", $__template_data) ?>
-              <?php echo renderTemplate("openvpn/configs", $__template_data) ?>
-              <?php echo renderTemplate("openvpn/logging", $__template_data) ?>
-            </div><!-- /.tab-content -->
-
-            <?php echo $buttons ?>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      
+      <div class="card-header page-card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <i class="fas fa-key fa-fw me-2"></i><?php echo _("OpenVPN"); ?>
+          </div>
+          <form method="POST" action="openvpn_conf">
+              <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
+              <div class="btn-group" role="group">
+                <?php if (!RASPI_MONITOR_ENABLED) : ?>
+                  <?php if ($openvpnstatus[0] == 0) : ?>
+                    <button type="submit" class="btn btn-sm btn-light" title="<?php echo _("Start OpenVPN"); ?>" name="StartOpenVPN" >
+                      <i class="fas fa-play"></i>
+                    </button>
+                  <?php else : ?>
+                    <button type="submit" class="btn btn-sm btn-danger" title="<?php echo _("Stop OpenVPN"); ?>" name="StopOpenVPN" >
+                      <i class="fas fa-stop"></i>
+                    </button>
+                  <?php endif; ?>
+                <?php endif ?>
+                <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
+                  <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
+                  <span class="text service-status">openvpn <?php echo _($serviceStatus) ?></span>
+                </button>
+              </div>
           </form>
-        </div><!-- /.card-body -->
+        </div><!-- /.row -->
+      </div><!-- /.card-header -->
+      
+      <div class="card-body">
+        <?php $status->showMessages(); ?>
+        <form role="form" action="openvpn_conf" enctype="multipart/form-data" method="POST">
+          <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link active" id="clienttab" href="#openvpnclient" data-bs-toggle="tab"><?php echo _("Client settings"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" id="configstab" href="#openvpnconfigs" data-bs-toggle="tab"><?php echo _("Configurations"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" id="loggingtab" href="#openvpnlogging" data-bs-toggle="tab"><?php echo _("Logging"); ?></a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <?php echo renderTemplate("openvpn/general", $__template_data) ?>
+            <?php echo renderTemplate("openvpn/configs", $__template_data) ?>
+            <?php echo renderTemplate("openvpn/logging", $__template_data) ?>
+          </div><!-- /.tab-content -->
+
+          <?php echo $buttons ?>
+        </form>
+      </div><!-- /.card-body -->
+
       <div class="card-footer"><?php echo _("Information provided by openvpn"); ?></div>
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
