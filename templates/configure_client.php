@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="row" id="wpaConf">
-          <div class="col">
+          <div class="col position-relative">
             <form method="POST" action="wpa_conf" name="wpa_conf_form">
               <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
               <input type="hidden" name="client_settings" ?>
