@@ -1,6 +1,6 @@
 <!-- logfile output tab -->
 <div class="tab-pane fade" id="logging">
-  <h4><?php echo _("Logging") ?></h4>
+  <h4 class="mt-3"><?php echo _("Logging") ?></h4>
   <p><?php echo _("Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity.") ?></p>
 
   <div class="form-check form-switch">

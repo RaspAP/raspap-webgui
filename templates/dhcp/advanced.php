@@ -1,6 +1,6 @@
 <!-- advanced tab -->
 <div class="tab-pane" id="advanced">
-
+  <h4 class="mt-3"><?php echo _("Advanced Settings"); ?></h4>
   <div class="row">
     <div class="col-md-6">
       <h5><?php echo _("Upstream DNS servers") ?></h5>
