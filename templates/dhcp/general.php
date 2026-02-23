@@ -131,7 +131,7 @@
         <?php echo _("Please provide a valid Lease Time."); ?>
       </div>
     </div>
-    <div class="col-xs-3 col-sm-3">
+    <div class="mb-3 col-xs-3 col-sm-3">
       <label for="cbxrangeleasetimeunits"><?php echo _("Interval"); ?></label>
       <select id="cbxrangeleasetimeunits" name="RangeLeaseTimeUnits" class="form-select" >
         <option value="m"><?php echo _("Minute(s)"); ?></option>
