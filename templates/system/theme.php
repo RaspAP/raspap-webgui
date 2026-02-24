@@ -1,5 +1,5 @@
 <!-- theme tab -->
-<div role="tabpanel" class="tab-pane" id="theme">
+<div role="tabpanel" class="tab-pane fade" id="theme">
   <h4 class="mt-3"><?php echo _("Theme settings") ;?></h4>
     <form action="system_info" method="POST">
     <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>

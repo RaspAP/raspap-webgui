@@ -1,4 +1,4 @@
-<div class="tab-pane" id="data">
+<div class="tab-pane fade" id="data">
   <h4 class="card-title mt-3">
     <?php echo _("Hourly traffic"); ?>
   </h4>

@@ -1,5 +1,5 @@
 <!-- blocklist settings tab -->
-<div class="tab-pane active" id="adblocklistsettings">
+<div class="tab-pane fade active" id="adblocklistsettings">
   <div class="row">
     <div class="col-md-6">
       <h4 class="mt-3"><?php echo _("Blocklist settings"); ?></h4>

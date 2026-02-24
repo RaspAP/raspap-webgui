@@ -1,4 +1,4 @@
- <div role="tabpanel" class="tab-pane" id="diagnostic">
+ <div role="tabpanel" class="tab-pane fade" id="diagnostic">
 
   <h4 class="mt-3"><?php echo _("Speedtest") ?></h4>
   <div class="row">

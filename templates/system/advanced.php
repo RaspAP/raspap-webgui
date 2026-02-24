@@ -1,5 +1,5 @@
 <!-- advanced tab -->
-<div role="tabpanel" class="tab-pane" id="advanced">
+<div role="tabpanel" class="tab-pane fade" id="advanced">
   <h4 class="mt-3"><?php echo _("Advanced settings") ;?></h4>
   <?php if (!RASPI_MONITOR_ENABLED) : ?>
   <form action="system_info" method="POST">

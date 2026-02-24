@@ -4,7 +4,7 @@ include('includes/sysstats.php');
 
 ?>
 <!-- basic tab -->
-<div role="tabpanel" class="tab-pane active" id="basic">
+<div role="tabpanel" class="tab-pane fade active" id="basic">
   <div class="row">
     <div class="col-lg-6">
       <h4 class="mt-3"><?php echo _("System Information"); ?></h4>

@@ -1,5 +1,5 @@
 <!-- plugins tab -->
-<div role="tabpanel" class="tab-pane" id="plugins">
+<div role="tabpanel" class="tab-pane fade" id="plugins">
   <h4 class="mt-3"><?php echo _("Plugins") ;?></h4>
   <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
   <div class="row">

@@ -1,4 +1,4 @@
-<div class="tab-pane active" id="server-settings">
+<div class="tab-pane fade active" id="server-settings">
   <h4 class="mt-3"><?php echo _("DHCP server settings"); ?></h4>
   <div class="row">
     <div class="mb-3 col-md-6">

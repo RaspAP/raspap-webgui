@@ -1,4 +1,4 @@
-<div class="tab-pane active" id="status">
+<div class="tab-pane fade active" id="status">
   <h4 class="card-title mt-3">
     <?php echo _("Current status"); ?>
   </h4>
