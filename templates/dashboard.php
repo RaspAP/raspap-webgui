@@ -8,7 +8,7 @@
             <?php echo _("Dashboard"); ?>
           </div>
           <div>
-            <button type="button" onClick="window.location.reload();" class="btn btn-light btn-sm">
+            <button type="button" onClick="window.location.reload();" class="btn btn-primary btn-sm">
               <i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?>
             </button>
           </div>
