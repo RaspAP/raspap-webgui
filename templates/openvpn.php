@@ -26,7 +26,7 @@
                     </button>
                   <?php endif; ?>
                 <?php endif ?>
-                <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
+                <button type="button" class="btn btn-light btn-icon-split btn-sm service-status float-end">
                   <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
                   <span class="text service-status">openvpn <?php echo _($serviceStatus) ?></span>
                 </button>
