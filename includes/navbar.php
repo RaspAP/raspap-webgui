@@ -1,6 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
   <!-- Navbar Brand-->
-  <a class="sidebar-brand-text navbar-brand ps-3" href="wlan0_info">RaspAP</a>
+  <a class="sidebar-brand-text navbar-brand ps-3" href="/">RaspAP</a>
   <!-- Sidebar Toggle-->
   <button class="btn btn-link btn-lg order-1 order-lg-0 me-lg-auto py-2 px-3 bd-highlight" id="sidebarToggle" href="#!">
     <i class="fas fa-bars"></i>
