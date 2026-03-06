@@ -8,8 +8,8 @@
           </div>
             <div class="col">
               <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
-                <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-                <span class="text service-status"><?php echo strtolower($clientInterface) .' '. _($ifaceStatus) ?></span>
+                <span class="icon"><i class="fas fa-circle service-status-<?php echo $hasConnection ? 'up' : 'down' ?>"></i></span>
+                <span class="text service-status"><?php echo $hasConnection ? _('Connected') : _('Disconnected') ?></span>
               </button>
             </div>
         </div><!-- /.row -->

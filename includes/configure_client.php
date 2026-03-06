@@ -15,6 +15,10 @@ function DisplayWPAConfig()
     $wifi->getWifiInterface();
     $wifi->knownWifiStations($networks);
     $wifi->setKnownStationsWPA($networks);
+    $wifi->connectedWifiStations($networks);
+
+    $connectedNetworks = array_filter($networks, function($n) { return $n['connected']; } );
+    $hasConnection = count($connectedNetworks) > 0;
 
     $clientInterface = $_SESSION['wifi_client_interface'];
 
@@ -77,7 +81,5 @@ function DisplayWPAConfig()
         }
     }
 
-    $ifaceStatus = $wifi->getInterfaceStatus($clientInterface);
-
-    echo renderTemplate("configure_client", compact("status", "clientInterface", "ifaceStatus"));
+    echo renderTemplate("configure_client", compact("status", "hasConnection"));
 }
