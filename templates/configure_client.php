@@ -21,7 +21,7 @@
             <h4 class="m-0 text-nowrap"><?php echo _("Client settings"); ?></h4>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-info float-end js-reload-wifi-stations"><i class="fa-solid fa-magnifying-glass"></i> <?php echo _("Rescan"); ?></button>
+            <button type="button" class="btn btn-primary float-end js-reload-wifi-stations"><i class="fa-solid fa-magnifying-glass"></i> <?php echo _("Rescan"); ?></button>
           </div>
         </div>
         <div class="row" id="wpaConf">
