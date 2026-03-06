@@ -7,7 +7,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <div class="card">
+    <div class="card shadow">
       <div class="card-header page-card-header">
         <div class="row">
 	      <div class="col">

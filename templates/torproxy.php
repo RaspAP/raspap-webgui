@@ -1,6 +1,6 @@
     <div class="row">
     <div class="col-lg-12">
-      <div class="card"> 
+      <div class="card shadow"> 
         <div class="card-header page-card-header"><i class="fa fa-eye-slash fa-fw"></i> TOR proxy</div>
         <div class="card-body">
             <!-- Nav tabs -->
