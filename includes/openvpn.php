@@ -40,8 +40,8 @@ function DisplayOpenVPNConfig()
         }
     }
 
-    exec('pidof openvpn | wc -l', $openvpnstatus);
-    $serviceStatus = $openvpnstatus[0] == 0 ? "down" : "up";
+    exec('pidof openvpn', $openvpnstatus, $ovpn_return);
+    $serviceStatus = ($ovpn_return === 0) ? "up" : "down";
     $auth = file(RASPI_OPENVPN_CLIENT_LOGIN, FILE_IGNORE_NEW_LINES);
     $public_ip = get_public_ip();
 
