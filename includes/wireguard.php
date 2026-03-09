@@ -75,9 +75,9 @@ function DisplayWireGuardConfig()
     }
 
     // fetch service status
-    exec('systemctl is-active wg-quick@wg0', $wgstatus);
-    $serviceStatus = $wgstatus[0] == 'inactive' ? "down" : "up";
-    $wg_state = ($wgstatus[0] == 'active' ? true : false );
+    exec('ip link show wg0 2>/dev/null', $wgstatus, $wg_return);
+    $serviceStatus = ($wg_return === 0) ? "up" : "down";
+    $wg_state = ($wg_return === 0);
     $public_ip = get_public_ip();
 
     // fetch uploaded file configs
