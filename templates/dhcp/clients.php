@@ -1,5 +1,8 @@
 <div class="tab-pane fade" id="client-list">
-<h4 class="mt-3 mb-3"><?php echo _("Client list"); ?></h4>
+  <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
+    <h4 class="m-0 text-nowrap"><?php echo _("Client list"); ?></h4>
+    <button type="button" onClick="window.location.reload();" class="btn btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></button>
+  </div>
   <div class="row">
     <div class="col-lg-12">
       <div class="card mb-3">

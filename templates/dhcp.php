@@ -57,16 +57,13 @@
 
           <!-- Tab panes -->
           <div class="tab-content">
+            <?php $__template_data = array_merge($__template_data, array('buttons' => $buttons)) ?>
             <?php echo renderTemplate("dhcp/general", $__template_data) ?>
             <?php echo renderTemplate("dhcp/advanced", $__template_data) ?>
             <?php echo renderTemplate("dhcp/clients", $__template_data) ?>
             <?php echo renderTemplate("dhcp/static_leases", $__template_data) ?>
             <?php echo renderTemplate("dhcp/logging", $__template_data) ?>
           </div><!-- /.tab-content -->
-
-          <div class="d-flex flex-wrap gap-2">
-            <?php echo $buttons ?>
-          </div>
         </form>
       </div><!-- ./ card-body -->
 

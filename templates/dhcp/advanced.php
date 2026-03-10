@@ -53,4 +53,7 @@
     </template>
   </div><!-- /.row -->
 
+  <div class="d-flex flex-wrap gap-2">
+    <?php echo $buttons ?>
+  </div>
 </div><!-- /.tab-pane | advanded tab -->
