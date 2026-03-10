@@ -52,9 +52,7 @@
             <?php echo renderTemplate("restapi/status", $__template_data) ?>
           </div><!-- /.tab-content -->
 
-          <div class="d-flex flex-wrap gap-2">
-            <?php echo $buttons ?>
-          </div>
+          <?php echo $buttons ?>
         </form>
       </div><!-- /.card-body -->
 
