@@ -102,7 +102,7 @@
                 </a>
               </div>
               <div class="client-type">
-                <a href="/dhcpd_conf">
+                <a href="/dhcpd_conf#client-list">
                   <i class="fas fa-laptop <?php echo $totalClientsActive; ?>"></i>
                   <span class="client-count"><?php echo $totalClients; ?></span>
                 </a>
