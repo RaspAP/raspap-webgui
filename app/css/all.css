@@ -450,7 +450,7 @@ textarea.plugin-log {
   align-items: center;
   text-align: center;
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
 
 .center-device-top {
@@ -499,7 +499,7 @@ textarea.plugin-log {
 }
 
 .dashed-lines, .dashed-lines-right {
-  z-index 0;
+  z-index: 0;
 }
 
 .device-status {
@@ -540,7 +540,7 @@ textarea.plugin-log {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.3rem;
+  gap: 0.5rem;
   color: var(--raspap-text-light);
 }
 
@@ -553,7 +553,7 @@ textarea.plugin-log {
 }
 
 .status-item .fa-stack {
-  width: 1.5em!important;
+  height: 34px !important;
 }
 
 .connection-item>i {
@@ -611,7 +611,7 @@ a.inactive:focus {
 .status-item.active > span {
   color: var(--raspap-theme-color)!important;
 }
-.status-item.active > i {
+.status-item.active > div > i {
   color: var(--raspap-theme-color)!important;
 }
 
