@@ -1,4 +1,4 @@
-<div class="tab-pane fade active" id="openvpnclient">
+<div class="tab-pane fade show active" id="openvpnclient">
   <h4 class="mt-3"><?php echo _("Client settings"); ?></h4>
   <div class="row">
     <div class="col-lg-8">

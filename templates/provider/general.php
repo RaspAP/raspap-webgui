@@ -1,4 +1,4 @@
-<div class="tab-pane fadeactive" id="providerclient">
+<div class="tab-pane fade show active" id="providerclient">
   <h4 class="mt-3"><?php echo sprintf(_("%s settings"), $providerName) ;?></h4>
   <div class="row">
     <div class="col-lg-8">

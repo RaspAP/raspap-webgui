@@ -16,7 +16,7 @@
             <div class="tab-content">
                 <p><?php echo $status; ?></p>
 
-                <div class="tab-pane fade active" id="basic">
+                <div class="tab-pane fade show active" id="basic">
                     <h4>Basic settings</h4>
                     <form role="form" action="save_hostapd_conf" method="POST">
                     <?php echo CSRFTokenFieldTag() ?>

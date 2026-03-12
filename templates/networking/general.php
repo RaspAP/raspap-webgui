@@ -1,4 +1,4 @@
-  <div role="tabpanel" class="tab-pane fade active" id="summary">
+  <div role="tabpanel" class="tab-pane fade show active" id="summary">
     <h4 class="mt-3"><?php echo _("Internet connection"); ?></h4>
     <div class="row">
       <div class="col-sm-12">

@@ -1,4 +1,4 @@
-<div class="tab-pane fade active" id="basic">
+<div class="tab-pane fade show active" id="basic">
   <h4 class="mt-3"><?php echo _("Basic settings") ;?></h4>
   <div class="row">
     <div class="mb-3 col-md-6">
