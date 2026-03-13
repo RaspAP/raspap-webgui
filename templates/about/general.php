@@ -1,5 +1,5 @@
 <!-- about general tab -->
-<div class="tab-pane active" id="aboutgeneral">
+<div class="tab-pane fade show active" id="aboutgeneral">
   <div class="row">
     <div class="col-md-6 mt-3">
       <div class="card">

@@ -90,24 +90,27 @@ document.addEventListener('DOMContentLoaded', function() {
   const bridgeInputs = [staticIpInput, netmaskInput, gatewayInput, dnsInput];
   
   // toggle visibility and required fields
-  bridgeCheckbox.addEventListener('change', function() {
-    if (this.checked) {
-      bridgeSection.style.display = 'block';
-      bridgeInputs.forEach(input => input.setAttribute('required', 'required'));
-    } else {
-      bridgeSection.style.display = 'none';
-      bridgeInputs.forEach(input => input.removeAttribute('required'));
-    }
-  });
+  if (bridgeCheckbox) {
+    bridgeCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+        bridgeSection.style.display = 'block';
+        bridgeInputs.forEach(input => input.setAttribute('required', 'required'));
+      } else {
+        bridgeSection.style.display = 'none';
+        bridgeInputs.forEach(input => input.removeAttribute('required'));
+      }
+    });
+  }
 
   // auto-populate DNS when gateway loses focus
-  gatewayInput.addEventListener('blur', function() {
-    const gatewayVal = this.value.trim();
-    if (gatewayVal !== '' && dnsInput.value.trim() === '') {
-      dnsInput.value = gatewayVal;
-    }
-  });
-
+  if (gatewayInput) {
+    gatewayInput.addEventListener('blur', function() {
+      const gatewayVal = this.value.trim();
+      if (gatewayVal !== '' && dnsInput.value.trim() === '') {
+        dnsInput.value = gatewayVal;
+      }
+    });
+  }
 });
 
 /**

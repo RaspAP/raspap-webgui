@@ -1,4 +1,4 @@
-<div class="tab-pane active" id="server-settings">
+<div class="tab-pane fade show active" id="server-settings">
   <h4 class="mt-3"><?php echo _("DHCP server settings"); ?></h4>
   <div class="row">
     <div class="mb-3 col-md-6">
@@ -131,7 +131,7 @@
         <?php echo _("Please provide a valid Lease Time."); ?>
       </div>
     </div>
-    <div class="col-xs-3 col-sm-3">
+    <div class="mb-3 col-xs-3 col-sm-3">
       <label for="cbxrangeleasetimeunits"><?php echo _("Interval"); ?></label>
       <select id="cbxrangeleasetimeunits" name="RangeLeaseTimeUnits" class="form-select" >
         <option value="m"><?php echo _("Minute(s)"); ?></option>
@@ -166,4 +166,7 @@
     </div>
   </div>
 
+  <div class="d-flex flex-wrap gap-2">
+    <?php echo $buttons ?>
+  </div>
 </div><!-- /.tab-pane -->

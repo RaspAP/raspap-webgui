@@ -1,6 +1,6 @@
 <div class="row" id="wifiClientContent">
   <div class="col-lg-12">
-    <div class="card">
+    <div class="card shadow">
       <div class="card-header page-card-header">
         <div class="row align-items-center">
           <div class="col">
@@ -8,8 +8,8 @@
           </div>
             <div class="col">
               <button class="btn btn-light btn-icon-split btn-sm service-status float-end">
-                <span class="icon"><i class="fas fa-circle service-status-<?php echo $ifaceStatus ?>"></i></span>
-                <span class="text service-status"><?php echo strtolower($clientInterface) .' '. _($ifaceStatus) ?></span>
+                <span class="icon"><i class="fas fa-circle service-status-<?php echo $hasConnection ? 'up' : 'down' ?>"></i></span>
+                <span class="text service-status"><?php echo $hasConnection ? _('Connected') : _('Disconnected') ?></span>
               </button>
             </div>
         </div><!-- /.row -->
@@ -21,11 +21,11 @@
             <h4 class="m-0 text-nowrap"><?php echo _("Client settings"); ?></h4>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-info float-end js-reload-wifi-stations"><?php echo _("Rescan"); ?></button>
+            <button type="button" class="btn btn-primary float-end js-reload-wifi-stations"><i class="fa-solid fa-magnifying-glass"></i> <?php echo _("Rescan"); ?></button>
           </div>
         </div>
         <div class="row" id="wpaConf">
-          <div class="col">
+          <div class="col position-relative">
             <form method="POST" action="wpa_conf" name="wpa_conf_form">
               <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
               <input type="hidden" name="client_settings" ?>

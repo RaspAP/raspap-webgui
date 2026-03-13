@@ -96,7 +96,9 @@ $network['passphrase'] = $network['passphrase'] ?? '';
             <?php } else { ?>
                 <input type="submit" class="btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" data-bs-toggle="modal" data-bs-target="#configureClientModal" />
             <?php } ?>
-            <input type="submit" class="btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>"<?php echo ($network['configured'] ? '' : ' disabled')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
-        </div><!-- /.btn-group -->
+			<?php if ($network['configured']) { ?>
+            	<input type="submit" class="btn btn-danger" value="<?php echo _("Delete"); ?>" name="delete<?php echo $index ?>" data-bs-toggle="modal" data-bs-target="#configureClientModal" />
+			<?php } ?>		
+		</div><!-- /.btn-group -->
 	</div><!-- /.card-body -->
 </div><!-- /.card -->

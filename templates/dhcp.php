@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <div class="card">
+    <div class="card shadow">
 
       <div class="card-header page-card-header">
         <div class="d-flex justify-content-between align-items-center">
@@ -57,16 +57,13 @@
 
           <!-- Tab panes -->
           <div class="tab-content">
+            <?php $__template_data = array_merge($__template_data, array('buttons' => $buttons)) ?>
             <?php echo renderTemplate("dhcp/general", $__template_data) ?>
             <?php echo renderTemplate("dhcp/advanced", $__template_data) ?>
             <?php echo renderTemplate("dhcp/clients", $__template_data) ?>
             <?php echo renderTemplate("dhcp/static_leases", $__template_data) ?>
             <?php echo renderTemplate("dhcp/logging", $__template_data) ?>
           </div><!-- /.tab-content -->
-
-          <div class="d-flex flex-wrap gap-2">
-            <?php echo $buttons ?>
-          </div>
         </form>
       </div><!-- ./ card-body -->
 

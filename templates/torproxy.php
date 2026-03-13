@@ -1,6 +1,6 @@
     <div class="row">
     <div class="col-lg-12">
-      <div class="card"> 
+      <div class="card shadow"> 
         <div class="card-header page-card-header"><i class="fa fa-eye-slash fa-fw"></i> TOR proxy</div>
         <div class="card-body">
             <!-- Nav tabs -->
@@ -16,7 +16,7 @@
             <div class="tab-content">
                 <p><?php echo $status; ?></p>
 
-                <div class="tab-pane active" id="basic">
+                <div class="tab-pane fade show active" id="basic">
                     <h4>Basic settings</h4>
                     <form role="form" action="save_hostapd_conf" method="POST">
                     <?php echo CSRFTokenFieldTag() ?>

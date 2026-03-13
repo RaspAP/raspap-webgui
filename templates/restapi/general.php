@@ -1,4 +1,4 @@
-<div class="tab-pane active" id="restapisettings">
+<div class="tab-pane fade show active" id="restapisettings">
   <h4 class="mt-3"><?php echo ("RestAPI settings") ;?></h4>
   <div class="row">
     <div class="mb-3 col-lg-12 mt-2">

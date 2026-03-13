@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="card">
+    <div class="card shadow">
       <div class="card-header page-card-header">
         <div class="row">
           <div class="col">
@@ -17,7 +17,7 @@
 					</ul>
 				</div>
 				<div id="tabsBandwidth" class="tabcontenttraffic tab-content">
-					<div role="tabpanel" class="tab-pane active" id="hourly">
+					<div role="tabpanel" class="tab-pane fade show active" id="hourly">
 						<div class="row">
 							<div class="col-lg-12">
 								<h4 class="mt-3"><?php echo _('Hourly traffic amount'); ?></h4>

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="card">
+    <div class="card shadow">
       <div class="card-header page-card-header">
         <div class="d-flex justify-content-between align-items-center">
           <div>
@@ -53,34 +53,42 @@
               <div class="device-status">
                 <a href="/hostapd_conf">
                   <div class="status-item <?php echo $hostapdStatus; ?>">
-                    <i class="fas fa-bullseye fa-2xl"></i>
+                    <div>
+                      <i class="fas fa-bullseye fa-2x"></i>
+                    </div>
                     <span><?php echo _('AP'); ?></span>
                   </div>
                 </a>
                 <a href="/hostapd_conf#advanced">
                   <div class="status-item <?php echo $bridgedStatus; ?>">
-                    <i class="fas fa-bridge fa-2xl"></i>
+                    <div>
+                      <i class="fas fa-bridge fa-2x"></i>
+                    </div>
                     <span><?php echo _('Bridged'); ?></span>
                   </div>
                 </a>
                 <a href="/adblock_conf">
                   <div class="status-item <?php echo $adblockStatus; ?>">
-                    <i class="far fa-hand-paper fa-2xl"></i>
+                    <div>
+                      <i class="far fa-hand-paper fa-2x"></i>
+                    </div>
                     <span><?php echo _('Adblock'); ?></span>
                   </div>
                 </a>
                 <a href="<?php echo $vpnManaged; ?>">
                   <div class="status-item <?php echo $vpnStatus; ?>">
-                    <i class="fas fa-shield-alt fa-2xl"></i>
+                    <div>
+                      <i class="fas fa-shield-alt fa-2x"></i>
+                    </div>
                     <span><?php echo _('VPN'); ?></span>
                   </div>
                 </a>
                 <?php echo $firewallManaged; ?>
                   <div class="status-item <?php echo $firewallStatus; ?>">
-                    <span class="fa-stack fa-2xl" style="line-height: 0!important;height: 100%!important;">
-                      <i class="fas fa-fire-flame-curved fa-stack-1x"></i>
+                    <div class="fa-stack">
+                      <i class="fas fa-fire-flame-curved fa-stack-2x"></i>
                       <?php echo $firewallUnavailable; ?>
-                    </span>
+                    </div>
                     <span><?php echo _('Firewall'); ?></span>
                   </div>
                 </a>
@@ -102,7 +110,7 @@
                 </a>
               </div>
               <div class="client-type">
-                <a href="/dhcpd_conf">
+                <a href="/dhcpd_conf#client-list">
                   <i class="fas fa-laptop <?php echo $totalClientsActive; ?>"></i>
                   <span class="client-count"><?php echo $totalClients; ?></span>
                 </a>

@@ -1,5 +1,5 @@
 <!-- language tab -->  
-<div role="tabpanel" class="tab-pane" id="language">
+<div role="tabpanel" class="tab-pane fade" id="language">
   <h4 class="mt-3"><?php echo _("Language settings") ;?></h4>
   <div class="row">
     <div class="mb-3 col-md-6">

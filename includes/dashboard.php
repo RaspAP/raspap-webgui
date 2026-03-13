@@ -83,7 +83,7 @@ function DisplayDashboard(): void
         return substr($p, -strlen('Firewall')) === 'Firewall';
     });
     if (!$firewallInstalled) {
-        $firewallUnavailable = '<i class="fas fa-slash fa-stack-1x"></i>';
+        $firewallUnavailable = '<i class="fas fa-slash fa-stack-2x"></i>';
     } else {
         $firewallManaged = '<a href="/plugin__Firewall">';
         $firewallStatus = ($dashboard->firewallEnabled() == true) ? "active" : "";
