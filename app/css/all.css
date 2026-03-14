@@ -553,7 +553,12 @@ textarea.plugin-log {
 }
 
 .status-item .fa-stack {
-  height: 34px !important;
+  height: 27.2px !important;
+}
+@media (min-width: 641px) {
+  .status-item .fa-stack {
+    height: 34px !important;
+  }
 }
 
 .connection-item>i {
