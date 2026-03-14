@@ -305,6 +305,7 @@ class DhcpcdManager
                 return false;
             }
         }
+        return false;
     }
 
     /**
