@@ -25,8 +25,8 @@
               <a href="/network_conf" title="<?php echo _("Networking"); ?>" class="<?php echo $ethernetActive; ?>"><i class="fas fa-ethernet fa-2xl"></i></a>
             </div>
             <div class="connection-item">
-              <a href="/network_conf" title="<?php echo _("Networking"); ?>" class="<?php echo $wirelessActive; ?>"><span><?php echo _("Repeater"); ?></span>
-              <a href="/network_conf" title="<?php echo _("Networking"); ?>" class="<?php echo $wirelessActive; ?>"><i class="fas fa-wifi fa-2xl"></i></a>
+              <a href="/wpa_conf" title="<?php echo _("WiFi Client"); ?>" class="<?php echo $wirelessActive; ?>"><span><?php echo _("Repeater"); ?></span>
+              <a href="/wpa_conf" title="<?php echo _("WiFi Client"); ?>" class="<?php echo $wirelessActive; ?>"><i class="fas fa-wifi fa-2xl"></i></a>
             </div>
             <div class="connection-item">
               <a href="/network_conf" title="<?php echo _("Networking"); ?>" class="<?php echo $tetheringActive; ?>"><span><?php echo _("Tethering"); ?></span></a>
