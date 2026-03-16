@@ -20,7 +20,20 @@ function DisplayWPAConfig()
     $connectedNetworks = array_filter($networks, function($n) { return $n['connected']; } );
     $hasConnection = count($connectedNetworks) > 0;
 
-    $clientInterface = $_SESSION['wifi_client_interface'];
+    $ifaces = $wifi->getInterfaces();
+    $interfaces = [];
+    foreach ($ifaces as $iface) {
+        $ifaceServices = [];
+        if ($iface === $_SESSION['ap_interface']) {
+            $ifaceServices[] = 'AP';
+        }
+        if ($iface === $_SESSION['wifi_client_interface']) {
+            $ifaceServices[] = 'Client';
+        }
+        $label = !empty($ifaceServices) ? $iface . ' (' . implode(', ', $ifaceServices) . ')' : $iface;
+        $interfaces[$iface] = $label;
+    }
+    $initial_iface = $clientInterface = $_SESSION['wifi_client_interface'];
 
     if (isset($_POST['connect'])) {
         $netid = intval($_POST['connect']);
@@ -81,5 +94,5 @@ function DisplayWPAConfig()
         }
     }
 
-    echo renderTemplate("configure_client", compact("status", "hasConnection"));
+    echo renderTemplate("configure_client", compact("status", "hasConnection", "interfaces", "initial_iface"));
 }
