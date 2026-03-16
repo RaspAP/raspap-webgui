@@ -264,9 +264,22 @@ class WiFiManager
             $iface = RASPI_WIFI_AP_INTERFACE;
         }
 
+        // determine current client interface
+        $wpaIface = trim(shell_exec("sudo wpa_cli interface | grep -oP '^Selected interface\s*['\''\"]?\K[^'\''\"\s]+'") ?? '');
+        
         // check for 2nd wifi interface -> wifi client on different interface
-        exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'", $iface2);
-        $client_iface = $_SESSION['wifi_client_interface'] = empty($iface2) ? $iface : trim($iface2[0]);
+        // if trying to set interface then this can be skipped
+        if ($wpaIface === $iface && !isset($_POST['wifiClientInterface'])) {
+            exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'", $iface2);
+            $client_iface = $_SESSION['wifi_client_interface'] = empty($iface2) ? $iface : trim($iface2[0]);
+        }
+        
+        // allow overriding client interface via POST
+        if (isset($_POST['wifiClientInterface']) && $wpaIface !== $_POST['wifiClientInterface']) {
+            if (validateInterface($_POST['wifiClientInterface'])) {
+                $client_iface = $_SESSION['wifi_client_interface'] = $_POST['wifiClientInterface'];
+            }
+        }
 
         // handle special case for RPi Zero W in AP-STA mode
         if ($client_iface === "uap0" && ($arrHostapdConf['WifiAPEnable'] ?? 0)) {
@@ -552,6 +565,25 @@ CONF;
         }
     }
 
+
+    /**
+     * Enumerates available network interfaces for wpa to use for wireless clients
+     *
+     * @return array $interfaces
+     */
+    public function getInterfaces(): array
+    {
+        exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
+
+        // filter out non-wireless interfaces and return interfaces that wpa can use
+        // also show interfaces in WiFi AP mode
+        $interfaces = array_filter($interfaces, function ($iface) {
+            return preg_match('/^wl(an|p.*|x.*)|uap/', $iface);
+        });
+        sort($interfaces);
+
+        return array_values($interfaces);
+    }
 
     /**
      * Gets the operational status of a network interface
