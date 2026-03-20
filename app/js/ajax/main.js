@@ -130,6 +130,48 @@ function loadInterfaceDHCPSelect() {
     });
 }
 
+// Retrieves the suggested hw_mode for the selected interface
+function getSuggestedHwMode() {
+    if ($('#suggested-hw-mode').length === 0) {
+        return;
+    }
+
+    var iface = $('#cbxinterface').val();
+    var csrfToken = $('meta[name=csrf_token]').attr('content');
+    $.post('ajax/networking/get_suggested_hw_mode.php', {
+        'interface': iface,
+        'csrf_token': csrfToken
+    }, function (data) {
+        let jsonData;
+        $('#suggested-hw-mode').empty();
+
+        try {
+            jsonData = typeof data === 'object' ? data : JSON.parse(data);
+        } catch (e) {
+            console.warn('Invalid JSON:', e);
+            return;
+        }
+
+        if (jsonData.error) {
+            console.warn('Error occurred:', jsonData.error);
+            return;
+        }
+
+        if (jsonData?.suggested_hw_mode) {
+            $('#suggested-hw-mode').text(`Based on your adapter 802.11${jsonData.suggested_hw_mode} is suggested.`);
+        }
+    }).catch(function (error) {
+        $('#suggested-hw-mode').empty();
+    });
+}
+
+$('#cbxinterface').on('change', function () {
+    getSuggestedHwMode();
+});
+if ($('#cbxinterface').length > 0) {
+    getSuggestedHwMode();
+}
+
 $('#debugModal').on('shown.bs.modal', function (e) {
   var csrfToken = $('meta[name=csrf_token]').attr('content');
   $.post('ajax/system/sys_debug.php',{'csrf_token': csrfToken},function(data){

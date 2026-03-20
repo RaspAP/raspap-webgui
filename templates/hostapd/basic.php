@@ -19,6 +19,7 @@
     <div class="mb-3 col-md-6">
       <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
       <?php SelectorOptions('hw_mode', $arr80211Standard, $arrConfig['selected_hw_mode'], 'cbxhwmode', 'getChannel'); ?>
+      <span id="suggested-hw-mode" class="form-text text-muted"></span>
     </div>
   </div>
   <div class="row">
