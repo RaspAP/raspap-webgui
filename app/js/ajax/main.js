@@ -143,25 +143,26 @@ function getSuggestedHwMode() {
         'csrf_token': csrfToken
     }, function (data) {
         let jsonData;
-        $('#suggested-hw-mode').empty();
-
         try {
             jsonData = typeof data === 'object' ? data : JSON.parse(data);
         } catch (e) {
             console.warn('Invalid JSON:', e);
+            $('#suggested-hw-mode-text').hide();
             return;
         }
 
         if (jsonData.error) {
             console.warn('Error occurred:', jsonData.error);
+            $('#suggested-hw-mode-text').hide();
             return;
         }
 
         if (jsonData?.suggested_hw_mode) {
-            $('#suggested-hw-mode').text(`Based on your adapter 802.11${jsonData.suggested_hw_mode} is suggested.`);
+            $('#suggested-hw-mode').text(jsonData.suggested_hw_mode);
+            $('#suggested-hw-mode-text').show();
         }
     }).catch(function (error) {
-        $('#suggested-hw-mode').empty();
+        $('#suggested-hw-mode-text').hide();
     });
 }
 
