@@ -12,7 +12,11 @@ function DisplayWPAConfig()
     $status = new \RaspAP\Messages\StatusMessage;
     $networks = [];
 
-    $wifi->getWifiInterface();
+    $saveInterfaceStatus = $wifi->getWifiInterface();
+    if ($saveInterfaceStatus !== null) {
+        $status->addMessage($saveInterfaceStatus['message'], $saveInterfaceStatus['status']);
+    }
+
     $wifi->knownWifiStations($networks);
     $wifi->setKnownStationsWPA($networks);
     $wifi->connectedWifiStations($networks);
