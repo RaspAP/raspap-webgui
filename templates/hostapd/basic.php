@@ -20,7 +20,7 @@
       <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
       <?php SelectorOptions('hw_mode', $arr80211Standard, $arrConfig['selected_hw_mode'], 'cbxhwmode', 'getChannel'); ?>
       <span id="suggested-hw-mode-text" class="form-text text-muted" style="display: none;">
-        <?php echo sprintf(_('Based on the chosen adapter 802.11%s is suggested.'), '<span id="suggested-hw-mode"></span>') ?>
+        <?php echo sprintf(_('Based on the chosen adapter, 802.11%s is suggested.'), '<span id="suggested-hw-mode"></span>') ?>
       </span>
     </div>
   </div>
