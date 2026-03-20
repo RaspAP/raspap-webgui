@@ -264,20 +264,30 @@ class WiFiManager
             $iface = RASPI_WIFI_AP_INTERFACE;
         }
 
-        // determine current client interface
-        $wpaIface = trim(shell_exec("sudo wpa_cli interface | grep -oP '^Selected interface\s*['\''\"]?\K[^'\''\"\s]+'") ?? '');
-        
-        // check for 2nd wifi interface -> wifi client on different interface
+        // If session var is set leave it, if not try to find second interface
         // if trying to set interface then this can be skipped
-        if ($wpaIface === $iface && !isset($_POST['wifiClientInterface'])) {
+        if ($_SESSION['wifi_client_interface'] === null && !isset($_POST['wifiClientInterface'])) {
             exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'", $iface2);
-            $client_iface = $_SESSION['wifi_client_interface'] = empty($iface2) ? $iface : trim($iface2[0]);
+            $client_iface = $_SESSION['wifi_client_interface'] = empty($iface2) ? $iface : trim($iface2[0]);    
         }
-        
+
         // allow overriding client interface via POST
-        if (isset($_POST['wifiClientInterface']) && $wpaIface !== $_POST['wifiClientInterface']) {
+        // skip if interface is already desired interface
+        $statusMessage = null;
+        if (isset($_POST['wifiClientInterface'])) {
             if (validateInterface($_POST['wifiClientInterface'])) {
+                // clean up connections on old interface before switching
+                $old_iface = $_SESSION['wifi_client_interface'];
+                if ($old_iface && $old_iface !== $_POST['wifiClientInterface'] && validateInterface($old_iface)) {
+                    exec("sudo wpa_cli -i $old_iface disconnect");
+                    exec("sudo wpa_cli -i $old_iface disable_network all");
+                    sleep(1);
+                }
+
                 $client_iface = $_SESSION['wifi_client_interface'] = $_POST['wifiClientInterface'];
+                $statusMessage = ['message' => "Client interface set to $client_iface", 'status' => 'success'];
+            } else {
+                $statusMessage = ['message' => "Invalid interface: " . $_POST['wifiClientInterface'], 'status' => 'danger'];
             }
         }
 
@@ -286,6 +296,8 @@ class WiFiManager
             $_SESSION['wifi_client_interface'] = $iface;
             $_SESSION['ap_interface'] = $client_iface;
         }
+
+        return $statusMessage;
     }
 
     /*
