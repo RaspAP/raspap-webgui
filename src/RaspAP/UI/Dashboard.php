@@ -233,9 +233,19 @@ class Dashboard {
     }
 
     /*
+     * Determines the device's primary connection interface by
+     * trying to ping a well-known public IP (Cloudflare DNS).
+     *
+     * @return string
+     */
+    public function getConnectionInterface(): string
+    {
+        return trim(shell_exec("ip -o route get 1.1.1.1 | awk 'NR==1 {print $5}'"));
+    }
+
+    /*
      * Determines the device's primary connection type by
-     * parsing the output of ip route; the interface listed
-     * as the default gateway is used for internet connectivity.
+     * parsing the interface name.
      * 
      * The following interface classifications are matched:
      * - ethernet (eth0, enp*, ens*, enx*)
@@ -245,11 +255,8 @@ class Dashboard {
      * - fallback
      * @return string
      */ 
-    public function getConnectionType(): string
+    public function getConnectionType($interface): string
     {
-        // get the interface associated with the default route
-        $interface = trim(shell_exec("ip route show default | awk '{print $5}'"));
-
         if (empty($interface)) {
             return 'unknown';
         }

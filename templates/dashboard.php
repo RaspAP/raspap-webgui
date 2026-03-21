@@ -43,10 +43,26 @@
             <div class="center-device-top">
               <a href="/system_info" title="<?php echo _("System"); ?>"><img class="device-illustration" src="app/img/devices/<?php echo $deviceImage; ?>" alt="<?php echo htmlspecialchars($revision, ENT_QUOTES); ?>"></a>
               <div class="device-label"><a href="/system_info" title="<?php echo _("System"); ?>"><?php echo htmlspecialchars($revision, ENT_QUOTES); ?></a></div>
-              <div class="mt-1 small"><?php echo _("IP Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Address, ENT_QUOTES); ?></a></div>
-              <div class="small"><?php echo _("Netmask"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Netmask, ENT_QUOTES); ?></a></div>
-              <div class="small"><?php echo _("MAC Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($macAddress, ENT_QUOTES); ?></a></div>
-              <div class="small"><?php echo _("SSID"); ?>: <a href="/hostapd_conf"><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></a></div>
+              
+              <div class="ip-info-toggle mt-3 mb-2" role="tablist">
+                <button id="public-info-tab" class="" data-bs-toggle="tab" data-bs-target="#public-info" type="button" role="tab" aria-controls="public-info" aria-selected="false"><?php echo _("Public"); ?></button>
+                <button id="local-info-tab" class="active" data-bs-toggle="tab" data-bs-target="#local-info" type="button" role="tab" aria-controls="local-info" aria-selected="true"><?php echo _("Local"); ?></button>
+              </div>
+
+              <div class="tab-content">
+                <div id="local-info" class="tab-pane fade show active" role="tabpanel" aria-labelledby="local-info-tab">
+                  <div class="mt-1 small"><?php echo _("IP Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Address, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("Netmask"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($ipv4Netmask, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("MAC Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($macAddress, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("SSID"); ?>: <a href="/hostapd_conf"><?php echo htmlspecialchars($ssid, ENT_QUOTES); ?></a></div>
+                </div>
+                <div id="public-info" class="tab-pane fade" role="tabpanel" aria-labelledby="public-info-tab">
+                  <div class="mt-1 small"><?php echo _("IP Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($publicIpv4Address, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("Netmask"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($publicIpv4Netmask, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("MAC Address"); ?>: <a href="/dhcpd_conf"><?php echo htmlspecialchars($publicMacAddress, ENT_QUOTES); ?></a></div>
+                  <div class="small"><?php echo _("SSID"); ?>: <a href="/wpa_conf"><?php echo htmlspecialchars($publicSsid, ENT_QUOTES); ?></a></div>
+                </div>
+              </div>
             </div>
 
             <div class="bottom">

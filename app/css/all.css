@@ -457,6 +457,27 @@ textarea.plugin-log {
   margin-bottom: 30px;
 }
 
+.ip-info-toggle {
+  display: inline-block;
+  background: #e3e3e3;
+  padding: 0.29rem;
+  border-radius: 0.375rem;
+  font-size: 0.8rem;
+}
+.ip-info-toggle button {
+  padding: 0.1rem 0.75rem;
+  border-radius: 0.375rem;
+  transition: background 0.15s linear;
+  background: transparent;
+  font-weight: 600;
+  color: var(--raspap-brand-color);
+  border: none;
+}
+.ip-info-toggle button.active {
+  background: var(--raspap-theme-color);
+  color: white;
+}
+
 .client-group {
   display: flex;
   align-items: center;

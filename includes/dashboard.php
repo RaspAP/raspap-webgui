@@ -35,8 +35,11 @@ function DisplayDashboard(): void
     $frequency = $dashboard->getFrequencyBand($interface);
     $details = $dashboard->getInterfaceDetails($interface);
     $wireless = $dashboard->getWirelessDetails($interface);
-    $connectionType = $dashboard->getConnectionType();
+    $connectionInterface = $dashboard->getConnectionInterface();
+    $connectionType = $dashboard->getConnectionType($connectionInterface);
     $connectionIcon = $dashboard->getConnectionIcon($connectionType);
+    $publicDetails = $dashboard->getInterfaceDetails($connectionInterface);
+    $publicWireless = $dashboard->getWirelessDetails($connectionInterface);
     $wirelessClients = $dashboard->getWirelessClients($interface);
     $ethernetClients = $dashboard->getEthernetClients();
     $totalClients = $wirelessClients + $ethernetClients;
@@ -53,6 +56,10 @@ function DisplayDashboard(): void
     $ipv4Netmask = $details['ipv4_netmask'];
     $macAddress = $details['mac'];
     $ssid = $wireless['ssid'];
+    $publicIpv4Address = $publicDetails['ipv4'];
+    $publicIpv4Netmask = $publicDetails['ipv4_netmask'];
+    $publicMacAddress = $publicDetails['mac'];
+    $publicSsid = $publicWireless['ssid'];
     $ethernetActive = ($connectionType === 'ethernet') ? "active" : "inactive";
     $wirelessActive = ($connectionType === 'wireless') ? "active" : "inactive";
     $tetheringActive = ($connectionType === 'tethering') ? "active" : "inactive";
@@ -108,6 +115,10 @@ function DisplayDashboard(): void
             "ipv4Netmask",
             "macAddress",
             "ssid",
+            "publicIpv4Address",
+            "publicIpv4Netmask",
+            "publicMacAddress",
+            "publicSsid",
             "frequency",
             "freq5active",
             "freq24active",
