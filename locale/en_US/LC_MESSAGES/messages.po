@@ -948,6 +948,12 @@ msgstr "Enable AP isolation"
 msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
 msgstr "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
 
+msgid "Wireless standards which are not compatible with your adapter may be disabled"
+msgstr "Wireless standards which are not compatible with your adapter may be disabled"
+
+msgid "Based on the selected interface, 802.11%s is suggested."
+msgstr "Based on the selected interface, 802.11%s is suggested."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
