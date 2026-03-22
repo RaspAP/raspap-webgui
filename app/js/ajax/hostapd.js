@@ -97,8 +97,8 @@ export function initHostapd_ajax() {
                 if (selectableChannels.length === 0) {
                     selectableChannels[0] = { Channel: null };
                 } else {
-                    defaultChannel = selectableChannels[0].Channel;
-                    selected = defaultChannel
+                    let defaultChannel = selectableChannels[0].Channel;
+                    selected = defaultChannel;
                 }
             }
 
