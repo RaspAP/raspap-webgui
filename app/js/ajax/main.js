@@ -164,9 +164,7 @@ function getSuggestedHwMode() {
             $('#suggested-hw-mode-text').show();
         
             const hwModeOptions = $('#cbxhwmode option');
-            console.log(hwModeOptions);
             for (const option of hwModeOptions) {
-                console.log(option, $(option).val());
                 if (!jsonData.supported_modes.includes($(option).val())) {
                     $(option).prop('disabled', true);
                 }
