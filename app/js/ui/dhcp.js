@@ -1,3 +1,5 @@
+import { escapeHtml } from "../helpers.js";
+
 export function initDHCP() {
     console.info("RaspAP DHCP module initialized");
 
@@ -113,11 +115,12 @@ export function initDHCP() {
             return;
         }
         var row = $("#js-dhcp-static-lease-row").html()
-            .replace("{{ mac }}", mac)
-            .replace("{{ ip }}", ip)
-            .replace("{{ comment }}", comment);
+            .replace("{{ mac }}", escapeHtml(mac))
+            .replace("{{ ip }}", escapeHtml(ip))
+            .replace("{{ comment }}", escapeHtml(comment));
         $(".js-dhcp-static-lease-container").append(row);
 
+        // reset inputs
         $("input[name=mac]", container).val("");
         $("input[name=ip]", container).val("");
         $("input[name=comment]", container).val("");
@@ -136,7 +139,7 @@ export function initDHCP() {
         e.preventDefault();
 
         var field = $("#add-dhcp-upstream-server-field")
-        var row = $("#dhcp-upstream-server").html().replace("{{ server }}", field.val())
+        var row = $("#dhcp-upstream-server").html().replace("{{ server }}", escapeHtml(field.val()))
         if (field.val().trim() == "") { return }
         $(".js-dhcp-upstream-servers").append(row)
         field.val("")
