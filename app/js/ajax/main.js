@@ -148,21 +148,39 @@ function getSuggestedHwMode() {
         } catch (e) {
             console.warn('Invalid JSON:', e);
             $('#suggested-hw-mode-text').hide();
+            $('#cbxhwmode option').removeAttr('disabled');
             return;
         }
 
         if (jsonData.error) {
             console.warn('Error occurred:', jsonData.error);
             $('#suggested-hw-mode-text').hide();
+            $('#cbxhwmode option').removeAttr('disabled');
             return;
         }
 
-        if (jsonData?.suggested_hw_mode) {
+        if (jsonData?.suggested_hw_mode && jsonData?.supported_modes) {
             $('#suggested-hw-mode').text(jsonData.suggested_hw_mode);
             $('#suggested-hw-mode-text').show();
+        
+            const hwModeOptions = $('#cbxhwmode option');
+            console.log(hwModeOptions);
+            for (const option of hwModeOptions) {
+                console.log(option, $(option).val());
+                if (!jsonData.supported_modes.includes($(option).val())) {
+                    $(option).prop('disabled', true);
+                }
+            }
+
+            // if current selected mode isn't in the supported modes of the new selected interface
+            // default to suggested hw mode
+            if (!jsonData.supported_modes.includes($('#cbxhwmode option[selected="selected"]').val())) {
+                $('#cbxhwmode').val(jsonData.suggested_hw_mode).trigger('change');
+            }
         }
     }).catch(function (error) {
         $('#suggested-hw-mode-text').hide();
+        $('#cbxhwmode option').removeAttr('disabled');
     });
 }
 

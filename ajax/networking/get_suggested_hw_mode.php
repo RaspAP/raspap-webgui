@@ -14,9 +14,14 @@ if (empty($interface)) {
     echo json_encode(['error' => 'Missing interface parameter']);
     exit;
 }
+
+$suggestedHWMode = suggestWifiHwMode($interface);
+$supportedModes = supportedModes($suggestedHWMode);
+
 $data = [
     'interface' => $interface,
-    'suggested_hw_mode' => suggestWifiHwMode($interface),
+    'suggested_hw_mode' => $suggestedHWMode,
+    'supported_modes' => $supportedModes,
 ];
 
 function suggestWifiHwMode(string $interface): string {
@@ -27,6 +32,7 @@ function suggestWifiHwMode(string $interface): string {
 
     if ($phy === '') {
         http_response_code(400);
+        header('Content-Type: application/json');
         echo json_encode(['error' => 'No valid phy for ' . $interface]);
         exit;
     }
@@ -51,7 +57,7 @@ function suggestWifiHwMode(string $interface): string {
     $has5GHz  = preg_match('/Band\s+2:|5180\s*MHz|5500\s*MHz|5745\s*MHz/i', $text);
     $has6GHz  = preg_match('/Band\s+[34]:|5955\s*MHz|6[0-9]{3}\s*MHz/i', $text);
 
-    // Suggested hw_mode - prioritize explicit capability blocks over bands
+    // Decision - prioritize explicit capability blocks over bands
     if ($hasEHT) {
         $suggested = 'be';
     } elseif ($hasHE) {
@@ -67,6 +73,7 @@ function suggestWifiHwMode(string $interface): string {
     }
 
     // Return debug info in JSON for now
+    // header('Content-Type: application/json');
     // echo json_encode([
     //     'phy'           => $phy,
     //     'cmd'           => $cmd,
@@ -94,6 +101,16 @@ function suggestWifiHwMode(string $interface): string {
 
     // Comment out the above echo and uncomment below for production:
     return $suggested;
+}
+
+function supportedModes(string $highestMode, bool $incl = true): array {
+    $standards = HotspotService::get80211Standards();
+
+    $standardsCodes = array_keys($standards);
+
+    $i = array_search($highestMode, $standardsCodes, true);
+
+    return $i === false ? $arr : array_slice($standardsCodes, 0, $incl ? $i + 1 : $i);
 }
 
 echo json_encode($data, JSON_PRETTY_PRINT);
