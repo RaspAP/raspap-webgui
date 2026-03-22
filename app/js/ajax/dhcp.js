@@ -90,6 +90,7 @@ export function initDHCP_ajax() {
             }
         });
     }
+    globalThis.loadInterfaceDHCPSelect = loadInterfaceDHCPSelect;
 
     loadInterfaceDHCPSelect();
 }
