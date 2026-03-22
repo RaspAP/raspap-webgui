@@ -18,6 +18,7 @@
   <div class="row">
     <div class="mb-3 col-md-6">
       <label for="cbxhwmode"><?php echo _("Wireless Mode") ;?></label>
+      <i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="<?php echo _('Wireless standards which are not compatible with your adapter may be disabled') ?>"></i>
       <?php SelectorOptions('hw_mode', $arr80211Standard, $arrConfig['selected_hw_mode'], 'cbxhwmode', 'getChannel'); ?>
       <span id="suggested-hw-mode-text" class="form-text text-muted" style="display: none;">
         <?php echo sprintf(_('Based on the selected interface, 802.11%s is suggested.'), '<span id="suggested-hw-mode"></span>') ?>
