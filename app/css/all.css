@@ -466,7 +466,7 @@ textarea.plugin-log {
 }
 .ip-info-toggle button {
   padding: 0.1rem 0.75rem;
-  border-radius: 0.375rem;
+  border-radius: 0.275rem;
   transition: background 0.15s linear;
   background: transparent;
   font-weight: 600;
