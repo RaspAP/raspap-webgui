@@ -11,10 +11,10 @@
   <div class="row">
     <div class="mb-3 col-md-6">
       <div class="btn-group" role="group" data-bs-toggle="buttons">
-        <label class="btn btn-primary btn-outline" onclick="setDHCPToggles(false)">
+        <label class="btn btn-primary btn-outline">
           <input type="radio" name="adapter-ip" id="chkdhcp" autocomplete="off" class="d-none"> DHCP
         </label>
-        <label class="btn btn-primary btn-outline" onclick="setDHCPToggles(true)">
+        <label class="btn btn-primary btn-outline">
           <input type="radio" name="adapter-ip" id="chkstatic" autocomplete="off" class="d-none"> Static IP
         </label>
       </div>

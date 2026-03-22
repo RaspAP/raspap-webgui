@@ -65,7 +65,8 @@ function loadInterfaceDHCPSelect() {
     var csrfToken = $('meta[name=csrf_token]').attr('content');
     $.post('ajax/networking/get_netcfg.php', {'iface' : strInterface, 'csrf_token': csrfToken}, function(data){
         jsonData = JSON.parse(data);
-        $('#dhcp-iface')[0].checked = jsonData.DHCPEnabled;
+        
+        // Static IP fields
         $('#txtipaddress').val(jsonData.StaticIP);
         $('#txtsubnetmask').val(jsonData.SubnetMask);
         $('#txtgateway').val(jsonData.StaticRouters);
@@ -77,6 +78,9 @@ function loadInterfaceDHCPSelect() {
         } else {
             $('#nohook-wpa-supplicant').parent().parent().parent().hide()
         }
+
+        // DHCP Fields
+        $('#dhcp-iface')[0].checked = jsonData.DHCPEnabled;
         $('#txtrangestart').val(jsonData.RangeStart);
         $('#txtrangeend').val(jsonData.RangeEnd);
         $('#txtrangeleasetime').val(jsonData.leaseTime);
@@ -89,15 +93,8 @@ function loadInterfaceDHCPSelect() {
 
         if (jsonData.StaticIP !== null && jsonData.StaticIP !== '' && !jsonData.FallbackEnabled) {
             $('#chkstatic').prop('checked', true).trigger('change');
-            $('#chkdhcp').prop('checked', false).trigger('change');
-            $('#chkfallback').prop('disabled', true);
-            $('#dhcp-iface').removeAttr('disabled');
         } else {
-            $('#chkdhcp').closest('.btn').blur();
-        }
-        if (jsonData.FallbackEnabled || $('#chkdhcp').is(':checked')) {
-            $('#dhcp-iface').prop('disabled', true);
-            setDhcpFieldsDisabled();
+            $('#chkdhcp').prop('checked', true).trigger('change');
         }
 
         const leaseContainer = $('.js-dhcp-static-lease-container');

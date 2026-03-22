@@ -187,17 +187,32 @@ function contentLoaded() {
     }
 }
 
-function setDHCPToggles(state) {
-    if ($('#chkfallback').is(':checked') && state) {
-        $('#chkfallback').prop('checked', state);
-    }
-    if ($('#dhcp-iface').is(':checked') && !state) {
-        $('#dhcp-iface').prop('checked', state);
+// DHCP or Static IP option group
+$('#chkstatic, #chkdhcp').on('change', function() {
+    if (this.id === 'chkstatic' && this.checked) {
+        $('#chkdhcp').closest('.btn').addClass('btn-outline');
+        $('#chkstatic').closest('.btn').removeClass('btn-outline');
+
+        // set form for Static IP
+        $('#dhcp-iface').removeAttr('disabled');
+        $('#chkfallback').prop('disabled', true).prop('checked', false);
+        setDhcpFieldsEnabled();
+        setStaticFieldsEnabled();
+    } else {
+        $('#chkstatic').closest('.btn').addClass('btn-outline');
+        $('#chkdhcp').closest('.btn').removeClass('btn-outline');
+
+        // set form for DHCP
+        $('#chkfallback').removeAttr('disabled');
+        $('#dhcp-iface').prop('disabled', true).prop('checked', false);
         setDhcpFieldsDisabled();
+        if ($('#chkfallback').is(':checked')) {
+            setStaticFieldsEnabled();
+        } else {
+            setStaticFieldsDisabled();
+        }
     }
-    $('#chkfallback').prop('disabled', state);
-    $('#dhcp-iface').prop('disabled', !state);
-}
+});
 
 $('#chkfallback').change(function() {
     if ($('#chkfallback').is(':checked')) {
@@ -388,30 +403,6 @@ $(document).ready(function () {
     $('#username').focus();
     $('#username').addClass("focusedInput");
 });
-
-// DHCP or Static IP option group
-$('#chkstatic').on('change', function() {
-    if (this.checked) {
-        $('#chkstatic').closest('.btn').removeClass('btn-outline');
-        $('#chkdhcp').closest('.btn').addClass('btn-outline');
-        setStaticFieldsEnabled();
-    } else {
-        $('#chkstatic').closest('.btn').addClass('btn-outline');
-        $('#chkdhcp').closest('.btn').removeClass('btn-outline');
-    }
-});
-
-$('#chkdhcp').on('change', function() {
-    if (this.checked) {
-        $('#chkdhcp').closest('.btn').removeClass('btn-outline');
-        $('#chkstatic').closest('.btn').addClass('btn-outline');
-        setStaticFieldsDisabled();
-    } else {
-        $('#chkdhcp').closest('.btn').addClass('btn-outline');
-        $('#chkstatic').closest('.btn').removeClass('btn-outline');
-    }
-});
-
 
 $('input[name="dhcp-iface"]').change(function() {
     if ($('input[name="dhcp-iface"]:checked').val() == '1') {
