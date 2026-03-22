@@ -13,6 +13,7 @@ use RaspAP\Messages\StatusMessage;
 function DisplayDHCPConfig()
 {
     $status = new StatusMessage();
+    $dhcpcd = new DhcpcdManager();
     $wifi = new WiFiManager();
     $wifi->getWifiInterface();
 
@@ -21,9 +22,19 @@ function DisplayDHCPConfig()
             saveDHCPConfig($status);
         }
     }
+
+    exec("ip -o link show | awk -F': ' '{print $2}'", $ifaces);
+
+    // data for general tab
+    $interface_configs = [];
+    foreach ($ifaces as $iface) {
+        $interface_configs[$iface] = $dhcpcd->getInterfaceConfig($iface);
+    }
+
     exec('pidof dnsmasq | wc -l', $dnsmasq);
     $dnsmasq_state = ($dnsmasq[0] > 0);
 
+    // handle service control actions
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['startdhcpd'])) {
             if ($dnsmasq_state) {
@@ -63,6 +74,7 @@ function DisplayDHCPConfig()
             }
         }
     }
+    
     $ap_iface = $_SESSION['ap_interface'];
     $initial_iface = isset($_POST['interface']) ? $_POST['interface'] : $ap_iface;
     $serviceStatus = $dnsmasq_state ? "up" : "down";
@@ -74,7 +86,7 @@ function DisplayDHCPConfig()
     $conf = array_merge(ParseConfig($return));
     $hosts = (array)($conf['dhcp-host'] ?? []);
     $upstreamServers = (array)($conf['server'] ?? []);
-    exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
+    $interfaces = $ifaces;
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
 
     count($log_dhcp) > 0 ? $conf['log-dhcp'] = true : false ;
@@ -87,6 +99,7 @@ function DisplayDHCPConfig()
         "dhcp", compact(
             "status",
             "serviceStatus",
+            "interface_configs",
             "dnsmasq_state",
             "initial_iface",
             "conf",

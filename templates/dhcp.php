@@ -47,6 +47,7 @@
           <!-- Nav tabs -->
           <div class="nav-tabs-wrapper">
             <ul class="nav nav-tabs mb-3">
+              <li class="nav-item"><a class="nav-link active" href="#general" data-bs-toggle="tab"><?php echo _("General"); ?></a></li>
               <li class="nav-item"><a class="nav-link active" href="#server-settings" data-bs-toggle="tab"><?php echo _("Server settings"); ?></a></li>
               <li class="nav-item"><a class="nav-link" href="#advanced" data-bs-toggle="tab"><?php echo _("Advanced"); ?></a></li>
               <li class="nav-item"><a class="nav-link" href="#static-leases" data-bs-toggle="tab"><?php echo _("Static Leases") ?></a></li>
@@ -59,6 +60,7 @@
           <div class="tab-content">
             <?php $__template_data = array_merge($__template_data, array('buttons' => $buttons)) ?>
             <?php echo renderTemplate("dhcp/general", $__template_data) ?>
+            <?php echo renderTemplate("dhcp/settings", $__template_data) ?>
             <?php echo renderTemplate("dhcp/advanced", $__template_data) ?>
             <?php echo renderTemplate("dhcp/clients", $__template_data) ?>
             <?php echo renderTemplate("dhcp/static_leases", $__template_data) ?>
