@@ -7,6 +7,8 @@ require_once '../../includes/authenticate.php';
 
 header('Content-Type: application/json');
 
+use RaspAP\Networking\Hotspot\HotspotService;
+
 $interface = $_POST['interface'] ?? '';
 
 if (empty($interface)) {
