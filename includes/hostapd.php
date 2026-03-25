@@ -87,7 +87,7 @@ function DisplayHostAPDConfig()
                 $arrSecurity,
                 $arrEncType,
                 $arr80211Standard,
-                $interfaces,
+                $ifaces,
                 $reg_domain,
                 $status
             );
