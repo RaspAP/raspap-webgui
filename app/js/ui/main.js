@@ -86,9 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const gatewayInput = document.getElementById('bridgeGateway');
   const dnsInput = document.getElementById('bridgeDNS');
   const previewIp = document.getElementById('previewStaticIp');
-  
+
   const bridgeInputs = [staticIpInput, netmaskInput, gatewayInput, dnsInput];
-  
+
   // toggle visibility and required fields
   if (bridgeCheckbox) {
     bridgeCheckbox.addEventListener('change', function() {
@@ -479,20 +479,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const leaseTime = document.getElementById('txtrangeleasetime');
 
     function updateRequiredFields() {
-        const isChecked = dhcpCheckbox.checked === true;
-
-        if (isChecked) {
-            rangeStart.setAttribute('required', 'required');
-            rangeEnd.setAttribute('required', 'required');
-            leaseTime.setAttribute('required', 'required');
+        if (dhcpCheckbox?.checked) {
+          rangeStart.setAttribute("required", "required");
+          rangeEnd.setAttribute("required", "required");
+          leaseTime.setAttribute("required", "required");
         } else {
-            rangeStart.removeAttribute('required');
-            rangeEnd.removeAttribute('required');
-            leaseTime.removeAttribute('required');
+          rangeStart.removeAttribute("required");
+          rangeEnd.removeAttribute("required");
+          leaseTime.removeAttribute("required");
 
-            rangeStart.classList.remove('is-invalid', 'is-valid');
-            rangeEnd.classList.remove('is-invalid', 'is-valid');
-            leaseTime.classList.remove('is-invalid', 'is-valid');
+          rangeStart.classList.remove("is-invalid", "is-valid");
+          rangeEnd.classList.remove("is-invalid", "is-valid");
+          leaseTime.classList.remove("is-invalid", "is-valid");
         }
     }
 
@@ -529,9 +527,9 @@ $(function() {
         var theme = themes[$( "#theme-select" ).val() ];
 
         var hasDarkTheme = theme === 'custom.php';
-        var nightModeChecked = $("#night-mode").prop("checked");
-        
-        if (nightModeChecked && hasDarkTheme) {
+        var darkModeChecked = $("#dark-mode").prop("checked");
+
+        if (darkModeChecked && hasDarkTheme) {
             if (theme === "custom.php") {
                 set_theme("dark.css");
             }
@@ -543,7 +541,7 @@ $(function() {
 
 function set_theme(theme) {
     $('link[title="main"]').attr('href', 'app/css/' + theme);
-    // persist selected theme in cookie 
+    // persist selected theme in cookie
     setCookie('theme',theme,90);
 }
 
@@ -552,11 +550,11 @@ $(function() {
     // Check if the current theme is a dark theme
     var isDarkTheme = currentTheme === 'dark.css';
 
-    $('#night-mode').prop('checked', isDarkTheme);
-    $('#night-mode').change(function() {
+    $('#dark-mode').prop('checked', isDarkTheme);
+    $('#dark-mode').change(function() {
         var state = $(this).is(':checked');
         var currentTheme = getCookie('theme');
-        
+
         if (state == true) {
             if (currentTheme == 'custom.php') {
                 set_theme('dark.css');
@@ -646,7 +644,7 @@ setInterval(updateActivityLED, 100);
 
 $(document).ready(function() {
     const $htmlElement = $('html');
-    const $modeswitch = $('#night-mode');
+    const $modeswitch = $('#dark-mode');
     $modeswitch.on('change', function() {
         const isChecked = $(this).is(':checked');
         const newTheme = isChecked ? 'dark' : 'light';
@@ -670,4 +668,3 @@ if (!isNaN(alertTimeout) && alertTimeout > 0) {
     });
   }, alertTimeout);
 }
-

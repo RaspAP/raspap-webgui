@@ -662,7 +662,7 @@ function validateCidr($cidr)
         return $netmask <= 128;
     }
     return false;
-}    
+}
 
 // Validates a host or FQDN
 function validate_host($host)
@@ -689,20 +689,20 @@ function validateMac($mac) {
 
 // Gets night mode toggle value
 // @return boolean
-function getNightmode()
+function getDarkMode()
 {
     if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'dark.css') {
         return true;
     } else {
         return false;
     }
-}	
+}
 
 // Sets data-bs-theme
 // @return string
 function setTheme()
 {
-    if (getNightmode()) {
+    if (getDarkMode()) {
         echo 'data-bs-theme="dark"';
     } else {
         echo 'data-bs-theme="light"';
