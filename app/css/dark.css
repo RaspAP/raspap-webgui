@@ -6,7 +6,7 @@ Description: A Bootstrap dark mode theme for RaspAP
 License: GNU General Public License v3.0
 */
 
-@import url('custom.php');
+@import url('default.css');
 
 html[data-bs-theme="dark"] {
   background-color: var(--bs-dark);
@@ -80,4 +80,3 @@ html[data-bs-theme="dark"] .form-control {
   border-color: var(--bs-secondary);
   color: var(--bs-light);
 }
-

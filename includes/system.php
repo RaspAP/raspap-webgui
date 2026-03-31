@@ -148,7 +148,7 @@ function DisplaySystem(&$extraFooterScripts)
         "hackernews" => "HackerNews",
     ];
     $themeFiles = [
-        "default"    => "custom.php",
+        "default"    => "default.css",
         "hackernews" => "hackernews.css",
     ];
     $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
@@ -243,4 +243,3 @@ function getCPUTempStatus($cputemp): array
         'led' => $cputemp_led
     ];
 }
-

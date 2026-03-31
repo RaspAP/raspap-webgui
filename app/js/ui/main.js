@@ -587,11 +587,11 @@ $(function () {
   $("#theme-select").change(function () {
     var theme = themes[$("#theme-select").val()];
 
-    var hasDarkTheme = theme === "custom.php";
+    var hasDarkTheme = theme === "default.css";
     var darkModeChecked = $("#dark-mode").prop("checked");
 
     if (darkModeChecked && hasDarkTheme) {
-      if (theme === "custom.php") {
+      if (theme === "default.css") {
         set_theme("dark.css");
       }
     } else {
@@ -617,12 +617,12 @@ $(function () {
     var currentTheme = getCookie("theme");
 
     if (state == true) {
-      if (currentTheme == "custom.php") {
+      if (currentTheme == "default.css") {
         set_theme("dark.css");
       }
     } else {
       if (currentTheme == "dark.css") {
-        set_theme("custom.php");
+        set_theme("default.css");
       }
     }
   });
@@ -643,7 +643,7 @@ function getCookie(cname) {
 
 // Define themes
 var themes = {
-  default: "custom.php",
+  default: "default.css",
   hackernews: "hackernews.css",
 };
 

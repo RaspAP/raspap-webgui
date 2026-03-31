@@ -581,7 +581,7 @@ function initializeApp()
 function getThemeOpt()
 {
     if (!isset($_COOKIE['theme'])) {
-        $theme = "custom.php";
+        $theme = "default.css";
         setcookie('theme', $theme);
     } else {
         $theme = $_COOKIE['theme'];
