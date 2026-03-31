@@ -2,7 +2,6 @@
 <?php
 require_once '../../includes/functions.php';
 $color = getColorOpt();
-$allCss = 'all.css';
 ?>
 /*
 Theme Name: RaspAP default
@@ -11,8 +10,6 @@ Author URI: https://github.com/billz
 Description: Default theme for RaspAP
 License: GNU General Public License v3.0
 */
-
-@import url('<?= $allCss ?>?v=<?= filemtime($allCss); ?>');
 
 :root {
   --raspap-theme-color: <?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;
@@ -44,8 +41,8 @@ a:focus, a:hover {
 }
 
 .form-check-input:checked {
-  background-color: var(--raspap-theme-color); 
-  border-color: var(--raspap-theme-color); 
+  background-color: var(--raspap-theme-color);
+  border-color: var(--raspap-theme-color);
 }
 
 .sidebar {
@@ -61,13 +58,13 @@ a:focus, a:hover {
 }
 
 .sidebar-brand-text {
-  color: var(--raspap-theme-color); 
+  color: var(--raspap-theme-color);
 }
 
 .card .card-header, .modal-header {
-  border-color: var(--raspap-theme-color); 
+  border-color: var(--raspap-theme-color);
   color: #fff;
-  background-color: var(--raspap-theme-color); 
+  background-color: var(--raspap-theme-color);
 }
 
 .modal-header {
@@ -75,20 +72,20 @@ a:focus, a:hover {
 }
 
 .btn-primary {
-  border-color: var(--raspap-theme-color) !important; 
+  border-color: var(--raspap-theme-color) !important;
   background-color: var(--raspap-theme-color) !important;
 }
 
 .btn-primary.btn-outline {
-  color: var(--raspap-theme-color) !important; 
-  border-color: var(--raspap-theme-color) !important; 
+  color: var(--raspap-theme-color) !important;
+  border-color: var(--raspap-theme-color) !important;
   background-color: #fff !important;
 }
 
 .btn-primary:hover {
   color: #fff !important;
   border-color: var(--raspap-theme-color) !important;
-  background-color: var(--raspap-theme-color) !important; 
+  background-color: var(--raspap-theme-color) !important;
 }
 
 .btn-primary.btn-outline:disabled {
@@ -170,6 +167,5 @@ pre.unstyled {
 }
 
 .signal-icon .signal-bar {
-  background: var(--raspap-theme-color); 
+  background: var(--raspap-theme-color);
 }
-

@@ -1,5 +1,5 @@
 /*
-Name: all.css
+Name: base.css
 Author: @billz
 Author URI: https://github.com/billz
 Description: Classes shared by all themes
@@ -684,4 +684,3 @@ a.inactive:focus {
   opacity: 1;
   transition: opacity 0.05s;
 }
-

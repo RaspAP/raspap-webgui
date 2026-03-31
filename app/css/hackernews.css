@@ -6,8 +6,6 @@ Description: A theme inspired by HackerNews for RaspAP
 License: GNU General Public License v3.0
 */
 
-@import url('all.css');
-
 html * {
   font-family: Verdana, Geneva, sans-serif;
   color: #828282;
@@ -171,4 +169,3 @@ pre.unstyled {
 .signal-icon .signal-bar {
   background: #ff6600;
 }
-
