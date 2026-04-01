@@ -15,7 +15,8 @@ body {
   color: #212529;
 }
 
-a:focus, a:hover {
+a:focus,
+a:hover {
   color: #666;
 }
 
@@ -33,37 +34,41 @@ h5.card-title {
   color: #212529;
 }
 
-.sb-sidenav-menu, footer {
+.sb-sidenav-menu,
+footer {
   background-color: var(--bs-body-bg);
 }
 
-.card, .modal-dialog {
+.card,
+.modal-dialog {
   border-radius: 5px;
   border-color: #ff6600;
 }
 
-.card>.card-header, .modal-header {
+.card > .card-header,
+.modal-header {
   border-color: #ff6600;
   background-color: #ff6600;
   color: #000;
-  font-size: 1.0rem;
+  font-size: 1rem;
   font-weight: bold;
   border-radius: unset;
 }
 
 .card-header .col {
   color: #212529;
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 
-.card-header [class^="fa"], .modal-header [class^="fa"] {
+.card-header [class^="fa"],
+.modal-header [class^="fa"] {
   color: #fff;
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 
 .modal-title {
   color: #000;
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 
 .modal-content {
@@ -74,11 +79,12 @@ h5.card-title {
   padding-top: 0.5rem;
 }
 
-ul.nav-tabs, .nav-tabs .nav-link {
+ul.nav-tabs,
+.nav-tabs .nav-link {
   background-color: #f6f6ef;
   border-bottom: 1px solid #dddfeb;
   color: #495057;
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 
 .form-switch .form-check-input:checked {
@@ -87,9 +93,9 @@ ul.nav-tabs, .nav-tabs .nav-link {
 }
 
 code {
-    font-size: 0.875em;
-    color: var(--bs-code-color);
-    word-wrap: break-word;
+  font-size: 0.875em;
+  color: var(--bs-code-color);
+  word-wrap: break-word;
 }
 .sidebar .nav-item .nav-link {
   padding: 0.6rem;
@@ -116,7 +122,8 @@ th {
   background-color: #d4edda;
 }
 
-.btn-primary, .btn-primary:hover {
+.btn-primary,
+.btn-primary:hover {
   color: #828282;
   background-color: #fff;
   border-color: #828282;
@@ -139,8 +146,8 @@ th {
 }
 
 .logoutput {
-  width:100%;
-  height:300px;
+  width: 100%;
+  height: 300px;
 }
 
 pre.unstyled {
@@ -151,19 +158,20 @@ pre.unstyled {
 
 .sidebar.toggled .nav-item .nav-link {
   text-align: center;
-  padding: .6rem 1rem;
+  padding: 0.6rem 1rem;
   width: 6.5rem;
 }
 
 .sidebar.toggled .nav-item .nav-link span {
   display: none;
-} .sidebar .nav-item .nav-link i,
+}
+.sidebar .nav-item .nav-link i,
 .sidebar .nav-item .nav-link span {
   font-size: 0.9rem;
 }
 
 .btn-warning:hover {
-    color: #000;
+  color: #000;
 }
 
 .signal-icon .signal-bar {

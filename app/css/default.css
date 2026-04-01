@@ -16,7 +16,8 @@ a {
   text-decoration: none;
 }
 
-a:focus, a:hover {
+a:focus,
+a:hover {
   color: var(--raspap-theme-darker);
 }
 
@@ -50,7 +51,8 @@ a:focus, a:hover {
   color: var(--raspap-theme-color);
 }
 
-.card .card-header, .modal-header {
+.card .card-header,
+.modal-header {
   border-color: var(--raspap-theme-color);
   color: #fff;
   background-color: var(--raspap-theme-color);
@@ -91,7 +93,8 @@ a:focus, a:hover {
   color: #495057;
 }
 
-.card-footer, .modal-footer {
+.card-footer,
+.modal-footer {
   background-color: #f2f1f0;
 }
 
@@ -110,7 +113,7 @@ a:focus, a:hover {
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link {
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 
 .nav-tabs a.nav-link {
@@ -123,7 +126,7 @@ a.nav-link.active {
 }
 
 .sidebar .nav-item .nav-link {
-  padding: 0.6rem 0.6rem 0.6rem 1.0rem;
+  padding: 0.6rem 0.6rem 0.6rem 1rem;
 }
 
 .btn-warning {
@@ -134,7 +137,7 @@ i.fa.fa-bars {
   color: #d1d3e2;
 }
 
-i.fa.fa-bars:hover{
+i.fa.fa-bars:hover {
   color: #6e707e;
 }
 
@@ -146,13 +149,14 @@ pre.unstyled {
 
 .sidebar.toggled .nav-item .nav-link span {
   display: none;
-} .sidebar .nav-item .nav-link i,
+}
+.sidebar .nav-item .nav-link i,
 .sidebar .nav-item .nav-link span {
-    font-size: 1.0rem;
+  font-size: 1rem;
 }
 
 .btn-warning:hover {
-    color: #000;
+  color: #000;
 }
 
 .signal-icon .signal-bar {

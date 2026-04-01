@@ -1,4 +1,3 @@
-
 function loadSummary(strInterface) {
     var csrfToken = $('meta[name=csrf_token]').attr('content');
     $.post('ajax/networking/get_ip_summary.php',{'interface': strInterface, 'csrf_token': csrfToken},function(data){
@@ -162,7 +161,7 @@ function getSuggestedHwMode() {
         if (jsonData?.suggested_hw_mode && jsonData?.supported_modes) {
             $('#suggested-hw-mode').text(jsonData.suggested_hw_mode);
             $('#suggested-hw-mode-text').show();
-        
+
             const hwModeOptions = $('#cbxhwmode option');
             for (const option of hwModeOptions) {
                 if (!jsonData.supported_modes.includes($(option).val())) {
@@ -247,7 +246,7 @@ function fetchUpdateResponse() {
     $.ajax({
         url: phpFile,
         type: 'GET',
-        success: function(response) { 
+        success: function(response) {
             for (let i = 1; i <= 6; i++) {
                 let divId = '#updateStep' + i;
                 if (response.includes(i.toString())) {
@@ -613,4 +612,3 @@ function checkSession() {
         console.error("Error checking session status:", status, err);
     });
 }
-
