@@ -32,11 +32,19 @@ $(document).on("click", ".js-add-dhcp-static-lease", function (e) {
   if (mac == "" || ip == "") {
     return;
   }
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
   var row = $("#js-dhcp-static-lease-row")
     .html()
-    .replace("{{ mac }}", mac)
-    .replace("{{ ip }}", ip)
-    .replace("{{ comment }}", comment);
+    .replace("{{ mac }}", escapeHtml(mac))
+    .replace("{{ ip }}", escapeHtml(ip))
+    .replace("{{ comment }}", escapeHtml(comment));
   $(".js-dhcp-static-lease-container").append(row);
 
   $("input[name=mac]", container).val("");
@@ -57,9 +65,18 @@ $(document).on("click", ".js-add-dhcp-upstream-server", function (e) {
   e.preventDefault();
 
   var field = $("#add-dhcp-upstream-server-field");
+
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
   var row = $("#dhcp-upstream-server")
     .html()
-    .replace("{{ server }}", field.val());
+    .replace("{{ server }}", escapeHtml(field.val()));
 
   if (field.val().trim() == "") {
     return;
