@@ -23,15 +23,6 @@ function createNetmaskAddr(bitCount) {
   return mask.join(".");
 }
 
-function setupTabs() {
-  $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function (e) {
-    var target = $(e.target).attr("href");
-    if (!target.match("summary")) {
-      var int = target.replace("#", "");
-    }
-  });
-}
-
 $(document).on("click", ".js-add-dhcp-static-lease", function (e) {
   e.preventDefault();
   var container = $(".js-new-dhcp-static-lease");
@@ -197,7 +188,6 @@ function contentLoaded() {
   switch (pageCurrent) {
     case "network_conf":
       getAllInterfaces();
-      setupTabs();
       setupBtns();
       break;
     case "hostapd_conf":
@@ -434,7 +424,6 @@ function showSessionExpiredModal() {
 }
 
 $(document).on("click", "#js-session-expired-login", function (e) {
-  const loginModal = $("#modal-admin-login");
   const redirectUrl = window.location.pathname;
   window.location.href = `/login?action=${encodeURIComponent(redirectUrl)}`;
 });
