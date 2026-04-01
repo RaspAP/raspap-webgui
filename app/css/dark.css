@@ -41,7 +41,7 @@ html[data-bs-theme="dark"] .sb-topnav.navbar a {
 
 html[data-bs-theme="dark"] .sb-topnav.navbar a:hover,
 html[data-bs-theme="dark"] .sb-topnav.navbar a:focus {
-  color: var(--raspap-theme-darker) !important;
+  color: var(--raspap-theme-color-darker) !important;
 }
 
 html[data-bs-theme="dark"] .sb-topnav.navbar {

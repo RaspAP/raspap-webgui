@@ -1,15 +1,15 @@
 <?php header("Content-Type: image/svg+xml; charset=utf-8"); ?>
 <?php
 require_once '../../../includes/functions.php';
-$color = getColorOpt();
+$themeColor = getThemeColorOpt();
 ?>
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 431 321" style="enable-background:new 0 0 431 321;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;enable-background:new;}
-	.st1{fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.9453;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.3333;}
-	
-		.st2{fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.9453;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.3333;enable-background:new    ;}
+	.st1{fill:none;stroke:<?php echo htmlspecialchars($themeColor, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.9453;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.3333;}
+
+		.st2{fill:none;stroke:<?php echo htmlspecialchars($themeColor, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.9453;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:13.3333;enable-background:new    ;}
 </style>
 <path class="st0" d="M0,0"/>
 <g id="g20028">

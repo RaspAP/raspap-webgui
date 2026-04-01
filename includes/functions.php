@@ -589,16 +589,16 @@ function getThemeOpt()
     return 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
 }
 
-function getColorOpt()
+function getThemeColorOpt()
 {
-    if (!isset($_COOKIE['color'])) {
-        $color = "#2b8080";
+    if (!isset($_COOKIE['theme-color'])) {
+        $themeColor = "#2b8080";
     } else {
-        $color = $_COOKIE['color'];
+        $themeColor = $_COOKIE['theme-color'];
     }
 
     // Define the regex pattern for valid CSS color formats
-    $colorPattern = "/^(" .
+    $themeColorPattern = "/^(" .
         "#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})" . "|" .           // Hex colors (#RGB or #RRGGBB)
         "rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)" . "|" .     // RGB format
         "rgba\(\s*(?:\d{1,3}\s*,\s*){3}\s*(0|0\.\d+|1)\s*\)" . "|" . // RGBA format
@@ -606,12 +606,12 @@ function getColorOpt()
     ")$/i";
 
     // Validate the color
-    if (!preg_match($colorPattern, $color)) {
+    if (!preg_match($themeColorPattern, $themeColor)) {
         // Return a default color if validation fails
-        $color = "#2b8080";
+        $themeColor = "#2b8080";
     }
 
-    return $color;
+    return $themeColor;
 }
 
 function getBridgedState()
@@ -700,7 +700,7 @@ function getDarkMode()
 
 // Sets data-bs-theme
 // @return string
-function setTheme()
+function setThemeMode()
 {
     if (getDarkMode()) {
         echo 'data-bs-theme="dark"';
@@ -880,12 +880,12 @@ function getLogLimited($file_path, $file_data = null) {
  * From @marek-guran's material-dark theme for RaspAP
  * Author URI: https://github.com/marek-guran
  */
-function darkenColor($color, $percent)
+function darkenColor($themeColor, $percent)
 {
     $percent /= 100;
-    $r = hexdec(substr($color, 1, 2));
-    $g = hexdec(substr($color, 3, 2));
-    $b = hexdec(substr($color, 5, 2));
+    $r = hexdec(substr($themeColor, 1, 2));
+    $g = hexdec(substr($themeColor, 3, 2));
+    $b = hexdec(substr($themeColor, 5, 2));
 
     $r = round($r * (1 - $percent));
     $g = round($g * (1 - $percent));
@@ -899,12 +899,12 @@ function darkenColor($color, $percent)
  * From @marek-guran's material-dark theme for RaspAP
  * Author URI: https://github.com/marek-guran
  */
-function lightenColor($color, $percent)
+function lightenColor($themeColor, $percent)
 {
     $percent /= 100;
-    $r = hexdec(substr($color, 1, 2));
-    $g = hexdec(substr($color, 3, 2));
-    $b = hexdec(substr($color, 5, 2));
+    $r = hexdec(substr($themeColor, 1, 2));
+    $g = hexdec(substr($themeColor, 3, 2));
+    $b = hexdec(substr($themeColor, 5, 2));
 
     $r = round($r + (255 - $r) * $percent);
     $g = round($g + (255 - $g) * $percent);

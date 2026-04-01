@@ -1,5 +1,5 @@
 // Initialize Huebee color picker
-var elem = document.querySelector(".color-input");
+var elem = $(".theme-color-input")[0];
 var hueb = new Huebee(elem, {
   notation: "hex",
   saturations: 2,
@@ -9,13 +9,13 @@ var hueb = new Huebee(elem, {
 });
 
 // Set custom color if defined
-var color = getCookie("color");
-if (color == null || color == "") {
-  color = "#2b8080";
+var themeColor = getCookie("theme-color");
+if (themeColor == null || themeColor == "") {
+  themeColor = "#2b8080";
 }
-hueb.setColor(color);
+hueb.setColor(themeColor);
 
 // Change event
-hueb.on("change", function (color, hue, sat, lum) {
-  setCookie("color", color, 90);
+hueb.on("change", function (themeColor, hue, sat, lum) {
+  setCookie("theme-color", themeColor, 90);
 });

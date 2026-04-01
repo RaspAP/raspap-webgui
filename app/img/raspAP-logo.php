@@ -2,7 +2,7 @@
 <?php
 require_once '../../includes/config.php';
 require_once '../../includes/functions.php';
-$color = getColorOpt();
+$themeColor = getThemeColorOpt();
 $static = (isset($_GET['static']) && $_GET['static'] == '1') ||
     (defined('RASPI_UI_STATIC_LOGO') && RASPI_UI_STATIC_LOGO === true);
 ?>
@@ -40,14 +40,13 @@ $static = (isset($_GET['static']) && $_GET['static'] == '1') ||
 </style>
 
   <!-- inner solid circle -->
-  <circle cx="128" cy="384" r="60" fill="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>"/>
+  <circle cx="128" cy="384" r="60" fill="<?php echo htmlspecialchars($themeColor, ENT_QUOTES, 'UTF-8'); ?>"/>
 
   <!-- outer ring -->
-  <circle cx="128" cy="384" r="100" fill="none" stroke="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="25"/>
+  <circle cx="128" cy="384" r="100" fill="none" stroke="<?php echo htmlspecialchars($themeColor, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="25"/>
 
   <!-- arcs -->
-  <path class="wave wave1" d="M128 234 A 150 150 0 0 1 278 384" fill="none" stroke="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="25"/>
-  <path class="wave wave2" d="M128 184 A 200 200 0 0 1 328 384" fill="none" stroke="<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="25"/>
+  <path class="wave wave1" d="M128 234 A 150 150 0 0 1 278 384" fill="none" stroke="<?php echo htmlspecialchars($themeColor, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="25"/>
+  <path class="wave wave2" d="M128 184 A 200 200 0 0 1 328 384" fill="none" stroke="<?php echo htmlspecialchars($themeColor, ENT_QUOTES, 'UTF-8'); ?>" stroke-width="25"/>
 
 </svg>
-

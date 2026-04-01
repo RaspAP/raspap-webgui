@@ -56,7 +56,7 @@ require_once 'includes/restapi.php';
 initializeApp();
 ?>
 <!DOCTYPE html>
-<html lang="en" <?php setTheme(); ?>>
+<html lang="en" <?php setThemeMode(); ?>>
 
 <head>
   <meta charset="utf-8">
@@ -95,7 +95,7 @@ initializeApp();
   <link rel="shortcut icon" href="/app/icons/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="RaspAP" />
-  <meta name="theme-color" content="<?php echo htmlspecialchars(getColorOpt(), ENT_QUOTES, 'UTF-8'); ?>" />
+  <meta name="theme-color" content="<?php echo htmlspecialchars(getThemeColorOpt(), ENT_QUOTES, 'UTF-8'); ?>" />
 </head>
 
 <body class="sb-nav-fixed">

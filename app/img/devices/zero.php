@@ -1,13 +1,13 @@
 <?php header("Content-Type: image/svg+xml; charset=utf-8"); ?>
 <?php
 require_once '../../../includes/functions.php';
-$color = getColorOpt();
+$themeColor = getThemeColorOpt();
 ?>
 <?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1" id="Zero_BLANK" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 218.03 144.11" style="enable-background:new 0 0 218.03 144.11;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:<?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st0{fill:none;stroke:<?php echo htmlspecialchars($themeColor, ENT_QUOTES, 'UTF-8'); ?>;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
 <g id="LINE_1238_">
 	<line class="st0" x1="96.57" y1="105.12" x2="97.06" y2="105.29"/>
@@ -1406,15 +1406,15 @@ $color = getColorOpt();
 	<path class="st0" d="M184.22,127.44c0.89-0.6,1.42-1.59,1.44-2.65"/>
 </g>
 <g id="LWPOLYLINE_140_">
-	<polyline class="st0" points="123.75,120.81 123.56,120.87 122.52,121.04 121.44,121.06 120.39,120.92 119.43,120.64 
+	<polyline class="st0" points="123.75,120.81 123.56,120.87 122.52,121.04 121.44,121.06 120.39,120.92 119.43,120.64
 		118.62,120.23 118.01,119.71 117.65,119.13 117.55,118.51 117.72,117.89 117.99,117.49 	"/>
 </g>
 <g id="LWPOLYLINE_141_">
-	<polyline class="st0" points="97.69,105.77 97.5,105.82 96.46,106 95.39,106.02 94.33,105.88 93.37,105.6 92.56,105.19 
+	<polyline class="st0" points="97.69,105.77 97.5,105.82 96.46,106 95.39,106.02 94.33,105.88 93.37,105.6 92.56,105.19
 		91.96,104.67 91.59,104.09 91.49,103.47 91.66,102.85 92.09,102.28 92.1,102.27 	"/>
 </g>
 <g id="LWPOLYLINE_142_">
-	<polyline class="st0" points="32.13,68.53 31.62,68.58 30.64,68.56 29.71,68.39 28.89,68.08 28.24,67.65 27.82,67.14 27.66,66.59 
+	<polyline class="st0" points="32.13,68.53 31.62,68.58 30.64,68.56 29.71,68.39 28.89,68.08 28.24,67.65 27.82,67.14 27.66,66.59
 		27.76,66.03 28.01,65.62 	"/>
 </g>
 <g id="LINE_1753_">

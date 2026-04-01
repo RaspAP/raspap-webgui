@@ -10,12 +10,12 @@
       </div>
       <div class="col-xs-3 col-sm-3">
         <label for="code"><?php echo _("Color"); ?></label>
-        <input class="form-control color-input" value="#2b8080" aria-label="color" />
+        <input class="form-control theme-color-input" value="#2b8080" aria-label="theme-color" />
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 mb-2">
-      <h5 class="mt-1"><?php echo _("Alert messages"); ?></h5>          
+      <h5 class="mt-1"><?php echo _("Alert messages"); ?></h5>
         <div class="form-check form-switch">
           <?php $checked = $optAutoclose == 1 ? 'checked="checked"' : '' ?>
           <input class="form-check-input" id="chxautoclose" name="autoClose" type="checkbox" value="1" <?php echo $checked ?> />
@@ -37,5 +37,3 @@
     </div>
   </form>
 </div>
-
-

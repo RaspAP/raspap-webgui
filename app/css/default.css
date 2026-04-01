@@ -18,7 +18,7 @@ a {
 
 a:focus,
 a:hover {
-  color: var(--raspap-theme-darker);
+  color: var(--raspap-theme-color-darker);
 }
 
 .sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
@@ -27,7 +27,7 @@ a:hover {
 
 .sidebar-brand-text:focus,
 .sidebar-brand-text:hover {
-  color: var(--raspap-theme-darker);
+  color: var(--raspap-theme-color-darker);
 }
 
 .form-check-input:checked {
@@ -86,7 +86,7 @@ a:hover {
 }
 
 .btn-light {
-  color: var(--raspap-theme-darker) !important;
+  color: var(--raspap-theme-color-darker) !important;
 }
 
 .card-body {
