@@ -581,9 +581,12 @@ function initializeApp()
 function getThemeOpt()
 {
     if (!isset($_COOKIE['theme'])) {
-        setcookie('theme', 'default.css');
+        $theme = 'default.css';
+        setcookie('theme', $theme, ['path' => '/']);
+    } else {
+        $theme = $_COOKIE['theme'];
     }
-    return 'app/css/' . htmlspecialchars($_COOKIE['theme'], ENT_QUOTES);
+    return 'app/css/' . htmlspecialchars($theme, ENT_QUOTES);
 }
 
 function getThemeColorOpt()
