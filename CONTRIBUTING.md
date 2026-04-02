@@ -2,7 +2,7 @@
 
 Everyone is invited and welcome to contribute to RaspAP. There's a lot to do — if you're not a developer we can always use help with the official [project documentation](https://docs.raspap.com) and language [translations](https://crowdin.com/project/raspap). If you have experience in Linux networking, you can share your knowledge by answering questions from RaspAP users in our [GitHub discussions](https://github.com/RaspAP/raspap-webgui/discussions) and/or the [/r/RaspAP](https://reddit.com/r/RaspAP) subreddit.
 
-If you're a devloper, the process of contributing code is straightforward:
+If you're a developer, the process of contributing code is straightforward:
 
 1. Fork the project in your account and create a new branch: `feat/your-feature` or `fix/your-bugfix`.
 2. Open [an issue](https://github.com/RaspAP/raspap-webgui/issues) describing the feature or bug fix contribution you'd like to make.
