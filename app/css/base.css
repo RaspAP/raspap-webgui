@@ -728,3 +728,15 @@ a.inactive:focus {
   opacity: 1;
   transition: opacity 0.05s;
 }
+
+html[data-theme-mode="light"] #theme-mode-icon::before {
+  content: "\f185";
+}
+
+html[data-theme-mode="dark"] #theme-mode-icon::before {
+  content: "\f186";
+}
+
+html[data-theme-mode="system"] #theme-mode-icon::before {
+  content: "\f042";
+}

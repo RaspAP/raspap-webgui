@@ -45,7 +45,7 @@ function DisplaySystem(&$extraFooterScripts)
                     $good_input = false;
                 } else {
                     $serverPort = escapeshellarg($_POST['serverPort']);
-               }
+                }
             }
             // Validate server bind address
             if (isset($_POST['serverBind']) && $_POST['serverBind'] !== '') {
@@ -59,7 +59,7 @@ function DisplaySystem(&$extraFooterScripts)
             }
             // Validate log limit
             if (isset($_POST['logLimit'])) {
-                if ( strlen($_POST['logLimit']) > 4 || !is_numeric($_POST['logLimit']) ) {
+                if (strlen($_POST['logLimit']) > 4 || !is_numeric($_POST['logLimit'])) {
                     $status->addMessage('Invalid value for log size limit', 'danger');
                     $good_input = false;
                 } else {
@@ -69,7 +69,7 @@ function DisplaySystem(&$extraFooterScripts)
             }
             // Save settings
             if ($good_input) {
-                exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort $serverBind " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
+                exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort $serverBind " . RASPI_LIGHTTPD_CONFIG . " " . $_SERVER['SERVER_NAME'], $return);
                 foreach ($return as $line) {
                     $status->addMessage($line, 'info');
                 }
@@ -96,11 +96,11 @@ function DisplaySystem(&$extraFooterScripts)
         $status->addMessage('Restarting lighttpd in 3 seconds...', 'info');
         exec('sudo /etc/raspap/lighttpd/configport.sh --restart');
     }
-    exec('cat '. RASPI_LIGHTTPD_CONFIG, $return);
+    exec('cat ' . RASPI_LIGHTTPD_CONFIG, $return);
     $conf = ParseConfig($return);
     $serverPort = $conf['server.port'];
     if (isset($conf['server.bind'])) {
-        $serverBind = str_replace('"', '',$conf['server.bind']);
+        $serverBind = str_replace('"', '', $conf['server.bind']);
     } else {
         $serverBind = '';
     }
@@ -144,16 +144,12 @@ function DisplaySystem(&$extraFooterScripts)
 
     // theme options
     $themes = [
-        "default"    => "RaspAP (default)",
-        "hackernews" => "HackerNews",
+        "default.css"    => "RaspAP (default)",
+        "hackernews.css" => "HackerNews",
     ];
-    $themeFiles = [
-        "default"    => "default.css",
-        "hackernews" => "hackernews.css",
-    ];
-    $selectedTheme = array_search($_COOKIE['theme'], $themeFiles);
-    $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
-    $extraFooterScripts[] = array('src'=>'app/js/vendor/huebee.js', 'defer'=>false);
+    $selectedTheme = $_COOKIE['theme'] ?? 'default.css';
+    $extraFooterScripts[] = array('src' => 'dist/huebee/huebee.pkgd.min.js', 'defer' => false);
+    $extraFooterScripts[] = array('src' => 'app/js/vendor/huebee.js', 'defer' => false);
     $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
 
     $plugins = $pluginInstaller->getUserPlugins();

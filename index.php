@@ -56,7 +56,7 @@ require_once 'includes/restapi.php';
 initializeApp();
 ?>
 <!DOCTYPE html>
-<html lang="en" <?php setThemeMode(); ?>>
+<html lang="en" <?php echo 'data-theme-mode="', getThemeMode(), '"'; ?>>
 
 <head>
   <meta charset="utf-8">
@@ -89,7 +89,7 @@ initializeApp();
   <!-- Custom CSS -->
   <link rel="stylesheet" href="app/css/base.css?v=<?= filemtime('app/css/base.css'); ?>">
   <link rel="stylesheet" href="app/css/theme-color.php'); ?>">
-  <link rel="stylesheet" href="<?php echo $_SESSION["theme_url"]; ?>" title="main">
+  <link rel="stylesheet" href="<?php echo $_SESSION["theme_url"]; ?>" title="theme">
   <link rel="icon" type="image/png" href="/app/icons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/app/icons/favicon.svg" />
   <link rel="shortcut icon" href="/app/icons/favicon.ico" />

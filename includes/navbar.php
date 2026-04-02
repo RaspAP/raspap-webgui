@@ -10,8 +10,9 @@
     <!-- Display mode -->
     <li>
       <div class="form-check form-switch pl-6 mb-0" style="min-height: initial;">
-        <input type="checkbox" class="form-check-input" id="dark-mode" <?php echo getDarkMode() ? 'checked' : null ; ?> >
-        <label class="form-check-label" for="dark-mode"><i class="far fa-moon mr-1 text-muted"></i></label>
+        <label class="form-check-label" id="theme-mode">
+          <i id="theme-mode-icon" class=" far mr-1 text-muted"></i>
+        </label>
       </div>
     </li>
     <!-- Auth user -->

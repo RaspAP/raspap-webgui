@@ -18,15 +18,15 @@ function getHumanReadableDatasize($numbytes, $precision = 2)
     $tib = $gib * 1024;
     $pib = $tib * 1024;
     if ($numbytes >= $pib) {
-        $humanDatasize = ' ('.round($numbytes / $pib, $precision).' PB)';
+        $humanDatasize = ' (' . round($numbytes / $pib, $precision) . ' PB)';
     } elseif ($numbytes >= $tib) {
-        $humanDatasize = ' ('.round($numbytes / $tib, $precision).' TB)';
+        $humanDatasize = ' (' . round($numbytes / $tib, $precision) . ' TB)';
     } elseif ($numbytes >= $gib) {
-        $humanDatasize = ' ('.round($numbytes / $gib, $precision).' GB)';
+        $humanDatasize = ' (' . round($numbytes / $gib, $precision) . ' GB)';
     } elseif ($numbytes >= $mib) {
-        $humanDatasize = ' ('.round($numbytes / $mib, $precision).' MB)';
+        $humanDatasize = ' (' . round($numbytes / $mib, $precision) . ' MB)';
     } elseif ($numbytes >= $kib) {
-        $humanDatasize = ' ('.round($numbytes / $kib, $precision).' KB)';
+        $humanDatasize = ' (' . round($numbytes / $kib, $precision) . ' KB)';
     }
 
     return $humanDatasize;
@@ -42,7 +42,7 @@ function mask2cidr($mask)
 {
     $long = ip2long($mask);
     $base = ip2long('255.255.255.255');
-    return 32-log(($long ^ $base)+1, 2);
+    return 32 - log(($long ^ $base) + 1, 2);
 }
 
 /**
@@ -72,7 +72,7 @@ function cidr2mask($cidr)
  * @param string $iface
  * @return string $value
  */
-function getDefaultNetValue($svc,$iface,$key)
+function getDefaultNetValue($svc, $iface, $key)
 {
     $json = json_decode(file_get_contents(RASPI_CONFIG_NETWORK), true);
     if ($json === null) {
@@ -89,7 +89,7 @@ function getDefaultNetValue($svc,$iface,$key)
  * @param string $key
  * @return object $json
  */
-function getDefaultNetOpts($svc,$key)
+function getDefaultNetOpts($svc, $key)
 {
     $json = json_decode(file_get_contents(RASPI_CONFIG_NETWORK), true);
     if ($json === null) {
@@ -166,13 +166,13 @@ function safefilerewrite($fileName, $dataToSave)
             $canWrite = flock($fp, LOCK_EX);
             // If lock not obtained sleep for 0 - 100 milliseconds, to avoid collision and CPU load
             if (!$canWrite) {
-                usleep(round(rand(0, 100)*1000));
+                usleep(round(rand(0, 100) * 1000));
             }
-        } while ((!$canWrite)and((microtime(true)-$startTime) < 5));
+        } while ((!$canWrite) and ((microtime(true) - $startTime) < 5));
 
         //file was locked so now we can store information
         if ($canWrite) {
-            fwrite($fp, $dataToSave.PHP_EOL);
+            fwrite($fp, $dataToSave . PHP_EOL);
             flock($fp, LOCK_UN);
         }
         fclose($fp);
@@ -195,7 +195,7 @@ function file_prepend_data($filename, $dataToSave)
     $file = fopen($filename, 'r', 1, $context);
     $file_data = readfile($file);
 
-    if (!preg_match('/^'.$dataToSave.'/', $file_data)) {
+    if (!preg_match('/^' . $dataToSave . '/', $file_data)) {
         $tmp_file = tempnam(sys_get_temp_dir(), 'php_prepend_');
         file_put_contents($tmp_file, $dataToSave);
         file_put_contents($tmp_file, $file, FILE_APPEND);
@@ -217,10 +217,10 @@ function file_prepend_data($filename, $dataToSave)
  */
 function file_get_meta($filename, $pattern)
 {
-    if(file_exists($filename)) {
+    if (file_exists($filename)) {
         $context = stream_context_create();
         $file_data = file_get_contents($filename, false, $context);
-        preg_match('/^'.$pattern.'/', $file_data, $matched);
+        preg_match('/^' . $pattern . '/', $file_data, $matched);
         return $matched[1];
     } else {
         return false;
@@ -258,14 +258,14 @@ function isAssoc($arr)
  */
 function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null)
 {
-    echo '<select class="form-select" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
+    echo '<select class="form-select" name="' . htmlspecialchars($name, ENT_QUOTES) . '"';
     if (isset($id)) {
-        echo ' id="' . htmlspecialchars($id, ENT_QUOTES) .'"';
+        echo ' id="' . htmlspecialchars($id, ENT_QUOTES) . '"';
     }
     if (isset($event)) {
-        echo ' onChange="' . htmlspecialchars($event, ENT_QUOTES).'()"';
+        echo ' onChange="' . htmlspecialchars($event, ENT_QUOTES) . '()"';
     }
-    echo '>' , PHP_EOL;
+    echo '>', PHP_EOL;
     foreach ($options as $opt => $label) {
         $select = '';
         $key = isAssoc($options) ? $opt : $label;
@@ -275,11 +275,11 @@ function SelectorOptions($name, $options, $selected = null, $id = null, $event =
         if ($key == $disabled) {
             $disabled = ' disabled';
         }
-        echo '<option value="'.htmlspecialchars($key, ENT_QUOTES).'"'.$select.$disabled.'>'.
-            htmlspecialchars($label, ENT_QUOTES).'</option>' , PHP_EOL;
+        echo '<option value="' . htmlspecialchars($key, ENT_QUOTES) . '"' . $select . $disabled . '>' .
+            htmlspecialchars($label, ENT_QUOTES) . '</option>', PHP_EOL;
     }
 
-    echo '</select>' , PHP_EOL;
+    echo '</select>', PHP_EOL;
 }
 
 /**
@@ -292,7 +292,7 @@ function SelectorOptions($name, $options, $selected = null, $id = null, $event =
  */
 function GetDistString($input, $string, $offset, $separator)
 {
-    $string = substr($input, strpos($input, $string)+$offset, strpos(substr($input, strpos($input, $string)+$offset), $separator));
+    $string = substr($input, strpos($input, $string) + $offset, strpos(substr($input, strpos($input, $string) + $offset), $separator));
     return $string;
 }
 
@@ -328,7 +328,7 @@ function ParseConfig($arrConfig, $wg = false)
             $config[$option] = $value ?: true;
         } else {
             if (!is_array($config[$option])) {
-                $config[$option] = [ $config[$option] ];
+                $config[$option] = [$config[$option]];
             }
             $config[$option][] = $value;
         }
@@ -344,7 +344,7 @@ function ParseConfig($arrConfig, $wg = false)
  */
 function getNetConfig($interface)
 {
-    $URI = $_SERVER['REQUEST_SCHEME'].'://' .'localhost'. dirname($_SERVER['SCRIPT_NAME']) .'/ajax/networking/get_netcfg.php?iface='.$interface;
+    $URI = $_SERVER['REQUEST_SCHEME'] . '://' . 'localhost' . dirname($_SERVER['SCRIPT_NAME']) . '/ajax/networking/get_netcfg.php?iface=' . $interface;
     $jsonData = file_get_contents($URI, true);
     return $jsonData;
 }
@@ -357,11 +357,11 @@ function getNetConfig($interface)
 function ConvertToChannel($freq)
 {
     if ($freq >= 2412 && $freq <= 2484) {
-        $channel = ($freq - 2407)/5;
+        $channel = ($freq - 2407) / 5;
     } elseif ($freq >= 4915 && $freq <= 4980) {
-        $channel = ($freq - 4910)/5 + 182;
+        $channel = ($freq - 4910) / 5 + 182;
     } elseif ($freq >= 5035 && $freq <= 5865) {
-        $channel = ($freq - 5030)/5 + 6;
+        $channel = ($freq - 5030) / 5 + 6;
     } else {
         $channel = -1;
     }
@@ -387,7 +387,7 @@ function ConvertToSecurity($security)
             $protocol = $protocol_match[1];
             $matchArr = explode('-', $match);
             if (count($matchArr) > 2) {
-                $options[] = htmlspecialchars($protocol . ' ('. $matchArr[2] .')', ENT_QUOTES);
+                $options[] = htmlspecialchars($protocol . ' (' . $matchArr[2] . ')', ENT_QUOTES);
             } else {
                 $options[] = htmlspecialchars($protocol, ENT_QUOTES);
             }
@@ -532,9 +532,9 @@ function optionsForSelect($options)
 
 function blocklistUpdated($file)
 {
-    $blocklist = RASPI_CONFIG.'/adblock/'.$file;
+    $blocklist = RASPI_CONFIG . '/adblock/' . $file;
     if (file_exists($blocklist)) {
-        $lastModified = date ("F d Y H:i:s.", filemtime($blocklist));
+        $lastModified = date("F d Y H:i:s.", filemtime($blocklist));
         $lastModified = formatDateAgo($lastModified);
         return $lastModified;
     } else {
@@ -581,12 +581,9 @@ function initializeApp()
 function getThemeOpt()
 {
     if (!isset($_COOKIE['theme'])) {
-        $theme = "default.css";
-        setcookie('theme', $theme);
-    } else {
-        $theme = $_COOKIE['theme'];
+        setcookie('theme', 'default.css');
     }
-    return 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
+    return 'app/css/' . htmlspecialchars($_COOKIE['theme'], ENT_QUOTES);
 }
 
 function getThemeColorOpt()
@@ -603,7 +600,7 @@ function getThemeColorOpt()
         "rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)" . "|" .     // RGB format
         "rgba\(\s*(?:\d{1,3}\s*,\s*){3}\s*(0|0\.\d+|1)\s*\)" . "|" . // RGBA format
         "[a-zA-Z]+" .                                         // Named colors
-    ")$/i";
+        ")$/i";
 
     // Validate the color
     if (!preg_match($themeColorPattern, $themeColor)) {
@@ -617,20 +614,20 @@ function getThemeColorOpt()
 function getBridgedState()
 {
 
-	$hostapdIni = RASPI_CONFIG . '/hostapd.ini';
-	if (!file_exists($hostapdIni)) {
-		return 0;
-	} else {
-		$arrHostapdConf = parse_ini_file($hostapdIni);
-	}
+    $hostapdIni = RASPI_CONFIG . '/hostapd.ini';
+    if (!file_exists($hostapdIni)) {
+        return 0;
+    } else {
+        $arrHostapdConf = parse_ini_file($hostapdIni);
+    }
     return  $arrHostapdConf['BridgedEnable'];
- }
+}
 
 // Returns VPN provider ID, if defined
 function getProviderID()
 {
     if (RASPI_VPN_PROVIDER_ENABLED) {
-        $arrProvider = parse_ini_file(RASPI_CONFIG.'/provider.ini');
+        $arrProvider = parse_ini_file(RASPI_CONFIG . '/provider.ini');
         if (isset($arrProvider['providerID'])) {
             return $arrProvider['providerID'];
         }
@@ -646,19 +643,19 @@ function getProviderID()
 function validateCidr($cidr)
 {
     $parts = explode('/', $cidr);
-    if(count($parts) != 2) {
+    if (count($parts) != 2) {
         return false;
     }
     $ip = $parts[0];
     $netmask = intval($parts[1]);
 
-    if($netmask < 0) {
+    if ($netmask < 0) {
         return false;
     }
-    if(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
         return $netmask <= 32;
     }
-    if(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
         return $netmask <= 128;
     }
     return false;
@@ -667,7 +664,7 @@ function validateCidr($cidr)
 // Validates a host or FQDN
 function validate_host($host)
 {
-  return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host);
+    return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host);
 }
 
 /**
@@ -676,7 +673,8 @@ function validate_host($host)
  * @param string $mac
  * @return bool
  */
-function validateMac($mac) {
+function validateMac($mac)
+{
     $macAddress = strtoupper(preg_replace('/[^a-fA-F0-9]/', '', $mac));
     if (strlen($macAddress) !== 12) {
         return false;
@@ -688,36 +686,23 @@ function validateMac($mac) {
 }
 
 // Gets night mode toggle value
-// @return boolean
-function getDarkMode()
+// @return string
+function getThemeMode()
 {
-    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'dark.css') {
-        return true;
-    } else {
-        return false;
-    }
+    $mode = $_COOKIE['theme-mode'] ?? 'system';
+    return in_array($mode, ['system', 'light', 'dark'], true) ? $mode : 'system';
 }
 
-// Sets data-bs-theme
-// @return string
-function setThemeMode()
-{
-    if (getDarkMode()) {
-        echo 'data-bs-theme="dark"';
-    } else {
-        echo 'data-bs-theme="light"';
-    }
-}
 // search array for matching string and return only first matching group
-function preg_only_match($pat,$haystack)
+function preg_only_match($pat, $haystack)
 {
-  $match = "";
-  if(!empty($haystack) && !empty($pat)) {
-    if(!is_array($haystack)) $haystack = array($haystack);
-    $str = preg_grep($pat,$haystack);
-    if (!empty($str) && preg_match($pat,array_shift($str),$match) === 1 ) $match = $match[1];
-  }
-  return $match;
+    $match = "";
+    if (!empty($haystack) && !empty($pat)) {
+        if (!is_array($haystack)) $haystack = array($haystack);
+        $str = preg_grep($pat, $haystack);
+        if (!empty($str) && preg_match($pat, array_shift($str), $match) === 1) $match = $match[1];
+    }
+    return $match;
 }
 
 // Sanitizes a string for QR encoding
@@ -731,13 +716,16 @@ function qr_encode($str)
 function evalHexSequence($string)
 {
     $evaluator = function ($input) {
-	return hex2bin($input[1]);
+        return hex2bin($input[1]);
     };
     return preg_replace_callback('/\\\x(..)/', $evaluator, $string);
 }
 
-function hexSequence2lower($string) {
- return preg_replace_callback('/\\\\x([0-9A-F]{2})/', function($b){ return '\x'.strtolower($b[1]); }, $string);
+function hexSequence2lower($string)
+{
+    return preg_replace_callback('/\\\\x([0-9A-F]{2})/', function ($b) {
+        return '\x' . strtolower($b[1]);
+    }, $string);
 }
 
 /* File upload callback object
@@ -767,11 +755,11 @@ function get_public_ip()
 function loadFooterScripts($extraFooterScripts)
 {
     foreach ($extraFooterScripts as $script) {
-        echo '<script type="text/javascript" src="' , $script['src'] , '"';
+        echo '<script type="text/javascript" src="', $script['src'], '"';
         if ($script['defer']) {
             echo ' defer="defer"';
         }
-        echo '></script>' , PHP_EOL;
+        echo '></script>', PHP_EOL;
     }
 }
 
@@ -798,8 +786,9 @@ function validateInterface($interface)
  * @param string $locale
  * @param boolean $flag
  * @see   https://salsa.debian.org/debian/isoquery/
-*/
-function getCountryCodes($locale = 'en', $flag = true) {
+ */
+function getCountryCodes($locale = 'en', $flag = true)
+{
     define("FLAG_SUPPORT", "3.3.0");
     $output = [];
     $version = shell_exec("isoquery --version | grep -oP '(?<=isoquery )\d+\.\d+\.\d+'");
@@ -817,11 +806,11 @@ function getCountryCodes($locale = 'en', $flag = true) {
             $countryCode = $parts[0];
             if ($flag) {
                 $countryFlag = $parts[3];
-                $countryName = $parts[4] .' ';
+                $countryName = $parts[4] . ' ';
             } else {
                 $countryName = $parts[3];
             }
-            $countryData[$countryCode] = $countryName.$countryFlag;
+            $countryData[$countryCode] = $countryName . $countryFlag;
         }
     }
     return $countryData;
@@ -834,7 +823,8 @@ function getCountryCodes($locale = 'en', $flag = true) {
  * @param string $latest
  * @return boolean
  */
-function checkReleaseVersion($installed, $latest) {
+function checkReleaseVersion($installed, $latest)
+{
     $installedArray = explode('.', $installed);
     $latestArray = explode('.', $latest);
 
@@ -852,14 +842,15 @@ function checkReleaseVersion($installed, $latest) {
     return false;
 }
 
- /**
+/**
  * Returns logfile contents up to a maximum defined limit, in kilobytes
  *
  * @param string $file_path
  * @param string $file_data optional
  * @return string $log_limited
  */
-function getLogLimited($file_path, $file_data = null) {
+function getLogLimited($file_path, $file_data = null)
+{
     $limit_in_kb = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
     $limit = $limit_in_kb * 1024; // convert KB to bytes
 
@@ -873,7 +864,7 @@ function getLogLimited($file_path, $file_data = null) {
         $log_limited = substr($file_data, $start_position);
     }
     return $log_limited;
- }
+}
 
 /**
  * Function to darken a color by a percentage
@@ -915,25 +906,25 @@ function lightenColor($themeColor, $percent)
 
 function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cputemp_led, $cputemp)
 {
-    ?>
+?>
     <div class="row g-0">
-      <div class="col-4 ms-2 sidebar-brand-icon">
-        <img src="app/img/raspAP-logo.php?static=1" class="navbar-logo" width="70" height="70">
-      </div>
-      <div class="col ml-2">
-        <div class="ml-1 sb-status"><?php echo _("Status"); ?></div>
-        <div class="info-item-xs"><span class="icon">
-          <i class="fas fa-circle hostapd-led <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
+        <div class="col-4 ms-2 sidebar-brand-icon">
+            <img src="app/img/raspAP-logo.php?static=1" class="navbar-logo" width="70" height="70">
         </div>
-        <div class="info-item-xs"><span class="icon">
-          <i class="fas fa-circle <?php echo ($memused_led); ?>"></i></span> <?php echo _("Mem Use").': '. htmlspecialchars(strval($memused), ENT_QUOTES); ?>%
+        <div class="col ml-2">
+            <div class="ml-1 sb-status"><?php echo _("Status"); ?></div>
+            <div class="info-item-xs"><span class="icon">
+                    <i class="fas fa-circle hostapd-led <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot") . ' ' . _($hostapd_status); ?>
+            </div>
+            <div class="info-item-xs"><span class="icon">
+                    <i class="fas fa-circle <?php echo ($memused_led); ?>"></i></span> <?php echo _("Mem Use") . ': ' . htmlspecialchars(strval($memused), ENT_QUOTES); ?>%
+            </div>
+            <div class="info-item-xs"><span class="icon">
+                    <i class="fas fa-circle <?php echo ($cputemp_led); ?>"></i></span> <?php echo _("CPU") . ': ' . htmlspecialchars($cputemp, ENT_QUOTES); ?>°C
+            </div>
         </div>
-        <div class="info-item-xs"><span class="icon">
-          <i class="fas fa-circle <?php echo ($cputemp_led); ?>"></i></span> <?php echo _("CPU").': '. htmlspecialchars($cputemp, ENT_QUOTES); ?>°C
-        </div>
-      </div>
     </div>
-    <?php
+<?php
 }
 
 

@@ -589,62 +589,25 @@ $(document).on("click", ".js-toggle-password", function (e) {
   }
 });
 
+// MARK: Handle Theme Change
 $(function () {
   $("#theme-select").change(function () {
     var theme = themes[$("#theme-select").val()];
-
-    var hasDarkTheme = theme === "default.css";
-    var darkModeChecked = $("#dark-mode").prop("checked");
-
-    if (darkModeChecked && hasDarkTheme) {
-      if (theme === "default.css") {
-        set_theme("dark.css");
-      }
-    } else {
-      set_theme(theme);
-    }
-  });
-});
-
-function set_theme(theme) {
-  $('link[title="main"]').attr("href", "app/css/" + theme);
-  // persist selected theme in cookie
-  setCookie("theme", theme, 90);
-}
-
-$(function () {
-  var currentTheme = getCookie("theme");
-  // Check if the current theme is a dark theme
-  var isDarkTheme = currentTheme === "dark.css";
-
-  $("#dark-mode").prop("checked", isDarkTheme);
-  $("#dark-mode").change(function () {
-    var state = $(this).is(":checked");
-    var currentTheme = getCookie("theme");
-
-    if (state == true) {
-      if (currentTheme == "default.css") {
-        set_theme("dark.css");
-      }
-    } else {
-      if (currentTheme == "dark.css") {
-        set_theme("default.css");
-      }
-    }
+    $('link[title="theme"]').attr("href", "app/css/" + theme);
+    setCookie("theme", theme, 90);
   });
 });
 
 function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  var expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  const expires = new Date(Date.now() + exdays * 864e5).toUTCString();
+  document.cookie = `${cname}=${cvalue};expires=${expires};path=/`;
 }
 
 function getCookie(cname) {
-  var regx = new RegExp(cname + "=([^;]+)");
-  var value = regx.exec(document.cookie);
-  return value != null ? unescape(value[1]) : null;
+  const item = document.cookie
+    .split("; ")
+    .find((cookie) => cookie.startsWith(`${cname}=`));
+  return item ? decodeURIComponent(item.slice(cname.length + 1)) : null;
 }
 
 // Define themes
@@ -714,14 +677,37 @@ function updateActivityLED() {
 }
 setInterval(updateActivityLED, 100);
 
+const colorSchemeMatch = window.matchMedia("(prefers-color-scheme: dark)");
+
+function updateBSTheme() {
+  const themeMode = $("html").attr("data-theme-mode") || "system";
+  const resolvedTheme =
+    themeMode === "system"
+      ? colorSchemeMatch.matches
+        ? "dark"
+        : "light"
+      : themeMode;
+  $("html").attr("data-bs-theme", resolvedTheme);
+}
+
+colorSchemeMatch.addEventListener("change", updateBSTheme);
+
+// MARK: Handle Theme Mode Change
 $(document).ready(function () {
-  const $htmlElement = $("html");
-  const $modeswitch = $("#dark-mode");
-  $modeswitch.on("change", function () {
-    const isChecked = $(this).is(":checked");
-    const newTheme = isChecked ? "dark" : "light";
-    $htmlElement.attr("data-bs-theme", newTheme);
-    localStorage.setItem("bsTheme", newTheme);
+  updateBSTheme();
+  $("#theme-mode").click(function () {
+    const nextTheme = {
+      light: "dark",
+      dark: "system",
+      system: "light",
+    };
+    const currentTheme = $("html").attr("data-theme-mode");
+    const newTheme = nextTheme[currentTheme]
+      ? nextTheme[currentTheme]
+      : "system";
+    setCookie("theme-mode", newTheme, 90);
+    $("html").attr("data-theme-mode", newTheme);
+    updateBSTheme();
   });
 });
 
