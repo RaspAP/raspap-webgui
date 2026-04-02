@@ -592,7 +592,7 @@ $(document).on("click", ".js-toggle-password", function (e) {
 // MARK: Handle Theme Change
 $(function () {
   $("#theme-select").change(function () {
-    var theme = themes[$("#theme-select").val()];
+    var theme = $("#theme-select").val();
     $('link[title="theme"]').attr("href", "app/css/" + theme);
     setCookie("theme", theme, 90);
   });
