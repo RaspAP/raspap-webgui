@@ -592,7 +592,7 @@ $(document).on("click", ".js-toggle-password", function (e) {
 // MARK: Handle Theme Change
 $(function () {
   $("#theme-select").change(function () {
-    var theme = $("#theme-select").val();
+    var theme = encodeURIComponent($("#theme-select").val());
     $('link[title="theme"]').attr("href", "app/css/" + theme);
     setCookie("theme", theme, 90);
   });
@@ -609,12 +609,6 @@ function getCookie(cname) {
     .find((cookie) => cookie.startsWith(`${cname}=`));
   return item ? decodeURIComponent(item.slice(cname.length + 1)) : null;
 }
-
-// Define themes
-var themes = {
-  default: "default.css",
-  hackernews: "hackernews.css",
-};
 
 // Adds active class to current nav-item
 $(window).bind("load", function () {
