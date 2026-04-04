@@ -526,48 +526,20 @@ $(document).on("click", ".js-toggle-password", function(e) {
 
 $(function() {
     $('#theme-select').change(function() {
-        var theme = themes[$( "#theme-select" ).val() ];
+        var selectedThemeName = $("#theme-select").val();
 
-        var hasDarkTheme = theme === 'custom.php';
-        var nightModeChecked = $("#night-mode").prop("checked");
-        
-        if (nightModeChecked && hasDarkTheme) {
-            if (theme === "custom.php") {
-                set_theme("dark.css");
-            }
-        } else {
-            set_theme(theme);
+        if (selectedThemeName) {
+            set_theme(selectedThemeName);
         }
    });
 });
 
 function set_theme(theme) {
-    $('link[title="main"]').attr('href', 'app/css/' + theme);
+    let curTheme = themes[theme];
+    $('link[title="main"]').attr('href', curTheme.url);
     // persist selected theme in cookie 
-    setCookie('theme',theme,90);
+    setCookie('theme',theme,365);
 }
-
-$(function() {
-    var currentTheme = getCookie('theme');
-    // Check if the current theme is a dark theme
-    var isDarkTheme = currentTheme === 'dark.css';
-
-    $('#night-mode').prop('checked', isDarkTheme);
-    $('#night-mode').change(function() {
-        var state = $(this).is(':checked');
-        var currentTheme = getCookie('theme');
-        
-        if (state == true) {
-            if (currentTheme == 'custom.php') {
-                set_theme('dark.css');
-            }
-        } else {
-            if (currentTheme == 'dark.css') {
-                set_theme('custom.php');
-            }
-        }
-   });
-});
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -584,8 +556,16 @@ function getCookie(cname) {
 
 // Define themes
 var themes = {
-    "default": "custom.php",
-    "hackernews" : "hackernews.css"
+    'default': {
+        'name': 'RaspAP (default)',
+        'url': '/app/css/themes/default.php',
+        'modes': ['light', 'dark'],
+    },
+    'hackernews': {
+        'name': 'HackerNews',
+        'url': '/app/css/themes/hackernews.css',
+        'modes': ['light'],
+    }
 }
 
 // Adds active class to current nav-item
@@ -644,14 +624,92 @@ function updateActivityLED() {
 }
 setInterval(updateActivityLED, 100);
 
+function setDarkMode(isSystemPreferred = false) {
+    $('.dark-mode-toggle').prop('checked', true);
+    $('.dark-mode-toggle + label i').removeClass('fa-moon').addClass('fa-sun');
+    $('html').attr('data-bs-theme', 'dark');
+    // only set cookie if in a user preference context
+    if (!isSystemPreferred) setCookie('theme_mode', 'dark', 365);
+}
+
+function setLightMode(isSystemPreferred = false) {
+    $('.dark-mode-toggle').prop('checked', false);
+    $('.dark-mode-toggle + label i').removeClass('fa-sun').addClass('fa-moon');
+    $('html').attr('data-bs-theme', 'light');
+    // only set cookie if in a user preference context
+    if (!isSystemPreferred) setCookie('theme_mode', 'light', 365);
+}
+
 $(document).ready(function() {
-    const $htmlElement = $('html');
-    const $modeswitch = $('#night-mode');
-    $modeswitch.on('change', function() {
+    const systemModeToggle = $('.system-mode-toggle');
+    const darkModeToggle = $('.dark-mode-toggle');
+    darkModeToggle.on('change', function() {
         const isChecked = $(this).is(':checked');
-        const newTheme = isChecked ? 'dark' : 'light';
-        $htmlElement.attr('data-bs-theme', newTheme);
-        localStorage.setItem('bsTheme', newTheme);
+        if (isChecked) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+        systemModeToggle.removeClass('active').prop('checked', false);
+        setCookie('use_system_color_scheme', 'false', 365);
+    });
+ 
+    // Update color mode on system preference change if set to use system preference
+    const preferredColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const systemColorScheme = preferredColorScheme.matches ? 'dark' : 'light';
+    setCookie('system_color_scheme', systemColorScheme, 365);
+    preferredColorScheme.addEventListener('change', function(event) {
+        const useSystem = getCookie('use_system_color_scheme') === 'true';
+        if (event.matches) {
+            if (useSystem) setDarkMode(true);
+            setCookie('system_color_scheme', 'dark', 365);
+        } else {
+            if (useSystem) setLightMode(true);
+            setCookie('system_color_scheme', 'light', 365);
+            
+        }
+    });
+    
+    systemModeToggle.on('click', function() {
+        const systemColorScheme = preferredColorScheme.matches ? 'dark' : 'light';
+        // update cookie for PHP context
+        setCookie('system_color_scheme', systemColorScheme, 365);
+
+        const isButton = $(this).hasClass('btn');
+        const useSystem = getCookie('use_system_color_scheme') === 'true' || false;
+
+        if (useSystem) {
+            setCookie('use_system_color_scheme', 'false', 365);
+            const userTheme = getCookie('theme_mode') || 'light';
+            if (userTheme === 'dark') {
+                setDarkMode();
+            } else {
+                setLightMode();
+            }
+            // Update state and sync System->Theme toggle
+            if (isButton) {
+                $(this).removeClass('active');
+                $('#settings-system-mode').prop('checked', false);
+            } else {
+                $(this).prop('checked', false);
+                $('#navbar-system-mode').removeClass('active');
+            }
+        } else {
+            setCookie('use_system_color_scheme', 'true', 365);
+            if (systemColorScheme === 'dark') {
+                setDarkMode(true);
+            } else {
+                setLightMode(true);
+            }
+            // Update state and sync System->Theme toggle
+            if (isButton) {
+                $(this).addClass('active');
+                $('#settings-system-mode').prop('checked', true);
+            } else {
+                $(this).prop('checked', true);
+                $('#navbar-system-mode').addClass('active');
+            }
+        }
     });
 });
 

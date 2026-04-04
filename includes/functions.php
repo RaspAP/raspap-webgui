@@ -687,22 +687,27 @@ function validateMac($mac) {
     return true;
 }
 
-// Gets night mode toggle value
+// Gets dark mode toggle value
 // @return boolean
-function getNightmode()
+function getDarkMode()
 {
-    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'dark.css') {
-        return true;
+    if (isset($_COOKIE['use_system_color_scheme']) && $_COOKIE['use_system_color_scheme'] == 'true') {
+        $preferredColorScheme = isset($_COOKIE['system_color_scheme']) ? $_COOKIE['system_color_scheme'] : 'light';
+        return $preferredColorScheme === 'dark';
     } else {
-        return false;
+        if (isset($_COOKIE['theme_mode']) && $_COOKIE['theme_mode'] === 'dark') {
+            return true;
+        } else {
+            return false;
+        }
     }
-}	
+}
 
 // Sets data-bs-theme
 // @return string
 function setTheme()
 {
-    if (getNightmode()) {
+    if (getDarkMode()) {
         echo 'data-bs-theme="dark"';
     } else {
         echo 'data-bs-theme="light"';

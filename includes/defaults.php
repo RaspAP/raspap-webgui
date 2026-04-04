@@ -18,6 +18,18 @@ $defaults = [
     'RASPI_DEBUG_LOG' => 'raspap_debug.log',
     'RASPI_LOG_SIZE_LIMIT' =>  64,
     'RASPI_SESSION_TIMEOUT' => 1440,
+    'RASPI_THEMES' => [
+        "default" => [
+            "name" => "RaspAP (default)",
+            "url" => "app/css/themes/default.php",
+            "modes" => ["light", "dark"]
+        ],
+        "hackernews" => [
+            "name" => "HackerNews",
+            "url" => "app/css/themes/hackernews.css",
+            "modes" => ["light"]
+        ]   
+    ],
 
     // Constants for configuration file paths.
     // These are typical for default RPi installs. Modify if needed.
