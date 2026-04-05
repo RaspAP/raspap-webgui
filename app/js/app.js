@@ -98,10 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
     $('[data-bs-toggle="tooltip"]').tooltip()
 
     // Adds active class to current nav-item
-    $(window).bind("load", function() {
-        var url = window.location;
+    $(window).on("load", function() {
+        var currentLocation = window.location;
         $('.sb-nav-link-icon a').filter(function() {
-        return this.href == url;
+            const linkUrl = new URL(this.href);
+            return linkUrl.pathname == currentLocation.pathname;
         }).parent().addClass('active');
     });
 
