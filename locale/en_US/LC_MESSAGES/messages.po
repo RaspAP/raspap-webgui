@@ -1406,6 +1406,18 @@ msgstr "Inspect adapters"
 msgid "Theme"
 msgstr "Theme"
 
+msgid "SSL Certificate (HTTPS)"
+msgstr "SSL Certificate (HTTPS)"
+
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+
+msgid "Download rootCA.pem"
+msgstr "Download rootCA.pem"
+
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+
 #: includes/data_usage.php
 msgid "Data usage"
 msgstr "Data usage"
