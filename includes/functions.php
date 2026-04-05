@@ -573,7 +573,7 @@ function formatDateAgo($datetime, $full = false)
 
 function initializeApp()
 {
-    $_SESSION["theme_url"] = getThemeOpt();
+    $_SESSION["theme"] = getThemeOpt();
     $_SESSION["bridgedEnabled"] = getBridgedState();
     $_SESSION["providerID"] = getProviderID();
 }
