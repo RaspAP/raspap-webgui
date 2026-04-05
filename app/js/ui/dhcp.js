@@ -1,57 +1,57 @@
 import { escapeHtml } from "../helpers.js";
 
+export function setStaticFieldsEnabled() {
+    $('#txtipaddress').prop('required', true);
+    $('#txtsubnetmask').prop('required', true);
+    $('#txtgateway').prop('required', true);
+
+    $('#txtipaddress').removeAttr('disabled');
+    $('#txtsubnetmask').removeAttr('disabled');
+    $('#txtgateway').removeAttr('disabled');
+}
+
+export function setStaticFieldsDisabled() {
+    $('#txtipaddress').prop('disabled', true);
+    $('#txtsubnetmask').prop('disabled', true);
+    $('#txtgateway').prop('disabled', true);
+
+    $('#txtipaddress').removeAttr('required');
+    $('#txtsubnetmask').removeAttr('required');
+    $('#txtgateway').removeAttr('required');
+}
+
+export function setDhcpFieldsEnabled() {
+    $('#txtrangestart').prop('required', true);
+    $('#txtrangeend').prop('required', true);
+    $('#txtrangeleasetime').prop('required', true);
+    $('#cbxrangeleasetimeunits').prop('required', true);
+
+    $('#txtrangestart').removeAttr('disabled');
+    $('#txtrangeend').removeAttr('disabled');
+    $('#txtrangeleasetime').removeAttr('disabled');
+    $('#cbxrangeleasetimeunits').removeAttr('disabled');
+    $('#txtdns1').removeAttr('disabled');
+    $('#txtdns2').removeAttr('disabled');
+    $('#txtmetric').removeAttr('disabled');
+}
+
+export function setDhcpFieldsDisabled() {
+    $('#txtrangestart').removeAttr('required');
+    $('#txtrangeend').removeAttr('required');
+    $('#txtrangeleasetime').removeAttr('required');
+    $('#cbxrangeleasetimeunits').removeAttr('required');
+
+    $('#txtrangestart').prop('disabled', true);
+    $('#txtrangeend').prop('disabled', true);
+    $('#txtrangeleasetime').prop('disabled', true);
+    $('#cbxrangeleasetimeunits').prop('disabled', true);
+    $('#txtdns1').prop('disabled', true);
+    $('#txtdns2').prop('disabled', true);
+    $('#txtmetric').prop('disabled', true);
+}
+
 export function initDHCP() {
     console.info("RaspAP DHCP module initialized");
-
-    function setStaticFieldsEnabled() {
-        $('#txtipaddress').prop('required', true);
-        $('#txtsubnetmask').prop('required', true);
-        $('#txtgateway').prop('required', true);
-
-        $('#txtipaddress').removeAttr('disabled');
-        $('#txtsubnetmask').removeAttr('disabled');
-        $('#txtgateway').removeAttr('disabled');
-    }
-
-    function setStaticFieldsDisabled() {
-        $('#txtipaddress').prop('disabled', true);
-        $('#txtsubnetmask').prop('disabled', true);
-        $('#txtgateway').prop('disabled', true);
-
-        $('#txtipaddress').removeAttr('required');
-        $('#txtsubnetmask').removeAttr('required');
-        $('#txtgateway').removeAttr('required');
-    }
-
-    function setDhcpFieldsEnabled() {
-        $('#txtrangestart').prop('required', true);
-        $('#txtrangeend').prop('required', true);
-        $('#txtrangeleasetime').prop('required', true);
-        $('#cbxrangeleasetimeunits').prop('required', true);
-
-        $('#txtrangestart').removeAttr('disabled');
-        $('#txtrangeend').removeAttr('disabled');
-        $('#txtrangeleasetime').removeAttr('disabled');
-        $('#cbxrangeleasetimeunits').removeAttr('disabled');
-        $('#txtdns1').removeAttr('disabled');
-        $('#txtdns2').removeAttr('disabled');
-        $('#txtmetric').removeAttr('disabled');
-    }
-
-    function setDhcpFieldsDisabled() {
-        $('#txtrangestart').removeAttr('required');
-        $('#txtrangeend').removeAttr('required');
-        $('#txtrangeleasetime').removeAttr('required');
-        $('#cbxrangeleasetimeunits').removeAttr('required');
-
-        $('#txtrangestart').prop('disabled', true);
-        $('#txtrangeend').prop('disabled', true);
-        $('#txtrangeleasetime').prop('disabled', true);
-        $('#cbxrangeleasetimeunits').prop('disabled', true);
-        $('#txtdns1').prop('disabled', true);
-        $('#txtdns2').prop('disabled', true);
-        $('#txtmetric').prop('disabled', true);
-    }
 
     function setDHCPToggles(state) {
         if ($('#chkfallback').is(':checked') && state) {
