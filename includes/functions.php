@@ -580,7 +580,7 @@ function initializeApp()
 
 function getThemeOpt()
 {
-    if (!isset($_COOKIE['theme'])) {
+    if (!isset($_COOKIE['theme']) || !RASPI_THEMES[$_COOKIE['theme']]) {
         $theme = "custom.php";
         setcookie('theme', $theme);
     } else {
