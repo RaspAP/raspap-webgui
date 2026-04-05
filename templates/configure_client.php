@@ -28,11 +28,11 @@
           <div class="col-md-6">
             <form method="POST" action="wpa_conf">
               <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
-            <label for="cbxclientiface"><?php echo _("Interface"); ?></label>
-            <div class="input-group">
-              <?php SelectorOptions('wifiClientInterface', $interfaces, $initial_iface, 'cbxclientiface'); ?>
-              <button type="submit" class="btn btn-primary"><?php echo _("Set"); ?></button>
-            </div>
+              <label for="cbxclientiface"><?php echo _("Interface"); ?></label>
+              <div class="input-group">
+                <?php SelectorOptions('wifiClientInterface', $interfaces, $initial_iface, 'cbxclientiface'); ?>
+                <button type="submit" class="btn btn-primary"><?php echo _("Set"); ?></button>
+              </div>
             </form>
           </div>
         </div>
