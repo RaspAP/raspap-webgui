@@ -586,7 +586,7 @@ function getThemeOpt()
     } else {
         $theme = $_COOKIE['theme'];
     }
-    return 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
+    return RASPI_THEMES[$theme];
 }
 
 function getColorOpt()
