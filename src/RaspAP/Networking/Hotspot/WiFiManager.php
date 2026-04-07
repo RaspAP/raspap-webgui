@@ -264,6 +264,9 @@ class WiFiManager
             $iface = RASPI_WIFI_AP_INTERFACE;
         }
 
+        // @TODO Get client interface from persisted value
+        $client_iface = '';
+
         // If session var is set leave it, if not try to find second interface
         // if trying to set interface then this can be skipped
         if ($_SESSION['wifi_client_interface'] === null && !isset($_POST['wifiClientInterface'])) {
