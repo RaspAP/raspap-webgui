@@ -1274,6 +1274,18 @@ msgstr "Select a theme"
 msgid "Color"
 msgstr "Color"
 
+msgid "Dark Mode"
+msgstr "Dark Mode"
+
+msgid "Use the dark mode from the current theme"
+msgstr "Use the dark mode from the current theme"
+
+msgid "System Theme"
+msgstr "System Theme"
+
+msgid "Uses the color mode of your system"
+msgstr "Uses the color mode of your system"
+
 msgid "Enable this option for resizable, drag and drop widgets. Best for large displays."
 msgstr "Enable this option for resizable, drag and drop widgets. Best for large displays."
 

@@ -51,24 +51,11 @@ export function initSystem() {
         window.location.reload();
     });
 
-    // Define themes
-    var themes = {
-        "default": "custom.php",
-        "hackernews" : "hackernews.css"
-    };
+    $('#theme-select').on('change', function() {
+        var selectedThemeName = $("#theme-select").val();
 
-    $('#theme-select').change(function() {
-        var theme = themes[$( "#theme-select" ).val() ];
-
-        var hasDarkTheme = theme === 'custom.php';
-        var nightModeChecked = $("#night-mode").prop("checked");
-
-        if (nightModeChecked && hasDarkTheme) {
-            if (theme === "custom.php") {
-                set_theme("dark.css");
-            }
-        } else {
-            set_theme(theme);
+        if (selectedThemeName) {
+            set_theme(selectedThemeName);
         }
-   });
+    });
 }

@@ -1,3 +1,16 @@
+export const themes = {
+    'default': {
+        'name': 'RaspAP (default)',
+        'url': '/app/css/themes/default.php',
+        'modes': ['light', 'dark'],
+    },
+    'hackernews': {
+        'name': 'HackerNews',
+        'url': '/app/css/themes/hackernews.css',
+        'modes': ['light'],
+    }
+}
+
 export function msgShow(retcode,msg) {
     if(retcode == 0) {
         var alertType = 'success';
@@ -64,9 +77,26 @@ export function formatProperty(prop) {
 }
 
 export function set_theme(theme) {
-    $('link[title="main"]').attr('href', 'app/css/' + theme);
+    let curTheme = themes[theme];
+    $('link[title="main"]').attr('href', curTheme.url);
     // persist selected theme in cookie 
-    setCookie('theme',theme,90);
+    setCookie('theme',theme,365);
+}
+
+export function setDarkMode(isSystemPreferred = false) {
+    $('.dark-mode-toggle').prop('checked', true);
+    $('.dark-mode-toggle + label i').removeClass('fa-moon').addClass('fa-sun');
+    $('html').attr('data-bs-theme', 'dark');
+    // only set cookie if in a user preference context
+    if (!isSystemPreferred) setCookie('theme_mode', 'dark', 365);
+}
+
+export function setLightMode(isSystemPreferred = false) {
+    $('.dark-mode-toggle').prop('checked', false);
+    $('.dark-mode-toggle + label i').removeClass('fa-sun').addClass('fa-moon');
+    $('html').attr('data-bs-theme', 'light');
+    // only set cookie if in a user preference context
+    if (!isSystemPreferred) setCookie('theme_mode', 'light', 365);
 }
 
 export function setCookie(cname, cvalue, exdays) {
