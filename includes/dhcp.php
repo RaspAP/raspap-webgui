@@ -86,7 +86,18 @@ function DisplayDHCPConfig()
     $conf = array_merge(ParseConfig($return));
     $hosts = (array)($conf['dhcp-host'] ?? []);
     $upstreamServers = (array)($conf['server'] ?? []);
-    $interfaces = $ifaces;
+    $interfaces = [];
+    foreach ($ifaces as $iface) {
+        $ifaceServices = [];
+        if ($iface === $_SESSION['ap_interface']) {
+            $ifaceServices[] = 'AP';
+        }
+        if ($iface === $_SESSION['wifi_client_interface']) {
+            $ifaceServices[] = 'Client';
+        }
+        $label = !empty($ifaceServices) ? $iface . ' (' . implode(', ', $ifaceServices) . ')' : $iface;
+        $interfaces[$iface] = $label;
+    }
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
 
     count($log_dhcp) > 0 ? $conf['log-dhcp'] = true : false ;

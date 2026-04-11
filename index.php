@@ -14,7 +14,7 @@
  * @author  Lawrence Yau <sirlagz@gmail.com>
  * @author  Bill Zimmerman <billzimmerman@gmail.com>
  * @license GNU General Public License, version 3 (GPL-3.0)
- * @version 3.5.2
+ * @version 3.5.3
  * @link    https://github.com/RaspAP/raspap-webgui/
  * @link    https://raspap.com/
  * @see     http://sirlagz.net/2013/02/08/raspap-webgui/
@@ -86,7 +86,10 @@ initializeApp();
     <link href="dist/raspap/css/style.css?v=<?= filemtime('dist/raspap/css/style.css'); ?>" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
-    <link href="<?php echo $_SESSION["theme_url"]; ?>" title="main" rel="stylesheet">
+    <link href="app/css/base.css?v=<?= filemtime('app/css/base.css'); ?>" rel="stylesheet" />
+    <link href="<?php echo $_SESSION['theme']['url'] . "?v=" . filemtime($_SESSION['theme']['url']); ?>" title="main" rel="stylesheet">
+    
+    <!-- Meta -->
     <link rel="icon" type="image/png" href="/app/icons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/app/icons/favicon.svg" />
     <link rel="shortcut icon" href="/app/icons/favicon.ico" />
@@ -148,8 +151,7 @@ initializeApp();
     <script src="dist/speedtest/speedtest.js?v=<?= filemtime('dist/speedtest/speedtest.js'); ?>"></script>
 
     <!-- RaspAP JavaScript -->
-    <script src="app/js/ajax/main.js?v=<?= filemtime('app/js/ajax/main.js'); ?>"></script>
-    <script src="app/js/ui/main.js?v=<?= filemtime('app/js/ui/main.js'); ?>"></script>
+    <script type="module" src="app/js/app.js?v=<?= filemtime('app/js/app.js'); ?>"></script>
 
     <?php loadFooterScripts($extraFooterScripts); ?>
   </body>

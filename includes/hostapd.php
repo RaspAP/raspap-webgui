@@ -31,7 +31,19 @@ function DisplayHostAPDConfig()
     $arr80211w = $hotspot->get80211wOptions();
     $languageCode = strtok($_SESSION['locale'], '_');
     $countryCodes = getCountryCodes($languageCode);
-    $interfaces = $hotspot->getInterfaces();
+    $ifaces = $hotspot->getInterfaces();
+    $interfaces = [];
+    foreach ($ifaces as $iface) {
+        $ifaceServices = [];
+        if ($iface === $_SESSION['ap_interface']) {
+            $ifaceServices[] = 'AP';
+        }
+        if ($iface === $_SESSION['wifi_client_interface']) {
+            $ifaceServices[] = 'Client';
+        }
+        $label = !empty($ifaceServices) ? $iface . ' (' . implode(', ', $ifaceServices) . ')' : $iface;
+        $interfaces[$iface] = $label;
+    }
     $arrTxPower = getDefaultNetOpts('txpower','dbm');
     $managedModeEnabled = false;
     try {
@@ -75,7 +87,7 @@ function DisplayHostAPDConfig()
                 $arrSecurity,
                 $arrEncType,
                 $arr80211Standard,
-                $interfaces,
+                $ifaces,
                 $reg_domain,
                 $status
             );

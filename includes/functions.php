@@ -573,20 +573,20 @@ function formatDateAgo($datetime, $full = false)
 
 function initializeApp()
 {
-    $_SESSION["theme_url"] = getThemeOpt();
+    $_SESSION["theme"] = getThemeOpt();
     $_SESSION["bridgedEnabled"] = getBridgedState();
     $_SESSION["providerID"] = getProviderID();
 }
 
 function getThemeOpt()
 {
-    if (!isset($_COOKIE['theme'])) {
-        $theme = "custom.php";
+    if (!isset($_COOKIE['theme']) || !RASPI_THEMES[$_COOKIE['theme']]) {
+        $theme = "default";
         setcookie('theme', $theme);
     } else {
         $theme = $_COOKIE['theme'];
     }
-    return 'app/css/'.htmlspecialchars($theme, ENT_QUOTES);
+    return RASPI_THEMES[$theme];
 }
 
 function getColorOpt()
@@ -687,22 +687,27 @@ function validateMac($mac) {
     return true;
 }
 
-// Gets night mode toggle value
+// Gets dark mode toggle value
 // @return boolean
-function getNightmode()
+function getDarkMode()
 {
-    if (isset($_COOKIE['theme']) && $_COOKIE['theme'] == 'dark.css') {
-        return true;
+    if (isset($_COOKIE['use_system_color_scheme']) && $_COOKIE['use_system_color_scheme'] == 'true') {
+        $preferredColorScheme = isset($_COOKIE['system_color_scheme']) ? $_COOKIE['system_color_scheme'] : 'light';
+        return $preferredColorScheme === 'dark';
     } else {
-        return false;
+        if (isset($_COOKIE['theme_mode']) && $_COOKIE['theme_mode'] === 'dark') {
+            return true;
+        } else {
+            return false;
+        }
     }
-}	
+}
 
 // Sets data-bs-theme
 // @return string
 function setTheme()
 {
-    if (getNightmode()) {
+    if (getDarkMode()) {
         echo 'data-bs-theme="dark"';
     } else {
         echo 'data-bs-theme="light"';
