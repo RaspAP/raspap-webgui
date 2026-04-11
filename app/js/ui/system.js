@@ -51,7 +51,7 @@ export function initSystem() {
         window.location.reload();
     });
 
-    $('#theme-select').change(function() {
+    $('#theme-select').on('change', function() {
         var selectedThemeName = $("#theme-select").val();
 
         if (selectedThemeName) {
