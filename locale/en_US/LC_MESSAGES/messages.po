@@ -240,6 +240,12 @@ msgstr "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
 msgid "Reinitialize"
 msgstr "Reinitialize"
 
+msgid "Client"
+msgstr "Client"
+
+msgid "Set"
+msgstr "Set"
+
 #: includes/dashboard.php
 msgid "Interface Information"
 msgstr "Interface Information"
