@@ -2,8 +2,9 @@ import {
     setCSRFTokenHeader,
     getCookie,
     setCookie,
-    set_theme,
-    disableValidation
+    disableValidation,
+    setDarkMode,
+    setLightMode
 } from "./helpers.js";
 
 import { initHostapd } from "./ui/hostapd.js";
@@ -217,33 +218,75 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     setInterval(updateActivityLED, 100);
 
-    var currentTheme = getCookie('theme');
-    // Check if the current theme is a dark theme
-    var isDarkTheme = currentTheme === 'dark.css';
-
-    $('#night-mode').prop('checked', isDarkTheme);
-    $('#night-mode').change(function() {
-        var state = $(this).is(':checked');
-        var currentTheme = getCookie('theme');
-        
-        if (state == true) {
-            if (currentTheme == 'custom.php') {
-                set_theme('dark.css');
-            }
+    const systemModeToggle = $('.system-mode-toggle');
+    const darkModeToggle = $('.dark-mode-toggle');
+    darkModeToggle.on('change', function() {
+        const isChecked = $(this).is(':checked');
+        if (isChecked) {
+            setDarkMode();
         } else {
-            if (currentTheme == 'dark.css') {
-                set_theme('custom.php');
-            }
+            setLightMode();
         }
+        systemModeToggle.removeClass('active').prop('checked', false);
+        setCookie('use_system_color_scheme', 'false', 365);
     });
 
-    const $htmlElement = $('html');
-    const $modeswitch = $('#night-mode');
-    $modeswitch.on('change', function() {
-        const isChecked = $(this).is(':checked');
-        const newTheme = isChecked ? 'dark' : 'light';
-        $htmlElement.attr('data-bs-theme', newTheme);
-        localStorage.setItem('bsTheme', newTheme);
+    // Update color mode on system preference change if set to use system preference
+    const preferredColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const systemColorScheme = preferredColorScheme.matches ? 'dark' : 'light';
+    setCookie('system_color_scheme', systemColorScheme, 365);
+    preferredColorScheme.addEventListener('change', function(event) {
+        const useSystem = getCookie('use_system_color_scheme') === 'true';
+        if (event.matches) {
+            if (useSystem) setDarkMode(true);
+            setCookie('system_color_scheme', 'dark', 365);
+        } else {
+            if (useSystem) setLightMode(true);
+            setCookie('system_color_scheme', 'light', 365);
+            
+        }
+    });
+    
+    systemModeToggle.on('click', function() {
+        const systemColorScheme = preferredColorScheme.matches ? 'dark' : 'light';
+        // update cookie for PHP context
+        setCookie('system_color_scheme', systemColorScheme, 365);
+
+        const isButton = $(this).hasClass('btn');
+        const useSystem = getCookie('use_system_color_scheme') === 'true' || false;
+
+        if (useSystem) {
+            setCookie('use_system_color_scheme', 'false', 365);
+            const userTheme = getCookie('theme_mode') || 'light';
+            if (userTheme === 'dark') {
+                setDarkMode();
+            } else {
+                setLightMode();
+            }
+            // Update state and sync System->Theme toggle
+            if (isButton) {
+                $(this).removeClass('active');
+                $('#settings-system-mode').prop('checked', false);
+            } else {
+                $(this).prop('checked', false);
+                $('#navbar-system-mode').removeClass('active');
+            }
+        } else {
+            setCookie('use_system_color_scheme', 'true', 365);
+            if (systemColorScheme === 'dark') {
+                setDarkMode(true);
+            } else {
+                setLightMode(true);
+            }
+            // Update state and sync System->Theme toggle
+            if (isButton) {
+                $(this).addClass('active');
+                $('#settings-system-mode').prop('checked', true);
+            } else {
+                $(this).prop('checked', true);
+                $('#navbar-system-mode').addClass('active');
+            }
+        }
     });
 
     // To auto-close Bootstrap alerts; time is in milliseconds
