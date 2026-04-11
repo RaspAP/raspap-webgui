@@ -80,7 +80,7 @@ export function initDHCP() {
         }
     });
 
-    $('input[name="dhcp-iface"]').change(function() {
+    $('input[name="dhcp-iface"]').on('change', function() {
         if ($('input[name="dhcp-iface"]:checked').val() == '1') {
             setDhcpFieldsEnabled();
         } else {
@@ -88,7 +88,7 @@ export function initDHCP() {
         }
     });
 
-    $('#chkfallback').change(function() {
+    $('#chkfallback').on('change', function() {
         if ($('#chkfallback').is(':checked')) {
             setStaticFieldsEnabled();
         } else {
