@@ -146,7 +146,7 @@ function DisplaySystem(&$extraFooterScripts)
     $themes = array_map(fn($themes) => $themes['name'], RASPI_THEMES);
     $selectedTheme = $_COOKIE['theme'] ?? 'default';
     $extraFooterScripts[] = array('src'=>'dist/huebee/huebee.pkgd.min.js', 'defer'=>false);
-    $extraFooterScripts[] = array('src'=>'app/js/vendor/huebee.js', 'defer'=>false);
+    $extraFooterScripts[] = array('src'=>'app/js/vendor/huebee.js?v=' . filemtime('app/js/vendor/huebee.js'), 'defer'=>false);
     $logLimit = isset($_SESSION['log_limit']) ? $_SESSION['log_limit'] : RASPI_LOG_SIZE_LIMIT;
 
     $plugins = $pluginInstaller->getUserPlugins();

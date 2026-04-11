@@ -151,8 +151,7 @@ initializeApp();
     <script src="dist/speedtest/speedtest.js?v=<?= filemtime('dist/speedtest/speedtest.js'); ?>"></script>
 
     <!-- RaspAP JavaScript -->
-    <script src="app/js/ajax/main.js?v=<?= filemtime('app/js/ajax/main.js'); ?>"></script>
-    <script src="app/js/ui/main.js?v=<?= filemtime('app/js/ui/main.js'); ?>"></script>
+    <script type="module" src="app/js/app.js?v=<?= filemtime('app/js/app.js'); ?>"></script>
 
     <?php loadFooterScripts($extraFooterScripts); ?>
   </body>
