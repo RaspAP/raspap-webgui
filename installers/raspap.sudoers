@@ -14,6 +14,7 @@ www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* reconfigure
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* add_network
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* list_networks
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* enable_network [0-9]
+www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* disable_network [a-zA-Z0-9]*
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* disconnect [0-9]
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* select_network [0-9]
 www-data ALL=(ALL) NOPASSWD:/sbin/wpa_cli -i [a-zA-Z0-9]* set_network [0-9] *
