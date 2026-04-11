@@ -14,7 +14,7 @@
  * @author  Lawrence Yau <sirlagz@gmail.com>
  * @author  Bill Zimmerman <billzimmerman@gmail.com>
  * @license GNU General Public License, version 3 (GPL-3.0)
- * @version 3.5.2
+ * @version 3.5.3
  * @link    https://github.com/RaspAP/raspap-webgui/
  * @link    https://raspap.com/
  * @see     http://sirlagz.net/2013/02/08/raspap-webgui/
@@ -148,8 +148,7 @@ initializeApp();
     <script src="dist/speedtest/speedtest.js?v=<?= filemtime('dist/speedtest/speedtest.js'); ?>"></script>
 
     <!-- RaspAP JavaScript -->
-    <script src="app/js/ajax/main.js?v=<?= filemtime('app/js/ajax/main.js'); ?>"></script>
-    <script src="app/js/ui/main.js?v=<?= filemtime('app/js/ui/main.js'); ?>"></script>
+    <script type="module" src="app/js/app.js?v=<?= filemtime('app/js/app.js'); ?>"></script>
 
     <?php loadFooterScripts($extraFooterScripts); ?>
   </body>
