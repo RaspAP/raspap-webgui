@@ -1,5 +1,4 @@
 import { getCSRFToken } from "../helpers.js";
-import { setDhcpFieldsDisabled } from "../ui/dhcp.js";
 
 export function initDHCP_ajax() {
     console.info("RaspAP DHCP ajax module initialized");
