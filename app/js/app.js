@@ -307,12 +307,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // To auto-close Bootstrap alerts; time is in milliseconds
     const alertTimeout = parseInt(getCookie('alert_timeout'), 10);
-
-    if (!isNaN(alertTimeout) && alertTimeout > 0) {
-        window.setTimeout(function() {
+    window.setTimeout(
+        function() {
             $(".alert").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
+                $(this).remove();
             });
-        }, alertTimeout);
-    }
+        },
+        !isNaN(alertTimeout) && alertTimeout > 0 ? alertTimeout : 5000
+    );
 });
