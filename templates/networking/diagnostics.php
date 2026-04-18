@@ -8,7 +8,7 @@
       <p id="message"><span class="loadCircle"></span><?php echo _("Selecting a server"); ?>...</p>
     </div>
     <div id="testWrapper" class="hidden">
-      <button id="startStopBtn" type="button" class="btn btn-outline btn-primary" onclick="startStop()"></button>
+      <button id="startStopBtn" type="button" class="btn btn-outline-primary" onclick="startStop()"></button>
       <a class="privacy" href="#" onclick="I('privacyPolicy').style.display=''"><?php echo _("Privacy"); ?></a>
 
       <div class="col-sm-4 centered">

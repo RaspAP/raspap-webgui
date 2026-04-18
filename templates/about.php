@@ -55,7 +55,7 @@ require_once 'app/lib/Parsedown.php';
           <div id="msgLatest" data-message="<?php echo _("Installed version is the latest release."); ?>"></div>
           <div id="msgInstall" data-message="<?php echo _("Install this update now?"); ?>"></div>
           <button type="button" data-message="<?php echo _("OK"); ?>" id="js-check-dismiss" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
-          <button type="submit" id="js-sys-check-update" class="btn btn-outline btn-primary collapse"><?php echo _("OK"); ?></button>
+          <button type="submit" id="js-sys-check-update" class="btn btn-outline-primary collapse"><?php echo _("OK"); ?></button>
         </div>
       </form>
     </div>
@@ -82,7 +82,7 @@ require_once 'app/lib/Parsedown.php';
         <div id="successMsg" data-message="<?php echo _("Success. Refresh this page to confirm the new version."); ?>"></div>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-outline btn-primary" data-bs-dismiss="modal" disabled id="updateOk" /><?php echo _("OK"); ?></button>
+      <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" disabled id="updateOk" /><?php echo _("OK"); ?></button>
       </div>
     </div>
   </div>

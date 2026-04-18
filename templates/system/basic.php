@@ -69,7 +69,7 @@ include('includes/sysstats.php');
               <input type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#system-confirm-reboot" value="<?php echo _("Reboot"); ?>" />
               <input type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#system-confirm-shutdown" value="<?php echo _("Shutdown"); ?>" />
           <?php endif ?>
-          <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
+          <button type="button" onClick="window.location.reload();" class="btn btn-outline-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></a>
         </div>
       </form>
     </div>

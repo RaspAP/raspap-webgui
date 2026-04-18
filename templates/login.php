@@ -30,7 +30,7 @@
                   </div>
 
                 </div>
-                <button type="submit" class="btn btn-outline btn-admin-login rounded-pill w-75 mt-4"><?php echo _("Login") ?></button>
+                <button type="submit" class="btn btn-primary rounded-pill w-75 mt-4"><?php echo _("Login") ?></button>
                 <div class="small mt-2"><a href="https://docs.raspap.com/authentication/#restoring-defaults" target="_blank"><?php echo _("Forgot password") ?></a></div>
                 <img src="app/img/uri-qr-code.php?uri=https://docs.raspap.com/authentication/" class="figure-img img-fluid mt-2" alt="RaspAP docs" style="width:75px;">
               </form>
