@@ -240,6 +240,12 @@ msgstr "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
 msgid "Reinitialize"
 msgstr "Reinitialize"
 
+msgid "Client"
+msgstr "Client"
+
+msgid "Set"
+msgstr "Set"
+
 #: includes/dashboard.php
 msgid "Interface Information"
 msgstr "Interface Information"
@@ -948,6 +954,12 @@ msgstr "Enable AP isolation"
 msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
 msgstr "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
 
+msgid "Wireless standards which are not compatible with your adapter may be disabled"
+msgstr "Wireless standards which are not compatible with your adapter may be disabled"
+
+msgid "Based on the selected interface, 802.11%s is suggested."
+msgstr "Based on the selected interface, 802.11%s is suggested."
+
 #: includes/networking.php
 msgid "Summary"
 msgstr "Summary"
@@ -1261,6 +1273,18 @@ msgstr "Select a theme"
 
 msgid "Color"
 msgstr "Color"
+
+msgid "Dark Mode"
+msgstr "Dark Mode"
+
+msgid "Use the dark mode from the current theme"
+msgstr "Use the dark mode from the current theme"
+
+msgid "System Theme"
+msgstr "System Theme"
+
+msgid "Uses the color mode of your system"
+msgstr "Uses the color mode of your system"
 
 msgid "Enable this option for resizable, drag and drop widgets. Best for large displays."
 msgstr "Enable this option for resizable, drag and drop widgets. Best for large displays."

@@ -177,10 +177,10 @@ class DhcpcdManager
         if (isset($post_data['DefaultGateway']) && $post_data['DefaultGateway'] !== '') {
             $cfg[] = 'static routers='.$post_data['DefaultGateway'];
         }
-        if ($post_data['DNS1'] !== '' || $post_data['DNS2'] !== '') {
-            $cfg[] = 'static domain_name_servers='.$post_data['DNS1'].' '.$post_data['DNS2'];
+        if (!empty($post_data['DNS1']) || !empty($post_data['DNS2'])) {
+            $cfg[] = 'static domain_name_servers='.trim(($post_data['DNS1'] ?? '').' '.($post_data['DNS2'] ?? ''));
         }
-        if ($post_data['Metric'] !== '') {
+        if (!empty($post_data['Metric'])) {
             $cfg[] = 'metric '.$post_data['Metric'];
         }
         if (($post_data['Fallback'] ?? 0) == 1) {
@@ -305,6 +305,7 @@ class DhcpcdManager
                 return false;
             }
         }
+        return false;
     }
 
     /**

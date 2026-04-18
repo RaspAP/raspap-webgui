@@ -24,15 +24,27 @@
             <button type="button" class="btn btn-primary float-end js-reload-wifi-stations"><i class="fa-solid fa-magnifying-glass"></i> <?php echo _("Rescan"); ?></button>
           </div>
         </div>
-        <div class="row" id="wpaConf">
-          <div class="col position-relative">
-            <form method="POST" action="wpa_conf" name="wpa_conf_form">
+        <div class="row">
+          <div class="col-md-6">
+            <form method="POST" action="wpa_conf">
               <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
-              <input type="hidden" name="client_settings" ?>
-              <div class="js-wifi-stations loading-spinner"></div>
+              <label for="cbxclientiface"><?php echo _("Interface"); ?></label>
+              <div class="input-group">
+                <?php SelectorOptions('wifiClientInterface', $interfaces, $initial_iface, 'cbxclientiface'); ?>
+                <button type="submit" class="btn btn-primary"><?php echo _("Set"); ?></button>
+              </div>
             </form>
           </div>
         </div>
+        <form method="POST" action="wpa_conf" name="wpa_conf_form">
+          <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
+          <div class="row" id="wpaConf">
+            <div class="col position-relative">
+              <input type="hidden" name="client_settings" />
+              <div class="js-wifi-stations loading-spinner"></div>
+            </div>
+          </div>
+        </form>
       </div><!-- ./ card-body -->
       <div class="card-footer"><?php echo _("<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"); ?></div>
     </div><!-- /.card -->
@@ -55,4 +67,3 @@
     </div>
   </div>
 </div>
-

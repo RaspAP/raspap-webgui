@@ -7,13 +7,20 @@
   </button>
   <!-- Navbar-->
   <ul class="navbar-nav align-items-center gap-3 ms-auto ms-lg-0 me-2 me-lg-4">
-    <!-- Display mode -->
-    <li>
-      <div class="form-check form-switch pl-6 mb-0" style="min-height: initial;">
-        <input type="checkbox" class="form-check-input" id="night-mode" <?php echo getNightmode() ? 'checked' : null ; ?> >
-        <label class="form-check-label" for="night-mode"><i class="far fa-moon mr-1 text-muted"></i></label>
-      </div>
-    </li>
+    <?php if (isset($_SESSION['theme']) && isset($_SESSION['theme']['modes']) && in_array('dark', $_SESSION['theme']['modes'])): ?>
+      <!-- Display mode -->
+      <li class="border-end">
+        <button id="navbar-system-mode" class="system-mode-toggle btn btn-link <?= ($_COOKIE['use_system_color_scheme'] ?? false) === 'true' ? 'active' : '' ?>">
+          <i class="fas fa-laptop"></i>
+        </button>
+      </li>
+      <li>
+        <div class="form-check form-switch pl-6 mb-0" style="min-height: initial;">
+          <input type="checkbox" class="form-check-input dark-mode-toggle" id="navbar-dark-mode" <?php echo getDarkMode() ? 'checked' : null ; ?> >
+          <label class="form-check-label" for="navbar-dark-mode"><i class="far <?= !getDarkMode() ? 'fa-moon' : 'fa-sun' ?> mr-1 text-muted"></i></label>
+        </div>
+      </li>
+    <?php endif; ?>
     <!-- Auth user -->
     <li>
       <a class="d-flex flex-nowrap align-items-center gap-1" href="auth_conf">

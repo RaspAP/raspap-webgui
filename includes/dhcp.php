@@ -74,7 +74,19 @@ function DisplayDHCPConfig()
     $conf = array_merge(ParseConfig($return));
     $hosts = (array)($conf['dhcp-host'] ?? []);
     $upstreamServers = (array)($conf['server'] ?? []);
-    exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
+    exec("ip -o link show | awk -F': ' '{print $2}'", $ifaces);
+    $interfaces = [];
+    foreach ($ifaces as $iface) {
+        $ifaceServices = [];
+        if ($iface === $_SESSION['ap_interface']) {
+            $ifaceServices[] = 'AP';
+        }
+        if ($iface === $_SESSION['wifi_client_interface']) {
+            $ifaceServices[] = 'Client';
+        }
+        $label = !empty($ifaceServices) ? $iface . ' (' . implode(', ', $ifaceServices) . ')' : $iface;
+        $interfaces[$iface] = $label;
+    }
     exec('cat ' . RASPI_DNSMASQ_LEASES, $leases);
 
     count($log_dhcp) > 0 ? $conf['log-dhcp'] = true : false ;
@@ -110,37 +122,33 @@ function saveDHCPConfig($status)
     $dnsmasq = new DnsmasqManager();
     $iface = $_POST['interface'];
 
-    // dhcp
-    if (!isset($_POST['dhcp-iface']) && file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf')) {
-        // remove dhcp + dnsmasq configs for selected interface
-        $return = $dhcpcd->remove($iface, $status);
-        $return = $dnsmasq->remove($iface, $status);
+    // Always save dhcpcd static IP config
+    $errors = $dhcpcd->validate($_POST);
+    if (empty($errors)) {
+        $dhcp_cfg = $dhcpcd->buildConfigEx($iface, $_POST, $status);
+        $dhcpcd->saveConfig($dhcp_cfg, $iface, $status);
     } else {
-        $errors = $dhcpcd->validate($_POST);
+        foreach ($errors as $error) {
+            $status->addMessage($error, 'danger');
+        }
+    }
+
+    // dnsmasq: remove if DHCP was previously enabled but now disabled
+    if (!isset($_POST['dhcp-iface']) && file_exists(RASPI_DNSMASQ_PREFIX.$iface.'.conf')) {
+        $dnsmasq->remove($iface, $status);
+    } elseif (($_POST['dhcp-iface'] ?? '') == "1" || isset($_POST['mac'])) {
+        $errors = $dnsmasq->validate($_POST);
         if (empty($errors)) {
-            $dhcp_cfg = $dhcpcd->buildConfigEx($iface, $_POST, $status);
-            $dhcpcd->saveConfig($dhcp_cfg, $iface, $status);
+            $config = $dnsmasq->buildConfigEx($iface, $_POST);
+            $return = $dnsmasq->saveConfig($config, $iface);
+            $config = $dnsmasq->buildDefault($_POST);
+            $return = $dnsmasq->saveConfigDefault($config);
         } else {
             foreach ($errors as $error) {
                 $status->addMessage($error, 'danger');
             }
         }
-
-        // dnsmasq
-        if (($_POST['dhcp-iface'] == "1") || (isset($_POST['mac']))) {
-            $errors = $dnsmasq->validate($_POST);
-            if (empty($errors)) {
-                $config = $dnsmasq->buildConfigEx($iface, $_POST);
-                $return = $dnsmasq->saveConfig($config, $iface);
-                $config = $dnsmasq->buildDefault($_POST);
-                $return = $dnsmasq->saveConfigDefault($config);
-            } else {
-                foreach ($errors as $error) {
-                    $status->addMessage($error, 'danger');
-                }
-            }
-        }
-        return true;
     }
+    return true;
 }
 
