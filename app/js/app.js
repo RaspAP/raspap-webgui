@@ -185,8 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Session expired login button
     $(document).on("click", "#js-session-expired-login", function(e) {
-        const loginModal = $('#modal-admin-login');
-        const redirectUrl = window.location.pathname;
+        const redirectUrl = window.location.pathname + window.location.hash;
         window.location.href = `/login?action=${encodeURIComponent(redirectUrl)}`;
     });
 
