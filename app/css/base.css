@@ -418,7 +418,7 @@ button.btn i:not([class*="service-status"]) {
   border: none;
 }
 .ip-info-toggle button.active {
-  background: var(--raspap-theme-color);
+  background: var(--raspap-brand-color);
   color: white;
 }
 

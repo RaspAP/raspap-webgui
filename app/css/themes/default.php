@@ -127,6 +127,17 @@ i.fa.fa-bars:hover{
   color: var(--raspap-theme-color) !important;
 }
 
+.ip-info-toggle {
+  background: #e3e3e3;
+}
+.ip-info-toggle button {
+  color: var(--raspap-theme-color);
+}
+.ip-info-toggle button.active {
+  background: var(--raspap-theme-color);
+  color: white;
+}
+
 .band.active {
   border-color: var(--raspap-theme-color);
   color: var(--raspap-theme-color);
