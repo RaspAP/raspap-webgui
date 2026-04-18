@@ -13,6 +13,7 @@ xgettext \
     --output="$POTFILE" \
     --package-name="RaspAP" \
     --package-version="$(git describe --tags --abbrev=0 2>/dev/null || echo 'dev')" \
+    --msgid-bugs-address="Bill Zimmerman <billzimmerman@gmail.com>" \
     --copyright-holder="RaspAP contributors" \
     --no-wrap \
     $(find .. -name "*.php" \
