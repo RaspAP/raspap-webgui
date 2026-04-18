@@ -21,7 +21,8 @@ body {
 
 /* Typography */
 a {
-  color: var(--raspap-brand-color);
+  --bs-link-color: var(--raspap-brand-color);
+  --bs-link-hover-color: var(--raspap-brand-color);
   text-decoration: none;
 }
 

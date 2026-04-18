@@ -20,11 +20,8 @@ License: GNU General Public License v3.0
 
 /* Typography */
 a {
-  color: var(--raspap-theme-color);
-}
-
-a:focus, a:hover {
-  color: var(--raspap-theme-darker);
+  --bs-link-color: var(--raspap-theme-color);
+  --bs-link-hover-color: var(--raspap-theme-color);
 }
 
 /* Elements */
@@ -39,37 +36,41 @@ i.fa.fa-bars:hover{
 
 /* Buttons */
 .btn-primary {
-  border-color: var(--raspap-theme-color) !important;
-  background-color: var(--raspap-theme-color) !important;
+  --bs-btn-bg: var(--raspap-theme-color);
+  --bs-btn-border-color: var(--raspap-theme-color);
+  --bs-btn-hover-bg: var(--raspap-theme-darker);
+  --bs-btn-hover-border-color: var(--raspap-theme-darker);
+  --bs-btn-active-bg: var(--raspap-theme-darker);
+  --bs-btn-active-border-color: var(--raspap-theme-darker);
+  --bs-btn-disabled-bg: var(--raspap-theme-lighter);
+  --bs-btn-disabled-border-color: var(--raspap-theme-lighter);
 }
 
-.btn-primary.btn-outline {
-  color: var(--raspap-theme-color) !important;
-  border-color: var(--raspap-theme-color) !important;
-  background-color: #fff !important;
+.btn-outline-primary {
+  --bs-btn-color: var(--raspap-theme-color);
+  --bs-btn-border-color: var(--raspap-theme-color);
+  --bs-btn-hover-bg: var(--raspap-theme-color);
+  --bs-btn-hover-border-color: var(--raspap-theme-color);
+  --bs-btn-active-bg: var(--raspap-theme-color);
+  --bs-btn-active-border-color: var(--raspap-theme-color);
+  --bs-btn-disabled-color: var(--raspap-theme-color);
+  --bs-btn-disabled-border-color: var(--raspap-theme-color);
 }
 
-.btn-primary:hover {
-  color: #fff !important;
-  border-color: var(--raspap-theme-color) !important;
-  background-color: var(--raspap-theme-color) !important;
-}
-
-.btn-primary.btn-outline:disabled {
-  color: var(--raspap-theme-color) !important;
-  border-color: var(--raspap-theme-color) !important;
-  background-color: #fff !important;
+html:not([data-bs-theme="dark"]) .btn-outline-warning {
+  --bs-btn-color: #333;
 }
 
 .btn-light {
-  color: var(--raspap-theme-darker) !important;
+  --bs-btn-color: var(--raspap-theme-darker);
+  --bs-btn-hover-color: var(--raspap-theme-darker);
+  --bs-btn-active-color: var(--raspap-theme-darker);
+  --bs-btn-disabled-color: var(--raspap-theme-darker);
 }
 
-.btn-warning {
-  color: #333;
-}
-.btn-warning:hover {
-    color: #000;
+.btn-link {
+  --bs-link-color: var(--raspap-theme-color);
+  --bs-link-hover-color: var(--raspap-theme-darker);
 }
 
 /* Forms */
