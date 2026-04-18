@@ -343,6 +343,7 @@ button.btn i:not([class*="service-status"]) {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .connection-item {
@@ -446,17 +447,16 @@ button.btn i:not([class*="service-status"]) {
 .solid-lines {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 112px;
   width: 100%;
   height: 100%;
   object-fit: contain;
   padding: 1rem;
-  left: 112px;
 }
 
 .dashed-lines-right,
 .solid-lines-right {
-  left: -80px;
+  left: -112px;
 }
 
 .solid-lines, .solid-lines-right {
