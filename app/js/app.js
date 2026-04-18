@@ -288,6 +288,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Handle stacking of multiple Bootstrap modals
+    $(document).on('show.bs.modal', '.modal', function () {
+        // Calculate increasing z-index based on how many modals are currently visible
+        // 1050 is Bootstrap's base modal z-index
+        const zIndex = 1050 + 10 * $('.modal:visible').length;
+
+        $(this).css('z-index', zIndex);
+
+        // Give the backdrop a slightly lower z-index and mark it as stacked
+        // Small delay ensures Bootstrap has created the backdrop
+        setTimeout(() => {
+            $('.modal-backdrop').not('.modal-stack')
+            .css('z-index', zIndex - 1)
+            .addClass('modal-stack');
+        }, 10);
+    });
+
     // To auto-close Bootstrap alerts; time is in milliseconds
     const alertTimeout = parseInt(getCookie('alert_timeout'), 10);
 
