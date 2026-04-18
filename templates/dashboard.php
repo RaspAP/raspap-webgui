@@ -143,7 +143,7 @@
                     <i class="fas fa-wifi fa-stack-1x fa-xs"></i>
                   </span>
                 </a>
-                <a href="/dhcpd_conf#client-list"><span class="text-nowrap <?php echo $wirelessClientActive; ?>"><?php echo $wirelessClientLabel; ?></span></a>
+                <a href="/dhcpd_conf#client-list"><span class="<?php echo $wirelessClientActive; ?>"><?php echo $wirelessClientLabel; ?></span></a>
               </div>
               <div class="connection-item connection-right">
                 <a href="/dhcpd_conf#client-list" class="<?php echo $ethernetClientActive; ?>">
@@ -152,7 +152,7 @@
                     <i class="fas fa-ethernet fa-stack-1x fa-xs"></i>
                   </span>
                 </a>
-                <a href="/dhcpd_conf#client-list"><span class="text-nowrap <?php echo $ethernetClientActive; ?>"><?php echo $ethernetClientLabel; ?></span></a>
+                <a href="/dhcpd_conf#client-list"><span class="<?php echo $ethernetClientActive; ?>"><?php echo $ethernetClientLabel; ?></span></a>
               </div>
             </div>
             <?php echo renderClientConnections($wirelessClients, $ethernetClients); ?>
