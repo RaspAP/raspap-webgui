@@ -445,9 +445,10 @@ button.btn i:not([class*="service-status"]) {
 
 .dashed-lines,
 .solid-lines {
+  --connection-lines-offset: 112px;
   position: absolute;
   top: 0;
-  left: 112px;
+  left: var(--connection-lines-offset);
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -456,7 +457,7 @@ button.btn i:not([class*="service-status"]) {
 
 .dashed-lines-right,
 .solid-lines-right {
-  left: -112px;
+  left: calc(var(--connection-lines-offset) * -1);
 }
 
 .solid-lines, .solid-lines-right {
@@ -540,6 +541,13 @@ a.inactive:focus {
 }
 
 @media (max-width: 1200px) {
+  .dashed-lines,
+  .solid-lines {
+    --connection-lines-offset: 70px;
+  }
+  .connections-right .connection-item {
+    margin-left: auto;
+  }
   .connection-item a > span:not(.fa-stack) {
     display: none!important;
   }
