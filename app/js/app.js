@@ -107,6 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }).parent().addClass('active');
     });
 
+    // Allows closing of sidebar when content overlay is clicked
+    $(document).on('click', '.sb-sidenav-toggled #layoutSidenav_content', function() {
+        // Only apply on mobile style nav
+        if (window.innerWidth < 992) {
+            $('#sidebarToggle').trigger('click');
+        }
+    });
+
     // Sets focus on a specified tab
     jQuery(function() {
         // Store hash in URL
