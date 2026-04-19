@@ -9,7 +9,6 @@
   </div>
   <div class="d-flex flex-wrap gap-2">
     <input type="submit" class="btn btn-outline-primary" name="SaveLanguage" value="<?php echo _("Save settings"); ?>" />
-    <button type="button" onClick="window.location.reload();" class="btn btn-outline-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></button>
   </div>
 </div>
 
