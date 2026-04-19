@@ -116,6 +116,11 @@ html:not([data-bs-theme="dark"]) .btn-outline-warning {
 }
 
 /* --- Page Specific --- */
+/* Login */
+.login-brand {
+  color: var(--raspap-theme-color);
+}
+
 /* Dashboard */
 .connection-item,
 .connection-item > i,
