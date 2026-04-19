@@ -1,5 +1,5 @@
 <div role="tabpanel" class="tab-pane fade show active" id="summary">
-  <div class="d-flex justify-content-between align-items-center mt-3">
+  <div class="d-flex justify-content-between align-items-center mt-3 mb-2">
     <h4><?php echo _("Internet connection"); ?></h4>
     <button type="button" onClick="window.location.reload();" class="btn btn-sm btn-outline-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></button>
   </div>
