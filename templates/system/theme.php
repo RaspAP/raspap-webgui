@@ -53,9 +53,8 @@
     </div>
     <div class="d-flex flex-wrap gap-2">
       <?php if (!RASPI_MONITOR_ENABLED) : ?>
-      <input type="submit" class="btn btn-outline btn-primary" name="savethemeSettings" value="<?php echo _("Save settings"); ?>" />
+        <input type="submit" class="btn btn-outline-primary" name="savethemeSettings" value="<?php echo _("Save settings"); ?>" />
       <?php endif; ?>
-      <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></button>
     </div>
   </form>
 </div>

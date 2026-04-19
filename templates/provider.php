@@ -1,6 +1,6 @@
   <?php ob_start() ?>
     <?php if (!RASPI_MONITOR_ENABLED) : ?>
-    <input type="submit" <?php echo $ctlState; ?> class="btn btn-outline btn-primary <?php echo $ctlState; ?>" name="SaveProviderSettings" value="<?php echo _("Save settings"); ?>" />
+    <input type="submit" <?php echo $ctlState; ?> class="btn btn-outline-primary <?php echo $ctlState; ?>" name="SaveProviderSettings" value="<?php echo _("Save settings"); ?>" />
         <?php if ($serviceStatus == 'down') : ?>
         <input type="submit" <?php echo $ctlState; ?> class="btn btn-success <?php echo $ctlState; ?>" name="StartProviderVPN" value="<?php echo sprintf(_("Connect %s"), $providerName); ?>" />
         <?php else : ?>
