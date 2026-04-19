@@ -45,6 +45,10 @@ a {
   font-size: 16px;
 }
 
+.text-offwhite {
+  color: var(--raspap-offwhite);
+}
+
 /* Elements */
 .table {
   margin-bottom: 0rem;

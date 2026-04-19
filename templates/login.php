@@ -15,24 +15,22 @@
             </div>
             <div class="text-center mb-4">
               <form id="admin-login-form" action="login" method="POST" class="needs-validation" novalidate>
-              <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
+                <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
                 <div class="form-group">
                   <input type="hidden" name="login-auth">
                   <input type="hidden" id="redirect-url" name="redirect-url" value="<?php echo htmlspecialchars($redirectUrl, ENT_QUOTES, 'UTF-8'); ?>">
                   <input type="text" class="form-control" id="username" name="username" placeholder="<?php echo _("Username") ?>" required>
                 </div>
-                <div class="mt-2">
-                  <div class="input-group has-validation">
-                    <input type="password" class="form-control rounded-start border-end-0 no-right-radius" id="password" name="password" placeholder="<?php echo _("Password") ?>" required>
-                    <button class="btn bg-white btn-passwd-append border-start-0 js-toggle-password" type="button" id="passwd-toggle" data-bs-target="[name=password]" data-toggle-with="fas fa-eye-slash text-secondary text-opacity-50">
-                      <i class="fas fa-eye text-secondary text-opacity-50"></i>
-                    </button>
-                  </div>
-
+                <div class="input-group has-validation mt-2">
+                  <input type="password" class="form-control rounded-start border-end-0 no-right-radius" id="password" name="password" placeholder="<?php echo _("Password") ?>" required>
+                  <button class="btn bg-white btn-passwd-append border-start-0 js-toggle-password" type="button" id="passwd-toggle" data-bs-target="[name=password]" data-toggle-with="fas fa-eye-slash text-secondary text-opacity-50">
+                    <i class="fas fa-eye text-secondary text-opacity-50"></i>
+                  </button>
                 </div>
                 <button type="submit" class="btn btn-primary rounded-pill w-75 mt-4"><?php echo _("Login") ?></button>
                 <div class="small mt-2"><a href="https://docs.raspap.com/authentication/#restoring-defaults" target="_blank"><?php echo _("Forgot password") ?></a></div>
-                <img src="app/img/uri-qr-code.php?uri=https://docs.raspap.com/authentication/" class="figure-img img-fluid mt-2" alt="RaspAP docs" style="width:75px;">
+                <img src="app/img/uri-qr-code.php?uri=https://docs.raspap.com/authentication/" class="figure-img img-fluid mt-5" alt="RaspAP docs" style="width:75px;">
+                <div><span class="small text-offwhite"><?= _('Scan for Login Help'); ?></span></div>
               </form>
             </div>
           </div><!-- /.col -->
