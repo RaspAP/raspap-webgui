@@ -233,6 +233,36 @@ button.btn i:not([class*="service-status"]) {
   font-size: 1.3rem;
 }
 
+/* Improved progress bar */
+.progress.progress-improved {
+  position: relative;
+  overflow: hidden;
+}
+.progress.progress-improved .progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  clip-path: inset(0 calc(100% - var(--progress)) 0 0);
+}
+.progress.progress-improved .progress-bar span {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+.progress.progress-improved[data-text]::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  z-index: 0;
+}
+
 /* --- Page Specific --- */
 .nav-tabs-wrapper {
   width: 100%;
