@@ -21,19 +21,19 @@ body {
 
 /* Typography */
 a {
-  color: var(--raspap-brand-color);
+  --bs-link-color: var(--raspap-brand-color);
+  --bs-link-hover-color: var(--raspap-brand-color);
   text-decoration: none;
 }
 
 .info-item {
   text-transform: uppercase;
-  font-size: 0.7em;
+  flex-basis: 125px;
   color: var(--raspap-text-muted);
 }
 
-.info-value {
-  font-size: 0.7rem;
-  margin-left: 0.7rem;
+.info-item, .info-value {
+  font-size: 0.9rem;
 }
 
 .info-item-xs {
@@ -43,6 +43,10 @@ a {
 
 .page-card-header, .modal-title {
   font-size: 16px;
+}
+
+.text-offwhite {
+  color: var(--raspap-offwhite);
 }
 
 /* Elements */
@@ -130,6 +134,10 @@ button.btn i:not([class*="service-status"]) {
 
 .was-validated .form-control:valid {
   background-size: calc(0.6em + 0.375rem) calc(0.6em + 0.375rem);
+}
+
+.input-group > .btn {
+  border: 1px solid #ced4da;
 }
 
 .input-group > .input-group-append:not(:last-child) > .btn {
@@ -230,6 +238,36 @@ button.btn i:not([class*="service-status"]) {
 .close {
   font-weight: 400;
   font-size: 1.3rem;
+}
+
+/* Improved progress bar */
+.progress.progress-improved {
+  position: relative;
+  overflow: hidden;
+}
+.progress.progress-improved .progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  clip-path: inset(0 calc(100% - var(--progress)) 0 0);
+}
+.progress.progress-improved .progress-bar span {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+.progress.progress-improved[data-text]::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  z-index: 0;
 }
 
 /* --- Page Specific --- */
@@ -435,7 +473,7 @@ button.btn i:not([class*="service-status"]) {
 
 .dashed-lines-right,
 .solid-lines-right {
-  left: -80px;
+  left: -80;
 }
 
 .solid-lines, .solid-lines-right {

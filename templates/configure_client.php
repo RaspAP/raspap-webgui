@@ -62,7 +62,7 @@
         <div class="col-md-12 mb-3 mt-1"><?php echo _("Configuring Wifi Client Interface..."); ?></div>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-outline btn-primary" data-bs-dismiss="modal"><?php echo _("Close"); ?></button>
+      <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><?php echo _("Close"); ?></button>
       </div>
     </div>
   </div>

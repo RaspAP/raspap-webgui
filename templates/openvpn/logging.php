@@ -6,7 +6,7 @@
   <div class="form-check form-switch">
     <input class="form-check-input" id="log-openvpn" type="checkbox" name="log-openvpn" value="1" <?php echo $logEnable ? ' checked="checked"' : "" ?> aria-describedby="log-openvpn">
     <label class="form-check-label align-middle" for="log-openvpn"><?php echo _("Enable logging") ?></label>
-    <input type="button" class="btn btn-outline btn-warning btn-sm align-top ms-2" id="js-clearopenvpn-log" value="<?php echo _("Clear log"); ?>" />
+    <input type="button" class="btn btn-outline-warning btn-sm align-top ms-2" id="js-clearopenvpn-log" value="<?php echo _("Clear log"); ?>" />
   </div>
   <div class="row">
     <div class="mb-3 col-md-8 mt-2">

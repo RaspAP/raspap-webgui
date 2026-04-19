@@ -1,6 +1,6 @@
 <?php ob_start() ?>
   <?php if (!RASPI_MONITOR_ENABLED) : ?>
-    <input type="submit" class="btn btn-outline btn-primary" name="savewgsettings" value="<?php echo _("Save settings"); ?>">
+    <input type="submit" class="btn btn-outline-primary" name="savewgsettings" value="<?php echo _("Save settings"); ?>">
   <?php endif ?>
 <?php $buttons = ob_get_clean(); ob_end_clean() ?>
 

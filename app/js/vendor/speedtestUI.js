@@ -117,18 +117,18 @@ function startStop(){
 		//speedtest is running, abort
 		s.abort();
 		data=null;
-		I("startStopBtn").className="btn btn-outline btn-primary";
+		I("startStopBtn").className="btn btn-outline-primary";
 		I("server").disabled=false;
 		initUI();
 	}else{
 		//test is not running, begin
-		I("startStopBtn").className="btn btn-outline btn-primary running";
+		I("startStopBtn").className="btn btn-outline-primary running";
 		I("server").disabled=true;
 		s.onupdate=function(data){
             uiData=data;
 		};
 		s.onend=function(aborted){
-            I("startStopBtn").className="btn btn-outline btn-primary";
+            I("startStopBtn").className="btn btn-outline-primary";
             I("server").disabled=false;
             updateUI(true);
             if(!aborted){
