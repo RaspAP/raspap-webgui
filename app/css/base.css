@@ -28,13 +28,12 @@ a {
 
 .info-item {
   text-transform: uppercase;
-  font-size: 0.7em;
+  flex-basis: 125px;
   color: var(--raspap-text-muted);
 }
 
-.info-value {
-  font-size: 0.7rem;
-  margin-left: 0.7rem;
+.info-item, .info-value {
+  font-size: 0.9rem;
 }
 
 .info-item-xs {
