@@ -12,7 +12,7 @@
           <label for="txtapikey"><?php echo _("API Key"); ?></label>
           <div class="input-group has-validation">
               <input type="text" class="form-control" id="txtapikey" name="txtapikey" value="<?php echo htmlspecialchars($apiKey, ENT_QUOTES); ?>" required />
-              <div class="input-group-text" id="gen_apikey"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <button type="button" class="btn btn-light" id="gen_apikey"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
               <div class="invalid-feedback">
                 <?php echo _("Please provide a valid API key."); ?>
               </div>
