@@ -461,7 +461,6 @@ button.btn i:not([class*="service-status"]) {
 
 .dashed-lines,
 .solid-lines {
-  --connection-lines-offset: 112px;
   position: absolute;
   top: 0;
   left: 0;
