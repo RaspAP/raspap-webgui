@@ -10,7 +10,7 @@
   <div class="form-check form-switch">
     <input class="form-check-input" id="log-queries" type="checkbox" name="log-queries" value="1" <?php echo !empty($conf['log-queries']) ? ' checked="checked"' : "" ?> aria-describedby="log-dhcp-queries">
     <label class="form-check-label align-middle" for="log-queries"><?php echo _("Log DNS queries") ?></label>
-    <input type="button" class="btn btn-outline btn-warning btn-sm align-top ms-4" id="js-cleardnsmasq-log" value="<?php echo _("Clear log"); ?>" />
+    <input type="button" class="btn btn-outline-warning btn-sm align-top ms-4" id="js-cleardnsmasq-log" value="<?php echo _("Clear log"); ?>" />
   </div>
 
   <div class="row">

@@ -20,7 +20,7 @@
         <?php echo _("Your session has expired. Please login to continue.") ?>
       </div>
       <div class="modal-footer">
-        <button type="button" id="js-session-expired-login" class="btn btn-outline btn-primary"><?php echo _("Login"); ?></button>
+        <button type="button" id="js-session-expired-login" class="btn btn-outline-primary"><?php echo _("Login"); ?></button>
       </div>
     </div>
   </div>

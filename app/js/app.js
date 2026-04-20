@@ -107,6 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }).parent().addClass('active');
     });
 
+    // Allows closing of sidebar when content overlay is clicked
+    $(document).on('click', '.sb-sidenav-toggled #layoutSidenav_content', function() {
+        // Only apply on mobile style nav
+        if (window.innerWidth < 992) {
+            $('#sidebarToggle').trigger('click');
+        }
+    });
+
     // Sets focus on a specified tab
     jQuery(function() {
         // Store hash in URL
@@ -185,8 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Session expired login button
     $(document).on("click", "#js-session-expired-login", function(e) {
-        const loginModal = $('#modal-admin-login');
-        const redirectUrl = window.location.pathname;
+        const redirectUrl = window.location.pathname + window.location.hash;
         window.location.href = `/login?action=${encodeURIComponent(redirectUrl)}`;
     });
 
@@ -289,14 +296,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Handle stacking of multiple Bootstrap modals
+    $(document).on('show.bs.modal', '.modal', function () {
+        // Calculate increasing z-index based on how many modals are currently visible
+        // 1050 is Bootstrap's base modal z-index
+        const zIndex = 1050 + 10 * $('.modal:visible').length;
+
+        $(this).css('z-index', zIndex);
+
+        // Give the backdrop a slightly lower z-index and mark it as stacked
+        // Small delay ensures Bootstrap has created the backdrop
+        setTimeout(() => {
+            $('.modal-backdrop').not('.modal-stack')
+            .css('z-index', zIndex - 1)
+            .addClass('modal-stack');
+        }, 10);
+    });
+
     // To auto-close Bootstrap alerts; time is in milliseconds
     const alertTimeout = parseInt(getCookie('alert_timeout'), 10);
-
-    if (!isNaN(alertTimeout) && alertTimeout > 0) {
-        window.setTimeout(function() {
+    window.setTimeout(
+        function() {
             $(".alert").fadeTo(500, 0).slideUp(500, function(){
-            $(this).remove();
+                $(this).remove();
             });
-        }, alertTimeout);
-    }
+        },
+        !isNaN(alertTimeout) && alertTimeout > 0 ? alertTimeout : 5000
+    );
 });

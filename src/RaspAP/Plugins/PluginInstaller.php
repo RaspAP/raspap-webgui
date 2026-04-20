@@ -589,11 +589,11 @@ class PluginInstaller
             $manifest = htmlspecialchars(json_encode($manifestData), ENT_QUOTES, 'UTF-8');
 
             if ($installed === true) {
-                $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
+                $button = '<button type="button" class="btn btn-outline-primary btn-sm text-nowrap"
                     name="plugin-details" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
                     data-plugin-manifest="' .$manifest. '" data-plugin-installed="' .$installed. '">' . _("Installed") .'</button>';
             } elseif (!RASPI_MONITOR_ENABLED) {
-                $button = '<button type="button" class="btn btn-outline btn-primary btn-sm text-nowrap"
+                $button = '<button type="button" class="btn btn-outline-primary btn-sm text-nowrap"
                     name="install-plugin" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
                     data-plugin-manifest="' .$manifest. '" data-repo-public="' .$this->repoPublic. '">' . _("Details") .'</button>';
             }

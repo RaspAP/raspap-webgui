@@ -7,7 +7,7 @@
     <?php $checked = $arrHostapdConf['LogEnable'] == 1 ? 'checked="checked"' : '' ?>
     <input class="form-check-input" id="chxlogenable" name="logEnable" type="checkbox" value="1" <?php echo $checked ?> />
     <label class="form-check-label align-middle" for="chxlogenable"><?php echo _("Logfile output"); ?></label>
-    <input type="button" class="btn btn-outline btn-warning btn-sm align-top ms-2" id="js-clearhostapd-log" value="<?php echo _("Clear log"); ?>" />
+    <input type="button" class="btn btn-outline-warning btn-sm align-top ms-2" id="js-clearhostapd-log" value="<?php echo _("Clear log"); ?>" />
   </div>
 
   <div class="row">

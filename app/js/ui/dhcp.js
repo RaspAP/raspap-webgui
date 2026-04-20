@@ -56,8 +56,8 @@ export function initDHCP() {
     // DHCP or Static IP option group
     $('#chkstatic, #chkdhcp').on('change', function() {
         if (this.id === 'chkstatic' && this.checked) {
-            $('#chkdhcp').closest('.btn').addClass('btn-outline');
-            $('#chkstatic').closest('.btn').removeClass('btn-outline');
+            $('#chkdhcp').closest('.btn').removeClass('active');
+            $('#chkstatic').closest('.btn').addClass('active');
 
             // set form for Static IP
             $('#dhcp-iface').removeAttr('disabled');
@@ -65,8 +65,8 @@ export function initDHCP() {
             setDhcpFieldsEnabled();
             setStaticFieldsEnabled();
         } else {
-            $('#chkstatic').closest('.btn').addClass('btn-outline');
-            $('#chkdhcp').closest('.btn').removeClass('btn-outline');
+            $('#chkstatic').closest('.btn').removeClass('active');
+            $('#chkdhcp').closest('.btn').addClass('active');
 
             // set form for DHCP
             $('#chkfallback').removeAttr('disabled');
