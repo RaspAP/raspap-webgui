@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="general">
-  <h4 class="mt-3 mb-3"><?php echo _("General"); ?></h4>
+  <h4 class="mt-3 mb-3"><?php echo _("Summary"); ?></h4>
   
   <div class="card mb-3">
     <div class="card-header">
