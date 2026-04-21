@@ -1,6 +1,6 @@
 <?php ob_start() ?>
   <?php if (!RASPI_MONITOR_ENABLED) : ?>
-    <input type="submit" class="btn btn-outline btn-primary" id="btnSaveHostapd" name="SaveHostAPDSettings" value="<?php echo _("Save settings"); ?>" />
+    <input type="submit" class="btn btn-outline-primary" id="btnSaveHostapd" name="SaveHostAPDSettings" value="<?php echo _("Save settings"); ?>" />
   <?php endif ?>
 <?php $buttons = ob_get_clean(); ob_end_clean() ?>
 
@@ -90,7 +90,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline btn-primary" data-bs-dismiss="modal"><?php echo _("Close"); ?></button>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><?php echo _("Close"); ?></button>
       </div>
     </div>
   </div>

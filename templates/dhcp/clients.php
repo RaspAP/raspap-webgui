@@ -1,12 +1,14 @@
 <div class="tab-pane fade" id="client-list">
-  <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
-    <h4 class="m-0 text-nowrap"><?php echo _("Client list"); ?></h4>
-    <button type="button" onClick="window.location.reload();" class="btn btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></button>
-  </div>
+  <h4 class="mt-3 text-nowrap"><?php echo _("Client list"); ?></h4>
   <div class="row">
     <div class="col-lg-12">
       <div class="card mb-3">
-        <div class="card-header"><?php echo _("Active DHCP leases"); ?></div>
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <span><?php echo _("Active DHCP leases"); ?></span>
+            <button type="button" onClick="window.location.reload();" class="btn btn-sm btn-primary"><i class="fas fa-sync-alt"></i></button>
+          </div>
+        </div>
         <!-- /.panel-heading -->
         <div class="card-body">
           <div class="table-responsive">

@@ -21,7 +21,7 @@
         </div>
         <div class="input-group col-md-12">
           <input type="text" class="form-control" name="wg-peer" id="wg-peerpubkey" value="<?php echo htmlspecialchars($wg_peerpubkey, ENT_QUOTES); ?>" />
-          <div class="btn btn-outline-secondary rounded-end wg-keygen"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <button class="btn btn-light rounded-end wg-keygen"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
           <span id="wg-peer-pubkey-status" class="input-group-addon check-hidden ms-2 mt-1"><i class="fas fa-check"></i></span>
         </div>
       </div>

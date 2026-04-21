@@ -97,7 +97,7 @@
                     </div>
                 </div>
 
-                <input type="submit" class="btn btn-outline btn-primary" name="SaveTORProxySettings" value="Save settings" />
+                <input type="submit" class="btn btn-outline-primary" name="SaveTORProxySettings" value="Save settings" />
                 <?php
                 if ($torproxystatus[0] == 0) {
                     echo '<input type="submit" class="btn btn-success" name="StartTOR" value="Start TOR" />' , PHP_EOL;

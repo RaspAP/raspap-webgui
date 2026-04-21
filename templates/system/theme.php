@@ -4,13 +4,35 @@
     <form action="system_info" method="POST">
     <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
     <div class="row">
-      <div class="mb-3 col-xs-3 col-sm-3">
+      <div class="col-sm-6 col-md-3 mb-3">
         <label for="code"><?php echo _("Select a theme"); ?></label>
         <?php SelectorOptions("theme", $themes, $selectedTheme, "theme-select") ?>
       </div>
-      <div class="col-xs-3 col-sm-3">
+      <div class="col-sm-6 col-md-3 mb-3">
         <label for="code"><?php echo _("Color"); ?></label>
         <input class="form-control color-input" value="#2b8080" aria-label="color" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3 mb-3">
+        <label><?php echo _("Dark Mode"); ?></label>
+        <div class="form-check form-switch">
+          <input type="checkbox" class="form-check-input dark-mode-toggle" id="settings-dark-mode" <?php echo getDarkMode() ? 'checked' : null ; ?>
+            <?= (isset($_SESSION['theme']) && isset($_SESSION['theme']['modes']) && !in_array('dark', $_SESSION['theme']['modes'])) ? 'disabled' : null ?>
+          >
+          <label class="form-check-label" for="settings-dark-mode"><i class="far <?= !getDarkMode() ? 'fa-moon' : 'fa-sun' ?> mr-1"></i></label>
+        </div>
+        <span class="small text-muted"><?= _('Use the dark mode from the current theme') ?></span>
+      </div>
+      <div class="col-sm-3 mb-3">
+        <label for="code"><?php echo _("System Theme"); ?></label>
+        <div class="form-check form-switch">
+          <input type="checkbox" class="form-check-input system-mode-toggle" id="settings-system-mode" <?= ($_COOKIE['use_system_color_scheme'] ?? false) === 'true' ? 'checked' : null ?>
+            <?= (isset($_SESSION['theme']) && isset($_SESSION['theme']['modes']) && !in_array('dark', $_SESSION['theme']['modes'])) ? 'disabled' : null ?>
+          />
+          <label class="form-check-label" for="settings-system-mode"><i class="fas fa-laptop mr-1"></i></label>
+        </div>
+        <span class="small text-muted"><?= _('Uses the color mode of your system') ?></span>
       </div>
     </div>
     <div class="row">
@@ -31,9 +53,8 @@
     </div>
     <div class="d-flex flex-wrap gap-2">
       <?php if (!RASPI_MONITOR_ENABLED) : ?>
-      <input type="submit" class="btn btn-outline btn-primary" name="savethemeSettings" value="<?php echo _("Save settings"); ?>" />
+        <input type="submit" class="btn btn-outline-primary" name="savethemeSettings" value="<?php echo _("Save settings"); ?>" />
       <?php endif; ?>
-      <button type="button" onClick="window.location.reload();" class="btn btn-outline btn-primary"><i class="fas fa-sync-alt"></i> <?php echo _("Refresh") ?></button>
     </div>
   </form>
 </div>

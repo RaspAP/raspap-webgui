@@ -36,7 +36,7 @@
     </div>
 
     <div class="d-flex flex-wrap gap-2">
-      <input type="submit" class="btn btn-outline btn-primary" name="SaveServerSettings" value="<?php echo _("Save settings"); ?>" />
+      <input type="submit" class="btn btn-outline-primary" name="SaveServerSettings" value="<?php echo _("Save settings"); ?>" />
       <input type="submit" class="btn btn-warning" name="RestartLighttpd" value="<?php echo _("Restart lighttpd"); ?>" />
     </div>
   </form>
