@@ -22,7 +22,7 @@ export function initDHCP_ajax() {
         var strInterface = $('#cbxdhcpiface').val();
         var csrfToken = getCSRFToken();
         $.post('ajax/networking/get_netcfg.php', {'iface' : strInterface, 'csrf_token': csrfToken}, function(data) {
-            jsonData = JSON.parse(data);
+            let jsonData = JSON.parse(data);
             
             // Static IP fields
             $('#txtipaddress').val(jsonData.StaticIP);
