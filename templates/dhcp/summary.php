@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="general">
+<div class="tab-pane fade show active" id="summary">
   <h4 class="mt-3 mb-3"><?php echo _("Summary"); ?></h4>
   
   <div class="card mb-3">
