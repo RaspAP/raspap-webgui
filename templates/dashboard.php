@@ -29,12 +29,12 @@
               <a href="/wpa_conf" title="<?php echo _("WiFi Client"); ?>" class="<?php echo $wirelessActive; ?>"><i class="fas fa-wifi fa-2xl"></i></a>
             </div>
             <div class="connection-item">
-              <a href="/network_conf" title="<?php echo _("Networking"); ?>" class="<?php echo $tetheringActive; ?>"><span><?php echo _("Tethering"); ?></span></a>
-              <a href="/network_conf" title="<?php echo _("Networking"); ?>" class="<?php echo $tetheringActive; ?>"><i class="fas fa-mobile-alt fa-2xl"></i></a>
+              <a href="/network_conf" title="<?php echo _("Tethering"); ?>" class="<?php echo $tetheringActive; ?>"><span><?php echo _("Tethering"); ?></span></a>
+              <a href="/network_conf" title="<?php echo _("Tethering"); ?>" class="<?php echo $tetheringActive; ?>"><i class="fas fa-mobile-alt fa-2xl"></i></a>
             </div>
             <div class="connection-item">
-              <a href="/network_conf" title="<?php echo _("Networking"); ?>" class="<?php echo $cellularActive; ?>"><span><?php echo _("Cellular"); ?></span></a>
-              <a href="/network_conf" title="<?php echo _("Networking"); ?>" class="<?php echo $cellularActive; ?>"><i class="fas fa-broadcast-tower fa-2xl"></i></a>
+              <a href="/network_conf" title="<?php echo _("Cellular"); ?>" class="<?php echo $cellularActive; ?>"><span><?php echo _("Cellular"); ?></span></a>
+              <a href="/network_conf" title="<?php echo _("Cellular"); ?>" class="<?php echo $cellularActive; ?>"><i class="fas fa-broadcast-tower fa-2xl"></i></a>
             </div>
             <img src="app/img/dashed.svg" class="dashed-lines" alt="">
             <img src="<?php echo htmlspecialchars(renderConnection($connectionType)); ?>" class="solid-lines" alt="Network connection">
