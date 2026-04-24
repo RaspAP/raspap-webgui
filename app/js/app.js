@@ -130,21 +130,101 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Event listener for Bootstrap's form validation
+    // Event listener for custom from validation and live form handling
     window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
+        var forms = document.getElementsByTagName('form');
         var validation = Array.prototype.filter.call(forms, function(form) {
             form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
+                // if form has bootstrap `needs-validation` class, perform validation checks
+                if (form.classList.contains('needs-validation')) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }
+
+                // if form has `live-form` class, handle live form submission
+                if (form.classList.contains('live-form')) {
+                    handleLiveForm(event);
+                }
             }, false);
         });
     }, false);
+
+    async function handleLiveForm(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const action = form.action;
+        const modalEl = document.getElementById('liveFormModal');
+        const modal = new bootstrap.Modal(modalEl, { keyboard: false });
+        
+        if (!form || !action || !modal) return;
+
+        const formData = new FormData(form);
+        console.log(formData);
+
+        // Get data from submitting button if exists
+        const submitter = e.submitter || null;
+        if (submitter && submitter.name) {
+            formData.append(submitter.name, submitter?.value || '');
+        }
+
+        // set initial modal content
+        let newTitle = $(submitter)?.data('modal-title') || $(form).data('modal-title');
+        if (newTitle) $(modalEl).find('#liveFormModalTitle').text(newTitle);
+
+        modal.show();
+
+        const response = await fetch(action, {
+            method: 'POST',
+            body: formData
+        });
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        while (true) {
+            const { done, value } = await reader.read();
+
+            if (done) break;
+
+            // Accumulate chunks into a buffer
+            buffer += decoder.decode(value, { stream: true });
+
+            // Split on SSE message boundaries
+            const parts = buffer.split('\n\n');
+
+            // Last element may be an incomplete message — keep it in the buffer
+            buffer = parts.pop();
+
+            for (const part of parts) {
+                if (part.startsWith('data: ')) {
+                    const data = part.replace(/^data: /, '').trim();
+                    let json = JSON.parse(data);
+
+                    if (json.progress) {
+                        $(modalEl).find('#liveFormModalProgressBar').css('width', json.progress + '%');
+                    }
+
+                    if (json.message) {
+                        $(modalEl).find('#liveFormModalCurrentMessage').text(json.message);
+                        const messageHistory = $(modalEl).find('#liveFormModalMessageHistory');
+                        messageHistory.append($('<div>').text(json.message));
+                        messageHistory.scrollTop(messageHistory.prop("scrollHeight"));
+                    }
+
+                    if (json.status === 'COMPLETE' || json.status === 'FAILED') {
+                        reader.cancel();
+                        window.location.reload();
+                        return;
+                    }
+                }
+            }
+        }
+    };
 
     // Input masks
     $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
