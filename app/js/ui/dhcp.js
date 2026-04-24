@@ -53,32 +53,34 @@ export function setDhcpFieldsDisabled() {
 export function initDHCP() {
     console.info("RaspAP DHCP module initialized");
 
-    function setDHCPToggles(state) {
-        if ($('#chkfallback').is(':checked') && state) {
-            $('#chkfallback').prop('checked', state);
-        }
-        if ($('#dhcp-iface').is(':checked') && !state) {
-            $('#dhcp-iface').prop('checked', state);
-            setDhcpFieldsDisabled();
-        }
-        $('#chkfallback').prop('disabled', state);
-        $('#dhcp-iface').prop('disabled', !state);
-    }
-    globalThis.setDHCPToggles = setDHCPToggles;
-
     // DHCP or Static IP option group
-    $('#chkstatic').on('change', function() {
-        if (this.checked) {
-            $('#chkstatic').closest('.btn').addClass('btn-primary').removeClass('btn-outline-primary');
-            $('#chkdhcp').closest('.btn').addClass('btn-outline-primary').removeClass('btn-primary');
+    $('#chkstatic, #chkdhcp').on('change', function() {
+        if (this.id === 'chkstatic' && this.checked) {
+            $('#chkdhcp').closest('.btn').removeClass('active');
+            $('#chkstatic').closest('.btn').addClass('active');
+
+            // set form for Static IP
+            $('#dhcp-iface').removeAttr('disabled');
+            $('#chkfallback').prop('disabled', true).prop('checked', false);
+            setDhcpFieldsEnabled();
             setStaticFieldsEnabled();
         } else {
-            $('#chkstatic').closest('.btn').addClass('btn-outline-primary').removeClass('btn-primary');
-            $('#chkdhcp').closest('.btn').addClass('btn-primary').removeClass('btn-outline-primary');
+            $('#chkstatic').closest('.btn').removeClass('active');
+            $('#chkdhcp').closest('.btn').addClass('active');
+
+            // set form for DHCP
+            $('#chkfallback').removeAttr('disabled');
+            $('#dhcp-iface').prop('disabled', true).prop('checked', false);
+            setDhcpFieldsDisabled();
+            if ($('#chkfallback').is(':checked')) {
+                setStaticFieldsEnabled();
+            } else {
+                setStaticFieldsDisabled();
+            }
         }
     });
 
-    $('input[name="dhcp-iface"]').change(function() {
+    $('input[name="dhcp-iface"]').on('change', function() {
         if ($('input[name="dhcp-iface"]:checked').val() == '1') {
             setDhcpFieldsEnabled();
         } else {
@@ -86,18 +88,7 @@ export function initDHCP() {
         }
     });
 
-    $('#chkdhcp').on('change', function() {
-        if (this.checked) {
-            $('#chkdhcp').closest('.btn').addClass('btn-primary').removeClass('btn-outline-primary');
-            $('#chkstatic').closest('.btn').addClass('btn-outline-primary').removeClass('btn-primary');
-            setStaticFieldsDisabled();
-        } else {
-            $('#chkdhcp').closest('.btn').addClass('btn-outline-primary').removeClass('btn-primary');
-            $('#chkstatic').closest('.btn').addClass('btn-primary').removeClass('btn-outline-primary');
-        }
-    });
-
-    $('#chkfallback').change(function() {
+    $('#chkfallback').on('change', function() {
         if ($('#chkfallback').is(':checked')) {
             setStaticFieldsEnabled();
         } else {
