@@ -69,12 +69,12 @@ export function initDHCP() {
     // DHCP or Static IP option group
     $('#chkstatic').on('change', function() {
         if (this.checked) {
-            $('#chkstatic').closest('.btn').removeClass('btn-outline');
-            $('#chkdhcp').closest('.btn').addClass('btn-outline');
+            $('#chkstatic').closest('.btn').addClass('btn-primary').removeClass('btn-outline-primary');
+            $('#chkdhcp').closest('.btn').addClass('btn-outline-primary').removeClass('btn-primary');
             setStaticFieldsEnabled();
         } else {
-            $('#chkstatic').closest('.btn').addClass('btn-outline');
-            $('#chkdhcp').closest('.btn').removeClass('btn-outline');
+            $('#chkstatic').closest('.btn').addClass('btn-outline-primary').removeClass('btn-primary');
+            $('#chkdhcp').closest('.btn').addClass('btn-primary').removeClass('btn-outline-primary');
         }
     });
 
@@ -88,12 +88,12 @@ export function initDHCP() {
 
     $('#chkdhcp').on('change', function() {
         if (this.checked) {
-            $('#chkdhcp').closest('.btn').removeClass('btn-outline');
-            $('#chkstatic').closest('.btn').addClass('btn-outline');
+            $('#chkdhcp').closest('.btn').addClass('btn-primary').removeClass('btn-outline-primary');
+            $('#chkstatic').closest('.btn').addClass('btn-outline-primary').removeClass('btn-primary');
             setStaticFieldsDisabled();
         } else {
-            $('#chkdhcp').closest('.btn').addClass('btn-outline');
-            $('#chkstatic').closest('.btn').removeClass('btn-outline');
+            $('#chkdhcp').closest('.btn').addClass('btn-outline-primary').removeClass('btn-primary');
+            $('#chkstatic').closest('.btn').addClass('btn-primary').removeClass('btn-outline-primary');
         }
     });
 

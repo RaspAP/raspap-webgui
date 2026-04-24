@@ -1,6 +1,6 @@
 <?php ob_start() ?>
   <?php if (!RASPI_MONITOR_ENABLED) : ?>
-      <input type="submit" class="btn btn-outline btn-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
+      <input type="submit" class="btn btn-outline-primary" value="<?php echo _("Save settings"); ?>" name="savedhcpdsettings" />
   <?php endif ?>
 <?php $buttons = ob_get_clean(); ob_end_clean() ?>
 
