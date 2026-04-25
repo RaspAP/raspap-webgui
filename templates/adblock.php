@@ -12,7 +12,7 @@
           <div>
             <i class="far fa-hand-paper me-2"></i><?php echo _("Ad Blocking"); ?>
           </div>
-          <form method="POST" action="/ajax/page/adblock.php" class="live-form">
+          <form method="POST" action="/ajax/page/adblock.php" class="live-form" data-modal-title="Ad Block Service Control">
             <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <div class="btn-group" role="group">
               <?php if (!RASPI_MONITOR_ENABLED) : ?>
@@ -37,7 +37,7 @@
 
       <div class="card-body">
         <?php $status->showMessages(); ?>
-        <form role="form" action="/ajax/page/adblock.php" enctype="multipart/form-data" method="POST" class="live-form">
+        <form role="form" action="/ajax/page/adblock.php" enctype="multipart/form-data" method="POST" class="live-form" data-modal-title="Saving Adblock Configuration">
           <?php echo \RaspAP\Tokens\CSRF::hiddenField();?>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">
