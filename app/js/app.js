@@ -189,6 +189,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     messageHistory.append($('<div>').text(json.message));
                     messageHistory.scrollTop(messageHistory.prop("scrollHeight"));
                 }
+            },
+            onCompleteMessage: (json) => {
+                $(modalEl).find('#liveFormModalProgressBar').addClass('bg-success');
+            },
+            onFailedMessage: (json) => {
+                $(modalEl).find('#liveFormModalProgressBar').addClass('bg-danger');
+
+                let closeButton = $('<button>')
+                    .addClass('btn btn-outline-primary')
+                    .attr('type', 'button')
+                    .text('Close')
+                    .on('click', () => {
+                        modal.hide();
+                    });
+                let reloadButton = $('<button>')
+                    .addClass('btn btn-primary')
+                    .attr('type', 'button')
+                    .text('Reload Page')
+                    .on('click', () => {
+                        window.location.reload();
+                    });
+                $(modalEl)
+                    .find('.modal-footer')
+                    .append(closeButton)
+                    .append(reloadButton)
+                    .show();
             }
         });
     };
