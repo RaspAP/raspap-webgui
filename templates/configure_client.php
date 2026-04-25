@@ -26,7 +26,7 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <form method="POST" action="wpa_conf">
+            <form method="POST" action="/ajax/page/client.php" class="live-form" data-modal-title="<?= _("WiFi Client Interface") ?>">
               <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
               <label for="cbxclientiface"><?php echo _("Interface"); ?></label>
               <div class="input-group">
@@ -36,7 +36,7 @@
             </form>
           </div>
         </div>
-        <form method="POST" action="wpa_conf" name="wpa_conf_form">
+        <form method="POST" action="/ajax/page/client.php" name="wpa_conf_form" class="live-form" data-modal-title="<?= _("Configuring WiFi Client"); ?>">
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
           <div class="row" id="wpaConf">
             <div class="col position-relative">
@@ -50,20 +50,3 @@
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
-
-<!-- Modal -->
-<div class="modal fade" id="configureClientModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-      <div class="modal-title" id="ModalLabel"><i class="fas fa-sync-alt me-2"></i><?php echo _("Configuring WiFi Client"); ?></div>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12 mb-3 mt-1"><?php echo _("Configuring Wifi Client Interface..."); ?></div>
-      </div>
-      <div class="modal-footer">
-      <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><?php echo _("Close"); ?></button>
-      </div>
-    </div>
-  </div>
-</div>
