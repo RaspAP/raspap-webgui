@@ -10,23 +10,23 @@ $liveForm->initAjax();
 $liveForm->sendStartMessage();
 
 if (RASPI_MONITOR_ENABLED) {
-    $liveForm->sendUpdateMessage('RaspAP Monitor Mode Enabled', 100);
-    $liveForm->saveStatusMessage('RaspAP Monitor Mode Enabled', 'warning');
+    $liveForm->sendUpdateMessage(_('RaspAP Monitor Mode Enabled'), 100);
+    $liveForm->saveStatusMessage(_('RaspAP Monitor Mode Enabled'), 'warning');
     $liveForm->sendCompleteMessage();
 }
 
 if (isset($_POST['saveadblocksettings'])) {
     if ($_POST['adblock-enable'] == "1") {
-        $liveForm->sendUpdateMessage('Enabling Blocklists', 30);
+        $liveForm->sendUpdateMessage(_('Enabling Blocklists'), 30);
         $config = 'conf-file=' .RASPI_ADBLOCK_LISTPATH .'domains.txt'.PHP_EOL;
         $config.= 'addn-hosts=' .RASPI_ADBLOCK_LISTPATH .'hostnames.txt'.PHP_EOL;
     } elseif ($_POST['adblock-enable'] == "0") {
-        $liveForm->sendUpdateMessage('Disabling Blocklists', 30);
+        $liveForm->sendUpdateMessage(_('Disabling Blocklists'), 30);
         $config = null;
     }
 
     if ($_POST['adblock-custom-enable'] == "1") {
-        $liveForm->sendUpdateMessage('Enabling Custom Blocklists', 60);
+        $liveForm->sendUpdateMessage(_('Enabling Custom Blocklists'), 60);
         // validate custom hosts input
         $lines = preg_split('/\r\n|\n|\r/', trim($_POST['adblock-custom-hosts']));
         if (!in_array("", $lines, true)) {
@@ -34,13 +34,13 @@ if (isset($_POST['saveadblocksettings'])) {
                 $ip_host = preg_split('/\s+/', $line);
                 $index++;
                 if (!filter_var($ip_host[0], FILTER_VALIDATE_IP)) {
-                    $liveForm->sendUpdateMessage('Invalid custom IP address found on line '.$index);
-                    $errors .= _('Invalid custom IP address found on line '.$index);
+                    $liveForm->sendUpdateMessage(sprintf(_('Invalid custom IP address found on line %d'), $index));
+                    $errors = true;
                     break;
                 }
                 if (!validate_host($ip_host[1])) {
-                    $liveForm->sendUpdateMessage('Invalid custom host found on line '.$index);
-                    $errors .= _('Invalid custom host found on line '.$index);
+                    $liveForm->sendUpdateMessage(sprintf(_('Invalid custom host found on line %d'), $index));
+                    $errors = true;
                     break;
                 }
             }
@@ -54,44 +54,44 @@ if (isset($_POST['saveadblocksettings'])) {
         file_put_contents("/tmp/dnsmasqdata", $config);
         system('sudo cp /tmp/dnsmasqdata '.RASPI_ADBLOCK_CONFIG, $return);
         if ($return == 0) {
-            $liveForm->sendUpdateMessage('Successfully updated Adblock configuration', 90);
-            $liveForm->saveStatusMessage('Successfully updated Adblock configuration', 'success', true);
+            $liveForm->sendUpdateMessage(_('Successfully updated Adblock configuration'), 90);
+            $liveForm->saveStatusMessage(_('Successfully updated Adblock configuration'), 'success', true);
             $liveForm->sendCompleteMessage();
         } else {
-            $liveForm->sendUpdateMessage('Failed to update Adblock configuration', 90);
-            $liveForm->saveStatusMessage('Failed to update Adblock configuration', 'danger', true);
+            $liveForm->sendUpdateMessage(_('Failed to update Adblock configuration'), 90);
+            $liveForm->saveStatusMessage(_('Failed to update Adblock configuration'), 'danger', true);
             $liveForm->sendFailedMessage();
         }
     } else {
-        $liveForm->saveStatusMessage('Adblock configuration failed to be updated. '.$errors, 'danger', true);
+        $liveForm->saveStatusMessage(_('Adblock configuration failed to be updated'), 'danger', true);
         $liveForm->sendFailedMessage();
     }
 } elseif (isset($_POST['restartadblock']) || isset($_POST['startadblock'])) {
     if (isset($_POST['restartadblock'])) {
-        $liveForm->sendUpdateMessage('Restarting Adblock', 50);
+        $liveForm->sendUpdateMessage(_('Restarting Adblock'), 50);
     } elseif (isset($_POST['startadblock'])) {
-        $liveForm->sendUpdateMessage('Starting Adblock', 50);
+        $liveForm->sendUpdateMessage(_('Starting Adblock'), 50);
     }
 
     exec('sudo /bin/systemctl restart dnsmasq.service', $dnsmasq, $return);
     if ($return == 0) {
         if (isset($_POST['restartadblock'])) {
-            $liveForm->saveStatusMessage('Successfully Restarted Adblock', 'success');
+            $liveForm->saveStatusMessage(_('Successfully Restarted Adblock'), 'success');
             $liveForm->sendCompleteMessage();
         } elseif (isset($_POST['startadblock'])) {
-            $liveForm->saveStatusMessage('Successfully Started Adblock', 'success');
+            $liveForm->saveStatusMessage(_('Successfully Started Adblock'), 'success');
             $liveForm->sendCompleteMessage();
         }
     } else {
         if (isset($_POST['restartadblock'])) {
-            $liveForm->saveStatusMessage('Failed to Restart Adblock', 'danger');
+            $liveForm->saveStatusMessage(_('Failed to Restart Adblock'), 'danger');
             $liveForm->sendFailedMessage();
         } elseif (isset($_POST['startadblock'])) {
-            $liveForm->saveStatusMessage('Failed to Start Adblock', 'danger');
+            $liveForm->saveStatusMessage(_('Failed to Start Adblock'), 'danger');
             $liveForm->sendFailedMessage();
         }
     }
 }
 
-$liveForm->saveStatusMessage('No Instructions to Complete', 'warning');
+$liveForm->saveStatusMessage(_('No Instructions to Complete'), 'warning');
 $liveForm->sendCompleteMessage();
