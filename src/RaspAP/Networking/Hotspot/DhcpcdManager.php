@@ -79,7 +79,7 @@ class DhcpcdManager
                 'static routers=' . $routers,
                 'static domain_name_servers=' . $domain_name_servers
             ];
-            $client_metric = getIfaceMetric($_SESSION['wifi_client_interface']);
+            $client_metric = $this->getIfaceMetric($_SESSION['wifi_client_interface']);
             if (is_int($client_metric)) {
                 $config[] = 'metric ' . ((int)$client_metric + 1);
             } else {
