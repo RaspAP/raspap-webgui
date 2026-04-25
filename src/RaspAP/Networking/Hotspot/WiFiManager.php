@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace RaspAP\Networking\Hotspot;
 
 use function validateInterface;
+use function ConvertToChannel;
 
 class WiFiManager
 {

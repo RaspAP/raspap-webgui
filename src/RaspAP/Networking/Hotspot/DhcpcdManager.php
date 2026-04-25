@@ -14,6 +14,8 @@ namespace RaspAP\Networking\Hotspot;
 
 use RaspAP\Messages\StatusMessage;
 use function mask2cidr;
+use function getDefaultNetOpts;
+use function getDefaultNetValue;
 
 class DhcpcdManager
 {
