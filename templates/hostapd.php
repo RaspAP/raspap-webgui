@@ -14,19 +14,19 @@
             <i class="fas fa-bullseye me-2"></i><?php echo _("Hotspot"); ?>
           </div>
           <div>
-            <form method="POST" action="hostapd_conf">
+            <form method="POST" action="/ajax/page/hostapd.php" class="live-form" data-modal-title="<?php echo _("Hotspot Service Control") ?>">
               <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
               <div class="btn-group" role="group">
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
                   <?php if ($hostapdstatus[0] == 0) : ?>
-                    <button type="submit" class="btn btn-sm btn-light" title="<?php echo  _("Start hotspot"); $msg=_("Starting hotspot"); ?>" name="StartHotspot" data-bs-toggle="modal" data-bs-target="#hostapdModal">
+                    <button type="submit" class="btn btn-sm btn-light" title="<?php echo  _("Start hotspot"); ?>" name="StartHotspot">
                       <i class="fas fa-play"></i>
                     </button>
                   <?php else : ?>
                     <button type="submit" class="btn btn-sm btn-danger" title="<?php echo _("Stop hotspot") ?>" name="StopHotspot" >
                       <i class="fas fa-stop"></i>
                     </button>
-                    <button type="submit" class="btn btn-sm btn-warning" title="<?php echo _("Restart hotspot"); $msg=_("Restarting hotspot"); ?>" name="RestartHotspot" data-bs-toggle="modal" data-bs-target="#hostapdModal">
+                    <button type="submit" class="btn btn-sm btn-warning" title="<?php echo _("Restart hotspot"); ?>" name="RestartHotspot">
                       <i class="fas fa-sync-alt"></i>
                     </button>
                   <?php endif ?>
@@ -43,7 +43,7 @@
 
       <div class="card-body">
         <?php $status->showMessages(); ?>
-        <form role="form" action="hostapd_conf" method="POST" class="needs-validation" novalidate>
+        <form role="form" method="POST" action="/ajax/page/hostapd.php" class="needs-validation live-form" novalidate data-modal-title="<?php echo _("Hotspot Settings") ?>">
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
@@ -70,28 +70,8 @@
         </form>
       </div><!-- /.card-body -->
 
-      <div class="card-footer"> <?php echo _("Information provided by hostapd"); ?></div>
+      <div class="card-footer"><?php echo _("Information provided by hostapd"); ?></div>
 
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
-
-<!-- Modal service-start -->
-<div class="modal fade" id="hostapdModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="modal-title" id="ModalLabel"><i class="fas fa-sync-alt fa-spin me-2"></i><?php echo $msg ?></div>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12 mb-3 mt-1"><?php echo _("Executing RaspAP service start") ?>...</div>
-        <div class="progress" style="height: 20px;">
-          <div class="progress-bar bg-info" role="progressbar" id="progressBar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="9"></div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><?php echo _("Close"); ?></button>
-      </div>
-    </div>
-  </div>
-</div>
