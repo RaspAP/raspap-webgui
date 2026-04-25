@@ -147,9 +147,9 @@ initializeApp();
               ></div>
             </div>
 
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span id="liveFormModalCurrentMessage"></span>
-              <button class="btn btn-sm btn-outline-primary"
+            <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+              <span id="liveFormModalCurrentMessage" class="flex-grow-1 text-nowrap overflow-hidden"></span>
+              <button class="btn btn-sm btn-outline-primary text-nowrap"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#liveFormModalCollapse"
