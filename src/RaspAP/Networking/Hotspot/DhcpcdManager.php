@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace RaspAP\Networking\Hotspot;
 
-require_once __DIR__ . '/../../../../includes/functions.php';
-
 use RaspAP\Messages\StatusMessage;
 use function mask2cidr;
 

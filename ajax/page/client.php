@@ -4,14 +4,13 @@ require_once '../../includes/CSRF.php';
 require_once '../../includes/session.php';
 require_once '../../includes/config.php';
 require_once '../../includes/authenticate.php';
-
-use RaspAP\Networking\Hotspot\WiFiManager;
+require_once '../../includes/functions.php';
 
 $liveForm = new \RaspAP\UI\LiveForm();
 $liveForm->initAjax();
 $liveForm->sendStartMessage();
 
-$wifi = new WiFiManager();
+$wifi = new \RaspAP\Networking\Hotspot\WiFiManager();
 
 $clientInterface = $_SESSION['wifi_client_interface'];
 
