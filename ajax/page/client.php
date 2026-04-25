@@ -10,6 +10,8 @@ $liveForm = new \RaspAP\UI\LiveForm();
 $liveForm->initAjax();
 $liveForm->sendStartMessage();
 
+try {
+
 $wifi = new \RaspAP\Networking\Hotspot\WiFiManager();
 
 $clientInterface = $_SESSION['wifi_client_interface'];
@@ -112,3 +114,9 @@ if (isset($_POST['wifiClientInterface'])) {
 
 $liveForm->saveStatusMessage(_('No Instructions to Complete'), 'warning');
 $liveForm->sendCompleteMessage();
+
+} catch (\Throwable $e) {
+    $liveForm->sendUpdateMessage(sprintf(_('An error occurred: %s'), $e->getMessage()), 100);
+    $liveForm->saveStatusMessage(_('An error occurred'), 'danger', true);
+    $liveForm->sendFailedMessage();
+}

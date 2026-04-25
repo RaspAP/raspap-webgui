@@ -10,6 +10,8 @@ $liveForm = new \RaspAP\UI\LiveForm();
 $liveForm->initAjax();
 $liveForm->sendStartMessage();
 
+try {
+
 if (RASPI_MONITOR_ENABLED) {
     $liveForm->sendUpdateMessage(_('RaspAP Monitor Mode Enabled'), 100);
     $liveForm->saveStatusMessage(_('RaspAP Monitor Mode Enabled'), 'warning');
@@ -137,3 +139,9 @@ if (isset($_POST['savedhcpdsettings'])) {
 
 $liveForm->saveStatusMessage(_('No Instructions to Complete'), 'warning');
 $liveForm->sendCompleteMessage();
+
+} catch (\Throwable $e) {
+    $liveForm->sendUpdateMessage(sprintf(_('An error occurred: %s'), $e->getMessage()), 100);
+    $liveForm->saveStatusMessage(_('An error occurred'), 'danger', true);
+    $liveForm->sendFailedMessage();
+}
