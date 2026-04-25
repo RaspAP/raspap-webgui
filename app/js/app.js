@@ -146,13 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // if form has `live-form` class, handle live form submission
                 if (form.classList.contains('live-form')) {
-                    handleLiveForm(event);
+                    handleLiveFormSubmission(event);
                 }
             }, false);
         });
     }, false);
 
-    async function handleLiveForm(e) {
+    async function handleLiveFormSubmission(e) {
         e.preventDefault();
 
         const form = e.target;
@@ -176,6 +176,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (newTitle) $(modalEl).find('#liveFormModalTitle').text(newTitle);
 
         modal.show();
+
+        await fetchLiveFormStream(action, formData, {
+            onUpdateMessage: (json) => {
+                if (json.progress) {
+                    $(modalEl).find('#liveFormModalProgressBar').css('width', json.progress + '%');
+                }
+
+                if (json.message) {
+                    $(modalEl).find('#liveFormModalCurrentMessage').text(json.message);
+                    const messageHistory = $(modalEl).find('#liveFormModalMessageHistory');
+                    messageHistory.append($('<div>').text(json.message));
+                    messageHistory.scrollTop(messageHistory.prop("scrollHeight"));
+                }
+            }
+        });
+    };
+
+    async function fetchLiveFormStream(action, formData, options = {}) {
+        let defaultOptions = {
+            onUpdateMessage: null,
+            onCompleteMessage: null,
+            onFailedMessage: null,
+            reloadOnComplete: true,
+            reloadOnFailed: false
+        };
+        options = { ...defaultOptions, ...options };
 
         const response = await fetch(action, {
             method: 'POST',
@@ -205,23 +231,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     const data = part.replace(/^data: /, '').trim();
                     let json = JSON.parse(data);
 
-                    if (json.progress) {
-                        $(modalEl).find('#liveFormModalProgressBar').css('width', json.progress + '%');
-                    }
-
-                    if (json.message) {
-                        $(modalEl).find('#liveFormModalCurrentMessage').text(json.message);
-                        const messageHistory = $(modalEl).find('#liveFormModalMessageHistory');
-                        messageHistory.append($('<div>').text(json.message));
-                        messageHistory.scrollTop(messageHistory.prop("scrollHeight"));
+                    if (json.status === 'RUNNING' && options?.onUpdateMessage) {
+                        options.onUpdateMessage(json);
                     }
 
                     if (json.status === 'COMPLETE' || json.status === 'FAILED') {
                         reader.cancel();
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 1000);
-                        return;
+                        if (json.status === 'COMPLETE' && options?.onCompleteMessage) {
+                            options.onCompleteMessage(json);
+                        }
+
+                        if (json.status === 'FAILED' && options?.onFailedMessage) {
+                            options.onFailedMessage(json);
+                        }
+
+                        if (options?.reloadOnComplete || options?.reloadOnFailed) {
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1000);
+                        }
                     }
                 }
             }
