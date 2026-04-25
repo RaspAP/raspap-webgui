@@ -178,11 +178,12 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.show();
 
         await fetchLiveFormStream(action, formData, {
-            onUpdateMessage: (json) => {
+            onMessage: (json) => {
                 if (json.progress) {
                     $(modalEl).find('#liveFormModalProgressBar').css('width', json.progress + '%');
                 }
-
+            },
+            onUpdateMessage: (json) => {
                 if (json.message) {
                     $(modalEl).find('#liveFormModalCurrentMessage').text(json.message);
                     const messageHistory = $(modalEl).find('#liveFormModalMessageHistory');
@@ -221,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchLiveFormStream(action, formData, options = {}) {
         let defaultOptions = {
+            onMessage: null,
             onUpdateMessage: null,
             onCompleteMessage: null,
             onFailedMessage: null,
@@ -256,6 +258,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (part.startsWith('data: ')) {
                     const data = part.replace(/^data: /, '').trim();
                     let json = JSON.parse(data);
+
+                    if (options?.onMessage) {
+                        options.onMessage(json);
+                    }
 
                     if (json.status === 'RUNNING' && options?.onUpdateMessage) {
                         options.onUpdateMessage(json);
