@@ -167,8 +167,7 @@ initializeApp();
             </div>
           </div>
 
-          <!-- <div class="modal-footer">
-          </div> -->
+          <div class="modal-footer" style="display: none;"></div>
         </div>
       </div>
     </div>
