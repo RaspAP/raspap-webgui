@@ -218,7 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (json.status === 'COMPLETE' || json.status === 'FAILED') {
                         reader.cancel();
-                        window.location.reload();
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
                         return;
                     }
                 }
