@@ -162,6 +162,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!form || !action || !modal) return;
 
+        // Clear previous modal state
+        $(modalEl).find('#liveFormModalProgressBar').removeClass('bg-success bg-danger').css('width', '0%');
+        $(modalEl).find('#liveFormModalCurrentMessage').text('');
+        $(modalEl).find('#liveFormModalMessageHistory').empty();
+        $(modalEl).find('.modal-footer').empty().hide();
+
         const formData = new FormData(form);
         console.log(formData);
 
