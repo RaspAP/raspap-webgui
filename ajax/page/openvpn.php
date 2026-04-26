@@ -99,7 +99,7 @@ if (isset($_POST['SaveOpenVPNSettings'])) {
             $liveForm->sendUpdateMessage($line);
         }
 
-        $liveForm->sendUpdateMessage(_('Installing uploaded OpenVPN config'), 90);
+        $liveForm->sendUpdateMessage(_('Installing uploaded OpenVPN config'), 80);
         // Move uploaded ovpn config from /tmp and create symlink
         $client_ovpn = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_client.conf');
         chmod($tmp_ovpn, 0644);
