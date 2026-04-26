@@ -130,21 +130,168 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Event listener for Bootstrap's form validation
+    // Event listener for custom from validation and live form handling
     window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
+        var forms = document.getElementsByTagName('form');
         var validation = Array.prototype.filter.call(forms, function(form) {
             form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
+                // if form has bootstrap `needs-validation` class, perform validation checks
+                if (form.classList.contains('needs-validation')) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }
+
+                // if form has `live-form` class, handle live form submission
+                if (form.classList.contains('live-form')) {
+                    handleLiveFormSubmission(event);
+                }
             }, false);
         });
     }, false);
+
+    async function handleLiveFormSubmission(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const action = form.action;
+        const modalEl = document.getElementById('liveFormModal');
+        const modal = new bootstrap.Modal(modalEl, { keyboard: false });
+        
+        if (!form || !action || !modal) return;
+
+        // Clear previous modal state
+        $(modalEl).find('#liveFormModalProgressBar').removeClass('bg-success bg-danger').css('width', '0%');
+        $(modalEl).find('#liveFormModalCurrentMessage').text('');
+        $(modalEl).find('#liveFormModalMessageHistory').empty();
+        $(modalEl).find('.modal-footer').empty().hide();
+
+        const formData = new FormData(form);
+
+        // Get data from submitting button if exists
+        const submitter = e.submitter || null;
+        if (submitter && submitter.name) {
+            formData.append(submitter.name, submitter?.value || '');
+        }
+
+        // set initial modal content
+        let newTitle = $(submitter)?.data('modal-title') || $(form).data('modal-title');
+        if (newTitle) $(modalEl).find('#liveFormModalTitle').text(newTitle);
+
+        modal.show();
+
+        await fetchLiveFormStream(action, formData, {
+            onMessage: (json) => {
+                if (json.progress) {
+                    $(modalEl).find('#liveFormModalProgressBar').css('width', json.progress + '%');
+                }
+            },
+            onUpdateMessage: (json) => {
+                if (json.message) {
+                    $(modalEl).find('#liveFormModalCurrentMessage').text(json.message);
+                    const messageHistory = $(modalEl).find('#liveFormModalMessageHistory');
+                    messageHistory.append($('<div>').text(json.message));
+                    messageHistory.scrollTop(messageHistory.prop("scrollHeight"));
+                }
+            },
+            onCompleteMessage: (json) => {
+                $(modalEl).find('#liveFormModalProgressBar').addClass('bg-success');
+            },
+            onFailedMessage: (json) => {
+                $(modalEl).find('#liveFormModalProgressBar').addClass('bg-danger');
+
+                let closeButton = $('<button>')
+                    .addClass('btn btn-outline-primary')
+                    .attr('type', 'button')
+                    .text('Close')
+                    .on('click', () => {
+                        modal.hide();
+                    });
+                let reloadButton = $('<button>')
+                    .addClass('btn btn-primary')
+                    .attr('type', 'button')
+                    .text('Reload Page')
+                    .on('click', () => {
+                        window.location.reload();
+                    });
+                $(modalEl)
+                    .find('.modal-footer')
+                    .append(closeButton)
+                    .append(reloadButton)
+                    .show();
+            }
+        });
+    };
+
+    async function fetchLiveFormStream(action, formData, options = {}) {
+        let defaultOptions = {
+            onMessage: null,
+            onUpdateMessage: null,
+            onCompleteMessage: null,
+            onFailedMessage: null,
+            reloadOnComplete: true,
+            reloadOnFailed: false
+        };
+        options = { ...defaultOptions, ...options };
+
+        const response = await fetch(action, {
+            method: 'POST',
+            body: formData
+        });
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        while (true) {
+            const { done, value } = await reader.read();
+
+            if (done) break;
+
+            // Accumulate chunks into a buffer
+            buffer += decoder.decode(value, { stream: true });
+
+            // Split on SSE message boundaries
+            const parts = buffer.split('\n\n');
+
+            // Last element may be an incomplete message — keep it in the buffer
+            buffer = parts.pop();
+
+            for (const part of parts) {
+                if (part.startsWith('data: ')) {
+                    const data = part.replace(/^data: /, '').trim();
+                    let json = JSON.parse(data);
+
+                    if (options?.onMessage) {
+                        options.onMessage(json);
+                    }
+
+                    if (json.status === 'RUNNING' && options?.onUpdateMessage) {
+                        options.onUpdateMessage(json);
+                    }
+
+                    if (json.status === 'COMPLETE' || json.status === 'FAILED') {
+                        reader.cancel();
+                        if (json.status === 'COMPLETE' && options?.onCompleteMessage) {
+                            options.onCompleteMessage(json);
+                        }
+
+                        if (json.status === 'FAILED' && options?.onFailedMessage) {
+                            options.onFailedMessage(json);
+                        }
+
+                        if (options?.reloadOnComplete || options?.reloadOnFailed) {
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1000);
+                        }
+                    }
+                }
+            }
+        }
+    };
 
     // Input masks
     $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {

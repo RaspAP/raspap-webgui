@@ -240,6 +240,20 @@ button.btn i:not([class*="service-status"]) {
   font-size: 1.3rem;
 }
 
+#liveFormModalCurrentMessage {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#liveFormModalCurrentMessage::after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(90deg, transparent 0%, white 90%);
+  right: 0;
+  width: 10%;
+  height: 100%;
+}
+
 /* Improved progress bar */
 .progress.progress-improved {
   position: relative;

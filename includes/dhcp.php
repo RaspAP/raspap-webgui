@@ -15,13 +15,9 @@ function DisplayDHCPConfig()
     $status = new StatusMessage();
     $dhcpcd = new DhcpcdManager();
     $wifi = new WiFiManager();
-    $wifi->getWifiInterface();
 
-    if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['savedhcpdsettings'])) {
-            saveDHCPConfig($status);
-        }
-    }
+    \RaspAP\UI\LiveForm::loadStatusMessages($status);
+    $wifi->getWifiInterface();
 
     exec("ip -o link show | awk -F': ' '{print $2}'", $ifaces);
 
@@ -33,47 +29,6 @@ function DisplayDHCPConfig()
 
     exec('pidof dnsmasq | wc -l', $dnsmasq);
     $dnsmasq_state = ($dnsmasq[0] > 0);
-
-    // handle service control actions
-    if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['startdhcpd'])) {
-            if ($dnsmasq_state) {
-                $status->addMessage('dnsmasq already running', 'info');
-            } else {
-                exec('sudo /bin/systemctl start dnsmasq.service', $dnsmasq, $return);
-                if ($return == 0) {
-                    $status->addMessage('Successfully started dnsmasq', 'success');
-                    $dnsmasq_state = true;
-                } else {
-                    $status->addMessage('Failed to start dnsmasq', 'danger');
-                }
-            }
-        } elseif (isset($_POST['restartdhcpd'])) {
-            if ($dnsmasq_state) {
-                exec('sudo /bin/systemctl restart dnsmasq.service', $dnsmasq, $return);
-                if ($return == 0) {
-                    $status->addMessage('Successfully restarted dnsmasq', 'success');
-                    $dnsmasq_state = false;
-                } else {
-                    $status->addMessage('Failed to restart dnsmasq', 'danger');
-                }
-            } else {
-                $status->addMessage('dnsmasq already stopped', 'info');
-            }
-        } elseif (isset($_POST['stopdhcpd'])) {
-            if ($dnsmasq_state) {
-                exec('sudo /bin/systemctl stop dnsmasq.service', $dnsmasq, $return);
-                if ($return == 0) {
-                    $status->addMessage('Successfully stopped dnsmasq', 'success');
-                    $dnsmasq_state = false;
-                } else {
-                    $status->addMessage('Failed to stop dnsmasq', 'danger');
-                }
-            } else {
-                $status->addMessage('dnsmasq already stopped', 'info');
-            }
-        }
-    }
     
     $ap_iface = $_SESSION['ap_interface'];
     $initial_iface = isset($_POST['interface']) ? $_POST['interface'] : $ap_iface;

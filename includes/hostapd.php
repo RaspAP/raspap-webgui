@@ -16,7 +16,7 @@ $wifi->getWifiInterface();
  */
 function DisplayHostAPDConfig()
 {
-    $reg_domain = 'GB';
+    
     $hostapd = new HostapdManager();
     $hotspot = new HotspotService();
     $status = new StatusMessage();
@@ -24,102 +24,42 @@ function DisplayHostAPDConfig()
     $system = new Sysinfo();
     $operatingSystem = $system->operatingSystem();
 
+    \RaspAP\UI\LiveForm::loadStatusMessages($status);
+
+    $interface = $_SESSION['ap_interface'];
+
     // set hostapd defaults
     $arr80211Standard = $hotspot->get80211Standards();
     $arrSecurity = $hotspot->getSecurityModes();
     $arrEncType = $hotspot->getEncTypes();
     $arr80211w = $hotspot->get80211wOptions();
+    $ifaces = $hotspot->getInterfaces();
+    
+    // get current hostapd config
+    $arrHostapdConf = $hotspot->getHostapdIni();
+    
+    // get country codes for select input and set default reg domain
     $languageCode = strtok($_SESSION['locale'], '_');
     $countryCodes = getCountryCodes($languageCode);
-    $ifaces = $hotspot->getInterfaces();
-    $interfaces = [];
-    foreach ($ifaces as $iface) {
-        $ifaceServices = [];
-        if ($iface === $_SESSION['ap_interface']) {
-            $ifaceServices[] = 'AP';
-        }
-        if ($iface === $_SESSION['wifi_client_interface']) {
-            $ifaceServices[] = 'Client';
-        }
-        $label = !empty($ifaceServices) ? $iface . ' (' . implode(', ', $ifaceServices) . ')' : $iface;
-        $interfaces[$iface] = $label;
-    }
-    $arrTxPower = getDefaultNetOpts('txpower','dbm');
-    $managedModeEnabled = false;
+    $reg_domain = 'GB';
     try {
         $reg_domain = $hotspot->getRegDomain();
     } catch (RuntimeException $e) {
         error_log('Failed to get regulatory domain: ' . $e->getMessage());
     }
-
-    if (isset($_POST['interface'])) {
-        $interface = $_POST['interface'];
-    } else {
-        $interface = $_SESSION['ap_interface'];
-    }
-
+        
+    // get current txpower settings and select options
     $txpower = $hotspot->getTxPower($interface);
-    $arrHostapdConf = $hotspot->getHostapdIni();
-    $logOutput = [];
-
-    if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['StartHotspot']) || isset($_POST['RestartHotspot'])) {
-            $status->addMessage('Attempting to start hotspot', 'info');
-            if ($arrHostapdConf['BridgedEnable'] == 1) {
-                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface br0 --seconds 1', $return);
-            } elseif ($arrHostapdConf['WifiAPEnable'] == 1) {
-                exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface uap0 --seconds 1', $return);
-            } else {
-                // systemctl expects a unit name like raspap-network-activity@wlan0.service
-                $iface_nonescaped = $interface;
-                if (preg_match('/^[a-zA-Z0-9_-]+$/', $iface_nonescaped)) { // validate interface name
-                    exec('sudo '.RASPI_CONFIG.'/hostapd/servicestart.sh --interface ' .$iface_nonescaped. ' --seconds 1', $return);
-                } else {
-                    throw new \Exception('Invalid network interface');
-                }
-            }
-            foreach ($return as $line) {
-                $status->addMessage($line, 'info');
-            }
-        } elseif (isset($_POST['SaveHostAPDSettings'])) {
-            $result = $hotspot->saveSettings(
-                $_POST,
-                $arrSecurity,
-                $arrEncType,
-                $arr80211Standard,
-                $ifaces,
-                $reg_domain,
-                $status
-            );
-
-            // reload hostapi.ini
-            $arrHostapdConf = $hotspot->getHostapdIni();
-
-        } elseif (isset($_POST['StopHotspot'])) {
-            $status->addMessage('Attempting to stop hotspot', 'info');
-            exec('sudo /bin/systemctl stop hostapd.service', $return);
-            exec('sudo systemctl stop "raspap-network-activity@*.service"');
-            foreach ($return as $line) {
-                $status->addMessage($line, 'info');
-            }
-        }
-    }
+    $arrTxPower = getDefaultNetOpts('txpower','dbm');
+    
+    // check if wifi client interface is connected to a network
+    // used conditionally enables toggles
+    $managedModeEnabled = false;
     if (isset($_SESSION['wifi_client_interface'])) {
         exec('iwgetid '.escapeshellarg($_SESSION['wifi_client_interface']). ' -r', $wifiNetworkID);
         if (!empty($wifiNetworkID[0])) {
             $managedModeEnabled = true;
         }
-    }
-
-    // process txpower user input 
-    if (isset($_POST['txpower'])) {
-        if ($_POST['txpower'] != 'auto') {
-            $txpower = intval($_POST['txpower']);
-            $hotspot->maybeSetTxPower($interface, $txpower, $status);
-        } elseif ($_POST['txpower'] == 'auto') {
-            $hotspot->maybeSetTxPower($interface, 'auto', $status);
-        }
-        $txpower = $_POST['txpower'];
     }
 
     // parse hostapd configuration
@@ -154,6 +94,7 @@ function DisplayHostAPDConfig()
     }
 
     // fetch hostapd logs if enabled
+    $logOutput = [];
     if ((string)$arrHostapdConf['LogEnable'] === "1") {
         $logResult = $hotspot->getHostapdLogs(5000);
         if ($logResult['success']) {
@@ -167,6 +108,19 @@ function DisplayHostAPDConfig()
     $arrConfig['disassoc_low_ack_bool'] = isset($arrConfig['disassoc_low_ack']) ? 1 : 0;
     $hostapdstatus = $system->hostapdStatus();
     $serviceStatus = $hostapdstatus[0] == 0 ? "down" : "up";
+
+    $interfaces = [];
+    foreach ($ifaces as $iface) {
+        $ifaceServices = [];
+        if ($iface === $_SESSION['ap_interface']) {
+            $ifaceServices[] = 'AP';
+        }
+        if ($iface === $_SESSION['wifi_client_interface']) {
+            $ifaceServices[] = 'Client';
+        }
+        $label = !empty($ifaceServices) ? $iface . ' (' . implode(', ', $ifaceServices) . ')' : $iface;
+        $interfaces[$iface] = $label;
+    }
 
     echo renderTemplate(
         "hostapd", compact(

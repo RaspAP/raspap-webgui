@@ -13,16 +13,16 @@
           <div>
             <span class="ra-wireguard me-2"></span><?php echo _("WireGuard"); ?>
           </div>
-          <form method="POST" action="wg_conf">
+          <form method="POST" action="/ajax/page/wireguard.php" class="live-form" data-modal-title="<?= _('WireGuard Service Control') ?>">
             <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <div class="btn-group" role="group">
               <?php if (!RASPI_MONITOR_ENABLED) : ?>
                 <?php if ($wg_state) : ?>
-                  <button type="submit" class="btn btn-sm btn-danger" title="<?php echo _("Stop WireGuard"); ?>" name="stopwg" >
+                  <button type="submit" class="btn btn-sm btn-danger" title="<?php echo _("Stop WireGuard"); ?>" name="stopwg">
                     <i class="fas fa-stop"></i>
                   </button>
                 <?php else : ?>
-                  <button type="submit" class="btn btn-sm btn-light" title="<?php echo _("Start WireGuard"); ?>" name="startwg" >
+                  <button type="submit" class="btn btn-sm btn-light" title="<?php echo _("Start WireGuard"); ?>" name="startwg">
                     <i class="fas fa-play"></i>
                   </button>
                 <?php endif; ?>
@@ -38,7 +38,7 @@
 
       <div class="card-body">
         <?php $status->showMessages(); ?>
-        <form role="form" action="wg_conf" enctype="multipart/form-data" method="POST">
+        <form role="form" method="POST" action="/ajax/page/wireguard.php" enctype="multipart/form-data" class="live-form" data-modal-title="<?= _('WireGuard Configuration') ?>">
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">
