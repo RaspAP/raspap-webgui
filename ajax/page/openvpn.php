@@ -21,18 +21,6 @@ if (RASPI_MONITOR_ENABLED) {
 if (isset($_POST['SaveOpenVPNSettings'])) {
     $liveForm->sendUpdateMessage(_('Saving OpenVPN configuration'), 10);
 
-    if (!isset($_POST['log-openvpn'])) {
-        $liveForm->sendUpdateMessage(_('Clearing OpenVPN log'), 20);
-        $f = @fopen("/tmp/openvpn.log", "r+");
-        if ($f !== false) {
-            ftruncate($f, 0);
-            fclose($f);
-        }
-    } elseif (isset($_POST['log-openvpn']) || (file_exists('/tmp/openvpn.log') && filesize('/tmp/openvpn.log') > 0)) {
-        $liveForm->sendUpdateMessage(_('Retrieving OpenVPN log'), 20);
-        exec("sudo /etc/raspap/openvpn/openvpnlog.sh", $logOutput);
-    }
-
     if (isset($_POST['authUser'])) {
         $authUser = strip_tags(trim($_POST['authUser']));
     }
@@ -49,6 +37,7 @@ if (isset($_POST['SaveOpenVPNSettings'])) {
         // If undefined or multiple files, treat as invalid
         if (!isset($file['error']) || is_array($file['error'])) {
             $liveForm->sendUpdateMessage(_('Invalid file parameters'), 90);
+            checkOpenVPNLog($liveForm);
             $liveForm->saveStatusMessage(_('Invalid file parameters'), 'danger', true);
             $liveForm->sendFailedMessage();
         }
@@ -67,6 +56,7 @@ if (isset($_POST['SaveOpenVPNSettings'])) {
         if (!empty($results['errors'])) {
             $liveForm->sendUpdateMessage(_('Invalid file provided:'), 90);
             $liveForm->sendUpdateMessage($results['errors'][0]);
+            checkOpenVPNLog($liveForm);
             $liveForm->saveStatusMessage(_('Invalid file provided'), 'danger', true);
             $liveForm->sendFailedMessage();
         }
@@ -86,6 +76,7 @@ if (isset($_POST['SaveOpenVPNSettings'])) {
             system("sudo ln -s $client_auth ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
             if ($return !=0) {
                 $liveForm->sendUpdateMessage(_('Unable to save client auth credentials'), 90);
+                checkOpenVPNLog($liveForm);
                 $liveForm->saveStatusMessage(_('Unable to save client auth credentials'), 'danger', true);
                 $liveForm->sendFailedMessage();
             }
@@ -111,11 +102,13 @@ if (isset($_POST['SaveOpenVPNSettings'])) {
             $liveForm->sendUpdateMessage(_('OpenVPN client.conf uploaded successfully'), 90);
         } else {
             $liveForm->sendUpdateMessage(_('Unable to save OpenVPN client config'), 90);
+            checkOpenVPNLog($liveForm);
             $liveForm->saveStatusMessage(_('Unable to save OpenVPN client config'), 'danger', true);
             $liveForm->sendFailedMessage();
         }
     }
 
+    checkOpenVPNLog($liveForm);
     $liveForm->saveStatusMessage(_('Saved settings successfully'), 'success', true);
     $liveForm->sendCompleteMessage();
 } elseif (isset($_POST['StartOpenVPN'])) {
@@ -151,4 +144,19 @@ $liveForm->sendCompleteMessage();
     $liveForm->sendUpdateMessage(sprintf(_('An error occurred: %s'), $e->getMessage()), 100);
     $liveForm->saveStatusMessage(_('An error occurred'), 'danger', true);
     $liveForm->sendFailedMessage();
+}
+
+function checkOpenVPNLog($liveForm)
+{
+    if (!isset($_POST['log-openvpn'])) {
+        $liveForm->sendUpdateMessage(_('Clearing OpenVPN log'), 20);
+        $f = @fopen("/tmp/openvpn.log", "r+");
+        if ($f !== false) {
+            ftruncate($f, 0);
+            fclose($f);
+        }
+    } elseif (isset($_POST['log-openvpn']) || (file_exists('/tmp/openvpn.log') && filesize('/tmp/openvpn.log') > 0)) {
+        $liveForm->sendUpdateMessage(_('Retrieving OpenVPN log'), 20);
+        exec("sudo /etc/raspap/openvpn/openvpnlog.sh", $return);
+    }
 }
