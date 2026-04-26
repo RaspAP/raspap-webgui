@@ -96,7 +96,7 @@ class LiveForm
     public function sendUpdateMessage($message, $progress = null) {
         if ($this->status != SELF::RUNNING) $this->status = SELF::RUNNING;
         if ($progress != null) $this->progress = $progress;
-        array_push($this->messageHistory, $message);
+        if ($message != null) array_push($this->messageHistory, $message);
 
         $this->sendMessage($message);
     }
