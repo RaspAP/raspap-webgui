@@ -78,6 +78,23 @@
   </div>
 </div>
 
+<!-- modal reconnecting-->
+<div class="modal fade" id="system-reconnect" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="modal-title" id="ModalLabel"><i class="fas fa-sync me-2"></i><?php echo _("Reconnecting"); ?></div>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 mb-3 mt-1" id="system-reconnect-message">
+          <p><?php echo _("The system is currently rebooting."); ?></p>
+          <p><?= _('Attempting to reconnect in'); ?>&nbsp;<span id="system-reconnect-seconds"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- modal confirm-shutdown-->
 <div class="modal fade" id="system-confirm-shutdown" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
