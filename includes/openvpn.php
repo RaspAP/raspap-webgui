@@ -3,7 +3,6 @@
 require_once 'includes/config.php';
 
 use RaspAP\Networking\Hotspot\WiFiManager;
-use function get_public_ip;
 
 $wifi = new WiFiManager();
 $wifi->getWifiInterface();
