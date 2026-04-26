@@ -169,7 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
         $(modalEl).find('.modal-footer').empty().hide();
 
         const formData = new FormData(form);
-        console.log(formData);
 
         // Get data from submitting button if exists
         const submitter = e.submitter || null;
