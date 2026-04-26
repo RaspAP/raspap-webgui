@@ -13,32 +13,32 @@
           <div>
             <i class="fas fa-key fa-fw me-2"></i><?php echo _("OpenVPN"); ?>
           </div>
-          <form method="POST" action="openvpn_conf">
-              <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
-              <div class="btn-group" role="group">
-                <?php if (!RASPI_MONITOR_ENABLED) : ?>
-                  <?php if ($openvpnstatus[0] == 0) : ?>
-                    <button type="submit" class="btn btn-sm btn-light" title="<?php echo _("Start OpenVPN"); ?>" name="StartOpenVPN" >
-                      <i class="fas fa-play"></i>
-                    </button>
-                  <?php else : ?>
-                    <button type="submit" class="btn btn-sm btn-danger" title="<?php echo _("Stop OpenVPN"); ?>" name="StopOpenVPN" >
-                      <i class="fas fa-stop"></i>
-                    </button>
-                  <?php endif; ?>
-                <?php endif ?>
-                <button type="button" class="btn btn-light btn-icon-split btn-sm service-status float-end">
-                  <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
-                  <span class="text service-status">openvpn <?php echo _($serviceStatus) ?></span>
-                </button>
-              </div>
+          <form method="POST" action="/ajax/page/openvpn.php" class="live-form" data-modal-title="<?php echo _("OpenVPN Service Control"); ?>">
+            <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
+            <div class="btn-group" role="group">
+              <?php if (!RASPI_MONITOR_ENABLED) : ?>
+                <?php if ($serviceStatus === 'down') : ?>
+                  <button type="submit" class="btn btn-sm btn-light" title="<?php echo _("Start OpenVPN"); ?>" name="StartOpenVPN" >
+                    <i class="fas fa-play"></i>
+                  </button>
+                <?php else : ?>
+                  <button type="submit" class="btn btn-sm btn-danger" title="<?php echo _("Stop OpenVPN"); ?>" name="StopOpenVPN" >
+                    <i class="fas fa-stop"></i>
+                  </button>
+                <?php endif; ?>
+              <?php endif ?>
+              <button type="button" class="btn btn-light btn-icon-split btn-sm service-status float-end">
+                <span class="icon text-gray-600"><i class="fas fa-circle service-status-<?php echo $serviceStatus ?>"></i></span>
+                <span class="text service-status">openvpn <?php echo _($serviceStatus) ?></span>
+              </button>
+            </div>
           </form>
         </div><!-- /.row -->
       </div><!-- /.card-header -->
       
       <div class="card-body">
         <?php $status->showMessages(); ?>
-        <form role="form" action="openvpn_conf" enctype="multipart/form-data" method="POST">
+        <form role="form" method="POST" action="/ajax/page/openvpn.php" enctype="multipart/form-data" class="live-form" data-modal-title="<?php echo _("OpenVPN Configuration"); ?>">
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">
