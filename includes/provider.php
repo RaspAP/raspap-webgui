@@ -375,6 +375,15 @@ function getAccountInfo($id, $binPath, $providerName)
     $cmd = getCliOverride($id, 'cmd_overrides', 'account');
     exec("sudo $binPath $cmd", $acct);
     $acct = stripAnsiSequence($acct);
+    $cutoff = getProviderValue($id, 'account_cutoff');
+    if ($cutoff) {
+        foreach ($acct as $i => $line) {
+            if (str_contains($line, $cutoff)) {
+                $acct = array_slice($acct, 0, $i);
+                break;
+            }
+        }
+    }
     foreach ($acct as &$item) {
         $item = preg_replace('/^[^\w]+\s*/', '', $item);
     }

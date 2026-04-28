@@ -45,6 +45,7 @@
             "cmd_overrides": {
                 "log": "status"
             },
+            "account_cutoff": "Terms of Service",
             "regex": {
                 "status": "\/status: disconnected\/",
                 "pattern": "(\\w+)\\s+",
