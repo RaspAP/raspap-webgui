@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2025-11-20 12:20\n"
-"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2026-04-29 13:38+0000\n"
+"PO-Revision-Date: 2026-04-22 02:22\n"
+"Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
@@ -14,2724 +14,3404 @@ msgstr ""
 "X-Crowdin-Project: raspap\n"
 "X-Crowdin-Project-ID: 395801\n"
 "X-Crowdin-Language: ja\n"
-"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
-"X-Crowdin-File-ID: 10\n"
-
-#: index.php
-msgid "RaspAP Wifi Configuration Portal"
-msgstr "RaspAP Wifi設定ポータル"
-
-msgid "Toggle navigation"
-msgstr "ナビゲーションを切り替え"
-
-msgid "RaspAP Admin Panel"
-msgstr "RaspAP 管理パネル"
-
-msgid "Dashboard"
-msgstr "ダッシュボード"
-
-msgid "WiFi client"
-msgstr "WiFiクライアント"
-
-msgid "Status"
-msgstr "ステータス"
-
-msgid "Hotspot"
-msgstr "ホットスポット"
-
-msgid "Logging"
-msgstr "ロギング"
-
-msgid "Mem Use"
-msgstr "メモリ使用率"
-
-msgid "CPU"
-msgstr "CPU"
-
-msgid "Networking"
-msgstr "ネットワーク"
-
-msgid "DHCP Server"
-msgstr "DHCPサーバー"
-
-msgid "OpenVPN"
-msgstr "OpenVPN"
-
-msgid "TOR proxy"
-msgstr "TORプロキシ"
-
-msgid "Authentication"
-msgstr "認証を構成する"
-
-msgid "System"
-msgstr "システム"
-
-msgid "About RaspAP"
-msgstr "RaspAPについて"
-
-#: includes/admin.php
-msgid "Authentication settings"
-msgstr "認証の設定"
-
-msgid "New passwords do not match"
-msgstr "新しいパスワードが一致しません"
-
-msgid "Username must not be empty"
-msgstr "ユーザー名は空欄にできません"
-
-msgid "Admin password updated"
-msgstr "管理者パスワードが更新されました"
-
-msgid "Failed to update admin password"
-msgstr "管理者パスワードを更新できませんでした"
-
-msgid "Old password does not match"
-msgstr "古いパスワードが一致しません"
-
-msgid "Username"
-msgstr "ユーザー名"
-
-msgid "Old password"
-msgstr "古いパスワード"
-
-msgid "New password"
-msgstr "新しいパスワード"
-
-msgid "Repeat new password"
-msgstr "新しいパスワードを繰り返す"
-
-msgid "Please provide a valid username."
-msgstr "有効なユーザー名を入力してください。"
-
-msgid "Please provide a valid password."
-msgstr "有効なパスワードを入力してください。"
-
-msgid "Please enter your old password."
-msgstr "元のパスワードを入力してください。"
-
-msgid "Please enter a new password."
-msgstr "新しいパスワードを入力してください。"
-
-msgid "Please re-enter your new password."
-msgstr "新しいパスワードを再入力してください。"
-
-msgid "Avatar"
-msgstr "アイコン"
-
-msgid "Click or tap to upload a new user avatar."
-msgstr "クリックまたはタップして新しいユーザーアバターをアップロードします。"
-
-msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
-msgstr "<code>JPG、GIF、PNG</code> の画像ファイルを使用できます。最大ファイルサイズ: 2MB。"
-
-msgid "Reset avatar"
-msgstr "アバターをリセット"
-
-msgid "Enable limited privilege user"
-msgstr "限定特権ユーザを有効にする"
-
-msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
-msgstr "このオプションは、ラズパップの管理インターフェースにアクセスできるが、<strong>既存のコンフィギュレーションを変更する能力が制限されて</strong>いる非管理ユーザーを有効にする。このユーザは、現在の管理ユーザがログアウトしたときにアクティブになります。"
-
-msgid "Admin login failed. Please try again."
-msgstr "管理者ログインに失敗しました。再試行してください。"
-
-msgid "Limited privilege user mode enabled"
-msgstr "限定特権ユーザーモードが有効"
-
-msgid "Failed to enable limited privilege user mode"
-msgstr "限定特権ユーザモードの有効化に失敗しました"
-
-msgid "Logout and enable limited user mode"
-msgstr "ログアウトして限定ユーザモードを有効にする"
-
-msgid "Limited user login"
-msgstr "ユーザーログインの制限"
-
-msgid "Limited user password"
-msgstr "限定ユーザのパスワード"
-
-msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
-msgstr "このアクションは限定ユーザの認証情報を保存し、現在の管理ユーザをログアウトさせます。限定特権モードを保存して有効にしますか?"
-
-msgid "Save and logout"
-msgstr "保存とログアウト"
-
-msgid "Admin credentials updated successfully"
-msgstr "管理者認証情報の更新に成功"
-
-msgid "Limited user credentials updated successfully"
-msgstr "限定ユーザの認証情報が正常に更新されました"
-
-#: includes/configure_client.php
-msgid "Client settings"
-msgstr "クライアントの設定"
-
-msgid "SSID"
-msgstr "SSID"
-
-msgid "Channel"
-msgstr "チャンネル"
-
-msgid "Security"
-msgstr "セキュリティー"
-
-msgid "Passphrase"
-msgstr "パスフレーズ"
-
-msgid "Wifi settings updated successfully"
-msgstr "Wifi設定が正常に更新されました"
-
-msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr "Wifi設定は更新されましたが、再起動できません（「wpa_cli reconfigure」を実行できません）"
-
-msgid "Wifi settings failed to be updated"
-msgstr "Wifi設定の更新に失敗しました"
-
-msgid "Failed to update wifi settings"
-msgstr "WiFi設定を更新できませんでした"
-
-msgid "Rescan"
-msgstr "再スキャン"
-
-msgid "Update"
-msgstr "アップデート"
-
-msgid "Add"
-msgstr "追加"
-
-msgid "Delete"
-msgstr "削除"
-
-msgid "Show"
-msgstr "表示"
-
-msgid "Hide"
-msgstr "隠す"
-
-msgid "Not configured"
-msgstr "設定されていません"
-
-msgid "Connected"
-msgstr "接続済み"
-
-msgid "Known"
-msgstr "既知の"
-
-msgid "Nearby"
-msgstr "近くの"
-
-msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>注：</strong> WEPアクセスポイントは「オープン」と表示されます。RaspAPは現在、WEPへの接続をサポートしていません"
-
-msgid "No Wifi stations found"
-msgstr "WiFiが見つかりません"
-
-msgid "Reinitialized wpa_supplicant. Choose <strong>Rescan</strong>."
-msgstr "wpa_supplicantを再初期化しました。 <strong>再スキャン</strong> を選択してください。"
-
-msgid "Click 'Rescan' to search for nearby Wifi stations."
-msgstr "再スキャンをクリックして、近くのWiFiを検索します。"
-
-msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
-msgstr "再初期化をクリックして<code>wpa_supplicant</code> を強制的に再初期化します。"
-
-msgid "Reinitialize"
-msgstr "再初期化"
-
-#: includes/dashboard.php
-msgid "Interface Information"
-msgstr "インターフェースの情報"
-
-msgid "Interface Name"
-msgstr "インターフェース名"
-
-msgid "IPv4 Address"
-msgstr "IPv4 アドレス"
-
-msgid "IPv6 Address"
-msgstr "IPv6 アドレス"
-
-msgid "Subnet Mask"
-msgstr "サブネットマスク"
-
-msgid "Mac Address"
-msgstr "Macアドレス"
-
-msgid "Interface Statistics"
-msgstr "インターフェース統計"
-
-msgid "Received Packets"
-msgstr "受診パケット"
-
-msgid "Received Bytes"
-msgstr "受信バイト"
-
-msgid "Transferred Packets"
-msgstr "転送されたパケット"
-
-msgid "Transferred Bytes"
-msgstr "転送されたバイト"
-
-msgid "Wireless Client"
-msgstr "無線クライアント"
-
-msgid "Connected To"
-msgstr "接続"
-
-msgid "AP Mac Address"
-msgstr "AP Macアドレス"
-
-msgid "Bitrate"
-msgstr "ビットレート"
-
-msgid "Signal Level"
-msgstr "信号レベル"
-
-msgid "Transmit Power"
-msgstr "送信電力"
-
-msgid "Frequency"
-msgstr "頻度"
-
-msgid "Link Quality"
-msgstr "リンク品質"
-
-msgid "Information provided by raspap.system"
-msgstr "raspap.systemが提供する情報"
-
-msgid "No MAC Address Found"
-msgstr "MACアドレスが見つかりません"
-
-msgid "No IP Address Found"
-msgstr "IPアドレスが見つかりません"
-
-msgid "No Subnet Mask Found"
-msgstr "サブネットマスクが見つかりません"
-
-msgid "No Data"
-msgstr "データがありません"
-
-msgid "Not connected"
-msgstr "接続されていません"
-
-msgid "Interface is up"
-msgstr "インターフェースがアップされています"
-
-msgid "Interface is down"
-msgstr "インターフェイスがダウンしています"
-
-msgid "Interface already down"
-msgstr "インターフェースは既にダウンしています"
-
-msgid "Start wlan0"
-msgstr "wlan0を設定"
-
-msgid "Stop wlan0"
-msgstr "wlan0を停止"
-
-msgid "Connected Devices"
-msgstr "接続されたデバイス"
-
-msgid "Client: Ethernet cable"
-msgstr "クライアント: イーサネットケーブル"
-
-msgid "Current status"
-msgstr "現在の状態"
-
-msgid "Ethernet"
-msgstr "イーサネット"
-
-msgid "Client: Smartphone (USB tethering)"
-msgstr "クライアント: スマートフォン(USBテザリング)"
-
-msgid "Smartphone"
-msgstr "スマートフォン"
-
-msgid "WiFi"
-msgstr "WiFi"
-
-msgid "Repeater"
-msgstr "リピーター"
-
-msgid "Tethering"
-msgstr "テザリング"
-
-msgid "Cellular"
-msgstr "セルラー"
-
-msgid "AP"
-msgstr "AP"
-
-msgid "Bridged"
-msgstr "ブリッジ"
-
-msgid "Adblock"
-msgstr "アドブロック"
-
-msgid "VPN"
-msgstr "VPN"
-
-msgid "Netmask"
-msgstr "ネットマスク"
-
-msgid "5G"
-msgstr "5G"
-
-msgid "2.4G"
-msgstr "2.4G"
-
-msgid "%d WLAN %s"
-msgstr "%d WLAN %s"
-
-msgid "client"
-msgid_plural "clients"
-msgstr[0] "クライアント"
-
-msgid "Mobile Data Client"
-msgstr "モバイルデータ クライアント"
-
-msgid "Mobile Data"
-msgstr "モバイルデータ"
-
-msgid "No information available"
-msgstr "利用可能な情報がありません"
-
-msgid "Interface name invalid"
-msgstr "インターフェイス名が無効です"
-
-msgid "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
-msgstr "必須の exec 関数が無効です。exec が php <code>disable_functions</code> に追加されていないか確認してください。"
-
-msgid "Waiting for the interface to start ..."
-msgstr "インターフェースの起動を待っています..."
-
-msgid "Stop the Interface"
-msgstr "インターフェイスを停止"
-
-msgid "Connection mode"
-msgstr "接続モード"
-
-msgid "Signal quality"
-msgstr "電波の品質"
-
-msgid "WAN IP"
-msgstr "WAN IP"
-
-msgid "Signal strength"
-msgstr "電波強度"
-
-msgid "No Client device or not yet configured"
-msgstr "クライアントデバイスがないか、まだ設定されていません"
-
-msgid "No Client device found"
-msgstr "クライアントデバイスが見つかりません"
-
-#: includes/footer.php
-msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
-msgstr "によって作成された <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
-
-msgid "RaspAP Team"
-msgstr "RaspAP チーム"
-
-msgid "Get Insiders"
-msgstr "インサイダーを取得"
-
-msgid "Thanks for being an Insider"
-msgstr "インサイダーになってくれてありがとう"
-
-#: includes/dhcp.php
-msgid "DHCP server settings"
-msgstr "DHCPサーバーの設定"
-
-msgid "Default gateway"
-msgstr "デフォルトゲートウェイ"
-
-msgid "Install a default route for this interface"
-msgstr "このインターフェイスのデフォルトルートをインストールする"
-
-msgid "Static IP options"
-msgstr "静的 IP オプション"
-
-msgid "DHCP options"
-msgstr "DHCP オプション"
-
-msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
-msgstr "選択したインターフェイスのクライアントに IP アドレスを割り当てる場合は、このオプションを有効にします。このオプションには静的 IP アドレスが必要です。"
-
-msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr "デバイスがインターネットへのプライマリルートとしてこのインターフェイスを使う場合のみ、これを有効にする。"
-
-msgid "Client list"
-msgstr "クライアントリスト"
-
-msgid "Interface"
-msgstr "インターフェース"
-
-msgid "Enable DHCP for this interface"
-msgstr "このインターフェースでDHCPを有効にする"
-
-msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
-msgstr "RaspAP で選択したインターフェイスに IP アドレスを割り当てる場合、このオプションを有効にします。"
-
-msgid "DNS Server"
-msgstr "DNSサーバー"
-
-msgid "Starting IP Address"
-msgstr "開始IPアドレス"
-
-msgid "Ending IP Address"
-msgstr "IPアドレスを終了中"
-
-msgid "Static Leases"
-msgstr "静止リース"
-
-msgid "Add static DHCP lease"
-msgstr "静的DHCPリースを追加する"
-
-msgid "Lease Time"
-msgstr "リース時間"
-
-msgid "Interval"
-msgstr "インターバル"
-
-msgid "Active DHCP leases"
-msgstr "アクティブなDHCPリース"
-
-msgid "Expire time"
-msgstr "期限切れ"
-
-msgid "MAC Address"
-msgstr "MACアドレス"
-
-msgid "Optional comment"
-msgstr "オプションのコメント"
-
-msgid "Host name"
-msgstr "ホスト名"
-
-msgid "Client ID"
-msgstr "クライアントID"
-
-msgid "Information provided by Dnsmasq"
-msgstr "Dnsmasqが提供する情報"
-
-msgid "Stop dnsmasq"
-msgstr "dnsmasqを停止"
-
-msgid "Start dnsmasq"
-msgstr "dnsmasqを開始"
-
-msgid "Dnsmasq configuration updated successfully"
-msgstr "Dnsmasq構成が正常に更新されました"
-
-msgid "dnsmasq already running"
-msgstr "dnsmasqはすでに実行されています"
-
-msgid "Successfully started dnsmasq"
-msgstr "dnsmasqを正常に開始しました"
-
-msgid "Failed to start dnsmasq"
-msgstr "dnsmasqを開始できませんでした"
-
-msgid "Successfully stopped dnsmasq"
-msgstr "dnsmasqを正常に停止しました"
-
-msgid "Failed to stop dnsmasq"
-msgstr "dnsmasqを停止できませんでした"
-
-msgid "dnsmasq already stopped"
-msgstr "dnsmasqはすでに停止しています"
-
-msgid "Dnsmasq is running"
-msgstr "Dnsmasqが実行されています"
-
-msgid "Dnsmasq is not running"
-msgstr "Dnsmasqが実行されていません"
-
-msgid "Upstream DNS servers"
-msgstr "アップストリームDNSサーバー"
-
-msgid "Only ever query DNS servers configured below"
-msgstr "以下で設定されたDNSサーバーのみ問い合わせる"
-
-msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "RaspAPが<b>DNS クエリを以下のサーバーに送信する場合</b>、このオプションを有効にします。 デフォルトでは、RaspAP は上流の DHCP サーバのネームサーバも使用します。"
-
-msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "このオプションは、dnsmasq 構成に <code>no-resolv</code> を追加します。"
-
-msgid "Add upstream DNS server"
-msgstr "アップストリームDNSサーバーを追加"
-
-msgid "Format"
-msgstr "書式"
-
-msgid "Choose a hosted server"
-msgstr "ホストされたサーバーを選択してください"
-
-msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
-msgstr "<code>dhcpcd</code> と <code>dnsmasq</code> にアクティビティを記録するには、これらのオプションを有効にします。"
-
-msgid "Log DHCP requests"
-msgstr "DHCP要求をログファイルに記録します"
-
-msgid "Log DNS queries"
-msgstr "DNSクエリをログファイルに記録します"
-
-msgid "Restrict access"
-msgstr "アクセス制限"
-
-msgid "Limit network access to static clients"
-msgstr "ネットワークへのアクセスを静的クライアントに制限"
-
-msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
-msgstr "静的リースリストに指定されていない<b>クライアントを</b>ラズパップに<b>無視さ</b>せたい場合は、このオプションを有効にします。"
-
-msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
-msgstr "このオプションは、 <code>dhcp-ignore</code> をdnsmasq 構成に追加します。"
-
-msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
-msgstr "指定のMACアドレスを持つクライアントは、常に同じIPアドレスを割り当てることができます。"
-
-msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
-msgstr "このオプションは、 <code>dhcp-host</code> エントリをdnsmasq 構成に追加します。"
-
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr "dhcpcd.conf ファイルで、このインターフェイスの<code>gateway/nogateway</code>オプションを切り替える。"
-
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr "このオプションは、dhcpcd.conf ファイルのこのインターフェイスの<code>nohook wpa_supplicant</code>オプションを切り替える。"
-
-msgid "Disable wpa_supplicant dhcp hook for this interface"
-msgstr "このインターフェイスの wpa_supplicant dhcp フックを無効にする"
-
-msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
-msgstr "wpa_supplicantでワイヤレス接続を管理する場合、フックは不要な接続イベントを作成することがあります。このオプションはフックを無効にします。"
-
-msgid "Please provide a valid IP Address."
-msgstr "有効な IP アドレスを入力してください。"
-
-msgid "Please provide a valid Default gateway."
-msgstr "有効なデフォルトゲートウェイを指定してください。"
-
-msgid "Please provide a valid Starting IP Address."
-msgstr "有効な開始IPアドレスを入力してください。"
-
-msgid "Please provide a valid Ending IP Address."
-msgstr "有効な終了 IP アドレスを入力してください。"
-
-msgid "Please provide a valid Lease Time."
-msgstr "有効なリース時間を入力してください。"
-
-msgid "Invalid interface name."
-msgstr "無効なインターフェース名です。"
-
-msgid "Invalid static IP address."
-msgstr "無効な静的 IP アドレス。"
-
-msgid "Invalid default gateway."
-msgstr "無効なデフォルトゲートウェイ。"
-
-msgid "Invalid DHCP range start."
-msgstr "無効な DHCP 範囲の開始。"
-
-msgid "Invalid DHCP range end."
-msgstr "無効な DHCP 範囲の終了。"
-
-msgid "Invalid DHCP lease time, not a number."
-msgstr "無効な DHCP リース時間。"
-
-msgid "Unknown DHCP lease time unit."
-msgstr "不明な DHCP リース時間単位。"
-
-msgid "Invalid metric value, not a number."
-msgstr "無効なメトリック値です。"
-
-#: includes/hostapd.php
-msgid "Basic"
-msgstr "基本"
-
-msgid "Advanced"
-msgstr "高度な"
-
-msgid "Basic settings"
-msgstr "基本的な設定"
-
-msgid "Wireless Mode"
-msgstr "ワイヤレスモード"
-
-msgid "Security settings"
-msgstr "セキュリティー設定"
-
-msgid "Security type"
-msgstr "セキュリティ―のタイプ"
-
-msgid "Encryption Type"
-msgstr "暗号化の種類"
-
-msgid "Pre-shared key (PSK)"
-msgstr "事前共有鍵 (PSK)"
-
-msgid "Advanced settings"
-msgstr "高度な設定"
-
-msgid "Country Code"
-msgstr "国コード"
-
-msgid "Information provided by hostapd"
-msgstr "hostapdが提供する情報"
-
-msgid "Attempting to start hotspot"
-msgstr "ホットスポットを開始しようとしています"
-
-msgid "Attempting to stop hotspot"
-msgstr "ホットスポットを停止しようとしています"
-
-msgid "HostAPD is not running"
-msgstr "HostAPDが実行されていません"
-
-msgid "HostAPD is running"
-msgstr "HostAPDが実行されています"
-
-msgid "SSID must be between 1 and 32 characters"
-msgstr "SSIDは1〜32文字でなければなりません"
-
-msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr "WPAパスフレーズは8〜63文字でなければなりません"
-
-msgid "Unknown interface"
-msgstr "不明なインターフェース"
-
-msgid "Country code must be blank or two characters"
-msgstr "国コードは空白または2文字でなければなりません"
-
-msgid "DHCP configuration for %s enabled."
-msgstr "%s の DHCP コンフィグレーションが有効になっている。"
-
-msgid "DHCP configuration for %s added."
-msgstr "%s の DHCP コンフィギュレーションが追加された。"
-
-msgid "DHCP configuration for %s updated."
-msgstr "%s の DHCP コンフィギュレーションが更新された。"
-
-msgid "Interface %s has no default settings."
-msgstr "インターフェース %s にはデフォルト設定はありません。"
-
-msgid "Configure settings in <strong>DHCP Server</strong> before starting AP."
-msgstr "AP を起動する前に<strong>DHCP サーバーの</strong>設定を行う。"
-
-msgid "Wifi hotspot settings saved."
-msgstr "Wifiホットスポットの設定が保存された。"
-
-msgid "Unable to save WiFi hotspot settings."
-msgstr "WiFi ホットスポット設定を保存できない。"
-
-msgid "Start hotspot"
-msgstr "ホットスポットを開始"
-
-msgid "Stop hotspot"
-msgstr "ホットスポットを停止"
-
-msgid "Restart hotspot"
-msgstr "ホットスポットを再起動"
-
-msgid "Enable logging"
-msgstr "ロギングを有効にする"
-
-msgid "Logfile output"
-msgstr "ログファイル出力"
-
-msgid "Log level"
-msgstr "ログレベル"
-
-msgid "Higher levels reduce log verbosity. Informational is recommended."
-msgstr "レベルを上げるとログの冗長性が減る。情報提供を推奨する。"
-
-msgid "Verbose debugging"
-msgstr "詳細なデバッグ"
-
-msgid "Debugging"
-msgstr "デバッグ"
-
-msgid "Informational"
-msgstr "情報提供"
-
-msgid "Notification"
-msgstr "お知らせ"
-
-msgid "Warning"
-msgstr "警告"
-
-msgid "WiFi client AP mode"
-msgstr "WiFiクライアントAPモード"
-
-msgid "Bridged AP mode"
-msgstr "ブリッジAPモード"
-
-msgid "WiFi repeater mode"
-msgstr "WiFi リピーターモード"
-
-msgid "Dual band AP mode"
-msgstr "デュアルバンド AP モード"
-
-msgid "Hide SSID in broadcast"
-msgstr "ブロードキャストでSSIDを非表示"
-
-msgid "Maximum number of clients"
-msgstr "クライアントの最大数"
-
-msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "hostapd の<code>max_num_sta</code>オプションを設定する。デフォルトと最大値は 2007。空または 0 の場合はデフォルトが適用される。"
-
-msgid "Beacon interval"
-msgstr "ビーコン間隔"
-
-msgid "Disable <code>disassoc_low_ack</code>"
-msgstr "<code>disassoc_low_ack を</code>無効にする"
-
-msgid "Do not disassociate stations based on excessive transmission failures."
-msgstr "過度の送信失敗に基づいてステーションをディスアソシエートしない。"
-
-msgid "Executing RaspAP service start"
-msgstr "RaspAPを開始しています。"
-
-msgid "Close"
-msgstr "閉じる"
-
-msgid "Enable this option to log <code>hostapd</code> activity."
-msgstr "<code>hostapd の</code>活動をログに記録するには、このオプションを有効にする。"
-
-msgid "Transmit power (dBm)"
-msgstr "送信パワー (dBm)"
-
-msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
-msgstr "AP インターフェースと設定されている国の<code>txpower</code>オプションを設定する。"
-
-msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
-msgstr "dBm は、電力比が1ミリワット(mW)を基準としてデシベル(dB)で表されることを示すために使われるレベルの単位である。30 dBmは1000 mWに等しく、0 dBmは1.25 mWに等しい。"
-
-msgid "WPA and WPA2"
-msgstr "WPAとWPA2"
-
-msgid "WPA2 and WPA3-Personal (transitional mode)"
-msgstr "WPA2およびWPA3-Personal（移行モード）"
-
-msgid "WPA3-Personal (required)"
-msgstr "WPA3-Personal (必須)"
-
-msgid "Enabled (for supported clients)"
-msgstr "有効 (サポートされているクライアントの場合)"
-
-msgid "Required (for supported clients)"
-msgstr "必須 (サポートされているクライアントの場合)"
-
-msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
-msgstr "802.11w は、Deauthentication（認証解除）、Disassociation（関連付け解除）、Action Management（アクション管理）フレームの特定のカテゴリを含む、選択された堅牢な管理フレームに強力な暗号保護を拡張します。これは、MFP（Management Frame Protection）と総称されます。"
-
-msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
-msgstr "この QR コードを直接スキャンするか、 %s %sサイン%s を印刷してユーザーに提供してください。"
-
-msgid "Printable Wi-Fi sign"
-msgstr "印刷可能なWi-Fiサイン"
-
-msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
-msgstr "スマホやタブレットで接続するには、上のQRコードをカメラアプリで読み取ってください。"
-
-msgid "For other devices, use the login credentials below."
-msgstr "その他のデバイスの場合は、以下のログイン認証情報を使用してください。"
-
-msgid "Network"
-msgstr "ネットワーク"
-
+"X-Crowdin-File: /master/locale/messages.pot\n"
+"X-Crowdin-File-ID: 12\n"
+
+#: ../ajax/networking/get_nl80211_band.php:37
+#, php-format
 msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
-msgstr "選択したインターフェース (%s) は、2.4 GHz ワイヤレスバンドのみをサポートしています。"
+msgstr "選択したインターフェイス（%s）は、2.4GHzワイヤレスバンドのみをサポートしています。"
 
-msgid "The selected interface (%s) has support for the 2.5 GHz wireless band only."
-msgstr "選択されたインターフェース (%s) は 2.5 GHz ワイヤレスバンドのみをサポートしています。"
+#: ../ajax/networking/get_nl80211_band.php:40
+#, php-format
+msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
+msgstr "選択したインターフェイス（%s）は、5 GHzワイヤレスバンドのみをサポートしています。"
 
+#: ../ajax/networking/get_nl80211_band.php:43
+#, php-format
 msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
-msgstr "選択したインターフェース (%s) は、2.4 と 5 GHz の両方のワイヤレスバンドをサポートしている。"
+msgstr "選択されたインターフェイス（%s）は、2.4GHzと5GHzの両方のワイヤレスバンドをサポートしています。"
 
+#: ../ajax/networking/get_nl80211_band.php:46
+#, php-format
 msgid "The selected interface (%s) does not support wireless mode operation."
 msgstr "選択されたインターフェイス（%s）は、ワイヤレスモード操作をサポートしていません。"
 
-msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
-msgstr "802.11ac 5 GHz オプションは、互換性のあるワイヤレス規制ドメインが設定されるまで無効です。"
-
-msgid "WiFi repeater mode: A metric value is already defined for DHCP."
-msgstr "WiFiリピーターモード：メトリック値はすでにDHCP用に定義されています。"
-
-msgid "Restart hotspot to enable WiFi repeater mode."
-msgstr "ホットスポットを再起動してWiFiリピーターモードを有効にします。"
-
-msgid "Unable to obtain metric value for client interface. Repeater mode inactive."
-msgstr "クライアントインタフェースのメトリック値を取得できない。リピータモードが無効です。"
-
-msgid "Metric value configured for the %s interface."
-msgstr "%s インターフェースに設定されたメトリック値。"
-
-msgid "Parameter hiddenSSID contains invalid configuration value."
-msgstr "パラメータ hiddenSSID に無効な設定値が含まれています。"
-
-msgid "Parameter hiddenSSID is not a number."
-msgstr "パラメータ hiddenSSID は数値ではない。"
-
-msgid "Bridge interface configuration"
-msgstr "ブリッジ・インターフェース設定"
-
-msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
-msgstr "<code>br0</code>インターフェースにスタティック IP アドレスを設定し、ブリッジモード起動時の接続性を維持します。"
-
-msgid "Static IP Address"
-msgstr "静的IPアドレス"
-
-msgid "Netmask / CIDR"
-msgstr "ネットマスク / CIDR"
-
-msgid "Example: 192.168.1.100"
-msgstr "例: 192.168.1.100"
-
-msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
-msgstr "CIDR表記（例：255.255.255.0なら24）"
-
-msgid "Gateway"
-msgstr "ゲートウェイ"
-
-msgid "Your router's IP address"
-msgstr "ルーターのIPアドレス"
-
-msgid "Usually same as gateway"
-msgstr "通常はゲートウェイと同じ"
-
-msgid "Bridge static IP address must be a valid IPv4 address"
-msgstr "ブリッジの静的 IP アドレスは有効な IPv4 アドレスでなければならない"
-
-msgid "Bridge netmask must be a number between 1 and 32"
-msgstr "ブリッジのネットマスクは 1 から 32 までの数字でなければならない"
-
-msgid "Bridge netmask is required when using static IP"
-msgstr "静的 IP を使う場合はブリッジネットマスクが必要"
-
-msgid "Bridge gateway must be a valid IPv4 address"
-msgstr "ブリッジゲートウェイは有効な IPv4 アドレスでなければならない"
-
-msgid "Bridge gateway is required when using static IP"
-msgstr "固定 IP を使う場合はブリッジゲートウェイが必要"
-
-msgid "Bridge DNS server must be a valid IPv4 address"
-msgstr "ブリッジ DNS サーバは有効な IPv4 アドレスでなければならない。"
-
-msgid "Bridge DNS server is required when using static IP"
-msgstr "静的 IP を使用する場合はブリッジ DNS サーバが必要"
-
-msgid "Bridge static IP and gateway must be in the same subnet"
-msgstr "ブリッジの静的IPとゲートウェイは同じサブネットになければならない"
-
-msgid "Please enter a valid IPv4 address"
-msgstr "有効なIPv4アドレスを入力してください。"
-
-msgid "Please enter a valid netmask"
-msgstr "有効なネットマスクを入力してください。"
-
-msgid "DHCP configuration for br0 enabled"
-msgstr "br0のDHCPコンフィギュレーションが有効"
-
-msgid "Unable to save WiFi hotspot settings due to validation errors"
-msgstr "検証エラーによりWiFiホットスポット設定を保存できない"
-
-msgid "Enable AP isolation"
-msgstr "AP分離を有効にする"
-
-msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
-msgstr "ワイヤレスクライアント同士の通信を遮断します。ゲストネットワークや公共のアクセスポイントにお勧めします。"
-
-#: includes/networking.php
-msgid "Summary"
-msgstr "概要"
-
-msgid "Internet connection"
-msgstr "インターネット接続"
-
-msgid "Current settings"
-msgstr "現在の設定"
-
-msgid "Default Gateway"
-msgstr "デフォルトのゲートウェイ"
-
-msgid "Alternate DNS Server"
-msgstr "代替DNSサーバー"
-
-msgid "Adapter IP Address Settings"
-msgstr "アダプタのIPアドレス設定"
-
-msgid "Enable fallback to static option"
-msgstr "静的オプションへのフォールバックを有効にする"
-
-msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
-msgstr "このオプションを有効にすると、静的プロファイルが構成され、DHCPリースが失敗したときにフォールバックします。"
-
-msgid "Static IP"
-msgstr "静止IP"
-
-msgid "Enabled"
-msgstr "有効"
-
-msgid "Disabled"
-msgstr "無効"
-
-msgid "Static IP Options"
-msgstr "静的IPオプション"
-
-msgid "Metric"
-msgstr "メトリック"
-
-msgid "Apply settings"
-msgstr "設定を適用"
-
-msgid "Information provided by /sys/class/net"
-msgstr "/sys/class/netによって提供される情報"
-
-msgid "Devices"
-msgstr "デバイス"
-
-msgid "Diagnostics"
-msgstr "診断"
-
-msgid "Network devices"
-msgstr "ネットワーク機器"
-
-msgid "Device"
-msgstr "装置"
-
-msgid "MAC address"
-msgstr "MACアドレス"
-
-msgid "USB vid/pid"
-msgstr "USB vid/pid"
-
-msgid "Device type"
-msgstr "デバイスタイプ"
-
-msgid "Fixed name"
-msgstr "固定名"
-
-msgid "Change"
-msgstr "変更"
-
-msgid "Mobile data settings"
-msgstr "モバイルデータ設定"
-
-msgid "SIM card PIN number"
-msgstr "SIMカードのPIN番号"
-
-msgid "APN Settings (Modem device ppp0)"
-msgstr "APN設定（モデムデバイスppp0）"
-
-msgid "Access Point Name (APN)"
-msgstr "アクセスポイント名（APN）"
-
-msgid "Password"
-msgstr "パスワード"
-
-msgid "Successfully Updated Network Configuration"
-msgstr "ネットワーク設定の更新に成功"
-
-msgid "Error saving network configuration to file"
-msgstr "ネットワーク設定のファイル保存エラー"
-
-msgid "Unable to detect interface"
-msgstr "インターフェイスを検出できない"
-
-msgid "Routing table"
-msgstr "ルーティングテーブル"
-
-msgid "raw output"
-msgstr "生出力"
-
-msgid "Setting wireless regulatory domain to %s"
-msgstr "無線規制ドメインの設定 %s"
-
-msgid "Please provide a valid SSID."
-msgstr "有効なSSIDを入力してください。"
-
-msgid "Please provide a valid PSK."
-msgstr "有効なPSKを入力してください。"
-
-msgid "Speedtest"
-msgstr "スピードテスト"
-
-msgid "Selecting a server"
-msgstr "サーバーの選択"
-
-msgid "Privacy"
-msgstr "プライバシー"
-
-msgid "Server"
-msgstr "サーバー"
-
-msgid "ms"
-msgstr "ms"
-
-msgid "Mbps"
-msgstr "Mbps"
-
-msgid "Ping"
-msgstr "ピン"
-
-msgid "Jitter"
-msgstr "ジッター"
-
-msgid "Upload"
-msgstr "アップロード"
-
-msgid "Start"
-msgstr "スタート"
-
-msgid "Abort"
-msgstr "中止"
-
-msgid "Wireless LAN routing"
-msgstr "無線LANルーティング"
-
-msgid "Stop WLAN routing"
-msgstr "WLANルーティングの停止"
-
-msgid "Start WLAN routing"
-msgstr "WLANルーティングの開始"
-
-msgid "Restart WLAN routing"
-msgstr "WLANルーティングの再起動"
-
-msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
-msgstr "このオプションは、<b>ワイヤレスクライアント（STA）インターフェースからのネットワークトラフィックを</b>別の利用可能なインターフェースに<b>ルーティング</b>するようにRaspAPを設定します。"
-
-msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
-msgstr "出力インターフェイスが選択されると、<code>iptables</code>ルールが追加され、ネットワークアドレス変換(NAT)を使用してパケットをルーティングする。これは、WLANからのインターネット接続を<code>eth0</code>、<code>usb0</code>、または予測可能な<code>enx</code>インターフェースのデバイスと共有するためによく行われます。"
-
-msgid "Wireless client interface"
-msgstr "ワイヤレスクライアントインターフェース"
-
-msgid "Output interface"
-msgstr "出力インターフェース"
-
-msgid "Configure a static IP address and DHCP for output interface"
-msgstr "出力インターフェースにスタティックIPアドレスとDHCPを設定する"
-
-msgid "Attempting to enable routing between %s and %s interfaces"
-msgstr "%s と %s インターフェース間のルーティングを有効にしようとしている。"
-
-msgid "Attempting to disable routing between %s and %s interfaces"
-msgstr "%s と %s インターフェース間のルーティングを無効にしようとしている。"
-
-msgid "No default DHCP configuration exists for the %s interface"
-msgstr "%s 、デフォルトのDHCPコンフィグレーションは存在しない。"
-
-msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
-msgstr "DHCPサーバーの設定で、このインターフェイスに静的IPとDHCPを設定します。"
-
-msgid "WLAN routing configuration saved"
-msgstr "WLANルーティング設定の保存"
-
-msgid "Unable to save WLAN routing configuration"
-msgstr "WLANルーティング設定を保存できない"
-
-msgid "Successfully restarted dnsmasq"
-msgstr "dnsmasqの再起動に成功"
-
-msgid "Failed to restart dnsmasq"
-msgstr "dnsmasqの再起動に失敗"
-
-#: includes/system.php
-msgid "System Information"
-msgstr "システム情報"
-
-msgid "Language"
-msgstr "言語"
-
-msgid "Language settings"
-msgstr "言語の設定"
-
-msgid "Select a language"
-msgstr "言語を選択"
-
-msgid "Language setting saved"
-msgstr "言語の設定が保存されました"
-
-msgid "Console"
-msgstr "コンソール"
-
-msgid "Hostname"
-msgstr "ホスト名"
-
-msgid "Pi Revision"
-msgstr "Piリビジョン"
-
-msgid "Uptime"
-msgstr "アップタイム"
-
-msgid "System Time"
-msgstr "システム時間"
-
-msgid "Memory Used"
-msgstr "使用メモリ"
-
-msgid "Storage Used"
-msgstr "使用ストレージ"
-
-msgid "CPU Load"
-msgstr "CPU負荷"
-
-msgid "CPU Temp"
-msgstr "CPU温度"
-
-msgid "Reboot"
-msgstr "リブート"
-
-msgid "Shutdown"
-msgstr "シャットダウン"
-
-msgid "System reboot"
-msgstr "システムの再起動"
-
-msgid "System shutdown"
-msgstr "システム停止"
-
-msgid "Reboot now? The system will be temporarily unavailable."
-msgstr "今すぐ再起動しますか？システムは一時的に使用できなくなります。"
-
-msgid "Shutdown now? The system will be unavailable."
-msgstr "今すぐシャットダウンしますか？システムは利用できなくなります。"
-
-msgid "System Rebooting Now!"
-msgstr "システムを再起動しています！"
-
-msgid "System Shutting Down Now!"
-msgstr "システムのシャットダウン中！"
-
-msgid "Web server port"
-msgstr "Webサーバーの使用ポート"
-
-msgid "Web server bind address"
-msgstr "Webサーバーのバインドアドレス"
-
-msgid "OS"
-msgstr "OS"
-
-msgid "Kernel"
-msgstr "カーネル"
-
-msgid "System reset"
-msgstr "システムのリセット"
-
-msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
-msgstr "RaspAPを初期設定に戻しますか？この操作は元に戻せません。"
-
-msgid "Reset complete. Restart the hotspot for the changes to take effect."
-msgstr "リセットが完了しました。変更を有効にするには、ホットスポットを再起動します。"
-
-msgid "System reset in progress..."
-msgstr "システムリセット中..."
-
-msgid "Reset"
-msgstr "リセット"
-
-msgid "Restore settings"
-msgstr "設定の復元"
-
-msgid "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
-msgstr "ラズパップを<a href=\"%s\">初期</a>設定に戻すには、以下のボタンをクリックまたはタップしてください。"
-
-msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
-msgstr "広告ブロック、WireGuard、OpenVPNなどのオプションコンポーネントのカスタムファイルはシステムに残ります。"
-
-msgid "Perform reset"
-msgstr "リセットの実行"
-
-msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
-msgstr "すべてのアクセスポイント（AP）サービス設定をデフォルト値に戻します。これは hostapd、dhcpcd、dnsmasq に適用されます。"
-
-msgid "Theme settings"
-msgstr "テーマ設定"
-
-msgid "Select a theme"
-msgstr "テーマを変更"
-
-msgid "Color"
-msgstr "色"
-
-msgid "Enable this option for resizable, drag and drop widgets. Best for large displays."
-msgstr "リサイズ可能なドラッグ＆ドロップ・ウィジェットにはこのオプションを有効にしてください。大きなディスプレイに最適です。"
-
-msgid "Dynamic widgets"
-msgstr "ダイナミック・ウィジェット"
-
-msgid "Tools"
-msgstr "ツール"
-
-msgid "System tools"
-msgstr "システムツール"
-
-msgid "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
-msgstr "<a href=\"%s\">システムデバッグログを</a>生成するには、以下のボタンをクリックまたはタップします。"
-
-msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
-msgstr "デバッグログ情報には、ラズパップのバージョン、AP関連サービスの現在の状態と設定、インストールされているシステムパッケージ、Linuxカーネルのバージョン、ネットワークの詳細が含まれる。パスワードやその他の機密データは含まれていません。"
-
-msgid "Generate debug log"
-msgstr "デバッグ・ログの生成"
-
-msgid "Debug log generation in progress..."
-msgstr "デバッグ・ログ生成中"
-
-msgid "Diagnostic log size limit (KB)"
-msgstr "診断ログのサイズ制限（KB）"
-
-msgid "Changing log limit size to %s KB"
-msgstr "ログの上限サイズを %s KB に変更"
-
-msgid "Information provided by raspap.sysinfo"
-msgstr "raspap.sysinfoが提供する情報"
-
-msgid "The following user plugins are available to extend RaspAP's functionality."
-msgstr "ラズパップの機能を拡張するために、以下のユーザープラグインが利用できます。"
-
-msgid "Choose <strong>Details</strong> for more information and to install a plugin."
-msgstr "詳細とプラグインのインストールについては、<strong>「詳細</strong>」を選択してください。"
-
-msgid "Network error"
-msgstr "ネットワークエラー"
-
-msgid "Unable to load plugins"
-msgstr "プラグインをロードできない"
-
-msgid "Reload"
-msgstr "リロード"
-
-msgid "and try again"
-msgstr "そしてもう一度"
-
-msgid "Plugins"
-msgstr "プラグイン"
-
-msgid "Plugin details"
-msgstr "プラグインの詳細"
-
-msgid "Name"
-msgstr "名称"
-
-msgid "Version"
-msgstr "バージョン"
-
-msgid "Description"
-msgstr "説明"
-
-msgid "Plugin source"
-msgstr "プラグインソース"
-
-msgid "Author"
-msgstr "著者"
-
-msgid "License"
-msgstr "ライセンス"
-
-msgid "Language locale"
-msgstr "言語ロケール"
-
-msgid "Configuration files"
-msgstr "設定ファイル"
-
-msgid "Dependencies"
-msgstr "依存関係"
-
-msgid "Permissions"
-msgstr "アクセス許可"
-
-msgid "Non-privileged users"
-msgstr "非特権ユーザー"
-
-msgid "Install now"
-msgstr "今すぐインストール"
-
-msgid "Installing plugin"
-msgstr "プラグインのインストール"
-
-msgid "Plugin installation in progress..."
-msgstr "プラグインのインストール中..."
-
-msgid "Plugin install completed."
-msgstr "プラグインのインストールが完了しました。"
-
-msgid "Details"
-msgstr "詳細"
-
-msgid "Installed"
-msgstr "設置済み"
-
-msgid "Alert messages"
-msgstr "アラートメッセージ"
-
-msgid "Alert close timeout (milliseconds)"
-msgstr "アラート終了タイムアウト（ミリ秒）"
-
-msgid "Automatically close alerts after a specified timeout"
-msgstr "指定したタイムアウト後に自動的にアラートを閉じる"
-
-msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "このデバイスに接続されている<a href=\"%s\" target=\"_blank\">アダプターを検査</a>するには、下のボタンをクリックまたはタップしてください。"
-
-msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
-msgstr "アダプタ検査ツールは、ドライバ、サポートされているモードなどを含む外部WLANデバイスの詳細を返します。"
-
-msgid "Choose a network interface to inspect"
-msgstr "検査するネットワークインターフェースを選択する"
-
-msgid "Select an interface..."
-msgstr "インターフェイスを選択"
-
-msgid "Adapter health check"
-msgstr "アダプターのヘルスチェック"
-
-msgid "Inspect adapters"
-msgstr "アダプターの検査"
-
-msgid "Theme"
-msgstr "テーマ"
-
-#: includes/data_usage.php
-msgid "Data usage"
-msgstr "データ使用量"
-
-msgid "Data usage monitoring"
-msgstr "データ使用量のモニタリング"
-
-msgid "Hourly traffic amount"
-msgstr "毎時のトラフィック量"
-
-msgid "Daily traffic amount"
-msgstr "1日のトラフィック量"
-
-msgid "Monthly traffic amount"
-msgstr "月間のトラフィック量"
-
-msgid "Hourly"
-msgstr "毎時"
-
-msgid "Daily"
-msgstr "毎日"
-
-msgid "Monthly"
-msgstr "月間"
-
-msgid "interface"
-msgstr "インターフェース"
-
-msgid "date"
-msgstr "日付け"
-
-msgid "Send MB"
-msgstr "MBを送信"
-
-msgid "Receive MB"
-msgstr "受信MB"
-
-msgid "Information provided by vnstat"
-msgstr "vnstatが提供する情報"
-
-msgid "Loading {0} bandwidth chart"
-msgstr "{0}の帯域幅チャートを読み込んでいます"
-
-msgid "Showing {0} to {1} of {2} entries"
-msgstr "{2}のエントリーのうち{0}〜{1}を表示しています"
-
-#: includes/openvpn.php
-msgid "OpenVPN is not running"
-msgstr "OpenVPNが実行されていません"
-
-msgid "OpenVPN is running"
-msgstr "OpenVPNが実行されています"
-
-msgid "Server settings"
-msgstr "サーバー設定"
-
-msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "OpenVPN構成ファイル（.ovpn）を選択"
-
-msgid "Client Log"
-msgstr "クライアントログ"
-
-msgid "Port"
-msgstr "ポート"
-
-msgid "Protocol"
-msgstr "プロトコル"
-
-msgid "Root CA certificate"
-msgstr "ルートCAの証明書"
-
-msgid "Server certificate"
-msgstr "サーバー認証"
-
-msgid "Diffie Hellman parameters"
-msgstr "Diffie Hellmanパラメーター"
-
-msgid "KeepAlive"
-msgstr "キープアライブ"
-
-msgid "Server log"
-msgstr "サーバーログ"
-
-msgid "Start OpenVPN"
-msgstr "OpenVPNを開始"
-
-msgid "Stop OpenVPN"
-msgstr "OpenVPNを停止"
-
-msgid "Information provided by openvpn"
-msgstr "openvpnが提供する情報"
-
-msgid "Attempting to start openvpn"
-msgstr "openvpnを開始しようとしています"
-
-msgid "Attempting to stop openvpn"
-msgstr "openvpnを停止しようとしています"
-
-msgid "Configurations"
-msgstr "設定"
-
-msgid "Currently available OpenVPN client configurations are displayed below."
-msgstr "現在利用可能なOpenVPNクライアント設定は以下の通りです。"
-
-msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
-msgstr "設定を有効にすると、<code>openvpn-client</code>サービスが再起動します。"
-
-msgid "Delete OpenVPN client"
-msgstr "OpenVPNクライアントを削除"
-
-msgid "Delete client configuration? This cannot be undone."
-msgstr "クライアント設定を削除しますか？この操作は元に戻すことはできません。"
-
-msgid "Activate OpenVPN client"
-msgstr "OpenVPNクライアントを有効化"
-
-msgid "Activate client configuration? This will restart the openvpn-client service."
-msgstr "設定を反映しますか？設定を反映するためにOpenvpn-Clientサービスを再起動します。"
-
-msgid "Activate"
-msgstr "アクティブ化"
-
-msgid "Cancel"
-msgstr "キャンセル"
-
-msgid "Enable this option to log <code>openvpn</code> activity."
-msgstr "このオプションを有効にすると <code>OpenVPN</code>のログを記録します。"
-
-msgid "Authentification Method"
-msgstr "認証方法"
-
-msgid "Username and password"
-msgstr "ユーザー名とパスワード"
-
-msgid "Certificates"
-msgstr "証明書"
-
-msgid "Enter username and password"
-msgstr "あなたのユーザー名とパスワードを入力してください"
-
-msgid "Certificates in the configuration file"
-msgstr "設定ファイルの証明書"
-
-msgid "RaspAP supports certificates by including them in the configuration file."
-msgstr "RaspAPは証明書を設定ファイルに含めることによって証明書による認証をサポートします。"
-
-msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
-msgstr "認証局に署名する(CA) 証明書(例: <code>ca.crt</code>): <code>&lt;ca> ... &lt;/ca></code>タグの中に記載する。"
-
-msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
-msgstr "公開鍵（public key） (例: <code>client.crt</code>): <code>&lt;cert> ... &lt;/cert></code>タグの中に記載する。"
-
-msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
-msgstr "クライアントの秘密鍵（例 <code>client.key</code>): <code>&lt;key> ... &lt;/key></code>タグの中に記載する。"
-
-msgid "Configuration File"
-msgstr "設定ファイル"
-
-#: includes/torproxy.php
-msgid "TOR is not running"
-msgstr "TORが実行されていません"
-
-msgid "TOR is running"
-msgstr "TORが実行されています"
-
-msgid "Relay"
-msgstr "リレー"
-
-msgid "Relay settings"
-msgstr "リレー設定"
-
-msgid "Nickname"
-msgstr "ニックネーム"
-
-msgid "Address"
-msgstr "アドレス"
-
-msgid "Start TOR"
-msgstr "TORを開始"
-
-msgid "Stop TOR"
-msgstr "TORを停止"
-
-msgid "Information provided by tor"
-msgstr "torが提供する情報"
-
-msgid "Attempting to start TOR"
-msgstr "TORを実行しようとしています"
-
-msgid "Attempting to stop TOR"
-msgstr "TORを停止しようとしています"
-
-#: template/dashboard.php
-msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
-msgstr "ブリッジAPモードが有効になっています。ホスト名とIPアドレスは、ルーターの管理ページを参照してください。"
-
-#: common form controls
-msgid "Save settings"
-msgstr "設定を保存"
-
-msgid "Refresh"
-msgstr "リフレッシュ"
-
-msgid "running"
-msgstr "実行中"
-
-msgid "stopped"
-msgstr "停止"
-
-msgid "Remove"
-msgstr "削除"
-
-msgid "up"
-msgstr "上"
-
-msgid "down"
-msgstr "下"
-
-msgid "Clear log"
-msgstr "クリアログ"
-
-msgid "adblock"
-msgstr "adblock"
-
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+msgid "No MAC Address Found"
+msgstr "MACアドレスが見つかりません"
+
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "IPv6アドレスが見つかりません"
+
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "顧客"
+
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: ../src/RaspAP/UI/Sidebar.php:20 ../templates/hostapd.php:13
+#: ../includes/functions.php:1002
+msgid "Hotspot"
+msgstr "ホットスポット"
+
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
+msgid "DHCP Server"
+msgstr "DHCPサーバー"
+
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
 msgid "Ad Blocking"
 msgstr "広告ブロック"
 
-msgid "Start Ad Blocking"
-msgstr "広告ブロックを開始する"
-
-msgid "Restart Ad Blocking"
-msgstr "広告ブロックを再開する"
-
-msgid "Blocklist settings"
-msgstr "ブロックリストの設定"
-
-msgid "Enable blocklists"
-msgstr "ブロックリストを有効にする"
-
-msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr "ラズパップに<b>広告、トラッキング、その他の仮想ゴミのDNSリクエストをブロックさ</b>せたい場合は、このオプションを有効にします。ブロックリストは、アクティブに維持されている複数のソースから収集され、毎日自動的に更新、クリーニング、最適化、およびモデレートされます。"
-
-msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
-msgstr "このオプションは、dnsmasq設定に<code>conf-fileと</code> <code>addn-hostsを</code>追加する。"
-
-msgid "Choose a blocklist provider"
-msgstr "ブロックリストのプロバイダーを選択する"
-
-msgid "Hostnames blocklist last updated"
-msgstr "ホスト名のブロックリストの最終更新"
-
-msgid "Domains blocklist last updated"
-msgstr "ドメインのブロックリストの最終更新"
-
-msgid "Update now"
-msgstr "今すぐ更新する"
-
-msgid "Statistics"
-msgstr "統計"
-
-msgid "Information provided by adblock"
-msgstr "adblockが提供する情報"
-
-msgid "Enable custom blocklist"
-msgstr "カスタムブロックリストを有効にする"
-
-msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
-msgstr "IPv4またはIPv6アドレスの後に空白（スペースまたはタブ）とホスト名を入力して、ブロックするカスタムホストを定義します。"
-
-msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
-msgstr "<b>IPv4の例:</b> 0.0.0.0 badhost.com"
-
-msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
-msgstr "このオプションはdnsmasq設定に<code>addn-hosts</code>ディレクティブを追加します。"
-
-msgid "Custom blocklist not defined"
-msgstr "カスタムブロックリストが設定されていません。"
-
-msgid "Invalid custom IP address found on line "
-msgstr "無効なカスタムIPアドレスが見つかりました "
-
-msgid "Invalid custom host found on line "
-msgstr "無効なカスタムホスト名が見つかりました "
-
-msgid "Tunnel settings"
-msgstr "トンネルの設定"
-
-msgid "Configuration Method"
-msgstr "設定方法"
-
-msgid "Upload file"
-msgstr "ファイルのアップロード"
-
-msgid "Create manually"
-msgstr "手動で作成"
-
-msgid "Upload a WireGuard config"
-msgstr "WireGuard設定のアップロード"
-
-msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
-msgstr "このオプションは、このデバイスに既存のWireGuard<code>.conf</code>ファイルをアップロードしてインストールします。"
-
-msgid "Apply iptables rules to the selected interface"
-msgstr "選択したインターフェイスにiptablesルールを適用する"
-
-msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
-msgstr "wg0インターフェイスからのネットワーク・トラフィックを、希望するインターフェイスに接続されているクライアントに転送したい場合に推奨する。アクティブな AP インターフェースがデフォルトです。"
-
-msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
-msgstr "このオプションは、以下で選択したインターフェイスに<strong>iptablesの</strong> <code>Postupと</code> <code>PostDown</code>ルールを追加します。"
-
-msgid "Select WireGuard configuration file (.conf)"
-msgstr "WireGuard設定ファイル（.conf）を選択します。"
-
-msgid "Create a local WireGuard config"
-msgstr "ローカルWireGuardコンフィグを作成する"
-
-msgid "Enable server"
-msgstr "サーバーを有効化"
-
-msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
-msgstr "このオプションを有効にすると、ラズパップと設定されたピアとの間に暗号化されたトンネルが作成され、ネットワークトラフィックが保護されます。"
-
-msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
-msgstr "この設定により、このデバイス上に新しいWireGuard<code>.conf</code>ファイルが生成されます。"
-
-msgid "Local public key"
-msgstr "ローカル公開鍵"
-
-msgid "Local Port"
-msgstr "ローカルポート番号"
-
-msgid "IP Address"
-msgstr "IPアドレス"
-
-msgid "DNS"
-msgstr "DNS"
-
-msgid "Peer"
-msgstr "ピア"
-
-msgid "Enable peer"
-msgstr "ピアの有効化"
-
-msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
-msgstr "このオプションを有効にすると、ラズパップとこのピアとの間にトンネルが作成され、トラフィックが暗号化されます。"
-
-msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
-msgstr "このオプションは、WireGuard設定に<code>client.confを</code>追加します。"
-
-msgid "Peer public key"
-msgstr "ピア公開鍵"
-
-msgid "Endpoint address"
-msgstr "エンドポイントのアドレス"
-
-msgid "Allowed IPs"
-msgstr "許可されたIPアドレス"
-
-msgid "Persistent keepalive"
-msgstr "持続的キープアライブ"
-
-msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
-msgstr "更新された<code>wg-quick</code>デバッグログを表示するためにこのオプションを有効にする。"
-
-msgid "WireGuard debug log updated"
-msgstr "WireGuardデバッグログ更新"
-
-msgid "Scan this QR code with your client to connect to this tunnel"
-msgstr "接続したいデバイスで、このQRコードをスキャンしてトンネルに接続します。"
-
-msgid "or download the <code>client.conf</code> file to your device."
-msgstr "または <code>client.conf</code>ファイルをダウンロードしてください。"
-
-msgid "Download"
-msgstr "ダウンロード"
-
-msgid "Start WireGuard"
-msgstr "WireGuardを開始"
-
-msgid "Stop WireGuard"
-msgstr "WireGuardを終了"
-
-msgid "Information provided by wireguard"
-msgstr "WireGuardが提供する情報"
-
-msgid "Attempting to start WireGuard"
-msgstr "WireGuardを開始中です。"
-
-msgid "Attempting to stop WireGuard"
-msgstr "WireGuardを停止中です。"
-
-msgid "WireGuard configuration updated successfully"
-msgstr "WireGuardの設定が正常に更新されました"
-
-msgid "WireGuard configuration failed to be updated"
-msgstr "WireGuardの設定を更新できませんでした"
-
-msgid "Enable kill switch"
-msgstr "キルスイッチを有効にする"
-
-msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
-msgstr "このオプションは、設定されたインターフェイスに<strong>iptablesの</strong> <code>PostUpと</code> <code>PreDown</code>ルールを追加します。"
-
-msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
-msgstr "WireGuard以外のインターフェイスを経由する暗号化されていないパケットのフローを防止したい場合に推奨。"
-
-msgid "iptables rules added to WireGuard configuration"
-msgstr "WireGuard設定にiptablesルールを追加"
-
-msgid "Existing iptables rules found in WireGuard configuration - not added"
-msgstr "WireGuardの設定に既存のiptablesルールが見つかりました。"
-
-msgid "Currently available WireGuard file configurations are displayed below."
-msgstr "現在利用可能なWireGuardファイル構成は以下のとおりです。"
-
-msgid "Activating a configuration will restart the <code>wg-quick</code> service."
-msgstr "設定を有効にすると、<code>wg-quick</code>サービスを再起動します。"
-
-msgid "Client Firewall"
-msgstr "クライアントファイアウォール"
-
-msgid "Firewall is ENABLED"
-msgstr "ファイアウォールが有効"
-
-msgid "Firewall is OFF"
-msgstr "ファイアウォールがオフ"
-
-msgid "The default firewall will only allow outgoing and already established traffic."
-msgstr "デフォルトのファイアウォールは、発信トラフィックと既に確立されたトラフィックのみを許可する。"
-
-msgid "No incoming UDP traffic is allowed."
-msgstr "UDPトラフィックの着信は許可されない。"
-
-msgid "There are no restrictions for the access point <code>%s</code>."
-msgstr "アクセスポイントの制限はありません。 <code>%s</code>."
-
-msgid "Exception: Service"
-msgstr "例外サービス"
-
-msgid "allow SSH access on port 22"
-msgstr "ポート22でのSSHアクセスを許可する"
-
-msgid "allow access to the RaspAP GUI on port 80 or 443"
-msgstr "ポート 80 または 443 での RaspAP GUI へのアクセスを許可します。"
-
-msgid "Allow incoming connections for some services from the internet side."
-msgstr "インターネット側から一部のサービスへの着信接続を許可する。"
-
-msgid "Exception: network device"
-msgstr "例外：ネットワーク機器"
-
-msgid "Exclude device(s)"
-msgstr "デバイスを除く"
-
-msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-msgstr "指定されたネットワークデバイス（複数可）をファイアウォールルールから除外します（空白またはカンマで区切ります）。"
-
-msgid "Current client devices: <code>%s</code>"
-msgstr "現在のクライアントデバイス <code>%s</code>"
-
-msgid "The access point <code>%s</code> is per default excluded."
-msgstr "アクセスポイント <code>%s</code>はデフォルトで除外されている。"
-
-msgid "Exception: IP-Address"
-msgstr "例外IPアドレス"
-
-msgid "Allow incoming connections from"
-msgstr "からの着信接続を許可する。"
-
-msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-msgstr "与えられたIPアドレス（空白またはカンマで区切られる）に対して、（TCPおよびUDP経由の）着信接続を受け付ける。"
-
-msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-msgstr "これは、UDP経由のOpenVPNまたはWireguard接続に必要です。"
-
-msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-msgstr "設定されているVPNサーバーのIPアドレスのリスト： <code><b>%s</b></code>"
-
-msgid "Disable Firewall"
-msgstr "ファイアウォールを無効にする"
-
-msgid "Enable Firewall"
-msgstr "ファイアウォールを有効にする"
-
-msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
-msgstr "ファイアウォールのステータスを変更すると、受信トラフィックが中断されたり許可されたりすることがあります。<strong>続行を</strong>選択します。"
-
-msgid "Proceed"
-msgstr "進む"
-
-msgid "Apply changes"
-msgstr "変更を適用する"
-
-msgid "Dynamic DNS"
-msgstr "ダイナミックDNS"
-
-msgid "Service provider"
-msgstr "サービスプロバイダー"
-
-msgid "Select a Dynamic DNS service supported by <strong>ddclient</strong> from the list below. Selecting a known service provider will populate the <code>protocol</code> and <code>server</code> fields. You may also configure the service manually."
-msgstr "<strong>ddclientが</strong>サポートするダイナミックDNSサービスを以下のリストから選択します。既知のサービスプロバイダを選択すると、<code>プロトコルと</code> <code>サーバの</code>フィールドに入力されます。サービスを手動で設定することもできます。"
-
-msgid "Method to obtain IP"
-msgstr "IPの取得方法"
-
-msgid "Select the method used by <strong>ddclient</strong> to obtain an IP address. This value is specified in the <code>-use</code> option."
-msgstr "IPアドレスを取得するために<strong>ddclientが</strong>使用する方法を選択します。この値は<code>-use</code>オプションで指定する。"
-
-msgid "Discovery page on the web"
-msgstr "ウェブ上のディスカバリー・ページ"
-
-msgid "Network interface"
-msgstr "ネットワークインターフェース"
-
-msgid "Network address"
-msgstr "ネットワークアドレス"
-
-msgid "Firewall status page"
-msgstr "ファイアウォールのステータスページ"
-
-msgid "External command"
-msgstr "外部コマンド"
-
-msgid "Web address"
-msgstr "ウェブアドレス"
-
-msgid "Firewall"
-msgstr "ファイアウォール"
-
-msgid "Command"
-msgstr "コマンド"
-
-msgid "Example: <code>192.168.1.254/status.htm</code>."
-msgstr "Example:<code>192.168.1.254/status.htm</code>."
-
-msgid "Example: <code>/usr/local/bin/get-ip</code>."
-msgstr "例/<code>usr/local/bin/get-ip</code>."
-
-msgid "Domain"
-msgstr "ドメイン"
-
-msgid "Enable SSL"
-msgstr "SSLを有効にする"
-
-msgid "Use an encrypted SSL connection for updates. Not supported by all providers."
-msgstr "更新には暗号化されたSSL接続を使用します。すべてのプロバイダーでサポートされているわけではありません。"
-
-msgid "Value specified in milliseconds (ms). Default is 300."
-msgstr "ミリ秒（ms）単位で指定。デフォルトは300。"
-
-msgid "Use the <strong>Generate log</strong> button to output detailed <code>ddclient daemon</code> debug info"
-msgstr "詳細な<code>ddclientデーモンの</code>デバッグ情報を出力するには、[<strong>Generate log</strong>]ボタンを使用します。"
-
-msgid "Generate log"
-msgstr "ログ作成"
-
-msgid "Information provided by ddclient"
-msgstr "ddclientが提供する情報"
-
-msgid "Start Dynamic DNS"
-msgstr "ダイナミックDNSの開始"
-
-msgid "Stop Dynamic DNS"
-msgstr "ダイナミックDNSの停止"
-
-msgid "Restart Dynamic DNS"
-msgstr "ダイナミックDNSの再起動"
-
-msgid "Account details"
-msgstr "口座詳細"
-
-msgid "My account"
-msgstr "マイアカウント"
-
-msgid "Server location"
-msgstr "サーバーの場所"
-
-msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
-msgstr "<strong>Save settingsを</strong>選択すると、選択した国に接続されます。"
-
-msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
-msgstr "<strong>Connect %s</strong>を選択すると、推奨サーバーに接続されます。"
-
-msgid "Select a country from the server location list"
-msgstr "サーバーの場所リストから国を選択"
-
-msgid "Select a country..."
-msgstr "国を選択..."
-
-msgid "Account information not available from %s's Linux CLI."
-msgstr "%sの Linux CLI からは利用できないアカウント情報。"
-
-msgid "Attempting to connect to %s"
-msgstr "%sに接続しようとしている"
-
-msgid "Attempting to connect VPN provider"
-msgstr "VPNプロバイダーへの接続を試みる"
-
-msgid "Attempting to disconnect VPN provider"
-msgstr "VPNプロバイダの切断を試みる"
-
-msgid "Expected %s binary not found at: %s"
-msgstr "%s にバイナリが見つかりません： %s"
-
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
-msgstr "%sの Linux CLI の<a href=\"%s\" target=\"_blank\">インストール手順を</a>ご覧ください。"
-
-msgid "Unable to execute %s binary found at: %s"
-msgstr "%s にあるバイナリを実行できない： %s"
-
-msgid "Check that binary is executable and permissions exist in raspap.sudoers"
-msgstr "バイナリが実行可能で、raspap.sudoersにパーミッションが存在することを確認する。"
-
-msgid "Installed Linux CLI: <code>%s</code>"
-msgstr "Linux CLIをインストール： <code>%s</code>"
-
-msgid "Current <code>%s</code> connection status is displayed below."
-msgstr "現在の <code>%s</code>現在の接続状態が下に表示されます。"
-
-msgid "Information provided by %s"
-msgstr "情報提供： %s"
-
-msgid "Connect %s"
-msgstr "コネクト %s"
-
-msgid "Disconnect %s"
-msgstr "切断 %s"
-
-msgid "About"
-msgstr "について"
-
-msgid "Insiders"
-msgstr "インサイダー"
-
-msgid "Contributing"
-msgstr "貢献"
-
-msgid "Check for update"
-msgstr "アップデートの確認"
-
-msgid "New release check in progress..."
-msgstr "新作チェック中"
-
-msgid "A new release is available: Version"
-msgstr "新しいリリースが利用可能です：バージョン"
-
-msgid "Installed version is the latest release."
-msgstr "インストールされているバージョンは最新リリースです。"
-
-msgid "GitHub authentication"
-msgstr "GitHub認証"
-
-msgid "Updating Insiders requires GitHub authentication."
-msgstr "InsidersのアップデートにはGitHub認証が必要です。"
-
-msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
-msgstr "認証情報はSSLで安全にGitHubに送信されます。ただし、RaspAP をインストールした場所が、信頼できないユーザーと共有している WLAN 上にある場合は注意してください。"
-
-msgid "Personal Access Token"
-msgstr "パーソナル・アクセストークン"
-
-msgid "Please provide a valid token."
-msgstr "有効なトークンを入力してください。"
-
-msgid "Perform update"
-msgstr "アップデートの実行"
-
-msgid "Update in progress"
-msgstr "更新中"
-
-msgid "Application is being updated..."
-msgstr "アプリケーションは更新中です..."
-
-msgid "Configuring update"
-msgstr "アップデートの設定"
-
-msgid "Updating sources"
-msgstr "ソースの更新"
-
-msgid "Installing package updates"
-msgstr "パッケージアップデートのインストール"
-
-msgid "Downloading latest files"
-msgstr "最新ファイルのダウンロード"
-
-msgid "Installing application"
-msgstr "アプリケーションのインストール"
-
-msgid "Update complete"
-msgstr "更新完了"
-
-msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
-msgstr "エラーが発生しました。<code>tmp/raspap_install.logの</code>ログを確認してください。"
-
-msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
-msgstr "RaspAP は %1$s と %2$s の共創であり、私たちの %3$s と %4$sが貢献している。 %5$s、 %6$s 、 %7$s としてプロジェクトに参加することについての詳細はこちらをご覧ください。 %8$s にはすぐにアクセスできます。 %9$s。"
-
-msgid "developer community"
-msgstr "開発者コミュニティ"
-
-msgid "language translators"
-msgstr "言語翻訳者"
-
-msgid "code contributor"
-msgstr "コード・コントリビューター"
-
-msgid "translator"
-msgstr "翻訳者"
-
-msgid "financial sponsor"
-msgstr "ファイナンシャル・スポンサー"
-
-msgid "exclusive features"
-msgstr "専用機能"
-
-msgid "RaspAP Exception"
-msgstr "ラズパップ例外"
-
-msgid "An exception occurred"
-msgstr "例外が発生した"
-
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
+#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
+msgid "Networking"
+msgstr "ネットワーキング"
+
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "WiFiクライアント"
+
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
+msgid "OpenVPN"
+msgstr "オープンVPN"
+
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "ワイヤーガード"
+
+#: ../src/RaspAP/UI/Sidebar.php:44
+msgid "Data usage"
+msgstr "データ使用量"
+
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
 msgid "RestAPI"
 msgstr "レストアピーアイ"
 
-msgid "RestAPI settings"
-msgstr "RestAPIの設定"
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
+#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
+msgid "System"
+msgstr "システム"
 
-msgid "Start RestAPI service"
-msgstr "RestAPIサービスを開始する"
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
+msgid "About RaspAP"
+msgstr "RaspAPについて"
 
-msgid "Stop RestAPI service"
-msgstr "RestAPIサービスの停止"
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "設置済み"
 
-msgid "API Key"
-msgstr "APIキー"
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "詳細"
 
-msgid "Saving API key"
-msgstr "APIキーの保存"
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:365
+#: ../includes/wifi_functions.php:281
+msgid "Signal strength"
+msgstr "信号強度"
 
-msgid "RestAPI status"
-msgstr "RestAPIのステータス"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "詳細なデバッグ"
 
-msgid "Current <code>restapi.service</code> status is displayed below."
-msgstr "現在の<code>restapi.serviceの</code>ステータスは以下のように表示される。"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "デバッグ"
 
-msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
-msgstr "RestAPIのドキュメントは<a href=\"%s\" target=\"_blank\">こちらから </a>アクセスできます<a href=\" %s \" target=\"_blank\">%s</a>"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "情報提供"
 
-msgid "Restarting restapi.service"
-msgstr "restapi.serviceの再起動"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "お知らせ"
 
-msgid "Information provided by restapi.service"
-msgstr "restapi.serviceが提供する情報"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "警告"
 
-msgid "Session Expired"
-msgstr "セッション終了"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
+#, php-format
+msgid "DHCP configuration for %s enabled."
+msgstr "%s 、DHCPコンフィギュレーションが有効。"
 
-msgid "Your session has expired. Please login to continue."
-msgstr "セッションの有効期限が切れました。続行するにはログインしてください。"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:148
+msgid "WiFi repeater mode: A metric value is already defined for DHCP."
+msgstr "WiFiリピーターモード：メトリック値はすでにDHCP用に定義されています。"
 
-msgid "Login"
-msgstr "ログイン"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
+#, php-format
+msgid "Metric value configured for the %s interface."
+msgstr "%s インターフェースに設定されたメトリック値。"
 
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:226
+msgid "Invalid interface name."
+msgstr "無効なインターフェース名。"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:229
+msgid "Invalid static IP address."
+msgstr "無効な静的IPアドレスです。"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:232
+msgid "Invalid subnet mask."
+msgstr "無効なサブネットマスク。"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:235
+msgid "Invalid default gateway."
+msgstr "無効なデフォルトゲートウェイ。"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:239
+msgid "Invalid DHCP range start."
+msgstr "無効な DHCP 範囲の開始。"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:242
+msgid "Invalid DHCP range end."
+msgstr "無効な DHCP 範囲の終了。"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:245
+msgid "Invalid DHCP lease time, not a number."
+msgstr "無効な DHCP リース時間。"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:248
+msgid "Unknown DHCP lease time unit."
+msgstr "不明な DHCP リース時間単位。"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:251
+msgid "Invalid metric value, not a number."
+msgstr "無効なメトリック値です。"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:276
+#, php-format
+msgid "DHCP configuration for %s updated."
+msgstr "%s のDHCP設定を更新。"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
+msgid "WPA and WPA2"
+msgstr "WPAとWPA2"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:112
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2およびWPA3-Personal（移行モード）"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:114
+msgid "None"
+msgstr "なし"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:124
+msgid "Disabled"
+msgstr "無効"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:125
+msgid "Enabled (for supported clients)"
+msgstr "有効（サポートされているクライアントの場合）"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:126
+msgid "Required (for supported clients)"
+msgstr "必須（サポート対象クライアント）"
+
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "無効なMACアドレス： "
+
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "入力されたIPアドレスが重複している： "
+
+#: ../templates/hostapd.php:3 ../templates/wireguard.php:3
+#: ../templates/adblock.php:3 ../templates/openvpn.php:3
+#: ../templates/system/advanced.php:39 ../templates/system/language.php:11
+#: ../templates/system/theme.php:56 ../templates/restapi.php:3
+#: ../templates/dhcp.php:3 ../templates/admin/general.php:2
+#: ../templates/provider.php:3 ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29
+#: ../plugins-available/Wireshark/templates/main.php:3
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Captive/templates/main.php:3
+msgid "Save settings"
+msgstr "設定の保存"
+
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "ホットスポット開始"
+
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "ホットスポットの開始"
+
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "ホットスポットの停止"
+
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "ホットスポットを再起動する"
+
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "ホットスポットの再起動"
+
+#: ../templates/hostapd.php:49 ../templates/system.php:17
+#: ../templates/admin.php:20 ../plugins-available/Captive/templates/main.php:48
+msgid "Basic"
+msgstr "ベーシック"
+
+#: ../templates/hostapd.php:50 ../templates/wifi_stations/network.php:73
+msgid "Security"
+msgstr "セキュリティ"
+
+#: ../templates/hostapd.php:51 ../templates/system.php:20
+#: ../templates/dhcp.php:52 ../plugins-available/Captive/templates/main.php:50
+msgid "Advanced"
+msgstr "上級"
+
+#: ../templates/hostapd.php:52 ../templates/adblock/logging.php:3
+#: ../templates/hostapd/logging.php:3 ../templates/wireguard.php:49
+#: ../templates/adblock.php:47 ../templates/openvpn.php:48
+#: ../templates/dhcp.php:55 ../templates/wg/logging.php:5
+#: ../templates/dhcp/logging.php:3 ../templates/openvpn/logging.php:3
+msgid "Logging"
+msgstr "ロギング"
+
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "hostapdが提供する情報"
+
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "RaspAPサービス開始の実行"
+
+#: ../templates/hostapd.php:90 ../templates/system.php:56
+#: ../templates/system.php:74 ../templates/system.php:92
+#: ../templates/system.php:110 ../templates/system.php:142
+#: ../templates/wifi_stations/network.php:119
+#: ../templates/configure_client.php:65
+msgid "Close"
+msgstr "閉じる"
+
+#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
+msgid "Blocklist settings"
+msgstr "ブロックリストの設定"
+
+#: ../templates/adblock/general.php:10
+msgid "Enable blocklists"
+msgstr "ブロックリストを有効にする"
+
+#: ../templates/adblock/general.php:13
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "ラズパップに<b>広告、トラッキング、その他の仮想ゴミのDNSリクエストをブロックさ</b>せたい場合は、このオプションを有効にします。ブロックリストは、アクティブに維持されている複数のソースから収集され、毎日自動的に更新、クリーニング、最適化、およびモデレートされます。"
+
+#: ../templates/adblock/general.php:15
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "このオプションは、dnsmasq設定に<code>conf-fileと</code> <code>addn-hostsを</code>追加する。"
+
+#: ../templates/adblock/general.php:22
+msgid "Hostnames blocklist last updated"
+msgstr "ホスト名ブロックリストの最終更新日"
+
+#: ../templates/adblock/general.php:24
+msgid "Domains blocklist last updated"
+msgstr "ドメイン・ブロックリスト最終更新日"
+
+#: ../templates/adblock/general.php:29
+msgid "Choose a blocklist provider"
+msgstr "ブロックリストのプロバイダーを選択する"
+
+#: ../templates/adblock/general.php:33
+msgid "Update now"
+msgstr "現在更新中"
+
+#: ../templates/adblock/stats.php:3
+msgid "Statistics"
+msgstr "統計"
+
+#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
+msgid "Custom blocklist"
+msgstr "カスタム・ブロックリスト"
+
+#: ../templates/adblock/custom.php:10
+msgid "Enable custom blocklist"
+msgstr "カスタム・ブロックリストを有効にする"
+
+#: ../templates/adblock/custom.php:14
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "IPv4またはIPv6アドレスの後に空白（スペースまたはタブ）とホスト名を入力して、ブロックするカスタムホストを定義します。"
+
+#: ../templates/adblock/custom.php:15
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4の例：</b>0.0.0.0 badhost.com"
+
+#: ../templates/adblock/custom.php:17
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "このオプションはdnsmasq設定に<code>addn-hosts</code>ディレクティブを追加します。"
+
+#: ../templates/system.php:18
+msgid "Language"
+msgstr "言語"
+
+#: ../templates/system.php:19
+msgid "Theme"
+msgstr "テーマ"
+
+#: ../templates/system.php:21
+msgid "Tools"
+msgstr "ツール"
+
+#: ../templates/system.php:23 ../templates/system/plugins.php:3
+msgid "Plugins"
+msgstr "プラグイン"
+
+#: ../templates/system.php:40 ../templates/dashboard.php:164
+msgid "Information provided by raspap.sysinfo"
+msgstr "raspap.sysinfoが提供する情報"
+
+#: ../templates/system.php:50
+msgid "System reset"
+msgstr "システムのリセット"
+
+#: ../templates/system.php:53
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "リセットが完了しました。変更を有効にするには、ホットスポットを再起動します。"
+
+#: ../templates/system.php:53
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "RaspAPを初期設定に戻しますか？この操作は元に戻せません。"
+
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:92 ../templates/system.php:236
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+#: ../templates/admin.php:90 ../templates/admin.php:119
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../plugins-available/Captive/templates/main.php:99
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: ../templates/system.php:57
+msgid "System reset in progress..."
+msgstr "システムリセット中..."
+
+#: ../templates/system.php:57
+msgid "Reset"
+msgstr "リセット"
+
+#: ../templates/system.php:68
+msgid "System reboot"
+msgstr "システムの再起動"
+
+#: ../templates/system.php:71
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr "今すぐ再起動しますか？システムは一時的に使用できなくなります。"
+
+#: ../templates/system.php:75 ../templates/system/basic.php:23
+msgid "Reboot"
+msgstr "リブート"
+
+#: ../templates/system.php:86
+msgid "System shutdown"
+msgstr "システム停止"
+
+#: ../templates/system.php:89
+msgid "Shutdown now? The system will be unavailable."
+msgstr "今すぐシャットダウンしますか？システムは利用できなくなります。"
+
+#: ../templates/system.php:93 ../templates/system/basic.php:27
+msgid "Shutdown"
+msgstr "シャットダウン"
+
+#: ../templates/system.php:104 ../templates/system/tools.php:18
+msgid "Generate debug log"
+msgstr "デバッグ・ログの生成"
+
+#: ../templates/system.php:107
+msgid "Debug log generation in progress..."
+msgstr "デバッグ・ログ生成中"
+
+#: ../templates/system.php:121 ../templates/system/tools.php:32
+msgid "Inspect adapters"
+msgstr "アダプターの検査"
+
+#: ../templates/system.php:140
+msgid "Adapter health check"
+msgstr "アダプターのヘルスチェック"
+
+#: ../templates/system.php:177
+msgid "Plugin details"
+msgstr "プラグインの詳細"
+
+#: ../templates/system.php:188
+msgid "Plugin docs"
+msgstr "プラグインのドキュメント"
+
+#: ../templates/system.php:192
+msgid "Version"
+msgstr "バージョン"
+
+#: ../templates/system.php:196
+msgid "Author"
+msgstr "著者"
+
+#: ../templates/system.php:200
+msgid "License"
+msgstr "ライセンス"
+
+#: ../templates/system.php:204
+msgid "Language locale"
+msgstr "言語ロケール"
+
+#: ../templates/system.php:208
+msgid "Configuration files"
+msgstr "設定ファイル"
+
+#: ../templates/system.php:212
+msgid "Signed Packages"
+msgstr "サイン入りパッケージ"
+
+#: ../templates/system.php:216
+msgid "Dependencies"
+msgstr "依存関係"
+
+#: ../templates/system.php:220
+msgid "JavaScript"
+msgstr "ジャバスクリプト"
+
+#: ../templates/system.php:224
+msgid "Sudoers"
+msgstr "スドーズ"
+
+#: ../templates/system.php:228
+msgid "Non-privileged users"
+msgstr "非特権ユーザー"
+
+#: ../templates/system.php:248
+msgid "Installing plugin"
+msgstr "プラグインのインストール"
+
+#: ../templates/system.php:251
+msgid "Plugin install completed."
+msgstr "プラグインのインストールが完了しました。"
+
+#: ../templates/system.php:251
+msgid "Plugin installation in progress..."
+msgstr "プラグインのインストール中..."
+
+#: ../templates/system.php:254 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "OK"
+
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "セキュリティ設定"
+
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "セキュリティ・タイプ"
+
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "暗号化タイプ"
+
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
+
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "802.11w は、Deauthentication、Disassociation、Action Management frames の特定のカテゴリを含む、強固な管理フレームに強力な暗号保護を拡張します。総称して、これは管理フレーム保護（MFP）として知られています。"
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "事前共有鍵（PSK）"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "有効なPSKを入力してください。"
+
+#: ../templates/hostapd/security.php:32
+#, php-format
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "このQRコードを直接スキャンするか、 %s %s、ユーザーのためにサイン%s。"
+
+#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+msgid "Advanced settings"
+msgstr "詳細設定"
+
+#: ../templates/hostapd/advanced.php:9
+msgid "Bridged AP mode"
+msgstr "ブリッジAPモード"
+
+#: ../templates/hostapd/advanced.php:19
+msgid "Bridge interface configuration"
+msgstr "ブリッジ・インターフェース設定"
+
+#: ../templates/hostapd/advanced.php:21
+msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+msgstr "<code>br0</code>インターフェースにスタティック IP アドレスを設定し、ブリッジモード起動時の接続性を維持します。"
+
+#: ../templates/hostapd/advanced.php:26
+msgid "Static IP Address"
+msgstr "静的IPアドレス"
+
+#: ../templates/hostapd/advanced.php:32 ../templates/hostapd/advanced.php:58
+#: ../templates/hostapd/advanced.php:71
+msgid "Please enter a valid IPv4 address"
+msgstr "有効なIPv4アドレスを入力してください。"
+
+#: ../templates/hostapd/advanced.php:35
+msgid "Example: 192.168.1.100"
+msgstr "例：192.168.1.100"
+
+#: ../templates/hostapd/advanced.php:39
+msgid "Netmask / CIDR"
+msgstr "ネットマスク / CIDR"
+
+#: ../templates/hostapd/advanced.php:45
+msgid "Please enter a valid netmask"
+msgstr "有効なネットマスクを入力してください。"
+
+#: ../templates/hostapd/advanced.php:48
+msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
+msgstr "CIDR表記（例：255.255.255.0なら24）"
+
+#: ../templates/hostapd/advanced.php:52 ../templates/networking/general.php:14
+msgid "Gateway"
+msgstr "ゲートウェイ"
+
+#: ../templates/hostapd/advanced.php:61
+msgid "Your router's IP address"
+msgstr "ルーターのIPアドレス"
+
+#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/settings.php:150
+#: ../templates/dhcp/settings.php:157 ../templates/dhcp/general.php:149
+#: ../templates/dhcp/general.php:156
+msgid "DNS Server"
+msgstr "DNSサーバー"
+
+#: ../templates/hostapd/advanced.php:74
+msgid "Usually same as gateway"
+msgstr "通常はゲートウェイと同じ"
+
+#: ../templates/hostapd/advanced.php:89
+msgid "WiFi repeater mode"
+msgstr "WiFiリピーターモード"
+
+#: ../templates/hostapd/advanced.php:99
+msgid "WiFi client AP mode"
+msgstr "WiFiクライアントAPモード"
+
+#: ../templates/hostapd/advanced.php:108
+msgid "Dual band AP mode"
+msgstr "デュアルバンドAPモード"
+
+#: ../templates/hostapd/advanced.php:117
+msgid "Hide SSID in broadcast"
+msgstr "ブロードキャストでSSIDを隠す"
+
+#: ../templates/hostapd/advanced.php:126
+msgid "Enable AP isolation"
+msgstr "AP分離を有効にする"
+
+#: ../templates/hostapd/advanced.php:127
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "ワイヤレスクライアント同士の通信を遮断します。ゲストネットワークや公共のアクセスポイントにお勧めします。"
+
+#: ../templates/hostapd/advanced.php:136
+msgid "Beacon interval"
+msgstr "ビーコン間隔"
+
+#: ../templates/hostapd/advanced.php:148
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "<code>disassoc_low_ack を</code>無効にする<code>。</code>"
+
+#: ../templates/hostapd/advanced.php:151
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "過度の送信失敗に基づいてステーションを切り離さないでください。"
+
+#: ../templates/hostapd/advanced.php:157
+msgid "Transmit power (dBm)"
+msgstr "送信電力 (dBm)"
+
+#: ../templates/hostapd/advanced.php:158
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "dBmは、電力比が1ミリワット（mW）を基準としたデシベル（dB）で表されることを示すために使われるレベルの単位。30 dBmは1000 mWに等しく、0 dBmは1.25 mWに等しい。"
+
+#: ../templates/hostapd/advanced.php:160
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "AP インターフェースと設定されている国の<code>txpower</code>オプションを設定します。"
+
+#: ../templates/hostapd/advanced.php:166
+msgid "Maximum number of clients"
+msgstr "最大クライアント数"
+
+#: ../templates/hostapd/advanced.php:168
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "hostapd の<code>max_num_sta</code>オプションを設定する。デフォルトと最大値は 2007 です。空または 0 の場合はデフォルトが適用される。"
+
+#: ../templates/hostapd/advanced.php:173
+msgid "Country Code"
+msgstr "国コード"
+
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+msgid "Basic settings"
+msgstr "基本設定"
+
+#: ../templates/hostapd/basic.php:5 ../templates/dhcp/settings.php:5
+#: ../templates/dhcp/general.php:5 ../templates/dhcp/summary.php:18
+#: ../templates/networking/general.php:12
+#: ../templates/networking/devices.php:17 ../templates/configure_client.php:31
+msgid "Interface"
+msgstr "インターフェース"
+
+#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
+#: ../templates/dashboard.php:63
+msgid "SSID"
+msgstr "SSID"
+
+#: ../templates/hostapd/basic.php:14
+msgid "Please provide a valid SSID."
+msgstr "有効なSSIDを入力してください。"
+
+#: ../templates/hostapd/basic.php:20
+msgid "Wireless Mode"
+msgstr "ワイヤレス・モード"
+
+#: ../templates/hostapd/basic.php:21
+msgid "Wireless standards which are not compatible with your adapter may be disabled"
+msgstr "お使いのアダプタと互換性のないワイヤレス規格は無効になる場合があります。"
+
+#: ../templates/hostapd/basic.php:24
+#, php-format
+msgid "Based on the selected interface, 802.11%s is suggested."
+msgstr "選択されたインターフェイスに基づき、802.11%s。"
+
+#: ../templates/hostapd/basic.php:30 ../templates/wifi_stations/network.php:46
+msgid "Channel"
+msgstr "チャンネル"
+
+#: ../templates/hostapd/logging.php:4
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "<code>hostapdの</code>動作をログに記録するには、このオプションを有効にする。"
+
+#: ../templates/hostapd/logging.php:9 ../templates/wg/logging.php:9
+msgid "Logfile output"
+msgstr "ログファイル出力"
+
+#: ../templates/hostapd/logging.php:10 ../templates/dhcp/logging.php:13
+#: ../templates/openvpn/logging.php:9
+msgid "Clear log"
+msgstr "クリアログ"
+
+#: ../templates/hostapd/logging.php:15
+msgid "Log level"
+msgstr "ログレベル"
+
+#: ../templates/hostapd/logging.php:16
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "レベルを上げるとログの冗長性が減る。情報提供を推奨する。"
+
+#: ../templates/data_usage.php:7
+msgid "Data usage monitoring"
+msgstr "データ使用量のモニタリング"
+
+#: ../templates/data_usage.php:14
+msgid "Hourly"
+msgstr "時給"
+
+#: ../templates/data_usage.php:15
+msgid "Daily"
+msgstr "毎日"
+
+#: ../templates/data_usage.php:16
+msgid "Monthly"
+msgstr "毎月"
+
+#: ../templates/data_usage.php:23
+msgid "Hourly traffic amount"
+msgstr "1時間当たりの交通量"
+
+#: ../templates/data_usage.php:24 ../templates/data_usage.php:43
+#: ../templates/data_usage.php:62
+msgid "interface"
+msgstr "インターフェース"
+
+#: ../templates/data_usage.php:32 ../templates/data_usage.php:51
+#: ../templates/data_usage.php:70
+#, php-format
+msgid "Loading %s bandwidth chart"
+msgstr "%s 帯域幅チャートの読み込み"
+
+#: ../templates/data_usage.php:32
+msgid "hourly"
+msgstr "毎時"
+
+#: ../templates/data_usage.php:42
+msgid "Daily traffic amount"
+msgstr "1日のトラフィック量"
+
+#: ../templates/data_usage.php:51
+msgid "daily"
+msgstr "デイリー"
+
+#: ../templates/data_usage.php:61
+msgid "Monthly traffic amount"
+msgstr "月間トラフィック量"
+
+#: ../templates/data_usage.php:70
+msgid "monthly"
+msgstr "毎月"
+
+#: ../templates/data_usage.php:79
+msgid "Information provided by vnstat"
+msgstr "vnstatが提供する情報"
+
+#: ../templates/data_usage.php:86
+msgid "Send"
+msgstr "送信"
+
+#: ../templates/data_usage.php:87
+msgid "Receive"
+msgstr "受け取る"
+
+#: ../templates/login.php:13
 msgid "Administrator login"
 msgstr "管理者ログイン"
 
+#: ../templates/login.php:22 ../templates/about.php:85
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
+msgid "Username"
+msgstr "ユーザー名"
+
+#: ../templates/login.php:25 ../templates/admin/login.php:21
+#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
+#: ../app/lib/signprint.php:67
+msgid "Password"
+msgstr "パスワード"
+
+#: ../templates/login.php:30 ../templates/admin.php:18
+#: ../includes/footer.php:23
+msgid "Login"
+msgstr "ログイン"
+
+#: ../templates/login.php:31
 msgid "Forgot password"
 msgstr "パスワードを忘れた"
 
-msgid "Login failed"
-msgstr "ログインに失敗しました"
-
-msgid "NTP Server"
-msgstr "NTPサーバー"
-
-msgid "NTP Server settings"
-msgstr "NTPサーバーの設定"
-
-msgid "NTP daemon"
-msgstr "NTPデーモン"
-
-msgid "Synchronized time"
-msgstr "時刻同期"
-
-msgid "NTP servers"
-msgstr "NTPサーバー"
-
-msgid "Add an NTP server"
-msgstr "NTPサーバーの追加"
-
-msgid "Start NTP service"
-msgstr "NTPサービスの開始"
-
-msgid "Stop NTP service"
-msgstr "NTPサービスの停止"
-
-msgid "Edit mode"
-msgstr "編集モード"
-
-msgid "Use the <strong>Edit mode</strong> toggle to manually edit the current <code>ntp.config</code> configuration."
-msgstr "現在の<code>ntp.config</code>設定を手動で編集するには、<strong>Edit mode</strong>トグルを使用する。"
-
-msgid "Specify a public NTP server or a private one on your local network. IPv4 and IPv6 address, or a fully qualified domain name (FQDN) are acceptable values."
-msgstr "パブリックNTPサーバーまたはローカルネットワーク上のプライベートNTPサーバーを指定します。IPv4およびIPv6アドレス、または完全修飾ドメイン名（FQDN）が使用可能な値です。"
-
-msgid "Public NTP servers supporting Network Time Security (NTS) may be specified with the <code>nts</code> suffix."
-msgstr "ネットワークタイムセキュリティ（NTS）をサポートするパブリックNTPサーバーは、接尾辞<code>ntsで</code>指定することができる。"
-
-msgid "Examples of valid server entries include <code>%s</code>, <code>%s</code> and <code>%s</code>."
-msgstr "有効なサーバーエントリーの例 <code>%s</code>, <code>%s</code>および <code>%s</code>."
-
-msgid "Current <code>ntpq peer</code> status is displayed below. An asterisk (<code>*</code>) indicates the preferred server."
-msgstr "現在の<code>ntpqピアの</code>ステータスが以下に表示される。アスタリスク<code>(*</code>) は優先サーバーを示す。"
-
-msgid "NTP configuration cannot be empty"
-msgstr "NTP設定を空にすることはできません。"
-
-msgid "Restarting ntpd.service"
-msgstr "ntpd.serviceの再起動"
-
-msgid "Please enter a valid NTP server"
-msgstr "有効なNTPサーバーを入力してください。"
-
-msgid "Attempting to start ntp.service"
-msgstr "ntp.serviceの起動を試みる"
-
-msgid "Attempting to stop ntp.service"
-msgstr "ntp.serviceを停止しようとしています。"
-
-msgid "NTP configuration not found at %s"
-msgstr "%sで NTP コンフィグレーションが見つかりません。"
-
-msgid "NTP configuration updated"
-msgstr "NTP設定の更新"
-
-msgid "Advertising device as a Tailscale exit node"
-msgstr "Tailscale終了ノードとしてデバイスを宣伝"
-
-msgid "Attempting to optimize UDP throughput"
-msgstr "UDPスループットの最適化を試みる"
-
-msgid "Kernel transport layer offloads enabled for UDP"
-msgstr "UDPのカーネル・トランスポート層のオフロードが有効"
-
-msgid "Failed to enable kernel transport layer offloads for UDP"
-msgstr "UDPのカーネル・トランスポート層のオフロードを有効にできませんでした。"
-
-msgid "Attempting to set tailscale up"
-msgstr "テールスケールの設定を試みる"
-
-msgid "Attempting to set tailscale down"
-msgstr "テールスケールを下げようとする"
-
-msgid "Attempting to disconnect from tailscale"
-msgstr "tailscaleから切断しようとしている"
-
-msgid "Disconnected from tailscale and expired node key"
-msgstr "tailscaleから切断され、ノードキーが失効した。"
-
-msgid "Unable to disconnect from tailscale"
-msgstr "tailscaleから切断できない"
-
-msgid "Expected tailscale binary not found at: %"
-msgstr "に期待した tailscale バイナリが見つかりません：%"
-
-msgid "A Tailscale VPN exit node extension for RaspAP"
-msgstr "RaspAP 用 Tailscale VPN 終了ノード拡張機能"
-
-msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
-msgstr "Tailscaleログインを取得できません。続行するには <strong>%s</strong>を選択してください。"
-
-msgid "Start Tailscale"
-msgstr "テールスケール開始"
-
-msgid "Stop Tailscale"
-msgstr "テールスケール停止"
-
-msgid "Next"
-msgstr "次のページ"
-
-msgid "Device approved and activated as a Tailscale exit node"
-msgstr "テールスケール・エグジット・ノードとして承認され、アクティベートされたデバイス"
-
-msgid "Not connected: Login required."
-msgstr "接続されていません：ログインが必要です。"
-
-msgid "Tailscale VPN"
-msgstr "テールスケールVPN"
-
-msgid "Exit node activated"
-msgstr "終了ノードが起動"
-
-msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
-msgstr "デバイス <code>%s</code>はアドレス <code>%s</code>で接続され、<strong>出口ノードを</strong>提供する。"
-
-msgid "See the %s on how to use this exit node with your devices."
-msgstr "この出口ノードをお使いのデバイスで使用する方法については、 %s を参照してください。"
-
-msgid "Allow exit node"
-msgstr "終了ノードを許可する"
-
-msgid "The device <code>%s</code> is pending approval as an exit node."
-msgstr "装置 <code>%s</code>は終了ノードとして承認待ちである。"
-
-msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
-msgstr "マシンリストで <code>%s</code><strong>バッジを</strong>見つける。"
-
-msgid "Open Tailscale Machines"
-msgstr "オープン・テールスケール・マシン"
-
-msgid "To allow this device as an exit node, choose <strong>Open Tailscale Machines</strong>."
-msgstr "このデバイスを終了ノードとして許可するには、<strong>Open Tailscale Machinesを</strong>選択します。"
-
-msgid "From the %s icon menu of the exit node, open the %s panel."
-msgstr "終了ノードの %s アイコンメニューから、 %s パネルを開く。"
-
-msgid "Edit route settings"
-msgstr "ルート設定の編集"
-
-msgid "Login to Tailscale"
-msgstr "Tailscaleにログイン"
-
-msgid "To connect device %s to your tailnet, choose %s."
-msgstr "デバイス %s をテールネットに接続するには、 %sを選択します。"
-
-msgid "After logging in, choose <strong>Next</strong> to continue."
-msgstr "ログイン後、<strong>Nextを</strong>選択して続行します。"
-
-msgid "Configure exit node"
-msgstr "終了ノードの設定"
-
-msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
-msgstr "デバイス <code>%s</code>はアドレス <code>%s</code>."
-
-msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as a <strong>exit node</strong>"
-msgstr "デフォルトでは、Tailscaleはインストールされたデバイス間のトラフィックのみをルーティングします。また、ネットワーク上のデバイスを<strong>出口ノードとして</strong>設定することで、すべてのパブリック・インターネット・トラフィックをルーティングすることもできます。"
-
-msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
-msgstr "すべてのトラフィックを出口ノード経由でルーティングする場合、一般的なVPNを使用する場合と同様に、デフォルトルート（0.0.0.0/0、::/0）を効果的に使用することになる。"
-
-msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
-msgstr "このデバイスを出口ノードとして設定するか、テールネット内の別の出口ノードを使用するかのオプションがある。"
-
-msgid "Select an existing exit node on your tailnet"
-msgstr "テールネット上の既存の出口ノードを選択します。"
-
-msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
-msgstr "これは、例えばこのデバイスをVPNトラベル・ルーターとして使う場合の典型的な構成だ。"
-
-msgid "Configure this device as a new exit node"
-msgstr "このデバイスを新しい出口ノードとして設定する"
-
-msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet will be routed through it."
-msgstr "このデバイスを出口ノードとして設定することで、テールネットに接続されているデバイスからのパブリックインターネットトラフィックは、このデバイスを経由してルーティングされる。"
-
-msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
-msgstr "セキュリティ上の理由から、終了ノード機能を有効にするにはオプトインする必要があります。最初のステップは <code>%s</code>をテールネットの出口ノードとしてアドバタイズすることです。次のステップでは、このデバイスを出口ノードとして許可します。"
-
-msgid "Advertise <code>%s</code> as an exit node"
-msgstr "広告を出す <code>%s</code>出口ノードとして"
-
-msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
-msgstr "これにより、TailscaleをVPNとして効果的に設定し、実際の場所を隠したり、地域制限のあるコンテンツにアクセスしたり、信頼できないネットワークから接続する際のプライバシーを強化したりすることができます。"
-
-msgid "This option lets Tailscale know your device is ready to route traffic."
-msgstr "このオプションは、Tailscaleにあなたのデバイスがトラフィックをルーティングする準備ができたことを知らせます。"
-
-msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
-msgstr "Linux 6.2以降のカーネルを搭載したTailscale終了ノードに推奨され、UDP汎用受信オフロード（GRO）転送を使用してCPUオーバーヘッドを削減します。"
-
-msgid "This option enables transport layer offloads for better performance."
-msgstr "このオプションは、パフォーマンスを向上させるためにトランスポート層のオフロードを有効にする。"
-
-msgid "Select an exit node"
-msgstr "出口ノードを選択する"
-
-msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
-msgstr "VPNゲートウェイとして <code>%s</code>をVPNゲートウェイとして使用するには、出口ノードを使用するようにTailscaleを設定します。Tailscaleが推奨するノードは星印で示されています。"
-
-msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
-msgstr "アクティブな <code>%s</code>APインターフェース"
-
-msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
-msgstr "サブネット・ルートを使用すると、Tailscaleネットワーク（テールネットと呼ばれる）を拡張して、Tailscaleクライアントを実行しない、または実行できないデバイスを含めることができます。"
-
-msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
-msgstr "サブネットルートは、テールネットと物理サブネット間のゲートウェイとして機能する。アクティブなAPインターフェースのサブネットは以下にあらかじめ設定されています。"
-
-msgid "Route LAN traffic through the exit node."
-msgstr "LANトラフィックを出口ノードにルーティングする。"
-
-msgid "This will direct all LAN traffic to go through your exit node only."
-msgstr "これにより、すべてのLANトラフィックが出口ノードを経由するようになります。"
-
-msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
-msgstr "<strong>Next（次へ</strong>）を選択して <code>%s</code>を選択して、選択した終了ノードをこれらのオプションで使用します。"
-
-msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
-msgstr "テールネットに終了ノードが見つかりません。<strong>戻る]</strong>を選択して続行します。"
-
-msgid "Using exit node"
-msgstr "終了ノードの使用"
-
-msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
-msgstr "デバイスは <code>%s</code>は終了ノード <code>%s</code>.TailscaleのMagicDNSアドレスを持っています。 <code>%s</code>."
-
-msgid "Choose <strong>Save settings</strong> to continue."
-msgstr "<strong>Save settings（設定を保存する</strong>）を選択して続行します。"
-
-msgid "Choose <strong>Next</strong> to continue."
-msgstr "<strong>Next（次へ</strong>）を選択して続けます。"
-
-msgid "Tailnet status"
-msgstr "テールネットの状態"
-
-msgid "Current <code>tailnet</code> status is displayed below."
-msgstr "現在の<code>テールネットの</code>状態は下に表示されています。"
-
-msgid "Use Tailscale DNS settings (default)."
-msgstr "Tailscale DNS設定を使用する（デフォルト）。"
-
-msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
-msgstr "ローカルDNSを使用する場合はチェックを外す。これは<code>--accept-dns=falseを</code>設定する。"
-
-msgid "Do not use Tailscale subnets (default on Linux)."
-msgstr "Tailscaleサブネットを使用しない（Linuxのデフォルト）。"
-
-msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
-msgstr "テールネットにサブネット・ルートが存在する場合、デバイスのトラフィックをサブネット・ルーターにルーティングできる。これを有効にすると、<code>--accept-routes=trueが</code>設定される。"
-
-msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
-msgstr "デバイスのキーの有効期限が切れると、指定したエンドポイントとの接続ができなくなる。"
-
-msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
-msgstr "このオプションは、<code>-force-reauthを使って</code>このデバイスの鍵を更新する。"
-
-msgid "Start capture"
-msgstr "キャプチャ開始"
-
-msgid "Stop capture"
-msgstr "キャプチャ停止"
-
-msgid "Capture files"
-msgstr "キャプチャファイル"
-
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:47
+#: ../templates/provider.php:36 ../includes/functions.php:1000
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../plugins-available/Captive/templates/main.php:51
+msgid "Status"
+msgstr "ステータス"
+
+#: ../templates/wifi_stations/network.php:42
+msgid "Not configured"
+msgstr "未設定"
+
+#: ../templates/wifi_stations/network.php:55
+msgid "RSSI"
+msgstr "RSSI"
+
+#: ../templates/wifi_stations/network.php:77
+msgid "Passphrase"
+msgstr "パスフレーズ"
+
+#: ../templates/wifi_stations/network.php:90
+#: ../templates/networking/devices.php:55
+msgid "Update"
+msgstr "更新"
+
+#: ../templates/wifi_stations/network.php:92
+msgid "Disconnect"
+msgstr "切断"
+
+#: ../templates/wifi_stations/network.php:94
+msgid "Connect"
+msgstr "接続"
+
+#: ../templates/wifi_stations/network.php:97
+msgid "Add"
+msgstr "追加"
+
+#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
+#: ../templates/openvpn.php:82
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+msgid "Delete"
+msgstr "削除"
+
+#: ../templates/wifi_stations/network.php:112
+msgid "Login Information Required"
+msgstr "ログイン情報"
+
+#: ../templates/wifi_stations/network.php:115
+msgid "This wireless network requires a login or the acceptance of terms of usage on a separate webpage"
+msgstr "このワイヤレスネットワークは、ログインするか、別のウェブページで利用規約に同意する必要があります。"
+
+#: ../templates/wifi_stations/network.php:118
+msgid "Goto Webpage"
+msgstr "ウェブページへ"
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "ワイヤーガード停止"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "ワイヤーガード開始"
+
+#: ../templates/wireguard.php:46 ../templates/restapi.php:46
+#: ../templates/provider.php:35
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../plugins-available/Tailscale/templates/main.php:70
+msgid "Settings"
+msgstr "設定"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "ピア"
+
+#: ../templates/wireguard.php:48 ../templates/openvpn.php:47
+#: ../templates/wg/configs.php:4 ../templates/openvpn/configs.php:4
+msgid "Configurations"
+msgstr "コンフィギュレーション"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "ワイヤーガードによる情報提供"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "WireGuard設定の削除"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "この設定を削除しますか？元に戻すことはできません。"
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "WireGuardの設定を有効にする"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "この設定を有効にしますか？これはwg-quickサービスを再起動します。"
+
+#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
+msgid "Activate"
+msgstr "アクティベート"
+
+#: ../templates/exception.php:6 ../templates/exception.php:17
+msgid "RaspAP Exception"
+msgstr "ラズパップ例外"
+
+#: ../templates/exception.php:20
+msgid "An exception occurred"
+msgstr "例外が発生した"
+
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "広告ブロックを再起動する"
+
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "広告ブロックの開始"
+
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "アドブロックが提供する情報"
+
+#: ../templates/networking.php:20 ../templates/dhcp.php:50
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "概要"
+
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "デバイス"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "モバイルデータ"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "WLANルーティング"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "診断"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "sys/class/netが提供する情報"
+
+#: ../templates/openvpn.php:20
+msgid "Start OpenVPN"
+msgstr "OpenVPNを開始する"
+
+#: ../templates/openvpn.php:24
+msgid "Stop OpenVPN"
+msgstr "OpenVPNの停止"
+
+#: ../templates/openvpn.php:46 ../templates/openvpn/general.php:2
+#: ../templates/configure_client.php:21
+#: ../plugins-available/Captive/templates/tabs/clients.php:5
+msgid "Client settings"
+msgstr "クライアント設定"
+
+#: ../templates/openvpn.php:65
+msgid "Information provided by openvpn"
+msgstr "openvpnが提供する情報"
+
+#: ../templates/openvpn.php:75
+msgid "Delete OpenVPN client"
+msgstr "OpenVPNクライアントの削除"
+
+#: ../templates/openvpn.php:78
+msgid "Delete client configuration? This cannot be undone."
+msgstr "クライアント設定を削除しますか？元に戻すことはできません。"
+
+#: ../templates/openvpn.php:93
+msgid "Activate OpenVPN client"
+msgstr "OpenVPNクライアントを起動する"
+
+#: ../templates/openvpn.php:96
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "クライアント設定を有効にしますか？これで openvpn-client サービスが再起動します。"
+
+#: ../templates/restapi/general.php:12
+msgid "API Key"
+msgstr "APIキー"
+
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "有効なAPIキーを入力してください。"
+
+#: ../templates/restapi/status.php:3
+msgid "RestAPI status"
+msgstr "RestAPIのステータス"
+
+#: ../templates/restapi/status.php:4
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "現在の<code>restapi.serviceの</code>ステータスは以下のように表示される。"
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s 設定"
+
+#: ../templates/provider/general.php:9 ../templates/wg/general.php:8
+#: ../templates/openvpn/general.php:8
+msgid "IPv4 Address"
+msgstr "IPv4アドレス"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "口座詳細"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "マイアカウント"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "サーバーの場所"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "<strong>Save settingsを</strong>選択すると、選択した国に接続されます。"
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "<strong>Connect %s</strong>を選択すると、推奨サーバーに接続されます。"
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "国名"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s ステータス"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Linux CLIをインストール： <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "現在の <code>%s</code>現在の接続状態が下に表示されます。"
+
+#: ../templates/about.php:21
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Captive/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/main.php:53
+msgid "About"
+msgstr "について"
+
+#: ../templates/about.php:22 ../templates/about/general.php:29
+msgid "Insiders"
+msgstr "インサイダー"
+
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "貢献"
+
+#: ../templates/about.php:47 ../templates/about/general.php:11
+msgid "Check for update"
+msgstr "アップデートの確認"
+
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "新作チェック中"
+
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "新しいリリースが利用可能です：バージョン"
+
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "インストールされているバージョンは最新リリースです。"
+
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "今すぐアップデートをインストールしますか？"
+
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "GitHub認証"
+
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "InsidersのアップデートにはGitHub認証が必要です。"
+
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "認証情報はSSLで安全にGitHubに送信されます。ただし、RaspAP をインストールする場所が、信頼できないユーザーと共有する無線 LAN 上にある場合は注意してください。"
+
+#: ../templates/about.php:87 ../templates/admin/general.php:18
+#: ../templates/admin/general.php:37 ../templates/admin/login.php:15
+msgid "Please provide a valid username."
+msgstr "有効なユーザー名を入力してください。"
+
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "パーソナル・アクセストークン"
+
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "有効なトークンを入力してください。"
+
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "アップデートの実行"
+
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "更新中"
+
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "アプリケーションは更新中です..."
+
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "アップデートの設定"
+
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "ソースの更新"
+
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "パッケージアップデートのインストール"
+
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "最新ファイルのダウンロード"
+
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "アプリケーションのインストール"
+
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "更新完了"
+
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "エラーが発生しました。<code>tmp/raspap_install.logの</code>ログを確認してください。"
+
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "成功しました。新しいバージョンを確認するには、このページを更新してください。"
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "システムツール"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "<a href=\"%s\" target=\"_blank\">システムデバッグログを</a>生成するには、以下のボタンをクリックまたはタップします。"
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "デバッグログ情報には、ラズパップのバージョン、AP関連サービスの現在の状態と設定、インストールされているシステムパッケージ、Linuxカーネルのバージョン、ネットワークの詳細が含まれる。パスワードやその他の機密データは含まれていません。"
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "このデバイスに接続されている<a href=\"%s\" target=\"_blank\">アダプターを検査</a>するには、下のボタンをクリックまたはタップしてください。"
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "アダプタ検査ツールは、ドライバ、サポートされているモードなどを含む外部WLANデバイスの詳細を返します。"
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "ラズパップを<a href=\"%s\" target=\"_blank\">初期</a>設定に戻すには、以下のボタンをクリックまたはタップしてください。"
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "すべてのアクセスポイント（AP）サービス設定をデフォルト値に戻します。これは hostapd、dhcpcd、dnsmasq に適用されます。"
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "広告ブロック、WireGuard、OpenVPNなどのオプションコンポーネントのカスタムファイルはシステムに残ります。"
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "リセットの実行"
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "ウェブサーバーポート"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "ウェブサーバーのバインドアドレス"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "診断ログのサイズ制限（KB）"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
+msgstr ""
+
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr ""
+
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
+msgstr ""
+
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr ""
+
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "lighttpdを再起動する"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "システム情報"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "ホスト名"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "円周率改定"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "OS"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "カーネル"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "アップタイム"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "システム時間"
+
+#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
+#: ../templates/dhcp/summary.php:9 ../templates/networking/general.php:4
+#: ../templates/networking/devices.php:4
+#: ../plugins-available/Tailscale/templates/main.php:4
+#: ../plugins-available/Tailscale/Tailscale.php:403
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:6
+msgid "Refresh"
+msgstr "リフレッシュ"
+
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "使用メモリ"
+
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "使用ストレージ"
+
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "CPU負荷"
+
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "CPU温度"
+
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "言語設定"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "言語を選択"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "テーマ設定"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "テーマを選ぶ"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "カラー"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "ダークモード"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "現在のテーマのダークモードを使用する"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "システムテーマ"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "お使いのシステムのカラーモードを使用"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "アラートメッセージ"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "指定したタイムアウト後に自動的にアラートを閉じる"
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "アラート終了タイムアウト（ミリ秒）"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "ラズパップの機能を拡張するために、以下のユーザープラグインが利用できます。"
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "詳細とプラグインのインストールについては、<strong>「詳細</strong>」を選択してください。"
+
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "RestAPIサービスを開始する"
+
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "RestAPIサービスの停止"
+
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "restapi.serviceが提供する情報"
+
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "イーサネット"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
+msgstr ""
+
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "リピーター"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "テザリング"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "セルラー"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
+msgstr ""
+
+#: ../templates/dashboard.php:49
+msgid "Local"
+msgstr ""
+
+#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
+#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
+#: ../templates/dhcp/settings.php:39 ../templates/dhcp/general.php:39
+#: ../templates/dhcp/clients.php:20 ../templates/networking/general.php:13
+msgid "IP Address"
+msgstr "IPアドレス"
+
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "ネットマスク"
+
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "MACアドレス"
+
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "AP"
+
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "ブリッジ"
+
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "アドブロック"
+
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "かそうへいいきもう"
+
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "ファイアウォール"
+
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
+
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2.4G"
+
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "Wifiステーションが見つからない"
+
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "近くのWifiステーションを検索するには「再スキャン」をクリックします。"
+
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Reinitialize」をクリックして、<code>wpa_supplicantを</code>強制的に再初期化します。"
+
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "再初期化"
+
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "接続済み"
+
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "既知"
+
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "近隣"
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "dnsmasqを停止する"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "dnsmasqを再起動する"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "dnsmasqの開始"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "サーバー設定"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "スタティック・リース"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "顧客リスト"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "Dnsmasqによる情報提供"
+
+#: ../templates/wg/peers.php:10
+msgid "Enable peer"
+msgstr "ピアを有効にする"
+
+#: ../templates/wg/peers.php:13
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "このオプションを有効にすると、ラズパップとこのピアとの間にトンネルが作成され、トラフィックが暗号化されます。"
+
+#: ../templates/wg/peers.php:14
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "このオプションは、WireGuard設定に<code>client.confを</code>追加します。"
+
+#: ../templates/wg/peers.php:20
+msgid "Peer public key"
+msgstr "ピア公開鍵"
+
+#: ../templates/wg/peers.php:31 ../templates/wg/general.php:99
+msgid "Local Port"
+msgstr "地方港"
+
+#: ../templates/wg/peers.php:45
+msgid "Endpoint address"
+msgstr "エンドポイントアドレス"
+
+#: ../templates/wg/peers.php:52
+msgid "Allowed IPs"
+msgstr "許可されたIP"
+
+#: ../templates/wg/peers.php:59
+msgid "Persistent keepalive"
+msgstr "持続的キープアライブ"
+
+#: ../templates/wg/peers.php:70
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "このトンネルに接続するには、このQRコードをクライアントでスキャンしてください。"
+
+#: ../templates/wg/peers.php:71
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "または<code>client.conf</code>ファイルをデバイスにダウンロードする。"
+
+#: ../templates/wg/peers.php:73 ../templates/networking/diagnostics.php:34
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:23
+msgid "Download"
+msgstr "ダウンロード"
+
+#: ../templates/wg/general.php:5
+msgid "Tunnel settings"
+msgstr "トンネル設定"
+
+#: ../templates/wg/general.php:12
+msgid "Configuration Method"
+msgstr "設定方法"
+
+#: ../templates/wg/general.php:15
+msgid "Upload file"
+msgstr "ファイルのアップロード"
+
+#: ../templates/wg/general.php:19
+msgid "Create manually"
+msgstr "手動で作成"
+
+#: ../templates/wg/general.php:27
+msgid "Upload a WireGuard config"
+msgstr "WireGuard設定のアップロード"
+
+#: ../templates/wg/general.php:29
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "このオプションは、このデバイスに既存のWireGuard<code>.conf</code>ファイルをアップロードしてインストールします。"
+
+#: ../templates/wg/general.php:38
+msgid "Apply iptables rules to the selected interface"
+msgstr "選択したインターフェイスにiptablesルールを適用する"
+
+#: ../templates/wg/general.php:39
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "wg0インターフェイスからのネットワーク・トラフィックを、希望するインターフェイスに接続されているクライアントに転送したい場合に推奨する。アクティブな AP インターフェースがデフォルトです。"
+
+#: ../templates/wg/general.php:41
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "このオプションは、以下で選択したインターフェイスに<strong>iptablesの</strong> <code>Postupと</code> <code>PostDown</code>ルールを追加します。"
+
+#: ../templates/wg/general.php:50
+msgid "Enable kill switch"
+msgstr "キルスイッチを有効にする"
+
+#: ../templates/wg/general.php:51
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr "WireGuard以外のインターフェイスを経由する暗号化されていないパケットのフローを防止したい場合に推奨。"
+
+#: ../templates/wg/general.php:53
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr "このオプションは、設定されたインターフェイスに<strong>iptablesの</strong> <code>PostUpと</code> <code>PreDown</code>ルールを追加します。"
+
+#: ../templates/wg/general.php:59 ../templates/openvpn/general.php:59
+msgid "Configuration File"
+msgstr "設定ファイル"
+
+#: ../templates/wg/general.php:62
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "WireGuard設定ファイル（.conf）を選択します。"
+
+#: ../templates/wg/general.php:72
+msgid "Create a local WireGuard config"
+msgstr "ローカルWireGuardコンフィグを作成する"
+
+#: ../templates/wg/general.php:76
+msgid "Enable server"
+msgstr "サーバーを有効にする"
+
+#: ../templates/wg/general.php:80
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "このオプションを有効にすると、ラズパップと設定されたピアとの間に暗号化されたトンネルが作成され、ネットワークトラフィックが保護されます。"
+
+#: ../templates/wg/general.php:81
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "この設定により、このデバイス上に新しいWireGuard<code>.conf</code>ファイルが生成されます。"
+
+#: ../templates/wg/general.php:88
+msgid "Local public key"
+msgstr "ローカル公開鍵"
+
+#: ../templates/wg/general.php:107
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:120
+msgid "DNS"
+msgstr "DNS"
+
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "更新された<code>wg-quick</code>デバッグログを表示するためにこのオプションを有効にする。"
+
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "現在利用可能なWireGuardファイル構成は以下のとおりです。"
+
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "設定を有効にすると、<code>wg-quick</code>サービスを再起動します。"
+
+#: ../templates/admin/general.php:3
+msgid "Change password"
+msgstr "パスワードの変更"
+
+#: ../templates/admin/general.php:4
+#: ../plugins-available/Tailscale/templates/main.php:22
+msgid "Logout"
+msgstr "ログアウト"
+
+#: ../templates/admin/general.php:28
+msgid "Enable limited privilege user"
+msgstr "限定特権ユーザーを有効にする"
+
+#: ../templates/admin/general.php:30
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "このオプションは、ラズパップの管理インターフェイスにアクセスできる非管理ユーザーを有効にしますが、<strong>既存の設定を変更する機能は制限されて</strong>います。このユーザーは、現在の管理ユーザーがログアウトしたときにアクティブになります。"
+
+#: ../templates/admin/general.php:34
+msgid "Limited user login"
+msgstr "ユーザーログインの制限"
+
+#: ../templates/admin/general.php:43
+msgid "Limited user password"
+msgstr "ユーザーパスワードの制限"
+
+#: ../templates/admin/general.php:48
+msgid "Please enter a valid password."
+msgstr "有効なパスワードを入力してください。"
+
+#: ../templates/admin/login.php:2
+msgid "Submit"
+msgstr "投稿する"
+
+#: ../templates/admin/login.php:11
+msgid "Admin login"
+msgstr "管理者ログイン"
+
+#: ../templates/admin/login.php:26
+msgid "Please enter your password."
+msgstr "パスワードを入力してください。"
+
+#: ../templates/admin/avatar.php:3
+msgid "Reset avatar"
+msgstr "アバターのリセット"
+
+#: ../templates/admin/avatar.php:11 ../templates/admin.php:21
+msgid "Avatar"
+msgstr "アバター"
+
+#: ../templates/admin/avatar.php:15
+msgid "Click or tap to upload a new user avatar."
+msgstr "クリックまたはタップして、新しいユーザーアバターをアップロードします。"
+
+#: ../templates/admin/avatar.php:16
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "画像ファイルは<code>JPG、GIF、PNGの</code>いずれでも可。最大ファイルサイズ：2MB"
+
+#: ../templates/about/general.php:8
+msgid "RaspAP"
+msgstr "ラスパップ"
+
+#: ../templates/about/general.php:20
+#, php-format
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP は %1$s と %2$s の共創であり、私たちの %3$s と %4$sが貢献している。 %5$s、 %6$s 、 %7$s としてプロジェクトに参加することについての詳細はこちらをご覧ください。 %8$s にはすぐにアクセスできます。 %9$s。"
+
+#: ../templates/about/general.php:23
+msgid "developer community"
+msgstr "開発者コミュニティ"
+
+#: ../templates/about/general.php:24
+msgid "language translators"
+msgstr "言語翻訳者"
+
+#: ../templates/about/general.php:25
+msgid "code contributor"
+msgstr "コード・コントリビューター"
+
+#: ../templates/about/general.php:26
+msgid "translator"
+msgstr "翻訳者"
+
+#: ../templates/about/general.php:27
+msgid "financial sponsor"
+msgstr "ファイナンシャル・スポンサー"
+
+#: ../templates/about/general.php:28
+msgid "exclusive features"
+msgstr "専用機能"
+
+#: ../templates/dhcp/settings.php:2 ../templates/dhcp/general.php:2
+msgid "DHCP server settings"
+msgstr "DHCPサーバーの設定"
+
+#: ../templates/dhcp/settings.php:10 ../templates/dhcp/general.php:10
+msgid "Adapter IP Address Settings"
+msgstr "アダプターのIPアドレス設定"
+
+#: ../templates/dhcp/settings.php:28 ../templates/dhcp/general.php:28
+msgid "Enable fallback to static option"
+msgstr "静的オプションへのフォールバックを有効にする"
+
+#: ../templates/dhcp/settings.php:31 ../templates/dhcp/general.php:31
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "このオプションを有効にすると、静的プロファイルが構成され、DHCPリースが失敗したときにフォールバックします。"
+
+#: ../templates/dhcp/settings.php:36 ../templates/dhcp/general.php:36
+msgid "Static IP options"
+msgstr "静的IPオプション"
+
+#: ../templates/dhcp/settings.php:42 ../templates/dhcp/general.php:42
+msgid "Please provide a valid IP Address."
+msgstr "有効なIPアドレスを入力してください。"
+
+#: ../templates/dhcp/settings.php:49 ../templates/dhcp/general.php:49
+msgid "Subnet Mask"
+msgstr "サブネットマスク"
+
+#: ../templates/dhcp/settings.php:52 ../templates/dhcp/general.php:52
+msgid "Please provide a valid Subnet mask."
+msgstr "有効なサブネットマスクを入力してください。"
+
+#: ../templates/dhcp/settings.php:59 ../templates/dhcp/general.php:59
+msgid "Default gateway"
+msgstr "デフォルトゲートウェイ"
+
+#: ../templates/dhcp/settings.php:62 ../templates/dhcp/general.php:62
+msgid "Please provide a valid Default gateway."
+msgstr "有効なデフォルトゲートウェイを入力してください。"
+
+#: ../templates/dhcp/settings.php:71 ../templates/dhcp/general.php:71
+msgid "Install a default route for this interface"
+msgstr "このインターフェイスのデフォルトルートをインストールする"
+
+#: ../templates/dhcp/settings.php:72
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:75
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:84 ../templates/dhcp/general.php:83
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "このインターフェイスの wpa_supplicant dhcp フックを無効にする。"
+
+#: ../templates/dhcp/settings.php:85 ../templates/dhcp/general.php:84
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "wpa_supplicant自体でワイヤレス接続を管理する場合、フックは不要な接続イベントを発生させるかもしれません。このオプションはフックを無効にします。"
+
+#: ../templates/dhcp/settings.php:88
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:93 ../templates/dhcp/general.php:92
+msgid "DHCP options"
+msgstr "DHCPオプション"
+
+#: ../templates/dhcp/settings.php:99 ../templates/dhcp/general.php:98
+msgid "Enable DHCP for this interface"
+msgstr "このインターフェイスのDHCPを有効にする"
+
+#: ../templates/dhcp/settings.php:102 ../templates/dhcp/general.php:101
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "選択したインターフェイスのクライアントに IP アドレスを割り当てる場合は、このオプションを有効にします。このオプションには静的 IP アドレスが必要です。"
+
+#: ../templates/dhcp/settings.php:110 ../templates/dhcp/general.php:109
+msgid "Starting IP Address"
+msgstr "開始IPアドレス"
+
+#: ../templates/dhcp/settings.php:113 ../templates/dhcp/general.php:112
+msgid "Please provide a valid Starting IP Address."
+msgstr "有効な開始IPアドレスを入力してください。"
+
+#: ../templates/dhcp/settings.php:119 ../templates/dhcp/general.php:118
+msgid "Ending IP Address"
+msgstr "終了IPアドレス"
+
+#: ../templates/dhcp/settings.php:122 ../templates/dhcp/general.php:121
+msgid "Please provide a valid Ending IP Address."
+msgstr "有効な終了IPアドレスを入力してください。"
+
+#: ../templates/dhcp/settings.php:128 ../templates/dhcp/general.php:127
+msgid "Lease Time"
+msgstr "リース時間"
+
+#: ../templates/dhcp/settings.php:131 ../templates/dhcp/general.php:130
+msgid "Please provide a valid Lease Time."
+msgstr "有効なリース時間をご記入ください。"
+
+#: ../templates/dhcp/settings.php:135 ../templates/dhcp/general.php:134
+msgid "Interval"
+msgstr "インターバル"
+
+#: ../templates/dhcp/settings.php:137 ../templates/dhcp/general.php:136
+msgid "Minute(s)"
+msgstr "分"
+
+#: ../templates/dhcp/settings.php:138 ../templates/dhcp/general.php:137
+msgid "Hour(s)"
+msgstr "時間"
+
+#: ../templates/dhcp/settings.php:139 ../templates/dhcp/general.php:138
+msgid "Day(s)"
+msgstr "日"
+
+#: ../templates/dhcp/settings.php:140 ../templates/dhcp/general.php:139
+msgid "Infinite"
+msgstr "無限"
+
+#: ../templates/dhcp/settings.php:143 ../templates/dhcp/general.php:142
+msgid "Please provide a valid Interval."
+msgstr "有効なインターバルを入力してください。"
+
+#: ../templates/dhcp/settings.php:164 ../templates/dhcp/general.php:163
+#: ../templates/dhcp/summary.php:25
+msgid "Metric"
+msgstr "メートル"
+
+#: ../templates/dhcp/general.php:74
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "これは、DHCPCDコンフィギュレーションで、このインターフェイスの<code>ゲートウェイ/</code><code>ノゲートウェイオプションを</code>切り替えます。"
+
+#: ../templates/dhcp/general.php:87
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr "これは、DHCPCDコンフィギュレーションで、このインターフェイスの<code>nohook wpa_supplicant</code>オプションをトグルする。"
+
+#: ../templates/dhcp/advanced.php:3
+msgid "Advanced Settings"
+msgstr "詳細設定"
+
+#: ../templates/dhcp/advanced.php:6
+msgid "Upstream DNS servers"
+msgstr "上流のDNSサーバー"
+
+#: ../templates/dhcp/advanced.php:11
+msgid "Only ever query DNS servers configured below"
+msgstr "以下のように設定されたDNSサーバーにのみ問い合わせを行う。"
+
+#: ../templates/dhcp/advanced.php:14
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "RaspAP が<b>DNS クエリを以下に設定したサーバーにのみ送信</b>する場合は、このオプションを有効にします。デフォルトでは、RaspAP はアップストリーム DHCP サーバーのネームサーバーも使用します。"
+
+#: ../templates/dhcp/advanced.php:15
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "このオプションはdnsmasqコンフィギュレーションに<code>no-resolvを</code>追加する。"
+
+#: ../templates/dhcp/advanced.php:29
+msgid "Add upstream DNS server"
+msgstr "アップストリームDNSサーバーの追加"
+
+#: ../templates/dhcp/advanced.php:31
+#, php-format
+msgid "e.g. %s"
+msgstr "例： %s"
+
+#: ../templates/dhcp/advanced.php:36
+msgid "Format: "
+msgstr "フォーマット "
+
+#: ../templates/dhcp/advanced.php:41
+msgid "Choose a hosted server"
+msgstr "ホスティングサーバーを選ぶ"
+
+#: ../templates/dhcp/logging.php:4
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "<code>dhcpcdと</code> <code>dnsmasqの</code>活動をログに記録するには、これらのオプションを有効にする。"
+
+#: ../templates/dhcp/logging.php:8
+msgid "Log DHCP requests"
+msgstr "DHCPリクエストのログ"
+
+#: ../templates/dhcp/logging.php:12
+msgid "Log DNS queries"
+msgstr "DNSクエリのログ"
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr "スタティック・リース"
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "特定のハードウェアMACアドレスを持つクライアントは、常に同じIPアドレスを割り当てることができる。"
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "このオプションは<code>dnsmasq</code>コンフィグレーションに<code>dhcp-host</code>エントリーを追加する。"
+
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+#: ../templates/networking/devices.php:19
+msgid "MAC address"
+msgstr "MACアドレス"
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr "IPアドレス"
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr "任意コメント"
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr "アクセス制限"
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr "ネットワークへのアクセスを固定クライアントに制限する"
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "静的リースリストに指定されていない<b>クライアントを</b>ラズパップに<b>無視さ</b>せたい場合は、このオプションを有効にします。"
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "このオプションは<code>dnsmasq</code>コンフィグレーションに<code>dhcp-ignoreを</code>追加する。"
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr "アクティブなDHCPリース"
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr "有効期限"
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
+msgstr "ホスト名"
+
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr "クライアントID"
+
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
+msgstr ""
+
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "コネクト %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "切断 %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "情報提供： %s"
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "認証方法"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "ユーザー名とパスワード"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "証明書"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "ユーザー名とパスワードを入力"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "設定ファイルの証明書"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "ラズパップは、設定ファイルに証明書を含めることで証明書をサポートしている。"
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "署名認証局（CA）証明書（<code>ca.crtなど</code> <code> ）：&lt;ca> ...</code>で囲む。  <code> &lt;/ca></code>タグで囲まれている。"
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "クライアント証明書（公開鍵）（<code>client.crtなど</code> <code> ）：&lt;cert> ...</code>で囲む。  <code> &lt;/cert></code>タグで囲まれている。"
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "クライアント証明書の秘密鍵（<code>client.keyなど</code> <code> ）：&lt;key> ...</code>/key<code> ></code>タグで囲む。  <code> &lt;/key></code>タグで囲む。"
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "OpenVPN設定ファイル（.ovpn）を選択します。"
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "このオプションを有効にすると、<code>openvpnの</code>アクティビティが記録されます。"
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "ロギングを有効にする"
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "現在利用可能なOpenVPNクライアントの設定を以下に表示します。"
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "設定を有効にすると、<code>openvpn-client</code>サービスが再起動します。"
+
+#: ../templates/admin.php:7
+msgid "Authentication"
+msgstr "認証"
+
+#: ../templates/admin.php:47
+msgid "Update admin password"
+msgstr "管理者パスワードの更新"
+
+#: ../templates/admin.php:54
+msgid "Old password"
+msgstr "旧パスワード"
+
+#: ../templates/admin.php:59
+msgid "Please enter your old password."
+msgstr "古いパスワードを入力してください。"
+
+#: ../templates/admin.php:66
+msgid "New password"
+msgstr "新しいパスワード"
+
+#: ../templates/admin.php:71
+msgid "Please enter a new password."
+msgstr "新しいパスワードを入力してください。"
+
+#: ../templates/admin.php:78
+msgid "Repeat new password"
+msgstr "新しいパスワードを繰り返す"
+
+#: ../templates/admin.php:83
+msgid "Please re-enter your new password."
+msgstr "新しいパスワードを再入力してください。"
+
+#: ../templates/admin.php:91
+msgid "Save"
+msgstr "セーブ"
+
+#: ../templates/admin.php:103
+msgid "Logout and enable limited user mode"
+msgstr "ログアウトして限定ユーザーモードを有効にする"
+
+#: ../templates/admin.php:114
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr "この操作により、限定ユーザの認証情報が保存され、現在の管理ユーザがログアウトします。限定特権モードを保存して有効にしますか?"
+
+#: ../templates/admin.php:120
+msgid "Save and logout"
+msgstr "保存してログアウトする"
+
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "インターネット接続"
+
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "インターネット・アクセス"
+
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "ルーティングテーブル"
+
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "生出力"
+
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "現在の設定"
+
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "ネットワーク機器"
+
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "装置"
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "デバイスタイプ"
+
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "WLANルーティングの再起動"
+
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "WLANルーティングの停止"
+
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "WLANルーティングの開始"
+
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "無線LANルーティング"
+
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "ルーティング"
+
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "このオプションは、<b>ワイヤレスクライアント（STA）インターフェースからのネットワークトラフィックを</b>別の利用可能なインターフェースに<b>ルーティング</b>するようにRaspAPを設定します。"
+
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "出力インターフェイスが選択されると、<code>iptables</code>ルールが追加され、ネットワークアドレス変換(NAT)を使ってパケットをルーティングする。これは、WLANからのインターネット接続を<code>eth0</code>、<code>usb0</code>、または予測可能な<code>enx</code>インターフェースのデバイスと共有するためによく行われます。"
+
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "ワイヤレスクライアントインターフェース"
+
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "出力インターフェース"
+
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "出力インターフェースにスタティックIPアドレスとDHCPを設定する"
+
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "モバイルデータ設定"
+
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "SIMカードのPIN番号"
+
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "APN設定"
+
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "アクセスポイント名（APN）"
+
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "スピードテスト"
+
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "サーバーの選択"
+
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "プライバシー"
+
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "サーバー"
+
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "ピン"
+
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "ms"
+
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "ジッター"
+
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "Mbps"
+
+#: ../templates/networking/diagnostics.php:40
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:24
+msgid "Upload"
+msgstr "アップロード"
+
+#: ../templates/configure_client.php:12
+msgid "Disconnected"
+msgstr "切断"
+
+#: ../templates/configure_client.php:24
+msgid "Rescan"
+msgstr "再スキャン"
+
+#: ../templates/configure_client.php:34
+msgid "Set"
+msgstr "セット"
+
+#: ../templates/configure_client.php:49
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>注：</strong>WEPアクセスポイントは「Open」と表示されます。ラズパップは現在、WEPへの接続をサポートしていません。"
+
+#: ../templates/configure_client.php:59
+msgid "Configuring WiFi Client"
+msgstr "WiFiクライアントの設定"
+
+#: ../templates/configure_client.php:62
+msgid "Configuring Wifi Client Interface..."
+msgstr "Wifiクライアントインターフェースの設定..."
+
+#: ../includes/system.php:67
+#, php-format
+msgid "Changing log limit size to %s KB"
+msgstr "ログの上限サイズを %s KB に変更"
+
+#: ../includes/system.php:86
+#, php-format
+msgid "Changing alert close timeout to %s ms"
+msgstr "アラートクローズのタイムアウトを %s ms に変更"
+
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
+msgstr "無効なカスタムIPアドレスが見つかりました "
+
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
+msgstr "行で無効なカスタムホストが見つかりました "
+
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
+msgstr "未設定"
+
+#: ../includes/networking.php:137
+#, php-format
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "%s と %s インターフェース間のルーティングを有効にしようとしている。"
+
+#: ../includes/networking.php:147
+#, php-format
+msgid "Attempting to restart routing between %s and %s interfaces"
+msgstr "%s と %s インターフェース間のルーティングを再開しようとしている。"
+
+#: ../includes/networking.php:151
+#, php-format
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "%s と %s インターフェース間のルーティングを無効にしようとしている。"
+
+#: ../includes/networking.php:252
+#, php-format
+msgid "DHCP configuration for %s enabled"
+msgstr "%s のDHCP設定が有効"
+
+#: ../includes/networking.php:259
+#, php-format
+msgid "DHCP configuration for %s added"
+msgstr "%s のDHCP設定を追加"
+
+#: ../includes/networking.php:265
+#, php-format
+msgid "DHCP configuration for %s updated"
+msgstr "%s のDHCP設定を更新"
+
+#: ../includes/networking.php:271
+#, php-format
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "%s 、デフォルトのDHCPコンフィグレーションは存在しない。"
+
+#: ../includes/networking.php:272
+#, php-format
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "DHCPサーバーの設定で、このインターフェイスに静的IPとDHCPを設定します。"
+
+#: ../includes/networking.php:294
+#, php-format
+msgid "Dnsmasq  configuration for %s added"
+msgstr "%s 用の Dnsmasq 設定を追加"
+
+#: ../includes/restapi.php:59
+#, php-format
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
+msgstr "RestAPIのドキュメントは<a href=\"%s\" target=\"_blank\">こちらから </a>アクセスできます<a href=\" %s \" target=\"_blank\"> %s</a>"
+
+#: ../includes/dashboard.php:72
+#, php-format
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
+
+#: ../includes/dashboard.php:78
+#, php-format
+msgid "%d LAN %s"
+msgstr "%d LAN %s"
+
+#: ../includes/footer.php:6
+#, php-format
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "によって作成された。 <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
+msgstr "ラスパップチーム"
+
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
+msgstr "インサイダーになってくれてありがとう"
+
+#: ../includes/footer.php:17
+msgid "Session Expired"
+msgstr "セッション終了"
+
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
+msgstr "セッションの有効期限が切れました。続行するにはログインしてください。"
+
+#: ../includes/provider.php:65
+#, php-format
+msgid "Expected %s binary not found at: %s"
+msgstr "%s にバイナリが見つかりません： %s"
+
+#: ../includes/provider.php:66
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "%sの Linux CLI の<a href=\"%s\" target=\"_blank\">インストール手順を</a>ご覧ください。"
+
+#: ../includes/provider.php:70
+#, php-format
+msgid "Unable to execute %s binary found at: %s"
+msgstr "%s にあるバイナリを実行できない： %s"
+
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "バイナリが実行可能で、raspap.sudoersにパーミッションが存在することを確認する。"
+
+#: ../includes/provider.php:119
+#, php-format
+msgid "Attempting to connect to %s"
+msgstr "%s に接続しようとしている"
+
+#: ../includes/provider.php:318
+msgid "Select a country..."
+msgstr "国を選択..."
+
+#: ../includes/provider.php:387
+#, php-format
+msgid "Account information not available from %s's Linux CLI."
+msgstr "%sの Linux CLI からは利用できないアカウント情報。"
+
+#: ../includes/functions.php:1005
+msgid "Mem Use"
+msgstr "メム使用"
+
+#: ../includes/functions.php:1008
+msgid "CPU"
+msgstr "CPU"
+
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "印刷可能なWi-Fiサイン"
+
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Wi-Fiコネクト"
+
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "スマホやタブレットで接続するには、上のQRコードをカメラアプリでスキャンしてください。"
+
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "その他のデバイスの場合は、以下のログイン認証情報を使用してください。"
+
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "ネットワーク"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:8
 msgid "Capture interface"
 msgstr "キャプチャインターフェース"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:15
 msgid "Output file"
 msgstr "出力ファイル"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:16
 msgid "Path where capture file will be saved (.pcap format)"
 msgstr "キャプチャファイルを保存するパス（.pcap形式）"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:20
 msgid "File will be saved with .pcap extension"
 msgstr "ファイルは .pcap という拡張子で保存されます。"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:26
 msgid "Capture filter (BPF syntax)"
 msgstr "キャプチャ・フィルター（BPFシンタックス）"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:28
 msgid "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
-msgstr "Berkeley Packet Filterの構文。すべてのトラフィックをキャプチャするには、空のままにします。"
+msgstr "Berkeley Packet Filterの構文。すべてのトラフィックをキャプチャするには空のままにします。"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:33
 msgid "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
 msgstr "例：<code>ポート80</code>、<code>ホスト192.168.1.1</code>、<code>tcp、ポート22以外</code>"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:38
 msgid "Capture limits"
 msgstr "キャプチャーの制限"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:42
 msgid "Packet count limit"
 msgstr "パケット数制限"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:44
 msgid "Stop capture after this many packets. Leave empty for unlimited."
 msgstr "このパケット数でキャプチャを停止する。無制限の場合は空のままにします。"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:51
 msgid "Duration limit (seconds)"
 msgstr "制限時間（秒）"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:53
 msgid "Stop capture after this many seconds. Leave empty for unlimited."
 msgstr "何秒後にキャプチャを停止するか。無制限の場合は空のままにします。"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:60
 msgid "Ring buffer settings"
 msgstr "リングバッファの設定"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:64
 msgid "File size (KB)"
 msgstr "ファイルサイズ (KB)"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:66
 msgid "Create new file when this size is reached. Leave empty to disable."
 msgstr "このサイズに達したら新しいファイルを作成する。無効にするには空のままにします。"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:70
 msgid "10000 = 10 MB per file"
 msgstr "10000 = 1ファイルあたり10MB"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:74
 msgid "Number of files"
 msgstr "ファイル数"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:76
 msgid "Maximum number of ring buffer files to keep. Oldest files are deleted."
 msgstr "保持するリング・バッファ・ファイルの最大数。最も古いファイルは削除されます。"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:83
 msgid "Advanced options"
 msgstr "高度なオプション"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:87
 msgid "Snapshot length (bytes)"
 msgstr "スナップショットの長さ（バイト）"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:89
 msgid "Limit the amount of data captured per packet. Leave empty for full packets."
 msgstr "パケットごとにキャプチャするデータ量を制限する。フルパケットの場合は空のままにする。"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:93
 msgid "96 bytes captures headers only, reduces file size"
 msgstr "96バイトでヘッダーのみをキャプチャし、ファイルサイズを縮小"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:101
 msgid "Promiscuous mode"
 msgstr "プロミスキャス・モード"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:104
 msgid "Capture all packets on the network segment, not just those destined for this interface"
 msgstr "このインターフェイス宛のパケットだけでなく、ネットワークセグメント上のすべてのパケットをキャプチャする。"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:109
 msgid "Quick filter presets"
 msgstr "クイック・フィルター・プリセット"
 
-msgid "Capture files generated by <code>tshark</code> are displayed below."
-msgstr "<code>tsharkが</code>生成したキャプチャファイルを以下に表示します。"
-
-msgid "No capture files found in /tmp directory"
-msgstr "tmpディレクトリにキャプチャファイルが見つかりません"
-
-msgid "Filename"
-msgstr "ファイル名"
-
-msgid "Size"
-msgstr "サイズ"
-
-msgid "Modified"
-msgstr "変形"
-
-msgid "Actions"
-msgstr "行動"
-
-msgid "Download file"
-msgstr "ダウンロードファイル"
-
-msgid "Delete file"
-msgstr "ファイルの削除"
-
-msgid "Confirm deletion"
-msgstr "削除の確認"
-
-msgid "Are you sure you want to delete this file?"
-msgstr "本当にこのファイルを削除しますか？"
-
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:114
 msgid "All Traffic"
 msgstr "すべての交通"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:117
 msgid "HTTP/HTTPS"
 msgstr "HTTP/HTTPS"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:123
 msgid "ICMP (Ping)"
 msgstr "ICMP (Ping)"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:126
 msgid "SSH"
 msgstr "SSH"
 
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:129
 msgid "Exclude SSH"
 msgstr "SSHを除く"
 
-msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
-msgstr "RaspAP の Wireshark (TShark) CLI パケットキャプチャー"
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "が制作した。"
 
-msgid "Information provided by tshark"
-msgstr "情報提供：tshark"
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "プラグインの説明"
 
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
+#: ../plugins-available/Wireshark/templates/main.php:46
+msgid "Capture files"
+msgstr "キャプチャファイル"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "<code>tsharkが</code>生成したキャプチャファイルを以下に表示します。"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "tmpディレクトリにキャプチャファイルが見つかりません"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "ファイル名"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "サイズ"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "変形"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "行動"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "ダウンロードファイル"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "ファイルの削除"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
+#, php-format
 msgid "Total: %d file(s), %s"
 msgstr "合計： %d ファイル： %s"
 
-msgid "Captive portal"
-msgstr "キャプティブ・ポータル"
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "削除の確認"
 
-msgid "Gateway interface"
-msgstr "ゲートウェイインターフェース"
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "本当にこのファイルを削除しますか？"
 
-msgid "Gateway name"
-msgstr "ゲートウェイ名"
+#: ../plugins-available/Wireshark/templates/main.php:20
+msgid "Start capture"
+msgstr "キャプチャ開始"
 
-msgid "Gateway address"
-msgstr "ゲートウェイアドレス"
+#: ../plugins-available/Wireshark/templates/main.php:24
+msgid "Stop capture"
+msgstr "キャプチャ停止"
 
-msgid "Gateway port"
-msgstr "ゲートウェイポート"
+#: ../plugins-available/Wireshark/templates/main.php:69
+#: ../plugins-available/Tailscale/templates/main.php:89
+msgid "Information provided by "
+msgstr "情報提供 "
 
-msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
-msgstr "デフォルトはアクティブな AP インターフェースで、通常は<code>wlan0</code>です。"
+#: ../plugins-available/Wireshark/Wireshark.php:48
+msgid "Wireshark"
+msgstr "ワイヤーシャーク"
 
-msgid "Auto-detected from gateway interface if not specified"
-msgstr "指定がない場合、ゲートウェイインターフェースから自動検出される"
+#: ../plugins-available/Wireshark/Wireshark.php:140
+#, php-format
+msgid "Attempting to start packet capture on %s"
+msgstr "%s でパケットキャプチャを開始しようとしている。"
 
-msgid "Start portal"
-msgstr "スタートポータル"
+#: ../plugins-available/Wireshark/Wireshark.php:143
+#, php-format
+msgid "TShark started with PID %s"
+msgstr "TShark は PID %s でスタートした。"
 
-msgid "Stop portal"
-msgstr "ストップポータル"
+#: ../plugins-available/Wireshark/Wireshark.php:152
+#, php-format
+msgid "Attempting to stop packet capture on %s"
+msgstr "%s でパケットキャプチャを停止しようとしている。"
 
-msgid "Information provided by nodogsplash"
-msgstr "情報提供：nodogsplash"
+#: ../plugins-available/Wireshark/Wireshark.php:172
+#, php-format
+msgid "Expected tshark binary not found at: %s"
+msgstr "期待した tshark バイナリが見つかりません： %s"
 
-msgid "Stop portal service"
-msgstr "ポータルサービスの停止"
+#: ../plugins-available/Wireshark/Wireshark.php:173
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Wireshark plugin."
+msgstr "<a href=\"%s\" target=\"_blank\">インストール手順を</a>参照するか、Wiresharkプラグインを再インストールしてください。"
 
-msgid "Start portal service"
-msgstr "ポータルサービスの開始"
+#: ../plugins-available/Wireshark/Wireshark.php:184
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "RaspAP の Wireshark (TShark) CLI パケットキャプチャー"
 
-msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
-msgstr "ポータルサービスを変更すると、クライアントのトラフィックが一時的に中断されます。<strong>続行]</strong>を選択して続行します。"
+#: ../plugins-available/Wireshark/Wireshark.php:185
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Captive/Captive.php:132
+msgid "Bill Z"
+msgstr "ビルZ"
 
-msgid "Interface to be managed by the portal"
-msgstr "ポータルが管理するインターフェース"
+#: ../plugins-available/Wireshark/Wireshark.php:244
+msgid "TShark settings saved successfully"
+msgstr "TSharkの設定が正常に保存されました。"
 
-msgid "Name of your gateway (available as \\$gatewayname variable)"
-msgstr "ゲートウェイの名前 ($gatewayname 変数として利用可能)"
+#: ../plugins-available/Wireshark/Wireshark.php:248
+#: ../plugins-available/Captive/Captive.php:541
+msgid "Error saving settings: "
+msgstr "設定の保存エラー： "
 
-msgid "IP address of the router. Leave empty for auto-detection"
-msgstr "ルーターのIPアドレス。自動検出の場合は空のままにします。"
+#: ../plugins-available/Wireshark/Wireshark.php:649
+msgid "File not found"
+msgstr "ファイルが見つかりません"
 
-msgid "Port for Nodogsplash HTTP server"
-msgstr "Nodogsplash HTTPサーバーのポート"
+#: ../plugins-available/Wireshark/Wireshark.php:658
+#, php-format
+msgid "File \"%s\" deleted successfully"
+msgstr "ファイル \"%s\" 削除成功"
 
-msgid "Maximum clients"
-msgstr "最大顧客数"
+#: ../plugins-available/Wireshark/Wireshark.php:661
+#, php-format
+msgid "Failed to delete file \"%s\""
+msgstr "ファイル \"%s \" の削除に失敗しました。"
 
-msgid "Session timeout (minutes)"
-msgstr "セッションタイムアウト（分）"
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "テールネットの状態"
 
-msgid "Pre-auth idle timeout (minutes)"
-msgstr "事前認証アイドルタイムアウト（分）"
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "現在の<code>テールネットの</code>状態は下に表示されています。"
 
-msgid "Does not include users on the trusted MAC list"
-msgstr "信頼済みMACリストのユーザーを含まない"
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "バック"
 
-msgid "Auth idle timeout (minutes)"
-msgstr "認証アイドルタイムアウト（分）"
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "次のページ"
 
-msgid "Check interval (seconds)"
-msgstr "チェック間隔（秒）"
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "終了ノードを取り消す"
 
-msgid "MAC address control"
-msgstr "MACアドレス制御"
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "終了ノードの使用停止"
 
-msgid "MAC mechanism"
-msgstr "MACメカニズム"
+#: ../plugins-available/Tailscale/templates/main.php:44
+#: ../plugins-available/Tailscale/Tailscale.php:400
+msgid "Start Tailscale"
+msgstr "テールスケール開始"
 
-msgid "Blocked MAC list"
-msgstr "ブロックMACリスト"
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "テールスケール停止"
 
-msgid "Trusted MAC list"
-msgstr "信頼できるMACリスト"
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "終了ノードを許可する"
 
-msgid "These devices are not subject to authentication or firewall rules"
-msgstr "これらのデバイスは、認証やファイアウォールのルールの対象にはなりません。"
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "装置 <code>%s</code>は終了ノードとして承認待ちである。"
 
-msgid "Maximum number of concurrent authenticated users"
-msgstr "同時認証ユーザーの最大数"
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "オープン・テールスケール・マシン"
 
-msgid "Default session length in minutes. 0 = unlimited"
-msgstr "デフォルトのセッションの長さを分単位で指定します。0 = 制限なし"
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "マシンリストで <code>%s</code><strong>バッジを</strong>見つける。"
 
-msgid "Time before unauthenticated idle users are removed"
-msgstr "未認証のアイドル・ユーザーが削除されるまでの時間"
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "終了ノードの %s アイコンメニューから、 %s パネルを開く。"
 
-msgid "Time before authenticated idle users are deauthenticated"
-msgstr "認証されたアイドルユーザーが認証解除されるまでの時間"
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "ルート設定の編集"
 
-msgid "How often to check client timeouts"
-msgstr "クライアントのタイムアウトを確認する頻度"
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "<strong>Use as exit node</strong>オプションを有効にする。"
 
-msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
-msgstr "Block：ブロックリストに登録されたMACはブロックされます。許可：許可リストに登録されたMACのみが許可されます。"
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "これらの手順が完了したら、<strong>Nextを</strong>選択します。"
 
-msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
-msgstr "例：<code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "終了ノードの使用"
 
-msgid "Comma-separated MAC addresses that bypass authentication entirely"
-msgstr "認証を完全にバイパスするカンマ区切りのMACアドレス"
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "デバイスは <code>%s</code>は終了ノード <code>%s</code>.TailscaleのMagicDNSアドレスを持っています。 <code>%s</code>."
 
-msgid "Block (blocklist mode)"
-msgstr "ブロック（ブロックリストモード）"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
+msgid "Select an exit node"
+msgstr "出口ノードを選択する"
 
-msgid "Allow (allowlist mode)"
-msgstr "許可する（allowlistモード）"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#, php-format
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "VPNゲートウェイとして <code>%s</code>をVPNゲートウェイとして使用するには、出口ノードを使用するようにTailscaleを設定します。Tailscaleが推奨するノードは星印で示されています。"
 
-msgid "Gateway IP range"
-msgstr "ゲートウェイIPレンジ"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#, php-format
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "アクティブな <code>%s</code>APインターフェース"
 
-msgid "Default: 0.0.0.0/0 (all addresses)"
-msgstr "デフォルト：0.0.0.0/0（すべてのアドレス）"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "サブネット・ルートを使用すると、Tailscaleネットワーク（テールネットと呼ばれる）を拡張して、Tailscaleクライアントを実行しない、または実行できないデバイスを含めることができます。"
 
-msgid "Debug level"
-msgstr "デバッグレベル"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "サブネットルートは、テールネットと物理サブネット間のゲートウェイとして機能する。アクティブなAPインターフェースのサブネットは以下にあらかじめ設定されています。"
 
-msgid "Firewall settings"
-msgstr "ファイアウォール設定"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
+msgid "Route LAN traffic through the exit node."
+msgstr "LANトラフィックを出口ノードにルーティングする。"
 
-msgid "Allow all traffic for authenticated users"
-msgstr "認証されたユーザーのすべてのトラフィックを許可する"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "これにより、すべてのLANトラフィックが出口ノードを経由するようになります。"
 
-msgid "Allow DNS for pre-authenticated users"
-msgstr "認証済みユーザーにDNSを許可する"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Tailscale DNS設定を使用する（デフォルト）。"
 
-msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
-msgstr "CIDR表記で管理するIP範囲。すべてのアドレスの場合は空のままにします。"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "ローカルDNSを使用する場合はチェックを外す。これは<code>--accept-dns=falseを</code>設定する。"
 
-msgid "Amount of logging detail reported by the nodogsplash.service"
-msgstr "nodogsplash.serviceが報告するロギングの詳細量"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Tailscaleサブネットを使用しない（Linuxのデフォルト）。"
 
-msgid "0 - Errors only"
-msgstr "0 - エラーのみ"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "テールネットにサブネット・ルートが存在する場合、デバイスのトラフィックをサブネット・ルーターにルーティングできる。これを有効にすると、<code>--accept-routes=trueが</code>設定される。"
 
-msgid "1 - Errors, warnings, infos"
-msgstr "1 - エラー、警告、情報"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "デバイスのキーの有効期限が切れると、指定したエンドポイントとの接続ができなくなる。"
 
-msgid "2 - Errors, warnings, infos, verbose"
-msgstr "2 - エラー、警告、情報、冗長"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "このオプションは、<code>-force-reauthを</code>使用してこのデバイスの鍵を更新する。"
 
-msgid "3 - Errors, warnings, infos, verbose, debug"
-msgstr "3 - エラー、警告、情報、冗長、デバッグ"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#, php-format
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "<strong>Next（次へ</strong>）を選択して <code>%s</code>を選択して、選択した終了ノードをこれらのオプションで使用します。"
 
-msgid "When enabled, authenticated users have unrestricted access"
-msgstr "有効にすると、認証されたユーザーは無制限にアクセスできる。"
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "テールネットに終了ノードが見つかりません。続行するには<strong>Backを</strong>選択してください。"
 
-msgid "Required for clients to resolve domain names before authentication"
-msgstr "認証前にクライアントがドメイン名を解決するために必要"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "新しい出口ノードを設定する"
 
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "セキュリティ上の理由から、終了ノード機能を有効にするにはオプトインする必要があります。最初のステップは <code>%s</code>をテールネットの出口ノードとしてアドバタイズすることです。次のステップでは、このデバイスを出口ノードとして許可します。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "広告を出す <code>%s</code>出口ノードとして"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "これにより、TailscaleをVPNとして効果的に設定し、実際の場所を隠したり、地域制限のあるコンテンツにアクセスしたり、信頼できないネットワークから接続する際のプライバシーを強化したりすることができます。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "このオプションは、Tailscaleにあなたのデバイスがトラフィックをルーティングする準備ができたことを知らせます。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "最適化されたUDPスループットを有効にする"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Linux 6.2以降のカーネルを搭載したTailscale終了ノードに推奨され、UDP汎用受信オフロード（GRO）転送を使用してCPUオーバーヘッドを削減します。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "このオプションは、パフォーマンスを向上させるためにトランスポート層のオフロードを有効にする。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "<strong>Next（次へ</strong>）を選択して続けます。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "デバイスの設定"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "デバイス <code>%s</code>はアドレス <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "デフォルトでは、Tailscaleはインストールされたデバイス間のトラフィックのみをルーティングします。また、ネットワーク上のデバイスを<strong>出口ノードとして</strong>設定することで、すべてのパブリック・インターネット・トラフィックをルーティングすることもできます。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "すべてのトラフィックを出口ノード経由でルーティングする場合、一般的なVPNを使用する場合と同様に、デフォルトルート（0.0.0.0/0、::/0）を効果的に使用することになる。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "このデバイスを出口ノードとして設定するか、テールネット内の別の出口ノードを使用するかのオプションがある。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "テールネット上の既存の出口ノードを選択します。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "これは、例えばこのデバイスをVPNトラベル・ルーターとして使う場合の典型的な構成だ。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "このデバイスを新しい出口ノードとして設定する"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "このデバイスを出口ノードとして設定することで、テールネットに接続されているデバイスからのパブリックインターネットトラフィックは、このデバイスを経由してルーティングされる。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
+msgid "Exit node activated"
+msgstr "終了ノードが起動"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "デバイス <code>%s</code>はアドレス <code>%s</code>で接続され、<strong>出口ノードを</strong>提供する。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#, php-format
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "この終了ノードをお使いのデバイスで使用する方法については、 %s を参照してください。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
+msgid "Approve subnet route"
+msgstr "サブネットのルートを承認する"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#, php-format
+msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
+msgstr "デバイスは <code>%s</code>はサブネット・ルートをアドバタイズしています。セキュリティ上の理由から、これを有効にするにはオプトインする必要があります。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
+msgstr "マシンリストで <code>%s</code>マシンリストの<strong>サブネットバッジを</strong>見つける。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#, php-format
+msgid "From the %s icon menu of the device, open the %s panel."
+msgstr "デバイスの %s アイコンメニューから、 %s パネルを開きます。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
+msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
+msgstr "アドバタイズしたいサブネットルートに対応するIPレンジボックスをチェックし、<strong>Saveを</strong>選択します。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "Tailscaleにログイン"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "デバイス %s をテールネットに接続するには、 %s を選択します。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "オープンTailscaleログイン"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "ログイン後、<strong>Nextを</strong>選択して続行します。"
+
+#: ../plugins-available/Tailscale/Tailscale.php:52
+msgid "Tailscale VPN"
+msgstr "テールスケールVPN"
+
+#: ../plugins-available/Tailscale/Tailscale.php:237
+#, php-format
+msgid "Expected tailscale binary not found at: %s"
+msgstr "期待したtailscaleバイナリが見つかりません： %s"
+
+#: ../plugins-available/Tailscale/Tailscale.php:238
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
+msgstr "<a href=\"%s\" target=\"_blank\">インストール手順を</a>ご覧になるか、Tailscaleプラグインを再インストールしてください。"
+
+#: ../plugins-available/Tailscale/Tailscale.php:251
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "RaspAP 用 Tailscale VPN 終了ノード拡張機能"
+
+#: ../plugins-available/Tailscale/Tailscale.php:406
+#, php-format
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Tailscaleログインを取得できません。続行するには <strong>%s</strong>を選択してください。"
+
+#: ../plugins-available/Tailscale/Tailscale.php:786
+msgid "Not connected: Login required."
+msgstr "接続されていません：ログインが必要です。"
+
+#: ../plugins-available/Captive/templates/tabs/status.php:3
 msgid "Portal status"
 msgstr "ポータル状況"
 
+#: ../plugins-available/Captive/templates/tabs/status.php:4
 msgid "Current <code>nodogsplash</code> status is displayed below."
 msgstr "現在の<code>nodogsplashの</code>ステータスは以下のように表示されます。"
 
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "ゲートウェイIPレンジ"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "CIDR表記で管理するIP範囲。すべてのアドレスの場合は空のままにします。"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "デフォルト：0.0.0.0/0（すべてのアドレス）"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "デバッグレベル"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "nodogsplash.serviceが報告するロギングの詳細量"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - エラーのみ"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - エラー、警告、情報"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - エラー、警告、情報、冗長"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - エラー、警告、情報、冗長、デバッグ"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "ファイアウォール設定"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "認証されたユーザーのすべてのトラフィックを許可する"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "有効にすると、認証されたユーザーは無制限にアクセスできる。"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "認証済みユーザーにDNSを許可する"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "認証前にクライアントがドメイン名を解決するために必要"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "ゲートウェイインターフェース"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "ポータルが管理するインターフェース"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "デフォルトはアクティブな AP インターフェースで、通常は<code>wlan0</code>です。"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "ゲートウェイ名"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "ゲートウェイの名前（ $gatewayname 変数として利用可能）"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "ゲートウェイアドレス"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "ルーターのIPアドレス。自動検出の場合は空のままにします。"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "指定がない場合、ゲートウェイインターフェースから自動検出される"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "ゲートウェイポート"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Nodogsplash HTTPサーバーのポート"
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+#: ../plugins-available/Captive/templates/main.php:52
+msgid "Active clients"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:17
+msgid "Client"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:21
+msgid "IP"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:22
+msgid "Token"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:25
+msgid "Last activity"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:26
+msgid "Session start"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:27
+msgid "Session end"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:35
+msgid "Deauthenticate"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:44
+msgid "No active clients connected."
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:9
+msgid "Maximum clients"
+msgstr "最大顧客数"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:11
+msgid "Maximum number of concurrent authenticated users"
+msgstr "同時認証ユーザーの最大数"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:15
+msgid "Does not include users on the trusted MAC list"
+msgstr "信頼済みMACリストのユーザーを含まない"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:19
+msgid "Session timeout (minutes)"
+msgstr "セッションタイムアウト（分）"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:21
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "デフォルトのセッションの長さを分単位で指定します。0 = 制限なし"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:30
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "事前認証アイドルタイムアウト（分）"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:32
+msgid "Time before unauthenticated idle users are removed"
+msgstr "未認証のアイドル・ユーザーが削除されるまでの時間"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:39
+msgid "Auth idle timeout (minutes)"
+msgstr "認証アイドルタイムアウト（分）"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:41
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "認証されたアイドルユーザーが認証解除されるまでの時間"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:50
+msgid "Check interval (seconds)"
+msgstr "チェック間隔（秒）"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:52
+msgid "How often to check client timeouts"
+msgstr "クライアントのタイムアウトを確認する頻度"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:59
+msgid "MAC address control"
+msgstr "MACアドレス制御"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:63
+msgid "MAC mechanism"
+msgstr "MACメカニズム"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:65
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Block：ブロックリストに登録されたMACはブロックされます。許可：許可リストに登録されたMACのみが許可されます。"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:68
+msgid "Block (blocklist mode)"
+msgstr "ブロック（ブロックリストモード）"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:71
+msgid "Allow (allowlist mode)"
+msgstr "許可する（allowlistモード）"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:79
+msgid "Blocked MAC list"
+msgstr "ブロックMACリスト"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:81
+msgid "Comma-separated MAC addresses to block (used when mechanism is 'block')"
+msgstr "ブロックするMACアドレスをカンマで区切ったもの（メカニズムが「ブロック」の場合に使用される）"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:84
+#: ../plugins-available/Captive/templates/tabs/clients.php:95
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "例：<code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:90
+msgid "Allowed MAC list"
+msgstr "許可MACリスト"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:92
+msgid "Comma-separated MAC addresses to allow (used when mechanism is 'allow')"
+msgstr "許可するカンマ区切りのMACアドレス（メカニズムが'allow'の場合に使用される）"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:101
+msgid "Trusted MAC list"
+msgstr "信頼できるMACリスト"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:103
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "認証を完全にバイパスするカンマ区切りのMACアドレス"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:106
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "これらのデバイスは、認証やファイアウォールのルールの対象にはなりません。"
+
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "ストップポータル"
+
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "スタートポータル"
+
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "顧客"
+
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "情報提供：nodogsplash"
+
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "ポータルサービスの停止"
+
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "ポータルサービスの開始"
+
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "ポータルサービスを変更すると、クライアントのトラフィックが一時的に中断されます。<strong>続行]</strong>を選択して続行します。"
+
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "進む"
+
+#: ../plugins-available/Captive/Captive.php:70
+#: ../plugins-available/Captive/Captive.php:130
+msgid "Captive portal"
+msgstr "キャプティブ・ポータル"
+
+#: ../plugins-available/Captive/Captive.php:95
+#, php-format
+msgid "Attempting to start %s"
+msgstr "%s"
+
+#: ../plugins-available/Captive/Captive.php:99
+#, php-format
+msgid "Attempting to stop %s"
+msgstr "%s"
+
+#: ../plugins-available/Captive/Captive.php:106
+#, php-format
+msgid "Client %s deauthenticated"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:108
+#, php-format
+msgid "Failed to deauthenticate client %s"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:111
+msgid "Invalid client MAC address"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:131
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "nodogsplashを実装したキャプティブ・ポータル・プラグイン"
+
+#: ../plugins-available/Captive/Captive.php:538
+msgid "Portal settings saved successfully"
+msgstr "ポータル設定の保存に成功"
+
+#: ../plugins-available/Captive/Captive.php:582
+msgid "Failed to execute ndsctl."
+msgstr "ndsctl の実行に失敗しました。"
+
+#~ msgid "Firewall is now enabled"
+#~ msgstr "ファイアウォールが有効になりました"
+
+#~ msgid "Firewall is now disabled"
+#~ msgstr "ファイアウォールが無効になりました"
+
+#~ msgid "Firewall settings changed"
+#~ msgstr "ファイアウォール設定の変更"
+
+#~ msgid "Firewall settings saved. Firewall is still disabled."
+#~ msgstr "ファイアウォールの設定を保存しました。ファイアウォールは無効のままです。"
+
+#~ msgid "Exclude devices "
+#~ msgstr "機器を除く "
+
+#~ msgid "Exclude IP address "
+#~ msgstr "除外IPアドレス "
+
+#~ msgid "Exclude IP address(es) "
+#~ msgstr "IPアドレスを除外する "
+
+#~ msgid "A firewall plugin that implements an iptables ruleset"
+#~ msgstr "iptablesルールセットを実装するファイアウォール・プラグイン"
+
+#~ msgid "zbchristian"
+#~ msgstr "zbchristian"
+
+#~ msgid "Client Firewall"
+#~ msgstr "クライアントファイアウォール"
+
+#~ msgid "Firewall is ENABLED"
+#~ msgstr "ファイアウォールが有効"
+
+#~ msgid "Firewall is OFF"
+#~ msgstr "ファイアウォールがオフ"
+
+#~ msgid "The default firewall will only allow outgoing and already established traffic."
+#~ msgstr "デフォルトのファイアウォールは、発信トラフィックと既に確立されたトラフィックのみを許可する。"
+
+#~ msgid "No incoming UDP traffic is allowed."
+#~ msgstr "UDPトラフィックの着信は許可されない。"
+
+#, php-format
+#~ msgid "There are no restrictions for the access point <code>%s</code>."
+#~ msgstr "アクセスポイントの制限はありません。 <code>%s</code>."
+
+#~ msgid "Exception: Service"
+#~ msgstr "例外サービス"
+
+#~ msgid "allow SSH access on port 22"
+#~ msgstr "ポート22でのSSHアクセスを許可する"
+
+#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
+#~ msgstr "ポート 80 または 443 での RaspAP GUI へのアクセスを許可します。"
+
+#~ msgid "Allow incoming connections for some services from the internet side."
+#~ msgstr "インターネット側から一部のサービスへの着信接続を許可する。"
+
+#~ msgid "Exception: network device"
+#~ msgstr "例外：ネットワーク機器"
+
+#~ msgid "Exclude device(s)"
+#~ msgstr "デバイスを除く"
+
+#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+#~ msgstr "指定されたネットワークデバイス（複数可）をファイアウォールルールから除外します（空白またはカンマで区切ります）。"
+
+#, php-format
+#~ msgid "Current client devices: <code>%s</code>"
+#~ msgstr "現在のクライアントデバイス <code>%s</code>"
+
+#, php-format
+#~ msgid "The access point <code>%s</code> is per default excluded."
+#~ msgstr "アクセスポイント <code>%s</code>はデフォルトで除外されている。"
+
+#~ msgid "Exception: IP-Address"
+#~ msgstr "例外IPアドレス"
+
+#~ msgid "Allow incoming connections from"
+#~ msgstr "からの着信接続を許可する。"
+
+#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+#~ msgstr "与えられたIPアドレス（空白またはカンマで区切られる）に対して、（TCPおよびUDP経由の）着信接続を受け付ける。"
+
+#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+#~ msgstr "これは、UDP経由のOpenVPNまたはWireguard接続に必要です。"
+
+#, php-format
+#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+#~ msgstr "設定されているVPNサーバーのIPアドレスのリスト： <code><b>%s</b></code>"
+
+#~ msgid "plugin was created by "
+#~ msgstr "プラグインは "
+
+#~ msgid "Apply changes"
+#~ msgstr "変更を適用する"
+
+#~ msgid "Disable Firewall"
+#~ msgstr "ファイアウォールを無効にする"
+
+#~ msgid "Enable Firewall"
+#~ msgstr "ファイアウォールを有効にする"
+
+#~ msgid "Information provided by iptables"
+#~ msgstr "iptablesが提供する情報"
+
+#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
+#~ msgstr "ファイアウォールのステータスを変更すると、受信トラフィックが中断されたり許可されたりすることがあります。<strong>続行を</strong>選択します。"

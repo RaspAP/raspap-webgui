@@ -1,683 +1,3418 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
+"Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-21 23:15+0000\n"
-"Last-Translator: Emil Nilsson <emil_nilsson_96@live.se>\n"
-"Language-Team: \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2026-04-29 13:38+0000\n"
+"PO-Revision-Date: 2026-04-22 02:22\n"
+"Last-Translator: \n"
+"Language-Team: Swedish\n"
+"Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
+"X-Crowdin-Language: sv-SE\n"
+"X-Crowdin-File: /master/locale/messages.pot\n"
+"X-Crowdin-File-ID: 12\n"
 
-#: index.php
-msgid "RaspAP Wifi Configuration Portal"
-msgstr "RaspAP Wifi Konfigurationsportal"
+#: ../ajax/networking/get_nl80211_band.php:37
+#, php-format
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "Det valda gränssnittet (%s) har endast stöd för det trådlösa bandet 2,4 GHz."
 
-msgid "Toggle navigation"
-msgstr "Växla meny"
+#: ../ajax/networking/get_nl80211_band.php:40
+#, php-format
+msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
+msgstr "Det valda gränssnittet (%s) har endast stöd för det trådlösa 5 GHz-bandet."
 
-msgid "RaspAP Wifi Portal"
-msgstr "RaspAP Wifi Portal"
+#: ../ajax/networking/get_nl80211_band.php:43
+#, php-format
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "Det valda gränssnittet (%s) har stöd för både 2,4 och 5 GHz trådlösa band."
 
+#: ../ajax/networking/get_nl80211_band.php:46
+#, php-format
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "Det valda gränssnittet (%s) stöder inte trådlös drift."
+
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+msgid "No MAC Address Found"
+msgstr "Ingen MAC-adress hittades"
+
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "Ingen IPv6-adress hittades"
+
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "Klient"
+msgstr[1] "Kunder"
+
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
 msgid "Dashboard"
-msgstr "Dashboard"
+msgstr "Instrumentpanel"
 
-msgid "WiFi client"
-msgstr "WiFi klienten"
-
+#: ../src/RaspAP/UI/Sidebar.php:20 ../templates/hostapd.php:13
+#: ../includes/functions.php:1002
 msgid "Hotspot"
 msgstr "Hotspot"
 
-msgid "Networking"
-msgstr "Nätverk"
-
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
 msgid "DHCP Server"
-msgstr "DHCP Server"
+msgstr "DHCP-server"
 
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
+msgid "Ad Blocking"
+msgstr "Blockering av annonser"
+
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
+#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
+msgid "Networking"
+msgstr "Nätverkande"
+
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "WiFi-klient"
+
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "TOR proxy"
-msgstr "TOR proxy"
-
-msgid "Authentication"
-msgstr "Autentisering"
-
-msgid "Change Theme"
-msgstr "Byt Tema"
-
-msgid "System"
-msgstr "System"
-
-msgid "About RaspAP"
-msgstr "Om RaspAP"
-
-#: includes/admin.php
-msgid "Authentication settings"
-msgstr "Autentiseringsinställningar"
-
-msgid "New passwords do not match"
-msgstr "Nya lösenord matchar ej"
-
-msgid "Username must not be empty"
-msgstr "Användarnamnet saknar värde"
-
-msgid "Admin password updated"
-msgstr "Admin lösenord uppdaterat"
-
-msgid "Failed to update admin password"
-msgstr "Misslyckades med att uppdatera admin lösenord"
-
-msgid "Old password does not match"
-msgstr "Gamla lösenord matchar ej"
-
-msgid "Username"
-msgstr "Användarnamn"
-
-msgid "Old password"
-msgstr "Gammalt lösenord"
-
-msgid "New password"
-msgstr "Nytt lösenord"
-
-msgid "Repeat new password"
-msgstr "Upprepa nytt lösenord"
-
-#: includes/configure_client.php
-msgid "Client settings"
-msgstr "Klient inställningar"
-
-msgid "SSID"
-msgstr "SSID"
-
-msgid "Channel"
-msgstr "Kanal"
-
-msgid "Security"
-msgstr "Säkerhet"
-
-msgid "Passphrase"
-msgstr "Lösenordsfras"
-
-msgid "Wifi settings updated successfully"
-msgstr "Wifi inställningar har uppdaterats"
-
-msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr "Wifi inställningar har uppdaterats men omstarten misslyckades (kan ej exekvera 'wpa_cli reconfigure')"
-
-msgid "Wifi settings failed to be updated"
-msgstr "Wifi inställningar kunde ej uppdateras"
-
-msgid "Failed to update wifi settings"
-msgstr "Det gick inte att uppdatera wifi inställningarna"
-
-msgid "Rescan"
-msgstr "Sök igen"
-
-msgid "Update"
-msgstr "Uppdatera"
-
-msgid "Add"
-msgstr "Lägg till"
-
-msgid "Delete"
-msgstr "Ta bort"
-
-msgid "Show"
-msgstr "Visa"
-
-msgid "Hide"
-msgstr "Dölj"
-
-msgid "Not configured"
-msgstr "Inte konfigurerad"
-
-msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>Notera:</strong> WEP åtkomstpunkter visas som 'Öppna'. RaspAP stödjer närvarande inte anslutning till WEP"
-
-#: includes/dashboard.php
-msgid "Interface Information"
-msgstr "Gränssnittsinformation"
-
-msgid "Interface Name"
-msgstr "Gränssnittsnamn"
-
-msgid "IPv4 Address"
-msgstr "IPv4-adress"
-
-msgid "IPv6 Address"
-msgstr "IPv6-adress"
-
-msgid "Subnet Mask"
-msgstr "Subnet Mask"
-
-msgid "Mac Address"
-msgstr "Mac Adress"
-
-msgid "Interface Statistics"
-msgstr "Gränssnittsstatistik"
-
-msgid "Received Packets"
-msgstr "Mottagna Packets"
-
-msgid "Received Bytes"
-msgstr "Mottagna Bytes"
-
-msgid "Transferred Packets"
-msgstr "Överförda Packets"
-
-msgid "Transferred Bytes"
-msgstr "Överförda Bytes"
-
-msgid "Wireless Information"
-msgstr "Wireless Information"
-
-msgid "Connected To"
-msgstr "Ansluten Till"
-
-msgid "AP Mac Address"
-msgstr "AP Mac Adress"
-
-msgid "Bitrate"
-msgstr "Bitrate"
-
-msgid "Signal Level"
-msgstr "Signalnivå"
-
-msgid "Transmit Power"
-msgstr "Transmit Power"
-
-msgid "Frequency"
-msgstr "Frekvens"
-
-msgid "Link Quality"
-msgstr "Länkkvalitet"
-
-msgid "Information provided by ip and iw and from system"
-msgstr "Information tillhandahållen av ip, iw och systemet"
-
-msgid "No MAC Address Found"
-msgstr "Ingen MAC Adress Hittad"
-
-msgid "No IP Address Found"
-msgstr "Ingen IP Adress Hittad"
-
-msgid "No Subnet Mask Found"
-msgstr "Ingen Subnet Mask Hittad"
-
-msgid "No Data"
-msgstr "Inga Data"
-
-msgid "Not connected"
-msgstr "Ej ansluten"
-
-msgid "Interface is up"
-msgstr "Gränssnittet är uppe"
-
-msgid "Interface is down"
-msgstr "Gränssnittet är nere"
-
-msgid "Interface already down"
-msgstr "Gränssnittet är redan nere"
-
-msgid "Start wlan0"
-msgstr "Starta wlan0"
-
-msgid "Stop wlan0"
-msgstr "Stoppa wlan0"
-
-msgid "Connected Devices"
-msgstr "Anslutna Enheter"
-
-#: includes/dhcp.php
-msgid "DHCP server settings"
-msgstr "Inställningar för DHCP-server"
-
-msgid "Client list"
-msgstr "Klient lista"
-
-msgid "Interface"
-msgstr "Gränssnittet"
-
-msgid "Starting IP Address"
-msgstr "Startar IP Adress"
-
-msgid "Ending IP Address"
-msgstr "Ending IP Adress"
-
-msgid "Static Leases"
-msgstr "Statisk leasing"
-
-msgid "Add static DHCP lease"
-msgstr "Lägg till statisk DHCP-leasing"
-
-msgid "Lease Time"
-msgstr "Lease Tid"
-
-msgid "Interval"
-msgstr "Intervall"
-
-msgid "Active DHCP leases"
-msgstr "Aktiva DHCP ärenden"
-
-msgid "Expire time"
-msgstr "Förfallotid"
-
-msgid "MAC Address"
-msgstr "MAC Adress"
-
-msgid "Host name"
-msgstr "Värdnamn"
-
-msgid "Client ID"
-msgstr "Klient ID"
-
-msgid "Information provided by Dnsmasq"
-msgstr "Information tillhandahållen av Dnsmasq"
-
-msgid "Stop dnsmasq"
-msgstr "Stoppa dnsmasq"
-
-msgid "Start dnsmasq"
-msgstr "Starta dnsmasq"
-
-msgid "Dnsmasq configuration updated successfully"
-msgstr "Dnsmasq konfiguration har uppdaterats"
-
-msgid "dnsmasq already running"
-msgstr "dnsmasq är redan igång"
-
-msgid "Successfully started dnsmasq"
-msgstr "Startade dnsmasq"
-
-msgid "Failed to start dnsmasq"
-msgstr "Kunde ej starta dnsmasq"
-
-msgid "Successfully stopped dnsmasq"
-msgstr "Stoppade dnsmasq"
-
-msgid "Failed to stop dnsmasq"
-msgstr "Kunde ej stoppa dnsmasq"
-
-msgid "dnsmasq already stopped"
-msgstr "dnsmasq är redan stoppad"
-
-msgid "Dnsmasq is running"
-msgstr "Dnsmasq körs"
-
-msgid "Dnsmasq is not running"
-msgstr "Dnsmasq körs ej"
-
-msgid "Upstream DNS servers"
-msgstr "Upstream DNS servers"
-
-msgid "Only ever query DNS servers configured below"
-msgstr "Only ever query DNS servers configured below"
-
-msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-
-msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-
-msgid "Add upstream DNS server"
-msgstr "Add upstream DNS server"
-
-msgid "Format"
-msgstr "Format"
-
-msgid "Choose a hosted server"
-msgstr "Choose a hosted server"
-
-msgid "Log DHCP requests"
-msgstr "Log DHCP requests"
-
-msgid "Log DNS queries"
-msgstr "Log DNS queries"
-
-#: includes/hostapd.php
-msgid "Basic"
-msgstr "Grundläggande"
-
-msgid "Advanced"
-msgstr "Advancerad"
-
-msgid "Basic settings"
-msgstr "Grundläggande inställningar"
-
-msgid "Wireless Mode"
-msgstr "Trådlöst läge"
-
-msgid "Security settings"
-msgstr "Säkerhetsinställningar"
-
-msgid "Security type"
-msgstr "Säkerhetstyp"
-
-msgid "Encryption Type"
-msgstr "Krypteringstyp"
-
-msgid "PSK"
-msgstr "PSK"
-
-msgid "Advanced settings"
-msgstr "Advancerade inställningar"
-
-msgid "Country Code"
-msgstr "Landskod"
-
-msgid "Information provided by hostapd"
-msgstr "Information tillhandahållen av hostapd"
-
-msgid "Attempting to start hotspot"
-msgstr "Försöker starta hotspot"
-
-msgid "Attempting to stop hotspot"
-msgstr "Försöker stoppa hotspot"
-
-msgid "HostAPD is not running"
-msgstr "HostAPD körs ej"
-
-msgid "HostAPD is running"
-msgstr "HostAPD körs"
-
-msgid "SSID must be between 1 and 32 characters"
-msgstr "SSID måste vara mellan 1 och 32 tecken"
-
-msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr "WPA lösenordsfras måste vara mellan 8 och 63 tecken"
-
-msgid "Unknown interface"
-msgstr "Okänt gränssnitt"
-
-msgid "Country code must be blank or two characters"
-msgstr "Landskoden måste vara tom eller bestå av 2 tecken"
-
-msgid "Wifi Hotspot settings saved"
-msgstr "Wifi Hotspot inställningar har sparats"
-
-msgid "Unable to save wifi hotspot settings"
-msgstr "Kunde ej spara wifi hotspot inställningar"
-
-msgid "Start hotspot"
-msgstr "Starta hotspot"
-
-msgid "Stop hotspot"
-msgstr "Stoppa hotspot"
-
-msgid "Restart hotspot"
-msgstr "Starta om hotspot"
-
-msgid "Enable logging"
-msgstr "Aktivera loggning"
-
-msgid "Logfile output"
-msgstr "Logfilutskrift"
-
-msgid "WiFi client AP mode"
-msgstr "AP-läge för wifi-klient"
-
-msgid "Hide SSID in broadcast"
-msgstr "Dölj SSID i sändning"
-
-msgid "Maximum number of clients"
-msgstr "Maximalt antal klienter"
-
-msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Konfigurerar alternativet max_num_sta för hostapd. Ordinarie och maximalt är 2007. Tomt eller 0 innebär att ordinarie värde gäller."
-
-#: includes/networking.php
-msgid "Summary"
-msgstr "Sammanfattning"
-
-msgid "Current settings"
-msgstr "Nuvarande inställningar"
-
-msgid "Default Gateway"
-msgstr "Standard Gateway"
-
-msgid "DNS Server"
-msgstr "DNS Server"
-
-msgid "Alternate DNS Server"
-msgstr "Alternativ DNS Server"
-
-msgid "Adapter IP Address Settings"
-msgstr "Adapter IP-adressinställningar"
-
-msgid "Enable Fallback to Static Option"
-msgstr "Aktivera Fallback till statiskt alternativ"
-
-msgid "Static IP"
-msgstr "Statisk IP"
-
-msgid "Enabled"
-msgstr "Aktiverad"
-
-msgid "Disabled"
-msgstr "Inaktiverad"
-
-msgid "Static IP Options"
-msgstr "Statiska IP-alternativ"
-
-msgid "Apply settings"
-msgstr "Använd inställningar"
-
-msgid "Information provided by /sys/class/net"
-msgstr "Information tillhandahållen av /sys/class/net"
-
-#: includes/system.php
-msgid "System Information"
-msgstr "Systeminformation"
-
-msgid "Language"
-msgstr "Språk"
-
-msgid "Language settings"
-msgstr "Språkinställningar"
-
-msgid "Select a language"
-msgstr "Välj ett språk"
-
-msgid "Language setting saved"
-msgstr "Språkinställningen sparades"
-
-msgid "Console"
-msgstr "Konsol"
-
-msgid "Hostname"
-msgstr "Värdnamn"
-
-msgid "Pi Revision"
-msgstr "Pi Revision"
-
-msgid "Uptime"
-msgstr "Drifttid"
-
-msgid "Memory Used"
-msgstr "Minne Använt"
-
-msgid "CPU Load"
-msgstr "CPU Användning"
-
-msgid "Reboot"
-msgstr "Starta om"
-
-msgid "Shutdown"
-msgstr "Stäng av"
-
-msgid "System Rebooting Now!"
-msgstr "Systemet Startar Om Nu!"
-
-msgid "System Shutting Down Now!"
-msgstr "Systemet Stängs Av!"
-
-#: includes/themes.php
-msgid "Theme settings"
-msgstr "Temainställningar"
-
-msgid "Select a theme"
-msgstr "Välj ett tema"
-
-#: includes/data_usage.php
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "WireGuard"
+
+#: ../src/RaspAP/UI/Sidebar.php:44
 msgid "Data usage"
 msgstr "Dataanvändning"
 
-msgid "Data usage monitoring"
-msgstr "Bevakning av dataanvändning"
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
+msgid "RestAPI"
+msgstr "RestAPI"
 
-msgid "Hourly traffic amount"
-msgstr "Trafik per timme"
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
+#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
+msgid "System"
+msgstr "System"
 
-msgid "Daily traffic amount"
-msgstr "Daglig trafik"
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
+msgid "About RaspAP"
+msgstr "Om RaspAP"
 
-msgid "Monthly traffic amount"
-msgstr "Månatlig trafik"
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "Installerad"
 
-msgid "Hourly"
-msgstr "Varje timme"
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "Detaljer"
 
-msgid "Daily"
-msgstr "Daglig"
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:365
+#: ../includes/wifi_functions.php:281
+msgid "Signal strength"
+msgstr "Signalstyrka"
 
-msgid "Monthly"
-msgstr "Månatlig"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "Verbose-felsökning"
 
-msgid "interface"
-msgstr "gränssnitt"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "Felsökning"
 
-msgid "date"
-msgstr "datum"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "Information"
 
-msgid "Send MB"
-msgstr "Skicka MB"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "Anmälan"
 
-msgid "Receive MB"
-msgstr "Ta emot MB"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "Varning"
 
-msgid "Information provided by vnstat"
-msgstr "Information tillhandahållen av vnstat"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
+#, php-format
+msgid "DHCP configuration for %s enabled."
+msgstr "DHCP-konfiguration för %s aktiverad."
 
-msgid "Loading {0} bandwidth chart"
-msgstr "Laddar diagram med bandbredd för {0}"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:148
+msgid "WiFi repeater mode: A metric value is already defined for DHCP."
+msgstr "WiFi repeater-läge: Ett metriskt värde är redan definierat för DHCP."
 
-msgid "Showing {0} to {1} of {2} entries"
-msgstr "Visar {0} till {1} av {2} inlägg"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
+#, php-format
+msgid "Metric value configured for the %s interface."
+msgstr "Metriskt värde konfigurerat för gränssnittet %s."
 
-#: includes/openvpn.php
-msgid "OpenVPN is not running"
-msgstr "OpenVPN körs inte"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:226
+msgid "Invalid interface name."
+msgstr "Ogiltigt gränssnittsnamn."
 
-msgid "OpenVPN is running"
-msgstr "OpenVPN körs"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:229
+msgid "Invalid static IP address."
+msgstr "Ogiltig statisk IP-adress."
 
-msgid "Server settings"
-msgstr "Serverinställningar"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:232
+msgid "Invalid subnet mask."
+msgstr "Ogiltig subnätmask."
 
-msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Välj konfigurationsfil för OpenVPN (.ovpn)"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:235
+msgid "Invalid default gateway."
+msgstr "Ogiltig standardgateway."
 
-msgid "Client Log"
-msgstr "Klientlogg"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:239
+msgid "Invalid DHCP range start."
+msgstr "Ogiltig start av DHCP-intervall."
 
-msgid "Port"
-msgstr "Port"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:242
+msgid "Invalid DHCP range end."
+msgstr "Ogiltigt slut på DHCP-intervall."
 
-msgid "Protocol"
-msgstr "Protokoll"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:245
+msgid "Invalid DHCP lease time, not a number."
+msgstr "Ogiltig DHCP-lease-tid, inte ett tal."
 
-msgid "Root CA certificate"
-msgstr "Root CA-certifikat"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:248
+msgid "Unknown DHCP lease time unit."
+msgstr "Okänd enhet för DHCP-lease-tid."
 
-msgid "Server certificate"
-msgstr "Servercertifikat"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:251
+msgid "Invalid metric value, not a number."
+msgstr "Ogiltigt metriskt värde, inte ett tal."
 
-msgid "Diffie Hellman parameters"
-msgstr "Diffie Hellman-parametrar"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:276
+#, php-format
+msgid "DHCP configuration for %s updated."
+msgstr "DHCP-konfiguration för %s uppdaterad."
 
-msgid "KeepAlive"
-msgstr "Håll vid liv"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
+msgid "WPA and WPA2"
+msgstr "WPA och WPA2"
 
-msgid "Server log"
-msgstr "Serverlogg"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:112
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 och WPA3-Personal (övergångsläge)"
 
-msgid "Start OpenVPN"
-msgstr "Starts OpenVPN"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:114
+msgid "None"
+msgstr "Ingen"
 
-msgid "Stop OpenVPN"
-msgstr "Stoppa OpenVPN"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:124
+msgid "Disabled"
+msgstr "Inaktiverad"
 
-msgid "Information provided by openvpn"
-msgstr "Information tillhandahållen av openvpn"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:125
+msgid "Enabled (for supported clients)"
+msgstr "Aktiverad (för klienter som stöds)"
 
-msgid "Attempting to start openvpn"
-msgstr "Försöker starta openvpn"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:126
+msgid "Required (for supported clients)"
+msgstr "Krävs (för klienter som stöds)"
 
-msgid "Attempting to stop openvpn"
-msgstr "Försöker stoppa openvpn"
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "Ogiltig MAC-adress: "
 
-#: includes/torproxy.php
-msgid "TOR is not running"
-msgstr "TOR körs inte"
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "Duplikat av IP-adress inmatad: "
 
-msgid "TOR is running"
-msgstr "TOR körs"
-
-msgid "Relay"
-msgstr "Relä"
-
-msgid "Relay settings"
-msgstr "Reläinställningar"
-
-msgid "Nickname"
-msgstr "Smeknamn"
-
-msgid "Address"
-msgstr "Adress"
-
-msgid "Start TOR"
-msgstr "Starta TOR"
-
-msgid "Stop TOR"
-msgstr "Stoppa TOR"
-
-msgid "Information provided by tor"
-msgstr "Information tillhandahållen av tor"
-
-msgid "Attempting to start TOR"
-msgstr "Försöker starta TOR"
-
-msgid "Attempting to stop TOR"
-msgstr "Försöker stoppa TOR"
-
-#: common form controls
+#: ../templates/hostapd.php:3 ../templates/wireguard.php:3
+#: ../templates/adblock.php:3 ../templates/openvpn.php:3
+#: ../templates/system/advanced.php:39 ../templates/system/language.php:11
+#: ../templates/system/theme.php:56 ../templates/restapi.php:3
+#: ../templates/dhcp.php:3 ../templates/admin/general.php:2
+#: ../templates/provider.php:3 ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29
+#: ../plugins-available/Wireshark/templates/main.php:3
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Captive/templates/main.php:3
 msgid "Save settings"
 msgstr "Spara inställningar"
 
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "Starta hotspot"
+
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "Starta hotspot"
+
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "Stoppa hotspot"
+
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "Starta om hotspot"
+
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "Starta om hotspot"
+
+#: ../templates/hostapd.php:49 ../templates/system.php:17
+#: ../templates/admin.php:20 ../plugins-available/Captive/templates/main.php:48
+msgid "Basic"
+msgstr "Grundläggande"
+
+#: ../templates/hostapd.php:50 ../templates/wifi_stations/network.php:73
+msgid "Security"
+msgstr "Säkerhet"
+
+#: ../templates/hostapd.php:51 ../templates/system.php:20
+#: ../templates/dhcp.php:52 ../plugins-available/Captive/templates/main.php:50
+msgid "Advanced"
+msgstr "Avancerad"
+
+#: ../templates/hostapd.php:52 ../templates/adblock/logging.php:3
+#: ../templates/hostapd/logging.php:3 ../templates/wireguard.php:49
+#: ../templates/adblock.php:47 ../templates/openvpn.php:48
+#: ../templates/dhcp.php:55 ../templates/wg/logging.php:5
+#: ../templates/dhcp/logging.php:3 ../templates/openvpn/logging.php:3
+msgid "Logging"
+msgstr "Loggning"
+
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "Information som tillhandahålls av hostapd"
+
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "Start av RaspAP-tjänsten"
+
+#: ../templates/hostapd.php:90 ../templates/system.php:56
+#: ../templates/system.php:74 ../templates/system.php:92
+#: ../templates/system.php:110 ../templates/system.php:142
+#: ../templates/wifi_stations/network.php:119
+#: ../templates/configure_client.php:65
+msgid "Close"
+msgstr "Nära"
+
+#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
+msgid "Blocklist settings"
+msgstr "Inställningar för blocklista"
+
+#: ../templates/adblock/general.php:10
+msgid "Enable blocklists"
+msgstr "Aktivera blocklistor"
+
+#: ../templates/adblock/general.php:13
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Aktivera det här alternativet om du vill att RaspAP ska <b>blockera DNS-förfrågningar om annonser, spårning och annat virtuellt skräp</b>. Blockeringslistor samlas in från flera aktivt underhållna källor och uppdateras, rensas, optimeras och modereras automatiskt varje dag."
+
+#: ../templates/adblock/general.php:15
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "Med det här alternativet läggs <code>conf-file</code> och <code>addn-hosts</code> till i dnsmasq-konfigurationen."
+
+#: ../templates/adblock/general.php:22
+msgid "Hostnames blocklist last updated"
+msgstr "Blocklista över värdnamn senast uppdaterad"
+
+#: ../templates/adblock/general.php:24
+msgid "Domains blocklist last updated"
+msgstr "Blocklista över domäner senast uppdaterad"
+
+#: ../templates/adblock/general.php:29
+msgid "Choose a blocklist provider"
+msgstr "Välj en leverantör av blocklistor"
+
+#: ../templates/adblock/general.php:33
+msgid "Update now"
+msgstr "Uppdatering nu"
+
+#: ../templates/adblock/stats.php:3
+msgid "Statistics"
+msgstr "Statistik"
+
+#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
+msgid "Custom blocklist"
+msgstr "Anpassad blocklista"
+
+#: ../templates/adblock/custom.php:10
+msgid "Enable custom blocklist"
+msgstr "Aktivera anpassad blocklista"
+
+#: ../templates/adblock/custom.php:14
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Definiera anpassade värdar som ska blockeras genom att ange en IPv4- eller IPv6-adress följt av eventuella blanksteg (mellanslag eller tabbar) och värdnamnet."
+
+#: ../templates/adblock/custom.php:15
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 exempel:</b> 0.0.0.0 badhost.com"
+
+#: ../templates/adblock/custom.php:17
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Med det här alternativet läggs ett <code>addn-hosts-direktiv</code> till i dnsmasq-konfigurationen."
+
+#: ../templates/system.php:18
+msgid "Language"
+msgstr "Språk"
+
+#: ../templates/system.php:19
+msgid "Theme"
+msgstr "Tema"
+
+#: ../templates/system.php:21
+msgid "Tools"
+msgstr "Verktyg"
+
+#: ../templates/system.php:23 ../templates/system/plugins.php:3
+msgid "Plugins"
+msgstr "Plugins"
+
+#: ../templates/system.php:40 ../templates/dashboard.php:164
+msgid "Information provided by raspap.sysinfo"
+msgstr "Information som tillhandahålls av raspap.sysinfo"
+
+#: ../templates/system.php:50
+msgid "System reset"
+msgstr "Återställning av systemet"
+
+#: ../templates/system.php:53
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "Återställning slutförd. Starta om hotspot för att ändringarna ska träda i kraft."
+
+#: ../templates/system.php:53
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "Återställ RaspAP till dess ursprungliga konfiguration? Denna åtgärd kan inte ångras."
+
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:92 ../templates/system.php:236
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+#: ../templates/admin.php:90 ../templates/admin.php:119
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../plugins-available/Captive/templates/main.php:99
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: ../templates/system.php:57
+msgid "System reset in progress..."
+msgstr "Systemåterställning pågår..."
+
+#: ../templates/system.php:57
+msgid "Reset"
+msgstr "Återställning"
+
+#: ../templates/system.php:68
+msgid "System reboot"
+msgstr "Omstart av systemet"
+
+#: ../templates/system.php:71
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr "Starta om nu? Systemet kommer att vara tillfälligt otillgängligt."
+
+#: ../templates/system.php:75 ../templates/system/basic.php:23
+msgid "Reboot"
+msgstr "Omstart"
+
+#: ../templates/system.php:86
+msgid "System shutdown"
+msgstr "Systemavstängning"
+
+#: ../templates/system.php:89
+msgid "Shutdown now? The system will be unavailable."
+msgstr "Stängs systemet ner nu? Systemet kommer inte att vara tillgängligt."
+
+#: ../templates/system.php:93 ../templates/system/basic.php:27
+msgid "Shutdown"
+msgstr "Avstängning"
+
+#: ../templates/system.php:104 ../templates/system/tools.php:18
+msgid "Generate debug log"
+msgstr "Generera felsökningslogg"
+
+#: ../templates/system.php:107
+msgid "Debug log generation in progress..."
+msgstr "Generering av felsökningslogg pågår..."
+
+#: ../templates/system.php:121 ../templates/system/tools.php:32
+msgid "Inspect adapters"
+msgstr "Inspektera adaptrar"
+
+#: ../templates/system.php:140
+msgid "Adapter health check"
+msgstr "Hälsokontroll av adapter"
+
+#: ../templates/system.php:177
+msgid "Plugin details"
+msgstr "Plugin-detaljer"
+
+#: ../templates/system.php:188
+msgid "Plugin docs"
+msgstr "Dokument för insticksmoduler"
+
+#: ../templates/system.php:192
+msgid "Version"
+msgstr "Version"
+
+#: ../templates/system.php:196
+msgid "Author"
+msgstr "Författaren"
+
+#: ../templates/system.php:200
+msgid "License"
+msgstr "Licens"
+
+#: ../templates/system.php:204
+msgid "Language locale"
+msgstr "Språk locale"
+
+#: ../templates/system.php:208
+msgid "Configuration files"
+msgstr "Konfigurationsfiler"
+
+#: ../templates/system.php:212
+msgid "Signed Packages"
+msgstr "Undertecknade paket"
+
+#: ../templates/system.php:216
+msgid "Dependencies"
+msgstr "Beroenden"
+
+#: ../templates/system.php:220
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: ../templates/system.php:224
+msgid "Sudoers"
+msgstr "Sudoers"
+
+#: ../templates/system.php:228
+msgid "Non-privileged users"
+msgstr "Icke-privilegierade användare"
+
+#: ../templates/system.php:248
+msgid "Installing plugin"
+msgstr "Installera plugin"
+
+#: ../templates/system.php:251
+msgid "Plugin install completed."
+msgstr "Plugin-installationen slutförd."
+
+#: ../templates/system.php:251
+msgid "Plugin installation in progress..."
+msgstr "Plugin-installation pågår..."
+
+#: ../templates/system.php:254 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "OK"
+
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "Säkerhetsinställningar"
+
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "Typ av säkerhet"
+
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "Krypteringstyp"
+
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
+
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "802.11w utökar starkt kryptografiskt skydd till en utvald uppsättning robusta hanteringsramar, inklusive Deauthentication, Disassociation och vissa kategorier av Action Management-ramar. Sammantaget kallas detta för Management Frame Protection (MFP)."
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "Förhandsdelad nyckel (PSK)"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "Ange en giltig PSK."
+
+#: ../templates/hostapd/security.php:32
+#, php-format
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Skanna denna QR-kod direkt eller %s %sskriv ut en skylt%s för dina användare."
+
+#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+msgid "Advanced settings"
+msgstr "Avancerade inställningar"
+
+#: ../templates/hostapd/advanced.php:9
+msgid "Bridged AP mode"
+msgstr "AP-läge med överbryggning"
+
+#: ../templates/hostapd/advanced.php:19
+msgid "Bridge interface configuration"
+msgstr "Konfiguration av brygggränssnitt"
+
+#: ../templates/hostapd/advanced.php:21
+msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+msgstr "Konfigurera en statisk IP-adress för gränssnittet <code>br0</code> för att upprätthålla anslutningen under aktivering av bryggläget."
+
+#: ../templates/hostapd/advanced.php:26
+msgid "Static IP Address"
+msgstr "Statisk IP-adress"
+
+#: ../templates/hostapd/advanced.php:32 ../templates/hostapd/advanced.php:58
+#: ../templates/hostapd/advanced.php:71
+msgid "Please enter a valid IPv4 address"
+msgstr "Ange en giltig IPv4-adress"
+
+#: ../templates/hostapd/advanced.php:35
+msgid "Example: 192.168.1.100"
+msgstr "Exempel: 192.168.1.100"
+
+#: ../templates/hostapd/advanced.php:39
+msgid "Netmask / CIDR"
+msgstr "Nätmask / CIDR"
+
+#: ../templates/hostapd/advanced.php:45
+msgid "Please enter a valid netmask"
+msgstr "Ange en giltig nätmask"
+
+#: ../templates/hostapd/advanced.php:48
+msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
+msgstr "CIDR-notation (t.ex. 24 för 255.255.255.0)"
+
+#: ../templates/hostapd/advanced.php:52 ../templates/networking/general.php:14
+msgid "Gateway"
+msgstr "Gateway"
+
+#: ../templates/hostapd/advanced.php:61
+msgid "Your router's IP address"
+msgstr "IP-adressen till din router"
+
+#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/settings.php:150
+#: ../templates/dhcp/settings.php:157 ../templates/dhcp/general.php:149
+#: ../templates/dhcp/general.php:156
+msgid "DNS Server"
+msgstr "DNS-server"
+
+#: ../templates/hostapd/advanced.php:74
+msgid "Usually same as gateway"
+msgstr "Vanligtvis samma som gateway"
+
+#: ../templates/hostapd/advanced.php:89
+msgid "WiFi repeater mode"
+msgstr "WiFi repeater-läge"
+
+#: ../templates/hostapd/advanced.php:99
+msgid "WiFi client AP mode"
+msgstr "WiFi-klient AP-läge"
+
+#: ../templates/hostapd/advanced.php:108
+msgid "Dual band AP mode"
+msgstr "AP-läge med dubbla band"
+
+#: ../templates/hostapd/advanced.php:117
+msgid "Hide SSID in broadcast"
+msgstr "Dölj SSID i broadcast"
+
+#: ../templates/hostapd/advanced.php:126
+msgid "Enable AP isolation"
+msgstr "Aktivera AP-isolering"
+
+#: ../templates/hostapd/advanced.php:127
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "Blockerar trådlösa klienter från att se eller ansluta till varandra. Rekommenderas för gästnätverk och offentliga åtkomstpunkter."
+
+#: ../templates/hostapd/advanced.php:136
+msgid "Beacon interval"
+msgstr "Intervall för sändare"
+
+#: ../templates/hostapd/advanced.php:148
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Avaktivera <code>disassoc_low_ack</code>"
+
+#: ../templates/hostapd/advanced.php:151
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Koppla inte bort stationer på grund av för många misslyckade överföringar."
+
+#: ../templates/hostapd/advanced.php:157
+msgid "Transmit power (dBm)"
+msgstr "Sändningseffekt (dBm)"
+
+#: ../templates/hostapd/advanced.php:158
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "dBm är en nivåenhet som används för att ange att ett effektförhållande uttrycks i decibel (dB) med hänvisning till en milliwatt (mW). 30 dBm är lika med 1000 mW, medan 0 dBm är lika med 1,25 mW."
+
+#: ../templates/hostapd/advanced.php:160
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "Ställer in alternativet <code>txpower</code> för AP-gränssnittet och det konfigurerade landet."
+
+#: ../templates/hostapd/advanced.php:166
+msgid "Maximum number of clients"
+msgstr "Maximalt antal klienter"
+
+#: ../templates/hostapd/advanced.php:168
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Konfigurerar alternativet <code>max_num_sta</code> för hostapd. Standardvärdet och maxvärdet är 2007. Om alternativet är tomt eller 0 gäller standardvärdet."
+
+#: ../templates/hostapd/advanced.php:173
+msgid "Country Code"
+msgstr "Landskod"
+
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+msgid "Basic settings"
+msgstr "Grundläggande inställningar"
+
+#: ../templates/hostapd/basic.php:5 ../templates/dhcp/settings.php:5
+#: ../templates/dhcp/general.php:5 ../templates/dhcp/summary.php:18
+#: ../templates/networking/general.php:12
+#: ../templates/networking/devices.php:17 ../templates/configure_client.php:31
+msgid "Interface"
+msgstr "Gränssnitt"
+
+#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
+#: ../templates/dashboard.php:63
+msgid "SSID"
+msgstr "SSID"
+
+#: ../templates/hostapd/basic.php:14
+msgid "Please provide a valid SSID."
+msgstr "Ange ett giltigt SSID."
+
+#: ../templates/hostapd/basic.php:20
+msgid "Wireless Mode"
+msgstr "Trådlöst läge"
+
+#: ../templates/hostapd/basic.php:21
+msgid "Wireless standards which are not compatible with your adapter may be disabled"
+msgstr "Trådlösa standarder som inte är kompatibla med din adapter kan avaktiveras"
+
+#: ../templates/hostapd/basic.php:24
+#, php-format
+msgid "Based on the selected interface, 802.11%s is suggested."
+msgstr "Baserat på det valda gränssnittet föreslås 802.11%s."
+
+#: ../templates/hostapd/basic.php:30 ../templates/wifi_stations/network.php:46
+msgid "Channel"
+msgstr "Kanal"
+
+#: ../templates/hostapd/logging.php:4
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Aktivera detta alternativ för att logga <code>hostapd-aktivitet</code>."
+
+#: ../templates/hostapd/logging.php:9 ../templates/wg/logging.php:9
+msgid "Logfile output"
+msgstr "Utmatning av loggfil"
+
+#: ../templates/hostapd/logging.php:10 ../templates/dhcp/logging.php:13
+#: ../templates/openvpn/logging.php:9
+msgid "Clear log"
+msgstr "Rensa logg"
+
+#: ../templates/hostapd/logging.php:15
+msgid "Log level"
+msgstr "Loggnivå"
+
+#: ../templates/hostapd/logging.php:16
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Högre nivåer minskar loggens ordrikedom. Information rekommenderas."
+
+#: ../templates/data_usage.php:7
+msgid "Data usage monitoring"
+msgstr "Övervakning av dataanvändning"
+
+#: ../templates/data_usage.php:14
+msgid "Hourly"
+msgstr "Timanställd"
+
+#: ../templates/data_usage.php:15
+msgid "Daily"
+msgstr "Dagligen"
+
+#: ../templates/data_usage.php:16
+msgid "Monthly"
+msgstr "Månadsvis"
+
+#: ../templates/data_usage.php:23
+msgid "Hourly traffic amount"
+msgstr "Trafikmängd per timme"
+
+#: ../templates/data_usage.php:24 ../templates/data_usage.php:43
+#: ../templates/data_usage.php:62
+msgid "interface"
+msgstr "gränssnitt"
+
+#: ../templates/data_usage.php:32 ../templates/data_usage.php:51
+#: ../templates/data_usage.php:70
+#, php-format
+msgid "Loading %s bandwidth chart"
+msgstr "Laddar %s bandbreddsdiagram"
+
+#: ../templates/data_usage.php:32
+msgid "hourly"
+msgstr "per timme"
+
+#: ../templates/data_usage.php:42
+msgid "Daily traffic amount"
+msgstr "Daglig trafikmängd"
+
+#: ../templates/data_usage.php:51
+msgid "daily"
+msgstr "dagligen"
+
+#: ../templates/data_usage.php:61
+msgid "Monthly traffic amount"
+msgstr "Månatlig trafikmängd"
+
+#: ../templates/data_usage.php:70
+msgid "monthly"
+msgstr "månadsvis"
+
+#: ../templates/data_usage.php:79
+msgid "Information provided by vnstat"
+msgstr "Information som tillhandahålls av vnstat"
+
+#: ../templates/data_usage.php:86
+msgid "Send"
+msgstr "Skicka"
+
+#: ../templates/data_usage.php:87
+msgid "Receive"
+msgstr "Ta emot"
+
+#: ../templates/login.php:13
+msgid "Administrator login"
+msgstr "Inloggning för administratör"
+
+#: ../templates/login.php:22 ../templates/about.php:85
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
+msgid "Username"
+msgstr "Användarnamn"
+
+#: ../templates/login.php:25 ../templates/admin/login.php:21
+#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
+#: ../app/lib/signprint.php:67
+msgid "Password"
+msgstr "Lösenord"
+
+#: ../templates/login.php:30 ../templates/admin.php:18
+#: ../includes/footer.php:23
+msgid "Login"
+msgstr "Logga in"
+
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "Glömt lösenord"
+
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:47
+#: ../templates/provider.php:36 ../includes/functions.php:1000
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../plugins-available/Captive/templates/main.php:51
+msgid "Status"
+msgstr "Status"
+
+#: ../templates/wifi_stations/network.php:42
+msgid "Not configured"
+msgstr "Ej konfigurerad"
+
+#: ../templates/wifi_stations/network.php:55
+msgid "RSSI"
+msgstr "RSSI"
+
+#: ../templates/wifi_stations/network.php:77
+msgid "Passphrase"
+msgstr "Lösenord"
+
+#: ../templates/wifi_stations/network.php:90
+#: ../templates/networking/devices.php:55
+msgid "Update"
+msgstr "Uppdatering"
+
+#: ../templates/wifi_stations/network.php:92
+msgid "Disconnect"
+msgstr "Koppla bort"
+
+#: ../templates/wifi_stations/network.php:94
+msgid "Connect"
+msgstr "Anslut"
+
+#: ../templates/wifi_stations/network.php:97
+msgid "Add"
+msgstr "Lägg till"
+
+#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
+#: ../templates/openvpn.php:82
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+msgid "Delete"
+msgstr "Radera"
+
+#: ../templates/wifi_stations/network.php:112
+msgid "Login Information Required"
+msgstr "Inloggningsuppgifter krävs"
+
+#: ../templates/wifi_stations/network.php:115
+msgid "This wireless network requires a login or the acceptance of terms of usage on a separate webpage"
+msgstr "Detta trådlösa nätverk kräver inloggning eller godkännande av användarvillkor på en separat webbsida"
+
+#: ../templates/wifi_stations/network.php:118
+msgid "Goto Webpage"
+msgstr "Gå till webbsidan"
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "Stoppa WireGuard"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "Starta WireGuard"
+
+#: ../templates/wireguard.php:46 ../templates/restapi.php:46
+#: ../templates/provider.php:35
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../plugins-available/Tailscale/templates/main.php:70
+msgid "Settings"
+msgstr "Inställningar"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "Peer"
+
+#: ../templates/wireguard.php:48 ../templates/openvpn.php:47
+#: ../templates/wg/configs.php:4 ../templates/openvpn/configs.php:4
+msgid "Configurations"
+msgstr "Konfigurationer"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "Information tillhandahållen av wireguard"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "Ta bort WireGuard-konfiguration"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "Ta bort den här konfigurationen? Detta kan inte ångras."
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "Aktivera WireGuard-konfigurationen"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "Aktivera den här konfigurationen? Detta kommer att starta om wg-quick-tjänsten."
+
+#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
+msgid "Activate"
+msgstr "Aktivera"
+
+#: ../templates/exception.php:6 ../templates/exception.php:17
+msgid "RaspAP Exception"
+msgstr "RaspAP Undantag"
+
+#: ../templates/exception.php:20
+msgid "An exception occurred"
+msgstr "Ett undantag inträffade"
+
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "Starta om annonsblockering"
+
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "Starta blockering av annonser"
+
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "Information som tillhandahålls av adblock"
+
+#: ../templates/networking.php:20 ../templates/dhcp.php:50
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "Sammanfattning"
+
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "Apparater"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "Mobil data"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "WLAN-routning"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "Diagnostik"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "Information som tillhandahålls av /sys/class/net"
+
+#: ../templates/openvpn.php:20
+msgid "Start OpenVPN"
+msgstr "Starta OpenVPN"
+
+#: ../templates/openvpn.php:24
+msgid "Stop OpenVPN"
+msgstr "Stoppa OpenVPN"
+
+#: ../templates/openvpn.php:46 ../templates/openvpn/general.php:2
+#: ../templates/configure_client.php:21
+#: ../plugins-available/Captive/templates/tabs/clients.php:5
+msgid "Client settings"
+msgstr "Inställningar för klienter"
+
+#: ../templates/openvpn.php:65
+msgid "Information provided by openvpn"
+msgstr "Information som tillhandahålls av openvpn"
+
+#: ../templates/openvpn.php:75
+msgid "Delete OpenVPN client"
+msgstr "Ta bort OpenVPN-klienten"
+
+#: ../templates/openvpn.php:78
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Ta bort klientkonfiguration? Detta kan inte ångras."
+
+#: ../templates/openvpn.php:93
+msgid "Activate OpenVPN client"
+msgstr "Aktivera OpenVPN-klienten"
+
+#: ../templates/openvpn.php:96
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Aktivera klientkonfiguration? Detta kommer att starta om tjänsten openvpn-client."
+
+#: ../templates/restapi/general.php:12
+msgid "API Key"
+msgstr "API-nyckel"
+
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "Ange en giltig API-nyckel."
+
+#: ../templates/restapi/status.php:3
+msgid "RestAPI status"
+msgstr "RestAPI-status"
+
+#: ../templates/restapi/status.php:4
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "Aktuell status för <code>restapi.service</code> visas nedan."
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s inställningar"
+
+#: ../templates/provider/general.php:9 ../templates/wg/general.php:8
+#: ../templates/openvpn/general.php:8
+msgid "IPv4 Address"
+msgstr "IPv4-adress"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "Kontouppgifter"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "Mitt konto"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "Serverns placering"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "Om du väljer <strong>Spara inställningar</strong> kommer du att ansluta till det valda landet."
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Om du väljer <strong>Connect %s</strong> kommer du att ansluta till en rekommenderad server."
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "Land"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s status"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Installerade Linux CLI: <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Aktuell <code>%s</code> anslutningsstatus visas nedan."
+
+#: ../templates/about.php:21
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Captive/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/main.php:53
+msgid "About"
+msgstr "Om"
+
+#: ../templates/about.php:22 ../templates/about/general.php:29
+msgid "Insiders"
+msgstr "Insiders"
+
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "Bidragande"
+
+#: ../templates/about.php:47 ../templates/about/general.php:11
+msgid "Check for update"
+msgstr "Kontrollera för uppdatering"
+
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "Kontroll av ny version pågår..."
+
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "En ny version är tillgänglig: Version"
+
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "Den installerade versionen är den senaste versionen."
+
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "Installera den här uppdateringen nu?"
+
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "Autentisering av GitHub"
+
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Uppdatering av Insiders kräver GitHub-autentisering."
+
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Dina inloggningsuppgifter kommer att skickas till GitHub på ett säkert sätt med SSL. Var dock försiktig om din RaspAP-installation finns på ett WLAN som delas av icke betrodda användare."
+
+#: ../templates/about.php:87 ../templates/admin/general.php:18
+#: ../templates/admin/general.php:37 ../templates/admin/login.php:15
+msgid "Please provide a valid username."
+msgstr "Ange ett giltigt användarnamn."
+
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "Personlig åtkomsttoken"
+
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "Vänligen ange en giltig token."
+
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "Utföra uppdatering"
+
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "Uppdatering pågår"
+
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "Ansökan håller på att uppdateras..."
+
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "Konfigurera uppdatering"
+
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "Uppdatering av källor"
+
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "Installera paketuppdateringar"
+
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "Ladda ner de senaste filerna"
+
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "Installera applikation"
+
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "Uppdatering slutförd"
+
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Ett fel inträffade. Kontrollera loggen på <code>/tmp/raspap_install.log</code>"
+
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "Framgångsrik. Uppdatera den här sidan för att bekräfta den nya versionen."
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "Systemverktyg"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "Klicka eller tryck på knappen nedan för att skapa en <a href=\"%s\" target=\"_blank\">felsökningslogg</a> för systemet."
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Felsökningslogginformationen innehåller RaspAP-versionen, aktuellt tillstånd och konfiguration av AP-relaterade tjänster, installerade systempaket, Linux-kärnversion och nätverksdetaljer. Inga lösenord eller andra känsliga uppgifter ingår."
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "För att <a href=\"%s\" target=\"_blank\">inspektera adaptrar</a> som är anslutna till den här enheten, klicka eller tryck på knappen nedan."
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Verktyget för adapterinspektion ger information om externa WLAN-enheter, inklusive drivrutiner, lägen som stöds och så vidare."
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "För att återställa RaspAP till dess <a href=\"%s\" target=\"_blank\">ursprungliga konfiguration</a>, klicka eller tryck på knappen nedan."
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Återställer alla serviceinställningar för accesspunkten (AP) till standardvärdena. Detta gäller hostapd, dhcpcd och dnsmasq."
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Anpassade filer för tillvalskomponenter som Ad Blocking, WireGuard eller OpenVPN kommer att finnas kvar på systemet."
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "Utför återställning"
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "Port för webbserver"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "Webbserverns bindningsadress"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "Storleksgräns för diagnostiklogg (KB)"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
+msgstr ""
+
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr ""
+
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
+msgstr ""
+
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr ""
+
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "Starta om lighttpd"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "Information om systemet"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "Värdnamn"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "Pi Revision"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "OS"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "Kärnan"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "Drifttid"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "Systemtid"
+
+#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
+#: ../templates/dhcp/summary.php:9 ../templates/networking/general.php:4
+#: ../templates/networking/devices.php:4
+#: ../plugins-available/Tailscale/templates/main.php:4
+#: ../plugins-available/Tailscale/Tailscale.php:403
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:6
 msgid "Refresh"
-msgstr "Ladda om"
+msgstr "Uppdatera"
 
-msgid "running"
-msgstr "körs"
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "Använt minne"
 
-msgid "stopped"
-msgstr "stoppad"
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "Förvaring används"
 
-msgid "Remove"
-msgstr "Ta bort"
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "CPU-belastning"
 
-msgid "up"
-msgstr "upp"
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "CPU-temperatur"
 
-msgid "down"
-msgstr "ned"
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "Språkinställningar"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "Välj ett språk"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "Inställningar för tema"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "Välj ett tema"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "Färg"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "Mörkt läge"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "Använd det mörka läget från det aktuella temat"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "Systemtema"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "Använder färgläget för ditt system"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "Varningsmeddelanden"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Stäng automatiskt varningar efter en angiven tidsgräns"
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "Tidsgräns för stängning av varning (millisekunder)"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "Följande användarplugins finns tillgängliga för att utöka RaspAP:s funktionalitet."
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Välj <strong>Detaljer</strong> för mer information och för att installera ett plugin."
+
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "Starta RestAPI-tjänsten"
+
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "Stoppa RestAPI-tjänsten"
+
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "Information som tillhandahålls av restapi.service"
+
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
+msgstr ""
+
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "Repeater"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "Uppkoppling"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "Cellulär"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
+msgstr ""
+
+#: ../templates/dashboard.php:49
+msgid "Local"
+msgstr ""
+
+#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
+#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
+#: ../templates/dhcp/settings.php:39 ../templates/dhcp/general.php:39
+#: ../templates/dhcp/clients.php:20 ../templates/networking/general.php:13
+msgid "IP Address"
+msgstr "IP-adress"
+
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "Nätmask"
+
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "MAC-adress"
+
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "AP"
+
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "Överbryggad"
+
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "Adblock"
+
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "VPN"
+
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "Brandvägg"
+
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
+
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2.4G"
+
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "Inga Wifi-stationer hittades"
+
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Klicka på \"Rescan\" för att söka efter Wifi-stationer i närheten."
+
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Klicka på \"Reinitialize\" för att tvinga fram en ominitialisering av <code>wpa_supplicant</code>."
+
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "Återinitialisera"
+
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "Ansluten"
+
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "Känd"
+
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "I närheten"
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "Stoppa dnsmasq"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "Starta om dnsmasq"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "Starta dnsmasq"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "Serverinställningar"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "Statiska leasingavtal"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "Kundlista"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "Information som tillhandahålls av Dnsmasq"
+
+#: ../templates/wg/peers.php:10
+msgid "Enable peer"
+msgstr "Aktivera peer"
+
+#: ../templates/wg/peers.php:13
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Aktivera det här alternativet för att kryptera trafik genom att skapa en tunnel mellan RaspAP och den här motparten."
+
+#: ../templates/wg/peers.php:14
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "Detta alternativ lägger till <code>client.conf</code> i WireGuard-konfigurationen."
+
+#: ../templates/wg/peers.php:20
+msgid "Peer public key"
+msgstr "Motpartens publika nyckel"
+
+#: ../templates/wg/peers.php:31 ../templates/wg/general.php:99
+msgid "Local Port"
+msgstr "Lokal hamn"
+
+#: ../templates/wg/peers.php:45
+msgid "Endpoint address"
+msgstr "Slutpunktsadress"
+
+#: ../templates/wg/peers.php:52
+msgid "Allowed IPs"
+msgstr "Tillåtna IP-adresser"
+
+#: ../templates/wg/peers.php:59
+msgid "Persistent keepalive"
+msgstr "Ihållande keepalive"
+
+#: ../templates/wg/peers.php:70
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Skanna denna QR-kod med din klient för att ansluta till denna tunnel"
+
+#: ../templates/wg/peers.php:71
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "eller ladda ner filen <code>client.conf</code> till din enhet."
+
+#: ../templates/wg/peers.php:73 ../templates/networking/diagnostics.php:34
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:23
+msgid "Download"
+msgstr "Nedladdningar"
+
+#: ../templates/wg/general.php:5
+msgid "Tunnel settings"
+msgstr "Tunnelinställningar"
+
+#: ../templates/wg/general.php:12
+msgid "Configuration Method"
+msgstr "Konfigurationsmetod"
+
+#: ../templates/wg/general.php:15
+msgid "Upload file"
+msgstr "Ladda upp fil"
+
+#: ../templates/wg/general.php:19
+msgid "Create manually"
+msgstr "Skapa manuellt"
+
+#: ../templates/wg/general.php:27
+msgid "Upload a WireGuard config"
+msgstr "Ladda upp en WireGuard-konfiguration"
+
+#: ../templates/wg/general.php:29
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "Det här alternativet laddar upp och installerar en befintlig WireGuard <code>.conf-fil</code> på den här enheten."
+
+#: ../templates/wg/general.php:38
+msgid "Apply iptables rules to the selected interface"
+msgstr "Tillämpa iptables-regler på det valda gränssnittet"
+
+#: ../templates/wg/general.php:39
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "Rekommenderas om du vill vidarebefordra nätverkstrafik från wg0-gränssnittet till klienter som är anslutna till ett önskat gränssnitt. Det aktiva AP-gränssnittet är standard."
+
+#: ../templates/wg/general.php:41
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "Det här alternativet lägger till <strong>iptables</strong> <code>Postup-</code> och <code>PostDown-regler</code> för det gränssnitt som väljs nedan."
+
+#: ../templates/wg/general.php:50
+msgid "Enable kill switch"
+msgstr "Aktivera kill switch"
+
+#: ../templates/wg/general.php:51
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr "Rekommenderas om du vill förhindra flödet av okrypterade paket via gränssnitt som inte är WireGuard."
+
+#: ../templates/wg/general.php:53
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr "Det här alternativet lägger till <strong>iptables</strong> <code>PostUp-</code> och <code>PreDown-regler</code> för det konfigurerade gränssnittet."
+
+#: ../templates/wg/general.php:59 ../templates/openvpn/general.php:59
+msgid "Configuration File"
+msgstr "Konfigurationsfil"
+
+#: ../templates/wg/general.php:62
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "Välj WireGuards konfigurationsfil (.conf)"
+
+#: ../templates/wg/general.php:72
+msgid "Create a local WireGuard config"
+msgstr "Skapa en lokal WireGuard-konfiguration"
+
+#: ../templates/wg/general.php:76
+msgid "Enable server"
+msgstr "Aktivera server"
+
+#: ../templates/wg/general.php:80
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "Aktivera det här alternativet för att säkra nätverkstrafik genom att skapa en krypterad tunnel mellan RaspAP och konfigurerade peers."
+
+#: ../templates/wg/general.php:81
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "Den här inställningen genererar en ny WireGuard <code>.conf-fil</code> på den här enheten."
+
+#: ../templates/wg/general.php:88
+msgid "Local public key"
+msgstr "Lokal offentlig nyckel"
+
+#: ../templates/wg/general.php:107
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:120
+msgid "DNS"
+msgstr "DNS"
+
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Aktivera det här alternativet för att visa en uppdaterad felsökningslogg för <code>wg-quick</code>."
+
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "Nu tillgängliga WireGuard-filkonfigurationer visas nedan."
+
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "Aktivering av en konfiguration startar om <code>wg-quick-tjänsten</code>."
+
+#: ../templates/admin/general.php:3
+msgid "Change password"
+msgstr "Ändra lösenord"
+
+#: ../templates/admin/general.php:4
+#: ../plugins-available/Tailscale/templates/main.php:22
+msgid "Logout"
+msgstr "Logga ut"
+
+#: ../templates/admin/general.php:28
+msgid "Enable limited privilege user"
+msgstr "Aktivera användare med begränsad behörighet"
+
+#: ../templates/admin/general.php:30
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "Detta alternativ aktiverar en användare som inte är administratör och som kan komma åt RaspAP:s hanteringsgränssnitt, men som har <strong>begränsad möjlighet att ändra den befintliga konfigurationen</strong>. Den här användaren blir aktiv när den nuvarande adminanvändaren loggas ut."
+
+#: ../templates/admin/general.php:34
+msgid "Limited user login"
+msgstr "Begränsad inloggning för användare"
+
+#: ../templates/admin/general.php:43
+msgid "Limited user password"
+msgstr "Begränsat användarlösenord"
+
+#: ../templates/admin/general.php:48
+msgid "Please enter a valid password."
+msgstr "Ange ett giltigt lösenord."
+
+#: ../templates/admin/login.php:2
+msgid "Submit"
+msgstr "Skicka in"
+
+#: ../templates/admin/login.php:11
+msgid "Admin login"
+msgstr "Admin-inloggning"
+
+#: ../templates/admin/login.php:26
+msgid "Please enter your password."
+msgstr "Vänligen ange ditt lösenord."
+
+#: ../templates/admin/avatar.php:3
+msgid "Reset avatar"
+msgstr "Återställ avatar"
+
+#: ../templates/admin/avatar.php:11 ../templates/admin.php:21
+msgid "Avatar"
+msgstr "Avatar"
+
+#: ../templates/admin/avatar.php:15
+msgid "Click or tap to upload a new user avatar."
+msgstr "Klicka eller tryck för att ladda upp en ny användaravatar."
+
+#: ../templates/admin/avatar.php:16
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "Bildfiler av typen <code>JPG, GIF eller PNG</code> accepteras. Max filstorlek: 2 MB."
+
+#: ../templates/about/general.php:8
+msgid "RaspAP"
+msgstr "RaspAP"
+
+#: ../templates/about/general.php:20
+#, php-format
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP är en gemensam skapelse av %1$s och %2$s med bidrag från våra %3$s och %4$s. Läs mer om hur du går med i projektet som en %5$s, %6$s eller %7$s med omedelbar tillgång till %8$s tillgänglig för %9$s."
+
+#: ../templates/about/general.php:23
+msgid "developer community"
+msgstr "utvecklargemenskap"
+
+#: ../templates/about/general.php:24
+msgid "language translators"
+msgstr "språköversättare"
+
+#: ../templates/about/general.php:25
+msgid "code contributor"
+msgstr "kodbidragare"
+
+#: ../templates/about/general.php:26
+msgid "translator"
+msgstr "Översättare"
+
+#: ../templates/about/general.php:27
+msgid "financial sponsor"
+msgstr "finansiell sponsor"
+
+#: ../templates/about/general.php:28
+msgid "exclusive features"
+msgstr "exklusiva funktioner"
+
+#: ../templates/dhcp/settings.php:2 ../templates/dhcp/general.php:2
+msgid "DHCP server settings"
+msgstr "Inställningar för DHCP-server"
+
+#: ../templates/dhcp/settings.php:10 ../templates/dhcp/general.php:10
+msgid "Adapter IP Address Settings"
+msgstr "Inställningar för adapterns IP-adress"
+
+#: ../templates/dhcp/settings.php:28 ../templates/dhcp/general.php:28
+msgid "Enable fallback to static option"
+msgstr "Aktivera fallback till statiskt alternativ"
+
+#: ../templates/dhcp/settings.php:31 ../templates/dhcp/general.php:31
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Aktivera det här alternativet för att konfigurera en statisk profil och återgå till den när DHCP-lease misslyckas."
+
+#: ../templates/dhcp/settings.php:36 ../templates/dhcp/general.php:36
+msgid "Static IP options"
+msgstr "Alternativ för statisk IP"
+
+#: ../templates/dhcp/settings.php:42 ../templates/dhcp/general.php:42
+msgid "Please provide a valid IP Address."
+msgstr "Ange en giltig IP-adress."
+
+#: ../templates/dhcp/settings.php:49 ../templates/dhcp/general.php:49
+msgid "Subnet Mask"
+msgstr "Nätmask"
+
+#: ../templates/dhcp/settings.php:52 ../templates/dhcp/general.php:52
+msgid "Please provide a valid Subnet mask."
+msgstr "Ange en giltig subnätmask."
+
+#: ../templates/dhcp/settings.php:59 ../templates/dhcp/general.php:59
+msgid "Default gateway"
+msgstr "Standard-gateway"
+
+#: ../templates/dhcp/settings.php:62 ../templates/dhcp/general.php:62
+msgid "Please provide a valid Default gateway."
+msgstr "Ange en giltig standardgateway."
+
+#: ../templates/dhcp/settings.php:71 ../templates/dhcp/general.php:71
+msgid "Install a default route for this interface"
+msgstr "Installera en standardväg för det här gränssnittet"
+
+#: ../templates/dhcp/settings.php:72
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:75
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:84 ../templates/dhcp/general.php:83
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "Avaktivera wpa_supplicant dhcp hook för detta gränssnitt"
+
+#: ../templates/dhcp/settings.php:85 ../templates/dhcp/general.php:84
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "Om du själv hanterar trådlösa anslutningar med wpa_supplicant kan kroken skapa oönskade anslutningshändelser. Det här alternativet inaktiverar kroken."
+
+#: ../templates/dhcp/settings.php:88
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:93 ../templates/dhcp/general.php:92
+msgid "DHCP options"
+msgstr "DHCP-alternativ"
+
+#: ../templates/dhcp/settings.php:99 ../templates/dhcp/general.php:98
+msgid "Enable DHCP for this interface"
+msgstr "Aktivera DHCP för detta gränssnitt"
+
+#: ../templates/dhcp/settings.php:102 ../templates/dhcp/general.php:101
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Aktivera det här alternativet om du vill att RaspAP ska tilldela IP-adresser till klienter på det valda gränssnittet. En statisk IP-adress krävs för det här alternativet."
+
+#: ../templates/dhcp/settings.php:110 ../templates/dhcp/general.php:109
+msgid "Starting IP Address"
+msgstr "Startande IP-adress"
+
+#: ../templates/dhcp/settings.php:113 ../templates/dhcp/general.php:112
+msgid "Please provide a valid Starting IP Address."
+msgstr "Ange en giltig IP-adress för start."
+
+#: ../templates/dhcp/settings.php:119 ../templates/dhcp/general.php:118
+msgid "Ending IP Address"
+msgstr "Slutande IP-adress"
+
+#: ../templates/dhcp/settings.php:122 ../templates/dhcp/general.php:121
+msgid "Please provide a valid Ending IP Address."
+msgstr "Ange en giltig IP-adress för slutet."
+
+#: ../templates/dhcp/settings.php:128 ../templates/dhcp/general.php:127
+msgid "Lease Time"
+msgstr "Hyrestid"
+
+#: ../templates/dhcp/settings.php:131 ../templates/dhcp/general.php:130
+msgid "Please provide a valid Lease Time."
+msgstr "Vänligen ange en giltig hyrestid."
+
+#: ../templates/dhcp/settings.php:135 ../templates/dhcp/general.php:134
+msgid "Interval"
+msgstr "Intervall"
+
+#: ../templates/dhcp/settings.php:137 ../templates/dhcp/general.php:136
+msgid "Minute(s)"
+msgstr "Minut(er)"
+
+#: ../templates/dhcp/settings.php:138 ../templates/dhcp/general.php:137
+msgid "Hour(s)"
+msgstr "Timme(n)"
+
+#: ../templates/dhcp/settings.php:139 ../templates/dhcp/general.php:138
+msgid "Day(s)"
+msgstr "Dag(ar)"
+
+#: ../templates/dhcp/settings.php:140 ../templates/dhcp/general.php:139
+msgid "Infinite"
+msgstr "Oändlig"
+
+#: ../templates/dhcp/settings.php:143 ../templates/dhcp/general.php:142
+msgid "Please provide a valid Interval."
+msgstr "Ange ett giltigt intervall."
+
+#: ../templates/dhcp/settings.php:164 ../templates/dhcp/general.php:163
+#: ../templates/dhcp/summary.php:25
+msgid "Metric"
+msgstr "Metrisk"
+
+#: ../templates/dhcp/general.php:74
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "Detta växlar alternativet <code>gateway/nogateway</code> för det här gränssnittet i DHCPCD-konfigurationen."
+
+#: ../templates/dhcp/general.php:87
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr "Detta växlar alternativet <code>nohook wpa_supplicant</code> för det här gränssnittet i DHCPCD-konfigurationen."
+
+#: ../templates/dhcp/advanced.php:3
+msgid "Advanced Settings"
+msgstr "Avancerade inställningar"
+
+#: ../templates/dhcp/advanced.php:6
+msgid "Upstream DNS servers"
+msgstr "DNS-servrar uppströms"
+
+#: ../templates/dhcp/advanced.php:11
+msgid "Only ever query DNS servers configured below"
+msgstr "Fråga alltid bara DNS-servrar som konfigurerats nedan"
+
+#: ../templates/dhcp/advanced.php:14
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Aktivera det här alternativet om du vill att RaspAP ska <b>skicka DNS-frågor uteslutande till de servrar som konfigureras nedan.</b> Som standard använder RaspAP även namnservrarna i sin DHCP-server uppströms."
+
+#: ../templates/dhcp/advanced.php:15
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "Med det här alternativet läggs <code>no-resolv</code> till i dnsmasq-konfigurationen."
+
+#: ../templates/dhcp/advanced.php:29
+msgid "Add upstream DNS server"
+msgstr "Lägg till DNS-server uppströms"
+
+#: ../templates/dhcp/advanced.php:31
+#, php-format
+msgid "e.g. %s"
+msgstr "t.ex. %s"
+
+#: ../templates/dhcp/advanced.php:36
+msgid "Format: "
+msgstr "Format: "
+
+#: ../templates/dhcp/advanced.php:41
+msgid "Choose a hosted server"
+msgstr "Välj en hostad server"
+
+#: ../templates/dhcp/logging.php:4
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Aktivera dessa alternativ för att logga <code>dhcpcd-</code> och <code>dnsmasq-aktivitet</code>."
+
+#: ../templates/dhcp/logging.php:8
+msgid "Log DHCP requests"
+msgstr "Logga DHCP-förfrågningar"
+
+#: ../templates/dhcp/logging.php:12
+msgid "Log DNS queries"
+msgstr "Logga DNS-förfrågningar"
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr "Statiska leasingavtal"
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Klienter med en viss MAC-adress i hårdvaran kan alltid tilldelas samma IP-adress."
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Det här alternativet lägger till <code>dhcp-värdposter</code> i dnsmasq-konfigurationen."
+
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+#: ../templates/networking/devices.php:19
+msgid "MAC address"
+msgstr "MAC-adress"
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr "IP-adress"
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr "Valfri kommentar"
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr "Begränsa åtkomst"
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr "Begränsa nätverksåtkomsten till statiska klienter"
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Aktivera detta alternativ om du vill att RaspAP ska <b>ignorera alla klienter</b> som inte anges i listan över statiska hyresavtal."
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Med det här alternativet läggs <code>dhcp-ignore</code> till i dnsmasq-konfigurationen."
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr "Aktiva DHCP-leasingavtal"
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr "Utgångstid"
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
+msgstr "Värdnamn"
+
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr "Klient-ID"
+
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
+msgstr ""
+
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "Anslut %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "Koppla bort %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "Information tillhandahålls av %s"
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "Metod för autentisering"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "Användarnamn och lösenord"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "Certifikat"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "Ange användarnamn och lösenord"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "Certifikat i konfigurationsfilen"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP stöder certifikat genom att inkludera dem i konfigurationsfilen."
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Signering av certifikatutfärdarcertifikat (CA) (t.ex. <code>ca.crt</code>): inneslutet i <code>&lt;ca> ... &lt;/ca></code> taggar."
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Klientcertifikat (publik nyckel) (t.ex. client <code>.crt</code>): inneslutet i <code>&lt;cert> ... &lt;/cert>-taggar</code>."
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Privat nyckel för klientcertifikatet (t.ex. client. <code>key</code>): innesluten i <code>&lt;key> ... &lt;/nyckel>-taggar</code>."
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Välj OpenVPN:s konfigurationsfil (.ovpn)"
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Aktivera det här alternativet för att logga <code>openvpn-aktivitet</code>."
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "Aktivera loggning"
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Nuvarande tillgängliga OpenVPN-klientkonfigurationer visas nedan."
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Aktivering av en konfiguration startar om tjänsten <code>openvpn-client</code>."
+
+#: ../templates/admin.php:7
+msgid "Authentication"
+msgstr "Autentisering"
+
+#: ../templates/admin.php:47
+msgid "Update admin password"
+msgstr "Uppdatera administratörslösenord"
+
+#: ../templates/admin.php:54
+msgid "Old password"
+msgstr "Gammalt lösenord"
+
+#: ../templates/admin.php:59
+msgid "Please enter your old password."
+msgstr "Ange ditt gamla lösenord."
+
+#: ../templates/admin.php:66
+msgid "New password"
+msgstr "Nytt lösenord"
+
+#: ../templates/admin.php:71
+msgid "Please enter a new password."
+msgstr "Ange ett nytt lösenord."
+
+#: ../templates/admin.php:78
+msgid "Repeat new password"
+msgstr "Upprepa nytt lösenord"
+
+#: ../templates/admin.php:83
+msgid "Please re-enter your new password."
+msgstr "Ange ditt nya lösenord igen."
+
+#: ../templates/admin.php:91
+msgid "Save"
+msgstr "Spara"
+
+#: ../templates/admin.php:103
+msgid "Logout and enable limited user mode"
+msgstr "Logga ut och aktivera begränsat användarläge"
+
+#: ../templates/admin.php:114
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr "Den här åtgärden sparar den begränsade användarens autentiseringsuppgifter och loggar ut den aktuella administratörsanvändaren. Spara och aktivera begränsat privilegieläge?"
+
+#: ../templates/admin.php:120
+msgid "Save and logout"
+msgstr "Spara och logga ut"
+
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "Internetanslutning"
+
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "Tillgång till internet"
+
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "Routing-tabell"
+
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "rå utgång"
+
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "Aktuella inställningar"
+
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "Nätverksenheter"
+
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "Enhet"
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "Typ av enhet"
+
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "Starta om WLAN-routning"
+
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "Stoppa WLAN-routning"
+
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "Starta WLAN-routning"
+
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "Routning för trådlöst LAN"
+
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "Routing"
+
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Detta alternativ konfigurerar RaspAP att <b>dirigera nätverkstrafik från gränssnittet för din trådlösa klient (STA)</b> till ett annat tillgängligt gränssnitt."
+
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "När ett utdatagränssnitt väljs läggs <code>iptables-regler</code> till för att dirigera paket med hjälp av NAT (Network Address Translation). Detta görs ofta för att dela internetanslutning från ett WLAN med enheter på <code>ett eth0-</code>, <code>usb0-</code> eller förutsägbart <code>enx-gränssnitt</code>."
+
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "Gränssnitt för trådlös klient"
+
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "Utgångsgränssnitt"
+
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Konfigurera en statisk IP-adress och DHCP för utgångsgränssnittet"
+
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "Inställningar för mobildata"
+
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "SIM-kortets PIN-nummer"
+
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "APN-inställningar"
+
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "Namn på åtkomstpunkt (APN)"
+
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "Hastighetstest"
+
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "Välja en server"
+
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "Integritet"
+
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "Server"
+
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "Ping"
+
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "ms"
+
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "Jitter"
+
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "Mbps"
+
+#: ../templates/networking/diagnostics.php:40
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:24
+msgid "Upload"
+msgstr "Ladda upp"
+
+#: ../templates/configure_client.php:12
+msgid "Disconnected"
+msgstr "Frånkopplad"
+
+#: ../templates/configure_client.php:24
+msgid "Rescan"
+msgstr "Rescan"
+
+#: ../templates/configure_client.php:34
+msgid "Set"
+msgstr "Ställ in"
+
+#: ../templates/configure_client.php:49
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Obs:</strong> WEP-åtkomstpunkter visas som \"Öppna\". RaspAP stöder för närvarande inte anslutning till WEP"
+
+#: ../templates/configure_client.php:59
+msgid "Configuring WiFi Client"
+msgstr "Konfigurera WiFi-klient"
+
+#: ../templates/configure_client.php:62
+msgid "Configuring Wifi Client Interface..."
+msgstr "Konfigurera gränssnitt för Wifi-klient..."
+
+#: ../includes/system.php:67
+#, php-format
+msgid "Changing log limit size to %s KB"
+msgstr "Ändra logggränsens storlek till %s KB"
+
+#: ../includes/system.php:86
+#, php-format
+msgid "Changing alert close timeout to %s ms"
+msgstr "Ändra timeout för stängning av varning till %s ms"
+
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
+msgstr "Ogiltig anpassad IP-adress hittades på raden "
+
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
+msgstr "Ogiltig anpassad värd hittades på raden "
+
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
+msgstr "ej konfigurerad"
+
+#: ../includes/networking.php:137
+#, php-format
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "Försök att aktivera routing mellan gränssnitten %s och %s"
+
+#: ../includes/networking.php:147
+#, php-format
+msgid "Attempting to restart routing between %s and %s interfaces"
+msgstr "Försöker starta om routningen mellan gränssnitten %s och %s"
+
+#: ../includes/networking.php:151
+#, php-format
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "Försöker inaktivera routning mellan gränssnitten %s och %s"
+
+#: ../includes/networking.php:252
+#, php-format
+msgid "DHCP configuration for %s enabled"
+msgstr "DHCP-konfiguration för %s aktiverad"
+
+#: ../includes/networking.php:259
+#, php-format
+msgid "DHCP configuration for %s added"
+msgstr "DHCP-konfiguration för %s tillagd"
+
+#: ../includes/networking.php:265
+#, php-format
+msgid "DHCP configuration for %s updated"
+msgstr "DHCP-konfiguration för %s uppdaterad"
+
+#: ../includes/networking.php:271
+#, php-format
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "Det finns ingen standardkonfiguration för DHCP för gränssnittet %s"
+
+#: ../includes/networking.php:272
+#, php-format
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "Konfigurera en statisk IP och DHCP för det här gränssnittet i inställningarna för DHCP-servern"
+
+#: ../includes/networking.php:294
+#, php-format
+msgid "Dnsmasq  configuration for %s added"
+msgstr "Dnsmasq-konfiguration för %s tillagd"
+
+#: ../includes/restapi.php:59
+#, php-format
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
+msgstr "RestAPI-dokument finns tillgängliga <a href=\"%s\" target=\"_blank\">här %s</a>"
+
+#: ../includes/dashboard.php:72
+#, php-format
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
+
+#: ../includes/dashboard.php:78
+#, php-format
+msgid "%d LAN %s"
+msgstr "%d LAN %s"
+
+#: ../includes/footer.php:6
+#, php-format
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "Skapad av <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
+msgstr "RaspAP-team"
+
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
+msgstr "Tack för att du är en Insider"
+
+#: ../includes/footer.php:17
+msgid "Session Expired"
+msgstr "Sessionen har löpt ut"
+
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
+msgstr "Din session har löpt ut. Logga in för att fortsätta."
+
+#: ../includes/provider.php:65
+#, php-format
+msgid "Expected %s binary not found at: %s"
+msgstr "Förväntad %s binär hittades inte på: %s"
+
+#: ../includes/provider.php:66
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "Besök <a href=\"%s\" target=\"_blank\">installationsanvisningarna</a> för %sLinux CLI."
+
+#: ../includes/provider.php:70
+#, php-format
+msgid "Unable to execute %s binary found at: %s"
+msgstr "Det gick inte att köra %s binärfil som hittades på: %s"
+
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "Kontrollera att binärfilen är körbar och att behörigheter finns i raspap.sudoers"
+
+#: ../includes/provider.php:119
+#, php-format
+msgid "Attempting to connect to %s"
+msgstr "Försöker ansluta till %s"
+
+#: ../includes/provider.php:318
+msgid "Select a country..."
+msgstr "Välj ett land..."
+
+#: ../includes/provider.php:387
+#, php-format
+msgid "Account information not available from %s's Linux CLI."
+msgstr "Kontouppgifter som inte är tillgängliga via %s:s Linux CLI."
+
+#: ../includes/functions.php:1005
+msgid "Mem Use"
+msgstr "Mem Användning"
+
+#: ../includes/functions.php:1008
+msgid "CPU"
+msgstr "CPU"
+
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "Utskrivbar Wi-Fi-skylt"
+
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Wi-Fi-anslutning"
+
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "För att ansluta med din telefon eller surfplatta, skanna QR-koden ovan med din kameraapp."
+
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "För andra enheter använder du inloggningsuppgifterna nedan."
+
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "Nätverk"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:8
+msgid "Capture interface"
+msgstr "Gränssnitt för upptagning"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:15
+msgid "Output file"
+msgstr "Utmatningsfil"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:16
+msgid "Path where capture file will be saved (.pcap format)"
+msgstr "Sökväg där inspelningsfilen ska sparas (format .pcap)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:20
+msgid "File will be saved with .pcap extension"
+msgstr "Filen kommer att sparas med .pcap förlängning"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:26
+msgid "Capture filter (BPF syntax)"
+msgstr "Infångningsfilter (BPF-syntax)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:28
+msgid "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
+msgstr "Syntax för Berkeley Packet Filter. Lämna tomt för att fånga all trafik."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:33
+msgid "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
+msgstr "Exempel: <code>port 80</code>, <code>värd 192.168.1.1</code>, <code>tcp och inte port 22</code>"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:38
+msgid "Capture limits"
+msgstr "Gränser för upptagning"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:42
+msgid "Packet count limit"
+msgstr "Gräns för antal paket"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:44
+msgid "Stop capture after this many packets. Leave empty for unlimited."
+msgstr "Stoppa registreringen efter så här många paket. Lämna tomt för obegränsat."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:51
+msgid "Duration limit (seconds)"
+msgstr "Begränsning av varaktighet (sekunder)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:53
+msgid "Stop capture after this many seconds. Leave empty for unlimited."
+msgstr "Stoppa inspelningen efter så här många sekunder. Lämna tomt för obegränsat."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:60
+msgid "Ring buffer settings"
+msgstr "Inställningar för ringbuffert"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:64
+msgid "File size (KB)"
+msgstr "Filstorlek (KB)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:66
+msgid "Create new file when this size is reached. Leave empty to disable."
+msgstr "Skapa ny fil när denna storlek uppnås. Lämna tomt för att inaktivera."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:70
+msgid "10000 = 10 MB per file"
+msgstr "10000 = 10 MB per fil"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:74
+msgid "Number of files"
+msgstr "Antal filer"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:76
+msgid "Maximum number of ring buffer files to keep. Oldest files are deleted."
+msgstr "Maximalt antal ringbuffertfiler som ska sparas. De äldsta filerna raderas."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:83
+msgid "Advanced options"
+msgstr "Avancerade alternativ"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:87
+msgid "Snapshot length (bytes)"
+msgstr "Snapshot-längd (byte)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:89
+msgid "Limit the amount of data captured per packet. Leave empty for full packets."
+msgstr "Begränsa mängden data som samlas in per paket. Lämna tomt för fulla paket."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:93
+msgid "96 bytes captures headers only, reduces file size"
+msgstr "96 byte fångar endast rubriker, minskar filstorleken"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:101
+msgid "Promiscuous mode"
+msgstr "Promiskuöst läge"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:104
+msgid "Capture all packets on the network segment, not just those destined for this interface"
+msgstr "Fånga upp alla paket i nätverkssegmentet, inte bara de som är avsedda för det här gränssnittet"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:109
+msgid "Quick filter presets"
+msgstr "Förinställda snabbfilter"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:114
+msgid "All Traffic"
+msgstr "All trafik"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:117
+msgid "HTTP/HTTPS"
+msgstr "HTTP/HTTPS"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:123
+msgid "ICMP (Ping)"
+msgstr "ICMP (Ping)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:126
+msgid "SSH"
+msgstr "SSH"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:129
+msgid "Exclude SSH"
+msgstr "Uteslut SSH"
+
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "skapades av"
+
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "Plugin-beskrivning"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
+#: ../plugins-available/Wireshark/templates/main.php:46
+msgid "Capture files"
+msgstr "Fånga upp filer"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Capture-filer som genererats av <code>tshark</code> visas nedan."
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "Inga inspelningsfiler hittades i katalogen /tmp"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "Filnamn"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "Storlek"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "Modifierad"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "Åtgärder"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "Ladda ner fil"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "Ta bort fil"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
+#, php-format
+msgid "Total: %d file(s), %s"
+msgstr "Totalt: %d fil(er), %s"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "Bekräfta borttagningen"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "Är du säker på att du vill radera den här filen?"
+
+#: ../plugins-available/Wireshark/templates/main.php:20
+msgid "Start capture"
+msgstr "Börja fånga"
+
+#: ../plugins-available/Wireshark/templates/main.php:24
+msgid "Stop capture"
+msgstr "Stoppa fångst"
+
+#: ../plugins-available/Wireshark/templates/main.php:69
+#: ../plugins-available/Tailscale/templates/main.php:89
+msgid "Information provided by "
+msgstr "Information som tillhandahålls av "
+
+#: ../plugins-available/Wireshark/Wireshark.php:48
+msgid "Wireshark"
+msgstr "Wireshark"
+
+#: ../plugins-available/Wireshark/Wireshark.php:140
+#, php-format
+msgid "Attempting to start packet capture on %s"
+msgstr "Försöker starta paketinsamling på %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:143
+#, php-format
+msgid "TShark started with PID %s"
+msgstr "TShark startade med PID %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:152
+#, php-format
+msgid "Attempting to stop packet capture on %s"
+msgstr "Försöker stoppa packet capture på %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:172
+#, php-format
+msgid "Expected tshark binary not found at: %s"
+msgstr "Förväntad tshark binär hittades inte på: %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:173
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Wireshark plugin."
+msgstr "Besök <a href=\"%s\" target=\"_blank\">installationsanvisningarna</a> eller installera om Wireshark-plugin-programmet."
+
+#: ../plugins-available/Wireshark/Wireshark.php:184
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "En Wireshark (TShark) CLI-paketfångst för RaspAP"
+
+#: ../plugins-available/Wireshark/Wireshark.php:185
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Captive/Captive.php:132
+msgid "Bill Z"
+msgstr "Bill Z"
+
+#: ../plugins-available/Wireshark/Wireshark.php:244
+msgid "TShark settings saved successfully"
+msgstr "TShark-inställningarna sparades framgångsrikt"
+
+#: ../plugins-available/Wireshark/Wireshark.php:248
+#: ../plugins-available/Captive/Captive.php:541
+msgid "Error saving settings: "
+msgstr "Fel vid lagring av inställningar: "
+
+#: ../plugins-available/Wireshark/Wireshark.php:649
+msgid "File not found"
+msgstr "Filen hittades inte"
+
+#: ../plugins-available/Wireshark/Wireshark.php:658
+#, php-format
+msgid "File \"%s\" deleted successfully"
+msgstr "Fil \"%s\" borttagen framgångsrikt"
+
+#: ../plugins-available/Wireshark/Wireshark.php:661
+#, php-format
+msgid "Failed to delete file \"%s\""
+msgstr "Misslyckades med att ta bort filen \"%s\""
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "Status för bakluckan"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "Aktuell status för <code>bakluckan</code> visas nedan."
+
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "Tillbaka"
+
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "Nästa"
+
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "Återkalla Exit Node"
+
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "Sluta använda Exit Node"
+
+#: ../plugins-available/Tailscale/templates/main.php:44
+#: ../plugins-available/Tailscale/Tailscale.php:400
+msgid "Start Tailscale"
+msgstr "Start Tailscale"
+
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "Stoppa svansskalan"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "Tillåt utgångsnod"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Enheten <code>%s</code> väntar på godkännande som utgångsnod."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "Öppna maskiner i svansskala"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Leta reda på <code>%s</code> <strong>Exit Node-brickan</strong> i maskinlistan."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "Öppna %s -panelen från %s -ikonmenyn i utgångsnoden."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "Redigera ruttinställningar"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "Aktivera alternativet <strong>Använd som utgångsnod</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "Välj <strong>Nästa</strong> när du har slutfört dessa steg."
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "Använda utgångsnod"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Enheten <code>%s</code> är konfigurerad att använda utgångsnoden <code>%s</code>. Den har Tailscale MagicDNS-adressen <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
+msgid "Select an exit node"
+msgstr "Välj en utgångsnod"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#, php-format
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "För att använda <code>%s</code> som VPN-gateway måste du konfigurera Tailscale så att den använder en utgångsnod. Tailscales föreslagna nod är markerad med en stjärna."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#, php-format
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Annonsera en <strong>subnätväg</strong> för det aktiva <code>%s</code> AP-gränssnitt"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "Med subnätvägar kan du utöka ditt Tailscale-nätverk (ett så kallat tailnet) till att omfatta enheter som inte kör eller kan köra Tailscale-klienten."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "En subnätväg fungerar som en gateway mellan ditt tailnet och ett fysiskt subnät. Subnätet för det aktiva AP-gränssnittet är förkonfigurerat nedan; redigera vid behov."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
+msgid "Route LAN traffic through the exit node."
+msgstr "Dirigera LAN-trafik genom utgångsnoden."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "Detta kommer att leda all LAN-trafik till att endast gå genom din exit-nod."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Använd DNS-inställningar för Tailscale (standard)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Avmarkera om du vill använda lokal DNS. Detta ställer in <code>--accept-dns=false</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Använd inte Tailscale-undernät (standard på Linux)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "Om det finns subnätvägar för ditt tailnet kan du dirigera enhetens trafik till en subnätrouter. Om du aktiverar detta sätts <code>--accept-routes=true</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "Om nycklarna upphör att gälla för en enhet kommer anslutningarna till/från den angivna slutpunkten att sluta fungera."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "Det här alternativet använder <code>--force-reauth</code> för att förnya nycklarna för den här enheten."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#, php-format
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Välj <strong>Nästa</strong> för att konfigurera <code>%s</code> för att använda den valda utgångsnoden med dessa alternativ."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "Inga utgångsnoder hittades på ditt tailnet. Välj <strong>Tillbaka</strong> för att fortsätta."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "Konfigurera ny utgångsnod"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "Av säkerhetsskäl måste du välja att aktivera exit node-funktionalitet. Det första steget är att annonsera <code>%s</code> som en exit-nod i ditt tailnet. I nästa steg tillåter du att den här enheten blir en exit-nod."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Annonsera <code>%s</code> som en utgångsnod"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Detta konfigurerar effektivt Tailscale som ett VPN för att maskera din verkliga plats, få tillgång till regionbegränsat innehåll eller förbättra integriteten när du ansluter från opålitliga nätverk."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Det här alternativet låter Tailscale veta att din enhet är redo att dirigera trafik."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "Aktivera optimerad UDP-genomströmning"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Rekommenderas för Tailscale exit-noder med Linux 6.2 eller senare kärnor och använder UDP generic receive offload (GRO) vidarebefordran för att minska CPU-overhead."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Det här alternativet aktiverar avlastning av transportlager för bättre prestanda."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Välj <strong>Nästa</strong> för att fortsätta."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "Konfigurera enheten"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Enheten <code>%s</code> är ansluten till ditt tailnet med adressen <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "Som standard routar Tailscale endast trafik mellan de enheter som den har installerats på. Du kan också dirigera all din publika internettrafik genom att konfigurera en enhet i ditt nätverk som en <strong>utgångsnod</strong>"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "När du dirigerar all trafik genom en utgångsnod använder du i praktiken standardvägar (0.0.0.0/0, ::/0), på samma sätt som du skulle göra om du använde ett vanligt VPN."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "Du har möjlighet att konfigurera den här enheten som en exit-nod eller använda en annan exit-nod i ditt tailnet."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "Välj en befintlig exit-nod på ditt tailnet"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Detta är en typisk konfiguration om du till exempel använder den här enheten som en VPN-reserouter."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "Konfigurera den här enheten som en ny utgångsnod"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "Genom att konfigurera den här enheten som en exit-nod kommer offentlig internettrafik från enheter som är anslutna i ditt tailnet att dirigeras genom den."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
+msgid "Exit node activated"
+msgstr "Utgångsnod aktiverad"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "Enheten <code>%s</code> är kopplad till adressen <code>%s</code> och erbjuder en <strong>utgångsnod</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#, php-format
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "Se %s för information om hur du använder den här utgångsnoden med dina enheter."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
+msgid "Approve subnet route"
+msgstr "Godkänna subnätets rutt"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#, php-format
+msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
+msgstr "Enheten <code>%s</code> annonserar en subnät-väg. Av säkerhetsskäl måste du välja att aktivera detta."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
+msgstr "Leta reda på <code>%s</code> <strong>Subnets-brickan</strong> i maskinlistan."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#, php-format
+msgid "From the %s icon menu of the device, open the %s panel."
+msgstr "Öppna panelen %s från enhetens %s ikonmeny."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
+msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
+msgstr "Markera rutan IP range (IP-intervall) som motsvarar den subnätväg du vill annonsera och välj sedan <strong>Save (Spara</strong>)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "Logga in på Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Om du vill ansluta enheten %s till ditt tailnet väljer du %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "Öppen inloggning för Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "När du har loggat in väljer du <strong>Nästa</strong> för att fortsätta."
+
+#: ../plugins-available/Tailscale/Tailscale.php:52
+msgid "Tailscale VPN"
+msgstr "Tailscale VPN"
+
+#: ../plugins-available/Tailscale/Tailscale.php:237
+#, php-format
+msgid "Expected tailscale binary not found at: %s"
+msgstr "Den förväntade binära svansskalan hittades inte på: %s"
+
+#: ../plugins-available/Tailscale/Tailscale.php:238
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
+msgstr "Besök <a href=\"%s\" target=\"_blank\">installationsinstruktionerna</a> eller installera om plugin-programmet Tailscale."
+
+#: ../plugins-available/Tailscale/Tailscale.php:251
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "Ett tillägg till Tailscale VPN exit node för RaspAP"
+
+#: ../plugins-available/Tailscale/Tailscale.php:406
+#, php-format
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Det går inte att hämta Tailscale-inloggning. Välj <strong>%s</strong> för att fortsätta."
+
+#: ../plugins-available/Tailscale/Tailscale.php:786
+msgid "Not connected: Login required."
+msgstr "Inte ansluten: Inloggning krävs."
+
+#: ../plugins-available/Captive/templates/tabs/status.php:3
+msgid "Portal status"
+msgstr "Portalens status"
+
+#: ../plugins-available/Captive/templates/tabs/status.php:4
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "Aktuell status för <code>nodogsplash</code> visas nedan."
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "Gateway IP-intervall"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "IP-intervall som ska hanteras i CIDR-notation. Lämna tomt för alla adresser"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Standard: 0.0.0.0/0 (alla adresser)"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "Felsökningsnivå"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Mängd loggningsdetaljer som rapporteras av nodogsplash.service"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - Endast fel"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Fel, varningar, information"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Fel, varningar, information, utförlig"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Fel, varningar, information, utförlig, felsökning"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "Inställningar för brandvägg"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "Tillåt all trafik för autentiserade användare"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "När den är aktiverad har autentiserade användare obegränsad åtkomst"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "Tillåt DNS för förautentiserade användare"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Krävs för att klienter ska kunna lösa domännamn före autentisering"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "Gateway-gränssnitt"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "Gränssnitt som ska hanteras av portalen"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "Standardvärdet är det aktiva AP-gränssnittet, vanligtvis <code>wlan0</code>"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "Gateway-namn"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "Namn på din gateway (finns som variabel på $gatewayname)"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "Gateway-adress"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "Routerns IP-adress. Lämna tomt för automatisk detektering"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Detekteras automatiskt från gateway-gränssnittet om det inte anges"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "Gateway-port"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Port för Nodogsplash HTTP-server"
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+#: ../plugins-available/Captive/templates/main.php:52
+msgid "Active clients"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:17
+msgid "Client"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:21
+msgid "IP"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:22
+msgid "Token"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:25
+msgid "Last activity"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:26
+msgid "Session start"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:27
+msgid "Session end"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:35
+msgid "Deauthenticate"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:44
+msgid "No active clients connected."
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:9
+msgid "Maximum clients"
+msgstr "Maximalt antal kunder"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:11
+msgid "Maximum number of concurrent authenticated users"
+msgstr "Maximalt antal samtidiga autentiserade användare"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:15
+msgid "Does not include users on the trusted MAC list"
+msgstr "Inkluderar inte användare på listan över betrodda MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:19
+msgid "Session timeout (minutes)"
+msgstr "Timeout för session (minuter)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:21
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "Standardlängd för sessionen i minuter. 0 = obegränsad"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:30
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "Tidsgräns för inaktivitet före autentisering (minuter)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:32
+msgid "Time before unauthenticated idle users are removed"
+msgstr "Tid innan oautentiserade inaktiva användare tas bort"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:39
+msgid "Auth idle timeout (minutes)"
+msgstr "Auth idle timeout (minuter)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:41
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "Tid innan autentiserade inaktiva användare avautentiseras"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:50
+msgid "Check interval (seconds)"
+msgstr "Kontrollintervall (sekunder)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:52
+msgid "How often to check client timeouts"
+msgstr "Hur ofta ska klientens timeout kontrolleras?"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:59
+msgid "MAC address control"
+msgstr "Kontroll av MAC-adress"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:63
+msgid "MAC mechanism"
+msgstr "MAC-mekanism"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:65
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Block: MAC-adresser som är blocklistade blockeras. Allow: endast MAC-adresser som är listade i Allow tillåts"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:68
+msgid "Block (blocklist mode)"
+msgstr "Block (blocklist-läge)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:71
+msgid "Allow (allowlist mode)"
+msgstr "Tillåt (allowlist-läge)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:79
+msgid "Blocked MAC list"
+msgstr "Blockerad MAC-lista"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:81
+msgid "Comma-separated MAC addresses to block (used when mechanism is 'block')"
+msgstr "Kommaseparerade MAC-adresser som ska blockeras (används när mekanismen är \"block\")"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:84
+#: ../plugins-available/Captive/templates/tabs/clients.php:95
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "Exempel: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:90
+msgid "Allowed MAC list"
+msgstr "Lista över tillåtna MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:92
+msgid "Comma-separated MAC addresses to allow (used when mechanism is 'allow')"
+msgstr "Kommaseparerade MAC-adresser som ska tillåtas (används när mekanismen är \"allow\")"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:101
+msgid "Trusted MAC list"
+msgstr "Lista över betrodda MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:103
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "Kommaseparerade MAC-adresser som kringgår autentiseringen helt och hållet"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:106
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "Dessa enheter omfattas inte av autentiserings- eller brandväggsregler"
+
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "Stoppa portalen"
+
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "Starta portalen"
+
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "Kunder"
+
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "Information tillhandahållen av nodogsplash"
+
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "Stoppa portaltjänsten"
+
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "Starta portaltjänst"
+
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Om du ändrar portaltjänsten kommer klienttrafiken att avbrytas tillfälligt. Välj <strong>Proceed</strong> för att fortsätta."
+
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "Fortsätt"
+
+#: ../plugins-available/Captive/Captive.php:70
+#: ../plugins-available/Captive/Captive.php:130
+msgid "Captive portal"
+msgstr "Intern portal"
+
+#: ../plugins-available/Captive/Captive.php:95
+#, php-format
+msgid "Attempting to start %s"
+msgstr "Försöker starta %s"
+
+#: ../plugins-available/Captive/Captive.php:99
+#, php-format
+msgid "Attempting to stop %s"
+msgstr "Försök att stoppa %s"
+
+#: ../plugins-available/Captive/Captive.php:106
+#, php-format
+msgid "Client %s deauthenticated"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:108
+#, php-format
+msgid "Failed to deauthenticate client %s"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:111
+msgid "Invalid client MAC address"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:131
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "Ett plugin för en fängslande portal som implementerar nodogsplash"
+
+#: ../plugins-available/Captive/Captive.php:538
+msgid "Portal settings saved successfully"
+msgstr "Portalinställningar sparade framgångsrikt"
+
+#: ../plugins-available/Captive/Captive.php:582
+msgid "Failed to execute ndsctl."
+msgstr "Misslyckades med att köra ndsctl."
+
+#~ msgid "Firewall is now enabled"
+#~ msgstr "Brandväggen är nu aktiverad"
+
+#~ msgid "Firewall is now disabled"
+#~ msgstr "Brandväggen är nu inaktiverad"
+
+#~ msgid "Firewall settings changed"
+#~ msgstr "Brandväggsinställningar ändrade"
+
+#~ msgid "Firewall settings saved. Firewall is still disabled."
+#~ msgstr "Brandväggsinställningar sparade. Brandväggen är fortfarande inaktiverad."
+
+#~ msgid "Exclude devices "
+#~ msgstr "Exkludera enheter "
+
+#~ msgid "Exclude IP address "
+#~ msgstr "Uteslut IP-adress "
+
+#~ msgid "Exclude IP address(es) "
+#~ msgstr "Uteslut IP-adress(er) "
+
+#~ msgid "A firewall plugin that implements an iptables ruleset"
+#~ msgstr "Ett brandväggsplugin som implementerar en iptables-regeluppsättning"
+
+#~ msgid "zbchristian"
+#~ msgstr "zbchristian"
+
+#~ msgid "Client Firewall"
+#~ msgstr "Brandvägg för klienter"
+
+#~ msgid "Firewall is ENABLED"
+#~ msgstr "Brandväggen är ENABLED"
+
+#~ msgid "Firewall is OFF"
+#~ msgstr "Brandväggen är avstängd"
+
+#~ msgid "The default firewall will only allow outgoing and already established traffic."
+#~ msgstr "Standardbrandväggen tillåter endast utgående och redan etablerad trafik."
+
+#~ msgid "No incoming UDP traffic is allowed."
+#~ msgstr "Ingen inkommande UDP-trafik tillåts."
+
+#, php-format
+#~ msgid "There are no restrictions for the access point <code>%s</code>."
+#~ msgstr "Det finns inga begränsningar för åtkomstpunkten <code>%s</code>."
+
+#~ msgid "Exception: Service"
+#~ msgstr "Undantag: Service"
+
+#~ msgid "allow SSH access on port 22"
+#~ msgstr "tillåta SSH-åtkomst på port 22"
+
+#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
+#~ msgstr "tillåta åtkomst till RaspAP GUI på port 80 eller 443"
+
+#~ msgid "Allow incoming connections for some services from the internet side."
+#~ msgstr "Tillåt inkommande anslutningar för vissa tjänster från internetsidan."
+
+#~ msgid "Exception: network device"
+#~ msgstr "Undantag: nätverksenhet"
+
+#~ msgid "Exclude device(s)"
+#~ msgstr "Uteslut enhet(er)"
+
+#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+#~ msgstr "Uteslut den eller de angivna nätverksenheterna (åtskilda med blanksteg eller kommatecken) från brandväggsregler."
+
+#, php-format
+#~ msgid "Current client devices: <code>%s</code>"
+#~ msgstr "Aktuella klientenheter: <code>%s</code>"
+
+#, php-format
+#~ msgid "The access point <code>%s</code> is per default excluded."
+#~ msgstr "Accesspunkten <code>%s</code> är som standard utesluten."
+
+#~ msgid "Exception: IP-Address"
+#~ msgstr "Undantag: IP-Address"
+
+#~ msgid "Allow incoming connections from"
+#~ msgstr "Tillåt inkommande anslutningar från"
+
+#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+#~ msgstr "För de angivna IP-adresserna (åtskilda med blanksteg eller kommatecken) accepteras inkommande anslutning (via TCP och UDP)."
+
+#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+#~ msgstr "Detta krävs för en OpenVPN via UDP eller Wireguard-anslutning."
+
+#, php-format
+#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+#~ msgstr "Listan över konfigurerade IP-adresser för VPN-server: <code><b>%s</b></code>"
+
+#~ msgid "plugin was created by "
+#~ msgstr "plugin skapades av "
+
+#~ msgid "Apply changes"
+#~ msgstr "Tillämpa ändringar"
+
+#~ msgid "Disable Firewall"
+#~ msgstr "Inaktivera brandvägg"
+
+#~ msgid "Enable Firewall"
+#~ msgstr "Aktivera brandvägg"
+
+#~ msgid "Information provided by iptables"
+#~ msgstr "Information som tillhandahålls av iptables"
+
+#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
+#~ msgstr "Att ändra brandväggsstatus kan störa eller tillåta inkommande trafik. Välj <strong>Proceed</strong> för att fortsätta."

@@ -1,682 +1,3418 @@
-# RaspAP Portable Object file # Project home: https://github.com/billz/raspap-webgui 
-# Licensed under the GNU General Public License v3.0 
-# This file is distributed under the same license as the RaspAP package 
-# FIRST AUTHOR billzimmerman@gmail.com, 2017 
-# 
-#, fuzzy 
-msgid "" 
-msgstr "" 
-"Project-Id-Version: 1.2.1\n" 
-"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n" 
-"POT-Creation-Date: 2017-10-19 08:56+0000\n" 
-"PO-Revision-Date: 2020-01-14 17:15+0000\n" 
-"Last-Translator: Chris K <karasoulis@protonmail.com>\n" 
-"Language-Team: \n" 
-"Language: el_GR\n" 
-"MIME-Version: 1.0\n" 
-"Content-Type: text/plain; charset=UTF-8\n" 
-"Content-Transfer-Encoding: 8bit\n" 
-
-#: index.php 
-msgid "RaspAP Wifi Configuration Portal" 
-msgstr "Σελίδα ρυθμίσεων RaspAP WiFi" 
-
-msgid "Toggle navigation" 
-msgstr "Εναλλαγή πλοήγησης" 
-
-msgid "RaspAP Wifi Portal" 
-msgstr "Πύλη RaspAP WiFi" 
-
-msgid "Dashboard" 
-msgstr "Πίνακας" 
-
-msgid "WiFi client" 
-msgstr "WiFi client" 
-
-msgid "Hotspot" 
-msgstr "Hotspot" 
-
-msgid "Networking" 
-msgstr "Δικτύωση" 
-
-msgid "DHCP Server" 
-msgstr "Διακομιστή DHCP" 
-
-msgid "OpenVPN" 
-msgstr "OpenVPN" 
-
-msgid "TOR proxy" 
-msgstr "Μεσολαβητή TOR" 
-
-msgid "Authentication" 
-msgstr "Διαμόρφωση Auth" 
-
-msgid "Change Theme" 
-msgstr "Αλλαγή Θέματος" 
-
-msgid "System" 
-msgstr "Σύστημα" 
-
-msgid "About RaspAP" 
-msgstr "Περί RaspAP" 
-
-#: includes/admin.php 
-msgid "Authentication settings" 
-msgstr "Ρυθμίσεις πιστοποίησης" 
-
-msgid "New passwords do not match" 
-msgstr "Οι νέοι κωδικοί πρόσβασης δεν ταιριάζουν" 
-
-msgid "Username must not be empty" 
-msgstr "Το όνομα χρήστη δεν πρέπει να είναι κενό" 
-
-msgid "Admin password updated" 
-msgstr "Ο κωδικός πρόσβασης διαχειριστή ενημερώθηκε" 
-
-msgid "Failed to update admin password" 
-msgstr "Αποτυχία ενημέρωσης του κωδικού πρόσβασης διαχειριστή" 
-
-msgid "Old password does not match" 
-msgstr "Ο παλιός κωδικός πρόσβασης δεν ταιριάζει" 
-
-msgid "Username" 
-msgstr "Όνομα χρήστη" 
-
-msgid "Old password" 
-msgstr "Παλιός κωδικός πρόσβασης" 
-
-msgid "New password" 
-msgstr "Νέος κωδικός πρόσβασης" 
-
-msgid "Repeat new password" 
-msgstr "Επανάληψη νέου κωδικού πρόσβασης" 
-
-#: includes/configure_client.php 
-msgid "Client settings" 
-msgstr "Ρυθμίσεις client" 
-
-msgid "SSID" 
-msgstr "SSID" 
-
-msgid "Channel" 
-msgstr "Κανάλι" 
-
-msgid "Security" 
-msgstr "Ασφάλεια" 
-
-msgid "Passphrase" 
-msgstr "Φράση πρόσβασης" 
-
-msgid "Wifi settings updated successfully" 
-msgstr "Οι ρυθμίσεις WiFi ενημερώθηκαν με επιτυχία" 
-
-msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')" 
-msgstr "Οι ρυθμίσεις WiFi ενημερώθηκαν αλλά δεν είναι δυνατή η επανεκκίνηση (δεν είναι δυνατή η εκτέλεση του 'wpa_cli reconfigure')" 
-
-msgid "Wifi settings failed to be updated" 
-msgstr "Οι ρυθμίσεις WiFi δεν ενημερώθηκαν" 
-
-msgid "Failed to update wifi settings" 
-msgstr "Δεν ήταν δυνατή η ενημέρωση των ρυθμίσεων WiFi" 
-
-msgid "Rescan" 
-msgstr "Σάρωση ξανά" 
-
-msgid "Update" 
-msgstr "Ενημέρωση" 
-
-msgid "Add" 
-msgstr "Προσθήκη" 
-
-msgid "Delete" 
-msgstr "Διαγραφή" 
-
-msgid "Show" 
-msgstr "Προβολή" 
-
-msgid "Hide" 
-msgstr "Απόκρυψη" 
-
-msgid "Not configured" 
-msgstr "Δεν έχει ρυθμιστεί" 
-
-msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP" 
-msgstr "<strong>Σημείωση:</strong> Τα σημεία πρόσβασης WEP εμφανίζονται ως 'Ανοιχτά'. Το RaspAP δεν υποστηρίζει αυτήν τη στιγμή τη σύνδεση με WEP" 
-
-#: includes/dashboard.php 
-msgid "Interface Information" 
-msgstr "Πληροφορίες διεπαφής" 
-
-msgid "Interface Name" 
-msgstr "Όνομα διεπαφής" 
-
-msgid "IPv4 Address" 
-msgstr "Διεύθυνση IPv4" 
-
-msgid "IPv6 Address" 
-msgstr "Διεύθυνση IPv6" 
-
-msgid "Subnet Mask" 
-msgstr "Μάσκα υποδικτύου" 
-
-msgid "Mac Address" 
-msgstr "Διεύθυνση Mac" 
-
-msgid "Interface Statistics" 
-msgstr "Στατιστικά διεπαφής" 
-
-msgid "Received Packets" 
-msgstr "Ληφθέντα πακέτα" 
-
-msgid "Received Bytes" 
-msgstr "Ληφθέντα Byte" 
-
-msgid "Transferred Packets" 
-msgstr "Μεταφερθέντα πακέτα" 
-
-msgid "Transferred Bytes" 
-msgstr "Μεταφερθέντα Byte" 
-
-msgid "Wireless Information" 
-msgstr "Πληροφορίες ασύρματου" 
-
-msgid "Connected To" 
-msgstr "Συνδεδεμένο με" 
-
-msgid "AP Mac Address" 
-msgstr "Διεύθυνση Mac σημείου πρόσβασης" 
-
-msgid "Bitrate" 
-msgstr "Bitrate" 
-
-msgid "Signal Level" 
-msgstr "Επίπεδο σήματος" 
-
-msgid "Transmit Power" 
-msgstr "Ισχύς μετάδοσης" 
-
-msgid "Frequency" 
-msgstr "Συχνότητα" 
-
-msgid "Link Quality" 
-msgstr "Ποιότητα συνδέσμου" 
-
-msgid "Information provided by ip and iw and from system" 
-msgstr "Πληροφορίες που παρέχονται από ip και iw και από το σύστημα" 
-
-msgid "No MAC Address Found" 
-msgstr "Δε βρέθηκε διεύθυνση MAC" 
-
-msgid "No IP Address Found" 
-msgstr "Δε βρέθηκε διεύθυνση IP" 
-
-msgid "No Subnet Mask Found" 
-msgstr "Δε βρέθηκε μάσκα υποδικτύου" 
-
-msgid "No Data" 
-msgstr "Χωρίς δεδομένα" 
-
-msgid "Not connected" 
-msgstr "Μη συνδεδεμένο" 
-
-msgid "Interface is up" 
-msgstr "Η διεπαφή λειτουργεί" 
-
-msgid "Interface is down" 
-msgstr "Η διεπαφή δε λειτουργεί" 
-
-msgid "Interface already down" 
-msgstr "Η διεπαφή είναι ήδη εκτός λειτουργίας" 
-
-msgid "Start wlan0" 
-msgstr "Εκκίνηση wlan0" 
-
-msgid "Stop wlan0" 
-msgstr "Παύση wlan0" 
-
-msgid "Connected Devices" 
-msgstr "Συνδεδεμένες συσκευές" 
-
-#: includes/dhcp.php 
-msgid "DHCP server settings" 
-msgstr "Ρυθμίσεις διακομιστή DHCP" 
-
-msgid "Client list" 
-msgstr "Λίστα client" 
-
-msgid "Interface" 
-msgstr "Διεπαφή" 
-
-msgid "DNS Server" 
-msgstr "Διακομιστής DNS" 
-
-msgid "Starting IP Address" 
-msgstr "Αρχική διεύθυνση IP" 
-
-msgid "Ending IP Address" 
-msgstr "Τελική διεύθυνση IP" 
-
-msgid "Static Leases" 
-msgstr "Στατικές μισθώσεις" 
-
-msgid "Add static DHCP lease" 
-msgstr "Προσθήκη στατικής μίσθωσης DHCP" 
-
-msgid "Lease Time" 
-msgstr "Χρόνος μίσθωσης" 
-
-msgid "Interval" 
-msgstr "Διάρκεια" 
-
-msgid "Active DHCP leases" 
-msgstr "Ενεργές μισθώσεις DHCP" 
-
-msgid "Expire time" 
-msgstr "Χρόνος λήξης" 
-
-msgid "MAC Address" 
-msgstr "Διεύθυνση MAC" 
-
-msgid "Host name" 
-msgstr "Όνομα κεντρικού υπολογιστή" 
-
-msgid "Client ID" 
-msgstr "Client ID" 
-
-msgid "Information provided by Dnsmasq" 
-msgstr "Οι πληροφορίες παρέχονται από το Dnsmasq" 
-
-msgid "Stop dnsmasq" 
-msgstr "Παύση dnsmasq" 
-
-msgid "Start dnsmasq" 
-msgstr "Εκκίνηση dnsmasq" 
-
-msgid "Dnsmasq configuration updated successfully" 
-msgstr "Η ρύθμιση του dnsmasq ενημερώθηκε με επιτυχία" 
-
-msgid "dnsmasq already running" 
-msgstr "Το dnsmasq εκτελείται ήδη" 
-
-msgid "Successfully started dnsmasq" 
-msgstr "Επιτυχής εκκίνηση του dnsmasq" 
-
-msgid "Failed to start dnsmasq" 
-msgstr "Αποτυχία εκκίνησης του dnsmasq" 
-
-msgid "Successfully stopped dnsmasq" 
-msgstr "Επιτυχής παύση του dnsmasq" 
-
-msgid "Failed to stop dnsmasq" 
-msgstr "Αποτυχία παύσης του dnsmasq" 
-
-msgid "dnsmasq already stopped" 
-msgstr "Το dnsmasq έχει ήδη σταματήσει" 
-
-msgid "Dnsmasq is running" 
-msgstr "Το dnsmasq εκτελείται" 
-
-msgid "Dnsmasq is not running" 
-msgstr "Το dnsmasq δεν εκτελείται" 
-
+msgid ""
+msgstr ""
+"Project-Id-Version: raspap\n"
+"Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2026-04-29 13:38+0000\n"
+"PO-Revision-Date: 2026-04-22 02:22\n"
+"Last-Translator: \n"
+"Language-Team: Greek\n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
+"X-Crowdin-Language: el\n"
+"X-Crowdin-File: /master/locale/messages.pot\n"
+"X-Crowdin-File-ID: 12\n"
+
+#: ../ajax/networking/get_nl80211_band.php:37
+#, php-format
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr ""
+
+#: ../ajax/networking/get_nl80211_band.php:40
+#, php-format
+msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
+msgstr ""
+
+#: ../ajax/networking/get_nl80211_band.php:43
+#, php-format
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr ""
+
+#: ../ajax/networking/get_nl80211_band.php:46
+#, php-format
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr ""
+
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+msgid "No MAC Address Found"
+msgstr "Δεν βρέθηκε διεύθυνση MAC"
+
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "Δεν βρέθηκε διεύθυνση IPv6"
+
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "πελάτης"
+msgstr[1] "πελάτες"
+
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
+msgid "Dashboard"
+msgstr "Ταμπλό"
+
+#: ../src/RaspAP/UI/Sidebar.php:20 ../templates/hostapd.php:13
+#: ../includes/functions.php:1002
+msgid "Hotspot"
+msgstr "Hotspot"
+
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
+msgid "DHCP Server"
+msgstr "Διακομιστής DHCP"
+
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
+msgid "Ad Blocking"
+msgstr "Αποκλεισμός διαφημίσεων"
+
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
+#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
+msgid "Networking"
+msgstr "Δικτύωση"
+
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "Πελάτης WiFi"
+
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "WireGuard"
+
+#: ../src/RaspAP/UI/Sidebar.php:44
+msgid "Data usage"
+msgstr "Χρήση δεδομένων"
+
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
+msgid "RestAPI"
+msgstr "RestAPI"
+
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
+#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
+msgid "System"
+msgstr "Σύστημα"
+
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
+msgid "About RaspAP"
+msgstr "Σχετικά με τη RaspAP"
+
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "Εγκατεστημένο"
+
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "Λεπτομέρειες"
+
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:365
+#: ../includes/wifi_functions.php:281
+msgid "Signal strength"
+msgstr "Ισχύς σήματος"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "Εκτενής αποσφαλμάτωση"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "Αποσφαλμάτωση"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "Ενημερωτικό"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "Ειδοποίηση"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "Προειδοποίηση"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
+#, php-format
+msgid "DHCP configuration for %s enabled."
+msgstr "Διαμόρφωση DHCP για το %s ενεργοποιημένη."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:148
+msgid "WiFi repeater mode: A metric value is already defined for DHCP."
+msgstr "Λειτουργία επαναλήπτη WiFi: Για το DHCP έχει ήδη οριστεί μια μετρική τιμή."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
+#, php-format
+msgid "Metric value configured for the %s interface."
+msgstr "Τιμή μετρικής που έχει ρυθμιστεί για τη διασύνδεση %s."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:226
+msgid "Invalid interface name."
+msgstr "Μη έγκυρο όνομα διασύνδεσης."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:229
+msgid "Invalid static IP address."
+msgstr "Μη έγκυρη στατική διεύθυνση IP."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:232
+msgid "Invalid subnet mask."
+msgstr "Μη έγκυρη μάσκα υποδικτύου."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:235
+msgid "Invalid default gateway."
+msgstr "Μη έγκυρη προεπιλεγμένη πύλη."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:239
+msgid "Invalid DHCP range start."
+msgstr "Μη έγκυρη έναρξη εύρους DHCP."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:242
+msgid "Invalid DHCP range end."
+msgstr "Μη έγκυρο τέλος εύρους DHCP."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:245
+msgid "Invalid DHCP lease time, not a number."
+msgstr "Μη έγκυρος χρόνος μίσθωσης DHCP, όχι αριθμός."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:248
+msgid "Unknown DHCP lease time unit."
+msgstr "Άγνωστη μονάδα χρόνου μίσθωσης DHCP."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:251
+msgid "Invalid metric value, not a number."
+msgstr "Μη έγκυρη μετρική τιμή, δεν είναι αριθμός."
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:276
+#, php-format
+msgid "DHCP configuration for %s updated."
+msgstr "Ενημέρωση των ρυθμίσεων DHCP για το %s."
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
+msgid "WPA and WPA2"
+msgstr "WPA και WPA2"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:112
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 και WPA3-Personal (μεταβατική λειτουργία)"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:114
+msgid "None"
+msgstr "Κανένα"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:124
+msgid "Disabled"
+msgstr "Άτομα με ειδικές ανάγκες"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:125
+msgid "Enabled (for supported clients)"
+msgstr "Ενεργοποιημένη (για υποστηριζόμενους πελάτες)"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:126
+msgid "Required (for supported clients)"
+msgstr "Απαιτείται (για υποστηριζόμενους πελάτες)"
+
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "Μη έγκυρη διεύθυνση MAC: "
+
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "Εισήχθη διπλή διεύθυνση IP: "
+
+#: ../templates/hostapd.php:3 ../templates/wireguard.php:3
+#: ../templates/adblock.php:3 ../templates/openvpn.php:3
+#: ../templates/system/advanced.php:39 ../templates/system/language.php:11
+#: ../templates/system/theme.php:56 ../templates/restapi.php:3
+#: ../templates/dhcp.php:3 ../templates/admin/general.php:2
+#: ../templates/provider.php:3 ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29
+#: ../plugins-available/Wireshark/templates/main.php:3
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Captive/templates/main.php:3
+msgid "Save settings"
+msgstr "Αποθήκευση ρυθμίσεων"
+
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "Έναρξη hotspot"
+
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "Έναρξη hotspot"
+
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "Διακοπή hotspot"
+
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "Επανεκκίνηση hotspot"
+
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "Επανεκκίνηση hotspot"
+
+#: ../templates/hostapd.php:49 ../templates/system.php:17
+#: ../templates/admin.php:20 ../plugins-available/Captive/templates/main.php:48
+msgid "Basic"
+msgstr "Βασικό"
+
+#: ../templates/hostapd.php:50 ../templates/wifi_stations/network.php:73
+msgid "Security"
+msgstr "Ασφάλεια"
+
+#: ../templates/hostapd.php:51 ../templates/system.php:20
+#: ../templates/dhcp.php:52 ../plugins-available/Captive/templates/main.php:50
+msgid "Advanced"
+msgstr "Προχωρημένο"
+
+#: ../templates/hostapd.php:52 ../templates/adblock/logging.php:3
+#: ../templates/hostapd/logging.php:3 ../templates/wireguard.php:49
+#: ../templates/adblock.php:47 ../templates/openvpn.php:48
+#: ../templates/dhcp.php:55 ../templates/wg/logging.php:5
+#: ../templates/dhcp/logging.php:3 ../templates/openvpn/logging.php:3
+msgid "Logging"
+msgstr "Καταγραφή"
+
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "Πληροφορίες που παρέχονται από το hostapd"
+
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "Εκτέλεση της υπηρεσίας RaspAP start"
+
+#: ../templates/hostapd.php:90 ../templates/system.php:56
+#: ../templates/system.php:74 ../templates/system.php:92
+#: ../templates/system.php:110 ../templates/system.php:142
+#: ../templates/wifi_stations/network.php:119
+#: ../templates/configure_client.php:65
+msgid "Close"
+msgstr "Κλείστε το"
+
+#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
+msgid "Blocklist settings"
+msgstr "Ρυθμίσεις λίστας αποκλεισμού"
+
+#: ../templates/adblock/general.php:10
+msgid "Enable blocklists"
+msgstr "Ενεργοποίηση λιστών αποκλεισμού"
+
+#: ../templates/adblock/general.php:13
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Ενεργοποιήστε αυτήν την επιλογή εάν θέλετε να <b>μπλοκάρει</b> η RaspAP <b>τις αιτήσεις DNS για διαφημίσεις, παρακολούθηση και άλλα εικονικά σκουπίδια</b>. Οι λίστες αποκλεισμού συλλέγονται από πολλαπλές, ενεργά συντηρούμενες πηγές και ενημερώνονται αυτόματα, καθαρίζονται, βελτιστοποιούνται και συντονίζονται σε καθημερινή βάση."
+
+#: ../templates/adblock/general.php:15
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "Αυτή η επιλογή προσθέτει <code>conf-file</code> και <code>addn-hosts</code> στη ρύθμιση παραμέτρων του dnsmasq."
+
+#: ../templates/adblock/general.php:22
+msgid "Hostnames blocklist last updated"
+msgstr "Τελευταία ενημέρωση της λίστας αποκλεισμού ονομάτων οικοδεσποτών"
+
+#: ../templates/adblock/general.php:24
+msgid "Domains blocklist last updated"
+msgstr "Τελευταία ενημέρωση της λίστας αποκλεισμού τομέων"
+
+#: ../templates/adblock/general.php:29
+msgid "Choose a blocklist provider"
+msgstr "Επιλέξτε έναν πάροχο λίστας αποκλεισμού"
+
+#: ../templates/adblock/general.php:33
+msgid "Update now"
+msgstr "Ενημέρωση τώρα"
+
+#: ../templates/adblock/stats.php:3
+msgid "Statistics"
+msgstr "Στατιστικά στοιχεία"
+
+#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
+msgid "Custom blocklist"
+msgstr "Προσαρμοσμένη λίστα αποκλεισμού"
+
+#: ../templates/adblock/custom.php:10
+msgid "Enable custom blocklist"
+msgstr "Ενεργοποίηση προσαρμοσμένης λίστας αποκλεισμού"
+
+#: ../templates/adblock/custom.php:14
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Ορίστε προσαρμοσμένους κεντρικούς υπολογιστές που θα αποκλείονται εισάγοντας μια διεύθυνση IPv4 ή IPv6 ακολουθούμενη από κενά (κενά ή tabs) και το όνομα του κεντρικού υπολογιστή."
+
+#: ../templates/adblock/custom.php:15
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>Παράδειγμα IPv4:</b> 0.0.0.0.0 badhost.com"
+
+#: ../templates/adblock/custom.php:17
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Αυτή η επιλογή προσθέτει μια οδηγία <code>addn-hosts</code> στη ρύθμιση παραμέτρων του dnsmasq."
+
+#: ../templates/system.php:18
+msgid "Language"
+msgstr ""
+
+#: ../templates/system.php:19
+msgid "Theme"
+msgstr ""
+
+#: ../templates/system.php:21
+msgid "Tools"
+msgstr ""
+
+#: ../templates/system.php:23 ../templates/system/plugins.php:3
+msgid "Plugins"
+msgstr "Plugins"
+
+#: ../templates/system.php:40 ../templates/dashboard.php:164
+msgid "Information provided by raspap.sysinfo"
+msgstr "Πληροφορίες που παρέχονται από το raspap.sysinfo"
+
+#: ../templates/system.php:50
+msgid "System reset"
+msgstr ""
+
+#: ../templates/system.php:53
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr ""
+
+#: ../templates/system.php:53
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr ""
+
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:92 ../templates/system.php:236
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+#: ../templates/admin.php:90 ../templates/admin.php:119
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../plugins-available/Captive/templates/main.php:99
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: ../templates/system.php:57
+msgid "System reset in progress..."
+msgstr ""
+
+#: ../templates/system.php:57
+msgid "Reset"
+msgstr ""
+
+#: ../templates/system.php:68
+msgid "System reboot"
+msgstr ""
+
+#: ../templates/system.php:71
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr ""
+
+#: ../templates/system.php:75 ../templates/system/basic.php:23
+msgid "Reboot"
+msgstr "Επανεκκίνηση"
+
+#: ../templates/system.php:86
+msgid "System shutdown"
+msgstr ""
+
+#: ../templates/system.php:89
+msgid "Shutdown now? The system will be unavailable."
+msgstr ""
+
+#: ../templates/system.php:93 ../templates/system/basic.php:27
+msgid "Shutdown"
+msgstr "Τερματισμός λειτουργίας"
+
+#: ../templates/system.php:104 ../templates/system/tools.php:18
+msgid "Generate debug log"
+msgstr "Δημιουργία αρχείου καταγραφής εντοπισμού σφαλμάτων"
+
+#: ../templates/system.php:107
+msgid "Debug log generation in progress..."
+msgstr ""
+
+#: ../templates/system.php:121 ../templates/system/tools.php:32
+msgid "Inspect adapters"
+msgstr "Επιθεωρήστε τους προσαρμογείς"
+
+#: ../templates/system.php:140
+msgid "Adapter health check"
+msgstr ""
+
+#: ../templates/system.php:177
+msgid "Plugin details"
+msgstr ""
+
+#: ../templates/system.php:188
+msgid "Plugin docs"
+msgstr ""
+
+#: ../templates/system.php:192
+msgid "Version"
+msgstr ""
+
+#: ../templates/system.php:196
+msgid "Author"
+msgstr ""
+
+#: ../templates/system.php:200
+msgid "License"
+msgstr ""
+
+#: ../templates/system.php:204
+msgid "Language locale"
+msgstr ""
+
+#: ../templates/system.php:208
+msgid "Configuration files"
+msgstr ""
+
+#: ../templates/system.php:212
+msgid "Signed Packages"
+msgstr ""
+
+#: ../templates/system.php:216
+msgid "Dependencies"
+msgstr ""
+
+#: ../templates/system.php:220
+msgid "JavaScript"
+msgstr ""
+
+#: ../templates/system.php:224
+msgid "Sudoers"
+msgstr ""
+
+#: ../templates/system.php:228
+msgid "Non-privileged users"
+msgstr ""
+
+#: ../templates/system.php:248
+msgid "Installing plugin"
+msgstr ""
+
+#: ../templates/system.php:251
+msgid "Plugin install completed."
+msgstr ""
+
+#: ../templates/system.php:251
+msgid "Plugin installation in progress..."
+msgstr ""
+
+#: ../templates/system.php:254 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "OK"
+
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "Ρυθμίσεις ασφαλείας"
+
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "Τύπος ασφαλείας"
+
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "Τύπος κρυπτογράφησης"
+
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
+
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "Το 802.11w επεκτείνει την ισχυρή κρυπτογραφική προστασία σε ένα επιλεγμένο σύνολο ισχυρών πλαισίων διαχείρισης, συμπεριλαμβανομένων των Deauthentication, Disassociation και ορισμένων κατηγοριών πλαισίων διαχείρισης ενεργειών. Συλλογικά, αυτό είναι γνωστό ως Προστασία πλαισίων διαχείρισης (Management Frame Protection - MFP)."
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "Προ-μοιρασμένο κλειδί (PSK)"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "Παρακαλούμε δώστε ένα έγκυρο PSK."
+
+#: ../templates/hostapd/security.php:32
+#, php-format
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "%s %sΣαρώστε απευθείας αυτόν τον κωδικό QR ή εκτυπώστε ένα σήμα%s για τους χρήστες σας."
+
+#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+msgid "Advanced settings"
+msgstr "Προηγμένες ρυθμίσεις"
+
+#: ../templates/hostapd/advanced.php:9
+msgid "Bridged AP mode"
+msgstr "Λειτουργία Bridged AP"
+
+#: ../templates/hostapd/advanced.php:19
+msgid "Bridge interface configuration"
+msgstr "Διαμόρφωση διασύνδεσης γέφυρας"
+
+#: ../templates/hostapd/advanced.php:21
+msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+msgstr "Ρυθμίστε μια στατική διεύθυνση IP για τη διασύνδεση <code>br0</code> για να διατηρηθεί η συνδεσιμότητα κατά την ενεργοποίηση της λειτουργίας γέφυρας."
+
+#: ../templates/hostapd/advanced.php:26
+msgid "Static IP Address"
+msgstr "Στατική διεύθυνση IP"
+
+#: ../templates/hostapd/advanced.php:32 ../templates/hostapd/advanced.php:58
+#: ../templates/hostapd/advanced.php:71
+msgid "Please enter a valid IPv4 address"
+msgstr "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση IPv4"
+
+#: ../templates/hostapd/advanced.php:35
+msgid "Example: 192.168.1.100"
+msgstr "Παράδειγμα: 192.168.1.100"
+
+#: ../templates/hostapd/advanced.php:39
+msgid "Netmask / CIDR"
+msgstr "Μάσκα δικτύου / CIDR"
+
+#: ../templates/hostapd/advanced.php:45
+msgid "Please enter a valid netmask"
+msgstr "Παρακαλούμε εισάγετε μια έγκυρη μάσκα δικτύου"
+
+#: ../templates/hostapd/advanced.php:48
+msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
+msgstr "συμβολισμός CIDR (π.χ., 24 για 255.255.255.255.0)"
+
+#: ../templates/hostapd/advanced.php:52 ../templates/networking/general.php:14
+msgid "Gateway"
+msgstr "Πύλη"
+
+#: ../templates/hostapd/advanced.php:61
+msgid "Your router's IP address"
+msgstr "Διεύθυνση IP του δρομολογητή σας"
+
+#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/settings.php:150
+#: ../templates/dhcp/settings.php:157 ../templates/dhcp/general.php:149
+#: ../templates/dhcp/general.php:156
+msgid "DNS Server"
+msgstr "Διακομιστής DNS"
+
+#: ../templates/hostapd/advanced.php:74
+msgid "Usually same as gateway"
+msgstr "Συνήθως το ίδιο με την πύλη"
+
+#: ../templates/hostapd/advanced.php:89
+msgid "WiFi repeater mode"
+msgstr "Λειτουργία επαναλήπτη WiFi"
+
+#: ../templates/hostapd/advanced.php:99
+msgid "WiFi client AP mode"
+msgstr "Λειτουργία AP πελάτη WiFi"
+
+#: ../templates/hostapd/advanced.php:108
+msgid "Dual band AP mode"
+msgstr "Λειτουργία AP διπλής ζώνης"
+
+#: ../templates/hostapd/advanced.php:117
+msgid "Hide SSID in broadcast"
+msgstr "Απόκρυψη του SSID στη μετάδοση"
+
+#: ../templates/hostapd/advanced.php:126
+msgid "Enable AP isolation"
+msgstr "Ενεργοποίηση απομόνωσης AP"
+
+#: ../templates/hostapd/advanced.php:127
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "Αποκλείει τους ασύρματους πελάτες από το να βλέπουν ή να συνδέονται μεταξύ τους. Συνιστάται για δίκτυα επισκεπτών και δημόσια σημεία πρόσβασης."
+
+#: ../templates/hostapd/advanced.php:136
+msgid "Beacon interval"
+msgstr "Διάστημα φάρου"
+
+#: ../templates/hostapd/advanced.php:148
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Απενεργοποίηση <code>disassoc_low_ack</code>"
+
+#: ../templates/hostapd/advanced.php:151
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Μην αποσυνδέετε τους σταθμούς με βάση τις υπερβολικές αποτυχίες μετάδοσης."
+
+#: ../templates/hostapd/advanced.php:157
+msgid "Transmit power (dBm)"
+msgstr "Ισχύς εκπομπής (dBm)"
+
+#: ../templates/hostapd/advanced.php:158
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "Το dBm είναι μια μονάδα στάθμης που χρησιμοποιείται για να δηλώσει ότι ένας λόγος ισχύος εκφράζεται σε ντεσιμπέλ (dB) σε σχέση με ένα χιλιοστόβατ (mW). Τα 30 dBm ισούνται με 1000 mW, ενώ τα 0 dBm ισούνται με 1,25 mW."
+
+#: ../templates/hostapd/advanced.php:160
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "Ορίζει την επιλογή <code>txpower</code> για τη διασύνδεση AP και τη διαμορφωμένη χώρα."
+
+#: ../templates/hostapd/advanced.php:166
+msgid "Maximum number of clients"
+msgstr "Μέγιστος αριθμός πελατών"
+
+#: ../templates/hostapd/advanced.php:168
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Διαμορφώνει την επιλογή <code>max_num_sta</code> του hostapd. Η προεπιλεγμένη και μέγιστη τιμή είναι 2007. Εάν είναι κενή ή 0, ισχύει η προεπιλογή."
+
+#: ../templates/hostapd/advanced.php:173
+msgid "Country Code"
+msgstr "Κωδικός χώρας"
+
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+msgid "Basic settings"
+msgstr "Βασικές ρυθμίσεις"
+
+#: ../templates/hostapd/basic.php:5 ../templates/dhcp/settings.php:5
+#: ../templates/dhcp/general.php:5 ../templates/dhcp/summary.php:18
+#: ../templates/networking/general.php:12
+#: ../templates/networking/devices.php:17 ../templates/configure_client.php:31
+msgid "Interface"
+msgstr "Διασύνδεση"
+
+#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
+#: ../templates/dashboard.php:63
+msgid "SSID"
+msgstr "SSID"
+
+#: ../templates/hostapd/basic.php:14
+msgid "Please provide a valid SSID."
+msgstr "Παρακαλούμε δώστε ένα έγκυρο SSID."
+
+#: ../templates/hostapd/basic.php:20
+msgid "Wireless Mode"
+msgstr "Ασύρματη λειτουργία"
+
+#: ../templates/hostapd/basic.php:21
+msgid "Wireless standards which are not compatible with your adapter may be disabled"
+msgstr "Τα ασύρματα πρότυπα που δεν είναι συμβατά με τον προσαρμογέα σας ενδέχεται να απενεργοποιηθούν."
+
+#: ../templates/hostapd/basic.php:24
+#, php-format
+msgid "Based on the selected interface, 802.11%s is suggested."
+msgstr "Με βάση την επιλεγμένη διασύνδεση, προτείνεται το 802.11%s."
+
+#: ../templates/hostapd/basic.php:30 ../templates/wifi_stations/network.php:46
+msgid "Channel"
+msgstr "Κανάλι"
+
+#: ../templates/hostapd/logging.php:4
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Ενεργοποιήστε αυτήν την επιλογή για να καταγράφετε τη δραστηριότητα <code>του hostapd</code>."
+
+#: ../templates/hostapd/logging.php:9 ../templates/wg/logging.php:9
+msgid "Logfile output"
+msgstr "Έξοδος αρχείου καταγραφής"
+
+#: ../templates/hostapd/logging.php:10 ../templates/dhcp/logging.php:13
+#: ../templates/openvpn/logging.php:9
+msgid "Clear log"
+msgstr "Εκκαθάριση αρχείου καταγραφής"
+
+#: ../templates/hostapd/logging.php:15
+msgid "Log level"
+msgstr "Επίπεδο καταγραφής"
+
+#: ../templates/hostapd/logging.php:16
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Τα υψηλότερα επίπεδα μειώνουν τη λεκτικότητα των αρχείων καταγραφής. Συνιστάται το πληροφοριακό."
+
+#: ../templates/data_usage.php:7
+msgid "Data usage monitoring"
+msgstr "Παρακολούθηση της χρήσης δεδομένων"
+
+#: ../templates/data_usage.php:14
+msgid "Hourly"
+msgstr "Ωριαία"
+
+#: ../templates/data_usage.php:15
+msgid "Daily"
+msgstr "Καθημερινά"
+
+#: ../templates/data_usage.php:16
+msgid "Monthly"
+msgstr "Μηνιαία"
+
+#: ../templates/data_usage.php:23
+msgid "Hourly traffic amount"
+msgstr "Ωριαίο ποσό κυκλοφορίας"
+
+#: ../templates/data_usage.php:24 ../templates/data_usage.php:43
+#: ../templates/data_usage.php:62
+msgid "interface"
+msgstr "διεπαφή"
+
+#: ../templates/data_usage.php:32 ../templates/data_usage.php:51
+#: ../templates/data_usage.php:70
+#, php-format
+msgid "Loading %s bandwidth chart"
+msgstr "Φόρτωση του διαγράμματος εύρους ζώνης %s"
+
+#: ../templates/data_usage.php:32
+msgid "hourly"
+msgstr "ωριαία"
+
+#: ../templates/data_usage.php:42
+msgid "Daily traffic amount"
+msgstr "Ημερήσια κίνηση"
+
+#: ../templates/data_usage.php:51
+msgid "daily"
+msgstr "καθημερινά"
+
+#: ../templates/data_usage.php:61
+msgid "Monthly traffic amount"
+msgstr "Μηνιαίο ποσό κίνησης"
+
+#: ../templates/data_usage.php:70
+msgid "monthly"
+msgstr "μηνιαία"
+
+#: ../templates/data_usage.php:79
+msgid "Information provided by vnstat"
+msgstr "Πληροφορίες που παρέχονται από το vnstat"
+
+#: ../templates/data_usage.php:86
+msgid "Send"
+msgstr "Στείλτε"
+
+#: ../templates/data_usage.php:87
+msgid "Receive"
+msgstr "Λάβετε"
+
+#: ../templates/login.php:13
+msgid "Administrator login"
+msgstr "Σύνδεση διαχειριστή"
+
+#: ../templates/login.php:22 ../templates/about.php:85
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
+msgid "Username"
+msgstr "Όνομα χρήστη"
+
+#: ../templates/login.php:25 ../templates/admin/login.php:21
+#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
+#: ../app/lib/signprint.php:67
+msgid "Password"
+msgstr "Κωδικός πρόσβασης"
+
+#: ../templates/login.php:30 ../templates/admin.php:18
+#: ../includes/footer.php:23
+msgid "Login"
+msgstr "Σύνδεση"
+
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "Ξεχάσατε τον κωδικό πρόσβασης"
+
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:47
+#: ../templates/provider.php:36 ../includes/functions.php:1000
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../plugins-available/Captive/templates/main.php:51
+msgid "Status"
+msgstr "Κατάσταση"
+
+#: ../templates/wifi_stations/network.php:42
+msgid "Not configured"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:55
+msgid "RSSI"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:77
+msgid "Passphrase"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:90
+#: ../templates/networking/devices.php:55
+msgid "Update"
+msgstr "Ενημέρωση"
+
+#: ../templates/wifi_stations/network.php:92
+msgid "Disconnect"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:94
+msgid "Connect"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:97
+msgid "Add"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
+#: ../templates/openvpn.php:82
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: ../templates/wifi_stations/network.php:112
+msgid "Login Information Required"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:115
+msgid "This wireless network requires a login or the acceptance of terms of usage on a separate webpage"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:118
+msgid "Goto Webpage"
+msgstr ""
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "Διακοπή WireGuard"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "Έναρξη WireGuard"
+
+#: ../templates/wireguard.php:46 ../templates/restapi.php:46
+#: ../templates/provider.php:35
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../plugins-available/Tailscale/templates/main.php:70
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "Ομότιμοι"
+
+#: ../templates/wireguard.php:48 ../templates/openvpn.php:47
+#: ../templates/wg/configs.php:4 ../templates/openvpn/configs.php:4
+msgid "Configurations"
+msgstr "Διαμορφώσεις"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "Πληροφορίες που παρέχονται από την wireguard"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "Διαγραφή ρυθμίσεων WireGuard"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "Να διαγράψω αυτή τη διαμόρφωση; Αυτό δεν μπορεί να αναιρεθεί."
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "Ενεργοποίηση των ρυθμίσεων του WireGuard"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "Ενεργοποιήστε αυτή τη διαμόρφωση; Αυτό θα επανεκκινήσει την υπηρεσία wg-quick."
+
+#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
+msgid "Activate"
+msgstr "Ενεργοποίηση"
+
+#: ../templates/exception.php:6 ../templates/exception.php:17
+msgid "RaspAP Exception"
+msgstr "Εξαίρεση RaspAP"
+
+#: ../templates/exception.php:20
+msgid "An exception occurred"
+msgstr ""
+
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "Επανεκκίνηση του αποκλεισμού διαφημίσεων"
+
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "Έναρξη αποκλεισμού διαφημίσεων"
+
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "Πληροφορίες που παρέχονται από το adblock"
+
+#: ../templates/networking.php:20 ../templates/dhcp.php:50
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "Περίληψη"
+
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "Συσκευές"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "Δεδομένα κινητής τηλεφωνίας"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "Δρομολόγηση WLAN"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "Διαγνωστικά"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "Πληροφορίες που παρέχονται από /sys/class/net"
+
+#: ../templates/openvpn.php:20
+msgid "Start OpenVPN"
+msgstr "Έναρξη OpenVPN"
+
+#: ../templates/openvpn.php:24
+msgid "Stop OpenVPN"
+msgstr "Διακοπή του OpenVPN"
+
+#: ../templates/openvpn.php:46 ../templates/openvpn/general.php:2
+#: ../templates/configure_client.php:21
+#: ../plugins-available/Captive/templates/tabs/clients.php:5
+msgid "Client settings"
+msgstr "Ρυθμίσεις πελάτη"
+
+#: ../templates/openvpn.php:65
+msgid "Information provided by openvpn"
+msgstr "Πληροφορίες που παρέχονται από το openvpn"
+
+#: ../templates/openvpn.php:75
+msgid "Delete OpenVPN client"
+msgstr "Διαγραφή πελάτη OpenVPN"
+
+#: ../templates/openvpn.php:78
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Διαγραφή ρυθμίσεων πελάτη; Αυτό δεν μπορεί να αναιρεθεί."
+
+#: ../templates/openvpn.php:93
+msgid "Activate OpenVPN client"
+msgstr "Ενεργοποίηση του προγράμματος-πελάτη OpenVPN"
+
+#: ../templates/openvpn.php:96
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Ενεργοποίηση διαμόρφωσης πελάτη; Αυτό θα επανεκκινήσει την υπηρεσία openvpn-client."
+
+#: ../templates/restapi/general.php:12
+msgid "API Key"
+msgstr "Κλειδί API"
+
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "Παρακαλούμε δώστε ένα έγκυρο κλειδί API."
+
+#: ../templates/restapi/status.php:3
+msgid "RestAPI status"
+msgstr "Κατάσταση RestAPI"
+
+#: ../templates/restapi/status.php:4
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "Η τρέχουσα κατάσταση <code>της restapi.service</code> εμφανίζεται παρακάτω."
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s ρυθμίσεις"
+
+#: ../templates/provider/general.php:9 ../templates/wg/general.php:8
+#: ../templates/openvpn/general.php:8
+msgid "IPv4 Address"
+msgstr "Διεύθυνση IPv4"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "Στοιχεία λογαριασμού"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "Ο λογαριασμός μου"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "Τοποθεσία διακομιστή"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "Επιλέγοντας <strong>Αποθήκευση ρυθμίσεων</strong> θα συνδεθείτε στην επιλεγμένη χώρα."
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Επιλέγοντας <strong>Σύνδεση %s</strong> θα συνδεθείτε σε έναν συνιστώμενο διακομιστή."
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "Χώρα"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s κατάσταση"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Εγκατεστημένο Linux CLI: <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Τρέχον <code>%s</code> κατάσταση σύνδεσης εμφανίζεται παρακάτω."
+
+#: ../templates/about.php:21
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Captive/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/main.php:53
+msgid "About"
+msgstr "Σχετικά με το"
+
+#: ../templates/about.php:22 ../templates/about/general.php:29
+msgid "Insiders"
+msgstr "Insiders"
+
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "Συμβολή"
+
+#: ../templates/about.php:47 ../templates/about/general.php:11
+msgid "Check for update"
+msgstr "Έλεγχος για ενημέρωση"
+
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "Έλεγχος νέας έκδοσης σε εξέλιξη..."
+
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "Μια νέα έκδοση είναι διαθέσιμη: Έκδοση"
+
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "Η εγκατεστημένη έκδοση είναι η τελευταία έκδοση."
+
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "Εγκαταστήστε αυτή την ενημέρωση τώρα;"
+
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "Έλεγχος ταυτότητας GitHub"
+
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Η ενημέρωση των Insiders απαιτεί έλεγχο ταυτότητας στο GitHub."
+
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Τα διαπιστευτήριά σας θα αποσταλούν στο GitHub με ασφάλεια μέσω SSL. Ωστόσο, να είστε προσεκτικοί εάν η εγκατάσταση του RaspAP βρίσκεται σε WLAN που μοιράζονται μη αξιόπιστοι χρήστες."
+
+#: ../templates/about.php:87 ../templates/admin/general.php:18
+#: ../templates/admin/general.php:37 ../templates/admin/login.php:15
+msgid "Please provide a valid username."
+msgstr "Παρακαλούμε δώστε ένα έγκυρο όνομα χρήστη."
+
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "Προσωπικό Token πρόσβασης"
+
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "Παρακαλούμε δώστε ένα έγκυρο διακριτικό."
+
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "Εκτέλεση ενημέρωσης"
+
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "Ενημέρωση σε εξέλιξη"
+
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "Η εφαρμογή ενημερώνεται..."
+
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "Διαμόρφωση ενημέρωσης"
+
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "Ενημέρωση των πηγών"
+
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "Εγκατάσταση ενημερώσεων πακέτων"
+
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "Λήψη των τελευταίων αρχείων"
+
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "Εγκατάσταση εφαρμογής"
+
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "Η ενημέρωση ολοκληρώθηκε"
+
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Εμφανίστηκε σφάλμα. Ελέγξτε το αρχείο καταγραφής στο <code>/tmp/raspap_install.log</code>"
+
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "Επιτυχία. Ανανεώστε αυτή τη σελίδα για να επιβεβαιώσετε τη νέα έκδοση."
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "Εργαλεία συστήματος"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "Για να δημιουργήσετε ένα <a href=\"%s\" target=\"_blank\">αρχείο καταγραφής σφαλμάτων</a> συστήματος, κάντε κλικ ή πατήστε το παρακάτω κουμπί."
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Οι πληροφορίες καταγραφής σφαλμάτων περιέχουν την έκδοση του RaspAP, την τρέχουσα κατάσταση και διαμόρφωση των υπηρεσιών που σχετίζονται με το AP, τα εγκατεστημένα πακέτα συστήματος, την έκδοση του πυρήνα Linux και λεπτομέρειες δικτύωσης. Δεν περιλαμβάνονται κωδικοί πρόσβασης ή άλλα ευαίσθητα δεδομένα."
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Για να <a href=\"%s\" target=\"_blank\">επιθεωρήσετε τους προσαρμογείς</a> που συνδέονται με αυτή τη συσκευή, κάντε κλικ ή πατήστε το παρακάτω κουμπί."
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Το εργαλείο επιθεώρησης προσαρμογέα επιστρέφει λεπτομέρειες σχετικά με τις εξωτερικές συσκευές WLAN, συμπεριλαμβανομένων των προγραμμάτων οδήγησης, των υποστηριζόμενων λειτουργιών και ούτω καθεξής."
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "Για να επαναφέρετε το RaspAP στην <a href=\"%s\" target=\"_blank\">αρχική</a> του <a href=\" %s \" target=\"_blank\">διαμόρφωση</a>, κάντε κλικ ή πατήστε το παρακάτω κουμπί."
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Επαναφέρει όλες τις ρυθμίσεις υπηρεσιών του σημείου πρόσβασης (AP) στις προεπιλεγμένες τιμές τους. Αυτό ισχύει για τις hostapd, dhcpcd και dnsmasq."
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Τα προσαρμοσμένα αρχεία για προαιρετικά στοιχεία όπως το Ad Blocking, το WireGuard ή το OpenVPN θα παραμείνουν στο σύστημα."
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "Εκτέλεση επαναφοράς"
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "Θύρα διακομιστή Web"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "Διεύθυνση πρόσδεσης διακομιστή Web"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "Όριο μεγέθους διαγνωστικού αρχείου καταγραφής (KB)"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
+msgstr ""
+
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr ""
+
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
+msgstr ""
+
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr ""
+
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "Επανεκκίνηση του lighttpd"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "Πληροφορίες συστήματος"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "Όνομα κεντρικού υπολογιστή"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "Αναθεώρηση του Pi"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "OS"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "Πυρήνας"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "Χρόνος διαθεσιμότητας"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "Χρόνος συστήματος"
+
+#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
+#: ../templates/dhcp/summary.php:9 ../templates/networking/general.php:4
+#: ../templates/networking/devices.php:4
+#: ../plugins-available/Tailscale/templates/main.php:4
+#: ../plugins-available/Tailscale/Tailscale.php:403
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:6
+msgid "Refresh"
+msgstr "Ανανέωση"
+
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "Χρησιμοποιούμενη μνήμη"
+
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "Αποθήκευση που χρησιμοποιείται"
+
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "Φορτίο CPU"
+
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "Θερμοκρασία CPU"
+
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "Ρυθμίσεις γλώσσας"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "Επιλέξτε μια γλώσσα"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "Ρυθμίσεις θέματος"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "Επιλέξτε ένα θέμα"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "Χρώμα"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "Σκοτεινή λειτουργία"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "Χρήση της σκοτεινής λειτουργίας από το τρέχον θέμα"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "Θέμα συστήματος"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "Χρησιμοποιεί τη λειτουργία χρώματος του συστήματός σας"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "Μηνύματα ειδοποίησης"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Αυτόματο κλείσιμο ειδοποιήσεων μετά από ένα καθορισμένο χρονικό όριο"
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "Χρονικό όριο κλεισίματος ειδοποίησης (χιλιοστά του δευτερολέπτου)"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "Τα ακόλουθα πρόσθετα χρήστη είναι διαθέσιμα για την επέκταση της λειτουργικότητας του RaspAP."
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Επιλέξτε <strong>Λεπτομέρειες</strong> για περισσότερες πληροφορίες και για να εγκαταστήσετε ένα πρόσθετο."
+
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "Έναρξη υπηρεσίας RestAPI"
+
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "Διακοπή της υπηρεσίας RestAPI"
+
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "Πληροφορίες που παρέχονται από την restapi.service"
+
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
+msgstr ""
+
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "Επαναλήπτης"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "Σύνδεση"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "Κυτταρικό"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
+msgstr ""
+
+#: ../templates/dashboard.php:49
+msgid "Local"
+msgstr ""
+
+#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
+#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
+#: ../templates/dhcp/settings.php:39 ../templates/dhcp/general.php:39
+#: ../templates/dhcp/clients.php:20 ../templates/networking/general.php:13
+msgid "IP Address"
+msgstr "Διεύθυνση IP"
+
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "Μάσκα δικτύου"
+
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "Διεύθυνση MAC"
+
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "AP"
+
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "Bridged"
+
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "Adblock"
+
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "VPN"
+
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "Τείχος προστασίας"
+
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
+
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2.4G"
+
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "Δεν βρέθηκαν σταθμοί Wifi"
+
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Κάντε κλικ στο 'Rescan' για να αναζητήσετε κοντινούς σταθμούς Wifi."
+
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Κάντε κλικ στο 'Reinitialize' για να αναγκάσετε την επανεκκίνηση <code>του wpa_supplicant</code>."
+
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "Επανεκκίνηση"
+
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "Συνδεδεμένο"
+
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "Γνωστό"
+
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "Κοντά στο"
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "Διακοπή του dnsmasq"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "Επανεκκίνηση του dnsmasq"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "Έναρξη dnsmasq"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "Ρυθμίσεις διακομιστή"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "Στατικές μισθώσεις"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "Κατάλογος πελατών"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "Πληροφορίες που παρέχονται από την Dnsmasq"
+
+#: ../templates/wg/peers.php:10
+msgid "Enable peer"
+msgstr ""
+
+#: ../templates/wg/peers.php:13
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr ""
+
+#: ../templates/wg/peers.php:14
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr ""
+
+#: ../templates/wg/peers.php:20
+msgid "Peer public key"
+msgstr ""
+
+#: ../templates/wg/peers.php:31 ../templates/wg/general.php:99
+msgid "Local Port"
+msgstr ""
+
+#: ../templates/wg/peers.php:45
+msgid "Endpoint address"
+msgstr ""
+
+#: ../templates/wg/peers.php:52
+msgid "Allowed IPs"
+msgstr ""
+
+#: ../templates/wg/peers.php:59
+msgid "Persistent keepalive"
+msgstr ""
+
+#: ../templates/wg/peers.php:70
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr ""
+
+#: ../templates/wg/peers.php:71
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr ""
+
+#: ../templates/wg/peers.php:73 ../templates/networking/diagnostics.php:34
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:23
+msgid "Download"
+msgstr "Λήψη"
+
+#: ../templates/wg/general.php:5
+msgid "Tunnel settings"
+msgstr ""
+
+#: ../templates/wg/general.php:12
+msgid "Configuration Method"
+msgstr ""
+
+#: ../templates/wg/general.php:15
+msgid "Upload file"
+msgstr ""
+
+#: ../templates/wg/general.php:19
+msgid "Create manually"
+msgstr ""
+
+#: ../templates/wg/general.php:27
+msgid "Upload a WireGuard config"
+msgstr ""
+
+#: ../templates/wg/general.php:29
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr ""
+
+#: ../templates/wg/general.php:38
+msgid "Apply iptables rules to the selected interface"
+msgstr ""
+
+#: ../templates/wg/general.php:39
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr ""
+
+#: ../templates/wg/general.php:41
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr ""
+
+#: ../templates/wg/general.php:50
+msgid "Enable kill switch"
+msgstr ""
+
+#: ../templates/wg/general.php:51
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr ""
+
+#: ../templates/wg/general.php:53
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr ""
+
+#: ../templates/wg/general.php:59 ../templates/openvpn/general.php:59
+msgid "Configuration File"
+msgstr "Αρχείο διαμόρφωσης"
+
+#: ../templates/wg/general.php:62
+msgid "Select WireGuard configuration file (.conf)"
+msgstr ""
+
+#: ../templates/wg/general.php:72
+msgid "Create a local WireGuard config"
+msgstr ""
+
+#: ../templates/wg/general.php:76
+msgid "Enable server"
+msgstr ""
+
+#: ../templates/wg/general.php:80
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr ""
+
+#: ../templates/wg/general.php:81
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr ""
+
+#: ../templates/wg/general.php:88
+msgid "Local public key"
+msgstr ""
+
+#: ../templates/wg/general.php:107
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:120
+msgid "DNS"
+msgstr "DNS"
+
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr ""
+
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr ""
+
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr ""
+
+#: ../templates/admin/general.php:3
+msgid "Change password"
+msgstr "Αλλαγή κωδικού πρόσβασης"
+
+#: ../templates/admin/general.php:4
+#: ../plugins-available/Tailscale/templates/main.php:22
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+#: ../templates/admin/general.php:28
+msgid "Enable limited privilege user"
+msgstr "Ενεργοποίηση χρήστη με περιορισμένα προνόμια"
+
+#: ../templates/admin/general.php:30
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "Αυτή η επιλογή επιτρέπει σε έναν χρήστη που δεν είναι διαχειριστής, ο οποίος μπορεί να έχει πρόσβαση στο περιβάλλον διαχείρισης του RaspAP, αλλά έχει <strong>περιορισμένη δυνατότητα τροποποίησης των υφιστάμενων ρυθμίσεων</strong>. Αυτός ο χρήστης γίνεται ενεργός όταν αποσυνδεθεί ο τρέχων χρήστης διαχειριστής."
+
+#: ../templates/admin/general.php:34
+msgid "Limited user login"
+msgstr "Περιορισμένη σύνδεση χρήστη"
+
+#: ../templates/admin/general.php:43
+msgid "Limited user password"
+msgstr "Περιορισμένος κωδικός πρόσβασης χρήστη"
+
+#: ../templates/admin/general.php:48
+msgid "Please enter a valid password."
+msgstr "Παρακαλώ εισάγετε έναν έγκυρο κωδικό πρόσβασης."
+
+#: ../templates/admin/login.php:2
+msgid "Submit"
+msgstr "Υποβολή"
+
+#: ../templates/admin/login.php:11
+msgid "Admin login"
+msgstr "Σύνδεση διαχειριστή"
+
+#: ../templates/admin/login.php:26
+msgid "Please enter your password."
+msgstr "Παρακαλώ εισάγετε τον κωδικό πρόσβασής σας."
+
+#: ../templates/admin/avatar.php:3
+msgid "Reset avatar"
+msgstr "Επαναφορά avatar"
+
+#: ../templates/admin/avatar.php:11 ../templates/admin.php:21
+msgid "Avatar"
+msgstr "Avatar"
+
+#: ../templates/admin/avatar.php:15
+msgid "Click or tap to upload a new user avatar."
+msgstr "Κάντε κλικ ή πατήστε για να φορτώσετε ένα νέο avatar χρήστη."
+
+#: ../templates/admin/avatar.php:16
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "Γίνονται δεκτά αρχεία εικόνων τύπου <code>JPG, GIF ή PNG</code>. Μέγιστο μέγεθος αρχείου: 2 MB."
+
+#: ../templates/about/general.php:8
+msgid "RaspAP"
+msgstr "RaspAP"
+
+#: ../templates/about/general.php:20
+#, php-format
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "Η RaspAP είναι μια συνδημιουργία των %1$s και %2$s με τη συμβολή των %3$s και %4$sμας. Μάθετε περισσότερα σχετικά με την ένταξή σας στο έργο ως %5$s, %6$s ή %7$s με άμεση πρόσβαση στο %8$s διαθέσιμο στο %9$s."
+
+#: ../templates/about/general.php:23
+msgid "developer community"
+msgstr "κοινότητα προγραμματιστών"
+
+#: ../templates/about/general.php:24
+msgid "language translators"
+msgstr "μεταφραστές γλωσσών"
+
+#: ../templates/about/general.php:25
+msgid "code contributor"
+msgstr "Συντελεστής κώδικα"
+
+#: ../templates/about/general.php:26
+msgid "translator"
+msgstr "μεταφραστής"
+
+#: ../templates/about/general.php:27
+msgid "financial sponsor"
+msgstr "οικονομικός χορηγός"
+
+#: ../templates/about/general.php:28
+msgid "exclusive features"
+msgstr "αποκλειστικά χαρακτηριστικά"
+
+#: ../templates/dhcp/settings.php:2 ../templates/dhcp/general.php:2
+msgid "DHCP server settings"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:10 ../templates/dhcp/general.php:10
+msgid "Adapter IP Address Settings"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:28 ../templates/dhcp/general.php:28
+msgid "Enable fallback to static option"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:31 ../templates/dhcp/general.php:31
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:36 ../templates/dhcp/general.php:36
+msgid "Static IP options"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:42 ../templates/dhcp/general.php:42
+msgid "Please provide a valid IP Address."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:49 ../templates/dhcp/general.php:49
+msgid "Subnet Mask"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:52 ../templates/dhcp/general.php:52
+msgid "Please provide a valid Subnet mask."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:59 ../templates/dhcp/general.php:59
+msgid "Default gateway"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:62 ../templates/dhcp/general.php:62
+msgid "Please provide a valid Default gateway."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:71 ../templates/dhcp/general.php:71
+msgid "Install a default route for this interface"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:72
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:75
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:84 ../templates/dhcp/general.php:83
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:85 ../templates/dhcp/general.php:84
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:88
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:93 ../templates/dhcp/general.php:92
+msgid "DHCP options"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:99 ../templates/dhcp/general.php:98
+msgid "Enable DHCP for this interface"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:102 ../templates/dhcp/general.php:101
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:110 ../templates/dhcp/general.php:109
+msgid "Starting IP Address"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:113 ../templates/dhcp/general.php:112
+msgid "Please provide a valid Starting IP Address."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:119 ../templates/dhcp/general.php:118
+msgid "Ending IP Address"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:122 ../templates/dhcp/general.php:121
+msgid "Please provide a valid Ending IP Address."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:128 ../templates/dhcp/general.php:127
+msgid "Lease Time"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:131 ../templates/dhcp/general.php:130
+msgid "Please provide a valid Lease Time."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:135 ../templates/dhcp/general.php:134
+msgid "Interval"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:137 ../templates/dhcp/general.php:136
+msgid "Minute(s)"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:138 ../templates/dhcp/general.php:137
+msgid "Hour(s)"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:139 ../templates/dhcp/general.php:138
+msgid "Day(s)"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:140 ../templates/dhcp/general.php:139
+msgid "Infinite"
+msgstr ""
+
+#: ../templates/dhcp/settings.php:143 ../templates/dhcp/general.php:142
+msgid "Please provide a valid Interval."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:164 ../templates/dhcp/general.php:163
+#: ../templates/dhcp/summary.php:25
+msgid "Metric"
+msgstr ""
+
+#: ../templates/dhcp/general.php:74
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr ""
+
+#: ../templates/dhcp/general.php:87
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:3
+msgid "Advanced Settings"
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:6
 msgid "Upstream DNS servers"
-msgstr "Upstream DNS servers"
+msgstr ""
 
+#: ../templates/dhcp/advanced.php:11
 msgid "Only ever query DNS servers configured below"
-msgstr "Only ever query DNS servers configured below"
+msgstr ""
 
+#: ../templates/dhcp/advanced.php:14
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
 
+#: ../templates/dhcp/advanced.php:15
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
 
+#: ../templates/dhcp/advanced.php:29
 msgid "Add upstream DNS server"
-msgstr "Add upstream DNS server"
+msgstr ""
 
-msgid "Format"
-msgstr "Format"
+#: ../templates/dhcp/advanced.php:31
+#, php-format
+msgid "e.g. %s"
+msgstr ""
 
+#: ../templates/dhcp/advanced.php:36
+msgid "Format: "
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:41
 msgid "Choose a hosted server"
-msgstr "Choose a hosted server"
+msgstr ""
 
+#: ../templates/dhcp/logging.php:4
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr ""
+
+#: ../templates/dhcp/logging.php:8
 msgid "Log DHCP requests"
-msgstr "Log DHCP requests"
+msgstr ""
 
+#: ../templates/dhcp/logging.php:12
 msgid "Log DNS queries"
-msgstr "Log DNS queries"
-
-#: includes/hostapd.php 
-msgid "Basic" 
-msgstr "Βασικό" 
-
-msgid "Advanced" 
-msgstr "Προχωρημένο" 
-
-msgid "Basic settings" 
-msgstr "Βασικές ρυθμίσεις" 
-
-msgid "Wireless Mode" 
-msgstr "Ασύρματη λειτουργία" 
-
-msgid "Security settings" 
-msgstr "Ρυθμίσεις ασφαλείας" 
-
-msgid "Security type" 
-msgstr "Τύπος ασφάλειας" 
-
-msgid "Encryption Type" 
-msgstr "Τύπος κρυπτογράφησης" 
-
-msgid "PSK" 
-msgstr "PSK" 
-
-msgid "Advanced settings" 
-msgstr "Προχωρημένες ρυθμίσεις" 
-
-msgid "Country Code" 
-msgstr "Κωδικός χώρας" 
-
-msgid "Information provided by hostapd" 
-msgstr "Οι πληροφορίες παρέχονται από το hostapd" 
-
-msgid "Attempting to start hotspot" 
-msgstr "Προσπάθεια εκκίνησης του hotspot" 
-
-msgid "Attempting to stop hotspot" 
-msgstr "Προσπάθεια παύσης του hotspot" 
-
-msgid "HostAPD is not running" 
-msgstr "Το hostapd δεν εκτελείται" 
-
-msgid "HostAPD is running" 
-msgstr "Το hostapd εκτελείται" 
-
-msgid "SSID must be between 1 and 32 characters" 
-msgstr "Το SSID πρέπει να είναι μεταξύ 1 και 32 χαρακτήρων" 
-
-msgid "WPA passphrase must be between 8 and 63 characters" 
-msgstr "Η φράση πρόσβασης WPA πρέπει να είναι μεταξύ 8 και 63 χαρακτήρων" 
-
-msgid "Unknown interface" 
-msgstr "Άγνωστη διεπαφή" 
-
-msgid "Country code must be blank or two characters" 
-msgstr "Ο κωδικός χώρας πρέπει να είναι κενός ή δύο χαρακτήρες" 
-
-msgid "Wifi Hotspot settings saved" 
-msgstr "Οι ρυθμίσεις WiFi hotspot αποθηκεύτηκαν" 
-
-msgid "Unable to save wifi hotspot settings" 
-msgstr "Αδύνατη η αποθήκευση ρυθμίσεων wifi hotspot" 
-
-msgid "Start hotspot" 
-msgstr "Εκκίνηση hotspot" 
-
-msgid "Stop hotspot" 
-msgstr "Παύση hotspot" 
-
-msgid "Restart hotspot" 
-msgstr "Επανεκκινήστε hotspot" 
-
-msgid "Enable logging" 
-msgstr "Ενεργοποίηση καταγραφής" 
-
-msgid "Logfile output" 
-msgstr "Απόδοση αρχείου καταγραφής" 
-
-msgid "WiFi client AP mode" 
-msgstr "Λειτουργία WiFi client σημείου πρόσβασης" 
-
-msgid "Hide SSID in broadcast" 
-msgstr "Απόκρυψη εκπομπής SSID" 
-
-msgid "Maximum number of clients" 
-msgstr "Μέγιστος αριθμός client" 
-
-msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies." 
-msgstr "Ρυθμίζει την επιλογή max_num_sta του hostapd. Το προεπιλεγμένο και το μέγιστο είναι το 2007. Εάν είναι κενό ή 0, ισχύει η προεπιλογή." 
-
-#: includes/networking.php 
-msgid "Summary" 
-msgstr "Επισκόπηση" 
-
-msgid "Current settings" 
-msgstr "Τρέχουσες ρυθμίσεις" 
-
-msgid "Default Gateway" 
-msgstr "Προεπιλεγμένη πύλη" 
-
-msgid "Alternate DNS Server" 
-msgstr "Εναλλακτικός διακομιστής DNS" 
-
-msgid "Adapter IP Address Settings" 
-msgstr "Ρυθμίσεις διεύθυνσης IP προσαρμογέα" 
-
-msgid "Enable Fallback to Static Option" 
-msgstr "Ενεργοποίση επαναφοράς σε στατική επιλογή" 
-
-msgid "Static IP" 
-msgstr "Στατική IP" 
-
-msgid "Enabled" 
-msgstr "Ενεργοποιήθηκε" 
-
-msgid "Disabled" 
-msgstr "Απενεργοποιήθηκε" 
-
-msgid "Static IP Options" 
-msgstr "Επιλογές στατικής IP" 
-
-msgid "Apply settings" 
-msgstr "Εφαρμογή ρυθμίσεων" 
-
-msgid "Information provided by /sys/class/net" 
-msgstr "Οι πληροφορίες παρέχονται από το /sys/class/net" 
-
-#: includes/system.php 
-msgid "System Information" 
-msgstr "Πληροφορίες συστήματος" 
-
-msgid "Language" 
-msgstr "Γλώσσα" 
-
-msgid "Language settings" 
-msgstr "Ρυθμίσεις γλώσσας" 
-
-msgid "Select a language" 
-msgstr "Επιλογή γλώσσας" 
-
-msgid "Language setting saved" 
-msgstr "Οι ρυθμίσεις γλώσσας αποθηκεύτηκαν" 
-
-msgid "Console" 
-msgstr "Κονσόλα" 
-
-msgid "Hostname" 
-msgstr "Όνομα κεντρικού υπολογιστή" 
-
-msgid "Pi Revision" 
-msgstr "Pi Revision" 
-
-msgid "Uptime" 
-msgstr "Χρόνος λειτουργίας" 
-
-msgid "Memory Used" 
-msgstr "Χρησιμοποιημένη μνήμη" 
-
-msgid "CPU Load" 
-msgstr "Φόρτος CPU" 
-
-msgid "Reboot" 
-msgstr "Επανεκκίνηση" 
-
-msgid "Shutdown" 
-msgstr "Απενεργοποίηση" 
-
-msgid "System Rebooting Now!" 
-msgstr "Το σύστημα επανεκκινείται τώρα!" 
-
-msgid "System Shutting Down Now!" 
-msgstr "Το σύστημα απενεργοποιείται τώρα!" 
-
-#: includes/themes.php 
-msgid "Theme settings" 
-msgstr "Ρυθμίσεις θέματος" 
-
-msgid "Select a theme" 
-msgstr "Επιλογή θέματος" 
-
-#: includes/data_usage.php 
-msgid "Data usage" 
-msgstr "Χρήση δεδομένων" 
-
-msgid "Data usage monitoring" 
-msgstr "Παρακολούθηση χρήσης δεδομένων" 
-
-msgid "Hourly traffic amount" 
-msgstr "Ωριαίος όγκος δεδομένων" 
-
-msgid "Daily traffic amount" 
-msgstr "Ημερήσιος όγκος δεδομένων" 
-
-msgid "Monthly traffic amount" 
-msgstr "Μηνιαίος όγκος δεδομένων" 
-
-msgid "Hourly" 
-msgstr "Ωριαίο" 
-
-msgid "Daily" 
-msgstr "Ημερήσιο" 
-
-msgid "Monthly" 
-msgstr "Μηνιαίο" 
-
-msgid "interface" 
-msgstr "Διεπαφή" 
-
-msgid "date" 
-msgstr "ημερομηνία" 
-
-msgid "Send MB" 
-msgstr "Αποστολή MB" 
-
-msgid "Receive MB" 
-msgstr "Λήψη MB" 
-
-msgid "Information provided by vnstat" 
-msgstr "Οι πληροφορίες παρέχονται από το vnstat" 
-
-msgid "Loading {0} bandwidth chart" 
-msgstr "Φόρτωση γραφήματος εύρους ζώνης {0}" 
-
-msgid "Showing {0} to {1} of {2} entries" 
-msgstr "Προβολή {0} έως {1} από {2} καταχωρήσεις" 
-
-#: includes/openvpn.php 
-msgid "OpenVPN is not running" 
-msgstr "Το OpenVPN δεν εκτελείται" 
-
-msgid "OpenVPN is running" 
-msgstr "Το OpenVPN εκτελείται" 
-
-msgid "Server settings" 
-msgstr "Ρυθμίσεις διακομιστή" 
-
-msgid "Select OpenVPN configuration file (.ovpn)" 
-msgstr "Επιλογή αρχείου ρυθμίσεων OpenVPN (.ovpn)" 
-
-msgid "Client Log" 
-msgstr "Μητρώο client" 
-
-msgid "Port" 
-msgstr "Πόρτα" 
-
-msgid "Protocol" 
-msgstr "Πρωτόκολο" 
-
-msgid "Root CA certificate" 
-msgstr "Πιστοποιητικό CA Root" 
-
-msgid "Server certificate" 
-msgstr "Πιστοποιητικό διακομιστή" 
-
-msgid "Diffie Hellman parameters" 
-msgstr "Παράμετροι Diffie Hellman" 
-
-msgid "KeepAlive" 
-msgstr "KeepAlive" 
-
-msgid "Server log" 
-msgstr "Μητρώο διακομιστή" 
-
-msgid "Start OpenVPN" 
-msgstr "Εκκίνηση OpenVPN" 
-
-msgid "Stop OpenVPN" 
-msgstr "Παύση OpenVPN" 
-
-msgid "Information provided by openvpn" 
-msgstr "Οι πληροφορίες παρέχονται από το openvpn" 
-
-msgid "Attempting to start openvpn" 
-msgstr "Προσπάθεια εκκίνησης του openvpn" 
-
-msgid "Attempting to stop openvpn" 
-msgstr "Προσπάθεια παύσης του openvpn" 
-
-#: includes/torproxy.php 
-msgid "TOR is not running" 
-msgstr "Το TOR δεν εκτελείται" 
-
-msgid "TOR is running" 
-msgstr "TOR εκτελείται" 
-
-msgid "Relay" 
-msgstr "Αναμετάδοση" 
-
-msgid "Relay settings" 
-msgstr "Ρυθμίσεις αναμετάδοσης" 
-
-msgid "Nickname" 
-msgstr "Ψευδώνυμο" 
-
-msgid "Address" 
-msgstr "Διεύθυνση" 
-
-msgid "Start TOR" 
-msgstr "Εκκίνηση TOR" 
-
-msgid "Stop TOR" 
-msgstr "Παύση TOR" 
-
-msgid "Information provided by tor" 
-msgstr "Οι πληροφορίες παρέχονται από το TOR" 
-
-msgid "Attempting to start TOR" 
-msgstr "Προσπάθεια εκκίνησης του TOR" 
-
-msgid "Attempting to stop TOR" 
-msgstr "Προσπάθεια παύσης του TOR" 
-
-#: common form controls 
-msgid "Save settings" 
-msgstr "Αποθήκευση ρυθμίσεων" 
-
-msgid "Refresh" 
-msgstr "Ανανέωση" 
-
-msgid "running" 
-msgstr "εκτελείται" 
-
-msgid "stopped" 
-msgstr "διακόπηκε" 
-
-msgid "Remove" 
-msgstr "Αφαίρεση" 
-
-msgid "up" 
-msgstr "πάνω" 
-
-msgid "down" 
-msgstr "κάτω"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+#: ../templates/networking/devices.php:19
+msgid "MAC address"
+msgstr "Διεύθυνση MAC"
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr ""
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr ""
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr ""
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
+msgstr ""
+
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
+msgstr ""
+
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "Συνδέστε το %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "Αποσύνδεση %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "Πληροφορίες που παρέχονται από το %s"
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "Μέθοδος πιστοποίησης"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "Όνομα χρήστη και κωδικός πρόσβασης"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "Πιστοποιητικά"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "Εισάγετε όνομα χρήστη και κωδικό πρόσβασης"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "Πιστοποιητικά στο αρχείο ρυθμίσεων"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "Το RaspAP υποστηρίζει πιστοποιητικά συμπεριλαμβάνοντάς τα στο αρχείο ρυθμίσεων."
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Πιστοποιητικό υπογραφής αρχής πιστοποίησης (CA) (π.χ. <code>ca.crt</code>): περικλείεται σε <code>&lt;ca> ... &lt;/ca></code> ετικέτες."
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Πιστοποιητικό πελάτη (δημόσιο κλειδί) (π.χ. <code>client.crt</code>): περικλείεται σε <code>&lt;cert> ... &lt;/cert></code> ετικέτες."
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Ιδιωτικό κλειδί του πιστοποιητικού πελάτη (π.χ. <code>client.key</code>): περικλείεται σε <code>&lt;key> ... &lt;/key></code> ετικέτες."
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Επιλέξτε το αρχείο ρυθμίσεων OpenVPN (.ovpn)"
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Ενεργοποιήστε αυτή την επιλογή για να καταγράφετε τη δραστηριότητα <code>openvpn</code>."
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "Ενεργοποίηση καταγραφής"
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Οι τρέχουσες διαθέσιμες διαμορφώσεις πελατών OpenVPN εμφανίζονται παρακάτω."
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Η ενεργοποίηση μιας διαμόρφωσης θα επανεκκινήσει την υπηρεσία <code>openvpn-client</code>."
+
+#: ../templates/admin.php:7
+msgid "Authentication"
+msgstr ""
+
+#: ../templates/admin.php:47
+msgid "Update admin password"
+msgstr ""
+
+#: ../templates/admin.php:54
+msgid "Old password"
+msgstr ""
+
+#: ../templates/admin.php:59
+msgid "Please enter your old password."
+msgstr ""
+
+#: ../templates/admin.php:66
+msgid "New password"
+msgstr ""
+
+#: ../templates/admin.php:71
+msgid "Please enter a new password."
+msgstr ""
+
+#: ../templates/admin.php:78
+msgid "Repeat new password"
+msgstr ""
+
+#: ../templates/admin.php:83
+msgid "Please re-enter your new password."
+msgstr ""
+
+#: ../templates/admin.php:91
+msgid "Save"
+msgstr ""
+
+#: ../templates/admin.php:103
+msgid "Logout and enable limited user mode"
+msgstr ""
+
+#: ../templates/admin.php:114
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr ""
+
+#: ../templates/admin.php:120
+msgid "Save and logout"
+msgstr ""
+
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "Σύνδεση στο Internet"
+
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "Πρόσβαση στο Διαδίκτυο"
+
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "Πίνακας δρομολόγησης"
+
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "ακατέργαστη έξοδος"
+
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "Τρέχουσες ρυθμίσεις"
+
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "Συσκευές δικτύου"
+
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "Συσκευή"
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "Τύπος συσκευής"
+
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "Επανεκκίνηση δρομολόγησης WLAN"
+
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "Διακοπή δρομολόγησης WLAN"
+
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "Έναρξη δρομολόγησης WLAN"
+
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "Δρομολόγηση ασύρματου LAN"
+
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "δρομολόγηση"
+
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Αυτή η επιλογή ρυθμίζει τις παραμέτρους του RaspAP για <b>τη δρομολόγηση της κυκλοφορίας δικτύου από τη διασύνδεση του ασύρματου πελάτη (STA)</b> σε άλλη διαθέσιμη διασύνδεση."
+
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Όταν επιλέγεται μια διασύνδεση εξόδου, προστίθενται κανόνες <code>iptables</code> για τη δρομολόγηση πακέτων με τη χρήση μετάφρασης διευθύνσεων δικτύου (NAT). Αυτό γίνεται συχνά για να μοιραστείτε τη συνδεσιμότητα στο διαδίκτυο από ένα WLAN με συσκευές σε μια διασύνδεση <code>eth0</code>, <code>usb0</code> ή προβλέψιμη <code>enx</code>."
+
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "Διεπαφή ασύρματου πελάτη"
+
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "Διεπαφή εξόδου"
+
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Ρύθμιση στατικής διεύθυνσης IP και DHCP για τη διασύνδεση εξόδου"
+
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "Ρυθμίσεις δεδομένων κινητής τηλεφωνίας"
+
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "Αριθμός PIN της κάρτας SIM"
+
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "Ρυθμίσεις APN"
+
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "Όνομα σημείου πρόσβασης (APN)"
+
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "Speedtest"
+
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "Επιλογή διακομιστή"
+
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "Απόρρητο"
+
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "Διακομιστής"
+
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "Ping"
+
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "ms"
+
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "Jitter"
+
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "Mbps"
+
+#: ../templates/networking/diagnostics.php:40
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:24
+msgid "Upload"
+msgstr "Ανέβασμα"
+
+#: ../templates/configure_client.php:12
+msgid "Disconnected"
+msgstr "Αποσυνδεδεμένο"
+
+#: ../templates/configure_client.php:24
+msgid "Rescan"
+msgstr "Επανασκόπηση"
+
+#: ../templates/configure_client.php:34
+msgid "Set"
+msgstr "Ορίστε"
+
+#: ../templates/configure_client.php:49
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Σημείωση:</strong> Τα σημεία πρόσβασης WEP εμφανίζονται ως \"Ανοιχτά\". Το RaspAP δεν υποστηρίζει επί του παρόντος τη σύνδεση σε WEP"
+
+#: ../templates/configure_client.php:59
+msgid "Configuring WiFi Client"
+msgstr "Ρύθμιση παραμέτρων πελάτη WiFi"
+
+#: ../templates/configure_client.php:62
+msgid "Configuring Wifi Client Interface..."
+msgstr "Διαμόρφωση της διεπαφής πελάτη Wifi..."
+
+#: ../includes/system.php:67
+#, php-format
+msgid "Changing log limit size to %s KB"
+msgstr ""
+
+#: ../includes/system.php:86
+#, php-format
+msgid "Changing alert close timeout to %s ms"
+msgstr ""
+
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
+msgstr ""
+
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
+msgstr ""
+
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
+msgstr ""
+
+#: ../includes/networking.php:137
+#, php-format
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr ""
+
+#: ../includes/networking.php:147
+#, php-format
+msgid "Attempting to restart routing between %s and %s interfaces"
+msgstr ""
+
+#: ../includes/networking.php:151
+#, php-format
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr ""
+
+#: ../includes/networking.php:252
+#, php-format
+msgid "DHCP configuration for %s enabled"
+msgstr ""
+
+#: ../includes/networking.php:259
+#, php-format
+msgid "DHCP configuration for %s added"
+msgstr ""
+
+#: ../includes/networking.php:265
+#, php-format
+msgid "DHCP configuration for %s updated"
+msgstr ""
+
+#: ../includes/networking.php:271
+#, php-format
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr ""
+
+#: ../includes/networking.php:272
+#, php-format
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr ""
+
+#: ../includes/networking.php:294
+#, php-format
+msgid "Dnsmasq  configuration for %s added"
+msgstr ""
+
+#: ../includes/restapi.php:59
+#, php-format
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
+msgstr ""
+
+#: ../includes/dashboard.php:72
+#, php-format
+msgid "%d WLAN %s"
+msgstr ""
+
+#: ../includes/dashboard.php:78
+#, php-format
+msgid "%d LAN %s"
+msgstr ""
+
+#: ../includes/footer.php:6
+#, php-format
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr ""
+
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
+msgstr ""
+
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
+msgstr ""
+
+#: ../includes/footer.php:17
+msgid "Session Expired"
+msgstr ""
+
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
+msgstr ""
+
+#: ../includes/provider.php:65
+#, php-format
+msgid "Expected %s binary not found at: %s"
+msgstr ""
+
+#: ../includes/provider.php:66
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr ""
+
+#: ../includes/provider.php:70
+#, php-format
+msgid "Unable to execute %s binary found at: %s"
+msgstr ""
+
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr ""
+
+#: ../includes/provider.php:119
+#, php-format
+msgid "Attempting to connect to %s"
+msgstr ""
+
+#: ../includes/provider.php:318
+msgid "Select a country..."
+msgstr ""
+
+#: ../includes/provider.php:387
+#, php-format
+msgid "Account information not available from %s's Linux CLI."
+msgstr ""
+
+#: ../includes/functions.php:1005
+msgid "Mem Use"
+msgstr ""
+
+#: ../includes/functions.php:1008
+msgid "CPU"
+msgstr ""
+
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "Εκτυπώσιμη πινακίδα Wi-Fi"
+
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Σύνδεση Wi-Fi"
+
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Για να συνδεθείτε με το τηλέφωνο ή το tablet σας, σαρώστε τον παραπάνω κωδικό QR με την εφαρμογή της κάμεράς σας."
+
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "Για άλλες συσκευές, χρησιμοποιήστε τα παρακάτω στοιχεία σύνδεσης."
+
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "Δίκτυο"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:8
+msgid "Capture interface"
+msgstr "Διεπαφή σύλληψης"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:15
+msgid "Output file"
+msgstr "Αρχείο εξόδου"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:16
+msgid "Path where capture file will be saved (.pcap format)"
+msgstr "Διαδρομή στην οποία θα αποθηκευτεί το αρχείο καταγραφής (.pcap format)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:20
+msgid "File will be saved with .pcap extension"
+msgstr "Το αρχείο θα αποθηκευτεί με επέκταση .pcap"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:26
+msgid "Capture filter (BPF syntax)"
+msgstr "Φίλτρο σύλληψης (σύνταξη BPF)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:28
+msgid "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
+msgstr "Σύνταξη του φίλτρου πακέτων Berkeley. Αφήστε το κενό για να καταγράψετε όλη την κυκλοφορία."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:33
+msgid "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
+msgstr "Παραδείγματα: <code>θύρα 80</code>, <code>κεντρικός υπολογιστής 192.168.1.1</code>, <code>tcp και όχι θύρα 22</code>"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:38
+msgid "Capture limits"
+msgstr "Όρια σύλληψης"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:42
+msgid "Packet count limit"
+msgstr "Όριο αριθμού πακέτων"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:44
+msgid "Stop capture after this many packets. Leave empty for unlimited."
+msgstr "Σταματήστε τη λήψη μετά από τόσα πακέτα. Αφήστε το κενό για απεριόριστο."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:51
+msgid "Duration limit (seconds)"
+msgstr "Όριο διάρκειας (δευτερόλεπτα)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:53
+msgid "Stop capture after this many seconds. Leave empty for unlimited."
+msgstr "Σταματήστε τη λήψη μετά από τόσα δευτερόλεπτα. Αφήστε το κενό για απεριόριστο."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:60
+msgid "Ring buffer settings"
+msgstr "Ρυθμίσεις ρυθμιστικού δακτυλίου"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:64
+msgid "File size (KB)"
+msgstr "Μέγεθος αρχείου (KB)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:66
+msgid "Create new file when this size is reached. Leave empty to disable."
+msgstr "Δημιουργία νέου αρχείου όταν επιτευχθεί αυτό το μέγεθος. Αφήστε το κενό για να το απενεργοποιήσετε."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:70
+msgid "10000 = 10 MB per file"
+msgstr "10000 = 10 MB ανά αρχείο"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:74
+msgid "Number of files"
+msgstr "Αριθμός αρχείων"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:76
+msgid "Maximum number of ring buffer files to keep. Oldest files are deleted."
+msgstr "Μέγιστος αριθμός αρχείων δακτυλιοειδούς απομονωτή που πρέπει να διατηρηθούν. Τα παλαιότερα αρχεία διαγράφονται."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:83
+msgid "Advanced options"
+msgstr "Προηγμένες επιλογές"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:87
+msgid "Snapshot length (bytes)"
+msgstr "Μήκος στιγμιότυπου (bytes)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:89
+msgid "Limit the amount of data captured per packet. Leave empty for full packets."
+msgstr "Περιορίστε τον όγκο των δεδομένων που συλλαμβάνονται ανά πακέτο. Αφήστε το κενό για πλήρη πακέτα."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:93
+msgid "96 bytes captures headers only, reduces file size"
+msgstr "96 bytes καταγράφει μόνο τις επικεφαλίδες, μειώνει το μέγεθος του αρχείου"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:101
+msgid "Promiscuous mode"
+msgstr "Λειτουργία Promiscuous"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:104
+msgid "Capture all packets on the network segment, not just those destined for this interface"
+msgstr "Συλλαμβάνετε όλα τα πακέτα στο τμήμα δικτύου, όχι μόνο εκείνα που προορίζονται για αυτή τη διασύνδεση."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:109
+msgid "Quick filter presets"
+msgstr "Γρήγορες προεπιλογές φίλτρων"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:114
+msgid "All Traffic"
+msgstr "Όλη η κυκλοφορία"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:117
+msgid "HTTP/HTTPS"
+msgstr "HTTP/HTTPS"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:123
+msgid "ICMP (Ping)"
+msgstr "ICMP (Ping)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:126
+msgid "SSH"
+msgstr "SSH"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:129
+msgid "Exclude SSH"
+msgstr "Εξαίρεση SSH"
+
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "δημιουργήθηκε από την"
+
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "Περιγραφή του Plugin"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
+#: ../plugins-available/Wireshark/templates/main.php:46
+msgid "Capture files"
+msgstr "Αρχεία σύλληψης"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Τα αρχεία καταγραφής που παράγονται από <code>το tshark</code> εμφανίζονται παρακάτω."
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "Δεν βρέθηκαν αρχεία σύλληψης στον κατάλογο /tmp"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "Όνομα αρχείου"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "Μέγεθος"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "Τροποποιημένο"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "Δράσεις"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "Λήψη αρχείου"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "Διαγραφή αρχείου"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
+#, php-format
+msgid "Total: %d file(s), %s"
+msgstr "Σύνολο: %d αρχείο(α), %s"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "Επιβεβαίωση διαγραφής"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το αρχείο;"
+
+#: ../plugins-available/Wireshark/templates/main.php:20
+msgid "Start capture"
+msgstr "Έναρξη λήψης"
+
+#: ../plugins-available/Wireshark/templates/main.php:24
+msgid "Stop capture"
+msgstr "Διακοπή σύλληψης"
+
+#: ../plugins-available/Wireshark/templates/main.php:69
+#: ../plugins-available/Tailscale/templates/main.php:89
+msgid "Information provided by "
+msgstr "Πληροφορίες που παρέχονται από "
+
+#: ../plugins-available/Wireshark/Wireshark.php:48
+msgid "Wireshark"
+msgstr "Wireshark"
+
+#: ../plugins-available/Wireshark/Wireshark.php:140
+#, php-format
+msgid "Attempting to start packet capture on %s"
+msgstr "Προσπάθεια έναρξης καταγραφής πακέτων στο %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:143
+#, php-format
+msgid "TShark started with PID %s"
+msgstr "Το TShark ξεκίνησε με PID %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:152
+#, php-format
+msgid "Attempting to stop packet capture on %s"
+msgstr "Προσπάθεια διακοπής της σύλληψης πακέτων στο %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:172
+#, php-format
+msgid "Expected tshark binary not found at: %s"
+msgstr "Το αναμενόμενο δυαδικό tshark δεν βρέθηκε στο: %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:173
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Wireshark plugin."
+msgstr "Επισκεφθείτε τις <a href=\"%s\" target=\"_blank\">οδηγίες εγκατάστασης</a> ή επανεγκαταστήστε το πρόσθετο Wireshark."
+
+#: ../plugins-available/Wireshark/Wireshark.php:184
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "Μια καταγραφή πακέτων Wireshark (TShark) CLI για το RaspAP"
+
+#: ../plugins-available/Wireshark/Wireshark.php:185
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Captive/Captive.php:132
+msgid "Bill Z"
+msgstr "Bill Z"
+
+#: ../plugins-available/Wireshark/Wireshark.php:244
+msgid "TShark settings saved successfully"
+msgstr "Οι ρυθμίσεις του TShark αποθηκεύτηκαν με επιτυχία"
+
+#: ../plugins-available/Wireshark/Wireshark.php:248
+#: ../plugins-available/Captive/Captive.php:541
+msgid "Error saving settings: "
+msgstr "Σφάλμα αποθήκευσης ρυθμίσεων: "
+
+#: ../plugins-available/Wireshark/Wireshark.php:649
+msgid "File not found"
+msgstr "Το αρχείο δεν βρέθηκε"
+
+#: ../plugins-available/Wireshark/Wireshark.php:658
+#, php-format
+msgid "File \"%s\" deleted successfully"
+msgstr "Αρχείο \"%s\" διαγράφηκε επιτυχώς"
+
+#: ../plugins-available/Wireshark/Wireshark.php:661
+#, php-format
+msgid "Failed to delete file \"%s\""
+msgstr "Απέτυχε η διαγραφή του αρχείου \"%s\""
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "Κατάσταση Tailnet"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "Η τρέχουσα κατάσταση <code>του tailnet</code> εμφανίζεται παρακάτω."
+
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "Πίσω"
+
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "Επόμενο"
+
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "Ανάκληση κόμβου εξόδου"
+
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "Σταματήστε να χρησιμοποιείτε τον κόμβο εξόδου"
+
+#: ../plugins-available/Tailscale/templates/main.php:44
+#: ../plugins-available/Tailscale/Tailscale.php:400
+msgid "Start Tailscale"
+msgstr "Έναρξη Tailscale"
+
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "Διακοπή Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "Επιτρέψτε τον κόμβο εξόδου"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Η συσκευή <code>%s</code> εκκρεμεί η έγκριση ως κόμβος εξόδου."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "Ανοιχτές μηχανές Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Εντοπίστε το <code>%s</code> <strong>Exit Node</strong> στη λίστα μηχανών."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "Από το μενού εικονιδίων %s του κόμβου εξόδου, ανοίξτε τον πίνακα %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "Επεξεργασία ρυθμίσεων διαδρομής"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "Ενεργοποιήστε την επιλογή <strong>Χρήση ως κόμβος εξόδου</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "Επιλέξτε <strong>Επόμενο</strong> όταν ολοκληρώσετε αυτά τα βήματα."
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "Χρήση κόμβου εξόδου"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Η συσκευή <code>%s</code> έχει ρυθμιστεί να χρησιμοποιεί κόμβο εξόδου <code>%s</code>. Έχει τη διεύθυνση Tailscale MagicDNS <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
+msgid "Select an exit node"
+msgstr "Επιλέξτε έναν κόμβο εξόδου"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#, php-format
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "Για να χρησιμοποιήσετε <code>%s</code> ως πύλη VPN, ρυθμίστε τις παραμέτρους του Tailscale ώστε να χρησιμοποιεί έναν κόμβο εξόδου. Ο προτεινόμενος κόμβος της Tailscale υποδεικνύεται με ένα αστέρι."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#, php-format
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Διαφημίστε μια <strong>διαδρομή υποδικτύου</strong> για το ενεργό <code>%s</code> Διασύνδεση AP"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "Οι διαδρομές υποδικτύου σας επιτρέπουν να επεκτείνετε το δίκτυο Tailscale (γνωστό ως tailnet) ώστε να συμπεριλάβετε συσκευές που δεν εκτελούν ή δεν μπορούν να εκτελέσουν τον πελάτη Tailscale."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "Μια διαδρομή υποδικτύου λειτουργεί ως πύλη μεταξύ του tailnet και ενός φυσικού υποδικτύου. Το υποδίκτυο της ενεργής διασύνδεσης AP έχει προρυθμιστεί παρακάτω- επεξεργαστείτε το εάν είναι απαραίτητο."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
+msgid "Route LAN traffic through the exit node."
+msgstr "Δρομολόγηση της κυκλοφορίας LAN μέσω του κόμβου εξόδου."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "Αυτό θα κατευθύνει όλη την κυκλοφορία LAN να περνάει μόνο από τον κόμβο εξόδου σας."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Χρησιμοποιήστε τις ρυθμίσεις DNS της Tailscale (προεπιλογή)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Αποεπιλέξτε για να χρησιμοποιήσετε τοπικό DNS. Αυτό θέτει <code>--accept-dns=false</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Μην χρησιμοποιείτε υποδίκτυα Tailscale (προεπιλογή στο Linux)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "Εάν υπάρχουν διαδρομές υποδικτύου για το δίκτυο ουράς σας, μπορείτε να δρομολογήσετε την κυκλοφορία της συσκευής σας σε έναν δρομολογητή υποδικτύου. Η ενεργοποίηση αυτής της λειτουργίας θέτει <code>--accept-routes=true</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "Εάν λήξουν τα κλειδιά για μια συσκευή, οι συνδέσεις προς/από το συγκεκριμένο τελικό σημείο θα σταματήσουν να λειτουργούν."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "Αυτή η επιλογή χρησιμοποιεί <code> την --force-reauth</code> για να ανανεώσει τα κλειδιά για αυτή τη συσκευή."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#, php-format
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Επιλέξτε <strong>Επόμενο</strong> για να ρυθμίσετε τις παραμέτρους <code>%s</code> για τη χρήση του επιλεγμένου κόμβου εξόδου με αυτές τις επιλογές."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "Δεν βρέθηκαν κόμβοι εξόδου στο δίκτυο ουράς σας. Επιλέξτε <strong>Επιστροφή</strong> για να συνεχίσετε."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "Διαμόρφωση νέου κόμβου εξόδου"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "Για λόγους ασφαλείας, πρέπει να κάνετε opt in για να ενεργοποιήσετε τη λειτουργία του κόμβου εξόδου. Το πρώτο βήμα είναι η διαφήμιση <code>%s</code> ως κόμβος εξόδου στο tailnet σας. Στο επόμενο βήμα, θα επιτρέψετε σε αυτή τη συσκευή να γίνει κόμβος εξόδου."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Διαφημιστείτε <code>%s</code> ως κόμβος εξόδου"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Αυτό διαμορφώνει αποτελεσματικά το Tailscale ως VPN για να αποκρύψετε την πραγματική σας τοποθεσία, να αποκτήσετε πρόσβαση σε περιεχόμενο περιορισμένης περιοχής ή να ενισχύσετε την ιδιωτικότητα κατά τη σύνδεση από μη αξιόπιστα δίκτυα."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Αυτή η επιλογή επιτρέπει στην Tailscale να γνωρίζει ότι η συσκευή σας είναι έτοιμη να δρομολογήσει την κυκλοφορία."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "Ενεργοποίηση βελτιστοποιημένης απόδοσης UDP"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Συνιστάται για κόμβους εξόδου Tailscale με πυρήνες Linux 6.2 ή μεταγενέστερους πυρήνες και χρησιμοποιεί προώθηση UDP generic receive offload (GRO) για να μειώσει την επιβάρυνση της CPU."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Αυτή η επιλογή ενεργοποιεί την εκφόρτωση στρώματος μεταφοράς για καλύτερες επιδόσεις."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Επιλέξτε <strong>Επόμενο</strong> για να συνεχίσετε."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "Διαμόρφωση συσκευής"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Η συσκευή <code>%s</code> είναι συνδεδεμένη στο tailnet σας με τη διεύθυνση <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "Από προεπιλογή, το Tailscale δρομολογεί την κυκλοφορία μόνο μεταξύ των συσκευών στις οποίες έχει εγκατασταθεί. Μπορείτε επίσης να δρομολογήσετε όλη τη δημόσια διαδικτυακή κυκλοφορία σας, ρυθμίζοντας μια συσκευή στο δίκτυό σας ως <strong>κόμβο εξόδου</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Όταν δρομολογείτε όλη την κυκλοφορία μέσω ενός κόμβου εξόδου, ουσιαστικά χρησιμοποιείτε προεπιλεγμένες διαδρομές (0.0.0.0.0/0, ::/0), όπως θα κάνατε αν χρησιμοποιούσατε ένα τυπικό VPN."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "Έχετε τη δυνατότητα να διαμορφώσετε αυτή τη συσκευή ως κόμβο εξόδου ή να χρησιμοποιήσετε έναν άλλο κόμβο εξόδου στο δίκτυο ουράς σας."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "Επιλέξτε έναν υπάρχοντα κόμβο εξόδου στο tailnet σας"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Αυτή είναι μια τυπική διαμόρφωση αν χρησιμοποιείτε αυτή τη συσκευή ως δρομολογητή ταξιδιού VPN, για παράδειγμα."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "Διαμόρφωση αυτής της συσκευής ως νέου κόμβου εξόδου"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "Με τη διαμόρφωση αυτής της συσκευής ως κόμβου εξόδου, η δημόσια κυκλοφορία στο διαδίκτυο από συσκευές που είναι συνδεδεμένες στο δίκτυο ουράς σας θα δρομολογείται μέσω αυτής."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
+msgid "Exit node activated"
+msgstr "Ενεργοποίηση κόμβου εξόδου"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "Η συσκευή <code>%s</code> συνδέεται με τη διεύθυνση <code>%s</code> και προσφέρει έναν <strong>κόμβο εξόδου</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#, php-format
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "Ανατρέξτε στη διεύθυνση %s για τον τρόπο χρήσης αυτού του κόμβου εξόδου με τις συσκευές σας."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
+msgid "Approve subnet route"
+msgstr "Έγκριση διαδρομής υποδικτύου"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#, php-format
+msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
+msgstr "Η συσκευή <code>%s</code> διαφημίζει μια διαδρομή υποδικτύου. Για λόγους ασφαλείας, πρέπει να επιλέξετε να το ενεργοποιήσετε."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
+msgstr "Εντοπίστε το <code>%s</code> <strong>Subnets</strong> στη λίστα μηχανημάτων."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#, php-format
+msgid "From the %s icon menu of the device, open the %s panel."
+msgstr "Από το μενού εικονιδίων %s της συσκευής, ανοίξτε τον πίνακα %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
+msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
+msgstr "Επιλέξτε το πλαίσιο περιοχής IP που αντιστοιχεί στη διαδρομή υποδικτύου που θέλετε να διαφημίσετε και, στη συνέχεια, επιλέξτε <strong>Αποθήκευση</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "Σύνδεση στην Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Για να συνδέσετε τη συσκευή %s στο tailnet σας, επιλέξτε %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "Άνοιγμα της Tailscale Σύνδεση"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "Αφού συνδεθείτε, επιλέξτε <strong>Επόμενο</strong> για να συνεχίσετε."
+
+#: ../plugins-available/Tailscale/Tailscale.php:52
+msgid "Tailscale VPN"
+msgstr "Tailscale VPN"
+
+#: ../plugins-available/Tailscale/Tailscale.php:237
+#, php-format
+msgid "Expected tailscale binary not found at: %s"
+msgstr "Το αναμενόμενο δυαδικό αρχείο tailscale δεν βρέθηκε στη διεύθυνση: %s"
+
+#: ../plugins-available/Tailscale/Tailscale.php:238
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
+msgstr "Επισκεφθείτε τις <a href=\"%s\" target=\"_blank\">οδηγίες εγκατάστασης</a> ή επανεγκαταστήστε το πρόσθετο Tailscale."
+
+#: ../plugins-available/Tailscale/Tailscale.php:251
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "Μια επέκταση κόμβου εξόδου Tailscale VPN για το RaspAP"
+
+#: ../plugins-available/Tailscale/Tailscale.php:406
+#, php-format
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Αδυναμία ανάκτησης της σύνδεσης Tailscale. Επιλέξτε <strong>%s</strong> για να συνεχίσετε."
+
+#: ../plugins-available/Tailscale/Tailscale.php:786
+msgid "Not connected: Login required."
+msgstr "Δεν έχει συνδεθεί: Σύνδεση απαιτείται."
+
+#: ../plugins-available/Captive/templates/tabs/status.php:3
+msgid "Portal status"
+msgstr "Κατάσταση πύλης"
+
+#: ../plugins-available/Captive/templates/tabs/status.php:4
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "Η τρέχουσα κατάσταση <code>του nodogsplash</code> εμφανίζεται παρακάτω."
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "Εύρος IP της πύλης"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "Εύρος IP προς διαχείριση σε συμβολισμό CIDR. Αφήστε κενό για όλες τις διευθύνσεις"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Προεπιλογή: 0.0.0.0.0/0 (όλες οι διευθύνσεις)"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "Επίπεδο εντοπισμού σφαλμάτων"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Ποσότητα λεπτομερειών καταγραφής που αναφέρονται από την υπηρεσία nodogsplash.service"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - Μόνο σφάλματα"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Σφάλματα, προειδοποιήσεις, πληροφορίες"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Σφάλματα, προειδοποιήσεις, πληροφορίες, αναλυτική περιγραφή"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Σφάλματα, προειδοποιήσεις, πληροφορίες, αναλυτική περιγραφή, εντοπισμός σφαλμάτων"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "Ρυθμίσεις τείχους προστασίας"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "Επιτρέψτε όλη την κυκλοφορία για πιστοποιημένους χρήστες"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "Όταν είναι ενεργοποιημένη, οι πιστοποιημένοι χρήστες έχουν απεριόριστη πρόσβαση"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "Επιτρέψτε το DNS για προ-αυτοπιστοποιημένους χρήστες"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Απαιτείται για την επίλυση ονομάτων τομέα από τους πελάτες πριν από τον έλεγχο ταυτότητας"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "Διεπαφή πύλης"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "Διασύνδεση που θα διαχειρίζεται η πύλη"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "Προεπιλογή είναι η ενεργή διασύνδεση AP, συνήθως <code>wlan0</code>."
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "Όνομα πύλης"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "Όνομα της πύλης σας (διαθέσιμο ως μεταβλητή $gatewayname)"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "Διεύθυνση πύλης"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "Διεύθυνση IP του δρομολογητή. Αφήστε το κενό για αυτόματο εντοπισμό"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Αυτόματη ανίχνευση από τη διασύνδεση πύλης εάν δεν έχει καθοριστεί"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "Θύρα πύλης"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Θύρα για τον διακομιστή HTTP του Nodogsplash"
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+#: ../plugins-available/Captive/templates/main.php:52
+msgid "Active clients"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:17
+msgid "Client"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:21
+msgid "IP"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:22
+msgid "Token"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:25
+msgid "Last activity"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:26
+msgid "Session start"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:27
+msgid "Session end"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:35
+msgid "Deauthenticate"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:44
+msgid "No active clients connected."
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:9
+msgid "Maximum clients"
+msgstr "Μέγιστο αριθμό πελατών"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:11
+msgid "Maximum number of concurrent authenticated users"
+msgstr "Μέγιστος αριθμός ταυτόχρονων πιστοποιημένων χρηστών"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:15
+msgid "Does not include users on the trusted MAC list"
+msgstr "Δεν περιλαμβάνει χρήστες στη λίστα αξιόπιστων MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:19
+msgid "Session timeout (minutes)"
+msgstr "Χρονικό όριο συνόδου (λεπτά)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:21
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "Προεπιλεγμένη διάρκεια συνεδρίας σε λεπτά. 0 = απεριόριστη"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:30
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "Χρονικό όριο αδράνειας πριν από την εξουσιοδότηση (λεπτά)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:32
+msgid "Time before unauthenticated idle users are removed"
+msgstr "Χρόνος πριν από την αφαίρεση των μη πιστοποιημένων αδρανών χρηστών"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:39
+msgid "Auth idle timeout (minutes)"
+msgstr "Χρονικό όριο αδράνειας Auth (λεπτά)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:41
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "Χρόνος πριν από την αποταυτοποίηση των πιστοποιημένων αδρανών χρηστών"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:50
+msgid "Check interval (seconds)"
+msgstr "Διάστημα ελέγχου (δευτερόλεπτα)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:52
+msgid "How often to check client timeouts"
+msgstr "Πόσο συχνά να ελέγχετε τα χρονικά όρια του πελάτη"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:59
+msgid "MAC address control"
+msgstr "Έλεγχος διεύθυνσης MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:63
+msgid "MAC mechanism"
+msgstr "Μηχανισμός MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:65
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Αποκλεισμός: οι MAC που περιλαμβάνονται στη λίστα αποκλεισμού αποκλείονται. Επιτρέπεται: επιτρέπονται μόνο οι MAC που έχουν καταχωρηθεί στη λίστα επιτρεπόμενων."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:68
+msgid "Block (blocklist mode)"
+msgstr "Μπλοκάρισμα (λειτουργία λίστας μπλοκαρίσματος)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:71
+msgid "Allow (allowlist mode)"
+msgstr "Επιτρέψτε (λειτουργία allowlist)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:79
+msgid "Blocked MAC list"
+msgstr "Λίστα αποκλεισμένων MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:81
+msgid "Comma-separated MAC addresses to block (used when mechanism is 'block')"
+msgstr "Διευθύνσεις MAC προς αποκλεισμό, χωρισμένες με κόμμα (χρησιμοποιείται όταν ο μηχανισμός είναι \"block\")"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:84
+#: ../plugins-available/Captive/templates/tabs/clients.php:95
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "Παράδειγμα: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:90
+msgid "Allowed MAC list"
+msgstr "Κατάλογος επιτρεπόμενων MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:92
+msgid "Comma-separated MAC addresses to allow (used when mechanism is 'allow')"
+msgstr "Διευθύνσεις MAC που διαχωρίζονται με κόμμα για να επιτραπούν (χρησιμοποιείται όταν ο μηχανισμός είναι \"allow\")"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:101
+msgid "Trusted MAC list"
+msgstr "Λίστα αξιόπιστων MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:103
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "Διευθύνσεις MAC που χωρίζονται με κόμμα και παρακάμπτουν εντελώς τον έλεγχο ταυτότητας"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:106
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "Αυτές οι συσκευές δεν υπόκεινται σε κανόνες ελέγχου ταυτότητας ή τείχους προστασίας."
+
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "Σταματήστε την πύλη"
+
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "Έναρξη πύλης"
+
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "Πελάτες"
+
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "Πληροφορίες που παρέχονται από nodogsplash"
+
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "Διακοπή υπηρεσίας πύλης"
+
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "Έναρξη υπηρεσίας πύλης"
+
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Η αλλαγή της υπηρεσίας πύλης θα διακόψει στιγμιαία την κυκλοφορία των πελατών. Επιλέξτε <strong>Προχωρήστε</strong> για να συνεχίσετε."
+
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "Προχωρήστε"
+
+#: ../plugins-available/Captive/Captive.php:70
+#: ../plugins-available/Captive/Captive.php:130
+msgid "Captive portal"
+msgstr "Πύλη αιχμαλωσίας"
+
+#: ../plugins-available/Captive/Captive.php:95
+#, php-format
+msgid "Attempting to start %s"
+msgstr "Προσπάθεια εκκίνησης του %s"
+
+#: ../plugins-available/Captive/Captive.php:99
+#, php-format
+msgid "Attempting to stop %s"
+msgstr "Προσπάθεια να σταματήσει το %s"
+
+#: ../plugins-available/Captive/Captive.php:106
+#, php-format
+msgid "Client %s deauthenticated"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:108
+#, php-format
+msgid "Failed to deauthenticate client %s"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:111
+msgid "Invalid client MAC address"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:131
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "Ένα πρόσθετο πύλης αιχμαλωσίας που υλοποιεί το nodogsplash"
+
+#: ../plugins-available/Captive/Captive.php:538
+msgid "Portal settings saved successfully"
+msgstr "Οι ρυθμίσεις της πύλης αποθηκεύτηκαν με επιτυχία"
+
+#: ../plugins-available/Captive/Captive.php:582
+msgid "Failed to execute ndsctl."
+msgstr "Απέτυχε η εκτέλεση του ndsctl."
+
+#~ msgid "Firewall is now enabled"
+#~ msgstr "Το τείχος προστασίας είναι τώρα ενεργοποιημένο"
+
+#~ msgid "Firewall is now disabled"
+#~ msgstr "Το τείχος προστασίας είναι πλέον απενεργοποιημένο"
+
+#~ msgid "Firewall settings changed"
+#~ msgstr "Αλλαγή των ρυθμίσεων του τείχους προστασίας"
+
+#~ msgid "Firewall settings saved. Firewall is still disabled."
+#~ msgstr "Οι ρυθμίσεις τείχους προστασίας αποθηκεύονται. Το τείχος προστασίας εξακολουθεί να είναι απενεργοποιημένο."
+
+#~ msgid "Exclude devices "
+#~ msgstr "Εξαίρεση συσκευών "
+
+#~ msgid "Exclude IP address "
+#~ msgstr "Εξαίρεση διεύθυνσης IP "
+
+#~ msgid "Exclude IP address(es) "
+#~ msgstr "Εξαίρεση διευθύνσεων IP "
+
+#~ msgid "A firewall plugin that implements an iptables ruleset"
+#~ msgstr "Ένα πρόσθετο τείχος προστασίας που υλοποιεί ένα σύνολο κανόνων iptables"
+
+#~ msgid "zbchristian"
+#~ msgstr "zbchristian"
+
+#~ msgid "Client Firewall"
+#~ msgstr "Τείχος προστασίας πελατών"
+
+#~ msgid "Firewall is ENABLED"
+#~ msgstr "Το τείχος προστασίας είναι ΕΝΕΡΓΟΠΟΙΗΜΕΝΟ"
+
+#~ msgid "Firewall is OFF"
+#~ msgstr "Το τείχος προστασίας είναι απενεργοποιημένο"
+
+#~ msgid "The default firewall will only allow outgoing and already established traffic."
+#~ msgstr "Το προεπιλεγμένο τείχος προστασίας επιτρέπει μόνο την εξερχόμενη και την ήδη εγκατεστημένη κυκλοφορία."
+
+#~ msgid "No incoming UDP traffic is allowed."
+#~ msgstr "Δεν επιτρέπεται καμία εισερχόμενη κυκλοφορία UDP."
+
+#, php-format
+#~ msgid "There are no restrictions for the access point <code>%s</code>."
+#~ msgstr "Δεν υπάρχουν περιορισμοί για το σημείο πρόσβασης <code>%s</code>."
+
+#~ msgid "Exception: Service"
+#~ msgstr "Εξαίρεση: Υπηρεσία"
+
+#~ msgid "allow SSH access on port 22"
+#~ msgstr "επιτρέψτε την πρόσβαση SSH στη θύρα 22"
+
+#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
+#~ msgstr "επιτρέψτε την πρόσβαση στο GUI του RaspAP στη θύρα 80 ή 443"
+
+#~ msgid "Allow incoming connections for some services from the internet side."
+#~ msgstr "Επιτρέψτε εισερχόμενες συνδέσεις για ορισμένες υπηρεσίες από την πλευρά του διαδικτύου."
+
+#~ msgid "Exception: network device"
+#~ msgstr "Εξαίρεση: συσκευή δικτύου"
+
+#~ msgid "Exclude device(s)"
+#~ msgstr "Εξαίρεση συσκευής(ών)"
+
+#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+#~ msgstr "Εξαίρεση της(των) δεδομένης(ών) συσκευής(ών) δικτύου (που χωρίζονται με κενό ή κόμμα) από τους κανόνες τείχους προστασίας."
+
+#, php-format
+#~ msgid "Current client devices: <code>%s</code>"
+#~ msgstr "Τρέχουσες συσκευές-πελάτες: <code>%s</code>"
+
+#, php-format
+#~ msgid "The access point <code>%s</code> is per default excluded."
+#~ msgstr "Το σημείο πρόσβασης <code>%s</code> εξαιρείται από προεπιλογή."
+
+#~ msgid "Exception: IP-Address"
+#~ msgstr "Εξαίρεση: IP-διεύθυνση"
+
+#~ msgid "Allow incoming connections from"
+#~ msgstr "Επιτρέψτε εισερχόμενες συνδέσεις από"
+
+#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+#~ msgstr "Για τις δεδομένες διευθύνσεις IP (που χωρίζονται με κενό ή κόμμα) γίνεται αποδεκτή η εισερχόμενη σύνδεση (μέσω TCP και UDP)."
+
+#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+#~ msgstr "Αυτό απαιτείται για μια σύνδεση OpenVPN μέσω UDP ή Wireguard."
+
+#, php-format
+#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+#~ msgstr "Η λίστα με τις διευθετημένες διευθύνσεις IP του διακομιστή VPN: <code><b>%s</b></code>"
+
+#~ msgid "plugin was created by "
+#~ msgstr "plugin δημιουργήθηκε από τον "
+
+#~ msgid "Apply changes"
+#~ msgstr "Εφαρμογή αλλαγών"
+
+#~ msgid "Disable Firewall"
+#~ msgstr "Απενεργοποίηση τείχους προστασίας"
+
+#~ msgid "Enable Firewall"
+#~ msgstr "Ενεργοποίηση τείχους προστασίας"
+
+#~ msgid "Information provided by iptables"
+#~ msgstr "Πληροφορίες που παρέχονται από το iptables"
+
+#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
+#~ msgstr "Η αλλαγή της κατάστασης του τείχους προστασίας μπορεί να διαταράξει ή να επιτρέψει την εισερχόμενη κυκλοφορία. Επιλέξτε <strong>Προχωρήστε</strong> για να συνεχίσετε."

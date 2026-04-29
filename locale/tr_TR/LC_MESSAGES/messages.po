@@ -1,683 +1,3418 @@
-# RaspAP Portable Object file
-# Project home: https://github.com/billz/raspap-webgui
-# Licensed under the GNU General Public License v3.0
-# This file is distributed under the same license as the RaspAP package
-# FIRST AUTHOR billzimmerman@gmail.com, 2017
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.2.1\n"
+"Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2019-10-21 23:15+0000\n"
-"Last-Translator: Furkan Sarıboğa <furkan.gnu@gmail.com>\n"
-"Language-Team: \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2026-04-29 13:38+0000\n"
+"PO-Revision-Date: 2026-04-22 02:22\n"
+"Last-Translator: \n"
+"Language-Team: Turkish\n"
+"Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: raspap\n"
+"X-Crowdin-Project-ID: 395801\n"
+"X-Crowdin-Language: tr\n"
+"X-Crowdin-File: /master/locale/messages.pot\n"
+"X-Crowdin-File-ID: 12\n"
 
-#: index.php
-msgid "RaspAP Wifi Configuration Portal"
-msgstr "RaspAP Wifi Yapılandırma Portalı"
+#: ../ajax/networking/get_nl80211_band.php:37
+#, php-format
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "Seçilen arayüz (%s) yalnızca 2,4 GHz kablosuz bant desteğine sahiptir."
 
-msgid "Toggle navigation"
-msgstr "Navigasyonu Aç/Kapa"
+#: ../ajax/networking/get_nl80211_band.php:40
+#, php-format
+msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
+msgstr "Seçilen arayüz (%s) yalnızca 5 GHz kablosuz bant desteğine sahiptir."
 
-msgid "RaspAP Wifi Portal"
-msgstr "RaspAP Wifi Portalı"
+#: ../ajax/networking/get_nl80211_band.php:43
+#, php-format
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "Seçilen arayüz (%s) hem 2,4 hem de 5 GHz kablosuz bantları desteklemektedir."
 
-msgid "Dashboard"
-msgstr "Kontrol Paneli"
+#: ../ajax/networking/get_nl80211_band.php:46
+#, php-format
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "Seçilen arayüz (%s) kablosuz mod çalışmasını desteklemiyor."
 
-msgid "WiFi client"
-msgstr "WiFi istemcisini"
-
-msgid "Hotspot"
-msgstr "Paylaşım noktasını"
-
-msgid "Networking"
-msgstr "Ağı"
-
-msgid "DHCP Server"
-msgstr "DHCP sunucusunu"
-
-msgid "OpenVPN"
-msgstr "OpenVPN'i"
-
-msgid "TOR proxy"
-msgstr "TOR proxysini"
-
-msgid "Authentication"
-msgstr "İzinleri"
-
-msgid "Change Theme"
-msgstr "Temayı değiştir"
-
-msgid "System"
-msgstr "Sistem"
-
-msgid "About RaspAP"
-msgstr "RaspAP Hakkında"
-
-#: includes/admin.php
-msgid "Authentication settings"
-msgstr "Kimlik Denetleme ayarları"
-
-msgid "New passwords do not match"
-msgstr "Yeni şifreler uyuşmuyor"
-
-msgid "Username must not be empty"
-msgstr "Kullanıcı adı boş bırakılamaz"
-
-msgid "Admin password updated"
-msgstr "Yönetici şifresi değiştirildi"
-
-msgid "Failed to update admin password"
-msgstr "Yönetici şifresi değiştirme başarısız"
-
-msgid "Old password does not match"
-msgstr "Eski şifre doğru değil"
-
-msgid "Username"
-msgstr "Kullanıcı adı"
-
-msgid "Old password"
-msgstr "Eski şifre"
-
-msgid "New password"
-msgstr "Yeni şifre"
-
-msgid "Repeat new password"
-msgstr "Yeni şifreyi tekrarla"
-
-#: includes/configure_client.php
-msgid "Client settings"
-msgstr "İstemci ayarları"
-
-msgid "SSID"
-msgstr "SSID"
-
-msgid "Channel"
-msgstr "Kanal"
-
-msgid "Security"
-msgstr "Güvenlik"
-
-msgid "Passphrase"
-msgstr "Şifre"
-
-msgid "Wifi settings updated successfully"
-msgstr "Wifi ayarları başarıyla güncellendi"
-
-msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr "Wifi ayarları güncellendi ancak yeniden başlatılamıyor (cannot execute 'wpa_cli reconfigure')"
-
-msgid "Wifi settings failed to be updated"
-msgstr "Wifi ayarları güncellenemedi"
-
-msgid "Failed to update wifi settings"
-msgstr "Wifi ayarları güncellenemedi"
-
-msgid "Rescan"
-msgstr "Yeniden tara"
-
-msgid "Update"
-msgstr "Güncelle"
-
-msgid "Add"
-msgstr "Ekle"
-
-msgid "Delete"
-msgstr "Sil"
-
-msgid "Show"
-msgstr "Göster"
-
-msgid "Hide"
-msgstr "Gizle"
-
-msgid "Not configured"
-msgstr "Ayarlanmamış"
-
-msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>Note:</strong> WEP erişim noktası 'Açık' gözüküyor. RaspAP şu anda WEP bağlantısını desteklemiyor"
-
-#: includes/dashboard.php
-msgid "Interface Information"
-msgstr "Arayüz Bilgisi"
-
-msgid "Interface Name"
-msgstr "Arayüz Adı"
-
-msgid "IPv4 Address"
-msgstr "IPv4 Adresi"
-
-msgid "IPv6 Address"
-msgstr "IPv6 Adresi"
-
-msgid "Subnet Mask"
-msgstr "Alt ağ maskesi"
-
-msgid "Mac Address"
-msgstr "Mac Adresi"
-
-msgid "Interface Statistics"
-msgstr "Arayüz İstatistikleri"
-
-msgid "Received Packets"
-msgstr "Alınan Paketler"
-
-msgid "Received Bytes"
-msgstr "Gönderilen bitler"
-
-msgid "Transferred Packets"
-msgstr "Transfer edilen paketler"
-
-msgid "Transferred Bytes"
-msgstr "Transfer edilen bitler"
-
-msgid "Wireless Information"
-msgstr "Kablosuz Bilgisi"
-
-msgid "Connected To"
-msgstr "Şuraya Bağlı"
-
-msgid "AP Mac Address"
-msgstr "AP Mac Adresi"
-
-msgid "Bitrate"
-msgstr "Bitrate"
-
-msgid "Signal Level"
-msgstr "Sinyal Seviyesi"
-
-msgid "Transmit Power"
-msgstr "Aktarım Gücü"
-
-msgid "Frequency"
-msgstr "Frekans"
-
-msgid "Link Quality"
-msgstr "Bağlantı Kalitesi"
-
-msgid "Information provided by ip and iw and from system"
-msgstr "Ip ve iw tarafından ve sistemden verilen bilgiler"
-
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
 msgid "No MAC Address Found"
-msgstr "MAC adresi bulunamadı"
-
-msgid "No IP Address Found"
-msgstr "IP adresi bulunamadı"
-
-msgid "No Subnet Mask Found"
-msgstr "Alt ağ maskesi bulunamadı"
-
-msgid "No Data"
-msgstr "Veri Yok"
-
-msgid "Not connected"
-msgstr "Bağlı değil"
-
-msgid "Interface is up"
-msgstr "Arayüz açık"
-
-msgid "Interface is down"
-msgstr "Arayüz kapalı"
-
-msgid "Interface already down"
-msgstr "Arayüz zaten kapalı"
-
-msgid "Start wlan0"
-msgstr "Wlan0'ı başlat"
-
-msgid "Stop wlan0"
-msgstr "Wlan0'ı durdur"
-
-msgid "Connected Devices"
-msgstr "Bağlı Aygıtlar"
-
-#: includes/dhcp.php
-msgid "DHCP server settings"
-msgstr "DHCP sunucu ayarları"
-
-msgid "Client list"
-msgstr "İstemci listesi"
-
-msgid "Interface"
-msgstr "Arayüz"
-
-msgid "Starting IP Address"
-msgstr "Başlangıc IP Adresi"
-
-msgid "Ending IP Address"
-msgstr "Bitiş IP Adresi"
-
-msgid "Static Leases"
-msgstr "Statik Kiralamalar"
-
-msgid "Add static DHCP lease"
-msgstr "Statik DHCP kiralaması ekle"
-
-msgid "Lease Time"
-msgstr "Kira Zamanı"
-
-msgid "Interval"
-msgstr "Süre"
-
-msgid "Active DHCP leases"
-msgstr "Aktif DHCP kiraları"
-
-msgid "Expire time"
-msgstr "Aşım zamanı"
-
-msgid "MAC Address"
-msgstr "MAC Adresi"
-
-msgid "Host name"
-msgstr "Sunucu adı"
-
-msgid "Client ID"
-msgstr "İstemci ID"
-
-msgid "Information provided by Dnsmasq"
-msgstr "Bilgi Dnsmasq tarafından sağlandı"
-
-msgid "Stop dnsmasq"
-msgstr "Dnsmasq'ı durdur"
-
-msgid "Start dnsmasq"
-msgstr "Dnsmasq'ı başlat"
-
-msgid "Dnsmasq configuration updated successfully"
-msgstr "Dnsmasq yapılandırması başarıyla güncellendi"
-
-msgid "dnsmasq already running"
-msgstr "Dnsmasq zaten çalışıyor"
-
-msgid "Successfully started dnsmasq"
-msgstr "Dnsmasq başarıyla başlatıldı"
-
-msgid "Failed to start dnsmasq"
-msgstr "Dnsmasq başlatılamadı"
-
-msgid "Successfully stopped dnsmasq"
-msgstr "Dnsmasq başarıyla durduruldu"
-
-msgid "Failed to stop dnsmasq"
-msgstr "Dnsmasq durdurulamadı"
-
-msgid "dnsmasq already stopped"
-msgstr "dnsmasq zaten çalışmıyor"
-
-msgid "Dnsmasq is running"
-msgstr "Dnsmasq çalışıyor"
-
-msgid "Dnsmasq is not running"
-msgstr "Dnsmasq çalışmıyor"
-
-msgid "Upstream DNS servers"
-msgstr "Ana DNS sunucuları"
-
-msgid "Only ever query DNS servers configured below"
-msgstr "Yalnızca aşağıda yapılandırılmış DNS sunucularını sorgulayın"
-
-msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Eğer RaspAP'ın <b>sadece aşağıda yapılandırılan sunuculara DNS sorgusu göndermesini istiyorsanız</b> bu ayarı aktifleştirin. Varsayılan olarak RaspAP aynı zamanda kendi ana DHCP sunucusunun isim sunucularını da kullanır."
-
-msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "Bu ayar dnsmasq yapılandırmasına <code>no-resolv</code>'ı ekler."
-
-msgid "Add upstream DNS server"
-msgstr "Ana(Upstream) DNS sunucusu ekle"
-
-msgid "Format"
-msgstr "Biçimlendir"
-
-msgid "Choose a hosted server"
-msgstr "Bir kurulu sunucu seçin"
-
-msgid "Log DHCP requests"
-msgstr "DHCP isteklerini kaydet"
-
-msgid "Log DNS queries"
-msgstr "DNS sorgularını kaydet"
-
-#: includes/hostapd.php
-msgid "Basic"
-msgstr "Basit"
-
-msgid "Advanced"
-msgstr "Gelişmiş"
-
-msgid "Basic settings"
-msgstr "Basit ayarlar"
-
-msgid "Wireless Mode"
-msgstr "Kablosuz Modu"
-
-msgid "Security settings"
-msgstr "Güvenlik ayarları"
-
-msgid "Security type"
-msgstr "Güvenlik tipi"
-
-msgid "Encryption Type"
-msgstr "Şifreleme Tipi"
-
-msgid "PSK"
-msgstr "PSK"
-
-msgid "Advanced settings"
-msgstr "Gelişmiş ayarlar"
-
-msgid "Country Code"
-msgstr "Ülke kodu"
-
-msgid "Information provided by hostapd"
-msgstr "Bilgi hostapd tarafından sağlandı"
-
-msgid "Attempting to start hotspot"
-msgstr "Paylaşım noktası başlatılıyor"
-
-msgid "Attempting to stop hotspot"
-msgstr "Paylaşım noktası durduruluyor"
-
-msgid "HostAPD is not running"
-msgstr "HostAPD çalışmıyor"
-
-msgid "HostAPD is running"
-msgstr "HostAPD çalışıyor"
-
-msgid "SSID must be between 1 and 32 characters"
-msgstr "SSID 1 ve 32 karakter arasında olmalı"
-
-msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr "WPA şifresi 8 ve 63 karakter arasında olmalı"
-
-msgid "Unknown interface"
-msgstr "Bilinmeyen arayüz"
-
-msgid "Country code must be blank or two characters"
-msgstr "Ülke kodu boş bırakılmalı yada iki karakter içermeli"
-
-msgid "Wifi Hotspot settings saved"
-msgstr "Wifi paylaşımı ayarları kaydedildi"
-
-msgid "Unable to save wifi hotspot settings"
-msgstr "Wifi paylaşımı ayarları kaydedilemiyor"
-
-msgid "Start hotspot"
-msgstr "Paylaşımı başlat"
-
-msgid "Stop hotspot"
-msgstr "Paylaşımı durdur"
-
-msgid "Restart hotspot"
-msgstr "Paylaşımı yeniden başlat"
-
-msgid "Enable logging"
-msgstr "Günlük kaydını etkinleştir"
-
-msgid "Logfile output"
-msgstr "Günlük dosyası çıkışı"
-
-msgid "WiFi client AP mode"
-msgstr "WiFi istemcisi AP modu"
-
-msgid "Hide SSID in broadcast"
-msgstr "Yayında SSID'yi gizle"
-
-msgid "Maximum number of clients"
-msgstr "Maksimum istemci sayısı"
-
-msgid "Configures the max_num_sta option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr "Hostapd'ın max_num_sta seçeneğini yapılandırır. Varsayılan ve maksimum 2007'dir. Boşsa veya 0 ise, varsayılan geçerlidir."
-
-#: includes/networking.php
-msgid "Summary"
-msgstr "Özet"
-
-msgid "Current settings"
-msgstr "Şimdiki ayarlar"
-
-msgid "Default Gateway"
-msgstr "Varsayılan Geçit"
-
-msgid "DNS Server"
-msgstr "DNS Sunucusu"
-
-msgid "Alternate DNS Server"
-msgstr "Alternatif DNS Sunucusu"
-
-msgid "Adapter IP Address Settings"
-msgstr "Adaptör IP Adresi Ayarları"
-
-msgid "Enable Fallback to Static Option"
-msgstr "Statik Seçeneğe Geri Dönüşü Etkinleştir"
-
-msgid "Static IP"
-msgstr "Statik IP"
-
-msgid "Enabled"
-msgstr "Etkinleştirildi"
-
-msgid "Disabled"
-msgstr "Devre dışı"
-
-msgid "Static IP Options"
-msgstr "Statik IP Ayarları"
-
-msgid "Apply settings"
-msgstr "Ayarları uygula"
-
-msgid "Information provided by /sys/class/net"
-msgstr "Bilgiler /sys/class/net tarafından sağlandı"
-
-#: includes/system.php
-msgid "System Information"
-msgstr "Sistem Bilgisi"
-
-msgid "Language"
-msgstr "Dil"
-
-msgid "Language settings"
-msgstr "Dil ayarları"
-
-msgid "Select a language"
-msgstr "Bir dil seçin"
-
-msgid "Language setting saved"
-msgstr "Dil ayarı kaydedildi"
-
-msgid "Console"
-msgstr "Konsol"
-
-msgid "Hostname"
-msgstr "Sunucu adı"
-
-msgid "Pi Revision"
-msgstr "Pi Revizyonu"
-
-msgid "Uptime"
-msgstr "Çalışma süresi"
-
-msgid "Memory Used"
-msgstr "Kullanılan hafıza"
-
-msgid "CPU Load"
-msgstr "CPU Yükü"
-
-msgid "Reboot"
-msgstr "Yeniden başlat"
-
-msgid "Shutdown"
-msgstr "Kapat"
-
-msgid "System Rebooting Now!"
-msgstr "Sistem Şimdi Yeniden Başlatılıyor!"
-
-msgid "System Shutting Down Now!"
-msgstr "Sistem Şimdi Kapatılıyor!"
-
-#: includes/themes.php
-msgid "Theme settings"
-msgstr "Tema ayarları"
-
-msgid "Select a theme"
-msgstr "Bir tema seçin"
-
-#: includes/data_usage.php
+msgstr "MAC Adresi Bulunamadı"
+
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "IPv6 Adresi Bulunamadı"
+
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "müşteri"
+msgstr[1] "müşteriler"
+
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
+msgid "Dashboard"
+msgstr "Gösterge Tablosu"
+
+#: ../src/RaspAP/UI/Sidebar.php:20 ../templates/hostapd.php:13
+#: ../includes/functions.php:1002
+msgid "Hotspot"
+msgstr "Sıcak Nokta"
+
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
+msgid "DHCP Server"
+msgstr "DHCP Sunucusu"
+
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
+msgid "Ad Blocking"
+msgstr "Reklam Engelleme"
+
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
+#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
+msgid "Networking"
+msgstr "Ağ İletişimi"
+
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "WiFi istemcisi"
+
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "WireGuard"
+
+#: ../src/RaspAP/UI/Sidebar.php:44
 msgid "Data usage"
 msgstr "Veri kullanımı"
 
-msgid "Data usage monitoring"
-msgstr "Veri kullanımını izle"
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
+msgid "RestAPI"
+msgstr "RestAPI"
 
-msgid "Hourly traffic amount"
-msgstr "Saatlik trafik miktarı"
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
+#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
+msgid "System"
+msgstr "Sistem"
 
-msgid "Daily traffic amount"
-msgstr "Günlük trafik miktarı"
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
+msgid "About RaspAP"
+msgstr "RaspAP Hakkında"
 
-msgid "Monthly traffic amount"
-msgstr "Aylık trafik miktarı"
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "Yüklendi"
 
-msgid "Hourly"
-msgstr "Saatlik"
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "Detaylar"
 
-msgid "Daily"
-msgstr "Günlük"
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:365
+#: ../includes/wifi_functions.php:281
+msgid "Signal strength"
+msgstr "Sinyal gücü"
 
-msgid "Monthly"
-msgstr "Aylık"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "Ayrıntılı hata ayıklama"
 
-msgid "interface"
-msgstr "arayüz"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "Hata Ayıklama"
 
-msgid "date"
-msgstr "tarih"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "Bilgilendirici"
 
-msgid "Send MB"
-msgstr "Gönderilen MB"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "Bildirim"
 
-msgid "Receive MB"
-msgstr "Alınan MB"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "Uyarı"
 
-msgid "Information provided by vnstat"
-msgstr "Bilgi vnstat tarafından sağlandı"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
+#, php-format
+msgid "DHCP configuration for %s enabled."
+msgstr "%s için DHCP yapılandırması etkinleştirildi."
 
-msgid "Loading {0} bandwidth chart"
-msgstr "{0} bant genişliği tablosu yükleniyor"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:148
+msgid "WiFi repeater mode: A metric value is already defined for DHCP."
+msgstr "WiFi tekrarlayıcı modu: DHCP için bir metrik değeri zaten tanımlanmıştır."
 
-msgid "Showing {0} to {1} of {2} entries"
-msgstr "{2} girdiden {0} ve {1} arasındakiler gösteriliyor"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
+#, php-format
+msgid "Metric value configured for the %s interface."
+msgstr "%s arayüzü için yapılandırılan metrik değeri."
 
-#: includes/openvpn.php
-msgid "OpenVPN is not running"
-msgstr "OpenVPN çalışmıyor"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:226
+msgid "Invalid interface name."
+msgstr "Geçersiz arayüz adı."
 
-msgid "OpenVPN is running"
-msgstr "OpenVPN çalışıyor"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:229
+msgid "Invalid static IP address."
+msgstr "Geçersiz statik IP adresi."
 
-msgid "Server settings"
-msgstr "Sunucu ayarları"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:232
+msgid "Invalid subnet mask."
+msgstr "Geçersiz alt ağ maskesi."
 
-msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "OpenVPN yapılandırma dosyasını seçin (.ovpn)"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:235
+msgid "Invalid default gateway."
+msgstr "Geçersiz varsayılan ağ geçidi."
 
-msgid "Client Log"
-msgstr "İstemci Günlüğü"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:239
+msgid "Invalid DHCP range start."
+msgstr "Geçersiz DHCP aralığı başlangıcı."
 
-msgid "Port"
-msgstr "Port"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:242
+msgid "Invalid DHCP range end."
+msgstr "Geçersiz DHCP aralığı sonu."
 
-msgid "Protocol"
-msgstr "Protokol"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:245
+msgid "Invalid DHCP lease time, not a number."
+msgstr "Geçersiz DHCP kira süresi, bir sayı değil."
 
-msgid "Root CA certificate"
-msgstr "Root CA sertifikası"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:248
+msgid "Unknown DHCP lease time unit."
+msgstr "Bilinmeyen DHCP kira süresi birimi."
 
-msgid "Server certificate"
-msgstr "Sunucu sertifikası"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:251
+msgid "Invalid metric value, not a number."
+msgstr "Geçersiz metrik değeri, bir sayı değil."
 
-msgid "Diffie Hellman parameters"
-msgstr "Diffie Hellman parametreleri"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:276
+#, php-format
+msgid "DHCP configuration for %s updated."
+msgstr "%s için DHCP yapılandırması güncellendi."
 
-msgid "KeepAlive"
-msgstr "KeepAlive"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
+msgid "WPA and WPA2"
+msgstr "WPA ve WPA2"
 
-msgid "Server log"
-msgstr "Sunucu günlüğü"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:112
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 ve WPA3-Kişisel (geçiş modu)"
 
-msgid "Start OpenVPN"
-msgstr "OpenVPN'i başlat"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:114
+msgid "None"
+msgstr "Hiçbiri"
 
-msgid "Stop OpenVPN"
-msgstr "OpenVPN'i durdur"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:124
+msgid "Disabled"
+msgstr "Engelli"
 
-msgid "Information provided by openvpn"
-msgstr "Openvpn tarafından sağlanan bilgiler"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:125
+msgid "Enabled (for supported clients)"
+msgstr "Etkin (desteklenen istemciler için)"
 
-msgid "Attempting to start openvpn"
-msgstr "Openvpn başlatılmaya çalışıyor"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:126
+msgid "Required (for supported clients)"
+msgstr "Gerekli (desteklenen müşteriler için)"
 
-msgid "Attempting to stop openvpn"
-msgstr "Openvpn durdurulmaya çalışılıyor"
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "Geçersiz MAC adresi: "
 
-#: includes/torproxy.php
-msgid "TOR is not running"
-msgstr "TOR çalışmıyor"
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "Yinelenen IP adresi girildi: "
 
-msgid "TOR is running"
-msgstr "TOR çalışıyor"
-
-msgid "Relay"
-msgstr "İleti anahtarlama"
-
-msgid "Relay settings"
-msgstr "İleti anahtarlama ayarları"
-
-msgid "Nickname"
-msgstr "Takma Ad"
-
-msgid "Address"
-msgstr "Adres"
-
-msgid "Start TOR"
-msgstr "TOR'u başlat"
-
-msgid "Stop TOR"
-msgstr "TOR'u durdur"
-
-msgid "Information provided by tor"
-msgstr "Tor tarafından sağlanan bilgiler"
-
-msgid "Attempting to start TOR"
-msgstr "TOR başlatılmaya çalışılıyor"
-
-msgid "Attempting to stop TOR"
-msgstr "TOR durdurulmaya çalışılıyor"
-
-#: common form controls
+#: ../templates/hostapd.php:3 ../templates/wireguard.php:3
+#: ../templates/adblock.php:3 ../templates/openvpn.php:3
+#: ../templates/system/advanced.php:39 ../templates/system/language.php:11
+#: ../templates/system/theme.php:56 ../templates/restapi.php:3
+#: ../templates/dhcp.php:3 ../templates/admin/general.php:2
+#: ../templates/provider.php:3 ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29
+#: ../plugins-available/Wireshark/templates/main.php:3
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Captive/templates/main.php:3
 msgid "Save settings"
 msgstr "Ayarları kaydet"
 
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "Etkin noktayı başlat"
+
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "Etkin noktayı başlatma"
+
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "Etkin noktayı durdur"
+
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "Etkin noktayı yeniden başlat"
+
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "Etkin noktayı yeniden başlatma"
+
+#: ../templates/hostapd.php:49 ../templates/system.php:17
+#: ../templates/admin.php:20 ../plugins-available/Captive/templates/main.php:48
+msgid "Basic"
+msgstr "Temel"
+
+#: ../templates/hostapd.php:50 ../templates/wifi_stations/network.php:73
+msgid "Security"
+msgstr "Güvenlik"
+
+#: ../templates/hostapd.php:51 ../templates/system.php:20
+#: ../templates/dhcp.php:52 ../plugins-available/Captive/templates/main.php:50
+msgid "Advanced"
+msgstr "Gelişmiş"
+
+#: ../templates/hostapd.php:52 ../templates/adblock/logging.php:3
+#: ../templates/hostapd/logging.php:3 ../templates/wireguard.php:49
+#: ../templates/adblock.php:47 ../templates/openvpn.php:48
+#: ../templates/dhcp.php:55 ../templates/wg/logging.php:5
+#: ../templates/dhcp/logging.php:3 ../templates/openvpn/logging.php:3
+msgid "Logging"
+msgstr "Günlük kaydı"
+
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "hostapd tarafından sağlanan bilgiler"
+
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "RaspAP hizmet başlangıcı yürütülüyor"
+
+#: ../templates/hostapd.php:90 ../templates/system.php:56
+#: ../templates/system.php:74 ../templates/system.php:92
+#: ../templates/system.php:110 ../templates/system.php:142
+#: ../templates/wifi_stations/network.php:119
+#: ../templates/configure_client.php:65
+msgid "Close"
+msgstr "Kapat"
+
+#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
+msgid "Blocklist settings"
+msgstr "Blok listesi ayarları"
+
+#: ../templates/adblock/general.php:10
+msgid "Enable blocklists"
+msgstr "Blok listelerini etkinleştirin"
+
+#: ../templates/adblock/general.php:13
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "RaspAP' <b>ın reklamlar, izleme ve diğer sanal çöpler için DNS isteklerini engellemesini</b> istiyorsanız bu seçeneği etkinleştirin. Engelleme listeleri birden fazla, aktif olarak sürdürülen kaynaktan toplanır ve otomatik olarak günlük olarak güncellenir, temizlenir, optimize edilir ve denetlenir."
+
+#: ../templates/adblock/general.php:15
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "Bu seçenek dnsmasq yapılandırmasına <code>conf-file</code> ve <code>addn-hosts</code> ekler."
+
+#: ../templates/adblock/general.php:22
+msgid "Hostnames blocklist last updated"
+msgstr "Son güncellenen ana bilgisayar adları engelleme listesi"
+
+#: ../templates/adblock/general.php:24
+msgid "Domains blocklist last updated"
+msgstr "Alan adları engelleme listesi son güncellendi"
+
+#: ../templates/adblock/general.php:29
+msgid "Choose a blocklist provider"
+msgstr "Bir blok listesi sağlayıcısı seçin"
+
+#: ../templates/adblock/general.php:33
+msgid "Update now"
+msgstr "Şimdi güncelleyin"
+
+#: ../templates/adblock/stats.php:3
+msgid "Statistics"
+msgstr "İstatistikler"
+
+#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
+msgid "Custom blocklist"
+msgstr "Özel blok listesi"
+
+#: ../templates/adblock/custom.php:10
+msgid "Enable custom blocklist"
+msgstr "Özel engelleme listesini etkinleştir"
+
+#: ../templates/adblock/custom.php:14
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Bir IPv4 veya IPv6 adresi ve ardından herhangi bir boşluk (boşluk veya sekme) ve ana bilgisayar adı girerek engellenecek özel ana bilgisayarları tanımlayın."
+
+#: ../templates/adblock/custom.php:15
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 örneği:</b> 0.0.0.0 badhost.com"
+
+#: ../templates/adblock/custom.php:17
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Bu seçenek dnsmasq yapılandırmasına bir <code>addn-hosts</code> yönergesi ekler."
+
+#: ../templates/system.php:18
+msgid "Language"
+msgstr "Dil"
+
+#: ../templates/system.php:19
+msgid "Theme"
+msgstr "Tema"
+
+#: ../templates/system.php:21
+msgid "Tools"
+msgstr "Araçlar"
+
+#: ../templates/system.php:23 ../templates/system/plugins.php:3
+msgid "Plugins"
+msgstr "Eklentiler"
+
+#: ../templates/system.php:40 ../templates/dashboard.php:164
+msgid "Information provided by raspap.sysinfo"
+msgstr "raspap.sysinfo tarafından sağlanan bilgiler"
+
+#: ../templates/system.php:50
+msgid "System reset"
+msgstr "Sistem sıfırlama"
+
+#: ../templates/system.php:53
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "Sıfırlama tamamlandı. Değişikliklerin etkili olması için etkin noktayı yeniden başlatın."
+
+#: ../templates/system.php:53
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "RaspAP ilk yapılandırmasına sıfırlansın mı? Bu eylem geri alınamaz."
+
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:92 ../templates/system.php:236
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+#: ../templates/admin.php:90 ../templates/admin.php:119
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../plugins-available/Captive/templates/main.php:99
+msgid "Cancel"
+msgstr "İptal"
+
+#: ../templates/system.php:57
+msgid "System reset in progress..."
+msgstr "Sistem sıfırlama işlemi devam ediyor..."
+
+#: ../templates/system.php:57
+msgid "Reset"
+msgstr "Sıfırla"
+
+#: ../templates/system.php:68
+msgid "System reboot"
+msgstr "Sistem yeniden başlatılıyor"
+
+#: ../templates/system.php:71
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr "Şimdi yeniden başlatalım mı? Sistem geçici olarak kullanılamayacaktır."
+
+#: ../templates/system.php:75 ../templates/system/basic.php:23
+msgid "Reboot"
+msgstr "Yeniden Başlatma"
+
+#: ../templates/system.php:86
+msgid "System shutdown"
+msgstr "Sistem kapatma"
+
+#: ../templates/system.php:89
+msgid "Shutdown now? The system will be unavailable."
+msgstr "Şimdi mi kapatılıyor? Sistem kullanılamayacaktır."
+
+#: ../templates/system.php:93 ../templates/system/basic.php:27
+msgid "Shutdown"
+msgstr "Kapatma"
+
+#: ../templates/system.php:104 ../templates/system/tools.php:18
+msgid "Generate debug log"
+msgstr "Hata ayıklama günlüğü oluştur"
+
+#: ../templates/system.php:107
+msgid "Debug log generation in progress..."
+msgstr "Hata ayıklama günlüğü oluşturma işlemi devam ediyor..."
+
+#: ../templates/system.php:121 ../templates/system/tools.php:32
+msgid "Inspect adapters"
+msgstr "Adaptörleri inceleyin"
+
+#: ../templates/system.php:140
+msgid "Adapter health check"
+msgstr "Adaptör sağlık kontrolü"
+
+#: ../templates/system.php:177
+msgid "Plugin details"
+msgstr "Eklenti ayrıntıları"
+
+#: ../templates/system.php:188
+msgid "Plugin docs"
+msgstr "Eklenti dokümanları"
+
+#: ../templates/system.php:192
+msgid "Version"
+msgstr "Versiyon"
+
+#: ../templates/system.php:196
+msgid "Author"
+msgstr "Yazar"
+
+#: ../templates/system.php:200
+msgid "License"
+msgstr "Lisans"
+
+#: ../templates/system.php:204
+msgid "Language locale"
+msgstr "Dil yerel ayarı"
+
+#: ../templates/system.php:208
+msgid "Configuration files"
+msgstr "Yapılandırma dosyaları"
+
+#: ../templates/system.php:212
+msgid "Signed Packages"
+msgstr "İmzalı Paketler"
+
+#: ../templates/system.php:216
+msgid "Dependencies"
+msgstr "Bağımlılıklar"
+
+#: ../templates/system.php:220
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: ../templates/system.php:224
+msgid "Sudoers"
+msgstr "Sudoers"
+
+#: ../templates/system.php:228
+msgid "Non-privileged users"
+msgstr "Ayrıcalıklı olmayan kullanıcılar"
+
+#: ../templates/system.php:248
+msgid "Installing plugin"
+msgstr "Eklenti yükleme"
+
+#: ../templates/system.php:251
+msgid "Plugin install completed."
+msgstr "Eklenti kurulumu tamamlandı."
+
+#: ../templates/system.php:251
+msgid "Plugin installation in progress..."
+msgstr "Eklenti kurulumu devam ediyor..."
+
+#: ../templates/system.php:254 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "TAMAM."
+
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "Güvenlik ayarları"
+
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "Güvenlik türü"
+
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "Şifreleme Türü"
+
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
+
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "802.11w, güçlü kriptografik korumayı Kimlik Doğrulamasını Kaldırma, İlişki Kesme ve belirli Eylem Yönetimi çerçeveleri kategorileri dahil olmak üzere belirli bir dizi sağlam yönetim çerçevesine genişletir. Toplu olarak bu, Yönetim Çerçevesi Koruması (MFP) olarak bilinir."
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "Ön paylaşımlı anahtar (PSK)"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "Lütfen geçerli bir PSK girin."
+
+#: ../templates/hostapd/security.php:32
+#, php-format
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Bu QR kodunu doğrudan tarayın veya %s %skullanıcılarınız için bir%s işareti yazdırın."
+
+#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+msgid "Advanced settings"
+msgstr "Gelişmiş ayarlar"
+
+#: ../templates/hostapd/advanced.php:9
+msgid "Bridged AP mode"
+msgstr "Köprülü AP modu"
+
+#: ../templates/hostapd/advanced.php:19
+msgid "Bridge interface configuration"
+msgstr "Köprü arayüzü yapılandırması"
+
+#: ../templates/hostapd/advanced.php:21
+msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+msgstr "Köprü modu aktivasyonu sırasında bağlantıyı korumak için <code>br0</code> arayüzü için statik bir IP adresi yapılandırın."
+
+#: ../templates/hostapd/advanced.php:26
+msgid "Static IP Address"
+msgstr "Statik IP Adresi"
+
+#: ../templates/hostapd/advanced.php:32 ../templates/hostapd/advanced.php:58
+#: ../templates/hostapd/advanced.php:71
+msgid "Please enter a valid IPv4 address"
+msgstr "Lütfen geçerli bir IPv4 adresi girin"
+
+#: ../templates/hostapd/advanced.php:35
+msgid "Example: 192.168.1.100"
+msgstr "Örnek: 192.168.1.100"
+
+#: ../templates/hostapd/advanced.php:39
+msgid "Netmask / CIDR"
+msgstr "Netmask / CIDR"
+
+#: ../templates/hostapd/advanced.php:45
+msgid "Please enter a valid netmask"
+msgstr "Lütfen geçerli bir ağ maskesi girin"
+
+#: ../templates/hostapd/advanced.php:48
+msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
+msgstr "CIDR gösterimi (örneğin, 255.255.255.0 için 24)"
+
+#: ../templates/hostapd/advanced.php:52 ../templates/networking/general.php:14
+msgid "Gateway"
+msgstr "Ağ Geçidi"
+
+#: ../templates/hostapd/advanced.php:61
+msgid "Your router's IP address"
+msgstr "Yönlendiricinizin IP adresi"
+
+#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/settings.php:150
+#: ../templates/dhcp/settings.php:157 ../templates/dhcp/general.php:149
+#: ../templates/dhcp/general.php:156
+msgid "DNS Server"
+msgstr "DNS Sunucusu"
+
+#: ../templates/hostapd/advanced.php:74
+msgid "Usually same as gateway"
+msgstr "Genellikle ağ geçidi ile aynıdır"
+
+#: ../templates/hostapd/advanced.php:89
+msgid "WiFi repeater mode"
+msgstr "WiFi tekrarlayıcı modu"
+
+#: ../templates/hostapd/advanced.php:99
+msgid "WiFi client AP mode"
+msgstr "WiFi istemci AP modu"
+
+#: ../templates/hostapd/advanced.php:108
+msgid "Dual band AP mode"
+msgstr "Çift bant AP modu"
+
+#: ../templates/hostapd/advanced.php:117
+msgid "Hide SSID in broadcast"
+msgstr "Yayında SSID'yi gizleme"
+
+#: ../templates/hostapd/advanced.php:126
+msgid "Enable AP isolation"
+msgstr "AP izolasyonunu etkinleştirin"
+
+#: ../templates/hostapd/advanced.php:127
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "Kablosuz istemcilerin birbirlerini görmesini veya bağlanmasını engeller. Misafir ağları ve genel erişim noktaları için önerilir."
+
+#: ../templates/hostapd/advanced.php:136
+msgid "Beacon interval"
+msgstr "İşaret aralığı"
+
+#: ../templates/hostapd/advanced.php:148
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "<code>disassoc_low_ack'</code>i devre dışı bırak"
+
+#: ../templates/hostapd/advanced.php:151
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Aşırı iletim hatalarına bağlı olarak istasyonları ayırmayın."
+
+#: ../templates/hostapd/advanced.php:157
+msgid "Transmit power (dBm)"
+msgstr "İletim gücü (dBm)"
+
+#: ../templates/hostapd/advanced.php:158
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "dBm, bir güç oranının bir miliwatt (mW) referans alınarak desibel (dB) cinsinden ifade edildiğini belirtmek için kullanılan bir seviye birimidir. 30 dBm 1000 mW'a eşitken, 0 dBm 1,25 mW'a eşittir."
+
+#: ../templates/hostapd/advanced.php:160
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "AP arayüzü ve yapılandırılmış ülke için <code>txpower</code> seçeneğini ayarlar."
+
+#: ../templates/hostapd/advanced.php:166
+msgid "Maximum number of clients"
+msgstr "Maksimum müşteri sayısı"
+
+#: ../templates/hostapd/advanced.php:168
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Hostapd'nin <code>max_num_sta</code> seçeneğini yapılandırır. Varsayılan ve maksimum değer 2007'dir. Boş veya 0 ise, varsayılan geçerlidir."
+
+#: ../templates/hostapd/advanced.php:173
+msgid "Country Code"
+msgstr "Ülke Kodu"
+
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+msgid "Basic settings"
+msgstr "Temel ayarlar"
+
+#: ../templates/hostapd/basic.php:5 ../templates/dhcp/settings.php:5
+#: ../templates/dhcp/general.php:5 ../templates/dhcp/summary.php:18
+#: ../templates/networking/general.php:12
+#: ../templates/networking/devices.php:17 ../templates/configure_client.php:31
+msgid "Interface"
+msgstr "Arayüz"
+
+#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
+#: ../templates/dashboard.php:63
+msgid "SSID"
+msgstr "SSID"
+
+#: ../templates/hostapd/basic.php:14
+msgid "Please provide a valid SSID."
+msgstr "Lütfen geçerli bir SSID sağlayın."
+
+#: ../templates/hostapd/basic.php:20
+msgid "Wireless Mode"
+msgstr "Kablosuz Mod"
+
+#: ../templates/hostapd/basic.php:21
+msgid "Wireless standards which are not compatible with your adapter may be disabled"
+msgstr "Adaptörünüzle uyumlu olmayan kablosuz standartlar devre dışı bırakılabilir"
+
+#: ../templates/hostapd/basic.php:24
+#, php-format
+msgid "Based on the selected interface, 802.11%s is suggested."
+msgstr "Seçilen arayüze bağlı olarak 802.11%s önerilir."
+
+#: ../templates/hostapd/basic.php:30 ../templates/wifi_stations/network.php:46
+msgid "Channel"
+msgstr "Kanal"
+
+#: ../templates/hostapd/logging.php:4
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "<code>Hostapd</code> etkinliğini günlüğe kaydetmek için bu seçeneği etkinleştirin."
+
+#: ../templates/hostapd/logging.php:9 ../templates/wg/logging.php:9
+msgid "Logfile output"
+msgstr "Günlük dosyası çıktısı"
+
+#: ../templates/hostapd/logging.php:10 ../templates/dhcp/logging.php:13
+#: ../templates/openvpn/logging.php:9
+msgid "Clear log"
+msgstr "Günlüğü temizle"
+
+#: ../templates/hostapd/logging.php:15
+msgid "Log level"
+msgstr "Günlük seviyesi"
+
+#: ../templates/hostapd/logging.php:16
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Daha yüksek seviyeler günlük ayrıntı düzeyini azaltır. Bilgilendirme önerilir."
+
+#: ../templates/data_usage.php:7
+msgid "Data usage monitoring"
+msgstr "Veri kullanımı izleme"
+
+#: ../templates/data_usage.php:14
+msgid "Hourly"
+msgstr "Saatlik"
+
+#: ../templates/data_usage.php:15
+msgid "Daily"
+msgstr "Günlük"
+
+#: ../templates/data_usage.php:16
+msgid "Monthly"
+msgstr "Aylık"
+
+#: ../templates/data_usage.php:23
+msgid "Hourly traffic amount"
+msgstr "Saatlik trafik miktarı"
+
+#: ../templates/data_usage.php:24 ../templates/data_usage.php:43
+#: ../templates/data_usage.php:62
+msgid "interface"
+msgstr "arayüz"
+
+#: ../templates/data_usage.php:32 ../templates/data_usage.php:51
+#: ../templates/data_usage.php:70
+#, php-format
+msgid "Loading %s bandwidth chart"
+msgstr "%s bant genişliği grafiği yükleniyor"
+
+#: ../templates/data_usage.php:32
+msgid "hourly"
+msgstr "saatlik"
+
+#: ../templates/data_usage.php:42
+msgid "Daily traffic amount"
+msgstr "Günlük trafik miktarı"
+
+#: ../templates/data_usage.php:51
+msgid "daily"
+msgstr "günlük"
+
+#: ../templates/data_usage.php:61
+msgid "Monthly traffic amount"
+msgstr "Aylık trafik miktarı"
+
+#: ../templates/data_usage.php:70
+msgid "monthly"
+msgstr "aylık"
+
+#: ../templates/data_usage.php:79
+msgid "Information provided by vnstat"
+msgstr "vnstat tarafından sağlanan bilgiler"
+
+#: ../templates/data_usage.php:86
+msgid "Send"
+msgstr "Gönder"
+
+#: ../templates/data_usage.php:87
+msgid "Receive"
+msgstr "Almak"
+
+#: ../templates/login.php:13
+msgid "Administrator login"
+msgstr "Yönetici girişi"
+
+#: ../templates/login.php:22 ../templates/about.php:85
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+#: ../templates/login.php:25 ../templates/admin/login.php:21
+#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
+#: ../app/lib/signprint.php:67
+msgid "Password"
+msgstr "Şifre"
+
+#: ../templates/login.php:30 ../templates/admin.php:18
+#: ../includes/footer.php:23
+msgid "Login"
+msgstr "Giriş"
+
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "Şifremi unuttum"
+
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
+msgstr ""
+
+#: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:47
+#: ../templates/provider.php:36 ../includes/functions.php:1000
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../plugins-available/Captive/templates/main.php:51
+msgid "Status"
+msgstr "Durum"
+
+#: ../templates/wifi_stations/network.php:42
+msgid "Not configured"
+msgstr "Yapılandırılmamış"
+
+#: ../templates/wifi_stations/network.php:55
+msgid "RSSI"
+msgstr "RSSI"
+
+#: ../templates/wifi_stations/network.php:77
+msgid "Passphrase"
+msgstr "Parola"
+
+#: ../templates/wifi_stations/network.php:90
+#: ../templates/networking/devices.php:55
+msgid "Update"
+msgstr "Güncelleme"
+
+#: ../templates/wifi_stations/network.php:92
+msgid "Disconnect"
+msgstr "Bağlantıyı Kes"
+
+#: ../templates/wifi_stations/network.php:94
+msgid "Connect"
+msgstr "Bağlan"
+
+#: ../templates/wifi_stations/network.php:97
+msgid "Add"
+msgstr "Ekle"
+
+#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
+#: ../templates/openvpn.php:82
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+msgid "Delete"
+msgstr "Silme"
+
+#: ../templates/wifi_stations/network.php:112
+msgid "Login Information Required"
+msgstr "Giriş Bilgileri Gerekli"
+
+#: ../templates/wifi_stations/network.php:115
+msgid "This wireless network requires a login or the acceptance of terms of usage on a separate webpage"
+msgstr "Bu kablosuz ağ, ayrı bir web sayfasında oturum açılmasını veya kullanım koşullarının kabul edilmesini gerektirir"
+
+#: ../templates/wifi_stations/network.php:118
+msgid "Goto Webpage"
+msgstr "Web Sayfasına Git"
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "WireGuard'ı durdurun"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "WireGuard'ı başlatın"
+
+#: ../templates/wireguard.php:46 ../templates/restapi.php:46
+#: ../templates/provider.php:35
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../plugins-available/Tailscale/templates/main.php:70
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "Akran"
+
+#: ../templates/wireguard.php:48 ../templates/openvpn.php:47
+#: ../templates/wg/configs.php:4 ../templates/openvpn/configs.php:4
+msgid "Configurations"
+msgstr "Konfigürasyonlar"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "Wireguard tarafından sağlanan bilgiler"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "WireGuard yapılandırmasını silme"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "Bu yapılandırma silinsin mi? Bu geri alınamaz."
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "WireGuard yapılandırmasını etkinleştirme"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "Bu yapılandırmayı etkinleştirin? Bu, wg-quick hizmetini yeniden başlatacaktır."
+
+#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
+msgid "Activate"
+msgstr "Etkinleştir"
+
+#: ../templates/exception.php:6 ../templates/exception.php:17
+msgid "RaspAP Exception"
+msgstr "RaspAP İstisnası"
+
+#: ../templates/exception.php:20
+msgid "An exception occurred"
+msgstr "Bir istisna meydana geldi"
+
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "Reklam Engellemeyi Yeniden Başlat"
+
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "Reklam Engellemeyi Başlat"
+
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "adblock tarafından sağlanan bilgiler"
+
+#: ../templates/networking.php:20 ../templates/dhcp.php:50
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "Özet"
+
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "Cihazlar"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "Mobil Veri"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "WLAN Yönlendirme"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "Teşhis"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "/sys/class/net tarafından sağlanan bilgiler"
+
+#: ../templates/openvpn.php:20
+msgid "Start OpenVPN"
+msgstr "OpenVPN'i Başlat"
+
+#: ../templates/openvpn.php:24
+msgid "Stop OpenVPN"
+msgstr "OpenVPN'i Durdur"
+
+#: ../templates/openvpn.php:46 ../templates/openvpn/general.php:2
+#: ../templates/configure_client.php:21
+#: ../plugins-available/Captive/templates/tabs/clients.php:5
+msgid "Client settings"
+msgstr "İstemci ayarları"
+
+#: ../templates/openvpn.php:65
+msgid "Information provided by openvpn"
+msgstr "openvpn tarafından sağlanan bilgiler"
+
+#: ../templates/openvpn.php:75
+msgid "Delete OpenVPN client"
+msgstr "OpenVPN istemcisini silme"
+
+#: ../templates/openvpn.php:78
+msgid "Delete client configuration? This cannot be undone."
+msgstr "İstemci yapılandırması silinsin mi? Bu işlem geri alınamaz."
+
+#: ../templates/openvpn.php:93
+msgid "Activate OpenVPN client"
+msgstr "OpenVPN istemcisini etkinleştirin"
+
+#: ../templates/openvpn.php:96
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "İstemci yapılandırmasını etkinleştir? Bu işlem openvpn-client hizmetini yeniden başlatacaktır."
+
+#: ../templates/restapi/general.php:12
+msgid "API Key"
+msgstr "API Anahtarı"
+
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "Lütfen geçerli bir API anahtarı sağlayın."
+
+#: ../templates/restapi/status.php:3
+msgid "RestAPI status"
+msgstr "RestAPI durumu"
+
+#: ../templates/restapi/status.php:4
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "Mevcut <code>restapi.service</code> durumu aşağıda gösterilmektedir."
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s ayarlar"
+
+#: ../templates/provider/general.php:9 ../templates/wg/general.php:8
+#: ../templates/openvpn/general.php:8
+msgid "IPv4 Address"
+msgstr "IPv4 Adresi"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "Hesap bilgileri"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "Benim hesabım"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "Sunucu konumu"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "<strong>Ayarları kaydet</strong> seçildiğinde seçilen ülkeye bağlanılır."
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "<strong>Bağlan %s</strong> seçildiğinde önerilen bir sunucuya bağlanılır."
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "Ülke"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s durum"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Linux CLI yüklendi: <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Güncel <code>%s</code> bağlantı durumu aşağıda gösterilmektedir."
+
+#: ../templates/about.php:21
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Captive/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/main.php:53
+msgid "About"
+msgstr "Hakkında"
+
+#: ../templates/about.php:22 ../templates/about/general.php:29
+msgid "Insiders"
+msgstr "İçerdekiler"
+
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "Katkıda Bulunmak"
+
+#: ../templates/about.php:47 ../templates/about/general.php:11
+msgid "Check for update"
+msgstr "Güncelleme için kontrol edin"
+
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "Yeni sürüm kontrolü devam ediyor..."
+
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "Yeni bir sürüm mevcuttur: Sürüm"
+
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "Yüklü sürüm en son sürümdür."
+
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "Bu güncellemeyi şimdi mi yüklüyorsunuz?"
+
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "GitHub kimlik doğrulaması"
+
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Insider'ları güncellemek için GitHub kimlik doğrulaması gerekir."
+
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Kimlik bilgileriniz GitHub'a SSL ile güvenli bir şekilde gönderilecektir. Ancak, RaspAP kurulumunuz güvenilmeyen kullanıcılar tarafından paylaşılan bir WLAN üzerindeyse dikkatli olun."
+
+#: ../templates/about.php:87 ../templates/admin/general.php:18
+#: ../templates/admin/general.php:37 ../templates/admin/login.php:15
+msgid "Please provide a valid username."
+msgstr "Lütfen geçerli bir kullanıcı adı girin."
+
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "Kişisel Erişim Simgesi"
+
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "Lütfen geçerli bir belirteç sağlayın."
+
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "Güncelleme gerçekleştirin"
+
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "Güncelleme devam ediyor"
+
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "Uygulama güncelleniyor..."
+
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "Güncellemeyi yapılandırma"
+
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "Kaynakların güncellenmesi"
+
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "Paket güncellemelerini yükleme"
+
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "En son dosyaları indirme"
+
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "Uygulama yükleme"
+
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "Güncelleme tamamlandı"
+
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Bir hata oluştu. <code>/tmp/raspap_install.log</code> adresindeki günlüğü kontrol edin"
+
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "Başarılı. Yeni sürümü onaylamak için bu sayfayı yenileyin."
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "Sistem araçları"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "Bir sistem <a href=\"%s\" target=\"_blank\">hata ayıklama günlüğü</a> oluşturmak için aşağıdaki düğmeye tıklayın veya dokunun."
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Hata ayıklama günlüğü bilgileri RaspAP sürümünü, AP ile ilgili hizmetlerin mevcut durumunu ve yapılandırmasını, yüklü sistem paketlerini, Linux çekirdek sürümünü ve ağ ayrıntılarını içerir. Parola veya diğer hassas veriler dahil değildir."
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Bu cihaza takılı <a href=\"%s\" target=\"_blank\">adaptörleri incelemek</a> için aşağıdaki düğmeye tıklayın veya dokunun."
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Adaptör inceleme aracı, sürücüler, desteklenen modlar vb. dahil olmak üzere harici WLAN cihazları hakkında ayrıntılar verir."
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "RaspAP'ı <a href=\"%s\" target=\"_blank\">ilk yapılandırmasına</a> sıfırlamak için aşağıdaki düğmeye tıklayın veya dokunun."
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Tüm erişim noktası (AP) hizmet ayarlarını varsayılan değerlerine geri yükler. Bu hostapd, dhcpcd ve dnsmasq için geçerlidir."
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Reklam Engelleme, WireGuard veya OpenVPN gibi isteğe bağlı bileşenler için özel dosyalar sistemde kalacaktır."
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "Sıfırlama gerçekleştirin"
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "Web sunucusu bağlantı noktası"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "Web sunucusu bağlama adresi"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "Tanılama günlüğü boyut sınırı (KB)"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
+msgstr ""
+
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr ""
+
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
+msgstr ""
+
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr ""
+
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "lighttpd'yi yeniden başlatın"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "Sistem Bilgileri"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "Ana bilgisayar adı"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "Pi Revizyonu"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "İŞLETIM SISTEMI"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "Çekirdek"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "Çalışma Süresi"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "Sistem Zamanı"
+
+#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
+#: ../templates/dhcp/summary.php:9 ../templates/networking/general.php:4
+#: ../templates/networking/devices.php:4
+#: ../plugins-available/Tailscale/templates/main.php:4
+#: ../plugins-available/Tailscale/Tailscale.php:403
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:6
 msgid "Refresh"
 msgstr "Yenile"
 
-msgid "running"
-msgstr "çalışıyor"
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "Kullanılan Bellek"
 
-msgid "stopped"
-msgstr "durduruldu"
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "Kullanılan Depolama"
 
-msgid "Remove"
-msgstr "Kaldır"
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "CPU Yükü"
 
-msgid "up"
-msgstr "hazır"
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "CPU Sıcaklığı"
 
-msgid "down"
-msgstr "kapalı"
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "Dil ayarları"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "Bir dil seçin"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "Tema ayarları"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "Bir tema seçin"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "Renk"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "Karanlık Mod"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "Geçerli temanın karanlık modunu kullanma"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "Sistem Teması"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "Sisteminizin renk modunu kullanır"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "Uyarı mesajları"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Belirli bir zaman aşımından sonra uyarıları otomatik olarak kapatma"
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "Uyarı kapatma zaman aşımı (milisaniye)"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "RaspAP'ın işlevselliğini genişletmek için aşağıdaki kullanıcı eklentileri mevcuttur."
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Daha fazla bilgi almak ve bir eklenti yüklemek için <strong>Ayrıntılar</strong> 'ı seçin."
+
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "RestAPI hizmetini başlatma"
+
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "RestAPI hizmetini durdurun"
+
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "Restapi.service tarafından sağlanan bilgiler"
+
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
+msgstr ""
+
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "Tekrarlayıcı"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "Tethering"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "Hücresel"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
+msgstr ""
+
+#: ../templates/dashboard.php:49
+msgid "Local"
+msgstr ""
+
+#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
+#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
+#: ../templates/dhcp/settings.php:39 ../templates/dhcp/general.php:39
+#: ../templates/dhcp/clients.php:20 ../templates/networking/general.php:13
+msgid "IP Address"
+msgstr "IP Adresi"
+
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "Netmask"
+
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "MAC Adresi"
+
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "AP"
+
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "Köprülü"
+
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "Adblock"
+
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "VPN"
+
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "Güvenlik Duvarı"
+
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
+
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2.4G"
+
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "Wifi istasyonu bulunamadı"
+
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Yakındaki Wifi istasyonlarını aramak için 'Yeniden tara'ya tıklayın."
+
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "<code>wpa_supplicant</code>'ı yeniden başlatmaya zorlamak için 'Yeniden Başlat'a tıklayın."
+
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "Yeniden başlat"
+
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "Bağlı"
+
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "Bilinen"
+
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "Yakınlarda"
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "dnsmasq'ı durdur"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "dnsmasq'ı yeniden başlat"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "dnsmasq'ı başlat"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "Sunucu ayarları"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "Statik Kiralamalar"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "Müşteri listesi"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "Dnsmasq tarafından sağlanan bilgiler"
+
+#: ../templates/wg/peers.php:10
+msgid "Enable peer"
+msgstr "Eşi etkinleştir"
+
+#: ../templates/wg/peers.php:13
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "RaspAP ile bu eş arasında bir tünel oluşturarak trafiği şifrelemek için bu seçeneği etkinleştirin."
+
+#: ../templates/wg/peers.php:14
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "Bu seçenek WireGuard yapılandırmasına <code>client.conf</code> dosyasını ekler."
+
+#: ../templates/wg/peers.php:20
+msgid "Peer public key"
+msgstr "Eş açık anahtar"
+
+#: ../templates/wg/peers.php:31 ../templates/wg/general.php:99
+msgid "Local Port"
+msgstr "Yerel Liman"
+
+#: ../templates/wg/peers.php:45
+msgid "Endpoint address"
+msgstr "Uç nokta adresi"
+
+#: ../templates/wg/peers.php:52
+msgid "Allowed IPs"
+msgstr "İzin Verilen IP'ler"
+
+#: ../templates/wg/peers.php:59
+msgid "Persistent keepalive"
+msgstr "Kalıcı keepalive"
+
+#: ../templates/wg/peers.php:70
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Bu tünele bağlanmak için istemcinizle bu QR kodunu tarayın"
+
+#: ../templates/wg/peers.php:71
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "veya <code>client.conf</code> dosyasını cihazınıza indirin."
+
+#: ../templates/wg/peers.php:73 ../templates/networking/diagnostics.php:34
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:23
+msgid "Download"
+msgstr "İndir"
+
+#: ../templates/wg/general.php:5
+msgid "Tunnel settings"
+msgstr "Tünel ayarları"
+
+#: ../templates/wg/general.php:12
+msgid "Configuration Method"
+msgstr "Yapılandırma Yöntemi"
+
+#: ../templates/wg/general.php:15
+msgid "Upload file"
+msgstr "Dosya yükle"
+
+#: ../templates/wg/general.php:19
+msgid "Create manually"
+msgstr "Manuel olarak oluşturun"
+
+#: ../templates/wg/general.php:27
+msgid "Upload a WireGuard config"
+msgstr "WireGuard yapılandırması yükleme"
+
+#: ../templates/wg/general.php:29
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "Bu seçenek, mevcut bir WireGuard <code>.conf</code> dosyasını bu cihaza yükler ve kurar."
+
+#: ../templates/wg/general.php:38
+msgid "Apply iptables rules to the selected interface"
+msgstr "Seçilen arabirime iptables kurallarını uygulama"
+
+#: ../templates/wg/general.php:39
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "Ağ trafiğini wg0 arayüzünden istenen bir arayüze bağlı istemcilere iletmek istiyorsanız önerilir. Etkin AP arayüzü varsayılandır."
+
+#: ../templates/wg/general.php:41
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "Bu seçenek, aşağıda seçilen arayüz için <strong>iptables</strong> <code>Postup</code> ve <code>PostDown</code> kuralları ekler."
+
+#: ../templates/wg/general.php:50
+msgid "Enable kill switch"
+msgstr "Öldürme anahtarını etkinleştir"
+
+#: ../templates/wg/general.php:51
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr "Şifrelenmemiş paketlerin WireGuard olmayan arayüzler üzerinden akışını önlemek istiyorsanız önerilir."
+
+#: ../templates/wg/general.php:53
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr "Bu seçenek, yapılandırılan arabirim için <strong>iptables</strong> <code>PostUp</code> ve <code>PreDown</code> kuralları ekler."
+
+#: ../templates/wg/general.php:59 ../templates/openvpn/general.php:59
+msgid "Configuration File"
+msgstr "Yapılandırma Dosyası"
+
+#: ../templates/wg/general.php:62
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "WireGuard yapılandırma dosyasını (.conf) seçin"
+
+#: ../templates/wg/general.php:72
+msgid "Create a local WireGuard config"
+msgstr "Yerel bir WireGuard yapılandırması oluşturma"
+
+#: ../templates/wg/general.php:76
+msgid "Enable server"
+msgstr "Sunucuyu etkinleştir"
+
+#: ../templates/wg/general.php:80
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "RaspAP ve yapılandırılmış eşler arasında şifreli bir tünel oluşturarak ağ trafiğini güvence altına almak için bu seçeneği etkinleştirin."
+
+#: ../templates/wg/general.php:81
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "Bu ayar, bu cihaz üzerinde yeni bir WireGuard <code>.conf</code> dosyası oluşturur."
+
+#: ../templates/wg/general.php:88
+msgid "Local public key"
+msgstr "Yerel açık anahtar"
+
+#: ../templates/wg/general.php:107
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:120
+msgid "DNS"
+msgstr "DNS"
+
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Güncellenmiş bir <code>wg-quick</code> hata ayıklama günlüğü görüntülemek için bu seçeneği etkinleştirin."
+
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "Şu anda mevcut olan WireGuard dosya yapılandırmaları aşağıda gösterilmektedir."
+
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "Bir yapılandırmanın etkinleştirilmesi <code>wg-quick</code> hizmetini yeniden başlatacaktır."
+
+#: ../templates/admin/general.php:3
+msgid "Change password"
+msgstr "Şifre değiştirme"
+
+#: ../templates/admin/general.php:4
+#: ../plugins-available/Tailscale/templates/main.php:22
+msgid "Logout"
+msgstr "Oturum Kapatma"
+
+#: ../templates/admin/general.php:28
+msgid "Enable limited privilege user"
+msgstr "Sınırlı ayrıcalıklı kullanıcıyı etkinleştirin"
+
+#: ../templates/admin/general.php:30
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "Bu seçenek, RaspAP'ın yönetim arayüzüne erişebilen, ancak <strong>mevcut yapılandırmayı değiştirme yeteneği sınırlı</strong> olan yönetici olmayan bir kullanıcıyı etkinleştirir. Bu kullanıcı, mevcut yönetici kullanıcının oturumu kapatıldığında etkin hale gelir."
+
+#: ../templates/admin/general.php:34
+msgid "Limited user login"
+msgstr "Sınırlı kullanıcı girişi"
+
+#: ../templates/admin/general.php:43
+msgid "Limited user password"
+msgstr "Sınırlı kullanıcı şifresi"
+
+#: ../templates/admin/general.php:48
+msgid "Please enter a valid password."
+msgstr "Lütfen geçerli bir şifre girin."
+
+#: ../templates/admin/login.php:2
+msgid "Submit"
+msgstr "Gönder"
+
+#: ../templates/admin/login.php:11
+msgid "Admin login"
+msgstr "Yönetici girişi"
+
+#: ../templates/admin/login.php:26
+msgid "Please enter your password."
+msgstr "Lütfen şifrenizi giriniz."
+
+#: ../templates/admin/avatar.php:3
+msgid "Reset avatar"
+msgstr "Avatarı sıfırla"
+
+#: ../templates/admin/avatar.php:11 ../templates/admin.php:21
+msgid "Avatar"
+msgstr "Avatar"
+
+#: ../templates/admin/avatar.php:15
+msgid "Click or tap to upload a new user avatar."
+msgstr "Yeni bir kullanıcı avatarı yüklemek için tıklayın veya dokunun."
+
+#: ../templates/admin/avatar.php:16
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "<code>JPG, GIF veya PNG</code> türündeki resim dosyaları kabul edilir. Maksimum dosya boyutu: 2 MB."
+
+#: ../templates/about/general.php:8
+msgid "RaspAP"
+msgstr "RaspAP"
+
+#: ../templates/about/general.php:20
+#, php-format
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP, %1$s ve %2$s ile %3$s ve %4$s'un katkılarıyla ortaklaşa oluşturulmuştur. Projeye %5$s, %6$s veya %7$s olarak katılma hakkında daha fazla bilgi edinin ve %8$s adresinden %9$s adresine anında erişin."
+
+#: ../templates/about/general.php:23
+msgid "developer community"
+msgstr "geliştirici topluluğu"
+
+#: ../templates/about/general.php:24
+msgid "language translators"
+msgstr "dil çevirmenleri"
+
+#: ../templates/about/general.php:25
+msgid "code contributor"
+msgstr "kod katılımcısı"
+
+#: ../templates/about/general.php:26
+msgid "translator"
+msgstr "ÇEVİRMEN"
+
+#: ../templates/about/general.php:27
+msgid "financial sponsor"
+msgstr "fi̇nansal sponsor"
+
+#: ../templates/about/general.php:28
+msgid "exclusive features"
+msgstr "ayricalikli özelli̇kler"
+
+#: ../templates/dhcp/settings.php:2 ../templates/dhcp/general.php:2
+msgid "DHCP server settings"
+msgstr "DHCP sunucu ayarları"
+
+#: ../templates/dhcp/settings.php:10 ../templates/dhcp/general.php:10
+msgid "Adapter IP Address Settings"
+msgstr "Adaptör IP Adresi Ayarları"
+
+#: ../templates/dhcp/settings.php:28 ../templates/dhcp/general.php:28
+msgid "Enable fallback to static option"
+msgstr "Statik seçeneğine geri dönüşü etkinleştir"
+
+#: ../templates/dhcp/settings.php:31 ../templates/dhcp/general.php:31
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Statik bir profil yapılandırmak ve DHCP kiralama başarısız olduğunda buna geri dönmek için bu seçeneği etkinleştirin."
+
+#: ../templates/dhcp/settings.php:36 ../templates/dhcp/general.php:36
+msgid "Static IP options"
+msgstr "Statik IP seçenekleri"
+
+#: ../templates/dhcp/settings.php:42 ../templates/dhcp/general.php:42
+msgid "Please provide a valid IP Address."
+msgstr "Lütfen geçerli bir IP Adresi sağlayın."
+
+#: ../templates/dhcp/settings.php:49 ../templates/dhcp/general.php:49
+msgid "Subnet Mask"
+msgstr "Alt Ağ Maskesi"
+
+#: ../templates/dhcp/settings.php:52 ../templates/dhcp/general.php:52
+msgid "Please provide a valid Subnet mask."
+msgstr "Lütfen geçerli bir Alt ağ maskesi sağlayın."
+
+#: ../templates/dhcp/settings.php:59 ../templates/dhcp/general.php:59
+msgid "Default gateway"
+msgstr "Varsayılan ağ geçidi"
+
+#: ../templates/dhcp/settings.php:62 ../templates/dhcp/general.php:62
+msgid "Please provide a valid Default gateway."
+msgstr "Lütfen geçerli bir Varsayılan ağ geçidi sağlayın."
+
+#: ../templates/dhcp/settings.php:71 ../templates/dhcp/general.php:71
+msgid "Install a default route for this interface"
+msgstr "Bu arabirim için varsayılan bir rota yükleyin"
+
+#: ../templates/dhcp/settings.php:72
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:75
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:84 ../templates/dhcp/general.php:83
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "Bu arabirim için wpa_supplicant dhcp kancasını devre dışı bırak"
+
+#: ../templates/dhcp/settings.php:85 ../templates/dhcp/general.php:84
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "Kablosuz bağlantıları wpa_supplicant ile yönetiyorsanız, kanca istenmeyen bağlantı olayları oluşturabilir. Bu seçenek kancayı devre dışı bırakır."
+
+#: ../templates/dhcp/settings.php:88
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:93 ../templates/dhcp/general.php:92
+msgid "DHCP options"
+msgstr "DHCP seçenekleri"
+
+#: ../templates/dhcp/settings.php:99 ../templates/dhcp/general.php:98
+msgid "Enable DHCP for this interface"
+msgstr "Bu arabirim için DHCP'yi etkinleştir"
+
+#: ../templates/dhcp/settings.php:102 ../templates/dhcp/general.php:101
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "RaspAP'ın seçilen arabirimdeki istemcilere IP adresleri atamasını istiyorsanız bu seçeneği etkinleştirin. Bu seçenek için statik bir IP adresi gereklidir."
+
+#: ../templates/dhcp/settings.php:110 ../templates/dhcp/general.php:109
+msgid "Starting IP Address"
+msgstr "Başlangıç IP Adresi"
+
+#: ../templates/dhcp/settings.php:113 ../templates/dhcp/general.php:112
+msgid "Please provide a valid Starting IP Address."
+msgstr "Lütfen geçerli bir Başlangıç IP Adresi sağlayın."
+
+#: ../templates/dhcp/settings.php:119 ../templates/dhcp/general.php:118
+msgid "Ending IP Address"
+msgstr "Bitiş IP Adresi"
+
+#: ../templates/dhcp/settings.php:122 ../templates/dhcp/general.php:121
+msgid "Please provide a valid Ending IP Address."
+msgstr "Lütfen geçerli bir Bitiş IP Adresi sağlayın."
+
+#: ../templates/dhcp/settings.php:128 ../templates/dhcp/general.php:127
+msgid "Lease Time"
+msgstr "Kira Süresi"
+
+#: ../templates/dhcp/settings.php:131 ../templates/dhcp/general.php:130
+msgid "Please provide a valid Lease Time."
+msgstr "Lütfen geçerli bir Kira Süresi belirtin."
+
+#: ../templates/dhcp/settings.php:135 ../templates/dhcp/general.php:134
+msgid "Interval"
+msgstr "Aralık"
+
+#: ../templates/dhcp/settings.php:137 ../templates/dhcp/general.php:136
+msgid "Minute(s)"
+msgstr "Dakika(lar)"
+
+#: ../templates/dhcp/settings.php:138 ../templates/dhcp/general.php:137
+msgid "Hour(s)"
+msgstr "Saat(ler)"
+
+#: ../templates/dhcp/settings.php:139 ../templates/dhcp/general.php:138
+msgid "Day(s)"
+msgstr "Gün(ler)"
+
+#: ../templates/dhcp/settings.php:140 ../templates/dhcp/general.php:139
+msgid "Infinite"
+msgstr "Sonsuz"
+
+#: ../templates/dhcp/settings.php:143 ../templates/dhcp/general.php:142
+msgid "Please provide a valid Interval."
+msgstr "Lütfen geçerli bir Aralık girin."
+
+#: ../templates/dhcp/settings.php:164 ../templates/dhcp/general.php:163
+#: ../templates/dhcp/summary.php:25
+msgid "Metric"
+msgstr "Metrik"
+
+#: ../templates/dhcp/general.php:74
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "Bu, DHCPCD yapılandırmasında bu arayüz için <code>ağ</code><code>geçidi/nogateway</code> seçeneğini değiştirir."
+
+#: ../templates/dhcp/general.php:87
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr "Bu, DHCPCD yapılandırmasında bu arabirim için <code>nohook wpa_supplicant</code> seçeneğini değiştirir."
+
+#: ../templates/dhcp/advanced.php:3
+msgid "Advanced Settings"
+msgstr "Gelişmiş Ayarlar"
+
+#: ../templates/dhcp/advanced.php:6
+msgid "Upstream DNS servers"
+msgstr "Yukarı akış DNS sunucuları"
+
+#: ../templates/dhcp/advanced.php:11
+msgid "Only ever query DNS servers configured below"
+msgstr "Yalnızca aşağıda yapılandırılmış DNS sunucularını sorgulayın"
+
+#: ../templates/dhcp/advanced.php:14
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "RaspAP'ın <b>DNS sorgularını yalnızca aşağıda yapılandırılan sunuculara göndermesini</b> istiyorsanız bu seçeneği etkinleştirin. RaspAP varsayılan olarak yukarı akış DHCP sunucusunun ad sunucularını da kullanır."
+
+#: ../templates/dhcp/advanced.php:15
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "Bu seçenek dnsmasq yapılandırmasına <code>no-resolv</code> ekler."
+
+#: ../templates/dhcp/advanced.php:29
+msgid "Add upstream DNS server"
+msgstr "Yukarı akış DNS sunucusu ekleme"
+
+#: ../templates/dhcp/advanced.php:31
+#, php-format
+msgid "e.g. %s"
+msgstr "örneğin %s"
+
+#: ../templates/dhcp/advanced.php:36
+msgid "Format: "
+msgstr "Format: "
+
+#: ../templates/dhcp/advanced.php:41
+msgid "Choose a hosted server"
+msgstr "Barındırılan bir sunucu seçin"
+
+#: ../templates/dhcp/logging.php:4
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "<code>dhcpcd</code> ve <code>dnsmasq</code> etkinliğini günlüğe kaydetmek için bu seçenekleri etkinleştirin."
+
+#: ../templates/dhcp/logging.php:8
+msgid "Log DHCP requests"
+msgstr "DHCP isteklerini günlüğe kaydetme"
+
+#: ../templates/dhcp/logging.php:12
+msgid "Log DNS queries"
+msgstr "DNS sorgularını günlüğe kaydetme"
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr "Statik kiralamalar"
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Belirli bir donanım MAC adresine sahip istemcilere her zaman aynı IP adresi tahsis edilebilir."
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Bu seçenek <code>dnsmasq</code> yapılandırmasına <code>dhcp-host</code> girdileri ekler."
+
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+#: ../templates/networking/devices.php:19
+msgid "MAC address"
+msgstr "MAC adresi"
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr "IP adresi"
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr "İsteğe bağlı yorum"
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr "Erişimi kısıtlayın"
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr "Ağ erişimini statik istemcilerle sınırlayın"
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "RaspAP'ın statik kiralamalar listesinde belirtilmeyen <b>istemcileri yok saymasını</b> istiyorsanız bu seçeneği etkinleştirin."
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Bu seçenek <code>dnsmasq</code> yapılandırmasına <code>dhcp-ignore</code> ekler."
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr "Etkin DHCP kiralamaları"
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr "Sona erme zamanı"
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
+msgstr "Ana bilgisayar adı"
+
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr "Müşteri Kimliği"
+
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
+msgstr ""
+
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "Bağlan %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "Bağlantıyı kes %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "%s tarafından sağlanan bilgiler"
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "Kimlik Doğrulama Yöntemi"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "Kullanıcı adı ve şifre"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "Sertifikalar"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "Kullanıcı adı ve şifre girin"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "Yapılandırma dosyasındaki sertifikalar"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP, sertifikaları yapılandırma dosyasına dahil ederek destekler."
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "İmzalayan sertifika yetkilisi (CA) sertifikası (örn. <code>ca.crt</code>): <code>&lt;ca> ...</code> içine alınmıştır.  <code> &lt;/ca></code> etiketleri <code> içinde</code>."
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "İstemci sertifikası (açık anahtar) (örn. <code>client.crt</code>): <code>&lt;cert> ...</code> içine alınmıştır.  <code> &lt;/cert></code> etiketleri <code> içinde</code>."
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "İstemci sertifikasının özel anahtarı (örn. client <code>.key</code>): <code>&lt;key> ...</code> içine alınır.  <code> &lt;/key></code> etiketleri <code> içinde</code>."
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "OpenVPN yapılandırma dosyasını (.ovpn) seçin"
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "<code>Openvpn</code> etkinliğini günlüğe kaydetmek için bu seçeneği etkinleştirin."
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "Günlük kaydını etkinleştir"
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Şu anda mevcut olan OpenVPN istemci yapılandırmaları aşağıda gösterilmektedir."
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Bir yapılandırmanın etkinleştirilmesi <code>openvpn-client</code> hizmetini yeniden başlatacaktır."
+
+#: ../templates/admin.php:7
+msgid "Authentication"
+msgstr "Kimlik Doğrulama"
+
+#: ../templates/admin.php:47
+msgid "Update admin password"
+msgstr "Yönetici şifresini güncelleme"
+
+#: ../templates/admin.php:54
+msgid "Old password"
+msgstr "Eski şifre"
+
+#: ../templates/admin.php:59
+msgid "Please enter your old password."
+msgstr "Lütfen eski şifrenizi giriniz."
+
+#: ../templates/admin.php:66
+msgid "New password"
+msgstr "Yeni şifre"
+
+#: ../templates/admin.php:71
+msgid "Please enter a new password."
+msgstr "Lütfen yeni bir şifre girin."
+
+#: ../templates/admin.php:78
+msgid "Repeat new password"
+msgstr "Yeni şifreyi tekrarla"
+
+#: ../templates/admin.php:83
+msgid "Please re-enter your new password."
+msgstr "Lütfen yeni şifrenizi tekrar girin."
+
+#: ../templates/admin.php:91
+msgid "Save"
+msgstr "Kaydet"
+
+#: ../templates/admin.php:103
+msgid "Logout and enable limited user mode"
+msgstr "Oturumu kapatın ve sınırlı kullanıcı modunu etkinleştirin"
+
+#: ../templates/admin.php:114
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr "Bu eylem sınırlı kullanıcının kimlik bilgilerini kaydedecek ve mevcut yönetici kullanıcının oturumunu kapatacaktır. Sınırlı ayrıcalık modunu kaydedin ve etkinleştirin mi?"
+
+#: ../templates/admin.php:120
+msgid "Save and logout"
+msgstr "Kaydet ve oturumu kapat"
+
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "İnternet bağlantısı"
+
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "İnternet Erişimi"
+
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "Yönlendirme tablosu"
+
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "ham çıktı"
+
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "Geçerli ayarlar"
+
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "Ağ cihazları"
+
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "Cihaz"
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "Cihaz tipi"
+
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "WLAN yönlendirmeyi yeniden başlatın"
+
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "WLAN yönlendirmeyi durdur"
+
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "WLAN yönlendirmeyi başlat"
+
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "Kablosuz LAN yönlendirme"
+
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "Yönlendirme"
+
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Bu seçenek RaspAP'ı <b>ağ trafiğini kablosuz istemci (STA) arayüzünüzden</b> başka bir kullanılabilir arayüze yönlendirecek şekilde yapılandırır."
+
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Bir çıkış arayüzü seçildiğinde, ağ adresi çevirisi (NAT) kullanarak paketleri yönlendirmek için <code>iptables</code> kuralları eklenir. Bu genellikle bir WLAN'dan internet bağlantısını bir <code>eth0</code>, <code>usb0</code> veya öngörülebilir <code>enx</code> arayüzündeki cihazlarla paylaşmak için yapılır."
+
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "Kablosuz istemci arayüzü"
+
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "Çıkış arayüzü"
+
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Çıkış arabirimi için statik IP adresi ve DHCP yapılandırma"
+
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "Mobil veri ayarları"
+
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "SIM kart PIN numarası"
+
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "APN Ayarları"
+
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "Erişim Noktası Adı (APN)"
+
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "Hız testi"
+
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "Bir sunucu seçme"
+
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "Gizlilik"
+
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "Sunucu"
+
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "Ping"
+
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "ms"
+
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "Jitter"
+
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "Mbps"
+
+#: ../templates/networking/diagnostics.php:40
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:24
+msgid "Upload"
+msgstr "Yükle"
+
+#: ../templates/configure_client.php:12
+msgid "Disconnected"
+msgstr "Bağlantı kesildi"
+
+#: ../templates/configure_client.php:24
+msgid "Rescan"
+msgstr "Yeniden tara"
+
+#: ../templates/configure_client.php:34
+msgid "Set"
+msgstr "Set"
+
+#: ../templates/configure_client.php:49
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Not:</strong> WEP erişim noktaları 'Açık' olarak görünür. RaspAP şu anda WEP'e bağlanmayı desteklemiyor"
+
+#: ../templates/configure_client.php:59
+msgid "Configuring WiFi Client"
+msgstr "WiFi İstemcisini Yapılandırma"
+
+#: ../templates/configure_client.php:62
+msgid "Configuring Wifi Client Interface..."
+msgstr "Wifi İstemci Arayüzünü Yapılandırma..."
+
+#: ../includes/system.php:67
+#, php-format
+msgid "Changing log limit size to %s KB"
+msgstr "Günlük sınır boyutunu %s KB olarak değiştirme"
+
+#: ../includes/system.php:86
+#, php-format
+msgid "Changing alert close timeout to %s ms"
+msgstr "Uyarı kapatma zaman aşımını %s ms olarak değiştirme"
+
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
+msgstr "Satırda geçersiz özel IP adresi bulundu "
+
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
+msgstr "Satırda geçersiz özel ana bilgisayar bulundu "
+
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
+msgstr "yapılandırılmamış"
+
+#: ../includes/networking.php:137
+#, php-format
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "%s ve %s arayüzleri arasında yönlendirme etkinleştirilmeye çalışılıyor"
+
+#: ../includes/networking.php:147
+#, php-format
+msgid "Attempting to restart routing between %s and %s interfaces"
+msgstr "%s ve %s arayüzleri arasında yönlendirme yeniden başlatılmaya çalışılıyor"
+
+#: ../includes/networking.php:151
+#, php-format
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "%s ve %s arayüzleri arasında yönlendirme devre dışı bırakılmaya çalışılıyor"
+
+#: ../includes/networking.php:252
+#, php-format
+msgid "DHCP configuration for %s enabled"
+msgstr "%s için DHCP yapılandırması etkin"
+
+#: ../includes/networking.php:259
+#, php-format
+msgid "DHCP configuration for %s added"
+msgstr "%s için DHCP yapılandırması eklendi"
+
+#: ../includes/networking.php:265
+#, php-format
+msgid "DHCP configuration for %s updated"
+msgstr "%s için DHCP yapılandırması güncellendi"
+
+#: ../includes/networking.php:271
+#, php-format
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "%s arabirimi için varsayılan DHCP yapılandırması yoktur"
+
+#: ../includes/networking.php:272
+#, php-format
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "DHCP Sunucusu ayarlarında bu arayüz için statik IP ve DHCP yapılandırın"
+
+#: ../includes/networking.php:294
+#, php-format
+msgid "Dnsmasq  configuration for %s added"
+msgstr "%s için Dnsmasq yapılandırması eklendi"
+
+#: ../includes/restapi.php:59
+#, php-format
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
+msgstr "RestAPI dokümanlarına <a href=\"%s\" target=\"_blank\">buradan </a> erişebilirsiniz <a href=\" %s \" target=\"_blank\"> %s</a>"
+
+#: ../includes/dashboard.php:72
+#, php-format
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
+
+#: ../includes/dashboard.php:78
+#, php-format
+msgid "%d LAN %s"
+msgstr "%d LAN %s"
+
+#: ../includes/footer.php:6
+#, php-format
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "tarafından oluşturulmuştur. <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
+msgstr "RaspAP Ekibi"
+
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
+msgstr "İçeriden biri olduğunuz için teşekkürler"
+
+#: ../includes/footer.php:17
+msgid "Session Expired"
+msgstr "Oturum Süresi Doldu"
+
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
+msgstr "Oturumunuzun süresi doldu. Devam etmek için lütfen giriş yapın."
+
+#: ../includes/provider.php:65
+#, php-format
+msgid "Expected %s binary not found at: %s"
+msgstr "Beklenen %s ikili dosyası şu adreste bulunamadı: %s"
+
+#: ../includes/provider.php:66
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "%s'un Linux CLI'sı için <a href=\"%s\" target=\"_blank\">kurulum talimatlarını</a> ziyaret edin."
+
+#: ../includes/provider.php:70
+#, php-format
+msgid "Unable to execute %s binary found at: %s"
+msgstr "Şu adreste bulunan %s ikili dosyası yürütülemiyor: %s"
+
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "İkilinin çalıştırılabilir olduğunu ve raspap.sudoers dosyasında izinlerin bulunduğunu kontrol edin"
+
+#: ../includes/provider.php:119
+#, php-format
+msgid "Attempting to connect to %s"
+msgstr "%s adresine bağlanmaya çalışılıyor"
+
+#: ../includes/provider.php:318
+msgid "Select a country..."
+msgstr "Bir ülke seçin..."
+
+#: ../includes/provider.php:387
+#, php-format
+msgid "Account information not available from %s's Linux CLI."
+msgstr "Hesap bilgileri %s'un Linux CLI'sında mevcut değildir."
+
+#: ../includes/functions.php:1005
+msgid "Mem Use"
+msgstr "Mem Kullanımı"
+
+#: ../includes/functions.php:1008
+msgid "CPU"
+msgstr "CPU"
+
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "Yazdırılabilir Wi-Fi işareti"
+
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Wi-Fi Bağlantısı"
+
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Telefonunuzla veya tabletinizle bağlanmak için kamera uygulamanızla yukarıdaki QR kodunu tarayın."
+
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "Diğer cihazlar için aşağıdaki oturum açma kimlik bilgilerini kullanın."
+
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "Şebeke"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:8
+msgid "Capture interface"
+msgstr "Yakalama arayüzü"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:15
+msgid "Output file"
+msgstr "Çıktı dosyası"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:16
+msgid "Path where capture file will be saved (.pcap format)"
+msgstr "Yakalama dosyasının kaydedileceği yol (.pcap biçimi)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:20
+msgid "File will be saved with .pcap extension"
+msgstr "Dosya .pcap uzantısı ile kaydedilecektir"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:26
+msgid "Capture filter (BPF syntax)"
+msgstr "Yakalama filtresi (BPF sözdizimi)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:28
+msgid "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
+msgstr "Berkeley Paket Filtresi sözdizimi. Tüm trafiği yakalamak için boş bırakın."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:33
+msgid "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
+msgstr "Örnekler: <code>port 80</code>, <code>ana bilgisayar 192.168.1.1</code>, <code>tcp ve port 22 değil</code>"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:38
+msgid "Capture limits"
+msgstr "Yakalama sınırları"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:42
+msgid "Packet count limit"
+msgstr "Paket sayısı sınırı"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:44
+msgid "Stop capture after this many packets. Leave empty for unlimited."
+msgstr "Bu kadar paketten sonra yakalamayı durdurun. Sınırsız için boş bırakın."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:51
+msgid "Duration limit (seconds)"
+msgstr "Süre sınırı (saniye)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:53
+msgid "Stop capture after this many seconds. Leave empty for unlimited."
+msgstr "Bu kadar saniye sonra çekimi durdurun. Sınırsız için boş bırakın."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:60
+msgid "Ring buffer settings"
+msgstr "Halka tampon ayarları"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:64
+msgid "File size (KB)"
+msgstr "Dosya boyutu (KB)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:66
+msgid "Create new file when this size is reached. Leave empty to disable."
+msgstr "Bu boyuta ulaşıldığında yeni dosya oluşturun. Devre dışı bırakmak için boş bırakın."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:70
+msgid "10000 = 10 MB per file"
+msgstr "10000 = Dosya başına 10 MB"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:74
+msgid "Number of files"
+msgstr "Dosya sayısı"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:76
+msgid "Maximum number of ring buffer files to keep. Oldest files are deleted."
+msgstr "Tutulacak maksimum halka arabellek dosyası sayısı. En eski dosyalar silinir."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:83
+msgid "Advanced options"
+msgstr "Gelişmiş seçenekler"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:87
+msgid "Snapshot length (bytes)"
+msgstr "Anlık görüntü uzunluğu (bayt)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:89
+msgid "Limit the amount of data captured per packet. Leave empty for full packets."
+msgstr "Paket başına yakalanan veri miktarını sınırlayın. Dolu paketler için boş bırakın."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:93
+msgid "96 bytes captures headers only, reduces file size"
+msgstr "96 bayt yalnızca başlıkları yakalar, dosya boyutunu azaltır"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:101
+msgid "Promiscuous mode"
+msgstr "Karışık mod"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:104
+msgid "Capture all packets on the network segment, not just those destined for this interface"
+msgstr "Sadece bu arayüze yönelik olanları değil, ağ segmentindeki tüm paketleri yakalama"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:109
+msgid "Quick filter presets"
+msgstr "Hızlı filtre ön ayarları"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:114
+msgid "All Traffic"
+msgstr "Tüm Trafik"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:117
+msgid "HTTP/HTTPS"
+msgstr "HTTP/HTTPS"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:123
+msgid "ICMP (Ping)"
+msgstr "ICMP (Ping)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:126
+msgid "SSH"
+msgstr "SSH"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:129
+msgid "Exclude SSH"
+msgstr "SSH'yi hariç tut"
+
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "tarafından yaratılmıştır."
+
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "Eklenti açıklaması"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
+#: ../plugins-available/Wireshark/templates/main.php:46
+msgid "Capture files"
+msgstr "Dosya yakalama"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "<code>tshark</code> tarafından oluşturulan yakalama dosyaları aşağıda görüntülenmektedir."
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "tmp dizininde yakalama dosyası bulunamadı"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "Dosya adı"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "Boyut"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "Değiştirilmiş"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "Eylemler"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "Dosyayı indirin"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "Dosya silme"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
+#, php-format
+msgid "Total: %d file(s), %s"
+msgstr "Toplam: %d dosya(lar), %s"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "Silme işlemini onayla"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "Bu dosyayı silmek istediğinizden emin misiniz?"
+
+#: ../plugins-available/Wireshark/templates/main.php:20
+msgid "Start capture"
+msgstr "Yakalamayı başlat"
+
+#: ../plugins-available/Wireshark/templates/main.php:24
+msgid "Stop capture"
+msgstr "Yakalamayı durdur"
+
+#: ../plugins-available/Wireshark/templates/main.php:69
+#: ../plugins-available/Tailscale/templates/main.php:89
+msgid "Information provided by "
+msgstr "Tarafından sağlanan bilgiler "
+
+#: ../plugins-available/Wireshark/Wireshark.php:48
+msgid "Wireshark"
+msgstr "Wireshark"
+
+#: ../plugins-available/Wireshark/Wireshark.php:140
+#, php-format
+msgid "Attempting to start packet capture on %s"
+msgstr "%s adresinde paket yakalama başlatılmaya çalışılıyor"
+
+#: ../plugins-available/Wireshark/Wireshark.php:143
+#, php-format
+msgid "TShark started with PID %s"
+msgstr "TShark PID ile başladı %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:152
+#, php-format
+msgid "Attempting to stop packet capture on %s"
+msgstr "%s adresinde paket yakalama durdurulmaya çalışılıyor"
+
+#: ../plugins-available/Wireshark/Wireshark.php:172
+#, php-format
+msgid "Expected tshark binary not found at: %s"
+msgstr "Beklenen tshark ikili dosyası şu adreste bulunamadı: %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:173
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Wireshark plugin."
+msgstr "<a href=\"%s\" target=\"_blank\">Kurulum talimatlarını</a> ziyaret edin veya Wireshark eklentisini yeniden yükleyin."
+
+#: ../plugins-available/Wireshark/Wireshark.php:184
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "RaspAP için bir Wireshark (TShark) CLI paket yakalama"
+
+#: ../plugins-available/Wireshark/Wireshark.php:185
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Captive/Captive.php:132
+msgid "Bill Z"
+msgstr "Bill Z"
+
+#: ../plugins-available/Wireshark/Wireshark.php:244
+msgid "TShark settings saved successfully"
+msgstr "TShark ayarları başarıyla kaydedildi"
+
+#: ../plugins-available/Wireshark/Wireshark.php:248
+#: ../plugins-available/Captive/Captive.php:541
+msgid "Error saving settings: "
+msgstr "Ayarları kaydederken hata oluştu: "
+
+#: ../plugins-available/Wireshark/Wireshark.php:649
+msgid "File not found"
+msgstr "Dosya bulunamadı"
+
+#: ../plugins-available/Wireshark/Wireshark.php:658
+#, php-format
+msgid "File \"%s\" deleted successfully"
+msgstr "Dosya \"%s\" başarıyla silindi"
+
+#: ../plugins-available/Wireshark/Wireshark.php:661
+#, php-format
+msgid "Failed to delete file \"%s\""
+msgstr "\"%s \" dosyası silinemedi"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "Kuyruk ağı durumu"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "Mevcut <code>kuyruk ağı</code> durumu aşağıda gösterilmektedir."
+
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "Geri"
+
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "Sonraki"
+
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "Çıkış Düğümünü İptal Et"
+
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "Çıkış Düğümünü Kullanmayı Durdurun"
+
+#: ../plugins-available/Tailscale/templates/main.php:44
+#: ../plugins-available/Tailscale/Tailscale.php:400
+msgid "Start Tailscale"
+msgstr "Tailscale'i başlatın"
+
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "Stop Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "Çıkış düğümüne izin ver"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Cihaz <code>%s</code> çıkış düğümü olarak onay beklemektedir."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "Açık Kuyruk Ölçekli Makineler"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Bulmak <code>%s</code> Makineler listesinde <strong>Node</strong> rozetinden <strong>çıkın</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "Çıkış düğümünün %s simge menüsünden %s panelini açın."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "Rota ayarlarını düzenleme"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "<strong>Çıkış düğümü olarak kullan</strong> seçeneğini etkinleştirin."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "Bu adımları tamamladığınızda <strong>İleri</strong> 'yi seçin."
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "Çıkış düğümünü kullanma"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Cihaz <code>%s</code> çıkış düğümünü kullanacak şekilde yapılandırılır <code>%s</code>. Tailscale MagicDNS adresine sahiptir <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
+msgid "Select an exit node"
+msgstr "Bir çıkış düğümü seçin"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#, php-format
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "Kullanmak için <code>%s</code> VPN ağ geçidi olarak, Tailscale'i bir çıkış düğümü kullanacak şekilde yapılandırın. Tailscale'in önerdiği düğüm bir yıldız ile gösterilir."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#, php-format
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Etkin <strong>ağ</strong> için bir <strong>alt ağ rotasının</strong> reklamını yap <code>%s</code> AP arayüzü"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "Alt ağ yolları, Tailscale ağınızı (tailnet olarak bilinir) Tailscale istemcisini çalıştırmayan veya çalıştıramayan cihazları içerecek şekilde genişletmenize olanak tanır."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "Bir alt ağ yolu, kuyruk ağınız ile fiziksel bir alt ağ arasında bir ağ geçidi görevi görür. Aktif AP arayüzünün alt ağı aşağıda önceden yapılandırılmıştır; gerekirse düzenleyin."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
+msgid "Route LAN traffic through the exit node."
+msgstr "LAN trafiğini çıkış düğümü üzerinden yönlendirin."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "Bu, tüm LAN trafiğini yalnızca çıkış düğümünüzden geçecek şekilde yönlendirecektir."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Tailscale DNS ayarlarını kullanın (varsayılan)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Yerel DNS kullanmak için işareti kaldırın. Bu <code>--accept-dns=false</code> ayarlar."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Tailscale alt ağlarını kullanmayın (Linux'ta varsayılan)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "Kuyruk ağınız için alt ağ rotaları mevcutsa, cihazınızın trafiğini bir alt ağ yönlendiricisine yönlendirebilirsiniz. Bunu etkinleştirmek <code>--accept-routes=true</code> olarak ayarlar."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "Bir cihaz için anahtarların süresi dolarsa, verilen uç noktaya/uç noktadan yapılan bağlantılar çalışmayı durduracaktır."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "Bu seçenek, bu cihazın anahtarlarını yenilemek için <code>--force-reauth</code> seçeneğini kullanır."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#, php-format
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Yapılandırmak için <strong>İleri</strong> 'yi seçin <code>%s</code> seçilen çıkış düğümünü bu seçeneklerle kullanmak için."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "Kuyruk ağınızda çıkış düğümü bulunamadı. Devam etmek için <strong>Geri</strong> 'yi seçin."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "Yeni çıkış düğümünü yapılandırın"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "Güvenlik nedeniyle, çıkış düğümü işlevselliğini etkinleştirmeyi seçmelisiniz. İlk adım reklam vermektir <code>%s</code> tailnet'inizde bir çıkış düğümü olarak. Bir sonraki adımda, bu cihazın bir çıkış düğümü olmasına izin vereceksiniz."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Reklam vermek <code>%s</code> bir çıkış düğümü olarak"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Bu, gerçek konumunuzu maskelemek, bölge kısıtlamalı içeriğe erişmek veya güvenilmeyen ağlardan bağlanırken gizliliği artırmak için Tailscale'i etkili bir şekilde VPN olarak yapılandırır."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Bu seçenek Tailscale'in cihazınızın trafiği yönlendirmeye hazır olduğunu bilmesini sağlar."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "Optimize edilmiş UDP verimini etkinleştirin"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Linux 6.2 veya üzeri çekirdeklere sahip Tailscale çıkış düğümleri için önerilen bu özellik, CPU ek yükünü azaltmak için UDP genel alma yükü (GRO) iletimi kullanır."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Bu seçenek, daha iyi performans için aktarım katmanı boşaltmalarını etkinleştirir."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Devam etmek için <strong>İleri</strong> 'yi seçin."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "Cihazı yapılandırma"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Cihaz <code>%s</code> adresi ile kuyruk ağınıza bağlanır <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "Varsayılan olarak, Tailscale yalnızca yüklü olduğu cihazlar arasındaki trafiği yönlendirir. Ağınızdaki bir cihazı <strong>çıkış düğümü</strong> olarak yapılandırarak tüm genel internet trafiğinizi de yönlendirebilirsiniz"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Tüm trafiği bir çıkış düğümü üzerinden yönlendirdiğinizde, tipik bir VPN kullanırken yaptığınız gibi varsayılan yolları (0.0.0.0/0, ::/0) etkin bir şekilde kullanmış olursunuz."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "Bu cihazı bir çıkış düğümü olarak yapılandırma veya kuyruk ağınızda başka bir çıkış düğümü kullanma seçeneğiniz vardır."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "Kuyruk ağınızda mevcut bir çıkış düğümü seçin"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Bu, örneğin bu cihazı bir VPN seyahat yönlendiricisi olarak kullanıyorsanız tipik bir yapılandırmadır."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "Bu cihazı yeni bir çıkış düğümü olarak yapılandırma"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "Bu cihazı bir çıkış düğümü olarak yapılandırdığınızda, kuyruk ağınıza bağlı cihazlardan gelen genel internet trafiği bu cihaz üzerinden yönlendirilecektir."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
+msgid "Exit node activated"
+msgstr "Çıkış düğümü etkinleştirildi"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "Cihaz <code>%s</code> adresi ile bağlantılıdır <code>%s</code> ve bir <strong>çıkış düğümü</strong> sunar."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#, php-format
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "Bu çıkış düğümünü cihazlarınızla nasıl kullanacağınız konusunda %s adresine bakın."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
+msgid "Approve subnet route"
+msgstr "Alt ağ rotasını onayla"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#, php-format
+msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
+msgstr "Cihaz <code>%s</code> bir alt ağ rotasının reklamını yapıyor. Güvenlik nedeniyle, bunu etkinleştirmeyi seçmelisiniz."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
+msgstr "Bulmak <code>%s</code> Makineler listesinde <strong>alt ağlar</strong> rozeti."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#, php-format
+msgid "From the %s icon menu of the device, open the %s panel."
+msgstr "Cihazın %s simge menüsünden %s panelini açın."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
+msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
+msgstr "Reklamını yapmak istediğiniz alt ağ rotasına karşılık gelen IP aralığı kutusunu işaretleyin ve ardından <strong>Kaydet</strong>'i seçin."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "Tailscale'e Giriş Yapın"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "%s cihazını kuyruk ağınıza bağlamak için %s adresini seçin."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "Açık Tailscale Girişi"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "Oturum açtıktan sonra devam etmek için <strong>İleri</strong> 'yi seçin."
+
+#: ../plugins-available/Tailscale/Tailscale.php:52
+msgid "Tailscale VPN"
+msgstr "Tailscale VPN"
+
+#: ../plugins-available/Tailscale/Tailscale.php:237
+#, php-format
+msgid "Expected tailscale binary not found at: %s"
+msgstr "Beklenen kuyruk ölçeği ikilisi şu adreste bulunamadı: %s"
+
+#: ../plugins-available/Tailscale/Tailscale.php:238
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
+msgstr "<a href=\"%s\" target=\"_blank\">Kurulum talimatlarını</a> ziyaret edin veya Tailscale eklentisini yeniden yükleyin."
+
+#: ../plugins-available/Tailscale/Tailscale.php:251
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "RaspAP için bir Tailscale VPN çıkış düğümü uzantısı"
+
+#: ../plugins-available/Tailscale/Tailscale.php:406
+#, php-format
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Tailscale oturum açma bilgileri alınamıyor. Seçiniz <strong>%s</strong> Devam etmek için."
+
+#: ../plugins-available/Tailscale/Tailscale.php:786
+msgid "Not connected: Login required."
+msgstr "Bağlı değil: Giriş gerekli."
+
+#: ../plugins-available/Captive/templates/tabs/status.php:3
+msgid "Portal status"
+msgstr "Portal durumu"
+
+#: ../plugins-available/Captive/templates/tabs/status.php:4
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "Mevcut <code>nodogsplash</code> durumu aşağıda gösterilmektedir."
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "Ağ geçidi IP aralığı"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "CIDR gösteriminde yönetilecek IP aralığı. Tüm adresler için boş bırakın"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Varsayılan: 0.0.0.0/0 (tüm adresler)"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "Hata ayıklama seviyesi"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "nodogsplash.service tarafından bildirilen günlük kaydı ayrıntısı miktarı"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - Yalnızca hatalar"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Hatalar, uyarılar, bilgiler"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Hatalar, uyarılar, bilgiler, ayrıntılı"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Hatalar, uyarılar, bilgiler, ayrıntılı, hata ayıklama"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "Güvenlik duvarı ayarları"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "Kimliği doğrulanmış kullanıcılar için tüm trafiğe izin ver"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "Etkinleştirildiğinde, kimliği doğrulanmış kullanıcılar sınırsız erişime sahip olur"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "Kimliği önceden doğrulanmış kullanıcılar için DNS'ye izin ver"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "İstemcilerin kimlik doğrulamadan önce alan adlarını çözümlemesi için gereklidir"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "Ağ geçidi arayüzü"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "Portal tarafından yönetilecek arayüz"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "Varsayılan olarak etkin AP arabirimi, tipik olarak <code>wlan0</code>"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "Ağ geçidi adı"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "Ağ geçidinizin adı ( $gatewayname değişkeni olarak kullanılabilir)"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "Ağ geçidi adresi"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "Yönlendiricinin IP adresi. Otomatik algılama için boş bırakın"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Belirtilmemişse ağ geçidi arayüzünden otomatik olarak algılanır"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "Ağ geçidi bağlantı noktası"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Nodogsplash HTTP sunucusu için bağlantı noktası"
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+#: ../plugins-available/Captive/templates/main.php:52
+msgid "Active clients"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:17
+msgid "Client"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:21
+msgid "IP"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:22
+msgid "Token"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:25
+msgid "Last activity"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:26
+msgid "Session start"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:27
+msgid "Session end"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:35
+msgid "Deauthenticate"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:44
+msgid "No active clients connected."
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:9
+msgid "Maximum clients"
+msgstr "Maksimum müşteri"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:11
+msgid "Maximum number of concurrent authenticated users"
+msgstr "Kimliği doğrulanmış maksimum eşzamanlı kullanıcı sayısı"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:15
+msgid "Does not include users on the trusted MAC list"
+msgstr "Güvenilen MAC listesindeki kullanıcıları içermez"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:19
+msgid "Session timeout (minutes)"
+msgstr "Oturum zaman aşımı (dakika)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:21
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "Dakika cinsinden varsayılan oturum uzunluğu. 0 = sınırsız"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:30
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "Ön kimlik boşta kalma zaman aşımı (dakika)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:32
+msgid "Time before unauthenticated idle users are removed"
+msgstr "Kimliği doğrulanmamış boştaki kullanıcıların kaldırılmasından önceki süre"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:39
+msgid "Auth idle timeout (minutes)"
+msgstr "Kimlik doğrulama boşta zaman aşımı (dakika)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:41
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "Kimliği doğrulanmış boştaki kullanıcıların kimlik doğrulamasının kaldırılmasından önceki süre"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:50
+msgid "Check interval (seconds)"
+msgstr "Kontrol aralığı (saniye)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:52
+msgid "How often to check client timeouts"
+msgstr "İstemci zaman aşımlarının ne sıklıkla kontrol edileceği"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:59
+msgid "MAC address control"
+msgstr "MAC adres kontrolü"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:63
+msgid "MAC mechanism"
+msgstr "MAC mekanizması"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:65
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Engelle: blok listesindeki MAC'ler engellenir. İzin ver: yalnızca izin verilenler listesindeki MAC'lere izin verilir"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:68
+msgid "Block (blocklist mode)"
+msgstr "Blok (blok listesi modu)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:71
+msgid "Allow (allowlist mode)"
+msgstr "İzin ver (izin listesi modu)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:79
+msgid "Blocked MAC list"
+msgstr "Engellenen MAC listesi"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:81
+msgid "Comma-separated MAC addresses to block (used when mechanism is 'block')"
+msgstr "Engellenecek virgülle ayrılmış MAC adresleri (mekanizma 'engelle' olduğunda kullanılır)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:84
+#: ../plugins-available/Captive/templates/tabs/clients.php:95
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "Örnek: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:90
+msgid "Allowed MAC list"
+msgstr "İzin verilen MAC listesi"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:92
+msgid "Comma-separated MAC addresses to allow (used when mechanism is 'allow')"
+msgstr "İzin verilecek virgülle ayrılmış MAC adresleri (mekanizma 'izin ver' olduğunda kullanılır)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:101
+msgid "Trusted MAC list"
+msgstr "Güvenilir MAC listesi"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:103
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "Kimlik doğrulamayı tamamen atlayan virgülle ayrılmış MAC adresleri"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:106
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "Bu cihazlar kimlik doğrulama veya güvenlik duvarı kurallarına tabi değildir"
+
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "Portalı durdur"
+
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "Portal başlat"
+
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "Müşteriler"
+
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "nodogsplash tarafından sağlanan bilgiler"
+
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "Portal hizmetini durdurun"
+
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "Portal hizmetini başlatın"
+
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Portal hizmetinin değiştirilmesi istemci trafiğini anlık olarak kesintiye uğratacaktır. Devam etmek için Devam <strong>Et</strong> 'i seçin."
+
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "Devam edin"
+
+#: ../plugins-available/Captive/Captive.php:70
+#: ../plugins-available/Captive/Captive.php:130
+msgid "Captive portal"
+msgstr "Esir portalı"
+
+#: ../plugins-available/Captive/Captive.php:95
+#, php-format
+msgid "Attempting to start %s"
+msgstr "%s adresini başlatmaya çalışıyorum"
+
+#: ../plugins-available/Captive/Captive.php:99
+#, php-format
+msgid "Attempting to stop %s"
+msgstr "%s adresini durdurma girişimi"
+
+#: ../plugins-available/Captive/Captive.php:106
+#, php-format
+msgid "Client %s deauthenticated"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:108
+#, php-format
+msgid "Failed to deauthenticate client %s"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:111
+msgid "Invalid client MAC address"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:131
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "Nodogsplash uygulayan bir esir portal eklentisi"
+
+#: ../plugins-available/Captive/Captive.php:538
+msgid "Portal settings saved successfully"
+msgstr "Portal ayarları başarıyla kaydedildi"
+
+#: ../plugins-available/Captive/Captive.php:582
+msgid "Failed to execute ndsctl."
+msgstr "ndsctl çalıştırılamadı."
+
+#~ msgid "Firewall is now enabled"
+#~ msgstr "Güvenlik Duvarı şimdi etkinleştirildi"
+
+#~ msgid "Firewall is now disabled"
+#~ msgstr "Güvenlik Duvarı artık devre dışı"
+
+#~ msgid "Firewall settings changed"
+#~ msgstr "Güvenlik duvarı ayarları değiştirildi"
+
+#~ msgid "Firewall settings saved. Firewall is still disabled."
+#~ msgstr "Güvenlik duvarı ayarları kaydedildi. Güvenlik Duvarı hala devre dışı."
+
+#~ msgid "Exclude devices "
+#~ msgstr "Cihazları hariç tut "
+
+#~ msgid "Exclude IP address "
+#~ msgstr "IP adresini hariç tut "
+
+#~ msgid "Exclude IP address(es) "
+#~ msgstr "IP adres(ler)ini hariç tut "
+
+#~ msgid "A firewall plugin that implements an iptables ruleset"
+#~ msgstr "Bir iptables kural kümesi uygulayan bir güvenlik duvarı eklentisi"
+
+#~ msgid "zbchristian"
+#~ msgstr "zbchristian"
+
+#~ msgid "Client Firewall"
+#~ msgstr "İstemci Güvenlik Duvarı"
+
+#~ msgid "Firewall is ENABLED"
+#~ msgstr "Güvenlik Duvarı ETKİNLEŞTİRİLDİ"
+
+#~ msgid "Firewall is OFF"
+#~ msgstr "Güvenlik Duvarı KAPALI"
+
+#~ msgid "The default firewall will only allow outgoing and already established traffic."
+#~ msgstr "Varsayılan güvenlik duvarı yalnızca giden ve önceden kurulmuş trafiğe izin verir."
+
+#~ msgid "No incoming UDP traffic is allowed."
+#~ msgstr "Gelen hiçbir UDP trafiğine izin verilmez."
+
+#, php-format
+#~ msgid "There are no restrictions for the access point <code>%s</code>."
+#~ msgstr "Erişim noktası için herhangi bir kısıtlama yoktur <code>%s</code>."
+
+#~ msgid "Exception: Service"
+#~ msgstr "İstisna: Hizmet"
+
+#~ msgid "allow SSH access on port 22"
+#~ msgstr "bağlantı noktası 22'de SSH erişimine izin ver"
+
+#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
+#~ msgstr "RaspAP GUI'ye 80 veya 443 numaralı bağlantı noktasından erişime izin verin"
+
+#~ msgid "Allow incoming connections for some services from the internet side."
+#~ msgstr "Bazı hizmetler için internet tarafından gelen bağlantılara izin verin."
+
+#~ msgid "Exception: network device"
+#~ msgstr "İstisna: ağ cihazı"
+
+#~ msgid "Exclude device(s)"
+#~ msgstr "Cihaz(lar)ı hariç tut"
+
+#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+#~ msgstr "Verilen ağ aygıt(lar)ını (boşluk veya virgülle ayrılmış) güvenlik duvarı kurallarından hariç tutun."
+
+#, php-format
+#~ msgid "Current client devices: <code>%s</code>"
+#~ msgstr "Mevcut istemci cihazları: <code>%s</code>"
+
+#, php-format
+#~ msgid "The access point <code>%s</code> is per default excluded."
+#~ msgstr "Erişim noktası <code>%s</code> varsayılan olarak hariç tutulur."
+
+#~ msgid "Exception: IP-Address"
+#~ msgstr "İstisna: IP-Adresi"
+
+#~ msgid "Allow incoming connections from"
+#~ msgstr "Gelen bağlantılara izin ver"
+
+#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+#~ msgstr "Verilen IP adresleri için (boşluk veya virgülle ayrılmış) gelen bağlantı (TCP ve UDP üzerinden) kabul edilir."
+
+#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+#~ msgstr "Bu, UDP veya Wireguard üzerinden bir OpenVPN bağlantısı için gereklidir."
+
+#, php-format
+#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+#~ msgstr "Yapılandırılmış VPN sunucu IP adreslerinin listesi: <code><b>%s</b></code>"
+
+#~ msgid "plugin was created by "
+#~ msgstr "eklentisi tarafından oluşturulmuştur "
+
+#~ msgid "Apply changes"
+#~ msgstr "Değişiklikleri uygula"
+
+#~ msgid "Disable Firewall"
+#~ msgstr "Güvenlik Duvarını Devre Dışı Bırak"
+
+#~ msgid "Enable Firewall"
+#~ msgstr "Güvenlik Duvarını Etkinleştir"
+
+#~ msgid "Information provided by iptables"
+#~ msgstr "iptables tarafından sağlanan bilgiler"
+
+#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
+#~ msgstr "Güvenlik duvarı durumunun değiştirilmesi gelen trafiği engelleyebilir veya trafiğe izin verebilir. Devam etmek için <strong>Proceed</strong> 'i seçin."

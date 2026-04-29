@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2017-10-19 08:56+0000\n"
-"PO-Revision-Date: 2024-09-27 06:53\n"
-"Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
+"POT-Creation-Date: 2026-04-29 13:38+0000\n"
+"PO-Revision-Date: 2026-04-22 02:22\n"
+"Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "Language: id_ID\n"
 "MIME-Version: 1.0\n"
@@ -14,1855 +14,3404 @@ msgstr ""
 "X-Crowdin-Project: raspap\n"
 "X-Crowdin-Project-ID: 395801\n"
 "X-Crowdin-Language: id\n"
-"X-Crowdin-File: /master/locale/en_US/LC_MESSAGES/messages.po\n"
-"X-Crowdin-File-ID: 10\n"
+"X-Crowdin-File: /master/locale/messages.pot\n"
+"X-Crowdin-File-ID: 12\n"
 
-#: index.php
-msgid "RaspAP Wifi Configuration Portal"
-msgstr "Portal Konfigurasi Wifi RaspAP"
+#: ../ajax/networking/get_nl80211_band.php:37
+#, php-format
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "Antarmuka yang dipilih (%s) hanya mendukung pita nirkabel 2,4 GHz."
 
-msgid "Toggle navigation"
-msgstr "Ubah navigasi"
+#: ../ajax/networking/get_nl80211_band.php:40
+#, php-format
+msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
+msgstr "Antarmuka yang dipilih (%s) hanya mendukung pita nirkabel 5 GHz."
 
-msgid "RaspAP Wifi Portal"
-msgstr "Portal Wifi RaspAP"
+#: ../ajax/networking/get_nl80211_band.php:43
+#, php-format
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "Antarmuka yang dipilih (%s) memiliki dukungan untuk pita nirkabel 2,4 dan 5 GHz."
 
+#: ../ajax/networking/get_nl80211_band.php:46
+#, php-format
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "Antarmuka yang dipilih (%s) tidak mendukung pengoperasian mode nirkabel."
+
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+msgid "No MAC Address Found"
+msgstr "Alamat MAC Tidak Ditemukan"
+
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "Alamat IPv6 Tidak Ditemukan"
+
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "klien"
+
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
 msgid "Dashboard"
 msgstr "Dasbor"
 
-msgid "WiFi client"
-msgstr "Klien WiFi"
-
+#: ../src/RaspAP/UI/Sidebar.php:20 ../templates/hostapd.php:13
+#: ../includes/functions.php:1002
 msgid "Hotspot"
 msgstr "Hotspot"
 
-msgid "Mem Use"
-msgstr "Penggunaan memori"
-
-msgid "CPU"
-msgstr ""
-
-msgid "Networking"
-msgstr "Jaringan"
-
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
 msgid "DHCP Server"
 msgstr "Server DHCP"
 
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
+msgid "Ad Blocking"
+msgstr "Pemblokiran Iklan"
+
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
+#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
+msgid "Networking"
+msgstr "Jaringan"
+
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "Klien WiFi"
+
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
 msgid "OpenVPN"
-msgstr ""
+msgstr "OpenVPN"
 
-msgid "TOR proxy"
-msgstr "Proxy TOR"
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "WireGuard"
 
-msgid "Authentication"
-msgstr "Autentikasi"
+#: ../src/RaspAP/UI/Sidebar.php:44
+msgid "Data usage"
+msgstr "Penggunaan data"
 
-msgid "Change Theme"
-msgstr "Ganti Tema"
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
+msgid "RestAPI"
+msgstr "RestAPI"
 
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
+#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
 msgid "System"
 msgstr "Sistem"
 
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
 msgid "About RaspAP"
 msgstr "Tentang RaspAP"
 
-#: includes/admin.php
-msgid "Authentication settings"
-msgstr "Pengaturan otentikasi"
-
-msgid "New passwords do not match"
-msgstr "Sandi baru tidak cocok"
-
-msgid "Username must not be empty"
-msgstr "Nama pengguna tidak boleh kosong"
-
-msgid "Admin password updated"
-msgstr "Sandi Admin diperbarui"
-
-msgid "Failed to update admin password"
-msgstr "Gagal memperbarui sandi admin"
-
-msgid "Old password does not match"
-msgstr "Sandi lama tidak cocok"
-
-msgid "Username"
-msgstr "Nama Pengguna"
-
-msgid "Old password"
-msgstr "Sandi lama"
-
-msgid "New password"
-msgstr "Sandi baru"
-
-msgid "Repeat new password"
-msgstr "Ulangi kata sandi baru"
-
-msgid "Please provide a valid username."
-msgstr "Silakan masukkan nama pengguna yang sah."
-
-msgid "Please enter your old password."
-msgstr "Silakan masukkan kata sandi lama Anda."
-
-msgid "Please enter a new password."
-msgstr "Silakan masukkan kata sandi baru."
-
-msgid "Please re-enter your new password."
-msgstr "Silakan masukkan kembali kata sandi baru Anda."
-
-msgid "Avatar"
-msgstr "Foto Profil"
-
-msgid "Click or tap to upload a new user avatar."
-msgstr "Klik atau sentuh untuk mengunggah foro profil baru."
-
-msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
-msgstr "Gambar yang diterima berupa <code>JPG, GIF atau PNG</code>. Ukuran maksimum berkas: 2 MB."
-
-msgid "Reset avatar"
-msgstr "Atur ulang foto profil"
-
-#: includes/configure_client.php
-msgid "Client settings"
-msgstr "Pengaturan klien"
-
-msgid "SSID"
-msgstr "SSID"
-
-msgid "Channel"
-msgstr "Kanal"
-
-msgid "Security"
-msgstr "Keamanan"
-
-msgid "Passphrase"
-msgstr "Kalimat sandi"
-
-msgid "Wifi settings updated successfully"
-msgstr "Pengaturan Wifi berhasil dimutakhirkan"
-
-msgid "Wifi settings updated but cannot restart (cannot execute 'wpa_cli reconfigure')"
-msgstr "Pengaturan Wifi dimutakhirkan tapi tak bisa dimulai ulang (tak dapat menjalankan 'wpa_cli reconfigure')"
-
-msgid "Wifi settings failed to be updated"
-msgstr "Gagal memperbarui pengaturan wifi"
-
-msgid "Failed to update wifi settings"
-msgstr "Gagal memutakhirkan pengaturan wifi"
-
-msgid "Rescan"
-msgstr "Pindai ulang"
-
-msgid "Update"
-msgstr "Perbarui"
-
-msgid "Add"
-msgstr "Tambah"
-
-msgid "Delete"
-msgstr "Hapus"
-
-msgid "Show"
-msgstr "Tampilkan"
-
-msgid "Hide"
-msgstr "Sembunyikan"
-
-msgid "Not configured"
-msgstr "Tidak dikonfigurasi"
-
-msgid "Connected"
-msgstr "Terhubung"
-
-msgid "Known"
-msgstr "Diketahui"
-
-msgid "Nearby"
-msgstr "Sekitar"
-
-msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>Note:</strong> Poin akses WEP tampil sebagai 'Terbuka'. RaspAP saat ini tak mendukung hubungan ke WEP"
-
-msgid "No Wifi stations found"
-msgstr "Stasiun Wifi tidak ditemukan"
-
-msgid "Reinitialized wpa_supplicant. Choose <strong>Rescan</strong>."
-msgstr "Memulai ulang wpa_supplicant. Pilih <strong>Pindai ulang</strong>."
-
-msgid "Click 'Rescan' to search for nearby Wifi stations."
-msgstr "Klik 'Pindai ulang' untuk mencari stasiun Wifi di sekitar."
-
-msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
-msgstr "Klik 'Mulai ulang' untuk memulai ulang secara paksa <code>wpa_supplicant</code>."
-
-msgid "Reinitialize"
-msgstr "Memulai ulang"
-
-#: includes/dashboard.php
-msgid "Interface Information"
-msgstr "Informasi Antarmuka"
-
-msgid "Interface Name"
-msgstr "Nama Antarmuka"
-
-msgid "IPv4 Address"
-msgstr "Alamat IPv4"
-
-msgid "IPv6 Address"
-msgstr "Alamat IPv6"
-
-msgid "Subnet Mask"
-msgstr "Subnet Mask"
-
-msgid "Mac Address"
-msgstr "Alamat MAC"
-
-msgid "Interface Statistics"
-msgstr "Statistik Antarmuka"
-
-msgid "Received Packets"
-msgstr "Paket Diterima"
-
-msgid "Received Bytes"
-msgstr "Byte diterima"
-
-msgid "Transferred Packets"
-msgstr "Paket Ditransfer"
-
-msgid "Transferred Bytes"
-msgstr "Byte Ditransfer"
-
-msgid "Wireless Client"
-msgstr "Klien Nirkabel"
-
-msgid "Connected To"
-msgstr "Terhubung ke"
-
-msgid "AP Mac Address"
-msgstr "Alamat MAC AP"
-
-msgid "Bitrate"
-msgstr "Laju bit"
-
-msgid "Signal Level"
-msgstr "Tingkat Sinyal"
-
-msgid "Transmit Power"
-msgstr "Daya Transmisi"
-
-msgid "Frequency"
-msgstr "Frekuensi"
-
-msgid "Link Quality"
-msgstr "Kualitas Tautan"
-
-msgid "Information provided by ip and iw and from system"
-msgstr "Informasi dari ip dan iw serta dari sistem"
-
-msgid "No MAC Address Found"
-msgstr "Alamat MAC Tak Ditemukan"
-
-msgid "No IP Address Found"
-msgstr "Tak ditemukan alamat IP"
-
-msgid "No Subnet Mask Found"
-msgstr "Subnet Mask Tak Ditemukan"
-
-msgid "No Data"
-msgstr "Tak Ada Data"
-
-msgid "Not connected"
-msgstr "Tidak tersambung"
-
-msgid "Interface is up"
-msgstr "Antar muka sedang beroperasi"
-
-msgid "Interface is down"
-msgstr "Antarmuka sedang tak beroperasi"
-
-msgid "Interface already down"
-msgstr "Antar muka sudah berhenti beroperasi"
-
-msgid "Start wlan0"
-msgstr "Mulai wlan0"
-
-msgid "Stop wlan0"
-msgstr "Hentikan wlan0"
-
-msgid "Connected Devices"
-msgstr "Perangkat Terhubung"
-
-msgid "Client: Ethernet cable"
-msgstr "Klien: Kabel Ethernet"
-
-msgid "Ethernet"
-msgstr "Ethernet"
-
-msgid "Client: Smartphone (USB tethering)"
-msgstr "Klien: Ponsel (terhubung USB)"
-
-msgid "Smartphone"
-msgstr "Ponsel"
-
-msgid "WiFi"
-msgstr "WiFi"
-
-msgid "Mobile Data Client"
-msgstr "Klien Data Seluler"
-
-msgid "Mobile Data"
-msgstr "Data seluler"
-
-msgid "No information available"
-msgstr "Tidak ada informasi yang tersedia"
-
-msgid "Interface name invalid"
-msgstr "Antarmuka tidak sah"
-
-msgid "Required exec function is disabled. Check if exec is not added to php <code>disable_functions</code>."
-msgstr "Fungsi exec yang dibutuhkan dinonaktifkan. Periksa apakah exec ditambahkan ke php <code>disable_functions</code>."
-
-msgid "Waiting for the interface to start ..."
-msgstr "Menunggu antarmuka mulai..."
-
-msgid "Stop the Interface"
-msgstr "Hentikan antarmuka"
-
-msgid "Connection mode"
-msgstr "Mode hubungan"
-
-msgid "Signal quality"
-msgstr "Kualitas sinyal"
-
-msgid "WAN IP"
-msgstr "IP WAN"
-
-msgid "Web-GUI"
-msgstr "GUI Web"
-
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "Terinstal"
+
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "Detail"
+
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:365
+#: ../includes/wifi_functions.php:281
 msgid "Signal strength"
 msgstr "Kekuatan sinyal"
 
-msgid "No Client device or not yet configured"
-msgstr "Tidak ada perangkat klien atau belum diatur"
-
-msgid "No Client device found"
-msgstr "Perangkat klien tidak ditemukan"
-
-#: includes/dhcp.php
-msgid "DHCP server settings"
-msgstr "Pengaturan server DHCP"
-
-msgid "Client list"
-msgstr "Daftar client"
-
-msgid "Interface"
-msgstr "Antarmuka"
-
-msgid "Enable DHCP for this interface"
-msgstr "Aktifkan DHCP untuk antarmuka ini"
-
-msgid "Enable this option if you want RaspAP to assign IP addresses on the selected interface."
-msgstr "Aktifkan pilihan ini jika Anda ingin RaspAP menyematkan alamat IP ke antarmuka terpilih."
-
-msgid "DNS Server"
-msgstr "Server DNS"
-
-msgid "Starting IP Address"
-msgstr "Alamat IP Awal"
-
-msgid "Ending IP Address"
-msgstr "Akhiri Alamat IP"
-
-msgid "Static Leases"
-msgstr "Jalur Pengguna Statis"
-
-msgid "Add static DHCP lease"
-msgstr "Tambah jalur pengguna DHCP statis"
-
-msgid "Lease Time"
-msgstr "Jangka Waktu Jalur Pengguna"
-
-msgid "Interval"
-msgstr "Selang waktu"
-
-msgid "Active DHCP leases"
-msgstr "Jalur Pengguna DHCP aktif"
-
-msgid "Expire time"
-msgstr "Kedaluwarsa pada"
-
-msgid "MAC Address"
-msgstr "Alamat MAC"
-
-msgid "Optional comment"
-msgstr "Komentar tambahan"
-
-msgid "Host name"
-msgstr "Nama Host"
-
-msgid "Client ID"
-msgstr "ID Klien"
-
-msgid "Information provided by Dnsmasq"
-msgstr "Informasi disediakan oleh Dnsmasq"
-
-msgid "Stop dnsmasq"
-msgstr "Hentikan dnsmasq"
-
-msgid "Start dnsmasq"
-msgstr "Mulai dnsmasq"
-
-msgid "Dnsmasq configuration updated successfully"
-msgstr "Konfigurasi Dnsmasq berhasil dimutakhirkan"
-
-msgid "dnsmasq already running"
-msgstr "dnsmasq sudah berjalan"
-
-msgid "Successfully started dnsmasq"
-msgstr "Sukses memulai dnsmasq"
-
-msgid "Failed to start dnsmasq"
-msgstr "Gagal menjalankan dnsmasq"
-
-msgid "Successfully stopped dnsmasq"
-msgstr "Dnsmasq berhasil dihentikan"
-
-msgid "Failed to stop dnsmasq"
-msgstr "Gagal menghentikan dnsmasq"
-
-msgid "dnsmasq already stopped"
-msgstr "dnsmasq telah berhenti"
-
-msgid "Dnsmasq is running"
-msgstr "Dnsmasq sedang berjalan"
-
-msgid "Dnsmasq is not running"
-msgstr "Dnsmasq tidak berjalan"
-
-msgid "Upstream DNS servers"
-msgstr "Peladen DNS hulu"
-
-msgid "Only ever query DNS servers configured below"
-msgstr "Hanya kueri peladen DNS terkonfigurasi berikut"
-
-msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Aktifkan pilihan ini jika Anda ingin RaspAP <b>mengirim kueri khusus DNS terkonfigurasi berikut</b>. Secara bawaan, RaspAP juga menggunakan nama-nama peladen dari peladen DHCP hulu."
-
-msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "Pilihan ini menambah <code>no-resolv</code> ke konfigurasi dnsmasq."
-
-msgid "Add upstream DNS server"
-msgstr ""
-
-msgid "Format"
-msgstr ""
-
-msgid "Choose a hosted server"
-msgstr ""
-
-msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
-msgstr ""
-
-msgid "Log DHCP requests"
-msgstr ""
-
-msgid "Log DNS queries"
-msgstr ""
-
-msgid "Restrict access"
-msgstr ""
-
-msgid "Limit network access to static clients"
-msgstr ""
-
-msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
-msgstr ""
-
-msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
-msgstr ""
-
-msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
-msgstr ""
-
-msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
-msgstr ""
-
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
-msgstr ""
-
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
-msgstr ""
-
-msgid "Disable wpa_supplicant dhcp hook for this interface"
-msgstr ""
-
-msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
-msgstr ""
-
-msgid "Please provide a valid IP Address."
-msgstr ""
-
-msgid "Please provide a valid Default gateway."
-msgstr ""
-
-msgid "Please provide a valid Starting IP Address."
-msgstr ""
-
-msgid "Please provide a valid Ending IP Address."
-msgstr ""
-
-msgid "Please provide a valid Lease Time."
-msgstr ""
-
-msgid "Invalid interface name."
-msgstr ""
-
-msgid "Invalid static IP address."
-msgstr ""
-
-msgid "Invalid default gateway."
-msgstr ""
-
-msgid "Invalid DHCP range start."
-msgstr ""
-
-msgid "Invalid DHCP range end."
-msgstr ""
-
-msgid "Invalid DHCP lease time, not a number."
-msgstr ""
-
-msgid "Unknown DHCP lease time unit."
-msgstr ""
-
-msgid "Invalid metric value, not a number."
-msgstr ""
-
-#: includes/hostapd.php
-msgid "Basic"
-msgstr "Dasar"
-
-msgid "Advanced"
-msgstr "Tingkat lanjut"
-
-msgid "Basic settings"
-msgstr "Pengaturan dasar"
-
-msgid "Wireless Mode"
-msgstr "Mode Nirkabel"
-
-msgid "Security settings"
-msgstr "Pengaturan keamanan"
-
-msgid "Security type"
-msgstr "Tipe keamanan"
-
-msgid "Encryption Type"
-msgstr "Tipe Enkripsi"
-
-msgid "Pre-shared key (PSK)"
-msgstr ""
-
-msgid "Advanced settings"
-msgstr "Pengaturan tingkat lanjut"
-
-msgid "Country Code"
-msgstr "Kode Negara"
-
-msgid "Information provided by hostapd"
-msgstr "Informasi dari hostapd"
-
-msgid "Attempting to start hotspot"
-msgstr "Mencoba memulai hotspot"
-
-msgid "Attempting to stop hotspot"
-msgstr "Mencoba menghentikan hotspot"
-
-msgid "HostAPD is not running"
-msgstr "HostAPD tidak sedang berjalan"
-
-msgid "HostAPD is running"
-msgstr "HostAPD berjalan"
-
-msgid "SSID must be between 1 and 32 characters"
-msgstr "SSID harus antara 1 sampai 32 karakter"
-
-msgid "WPA passphrase must be between 8 and 63 characters"
-msgstr "Kalimat sandi WPA harus antara 8 dan 63 karakter"
-
-msgid "Unknown interface"
-msgstr "Antarmuka tak diketahui"
-
-msgid "Country code must be blank or two characters"
-msgstr "Kode negara harus kosong atau dua karakter"
-
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "Debugging verbose"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "Debugging"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "Informasi"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "Pemberitahuan"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "Peringatan"
+
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
+#, php-format
 msgid "DHCP configuration for %s enabled."
-msgstr ""
+msgstr "Konfigurasi DHCP untuk %s diaktifkan."
 
-msgid "DHCP configuration for %s added."
-msgstr ""
-
-msgid "DHCP configuration for %s updated."
-msgstr ""
-
-msgid "Interface %s has no default settings."
-msgstr ""
-
-msgid "Configure settings in <strong>DHCP Server</strong> before starting AP."
-msgstr ""
-
-msgid "Wifi hotspot settings saved."
-msgstr ""
-
-msgid "Unable to save WiFi hotspot settings."
-msgstr ""
-
-msgid "Start hotspot"
-msgstr "Mulai hotspot"
-
-msgid "Stop hotspot"
-msgstr "Hentikan hotspot"
-
-msgid "Restart hotspot"
-msgstr "Mulai ulang hotspot"
-
-msgid "Enable logging"
-msgstr "Aktifkan logging"
-
-msgid "Logfile output"
-msgstr "Keluaran berkas log"
-
-msgid "WiFi client AP mode"
-msgstr "Mode AP klien WIFI"
-
-msgid "Bridged AP mode"
-msgstr ""
-
-msgid "WiFi repeater mode"
-msgstr ""
-
-msgid "Hide SSID in broadcast"
-msgstr "Sembunyikan SSID di pancaran"
-
-msgid "Maximum number of clients"
-msgstr "Jumlah klien maksimal"
-
-msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
-msgstr ""
-
-msgid "Beacon interval"
-msgstr ""
-
-msgid "Disable <code>disassoc_low_ack</code>"
-msgstr ""
-
-msgid "Do not disassociate stations based on excessive transmission failures."
-msgstr ""
-
-msgid "Executing RaspAP service start"
-msgstr ""
-
-msgid "Close"
-msgstr ""
-
-msgid "Enable this option to log <code>hostapd</code> activity."
-msgstr ""
-
-msgid "Transmit power (dBm)"
-msgstr ""
-
-msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
-msgstr ""
-
-msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
-msgstr ""
-
-msgid "WPA and WPA2"
-msgstr ""
-
-msgid "WPA2 and WPA3-Personal (transitional mode)"
-msgstr ""
-
-msgid "WPA3-Personal (required)"
-msgstr ""
-
-msgid "Enabled (for supported clients)"
-msgstr ""
-
-msgid "Required (for supported clients)"
-msgstr ""
-
-msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
-msgstr ""
-
-msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
-msgstr ""
-
-msgid "Printable Wi-Fi sign"
-msgstr ""
-
-msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
-msgstr ""
-
-msgid "For other devices, use the login credentials below."
-msgstr ""
-
-msgid "Network"
-msgstr ""
-
-msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
-msgstr ""
-
-msgid "The selected interface (%s) has support for the 2.5 GHz wireless band only."
-msgstr ""
-
-msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
-msgstr ""
-
-msgid "The selected interface (%s) does not support wireless mode operation."
-msgstr ""
-
-msgid "The 802.11ac 5 GHz option is disabled until a compatible wireless regulatory domain is set."
-msgstr ""
-
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:148
 msgid "WiFi repeater mode: A metric value is already defined for DHCP."
-msgstr ""
+msgstr "Mode pengulang WiFi: Nilai metrik sudah ditentukan untuk DHCP."
 
-msgid "Restart hotspot to enable WiFi repeater mode."
-msgstr ""
-
-msgid "Unable to obtain metric value for client interface. Repeater mode inactive."
-msgstr ""
-
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
+#, php-format
 msgid "Metric value configured for the %s interface."
-msgstr ""
+msgstr "Nilai metrik yang dikonfigurasi untuk antarmuka %s."
 
-msgid "Parameter hiddenSSID contains invalid configuration value."
-msgstr ""
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:226
+msgid "Invalid interface name."
+msgstr "Nama antarmuka tidak valid."
 
-msgid "Parameter hiddenSSID is not a number."
-msgstr ""
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:229
+msgid "Invalid static IP address."
+msgstr "Alamat IP statis tidak valid."
 
-#: includes/networking.php
-msgid "Summary"
-msgstr "Ringkasan"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:232
+msgid "Invalid subnet mask."
+msgstr "Subnet mask tidak valid."
 
-msgid "Internet connection"
-msgstr ""
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:235
+msgid "Invalid default gateway."
+msgstr "Gateway default tidak valid."
 
-msgid "Current settings"
-msgstr "Pengaturan saat ini"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:239
+msgid "Invalid DHCP range start."
+msgstr "Awal rentang DHCP tidak valid."
 
-msgid "Default Gateway"
-msgstr "Gateway Baku"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:242
+msgid "Invalid DHCP range end."
+msgstr "Akhir rentang DHCP tidak valid."
 
-msgid "Alternate DNS Server"
-msgstr "Server DNS alternatif"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:245
+msgid "Invalid DHCP lease time, not a number."
+msgstr "Waktu sewa DHCP tidak valid, bukan angka."
 
-msgid "Adapter IP Address Settings"
-msgstr "Pengaturan Alamat IP Adapter"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:248
+msgid "Unknown DHCP lease time unit."
+msgstr "Unit waktu sewa DHCP yang tidak diketahui."
 
-msgid "Enable Fallback to Static Option"
-msgstr "Aktifkan Jalur Baku ke Opsi Statis"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:251
+msgid "Invalid metric value, not a number."
+msgstr "Nilai metrik tidak valid, bukan angka."
 
-msgid "Static IP"
-msgstr "IP Statis"
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:276
+#, php-format
+msgid "DHCP configuration for %s updated."
+msgstr "Konfigurasi DHCP untuk %s diperbarui."
 
-msgid "Enabled"
-msgstr "Aktif"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
+msgid "WPA and WPA2"
+msgstr "WPA dan WPA2"
 
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:112
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 dan WPA3-Pribadi (mode transisi)"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:114
+msgid "None"
+msgstr "Tidak ada"
+
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:124
 msgid "Disabled"
 msgstr "Dinonaktifkan"
 
-msgid "Static IP Options"
-msgstr "Opsi IP Statis"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:125
+msgid "Enabled (for supported clients)"
+msgstr "Diaktifkan (untuk klien yang didukung)"
 
-msgid "Metric"
-msgstr ""
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:126
+msgid "Required (for supported clients)"
+msgstr "Diperlukan (untuk klien yang didukung)"
 
-msgid "Apply settings"
-msgstr "Terapkan pengaturan"
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "Alamat MAC tidak valid: "
 
-msgid "Information provided by /sys/class/net"
-msgstr "Informasi dari /sys/class/net"
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "Alamat IP duplikat yang dimasukkan: "
 
-msgid "Devices"
-msgstr ""
+#: ../templates/hostapd.php:3 ../templates/wireguard.php:3
+#: ../templates/adblock.php:3 ../templates/openvpn.php:3
+#: ../templates/system/advanced.php:39 ../templates/system/language.php:11
+#: ../templates/system/theme.php:56 ../templates/restapi.php:3
+#: ../templates/dhcp.php:3 ../templates/admin/general.php:2
+#: ../templates/provider.php:3 ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29
+#: ../plugins-available/Wireshark/templates/main.php:3
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Captive/templates/main.php:3
+msgid "Save settings"
+msgstr "Menyimpan pengaturan"
 
-msgid "Diagnostics"
-msgstr ""
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "Mulai hotspot"
 
-msgid "Properties of network devices"
-msgstr ""
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "Memulai hotspot"
 
-msgid "Device"
-msgstr ""
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "Hentikan hotspot"
 
-msgid "MAC"
-msgstr ""
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "Mulai ulang hotspot"
 
-msgid "USB vid/pid"
-msgstr ""
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "Memulai ulang hotspot"
 
-msgid "Device type"
-msgstr ""
+#: ../templates/hostapd.php:49 ../templates/system.php:17
+#: ../templates/admin.php:20 ../plugins-available/Captive/templates/main.php:48
+msgid "Basic"
+msgstr "Dasar"
 
-msgid "Fixed name"
-msgstr ""
+#: ../templates/hostapd.php:50 ../templates/wifi_stations/network.php:73
+msgid "Security"
+msgstr "Keamanan"
 
-msgid "Change"
-msgstr ""
+#: ../templates/hostapd.php:51 ../templates/system.php:20
+#: ../templates/dhcp.php:52 ../plugins-available/Captive/templates/main.php:50
+msgid "Advanced"
+msgstr "Lanjutan"
 
-msgid "Settings for Mobile Data Devices"
-msgstr ""
+#: ../templates/hostapd.php:52 ../templates/adblock/logging.php:3
+#: ../templates/hostapd/logging.php:3 ../templates/wireguard.php:49
+#: ../templates/adblock.php:47 ../templates/openvpn.php:48
+#: ../templates/dhcp.php:55 ../templates/wg/logging.php:5
+#: ../templates/dhcp/logging.php:3 ../templates/openvpn/logging.php:3
+msgid "Logging"
+msgstr "Penebangan"
 
-msgid "PIN of SIM card"
-msgstr ""
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "Informasi yang disediakan oleh hostapd"
 
-msgid "APN Settings (Modem device ppp0)"
-msgstr ""
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "Menjalankan layanan RaspAP mulai"
 
-msgid "Access Point Name (APN)"
-msgstr ""
+#: ../templates/hostapd.php:90 ../templates/system.php:56
+#: ../templates/system.php:74 ../templates/system.php:92
+#: ../templates/system.php:110 ../templates/system.php:142
+#: ../templates/wifi_stations/network.php:119
+#: ../templates/configure_client.php:65
+msgid "Close"
+msgstr "Tutup"
 
-msgid "Password"
-msgstr ""
+#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
+msgid "Blocklist settings"
+msgstr "Pengaturan daftar blokir"
 
-msgid "Successfully Updated Network Configuration"
-msgstr ""
+#: ../templates/adblock/general.php:10
+msgid "Enable blocklists"
+msgstr "Mengaktifkan daftar blokir"
 
-msgid "Error saving network configuration to file"
-msgstr ""
+#: ../templates/adblock/general.php:13
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Aktifkan opsi ini jika Anda ingin RaspAP <b>memblokir permintaan DNS untuk iklan, pelacakan, dan sampah virtual lainnya</b>. Daftar blokir dikumpulkan dari berbagai sumber yang dikelola secara aktif dan secara otomatis diperbarui, dibersihkan, dioptimalkan, dan dimoderasi setiap hari."
 
-msgid "Unable to detect interface"
-msgstr ""
+#: ../templates/adblock/general.php:15
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "Opsi ini menambahkan <code>conf-file</code> dan <code>addn-host</code> ke konfigurasi dnsmasq."
 
-msgid "Routing table"
-msgstr ""
+#: ../templates/adblock/general.php:22
+msgid "Hostnames blocklist last updated"
+msgstr "Daftar blokir nama host terakhir diperbarui"
 
-msgid "raw output"
-msgstr ""
+#: ../templates/adblock/general.php:24
+msgid "Domains blocklist last updated"
+msgstr "Daftar blokir domain terakhir diperbarui"
 
-msgid "Setting wireless regulatory domain to %s"
-msgstr ""
+#: ../templates/adblock/general.php:29
+msgid "Choose a blocklist provider"
+msgstr "Memilih penyedia daftar blokir"
 
-msgid "Please provide a valid SSID."
-msgstr ""
+#: ../templates/adblock/general.php:33
+msgid "Update now"
+msgstr "Perbarui sekarang"
 
-msgid "Please provide a valid PSK."
-msgstr ""
+#: ../templates/adblock/stats.php:3
+msgid "Statistics"
+msgstr "Statistik"
 
-msgid "Speedtest"
-msgstr ""
+#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
+msgid "Custom blocklist"
+msgstr "Daftar blokir khusus"
 
-msgid "Selecting a server"
-msgstr ""
+#: ../templates/adblock/custom.php:10
+msgid "Enable custom blocklist"
+msgstr "Mengaktifkan daftar blokir khusus"
 
-msgid "Privacy"
-msgstr ""
+#: ../templates/adblock/custom.php:14
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Tentukan host khusus yang akan diblokir dengan memasukkan alamat IPv4 atau IPv6 diikuti dengan spasi (spasi atau tab) dan nama host."
 
-msgid "Server"
-msgstr ""
+#: ../templates/adblock/custom.php:15
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>Contoh IPv4:</b> 0.0.0.0 badhost.com"
 
-msgid "ms"
-msgstr ""
+#: ../templates/adblock/custom.php:17
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Opsi ini menambahkan direktif <code>addn-hosts</code> ke konfigurasi dnsmasq."
 
-msgid "Mbps"
-msgstr ""
-
-msgid "Ping"
-msgstr ""
-
-msgid "Jitter"
-msgstr ""
-
-msgid "Upload"
-msgstr ""
-
-msgid "Start"
-msgstr ""
-
-msgid "Abort"
-msgstr ""
-
-msgid "Wireless LAN routing"
-msgstr ""
-
-msgid "Stop WLAN routing"
-msgstr ""
-
-msgid "Start WLAN routing"
-msgstr ""
-
-msgid "Restart WLAN routing"
-msgstr ""
-
-msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
-msgstr ""
-
-msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
-msgstr ""
-
-msgid "Wireless client interface"
-msgstr ""
-
-msgid "Output interface"
-msgstr ""
-
-msgid "Configure a static IP address and DHCP for output interface"
-msgstr ""
-
-msgid "Attempting to enable routing between %s and %s interfaces"
-msgstr ""
-
-msgid "Attempting to disable routing between %s and %s interfaces"
-msgstr ""
-
-msgid "No default DHCP configuration exists for the %s interface"
-msgstr ""
-
-msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
-msgstr ""
-
-msgid "WLAN routing configuration saved"
-msgstr ""
-
-msgid "Unable to save WLAN routing configuration"
-msgstr ""
-
-msgid "Successfully restarted dnsmasq"
-msgstr ""
-
-msgid "Failed to restart dnsmasq"
-msgstr ""
-
-#: includes/system.php
-msgid "System Information"
-msgstr "Informasi Sistem"
-
+#: ../templates/system.php:18
 msgid "Language"
 msgstr "Bahasa"
 
-msgid "Language settings"
-msgstr "Pengaturan bahasa"
+#: ../templates/system.php:19
+msgid "Theme"
+msgstr "Tema"
 
-msgid "Select a language"
-msgstr "Pilih bahasa"
-
-msgid "Language setting saved"
-msgstr "Pengaturan bahasa disimpan"
-
-msgid "Console"
-msgstr "Konsol"
-
-msgid "Hostname"
-msgstr "Nama Host"
-
-msgid "Pi Revision"
-msgstr "Revisi Pi"
-
-msgid "Uptime"
-msgstr "Waktu nyala"
-
-msgid "System Time"
-msgstr ""
-
-msgid "Memory Used"
-msgstr "Memori Terpakai"
-
-msgid "CPU Load"
-msgstr "Beban Kerja CPU"
-
-msgid "Reboot"
-msgstr ""
-
-msgid "Shutdown"
-msgstr "Tutup"
-
-msgid "System reboot"
-msgstr ""
-
-msgid "System shutdown"
-msgstr ""
-
-msgid "Reboot now? The system will be temporarily unavailable."
-msgstr ""
-
-msgid "Shutdown now? The system will be unavailable."
-msgstr ""
-
-msgid "System Rebooting Now!"
-msgstr "Sistem Memulai Kembali Sekarang!"
-
-msgid "System Shutting Down Now!"
-msgstr "Sistem Dimatikan Sekarang!"
-
-msgid "Web server port"
-msgstr ""
-
-msgid "Web server bind address"
-msgstr ""
-
-msgid "OS"
-msgstr ""
-
-msgid "Kernel"
-msgstr ""
-
-msgid "System reset"
-msgstr ""
-
-msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
-msgstr ""
-
-msgid "Reset complete. Restart the hotspot for the changes to take effect."
-msgstr ""
-
-msgid "System reset in progress..."
-msgstr ""
-
-msgid "Reset"
-msgstr ""
-
-msgid "Restore settings"
-msgstr ""
-
-msgid "To reset RaspAP to its <a href=\"%s\">initial configuration</a>, click or tap the button below."
-msgstr ""
-
-msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
-msgstr ""
-
-msgid "Perform reset"
-msgstr ""
-
-msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
-msgstr ""
-
-msgid "Theme settings"
-msgstr "Pengaturan Tema"
-
-msgid "Select a theme"
-msgstr "Pilih tema"
-
-msgid "Color"
-msgstr ""
-
-msgid "Enable this option for resizable, drag and drop widgets. Best for large displays."
-msgstr ""
-
-msgid "Dynamic widgets"
-msgstr ""
-
+#: ../templates/system.php:21
 msgid "Tools"
-msgstr ""
+msgstr "Peralatan"
 
-msgid "System tools"
-msgstr ""
+#: ../templates/system.php:23 ../templates/system/plugins.php:3
+msgid "Plugins"
+msgstr "Plugin"
 
-msgid "To generate a system <a href=\"%s\">debug log</a>, click or tap the button below."
-msgstr ""
+#: ../templates/system.php:40 ../templates/dashboard.php:164
+msgid "Information provided by raspap.sysinfo"
+msgstr "Informasi yang disediakan oleh raspap.sysinfo"
 
-msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
-msgstr ""
+#: ../templates/system.php:50
+msgid "System reset"
+msgstr "Pengaturan ulang sistem"
 
+#: ../templates/system.php:53
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "Pengaturan ulang selesai. Nyalakan ulang hotspot agar perubahan diterapkan."
+
+#: ../templates/system.php:53
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "Mengatur ulang RaspAP ke konfigurasi awal? Tindakan ini tidak dapat dibatalkan."
+
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:92 ../templates/system.php:236
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+#: ../templates/admin.php:90 ../templates/admin.php:119
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../plugins-available/Captive/templates/main.php:99
+msgid "Cancel"
+msgstr "Batal"
+
+#: ../templates/system.php:57
+msgid "System reset in progress..."
+msgstr "Pengaturan ulang sistem sedang berlangsung..."
+
+#: ../templates/system.php:57
+msgid "Reset"
+msgstr "Atur ulang"
+
+#: ../templates/system.php:68
+msgid "System reboot"
+msgstr "Mulai ulang sistem"
+
+#: ../templates/system.php:71
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr "Reboot sekarang? Sistem tidak akan tersedia untuk sementara waktu."
+
+#: ../templates/system.php:75 ../templates/system/basic.php:23
+msgid "Reboot"
+msgstr "Reboot"
+
+#: ../templates/system.php:86
+msgid "System shutdown"
+msgstr "Pematian sistem"
+
+#: ../templates/system.php:89
+msgid "Shutdown now? The system will be unavailable."
+msgstr "Shutdown sekarang? Sistem tidak akan tersedia."
+
+#: ../templates/system.php:93 ../templates/system/basic.php:27
+msgid "Shutdown"
+msgstr "Matikan..."
+
+#: ../templates/system.php:104 ../templates/system/tools.php:18
 msgid "Generate debug log"
-msgstr ""
+msgstr "Menghasilkan log debug"
 
+#: ../templates/system.php:107
 msgid "Debug log generation in progress..."
-msgstr ""
+msgstr "Pembuatan log debug sedang berlangsung..."
 
-msgid "Diagnostic log size limit (KB)"
-msgstr ""
+#: ../templates/system.php:121 ../templates/system/tools.php:32
+msgid "Inspect adapters"
+msgstr "Memeriksa adaptor"
 
-msgid "Changing log limit size to %s KB"
-msgstr ""
+#: ../templates/system.php:140
+msgid "Adapter health check"
+msgstr "Pemeriksaan kesehatan adaptor"
 
-#: includes/data_usage.php
-msgid "Data usage"
-msgstr "Pemakaian data"
+#: ../templates/system.php:177
+msgid "Plugin details"
+msgstr "Detail plugin"
 
+#: ../templates/system.php:188
+msgid "Plugin docs"
+msgstr "Dokumen plugin"
+
+#: ../templates/system.php:192
+msgid "Version"
+msgstr "Versi"
+
+#: ../templates/system.php:196
+msgid "Author"
+msgstr "Penulis"
+
+#: ../templates/system.php:200
+msgid "License"
+msgstr "Lisensi"
+
+#: ../templates/system.php:204
+msgid "Language locale"
+msgstr "Bahasa lokal"
+
+#: ../templates/system.php:208
+msgid "Configuration files"
+msgstr "File konfigurasi"
+
+#: ../templates/system.php:212
+msgid "Signed Packages"
+msgstr "Paket yang Ditandatangani"
+
+#: ../templates/system.php:216
+msgid "Dependencies"
+msgstr "Ketergantungan"
+
+#: ../templates/system.php:220
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: ../templates/system.php:224
+msgid "Sudoers"
+msgstr "Sudoers"
+
+#: ../templates/system.php:228
+msgid "Non-privileged users"
+msgstr "Pengguna yang tidak memiliki hak istimewa"
+
+#: ../templates/system.php:248
+msgid "Installing plugin"
+msgstr "Menginstal plugin"
+
+#: ../templates/system.php:251
+msgid "Plugin install completed."
+msgstr "Pemasangan plugin selesai."
+
+#: ../templates/system.php:251
+msgid "Plugin installation in progress..."
+msgstr "Pemasangan plugin sedang berlangsung..."
+
+#: ../templates/system.php:254 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "BAIKLAH."
+
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "Pengaturan keamanan"
+
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "Jenis keamanan"
+
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "Jenis Enkripsi"
+
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
+
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "802.11w memperluas perlindungan kriptografi yang kuat ke serangkaian bingkai manajemen yang kuat, termasuk Deauthentikasi, Disasosiasi, dan beberapa kategori bingkai Manajemen Tindakan. Secara kolektif, hal ini dikenal sebagai Perlindungan Bingkai Manajemen (MFP)."
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "Kunci pra-berbagi (PSK)"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "Harap berikan PSK yang valid."
+
+#: ../templates/hostapd/security.php:32
+#, php-format
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Pindai kode QR ini secara langsung atau %s %scetak tanda%s untuk pengguna Anda."
+
+#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+msgid "Advanced settings"
+msgstr "Pengaturan lanjutan"
+
+#: ../templates/hostapd/advanced.php:9
+msgid "Bridged AP mode"
+msgstr "Mode AP yang dijembatani"
+
+#: ../templates/hostapd/advanced.php:19
+msgid "Bridge interface configuration"
+msgstr "Konfigurasi antarmuka jembatan"
+
+#: ../templates/hostapd/advanced.php:21
+msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
+msgstr "Konfigurasikan alamat IP statis untuk antarmuka <code>br0</code> untuk mempertahankan konektivitas selama aktivasi mode jembatan."
+
+#: ../templates/hostapd/advanced.php:26
+msgid "Static IP Address"
+msgstr "Alamat IP Statis"
+
+#: ../templates/hostapd/advanced.php:32 ../templates/hostapd/advanced.php:58
+#: ../templates/hostapd/advanced.php:71
+msgid "Please enter a valid IPv4 address"
+msgstr "Masukkan alamat IPv4 yang valid"
+
+#: ../templates/hostapd/advanced.php:35
+msgid "Example: 192.168.1.100"
+msgstr "Contoh: 192.168.1.100"
+
+#: ../templates/hostapd/advanced.php:39
+msgid "Netmask / CIDR"
+msgstr "Netmask / CIDR"
+
+#: ../templates/hostapd/advanced.php:45
+msgid "Please enter a valid netmask"
+msgstr "Masukkan netmask yang valid"
+
+#: ../templates/hostapd/advanced.php:48
+msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
+msgstr "Notasi CIDR (misalnya, 24 untuk 255.255.255.0)"
+
+#: ../templates/hostapd/advanced.php:52 ../templates/networking/general.php:14
+msgid "Gateway"
+msgstr "Gerbang"
+
+#: ../templates/hostapd/advanced.php:61
+msgid "Your router's IP address"
+msgstr "Alamat IP router Anda"
+
+#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/settings.php:150
+#: ../templates/dhcp/settings.php:157 ../templates/dhcp/general.php:149
+#: ../templates/dhcp/general.php:156
+msgid "DNS Server"
+msgstr "Server DNS"
+
+#: ../templates/hostapd/advanced.php:74
+msgid "Usually same as gateway"
+msgstr "Biasanya sama dengan gateway"
+
+#: ../templates/hostapd/advanced.php:89
+msgid "WiFi repeater mode"
+msgstr "Mode pengulang WiFi"
+
+#: ../templates/hostapd/advanced.php:99
+msgid "WiFi client AP mode"
+msgstr "Mode AP klien WiFi"
+
+#: ../templates/hostapd/advanced.php:108
+msgid "Dual band AP mode"
+msgstr "Mode AP pita ganda"
+
+#: ../templates/hostapd/advanced.php:117
+msgid "Hide SSID in broadcast"
+msgstr "Menyembunyikan SSID dalam siaran"
+
+#: ../templates/hostapd/advanced.php:126
+msgid "Enable AP isolation"
+msgstr "Mengaktifkan isolasi AP"
+
+#: ../templates/hostapd/advanced.php:127
+msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
+msgstr "Memblokir klien nirkabel agar tidak dapat melihat atau terhubung satu sama lain. Direkomendasikan untuk jaringan tamu dan titik akses publik."
+
+#: ../templates/hostapd/advanced.php:136
+msgid "Beacon interval"
+msgstr "Interval suar"
+
+#: ../templates/hostapd/advanced.php:148
+msgid "Disable <code>disassoc_low_ack</code>"
+msgstr "Nonaktifkan <code>disassoc_low_ack</code>"
+
+#: ../templates/hostapd/advanced.php:151
+msgid "Do not disassociate stations based on excessive transmission failures."
+msgstr "Jangan memisahkan stasiun berdasarkan kegagalan transmisi yang berlebihan."
+
+#: ../templates/hostapd/advanced.php:157
+msgid "Transmit power (dBm)"
+msgstr "Daya pancar (dBm)"
+
+#: ../templates/hostapd/advanced.php:158
+msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
+msgstr "dBm adalah satuan tingkat yang digunakan untuk menunjukkan bahwa rasio daya dinyatakan dalam desibel (dB) dengan mengacu pada satu miliwatt (mW). 30 dBm sama dengan 1000 mW, sedangkan 0 dBm sama dengan 1,25 mW."
+
+#: ../templates/hostapd/advanced.php:160
+msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
+msgstr "Mengatur opsi <code>txpower</code> untuk antarmuka AP dan negara yang dikonfigurasi."
+
+#: ../templates/hostapd/advanced.php:166
+msgid "Maximum number of clients"
+msgstr "Jumlah klien maksimum"
+
+#: ../templates/hostapd/advanced.php:168
+msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
+msgstr "Mengkonfigurasi opsi <code>max_num_sta</code> dari hostapd. Default dan maksimumnya adalah 2007. Jika kosong atau 0, nilai default yang berlaku."
+
+#: ../templates/hostapd/advanced.php:173
+msgid "Country Code"
+msgstr "Kode Negara"
+
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+msgid "Basic settings"
+msgstr "Pengaturan dasar"
+
+#: ../templates/hostapd/basic.php:5 ../templates/dhcp/settings.php:5
+#: ../templates/dhcp/general.php:5 ../templates/dhcp/summary.php:18
+#: ../templates/networking/general.php:12
+#: ../templates/networking/devices.php:17 ../templates/configure_client.php:31
+msgid "Interface"
+msgstr "Antarmuka"
+
+#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
+#: ../templates/dashboard.php:63
+msgid "SSID"
+msgstr "SSID"
+
+#: ../templates/hostapd/basic.php:14
+msgid "Please provide a valid SSID."
+msgstr "Harap berikan SSID yang valid."
+
+#: ../templates/hostapd/basic.php:20
+msgid "Wireless Mode"
+msgstr "Mode Nirkabel"
+
+#: ../templates/hostapd/basic.php:21
+msgid "Wireless standards which are not compatible with your adapter may be disabled"
+msgstr "Standar nirkabel yang tidak kompatibel dengan adaptor Anda dapat dinonaktifkan"
+
+#: ../templates/hostapd/basic.php:24
+#, php-format
+msgid "Based on the selected interface, 802.11%s is suggested."
+msgstr "Berdasarkan antarmuka yang dipilih, 802.11%s disarankan."
+
+#: ../templates/hostapd/basic.php:30 ../templates/wifi_stations/network.php:46
+msgid "Channel"
+msgstr "Saluran"
+
+#: ../templates/hostapd/logging.php:4
+msgid "Enable this option to log <code>hostapd</code> activity."
+msgstr "Aktifkan opsi ini untuk mencatat aktivitas <code>hostapd</code>."
+
+#: ../templates/hostapd/logging.php:9 ../templates/wg/logging.php:9
+msgid "Logfile output"
+msgstr "Keluaran file log"
+
+#: ../templates/hostapd/logging.php:10 ../templates/dhcp/logging.php:13
+#: ../templates/openvpn/logging.php:9
+msgid "Clear log"
+msgstr "Hapus log"
+
+#: ../templates/hostapd/logging.php:15
+msgid "Log level"
+msgstr "Tingkat log"
+
+#: ../templates/hostapd/logging.php:16
+msgid "Higher levels reduce log verbosity. Informational is recommended."
+msgstr "Level yang lebih tinggi mengurangi verbositas log. Disarankan untuk menggunakan informasi."
+
+#: ../templates/data_usage.php:7
 msgid "Data usage monitoring"
-msgstr "Pemantauan pemakaian data"
+msgstr "Pemantauan penggunaan data"
 
-msgid "Hourly traffic amount"
-msgstr "Jumlah lalu lintas per jam"
-
-msgid "Daily traffic amount"
-msgstr "Jumlah lalu lintas harian"
-
-msgid "Monthly traffic amount"
-msgstr "Jumlah lalu lintas bulanan"
-
+#: ../templates/data_usage.php:14
 msgid "Hourly"
-msgstr "Per jam"
+msgstr "Setiap jam"
 
+#: ../templates/data_usage.php:15
 msgid "Daily"
-msgstr "Harian"
+msgstr "Setiap hari"
 
+#: ../templates/data_usage.php:16
 msgid "Monthly"
 msgstr "Bulanan"
 
+#: ../templates/data_usage.php:23
+msgid "Hourly traffic amount"
+msgstr "Jumlah lalu lintas per jam"
+
+#: ../templates/data_usage.php:24 ../templates/data_usage.php:43
+#: ../templates/data_usage.php:62
 msgid "interface"
 msgstr "antarmuka"
 
-msgid "date"
-msgstr "tanggal"
+#: ../templates/data_usage.php:32 ../templates/data_usage.php:51
+#: ../templates/data_usage.php:70
+#, php-format
+msgid "Loading %s bandwidth chart"
+msgstr "Memuat grafik bandwidth %s"
 
-msgid "Send MB"
-msgstr "Kirim MB"
+#: ../templates/data_usage.php:32
+msgid "hourly"
+msgstr "per jam"
 
-msgid "Receive MB"
-msgstr "MB Diterima"
+#: ../templates/data_usage.php:42
+msgid "Daily traffic amount"
+msgstr "Jumlah lalu lintas harian"
 
+#: ../templates/data_usage.php:51
+msgid "daily"
+msgstr "setiap hari"
+
+#: ../templates/data_usage.php:61
+msgid "Monthly traffic amount"
+msgstr "Jumlah lalu lintas bulanan"
+
+#: ../templates/data_usage.php:70
+msgid "monthly"
+msgstr "bulanan"
+
+#: ../templates/data_usage.php:79
 msgid "Information provided by vnstat"
-msgstr "Informasi disediakan oleh vnstat"
+msgstr "Informasi yang disediakan oleh vnstat"
 
-msgid "Loading {0} bandwidth chart"
-msgstr "Memuat bagan kecepatan jalur {0}"
+#: ../templates/data_usage.php:86
+msgid "Send"
+msgstr "Kirim"
 
-msgid "Showing {0} to {1} of {2} entries"
-msgstr "Menampilkan {0} sampai {1} dari {2} entri"
+#: ../templates/data_usage.php:87
+msgid "Receive"
+msgstr "Menerima"
 
-#: includes/openvpn.php
-msgid "OpenVPN is not running"
-msgstr "OpenVPN tidak berjalan"
+#: ../templates/login.php:13
+msgid "Administrator login"
+msgstr "Login administrator"
 
-msgid "OpenVPN is running"
-msgstr "OpenVPN sedang berjalan"
+#: ../templates/login.php:22 ../templates/about.php:85
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
+msgid "Username"
+msgstr "Nama pengguna"
 
-msgid "Server settings"
-msgstr "Pengaturan Server"
+#: ../templates/login.php:25 ../templates/admin/login.php:21
+#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
+#: ../app/lib/signprint.php:67
+msgid "Password"
+msgstr "Kata sandi"
 
-msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Pilih berkas konfigurasi OpenVPN (.ovpn)"
+#: ../templates/login.php:30 ../templates/admin.php:18
+#: ../includes/footer.php:23
+msgid "Login"
+msgstr "Masuk"
 
-msgid "Client Log"
-msgstr "Log Klien"
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "Lupa kata sandi"
 
-msgid "Port"
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
 msgstr ""
 
-msgid "Protocol"
-msgstr "Protokol"
+#: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:47
+#: ../templates/provider.php:36 ../includes/functions.php:1000
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../plugins-available/Captive/templates/main.php:51
+msgid "Status"
+msgstr "Status"
 
-msgid "Root CA certificate"
-msgstr "Sertifikat Root CA"
+#: ../templates/wifi_stations/network.php:42
+msgid "Not configured"
+msgstr "Tidak dikonfigurasi"
 
-msgid "Server certificate"
-msgstr "Sertifikat Server"
+#: ../templates/wifi_stations/network.php:55
+msgid "RSSI"
+msgstr "RSSI"
 
-msgid "Diffie Hellman parameters"
-msgstr "Parameter Diffie Hellman"
+#: ../templates/wifi_stations/network.php:77
+msgid "Passphrase"
+msgstr "Frasa sandi"
 
-msgid "KeepAlive"
-msgstr ""
+#: ../templates/wifi_stations/network.php:90
+#: ../templates/networking/devices.php:55
+msgid "Update"
+msgstr "Memperbarui"
 
-msgid "Server log"
-msgstr "Log Server"
+#: ../templates/wifi_stations/network.php:92
+msgid "Disconnect"
+msgstr "Putuskan sambungan"
 
+#: ../templates/wifi_stations/network.php:94
+msgid "Connect"
+msgstr "Menghubungkan"
+
+#: ../templates/wifi_stations/network.php:97
+msgid "Add"
+msgstr "Menambahkan"
+
+#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
+#: ../templates/openvpn.php:82
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+msgid "Delete"
+msgstr "Menghapus"
+
+#: ../templates/wifi_stations/network.php:112
+msgid "Login Information Required"
+msgstr "Informasi Login Diperlukan"
+
+#: ../templates/wifi_stations/network.php:115
+msgid "This wireless network requires a login or the acceptance of terms of usage on a separate webpage"
+msgstr "Jaringan nirkabel ini memerlukan login atau penerimaan persyaratan penggunaan pada halaman web terpisah"
+
+#: ../templates/wifi_stations/network.php:118
+msgid "Goto Webpage"
+msgstr "Buka Halaman Web"
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "Hentikan WireGuard"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "Mulai WireGuard"
+
+#: ../templates/wireguard.php:46 ../templates/restapi.php:46
+#: ../templates/provider.php:35
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../plugins-available/Tailscale/templates/main.php:70
+msgid "Settings"
+msgstr "Pengaturan"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "Rekan"
+
+#: ../templates/wireguard.php:48 ../templates/openvpn.php:47
+#: ../templates/wg/configs.php:4 ../templates/openvpn/configs.php:4
+msgid "Configurations"
+msgstr "Konfigurasi"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "Informasi yang diberikan oleh penjaga keamanan"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "Menghapus konfigurasi WireGuard"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "Menghapus konfigurasi ini? Ini tidak dapat dibatalkan."
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "Aktifkan konfigurasi WireGuard"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "Mengaktifkan konfigurasi ini? Ini akan memulai ulang layanan wg-quick."
+
+#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
+msgid "Activate"
+msgstr "Aktifkan"
+
+#: ../templates/exception.php:6 ../templates/exception.php:17
+msgid "RaspAP Exception"
+msgstr "Pengecualian Raspap"
+
+#: ../templates/exception.php:20
+msgid "An exception occurred"
+msgstr "Terjadi pengecualian"
+
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "Mulai Ulang Pemblokiran Iklan"
+
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "Mulai Pemblokiran Iklan"
+
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "Informasi yang disediakan oleh adblock"
+
+#: ../templates/networking.php:20 ../templates/dhcp.php:50
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "Ringkasan"
+
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "Perangkat"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "Data Seluler"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "Perutean WLAN"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "Diagnostik"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "Informasi yang disediakan oleh /sys/class/net"
+
+#: ../templates/openvpn.php:20
 msgid "Start OpenVPN"
 msgstr "Mulai OpenVPN"
 
+#: ../templates/openvpn.php:24
 msgid "Stop OpenVPN"
 msgstr "Hentikan OpenVPN"
 
+#: ../templates/openvpn.php:46 ../templates/openvpn/general.php:2
+#: ../templates/configure_client.php:21
+#: ../plugins-available/Captive/templates/tabs/clients.php:5
+msgid "Client settings"
+msgstr "Pengaturan klien"
+
+#: ../templates/openvpn.php:65
 msgid "Information provided by openvpn"
-msgstr "Informasi disediakan oleh openvpn"
+msgstr "Informasi yang disediakan oleh openvpn"
 
-msgid "Attempting to start openvpn"
-msgstr "Mencoba untuk memulai openvpn"
-
-msgid "Attempting to stop openvpn"
-msgstr "Mencoba menghentikan openvpn"
-
-msgid "Configurations"
-msgstr ""
-
-msgid "Currently available OpenVPN client configurations are displayed below."
-msgstr ""
-
-msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
-msgstr ""
-
+#: ../templates/openvpn.php:75
 msgid "Delete OpenVPN client"
-msgstr ""
+msgstr "Menghapus klien OpenVPN"
 
+#: ../templates/openvpn.php:78
 msgid "Delete client configuration? This cannot be undone."
-msgstr ""
+msgstr "Menghapus konfigurasi klien? Ini tidak dapat dibatalkan."
 
+#: ../templates/openvpn.php:93
 msgid "Activate OpenVPN client"
-msgstr ""
+msgstr "Mengaktifkan klien OpenVPN"
 
+#: ../templates/openvpn.php:96
 msgid "Activate client configuration? This will restart the openvpn-client service."
-msgstr ""
+msgstr "Mengaktifkan konfigurasi klien? Ini akan memulai ulang layanan openvpn-client."
 
-msgid "Activate"
-msgstr ""
-
-msgid "Cancel"
-msgstr ""
-
-msgid "Enable this option to log <code>openvpn</code> activity."
-msgstr ""
-
-msgid "Authentification Method"
-msgstr ""
-
-msgid "Username and password"
-msgstr ""
-
-msgid "Certificates"
-msgstr ""
-
-msgid "Enter username and password"
-msgstr ""
-
-msgid "Certificates in the configuration file"
-msgstr ""
-
-msgid "RaspAP supports certificates by including them in the configuration file."
-msgstr ""
-
-msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
-msgstr ""
-
-msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
-msgstr ""
-
-msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
-msgstr ""
-
-msgid "Configuration File"
-msgstr ""
-
-#: includes/torproxy.php
-msgid "TOR is not running"
-msgstr "TOR tidak sedang berjalan"
-
-msgid "TOR is running"
-msgstr "TOR sedang berjalan"
-
-msgid "Relay"
-msgstr "Relai"
-
-msgid "Relay settings"
-msgstr "Pengaturan Relay"
-
-msgid "Nickname"
-msgstr ""
-
-msgid "Address"
-msgstr "Alamat"
-
-msgid "Start TOR"
-msgstr "Mulai TOR"
-
-msgid "Stop TOR"
-msgstr "Hentikan TOR"
-
-msgid "Information provided by tor"
-msgstr "Informasi dari tor"
-
-msgid "Attempting to start TOR"
-msgstr "Mencoba untuk memulai TOR"
-
-msgid "Attempting to stop TOR"
-msgstr "Mencoba untuk menghentikan TOR"
-
-#: template/dashboard.php
-msgid "Bridged AP mode is enabled. For Hostname and IP, see your router's admin page."
-msgstr ""
-
-#: common form controls
-msgid "Save settings"
-msgstr "Simpan pengaturan"
-
-msgid "Refresh"
-msgstr "Segarkan"
-
-msgid "running"
-msgstr "beroperasi aktif"
-
-msgid "stopped"
-msgstr "dihentikan"
-
-msgid "Remove"
-msgstr "Hapus"
-
-msgid "up"
-msgstr "naik"
-
-msgid "down"
-msgstr "tidak beroperasi"
-
-msgid "Clear log"
-msgstr ""
-
-msgid "adblock"
-msgstr ""
-
-msgid "Ad Blocking"
-msgstr ""
-
-msgid "Start Ad Blocking"
-msgstr ""
-
-msgid "Restart Ad Blocking"
-msgstr ""
-
-msgid "Blocklist settings"
-msgstr ""
-
-msgid "Enable blocklists"
-msgstr ""
-
-msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr ""
-
-msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
-msgstr ""
-
-msgid "Choose a blocklist provider"
-msgstr ""
-
-msgid "Hostnames blocklist last updated"
-msgstr ""
-
-msgid "Domains blocklist last updated"
-msgstr ""
-
-msgid "Update now"
-msgstr ""
-
-msgid "Statistics"
-msgstr ""
-
-msgid "Information provided by adblock"
-msgstr ""
-
-msgid "Enable custom blocklist"
-msgstr ""
-
-msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
-msgstr ""
-
-msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
-msgstr ""
-
-msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
-msgstr ""
-
-msgid "Custom blocklist not defined"
-msgstr ""
-
-msgid "Invalid custom IP address found on line "
-msgstr ""
-
-msgid "Invalid custom host found on line "
-msgstr ""
-
-msgid "Tunnel settings"
-msgstr ""
-
-msgid "Configuration Method"
-msgstr ""
-
-msgid "Upload file"
-msgstr ""
-
-msgid "Create manually"
-msgstr ""
-
-msgid "Upload a WireGuard config"
-msgstr ""
-
-msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
-msgstr ""
-
-msgid "Apply iptables rules for AP interface"
-msgstr ""
-
-msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on the AP interface."
-msgstr ""
-
-msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the configured AP interface (%s)."
-msgstr ""
-
-msgid "Select WireGuard configuration file (.conf)"
-msgstr ""
-
-msgid "Create a local WireGuard config"
-msgstr ""
-
-msgid "Enable server"
-msgstr ""
-
-msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
-msgstr ""
-
-msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
-msgstr ""
-
-msgid "Local public key"
-msgstr ""
-
-msgid "Local Port"
-msgstr ""
-
-msgid "IP Address"
-msgstr ""
-
-msgid "DNS"
-msgstr ""
-
-msgid "Peer"
-msgstr ""
-
-msgid "Enable peer"
-msgstr ""
-
-msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
-msgstr ""
-
-msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
-msgstr ""
-
-msgid "Peer public key"
-msgstr ""
-
-msgid "Endpoint address"
-msgstr ""
-
-msgid "Allowed IPs"
-msgstr ""
-
-msgid "Persistent keepalive"
-msgstr ""
-
-msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
-msgstr ""
-
-msgid "WireGuard debug log updated"
-msgstr ""
-
-msgid "Scan this QR code with your client to connect to this tunnel"
-msgstr ""
-
-msgid "or download the <code>client.conf</code> file to your device."
-msgstr ""
-
-msgid "Download"
-msgstr ""
-
-msgid "Start WireGuard"
-msgstr ""
-
-msgid "Stop WireGuard"
-msgstr ""
-
-msgid "Information provided by wireguard"
-msgstr ""
-
-msgid "Attempting to start WireGuard"
-msgstr ""
-
-msgid "Attempting to stop WireGuard"
-msgstr ""
-
-msgid "WireGuard configuration updated successfully"
-msgstr ""
-
-msgid "WireGuard configuration failed to be updated"
-msgstr ""
-
-msgid "Enable kill switch"
-msgstr ""
-
-msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured AP interface (%s)."
-msgstr ""
-
-msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
-msgstr ""
-
-msgid "iptables rules added to WireGuard configuration"
-msgstr ""
-
-msgid "Existing iptables rules found in WireGuard configuration - not added"
-msgstr ""
-
-msgid "Currently available WireGuard file configurations are displayed below."
-msgstr ""
-
-msgid "Activating a configuration will restart the <code>wg-quick</code> service."
-msgstr ""
-
-msgid "Client Firewall"
-msgstr ""
-
-msgid "Firewall is ENABLED"
-msgstr ""
-
-msgid "Firewall is OFF"
-msgstr ""
-
-msgid "The default firewall will only allow outgoing and already established traffic."
-msgstr ""
-
-msgid "No incoming UDP traffic is allowed."
-msgstr ""
-
-msgid "There are no restrictions for the access point <code>%s</code>."
-msgstr ""
-
-msgid "Exception: Service"
-msgstr ""
-
-msgid "allow SSH access on port 22"
-msgstr ""
-
-msgid "allow access to the RaspAP GUI on port 80 or 443"
-msgstr ""
-
-msgid "Allow incoming connections for some services from the internet side."
-msgstr ""
-
-msgid "Exception: network device"
-msgstr ""
-
-msgid "Exclude device(s)"
-msgstr ""
-
-msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-msgstr ""
-
-msgid "Current client devices: <code>%s</code>"
-msgstr ""
-
-msgid "The access point <code>%s</code> is per default excluded."
-msgstr ""
-
-msgid "Exception: IP-Address"
-msgstr ""
-
-msgid "Allow incoming connections from"
-msgstr ""
-
-msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-msgstr ""
-
-msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-msgstr ""
-
-msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-msgstr ""
-
-msgid "Disable Firewall"
-msgstr ""
-
-msgid "Enable Firewall"
-msgstr ""
-
-msgid "Apply changes"
-msgstr ""
-
-msgid "Dynamic DNS"
-msgstr ""
-
-msgid "Service provider"
-msgstr ""
-
-msgid "Select a Dynamic DNS service supported by <strong>ddclient</strong> from the list below. Selecting a known service provider will populate the <code>protocol</code> and <code>server</code> fields. You may also configure the service manually."
-msgstr ""
-
-msgid "Method to obtain IP"
-msgstr ""
-
-msgid "Select the method used by <strong>ddclient</strong> to obtain an IP address. This value is specified in the <code>-use</code> option."
-msgstr ""
-
-msgid "Discovery page on the web"
-msgstr ""
-
-msgid "Network interface"
-msgstr ""
-
-msgid "Network address"
-msgstr ""
-
-msgid "Firewall status page"
-msgstr ""
-
-msgid "External command"
-msgstr ""
-
-msgid "Web address"
-msgstr ""
-
-msgid "Firewall"
-msgstr ""
-
-msgid "Command"
-msgstr ""
-
-msgid "Example: <code>192.168.1.254/status.htm</code>."
-msgstr ""
-
-msgid "Example: <code>/usr/local/bin/get-ip</code>."
-msgstr ""
-
-msgid "Domain"
-msgstr ""
-
-msgid "Enable SSL"
-msgstr ""
-
-msgid "Use an encrypted SSL connection for updates. Not supported by all providers."
-msgstr ""
-
-msgid "Value specified in milliseconds (ms). Default is 300."
-msgstr ""
-
-msgid "Use the <strong>Generate log</strong> button to output detailed <code>ddclient daemon</code> debug info"
-msgstr ""
-
-msgid "Generate log"
-msgstr ""
-
-msgid "Information provided by ddclient"
-msgstr ""
-
-msgid "Start Dynamic DNS"
-msgstr ""
-
-msgid "Stop Dynamic DNS"
-msgstr ""
-
-msgid "Restart Dynamic DNS"
-msgstr ""
-
-msgid "Account details"
-msgstr ""
-
-msgid "My account"
-msgstr ""
-
-msgid "Server location"
-msgstr ""
-
-msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
-msgstr ""
-
-msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
-msgstr ""
-
-msgid "Select a country from the server location list"
-msgstr ""
-
-msgid "Select a country..."
-msgstr ""
-
-msgid "Account information not available from %s's Linux CLI."
-msgstr ""
-
-msgid "Attempting to connect to %s"
-msgstr ""
-
-msgid "Attempting to connect VPN provider"
-msgstr ""
-
-msgid "Attempting to disconnect VPN provider"
-msgstr ""
-
-msgid "Expected %s binary not found at: %s"
-msgstr ""
-
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
-msgstr ""
-
-msgid "Unable to execute %s binary found at: %s"
-msgstr ""
-
-msgid "Check that binary is executable and permissions exist in raspap.sudoers"
-msgstr ""
-
-msgid "Installed Linux CLI: <code>%s</code>"
-msgstr ""
-
-msgid "Current <code>%s</code> connection status is displayed below."
-msgstr ""
-
-msgid "Information provided by %s"
-msgstr ""
-
-msgid "Connect %s"
-msgstr ""
-
-msgid "Disconnect %s"
-msgstr ""
-
-msgid "About"
-msgstr ""
-
-msgid "Insiders"
-msgstr ""
-
-msgid "Contributing"
-msgstr ""
-
-msgid "Check for update"
-msgstr ""
-
-msgid "New release check in progress..."
-msgstr ""
-
-msgid "A new release is available: Version"
-msgstr ""
-
-msgid "Installed version is the latest release."
-msgstr ""
-
-msgid "GitHub authentication"
-msgstr ""
-
-msgid "Updating Insiders requires GitHub authentication."
-msgstr ""
-
-msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
-msgstr ""
-
-msgid "Personal Access Token"
-msgstr ""
-
-msgid "Please provide a valid token."
-msgstr ""
-
-msgid "Perform update"
-msgstr ""
-
-msgid "Update in progress"
-msgstr ""
-
-msgid "Application is being updated..."
-msgstr ""
-
-msgid "Configuring update"
-msgstr ""
-
-msgid "Updating sources"
-msgstr ""
-
-msgid "Installing package updates"
-msgstr ""
-
-msgid "Downloading latest files"
-msgstr ""
-
-msgid "Installing application"
-msgstr ""
-
-msgid "Update complete"
-msgstr ""
-
-msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
-msgstr ""
-
-msgid "RaspAP Exception"
-msgstr ""
-
-msgid "An exception occurred"
-msgstr ""
-
-msgid "RestAPI"
-msgstr ""
-
-msgid "RestAPI settings"
-msgstr ""
-
-msgid "Start RestAPI service"
-msgstr ""
-
-msgid "Stop RestAPI service"
-msgstr ""
-
+#: ../templates/restapi/general.php:12
 msgid "API Key"
-msgstr ""
+msgstr "Kunci API"
 
-msgid "Saving API key"
-msgstr ""
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "Harap berikan kunci API yang valid."
 
+#: ../templates/restapi/status.php:3
 msgid "RestAPI status"
-msgstr ""
+msgstr "Status RestAPI"
 
+#: ../templates/restapi/status.php:4
 msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "Status <code>restapi.service</code> saat ini ditampilkan di bawah ini."
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s pengaturan"
+
+#: ../templates/provider/general.php:9 ../templates/wg/general.php:8
+#: ../templates/openvpn/general.php:8
+msgid "IPv4 Address"
+msgstr "Alamat IPv4"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "Detail akun"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "Akun saya"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "Lokasi server"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "Memilih <strong>Simpan pengaturan</strong> akan menghubungkan ke negara yang dipilih."
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Memilih <strong>Connect %s</strong> akan menyambungkan ke server yang direkomendasikan."
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "Negara"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s status"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Menginstal CLI Linux: <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Saat ini <code>%s</code> Status koneksi saat ini ditampilkan di bawah ini."
+
+#: ../templates/about.php:21
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Captive/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/main.php:53
+msgid "About"
+msgstr "Tentang"
+
+#: ../templates/about.php:22 ../templates/about/general.php:29
+msgid "Insiders"
+msgstr "Orang dalam"
+
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "Berkontribusi"
+
+#: ../templates/about.php:47 ../templates/about/general.php:11
+msgid "Check for update"
+msgstr "Periksa pembaruan"
+
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "Pemeriksaan rilis baru sedang berlangsung..."
+
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "Rilis baru telah tersedia: Versi"
+
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "Versi yang terinstal adalah rilis terbaru."
+
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "Instal pembaruan ini sekarang?"
+
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "Otentikasi GitHub"
+
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Memperbarui Insiders memerlukan autentikasi GitHub."
+
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Kredensial Anda akan dikirim ke GitHub secara aman dengan SSL. Namun, berhati-hatilah jika instalasi RaspAP Anda berada di WLAN yang digunakan bersama oleh pengguna yang tidak terpercaya."
+
+#: ../templates/about.php:87 ../templates/admin/general.php:18
+#: ../templates/admin/general.php:37 ../templates/admin/login.php:15
+msgid "Please provide a valid username."
+msgstr "Harap berikan nama pengguna yang valid."
+
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "Token Akses Pribadi"
+
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "Harap berikan token yang valid."
+
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "Lakukan pembaruan"
+
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "Pembaruan sedang berlangsung"
+
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "Aplikasi sedang diperbarui..."
+
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "Mengonfigurasi pembaruan"
+
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "Memperbarui sumber"
+
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "Menginstal pembaruan paket"
+
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "Mengunduh file terbaru"
+
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "Menginstal aplikasi"
+
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "Pembaruan selesai"
+
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Terjadi kesalahan. Periksa log di <code>/tmp/raspap_install.log</code>"
+
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "Berhasil. Segarkan halaman ini untuk mengonfirmasi versi baru."
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "Alat-alat sistem"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "Untuk membuat <a href=\"%s\" target=\"_blank\">log debug</a> sistem, klik atau ketuk tombol di bawah ini."
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Informasi log debug berisi versi RaspAP, status saat ini dan konfigurasi layanan terkait AP, paket sistem yang terinstal, versi kernel Linux, dan detail jaringan. Tidak ada kata sandi atau data sensitif lainnya yang disertakan."
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Untuk <a href=\"%s\" target=\"_blank\">memeriksa adaptor</a> yang terpasang pada perangkat ini, klik atau ketuk tombol di bawah ini."
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Alat pemeriksaan adaptor mengembalikan rincian tentang perangkat WLAN eksternal termasuk driver, mode yang didukung, dan sebagainya."
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "Untuk mengatur ulang RaspAP ke <a href=\"%s\" target=\"_blank\">konfigurasi awal</a>, klik atau ketuk tombol di bawah ini."
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Mengembalikan semua pengaturan layanan titik akses (AP) ke nilai default. Ini berlaku untuk hostapd, dhcpcd, dan dnsmasq."
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "File khusus untuk komponen opsional seperti Pemblokiran Iklan, WireGuard, atau OpenVPN akan tetap ada di sistem."
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "Lakukan pengaturan ulang"
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "Port server web"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "Alamat pengikatan server web"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "Batas ukuran log diagnostik (KB)"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
 msgstr ""
 
-msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here%s</a>"
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
 msgstr ""
 
-msgid "Restarting restapi.service"
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
 msgstr ""
 
-msgid "NTP Server"
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
 msgstr ""
 
-msgid "NTP Server settings"
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "Mulai ulang lighttpd"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "Informasi Sistem"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "Nama host"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "Revisi Pi"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "OS"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "Kernel"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "Waktu kerja"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "Waktu Sistem"
+
+#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
+#: ../templates/dhcp/summary.php:9 ../templates/networking/general.php:4
+#: ../templates/networking/devices.php:4
+#: ../plugins-available/Tailscale/templates/main.php:4
+#: ../plugins-available/Tailscale/Tailscale.php:403
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:6
+msgid "Refresh"
+msgstr "Menyegarkan"
+
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "Memori yang Digunakan"
+
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "Penyimpanan yang Digunakan"
+
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "Beban CPU"
+
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "Suhu CPU"
+
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "Pengaturan bahasa"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "Pilih bahasa"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "Pengaturan tema"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "Pilih tema"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "Warna"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "Mode Gelap"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "Gunakan mode gelap dari tema saat ini"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "Tema Sistem"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "Menggunakan mode warna sistem Anda"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "Pesan peringatan"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Menutup peringatan secara otomatis setelah batas waktu yang ditentukan"
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "Batas waktu penutupan peringatan (milidetik)"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "Plugin pengguna berikut ini tersedia untuk memperluas fungsionalitas RaspAP."
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Pilih <strong>Detail</strong> untuk informasi lebih lanjut dan menginstal plugin."
+
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "Mulai layanan RestAPI"
+
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "Menghentikan layanan RestAPI"
+
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "Informasi yang disediakan oleh restapi.service"
+
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
 msgstr ""
 
-msgid "NTP daemon"
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "Pengulang"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "Penambatan"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "Seluler"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
 msgstr ""
 
-msgid "Synchronized time"
+#: ../templates/dashboard.php:49
+msgid "Local"
 msgstr ""
 
-msgid "NTP servers"
+#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
+#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
+#: ../templates/dhcp/settings.php:39 ../templates/dhcp/general.php:39
+#: ../templates/dhcp/clients.php:20 ../templates/networking/general.php:13
+msgid "IP Address"
+msgstr "Alamat IP"
+
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "Netmask"
+
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "Alamat MAC"
+
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "AP"
+
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "Dijembatani"
+
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "Adblock"
+
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "VPN"
+
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "Firewall"
+
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
+
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2.4G"
+
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "Tidak ditemukan stasiun Wifi"
+
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Klik 'Pindai Ulang' untuk mencari stasiun Wifi terdekat."
+
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Klik 'Inisialisasi Ulang' untuk melakukan inisialisasi ulang <code>wpa_supplicant</code> secara paksa."
+
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "Inisialisasi ulang"
+
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "Terhubung"
+
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "Dikenal"
+
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "Terdekat"
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "Hentikan dnsmasq"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "Mulai ulang dnsmasq"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "Mulai dnsmasq"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "Pengaturan server"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "Sewa Statis"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "Daftar klien"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "Informasi yang disediakan oleh Dnsmasq"
+
+#: ../templates/wg/peers.php:10
+msgid "Enable peer"
+msgstr "Aktifkan rekan"
+
+#: ../templates/wg/peers.php:13
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Aktifkan opsi ini untuk mengenkripsi lalu lintas dengan membuat terowongan antara RaspAP dan peer ini."
+
+#: ../templates/wg/peers.php:14
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "Opsi ini menambahkan <code>client.conf</code> ke konfigurasi WireGuard."
+
+#: ../templates/wg/peers.php:20
+msgid "Peer public key"
+msgstr "Kunci publik rekan sejawat"
+
+#: ../templates/wg/peers.php:31 ../templates/wg/general.php:99
+msgid "Local Port"
+msgstr "Pelabuhan Lokal"
+
+#: ../templates/wg/peers.php:45
+msgid "Endpoint address"
+msgstr "Alamat titik akhir"
+
+#: ../templates/wg/peers.php:52
+msgid "Allowed IPs"
+msgstr "IP yang diizinkan"
+
+#: ../templates/wg/peers.php:59
+msgid "Persistent keepalive"
+msgstr "Terus-menerus tetap hidup"
+
+#: ../templates/wg/peers.php:70
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Pindai kode QR ini dengan klien Anda untuk terhubung ke terowongan ini"
+
+#: ../templates/wg/peers.php:71
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "atau unduh file <code>client.conf</code> ke perangkat Anda."
+
+#: ../templates/wg/peers.php:73 ../templates/networking/diagnostics.php:34
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:23
+msgid "Download"
+msgstr "Unduh"
+
+#: ../templates/wg/general.php:5
+msgid "Tunnel settings"
+msgstr "Pengaturan terowongan"
+
+#: ../templates/wg/general.php:12
+msgid "Configuration Method"
+msgstr "Metode Konfigurasi"
+
+#: ../templates/wg/general.php:15
+msgid "Upload file"
+msgstr "Unggah file"
+
+#: ../templates/wg/general.php:19
+msgid "Create manually"
+msgstr "Buat secara manual"
+
+#: ../templates/wg/general.php:27
+msgid "Upload a WireGuard config"
+msgstr "Unggah konfigurasi WireGuard"
+
+#: ../templates/wg/general.php:29
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "Opsi ini mengunggah dan menginstal file <code>.conf</code> WireGuard yang sudah ada pada perangkat ini."
+
+#: ../templates/wg/general.php:38
+msgid "Apply iptables rules to the selected interface"
+msgstr "Menerapkan aturan iptables ke antarmuka yang dipilih"
+
+#: ../templates/wg/general.php:39
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "Direkomendasikan jika Anda ingin meneruskan lalu lintas jaringan dari antarmuka wg0 ke klien yang tersambung pada antarmuka yang diinginkan. Antarmuka AP yang aktif adalah default."
+
+#: ../templates/wg/general.php:41
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "Opsi ini menambahkan aturan <code>Postup</code> dan <code>PostDown</code> <strong>iptables</strong> untuk antarmuka yang dipilih di bawah ini."
+
+#: ../templates/wg/general.php:50
+msgid "Enable kill switch"
+msgstr "Mengaktifkan tombol pemutus"
+
+#: ../templates/wg/general.php:51
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr "Direkomendasikan jika Anda ingin mencegah aliran paket yang tidak terenkripsi melalui antarmuka non-WireGuard."
+
+#: ../templates/wg/general.php:53
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr "Opsi ini menambahkan aturan <code>PostUp</code> dan <code>PreDown</code> <strong>iptables</strong> untuk antarmuka yang dikonfigurasi."
+
+#: ../templates/wg/general.php:59 ../templates/openvpn/general.php:59
+msgid "Configuration File"
+msgstr "File Konfigurasi"
+
+#: ../templates/wg/general.php:62
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "Pilih file konfigurasi WireGuard (.conf)"
+
+#: ../templates/wg/general.php:72
+msgid "Create a local WireGuard config"
+msgstr "Membuat konfigurasi WireGuard lokal"
+
+#: ../templates/wg/general.php:76
+msgid "Enable server"
+msgstr "Aktifkan server"
+
+#: ../templates/wg/general.php:80
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "Aktifkan opsi ini untuk mengamankan lalu lintas jaringan dengan membuat terowongan terenkripsi antara RaspAP dan peer yang dikonfigurasi."
+
+#: ../templates/wg/general.php:81
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "Pengaturan ini menghasilkan file <code>.conf</code> WireGuard baru pada perangkat ini."
+
+#: ../templates/wg/general.php:88
+msgid "Local public key"
+msgstr "Kunci publik lokal"
+
+#: ../templates/wg/general.php:107
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:120
+msgid "DNS"
+msgstr "DNS"
+
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Aktifkan opsi ini untuk menampilkan log debug <code>wg-quick</code> yang diperbarui."
+
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "Konfigurasi file WireGuard yang tersedia saat ini ditampilkan di bawah ini."
+
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "Mengaktifkan konfigurasi akan memulai ulang layanan <code>wg-quick</code>."
+
+#: ../templates/admin/general.php:3
+msgid "Change password"
+msgstr "Mengubah kata sandi"
+
+#: ../templates/admin/general.php:4
+#: ../plugins-available/Tailscale/templates/main.php:22
+msgid "Logout"
+msgstr "Keluar"
+
+#: ../templates/admin/general.php:28
+msgid "Enable limited privilege user"
+msgstr "Mengaktifkan pengguna dengan hak istimewa terbatas"
+
+#: ../templates/admin/general.php:30
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "Opsi ini memungkinkan pengguna non-admin yang dapat mengakses antarmuka manajemen RaspAP, tetapi memiliki <strong>kemampuan terbatas untuk memodifikasi konfigurasi yang ada.</strong> Pengguna ini menjadi aktif ketika pengguna admin saat ini keluar."
+
+#: ../templates/admin/general.php:34
+msgid "Limited user login"
+msgstr "Login pengguna terbatas"
+
+#: ../templates/admin/general.php:43
+msgid "Limited user password"
+msgstr "Kata sandi pengguna terbatas"
+
+#: ../templates/admin/general.php:48
+msgid "Please enter a valid password."
+msgstr "Masukkan kata sandi yang valid."
+
+#: ../templates/admin/login.php:2
+msgid "Submit"
+msgstr "Kirim"
+
+#: ../templates/admin/login.php:11
+msgid "Admin login"
+msgstr "Login admin"
+
+#: ../templates/admin/login.php:26
+msgid "Please enter your password."
+msgstr "Masukkan kata sandi Anda."
+
+#: ../templates/admin/avatar.php:3
+msgid "Reset avatar"
+msgstr "Atur ulang avatar"
+
+#: ../templates/admin/avatar.php:11 ../templates/admin.php:21
+msgid "Avatar"
+msgstr "Avatar"
+
+#: ../templates/admin/avatar.php:15
+msgid "Click or tap to upload a new user avatar."
+msgstr "Klik atau ketuk untuk mengunggah avatar pengguna baru."
+
+#: ../templates/admin/avatar.php:16
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "File gambar dengan tipe <code>JPG, GIF atau PNG</code> diterima. Ukuran file maksimum: 2 MB."
+
+#: ../templates/about/general.php:8
+msgid "RaspAP"
+msgstr "Raspap"
+
+#: ../templates/about/general.php:20
+#, php-format
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP merupakan hasil kreasi bersama dari %1$s dan %2$s dengan kontribusi dari %3$s dan %4$s. Pelajari lebih lanjut tentang bergabung dengan proyek ini sebagai %5$s, %6$s atau %7$s dengan akses langsung ke %8$s yang tersedia di %9$s."
+
+#: ../templates/about/general.php:23
+msgid "developer community"
+msgstr "komunitas pengembang"
+
+#: ../templates/about/general.php:24
+msgid "language translators"
+msgstr "penerjemah bahasa"
+
+#: ../templates/about/general.php:25
+msgid "code contributor"
+msgstr "kontributor kode"
+
+#: ../templates/about/general.php:26
+msgid "translator"
+msgstr "penerjemah"
+
+#: ../templates/about/general.php:27
+msgid "financial sponsor"
+msgstr "sponsor keuangan"
+
+#: ../templates/about/general.php:28
+msgid "exclusive features"
+msgstr "fitur eksklusif"
+
+#: ../templates/dhcp/settings.php:2 ../templates/dhcp/general.php:2
+msgid "DHCP server settings"
+msgstr "Pengaturan server DHCP"
+
+#: ../templates/dhcp/settings.php:10 ../templates/dhcp/general.php:10
+msgid "Adapter IP Address Settings"
+msgstr "Pengaturan Alamat IP Adaptor"
+
+#: ../templates/dhcp/settings.php:28 ../templates/dhcp/general.php:28
+msgid "Enable fallback to static option"
+msgstr "Mengaktifkan opsi mundur ke statis"
+
+#: ../templates/dhcp/settings.php:31 ../templates/dhcp/general.php:31
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Aktifkan opsi ini untuk mengonfigurasi profil statis dan kembali ke profil tersebut ketika sewa DHCP gagal."
+
+#: ../templates/dhcp/settings.php:36 ../templates/dhcp/general.php:36
+msgid "Static IP options"
+msgstr "Opsi IP statis"
+
+#: ../templates/dhcp/settings.php:42 ../templates/dhcp/general.php:42
+msgid "Please provide a valid IP Address."
+msgstr "Harap berikan Alamat IP yang valid."
+
+#: ../templates/dhcp/settings.php:49 ../templates/dhcp/general.php:49
+msgid "Subnet Mask"
+msgstr "Subnet Mask"
+
+#: ../templates/dhcp/settings.php:52 ../templates/dhcp/general.php:52
+msgid "Please provide a valid Subnet mask."
+msgstr "Berikan Subnet mask yang valid."
+
+#: ../templates/dhcp/settings.php:59 ../templates/dhcp/general.php:59
+msgid "Default gateway"
+msgstr "Gateway default"
+
+#: ../templates/dhcp/settings.php:62 ../templates/dhcp/general.php:62
+msgid "Please provide a valid Default gateway."
+msgstr "Berikan gateway Default yang valid."
+
+#: ../templates/dhcp/settings.php:71 ../templates/dhcp/general.php:71
+msgid "Install a default route for this interface"
+msgstr "Instal rute default untuk antarmuka ini"
+
+#: ../templates/dhcp/settings.php:72
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
 msgstr ""
 
-msgid "Add an NTP server"
+#: ../templates/dhcp/settings.php:75
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
 msgstr ""
 
-msgid "Start NTP service"
+#: ../templates/dhcp/settings.php:84 ../templates/dhcp/general.php:83
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "Nonaktifkan pengait dhcp wpa_supplicant untuk antarmuka ini"
+
+#: ../templates/dhcp/settings.php:85 ../templates/dhcp/general.php:84
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "Jika Anda mengelola sambungan nirkabel dengan wpa_supplicant itu sendiri, hook dapat membuat peristiwa sambungan yang tidak diinginkan. Opsi ini menonaktifkan pengait."
+
+#: ../templates/dhcp/settings.php:88
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
 msgstr ""
 
-msgid "Stop NTP service"
+#: ../templates/dhcp/settings.php:93 ../templates/dhcp/general.php:92
+msgid "DHCP options"
+msgstr "Opsi DHCP"
+
+#: ../templates/dhcp/settings.php:99 ../templates/dhcp/general.php:98
+msgid "Enable DHCP for this interface"
+msgstr "Aktifkan DHCP untuk antarmuka ini"
+
+#: ../templates/dhcp/settings.php:102 ../templates/dhcp/general.php:101
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Aktifkan opsi ini jika Anda ingin RaspAP memberikan alamat IP ke klien pada antarmuka yang dipilih. Alamat IP statis diperlukan untuk opsi ini."
+
+#: ../templates/dhcp/settings.php:110 ../templates/dhcp/general.php:109
+msgid "Starting IP Address"
+msgstr "Alamat IP awal"
+
+#: ../templates/dhcp/settings.php:113 ../templates/dhcp/general.php:112
+msgid "Please provide a valid Starting IP Address."
+msgstr "Berikan Alamat IP Awal yang valid."
+
+#: ../templates/dhcp/settings.php:119 ../templates/dhcp/general.php:118
+msgid "Ending IP Address"
+msgstr "Mengakhiri Alamat IP"
+
+#: ../templates/dhcp/settings.php:122 ../templates/dhcp/general.php:121
+msgid "Please provide a valid Ending IP Address."
+msgstr "Harap berikan Alamat IP Akhir yang valid."
+
+#: ../templates/dhcp/settings.php:128 ../templates/dhcp/general.php:127
+msgid "Lease Time"
+msgstr "Waktu Sewa"
+
+#: ../templates/dhcp/settings.php:131 ../templates/dhcp/general.php:130
+msgid "Please provide a valid Lease Time."
+msgstr "Harap berikan Waktu Sewa yang valid."
+
+#: ../templates/dhcp/settings.php:135 ../templates/dhcp/general.php:134
+msgid "Interval"
+msgstr "Interval"
+
+#: ../templates/dhcp/settings.php:137 ../templates/dhcp/general.php:136
+msgid "Minute(s)"
+msgstr "Menit (s)"
+
+#: ../templates/dhcp/settings.php:138 ../templates/dhcp/general.php:137
+msgid "Hour(s)"
+msgstr "Jam (jam)"
+
+#: ../templates/dhcp/settings.php:139 ../templates/dhcp/general.php:138
+msgid "Day(s)"
+msgstr "Hari (s)"
+
+#: ../templates/dhcp/settings.php:140 ../templates/dhcp/general.php:139
+msgid "Infinite"
+msgstr "Tak terbatas"
+
+#: ../templates/dhcp/settings.php:143 ../templates/dhcp/general.php:142
+msgid "Please provide a valid Interval."
+msgstr "Harap berikan Interval yang valid."
+
+#: ../templates/dhcp/settings.php:164 ../templates/dhcp/general.php:163
+#: ../templates/dhcp/summary.php:25
+msgid "Metric"
+msgstr "Metrik"
+
+#: ../templates/dhcp/general.php:74
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "Ini akan mengalihkan opsi <code>gateway/nogateway</code> untuk antarmuka ini dalam konfigurasi DHCPCD."
+
+#: ../templates/dhcp/general.php:87
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr "Ini akan mengalihkan opsi <code>nohook wpa_supplicant</code> untuk antarmuka ini dalam konfigurasi DHCPCD."
+
+#: ../templates/dhcp/advanced.php:3
+msgid "Advanced Settings"
+msgstr "Pengaturan Lanjutan"
+
+#: ../templates/dhcp/advanced.php:6
+msgid "Upstream DNS servers"
+msgstr "Server DNS hulu"
+
+#: ../templates/dhcp/advanced.php:11
+msgid "Only ever query DNS servers configured below"
+msgstr "Hanya pernah meminta server DNS yang dikonfigurasi di bawah ini"
+
+#: ../templates/dhcp/advanced.php:14
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Aktifkan opsi ini jika Anda ingin RaspAP <b>mengirim permintaan DNS ke server yang dikonfigurasi di bawah ini secara eksklusif.</b> Secara default, RaspAP juga menggunakan server nama server DHCP hulu."
+
+#: ../templates/dhcp/advanced.php:15
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "Opsi ini menambahkan <code>no-resolv</code> ke konfigurasi dnsmasq."
+
+#: ../templates/dhcp/advanced.php:29
+msgid "Add upstream DNS server"
+msgstr "Menambahkan server DNS hulu"
+
+#: ../templates/dhcp/advanced.php:31
+#, php-format
+msgid "e.g. %s"
+msgstr "misalnya %s"
+
+#: ../templates/dhcp/advanced.php:36
+msgid "Format: "
+msgstr "Format: "
+
+#: ../templates/dhcp/advanced.php:41
+msgid "Choose a hosted server"
+msgstr "Memilih server yang dihosting"
+
+#: ../templates/dhcp/logging.php:4
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Aktifkan opsi-opsi ini untuk mencatat aktivitas <code>dhcpcd</code> dan <code>dnsmasq</code>."
+
+#: ../templates/dhcp/logging.php:8
+msgid "Log DHCP requests"
+msgstr "Mencatat permintaan DHCP"
+
+#: ../templates/dhcp/logging.php:12
+msgid "Log DNS queries"
+msgstr "Mencatat permintaan DNS"
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr "Sewa statis"
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Klien dengan alamat MAC perangkat keras tertentu selalu dapat dialokasikan alamat IP yang sama."
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Opsi ini menambahkan entri <code>dhcp-host</code> ke konfigurasi dnsmasq."
+
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+#: ../templates/networking/devices.php:19
+msgid "MAC address"
+msgstr "Alamat MAC"
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr "Alamat IP"
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr "Komentar opsional"
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr "Membatasi akses"
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr "Batasi akses jaringan ke klien statis"
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Aktifkan opsi ini jika anda ingin RaspAP <b>mengabaikan klien</b> yang tidak ditentukan dalam daftar sewa statis."
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Opsi ini menambahkan <code>dhcp-ignore</code> ke konfigurasi dnsmasq."
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr "Penyewaan DHCP aktif"
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr "Waktu kedaluwarsa"
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
+msgstr "Nama host"
+
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr "ID Klien"
+
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
 msgstr ""
 
-msgid "Edit mode"
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
 msgstr ""
 
-msgid "Use the <strong>Edit mode</strong> toggle to manually edit the current <code>ntp.config</code> configuration."
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
 msgstr ""
 
-msgid "Specify a public NTP server or a private one on your local network. IPv4 and IPv6 address, or a fully qualified domain name (FQDN) are acceptable values."
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
 msgstr ""
 
-msgid "Public NTP servers supporting Network Time Security (NTS) may be specified with the <code>nts</code> suffix."
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
 msgstr ""
 
-msgid "Examples of valid server entries include <code>%s</code>, <code>%s</code> and <code>%s</code>."
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
 msgstr ""
 
-msgid "Current <code>ntpq peer</code> status is displayed below. An asterisk (<code>*</code>) indicates the preferred server."
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
 msgstr ""
 
-msgid "NTP configuration cannot be empty"
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
 msgstr ""
 
-msgid "Restarting ntpd.service"
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
 msgstr ""
 
-msgid "Please enter a valid NTP server"
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "Hubungkan %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "Putuskan sambungan %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "Informasi disediakan oleh %s"
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "Metode Otentikasi"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "Nama pengguna dan kata sandi"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "Sertifikat"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "Masukkan nama pengguna dan kata sandi"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "Sertifikat dalam file konfigurasi"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP mendukung sertifikat dengan menyertakannya di dalam file konfigurasi."
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Menandatangani sertifikat otoritas sertifikasi (CA) (mis. <code>ca.crt</code>): terlampir dalam <code>&lt;ca> ... &lt;/ca></code> tag."
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Sertifikat klien (kunci publik) (mis. <code>client.crt</code>): dilampirkan dalam tag <code>&lt;cert> ... &lt;/cert></code> tag."
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Kunci pribadi dari sertifikat klien (mis. <code>client.key</code>): dilampirkan dalam <code>&lt;key> ... &lt;/key></code> tag."
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Pilih file konfigurasi OpenVPN (.ovpn)"
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Aktifkan opsi ini untuk mencatat aktivitas <code>openvpn</code>."
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "Mengaktifkan penebangan"
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Konfigurasi klien OpenVPN yang tersedia saat ini ditampilkan di bawah ini."
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Mengaktifkan konfigurasi akan memulai ulang layanan <code>openvpn-client</code>."
+
+#: ../templates/admin.php:7
+msgid "Authentication"
+msgstr "Otentikasi"
+
+#: ../templates/admin.php:47
+msgid "Update admin password"
+msgstr "Perbarui kata sandi admin"
+
+#: ../templates/admin.php:54
+msgid "Old password"
+msgstr "Kata sandi lama"
+
+#: ../templates/admin.php:59
+msgid "Please enter your old password."
+msgstr "Masukkan kata sandi lama Anda."
+
+#: ../templates/admin.php:66
+msgid "New password"
+msgstr "Kata sandi baru"
+
+#: ../templates/admin.php:71
+msgid "Please enter a new password."
+msgstr "Masukkan kata sandi baru."
+
+#: ../templates/admin.php:78
+msgid "Repeat new password"
+msgstr "Ulangi kata sandi baru"
+
+#: ../templates/admin.php:83
+msgid "Please re-enter your new password."
+msgstr "Masukkan kembali kata sandi baru Anda."
+
+#: ../templates/admin.php:91
+msgid "Save"
+msgstr "Simpan"
+
+#: ../templates/admin.php:103
+msgid "Logout and enable limited user mode"
+msgstr "Keluar dan aktifkan mode pengguna terbatas"
+
+#: ../templates/admin.php:114
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr "Tindakan ini akan menyimpan kredensial pengguna terbatas dan mengeluarkan pengguna admin saat ini. Simpan dan aktifkan mode hak istimewa terbatas?"
+
+#: ../templates/admin.php:120
+msgid "Save and logout"
+msgstr "Simpan dan keluar"
+
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "Koneksi internet"
+
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "Akses Internet"
+
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "Tabel perutean"
+
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "keluaran mentah"
+
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "Pengaturan saat ini"
+
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "Perangkat jaringan"
+
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "Perangkat"
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "Vid/pid USB"
+
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "Jenis perangkat"
+
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "Mulai ulang perutean WLAN"
+
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "Menghentikan perutean WLAN"
+
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "Memulai perutean WLAN"
+
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "Perutean LAN nirkabel"
+
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "perutean"
+
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Opsi ini mengkonfigurasi RaspAP untuk merutekan <b>lalu lintas jaringan dari antarmuka klien nirkabel (STA)</b> ke antarmuka lain yang tersedia."
+
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Ketika antarmuka output dipilih, aturan <code>iptables</code> ditambahkan untuk merutekan paket menggunakan penerjemahan alamat jaringan (NAT). Hal ini sering dilakukan untuk berbagi konektivitas internet dari WLAN dengan perangkat pada antarmuka <code>eth0</code>, <code>usb0</code>, atau <code>enx</code> yang dapat diprediksi."
+
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "Antarmuka klien nirkabel"
+
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "Antarmuka keluaran"
+
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Mengkonfigurasi alamat IP statis dan DHCP untuk antarmuka output"
+
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "Pengaturan data seluler"
+
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "Nomor PIN kartu SIM"
+
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "Pengaturan APN"
+
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "Nama Titik Akses (APN)"
+
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "Tes kecepatan"
+
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "Memilih server"
+
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "Privasi"
+
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "Server"
+
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "Ping"
+
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "ms"
+
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "Jitter"
+
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "Mbps"
+
+#: ../templates/networking/diagnostics.php:40
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:24
+msgid "Upload"
+msgstr "Unggah"
+
+#: ../templates/configure_client.php:12
+msgid "Disconnected"
+msgstr "Terputus"
+
+#: ../templates/configure_client.php:24
+msgid "Rescan"
+msgstr "Pindai ulang"
+
+#: ../templates/configure_client.php:34
+msgid "Set"
+msgstr "Set"
+
+#: ../templates/configure_client.php:49
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Catatan:</strong> Jalur akses WEP akan muncul sebagai 'Open'. RaspAP saat ini tidak mendukung sambungan ke WEP"
+
+#: ../templates/configure_client.php:59
+msgid "Configuring WiFi Client"
+msgstr "Mengkonfigurasi Klien WiFi"
+
+#: ../templates/configure_client.php:62
+msgid "Configuring Wifi Client Interface..."
+msgstr "Mengkonfigurasi Antarmuka Klien Wifi..."
+
+#: ../includes/system.php:67
+#, php-format
+msgid "Changing log limit size to %s KB"
+msgstr "Mengubah ukuran batas log menjadi %s KB"
+
+#: ../includes/system.php:86
+#, php-format
+msgid "Changing alert close timeout to %s ms"
+msgstr "Mengubah batas waktu penutupan peringatan menjadi %s ms"
+
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
+msgstr "Alamat IP khusus yang tidak valid ditemukan di internet "
+
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
+msgstr "Host khusus yang tidak valid ditemukan di internet "
+
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
+msgstr "tidak dikonfigurasi"
+
+#: ../includes/networking.php:137
+#, php-format
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "Mencoba mengaktifkan perutean antara antarmuka %s dan %s"
+
+#: ../includes/networking.php:147
+#, php-format
+msgid "Attempting to restart routing between %s and %s interfaces"
+msgstr "Mencoba memulai ulang perutean antara antarmuka %s dan %s"
+
+#: ../includes/networking.php:151
+#, php-format
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "Mencoba menonaktifkan perutean antara antarmuka %s dan %s"
+
+#: ../includes/networking.php:252
+#, php-format
+msgid "DHCP configuration for %s enabled"
+msgstr "Konfigurasi DHCP untuk %s diaktifkan"
+
+#: ../includes/networking.php:259
+#, php-format
+msgid "DHCP configuration for %s added"
+msgstr "Konfigurasi DHCP untuk %s ditambahkan"
+
+#: ../includes/networking.php:265
+#, php-format
+msgid "DHCP configuration for %s updated"
+msgstr "Konfigurasi DHCP untuk %s diperbarui"
+
+#: ../includes/networking.php:271
+#, php-format
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "Tidak ada konfigurasi DHCP default untuk antarmuka %s"
+
+#: ../includes/networking.php:272
+#, php-format
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "Konfigurasikan IP statis dan DHCP untuk antarmuka ini dalam pengaturan Server DHCP"
+
+#: ../includes/networking.php:294
+#, php-format
+msgid "Dnsmasq  configuration for %s added"
+msgstr "Konfigurasi Dnsmasq untuk %s ditambahkan"
+
+#: ../includes/restapi.php:59
+#, php-format
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
+msgstr "Dokumen RestAPI dapat diakses <a href=\"%s\" target=\"_blank\">di sini %s</a>"
+
+#: ../includes/dashboard.php:72
+#, php-format
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
+
+#: ../includes/dashboard.php:78
+#, php-format
+msgid "%d LAN %s"
+msgstr "%d LAN %s"
+
+#: ../includes/footer.php:6
+#, php-format
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "Dibuat oleh <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
+msgstr "Tim RaspAP"
+
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
+msgstr "Terima kasih telah menjadi Orang Dalam"
+
+#: ../includes/footer.php:17
+msgid "Session Expired"
+msgstr "Sesi Berakhir"
+
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
+msgstr "Sesi Anda telah kedaluwarsa. Silakan masuk untuk melanjutkan."
+
+#: ../includes/provider.php:65
+#, php-format
+msgid "Expected %s binary not found at: %s"
+msgstr "Diharapkan %s biner tidak ditemukan di: %s"
+
+#: ../includes/provider.php:66
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "Kunjungi <a href=\"%s\" target=\"_blank\">petunjuk instalasi</a> untuk CLI Linux %s."
+
+#: ../includes/provider.php:70
+#, php-format
+msgid "Unable to execute %s binary found at: %s"
+msgstr "Tidak dapat mengeksekusi %s biner yang ditemukan di: %s"
+
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "Periksa apakah biner dapat dieksekusi dan izinnya ada di raspap.sudoers"
+
+#: ../includes/provider.php:119
+#, php-format
+msgid "Attempting to connect to %s"
+msgstr "Mencoba menyambung ke %s"
+
+#: ../includes/provider.php:318
+msgid "Select a country..."
+msgstr "Pilih negara..."
+
+#: ../includes/provider.php:387
+#, php-format
+msgid "Account information not available from %s's Linux CLI."
+msgstr "Informasi akun tidak tersedia di CLI Linux %s."
+
+#: ../includes/functions.php:1005
+msgid "Mem Use"
+msgstr "Mem Gunakan"
+
+#: ../includes/functions.php:1008
+msgid "CPU"
+msgstr "CPU"
+
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "Tanda Wi-Fi yang dapat dicetak"
+
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Menghubungkan Wi-Fi"
+
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Untuk terhubung dengan ponsel atau tablet Anda, pindai kode QR di atas dengan aplikasi kamera Anda."
+
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "Untuk perangkat lain, gunakan kredensial masuk di bawah ini."
+
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "Jaringan"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:8
+msgid "Capture interface"
+msgstr "Antarmuka pengambilan gambar"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:15
+msgid "Output file"
+msgstr "File keluaran"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:16
+msgid "Path where capture file will be saved (.pcap format)"
+msgstr "Jalur tempat file tangkapan akan disimpan (format .pcap)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:20
+msgid "File will be saved with .pcap extension"
+msgstr "File akan disimpan dengan ekstensi .pcap"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:26
+msgid "Capture filter (BPF syntax)"
+msgstr "Filter tangkap (sintaks BPF)."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:28
+msgid "Berkeley Packet Filter syntax. Leave empty to capture all traffic."
+msgstr "Sintaks Filter Paket Berkeley. Biarkan kosong untuk menangkap semua lalu lintas."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:33
+msgid "Examples: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp and not port 22</code>"
+msgstr "Contoh: <code>port 80</code>, <code>host 192.168.1.1</code>, <code>tcp dan bukan port 22</code>"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:38
+msgid "Capture limits"
+msgstr "Batas pengambilan gambar"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:42
+msgid "Packet count limit"
+msgstr "Batas jumlah paket"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:44
+msgid "Stop capture after this many packets. Leave empty for unlimited."
+msgstr "Hentikan pengambilan setelah paket sebanyak ini. Biarkan kosong tanpa batas."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:51
+msgid "Duration limit (seconds)"
+msgstr "Batas durasi (detik)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:53
+msgid "Stop capture after this many seconds. Leave empty for unlimited."
+msgstr "Hentikan pemotretan setelah beberapa detik ini. Biarkan kosong untuk waktu tak terbatas."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:60
+msgid "Ring buffer settings"
+msgstr "Pengaturan penyangga dering"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:64
+msgid "File size (KB)"
+msgstr "Ukuran file (KB)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:66
+msgid "Create new file when this size is reached. Leave empty to disable."
+msgstr "Buat file baru ketika ukuran ini tercapai. Biarkan kosong untuk menonaktifkan."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:70
+msgid "10000 = 10 MB per file"
+msgstr "10000 = 10 MB per file"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:74
+msgid "Number of files"
+msgstr "Jumlah file"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:76
+msgid "Maximum number of ring buffer files to keep. Oldest files are deleted."
+msgstr "Jumlah maksimum file penyangga dering yang akan disimpan. File terlama akan dihapus."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:83
+msgid "Advanced options"
+msgstr "Opsi lanjutan"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:87
+msgid "Snapshot length (bytes)"
+msgstr "Panjang snapshot (byte)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:89
+msgid "Limit the amount of data captured per packet. Leave empty for full packets."
+msgstr "Batasi jumlah data yang diambil per paket. Biarkan kosong untuk paket penuh."
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:93
+msgid "96 bytes captures headers only, reduces file size"
+msgstr "96 byte hanya menangkap header, mengurangi ukuran file"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:101
+msgid "Promiscuous mode"
+msgstr "Mode bebas"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:104
+msgid "Capture all packets on the network segment, not just those destined for this interface"
+msgstr "Menangkap semua paket di segmen jaringan, bukan hanya yang ditujukan untuk antarmuka ini"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:109
+msgid "Quick filter presets"
+msgstr "Preset filter cepat"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:114
+msgid "All Traffic"
+msgstr "Semua Lalu Lintas"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:117
+msgid "HTTP/HTTPS"
+msgstr "HTTP/HTTPS"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:123
+msgid "ICMP (Ping)"
+msgstr "ICMP (Ping)"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:126
+msgid "SSH"
+msgstr "SSH"
+
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:129
+msgid "Exclude SSH"
+msgstr "Kecualikan SSH"
+
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "diciptakan oleh"
+
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "Deskripsi plugin"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
+#: ../plugins-available/Wireshark/templates/main.php:46
+msgid "Capture files"
+msgstr "Mengambil file"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "File tangkapan yang dihasilkan oleh <code>tshark</code> ditampilkan di bawah ini."
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "Tidak ada file tangkapan yang ditemukan di direktori /tmp"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "Nama file"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "Ukuran"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "Dimodifikasi"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "Tindakan"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "Unduh file"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "Menghapus file"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
+#, php-format
+msgid "Total: %d file(s), %s"
+msgstr "Total: %d file(s), %s"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "Konfirmasi penghapusan"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "Apakah Anda yakin ingin menghapus file ini?"
+
+#: ../plugins-available/Wireshark/templates/main.php:20
+msgid "Start capture"
+msgstr "Mulai menangkap"
+
+#: ../plugins-available/Wireshark/templates/main.php:24
+msgid "Stop capture"
+msgstr "Hentikan pengambilan gambar"
+
+#: ../plugins-available/Wireshark/templates/main.php:69
+#: ../plugins-available/Tailscale/templates/main.php:89
+msgid "Information provided by "
+msgstr "Informasi yang diberikan oleh "
+
+#: ../plugins-available/Wireshark/Wireshark.php:48
+msgid "Wireshark"
+msgstr "Wireshark"
+
+#: ../plugins-available/Wireshark/Wireshark.php:140
+#, php-format
+msgid "Attempting to start packet capture on %s"
+msgstr "Mencoba memulai pengambilan paket di %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:143
+#, php-format
+msgid "TShark started with PID %s"
+msgstr "TShark dimulai dengan PID %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:152
+#, php-format
+msgid "Attempting to stop packet capture on %s"
+msgstr "Mencoba menghentikan pengambilan paket di %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:172
+#, php-format
+msgid "Expected tshark binary not found at: %s"
+msgstr "Biner tshark yang diharapkan tidak ditemukan di: %s"
+
+#: ../plugins-available/Wireshark/Wireshark.php:173
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Wireshark plugin."
+msgstr "Kunjungi <a href=\"%s\" target=\"_blank\">petunjuk instalasi</a> atau instal ulang plugin Wireshark."
+
+#: ../plugins-available/Wireshark/Wireshark.php:184
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "Penangkapan paket CLI Wireshark (TShark) untuk RaspAP"
+
+#: ../plugins-available/Wireshark/Wireshark.php:185
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Captive/Captive.php:132
+msgid "Bill Z"
+msgstr "Bill Z"
+
+#: ../plugins-available/Wireshark/Wireshark.php:244
+msgid "TShark settings saved successfully"
+msgstr "Pengaturan TShark berhasil disimpan"
+
+#: ../plugins-available/Wireshark/Wireshark.php:248
+#: ../plugins-available/Captive/Captive.php:541
+msgid "Error saving settings: "
+msgstr "Pengaturan penyimpanan kesalahan: "
+
+#: ../plugins-available/Wireshark/Wireshark.php:649
+msgid "File not found"
+msgstr "File tidak ditemukan"
+
+#: ../plugins-available/Wireshark/Wireshark.php:658
+#, php-format
+msgid "File \"%s\" deleted successfully"
+msgstr "File \"%s\" berhasil dihapus"
+
+#: ../plugins-available/Wireshark/Wireshark.php:661
+#, php-format
+msgid "Failed to delete file \"%s\""
+msgstr "Gagal menghapus file \"%s\""
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "Status jaring ekor"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "Status <code>tailnet</code> saat ini ditampilkan di bawah ini."
+
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "Kembali"
+
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "Berikutnya"
+
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "Cabut Simpul Keluar"
+
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "Berhenti Menggunakan Simpul Keluar"
+
+#: ../plugins-available/Tailscale/templates/main.php:44
+#: ../plugins-available/Tailscale/Tailscale.php:400
+msgid "Start Tailscale"
+msgstr "Mulai Skala Ekor"
+
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "Hentikan Skala Ekor"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "Izinkan simpul keluar"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Perangkat <code>%s</code> sedang menunggu persetujuan sebagai simpul keluar."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "Mesin Skala Ekor Terbuka"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Temukan lencana <code>%s</code> Lencana <strong>Exit Node</strong> di daftar mesin."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "Dari menu ikon %s pada simpul keluar, buka panel %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "Mengedit pengaturan rute"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "Aktifkan opsi <strong>Gunakan sebagai simpul keluar</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "Pilih <strong>Berikutnya</strong> setelah Anda menyelesaikan langkah-langkah ini."
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "Menggunakan simpul keluar"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Perangkat <code>%s</code> dikonfigurasikan untuk menggunakan simpul keluar <code>%s</code>. Perangkat ini memiliki alamat Tailscale MagicDNS <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
+msgid "Select an exit node"
+msgstr "Pilih simpul keluar"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#, php-format
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "Untuk menggunakan <code>%s</code> sebagai gateway VPN, konfigurasikan Tailscale untuk menggunakan simpul keluar. Simpul yang disarankan Tailscale ditunjukkan dengan bintang."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#, php-format
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Mengiklankan <strong>rute subnet</strong> untuk <code>%s</code> Antarmuka AP"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "Rute subnet memungkinkan Anda memperluas jaringan Tailscale (dikenal sebagai tailnet) untuk menyertakan perangkat yang tidak atau tidak dapat menjalankan klien Tailscale."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "Rute subnet bertindak sebagai pintu gerbang antara tailnet dan subnet fisik. Subnet dari antarmuka AP yang aktif telah dikonfigurasi sebelumnya di bawah ini; edit jika perlu."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
+msgid "Route LAN traffic through the exit node."
+msgstr "Rute lalu lintas LAN melalui simpul keluar."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "Ini akan mengarahkan semua lalu lintas LAN untuk pergi melalui simpul keluar Anda saja."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Gunakan pengaturan DNS Tailscale (default)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Hapus centang untuk menggunakan DNS lokal. Ini menetapkan <code>--accept-dns=false</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Jangan gunakan subnet Tailscale (default di Linux)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "Jika ada rute subnet untuk tailnet Anda, Anda dapat merutekan lalu lintas perangkat ke router subnet. Mengaktifkan ini akan menetapkan <code>--accept-routes = true</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "Jika kunci kedaluwarsa untuk perangkat, koneksi ke/dari titik akhir yang diberikan akan berhenti bekerja."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "Opsi ini menggunakan <code>--force-reauth</code> untuk memperbarui kunci perangkat ini."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#, php-format
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Pilih <strong>Berikutnya</strong> untuk mengkonfigurasi <code>%s</code> untuk menggunakan simpul keluar yang dipilih dengan opsi ini."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "Tidak ada simpul keluar yang ditemukan pada tailnet Anda. Pilih <strong>Kembali</strong> untuk melanjutkan."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "Konfigurasikan simpul keluar baru"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "Untuk alasan keamanan, Anda harus memilih untuk mengaktifkan fungsionalitas simpul keluar. Langkah pertama adalah mengiklankan <code>%s</code> sebagai simpul keluar di tailnet Anda. Pada langkah berikutnya, Anda akan mengizinkan perangkat ini menjadi exit node."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Beriklan <code>%s</code> sebagai simpul keluar"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Ini secara efektif mengkonfigurasi Tailscale sebagai VPN untuk menyembunyikan lokasi Anda yang sebenarnya, mengakses konten yang dibatasi wilayah, atau meningkatkan privasi saat terhubung dari jaringan yang tidak terpercaya."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Opsi ini memungkinkan Tailscale mengetahui bahwa perangkat Anda siap untuk merutekan lalu lintas."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "Mengaktifkan throughput UDP yang dioptimalkan"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Direkomendasikan untuk node keluar Tailscale dengan kernel Linux 6.2 atau yang lebih baru, ini menggunakan penerusan UDP generic receive offload (GRO) untuk mengurangi overhead CPU."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Opsi ini memungkinkan pembongkaran lapisan transport untuk kinerja yang lebih baik."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Pilih <strong>Berikutnya</strong> untuk melanjutkan."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "Mengkonfigurasi perangkat"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Perangkat <code>%s</code> terhubung ke tailnet Anda dengan alamat <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "Secara default, Tailscale hanya merutekan lalu lintas di antara perangkat yang telah diinstal. Anda juga dapat merutekan semua lalu lintas internet publik Anda dengan mengonfigurasi perangkat di jaringan Anda sebagai <strong>simpul keluar</strong>"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Ketika Anda merutekan semua lalu lintas melalui simpul keluar, Anda secara efektif menggunakan rute default (0.0.0.0/0, ::/0), mirip dengan yang Anda lakukan jika Anda menggunakan VPN pada umumnya."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "Anda memiliki opsi untuk mengonfigurasi perangkat ini sebagai simpul keluar, atau menggunakan simpul keluar lain di tailnet Anda."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "Pilih simpul keluar yang ada pada tailnet Anda"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Ini adalah konfigurasi umum jika Anda menggunakan perangkat ini sebagai router perjalanan VPN, misalnya."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "Konfigurasikan perangkat ini sebagai simpul keluar baru"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "Dengan mengkonfigurasi perangkat ini sebagai simpul keluar, lalu lintas internet publik dari perangkat yang terhubung di tailnet Anda akan dialihkan melaluinya."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
+msgid "Exit node activated"
+msgstr "Simpul keluar diaktifkan"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "Perangkat <code>%s</code> terhubung dengan alamat <code>%s</code> dan menawarkan <strong>simpul keluar</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#, php-format
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "Lihat %s tentang cara menggunakan simpul keluar ini dengan perangkat Anda."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
+msgid "Approve subnet route"
+msgstr "Menyetujui rute subnet"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#, php-format
+msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
+msgstr "Perangkat <code>%s</code> sedang mengiklankan rute subnet. Untuk alasan keamanan, Anda harus memilih untuk mengaktifkannya."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
+msgstr "Temukan lencana <code>%s</code> Lencana <strong>subnet</strong> dalam daftar mesin."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#, php-format
+msgid "From the %s icon menu of the device, open the %s panel."
+msgstr "Dari menu ikon %s pada perangkat, buka panel %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
+msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
+msgstr "Centang kotak rentang IP yang sesuai dengan rute subnet yang ingin Anda iklankan, lalu pilih <strong>Simpan</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "Masuk ke Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Untuk menghubungkan perangkat %s ke tailnet Anda, pilih %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "Buka Login Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "Setelah masuk, pilih <strong>Berikutnya</strong> untuk melanjutkan."
+
+#: ../plugins-available/Tailscale/Tailscale.php:52
+msgid "Tailscale VPN"
+msgstr "VPN Skala Ekor"
+
+#: ../plugins-available/Tailscale/Tailscale.php:237
+#, php-format
+msgid "Expected tailscale binary not found at: %s"
+msgstr "Biner skala ekor yang diharapkan tidak ditemukan di: %s"
+
+#: ../plugins-available/Tailscale/Tailscale.php:238
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
+msgstr "Kunjungi <a href=\"%s\" target=\"_blank\">petunjuk instalasi</a> atau instal ulang plugin Tailscale."
+
+#: ../plugins-available/Tailscale/Tailscale.php:251
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "Ekstensi simpul keluar VPN Tailscale untuk RaspAP"
+
+#: ../plugins-available/Tailscale/Tailscale.php:406
+#, php-format
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Tidak dapat mengambil login Tailscale. Pilih <strong>%s</strong> untuk melanjutkan."
+
+#: ../plugins-available/Tailscale/Tailscale.php:786
+msgid "Not connected: Login required."
+msgstr "Tidak terhubung: Diperlukan login."
+
+#: ../plugins-available/Captive/templates/tabs/status.php:3
+msgid "Portal status"
+msgstr "Status portal"
+
+#: ../plugins-available/Captive/templates/tabs/status.php:4
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "Status <code>nodogsplash</code> saat ini ditampilkan di bawah ini."
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "Rentang IP gateway"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "Rentang IP untuk dikelola dalam notasi CIDR. Biarkan kosong untuk semua alamat"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Default: 0.0.0.0/0 (semua alamat)"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "Tingkat debug"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Jumlah detail penebangan yang dilaporkan oleh nodogsplash.service"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - Hanya kesalahan"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Kesalahan, peringatan, info"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Kesalahan, peringatan, info, bertele-tele"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Kesalahan, peringatan, info, bertele-tele, debug"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "Pengaturan firewall"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "Izinkan semua lalu lintas untuk pengguna yang diautentikasi"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "Ketika diaktifkan, pengguna yang diautentikasi memiliki akses tidak terbatas"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "Izinkan DNS untuk pengguna yang telah diautentikasi sebelumnya"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Diperlukan bagi klien untuk menyelesaikan nama domain sebelum autentikasi"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "Antarmuka gateway"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "Antarmuka yang akan dikelola oleh portal"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "Default ke antarmuka AP yang aktif, biasanya <code>wlan0</code>"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "Nama gateway"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "Nama gateway Anda (tersedia sebagai variabel $gatewayname)"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "Alamat gateway"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "Alamat IP router. Biarkan kosong untuk deteksi otomatis"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Terdeteksi secara otomatis dari antarmuka gateway jika tidak ditentukan"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "Port gateway"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Port untuk server HTTP Nodogsplash"
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+#: ../plugins-available/Captive/templates/main.php:52
+msgid "Active clients"
 msgstr ""
 
-msgid "Attempting to start ntp.service"
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:17
+msgid "Client"
 msgstr ""
 
-msgid "Attempting to stop ntp.service"
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:21
+msgid "IP"
 msgstr ""
 
-msgid "NTP configuration not found at %s"
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:22
+msgid "Token"
 msgstr ""
 
-msgid "NTP configuration updated"
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:25
+msgid "Last activity"
 msgstr ""
 
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:26
+msgid "Session start"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:27
+msgid "Session end"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:35
+msgid "Deauthenticate"
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:44
+msgid "No active clients connected."
+msgstr ""
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:9
+msgid "Maximum clients"
+msgstr "Klien maksimum"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:11
+msgid "Maximum number of concurrent authenticated users"
+msgstr "Jumlah maksimum pengguna yang diautentikasi secara bersamaan"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:15
+msgid "Does not include users on the trusted MAC list"
+msgstr "Tidak menyertakan pengguna dalam daftar MAC tepercaya"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:19
+msgid "Session timeout (minutes)"
+msgstr "Batas waktu sesi (menit)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:21
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "Panjang sesi default dalam menit. 0 = tidak terbatas"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:30
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "Batas waktu idle pra-otentikasi (menit)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:32
+msgid "Time before unauthenticated idle users are removed"
+msgstr "Waktu sebelum pengguna idle yang tidak diautentikasi dihapus"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:39
+msgid "Auth idle timeout (minutes)"
+msgstr "Batas waktu idle autentik (menit)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:41
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "Waktu sebelum pengguna idle yang diautentikasi dideautentikasi"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:50
+msgid "Check interval (seconds)"
+msgstr "Interval pemeriksaan (detik)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:52
+msgid "How often to check client timeouts"
+msgstr "Seberapa sering memeriksa batas waktu klien"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:59
+msgid "MAC address control"
+msgstr "Kontrol alamat MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:63
+msgid "MAC mechanism"
+msgstr "Mekanisme MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:65
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Blokir: MAC yang masuk dalam daftar blokir akan diblokir. Izinkan: hanya MAC yang masuk dalam daftar izin yang diizinkan"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:68
+msgid "Block (blocklist mode)"
+msgstr "Blokir (mode daftar blokir)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:71
+msgid "Allow (allowlist mode)"
+msgstr "Izinkan (mode daftar izin)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:79
+msgid "Blocked MAC list"
+msgstr "Daftar MAC yang diblokir"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:81
+msgid "Comma-separated MAC addresses to block (used when mechanism is 'block')"
+msgstr "Alamat MAC yang dipisahkan koma untuk diblokir (digunakan ketika mekanisme 'blokir')"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:84
+#: ../plugins-available/Captive/templates/tabs/clients.php:95
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "Contoh: <code>00:11:22:33:44:55, AA:BB:CC:DD:EE:FF</code>"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:90
+msgid "Allowed MAC list"
+msgstr "Daftar MAC yang diizinkan"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:92
+msgid "Comma-separated MAC addresses to allow (used when mechanism is 'allow')"
+msgstr "Alamat MAC yang dipisahkan koma untuk mengizinkan (digunakan ketika mekanisme 'izinkan')"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:101
+msgid "Trusted MAC list"
+msgstr "Daftar MAC tepercaya"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:103
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "Alamat MAC yang dipisahkan dengan koma yang mem-bypass autentikasi sepenuhnya"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:106
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "Perangkat ini tidak tunduk pada aturan autentikasi atau firewall"
+
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "Hentikan portal"
+
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "Mulai portal"
+
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "Klien"
+
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "Informasi yang disediakan oleh nodogsplash"
+
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "Hentikan layanan portal"
+
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "Mulai layanan portal"
+
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Mengubah layanan portal akan mengganggu lalu lintas klien untuk sementara waktu. Pilih <strong>Lanjutkan</strong> untuk melanjutkan."
+
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "Lanjutkan"
+
+#: ../plugins-available/Captive/Captive.php:70
+#: ../plugins-available/Captive/Captive.php:130
+msgid "Captive portal"
+msgstr "Portal tawanan"
+
+#: ../plugins-available/Captive/Captive.php:95
+#, php-format
+msgid "Attempting to start %s"
+msgstr "Mencoba memulai %s"
+
+#: ../plugins-available/Captive/Captive.php:99
+#, php-format
+msgid "Attempting to stop %s"
+msgstr "Mencoba menghentikan %s"
+
+#: ../plugins-available/Captive/Captive.php:106
+#, php-format
+msgid "Client %s deauthenticated"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:108
+#, php-format
+msgid "Failed to deauthenticate client %s"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:111
+msgid "Invalid client MAC address"
+msgstr ""
+
+#: ../plugins-available/Captive/Captive.php:131
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "Plugin portal tawanan yang mengimplementasikan nodogsplash"
+
+#: ../plugins-available/Captive/Captive.php:538
+msgid "Portal settings saved successfully"
+msgstr "Pengaturan portal berhasil disimpan"
+
+#: ../plugins-available/Captive/Captive.php:582
+msgid "Failed to execute ndsctl."
+msgstr "Gagal menjalankan ndsctl."
+
+#~ msgid "Firewall is now enabled"
+#~ msgstr "Firewall sekarang diaktifkan"
+
+#~ msgid "Firewall is now disabled"
+#~ msgstr "Firewall sekarang dinonaktifkan"
+
+#~ msgid "Firewall settings changed"
+#~ msgstr "Pengaturan firewall berubah"
+
+#~ msgid "Firewall settings saved. Firewall is still disabled."
+#~ msgstr "Pengaturan firewall disimpan. Firewall masih dinonaktifkan."
+
+#~ msgid "Exclude devices "
+#~ msgstr "Mengecualikan perangkat "
+
+#~ msgid "Exclude IP address "
+#~ msgstr "Kecualikan alamat IP "
+
+#~ msgid "Exclude IP address(es) "
+#~ msgstr "Kecualikan alamat IP "
+
+#~ msgid "A firewall plugin that implements an iptables ruleset"
+#~ msgstr "Plugin firewall yang mengimplementasikan kumpulan aturan iptables"
+
+#~ msgid "zbchristian"
+#~ msgstr "zbchristian"
+
+#~ msgid "Client Firewall"
+#~ msgstr "Firewall Klien"
+
+#~ msgid "Firewall is ENABLED"
+#~ msgstr "Firewall diaktifkan"
+
+#~ msgid "Firewall is OFF"
+#~ msgstr "Firewall tidak aktif"
+
+#~ msgid "The default firewall will only allow outgoing and already established traffic."
+#~ msgstr "Firewall default hanya akan mengizinkan trafik keluar dan yang sudah ditetapkan."
+
+#~ msgid "No incoming UDP traffic is allowed."
+#~ msgstr "Lalu lintas UDP yang masuk tidak diperbolehkan."
+
+#, php-format
+#~ msgid "There are no restrictions for the access point <code>%s</code>."
+#~ msgstr "Tidak ada batasan untuk jalur akses <code>%s</code>."
+
+#~ msgid "Exception: Service"
+#~ msgstr "Pengecualian: Layanan"
+
+#~ msgid "allow SSH access on port 22"
+#~ msgstr "mengizinkan akses SSH pada port 22"
+
+#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
+#~ msgstr "mengizinkan akses ke GUI RaspAP pada port 80 atau 443"
+
+#~ msgid "Allow incoming connections for some services from the internet side."
+#~ msgstr "Izinkan koneksi masuk untuk beberapa layanan dari sisi internet."
+
+#~ msgid "Exception: network device"
+#~ msgstr "Pengecualian: perangkat jaringan"
+
+#~ msgid "Exclude device(s)"
+#~ msgstr "Mengecualikan perangkat"
+
+#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
+#~ msgstr "Kecualikan perangkat jaringan yang diberikan (dipisahkan dengan spasi kosong atau koma) dari aturan firewall."
+
+#, php-format
+#~ msgid "Current client devices: <code>%s</code>"
+#~ msgstr "Perangkat klien saat ini: <code>%s</code>"
+
+#, php-format
+#~ msgid "The access point <code>%s</code> is per default excluded."
+#~ msgstr "Jalur akses <code>%s</code> secara default dikecualikan."
+
+#~ msgid "Exception: IP-Address"
+#~ msgstr "Pengecualian: Alamat IP"
+
+#~ msgid "Allow incoming connections from"
+#~ msgstr "Izinkan koneksi masuk dari"
+
+#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
+#~ msgstr "Untuk alamat IP yang diberikan (dipisahkan dengan spasi kosong atau koma), koneksi yang masuk (melalui TCP dan UDP) diterima."
+
+#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
+#~ msgstr "Ini diperlukan untuk koneksi OpenVPN melalui UDP atau Wireguard."
+
+#, php-format
+#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
+#~ msgstr "Daftar alamat IP server VPN yang dikonfigurasi: <code><b>%s</b></code>"
+
+#~ msgid "plugin was created by "
+#~ msgstr "plugin dibuat oleh "
+
+#~ msgid "Apply changes"
+#~ msgstr "Menerapkan perubahan"
+
+#~ msgid "Disable Firewall"
+#~ msgstr "Nonaktifkan Firewall"
+
+#~ msgid "Enable Firewall"
+#~ msgstr "Aktifkan Firewall"
+
+#~ msgid "Information provided by iptables"
+#~ msgstr "Informasi yang disediakan oleh iptables"
+
+#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
+#~ msgstr "Mengubah status firewall dapat mengganggu atau mengizinkan lalu lintas yang masuk. Pilih <strong>Lanjutkan</strong> untuk melanjutkan."
