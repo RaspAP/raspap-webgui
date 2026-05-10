@@ -134,6 +134,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', function() {
         var forms = document.getElementsByTagName('form');
         var validation = Array.prototype.filter.call(forms, function(form) {
+            // remove inert attribute on forms with live-form class to allow interaction when js loads
+            if (form.classList.contains('live-form')) {
+                form.removeAttribute('inert');
+            }
+            
             form.addEventListener('submit', function(event) {
                 // if form has bootstrap `needs-validation` class, perform validation checks
                 if (form.classList.contains('needs-validation')) {
