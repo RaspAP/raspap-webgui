@@ -12,8 +12,56 @@ export function initSystem_ajax() {
                 'csrf_token': csrfToken
             }, function(data) {
                 var response = JSON.parse(data);
+
+                if (action === 'reboot') {
+                    const reconnectModalEl = $('#system-reconnect');
+                    const modal = new bootstrap.Modal(reconnectModalEl);
+                    modal.show();
+                    handleReconnect(reconnectModalEl);
+                }
             });
     });
+
+    function handleReconnect(modal) {
+        const secondsEl = $(modal).find('#system-reconnect-seconds');
+        
+        let countdownInterval;
+        const attemptSeconds = 20;
+
+        const attemptReconnect = async () => {
+            console.log('attempting reconnect');
+            $(secondsEl).text('...');
+
+            const startCountdown = (e) => {
+                console.log('still rebooting - start countdown', e);
+                clearInterval(countdownInterval);
+                let countdownInt = attemptSeconds;
+                countdownInterval = setInterval(() => {
+                    console.log('decrement countdownInt');
+                    if (countdownInt === 0) attemptReconnect();
+                    $(secondsEl).text(countdownInt);
+                    if (countdownInt > 0) countdownInt--;
+                }, 1000);
+            }
+
+            try {
+                // fetch to url and get status
+                const checkUrl = window.location.origin;
+                const response = await fetch(checkUrl);
+
+                if (response.status === 200) {
+                    console.log('reconnected - reload the page');
+                    window.location.reload();
+                } else {
+                    startCountdown();
+                }
+            } catch (e) {
+                startCountdown(e);
+            }
+        };
+
+        attemptReconnect();
+    }
 
     $('#js-system-reset-confirm').on('click', function (e) {
         var progressText = $('#js-system-reset-confirm').attr('data-message');
