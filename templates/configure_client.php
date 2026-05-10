@@ -26,7 +26,7 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <form method="POST" action="/ajax/page/client.php" class="live-form" data-modal-title="<?= _("WiFi Client Interface") ?>">
+            <form method="POST" action="/ajax/page/client.php" class="live-form" data-modal-title="<?= _("WiFi Client Interface") ?>" inert>
               <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
               <label for="cbxclientiface"><?php echo _("Interface"); ?></label>
               <div class="input-group">
@@ -36,7 +36,7 @@
             </form>
           </div>
         </div>
-        <form method="POST" action="/ajax/page/client.php" name="wpa_conf_form" class="live-form" data-modal-title="<?= _("Configuring WiFi Client"); ?>">
+        <form method="POST" action="/ajax/page/client.php" name="wpa_conf_form" class="live-form" data-modal-title="<?= _("Configuring WiFi Client"); ?>" inert>
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
           <div class="row" id="wpaConf">
             <div class="col position-relative">

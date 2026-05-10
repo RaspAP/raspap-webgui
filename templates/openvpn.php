@@ -13,7 +13,7 @@
           <div>
             <i class="fas fa-key fa-fw me-2"></i><?php echo _("OpenVPN"); ?>
           </div>
-          <form method="POST" action="/ajax/page/openvpn.php" class="live-form" data-modal-title="<?php echo _("OpenVPN Service Control"); ?>">
+          <form method="POST" action="/ajax/page/openvpn.php" class="live-form" data-modal-title="<?php echo _("OpenVPN Service Control"); ?>" inert>
             <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <div class="btn-group" role="group">
               <?php if (!RASPI_MONITOR_ENABLED) : ?>
@@ -38,7 +38,7 @@
       
       <div class="card-body">
         <?php $status->showMessages(); ?>
-        <form role="form" method="POST" action="/ajax/page/openvpn.php" enctype="multipart/form-data" class="live-form" data-modal-title="<?php echo _("OpenVPN Configuration"); ?>">
+        <form role="form" method="POST" action="/ajax/page/openvpn.php" enctype="multipart/form-data" class="live-form" data-modal-title="<?php echo _("OpenVPN Configuration"); ?>" inert>
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">

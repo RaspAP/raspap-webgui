@@ -13,7 +13,7 @@
           <div>
             <i class="fas fa-exchange-alt me-2"></i><?php echo _("DHCP Server"); ?>
           </div>
-          <form method="POST" action="/ajax/page/dhcpd.php" class="live-form" data-modal-title="<?= _("DNSMASQ Service Control") ?>">
+          <form method="POST" action="/ajax/page/dhcpd.php" class="live-form" data-modal-title="<?= _("DNSMASQ Service Control") ?>" inert>
             <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
             <div class="btn-group" role="group">
               <?php if (!RASPI_MONITOR_ENABLED) : ?>
@@ -41,7 +41,7 @@
 
       <div class="card-body">
         <?php $status->showMessages(); ?>
-        <form method="POST" action="/ajax/page/dhcpd.php" class="js-dhcp-settings-form needs-validation live-form" novalidate data-modal-title="<?= _("DHCP Configuration") ?>">
+        <form method="POST" action="/ajax/page/dhcpd.php" class="js-dhcp-settings-form needs-validation live-form" novalidate data-modal-title="<?= _("DHCP Configuration") ?>" inert>
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->

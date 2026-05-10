@@ -14,7 +14,7 @@
             <i class="fas fa-bullseye me-2"></i><?php echo _("Hotspot"); ?>
           </div>
           <div>
-            <form method="POST" action="/ajax/page/hostapd.php" class="live-form" data-modal-title="<?php echo _("Hotspot Service Control") ?>">
+            <form method="POST" action="/ajax/page/hostapd.php" class="live-form" data-modal-title="<?php echo _("Hotspot Service Control") ?>" inert>
               <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
               <div class="btn-group" role="group">
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
@@ -43,7 +43,7 @@
 
       <div class="card-body">
         <?php $status->showMessages(); ?>
-        <form role="form" method="POST" action="/ajax/page/hostapd.php" class="needs-validation live-form" novalidate data-modal-title="<?php echo _("Hotspot Settings") ?>">
+        <form role="form" method="POST" action="/ajax/page/hostapd.php" class="needs-validation live-form" novalidate data-modal-title="<?php echo _("Hotspot Settings") ?>" inert>
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
 
           <!-- Nav tabs -->
