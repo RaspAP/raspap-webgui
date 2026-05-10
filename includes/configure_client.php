@@ -73,7 +73,7 @@ function DisplayWPAConfig()
                 'passphrase' => $_POST['passphrase' . $post_match[1]] ?? '',
                 'configured' => true
                 );
-                if (array_key_exists('priority' . $post_match[1], $_POST)) {
+                if (array_key_exists('priority' . $post_match[1], $_POST) && $_POST['priority' . $post_match[1]] != '') {
                     $tmp_networks[$_POST['ssid' . $post_match[1]]]['priority'] = $_POST['priority' . $post_match[1]];
                 }
                 $network = $tmp_networks[$_POST['ssid' . $post_match[1]]];
