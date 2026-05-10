@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-05-10 18:13+0000\n"
+"POT-Creation-Date: 2026-05-10 18:27+0000\n"
 "PO-Revision-Date: 2026-04-22 02:22\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
@@ -56,7 +56,7 @@ msgid "Dashboard"
 msgstr "Dashboard"
 
 #: ../src/RaspAP/UI/Sidebar.php:20 ../templates/hostapd.php:13
-#: ../includes/functions.php:1002
+#: ../includes/functions.php:1003
 msgid "Hotspot"
 msgstr "Hotspot"
 
@@ -824,7 +824,7 @@ msgid "Scan for Login Help"
 msgstr ""
 
 #: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:47
-#: ../templates/provider.php:36 ../includes/functions.php:1000
+#: ../templates/provider.php:36 ../includes/functions.php:1001
 #: ../plugins-available/Tailscale/templates/main.php:71
 #: ../plugins-available/Captive/templates/main.php:51
 msgid "Status"
@@ -2422,11 +2422,11 @@ msgstr "Wählen Sie ein Land aus..."
 msgid "Account information not available from %s's Linux CLI."
 msgstr "Kontoinformationen, die nicht über %s's Linux CLI verfügbar sind."
 
-#: ../includes/functions.php:1005
+#: ../includes/functions.php:1006
 msgid "Mem Use"
 msgstr "Mem Verwendung"
 
-#: ../includes/functions.php:1008
+#: ../includes/functions.php:1009
 msgid "CPU"
 msgstr "CPU"
 
