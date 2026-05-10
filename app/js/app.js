@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (form.classList.contains('live-form')) {
                 form.removeAttribute('inert');
             }
-            
+
             form.addEventListener('submit', function(event) {
                 // if form has bootstrap `needs-validation` class, perform validation checks
                 if (form.classList.contains('needs-validation')) {
@@ -232,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchLiveFormStream(action, formData, options = {}) {
         let defaultOptions = {
+            method: 'POST',
             onMessage: null,
             onUpdateMessage: null,
             onCompleteMessage: null,
@@ -242,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         options = { ...defaultOptions, ...options };
 
         const response = await fetch(action, {
-            method: 'POST',
+            method: options.method || 'POST',
             body: formData
         });
 
