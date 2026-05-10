@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-04-29 13:38+0000\n"
+"POT-Creation-Date: 2026-05-10 18:13+0000\n"
 "PO-Revision-Date: 2026-04-22 02:22\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
@@ -286,8 +286,8 @@ msgid "Executing RaspAP service start"
 msgstr "Εκτέλεση της υπηρεσίας RaspAP start"
 
 #: ../templates/hostapd.php:90 ../templates/system.php:56
-#: ../templates/system.php:74 ../templates/system.php:92
-#: ../templates/system.php:110 ../templates/system.php:142
+#: ../templates/system.php:74 ../templates/system.php:109
+#: ../templates/system.php:127 ../templates/system.php:159
 #: ../templates/wifi_stations/network.php:119
 #: ../templates/configure_client.php:65
 msgid "Close"
@@ -382,7 +382,7 @@ msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
 msgstr ""
 
 #: ../templates/system.php:56 ../templates/system.php:74
-#: ../templates/system.php:92 ../templates/system.php:236
+#: ../templates/system.php:109 ../templates/system.php:253
 #: ../templates/wireguard.php:83 ../templates/wireguard.php:101
 #: ../templates/openvpn.php:81 ../templates/openvpn.php:99
 #: ../templates/about.php:56 ../templates/about.php:104
@@ -413,94 +413,106 @@ msgid "Reboot"
 msgstr "Επανεκκίνηση"
 
 #: ../templates/system.php:86
+msgid "Reconnecting"
+msgstr ""
+
+#: ../templates/system.php:90
+msgid "The system is currently rebooting."
+msgstr ""
+
+#: ../templates/system.php:91
+msgid "Attempting to reconnect in"
+msgstr ""
+
+#: ../templates/system.php:103
 msgid "System shutdown"
 msgstr ""
 
-#: ../templates/system.php:89
+#: ../templates/system.php:106
 msgid "Shutdown now? The system will be unavailable."
 msgstr ""
 
-#: ../templates/system.php:93 ../templates/system/basic.php:27
+#: ../templates/system.php:110 ../templates/system/basic.php:27
 msgid "Shutdown"
 msgstr "Τερματισμός λειτουργίας"
 
-#: ../templates/system.php:104 ../templates/system/tools.php:18
+#: ../templates/system.php:121 ../templates/system/tools.php:18
 msgid "Generate debug log"
 msgstr "Δημιουργία αρχείου καταγραφής εντοπισμού σφαλμάτων"
 
-#: ../templates/system.php:107
+#: ../templates/system.php:124
 msgid "Debug log generation in progress..."
 msgstr ""
 
-#: ../templates/system.php:121 ../templates/system/tools.php:32
+#: ../templates/system.php:138 ../templates/system/tools.php:32
 msgid "Inspect adapters"
 msgstr "Επιθεωρήστε τους προσαρμογείς"
 
-#: ../templates/system.php:140
+#: ../templates/system.php:157
 msgid "Adapter health check"
 msgstr ""
 
-#: ../templates/system.php:177
+#: ../templates/system.php:194
 msgid "Plugin details"
 msgstr ""
 
-#: ../templates/system.php:188
+#: ../templates/system.php:205
 msgid "Plugin docs"
 msgstr ""
 
-#: ../templates/system.php:192
+#: ../templates/system.php:209
 msgid "Version"
 msgstr ""
 
-#: ../templates/system.php:196
+#: ../templates/system.php:213
 msgid "Author"
 msgstr ""
 
-#: ../templates/system.php:200
+#: ../templates/system.php:217
 msgid "License"
 msgstr ""
 
-#: ../templates/system.php:204
+#: ../templates/system.php:221
 msgid "Language locale"
 msgstr ""
 
-#: ../templates/system.php:208
+#: ../templates/system.php:225
 msgid "Configuration files"
 msgstr ""
 
-#: ../templates/system.php:212
+#: ../templates/system.php:229
 msgid "Signed Packages"
 msgstr ""
 
-#: ../templates/system.php:216
+#: ../templates/system.php:233
 msgid "Dependencies"
 msgstr ""
 
-#: ../templates/system.php:220
+#: ../templates/system.php:237
 msgid "JavaScript"
 msgstr ""
 
-#: ../templates/system.php:224
+#: ../templates/system.php:241
 msgid "Sudoers"
 msgstr ""
 
-#: ../templates/system.php:228
+#: ../templates/system.php:245
 msgid "Non-privileged users"
 msgstr ""
 
-#: ../templates/system.php:248
+#: ../templates/system.php:265
 msgid "Installing plugin"
 msgstr ""
 
-#: ../templates/system.php:251
+#: ../templates/system.php:268
 msgid "Plugin install completed."
 msgstr ""
 
-#: ../templates/system.php:251
+#: ../templates/system.php:268
 msgid "Plugin installation in progress..."
 msgstr ""
 
-#: ../templates/system.php:254 ../templates/about.php:56
+#: ../templates/system.php:271 ../templates/about.php:56
 #: ../templates/about.php:57 ../templates/about.php:132
 msgid "OK"
 msgstr "OK"
