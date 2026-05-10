@@ -162,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const form = e.target;
         const action = form.action;
+        const method = form.method;
         const modalEl = document.getElementById('liveFormModal');
         const modal = new bootstrap.Modal(modalEl, { keyboard: false });
         
@@ -188,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.show();
 
         await fetchLiveFormStream(action, formData, {
+            method: method,
             onMessage: (json) => {
                 if (json.progress) {
                     $(modalEl).find('#liveFormModalProgressBar').css('width', json.progress + '%');
