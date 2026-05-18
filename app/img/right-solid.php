@@ -8,7 +8,7 @@ $showOut = isset($_GET['out']);
 $showDevice2 = isset($_GET['device-2']);
 ?>
 
-<svg width="313" height="594" viewBox="0 0 313 594" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="227" height="594" viewBox="0 0 227 594" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Frame 1">
 <g id="right connection frame">
 <g id="solid">
