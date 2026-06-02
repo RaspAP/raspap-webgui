@@ -88,14 +88,17 @@ initializeApp();
     <!-- Custom CSS -->
     <link href="app/css/base.css?v=<?= filemtime('app/css/base.css'); ?>" rel="stylesheet" />
     <link href="<?php echo $_SESSION['theme']['url'] . "?v=" . filemtime($_SESSION['theme']['url']); ?>" title="main" rel="stylesheet">
-    
+
     <!-- Meta -->
     <link rel="icon" type="image/png" href="/app/icons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/app/icons/favicon.svg" />
     <link rel="shortcut icon" href="/app/icons/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="RaspAP" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#ffffff">
+    <link rel="manifest" href="/app/site.webmanifest" />
   </head>
 
   <body class="sb-nav-fixed">
@@ -156,4 +159,3 @@ initializeApp();
     <?php loadFooterScripts($extraFooterScripts); ?>
   </body>
 </html>
-

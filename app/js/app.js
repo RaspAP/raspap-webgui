@@ -22,7 +22,7 @@ import { initLogin } from "./ui/login.js";
 import { initHostapd_ajax } from "./ajax/hostapd.js";
 import { initDHCP_ajax } from "./ajax/dhcp.js";
 import { initAdblock_ajax } from "./ajax/adblock.js";
-import { initWPA_ajax } from "./ajax/wpa.js"; 
+import { initWPA_ajax } from "./ajax/wpa.js";
 import { initNetworking_ajax } from "./ajax/networking.js";
 import { initOpenVPN_ajax } from "./ajax/openvpn.js";
 import { initWireGuard_ajax } from "./ajax/wg.js";
@@ -30,6 +30,14 @@ import { initSession_ajax } from "./ajax/session.js";
 import { initSystem_ajax} from "./ajax/system.js";
 import { initPlugins_ajax } from "./ajax/plugins.js";
 import { initAbout_ajax } from "./ajax/about.js";
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/app/js/sw.js')
+            .then(() => console.info('RaspAP service worker registered'))
+            .catch((err) => console.warn('Service worker registration failed:', err));
+    });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     console.info("RaspAP app.js initialized");
@@ -179,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             if (!button.data("__toggle-with-initial")) {
-                $("i", button).removeClass("fas fa-eye").addClass(button.attr("data-toggle-with")); 
+                $("i", button).removeClass("fas fa-eye").addClass(button.attr("data-toggle-with"));
             }
 
             if (field.attr("type") === "password") {
@@ -250,10 +258,10 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             if (useSystem) setLightMode(true);
             setCookie('system_color_scheme', 'light', 365);
-            
+
         }
     });
-    
+
     systemModeToggle.on('click', function() {
         const systemColorScheme = preferredColorScheme.matches ? 'dark' : 'light';
         // update cookie for PHP context
