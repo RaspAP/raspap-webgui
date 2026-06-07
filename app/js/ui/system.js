@@ -12,7 +12,7 @@ export function initSystem() {
         var installPath = manifestData.install_path;
 
         if (!installed && repoPublic && installPath === 'plugins-available') {
-            insidersHTML = 'Available with <i class="fas fa-heart heart me-1"></i><a href="https://docs.raspap.com/insiders" target="_blank" rel="noopener">Insiders</a>';
+            const insidersHTML = 'Available with <i class="fas fa-heart heart me-1"></i><a href="https://docs.raspap.com/insiders" target="_blank" rel="noopener">Insiders</a>';
             $('#plugin-additional').html(insidersHTML);
         } else {
             $('#plugin-additional').empty();
