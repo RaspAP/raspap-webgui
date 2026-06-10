@@ -33,8 +33,23 @@ class WiFiManager
                 } elseif ($lineArr = preg_split('/\s*=\s*/', trim($line), 2)) {
                     switch (strtolower($lineArr[0])) {
                     case 'ssid':
-                        $ssid = trim($lineArr[1], '"');
-                        $ssid = str_replace('P"','',$ssid);
+                        $val = $lineArr[1];
+                        if (substr($val, 0, 1) === '"' || substr($val, 0, 2) === 'P"') {
+                            $ssid = trim($val, '"');
+                            $ssid = str_replace('P"', '', $ssid);
+                        } elseif (ctype_xdigit($val) && (strlen($val) % 2 === 0)) {
+                            // Hex-encoded SSID (no quotes): decode and re-escape non-ASCII
+                            // bytes as \xHH to match the notation iw scan produces.
+                            $binary = hex2bin($val);
+                            $ssid = ($binary !== false)
+                                ? preg_replace_callback('/[\x80-\xff]/', function ($m) {
+                                    return '\\x' . strtolower(bin2hex($m[0]));
+                                }, $binary)
+                                : $val;
+                        } else {
+                            $ssid = trim($val, '"');
+                            $ssid = str_replace('P"', '', $ssid);
+                        }
                         $network['ssid'] = $ssid;
                         $network['index'] = $this->getNetworkIdBySSID($ssid);
                         break;
@@ -744,7 +759,13 @@ CONF;
         foreach ($networks as $ssid => $network) {
             if ($network['protocol'] === self::SECURITY_OPEN) {
                 fwrite($wpa_file, "network={".PHP_EOL);
-                fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                // Use P"..." format for SSIDs that contain \xHH escape sequences so that
+                // wpa_supplicant interprets them as binary rather than literal backslashes
+                if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid)) {
+                    fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
+                } else {
+                    fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                }
                 fwrite($wpa_file, "\tkey_mgmt=NONE".PHP_EOL);
                 fwrite($wpa_file, "\tscan_ssid=1".PHP_EOL);
                 if (array_key_exists('priority', $network)) {
@@ -752,10 +773,12 @@ CONF;
                 }
                 fwrite($wpa_file, "}".PHP_EOL);
             } else {
-                if (strlen($network['passphrase']) >= 8 && strlen($network['passphrase']) <= 63) {
+                $passphrase = $network['passphrase'] ?? '';
+                $passkey    = $network['passkey'] ?? '';
+                if (strlen($passphrase) >= 8 && strlen($passphrase) <= 63) {
                     unset($wpa_passphrase);
                     unset($line);
-                    exec('wpa_passphrase '. $this->ssid2utf8(escapeshellarg($ssid)) . ' ' . escapeshellarg($network['passphrase']), $wpa_passphrase);
+                    exec('wpa_passphrase '. $this->ssid2utf8(escapeshellarg($ssid)) . ' ' . escapeshellarg($passphrase), $wpa_passphrase);
                     foreach ($wpa_passphrase as $line) {
                         if (preg_match('/^\s*}\s*$/', $line)) {
                             if (array_key_exists('priority', $network)) {
@@ -763,17 +786,21 @@ CONF;
                             }
                             fwrite($wpa_file, $line.PHP_EOL);
                         } else {
-                            if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid) && strpos($line, "ssid=\"") !== false) {
+                            if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid) && preg_match('/^\s*ssid=/', $line)) {
                                 fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
                             } else {
                                 fwrite($wpa_file, $line.PHP_EOL);
                             }
                         }
                     }
-                } elseif (strlen($network['passphrase']) == 0 && strlen($network['passkey']) == 64) {
-                    $line = "\tpsk=" . $network['passkey'];
+                } elseif (strlen($passphrase) == 0 && strlen($passkey) == 64) {
+                    $line = "\tpsk=" . $passkey;
                     fwrite($wpa_file, "network={".PHP_EOL);
-                    fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                    if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid)) {
+                        fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
+                    } else {
+                        fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                    }
                     fwrite($wpa_file, $line.PHP_EOL);
                     if (array_key_exists('priority', $network)) {
                         fwrite($wpa_file, "\tpriority=".$network['priority'].PHP_EOL);
