@@ -38,8 +38,6 @@ class WiFiManager
                             $ssid = trim($val, '"');
                             $ssid = str_replace('P"', '', $ssid);
                         } elseif (ctype_xdigit($val) && (strlen($val) % 2 === 0)) {
-                            // Hex-encoded SSID (no quotes): decode and re-escape non-ASCII
-                            // bytes as \xHH to match the notation iw scan produces.
                             $binary = hex2bin($val);
                             $ssid = ($binary !== false)
                                 ? preg_replace_callback('/[\x80-\xff]/', function ($m) {
@@ -759,8 +757,6 @@ CONF;
         foreach ($networks as $ssid => $network) {
             if ($network['protocol'] === self::SECURITY_OPEN) {
                 fwrite($wpa_file, "network={".PHP_EOL);
-                // Use P"..." format for SSIDs that contain \xHH escape sequences so that
-                // wpa_supplicant interprets them as binary rather than literal backslashes
                 if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid)) {
                     fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
                 } else {
