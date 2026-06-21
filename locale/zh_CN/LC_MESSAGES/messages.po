@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-05-30 19:59+0000\n"
+"POT-Creation-Date: 2026-06-21 19:23+0000\n"
 "PO-Revision-Date: 2026-04-22 02:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -17,220 +17,77 @@ msgstr ""
 "X-Crowdin-File: /master/locale/messages.pot\n"
 "X-Crowdin-File-ID: 12\n"
 
-#: ../ajax/networking/get_nl80211_band.php:37
-#, php-format
-msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
-msgstr "所选接口 (%s) 仅支持 2.4 GHz 无线频段。"
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "已安装"
 
-#: ../ajax/networking/get_nl80211_band.php:40
-#, php-format
-msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
-msgstr "所选接口 (%s) 仅支持 5 GHz 无线频段。"
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "详细信息"
 
-#: ../ajax/networking/get_nl80211_band.php:43
-#, php-format
-msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
-msgstr "所选接口 (%s) 同时支持 2.4 和 5 GHz 无线频段。"
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
+msgid "Dashboard"
+msgstr "仪表板"
 
-#: ../ajax/networking/get_nl80211_band.php:46
-#, php-format
-msgid "The selected interface (%s) does not support wireless mode operation."
-msgstr "所选接口 (%s) 不支持无线模式操作。"
-
-#: ../includes/dashboard.php:72
-#, php-format
-msgid "%d WLAN %s"
-msgstr "%d 无线局域网 %s"
-
-#: ../includes/dashboard.php:78
-#, php-format
-msgid "%d LAN %s"
-msgstr "%d 局域网 %s"
-
-#: ../includes/functions.php:1001
-#: ../plugins-available/Captive/templates/main.php:51
-#: ../plugins-available/Tailscale/templates/main.php:71
-#: ../templates/restapi.php:47 ../templates/provider.php:36
-#: ../templates/wifi_stations/network.php:33
-msgid "Status"
-msgstr "现状"
-
-#: ../includes/functions.php:1003 ../src/RaspAP/UI/Sidebar.php:20
+#: ../src/RaspAP/UI/Sidebar.php:20 ../includes/functions.php:1003
 #: ../templates/hostapd.php:13
 msgid "Hotspot"
 msgstr "热点"
 
-#: ../includes/functions.php:1006
-msgid "Mem Use"
-msgstr "内存使用"
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
+msgid "DHCP Server"
+msgstr "DHCP 服务器"
 
-#: ../includes/functions.php:1009
-msgid "CPU"
-msgstr "CPU"
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
+msgid "Ad Blocking"
+msgstr "广告屏蔽"
 
-#: ../includes/restapi.php:59
-#, php-format
-msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
-msgstr "可<a href=\"%s\" target=\"_blank\">在此处 </a>访问 RestAPI 文档<a href=\" %s \" target=\"_blank\"> %s</a>"
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
+#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
+msgid "Networking"
+msgstr "联网"
 
-#: ../includes/footer.php:6
-#, php-format
-msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
-msgstr "由 <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "WiFi 客户端"
 
-#: ../includes/footer.php:6
-msgid "RaspAP Team"
-msgstr "RaspAP 团队"
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-#: ../includes/footer.php:9
-msgid "Thanks for being an Insider"
-msgstr "感谢您的加入"
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "导线保护"
 
-#: ../includes/footer.php:17
-msgid "Session Expired"
-msgstr "会期已过"
+#: ../src/RaspAP/UI/Sidebar.php:44
+msgid "Data usage"
+msgstr "数据使用"
 
-#: ../includes/footer.php:20
-msgid "Your session has expired. Please login to continue."
-msgstr "您的会话已过期。请登录以继续。"
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
+msgid "RestAPI"
+msgstr "RestAPI"
 
-#: ../includes/footer.php:23 ../templates/admin.php:18
-#: ../templates/login.php:30
-msgid "Login"
-msgstr "登录"
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
+#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
+msgid "System"
+msgstr "系统"
 
-#: ../includes/adblock.php:31
-msgid "Invalid custom IP address found on line "
-msgstr "在线路上发现无效的自定义 IP 地址 "
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
+msgid "About RaspAP"
+msgstr "关于 RaspAP"
 
-#: ../includes/adblock.php:35
-msgid "Invalid custom host found on line "
-msgstr "在行中发现无效的自定义主机 "
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+msgid "No MAC Address Found"
+msgstr "未找到 MAC 地址"
 
-#: ../includes/provider.php:65
-#, php-format
-msgid "Expected %s binary not found at: %s"
-msgstr "未在 %s 找到预期的二进制文件： %s"
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "未找到 IPv6 地址"
 
-#: ../includes/provider.php:66
-#, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
-msgstr "请访问 %s的 Linux CLI<a href=\"%s\" target=\"_blank\">安装说明</a>。"
-
-#: ../includes/provider.php:70
-#, php-format
-msgid "Unable to execute %s binary found at: %s"
-msgstr "无法执行在 %s 找到的二进制文件： %s"
-
-#: ../includes/provider.php:71
-msgid "Check that binary is executable and permissions exist in raspap.sudoers"
-msgstr "检查二进制文件是否可执行，以及 raspap.sudoers 中是否存在权限"
-
-#: ../includes/provider.php:119
-#, php-format
-msgid "Attempting to connect to %s"
-msgstr "尝试连接 %s"
-
-#: ../includes/provider.php:318
-msgid "Select a country..."
-msgstr "选择国家..."
-
-#: ../includes/provider.php:387
-#, php-format
-msgid "Account information not available from %s's Linux CLI."
-msgstr "%s的 Linux CLI 无法提供账户信息。"
-
-#: ../includes/wifi_functions.php:281
-#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:365
-msgid "Signal strength"
-msgstr "信号强度"
-
-#: ../includes/system.php:67
-#, php-format
-msgid "Changing log limit size to %s KB"
-msgstr "将日志限制大小更改为 %s KB"
-
-#: ../includes/system.php:86
-#, php-format
-msgid "Changing alert close timeout to %s ms"
-msgstr "将警报关闭超时更改为 %s ms"
-
-#: ../includes/networking.php:51 ../includes/networking.php:54
-msgid "not configured"
-msgstr "未配置"
-
-#: ../includes/networking.php:137
-#, php-format
-msgid "Attempting to enable routing between %s and %s interfaces"
-msgstr "尝试启用 %s 和 %s 接口之间的路由选择"
-
-#: ../includes/networking.php:147
-#, php-format
-msgid "Attempting to restart routing between %s and %s interfaces"
-msgstr "尝试重启 %s 和 %s 接口之间的路由选择"
-
-#: ../includes/networking.php:151
-#, php-format
-msgid "Attempting to disable routing between %s and %s interfaces"
-msgstr "尝试禁用 %s 和 %s 接口之间的路由选择"
-
-#: ../includes/networking.php:252
-#, php-format
-msgid "DHCP configuration for %s enabled"
-msgstr "启用 %s 的 DHCP 配置"
-
-#: ../includes/networking.php:259
-#, php-format
-msgid "DHCP configuration for %s added"
-msgstr "为 %s 添加了 DHCP 配置"
-
-#: ../includes/networking.php:265
-#, php-format
-msgid "DHCP configuration for %s updated"
-msgstr "更新了 %s 的 DHCP 配置"
-
-#: ../includes/networking.php:271
-#, php-format
-msgid "No default DHCP configuration exists for the %s interface"
-msgstr "%s 接口不存在默认 DHCP 配置"
-
-#: ../includes/networking.php:272
-#, php-format
-msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
-msgstr "在 DHCP 服务器设置中为该接口配置静态 IP 和 DHCP"
-
-#: ../includes/networking.php:294
-#, php-format
-msgid "Dnsmasq  configuration for %s added"
-msgstr "为 %s 添加了 Dnsmasq 配置"
-
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
-msgid "Invalid MAC address: "
-msgstr "MAC 地址无效： "
-
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
-msgid "Duplicate IP address entered: "
-msgstr "输入了重复的 IP 地址： "
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
-msgid "Verbose debugging"
-msgstr "详细调试"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
-msgid "Debugging"
-msgstr "调试"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
-msgid "Informational"
-msgstr "信息"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
-msgid "Notification"
-msgstr "通知"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
-msgid "Warning"
-msgstr "警告"
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "客户"
 
 #: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
 #, php-format
@@ -287,6 +144,39 @@ msgstr "度量值无效，不是数字。"
 msgid "DHCP configuration for %s updated."
 msgstr "%s 的 DHCP 配置已更新。"
 
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "MAC 地址无效： "
+
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "输入了重复的 IP 地址： "
+
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
+#: ../includes/wifi_functions.php:281
+msgid "Signal strength"
+msgstr "信号强度"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "详细调试"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "调试"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "信息"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "通知"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "警告"
+
 #: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
 msgid "WPA and WPA2"
 msgstr "WPA 和 WPA2"
@@ -311,132 +201,151 @@ msgstr "已启用（适用于受支持的客户端）"
 msgid "Required (for supported clients)"
 msgstr "要求（针对受支持客户）"
 
-#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
-msgid "Dashboard"
-msgstr "仪表板"
+#: ../plugins-available/Captive/Captive.php:70
+#: ../plugins-available/Captive/Captive.php:130
+msgid "Captive portal"
+msgstr "自带门户网站"
 
-#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
-msgid "DHCP Server"
-msgstr "DHCP 服务器"
+#: ../plugins-available/Captive/Captive.php:95
+#, php-format
+msgid "Attempting to start %s"
+msgstr "尝试启动 %s"
 
-#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
-msgid "Ad Blocking"
-msgstr "广告屏蔽"
+#: ../plugins-available/Captive/Captive.php:99
+#, php-format
+msgid "Attempting to stop %s"
+msgstr "试图阻止 %s"
 
-#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/dashboard.php:24
-#: ../templates/dashboard.php:25 ../templates/networking.php:8
-msgid "Networking"
-msgstr "联网"
+#: ../plugins-available/Captive/Captive.php:106
+#, php-format
+msgid "Client %s deauthenticated"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
-msgid "WiFi client"
-msgstr "WiFi 客户端"
+#: ../plugins-available/Captive/Captive.php:108
+#, php-format
+msgid "Failed to deauthenticate client %s"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
-msgid "OpenVPN"
-msgstr "OpenVPN"
+#: ../plugins-available/Captive/Captive.php:111
+msgid "Invalid client MAC address"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
-msgid "WireGuard"
-msgstr "导线保护"
+#: ../plugins-available/Captive/Captive.php:131
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "实现 nodogsplash 的专属门户插件"
 
-#: ../src/RaspAP/UI/Sidebar.php:44
-msgid "Data usage"
-msgstr "数据使用"
+#: ../plugins-available/Captive/Captive.php:132
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Wireshark/Wireshark.php:185
+msgid "Bill Z"
+msgstr "比尔-Z"
 
-#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
-msgid "RestAPI"
-msgstr "RestAPI"
+#: ../plugins-available/Captive/Captive.php:538
+msgid "Portal settings saved successfully"
+msgstr "成功保存门户设置"
 
-#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/dashboard.php:44
-#: ../templates/dashboard.php:45 ../templates/system.php:7
-msgid "System"
-msgstr "系统"
+#: ../plugins-available/Captive/Captive.php:541
+#: ../plugins-available/Wireshark/Wireshark.php:248
+msgid "Error saving settings: "
+msgstr "保存设置出错： "
 
-#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
-msgid "About RaspAP"
-msgstr "关于 RaspAP"
+#: ../plugins-available/Captive/Captive.php:582
+msgid "Failed to execute ndsctl."
+msgstr "执行 ndsctl 失败。"
 
-#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
-msgid "No MAC Address Found"
-msgstr "未找到 MAC 地址"
+#: ../plugins-available/Captive/templates/main.php:3
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Wireshark/templates/main.php:3 ../templates/dhcp.php:3
+#: ../templates/wireguard.php:3 ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29 ../templates/hostapd.php:3
+#: ../templates/system/advanced.php:39 ../templates/system/theme.php:56
+#: ../templates/system/language.php:11 ../templates/provider.php:3
+#: ../templates/admin/general.php:2 ../templates/restapi.php:3
+#: ../templates/adblock.php:3 ../templates/openvpn.php:3
+msgid "Save settings"
+msgstr "保存设置"
 
-#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
-msgid "No IPv6 Address Found"
-msgstr "未找到 IPv6 地址"
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "停止门户"
 
-#: ../src/RaspAP/UI/Dashboard.php:232
-msgid "client"
-msgid_plural "clients"
-msgstr[0] "客户"
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "启动门户"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:594
-msgid "Installed"
-msgstr "已安装"
+#: ../plugins-available/Captive/templates/main.php:48 ../templates/admin.php:20
+#: ../templates/hostapd.php:49 ../templates/system.php:17
+msgid "Basic"
+msgstr "基本"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:598
-msgid "Details"
-msgstr "详细信息"
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "客户"
 
-#: ../app/lib/signprint.php:20
-msgid "Printable Wi-Fi sign"
-msgstr "可打印的 Wi-Fi 标志"
+#: ../plugins-available/Captive/templates/main.php:50 ../templates/dhcp.php:52
+#: ../templates/hostapd.php:51 ../templates/system.php:20
+msgid "Advanced"
+msgstr "高级"
 
-#: ../app/lib/signprint.php:37
-msgid "Wi-Fi Connect"
-msgstr "Wi-Fi 连接"
+#: ../plugins-available/Captive/templates/main.php:51
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../includes/functions.php:1001 ../templates/wifi_stations/network.php:33
+#: ../templates/provider.php:36 ../templates/restapi.php:47
+msgid "Status"
+msgstr "现状"
 
-#: ../app/lib/signprint.php:54
-msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
-msgstr "要使用手机或平板电脑连接，请使用相机应用程序扫描上面的二维码。"
+#: ../plugins-available/Captive/templates/main.php:52
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+msgid "Active clients"
+msgstr ""
 
-#: ../app/lib/signprint.php:55
-msgid "For other devices, use the login credentials below."
-msgstr "对于其他设备，请使用下面的登录凭证。"
-
-#: ../app/lib/signprint.php:65
-msgid "Network"
-msgstr "网络"
-
-#: ../app/lib/signprint.php:67 ../templates/login.php:25
-#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
-#: ../templates/admin/login.php:21
-msgid "Password"
-msgstr "密码"
-
-#: ../plugins-available/Captive/templates/tabs/about.php:3
 #: ../plugins-available/Captive/templates/main.php:53
-#: ../plugins-available/Wireshark/templates/tabs/about.php:3
-#: ../plugins-available/Wireshark/templates/main.php:47
-#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/tabs/about.php:3
 #: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
 #: ../templates/about.php:21
 msgid "About"
 msgstr "关于"
 
-#: ../plugins-available/Captive/templates/tabs/about.php:5
-#: ../plugins-available/Wireshark/templates/tabs/about.php:5
-#: ../plugins-available/Tailscale/templates/tabs/about.php:5
-msgid "was created by"
-msgstr "是由"
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "信息由 nodogsplash 提供"
 
-#: ../plugins-available/Captive/templates/tabs/about.php:8
-#: ../plugins-available/Wireshark/templates/tabs/about.php:8
-#: ../plugins-available/Tailscale/templates/tabs/about.php:8
-msgid "Plugin description"
-msgstr "插件说明"
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "停止门户服务"
 
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
-#: ../plugins-available/Captive/templates/main.php:52
-msgid "Active clients"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "启动门户网站服务"
+
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "更改门户服务会暂时中断客户端流量。选择<strong>继续</strong>。"
+
+#: ../plugins-available/Captive/templates/main.php:99
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../templates/admin.php:90 ../templates/admin.php:119
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:109 ../templates/system.php:253
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+msgid "Cancel"
+msgstr "取消"
+
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "继续"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:6
 #: ../plugins-available/Tailscale/Tailscale.php:403
 #: ../plugins-available/Tailscale/templates/main.php:4
-#: ../templates/dashboard.php:12 ../templates/dhcp/summary.php:9
 #: ../templates/networking/devices.php:4 ../templates/networking/general.php:4
-#: ../templates/system/basic.php:63
+#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
+#: ../templates/dhcp/summary.php:9
 msgid "Refresh"
 msgstr "刷新"
 
@@ -482,117 +391,9 @@ msgstr ""
 msgid "No active clients connected."
 msgstr ""
 
-#: ../plugins-available/Captive/templates/tabs/advanced.php:5
-#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
-msgid "Advanced settings"
-msgstr "高级设置"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:9
-msgid "Gateway IP range"
-msgstr "网关 IP 范围"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:11
-msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
-msgstr "以 CIDR 符号表示的要管理的 IP 范围。所有地址留空"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:15
-msgid "Default: 0.0.0.0/0 (all addresses)"
-msgstr "默认：0.0.0.0/0（所有地址）"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:21
-msgid "Debug level"
-msgstr "调试级别"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:23
-msgid "Amount of logging detail reported by the nodogsplash.service"
-msgstr "nodogsplash.service 报告的日志详情数量"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:26
-msgid "0 - Errors only"
-msgstr "0 - 只有错误"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:29
-msgid "1 - Errors, warnings, infos"
-msgstr "1 - 错误、警告和信息"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:32
-msgid "2 - Errors, warnings, infos, verbose"
-msgstr "2 - 错误、警告、信息、详细说明"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:35
-msgid "3 - Errors, warnings, infos, verbose, debug"
-msgstr "3 - 错误、警告、信息、详细说明、调试"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:41
-msgid "Firewall settings"
-msgstr "防火墙设置"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:49
-msgid "Allow all traffic for authenticated users"
-msgstr "允许已验证用户的所有流量"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:52
-msgid "When enabled, authenticated users have unrestricted access"
-msgstr "启用后，通过身份验证的用户可以不受限制地访问"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:63
-msgid "Allow DNS for pre-authenticated users"
-msgstr "允许预认证用户使用 DNS"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:66
-msgid "Required for clients to resolve domain names before authentication"
-msgstr "客户端需要在验证前解析域名"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:5
-#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
-#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
-#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
-msgid "Basic settings"
-msgstr "基本设置"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:9
-msgid "Gateway interface"
-msgstr "网关接口"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:10
-msgid "Interface to be managed by the portal"
-msgstr "由门户网站管理的界面"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:12
-msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
-msgstr "默认为活动 AP 接口，通常为<code>wlan0</code>"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:16
-msgid "Gateway name"
-msgstr "网关名称"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:18
-msgid "Name of your gateway (available as $gatewayname variable)"
-msgstr "网关名称（可作为 $gatewayname 变量使用）"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:27
-msgid "Gateway address"
-msgstr "网关地址"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:29
-msgid "IP address of the router. Leave empty for auto-detection"
-msgstr "路由器的 IP 地址。留空表示自动检测"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:33
-msgid "Auto-detected from gateway interface if not specified"
-msgstr "如果未指定，则从网关接口自动检测"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:37
-msgid "Gateway port"
-msgstr "网关端口"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:39
-msgid "Port for Nodogsplash HTTP server"
-msgstr "Nodogsplash HTTP 服务器的端口"
-
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
-#: ../templates/configure_client.php:21 ../templates/openvpn.php:46
-#: ../templates/openvpn/general.php:2
+#: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
+#: ../templates/openvpn.php:46
 msgid "Client settings"
 msgstr "客户端设置"
 
@@ -693,6 +494,114 @@ msgstr "逗号分隔的 MAC 地址可完全绕过验证"
 msgid "These devices are not subject to authentication or firewall rules"
 msgstr "这些设备不受身份验证或防火墙规则的限制"
 
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+#: ../templates/system/advanced.php:3 ../templates/hostapd/advanced.php:2
+msgid "Advanced settings"
+msgstr "高级设置"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "网关 IP 范围"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "以 CIDR 符号表示的要管理的 IP 范围。所有地址留空"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "默认：0.0.0.0/0（所有地址）"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "调试级别"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "nodogsplash.service 报告的日志详情数量"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - 只有错误"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - 错误、警告和信息"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - 错误、警告、信息、详细说明"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - 错误、警告、信息、详细说明、调试"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "防火墙设置"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "允许已验证用户的所有流量"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "启用后，通过身份验证的用户可以不受限制地访问"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "允许预认证用户使用 DNS"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "客户端需要在验证前解析域名"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+msgid "Basic settings"
+msgstr "基本设置"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "网关接口"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "由门户网站管理的界面"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "默认为活动 AP 接口，通常为<code>wlan0</code>"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "网关名称"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "网关名称（可作为 $gatewayname 变量使用）"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "网关地址"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "路由器的 IP 地址。留空表示自动检测"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "如果未指定，则从网关接口自动检测"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "网关端口"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Nodogsplash HTTP 服务器的端口"
+
 #: ../plugins-available/Captive/templates/tabs/status.php:3
 msgid "Portal status"
 msgstr "门户状态"
@@ -701,123 +610,400 @@ msgstr "门户状态"
 msgid "Current <code>nodogsplash</code> status is displayed below."
 msgstr "当前的<code>nodogsplash</code>状态显示如下。"
 
-#: ../plugins-available/Captive/templates/main.php:3
-#: ../plugins-available/Wireshark/templates/main.php:3
-#: ../plugins-available/Tailscale/templates/main.php:16
-#: ../templates/restapi.php:3 ../templates/adblock.php:3
-#: ../templates/openvpn.php:3 ../templates/provider.php:3
-#: ../templates/networking/wlanrouting.php:3
-#: ../templates/networking/mobile.php:29 ../templates/wireguard.php:3
-#: ../templates/dhcp.php:3 ../templates/system/theme.php:56
-#: ../templates/system/advanced.php:39 ../templates/system/language.php:11
-#: ../templates/hostapd.php:3 ../templates/admin/general.php:2
-msgid "Save settings"
-msgstr "保存设置"
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "是由"
 
-#: ../plugins-available/Captive/templates/main.php:22
-msgid "Stop portal"
-msgstr "停止门户"
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "插件说明"
 
-#: ../plugins-available/Captive/templates/main.php:26
-msgid "Start portal"
-msgstr "启动门户"
+#: ../plugins-available/Tailscale/Tailscale.php:52
+msgid "Tailscale VPN"
+msgstr "Tailscale VPN"
 
-#: ../plugins-available/Captive/templates/main.php:48 ../templates/admin.php:20
-#: ../templates/system.php:17 ../templates/hostapd.php:49
-msgid "Basic"
-msgstr "基本"
-
-#: ../plugins-available/Captive/templates/main.php:49
-msgid "Clients"
-msgstr "客户"
-
-#: ../plugins-available/Captive/templates/main.php:50 ../templates/dhcp.php:52
-#: ../templates/system.php:20 ../templates/hostapd.php:51
-msgid "Advanced"
-msgstr "高级"
-
-#: ../plugins-available/Captive/templates/main.php:79
-msgid "Information provided by nodogsplash"
-msgstr "信息由 nodogsplash 提供"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Stop portal service"
-msgstr "停止门户服务"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Start portal service"
-msgstr "启动门户网站服务"
-
-#: ../plugins-available/Captive/templates/main.php:95
-msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
-msgstr "更改门户服务会暂时中断客户端流量。选择<strong>继续</strong>。"
-
-#: ../plugins-available/Captive/templates/main.php:99
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
-#: ../templates/about.php:56 ../templates/about.php:104
-#: ../templates/admin.php:90 ../templates/admin.php:119
-#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
-#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
-#: ../templates/system.php:56 ../templates/system.php:74
-#: ../templates/system.php:109 ../templates/system.php:253
-msgid "Cancel"
-msgstr "取消"
-
-#: ../plugins-available/Captive/templates/main.php:100
-msgid "Proceed"
-msgstr "继续"
-
-#: ../plugins-available/Captive/Captive.php:70
-#: ../plugins-available/Captive/Captive.php:130
-msgid "Captive portal"
-msgstr "自带门户网站"
-
-#: ../plugins-available/Captive/Captive.php:95
+#: ../plugins-available/Tailscale/Tailscale.php:237
 #, php-format
-msgid "Attempting to start %s"
-msgstr "尝试启动 %s"
+msgid "Expected tailscale binary not found at: %s"
+msgstr "未在以下位置找到预期的尾标二进制： %s"
 
-#: ../plugins-available/Captive/Captive.php:99
+#: ../plugins-available/Tailscale/Tailscale.php:238
 #, php-format
-msgid "Attempting to stop %s"
-msgstr "试图阻止 %s"
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
+msgstr "访问<a href=\"%s\" target=\"_blank\">安装说明</a>或重新安装 Tailscale 插件。"
 
-#: ../plugins-available/Captive/Captive.php:106
+#: ../plugins-available/Tailscale/Tailscale.php:251
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "RaspAP 的 Tailscale VPN 出口节点扩展"
+
+#: ../plugins-available/Tailscale/Tailscale.php:400
+#: ../plugins-available/Tailscale/templates/main.php:44
+msgid "Start Tailscale"
+msgstr "启动尾标"
+
+#: ../plugins-available/Tailscale/Tailscale.php:406
 #, php-format
-msgid "Client %s deauthenticated"
-msgstr ""
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "无法检索 Tailscale 登录。选择 <strong>%s</strong>继续。"
 
-#: ../plugins-available/Captive/Captive.php:108
+#: ../plugins-available/Tailscale/Tailscale.php:786
+msgid "Not connected: Login required."
+msgstr "未连接：需要登录。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
+msgid "Exit node activated"
+msgstr "出口节点已激活"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
 #, php-format
-msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "设备 <code>%s</code>与地址 <code>%s</code>并提供一个<strong>出口节点</strong>。"
 
-#: ../plugins-available/Captive/Captive.php:111
-msgid "Invalid client MAC address"
-msgstr ""
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#, php-format
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "请参阅 %s 了解如何在设备上使用该出口节点。"
 
-#: ../plugins-available/Captive/Captive.php:131
-msgid "A captive portal plugin that implements nodogsplash"
-msgstr "实现 nodogsplash 的专属门户插件"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "配置新的出口节点"
 
-#: ../plugins-available/Captive/Captive.php:132
-#: ../plugins-available/Wireshark/Wireshark.php:185
-#: ../plugins-available/Tailscale/Tailscale.php:252
-msgid "Bill Z"
-msgstr "比尔-Z"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "出于安全考虑，您必须选择启用退出节点功能。第一步是将 <code>%s</code>作为尾网的出口节点。下一步，您将允许该设备成为出口节点。"
 
-#: ../plugins-available/Captive/Captive.php:538
-msgid "Portal settings saved successfully"
-msgstr "成功保存门户设置"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "广告 <code>%s</code>作为出口节点"
 
-#: ../plugins-available/Captive/Captive.php:541
-#: ../plugins-available/Wireshark/Wireshark.php:248
-msgid "Error saving settings: "
-msgstr "保存设置出错： "
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "这可有效地将 Tailscale 配置为 VPN，以掩盖您的真实位置、访问受地区限制的内容，或在从不受信任的网络连接时提高隐私性。"
 
-#: ../plugins-available/Captive/Captive.php:582
-msgid "Failed to execute ndsctl."
-msgstr "执行 ndsctl 失败。"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "该选项可让 Tailscale 知道您的设备已准备好路由流量。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "启用优化的 UDP 吞吐量"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "建议使用 Linux 6.2 或更高版本内核的 Tailscale 退出节点使用 UDP 通用接收卸载 (GRO) 转发，以减少 CPU 开销。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "该选项启用传输层卸载，以提高性能。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "选择 \"<strong>下一步</strong>\"继续。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "使用出口节点"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "设备 <code>%s</code>配置为使用出口节点 <code>%s</code>.它拥有 Tailscale MagicDNS 地址 <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "配置设备"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "设备 <code>%s</code>连接到您的尾网，地址为 <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "默认情况下，Tailscale 只路由安装了它的设备之间的流量。你也可以通过将网络上的设备配置为<strong>出口节点</strong>，路由所有公共互联网流量"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "当您通过出口节点路由所有流量时，您实际上是在使用默认路由（0.0.0.0/0、::/0），类似于使用典型的 VPN。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "您可以选择将该设备配置为出口节点，或使用尾网中的另一个出口节点。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "选择尾网上的现有出口节点"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "如果您将此设备用作 VPN 旅行路由器，这是一种典型的配置。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "将此设备配置为新的出口节点"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "将此设备配置为出口节点后，尾网中连接的设备的公共互联网流量将通过它路由。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "登录 Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "要将设备 %s 连接到尾网，请选择 %s。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "打开 Tailscale 登录"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "登录后，选择 \"<strong>下一步</strong>\"继续。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "允许退出节点"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "该设备 <code>%s</code>正等待批准作为退出节点。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "开放式尾规模机器"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "在机器列表中找到 <code>%s</code><strong>退出节点</strong>徽章。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "从退出节点的 %s 图标菜单中，打开 %s 面板。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "编辑路线设置"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "启用 \"<strong>用作退出节点</strong>\"选项。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "完成这些步骤后，选择 \"<strong>下一步</strong>\"。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
+msgid "Select an exit node"
+msgstr "选择出口节点"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#, php-format
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "要将 <code>%s</code>作为 VPN 网关，请将 Tailscale 配置为使用出口节点。Tailscale 建议的节点用星号表示。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#, php-format
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "为活动的 <code>%s</code>接入点接口"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "子网路由可让你扩展 Tailscale 网络（称为尾网），以包括不运行或不能运行 Tailscale 客户端的设备。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "子网路由是尾网与物理子网之间的网关。活动 AP 接口的子网预配置如下，如有必要可进行编辑。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
+msgid "Route LAN traffic through the exit node."
+msgstr "通过出口节点路由局域网流量。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "这将引导所有局域网流量只通过你的出口节点。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
+msgid "Use Tailscale DNS settings (default)."
+msgstr "使用 Tailscale DNS 设置（默认）。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "取消选中以使用本地 DNS。这会设置<code>--accept-dns=false</code>。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "不使用 Tailscale 子网（Linux 默认设置）。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "如果尾网存在子网路由，则可以将设备流量路由到子网路由器。启用此功能可设置<code>--accept-routes=true</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "如果设备的密钥过期，与给定端点之间的连接将停止工作。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "该选项使用<code>--force-reauth</code>来更新该设备的密钥。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#, php-format
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "选择 \"<strong>下一步 \"</strong>配置 <code>%s</code>使用所选出口节点的这些选项。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "尾网上未找到出口节点。选择 \"<strong>返回 \"</strong>继续。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
+msgid "Approve subnet route"
+msgstr "批准子网路由"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#, php-format
+msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
+msgstr "设备 <code>%s</code>正在广告子网路由。出于安全考虑，您必须选择启用。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
+msgstr "在机器列表中找到 <code>%s</code><strong>子网</strong>徽章。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#, php-format
+msgid "From the %s icon menu of the device, open the %s panel."
+msgstr "从设备的 %s 图标菜单，打开 %s 面板。"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
+msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
+msgstr "选中与要公告的子网路由相对应的 IP 范围框，然后选择<strong>保存</strong>。"
+
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "返回"
+
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "下一页"
+
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "撤销出口节点"
+
+#: ../plugins-available/Tailscale/templates/main.php:22
+#: ../templates/admin/general.php:4
+msgid "Logout"
+msgstr "注销"
+
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "停止使用退出节点"
+
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "停止尾标"
+
+#: ../plugins-available/Tailscale/templates/main.php:70
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../templates/wireguard.php:46 ../templates/provider.php:35
+#: ../templates/restapi.php:46
+msgid "Settings"
+msgstr "设置"
+
+#: ../plugins-available/Tailscale/templates/main.php:89
+#: ../plugins-available/Wireshark/templates/main.php:69
+msgid "Information provided by "
+msgstr "资料提供者 "
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "尾网状态"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "当前<code>尾网</code>状态显示如下。"
+
+#: ../plugins-available/Wireshark/templates/main.php:20
+msgid "Start capture"
+msgstr "开始捕捉"
+
+#: ../plugins-available/Wireshark/templates/main.php:24
+msgid "Stop capture"
+msgstr "停止捕捉"
+
+#: ../plugins-available/Wireshark/templates/main.php:46
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
+msgid "Capture files"
+msgstr "捕获文件"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "<code>tshark</code>生成的捕获文件显示如下。"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "在 /tmp 目录中未发现捕获文件"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "文件名"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "尺寸"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "改装"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "行动"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "下载文件"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "删除文件"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
+#, php-format
+msgid "Total: %d file(s), %s"
+msgstr "共计： %d 文件， %s"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "确认删除"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "您确定要删除此文件吗？"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
+#: ../templates/openvpn.php:82
+msgid "Delete"
+msgstr "删除"
 
 #: ../plugins-available/Wireshark/templates/tabs/basic.php:8
 msgid "Capture interface"
@@ -944,82 +1130,6 @@ msgstr "SSH"
 msgid "Exclude SSH"
 msgstr "排除 SSH"
 
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
-#: ../plugins-available/Wireshark/templates/main.php:46
-msgid "Capture files"
-msgstr "捕获文件"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
-msgid "Capture files generated by <code>tshark</code> are displayed below."
-msgstr "<code>tshark</code>生成的捕获文件显示如下。"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
-msgid "No capture files found in /tmp directory"
-msgstr "在 /tmp 目录中未发现捕获文件"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
-msgid "Filename"
-msgstr "文件名"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
-msgid "Size"
-msgstr "尺寸"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
-msgid "Modified"
-msgstr "改装"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
-msgid "Actions"
-msgstr "行动"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
-msgid "Download file"
-msgstr "下载文件"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
-msgid "Delete file"
-msgstr "删除文件"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
-#, php-format
-msgid "Total: %d file(s), %s"
-msgstr "共计： %d 文件， %s"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
-msgid "Confirm deletion"
-msgstr "确认删除"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
-msgid "Are you sure you want to delete this file?"
-msgstr "您确定要删除此文件吗？"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
-#: ../templates/openvpn.php:82 ../templates/wifi_stations/network.php:100
-#: ../templates/wireguard.php:84
-msgid "Delete"
-msgstr "删除"
-
-#: ../plugins-available/Wireshark/templates/main.php:20
-msgid "Start capture"
-msgstr "开始捕捉"
-
-#: ../plugins-available/Wireshark/templates/main.php:24
-msgid "Stop capture"
-msgstr "停止捕捉"
-
-#: ../plugins-available/Wireshark/templates/main.php:45
-#: ../plugins-available/Tailscale/templates/main.php:70
-#: ../templates/restapi.php:46 ../templates/provider.php:35
-#: ../templates/wireguard.php:46
-msgid "Settings"
-msgstr "设置"
-
-#: ../plugins-available/Wireshark/templates/main.php:69
-#: ../plugins-available/Tailscale/templates/main.php:89
-msgid "Information provided by "
-msgstr "资料提供者 "
-
 #: ../plugins-available/Wireshark/Wireshark.php:48
 msgid "Wireshark"
 msgstr "Wireshark"
@@ -1071,534 +1181,154 @@ msgstr "文件 \"%s\" 已成功删除"
 msgid "Failed to delete file \"%s\""
 msgstr "删除文件 \"%s \" 失败"
 
-#: ../plugins-available/Tailscale/Tailscale.php:52
-msgid "Tailscale VPN"
-msgstr "Tailscale VPN"
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
+msgstr "未配置"
 
-#: ../plugins-available/Tailscale/Tailscale.php:237
+#: ../includes/networking.php:137
 #, php-format
-msgid "Expected tailscale binary not found at: %s"
-msgstr "未在以下位置找到预期的尾标二进制： %s"
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "尝试启用 %s 和 %s 接口之间的路由选择"
 
-#: ../plugins-available/Tailscale/Tailscale.php:238
+#: ../includes/networking.php:147
 #, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
-msgstr "访问<a href=\"%s\" target=\"_blank\">安装说明</a>或重新安装 Tailscale 插件。"
+msgid "Attempting to restart routing between %s and %s interfaces"
+msgstr "尝试重启 %s 和 %s 接口之间的路由选择"
 
-#: ../plugins-available/Tailscale/Tailscale.php:251
-msgid "A Tailscale VPN exit node extension for RaspAP"
-msgstr "RaspAP 的 Tailscale VPN 出口节点扩展"
-
-#: ../plugins-available/Tailscale/Tailscale.php:400
-#: ../plugins-available/Tailscale/templates/main.php:44
-msgid "Start Tailscale"
-msgstr "启动尾标"
-
-#: ../plugins-available/Tailscale/Tailscale.php:406
+#: ../includes/networking.php:151
 #, php-format
-msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
-msgstr "无法检索 Tailscale 登录。选择 <strong>%s</strong>继续。"
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "尝试禁用 %s 和 %s 接口之间的路由选择"
 
-#: ../plugins-available/Tailscale/Tailscale.php:786
-msgid "Not connected: Login required."
-msgstr "未连接：需要登录。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
-msgid "Using exit node"
-msgstr "使用出口节点"
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#: ../includes/networking.php:252
 #, php-format
-msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
-msgstr "设备 <code>%s</code>配置为使用出口节点 <code>%s</code>.它拥有 Tailscale MagicDNS 地址 <code>%s</code>."
+msgid "DHCP configuration for %s enabled"
+msgstr "启用 %s 的 DHCP 配置"
 
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
-msgid "Configure new exit node"
-msgstr "配置新的出口节点"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#: ../includes/networking.php:259
 #, php-format
-msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
-msgstr "出于安全考虑，您必须选择启用退出节点功能。第一步是将 <code>%s</code>作为尾网的出口节点。下一步，您将允许该设备成为出口节点。"
+msgid "DHCP configuration for %s added"
+msgstr "为 %s 添加了 DHCP 配置"
 
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#: ../includes/networking.php:265
 #, php-format
-msgid "Advertise <code>%s</code> as an exit node"
-msgstr "广告 <code>%s</code>作为出口节点"
+msgid "DHCP configuration for %s updated"
+msgstr "更新了 %s 的 DHCP 配置"
 
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
-msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
-msgstr "这可有效地将 Tailscale 配置为 VPN，以掩盖您的真实位置、访问受地区限制的内容，或在从不受信任的网络连接时提高隐私性。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
-msgid "This option lets Tailscale know your device is ready to route traffic."
-msgstr "该选项可让 Tailscale 知道您的设备已准备好路由流量。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
-msgid "Enable optimized UDP throughput"
-msgstr "启用优化的 UDP 吞吐量"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
-msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
-msgstr "建议使用 Linux 6.2 或更高版本内核的 Tailscale 退出节点使用 UDP 通用接收卸载 (GRO) 转发，以减少 CPU 开销。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
-msgid "This option enables transport layer offloads for better performance."
-msgstr "该选项启用传输层卸载，以提高性能。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
-msgid "Choose <strong>Next</strong> to continue."
-msgstr "选择 \"<strong>下一步</strong>\"继续。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
-msgid "Exit node activated"
-msgstr "出口节点已激活"
-
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
+#: ../includes/networking.php:271
 #, php-format
-msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
-msgstr "设备 <code>%s</code>与地址 <code>%s</code>并提供一个<strong>出口节点</strong>。"
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "%s 接口不存在默认 DHCP 配置"
 
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#: ../includes/networking.php:272
 #, php-format
-msgid "See the %s on how to use this exit node with your devices."
-msgstr "请参阅 %s 了解如何在设备上使用该出口节点。"
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "在 DHCP 服务器设置中为该接口配置静态 IP 和 DHCP"
 
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
-msgid "Login to Tailscale"
-msgstr "登录 Tailscale"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../includes/networking.php:294
 #, php-format
-msgid "To connect device %s to your tailnet, choose %s."
-msgstr "要将设备 %s 连接到尾网，请选择 %s。"
+msgid "Dnsmasq  configuration for %s added"
+msgstr "为 %s 添加了 Dnsmasq 配置"
 
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
-msgid "Open Tailscale Login"
-msgstr "打开 Tailscale 登录"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
-msgid "After logging in, choose <strong>Next</strong> to continue."
-msgstr "登录后，选择 \"<strong>下一步</strong>\"继续。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
-msgid "Configure device"
-msgstr "配置设备"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#: ../includes/footer.php:6
 #, php-format
-msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
-msgstr "设备 <code>%s</code>连接到您的尾网，地址为 <code>%s</code>."
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "由 <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
-msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
-msgstr "默认情况下，Tailscale 只路由安装了它的设备之间的流量。你也可以通过将网络上的设备配置为<strong>出口节点</strong>，路由所有公共互联网流量"
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
+msgstr "RaspAP 团队"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
-msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
-msgstr "当您通过出口节点路由所有流量时，您实际上是在使用默认路由（0.0.0.0/0、::/0），类似于使用典型的 VPN。"
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
+msgstr "感谢您的加入"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
-msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
-msgstr "您可以选择将该设备配置为出口节点，或使用尾网中的另一个出口节点。"
+#: ../includes/footer.php:17
+msgid "Session Expired"
+msgstr "会期已过"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
-msgid "Select an existing exit node on your tailnet"
-msgstr "选择尾网上的现有出口节点"
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
+msgstr "您的会话已过期。请登录以继续。"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
-msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
-msgstr "如果您将此设备用作 VPN 旅行路由器，这是一种典型的配置。"
+#: ../includes/footer.php:23 ../templates/admin.php:18
+#: ../templates/login.php:30
+msgid "Login"
+msgstr "登录"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
-msgid "Configure this device as a new exit node"
-msgstr "将此设备配置为新的出口节点"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
-msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
-msgstr "将此设备配置为出口节点后，尾网中连接的设备的公共互联网流量将通过它路由。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
-msgid "Select an exit node"
-msgstr "选择出口节点"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#: ../includes/provider.php:65
 #, php-format
-msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
-msgstr "要将 <code>%s</code>作为 VPN 网关，请将 Tailscale 配置为使用出口节点。Tailscale 建议的节点用星号表示。"
+msgid "Expected %s binary not found at: %s"
+msgstr "未在 %s 找到预期的二进制文件： %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#: ../includes/provider.php:66
 #, php-format
-msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
-msgstr "为活动的 <code>%s</code>接入点接口"
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "请访问 %s的 Linux CLI<a href=\"%s\" target=\"_blank\">安装说明</a>。"
 
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
-msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
-msgstr "子网路由可让你扩展 Tailscale 网络（称为尾网），以包括不运行或不能运行 Tailscale 客户端的设备。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
-msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
-msgstr "子网路由是尾网与物理子网之间的网关。活动 AP 接口的子网预配置如下，如有必要可进行编辑。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
-msgid "Route LAN traffic through the exit node."
-msgstr "通过出口节点路由局域网流量。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
-msgid "This will direct all LAN traffic to go through your exit node only."
-msgstr "这将引导所有局域网流量只通过你的出口节点。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
-msgid "Use Tailscale DNS settings (default)."
-msgstr "使用 Tailscale DNS 设置（默认）。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
-msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
-msgstr "取消选中以使用本地 DNS。这会设置<code>--accept-dns=false</code>。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
-msgid "Do not use Tailscale subnets (default on Linux)."
-msgstr "不使用 Tailscale 子网（Linux 默认设置）。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
-msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
-msgstr "如果尾网存在子网路由，则可以将设备流量路由到子网路由器。启用此功能可设置<code>--accept-routes=true</code>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
-msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
-msgstr "如果设备的密钥过期，与给定端点之间的连接将停止工作。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
-msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
-msgstr "该选项使用<code>--force-reauth</code>来更新该设备的密钥。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#: ../includes/provider.php:70
 #, php-format
-msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
-msgstr "选择 \"<strong>下一步 \"</strong>配置 <code>%s</code>使用所选出口节点的这些选项。"
+msgid "Unable to execute %s binary found at: %s"
+msgstr "无法执行在 %s 找到的二进制文件： %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
-msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
-msgstr "尾网上未找到出口节点。选择 \"<strong>返回 \"</strong>继续。"
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "检查二进制文件是否可执行，以及 raspap.sudoers 中是否存在权限"
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
-msgid "Allow exit node"
-msgstr "允许退出节点"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#: ../includes/provider.php:119
 #, php-format
-msgid "The device <code>%s</code> is pending approval as an exit node."
-msgstr "该设备 <code>%s</code>正等待批准作为退出节点。"
+msgid "Attempting to connect to %s"
+msgstr "尝试连接 %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
-msgid "Open Tailscale Machines"
-msgstr "开放式尾规模机器"
+#: ../includes/provider.php:318
+msgid "Select a country..."
+msgstr "选择国家..."
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#: ../includes/provider.php:387
 #, php-format
-msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
-msgstr "在机器列表中找到 <code>%s</code><strong>退出节点</strong>徽章。"
+msgid "Account information not available from %s's Linux CLI."
+msgstr "%s的 Linux CLI 无法提供账户信息。"
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../includes/functions.php:1006
+msgid "Mem Use"
+msgstr "内存使用"
+
+#: ../includes/functions.php:1009
+msgid "CPU"
+msgstr "CPU"
+
+#: ../includes/restapi.php:59
 #, php-format
-msgid "From the %s icon menu of the exit node, open the %s panel."
-msgstr "从退出节点的 %s 图标菜单中，打开 %s 面板。"
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
+msgstr "可<a href=\"%s\" target=\"_blank\">在此处 </a>访问 RestAPI 文档<a href=\" %s \" target=\"_blank\"> %s</a>"
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
-msgid "Edit route settings"
-msgstr "编辑路线设置"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
-msgid "Enable the <strong>Use as exit node</strong> option."
-msgstr "启用 \"<strong>用作退出节点</strong>\"选项。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
-msgid "Choose <strong>Next</strong> when you've completed these steps."
-msgstr "完成这些步骤后，选择 \"<strong>下一步</strong>\"。"
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
-msgid "Approve subnet route"
-msgstr "批准子网路由"
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#: ../includes/system.php:67
 #, php-format
-msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
-msgstr "设备 <code>%s</code>正在广告子网路由。出于安全考虑，您必须选择启用。"
+msgid "Changing log limit size to %s KB"
+msgstr "将日志限制大小更改为 %s KB"
 
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#: ../includes/system.php:86
 #, php-format
-msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
-msgstr "在机器列表中找到 <code>%s</code><strong>子网</strong>徽章。"
+msgid "Changing alert close timeout to %s ms"
+msgstr "将警报关闭超时更改为 %s ms"
 
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
+msgstr "在线路上发现无效的自定义 IP 地址 "
+
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
+msgstr "在行中发现无效的自定义主机 "
+
+#: ../includes/dashboard.php:72
 #, php-format
-msgid "From the %s icon menu of the device, open the %s panel."
-msgstr "从设备的 %s 图标菜单，打开 %s 面板。"
+msgid "%d WLAN %s"
+msgstr "%d 无线局域网 %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
-msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
-msgstr "选中与要公告的子网路由相对应的 IP 范围框，然后选择<strong>保存</strong>。"
-
-#: ../plugins-available/Tailscale/templates/tabs/status.php:3
-msgid "Tailnet status"
-msgstr "尾网状态"
-
-#: ../plugins-available/Tailscale/templates/tabs/status.php:4
-msgid "Current <code>tailnet</code> status is displayed below."
-msgstr "当前<code>尾网</code>状态显示如下。"
-
-#: ../plugins-available/Tailscale/templates/main.php:7
-msgid "Back"
-msgstr "返回"
-
-#: ../plugins-available/Tailscale/templates/main.php:10
-#: ../plugins-available/Tailscale/templates/main.php:13
-msgid "Next"
-msgstr "下一页"
-
-#: ../plugins-available/Tailscale/templates/main.php:19
-msgid "Revoke Exit Node"
-msgstr "撤销出口节点"
-
-#: ../plugins-available/Tailscale/templates/main.php:22
-#: ../templates/admin/general.php:4
-msgid "Logout"
-msgstr "注销"
-
-#: ../plugins-available/Tailscale/templates/main.php:25
-msgid "Stop Using Exit Node"
-msgstr "停止使用退出节点"
-
-#: ../plugins-available/Tailscale/templates/main.php:48
-msgid "Stop Tailscale"
-msgstr "停止尾标"
-
-#: ../templates/dashboard.php:24
-msgid "Ethernet"
-msgstr "以太网"
-
-#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
-msgid "WiFi Client"
-msgstr ""
-
-#: ../templates/dashboard.php:28
-msgid "Repeater"
-msgstr "中继器"
-
-#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
-msgid "Tethering"
-msgstr "系留"
-
-#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
-msgid "Cellular"
-msgstr "细胞"
-
-#: ../templates/dashboard.php:48
-msgid "Public"
-msgstr ""
-
-#: ../templates/dashboard.php:49
-msgid "Local"
-msgstr ""
-
-#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
-#: ../templates/dhcp/settings.php:39 ../templates/dhcp/clients.php:20
-#: ../templates/dhcp/general.php:39 ../templates/networking/general.php:13
-#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
-msgid "IP Address"
-msgstr "IP 地址"
-
-#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
-msgid "Netmask"
-msgstr "网络掩码"
-
-#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
-#: ../templates/dhcp/clients.php:19
-msgid "MAC Address"
-msgstr "MAC 地址"
-
-#: ../templates/dashboard.php:57 ../templates/dashboard.php:63
-#: ../templates/hostapd/basic.php:11
-msgid "SSID"
-msgstr "SSID"
-
-#: ../templates/dashboard.php:75
-msgid "AP"
-msgstr "美联社"
-
-#: ../templates/dashboard.php:83
-msgid "Bridged"
-msgstr "桥接"
-
-#: ../templates/dashboard.php:91
-msgid "Adblock"
-msgstr "广告屏蔽"
-
-#: ../templates/dashboard.php:99
-msgid "VPN"
-msgstr "虚拟专用网"
-
-#: ../templates/dashboard.php:108
-msgid "Firewall"
-msgstr "防火墙"
-
-#: ../templates/dashboard.php:114
-msgid "5G"
-msgstr "5G"
-
-#: ../templates/dashboard.php:115
-msgid "2.4G"
-msgstr "2.4G"
-
-#: ../templates/dashboard.php:164 ../templates/system.php:40
-msgid "Information provided by raspap.sysinfo"
-msgstr "由 raspap.sysinfo 提供的信息"
-
-#: ../templates/about/general.php:8
-msgid "RaspAP"
-msgstr "RaspAP"
-
-#: ../templates/about/general.php:11 ../templates/about.php:47
-msgid "Check for update"
-msgstr "检查更新"
-
-#: ../templates/about/general.php:20
+#: ../includes/dashboard.php:78
 #, php-format
-msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
-msgstr "RaspAP 由 %1$s 和 %2$s 共同创建，并得到了 %3$s 和 %4$s的贡献。欲了解更多有关加入该项目的信息，请访问 %5$s、 %6$s 或 %7$s ，可立即访问 %8$s ， %9$s。"
-
-#: ../templates/about/general.php:23
-msgid "developer community"
-msgstr "开发者社区"
-
-#: ../templates/about/general.php:24
-msgid "language translators"
-msgstr "语言翻译"
-
-#: ../templates/about/general.php:25
-msgid "code contributor"
-msgstr "代码贡献者"
-
-#: ../templates/about/general.php:26
-msgid "translator"
-msgstr "译员"
-
-#: ../templates/about/general.php:27
-msgid "financial sponsor"
-msgstr "财政赞助商"
-
-#: ../templates/about/general.php:28
-msgid "exclusive features"
-msgstr "独家功能"
-
-#: ../templates/about/general.php:29 ../templates/about.php:22
-msgid "Insiders"
-msgstr "内部人士"
-
-#: ../templates/about.php:23
-msgid "Contributing"
-msgstr "捐款"
-
-#: ../templates/about.php:50
-msgid "New release check in progress..."
-msgstr "新版本检查中..."
-
-#: ../templates/about.php:53
-msgid "A new release is available: Version"
-msgstr "新版本已发布：版本"
-
-#: ../templates/about.php:54
-msgid "Installed version is the latest release."
-msgstr "安装版本为最新版本。"
-
-#: ../templates/about.php:55
-msgid "Install this update now?"
-msgstr "现在就安装更新？"
-
-#: ../templates/about.php:56 ../templates/about.php:57
-#: ../templates/about.php:132 ../templates/system.php:271
-msgid "OK"
-msgstr "好的"
-
-#: ../templates/about.php:69
-msgid "GitHub authentication"
-msgstr "GitHub 认证"
-
-#: ../templates/about.php:73
-msgid "Updating Insiders requires GitHub authentication."
-msgstr "更新 Insiders 需要 GitHub 认证。"
-
-#: ../templates/about.php:80
-msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
-msgstr "您的证书将通过 SSL 安全地发送到 GitHub。但是，如果您的 RaspAP 安装在由不信任用户共享的 WLAN 上，请务必谨慎。"
-
-#: ../templates/about.php:85 ../templates/login.php:22
-#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
-#: ../templates/admin/login.php:12 ../templates/admin/general.php:15
-msgid "Username"
-msgstr "用户名"
-
-#: ../templates/about.php:87 ../templates/admin/login.php:15
-#: ../templates/admin/general.php:18 ../templates/admin/general.php:37
-msgid "Please provide a valid username."
-msgstr "请提供有效的用户名。"
-
-#: ../templates/about.php:92
-msgid "Personal Access Token"
-msgstr "个人访问令牌"
-
-#: ../templates/about.php:98
-msgid "Please provide a valid token."
-msgstr "请提供有效的令牌。"
-
-#: ../templates/about.php:105
-msgid "Perform update"
-msgstr "执行更新"
-
-#: ../templates/about.php:117
-msgid "Update in progress"
-msgstr "更新中"
-
-#: ../templates/about.php:120
-msgid "Application is being updated..."
-msgstr "申请正在更新中..."
-
-#: ../templates/about.php:121
-msgid "Configuring update"
-msgstr "配置更新"
-
-#: ../templates/about.php:122
-msgid "Updating sources"
-msgstr "更新信息源"
-
-#: ../templates/about.php:123
-msgid "Installing package updates"
-msgstr "安装软件包更新"
-
-#: ../templates/about.php:124
-msgid "Downloading latest files"
-msgstr "下载最新文件"
-
-#: ../templates/about.php:125
-msgid "Installing application"
-msgstr "安装应用程序"
-
-#: ../templates/about.php:126
-msgid "Update complete"
-msgstr "更新完成"
-
-#: ../templates/about.php:128
-msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
-msgstr "发生错误。检查<code>/tmp/raspap_install.log</code>中的日志"
-
-#: ../templates/about.php:129
-msgid "Success. Refresh this page to confirm the new version."
-msgstr "成功。刷新此页面以确认新版本。"
+msgid "%d LAN %s"
+msgstr "%d 局域网 %s"
 
 #: ../templates/admin.php:7
 msgid "Authentication"
@@ -1652,33 +1382,234 @@ msgstr "此操作将保存受限用户的凭据，并注销当前管理员用户
 msgid "Save and logout"
 msgstr "保存并注销"
 
-#: ../templates/login.php:13
-msgid "Administrator login"
-msgstr "管理员登录"
+#: ../templates/adblock/stats.php:3
+msgid "Statistics"
+msgstr "统计资料"
 
-#: ../templates/login.php:31
-msgid "Forgot password"
-msgstr "忘记密码"
+#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
+msgid "Blocklist settings"
+msgstr "拦截列表设置"
 
-#: ../templates/login.php:33
-msgid "Scan for Login Help"
-msgstr ""
+#: ../templates/adblock/general.php:10
+msgid "Enable blocklists"
+msgstr "启用屏蔽列表"
 
-#: ../templates/restapi/status.php:3
-msgid "RestAPI status"
-msgstr "RestAPI 状态"
+#: ../templates/adblock/general.php:13
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "如果您希望RaspAP<b>屏蔽广告、跟踪和其他虚拟垃圾的DNS请求</b>，请启用此选项。拦截列表从多个积极维护的来源收集，每天自动更新、清理、优化和管理。"
 
-#: ../templates/restapi/status.php:4
-msgid "Current <code>restapi.service</code> status is displayed below."
-msgstr "当前<code>restapi.service</code>状态显示如下。"
+#: ../templates/adblock/general.php:15
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "该选项将<code>conf-file</code>和<code>addn-hosts</code>添加到 dnsmasq 配置中。"
 
-#: ../templates/restapi/general.php:12
-msgid "API Key"
-msgstr "API 密钥"
+#: ../templates/adblock/general.php:22
+msgid "Hostnames blocklist last updated"
+msgstr "最近更新的主机名拦截列表"
 
-#: ../templates/restapi/general.php:17
-msgid "Please provide a valid API key."
-msgstr "请提供有效的 API 密钥。"
+#: ../templates/adblock/general.php:24
+msgid "Domains blocklist last updated"
+msgstr "最近更新的域名阻止列表"
+
+#: ../templates/adblock/general.php:29
+msgid "Choose a blocklist provider"
+msgstr "选择拦截列表提供商"
+
+#: ../templates/adblock/general.php:33
+msgid "Update now"
+msgstr "立即更新"
+
+#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
+msgid "Custom blocklist"
+msgstr "自定义屏蔽列表"
+
+#: ../templates/adblock/custom.php:10
+msgid "Enable custom blocklist"
+msgstr "启用自定义拦截列表"
+
+#: ../templates/adblock/custom.php:14
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "通过输入 IPv4 或 IPv6 地址，然后输入空格（空格或制表符）和主机名，定义要屏蔽的自定义主机。"
+
+#: ../templates/adblock/custom.php:15
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 示例：</b>0.0.0.0 badhost.com"
+
+#: ../templates/adblock/custom.php:17
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "该选项为 dnsmasq 配置添加了<code>addn-hosts</code>指令。"
+
+#: ../templates/adblock/logging.php:3 ../templates/openvpn/logging.php:3
+#: ../templates/dhcp.php:55 ../templates/wireguard.php:49
+#: ../templates/hostapd.php:52 ../templates/hostapd/logging.php:3
+#: ../templates/adblock.php:47 ../templates/openvpn.php:48
+#: ../templates/dhcp/logging.php:3 ../templates/wg/logging.php:5
+msgid "Logging"
+msgstr "记录"
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s 设置"
+
+#: ../templates/provider/general.php:9 ../templates/openvpn/general.php:8
+#: ../templates/wg/general.php:8
+msgid "IPv4 Address"
+msgstr "IPv4 地址"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "账户详情"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "我的账户"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "服务器位置"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "选择 \"<strong>保存设置 \"</strong>将连接到所选国家。"
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "选择<strong>连接 %s</strong>将连接到推荐的服务器。"
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "国家"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s 地位"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "安装 Linux CLI： <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "当前 <code>%s</code>连接状态显示如下。"
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "验证方法"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "用户名和密码"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "证书"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "输入用户名和密码"
+
+#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/login.php:22 ../templates/about.php:85
+msgid "Username"
+msgstr "用户名"
+
+#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
+#: ../templates/admin/login.php:21 ../templates/login.php:25
+#: ../app/lib/signprint.php:67
+msgid "Password"
+msgstr "密码"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "配置文件中的证书"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP 通过在配置文件中加入证书来支持证书。"
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "签名认证机构 (CA) 证书（如 ca.<code>crt</code>）：由<code>&lt;ca> ...</code>所包围。  <code> &lt;/ca></code>标记。"
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "客户证书（公钥）（如<code>client.crt</code>）：括在<code>&lt;cert> ...</code>中。  <code> &lt;/cert></code>标记。"
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "客户证书的私钥（如<code>client</code>.key）：由<code>&lt;key> ...</code>所括弧。  <code> &lt;/key></code>标记。"
+
+#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
+msgid "Configuration File"
+msgstr "配置文件"
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "选择 OpenVPN 配置文件 (.ovpn)"
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "启用此选项可记录<code>openvpn</code>活动。"
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "启用日志记录"
+
+#: ../templates/openvpn/logging.php:9 ../templates/hostapd/logging.php:10
+#: ../templates/dhcp/logging.php:13
+msgid "Clear log"
+msgstr "清除日志"
+
+#: ../templates/openvpn/configs.php:4 ../templates/wireguard.php:48
+#: ../templates/openvpn.php:47 ../templates/wg/configs.php:4
+msgid "Configurations"
+msgstr "配置"
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "当前可用的 OpenVPN 客户端配置显示如下。"
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "激活配置将重启<code>openvpn-client</code>服务。"
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "停止 dnsmasq"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "重启 dnsmasq"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "启动 dnsmasq"
+
+#: ../templates/dhcp.php:50 ../templates/networking.php:20
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "摘要"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "服务器设置"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "静态租赁"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "客户名单"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "信息由 Dnsmasq 提供"
 
 #: ../templates/data_usage.php:7
 msgid "Data usage monitoring"
@@ -1743,525 +1674,25 @@ msgstr "发送"
 msgid "Receive"
 msgstr "接收"
 
-#: ../templates/restapi.php:21
-msgid "Start RestAPI service"
-msgstr "启动 RestAPI 服务"
-
-#: ../templates/restapi.php:25
-msgid "Stop RestAPI service"
-msgstr "停止 RestAPI 服务"
-
-#: ../templates/restapi.php:63
-msgid "Information provided by restapi.service"
-msgstr "由 restapi.service 提供的信息"
-
-#: ../templates/wifi_stations.php:3
-msgid "No Wifi stations found"
-msgstr "未找到 Wifi 站"
-
-#: ../templates/wifi_stations.php:4
-msgid "Click 'Rescan' to search for nearby Wifi stations."
-msgstr "点击 \"重新扫描 \"搜索附近的 Wifi 站。"
-
-#: ../templates/wifi_stations.php:6
-msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
-msgstr "单击 \"重新初始化 \"强制重新初始化<code>wpa_supplicant</code>。"
-
-#: ../templates/wifi_stations.php:10
-msgid "Reinitialize"
-msgstr "重新初始化"
-
-#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
-msgid "Connected"
-msgstr "已连接"
-
-#: ../templates/wifi_stations.php:29
-msgid "Known"
-msgstr "已知"
-
-#: ../templates/wifi_stations.php:40
-msgid "Nearby"
-msgstr "附近地区"
-
-#: ../templates/configure_client.php:12
-msgid "Disconnected"
-msgstr "断开"
-
-#: ../templates/configure_client.php:24
-msgid "Rescan"
-msgstr "重新扫描"
-
-#: ../templates/configure_client.php:31 ../templates/dhcp/summary.php:18
-#: ../templates/dhcp/settings.php:5 ../templates/dhcp/general.php:5
-#: ../templates/hostapd/basic.php:5 ../templates/networking/devices.php:17
-#: ../templates/networking/general.php:12
-msgid "Interface"
-msgstr "界面"
-
-#: ../templates/configure_client.php:34
-msgid "Set"
-msgstr "设置"
-
-#: ../templates/configure_client.php:49
-msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>注意：</strong>WEP 接入点显示为 \"开放\"。RaspAP 目前不支持与 WEP 接入点连接。"
-
-#: ../templates/configure_client.php:59
-msgid "Configuring WiFi Client"
-msgstr "配置 WiFi 客户端"
-
-#: ../templates/configure_client.php:62
-msgid "Configuring Wifi Client Interface..."
-msgstr "配置 Wifi 客户端界面..."
-
-#: ../templates/configure_client.php:65
-#: ../templates/wifi_stations/network.php:119 ../templates/system.php:56
-#: ../templates/system.php:74 ../templates/system.php:109
-#: ../templates/system.php:127 ../templates/system.php:159
-#: ../templates/hostapd.php:90
-msgid "Close"
-msgstr "关闭"
-
-#: ../templates/adblock/logging.php:3 ../templates/adblock.php:47
-#: ../templates/openvpn.php:48 ../templates/dhcp/logging.php:3
-#: ../templates/hostapd/logging.php:3 ../templates/openvpn/logging.php:3
-#: ../templates/wireguard.php:49 ../templates/dhcp.php:55
-#: ../templates/hostapd.php:52 ../templates/wg/logging.php:5
-msgid "Logging"
-msgstr "记录"
-
-#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
-msgid "Custom blocklist"
-msgstr "自定义屏蔽列表"
-
-#: ../templates/adblock/custom.php:10
-msgid "Enable custom blocklist"
-msgstr "启用自定义拦截列表"
-
-#: ../templates/adblock/custom.php:14
-msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
-msgstr "通过输入 IPv4 或 IPv6 地址，然后输入空格（空格或制表符）和主机名，定义要屏蔽的自定义主机。"
-
-#: ../templates/adblock/custom.php:15
-msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
-msgstr "<b>IPv4 示例：</b>0.0.0.0 badhost.com"
-
-#: ../templates/adblock/custom.php:17
-msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
-msgstr "该选项为 dnsmasq 配置添加了<code>addn-hosts</code>指令。"
-
-#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
-msgid "Blocklist settings"
-msgstr "拦截列表设置"
-
-#: ../templates/adblock/general.php:10
-msgid "Enable blocklists"
-msgstr "启用屏蔽列表"
-
-#: ../templates/adblock/general.php:13
-msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr "如果您希望RaspAP<b>屏蔽广告、跟踪和其他虚拟垃圾的DNS请求</b>，请启用此选项。拦截列表从多个积极维护的来源收集，每天自动更新、清理、优化和管理。"
-
-#: ../templates/adblock/general.php:15
-msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
-msgstr "该选项将<code>conf-file</code>和<code>addn-hosts</code>添加到 dnsmasq 配置中。"
-
-#: ../templates/adblock/general.php:22
-msgid "Hostnames blocklist last updated"
-msgstr "最近更新的主机名拦截列表"
-
-#: ../templates/adblock/general.php:24
-msgid "Domains blocklist last updated"
-msgstr "最近更新的域名阻止列表"
-
-#: ../templates/adblock/general.php:29
-msgid "Choose a blocklist provider"
-msgstr "选择拦截列表提供商"
-
-#: ../templates/adblock/general.php:33
-msgid "Update now"
-msgstr "立即更新"
-
-#: ../templates/adblock/stats.php:3
-msgid "Statistics"
-msgstr "统计资料"
-
-#: ../templates/adblock.php:20
-msgid "Restart Ad Blocking"
-msgstr "重启广告屏蔽"
-
-#: ../templates/adblock.php:24
-msgid "Start Ad Blocking"
-msgstr "开始屏蔽广告"
-
-#: ../templates/adblock.php:64
-msgid "Information provided by adblock"
-msgstr "广告屏蔽提供的信息"
-
-#: ../templates/exception.php:6 ../templates/exception.php:17
-msgid "RaspAP Exception"
-msgstr "RaspAP 异常"
-
-#: ../templates/exception.php:20
-msgid "An exception occurred"
-msgstr "发生异常"
-
-#: ../templates/openvpn.php:20
-msgid "Start OpenVPN"
-msgstr "启动 OpenVPN"
-
-#: ../templates/openvpn.php:24
-msgid "Stop OpenVPN"
-msgstr "停止 OpenVPN"
-
-#: ../templates/openvpn.php:47 ../templates/openvpn/configs.php:4
-#: ../templates/wireguard.php:48 ../templates/wg/configs.php:4
-msgid "Configurations"
-msgstr "配置"
-
-#: ../templates/openvpn.php:65
-msgid "Information provided by openvpn"
-msgstr "由 openvpn 提供的信息"
-
-#: ../templates/openvpn.php:75
-msgid "Delete OpenVPN client"
-msgstr "删除 OpenVPN 客户端"
-
-#: ../templates/openvpn.php:78
-msgid "Delete client configuration? This cannot be undone."
-msgstr "删除客户端配置？无法撤销。"
-
-#: ../templates/openvpn.php:93
-msgid "Activate OpenVPN client"
-msgstr "激活 OpenVPN 客户端"
-
-#: ../templates/openvpn.php:96
-msgid "Activate client configuration? This will restart the openvpn-client service."
-msgstr "激活客户端配置？这将重启 openvpn-client 服务。"
-
-#: ../templates/openvpn.php:100 ../templates/wireguard.php:102
-msgid "Activate"
-msgstr "激活"
-
-#: ../templates/dhcp/logging.php:4
-msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
-msgstr "启用这些选项可记录<code>dhcpcd</code>和<code>dnsmasq</code>活动。"
-
-#: ../templates/dhcp/logging.php:8
-msgid "Log DHCP requests"
-msgstr "记录 DHCP 请求"
-
-#: ../templates/dhcp/logging.php:12
-msgid "Log DNS queries"
-msgstr "记录 DNS 查询"
-
-#: ../templates/dhcp/logging.php:13 ../templates/hostapd/logging.php:10
-#: ../templates/openvpn/logging.php:9
-msgid "Clear log"
-msgstr "清除日志"
-
-#: ../templates/dhcp/summary.php:2 ../templates/dhcp.php:50
-#: ../templates/networking.php:20
-msgid "Summary"
-msgstr "摘要"
-
-#: ../templates/dhcp/summary.php:7
-msgid "Interface Configurations"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:19
-msgid "Static IP"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:20
-msgid "Subnet / Gateway"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:21
-msgid "Default Route"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:22
-msgid "Disable Hook"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:23
-msgid "DHCP Range (lease)"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:24
-msgid "DNS Servers"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:25 ../templates/dhcp/settings.php:164
-#: ../templates/dhcp/general.php:163
-msgid "Metric"
-msgstr "公制"
-
-#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
-msgid "Yes"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:97
-msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:3
-msgid "Advanced Settings"
-msgstr "高级设置"
-
-#: ../templates/dhcp/advanced.php:6
-msgid "Upstream DNS servers"
-msgstr "上游 DNS 服务器"
-
-#: ../templates/dhcp/advanced.php:11
-msgid "Only ever query DNS servers configured below"
-msgstr "只能查询以下配置的 DNS 服务器"
-
-#: ../templates/dhcp/advanced.php:14
-msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "如果希望 RaspAP<b>只向下面配置的服务器发送 DNS 查询</b>，请启用该选项。默认情况下，RaspAP 也使用其上游 DHCP 服务器的名称服务器。"
-
-#: ../templates/dhcp/advanced.php:15
-msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "该选项将<code>no-resolv</code>添加到 dnsmasq 配置中。"
-
-#: ../templates/dhcp/advanced.php:29
-msgid "Add upstream DNS server"
-msgstr "添加上游 DNS 服务器"
-
-#: ../templates/dhcp/advanced.php:31
-#, php-format
-msgid "e.g. %s"
-msgstr "例如： %s"
-
-#: ../templates/dhcp/advanced.php:36
-msgid "Format: "
-msgstr "格式： "
-
-#: ../templates/dhcp/advanced.php:41
-msgid "Choose a hosted server"
-msgstr "选择托管服务器"
-
-#: ../templates/dhcp/static_leases.php:5
-msgid "Static leases"
-msgstr "静态租赁"
-
-#: ../templates/dhcp/static_leases.php:7
-msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
-msgstr "具有特定硬件 MAC 地址的客户端总是可以分配到相同的 IP 地址。"
-
-#: ../templates/dhcp/static_leases.php:8
-msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
-msgstr "该选项将<code>dhcp-host</code>条目添加到 dnsmasq 配置中。"
-
-#: ../templates/dhcp/static_leases.php:16
-#: ../templates/dhcp/static_leases.php:33
-#: ../templates/dhcp/static_leases.php:64
-#: ../templates/networking/devices.php:19
-msgid "MAC address"
-msgstr "MAC 地址"
-
-#: ../templates/dhcp/static_leases.php:19
-#: ../templates/dhcp/static_leases.php:36
-#: ../templates/dhcp/static_leases.php:67
-msgid "IP address"
-msgstr "IP 地址"
-
-#: ../templates/dhcp/static_leases.php:22
-#: ../templates/dhcp/static_leases.php:39
-#: ../templates/dhcp/static_leases.php:70
-msgid "Optional comment"
-msgstr "可选评论"
-
-#: ../templates/dhcp/static_leases.php:46
-msgid "Restrict access"
-msgstr "限制访问"
-
-#: ../templates/dhcp/static_leases.php:51
-msgid "Limit network access to static clients"
-msgstr "限制静态客户访问网络"
-
-#: ../templates/dhcp/static_leases.php:54
-msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
-msgstr "如果希望 RaspAP<b>忽略任何</b>未在静态租约列表中指定的<b>客户端</b>，请启用此选项。"
-
-#: ../templates/dhcp/static_leases.php:55
-msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
-msgstr "该选项将<code>dhcp-ignore</code>添加到 dnsmasq 配置中。"
-
-#: ../templates/dhcp/settings.php:2 ../templates/dhcp/general.php:2
-msgid "DHCP server settings"
-msgstr "DHCP 服务器设置"
-
-#: ../templates/dhcp/settings.php:10 ../templates/dhcp/general.php:10
-msgid "Adapter IP Address Settings"
-msgstr "适配器 IP 地址设置"
-
-#: ../templates/dhcp/settings.php:28 ../templates/dhcp/general.php:28
-msgid "Enable fallback to static option"
-msgstr "启用回退到静态选项"
-
-#: ../templates/dhcp/settings.php:31 ../templates/dhcp/general.php:31
-msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
-msgstr "启用此选项可配置静态配置文件，并在 DHCP 租用失败时返回到该配置文件。"
-
-#: ../templates/dhcp/settings.php:36 ../templates/dhcp/general.php:36
-msgid "Static IP options"
-msgstr "静态 IP 选项"
-
-#: ../templates/dhcp/settings.php:42 ../templates/dhcp/general.php:42
-msgid "Please provide a valid IP Address."
-msgstr "请提供有效的 IP 地址。"
-
-#: ../templates/dhcp/settings.php:49 ../templates/dhcp/general.php:49
-msgid "Subnet Mask"
-msgstr "子网掩码"
-
-#: ../templates/dhcp/settings.php:52 ../templates/dhcp/general.php:52
-msgid "Please provide a valid Subnet mask."
-msgstr "请提供有效的子网掩码。"
-
-#: ../templates/dhcp/settings.php:59 ../templates/dhcp/general.php:59
-msgid "Default gateway"
-msgstr "默认网关"
-
-#: ../templates/dhcp/settings.php:62 ../templates/dhcp/general.php:62
-msgid "Please provide a valid Default gateway."
-msgstr "请提供有效的默认网关。"
-
-#: ../templates/dhcp/settings.php:71 ../templates/dhcp/general.php:71
-msgid "Install a default route for this interface"
-msgstr "为该接口安装默认路由"
-
-#: ../templates/dhcp/settings.php:72
-msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:75
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:84 ../templates/dhcp/general.php:83
-msgid "Disable wpa_supplicant dhcp hook for this interface"
-msgstr "禁用此接口的 wpa_supplicant dhcp 钩子"
-
-#: ../templates/dhcp/settings.php:85 ../templates/dhcp/general.php:84
-msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
-msgstr "如果使用 wpa_supplicant 本身管理无线连接，钩子可能会产生不必要的连接事件。此选项可禁用钩子。"
-
-#: ../templates/dhcp/settings.php:88
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:93 ../templates/dhcp/general.php:92
-msgid "DHCP options"
-msgstr "DHCP 选项"
-
-#: ../templates/dhcp/settings.php:99 ../templates/dhcp/general.php:98
-msgid "Enable DHCP for this interface"
-msgstr "为该接口启用 DHCP"
-
-#: ../templates/dhcp/settings.php:102 ../templates/dhcp/general.php:101
-msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
-msgstr "如果希望 RaspAP 为所选接口上的客户端分配 IP 地址，请启用此选项。此选项需要一个静态 IP 地址。"
-
-#: ../templates/dhcp/settings.php:110 ../templates/dhcp/general.php:109
-msgid "Starting IP Address"
-msgstr "起始 IP 地址"
-
-#: ../templates/dhcp/settings.php:113 ../templates/dhcp/general.php:112
-msgid "Please provide a valid Starting IP Address."
-msgstr "请提供有效的起始 IP 地址。"
-
-#: ../templates/dhcp/settings.php:119 ../templates/dhcp/general.php:118
-msgid "Ending IP Address"
-msgstr "结束 IP 地址"
-
-#: ../templates/dhcp/settings.php:122 ../templates/dhcp/general.php:121
-msgid "Please provide a valid Ending IP Address."
-msgstr "请提供有效的结束 IP 地址。"
-
-#: ../templates/dhcp/settings.php:128 ../templates/dhcp/general.php:127
-msgid "Lease Time"
-msgstr "租赁时间"
-
-#: ../templates/dhcp/settings.php:131 ../templates/dhcp/general.php:130
-msgid "Please provide a valid Lease Time."
-msgstr "请提供有效的租赁时间。"
-
-#: ../templates/dhcp/settings.php:135 ../templates/dhcp/general.php:134
-msgid "Interval"
-msgstr "间隔"
-
-#: ../templates/dhcp/settings.php:137 ../templates/dhcp/general.php:136
-msgid "Minute(s)"
-msgstr "分钟"
-
-#: ../templates/dhcp/settings.php:138 ../templates/dhcp/general.php:137
-msgid "Hour(s)"
-msgstr "小时"
-
-#: ../templates/dhcp/settings.php:139 ../templates/dhcp/general.php:138
-msgid "Day(s)"
-msgstr "天数"
-
-#: ../templates/dhcp/settings.php:140 ../templates/dhcp/general.php:139
-msgid "Infinite"
-msgstr "无限"
-
-#: ../templates/dhcp/settings.php:143 ../templates/dhcp/general.php:142
-msgid "Please provide a valid Interval."
-msgstr "请提供有效的时间间隔。"
-
-#: ../templates/dhcp/settings.php:150 ../templates/dhcp/settings.php:157
-#: ../templates/dhcp/general.php:149 ../templates/dhcp/general.php:156
-#: ../templates/hostapd/advanced.php:65
-msgid "DNS Server"
-msgstr "DNS 服务器"
-
-#: ../templates/dhcp/clients.php:2 ../templates/dhcp.php:54
-msgid "Client list"
-msgstr "客户名单"
-
-#: ../templates/dhcp/clients.php:8
-msgid "Active DHCP leases"
-msgstr "活动 DHCP 租约"
-
-#: ../templates/dhcp/clients.php:18
-msgid "Expire time"
-msgstr "过期时间"
-
-#: ../templates/dhcp/clients.php:21
-msgid "Host name"
-msgstr "主机名称"
-
-#: ../templates/dhcp/clients.php:22
-msgid "Client ID"
-msgstr "客户 ID"
-
-#: ../templates/dhcp/general.php:74
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
-msgstr "在 DHCPCD 配置中切换该接口的<code>网关/</code><code>网关</code>选项。"
-
-#: ../templates/dhcp/general.php:87
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
-msgstr "这将切换 DHCPCD 配置中该接口的<code>nohook wpa_supplicant</code>选项。"
-
-#: ../templates/provider.php:5
-#, php-format
-msgid "Connect %s"
-msgstr "连接 %s"
-
-#: ../templates/provider.php:7
-#, php-format
-msgid "Disconnect %s"
-msgstr "断开 %s"
-
-#: ../templates/provider.php:51
-#, php-format
-msgid "Information provided by %s"
-msgstr "%s 提供的信息"
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "设备"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "移动数据"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "无线局域网路由选择"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "诊断"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "由 /sys/class/net 提供的信息"
 
 #: ../templates/wifi_stations/network.php:42
 msgid "Not configured"
@@ -2311,6 +1742,513 @@ msgstr "该无线网络要求登录或接受单独网页上的使用条款。"
 #: ../templates/wifi_stations/network.php:118
 msgid "Goto Webpage"
 msgstr "转到网页"
+
+#: ../templates/wifi_stations/network.php:119 ../templates/hostapd.php:90
+#: ../templates/configure_client.php:65 ../templates/system.php:56
+#: ../templates/system.php:74 ../templates/system.php:109
+#: ../templates/system.php:127 ../templates/system.php:159
+msgid "Close"
+msgstr "关闭"
+
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "未找到 Wifi 站"
+
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "点击 \"重新扫描 \"搜索附近的 Wifi 站。"
+
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "单击 \"重新初始化 \"强制重新初始化<code>wpa_supplicant</code>。"
+
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "重新初始化"
+
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "已连接"
+
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "已知"
+
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "附近地区"
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "停止 WireGuard"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "启动 WireGuard"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "同行"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "wireguard 提供的信息"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "删除 WireGuard 配置"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "删除此配置？无法撤销。"
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "激活 WireGuard 配置"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "激活此配置？这将重启 wg-quick 服务。"
+
+#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
+msgid "Activate"
+msgstr "激活"
+
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "网络设备"
+
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "设备"
+
+#: ../templates/networking/devices.php:17
+#: ../templates/networking/general.php:12 ../templates/hostapd/basic.php:5
+#: ../templates/configure_client.php:31 ../templates/dhcp/general.php:5
+#: ../templates/dhcp/summary.php:18 ../templates/dhcp/settings.php:5
+msgid "Interface"
+msgstr "界面"
+
+#: ../templates/networking/devices.php:19
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+msgid "MAC address"
+msgstr "MAC 地址"
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "设备类型"
+
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "互联网连接"
+
+#: ../templates/networking/general.php:13 ../templates/dashboard.php:54
+#: ../templates/dashboard.php:60 ../templates/dhcp/general.php:39
+#: ../templates/dhcp/clients.php:20 ../templates/dhcp/settings.php:39
+#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
+msgid "IP Address"
+msgstr "IP 地址"
+
+#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:52
+msgid "Gateway"
+msgstr "网关"
+
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "互联网接入"
+
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "路由表"
+
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "原始输出"
+
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "当前设置"
+
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "重启 WLAN 路由"
+
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "停止 WLAN 路由"
+
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "启动 WLAN 路由"
+
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "无线局域网路由选择"
+
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "路由"
+
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "该选项可配置 RaspAP 将<b>无线客户端（STA）接口的网络流量路由</b>到另一个可用接口。"
+
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "选择输出接口后，就会添加<code>iptables</code>规则，使用网络地址转换（NAT）对数据包进行路由。这样做通常是为了与使用<code>eth0</code>、<code>usb0</code>或可预测<code>enx</code>接口的设备共享无线局域网的互联网连接。"
+
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "无线客户端界面"
+
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "输出接口"
+
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "为输出接口配置静态 IP 地址和 DHCP"
+
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "速度测试"
+
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "选择服务器"
+
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "隐私权"
+
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "服务器"
+
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "平"
+
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "毫秒"
+
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "抖动"
+
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "兆位/秒"
+
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "移动数据设置"
+
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "SIM 卡密码"
+
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "APN 设置"
+
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "接入点名称 (APN)"
+
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "启动热点"
+
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "启动热点"
+
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "停止热点"
+
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "重启热点"
+
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "重启热点"
+
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "hostapd 提供的信息"
+
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "执行 RaspAP 服务启动"
+
+#: ../templates/restapi/general.php:12
+msgid "API Key"
+msgstr "API 密钥"
+
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "请提供有效的 API 密钥。"
+
+#: ../templates/restapi/status.php:3
+msgid "RestAPI status"
+msgstr "RestAPI 状态"
+
+#: ../templates/restapi/status.php:4
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "当前<code>restapi.service</code>状态显示如下。"
+
+#: ../templates/system/plugins.php:3 ../templates/system.php:23
+msgid "Plugins"
+msgstr "插件"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "以下用户插件可用于扩展 RaspAP 的功能。"
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "选择<strong>详细信息</strong>，了解更多信息并安装插件。"
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "网络服务器端口"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "网络服务器绑定地址"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "诊断日志大小限制（KB）"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
+msgstr ""
+
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr ""
+
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
+msgstr ""
+
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr ""
+
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "重启 lighttpd"
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "系统工具"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "要生成系统<a href=\"%s\" target=\"_blank\">调试日志</a>，请单击或点击下面的按钮。"
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "调试日志信息包括 RaspAP 版本、AP 相关服务的当前状态和配置、已安装的系统软件包、Linux 内核版本和网络详情。其中不包括密码或其他敏感数据。"
+
+#: ../templates/system/tools.php:18 ../templates/system.php:121
+msgid "Generate debug log"
+msgstr "生成调试日志"
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "要<a href=\"%s\" target=\"_blank\">检查</a>该设备上的<a href=\" %s \" target=\"_blank\">适配器</a>，请单击或点击下面的按钮。"
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "适配器检查工具会返回外部 WLAN 设备的详细信息，包括驱动程序、支持的模式等。"
+
+#: ../templates/system/tools.php:32 ../templates/system.php:138
+msgid "Inspect adapters"
+msgstr "检查适配器"
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "要将 RaspAP 重置为<a href=\"%s\" target=\"_blank\">初始配置</a>，请单击或点击下面的按钮。"
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "将所有接入点 (AP) 服务设置恢复为默认值。这适用于 hostapd、dhcpcd 和 dnsmasq。"
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "广告拦截、WireGuard 或 OpenVPN 等可选组件的自定义文件将保留在系统中。"
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "执行重置"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "主题设置"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "选择主题"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "颜色"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "黑暗模式"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "使用当前主题的暗色模式"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "系统主题"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "使用系统的色彩模式"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "警报信息"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "在指定超时后自动关闭警报"
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "警报关闭超时（毫秒）"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "系统信息"
+
+#: ../templates/system/basic.php:23 ../templates/system.php:75
+msgid "Reboot"
+msgstr "重新启动"
+
+#: ../templates/system/basic.php:27 ../templates/system.php:110
+msgid "Shutdown"
+msgstr "关闭"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "主机名"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "Pi 修订版"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "操作系统"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "内核"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "正常运行时间"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "系统时间"
+
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "已用内存"
+
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "使用的存储设备"
+
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "CPU 负载"
+
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "CPU 温度"
+
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "语言设置"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "选择语言"
+
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "连接 %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "断开 %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "%s 提供的信息"
+
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "安全设置"
+
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "安全类型"
+
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "加密类型"
+
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
+
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "802.11w 将强加密保护扩展到一组精选的稳健管理帧，包括取消认证、解除关联和某些类别的动作管理帧。统称为管理帧保护（MFP）。"
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "预共享密钥 (PSK)"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "请提供有效的 PSK。"
+
+#: ../templates/hostapd/security.php:32
+#, php-format
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "直接扫描此二维码或 %s %s打印一个标志%s 给用户。"
 
 #: ../templates/hostapd/logging.php:4
 msgid "Enable this option to log <code>hostapd</code> activity."
@@ -2365,13 +2303,15 @@ msgstr "请输入有效的网络掩码"
 msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
 msgstr "CIDR 符号（例如，24 表示 255.255.255.0）"
 
-#: ../templates/hostapd/advanced.php:52 ../templates/networking/general.php:14
-msgid "Gateway"
-msgstr "网关"
-
 #: ../templates/hostapd/advanced.php:61
 msgid "Your router's IP address"
 msgstr "路由器的 IP 地址"
+
+#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/general.php:149
+#: ../templates/dhcp/general.php:156 ../templates/dhcp/settings.php:150
+#: ../templates/dhcp/settings.php:157
+msgid "DNS Server"
+msgstr "DNS 服务器"
 
 #: ../templates/hostapd/advanced.php:74
 msgid "Usually same as gateway"
@@ -2437,38 +2377,10 @@ msgstr "配置 hostapd 的<code>max_num_sta</code>选项。默认最大值为 20
 msgid "Country Code"
 msgstr "国家代码"
 
-#: ../templates/hostapd/security.php:2
-msgid "Security settings"
-msgstr "安全设置"
-
-#: ../templates/hostapd/security.php:6
-msgid "Security type"
-msgstr "安全类型"
-
-#: ../templates/hostapd/security.php:10
-msgid "Encryption Type"
-msgstr "加密类型"
-
-#: ../templates/hostapd/security.php:14
-msgid "802.11w"
-msgstr "802.11w"
-
-#: ../templates/hostapd/security.php:15
-msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
-msgstr "802.11w 将强加密保护扩展到一组精选的稳健管理帧，包括取消认证、解除关联和某些类别的动作管理帧。统称为管理帧保护（MFP）。"
-
-#: ../templates/hostapd/security.php:19
-msgid "Pre-shared key (PSK)"
-msgstr "预共享密钥 (PSK)"
-
-#: ../templates/hostapd/security.php:24
-msgid "Please provide a valid PSK."
-msgstr "请提供有效的 PSK。"
-
-#: ../templates/hostapd/security.php:32
-#, php-format
-msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
-msgstr "直接扫描此二维码或 %s %s打印一个标志%s 给用户。"
+#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
+#: ../templates/dashboard.php:63
+msgid "SSID"
+msgstr "SSID"
 
 #: ../templates/hostapd/basic.php:14
 msgid "Please provide a valid SSID."
@@ -2487,297 +2399,135 @@ msgstr "与您的适配器不兼容的无线标准可能会被禁用"
 msgid "Based on the selected interface, 802.11%s is suggested."
 msgstr "根据所选接口，建议使用 802.11%s。"
 
-#: ../templates/openvpn/logging.php:4
-msgid "Enable this option to log <code>openvpn</code> activity."
-msgstr "启用此选项可记录<code>openvpn</code>活动。"
+#: ../templates/configure_client.php:12
+msgid "Disconnected"
+msgstr "断开"
 
-#: ../templates/openvpn/logging.php:8
-msgid "Enable logging"
-msgstr "启用日志记录"
+#: ../templates/configure_client.php:24
+msgid "Rescan"
+msgstr "重新扫描"
 
-#: ../templates/openvpn/configs.php:6
-msgid "Currently available OpenVPN client configurations are displayed below."
-msgstr "当前可用的 OpenVPN 客户端配置显示如下。"
+#: ../templates/configure_client.php:34
+msgid "Set"
+msgstr "设置"
 
-#: ../templates/openvpn/configs.php:7
-msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
-msgstr "激活配置将重启<code>openvpn-client</code>服务。"
+#: ../templates/configure_client.php:49
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>注意：</strong>WEP 接入点显示为 \"开放\"。RaspAP 目前不支持与 WEP 接入点连接。"
 
-#: ../templates/openvpn/general.php:8 ../templates/provider/general.php:9
-#: ../templates/wg/general.php:8
-msgid "IPv4 Address"
-msgstr "IPv4 地址"
+#: ../templates/configure_client.php:59
+msgid "Configuring WiFi Client"
+msgstr "配置 WiFi 客户端"
 
-#: ../templates/openvpn/general.php:13
-msgid "Authentification Method"
-msgstr "验证方法"
+#: ../templates/configure_client.php:62
+msgid "Configuring Wifi Client Interface..."
+msgstr "配置 Wifi 客户端界面..."
 
-#: ../templates/openvpn/general.php:16
-msgid "Username and password"
-msgstr "用户名和密码"
+#: ../templates/about/general.php:8
+msgid "RaspAP"
+msgstr "RaspAP"
 
-#: ../templates/openvpn/general.php:20
-msgid "Certificates"
-msgstr "证书"
+#: ../templates/about/general.php:11 ../templates/about.php:47
+msgid "Check for update"
+msgstr "检查更新"
 
-#: ../templates/openvpn/general.php:26
-msgid "Enter username and password"
-msgstr "输入用户名和密码"
-
-#: ../templates/openvpn/general.php:42
-msgid "Certificates in the configuration file"
-msgstr "配置文件中的证书"
-
-#: ../templates/openvpn/general.php:44
-msgid "RaspAP supports certificates by including them in the configuration file."
-msgstr "RaspAP 通过在配置文件中加入证书来支持证书。"
-
-#: ../templates/openvpn/general.php:47
-msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
-msgstr "签名认证机构 (CA) 证书（如 ca.<code>crt</code>）：由<code>&lt;ca> ...</code>所包围。  <code> &lt;/ca></code>标记。"
-
-#: ../templates/openvpn/general.php:48
-msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
-msgstr "客户证书（公钥）（如<code>client.crt</code>）：括在<code>&lt;cert> ...</code>中。  <code> &lt;/cert></code>标记。"
-
-#: ../templates/openvpn/general.php:49
-msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
-msgstr "客户证书的私钥（如<code>client</code>.key）：由<code>&lt;key> ...</code>所括弧。  <code> &lt;/key></code>标记。"
-
-#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
-msgid "Configuration File"
-msgstr "配置文件"
-
-#: ../templates/openvpn/general.php:62
-msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "选择 OpenVPN 配置文件 (.ovpn)"
-
-#: ../templates/provider/status.php:3
+#: ../templates/about/general.php:20
 #, php-format
-msgid "%s status"
-msgstr "%s 地位"
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP 由 %1$s 和 %2$s 共同创建，并得到了 %3$s 和 %4$s的贡献。欲了解更多有关加入该项目的信息，请访问 %5$s、 %6$s 或 %7$s ，可立即访问 %8$s ， %9$s。"
 
-#: ../templates/provider/status.php:5
-#, php-format
-msgid "Installed Linux CLI: <code>%s</code>"
-msgstr "安装 Linux CLI： <code>%s</code>"
+#: ../templates/about/general.php:23
+msgid "developer community"
+msgstr "开发者社区"
 
-#: ../templates/provider/status.php:6
-#, php-format
-msgid "Current <code>%s</code> connection status is displayed below."
-msgstr "当前 <code>%s</code>连接状态显示如下。"
+#: ../templates/about/general.php:24
+msgid "language translators"
+msgstr "语言翻译"
 
-#: ../templates/provider/general.php:2
-#, php-format
-msgid "%s settings"
-msgstr "%s 设置"
+#: ../templates/about/general.php:25
+msgid "code contributor"
+msgstr "代码贡献者"
 
-#: ../templates/provider/general.php:24
-msgid "Account details"
-msgstr "账户详情"
+#: ../templates/about/general.php:26
+msgid "translator"
+msgstr "译员"
 
-#: ../templates/provider/general.php:28
-msgid "My account"
-msgstr "我的账户"
+#: ../templates/about/general.php:27
+msgid "financial sponsor"
+msgstr "财政赞助商"
 
-#: ../templates/provider/general.php:36
-msgid "Server location"
-msgstr "服务器位置"
+#: ../templates/about/general.php:28
+msgid "exclusive features"
+msgstr "独家功能"
 
-#: ../templates/provider/general.php:38
-msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
-msgstr "选择 \"<strong>保存设置 \"</strong>将连接到所选国家。"
+#: ../templates/about/general.php:29 ../templates/about.php:22
+msgid "Insiders"
+msgstr "内部人士"
 
-#: ../templates/provider/general.php:41
-#, php-format
-msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
-msgstr "选择<strong>连接 %s</strong>将连接到推荐的服务器。"
+#: ../templates/admin/general.php:3
+msgid "Change password"
+msgstr "更改密码"
 
-#: ../templates/provider/general.php:43
-msgid "Country"
-msgstr "国家"
+#: ../templates/admin/general.php:18 ../templates/admin/general.php:37
+#: ../templates/admin/login.php:15 ../templates/about.php:87
+msgid "Please provide a valid username."
+msgstr "请提供有效的用户名。"
 
-#: ../templates/networking/devices.php:3
-msgid "Network devices"
-msgstr "网络设备"
+#: ../templates/admin/general.php:28
+msgid "Enable limited privilege user"
+msgstr "启用有限权限用户"
 
-#: ../templates/networking/devices.php:16
-msgid "Device"
-msgstr "设备"
+#: ../templates/admin/general.php:30
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "非管理员用户可以访问 RaspAP 的管理界面，但<strong>修改现有配置的能力有限</strong>。当当前管理员用户注销后，该用户就会激活。"
 
-#: ../templates/networking/devices.php:20
-msgid "USB vid/pid"
-msgstr "USB vid/pid"
+#: ../templates/admin/general.php:34
+msgid "Limited user login"
+msgstr "有限用户登录"
 
-#: ../templates/networking/devices.php:21
-msgid "Device type"
-msgstr "设备类型"
+#: ../templates/admin/general.php:43
+msgid "Limited user password"
+msgstr "有限用户密码"
 
-#: ../templates/networking/diagnostics.php:3
-msgid "Speedtest"
-msgstr "速度测试"
+#: ../templates/admin/general.php:48
+msgid "Please enter a valid password."
+msgstr "请输入有效密码。"
 
-#: ../templates/networking/diagnostics.php:8
-msgid "Selecting a server"
-msgstr "选择服务器"
+#: ../templates/admin/login.php:2
+msgid "Submit"
+msgstr "提交"
 
-#: ../templates/networking/diagnostics.php:12
-msgid "Privacy"
-msgstr "隐私权"
+#: ../templates/admin/login.php:11
+msgid "Admin login"
+msgstr "管理员登录"
 
-#: ../templates/networking/diagnostics.php:16
-msgid "Server"
-msgstr "服务器"
+#: ../templates/admin/login.php:26
+msgid "Please enter your password."
+msgstr "请输入您的密码。"
 
-#: ../templates/networking/diagnostics.php:22
-msgid "Ping"
-msgstr "平"
+#: ../templates/admin/avatar.php:3
+msgid "Reset avatar"
+msgstr "重置头像"
 
-#: ../templates/networking/diagnostics.php:24
-#: ../templates/networking/diagnostics.php:29
-msgid "ms"
-msgstr "毫秒"
+#: ../templates/admin/avatar.php:15
+msgid "Click or tap to upload a new user avatar."
+msgstr "点击或轻点上传新的用户头像。"
 
-#: ../templates/networking/diagnostics.php:27
-msgid "Jitter"
-msgstr "抖动"
+#: ../templates/admin/avatar.php:16
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "接受<code>JPG、GIF 或 PNG</code>类型的图像文件。最大文件大小：2 MB。"
 
-#: ../templates/networking/diagnostics.php:37
-#: ../templates/networking/diagnostics.php:43
-msgid "Mbps"
-msgstr "兆位/秒"
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "启动 RestAPI 服务"
 
-#: ../templates/networking/wlanrouting.php:5
-msgid "Restart WLAN routing"
-msgstr "重启 WLAN 路由"
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "停止 RestAPI 服务"
 
-#: ../templates/networking/wlanrouting.php:6
-msgid "Stop WLAN routing"
-msgstr "停止 WLAN 路由"
-
-#: ../templates/networking/wlanrouting.php:8
-msgid "Start WLAN routing"
-msgstr "启动 WLAN 路由"
-
-#: ../templates/networking/wlanrouting.php:17
-msgid "Wireless LAN routing"
-msgstr "无线局域网路由选择"
-
-#: ../templates/networking/wlanrouting.php:22
-msgid "routing"
-msgstr "路由"
-
-#: ../templates/networking/wlanrouting.php:27
-msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
-msgstr "该选项可配置 RaspAP 将<b>无线客户端（STA）接口的网络流量路由</b>到另一个可用接口。"
-
-#: ../templates/networking/wlanrouting.php:29
-msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
-msgstr "选择输出接口后，就会添加<code>iptables</code>规则，使用网络地址转换（NAT）对数据包进行路由。这样做通常是为了与使用<code>eth0</code>、<code>usb0</code>或可预测<code>enx</code>接口的设备共享无线局域网的互联网连接。"
-
-#: ../templates/networking/wlanrouting.php:34
-msgid "Wireless client interface"
-msgstr "无线客户端界面"
-
-#: ../templates/networking/wlanrouting.php:42
-msgid "Output interface"
-msgstr "输出接口"
-
-#: ../templates/networking/wlanrouting.php:47
-msgid "Configure a static IP address and DHCP for output interface"
-msgstr "为输出接口配置静态 IP 地址和 DHCP"
-
-#: ../templates/networking/mobile.php:4
-msgid "Mobile data settings"
-msgstr "移动数据设置"
-
-#: ../templates/networking/mobile.php:8
-msgid "SIM card PIN number"
-msgstr "SIM 卡密码"
-
-#: ../templates/networking/mobile.php:11
-msgid "APN Settings"
-msgstr "APN 设置"
-
-#: ../templates/networking/mobile.php:13
-msgid "Access Point Name (APN)"
-msgstr "接入点名称 (APN)"
-
-#: ../templates/networking/general.php:3
-msgid "Internet connection"
-msgstr "互联网连接"
-
-#: ../templates/networking/general.php:15
-msgid "Internet Access"
-msgstr "互联网接入"
-
-#: ../templates/networking/general.php:53
-msgid "Routing table"
-msgstr "路由表"
-
-#: ../templates/networking/general.php:57
-msgid "raw output"
-msgstr "原始输出"
-
-#: ../templates/networking/general.php:80
-msgid "Current settings"
-msgstr "当前设置"
-
-#: ../templates/wireguard.php:21
-msgid "Stop WireGuard"
-msgstr "停止 WireGuard"
-
-#: ../templates/wireguard.php:25
-msgid "Start WireGuard"
-msgstr "启动 WireGuard"
-
-#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
-msgid "Peer"
-msgstr "同行"
-
-#: ../templates/wireguard.php:67
-msgid "Information provided by wireguard"
-msgstr "wireguard 提供的信息"
-
-#: ../templates/wireguard.php:77
-msgid "Delete WireGuard configuration"
-msgstr "删除 WireGuard 配置"
-
-#: ../templates/wireguard.php:80
-msgid "Delete this configuration? This cannot be undone."
-msgstr "删除此配置？无法撤销。"
-
-#: ../templates/wireguard.php:95
-msgid "Activate WireGuard configuration"
-msgstr "激活 WireGuard 配置"
-
-#: ../templates/wireguard.php:98
-msgid "Activate this configuration? This will restart the wg-quick service."
-msgstr "激活此配置？这将重启 wg-quick 服务。"
-
-#: ../templates/dhcp.php:21
-msgid "Stop dnsmasq"
-msgstr "停止 dnsmasq"
-
-#: ../templates/dhcp.php:24
-msgid "Restart dnsmasq"
-msgstr "重启 dnsmasq"
-
-#: ../templates/dhcp.php:28
-msgid "Start dnsmasq"
-msgstr "启动 dnsmasq"
-
-#: ../templates/dhcp.php:51
-msgid "Server settings"
-msgstr "服务器设置"
-
-#: ../templates/dhcp.php:53
-msgid "Static Leases"
-msgstr "静态租赁"
-
-#: ../templates/dhcp.php:72
-msgid "Information provided by Dnsmasq"
-msgstr "信息由 Dnsmasq 提供"
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "由 restapi.service 提供的信息"
 
 #: ../templates/system.php:18
 msgid "Language"
@@ -2791,9 +2541,9 @@ msgstr "主题"
 msgid "Tools"
 msgstr "工具"
 
-#: ../templates/system.php:23 ../templates/system/plugins.php:3
-msgid "Plugins"
-msgstr "插件"
+#: ../templates/system.php:40 ../templates/dashboard.php:164
+msgid "Information provided by raspap.sysinfo"
+msgstr "由 raspap.sysinfo 提供的信息"
 
 #: ../templates/system.php:50
 msgid "System reset"
@@ -2823,10 +2573,6 @@ msgstr "系统重启"
 msgid "Reboot now? The system will be temporarily unavailable."
 msgstr "现在重启？系统将暂时不可用。"
 
-#: ../templates/system.php:75 ../templates/system/basic.php:23
-msgid "Reboot"
-msgstr "重新启动"
-
 #: ../templates/system.php:86
 msgid "Reconnecting"
 msgstr ""
@@ -2847,21 +2593,9 @@ msgstr "系统关闭"
 msgid "Shutdown now? The system will be unavailable."
 msgstr "现在关闭？系统将不可用。"
 
-#: ../templates/system.php:110 ../templates/system/basic.php:27
-msgid "Shutdown"
-msgstr "关闭"
-
-#: ../templates/system.php:121 ../templates/system/tools.php:18
-msgid "Generate debug log"
-msgstr "生成调试日志"
-
 #: ../templates/system.php:124
 msgid "Debug log generation in progress..."
 msgstr "正在生成调试日志..."
-
-#: ../templates/system.php:138 ../templates/system/tools.php:32
-msgid "Inspect adapters"
-msgstr "检查适配器"
 
 #: ../templates/system.php:157
 msgid "Adapter health check"
@@ -2927,254 +2661,497 @@ msgstr "插件安装完成。"
 msgid "Plugin installation in progress..."
 msgstr "插件安装中..."
 
-#: ../templates/system/plugins.php:8
-msgid "The following user plugins are available to extend RaspAP's functionality."
-msgstr "以下用户插件可用于扩展 RaspAP 的功能。"
+#: ../templates/system.php:271 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "好的"
 
-#: ../templates/system/plugins.php:12
-msgid "Choose <strong>Details</strong> for more information and to install a plugin."
-msgstr "选择<strong>详细信息</strong>，了解更多信息并安装插件。"
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "重启广告屏蔽"
 
-#: ../templates/system/theme.php:3
-msgid "Theme settings"
-msgstr "主题设置"
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "开始屏蔽广告"
 
-#: ../templates/system/theme.php:8
-msgid "Select a theme"
-msgstr "选择主题"
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "广告屏蔽提供的信息"
 
-#: ../templates/system/theme.php:12
-msgid "Color"
-msgstr "颜色"
-
-#: ../templates/system/theme.php:18
-msgid "Dark Mode"
-msgstr "黑暗模式"
-
-#: ../templates/system/theme.php:25
-msgid "Use the dark mode from the current theme"
-msgstr "使用当前主题的暗色模式"
-
-#: ../templates/system/theme.php:28
-msgid "System Theme"
-msgstr "系统主题"
-
-#: ../templates/system/theme.php:35
-msgid "Uses the color mode of your system"
-msgstr "使用系统的色彩模式"
-
-#: ../templates/system/theme.php:40
-msgid "Alert messages"
-msgstr "警报信息"
-
-#: ../templates/system/theme.php:44
-msgid "Automatically close alerts after a specified timeout"
-msgstr "在指定超时后自动关闭警报"
-
-#: ../templates/system/theme.php:50
-msgid "Alert close timeout (milliseconds)"
-msgstr "警报关闭超时（毫秒）"
-
-#: ../templates/system/advanced.php:9
-msgid "Web server port"
-msgstr "网络服务器端口"
-
-#: ../templates/system/advanced.php:15
-msgid "Web server bind address"
-msgstr "网络服务器绑定地址"
-
-#: ../templates/system/advanced.php:21
-msgid "Diagnostic log size limit (KB)"
-msgstr "诊断日志大小限制（KB）"
-
-#: ../templates/system/advanced.php:28
-msgid "SSL Certificate (HTTPS)"
-msgstr ""
-
-#: ../templates/system/advanced.php:30
-#, php-format
-msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr ""
-
-#: ../templates/system/advanced.php:31
-msgid "Download rootCA.pem"
-msgstr ""
-
-#: ../templates/system/advanced.php:33
-#, php-format
-msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr ""
-
-#: ../templates/system/advanced.php:40
-msgid "Restart lighttpd"
-msgstr "重启 lighttpd"
-
-#: ../templates/system/basic.php:10
-msgid "System Information"
-msgstr "系统信息"
-
-#: ../templates/system/basic.php:36
-msgid "Hostname"
-msgstr "主机名"
-
-#: ../templates/system/basic.php:40
-msgid "Pi Revision"
-msgstr "Pi 修订版"
-
-#: ../templates/system/basic.php:44
-msgid "OS"
-msgstr "操作系统"
-
-#: ../templates/system/basic.php:48
-msgid "Kernel"
-msgstr "内核"
-
-#: ../templates/system/basic.php:52
-msgid "Uptime"
-msgstr "正常运行时间"
-
-#: ../templates/system/basic.php:56
-msgid "System Time"
-msgstr "系统时间"
-
-#: ../templates/system/basic.php:65
-msgid "Memory Used"
-msgstr "已用内存"
-
-#: ../templates/system/basic.php:77
-msgid "Storage Used"
-msgstr "使用的存储设备"
-
-#: ../templates/system/basic.php:89
-msgid "CPU Load"
-msgstr "CPU 负载"
-
-#: ../templates/system/basic.php:101
-msgid "CPU Temp"
-msgstr "CPU 温度"
-
-#: ../templates/system/language.php:3
-msgid "Language settings"
-msgstr "语言设置"
-
-#: ../templates/system/language.php:6
-msgid "Select a language"
-msgstr "选择语言"
-
-#: ../templates/system/tools.php:3
-msgid "System tools"
-msgstr "系统工具"
-
-#: ../templates/system/tools.php:10
-#, php-format
-msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
-msgstr "要生成系统<a href=\"%s\" target=\"_blank\">调试日志</a>，请单击或点击下面的按钮。"
-
-#: ../templates/system/tools.php:13
-msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
-msgstr "调试日志信息包括 RaspAP 版本、AP 相关服务的当前状态和配置、已安装的系统软件包、Linux 内核版本和网络详情。其中不包括密码或其他敏感数据。"
-
-#: ../templates/system/tools.php:24
-#, php-format
-msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "要<a href=\"%s\" target=\"_blank\">检查</a>该设备上的<a href=\" %s \" target=\"_blank\">适配器</a>，请单击或点击下面的按钮。"
-
-#: ../templates/system/tools.php:27
-msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
-msgstr "适配器检查工具会返回外部 WLAN 设备的详细信息，包括驱动程序、支持的模式等。"
-
-#: ../templates/system/tools.php:38
-#, php-format
-msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
-msgstr "要将 RaspAP 重置为<a href=\"%s\" target=\"_blank\">初始配置</a>，请单击或点击下面的按钮。"
-
-#: ../templates/system/tools.php:40
-msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
-msgstr "将所有接入点 (AP) 服务设置恢复为默认值。这适用于 hostapd、dhcpcd 和 dnsmasq。"
-
-#: ../templates/system/tools.php:42
-msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
-msgstr "广告拦截、WireGuard 或 OpenVPN 等可选组件的自定义文件将保留在系统中。"
-
-#: ../templates/system/tools.php:47
-msgid "Perform reset"
-msgstr "执行重置"
-
-#: ../templates/hostapd.php:20
-msgid "Start hotspot"
-msgstr "启动热点"
-
-#: ../templates/hostapd.php:20
-msgid "Starting hotspot"
-msgstr "启动热点"
-
-#: ../templates/hostapd.php:24
-msgid "Stop hotspot"
-msgstr "停止热点"
-
-#: ../templates/hostapd.php:27
-msgid "Restart hotspot"
-msgstr "重启热点"
-
-#: ../templates/hostapd.php:27
-msgid "Restarting hotspot"
-msgstr "重启热点"
-
-#: ../templates/hostapd.php:70
-msgid "Information provided by hostapd"
-msgstr "hostapd 提供的信息"
-
-#: ../templates/hostapd.php:84
-msgid "Executing RaspAP service start"
-msgstr "执行 RaspAP 服务启动"
-
-#: ../templates/admin/login.php:2
-msgid "Submit"
-msgstr "提交"
-
-#: ../templates/admin/login.php:11
-msgid "Admin login"
+#: ../templates/login.php:13
+msgid "Administrator login"
 msgstr "管理员登录"
 
-#: ../templates/admin/login.php:26
-msgid "Please enter your password."
-msgstr "请输入您的密码。"
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "忘记密码"
 
-#: ../templates/admin/avatar.php:3
-msgid "Reset avatar"
-msgstr "重置头像"
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
+msgstr ""
 
-#: ../templates/admin/avatar.php:15
-msgid "Click or tap to upload a new user avatar."
-msgstr "点击或轻点上传新的用户头像。"
+#: ../templates/openvpn.php:20
+msgid "Start OpenVPN"
+msgstr "启动 OpenVPN"
 
-#: ../templates/admin/avatar.php:16
-msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
-msgstr "接受<code>JPG、GIF 或 PNG</code>类型的图像文件。最大文件大小：2 MB。"
+#: ../templates/openvpn.php:24
+msgid "Stop OpenVPN"
+msgstr "停止 OpenVPN"
 
-#: ../templates/admin/general.php:3
-msgid "Change password"
-msgstr "更改密码"
+#: ../templates/openvpn.php:65
+msgid "Information provided by openvpn"
+msgstr "由 openvpn 提供的信息"
 
-#: ../templates/admin/general.php:28
-msgid "Enable limited privilege user"
-msgstr "启用有限权限用户"
+#: ../templates/openvpn.php:75
+msgid "Delete OpenVPN client"
+msgstr "删除 OpenVPN 客户端"
 
-#: ../templates/admin/general.php:30
-msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
-msgstr "非管理员用户可以访问 RaspAP 的管理界面，但<strong>修改现有配置的能力有限</strong>。当当前管理员用户注销后，该用户就会激活。"
+#: ../templates/openvpn.php:78
+msgid "Delete client configuration? This cannot be undone."
+msgstr "删除客户端配置？无法撤销。"
 
-#: ../templates/admin/general.php:34
-msgid "Limited user login"
-msgstr "有限用户登录"
+#: ../templates/openvpn.php:93
+msgid "Activate OpenVPN client"
+msgstr "激活 OpenVPN 客户端"
 
-#: ../templates/admin/general.php:43
-msgid "Limited user password"
-msgstr "有限用户密码"
+#: ../templates/openvpn.php:96
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "激活客户端配置？这将重启 openvpn-client 服务。"
 
-#: ../templates/admin/general.php:48
-msgid "Please enter a valid password."
-msgstr "请输入有效密码。"
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "以太网"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
+msgstr ""
+
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "中继器"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "系留"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "细胞"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
+msgstr ""
+
+#: ../templates/dashboard.php:49
+msgid "Local"
+msgstr ""
+
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "网络掩码"
+
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "MAC 地址"
+
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "美联社"
+
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "桥接"
+
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "广告屏蔽"
+
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "虚拟专用网"
+
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "防火墙"
+
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
+
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2.4G"
+
+#: ../templates/dhcp/general.php:2 ../templates/dhcp/settings.php:2
+msgid "DHCP server settings"
+msgstr "DHCP 服务器设置"
+
+#: ../templates/dhcp/general.php:10 ../templates/dhcp/settings.php:10
+msgid "Adapter IP Address Settings"
+msgstr "适配器 IP 地址设置"
+
+#: ../templates/dhcp/general.php:28 ../templates/dhcp/settings.php:28
+msgid "Enable fallback to static option"
+msgstr "启用回退到静态选项"
+
+#: ../templates/dhcp/general.php:31 ../templates/dhcp/settings.php:31
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "启用此选项可配置静态配置文件，并在 DHCP 租用失败时返回到该配置文件。"
+
+#: ../templates/dhcp/general.php:36 ../templates/dhcp/settings.php:36
+msgid "Static IP options"
+msgstr "静态 IP 选项"
+
+#: ../templates/dhcp/general.php:42 ../templates/dhcp/settings.php:42
+msgid "Please provide a valid IP Address."
+msgstr "请提供有效的 IP 地址。"
+
+#: ../templates/dhcp/general.php:49 ../templates/dhcp/settings.php:49
+msgid "Subnet Mask"
+msgstr "子网掩码"
+
+#: ../templates/dhcp/general.php:52 ../templates/dhcp/settings.php:52
+msgid "Please provide a valid Subnet mask."
+msgstr "请提供有效的子网掩码。"
+
+#: ../templates/dhcp/general.php:59 ../templates/dhcp/settings.php:59
+msgid "Default gateway"
+msgstr "默认网关"
+
+#: ../templates/dhcp/general.php:62 ../templates/dhcp/settings.php:62
+msgid "Please provide a valid Default gateway."
+msgstr "请提供有效的默认网关。"
+
+#: ../templates/dhcp/general.php:71 ../templates/dhcp/settings.php:71
+msgid "Install a default route for this interface"
+msgstr "为该接口安装默认路由"
+
+#: ../templates/dhcp/general.php:74
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "在 DHCPCD 配置中切换该接口的<code>网关/</code><code>网关</code>选项。"
+
+#: ../templates/dhcp/general.php:83 ../templates/dhcp/settings.php:84
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "禁用此接口的 wpa_supplicant dhcp 钩子"
+
+#: ../templates/dhcp/general.php:84 ../templates/dhcp/settings.php:85
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "如果使用 wpa_supplicant 本身管理无线连接，钩子可能会产生不必要的连接事件。此选项可禁用钩子。"
+
+#: ../templates/dhcp/general.php:87
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr "这将切换 DHCPCD 配置中该接口的<code>nohook wpa_supplicant</code>选项。"
+
+#: ../templates/dhcp/general.php:92 ../templates/dhcp/settings.php:93
+msgid "DHCP options"
+msgstr "DHCP 选项"
+
+#: ../templates/dhcp/general.php:98 ../templates/dhcp/settings.php:99
+msgid "Enable DHCP for this interface"
+msgstr "为该接口启用 DHCP"
+
+#: ../templates/dhcp/general.php:101 ../templates/dhcp/settings.php:102
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "如果希望 RaspAP 为所选接口上的客户端分配 IP 地址，请启用此选项。此选项需要一个静态 IP 地址。"
+
+#: ../templates/dhcp/general.php:109 ../templates/dhcp/settings.php:110
+msgid "Starting IP Address"
+msgstr "起始 IP 地址"
+
+#: ../templates/dhcp/general.php:112 ../templates/dhcp/settings.php:113
+msgid "Please provide a valid Starting IP Address."
+msgstr "请提供有效的起始 IP 地址。"
+
+#: ../templates/dhcp/general.php:118 ../templates/dhcp/settings.php:119
+msgid "Ending IP Address"
+msgstr "结束 IP 地址"
+
+#: ../templates/dhcp/general.php:121 ../templates/dhcp/settings.php:122
+msgid "Please provide a valid Ending IP Address."
+msgstr "请提供有效的结束 IP 地址。"
+
+#: ../templates/dhcp/general.php:127 ../templates/dhcp/settings.php:128
+msgid "Lease Time"
+msgstr "租赁时间"
+
+#: ../templates/dhcp/general.php:130 ../templates/dhcp/settings.php:131
+msgid "Please provide a valid Lease Time."
+msgstr "请提供有效的租赁时间。"
+
+#: ../templates/dhcp/general.php:134 ../templates/dhcp/settings.php:135
+msgid "Interval"
+msgstr "间隔"
+
+#: ../templates/dhcp/general.php:136 ../templates/dhcp/settings.php:137
+msgid "Minute(s)"
+msgstr "分钟"
+
+#: ../templates/dhcp/general.php:137 ../templates/dhcp/settings.php:138
+msgid "Hour(s)"
+msgstr "小时"
+
+#: ../templates/dhcp/general.php:138 ../templates/dhcp/settings.php:139
+msgid "Day(s)"
+msgstr "天数"
+
+#: ../templates/dhcp/general.php:139 ../templates/dhcp/settings.php:140
+msgid "Infinite"
+msgstr "无限"
+
+#: ../templates/dhcp/general.php:142 ../templates/dhcp/settings.php:143
+msgid "Please provide a valid Interval."
+msgstr "请提供有效的时间间隔。"
+
+#: ../templates/dhcp/general.php:163 ../templates/dhcp/summary.php:25
+#: ../templates/dhcp/settings.php:164
+msgid "Metric"
+msgstr "公制"
+
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr "静态租赁"
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "具有特定硬件 MAC 地址的客户端总是可以分配到相同的 IP 地址。"
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "该选项将<code>dhcp-host</code>条目添加到 dnsmasq 配置中。"
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr "IP 地址"
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr "可选评论"
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr "限制访问"
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr "限制静态客户访问网络"
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "如果希望 RaspAP<b>忽略任何</b>未在静态租约列表中指定的<b>客户端</b>，请启用此选项。"
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "该选项将<code>dhcp-ignore</code>添加到 dnsmasq 配置中。"
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr "活动 DHCP 租约"
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr "过期时间"
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
+msgstr "主机名称"
+
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr "客户 ID"
+
+#: ../templates/dhcp/logging.php:4
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "启用这些选项可记录<code>dhcpcd</code>和<code>dnsmasq</code>活动。"
+
+#: ../templates/dhcp/logging.php:8
+msgid "Log DHCP requests"
+msgstr "记录 DHCP 请求"
+
+#: ../templates/dhcp/logging.php:12
+msgid "Log DNS queries"
+msgstr "记录 DNS 查询"
+
+#: ../templates/dhcp/advanced.php:3
+msgid "Advanced Settings"
+msgstr "高级设置"
+
+#: ../templates/dhcp/advanced.php:6
+msgid "Upstream DNS servers"
+msgstr "上游 DNS 服务器"
+
+#: ../templates/dhcp/advanced.php:11
+msgid "Only ever query DNS servers configured below"
+msgstr "只能查询以下配置的 DNS 服务器"
+
+#: ../templates/dhcp/advanced.php:14
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "如果希望 RaspAP<b>只向下面配置的服务器发送 DNS 查询</b>，请启用该选项。默认情况下，RaspAP 也使用其上游 DHCP 服务器的名称服务器。"
+
+#: ../templates/dhcp/advanced.php:15
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "该选项将<code>no-resolv</code>添加到 dnsmasq 配置中。"
+
+#: ../templates/dhcp/advanced.php:29
+msgid "Add upstream DNS server"
+msgstr "添加上游 DNS 服务器"
+
+#: ../templates/dhcp/advanced.php:31
+#, php-format
+msgid "e.g. %s"
+msgstr "例如： %s"
+
+#: ../templates/dhcp/advanced.php:36
+msgid "Format: "
+msgstr "格式： "
+
+#: ../templates/dhcp/advanced.php:41
+msgid "Choose a hosted server"
+msgstr "选择托管服务器"
+
+#: ../templates/dhcp/settings.php:72
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:75
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
+
+#: ../templates/dhcp/settings.php:88
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
+
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "捐款"
+
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "新版本检查中..."
+
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "新版本已发布：版本"
+
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "安装版本为最新版本。"
+
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "现在就安装更新？"
+
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "GitHub 认证"
+
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "更新 Insiders 需要 GitHub 认证。"
+
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "您的证书将通过 SSL 安全地发送到 GitHub。但是，如果您的 RaspAP 安装在由不信任用户共享的 WLAN 上，请务必谨慎。"
+
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "个人访问令牌"
+
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "请提供有效的令牌。"
+
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "执行更新"
+
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "更新中"
+
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "申请正在更新中..."
+
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "配置更新"
+
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "更新信息源"
+
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "安装软件包更新"
+
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "下载最新文件"
+
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "安装应用程序"
+
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "更新完成"
+
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "发生错误。检查<code>/tmp/raspap_install.log</code>中的日志"
+
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "成功。刷新此页面以确认新版本。"
+
+#: ../templates/exception.php:6 ../templates/exception.php:17
+msgid "RaspAP Exception"
+msgstr "RaspAP 异常"
+
+#: ../templates/exception.php:20
+msgid "An exception occurred"
+msgstr "发生异常"
 
 #: ../templates/wg/peers.php:10
 msgid "Enable peer"
@@ -3215,18 +3192,6 @@ msgstr "用客户端扫描此 QR 码，连接到此隧道"
 #: ../templates/wg/peers.php:71
 msgid "or download the <code>client.conf</code> file to your device."
 msgstr "或将<code>client.conf</code>文件下载到设备上。"
-
-#: ../templates/wg/logging.php:6
-msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
-msgstr "启用此选项可显示更新的<code>wg-quick</code>调试日志。"
-
-#: ../templates/wg/configs.php:6
-msgid "Currently available WireGuard file configurations are displayed below."
-msgstr "当前可用的 WireGuard 文件配置显示如下。"
-
-#: ../templates/wg/configs.php:7
-msgid "Activating a configuration will restart the <code>wg-quick</code> service."
-msgstr "激活配置将重启<code>wg-quick</code>服务。"
 
 #: ../templates/wg/general.php:5
 msgid "Tunnel settings"
@@ -3300,25 +3265,57 @@ msgstr "此设置会在此设备上生成一个新的 WireGuard<code>.conf</code
 msgid "Local public key"
 msgstr "本地公用密钥"
 
-#: ../templates/networking.php:22
-msgid "Devices"
-msgstr "设备"
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "启用此选项可显示更新的<code>wg-quick</code>调试日志。"
 
-#: ../templates/networking.php:23
-msgid "Mobile Data"
-msgstr "移动数据"
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "当前可用的 WireGuard 文件配置显示如下。"
 
-#: ../templates/networking.php:24
-msgid "WLAN Routing"
-msgstr "无线局域网路由选择"
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "激活配置将重启<code>wg-quick</code>服务。"
 
-#: ../templates/networking.php:25
-msgid "Diagnostics"
-msgstr "诊断"
+#: ../ajax/networking/get_nl80211_band.php:37
+#, php-format
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "所选接口 (%s) 仅支持 2.4 GHz 无线频段。"
 
-#: ../templates/networking.php:41
-msgid "Information provided by /sys/class/net"
-msgstr "由 /sys/class/net 提供的信息"
+#: ../ajax/networking/get_nl80211_band.php:40
+#, php-format
+msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
+msgstr "所选接口 (%s) 仅支持 5 GHz 无线频段。"
+
+#: ../ajax/networking/get_nl80211_band.php:43
+#, php-format
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "所选接口 (%s) 同时支持 2.4 和 5 GHz 无线频段。"
+
+#: ../ajax/networking/get_nl80211_band.php:46
+#, php-format
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "所选接口 (%s) 不支持无线模式操作。"
+
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "可打印的 Wi-Fi 标志"
+
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Wi-Fi 连接"
+
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "要使用手机或平板电脑连接，请使用相机应用程序扫描上面的二维码。"
+
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "对于其他设备，请使用下面的登录凭证。"
+
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "网络"
 
 #~ msgid "Firewall is now enabled"
 #~ msgstr "防火墙已启用"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-05-30 19:59+0000\n"
+"POT-Creation-Date: 2026-06-21 19:23+0000\n"
 "PO-Revision-Date: 2026-04-22 02:22\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
@@ -17,220 +17,78 @@ msgstr ""
 "X-Crowdin-File: /master/locale/messages.pot\n"
 "X-Crowdin-File-ID: 12\n"
 
-#: ../ajax/networking/get_nl80211_band.php:37
-#, php-format
-msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
-msgstr "De geselecteerde interface (%s) biedt alleen ondersteuning voor de 2,4 GHz draadloze band."
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "Geïnstalleerd"
 
-#: ../ajax/networking/get_nl80211_band.php:40
-#, php-format
-msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
-msgstr "De geselecteerde interface (%s) ondersteunt alleen de 5 GHz draadloze band."
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "Details"
 
-#: ../ajax/networking/get_nl80211_band.php:43
-#, php-format
-msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
-msgstr "De geselecteerde interface (%s) heeft ondersteuning voor zowel de 2.4 als de 5 GHz draadloze band."
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
+msgid "Dashboard"
+msgstr "Dashboard"
 
-#: ../ajax/networking/get_nl80211_band.php:46
-#, php-format
-msgid "The selected interface (%s) does not support wireless mode operation."
-msgstr "De geselecteerde interface (%s) ondersteunt de draadloze modus niet."
-
-#: ../includes/dashboard.php:72
-#, php-format
-msgid "%d WLAN %s"
-msgstr "%d WLAN %s"
-
-#: ../includes/dashboard.php:78
-#, php-format
-msgid "%d LAN %s"
-msgstr "%d LAN %s"
-
-#: ../includes/functions.php:1001
-#: ../plugins-available/Captive/templates/main.php:51
-#: ../plugins-available/Tailscale/templates/main.php:71
-#: ../templates/restapi.php:47 ../templates/provider.php:36
-#: ../templates/wifi_stations/network.php:33
-msgid "Status"
-msgstr "Status"
-
-#: ../includes/functions.php:1003 ../src/RaspAP/UI/Sidebar.php:20
+#: ../src/RaspAP/UI/Sidebar.php:20 ../includes/functions.php:1003
 #: ../templates/hostapd.php:13
 msgid "Hotspot"
 msgstr "Hotspot"
 
-#: ../includes/functions.php:1006
-msgid "Mem Use"
-msgstr "Mem Gebruik"
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
+msgid "DHCP Server"
+msgstr "DHCP-server"
 
-#: ../includes/functions.php:1009
-msgid "CPU"
-msgstr "CPU"
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
+msgid "Ad Blocking"
+msgstr "Advertentie blokkeren"
 
-#: ../includes/restapi.php:59
-#, php-format
-msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
-msgstr "RestAPI-documenten zijn <a href=\"%s\" target=\"_blank\">hier </a> toegankelijk <a href=\" %s \" target=\"_blank\"> %s</a>"
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
+#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
+msgid "Networking"
+msgstr "Netwerken"
 
-#: ../includes/footer.php:6
-#, php-format
-msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
-msgstr "Gemaakt door de <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "WiFi-client"
 
-#: ../includes/footer.php:6
-msgid "RaspAP Team"
-msgstr "RaspAP-team"
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-#: ../includes/footer.php:9
-msgid "Thanks for being an Insider"
-msgstr "Bedankt dat je een Insider bent"
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "WireGuard"
 
-#: ../includes/footer.php:17
-msgid "Session Expired"
-msgstr "Sessie Verlopen"
+#: ../src/RaspAP/UI/Sidebar.php:44
+msgid "Data usage"
+msgstr "Gebruik van gegevens"
 
-#: ../includes/footer.php:20
-msgid "Your session has expired. Please login to continue."
-msgstr "Uw sessie is verlopen. Log in om door te gaan."
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
+msgid "RestAPI"
+msgstr "RestAPI"
 
-#: ../includes/footer.php:23 ../templates/admin.php:18
-#: ../templates/login.php:30
-msgid "Login"
-msgstr "Inloggen"
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
+#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
+msgid "System"
+msgstr "Systeem"
 
-#: ../includes/adblock.php:31
-msgid "Invalid custom IP address found on line "
-msgstr "Ongeldig aangepast IP-adres gevonden op regel "
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
+msgid "About RaspAP"
+msgstr "Over RaspAP"
 
-#: ../includes/adblock.php:35
-msgid "Invalid custom host found on line "
-msgstr "Ongeldige aangepaste host gevonden op regel "
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+msgid "No MAC Address Found"
+msgstr "Geen MAC-adres gevonden"
 
-#: ../includes/provider.php:65
-#, php-format
-msgid "Expected %s binary not found at: %s"
-msgstr "Verwacht %s binair niet gevonden op: %s"
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "Geen IPv6-adres gevonden"
 
-#: ../includes/provider.php:66
-#, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
-msgstr "Ga naar de <a href=\"%s\" target=\"_blank\">installatie-instructies</a> voor %s's Linux CLI."
-
-#: ../includes/provider.php:70
-#, php-format
-msgid "Unable to execute %s binary found at: %s"
-msgstr "Kan %s binary gevonden op niet uitvoeren: %s"
-
-#: ../includes/provider.php:71
-msgid "Check that binary is executable and permissions exist in raspap.sudoers"
-msgstr "Controleer of het binaire bestand uitvoerbaar is en of er rechten bestaan in raspap.sudoers"
-
-#: ../includes/provider.php:119
-#, php-format
-msgid "Attempting to connect to %s"
-msgstr "Ik probeer verbinding te maken met %s"
-
-#: ../includes/provider.php:318
-msgid "Select a country..."
-msgstr "Selecteer een land..."
-
-#: ../includes/provider.php:387
-#, php-format
-msgid "Account information not available from %s's Linux CLI."
-msgstr "Accountinformatie niet beschikbaar via %s's Linux CLI."
-
-#: ../includes/wifi_functions.php:281
-#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:365
-msgid "Signal strength"
-msgstr "Signaalsterkte"
-
-#: ../includes/system.php:67
-#, php-format
-msgid "Changing log limit size to %s KB"
-msgstr "Logboeklimiet wijzigen naar %s KB"
-
-#: ../includes/system.php:86
-#, php-format
-msgid "Changing alert close timeout to %s ms"
-msgstr "Time-out voor sluiten van waarschuwing wijzigen in %s ms"
-
-#: ../includes/networking.php:51 ../includes/networking.php:54
-msgid "not configured"
-msgstr "niet geconfigureerd"
-
-#: ../includes/networking.php:137
-#, php-format
-msgid "Attempting to enable routing between %s and %s interfaces"
-msgstr "Poging om routing in te schakelen tussen %s en %s interfaces"
-
-#: ../includes/networking.php:147
-#, php-format
-msgid "Attempting to restart routing between %s and %s interfaces"
-msgstr "Poging tot herstarten van routing tussen %s en %s interfaces"
-
-#: ../includes/networking.php:151
-#, php-format
-msgid "Attempting to disable routing between %s and %s interfaces"
-msgstr "Poging om routing uit te schakelen tussen %s en %s interfaces"
-
-#: ../includes/networking.php:252
-#, php-format
-msgid "DHCP configuration for %s enabled"
-msgstr "DHCP-configuratie voor %s ingeschakeld"
-
-#: ../includes/networking.php:259
-#, php-format
-msgid "DHCP configuration for %s added"
-msgstr "DHCP-configuratie voor %s toegevoegd"
-
-#: ../includes/networking.php:265
-#, php-format
-msgid "DHCP configuration for %s updated"
-msgstr "DHCP-configuratie voor %s bijgewerkt"
-
-#: ../includes/networking.php:271
-#, php-format
-msgid "No default DHCP configuration exists for the %s interface"
-msgstr "Er bestaat geen standaard DHCP-configuratie voor de interface %s."
-
-#: ../includes/networking.php:272
-#, php-format
-msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
-msgstr "Configureer een statische IP en DHCP voor deze interface in DHCP-serverinstellingen"
-
-#: ../includes/networking.php:294
-#, php-format
-msgid "Dnsmasq  configuration for %s added"
-msgstr "Dnsmasq configuratie voor %s toegevoegd"
-
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
-msgid "Invalid MAC address: "
-msgstr "Ongeldig MAC-adres: "
-
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
-msgid "Duplicate IP address entered: "
-msgstr "Duplicaat IP-adres ingevoerd: "
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
-msgid "Verbose debugging"
-msgstr "Uitgebreid debuggen"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
-msgid "Debugging"
-msgstr "Debuggen op"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
-msgid "Informational"
-msgstr "Informatief"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
-msgid "Notification"
-msgstr "Melding"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
-msgid "Warning"
-msgstr "Waarschuwing"
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "klant"
+msgstr[1] "klanten"
 
 #: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
 #, php-format
@@ -287,6 +145,39 @@ msgstr "Ongeldige metrische waarde, geen getal."
 msgid "DHCP configuration for %s updated."
 msgstr "DHCP-configuratie voor %s bijgewerkt."
 
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "Ongeldig MAC-adres: "
+
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "Duplicaat IP-adres ingevoerd: "
+
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
+#: ../includes/wifi_functions.php:281
+msgid "Signal strength"
+msgstr "Signaalsterkte"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "Uitgebreid debuggen"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "Debuggen op"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "Informatief"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "Melding"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "Waarschuwing"
+
 #: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
 msgid "WPA and WPA2"
 msgstr "WPA en WPA2"
@@ -311,133 +202,151 @@ msgstr "Ingeschakeld (voor ondersteunde clients)"
 msgid "Required (for supported clients)"
 msgstr "Vereist (voor ondersteunde klanten)"
 
-#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
-msgid "Dashboard"
-msgstr "Dashboard"
+#: ../plugins-available/Captive/Captive.php:70
+#: ../plugins-available/Captive/Captive.php:130
+msgid "Captive portal"
+msgstr "Captive portaal"
 
-#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
-msgid "DHCP Server"
-msgstr "DHCP-server"
+#: ../plugins-available/Captive/Captive.php:95
+#, php-format
+msgid "Attempting to start %s"
+msgstr "Ik probeer %s te starten."
 
-#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
-msgid "Ad Blocking"
-msgstr "Advertentie blokkeren"
+#: ../plugins-available/Captive/Captive.php:99
+#, php-format
+msgid "Attempting to stop %s"
+msgstr "Proberen %s te stoppen"
 
-#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/dashboard.php:24
-#: ../templates/dashboard.php:25 ../templates/networking.php:8
-msgid "Networking"
-msgstr "Netwerken"
+#: ../plugins-available/Captive/Captive.php:106
+#, php-format
+msgid "Client %s deauthenticated"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
-msgid "WiFi client"
-msgstr "WiFi-client"
+#: ../plugins-available/Captive/Captive.php:108
+#, php-format
+msgid "Failed to deauthenticate client %s"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
-msgid "OpenVPN"
-msgstr "OpenVPN"
+#: ../plugins-available/Captive/Captive.php:111
+msgid "Invalid client MAC address"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
-msgid "WireGuard"
-msgstr "WireGuard"
+#: ../plugins-available/Captive/Captive.php:131
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "Een captive portal plugin die nodogsplash implementeert"
 
-#: ../src/RaspAP/UI/Sidebar.php:44
-msgid "Data usage"
-msgstr "Gebruik van gegevens"
+#: ../plugins-available/Captive/Captive.php:132
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Wireshark/Wireshark.php:185
+msgid "Bill Z"
+msgstr "Bill Z"
 
-#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
-msgid "RestAPI"
-msgstr "RestAPI"
+#: ../plugins-available/Captive/Captive.php:538
+msgid "Portal settings saved successfully"
+msgstr "Portaalinstellingen succesvol opgeslagen"
 
-#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/dashboard.php:44
-#: ../templates/dashboard.php:45 ../templates/system.php:7
-msgid "System"
-msgstr "Systeem"
+#: ../plugins-available/Captive/Captive.php:541
+#: ../plugins-available/Wireshark/Wireshark.php:248
+msgid "Error saving settings: "
+msgstr "Fout bij het opslaan van instellingen: "
 
-#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
-msgid "About RaspAP"
-msgstr "Over RaspAP"
+#: ../plugins-available/Captive/Captive.php:582
+msgid "Failed to execute ndsctl."
+msgstr "Mislukt bij het uitvoeren van ndsctl."
 
-#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
-msgid "No MAC Address Found"
-msgstr "Geen MAC-adres gevonden"
+#: ../plugins-available/Captive/templates/main.php:3
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Wireshark/templates/main.php:3 ../templates/dhcp.php:3
+#: ../templates/wireguard.php:3 ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29 ../templates/hostapd.php:3
+#: ../templates/system/advanced.php:39 ../templates/system/theme.php:56
+#: ../templates/system/language.php:11 ../templates/provider.php:3
+#: ../templates/admin/general.php:2 ../templates/restapi.php:3
+#: ../templates/adblock.php:3 ../templates/openvpn.php:3
+msgid "Save settings"
+msgstr "Instellingen opslaan"
 
-#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
-msgid "No IPv6 Address Found"
-msgstr "Geen IPv6-adres gevonden"
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "Stop portaal"
 
-#: ../src/RaspAP/UI/Dashboard.php:232
-msgid "client"
-msgid_plural "clients"
-msgstr[0] "klant"
-msgstr[1] "klanten"
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "Start portaal"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:594
-msgid "Installed"
-msgstr "Geïnstalleerd"
+#: ../plugins-available/Captive/templates/main.php:48 ../templates/admin.php:20
+#: ../templates/hostapd.php:49 ../templates/system.php:17
+msgid "Basic"
+msgstr "Basis"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:598
-msgid "Details"
-msgstr "Details"
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "Klanten"
 
-#: ../app/lib/signprint.php:20
-msgid "Printable Wi-Fi sign"
-msgstr "Printbaar Wi-Fi-bord"
+#: ../plugins-available/Captive/templates/main.php:50 ../templates/dhcp.php:52
+#: ../templates/hostapd.php:51 ../templates/system.php:20
+msgid "Advanced"
+msgstr "Geavanceerd"
 
-#: ../app/lib/signprint.php:37
-msgid "Wi-Fi Connect"
-msgstr "Wi-Fi aansluiten"
+#: ../plugins-available/Captive/templates/main.php:51
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../includes/functions.php:1001 ../templates/wifi_stations/network.php:33
+#: ../templates/provider.php:36 ../templates/restapi.php:47
+msgid "Status"
+msgstr "Status"
 
-#: ../app/lib/signprint.php:54
-msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
-msgstr "Om verbinding te maken met je telefoon of tablet, scan je de QR-code hierboven met je camera-app."
+#: ../plugins-available/Captive/templates/main.php:52
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+msgid "Active clients"
+msgstr ""
 
-#: ../app/lib/signprint.php:55
-msgid "For other devices, use the login credentials below."
-msgstr "Gebruik de onderstaande aanmeldingsgegevens voor andere apparaten."
-
-#: ../app/lib/signprint.php:65
-msgid "Network"
-msgstr "Netwerk"
-
-#: ../app/lib/signprint.php:67 ../templates/login.php:25
-#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
-#: ../templates/admin/login.php:21
-msgid "Password"
-msgstr "Wachtwoord"
-
-#: ../plugins-available/Captive/templates/tabs/about.php:3
 #: ../plugins-available/Captive/templates/main.php:53
-#: ../plugins-available/Wireshark/templates/tabs/about.php:3
-#: ../plugins-available/Wireshark/templates/main.php:47
-#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/tabs/about.php:3
 #: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
 #: ../templates/about.php:21
 msgid "About"
 msgstr "Over"
 
-#: ../plugins-available/Captive/templates/tabs/about.php:5
-#: ../plugins-available/Wireshark/templates/tabs/about.php:5
-#: ../plugins-available/Tailscale/templates/tabs/about.php:5
-msgid "was created by"
-msgstr "is gemaakt door"
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "Informatie verstrekt door nodogsplash"
 
-#: ../plugins-available/Captive/templates/tabs/about.php:8
-#: ../plugins-available/Wireshark/templates/tabs/about.php:8
-#: ../plugins-available/Tailscale/templates/tabs/about.php:8
-msgid "Plugin description"
-msgstr "Plugin beschrijving"
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "Portaalservice stoppen"
 
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
-#: ../plugins-available/Captive/templates/main.php:52
-msgid "Active clients"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "Portaalservice starten"
+
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Het wijzigen van de portaalservice zal het clientverkeer tijdelijk verstoren. Kies <strong>Proceed</strong> om door te gaan."
+
+#: ../plugins-available/Captive/templates/main.php:99
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../templates/admin.php:90 ../templates/admin.php:119
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:109 ../templates/system.php:253
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "Ga verder"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:6
 #: ../plugins-available/Tailscale/Tailscale.php:403
 #: ../plugins-available/Tailscale/templates/main.php:4
-#: ../templates/dashboard.php:12 ../templates/dhcp/summary.php:9
 #: ../templates/networking/devices.php:4 ../templates/networking/general.php:4
-#: ../templates/system/basic.php:63
+#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
+#: ../templates/dhcp/summary.php:9
 msgid "Refresh"
 msgstr "Vernieuw"
 
@@ -483,117 +392,9 @@ msgstr ""
 msgid "No active clients connected."
 msgstr ""
 
-#: ../plugins-available/Captive/templates/tabs/advanced.php:5
-#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
-msgid "Advanced settings"
-msgstr "Geavanceerde instellingen"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:9
-msgid "Gateway IP range"
-msgstr "Gateway IP-bereik"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:11
-msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
-msgstr "IP-bereik om te beheren in CIDR-notatie. Leeg laten voor alle adressen"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:15
-msgid "Default: 0.0.0.0/0 (all addresses)"
-msgstr "Standaard: 0.0.0.0/0 (alle adressen)"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:21
-msgid "Debug level"
-msgstr "Debug-niveau"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:23
-msgid "Amount of logging detail reported by the nodogsplash.service"
-msgstr "Hoeveelheid logboekgegevens gerapporteerd door de nodogsplash.service"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:26
-msgid "0 - Errors only"
-msgstr "0 - Alleen fouten"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:29
-msgid "1 - Errors, warnings, infos"
-msgstr "1 - Fouten, waarschuwingen, info"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:32
-msgid "2 - Errors, warnings, infos, verbose"
-msgstr "2 - Fouten, waarschuwingen, info, uitgebreid"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:35
-msgid "3 - Errors, warnings, infos, verbose, debug"
-msgstr "3 - Fouten, waarschuwingen, info, uitgebreid, debug"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:41
-msgid "Firewall settings"
-msgstr "Instellingen firewall"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:49
-msgid "Allow all traffic for authenticated users"
-msgstr "Sta alle verkeer toe voor geverifieerde gebruikers"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:52
-msgid "When enabled, authenticated users have unrestricted access"
-msgstr "Indien ingeschakeld, hebben geverifieerde gebruikers onbeperkte toegang"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:63
-msgid "Allow DNS for pre-authenticated users"
-msgstr "DNS toestaan voor vooraf geauthenticeerde gebruikers"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:66
-msgid "Required for clients to resolve domain names before authentication"
-msgstr "Vereist voor clients om domeinnamen op te lossen voor authenticatie"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:5
-#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
-#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
-#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
-msgid "Basic settings"
-msgstr "Basisinstellingen"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:9
-msgid "Gateway interface"
-msgstr "Gateway-interface"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:10
-msgid "Interface to be managed by the portal"
-msgstr "Interface die door de portal moet worden beheerd"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:12
-msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
-msgstr "Wordt standaard ingesteld op de actieve AP-interface, meestal <code>wlan0</code>"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:16
-msgid "Gateway name"
-msgstr "Naam gateway"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:18
-msgid "Name of your gateway (available as $gatewayname variable)"
-msgstr "Naam van je gateway (beschikbaar als $gatewayname variabele)"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:27
-msgid "Gateway address"
-msgstr "Adres gateway"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:29
-msgid "IP address of the router. Leave empty for auto-detection"
-msgstr "IP-adres van de router. Leeg laten voor automatische detectie"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:33
-msgid "Auto-detected from gateway interface if not specified"
-msgstr "Automatisch gedetecteerd vanaf gateway-interface indien niet gespecificeerd"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:37
-msgid "Gateway port"
-msgstr "Poort"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:39
-msgid "Port for Nodogsplash HTTP server"
-msgstr "Poort voor Nodogsplash HTTP-server"
-
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
-#: ../templates/configure_client.php:21 ../templates/openvpn.php:46
-#: ../templates/openvpn/general.php:2
+#: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
+#: ../templates/openvpn.php:46
 msgid "Client settings"
 msgstr "Klantinstellingen"
 
@@ -694,6 +495,114 @@ msgstr "Komma-gescheiden MAC-adressen die de verificatie volledig omzeilen"
 msgid "These devices are not subject to authentication or firewall rules"
 msgstr "Deze apparaten zijn niet onderworpen aan verificatie- of firewallregels"
 
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+#: ../templates/system/advanced.php:3 ../templates/hostapd/advanced.php:2
+msgid "Advanced settings"
+msgstr "Geavanceerde instellingen"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "Gateway IP-bereik"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "IP-bereik om te beheren in CIDR-notatie. Leeg laten voor alle adressen"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Standaard: 0.0.0.0/0 (alle adressen)"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "Debug-niveau"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Hoeveelheid logboekgegevens gerapporteerd door de nodogsplash.service"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - Alleen fouten"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Fouten, waarschuwingen, info"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Fouten, waarschuwingen, info, uitgebreid"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Fouten, waarschuwingen, info, uitgebreid, debug"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "Instellingen firewall"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "Sta alle verkeer toe voor geverifieerde gebruikers"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "Indien ingeschakeld, hebben geverifieerde gebruikers onbeperkte toegang"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "DNS toestaan voor vooraf geauthenticeerde gebruikers"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Vereist voor clients om domeinnamen op te lossen voor authenticatie"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+msgid "Basic settings"
+msgstr "Basisinstellingen"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "Gateway-interface"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "Interface die door de portal moet worden beheerd"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "Wordt standaard ingesteld op de actieve AP-interface, meestal <code>wlan0</code>"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "Naam gateway"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "Naam van je gateway (beschikbaar als $gatewayname variabele)"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "Adres gateway"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "IP-adres van de router. Leeg laten voor automatische detectie"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Automatisch gedetecteerd vanaf gateway-interface indien niet gespecificeerd"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "Poort"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Poort voor Nodogsplash HTTP-server"
+
 #: ../plugins-available/Captive/templates/tabs/status.php:3
 msgid "Portal status"
 msgstr "Status portaal"
@@ -702,123 +611,400 @@ msgstr "Status portaal"
 msgid "Current <code>nodogsplash</code> status is displayed below."
 msgstr "De huidige status van <code>nodogsplash</code> wordt hieronder weergegeven."
 
-#: ../plugins-available/Captive/templates/main.php:3
-#: ../plugins-available/Wireshark/templates/main.php:3
-#: ../plugins-available/Tailscale/templates/main.php:16
-#: ../templates/restapi.php:3 ../templates/adblock.php:3
-#: ../templates/openvpn.php:3 ../templates/provider.php:3
-#: ../templates/networking/wlanrouting.php:3
-#: ../templates/networking/mobile.php:29 ../templates/wireguard.php:3
-#: ../templates/dhcp.php:3 ../templates/system/theme.php:56
-#: ../templates/system/advanced.php:39 ../templates/system/language.php:11
-#: ../templates/hostapd.php:3 ../templates/admin/general.php:2
-msgid "Save settings"
-msgstr "Instellingen opslaan"
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "is gemaakt door"
 
-#: ../plugins-available/Captive/templates/main.php:22
-msgid "Stop portal"
-msgstr "Stop portaal"
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "Plugin beschrijving"
 
-#: ../plugins-available/Captive/templates/main.php:26
-msgid "Start portal"
-msgstr "Start portaal"
+#: ../plugins-available/Tailscale/Tailscale.php:52
+msgid "Tailscale VPN"
+msgstr "Tailscale VPN"
 
-#: ../plugins-available/Captive/templates/main.php:48 ../templates/admin.php:20
-#: ../templates/system.php:17 ../templates/hostapd.php:49
-msgid "Basic"
-msgstr "Basis"
-
-#: ../plugins-available/Captive/templates/main.php:49
-msgid "Clients"
-msgstr "Klanten"
-
-#: ../plugins-available/Captive/templates/main.php:50 ../templates/dhcp.php:52
-#: ../templates/system.php:20 ../templates/hostapd.php:51
-msgid "Advanced"
-msgstr "Geavanceerd"
-
-#: ../plugins-available/Captive/templates/main.php:79
-msgid "Information provided by nodogsplash"
-msgstr "Informatie verstrekt door nodogsplash"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Stop portal service"
-msgstr "Portaalservice stoppen"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Start portal service"
-msgstr "Portaalservice starten"
-
-#: ../plugins-available/Captive/templates/main.php:95
-msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
-msgstr "Het wijzigen van de portaalservice zal het clientverkeer tijdelijk verstoren. Kies <strong>Proceed</strong> om door te gaan."
-
-#: ../plugins-available/Captive/templates/main.php:99
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
-#: ../templates/about.php:56 ../templates/about.php:104
-#: ../templates/admin.php:90 ../templates/admin.php:119
-#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
-#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
-#: ../templates/system.php:56 ../templates/system.php:74
-#: ../templates/system.php:109 ../templates/system.php:253
-msgid "Cancel"
-msgstr "Annuleren"
-
-#: ../plugins-available/Captive/templates/main.php:100
-msgid "Proceed"
-msgstr "Ga verder"
-
-#: ../plugins-available/Captive/Captive.php:70
-#: ../plugins-available/Captive/Captive.php:130
-msgid "Captive portal"
-msgstr "Captive portaal"
-
-#: ../plugins-available/Captive/Captive.php:95
+#: ../plugins-available/Tailscale/Tailscale.php:237
 #, php-format
-msgid "Attempting to start %s"
-msgstr "Ik probeer %s te starten."
+msgid "Expected tailscale binary not found at: %s"
+msgstr "Verwachte tailscale binair niet gevonden op: %s"
 
-#: ../plugins-available/Captive/Captive.php:99
+#: ../plugins-available/Tailscale/Tailscale.php:238
 #, php-format
-msgid "Attempting to stop %s"
-msgstr "Proberen %s te stoppen"
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
+msgstr "Ga naar de <a href=\"%s\" target=\"_blank\">installatie-instructies</a> of installeer de Tailscale-plugin opnieuw."
 
-#: ../plugins-available/Captive/Captive.php:106
+#: ../plugins-available/Tailscale/Tailscale.php:251
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "Een Tailscale VPN-exitknooppuntuitbreiding voor RaspAP"
+
+#: ../plugins-available/Tailscale/Tailscale.php:400
+#: ../plugins-available/Tailscale/templates/main.php:44
+msgid "Start Tailscale"
+msgstr "Start Tailscale"
+
+#: ../plugins-available/Tailscale/Tailscale.php:406
 #, php-format
-msgid "Client %s deauthenticated"
-msgstr ""
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Kan de Tailscale login niet ophalen. Kies <strong>%s</strong> om door te gaan."
 
-#: ../plugins-available/Captive/Captive.php:108
+#: ../plugins-available/Tailscale/Tailscale.php:786
+msgid "Not connected: Login required."
+msgstr "Geen verbinding: Inloggen vereist."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
+msgid "Exit node activated"
+msgstr "Knooppunt verlaten geactiveerd"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
 #, php-format
-msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "Het apparaat <code>%s</code> is verbonden met het adres <code>%s</code> en biedt een <strong>uitgangsknooppunt</strong>."
 
-#: ../plugins-available/Captive/Captive.php:111
-msgid "Invalid client MAC address"
-msgstr ""
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#, php-format
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "Zie %s voor meer informatie over het gebruik van deze uitgangsknoop met je apparaten."
 
-#: ../plugins-available/Captive/Captive.php:131
-msgid "A captive portal plugin that implements nodogsplash"
-msgstr "Een captive portal plugin die nodogsplash implementeert"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "Nieuw uitgangsknooppunt configureren"
 
-#: ../plugins-available/Captive/Captive.php:132
-#: ../plugins-available/Wireshark/Wireshark.php:185
-#: ../plugins-available/Tailscale/Tailscale.php:252
-msgid "Bill Z"
-msgstr "Bill Z"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "Om veiligheidsredenen moet u zich aanmelden om de functionaliteit van exit node in te schakelen. De eerste stap is het adverteren <code>%s</code> als een exit knooppunt in je tailnet. In de volgende stap geef je dit apparaat toestemming om een exit node te zijn."
 
-#: ../plugins-available/Captive/Captive.php:538
-msgid "Portal settings saved successfully"
-msgstr "Portaalinstellingen succesvol opgeslagen"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Adverteren <code>%s</code> als een exit-knooppunt"
 
-#: ../plugins-available/Captive/Captive.php:541
-#: ../plugins-available/Wireshark/Wireshark.php:248
-msgid "Error saving settings: "
-msgstr "Fout bij het opslaan van instellingen: "
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Dit configureert Tailscale effectief als een VPN om je echte locatie te maskeren, toegang te krijgen tot inhoud met regiobeperkingen of je privacy te verbeteren wanneer je verbinding maakt vanaf niet-vertrouwde netwerken."
 
-#: ../plugins-available/Captive/Captive.php:582
-msgid "Failed to execute ndsctl."
-msgstr "Mislukt bij het uitvoeren van ndsctl."
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Deze optie laat Tailscale weten dat je apparaat klaar is om verkeer te routeren."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "Geoptimaliseerde UDP-doorvoer inschakelen"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Aanbevolen voor Tailscale exit nodes met Linux 6.2 of latere kernels, dit gebruikt UDP generic receive offload (GRO) doorsturen om CPU overhead te verminderen."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Deze optie schakelt transportlaag offloads in voor betere prestaties."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Kies <strong>Volgende</strong> om verder te gaan."
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "Uitgangsknooppunt gebruiken"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Het apparaat <code>%s</code> is geconfigureerd om uitgangsknooppunt <code>%s</code>. Het heeft het Tailscale MagicDNS-adres <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "Apparaat configureren"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Het apparaat <code>%s</code> is verbonden met uw tailnet met het adres <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "Standaard routeert Tailscale alleen verkeer tussen de apparaten waarop het is geïnstalleerd. Je kunt ook al je openbare internetverkeer routeren door een apparaat op je netwerk te configureren als een <strong>exit node</strong>"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Wanneer je al het verkeer door een exit knooppunt routeert, gebruik je effectief standaard routes (0.0.0.0/0, ::/0), vergelijkbaar met hoe je zou doen als je een typisch VPN zou gebruiken."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "U kunt dit apparaat configureren als een uitgangsknooppunt of een ander uitgangsknooppunt in uw staartnet gebruiken."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "Selecteer een bestaand uitgangsknooppunt op uw tailnet"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Dit is een typische configuratie als je dit apparaat bijvoorbeeld gebruikt als een VPN-router voor op reis."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "Dit apparaat configureren als een nieuw uitgangsknooppunt"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "Door dit apparaat te configureren als een uitgangsknooppunt, wordt het openbare internetverkeer van apparaten die zijn aangesloten op je tailnet er doorheen geleid."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "Inloggen op Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Om apparaat %s aan te sluiten op uw achterklep, kiest u %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "Open Tailscale Inloggen"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "Kies na het inloggen <strong>Volgende</strong> om verder te gaan."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "Knooppunt verlaten toestaan"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Het apparaat <code>%s</code> is in afwachting van goedkeuring als uitgangsknooppunt."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "Open Tailscale Machines"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Zoek de <code>%s</code> <strong>Exit Node</strong> badge in de machinelijst."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "Open het paneel %s in het pictogrammenu %s van het knooppunt Afsluiten."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "Route-instellingen bewerken"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "Schakel de optie <strong>Use as exit node</strong> in."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "Kies <strong>Volgende</strong> wanneer u deze stappen hebt voltooid."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
+msgid "Select an exit node"
+msgstr "Selecteer een exit-knooppunt"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#, php-format
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "Om <code>%s</code> als VPN-gateway te gebruiken, moet Tailscale geconfigureerd worden om een uitgangsknooppunt te gebruiken. Het voorgestelde knooppunt van Tailscale wordt aangegeven met een ster."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#, php-format
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Adverteer een <strong>subnet route</strong> voor de actieve <code>%s</code> AP-interface"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "Met subnetroutes kunt u uw Tailscale netwerk (bekend als een tailnet) uitbreiden met apparaten waarop de Tailscale client niet draait of kan draaien."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "Een subnet route werkt als een gateway tussen je tailnet en een fysiek subnet. Het subnet van de actieve AP-interface is hieronder vooraf geconfigureerd; wijzig dit indien nodig."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
+msgid "Route LAN traffic through the exit node."
+msgstr "Leid LAN-verkeer door het exit knooppunt."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "Dit zorgt ervoor dat al het LAN verkeer alleen via je exit node gaat."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Gebruik de Tailscale DNS-instellingen (standaard)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Vink uit om lokale DNS te gebruiken. Dit stelt <code>--accept-dns=false</code> in."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Gebruik geen Tailscale subnetten (standaard op Linux)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "Als er subnetroutes bestaan voor je tailnet, kun je het verkeer van je apparaat naar een subnetrouter routeren. Als je dit inschakelt, wordt <code>--accept-routes=true</code> ingesteld."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "Als sleutels voor een apparaat verlopen, zullen verbindingen van/naar het opgegeven eindpunt niet meer werken."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "Deze optie gebruikt <code>--force-reauth</code> om de sleutels voor dit apparaat te vernieuwen."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#, php-format
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Kies <strong>Volgende</strong> om <code>%s</code> om het geselecteerde uitgangsknooppunt met deze opties te gebruiken."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "Geen uitgangsknooppunten gevonden op uw staartnet. Kies <strong>Terug</strong> om verder te gaan."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
+msgid "Approve subnet route"
+msgstr "Subnetroute goedkeuren"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#, php-format
+msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
+msgstr "Het apparaat <code>%s</code> adverteert een subnetroute. Om veiligheidsredenen moet u zich aanmelden om dit in te schakelen."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
+msgstr "Zoek de <code>%s</code> <strong>Subnets</strong> badge in de machinelijst."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#, php-format
+msgid "From the %s icon menu of the device, open the %s panel."
+msgstr "Open het paneel %s in het pictogrammenu %s van het apparaat."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
+msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
+msgstr "Vink het IP-bereikvakje aan dat overeenkomt met de subnetroute die je wilt adverteren en selecteer vervolgens <strong>Opslaan</strong>."
+
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "Terug"
+
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "Volgende"
+
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "Intrekken Afsluitknooppunt"
+
+#: ../plugins-available/Tailscale/templates/main.php:22
+#: ../templates/admin/general.php:4
+msgid "Logout"
+msgstr "Afmelden"
+
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "Stop het gebruik van Exit Node"
+
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "Staartschaal stoppen"
+
+#: ../plugins-available/Tailscale/templates/main.php:70
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../templates/wireguard.php:46 ../templates/provider.php:35
+#: ../templates/restapi.php:46
+msgid "Settings"
+msgstr "Instellingen"
+
+#: ../plugins-available/Tailscale/templates/main.php:89
+#: ../plugins-available/Wireshark/templates/main.php:69
+msgid "Information provided by "
+msgstr "Informatie verstrekt door "
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "Status achterklep"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "De huidige status van <code>het achterklepje</code> wordt hieronder weergegeven."
+
+#: ../plugins-available/Wireshark/templates/main.php:20
+msgid "Start capture"
+msgstr "Begin met vastleggen"
+
+#: ../plugins-available/Wireshark/templates/main.php:24
+msgid "Stop capture"
+msgstr "Stop het vastleggen"
+
+#: ../plugins-available/Wireshark/templates/main.php:46
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
+msgid "Capture files"
+msgstr "Bestanden vastleggen"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Capturebestanden gegenereerd door <code>tshark</code> worden hieronder weergegeven."
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "Geen vastleggingsbestanden gevonden in de map /tmp"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "Bestandsnaam"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "Maat"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "Gewijzigd"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "Acties"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "Bestand downloaden"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "Bestand verwijderen"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
+#, php-format
+msgid "Total: %d file(s), %s"
+msgstr "Totaal: %d bestand(en), %s"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "Verwijdering bevestigen"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "Weet je zeker dat je dit bestand wilt verwijderen?"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
+#: ../templates/openvpn.php:82
+msgid "Delete"
+msgstr "Verwijder"
 
 #: ../plugins-available/Wireshark/templates/tabs/basic.php:8
 msgid "Capture interface"
@@ -945,82 +1131,6 @@ msgstr "SSH"
 msgid "Exclude SSH"
 msgstr "SSH uitsluiten"
 
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
-#: ../plugins-available/Wireshark/templates/main.php:46
-msgid "Capture files"
-msgstr "Bestanden vastleggen"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
-msgid "Capture files generated by <code>tshark</code> are displayed below."
-msgstr "Capturebestanden gegenereerd door <code>tshark</code> worden hieronder weergegeven."
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
-msgid "No capture files found in /tmp directory"
-msgstr "Geen vastleggingsbestanden gevonden in de map /tmp"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
-msgid "Filename"
-msgstr "Bestandsnaam"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
-msgid "Size"
-msgstr "Maat"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
-msgid "Modified"
-msgstr "Gewijzigd"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
-msgid "Actions"
-msgstr "Acties"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
-msgid "Download file"
-msgstr "Bestand downloaden"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
-msgid "Delete file"
-msgstr "Bestand verwijderen"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
-#, php-format
-msgid "Total: %d file(s), %s"
-msgstr "Totaal: %d bestand(en), %s"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
-msgid "Confirm deletion"
-msgstr "Verwijdering bevestigen"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
-msgid "Are you sure you want to delete this file?"
-msgstr "Weet je zeker dat je dit bestand wilt verwijderen?"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
-#: ../templates/openvpn.php:82 ../templates/wifi_stations/network.php:100
-#: ../templates/wireguard.php:84
-msgid "Delete"
-msgstr "Verwijder"
-
-#: ../plugins-available/Wireshark/templates/main.php:20
-msgid "Start capture"
-msgstr "Begin met vastleggen"
-
-#: ../plugins-available/Wireshark/templates/main.php:24
-msgid "Stop capture"
-msgstr "Stop het vastleggen"
-
-#: ../plugins-available/Wireshark/templates/main.php:45
-#: ../plugins-available/Tailscale/templates/main.php:70
-#: ../templates/restapi.php:46 ../templates/provider.php:35
-#: ../templates/wireguard.php:46
-msgid "Settings"
-msgstr "Instellingen"
-
-#: ../plugins-available/Wireshark/templates/main.php:69
-#: ../plugins-available/Tailscale/templates/main.php:89
-msgid "Information provided by "
-msgstr "Informatie verstrekt door "
-
 #: ../plugins-available/Wireshark/Wireshark.php:48
 msgid "Wireshark"
 msgstr "Wireshark"
@@ -1072,534 +1182,154 @@ msgstr "Bestand \"%s\" succesvol verwijderd"
 msgid "Failed to delete file \"%s\""
 msgstr "Faalde om bestand \"%s \" te verwijderen"
 
-#: ../plugins-available/Tailscale/Tailscale.php:52
-msgid "Tailscale VPN"
-msgstr "Tailscale VPN"
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
+msgstr "niet geconfigureerd"
 
-#: ../plugins-available/Tailscale/Tailscale.php:237
+#: ../includes/networking.php:137
 #, php-format
-msgid "Expected tailscale binary not found at: %s"
-msgstr "Verwachte tailscale binair niet gevonden op: %s"
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "Poging om routing in te schakelen tussen %s en %s interfaces"
 
-#: ../plugins-available/Tailscale/Tailscale.php:238
+#: ../includes/networking.php:147
 #, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
-msgstr "Ga naar de <a href=\"%s\" target=\"_blank\">installatie-instructies</a> of installeer de Tailscale-plugin opnieuw."
+msgid "Attempting to restart routing between %s and %s interfaces"
+msgstr "Poging tot herstarten van routing tussen %s en %s interfaces"
 
-#: ../plugins-available/Tailscale/Tailscale.php:251
-msgid "A Tailscale VPN exit node extension for RaspAP"
-msgstr "Een Tailscale VPN-exitknooppuntuitbreiding voor RaspAP"
-
-#: ../plugins-available/Tailscale/Tailscale.php:400
-#: ../plugins-available/Tailscale/templates/main.php:44
-msgid "Start Tailscale"
-msgstr "Start Tailscale"
-
-#: ../plugins-available/Tailscale/Tailscale.php:406
+#: ../includes/networking.php:151
 #, php-format
-msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
-msgstr "Kan de Tailscale login niet ophalen. Kies <strong>%s</strong> om door te gaan."
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "Poging om routing uit te schakelen tussen %s en %s interfaces"
 
-#: ../plugins-available/Tailscale/Tailscale.php:786
-msgid "Not connected: Login required."
-msgstr "Geen verbinding: Inloggen vereist."
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
-msgid "Using exit node"
-msgstr "Uitgangsknooppunt gebruiken"
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#: ../includes/networking.php:252
 #, php-format
-msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
-msgstr "Het apparaat <code>%s</code> is geconfigureerd om uitgangsknooppunt <code>%s</code>. Het heeft het Tailscale MagicDNS-adres <code>%s</code>."
+msgid "DHCP configuration for %s enabled"
+msgstr "DHCP-configuratie voor %s ingeschakeld"
 
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
-msgid "Configure new exit node"
-msgstr "Nieuw uitgangsknooppunt configureren"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#: ../includes/networking.php:259
 #, php-format
-msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
-msgstr "Om veiligheidsredenen moet u zich aanmelden om de functionaliteit van exit node in te schakelen. De eerste stap is het adverteren <code>%s</code> als een exit knooppunt in je tailnet. In de volgende stap geef je dit apparaat toestemming om een exit node te zijn."
+msgid "DHCP configuration for %s added"
+msgstr "DHCP-configuratie voor %s toegevoegd"
 
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#: ../includes/networking.php:265
 #, php-format
-msgid "Advertise <code>%s</code> as an exit node"
-msgstr "Adverteren <code>%s</code> als een exit-knooppunt"
+msgid "DHCP configuration for %s updated"
+msgstr "DHCP-configuratie voor %s bijgewerkt"
 
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
-msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
-msgstr "Dit configureert Tailscale effectief als een VPN om je echte locatie te maskeren, toegang te krijgen tot inhoud met regiobeperkingen of je privacy te verbeteren wanneer je verbinding maakt vanaf niet-vertrouwde netwerken."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
-msgid "This option lets Tailscale know your device is ready to route traffic."
-msgstr "Deze optie laat Tailscale weten dat je apparaat klaar is om verkeer te routeren."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
-msgid "Enable optimized UDP throughput"
-msgstr "Geoptimaliseerde UDP-doorvoer inschakelen"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
-msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
-msgstr "Aanbevolen voor Tailscale exit nodes met Linux 6.2 of latere kernels, dit gebruikt UDP generic receive offload (GRO) doorsturen om CPU overhead te verminderen."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
-msgid "This option enables transport layer offloads for better performance."
-msgstr "Deze optie schakelt transportlaag offloads in voor betere prestaties."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
-msgid "Choose <strong>Next</strong> to continue."
-msgstr "Kies <strong>Volgende</strong> om verder te gaan."
-
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
-msgid "Exit node activated"
-msgstr "Knooppunt verlaten geactiveerd"
-
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
+#: ../includes/networking.php:271
 #, php-format
-msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
-msgstr "Het apparaat <code>%s</code> is verbonden met het adres <code>%s</code> en biedt een <strong>uitgangsknooppunt</strong>."
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "Er bestaat geen standaard DHCP-configuratie voor de interface %s."
 
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#: ../includes/networking.php:272
 #, php-format
-msgid "See the %s on how to use this exit node with your devices."
-msgstr "Zie %s voor meer informatie over het gebruik van deze uitgangsknoop met je apparaten."
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "Configureer een statische IP en DHCP voor deze interface in DHCP-serverinstellingen"
 
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
-msgid "Login to Tailscale"
-msgstr "Inloggen op Tailscale"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../includes/networking.php:294
 #, php-format
-msgid "To connect device %s to your tailnet, choose %s."
-msgstr "Om apparaat %s aan te sluiten op uw achterklep, kiest u %s."
+msgid "Dnsmasq  configuration for %s added"
+msgstr "Dnsmasq configuratie voor %s toegevoegd"
 
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
-msgid "Open Tailscale Login"
-msgstr "Open Tailscale Inloggen"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
-msgid "After logging in, choose <strong>Next</strong> to continue."
-msgstr "Kies na het inloggen <strong>Volgende</strong> om verder te gaan."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
-msgid "Configure device"
-msgstr "Apparaat configureren"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#: ../includes/footer.php:6
 #, php-format
-msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
-msgstr "Het apparaat <code>%s</code> is verbonden met uw tailnet met het adres <code>%s</code>."
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "Gemaakt door de <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
-msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
-msgstr "Standaard routeert Tailscale alleen verkeer tussen de apparaten waarop het is geïnstalleerd. Je kunt ook al je openbare internetverkeer routeren door een apparaat op je netwerk te configureren als een <strong>exit node</strong>"
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
+msgstr "RaspAP-team"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
-msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
-msgstr "Wanneer je al het verkeer door een exit knooppunt routeert, gebruik je effectief standaard routes (0.0.0.0/0, ::/0), vergelijkbaar met hoe je zou doen als je een typisch VPN zou gebruiken."
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
+msgstr "Bedankt dat je een Insider bent"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
-msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
-msgstr "U kunt dit apparaat configureren als een uitgangsknooppunt of een ander uitgangsknooppunt in uw staartnet gebruiken."
+#: ../includes/footer.php:17
+msgid "Session Expired"
+msgstr "Sessie Verlopen"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
-msgid "Select an existing exit node on your tailnet"
-msgstr "Selecteer een bestaand uitgangsknooppunt op uw tailnet"
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
+msgstr "Uw sessie is verlopen. Log in om door te gaan."
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
-msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
-msgstr "Dit is een typische configuratie als je dit apparaat bijvoorbeeld gebruikt als een VPN-router voor op reis."
+#: ../includes/footer.php:23 ../templates/admin.php:18
+#: ../templates/login.php:30
+msgid "Login"
+msgstr "Inloggen"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
-msgid "Configure this device as a new exit node"
-msgstr "Dit apparaat configureren als een nieuw uitgangsknooppunt"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
-msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
-msgstr "Door dit apparaat te configureren als een uitgangsknooppunt, wordt het openbare internetverkeer van apparaten die zijn aangesloten op je tailnet er doorheen geleid."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
-msgid "Select an exit node"
-msgstr "Selecteer een exit-knooppunt"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#: ../includes/provider.php:65
 #, php-format
-msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
-msgstr "Om <code>%s</code> als VPN-gateway te gebruiken, moet Tailscale geconfigureerd worden om een uitgangsknooppunt te gebruiken. Het voorgestelde knooppunt van Tailscale wordt aangegeven met een ster."
+msgid "Expected %s binary not found at: %s"
+msgstr "Verwacht %s binair niet gevonden op: %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#: ../includes/provider.php:66
 #, php-format
-msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
-msgstr "Adverteer een <strong>subnet route</strong> voor de actieve <code>%s</code> AP-interface"
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "Ga naar de <a href=\"%s\" target=\"_blank\">installatie-instructies</a> voor %s's Linux CLI."
 
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
-msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
-msgstr "Met subnetroutes kunt u uw Tailscale netwerk (bekend als een tailnet) uitbreiden met apparaten waarop de Tailscale client niet draait of kan draaien."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
-msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
-msgstr "Een subnet route werkt als een gateway tussen je tailnet en een fysiek subnet. Het subnet van de actieve AP-interface is hieronder vooraf geconfigureerd; wijzig dit indien nodig."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
-msgid "Route LAN traffic through the exit node."
-msgstr "Leid LAN-verkeer door het exit knooppunt."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
-msgid "This will direct all LAN traffic to go through your exit node only."
-msgstr "Dit zorgt ervoor dat al het LAN verkeer alleen via je exit node gaat."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
-msgid "Use Tailscale DNS settings (default)."
-msgstr "Gebruik de Tailscale DNS-instellingen (standaard)."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
-msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
-msgstr "Vink uit om lokale DNS te gebruiken. Dit stelt <code>--accept-dns=false</code> in."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
-msgid "Do not use Tailscale subnets (default on Linux)."
-msgstr "Gebruik geen Tailscale subnetten (standaard op Linux)."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
-msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
-msgstr "Als er subnetroutes bestaan voor je tailnet, kun je het verkeer van je apparaat naar een subnetrouter routeren. Als je dit inschakelt, wordt <code>--accept-routes=true</code> ingesteld."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
-msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
-msgstr "Als sleutels voor een apparaat verlopen, zullen verbindingen van/naar het opgegeven eindpunt niet meer werken."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
-msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
-msgstr "Deze optie gebruikt <code>--force-reauth</code> om de sleutels voor dit apparaat te vernieuwen."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#: ../includes/provider.php:70
 #, php-format
-msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
-msgstr "Kies <strong>Volgende</strong> om <code>%s</code> om het geselecteerde uitgangsknooppunt met deze opties te gebruiken."
+msgid "Unable to execute %s binary found at: %s"
+msgstr "Kan %s binary gevonden op niet uitvoeren: %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
-msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
-msgstr "Geen uitgangsknooppunten gevonden op uw staartnet. Kies <strong>Terug</strong> om verder te gaan."
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "Controleer of het binaire bestand uitvoerbaar is en of er rechten bestaan in raspap.sudoers"
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
-msgid "Allow exit node"
-msgstr "Knooppunt verlaten toestaan"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#: ../includes/provider.php:119
 #, php-format
-msgid "The device <code>%s</code> is pending approval as an exit node."
-msgstr "Het apparaat <code>%s</code> is in afwachting van goedkeuring als uitgangsknooppunt."
+msgid "Attempting to connect to %s"
+msgstr "Ik probeer verbinding te maken met %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
-msgid "Open Tailscale Machines"
-msgstr "Open Tailscale Machines"
+#: ../includes/provider.php:318
+msgid "Select a country..."
+msgstr "Selecteer een land..."
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#: ../includes/provider.php:387
 #, php-format
-msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
-msgstr "Zoek de <code>%s</code> <strong>Exit Node</strong> badge in de machinelijst."
+msgid "Account information not available from %s's Linux CLI."
+msgstr "Accountinformatie niet beschikbaar via %s's Linux CLI."
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../includes/functions.php:1006
+msgid "Mem Use"
+msgstr "Mem Gebruik"
+
+#: ../includes/functions.php:1009
+msgid "CPU"
+msgstr "CPU"
+
+#: ../includes/restapi.php:59
 #, php-format
-msgid "From the %s icon menu of the exit node, open the %s panel."
-msgstr "Open het paneel %s in het pictogrammenu %s van het knooppunt Afsluiten."
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
+msgstr "RestAPI-documenten zijn <a href=\"%s\" target=\"_blank\">hier </a> toegankelijk <a href=\" %s \" target=\"_blank\"> %s</a>"
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
-msgid "Edit route settings"
-msgstr "Route-instellingen bewerken"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
-msgid "Enable the <strong>Use as exit node</strong> option."
-msgstr "Schakel de optie <strong>Use as exit node</strong> in."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
-msgid "Choose <strong>Next</strong> when you've completed these steps."
-msgstr "Kies <strong>Volgende</strong> wanneer u deze stappen hebt voltooid."
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
-msgid "Approve subnet route"
-msgstr "Subnetroute goedkeuren"
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#: ../includes/system.php:67
 #, php-format
-msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
-msgstr "Het apparaat <code>%s</code> adverteert een subnetroute. Om veiligheidsredenen moet u zich aanmelden om dit in te schakelen."
+msgid "Changing log limit size to %s KB"
+msgstr "Logboeklimiet wijzigen naar %s KB"
 
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#: ../includes/system.php:86
 #, php-format
-msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
-msgstr "Zoek de <code>%s</code> <strong>Subnets</strong> badge in de machinelijst."
+msgid "Changing alert close timeout to %s ms"
+msgstr "Time-out voor sluiten van waarschuwing wijzigen in %s ms"
 
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
+msgstr "Ongeldig aangepast IP-adres gevonden op regel "
+
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
+msgstr "Ongeldige aangepaste host gevonden op regel "
+
+#: ../includes/dashboard.php:72
 #, php-format
-msgid "From the %s icon menu of the device, open the %s panel."
-msgstr "Open het paneel %s in het pictogrammenu %s van het apparaat."
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
-msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
-msgstr "Vink het IP-bereikvakje aan dat overeenkomt met de subnetroute die je wilt adverteren en selecteer vervolgens <strong>Opslaan</strong>."
-
-#: ../plugins-available/Tailscale/templates/tabs/status.php:3
-msgid "Tailnet status"
-msgstr "Status achterklep"
-
-#: ../plugins-available/Tailscale/templates/tabs/status.php:4
-msgid "Current <code>tailnet</code> status is displayed below."
-msgstr "De huidige status van <code>het achterklepje</code> wordt hieronder weergegeven."
-
-#: ../plugins-available/Tailscale/templates/main.php:7
-msgid "Back"
-msgstr "Terug"
-
-#: ../plugins-available/Tailscale/templates/main.php:10
-#: ../plugins-available/Tailscale/templates/main.php:13
-msgid "Next"
-msgstr "Volgende"
-
-#: ../plugins-available/Tailscale/templates/main.php:19
-msgid "Revoke Exit Node"
-msgstr "Intrekken Afsluitknooppunt"
-
-#: ../plugins-available/Tailscale/templates/main.php:22
-#: ../templates/admin/general.php:4
-msgid "Logout"
-msgstr "Afmelden"
-
-#: ../plugins-available/Tailscale/templates/main.php:25
-msgid "Stop Using Exit Node"
-msgstr "Stop het gebruik van Exit Node"
-
-#: ../plugins-available/Tailscale/templates/main.php:48
-msgid "Stop Tailscale"
-msgstr "Staartschaal stoppen"
-
-#: ../templates/dashboard.php:24
-msgid "Ethernet"
-msgstr "Ethernet"
-
-#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
-msgid "WiFi Client"
-msgstr ""
-
-#: ../templates/dashboard.php:28
-msgid "Repeater"
-msgstr "Repeater"
-
-#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
-msgid "Tethering"
-msgstr "Tethering"
-
-#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
-msgid "Cellular"
-msgstr "Cellulair"
-
-#: ../templates/dashboard.php:48
-msgid "Public"
-msgstr ""
-
-#: ../templates/dashboard.php:49
-msgid "Local"
-msgstr ""
-
-#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
-#: ../templates/dhcp/settings.php:39 ../templates/dhcp/clients.php:20
-#: ../templates/dhcp/general.php:39 ../templates/networking/general.php:13
-#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
-msgid "IP Address"
-msgstr "IP-adres"
-
-#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
-msgid "Netmask"
-msgstr "Netmasker"
-
-#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
-#: ../templates/dhcp/clients.php:19
-msgid "MAC Address"
-msgstr "MAC-adres"
-
-#: ../templates/dashboard.php:57 ../templates/dashboard.php:63
-#: ../templates/hostapd/basic.php:11
-msgid "SSID"
-msgstr "SSID"
-
-#: ../templates/dashboard.php:75
-msgid "AP"
-msgstr "AP"
-
-#: ../templates/dashboard.php:83
-msgid "Bridged"
-msgstr "Overbrugd"
-
-#: ../templates/dashboard.php:91
-msgid "Adblock"
-msgstr "Adblock"
-
-#: ../templates/dashboard.php:99
-msgid "VPN"
-msgstr "VPN"
-
-#: ../templates/dashboard.php:108
-msgid "Firewall"
-msgstr "Firewall"
-
-#: ../templates/dashboard.php:114
-msgid "5G"
-msgstr "5G"
-
-#: ../templates/dashboard.php:115
-msgid "2.4G"
-msgstr "2.4G"
-
-#: ../templates/dashboard.php:164 ../templates/system.php:40
-msgid "Information provided by raspap.sysinfo"
-msgstr "Informatie geleverd door raspap.sysinfo"
-
-#: ../templates/about/general.php:8
-msgid "RaspAP"
-msgstr "RaspAP"
-
-#: ../templates/about/general.php:11 ../templates/about.php:47
-msgid "Check for update"
-msgstr "Controleren op update"
-
-#: ../templates/about/general.php:20
+#: ../includes/dashboard.php:78
 #, php-format
-msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
-msgstr "RaspAP is een co-creatie van %1$s en %2$s met de bijdragen van onze %3$s en %4$s. Lees meer over deelname aan het project als %5$s, %6$s of %7$s met onmiddellijke toegang tot %8$s beschikbaar voor %9$s."
-
-#: ../templates/about/general.php:23
-msgid "developer community"
-msgstr "ontwikkelaarsgemeenschap"
-
-#: ../templates/about/general.php:24
-msgid "language translators"
-msgstr "taalvertalers"
-
-#: ../templates/about/general.php:25
-msgid "code contributor"
-msgstr "code medewerker"
-
-#: ../templates/about/general.php:26
-msgid "translator"
-msgstr "vertaler"
-
-#: ../templates/about/general.php:27
-msgid "financial sponsor"
-msgstr "financiële sponsor"
-
-#: ../templates/about/general.php:28
-msgid "exclusive features"
-msgstr "exclusieve functies"
-
-#: ../templates/about/general.php:29 ../templates/about.php:22
-msgid "Insiders"
-msgstr "Insiders"
-
-#: ../templates/about.php:23
-msgid "Contributing"
-msgstr "Bijdragen"
-
-#: ../templates/about.php:50
-msgid "New release check in progress..."
-msgstr "Nieuwe releasecontrole aan de gang..."
-
-#: ../templates/about.php:53
-msgid "A new release is available: Version"
-msgstr "Er is een nieuwe versie beschikbaar: Versie"
-
-#: ../templates/about.php:54
-msgid "Installed version is the latest release."
-msgstr "De geïnstalleerde versie is de nieuwste release."
-
-#: ../templates/about.php:55
-msgid "Install this update now?"
-msgstr "Deze update nu installeren?"
-
-#: ../templates/about.php:56 ../templates/about.php:57
-#: ../templates/about.php:132 ../templates/system.php:271
-msgid "OK"
-msgstr "OK"
-
-#: ../templates/about.php:69
-msgid "GitHub authentication"
-msgstr "GitHub verificatie"
-
-#: ../templates/about.php:73
-msgid "Updating Insiders requires GitHub authentication."
-msgstr "Insiders updaten vereist GitHub authenticatie."
-
-#: ../templates/about.php:80
-msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
-msgstr "Je gegevens worden veilig met SSL naar GitHub gestuurd. Wees echter voorzichtig als je RaspAP installatie op een WLAN staat dat gedeeld wordt door niet-vertrouwde gebruikers."
-
-#: ../templates/about.php:85 ../templates/login.php:22
-#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
-#: ../templates/admin/login.php:12 ../templates/admin/general.php:15
-msgid "Username"
-msgstr "Gebruikersnaam"
-
-#: ../templates/about.php:87 ../templates/admin/login.php:15
-#: ../templates/admin/general.php:18 ../templates/admin/general.php:37
-msgid "Please provide a valid username."
-msgstr "Geef een geldige gebruikersnaam op."
-
-#: ../templates/about.php:92
-msgid "Personal Access Token"
-msgstr "Persoonlijk toegangssymbool"
-
-#: ../templates/about.php:98
-msgid "Please provide a valid token."
-msgstr "Geef een geldig token op."
-
-#: ../templates/about.php:105
-msgid "Perform update"
-msgstr "Update uitvoeren"
-
-#: ../templates/about.php:117
-msgid "Update in progress"
-msgstr "Update wordt uitgevoerd"
-
-#: ../templates/about.php:120
-msgid "Application is being updated..."
-msgstr "Aanvraag wordt bijgewerkt..."
-
-#: ../templates/about.php:121
-msgid "Configuring update"
-msgstr "Update configureren"
-
-#: ../templates/about.php:122
-msgid "Updating sources"
-msgstr "Bronnen bijwerken"
-
-#: ../templates/about.php:123
-msgid "Installing package updates"
-msgstr "Pakketupdates installeren"
-
-#: ../templates/about.php:124
-msgid "Downloading latest files"
-msgstr "De nieuwste bestanden downloaden"
-
-#: ../templates/about.php:125
-msgid "Installing application"
-msgstr "Toepassing installeren"
-
-#: ../templates/about.php:126
-msgid "Update complete"
-msgstr "Update voltooid"
-
-#: ../templates/about.php:128
-msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
-msgstr "Er is een fout opgetreden. Controleer de log in <code>/tmp/raspap_install.log</code>"
-
-#: ../templates/about.php:129
-msgid "Success. Refresh this page to confirm the new version."
-msgstr "Succes. Vernieuw deze pagina om de nieuwe versie te bevestigen."
+msgid "%d LAN %s"
+msgstr "%d LAN %s"
 
 #: ../templates/admin.php:7
 msgid "Authentication"
@@ -1653,33 +1383,234 @@ msgstr "Deze actie zal de gegevens van de beperkte gebruiker opslaan en de huidi
 msgid "Save and logout"
 msgstr "Opslaan en uitloggen"
 
-#: ../templates/login.php:13
-msgid "Administrator login"
-msgstr "Inloggen als beheerder"
+#: ../templates/adblock/stats.php:3
+msgid "Statistics"
+msgstr "Statistieken"
 
-#: ../templates/login.php:31
-msgid "Forgot password"
-msgstr "Wachtwoord vergeten"
+#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
+msgid "Blocklist settings"
+msgstr "Instellingen blokkadelijst"
 
-#: ../templates/login.php:33
-msgid "Scan for Login Help"
-msgstr ""
+#: ../templates/adblock/general.php:10
+msgid "Enable blocklists"
+msgstr "Blokkeerlijsten inschakelen"
 
-#: ../templates/restapi/status.php:3
-msgid "RestAPI status"
-msgstr "RestAPI status"
+#: ../templates/adblock/general.php:13
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Schakel deze optie in als u wilt dat RaspAP <b>DNS-aanvragen voor advertenties, tracking en andere virtuele rotzooi blokkeert</b>. Blokkadelijsten worden verzameld uit meerdere, actief onderhouden bronnen en dagelijks automatisch bijgewerkt, opgeschoond, geoptimaliseerd en gemodereerd."
 
-#: ../templates/restapi/status.php:4
-msgid "Current <code>restapi.service</code> status is displayed below."
-msgstr "De huidige status van <code>restapi.service</code> wordt hieronder weergegeven."
+#: ../templates/adblock/general.php:15
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "Deze optie voegt <code>conf-file</code> en <code>addn-hosts</code> toe aan de dnsmasq configuratie."
 
-#: ../templates/restapi/general.php:12
-msgid "API Key"
-msgstr "API-sleutel"
+#: ../templates/adblock/general.php:22
+msgid "Hostnames blocklist last updated"
+msgstr "Laatst bijgewerkte blokkadelijst met hostnamen"
 
-#: ../templates/restapi/general.php:17
-msgid "Please provide a valid API key."
-msgstr "Geef een geldige API-sleutel op."
+#: ../templates/adblock/general.php:24
+msgid "Domains blocklist last updated"
+msgstr "Domein blocklist laatst bijgewerkt"
+
+#: ../templates/adblock/general.php:29
+msgid "Choose a blocklist provider"
+msgstr "Kies een aanbieder van blokkadelijsten"
+
+#: ../templates/adblock/general.php:33
+msgid "Update now"
+msgstr "Nu bijwerken"
+
+#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
+msgid "Custom blocklist"
+msgstr "Aangepaste blokkadelijst"
+
+#: ../templates/adblock/custom.php:10
+msgid "Enable custom blocklist"
+msgstr "Aangepaste blokkadelijst inschakelen"
+
+#: ../templates/adblock/custom.php:14
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Definieer aangepaste hosts die moeten worden geblokkeerd door een IPv4- of IPv6-adres in te voeren, gevolgd door spaties (spaties of tabs) en de hostnaam."
+
+#: ../templates/adblock/custom.php:15
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>IPv4 voorbeeld:</b> 0.0.0.0 badhost.com"
+
+#: ../templates/adblock/custom.php:17
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Deze optie voegt een <code>addn-hosts</code> richtlijn toe aan de dnsmasq configuratie."
+
+#: ../templates/adblock/logging.php:3 ../templates/openvpn/logging.php:3
+#: ../templates/dhcp.php:55 ../templates/wireguard.php:49
+#: ../templates/hostapd.php:52 ../templates/hostapd/logging.php:3
+#: ../templates/adblock.php:47 ../templates/openvpn.php:48
+#: ../templates/dhcp/logging.php:3 ../templates/wg/logging.php:5
+msgid "Logging"
+msgstr "Loggen"
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s instellingen"
+
+#: ../templates/provider/general.php:9 ../templates/openvpn/general.php:8
+#: ../templates/wg/general.php:8
+msgid "IPv4 Address"
+msgstr "IPv4-adres"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "Accountgegevens"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "Mijn account"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "Serverlocatie"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "Als u <strong>Instellingen opslaan</strong> kiest, wordt er verbinding gemaakt met het geselecteerde land."
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Als je <strong>Connect %s</strong> kiest, maak je <strong>verbinding </strong> met een aanbevolen server."
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "Land"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s status"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Linux CLI geïnstalleerd: <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "De huidige <code>%s</code> verbindingsstatus wordt hieronder weergegeven."
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "Authentificatiemethode"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "Gebruikersnaam en wachtwoord"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "Certificaten"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "Voer gebruikersnaam en wachtwoord in"
+
+#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/login.php:22 ../templates/about.php:85
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
+#: ../templates/admin/login.php:21 ../templates/login.php:25
+#: ../app/lib/signprint.php:67
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "Certificaten in het configuratiebestand"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP ondersteunt certificaten door ze op te nemen in het configuratiebestand."
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Certificaat van de ondertekenende certificeringsautoriteit (CA) (bijv. <code>ca.crt</code>): ingesloten in <code>&lt;ca> ... &lt;/ca></code> tags."
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Clientcertificaat (openbare sleutel) (bijv. <code>client.crt</code>): ingesloten in <code>&lt;cert> ... &lt;/cert></code> tags."
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Privésleutel van het cliëntcertificaat (bijv. <code>client.key</code>): ingesloten in <code>&lt;key> ... &lt;/key></code> tags."
+
+#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
+msgid "Configuration File"
+msgstr "Configuratiebestand"
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Selecteer OpenVPN-configuratiebestand (.ovpn)"
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Schakel deze optie in om <code>openvpn-activiteit</code> te loggen."
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "Logboekregistratie inschakelen"
+
+#: ../templates/openvpn/logging.php:9 ../templates/hostapd/logging.php:10
+#: ../templates/dhcp/logging.php:13
+msgid "Clear log"
+msgstr "Log wissen"
+
+#: ../templates/openvpn/configs.php:4 ../templates/wireguard.php:48
+#: ../templates/openvpn.php:47 ../templates/wg/configs.php:4
+msgid "Configurations"
+msgstr "Configuraties"
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Momenteel beschikbare OpenVPN-clientconfiguraties worden hieronder weergegeven."
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Het activeren van een configuratie herstart de <code>openvpn-client</code> service."
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "Stop dnsmasq"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "Herstart dnsmasq"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "Start dnsmasq"
+
+#: ../templates/dhcp.php:50 ../templates/networking.php:20
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "Samenvatting"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "Serverinstellingen"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "Statische lease"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "Klantenlijst"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "Informatie verstrekt door Dnsmasq"
 
 #: ../templates/data_usage.php:7
 msgid "Data usage monitoring"
@@ -1744,525 +1675,25 @@ msgstr "Stuur"
 msgid "Receive"
 msgstr "Ontvang"
 
-#: ../templates/restapi.php:21
-msgid "Start RestAPI service"
-msgstr "RestAPI-service starten"
-
-#: ../templates/restapi.php:25
-msgid "Stop RestAPI service"
-msgstr "RestAPI-service stoppen"
-
-#: ../templates/restapi.php:63
-msgid "Information provided by restapi.service"
-msgstr "Informatie geleverd door restapi.service"
-
-#: ../templates/wifi_stations.php:3
-msgid "No Wifi stations found"
-msgstr "Geen Wifi-stations gevonden"
-
-#: ../templates/wifi_stations.php:4
-msgid "Click 'Rescan' to search for nearby Wifi stations."
-msgstr "Klik op 'Opnieuw scannen' om te zoeken naar Wifi-stations in de buurt."
-
-#: ../templates/wifi_stations.php:6
-msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
-msgstr "Klik op 'Reinitialize' om <code>wpa_supplicant</code> geforceerd opnieuw te initialiseren."
-
-#: ../templates/wifi_stations.php:10
-msgid "Reinitialize"
-msgstr "opnieuw initialiseren"
-
-#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
-msgid "Connected"
-msgstr "Aangesloten"
-
-#: ../templates/wifi_stations.php:29
-msgid "Known"
-msgstr "Bekend"
-
-#: ../templates/wifi_stations.php:40
-msgid "Nearby"
-msgstr "Dichtbij"
-
-#: ../templates/configure_client.php:12
-msgid "Disconnected"
-msgstr "Ontkoppeld"
-
-#: ../templates/configure_client.php:24
-msgid "Rescan"
-msgstr "Opnieuw scannen"
-
-#: ../templates/configure_client.php:31 ../templates/dhcp/summary.php:18
-#: ../templates/dhcp/settings.php:5 ../templates/dhcp/general.php:5
-#: ../templates/hostapd/basic.php:5 ../templates/networking/devices.php:17
-#: ../templates/networking/general.php:12
-msgid "Interface"
-msgstr "Interface"
-
-#: ../templates/configure_client.php:34
-msgid "Set"
-msgstr "Stel in"
-
-#: ../templates/configure_client.php:49
-msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>Opmerking:</strong> WEP-toegangspunten verschijnen als 'Open'. RaspAP ondersteunt momenteel geen verbinding met WEP"
-
-#: ../templates/configure_client.php:59
-msgid "Configuring WiFi Client"
-msgstr "WiFi-client configureren"
-
-#: ../templates/configure_client.php:62
-msgid "Configuring Wifi Client Interface..."
-msgstr "Wifi Client Interface configureren..."
-
-#: ../templates/configure_client.php:65
-#: ../templates/wifi_stations/network.php:119 ../templates/system.php:56
-#: ../templates/system.php:74 ../templates/system.php:109
-#: ../templates/system.php:127 ../templates/system.php:159
-#: ../templates/hostapd.php:90
-msgid "Close"
-msgstr "Sluit"
-
-#: ../templates/adblock/logging.php:3 ../templates/adblock.php:47
-#: ../templates/openvpn.php:48 ../templates/dhcp/logging.php:3
-#: ../templates/hostapd/logging.php:3 ../templates/openvpn/logging.php:3
-#: ../templates/wireguard.php:49 ../templates/dhcp.php:55
-#: ../templates/hostapd.php:52 ../templates/wg/logging.php:5
-msgid "Logging"
-msgstr "Loggen"
-
-#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
-msgid "Custom blocklist"
-msgstr "Aangepaste blokkadelijst"
-
-#: ../templates/adblock/custom.php:10
-msgid "Enable custom blocklist"
-msgstr "Aangepaste blokkadelijst inschakelen"
-
-#: ../templates/adblock/custom.php:14
-msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
-msgstr "Definieer aangepaste hosts die moeten worden geblokkeerd door een IPv4- of IPv6-adres in te voeren, gevolgd door spaties (spaties of tabs) en de hostnaam."
-
-#: ../templates/adblock/custom.php:15
-msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
-msgstr "<b>IPv4 voorbeeld:</b> 0.0.0.0 badhost.com"
-
-#: ../templates/adblock/custom.php:17
-msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
-msgstr "Deze optie voegt een <code>addn-hosts</code> richtlijn toe aan de dnsmasq configuratie."
-
-#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
-msgid "Blocklist settings"
-msgstr "Instellingen blokkadelijst"
-
-#: ../templates/adblock/general.php:10
-msgid "Enable blocklists"
-msgstr "Blokkeerlijsten inschakelen"
-
-#: ../templates/adblock/general.php:13
-msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr "Schakel deze optie in als u wilt dat RaspAP <b>DNS-aanvragen voor advertenties, tracking en andere virtuele rotzooi blokkeert</b>. Blokkadelijsten worden verzameld uit meerdere, actief onderhouden bronnen en dagelijks automatisch bijgewerkt, opgeschoond, geoptimaliseerd en gemodereerd."
-
-#: ../templates/adblock/general.php:15
-msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
-msgstr "Deze optie voegt <code>conf-file</code> en <code>addn-hosts</code> toe aan de dnsmasq configuratie."
-
-#: ../templates/adblock/general.php:22
-msgid "Hostnames blocklist last updated"
-msgstr "Laatst bijgewerkte blokkadelijst met hostnamen"
-
-#: ../templates/adblock/general.php:24
-msgid "Domains blocklist last updated"
-msgstr "Domein blocklist laatst bijgewerkt"
-
-#: ../templates/adblock/general.php:29
-msgid "Choose a blocklist provider"
-msgstr "Kies een aanbieder van blokkadelijsten"
-
-#: ../templates/adblock/general.php:33
-msgid "Update now"
-msgstr "Nu bijwerken"
-
-#: ../templates/adblock/stats.php:3
-msgid "Statistics"
-msgstr "Statistieken"
-
-#: ../templates/adblock.php:20
-msgid "Restart Ad Blocking"
-msgstr "Advertentie-blokkering opnieuw starten"
-
-#: ../templates/adblock.php:24
-msgid "Start Ad Blocking"
-msgstr "Advertentie-blokkering starten"
-
-#: ../templates/adblock.php:64
-msgid "Information provided by adblock"
-msgstr "Informatie geleverd door adblock"
-
-#: ../templates/exception.php:6 ../templates/exception.php:17
-msgid "RaspAP Exception"
-msgstr "RaspAP Uitzondering"
-
-#: ../templates/exception.php:20
-msgid "An exception occurred"
-msgstr "Er heeft zich een uitzondering voorgedaan"
-
-#: ../templates/openvpn.php:20
-msgid "Start OpenVPN"
-msgstr "OpenVPN starten"
-
-#: ../templates/openvpn.php:24
-msgid "Stop OpenVPN"
-msgstr "Stop OpenVPN"
-
-#: ../templates/openvpn.php:47 ../templates/openvpn/configs.php:4
-#: ../templates/wireguard.php:48 ../templates/wg/configs.php:4
-msgid "Configurations"
-msgstr "Configuraties"
-
-#: ../templates/openvpn.php:65
-msgid "Information provided by openvpn"
-msgstr "Informatie verstrekt door openvpn"
-
-#: ../templates/openvpn.php:75
-msgid "Delete OpenVPN client"
-msgstr "OpenVPN-client verwijderen"
-
-#: ../templates/openvpn.php:78
-msgid "Delete client configuration? This cannot be undone."
-msgstr "Clientconfiguratie verwijderen? Dit kan niet ongedaan worden gemaakt."
-
-#: ../templates/openvpn.php:93
-msgid "Activate OpenVPN client"
-msgstr "OpenVPN-client activeren"
-
-#: ../templates/openvpn.php:96
-msgid "Activate client configuration? This will restart the openvpn-client service."
-msgstr "Clientconfiguratie activeren? Dit herstart de openvpn-client service."
-
-#: ../templates/openvpn.php:100 ../templates/wireguard.php:102
-msgid "Activate"
-msgstr "Activeer"
-
-#: ../templates/dhcp/logging.php:4
-msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
-msgstr "Schakel deze opties in om <code>dhcpcd</code> en <code>dnsmasq</code> activiteit te loggen."
-
-#: ../templates/dhcp/logging.php:8
-msgid "Log DHCP requests"
-msgstr "DHCP-verzoeken loggen"
-
-#: ../templates/dhcp/logging.php:12
-msgid "Log DNS queries"
-msgstr "Log DNS-query's"
-
-#: ../templates/dhcp/logging.php:13 ../templates/hostapd/logging.php:10
-#: ../templates/openvpn/logging.php:9
-msgid "Clear log"
-msgstr "Log wissen"
-
-#: ../templates/dhcp/summary.php:2 ../templates/dhcp.php:50
-#: ../templates/networking.php:20
-msgid "Summary"
-msgstr "Samenvatting"
-
-#: ../templates/dhcp/summary.php:7
-msgid "Interface Configurations"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:19
-msgid "Static IP"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:20
-msgid "Subnet / Gateway"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:21
-msgid "Default Route"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:22
-msgid "Disable Hook"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:23
-msgid "DHCP Range (lease)"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:24
-msgid "DNS Servers"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:25 ../templates/dhcp/settings.php:164
-#: ../templates/dhcp/general.php:163
-msgid "Metric"
-msgstr "Metrisch"
-
-#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
-msgid "Yes"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:97
-msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:3
-msgid "Advanced Settings"
-msgstr "Geavanceerde instellingen"
-
-#: ../templates/dhcp/advanced.php:6
-msgid "Upstream DNS servers"
-msgstr "Upstream DNS-servers"
-
-#: ../templates/dhcp/advanced.php:11
-msgid "Only ever query DNS servers configured below"
-msgstr "Vraag alleen DNS-servers op die hieronder zijn geconfigureerd"
-
-#: ../templates/dhcp/advanced.php:14
-msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Schakel deze optie in als u wilt dat RaspAP <b>DNS-query's uitsluitend naar de hieronder geconfigureerde servers stuurt</b>. Standaard gebruikt RaspAP ook de naamservers van de upstream DHCP-server."
-
-#: ../templates/dhcp/advanced.php:15
-msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "Deze optie voegt <code>no-resolv</code> toe aan de dnsmasq configuratie."
-
-#: ../templates/dhcp/advanced.php:29
-msgid "Add upstream DNS server"
-msgstr "Upstream DNS-server toevoegen"
-
-#: ../templates/dhcp/advanced.php:31
-#, php-format
-msgid "e.g. %s"
-msgstr "Bijvoorbeeld %s"
-
-#: ../templates/dhcp/advanced.php:36
-msgid "Format: "
-msgstr "Formaat: "
-
-#: ../templates/dhcp/advanced.php:41
-msgid "Choose a hosted server"
-msgstr "Kies een gehoste server"
-
-#: ../templates/dhcp/static_leases.php:5
-msgid "Static leases"
-msgstr "Statische lease"
-
-#: ../templates/dhcp/static_leases.php:7
-msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
-msgstr "Clients met een bepaald hardware MAC-adres kunnen altijd hetzelfde IP-adres toegewezen krijgen."
-
-#: ../templates/dhcp/static_leases.php:8
-msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
-msgstr "Deze optie voegt <code>dhcp-host</code> entries toe aan de dnsmasq configuratie."
-
-#: ../templates/dhcp/static_leases.php:16
-#: ../templates/dhcp/static_leases.php:33
-#: ../templates/dhcp/static_leases.php:64
-#: ../templates/networking/devices.php:19
-msgid "MAC address"
-msgstr "MAC-adres"
-
-#: ../templates/dhcp/static_leases.php:19
-#: ../templates/dhcp/static_leases.php:36
-#: ../templates/dhcp/static_leases.php:67
-msgid "IP address"
-msgstr "IP-adres"
-
-#: ../templates/dhcp/static_leases.php:22
-#: ../templates/dhcp/static_leases.php:39
-#: ../templates/dhcp/static_leases.php:70
-msgid "Optional comment"
-msgstr "Optioneel commentaar"
-
-#: ../templates/dhcp/static_leases.php:46
-msgid "Restrict access"
-msgstr "Toegang beperken"
-
-#: ../templates/dhcp/static_leases.php:51
-msgid "Limit network access to static clients"
-msgstr "Netwerktoegang beperken tot statische clients"
-
-#: ../templates/dhcp/static_leases.php:54
-msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
-msgstr "Schakel deze optie in als u wilt dat RaspAP <b>alle clients negeert</b> die niet in de lijst met statische leases staan."
-
-#: ../templates/dhcp/static_leases.php:55
-msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
-msgstr "Deze optie voegt <code>dhcp-ignore</code> toe aan de dnsmasq configuratie."
-
-#: ../templates/dhcp/settings.php:2 ../templates/dhcp/general.php:2
-msgid "DHCP server settings"
-msgstr "Instellingen DHCP-server"
-
-#: ../templates/dhcp/settings.php:10 ../templates/dhcp/general.php:10
-msgid "Adapter IP Address Settings"
-msgstr "Instellingen IP-adres adapter"
-
-#: ../templates/dhcp/settings.php:28 ../templates/dhcp/general.php:28
-msgid "Enable fallback to static option"
-msgstr "Terugval naar statische optie inschakelen"
-
-#: ../templates/dhcp/settings.php:31 ../templates/dhcp/general.php:31
-msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
-msgstr "Schakel deze optie in om een statisch profiel te configureren en hierop terug te vallen als de DHCP lease mislukt."
-
-#: ../templates/dhcp/settings.php:36 ../templates/dhcp/general.php:36
-msgid "Static IP options"
-msgstr "Statische IP-opties"
-
-#: ../templates/dhcp/settings.php:42 ../templates/dhcp/general.php:42
-msgid "Please provide a valid IP Address."
-msgstr "Geef een geldig IP-adres op."
-
-#: ../templates/dhcp/settings.php:49 ../templates/dhcp/general.php:49
-msgid "Subnet Mask"
-msgstr "Subnetmasker"
-
-#: ../templates/dhcp/settings.php:52 ../templates/dhcp/general.php:52
-msgid "Please provide a valid Subnet mask."
-msgstr "Geef een geldig Subnetmasker op."
-
-#: ../templates/dhcp/settings.php:59 ../templates/dhcp/general.php:59
-msgid "Default gateway"
-msgstr "Standaard gateway"
-
-#: ../templates/dhcp/settings.php:62 ../templates/dhcp/general.php:62
-msgid "Please provide a valid Default gateway."
-msgstr "Geef een geldige standaardgateway op."
-
-#: ../templates/dhcp/settings.php:71 ../templates/dhcp/general.php:71
-msgid "Install a default route for this interface"
-msgstr "Installeer een standaard route voor deze interface"
-
-#: ../templates/dhcp/settings.php:72
-msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:75
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:84 ../templates/dhcp/general.php:83
-msgid "Disable wpa_supplicant dhcp hook for this interface"
-msgstr "Schakel wpa_supplicant dhcp hook uit voor deze interface"
-
-#: ../templates/dhcp/settings.php:85 ../templates/dhcp/general.php:84
-msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
-msgstr "Als je draadloze verbindingen beheert met wpa_supplicant zelf, dan kan de hook ongewenste verbindingsgebeurtenissen creëren. Deze optie schakelt de haak uit."
-
-#: ../templates/dhcp/settings.php:88
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:93 ../templates/dhcp/general.php:92
-msgid "DHCP options"
-msgstr "DHCP-opties"
-
-#: ../templates/dhcp/settings.php:99 ../templates/dhcp/general.php:98
-msgid "Enable DHCP for this interface"
-msgstr "DHCP inschakelen voor deze interface"
-
-#: ../templates/dhcp/settings.php:102 ../templates/dhcp/general.php:101
-msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
-msgstr "Schakel deze optie in als u wilt dat RaspAP IP-adressen toekent aan clients op de geselecteerde interface. Een statisch IP adres is vereist voor deze optie."
-
-#: ../templates/dhcp/settings.php:110 ../templates/dhcp/general.php:109
-msgid "Starting IP Address"
-msgstr "Startend IP-adres"
-
-#: ../templates/dhcp/settings.php:113 ../templates/dhcp/general.php:112
-msgid "Please provide a valid Starting IP Address."
-msgstr "Geef een geldig start-IP-adres op."
-
-#: ../templates/dhcp/settings.php:119 ../templates/dhcp/general.php:118
-msgid "Ending IP Address"
-msgstr "Einde IP-adres"
-
-#: ../templates/dhcp/settings.php:122 ../templates/dhcp/general.php:121
-msgid "Please provide a valid Ending IP Address."
-msgstr "Geef een geldig eind-IP-adres op."
-
-#: ../templates/dhcp/settings.php:128 ../templates/dhcp/general.php:127
-msgid "Lease Time"
-msgstr "Leasetijd"
-
-#: ../templates/dhcp/settings.php:131 ../templates/dhcp/general.php:130
-msgid "Please provide a valid Lease Time."
-msgstr "Geef een geldige leasetijd op."
-
-#: ../templates/dhcp/settings.php:135 ../templates/dhcp/general.php:134
-msgid "Interval"
-msgstr "Interval"
-
-#: ../templates/dhcp/settings.php:137 ../templates/dhcp/general.php:136
-msgid "Minute(s)"
-msgstr "Minuut(en)"
-
-#: ../templates/dhcp/settings.php:138 ../templates/dhcp/general.php:137
-msgid "Hour(s)"
-msgstr "Uur(en)"
-
-#: ../templates/dhcp/settings.php:139 ../templates/dhcp/general.php:138
-msgid "Day(s)"
-msgstr "Dag(en)"
-
-#: ../templates/dhcp/settings.php:140 ../templates/dhcp/general.php:139
-msgid "Infinite"
-msgstr "Oneindig"
-
-#: ../templates/dhcp/settings.php:143 ../templates/dhcp/general.php:142
-msgid "Please provide a valid Interval."
-msgstr "Geef een geldig Interval op."
-
-#: ../templates/dhcp/settings.php:150 ../templates/dhcp/settings.php:157
-#: ../templates/dhcp/general.php:149 ../templates/dhcp/general.php:156
-#: ../templates/hostapd/advanced.php:65
-msgid "DNS Server"
-msgstr "DNS-server"
-
-#: ../templates/dhcp/clients.php:2 ../templates/dhcp.php:54
-msgid "Client list"
-msgstr "Klantenlijst"
-
-#: ../templates/dhcp/clients.php:8
-msgid "Active DHCP leases"
-msgstr "Actieve DHCP-lease-overeenkomsten"
-
-#: ../templates/dhcp/clients.php:18
-msgid "Expire time"
-msgstr "Verlopen tijd"
-
-#: ../templates/dhcp/clients.php:21
-msgid "Host name"
-msgstr "Hostnaam"
-
-#: ../templates/dhcp/clients.php:22
-msgid "Client ID"
-msgstr "Klant-ID"
-
-#: ../templates/dhcp/general.php:74
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
-msgstr "Dit schakelt de <code>gateway/nogateway</code> optie in voor deze interface in de DHCPCD configuratie."
-
-#: ../templates/dhcp/general.php:87
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
-msgstr "Dit schakelt de <code>nohook wpa_supplicant</code> optie voor deze interface in de DHCPCD configuratie uit."
-
-#: ../templates/provider.php:5
-#, php-format
-msgid "Connect %s"
-msgstr "Maak verbinding met %s"
-
-#: ../templates/provider.php:7
-#, php-format
-msgid "Disconnect %s"
-msgstr "Ontkoppelen %s"
-
-#: ../templates/provider.php:51
-#, php-format
-msgid "Information provided by %s"
-msgstr "Informatie verstrekt door %s"
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "Apparaten"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "Mobiele gegevens"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "WLAN-routering"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "Diagnostiek"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "Informatie geleverd door /sys/class/net"
 
 #: ../templates/wifi_stations/network.php:42
 msgid "Not configured"
@@ -2312,6 +1743,513 @@ msgstr "Dit draadloze netwerk vereist een login of de aanvaarding van gebruiksvo
 #: ../templates/wifi_stations/network.php:118
 msgid "Goto Webpage"
 msgstr "Naar webpagina"
+
+#: ../templates/wifi_stations/network.php:119 ../templates/hostapd.php:90
+#: ../templates/configure_client.php:65 ../templates/system.php:56
+#: ../templates/system.php:74 ../templates/system.php:109
+#: ../templates/system.php:127 ../templates/system.php:159
+msgid "Close"
+msgstr "Sluit"
+
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "Geen Wifi-stations gevonden"
+
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Klik op 'Opnieuw scannen' om te zoeken naar Wifi-stations in de buurt."
+
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Klik op 'Reinitialize' om <code>wpa_supplicant</code> geforceerd opnieuw te initialiseren."
+
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "opnieuw initialiseren"
+
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "Aangesloten"
+
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "Bekend"
+
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "Dichtbij"
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "Stop WireGuard"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "WireGuard starten"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "Peer"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "Informatie verstrekt door wireguard"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "WireGuard-configuratie verwijderen"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "Deze configuratie verwijderen? Dit kan niet ongedaan worden gemaakt."
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "WireGuard-configuratie activeren"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "Deze configuratie activeren? Dit herstart de wg-quick service."
+
+#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
+msgid "Activate"
+msgstr "Activeer"
+
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "Netwerkapparaten"
+
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "Apparaat"
+
+#: ../templates/networking/devices.php:17
+#: ../templates/networking/general.php:12 ../templates/hostapd/basic.php:5
+#: ../templates/configure_client.php:31 ../templates/dhcp/general.php:5
+#: ../templates/dhcp/summary.php:18 ../templates/dhcp/settings.php:5
+msgid "Interface"
+msgstr "Interface"
+
+#: ../templates/networking/devices.php:19
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+msgid "MAC address"
+msgstr "MAC-adres"
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "Type apparaat"
+
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "Internetverbinding"
+
+#: ../templates/networking/general.php:13 ../templates/dashboard.php:54
+#: ../templates/dashboard.php:60 ../templates/dhcp/general.php:39
+#: ../templates/dhcp/clients.php:20 ../templates/dhcp/settings.php:39
+#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
+msgid "IP Address"
+msgstr "IP-adres"
+
+#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:52
+msgid "Gateway"
+msgstr "Gateway"
+
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "Toegang tot internet"
+
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "Routeertabel"
+
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "ruwe output"
+
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "Huidige instellingen"
+
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "WLAN-routering opnieuw starten"
+
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "WLAN-routering stoppen"
+
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "WLAN-routering starten"
+
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "Draadloze LAN-routering"
+
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "routing"
+
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Deze optie configureert RaspAP om <b>netwerkverkeer van je draadloze client (STA) interface</b> naar een andere beschikbare interface <b>te routeren</b>."
+
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Wanneer een uitvoerinterface wordt geselecteerd, worden <code>iptables</code> regels toegevoegd om pakketten te routeren met behulp van network address translation (NAT). Dit wordt vaak gedaan om internetconnectiviteit van een WLAN te delen met apparaten op een <code>eth0</code>, <code>usb0</code> of voorspelbare <code>enx</code> interface."
+
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "Draadloze cliëntinterface"
+
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "Uitvoerinterface"
+
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Een statisch IP-adres en DHCP configureren voor de uitvoerinterface"
+
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "Snelheidstest"
+
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "Een server selecteren"
+
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "Privacy"
+
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "Server"
+
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "Ping"
+
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "ms"
+
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "Jitter"
+
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "Mbps"
+
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "Instellingen mobiele gegevens"
+
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "PIN-code SIM-kaart"
+
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "APN-instellingen"
+
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "Naam toegangspunt (APN)"
+
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "Hotspot starten"
+
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "Hotspot starten"
+
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "Hotspot stoppen"
+
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "Hotspot opnieuw opstarten"
+
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "Hotspot opnieuw opstarten"
+
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "Informatie geleverd door hostapd"
+
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "Uitvoeren van RaspAP service start"
+
+#: ../templates/restapi/general.php:12
+msgid "API Key"
+msgstr "API-sleutel"
+
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "Geef een geldige API-sleutel op."
+
+#: ../templates/restapi/status.php:3
+msgid "RestAPI status"
+msgstr "RestAPI status"
+
+#: ../templates/restapi/status.php:4
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "De huidige status van <code>restapi.service</code> wordt hieronder weergegeven."
+
+#: ../templates/system/plugins.php:3 ../templates/system.php:23
+msgid "Plugins"
+msgstr "Plugins"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "De volgende gebruikersplugins zijn beschikbaar om de functionaliteit van RaspAP uit te breiden."
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Kies <strong>Details</strong> voor meer informatie en om een plugin te installeren."
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "Web server poort"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "Webserver bindend adres"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "Limiet diagnostische loggrootte (KB)"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
+msgstr ""
+
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr ""
+
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
+msgstr ""
+
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr ""
+
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "Herstart lighttpd"
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "Systeemtools"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "Klik of tik op de onderstaande knop om een <a href=\"%s\" target=\"_blank\">debuglog</a> van het systeem te genereren."
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Debug log informatie bevat de RaspAP versie, huidige status en configuratie van AP gerelateerde diensten, geïnstalleerde systeempakketten, Linux kernel versie en netwerkdetails. Er worden geen wachtwoorden of andere gevoelige gegevens opgenomen."
+
+#: ../templates/system/tools.php:18 ../templates/system.php:121
+msgid "Generate debug log"
+msgstr "Debug-logboek genereren"
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Klik of tik op de onderstaande knop om <a href=\"%s\" target=\"_blank\">de adapters</a> die op dit apparaat zijn aangesloten <a href=\" %s \" target=\"_blank\">te inspecteren</a>."
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Het hulpmiddel voor adapterinspectie geeft details over externe WLAN-apparaten, inclusief stuurprogramma's, ondersteunde modi enzovoort."
+
+#: ../templates/system/tools.php:32 ../templates/system.php:138
+msgid "Inspect adapters"
+msgstr "Adapters inspecteren"
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "Klik of tik op onderstaande knop om RaspAP terug te zetten naar de <a href=\"%s\" target=\"_blank\">beginconfiguratie</a>."
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Herstelt alle service-instellingen van het toegangspunt (AP) naar hun standaardwaarden. Dit geldt voor hostapd, dhcpcd en dnsmasq."
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Aangepaste bestanden voor optionele onderdelen zoals Ad Blocking, WireGuard of OpenVPN blijven op het systeem staan."
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "Reset uitvoeren"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "Thema-instellingen"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "Selecteer een thema"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "Kleur"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "Donkere modus"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "Gebruik de donkere modus van het huidige thema"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "Systeem Thema"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "Gebruikt de kleurmodus van je systeem"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "Waarschuwingsberichten"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Meldingen automatisch sluiten na een opgegeven time-out"
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "Time-out waarschuwing sluiten (milliseconden)"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "Systeeminformatie"
+
+#: ../templates/system/basic.php:23 ../templates/system.php:75
+msgid "Reboot"
+msgstr "Herstart"
+
+#: ../templates/system/basic.php:27 ../templates/system.php:110
+msgid "Shutdown"
+msgstr "Afsluiten"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "Hostnaam"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "Pi Herziening"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "OS"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "Kernel"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "Uptime"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "Systeem Tijd"
+
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "Gebruikt geheugen"
+
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "Gebruikte opslag"
+
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "CPU-belasting"
+
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "CPU-temp"
+
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "Taalinstellingen"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "Selecteer een taal"
+
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "Maak verbinding met %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "Ontkoppelen %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "Informatie verstrekt door %s"
+
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "Beveiligingsinstellingen"
+
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "Type beveiliging"
+
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "Type codering"
+
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
+
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "802.11w breidt sterke cryptografische bescherming uit naar een selecte set robuuste beheerframes, waaronder Deauthentication, Disassociation en bepaalde categorieën van Action Management frames. Samen staat dit bekend als Management Frame Protection (MFP)."
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "Vooraf gedeelde sleutel (PSK)"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "Geef een geldige PSK op."
+
+#: ../templates/hostapd/security.php:32
+#, php-format
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Scan deze QR code direct of %s %sprint een bord%s voor je gebruikers."
 
 #: ../templates/hostapd/logging.php:4
 msgid "Enable this option to log <code>hostapd</code> activity."
@@ -2366,13 +2304,15 @@ msgstr "Voer een geldig netmask in"
 msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
 msgstr "CIDR-notatie (bijvoorbeeld 24 voor 255.255.255.0)"
 
-#: ../templates/hostapd/advanced.php:52 ../templates/networking/general.php:14
-msgid "Gateway"
-msgstr "Gateway"
-
 #: ../templates/hostapd/advanced.php:61
 msgid "Your router's IP address"
 msgstr "Het IP-adres van je router"
+
+#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/general.php:149
+#: ../templates/dhcp/general.php:156 ../templates/dhcp/settings.php:150
+#: ../templates/dhcp/settings.php:157
+msgid "DNS Server"
+msgstr "DNS-server"
 
 #: ../templates/hostapd/advanced.php:74
 msgid "Usually same as gateway"
@@ -2438,38 +2378,10 @@ msgstr "Configureert de <code>max_num_sta</code> optie van hostapd. De standaard
 msgid "Country Code"
 msgstr "Landcode"
 
-#: ../templates/hostapd/security.php:2
-msgid "Security settings"
-msgstr "Beveiligingsinstellingen"
-
-#: ../templates/hostapd/security.php:6
-msgid "Security type"
-msgstr "Type beveiliging"
-
-#: ../templates/hostapd/security.php:10
-msgid "Encryption Type"
-msgstr "Type codering"
-
-#: ../templates/hostapd/security.php:14
-msgid "802.11w"
-msgstr "802.11w"
-
-#: ../templates/hostapd/security.php:15
-msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
-msgstr "802.11w breidt sterke cryptografische bescherming uit naar een selecte set robuuste beheerframes, waaronder Deauthentication, Disassociation en bepaalde categorieën van Action Management frames. Samen staat dit bekend als Management Frame Protection (MFP)."
-
-#: ../templates/hostapd/security.php:19
-msgid "Pre-shared key (PSK)"
-msgstr "Vooraf gedeelde sleutel (PSK)"
-
-#: ../templates/hostapd/security.php:24
-msgid "Please provide a valid PSK."
-msgstr "Geef een geldige PSK op."
-
-#: ../templates/hostapd/security.php:32
-#, php-format
-msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
-msgstr "Scan deze QR code direct of %s %sprint een bord%s voor je gebruikers."
+#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
+#: ../templates/dashboard.php:63
+msgid "SSID"
+msgstr "SSID"
 
 #: ../templates/hostapd/basic.php:14
 msgid "Please provide a valid SSID."
@@ -2488,297 +2400,135 @@ msgstr "Draadloze standaarden die niet compatibel zijn met uw adapter kunnen wor
 msgid "Based on the selected interface, 802.11%s is suggested."
 msgstr "Op basis van de geselecteerde interface wordt 802.11%s voorgesteld."
 
-#: ../templates/openvpn/logging.php:4
-msgid "Enable this option to log <code>openvpn</code> activity."
-msgstr "Schakel deze optie in om <code>openvpn-activiteit</code> te loggen."
+#: ../templates/configure_client.php:12
+msgid "Disconnected"
+msgstr "Ontkoppeld"
 
-#: ../templates/openvpn/logging.php:8
-msgid "Enable logging"
-msgstr "Logboekregistratie inschakelen"
+#: ../templates/configure_client.php:24
+msgid "Rescan"
+msgstr "Opnieuw scannen"
 
-#: ../templates/openvpn/configs.php:6
-msgid "Currently available OpenVPN client configurations are displayed below."
-msgstr "Momenteel beschikbare OpenVPN-clientconfiguraties worden hieronder weergegeven."
+#: ../templates/configure_client.php:34
+msgid "Set"
+msgstr "Stel in"
 
-#: ../templates/openvpn/configs.php:7
-msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
-msgstr "Het activeren van een configuratie herstart de <code>openvpn-client</code> service."
+#: ../templates/configure_client.php:49
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Opmerking:</strong> WEP-toegangspunten verschijnen als 'Open'. RaspAP ondersteunt momenteel geen verbinding met WEP"
 
-#: ../templates/openvpn/general.php:8 ../templates/provider/general.php:9
-#: ../templates/wg/general.php:8
-msgid "IPv4 Address"
-msgstr "IPv4-adres"
+#: ../templates/configure_client.php:59
+msgid "Configuring WiFi Client"
+msgstr "WiFi-client configureren"
 
-#: ../templates/openvpn/general.php:13
-msgid "Authentification Method"
-msgstr "Authentificatiemethode"
+#: ../templates/configure_client.php:62
+msgid "Configuring Wifi Client Interface..."
+msgstr "Wifi Client Interface configureren..."
 
-#: ../templates/openvpn/general.php:16
-msgid "Username and password"
-msgstr "Gebruikersnaam en wachtwoord"
+#: ../templates/about/general.php:8
+msgid "RaspAP"
+msgstr "RaspAP"
 
-#: ../templates/openvpn/general.php:20
-msgid "Certificates"
-msgstr "Certificaten"
+#: ../templates/about/general.php:11 ../templates/about.php:47
+msgid "Check for update"
+msgstr "Controleren op update"
 
-#: ../templates/openvpn/general.php:26
-msgid "Enter username and password"
-msgstr "Voer gebruikersnaam en wachtwoord in"
-
-#: ../templates/openvpn/general.php:42
-msgid "Certificates in the configuration file"
-msgstr "Certificaten in het configuratiebestand"
-
-#: ../templates/openvpn/general.php:44
-msgid "RaspAP supports certificates by including them in the configuration file."
-msgstr "RaspAP ondersteunt certificaten door ze op te nemen in het configuratiebestand."
-
-#: ../templates/openvpn/general.php:47
-msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
-msgstr "Certificaat van de ondertekenende certificeringsautoriteit (CA) (bijv. <code>ca.crt</code>): ingesloten in <code>&lt;ca> ... &lt;/ca></code> tags."
-
-#: ../templates/openvpn/general.php:48
-msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
-msgstr "Clientcertificaat (openbare sleutel) (bijv. <code>client.crt</code>): ingesloten in <code>&lt;cert> ... &lt;/cert></code> tags."
-
-#: ../templates/openvpn/general.php:49
-msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
-msgstr "Privésleutel van het cliëntcertificaat (bijv. <code>client.key</code>): ingesloten in <code>&lt;key> ... &lt;/key></code> tags."
-
-#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
-msgid "Configuration File"
-msgstr "Configuratiebestand"
-
-#: ../templates/openvpn/general.php:62
-msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Selecteer OpenVPN-configuratiebestand (.ovpn)"
-
-#: ../templates/provider/status.php:3
+#: ../templates/about/general.php:20
 #, php-format
-msgid "%s status"
-msgstr "%s status"
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP is een co-creatie van %1$s en %2$s met de bijdragen van onze %3$s en %4$s. Lees meer over deelname aan het project als %5$s, %6$s of %7$s met onmiddellijke toegang tot %8$s beschikbaar voor %9$s."
 
-#: ../templates/provider/status.php:5
-#, php-format
-msgid "Installed Linux CLI: <code>%s</code>"
-msgstr "Linux CLI geïnstalleerd: <code>%s</code>"
+#: ../templates/about/general.php:23
+msgid "developer community"
+msgstr "ontwikkelaarsgemeenschap"
 
-#: ../templates/provider/status.php:6
-#, php-format
-msgid "Current <code>%s</code> connection status is displayed below."
-msgstr "De huidige <code>%s</code> verbindingsstatus wordt hieronder weergegeven."
+#: ../templates/about/general.php:24
+msgid "language translators"
+msgstr "taalvertalers"
 
-#: ../templates/provider/general.php:2
-#, php-format
-msgid "%s settings"
-msgstr "%s instellingen"
+#: ../templates/about/general.php:25
+msgid "code contributor"
+msgstr "code medewerker"
 
-#: ../templates/provider/general.php:24
-msgid "Account details"
-msgstr "Accountgegevens"
+#: ../templates/about/general.php:26
+msgid "translator"
+msgstr "vertaler"
 
-#: ../templates/provider/general.php:28
-msgid "My account"
-msgstr "Mijn account"
+#: ../templates/about/general.php:27
+msgid "financial sponsor"
+msgstr "financiële sponsor"
 
-#: ../templates/provider/general.php:36
-msgid "Server location"
-msgstr "Serverlocatie"
+#: ../templates/about/general.php:28
+msgid "exclusive features"
+msgstr "exclusieve functies"
 
-#: ../templates/provider/general.php:38
-msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
-msgstr "Als u <strong>Instellingen opslaan</strong> kiest, wordt er verbinding gemaakt met het geselecteerde land."
+#: ../templates/about/general.php:29 ../templates/about.php:22
+msgid "Insiders"
+msgstr "Insiders"
 
-#: ../templates/provider/general.php:41
-#, php-format
-msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
-msgstr "Als je <strong>Connect %s</strong> kiest, maak je <strong>verbinding </strong> met een aanbevolen server."
+#: ../templates/admin/general.php:3
+msgid "Change password"
+msgstr "Wachtwoord wijzigen"
 
-#: ../templates/provider/general.php:43
-msgid "Country"
-msgstr "Land"
+#: ../templates/admin/general.php:18 ../templates/admin/general.php:37
+#: ../templates/admin/login.php:15 ../templates/about.php:87
+msgid "Please provide a valid username."
+msgstr "Geef een geldige gebruikersnaam op."
 
-#: ../templates/networking/devices.php:3
-msgid "Network devices"
-msgstr "Netwerkapparaten"
+#: ../templates/admin/general.php:28
+msgid "Enable limited privilege user"
+msgstr "Gebruiker met beperkte rechten inschakelen"
 
-#: ../templates/networking/devices.php:16
-msgid "Device"
-msgstr "Apparaat"
+#: ../templates/admin/general.php:30
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "Deze optie maakt een niet-administrator gebruiker mogelijk die toegang heeft tot de beheerinterface van RaspAP, maar <strong>beperkte mogelijkheden heeft om de bestaande configuratie aan te passen</strong>. Deze gebruiker wordt actief als de huidige admin-gebruiker wordt uitgelogd."
 
-#: ../templates/networking/devices.php:20
-msgid "USB vid/pid"
-msgstr "USB vid/pid"
+#: ../templates/admin/general.php:34
+msgid "Limited user login"
+msgstr "Inloggen voor beperkte gebruikers"
 
-#: ../templates/networking/devices.php:21
-msgid "Device type"
-msgstr "Type apparaat"
+#: ../templates/admin/general.php:43
+msgid "Limited user password"
+msgstr "Beperkt gebruikerswachtwoord"
 
-#: ../templates/networking/diagnostics.php:3
-msgid "Speedtest"
-msgstr "Snelheidstest"
+#: ../templates/admin/general.php:48
+msgid "Please enter a valid password."
+msgstr "Voer een geldig wachtwoord in."
 
-#: ../templates/networking/diagnostics.php:8
-msgid "Selecting a server"
-msgstr "Een server selecteren"
+#: ../templates/admin/login.php:2
+msgid "Submit"
+msgstr "Stuur  in"
 
-#: ../templates/networking/diagnostics.php:12
-msgid "Privacy"
-msgstr "Privacy"
+#: ../templates/admin/login.php:11
+msgid "Admin login"
+msgstr "Beheerderslogin"
 
-#: ../templates/networking/diagnostics.php:16
-msgid "Server"
-msgstr "Server"
+#: ../templates/admin/login.php:26
+msgid "Please enter your password."
+msgstr "Voer je wachtwoord in."
 
-#: ../templates/networking/diagnostics.php:22
-msgid "Ping"
-msgstr "Ping"
+#: ../templates/admin/avatar.php:3
+msgid "Reset avatar"
+msgstr "Avatar opnieuw instellen"
 
-#: ../templates/networking/diagnostics.php:24
-#: ../templates/networking/diagnostics.php:29
-msgid "ms"
-msgstr "ms"
+#: ../templates/admin/avatar.php:15
+msgid "Click or tap to upload a new user avatar."
+msgstr "Klik of tik om een nieuwe gebruikersavatar te uploaden."
 
-#: ../templates/networking/diagnostics.php:27
-msgid "Jitter"
-msgstr "Jitter"
+#: ../templates/admin/avatar.php:16
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "Afbeeldingsbestanden van het type <code>JPG, GIF of PNG</code> worden geaccepteerd. Maximale bestandsgrootte: 2 MB."
 
-#: ../templates/networking/diagnostics.php:37
-#: ../templates/networking/diagnostics.php:43
-msgid "Mbps"
-msgstr "Mbps"
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "RestAPI-service starten"
 
-#: ../templates/networking/wlanrouting.php:5
-msgid "Restart WLAN routing"
-msgstr "WLAN-routering opnieuw starten"
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "RestAPI-service stoppen"
 
-#: ../templates/networking/wlanrouting.php:6
-msgid "Stop WLAN routing"
-msgstr "WLAN-routering stoppen"
-
-#: ../templates/networking/wlanrouting.php:8
-msgid "Start WLAN routing"
-msgstr "WLAN-routering starten"
-
-#: ../templates/networking/wlanrouting.php:17
-msgid "Wireless LAN routing"
-msgstr "Draadloze LAN-routering"
-
-#: ../templates/networking/wlanrouting.php:22
-msgid "routing"
-msgstr "routing"
-
-#: ../templates/networking/wlanrouting.php:27
-msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
-msgstr "Deze optie configureert RaspAP om <b>netwerkverkeer van je draadloze client (STA) interface</b> naar een andere beschikbare interface <b>te routeren</b>."
-
-#: ../templates/networking/wlanrouting.php:29
-msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
-msgstr "Wanneer een uitvoerinterface wordt geselecteerd, worden <code>iptables</code> regels toegevoegd om pakketten te routeren met behulp van network address translation (NAT). Dit wordt vaak gedaan om internetconnectiviteit van een WLAN te delen met apparaten op een <code>eth0</code>, <code>usb0</code> of voorspelbare <code>enx</code> interface."
-
-#: ../templates/networking/wlanrouting.php:34
-msgid "Wireless client interface"
-msgstr "Draadloze cliëntinterface"
-
-#: ../templates/networking/wlanrouting.php:42
-msgid "Output interface"
-msgstr "Uitvoerinterface"
-
-#: ../templates/networking/wlanrouting.php:47
-msgid "Configure a static IP address and DHCP for output interface"
-msgstr "Een statisch IP-adres en DHCP configureren voor de uitvoerinterface"
-
-#: ../templates/networking/mobile.php:4
-msgid "Mobile data settings"
-msgstr "Instellingen mobiele gegevens"
-
-#: ../templates/networking/mobile.php:8
-msgid "SIM card PIN number"
-msgstr "PIN-code SIM-kaart"
-
-#: ../templates/networking/mobile.php:11
-msgid "APN Settings"
-msgstr "APN-instellingen"
-
-#: ../templates/networking/mobile.php:13
-msgid "Access Point Name (APN)"
-msgstr "Naam toegangspunt (APN)"
-
-#: ../templates/networking/general.php:3
-msgid "Internet connection"
-msgstr "Internetverbinding"
-
-#: ../templates/networking/general.php:15
-msgid "Internet Access"
-msgstr "Toegang tot internet"
-
-#: ../templates/networking/general.php:53
-msgid "Routing table"
-msgstr "Routeertabel"
-
-#: ../templates/networking/general.php:57
-msgid "raw output"
-msgstr "ruwe output"
-
-#: ../templates/networking/general.php:80
-msgid "Current settings"
-msgstr "Huidige instellingen"
-
-#: ../templates/wireguard.php:21
-msgid "Stop WireGuard"
-msgstr "Stop WireGuard"
-
-#: ../templates/wireguard.php:25
-msgid "Start WireGuard"
-msgstr "WireGuard starten"
-
-#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
-msgid "Peer"
-msgstr "Peer"
-
-#: ../templates/wireguard.php:67
-msgid "Information provided by wireguard"
-msgstr "Informatie verstrekt door wireguard"
-
-#: ../templates/wireguard.php:77
-msgid "Delete WireGuard configuration"
-msgstr "WireGuard-configuratie verwijderen"
-
-#: ../templates/wireguard.php:80
-msgid "Delete this configuration? This cannot be undone."
-msgstr "Deze configuratie verwijderen? Dit kan niet ongedaan worden gemaakt."
-
-#: ../templates/wireguard.php:95
-msgid "Activate WireGuard configuration"
-msgstr "WireGuard-configuratie activeren"
-
-#: ../templates/wireguard.php:98
-msgid "Activate this configuration? This will restart the wg-quick service."
-msgstr "Deze configuratie activeren? Dit herstart de wg-quick service."
-
-#: ../templates/dhcp.php:21
-msgid "Stop dnsmasq"
-msgstr "Stop dnsmasq"
-
-#: ../templates/dhcp.php:24
-msgid "Restart dnsmasq"
-msgstr "Herstart dnsmasq"
-
-#: ../templates/dhcp.php:28
-msgid "Start dnsmasq"
-msgstr "Start dnsmasq"
-
-#: ../templates/dhcp.php:51
-msgid "Server settings"
-msgstr "Serverinstellingen"
-
-#: ../templates/dhcp.php:53
-msgid "Static Leases"
-msgstr "Statische lease"
-
-#: ../templates/dhcp.php:72
-msgid "Information provided by Dnsmasq"
-msgstr "Informatie verstrekt door Dnsmasq"
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "Informatie geleverd door restapi.service"
 
 #: ../templates/system.php:18
 msgid "Language"
@@ -2792,9 +2542,9 @@ msgstr "Thema"
 msgid "Tools"
 msgstr "Gereedschap"
 
-#: ../templates/system.php:23 ../templates/system/plugins.php:3
-msgid "Plugins"
-msgstr "Plugins"
+#: ../templates/system.php:40 ../templates/dashboard.php:164
+msgid "Information provided by raspap.sysinfo"
+msgstr "Informatie geleverd door raspap.sysinfo"
 
 #: ../templates/system.php:50
 msgid "System reset"
@@ -2824,10 +2574,6 @@ msgstr "Systeem herstarten"
 msgid "Reboot now? The system will be temporarily unavailable."
 msgstr "Nu herstarten? Het systeem zal tijdelijk niet beschikbaar zijn."
 
-#: ../templates/system.php:75 ../templates/system/basic.php:23
-msgid "Reboot"
-msgstr "Herstart"
-
 #: ../templates/system.php:86
 msgid "Reconnecting"
 msgstr ""
@@ -2848,21 +2594,9 @@ msgstr "Systeem uitschakelen"
 msgid "Shutdown now? The system will be unavailable."
 msgstr "Nu afsluiten? Het systeem zal niet beschikbaar zijn."
 
-#: ../templates/system.php:110 ../templates/system/basic.php:27
-msgid "Shutdown"
-msgstr "Afsluiten"
-
-#: ../templates/system.php:121 ../templates/system/tools.php:18
-msgid "Generate debug log"
-msgstr "Debug-logboek genereren"
-
 #: ../templates/system.php:124
 msgid "Debug log generation in progress..."
 msgstr "Debug log genereren bezig..."
-
-#: ../templates/system.php:138 ../templates/system/tools.php:32
-msgid "Inspect adapters"
-msgstr "Adapters inspecteren"
 
 #: ../templates/system.php:157
 msgid "Adapter health check"
@@ -2928,254 +2662,497 @@ msgstr "Installatie van plugin voltooid."
 msgid "Plugin installation in progress..."
 msgstr "Plugin installatie bezig..."
 
-#: ../templates/system/plugins.php:8
-msgid "The following user plugins are available to extend RaspAP's functionality."
-msgstr "De volgende gebruikersplugins zijn beschikbaar om de functionaliteit van RaspAP uit te breiden."
+#: ../templates/system.php:271 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "OK"
 
-#: ../templates/system/plugins.php:12
-msgid "Choose <strong>Details</strong> for more information and to install a plugin."
-msgstr "Kies <strong>Details</strong> voor meer informatie en om een plugin te installeren."
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "Advertentie-blokkering opnieuw starten"
 
-#: ../templates/system/theme.php:3
-msgid "Theme settings"
-msgstr "Thema-instellingen"
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "Advertentie-blokkering starten"
 
-#: ../templates/system/theme.php:8
-msgid "Select a theme"
-msgstr "Selecteer een thema"
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "Informatie geleverd door adblock"
 
-#: ../templates/system/theme.php:12
-msgid "Color"
-msgstr "Kleur"
+#: ../templates/login.php:13
+msgid "Administrator login"
+msgstr "Inloggen als beheerder"
 
-#: ../templates/system/theme.php:18
-msgid "Dark Mode"
-msgstr "Donkere modus"
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "Wachtwoord vergeten"
 
-#: ../templates/system/theme.php:25
-msgid "Use the dark mode from the current theme"
-msgstr "Gebruik de donkere modus van het huidige thema"
-
-#: ../templates/system/theme.php:28
-msgid "System Theme"
-msgstr "Systeem Thema"
-
-#: ../templates/system/theme.php:35
-msgid "Uses the color mode of your system"
-msgstr "Gebruikt de kleurmodus van je systeem"
-
-#: ../templates/system/theme.php:40
-msgid "Alert messages"
-msgstr "Waarschuwingsberichten"
-
-#: ../templates/system/theme.php:44
-msgid "Automatically close alerts after a specified timeout"
-msgstr "Meldingen automatisch sluiten na een opgegeven time-out"
-
-#: ../templates/system/theme.php:50
-msgid "Alert close timeout (milliseconds)"
-msgstr "Time-out waarschuwing sluiten (milliseconden)"
-
-#: ../templates/system/advanced.php:9
-msgid "Web server port"
-msgstr "Web server poort"
-
-#: ../templates/system/advanced.php:15
-msgid "Web server bind address"
-msgstr "Webserver bindend adres"
-
-#: ../templates/system/advanced.php:21
-msgid "Diagnostic log size limit (KB)"
-msgstr "Limiet diagnostische loggrootte (KB)"
-
-#: ../templates/system/advanced.php:28
-msgid "SSL Certificate (HTTPS)"
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
 msgstr ""
 
-#: ../templates/system/advanced.php:30
-#, php-format
-msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+#: ../templates/openvpn.php:20
+msgid "Start OpenVPN"
+msgstr "OpenVPN starten"
+
+#: ../templates/openvpn.php:24
+msgid "Stop OpenVPN"
+msgstr "Stop OpenVPN"
+
+#: ../templates/openvpn.php:65
+msgid "Information provided by openvpn"
+msgstr "Informatie verstrekt door openvpn"
+
+#: ../templates/openvpn.php:75
+msgid "Delete OpenVPN client"
+msgstr "OpenVPN-client verwijderen"
+
+#: ../templates/openvpn.php:78
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Clientconfiguratie verwijderen? Dit kan niet ongedaan worden gemaakt."
+
+#: ../templates/openvpn.php:93
+msgid "Activate OpenVPN client"
+msgstr "OpenVPN-client activeren"
+
+#: ../templates/openvpn.php:96
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Clientconfiguratie activeren? Dit herstart de openvpn-client service."
+
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
 msgstr ""
 
-#: ../templates/system/advanced.php:31
-msgid "Download rootCA.pem"
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "Repeater"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "Tethering"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "Cellulair"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
 msgstr ""
 
-#: ../templates/system/advanced.php:33
-#, php-format
-msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+#: ../templates/dashboard.php:49
+msgid "Local"
 msgstr ""
 
-#: ../templates/system/advanced.php:40
-msgid "Restart lighttpd"
-msgstr "Herstart lighttpd"
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "Netmasker"
 
-#: ../templates/system/basic.php:10
-msgid "System Information"
-msgstr "Systeeminformatie"
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "MAC-adres"
 
-#: ../templates/system/basic.php:36
-msgid "Hostname"
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "AP"
+
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "Overbrugd"
+
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "Adblock"
+
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "VPN"
+
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "Firewall"
+
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
+
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2.4G"
+
+#: ../templates/dhcp/general.php:2 ../templates/dhcp/settings.php:2
+msgid "DHCP server settings"
+msgstr "Instellingen DHCP-server"
+
+#: ../templates/dhcp/general.php:10 ../templates/dhcp/settings.php:10
+msgid "Adapter IP Address Settings"
+msgstr "Instellingen IP-adres adapter"
+
+#: ../templates/dhcp/general.php:28 ../templates/dhcp/settings.php:28
+msgid "Enable fallback to static option"
+msgstr "Terugval naar statische optie inschakelen"
+
+#: ../templates/dhcp/general.php:31 ../templates/dhcp/settings.php:31
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Schakel deze optie in om een statisch profiel te configureren en hierop terug te vallen als de DHCP lease mislukt."
+
+#: ../templates/dhcp/general.php:36 ../templates/dhcp/settings.php:36
+msgid "Static IP options"
+msgstr "Statische IP-opties"
+
+#: ../templates/dhcp/general.php:42 ../templates/dhcp/settings.php:42
+msgid "Please provide a valid IP Address."
+msgstr "Geef een geldig IP-adres op."
+
+#: ../templates/dhcp/general.php:49 ../templates/dhcp/settings.php:49
+msgid "Subnet Mask"
+msgstr "Subnetmasker"
+
+#: ../templates/dhcp/general.php:52 ../templates/dhcp/settings.php:52
+msgid "Please provide a valid Subnet mask."
+msgstr "Geef een geldig Subnetmasker op."
+
+#: ../templates/dhcp/general.php:59 ../templates/dhcp/settings.php:59
+msgid "Default gateway"
+msgstr "Standaard gateway"
+
+#: ../templates/dhcp/general.php:62 ../templates/dhcp/settings.php:62
+msgid "Please provide a valid Default gateway."
+msgstr "Geef een geldige standaardgateway op."
+
+#: ../templates/dhcp/general.php:71 ../templates/dhcp/settings.php:71
+msgid "Install a default route for this interface"
+msgstr "Installeer een standaard route voor deze interface"
+
+#: ../templates/dhcp/general.php:74
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "Dit schakelt de <code>gateway/nogateway</code> optie in voor deze interface in de DHCPCD configuratie."
+
+#: ../templates/dhcp/general.php:83 ../templates/dhcp/settings.php:84
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "Schakel wpa_supplicant dhcp hook uit voor deze interface"
+
+#: ../templates/dhcp/general.php:84 ../templates/dhcp/settings.php:85
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "Als je draadloze verbindingen beheert met wpa_supplicant zelf, dan kan de hook ongewenste verbindingsgebeurtenissen creëren. Deze optie schakelt de haak uit."
+
+#: ../templates/dhcp/general.php:87
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr "Dit schakelt de <code>nohook wpa_supplicant</code> optie voor deze interface in de DHCPCD configuratie uit."
+
+#: ../templates/dhcp/general.php:92 ../templates/dhcp/settings.php:93
+msgid "DHCP options"
+msgstr "DHCP-opties"
+
+#: ../templates/dhcp/general.php:98 ../templates/dhcp/settings.php:99
+msgid "Enable DHCP for this interface"
+msgstr "DHCP inschakelen voor deze interface"
+
+#: ../templates/dhcp/general.php:101 ../templates/dhcp/settings.php:102
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Schakel deze optie in als u wilt dat RaspAP IP-adressen toekent aan clients op de geselecteerde interface. Een statisch IP adres is vereist voor deze optie."
+
+#: ../templates/dhcp/general.php:109 ../templates/dhcp/settings.php:110
+msgid "Starting IP Address"
+msgstr "Startend IP-adres"
+
+#: ../templates/dhcp/general.php:112 ../templates/dhcp/settings.php:113
+msgid "Please provide a valid Starting IP Address."
+msgstr "Geef een geldig start-IP-adres op."
+
+#: ../templates/dhcp/general.php:118 ../templates/dhcp/settings.php:119
+msgid "Ending IP Address"
+msgstr "Einde IP-adres"
+
+#: ../templates/dhcp/general.php:121 ../templates/dhcp/settings.php:122
+msgid "Please provide a valid Ending IP Address."
+msgstr "Geef een geldig eind-IP-adres op."
+
+#: ../templates/dhcp/general.php:127 ../templates/dhcp/settings.php:128
+msgid "Lease Time"
+msgstr "Leasetijd"
+
+#: ../templates/dhcp/general.php:130 ../templates/dhcp/settings.php:131
+msgid "Please provide a valid Lease Time."
+msgstr "Geef een geldige leasetijd op."
+
+#: ../templates/dhcp/general.php:134 ../templates/dhcp/settings.php:135
+msgid "Interval"
+msgstr "Interval"
+
+#: ../templates/dhcp/general.php:136 ../templates/dhcp/settings.php:137
+msgid "Minute(s)"
+msgstr "Minuut(en)"
+
+#: ../templates/dhcp/general.php:137 ../templates/dhcp/settings.php:138
+msgid "Hour(s)"
+msgstr "Uur(en)"
+
+#: ../templates/dhcp/general.php:138 ../templates/dhcp/settings.php:139
+msgid "Day(s)"
+msgstr "Dag(en)"
+
+#: ../templates/dhcp/general.php:139 ../templates/dhcp/settings.php:140
+msgid "Infinite"
+msgstr "Oneindig"
+
+#: ../templates/dhcp/general.php:142 ../templates/dhcp/settings.php:143
+msgid "Please provide a valid Interval."
+msgstr "Geef een geldig Interval op."
+
+#: ../templates/dhcp/general.php:163 ../templates/dhcp/summary.php:25
+#: ../templates/dhcp/settings.php:164
+msgid "Metric"
+msgstr "Metrisch"
+
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr "Statische lease"
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Clients met een bepaald hardware MAC-adres kunnen altijd hetzelfde IP-adres toegewezen krijgen."
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Deze optie voegt <code>dhcp-host</code> entries toe aan de dnsmasq configuratie."
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr "IP-adres"
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr "Optioneel commentaar"
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr "Toegang beperken"
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr "Netwerktoegang beperken tot statische clients"
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Schakel deze optie in als u wilt dat RaspAP <b>alle clients negeert</b> die niet in de lijst met statische leases staan."
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Deze optie voegt <code>dhcp-ignore</code> toe aan de dnsmasq configuratie."
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr "Actieve DHCP-lease-overeenkomsten"
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr "Verlopen tijd"
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
 msgstr "Hostnaam"
 
-#: ../templates/system/basic.php:40
-msgid "Pi Revision"
-msgstr "Pi Herziening"
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr "Klant-ID"
 
-#: ../templates/system/basic.php:44
-msgid "OS"
-msgstr "OS"
+#: ../templates/dhcp/logging.php:4
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Schakel deze opties in om <code>dhcpcd</code> en <code>dnsmasq</code> activiteit te loggen."
 
-#: ../templates/system/basic.php:48
-msgid "Kernel"
-msgstr "Kernel"
+#: ../templates/dhcp/logging.php:8
+msgid "Log DHCP requests"
+msgstr "DHCP-verzoeken loggen"
 
-#: ../templates/system/basic.php:52
-msgid "Uptime"
-msgstr "Uptime"
+#: ../templates/dhcp/logging.php:12
+msgid "Log DNS queries"
+msgstr "Log DNS-query's"
 
-#: ../templates/system/basic.php:56
-msgid "System Time"
-msgstr "Systeem Tijd"
+#: ../templates/dhcp/advanced.php:3
+msgid "Advanced Settings"
+msgstr "Geavanceerde instellingen"
 
-#: ../templates/system/basic.php:65
-msgid "Memory Used"
-msgstr "Gebruikt geheugen"
+#: ../templates/dhcp/advanced.php:6
+msgid "Upstream DNS servers"
+msgstr "Upstream DNS-servers"
 
-#: ../templates/system/basic.php:77
-msgid "Storage Used"
-msgstr "Gebruikte opslag"
+#: ../templates/dhcp/advanced.php:11
+msgid "Only ever query DNS servers configured below"
+msgstr "Vraag alleen DNS-servers op die hieronder zijn geconfigureerd"
 
-#: ../templates/system/basic.php:89
-msgid "CPU Load"
-msgstr "CPU-belasting"
+#: ../templates/dhcp/advanced.php:14
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Schakel deze optie in als u wilt dat RaspAP <b>DNS-query's uitsluitend naar de hieronder geconfigureerde servers stuurt</b>. Standaard gebruikt RaspAP ook de naamservers van de upstream DHCP-server."
 
-#: ../templates/system/basic.php:101
-msgid "CPU Temp"
-msgstr "CPU-temp"
+#: ../templates/dhcp/advanced.php:15
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "Deze optie voegt <code>no-resolv</code> toe aan de dnsmasq configuratie."
 
-#: ../templates/system/language.php:3
-msgid "Language settings"
-msgstr "Taalinstellingen"
+#: ../templates/dhcp/advanced.php:29
+msgid "Add upstream DNS server"
+msgstr "Upstream DNS-server toevoegen"
 
-#: ../templates/system/language.php:6
-msgid "Select a language"
-msgstr "Selecteer een taal"
-
-#: ../templates/system/tools.php:3
-msgid "System tools"
-msgstr "Systeemtools"
-
-#: ../templates/system/tools.php:10
+#: ../templates/dhcp/advanced.php:31
 #, php-format
-msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
-msgstr "Klik of tik op de onderstaande knop om een <a href=\"%s\" target=\"_blank\">debuglog</a> van het systeem te genereren."
+msgid "e.g. %s"
+msgstr "Bijvoorbeeld %s"
 
-#: ../templates/system/tools.php:13
-msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
-msgstr "Debug log informatie bevat de RaspAP versie, huidige status en configuratie van AP gerelateerde diensten, geïnstalleerde systeempakketten, Linux kernel versie en netwerkdetails. Er worden geen wachtwoorden of andere gevoelige gegevens opgenomen."
+#: ../templates/dhcp/advanced.php:36
+msgid "Format: "
+msgstr "Formaat: "
 
-#: ../templates/system/tools.php:24
-#, php-format
-msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "Klik of tik op de onderstaande knop om <a href=\"%s\" target=\"_blank\">de adapters</a> die op dit apparaat zijn aangesloten <a href=\" %s \" target=\"_blank\">te inspecteren</a>."
+#: ../templates/dhcp/advanced.php:41
+msgid "Choose a hosted server"
+msgstr "Kies een gehoste server"
 
-#: ../templates/system/tools.php:27
-msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
-msgstr "Het hulpmiddel voor adapterinspectie geeft details over externe WLAN-apparaten, inclusief stuurprogramma's, ondersteunde modi enzovoort."
+#: ../templates/dhcp/settings.php:72
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr ""
 
-#: ../templates/system/tools.php:38
-#, php-format
-msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
-msgstr "Klik of tik op onderstaande knop om RaspAP terug te zetten naar de <a href=\"%s\" target=\"_blank\">beginconfiguratie</a>."
+#: ../templates/dhcp/settings.php:75
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
 
-#: ../templates/system/tools.php:40
-msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
-msgstr "Herstelt alle service-instellingen van het toegangspunt (AP) naar hun standaardwaarden. Dit geldt voor hostapd, dhcpcd en dnsmasq."
+#: ../templates/dhcp/settings.php:88
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
 
-#: ../templates/system/tools.php:42
-msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
-msgstr "Aangepaste bestanden voor optionele onderdelen zoals Ad Blocking, WireGuard of OpenVPN blijven op het systeem staan."
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "Bijdragen"
 
-#: ../templates/system/tools.php:47
-msgid "Perform reset"
-msgstr "Reset uitvoeren"
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "Nieuwe releasecontrole aan de gang..."
 
-#: ../templates/hostapd.php:20
-msgid "Start hotspot"
-msgstr "Hotspot starten"
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "Er is een nieuwe versie beschikbaar: Versie"
 
-#: ../templates/hostapd.php:20
-msgid "Starting hotspot"
-msgstr "Hotspot starten"
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "De geïnstalleerde versie is de nieuwste release."
 
-#: ../templates/hostapd.php:24
-msgid "Stop hotspot"
-msgstr "Hotspot stoppen"
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "Deze update nu installeren?"
 
-#: ../templates/hostapd.php:27
-msgid "Restart hotspot"
-msgstr "Hotspot opnieuw opstarten"
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "GitHub verificatie"
 
-#: ../templates/hostapd.php:27
-msgid "Restarting hotspot"
-msgstr "Hotspot opnieuw opstarten"
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Insiders updaten vereist GitHub authenticatie."
 
-#: ../templates/hostapd.php:70
-msgid "Information provided by hostapd"
-msgstr "Informatie geleverd door hostapd"
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Je gegevens worden veilig met SSL naar GitHub gestuurd. Wees echter voorzichtig als je RaspAP installatie op een WLAN staat dat gedeeld wordt door niet-vertrouwde gebruikers."
 
-#: ../templates/hostapd.php:84
-msgid "Executing RaspAP service start"
-msgstr "Uitvoeren van RaspAP service start"
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "Persoonlijk toegangssymbool"
 
-#: ../templates/admin/login.php:2
-msgid "Submit"
-msgstr "Stuur  in"
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "Geef een geldig token op."
 
-#: ../templates/admin/login.php:11
-msgid "Admin login"
-msgstr "Beheerderslogin"
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "Update uitvoeren"
 
-#: ../templates/admin/login.php:26
-msgid "Please enter your password."
-msgstr "Voer je wachtwoord in."
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "Update wordt uitgevoerd"
 
-#: ../templates/admin/avatar.php:3
-msgid "Reset avatar"
-msgstr "Avatar opnieuw instellen"
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "Aanvraag wordt bijgewerkt..."
 
-#: ../templates/admin/avatar.php:15
-msgid "Click or tap to upload a new user avatar."
-msgstr "Klik of tik om een nieuwe gebruikersavatar te uploaden."
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "Update configureren"
 
-#: ../templates/admin/avatar.php:16
-msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
-msgstr "Afbeeldingsbestanden van het type <code>JPG, GIF of PNG</code> worden geaccepteerd. Maximale bestandsgrootte: 2 MB."
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "Bronnen bijwerken"
 
-#: ../templates/admin/general.php:3
-msgid "Change password"
-msgstr "Wachtwoord wijzigen"
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "Pakketupdates installeren"
 
-#: ../templates/admin/general.php:28
-msgid "Enable limited privilege user"
-msgstr "Gebruiker met beperkte rechten inschakelen"
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "De nieuwste bestanden downloaden"
 
-#: ../templates/admin/general.php:30
-msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
-msgstr "Deze optie maakt een niet-administrator gebruiker mogelijk die toegang heeft tot de beheerinterface van RaspAP, maar <strong>beperkte mogelijkheden heeft om de bestaande configuratie aan te passen</strong>. Deze gebruiker wordt actief als de huidige admin-gebruiker wordt uitgelogd."
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "Toepassing installeren"
 
-#: ../templates/admin/general.php:34
-msgid "Limited user login"
-msgstr "Inloggen voor beperkte gebruikers"
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "Update voltooid"
 
-#: ../templates/admin/general.php:43
-msgid "Limited user password"
-msgstr "Beperkt gebruikerswachtwoord"
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Er is een fout opgetreden. Controleer de log in <code>/tmp/raspap_install.log</code>"
 
-#: ../templates/admin/general.php:48
-msgid "Please enter a valid password."
-msgstr "Voer een geldig wachtwoord in."
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "Succes. Vernieuw deze pagina om de nieuwe versie te bevestigen."
+
+#: ../templates/exception.php:6 ../templates/exception.php:17
+msgid "RaspAP Exception"
+msgstr "RaspAP Uitzondering"
+
+#: ../templates/exception.php:20
+msgid "An exception occurred"
+msgstr "Er heeft zich een uitzondering voorgedaan"
 
 #: ../templates/wg/peers.php:10
 msgid "Enable peer"
@@ -3216,18 +3193,6 @@ msgstr "Scan deze QR-code met je client om verbinding te maken met deze tunnel"
 #: ../templates/wg/peers.php:71
 msgid "or download the <code>client.conf</code> file to your device."
 msgstr "of download het <code>client.conf</code> bestand naar je apparaat."
-
-#: ../templates/wg/logging.php:6
-msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
-msgstr "Schakel deze optie in om een bijgewerkt <code>wg-quick</code> debug-logboek weer te geven."
-
-#: ../templates/wg/configs.php:6
-msgid "Currently available WireGuard file configurations are displayed below."
-msgstr "De momenteel beschikbare WireGuard-bestandsconfiguraties worden hieronder weergegeven."
-
-#: ../templates/wg/configs.php:7
-msgid "Activating a configuration will restart the <code>wg-quick</code> service."
-msgstr "Het activeren van een configuratie herstart de <code>wg-quick</code> service."
 
 #: ../templates/wg/general.php:5
 msgid "Tunnel settings"
@@ -3301,25 +3266,57 @@ msgstr "Deze instelling genereert een nieuw WireGuard <code>.conf</code> bestand
 msgid "Local public key"
 msgstr "Lokale openbare sleutel"
 
-#: ../templates/networking.php:22
-msgid "Devices"
-msgstr "Apparaten"
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Schakel deze optie in om een bijgewerkt <code>wg-quick</code> debug-logboek weer te geven."
 
-#: ../templates/networking.php:23
-msgid "Mobile Data"
-msgstr "Mobiele gegevens"
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "De momenteel beschikbare WireGuard-bestandsconfiguraties worden hieronder weergegeven."
 
-#: ../templates/networking.php:24
-msgid "WLAN Routing"
-msgstr "WLAN-routering"
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "Het activeren van een configuratie herstart de <code>wg-quick</code> service."
 
-#: ../templates/networking.php:25
-msgid "Diagnostics"
-msgstr "Diagnostiek"
+#: ../ajax/networking/get_nl80211_band.php:37
+#, php-format
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "De geselecteerde interface (%s) biedt alleen ondersteuning voor de 2,4 GHz draadloze band."
 
-#: ../templates/networking.php:41
-msgid "Information provided by /sys/class/net"
-msgstr "Informatie geleverd door /sys/class/net"
+#: ../ajax/networking/get_nl80211_band.php:40
+#, php-format
+msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
+msgstr "De geselecteerde interface (%s) ondersteunt alleen de 5 GHz draadloze band."
+
+#: ../ajax/networking/get_nl80211_band.php:43
+#, php-format
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "De geselecteerde interface (%s) heeft ondersteuning voor zowel de 2.4 als de 5 GHz draadloze band."
+
+#: ../ajax/networking/get_nl80211_band.php:46
+#, php-format
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "De geselecteerde interface (%s) ondersteunt de draadloze modus niet."
+
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "Printbaar Wi-Fi-bord"
+
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Wi-Fi aansluiten"
+
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Om verbinding te maken met je telefoon of tablet, scan je de QR-code hierboven met je camera-app."
+
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "Gebruik de onderstaande aanmeldingsgegevens voor andere apparaten."
+
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "Netwerk"
 
 #~ msgid "Firewall is now enabled"
 #~ msgstr "Firewall is nu ingeschakeld"

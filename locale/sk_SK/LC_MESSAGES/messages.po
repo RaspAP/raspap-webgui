@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-05-30 19:59+0000\n"
+"POT-Creation-Date: 2026-06-21 19:23+0000\n"
 "PO-Revision-Date: 2026-04-22 02:22\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
@@ -17,220 +17,80 @@ msgstr ""
 "X-Crowdin-File: /master/locale/messages.pot\n"
 "X-Crowdin-File-ID: 12\n"
 
-#: ../ajax/networking/get_nl80211_band.php:37
-#, php-format
-msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
-msgstr ""
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "Nainštalované"
 
-#: ../ajax/networking/get_nl80211_band.php:40
-#, php-format
-msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
-msgstr ""
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "Podrobnosti na"
 
-#: ../ajax/networking/get_nl80211_band.php:43
-#, php-format
-msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
-msgstr ""
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
+msgid "Dashboard"
+msgstr "Prístrojová doska"
 
-#: ../ajax/networking/get_nl80211_band.php:46
-#, php-format
-msgid "The selected interface (%s) does not support wireless mode operation."
-msgstr ""
-
-#: ../includes/dashboard.php:72
-#, php-format
-msgid "%d WLAN %s"
-msgstr ""
-
-#: ../includes/dashboard.php:78
-#, php-format
-msgid "%d LAN %s"
-msgstr ""
-
-#: ../includes/functions.php:1001
-#: ../plugins-available/Captive/templates/main.php:51
-#: ../plugins-available/Tailscale/templates/main.php:71
-#: ../templates/restapi.php:47 ../templates/provider.php:36
-#: ../templates/wifi_stations/network.php:33
-msgid "Status"
-msgstr "Stav"
-
-#: ../includes/functions.php:1003 ../src/RaspAP/UI/Sidebar.php:20
+#: ../src/RaspAP/UI/Sidebar.php:20 ../includes/functions.php:1003
 #: ../templates/hostapd.php:13
 msgid "Hotspot"
 msgstr "Hotspot"
 
-#: ../includes/functions.php:1006
-msgid "Mem Use"
-msgstr ""
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
+msgid "DHCP Server"
+msgstr "Server DHCP"
 
-#: ../includes/functions.php:1009
-msgid "CPU"
-msgstr ""
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
+msgid "Ad Blocking"
+msgstr "Blokovanie reklám"
 
-#: ../includes/restapi.php:59
-#, php-format
-msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
-msgstr ""
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
+#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
+msgid "Networking"
+msgstr "Vytváranie sietí"
 
-#: ../includes/footer.php:6
-#, php-format
-msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
-msgstr ""
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "Klient WiFi"
 
-#: ../includes/footer.php:6
-msgid "RaspAP Team"
-msgstr ""
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-#: ../includes/footer.php:9
-msgid "Thanks for being an Insider"
-msgstr ""
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "WireGuard"
 
-#: ../includes/footer.php:17
-msgid "Session Expired"
-msgstr ""
+#: ../src/RaspAP/UI/Sidebar.php:44
+msgid "Data usage"
+msgstr "Používanie údajov"
 
-#: ../includes/footer.php:20
-msgid "Your session has expired. Please login to continue."
-msgstr ""
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
+msgid "RestAPI"
+msgstr "RestAPI"
 
-#: ../includes/footer.php:23 ../templates/admin.php:18
-#: ../templates/login.php:30
-msgid "Login"
-msgstr "Prihlásenie"
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
+#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
+msgid "System"
+msgstr "Systém"
 
-#: ../includes/adblock.php:31
-msgid "Invalid custom IP address found on line "
-msgstr ""
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
+msgid "About RaspAP"
+msgstr "O spoločnosti RaspAP"
 
-#: ../includes/adblock.php:35
-msgid "Invalid custom host found on line "
-msgstr ""
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+msgid "No MAC Address Found"
+msgstr "Nenašla sa žiadna adresa MAC"
 
-#: ../includes/provider.php:65
-#, php-format
-msgid "Expected %s binary not found at: %s"
-msgstr ""
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "Nenájdená adresa IPv6"
 
-#: ../includes/provider.php:66
-#, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
-msgstr ""
-
-#: ../includes/provider.php:70
-#, php-format
-msgid "Unable to execute %s binary found at: %s"
-msgstr ""
-
-#: ../includes/provider.php:71
-msgid "Check that binary is executable and permissions exist in raspap.sudoers"
-msgstr ""
-
-#: ../includes/provider.php:119
-#, php-format
-msgid "Attempting to connect to %s"
-msgstr ""
-
-#: ../includes/provider.php:318
-msgid "Select a country..."
-msgstr ""
-
-#: ../includes/provider.php:387
-#, php-format
-msgid "Account information not available from %s's Linux CLI."
-msgstr ""
-
-#: ../includes/wifi_functions.php:281
-#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:365
-msgid "Signal strength"
-msgstr "Sila signálu"
-
-#: ../includes/system.php:67
-#, php-format
-msgid "Changing log limit size to %s KB"
-msgstr ""
-
-#: ../includes/system.php:86
-#, php-format
-msgid "Changing alert close timeout to %s ms"
-msgstr ""
-
-#: ../includes/networking.php:51 ../includes/networking.php:54
-msgid "not configured"
-msgstr ""
-
-#: ../includes/networking.php:137
-#, php-format
-msgid "Attempting to enable routing between %s and %s interfaces"
-msgstr ""
-
-#: ../includes/networking.php:147
-#, php-format
-msgid "Attempting to restart routing between %s and %s interfaces"
-msgstr ""
-
-#: ../includes/networking.php:151
-#, php-format
-msgid "Attempting to disable routing between %s and %s interfaces"
-msgstr ""
-
-#: ../includes/networking.php:252
-#, php-format
-msgid "DHCP configuration for %s enabled"
-msgstr ""
-
-#: ../includes/networking.php:259
-#, php-format
-msgid "DHCP configuration for %s added"
-msgstr ""
-
-#: ../includes/networking.php:265
-#, php-format
-msgid "DHCP configuration for %s updated"
-msgstr ""
-
-#: ../includes/networking.php:271
-#, php-format
-msgid "No default DHCP configuration exists for the %s interface"
-msgstr ""
-
-#: ../includes/networking.php:272
-#, php-format
-msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
-msgstr ""
-
-#: ../includes/networking.php:294
-#, php-format
-msgid "Dnsmasq  configuration for %s added"
-msgstr ""
-
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
-msgid "Invalid MAC address: "
-msgstr "Neplatná adresa MAC: "
-
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
-msgid "Duplicate IP address entered: "
-msgstr "Zadaná duplicitná IP adresa: "
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
-msgid "Verbose debugging"
-msgstr "Verbálne ladenie"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
-msgid "Debugging"
-msgstr "Ladenie"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
-msgid "Informational"
-msgstr "Informačné"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
-msgid "Notification"
-msgstr "Oznámenie"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
-msgid "Warning"
-msgstr "Upozornenie"
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "klient"
+msgstr[1] "klienti"
+msgstr[2] "klienti"
+msgstr[3] "klienti"
 
 #: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
 #, php-format
@@ -287,6 +147,39 @@ msgstr "Neplatná metrická hodnota, nie je to číslo."
 msgid "DHCP configuration for %s updated."
 msgstr "Konfigurácia DHCP pre %s aktualizovaná."
 
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "Neplatná adresa MAC: "
+
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "Zadaná duplicitná IP adresa: "
+
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
+#: ../includes/wifi_functions.php:281
+msgid "Signal strength"
+msgstr "Sila signálu"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "Verbálne ladenie"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "Ladenie"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "Informačné"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "Oznámenie"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "Upozornenie"
+
 #: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
 msgid "WPA and WPA2"
 msgstr "WPA a WPA2"
@@ -311,135 +204,151 @@ msgstr "Povolené (pre podporovaných klientov)"
 msgid "Required (for supported clients)"
 msgstr "Povinné (pre podporovaných klientov)"
 
-#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
-msgid "Dashboard"
-msgstr "Prístrojová doska"
+#: ../plugins-available/Captive/Captive.php:70
+#: ../plugins-available/Captive/Captive.php:130
+msgid "Captive portal"
+msgstr "Portál v zajatí"
 
-#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
-msgid "DHCP Server"
-msgstr "Server DHCP"
+#: ../plugins-available/Captive/Captive.php:95
+#, php-format
+msgid "Attempting to start %s"
+msgstr "Pokus o spustenie stránky %s"
 
-#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
-msgid "Ad Blocking"
-msgstr "Blokovanie reklám"
+#: ../plugins-available/Captive/Captive.php:99
+#, php-format
+msgid "Attempting to stop %s"
+msgstr "Pokus o zastavenie %s"
 
-#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/dashboard.php:24
-#: ../templates/dashboard.php:25 ../templates/networking.php:8
-msgid "Networking"
-msgstr "Vytváranie sietí"
+#: ../plugins-available/Captive/Captive.php:106
+#, php-format
+msgid "Client %s deauthenticated"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
-msgid "WiFi client"
-msgstr "Klient WiFi"
+#: ../plugins-available/Captive/Captive.php:108
+#, php-format
+msgid "Failed to deauthenticate client %s"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
-msgid "OpenVPN"
-msgstr "OpenVPN"
+#: ../plugins-available/Captive/Captive.php:111
+msgid "Invalid client MAC address"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
-msgid "WireGuard"
-msgstr "WireGuard"
+#: ../plugins-available/Captive/Captive.php:131
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "Zásuvný modul portálu, ktorý implementuje nodogsplash"
 
-#: ../src/RaspAP/UI/Sidebar.php:44
-msgid "Data usage"
-msgstr "Používanie údajov"
+#: ../plugins-available/Captive/Captive.php:132
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Wireshark/Wireshark.php:185
+msgid "Bill Z"
+msgstr "Bill Z"
 
-#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
-msgid "RestAPI"
-msgstr "RestAPI"
+#: ../plugins-available/Captive/Captive.php:538
+msgid "Portal settings saved successfully"
+msgstr "Úspešné uloženie nastavení portálu"
 
-#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/dashboard.php:44
-#: ../templates/dashboard.php:45 ../templates/system.php:7
-msgid "System"
-msgstr "Systém"
+#: ../plugins-available/Captive/Captive.php:541
+#: ../plugins-available/Wireshark/Wireshark.php:248
+msgid "Error saving settings: "
+msgstr "Chyba pri ukladaní nastavení: "
 
-#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
-msgid "About RaspAP"
-msgstr "O spoločnosti RaspAP"
+#: ../plugins-available/Captive/Captive.php:582
+msgid "Failed to execute ndsctl."
+msgstr "Nepodarilo sa vykonať ndsctl."
 
-#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
-msgid "No MAC Address Found"
-msgstr "Nenašla sa žiadna adresa MAC"
+#: ../plugins-available/Captive/templates/main.php:3
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Wireshark/templates/main.php:3 ../templates/dhcp.php:3
+#: ../templates/wireguard.php:3 ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29 ../templates/hostapd.php:3
+#: ../templates/system/advanced.php:39 ../templates/system/theme.php:56
+#: ../templates/system/language.php:11 ../templates/provider.php:3
+#: ../templates/admin/general.php:2 ../templates/restapi.php:3
+#: ../templates/adblock.php:3 ../templates/openvpn.php:3
+msgid "Save settings"
+msgstr "Uloženie nastavení"
 
-#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
-msgid "No IPv6 Address Found"
-msgstr "Nenájdená adresa IPv6"
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "Zastaviť portál"
 
-#: ../src/RaspAP/UI/Dashboard.php:232
-msgid "client"
-msgid_plural "clients"
-msgstr[0] "klient"
-msgstr[1] "klienti"
-msgstr[2] "klienti"
-msgstr[3] "klienti"
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "Štartovací portál"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:594
-msgid "Installed"
-msgstr "Nainštalované"
+#: ../plugins-available/Captive/templates/main.php:48 ../templates/admin.php:20
+#: ../templates/hostapd.php:49 ../templates/system.php:17
+msgid "Basic"
+msgstr "Základné"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:598
-msgid "Details"
-msgstr "Podrobnosti na"
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "Klienti"
 
-#: ../app/lib/signprint.php:20
-msgid "Printable Wi-Fi sign"
-msgstr "Tlačiteľná značka Wi-Fi"
+#: ../plugins-available/Captive/templates/main.php:50 ../templates/dhcp.php:52
+#: ../templates/hostapd.php:51 ../templates/system.php:20
+msgid "Advanced"
+msgstr "Pokročilé"
 
-#: ../app/lib/signprint.php:37
-msgid "Wi-Fi Connect"
-msgstr "Pripojenie Wi-Fi"
+#: ../plugins-available/Captive/templates/main.php:51
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../includes/functions.php:1001 ../templates/wifi_stations/network.php:33
+#: ../templates/provider.php:36 ../templates/restapi.php:47
+msgid "Status"
+msgstr "Stav"
 
-#: ../app/lib/signprint.php:54
-msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
-msgstr "Ak sa chcete pripojiť pomocou telefónu alebo tabletu, naskenujte vyššie uvedený kód QR pomocou aplikácie fotoaparátu."
+#: ../plugins-available/Captive/templates/main.php:52
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+msgid "Active clients"
+msgstr ""
 
-#: ../app/lib/signprint.php:55
-msgid "For other devices, use the login credentials below."
-msgstr "Pre ostatné zariadenia použite prihlasovacie údaje uvedené nižšie."
-
-#: ../app/lib/signprint.php:65
-msgid "Network"
-msgstr "Sieť"
-
-#: ../app/lib/signprint.php:67 ../templates/login.php:25
-#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
-#: ../templates/admin/login.php:21
-msgid "Password"
-msgstr "Heslo"
-
-#: ../plugins-available/Captive/templates/tabs/about.php:3
 #: ../plugins-available/Captive/templates/main.php:53
-#: ../plugins-available/Wireshark/templates/tabs/about.php:3
-#: ../plugins-available/Wireshark/templates/main.php:47
-#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/tabs/about.php:3
 #: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
 #: ../templates/about.php:21
 msgid "About"
 msgstr "O stránke"
 
-#: ../plugins-available/Captive/templates/tabs/about.php:5
-#: ../plugins-available/Wireshark/templates/tabs/about.php:5
-#: ../plugins-available/Tailscale/templates/tabs/about.php:5
-msgid "was created by"
-msgstr "vytvorila spoločnosť"
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "Informácie, ktoré poskytol nodogsplash"
 
-#: ../plugins-available/Captive/templates/tabs/about.php:8
-#: ../plugins-available/Wireshark/templates/tabs/about.php:8
-#: ../plugins-available/Tailscale/templates/tabs/about.php:8
-msgid "Plugin description"
-msgstr "Popis zásuvného modulu"
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "Zastavenie služby portálu"
 
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
-#: ../plugins-available/Captive/templates/main.php:52
-msgid "Active clients"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "Spustenie služby portálu"
+
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Zmena portálovej služby na chvíľu naruší prevádzku klientov. Ak chcete pokračovať, vyberte možnosť <strong>Pokračovať</strong>."
+
+#: ../plugins-available/Captive/templates/main.php:99
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../templates/admin.php:90 ../templates/admin.php:119
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:109 ../templates/system.php:253
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "Postupujte podľa"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:6
 #: ../plugins-available/Tailscale/Tailscale.php:403
 #: ../plugins-available/Tailscale/templates/main.php:4
-#: ../templates/dashboard.php:12 ../templates/dhcp/summary.php:9
 #: ../templates/networking/devices.php:4 ../templates/networking/general.php:4
-#: ../templates/system/basic.php:63
+#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
+#: ../templates/dhcp/summary.php:9
 msgid "Refresh"
 msgstr "Obnoviť"
 
@@ -485,117 +394,9 @@ msgstr ""
 msgid "No active clients connected."
 msgstr ""
 
-#: ../plugins-available/Captive/templates/tabs/advanced.php:5
-#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
-msgid "Advanced settings"
-msgstr "Rozšírené nastavenia"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:9
-msgid "Gateway IP range"
-msgstr "Rozsah IP brány"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:11
-msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
-msgstr "Rozsah IP na správu v notácii CIDR. Pre všetky adresy nechajte prázdne"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:15
-msgid "Default: 0.0.0.0/0 (all addresses)"
-msgstr "Predvolené nastavenie: 0.0.0.0/0 (všetky adresy)"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:21
-msgid "Debug level"
-msgstr "Úroveň ladenia"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:23
-msgid "Amount of logging detail reported by the nodogsplash.service"
-msgstr "Množstvo podrobností o protokolovaní nahlásených službou nodogsplash.service"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:26
-msgid "0 - Errors only"
-msgstr "0 - iba chyby"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:29
-msgid "1 - Errors, warnings, infos"
-msgstr "1 - Chyby, upozornenia, informácie"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:32
-msgid "2 - Errors, warnings, infos, verbose"
-msgstr "2 - Chyby, varovania, informácie, slovné informácie"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:35
-msgid "3 - Errors, warnings, infos, verbose, debug"
-msgstr "3 - Chyby, varovania, informácie, slovné, ladenie"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:41
-msgid "Firewall settings"
-msgstr "Nastavenia brány firewall"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:49
-msgid "Allow all traffic for authenticated users"
-msgstr "Povolenie všetkej prevádzky pre overených používateľov"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:52
-msgid "When enabled, authenticated users have unrestricted access"
-msgstr "Ak je táto možnosť povolená, overení používatelia majú neobmedzený prístup"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:63
-msgid "Allow DNS for pre-authenticated users"
-msgstr "Povolenie DNS pre vopred overených používateľov"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:66
-msgid "Required for clients to resolve domain names before authentication"
-msgstr "Vyžaduje sa pre klientov na preklad názvov domén pred overením"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:5
-#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
-#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
-#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
-msgid "Basic settings"
-msgstr "Základné nastavenia"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:9
-msgid "Gateway interface"
-msgstr "Rozhranie brány"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:10
-msgid "Interface to be managed by the portal"
-msgstr "Rozhranie, ktoré má spravovať portál"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:12
-msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
-msgstr "Predvolené nastavenie je aktívne rozhranie AP, zvyčajne <code>wlan0</code>."
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:16
-msgid "Gateway name"
-msgstr "Názov brány"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:18
-msgid "Name of your gateway (available as $gatewayname variable)"
-msgstr "Názov vašej brány (k dispozícii ako premenná $gatewayname)"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:27
-msgid "Gateway address"
-msgstr "Adresa brány"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:29
-msgid "IP address of the router. Leave empty for auto-detection"
-msgstr "IP adresa smerovača. Pre automatickú detekciu nechajte prázdne"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:33
-msgid "Auto-detected from gateway interface if not specified"
-msgstr "Automatické zistenie z rozhrania brány, ak nie je zadané"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:37
-msgid "Gateway port"
-msgstr "Port brány"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:39
-msgid "Port for Nodogsplash HTTP server"
-msgstr "Port pre server Nodogsplash HTTP"
-
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
-#: ../templates/configure_client.php:21 ../templates/openvpn.php:46
-#: ../templates/openvpn/general.php:2
+#: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
+#: ../templates/openvpn.php:46
 msgid "Client settings"
 msgstr "Nastavenia klienta"
 
@@ -696,6 +497,114 @@ msgstr "Adresy MAC oddelené čiarkou, ktoré úplne obchádzajú overovanie"
 msgid "These devices are not subject to authentication or firewall rules"
 msgstr "Na tieto zariadenia sa nevzťahujú pravidlá overovania ani brány firewall"
 
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+#: ../templates/system/advanced.php:3 ../templates/hostapd/advanced.php:2
+msgid "Advanced settings"
+msgstr "Rozšírené nastavenia"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "Rozsah IP brány"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "Rozsah IP na správu v notácii CIDR. Pre všetky adresy nechajte prázdne"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Predvolené nastavenie: 0.0.0.0/0 (všetky adresy)"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "Úroveň ladenia"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Množstvo podrobností o protokolovaní nahlásených službou nodogsplash.service"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - iba chyby"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Chyby, upozornenia, informácie"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Chyby, varovania, informácie, slovné informácie"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Chyby, varovania, informácie, slovné, ladenie"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "Nastavenia brány firewall"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "Povolenie všetkej prevádzky pre overených používateľov"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "Ak je táto možnosť povolená, overení používatelia majú neobmedzený prístup"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "Povolenie DNS pre vopred overených používateľov"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Vyžaduje sa pre klientov na preklad názvov domén pred overením"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+msgid "Basic settings"
+msgstr "Základné nastavenia"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "Rozhranie brány"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "Rozhranie, ktoré má spravovať portál"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "Predvolené nastavenie je aktívne rozhranie AP, zvyčajne <code>wlan0</code>."
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "Názov brány"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "Názov vašej brány (k dispozícii ako premenná $gatewayname)"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "Adresa brány"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "IP adresa smerovača. Pre automatickú detekciu nechajte prázdne"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Automatické zistenie z rozhrania brány, ak nie je zadané"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "Port brány"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Port pre server Nodogsplash HTTP"
+
 #: ../plugins-available/Captive/templates/tabs/status.php:3
 msgid "Portal status"
 msgstr "Stav portálu"
@@ -704,123 +613,400 @@ msgstr "Stav portálu"
 msgid "Current <code>nodogsplash</code> status is displayed below."
 msgstr "Aktuálny stav <code>nodogsplash</code> je zobrazený nižšie."
 
-#: ../plugins-available/Captive/templates/main.php:3
-#: ../plugins-available/Wireshark/templates/main.php:3
-#: ../plugins-available/Tailscale/templates/main.php:16
-#: ../templates/restapi.php:3 ../templates/adblock.php:3
-#: ../templates/openvpn.php:3 ../templates/provider.php:3
-#: ../templates/networking/wlanrouting.php:3
-#: ../templates/networking/mobile.php:29 ../templates/wireguard.php:3
-#: ../templates/dhcp.php:3 ../templates/system/theme.php:56
-#: ../templates/system/advanced.php:39 ../templates/system/language.php:11
-#: ../templates/hostapd.php:3 ../templates/admin/general.php:2
-msgid "Save settings"
-msgstr "Uloženie nastavení"
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "vytvorila spoločnosť"
 
-#: ../plugins-available/Captive/templates/main.php:22
-msgid "Stop portal"
-msgstr "Zastaviť portál"
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "Popis zásuvného modulu"
 
-#: ../plugins-available/Captive/templates/main.php:26
-msgid "Start portal"
-msgstr "Štartovací portál"
+#: ../plugins-available/Tailscale/Tailscale.php:52
+msgid "Tailscale VPN"
+msgstr "Tailscale VPN"
 
-#: ../plugins-available/Captive/templates/main.php:48 ../templates/admin.php:20
-#: ../templates/system.php:17 ../templates/hostapd.php:49
-msgid "Basic"
-msgstr "Základné"
-
-#: ../plugins-available/Captive/templates/main.php:49
-msgid "Clients"
-msgstr "Klienti"
-
-#: ../plugins-available/Captive/templates/main.php:50 ../templates/dhcp.php:52
-#: ../templates/system.php:20 ../templates/hostapd.php:51
-msgid "Advanced"
-msgstr "Pokročilé"
-
-#: ../plugins-available/Captive/templates/main.php:79
-msgid "Information provided by nodogsplash"
-msgstr "Informácie, ktoré poskytol nodogsplash"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Stop portal service"
-msgstr "Zastavenie služby portálu"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Start portal service"
-msgstr "Spustenie služby portálu"
-
-#: ../plugins-available/Captive/templates/main.php:95
-msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
-msgstr "Zmena portálovej služby na chvíľu naruší prevádzku klientov. Ak chcete pokračovať, vyberte možnosť <strong>Pokračovať</strong>."
-
-#: ../plugins-available/Captive/templates/main.php:99
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
-#: ../templates/about.php:56 ../templates/about.php:104
-#: ../templates/admin.php:90 ../templates/admin.php:119
-#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
-#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
-#: ../templates/system.php:56 ../templates/system.php:74
-#: ../templates/system.php:109 ../templates/system.php:253
-msgid "Cancel"
-msgstr "Zrušiť"
-
-#: ../plugins-available/Captive/templates/main.php:100
-msgid "Proceed"
-msgstr "Postupujte podľa"
-
-#: ../plugins-available/Captive/Captive.php:70
-#: ../plugins-available/Captive/Captive.php:130
-msgid "Captive portal"
-msgstr "Portál v zajatí"
-
-#: ../plugins-available/Captive/Captive.php:95
+#: ../plugins-available/Tailscale/Tailscale.php:237
 #, php-format
-msgid "Attempting to start %s"
-msgstr "Pokus o spustenie stránky %s"
+msgid "Expected tailscale binary not found at: %s"
+msgstr "Očakávaný binárny súbor tailscale sa nenašiel na adrese: %s"
 
-#: ../plugins-available/Captive/Captive.php:99
+#: ../plugins-available/Tailscale/Tailscale.php:238
 #, php-format
-msgid "Attempting to stop %s"
-msgstr "Pokus o zastavenie %s"
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
+msgstr "Navštívte <a href=\"%s\" target=\"_blank\">pokyny na inštaláciu</a> alebo preinštalujte zásuvný modul Tailscale."
 
-#: ../plugins-available/Captive/Captive.php:106
+#: ../plugins-available/Tailscale/Tailscale.php:251
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "Rozšírenie výstupného uzla siete VPN Tailscale pre RaspAP"
+
+#: ../plugins-available/Tailscale/Tailscale.php:400
+#: ../plugins-available/Tailscale/templates/main.php:44
+msgid "Start Tailscale"
+msgstr "Začať Tailscale"
+
+#: ../plugins-available/Tailscale/Tailscale.php:406
 #, php-format
-msgid "Client %s deauthenticated"
-msgstr ""
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Nie je možné načítať prihlasovacie údaje do systému Tailscale. Vyberte <strong>%s</strong> pre pokračovanie."
 
-#: ../plugins-available/Captive/Captive.php:108
+#: ../plugins-available/Tailscale/Tailscale.php:786
+msgid "Not connected: Login required."
+msgstr "Nie je pripojený: Vyžaduje sa prihlásenie."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
+msgid "Exit node activated"
+msgstr "Aktivovaný výstupný uzol"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
 #, php-format
-msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "Zariadenie <code>%s</code> je pripojené s adresou <code>%s</code> a ponúka <strong>výstupný uzol</strong>."
 
-#: ../plugins-available/Captive/Captive.php:111
-msgid "Invalid client MAC address"
-msgstr ""
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#, php-format
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "Informácie o tom, ako používať tento výstupný uzol so zariadeniami, nájdete na stránke %s."
 
-#: ../plugins-available/Captive/Captive.php:131
-msgid "A captive portal plugin that implements nodogsplash"
-msgstr "Zásuvný modul portálu, ktorý implementuje nodogsplash"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "Konfigurácia nového výstupného uzla"
 
-#: ../plugins-available/Captive/Captive.php:132
-#: ../plugins-available/Wireshark/Wireshark.php:185
-#: ../plugins-available/Tailscale/Tailscale.php:252
-msgid "Bill Z"
-msgstr "Bill Z"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "Z bezpečnostných dôvodov sa musíte prihlásiť, aby ste povolili funkciu výstupného uzla. Prvým krokom je inzercia <code>%s</code> ako výstupný uzol vo vašej koncovej sieti. V ďalšom kroku povolíte, aby toto zariadenie bolo výstupným uzlom."
 
-#: ../plugins-available/Captive/Captive.php:538
-msgid "Portal settings saved successfully"
-msgstr "Úspešné uloženie nastavení portálu"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Inzerovať <code>%s</code> ako výstupný uzol"
 
-#: ../plugins-available/Captive/Captive.php:541
-#: ../plugins-available/Wireshark/Wireshark.php:248
-msgid "Error saving settings: "
-msgstr "Chyba pri ukladaní nastavení: "
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Týmto spôsobom môžete efektívne nakonfigurovať aplikáciu Tailscale ako sieť VPN na zamaskovanie vašej skutočnej polohy, získať prístup k obsahu s regionálnym obmedzením alebo zvýšiť súkromie pri pripájaní z nedôveryhodných sietí."
 
-#: ../plugins-available/Captive/Captive.php:582
-msgid "Failed to execute ndsctl."
-msgstr "Nepodarilo sa vykonať ndsctl."
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Táto možnosť informuje spoločnosť Tailscale, že vaše zariadenie je pripravené na smerovanie prevádzky."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "Povolenie optimalizovanej priepustnosti UDP"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Odporúča sa pre výstupné uzly Tailscale s jadrami Linux 6.2 alebo novšími, pričom na zníženie zaťaženia procesora sa používa presmerovanie UDP generic receive offload (GRO)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Táto možnosť umožňuje preťaženie transportnej vrstvy na dosiahnutie lepšieho výkonu."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Ak chcete pokračovať, vyberte položku <strong>Ďalej</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "Použitie výstupného uzla"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Zariadenie <code>%s</code> je nakonfigurované na používanie výstupného uzla <code>%s</code>. Má adresu Tailscale MagicDNS <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "Konfigurácia zariadenia"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Zariadenie <code>%s</code> je pripojené k vašej koncovej sieti s adresou <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "V predvolenom nastavení Tailscale smeruje prevádzku len medzi zariadeniami, na ktorých je nainštalovaný. Všetku verejnú internetovú prevádzku môžete smerovať aj tak, že nakonfigurujete zariadenie vo svojej sieti ako <strong>výstupný uzol</strong>"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Keď smerujete všetku prevádzku cez výstupný uzol, v skutočnosti používate predvolené trasy (0.0.0.0/0, ::/0), podobne ako keby ste používali typickú sieť VPN."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "Máte možnosť nakonfigurovať toto zariadenie ako výstupný uzol alebo použiť iný výstupný uzol v koncovej sieti."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "Vyberte existujúci výstupný uzol vo svojej koncovej sieti"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Toto je typická konfigurácia, ak toto zariadenie používate napríklad ako cestovný smerovač VPN."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "Konfigurácia tohto zariadenia ako nového výstupného uzla"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "Ak toto zariadenie nakonfigurujete ako výstupný uzol, verejná internetová prevádzka zo zariadení pripojených v koncovej sieti bude smerovaná cez toto zariadenie."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "Prihlásenie do Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Ak chcete pripojiť zariadenie %s k zadnej sieti, vyberte položku %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "Otvoriť prihlásenie Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "Po prihlásení vyberte možnosť <strong>Ďalej</strong> a pokračujte."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "Povolenie výstupného uzla"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Zariadenie <code>%s</code> čaká na schválenie ako výstupný uzol."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "Otvorené chvostové stroje"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Vyhľadajte <code>%s</code> odznak <strong>Exit Node</strong> v zozname strojov."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "V ponuke ikony %s uzla výstupu otvorte panel %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "Úprava nastavení trasy"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "Povoľte možnosť <strong>Použiť ako výstupný uzol</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "Po dokončení týchto krokov vyberte položku <strong>Ďalej</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
+msgid "Select an exit node"
+msgstr "Vyberte výstupný uzol"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#, php-format
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "Používanie <code>%s</code> ako bránu VPN, nakonfigurujte škálu Tailscale tak, aby používala výstupný uzol. Navrhovaný uzol Tailscale je označený hviezdičkou."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#, php-format
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Inzerovať <strong>trasu podsiete</strong> pre aktívnu <code>%s</code> Rozhranie AP"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "Trasy podsietí umožňujú rozšíriť sieť Tailscale (známu ako tailnet) o zariadenia, ktoré nemajú alebo nemôžu mať klienta Tailscale."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "Trasa podsiete funguje ako brána medzi vašou koncovou sieťou a fyzickou podsieťou. Podsieť aktívneho rozhrania AP je predkonfigurovaná nižšie; v prípade potreby ju upravte."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
+msgid "Route LAN traffic through the exit node."
+msgstr "Smerovanie prevádzky LAN cez výstupný uzol."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "Tým sa všetka prevádzka LAN presmeruje len cez váš výstupný uzol."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Použiť nastavenia Tailscale DNS (predvolené)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Zrušte začiarknutie, ak chcete používať miestny systém DNS. Tým sa nastaví <code>--accept-dns=false.</code>"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Nepoužívajte podsiete Tailscale (predvolené v Linuxe)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "Ak pre vašu koncovú sieť existujú trasy podsiete, môžete smerovať prevádzku zariadenia na smerovač podsiete. Povolením tejto funkcie nastavíte <code>--accept-routes=true.</code>"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "Ak platnosť kľúčov pre zariadenie vyprší, pripojenia na/z daného koncového bodu prestanú fungovať."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "Táto možnosť používa <code>--force-reauth</code> na obnovenie kľúčov pre toto zariadenie."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#, php-format
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Zvoľte možnosť <strong>Ďalej</strong> a nakonfigurujte <code>%s</code> používať vybraný výstupný uzol s týmito možnosťami."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "Vo vašej sieti chvostov neboli nájdené žiadne výstupné uzly. Ak chcete pokračovať, vyberte možnosť <strong>Späť</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
+msgid "Approve subnet route"
+msgstr "Schválenie trasy podsiete"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#, php-format
+msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
+msgstr "Zariadenie <code>%s</code> inzeruje trasu podsiete. Z bezpečnostných dôvodov musíte túto funkciu povoliť."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
+msgstr "Vyhľadajte <code>%s</code> <strong>Subnets</strong> v zozname strojov."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#, php-format
+msgid "From the %s icon menu of the device, open the %s panel."
+msgstr "V ponuke ikony %s zariadenia otvorte panel %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
+msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
+msgstr "Začiarknite políčko rozsahu IP, ktoré zodpovedá trase podsiete, ktorú chcete inzerovať, a potom vyberte možnosť <strong>Uložiť</strong>."
+
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "Späť"
+
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "Ďalšie"
+
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "Odvolanie uzla exitu"
+
+#: ../plugins-available/Tailscale/templates/main.php:22
+#: ../templates/admin/general.php:4
+msgid "Logout"
+msgstr "Odhlásenie"
+
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "Zastavenie používania uzla Exit"
+
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "Zastaviť chvostovú škálu"
+
+#: ../plugins-available/Tailscale/templates/main.php:70
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../templates/wireguard.php:46 ../templates/provider.php:35
+#: ../templates/restapi.php:46
+msgid "Settings"
+msgstr "Nastavenia"
+
+#: ../plugins-available/Tailscale/templates/main.php:89
+#: ../plugins-available/Wireshark/templates/main.php:69
+msgid "Information provided by "
+msgstr "Informácie poskytol "
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "Stav koncovej siete"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "Aktuálny stav <code>zadnej siete</code> je zobrazený nižšie."
+
+#: ../plugins-available/Wireshark/templates/main.php:20
+msgid "Start capture"
+msgstr "Spustenie snímania"
+
+#: ../plugins-available/Wireshark/templates/main.php:24
+msgid "Stop capture"
+msgstr "Zastavenie zachytávania"
+
+#: ../plugins-available/Wireshark/templates/main.php:46
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
+msgid "Capture files"
+msgstr "Zachytávanie súborov"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Zachytené súbory vygenerované programom <code>tshark</code> sú zobrazené nižšie."
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "V adresári /tmp sa nenašli žiadne súbory na zachytávanie"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "Názov súboru"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "Veľkosť"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "Upravené"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "Činnosti"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "Stiahnuť súbor"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "Odstrániť súbor"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
+#, php-format
+msgid "Total: %d file(s), %s"
+msgstr "Spolu: %d súbor(y), %s"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "Potvrdiť vymazanie"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "Určite chcete tento súbor odstrániť?"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
+#: ../templates/openvpn.php:82
+msgid "Delete"
+msgstr "Odstrániť"
 
 #: ../plugins-available/Wireshark/templates/tabs/basic.php:8
 msgid "Capture interface"
@@ -947,82 +1133,6 @@ msgstr "SSH"
 msgid "Exclude SSH"
 msgstr "Vylúčiť SSH"
 
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
-#: ../plugins-available/Wireshark/templates/main.php:46
-msgid "Capture files"
-msgstr "Zachytávanie súborov"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
-msgid "Capture files generated by <code>tshark</code> are displayed below."
-msgstr "Zachytené súbory vygenerované programom <code>tshark</code> sú zobrazené nižšie."
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
-msgid "No capture files found in /tmp directory"
-msgstr "V adresári /tmp sa nenašli žiadne súbory na zachytávanie"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
-msgid "Filename"
-msgstr "Názov súboru"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
-msgid "Size"
-msgstr "Veľkosť"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
-msgid "Modified"
-msgstr "Upravené"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
-msgid "Actions"
-msgstr "Činnosti"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
-msgid "Download file"
-msgstr "Stiahnuť súbor"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
-msgid "Delete file"
-msgstr "Odstrániť súbor"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
-#, php-format
-msgid "Total: %d file(s), %s"
-msgstr "Spolu: %d súbor(y), %s"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
-msgid "Confirm deletion"
-msgstr "Potvrdiť vymazanie"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
-msgid "Are you sure you want to delete this file?"
-msgstr "Určite chcete tento súbor odstrániť?"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
-#: ../templates/openvpn.php:82 ../templates/wifi_stations/network.php:100
-#: ../templates/wireguard.php:84
-msgid "Delete"
-msgstr "Odstrániť"
-
-#: ../plugins-available/Wireshark/templates/main.php:20
-msgid "Start capture"
-msgstr "Spustenie snímania"
-
-#: ../plugins-available/Wireshark/templates/main.php:24
-msgid "Stop capture"
-msgstr "Zastavenie zachytávania"
-
-#: ../plugins-available/Wireshark/templates/main.php:45
-#: ../plugins-available/Tailscale/templates/main.php:70
-#: ../templates/restapi.php:46 ../templates/provider.php:35
-#: ../templates/wireguard.php:46
-msgid "Settings"
-msgstr "Nastavenia"
-
-#: ../plugins-available/Wireshark/templates/main.php:69
-#: ../plugins-available/Tailscale/templates/main.php:89
-msgid "Information provided by "
-msgstr "Informácie poskytol "
-
 #: ../plugins-available/Wireshark/Wireshark.php:48
 msgid "Wireshark"
 msgstr "Wireshark"
@@ -1074,534 +1184,154 @@ msgstr "Súbor \"%s\" úspešne odstránený"
 msgid "Failed to delete file \"%s\""
 msgstr "Nepodarilo sa odstrániť súbor \"%s\""
 
-#: ../plugins-available/Tailscale/Tailscale.php:52
-msgid "Tailscale VPN"
-msgstr "Tailscale VPN"
-
-#: ../plugins-available/Tailscale/Tailscale.php:237
-#, php-format
-msgid "Expected tailscale binary not found at: %s"
-msgstr "Očakávaný binárny súbor tailscale sa nenašiel na adrese: %s"
-
-#: ../plugins-available/Tailscale/Tailscale.php:238
-#, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
-msgstr "Navštívte <a href=\"%s\" target=\"_blank\">pokyny na inštaláciu</a> alebo preinštalujte zásuvný modul Tailscale."
-
-#: ../plugins-available/Tailscale/Tailscale.php:251
-msgid "A Tailscale VPN exit node extension for RaspAP"
-msgstr "Rozšírenie výstupného uzla siete VPN Tailscale pre RaspAP"
-
-#: ../plugins-available/Tailscale/Tailscale.php:400
-#: ../plugins-available/Tailscale/templates/main.php:44
-msgid "Start Tailscale"
-msgstr "Začať Tailscale"
-
-#: ../plugins-available/Tailscale/Tailscale.php:406
-#, php-format
-msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
-msgstr "Nie je možné načítať prihlasovacie údaje do systému Tailscale. Vyberte <strong>%s</strong> pre pokračovanie."
-
-#: ../plugins-available/Tailscale/Tailscale.php:786
-msgid "Not connected: Login required."
-msgstr "Nie je pripojený: Vyžaduje sa prihlásenie."
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
-msgid "Using exit node"
-msgstr "Použitie výstupného uzla"
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
-#, php-format
-msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
-msgstr "Zariadenie <code>%s</code> je nakonfigurované na používanie výstupného uzla <code>%s</code>. Má adresu Tailscale MagicDNS <code>%s</code>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
-msgid "Configure new exit node"
-msgstr "Konfigurácia nového výstupného uzla"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
-#, php-format
-msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
-msgstr "Z bezpečnostných dôvodov sa musíte prihlásiť, aby ste povolili funkciu výstupného uzla. Prvým krokom je inzercia <code>%s</code> ako výstupný uzol vo vašej koncovej sieti. V ďalšom kroku povolíte, aby toto zariadenie bolo výstupným uzlom."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
-#, php-format
-msgid "Advertise <code>%s</code> as an exit node"
-msgstr "Inzerovať <code>%s</code> ako výstupný uzol"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
-msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
-msgstr "Týmto spôsobom môžete efektívne nakonfigurovať aplikáciu Tailscale ako sieť VPN na zamaskovanie vašej skutočnej polohy, získať prístup k obsahu s regionálnym obmedzením alebo zvýšiť súkromie pri pripájaní z nedôveryhodných sietí."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
-msgid "This option lets Tailscale know your device is ready to route traffic."
-msgstr "Táto možnosť informuje spoločnosť Tailscale, že vaše zariadenie je pripravené na smerovanie prevádzky."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
-msgid "Enable optimized UDP throughput"
-msgstr "Povolenie optimalizovanej priepustnosti UDP"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
-msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
-msgstr "Odporúča sa pre výstupné uzly Tailscale s jadrami Linux 6.2 alebo novšími, pričom na zníženie zaťaženia procesora sa používa presmerovanie UDP generic receive offload (GRO)."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
-msgid "This option enables transport layer offloads for better performance."
-msgstr "Táto možnosť umožňuje preťaženie transportnej vrstvy na dosiahnutie lepšieho výkonu."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
-msgid "Choose <strong>Next</strong> to continue."
-msgstr "Ak chcete pokračovať, vyberte položku <strong>Ďalej</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
-msgid "Exit node activated"
-msgstr "Aktivovaný výstupný uzol"
-
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
-#, php-format
-msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
-msgstr "Zariadenie <code>%s</code> je pripojené s adresou <code>%s</code> a ponúka <strong>výstupný uzol</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
-#, php-format
-msgid "See the %s on how to use this exit node with your devices."
-msgstr "Informácie o tom, ako používať tento výstupný uzol so zariadeniami, nájdete na stránke %s."
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
-msgid "Login to Tailscale"
-msgstr "Prihlásenie do Tailscale"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
-#, php-format
-msgid "To connect device %s to your tailnet, choose %s."
-msgstr "Ak chcete pripojiť zariadenie %s k zadnej sieti, vyberte položku %s."
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
-msgid "Open Tailscale Login"
-msgstr "Otvoriť prihlásenie Tailscale"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
-msgid "After logging in, choose <strong>Next</strong> to continue."
-msgstr "Po prihlásení vyberte možnosť <strong>Ďalej</strong> a pokračujte."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
-msgid "Configure device"
-msgstr "Konfigurácia zariadenia"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
-#, php-format
-msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
-msgstr "Zariadenie <code>%s</code> je pripojené k vašej koncovej sieti s adresou <code>%s</code>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
-msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
-msgstr "V predvolenom nastavení Tailscale smeruje prevádzku len medzi zariadeniami, na ktorých je nainštalovaný. Všetku verejnú internetovú prevádzku môžete smerovať aj tak, že nakonfigurujete zariadenie vo svojej sieti ako <strong>výstupný uzol</strong>"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
-msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
-msgstr "Keď smerujete všetku prevádzku cez výstupný uzol, v skutočnosti používate predvolené trasy (0.0.0.0/0, ::/0), podobne ako keby ste používali typickú sieť VPN."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
-msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
-msgstr "Máte možnosť nakonfigurovať toto zariadenie ako výstupný uzol alebo použiť iný výstupný uzol v koncovej sieti."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
-msgid "Select an existing exit node on your tailnet"
-msgstr "Vyberte existujúci výstupný uzol vo svojej koncovej sieti"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
-msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
-msgstr "Toto je typická konfigurácia, ak toto zariadenie používate napríklad ako cestovný smerovač VPN."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
-msgid "Configure this device as a new exit node"
-msgstr "Konfigurácia tohto zariadenia ako nového výstupného uzla"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
-msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
-msgstr "Ak toto zariadenie nakonfigurujete ako výstupný uzol, verejná internetová prevádzka zo zariadení pripojených v koncovej sieti bude smerovaná cez toto zariadenie."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
-msgid "Select an exit node"
-msgstr "Vyberte výstupný uzol"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
-#, php-format
-msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
-msgstr "Používanie <code>%s</code> ako bránu VPN, nakonfigurujte škálu Tailscale tak, aby používala výstupný uzol. Navrhovaný uzol Tailscale je označený hviezdičkou."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
-#, php-format
-msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
-msgstr "Inzerovať <strong>trasu podsiete</strong> pre aktívnu <code>%s</code> Rozhranie AP"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
-msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
-msgstr "Trasy podsietí umožňujú rozšíriť sieť Tailscale (známu ako tailnet) o zariadenia, ktoré nemajú alebo nemôžu mať klienta Tailscale."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
-msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
-msgstr "Trasa podsiete funguje ako brána medzi vašou koncovou sieťou a fyzickou podsieťou. Podsieť aktívneho rozhrania AP je predkonfigurovaná nižšie; v prípade potreby ju upravte."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
-msgid "Route LAN traffic through the exit node."
-msgstr "Smerovanie prevádzky LAN cez výstupný uzol."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
-msgid "This will direct all LAN traffic to go through your exit node only."
-msgstr "Tým sa všetka prevádzka LAN presmeruje len cez váš výstupný uzol."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
-msgid "Use Tailscale DNS settings (default)."
-msgstr "Použiť nastavenia Tailscale DNS (predvolené)."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
-msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
-msgstr "Zrušte začiarknutie, ak chcete používať miestny systém DNS. Tým sa nastaví <code>--accept-dns=false.</code>"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
-msgid "Do not use Tailscale subnets (default on Linux)."
-msgstr "Nepoužívajte podsiete Tailscale (predvolené v Linuxe)."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
-msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
-msgstr "Ak pre vašu koncovú sieť existujú trasy podsiete, môžete smerovať prevádzku zariadenia na smerovač podsiete. Povolením tejto funkcie nastavíte <code>--accept-routes=true.</code>"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
-msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
-msgstr "Ak platnosť kľúčov pre zariadenie vyprší, pripojenia na/z daného koncového bodu prestanú fungovať."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
-msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
-msgstr "Táto možnosť používa <code>--force-reauth</code> na obnovenie kľúčov pre toto zariadenie."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
-#, php-format
-msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
-msgstr "Zvoľte možnosť <strong>Ďalej</strong> a nakonfigurujte <code>%s</code> používať vybraný výstupný uzol s týmito možnosťami."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
-msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
-msgstr "Vo vašej sieti chvostov neboli nájdené žiadne výstupné uzly. Ak chcete pokračovať, vyberte možnosť <strong>Späť</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
-msgid "Allow exit node"
-msgstr "Povolenie výstupného uzla"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
-#, php-format
-msgid "The device <code>%s</code> is pending approval as an exit node."
-msgstr "Zariadenie <code>%s</code> čaká na schválenie ako výstupný uzol."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
-msgid "Open Tailscale Machines"
-msgstr "Otvorené chvostové stroje"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
-#, php-format
-msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
-msgstr "Vyhľadajte <code>%s</code> odznak <strong>Exit Node</strong> v zozname strojov."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
-#, php-format
-msgid "From the %s icon menu of the exit node, open the %s panel."
-msgstr "V ponuke ikony %s uzla výstupu otvorte panel %s."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
-msgid "Edit route settings"
-msgstr "Úprava nastavení trasy"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
-msgid "Enable the <strong>Use as exit node</strong> option."
-msgstr "Povoľte možnosť <strong>Použiť ako výstupný uzol</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
-msgid "Choose <strong>Next</strong> when you've completed these steps."
-msgstr "Po dokončení týchto krokov vyberte položku <strong>Ďalej</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
-msgid "Approve subnet route"
-msgstr "Schválenie trasy podsiete"
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
-#, php-format
-msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
-msgstr "Zariadenie <code>%s</code> inzeruje trasu podsiete. Z bezpečnostných dôvodov musíte túto funkciu povoliť."
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
-#, php-format
-msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
-msgstr "Vyhľadajte <code>%s</code> <strong>Subnets</strong> v zozname strojov."
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
-#, php-format
-msgid "From the %s icon menu of the device, open the %s panel."
-msgstr "V ponuke ikony %s zariadenia otvorte panel %s."
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
-msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
-msgstr "Začiarknite políčko rozsahu IP, ktoré zodpovedá trase podsiete, ktorú chcete inzerovať, a potom vyberte možnosť <strong>Uložiť</strong>."
-
-#: ../plugins-available/Tailscale/templates/tabs/status.php:3
-msgid "Tailnet status"
-msgstr "Stav koncovej siete"
-
-#: ../plugins-available/Tailscale/templates/tabs/status.php:4
-msgid "Current <code>tailnet</code> status is displayed below."
-msgstr "Aktuálny stav <code>zadnej siete</code> je zobrazený nižšie."
-
-#: ../plugins-available/Tailscale/templates/main.php:7
-msgid "Back"
-msgstr "Späť"
-
-#: ../plugins-available/Tailscale/templates/main.php:10
-#: ../plugins-available/Tailscale/templates/main.php:13
-msgid "Next"
-msgstr "Ďalšie"
-
-#: ../plugins-available/Tailscale/templates/main.php:19
-msgid "Revoke Exit Node"
-msgstr "Odvolanie uzla exitu"
-
-#: ../plugins-available/Tailscale/templates/main.php:22
-#: ../templates/admin/general.php:4
-msgid "Logout"
-msgstr "Odhlásenie"
-
-#: ../plugins-available/Tailscale/templates/main.php:25
-msgid "Stop Using Exit Node"
-msgstr "Zastavenie používania uzla Exit"
-
-#: ../plugins-available/Tailscale/templates/main.php:48
-msgid "Stop Tailscale"
-msgstr "Zastaviť chvostovú škálu"
-
-#: ../templates/dashboard.php:24
-msgid "Ethernet"
-msgstr "Ethernet"
-
-#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
-msgid "WiFi Client"
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
 msgstr ""
 
-#: ../templates/dashboard.php:28
-msgid "Repeater"
-msgstr "Opakovač"
-
-#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
-msgid "Tethering"
-msgstr "Pripútanie"
-
-#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
-msgid "Cellular"
-msgstr "Cellular"
-
-#: ../templates/dashboard.php:48
-msgid "Public"
-msgstr ""
-
-#: ../templates/dashboard.php:49
-msgid "Local"
-msgstr ""
-
-#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
-#: ../templates/dhcp/settings.php:39 ../templates/dhcp/clients.php:20
-#: ../templates/dhcp/general.php:39 ../templates/networking/general.php:13
-#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
-msgid "IP Address"
-msgstr "IP adresa"
-
-#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
-msgid "Netmask"
-msgstr "Sieťová maska"
-
-#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
-#: ../templates/dhcp/clients.php:19
-msgid "MAC Address"
-msgstr "Adresa MAC"
-
-#: ../templates/dashboard.php:57 ../templates/dashboard.php:63
-#: ../templates/hostapd/basic.php:11
-msgid "SSID"
-msgstr "SSID"
-
-#: ../templates/dashboard.php:75
-msgid "AP"
-msgstr "AP"
-
-#: ../templates/dashboard.php:83
-msgid "Bridged"
-msgstr "Premostenie"
-
-#: ../templates/dashboard.php:91
-msgid "Adblock"
-msgstr "Adblock"
-
-#: ../templates/dashboard.php:99
-msgid "VPN"
-msgstr "VPN"
-
-#: ../templates/dashboard.php:108
-msgid "Firewall"
-msgstr "Firewall"
-
-#: ../templates/dashboard.php:114
-msgid "5G"
-msgstr "5G"
-
-#: ../templates/dashboard.php:115
-msgid "2.4G"
-msgstr "2.4G"
-
-#: ../templates/dashboard.php:164 ../templates/system.php:40
-msgid "Information provided by raspap.sysinfo"
-msgstr "Informácie poskytnuté raspap.sysinfo"
-
-#: ../templates/about/general.php:8
-msgid "RaspAP"
-msgstr "RaspAP"
-
-#: ../templates/about/general.php:11 ../templates/about.php:47
-msgid "Check for update"
-msgstr "Kontrola aktualizácie"
-
-#: ../templates/about/general.php:20
+#: ../includes/networking.php:137
 #, php-format
-msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
-msgstr "RaspAP je spoločným dielom %1$s a %2$s s prispením našich %3$s a %4$s. Viac informácií o zapojení sa do projektu ako %5$s, %6$s alebo %7$s s okamžitým prístupom na %8$s , ktorý je k dispozícii na %9$s."
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr ""
 
-#: ../templates/about/general.php:23
-msgid "developer community"
-msgstr "komunita vývojárov"
+#: ../includes/networking.php:147
+#, php-format
+msgid "Attempting to restart routing between %s and %s interfaces"
+msgstr ""
 
-#: ../templates/about/general.php:24
-msgid "language translators"
-msgstr "jazykoví prekladatelia"
+#: ../includes/networking.php:151
+#, php-format
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr ""
 
-#: ../templates/about/general.php:25
-msgid "code contributor"
-msgstr "prispievateľ kódu"
+#: ../includes/networking.php:252
+#, php-format
+msgid "DHCP configuration for %s enabled"
+msgstr ""
 
-#: ../templates/about/general.php:26
-msgid "translator"
-msgstr "prekladateľ"
+#: ../includes/networking.php:259
+#, php-format
+msgid "DHCP configuration for %s added"
+msgstr ""
 
-#: ../templates/about/general.php:27
-msgid "financial sponsor"
-msgstr "finančný sponzor"
+#: ../includes/networking.php:265
+#, php-format
+msgid "DHCP configuration for %s updated"
+msgstr ""
 
-#: ../templates/about/general.php:28
-msgid "exclusive features"
-msgstr "exkluzívne funkcie"
+#: ../includes/networking.php:271
+#, php-format
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr ""
 
-#: ../templates/about/general.php:29 ../templates/about.php:22
-msgid "Insiders"
-msgstr "Insiders"
+#: ../includes/networking.php:272
+#, php-format
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr ""
 
-#: ../templates/about.php:23
-msgid "Contributing"
-msgstr "Príspevok na"
+#: ../includes/networking.php:294
+#, php-format
+msgid "Dnsmasq  configuration for %s added"
+msgstr ""
 
-#: ../templates/about.php:50
-msgid "New release check in progress..."
-msgstr "Prebieha kontrola nového vydania..."
+#: ../includes/footer.php:6
+#, php-format
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr ""
 
-#: ../templates/about.php:53
-msgid "A new release is available: Version"
-msgstr "K dispozícii je nová verzia: Verzia"
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
+msgstr ""
 
-#: ../templates/about.php:54
-msgid "Installed version is the latest release."
-msgstr "Nainštalovaná verzia je najnovšia verzia."
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
+msgstr ""
 
-#: ../templates/about.php:55
-msgid "Install this update now?"
-msgstr "Nainštalovať túto aktualizáciu teraz?"
+#: ../includes/footer.php:17
+msgid "Session Expired"
+msgstr ""
 
-#: ../templates/about.php:56 ../templates/about.php:57
-#: ../templates/about.php:132 ../templates/system.php:271
-msgid "OK"
-msgstr "OK"
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
+msgstr ""
 
-#: ../templates/about.php:69
-msgid "GitHub authentication"
-msgstr "Overovanie GitHub"
+#: ../includes/footer.php:23 ../templates/admin.php:18
+#: ../templates/login.php:30
+msgid "Login"
+msgstr "Prihlásenie"
 
-#: ../templates/about.php:73
-msgid "Updating Insiders requires GitHub authentication."
-msgstr "Aktualizácia Insiderov vyžaduje overenie GitHub."
+#: ../includes/provider.php:65
+#, php-format
+msgid "Expected %s binary not found at: %s"
+msgstr ""
 
-#: ../templates/about.php:80
-msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
-msgstr "Vaše prihlasovacie údaje budú odoslané do služby GitHub bezpečne pomocou protokolu SSL. Buďte však opatrní, ak sa vaša inštalácia RaspAP nachádza v sieti WLAN zdieľanej nedôveryhodnými používateľmi."
+#: ../includes/provider.php:66
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr ""
 
-#: ../templates/about.php:85 ../templates/login.php:22
-#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
-#: ../templates/admin/login.php:12 ../templates/admin/general.php:15
-msgid "Username"
-msgstr "Používateľské meno"
+#: ../includes/provider.php:70
+#, php-format
+msgid "Unable to execute %s binary found at: %s"
+msgstr ""
 
-#: ../templates/about.php:87 ../templates/admin/login.php:15
-#: ../templates/admin/general.php:18 ../templates/admin/general.php:37
-msgid "Please provide a valid username."
-msgstr "Zadajte platné používateľské meno."
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr ""
 
-#: ../templates/about.php:92
-msgid "Personal Access Token"
-msgstr "Osobný prístupový token"
+#: ../includes/provider.php:119
+#, php-format
+msgid "Attempting to connect to %s"
+msgstr ""
 
-#: ../templates/about.php:98
-msgid "Please provide a valid token."
-msgstr "Uveďte platný token."
+#: ../includes/provider.php:318
+msgid "Select a country..."
+msgstr ""
 
-#: ../templates/about.php:105
-msgid "Perform update"
-msgstr "Vykonajte aktualizáciu"
+#: ../includes/provider.php:387
+#, php-format
+msgid "Account information not available from %s's Linux CLI."
+msgstr ""
 
-#: ../templates/about.php:117
-msgid "Update in progress"
-msgstr "Prebieha aktualizácia"
+#: ../includes/functions.php:1006
+msgid "Mem Use"
+msgstr ""
 
-#: ../templates/about.php:120
-msgid "Application is being updated..."
-msgstr "Aplikácia sa aktualizuje..."
+#: ../includes/functions.php:1009
+msgid "CPU"
+msgstr ""
 
-#: ../templates/about.php:121
-msgid "Configuring update"
-msgstr "Konfigurácia aktualizácie"
+#: ../includes/restapi.php:59
+#, php-format
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
+msgstr ""
 
-#: ../templates/about.php:122
-msgid "Updating sources"
-msgstr "Aktualizácia zdrojov"
+#: ../includes/system.php:67
+#, php-format
+msgid "Changing log limit size to %s KB"
+msgstr ""
 
-#: ../templates/about.php:123
-msgid "Installing package updates"
-msgstr "Inštalácia aktualizácií balíkov"
+#: ../includes/system.php:86
+#, php-format
+msgid "Changing alert close timeout to %s ms"
+msgstr ""
 
-#: ../templates/about.php:124
-msgid "Downloading latest files"
-msgstr "Preberanie najnovších súborov"
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
+msgstr ""
 
-#: ../templates/about.php:125
-msgid "Installing application"
-msgstr "Inštalácia aplikácie"
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
+msgstr ""
 
-#: ../templates/about.php:126
-msgid "Update complete"
-msgstr "Aktualizácia dokončená"
+#: ../includes/dashboard.php:72
+#, php-format
+msgid "%d WLAN %s"
+msgstr ""
 
-#: ../templates/about.php:128
-msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
-msgstr "Vyskytla sa chyba. Skontrolujte protokol na adrese <code>/tmp/raspap_install.log</code>"
-
-#: ../templates/about.php:129
-msgid "Success. Refresh this page to confirm the new version."
-msgstr "Úspech. Obnovte túto stránku, aby ste potvrdili novú verziu."
+#: ../includes/dashboard.php:78
+#, php-format
+msgid "%d LAN %s"
+msgstr ""
 
 #: ../templates/admin.php:7
 msgid "Authentication"
@@ -1655,33 +1385,234 @@ msgstr ""
 msgid "Save and logout"
 msgstr ""
 
-#: ../templates/login.php:13
-msgid "Administrator login"
-msgstr "Prihlásenie správcu"
+#: ../templates/adblock/stats.php:3
+msgid "Statistics"
+msgstr "Štatistika"
 
-#: ../templates/login.php:31
-msgid "Forgot password"
-msgstr "Zabudnuté heslo"
+#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
+msgid "Blocklist settings"
+msgstr "Nastavenia zoznamu blokov"
 
-#: ../templates/login.php:33
-msgid "Scan for Login Help"
-msgstr ""
+#: ../templates/adblock/general.php:10
+msgid "Enable blocklists"
+msgstr "Povolenie zoznamov blokov"
 
-#: ../templates/restapi/status.php:3
-msgid "RestAPI status"
-msgstr "Stav RestAPI"
+#: ../templates/adblock/general.php:13
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Túto možnosť povoľte, ak chcete, aby RaspAP <b>blokoval požiadavky DNS na reklamy, sledovanie a iný virtuálny odpad</b>. Zoznamy blokovania sa zhromažďujú z viacerých aktívne udržiavaných zdrojov a denne sa automaticky aktualizujú, čistia, optimalizujú a moderujú."
 
-#: ../templates/restapi/status.php:4
-msgid "Current <code>restapi.service</code> status is displayed below."
-msgstr "Aktuálny stav <code>restapi.service</code> je zobrazený nižšie."
+#: ../templates/adblock/general.php:15
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "Táto voľba pridá do konfigurácie dnsmasq <code>súbory conf-file</code> a <code>addn-hosts</code>."
 
-#: ../templates/restapi/general.php:12
-msgid "API Key"
-msgstr "Kľúč API"
+#: ../templates/adblock/general.php:22
+msgid "Hostnames blocklist last updated"
+msgstr "Posledná aktualizácia zoznamu blokovaných názvov hostiteľov"
 
-#: ../templates/restapi/general.php:17
-msgid "Please provide a valid API key."
-msgstr "Zadajte platný kľúč API."
+#: ../templates/adblock/general.php:24
+msgid "Domains blocklist last updated"
+msgstr "Zoznam blokovaných domén naposledy aktualizovaný"
+
+#: ../templates/adblock/general.php:29
+msgid "Choose a blocklist provider"
+msgstr "Výber poskytovateľa blokových zoznamov"
+
+#: ../templates/adblock/general.php:33
+msgid "Update now"
+msgstr "Aktualizovať teraz"
+
+#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
+msgid "Custom blocklist"
+msgstr "Vlastný zoznam blokov"
+
+#: ../templates/adblock/custom.php:10
+msgid "Enable custom blocklist"
+msgstr "Povolenie vlastného zoznamu blokov"
+
+#: ../templates/adblock/custom.php:14
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Definujte vlastné hostiteľov, ktorí sa majú blokovať, zadaním adresy IPv4 alebo IPv6, za ktorou nasledujú biele znaky (medzery alebo tabulátory) a názov hostiteľa."
+
+#: ../templates/adblock/custom.php:15
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>Príklad IPv4:</b> 0.0.0.0 badhost.com"
+
+#: ../templates/adblock/custom.php:17
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Táto možnosť pridá do konfigurácie dnsmasq direktívu <code>addn-hosts</code>."
+
+#: ../templates/adblock/logging.php:3 ../templates/openvpn/logging.php:3
+#: ../templates/dhcp.php:55 ../templates/wireguard.php:49
+#: ../templates/hostapd.php:52 ../templates/hostapd/logging.php:3
+#: ../templates/adblock.php:47 ../templates/openvpn.php:48
+#: ../templates/dhcp/logging.php:3 ../templates/wg/logging.php:5
+msgid "Logging"
+msgstr "Prihlasovanie"
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s nastavenia"
+
+#: ../templates/provider/general.php:9 ../templates/openvpn/general.php:8
+#: ../templates/wg/general.php:8
+msgid "IPv4 Address"
+msgstr "Adresa IPv4"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "Podrobnosti o účte"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "Moje konto"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "Umiestnenie servera"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "Výberom možnosti <strong>Uložiť nastavenia</strong> sa pripojíte k vybranej krajine."
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Výberom možnosti <strong>Pripojiť %s</strong> sa pripojíte k odporúčanému serveru."
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "Krajina"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s stav"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Nainštalované CLI systému Linux: <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Aktuálne <code>%s</code> stav pripojenia je zobrazený nižšie."
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "Metóda autentifikácie"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "Používateľské meno a heslo"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "Certifikáty"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "Zadajte používateľské meno a heslo"
+
+#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/login.php:22 ../templates/about.php:85
+msgid "Username"
+msgstr "Používateľské meno"
+
+#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
+#: ../templates/admin/login.php:21 ../templates/login.php:25
+#: ../app/lib/signprint.php:67
+msgid "Password"
+msgstr "Heslo"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "Certifikáty v konfiguračnom súbore"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP podporuje certifikáty tak, že ich zahrnie do konfiguračného súboru."
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Podpisový certifikát certifikačnej autority (CA) (napr. <code>ca.crt</code>): uzavretý v <code>&lt;ca> ... &lt;/ca></code> značky."
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Certifikát klienta (verejný kľúč) (napr. <code>client.crt</code>): uzavretý v <code>&lt;cert> ... &lt;/cert></code>."
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Súkromný kľúč klientskeho certifikátu (napr. <code>client.key</code>): uzavretý v <code>&lt;key> ... &lt;/key></code>."
+
+#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
+msgid "Configuration File"
+msgstr "Konfiguračný súbor"
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Vyberte konfiguračný súbor OpenVPN (.ovpn)"
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Povoľte túto možnosť, aby ste zaznamenali aktivitu <code>openvpn</code>."
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "Povolenie protokolovania"
+
+#: ../templates/openvpn/logging.php:9 ../templates/hostapd/logging.php:10
+#: ../templates/dhcp/logging.php:13
+msgid "Clear log"
+msgstr "Vymazať protokol"
+
+#: ../templates/openvpn/configs.php:4 ../templates/wireguard.php:48
+#: ../templates/openvpn.php:47 ../templates/wg/configs.php:4
+msgid "Configurations"
+msgstr "Konfigurácie"
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Aktuálne dostupné konfigurácie klientov OpenVPN sú zobrazené nižšie."
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Aktivácia konfigurácie reštartuje službu <code>openvpn-client</code>."
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "Zastaviť dnsmasq"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "Reštartovať dnsmasq"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "Spustiť dnsmasq"
+
+#: ../templates/dhcp.php:50 ../templates/networking.php:20
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "Zhrnutie"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "Nastavenia servera"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "Statický lízing"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "Zoznam klientov"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "Informácie, ktoré poskytol Dnsmasq"
 
 #: ../templates/data_usage.php:7
 msgid "Data usage monitoring"
@@ -1746,525 +1677,25 @@ msgstr "Odoslať"
 msgid "Receive"
 msgstr "Príjem"
 
-#: ../templates/restapi.php:21
-msgid "Start RestAPI service"
-msgstr "Spustenie služby RestAPI"
-
-#: ../templates/restapi.php:25
-msgid "Stop RestAPI service"
-msgstr "Zastavenie služby RestAPI"
-
-#: ../templates/restapi.php:63
-msgid "Information provided by restapi.service"
-msgstr "Informácie poskytnuté restapi.service"
-
-#: ../templates/wifi_stations.php:3
-msgid "No Wifi stations found"
-msgstr "Nenašli sa žiadne stanice Wifi"
-
-#: ../templates/wifi_stations.php:4
-msgid "Click 'Rescan' to search for nearby Wifi stations."
-msgstr "Kliknutím na tlačidlo \"Rescan\" (Vyhľadať) vyhľadajte blízke stanice Wifi."
-
-#: ../templates/wifi_stations.php:6
-msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
-msgstr "Kliknutím na tlačidlo \"Reinitialize\" vynútite opätovnú inicializáciu <code>wpa_supplicant</code>."
-
-#: ../templates/wifi_stations.php:10
-msgid "Reinitialize"
-msgstr "Reinitializácia"
-
-#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
-msgid "Connected"
-msgstr "Pripojené"
-
-#: ../templates/wifi_stations.php:29
-msgid "Known"
-msgstr "Známa stránka"
-
-#: ../templates/wifi_stations.php:40
-msgid "Nearby"
-msgstr "V blízkosti"
-
-#: ../templates/configure_client.php:12
-msgid "Disconnected"
-msgstr "Odpojené"
-
-#: ../templates/configure_client.php:24
-msgid "Rescan"
-msgstr "Vyskenujte stránku"
-
-#: ../templates/configure_client.php:31 ../templates/dhcp/summary.php:18
-#: ../templates/dhcp/settings.php:5 ../templates/dhcp/general.php:5
-#: ../templates/hostapd/basic.php:5 ../templates/networking/devices.php:17
-#: ../templates/networking/general.php:12
-msgid "Interface"
-msgstr "Rozhranie"
-
-#: ../templates/configure_client.php:34
-msgid "Set"
-msgstr "Nastavenie"
-
-#: ../templates/configure_client.php:49
-msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>Poznámka:</strong> Prístupové body WEP sa zobrazujú ako \"Open\". RaspAP v súčasnosti nepodporuje pripojenie k WEP"
-
-#: ../templates/configure_client.php:59
-msgid "Configuring WiFi Client"
-msgstr "Konfigurácia klienta WiFi"
-
-#: ../templates/configure_client.php:62
-msgid "Configuring Wifi Client Interface..."
-msgstr "Konfigurácia rozhrania klienta Wifi..."
-
-#: ../templates/configure_client.php:65
-#: ../templates/wifi_stations/network.php:119 ../templates/system.php:56
-#: ../templates/system.php:74 ../templates/system.php:109
-#: ../templates/system.php:127 ../templates/system.php:159
-#: ../templates/hostapd.php:90
-msgid "Close"
-msgstr "Zatvoriť"
-
-#: ../templates/adblock/logging.php:3 ../templates/adblock.php:47
-#: ../templates/openvpn.php:48 ../templates/dhcp/logging.php:3
-#: ../templates/hostapd/logging.php:3 ../templates/openvpn/logging.php:3
-#: ../templates/wireguard.php:49 ../templates/dhcp.php:55
-#: ../templates/hostapd.php:52 ../templates/wg/logging.php:5
-msgid "Logging"
-msgstr "Prihlasovanie"
-
-#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
-msgid "Custom blocklist"
-msgstr "Vlastný zoznam blokov"
-
-#: ../templates/adblock/custom.php:10
-msgid "Enable custom blocklist"
-msgstr "Povolenie vlastného zoznamu blokov"
-
-#: ../templates/adblock/custom.php:14
-msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
-msgstr "Definujte vlastné hostiteľov, ktorí sa majú blokovať, zadaním adresy IPv4 alebo IPv6, za ktorou nasledujú biele znaky (medzery alebo tabulátory) a názov hostiteľa."
-
-#: ../templates/adblock/custom.php:15
-msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
-msgstr "<b>Príklad IPv4:</b> 0.0.0.0 badhost.com"
-
-#: ../templates/adblock/custom.php:17
-msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
-msgstr "Táto možnosť pridá do konfigurácie dnsmasq direktívu <code>addn-hosts</code>."
-
-#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
-msgid "Blocklist settings"
-msgstr "Nastavenia zoznamu blokov"
-
-#: ../templates/adblock/general.php:10
-msgid "Enable blocklists"
-msgstr "Povolenie zoznamov blokov"
-
-#: ../templates/adblock/general.php:13
-msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr "Túto možnosť povoľte, ak chcete, aby RaspAP <b>blokoval požiadavky DNS na reklamy, sledovanie a iný virtuálny odpad</b>. Zoznamy blokovania sa zhromažďujú z viacerých aktívne udržiavaných zdrojov a denne sa automaticky aktualizujú, čistia, optimalizujú a moderujú."
-
-#: ../templates/adblock/general.php:15
-msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
-msgstr "Táto voľba pridá do konfigurácie dnsmasq <code>súbory conf-file</code> a <code>addn-hosts</code>."
-
-#: ../templates/adblock/general.php:22
-msgid "Hostnames blocklist last updated"
-msgstr "Posledná aktualizácia zoznamu blokovaných názvov hostiteľov"
-
-#: ../templates/adblock/general.php:24
-msgid "Domains blocklist last updated"
-msgstr "Zoznam blokovaných domén naposledy aktualizovaný"
-
-#: ../templates/adblock/general.php:29
-msgid "Choose a blocklist provider"
-msgstr "Výber poskytovateľa blokových zoznamov"
-
-#: ../templates/adblock/general.php:33
-msgid "Update now"
-msgstr "Aktualizovať teraz"
-
-#: ../templates/adblock/stats.php:3
-msgid "Statistics"
-msgstr "Štatistika"
-
-#: ../templates/adblock.php:20
-msgid "Restart Ad Blocking"
-msgstr "Reštartovanie blokovania reklám"
-
-#: ../templates/adblock.php:24
-msgid "Start Ad Blocking"
-msgstr "Spustenie blokovania reklám"
-
-#: ../templates/adblock.php:64
-msgid "Information provided by adblock"
-msgstr "Informácie poskytnuté adblock"
-
-#: ../templates/exception.php:6 ../templates/exception.php:17
-msgid "RaspAP Exception"
-msgstr "Výnimka RaspAP"
-
-#: ../templates/exception.php:20
-msgid "An exception occurred"
-msgstr ""
-
-#: ../templates/openvpn.php:20
-msgid "Start OpenVPN"
-msgstr "Spustenie OpenVPN"
-
-#: ../templates/openvpn.php:24
-msgid "Stop OpenVPN"
-msgstr "Zastavenie OpenVPN"
-
-#: ../templates/openvpn.php:47 ../templates/openvpn/configs.php:4
-#: ../templates/wireguard.php:48 ../templates/wg/configs.php:4
-msgid "Configurations"
-msgstr "Konfigurácie"
-
-#: ../templates/openvpn.php:65
-msgid "Information provided by openvpn"
-msgstr "Informácie poskytnuté openvpn"
-
-#: ../templates/openvpn.php:75
-msgid "Delete OpenVPN client"
-msgstr "Odstránenie klienta OpenVPN"
-
-#: ../templates/openvpn.php:78
-msgid "Delete client configuration? This cannot be undone."
-msgstr "Odstrániť konfiguráciu klienta? Toto sa nedá vrátiť späť."
-
-#: ../templates/openvpn.php:93
-msgid "Activate OpenVPN client"
-msgstr "Aktivácia klienta OpenVPN"
-
-#: ../templates/openvpn.php:96
-msgid "Activate client configuration? This will restart the openvpn-client service."
-msgstr "Aktivácia konfigurácie klienta? Tým sa reštartuje služba openvpn-client."
-
-#: ../templates/openvpn.php:100 ../templates/wireguard.php:102
-msgid "Activate"
-msgstr "Aktivácia stránky"
-
-#: ../templates/dhcp/logging.php:4
-msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
-msgstr ""
-
-#: ../templates/dhcp/logging.php:8
-msgid "Log DHCP requests"
-msgstr ""
-
-#: ../templates/dhcp/logging.php:12
-msgid "Log DNS queries"
-msgstr ""
-
-#: ../templates/dhcp/logging.php:13 ../templates/hostapd/logging.php:10
-#: ../templates/openvpn/logging.php:9
-msgid "Clear log"
-msgstr "Vymazať protokol"
-
-#: ../templates/dhcp/summary.php:2 ../templates/dhcp.php:50
-#: ../templates/networking.php:20
-msgid "Summary"
-msgstr "Zhrnutie"
-
-#: ../templates/dhcp/summary.php:7
-msgid "Interface Configurations"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:19
-msgid "Static IP"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:20
-msgid "Subnet / Gateway"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:21
-msgid "Default Route"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:22
-msgid "Disable Hook"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:23
-msgid "DHCP Range (lease)"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:24
-msgid "DNS Servers"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:25 ../templates/dhcp/settings.php:164
-#: ../templates/dhcp/general.php:163
-msgid "Metric"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
-msgid "Yes"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:97
-msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:3
-msgid "Advanced Settings"
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:6
-msgid "Upstream DNS servers"
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:11
-msgid "Only ever query DNS servers configured below"
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:14
-msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:15
-msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:29
-msgid "Add upstream DNS server"
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:31
-#, php-format
-msgid "e.g. %s"
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:36
-msgid "Format: "
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:41
-msgid "Choose a hosted server"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:5
-msgid "Static leases"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:7
-msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:8
-msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:16
-#: ../templates/dhcp/static_leases.php:33
-#: ../templates/dhcp/static_leases.php:64
-#: ../templates/networking/devices.php:19
-msgid "MAC address"
-msgstr "Adresa MAC"
-
-#: ../templates/dhcp/static_leases.php:19
-#: ../templates/dhcp/static_leases.php:36
-#: ../templates/dhcp/static_leases.php:67
-msgid "IP address"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:22
-#: ../templates/dhcp/static_leases.php:39
-#: ../templates/dhcp/static_leases.php:70
-msgid "Optional comment"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:46
-msgid "Restrict access"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:51
-msgid "Limit network access to static clients"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:54
-msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:55
-msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:2 ../templates/dhcp/general.php:2
-msgid "DHCP server settings"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:10 ../templates/dhcp/general.php:10
-msgid "Adapter IP Address Settings"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:28 ../templates/dhcp/general.php:28
-msgid "Enable fallback to static option"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:31 ../templates/dhcp/general.php:31
-msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:36 ../templates/dhcp/general.php:36
-msgid "Static IP options"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:42 ../templates/dhcp/general.php:42
-msgid "Please provide a valid IP Address."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:49 ../templates/dhcp/general.php:49
-msgid "Subnet Mask"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:52 ../templates/dhcp/general.php:52
-msgid "Please provide a valid Subnet mask."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:59 ../templates/dhcp/general.php:59
-msgid "Default gateway"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:62 ../templates/dhcp/general.php:62
-msgid "Please provide a valid Default gateway."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:71 ../templates/dhcp/general.php:71
-msgid "Install a default route for this interface"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:72
-msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:75
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:84 ../templates/dhcp/general.php:83
-msgid "Disable wpa_supplicant dhcp hook for this interface"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:85 ../templates/dhcp/general.php:84
-msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:88
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:93 ../templates/dhcp/general.php:92
-msgid "DHCP options"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:99 ../templates/dhcp/general.php:98
-msgid "Enable DHCP for this interface"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:102 ../templates/dhcp/general.php:101
-msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:110 ../templates/dhcp/general.php:109
-msgid "Starting IP Address"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:113 ../templates/dhcp/general.php:112
-msgid "Please provide a valid Starting IP Address."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:119 ../templates/dhcp/general.php:118
-msgid "Ending IP Address"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:122 ../templates/dhcp/general.php:121
-msgid "Please provide a valid Ending IP Address."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:128 ../templates/dhcp/general.php:127
-msgid "Lease Time"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:131 ../templates/dhcp/general.php:130
-msgid "Please provide a valid Lease Time."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:135 ../templates/dhcp/general.php:134
-msgid "Interval"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:137 ../templates/dhcp/general.php:136
-msgid "Minute(s)"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:138 ../templates/dhcp/general.php:137
-msgid "Hour(s)"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:139 ../templates/dhcp/general.php:138
-msgid "Day(s)"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:140 ../templates/dhcp/general.php:139
-msgid "Infinite"
-msgstr ""
-
-#: ../templates/dhcp/settings.php:143 ../templates/dhcp/general.php:142
-msgid "Please provide a valid Interval."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:150 ../templates/dhcp/settings.php:157
-#: ../templates/dhcp/general.php:149 ../templates/dhcp/general.php:156
-#: ../templates/hostapd/advanced.php:65
-msgid "DNS Server"
-msgstr "Server DNS"
-
-#: ../templates/dhcp/clients.php:2 ../templates/dhcp.php:54
-msgid "Client list"
-msgstr "Zoznam klientov"
-
-#: ../templates/dhcp/clients.php:8
-msgid "Active DHCP leases"
-msgstr ""
-
-#: ../templates/dhcp/clients.php:18
-msgid "Expire time"
-msgstr ""
-
-#: ../templates/dhcp/clients.php:21
-msgid "Host name"
-msgstr ""
-
-#: ../templates/dhcp/clients.php:22
-msgid "Client ID"
-msgstr ""
-
-#: ../templates/dhcp/general.php:74
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
-msgstr ""
-
-#: ../templates/dhcp/general.php:87
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
-msgstr ""
-
-#: ../templates/provider.php:5
-#, php-format
-msgid "Connect %s"
-msgstr "Pripojenie %s"
-
-#: ../templates/provider.php:7
-#, php-format
-msgid "Disconnect %s"
-msgstr "Odpojenie %s"
-
-#: ../templates/provider.php:51
-#, php-format
-msgid "Information provided by %s"
-msgstr "Informácie poskytol %s"
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "Zariadenia"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "Mobilné údaje"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "Smerovanie WLAN"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "Diagnostika"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "Informácie poskytnuté /sys/class/net"
 
 #: ../templates/wifi_stations/network.php:42
 msgid "Not configured"
@@ -2314,6 +1745,513 @@ msgstr ""
 #: ../templates/wifi_stations/network.php:118
 msgid "Goto Webpage"
 msgstr ""
+
+#: ../templates/wifi_stations/network.php:119 ../templates/hostapd.php:90
+#: ../templates/configure_client.php:65 ../templates/system.php:56
+#: ../templates/system.php:74 ../templates/system.php:109
+#: ../templates/system.php:127 ../templates/system.php:159
+msgid "Close"
+msgstr "Zatvoriť"
+
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "Nenašli sa žiadne stanice Wifi"
+
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Kliknutím na tlačidlo \"Rescan\" (Vyhľadať) vyhľadajte blízke stanice Wifi."
+
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Kliknutím na tlačidlo \"Reinitialize\" vynútite opätovnú inicializáciu <code>wpa_supplicant</code>."
+
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "Reinitializácia"
+
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "Pripojené"
+
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "Známa stránka"
+
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "V blízkosti"
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "Zastaviť WireGuard"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "Spustenie programu WireGuard"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "Peer"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "Informácie poskytnuté spoločnosťou wireguard"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "Odstránenie konfigurácie WireGuard"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "Vymazať túto konfiguráciu? Túto konfiguráciu nie je možné zrušiť."
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "Aktivácia konfigurácie WireGuard"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "Aktivovať túto konfiguráciu? Tým sa reštartuje služba wg-quick."
+
+#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
+msgid "Activate"
+msgstr "Aktivácia stránky"
+
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "Sieťové zariadenia"
+
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "Zariadenie"
+
+#: ../templates/networking/devices.php:17
+#: ../templates/networking/general.php:12 ../templates/hostapd/basic.php:5
+#: ../templates/configure_client.php:31 ../templates/dhcp/general.php:5
+#: ../templates/dhcp/summary.php:18 ../templates/dhcp/settings.php:5
+msgid "Interface"
+msgstr "Rozhranie"
+
+#: ../templates/networking/devices.php:19
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+msgid "MAC address"
+msgstr "Adresa MAC"
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "Typ zariadenia"
+
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "Pripojenie na internet"
+
+#: ../templates/networking/general.php:13 ../templates/dashboard.php:54
+#: ../templates/dashboard.php:60 ../templates/dhcp/general.php:39
+#: ../templates/dhcp/clients.php:20 ../templates/dhcp/settings.php:39
+#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
+msgid "IP Address"
+msgstr "IP adresa"
+
+#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:52
+msgid "Gateway"
+msgstr "Brána"
+
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "Prístup na internet"
+
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "Tabuľka smerovania"
+
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "surový výstup"
+
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "Aktuálne nastavenia"
+
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "Reštartovanie smerovania siete WLAN"
+
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "Zastavenie smerovania WLAN"
+
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "Spustenie smerovania WLAN"
+
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "Smerovanie bezdrôtovej siete LAN"
+
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "smerovanie"
+
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Táto možnosť konfiguruje RaspAP na <b>smerovanie sieťovej prevádzky z rozhrania bezdrôtového klienta (STA)</b> na iné dostupné rozhranie."
+
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Po výbere výstupného rozhrania sa pridajú pravidlá <code>iptables</code> na smerovanie paketov pomocou prekladu sieťových adries (NAT). Často sa to robí na zdieľanie internetového pripojenia zo siete WLAN so zariadeniami na rozhraní <code>eth0</code>, <code>usb0</code> alebo predvídateľnom rozhraní <code>enx</code>."
+
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "Rozhranie bezdrôtového klienta"
+
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "Výstupné rozhranie"
+
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Konfigurácia statickej IP adresy a DHCP pre výstupné rozhranie"
+
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "Speedtest"
+
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "Výber servera"
+
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "Ochrana osobných údajov"
+
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "Server"
+
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "Ping"
+
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "ms"
+
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "Jitter"
+
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "Mbps"
+
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "Nastavenia mobilných dát"
+
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "Číslo PIN karty SIM"
+
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "Nastavenia APN"
+
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "Názov prístupového bodu (APN)"
+
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "Spustenie hotspotu"
+
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "Spustenie hotspotu"
+
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "Zastavenie hotspotu"
+
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "Reštartovanie hotspotu"
+
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "Reštartovanie hotspotu"
+
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "Informácie poskytnuté hostapd"
+
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "Spustenie služby RaspAP"
+
+#: ../templates/restapi/general.php:12
+msgid "API Key"
+msgstr "Kľúč API"
+
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "Zadajte platný kľúč API."
+
+#: ../templates/restapi/status.php:3
+msgid "RestAPI status"
+msgstr "Stav RestAPI"
+
+#: ../templates/restapi/status.php:4
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "Aktuálny stav <code>restapi.service</code> je zobrazený nižšie."
+
+#: ../templates/system/plugins.php:3 ../templates/system.php:23
+msgid "Plugins"
+msgstr "Zásuvné moduly"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "Na rozšírenie funkčnosti RaspAP sú k dispozícii nasledujúce používateľské zásuvné moduly."
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Ak chcete získať ďalšie informácie a nainštalovať zásuvný modul, vyberte položku <strong>Podrobnosti</strong>."
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "Port webového servera"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "Adresa väzby webového servera"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "Limit veľkosti diagnostického protokolu (KB)"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
+msgstr ""
+
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr ""
+
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
+msgstr ""
+
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr ""
+
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "Reštart lighttpd"
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "Systémové nástroje"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "Ak chcete vygenerovať <a href=\"%s\" target=\"_blank\">protokol ladenia</a> systému, kliknite alebo ťuknite na tlačidlo nižšie."
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Informácie ladiaceho protokolu obsahujú verziu RaspAP, aktuálny stav a konfiguráciu služieb súvisiacich s AP, nainštalované systémové balíky, verziu jadra Linuxu a podrobnosti o sieti. Neobsahujú žiadne heslá ani iné citlivé údaje."
+
+#: ../templates/system/tools.php:18 ../templates/system.php:121
+msgid "Generate debug log"
+msgstr "Generovanie denníka ladenia"
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Ak chcete <a href=\"%s\" target=\"_blank\">skontrolovať adaptéry</a> pripojené k tomuto zariadeniu, kliknite alebo ťuknite na tlačidlo nižšie."
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Nástroj na kontrolu adaptérov vráti podrobnosti o externých zariadeniach WLAN vrátane ovládačov, podporovaných režimov atď."
+
+#: ../templates/system/tools.php:32 ../templates/system.php:138
+msgid "Inspect adapters"
+msgstr "Kontrola adaptérov"
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "Ak chcete obnoviť <a href=\"%s\" target=\"_blank\">pôvodnú konfiguráciu</a> RaspAP, kliknite alebo ťuknite na tlačidlo nižšie."
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Obnoví všetky nastavenia služieb prístupového bodu (AP) na ich predvolené hodnoty. Toto sa vzťahuje na hostapd, dhcpcd a dnsmasq."
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Vlastné súbory pre voliteľné komponenty, ako sú napríklad Ad Blocking, WireGuard alebo OpenVPN, zostanú v systéme."
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "Vykonajte resetovanie"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "Nastavenia témy"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "Výber témy"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "Farba"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "Tmavý režim"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "Použitie tmavého režimu z aktuálnej témy"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "Téma systému"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "Používa farebný režim vášho systému"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "Výstražné správy"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Automatické zatvorenie upozornení po uplynutí zadaného časového limitu"
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "Časový limit ukončenia upozornenia (milisekundy)"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "Systémové informácie"
+
+#: ../templates/system/basic.php:23 ../templates/system.php:75
+msgid "Reboot"
+msgstr "Reštart"
+
+#: ../templates/system/basic.php:27 ../templates/system.php:110
+msgid "Shutdown"
+msgstr "Vypnutie"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "Názov hostiteľa"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "Revízia pí"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "OS"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "Jadro"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "Čas prevádzky"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "Systémový čas"
+
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "Použitá pamäť"
+
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "Použité úložisko"
+
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "Zaťaženie CPU"
+
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "Teplota CPU"
+
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "Nastavenia jazyka"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "Výber jazyka"
+
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "Pripojenie %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "Odpojenie %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "Informácie poskytol %s"
+
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "Nastavenia zabezpečenia"
+
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "Typ zabezpečenia"
+
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "Typ šifrovania"
+
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
+
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "Štandard 802.11w rozširuje silnú kryptografickú ochranu na vybraný súbor robustných rámcov správy vrátane rámcov Deauthentication, Disassociation a určitých kategórií rámcov Action Management. Súhrnne sa táto ochrana nazýva Management Frame Protection (MFP)."
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "Predbežne zdieľaný kľúč (PSK)"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "Zadajte platný PSK."
+
+#: ../templates/hostapd/security.php:32
+#, php-format
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Naskenujte tento QR kód priamo alebo vytlačte %s %sznak%s pre svojich používateľov."
 
 #: ../templates/hostapd/logging.php:4
 msgid "Enable this option to log <code>hostapd</code> activity."
@@ -2368,13 +2306,15 @@ msgstr "Zadajte platnú sieťovú masku"
 msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
 msgstr "Zápis CIDR (napr. 24 pre 255.255.255.0)"
 
-#: ../templates/hostapd/advanced.php:52 ../templates/networking/general.php:14
-msgid "Gateway"
-msgstr "Brána"
-
 #: ../templates/hostapd/advanced.php:61
 msgid "Your router's IP address"
 msgstr "IP adresa vášho smerovača"
+
+#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/general.php:149
+#: ../templates/dhcp/general.php:156 ../templates/dhcp/settings.php:150
+#: ../templates/dhcp/settings.php:157
+msgid "DNS Server"
+msgstr "Server DNS"
 
 #: ../templates/hostapd/advanced.php:74
 msgid "Usually same as gateway"
@@ -2440,38 +2380,10 @@ msgstr "Konfiguruje možnosť <code>max_num_sta</code> v hostapd. Predvolená a 
 msgid "Country Code"
 msgstr "Kód krajiny"
 
-#: ../templates/hostapd/security.php:2
-msgid "Security settings"
-msgstr "Nastavenia zabezpečenia"
-
-#: ../templates/hostapd/security.php:6
-msgid "Security type"
-msgstr "Typ zabezpečenia"
-
-#: ../templates/hostapd/security.php:10
-msgid "Encryption Type"
-msgstr "Typ šifrovania"
-
-#: ../templates/hostapd/security.php:14
-msgid "802.11w"
-msgstr "802.11w"
-
-#: ../templates/hostapd/security.php:15
-msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
-msgstr "Štandard 802.11w rozširuje silnú kryptografickú ochranu na vybraný súbor robustných rámcov správy vrátane rámcov Deauthentication, Disassociation a určitých kategórií rámcov Action Management. Súhrnne sa táto ochrana nazýva Management Frame Protection (MFP)."
-
-#: ../templates/hostapd/security.php:19
-msgid "Pre-shared key (PSK)"
-msgstr "Predbežne zdieľaný kľúč (PSK)"
-
-#: ../templates/hostapd/security.php:24
-msgid "Please provide a valid PSK."
-msgstr "Zadajte platný PSK."
-
-#: ../templates/hostapd/security.php:32
-#, php-format
-msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
-msgstr "Naskenujte tento QR kód priamo alebo vytlačte %s %sznak%s pre svojich používateľov."
+#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
+#: ../templates/dashboard.php:63
+msgid "SSID"
+msgstr "SSID"
 
 #: ../templates/hostapd/basic.php:14
 msgid "Please provide a valid SSID."
@@ -2490,297 +2402,135 @@ msgstr "Bezdrôtové štandardy, ktoré nie sú kompatibilné s vaším adaptér
 msgid "Based on the selected interface, 802.11%s is suggested."
 msgstr "Na základe vybraného rozhrania sa navrhuje 802.11%s."
 
-#: ../templates/openvpn/logging.php:4
-msgid "Enable this option to log <code>openvpn</code> activity."
-msgstr "Povoľte túto možnosť, aby ste zaznamenali aktivitu <code>openvpn</code>."
+#: ../templates/configure_client.php:12
+msgid "Disconnected"
+msgstr "Odpojené"
 
-#: ../templates/openvpn/logging.php:8
-msgid "Enable logging"
-msgstr "Povolenie protokolovania"
+#: ../templates/configure_client.php:24
+msgid "Rescan"
+msgstr "Vyskenujte stránku"
 
-#: ../templates/openvpn/configs.php:6
-msgid "Currently available OpenVPN client configurations are displayed below."
-msgstr "Aktuálne dostupné konfigurácie klientov OpenVPN sú zobrazené nižšie."
+#: ../templates/configure_client.php:34
+msgid "Set"
+msgstr "Nastavenie"
 
-#: ../templates/openvpn/configs.php:7
-msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
-msgstr "Aktivácia konfigurácie reštartuje službu <code>openvpn-client</code>."
+#: ../templates/configure_client.php:49
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Poznámka:</strong> Prístupové body WEP sa zobrazujú ako \"Open\". RaspAP v súčasnosti nepodporuje pripojenie k WEP"
 
-#: ../templates/openvpn/general.php:8 ../templates/provider/general.php:9
-#: ../templates/wg/general.php:8
-msgid "IPv4 Address"
-msgstr "Adresa IPv4"
+#: ../templates/configure_client.php:59
+msgid "Configuring WiFi Client"
+msgstr "Konfigurácia klienta WiFi"
 
-#: ../templates/openvpn/general.php:13
-msgid "Authentification Method"
-msgstr "Metóda autentifikácie"
+#: ../templates/configure_client.php:62
+msgid "Configuring Wifi Client Interface..."
+msgstr "Konfigurácia rozhrania klienta Wifi..."
 
-#: ../templates/openvpn/general.php:16
-msgid "Username and password"
-msgstr "Používateľské meno a heslo"
+#: ../templates/about/general.php:8
+msgid "RaspAP"
+msgstr "RaspAP"
 
-#: ../templates/openvpn/general.php:20
-msgid "Certificates"
-msgstr "Certifikáty"
+#: ../templates/about/general.php:11 ../templates/about.php:47
+msgid "Check for update"
+msgstr "Kontrola aktualizácie"
 
-#: ../templates/openvpn/general.php:26
-msgid "Enter username and password"
-msgstr "Zadajte používateľské meno a heslo"
-
-#: ../templates/openvpn/general.php:42
-msgid "Certificates in the configuration file"
-msgstr "Certifikáty v konfiguračnom súbore"
-
-#: ../templates/openvpn/general.php:44
-msgid "RaspAP supports certificates by including them in the configuration file."
-msgstr "RaspAP podporuje certifikáty tak, že ich zahrnie do konfiguračného súboru."
-
-#: ../templates/openvpn/general.php:47
-msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
-msgstr "Podpisový certifikát certifikačnej autority (CA) (napr. <code>ca.crt</code>): uzavretý v <code>&lt;ca> ... &lt;/ca></code> značky."
-
-#: ../templates/openvpn/general.php:48
-msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
-msgstr "Certifikát klienta (verejný kľúč) (napr. <code>client.crt</code>): uzavretý v <code>&lt;cert> ... &lt;/cert></code>."
-
-#: ../templates/openvpn/general.php:49
-msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
-msgstr "Súkromný kľúč klientskeho certifikátu (napr. <code>client.key</code>): uzavretý v <code>&lt;key> ... &lt;/key></code>."
-
-#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
-msgid "Configuration File"
-msgstr "Konfiguračný súbor"
-
-#: ../templates/openvpn/general.php:62
-msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Vyberte konfiguračný súbor OpenVPN (.ovpn)"
-
-#: ../templates/provider/status.php:3
+#: ../templates/about/general.php:20
 #, php-format
-msgid "%s status"
-msgstr "%s stav"
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP je spoločným dielom %1$s a %2$s s prispením našich %3$s a %4$s. Viac informácií o zapojení sa do projektu ako %5$s, %6$s alebo %7$s s okamžitým prístupom na %8$s , ktorý je k dispozícii na %9$s."
 
-#: ../templates/provider/status.php:5
-#, php-format
-msgid "Installed Linux CLI: <code>%s</code>"
-msgstr "Nainštalované CLI systému Linux: <code>%s</code>"
+#: ../templates/about/general.php:23
+msgid "developer community"
+msgstr "komunita vývojárov"
 
-#: ../templates/provider/status.php:6
-#, php-format
-msgid "Current <code>%s</code> connection status is displayed below."
-msgstr "Aktuálne <code>%s</code> stav pripojenia je zobrazený nižšie."
+#: ../templates/about/general.php:24
+msgid "language translators"
+msgstr "jazykoví prekladatelia"
 
-#: ../templates/provider/general.php:2
-#, php-format
-msgid "%s settings"
-msgstr "%s nastavenia"
+#: ../templates/about/general.php:25
+msgid "code contributor"
+msgstr "prispievateľ kódu"
 
-#: ../templates/provider/general.php:24
-msgid "Account details"
-msgstr "Podrobnosti o účte"
+#: ../templates/about/general.php:26
+msgid "translator"
+msgstr "prekladateľ"
 
-#: ../templates/provider/general.php:28
-msgid "My account"
-msgstr "Moje konto"
+#: ../templates/about/general.php:27
+msgid "financial sponsor"
+msgstr "finančný sponzor"
 
-#: ../templates/provider/general.php:36
-msgid "Server location"
-msgstr "Umiestnenie servera"
+#: ../templates/about/general.php:28
+msgid "exclusive features"
+msgstr "exkluzívne funkcie"
 
-#: ../templates/provider/general.php:38
-msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
-msgstr "Výberom možnosti <strong>Uložiť nastavenia</strong> sa pripojíte k vybranej krajine."
+#: ../templates/about/general.php:29 ../templates/about.php:22
+msgid "Insiders"
+msgstr "Insiders"
 
-#: ../templates/provider/general.php:41
-#, php-format
-msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
-msgstr "Výberom možnosti <strong>Pripojiť %s</strong> sa pripojíte k odporúčanému serveru."
+#: ../templates/admin/general.php:3
+msgid "Change password"
+msgstr "Zmena hesla"
 
-#: ../templates/provider/general.php:43
-msgid "Country"
-msgstr "Krajina"
+#: ../templates/admin/general.php:18 ../templates/admin/general.php:37
+#: ../templates/admin/login.php:15 ../templates/about.php:87
+msgid "Please provide a valid username."
+msgstr "Zadajte platné používateľské meno."
 
-#: ../templates/networking/devices.php:3
-msgid "Network devices"
-msgstr "Sieťové zariadenia"
+#: ../templates/admin/general.php:28
+msgid "Enable limited privilege user"
+msgstr "Povolenie používateľa s obmedzenými právami"
 
-#: ../templates/networking/devices.php:16
-msgid "Device"
-msgstr "Zariadenie"
+#: ../templates/admin/general.php:30
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "Táto možnosť umožňuje používateľovi, ktorý nie je administrátorom, prístup k rozhraniu správy RaspAP, ale má <strong>obmedzenú možnosť meniť existujúcu konfiguráciu</strong>. Tento používateľ sa stane aktívnym, keď sa aktuálny používateľ administrátor odhlási."
 
-#: ../templates/networking/devices.php:20
-msgid "USB vid/pid"
-msgstr "USB vid/pid"
+#: ../templates/admin/general.php:34
+msgid "Limited user login"
+msgstr "Obmedzené prihlásenie používateľa"
 
-#: ../templates/networking/devices.php:21
-msgid "Device type"
-msgstr "Typ zariadenia"
+#: ../templates/admin/general.php:43
+msgid "Limited user password"
+msgstr "Heslo obmedzeného používateľa"
 
-#: ../templates/networking/diagnostics.php:3
-msgid "Speedtest"
-msgstr "Speedtest"
+#: ../templates/admin/general.php:48
+msgid "Please enter a valid password."
+msgstr "Zadajte platné heslo."
 
-#: ../templates/networking/diagnostics.php:8
-msgid "Selecting a server"
-msgstr "Výber servera"
+#: ../templates/admin/login.php:2
+msgid "Submit"
+msgstr "Odoslať"
 
-#: ../templates/networking/diagnostics.php:12
-msgid "Privacy"
-msgstr "Ochrana osobných údajov"
+#: ../templates/admin/login.php:11
+msgid "Admin login"
+msgstr "Prihlásenie administrátora"
 
-#: ../templates/networking/diagnostics.php:16
-msgid "Server"
-msgstr "Server"
+#: ../templates/admin/login.php:26
+msgid "Please enter your password."
+msgstr "Zadajte svoje heslo."
 
-#: ../templates/networking/diagnostics.php:22
-msgid "Ping"
-msgstr "Ping"
+#: ../templates/admin/avatar.php:3
+msgid "Reset avatar"
+msgstr "Obnovenie avatara"
 
-#: ../templates/networking/diagnostics.php:24
-#: ../templates/networking/diagnostics.php:29
-msgid "ms"
-msgstr "ms"
+#: ../templates/admin/avatar.php:15
+msgid "Click or tap to upload a new user avatar."
+msgstr "Kliknutím alebo ťuknutím na položku nahráte nový avatar používateľa."
 
-#: ../templates/networking/diagnostics.php:27
-msgid "Jitter"
-msgstr "Jitter"
+#: ../templates/admin/avatar.php:16
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "Akceptované sú obrazové súbory typu <code>JPG, GIF alebo PNG</code>. Maximálna veľkosť súboru: 2 MB."
 
-#: ../templates/networking/diagnostics.php:37
-#: ../templates/networking/diagnostics.php:43
-msgid "Mbps"
-msgstr "Mbps"
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "Spustenie služby RestAPI"
 
-#: ../templates/networking/wlanrouting.php:5
-msgid "Restart WLAN routing"
-msgstr "Reštartovanie smerovania siete WLAN"
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "Zastavenie služby RestAPI"
 
-#: ../templates/networking/wlanrouting.php:6
-msgid "Stop WLAN routing"
-msgstr "Zastavenie smerovania WLAN"
-
-#: ../templates/networking/wlanrouting.php:8
-msgid "Start WLAN routing"
-msgstr "Spustenie smerovania WLAN"
-
-#: ../templates/networking/wlanrouting.php:17
-msgid "Wireless LAN routing"
-msgstr "Smerovanie bezdrôtovej siete LAN"
-
-#: ../templates/networking/wlanrouting.php:22
-msgid "routing"
-msgstr "smerovanie"
-
-#: ../templates/networking/wlanrouting.php:27
-msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
-msgstr "Táto možnosť konfiguruje RaspAP na <b>smerovanie sieťovej prevádzky z rozhrania bezdrôtového klienta (STA)</b> na iné dostupné rozhranie."
-
-#: ../templates/networking/wlanrouting.php:29
-msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
-msgstr "Po výbere výstupného rozhrania sa pridajú pravidlá <code>iptables</code> na smerovanie paketov pomocou prekladu sieťových adries (NAT). Často sa to robí na zdieľanie internetového pripojenia zo siete WLAN so zariadeniami na rozhraní <code>eth0</code>, <code>usb0</code> alebo predvídateľnom rozhraní <code>enx</code>."
-
-#: ../templates/networking/wlanrouting.php:34
-msgid "Wireless client interface"
-msgstr "Rozhranie bezdrôtového klienta"
-
-#: ../templates/networking/wlanrouting.php:42
-msgid "Output interface"
-msgstr "Výstupné rozhranie"
-
-#: ../templates/networking/wlanrouting.php:47
-msgid "Configure a static IP address and DHCP for output interface"
-msgstr "Konfigurácia statickej IP adresy a DHCP pre výstupné rozhranie"
-
-#: ../templates/networking/mobile.php:4
-msgid "Mobile data settings"
-msgstr "Nastavenia mobilných dát"
-
-#: ../templates/networking/mobile.php:8
-msgid "SIM card PIN number"
-msgstr "Číslo PIN karty SIM"
-
-#: ../templates/networking/mobile.php:11
-msgid "APN Settings"
-msgstr "Nastavenia APN"
-
-#: ../templates/networking/mobile.php:13
-msgid "Access Point Name (APN)"
-msgstr "Názov prístupového bodu (APN)"
-
-#: ../templates/networking/general.php:3
-msgid "Internet connection"
-msgstr "Pripojenie na internet"
-
-#: ../templates/networking/general.php:15
-msgid "Internet Access"
-msgstr "Prístup na internet"
-
-#: ../templates/networking/general.php:53
-msgid "Routing table"
-msgstr "Tabuľka smerovania"
-
-#: ../templates/networking/general.php:57
-msgid "raw output"
-msgstr "surový výstup"
-
-#: ../templates/networking/general.php:80
-msgid "Current settings"
-msgstr "Aktuálne nastavenia"
-
-#: ../templates/wireguard.php:21
-msgid "Stop WireGuard"
-msgstr "Zastaviť WireGuard"
-
-#: ../templates/wireguard.php:25
-msgid "Start WireGuard"
-msgstr "Spustenie programu WireGuard"
-
-#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
-msgid "Peer"
-msgstr "Peer"
-
-#: ../templates/wireguard.php:67
-msgid "Information provided by wireguard"
-msgstr "Informácie poskytnuté spoločnosťou wireguard"
-
-#: ../templates/wireguard.php:77
-msgid "Delete WireGuard configuration"
-msgstr "Odstránenie konfigurácie WireGuard"
-
-#: ../templates/wireguard.php:80
-msgid "Delete this configuration? This cannot be undone."
-msgstr "Vymazať túto konfiguráciu? Túto konfiguráciu nie je možné zrušiť."
-
-#: ../templates/wireguard.php:95
-msgid "Activate WireGuard configuration"
-msgstr "Aktivácia konfigurácie WireGuard"
-
-#: ../templates/wireguard.php:98
-msgid "Activate this configuration? This will restart the wg-quick service."
-msgstr "Aktivovať túto konfiguráciu? Tým sa reštartuje služba wg-quick."
-
-#: ../templates/dhcp.php:21
-msgid "Stop dnsmasq"
-msgstr "Zastaviť dnsmasq"
-
-#: ../templates/dhcp.php:24
-msgid "Restart dnsmasq"
-msgstr "Reštartovať dnsmasq"
-
-#: ../templates/dhcp.php:28
-msgid "Start dnsmasq"
-msgstr "Spustiť dnsmasq"
-
-#: ../templates/dhcp.php:51
-msgid "Server settings"
-msgstr "Nastavenia servera"
-
-#: ../templates/dhcp.php:53
-msgid "Static Leases"
-msgstr "Statický lízing"
-
-#: ../templates/dhcp.php:72
-msgid "Information provided by Dnsmasq"
-msgstr "Informácie, ktoré poskytol Dnsmasq"
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "Informácie poskytnuté restapi.service"
 
 #: ../templates/system.php:18
 msgid "Language"
@@ -2794,9 +2544,9 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: ../templates/system.php:23 ../templates/system/plugins.php:3
-msgid "Plugins"
-msgstr "Zásuvné moduly"
+#: ../templates/system.php:40 ../templates/dashboard.php:164
+msgid "Information provided by raspap.sysinfo"
+msgstr "Informácie poskytnuté raspap.sysinfo"
 
 #: ../templates/system.php:50
 msgid "System reset"
@@ -2826,10 +2576,6 @@ msgstr ""
 msgid "Reboot now? The system will be temporarily unavailable."
 msgstr ""
 
-#: ../templates/system.php:75 ../templates/system/basic.php:23
-msgid "Reboot"
-msgstr "Reštart"
-
 #: ../templates/system.php:86
 msgid "Reconnecting"
 msgstr ""
@@ -2850,21 +2596,9 @@ msgstr ""
 msgid "Shutdown now? The system will be unavailable."
 msgstr ""
 
-#: ../templates/system.php:110 ../templates/system/basic.php:27
-msgid "Shutdown"
-msgstr "Vypnutie"
-
-#: ../templates/system.php:121 ../templates/system/tools.php:18
-msgid "Generate debug log"
-msgstr "Generovanie denníka ladenia"
-
 #: ../templates/system.php:124
 msgid "Debug log generation in progress..."
 msgstr ""
-
-#: ../templates/system.php:138 ../templates/system/tools.php:32
-msgid "Inspect adapters"
-msgstr "Kontrola adaptérov"
 
 #: ../templates/system.php:157
 msgid "Adapter health check"
@@ -2930,254 +2664,497 @@ msgstr ""
 msgid "Plugin installation in progress..."
 msgstr ""
 
-#: ../templates/system/plugins.php:8
-msgid "The following user plugins are available to extend RaspAP's functionality."
-msgstr "Na rozšírenie funkčnosti RaspAP sú k dispozícii nasledujúce používateľské zásuvné moduly."
+#: ../templates/system.php:271 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "OK"
 
-#: ../templates/system/plugins.php:12
-msgid "Choose <strong>Details</strong> for more information and to install a plugin."
-msgstr "Ak chcete získať ďalšie informácie a nainštalovať zásuvný modul, vyberte položku <strong>Podrobnosti</strong>."
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "Reštartovanie blokovania reklám"
 
-#: ../templates/system/theme.php:3
-msgid "Theme settings"
-msgstr "Nastavenia témy"
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "Spustenie blokovania reklám"
 
-#: ../templates/system/theme.php:8
-msgid "Select a theme"
-msgstr "Výber témy"
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "Informácie poskytnuté adblock"
 
-#: ../templates/system/theme.php:12
-msgid "Color"
-msgstr "Farba"
+#: ../templates/login.php:13
+msgid "Administrator login"
+msgstr "Prihlásenie správcu"
 
-#: ../templates/system/theme.php:18
-msgid "Dark Mode"
-msgstr "Tmavý režim"
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "Zabudnuté heslo"
 
-#: ../templates/system/theme.php:25
-msgid "Use the dark mode from the current theme"
-msgstr "Použitie tmavého režimu z aktuálnej témy"
-
-#: ../templates/system/theme.php:28
-msgid "System Theme"
-msgstr "Téma systému"
-
-#: ../templates/system/theme.php:35
-msgid "Uses the color mode of your system"
-msgstr "Používa farebný režim vášho systému"
-
-#: ../templates/system/theme.php:40
-msgid "Alert messages"
-msgstr "Výstražné správy"
-
-#: ../templates/system/theme.php:44
-msgid "Automatically close alerts after a specified timeout"
-msgstr "Automatické zatvorenie upozornení po uplynutí zadaného časového limitu"
-
-#: ../templates/system/theme.php:50
-msgid "Alert close timeout (milliseconds)"
-msgstr "Časový limit ukončenia upozornenia (milisekundy)"
-
-#: ../templates/system/advanced.php:9
-msgid "Web server port"
-msgstr "Port webového servera"
-
-#: ../templates/system/advanced.php:15
-msgid "Web server bind address"
-msgstr "Adresa väzby webového servera"
-
-#: ../templates/system/advanced.php:21
-msgid "Diagnostic log size limit (KB)"
-msgstr "Limit veľkosti diagnostického protokolu (KB)"
-
-#: ../templates/system/advanced.php:28
-msgid "SSL Certificate (HTTPS)"
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
 msgstr ""
 
-#: ../templates/system/advanced.php:30
-#, php-format
-msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+#: ../templates/openvpn.php:20
+msgid "Start OpenVPN"
+msgstr "Spustenie OpenVPN"
+
+#: ../templates/openvpn.php:24
+msgid "Stop OpenVPN"
+msgstr "Zastavenie OpenVPN"
+
+#: ../templates/openvpn.php:65
+msgid "Information provided by openvpn"
+msgstr "Informácie poskytnuté openvpn"
+
+#: ../templates/openvpn.php:75
+msgid "Delete OpenVPN client"
+msgstr "Odstránenie klienta OpenVPN"
+
+#: ../templates/openvpn.php:78
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Odstrániť konfiguráciu klienta? Toto sa nedá vrátiť späť."
+
+#: ../templates/openvpn.php:93
+msgid "Activate OpenVPN client"
+msgstr "Aktivácia klienta OpenVPN"
+
+#: ../templates/openvpn.php:96
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Aktivácia konfigurácie klienta? Tým sa reštartuje služba openvpn-client."
+
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
 msgstr ""
 
-#: ../templates/system/advanced.php:31
-msgid "Download rootCA.pem"
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "Opakovač"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "Pripútanie"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "Cellular"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
 msgstr ""
 
-#: ../templates/system/advanced.php:33
-#, php-format
-msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+#: ../templates/dashboard.php:49
+msgid "Local"
 msgstr ""
 
-#: ../templates/system/advanced.php:40
-msgid "Restart lighttpd"
-msgstr "Reštart lighttpd"
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "Sieťová maska"
 
-#: ../templates/system/basic.php:10
-msgid "System Information"
-msgstr "Systémové informácie"
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "Adresa MAC"
 
-#: ../templates/system/basic.php:36
-msgid "Hostname"
-msgstr "Názov hostiteľa"
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "AP"
 
-#: ../templates/system/basic.php:40
-msgid "Pi Revision"
-msgstr "Revízia pí"
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "Premostenie"
 
-#: ../templates/system/basic.php:44
-msgid "OS"
-msgstr "OS"
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "Adblock"
 
-#: ../templates/system/basic.php:48
-msgid "Kernel"
-msgstr "Jadro"
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "VPN"
 
-#: ../templates/system/basic.php:52
-msgid "Uptime"
-msgstr "Čas prevádzky"
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "Firewall"
 
-#: ../templates/system/basic.php:56
-msgid "System Time"
-msgstr "Systémový čas"
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
 
-#: ../templates/system/basic.php:65
-msgid "Memory Used"
-msgstr "Použitá pamäť"
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2.4G"
 
-#: ../templates/system/basic.php:77
-msgid "Storage Used"
-msgstr "Použité úložisko"
+#: ../templates/dhcp/general.php:2 ../templates/dhcp/settings.php:2
+msgid "DHCP server settings"
+msgstr ""
 
-#: ../templates/system/basic.php:89
-msgid "CPU Load"
-msgstr "Zaťaženie CPU"
+#: ../templates/dhcp/general.php:10 ../templates/dhcp/settings.php:10
+msgid "Adapter IP Address Settings"
+msgstr ""
 
-#: ../templates/system/basic.php:101
-msgid "CPU Temp"
-msgstr "Teplota CPU"
+#: ../templates/dhcp/general.php:28 ../templates/dhcp/settings.php:28
+msgid "Enable fallback to static option"
+msgstr ""
 
-#: ../templates/system/language.php:3
-msgid "Language settings"
-msgstr "Nastavenia jazyka"
+#: ../templates/dhcp/general.php:31 ../templates/dhcp/settings.php:31
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr ""
 
-#: ../templates/system/language.php:6
-msgid "Select a language"
-msgstr "Výber jazyka"
+#: ../templates/dhcp/general.php:36 ../templates/dhcp/settings.php:36
+msgid "Static IP options"
+msgstr ""
 
-#: ../templates/system/tools.php:3
-msgid "System tools"
-msgstr "Systémové nástroje"
+#: ../templates/dhcp/general.php:42 ../templates/dhcp/settings.php:42
+msgid "Please provide a valid IP Address."
+msgstr ""
 
-#: ../templates/system/tools.php:10
+#: ../templates/dhcp/general.php:49 ../templates/dhcp/settings.php:49
+msgid "Subnet Mask"
+msgstr ""
+
+#: ../templates/dhcp/general.php:52 ../templates/dhcp/settings.php:52
+msgid "Please provide a valid Subnet mask."
+msgstr ""
+
+#: ../templates/dhcp/general.php:59 ../templates/dhcp/settings.php:59
+msgid "Default gateway"
+msgstr ""
+
+#: ../templates/dhcp/general.php:62 ../templates/dhcp/settings.php:62
+msgid "Please provide a valid Default gateway."
+msgstr ""
+
+#: ../templates/dhcp/general.php:71 ../templates/dhcp/settings.php:71
+msgid "Install a default route for this interface"
+msgstr ""
+
+#: ../templates/dhcp/general.php:74
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr ""
+
+#: ../templates/dhcp/general.php:83 ../templates/dhcp/settings.php:84
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr ""
+
+#: ../templates/dhcp/general.php:84 ../templates/dhcp/settings.php:85
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr ""
+
+#: ../templates/dhcp/general.php:87
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr ""
+
+#: ../templates/dhcp/general.php:92 ../templates/dhcp/settings.php:93
+msgid "DHCP options"
+msgstr ""
+
+#: ../templates/dhcp/general.php:98 ../templates/dhcp/settings.php:99
+msgid "Enable DHCP for this interface"
+msgstr ""
+
+#: ../templates/dhcp/general.php:101 ../templates/dhcp/settings.php:102
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr ""
+
+#: ../templates/dhcp/general.php:109 ../templates/dhcp/settings.php:110
+msgid "Starting IP Address"
+msgstr ""
+
+#: ../templates/dhcp/general.php:112 ../templates/dhcp/settings.php:113
+msgid "Please provide a valid Starting IP Address."
+msgstr ""
+
+#: ../templates/dhcp/general.php:118 ../templates/dhcp/settings.php:119
+msgid "Ending IP Address"
+msgstr ""
+
+#: ../templates/dhcp/general.php:121 ../templates/dhcp/settings.php:122
+msgid "Please provide a valid Ending IP Address."
+msgstr ""
+
+#: ../templates/dhcp/general.php:127 ../templates/dhcp/settings.php:128
+msgid "Lease Time"
+msgstr ""
+
+#: ../templates/dhcp/general.php:130 ../templates/dhcp/settings.php:131
+msgid "Please provide a valid Lease Time."
+msgstr ""
+
+#: ../templates/dhcp/general.php:134 ../templates/dhcp/settings.php:135
+msgid "Interval"
+msgstr ""
+
+#: ../templates/dhcp/general.php:136 ../templates/dhcp/settings.php:137
+msgid "Minute(s)"
+msgstr ""
+
+#: ../templates/dhcp/general.php:137 ../templates/dhcp/settings.php:138
+msgid "Hour(s)"
+msgstr ""
+
+#: ../templates/dhcp/general.php:138 ../templates/dhcp/settings.php:139
+msgid "Day(s)"
+msgstr ""
+
+#: ../templates/dhcp/general.php:139 ../templates/dhcp/settings.php:140
+msgid "Infinite"
+msgstr ""
+
+#: ../templates/dhcp/general.php:142 ../templates/dhcp/settings.php:143
+msgid "Please provide a valid Interval."
+msgstr ""
+
+#: ../templates/dhcp/general.php:163 ../templates/dhcp/summary.php:25
+#: ../templates/dhcp/settings.php:164
+msgid "Metric"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr ""
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr ""
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr ""
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
+msgstr ""
+
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr ""
+
+#: ../templates/dhcp/logging.php:4
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr ""
+
+#: ../templates/dhcp/logging.php:8
+msgid "Log DHCP requests"
+msgstr ""
+
+#: ../templates/dhcp/logging.php:12
+msgid "Log DNS queries"
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:3
+msgid "Advanced Settings"
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:6
+msgid "Upstream DNS servers"
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:11
+msgid "Only ever query DNS servers configured below"
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:14
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:15
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:29
+msgid "Add upstream DNS server"
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:31
 #, php-format
-msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
-msgstr "Ak chcete vygenerovať <a href=\"%s\" target=\"_blank\">protokol ladenia</a> systému, kliknite alebo ťuknite na tlačidlo nižšie."
+msgid "e.g. %s"
+msgstr ""
 
-#: ../templates/system/tools.php:13
-msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
-msgstr "Informácie ladiaceho protokolu obsahujú verziu RaspAP, aktuálny stav a konfiguráciu služieb súvisiacich s AP, nainštalované systémové balíky, verziu jadra Linuxu a podrobnosti o sieti. Neobsahujú žiadne heslá ani iné citlivé údaje."
+#: ../templates/dhcp/advanced.php:36
+msgid "Format: "
+msgstr ""
 
-#: ../templates/system/tools.php:24
-#, php-format
-msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "Ak chcete <a href=\"%s\" target=\"_blank\">skontrolovať adaptéry</a> pripojené k tomuto zariadeniu, kliknite alebo ťuknite na tlačidlo nižšie."
+#: ../templates/dhcp/advanced.php:41
+msgid "Choose a hosted server"
+msgstr ""
 
-#: ../templates/system/tools.php:27
-msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
-msgstr "Nástroj na kontrolu adaptérov vráti podrobnosti o externých zariadeniach WLAN vrátane ovládačov, podporovaných režimov atď."
+#: ../templates/dhcp/settings.php:72
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr ""
 
-#: ../templates/system/tools.php:38
-#, php-format
-msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
-msgstr "Ak chcete obnoviť <a href=\"%s\" target=\"_blank\">pôvodnú konfiguráciu</a> RaspAP, kliknite alebo ťuknite na tlačidlo nižšie."
+#: ../templates/dhcp/settings.php:75
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
 
-#: ../templates/system/tools.php:40
-msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
-msgstr "Obnoví všetky nastavenia služieb prístupového bodu (AP) na ich predvolené hodnoty. Toto sa vzťahuje na hostapd, dhcpcd a dnsmasq."
+#: ../templates/dhcp/settings.php:88
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
 
-#: ../templates/system/tools.php:42
-msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
-msgstr "Vlastné súbory pre voliteľné komponenty, ako sú napríklad Ad Blocking, WireGuard alebo OpenVPN, zostanú v systéme."
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "Príspevok na"
 
-#: ../templates/system/tools.php:47
-msgid "Perform reset"
-msgstr "Vykonajte resetovanie"
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "Prebieha kontrola nového vydania..."
 
-#: ../templates/hostapd.php:20
-msgid "Start hotspot"
-msgstr "Spustenie hotspotu"
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "K dispozícii je nová verzia: Verzia"
 
-#: ../templates/hostapd.php:20
-msgid "Starting hotspot"
-msgstr "Spustenie hotspotu"
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "Nainštalovaná verzia je najnovšia verzia."
 
-#: ../templates/hostapd.php:24
-msgid "Stop hotspot"
-msgstr "Zastavenie hotspotu"
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "Nainštalovať túto aktualizáciu teraz?"
 
-#: ../templates/hostapd.php:27
-msgid "Restart hotspot"
-msgstr "Reštartovanie hotspotu"
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "Overovanie GitHub"
 
-#: ../templates/hostapd.php:27
-msgid "Restarting hotspot"
-msgstr "Reštartovanie hotspotu"
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Aktualizácia Insiderov vyžaduje overenie GitHub."
 
-#: ../templates/hostapd.php:70
-msgid "Information provided by hostapd"
-msgstr "Informácie poskytnuté hostapd"
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Vaše prihlasovacie údaje budú odoslané do služby GitHub bezpečne pomocou protokolu SSL. Buďte však opatrní, ak sa vaša inštalácia RaspAP nachádza v sieti WLAN zdieľanej nedôveryhodnými používateľmi."
 
-#: ../templates/hostapd.php:84
-msgid "Executing RaspAP service start"
-msgstr "Spustenie služby RaspAP"
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "Osobný prístupový token"
 
-#: ../templates/admin/login.php:2
-msgid "Submit"
-msgstr "Odoslať"
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "Uveďte platný token."
 
-#: ../templates/admin/login.php:11
-msgid "Admin login"
-msgstr "Prihlásenie administrátora"
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "Vykonajte aktualizáciu"
 
-#: ../templates/admin/login.php:26
-msgid "Please enter your password."
-msgstr "Zadajte svoje heslo."
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "Prebieha aktualizácia"
 
-#: ../templates/admin/avatar.php:3
-msgid "Reset avatar"
-msgstr "Obnovenie avatara"
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "Aplikácia sa aktualizuje..."
 
-#: ../templates/admin/avatar.php:15
-msgid "Click or tap to upload a new user avatar."
-msgstr "Kliknutím alebo ťuknutím na položku nahráte nový avatar používateľa."
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "Konfigurácia aktualizácie"
 
-#: ../templates/admin/avatar.php:16
-msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
-msgstr "Akceptované sú obrazové súbory typu <code>JPG, GIF alebo PNG</code>. Maximálna veľkosť súboru: 2 MB."
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "Aktualizácia zdrojov"
 
-#: ../templates/admin/general.php:3
-msgid "Change password"
-msgstr "Zmena hesla"
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "Inštalácia aktualizácií balíkov"
 
-#: ../templates/admin/general.php:28
-msgid "Enable limited privilege user"
-msgstr "Povolenie používateľa s obmedzenými právami"
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "Preberanie najnovších súborov"
 
-#: ../templates/admin/general.php:30
-msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
-msgstr "Táto možnosť umožňuje používateľovi, ktorý nie je administrátorom, prístup k rozhraniu správy RaspAP, ale má <strong>obmedzenú možnosť meniť existujúcu konfiguráciu</strong>. Tento používateľ sa stane aktívnym, keď sa aktuálny používateľ administrátor odhlási."
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "Inštalácia aplikácie"
 
-#: ../templates/admin/general.php:34
-msgid "Limited user login"
-msgstr "Obmedzené prihlásenie používateľa"
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "Aktualizácia dokončená"
 
-#: ../templates/admin/general.php:43
-msgid "Limited user password"
-msgstr "Heslo obmedzeného používateľa"
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Vyskytla sa chyba. Skontrolujte protokol na adrese <code>/tmp/raspap_install.log</code>"
 
-#: ../templates/admin/general.php:48
-msgid "Please enter a valid password."
-msgstr "Zadajte platné heslo."
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "Úspech. Obnovte túto stránku, aby ste potvrdili novú verziu."
+
+#: ../templates/exception.php:6 ../templates/exception.php:17
+msgid "RaspAP Exception"
+msgstr "Výnimka RaspAP"
+
+#: ../templates/exception.php:20
+msgid "An exception occurred"
+msgstr ""
 
 #: ../templates/wg/peers.php:10
 msgid "Enable peer"
@@ -3217,18 +3194,6 @@ msgstr ""
 
 #: ../templates/wg/peers.php:71
 msgid "or download the <code>client.conf</code> file to your device."
-msgstr ""
-
-#: ../templates/wg/logging.php:6
-msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
-msgstr ""
-
-#: ../templates/wg/configs.php:6
-msgid "Currently available WireGuard file configurations are displayed below."
-msgstr ""
-
-#: ../templates/wg/configs.php:7
-msgid "Activating a configuration will restart the <code>wg-quick</code> service."
 msgstr ""
 
 #: ../templates/wg/general.php:5
@@ -3303,25 +3268,57 @@ msgstr ""
 msgid "Local public key"
 msgstr ""
 
-#: ../templates/networking.php:22
-msgid "Devices"
-msgstr "Zariadenia"
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr ""
 
-#: ../templates/networking.php:23
-msgid "Mobile Data"
-msgstr "Mobilné údaje"
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr ""
 
-#: ../templates/networking.php:24
-msgid "WLAN Routing"
-msgstr "Smerovanie WLAN"
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr ""
 
-#: ../templates/networking.php:25
-msgid "Diagnostics"
-msgstr "Diagnostika"
+#: ../ajax/networking/get_nl80211_band.php:37
+#, php-format
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr ""
 
-#: ../templates/networking.php:41
-msgid "Information provided by /sys/class/net"
-msgstr "Informácie poskytnuté /sys/class/net"
+#: ../ajax/networking/get_nl80211_band.php:40
+#, php-format
+msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
+msgstr ""
+
+#: ../ajax/networking/get_nl80211_band.php:43
+#, php-format
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr ""
+
+#: ../ajax/networking/get_nl80211_band.php:46
+#, php-format
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr ""
+
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "Tlačiteľná značka Wi-Fi"
+
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Pripojenie Wi-Fi"
+
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Ak sa chcete pripojiť pomocou telefónu alebo tabletu, naskenujte vyššie uvedený kód QR pomocou aplikácie fotoaparátu."
+
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "Pre ostatné zariadenia použite prihlasovacie údaje uvedené nižšie."
+
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "Sieť"
 
 #~ msgid "Firewall is now enabled"
 #~ msgstr "Brána firewall je teraz povolená"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-05-30 19:59+0000\n"
+"POT-Creation-Date: 2026-06-21 19:23+0000\n"
 "PO-Revision-Date: 2026-04-22 02:22\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
@@ -17,220 +17,77 @@ msgstr ""
 "X-Crowdin-File: /master/locale/messages.pot\n"
 "X-Crowdin-File-ID: 12\n"
 
-#: ../ajax/networking/get_nl80211_band.php:37
-#, php-format
-msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
-msgstr "Giao diện đã chọn (%s) chỉ hỗ trợ băng tần không dây 2,4 GHz."
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "Đã cài đặt"
 
-#: ../ajax/networking/get_nl80211_band.php:40
-#, php-format
-msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
-msgstr "Giao diện đã chọn (%s) chỉ hỗ trợ băng tần không dây 5 GHz."
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "Chi tiết"
 
-#: ../ajax/networking/get_nl80211_band.php:43
-#, php-format
-msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
-msgstr "Thiết bị được chọn (%s) hỗ trợ cả hai dải tần số không dây 2,4 GHz và 5 GHz."
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
+msgid "Dashboard"
+msgstr "Bảng điều khiển"
 
-#: ../ajax/networking/get_nl80211_band.php:46
-#, php-format
-msgid "The selected interface (%s) does not support wireless mode operation."
-msgstr "Giao diện đã chọn (%s) không hỗ trợ chế độ hoạt động không dây."
-
-#: ../includes/dashboard.php:72
-#, php-format
-msgid "%d WLAN %s"
-msgstr "%d WLAN %s"
-
-#: ../includes/dashboard.php:78
-#, php-format
-msgid "%d LAN %s"
-msgstr "%d Mạng LAN %s"
-
-#: ../includes/functions.php:1001
-#: ../plugins-available/Captive/templates/main.php:51
-#: ../plugins-available/Tailscale/templates/main.php:71
-#: ../templates/restapi.php:47 ../templates/provider.php:36
-#: ../templates/wifi_stations/network.php:33
-msgid "Status"
-msgstr "Trạng thái"
-
-#: ../includes/functions.php:1003 ../src/RaspAP/UI/Sidebar.php:20
+#: ../src/RaspAP/UI/Sidebar.php:20 ../includes/functions.php:1003
 #: ../templates/hostapd.php:13
 msgid "Hotspot"
 msgstr "Điểm phát sóng"
 
-#: ../includes/functions.php:1006
-msgid "Mem Use"
-msgstr "Dung lượng bộ nhớ"
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
+msgid "DHCP Server"
+msgstr "Máy chủ DHCP"
 
-#: ../includes/functions.php:1009
-msgid "CPU"
-msgstr "Bộ xử lý"
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
+msgid "Ad Blocking"
+msgstr "Chặn quảng cáo"
 
-#: ../includes/restapi.php:59
-#, php-format
-msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
-msgstr "Bạn có thể truy cập tài liệu về RestAPI <a href=\"%s\" target=\"_blank\">tại đây </a>: <a href=\" %s \" target=\"_blank\"> %s</a>"
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
+#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
+msgid "Networking"
+msgstr "Kết nối mạng"
 
-#: ../includes/footer.php:6
-#, php-format
-msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
-msgstr "Được tạo bởi <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "Thiết bị kết nối WiFi"
 
-#: ../includes/footer.php:6
-msgid "RaspAP Team"
-msgstr "Nhóm RaspAP"
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
+msgid "OpenVPN"
+msgstr "OpenVPN"
 
-#: ../includes/footer.php:9
-msgid "Thanks for being an Insider"
-msgstr "Cảm ơn bạn đã là thành viên Insider"
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "WireGuard"
 
-#: ../includes/footer.php:17
-msgid "Session Expired"
-msgstr "Phiên làm việc đã hết hạn"
+#: ../src/RaspAP/UI/Sidebar.php:44
+msgid "Data usage"
+msgstr "Lượng dữ liệu sử dụng"
 
-#: ../includes/footer.php:20
-msgid "Your session has expired. Please login to continue."
-msgstr "Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập để tiếp tục."
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
+msgid "RestAPI"
+msgstr "RestAPI"
 
-#: ../includes/footer.php:23 ../templates/admin.php:18
-#: ../templates/login.php:30
-msgid "Login"
-msgstr "Đăng nhập"
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
+#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
+msgid "System"
+msgstr "Hệ thống"
 
-#: ../includes/adblock.php:31
-msgid "Invalid custom IP address found on line "
-msgstr "Phát hiện địa chỉ IP tùy chỉnh không hợp lệ ở dòng "
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
+msgid "About RaspAP"
+msgstr "Giới thiệu về RaspAP"
 
-#: ../includes/adblock.php:35
-msgid "Invalid custom host found on line "
-msgstr "Phát hiện máy chủ tùy chỉnh không hợp lệ ở dòng "
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+msgid "No MAC Address Found"
+msgstr "Không tìm thấy địa chỉ MAC"
 
-#: ../includes/provider.php:65
-#, php-format
-msgid "Expected %s binary not found at: %s"
-msgstr "Không tìm thấy tệp nhị phân %s tại địa chỉ: %s"
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "Không tìm thấy địa chỉ IPv6"
 
-#: ../includes/provider.php:66
-#, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
-msgstr "Hãy tham khảo <a href=\"%s\" target=\"_blank\">hướng dẫn cài đặt</a> cho giao diện dòng lệnh (CLI) của %strên hệ điều hành Linux."
-
-#: ../includes/provider.php:70
-#, php-format
-msgid "Unable to execute %s binary found at: %s"
-msgstr "Không thể thực thi tệp nhị phân %s được tìm thấy tại: %s"
-
-#: ../includes/provider.php:71
-msgid "Check that binary is executable and permissions exist in raspap.sudoers"
-msgstr "Kiểm tra xem tệp nhị phân có thể thực thi được không và xem có quyền truy cập trong tệp raspap.sudoers hay không"
-
-#: ../includes/provider.php:119
-#, php-format
-msgid "Attempting to connect to %s"
-msgstr "Đang cố gắng kết nối với %s"
-
-#: ../includes/provider.php:318
-msgid "Select a country..."
-msgstr "Chọn quốc gia..."
-
-#: ../includes/provider.php:387
-#, php-format
-msgid "Account information not available from %s's Linux CLI."
-msgstr "Thông tin tài khoản không thể truy cập được từ giao diện dòng lệnh Linux của %s."
-
-#: ../includes/wifi_functions.php:281
-#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:365
-msgid "Signal strength"
-msgstr "Cường độ tín hiệu"
-
-#: ../includes/system.php:67
-#, php-format
-msgid "Changing log limit size to %s KB"
-msgstr "Thay đổi giới hạn kích thước nhật ký thành %s KB"
-
-#: ../includes/system.php:86
-#, php-format
-msgid "Changing alert close timeout to %s ms"
-msgstr "Thay đổi thời gian chờ đóng cảnh báo thành %s ms"
-
-#: ../includes/networking.php:51 ../includes/networking.php:54
-msgid "not configured"
-msgstr "chưa được cấu hình"
-
-#: ../includes/networking.php:137
-#, php-format
-msgid "Attempting to enable routing between %s and %s interfaces"
-msgstr "Đang cố gắng kích hoạt định tuyến giữa các giao diện %s và %s"
-
-#: ../includes/networking.php:147
-#, php-format
-msgid "Attempting to restart routing between %s and %s interfaces"
-msgstr "Đang cố gắng khởi động lại quá trình định tuyến giữa các giao diện %s và %s"
-
-#: ../includes/networking.php:151
-#, php-format
-msgid "Attempting to disable routing between %s and %s interfaces"
-msgstr "Đang cố gắng vô hiệu hóa định tuyến giữa các giao diện %s và %s"
-
-#: ../includes/networking.php:252
-#, php-format
-msgid "DHCP configuration for %s enabled"
-msgstr "Đã bật cấu hình DHCP cho %s"
-
-#: ../includes/networking.php:259
-#, php-format
-msgid "DHCP configuration for %s added"
-msgstr "Đã thêm cấu hình DHCP cho %s"
-
-#: ../includes/networking.php:265
-#, php-format
-msgid "DHCP configuration for %s updated"
-msgstr "Cấu hình DHCP cho %s đã được cập nhật"
-
-#: ../includes/networking.php:271
-#, php-format
-msgid "No default DHCP configuration exists for the %s interface"
-msgstr "Không có cấu hình DHCP mặc định nào cho giao diện %s"
-
-#: ../includes/networking.php:272
-#, php-format
-msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
-msgstr "Cấu hình địa chỉ IP tĩnh và DHCP cho giao diện này trong cài đặt Máy chủ DHCP"
-
-#: ../includes/networking.php:294
-#, php-format
-msgid "Dnsmasq  configuration for %s added"
-msgstr "Đã thêm cấu hình Dnsmasq cho %s"
-
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
-msgid "Invalid MAC address: "
-msgstr "Địa chỉ MAC không hợp lệ: "
-
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
-msgid "Duplicate IP address entered: "
-msgstr "Đã nhập địa chỉ IP trùng lặp: "
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
-msgid "Verbose debugging"
-msgstr "Ghi nhật ký gỡ lỗi chi tiết"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
-msgid "Debugging"
-msgstr "Gỡ lỗi"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
-msgid "Informational"
-msgstr "Thông tin"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
-msgid "Notification"
-msgstr "Thông báo"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
-msgid "Warning"
-msgstr "Cảnh báo"
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "khách hàng"
 
 #: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
 #, php-format
@@ -287,6 +144,39 @@ msgstr "Giá trị đơn vị đo lường không hợp lệ, không phải là 
 msgid "DHCP configuration for %s updated."
 msgstr "Đã cập nhật cấu hình DHCP cho %s."
 
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "Địa chỉ MAC không hợp lệ: "
+
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "Đã nhập địa chỉ IP trùng lặp: "
+
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
+#: ../includes/wifi_functions.php:281
+msgid "Signal strength"
+msgstr "Cường độ tín hiệu"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "Ghi nhật ký gỡ lỗi chi tiết"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "Gỡ lỗi"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "Thông tin"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "Thông báo"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "Cảnh báo"
+
 #: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
 msgid "WPA and WPA2"
 msgstr "WPA và WPA2"
@@ -311,132 +201,151 @@ msgstr "Đã bật (đối với các ứng dụng khách được hỗ trợ)"
 msgid "Required (for supported clients)"
 msgstr "Bắt buộc (đối với các khách hàng được hỗ trợ)"
 
-#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
-msgid "Dashboard"
-msgstr "Bảng điều khiển"
+#: ../plugins-available/Captive/Captive.php:70
+#: ../plugins-available/Captive/Captive.php:130
+msgid "Captive portal"
+msgstr "Cổng thông tin bắt buộc"
 
-#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
-msgid "DHCP Server"
-msgstr "Máy chủ DHCP"
+#: ../plugins-available/Captive/Captive.php:95
+#, php-format
+msgid "Attempting to start %s"
+msgstr "Đang cố gắng truy cập %s"
 
-#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
-msgid "Ad Blocking"
-msgstr "Chặn quảng cáo"
+#: ../plugins-available/Captive/Captive.php:99
+#, php-format
+msgid "Attempting to stop %s"
+msgstr "Cố gắng chặn %s"
 
-#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/dashboard.php:24
-#: ../templates/dashboard.php:25 ../templates/networking.php:8
-msgid "Networking"
-msgstr "Kết nối mạng"
+#: ../plugins-available/Captive/Captive.php:106
+#, php-format
+msgid "Client %s deauthenticated"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
-msgid "WiFi client"
-msgstr "Thiết bị kết nối WiFi"
+#: ../plugins-available/Captive/Captive.php:108
+#, php-format
+msgid "Failed to deauthenticate client %s"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
-msgid "OpenVPN"
-msgstr "OpenVPN"
+#: ../plugins-available/Captive/Captive.php:111
+msgid "Invalid client MAC address"
+msgstr ""
 
-#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
-msgid "WireGuard"
-msgstr "WireGuard"
+#: ../plugins-available/Captive/Captive.php:131
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "Một plugin cổng đăng nhập bắt buộc triển khai nodogsplash"
 
-#: ../src/RaspAP/UI/Sidebar.php:44
-msgid "Data usage"
-msgstr "Lượng dữ liệu sử dụng"
+#: ../plugins-available/Captive/Captive.php:132
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Wireshark/Wireshark.php:185
+msgid "Bill Z"
+msgstr "Bill Z"
 
-#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
-msgid "RestAPI"
-msgstr "RestAPI"
+#: ../plugins-available/Captive/Captive.php:538
+msgid "Portal settings saved successfully"
+msgstr "Cài đặt cổng thông tin đã được lưu thành công"
 
-#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/dashboard.php:44
-#: ../templates/dashboard.php:45 ../templates/system.php:7
-msgid "System"
-msgstr "Hệ thống"
+#: ../plugins-available/Captive/Captive.php:541
+#: ../plugins-available/Wireshark/Wireshark.php:248
+msgid "Error saving settings: "
+msgstr "Lỗi khi lưu cài đặt: "
 
-#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
-msgid "About RaspAP"
-msgstr "Giới thiệu về RaspAP"
+#: ../plugins-available/Captive/Captive.php:582
+msgid "Failed to execute ndsctl."
+msgstr "Không thể thực thi ndsctl."
 
-#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
-msgid "No MAC Address Found"
-msgstr "Không tìm thấy địa chỉ MAC"
+#: ../plugins-available/Captive/templates/main.php:3
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Wireshark/templates/main.php:3 ../templates/dhcp.php:3
+#: ../templates/wireguard.php:3 ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29 ../templates/hostapd.php:3
+#: ../templates/system/advanced.php:39 ../templates/system/theme.php:56
+#: ../templates/system/language.php:11 ../templates/provider.php:3
+#: ../templates/admin/general.php:2 ../templates/restapi.php:3
+#: ../templates/adblock.php:3 ../templates/openvpn.php:3
+msgid "Save settings"
+msgstr "Lưu cài đặt"
 
-#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
-msgid "No IPv6 Address Found"
-msgstr "Không tìm thấy địa chỉ IPv6"
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "Trang chủ"
 
-#: ../src/RaspAP/UI/Dashboard.php:232
-msgid "client"
-msgid_plural "clients"
-msgstr[0] "khách hàng"
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "Trang chủ"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:594
-msgid "Installed"
-msgstr "Đã cài đặt"
+#: ../plugins-available/Captive/templates/main.php:48 ../templates/admin.php:20
+#: ../templates/hostapd.php:49 ../templates/system.php:17
+msgid "Basic"
+msgstr "Cơ bản"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:598
-msgid "Details"
-msgstr "Chi tiết"
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "Khách hàng"
 
-#: ../app/lib/signprint.php:20
-msgid "Printable Wi-Fi sign"
-msgstr "Biển báo Wi-Fi có thể in"
+#: ../plugins-available/Captive/templates/main.php:50 ../templates/dhcp.php:52
+#: ../templates/hostapd.php:51 ../templates/system.php:20
+msgid "Advanced"
+msgstr "Nâng cao"
 
-#: ../app/lib/signprint.php:37
-msgid "Wi-Fi Connect"
-msgstr "Kết nối Wi-Fi"
+#: ../plugins-available/Captive/templates/main.php:51
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../includes/functions.php:1001 ../templates/wifi_stations/network.php:33
+#: ../templates/provider.php:36 ../templates/restapi.php:47
+msgid "Status"
+msgstr "Trạng thái"
 
-#: ../app/lib/signprint.php:54
-msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
-msgstr "Để kết nối với điện thoại hoặc máy tính bảng của bạn, hãy quét mã QR ở trên bằng ứng dụng máy ảnh."
+#: ../plugins-available/Captive/templates/main.php:52
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+msgid "Active clients"
+msgstr ""
 
-#: ../app/lib/signprint.php:55
-msgid "For other devices, use the login credentials below."
-msgstr "Đối với các thiết bị khác, hãy sử dụng thông tin đăng nhập dưới đây."
-
-#: ../app/lib/signprint.php:65
-msgid "Network"
-msgstr "Mạng"
-
-#: ../app/lib/signprint.php:67 ../templates/login.php:25
-#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
-#: ../templates/admin/login.php:21
-msgid "Password"
-msgstr "Mật khẩu"
-
-#: ../plugins-available/Captive/templates/tabs/about.php:3
 #: ../plugins-available/Captive/templates/main.php:53
-#: ../plugins-available/Wireshark/templates/tabs/about.php:3
-#: ../plugins-available/Wireshark/templates/main.php:47
-#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/tabs/about.php:3
 #: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
 #: ../templates/about.php:21
 msgid "About"
 msgstr "Giới thiệu"
 
-#: ../plugins-available/Captive/templates/tabs/about.php:5
-#: ../plugins-available/Wireshark/templates/tabs/about.php:5
-#: ../plugins-available/Tailscale/templates/tabs/about.php:5
-msgid "was created by"
-msgstr "được tạo ra bởi"
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "Thông tin do nodogsplash cung cấp"
 
-#: ../plugins-available/Captive/templates/tabs/about.php:8
-#: ../plugins-available/Wireshark/templates/tabs/about.php:8
-#: ../plugins-available/Tailscale/templates/tabs/about.php:8
-msgid "Plugin description"
-msgstr "Mô tả plugin"
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "Dừng dịch vụ cổng thông tin"
 
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
-#: ../plugins-available/Captive/templates/main.php:52
-msgid "Active clients"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "Khởi động dịch vụ cổng thông tin"
+
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Việc thay đổi dịch vụ cổng thông tin sẽ tạm thời làm gián đoạn lưu lượng truy cập của khách hàng. Chọn <strong>Tiếp tục</strong> để tiếp tục."
+
+#: ../plugins-available/Captive/templates/main.php:99
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../templates/admin.php:90 ../templates/admin.php:119
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:109 ../templates/system.php:253
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+msgid "Cancel"
+msgstr "Hủy"
+
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "Tiếp tục"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:6
 #: ../plugins-available/Tailscale/Tailscale.php:403
 #: ../plugins-available/Tailscale/templates/main.php:4
-#: ../templates/dashboard.php:12 ../templates/dhcp/summary.php:9
 #: ../templates/networking/devices.php:4 ../templates/networking/general.php:4
-#: ../templates/system/basic.php:63
+#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
+#: ../templates/dhcp/summary.php:9
 msgid "Refresh"
 msgstr "Làm mới"
 
@@ -482,117 +391,9 @@ msgstr ""
 msgid "No active clients connected."
 msgstr ""
 
-#: ../plugins-available/Captive/templates/tabs/advanced.php:5
-#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
-msgid "Advanced settings"
-msgstr "Cài đặt nâng cao"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:9
-msgid "Gateway IP range"
-msgstr "Phạm vi địa chỉ IP của cổng"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:11
-msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
-msgstr "Phạm vi địa chỉ IP cần quản lý theo định dạng CIDR. Để trống nếu muốn áp dụng cho tất cả các địa chỉ"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:15
-msgid "Default: 0.0.0.0/0 (all addresses)"
-msgstr "Mặc định: 0.0.0.0/0 (tất cả các địa chỉ)"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:21
-msgid "Debug level"
-msgstr "Mức độ gỡ lỗi"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:23
-msgid "Amount of logging detail reported by the nodogsplash.service"
-msgstr "Mức độ chi tiết ghi nhật ký được báo cáo bởi dịch vụ nodogsplash.service"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:26
-msgid "0 - Errors only"
-msgstr "0 - Chỉ hiển thị lỗi"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:29
-msgid "1 - Errors, warnings, infos"
-msgstr "1 - Lỗi, cảnh báo, thông tin"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:32
-msgid "2 - Errors, warnings, infos, verbose"
-msgstr "2 - Lỗi, cảnh báo, thông tin, chế độ chi tiết"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:35
-msgid "3 - Errors, warnings, infos, verbose, debug"
-msgstr "3 - Lỗi, cảnh báo, thông tin, chế độ chi tiết, chế độ gỡ lỗi"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:41
-msgid "Firewall settings"
-msgstr "Cài đặt tường lửa"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:49
-msgid "Allow all traffic for authenticated users"
-msgstr "Cho phép tất cả lưu lượng truy cập đối với người dùng đã xác thực"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:52
-msgid "When enabled, authenticated users have unrestricted access"
-msgstr "Khi tính năng này được bật, người dùng đã xác thực sẽ có quyền truy cập không giới hạn"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:63
-msgid "Allow DNS for pre-authenticated users"
-msgstr "Cho phép DNS đối với người dùng đã được xác thực trước"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:66
-msgid "Required for clients to resolve domain names before authentication"
-msgstr "Khách hàng phải giải quyết tên miền trước khi xác thực"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:5
-#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
-#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
-#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
-msgid "Basic settings"
-msgstr "Cài đặt cơ bản"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:9
-msgid "Gateway interface"
-msgstr "Giao diện cổng"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:10
-msgid "Interface to be managed by the portal"
-msgstr "Giao diện sẽ được quản lý bởi cổng thông tin"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:12
-msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
-msgstr "Mặc định là giao diện AP đang hoạt động, thường là <code>wlan0</code>"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:16
-msgid "Gateway name"
-msgstr "Tên cổng"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:18
-msgid "Name of your gateway (available as $gatewayname variable)"
-msgstr "Tên cổng của bạn (có sẵn dưới dạng biến $gatewayname)"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:27
-msgid "Gateway address"
-msgstr "Địa chỉ cổng"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:29
-msgid "IP address of the router. Leave empty for auto-detection"
-msgstr "Địa chỉ IP của bộ định tuyến. Để trống để tự động phát hiện"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:33
-msgid "Auto-detected from gateway interface if not specified"
-msgstr "Sẽ được tự động phát hiện từ giao diện cổng nếu không được chỉ định"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:37
-msgid "Gateway port"
-msgstr "Cổng kết nối"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:39
-msgid "Port for Nodogsplash HTTP server"
-msgstr "Cổng cho máy chủ HTTP Nodogsplash"
-
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
-#: ../templates/configure_client.php:21 ../templates/openvpn.php:46
-#: ../templates/openvpn/general.php:2
+#: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
+#: ../templates/openvpn.php:46
 msgid "Client settings"
 msgstr "Cài đặt khách hàng"
 
@@ -693,6 +494,114 @@ msgstr "Các địa chỉ MAC được phân tách bằng dấu phẩy, giúp b�
 msgid "These devices are not subject to authentication or firewall rules"
 msgstr "Các thiết bị này không phải tuân theo các quy tắc xác thực hoặc tường lửa"
 
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+#: ../templates/system/advanced.php:3 ../templates/hostapd/advanced.php:2
+msgid "Advanced settings"
+msgstr "Cài đặt nâng cao"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "Phạm vi địa chỉ IP của cổng"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "Phạm vi địa chỉ IP cần quản lý theo định dạng CIDR. Để trống nếu muốn áp dụng cho tất cả các địa chỉ"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Mặc định: 0.0.0.0/0 (tất cả các địa chỉ)"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "Mức độ gỡ lỗi"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Mức độ chi tiết ghi nhật ký được báo cáo bởi dịch vụ nodogsplash.service"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - Chỉ hiển thị lỗi"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Lỗi, cảnh báo, thông tin"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Lỗi, cảnh báo, thông tin, chế độ chi tiết"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Lỗi, cảnh báo, thông tin, chế độ chi tiết, chế độ gỡ lỗi"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "Cài đặt tường lửa"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "Cho phép tất cả lưu lượng truy cập đối với người dùng đã xác thực"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "Khi tính năng này được bật, người dùng đã xác thực sẽ có quyền truy cập không giới hạn"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "Cho phép DNS đối với người dùng đã được xác thực trước"
+
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Khách hàng phải giải quyết tên miền trước khi xác thực"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+msgid "Basic settings"
+msgstr "Cài đặt cơ bản"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "Giao diện cổng"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "Giao diện sẽ được quản lý bởi cổng thông tin"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "Mặc định là giao diện AP đang hoạt động, thường là <code>wlan0</code>"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "Tên cổng"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "Tên cổng của bạn (có sẵn dưới dạng biến $gatewayname)"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "Địa chỉ cổng"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "Địa chỉ IP của bộ định tuyến. Để trống để tự động phát hiện"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Sẽ được tự động phát hiện từ giao diện cổng nếu không được chỉ định"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "Cổng kết nối"
+
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Cổng cho máy chủ HTTP Nodogsplash"
+
 #: ../plugins-available/Captive/templates/tabs/status.php:3
 msgid "Portal status"
 msgstr "Trạng thái cổng thông tin"
@@ -701,123 +610,400 @@ msgstr "Trạng thái cổng thông tin"
 msgid "Current <code>nodogsplash</code> status is displayed below."
 msgstr "Tình trạng hiện tại <code>của nodogsplash</code> được hiển thị bên dưới."
 
-#: ../plugins-available/Captive/templates/main.php:3
-#: ../plugins-available/Wireshark/templates/main.php:3
-#: ../plugins-available/Tailscale/templates/main.php:16
-#: ../templates/restapi.php:3 ../templates/adblock.php:3
-#: ../templates/openvpn.php:3 ../templates/provider.php:3
-#: ../templates/networking/wlanrouting.php:3
-#: ../templates/networking/mobile.php:29 ../templates/wireguard.php:3
-#: ../templates/dhcp.php:3 ../templates/system/theme.php:56
-#: ../templates/system/advanced.php:39 ../templates/system/language.php:11
-#: ../templates/hostapd.php:3 ../templates/admin/general.php:2
-msgid "Save settings"
-msgstr "Lưu cài đặt"
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "được tạo ra bởi"
 
-#: ../plugins-available/Captive/templates/main.php:22
-msgid "Stop portal"
-msgstr "Trang chủ"
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "Mô tả plugin"
 
-#: ../plugins-available/Captive/templates/main.php:26
-msgid "Start portal"
-msgstr "Trang chủ"
+#: ../plugins-available/Tailscale/Tailscale.php:52
+msgid "Tailscale VPN"
+msgstr "VPN Tailscale"
 
-#: ../plugins-available/Captive/templates/main.php:48 ../templates/admin.php:20
-#: ../templates/system.php:17 ../templates/hostapd.php:49
-msgid "Basic"
-msgstr "Cơ bản"
-
-#: ../plugins-available/Captive/templates/main.php:49
-msgid "Clients"
-msgstr "Khách hàng"
-
-#: ../plugins-available/Captive/templates/main.php:50 ../templates/dhcp.php:52
-#: ../templates/system.php:20 ../templates/hostapd.php:51
-msgid "Advanced"
-msgstr "Nâng cao"
-
-#: ../plugins-available/Captive/templates/main.php:79
-msgid "Information provided by nodogsplash"
-msgstr "Thông tin do nodogsplash cung cấp"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Stop portal service"
-msgstr "Dừng dịch vụ cổng thông tin"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Start portal service"
-msgstr "Khởi động dịch vụ cổng thông tin"
-
-#: ../plugins-available/Captive/templates/main.php:95
-msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
-msgstr "Việc thay đổi dịch vụ cổng thông tin sẽ tạm thời làm gián đoạn lưu lượng truy cập của khách hàng. Chọn <strong>Tiếp tục</strong> để tiếp tục."
-
-#: ../plugins-available/Captive/templates/main.php:99
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
-#: ../templates/about.php:56 ../templates/about.php:104
-#: ../templates/admin.php:90 ../templates/admin.php:119
-#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
-#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
-#: ../templates/system.php:56 ../templates/system.php:74
-#: ../templates/system.php:109 ../templates/system.php:253
-msgid "Cancel"
-msgstr "Hủy"
-
-#: ../plugins-available/Captive/templates/main.php:100
-msgid "Proceed"
-msgstr "Tiếp tục"
-
-#: ../plugins-available/Captive/Captive.php:70
-#: ../plugins-available/Captive/Captive.php:130
-msgid "Captive portal"
-msgstr "Cổng thông tin bắt buộc"
-
-#: ../plugins-available/Captive/Captive.php:95
+#: ../plugins-available/Tailscale/Tailscale.php:237
 #, php-format
-msgid "Attempting to start %s"
-msgstr "Đang cố gắng truy cập %s"
+msgid "Expected tailscale binary not found at: %s"
+msgstr "Không tìm thấy tệp nhị phân tailscale dự kiến tại: %s"
 
-#: ../plugins-available/Captive/Captive.php:99
+#: ../plugins-available/Tailscale/Tailscale.php:238
 #, php-format
-msgid "Attempting to stop %s"
-msgstr "Cố gắng chặn %s"
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
+msgstr "Hãy tham khảo <a href=\"%s\" target=\"_blank\">hướng dẫn cài đặt</a> hoặc cài đặt lại plugin Tailscale."
 
-#: ../plugins-available/Captive/Captive.php:106
+#: ../plugins-available/Tailscale/Tailscale.php:251
+msgid "A Tailscale VPN exit node extension for RaspAP"
+msgstr "Tiện ích mở rộng nút thoát VPN Tailscale cho RaspAP"
+
+#: ../plugins-available/Tailscale/Tailscale.php:400
+#: ../plugins-available/Tailscale/templates/main.php:44
+msgid "Start Tailscale"
+msgstr "Bắt đầu sử dụng Tailscale"
+
+#: ../plugins-available/Tailscale/Tailscale.php:406
 #, php-format
-msgid "Client %s deauthenticated"
-msgstr ""
+msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
+msgstr "Không thể truy xuất thông tin đăng nhập Tailscale. Vui lòng chọn <strong>%s</strong> để tiếp tục."
 
-#: ../plugins-available/Captive/Captive.php:108
+#: ../plugins-available/Tailscale/Tailscale.php:786
+msgid "Not connected: Login required."
+msgstr "Chưa kết nối: Cần đăng nhập."
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
+msgid "Exit node activated"
+msgstr "Nút thoát đã được kích hoạt"
+
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
 #, php-format
-msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
+msgstr "Thiết bị <code>%s</code> được kết nối với địa chỉ <code>%s</code> và cung cấp một <strong>nút thoát</strong>."
 
-#: ../plugins-available/Captive/Captive.php:111
-msgid "Invalid client MAC address"
-msgstr ""
+#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#, php-format
+msgid "See the %s on how to use this exit node with your devices."
+msgstr "Xem hướng dẫn tại %s để biết cách sử dụng nút thoát này với các thiết bị của bạn."
 
-#: ../plugins-available/Captive/Captive.php:131
-msgid "A captive portal plugin that implements nodogsplash"
-msgstr "Một plugin cổng đăng nhập bắt buộc triển khai nodogsplash"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "Cấu hình nút thoát mới"
 
-#: ../plugins-available/Captive/Captive.php:132
-#: ../plugins-available/Wireshark/Wireshark.php:185
-#: ../plugins-available/Tailscale/Tailscale.php:252
-msgid "Bill Z"
-msgstr "Bill Z"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "Vì lý do bảo mật, bạn phải chủ động kích hoạt chức năng nút thoát. Bước đầu tiên là đăng ký <code>%s</code> là một nút thoát trong mạng con của bạn. Trong bước tiếp theo, bạn sẽ cho phép thiết bị này trở thành một nút thoát."
 
-#: ../plugins-available/Captive/Captive.php:538
-msgid "Portal settings saved successfully"
-msgstr "Cài đặt cổng thông tin đã được lưu thành công"
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Quảng cáo <code>%s</code> làm nút thoát"
 
-#: ../plugins-available/Captive/Captive.php:541
-#: ../plugins-available/Wireshark/Wireshark.php:248
-msgid "Error saving settings: "
-msgstr "Lỗi khi lưu cài đặt: "
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Điều này giúp cấu hình Tailscale thành một mạng VPN để che giấu vị trí thực của bạn, truy cập nội dung bị giới hạn theo khu vực hoặc tăng cường bảo mật khi kết nối từ các mạng không đáng tin cậy."
 
-#: ../plugins-available/Captive/Captive.php:582
-msgid "Failed to execute ndsctl."
-msgstr "Không thể thực thi ndsctl."
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Tùy chọn này cho Tailscale biết rằng thiết bị của bạn đã sẵn sàng để định tuyến lưu lượng truy cập."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "Bật thông lượng UDP được tối ưu hóa"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Được khuyến nghị cho các nút thoát Tailscale chạy nhân Linux 6.2 trở lên, phương pháp này sử dụng tính năng chuyển tiếp UDP Generic Receive Offload (GRO) để giảm tải cho CPU."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Tùy chọn này cho phép chuyển giao tác vụ ở lớp truyền tải để nâng cao hiệu suất."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Nhấn vào \" <strong>Tiếp theo</strong> \" để tiếp tục."
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "Sử dụng nút thoát"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Thiết bị <code>%s</code> được cấu hình để sử dụng nút thoát <code>%s</code>. Thiết bị này có địa chỉ Tailscale MagicDNS <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "Cấu hình thiết bị"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Thiết bị <code>%s</code> được kết nối với mạng nội bộ của bạn với địa chỉ <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "Theo mặc định, Tailscale chỉ định tuyến lưu lượng giữa các thiết bị đã cài đặt ứng dụng này. Bạn cũng có thể định tuyến toàn bộ lưu lượng internet công cộng bằng cách cấu hình một thiết bị trong mạng của mình làm <strong>nút thoát</strong>"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Khi bạn định tuyến toàn bộ lưu lượng qua một nút thoát, bạn thực chất đang sử dụng các tuyến mặc định (0.0.0.0/0, ::/0), tương tự như cách bạn sẽ làm nếu sử dụng một mạng VPN thông thường."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "Bạn có thể thiết lập thiết bị này làm nút thoát hoặc sử dụng một nút thoát khác trong mạng cuối của mình."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "Chọn một nút thoát hiện có trên mạng con của bạn"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Đây là cấu hình điển hình nếu bạn sử dụng thiết bị này làm bộ định tuyến VPN khi đi du lịch, chẳng hạn."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "Cấu hình thiết bị này làm nút thoát mới"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "Khi cấu hình thiết bị này làm nút thoát, lưu lượng truy cập internet công cộng từ các thiết bị kết nối trong mạng nội bộ của bạn sẽ được định tuyến qua thiết bị này."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "Đăng nhập vào Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Để kết nối thiết bị %s với mạng nội bộ của bạn, hãy chọn %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "Đăng nhập Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "Sau khi đăng nhập, hãy chọn <strong>Tiếp theo</strong> để tiếp tục."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "Cho phép nút thoát"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Thiết bị <code>%s</code> đang chờ phê duyệt để trở thành nút thoát."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "Mở các máy Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Tìm biểu tượng <code>%s</code> biểu tượng <strong>Nút thoát</strong> trong danh sách máy."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "Từ menu biểu tượng %s của nút thoát, hãy mở bảng điều khiển %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "Chỉnh sửa cài đặt lộ trình"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "Bật tùy chọn <strong>“Sử dụng làm nút thoát</strong> ”."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "Khi đã hoàn tất các bước này, hãy chọn <strong>Tiếp theo</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
+msgid "Select an exit node"
+msgstr "Chọn một nút thoát"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#, php-format
+msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
+msgstr "Để sử dụng <code>%s</code> làm cổng VPN, hãy cấu hình Tailscale để sử dụng một nút thoát. Nút được Tailscale đề xuất được đánh dấu bằng một ngôi sao."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#, php-format
+msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
+msgstr "Quảng bá <strong>tuyến mạng con</strong> cho giao diện <code>%s</code> giao diện AP đang hoạt động"
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
+msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
+msgstr "Các tuyến mạng con cho phép bạn mở rộng mạng Tailscale (còn gọi là tailnet) để bao gồm các thiết bị không chạy hoặc không thể chạy ứng dụng khách Tailscale."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
+msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
+msgstr "Một tuyến mạng con đóng vai trò là cổng kết nối giữa mạng tailnet của bạn và một mạng con vật lý. Mạng con của giao diện AP đang hoạt động đã được cấu hình sẵn như dưới đây; hãy chỉnh sửa nếu cần thiết."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
+msgid "Route LAN traffic through the exit node."
+msgstr "Chuyển tiếp lưu lượng mạng LAN qua nút đầu ra."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
+msgid "This will direct all LAN traffic to go through your exit node only."
+msgstr "Điều này sẽ định hướng toàn bộ lưu lượng mạng LAN chỉ đi qua nút thoát của bạn."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
+msgid "Use Tailscale DNS settings (default)."
+msgstr "Sử dụng cài đặt DNS của Tailscale (mặc định)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
+msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
+msgstr "Bỏ chọn để sử dụng DNS cục bộ. Thao tác này sẽ thiết lập <code>--accept-dns=false</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
+msgid "Do not use Tailscale subnets (default on Linux)."
+msgstr "Không sử dụng các mạng con Tailscale (mặc định trên Linux)."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
+msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
+msgstr "Nếu có các tuyến mạng con dành cho mạng cuối của bạn, bạn có thể định tuyến lưu lượng truy cập của thiết bị đến một bộ định tuyến mạng con. Việc bật tính năng này sẽ thiết lập <code>--accept-routes=true</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
+msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
+msgstr "Nếu khóa của một thiết bị hết hạn, các kết nối đến/từ điểm cuối đó sẽ ngừng hoạt động."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
+msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
+msgstr "Tùy chọn này sử dụng <code>--force-reauth</code> để gia hạn khóa cho thiết bị này."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#, php-format
+msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
+msgstr "Chọn <strong>Tiếp theo</strong> để cấu hình <code>%s</code> để sử dụng nút thoát đã chọn với các tùy chọn này."
+
+#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
+msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
+msgstr "Không tìm thấy nút thoát nào trên mạng đuôi của bạn. Chọn <strong>Quay lại</strong> để tiếp tục."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
+msgid "Approve subnet route"
+msgstr "Phê duyệt tuyến mạng con"
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#, php-format
+msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
+msgstr "Thiết bị <code>%s</code> đang quảng bá một tuyến mạng con. Vì lý do bảo mật, bạn phải chọn tham gia để kích hoạt tính năng này."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
+msgstr "Tìm biểu tượng <code>%s</code> biểu tượng <strong>Subnets</strong> trong danh sách máy."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#, php-format
+msgid "From the %s icon menu of the device, open the %s panel."
+msgstr "Từ menu biểu tượng %s của thiết bị, hãy mở bảng điều khiển %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
+msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
+msgstr "Chọn ô phạm vi IP tương ứng với tuyến mạng con mà bạn muốn công bố, sau đó nhấn <strong>Lưu</strong>."
+
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "Quay lại"
+
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "Tiếp theo"
+
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "Hủy bỏ nút thoát"
+
+#: ../plugins-available/Tailscale/templates/main.php:22
+#: ../templates/admin/general.php:4
+msgid "Logout"
+msgstr "Đăng xuất"
+
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "Ngừng sử dụng nút thoát"
+
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "Ngừng sử dụng Tailscale"
+
+#: ../plugins-available/Tailscale/templates/main.php:70
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../templates/wireguard.php:46 ../templates/provider.php:35
+#: ../templates/restapi.php:46
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: ../plugins-available/Tailscale/templates/main.php:89
+#: ../plugins-available/Wireshark/templates/main.php:69
+msgid "Information provided by "
+msgstr "Thông tin do "
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "Tình trạng mạng Tailnet"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "Tình trạng hiện tại <code>của mạng đuôi</code> được hiển thị bên dưới."
+
+#: ../plugins-available/Wireshark/templates/main.php:20
+msgid "Start capture"
+msgstr "Bắt đầu quay"
+
+#: ../plugins-available/Wireshark/templates/main.php:24
+msgid "Stop capture"
+msgstr "Dừng ghi hình"
+
+#: ../plugins-available/Wireshark/templates/main.php:46
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
+msgid "Capture files"
+msgstr "Tệp chụp"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Các tệp được tạo bởi <code>tshark</code> được hiển thị bên dưới."
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "Không tìm thấy tệp ghi lại nào trong thư mục /tmp"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "Tên tệp"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "Kích thước"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "Đã sửa đổi"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "Hành động"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "Tải xuống tệp"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "Xóa tệp"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
+#, php-format
+msgid "Total: %d file(s), %s"
+msgstr "Tổng cộng: %d tệp, %s"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "Xác nhận xóa"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "Bạn có chắc chắn muốn xóa tệp này không?"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
+#: ../templates/openvpn.php:82
+msgid "Delete"
+msgstr "Xóa"
 
 #: ../plugins-available/Wireshark/templates/tabs/basic.php:8
 msgid "Capture interface"
@@ -944,82 +1130,6 @@ msgstr "SSH"
 msgid "Exclude SSH"
 msgstr "Loại trừ SSH"
 
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:3
-#: ../plugins-available/Wireshark/templates/main.php:46
-msgid "Capture files"
-msgstr "Tệp chụp"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
-msgid "Capture files generated by <code>tshark</code> are displayed below."
-msgstr "Các tệp được tạo bởi <code>tshark</code> được hiển thị bên dưới."
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
-msgid "No capture files found in /tmp directory"
-msgstr "Không tìm thấy tệp ghi lại nào trong thư mục /tmp"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
-msgid "Filename"
-msgstr "Tên tệp"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
-msgid "Size"
-msgstr "Kích thước"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
-msgid "Modified"
-msgstr "Đã sửa đổi"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
-msgid "Actions"
-msgstr "Hành động"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
-msgid "Download file"
-msgstr "Tải xuống tệp"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
-msgid "Delete file"
-msgstr "Xóa tệp"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
-#, php-format
-msgid "Total: %d file(s), %s"
-msgstr "Tổng cộng: %d tệp, %s"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
-msgid "Confirm deletion"
-msgstr "Xác nhận xóa"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
-msgid "Are you sure you want to delete this file?"
-msgstr "Bạn có chắc chắn muốn xóa tệp này không?"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
-#: ../templates/openvpn.php:82 ../templates/wifi_stations/network.php:100
-#: ../templates/wireguard.php:84
-msgid "Delete"
-msgstr "Xóa"
-
-#: ../plugins-available/Wireshark/templates/main.php:20
-msgid "Start capture"
-msgstr "Bắt đầu quay"
-
-#: ../plugins-available/Wireshark/templates/main.php:24
-msgid "Stop capture"
-msgstr "Dừng ghi hình"
-
-#: ../plugins-available/Wireshark/templates/main.php:45
-#: ../plugins-available/Tailscale/templates/main.php:70
-#: ../templates/restapi.php:46 ../templates/provider.php:35
-#: ../templates/wireguard.php:46
-msgid "Settings"
-msgstr "Cài đặt"
-
-#: ../plugins-available/Wireshark/templates/main.php:69
-#: ../plugins-available/Tailscale/templates/main.php:89
-msgid "Information provided by "
-msgstr "Thông tin do "
-
 #: ../plugins-available/Wireshark/Wireshark.php:48
 msgid "Wireshark"
 msgstr "Wireshark"
@@ -1071,534 +1181,154 @@ msgstr "Tệp \"%s\" đã được xóa thành công"
 msgid "Failed to delete file \"%s\""
 msgstr "Không thể xóa tệp \"%s\""
 
-#: ../plugins-available/Tailscale/Tailscale.php:52
-msgid "Tailscale VPN"
-msgstr "VPN Tailscale"
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
+msgstr "chưa được cấu hình"
 
-#: ../plugins-available/Tailscale/Tailscale.php:237
+#: ../includes/networking.php:137
 #, php-format
-msgid "Expected tailscale binary not found at: %s"
-msgstr "Không tìm thấy tệp nhị phân tailscale dự kiến tại: %s"
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "Đang cố gắng kích hoạt định tuyến giữa các giao diện %s và %s"
 
-#: ../plugins-available/Tailscale/Tailscale.php:238
+#: ../includes/networking.php:147
 #, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
-msgstr "Hãy tham khảo <a href=\"%s\" target=\"_blank\">hướng dẫn cài đặt</a> hoặc cài đặt lại plugin Tailscale."
+msgid "Attempting to restart routing between %s and %s interfaces"
+msgstr "Đang cố gắng khởi động lại quá trình định tuyến giữa các giao diện %s và %s"
 
-#: ../plugins-available/Tailscale/Tailscale.php:251
-msgid "A Tailscale VPN exit node extension for RaspAP"
-msgstr "Tiện ích mở rộng nút thoát VPN Tailscale cho RaspAP"
-
-#: ../plugins-available/Tailscale/Tailscale.php:400
-#: ../plugins-available/Tailscale/templates/main.php:44
-msgid "Start Tailscale"
-msgstr "Bắt đầu sử dụng Tailscale"
-
-#: ../plugins-available/Tailscale/Tailscale.php:406
+#: ../includes/networking.php:151
 #, php-format
-msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
-msgstr "Không thể truy xuất thông tin đăng nhập Tailscale. Vui lòng chọn <strong>%s</strong> để tiếp tục."
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "Đang cố gắng vô hiệu hóa định tuyến giữa các giao diện %s và %s"
 
-#: ../plugins-available/Tailscale/Tailscale.php:786
-msgid "Not connected: Login required."
-msgstr "Chưa kết nối: Cần đăng nhập."
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
-msgid "Using exit node"
-msgstr "Sử dụng nút thoát"
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#: ../includes/networking.php:252
 #, php-format
-msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
-msgstr "Thiết bị <code>%s</code> được cấu hình để sử dụng nút thoát <code>%s</code>. Thiết bị này có địa chỉ Tailscale MagicDNS <code>%s</code>."
+msgid "DHCP configuration for %s enabled"
+msgstr "Đã bật cấu hình DHCP cho %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
-msgid "Configure new exit node"
-msgstr "Cấu hình nút thoát mới"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#: ../includes/networking.php:259
 #, php-format
-msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
-msgstr "Vì lý do bảo mật, bạn phải chủ động kích hoạt chức năng nút thoát. Bước đầu tiên là đăng ký <code>%s</code> là một nút thoát trong mạng con của bạn. Trong bước tiếp theo, bạn sẽ cho phép thiết bị này trở thành một nút thoát."
+msgid "DHCP configuration for %s added"
+msgstr "Đã thêm cấu hình DHCP cho %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#: ../includes/networking.php:265
 #, php-format
-msgid "Advertise <code>%s</code> as an exit node"
-msgstr "Quảng cáo <code>%s</code> làm nút thoát"
+msgid "DHCP configuration for %s updated"
+msgstr "Cấu hình DHCP cho %s đã được cập nhật"
 
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
-msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
-msgstr "Điều này giúp cấu hình Tailscale thành một mạng VPN để che giấu vị trí thực của bạn, truy cập nội dung bị giới hạn theo khu vực hoặc tăng cường bảo mật khi kết nối từ các mạng không đáng tin cậy."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
-msgid "This option lets Tailscale know your device is ready to route traffic."
-msgstr "Tùy chọn này cho Tailscale biết rằng thiết bị của bạn đã sẵn sàng để định tuyến lưu lượng truy cập."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
-msgid "Enable optimized UDP throughput"
-msgstr "Bật thông lượng UDP được tối ưu hóa"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
-msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
-msgstr "Được khuyến nghị cho các nút thoát Tailscale chạy nhân Linux 6.2 trở lên, phương pháp này sử dụng tính năng chuyển tiếp UDP Generic Receive Offload (GRO) để giảm tải cho CPU."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
-msgid "This option enables transport layer offloads for better performance."
-msgstr "Tùy chọn này cho phép chuyển giao tác vụ ở lớp truyền tải để nâng cao hiệu suất."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
-msgid "Choose <strong>Next</strong> to continue."
-msgstr "Nhấn vào \" <strong>Tiếp theo</strong> \" để tiếp tục."
-
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:1
-msgid "Exit node activated"
-msgstr "Nút thoát đã được kích hoạt"
-
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:4
+#: ../includes/networking.php:271
 #, php-format
-msgid "The device <code>%s</code> is connected with the address <code>%s</code> and offers an <strong>exit node</strong>."
-msgstr "Thiết bị <code>%s</code> được kết nối với địa chỉ <code>%s</code> và cung cấp một <strong>nút thoát</strong>."
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "Không có cấu hình DHCP mặc định nào cho giao diện %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/active.php:13
+#: ../includes/networking.php:272
 #, php-format
-msgid "See the %s on how to use this exit node with your devices."
-msgstr "Xem hướng dẫn tại %s để biết cách sử dụng nút thoát này với các thiết bị của bạn."
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "Cấu hình địa chỉ IP tĩnh và DHCP cho giao diện này trong cài đặt Máy chủ DHCP"
 
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
-msgid "Login to Tailscale"
-msgstr "Đăng nhập vào Tailscale"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../includes/networking.php:294
 #, php-format
-msgid "To connect device %s to your tailnet, choose %s."
-msgstr "Để kết nối thiết bị %s với mạng nội bộ của bạn, hãy chọn %s."
+msgid "Dnsmasq  configuration for %s added"
+msgstr "Đã thêm cấu hình Dnsmasq cho %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
-msgid "Open Tailscale Login"
-msgstr "Đăng nhập Tailscale"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
-msgid "After logging in, choose <strong>Next</strong> to continue."
-msgstr "Sau khi đăng nhập, hãy chọn <strong>Tiếp theo</strong> để tiếp tục."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
-msgid "Configure device"
-msgstr "Cấu hình thiết bị"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#: ../includes/footer.php:6
 #, php-format
-msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
-msgstr "Thiết bị <code>%s</code> được kết nối với mạng nội bộ của bạn với địa chỉ <code>%s</code>."
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "Được tạo bởi <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
-msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
-msgstr "Theo mặc định, Tailscale chỉ định tuyến lưu lượng giữa các thiết bị đã cài đặt ứng dụng này. Bạn cũng có thể định tuyến toàn bộ lưu lượng internet công cộng bằng cách cấu hình một thiết bị trong mạng của mình làm <strong>nút thoát</strong>"
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
+msgstr "Nhóm RaspAP"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
-msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
-msgstr "Khi bạn định tuyến toàn bộ lưu lượng qua một nút thoát, bạn thực chất đang sử dụng các tuyến mặc định (0.0.0.0/0, ::/0), tương tự như cách bạn sẽ làm nếu sử dụng một mạng VPN thông thường."
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
+msgstr "Cảm ơn bạn đã là thành viên Insider"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
-msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
-msgstr "Bạn có thể thiết lập thiết bị này làm nút thoát hoặc sử dụng một nút thoát khác trong mạng cuối của mình."
+#: ../includes/footer.php:17
+msgid "Session Expired"
+msgstr "Phiên làm việc đã hết hạn"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
-msgid "Select an existing exit node on your tailnet"
-msgstr "Chọn một nút thoát hiện có trên mạng con của bạn"
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
+msgstr "Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập để tiếp tục."
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
-msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
-msgstr "Đây là cấu hình điển hình nếu bạn sử dụng thiết bị này làm bộ định tuyến VPN khi đi du lịch, chẳng hạn."
+#: ../includes/footer.php:23 ../templates/admin.php:18
+#: ../templates/login.php:30
+msgid "Login"
+msgstr "Đăng nhập"
 
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
-msgid "Configure this device as a new exit node"
-msgstr "Cấu hình thiết bị này làm nút thoát mới"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
-msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
-msgstr "Khi cấu hình thiết bị này làm nút thoát, lưu lượng truy cập internet công cộng từ các thiết bị kết nối trong mạng nội bộ của bạn sẽ được định tuyến qua thiết bị này."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:1
-msgid "Select an exit node"
-msgstr "Chọn một nút thoát"
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:6
+#: ../includes/provider.php:65
 #, php-format
-msgid "To use <code>%s</code> as a VPN gateway, configure Tailscale to use an exit node. Tailscale's suggested node is indicated with a star."
-msgstr "Để sử dụng <code>%s</code> làm cổng VPN, hãy cấu hình Tailscale để sử dụng một nút thoát. Nút được Tailscale đề xuất được đánh dấu bằng một ngôi sao."
+msgid "Expected %s binary not found at: %s"
+msgstr "Không tìm thấy tệp nhị phân %s tại địa chỉ: %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:11
+#: ../includes/provider.php:66
 #, php-format
-msgid "Advertise a <strong>subnet route</strong> for the active <code>%s</code> AP interface"
-msgstr "Quảng bá <strong>tuyến mạng con</strong> cho giao diện <code>%s</code> giao diện AP đang hoạt động"
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "Hãy tham khảo <a href=\"%s\" target=\"_blank\">hướng dẫn cài đặt</a> cho giao diện dòng lệnh (CLI) của %strên hệ điều hành Linux."
 
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:13
-msgid "Subnet routes let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client."
-msgstr "Các tuyến mạng con cho phép bạn mở rộng mạng Tailscale (còn gọi là tailnet) để bao gồm các thiết bị không chạy hoặc không thể chạy ứng dụng khách Tailscale."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:17
-msgid "A subnet route acts as a gateway between your tailnet and a physical subnet. The subnet of the active AP interface is preconfigured below; edit if necessary."
-msgstr "Một tuyến mạng con đóng vai trò là cổng kết nối giữa mạng tailnet của bạn và một mạng con vật lý. Mạng con của giao diện AP đang hoạt động đã được cấu hình sẵn như dưới đây; hãy chỉnh sửa nếu cần thiết."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:25
-msgid "Route LAN traffic through the exit node."
-msgstr "Chuyển tiếp lưu lượng mạng LAN qua nút đầu ra."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:28
-msgid "This will direct all LAN traffic to go through your exit node only."
-msgstr "Điều này sẽ định hướng toàn bộ lưu lượng mạng LAN chỉ đi qua nút thoát của bạn."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:35
-msgid "Use Tailscale DNS settings (default)."
-msgstr "Sử dụng cài đặt DNS của Tailscale (mặc định)."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:38
-msgid "Uncheck to use local DNS. This sets <code>--accept-dns=false</code>."
-msgstr "Bỏ chọn để sử dụng DNS cục bộ. Thao tác này sẽ thiết lập <code>--accept-dns=false</code>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:45
-msgid "Do not use Tailscale subnets (default on Linux)."
-msgstr "Không sử dụng các mạng con Tailscale (mặc định trên Linux)."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:48
-msgid "If subnet routes exist for your tailnet, you can route your device's traffic to a subnet router. Enabling this sets <code>--accept-routes=true</code>."
-msgstr "Nếu có các tuyến mạng con dành cho mạng cuối của bạn, bạn có thể định tuyến lưu lượng truy cập của thiết bị đến một bộ định tuyến mạng con. Việc bật tính năng này sẽ thiết lập <code>--accept-routes=true</code>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:55
-msgid "If keys expire for a device, connections to/from the given endpoint will stop working."
-msgstr "Nếu khóa của một thiết bị hết hạn, các kết nối đến/từ điểm cuối đó sẽ ngừng hoạt động."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:58
-msgid "This option uses <code>--force-reauth</code> to renew the keys for this device."
-msgstr "Tùy chọn này sử dụng <code>--force-reauth</code> để gia hạn khóa cho thiết bị này."
-
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:63
+#: ../includes/provider.php:70
 #, php-format
-msgid "Choose <strong>Next</strong> to configure <code>%s</code> to use the selected exit node with these options."
-msgstr "Chọn <strong>Tiếp theo</strong> để cấu hình <code>%s</code> để sử dụng nút thoát đã chọn với các tùy chọn này."
+msgid "Unable to execute %s binary found at: %s"
+msgstr "Không thể thực thi tệp nhị phân %s được tìm thấy tại: %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/select.php:66
-msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
-msgstr "Không tìm thấy nút thoát nào trên mạng đuôi của bạn. Chọn <strong>Quay lại</strong> để tiếp tục."
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "Kiểm tra xem tệp nhị phân có thể thực thi được không và xem có quyền truy cập trong tệp raspap.sudoers hay không"
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
-msgid "Allow exit node"
-msgstr "Cho phép nút thoát"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#: ../includes/provider.php:119
 #, php-format
-msgid "The device <code>%s</code> is pending approval as an exit node."
-msgstr "Thiết bị <code>%s</code> đang chờ phê duyệt để trở thành nút thoát."
+msgid "Attempting to connect to %s"
+msgstr "Đang cố gắng kết nối với %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
-msgid "Open Tailscale Machines"
-msgstr "Mở các máy Tailscale"
+#: ../includes/provider.php:318
+msgid "Select a country..."
+msgstr "Chọn quốc gia..."
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#: ../includes/provider.php:387
 #, php-format
-msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
-msgstr "Tìm biểu tượng <code>%s</code> biểu tượng <strong>Nút thoát</strong> trong danh sách máy."
+msgid "Account information not available from %s's Linux CLI."
+msgstr "Thông tin tài khoản không thể truy cập được từ giao diện dòng lệnh Linux của %s."
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../includes/functions.php:1006
+msgid "Mem Use"
+msgstr "Dung lượng bộ nhớ"
+
+#: ../includes/functions.php:1009
+msgid "CPU"
+msgstr "Bộ xử lý"
+
+#: ../includes/restapi.php:59
 #, php-format
-msgid "From the %s icon menu of the exit node, open the %s panel."
-msgstr "Từ menu biểu tượng %s của nút thoát, hãy mở bảng điều khiển %s."
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
+msgstr "Bạn có thể truy cập tài liệu về RestAPI <a href=\"%s\" target=\"_blank\">tại đây </a>: <a href=\" %s \" target=\"_blank\"> %s</a>"
 
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
-msgid "Edit route settings"
-msgstr "Chỉnh sửa cài đặt lộ trình"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
-msgid "Enable the <strong>Use as exit node</strong> option."
-msgstr "Bật tùy chọn <strong>“Sử dụng làm nút thoát</strong> ”."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
-msgid "Choose <strong>Next</strong> when you've completed these steps."
-msgstr "Khi đã hoàn tất các bước này, hãy chọn <strong>Tiếp theo</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
-msgid "Approve subnet route"
-msgstr "Phê duyệt tuyến mạng con"
-
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:3
+#: ../includes/system.php:67
 #, php-format
-msgid "The device <code>%s</code> is advertising a subnet route. For security reasons, you must opt in to enable this."
-msgstr "Thiết bị <code>%s</code> đang quảng bá một tuyến mạng con. Vì lý do bảo mật, bạn phải chọn tham gia để kích hoạt tính năng này."
+msgid "Changing log limit size to %s KB"
+msgstr "Thay đổi giới hạn kích thước nhật ký thành %s KB"
 
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:12
+#: ../includes/system.php:86
 #, php-format
-msgid "Locate the <code>%s</code> <strong>Subnets</strong> badge in the machines list."
-msgstr "Tìm biểu tượng <code>%s</code> biểu tượng <strong>Subnets</strong> trong danh sách máy."
+msgid "Changing alert close timeout to %s ms"
+msgstr "Thay đổi thời gian chờ đóng cảnh báo thành %s ms"
 
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
+msgstr "Phát hiện địa chỉ IP tùy chỉnh không hợp lệ ở dòng "
+
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
+msgstr "Phát hiện máy chủ tùy chỉnh không hợp lệ ở dòng "
+
+#: ../includes/dashboard.php:72
 #, php-format
-msgid "From the %s icon menu of the device, open the %s panel."
-msgstr "Từ menu biểu tượng %s của thiết bị, hãy mở bảng điều khiển %s."
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
 
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:14
-msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
-msgstr "Chọn ô phạm vi IP tương ứng với tuyến mạng con mà bạn muốn công bố, sau đó nhấn <strong>Lưu</strong>."
-
-#: ../plugins-available/Tailscale/templates/tabs/status.php:3
-msgid "Tailnet status"
-msgstr "Tình trạng mạng Tailnet"
-
-#: ../plugins-available/Tailscale/templates/tabs/status.php:4
-msgid "Current <code>tailnet</code> status is displayed below."
-msgstr "Tình trạng hiện tại <code>của mạng đuôi</code> được hiển thị bên dưới."
-
-#: ../plugins-available/Tailscale/templates/main.php:7
-msgid "Back"
-msgstr "Quay lại"
-
-#: ../plugins-available/Tailscale/templates/main.php:10
-#: ../plugins-available/Tailscale/templates/main.php:13
-msgid "Next"
-msgstr "Tiếp theo"
-
-#: ../plugins-available/Tailscale/templates/main.php:19
-msgid "Revoke Exit Node"
-msgstr "Hủy bỏ nút thoát"
-
-#: ../plugins-available/Tailscale/templates/main.php:22
-#: ../templates/admin/general.php:4
-msgid "Logout"
-msgstr "Đăng xuất"
-
-#: ../plugins-available/Tailscale/templates/main.php:25
-msgid "Stop Using Exit Node"
-msgstr "Ngừng sử dụng nút thoát"
-
-#: ../plugins-available/Tailscale/templates/main.php:48
-msgid "Stop Tailscale"
-msgstr "Ngừng sử dụng Tailscale"
-
-#: ../templates/dashboard.php:24
-msgid "Ethernet"
-msgstr "Ethernet"
-
-#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
-msgid "WiFi Client"
-msgstr ""
-
-#: ../templates/dashboard.php:28
-msgid "Repeater"
-msgstr "Bộ lặp"
-
-#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
-msgid "Tethering"
-msgstr "Chia sẻ kết nối"
-
-#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
-msgid "Cellular"
-msgstr "Di động"
-
-#: ../templates/dashboard.php:48
-msgid "Public"
-msgstr ""
-
-#: ../templates/dashboard.php:49
-msgid "Local"
-msgstr ""
-
-#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
-#: ../templates/dhcp/settings.php:39 ../templates/dhcp/clients.php:20
-#: ../templates/dhcp/general.php:39 ../templates/networking/general.php:13
-#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
-msgid "IP Address"
-msgstr "Địa chỉ IP"
-
-#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
-msgid "Netmask"
-msgstr "Mặt nạ mạng"
-
-#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
-#: ../templates/dhcp/clients.php:19
-msgid "MAC Address"
-msgstr "Địa chỉ MAC"
-
-#: ../templates/dashboard.php:57 ../templates/dashboard.php:63
-#: ../templates/hostapd/basic.php:11
-msgid "SSID"
-msgstr "SSID"
-
-#: ../templates/dashboard.php:75
-msgid "AP"
-msgstr "AP"
-
-#: ../templates/dashboard.php:83
-msgid "Bridged"
-msgstr "Kết nối"
-
-#: ../templates/dashboard.php:91
-msgid "Adblock"
-msgstr "Chặn quảng cáo"
-
-#: ../templates/dashboard.php:99
-msgid "VPN"
-msgstr "VPN"
-
-#: ../templates/dashboard.php:108
-msgid "Firewall"
-msgstr "Tường lửa"
-
-#: ../templates/dashboard.php:114
-msgid "5G"
-msgstr "5G"
-
-#: ../templates/dashboard.php:115
-msgid "2.4G"
-msgstr "2,4 GHz"
-
-#: ../templates/dashboard.php:164 ../templates/system.php:40
-msgid "Information provided by raspap.sysinfo"
-msgstr "Thông tin do raspap.sysinfo cung cấp"
-
-#: ../templates/about/general.php:8
-msgid "RaspAP"
-msgstr "RaspAP"
-
-#: ../templates/about/general.php:11 ../templates/about.php:47
-msgid "Check for update"
-msgstr "Kiểm tra bản cập nhật"
-
-#: ../templates/about/general.php:20
+#: ../includes/dashboard.php:78
 #, php-format
-msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
-msgstr "RaspAP là sản phẩm hợp tác giữa %1$s và %2$s , với sự đóng góp của các thành viên %3$s và %4$s. Tìm hiểu thêm về cách tham gia dự án với tư cách là %5$s, %6$s hoặc %7$s và nhận quyền truy cập ngay lập tức vào %8$s dành cho %9$s."
-
-#: ../templates/about/general.php:23
-msgid "developer community"
-msgstr "cộng đồng nhà phát triển"
-
-#: ../templates/about/general.php:24
-msgid "language translators"
-msgstr "công cụ dịch ngôn ngữ"
-
-#: ../templates/about/general.php:25
-msgid "code contributor"
-msgstr "người đóng góp mã nguồn"
-
-#: ../templates/about/general.php:26
-msgid "translator"
-msgstr "người dịch"
-
-#: ../templates/about/general.php:27
-msgid "financial sponsor"
-msgstr "nhà tài trợ tài chính"
-
-#: ../templates/about/general.php:28
-msgid "exclusive features"
-msgstr "các tính năng độc quyền"
-
-#: ../templates/about/general.php:29 ../templates/about.php:22
-msgid "Insiders"
-msgstr "Những người trong cuộc"
-
-#: ../templates/about.php:23
-msgid "Contributing"
-msgstr "Đóng góp"
-
-#: ../templates/about.php:50
-msgid "New release check in progress..."
-msgstr "Đang tiến hành kiểm tra bản phát hành mới..."
-
-#: ../templates/about.php:53
-msgid "A new release is available: Version"
-msgstr "Phiên bản mới đã được phát hành: Phiên bản"
-
-#: ../templates/about.php:54
-msgid "Installed version is the latest release."
-msgstr "Phiên bản đã cài đặt là phiên bản mới nhất."
-
-#: ../templates/about.php:55
-msgid "Install this update now?"
-msgstr "Bạn có muốn cài đặt bản cập nhật này ngay bây giờ không?"
-
-#: ../templates/about.php:56 ../templates/about.php:57
-#: ../templates/about.php:132 ../templates/system.php:271
-msgid "OK"
-msgstr "Được rồi"
-
-#: ../templates/about.php:69
-msgid "GitHub authentication"
-msgstr "Xác thực GitHub"
-
-#: ../templates/about.php:73
-msgid "Updating Insiders requires GitHub authentication."
-msgstr "Việc cập nhật Insiders yêu cầu xác thực GitHub."
-
-#: ../templates/about.php:80
-msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
-msgstr "Thông tin đăng nhập của bạn sẽ được gửi đến GitHub một cách an toàn thông qua SSL. Tuy nhiên, hãy thận trọng nếu bạn cài đặt RaspAP trên mạng WLAN được chia sẻ với những người dùng không đáng tin cậy."
-
-#: ../templates/about.php:85 ../templates/login.php:22
-#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
-#: ../templates/admin/login.php:12 ../templates/admin/general.php:15
-msgid "Username"
-msgstr "Tên người dùng"
-
-#: ../templates/about.php:87 ../templates/admin/login.php:15
-#: ../templates/admin/general.php:18 ../templates/admin/general.php:37
-msgid "Please provide a valid username."
-msgstr "Vui lòng nhập tên người dùng hợp lệ."
-
-#: ../templates/about.php:92
-msgid "Personal Access Token"
-msgstr "Mã truy cập cá nhân"
-
-#: ../templates/about.php:98
-msgid "Please provide a valid token."
-msgstr "Vui lòng cung cấp mã xác thực hợp lệ."
-
-#: ../templates/about.php:105
-msgid "Perform update"
-msgstr "Thực hiện cập nhật"
-
-#: ../templates/about.php:117
-msgid "Update in progress"
-msgstr "Đang cập nhật"
-
-#: ../templates/about.php:120
-msgid "Application is being updated..."
-msgstr "Ứng dụng đang được cập nhật..."
-
-#: ../templates/about.php:121
-msgid "Configuring update"
-msgstr "Cấu hình cập nhật"
-
-#: ../templates/about.php:122
-msgid "Updating sources"
-msgstr "Cập nhật nguồn"
-
-#: ../templates/about.php:123
-msgid "Installing package updates"
-msgstr "Cập nhật các gói phần mềm"
-
-#: ../templates/about.php:124
-msgid "Downloading latest files"
-msgstr "Tải xuống các tệp mới nhất"
-
-#: ../templates/about.php:125
-msgid "Installing application"
-msgstr "Cài đặt ứng dụng"
-
-#: ../templates/about.php:126
-msgid "Update complete"
-msgstr "Cập nhật hoàn tất"
-
-#: ../templates/about.php:128
-msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
-msgstr "Đã xảy ra lỗi. Vui lòng kiểm tra tệp nhật ký tại <code>/tmp/raspap_install.log</code>"
-
-#: ../templates/about.php:129
-msgid "Success. Refresh this page to confirm the new version."
-msgstr "Thành công. Vui lòng làm mới trang này để xác nhận phiên bản mới."
+msgid "%d LAN %s"
+msgstr "%d Mạng LAN %s"
 
 #: ../templates/admin.php:7
 msgid "Authentication"
@@ -1652,33 +1382,234 @@ msgstr "Thao tác này sẽ lưu thông tin đăng nhập của người dùng c
 msgid "Save and logout"
 msgstr "Lưu và đăng xuất"
 
-#: ../templates/login.php:13
-msgid "Administrator login"
-msgstr "Đăng nhập quản trị viên"
+#: ../templates/adblock/stats.php:3
+msgid "Statistics"
+msgstr "Thống kê"
 
-#: ../templates/login.php:31
-msgid "Forgot password"
-msgstr "Quên mật khẩu"
+#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
+msgid "Blocklist settings"
+msgstr "Cài đặt danh sách chặn"
 
-#: ../templates/login.php:33
-msgid "Scan for Login Help"
-msgstr ""
+#: ../templates/adblock/general.php:10
+msgid "Enable blocklists"
+msgstr "Bật danh sách chặn"
 
-#: ../templates/restapi/status.php:3
-msgid "RestAPI status"
-msgstr "Trạng thái RestAPI"
+#: ../templates/adblock/general.php:13
+msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
+msgstr "Hãy bật tùy chọn này nếu bạn muốn RaspAP <b>chặn các yêu cầu DNS liên quan đến quảng cáo, theo dõi và các nội dung rác kỹ thuật số khác</b>. Danh sách chặn được thu thập từ nhiều nguồn khác nhau, được duy trì thường xuyên và được tự động cập nhật, lọc, tối ưu hóa và kiểm duyệt hàng ngày."
 
-#: ../templates/restapi/status.php:4
-msgid "Current <code>restapi.service</code> status is displayed below."
-msgstr "Tình trạng hiện tại của <code>restapi.service</code> được hiển thị bên dưới."
+#: ../templates/adblock/general.php:15
+msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
+msgstr "Tùy chọn này sẽ thêm <code>tệp cấu hình</code> và <code>các máy chủ bổ sung</code> vào cấu hình dnsmasq."
 
-#: ../templates/restapi/general.php:12
-msgid "API Key"
-msgstr "Khóa API"
+#: ../templates/adblock/general.php:22
+msgid "Hostnames blocklist last updated"
+msgstr "Danh sách chặn tên máy chủ được cập nhật lần cuối"
 
-#: ../templates/restapi/general.php:17
-msgid "Please provide a valid API key."
-msgstr "Vui lòng cung cấp một khóa API hợp lệ."
+#: ../templates/adblock/general.php:24
+msgid "Domains blocklist last updated"
+msgstr "Danh sách chặn tên miền được cập nhật lần cuối"
+
+#: ../templates/adblock/general.php:29
+msgid "Choose a blocklist provider"
+msgstr "Chọn nhà cung cấp danh sách chặn"
+
+#: ../templates/adblock/general.php:33
+msgid "Update now"
+msgstr "Cập nhật ngay"
+
+#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
+msgid "Custom blocklist"
+msgstr "Danh sách chặn tùy chỉnh"
+
+#: ../templates/adblock/custom.php:10
+msgid "Enable custom blocklist"
+msgstr "Bật danh sách chặn tùy chỉnh"
+
+#: ../templates/adblock/custom.php:14
+msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
+msgstr "Định nghĩa các máy chủ tùy chỉnh cần chặn bằng cách nhập địa chỉ IPv4 hoặc IPv6, tiếp theo là một khoảng trắng (khoảng cách hoặc tab) và tên máy chủ."
+
+#: ../templates/adblock/custom.php:15
+msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
+msgstr "<b>Ví dụ về IPv4:</b> 0.0.0.0 badhost.com"
+
+#: ../templates/adblock/custom.php:17
+msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
+msgstr "Tùy chọn này thêm chỉ thị <code>addn-hosts</code> vào tệp cấu hình dnsmasq."
+
+#: ../templates/adblock/logging.php:3 ../templates/openvpn/logging.php:3
+#: ../templates/dhcp.php:55 ../templates/wireguard.php:49
+#: ../templates/hostapd.php:52 ../templates/hostapd/logging.php:3
+#: ../templates/adblock.php:47 ../templates/openvpn.php:48
+#: ../templates/dhcp/logging.php:3 ../templates/wg/logging.php:5
+msgid "Logging"
+msgstr "Ghi nhật ký"
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s cài đặt"
+
+#: ../templates/provider/general.php:9 ../templates/openvpn/general.php:8
+#: ../templates/wg/general.php:8
+msgid "IPv4 Address"
+msgstr "Địa chỉ IPv4"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "Thông tin tài khoản"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "Tài khoản của tôi"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "Vị trí máy chủ"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "Khi chọn \" <strong>Lưu cài đặt</strong> \", hệ thống sẽ kết nối với quốc gia đã chọn."
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Chọn <strong>Connect %s</strong> sẽ kết nối với máy chủ được đề xuất."
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "Quốc gia"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s trạng thái"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Đã cài đặt giao diện dòng lệnh Linux: <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Trạng thái kết nối hiện tại <code>%s</code> trạng thái kết nối hiện tại được hiển thị bên dưới."
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "Phương thức xác thực"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "Tên đăng nhập và mật khẩu"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "Chứng chỉ"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "Nhập tên người dùng và mật khẩu"
+
+#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/login.php:22 ../templates/about.php:85
+msgid "Username"
+msgstr "Tên người dùng"
+
+#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
+#: ../templates/admin/login.php:21 ../templates/login.php:25
+#: ../app/lib/signprint.php:67
+msgid "Password"
+msgstr "Mật khẩu"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "Chứng chỉ trong tệp cấu hình"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP hỗ trợ chứng chỉ bằng cách thêm chúng vào tệp cấu hình."
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Chứng chỉ của cơ quan chứng nhận (CA) (ví dụ: <code>ca.crt</code>): được đính kèm trong các thẻ <code> `&lt;ca>` ... ` &lt;/ca>`</code>."
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Chứng chỉ khách hàng (khóa công khai) (ví dụ: <code>client.crt</code>): được bao gồm trong các thẻ <code> `&lt;cert> ...` và ` &lt;/cert></code> `."
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Khóa riêng của chứng chỉ khách hàng (ví dụ: <code>client.key</code>): được bao gồm trong các thẻ <code> `&lt;key>` ... ` &lt;/key></code> `."
+
+#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
+msgid "Configuration File"
+msgstr "Tệp cấu hình"
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Chọn tệp cấu hình OpenVPN (.ovpn)"
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Bật tùy chọn này để ghi lại hoạt động <code>của OpenVPN</code>."
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "Bật tính năng ghi nhật ký"
+
+#: ../templates/openvpn/logging.php:9 ../templates/hostapd/logging.php:10
+#: ../templates/dhcp/logging.php:13
+msgid "Clear log"
+msgstr "Xóa nhật ký"
+
+#: ../templates/openvpn/configs.php:4 ../templates/wireguard.php:48
+#: ../templates/openvpn.php:47 ../templates/wg/configs.php:4
+msgid "Configurations"
+msgstr "Cài đặt"
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Dưới đây là các cấu hình máy khách OpenVPN hiện có."
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Việc kích hoạt cấu hình sẽ khởi động lại dịch vụ <code>openvpn-client</code>."
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "Dừng dnsmasq"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "Khởi động lại dnsmasq"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "Khởi động dnsmasq"
+
+#: ../templates/dhcp.php:50 ../templates/networking.php:20
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "Tóm tắt"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "Cài đặt máy chủ"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "Hợp đồng thuê cố định"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "Danh sách khách hàng"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "Thông tin do Dnsmasq cung cấp"
 
 #: ../templates/data_usage.php:7
 msgid "Data usage monitoring"
@@ -1743,525 +1674,25 @@ msgstr "Gửi"
 msgid "Receive"
 msgstr "Nhận"
 
-#: ../templates/restapi.php:21
-msgid "Start RestAPI service"
-msgstr "Khởi động dịch vụ RestAPI"
-
-#: ../templates/restapi.php:25
-msgid "Stop RestAPI service"
-msgstr "Dừng dịch vụ RestAPI"
-
-#: ../templates/restapi.php:63
-msgid "Information provided by restapi.service"
-msgstr "Thông tin do restapi.service cung cấp"
-
-#: ../templates/wifi_stations.php:3
-msgid "No Wifi stations found"
-msgstr "Không tìm thấy điểm truy cập Wi-Fi nào"
-
-#: ../templates/wifi_stations.php:4
-msgid "Click 'Rescan' to search for nearby Wifi stations."
-msgstr "Nhấp vào 'Quét lại' để tìm kiếm các điểm phát sóng Wi-Fi gần đó."
-
-#: ../templates/wifi_stations.php:6
-msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
-msgstr "Nhấp vào 'Khởi động lại' để buộc khởi động lại <code>wpa_supplicant</code>."
-
-#: ../templates/wifi_stations.php:10
-msgid "Reinitialize"
-msgstr "Khởi tạo lại"
-
-#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
-msgid "Connected"
-msgstr "Kết nối"
-
-#: ../templates/wifi_stations.php:29
-msgid "Known"
-msgstr "Được biết"
-
-#: ../templates/wifi_stations.php:40
-msgid "Nearby"
-msgstr "Gần đây"
-
-#: ../templates/configure_client.php:12
-msgid "Disconnected"
-msgstr "Không kết nối"
-
-#: ../templates/configure_client.php:24
-msgid "Rescan"
-msgstr "Quét lại"
-
-#: ../templates/configure_client.php:31 ../templates/dhcp/summary.php:18
-#: ../templates/dhcp/settings.php:5 ../templates/dhcp/general.php:5
-#: ../templates/hostapd/basic.php:5 ../templates/networking/devices.php:17
-#: ../templates/networking/general.php:12
-msgid "Interface"
-msgstr "Giao diện"
-
-#: ../templates/configure_client.php:34
-msgid "Set"
-msgstr "Bộ"
-
-#: ../templates/configure_client.php:49
-msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
-msgstr "<strong>Lưu ý:</strong> Các điểm truy cập WEP sẽ hiển thị là 'Mở'. Hiện tại, RaspAP chưa hỗ trợ kết nối với WEP"
-
-#: ../templates/configure_client.php:59
-msgid "Configuring WiFi Client"
-msgstr "Cấu hình máy khách WiFi"
-
-#: ../templates/configure_client.php:62
-msgid "Configuring Wifi Client Interface..."
-msgstr "Đang cấu hình giao diện máy khách Wi-Fi..."
-
-#: ../templates/configure_client.php:65
-#: ../templates/wifi_stations/network.php:119 ../templates/system.php:56
-#: ../templates/system.php:74 ../templates/system.php:109
-#: ../templates/system.php:127 ../templates/system.php:159
-#: ../templates/hostapd.php:90
-msgid "Close"
-msgstr "Đóng"
-
-#: ../templates/adblock/logging.php:3 ../templates/adblock.php:47
-#: ../templates/openvpn.php:48 ../templates/dhcp/logging.php:3
-#: ../templates/hostapd/logging.php:3 ../templates/openvpn/logging.php:3
-#: ../templates/wireguard.php:49 ../templates/dhcp.php:55
-#: ../templates/hostapd.php:52 ../templates/wg/logging.php:5
-msgid "Logging"
-msgstr "Ghi nhật ký"
-
-#: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
-msgid "Custom blocklist"
-msgstr "Danh sách chặn tùy chỉnh"
-
-#: ../templates/adblock/custom.php:10
-msgid "Enable custom blocklist"
-msgstr "Bật danh sách chặn tùy chỉnh"
-
-#: ../templates/adblock/custom.php:14
-msgid "Define custom hosts to be blocked by entering an IPv4 or IPv6 address followed by any whitespace (spaces or tabs) and the host name."
-msgstr "Định nghĩa các máy chủ tùy chỉnh cần chặn bằng cách nhập địa chỉ IPv4 hoặc IPv6, tiếp theo là một khoảng trắng (khoảng cách hoặc tab) và tên máy chủ."
-
-#: ../templates/adblock/custom.php:15
-msgid "<b>IPv4 example:</b> 0.0.0.0 badhost.com"
-msgstr "<b>Ví dụ về IPv4:</b> 0.0.0.0 badhost.com"
-
-#: ../templates/adblock/custom.php:17
-msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
-msgstr "Tùy chọn này thêm chỉ thị <code>addn-hosts</code> vào tệp cấu hình dnsmasq."
-
-#: ../templates/adblock/general.php:5 ../templates/adblock.php:45
-msgid "Blocklist settings"
-msgstr "Cài đặt danh sách chặn"
-
-#: ../templates/adblock/general.php:10
-msgid "Enable blocklists"
-msgstr "Bật danh sách chặn"
-
-#: ../templates/adblock/general.php:13
-msgid "Enable this option if you want RaspAP to <b>block DNS requests for ads, tracking and other virtual garbage</b>. Blocklists are gathered from multiple, actively maintained sources and automatically updated, cleaned, optimized and moderated on a daily basis."
-msgstr "Hãy bật tùy chọn này nếu bạn muốn RaspAP <b>chặn các yêu cầu DNS liên quan đến quảng cáo, theo dõi và các nội dung rác kỹ thuật số khác</b>. Danh sách chặn được thu thập từ nhiều nguồn khác nhau, được duy trì thường xuyên và được tự động cập nhật, lọc, tối ưu hóa và kiểm duyệt hàng ngày."
-
-#: ../templates/adblock/general.php:15
-msgid "This option adds <code>conf-file</code> and <code>addn-hosts</code> to the dnsmasq configuration."
-msgstr "Tùy chọn này sẽ thêm <code>tệp cấu hình</code> và <code>các máy chủ bổ sung</code> vào cấu hình dnsmasq."
-
-#: ../templates/adblock/general.php:22
-msgid "Hostnames blocklist last updated"
-msgstr "Danh sách chặn tên máy chủ được cập nhật lần cuối"
-
-#: ../templates/adblock/general.php:24
-msgid "Domains blocklist last updated"
-msgstr "Danh sách chặn tên miền được cập nhật lần cuối"
-
-#: ../templates/adblock/general.php:29
-msgid "Choose a blocklist provider"
-msgstr "Chọn nhà cung cấp danh sách chặn"
-
-#: ../templates/adblock/general.php:33
-msgid "Update now"
-msgstr "Cập nhật ngay"
-
-#: ../templates/adblock/stats.php:3
-msgid "Statistics"
-msgstr "Thống kê"
-
-#: ../templates/adblock.php:20
-msgid "Restart Ad Blocking"
-msgstr "Khởi động lại tính năng chặn quảng cáo"
-
-#: ../templates/adblock.php:24
-msgid "Start Ad Blocking"
-msgstr "Bắt đầu chặn quảng cáo"
-
-#: ../templates/adblock.php:64
-msgid "Information provided by adblock"
-msgstr "Thông tin do Adblock cung cấp"
-
-#: ../templates/exception.php:6 ../templates/exception.php:17
-msgid "RaspAP Exception"
-msgstr "Lỗi RaspAP"
-
-#: ../templates/exception.php:20
-msgid "An exception occurred"
-msgstr "Đã xảy ra một lỗi"
-
-#: ../templates/openvpn.php:20
-msgid "Start OpenVPN"
-msgstr "Khởi động OpenVPN"
-
-#: ../templates/openvpn.php:24
-msgid "Stop OpenVPN"
-msgstr "Tắt OpenVPN"
-
-#: ../templates/openvpn.php:47 ../templates/openvpn/configs.php:4
-#: ../templates/wireguard.php:48 ../templates/wg/configs.php:4
-msgid "Configurations"
-msgstr "Cài đặt"
-
-#: ../templates/openvpn.php:65
-msgid "Information provided by openvpn"
-msgstr "Thông tin do OpenVPN cung cấp"
-
-#: ../templates/openvpn.php:75
-msgid "Delete OpenVPN client"
-msgstr "Xóa ứng dụng OpenVPN"
-
-#: ../templates/openvpn.php:78
-msgid "Delete client configuration? This cannot be undone."
-msgstr "Xóa cấu hình khách hàng? Thao tác này không thể hoàn tác."
-
-#: ../templates/openvpn.php:93
-msgid "Activate OpenVPN client"
-msgstr "Kích hoạt ứng dụng OpenVPN"
-
-#: ../templates/openvpn.php:96
-msgid "Activate client configuration? This will restart the openvpn-client service."
-msgstr "Kích hoạt cấu hình máy khách? Thao tác này sẽ khởi động lại dịch vụ openvpn-client."
-
-#: ../templates/openvpn.php:100 ../templates/wireguard.php:102
-msgid "Activate"
-msgstr "Kích hoạt"
-
-#: ../templates/dhcp/logging.php:4
-msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
-msgstr "Bật các tùy chọn này để ghi lại hoạt động của <code>dhcpcd</code> và <code>dnsmasq</code>."
-
-#: ../templates/dhcp/logging.php:8
-msgid "Log DHCP requests"
-msgstr "Ghi lại các yêu cầu DHCP"
-
-#: ../templates/dhcp/logging.php:12
-msgid "Log DNS queries"
-msgstr "Ghi lại các truy vấn DNS"
-
-#: ../templates/dhcp/logging.php:13 ../templates/hostapd/logging.php:10
-#: ../templates/openvpn/logging.php:9
-msgid "Clear log"
-msgstr "Xóa nhật ký"
-
-#: ../templates/dhcp/summary.php:2 ../templates/dhcp.php:50
-#: ../templates/networking.php:20
-msgid "Summary"
-msgstr "Tóm tắt"
-
-#: ../templates/dhcp/summary.php:7
-msgid "Interface Configurations"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:19
-msgid "Static IP"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:20
-msgid "Subnet / Gateway"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:21
-msgid "Default Route"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:22
-msgid "Disable Hook"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:23
-msgid "DHCP Range (lease)"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:24
-msgid "DNS Servers"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:25 ../templates/dhcp/settings.php:164
-#: ../templates/dhcp/general.php:163
-msgid "Metric"
-msgstr "Hệ mét"
-
-#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
-msgid "Yes"
-msgstr ""
-
-#: ../templates/dhcp/summary.php:97
-msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
-
-#: ../templates/dhcp/advanced.php:3
-msgid "Advanced Settings"
-msgstr "Cài đặt nâng cao"
-
-#: ../templates/dhcp/advanced.php:6
-msgid "Upstream DNS servers"
-msgstr "Máy chủ DNS ở phía trên"
-
-#: ../templates/dhcp/advanced.php:11
-msgid "Only ever query DNS servers configured below"
-msgstr "Chỉ truy vấn các máy chủ DNS được cấu hình bên dưới"
-
-#: ../templates/dhcp/advanced.php:14
-msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
-msgstr "Hãy bật tùy chọn này nếu bạn muốn RaspAP <b>chỉ gửi các yêu cầu DNS đến các máy chủ được cấu hình bên dưới</b>. Theo mặc định, RaspAP cũng sử dụng các máy chủ tên miền của máy chủ DHCP cấp trên."
-
-#: ../templates/dhcp/advanced.php:15
-msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
-msgstr "Tùy chọn này thêm tùy chọn ` <code>no-resolv</code> ` vào cấu hình dnsmasq."
-
-#: ../templates/dhcp/advanced.php:29
-msgid "Add upstream DNS server"
-msgstr "Thêm máy chủ DNS nguồn"
-
-#: ../templates/dhcp/advanced.php:31
-#, php-format
-msgid "e.g. %s"
-msgstr "Ví dụ: %s"
-
-#: ../templates/dhcp/advanced.php:36
-msgid "Format: "
-msgstr "Định dạng: "
-
-#: ../templates/dhcp/advanced.php:41
-msgid "Choose a hosted server"
-msgstr "Chọn một máy chủ được lưu trữ"
-
-#: ../templates/dhcp/static_leases.php:5
-msgid "Static leases"
-msgstr "Hợp đồng thuê cố định"
-
-#: ../templates/dhcp/static_leases.php:7
-msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
-msgstr "Các thiết bị có địa chỉ MAC phần cứng cụ thể luôn có thể được gán cùng một địa chỉ IP."
-
-#: ../templates/dhcp/static_leases.php:8
-msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
-msgstr "Tùy chọn này thêm các mục <code>dhcp-host</code> vào cấu hình dnsmasq."
-
-#: ../templates/dhcp/static_leases.php:16
-#: ../templates/dhcp/static_leases.php:33
-#: ../templates/dhcp/static_leases.php:64
-#: ../templates/networking/devices.php:19
-msgid "MAC address"
-msgstr "Địa chỉ MAC"
-
-#: ../templates/dhcp/static_leases.php:19
-#: ../templates/dhcp/static_leases.php:36
-#: ../templates/dhcp/static_leases.php:67
-msgid "IP address"
-msgstr "Địa chỉ IP"
-
-#: ../templates/dhcp/static_leases.php:22
-#: ../templates/dhcp/static_leases.php:39
-#: ../templates/dhcp/static_leases.php:70
-msgid "Optional comment"
-msgstr "Bình luận (không bắt buộc)"
-
-#: ../templates/dhcp/static_leases.php:46
-msgid "Restrict access"
-msgstr "Hạn chế quyền truy cập"
-
-#: ../templates/dhcp/static_leases.php:51
-msgid "Limit network access to static clients"
-msgstr "Hạn chế quyền truy cập mạng đối với các máy khách cố định"
-
-#: ../templates/dhcp/static_leases.php:54
-msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
-msgstr "Hãy bật tùy chọn này nếu bạn muốn RaspAP <b>bỏ qua bất kỳ máy khách</b> nào không được liệt kê trong danh sách cấp phép tĩnh."
-
-#: ../templates/dhcp/static_leases.php:55
-msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
-msgstr "Tùy chọn này thêm ` <code>dhcp-ignore</code> ` vào cấu hình dnsmasq."
-
-#: ../templates/dhcp/settings.php:2 ../templates/dhcp/general.php:2
-msgid "DHCP server settings"
-msgstr "Cài đặt máy chủ DHCP"
-
-#: ../templates/dhcp/settings.php:10 ../templates/dhcp/general.php:10
-msgid "Adapter IP Address Settings"
-msgstr "Cài đặt địa chỉ IP của bộ chuyển đổi"
-
-#: ../templates/dhcp/settings.php:28 ../templates/dhcp/general.php:28
-msgid "Enable fallback to static option"
-msgstr "Bật tùy chọn chuyển sang phiên bản tĩnh"
-
-#: ../templates/dhcp/settings.php:31 ../templates/dhcp/general.php:31
-msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
-msgstr "Bật tùy chọn này để định cấu hình một cấu hình tĩnh và chuyển sang sử dụng cấu hình đó khi hợp đồng thuê DHCP không thành công."
-
-#: ../templates/dhcp/settings.php:36 ../templates/dhcp/general.php:36
-msgid "Static IP options"
-msgstr "Các tùy chọn địa chỉ IP tĩnh"
-
-#: ../templates/dhcp/settings.php:42 ../templates/dhcp/general.php:42
-msgid "Please provide a valid IP Address."
-msgstr "Vui lòng nhập địa chỉ IP hợp lệ."
-
-#: ../templates/dhcp/settings.php:49 ../templates/dhcp/general.php:49
-msgid "Subnet Mask"
-msgstr "Mặt nạ mạng con"
-
-#: ../templates/dhcp/settings.php:52 ../templates/dhcp/general.php:52
-msgid "Please provide a valid Subnet mask."
-msgstr "Vui lòng nhập địa chỉ mạng con hợp lệ."
-
-#: ../templates/dhcp/settings.php:59 ../templates/dhcp/general.php:59
-msgid "Default gateway"
-msgstr "Cổng mặc định"
-
-#: ../templates/dhcp/settings.php:62 ../templates/dhcp/general.php:62
-msgid "Please provide a valid Default gateway."
-msgstr "Vui lòng cung cấp một cổng mặc định hợp lệ."
-
-#: ../templates/dhcp/settings.php:71 ../templates/dhcp/general.php:71
-msgid "Install a default route for this interface"
-msgstr "Thiết lập tuyến mặc định cho giao diện này"
-
-#: ../templates/dhcp/settings.php:72
-msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:75
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:84 ../templates/dhcp/general.php:83
-msgid "Disable wpa_supplicant dhcp hook for this interface"
-msgstr "Vô hiệu hóa hook DHCP của wpa_supplicant cho giao diện này"
-
-#: ../templates/dhcp/settings.php:85 ../templates/dhcp/general.php:84
-msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
-msgstr "Nếu bạn quản lý các kết nối không dây trực tiếp bằng wpa_supplicant, hook này có thể tạo ra các sự kiện kết nối không mong muốn. Tùy chọn này sẽ vô hiệu hóa hook."
-
-#: ../templates/dhcp/settings.php:88
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
-
-#: ../templates/dhcp/settings.php:93 ../templates/dhcp/general.php:92
-msgid "DHCP options"
-msgstr "Các tùy chọn DHCP"
-
-#: ../templates/dhcp/settings.php:99 ../templates/dhcp/general.php:98
-msgid "Enable DHCP for this interface"
-msgstr "Bật DHCP cho giao diện này"
-
-#: ../templates/dhcp/settings.php:102 ../templates/dhcp/general.php:101
-msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
-msgstr "Hãy bật tùy chọn này nếu bạn muốn RaspAP gán địa chỉ IP cho các thiết bị kết nối trên giao diện đã chọn. Tùy chọn này yêu cầu phải có địa chỉ IP tĩnh."
-
-#: ../templates/dhcp/settings.php:110 ../templates/dhcp/general.php:109
-msgid "Starting IP Address"
-msgstr "Địa chỉ IP bắt đầu"
-
-#: ../templates/dhcp/settings.php:113 ../templates/dhcp/general.php:112
-msgid "Please provide a valid Starting IP Address."
-msgstr "Vui lòng cung cấp một địa chỉ IP bắt đầu hợp lệ."
-
-#: ../templates/dhcp/settings.php:119 ../templates/dhcp/general.php:118
-msgid "Ending IP Address"
-msgstr "Địa chỉ IP kết thúc"
-
-#: ../templates/dhcp/settings.php:122 ../templates/dhcp/general.php:121
-msgid "Please provide a valid Ending IP Address."
-msgstr "Vui lòng cung cấp một địa chỉ IP đích hợp lệ."
-
-#: ../templates/dhcp/settings.php:128 ../templates/dhcp/general.php:127
-msgid "Lease Time"
-msgstr "Thời hạn thuê"
-
-#: ../templates/dhcp/settings.php:131 ../templates/dhcp/general.php:130
-msgid "Please provide a valid Lease Time."
-msgstr "Vui lòng cung cấp thời hạn thuê hợp lệ."
-
-#: ../templates/dhcp/settings.php:135 ../templates/dhcp/general.php:134
-msgid "Interval"
-msgstr "Khoảng thời gian"
-
-#: ../templates/dhcp/settings.php:137 ../templates/dhcp/general.php:136
-msgid "Minute(s)"
-msgstr "Biên bản"
-
-#: ../templates/dhcp/settings.php:138 ../templates/dhcp/general.php:137
-msgid "Hour(s)"
-msgstr "Giờ"
-
-#: ../templates/dhcp/settings.php:139 ../templates/dhcp/general.php:138
-msgid "Day(s)"
-msgstr "Ngày"
-
-#: ../templates/dhcp/settings.php:140 ../templates/dhcp/general.php:139
-msgid "Infinite"
-msgstr "Vô tận"
-
-#: ../templates/dhcp/settings.php:143 ../templates/dhcp/general.php:142
-msgid "Please provide a valid Interval."
-msgstr "Vui lòng nhập khoảng thời gian hợp lệ."
-
-#: ../templates/dhcp/settings.php:150 ../templates/dhcp/settings.php:157
-#: ../templates/dhcp/general.php:149 ../templates/dhcp/general.php:156
-#: ../templates/hostapd/advanced.php:65
-msgid "DNS Server"
-msgstr "Máy chủ DNS"
-
-#: ../templates/dhcp/clients.php:2 ../templates/dhcp.php:54
-msgid "Client list"
-msgstr "Danh sách khách hàng"
-
-#: ../templates/dhcp/clients.php:8
-msgid "Active DHCP leases"
-msgstr "Các hợp đồng thuê DHCP đang hoạt động"
-
-#: ../templates/dhcp/clients.php:18
-msgid "Expire time"
-msgstr "Thời gian hết hạn"
-
-#: ../templates/dhcp/clients.php:21
-msgid "Host name"
-msgstr "Tên máy chủ"
-
-#: ../templates/dhcp/clients.php:22
-msgid "Client ID"
-msgstr "Mã khách hàng"
-
-#: ../templates/dhcp/general.php:74
-msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
-msgstr "Tùy chọn này cho phép bật/tắt tùy chọn<code>gateway/nogateway</code> cho giao diện này trong cấu hình DHCPCD."
-
-#: ../templates/dhcp/general.php:87
-msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
-msgstr "Tùy chọn này sẽ bật/tắt tùy chọn <code>`nohook` của `wpa_supplicant</code> ` cho giao diện này trong cấu hình DHCPCD."
-
-#: ../templates/provider.php:5
-#, php-format
-msgid "Connect %s"
-msgstr "Kết nối %s"
-
-#: ../templates/provider.php:7
-#, php-format
-msgid "Disconnect %s"
-msgstr "Ngắt kết nối %s"
-
-#: ../templates/provider.php:51
-#, php-format
-msgid "Information provided by %s"
-msgstr "Thông tin được cung cấp bởi %s"
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "Thiết bị"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "Dữ liệu di động"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "Định tuyến WLAN"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "Chẩn đoán"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "Thông tin được cung cấp bởi /sys/class/net"
 
 #: ../templates/wifi_stations/network.php:42
 msgid "Not configured"
@@ -2311,6 +1742,513 @@ msgstr "Mạng không dây này yêu cầu đăng nhập hoặc chấp nhận c�
 #: ../templates/wifi_stations/network.php:118
 msgid "Goto Webpage"
 msgstr "Truy cập trang web"
+
+#: ../templates/wifi_stations/network.php:119 ../templates/hostapd.php:90
+#: ../templates/configure_client.php:65 ../templates/system.php:56
+#: ../templates/system.php:74 ../templates/system.php:109
+#: ../templates/system.php:127 ../templates/system.php:159
+msgid "Close"
+msgstr "Đóng"
+
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "Không tìm thấy điểm truy cập Wi-Fi nào"
+
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Nhấp vào 'Quét lại' để tìm kiếm các điểm phát sóng Wi-Fi gần đó."
+
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Nhấp vào 'Khởi động lại' để buộc khởi động lại <code>wpa_supplicant</code>."
+
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "Khởi tạo lại"
+
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "Kết nối"
+
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "Được biết"
+
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "Gần đây"
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "Tắt WireGuard"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "Khởi động WireGuard"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "Đồng nghiệp"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "Thông tin do WireGuard cung cấp"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "Xóa cấu hình WireGuard"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "Xóa cấu hình này? Thao tác này không thể hoàn tác."
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "Kích hoạt cấu hình WireGuard"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "Bạn có muốn kích hoạt cấu hình này không? Thao tác này sẽ khởi động lại dịch vụ wg-quick."
+
+#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
+msgid "Activate"
+msgstr "Kích hoạt"
+
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "Thiết bị mạng"
+
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "Thiết bị"
+
+#: ../templates/networking/devices.php:17
+#: ../templates/networking/general.php:12 ../templates/hostapd/basic.php:5
+#: ../templates/configure_client.php:31 ../templates/dhcp/general.php:5
+#: ../templates/dhcp/summary.php:18 ../templates/dhcp/settings.php:5
+msgid "Interface"
+msgstr "Giao diện"
+
+#: ../templates/networking/devices.php:19
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+msgid "MAC address"
+msgstr "Địa chỉ MAC"
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "Loại thiết bị"
+
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "Kết nối Internet"
+
+#: ../templates/networking/general.php:13 ../templates/dashboard.php:54
+#: ../templates/dashboard.php:60 ../templates/dhcp/general.php:39
+#: ../templates/dhcp/clients.php:20 ../templates/dhcp/settings.php:39
+#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
+msgid "IP Address"
+msgstr "Địa chỉ IP"
+
+#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:52
+msgid "Gateway"
+msgstr "Cổng"
+
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "Kết nối Internet"
+
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "Bảng định tuyến"
+
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "kết quả thô"
+
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "Cài đặt hiện tại"
+
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "Khởi động lại bộ định tuyến WLAN"
+
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "Tắt chức năng định tuyến WLAN"
+
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "Bắt đầu định tuyến WLAN"
+
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "Định tuyến mạng LAN không dây"
+
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "định tuyến"
+
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Tùy chọn này cho phép cấu hình RaspAP để <b>định tuyến lưu lượng mạng từ giao diện máy khách không dây (STA) của bạn</b> sang một giao diện khả dụng khác."
+
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Khi một giao diện đầu ra được chọn, các quy tắc <code>iptables</code> sẽ được thêm vào để định tuyến các gói tin bằng cách sử dụng dịch địa chỉ mạng (NAT). Việc này thường được thực hiện để chia sẻ kết nối Internet từ mạng WLAN với các thiết bị trên giao diện <code>eth0</code>, <code>usb0</code> hoặc <code>enx</code> có thể dự đoán được."
+
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "Giao diện khách hàng không dây"
+
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "Giao diện đầu ra"
+
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Cấu hình địa chỉ IP tĩnh và DHCP cho giao diện đầu ra"
+
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "Kiểm tra tốc độ"
+
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "Chọn máy chủ"
+
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "Quyền riêng tư"
+
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "Máy chủ"
+
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "Ping"
+
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "ms"
+
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "Độ dao động"
+
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "Mbps"
+
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "Cài đặt dữ liệu di động"
+
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "Mã PIN thẻ SIM"
+
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "Cài đặt APN"
+
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "Tên điểm truy cập (APN)"
+
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "Bật điểm phát sóng"
+
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "Kích hoạt điểm phát sóng"
+
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "Ngăn chặn điểm nóng"
+
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "Khởi động lại điểm phát sóng"
+
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "Khởi động lại điểm phát sóng"
+
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "Thông tin do hostapd cung cấp"
+
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "Khởi động dịch vụ RaspAP"
+
+#: ../templates/restapi/general.php:12
+msgid "API Key"
+msgstr "Khóa API"
+
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "Vui lòng cung cấp một khóa API hợp lệ."
+
+#: ../templates/restapi/status.php:3
+msgid "RestAPI status"
+msgstr "Trạng thái RestAPI"
+
+#: ../templates/restapi/status.php:4
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "Tình trạng hiện tại của <code>restapi.service</code> được hiển thị bên dưới."
+
+#: ../templates/system/plugins.php:3 ../templates/system.php:23
+msgid "Plugins"
+msgstr "Plugin"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "Các plugin người dùng sau đây có sẵn để mở rộng chức năng của RaspAP."
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Chọn \" <strong>Chi tiết</strong> \" để xem thêm thông tin và cài đặt tiện ích mở rộng."
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "Cổng máy chủ web"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "Địa chỉ kết nối của máy chủ web"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "Giới hạn kích thước nhật ký chẩn đoán (KB)"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
+msgstr ""
+
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr ""
+
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
+msgstr ""
+
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr ""
+
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "Khởi động lại lighttpd"
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "Công cụ hệ thống"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "Để tạo <a href=\"%s\" target=\"_blank\">nhật ký gỡ lỗi</a> hệ thống, hãy nhấp hoặc nhấn vào nút bên dưới."
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Thông tin nhật ký gỡ lỗi bao gồm phiên bản RaspAP, trạng thái hiện tại và cấu hình của các dịch vụ liên quan đến điểm truy cập (AP), các gói phần mềm hệ thống đã cài đặt, phiên bản nhân Linux và các chi tiết về mạng. Không có mật khẩu hay dữ liệu nhạy cảm nào được bao gồm trong đó."
+
+#: ../templates/system/tools.php:18 ../templates/system.php:121
+msgid "Generate debug log"
+msgstr "Tạo nhật ký gỡ lỗi"
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Để <a href=\"%s\" target=\"_blank\">kiểm tra các bộ chuyển đổi</a> được kết nối với thiết bị này, hãy nhấp hoặc nhấn vào nút bên dưới."
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Công cụ kiểm tra bộ điều hợp sẽ hiển thị thông tin chi tiết về các thiết bị WLAN bên ngoài, bao gồm trình điều khiển, các chế độ được hỗ trợ, v.v."
+
+#: ../templates/system/tools.php:32 ../templates/system.php:138
+msgid "Inspect adapters"
+msgstr "Kiểm tra bộ chuyển đổi"
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "Để khôi phục <a href=\"%s\" target=\"_blank\">cài đặt ban đầu</a> cho RaspAP, hãy nhấp hoặc chạm vào nút bên dưới."
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Khôi phục tất cả cài đặt dịch vụ của điểm truy cập (AP) về giá trị mặc định. Tính năng này áp dụng cho hostapd, dhcpcd và dnsmasq."
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Các tệp tùy chỉnh dành cho các thành phần tùy chọn như Chặn quảng cáo, WireGuard hoặc OpenVPN sẽ vẫn được lưu giữ trên hệ thống."
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "Thực hiện khôi phục cài đặt gốc"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "Cài đặt chủ đề"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "Chọn một chủ đề"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "Màu sắc"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "Chế độ tối"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "Sử dụng chế độ tối từ chủ đề hiện tại"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "Chủ đề hệ thống"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "Sử dụng chế độ màu của hệ thống"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "Thông báo cảnh báo"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Tự động đóng các thông báo sau khi hết thời gian chờ đã đặt"
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "Thời gian chờ đóng cảnh báo (miligiây)"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "Thông tin hệ thống"
+
+#: ../templates/system/basic.php:23 ../templates/system.php:75
+msgid "Reboot"
+msgstr "Khởi động lại"
+
+#: ../templates/system/basic.php:27 ../templates/system.php:110
+msgid "Shutdown"
+msgstr "Tắt máy"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "Tên máy chủ"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "Phiên bản Pi"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "Hệ điều hành"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "Hạt nhân"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "Thời gian hoạt động"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "Thời gian hệ thống"
+
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "Dung lượng bộ nhớ đã sử dụng"
+
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "Dung lượng đã sử dụng"
+
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "Tải CPU"
+
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "Nhiệt độ CPU"
+
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "Cài đặt ngôn ngữ"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "Chọn ngôn ngữ"
+
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "Kết nối %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "Ngắt kết nối %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "Thông tin được cung cấp bởi %s"
+
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "Cài đặt bảo mật"
+
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "Loại bảo mật"
+
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "Loại mã hóa"
+
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
+
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "Tiêu chuẩn 802.11w mở rộng khả năng bảo mật mã hóa mạnh mẽ cho một tập hợp các khung quản lý ổn định, bao gồm các khung Hủy xác thực, Ngắt kết nối và một số loại khung Quản lý hành động. Tổng thể, tính năng này được gọi là Bảo vệ khung quản lý (MFP)."
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "Khóa được chia sẻ trước (PSK)"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "Vui lòng cung cấp mã PSK hợp lệ."
+
+#: ../templates/hostapd/security.php:32
+#, php-format
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Quét mã QR này trực tiếp hoặc truy cập %s %sđể in một bảng hướng dẫn tại%s dành cho người dùng của bạn."
 
 #: ../templates/hostapd/logging.php:4
 msgid "Enable this option to log <code>hostapd</code> activity."
@@ -2365,13 +2303,15 @@ msgstr "Vui lòng nhập mặt nạ mạng hợp lệ"
 msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
 msgstr "Ký hiệu CIDR (ví dụ: 24 tương ứng với 255.255.255.0)"
 
-#: ../templates/hostapd/advanced.php:52 ../templates/networking/general.php:14
-msgid "Gateway"
-msgstr "Cổng"
-
 #: ../templates/hostapd/advanced.php:61
 msgid "Your router's IP address"
 msgstr "Địa chỉ IP của bộ định tuyến của bạn"
+
+#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/general.php:149
+#: ../templates/dhcp/general.php:156 ../templates/dhcp/settings.php:150
+#: ../templates/dhcp/settings.php:157
+msgid "DNS Server"
+msgstr "Máy chủ DNS"
 
 #: ../templates/hostapd/advanced.php:74
 msgid "Usually same as gateway"
@@ -2437,38 +2377,10 @@ msgstr "Cấu hình tùy chọn <code>`max_num_sta</code> ` của hostapd. Giá 
 msgid "Country Code"
 msgstr "Mã quốc gia"
 
-#: ../templates/hostapd/security.php:2
-msgid "Security settings"
-msgstr "Cài đặt bảo mật"
-
-#: ../templates/hostapd/security.php:6
-msgid "Security type"
-msgstr "Loại bảo mật"
-
-#: ../templates/hostapd/security.php:10
-msgid "Encryption Type"
-msgstr "Loại mã hóa"
-
-#: ../templates/hostapd/security.php:14
-msgid "802.11w"
-msgstr "802.11w"
-
-#: ../templates/hostapd/security.php:15
-msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
-msgstr "Tiêu chuẩn 802.11w mở rộng khả năng bảo mật mã hóa mạnh mẽ cho một tập hợp các khung quản lý ổn định, bao gồm các khung Hủy xác thực, Ngắt kết nối và một số loại khung Quản lý hành động. Tổng thể, tính năng này được gọi là Bảo vệ khung quản lý (MFP)."
-
-#: ../templates/hostapd/security.php:19
-msgid "Pre-shared key (PSK)"
-msgstr "Khóa được chia sẻ trước (PSK)"
-
-#: ../templates/hostapd/security.php:24
-msgid "Please provide a valid PSK."
-msgstr "Vui lòng cung cấp mã PSK hợp lệ."
-
-#: ../templates/hostapd/security.php:32
-#, php-format
-msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
-msgstr "Quét mã QR này trực tiếp hoặc truy cập %s %sđể in một bảng hướng dẫn tại%s dành cho người dùng của bạn."
+#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
+#: ../templates/dashboard.php:63
+msgid "SSID"
+msgstr "SSID"
 
 #: ../templates/hostapd/basic.php:14
 msgid "Please provide a valid SSID."
@@ -2487,297 +2399,135 @@ msgstr "Các tiêu chuẩn không dây không tương thích với bộ điều 
 msgid "Based on the selected interface, 802.11%s is suggested."
 msgstr "Dựa trên giao diện đã chọn, đề xuất sử dụng 802.11%s."
 
-#: ../templates/openvpn/logging.php:4
-msgid "Enable this option to log <code>openvpn</code> activity."
-msgstr "Bật tùy chọn này để ghi lại hoạt động <code>của OpenVPN</code>."
+#: ../templates/configure_client.php:12
+msgid "Disconnected"
+msgstr "Không kết nối"
 
-#: ../templates/openvpn/logging.php:8
-msgid "Enable logging"
-msgstr "Bật tính năng ghi nhật ký"
+#: ../templates/configure_client.php:24
+msgid "Rescan"
+msgstr "Quét lại"
 
-#: ../templates/openvpn/configs.php:6
-msgid "Currently available OpenVPN client configurations are displayed below."
-msgstr "Dưới đây là các cấu hình máy khách OpenVPN hiện có."
+#: ../templates/configure_client.php:34
+msgid "Set"
+msgstr "Bộ"
 
-#: ../templates/openvpn/configs.php:7
-msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
-msgstr "Việc kích hoạt cấu hình sẽ khởi động lại dịch vụ <code>openvpn-client</code>."
+#: ../templates/configure_client.php:49
+msgid "<strong>Note:</strong> WEP access points appear as 'Open'. RaspAP does not currently support connecting to WEP"
+msgstr "<strong>Lưu ý:</strong> Các điểm truy cập WEP sẽ hiển thị là 'Mở'. Hiện tại, RaspAP chưa hỗ trợ kết nối với WEP"
 
-#: ../templates/openvpn/general.php:8 ../templates/provider/general.php:9
-#: ../templates/wg/general.php:8
-msgid "IPv4 Address"
-msgstr "Địa chỉ IPv4"
+#: ../templates/configure_client.php:59
+msgid "Configuring WiFi Client"
+msgstr "Cấu hình máy khách WiFi"
 
-#: ../templates/openvpn/general.php:13
-msgid "Authentification Method"
-msgstr "Phương thức xác thực"
+#: ../templates/configure_client.php:62
+msgid "Configuring Wifi Client Interface..."
+msgstr "Đang cấu hình giao diện máy khách Wi-Fi..."
 
-#: ../templates/openvpn/general.php:16
-msgid "Username and password"
-msgstr "Tên đăng nhập và mật khẩu"
+#: ../templates/about/general.php:8
+msgid "RaspAP"
+msgstr "RaspAP"
 
-#: ../templates/openvpn/general.php:20
-msgid "Certificates"
-msgstr "Chứng chỉ"
+#: ../templates/about/general.php:11 ../templates/about.php:47
+msgid "Check for update"
+msgstr "Kiểm tra bản cập nhật"
 
-#: ../templates/openvpn/general.php:26
-msgid "Enter username and password"
-msgstr "Nhập tên người dùng và mật khẩu"
-
-#: ../templates/openvpn/general.php:42
-msgid "Certificates in the configuration file"
-msgstr "Chứng chỉ trong tệp cấu hình"
-
-#: ../templates/openvpn/general.php:44
-msgid "RaspAP supports certificates by including them in the configuration file."
-msgstr "RaspAP hỗ trợ chứng chỉ bằng cách thêm chúng vào tệp cấu hình."
-
-#: ../templates/openvpn/general.php:47
-msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
-msgstr "Chứng chỉ của cơ quan chứng nhận (CA) (ví dụ: <code>ca.crt</code>): được đính kèm trong các thẻ <code> `&lt;ca>` ... ` &lt;/ca>`</code>."
-
-#: ../templates/openvpn/general.php:48
-msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
-msgstr "Chứng chỉ khách hàng (khóa công khai) (ví dụ: <code>client.crt</code>): được bao gồm trong các thẻ <code> `&lt;cert> ...` và ` &lt;/cert></code> `."
-
-#: ../templates/openvpn/general.php:49
-msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
-msgstr "Khóa riêng của chứng chỉ khách hàng (ví dụ: <code>client.key</code>): được bao gồm trong các thẻ <code> `&lt;key>` ... ` &lt;/key></code> `."
-
-#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
-msgid "Configuration File"
-msgstr "Tệp cấu hình"
-
-#: ../templates/openvpn/general.php:62
-msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Chọn tệp cấu hình OpenVPN (.ovpn)"
-
-#: ../templates/provider/status.php:3
+#: ../templates/about/general.php:20
 #, php-format
-msgid "%s status"
-msgstr "%s trạng thái"
+msgid "RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s."
+msgstr "RaspAP là sản phẩm hợp tác giữa %1$s và %2$s , với sự đóng góp của các thành viên %3$s và %4$s. Tìm hiểu thêm về cách tham gia dự án với tư cách là %5$s, %6$s hoặc %7$s và nhận quyền truy cập ngay lập tức vào %8$s dành cho %9$s."
 
-#: ../templates/provider/status.php:5
-#, php-format
-msgid "Installed Linux CLI: <code>%s</code>"
-msgstr "Đã cài đặt giao diện dòng lệnh Linux: <code>%s</code>"
+#: ../templates/about/general.php:23
+msgid "developer community"
+msgstr "cộng đồng nhà phát triển"
 
-#: ../templates/provider/status.php:6
-#, php-format
-msgid "Current <code>%s</code> connection status is displayed below."
-msgstr "Trạng thái kết nối hiện tại <code>%s</code> trạng thái kết nối hiện tại được hiển thị bên dưới."
+#: ../templates/about/general.php:24
+msgid "language translators"
+msgstr "công cụ dịch ngôn ngữ"
 
-#: ../templates/provider/general.php:2
-#, php-format
-msgid "%s settings"
-msgstr "%s cài đặt"
+#: ../templates/about/general.php:25
+msgid "code contributor"
+msgstr "người đóng góp mã nguồn"
 
-#: ../templates/provider/general.php:24
-msgid "Account details"
-msgstr "Thông tin tài khoản"
+#: ../templates/about/general.php:26
+msgid "translator"
+msgstr "người dịch"
 
-#: ../templates/provider/general.php:28
-msgid "My account"
-msgstr "Tài khoản của tôi"
+#: ../templates/about/general.php:27
+msgid "financial sponsor"
+msgstr "nhà tài trợ tài chính"
 
-#: ../templates/provider/general.php:36
-msgid "Server location"
-msgstr "Vị trí máy chủ"
+#: ../templates/about/general.php:28
+msgid "exclusive features"
+msgstr "các tính năng độc quyền"
 
-#: ../templates/provider/general.php:38
-msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
-msgstr "Khi chọn \" <strong>Lưu cài đặt</strong> \", hệ thống sẽ kết nối với quốc gia đã chọn."
+#: ../templates/about/general.php:29 ../templates/about.php:22
+msgid "Insiders"
+msgstr "Những người trong cuộc"
 
-#: ../templates/provider/general.php:41
-#, php-format
-msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
-msgstr "Chọn <strong>Connect %s</strong> sẽ kết nối với máy chủ được đề xuất."
+#: ../templates/admin/general.php:3
+msgid "Change password"
+msgstr "Đổi mật khẩu"
 
-#: ../templates/provider/general.php:43
-msgid "Country"
-msgstr "Quốc gia"
+#: ../templates/admin/general.php:18 ../templates/admin/general.php:37
+#: ../templates/admin/login.php:15 ../templates/about.php:87
+msgid "Please provide a valid username."
+msgstr "Vui lòng nhập tên người dùng hợp lệ."
 
-#: ../templates/networking/devices.php:3
-msgid "Network devices"
-msgstr "Thiết bị mạng"
+#: ../templates/admin/general.php:28
+msgid "Enable limited privilege user"
+msgstr "Kích hoạt người dùng có quyền hạn chế"
 
-#: ../templates/networking/devices.php:16
-msgid "Device"
-msgstr "Thiết bị"
+#: ../templates/admin/general.php:30
+msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
+msgstr "Tùy chọn này cho phép người dùng không phải quản trị viên truy cập giao diện quản lý của RaspAP, nhưng chỉ có <strong>quyền hạn chế trong việc chỉnh sửa cấu hình hiện có</strong>. Tài khoản người dùng này sẽ được kích hoạt khi người dùng quản trị viên hiện tại đăng xuất."
 
-#: ../templates/networking/devices.php:20
-msgid "USB vid/pid"
-msgstr "USB vid/pid"
+#: ../templates/admin/general.php:34
+msgid "Limited user login"
+msgstr "Giới hạn đăng nhập người dùng"
 
-#: ../templates/networking/devices.php:21
-msgid "Device type"
-msgstr "Loại thiết bị"
+#: ../templates/admin/general.php:43
+msgid "Limited user password"
+msgstr "Mật khẩu người dùng giới hạn"
 
-#: ../templates/networking/diagnostics.php:3
-msgid "Speedtest"
-msgstr "Kiểm tra tốc độ"
+#: ../templates/admin/general.php:48
+msgid "Please enter a valid password."
+msgstr "Vui lòng nhập mật khẩu hợp lệ."
 
-#: ../templates/networking/diagnostics.php:8
-msgid "Selecting a server"
-msgstr "Chọn máy chủ"
+#: ../templates/admin/login.php:2
+msgid "Submit"
+msgstr "Gửi"
 
-#: ../templates/networking/diagnostics.php:12
-msgid "Privacy"
-msgstr "Quyền riêng tư"
+#: ../templates/admin/login.php:11
+msgid "Admin login"
+msgstr "Đăng nhập quản trị"
 
-#: ../templates/networking/diagnostics.php:16
-msgid "Server"
-msgstr "Máy chủ"
+#: ../templates/admin/login.php:26
+msgid "Please enter your password."
+msgstr "Vui lòng nhập mật khẩu của bạn."
 
-#: ../templates/networking/diagnostics.php:22
-msgid "Ping"
-msgstr "Ping"
+#: ../templates/admin/avatar.php:3
+msgid "Reset avatar"
+msgstr "Đặt lại ảnh đại diện"
 
-#: ../templates/networking/diagnostics.php:24
-#: ../templates/networking/diagnostics.php:29
-msgid "ms"
-msgstr "ms"
+#: ../templates/admin/avatar.php:15
+msgid "Click or tap to upload a new user avatar."
+msgstr "Nhấp chuột hoặc chạm vào để tải lên ảnh đại diện người dùng mới."
 
-#: ../templates/networking/diagnostics.php:27
-msgid "Jitter"
-msgstr "Độ dao động"
+#: ../templates/admin/avatar.php:16
+msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
+msgstr "Chấp nhận các tệp hình ảnh định dạng <code>JPG, GIF hoặc PNG</code>. Kích thước tệp tối đa: 2 MB."
 
-#: ../templates/networking/diagnostics.php:37
-#: ../templates/networking/diagnostics.php:43
-msgid "Mbps"
-msgstr "Mbps"
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "Khởi động dịch vụ RestAPI"
 
-#: ../templates/networking/wlanrouting.php:5
-msgid "Restart WLAN routing"
-msgstr "Khởi động lại bộ định tuyến WLAN"
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "Dừng dịch vụ RestAPI"
 
-#: ../templates/networking/wlanrouting.php:6
-msgid "Stop WLAN routing"
-msgstr "Tắt chức năng định tuyến WLAN"
-
-#: ../templates/networking/wlanrouting.php:8
-msgid "Start WLAN routing"
-msgstr "Bắt đầu định tuyến WLAN"
-
-#: ../templates/networking/wlanrouting.php:17
-msgid "Wireless LAN routing"
-msgstr "Định tuyến mạng LAN không dây"
-
-#: ../templates/networking/wlanrouting.php:22
-msgid "routing"
-msgstr "định tuyến"
-
-#: ../templates/networking/wlanrouting.php:27
-msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
-msgstr "Tùy chọn này cho phép cấu hình RaspAP để <b>định tuyến lưu lượng mạng từ giao diện máy khách không dây (STA) của bạn</b> sang một giao diện khả dụng khác."
-
-#: ../templates/networking/wlanrouting.php:29
-msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
-msgstr "Khi một giao diện đầu ra được chọn, các quy tắc <code>iptables</code> sẽ được thêm vào để định tuyến các gói tin bằng cách sử dụng dịch địa chỉ mạng (NAT). Việc này thường được thực hiện để chia sẻ kết nối Internet từ mạng WLAN với các thiết bị trên giao diện <code>eth0</code>, <code>usb0</code> hoặc <code>enx</code> có thể dự đoán được."
-
-#: ../templates/networking/wlanrouting.php:34
-msgid "Wireless client interface"
-msgstr "Giao diện khách hàng không dây"
-
-#: ../templates/networking/wlanrouting.php:42
-msgid "Output interface"
-msgstr "Giao diện đầu ra"
-
-#: ../templates/networking/wlanrouting.php:47
-msgid "Configure a static IP address and DHCP for output interface"
-msgstr "Cấu hình địa chỉ IP tĩnh và DHCP cho giao diện đầu ra"
-
-#: ../templates/networking/mobile.php:4
-msgid "Mobile data settings"
-msgstr "Cài đặt dữ liệu di động"
-
-#: ../templates/networking/mobile.php:8
-msgid "SIM card PIN number"
-msgstr "Mã PIN thẻ SIM"
-
-#: ../templates/networking/mobile.php:11
-msgid "APN Settings"
-msgstr "Cài đặt APN"
-
-#: ../templates/networking/mobile.php:13
-msgid "Access Point Name (APN)"
-msgstr "Tên điểm truy cập (APN)"
-
-#: ../templates/networking/general.php:3
-msgid "Internet connection"
-msgstr "Kết nối Internet"
-
-#: ../templates/networking/general.php:15
-msgid "Internet Access"
-msgstr "Kết nối Internet"
-
-#: ../templates/networking/general.php:53
-msgid "Routing table"
-msgstr "Bảng định tuyến"
-
-#: ../templates/networking/general.php:57
-msgid "raw output"
-msgstr "kết quả thô"
-
-#: ../templates/networking/general.php:80
-msgid "Current settings"
-msgstr "Cài đặt hiện tại"
-
-#: ../templates/wireguard.php:21
-msgid "Stop WireGuard"
-msgstr "Tắt WireGuard"
-
-#: ../templates/wireguard.php:25
-msgid "Start WireGuard"
-msgstr "Khởi động WireGuard"
-
-#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
-msgid "Peer"
-msgstr "Đồng nghiệp"
-
-#: ../templates/wireguard.php:67
-msgid "Information provided by wireguard"
-msgstr "Thông tin do WireGuard cung cấp"
-
-#: ../templates/wireguard.php:77
-msgid "Delete WireGuard configuration"
-msgstr "Xóa cấu hình WireGuard"
-
-#: ../templates/wireguard.php:80
-msgid "Delete this configuration? This cannot be undone."
-msgstr "Xóa cấu hình này? Thao tác này không thể hoàn tác."
-
-#: ../templates/wireguard.php:95
-msgid "Activate WireGuard configuration"
-msgstr "Kích hoạt cấu hình WireGuard"
-
-#: ../templates/wireguard.php:98
-msgid "Activate this configuration? This will restart the wg-quick service."
-msgstr "Bạn có muốn kích hoạt cấu hình này không? Thao tác này sẽ khởi động lại dịch vụ wg-quick."
-
-#: ../templates/dhcp.php:21
-msgid "Stop dnsmasq"
-msgstr "Dừng dnsmasq"
-
-#: ../templates/dhcp.php:24
-msgid "Restart dnsmasq"
-msgstr "Khởi động lại dnsmasq"
-
-#: ../templates/dhcp.php:28
-msgid "Start dnsmasq"
-msgstr "Khởi động dnsmasq"
-
-#: ../templates/dhcp.php:51
-msgid "Server settings"
-msgstr "Cài đặt máy chủ"
-
-#: ../templates/dhcp.php:53
-msgid "Static Leases"
-msgstr "Hợp đồng thuê cố định"
-
-#: ../templates/dhcp.php:72
-msgid "Information provided by Dnsmasq"
-msgstr "Thông tin do Dnsmasq cung cấp"
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "Thông tin do restapi.service cung cấp"
 
 #: ../templates/system.php:18
 msgid "Language"
@@ -2791,9 +2541,9 @@ msgstr "Chủ đề"
 msgid "Tools"
 msgstr "Công cụ"
 
-#: ../templates/system.php:23 ../templates/system/plugins.php:3
-msgid "Plugins"
-msgstr "Plugin"
+#: ../templates/system.php:40 ../templates/dashboard.php:164
+msgid "Information provided by raspap.sysinfo"
+msgstr "Thông tin do raspap.sysinfo cung cấp"
 
 #: ../templates/system.php:50
 msgid "System reset"
@@ -2823,10 +2573,6 @@ msgstr "Khởi động lại hệ thống"
 msgid "Reboot now? The system will be temporarily unavailable."
 msgstr "Khởi động lại ngay bây giờ? Hệ thống sẽ tạm thời không thể truy cập được."
 
-#: ../templates/system.php:75 ../templates/system/basic.php:23
-msgid "Reboot"
-msgstr "Khởi động lại"
-
 #: ../templates/system.php:86
 msgid "Reconnecting"
 msgstr ""
@@ -2847,21 +2593,9 @@ msgstr "Tắt hệ thống"
 msgid "Shutdown now? The system will be unavailable."
 msgstr "Tắt ngay bây giờ? Hệ thống sẽ không thể truy cập được."
 
-#: ../templates/system.php:110 ../templates/system/basic.php:27
-msgid "Shutdown"
-msgstr "Tắt máy"
-
-#: ../templates/system.php:121 ../templates/system/tools.php:18
-msgid "Generate debug log"
-msgstr "Tạo nhật ký gỡ lỗi"
-
 #: ../templates/system.php:124
 msgid "Debug log generation in progress..."
 msgstr "Đang tạo nhật ký gỡ lỗi..."
-
-#: ../templates/system.php:138 ../templates/system/tools.php:32
-msgid "Inspect adapters"
-msgstr "Kiểm tra bộ chuyển đổi"
 
 #: ../templates/system.php:157
 msgid "Adapter health check"
@@ -2927,254 +2661,497 @@ msgstr "Việc cài đặt plugin đã hoàn tất."
 msgid "Plugin installation in progress..."
 msgstr "Đang cài đặt plugin..."
 
-#: ../templates/system/plugins.php:8
-msgid "The following user plugins are available to extend RaspAP's functionality."
-msgstr "Các plugin người dùng sau đây có sẵn để mở rộng chức năng của RaspAP."
+#: ../templates/system.php:271 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "Được rồi"
 
-#: ../templates/system/plugins.php:12
-msgid "Choose <strong>Details</strong> for more information and to install a plugin."
-msgstr "Chọn \" <strong>Chi tiết</strong> \" để xem thêm thông tin và cài đặt tiện ích mở rộng."
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "Khởi động lại tính năng chặn quảng cáo"
 
-#: ../templates/system/theme.php:3
-msgid "Theme settings"
-msgstr "Cài đặt chủ đề"
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "Bắt đầu chặn quảng cáo"
 
-#: ../templates/system/theme.php:8
-msgid "Select a theme"
-msgstr "Chọn một chủ đề"
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "Thông tin do Adblock cung cấp"
 
-#: ../templates/system/theme.php:12
-msgid "Color"
-msgstr "Màu sắc"
+#: ../templates/login.php:13
+msgid "Administrator login"
+msgstr "Đăng nhập quản trị viên"
 
-#: ../templates/system/theme.php:18
-msgid "Dark Mode"
-msgstr "Chế độ tối"
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "Quên mật khẩu"
 
-#: ../templates/system/theme.php:25
-msgid "Use the dark mode from the current theme"
-msgstr "Sử dụng chế độ tối từ chủ đề hiện tại"
-
-#: ../templates/system/theme.php:28
-msgid "System Theme"
-msgstr "Chủ đề hệ thống"
-
-#: ../templates/system/theme.php:35
-msgid "Uses the color mode of your system"
-msgstr "Sử dụng chế độ màu của hệ thống"
-
-#: ../templates/system/theme.php:40
-msgid "Alert messages"
-msgstr "Thông báo cảnh báo"
-
-#: ../templates/system/theme.php:44
-msgid "Automatically close alerts after a specified timeout"
-msgstr "Tự động đóng các thông báo sau khi hết thời gian chờ đã đặt"
-
-#: ../templates/system/theme.php:50
-msgid "Alert close timeout (milliseconds)"
-msgstr "Thời gian chờ đóng cảnh báo (miligiây)"
-
-#: ../templates/system/advanced.php:9
-msgid "Web server port"
-msgstr "Cổng máy chủ web"
-
-#: ../templates/system/advanced.php:15
-msgid "Web server bind address"
-msgstr "Địa chỉ kết nối của máy chủ web"
-
-#: ../templates/system/advanced.php:21
-msgid "Diagnostic log size limit (KB)"
-msgstr "Giới hạn kích thước nhật ký chẩn đoán (KB)"
-
-#: ../templates/system/advanced.php:28
-msgid "SSL Certificate (HTTPS)"
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
 msgstr ""
 
-#: ../templates/system/advanced.php:30
-#, php-format
-msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+#: ../templates/openvpn.php:20
+msgid "Start OpenVPN"
+msgstr "Khởi động OpenVPN"
+
+#: ../templates/openvpn.php:24
+msgid "Stop OpenVPN"
+msgstr "Tắt OpenVPN"
+
+#: ../templates/openvpn.php:65
+msgid "Information provided by openvpn"
+msgstr "Thông tin do OpenVPN cung cấp"
+
+#: ../templates/openvpn.php:75
+msgid "Delete OpenVPN client"
+msgstr "Xóa ứng dụng OpenVPN"
+
+#: ../templates/openvpn.php:78
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Xóa cấu hình khách hàng? Thao tác này không thể hoàn tác."
+
+#: ../templates/openvpn.php:93
+msgid "Activate OpenVPN client"
+msgstr "Kích hoạt ứng dụng OpenVPN"
+
+#: ../templates/openvpn.php:96
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Kích hoạt cấu hình máy khách? Thao tác này sẽ khởi động lại dịch vụ openvpn-client."
+
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
 msgstr ""
 
-#: ../templates/system/advanced.php:31
-msgid "Download rootCA.pem"
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "Bộ lặp"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "Chia sẻ kết nối"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "Di động"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
 msgstr ""
 
-#: ../templates/system/advanced.php:33
-#, php-format
-msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+#: ../templates/dashboard.php:49
+msgid "Local"
 msgstr ""
 
-#: ../templates/system/advanced.php:40
-msgid "Restart lighttpd"
-msgstr "Khởi động lại lighttpd"
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "Mặt nạ mạng"
 
-#: ../templates/system/basic.php:10
-msgid "System Information"
-msgstr "Thông tin hệ thống"
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "Địa chỉ MAC"
 
-#: ../templates/system/basic.php:36
-msgid "Hostname"
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "AP"
+
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "Kết nối"
+
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "Chặn quảng cáo"
+
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "VPN"
+
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "Tường lửa"
+
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
+
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2,4 GHz"
+
+#: ../templates/dhcp/general.php:2 ../templates/dhcp/settings.php:2
+msgid "DHCP server settings"
+msgstr "Cài đặt máy chủ DHCP"
+
+#: ../templates/dhcp/general.php:10 ../templates/dhcp/settings.php:10
+msgid "Adapter IP Address Settings"
+msgstr "Cài đặt địa chỉ IP của bộ chuyển đổi"
+
+#: ../templates/dhcp/general.php:28 ../templates/dhcp/settings.php:28
+msgid "Enable fallback to static option"
+msgstr "Bật tùy chọn chuyển sang phiên bản tĩnh"
+
+#: ../templates/dhcp/general.php:31 ../templates/dhcp/settings.php:31
+msgid "Enable this option to configure a static profile and fall back to it when DHCP lease fails."
+msgstr "Bật tùy chọn này để định cấu hình một cấu hình tĩnh và chuyển sang sử dụng cấu hình đó khi hợp đồng thuê DHCP không thành công."
+
+#: ../templates/dhcp/general.php:36 ../templates/dhcp/settings.php:36
+msgid "Static IP options"
+msgstr "Các tùy chọn địa chỉ IP tĩnh"
+
+#: ../templates/dhcp/general.php:42 ../templates/dhcp/settings.php:42
+msgid "Please provide a valid IP Address."
+msgstr "Vui lòng nhập địa chỉ IP hợp lệ."
+
+#: ../templates/dhcp/general.php:49 ../templates/dhcp/settings.php:49
+msgid "Subnet Mask"
+msgstr "Mặt nạ mạng con"
+
+#: ../templates/dhcp/general.php:52 ../templates/dhcp/settings.php:52
+msgid "Please provide a valid Subnet mask."
+msgstr "Vui lòng nhập địa chỉ mạng con hợp lệ."
+
+#: ../templates/dhcp/general.php:59 ../templates/dhcp/settings.php:59
+msgid "Default gateway"
+msgstr "Cổng mặc định"
+
+#: ../templates/dhcp/general.php:62 ../templates/dhcp/settings.php:62
+msgid "Please provide a valid Default gateway."
+msgstr "Vui lòng cung cấp một cổng mặc định hợp lệ."
+
+#: ../templates/dhcp/general.php:71 ../templates/dhcp/settings.php:71
+msgid "Install a default route for this interface"
+msgstr "Thiết lập tuyến mặc định cho giao diện này"
+
+#: ../templates/dhcp/general.php:74
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the DHCPCD configuration."
+msgstr "Tùy chọn này cho phép bật/tắt tùy chọn<code>gateway/nogateway</code> cho giao diện này trong cấu hình DHCPCD."
+
+#: ../templates/dhcp/general.php:83 ../templates/dhcp/settings.php:84
+msgid "Disable wpa_supplicant dhcp hook for this interface"
+msgstr "Vô hiệu hóa hook DHCP của wpa_supplicant cho giao diện này"
+
+#: ../templates/dhcp/general.php:84 ../templates/dhcp/settings.php:85
+msgid "If you manage wireless connections with wpa_supplicant itself, the hook may create unwanted connection events. This option disables the hook."
+msgstr "Nếu bạn quản lý các kết nối không dây trực tiếp bằng wpa_supplicant, hook này có thể tạo ra các sự kiện kết nối không mong muốn. Tùy chọn này sẽ vô hiệu hóa hook."
+
+#: ../templates/dhcp/general.php:87
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the DHCPCD configuration."
+msgstr "Tùy chọn này sẽ bật/tắt tùy chọn <code>`nohook` của `wpa_supplicant</code> ` cho giao diện này trong cấu hình DHCPCD."
+
+#: ../templates/dhcp/general.php:92 ../templates/dhcp/settings.php:93
+msgid "DHCP options"
+msgstr "Các tùy chọn DHCP"
+
+#: ../templates/dhcp/general.php:98 ../templates/dhcp/settings.php:99
+msgid "Enable DHCP for this interface"
+msgstr "Bật DHCP cho giao diện này"
+
+#: ../templates/dhcp/general.php:101 ../templates/dhcp/settings.php:102
+msgid "Enable this option if you want RaspAP to assign IP addresses to clients on the selected interface. A static IP address is required for this option."
+msgstr "Hãy bật tùy chọn này nếu bạn muốn RaspAP gán địa chỉ IP cho các thiết bị kết nối trên giao diện đã chọn. Tùy chọn này yêu cầu phải có địa chỉ IP tĩnh."
+
+#: ../templates/dhcp/general.php:109 ../templates/dhcp/settings.php:110
+msgid "Starting IP Address"
+msgstr "Địa chỉ IP bắt đầu"
+
+#: ../templates/dhcp/general.php:112 ../templates/dhcp/settings.php:113
+msgid "Please provide a valid Starting IP Address."
+msgstr "Vui lòng cung cấp một địa chỉ IP bắt đầu hợp lệ."
+
+#: ../templates/dhcp/general.php:118 ../templates/dhcp/settings.php:119
+msgid "Ending IP Address"
+msgstr "Địa chỉ IP kết thúc"
+
+#: ../templates/dhcp/general.php:121 ../templates/dhcp/settings.php:122
+msgid "Please provide a valid Ending IP Address."
+msgstr "Vui lòng cung cấp một địa chỉ IP đích hợp lệ."
+
+#: ../templates/dhcp/general.php:127 ../templates/dhcp/settings.php:128
+msgid "Lease Time"
+msgstr "Thời hạn thuê"
+
+#: ../templates/dhcp/general.php:130 ../templates/dhcp/settings.php:131
+msgid "Please provide a valid Lease Time."
+msgstr "Vui lòng cung cấp thời hạn thuê hợp lệ."
+
+#: ../templates/dhcp/general.php:134 ../templates/dhcp/settings.php:135
+msgid "Interval"
+msgstr "Khoảng thời gian"
+
+#: ../templates/dhcp/general.php:136 ../templates/dhcp/settings.php:137
+msgid "Minute(s)"
+msgstr "Biên bản"
+
+#: ../templates/dhcp/general.php:137 ../templates/dhcp/settings.php:138
+msgid "Hour(s)"
+msgstr "Giờ"
+
+#: ../templates/dhcp/general.php:138 ../templates/dhcp/settings.php:139
+msgid "Day(s)"
+msgstr "Ngày"
+
+#: ../templates/dhcp/general.php:139 ../templates/dhcp/settings.php:140
+msgid "Infinite"
+msgstr "Vô tận"
+
+#: ../templates/dhcp/general.php:142 ../templates/dhcp/settings.php:143
+msgid "Please provide a valid Interval."
+msgstr "Vui lòng nhập khoảng thời gian hợp lệ."
+
+#: ../templates/dhcp/general.php:163 ../templates/dhcp/summary.php:25
+#: ../templates/dhcp/settings.php:164
+msgid "Metric"
+msgstr "Hệ mét"
+
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
+msgstr ""
+
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr "Hợp đồng thuê cố định"
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Các thiết bị có địa chỉ MAC phần cứng cụ thể luôn có thể được gán cùng một địa chỉ IP."
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Tùy chọn này thêm các mục <code>dhcp-host</code> vào cấu hình dnsmasq."
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr "Địa chỉ IP"
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr "Bình luận (không bắt buộc)"
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr "Hạn chế quyền truy cập"
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr "Hạn chế quyền truy cập mạng đối với các máy khách cố định"
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Hãy bật tùy chọn này nếu bạn muốn RaspAP <b>bỏ qua bất kỳ máy khách</b> nào không được liệt kê trong danh sách cấp phép tĩnh."
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Tùy chọn này thêm ` <code>dhcp-ignore</code> ` vào cấu hình dnsmasq."
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr "Các hợp đồng thuê DHCP đang hoạt động"
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr "Thời gian hết hạn"
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
 msgstr "Tên máy chủ"
 
-#: ../templates/system/basic.php:40
-msgid "Pi Revision"
-msgstr "Phiên bản Pi"
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr "Mã khách hàng"
 
-#: ../templates/system/basic.php:44
-msgid "OS"
-msgstr "Hệ điều hành"
+#: ../templates/dhcp/logging.php:4
+msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
+msgstr "Bật các tùy chọn này để ghi lại hoạt động của <code>dhcpcd</code> và <code>dnsmasq</code>."
 
-#: ../templates/system/basic.php:48
-msgid "Kernel"
-msgstr "Hạt nhân"
+#: ../templates/dhcp/logging.php:8
+msgid "Log DHCP requests"
+msgstr "Ghi lại các yêu cầu DHCP"
 
-#: ../templates/system/basic.php:52
-msgid "Uptime"
-msgstr "Thời gian hoạt động"
+#: ../templates/dhcp/logging.php:12
+msgid "Log DNS queries"
+msgstr "Ghi lại các truy vấn DNS"
 
-#: ../templates/system/basic.php:56
-msgid "System Time"
-msgstr "Thời gian hệ thống"
+#: ../templates/dhcp/advanced.php:3
+msgid "Advanced Settings"
+msgstr "Cài đặt nâng cao"
 
-#: ../templates/system/basic.php:65
-msgid "Memory Used"
-msgstr "Dung lượng bộ nhớ đã sử dụng"
+#: ../templates/dhcp/advanced.php:6
+msgid "Upstream DNS servers"
+msgstr "Máy chủ DNS ở phía trên"
 
-#: ../templates/system/basic.php:77
-msgid "Storage Used"
-msgstr "Dung lượng đã sử dụng"
+#: ../templates/dhcp/advanced.php:11
+msgid "Only ever query DNS servers configured below"
+msgstr "Chỉ truy vấn các máy chủ DNS được cấu hình bên dưới"
 
-#: ../templates/system/basic.php:89
-msgid "CPU Load"
-msgstr "Tải CPU"
+#: ../templates/dhcp/advanced.php:14
+msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
+msgstr "Hãy bật tùy chọn này nếu bạn muốn RaspAP <b>chỉ gửi các yêu cầu DNS đến các máy chủ được cấu hình bên dưới</b>. Theo mặc định, RaspAP cũng sử dụng các máy chủ tên miền của máy chủ DHCP cấp trên."
 
-#: ../templates/system/basic.php:101
-msgid "CPU Temp"
-msgstr "Nhiệt độ CPU"
+#: ../templates/dhcp/advanced.php:15
+msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
+msgstr "Tùy chọn này thêm tùy chọn ` <code>no-resolv</code> ` vào cấu hình dnsmasq."
 
-#: ../templates/system/language.php:3
-msgid "Language settings"
-msgstr "Cài đặt ngôn ngữ"
+#: ../templates/dhcp/advanced.php:29
+msgid "Add upstream DNS server"
+msgstr "Thêm máy chủ DNS nguồn"
 
-#: ../templates/system/language.php:6
-msgid "Select a language"
-msgstr "Chọn ngôn ngữ"
-
-#: ../templates/system/tools.php:3
-msgid "System tools"
-msgstr "Công cụ hệ thống"
-
-#: ../templates/system/tools.php:10
+#: ../templates/dhcp/advanced.php:31
 #, php-format
-msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
-msgstr "Để tạo <a href=\"%s\" target=\"_blank\">nhật ký gỡ lỗi</a> hệ thống, hãy nhấp hoặc nhấn vào nút bên dưới."
+msgid "e.g. %s"
+msgstr "Ví dụ: %s"
 
-#: ../templates/system/tools.php:13
-msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
-msgstr "Thông tin nhật ký gỡ lỗi bao gồm phiên bản RaspAP, trạng thái hiện tại và cấu hình của các dịch vụ liên quan đến điểm truy cập (AP), các gói phần mềm hệ thống đã cài đặt, phiên bản nhân Linux và các chi tiết về mạng. Không có mật khẩu hay dữ liệu nhạy cảm nào được bao gồm trong đó."
+#: ../templates/dhcp/advanced.php:36
+msgid "Format: "
+msgstr "Định dạng: "
 
-#: ../templates/system/tools.php:24
-#, php-format
-msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "Để <a href=\"%s\" target=\"_blank\">kiểm tra các bộ chuyển đổi</a> được kết nối với thiết bị này, hãy nhấp hoặc nhấn vào nút bên dưới."
+#: ../templates/dhcp/advanced.php:41
+msgid "Choose a hosted server"
+msgstr "Chọn một máy chủ được lưu trữ"
 
-#: ../templates/system/tools.php:27
-msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
-msgstr "Công cụ kiểm tra bộ điều hợp sẽ hiển thị thông tin chi tiết về các thiết bị WLAN bên ngoài, bao gồm trình điều khiển, các chế độ được hỗ trợ, v.v."
+#: ../templates/dhcp/settings.php:72
+msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
+msgstr ""
 
-#: ../templates/system/tools.php:38
-#, php-format
-msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
-msgstr "Để khôi phục <a href=\"%s\" target=\"_blank\">cài đặt ban đầu</a> cho RaspAP, hãy nhấp hoặc chạm vào nút bên dưới."
+#: ../templates/dhcp/settings.php:75
+msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
 
-#: ../templates/system/tools.php:40
-msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
-msgstr "Khôi phục tất cả cài đặt dịch vụ của điểm truy cập (AP) về giá trị mặc định. Tính năng này áp dụng cho hostapd, dhcpcd và dnsmasq."
+#: ../templates/dhcp/settings.php:88
+msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
+msgstr ""
 
-#: ../templates/system/tools.php:42
-msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
-msgstr "Các tệp tùy chỉnh dành cho các thành phần tùy chọn như Chặn quảng cáo, WireGuard hoặc OpenVPN sẽ vẫn được lưu giữ trên hệ thống."
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "Đóng góp"
 
-#: ../templates/system/tools.php:47
-msgid "Perform reset"
-msgstr "Thực hiện khôi phục cài đặt gốc"
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "Đang tiến hành kiểm tra bản phát hành mới..."
 
-#: ../templates/hostapd.php:20
-msgid "Start hotspot"
-msgstr "Bật điểm phát sóng"
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "Phiên bản mới đã được phát hành: Phiên bản"
 
-#: ../templates/hostapd.php:20
-msgid "Starting hotspot"
-msgstr "Kích hoạt điểm phát sóng"
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "Phiên bản đã cài đặt là phiên bản mới nhất."
 
-#: ../templates/hostapd.php:24
-msgid "Stop hotspot"
-msgstr "Ngăn chặn điểm nóng"
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "Bạn có muốn cài đặt bản cập nhật này ngay bây giờ không?"
 
-#: ../templates/hostapd.php:27
-msgid "Restart hotspot"
-msgstr "Khởi động lại điểm phát sóng"
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "Xác thực GitHub"
 
-#: ../templates/hostapd.php:27
-msgid "Restarting hotspot"
-msgstr "Khởi động lại điểm phát sóng"
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Việc cập nhật Insiders yêu cầu xác thực GitHub."
 
-#: ../templates/hostapd.php:70
-msgid "Information provided by hostapd"
-msgstr "Thông tin do hostapd cung cấp"
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Thông tin đăng nhập của bạn sẽ được gửi đến GitHub một cách an toàn thông qua SSL. Tuy nhiên, hãy thận trọng nếu bạn cài đặt RaspAP trên mạng WLAN được chia sẻ với những người dùng không đáng tin cậy."
 
-#: ../templates/hostapd.php:84
-msgid "Executing RaspAP service start"
-msgstr "Khởi động dịch vụ RaspAP"
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "Mã truy cập cá nhân"
 
-#: ../templates/admin/login.php:2
-msgid "Submit"
-msgstr "Gửi"
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "Vui lòng cung cấp mã xác thực hợp lệ."
 
-#: ../templates/admin/login.php:11
-msgid "Admin login"
-msgstr "Đăng nhập quản trị"
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "Thực hiện cập nhật"
 
-#: ../templates/admin/login.php:26
-msgid "Please enter your password."
-msgstr "Vui lòng nhập mật khẩu của bạn."
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "Đang cập nhật"
 
-#: ../templates/admin/avatar.php:3
-msgid "Reset avatar"
-msgstr "Đặt lại ảnh đại diện"
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "Ứng dụng đang được cập nhật..."
 
-#: ../templates/admin/avatar.php:15
-msgid "Click or tap to upload a new user avatar."
-msgstr "Nhấp chuột hoặc chạm vào để tải lên ảnh đại diện người dùng mới."
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "Cấu hình cập nhật"
 
-#: ../templates/admin/avatar.php:16
-msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
-msgstr "Chấp nhận các tệp hình ảnh định dạng <code>JPG, GIF hoặc PNG</code>. Kích thước tệp tối đa: 2 MB."
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "Cập nhật nguồn"
 
-#: ../templates/admin/general.php:3
-msgid "Change password"
-msgstr "Đổi mật khẩu"
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "Cập nhật các gói phần mềm"
 
-#: ../templates/admin/general.php:28
-msgid "Enable limited privilege user"
-msgstr "Kích hoạt người dùng có quyền hạn chế"
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "Tải xuống các tệp mới nhất"
 
-#: ../templates/admin/general.php:30
-msgid "This option enables a non-admin user who can access RaspAP's management interface, but has <strong>limited ability to modify the existing configuration</strong>. This user becomes active when the current admin user is logged-out."
-msgstr "Tùy chọn này cho phép người dùng không phải quản trị viên truy cập giao diện quản lý của RaspAP, nhưng chỉ có <strong>quyền hạn chế trong việc chỉnh sửa cấu hình hiện có</strong>. Tài khoản người dùng này sẽ được kích hoạt khi người dùng quản trị viên hiện tại đăng xuất."
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "Cài đặt ứng dụng"
 
-#: ../templates/admin/general.php:34
-msgid "Limited user login"
-msgstr "Giới hạn đăng nhập người dùng"
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "Cập nhật hoàn tất"
 
-#: ../templates/admin/general.php:43
-msgid "Limited user password"
-msgstr "Mật khẩu người dùng giới hạn"
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Đã xảy ra lỗi. Vui lòng kiểm tra tệp nhật ký tại <code>/tmp/raspap_install.log</code>"
 
-#: ../templates/admin/general.php:48
-msgid "Please enter a valid password."
-msgstr "Vui lòng nhập mật khẩu hợp lệ."
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "Thành công. Vui lòng làm mới trang này để xác nhận phiên bản mới."
+
+#: ../templates/exception.php:6 ../templates/exception.php:17
+msgid "RaspAP Exception"
+msgstr "Lỗi RaspAP"
+
+#: ../templates/exception.php:20
+msgid "An exception occurred"
+msgstr "Đã xảy ra một lỗi"
 
 #: ../templates/wg/peers.php:10
 msgid "Enable peer"
@@ -3215,18 +3192,6 @@ msgstr "Hãy quét mã QR này bằng ứng dụng của bạn để kết nối
 #: ../templates/wg/peers.php:71
 msgid "or download the <code>client.conf</code> file to your device."
 msgstr "hoặc tải tệp <code>client.conf</code> về thiết bị của bạn."
-
-#: ../templates/wg/logging.php:6
-msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
-msgstr "Bật tùy chọn này để hiển thị nhật ký gỡ lỗi <code>wg-quick</code> đã được cập nhật."
-
-#: ../templates/wg/configs.php:6
-msgid "Currently available WireGuard file configurations are displayed below."
-msgstr "Dưới đây là các tệp cấu hình WireGuard hiện có."
-
-#: ../templates/wg/configs.php:7
-msgid "Activating a configuration will restart the <code>wg-quick</code> service."
-msgstr "Việc kích hoạt cấu hình sẽ khởi động lại dịch vụ <code>wg-quick</code>."
 
 #: ../templates/wg/general.php:5
 msgid "Tunnel settings"
@@ -3300,25 +3265,57 @@ msgstr "Cài đặt này sẽ tạo một tệp <code>.conf</code> mới của W
 msgid "Local public key"
 msgstr "Khóa công khai cục bộ"
 
-#: ../templates/networking.php:22
-msgid "Devices"
-msgstr "Thiết bị"
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Bật tùy chọn này để hiển thị nhật ký gỡ lỗi <code>wg-quick</code> đã được cập nhật."
 
-#: ../templates/networking.php:23
-msgid "Mobile Data"
-msgstr "Dữ liệu di động"
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "Dưới đây là các tệp cấu hình WireGuard hiện có."
 
-#: ../templates/networking.php:24
-msgid "WLAN Routing"
-msgstr "Định tuyến WLAN"
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "Việc kích hoạt cấu hình sẽ khởi động lại dịch vụ <code>wg-quick</code>."
 
-#: ../templates/networking.php:25
-msgid "Diagnostics"
-msgstr "Chẩn đoán"
+#: ../ajax/networking/get_nl80211_band.php:37
+#, php-format
+msgid "The selected interface (%s) has support for the 2.4 GHz wireless band only."
+msgstr "Giao diện đã chọn (%s) chỉ hỗ trợ băng tần không dây 2,4 GHz."
 
-#: ../templates/networking.php:41
-msgid "Information provided by /sys/class/net"
-msgstr "Thông tin được cung cấp bởi /sys/class/net"
+#: ../ajax/networking/get_nl80211_band.php:40
+#, php-format
+msgid "The selected interface (%s) has support for the 5 GHz wireless band only."
+msgstr "Giao diện đã chọn (%s) chỉ hỗ trợ băng tần không dây 5 GHz."
+
+#: ../ajax/networking/get_nl80211_band.php:43
+#, php-format
+msgid "The selected interface (%s) has support for both the 2.4 and 5 GHz wireless bands."
+msgstr "Thiết bị được chọn (%s) hỗ trợ cả hai dải tần số không dây 2,4 GHz và 5 GHz."
+
+#: ../ajax/networking/get_nl80211_band.php:46
+#, php-format
+msgid "The selected interface (%s) does not support wireless mode operation."
+msgstr "Giao diện đã chọn (%s) không hỗ trợ chế độ hoạt động không dây."
+
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "Biển báo Wi-Fi có thể in"
+
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Kết nối Wi-Fi"
+
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Để kết nối với điện thoại hoặc máy tính bảng của bạn, hãy quét mã QR ở trên bằng ứng dụng máy ảnh."
+
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "Đối với các thiết bị khác, hãy sử dụng thông tin đăng nhập dưới đây."
+
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "Mạng"
 
 #~ msgid "Firewall is now enabled"
 #~ msgstr "Tường lửa hiện đã được bật"
