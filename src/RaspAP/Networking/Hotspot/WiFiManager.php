@@ -474,6 +474,24 @@ class WiFiManager
     }
 
     /**
+     * Helper to convert an SSID to the correct wpa_cli set_network argument.
+     * Plain ASCII SSIDs are returned as a shell-escaped quoted string.
+     *
+     * @param string $ssid Internal SSID representation
+     * @return string Argument ready to append to a wpa_cli set_network ssid command
+     */
+    private function ssidToWpaCliArg(string $ssid): string
+    {
+        if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid)) {
+            $binary = preg_replace_callback('/\\\\x([0-9a-fA-F]{2})/', function ($m) {
+                return chr(hexdec($m[1]));
+            }, $ssid);
+            return bin2hex($binary);
+        }
+        return escapeshellarg('"' . $ssid . '"');
+    }
+
+    /**
      * Helper method to add a single network to wpa_supplicant
      *
      * @param array $network Network configuration
@@ -481,7 +499,7 @@ class WiFiManager
      */
     private function addWpaNetwork($network, $iface)
     {
-        $ssid = escapeshellarg('"' . $network['ssid'] . '"');
+        $ssid = $this->ssidToWpaCliArg($network['ssid']);
         $psk = escapeshellarg('"' . $network['passphrase'] . '"');
         $protocol = $network['protocol'] ?? 'WPA';
 
@@ -707,7 +725,7 @@ CONF;
     public function updateNetwork(string $interface, string $ssid, string $passphrase, string $protocol = 'WPA'): ?int
     {
         $iface = escapeshellarg($interface);
-        $escapedSsid = escapeshellarg('"' . $ssid . '"');
+        $ssidArg = $this->ssidToWpaCliArg($ssid);
 
         $netid = shell_exec("sudo wpa_cli -i $iface add_network");
 
@@ -717,7 +735,7 @@ CONF;
 
         $netid = trim($netid);
         $commands = [
-            "sudo wpa_cli -i $iface set_network $netid ssid $escapedSsid"
+            "sudo wpa_cli -i $iface set_network $netid ssid $ssidArg"
         ];
 
         if ($protocol === self::SECURITY_OPEN) {
