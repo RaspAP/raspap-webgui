@@ -204,6 +204,10 @@ html[data-bs-theme="dark"] .modal:not(#modal-admin-login) .modal-footer {
   color: var(--bs-light) !important;
 }
 
+html[data-bs-theme="dark"] #liveFormModalCurrentMessage::after {
+  background: linear-gradient(90deg, transparent 0%, var(--bs-dark) 90%);
+}
+
 html[data-bs-theme="dark"] .card,
 html[data-bs-theme="dark"] .card-footer,
 html[data-bs-theme="dark"] .modal:not(#modal-admin-login) .modal-body,

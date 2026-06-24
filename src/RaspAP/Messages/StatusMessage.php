@@ -20,7 +20,7 @@ class StatusMessage
         if ($dismissable) {
             $status .= ' alert-dismissible';
         }
-        $status .= ' fade show" role="alert">'. _($message);
+        $status .= ' fade show" role="alert">'. $message;
         if ($dismissable) {
             $status .= '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>';
         }
