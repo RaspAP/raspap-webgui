@@ -156,10 +156,11 @@ function renderConnection(string $connectionType): string
         'tethering' => 'device-3',
         'cellular'  => 'device-4'
     ];
-    $device = $deviceMap[$connectionType] ?? 'device-unknown';
+    if (!isset($deviceMap[$connectionType])) {
+        return 'app/img/solid.php';
+    }
 
-    // return generated URL for solid.php
-    return sprintf('app/img/solid.php?joint&%s&out', $device);
+    return sprintf('app/img/solid.php?joint&%s&out', $deviceMap[$connectionType]);
 }
 
 /**
