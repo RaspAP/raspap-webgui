@@ -5,9 +5,9 @@ RaspAP is feature-rich wireless router software that _just works_ on many popula
 
 RaspAP has been featured by [ZDNET](https://www.zdnet.com/home-and-office/networking/how-i-built-my-own-wifi-router-with-raspberry-pi/), [PC World](https://www.pcwelt.de/article/1789512/raspberry-pi-als-wlan-router.html), [MSN](https://www.msn.com/en-us/news/technology/4-reasons-i-installed-raspap-on-my-raspberry-pi/ar-AA1GLHdE), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/), and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in [countless projects](https://raspap.com/awesome/).
 
-We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://github.com/raspap/raspap-awesome).
+We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://raspap.com/awesome/).
 
-![dashboard](https://github.com/user-attachments/assets/f7cf5c32-4d95-4ac8-8a30-6d892d7ac6ed)
+![RaspAP-dashboard-2026](https://github.com/user-attachments/assets/81991ee7-b83d-4785-bcf7-33d15d16fae6)
 <img width="32.5%" alt="Wifi Client" src="https://github.com/user-attachments/assets/95696ddc-da84-4339-97cc-f2a173054664">
 <img width="32.5%" alt="Hotspot" src="https://github.com/user-attachments/assets/c1c4de15-3ff2-4d3c-a7af-339c24896749">
 <img width="32.5%" alt="Adblock" src="https://github.com/user-attachments/assets/ab925687-8407-4bec-a952-9dc6a2675f49">
