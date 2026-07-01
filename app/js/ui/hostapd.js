@@ -27,7 +27,9 @@ export function initHostapd() {
     load80211wSelect();
 
     const bridgeCheckbox = document.getElementById('chxbridgedenable');
+    const dynamicIpCheckbox = document.getElementById('chxbridgedynamic');
     const bridgeSection = document.getElementById('bridgeStaticIpSection');
+    const staticIpFields = document.getElementById('bridgeStaticIpFields');
     const staticIpInput = document.getElementById('bridgeStaticIp');
     const netmaskInput = document.getElementById('bridgeNetmask');
     const gatewayInput = document.getElementById('bridgeGateway');
@@ -36,16 +38,35 @@ export function initHostapd() {
 
     const bridgeInputs = [staticIpInput, netmaskInput, gatewayInput, dnsInput];
 
-    // toggle visibility and required fields
+    function applyStaticIpVisibility(isDynamic) {
+        if (staticIpFields) {
+            staticIpFields.style.display = isDynamic ? 'none' : 'block';
+        }
+        bridgeInputs.forEach(input => {
+            if (input) {
+                isDynamic ? input.removeAttribute('required') : input.setAttribute('required', 'required');
+            }
+        });
+    }
+
+    // initialize static IP field state on page load
+    if (dynamicIpCheckbox) {
+        applyStaticIpVisibility(dynamicIpCheckbox.checked);
+        dynamicIpCheckbox.addEventListener('change', function() {
+            applyStaticIpVisibility(this.checked);
+        });
+    }
+
+    // toggle visibility and required fields for the whole bridge section
     if (bridgeCheckbox) {
         bridgeCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            bridgeSection.style.display = 'block';
-            bridgeInputs.forEach(input => input.setAttribute('required', 'required'));
-        } else {
-            bridgeSection.style.display = 'none';
-            bridgeInputs.forEach(input => input.removeAttribute('required'));
-        }
+            if (this.checked) {
+                bridgeSection.style.display = 'block';
+                applyStaticIpVisibility(dynamicIpCheckbox && dynamicIpCheckbox.checked);
+            } else {
+                bridgeSection.style.display = 'none';
+                bridgeInputs.forEach(input => { if (input) input.removeAttribute('required'); });
+            }
         });
     }
 
