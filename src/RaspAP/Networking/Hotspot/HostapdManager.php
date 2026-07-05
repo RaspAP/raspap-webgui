@@ -306,6 +306,7 @@ class HostapdManager
     {
         $prevWifiAPEnable = (int)($currentIni['WifiAPEnable'] ?? 0);
         $bridgedEnable  = isset($post['bridgedEnable'])  ? 1 : 0;
+        $bridgedDynamic = isset($post['bridgedDynamic']) ? 1 : 0;
         $repeaterEnable = 0;
         $wifiAPEnable   = 0;
 
@@ -313,6 +314,7 @@ class HostapdManager
             // only meaningful when not bridged
             $repeaterEnable = isset($post['repeaterEnable']) ? 1 : 0;
             $wifiAPEnable   = isset($post['wifiAPEnable'])   ? 1 : 0;
+            $bridgedDynamic = 0;
         }
 
         $logEnable = isset($post['logEnable']) ? 1 : 0;
@@ -320,6 +322,7 @@ class HostapdManager
 
         return [
             'BridgedEnable'  => $bridgedEnable,
+            'BridgedDynamic' => $bridgedDynamic,
             'RepeaterEnable' => $repeaterEnable,
             'WifiAPEnable'   => $effectiveWifiAPEnable,
             'LogEnable'      => $logEnable
@@ -442,6 +445,7 @@ class HostapdManager
             'LogEnable'      => $states['LogEnable'] ?? false,
             'WifiAPEnable'   => $states['WifiAPEnable'] ?? false,
             'BridgedEnable'  => $states['BridgedEnable'] ?? false,
+            'BridgedDynamic' => $states['BridgedDynamic'] ?? false,
             'RepeaterEnable' => $states['RepeaterEnable'] ?? false,
             'DualAPEnable'   => $states['DualAPEnable'] ?? false,
             'WifiManaged'    => $cliIface

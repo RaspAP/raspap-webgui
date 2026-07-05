@@ -66,9 +66,11 @@ class DhcpcdManager
             $config[] = '# RaspAP br0 configuration';
             $config[] = 'denyinterfaces eth0 wlan0';
             $config[] = 'interface br0';
-            $config[] = 'static ip_address='.$bridgeConfig['staticIp'] . '/'. $bridgeConfig['netmask'];
-            $config[] = 'static routers='.$bridgeConfig['gateway'];
-            $config[] = 'static domain_name_servers='.$bridgeConfig['dns'];
+            if ($bridgeConfig !== null) {
+                $config[] = 'static ip_address='.$bridgeConfig['staticIp'] . '/'. $bridgeConfig['netmask'];
+                $config[] = 'static routers='.$bridgeConfig['gateway'];
+                $config[] = 'static domain_name_servers='.$bridgeConfig['dns'];
+            }
             $config[] = PHP_EOL;
         } elseif ($repeaterEnable) {
             $config = [
