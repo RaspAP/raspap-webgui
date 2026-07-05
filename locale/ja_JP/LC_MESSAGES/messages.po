@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-06-21 19:23+0000\n"
+"POT-Creation-Date: 2026-07-05 23:13+0000\n"
 "PO-Revision-Date: 2026-04-22 02:22\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
@@ -89,57 +89,57 @@ msgid "client"
 msgid_plural "clients"
 msgstr[0] "顧客"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:128
 #, php-format
 msgid "DHCP configuration for %s enabled."
 msgstr "%s 、DHCPコンフィギュレーションが有効。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:148
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
 msgid "WiFi repeater mode: A metric value is already defined for DHCP."
 msgstr "WiFiリピーターモード：メトリック値はすでにDHCP用に定義されています。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:152
 #, php-format
 msgid "Metric value configured for the %s interface."
 msgstr "%s インターフェースに設定されたメトリック値。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:226
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:228
 msgid "Invalid interface name."
 msgstr "無効なインターフェース名。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:229
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:231
 msgid "Invalid static IP address."
 msgstr "無効な静的IPアドレスです。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:232
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:234
 msgid "Invalid subnet mask."
 msgstr "無効なサブネットマスク。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:235
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:237
 msgid "Invalid default gateway."
 msgstr "無効なデフォルトゲートウェイ。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:239
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:241
 msgid "Invalid DHCP range start."
 msgstr "無効な DHCP 範囲の開始。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:242
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:244
 msgid "Invalid DHCP range end."
 msgstr "無効な DHCP 範囲の終了。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:245
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:247
 msgid "Invalid DHCP lease time, not a number."
 msgstr "無効な DHCP リース時間。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:248
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:250
 msgid "Unknown DHCP lease time unit."
 msgstr "不明な DHCP リース時間単位。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:251
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:253
 msgid "Invalid metric value, not a number."
 msgstr "無効なメトリック値です。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:276
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:278
 #, php-format
 msgid "DHCP configuration for %s updated."
 msgstr "%s のDHCP設定を更新。"
@@ -1855,7 +1855,7 @@ msgstr "インターネット接続"
 msgid "IP Address"
 msgstr "IPアドレス"
 
-#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:52
+#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:62
 msgid "Gateway"
 msgstr "ゲートウェイ"
 
@@ -2274,106 +2274,114 @@ msgstr "ブリッジAPモード"
 msgid "Bridge interface configuration"
 msgstr "ブリッジ・インターフェース設定"
 
-#: ../templates/hostapd/advanced.php:21
+#: ../templates/hostapd/advanced.php:25
+msgid "Use dynamic IP address"
+msgstr ""
+
+#: ../templates/hostapd/advanced.php:26
+msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
+msgstr ""
+
+#: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
 msgstr "<code>br0</code>インターフェースにスタティック IP アドレスを設定し、ブリッジモード起動時の接続性を維持します。"
 
-#: ../templates/hostapd/advanced.php:26
+#: ../templates/hostapd/advanced.php:36
 msgid "Static IP Address"
 msgstr "静的IPアドレス"
 
-#: ../templates/hostapd/advanced.php:32 ../templates/hostapd/advanced.php:58
-#: ../templates/hostapd/advanced.php:71
+#: ../templates/hostapd/advanced.php:42 ../templates/hostapd/advanced.php:68
+#: ../templates/hostapd/advanced.php:81
 msgid "Please enter a valid IPv4 address"
 msgstr "有効なIPv4アドレスを入力してください。"
 
-#: ../templates/hostapd/advanced.php:35
+#: ../templates/hostapd/advanced.php:45
 msgid "Example: 192.168.1.100"
 msgstr "例：192.168.1.100"
 
-#: ../templates/hostapd/advanced.php:39
+#: ../templates/hostapd/advanced.php:49
 msgid "Netmask / CIDR"
 msgstr "ネットマスク / CIDR"
 
-#: ../templates/hostapd/advanced.php:45
+#: ../templates/hostapd/advanced.php:55
 msgid "Please enter a valid netmask"
 msgstr "有効なネットマスクを入力してください。"
 
-#: ../templates/hostapd/advanced.php:48
+#: ../templates/hostapd/advanced.php:58
 msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
 msgstr "CIDR表記（例：255.255.255.0なら24）"
 
-#: ../templates/hostapd/advanced.php:61
+#: ../templates/hostapd/advanced.php:71
 msgid "Your router's IP address"
 msgstr "ルーターのIPアドレス"
 
-#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/general.php:149
+#: ../templates/hostapd/advanced.php:75 ../templates/dhcp/general.php:149
 #: ../templates/dhcp/general.php:156 ../templates/dhcp/settings.php:150
 #: ../templates/dhcp/settings.php:157
 msgid "DNS Server"
 msgstr "DNSサーバー"
 
-#: ../templates/hostapd/advanced.php:74
+#: ../templates/hostapd/advanced.php:84
 msgid "Usually same as gateway"
 msgstr "通常はゲートウェイと同じ"
 
-#: ../templates/hostapd/advanced.php:89
+#: ../templates/hostapd/advanced.php:100
 msgid "WiFi repeater mode"
 msgstr "WiFiリピーターモード"
 
-#: ../templates/hostapd/advanced.php:99
+#: ../templates/hostapd/advanced.php:110
 msgid "WiFi client AP mode"
 msgstr "WiFiクライアントAPモード"
 
-#: ../templates/hostapd/advanced.php:108
+#: ../templates/hostapd/advanced.php:119
 msgid "Dual band AP mode"
 msgstr "デュアルバンドAPモード"
 
-#: ../templates/hostapd/advanced.php:117
+#: ../templates/hostapd/advanced.php:128
 msgid "Hide SSID in broadcast"
 msgstr "ブロードキャストでSSIDを隠す"
 
-#: ../templates/hostapd/advanced.php:126
+#: ../templates/hostapd/advanced.php:137
 msgid "Enable AP isolation"
 msgstr "AP分離を有効にする"
 
-#: ../templates/hostapd/advanced.php:127
+#: ../templates/hostapd/advanced.php:138
 msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
 msgstr "ワイヤレスクライアント同士の通信を遮断します。ゲストネットワークや公共のアクセスポイントにお勧めします。"
 
-#: ../templates/hostapd/advanced.php:136
+#: ../templates/hostapd/advanced.php:147
 msgid "Beacon interval"
 msgstr "ビーコン間隔"
 
-#: ../templates/hostapd/advanced.php:148
+#: ../templates/hostapd/advanced.php:159
 msgid "Disable <code>disassoc_low_ack</code>"
 msgstr "<code>disassoc_low_ack を</code>無効にする<code>。</code>"
 
-#: ../templates/hostapd/advanced.php:151
+#: ../templates/hostapd/advanced.php:162
 msgid "Do not disassociate stations based on excessive transmission failures."
 msgstr "過度の送信失敗に基づいてステーションを切り離さないでください。"
 
-#: ../templates/hostapd/advanced.php:157
+#: ../templates/hostapd/advanced.php:168
 msgid "Transmit power (dBm)"
 msgstr "送信電力 (dBm)"
 
-#: ../templates/hostapd/advanced.php:158
+#: ../templates/hostapd/advanced.php:169
 msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
 msgstr "dBmは、電力比が1ミリワット（mW）を基準としたデシベル（dB）で表されることを示すために使われるレベルの単位。30 dBmは1000 mWに等しく、0 dBmは1.25 mWに等しい。"
 
-#: ../templates/hostapd/advanced.php:160
+#: ../templates/hostapd/advanced.php:171
 msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
 msgstr "AP インターフェースと設定されている国の<code>txpower</code>オプションを設定します。"
 
-#: ../templates/hostapd/advanced.php:166
+#: ../templates/hostapd/advanced.php:177
 msgid "Maximum number of clients"
 msgstr "最大クライアント数"
 
-#: ../templates/hostapd/advanced.php:168
+#: ../templates/hostapd/advanced.php:179
 msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 msgstr "hostapd の<code>max_num_sta</code>オプションを設定する。デフォルトと最大値は 2007 です。空または 0 の場合はデフォルトが適用される。"
 
-#: ../templates/hostapd/advanced.php:173
+#: ../templates/hostapd/advanced.php:184
 msgid "Country Code"
 msgstr "国コード"
 

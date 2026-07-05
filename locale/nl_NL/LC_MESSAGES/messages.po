@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-06-21 19:23+0000\n"
+"POT-Creation-Date: 2026-07-05 23:13+0000\n"
 "PO-Revision-Date: 2026-04-22 02:22\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
@@ -90,57 +90,57 @@ msgid_plural "clients"
 msgstr[0] "klant"
 msgstr[1] "klanten"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:128
 #, php-format
 msgid "DHCP configuration for %s enabled."
 msgstr "DHCP-configuratie voor %s ingeschakeld."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:148
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
 msgid "WiFi repeater mode: A metric value is already defined for DHCP."
 msgstr "WiFi-repeatermodus: Er is al een metrische waarde gedefinieerd voor DHCP."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:152
 #, php-format
 msgid "Metric value configured for the %s interface."
 msgstr "Metric waarde geconfigureerd voor de %s interface."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:226
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:228
 msgid "Invalid interface name."
 msgstr "Ongeldige interfacenaam."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:229
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:231
 msgid "Invalid static IP address."
 msgstr "Ongeldig statisch IP-adres."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:232
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:234
 msgid "Invalid subnet mask."
 msgstr "Ongeldig subnetmasker."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:235
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:237
 msgid "Invalid default gateway."
 msgstr "Ongeldige standaard gateway."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:239
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:241
 msgid "Invalid DHCP range start."
 msgstr "Ongeldige start DHCP-bereik."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:242
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:244
 msgid "Invalid DHCP range end."
 msgstr "Ongeldig einde DHCP-bereik."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:245
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:247
 msgid "Invalid DHCP lease time, not a number."
 msgstr "Ongeldige DHCP leasetijd, geen getal."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:248
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:250
 msgid "Unknown DHCP lease time unit."
 msgstr "Onbekende leasetijdseenheid voor DHCP."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:251
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:253
 msgid "Invalid metric value, not a number."
 msgstr "Ongeldige metrische waarde, geen getal."
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:276
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:278
 #, php-format
 msgid "DHCP configuration for %s updated."
 msgstr "DHCP-configuratie voor %s bijgewerkt."
@@ -1856,7 +1856,7 @@ msgstr "Internetverbinding"
 msgid "IP Address"
 msgstr "IP-adres"
 
-#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:52
+#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:62
 msgid "Gateway"
 msgstr "Gateway"
 
@@ -2275,106 +2275,114 @@ msgstr "Overbrugde AP-modus"
 msgid "Bridge interface configuration"
 msgstr "Configuratie van de bridge-interface"
 
-#: ../templates/hostapd/advanced.php:21
+#: ../templates/hostapd/advanced.php:25
+msgid "Use dynamic IP address"
+msgstr ""
+
+#: ../templates/hostapd/advanced.php:26
+msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
+msgstr ""
+
+#: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
 msgstr "Configureer een statisch IP adres voor de <code>br0</code> interface om de connectiviteit te behouden tijdens het activeren van bridge-modus."
 
-#: ../templates/hostapd/advanced.php:26
+#: ../templates/hostapd/advanced.php:36
 msgid "Static IP Address"
 msgstr "Statisch IP-adres"
 
-#: ../templates/hostapd/advanced.php:32 ../templates/hostapd/advanced.php:58
-#: ../templates/hostapd/advanced.php:71
+#: ../templates/hostapd/advanced.php:42 ../templates/hostapd/advanced.php:68
+#: ../templates/hostapd/advanced.php:81
 msgid "Please enter a valid IPv4 address"
 msgstr "Voer een geldig IPv4-adres in"
 
-#: ../templates/hostapd/advanced.php:35
+#: ../templates/hostapd/advanced.php:45
 msgid "Example: 192.168.1.100"
 msgstr "Voorbeeld: 192.168.1.100"
 
-#: ../templates/hostapd/advanced.php:39
+#: ../templates/hostapd/advanced.php:49
 msgid "Netmask / CIDR"
 msgstr "Netmasker / CIDR"
 
-#: ../templates/hostapd/advanced.php:45
+#: ../templates/hostapd/advanced.php:55
 msgid "Please enter a valid netmask"
 msgstr "Voer een geldig netmask in"
 
-#: ../templates/hostapd/advanced.php:48
+#: ../templates/hostapd/advanced.php:58
 msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
 msgstr "CIDR-notatie (bijvoorbeeld 24 voor 255.255.255.0)"
 
-#: ../templates/hostapd/advanced.php:61
+#: ../templates/hostapd/advanced.php:71
 msgid "Your router's IP address"
 msgstr "Het IP-adres van je router"
 
-#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/general.php:149
+#: ../templates/hostapd/advanced.php:75 ../templates/dhcp/general.php:149
 #: ../templates/dhcp/general.php:156 ../templates/dhcp/settings.php:150
 #: ../templates/dhcp/settings.php:157
 msgid "DNS Server"
 msgstr "DNS-server"
 
-#: ../templates/hostapd/advanced.php:74
+#: ../templates/hostapd/advanced.php:84
 msgid "Usually same as gateway"
 msgstr "Meestal hetzelfde als gateway"
 
-#: ../templates/hostapd/advanced.php:89
+#: ../templates/hostapd/advanced.php:100
 msgid "WiFi repeater mode"
 msgstr "WiFi-repeatermodus"
 
-#: ../templates/hostapd/advanced.php:99
+#: ../templates/hostapd/advanced.php:110
 msgid "WiFi client AP mode"
 msgstr "WiFi-client AP-modus"
 
-#: ../templates/hostapd/advanced.php:108
+#: ../templates/hostapd/advanced.php:119
 msgid "Dual band AP mode"
 msgstr "Dubbele band AP-modus"
 
-#: ../templates/hostapd/advanced.php:117
+#: ../templates/hostapd/advanced.php:128
 msgid "Hide SSID in broadcast"
 msgstr "SSID verbergen in uitzending"
 
-#: ../templates/hostapd/advanced.php:126
+#: ../templates/hostapd/advanced.php:137
 msgid "Enable AP isolation"
 msgstr "AP-isolatie inschakelen"
 
-#: ../templates/hostapd/advanced.php:127
+#: ../templates/hostapd/advanced.php:138
 msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
 msgstr "Blokkeert draadloze clients om elkaar te zien of om verbinding met elkaar te maken. Aanbevolen voor gastnetwerken en openbare toegangspunten."
 
-#: ../templates/hostapd/advanced.php:136
+#: ../templates/hostapd/advanced.php:147
 msgid "Beacon interval"
 msgstr "Interval baken"
 
-#: ../templates/hostapd/advanced.php:148
+#: ../templates/hostapd/advanced.php:159
 msgid "Disable <code>disassoc_low_ack</code>"
 msgstr "<code>Disassoc_low_ack</code> uitschakelen"
 
-#: ../templates/hostapd/advanced.php:151
+#: ../templates/hostapd/advanced.php:162
 msgid "Do not disassociate stations based on excessive transmission failures."
 msgstr "Koppel stations niet los op basis van te veel mislukte transmissies."
 
-#: ../templates/hostapd/advanced.php:157
+#: ../templates/hostapd/advanced.php:168
 msgid "Transmit power (dBm)"
 msgstr "Zendvermogen (dBm)"
 
-#: ../templates/hostapd/advanced.php:158
+#: ../templates/hostapd/advanced.php:169
 msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
 msgstr "dBm is een niveau-eenheid die wordt gebruikt om aan te geven dat een vermogensverhouding wordt uitgedrukt in decibel (dB) ten opzichte van één milliwatt (mW). 30 dBm is gelijk aan 1000 mW, terwijl 0 dBm gelijk is aan 1,25 mW."
 
-#: ../templates/hostapd/advanced.php:160
+#: ../templates/hostapd/advanced.php:171
 msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
 msgstr "Stelt de <code>txpower</code> optie in voor de AP interface en het geconfigureerde land."
 
-#: ../templates/hostapd/advanced.php:166
+#: ../templates/hostapd/advanced.php:177
 msgid "Maximum number of clients"
 msgstr "Maximaal aantal klanten"
 
-#: ../templates/hostapd/advanced.php:168
+#: ../templates/hostapd/advanced.php:179
 msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 msgstr "Configureert de <code>max_num_sta</code> optie van hostapd. De standaardwaarde en het maximum is 2007. Als het leeg is of 0, geldt de standaardwaarde."
 
-#: ../templates/hostapd/advanced.php:173
+#: ../templates/hostapd/advanced.php:184
 msgid "Country Code"
 msgstr "Landcode"
 

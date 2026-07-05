@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-06-21 19:23+0000\n"
+"POT-Creation-Date: 2026-07-05 23:13+0000\n"
 "PO-Revision-Date: 2026-04-22 02:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
@@ -89,57 +89,57 @@ msgid "client"
 msgid_plural "clients"
 msgstr[0] "客戶"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:126
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:128
 #, php-format
 msgid "DHCP configuration for %s enabled."
 msgstr "啟用 %s 的 DHCP 設定。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:148
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
 msgid "WiFi repeater mode: A metric value is already defined for DHCP."
 msgstr "WiFi 中繼器模式：已為 DHCP 定義了公制值。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:150
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:152
 #, php-format
 msgid "Metric value configured for the %s interface."
 msgstr "為 %s 介面設定的公制值。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:226
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:228
 msgid "Invalid interface name."
 msgstr "無效介面名稱。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:229
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:231
 msgid "Invalid static IP address."
 msgstr "無效的靜態 IP 位址。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:232
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:234
 msgid "Invalid subnet mask."
 msgstr "無效的子網路遮罩。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:235
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:237
 msgid "Invalid default gateway."
 msgstr "無效預設閘道。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:239
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:241
 msgid "Invalid DHCP range start."
 msgstr "無效的 DHCP 範圍開始。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:242
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:244
 msgid "Invalid DHCP range end."
 msgstr "無效的 DHCP 範圍結束。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:245
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:247
 msgid "Invalid DHCP lease time, not a number."
 msgstr "無效的 DHCP 租約時間，不是數字。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:248
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:250
 msgid "Unknown DHCP lease time unit."
 msgstr "未知的 DHCP 租約時間單位。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:251
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:253
 msgid "Invalid metric value, not a number."
 msgstr "無效公制值，不是數字。"
 
-#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:276
+#: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:278
 #, php-format
 msgid "DHCP configuration for %s updated."
 msgstr "%s 的 DHCP 設定已更新。"
@@ -1855,7 +1855,7 @@ msgstr "網際網路連線"
 msgid "IP Address"
 msgstr "IP 位址"
 
-#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:52
+#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:62
 msgid "Gateway"
 msgstr "閘道"
 
@@ -2274,106 +2274,114 @@ msgstr "橋接 AP 模式"
 msgid "Bridge interface configuration"
 msgstr "橋接介面組態"
 
-#: ../templates/hostapd/advanced.php:21
+#: ../templates/hostapd/advanced.php:25
+msgid "Use dynamic IP address"
+msgstr ""
+
+#: ../templates/hostapd/advanced.php:26
+msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
+msgstr ""
+
+#: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
 msgstr "為<code>br0</code>介面設定靜態 IP 位址，以便在橋接器模式啟動期間維持連線。"
 
-#: ../templates/hostapd/advanced.php:26
+#: ../templates/hostapd/advanced.php:36
 msgid "Static IP Address"
 msgstr "靜態 IP 位址"
 
-#: ../templates/hostapd/advanced.php:32 ../templates/hostapd/advanced.php:58
-#: ../templates/hostapd/advanced.php:71
+#: ../templates/hostapd/advanced.php:42 ../templates/hostapd/advanced.php:68
+#: ../templates/hostapd/advanced.php:81
 msgid "Please enter a valid IPv4 address"
 msgstr "請輸入有效的 IPv4 位址"
 
-#: ../templates/hostapd/advanced.php:35
+#: ../templates/hostapd/advanced.php:45
 msgid "Example: 192.168.1.100"
 msgstr "範例：192.168.1.100"
 
-#: ../templates/hostapd/advanced.php:39
+#: ../templates/hostapd/advanced.php:49
 msgid "Netmask / CIDR"
 msgstr "網路遮罩 / CIDR"
 
-#: ../templates/hostapd/advanced.php:45
+#: ../templates/hostapd/advanced.php:55
 msgid "Please enter a valid netmask"
 msgstr "請輸入有效的網路遮罩"
 
-#: ../templates/hostapd/advanced.php:48
+#: ../templates/hostapd/advanced.php:58
 msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
 msgstr "CIDR 符號 (例如，24 代表 255.255.255.0)"
 
-#: ../templates/hostapd/advanced.php:61
+#: ../templates/hostapd/advanced.php:71
 msgid "Your router's IP address"
 msgstr "您的路由器 IP 位址"
 
-#: ../templates/hostapd/advanced.php:65 ../templates/dhcp/general.php:149
+#: ../templates/hostapd/advanced.php:75 ../templates/dhcp/general.php:149
 #: ../templates/dhcp/general.php:156 ../templates/dhcp/settings.php:150
 #: ../templates/dhcp/settings.php:157
 msgid "DNS Server"
 msgstr "DNS 伺服器"
 
-#: ../templates/hostapd/advanced.php:74
+#: ../templates/hostapd/advanced.php:84
 msgid "Usually same as gateway"
 msgstr "通常與閘道相同"
 
-#: ../templates/hostapd/advanced.php:89
+#: ../templates/hostapd/advanced.php:100
 msgid "WiFi repeater mode"
 msgstr "WiFi 中繼器模式"
 
-#: ../templates/hostapd/advanced.php:99
+#: ../templates/hostapd/advanced.php:110
 msgid "WiFi client AP mode"
 msgstr "WiFi 用戶端 AP 模式"
 
-#: ../templates/hostapd/advanced.php:108
+#: ../templates/hostapd/advanced.php:119
 msgid "Dual band AP mode"
 msgstr "雙頻 AP 模式"
 
-#: ../templates/hostapd/advanced.php:117
+#: ../templates/hostapd/advanced.php:128
 msgid "Hide SSID in broadcast"
 msgstr "在廣播中隱藏 SSID"
 
-#: ../templates/hostapd/advanced.php:126
+#: ../templates/hostapd/advanced.php:137
 msgid "Enable AP isolation"
 msgstr "啟用 AP 隔離"
 
-#: ../templates/hostapd/advanced.php:127
+#: ../templates/hostapd/advanced.php:138
 msgid "Blocks wireless clients from seeing or connecting to each other. Recommended for guest networks and public access points."
 msgstr "阻止無線用戶端相互看到或連線。建議用於訪客網路和公共存取點。"
 
-#: ../templates/hostapd/advanced.php:136
+#: ../templates/hostapd/advanced.php:147
 msgid "Beacon interval"
 msgstr "信標間隔"
 
-#: ../templates/hostapd/advanced.php:148
+#: ../templates/hostapd/advanced.php:159
 msgid "Disable <code>disassoc_low_ack</code>"
 msgstr "停用<code>disassoc_low_ack</code>"
 
-#: ../templates/hostapd/advanced.php:151
+#: ../templates/hostapd/advanced.php:162
 msgid "Do not disassociate stations based on excessive transmission failures."
 msgstr "請勿因過度傳輸失敗而解除站台關聯。"
 
-#: ../templates/hostapd/advanced.php:157
+#: ../templates/hostapd/advanced.php:168
 msgid "Transmit power (dBm)"
 msgstr "傳輸功率 (dBm)"
 
-#: ../templates/hostapd/advanced.php:158
+#: ../templates/hostapd/advanced.php:169
 msgid "dBm is a unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW). 30 dBm is equal to 1000 mW, while 0 dBm equals 1.25 mW."
 msgstr "dBm 是一種電平單位，用來表示功率比以分貝 (dB) 表示，參考 1 毫瓦 (mW)。30 dBm 等於 1000 mW，而 0 dBm 則等於 1.25 mW。"
 
-#: ../templates/hostapd/advanced.php:160
+#: ../templates/hostapd/advanced.php:171
 msgid "Sets the <code>txpower</code> option for the AP interface and the configured country."
 msgstr "設定 AP 介面和已設定國家/地區的<code>txpower</code>選項。"
 
-#: ../templates/hostapd/advanced.php:166
+#: ../templates/hostapd/advanced.php:177
 msgid "Maximum number of clients"
 msgstr "最多客戶數量"
 
-#: ../templates/hostapd/advanced.php:168
+#: ../templates/hostapd/advanced.php:179
 msgid "Configures the <code>max_num_sta</code> option of hostapd. The default and maximum is 2007. If empty or 0, the default applies."
 msgstr "設定 hostapd 的<code>max_num_sta</code>選項。預設值和最大值都是 2007。若為空或 0，則採用預設值。"
 
-#: ../templates/hostapd/advanced.php:173
+#: ../templates/hostapd/advanced.php:184
 msgid "Country Code"
 msgstr "國家代碼"
 
