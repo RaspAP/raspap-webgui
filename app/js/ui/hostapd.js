@@ -51,7 +51,9 @@ export function initHostapd() {
 
     // initialize static IP field state on page load
     if (dynamicIpCheckbox) {
-        applyStaticIpVisibility(dynamicIpCheckbox.checked);
+        if (bridgeCheckbox && bridgeCheckbox.checked) {
+            applyStaticIpVisibility(dynamicIpCheckbox.checked);
+        }
         dynamicIpCheckbox.addEventListener('change', function() {
             applyStaticIpVisibility(this.checked);
         });
