@@ -338,19 +338,18 @@ class HotspotService
      */
     public function getRegDomain(): string
     {
-        $domain = shell_exec("iw reg get | grep -o 'country [A-Z]\{2\}' | awk 'NR==1{print $2}'");
+        exec('iw reg get', $output, $returnCode);
 
-        if ($domain === null) {
+        if ($returnCode !== 0) {
             throw new \RuntimeException('Failed to execute regulatory domain command');
         }
 
-        $domain = trim($domain);
-
-        if (empty($domain)) {
-            throw new \RuntimeException('Unable to determine regulatory domain');
+        foreach ($output as $line) {
+            if (preg_match('/^country\s+([A-Z]{2}):/', trim($line), $matches)) {
+                return $matches[1];
+            }
         }
-
-        return $domain;
+        return '';
     }
 
     /**
