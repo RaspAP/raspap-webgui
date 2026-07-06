@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2026-07-05 23:13+0000\n"
-"PO-Revision-Date: 2026-04-22 02:22\n"
+"PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
@@ -220,16 +220,16 @@ msgstr "%s adresini durdurma girişimi"
 #: ../plugins-available/Captive/Captive.php:106
 #, php-format
 msgid "Client %s deauthenticated"
-msgstr ""
+msgstr "Müşteri %s oturumu kapatıldı"
 
 #: ../plugins-available/Captive/Captive.php:108
 #, php-format
 msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgstr "İstemcinin oturumu kapatılamadı %s"
 
 #: ../plugins-available/Captive/Captive.php:111
 msgid "Invalid client MAC address"
-msgstr ""
+msgstr "Geçersiz istemci MAC adresi"
 
 #: ../plugins-available/Captive/Captive.php:131
 msgid "A captive portal plugin that implements nodogsplash"
@@ -298,7 +298,7 @@ msgstr "Durum"
 #: ../plugins-available/Captive/templates/main.php:52
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:4
 msgid "Active clients"
-msgstr ""
+msgstr "Aktif müşteriler"
 
 #: ../plugins-available/Captive/templates/main.php:53
 #: ../plugins-available/Captive/templates/tabs/about.php:3
@@ -352,15 +352,15 @@ msgstr "Yenile"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:17
 msgid "Client"
-msgstr ""
+msgstr "Müşteri"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:21
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:22
 msgid "Token"
-msgstr ""
+msgstr "Jeton"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:23
 #: ../templates/networking/diagnostics.php:34 ../templates/wg/peers.php:73
@@ -374,23 +374,23 @@ msgstr "Yükle"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:25
 msgid "Last activity"
-msgstr ""
+msgstr "Son etkinlik"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:26
 msgid "Session start"
-msgstr ""
+msgstr "Oturumun başlangıcı"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:27
 msgid "Session end"
-msgstr ""
+msgstr "Oturum sonu"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:35
 msgid "Deauthenticate"
-msgstr ""
+msgstr "Oturumu kapat"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:44
 msgid "No active clients connected."
-msgstr ""
+msgstr "Bağlı aktif müşteri yok."
 
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
 #: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
@@ -2036,21 +2036,21 @@ msgstr "Tanılama günlüğü boyut sınırı (KB)"
 
 #: ../templates/system/advanced.php:28
 msgid "SSL Certificate (HTTPS)"
-msgstr ""
+msgstr "SSL Sertifikası (HTTPS)"
 
 #: ../templates/system/advanced.php:30
 #, php-format
 msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr ""
+msgstr "Bu sistem için bir SSL Sertifikası oluşturulmuştur. Sertifikayı indirip sisteminize yüklemek için aşağıdaki düğmeyi kullanın ve <a href=\"%s\" target=\"_blank\">belgelerdeki talimatları</a> izleyerek sertifikayı cihazınıza yükleyin."
 
 #: ../templates/system/advanced.php:31
 msgid "Download rootCA.pem"
-msgstr ""
+msgstr "rootCA.pem dosyasını indirin"
 
 #: ../templates/system/advanced.php:33
 #, php-format
 msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr ""
+msgstr "Bir SSL Sertifikası yüklemek ve HTTPS üzerinden RaspAP Yönetim Paneline erişmek için lütfen <a href=\"%s\" target=\"_blank\">kılavuza</a> bakınız."
 
 #: ../templates/system/advanced.php:40
 msgid "Restart lighttpd"
@@ -2277,11 +2277,11 @@ msgstr "Köprü arayüzü yapılandırması"
 
 #: ../templates/hostapd/advanced.php:25
 msgid "Use dynamic IP address"
-msgstr ""
+msgstr "Dinamik IP adresi kullanın"
 
 #: ../templates/hostapd/advanced.php:26
 msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
-msgstr ""
+msgstr "mDNS veya yerel DNS (örn. <code>hostname.local</code>) gereklidir. DHCP sunucusu bir adres atayamazsa, cihaza erişilemez."
 
 #: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
@@ -2584,15 +2584,15 @@ msgstr "Şimdi yeniden başlatalım mı? Sistem geçici olarak kullanılamayacak
 
 #: ../templates/system.php:86
 msgid "Reconnecting"
-msgstr ""
+msgstr "Yeniden Bağlanmak"
 
 #: ../templates/system.php:90
 msgid "The system is currently rebooting."
-msgstr ""
+msgstr "Sistem şu anda yeniden başlatılıyor."
 
 #: ../templates/system.php:91
 msgid "Attempting to reconnect in"
-msgstr ""
+msgstr "Yeniden bağlanmaya çalışılıyor"
 
 #: ../templates/system.php:103
 msgid "System shutdown"
@@ -2697,7 +2697,7 @@ msgstr "Şifremi unuttum"
 
 #: ../templates/login.php:33
 msgid "Scan for Login Help"
-msgstr ""
+msgstr "Giriş Yardımı için Tarama"
 
 #: ../templates/openvpn.php:20
 msgid "Start OpenVPN"
@@ -2733,7 +2733,7 @@ msgstr "Ethernet"
 
 #: ../templates/dashboard.php:28 ../templates/dashboard.php:29
 msgid "WiFi Client"
-msgstr ""
+msgstr "WiFi İstemcisi"
 
 #: ../templates/dashboard.php:28
 msgid "Repeater"
@@ -2749,11 +2749,11 @@ msgstr "Hücresel"
 
 #: ../templates/dashboard.php:48
 msgid "Public"
-msgstr ""
+msgstr "Genel"
 
 #: ../templates/dashboard.php:49
 msgid "Local"
-msgstr ""
+msgstr "Yerel"
 
 #: ../templates/dashboard.php:55 ../templates/dashboard.php:61
 msgid "Netmask"
@@ -2919,39 +2919,39 @@ msgstr "Metrik"
 
 #: ../templates/dhcp/summary.php:7
 msgid "Interface Configurations"
-msgstr ""
+msgstr "Arayüz Yapılandırmaları"
 
 #: ../templates/dhcp/summary.php:19
 msgid "Static IP"
-msgstr ""
+msgstr "Sabit IP"
 
 #: ../templates/dhcp/summary.php:20
 msgid "Subnet / Gateway"
-msgstr ""
+msgstr "Alt ağ / Ağ geçidi"
 
 #: ../templates/dhcp/summary.php:21
 msgid "Default Route"
-msgstr ""
+msgstr "Varsayılan Rota"
 
 #: ../templates/dhcp/summary.php:22
 msgid "Disable Hook"
-msgstr ""
+msgstr "Kanca'yı devre dışı bırak"
 
 #: ../templates/dhcp/summary.php:23
 msgid "DHCP Range (lease)"
-msgstr ""
+msgstr "DHCP Aralığı (kiralama süresi)"
 
 #: ../templates/dhcp/summary.php:24
 msgid "DNS Servers"
-msgstr ""
+msgstr "DNS Sunucuları"
 
 #: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #: ../templates/dhcp/summary.php:97
 msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
+msgstr "dhcpcd.conf veya dnsmasq.d dosyalarında hiçbir arayüz için yapılandırma bulunamadı."
 
 #: ../templates/dhcp/static_leases.php:5
 msgid "Static leases"
@@ -3060,15 +3060,15 @@ msgstr "Barındırılan bir sunucu seçin"
 
 #: ../templates/dhcp/settings.php:72
 msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
+msgstr "Cihazınızın internete bağlanmak için bu arayüzü birincil yol olarak kullanmasını istiyorsanız bu seçeneği etkinleştirin."
 
 #: ../templates/dhcp/settings.php:75
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Bu komut, dhcpcd.conf dosyasında bu arayüz için <code>“gateway”</code> veya<code>“nogateway</code> ” seçeneğini değiştirir."
 
 #: ../templates/dhcp/settings.php:88
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Bu komut, dhcpcd.conf dosyasında bu arayüz için <code>nohook wpa_supplicant</code> seçeneğini etkinleştirir veya devre dışı bırakır."
 
 #: ../templates/about.php:23
 msgid "Contributing"
@@ -3326,111 +3326,3 @@ msgstr "Diğer cihazlar için aşağıdaki oturum açma kimlik bilgilerini kulla
 msgid "Network"
 msgstr "Şebeke"
 
-#~ msgid "Firewall is now enabled"
-#~ msgstr "Güvenlik Duvarı şimdi etkinleştirildi"
-
-#~ msgid "Firewall is now disabled"
-#~ msgstr "Güvenlik Duvarı artık devre dışı"
-
-#~ msgid "Firewall settings changed"
-#~ msgstr "Güvenlik duvarı ayarları değiştirildi"
-
-#~ msgid "Firewall settings saved. Firewall is still disabled."
-#~ msgstr "Güvenlik duvarı ayarları kaydedildi. Güvenlik Duvarı hala devre dışı."
-
-#~ msgid "Exclude devices "
-#~ msgstr "Cihazları hariç tut "
-
-#~ msgid "Exclude IP address "
-#~ msgstr "IP adresini hariç tut "
-
-#~ msgid "Exclude IP address(es) "
-#~ msgstr "IP adres(ler)ini hariç tut "
-
-#~ msgid "A firewall plugin that implements an iptables ruleset"
-#~ msgstr "Bir iptables kural kümesi uygulayan bir güvenlik duvarı eklentisi"
-
-#~ msgid "zbchristian"
-#~ msgstr "zbchristian"
-
-#~ msgid "Client Firewall"
-#~ msgstr "İstemci Güvenlik Duvarı"
-
-#~ msgid "Firewall is ENABLED"
-#~ msgstr "Güvenlik Duvarı ETKİNLEŞTİRİLDİ"
-
-#~ msgid "Firewall is OFF"
-#~ msgstr "Güvenlik Duvarı KAPALI"
-
-#~ msgid "The default firewall will only allow outgoing and already established traffic."
-#~ msgstr "Varsayılan güvenlik duvarı yalnızca giden ve önceden kurulmuş trafiğe izin verir."
-
-#~ msgid "No incoming UDP traffic is allowed."
-#~ msgstr "Gelen hiçbir UDP trafiğine izin verilmez."
-
-#, php-format
-#~ msgid "There are no restrictions for the access point <code>%s</code>."
-#~ msgstr "Erişim noktası için herhangi bir kısıtlama yoktur <code>%s</code>."
-
-#~ msgid "Exception: Service"
-#~ msgstr "İstisna: Hizmet"
-
-#~ msgid "allow SSH access on port 22"
-#~ msgstr "bağlantı noktası 22'de SSH erişimine izin ver"
-
-#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
-#~ msgstr "RaspAP GUI'ye 80 veya 443 numaralı bağlantı noktasından erişime izin verin"
-
-#~ msgid "Allow incoming connections for some services from the internet side."
-#~ msgstr "Bazı hizmetler için internet tarafından gelen bağlantılara izin verin."
-
-#~ msgid "Exception: network device"
-#~ msgstr "İstisna: ağ cihazı"
-
-#~ msgid "Exclude device(s)"
-#~ msgstr "Cihaz(lar)ı hariç tut"
-
-#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-#~ msgstr "Verilen ağ aygıt(lar)ını (boşluk veya virgülle ayrılmış) güvenlik duvarı kurallarından hariç tutun."
-
-#, php-format
-#~ msgid "Current client devices: <code>%s</code>"
-#~ msgstr "Mevcut istemci cihazları: <code>%s</code>"
-
-#, php-format
-#~ msgid "The access point <code>%s</code> is per default excluded."
-#~ msgstr "Erişim noktası <code>%s</code> varsayılan olarak hariç tutulur."
-
-#~ msgid "Exception: IP-Address"
-#~ msgstr "İstisna: IP-Adresi"
-
-#~ msgid "Allow incoming connections from"
-#~ msgstr "Gelen bağlantılara izin ver"
-
-#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-#~ msgstr "Verilen IP adresleri için (boşluk veya virgülle ayrılmış) gelen bağlantı (TCP ve UDP üzerinden) kabul edilir."
-
-#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-#~ msgstr "Bu, UDP veya Wireguard üzerinden bir OpenVPN bağlantısı için gereklidir."
-
-#, php-format
-#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-#~ msgstr "Yapılandırılmış VPN sunucu IP adreslerinin listesi: <code><b>%s</b></code>"
-
-#~ msgid "plugin was created by "
-#~ msgstr "eklentisi tarafından oluşturulmuştur "
-
-#~ msgid "Apply changes"
-#~ msgstr "Değişiklikleri uygula"
-
-#~ msgid "Disable Firewall"
-#~ msgstr "Güvenlik Duvarını Devre Dışı Bırak"
-
-#~ msgid "Enable Firewall"
-#~ msgstr "Güvenlik Duvarını Etkinleştir"
-
-#~ msgid "Information provided by iptables"
-#~ msgstr "iptables tarafından sağlanan bilgiler"
-
-#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
-#~ msgstr "Güvenlik duvarı durumunun değiştirilmesi gelen trafiği engelleyebilir veya trafiğe izin verebilir. Devam etmek için <strong>Proceed</strong> 'i seçin."

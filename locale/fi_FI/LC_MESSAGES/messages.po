@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2026-07-05 23:13+0000\n"
-"PO-Revision-Date: 2026-04-22 02:22\n"
+"PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi_FI\n"
@@ -220,16 +220,16 @@ msgstr "Yritys lopettaa %s"
 #: ../plugins-available/Captive/Captive.php:106
 #, php-format
 msgid "Client %s deauthenticated"
-msgstr ""
+msgstr "Asiakas %s on kirjautunut ulos"
 
 #: ../plugins-available/Captive/Captive.php:108
 #, php-format
 msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgstr "Asiakkaan kirjautumisen purkaminen epäonnistui %s"
 
 #: ../plugins-available/Captive/Captive.php:111
 msgid "Invalid client MAC address"
-msgstr ""
+msgstr "Asiakkaan MAC-osoite ei kelpaa"
 
 #: ../plugins-available/Captive/Captive.php:131
 msgid "A captive portal plugin that implements nodogsplash"
@@ -298,7 +298,7 @@ msgstr "Tila"
 #: ../plugins-available/Captive/templates/main.php:52
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:4
 msgid "Active clients"
-msgstr ""
+msgstr "Aktiiviset asiakkaat"
 
 #: ../plugins-available/Captive/templates/main.php:53
 #: ../plugins-available/Captive/templates/tabs/about.php:3
@@ -352,15 +352,15 @@ msgstr "Päivitä"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:17
 msgid "Client"
-msgstr ""
+msgstr "Asiakas"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:21
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:22
 msgid "Token"
-msgstr ""
+msgstr "Tunnus"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:23
 #: ../templates/networking/diagnostics.php:34 ../templates/wg/peers.php:73
@@ -374,23 +374,23 @@ msgstr "Lataa"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:25
 msgid "Last activity"
-msgstr ""
+msgstr "Viimeisin toiminta"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:26
 msgid "Session start"
-msgstr ""
+msgstr "Istunnon alku"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:27
 msgid "Session end"
-msgstr ""
+msgstr "Istunnon päättyminen"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:35
 msgid "Deauthenticate"
-msgstr ""
+msgstr "Poista tunnistautuminen"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:44
 msgid "No active clients connected."
-msgstr ""
+msgstr "Yhteydessä olevia asiakkaita ei ole."
 
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
 #: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
@@ -2036,21 +2036,21 @@ msgstr "Diagnoosilokin kokorajoitus (KB)"
 
 #: ../templates/system/advanced.php:28
 msgid "SSL Certificate (HTTPS)"
-msgstr ""
+msgstr "SSL-varmenne (HTTPS)"
 
 #: ../templates/system/advanced.php:30
 #, php-format
 msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr ""
+msgstr "Tälle järjestelmälle on luotu SSL-varmenne. Voit ladata ja asentaa sen järjestelmääsi alla olevan painikkeen avulla sekä noudattamalla <a href=\"%s\" target=\"_blank\">ohjeita</a> varmenteen asentamiseksi laitteellesi."
 
 #: ../templates/system/advanced.php:31
 msgid "Download rootCA.pem"
-msgstr ""
+msgstr "Lataa rootCA.pem"
 
 #: ../templates/system/advanced.php:33
 #, php-format
 msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr ""
+msgstr "SSL-varmenteen asentamiseksi ja RaspAP-hallintapaneeliin pääsemiseksi HTTPS-yhteyden kautta katso <a href=\"%s\" target=\"_blank\">ohjeet</a>."
 
 #: ../templates/system/advanced.php:40
 msgid "Restart lighttpd"
@@ -2277,11 +2277,11 @@ msgstr "Silta-liitännän konfigurointi"
 
 #: ../templates/hostapd/advanced.php:25
 msgid "Use dynamic IP address"
-msgstr ""
+msgstr "Käytä dynaamista IP-osoitetta"
 
 #: ../templates/hostapd/advanced.php:26
 msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
-msgstr ""
+msgstr "Vaatii mDNS:ää tai paikallista DNS:ää (esim. <code>hostname.local</code>). Jos DHCP-palvelin ei onnistu osoittamaan osoitetta, laitteeseen ei pääse yhteyttä."
 
 #: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
@@ -2584,15 +2584,15 @@ msgstr ""
 
 #: ../templates/system.php:86
 msgid "Reconnecting"
-msgstr ""
+msgstr "Yhteyden palauttaminen"
 
 #: ../templates/system.php:90
 msgid "The system is currently rebooting."
-msgstr ""
+msgstr "Järjestelmä käynnistyy parhaillaan uudelleen."
 
 #: ../templates/system.php:91
 msgid "Attempting to reconnect in"
-msgstr ""
+msgstr "Yritetään muodostaa yhteys uudelleen"
 
 #: ../templates/system.php:103
 msgid "System shutdown"
@@ -2697,7 +2697,7 @@ msgstr "Unohditko salasanan"
 
 #: ../templates/login.php:33
 msgid "Scan for Login Help"
-msgstr ""
+msgstr "Etsi kirjautumisohjeita"
 
 #: ../templates/openvpn.php:20
 msgid "Start OpenVPN"
@@ -2733,7 +2733,7 @@ msgstr "Ethernet"
 
 #: ../templates/dashboard.php:28 ../templates/dashboard.php:29
 msgid "WiFi Client"
-msgstr ""
+msgstr "WiFi-asiakasohjelma"
 
 #: ../templates/dashboard.php:28
 msgid "Repeater"
@@ -2749,11 +2749,11 @@ msgstr "Cellular"
 
 #: ../templates/dashboard.php:48
 msgid "Public"
-msgstr ""
+msgstr "Julkinen"
 
 #: ../templates/dashboard.php:49
 msgid "Local"
-msgstr ""
+msgstr "Paikallinen"
 
 #: ../templates/dashboard.php:55 ../templates/dashboard.php:61
 msgid "Netmask"
@@ -2919,39 +2919,39 @@ msgstr ""
 
 #: ../templates/dhcp/summary.php:7
 msgid "Interface Configurations"
-msgstr ""
+msgstr "Liitäntäasetukset"
 
 #: ../templates/dhcp/summary.php:19
 msgid "Static IP"
-msgstr ""
+msgstr "Kiinteä IP-osoite"
 
 #: ../templates/dhcp/summary.php:20
 msgid "Subnet / Gateway"
-msgstr ""
+msgstr "Aliverkko / Yhdyskäytävä"
 
 #: ../templates/dhcp/summary.php:21
 msgid "Default Route"
-msgstr ""
+msgstr "Oletusreitti"
 
 #: ../templates/dhcp/summary.php:22
 msgid "Disable Hook"
-msgstr ""
+msgstr "Poista koukku käytöstä"
 
 #: ../templates/dhcp/summary.php:23
 msgid "DHCP Range (lease)"
-msgstr ""
+msgstr "DHCP-alue (vuokra-aika)"
 
 #: ../templates/dhcp/summary.php:24
 msgid "DNS Servers"
-msgstr ""
+msgstr "DNS-palvelimet"
 
 #: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
 msgid "Yes"
-msgstr ""
+msgstr "Kyllä"
 
 #: ../templates/dhcp/summary.php:97
 msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
+msgstr "Tiedostoista dhcpcd.conf tai dnsmasq.d ei löytynyt minkään rajapinnan asetuksia."
 
 #: ../templates/dhcp/static_leases.php:5
 msgid "Static leases"
@@ -3060,15 +3060,15 @@ msgstr ""
 
 #: ../templates/dhcp/settings.php:72
 msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
+msgstr "Ota tämä käyttöön vain, jos haluat, että laitteesi käyttää tätä rajapintaa ensisijaisena reittinä internetiin."
 
 #: ../templates/dhcp/settings.php:75
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Tämä kytkee tämän rajapinnan<code>gateway/nogateway</code> -asetuksen päälle tai pois päältä dhcpcd.conf-tiedostossa."
 
 #: ../templates/dhcp/settings.php:88
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Tämä kytkee dhcpcd.conf-tiedostossa tämän rajapinnan <code>nohook-</code> asetuksen <code>wpa_supplicant</code> -vaihtoehdon päälle tai pois päältä."
 
 #: ../templates/about.php:23
 msgid "Contributing"
@@ -3326,111 +3326,3 @@ msgstr "Käytä muita laitteita varten alla olevia kirjautumistietoja."
 msgid "Network"
 msgstr "Verkko"
 
-#~ msgid "Firewall is now enabled"
-#~ msgstr "Palomuuri on nyt käytössä"
-
-#~ msgid "Firewall is now disabled"
-#~ msgstr "Palomuuri on nyt poistettu käytöstä"
-
-#~ msgid "Firewall settings changed"
-#~ msgstr "Palomuurin asetuksia muutettu"
-
-#~ msgid "Firewall settings saved. Firewall is still disabled."
-#~ msgstr "Palomuurin asetukset tallennettu. Palomuuri on edelleen poistettu käytöstä."
-
-#~ msgid "Exclude devices "
-#~ msgstr "Laitteiden poissulkeminen "
-
-#~ msgid "Exclude IP address "
-#~ msgstr "Sulje IP-osoite pois "
-
-#~ msgid "Exclude IP address(es) "
-#~ msgstr "Sulje pois IP-osoite(t) "
-
-#~ msgid "A firewall plugin that implements an iptables ruleset"
-#~ msgstr "Palomuurin lisäosa, joka toteuttaa iptables-sääntökokonaisuuden."
-
-#~ msgid "zbchristian"
-#~ msgstr "zbchristian"
-
-#~ msgid "Client Firewall"
-#~ msgstr "Asiakkaan palomuuri"
-
-#~ msgid "Firewall is ENABLED"
-#~ msgstr "Palomuuri on PÄÄLLÄ"
-
-#~ msgid "Firewall is OFF"
-#~ msgstr "Palomuuri on OFF"
-
-#~ msgid "The default firewall will only allow outgoing and already established traffic."
-#~ msgstr "Oletuspalomuuri sallii vain lähtevän ja jo muodostetun liikenteen."
-
-#~ msgid "No incoming UDP traffic is allowed."
-#~ msgstr "Saapuvaa UDP-liikennettä ei sallita."
-
-#, php-format
-#~ msgid "There are no restrictions for the access point <code>%s</code>."
-#~ msgstr "Liityntäpisteelle ei ole rajoituksia <code>%s</code>."
-
-#~ msgid "Exception: Service"
-#~ msgstr "Poikkeus: Palvelu"
-
-#~ msgid "allow SSH access on port 22"
-#~ msgstr "salli SSH-yhteys porttiin 22"
-
-#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
-#~ msgstr "sallia RaspAP GUI:n käyttö portissa 80 tai 443."
-
-#~ msgid "Allow incoming connections for some services from the internet side."
-#~ msgstr "Salli saapuvat yhteydet joillekin palveluille internetin puolelta."
-
-#~ msgid "Exception: network device"
-#~ msgstr "Poikkeus: verkkolaite"
-
-#~ msgid "Exclude device(s)"
-#~ msgstr "Sulje laite(t) pois"
-
-#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-#~ msgstr "Sulkee annetut verkkolaitteet (tyhjällä tai pilkulla erotettuna) palomuurisääntöjen ulkopuolelle."
-
-#, php-format
-#~ msgid "Current client devices: <code>%s</code>"
-#~ msgstr "Nykyiset asiakaslaitteet: <code>%s</code>"
-
-#, php-format
-#~ msgid "The access point <code>%s</code> is per default excluded."
-#~ msgstr "Yhteyspiste <code>%s</code> on oletusarvoisesti suljettu pois."
-
-#~ msgid "Exception: IP-Address"
-#~ msgstr "Poikkeus: IP-osoite"
-
-#~ msgid "Allow incoming connections from"
-#~ msgstr "Salli saapuvat yhteydet osoitteesta"
-
-#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-#~ msgstr "Annetuille IP-osoitteille (jotka on erotettu toisistaan tyhjällä tai pilkulla) hyväksytään saapuva yhteys (TCP:n ja UDP:n kautta)."
-
-#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-#~ msgstr "Tätä tarvitaan UDP:n tai Wireguardin kautta tapahtuvaa OpenVPN-yhteyttä varten."
-
-#, php-format
-#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-#~ msgstr "Luettelo määritetyistä VPN-palvelimen IP-osoitteista: <code><b>%s</b></code>"
-
-#~ msgid "plugin was created by "
-#~ msgstr "lisäosan loi "
-
-#~ msgid "Apply changes"
-#~ msgstr "Soveltaa muutoksia"
-
-#~ msgid "Disable Firewall"
-#~ msgstr "Palomuurin poistaminen käytöstä"
-
-#~ msgid "Enable Firewall"
-#~ msgstr "Ota palomuuri käyttöön"
-
-#~ msgid "Information provided by iptables"
-#~ msgstr "iptablesin tarjoamat tiedot"
-
-#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
-#~ msgstr "Palomuurin tilan muuttaminen voi häiritä tai sallia saapuvan liikenteen. Jatka valitsemalla <strong>Jatka</strong> jatkaaksesi."

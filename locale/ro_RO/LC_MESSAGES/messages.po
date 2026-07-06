@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2026-07-05 23:13+0000\n"
-"PO-Revision-Date: 2026-04-22 02:22\n"
+"PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Language: ro_RO\n"
@@ -221,16 +221,16 @@ msgstr "Încercarea de a opri %s"
 #: ../plugins-available/Captive/Captive.php:106
 #, php-format
 msgid "Client %s deauthenticated"
-msgstr ""
+msgstr "Clientul „ %s ” a fost deconectat"
 
 #: ../plugins-available/Captive/Captive.php:108
 #, php-format
 msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgstr "Nu s-a reușit dezautentificarea clientului %s"
 
 #: ../plugins-available/Captive/Captive.php:111
 msgid "Invalid client MAC address"
-msgstr ""
+msgstr "Adresă MAC client nevalidă"
 
 #: ../plugins-available/Captive/Captive.php:131
 msgid "A captive portal plugin that implements nodogsplash"
@@ -299,7 +299,7 @@ msgstr "Statut"
 #: ../plugins-available/Captive/templates/main.php:52
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:4
 msgid "Active clients"
-msgstr ""
+msgstr "Clienți activi"
 
 #: ../plugins-available/Captive/templates/main.php:53
 #: ../plugins-available/Captive/templates/tabs/about.php:3
@@ -353,15 +353,15 @@ msgstr "Reîmprospătare"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:17
 msgid "Client"
-msgstr ""
+msgstr "Client"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:21
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:22
 msgid "Token"
-msgstr ""
+msgstr "Token"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:23
 #: ../templates/networking/diagnostics.php:34 ../templates/wg/peers.php:73
@@ -375,23 +375,23 @@ msgstr "Încărcare"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:25
 msgid "Last activity"
-msgstr ""
+msgstr "Ultima activitate"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:26
 msgid "Session start"
-msgstr ""
+msgstr "Începutul sesiunii"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:27
 msgid "Session end"
-msgstr ""
+msgstr "Sfârșitul sesiunii"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:35
 msgid "Deauthenticate"
-msgstr ""
+msgstr "Anulare autentificare"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:44
 msgid "No active clients connected."
-msgstr ""
+msgstr "Nu sunt clienți activi conectați."
 
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
 #: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
@@ -2037,21 +2037,21 @@ msgstr "Limita dimensiunii jurnalului de diagnosticare (KB)"
 
 #: ../templates/system/advanced.php:28
 msgid "SSL Certificate (HTTPS)"
-msgstr ""
+msgstr "Certificat SSL (HTTPS)"
 
 #: ../templates/system/advanced.php:30
 #, php-format
 msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr ""
+msgstr "A fost creat un certificat SSL pentru acest sistem. Pentru a-l descărca și a-l instala pe sistemul dumneavoastră, utilizați butonul de mai jos și consultați <a href=\"%s\" target=\"_blank\">documentația</a> pentru a instala certificatul pe dispozitivul dumneavoastră."
 
 #: ../templates/system/advanced.php:31
 msgid "Download rootCA.pem"
-msgstr ""
+msgstr "Descărcați fișierul rootCA.pem"
 
 #: ../templates/system/advanced.php:33
 #, php-format
 msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr ""
+msgstr "Pentru a instala un certificat SSL și a accesa panoul de administrare RaspAP prin HTTPS, vă rugăm să consultați <a href=\"%s\" target=\"_blank\">documentația</a>."
 
 #: ../templates/system/advanced.php:40
 msgid "Restart lighttpd"
@@ -2278,11 +2278,11 @@ msgstr "Configurarea interfeței punte"
 
 #: ../templates/hostapd/advanced.php:25
 msgid "Use dynamic IP address"
-msgstr ""
+msgstr "Utilizați o adresă IP dinamică"
 
 #: ../templates/hostapd/advanced.php:26
 msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
-msgstr ""
+msgstr "Necesită mDNS sau DNS local (de exemplu, <code>hostname.local</code>). Dacă serverul DHCP nu reușește să aloce o adresă, dispozitivul nu va putea fi accesat."
 
 #: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
@@ -2585,15 +2585,15 @@ msgstr ""
 
 #: ../templates/system.php:86
 msgid "Reconnecting"
-msgstr ""
+msgstr "Reconectare"
 
 #: ../templates/system.php:90
 msgid "The system is currently rebooting."
-msgstr ""
+msgstr "Sistemul se restartează în acest moment."
 
 #: ../templates/system.php:91
 msgid "Attempting to reconnect in"
-msgstr ""
+msgstr "Încercarea de a se reconecta la"
 
 #: ../templates/system.php:103
 msgid "System shutdown"
@@ -2698,7 +2698,7 @@ msgstr "Am uitat parola"
 
 #: ../templates/login.php:33
 msgid "Scan for Login Help"
-msgstr ""
+msgstr "Căutați ajutor pentru autentificare"
 
 #: ../templates/openvpn.php:20
 msgid "Start OpenVPN"
@@ -2734,7 +2734,7 @@ msgstr "Ethernet"
 
 #: ../templates/dashboard.php:28 ../templates/dashboard.php:29
 msgid "WiFi Client"
-msgstr ""
+msgstr "Client WiFi"
 
 #: ../templates/dashboard.php:28
 msgid "Repeater"
@@ -2750,11 +2750,11 @@ msgstr "Celulare"
 
 #: ../templates/dashboard.php:48
 msgid "Public"
-msgstr ""
+msgstr "Public"
 
 #: ../templates/dashboard.php:49
 msgid "Local"
-msgstr ""
+msgstr "Local"
 
 #: ../templates/dashboard.php:55 ../templates/dashboard.php:61
 msgid "Netmask"
@@ -2920,39 +2920,39 @@ msgstr ""
 
 #: ../templates/dhcp/summary.php:7
 msgid "Interface Configurations"
-msgstr ""
+msgstr "Configurații de interfață"
 
 #: ../templates/dhcp/summary.php:19
 msgid "Static IP"
-msgstr ""
+msgstr "Adresă IP statică"
 
 #: ../templates/dhcp/summary.php:20
 msgid "Subnet / Gateway"
-msgstr ""
+msgstr "Subrețea / Poartă de acces"
 
 #: ../templates/dhcp/summary.php:21
 msgid "Default Route"
-msgstr ""
+msgstr "Ruta implicită"
 
 #: ../templates/dhcp/summary.php:22
 msgid "Disable Hook"
-msgstr ""
+msgstr "Dezactivare Hook"
 
 #: ../templates/dhcp/summary.php:23
 msgid "DHCP Range (lease)"
-msgstr ""
+msgstr "Interval DHCP (perioadă de valabilitate)"
 
 #: ../templates/dhcp/summary.php:24
 msgid "DNS Servers"
-msgstr ""
+msgstr "Servere DNS"
 
 #: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: ../templates/dhcp/summary.php:97
 msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
+msgstr "Nu s-a găsit nicio configurație în fișierele dhcpcd.conf sau dnsmasq.d pentru nicio interfață."
 
 #: ../templates/dhcp/static_leases.php:5
 msgid "Static leases"
@@ -3061,15 +3061,15 @@ msgstr ""
 
 #: ../templates/dhcp/settings.php:72
 msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
+msgstr "Activați această opțiune numai dacă doriți ca dispozitivul dumneavoastră să utilizeze această interfață ca rută principală de acces la internet."
 
 #: ../templates/dhcp/settings.php:75
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Această opțiune activează sau dezactivează opțiunea<code>„gateway/nogateway”</code> pentru această interfață în fișierul dhcpcd.conf."
 
 #: ../templates/dhcp/settings.php:88
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Această comandă activează sau dezactivează opțiunea <code>„nohook” a wpa_supplicant</code> pentru această interfață în fișierul dhcpcd.conf."
 
 #: ../templates/about.php:23
 msgid "Contributing"
@@ -3327,111 +3327,3 @@ msgstr "Pentru alte dispozitive, utilizați datele de autentificare de mai jos."
 msgid "Network"
 msgstr "Rețea"
 
-#~ msgid "Firewall is now enabled"
-#~ msgstr "Firewall-ul este acum activat"
-
-#~ msgid "Firewall is now disabled"
-#~ msgstr "Firewall-ul este acum dezactivat"
-
-#~ msgid "Firewall settings changed"
-#~ msgstr "Setările firewall-ului au fost modificate"
-
-#~ msgid "Firewall settings saved. Firewall is still disabled."
-#~ msgstr "Setările firewall-ului au fost salvate. Firewall-ul este încă dezactivat."
-
-#~ msgid "Exclude devices "
-#~ msgstr "Excludeți dispozitivele "
-
-#~ msgid "Exclude IP address "
-#~ msgstr "Excludeți adresa IP "
-
-#~ msgid "Exclude IP address(es) "
-#~ msgstr "Excludeți adresa (adresele) IP "
-
-#~ msgid "A firewall plugin that implements an iptables ruleset"
-#~ msgstr "Un plugin firewall care implementează un set de reguli iptables"
-
-#~ msgid "zbchristian"
-#~ msgstr "zbchristian"
-
-#~ msgid "Client Firewall"
-#~ msgstr "Firewall client"
-
-#~ msgid "Firewall is ENABLED"
-#~ msgstr "Firewall-ul este ACTIVAT"
-
-#~ msgid "Firewall is OFF"
-#~ msgstr "Firewall-ul este dezactivat"
-
-#~ msgid "The default firewall will only allow outgoing and already established traffic."
-#~ msgstr "Firewall-ul implicit va permite numai traficul de ieșire și traficul deja stabilit."
-
-#~ msgid "No incoming UDP traffic is allowed."
-#~ msgstr "Nu este permis traficul UDP de intrare."
-
-#, php-format
-#~ msgid "There are no restrictions for the access point <code>%s</code>."
-#~ msgstr "Nu există restricții pentru punctul de acces <code>%s</code>."
-
-#~ msgid "Exception: Service"
-#~ msgstr "Excepție: Serviciul"
-
-#~ msgid "allow SSH access on port 22"
-#~ msgstr "permite accesul SSH pe portul 22"
-
-#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
-#~ msgstr "permite accesul la RaspAP GUI pe portul 80 sau 443"
-
-#~ msgid "Allow incoming connections for some services from the internet side."
-#~ msgstr "Permiteți conexiunile de intrare pentru anumite servicii din partea internetului."
-
-#~ msgid "Exception: network device"
-#~ msgstr "Excepție: dispozitiv de rețea"
-
-#~ msgid "Exclude device(s)"
-#~ msgstr "Excludeți dispozitivul (dispozitivele)"
-
-#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-#~ msgstr "Exclude dispozitivul (dispozitivele) de rețea dat(e) (separate prin spațiu sau virgulă) din regulile firewall."
-
-#, php-format
-#~ msgid "Current client devices: <code>%s</code>"
-#~ msgstr "Dispozitive client curente: <code>%s</code>"
-
-#, php-format
-#~ msgid "The access point <code>%s</code> is per default excluded."
-#~ msgstr "Punctul de acces <code>%s</code> este implicit exclus."
-
-#~ msgid "Exception: IP-Address"
-#~ msgstr "Excepție: Adresă IP"
-
-#~ msgid "Allow incoming connections from"
-#~ msgstr "Permiteți conexiunile de intrare de la"
-
-#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-#~ msgstr "Pentru adresele IP date (separate prin spațiu sau virgulă) este acceptată conexiunea de intrare (prin TCP și UDP)."
-
-#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-#~ msgstr "Acest lucru este necesar pentru o conexiune OpenVPN prin UDP sau Wireguard."
-
-#, php-format
-#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-#~ msgstr "Lista de adrese IP ale serverului VPN configurat: <code><b>%s</b></code>"
-
-#~ msgid "plugin was created by "
-#~ msgstr "plugin-ul a fost creat de "
-
-#~ msgid "Apply changes"
-#~ msgstr "Aplicați modificările"
-
-#~ msgid "Disable Firewall"
-#~ msgstr "Dezactivați Firewall"
-
-#~ msgid "Enable Firewall"
-#~ msgstr "Activați Firewall"
-
-#~ msgid "Information provided by iptables"
-#~ msgstr "Informații furnizate de iptables"
-
-#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
-#~ msgstr "Modificarea stării firewall-ului poate întrerupe sau permite traficul de intrare. Alegeți <strong>Proceed (Continuare</strong> ) pentru a continua."

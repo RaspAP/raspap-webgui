@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2026-07-05 23:13+0000\n"
-"PO-Revision-Date: 2026-04-22 02:22\n"
+"PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -219,16 +219,16 @@ msgstr "%s"
 #: ../plugins-available/Captive/Captive.php:106
 #, php-format
 msgid "Client %s deauthenticated"
-msgstr ""
+msgstr "クライアント「 %s 」の認証が解除されました"
 
 #: ../plugins-available/Captive/Captive.php:108
 #, php-format
 msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgstr "クライアントの認証解除に失敗しました %s"
 
 #: ../plugins-available/Captive/Captive.php:111
 msgid "Invalid client MAC address"
-msgstr ""
+msgstr "無効なクライアントMACアドレス"
 
 #: ../plugins-available/Captive/Captive.php:131
 msgid "A captive portal plugin that implements nodogsplash"
@@ -297,7 +297,7 @@ msgstr "ステータス"
 #: ../plugins-available/Captive/templates/main.php:52
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:4
 msgid "Active clients"
-msgstr ""
+msgstr "アクティブなクライアント"
 
 #: ../plugins-available/Captive/templates/main.php:53
 #: ../plugins-available/Captive/templates/tabs/about.php:3
@@ -351,15 +351,15 @@ msgstr "リフレッシュ"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:17
 msgid "Client"
-msgstr ""
+msgstr "クライアント"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:21
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:22
 msgid "Token"
-msgstr ""
+msgstr "トークン"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:23
 #: ../templates/networking/diagnostics.php:34 ../templates/wg/peers.php:73
@@ -373,23 +373,23 @@ msgstr "アップロード"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:25
 msgid "Last activity"
-msgstr ""
+msgstr "最終アクセス日時"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:26
 msgid "Session start"
-msgstr ""
+msgstr "セッション開始"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:27
 msgid "Session end"
-msgstr ""
+msgstr "セッション終了"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:35
 msgid "Deauthenticate"
-msgstr ""
+msgstr "認証解除"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:44
 msgid "No active clients connected."
-msgstr ""
+msgstr "接続中のアクティブなクライアントはいません。"
 
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
 #: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
@@ -2035,21 +2035,21 @@ msgstr "診断ログのサイズ制限（KB）"
 
 #: ../templates/system/advanced.php:28
 msgid "SSL Certificate (HTTPS)"
-msgstr ""
+msgstr "SSL証明書（HTTPS）"
 
 #: ../templates/system/advanced.php:30
 #, php-format
 msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr ""
+msgstr "このシステム用にSSL証明書が作成されました。これをダウンロードしてシステムにインストールするには、以下のボタンと<a href=\"%s\" target=\"_blank\">ドキュメント</a>を参照し、お使いのデバイスに証明書をインストールしてください。"
 
 #: ../templates/system/advanced.php:31
 msgid "Download rootCA.pem"
-msgstr ""
+msgstr "rootCA.pem をダウンロード"
 
 #: ../templates/system/advanced.php:33
 #, php-format
 msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr ""
+msgstr "SSL証明書をインストールし、HTTPS経由でRaspAP管理パネルにアクセスするには、<a href=\"%s\" target=\"_blank\">ドキュメント</a>をご参照ください。"
 
 #: ../templates/system/advanced.php:40
 msgid "Restart lighttpd"
@@ -2276,11 +2276,11 @@ msgstr "ブリッジ・インターフェース設定"
 
 #: ../templates/hostapd/advanced.php:25
 msgid "Use dynamic IP address"
-msgstr ""
+msgstr "動的IPアドレスを使用する"
 
 #: ../templates/hostapd/advanced.php:26
 msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
-msgstr ""
+msgstr "mDNS またはローカル DNS（例：<code>hostname.local</code>）が必要です。DHCP サーバーが IP アドレスの割り当てに失敗した場合、そのデバイスには接続できなくなります。"
 
 #: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
@@ -2583,15 +2583,15 @@ msgstr "今すぐ再起動しますか？システムは一時的に使用でき
 
 #: ../templates/system.php:86
 msgid "Reconnecting"
-msgstr ""
+msgstr "再びつながる"
 
 #: ../templates/system.php:90
 msgid "The system is currently rebooting."
-msgstr ""
+msgstr "現在、システムが再起動中です。"
 
 #: ../templates/system.php:91
 msgid "Attempting to reconnect in"
-msgstr ""
+msgstr "再接続を試みる"
 
 #: ../templates/system.php:103
 msgid "System shutdown"
@@ -2696,7 +2696,7 @@ msgstr "パスワードを忘れた"
 
 #: ../templates/login.php:33
 msgid "Scan for Login Help"
-msgstr ""
+msgstr "ログインに関するヘルプを検索"
 
 #: ../templates/openvpn.php:20
 msgid "Start OpenVPN"
@@ -2732,7 +2732,7 @@ msgstr "イーサネット"
 
 #: ../templates/dashboard.php:28 ../templates/dashboard.php:29
 msgid "WiFi Client"
-msgstr ""
+msgstr "Wi-Fiクライアント"
 
 #: ../templates/dashboard.php:28
 msgid "Repeater"
@@ -2748,11 +2748,11 @@ msgstr "セルラー"
 
 #: ../templates/dashboard.php:48
 msgid "Public"
-msgstr ""
+msgstr "公開"
 
 #: ../templates/dashboard.php:49
 msgid "Local"
-msgstr ""
+msgstr "ローカル"
 
 #: ../templates/dashboard.php:55 ../templates/dashboard.php:61
 msgid "Netmask"
@@ -2918,39 +2918,39 @@ msgstr "メートル"
 
 #: ../templates/dhcp/summary.php:7
 msgid "Interface Configurations"
-msgstr ""
+msgstr "インターフェースの設定"
 
 #: ../templates/dhcp/summary.php:19
 msgid "Static IP"
-msgstr ""
+msgstr "固定IPアドレス"
 
 #: ../templates/dhcp/summary.php:20
 msgid "Subnet / Gateway"
-msgstr ""
+msgstr "サブネット／ゲートウェイ"
 
 #: ../templates/dhcp/summary.php:21
 msgid "Default Route"
-msgstr ""
+msgstr "デフォルトルート"
 
 #: ../templates/dhcp/summary.php:22
 msgid "Disable Hook"
-msgstr ""
+msgstr "フックを無効にする"
 
 #: ../templates/dhcp/summary.php:23
 msgid "DHCP Range (lease)"
-msgstr ""
+msgstr "DHCPの範囲（リース期間）"
 
 #: ../templates/dhcp/summary.php:24
 msgid "DNS Servers"
-msgstr ""
+msgstr "DNSサーバー"
 
 #: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #: ../templates/dhcp/summary.php:97
 msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
+msgstr "dhcpcd.conf および dnsmasq.d には、どのインターフェースについても設定が見つかりませんでした。"
 
 #: ../templates/dhcp/static_leases.php:5
 msgid "Static leases"
@@ -3059,15 +3059,15 @@ msgstr "ホスティングサーバーを選ぶ"
 
 #: ../templates/dhcp/settings.php:72
 msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
+msgstr "お使いのデバイスがこのインターフェースをインターネットへの主要な経路として使用するようにしたい場合のみ、これを有効にしてください。"
 
 #: ../templates/dhcp/settings.php:75
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "これにより、dhcpcd.conf ファイル内のこのインターフェースに対する「<code>gateway</code>」／「<code>nogateway</code>」オプションが切り替わります。"
 
 #: ../templates/dhcp/settings.php:88
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "これにより、dhcpcd.conf ファイル内のこのインターフェースに対する<code>wpa_supplicant の nohook</code>オプションの有効/無効が切り替わります。"
 
 #: ../templates/about.php:23
 msgid "Contributing"
@@ -3325,111 +3325,3 @@ msgstr "その他のデバイスの場合は、以下のログイン認証情報
 msgid "Network"
 msgstr "ネットワーク"
 
-#~ msgid "Firewall is now enabled"
-#~ msgstr "ファイアウォールが有効になりました"
-
-#~ msgid "Firewall is now disabled"
-#~ msgstr "ファイアウォールが無効になりました"
-
-#~ msgid "Firewall settings changed"
-#~ msgstr "ファイアウォール設定の変更"
-
-#~ msgid "Firewall settings saved. Firewall is still disabled."
-#~ msgstr "ファイアウォールの設定を保存しました。ファイアウォールは無効のままです。"
-
-#~ msgid "Exclude devices "
-#~ msgstr "機器を除く "
-
-#~ msgid "Exclude IP address "
-#~ msgstr "除外IPアドレス "
-
-#~ msgid "Exclude IP address(es) "
-#~ msgstr "IPアドレスを除外する "
-
-#~ msgid "A firewall plugin that implements an iptables ruleset"
-#~ msgstr "iptablesルールセットを実装するファイアウォール・プラグイン"
-
-#~ msgid "zbchristian"
-#~ msgstr "zbchristian"
-
-#~ msgid "Client Firewall"
-#~ msgstr "クライアントファイアウォール"
-
-#~ msgid "Firewall is ENABLED"
-#~ msgstr "ファイアウォールが有効"
-
-#~ msgid "Firewall is OFF"
-#~ msgstr "ファイアウォールがオフ"
-
-#~ msgid "The default firewall will only allow outgoing and already established traffic."
-#~ msgstr "デフォルトのファイアウォールは、発信トラフィックと既に確立されたトラフィックのみを許可する。"
-
-#~ msgid "No incoming UDP traffic is allowed."
-#~ msgstr "UDPトラフィックの着信は許可されない。"
-
-#, php-format
-#~ msgid "There are no restrictions for the access point <code>%s</code>."
-#~ msgstr "アクセスポイントの制限はありません。 <code>%s</code>."
-
-#~ msgid "Exception: Service"
-#~ msgstr "例外サービス"
-
-#~ msgid "allow SSH access on port 22"
-#~ msgstr "ポート22でのSSHアクセスを許可する"
-
-#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
-#~ msgstr "ポート 80 または 443 での RaspAP GUI へのアクセスを許可します。"
-
-#~ msgid "Allow incoming connections for some services from the internet side."
-#~ msgstr "インターネット側から一部のサービスへの着信接続を許可する。"
-
-#~ msgid "Exception: network device"
-#~ msgstr "例外：ネットワーク機器"
-
-#~ msgid "Exclude device(s)"
-#~ msgstr "デバイスを除く"
-
-#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-#~ msgstr "指定されたネットワークデバイス（複数可）をファイアウォールルールから除外します（空白またはカンマで区切ります）。"
-
-#, php-format
-#~ msgid "Current client devices: <code>%s</code>"
-#~ msgstr "現在のクライアントデバイス <code>%s</code>"
-
-#, php-format
-#~ msgid "The access point <code>%s</code> is per default excluded."
-#~ msgstr "アクセスポイント <code>%s</code>はデフォルトで除外されている。"
-
-#~ msgid "Exception: IP-Address"
-#~ msgstr "例外IPアドレス"
-
-#~ msgid "Allow incoming connections from"
-#~ msgstr "からの着信接続を許可する。"
-
-#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-#~ msgstr "与えられたIPアドレス（空白またはカンマで区切られる）に対して、（TCPおよびUDP経由の）着信接続を受け付ける。"
-
-#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-#~ msgstr "これは、UDP経由のOpenVPNまたはWireguard接続に必要です。"
-
-#, php-format
-#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-#~ msgstr "設定されているVPNサーバーのIPアドレスのリスト： <code><b>%s</b></code>"
-
-#~ msgid "plugin was created by "
-#~ msgstr "プラグインは "
-
-#~ msgid "Apply changes"
-#~ msgstr "変更を適用する"
-
-#~ msgid "Disable Firewall"
-#~ msgstr "ファイアウォールを無効にする"
-
-#~ msgid "Enable Firewall"
-#~ msgstr "ファイアウォールを有効にする"
-
-#~ msgid "Information provided by iptables"
-#~ msgstr "iptablesが提供する情報"
-
-#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
-#~ msgstr "ファイアウォールのステータスを変更すると、受信トラフィックが中断されたり許可されたりすることがあります。<strong>続行を</strong>選択します。"

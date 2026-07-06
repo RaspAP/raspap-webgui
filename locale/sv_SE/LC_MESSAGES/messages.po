@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2026-07-05 23:13+0000\n"
-"PO-Revision-Date: 2026-04-22 02:22\n"
+"PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv_SE\n"
@@ -220,16 +220,16 @@ msgstr "Försök att stoppa %s"
 #: ../plugins-available/Captive/Captive.php:106
 #, php-format
 msgid "Client %s deauthenticated"
-msgstr ""
+msgstr "Klient %s har loggats ut"
 
 #: ../plugins-available/Captive/Captive.php:108
 #, php-format
 msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgstr "Det gick inte att avautentisera klienten %s"
 
 #: ../plugins-available/Captive/Captive.php:111
 msgid "Invalid client MAC address"
-msgstr ""
+msgstr "Ogiltig MAC-adress för klient"
 
 #: ../plugins-available/Captive/Captive.php:131
 msgid "A captive portal plugin that implements nodogsplash"
@@ -298,7 +298,7 @@ msgstr "Status"
 #: ../plugins-available/Captive/templates/main.php:52
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:4
 msgid "Active clients"
-msgstr ""
+msgstr "Aktiva kunder"
 
 #: ../plugins-available/Captive/templates/main.php:53
 #: ../plugins-available/Captive/templates/tabs/about.php:3
@@ -352,15 +352,15 @@ msgstr "Uppdatera"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:17
 msgid "Client"
-msgstr ""
+msgstr "Kund"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:21
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:22
 msgid "Token"
-msgstr ""
+msgstr "Token"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:23
 #: ../templates/networking/diagnostics.php:34 ../templates/wg/peers.php:73
@@ -374,23 +374,23 @@ msgstr "Ladda upp"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:25
 msgid "Last activity"
-msgstr ""
+msgstr "Senaste aktivitet"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:26
 msgid "Session start"
-msgstr ""
+msgstr "Sessionens start"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:27
 msgid "Session end"
-msgstr ""
+msgstr "Slut på sessionen"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:35
 msgid "Deauthenticate"
-msgstr ""
+msgstr "Avautentisera"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:44
 msgid "No active clients connected."
-msgstr ""
+msgstr "Inga aktiva klienter är anslutna."
 
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
 #: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
@@ -2036,21 +2036,21 @@ msgstr "Storleksgräns för diagnostiklogg (KB)"
 
 #: ../templates/system/advanced.php:28
 msgid "SSL Certificate (HTTPS)"
-msgstr ""
+msgstr "SSL-certifikat (HTTPS)"
 
 #: ../templates/system/advanced.php:30
 #, php-format
 msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr ""
+msgstr "Ett SSL-certifikat har skapats för detta system. För att ladda ner och installera det på ditt system kan du använda knappen nedan och följa anvisningarna i <a href=\"%s\" target=\"_blank\">dokumentationen</a> för att installera certifikatet på din enhet."
 
 #: ../templates/system/advanced.php:31
 msgid "Download rootCA.pem"
-msgstr ""
+msgstr "Ladda ner rootCA.pem"
 
 #: ../templates/system/advanced.php:33
 #, php-format
 msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr ""
+msgstr "För att installera ett SSL-certifikat och komma åt RaspAP:s administratörspanel via HTTPS, se <a href=\"%s\" target=\"_blank\">dokumentationen</a>."
 
 #: ../templates/system/advanced.php:40
 msgid "Restart lighttpd"
@@ -2277,11 +2277,11 @@ msgstr "Konfiguration av brygggränssnitt"
 
 #: ../templates/hostapd/advanced.php:25
 msgid "Use dynamic IP address"
-msgstr ""
+msgstr "Använd dynamisk IP-adress"
 
 #: ../templates/hostapd/advanced.php:26
 msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
-msgstr ""
+msgstr "Kräver mDNS eller lokal DNS (t.ex. <code>hostname.local</code>). Om DHCP-servern inte lyckas tilldela en adress går det inte att nå enheten."
 
 #: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
@@ -2584,15 +2584,15 @@ msgstr "Starta om nu? Systemet kommer att vara tillfälligt otillgängligt."
 
 #: ../templates/system.php:86
 msgid "Reconnecting"
-msgstr ""
+msgstr "Återuppta kontakten"
 
 #: ../templates/system.php:90
 msgid "The system is currently rebooting."
-msgstr ""
+msgstr "Systemet startar om just nu."
 
 #: ../templates/system.php:91
 msgid "Attempting to reconnect in"
-msgstr ""
+msgstr "Försöker återansluta till"
 
 #: ../templates/system.php:103
 msgid "System shutdown"
@@ -2697,7 +2697,7 @@ msgstr "Glömt lösenord"
 
 #: ../templates/login.php:33
 msgid "Scan for Login Help"
-msgstr ""
+msgstr "Sök efter hjälp med inloggning"
 
 #: ../templates/openvpn.php:20
 msgid "Start OpenVPN"
@@ -2733,7 +2733,7 @@ msgstr "Ethernet"
 
 #: ../templates/dashboard.php:28 ../templates/dashboard.php:29
 msgid "WiFi Client"
-msgstr ""
+msgstr "WiFi-klient"
 
 #: ../templates/dashboard.php:28
 msgid "Repeater"
@@ -2749,11 +2749,11 @@ msgstr "Cellulär"
 
 #: ../templates/dashboard.php:48
 msgid "Public"
-msgstr ""
+msgstr "Allmänt"
 
 #: ../templates/dashboard.php:49
 msgid "Local"
-msgstr ""
+msgstr "Lokalt"
 
 #: ../templates/dashboard.php:55 ../templates/dashboard.php:61
 msgid "Netmask"
@@ -2919,39 +2919,39 @@ msgstr "Metrisk"
 
 #: ../templates/dhcp/summary.php:7
 msgid "Interface Configurations"
-msgstr ""
+msgstr "Gränssnittskonfigurationer"
 
 #: ../templates/dhcp/summary.php:19
 msgid "Static IP"
-msgstr ""
+msgstr "Statisk IP-adress"
 
 #: ../templates/dhcp/summary.php:20
 msgid "Subnet / Gateway"
-msgstr ""
+msgstr "Undernät / Gateway"
 
 #: ../templates/dhcp/summary.php:21
 msgid "Default Route"
-msgstr ""
+msgstr "Standardväg"
 
 #: ../templates/dhcp/summary.php:22
 msgid "Disable Hook"
-msgstr ""
+msgstr "Inaktivera Hook"
 
 #: ../templates/dhcp/summary.php:23
 msgid "DHCP Range (lease)"
-msgstr ""
+msgstr "DHCP-intervall (leasetid)"
 
 #: ../templates/dhcp/summary.php:24
 msgid "DNS Servers"
-msgstr ""
+msgstr "DNS-servrar"
 
 #: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: ../templates/dhcp/summary.php:97
 msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
+msgstr "Ingen konfiguration hittades i dhcpcd.conf eller dnsmasq.d för något gränssnitt."
 
 #: ../templates/dhcp/static_leases.php:5
 msgid "Static leases"
@@ -3060,15 +3060,15 @@ msgstr "Välj en hostad server"
 
 #: ../templates/dhcp/settings.php:72
 msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
+msgstr "Aktivera detta endast om du vill att din enhet ska använda detta gränssnitt som sin primära anslutning till internet."
 
 #: ../templates/dhcp/settings.php:75
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Detta växlar mellan alternativen <code>gateway</code> och<code>nogateway</code> för detta gränssnitt i filen dhcpcd.conf."
 
 #: ../templates/dhcp/settings.php:88
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Detta aktiverar eller inaktiverar alternativet <code>”nohook”</code> för <code>wpa_supplicant</code> för detta gränssnitt i filen dhcpcd.conf."
 
 #: ../templates/about.php:23
 msgid "Contributing"
@@ -3326,111 +3326,3 @@ msgstr "För andra enheter använder du inloggningsuppgifterna nedan."
 msgid "Network"
 msgstr "Nätverk"
 
-#~ msgid "Firewall is now enabled"
-#~ msgstr "Brandväggen är nu aktiverad"
-
-#~ msgid "Firewall is now disabled"
-#~ msgstr "Brandväggen är nu inaktiverad"
-
-#~ msgid "Firewall settings changed"
-#~ msgstr "Brandväggsinställningar ändrade"
-
-#~ msgid "Firewall settings saved. Firewall is still disabled."
-#~ msgstr "Brandväggsinställningar sparade. Brandväggen är fortfarande inaktiverad."
-
-#~ msgid "Exclude devices "
-#~ msgstr "Exkludera enheter "
-
-#~ msgid "Exclude IP address "
-#~ msgstr "Uteslut IP-adress "
-
-#~ msgid "Exclude IP address(es) "
-#~ msgstr "Uteslut IP-adress(er) "
-
-#~ msgid "A firewall plugin that implements an iptables ruleset"
-#~ msgstr "Ett brandväggsplugin som implementerar en iptables-regeluppsättning"
-
-#~ msgid "zbchristian"
-#~ msgstr "zbchristian"
-
-#~ msgid "Client Firewall"
-#~ msgstr "Brandvägg för klienter"
-
-#~ msgid "Firewall is ENABLED"
-#~ msgstr "Brandväggen är ENABLED"
-
-#~ msgid "Firewall is OFF"
-#~ msgstr "Brandväggen är avstängd"
-
-#~ msgid "The default firewall will only allow outgoing and already established traffic."
-#~ msgstr "Standardbrandväggen tillåter endast utgående och redan etablerad trafik."
-
-#~ msgid "No incoming UDP traffic is allowed."
-#~ msgstr "Ingen inkommande UDP-trafik tillåts."
-
-#, php-format
-#~ msgid "There are no restrictions for the access point <code>%s</code>."
-#~ msgstr "Det finns inga begränsningar för åtkomstpunkten <code>%s</code>."
-
-#~ msgid "Exception: Service"
-#~ msgstr "Undantag: Service"
-
-#~ msgid "allow SSH access on port 22"
-#~ msgstr "tillåta SSH-åtkomst på port 22"
-
-#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
-#~ msgstr "tillåta åtkomst till RaspAP GUI på port 80 eller 443"
-
-#~ msgid "Allow incoming connections for some services from the internet side."
-#~ msgstr "Tillåt inkommande anslutningar för vissa tjänster från internetsidan."
-
-#~ msgid "Exception: network device"
-#~ msgstr "Undantag: nätverksenhet"
-
-#~ msgid "Exclude device(s)"
-#~ msgstr "Uteslut enhet(er)"
-
-#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-#~ msgstr "Uteslut den eller de angivna nätverksenheterna (åtskilda med blanksteg eller kommatecken) från brandväggsregler."
-
-#, php-format
-#~ msgid "Current client devices: <code>%s</code>"
-#~ msgstr "Aktuella klientenheter: <code>%s</code>"
-
-#, php-format
-#~ msgid "The access point <code>%s</code> is per default excluded."
-#~ msgstr "Accesspunkten <code>%s</code> är som standard utesluten."
-
-#~ msgid "Exception: IP-Address"
-#~ msgstr "Undantag: IP-Address"
-
-#~ msgid "Allow incoming connections from"
-#~ msgstr "Tillåt inkommande anslutningar från"
-
-#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-#~ msgstr "För de angivna IP-adresserna (åtskilda med blanksteg eller kommatecken) accepteras inkommande anslutning (via TCP och UDP)."
-
-#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-#~ msgstr "Detta krävs för en OpenVPN via UDP eller Wireguard-anslutning."
-
-#, php-format
-#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-#~ msgstr "Listan över konfigurerade IP-adresser för VPN-server: <code><b>%s</b></code>"
-
-#~ msgid "plugin was created by "
-#~ msgstr "plugin skapades av "
-
-#~ msgid "Apply changes"
-#~ msgstr "Tillämpa ändringar"
-
-#~ msgid "Disable Firewall"
-#~ msgstr "Inaktivera brandvägg"
-
-#~ msgid "Enable Firewall"
-#~ msgstr "Aktivera brandvägg"
-
-#~ msgid "Information provided by iptables"
-#~ msgstr "Information som tillhandahålls av iptables"
-
-#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
-#~ msgstr "Att ändra brandväggsstatus kan störa eller tillåta inkommande trafik. Välj <strong>Proceed</strong> för att fortsätta."

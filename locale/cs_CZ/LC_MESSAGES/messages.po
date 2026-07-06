@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2026-07-05 23:13+0000\n"
-"PO-Revision-Date: 2026-04-22 02:22\n"
+"PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -222,16 +222,16 @@ msgstr "Pokus o zastavení %s"
 #: ../plugins-available/Captive/Captive.php:106
 #, php-format
 msgid "Client %s deauthenticated"
-msgstr ""
+msgstr "Klient „ %s “ byl odhlášen"
 
 #: ../plugins-available/Captive/Captive.php:108
 #, php-format
 msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgstr "Nepodařilo se zrušit ověření klienta %s"
 
 #: ../plugins-available/Captive/Captive.php:111
 msgid "Invalid client MAC address"
-msgstr ""
+msgstr "Neplatná MAC adresa klienta"
 
 #: ../plugins-available/Captive/Captive.php:131
 msgid "A captive portal plugin that implements nodogsplash"
@@ -300,7 +300,7 @@ msgstr "Stav"
 #: ../plugins-available/Captive/templates/main.php:52
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:4
 msgid "Active clients"
-msgstr ""
+msgstr "Aktivní klienti"
 
 #: ../plugins-available/Captive/templates/main.php:53
 #: ../plugins-available/Captive/templates/tabs/about.php:3
@@ -354,15 +354,15 @@ msgstr "Obnovit"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:17
 msgid "Client"
-msgstr ""
+msgstr "Klient"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:21
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:22
 msgid "Token"
-msgstr ""
+msgstr "Token"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:23
 #: ../templates/networking/diagnostics.php:34 ../templates/wg/peers.php:73
@@ -376,23 +376,23 @@ msgstr "Nahrát"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:25
 msgid "Last activity"
-msgstr ""
+msgstr "Poslední aktivita"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:26
 msgid "Session start"
-msgstr ""
+msgstr "Zahájení relace"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:27
 msgid "Session end"
-msgstr ""
+msgstr "Konec relace"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:35
 msgid "Deauthenticate"
-msgstr ""
+msgstr "Zrušit autorizaci"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:44
 msgid "No active clients connected."
-msgstr ""
+msgstr "Žádní aktivní klienti nejsou připojeni."
 
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
 #: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
@@ -2038,21 +2038,21 @@ msgstr "Limit velikosti diagnostického protokolu (KB)"
 
 #: ../templates/system/advanced.php:28
 msgid "SSL Certificate (HTTPS)"
-msgstr ""
+msgstr "SSL certifikát (HTTPS)"
 
 #: ../templates/system/advanced.php:30
 #, php-format
 msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr ""
+msgstr "Pro tento systém byl vytvořen certifikát SSL. Chcete-li si jej stáhnout a nainstalovat do svého systému, použijte tlačítko níže a postupujte podle pokynů <a href=\"%s\" target=\"_blank\">v dokumentaci</a> k instalaci certifikátu do vašeho zařízení."
 
 #: ../templates/system/advanced.php:31
 msgid "Download rootCA.pem"
-msgstr ""
+msgstr "Stáhnout soubor rootCA.pem"
 
 #: ../templates/system/advanced.php:33
 #, php-format
 msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr ""
+msgstr "Chcete-li nainstalovat certifikát SSL a přistupovat k administračnímu panelu RaspAP přes HTTPS, podívejte se prosím do <a href=\"%s\" target=\"_blank\">dokumentace</a>."
 
 #: ../templates/system/advanced.php:40
 msgid "Restart lighttpd"
@@ -2279,11 +2279,11 @@ msgstr "Konfigurace rozhraní mostu"
 
 #: ../templates/hostapd/advanced.php:25
 msgid "Use dynamic IP address"
-msgstr ""
+msgstr "Použít dynamickou IP adresu"
 
 #: ../templates/hostapd/advanced.php:26
 msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
-msgstr ""
+msgstr "Vyžaduje mDNS nebo lokální DNS (např. <code>hostname.local</code>). Pokud se serveru DHCP nepodaří přiřadit adresu, zařízení nebude dostupné."
 
 #: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
@@ -2586,15 +2586,15 @@ msgstr "Restartovat nyní? Systém bude dočasně nedostupný."
 
 #: ../templates/system.php:86
 msgid "Reconnecting"
-msgstr ""
+msgstr "Opětovné připojení"
 
 #: ../templates/system.php:90
 msgid "The system is currently rebooting."
-msgstr ""
+msgstr "Systém se právě restartuje."
 
 #: ../templates/system.php:91
 msgid "Attempting to reconnect in"
-msgstr ""
+msgstr "Pokus o opětovné připojení v"
 
 #: ../templates/system.php:103
 msgid "System shutdown"
@@ -2699,7 +2699,7 @@ msgstr "Zapomenuté heslo"
 
 #: ../templates/login.php:33
 msgid "Scan for Login Help"
-msgstr ""
+msgstr "Vyhledat nápovědu k přihlášení"
 
 #: ../templates/openvpn.php:20
 msgid "Start OpenVPN"
@@ -2735,7 +2735,7 @@ msgstr "Ethernet"
 
 #: ../templates/dashboard.php:28 ../templates/dashboard.php:29
 msgid "WiFi Client"
-msgstr ""
+msgstr "WiFi klient"
 
 #: ../templates/dashboard.php:28
 msgid "Repeater"
@@ -2751,11 +2751,11 @@ msgstr "Cellular"
 
 #: ../templates/dashboard.php:48
 msgid "Public"
-msgstr ""
+msgstr "Veřejné"
 
 #: ../templates/dashboard.php:49
 msgid "Local"
-msgstr ""
+msgstr "Místní"
 
 #: ../templates/dashboard.php:55 ../templates/dashboard.php:61
 msgid "Netmask"
@@ -2921,39 +2921,39 @@ msgstr "Metrické"
 
 #: ../templates/dhcp/summary.php:7
 msgid "Interface Configurations"
-msgstr ""
+msgstr "Konfigurace rozhraní"
 
 #: ../templates/dhcp/summary.php:19
 msgid "Static IP"
-msgstr ""
+msgstr "Statická IP adresa"
 
 #: ../templates/dhcp/summary.php:20
 msgid "Subnet / Gateway"
-msgstr ""
+msgstr "Podsíť / Brána"
 
 #: ../templates/dhcp/summary.php:21
 msgid "Default Route"
-msgstr ""
+msgstr "Výchozí trasa"
 
 #: ../templates/dhcp/summary.php:22
 msgid "Disable Hook"
-msgstr ""
+msgstr "Zakázat háček"
 
 #: ../templates/dhcp/summary.php:23
 msgid "DHCP Range (lease)"
-msgstr ""
+msgstr "Rozsah DHCP (doba pronájmu)"
 
 #: ../templates/dhcp/summary.php:24
 msgid "DNS Servers"
-msgstr ""
+msgstr "DNS servery"
 
 #: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
 msgid "Yes"
-msgstr ""
+msgstr "Ano"
 
 #: ../templates/dhcp/summary.php:97
 msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
+msgstr "V souborech dhcpcd.conf ani dnsmasq.d nebyla nalezena žádná konfigurace pro žádná rozhraní."
 
 #: ../templates/dhcp/static_leases.php:5
 msgid "Static leases"
@@ -3062,15 +3062,15 @@ msgstr "Výběr hostovaného serveru"
 
 #: ../templates/dhcp/settings.php:72
 msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
+msgstr "Tuto možnost zapněte pouze v případě, že chcete, aby vaše zařízení používalo toto rozhraní jako primární připojení k internetu."
 
 #: ../templates/dhcp/settings.php:75
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Tím se přepne volba<code>„gateway“/„nogateway“</code> pro toto rozhraní v souboru dhcpcd.conf."
 
 #: ../templates/dhcp/settings.php:88
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Tím se zapne nebo vypne volba <code>„nohook“</code> pro <code>wpa_supplicant</code> u tohoto rozhraní v souboru dhcpcd.conf."
 
 #: ../templates/about.php:23
 msgid "Contributing"
@@ -3328,111 +3328,3 @@ msgstr "Pro ostatní zařízení použijte níže uvedené přihlašovací údaj
 msgid "Network"
 msgstr "Síť"
 
-#~ msgid "Firewall is now enabled"
-#~ msgstr "Brána firewall je nyní povolena"
-
-#~ msgid "Firewall is now disabled"
-#~ msgstr "Brána firewall je nyní vypnutá"
-
-#~ msgid "Firewall settings changed"
-#~ msgstr "Změna nastavení brány firewall"
-
-#~ msgid "Firewall settings saved. Firewall is still disabled."
-#~ msgstr "Uložení nastavení brány firewall. Brána firewall je stále vypnutá."
-
-#~ msgid "Exclude devices "
-#~ msgstr "Vyloučení zařízení "
-
-#~ msgid "Exclude IP address "
-#~ msgstr "Vyloučit IP adresu "
-
-#~ msgid "Exclude IP address(es) "
-#~ msgstr "Vyloučit IP adresy "
-
-#~ msgid "A firewall plugin that implements an iptables ruleset"
-#~ msgstr "Zásuvný modul brány firewall, který implementuje sadu pravidel iptables"
-
-#~ msgid "zbchristian"
-#~ msgstr "zbchristian"
-
-#~ msgid "Client Firewall"
-#~ msgstr "Klientská brána firewall"
-
-#~ msgid "Firewall is ENABLED"
-#~ msgstr "Brána firewall je ZAPNUTA"
-
-#~ msgid "Firewall is OFF"
-#~ msgstr "Brána firewall je vypnutá"
-
-#~ msgid "The default firewall will only allow outgoing and already established traffic."
-#~ msgstr "Výchozí brána firewall povolí pouze odchozí a již navázaný provoz."
-
-#~ msgid "No incoming UDP traffic is allowed."
-#~ msgstr "Příchozí přenosy UDP nejsou povoleny."
-
-#, php-format
-#~ msgid "There are no restrictions for the access point <code>%s</code>."
-#~ msgstr "Pro přístupový bod neexistují žádná omezení <code>%s</code>."
-
-#~ msgid "Exception: Service"
-#~ msgstr "Výjimka: Služba"
-
-#~ msgid "allow SSH access on port 22"
-#~ msgstr "povolit přístup SSH na portu 22"
-
-#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
-#~ msgstr "povolit přístup ke grafickému rozhraní RaspAP na portu 80 nebo 443."
-
-#~ msgid "Allow incoming connections for some services from the internet side."
-#~ msgstr "Povolení příchozích připojení pro některé služby ze strany internetu."
-
-#~ msgid "Exception: network device"
-#~ msgstr "Výjimka: síťové zařízení"
-
-#~ msgid "Exclude device(s)"
-#~ msgstr "Vyloučení zařízení"
-
-#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-#~ msgstr "Vyloučit zadané síťové zařízení (oddělené mezerou nebo čárkou) z pravidel brány firewall."
-
-#, php-format
-#~ msgid "Current client devices: <code>%s</code>"
-#~ msgstr "Aktuální klientská zařízení: <code>%s</code>"
-
-#, php-format
-#~ msgid "The access point <code>%s</code> is per default excluded."
-#~ msgstr "Přístupový bod <code>%s</code> je ve výchozím nastavení vyloučen."
-
-#~ msgid "Exception: IP-Address"
-#~ msgstr "Výjimka: IP adresa"
-
-#~ msgid "Allow incoming connections from"
-#~ msgstr "Povolit příchozí připojení z"
-
-#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-#~ msgstr "Pro zadané IP adresy (oddělené mezerou nebo čárkou) se přijímá příchozí spojení (přes TCP a UDP)."
-
-#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-#~ msgstr "To je nutné pro připojení OpenVPN přes UDP nebo Wireguard."
-
-#, php-format
-#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-#~ msgstr "Seznam nakonfigurovaných IP adres serverů VPN: <code><b>%s</b></code>"
-
-#~ msgid "plugin was created by "
-#~ msgstr "zásuvný modul byl vytvořen společností "
-
-#~ msgid "Apply changes"
-#~ msgstr "Použít změny"
-
-#~ msgid "Disable Firewall"
-#~ msgstr "Zakázat bránu Firewall"
-
-#~ msgid "Enable Firewall"
-#~ msgstr "Povolení brány firewall"
-
-#~ msgid "Information provided by iptables"
-#~ msgstr "Informace poskytované iptables"
-
-#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
-#~ msgstr "Změna stavu brány firewall může narušit nebo povolit příchozí provoz. Chcete-li pokračovat, zvolte možnost <strong>Pokračovat</strong>."

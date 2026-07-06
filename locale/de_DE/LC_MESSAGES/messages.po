@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2026-07-05 23:13+0000\n"
-"PO-Revision-Date: 2026-04-22 02:22\n"
+"PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -220,16 +220,16 @@ msgstr "Der Versuch, %s zu stoppen"
 #: ../plugins-available/Captive/Captive.php:106
 #, php-format
 msgid "Client %s deauthenticated"
-msgstr ""
+msgstr "Client %s abgemeldet"
 
 #: ../plugins-available/Captive/Captive.php:108
 #, php-format
 msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgstr "Die Abmeldung des Clients ist fehlgeschlagen %s"
 
 #: ../plugins-available/Captive/Captive.php:111
 msgid "Invalid client MAC address"
-msgstr ""
+msgstr "Ungültige Client-MAC-Adresse"
 
 #: ../plugins-available/Captive/Captive.php:131
 msgid "A captive portal plugin that implements nodogsplash"
@@ -298,7 +298,7 @@ msgstr "Status"
 #: ../plugins-available/Captive/templates/main.php:52
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:4
 msgid "Active clients"
-msgstr ""
+msgstr "Aktive Kunden"
 
 #: ../plugins-available/Captive/templates/main.php:53
 #: ../plugins-available/Captive/templates/tabs/about.php:3
@@ -352,15 +352,15 @@ msgstr "Aktualisieren"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:17
 msgid "Client"
-msgstr ""
+msgstr "Kunde"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:21
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:22
 msgid "Token"
-msgstr ""
+msgstr "Token"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:23
 #: ../templates/networking/diagnostics.php:34 ../templates/wg/peers.php:73
@@ -374,23 +374,23 @@ msgstr "Hochladen"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:25
 msgid "Last activity"
-msgstr ""
+msgstr "Letzte Aktivität"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:26
 msgid "Session start"
-msgstr ""
+msgstr "Sitzungsbeginn"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:27
 msgid "Session end"
-msgstr ""
+msgstr "Ende der Sitzung"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:35
 msgid "Deauthenticate"
-msgstr ""
+msgstr "Abmelden"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:44
 msgid "No active clients connected."
-msgstr ""
+msgstr "Es sind keine aktiven Clients verbunden."
 
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
 #: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
@@ -2036,21 +2036,21 @@ msgstr "Begrenzung der Größe des Diagnoseprotokolls (KB)"
 
 #: ../templates/system/advanced.php:28
 msgid "SSL Certificate (HTTPS)"
-msgstr ""
+msgstr "SSL-Zertifikat (HTTPS)"
 
 #: ../templates/system/advanced.php:30
 #, php-format
 msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr ""
+msgstr "Für dieses System wurde ein SSL-Zertifikat erstellt. Um es herunterzuladen und auf Ihrem System zu installieren, klicken Sie auf die Schaltfläche unten und befolgen Sie die Anweisungen in <a href=\"%s\" target=\"_blank\">der Dokumentation</a>, um das Zertifikat auf Ihrem Gerät zu installieren."
 
 #: ../templates/system/advanced.php:31
 msgid "Download rootCA.pem"
-msgstr ""
+msgstr "rootCA.pem herunterladen"
 
 #: ../templates/system/advanced.php:33
 #, php-format
 msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr ""
+msgstr "Informationen zur Installation eines SSL-Zertifikats und zum Zugriff auf das RaspAP-Admin-Panel über HTTPS finden Sie in der <a href=\"%s\" target=\"_blank\">Dokumentation</a>."
 
 #: ../templates/system/advanced.php:40
 msgid "Restart lighttpd"
@@ -2277,11 +2277,11 @@ msgstr "Konfiguration der Brückenschnittstelle"
 
 #: ../templates/hostapd/advanced.php:25
 msgid "Use dynamic IP address"
-msgstr ""
+msgstr "Dynamische IP-Adresse verwenden"
 
 #: ../templates/hostapd/advanced.php:26
 msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
-msgstr ""
+msgstr "Erfordert mDNS oder lokales DNS (z. B. <code>hostname.local</code>). Wenn der DHCP-Server keine Adresse zuweisen kann, ist das Gerät nicht erreichbar."
 
 #: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
@@ -2584,15 +2584,15 @@ msgstr "Jetzt neu starten? Das System wird vorübergehend nicht verfügbar sein.
 
 #: ../templates/system.php:86
 msgid "Reconnecting"
-msgstr ""
+msgstr "Wiederverbindung"
 
 #: ../templates/system.php:90
 msgid "The system is currently rebooting."
-msgstr ""
+msgstr "Das System wird gerade neu gestartet."
 
 #: ../templates/system.php:91
 msgid "Attempting to reconnect in"
-msgstr ""
+msgstr "Es wird versucht, die Verbindung in"
 
 #: ../templates/system.php:103
 msgid "System shutdown"
@@ -2697,7 +2697,7 @@ msgstr "Passwort vergessen"
 
 #: ../templates/login.php:33
 msgid "Scan for Login Help"
-msgstr ""
+msgstr "Hilfe zur Anmeldung scannen"
 
 #: ../templates/openvpn.php:20
 msgid "Start OpenVPN"
@@ -2733,7 +2733,7 @@ msgstr "Ethernet"
 
 #: ../templates/dashboard.php:28 ../templates/dashboard.php:29
 msgid "WiFi Client"
-msgstr ""
+msgstr "WLAN-Client"
 
 #: ../templates/dashboard.php:28
 msgid "Repeater"
@@ -2749,11 +2749,11 @@ msgstr "Zellulär"
 
 #: ../templates/dashboard.php:48
 msgid "Public"
-msgstr ""
+msgstr "Öffentlich"
 
 #: ../templates/dashboard.php:49
 msgid "Local"
-msgstr ""
+msgstr "Lokal"
 
 #: ../templates/dashboard.php:55 ../templates/dashboard.php:61
 msgid "Netmask"
@@ -2919,39 +2919,39 @@ msgstr "Metrisch"
 
 #: ../templates/dhcp/summary.php:7
 msgid "Interface Configurations"
-msgstr ""
+msgstr "Schnittstellenkonfigurationen"
 
 #: ../templates/dhcp/summary.php:19
 msgid "Static IP"
-msgstr ""
+msgstr "Statische IP-Adresse"
 
 #: ../templates/dhcp/summary.php:20
 msgid "Subnet / Gateway"
-msgstr ""
+msgstr "Subnetz / Gateway"
 
 #: ../templates/dhcp/summary.php:21
 msgid "Default Route"
-msgstr ""
+msgstr "Standardroute"
 
 #: ../templates/dhcp/summary.php:22
 msgid "Disable Hook"
-msgstr ""
+msgstr "Hook deaktivieren"
 
 #: ../templates/dhcp/summary.php:23
 msgid "DHCP Range (lease)"
-msgstr ""
+msgstr "DHCP-Bereich (Lease)"
 
 #: ../templates/dhcp/summary.php:24
 msgid "DNS Servers"
-msgstr ""
+msgstr "DNS-Server"
 
 #: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: ../templates/dhcp/summary.php:97
 msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
+msgstr "In den Dateien „dhcpcd.conf“ und „dnsmasq.d“ wurde für keine Schnittstelle eine Konfiguration gefunden."
 
 #: ../templates/dhcp/static_leases.php:5
 msgid "Static leases"
@@ -3060,15 +3060,15 @@ msgstr "Wählen Sie einen gehosteten Server"
 
 #: ../templates/dhcp/settings.php:72
 msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
+msgstr "Aktivieren Sie diese Option nur, wenn Ihr Gerät diese Schnittstelle als primären Zugang zum Internet nutzen soll."
 
 #: ../templates/dhcp/settings.php:75
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Damit wird die Option<code>„gateway/nogateway“</code> für diese Schnittstelle in der Datei „dhcpcd.conf“ umgeschaltet."
 
 #: ../templates/dhcp/settings.php:88
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Damit wird die Option <code>„nohook wpa_supplicant“</code> für diese Schnittstelle in der Datei „dhcpcd.conf“ aktiviert bzw. deaktiviert."
 
 #: ../templates/about.php:23
 msgid "Contributing"
@@ -3326,111 +3326,3 @@ msgstr "Für andere Geräte verwenden Sie die unten stehenden Anmeldedaten."
 msgid "Network"
 msgstr "Netzwerk"
 
-#~ msgid "Firewall is now enabled"
-#~ msgstr "Firewall ist jetzt aktiviert"
-
-#~ msgid "Firewall is now disabled"
-#~ msgstr "Firewall ist jetzt deaktiviert"
-
-#~ msgid "Firewall settings changed"
-#~ msgstr "Firewall-Einstellungen geändert"
-
-#~ msgid "Firewall settings saved. Firewall is still disabled."
-#~ msgstr "Firewall-Einstellungen gespeichert. Die Firewall ist immer noch deaktiviert."
-
-#~ msgid "Exclude devices "
-#~ msgstr "Geräte ausschließen "
-
-#~ msgid "Exclude IP address "
-#~ msgstr "IP-Adresse ausschließen "
-
-#~ msgid "Exclude IP address(es) "
-#~ msgstr "IP-Adresse(n) ausschließen "
-
-#~ msgid "A firewall plugin that implements an iptables ruleset"
-#~ msgstr "Ein Firewall-Plugin, das einen iptables-Regelsatz implementiert"
-
-#~ msgid "zbchristian"
-#~ msgstr "zbchristian"
-
-#~ msgid "Client Firewall"
-#~ msgstr "Client-Firewall"
-
-#~ msgid "Firewall is ENABLED"
-#~ msgstr "Firewall ist AKTIVIERT"
-
-#~ msgid "Firewall is OFF"
-#~ msgstr "Firewall ist ausgeschaltet"
-
-#~ msgid "The default firewall will only allow outgoing and already established traffic."
-#~ msgstr "Die Standard-Firewall lässt nur ausgehenden und bereits eingerichteten Datenverkehr zu."
-
-#~ msgid "No incoming UDP traffic is allowed."
-#~ msgstr "Es ist kein eingehender UDP-Verkehr erlaubt."
-
-#, php-format
-#~ msgid "There are no restrictions for the access point <code>%s</code>."
-#~ msgstr "Es gibt keine Einschränkungen für den Zugangspunkt <code>%s</code>."
-
-#~ msgid "Exception: Service"
-#~ msgstr "Eine Ausnahme: Dienst"
-
-#~ msgid "allow SSH access on port 22"
-#~ msgstr "SSH-Zugang auf Port 22 erlauben"
-
-#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
-#~ msgstr "Zugriff auf die RaspAP-GUI über Port 80 oder 443 erlauben"
-
-#~ msgid "Allow incoming connections for some services from the internet side."
-#~ msgstr "Erlauben Sie eingehende Verbindungen für einige Dienste von der Internet-Seite."
-
-#~ msgid "Exception: network device"
-#~ msgstr "Ausnahme: Netzwerkgerät"
-
-#~ msgid "Exclude device(s)"
-#~ msgstr "Gerät(e) ausschließen"
-
-#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-#~ msgstr "Schließen Sie das/die angegebene(n) Netzwerkgerät(e) (getrennt durch ein Leerzeichen oder Komma) von den Firewall-Regeln aus."
-
-#, php-format
-#~ msgid "Current client devices: <code>%s</code>"
-#~ msgstr "Aktuelle Client-Geräte: <code>%s</code>"
-
-#, php-format
-#~ msgid "The access point <code>%s</code> is per default excluded."
-#~ msgstr "Der Zugangspunkt <code>%s</code> ist standardmäßig ausgeschlossen."
-
-#~ msgid "Exception: IP-Address"
-#~ msgstr "Ausnahme: IP-Adresse"
-
-#~ msgid "Allow incoming connections from"
-#~ msgstr "Zulassen von eingehenden Verbindungen von"
-
-#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-#~ msgstr "Für die angegebenen IP-Adressen (getrennt durch ein Leerzeichen oder Komma) wird die eingehende Verbindung (über TCP und UDP) akzeptiert."
-
-#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-#~ msgstr "Dies ist für eine OpenVPN via UDP- oder Wireguard-Verbindung erforderlich."
-
-#, php-format
-#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-#~ msgstr "Die Liste der konfigurierten VPN-Server-IP-Adressen: <code><b>%s</b></code>"
-
-#~ msgid "plugin was created by "
-#~ msgstr "Plugin wurde erstellt von "
-
-#~ msgid "Apply changes"
-#~ msgstr "Änderungen anwenden"
-
-#~ msgid "Disable Firewall"
-#~ msgstr "Firewall deaktivieren"
-
-#~ msgid "Enable Firewall"
-#~ msgstr "Firewall einschalten"
-
-#~ msgid "Information provided by iptables"
-#~ msgstr "Von iptables bereitgestellte Informationen"
-
-#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
-#~ msgstr "Die Änderung des Firewall-Status kann den eingehenden Datenverkehr unterbrechen oder zulassen. Wählen Sie <strong>Fortfahren</strong>, um fortzufahren."

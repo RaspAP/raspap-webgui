@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "POT-Creation-Date: 2026-07-05 23:13+0000\n"
-"PO-Revision-Date: 2026-04-22 02:22\n"
+"PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Language: el_GR\n"
@@ -220,16 +220,16 @@ msgstr "Προσπάθεια να σταματήσει το %s"
 #: ../plugins-available/Captive/Captive.php:106
 #, php-format
 msgid "Client %s deauthenticated"
-msgstr ""
+msgstr "Πελάτης %s η σύνδεση ακυρώθηκε"
 
 #: ../plugins-available/Captive/Captive.php:108
 #, php-format
 msgid "Failed to deauthenticate client %s"
-msgstr ""
+msgstr "Αποτυχία αποσύνδεσης του πελάτη %s"
 
 #: ../plugins-available/Captive/Captive.php:111
 msgid "Invalid client MAC address"
-msgstr ""
+msgstr "Μη έγκυρη διεύθυνση MAC πελάτη"
 
 #: ../plugins-available/Captive/Captive.php:131
 msgid "A captive portal plugin that implements nodogsplash"
@@ -298,7 +298,7 @@ msgstr "Κατάσταση"
 #: ../plugins-available/Captive/templates/main.php:52
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:4
 msgid "Active clients"
-msgstr ""
+msgstr "Ενεργοί πελάτες"
 
 #: ../plugins-available/Captive/templates/main.php:53
 #: ../plugins-available/Captive/templates/tabs/about.php:3
@@ -352,15 +352,15 @@ msgstr "Ανανέωση"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:17
 msgid "Client"
-msgstr ""
+msgstr "Πελάτης"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:21
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:22
 msgid "Token"
-msgstr ""
+msgstr "Token"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:23
 #: ../templates/networking/diagnostics.php:34 ../templates/wg/peers.php:73
@@ -374,23 +374,23 @@ msgstr "Ανέβασμα"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:25
 msgid "Last activity"
-msgstr ""
+msgstr "Τελευταία δραστηριότητα"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:26
 msgid "Session start"
-msgstr ""
+msgstr "Έναρξη συνεδρίας"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:27
 msgid "Session end"
-msgstr ""
+msgstr "Τέλος συνεδρίας"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:35
 msgid "Deauthenticate"
-msgstr ""
+msgstr "Ακύρωση εξουσιοδότησης"
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:44
 msgid "No active clients connected."
-msgstr ""
+msgstr "Δεν υπάρχουν ενεργοί πελάτες συνδεδεμένοι."
 
 #: ../plugins-available/Captive/templates/tabs/clients.php:5
 #: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
@@ -2036,21 +2036,21 @@ msgstr "Όριο μεγέθους διαγνωστικού αρχείου κατ
 
 #: ../templates/system/advanced.php:28
 msgid "SSL Certificate (HTTPS)"
-msgstr ""
+msgstr "Πιστοποιητικό SSL (HTTPS)"
 
 #: ../templates/system/advanced.php:30
 #, php-format
 msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr ""
+msgstr "Έχει δημιουργηθεί ένα πιστοποιητικό SSL για αυτό το σύστημα. Για να το κατεβάσετε και να το εγκαταστήσετε στο σύστημά σας, χρησιμοποιήστε το παρακάτω κουμπί και την <a href=\"%s\" target=\"_blank\">τεκμηρίωση</a> για να εγκαταστήσετε το πιστοποιητικό στη συσκευή σας."
 
 #: ../templates/system/advanced.php:31
 msgid "Download rootCA.pem"
-msgstr ""
+msgstr "Λήψη του αρχείου rootCA.pem"
 
 #: ../templates/system/advanced.php:33
 #, php-format
 msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr ""
+msgstr "Για να εγκαταστήσετε ένα πιστοποιητικό SSL και να αποκτήσετε πρόσβαση στον πίνακα διαχείρισης του RaspAP μέσω HTTPS, ανατρέξτε στην <a href=\"%s\" target=\"_blank\">τεκμηρίωση</a>."
 
 #: ../templates/system/advanced.php:40
 msgid "Restart lighttpd"
@@ -2277,11 +2277,11 @@ msgstr "Διαμόρφωση διασύνδεσης γέφυρας"
 
 #: ../templates/hostapd/advanced.php:25
 msgid "Use dynamic IP address"
-msgstr ""
+msgstr "Χρήση δυναμικής διεύθυνσης IP"
 
 #: ../templates/hostapd/advanced.php:26
 msgid "Requires mDNS or local DNS (e.g. <code>hostname.local</code>). If the DHCP server fails to assign an address, the device will be unreachable."
-msgstr ""
+msgstr "Απαιτείται mDNS ή τοπικό DNS (π.χ. <code>hostname.local</code>). Εάν ο διακομιστής DHCP δεν καταφέρει να εκχωρήσει διεύθυνση, η συσκευή θα είναι απρόσιτη."
 
 #: ../templates/hostapd/advanced.php:32
 msgid "Configure a static IP address for the <code>br0</code> interface to maintain connectivity during bridge mode activation."
@@ -2584,15 +2584,15 @@ msgstr ""
 
 #: ../templates/system.php:86
 msgid "Reconnecting"
-msgstr ""
+msgstr "Επανασύνδεση"
 
 #: ../templates/system.php:90
 msgid "The system is currently rebooting."
-msgstr ""
+msgstr "Το σύστημα βρίσκεται αυτή τη στιγμή σε διαδικασία επανεκκίνησης."
 
 #: ../templates/system.php:91
 msgid "Attempting to reconnect in"
-msgstr ""
+msgstr "Προσπάθεια επανασύνδεσης σε"
 
 #: ../templates/system.php:103
 msgid "System shutdown"
@@ -2697,7 +2697,7 @@ msgstr "Ξεχάσατε τον κωδικό πρόσβασης"
 
 #: ../templates/login.php:33
 msgid "Scan for Login Help"
-msgstr ""
+msgstr "Αναζήτηση βοήθειας για τη σύνδεση"
 
 #: ../templates/openvpn.php:20
 msgid "Start OpenVPN"
@@ -2733,7 +2733,7 @@ msgstr "Ethernet"
 
 #: ../templates/dashboard.php:28 ../templates/dashboard.php:29
 msgid "WiFi Client"
-msgstr ""
+msgstr "Πελάτης WiFi"
 
 #: ../templates/dashboard.php:28
 msgid "Repeater"
@@ -2749,11 +2749,11 @@ msgstr "Κυτταρικό"
 
 #: ../templates/dashboard.php:48
 msgid "Public"
-msgstr ""
+msgstr "Δημόσιο"
 
 #: ../templates/dashboard.php:49
 msgid "Local"
-msgstr ""
+msgstr "Τοπικά"
 
 #: ../templates/dashboard.php:55 ../templates/dashboard.php:61
 msgid "Netmask"
@@ -2919,39 +2919,39 @@ msgstr ""
 
 #: ../templates/dhcp/summary.php:7
 msgid "Interface Configurations"
-msgstr ""
+msgstr "Ρυθμίσεις διεπαφής"
 
 #: ../templates/dhcp/summary.php:19
 msgid "Static IP"
-msgstr ""
+msgstr "Στατική IP"
 
 #: ../templates/dhcp/summary.php:20
 msgid "Subnet / Gateway"
-msgstr ""
+msgstr "Υποδίκτυο / Πύλη"
 
 #: ../templates/dhcp/summary.php:21
 msgid "Default Route"
-msgstr ""
+msgstr "Προεπιλεγμένη διαδρομή"
 
 #: ../templates/dhcp/summary.php:22
 msgid "Disable Hook"
-msgstr ""
+msgstr "Απενεργοποίηση του Hook"
 
 #: ../templates/dhcp/summary.php:23
 msgid "DHCP Range (lease)"
-msgstr ""
+msgstr "Εύρος DHCP (διάρκεια μίσθωσης)"
 
 #: ../templates/dhcp/summary.php:24
 msgid "DNS Servers"
-msgstr ""
+msgstr "Διακομιστές DNS"
 
 #: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
 msgid "Yes"
-msgstr ""
+msgstr "Ναι"
 
 #: ../templates/dhcp/summary.php:97
 msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr ""
+msgstr "Δεν εντοπίστηκε καμία ρύθμιση στο αρχείο dhcpcd.conf ή στο dnsmasq.d για καμία διεπαφή."
 
 #: ../templates/dhcp/static_leases.php:5
 msgid "Static leases"
@@ -3060,15 +3060,15 @@ msgstr ""
 
 #: ../templates/dhcp/settings.php:72
 msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
-msgstr ""
+msgstr "Ενεργοποιήστε αυτή την επιλογή μόνο αν θέλετε η συσκευή σας να χρησιμοποιεί αυτή τη διεπαφή ως κύρια διαδρομή πρόσβασης στο Διαδίκτυο."
 
 #: ../templates/dhcp/settings.php:75
 msgid "This toggles the <code>gateway</code>/<code>nogateway</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Αυτή η επιλογή ενεργοποιεί ή απενεργοποιεί την επιλογή<code>gateway/nogateway</code> για αυτή τη διεπαφή στο αρχείο dhcpcd.conf."
 
 #: ../templates/dhcp/settings.php:88
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
-msgstr ""
+msgstr "Αυτή η εντολή ενεργοποιεί ή απενεργοποιεί την επιλογή <code>«nohook» του wpa_supplicant</code> για αυτή τη διεπαφή στο αρχείο dhcpcd.conf."
 
 #: ../templates/about.php:23
 msgid "Contributing"
@@ -3326,111 +3326,3 @@ msgstr "Για άλλες συσκευές, χρησιμοποιήστε τα π
 msgid "Network"
 msgstr "Δίκτυο"
 
-#~ msgid "Firewall is now enabled"
-#~ msgstr "Το τείχος προστασίας είναι τώρα ενεργοποιημένο"
-
-#~ msgid "Firewall is now disabled"
-#~ msgstr "Το τείχος προστασίας είναι πλέον απενεργοποιημένο"
-
-#~ msgid "Firewall settings changed"
-#~ msgstr "Αλλαγή των ρυθμίσεων του τείχους προστασίας"
-
-#~ msgid "Firewall settings saved. Firewall is still disabled."
-#~ msgstr "Οι ρυθμίσεις τείχους προστασίας αποθηκεύονται. Το τείχος προστασίας εξακολουθεί να είναι απενεργοποιημένο."
-
-#~ msgid "Exclude devices "
-#~ msgstr "Εξαίρεση συσκευών "
-
-#~ msgid "Exclude IP address "
-#~ msgstr "Εξαίρεση διεύθυνσης IP "
-
-#~ msgid "Exclude IP address(es) "
-#~ msgstr "Εξαίρεση διευθύνσεων IP "
-
-#~ msgid "A firewall plugin that implements an iptables ruleset"
-#~ msgstr "Ένα πρόσθετο τείχος προστασίας που υλοποιεί ένα σύνολο κανόνων iptables"
-
-#~ msgid "zbchristian"
-#~ msgstr "zbchristian"
-
-#~ msgid "Client Firewall"
-#~ msgstr "Τείχος προστασίας πελατών"
-
-#~ msgid "Firewall is ENABLED"
-#~ msgstr "Το τείχος προστασίας είναι ΕΝΕΡΓΟΠΟΙΗΜΕΝΟ"
-
-#~ msgid "Firewall is OFF"
-#~ msgstr "Το τείχος προστασίας είναι απενεργοποιημένο"
-
-#~ msgid "The default firewall will only allow outgoing and already established traffic."
-#~ msgstr "Το προεπιλεγμένο τείχος προστασίας επιτρέπει μόνο την εξερχόμενη και την ήδη εγκατεστημένη κυκλοφορία."
-
-#~ msgid "No incoming UDP traffic is allowed."
-#~ msgstr "Δεν επιτρέπεται καμία εισερχόμενη κυκλοφορία UDP."
-
-#, php-format
-#~ msgid "There are no restrictions for the access point <code>%s</code>."
-#~ msgstr "Δεν υπάρχουν περιορισμοί για το σημείο πρόσβασης <code>%s</code>."
-
-#~ msgid "Exception: Service"
-#~ msgstr "Εξαίρεση: Υπηρεσία"
-
-#~ msgid "allow SSH access on port 22"
-#~ msgstr "επιτρέψτε την πρόσβαση SSH στη θύρα 22"
-
-#~ msgid "allow access to the RaspAP GUI on port 80 or 443"
-#~ msgstr "επιτρέψτε την πρόσβαση στο GUI του RaspAP στη θύρα 80 ή 443"
-
-#~ msgid "Allow incoming connections for some services from the internet side."
-#~ msgstr "Επιτρέψτε εισερχόμενες συνδέσεις για ορισμένες υπηρεσίες από την πλευρά του διαδικτύου."
-
-#~ msgid "Exception: network device"
-#~ msgstr "Εξαίρεση: συσκευή δικτύου"
-
-#~ msgid "Exclude device(s)"
-#~ msgstr "Εξαίρεση συσκευής(ών)"
-
-#~ msgid "Exclude the given network device(s) (separated by a blank or comma) from firewall rules."
-#~ msgstr "Εξαίρεση της(των) δεδομένης(ών) συσκευής(ών) δικτύου (που χωρίζονται με κενό ή κόμμα) από τους κανόνες τείχους προστασίας."
-
-#, php-format
-#~ msgid "Current client devices: <code>%s</code>"
-#~ msgstr "Τρέχουσες συσκευές-πελάτες: <code>%s</code>"
-
-#, php-format
-#~ msgid "The access point <code>%s</code> is per default excluded."
-#~ msgstr "Το σημείο πρόσβασης <code>%s</code> εξαιρείται από προεπιλογή."
-
-#~ msgid "Exception: IP-Address"
-#~ msgstr "Εξαίρεση: IP-διεύθυνση"
-
-#~ msgid "Allow incoming connections from"
-#~ msgstr "Επιτρέψτε εισερχόμενες συνδέσεις από"
-
-#~ msgid "For the given IP-addresses (separated by a blank or comma) the incoming connection (via TCP and UDP) is accepted."
-#~ msgstr "Για τις δεδομένες διευθύνσεις IP (που χωρίζονται με κενό ή κόμμα) γίνεται αποδεκτή η εισερχόμενη σύνδεση (μέσω TCP και UDP)."
-
-#~ msgid "This is required for an OpenVPN via UDP or Wireguard connection."
-#~ msgstr "Αυτό απαιτείται για μια σύνδεση OpenVPN μέσω UDP ή Wireguard."
-
-#, php-format
-#~ msgid "The list of configured VPN server IP addresses: <code><b>%s</b></code>"
-#~ msgstr "Η λίστα με τις διευθετημένες διευθύνσεις IP του διακομιστή VPN: <code><b>%s</b></code>"
-
-#~ msgid "plugin was created by "
-#~ msgstr "plugin δημιουργήθηκε από τον "
-
-#~ msgid "Apply changes"
-#~ msgstr "Εφαρμογή αλλαγών"
-
-#~ msgid "Disable Firewall"
-#~ msgstr "Απενεργοποίηση τείχους προστασίας"
-
-#~ msgid "Enable Firewall"
-#~ msgstr "Ενεργοποίηση τείχους προστασίας"
-
-#~ msgid "Information provided by iptables"
-#~ msgstr "Πληροφορίες που παρέχονται από το iptables"
-
-#~ msgid "Changing the firewall status may disrupt or allow incoming traffic. Choose <strong>Proceed</strong> to continue."
-#~ msgstr "Η αλλαγή της κατάστασης του τείχους προστασίας μπορεί να διαταράξει ή να επιτρέψει την εισερχόμενη κυκλοφορία. Επιλέξτε <strong>Προχωρήστε</strong> για να συνεχίσετε."
