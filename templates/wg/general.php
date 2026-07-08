@@ -33,8 +33,7 @@
 
                 <div class="mb-3">
                   <div class="form-check form-switch">
-                    <?php $checked = $optRules == 1 ? 'checked="checked"' : '' ?>
-                    <input class="form-check-input" id="chxwgrules" name="wgRules" type="checkbox" value="1" <?php echo $checked ?> />
+                    <input class="form-check-input" id="chxwgrules" name="wgRules" type="checkbox" value="1" />
                     <label class="form-check-label" for="chxwgrules"><?php echo _("Apply iptables rules to the selected interface"); ?></label>
                     <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."); ?>"></i>
                     <p id="wg-description">
@@ -45,8 +44,7 @@
                       </div>
                   </div>
                   <div class="form-check form-switch">
-                    <?php $checked = $optKSwitch == 1 ? 'checked="checked"' : '' ?>
-                    <input class="form-check-input" id="chxwgkswitch" name="wgKSwitch" type="checkbox" value="1" <?php echo $checked ?> />
+                    <input class="form-check-input" id="chxwgkswitch" name="wgKSwitch" type="checkbox" value="1" />
                     <label class="form-check-label" for="chxwgkswitch"><?php echo _("Enable kill switch"); ?></label>
                     <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."); ?>"></i>
                     <p id="wg-description">

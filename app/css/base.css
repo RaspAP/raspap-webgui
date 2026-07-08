@@ -240,6 +240,56 @@ button.btn i:not([class*="service-status"]) {
   font-size: 1.3rem;
 }
 
+#liveFormModalCurrentMessage {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#liveFormModalCurrentMessage::after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(90deg, transparent 0%, white 90%);
+  right: 0;
+  width: 10%;
+  height: 100%;
+}
+
+form.live-form[inert] {
+  position: relative;
+}
+form.live-form[inert]::before {
+  --live-form-overlay-spacer-y: -2px;
+  --live-form-overlay-spacer-x: -2px;
+  content: "";
+  position: absolute;
+  top: var(--live-form-overlay-spacer-y);
+  right: var(--live-form-overlay-spacer-x);
+  bottom: var(--live-form-overlay-spacer-y);
+  left: var(--live-form-overlay-spacer-x);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+.card-body form.live-form:not(.lf-spinner-sm)[inert]::before {
+  --live-form-overlay-spacer-y: -1rem;
+  --live-form-overlay-spacer-x: -1rem;
+}
+form.live-form[inert]::after {
+  --live-form-spinner-size: 3rem;
+  content: "";
+  font-family: "Font Awesome 5 Free";
+  animation: loading-spin 1.2s linear infinite;
+  font-weight: bold;
+  font-size: var(--live-form-spinner-size);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+}
+.card-header form.live-form[inert]::after,
+form.live-form.lf-spinner-sm[inert]::after {
+  --live-form-spinner-size: 1rem;
+}
+
 /* Improved progress bar */
 .progress.progress-improved {
   position: relative;

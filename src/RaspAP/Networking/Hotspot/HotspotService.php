@@ -19,6 +19,7 @@ namespace RaspAP\Networking\Hotspot;
 
 use RaspAP\Networking\Hotspot\Validators\HostapdValidator;
 use RaspAP\Messages\StatusMessage;
+use function validateInterface;
 
 class HotspotService
 {
