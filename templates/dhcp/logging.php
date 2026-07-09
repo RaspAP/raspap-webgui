@@ -17,7 +17,7 @@
     <div class="mb-3 col-md-8 mt-2">
       <?php
       if (($conf['log-dhcp'] ?? 0) == 1 || ($conf['log-queries'] ?? 0) == 1) {
-          echo '<textarea class="logoutput text-secondary" id="dnsmasq-log">'.htmlspecialchars($logdata, ENT_QUOTES).'</textarea>';
+          echo '<textarea class="logoutput text-secondary" id="dnsmasq-log" readonly>'.htmlspecialchars($logdata, ENT_QUOTES).'</textarea>';
       } else {
           echo '<textarea class="logoutput my-3"></textarea>';
       }
