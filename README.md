@@ -1,22 +1,38 @@
-![RaspAP Hero](https://i.imgur.com/aNAG3Wa.jpeg)
-[![Release 3.5.5](https://img.shields.io/badge/release-v3.5.5-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Join Insiders](https://img.shields.io/static/v1?label=Insiders&message=%E2%9D%A4&logo=GitHub&color=ff69b4)](https://github.com/sponsors/RaspAP) [![Build Status](https://app.travis-ci.com/RaspAP/raspap-webgui.svg?branch=master)](https://app.travis-ci.com/RaspAP/raspap-webgui) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Reddit](https://img.shields.io/badge/%2Fr%2FRaspAP-e05d44?style=flat&logo=Reddit&logoColor=white&labelColor=e05d44&color=b14835)](https://reddit.com/r/RaspAP) [![Discord](https://img.shields.io/discord/642436993451819018?color=7289DA&label=Discord&logo=discord&style=flat)](https://discord.gg/KVAsaAR)
+# Switchberry RaspAP
 
-RaspAP is feature-rich wireless router software that _just works_ on many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our [custom OS images](#pre-built-image), [Quick installer](#quick-installer) and [Docker container](#docker-support) create a known-good default configuration for all current Raspberry Pis with onboard wireless. A fully responsive, mobile-ready interface gives you control over the relevant services and networking options. Advanced DHCP settings, [WireGuard](https://docs.raspap.com/wireguard/), [Tailscale](https://docs.raspap.com/tailscale/) and [OpenVPN](https://docs.raspap.com/openvpn/) support, [SSL certificates](https://docs.raspap.com/ssl/), [ad blocking](#ad-blocking), security audits, [captive portal integration](https://docs.raspap.com/captive/), themes and [multilingual options](https://docs.raspap.com/translations/) are included.
+<p align="center">
+  <img src="app/img/devices/switchberry.png" width="720" alt="Switchberry CM4 precision timing switch">
+</p>
 
-RaspAP has been featured by [ZDNET](https://www.zdnet.com/home-and-office/networking/how-i-built-my-own-wifi-router-with-raspberry-pi/), [PC World](https://www.pcwelt.de/article/1789512/raspberry-pi-als-wlan-router.html), [MSN](https://www.msn.com/en-us/news/technology/4-reasons-i-installed-raspap-on-my-raspberry-pi/ar-AA1GLHdE), [Adafruit](https://blog.adafruit.com/2016/06/24/raspap-wifi-configuration-portal-piday-raspberrypi-raspberry_pi/), [Raspberry Pi Weekly](https://www.raspberrypi.org/weekly/commander/), and [Awesome Raspberry Pi](https://project-awesome.org/thibmaek/awesome-raspberry-pi) and implemented in [countless projects](https://raspap.com/awesome/).
+[![Switchberry V6](https://img.shields.io/badge/hardware-Switchberry%20V6-2b8080)](https://github.com/Time-Appliances-Project/Switchberry) [![RaspAP 3.5.5](https://img.shields.io/badge/RaspAP-3.5.5-2b8080)](https://github.com/RaspAP/raspap-webgui) [![IEEE 1588](https://img.shields.io/badge/timing-IEEE%201588-blue)](#ptp-clock-planes) [![License GPLv3](https://img.shields.io/badge/license-GPLv3-green)](LICENSE)
 
-We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use this with [your own projects](https://raspap.com/awesome/).
+Switchberry RaspAP turns the Switchberry Compute Module 4 carrier into a web-managed precision timing switch. It combines RaspAP networking with direct control and monitoring of the KSZ9567 Ethernet switch, Renesas 8A34004 ClockMatrix, M.2 GNSS receiver, Linux PTP stack, PHC/PPS chain, SyncE path and four rear-panel SMA timing connectors.
 
-![RaspAP-dashboard-2026](https://github.com/user-attachments/assets/81991ee7-b83d-4785-bcf7-33d15d16fae6)
-<img width="32.5%" alt="Wifi Client" src="https://github.com/user-attachments/assets/95696ddc-da84-4339-97cc-f2a173054664">
-<img width="32.5%" alt="Hotspot" src="https://github.com/user-attachments/assets/c1c4de15-3ff2-4d3c-a7af-339c24896749">
-<img width="32.5%" alt="Adblock" src="https://github.com/user-attachments/assets/ab925687-8407-4bec-a952-9dc6a2675f49">
-<img width="32.5%" alt="About" src="https://github.com/user-attachments/assets/ba62d8bb-34f0-44ee-9fe8-504763a03726">
-<img width="32.5%" alt="Wireguard" src="https://github.com/user-attachments/assets/4ba16118-8671-4654-9a36-92ac7bc8507f">
-<img width="32.5%" alt="System" src="https://github.com/user-attachments/assets/f54e04fc-dc2c-4a21-903b-23641795822b">
+The interface supports hardware transparent clock, five-port boundary clock, grandmaster and ordinary-client operation. A live Dashboard summarizes the active clock plane, DPLL state, GNSS acquisition, PPS/PHC health and assigned timing references without opening the full engineering console.
+
+![Live Switchberry timing summary on the RaspAP Dashboard](docs/images/switchberry/dashboard-timing.jpg)
+
+| Area | What is managed |
+| --- | --- |
+| PTP | Transparent clock, boundary clock, grandmaster, client, BMCA policy, transport, intervals and per-port calibration |
+| ClockMatrix | Channel 5 frequency DPLL, channel 6 time/1PPS DPLL, reference priorities, loop dynamics, combo bus and operating state |
+| GNSS | Receiver health, satellite sky view, fix quality, signal levels, PPS/gpsd path and safe u-blox acquisition profiles |
+| SMA I/O | Physical rear-panel connector presets, input/output direction, frequency, timing role, DPLL route and apply state |
+| Operations | Five Ethernet ports, kernel/overlay clock plane, services, logs, hardware diagnostics and ordered restart/reboot actions |
+
+## RaspAP foundation
+
+This project is based on [RaspAP](https://github.com/RaspAP/raspap-webgui), feature-rich wireless router software for Debian-based devices. The standard responsive networking interface, DHCP, WireGuard, OpenVPN, SSL, ad blocking, themes and multilingual support remain available alongside the Switchberry timing console.
 
 ## Contents
 
+ - [Switchberry support](#switchberry-support)
+   - [Live interface](#live-interface)
+   - [Installation on Switchberry](#installation-on-switchberry)
+   - [ClockMatrix control](#clockmatrix-control)
+   - [GNSS receiver and sky view](#gnss-receiver-and-sky-view)
+   - [PTP clock planes](#ptp-clock-planes)
+   - [SMA timing I/O](#sma-timing-io)
  - [Quick start](#quick-start)
  - [Join Insiders](#join-insiders)
  - [WireGuard support](#wireguard-support)
@@ -26,7 +42,6 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
  - [Bridged AP](#bridged-ap)
  - [Manual installation](#manual-installation)
  - [802.11ac 5GHz support](#80211ac-5ghz-support)
- - [Switchberry support](#switchberry-support)
  - [Supported operating systems](#supported-operating-systems)
  - [HTTPS support](#https-support)
  - [Docker support](#docker-support)
@@ -38,6 +53,8 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
 
 ## Quick start
 RaspAP gives you two different ways to get up and running quickly. The simplest and recommended approach is to use a custom Raspberry Pi OS image with RaspAP preinstalled. This option eliminates guesswork and gives you a base upon which to build. Alternatively, you may execute the Quick installer on an existing [compatible OS](https://docs.raspap.com/#compatible-operating-systems).
+
+> **Switchberry installations:** use the hardware-aware [Switchberry installer](#installation-on-switchberry). The standard RaspAP installer does not install the privileged timing controller, V6 overlay or boundary-clock orchestration.
 
 ### Pre-built image
 Custom Raspberry Pi OS Lite images with the latest RaspAP are available for [direct download](https://github.com/RaspAP/raspap-webgui/releases/latest). This includes both 32- and 64-bit builds for ARM architectures.
@@ -133,6 +150,7 @@ RaspAP provides an 802.11ac wireless mode option for supported hardware (current
 ## Switchberry support
 This fork provides first-class support for the [Switchberry](https://github.com/Time-Appliances-Project/Switchberry) CM4 carrier. It detects the official device-tree overlay and timing software, identifies the board on the Dashboard and System pages, and adds a dedicated **Switchberry** management page with:
 
+* a live Dashboard timing summary for PTP role and plane, ClockMatrix channels, GNSS acquisition, PPS/PHC health and active references;
 * live state for all five KSZ9567 front-panel Ethernet ports;
 * a dedicated Renesas 8A34004 ClockMatrix console with live channel state, phase, loop dynamics, assigned references, combo-bus topology and guarded operating-state controls;
 * a GNSS console with receiver health, fix quality, coordinates, DOP, PPS/data-path status, constellation-aware satellite sky view, signal table and safe u-blox acquisition/profile controls;
@@ -144,7 +162,33 @@ This fork provides first-class support for the [Switchberry](https://github.com/
 * Switchberry systemd health, recent logs, device nodes, M.2/PCI and USB diagnostics; and
 * controlled port enable/disable and ordered timing-stack restart operations.
 
+### Live interface
+
+These screenshots were captured from a working Switchberry V6. The status badges reflect real hardware state: the GNSS receiver is online with a healthy powered antenna and PPS device, but is waiting for a clear satellite view, so the ClockMatrix correctly reports freerun rather than a false lock.
+
+| PTP operating mode | ClockMatrix DPLL control |
+| --- | --- |
+| ![PTP grandmaster configuration](docs/images/switchberry/ptp-clock.jpg) | ![Renesas ClockMatrix channel monitoring and control](docs/images/switchberry/clockmatrix.jpg) |
+
+| Rear-panel SMA routing | GNSS receiver and satellite sky view |
+| --- | --- |
+| ![Switchberry SMA signal routing presets](docs/images/switchberry/sma-routing.jpg) | ![GNSS receiver monitoring and satellite sky view](docs/images/switchberry/gnss-sky-view.jpg) |
+
 Privileged hardware access is isolated in `/usr/local/sbin/raspap-switchberryctl`. The helper accepts only fixed, validated actions; configuration is limited to 64 KiB, normalized before use, backed up under `/var/lib/raspap/switchberry-backups`, atomically written to `/etc/startup-dpll.json`, and applied through the existing Switchberry service chain.
+
+### Installation on Switchberry
+
+Start from a Switchberry image containing the official timing utilities and the installed `*-DSA-SwitchberryV6+` kernel, then install this fork from a local checkout:
+
+```sh
+git clone https://github.com/ahmadexp/Switchberry-Raspap.git
+cd Switchberry-Raspap
+sudo ./installers/switchberry.sh
+```
+
+The installer verifies Switchberry software markers, installs the RaspAP UI and audited root controller, selects the protected Switchberry kernel image, builds the V6 boundary-clock overlay, installs the PTP service orchestration and configures lighttpd/PHP-FPM. It intentionally leaves NetworkManager, the existing management link, hotspot, DHCP and DNS services unchanged.
+
+A compatible Wi-Fi interface—either onboard the CM4 or installed in the M.2 slot—and its Linux driver are required for RaspAP access-point features. On a unit managed only through `wlan0`, verify the Switchberry page before changing hotspot settings; enabling an AP on the sole Wi-Fi interface will disconnect its current client connection.
 
 ### ClockMatrix control
 
@@ -184,15 +228,7 @@ The ECAD uses hardware SMA names in the opposite order from the rear-panel label
 
 The controller rejects mux-contention combinations rather than letting the legacy board utility silently prefer one source. After a successful DPLL/mux apply, it records a fingerprint of every routing-affecting setting. The SMA page reports **Applied** only when that fingerprint matches the saved configuration; otherwise it remains **Pending apply**. For Q9 outputs the displayed realized frequency and error are calculated from the actual 500 MHz integer-divider model used by the board utility. Q10 and Q11 use the DPLL fractional output divider.
 
-A compatible Wi-Fi interface—either onboard the CM4 or installed in the M.2 slot—and its Linux driver are required for RaspAP access-point features. On a unit managed only through `wlan0`, install and verify the Switchberry page before changing hotspot settings; enabling an AP on the sole Wi-Fi interface will disconnect its current client connection.
-
-For an existing Switchberry image that uses NetworkManager for its only management connection, use the included coexistence installer from a local checkout:
-
-```sh
-sudo ./installers/switchberry.sh
-```
-
-This installs lighttpd, PHP-FPM, the RaspAP UI and its hardware controller without installing or starting hotspot, DHCP or DNS services. After a second supported Wi-Fi interface is fitted and verified, the standard RaspAP networking packages can be installed and assigned to that interface without taking over the management link.
+After a second supported Wi-Fi interface is fitted and verified, the standard RaspAP networking packages can be installed and assigned to that interface without taking over the management link.
 
 ## Supported operating systems
 RaspAP was originally made for Raspbian, but now also installs on the following Debian-based distros.

@@ -18,6 +18,7 @@ import { initSystem } from "./ui/system.js";
 import { initAbout } from "./ui/about.js";
 import { initLogin } from "./ui/login.js";
 import { initSwitchberry } from "./ui/switchberry.js";
+import { initDashboard } from "./ui/dashboard.js";
 
 // ajax handlers
 import { initHostapd_ajax } from "./ajax/hostapd.js";
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     switch (path) {
         case '/dashboard':
         case '/':
-            // initDashboard();
+            initDashboard();
             break;
         case '/hostapd_conf':
             initHostapd();

@@ -665,6 +665,63 @@ a.inactive:focus {
   max-width: 250px;
 }
 
+/* Switchberry Dashboard timing summary */
+.switchberry-dashboard-card .card-header {
+  border-bottom-color: color-mix(in srgb, var(--raspap-brand-color) 30%, transparent);
+}
+
+.switchberry-timing-tile {
+  --switchberry-tile-accent: var(--bs-secondary);
+  display: block;
+  height: 100%;
+  min-height: 190px;
+  padding: 1rem;
+  color: inherit;
+  background: var(--bs-tertiary-bg, #f8f9fa);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-top: 3px solid var(--switchberry-tile-accent);
+  border-radius: .5rem;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.switchberry-timing-tile:hover {
+  color: inherit;
+  border-color: color-mix(in srgb, var(--switchberry-tile-accent) 55%, var(--bs-border-color, #dee2e6));
+  box-shadow: 0 .35rem .8rem rgba(0, 0, 0, .08);
+  transform: translateY(-2px);
+}
+
+.switchberry-timing-tile.tone-primary { --switchberry-tile-accent: var(--bs-primary); }
+.switchberry-timing-tile.tone-success { --switchberry-tile-accent: var(--bs-success); }
+.switchberry-timing-tile.tone-warning { --switchberry-tile-accent: var(--bs-warning); }
+.switchberry-timing-tile.tone-danger { --switchberry-tile-accent: var(--bs-danger); }
+.switchberry-timing-tile.tone-secondary { --switchberry-tile-accent: var(--bs-secondary); }
+
+.switchberry-timing-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--switchberry-tile-accent);
+  background: color-mix(in srgb, var(--switchberry-tile-accent) 12%, transparent);
+  border-radius: 50%;
+  font-size: 1.05rem;
+}
+
+.switchberry-reference-strip {
+  padding: .85rem 1rem;
+  background: color-mix(in srgb, var(--raspap-brand-color) 7%, var(--bs-body-bg, #fff));
+  border: 1px solid color-mix(in srgb, var(--raspap-brand-color) 25%, transparent);
+  border-radius: .5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switchberry-timing-tile {
+    transition: none;
+  }
+}
+
 /* DHCP Server */
 .dhcp-static-leases {
   margin-top: 1em;
