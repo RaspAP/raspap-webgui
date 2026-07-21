@@ -67,6 +67,9 @@ function handleCorePageAction(string $page, array &$extraFooterScripts): void
         case "/restapi_conf":
             DisplayRestAPI();
             break;
+        case "/switchberry":
+            DisplaySwitchberry();
+            break;
         case "/about":
             DisplayAbout();
             break;
@@ -77,4 +80,3 @@ function handleCorePageAction(string $page, array &$extraFooterScripts): void
             DisplayDashboard();
     }
 }
-

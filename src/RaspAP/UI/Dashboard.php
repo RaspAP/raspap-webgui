@@ -317,13 +317,16 @@ class Dashboard {
     }
 
     /*
-     * Returns an SVG resource associated with a Pi revision
+     * Returns a device illustration associated with a Pi revision
      *
      * @param string $deviceName
      * @return string
      */
     public function getDeviceImage($deviceName): string
     {
+        if (stripos($deviceName, 'switchberry') !== false) {
+            return 'switchberry.png';
+        }
         if (stripos($deviceName, 'zero') !== false) {
             return 'zero.php';
         }

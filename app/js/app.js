@@ -40,7 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     switch (path) {
         case '/dashboard':
         case '/':
-            // initDashboard();
+            if (document.querySelector('[data-switchberry-dashboard]')) {
+                import('./ui/dashboard.js').then(({ initDashboard }) => initDashboard());
+            }
             break;
         case '/hostapd_conf':
             initHostapd();
@@ -83,6 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
         case '/login':
             initLogin();
+            break;
+        case '/switchberry':
+            import('./ui/switchberry.js').then(({ initSwitchberry }) => initSwitchberry());
             break;
         default:
             console.warn(`No initialization function defined for path: ${path}`);
