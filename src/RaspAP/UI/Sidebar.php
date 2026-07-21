@@ -40,6 +40,9 @@ class Sidebar {
         $this->addItem(_(getProviderValue($_SESSION["providerID"], "name")), 'fas fa-shield-alt', 'provider_conf', 90,
             fn() => RASPI_VPN_PROVIDER_ENABLED
         );
+        $this->addItem(_('Switchberry'), 'fas fa-clock', 'switchberry', 100,
+            fn() => \RaspAP\Switchberry\SwitchberryService::isSupported()
+        );
         $this->addItem(_('Data usage'), 'fas fa-chart-area', 'data_use', 110,
             fn() => RASPI_VNSTAT_ENABLED
         );
@@ -60,7 +63,7 @@ class Sidebar {
      * @param int $priority
      * @param callable $condition
      */
-    public function addItem(string $label, string $iconClass, string $link, int $priority, callable $condition = null) {
+    public function addItem(string $label, string $iconClass, string $link, int $priority, ?callable $condition = null) {
         $this->items[] = [
             'label' => $label,
             'icon' => $iconClass,
@@ -92,4 +95,3 @@ class Sidebar {
         }
     }
 }
-

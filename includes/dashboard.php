@@ -8,6 +8,7 @@ use RaspAP\UI\Dashboard;
 use RaspAP\Messages\StatusMessage;
 use RaspAP\Plugins\PluginManager;
 use RaspAP\Networking\Hotspot\WiFiManager;
+use RaspAP\Switchberry\SwitchberryService;
 
 /**
  * Displays the dashboard
@@ -45,6 +46,7 @@ function DisplayDashboard(): void
     $totalClients = $wirelessClients + $ethernetClients;
     $plugins = $pluginManager->getInstalledPlugins();
     $bridgedEnable = getBridgedState();
+    $switchberrySupported = SwitchberryService::isSupported();
 
     if ($bridgedEnable) {
         $interface = 'br0';
@@ -136,6 +138,7 @@ function DisplayDashboard(): void
             "wirelessActive",
             "tetheringActive",
             "cellularActive",
+            "switchberrySupported",
             "status"
         )
     );
@@ -186,4 +189,3 @@ function renderClientConnections(int $wirelessClients, int $ethernetClients): st
         implode('&', $devices)
     );
 }
-

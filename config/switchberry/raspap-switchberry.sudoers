@@ -1,0 +1,8 @@
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl detect
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl status
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl configure
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl restart
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl reboot
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl port *
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl clockmatrix *
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl gnss *

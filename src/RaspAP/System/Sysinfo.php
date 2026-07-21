@@ -147,21 +147,28 @@ class Sysinfo
         'd04170' => 'Raspberry Pi 5 (8 GB)'
         );
 
-        $cpuinfo_array = '';
+        $cpuinfo_array = [];
         exec('cat /proc/cpuinfo', $cpuinfo_array);
-        $info = preg_grep("/^Revision/", $cpuinfo_array);
-        $tmp = explode(':', array_pop($info));
-        $rev = trim(array_pop($tmp));
+        $info = preg_grep("/^Revision/", $cpuinfo_array) ?: [];
+        $revisionLine = array_pop($info);
+        $tmp = is_string($revisionLine) ? explode(':', $revisionLine) : [];
+        $rev = trim((string) array_pop($tmp));
         if (array_key_exists($rev, $revisions)) {
-            return $revisions[$rev];
+            $model = $revisions[$rev];
         } else {
+            $model = [];
             exec('cat /proc/device-tree/model', $model);
             if (isset($model[0])) {
-                return $model[0];
+                $model = trim($model[0], "\0");
             } else {
-                return 'Unknown Device';
+                $model = 'Unknown Device';
             }
         }
+
+        if (\RaspAP\Switchberry\SwitchberryService::isSupported()) {
+            return sprintf('Switchberry (%s)', $model);
+        }
+        return $model;
     }
 
     /**
@@ -209,4 +216,3 @@ class Sysinfo
         return null;
     }
 }
-
