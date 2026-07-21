@@ -283,7 +283,7 @@ function _install_dependencies() {
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $rsync_package $network_tools $ifconfig_package vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
+    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $rsync_package $network_tools $ifconfig_package vnstat qrencode jq isoquery device-tree-compiler || _install_status 1 "Unable to install dependencies"
 
     if [[ "$php_package" == *"-fpm" ]]; then
         _install_log "Enabling lighttpd fastcgi-php-fpm module for $php_package"
@@ -988,6 +988,46 @@ function _check_tcp_bbr_available() {
 # Add sudoers file to /etc/sudoers.d/ and set file permissions
 function _patch_system_files() {
 
+    # Install the root-owned Switchberry controller. The UI remains hidden on
+    # other boards, and the helper reports unsupported hardware if invoked.
+    if [ -f "$webroot_dir/config/switchberry/raspap-switchberryctl" ]; then
+        _install_log "Installing Switchberry hardware controller"
+        sudo install -o root -g root -m 0755 \
+            "$webroot_dir/config/switchberry/raspap-switchberryctl" \
+            /usr/local/sbin/raspap-switchberryctl || \
+            _install_status 1 "Unable to install Switchberry hardware controller"
+    fi
+
+    if [ -f /etc/startup-dpll.json ] && [ -f /usr/local/sbin/apply_timing.py ] && \
+       [ -f "$webroot_dir/config/switchberry/overlays/switchberrybc-v6-overlay.dts" ]; then
+        _install_log "Installing Switchberry V6 boundary-clock support"
+        sudo apt-get install -y --no-install-recommends ethtool linuxptp || \
+            _install_status 1 "Unable to install Switchberry PTP tools"
+        sudo "$webroot_dir/installers/switchberry-kernel.sh" || \
+            _install_status 1 "Unable to select the Switchberry PTP-enabled kernel"
+        switchberry_overlay_tmp=$(mktemp /tmp/switchberrybc-v6.XXXXXX.dtbo)
+        dtc -@ -I dts -O dtb \
+            -o "$switchberry_overlay_tmp" \
+            "$webroot_dir/config/switchberry/overlays/switchberrybc-v6-overlay.dts" || \
+            _install_status 1 "Unable to compile Switchberry boundary-clock overlay"
+        sudo install -o root -g root -m 0644 "$switchberry_overlay_tmp" \
+            /boot/firmware/overlays/switchberrybc-v6.dtbo || \
+            _install_status 1 "Unable to install Switchberry boundary-clock overlay"
+        rm -f "$switchberry_overlay_tmp"
+        sudo install -o root -g root -m 0644 \
+            "$webroot_dir/config/switchberry/systemd/ptp4l-switchberry-bc.service" \
+            "$webroot_dir/config/switchberry/systemd/switchberry-bc-phc2sys.service" \
+            /etc/systemd/system/ || _install_status 1 "Unable to install Switchberry boundary-clock services"
+        for switchberry_dropin in "$webroot_dir"/config/switchberry/systemd/*.service.d; do
+            sudo install -d -o root -g root -m 0755 "/etc/systemd/system/$(basename "$switchberry_dropin")" || \
+                _install_status 1 "Unable to create Switchberry service drop-in"
+            sudo install -o root -g root -m 0644 "$switchberry_dropin/raspap-switchberry.conf" \
+                "/etc/systemd/system/$(basename "$switchberry_dropin")/raspap-switchberry.conf" || \
+                _install_status 1 "Unable to install Switchberry service drop-in"
+        done
+        sudo systemctl daemon-reload || _install_status 1 "Unable to reload Switchberry systemd services"
+    fi
+
     # Create sudoers
     _install_log "Adding raspap.sudoers to ${raspap_sudoers}"
     sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
@@ -1115,4 +1155,3 @@ function _install_complete() {
         fi
     fi
 }
-

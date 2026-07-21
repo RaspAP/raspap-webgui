@@ -91,6 +91,13 @@ www-data ALL=(ALL) NOPASSWD:/usr/bin/nmap --script=broadcast-dhcp-discover -e [a
 www-data ALL=(ALL) NOPASSWD:/usr/bin/vnstat *
 www-data ALL=(ALL) NOPASSWD:/usr/sbin/visudo -cf *
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/plugins/plugin_helper.sh
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl status
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl configure
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl restart
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl reboot
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl port *
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl clockmatrix *
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl gnss *
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl start raspap-network-activity@*.service
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl stop raspap-network-activity@*.service
 www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/wpa_conf_* /etc/wpa_supplicant/wpa_supplicant.conf

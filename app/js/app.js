@@ -17,6 +17,7 @@ import { initRestApi } from "./ui/restapi.js";
 import { initSystem } from "./ui/system.js";
 import { initAbout } from "./ui/about.js";
 import { initLogin } from "./ui/login.js";
+import { initSwitchberry } from "./ui/switchberry.js";
 
 // ajax handlers
 import { initHostapd_ajax } from "./ajax/hostapd.js";
@@ -83,6 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
         case '/login':
             initLogin();
+            break;
+        case '/switchberry':
+            initSwitchberry();
             break;
         default:
             console.warn(`No initialization function defined for path: ${path}`);

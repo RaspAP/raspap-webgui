@@ -105,6 +105,10 @@ class Sysinfo
      */
     public function rpiRevision()
     {
+        if (\RaspAP\Switchberry\SwitchberryService::isSupported()) {
+            return 'Switchberry (Raspberry Pi Compute Module 4)';
+        }
+
         $revisions = array(
         '0002' => 'Raspberry Pi Model B Rev 1.0',
         '0003' => 'Raspberry Pi Model B Rev 1.0',
@@ -209,4 +213,3 @@ class Sysinfo
         return null;
     }
 }
-

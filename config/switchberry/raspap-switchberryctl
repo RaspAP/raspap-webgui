@@ -1,0 +1,2589 @@
+#!/usr/bin/env python3
+"""Privileged Switchberry control bridge for RaspAP.
+
+This helper is installed root-owned at /usr/local/sbin/raspap-switchberryctl.
+It deliberately exposes a small command surface and never executes user input
+through a shell. All data returned to the web UI is JSON.
+"""
+
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import hashlib
+import ipaddress
+import json
+import os
+import pathlib
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import time
+from typing import Any
+
+
+SCHEMA_VERSION = 2
+CONFIG_PATH = pathlib.Path("/etc/startup-dpll.json")
+CONTROL_PATH = "/usr/local/sbin/raspap-switchberryctl"
+BACKUP_DIR = pathlib.Path("/var/lib/raspap/switchberry-backups")
+BOOT_CONFIG_PATH = pathlib.Path("/boot/firmware/config.txt")
+BC_CONFIG_PATH = pathlib.Path("/etc/switchberry/ptp4l-switchberry-bc.conf")
+BC_ADDRESS_STATE_PATH = pathlib.Path("/run/switchberry-bc-addresses.json")
+TIMING_COMPAT_PATH = pathlib.Path("/run/switchberry-timing-compat.json")
+SMA_APPLIED_STATE_PATH = pathlib.Path("/var/lib/raspap/switchberry-sma-applied.json")
+CLOCKMATRIX_APPLIED_STATE_PATH = pathlib.Path("/var/lib/raspap/switchberry-clockmatrix-applied.json")
+GNSS_APPLIED_STATE_PATH = pathlib.Path("/var/lib/raspap/switchberry-gnss-applied.json")
+ETH0_FIX_COUNTER_PATH = pathlib.Path("/var/lib/switchberry/eth0_fix_attempts")
+MAX_CONFIG_BYTES = 65_536
+
+SWITCH_CLI_CANDIDATES = (
+    "/usr/local/sbin/switch_cli.sh",
+    "/usr/local/lib/switchberry/kszswitch-init/switch_cli.sh",
+)
+DPLLTOOL_CANDIDATES = (
+    "/usr/local/sbin/dplltool",
+    "/usr/local/bin/dplltool",
+)
+
+SERVICES: dict[str, str] = {
+    "switchberry-sanity.service": "Hardware prerequisites",
+    "switchberry-apply-network.service": "Ethernet configuration",
+    "switchberry-eth0-fixup.service": "CM4 Ethernet recovery",
+    "switchberry-apply-timing.service": "DPLL and signal routing",
+    "switchberry-full-init.service": "KSZ9567 initialization",
+    "switchberry-dpll-monitor.service": "DPLL health monitor",
+    "switchberry-ptp-role.service": "PTP role orchestration",
+    "ts2phc-switchberry.service": "GNSS/DPLL to PHC synchronization",
+    "ptp4l-switchberry-gm.service": "PTP grandmaster",
+    "ptp4l-switchberry-client.service": "PTP client",
+    "ptp4l-switchberry-bc.service": "Multi-port PTP boundary clock",
+    "switchberry-phc2sys.service": "PHC to system clock",
+    "switchberry-bc-phc2sys.service": "Boundary-clock PHC to system clock",
+    "switchberry-chrony.service": "NTP service",
+    "gpsd.service": "GNSS receiver",
+    "gpspipe-socat.service": "GNSS data bridge",
+    "switchberry-dhcp-watchdog.service": "Ethernet DHCP watchdog",
+    "switchberry-status-web.service": "Legacy Switchberry status page",
+}
+
+HARDWARE_PATHS: dict[str, tuple[str, str]] = {
+    "switch_spi": ("/dev/spidev0.0", "KSZ9567 SPI or DSA switch ports"),
+    "dpll_spi": ("/dev/spidev7.0", "8A34004 DPLL SPI"),
+    "gpio_expander": ("/sys/bus/i2c/devices/*-0023", "TCA6424 GPIO expander"),
+    "gnss_uart": ("/dev/ttyAMA5", "M.2 GNSS UART"),
+    "ptp_clock": ("/dev/ptp0", "KSZ9567 PTP hardware clock"),
+}
+
+TIMING_FILES: dict[str, str] = {
+    "clockmatrix": "/tmp/switchberry-clockmatrix.status",
+    "ts2phc": "/tmp/switchberry-ts2phc.status",
+    "phc2sys": "/tmp/switchberry-phc2sys.status",
+    "chrony": "/tmp/switchberry-chrony.status",
+}
+
+PTP_ROLES = {"GM", "CLIENT", "TC", "BC", "NONE"}
+SOURCE_ROLES = {"TIME_ONLY", "FREQ_ONLY", "TIME_AND_FREQ", "NONE"}
+SMA_DIRECTIONS = {"INPUT", "OUTPUT", "UNUSED"}
+PTP_TRANSPORTS = {"UNICAST", "MULTICAST"}
+TC_DELAY_MECHANISMS = {"E2E", "P2P"}
+BC_DELAY_MECHANISMS = {"E2E", "P2P", "AUTO"}
+BC_NETWORK_TRANSPORTS = {"L2", "UDPV4", "UDPV6"}
+BC_PROFILES = {"IEEE1588", "G8275_1", "G8275_2"}
+BC_PORT_MODES = {"AUTO", "UPSTREAM", "DOWNSTREAM", "DISABLED"}
+BC_CLOCK_SERVOS = {"PI", "LINREG"}
+CLOCKMATRIX_COMBO_MODES = {"AUTOMATIC", "INDEPENDENT", "FOLLOW_OTHER"}
+CLOCKMATRIX_BANDWIDTH_UNITS = {"uhz": "uHz", "mhz": "mHz", "hz": "Hz", "khz": "kHz"}
+CLOCKMATRIX_OPERATING_STATES = {"normal": "NORMAL", "freerun": "FREERUN", "holdover": "HOLDOVER"}
+CLOCKMATRIX_ACTIONS = {*CLOCKMATRIX_OPERATING_STATES, "reacquire"}
+GNSS_DYNAMIC_MODELS = {
+    "PORTABLE": 0,
+    "STATIONARY": 2,
+    "PEDESTRIAN": 3,
+    "AUTOMOTIVE": 4,
+    "SEA": 5,
+    "AIRBORNE_1G": 6,
+    "AIRBORNE_2G": 7,
+    "AIRBORNE_4G": 8,
+    "WRIST": 9,
+    "BIKE": 10,
+}
+GNSS_CONSTELLATION_KEYS = {
+    "gps": "CFG-SIGNAL-GPS_ENA",
+    "galileo": "CFG-SIGNAL-GAL_ENA",
+    "glonass": "CFG-SIGNAL-GLO_ENA",
+    "beidou": "CFG-SIGNAL-BDS_ENA",
+    "sbas": "CFG-SIGNAL-SBAS_ENA",
+    "qzss": "CFG-SIGNAL-QZSS_ENA",
+}
+GNSS_ACTIONS = {"restart", "hotstart", "warmstart", "coldstart"}
+UBLOX_PROTOCOL_VERSION = "32.01"
+
+# Physical front-panel RJ45 number to the DSA interface / KSZ port register.
+# The five copper ports are KSZ ports 1-5. Port 6 is the internal CM4 link and
+# must never be exposed as a front-panel port.
+FRONT_PORT_INTERFACES: dict[int, str] = {port: f"lan{port}" for port in range(1, 6)}
+
+# ECAD net names run in the opposite order from the rear-panel labels.  Keep
+# this mapping in one authoritative place so status, validation and the UI all
+# describe the same physical connector.
+SMA_HARDWARE: dict[str, dict[str, Any]] = {
+    "SMA1": {
+        "rear": "SMA4",
+        "input": "DPLL IN1 (CLK0P)",
+        "output": "DPLL Q11 / channel 6",
+        "output_kind": "fractional",
+        "shared_with": "SyncE input / CM4 PPS output",
+    },
+    "SMA2": {
+        "rear": "SMA3",
+        "input": "DPLL IN2 (CLK0N)",
+        "output": "DPLL Q10",
+        "output_kind": "fractional",
+        "shared_with": "CM4 PPS input",
+    },
+    "SMA3": {
+        "rear": "SMA2",
+        "input": "DPLL IN3 (CLK1P)",
+        "output": "DPLL Q9 / channel 5",
+        "output_kind": "integer",
+        "shared_with": "M.2 GNSS PPS input",
+    },
+    "SMA4": {
+        "rear": "SMA1",
+        "input": "DPLL IN4 (CLK1N)",
+        "output": None,
+        "output_kind": None,
+        "shared_with": None,
+    },
+}
+
+
+class ControlError(Exception):
+    """A user-facing validation or control error."""
+
+
+def gpio_expander_device() -> pathlib.Path | None:
+    """Locate the TCA6424 without assuming a kernel-assigned I2C bus number."""
+    devices = pathlib.Path("/sys/bus/i2c/devices")
+    for candidate in sorted(devices.glob("*-0023")):
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def ksz_ptp_device() -> pathlib.Path | None:
+    """Return the PHC registered by the SPI-attached KSZ9567 DSA driver."""
+    for candidate in sorted(pathlib.Path("/sys/class/ptp").glob("ptp*")):
+        try:
+            device = (candidate / "device").resolve(strict=True)
+        except OSError:
+            continue
+        if "spi0.0" in device.parts:
+            node = pathlib.Path("/dev") / candidate.name
+            if node.exists():
+                return node
+    return None
+
+
+def emit(payload: dict[str, Any], exit_code: int = 0) -> None:
+    print(json.dumps(payload, separators=(",", ":"), sort_keys=True))
+    raise SystemExit(exit_code)
+
+
+def run(command: list[str], timeout: float = 5.0, cwd: str | None = None) -> dict[str, Any]:
+    """Run a fixed argv command and return a structured result."""
+    try:
+        result = subprocess.run(
+            command,
+            cwd=cwd,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            check=False,
+            env={**os.environ, "LC_ALL": "C"},
+        )
+        return {
+            "ok": result.returncode == 0,
+            "returncode": result.returncode,
+            "stdout": result.stdout.strip(),
+            "stderr": result.stderr.strip(),
+        }
+    except subprocess.TimeoutExpired as exc:
+        return {
+            "ok": False,
+            "returncode": 124,
+            "stdout": (exc.stdout or "").strip() if isinstance(exc.stdout, str) else "",
+            "stderr": f"Command timed out after {timeout:g} seconds",
+        }
+    except (FileNotFoundError, PermissionError, OSError) as exc:
+        return {"ok": False, "returncode": 127, "stdout": "", "stderr": str(exc)}
+
+
+def port_register(port: int, offset: int) -> int:
+    if port not in range(1, 6):
+        raise ControlError("Front-panel port must be between 1 and 5")
+    return (port << 12) + offset
+
+
+def ksz_transfer(address: int, payload: bytes, read_length: int = 0) -> bytes:
+    """Transfer fixed-width register data with the KSZ9567 over spidev."""
+    if not 0 <= address <= 0xFFFFFF:
+        raise ControlError("KSZ9567 register address is invalid")
+    if not pathlib.Path("/dev/spidev0.0").exists():
+        raise ControlError("Direct KSZ9567 SPI access is unavailable in the active switch plane")
+    operation = 0x60 if read_length else 0x40
+    header = bytes(
+        (
+            operation | ((address >> 19) & 0x1F),
+            (address >> 11) & 0xFF,
+            (address >> 3) & 0xFF,
+            (address & 0x07) << 5,
+        )
+    )
+    transfer = header + (bytes(read_length) if read_length else payload)
+    pattern = "".join(f"\\x{byte:02x}" for byte in transfer)
+    result = run(
+        [
+            "/usr/bin/spidev_test",
+            "-D",
+            "/dev/spidev0.0",
+            "-b",
+            "8",
+            "-s",
+            "1000000",
+            "-p",
+            pattern,
+            "-v",
+        ],
+        timeout=3,
+    )
+    if not result["ok"]:
+        raise ControlError(result["stderr"] or "KSZ9567 SPI transaction failed")
+    if not read_length:
+        return b""
+    match = re.search(r"^RX\s*\|\s*((?:[0-9A-Fa-f]{2}\s+)+)", result["stdout"], re.MULTILINE)
+    if match is None:
+        raise ControlError("Unable to parse KSZ9567 SPI response")
+    values = bytes(int(item, 16) for item in match.group(1).split())
+    if len(values) < 4 + read_length:
+        raise ControlError("KSZ9567 SPI response was truncated")
+    return values[4 : 4 + read_length]
+
+
+def ksz_read(address: int, width: int) -> int:
+    if width not in {1, 2, 4}:
+        raise ControlError("Unsupported KSZ9567 register width")
+    return int.from_bytes(ksz_transfer(address, b"", read_length=width), "big")
+
+
+def ksz_write(address: int, value: int, width: int) -> None:
+    if width not in {1, 2, 4} or not 0 <= value < (1 << (width * 8)):
+        raise ControlError("Invalid KSZ9567 register value")
+    ksz_transfer(address, value.to_bytes(width, "big"))
+    observed = ksz_read(address, width)
+    if observed != value:
+        raise ControlError(
+            f"KSZ9567 register 0x{address:04X} verification failed (wrote 0x{value:X}, read 0x{observed:X})"
+        )
+
+
+def first_executable(candidates: tuple[str, ...]) -> str | None:
+    for candidate in candidates:
+        if os.path.isfile(candidate) and os.access(candidate, os.X_OK):
+            return candidate
+    return None
+
+
+def read_text(path: str, limit: int = 16_384) -> str:
+    try:
+        with open(path, "r", encoding="utf-8", errors="replace") as handle:
+            return handle.read(limit).strip("\x00\r\n ")
+    except OSError:
+        return ""
+
+
+def read_json(path: pathlib.Path) -> dict[str, Any]:
+    try:
+        with path.open("r", encoding="utf-8") as handle:
+            value = json.load(handle)
+        return value if isinstance(value, dict) else {}
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def detect_switchberry() -> bool:
+    software = CONFIG_PATH.is_file() and pathlib.Path("/usr/local/sbin/apply_timing.py").is_file()
+    hardware = (
+        gpio_expander_device() is not None
+        and pathlib.Path("/dev/spidev7.0").exists()
+        and pathlib.Path("/dev/ttyAMA5").exists()
+        and (pathlib.Path("/dev/spidev0.0").exists() or active_switch_plane() == "DSA")
+    )
+    return pathlib.Path("/etc/switchberry").is_dir() or software or hardware
+
+
+def active_switch_plane() -> str:
+    """Return the currently booted switch integration plane."""
+    if all(pathlib.Path(f"/sys/class/net/{interface}").exists() for interface in FRONT_PORT_INTERFACES.values()):
+        return "DSA"
+    if pathlib.Path("/dev/spidev0.0").exists():
+        return "TC"
+    return "UNKNOWN"
+
+
+def desired_switch_plane(config: dict[str, Any]) -> str:
+    return "DSA" if str(config.get("ptp_role", "NONE")).upper() == "BC" else "TC"
+
+
+def configured_boot_plane() -> str:
+    text = read_text(str(BOOT_CONFIG_PATH), limit=262_144)
+    active = {
+        match.group(1).lower()
+        for line in text.splitlines()
+        if (match := re.match(r"^\s*dtoverlay\s*=\s*([A-Za-z0-9_-]+)\s*$", line))
+    }
+    if "switchberrybc-v6" in active or "ksz9567" in active:
+        return "DSA"
+    if "switchberrytc" in active:
+        return "TC"
+    return "UNKNOWN"
+
+
+def get_clock_plane(config: dict[str, Any]) -> dict[str, Any]:
+    active = active_switch_plane()
+    desired = desired_switch_plane(config)
+    boot = configured_boot_plane()
+    return {
+        "active": active,
+        "desired": desired,
+        "boot": boot,
+        "reboot_required": active != desired or boot != desired,
+        "mode": str(config.get("ptp_role", "NONE")).upper(),
+    }
+
+
+def os_release() -> str:
+    values: dict[str, str] = {}
+    for line in read_text("/etc/os-release").splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            values[key] = value.strip().strip('"')
+    return values.get("PRETTY_NAME", "Unknown")
+
+
+def get_system() -> dict[str, Any]:
+    addresses: list[dict[str, Any]] = []
+    ip_result = run(["/usr/sbin/ip", "-j", "address", "show"], timeout=3)
+    if not ip_result["ok"]:
+        ip_result = run(["/sbin/ip", "-j", "address", "show"], timeout=3)
+    if ip_result["ok"]:
+        try:
+            raw = json.loads(ip_result["stdout"])
+            for interface in raw:
+                addresses.append(
+                    {
+                        "name": interface.get("ifname", ""),
+                        "state": interface.get("operstate", "UNKNOWN"),
+                        "mac": interface.get("address", ""),
+                        "addresses": [
+                            f"{entry.get('local')}/{entry.get('prefixlen')}"
+                            for entry in interface.get("addr_info", [])
+                            if entry.get("family") in {"inet", "inet6"} and entry.get("local")
+                        ],
+                    }
+                )
+        except (json.JSONDecodeError, TypeError):
+            pass
+
+    return {
+        "hostname": read_text("/etc/hostname") or os.uname().nodename,
+        "board_model": read_text("/proc/device-tree/model") or "Unknown",
+        "kernel": os.uname().release,
+        "operating_system": os_release(),
+        "interfaces": addresses,
+    }
+
+
+def get_hardware() -> dict[str, Any]:
+    checks = {
+        key: {"present": pathlib.Path(path).exists(), "path": path, "description": description}
+        for key, (path, description) in HARDWARE_PATHS.items()
+    }
+    gpio_device = gpio_expander_device()
+    checks["gpio_expander"].update(
+        {
+            "present": gpio_device is not None,
+            "path": str(gpio_device) if gpio_device is not None else "/sys/bus/i2c/devices/*-0023",
+        }
+    )
+    dsa_ready = all(pathlib.Path(f"/sys/class/net/{name}").exists() for name in FRONT_PORT_INTERFACES.values())
+    checks["switch_spi"].update(
+        {
+            "present": checks["switch_spi"]["present"] or dsa_ready,
+            "path": "/dev/spidev0.0 or lan1-lan5",
+            "plane": active_switch_plane(),
+        }
+    )
+    if active_switch_plane() == "DSA":
+        phc_device = ksz_ptp_device()
+        checks["ptp_clock"].update(
+            {
+                "present": phc_device is not None,
+                "path": str(phc_device) if phc_device is not None else "KSZ9567 DSA PHC unavailable",
+            }
+        )
+    return {
+        "checks": checks,
+        "device_tree": {
+            "mdio": pathlib.Path("/proc/device-tree/mdio/ethernet-phy@0").exists(),
+            "gpio_expander": pathlib.Path("/proc/device-tree/i2c@9/gpio@23").exists(),
+            "dpll_spi": pathlib.Path("/proc/device-tree/spi_bitbang/spidev@0").exists(),
+        },
+        "pci": run(["/usr/bin/lspci", "-nn"], timeout=3)["stdout"],
+        "usb": run(["/usr/bin/lsusb"], timeout=3)["stdout"],
+    }
+
+
+def get_services(config: dict[str, Any]) -> list[dict[str, Any]]:
+    role = str(config.get("ptp_role", "NONE")).upper()
+    plane = active_switch_plane()
+    expected = {
+        "switchberry-sanity.service",
+        "switchberry-apply-timing.service",
+        "switchberry-dpll-monitor.service",
+        "switchberry-ptp-role.service",
+        "switchberry-status-web.service",
+    }
+    if plane == "TC":
+        expected.update(
+            {
+                "switchberry-apply-network.service",
+                "switchberry-eth0-fixup.service",
+                "switchberry-full-init.service",
+                "switchberry-dhcp-watchdog.service",
+            }
+        )
+    if role == "GM":
+        expected.update(
+            {
+                "ts2phc-switchberry.service",
+                "ptp4l-switchberry-gm.service",
+                "switchberry-phc2sys.service",
+                "switchberry-chrony.service",
+            }
+        )
+    elif role == "CLIENT":
+        expected.update({"ptp4l-switchberry-client.service", "switchberry-phc2sys.service"})
+    elif role == "BC":
+        expected.add("ptp4l-switchberry-bc.service")
+        if bool(config.get("bc", {}).get("sync_system_clock", False)):
+            expected.add("switchberry-bc-phc2sys.service")
+    if bool(config.get("gps", {}).get("present", False)):
+        expected.update({"gpsd.service", "gpspipe-socat.service"})
+
+    result: list[dict[str, Any]] = []
+    for service, description in SERVICES.items():
+        state = run(["/usr/bin/systemctl", "is-active", service], timeout=3)
+        enabled = run(["/usr/bin/systemctl", "is-enabled", service], timeout=3)
+        unit_result = run(["/usr/bin/systemctl", "show", "-p", "Result", "--value", service], timeout=3)
+        logs = run(
+            ["/usr/bin/journalctl", "-u", service, "-n", "5", "--no-pager", "--output=short"],
+            timeout=4,
+        )
+        active = state["stdout"] or "unknown"
+        is_expected = service in expected
+        display_state = active
+        health = "ok" if active == "active" else "idle"
+        if service == "switchberry-ptp-role.service" and active == "inactive" and unit_result["stdout"] == "success":
+            display_state = "completed"
+            health = "ok"
+        elif not is_expected and active == "inactive":
+            display_state = "standby"
+        elif active == "failed" or (is_expected and active not in {"active", "activating"}):
+            health = "error"
+
+        result.append(
+            {
+                "name": service,
+                "description": description,
+                "active": active,
+                "display_state": display_state,
+                "expected": is_expected,
+                "health": health,
+                "enabled": enabled["stdout"] or "unknown",
+                "logs": logs["stdout"],
+            }
+        )
+    return result
+
+
+def get_ports() -> list[dict[str, Any]]:
+    ports: list[dict[str, Any]] = []
+    if active_switch_plane() == "DSA":
+        for port, interface in FRONT_PORT_INTERFACES.items():
+            result = run(["/usr/sbin/ip", "-j", "-details", "link", "show", "dev", interface], timeout=3)
+            if not result["ok"]:
+                result = run(["/sbin/ip", "-j", "-details", "link", "show", "dev", interface], timeout=3)
+            entry: dict[str, Any] = {"port": port, "interface": interface, "state": "Unavailable"}
+            try:
+                link = json.loads(result["stdout"])[0]
+                flags = set(link.get("flags", []))
+                link_info = run(["/usr/sbin/ethtool", interface], timeout=3)
+                speed_match = re.search(r"^\s*Speed:\s*(.+)$", link_info["stdout"], re.MULTILINE)
+                entry.update(
+                    {
+                        "state": "Up" if "LOWER_UP" in flags else "Down",
+                        "enabled": "UP" in flags,
+                        "operstate": link.get("operstate", "UNKNOWN"),
+                        "speed": speed_match.group(1).strip() if speed_match else "Unknown",
+                    }
+                )
+            except (json.JSONDecodeError, IndexError, TypeError):
+                if not result["ok"]:
+                    entry["error"] = result["stderr"] or "Unable to query DSA port"
+            ports.append(entry)
+        return ports
+
+    if pathlib.Path("/dev/spidev0.0").exists():
+        for port in range(1, 6):
+            try:
+                status = ksz_read(port_register(port, 0x13), 1)
+                control = ksz_read(port_register(port, 0x100), 2)
+                speed_status = ksz_read(port_register(port, 0x30), 1)
+                speed_code = (speed_status >> 3) & 0x3
+                ports.append(
+                    {
+                        "port": port,
+                        "interface": f"KSZ port {port}",
+                        "state": "Up" if status & 0x02 else "Down",
+                        "enabled": control != 0x0C00,
+                        "speed": {0: "10 Mb/s", 1: "100 Mb/s", 2: "1 Gb/s"}.get(speed_code, "Unknown"),
+                    }
+                )
+            except ControlError as exc:
+                ports.append({"port": port, "interface": f"KSZ port {port}", "state": "Unknown", "error": str(exc)})
+        return ports
+
+    return [{"port": port, "interface": FRONT_PORT_INTERFACES[port], "state": "Unavailable"} for port in range(1, 6)]
+
+
+def get_dpll() -> list[dict[str, Any]]:
+    dplltool = first_executable(DPLLTOOL_CANDIDATES)
+    if dplltool is None:
+        return [
+            {"channel": 5, "domain": "Frequency", "state": "Unavailable", "combo": ""},
+            {"channel": 6, "domain": "Time/1PPS", "state": "Unavailable", "combo": ""},
+        ]
+
+    channels: list[dict[str, Any]] = []
+    for channel, domain in ((5, "Frequency"), (6, "Time/1PPS")):
+        state = run([dplltool, "get-state", str(channel)], timeout=5)
+        combo = run([dplltool, "get-combo-slave", str(channel)], timeout=5)
+        phase = run([dplltool, "get-phase", str(channel)], timeout=5)
+        bandwidth = run([dplltool, "get-loop-bw", str(channel)], timeout=5)
+        phase_slope = run([dplltool, "get-psl", str(channel)], timeout=5)
+        damping = run([dplltool, "get-damp-factor", str(channel)], timeout=5)
+        phase_seconds: float | None = None
+        try:
+            phase_seconds = float(phase["stdout"])
+        except (TypeError, ValueError):
+            pass
+        bandwidth_match = re.search(r"^(\d+)\s+(uHz|mHz|Hz|kHz)$", bandwidth["stdout"])
+        combo_match = re.search(r"Slave:\s*(Enabled|Disabled),\s*Master:\s*(\d+)", combo["stdout"])
+        channels.append(
+            {
+                "channel": channel,
+                "domain": domain,
+                "state": state["stdout"] or state["stderr"] or "Unknown",
+                "combo": combo["stdout"] or combo["stderr"],
+                "combo_enabled": combo_match is not None and combo_match.group(1) == "Enabled",
+                "combo_master": int(combo_match.group(2)) if combo_match is not None else None,
+                "phase_seconds": phase_seconds,
+                "phase_nanoseconds": phase_seconds * 1_000_000_000 if phase_seconds is not None else None,
+                "loop_bandwidth_value": int(bandwidth_match.group(1)) if bandwidth_match is not None else None,
+                "loop_bandwidth_unit": bandwidth_match.group(2) if bandwidth_match is not None else None,
+                "phase_slope_limit_ns_per_s": int(phase_slope["stdout"]) if phase_slope["stdout"].isdigit() else None,
+                "damping_factor": int(damping["stdout"]) if damping["stdout"].isdigit() else None,
+                "available": all(item["ok"] for item in (state, combo, phase, bandwidth, phase_slope, damping)),
+            }
+        )
+    return channels
+
+
+def format_frequency(frequency_hz: int | None) -> str:
+    if frequency_hz is None:
+        return "Not configured"
+    if frequency_hz == 1:
+        return "1 PPS"
+    if frequency_hz % 1_000_000 == 0:
+        return f"{frequency_hz // 1_000_000} MHz"
+    if frequency_hz % 1_000 == 0:
+        return f"{frequency_hz // 1_000} kHz"
+    return f"{frequency_hz} Hz"
+
+
+def sma_config_fingerprint(config: dict[str, Any]) -> str:
+    """Hash every setting that can alter SMA muxes or DPLL allocation."""
+    relevant = {
+        "ptp_role": config.get("ptp_role"),
+        "gps": config.get("gps"),
+        "cm4": config.get("cm4"),
+        "synce": config.get("synce"),
+        "smas": config.get("smas"),
+    }
+    encoded = json.dumps(relevant, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def get_sma_status(config: dict[str, Any], dpll: list[dict[str, Any]]) -> dict[str, Any]:
+    """Return rear-panel connector routing plus last successful apply state."""
+    applied_state = read_json(SMA_APPLIED_STATE_PATH)
+    current_fingerprint = sma_config_fingerprint(config)
+    applied = applied_state.get("fingerprint") == current_fingerprint
+    by_name = {
+        str(item.get("name", "")).upper(): item
+        for item in config.get("smas", [])
+        if isinstance(item, dict)
+    }
+    channel_state = {int(item.get("channel", -1)): item.get("state", "Unknown") for item in dpll}
+    connectors: list[dict[str, Any]] = []
+
+    for hardware_name, hardware in SMA_HARDWARE.items():
+        item = by_name.get(hardware_name, {})
+        direction = str(item.get("direction", "UNUSED")).upper()
+        role = item.get("role")
+        priority = item.get("priority")
+        frequency = item.get("frequency_hz")
+        frequency = frequency if isinstance(frequency, int) and not isinstance(frequency, bool) else None
+        route = "DPLL input disabled"
+        channel: int | None = None
+        actual_frequency: float | None = None
+        accuracy_ppm: float | None = None
+
+        if direction == "INPUT":
+            route = f"{hardware['rear']} to {hardware['input']}"
+            channel = 5 if role == "FREQ_ONLY" else 6
+        elif direction == "OUTPUT":
+            route = f"{hardware['output']} to {hardware['rear']}"
+            if hardware_name == "SMA3":
+                channel = 5
+                if frequency:
+                    divider = max(1, min(0xFFFFFFFF, round(500_000_000 / frequency)))
+                    actual_frequency = 500_000_000 / divider
+                    accuracy_ppm = ((actual_frequency - frequency) / frequency) * 1_000_000
+            else:
+                actual_frequency = float(frequency) if frequency is not None else None
+                accuracy_ppm = 0.0 if frequency is not None else None
+                if hardware_name == "SMA1":
+                    channel = 6
+
+        connectors.append(
+            {
+                "rear": hardware["rear"],
+                "hardware": hardware_name,
+                "direction": direction,
+                "role": role,
+                "priority": priority,
+                "frequency_hz": frequency,
+                "signal": format_frequency(frequency),
+                "route": route,
+                "shared_with": hardware["shared_with"],
+                "output_kind": hardware["output_kind"],
+                "channel": channel,
+                "lock_state": channel_state.get(channel) if channel is not None else None,
+                "actual_frequency_hz": actual_frequency,
+                "accuracy_ppm": accuracy_ppm,
+                "applied": applied,
+            }
+        )
+
+    connectors.sort(key=lambda item: int(str(item["rear"]).removeprefix("SMA")))
+    return {
+        "status": "Applied" if applied else ("Pending apply" if applied_state else "Not yet confirmed"),
+        "applied": applied,
+        "last_applied_at": applied_state.get("applied_at"),
+        "connectors": connectors,
+    }
+
+
+def clockmatrix_config_fingerprint(config: dict[str, Any]) -> str:
+    relevant = {
+        "ptp_role": config.get("ptp_role"),
+        "gps": config.get("gps"),
+        "cm4": config.get("cm4"),
+        "synce": config.get("synce"),
+        "smas": config.get("smas"),
+        "clockmatrix": normalize_clockmatrix(config.get("clockmatrix")),
+    }
+    encoded = json.dumps(relevant, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def get_clockmatrix_status(config: dict[str, Any], dpll: list[dict[str, Any]]) -> dict[str, Any]:
+    configured = normalize_clockmatrix(config.get("clockmatrix"))
+    configured_by_channel = {item["channel"]: item for item in configured["channels"]}
+    applied_state = read_json(CLOCKMATRIX_APPLIED_STATE_PATH)
+    applied = applied_state.get("fingerprint") == clockmatrix_config_fingerprint(config)
+    channels = []
+    for live in dpll:
+        item = dict(live)
+        item["configured"] = configured_by_channel.get(live.get("channel"), {})
+        channels.append(item)
+
+    inputs: list[dict[str, Any]] = []
+
+    def add_input(label: str, source: str, role: str | None, priority: int | None, frequency: int, logical: int) -> None:
+        if role in {None, "NONE"}:
+            return
+        inputs.append(
+            {
+                "label": label,
+                "source": source,
+                "role": role,
+                "priority": priority,
+                "frequency_hz": frequency,
+                "signal": format_frequency(frequency),
+                "logical_input": logical,
+                "physical_input": {1: 0, 2: 8, 3: 1, 4: 9}[logical],
+                "channel": 5 if role == "FREQ_ONLY" else 6,
+            }
+        )
+
+    gps = config.get("gps", {}) if isinstance(config.get("gps"), dict) else {}
+    if gps.get("present"):
+        add_input("M.2 GNSS", "GPS", gps.get("role"), gps.get("priority"), 1, 3)
+    cm4 = config.get("cm4", {}) if isinstance(config.get("cm4"), dict) else {}
+    if cm4.get("used_as_source"):
+        add_input("CM4 PPS", "CM4", cm4.get("role"), cm4.get("priority"), 1, 2)
+    synce = config.get("synce", {}) if isinstance(config.get("synce"), dict) else {}
+    if synce.get("used_as_source"):
+        add_input(
+            f"SyncE port {synce.get('recover_port', '?')}",
+            "SYNC_E",
+            "FREQ_ONLY",
+            synce.get("priority"),
+            25_000_000,
+            1,
+        )
+    for sma in config.get("smas", []):
+        if not isinstance(sma, dict) or sma.get("direction") != "INPUT":
+            continue
+        hardware_name = str(sma.get("name", "")).upper()
+        hardware = SMA_HARDWARE.get(hardware_name)
+        if hardware is None:
+            continue
+        add_input(
+            f"Rear {hardware['rear']}",
+            hardware_name,
+            sma.get("role"),
+            sma.get("priority"),
+            int(sma.get("frequency_hz") or (10_000_000 if sma.get("role") == "FREQ_ONLY" else 1)),
+            int(hardware_name.removeprefix("SMA")),
+        )
+    inputs.sort(key=lambda item: (item["channel"], item["priority"] if item["priority"] is not None else 99))
+    return {
+        "status": "Applied" if applied else ("Pending apply" if applied_state else "Not yet confirmed"),
+        "applied": applied,
+        "last_applied_at": applied_state.get("applied_at"),
+        "device": "Renesas 8A34004 ClockMatrix",
+        "channels": channels,
+        "inputs": inputs,
+    }
+
+
+def get_timing_status() -> list[dict[str, str]]:
+    result: list[dict[str, str]] = []
+    for name, path in TIMING_FILES.items():
+        lines = read_text(path, limit=4096).splitlines()
+        result.append(
+            {
+                "name": name,
+                "state": lines[0] if lines else "NOT_RUNNING",
+                "updated": lines[1] if len(lines) > 1 else "",
+                "detail": lines[2] if len(lines) > 2 else "",
+            }
+        )
+    return result
+
+
+def parse_pmc(output: str, fields: tuple[str, ...]) -> dict[str, str]:
+    parsed: dict[str, str] = {}
+    for line in output.splitlines():
+        stripped = line.strip()
+        for field in fields:
+            if stripped.startswith(field):
+                parts = stripped.split(None, 1)
+                if len(parts) == 2:
+                    parsed[field] = parts[1]
+    return parsed
+
+
+def parse_pmc_ports(output: str) -> list[dict[str, str]]:
+    ports: list[dict[str, str]] = []
+    current: dict[str, str] = {}
+    for line in output.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("portIdentity"):
+            if current:
+                ports.append(current)
+            current = {"portIdentity": stripped.split(None, 1)[1] if " " in stripped else ""}
+        elif stripped.startswith("portState") and current:
+            current["portState"] = stripped.split(None, 1)[1] if " " in stripped else ""
+    if current:
+        ports.append(current)
+    return ports
+
+
+def get_ptp(config: dict[str, Any]) -> dict[str, Any]:
+    role = str(config.get("ptp_role", "NONE")).upper()
+    result: dict[str, Any] = {"role": role, "plane": active_switch_plane()}
+    if role == "TC":
+        result["status"] = "KSZ9567 hardware transparent clock"
+        return result
+    if role == "NONE":
+        result["status"] = "PTP disabled"
+        return result
+    pmc = shutil.which("pmc") or ("/usr/sbin/pmc" if os.path.isfile("/usr/sbin/pmc") else None)
+    candidates = (
+        ("/run/ptp4l-switchberry-bc", "/var/run/ptp4l-switchberry-bc")
+        if role == "BC"
+        else ("/run/ptp4l", "/var/run/ptp4l")
+    )
+    socket_path = next((path for path in candidates if os.path.exists(path)), None)
+    if pmc is None or socket_path is None:
+        result["status"] = "PTP management socket is not available"
+        return result
+
+    port = run([pmc, "-u", "-s", socket_path, "-b", "0", "GET PORT_DATA_SET"], timeout=4)
+    timing = run([pmc, "-u", "-s", socket_path, "-b", "0", "GET TIME_STATUS_NP"], timeout=4)
+    result.update(parse_pmc(port["stdout"], ("portState",)))
+    result["ports"] = parse_pmc_ports(port["stdout"])
+    result.update(parse_pmc(timing["stdout"], ("master_offset", "gmIdentity", "ingress_time")))
+    if not port["ok"] and not timing["ok"]:
+        result["status"] = port["stderr"] or timing["stderr"] or "Unable to query PTP"
+    return result
+
+
+def get_tc_status() -> dict[str, Any]:
+    if active_switch_plane() != "TC":
+        return {"available": False, "status": "Direct hardware TC registers are owned by the DSA driver"}
+    try:
+        message1 = ksz_read(0x514, 2)
+        message2 = ksz_read(0x516, 2)
+        domain_version = ksz_read(0x518, 2)
+        calibrations = []
+        for port in range(1, 6):
+            raw_asymmetry = ksz_read(port_register(port, 0xC04), 2)
+            magnitude = raw_asymmetry & 0x7FFF
+            calibrations.append(
+                {
+                    "port": port,
+                    "rx_latency_ns": ksz_read(port_register(port, 0xC00), 2),
+                    "tx_latency_ns": ksz_read(port_register(port, 0xC02), 2),
+                    "asymmetry_ns": -magnitude if raw_asymmetry & 0x8000 else magnitude,
+                }
+            )
+        return {
+            "available": True,
+            "enabled": bool(message1 & (1 << 6)),
+            "delay_mechanism": "P2P" if message1 & (1 << 2) else "E2E",
+            "one_step": bool(message1 & 1),
+            "host_role": "MASTER" if message1 & (1 << 1) else "SLAVE",
+            "detect_l2": bool(message1 & (1 << 5)),
+            "detect_ipv4": bool(message1 & (1 << 4)),
+            "detect_ipv6": bool(message1 & (1 << 3)),
+            "ieee_802_1as": bool(message1 & (1 << 7)),
+            "unicast": bool(message2 & (1 << 12)),
+            "alternate_master": bool(message2 & (1 << 11)),
+            "priority_queue": bool(message2 & (1 << 10)),
+            "domain_check": bool(message2 & (1 << 4)),
+            "domain": domain_version & 0xFF,
+            "version": (domain_version >> 8) & 0x0F,
+            "registers": {"clock": f"0x{ksz_read(0x500, 2):04X}", "message1": f"0x{message1:04X}", "message2": f"0x{message2:04X}"},
+            "ports": calibrations,
+        }
+    except ControlError as exc:
+        return {"available": False, "status": str(exc)}
+
+
+def gnss_config_fingerprint(config: dict[str, Any]) -> str:
+    relevant = {
+        "gps": config.get("gps"),
+        "gnss_receiver": normalize_gnss_receiver(config.get("gnss_receiver")),
+    }
+    encoded = json.dumps(relevant, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def get_ublox_configuration() -> dict[str, Any]:
+    ubxtool = shutil.which("ubxtool")
+    if ubxtool is None:
+        return {"available": False, "status": "ubxtool is unavailable"}
+    keys = [
+        "CFG-NAVSPG-DYNMODEL",
+        "CFG-RATE-MEAS",
+        "CFG-RATE-NAV",
+        "CFG-NAVSPG-INFIL_MINELEV",
+        *GNSS_CONSTELLATION_KEYS.values(),
+        "CFG-TP-TP1_ENA",
+        "CFG-TP-PERIOD_TP1",
+        "CFG-TP-PERIOD_LOCK_TP1",
+        "CFG-TP-LEN_TP1",
+        "CFG-TP-LEN_LOCK_TP1",
+        "CFG-TP-ALIGN_TO_TOW_TP1",
+        "CFG-TP-TIMEGRID_TP1",
+    ]
+    command = [ubxtool, "-P", UBLOX_PROTOCOL_VERSION]
+    for key in keys:
+        command.extend(("-g", f"{key},0"))
+    command.extend(("-w", "0.5", "-v", "2"))
+    query = run(command, timeout=4)
+    rf_query = run(
+        [ubxtool, "-P", UBLOX_PROTOCOL_VERSION, "-p", "MON-RF", "-w", "1", "-v", "2"],
+        timeout=4,
+    )
+    values = {
+        match.group(1): int(match.group(2))
+        for match in re.finditer(r"item\s+(CFG-[A-Z0-9_-]+)/0x[0-9a-fA-F]+\s+val\s+(-?\d+)", query["stdout"])
+    }
+    if not values:
+        return {
+            "available": False,
+            "status": query["stderr"] or "Receiver configuration did not respond",
+        }
+    dynamic_value = values.get("CFG-NAVSPG-DYNMODEL")
+    dynamic_name = next(
+        (name for name, value in GNSS_DYNAMIC_MODELS.items() if value == dynamic_value),
+        "UNKNOWN",
+    )
+    constellation_values = {
+        name: bool(values.get(key)) if key in values else None
+        for name, key in GNSS_CONSTELLATION_KEYS.items()
+    }
+    rf_names = re.search(
+        r"jammingState\s+\(([^)]+)\)\s+antStatus\s+\(([^)]+)\)\s+antPower\s+\(([^)]+)\)",
+        rf_query["stdout"],
+    )
+    rf_values = re.search(r"noisePerMS\s+(\d+)\s+agcCnt\s+(\d+)\s+jamInd\s+(\d+)", rf_query["stdout"])
+    jamming_indicator = int(rf_values.group(3)) if rf_values else None
+    interference_level = (
+        "Low" if jamming_indicator is not None and jamming_indicator < 64
+        else "Moderate" if jamming_indicator is not None and jamming_indicator < 128
+        else "High" if jamming_indicator is not None
+        else "Unknown"
+    )
+    timegrid_names = {0: "UTC", 1: "GPS", 2: "GLONASS", 3: "BeiDou", 4: "Galileo", 5: "NavIC"}
+    return {
+        "available": True,
+        "dynamic_model": dynamic_name,
+        "dynamic_model_value": dynamic_value,
+        "measurement_rate_ms": values.get("CFG-RATE-MEAS"),
+        "navigation_rate_cycles": values.get("CFG-RATE-NAV"),
+        "minimum_elevation_deg": values.get("CFG-NAVSPG-INFIL_MINELEV"),
+        "constellations": constellation_values,
+        "rf": {
+            "jamming_state": rf_names.group(1) if rf_names else "Unknown",
+            "antenna_status": rf_names.group(2) if rf_names else "Unknown",
+            "antenna_power": rf_names.group(3) if rf_names else "Unknown",
+            "noise_per_ms": int(rf_values.group(1)) if rf_values else None,
+            "agc_count": int(rf_values.group(2)) if rf_values else None,
+            "jamming_indicator": jamming_indicator,
+            "interference_level": interference_level,
+        },
+        "timepulse": {
+            "enabled": bool(values.get("CFG-TP-TP1_ENA")),
+            "period_us": values.get("CFG-TP-PERIOD_TP1"),
+            "locked_period_us": values.get("CFG-TP-PERIOD_LOCK_TP1"),
+            "pulse_length_us": values.get("CFG-TP-LEN_TP1"),
+            "locked_pulse_length_us": values.get("CFG-TP-LEN_LOCK_TP1"),
+            "align_to_tow": bool(values.get("CFG-TP-ALIGN_TO_TOW_TP1")),
+            "time_grid": timegrid_names.get(values.get("CFG-TP-TIMEGRID_TP1"), "Unknown"),
+        },
+    }
+
+
+def get_gnss(config: dict[str, Any]) -> dict[str, Any]:
+    source = config.get("gps", {}) if isinstance(config.get("gps"), dict) else {}
+    configured = bool(source.get("present", False))
+    applied_state = read_json(GNSS_APPLIED_STATE_PATH)
+    applied = applied_state.get("fingerprint") == gnss_config_fingerprint(config)
+    result: dict[str, Any] = {
+        "configured": configured,
+        "source_role": source.get("role"),
+        "source_priority": source.get("priority"),
+        "fix": False,
+        "online": False,
+        "mode": 0,
+        "mode_label": "Offline",
+        "satellites": [],
+        "satellites_visible": 0,
+        "satellites_used": 0,
+        "pps_present": pathlib.Path("/dev/pps0").exists(),
+        "device_present": pathlib.Path("/dev/ttyAMA5").exists(),
+        "gpsd_active": run(["/usr/bin/systemctl", "is-active", "gpsd.service"], timeout=3)["stdout"] == "active",
+        "bridge_active": run(["/usr/bin/systemctl", "is-active", "gpspipe-socat.service"], timeout=3)["stdout"] == "active",
+        "applied": applied,
+        "last_applied_at": applied_state.get("applied_at"),
+        "receiver_configuration": {"available": False, "status": "Receiver offline"},
+    }
+    gpspipe = shutil.which("gpspipe")
+    if gpspipe is None:
+        result["status"] = "gpspipe is unavailable"
+        result["guidance"] = "Install gpsd-clients to monitor the receiver."
+        return result
+    output = run([gpspipe, "-w", "-n", "6"], timeout=2.5)
+    latest: dict[str, dict[str, Any]] = {}
+    device: dict[str, Any] = {}
+    for line in output["stdout"].splitlines():
+        try:
+            packet = json.loads(line)
+        except (json.JSONDecodeError, TypeError):
+            continue
+        packet_class = str(packet.get("class", ""))
+        if packet_class:
+            latest[packet_class] = packet
+        if packet_class == "DEVICES" and packet.get("devices"):
+            candidate = packet["devices"][0]
+            if isinstance(candidate, dict):
+                device = candidate
+        elif packet_class == "DEVICE":
+            device = packet
+
+    tpv = latest.get("TPV", {})
+    sky = latest.get("SKY", {})
+    gst = latest.get("GST", {})
+    mode = int(tpv.get("mode", 0) or 0)
+    mode_labels = {0: "Unknown", 1: "No fix", 2: "2D fix", 3: "3D fix"}
+    satellites: list[dict[str, Any]] = []
+    constellation_names = {
+        0: "GPS",
+        1: "SBAS",
+        2: "Galileo",
+        3: "BeiDou",
+        4: "IMES",
+        5: "QZSS",
+        6: "GLONASS",
+        7: "NavIC",
+    }
+    for satellite in sky.get("satellites", []):
+        if not isinstance(satellite, dict):
+            continue
+        gnssid = satellite.get("gnssid")
+        constellation = constellation_names.get(gnssid, "GNSS")
+        satellites.append(
+            {
+                "prn": satellite.get("PRN"),
+                "svid": satellite.get("svid", satellite.get("PRN")),
+                "gnssid": gnssid,
+                "constellation": constellation,
+                "elevation": satellite.get("el"),
+                "azimuth": satellite.get("az"),
+                "signal_dbhz": satellite.get("ss"),
+                "used": bool(satellite.get("used", False)),
+                "health": satellite.get("health"),
+            }
+        )
+    satellites.sort(
+        key=lambda item: (
+            not item["used"],
+            -(float(item["signal_dbhz"]) if isinstance(item["signal_dbhz"], (int, float)) else -1),
+        )
+    )
+    counts: dict[str, dict[str, int]] = {}
+    for satellite in satellites:
+        constellation = satellite["constellation"]
+        counts.setdefault(constellation, {"visible": 0, "used": 0})
+        counts[constellation]["visible"] += 1
+        counts[constellation]["used"] += 1 if satellite["used"] else 0
+
+    receiver_time = tpv.get("time") or sky.get("time")
+    time_stale = False
+    if isinstance(receiver_time, str):
+        try:
+            parsed_time = dt.datetime.fromisoformat(receiver_time.replace("Z", "+00:00"))
+            time_stale = abs((dt.datetime.now(dt.timezone.utc) - parsed_time).total_seconds()) > 21_600
+        except ValueError:
+            time_stale = True
+    device_details = str(device.get("subtype1", ""))
+    model_match = re.search(r"(?:^|,)MOD=([^,]+)", device_details)
+    firmware_match = re.search(r"(?:^|,)FWVER=([^,]+)", device_details)
+    protocol_match = re.search(r"(?:^|,)PROTVER=([^,]+)", device_details)
+    model_name = model_match.group(1) if model_match else None
+    firmware_name = firmware_match.group(1) if firmware_match else None
+    result.update(
+        {
+            "online": bool(device) or bool(latest),
+            "fix": mode >= 2,
+            "mode": mode,
+            "mode_label": mode_labels.get(mode, f"Mode {mode}"),
+            "time": receiver_time,
+            "time_stale": time_stale,
+            "latitude": tpv.get("lat"),
+            "longitude": tpv.get("lon"),
+            "altitude": tpv.get("altHAE", tpv.get("alt")),
+            "speed_mps": tpv.get("speed"),
+            "track_deg": tpv.get("track"),
+            "climb_mps": tpv.get("climb"),
+            "position_error_m": tpv.get("epx"),
+            "vertical_error_m": tpv.get("epv"),
+            "time_error_s": tpv.get("ept"),
+            "dop": {
+                "gdop": sky.get("gdop"),
+                "pdop": sky.get("pdop"),
+                "hdop": sky.get("hdop"),
+                "vdop": sky.get("vdop"),
+                "tdop": sky.get("tdop"),
+                "xdop": sky.get("xdop"),
+                "ydop": sky.get("ydop"),
+            },
+            "gst": {
+                "rms": gst.get("rms"),
+                "major": gst.get("major"),
+                "minor": gst.get("minor"),
+                "orientation": gst.get("orient"),
+                "latitude_error": gst.get("lat"),
+                "longitude_error": gst.get("lon"),
+                "altitude_error": gst.get("alt"),
+            },
+            "satellites": satellites,
+            "satellites_visible": int(sky.get("nSat", len(satellites)) or 0),
+            "satellites_used": int(sky.get("uSat", sum(1 for item in satellites if item["used"])) or 0),
+            "constellations": counts,
+            "device": {
+                "path": device.get("path", "/dev/ttyAMA5"),
+                "driver": device.get("driver"),
+                "subtype": device.get("subtype"),
+                "details": device_details,
+                "model": model_name,
+                "firmware": firmware_name,
+                "protocol": protocol_match.group(1) if protocol_match else None,
+                "model_firmware": " · ".join(item for item in (model_name, firmware_name) if item),
+                "baud": device.get("bps"),
+                "cycle_seconds": device.get("cycle"),
+            },
+        }
+    )
+    result["receiver_configuration"] = get_ublox_configuration() if result["online"] else result["receiver_configuration"]
+    if not result["online"]:
+        result["status"] = output["stderr"] or "GNSS receiver offline"
+        result["guidance"] = "Check gpsd, the M.2 receiver, and /dev/ttyAMA5."
+    elif result["fix"]:
+        result["status"] = result["mode_label"]
+        result["guidance"] = "Navigation and receiver time are valid."
+    elif result["satellites_visible"] == 0:
+        result["status"] = "No satellites visible"
+        antenna = result["receiver_configuration"].get("rf", {}).get("antenna_status")
+        result["guidance"] = (
+            "The active antenna is powered and electrically healthy; give it a clear view of the sky."
+            if antenna == "OK"
+            else "Check the GNSS antenna connection and give it a clear view of the sky."
+        )
+    else:
+        result["status"] = "Acquiring satellites"
+        result["guidance"] = "Receiver is online and collecting satellites; allow time for acquisition."
+    if not configured:
+        result["source_notice"] = "Receiver monitoring is active, but GNSS is not enabled as a ClockMatrix reference."
+    return result
+
+
+def status_payload() -> dict[str, Any]:
+    config = read_json(CONFIG_PATH)
+    dpll = get_dpll()
+    return {
+        "ok": detect_switchberry(),
+        "schema": SCHEMA_VERSION,
+        "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "system": get_system(),
+        "hardware": get_hardware(),
+        "config": config,
+        "clock_plane": get_clock_plane(config),
+        "ports": get_ports(),
+        "dpll": dpll,
+        "clockmatrix": get_clockmatrix_status(config, dpll),
+        "sma_io": get_sma_status(config, dpll),
+        "timing": get_timing_status(),
+        "ptp": get_ptp(config),
+        "transparent_clock": get_tc_status(),
+        "gnss": get_gnss(config),
+        "services": get_services(config),
+    }
+
+
+def require_root() -> None:
+    if os.geteuid() != 0:
+        raise ControlError("This action must run as root")
+
+
+def enum_value(value: Any, allowed: set[str], label: str, nullable: bool = False) -> str | None:
+    if value is None and nullable:
+        return None
+    normalized = str(value).strip().upper()
+    if nullable and normalized in {"", "NULL", "NONE"}:
+        return None
+    if normalized not in allowed:
+        raise ControlError(f"{label} must be one of: {', '.join(sorted(allowed))}")
+    return normalized
+
+
+def bool_value(value: Any, label: str) -> bool:
+    if isinstance(value, bool):
+        return value
+    if value in (0, 1, "0", "1"):
+        return bool(int(value))
+    raise ControlError(f"{label} must be a boolean")
+
+
+def int_value(
+    value: Any,
+    label: str,
+    minimum: int,
+    maximum: int,
+    nullable: bool = False,
+) -> int | None:
+    if nullable and value in (None, ""):
+        return None
+    if isinstance(value, bool):
+        raise ControlError(f"{label} must be an integer")
+    try:
+        number = int(value)
+    except (TypeError, ValueError) as exc:
+        raise ControlError(f"{label} must be an integer") from exc
+    if not minimum <= number <= maximum:
+        raise ControlError(f"{label} must be between {minimum} and {maximum}")
+    return number
+
+
+def optional_ip(value: Any, label: str) -> str | None:
+    if value in (None, ""):
+        return None
+    try:
+        return str(ipaddress.ip_address(str(value).strip()))
+    except ValueError as exc:
+        raise ControlError(f"{label} must be a valid IP address") from exc
+
+
+def validate_dns(value: Any) -> str | None:
+    if value in (None, ""):
+        return None
+    raw = str(value).strip()
+    entries = [entry for entry in re.split(r"[\s,]+", raw) if entry]
+    if len(entries) > 4:
+        raise ControlError("DNS may contain at most four addresses")
+    normalized = [str(ipaddress.ip_address(entry)) for entry in entries]
+    return ",".join(normalized)
+
+
+def source_config(raw: Any, label: str, present_key: str) -> dict[str, Any]:
+    if not isinstance(raw, dict):
+        raise ControlError(f"{label} must be an object")
+    present = bool_value(raw.get(present_key, False), f"{label}.{present_key}")
+    if not present:
+        return {present_key: False, "role": None, "priority": None}
+    role = enum_value(raw.get("role"), SOURCE_ROLES, f"{label}.role", nullable=True)
+    priority = int_value(raw.get("priority"), f"{label}.priority", 0, 15, nullable=True)
+    return {present_key: True, "role": role, "priority": priority}
+
+
+def default_clockmatrix_config() -> dict[str, Any]:
+    return {
+        "channels": [
+            {
+                "channel": 5,
+                "override_tuning": False,
+                "loop_bandwidth_value": 1200,
+                "loop_bandwidth_unit": "mHz",
+                "phase_slope_limit_ns_per_s": 7500,
+                "damping_factor": 5,
+                "combo_mode": "AUTOMATIC",
+            },
+            {
+                "channel": 6,
+                "override_tuning": False,
+                "loop_bandwidth_value": 100,
+                "loop_bandwidth_unit": "mHz",
+                "phase_slope_limit_ns_per_s": 100,
+                "damping_factor": 0,
+                "combo_mode": "AUTOMATIC",
+            },
+        ]
+    }
+
+
+def normalize_clockmatrix(raw: Any) -> dict[str, Any]:
+    defaults = default_clockmatrix_config()
+    if raw is None:
+        return defaults
+    if not isinstance(raw, dict):
+        raise ControlError("clockmatrix must be an object")
+    raw_channels = raw.get("channels", [])
+    if not isinstance(raw_channels, list):
+        raise ControlError("clockmatrix.channels must be an array")
+    by_channel: dict[int, dict[str, Any]] = {}
+    for item in raw_channels:
+        if not isinstance(item, dict):
+            raise ControlError("Each ClockMatrix channel setting must be an object")
+        channel = int_value(item.get("channel"), "clockmatrix.channels.channel", 5, 6)
+        if channel not in {5, 6}:
+            raise ControlError("ClockMatrix settings are available only for channels 5 and 6")
+        if channel in by_channel:
+            raise ControlError("ClockMatrix channel settings must be unique")
+        by_channel[channel] = item
+
+    normalized: list[dict[str, Any]] = []
+    defaults_by_channel = {item["channel"]: item for item in defaults["channels"]}
+    for channel in (5, 6):
+        fallback = defaults_by_channel[channel]
+        item = by_channel.get(channel, {})
+        raw_unit = str(item.get("loop_bandwidth_unit", fallback["loop_bandwidth_unit"])).strip().lower()
+        if raw_unit not in CLOCKMATRIX_BANDWIDTH_UNITS:
+            raise ControlError("ClockMatrix loop bandwidth unit must be uHz, mHz, Hz, or kHz")
+        normalized.append(
+            {
+                "channel": channel,
+                "override_tuning": bool_value(
+                    item.get("override_tuning", fallback["override_tuning"]),
+                    f"clockmatrix.channel{channel}.override_tuning",
+                ),
+                "loop_bandwidth_value": int_value(
+                    item.get("loop_bandwidth_value", fallback["loop_bandwidth_value"]),
+                    f"clockmatrix.channel{channel}.loop_bandwidth_value",
+                    0,
+                    16383,
+                ),
+                "loop_bandwidth_unit": CLOCKMATRIX_BANDWIDTH_UNITS[raw_unit],
+                "phase_slope_limit_ns_per_s": int_value(
+                    item.get("phase_slope_limit_ns_per_s", fallback["phase_slope_limit_ns_per_s"]),
+                    f"clockmatrix.channel{channel}.phase_slope_limit_ns_per_s",
+                    0,
+                    65535,
+                ),
+                "damping_factor": int_value(
+                    item.get("damping_factor", fallback["damping_factor"]),
+                    f"clockmatrix.channel{channel}.damping_factor",
+                    0,
+                    7,
+                ),
+                "combo_mode": enum_value(
+                    item.get("combo_mode", fallback["combo_mode"]),
+                    CLOCKMATRIX_COMBO_MODES,
+                    f"clockmatrix.channel{channel}.combo_mode",
+                ),
+            }
+        )
+
+    if all(item["combo_mode"] == "FOLLOW_OTHER" for item in normalized):
+        raise ControlError("ClockMatrix channels 5 and 6 cannot follow each other at the same time")
+    return {"channels": normalized}
+
+
+def default_gnss_receiver_config() -> dict[str, Any]:
+    return {
+        "manage_receiver": False,
+        "dynamic_model": "STATIONARY",
+        "measurement_rate_ms": 1000,
+        "minimum_elevation_deg": 5,
+        "constellations": {
+            "gps": True,
+            "galileo": True,
+            "glonass": True,
+            "beidou": True,
+            "sbas": True,
+            "qzss": True,
+        },
+    }
+
+
+def normalize_gnss_receiver(raw: Any) -> dict[str, Any]:
+    defaults = default_gnss_receiver_config()
+    if raw is None:
+        return defaults
+    if not isinstance(raw, dict):
+        raise ControlError("gnss_receiver must be an object")
+    raw_constellations = raw.get("constellations", defaults["constellations"])
+    if not isinstance(raw_constellations, dict):
+        raise ControlError("gnss_receiver.constellations must be an object")
+    constellations = {
+        name: bool_value(
+            raw_constellations.get(name, enabled),
+            f"gnss_receiver.constellations.{name}",
+        )
+        for name, enabled in defaults["constellations"].items()
+    }
+    if not any(constellations[name] for name in ("gps", "galileo", "glonass", "beidou")):
+        raise ControlError("At least one primary GNSS constellation must remain enabled")
+    return {
+        "manage_receiver": bool_value(
+            raw.get("manage_receiver", defaults["manage_receiver"]),
+            "gnss_receiver.manage_receiver",
+        ),
+        "dynamic_model": enum_value(
+            raw.get("dynamic_model", defaults["dynamic_model"]),
+            set(GNSS_DYNAMIC_MODELS),
+            "gnss_receiver.dynamic_model",
+        ),
+        "measurement_rate_ms": int_value(
+            raw.get("measurement_rate_ms", defaults["measurement_rate_ms"]),
+            "gnss_receiver.measurement_rate_ms",
+            100,
+            10000,
+        ),
+        "minimum_elevation_deg": int_value(
+            raw.get("minimum_elevation_deg", defaults["minimum_elevation_deg"]),
+            "gnss_receiver.minimum_elevation_deg",
+            0,
+            90,
+        ),
+        "constellations": constellations,
+    }
+
+
+def normalize_tc(raw: Any) -> dict[str, Any]:
+    if raw is None:
+        raw = {}
+    if not isinstance(raw, dict):
+        raise ControlError("tc must be an object")
+    transports = {
+        "l2": bool_value(raw.get("detect_l2", True), "tc.detect_l2"),
+        "ipv4": bool_value(raw.get("detect_ipv4", True), "tc.detect_ipv4"),
+        "ipv6": bool_value(raw.get("detect_ipv6", True), "tc.detect_ipv6"),
+    }
+    if not any(transports.values()):
+        raise ControlError("Transparent clock mode requires at least one recognized PTP transport")
+
+    raw_ports = raw.get("ports", [])
+    by_port: dict[int, Any] = {}
+    if raw_ports not in (None, []):
+        if not isinstance(raw_ports, list):
+            raise ControlError("tc.ports must be an array")
+        for item in raw_ports:
+            if not isinstance(item, dict):
+                raise ControlError("Each transparent-clock port calibration must be an object")
+            port = int_value(item.get("port"), "tc.ports.port", 1, 5)
+            if port in by_port:
+                raise ControlError("Transparent-clock port calibrations must be unique")
+            by_port[port] = item
+
+    ports = []
+    for port in range(1, 6):
+        item = by_port.get(port, {})
+        ports.append(
+            {
+                "port": port,
+                "rx_latency_ns": int_value(item.get("rx_latency_ns", 425), f"tc.port{port}.rx_latency_ns", 0, 65535),
+                "tx_latency_ns": int_value(item.get("tx_latency_ns", 243), f"tc.port{port}.tx_latency_ns", 0, 65535),
+                "asymmetry_ns": int_value(item.get("asymmetry_ns", 0), f"tc.port{port}.asymmetry_ns", -32767, 32767),
+            }
+        )
+
+    return {
+        "delay_mechanism": enum_value(raw.get("delay_mechanism", "E2E"), TC_DELAY_MECHANISMS, "tc.delay_mechanism"),
+        "one_step": bool_value(raw.get("one_step", True), "tc.one_step"),
+        "detect_l2": transports["l2"],
+        "detect_ipv4": transports["ipv4"],
+        "detect_ipv6": transports["ipv6"],
+        "ieee_802_1as": bool_value(raw.get("ieee_802_1as", False), "tc.ieee_802_1as"),
+        "unicast": bool_value(raw.get("unicast", True), "tc.unicast"),
+        "alternate_master": bool_value(raw.get("alternate_master", True), "tc.alternate_master"),
+        "priority_queue": bool_value(raw.get("priority_queue", True), "tc.priority_queue"),
+        "domain_check": bool_value(raw.get("domain_check", False), "tc.domain_check"),
+        "domain": int_value(raw.get("domain", 0), "tc.domain", 0, 255),
+        "ports": ports,
+    }
+
+
+def normalize_bc(raw: Any, warnings: list[str]) -> dict[str, Any]:
+    if raw is None:
+        raw = {}
+    if not isinstance(raw, dict):
+        raise ControlError("bc must be an object")
+    profile = enum_value(raw.get("profile", "IEEE1588"), BC_PROFILES, "bc.profile")
+    network_transport = enum_value(
+        raw.get("network_transport", "L2"), BC_NETWORK_TRANSPORTS, "bc.network_transport"
+    )
+    delay_mechanism = enum_value(
+        raw.get("delay_mechanism", "P2P"), BC_DELAY_MECHANISMS, "bc.delay_mechanism"
+    )
+    if profile in {"G8275_1", "G8275_2"}:
+        raise ControlError(
+            "The upstream KSZ9567 DSA driver supports P2P one-step transmission only; "
+            "G.8275.1 and G.8275.2 require E2E operation and cannot run as a hardware boundary clock"
+        )
+    if delay_mechanism != "P2P":
+        warnings.append("KSZ9567 hardware boundary-clock mode uses the P2P delay mechanism")
+        delay_mechanism = "P2P"
+    two_step = bool_value(raw.get("two_step", False), "bc.two_step")
+    if two_step:
+        warnings.append("KSZ9567 hardware boundary-clock mode uses one-step P2P timestamping")
+        two_step = False
+
+    raw_ports = raw.get("ports", [])
+    by_port: dict[int, Any] = {}
+    if raw_ports not in (None, []):
+        if not isinstance(raw_ports, list):
+            raise ControlError("bc.ports must be an array")
+        for item in raw_ports:
+            if not isinstance(item, dict):
+                raise ControlError("Each boundary-clock port must be an object")
+            port = int_value(item.get("port"), "bc.ports.port", 1, 5)
+            if port in by_port:
+                raise ControlError("Boundary-clock port definitions must be unique")
+            by_port[port] = item
+
+    ports = []
+    for port in range(1, 6):
+        item = by_port.get(port, {})
+        mode = enum_value(item.get("mode", "AUTO"), BC_PORT_MODES, f"bc.port{port}.mode")
+        ip_address = optional_ip(item.get("ip_address"), f"bc.port{port}.ip_address")
+        cidr = int_value(item.get("cidr"), f"bc.port{port}.cidr", 0, 128, nullable=True)
+        gateway = optional_ip(item.get("gateway"), f"bc.port{port}.gateway")
+        unicast_master = optional_ip(item.get("unicast_master"), f"bc.port{port}.unicast_master")
+        if (ip_address is None) != (cidr is None):
+            raise ControlError(f"Boundary-clock port {port} requires both an IP address and CIDR prefix")
+        expected_version = 4 if network_transport == "UDPV4" else 6 if network_transport == "UDPV6" else None
+        for label, address in (("address", ip_address), ("gateway", gateway), ("unicast master", unicast_master)):
+            if address is not None and expected_version is not None and ipaddress.ip_address(address).version != expected_version:
+                raise ControlError(f"Boundary-clock port {port} {label} must match the selected IP transport")
+        if ip_address is not None:
+            maximum_cidr = 32 if ipaddress.ip_address(ip_address).version == 4 else 128
+            if cidr is not None and cidr > maximum_cidr:
+                raise ControlError(f"Boundary-clock port {port} CIDR prefix must be at most {maximum_cidr}")
+        ports.append(
+            {
+                "port": port,
+                "interface": FRONT_PORT_INTERFACES[port],
+                "mode": mode,
+                "local_priority": int_value(item.get("local_priority", 128), f"bc.port{port}.local_priority", 1, 255),
+                "log_announce_interval": int_value(item.get("log_announce_interval", 1), f"bc.port{port}.log_announce_interval", -7, 7),
+                "log_sync_interval": int_value(item.get("log_sync_interval", 0), f"bc.port{port}.log_sync_interval", -7, 7),
+                "log_min_delay_req_interval": int_value(item.get("log_min_delay_req_interval", 0), f"bc.port{port}.log_min_delay_req_interval", -7, 7),
+                "delay_asymmetry_ns": int_value(item.get("delay_asymmetry_ns", 0), f"bc.port{port}.delay_asymmetry_ns", -1_000_000_000, 1_000_000_000),
+                "ingress_latency_ns": int_value(item.get("ingress_latency_ns", 0), f"bc.port{port}.ingress_latency_ns", -1_000_000_000, 1_000_000_000),
+                "egress_latency_ns": int_value(item.get("egress_latency_ns", 0), f"bc.port{port}.egress_latency_ns", -1_000_000_000, 1_000_000_000),
+                "ip_address": ip_address,
+                "cidr": cidr,
+                "gateway": gateway,
+                "unicast_master": unicast_master,
+            }
+        )
+
+    enabled = [port for port in ports if port["mode"] != "DISABLED"]
+    if len(enabled) < 2:
+        raise ControlError("Boundary clock mode requires at least two enabled front-panel ports")
+    if not any(port["mode"] in {"AUTO", "UPSTREAM"} for port in enabled):
+        raise ControlError("Boundary clock mode requires an upstream-capable port")
+    if not any(port["mode"] in {"AUTO", "DOWNSTREAM"} for port in enabled):
+        raise ControlError("Boundary clock mode requires a downstream-capable port")
+    if profile == "G8275_2" and not any(port["unicast_master"] for port in enabled):
+        raise ControlError("G.8275.2 requires a unicast master address on at least one enabled port")
+    if network_transport in {"UDPV4", "UDPV6"}:
+        missing_addresses = [str(port["port"]) for port in enabled if port["ip_address"] is None]
+        if missing_addresses:
+            raise ControlError(
+                "IP boundary-clock transport requires an address and CIDR on enabled port(s): "
+                + ", ".join(missing_addresses)
+            )
+
+    return {
+        "profile": profile,
+        "network_transport": network_transport,
+        "delay_mechanism": delay_mechanism,
+        "domain": int_value(raw.get("domain", 0), "bc.domain", 0, 255),
+        "two_step": two_step,
+        "priority1": int_value(raw.get("priority1", 128), "bc.priority1", 0, 255),
+        "priority2": int_value(raw.get("priority2", 128), "bc.priority2", 0, 255),
+        "clock_class": int_value(raw.get("clock_class", 248), "bc.clock_class", 0, 255),
+        "local_priority": int_value(raw.get("local_priority", 128), "bc.local_priority", 1, 255),
+        "announce_receipt_timeout": int_value(raw.get("announce_receipt_timeout", 3), "bc.announce_receipt_timeout", 2, 255),
+        "tx_timestamp_timeout": int_value(raw.get("tx_timestamp_timeout", 1000), "bc.tx_timestamp_timeout", 10, 10000),
+        "summary_interval": int_value(raw.get("summary_interval", 0), "bc.summary_interval", -7, 7),
+        "clock_servo": enum_value(raw.get("clock_servo", "PI"), BC_CLOCK_SERVOS, "bc.clock_servo"),
+        "sync_system_clock": bool_value(raw.get("sync_system_clock", False), "bc.sync_system_clock"),
+        "ports": ports,
+    }
+
+
+def normalize_config(data: Any) -> tuple[dict[str, Any], list[str]]:
+    if not isinstance(data, dict):
+        raise ControlError("Configuration must be a JSON object")
+
+    warnings: list[str] = []
+    ptp_role = enum_value(data.get("ptp_role"), PTP_ROLES, "ptp_role")
+    clockmatrix = normalize_clockmatrix(data.get("clockmatrix"))
+    gnss_receiver = normalize_gnss_receiver(data.get("gnss_receiver"))
+    tc = normalize_tc(data.get("tc"))
+    bc = normalize_bc(data.get("bc"), warnings)
+    if tc["ieee_802_1as"] and (not tc["detect_l2"] or tc["delay_mechanism"] != "P2P"):
+        warnings.append("IEEE 802.1AS transparent operation enables Layer 2 detection and P2P delay")
+        tc["detect_l2"] = True
+        tc["delay_mechanism"] = "P2P"
+
+    gps = source_config(data.get("gps"), "gps", "present")
+    cm4 = source_config(data.get("cm4"), "cm4", "used_as_source")
+    if gnss_receiver["manage_receiver"] and not gps["present"]:
+        raise ControlError("A managed GNSS receiver profile requires the M.2 GNSS timing source to be enabled")
+
+    raw_synce = data.get("synce")
+    if not isinstance(raw_synce, dict):
+        raise ControlError("synce must be an object")
+    synce_used = bool_value(raw_synce.get("used_as_source", False), "synce.used_as_source")
+    synce = {
+        "used_as_source": synce_used,
+        "priority": int_value(raw_synce.get("priority"), "synce.priority", 0, 15, nullable=True)
+        if synce_used
+        else None,
+        "recover_port": int_value(raw_synce.get("recover_port"), "synce.recover_port", 1, 5, nullable=True)
+        if synce_used
+        else None,
+    }
+    if synce_used and synce["recover_port"] is None:
+        raise ControlError("A front-panel recover port is required when SyncE is enabled")
+
+    raw_smas = data.get("smas")
+    if not isinstance(raw_smas, list) or len(raw_smas) != 4:
+        raise ControlError("smas must contain exactly SMA1 through SMA4")
+    by_name: dict[str, Any] = {}
+    for raw_sma in raw_smas:
+        if not isinstance(raw_sma, dict):
+            raise ControlError("Each SMA entry must be an object")
+        name = str(raw_sma.get("name", "")).strip().upper()
+        if name not in {"SMA1", "SMA2", "SMA3", "SMA4"} or name in by_name:
+            raise ControlError("SMA names must be unique and cover SMA1 through SMA4")
+        by_name[name] = raw_sma
+
+    smas: list[dict[str, Any]] = []
+    for number in range(1, 5):
+        name = f"SMA{number}"
+        raw_sma = by_name.get(name)
+        if raw_sma is None:
+            raise ControlError(f"{name} is missing")
+        direction = enum_value(raw_sma.get("direction"), SMA_DIRECTIONS, f"{name}.direction")
+        role = enum_value(raw_sma.get("role"), SOURCE_ROLES, f"{name}.role", nullable=True)
+        priority = int_value(raw_sma.get("priority"), f"{name}.priority", 0, 15, nullable=True)
+        frequency = int_value(
+            raw_sma.get("frequency_hz"), f"{name}.frequency_hz", 1, 250_000_000, nullable=True
+        )
+
+        if direction == "INPUT":
+            if role in {None, "NONE"} or priority is None:
+                raise ControlError(f"{name} input requires a role and priority")
+            if frequency is None:
+                frequency = 10_000_000 if role == "FREQ_ONLY" else 1
+                warnings.append(f"{SMA_HARDWARE[name]['rear']} input frequency defaulted to {format_frequency(frequency)}")
+        else:
+            role = None
+            priority = None
+        if direction == "OUTPUT" and frequency is None:
+            raise ControlError(f"{name} output requires a frequency")
+        if direction == "UNUSED":
+            frequency = None
+
+        # Hardware SMA4 is the rear-panel User SMA1 and is input-only.
+        if name == "SMA4" and direction == "OUTPUT":
+            raise ControlError("Rear-panel SMA1 (hardware SMA4) is input-only")
+        # Hardware SMA1 shares the CM4 PPS path.
+        if name == "SMA1" and direction == "OUTPUT" and ptp_role == "GM":
+            raise ControlError("Rear-panel SMA4 cannot output while the CM4 is a PTP grandmaster")
+        if name == "SMA3" and direction == "OUTPUT" and frequency == 1:
+            warnings.append(
+                "Rear-panel SMA2 can synthesize 1 Hz, but Q9/channel 5 does not provide a phase-aligned 1PPS output"
+            )
+
+        smas.append(
+            {
+                "name": name,
+                "direction": direction,
+                "role": role,
+                "priority": priority,
+                "frequency_hz": frequency,
+            }
+        )
+
+    sma_by_name = {item["name"]: item for item in smas}
+    if synce["used_as_source"] and sma_by_name["SMA1"]["direction"] == "INPUT":
+        raise ControlError("Rear-panel SMA4 input and SyncE share DPLL IN1; disable one of these references")
+    if cm4["used_as_source"] and sma_by_name["SMA2"]["direction"] == "INPUT":
+        raise ControlError("Rear-panel SMA3 input and the CM4 PPS source share DPLL IN2; disable one of them")
+    if (
+        gps["present"]
+        and gps["role"] is not None
+        and sma_by_name["SMA3"]["direction"] == "INPUT"
+    ):
+        raise ControlError("Rear-panel SMA2 input and M.2 GNSS PPS share DPLL IN3; disable one of them")
+
+    raw_network = data.get("network", {})
+    if not isinstance(raw_network, dict):
+        raise ControlError("network must be an object")
+    mode = enum_value(raw_network.get("mode", "DHCP"), {"DHCP", "STATIC"}, "network.mode")
+    network = {
+        "mode": mode,
+        "ip_address": optional_ip(raw_network.get("ip_address"), "network.ip_address"),
+        "cidr": int_value(raw_network.get("cidr"), "network.cidr", 1, 32, nullable=True),
+        "gateway": optional_ip(raw_network.get("gateway"), "network.gateway"),
+        "dns": validate_dns(raw_network.get("dns")),
+    }
+    if mode == "STATIC" and (network["ip_address"] is None or network["cidr"] is None):
+        raise ControlError("Static Ethernet mode requires an IP address and CIDR prefix")
+    if mode == "DHCP":
+        network = {"mode": "DHCP", "ip_address": None, "cidr": None, "gateway": None, "dns": None}
+
+    raw_ptp = data.get("ptp", {})
+    if not isinstance(raw_ptp, dict):
+        raise ControlError("ptp must be an object")
+    ptp = {
+        "transport": enum_value(raw_ptp.get("transport", "UNICAST"), PTP_TRANSPORTS, "ptp.transport"),
+        "master_ip": optional_ip(raw_ptp.get("master_ip"), "ptp.master_ip"),
+        "time_traceable": bool_value(raw_ptp.get("time_traceable", True), "ptp.time_traceable"),
+    }
+    if ptp_role != "CLIENT" or ptp["transport"] != "UNICAST":
+        ptp["master_ip"] = None
+    elif ptp["master_ip"] is None:
+        raise ControlError("PTP client unicast mode requires a master IP address")
+
+    time_sources = []
+    for label, source in (("GPS", gps), ("CM4", cm4)):
+        enabled = source.get("present", source.get("used_as_source", False))
+        if enabled and source.get("role") in {"TIME_ONLY", "TIME_AND_FREQ"}:
+            time_sources.append(label)
+    time_sources.extend(
+        sma["name"]
+        for sma in smas
+        if sma["direction"] == "INPUT" and sma["role"] in {"TIME_ONLY", "TIME_AND_FREQ"}
+    )
+    if ptp_role == "GM" and not time_sources:
+        raise ControlError("PTP grandmaster mode requires at least one time/1PPS source")
+
+    return (
+        {
+            "ptp_role": ptp_role,
+            "gps": gps,
+            "cm4": cm4,
+            "synce": synce,
+            "smas": smas,
+            "clockmatrix": clockmatrix,
+            "gnss_receiver": gnss_receiver,
+            "network": network,
+            "ptp": ptp,
+            "tc": tc,
+            "bc": bc,
+        },
+        warnings,
+    )
+
+
+def read_stdin_json() -> Any:
+    raw = sys.stdin.buffer.read(MAX_CONFIG_BYTES + 1)
+    if len(raw) > MAX_CONFIG_BYTES:
+        raise ControlError("Configuration exceeds the 64 KiB limit")
+    try:
+        return json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ControlError(f"Invalid JSON: {exc}") from exc
+
+
+def backup_config() -> str | None:
+    if not CONFIG_PATH.is_file():
+        return None
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True, mode=0o750)
+    timestamp = dt.datetime.now().strftime("%Y%m%dT%H%M%S.%f")
+    destination = BACKUP_DIR / f"startup-dpll.{timestamp}.json"
+    shutil.copy2(CONFIG_PATH, destination)
+    os.chmod(destination, 0o640)
+    backups = sorted(BACKUP_DIR.glob("startup-dpll.*.json"), key=lambda path: path.stat().st_mtime)
+    for old in backups[:-10]:
+        old.unlink(missing_ok=True)
+    return str(destination)
+
+
+def atomic_write_config(config: dict[str, Any]) -> None:
+    CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temp_path = tempfile.mkstemp(prefix=".startup-dpll.", suffix=".json", dir=str(CONFIG_PATH.parent))
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+            json.dump(config, handle, indent=2)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temp_path, 0o644)
+        os.replace(temp_path, CONFIG_PATH)
+    finally:
+        if os.path.exists(temp_path):
+            os.unlink(temp_path)
+
+
+def atomic_write_text(path: pathlib.Path, content: str, mode: int = 0o644) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temp_path = tempfile.mkstemp(prefix=f".{path.name}.", dir=str(path.parent))
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temp_path, mode)
+        os.replace(temp_path, path)
+    finally:
+        if os.path.exists(temp_path):
+            os.unlink(temp_path)
+
+
+def configure_boot_plane(plane: str) -> str | None:
+    if plane not in {"TC", "DSA"}:
+        raise ControlError("Invalid Switchberry boot plane")
+    if not BOOT_CONFIG_PATH.is_file():
+        raise ControlError(f"Boot configuration is missing at {BOOT_CONFIG_PATH}")
+    original = BOOT_CONFIG_PATH.read_text(encoding="utf-8")
+    target_overlay = "switchberrybc-v6" if plane == "DSA" else "switchberrytc"
+    alternate_overlay = "switchberrytc" if plane == "DSA" else "switchberrybc-v6"
+    managed_names = {"switchberrytc", "switchberrybc-v6", "ksz9567"}
+    output: list[str] = []
+    inserted = False
+    for line in original.splitlines():
+        match = re.match(r"^\s*#?\s*dtoverlay\s*=\s*([A-Za-z0-9_-]+)\s*$", line)
+        if match and match.group(1).lower() in managed_names:
+            if not inserted:
+                output.extend((f"dtoverlay={target_overlay}", f"#dtoverlay={alternate_overlay}"))
+                inserted = True
+            continue
+        if match and match.group(1).lower() == "spi0-1cs":
+            output.append("#dtoverlay=spi0-1cs" if plane == "DSA" else "dtoverlay=spi0-1cs")
+            continue
+        output.append(line)
+    if not inserted:
+        output.extend((f"dtoverlay={target_overlay}", f"#dtoverlay={alternate_overlay}"))
+    if plane == "TC" and not any(
+        re.match(r"^\s*dtoverlay\s*=\s*spi0-1cs\s*$", line) for line in output
+    ):
+        output.append("dtoverlay=spi0-1cs")
+    updated = "\n".join(output) + "\n"
+    if updated == original:
+        return None
+
+    timestamp = dt.datetime.now().strftime("%Y%m%dT%H%M%S.%f")
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True, mode=0o750)
+    backup = BACKUP_DIR / f"boot-config.{timestamp}.txt"
+    shutil.copy2(BOOT_CONFIG_PATH, backup)
+    os.chmod(backup, 0o640)
+    backups = sorted(BACKUP_DIR.glob("boot-config.*.txt"), key=lambda path: path.stat().st_mtime)
+    for old in backups[:-10]:
+        old.unlink(missing_ok=True)
+    atomic_write_text(BOOT_CONFIG_PATH, updated)
+    return str(backup)
+
+
+def generate_bc_config(config: dict[str, Any]) -> str:
+    bc = config["bc"]
+    transport = {"L2": "L2", "UDPV4": "UDPv4", "UDPV6": "UDPv6"}[bc["network_transport"]]
+    delay = bc["delay_mechanism"]
+    profile = bc["profile"]
+    dataset_comparison = "G.8275.x" if profile in {"G8275_1", "G8275_2"} else "ieee1588"
+    lines = [
+        "# Generated by raspap-switchberryctl; do not edit.",
+        "[global]",
+        "clock_type\t\tBC",
+        "time_stamping\t\tp2p1step",
+        "boundary_clock_jbod\t0",
+        f"network_transport\t{transport}",
+        f"delay_mechanism\t\t{delay}",
+        f"domainNumber\t\t{bc['domain']}",
+        f"twoStepFlag\t\t{1 if bc['two_step'] else 0}",
+        f"priority1\t\t{bc['priority1']}",
+        f"priority2\t\t{bc['priority2']}",
+        f"clockClass\t\t{bc['clock_class']}",
+        f"dataset_comparison\t{dataset_comparison}",
+        f"G.8275.defaultDS.localPriority\t{bc['local_priority']}",
+        f"announceReceiptTimeout\t{bc['announce_receipt_timeout']}",
+        f"tx_timestamp_timeout\t{bc['tx_timestamp_timeout']}",
+        f"summary_interval\t{bc['summary_interval']}",
+        f"clock_servo\t\t{bc['clock_servo'].lower()}",
+        "free_running\t\t0",
+        "uds_address\t\t/run/ptp4l-switchberry-bc",
+        "uds_ro_address\t\t/run/ptp4l-switchberry-bc-ro",
+        "uds_file_mode\t\t0660",
+        "uds_ro_file_mode\t0666",
+        "use_syslog\t\t1",
+        "verbose\t\t0",
+    ]
+    if profile == "G8275_2":
+        lines.extend(("inhibit_multicast_service\t1", "unicast_listen\t\t1", "unicast_req_duration\t60"))
+
+    table_id = 1
+    table_by_port: dict[int, int] = {}
+    for port in bc["ports"]:
+        if (
+            bc["network_transport"] in {"UDPV4", "UDPV6"}
+            and port["mode"] != "DISABLED"
+            and port["unicast_master"]
+        ):
+            table_by_port[port["port"]] = table_id
+            lines.extend(
+                (
+                    "",
+                    "[unicast_master_table]",
+                    f"table_id\t\t\t{table_id}",
+                    "logQueryInterval\t0",
+                    f"{'UDPv6' if bc['network_transport'] == 'UDPV6' else 'UDPv4'}\t\t\t{port['unicast_master']}",
+                )
+            )
+            table_id += 1
+
+    for port in bc["ports"]:
+        if port["mode"] == "DISABLED":
+            continue
+        lines.extend(
+            (
+                "",
+                f"[{port['interface']}]",
+                f"G.8275.portDS.localPriority\t{port['local_priority']}",
+                f"logAnnounceInterval\t{port['log_announce_interval']}",
+                f"logSyncInterval\t\t{port['log_sync_interval']}",
+                f"logMinDelayReqInterval\t{port['log_min_delay_req_interval']}",
+                f"delayAsymmetry\t\t{port['delay_asymmetry_ns']}",
+                f"ingressLatency\t\t{port['ingress_latency_ns']}",
+                f"egressLatency\t\t{port['egress_latency_ns']}",
+            )
+        )
+        if port["mode"] == "UPSTREAM":
+            lines.append("clientOnly\t\t1")
+        elif port["mode"] == "DOWNSTREAM":
+            lines.append("serverOnly\t\t1")
+        if port["port"] in table_by_port:
+            lines.append(f"unicast_master_table\t{table_by_port[port['port']]}")
+    return "\n".join(lines) + "\n"
+
+
+def apply_tc_config(config: dict[str, Any], enabled: bool = True) -> None:
+    tc = config["tc"]
+    role = config["ptp_role"]
+    message1 = 0
+    if enabled:
+        message1 |= 1 << 6
+    if tc["ieee_802_1as"]:
+        message1 |= 1 << 7
+    if tc["detect_l2"]:
+        message1 |= 1 << 5
+    if tc["detect_ipv4"]:
+        message1 |= 1 << 4
+    if tc["detect_ipv6"]:
+        message1 |= 1 << 3
+    if tc["delay_mechanism"] == "P2P":
+        message1 |= 1 << 2
+    if role == "GM":
+        message1 |= 1 << 1
+    if tc["one_step"]:
+        message1 |= 1
+
+    message2 = 0
+    if tc["unicast"]:
+        message2 |= 1 << 12
+    if tc["alternate_master"]:
+        message2 |= 1 << 11
+    if tc["priority_queue"]:
+        message2 |= 1 << 10
+    if tc["domain_check"]:
+        message2 |= 1 << 4
+    if tc["detect_ipv4"]:
+        message2 |= 1 << 2
+
+    ksz_write(0x500, 0x8002, 2)
+    ksz_write(0x514, message1, 2)
+    ksz_write(0x516, message2, 2)
+    ksz_write(0x518, (2 << 8) | tc["domain"], 2)
+    for port in tc["ports"]:
+        number = port["port"]
+        asymmetry = abs(port["asymmetry_ns"]) | (0x8000 if port["asymmetry_ns"] < 0 else 0)
+        ksz_write(port_register(number, 0xC00), port["rx_latency_ns"], 2)
+        ksz_write(port_register(number, 0xC02), port["tx_latency_ns"], 2)
+        ksz_write(port_register(number, 0xC04), asymmetry, 2)
+
+
+def queue_apply() -> str:
+    if not os.path.isfile(CONTROL_PATH):
+        raise ControlError(f"Installed controller not found at {CONTROL_PATH}")
+    unit = f"raspap-switchberry-apply-{int(time.time())}"
+    result = run(
+        [
+            "/usr/bin/systemd-run",
+            f"--unit={unit}",
+            "--collect",
+            "--no-block",
+            "--property=Type=oneshot",
+            CONTROL_PATH,
+            "_apply",
+        ],
+        timeout=8,
+    )
+    if not result["ok"]:
+        raise ControlError(result["stderr"] or result["stdout"] or "Unable to queue timing stack apply")
+    return unit
+
+
+def systemctl(action: str, service: str, required: bool = True, timeout: float = 30) -> None:
+    if action not in {"start", "stop", "restart"} or service not in SERVICES:
+        raise ControlError("Invalid Switchberry service action")
+    result = run(["/usr/bin/systemctl", action, service], timeout=timeout)
+    if required and not result["ok"]:
+        raise ControlError(result["stderr"] or result["stdout"] or f"Unable to {action} {service}")
+
+
+def stop_ptp_services() -> None:
+    for service in (
+        "ptp4l-switchberry-gm.service",
+        "ptp4l-switchberry-client.service",
+        "ptp4l-switchberry-bc.service",
+        "switchberry-phc2sys.service",
+        "switchberry-bc-phc2sys.service",
+        "switchberry-chrony.service",
+        "ts2phc-switchberry.service",
+    ):
+        systemctl("stop", service, required=False)
+    run(["/usr/bin/systemctl", "stop", "switchberry-cm4-pps-monitor.service"], timeout=20)
+
+
+def prepare_bc_ports(config: dict[str, Any]) -> None:
+    previous = read_json(BC_ADDRESS_STATE_PATH)
+    for item in previous.get("addresses", []):
+        if not isinstance(item, dict):
+            continue
+        interface = str(item.get("interface", ""))
+        address = str(item.get("address", ""))
+        route = str(item.get("route", ""))
+        gateway = str(item.get("gateway", ""))
+        if interface in FRONT_PORT_INTERFACES.values() and address:
+            run(["/usr/sbin/ip", "address", "del", address, "dev", interface], timeout=4)
+        if interface in FRONT_PORT_INTERFACES.values() and route and gateway:
+            run(["/usr/sbin/ip", "route", "del", route, "via", gateway, "dev", interface], timeout=4)
+
+    applied: list[dict[str, str]] = []
+    ip_transport = config["bc"]["network_transport"] in {"UDPV4", "UDPV6"}
+    for port in config["bc"]["ports"]:
+        interface = port["interface"]
+        if not pathlib.Path(f"/sys/class/net/{interface}").exists():
+            raise ControlError(f"Boundary-clock interface {interface} is unavailable; reboot into the DSA plane")
+        if os.path.isfile("/usr/bin/nmcli"):
+            run(["/usr/bin/nmcli", "device", "set", interface, "managed", "no"], timeout=5)
+        state = "down" if port["mode"] == "DISABLED" else "up"
+        result = run(["/usr/sbin/ip", "link", "set", "dev", interface, state], timeout=4)
+        if not result["ok"]:
+            result = run(["/sbin/ip", "link", "set", "dev", interface, state], timeout=4)
+        if not result["ok"]:
+            raise ControlError(result["stderr"] or f"Unable to set {interface} {state}")
+        if state == "up" and ip_transport:
+            address = f"{port['ip_address']}/{port['cidr']}"
+            result = run(["/usr/sbin/ip", "address", "replace", address, "dev", interface], timeout=4)
+            if not result["ok"]:
+                raise ControlError(result["stderr"] or f"Unable to configure {address} on {interface}")
+            record = {"interface": interface, "address": address, "route": "", "gateway": ""}
+            if port["unicast_master"] and port["gateway"]:
+                route = f"{port['unicast_master']}/{'32' if ipaddress.ip_address(port['unicast_master']).version == 4 else '128'}"
+                result = run(
+                    ["/usr/sbin/ip", "route", "replace", route, "via", port["gateway"], "dev", interface],
+                    timeout=4,
+                )
+                if not result["ok"]:
+                    raise ControlError(result["stderr"] or f"Unable to route {route} through {interface}")
+                record.update({"route": route, "gateway": port["gateway"]})
+            applied.append(record)
+    atomic_write_text(BC_ADDRESS_STATE_PATH, json.dumps({"addresses": applied}, indent=2) + "\n", mode=0o600)
+
+
+def command_role_apply() -> None:
+    require_root()
+    config, _ = normalize_config(read_json(CONFIG_PATH))
+    role = config["ptp_role"]
+    plane = active_switch_plane()
+    wanted = desired_switch_plane(config)
+    if plane != wanted:
+        raise ControlError(f"Mode {role} requires the {wanted} switch plane; reboot is required")
+
+    stop_ptp_services()
+    if role == "BC":
+        prepare_bc_ports(config)
+        atomic_write_text(BC_CONFIG_PATH, generate_bc_config(config), mode=0o640)
+        systemctl("start", "ptp4l-switchberry-bc.service")
+        if config["bc"]["sync_system_clock"]:
+            systemctl("start", "switchberry-bc-phc2sys.service")
+        return
+
+    if role == "NONE":
+        apply_tc_config(config, enabled=False)
+        return
+
+    apply_tc_config(config, enabled=True)
+    if role == "TC":
+        return
+    generator = run(
+        [
+            "/usr/bin/python3",
+            "/usr/local/sbin/generate_ptp_conf.py",
+            "--config",
+            str(CONFIG_PATH),
+            "--outdir",
+            "/etc/switchberry",
+        ],
+        timeout=10,
+    )
+    if not generator["ok"]:
+        raise ControlError(generator["stderr"] or generator["stdout"] or "Unable to generate the ptp4l profile")
+    if role == "GM":
+        systemctl("start", "gpspipe-socat.service", required=False)
+        systemctl("start", "ts2phc-switchberry.service")
+        systemctl("start", "ptp4l-switchberry-gm.service")
+        systemctl("start", "switchberry-phc2sys.service")
+        systemctl("start", "switchberry-chrony.service")
+        return
+    if role == "CLIENT":
+        systemctl("start", "ptp4l-switchberry-client.service")
+        run(["/usr/bin/systemctl", "start", "switchberry-cm4-pps-monitor.service"], timeout=20)
+        systemctl("start", "switchberry-phc2sys.service")
+
+
+def command_apply_timing() -> None:
+    """Run the board timing utility with a role it understands.
+
+    The original Switchberry utility predates transparent- and boundary-clock
+    roles and accepts only GM, CLIENT, and NONE. Boundary-clock hardware uses
+    the client-safe CM4/DPLL routing; a standalone transparent clock uses the
+    neutral routing. The authoritative configuration remains unchanged.
+    """
+    require_root()
+    config, _ = normalize_config(read_json(CONFIG_PATH))
+    compatibility = json.loads(json.dumps(config))
+    compatibility["ptp_role"] = {"BC": "CLIENT", "TC": "NONE"}.get(
+        config["ptp_role"], config["ptp_role"]
+    )
+    atomic_write_text(TIMING_COMPAT_PATH, json.dumps(compatibility, indent=2) + "\n", mode=0o600)
+    result = run(
+        [
+            "/usr/bin/python3",
+            "/usr/local/sbin/apply_timing.py",
+            "-c",
+            str(TIMING_COMPAT_PATH),
+        ],
+        timeout=180,
+    )
+    if result["stdout"]:
+        print(result["stdout"], end="")
+    if result["stderr"]:
+        print(result["stderr"], end="", file=sys.stderr)
+    if not result["ok"]:
+        raise ControlError("Switchberry timing utility failed")
+    apply_gnss_receiver_settings(config)
+    apply_clockmatrix_overrides(config)
+    atomic_write_text(
+        SMA_APPLIED_STATE_PATH,
+        json.dumps(
+            {
+                "applied_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                "fingerprint": sma_config_fingerprint(config),
+                "configured_role": config["ptp_role"],
+                "board_timing_role": compatibility["ptp_role"],
+                "smas": config["smas"],
+            },
+            indent=2,
+        )
+        + "\n",
+        mode=0o640,
+    )
+    atomic_write_text(
+        CLOCKMATRIX_APPLIED_STATE_PATH,
+        json.dumps(
+            {
+                "applied_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                "fingerprint": clockmatrix_config_fingerprint(config),
+                "clockmatrix": config["clockmatrix"],
+            },
+            indent=2,
+        )
+        + "\n",
+        mode=0o640,
+    )
+    atomic_write_text(
+        GNSS_APPLIED_STATE_PATH,
+        json.dumps(
+            {
+                "applied_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                "fingerprint": gnss_config_fingerprint(config),
+                "gps": config["gps"],
+                "gnss_receiver": config["gnss_receiver"],
+            },
+            indent=2,
+        )
+        + "\n",
+        mode=0o640,
+    )
+
+
+def run_dpll_control(dplltool: str, arguments: list[str], description: str) -> str:
+    result = run([dplltool, *arguments], timeout=10)
+    if not result["ok"]:
+        raise ControlError(result["stderr"] or result["stdout"] or f"Unable to {description}")
+    return result["stdout"]
+
+
+def apply_gnss_receiver_settings(config: dict[str, Any]) -> None:
+    settings = config["gnss_receiver"]
+    if not settings["manage_receiver"]:
+        return
+    if not config["gps"]["present"]:
+        raise ControlError("Enable the M.2 GNSS timing source before applying a managed receiver profile")
+    ubxtool = shutil.which("ubxtool")
+    if ubxtool is None:
+        raise ControlError("u-blox receiver control utility is unavailable")
+    values = {
+        "CFG-NAVSPG-DYNMODEL": GNSS_DYNAMIC_MODELS[settings["dynamic_model"]],
+        "CFG-RATE-MEAS": settings["measurement_rate_ms"],
+        "CFG-RATE-NAV": 1,
+        "CFG-NAVSPG-INFIL_MINELEV": settings["minimum_elevation_deg"],
+    }
+    values.update(
+        {
+            key: 1 if settings["constellations"][name] else 0
+            for name, key in GNSS_CONSTELLATION_KEYS.items()
+        }
+    )
+    command = [ubxtool, "-P", UBLOX_PROTOCOL_VERSION]
+    for key, value in values.items():
+        # RAM is authoritative at runtime. The normalized profile is reapplied
+        # at every boot without repeatedly writing receiver flash.
+        command.extend(("-z", f"{key},{value},1"))
+    command.extend(("-w", "2", "-v", "1"))
+    result = run(command, timeout=6)
+    if not result["ok"] or "UBX-ACK-NAK" in result["stdout"]:
+        raise ControlError(result["stderr"] or result["stdout"] or "Unable to configure the GNSS receiver")
+
+
+def apply_clockmatrix_overrides(config: dict[str, Any]) -> None:
+    dplltool = first_executable(DPLLTOOL_CANDIDATES)
+    if dplltool is None:
+        raise ControlError("ClockMatrix control utility is unavailable")
+    for item in config["clockmatrix"]["channels"]:
+        channel = item["channel"]
+        other = 6 if channel == 5 else 5
+        if item["override_tuning"]:
+            run_dpll_control(
+                dplltool,
+                ["set-loop-bw", str(channel), str(item["loop_bandwidth_value"]), item["loop_bandwidth_unit"]],
+                f"set channel {channel} loop bandwidth",
+            )
+            run_dpll_control(
+                dplltool,
+                ["set-psl", str(channel), str(item["phase_slope_limit_ns_per_s"])],
+                f"set channel {channel} phase-slope limit",
+            )
+            run_dpll_control(
+                dplltool,
+                ["set-damp-factor", str(channel), str(item["damping_factor"])],
+                f"set channel {channel} damping factor",
+            )
+        if item["combo_mode"] == "INDEPENDENT":
+            run_dpll_control(
+                dplltool,
+                ["set-combo-slave", str(channel), str(other), "disable"],
+                f"make channel {channel} independent",
+            )
+        elif item["combo_mode"] == "FOLLOW_OTHER":
+            run_dpll_control(
+                dplltool,
+                ["set-combo-slave", str(channel), str(other), "enable"],
+                f"make channel {channel} follow channel {other}",
+            )
+
+
+def command_clockmatrix(channel: int, action: str) -> None:
+    require_root()
+    if channel not in {5, 6} or action not in CLOCKMATRIX_ACTIONS:
+        raise ControlError("Invalid ClockMatrix channel action")
+    dplltool = first_executable(DPLLTOOL_CANDIDATES)
+    if dplltool is None:
+        raise ControlError("ClockMatrix control utility is unavailable")
+    if action == "reacquire":
+        run_dpll_control(dplltool, ["set_oper_state", str(channel), "FREERUN"], "start channel reacquisition")
+        time.sleep(0.3)
+        run_dpll_control(dplltool, ["set_oper_state", str(channel), "NORMAL"], "complete channel reacquisition")
+        message = f"ClockMatrix channel {channel} reacquisition requested"
+    else:
+        state = CLOCKMATRIX_OPERATING_STATES[action]
+        run_dpll_control(dplltool, ["set_oper_state", str(channel), state], f"set channel {channel} {state}")
+        message = f"ClockMatrix channel {channel} operating state set to {state}"
+    time.sleep(0.1)
+    observed = run([dplltool, "get-state", str(channel)], timeout=5)
+    emit(
+        {
+            "ok": True,
+            "message": message,
+            "channel": channel,
+            "action": action,
+            "observed_state": observed["stdout"] or "Unknown",
+        }
+    )
+
+
+def command_gnss(action: str) -> None:
+    require_root()
+    if action not in GNSS_ACTIONS:
+        raise ControlError("Invalid GNSS receiver action")
+    if action == "restart":
+        systemctl("restart", "gpsd.service")
+        systemctl("restart", "gpspipe-socat.service", required=False)
+        emit({"ok": True, "action": action, "message": "GNSS data services restarted"})
+
+    ubxtool = shutil.which("ubxtool")
+    if ubxtool is None:
+        raise ControlError("u-blox receiver control utility is unavailable")
+    preset = {"hotstart": "HOTBOOT", "warmstart": "WARMBOOT", "coldstart": "COLDBOOT"}[action]
+    result = run([ubxtool, "-P", UBLOX_PROTOCOL_VERSION, "-p", preset, "-w", "1"], timeout=5)
+    if not result["ok"] or "UBX-ACK-NAK" in result["stdout"]:
+        raise ControlError(result["stderr"] or result["stdout"] or f"Unable to perform GNSS {action}")
+    time.sleep(2)
+    config, _ = normalize_config(read_json(CONFIG_PATH))
+    if config["gnss_receiver"]["manage_receiver"]:
+        apply_gnss_receiver_settings(config)
+    labels = {"hotstart": "Hot start", "warmstart": "Warm start", "coldstart": "Cold start"}
+    emit({"ok": True, "action": action, "message": f"GNSS receiver {labels[action].lower()} requested"})
+
+
+def command_eth0_fixup() -> None:
+    """Recover the external CM4 PHY after returning from the DSA plane."""
+    require_root()
+    if active_switch_plane() != "TC":
+        raise SystemExit(1)
+    # bcmgenet can retry the MDIO probe roughly 30 seconds after eth0 appears.
+    # Give that normal retry a chance before consuming a recovery attempt.
+    for _attempt in range(36):
+        if pathlib.Path("/sys/class/net/eth0/phydev").exists():
+            if ETH0_FIX_COUNTER_PATH.exists():
+                atomic_write_text(ETH0_FIX_COUNTER_PATH, "0\n")
+            print("[switchberry-eth0-fixup] eth0 PHY is attached; no recovery needed.")
+            return
+        time.sleep(1)
+
+    try:
+        attempts = int(read_text(str(ETH0_FIX_COUNTER_PATH)) or "0")
+    except ValueError:
+        attempts = 0
+    if attempts >= 4:
+        raise ControlError("eth0 PHY recovery failed after four safe-mux reboot attempts")
+
+    gpioset = first_executable(("/usr/bin/gpioset", "/usr/local/bin/gpioset"))
+    if gpioset is None:
+        raise ControlError("gpioset is required for eth0 PHY recovery")
+    for settings in (("10=1", "11=0"), ("16=0",), ("6=0", "7=0"), ("13=1",)):
+        result = run([gpioset, "-t", "0", "-c", "gpiochip2", *settings], timeout=5)
+        if not result["ok"]:
+            raise ControlError(result["stderr"] or "Unable to set the safe CM4 PPS mux state")
+
+    attempts += 1
+    ETH0_FIX_COUNTER_PATH.parent.mkdir(parents=True, exist_ok=True, mode=0o755)
+    atomic_write_text(ETH0_FIX_COUNTER_PATH, f"{attempts}\n")
+    unit = f"switchberry-eth0-recovery-{int(time.time())}"
+    result = run(
+        [
+            "/usr/bin/systemd-run",
+            f"--unit={unit}",
+            "--collect",
+            "--no-block",
+            "--on-active=2s",
+            "/usr/bin/systemctl",
+            "reboot",
+        ],
+        timeout=8,
+    )
+    if not result["ok"]:
+        raise ControlError(result["stderr"] or result["stdout"] or "Unable to queue PHY recovery reboot")
+    print(f"[switchberry-eth0-fixup] eth0 has no attached PHY; queued safe-mux recovery reboot {attempts}/4.")
+
+
+def command_sanity() -> None:
+    require_root()
+    missing: list[str] = []
+    for _attempt in range(20):
+        plane = active_switch_plane()
+        required = [
+            pathlib.Path("/dev/spidev7.0"),
+            pathlib.Path("/dev/ttyAMA5"),
+        ]
+        if plane == "TC":
+            required.append(pathlib.Path("/dev/spidev0.0"))
+        elif plane == "DSA":
+            required.extend(pathlib.Path(f"/sys/class/net/{name}") for name in FRONT_PORT_INTERFACES.values())
+        missing = [str(path) for path in required if not path.exists()]
+        if gpio_expander_device() is None:
+            missing.append("/sys/bus/i2c/devices/*-0023")
+        if plane == "DSA" and ksz_ptp_device() is None:
+            missing.append("KSZ9567 DSA hardware clock (custom PTP-enabled kernel required)")
+        if plane != "UNKNOWN" and not missing:
+            return
+        time.sleep(1)
+    if active_switch_plane() == "UNKNOWN":
+        raise ControlError("Neither the transparent-clock nor DSA switch plane is available")
+    raise ControlError("Missing Switchberry prerequisites: " + ", ".join(missing))
+
+
+def command_require_tc_plane() -> None:
+    require_root()
+    if active_switch_plane() != "TC":
+        raise SystemExit(1)
+
+
+def command_configure() -> None:
+    require_root()
+    normalized, warnings = normalize_config(read_stdin_json())
+    backup = backup_config()
+    atomic_write_config(normalized)
+    boot_backup = configure_boot_plane(desired_switch_plane(normalized))
+    reboot_required = get_clock_plane(normalized)["reboot_required"]
+    unit = None if reboot_required else queue_apply()
+    message = (
+        "Configuration saved; reboot is required to activate the selected switch plane"
+        if reboot_required
+        else "Configuration saved; the Switchberry timing stack is applying it in the background"
+    )
+    emit(
+        {
+            "ok": True,
+            "message": message,
+            "backup": backup,
+            "boot_backup": boot_backup,
+            "unit": unit,
+            "reboot_required": reboot_required,
+            "warnings": warnings,
+            "config": normalized,
+        }
+    )
+
+
+def command_validate() -> None:
+    normalized, warnings = normalize_config(read_stdin_json())
+    emit({"ok": True, "message": "Configuration is valid", "warnings": warnings, "config": normalized})
+
+
+def command_port(action: str, port: int) -> None:
+    require_root()
+    if action not in {"enable", "disable"}:
+        raise ControlError("Port action must be enable or disable")
+    if port not in range(1, 6):
+        raise ControlError("Port must be between 1 and 5")
+    if active_switch_plane() == "DSA":
+        interface = FRONT_PORT_INTERFACES[port]
+        state = "up" if action == "enable" else "down"
+        result = run(["/usr/sbin/ip", "link", "set", "dev", interface, state], timeout=4)
+        if not result["ok"]:
+            result = run(["/sbin/ip", "link", "set", "dev", interface, state], timeout=4)
+        if not result["ok"]:
+            raise ControlError(result["stderr"] or result["stdout"] or "DSA port action failed")
+        emit({"ok": True, "message": f"Front-panel port {port} {action}d", "interface": interface})
+
+    value = 0x1300 if action == "enable" else 0x0C00
+    ksz_write(port_register(port, 0x100), value, 2)
+    emit({"ok": True, "message": f"Front-panel port {port} {action}d", "register": f"0x{port_register(port, 0x100):04X}"})
+
+
+def command_restart() -> None:
+    require_root()
+    config = read_json(CONFIG_PATH)
+    if get_clock_plane(config)["reboot_required"]:
+        raise ControlError("A reboot is required before the selected PTP mode can be applied")
+    unit = queue_apply()
+    emit({"ok": True, "message": "Switchberry timing stack restart queued", "unit": unit})
+
+
+def command_reboot() -> None:
+    require_root()
+    result = run(
+        [
+            "/usr/bin/systemd-run",
+            "--unit=raspap-switchberry-reboot",
+            "--collect",
+            "--no-block",
+            "--on-active=2s",
+            "/usr/bin/systemctl",
+            "reboot",
+        ],
+        timeout=8,
+    )
+    if not result["ok"]:
+        raise ControlError(result["stderr"] or result["stdout"] or "Unable to queue reboot")
+    emit({"ok": True, "message": "Switchberry reboot queued"})
+
+
+def command_apply() -> None:
+    require_root()
+    sequence = (
+        "switchberry-apply-network.service",
+        "switchberry-apply-timing.service",
+        "switchberry-full-init.service",
+        "switchberry-ptp-role.service",
+    )
+    failures: list[str] = []
+    for service in sequence:
+        exists = run(["/usr/bin/systemctl", "show", "-p", "LoadState", "--value", service], timeout=4)
+        if exists["stdout"] == "not-found":
+            continue
+        result = run(["/usr/bin/systemctl", "restart", service], timeout=120)
+        if not result["ok"]:
+            failures.append(f"{service}: {result['stderr'] or result['stdout']}")
+    if failures:
+        print("\n".join(failures), file=sys.stderr)
+        raise SystemExit(1)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="RaspAP Switchberry hardware controller")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+    subparsers.add_parser("status", help="Return hardware and timing status as JSON")
+    subparsers.add_parser("validate", help="Validate JSON configuration from stdin")
+    subparsers.add_parser("configure", help="Validate, save, and apply JSON configuration from stdin")
+    subparsers.add_parser("restart", help="Restart the Switchberry timing stack asynchronously")
+    subparsers.add_parser("reboot", help="Reboot to activate a different Switchberry clock plane")
+    subparsers.add_parser("_apply", help=argparse.SUPPRESS)
+    subparsers.add_parser("_apply-timing", help=argparse.SUPPRESS)
+    subparsers.add_parser("_eth0-fixup", help=argparse.SUPPRESS)
+    subparsers.add_parser("_role-apply", help=argparse.SUPPRESS)
+    subparsers.add_parser("_sanity", help=argparse.SUPPRESS)
+    subparsers.add_parser("_require-tc-plane", help=argparse.SUPPRESS)
+    port_parser = subparsers.add_parser("port", help="Enable or disable a front-panel port")
+    port_parser.add_argument("action", choices=("enable", "disable"))
+    port_parser.add_argument("port", type=int, choices=range(1, 6))
+    clockmatrix_parser = subparsers.add_parser("clockmatrix", help="Control a ClockMatrix channel operating state")
+    clockmatrix_parser.add_argument("channel", type=int, choices=(5, 6))
+    clockmatrix_parser.add_argument("action", choices=tuple(sorted(CLOCKMATRIX_ACTIONS)))
+    gnss_parser = subparsers.add_parser("gnss", help="Control the GNSS receiver and data services")
+    gnss_parser.add_argument("action", choices=tuple(sorted(GNSS_ACTIONS)))
+    args = parser.parse_args()
+
+    try:
+        if args.command == "status":
+            emit(status_payload())
+        if args.command == "validate":
+            command_validate()
+        if args.command == "configure":
+            command_configure()
+        if args.command == "port":
+            command_port(args.action, args.port)
+        if args.command == "clockmatrix":
+            command_clockmatrix(args.channel, args.action)
+        if args.command == "gnss":
+            command_gnss(args.action)
+        if args.command == "restart":
+            command_restart()
+        if args.command == "reboot":
+            command_reboot()
+        if args.command == "_apply":
+            command_apply()
+        if args.command == "_apply-timing":
+            command_apply_timing()
+        if args.command == "_eth0-fixup":
+            command_eth0_fixup()
+        if args.command == "_role-apply":
+            command_role_apply()
+        if args.command == "_sanity":
+            command_sanity()
+        if args.command == "_require-tc-plane":
+            command_require_tc_plane()
+    except ControlError as exc:
+        emit({"ok": False, "error": str(exc)}, exit_code=2)
+
+
+if __name__ == "__main__":
+    main()
