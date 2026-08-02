@@ -1543,8 +1543,8 @@ def normalize_bc(raw: Any, warnings: list[str]) -> dict[str, Any]:
     )
     if profile in {"G8275_1", "G8275_2"}:
         raise ControlError(
-            "The upstream KSZ9567 DSA driver supports P2P one-step transmission only; "
-            "G.8275.1 and G.8275.2 require E2E operation and cannot run as a hardware boundary clock"
+            "G.8275.1 and G.8275.2 have not completed Switchberry hardware validation; "
+            "use the IEEE 1588 default profile"
         )
     if delay_mechanism != "P2P":
         warnings.append("KSZ9567 hardware boundary-clock mode uses the P2P delay mechanism")

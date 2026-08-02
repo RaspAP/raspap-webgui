@@ -45,7 +45,7 @@ sudo ./installers/switchberry.sh
 
 The installer verifies both the KSZ9567 hardware identity and the Switchberry software markers, installs the RaspAP UI and audited root controller, selects the protected Switchberry kernel image, builds the V6 boundary-clock overlay, installs the PTP service orchestration and configures lighttpd/PHP-FPM. It intentionally leaves NetworkManager, the existing management link, hotspot, DHCP and DNS services unchanged.
 
-A compatible Wi-Fi interface—either onboard the CM4 or installed in the M.2 slot—and its Linux driver are required for RaspAP access-point features. On a unit managed only through `wlan0`, verify the Switchberry page before changing hotspot settings; enabling an AP on the sole Wi-Fi interface will disconnect its current client connection.
+A compatible Wi-Fi interface, either onboard the CM4 or installed in the M.2 slot, and its Linux driver are required for RaspAP access-point features. On a unit managed only through `wlan0`, verify the Switchberry page before changing hotspot settings; enabling an AP on the sole Wi-Fi interface will disconnect its current client connection.
 
 ## ClockMatrix control
 
@@ -68,9 +68,11 @@ Reference routing, role and DPLL priority are configurable in the same tab. An o
 | Grandmaster / client | Existing Switchberry DPLL, PHC and `ptp4l` orchestration on the direct-switch plane | Only when leaving boundary-clock mode |
 | Disabled | PTP processing off; timing routing and diagnostics remain available | Only when leaving boundary-clock mode |
 
+The **Overview** makes the configured architecture, active hardware plane and live runtime state immediately visible. The **Timing modes** tab presents Grandmaster, Boundary Clock and Transparent Clock as first-class choices, summarizes each hardware path, shows whether a plane-changing reboot is required before saving, and reveals only the controls relevant to the selected architecture. A selected but unsaved mode is kept visually distinct from the running configuration.
+
 The installer compiles and installs a V6-specific `switchberrybc-v6` device-tree overlay. It also selects the installed `*-DSA-SwitchberryV6+` PTP-enabled kernel through a dedicated `kernel8-switchberry.img` filename, so a later Raspberry Pi kernel package cannot silently replace the boundary-clock kernel. The controller updates only the managed overlay lines in `/boot/firmware/config.txt`, saves timestamped boot and timing backups, and presents an explicit reboot action in the UI. The V6 overlay retains the TCA6424 (whose Linux I2C bus number is detected dynamically), DPLL bit-banged SPI at `/dev/spidev7.0`, and all timing paths while binding the KSZ9567 to the kernel DSA/PTP driver. The ordinary Switchberry network, switch initialization, PHY fixup, and DHCP watchdog services are automatically skipped in the DSA plane so they cannot contend with the kernel switch driver. When returning to the direct-switch plane, the PHY fixup verifies that `eth0` has an attached MDIO PHY (rather than relying on one historical kernel-log string) and can perform up to four safe-mux recovery reboots.
 
-Boundary-clock ports use linuxptp's normal BMCA by default. `UPSTREAM` forces a client-only port, `DOWNSTREAM` forces a server-only port, and `DISABLED` keeps that front interface down. The upstream Linux KSZ9567 driver exposes hardware transmission as P2P one-step only, so the controller normalizes this mode to `time_stamping p2p1step`; E2E, two-step, G.8275.1 and G.8275.2 are explicitly unavailable rather than mislabeled as hardware operation. The transparent-clock engine still supports E2E/P2P and one/two-step operation directly in the switch. Boundary-clock mode reuses the board utility's client-safe CM4/DPLL routing while keeping `BC` as the authoritative role, while transparent-clock mode uses its neutral routing. The system-clock discipline option is off by default and, when enabled, uses slew-only `phc2sys` operation so activating it cannot step the CM4 clock.
+Boundary-clock ports use linuxptp's normal BMCA by default. `UPSTREAM` forces a client-only port, `DOWNSTREAM` forces a server-only port, and `DISABLED` keeps that front interface down. Current Linux KSZ9567 support exposes hardware transmission as P2P one-step only, so the controller normalizes this mode to `time_stamping p2p1step`; E2E and two-step are unavailable rather than mislabeled as hardware operation. G.8275.1 and G.8275.2 remain disabled until their complete board-specific behavior is validated. The transparent-clock engine still supports E2E/P2P and one/two-step operation directly in the switch. Boundary-clock mode reuses the board utility's client-safe CM4/DPLL routing while keeping `BC` as the authoritative role, while transparent-clock mode uses its neutral routing. The system-clock discipline option is off by default and, when enabled, uses slew-only `phc2sys` operation so activating it cannot step the CM4 clock.
 
 ## SMA timing I/O
 
@@ -78,7 +80,7 @@ The ECAD uses hardware SMA names in the opposite order from the rear-panel label
 
 | Rear connector | Input path | Output path | Hardware constraint |
 | --- | --- | --- | --- |
-| SMA1 | DPLL IN4 / CLK1N | — | Dedicated input-only connector |
+| SMA1 | DPLL IN4 / CLK1N | Not available | Dedicated input-only connector |
 | SMA2 | DPLL IN3 / CLK1P | DPLL Q9 / channel 5 | Input shares the GNSS PPS mux; Q9 uses an integer divider and is not a phase-aligned 1 PPS source |
 | SMA3 | DPLL IN2 / CLK0N | DPLL Q10 | Input shares the CM4 PPS mux |
 | SMA4 | DPLL IN1 / CLK0P | DPLL Q11 / channel 6 | Input shares the SyncE mux; output shares the CM4 PPS path and is unavailable in grandmaster mode |

@@ -37,6 +37,7 @@ $ports = $switchberry['ports'] ?? [];
 $dpll = $switchberry['dpll'] ?? [];
 $timing = $switchberry['timing'] ?? [];
 $ptp = $switchberry['ptp'] ?? [];
+$transparentClock = $switchberry['transparent_clock'] ?? [];
 $gnss = $switchberry['gnss'] ?? [];
 $gnssDevice = $gnss['device'] ?? [];
 $gnssReceiverLive = $gnss['receiver_configuration'] ?? [];
@@ -56,6 +57,60 @@ $bc = $config['bc'] ?? [];
 $clockmatrixConfig = $config['clockmatrix'] ?? ['channels' => []];
 $gnssReceiverConfig = $config['gnss_receiver'] ?? [];
 $controllerReady = !empty($switchberry['ok']);
+$activeRole = strtoupper((string) ($config['ptp_role'] ?? 'NONE'));
+$activePlane = strtoupper((string) ($clockPlane['active'] ?? 'UNKNOWN'));
+$timingModes = [
+    'GM' => [
+        'title' => 'Grandmaster',
+        'tagline' => 'Originate precise time',
+        'icon' => 'fas fa-broadcast-tower',
+        'plane' => 'TC',
+        'hardware' => 'ClockMatrix disciplined KSZ9567 PHC',
+        'description' => 'Advertise board time from GNSS, external SMA, or CM4 PPS references using hardware-timestamped PTP.',
+        'capabilities' => ['GNSS and external references', 'Hardware PTP timestamps', 'Grandmaster BMCA dataset']
+    ],
+    'BC' => [
+        'title' => 'Boundary Clock',
+        'tagline' => 'Terminate and regenerate PTP',
+        'icon' => 'fas fa-network-wired',
+        'plane' => 'DSA',
+        'hardware' => 'Five ports sharing one KSZ9567 PHC',
+        'description' => 'Run a true multi-port boundary clock with BMCA and per-port client, server, latency, and asymmetry policy.',
+        'capabilities' => ['Five hardware-timestamped ports', 'P2P one-step transmission', 'Layer 2, UDP/IPv4, or UDP/IPv6']
+    ],
+    'TC' => [
+        'title' => 'Transparent Clock',
+        'tagline' => 'Correct residence time in hardware',
+        'icon' => 'fas fa-random',
+        'plane' => 'TC',
+        'hardware' => 'KSZ9567 line-rate switch engine',
+        'description' => 'Forward PTP through the switch while correcting residence time without placing Linux in the forwarding path.',
+        'capabilities' => ['E2E or P2P delay', 'One-step or two-step', 'Layer 2, IPv4, and IPv6 detection']
+    ]
+];
+$roleLabels = [
+    'GM' => 'Grandmaster',
+    'BC' => 'Boundary Clock',
+    'TC' => 'Transparent Clock',
+    'CLIENT' => 'Client / Ordinary Clock',
+    'NONE' => 'PTP Disabled'
+];
+$activeMode = $timingModes[$activeRole] ?? null;
+$ptpRuntimeStatus = (string) ($ptp['portState'] ?? $ptp['status'] ?? 'Runtime status unavailable');
+$runtimeProblem = preg_match('/unavailable|not available|not running|failed|inactive|error/i', $ptpRuntimeStatus) === 1;
+if (!empty($clockPlane['reboot_required'])) {
+    $timingRuntimeLabel = 'Waiting for clock-plane reboot';
+    $timingRuntimeTone = 'warning';
+} elseif ($activeRole === 'NONE') {
+    $timingRuntimeLabel = 'PTP processing disabled';
+    $timingRuntimeTone = 'secondary';
+} elseif ($activeRole === 'TC') {
+    $timingRuntimeLabel = (string) ($transparentClock['status'] ?? 'Transparent-clock status unavailable');
+    $timingRuntimeTone = !empty($transparentClock['available']) ? 'success' : 'danger';
+} else {
+    $timingRuntimeLabel = $ptpRuntimeStatus;
+    $timingRuntimeTone = $runtimeProblem ? 'danger' : 'success';
+}
 $allHardwareReady = !empty($hardware['checks']) && count(array_filter(
     $hardware['checks'],
     static fn($check): bool => !empty($check['present']) || (($check['path'] ?? '') === '/dev/ptp0')
@@ -158,7 +213,7 @@ $smaProfile = static function (array $sma): string {
             <li class="nav-item"><a class="nav-link active" href="#switchberry-overview" data-bs-toggle="tab">Overview</a></li>
             <li class="nav-item"><a class="nav-link" href="#switchberry-clockmatrix" data-bs-toggle="tab">ClockMatrix</a></li>
             <li class="nav-item"><a class="nav-link" href="#switchberry-gnss" data-bs-toggle="tab">GNSS</a></li>
-            <li class="nav-item"><a class="nav-link" href="#switchberry-ptp" data-bs-toggle="tab">PTP clock</a></li>
+            <li class="nav-item"><a class="nav-link" href="#switchberry-ptp" data-bs-toggle="tab">Timing modes <span class="badge rounded-pill text-bg-primary ms-1"><?php echo $escape($activeRole); ?></span></a></li>
             <li class="nav-item"><a class="nav-link" href="#switchberry-timing" data-bs-toggle="tab">References &amp; network</a></li>
             <li class="nav-item"><a class="nav-link" href="#switchberry-sma" data-bs-toggle="tab">SMA I/O</a></li>
             <li class="nav-item"><a class="nav-link" href="#switchberry-ports" data-bs-toggle="tab">Switch ports</a></li>
@@ -186,6 +241,55 @@ $smaProfile = static function (array $sma): string {
                 <?php endif; ?>
               </div>
             <?php endif; ?>
+
+            <section class="switchberry-architecture-hero mb-3" data-live-timing-role="<?php echo $escape($activeRole); ?>">
+              <div class="row g-4 align-items-center">
+                <div class="col-xl-7">
+                  <div class="small text-uppercase fw-semibold text-primary mb-2">Precision timing architecture</div>
+                  <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                    <h3 class="mb-0" id="switchberry-live-mode-title"><?php echo $escape($roleLabels[$activeRole] ?? $activeRole); ?></h3>
+                    <span class="badge text-bg-<?php echo $escape($timingRuntimeTone); ?>" id="switchberry-live-runtime-badge"><?php echo $escape($timingRuntimeLabel); ?></span>
+                  </div>
+                  <p class="mb-3 text-body-secondary" id="switchberry-live-mode-description">
+                    <?php echo $escape($activeMode['description'] ?? 'Switchberry timing references and diagnostics remain available while PTP is not operating as a primary timing clock.'); ?>
+                  </p>
+                  <div class="d-flex flex-wrap gap-2">
+                    <span class="switchberry-architecture-fact"><i class="fas fa-microchip"></i> KSZ9567 hardware timing</span>
+                    <span class="switchberry-architecture-fact"><i class="fas fa-wave-square"></i> 8A34004 ClockMatrix</span>
+                    <span class="switchberry-architecture-fact"><i class="fas fa-satellite-dish"></i> GNSS and PPS references</span>
+                  </div>
+                </div>
+                <div class="col-xl-5">
+                  <div class="switchberry-live-plane">
+                    <div>
+                      <div class="small text-uppercase text-muted fw-semibold">Active hardware plane</div>
+                      <div class="h4 mb-0"><span id="switchberry-clock-plane-hero"><?php echo $escape($activePlane); ?></span> plane</div>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-switchberry-open-timing>
+                      Configure timing modes <i class="fas fa-arrow-right ms-1"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3 mt-1">
+                <?php foreach ($timingModes as $role => $mode): ?>
+                  <div class="col-md-4">
+                    <button type="button" class="switchberry-capability-link<?php echo $activeRole === $role ? ' is-active' : ''; ?>" data-switchberry-open-timing data-timing-role="<?php echo $role; ?>" data-capability-role="<?php echo $role; ?>">
+                      <span class="switchberry-capability-icon"><i class="<?php echo $escape($mode['icon']); ?>"></i></span>
+                      <span class="flex-grow-1 text-start">
+                        <span class="d-flex justify-content-between align-items-center gap-2">
+                          <strong><?php echo $escape($mode['title']); ?></strong>
+                          <span class="badge <?php echo $activeRole === $role ? 'text-bg-primary' : 'text-bg-light border text-dark'; ?>" data-capability-badge><?php echo $activeRole === $role ? 'Configured' : $escape($mode['plane'] . ' plane'); ?></span>
+                        </span>
+                        <span class="small text-muted d-block mt-1"><?php echo $escape($mode['tagline']); ?></span>
+                      </span>
+                    </button>
+                  </div>
+                <?php endforeach; ?>
+              </div>
+            </section>
+
             <div class="row g-3">
               <div class="col-xl-4">
                 <div class="card h-100 border-0 bg-body-tertiary">
@@ -395,7 +499,7 @@ $smaProfile = static function (array $sma): string {
                             <label class="form-label" for="clockmatrix-damping-<?php echo $channel; ?>">Damping factor</label>
                             <select id="clockmatrix-damping-<?php echo $channel; ?>" name="<?php echo $prefix; ?>damping_factor" class="form-select switchberry-clockmatrix-tuning switchberry-clockmatrix-dirty" data-channel="<?php echo $channel; ?>">
                               <?php for ($factor = 0; $factor <= 7; $factor++): ?>
-                                <option value="<?php echo $factor; ?>"<?php echo $selected($setting['damping_factor'] ?? 0, $factor); ?>><?php echo $factor; ?><?php echo $factor === 0 ? ' — most damped' : ($factor === 7 ? ' — least damped' : ''); ?></option>
+                                <option value="<?php echo $factor; ?>"<?php echo $selected($setting['damping_factor'] ?? 0, $factor); ?>><?php echo $factor; ?><?php echo $factor === 0 ? ' - most damped' : ($factor === 7 ? ' - least damped' : ''); ?></option>
                               <?php endfor; ?>
                             </select>
                           </div>
@@ -498,12 +602,12 @@ $smaProfile = static function (array $sma): string {
                       $gnssMetrics = [
                           ['Mode', 'switchberry-gnss-mode', $gnss['mode_label'] ?? 'Unknown'],
                           ['Satellites', 'switchberry-gnss-count', ($gnss['satellites_used'] ?? 0) . ' / ' . ($gnss['satellites_visible'] ?? 0)],
-                          ['HDOP', 'switchberry-gnss-hdop', $gnssDop['hdop'] ?? '—'],
-                          ['PDOP', 'switchberry-gnss-pdop', $gnssDop['pdop'] ?? '—'],
-                          ['Latitude', 'switchberry-gnss-latitude', $gnss['latitude'] ?? '—'],
-                          ['Longitude', 'switchberry-gnss-longitude', $gnss['longitude'] ?? '—'],
-                          ['Altitude', 'switchberry-gnss-altitude', isset($gnss['altitude']) ? $gnss['altitude'] . ' m' : '—'],
-                          ['Position error', 'switchberry-gnss-position-error', isset($gnss['position_error_m']) ? $gnss['position_error_m'] . ' m' : '—']
+                          ['HDOP', 'switchberry-gnss-hdop', $gnssDop['hdop'] ?? 'Not available'],
+                          ['PDOP', 'switchberry-gnss-pdop', $gnssDop['pdop'] ?? 'Not available'],
+                          ['Latitude', 'switchberry-gnss-latitude', $gnss['latitude'] ?? 'Not available'],
+                          ['Longitude', 'switchberry-gnss-longitude', $gnss['longitude'] ?? 'Not available'],
+                          ['Altitude', 'switchberry-gnss-altitude', isset($gnss['altitude']) ? $gnss['altitude'] . ' m' : 'Not available'],
+                          ['Position error', 'switchberry-gnss-position-error', isset($gnss['position_error_m']) ? $gnss['position_error_m'] . ' m' : 'Not available']
                       ];
                       foreach ($gnssMetrics as [$label, $id, $value]):
                       ?>
@@ -532,7 +636,7 @@ $smaProfile = static function (array $sma): string {
                       <dt class="col-5">Serial port</dt><dd class="col-7"><code id="switchberry-gnss-device"><?php echo $escape($gnssDevice['path'] ?? '/dev/ttyAMA5'); ?></code></dd>
                       <dt class="col-5">Baud</dt><dd class="col-7" id="switchberry-gnss-baud"><?php echo $escape($gnssDevice['baud'] ?? 'Unknown'); ?></dd>
                       <dt class="col-5">Live profile</dt><dd class="col-7" id="switchberry-gnss-live-profile"><?php echo $escape($gnssReceiverLive['dynamic_model'] ?? 'Unknown'); ?></dd>
-                      <dt class="col-5">Rate / mask</dt><dd class="col-7" id="switchberry-gnss-live-rate"><?php echo isset($gnssReceiverLive['measurement_rate_ms']) ? $escape($gnssReceiverLive['measurement_rate_ms'] . ' ms · ' . ($gnssReceiverLive['minimum_elevation_deg'] ?? '—') . '° mask') : '—'; ?></dd>
+                      <dt class="col-5">Rate / mask</dt><dd class="col-7" id="switchberry-gnss-live-rate"><?php echo isset($gnssReceiverLive['measurement_rate_ms']) ? $escape($gnssReceiverLive['measurement_rate_ms'] . ' ms · ' . ($gnssReceiverLive['minimum_elevation_deg'] ?? 'Not available') . '° mask') : 'Not available'; ?></dd>
                       <dt class="col-5">Constellations</dt><dd class="col-7" id="switchberry-gnss-live-constellations"><?php echo $escape($gnssLiveConstellations ? implode(', ', array_map('strtoupper', $gnssLiveConstellations)) : 'Unknown'); ?></dd>
                       <dt class="col-5">Antenna</dt><dd class="col-7"><span id="switchberry-gnss-antenna" class="badge <?php echo ($gnssRf['antenna_status'] ?? '') === 'OK' ? 'text-bg-success' : 'text-bg-warning'; ?>"><?php echo $escape(($gnssRf['antenna_status'] ?? 'Unknown') . (isset($gnssRf['antenna_power']) ? ' · power ' . $gnssRf['antenna_power'] : '')); ?></span></dd>
                       <dt class="col-5">RF monitor</dt><dd class="col-7" id="switchberry-gnss-rf"><?php echo isset($gnssRf['jamming_indicator']) ? $escape(($gnssRf['interference_level'] ?? 'Unknown') . ' interference · ' . $gnssRf['jamming_indicator'] . '/255') : 'Unknown'; ?></dd>
@@ -671,27 +775,72 @@ $smaProfile = static function (array $sma): string {
           <div class="tab-pane" id="switchberry-ptp">
             <form method="POST" action="switchberry" class="needs-validation" novalidate>
               <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
-              <div class="card mb-3">
-                <div class="card-header">Clock architecture</div>
-                <div class="card-body">
-                  <div class="row g-3 align-items-end">
+              <div class="d-flex flex-column flex-xl-row justify-content-between align-items-xl-end gap-3 mb-3">
+                <div>
+                  <div class="small text-uppercase fw-semibold text-primary mb-1">Timing modes</div>
+                  <h4 class="mb-1">Choose how Switchberry handles precise time</h4>
+                  <div class="text-muted">The three primary architectures below use different KSZ9567 hardware planes and PTP forwarding behavior.</div>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge text-bg-primary">Configured: <?php echo $escape($roleLabels[$activeRole] ?? $activeRole); ?></span>
+                  <span class="badge text-bg-light border text-dark">Active plane: <span id="switchberry-mode-active-plane"><?php echo $escape($activePlane); ?></span></span>
+                  <span class="badge text-bg-<?php echo $escape($timingRuntimeTone); ?>" id="switchberry-mode-runtime"><?php echo $escape($timingRuntimeLabel); ?></span>
+                </div>
+              </div>
+
+              <div class="switchberry-mode-selector mb-3" data-switchberry-mode-selector data-current-role="<?php echo $escape($activeRole); ?>" data-active-plane="<?php echo $escape($activePlane); ?>">
+                <div class="row g-3">
+                  <?php foreach ($timingModes as $role => $mode):
+                      $modeNeedsReboot = $activePlane !== 'UNKNOWN' && $activePlane !== $mode['plane'];
+                  ?>
                     <div class="col-lg-4">
-                      <label class="form-label" for="ptp-role">Operating mode</label>
-                      <select id="ptp-role" name="ptp_role" class="form-select">
-                        <option value="NONE"<?php echo $selected($config['ptp_role'], 'NONE'); ?>>Disabled</option>
-                        <option value="TC"<?php echo $selected($config['ptp_role'], 'TC'); ?>>Transparent clock (hardware)</option>
-                        <option value="BC"<?php echo $selected($config['ptp_role'], 'BC'); ?>>Boundary clock (multi-port)</option>
-                        <option value="GM"<?php echo $selected($config['ptp_role'], 'GM'); ?>>Grandmaster</option>
-                        <option value="CLIENT"<?php echo $selected($config['ptp_role'], 'CLIENT'); ?>>Client / ordinary clock</option>
-                      </select>
+                      <input type="radio" class="btn-check switchberry-role-option" name="ptp_role" id="ptp-role-<?php echo strtolower($role); ?>" value="<?php echo $role; ?>" autocomplete="off"<?php echo $checked($activeRole === $role); ?>>
+                      <label class="switchberry-mode-card switchberry-mode-<?php echo strtolower($role); ?>" for="ptp-role-<?php echo strtolower($role); ?>" data-role-card="<?php echo $role; ?>">
+                        <span class="switchberry-mode-card-top">
+                          <span class="switchberry-mode-icon"><i class="<?php echo $escape($mode['icon']); ?>"></i></span>
+                          <span class="switchberry-mode-state badge <?php echo $activeRole === $role ? 'text-bg-primary' : 'text-bg-light border text-dark'; ?>" data-mode-state="<?php echo $role; ?>"><?php echo $activeRole === $role ? 'Configured now' : 'Available'; ?></span>
+                        </span>
+                        <span class="h5 d-block mb-1"><?php echo $escape($mode['title']); ?></span>
+                        <span class="small fw-semibold text-primary d-block mb-2"><?php echo $escape($mode['tagline']); ?></span>
+                        <span class="small text-muted d-block mb-3"><?php echo $escape($mode['description']); ?></span>
+                        <span class="switchberry-mode-capabilities">
+                          <?php foreach ($mode['capabilities'] as $capability): ?>
+                            <span><i class="fas fa-check-circle"></i><?php echo $escape($capability); ?></span>
+                          <?php endforeach; ?>
+                        </span>
+                        <span class="switchberry-mode-card-footer">
+                          <span><i class="fas fa-microchip me-1"></i><?php echo $escape($mode['plane']); ?> plane</span>
+                          <span class="<?php echo $modeNeedsReboot ? 'text-warning' : 'text-success'; ?>" data-mode-plane-status data-target-plane="<?php echo $escape($mode['plane']); ?>"><i class="fas <?php echo $modeNeedsReboot ? 'fa-power-off' : 'fa-bolt'; ?> me-1"></i><?php echo $modeNeedsReboot ? 'Reboot required' : 'No plane reboot'; ?></span>
+                        </span>
+                      </label>
                     </div>
-                    <div class="col-lg-8">
-                      <div class="small text-muted switchberry-role-help" data-role="TC">The KSZ9567 corrects residence time in hardware at line rate. No Linux forwarding path is involved.</div>
-                      <div class="small text-muted switchberry-role-help" data-role="BC">Each front port is a hardware-timestamped linuxptp port sharing the KSZ9567 PHC. Best-master selection terminates and regenerates PTP.</div>
-                      <div class="small text-muted switchberry-role-help" data-role="GM">The CM4 and KSZ9567 advertise time from the selected GNSS, PPS, or timing input.</div>
-                      <div class="small text-muted switchberry-role-help" data-role="CLIENT">The CM4 disciplines the KSZ9567 PHC from an upstream PTP master.</div>
-                      <div class="small text-muted switchberry-role-help" data-role="NONE">PTP processing is disabled while signal routing and diagnostics remain available.</div>
+                  <?php endforeach; ?>
+                </div>
+
+                <div class="switchberry-secondary-modes mt-3">
+                  <div>
+                    <div class="small text-uppercase fw-semibold text-muted">Additional roles</div>
+                    <div class="small text-muted">Receive time as an ordinary clock, or leave PTP off while retaining timing diagnostics.</div>
+                  </div>
+                  <div class="d-flex flex-wrap gap-2">
+                    <input type="radio" class="btn-check switchberry-role-option" name="ptp_role" id="ptp-role-client" value="CLIENT" autocomplete="off"<?php echo $checked($activeRole === 'CLIENT'); ?>>
+                    <label class="btn btn-outline-primary" for="ptp-role-client"><i class="fas fa-download me-1"></i>Client / Ordinary Clock</label>
+                    <input type="radio" class="btn-check switchberry-role-option" name="ptp_role" id="ptp-role-none" value="NONE" autocomplete="off"<?php echo $checked($activeRole === 'NONE'); ?>>
+                    <label class="btn btn-outline-secondary" for="ptp-role-none"><i class="fas fa-pause me-1"></i>PTP Disabled</label>
+                  </div>
+                </div>
+
+                <div class="switchberry-mode-summary mt-3" id="switchberry-mode-summary">
+                  <span class="switchberry-mode-summary-icon"><i id="switchberry-mode-summary-icon" class="<?php echo $escape($activeMode['icon'] ?? 'fas fa-clock'); ?>"></i></span>
+                  <div class="flex-grow-1">
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-1">
+                      <strong id="switchberry-mode-summary-title"><?php echo $escape($roleLabels[$activeRole] ?? $activeRole); ?></strong>
+                      <span class="badge text-bg-primary" id="switchberry-mode-summary-plane"><?php echo $escape(($activeMode['plane'] ?? 'TC') . ' plane'); ?></span>
+                      <span class="badge text-bg-<?php echo !empty($clockPlane['reboot_required']) ? 'warning' : 'success'; ?>" id="switchberry-mode-summary-reboot"><?php echo !empty($clockPlane['reboot_required']) ? 'Reboot required after save' : 'Ready on current plane'; ?></span>
                     </div>
+                    <div class="small text-muted" id="switchberry-mode-summary-description"><?php echo $escape($activeMode['description'] ?? 'PTP processing is disabled while timing references and diagnostics remain available.'); ?></div>
+                    <div class="small fw-semibold mt-2" id="switchberry-mode-summary-hardware"><?php echo $escape($activeMode['hardware'] ?? 'Timing hardware remains available for monitoring'); ?></div>
+                    <div class="small text-warning mt-2 d-none" id="switchberry-mode-change-notice"><i class="fas fa-exclamation-circle me-1"></i>This selection is not saved yet.</div>
                   </div>
                 </div>
               </div>
@@ -725,7 +874,13 @@ $smaProfile = static function (array $sma): string {
               </div>
 
               <div class="switchberry-tc-settings">
-                <div class="alert alert-info">Transparent-clock settings are programmed directly into the KSZ9567 and read back for verification.</div>
+                <div class="alert alert-info d-flex gap-3 align-items-start">
+                  <i class="fas fa-random fa-lg mt-1"></i>
+                  <div>
+                    <strong class="d-block">Native KSZ9567 transparent forwarding</strong>
+                    Residence-time correction runs at line rate without a Linux forwarding path. The direct switch engine supports E2E or P2P, one-step or two-step, and Layer 2, UDP/IPv4, and UDP/IPv6 recognition. Settings are read back from hardware after apply.
+                  </div>
+                </div>
                 <div class="card mb-3">
                   <div class="card-header">Hardware transparent-clock engine</div>
                   <div class="card-body">
@@ -797,7 +952,13 @@ $smaProfile = static function (array $sma): string {
               </div>
 
               <div class="switchberry-bc-settings">
-                <div class="alert alert-info">Boundary-clock mode activates the KSZ9567 DSA/PTP driver and five hardware-timestamped interfaces. The upstream KSZ9567 driver provides hardware one-step P2P transmission; E2E/two-step and the E2E-based G.8275 profiles are shown as unavailable instead of silently falling back to software timestamps. Switching to or from this mode requires one reboot.</div>
+                <div class="alert alert-info d-flex gap-3 align-items-start">
+                  <i class="fas fa-network-wired fa-lg mt-1"></i>
+                  <div>
+                    <strong class="d-block">Verified Linux KSZ9567 boundary-clock capability</strong>
+                    Boundary-clock mode exposes five DSA interfaces on one shared PHC. Current Linux support advertises hardware P2P one-step transmission, so E2E and two-step are disabled instead of silently falling back to software timestamps. Telecom profiles remain unavailable until their complete board-specific behavior is validated. Entering or leaving the DSA plane requires one reboot.
+                  </div>
+                </div>
                 <div class="card mb-3">
                   <div class="card-header">Boundary-clock dataset and profile</div>
                   <div class="card-body">
@@ -806,8 +967,8 @@ $smaProfile = static function (array $sma): string {
                         <label class="form-label" for="bc-profile">Profile</label>
                         <select id="bc-profile" name="bc_profile" class="form-select">
                           <option value="IEEE1588"<?php echo $selected($bc['profile'], 'IEEE1588'); ?>>IEEE 1588 default</option>
-                          <option value="G8275_1" disabled>ITU-T G.8275.1 (requires E2E)</option>
-                          <option value="G8275_2" disabled>ITU-T G.8275.2 (requires E2E)</option>
+                          <option value="G8275_1" disabled>ITU-T G.8275.1 (not yet validated)</option>
+                          <option value="G8275_2" disabled>ITU-T G.8275.2 (not yet validated)</option>
                         </select>
                       </div>
                       <div class="col-md-4 col-xl-2">
@@ -1113,7 +1274,7 @@ $smaProfile = static function (array $sma): string {
                           <label class="form-label" for="sma-priority-<?php echo $number; ?>">Reference priority</label>
                           <select id="sma-priority-<?php echo $number; ?>" name="<?php echo $prefix; ?>priority" class="form-select switchberry-sma-priority mb-3">
                             <?php for ($priority = 0; $priority <= 15; $priority++): ?>
-                              <option value="<?php echo $priority; ?>"<?php echo $selected($sma['priority'] ?? 0, $priority); ?>><?php echo $priority; ?><?php echo $priority === 0 ? ' — highest' : ''; ?></option>
+                              <option value="<?php echo $priority; ?>"<?php echo $selected($sma['priority'] ?? 0, $priority); ?>><?php echo $priority; ?><?php echo $priority === 0 ? ' - highest' : ''; ?></option>
                             <?php endfor; ?>
                           </select>
                         </div>

@@ -42,7 +42,45 @@ const gnssColors = {
     GNSS: '#6c757d'
 };
 
-function setText(selector, value, fallback = '—') {
+const timingModeMetadata = {
+    GM: {
+        title: 'Grandmaster',
+        icon: 'fas fa-broadcast-tower',
+        plane: 'TC',
+        description: 'Advertise board time from GNSS, external SMA, or CM4 PPS references using hardware-timestamped PTP.',
+        hardware: 'ClockMatrix disciplined KSZ9567 PHC'
+    },
+    BC: {
+        title: 'Boundary Clock',
+        icon: 'fas fa-network-wired',
+        plane: 'DSA',
+        description: 'Terminate and regenerate PTP on five hardware-timestamped ports with BMCA and per-port policy.',
+        hardware: 'Five ports sharing one KSZ9567 PHC'
+    },
+    TC: {
+        title: 'Transparent Clock',
+        icon: 'fas fa-random',
+        plane: 'TC',
+        description: 'Forward PTP at line rate while the KSZ9567 corrects residence time without a Linux forwarding path.',
+        hardware: 'KSZ9567 line-rate switch engine'
+    },
+    CLIENT: {
+        title: 'Client / Ordinary Clock',
+        icon: 'fas fa-download',
+        plane: 'TC',
+        description: 'Receive time from an upstream PTP master and discipline the board PHC and timing chain.',
+        hardware: 'Hardware-timestamped ordinary clock'
+    },
+    NONE: {
+        title: 'PTP Disabled',
+        icon: 'fas fa-pause',
+        plane: 'TC',
+        description: 'Leave PTP processing off while keeping ClockMatrix, GNSS, SMA, and hardware diagnostics available.',
+        hardware: 'Timing monitoring remains available'
+    }
+};
+
+function setText(selector, value, fallback = 'Not available') {
     const element = document.querySelector(selector);
     if (element) {
         element.textContent = value == null || value === '' ? fallback : value;
@@ -56,6 +94,120 @@ function setBinaryBadge(element, active, activeLabel, inactiveLabel) {
     element.classList.remove('text-bg-success', 'text-bg-danger', 'text-bg-warning', 'text-bg-primary', 'text-bg-secondary');
     element.classList.add(active ? 'text-bg-success' : 'text-bg-danger');
     element.textContent = active ? activeLabel : inactiveLabel;
+}
+
+function setToneBadge(element, label, tone) {
+    if (!element) {
+        return;
+    }
+    element.classList.remove('text-bg-success', 'text-bg-danger', 'text-bg-warning', 'text-bg-primary', 'text-bg-secondary', 'text-bg-light', 'border', 'text-dark');
+    element.classList.add(`text-bg-${tone}`);
+    element.textContent = label;
+}
+
+function selectedTimingRole() {
+    return document.querySelector('input[name="ptp_role"]:checked')?.value || 'NONE';
+}
+
+function updateTimingModeSelection() {
+    const selector = document.querySelector('[data-switchberry-mode-selector]');
+    if (!selector) {
+        return;
+    }
+    const role = selectedTimingRole();
+    const currentRole = selector.dataset.currentRole || 'NONE';
+    const activePlane = selector.dataset.activePlane || 'UNKNOWN';
+    const mode = timingModeMetadata[role] || timingModeMetadata.NONE;
+
+    document.querySelectorAll('[data-role-card]').forEach((card) => {
+        const cardRole = card.dataset.roleCard;
+        const selected = cardRole === role;
+        card.classList.toggle('is-selected', selected);
+        const state = card.querySelector(`[data-mode-state="${cardRole}"]`);
+        if (selected) {
+            setToneBadge(state, cardRole === currentRole ? 'Configured now' : 'Selected', 'primary');
+        } else if (cardRole === currentRole) {
+            setToneBadge(state, 'Current configuration', 'light');
+            state?.classList.add('border', 'text-dark');
+        } else {
+            setToneBadge(state, 'Available', 'light');
+            state?.classList.add('border', 'text-dark');
+        }
+    });
+
+    const summaryIcon = document.querySelector('#switchberry-mode-summary-icon');
+    if (summaryIcon) {
+        summaryIcon.className = mode.icon;
+    }
+    setText('#switchberry-mode-summary-title', mode.title);
+    setText('#switchberry-mode-summary-description', mode.description);
+    setText('#switchberry-mode-summary-hardware', mode.hardware);
+    setToneBadge(document.querySelector('#switchberry-mode-summary-plane'), `${mode.plane} plane`, 'primary');
+
+    const planeKnown = activePlane !== 'UNKNOWN';
+    const rebootRequired = planeKnown && activePlane !== mode.plane;
+    const rebootBadge = document.querySelector('#switchberry-mode-summary-reboot');
+    setToneBadge(
+        rebootBadge,
+        !planeKnown ? 'Plane status unknown' : rebootRequired ? 'Reboot required after save' : 'Ready on current plane',
+        !planeKnown || rebootRequired ? 'warning' : 'success'
+    );
+    document.querySelector('#switchberry-mode-change-notice')?.classList.toggle('d-none', role === currentRole);
+
+    document.querySelectorAll('[data-mode-plane-status]').forEach((status) => {
+        const targetPlane = status.dataset.targetPlane;
+        const needsReboot = planeKnown && activePlane !== targetPlane;
+        status.classList.remove('text-warning', 'text-success', 'text-muted');
+        status.classList.add(!planeKnown ? 'text-muted' : needsReboot ? 'text-warning' : 'text-success');
+        status.innerHTML = `<i class="fas ${needsReboot ? 'fa-power-off' : 'fa-bolt'} me-1"></i>${!planeKnown ? 'Plane unknown' : needsReboot ? 'Reboot required' : 'No plane reboot'}`;
+    });
+}
+
+function updateTimingRuntime(payload) {
+    const role = String(payload.config?.ptp_role || 'NONE').toUpperCase();
+    const mode = timingModeMetadata[role] || timingModeMetadata.NONE;
+    const plane = String(payload.clock_plane?.active || 'UNKNOWN').toUpperCase();
+    const rebootRequired = Boolean(payload.clock_plane?.reboot_required);
+    const ptpStatus = payload.ptp?.portState || payload.ptp?.status || 'Runtime status unavailable';
+    let runtimeLabel = ptpStatus;
+    let runtimeTone = /unavailable|not available|not running|failed|inactive|error/i.test(ptpStatus) ? 'danger' : 'success';
+
+    if (rebootRequired) {
+        runtimeLabel = 'Waiting for clock-plane reboot';
+        runtimeTone = 'warning';
+    } else if (role === 'NONE') {
+        runtimeLabel = 'PTP processing disabled';
+        runtimeTone = 'secondary';
+    } else if (role === 'TC') {
+        runtimeLabel = payload.transparent_clock?.status || 'Transparent-clock status unavailable';
+        runtimeTone = payload.transparent_clock?.available ? 'success' : 'danger';
+    }
+
+    setText('#switchberry-live-mode-title', mode.title);
+    setText('#switchberry-live-mode-description', mode.description);
+    setText('#switchberry-clock-plane-hero', plane);
+    setText('#switchberry-mode-active-plane', plane);
+    setToneBadge(document.querySelector('#switchberry-live-runtime-badge'), runtimeLabel, runtimeTone);
+    setToneBadge(document.querySelector('#switchberry-mode-runtime'), runtimeLabel, runtimeTone);
+
+    document.querySelectorAll('[data-capability-role]').forEach((item) => {
+        const configured = item.dataset.capabilityRole === role;
+        item.classList.toggle('is-active', configured);
+        const badge = item.querySelector('[data-capability-badge]');
+        if (configured) {
+            setToneBadge(badge, 'Configured', 'primary');
+        } else {
+            setToneBadge(badge, `${timingModeMetadata[item.dataset.capabilityRole]?.plane || 'TC'} plane`, 'light');
+            badge?.classList.add('border', 'text-dark');
+        }
+    });
+
+    const selector = document.querySelector('[data-switchberry-mode-selector]');
+    if (selector) {
+        selector.dataset.currentRole = role;
+        selector.dataset.activePlane = plane;
+    }
+    updateTimingModeSelection();
 }
 
 function humanFrequency(value) {
@@ -283,7 +435,7 @@ function renderGnssSky(satellites) {
         marker.setAttribute('stroke', satellite.used ? 'var(--bs-body-color)' : 'var(--bs-border-color)');
         marker.setAttribute('stroke-width', satellite.used ? '3' : '1');
         const title = document.createElementNS(namespace, 'title');
-        title.textContent = `${satellite.constellation} ${satellite.svid ?? satellite.prn ?? '?'} · ${satellite.signal_dbhz ?? '—'} dB-Hz · ${satellite.used ? 'used' : 'visible'}`;
+        title.textContent = `${satellite.constellation} ${satellite.svid ?? satellite.prn ?? '?'} · ${satellite.signal_dbhz ?? 'Not available'} dB-Hz · ${satellite.used ? 'used' : 'visible'}`;
         marker.appendChild(title);
         const label = document.createElementNS(namespace, 'text');
         label.setAttribute('x', x.toFixed(2));
@@ -330,11 +482,11 @@ function renderGnssSatelliteTable(satellites) {
         systemBadge.textContent = satellite.constellation || 'GNSS';
         systemCell.appendChild(systemBadge);
         const satelliteCell = document.createElement('td');
-        satelliteCell.textContent = satellite.svid ?? satellite.prn ?? '—';
+        satelliteCell.textContent = satellite.svid ?? satellite.prn ?? 'Not available';
         const elevationCell = document.createElement('td');
-        elevationCell.textContent = satellite.elevation == null ? '—' : `${satellite.elevation}°`;
+        elevationCell.textContent = satellite.elevation == null ? 'Not available' : `${satellite.elevation}°`;
         const azimuthCell = document.createElement('td');
-        azimuthCell.textContent = satellite.azimuth == null ? '—' : `${satellite.azimuth}°`;
+        azimuthCell.textContent = satellite.azimuth == null ? 'Not available' : `${satellite.azimuth}°`;
         const signalCell = document.createElement('td');
         const signal = Number(satellite.signal_dbhz);
         const signalLabel = document.createElement('div');
@@ -376,7 +528,7 @@ function updateDynamicFields() {
     updateClockmatrixFields();
     updateGnssFields();
 
-    const ptpRole = document.querySelector('#ptp-role')?.value || 'NONE';
+    const ptpRole = selectedTimingRole();
     const ordinary = ptpRole === 'GM' || ptpRole === 'CLIENT';
     document.querySelectorAll('.switchberry-role-help').forEach((element) => {
         element.classList.toggle('d-none', element.dataset.role !== ptpRole);
@@ -403,6 +555,7 @@ function updateDynamicFields() {
     if (bcTwoStep) {
         bcTwoStep.checked = false;
     }
+    updateTimingModeSelection();
 }
 
 function updateStatus(payload) {
@@ -430,6 +583,7 @@ function updateStatus(payload) {
     if (clockPlane) {
         clockPlane.textContent = payload.clock_plane?.active || 'Unknown';
     }
+    updateTimingRuntime(payload);
     const gnss = payload.gnss || {};
     const gnssBadge = document.querySelector('#switchberry-gnss-overview');
     if (gnssBadge) {
@@ -496,7 +650,7 @@ function updateStatus(payload) {
         ? String(receiverConfiguration.dynamic_model || 'Unknown').replace(/_/g, ' ')
         : null);
     setText('#switchberry-gnss-live-rate', receiverConfiguration.measurement_rate_ms != null
-        ? `${receiverConfiguration.measurement_rate_ms} ms · ${receiverConfiguration.minimum_elevation_deg ?? '—'}° mask`
+        ? `${receiverConfiguration.measurement_rate_ms} ms · ${receiverConfiguration.minimum_elevation_deg ?? 'Not available'}° mask`
         : null);
     const liveConstellations = Object.entries(receiverConfiguration.constellations || {})
         .filter(([, enabled]) => enabled === true)
@@ -657,8 +811,24 @@ export function initSwitchberry() {
 
     refreshButton.addEventListener('click', refresh);
     document.querySelector('#network-mode')?.addEventListener('change', updateDynamicFields);
-    document.querySelectorAll('#ptp-role, #ptp-transport, #bc-profile').forEach((field) => {
+    document.querySelectorAll('.switchberry-role-option, #ptp-transport, #bc-profile').forEach((field) => {
         field.addEventListener('change', updateDynamicFields);
+    });
+    document.querySelectorAll('[data-switchberry-open-timing]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const role = button.dataset.timingRole;
+            if (role) {
+                const roleOption = document.querySelector(`.switchberry-role-option[value="${role}"]`);
+                if (roleOption) {
+                    roleOption.checked = true;
+                }
+            }
+            updateDynamicFields();
+            const tab = document.querySelector('a[data-bs-toggle="tab"][href="#switchberry-ptp"]');
+            if (tab && window.bootstrap?.Tab) {
+                window.bootstrap.Tab.getOrCreateInstance(tab).show();
+            }
+        });
     });
     document.querySelectorAll('.switchberry-source-toggle').forEach((field) => {
         field.addEventListener('change', updateDynamicFields);
