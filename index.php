@@ -95,7 +95,7 @@ initializeApp();
     <link rel="icon" type="image/svg+xml" href="/app/icons/favicon.svg" />
     <link rel="shortcut icon" href="/app/icons/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="RaspAP" />
+    <meta name="apple-mobile-web-app-title" content="<?php echo htmlspecialchars(RASPI_BRAND_TEXT, ENT_QUOTES, 'UTF-8'); ?>" />
     <meta name="theme-color" content="#ffffff">
   </head>
 

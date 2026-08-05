@@ -10,6 +10,18 @@ readonly RASPAP_DIR="/etc/raspap"
 readonly SUDOERS_FILE="/etc/sudoers.d/090_raspap"
 readonly SWITCHBERRY_SUDOERS_FILE="/etc/sudoers.d/091_raspap_switchberry"
 
+set_php_string_define() {
+    local config_file="$1"
+    local name="$2"
+    local value="$3"
+
+    if grep -qE "^[[:space:]]*define\\('${name}'," "$config_file"; then
+        sudo sed -i -E "s|^[[:space:]]*define\\('${name}',[[:space:]]*[^;]*\\);|define('${name}', '${value}');|" "$config_file"
+    else
+        printf "\ndefine('%s', '%s');\n" "$name" "$value" | sudo tee -a "$config_file" >/dev/null
+    fi
+}
+
 case "$WEBROOT" in
     /var/www/*|/srv/www/*) ;;
     *)
@@ -51,6 +63,10 @@ sudo rsync -a \
 if [[ ! -f "$WEBROOT/includes/config.php" ]]; then
     sudo install -o root -g root -m 0644 "$SOURCE_ROOT/config/config.php" "$WEBROOT/includes/config.php"
 fi
+echo "Applying Switchberry product branding..."
+set_php_string_define "$WEBROOT/includes/config.php" RASPI_BRAND_TEXT Switchberry
+set_php_string_define "$WEBROOT/includes/config.php" RASPI_BRAND_ICON "fas fa-clock"
+set_php_string_define "$WEBROOT/includes/config.php" RASPI_BRAND_COLOR "#2b8080"
 sudo chown -R root:root "$WEBROOT"
 sudo find "$WEBROOT" -type d -exec chmod 0755 {} +
 sudo find "$WEBROOT" -type f -exec chmod u=rw,go=r {} +

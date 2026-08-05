@@ -43,7 +43,7 @@ cd raspap-webgui
 sudo ./installers/switchberry.sh
 ```
 
-The installer verifies both the KSZ9567 hardware identity and the Switchberry software markers, installs the RaspAP UI and audited root controller, selects the protected Switchberry kernel image, builds the V6 boundary-clock overlay, installs the PTP service orchestration and configures lighttpd/PHP-FPM. It intentionally leaves NetworkManager, the existing management link, hotspot, DHCP and DNS services unchanged.
+The installer verifies both the KSZ9567 hardware identity and the Switchberry software markers, installs the RaspAP UI and audited root controller, selects the protected Switchberry kernel image, builds the V6 boundary-clock overlay, installs the PTP service orchestration and configures lighttpd/PHP-FPM. It also applies the Switchberry product name, clock icon and teal theme through RaspAP's branding configuration. These changes occur only after Switchberry hardware detection succeeds, so ordinary RaspAP installations retain the upstream name, logo and color behavior. NetworkManager, the existing management link, hotspot, DHCP and DNS services remain unchanged.
 
 A compatible Wi-Fi interface, either onboard the CM4 or installed in the M.2 slot, and its Linux driver are required for RaspAP access-point features. On a unit managed only through `wlan0`, verify the Switchberry page before changing hotspot settings; enabling an AP on the sole Wi-Fi interface will disconnect its current client connection.
 

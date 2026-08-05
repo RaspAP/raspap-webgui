@@ -591,7 +591,10 @@ function getThemeOpt()
 
 function getColorOpt()
 {
-    if (!isset($_COOKIE['color'])) {
+    $brandColor = defined('RASPI_BRAND_COLOR') ? trim((string) RASPI_BRAND_COLOR) : '';
+    if ($brandColor !== '') {
+        $color = $brandColor;
+    } elseif (!isset($_COOKIE['color'])) {
         $color = "#2b8080";
     } else {
         $color = $_COOKIE['color'];
@@ -920,10 +923,15 @@ function lightenColor($color, $percent)
 
 function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cputemp_led, $cputemp)
 {
+    $brandIcon = defined('RASPI_BRAND_ICON') ? trim((string) RASPI_BRAND_ICON) : '';
     ?>
     <div class="row g-0">
       <div class="col-4 ms-2 sidebar-brand-icon">
-        <img src="app/img/raspAP-logo.php?static=1" class="navbar-logo" width="70" height="70">
+        <?php if ($brandIcon !== ''): ?>
+          <i class="<?php echo htmlspecialchars($brandIcon, ENT_QUOTES, 'UTF-8'); ?> navbar-brand-icon" role="img" aria-label="<?php echo htmlspecialchars(RASPI_BRAND_TEXT, ENT_QUOTES, 'UTF-8'); ?>"></i>
+        <?php else: ?>
+          <img src="app/img/raspAP-logo.php?static=1" class="navbar-logo" width="70" height="70" alt="<?php echo htmlspecialchars(RASPI_BRAND_TEXT, ENT_QUOTES, 'UTF-8'); ?>">
+        <?php endif; ?>
       </div>
       <div class="col ml-2">
         <div class="ml-1 sb-status"><?php echo _("Status"); ?></div>

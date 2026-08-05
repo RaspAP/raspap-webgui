@@ -195,6 +195,18 @@ button.btn i:not([class*="service-status"]) {
   margin-left: 0.7em;
 }
 
+.navbar-brand-icon {
+  display: inline-flex;
+  width: 64px;
+  height: 70px;
+  margin-top: 0.2em;
+  margin-left: 0.45rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--raspap-theme-color, var(--raspap-brand-color));
+  font-size: 3.75rem;
+}
+
 #navbar-system-mode {
   color: var(--raspap-text-muted);
 }
@@ -207,6 +219,16 @@ button.btn i:not([class*="service-status"]) {
   height: 70px;
   margin-left: 1.2rem;
   margin-bottom: -0.5rem;
+}
+
+.login-brand-icon {
+  display: inline-flex;
+  width: 90px;
+  height: 90px;
+  align-items: center;
+  justify-content: center;
+  color: var(--raspap-theme-color, var(--raspap-brand-color));
+  font-size: 5rem;
 }
 
 .nav-item {

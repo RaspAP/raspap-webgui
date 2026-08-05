@@ -14,6 +14,7 @@ License: GNU General Public License v3.0
 /* Light Mode */
 :root {
   --raspap-theme-color: <?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;
+  --raspap-brand-color: <?php echo htmlspecialchars($color, ENT_QUOTES, 'UTF-8'); ?>;
   --raspap-theme-lighter: <?php echo htmlspecialchars(lightenColor($color, 20), ENT_QUOTES, 'UTF-8'); ?>;
   --raspap-theme-darker: <?php echo htmlspecialchars(darkenColor($color, 20), ENT_QUOTES, 'UTF-8'); ?>;
 }
