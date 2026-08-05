@@ -22,6 +22,15 @@ set_php_string_define() {
     fi
 }
 
+apply_switchberry_branding() {
+    local config_file="$WEBROOT/includes/config.php"
+
+    echo "Applying Switchberry product branding..."
+    set_php_string_define "$config_file" RASPI_BRAND_TEXT Switchberry
+    set_php_string_define "$config_file" RASPI_BRAND_ICON "fas fa-clock"
+    set_php_string_define "$config_file" RASPI_BRAND_COLOR "#2b8080"
+}
+
 case "$WEBROOT" in
     /var/www/*|/srv/www/*) ;;
     *)
@@ -40,9 +49,22 @@ if [[ ! -f "$SOURCE_ROOT/index.php" ]] || [[ ! -x "$SOURCE_ROOT/config/switchber
     exit 1
 fi
 
-if ! sudo "$SOURCE_ROOT/config/switchberry/raspap-switchberryctl" detect >/dev/null 2>&1; then
+detection_controller="$SOURCE_ROOT/config/switchberry/raspap-switchberryctl"
+if [[ "${2:-}" == "--branding-only" ]] && [[ -x /usr/local/sbin/raspap-switchberryctl ]]; then
+    detection_controller="/usr/local/sbin/raspap-switchberryctl"
+fi
+if ! sudo "$detection_controller" detect >/dev/null 2>&1; then
     echo "A KSZ9567 Ethernet switch was not detected; refusing hardware-specific installation." >&2
     exit 1
+fi
+
+if [[ "${2:-}" == "--branding-only" ]]; then
+    [[ -f "$WEBROOT/includes/config.php" ]] || {
+        echo "RaspAP configuration was not found at $WEBROOT/includes/config.php." >&2
+        exit 1
+    }
+    apply_switchberry_branding
+    exit 0
 fi
 
 echo "Installing RaspAP web dependencies without changing NetworkManager, wlan0, eth0, hostapd, or dnsmasq..."
@@ -63,10 +85,7 @@ sudo rsync -a \
 if [[ ! -f "$WEBROOT/includes/config.php" ]]; then
     sudo install -o root -g root -m 0644 "$SOURCE_ROOT/config/config.php" "$WEBROOT/includes/config.php"
 fi
-echo "Applying Switchberry product branding..."
-set_php_string_define "$WEBROOT/includes/config.php" RASPI_BRAND_TEXT Switchberry
-set_php_string_define "$WEBROOT/includes/config.php" RASPI_BRAND_ICON "fas fa-clock"
-set_php_string_define "$WEBROOT/includes/config.php" RASPI_BRAND_COLOR "#2b8080"
+apply_switchberry_branding
 sudo chown -R root:root "$WEBROOT"
 sudo find "$WEBROOT" -type d -exec chmod 0755 {} +
 sudo find "$WEBROOT" -type f -exec chmod u=rw,go=r {} +
