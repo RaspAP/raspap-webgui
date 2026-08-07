@@ -89,7 +89,7 @@ initializeApp();
     <!-- Custom CSS -->
     <link href="app/css/base.css?v=<?= filemtime('app/css/base.css'); ?>" rel="stylesheet" />
     <link href="<?php echo $_SESSION['theme']['url'] . "?v=" . filemtime($_SESSION['theme']['url']); ?>" title="main" rel="stylesheet">
-    
+
     <!-- Meta -->
     <link rel="icon" type="image/png" href="/app/icons/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/app/icons/favicon.svg" />

@@ -591,27 +591,52 @@ function getThemeOpt()
 
 function getColorOpt()
 {
+    $defaultColor = defined('RASPI_BRAND_COLOR') ? RASPI_BRAND_COLOR : '#2b8080';
+
     if (!isset($_COOKIE['color'])) {
-        $color = "#2b8080";
+        $color = $defaultColor;
     } else {
         $color = $_COOKIE['color'];
     }
 
     // Define the regex pattern for valid CSS color formats
     $colorPattern = "/^(" .
-        "#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})" . "|" .           // Hex colors (#RGB or #RRGGBB)
-        "rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)" . "|" .     // RGB format
-        "rgba\(\s*(?:\d{1,3}\s*,\s*){3}\s*(0|0\.\d+|1)\s*\)" . "|" . // RGBA format
-        "[a-zA-Z]+" .                                         // Named colors
+        "#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})" . "|" .           	// hex colors
+        "rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)" . "|" .     // RGB
+        "rgba\(\s*(?:\d{1,3}\s*,\s*){3}\s*(0|0\.\d+|1)\s*\)" . "|" . // RGBA
+        "[a-zA-Z]+" .                                         	// named colors
     ")$/i";
 
-    // Validate the color
     if (!preg_match($colorPattern, $color)) {
-        // Return a default color if validation fails
-        $color = "#2b8080";
+        // return default color if not valid
+        $color = $defaultColor;
     }
 
     return $color;
+}
+
+/**
+ * Renders brand icon (navbar, sidebar + login page)
+ * Set with RASPI_BRAND_ICON in config.php
+ */
+function renderBrandIcon($width = 70, $height = 70, $class = 'navbar-logo', $static = true)
+{
+    $icon = defined('RASPI_BRAND_ICON') ? trim(RASPI_BRAND_ICON) : '';
+    $class = htmlspecialchars($class, ENT_QUOTES, 'UTF-8');
+
+    if ($icon === '') {
+        $query = $static ? '?static=1' : '';
+        echo '<img src="app/img/raspAP-logo.php'.$query.'" class="'.$class.'" width="'.(int)$width.'" height="'.(int)$height.'">';
+        return;
+    }
+
+    // FontAwesome icon classes
+    if (preg_match('/^(fa[srlbdk]?|fa-\w+)\s+fa-[\w-]+/', $icon)) {
+        echo '<i class="'.htmlspecialchars($icon, ENT_QUOTES, 'UTF-8').' '.$class.'-icon" style="font-size: '.(int)$height.'px; color: var(--raspap-theme-color);"></i>';
+        return;
+    }
+
+    echo '<img src="'.htmlspecialchars($icon, ENT_QUOTES, 'UTF-8').'" class="'.$class.'" width="'.(int)$width.'" height="'.(int)$height.'">';
 }
 
 function getBridgedState()
@@ -923,7 +948,7 @@ function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cp
     ?>
     <div class="row g-0">
       <div class="col-4 ms-2 sidebar-brand-icon">
-        <img src="app/img/raspAP-logo.php?static=1" class="navbar-logo" width="70" height="70">
+        <?php renderBrandIcon(70, 70, 'navbar-logo'); ?>
       </div>
       <div class="col ml-2">
         <div class="ml-1 sb-status"><?php echo _("Status"); ?></div>
