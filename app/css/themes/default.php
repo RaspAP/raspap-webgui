@@ -1,5 +1,6 @@
 <?php header("Content-Type: text/css;charset=utf-8"); ?>
 <?php
+    require_once '../../../includes/config.php';
     require_once '../../../includes/functions.php';
     $color = getColorOpt();
 ?>

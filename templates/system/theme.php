@@ -10,7 +10,7 @@
       </div>
       <div class="col-sm-6 col-md-3 mb-3">
         <label for="code"><?php echo _("Color"); ?></label>
-        <input class="form-control color-input" value="#2b8080" aria-label="color" />
+        <input class="form-control color-input" value="<?php echo htmlspecialchars(getColorOpt(), ENT_QUOTES); ?>" aria-label="color" />
       </div>
     </div>
     <div class="row">
