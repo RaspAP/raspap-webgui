@@ -686,7 +686,7 @@ a.inactive:focus {
 
 /* Switchberry Dashboard timing summary */
 .switchberry-dashboard-card .card-header {
-  border-bottom-color: color-mix(in srgb, var(--raspap-brand-color) 30%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--raspap-theme-color) 30%, transparent);
 }
 
 .switchberry-timing-tile {
@@ -730,8 +730,8 @@ a.inactive:focus {
 
 .switchberry-reference-strip {
   padding: .85rem 1rem;
-  background: color-mix(in srgb, var(--raspap-brand-color) 7%, var(--bs-body-bg, #fff));
-  border: 1px solid color-mix(in srgb, var(--raspap-brand-color) 25%, transparent);
+  background: color-mix(in srgb, var(--raspap-theme-color) 7%, var(--bs-body-bg, #fff));
+  border: 1px solid color-mix(in srgb, var(--raspap-theme-color) 25%, transparent);
   border-radius: .5rem;
 }
 
@@ -739,9 +739,9 @@ a.inactive:focus {
 .switchberry-architecture-hero {
   padding: 1.25rem;
   background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--raspap-brand-color) 18%, transparent), transparent 42%),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--raspap-theme-color) 18%, transparent), transparent 42%),
     var(--bs-body-bg, #fff);
-  border: 1px solid color-mix(in srgb, var(--raspap-brand-color) 32%, var(--bs-border-color, #dee2e6));
+  border: 1px solid color-mix(in srgb, var(--raspap-theme-color) 32%, var(--bs-border-color, #dee2e6));
   border-radius: .75rem;
 }
 
@@ -758,7 +758,7 @@ a.inactive:focus {
 }
 
 .switchberry-architecture-fact i {
-  color: var(--raspap-brand-color);
+  color: var(--raspap-theme-color);
 }
 
 .switchberry-live-plane {
@@ -767,8 +767,8 @@ a.inactive:focus {
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  background: color-mix(in srgb, var(--bs-body-bg, #fff) 88%, var(--raspap-brand-color));
-  border: 1px solid color-mix(in srgb, var(--raspap-brand-color) 25%, transparent);
+  background: color-mix(in srgb, var(--bs-body-bg, #fff) 88%, var(--raspap-theme-color));
+  border: 1px solid color-mix(in srgb, var(--raspap-theme-color) 25%, transparent);
   border-radius: .65rem;
 }
 
@@ -790,7 +790,7 @@ a.inactive:focus {
 .switchberry-capability-link:focus-visible,
 .switchberry-capability-link.is-active {
   color: inherit;
-  border-color: var(--raspap-brand-color);
+  border-color: var(--raspap-theme-color);
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .08);
   transform: translateY(-1px);
 }
@@ -802,8 +802,8 @@ a.inactive:focus {
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  color: var(--raspap-brand-color);
-  background: color-mix(in srgb, var(--raspap-brand-color) 12%, transparent);
+  color: var(--raspap-theme-color);
+  background: color-mix(in srgb, var(--raspap-theme-color) 12%, transparent);
   border-radius: 50%;
 }
 
@@ -813,11 +813,11 @@ a.inactive:focus {
 }
 
 .switchberry-mode-selector {
-  --switchberry-mode-accent: var(--raspap-brand-color);
+  --switchberry-mode-accent: var(--raspap-theme-color);
 }
 
 .switchberry-mode-card {
-  --switchberry-mode-accent: var(--raspap-brand-color);
+  --switchberry-mode-accent: var(--raspap-theme-color);
   display: flex;
   flex-direction: column;
   min-height: 380px;
@@ -911,8 +911,8 @@ a.inactive:focus {
 
 .switchberry-mode-summary {
   justify-content: flex-start;
-  background: color-mix(in srgb, var(--raspap-brand-color) 6%, var(--bs-body-bg, #fff));
-  border-color: color-mix(in srgb, var(--raspap-brand-color) 25%, var(--bs-border-color, #dee2e6));
+  background: color-mix(in srgb, var(--raspap-theme-color) 6%, var(--bs-body-bg, #fff));
+  border-color: color-mix(in srgb, var(--raspap-theme-color) 25%, var(--bs-border-color, #dee2e6));
 }
 
 .switchberry-mode-summary-icon {
