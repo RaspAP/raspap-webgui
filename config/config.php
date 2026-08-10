@@ -2,8 +2,6 @@
 
 define('RASPI_BRAND_TEXT', 'RaspAP');
 define('RASPI_BRAND_TITLE', RASPI_BRAND_TEXT.' Admin Panel');
-define('RASPI_BRAND_ICON', '');
-define('RASPI_BRAND_COLOR', '');
 define('RASPI_CONFIG', '/etc/raspap');
 define('RASPI_CONFIG_NETWORK', RASPI_CONFIG.'/networking/defaults.json');
 define('RASPI_CONFIG_PROVIDERS', 'config/vpn-providers.json');

@@ -8,11 +8,7 @@
           <div class="col-12">
             <!-- branding -->
             <div class="text-center mb-3">
-              <?php if (defined('RASPI_BRAND_ICON') && trim((string) RASPI_BRAND_ICON) !== ''): ?>
-                <i class="<?php echo htmlspecialchars(RASPI_BRAND_ICON, ENT_QUOTES, 'UTF-8'); ?> login-brand-icon" role="img" aria-label="<?php echo htmlspecialchars(RASPI_BRAND_TEXT, ENT_QUOTES, 'UTF-8'); ?>"></i>
-              <?php else: ?>
-                <img src="app/img/raspAP-logo.php" class="login-logo img-fluid" alt="<?php echo htmlspecialchars(RASPI_BRAND_TEXT, ENT_QUOTES, 'UTF-8'); ?>" style="max-width: 100px;">
-              <?php endif; ?>
+              <img src="app/img/raspAP-logo.php" class="login-logo" alt="RaspAP logo" class="img-fluid" style="max-width: 100px;">
               <h2 class="login-brand"><?php echo htmlspecialchars(RASPI_BRAND_TEXT); ?></h2>
               <div class="mt-2 admin-login"><?php echo _("Administrator login") ?></div>
               <div class="text-center text-danger mt-1 mb-3"><?php echo $status ?></div>
