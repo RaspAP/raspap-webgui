@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-07-05 23:13+0000\n"
+"POT-Creation-Date: 2026-08-12 13:31+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
@@ -17,80 +17,88 @@ msgstr ""
 "X-Crowdin-File: /master/locale/messages.pot\n"
 "X-Crowdin-File-ID: 12\n"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:594
-msgid "Installed"
-msgstr "Установлено"
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "Печатный знак Wi-Fi"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:598
-msgid "Details"
-msgstr "Подробности"
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Wi-Fi Connect"
 
-#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
-msgid "Dashboard"
-msgstr "Приборная панель"
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Чтобы подключиться с помощью телефона или планшета, отсканируйте QR-код выше с помощью приложения для камеры."
 
-#: ../src/RaspAP/UI/Sidebar.php:20 ../includes/functions.php:1003
-#: ../templates/hostapd.php:13
-msgid "Hotspot"
-msgstr "Точка доступа"
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "Для других устройств используйте указанные ниже учетные данные."
 
-#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
-msgid "DHCP Server"
-msgstr "Сервер DHCP"
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "Сеть"
 
-#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
-msgid "Ad Blocking"
-msgstr "Блокировка рекламы"
+#: ../app/lib/signprint.php:67 ../templates/openvpn/general.php:34
+#: ../templates/login.php:25 ../templates/admin/login.php:21
+#: ../templates/networking/mobile.php:21
+msgid "Password"
+msgstr "Пароль"
 
-#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
-#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
-msgid "Networking"
-msgstr "Работа в сети"
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
+#: ../includes/wifi_functions.php:281
+msgid "Signal strength"
+msgstr "Сила сигнала"
 
-#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
-msgid "WiFi client"
-msgstr "WiFi клиент"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
+msgid "WPA and WPA2"
+msgstr "WPA и WPA2"
 
-#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
-msgid "OpenVPN"
-msgstr "OpenVPN"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:112
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 и WPA3-Personal (переходный режим)"
 
-#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
-msgid "WireGuard"
-msgstr "WireGuard"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:114
+msgid "None"
+msgstr "Нет"
 
-#: ../src/RaspAP/UI/Sidebar.php:44
-msgid "Data usage"
-msgstr "Использование данных"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:124
+msgid "Disabled"
+msgstr "Инвалид"
 
-#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
-msgid "RestAPI"
-msgstr "RestAPI"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:125
+msgid "Enabled (for supported clients)"
+msgstr "Включено (для поддерживаемых клиентов)"
 
-#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
-#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
-msgid "System"
-msgstr "Система"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:126
+msgid "Required (for supported clients)"
+msgstr "Требуется (для поддерживаемых клиентов)"
 
-#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
-msgid "About RaspAP"
-msgstr "О компании RaspAP"
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "Неверный MAC-адрес: "
 
-#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
-msgid "No MAC Address Found"
-msgstr "MAC-адрес не найден"
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "Введен дублирующий IP-адрес: "
 
-#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
-msgid "No IPv6 Address Found"
-msgstr "IPv6-адрес не найден"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "Подробная отладка"
 
-#: ../src/RaspAP/UI/Dashboard.php:232
-msgid "client"
-msgid_plural "clients"
-msgstr[0] "клиент"
-msgstr[1] "клиенты"
-msgstr[2] "клиенты"
-msgstr[3] "клиенты"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "Отладка"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "Информация"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "Уведомление"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "Внимание"
 
 #: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:128
 #, php-format
@@ -147,483 +155,80 @@ msgstr "Неверное значение метрики, не число."
 msgid "DHCP configuration for %s updated."
 msgstr "Обновлена конфигурация DHCP для %s."
 
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
-msgid "Invalid MAC address: "
-msgstr "Неверный MAC-адрес: "
-
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
-msgid "Duplicate IP address entered: "
-msgstr "Введен дублирующий IP-адрес: "
-
-#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
-#: ../includes/wifi_functions.php:281
-msgid "Signal strength"
-msgstr "Сила сигнала"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
-msgid "Verbose debugging"
-msgstr "Подробная отладка"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
-msgid "Debugging"
-msgstr "Отладка"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
-msgid "Informational"
-msgstr "Информация"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
-msgid "Notification"
-msgstr "Уведомление"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
-msgid "Warning"
-msgstr "Внимание"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
-msgid "WPA and WPA2"
-msgstr "WPA и WPA2"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:112
-msgid "WPA2 and WPA3-Personal (transitional mode)"
-msgstr "WPA2 и WPA3-Personal (переходный режим)"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:114
-msgid "None"
-msgstr "Нет"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:124
-msgid "Disabled"
-msgstr "Инвалид"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:125
-msgid "Enabled (for supported clients)"
-msgstr "Включено (для поддерживаемых клиентов)"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:126
-msgid "Required (for supported clients)"
-msgstr "Требуется (для поддерживаемых клиентов)"
-
-#: ../plugins-available/Captive/Captive.php:70
-#: ../plugins-available/Captive/Captive.php:130
-msgid "Captive portal"
-msgstr "Портал для пленных"
-
-#: ../plugins-available/Captive/Captive.php:95
-#, php-format
-msgid "Attempting to start %s"
-msgstr "Попытка запуска %s"
-
-#: ../plugins-available/Captive/Captive.php:99
-#, php-format
-msgid "Attempting to stop %s"
-msgstr "Попытка остановить %s"
-
-#: ../plugins-available/Captive/Captive.php:106
-#, php-format
-msgid "Client %s deauthenticated"
-msgstr "Клиент %s вышел из системы"
-
-#: ../plugins-available/Captive/Captive.php:108
-#, php-format
-msgid "Failed to deauthenticate client %s"
-msgstr "Не удалось отменить аутентификацию клиента %s"
-
-#: ../plugins-available/Captive/Captive.php:111
-msgid "Invalid client MAC address"
-msgstr "Неверный MAC-адрес клиента"
-
-#: ../plugins-available/Captive/Captive.php:131
-msgid "A captive portal plugin that implements nodogsplash"
-msgstr "Плагин портала захвата, реализующий nodogsplash"
-
-#: ../plugins-available/Captive/Captive.php:132
-#: ../plugins-available/Tailscale/Tailscale.php:252
-#: ../plugins-available/Wireshark/Wireshark.php:185
-msgid "Bill Z"
-msgstr "Билл Зи"
-
-#: ../plugins-available/Captive/Captive.php:538
-msgid "Portal settings saved successfully"
-msgstr "Настройки портала успешно сохранены"
-
-#: ../plugins-available/Captive/Captive.php:541
-#: ../plugins-available/Wireshark/Wireshark.php:248
-msgid "Error saving settings: "
-msgstr "Ошибка сохранения настроек: "
-
-#: ../plugins-available/Captive/Captive.php:582
-msgid "Failed to execute ndsctl."
-msgstr "Не удалось выполнить команду ndsctl."
-
-#: ../plugins-available/Captive/templates/main.php:3
-#: ../plugins-available/Tailscale/templates/main.php:16
-#: ../plugins-available/Wireshark/templates/main.php:3 ../templates/dhcp.php:3
-#: ../templates/wireguard.php:3 ../templates/networking/wlanrouting.php:3
-#: ../templates/networking/mobile.php:29 ../templates/hostapd.php:3
-#: ../templates/system/advanced.php:39 ../templates/system/theme.php:56
-#: ../templates/system/language.php:11 ../templates/provider.php:3
-#: ../templates/admin/general.php:2 ../templates/restapi.php:3
-#: ../templates/adblock.php:3 ../templates/openvpn.php:3
-msgid "Save settings"
-msgstr "Сохранить настройки"
-
-#: ../plugins-available/Captive/templates/main.php:22
-msgid "Stop portal"
-msgstr "Остановочный портал"
-
-#: ../plugins-available/Captive/templates/main.php:26
-msgid "Start portal"
-msgstr "Стартовый портал"
-
-#: ../plugins-available/Captive/templates/main.php:48 ../templates/admin.php:20
-#: ../templates/hostapd.php:49 ../templates/system.php:17
-msgid "Basic"
-msgstr "Основные"
-
-#: ../plugins-available/Captive/templates/main.php:49
-msgid "Clients"
-msgstr "Клиенты"
-
-#: ../plugins-available/Captive/templates/main.php:50 ../templates/dhcp.php:52
-#: ../templates/hostapd.php:51 ../templates/system.php:20
-msgid "Advanced"
-msgstr "Расширенный"
-
-#: ../plugins-available/Captive/templates/main.php:51
-#: ../plugins-available/Tailscale/templates/main.php:71
-#: ../includes/functions.php:1001 ../templates/wifi_stations/network.php:33
-#: ../templates/provider.php:36 ../templates/restapi.php:47
-msgid "Status"
-msgstr "Статус"
-
-#: ../plugins-available/Captive/templates/main.php:52
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
-msgid "Active clients"
-msgstr "Активные клиенты"
-
-#: ../plugins-available/Captive/templates/main.php:53
-#: ../plugins-available/Captive/templates/tabs/about.php:3
-#: ../plugins-available/Tailscale/templates/main.php:72
-#: ../plugins-available/Tailscale/templates/tabs/about.php:3
-#: ../plugins-available/Wireshark/templates/main.php:47
-#: ../plugins-available/Wireshark/templates/tabs/about.php:3
-#: ../templates/about.php:21
-msgid "About"
-msgstr "О сайте"
-
-#: ../plugins-available/Captive/templates/main.php:79
-msgid "Information provided by nodogsplash"
-msgstr "Информация предоставлена nodogsplash"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Stop portal service"
-msgstr "Остановите службу портала"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Start portal service"
-msgstr "Запуск службы портала"
-
-#: ../plugins-available/Captive/templates/main.php:95
-msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
-msgstr "Изменение службы портала приведет к кратковременному прерыванию клиентского трафика. Выберите <strong>Приступить</strong>, чтобы продолжить."
-
-#: ../plugins-available/Captive/templates/main.php:99
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
-#: ../templates/admin.php:90 ../templates/admin.php:119
-#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
-#: ../templates/system.php:56 ../templates/system.php:74
-#: ../templates/system.php:109 ../templates/system.php:253
-#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
-#: ../templates/about.php:56 ../templates/about.php:104
-msgid "Cancel"
-msgstr "Отмена"
-
-#: ../plugins-available/Captive/templates/main.php:100
-msgid "Proceed"
-msgstr "Приступайте"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:6
-#: ../plugins-available/Tailscale/Tailscale.php:403
-#: ../plugins-available/Tailscale/templates/main.php:4
-#: ../templates/networking/devices.php:4 ../templates/networking/general.php:4
-#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
-#: ../templates/dhcp/summary.php:9
-msgid "Refresh"
-msgstr "Обновить"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:17
-msgid "Client"
-msgstr "Клиент"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:21
-msgid "IP"
-msgstr "IP"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:22
-msgid "Token"
-msgstr "Токен"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:23
-#: ../templates/networking/diagnostics.php:34 ../templates/wg/peers.php:73
-msgid "Download"
-msgstr "Скачать"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:24
-#: ../templates/networking/diagnostics.php:40
-msgid "Upload"
-msgstr "Загрузить"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:25
-msgid "Last activity"
-msgstr "Последнее действие"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:26
-msgid "Session start"
-msgstr "Начало сессии"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:27
-msgid "Session end"
-msgstr "Конец сеанса"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:35
-msgid "Deauthenticate"
-msgstr "Отменить аутентификацию"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:44
-msgid "No active clients connected."
-msgstr "Активных подключенных клиентов нет."
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:5
-#: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
-#: ../templates/openvpn.php:46
-msgid "Client settings"
-msgstr "Настройки клиента"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:9
-msgid "Maximum clients"
-msgstr "Максимум клиентов"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:11
-msgid "Maximum number of concurrent authenticated users"
-msgstr "Максимальное количество одновременно аутентифицированных пользователей"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:15
-msgid "Does not include users on the trusted MAC list"
-msgstr "Не включает пользователей из списка доверенных MAC-адресов"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:19
-msgid "Session timeout (minutes)"
-msgstr "Таймаут сеанса (минуты)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:21
-msgid "Default session length in minutes. 0 = unlimited"
-msgstr "Длительность сеанса по умолчанию в минутах. 0 = неограниченно"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:30
-msgid "Pre-auth idle timeout (minutes)"
-msgstr "Таймаут простоя перед авторизацией (минуты)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:32
-msgid "Time before unauthenticated idle users are removed"
-msgstr "Время до удаления неаутентифицированных неработающих пользователей"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:39
-msgid "Auth idle timeout (minutes)"
-msgstr "Тайм-аут простоя (минуты)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:41
-msgid "Time before authenticated idle users are deauthenticated"
-msgstr "Время до того, как аутентифицированные неработающие пользователи будут деаутентифицированы"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:50
-msgid "Check interval (seconds)"
-msgstr "Интервал проверки (секунды)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:52
-msgid "How often to check client timeouts"
-msgstr "Как часто проверять тайм-ауты клиентов"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:59
-msgid "MAC address control"
-msgstr "Контроль MAC-адресов"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:63
-msgid "MAC mechanism"
-msgstr "Механизм MAC"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:65
-msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
-msgstr "Block: MAC-адреса, занесенные в список block, блокируются. Разрешить: разрешены только MAC-адреса, внесенные в список разрешенных."
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:68
-msgid "Block (blocklist mode)"
-msgstr "Блок (режим блок-листа)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:71
-msgid "Allow (allowlist mode)"
-msgstr "Разрешить (режим списка разрешений)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:79
-msgid "Blocked MAC list"
-msgstr "Список заблокированных MAC-адресов"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:81
-msgid "Comma-separated MAC addresses to block (used when mechanism is 'block')"
-msgstr "MAC-адреса для блокировки, разделенные запятыми (используется, когда механизм имеет значение 'block')"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:84
-#: ../plugins-available/Captive/templates/tabs/clients.php:95
-msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
-msgstr "Пример: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:90
-msgid "Allowed MAC list"
-msgstr "Список разрешенных MAC-адресов"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:92
-msgid "Comma-separated MAC addresses to allow (used when mechanism is 'allow')"
-msgstr "MAC-адреса, разделенные запятыми, чтобы разрешить (используется, когда механизм имеет значение 'allow')"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:101
-msgid "Trusted MAC list"
-msgstr "Список доверенных MAC-адресов"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:103
-msgid "Comma-separated MAC addresses that bypass authentication entirely"
-msgstr "MAC-адреса, разделенные запятыми, которые полностью обходят аутентификацию"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:106
-msgid "These devices are not subject to authentication or firewall rules"
-msgstr "На эти устройства не распространяются правила аутентификации и брандмауэра"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:5
-#: ../templates/system/advanced.php:3 ../templates/hostapd/advanced.php:2
-msgid "Advanced settings"
-msgstr "Дополнительные настройки"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:9
-msgid "Gateway IP range"
-msgstr "Диапазон IP-адресов шлюза"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:11
-msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
-msgstr "Диапазон IP-адресов для управления в нотации CIDR. Оставьте пустым для всех адресов"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:15
-msgid "Default: 0.0.0.0/0 (all addresses)"
-msgstr "По умолчанию: 0.0.0.0/0 (все адреса)"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:21
-msgid "Debug level"
-msgstr "Уровень отладки"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:23
-msgid "Amount of logging detail reported by the nodogsplash.service"
-msgstr "Количество подробных записей в журнале, сообщаемых службой nodogsplash.service"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:26
-msgid "0 - Errors only"
-msgstr "0 - только ошибки"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:29
-msgid "1 - Errors, warnings, infos"
-msgstr "1 - Ошибки, предупреждения, информация"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:32
-msgid "2 - Errors, warnings, infos, verbose"
-msgstr "2 - Ошибки, предупреждения, информация, подробная информация"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:35
-msgid "3 - Errors, warnings, infos, verbose, debug"
-msgstr "3 - Ошибки, предупреждения, информация, подробная информация, отладка"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:41
-msgid "Firewall settings"
-msgstr "Настройки брандмауэра"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:49
-msgid "Allow all traffic for authenticated users"
-msgstr "Разрешить весь трафик для аутентифицированных пользователей"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:52
-msgid "When enabled, authenticated users have unrestricted access"
-msgstr "Если включено, аутентифицированные пользователи имеют неограниченный доступ"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:63
-msgid "Allow DNS for pre-authenticated users"
-msgstr "Разрешить DNS для предварительно аутентифицированных пользователей"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:66
-msgid "Required for clients to resolve domain names before authentication"
-msgstr "Требуется для разрешения клиентами доменных имен перед аутентификацией"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:5
-#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
-#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
-#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
-msgid "Basic settings"
-msgstr "Основные настройки"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:9
-msgid "Gateway interface"
-msgstr "Интерфейс шлюза"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:10
-msgid "Interface to be managed by the portal"
-msgstr "Интерфейс, которым будет управлять портал"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:12
-msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
-msgstr "По умолчанию - активный интерфейс точки доступа, обычно <code>wlan0</code>."
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:16
-msgid "Gateway name"
-msgstr "Имя шлюза"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:18
-msgid "Name of your gateway (available as $gatewayname variable)"
-msgstr "Имя вашего шлюза (доступно как переменная $gatewayname)"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:27
-msgid "Gateway address"
-msgstr "Адрес шлюза"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:29
-msgid "IP address of the router. Leave empty for auto-detection"
-msgstr "IP-адрес маршрутизатора. Оставьте пустым для автоматического определения"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:33
-msgid "Auto-detected from gateway interface if not specified"
-msgstr "Автоматически определяется по интерфейсу шлюза, если он не указан"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:37
-msgid "Gateway port"
-msgstr "Порт шлюза"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:39
-msgid "Port for Nodogsplash HTTP server"
-msgstr "Порт для HTTP-сервера Nodogsplash"
-
-#: ../plugins-available/Captive/templates/tabs/status.php:3
-msgid "Portal status"
-msgstr "Статус портала"
-
-#: ../plugins-available/Captive/templates/tabs/status.php:4
-msgid "Current <code>nodogsplash</code> status is displayed below."
-msgstr "Текущее состояние <code>nodogsplash</code> показано ниже."
-
-#: ../plugins-available/Captive/templates/tabs/about.php:5
-#: ../plugins-available/Tailscale/templates/tabs/about.php:5
-#: ../plugins-available/Wireshark/templates/tabs/about.php:5
-msgid "was created by"
-msgstr "был создан"
-
-#: ../plugins-available/Captive/templates/tabs/about.php:8
-#: ../plugins-available/Tailscale/templates/tabs/about.php:8
-#: ../plugins-available/Wireshark/templates/tabs/about.php:8
-msgid "Plugin description"
-msgstr "Описание плагина"
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
+msgid "Dashboard"
+msgstr "Приборная панель"
+
+#: ../src/RaspAP/UI/Sidebar.php:20 ../templates/hostapd.php:13
+#: ../includes/functions.php:1003
+msgid "Hotspot"
+msgstr "Точка доступа"
+
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
+msgid "DHCP Server"
+msgstr "Сервер DHCP"
+
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
+msgid "Ad Blocking"
+msgstr "Блокировка рекламы"
+
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/dashboard.php:24
+#: ../templates/dashboard.php:25 ../templates/networking.php:8
+msgid "Networking"
+msgstr "Работа в сети"
+
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "WiFi клиент"
+
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "WireGuard"
+
+#: ../src/RaspAP/UI/Sidebar.php:44
+msgid "Data usage"
+msgstr "Использование данных"
+
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
+msgid "RestAPI"
+msgstr "RestAPI"
+
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/dashboard.php:44
+#: ../templates/dashboard.php:45 ../templates/system.php:7
+msgid "System"
+msgstr "Система"
+
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
+msgid "About RaspAP"
+msgstr "О компании RaspAP"
+
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+msgid "No MAC Address Found"
+msgstr "MAC-адрес не найден"
+
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "IPv6-адрес не найден"
+
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "клиент"
+msgstr[1] "клиенты"
+msgstr[2] "клиенты"
+msgstr[3] "клиенты"
+
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "Установлено"
+
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "Подробности"
 
 #: ../plugins-available/Tailscale/Tailscale.php:52
 msgid "Tailscale VPN"
@@ -643,10 +248,25 @@ msgstr "Посетите <a href=\"%s\" target=\"_blank\">инструкции �
 msgid "A Tailscale VPN exit node extension for RaspAP"
 msgstr "Расширение выходного узла Tailscale VPN для RaspAP"
 
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Wireshark/Wireshark.php:185
+#: ../plugins-available/Captive/Captive.php:133
+msgid "Bill Z"
+msgstr "Билл Зи"
+
 #: ../plugins-available/Tailscale/Tailscale.php:400
 #: ../plugins-available/Tailscale/templates/main.php:44
 msgid "Start Tailscale"
 msgstr "Начать шкалу хвостов"
+
+#: ../plugins-available/Tailscale/Tailscale.php:403
+#: ../plugins-available/Tailscale/templates/main.php:4
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:6
+#: ../templates/dashboard.php:12 ../templates/system/basic.php:63
+#: ../templates/dhcp/summary.php:9 ../templates/networking/general.php:4
+#: ../templates/networking/devices.php:4
+msgid "Refresh"
+msgstr "Обновить"
 
 #: ../plugins-available/Tailscale/Tailscale.php:406
 #, php-format
@@ -656,6 +276,101 @@ msgstr "Невозможно получить логин Tailscale. Выбери
 #: ../plugins-available/Tailscale/Tailscale.php:786
 msgid "Not connected: Login required."
 msgstr "Не подключен: Требуется вход в систему."
+
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "Назад"
+
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "Следующий"
+
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Wireshark/templates/main.php:3
+#: ../plugins-available/Captive/templates/main.php:3 ../templates/openvpn.php:3
+#: ../templates/adblock.php:3 ../templates/restapi.php:3
+#: ../templates/dhcp.php:3 ../templates/system/language.php:11
+#: ../templates/system/advanced.php:39 ../templates/system/theme.php:56
+#: ../templates/hostapd.php:3 ../templates/admin/general.php:2
+#: ../templates/wireguard.php:3 ../templates/provider.php:3
+#: ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29
+msgid "Save settings"
+msgstr "Сохранить настройки"
+
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "Отмена выхода из узла"
+
+#: ../plugins-available/Tailscale/templates/main.php:22
+#: ../templates/admin/general.php:4
+msgid "Logout"
+msgstr "Выход из системы"
+
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "Прекращение использования узла выхода"
+
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "Остановить шкалу хвостов"
+
+#: ../plugins-available/Tailscale/templates/main.php:70
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../templates/restapi.php:46 ../templates/wireguard.php:46
+#: ../templates/provider.php:35
+msgid "Settings"
+msgstr "Настройки"
+
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../plugins-available/Captive/templates/main.php:51
+#: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:47
+#: ../templates/provider.php:36 ../includes/functions.php:1001
+msgid "Status"
+msgstr "Статус"
+
+#: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/main.php:53
+#: ../plugins-available/Captive/templates/tabs/about.php:3
+#: ../templates/about.php:21
+msgid "About"
+msgstr "О сайте"
+
+#: ../plugins-available/Tailscale/templates/main.php:89
+#: ../plugins-available/Wireshark/templates/main.php:69
+msgid "Information provided by "
+msgstr "Информация предоставлена "
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "Состояние хвостовой части"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "Текущее состояние <code>хвостовой части</code> отображается ниже."
+
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+msgid "Basic settings"
+msgstr "Основные настройки"
+
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "был создан"
+
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "Описание плагина"
 
 #: ../plugins-available/Tailscale/templates/dialogs/active.php:1
 msgid "Exit node activated"
@@ -670,147 +385,6 @@ msgstr "Устройство <code>%s</code> соединено с адресо�
 #, php-format
 msgid "See the %s on how to use this exit node with your devices."
 msgstr "О том, как использовать этот узел выхода с вашими устройствами, читайте на сайте %s."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
-msgid "Configure new exit node"
-msgstr "Настройка нового узла выхода"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
-#, php-format
-msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
-msgstr "По соображениям безопасности, чтобы включить функциональность узла выхода, вы должны зарегистрироваться. Первым шагом будет реклама <code>%s</code> в качестве узла выхода в вашей хвостовой сети. На следующем этапе вы разрешите этому устройству быть узлом выхода."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
-#, php-format
-msgid "Advertise <code>%s</code> as an exit node"
-msgstr "Рекламируйте <code>%s</code> как узел выхода"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
-msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
-msgstr "Это позволяет эффективно настроить Tailscale как VPN для маскировки вашего реального местоположения, доступа к контенту с региональными ограничениями или повышения конфиденциальности при подключении из ненадежных сетей."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
-msgid "This option lets Tailscale know your device is ready to route traffic."
-msgstr "Эта опция позволяет Tailscale узнать, что ваше устройство готово к маршрутизации трафика."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
-msgid "Enable optimized UDP throughput"
-msgstr "Включите оптимизированную пропускную способность UDP"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
-msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
-msgstr "Рекомендуется для выходных узлов Tailscale с ядрами Linux 6.2 или более поздних версий, использует переадресацию UDP generic receive offload (GRO) для снижения нагрузки на процессор."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
-msgid "This option enables transport layer offloads for better performance."
-msgstr "Эта опция включает разгрузку транспортного уровня для повышения производительности."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
-msgid "Choose <strong>Next</strong> to continue."
-msgstr "Выберите <strong>Далее</strong>, чтобы продолжить."
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
-msgid "Using exit node"
-msgstr "Использование узла выхода"
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
-#, php-format
-msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
-msgstr "Устройство <code>%s</code> настроено на использование узла выхода <code>%s</code>. У него есть адрес Tailscale MagicDNS <code>%s</code>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
-msgid "Configure device"
-msgstr "Настройте устройство"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
-#, php-format
-msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
-msgstr "Устройство <code>%s</code> подключено к вашей хвостовой сети с адресом <code>%s</code>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
-msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
-msgstr "По умолчанию Tailscale маршрутизирует трафик только между устройствами, на которых он установлен. Вы также можете маршрутизировать весь публичный интернет-трафик, настроив устройство в вашей сети в качестве <strong>выходного узла</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
-msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
-msgstr "Когда вы направляете весь трафик через выходной узел, вы эффективно используете маршруты по умолчанию (0.0.0.0/0, ::/0), аналогично тому, как это делается при использовании обычной VPN."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
-msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
-msgstr "У вас есть возможность настроить это устройство в качестве узла выхода или использовать другой узел выхода в хвостовой сети."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
-msgid "Select an existing exit node on your tailnet"
-msgstr "Выберите существующий узел выхода в вашей хвостовой сети"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
-msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
-msgstr "Это типичная конфигурация, если вы используете это устройство, например, в качестве маршрутизатора для путешествий с VPN."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
-msgid "Configure this device as a new exit node"
-msgstr "Настройте это устройство в качестве нового узла выхода"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
-msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
-msgstr "Если настроить это устройство как выходной узел, через него будет направляться публичный интернет-трафик от устройств, подключенных в вашей хвостовой сети."
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
-msgid "Login to Tailscale"
-msgstr "Вход в Tailscale"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
-#, php-format
-msgid "To connect device %s to your tailnet, choose %s."
-msgstr "Чтобы подключить устройство %s к хвостовой сетке, выберите %s."
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
-msgid "Open Tailscale Login"
-msgstr "Вход в систему Tailscale"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
-msgid "After logging in, choose <strong>Next</strong> to continue."
-msgstr "После входа в систему выберите <strong>Далее</strong>, чтобы продолжить."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
-msgid "Allow exit node"
-msgstr "Разрешить выходной узел"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
-#, php-format
-msgid "The device <code>%s</code> is pending approval as an exit node."
-msgstr "Устройство <code>%s</code> ожидает утверждения в качестве узла выхода."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
-msgid "Open Tailscale Machines"
-msgstr "Открытые хвостовые машины"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
-#, php-format
-msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
-msgstr "Найдите значок <code>%s</code> Значок <strong>Exit Node</strong> в списке машин."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
-#, php-format
-msgid "From the %s icon menu of the exit node, open the %s panel."
-msgstr "В меню значка %s узла выхода откройте панель %s."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
-msgid "Edit route settings"
-msgstr "Редактирование настроек маршрута"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
-msgid "Enable the <strong>Use as exit node</strong> option."
-msgstr "Включите опцию <strong>Использовать в качестве узла выхода</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
-msgid "Choose <strong>Next</strong> when you've completed these steps."
-msgstr "После выполнения этих шагов выберите <strong>Next (Далее</strong> )."
 
 #: ../plugins-available/Tailscale/templates/dialogs/select.php:1
 msgid "Select an exit node"
@@ -875,6 +449,147 @@ msgstr "Выберите <strong>Далее</strong>, чтобы настрои�
 msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
 msgstr "В вашей хвостовой сети не обнаружено узлов выхода. Выберите <strong>Назад</strong>, чтобы продолжить."
 
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "Вход в Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Чтобы подключить устройство %s к хвостовой сетке, выберите %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "Вход в систему Tailscale"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "После входа в систему выберите <strong>Далее</strong>, чтобы продолжить."
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "Использование узла выхода"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Устройство <code>%s</code> настроено на использование узла выхода <code>%s</code>. У него есть адрес Tailscale MagicDNS <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "Настройка нового узла выхода"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "По соображениям безопасности, чтобы включить функциональность узла выхода, вы должны зарегистрироваться. Первым шагом будет реклама <code>%s</code> в качестве узла выхода в вашей хвостовой сети. На следующем этапе вы разрешите этому устройству быть узлом выхода."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Рекламируйте <code>%s</code> как узел выхода"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Это позволяет эффективно настроить Tailscale как VPN для маскировки вашего реального местоположения, доступа к контенту с региональными ограничениями или повышения конфиденциальности при подключении из ненадежных сетей."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Эта опция позволяет Tailscale узнать, что ваше устройство готово к маршрутизации трафика."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "Включите оптимизированную пропускную способность UDP"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Рекомендуется для выходных узлов Tailscale с ядрами Linux 6.2 или более поздних версий, использует переадресацию UDP generic receive offload (GRO) для снижения нагрузки на процессор."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Эта опция включает разгрузку транспортного уровня для повышения производительности."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Выберите <strong>Далее</strong>, чтобы продолжить."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "Настройте устройство"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Устройство <code>%s</code> подключено к вашей хвостовой сети с адресом <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "По умолчанию Tailscale маршрутизирует трафик только между устройствами, на которых он установлен. Вы также можете маршрутизировать весь публичный интернет-трафик, настроив устройство в вашей сети в качестве <strong>выходного узла</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Когда вы направляете весь трафик через выходной узел, вы эффективно используете маршруты по умолчанию (0.0.0.0/0, ::/0), аналогично тому, как это делается при использовании обычной VPN."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "У вас есть возможность настроить это устройство в качестве узла выхода или использовать другой узел выхода в хвостовой сети."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "Выберите существующий узел выхода в вашей хвостовой сети"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Это типичная конфигурация, если вы используете это устройство, например, в качестве маршрутизатора для путешествий с VPN."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "Настройте это устройство в качестве нового узла выхода"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "Если настроить это устройство как выходной узел, через него будет направляться публичный интернет-трафик от устройств, подключенных в вашей хвостовой сети."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "Разрешить выходной узел"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Устройство <code>%s</code> ожидает утверждения в качестве узла выхода."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "Открытые хвостовые машины"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Найдите значок <code>%s</code> Значок <strong>Exit Node</strong> в списке машин."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "В меню значка %s узла выхода откройте панель %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "Редактирование настроек маршрута"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "Включите опцию <strong>Использовать в качестве узла выхода</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "После выполнения этих шагов выберите <strong>Next (Далее</strong> )."
+
 #: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
 msgid "Approve subnet route"
 msgstr "Утверждение маршрута подсети"
@@ -898,51 +613,61 @@ msgstr "В меню значка %s устройства откройте пан
 msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
 msgstr "Установите флажок в поле IP-диапазон, соответствующий маршруту подсети, который вы хотите рекламировать, а затем выберите <strong>Сохранить</strong>."
 
-#: ../plugins-available/Tailscale/templates/main.php:7
-msgid "Back"
-msgstr "Назад"
+#: ../plugins-available/Wireshark/Wireshark.php:48
+msgid "Wireshark"
+msgstr "Wireshark"
 
-#: ../plugins-available/Tailscale/templates/main.php:10
-#: ../plugins-available/Tailscale/templates/main.php:13
-msgid "Next"
-msgstr "Следующий"
+#: ../plugins-available/Wireshark/Wireshark.php:140
+#, php-format
+msgid "Attempting to start packet capture on %s"
+msgstr "Попытка запустить захват пакетов на %s."
 
-#: ../plugins-available/Tailscale/templates/main.php:19
-msgid "Revoke Exit Node"
-msgstr "Отмена выхода из узла"
+#: ../plugins-available/Wireshark/Wireshark.php:143
+#, php-format
+msgid "TShark started with PID %s"
+msgstr "TShark запустился с PID %s"
 
-#: ../plugins-available/Tailscale/templates/main.php:22
-#: ../templates/admin/general.php:4
-msgid "Logout"
-msgstr "Выход из системы"
+#: ../plugins-available/Wireshark/Wireshark.php:152
+#, php-format
+msgid "Attempting to stop packet capture on %s"
+msgstr "Попытка остановить захват пакетов на %s."
 
-#: ../plugins-available/Tailscale/templates/main.php:25
-msgid "Stop Using Exit Node"
-msgstr "Прекращение использования узла выхода"
+#: ../plugins-available/Wireshark/Wireshark.php:172
+#, php-format
+msgid "Expected tshark binary not found at: %s"
+msgstr "Ожидаемый двоичный файл tshark не найден по адресу: %s"
 
-#: ../plugins-available/Tailscale/templates/main.php:48
-msgid "Stop Tailscale"
-msgstr "Остановить шкалу хвостов"
+#: ../plugins-available/Wireshark/Wireshark.php:173
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Wireshark plugin."
+msgstr "Ознакомьтесь с <a href=\"%s\" target=\"_blank\">инструкциями по установке</a> или переустановите плагин Wireshark."
 
-#: ../plugins-available/Tailscale/templates/main.php:70
-#: ../plugins-available/Wireshark/templates/main.php:45
-#: ../templates/wireguard.php:46 ../templates/provider.php:35
-#: ../templates/restapi.php:46
-msgid "Settings"
-msgstr "Настройки"
+#: ../plugins-available/Wireshark/Wireshark.php:184
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "Перехват пакетов Wireshark (TShark) CLI для RaspAP"
 
-#: ../plugins-available/Tailscale/templates/main.php:89
-#: ../plugins-available/Wireshark/templates/main.php:69
-msgid "Information provided by "
-msgstr "Информация предоставлена "
+#: ../plugins-available/Wireshark/Wireshark.php:244
+msgid "TShark settings saved successfully"
+msgstr "Настройки TShark успешно сохранены"
 
-#: ../plugins-available/Tailscale/templates/tabs/status.php:3
-msgid "Tailnet status"
-msgstr "Состояние хвостовой части"
+#: ../plugins-available/Wireshark/Wireshark.php:248
+#: ../plugins-available/Captive/Captive.php:542
+msgid "Error saving settings: "
+msgstr "Ошибка сохранения настроек: "
 
-#: ../plugins-available/Tailscale/templates/tabs/status.php:4
-msgid "Current <code>tailnet</code> status is displayed below."
-msgstr "Текущее состояние <code>хвостовой части</code> отображается ниже."
+#: ../plugins-available/Wireshark/Wireshark.php:649
+msgid "File not found"
+msgstr "Файл не найден"
+
+#: ../plugins-available/Wireshark/Wireshark.php:658
+#, php-format
+msgid "File \"%s\" deleted successfully"
+msgstr "Файл \"%s\" успешно удален"
+
+#: ../plugins-available/Wireshark/Wireshark.php:661
+#, php-format
+msgid "Failed to delete file \"%s\""
+msgstr "Не удалось удалить файл \"%s\"."
 
 #: ../plugins-available/Wireshark/templates/main.php:20
 msgid "Start capture"
@@ -956,57 +681,6 @@ msgstr "Остановить захват"
 #: ../plugins-available/Wireshark/templates/tabs/capture.php:3
 msgid "Capture files"
 msgstr "Захват файлов"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
-msgid "Capture files generated by <code>tshark</code> are displayed below."
-msgstr "Файлы захвата, созданные <code>tshark</code>, показаны ниже."
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
-msgid "No capture files found in /tmp directory"
-msgstr "В каталоге /tmp не найдено ни одного файла захвата"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
-msgid "Filename"
-msgstr "Имя файла"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
-msgid "Size"
-msgstr "Размер"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
-msgid "Modified"
-msgstr "Модифицированный"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
-msgid "Actions"
-msgstr "Действия"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
-msgid "Download file"
-msgstr "Скачать файл"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
-msgid "Delete file"
-msgstr "Удалить файл"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
-#, php-format
-msgid "Total: %d file(s), %s"
-msgstr "Итого: %d файл(ы), %s"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
-msgid "Confirm deletion"
-msgstr "Подтвердите удаление"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
-msgid "Are you sure you want to delete this file?"
-msgstr "Вы уверены, что хотите удалить этот файл?"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
-#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
-#: ../templates/openvpn.php:82
-msgid "Delete"
-msgstr "Удалить"
 
 #: ../plugins-available/Wireshark/templates/tabs/basic.php:8
 msgid "Capture interface"
@@ -1133,257 +807,492 @@ msgstr "SSH"
 msgid "Exclude SSH"
 msgstr "Исключить SSH"
 
-#: ../plugins-available/Wireshark/Wireshark.php:48
-msgid "Wireshark"
-msgstr "Wireshark"
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Файлы захвата, созданные <code>tshark</code>, показаны ниже."
 
-#: ../plugins-available/Wireshark/Wireshark.php:140
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "В каталоге /tmp не найдено ни одного файла захвата"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "Имя файла"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "Размер"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "Модифицированный"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "Действия"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "Скачать файл"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "Удалить файл"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
 #, php-format
-msgid "Attempting to start packet capture on %s"
-msgstr "Попытка запустить захват пакетов на %s."
+msgid "Total: %d file(s), %s"
+msgstr "Итого: %d файл(ы), %s"
 
-#: ../plugins-available/Wireshark/Wireshark.php:143
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "Подтвердите удаление"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "Вы уверены, что хотите удалить этот файл?"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../plugins-available/Captive/templates/main.php:99
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:109 ../templates/system.php:253
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/admin.php:90 ../templates/admin.php:119
+msgid "Cancel"
+msgstr "Отмена"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+#: ../templates/wifi_stations/network.php:100 ../templates/openvpn.php:82
+#: ../templates/wireguard.php:84
+msgid "Delete"
+msgstr "Удалить"
+
+#: ../plugins-available/Captive/Captive.php:71
+#: ../plugins-available/Captive/Captive.php:131
+msgid "Captive portal"
+msgstr "Портал для пленных"
+
+#: ../plugins-available/Captive/Captive.php:96
 #, php-format
-msgid "TShark started with PID %s"
-msgstr "TShark запустился с PID %s"
+msgid "Attempting to start %s"
+msgstr "Попытка запуска %s"
 
-#: ../plugins-available/Wireshark/Wireshark.php:152
+#: ../plugins-available/Captive/Captive.php:100
 #, php-format
-msgid "Attempting to stop packet capture on %s"
-msgstr "Попытка остановить захват пакетов на %s."
+msgid "Attempting to stop %s"
+msgstr "Попытка остановить %s"
 
-#: ../plugins-available/Wireshark/Wireshark.php:172
+#: ../plugins-available/Captive/Captive.php:107
 #, php-format
-msgid "Expected tshark binary not found at: %s"
-msgstr "Ожидаемый двоичный файл tshark не найден по адресу: %s"
+msgid "Client %s deauthenticated"
+msgstr "Клиент %s вышел из системы"
 
-#: ../plugins-available/Wireshark/Wireshark.php:173
+#: ../plugins-available/Captive/Captive.php:109
 #, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Wireshark plugin."
-msgstr "Ознакомьтесь с <a href=\"%s\" target=\"_blank\">инструкциями по установке</a> или переустановите плагин Wireshark."
+msgid "Failed to deauthenticate client %s"
+msgstr "Не удалось отменить аутентификацию клиента %s"
 
-#: ../plugins-available/Wireshark/Wireshark.php:184
-msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
-msgstr "Перехват пакетов Wireshark (TShark) CLI для RaspAP"
+#: ../plugins-available/Captive/Captive.php:112
+msgid "Invalid client MAC address"
+msgstr "Неверный MAC-адрес клиента"
 
-#: ../plugins-available/Wireshark/Wireshark.php:244
-msgid "TShark settings saved successfully"
-msgstr "Настройки TShark успешно сохранены"
+#: ../plugins-available/Captive/Captive.php:132
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "Плагин портала захвата, реализующий nodogsplash"
 
-#: ../plugins-available/Wireshark/Wireshark.php:649
-msgid "File not found"
-msgstr "Файл не найден"
+#: ../plugins-available/Captive/Captive.php:539
+msgid "Portal settings saved successfully"
+msgstr "Настройки портала успешно сохранены"
 
-#: ../plugins-available/Wireshark/Wireshark.php:658
-#, php-format
-msgid "File \"%s\" deleted successfully"
-msgstr "Файл \"%s\" успешно удален"
+#: ../plugins-available/Captive/Captive.php:583
+msgid "Failed to execute ndsctl."
+msgstr "Не удалось выполнить команду ndsctl."
 
-#: ../plugins-available/Wireshark/Wireshark.php:661
-#, php-format
-msgid "Failed to delete file \"%s\""
-msgstr "Не удалось удалить файл \"%s\"."
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "Остановочный портал"
 
-#: ../includes/networking.php:51 ../includes/networking.php:54
-msgid "not configured"
-msgstr "не настроен"
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "Стартовый портал"
 
-#: ../includes/networking.php:137
-#, php-format
-msgid "Attempting to enable routing between %s and %s interfaces"
-msgstr "Попытка включить маршрутизацию между интерфейсами %s и %s."
+#: ../plugins-available/Captive/templates/main.php:48
+#: ../templates/system.php:17 ../templates/hostapd.php:49
+#: ../templates/admin.php:20
+msgid "Basic"
+msgstr "Основные"
 
-#: ../includes/networking.php:147
-#, php-format
-msgid "Attempting to restart routing between %s and %s interfaces"
-msgstr "Попытка перезапустить маршрутизацию между интерфейсами %s и %s."
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "Клиенты"
 
-#: ../includes/networking.php:151
-#, php-format
-msgid "Attempting to disable routing between %s and %s interfaces"
-msgstr "Попытка отключить маршрутизацию между интерфейсами %s и %s."
+#: ../plugins-available/Captive/templates/main.php:50
+#: ../templates/system.php:20 ../templates/dhcp.php:52
+#: ../templates/hostapd.php:51
+msgid "Advanced"
+msgstr "Расширенный"
 
-#: ../includes/networking.php:252
-#, php-format
-msgid "DHCP configuration for %s enabled"
-msgstr "Настройка DHCP для %s включена"
+#: ../plugins-available/Captive/templates/main.php:52
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+msgid "Active clients"
+msgstr "Активные клиенты"
 
-#: ../includes/networking.php:259
-#, php-format
-msgid "DHCP configuration for %s added"
-msgstr "Добавлена конфигурация DHCP для %s."
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "Информация предоставлена nodogsplash"
 
-#: ../includes/networking.php:265
-#, php-format
-msgid "DHCP configuration for %s updated"
-msgstr "Обновлена конфигурация DHCP для %s"
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "Остановите службу портала"
 
-#: ../includes/networking.php:271
-#, php-format
-msgid "No default DHCP configuration exists for the %s interface"
-msgstr "Для интерфейса %s не существует конфигурации DHCP по умолчанию."
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "Запуск службы портала"
 
-#: ../includes/networking.php:272
-#, php-format
-msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
-msgstr "Настройте статический IP и DHCP для этого интерфейса в настройках DHCP Server."
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Изменение службы портала приведет к кратковременному прерыванию клиентского трафика. Выберите <strong>Приступить</strong>, чтобы продолжить."
 
-#: ../includes/networking.php:294
-#, php-format
-msgid "Dnsmasq  configuration for %s added"
-msgstr "Добавлена настройка Dnsmasq для %s."
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "Приступайте"
 
-#: ../includes/footer.php:6
-#, php-format
-msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
-msgstr "Создано <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+#: ../plugins-available/Captive/templates/tabs/status.php:3
+msgid "Portal status"
+msgstr "Статус портала"
 
-#: ../includes/footer.php:6
-msgid "RaspAP Team"
-msgstr "Команда RaspAP"
+#: ../plugins-available/Captive/templates/tabs/status.php:4
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "Текущее состояние <code>nodogsplash</code> показано ниже."
 
-#: ../includes/footer.php:9
-msgid "Thanks for being an Insider"
-msgstr "Спасибо, что стали инсайдером"
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "Интерфейс шлюза"
 
-#: ../includes/footer.php:17
-msgid "Session Expired"
-msgstr "Сессия истекла"
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "Интерфейс, которым будет управлять портал"
 
-#: ../includes/footer.php:20
-msgid "Your session has expired. Please login to continue."
-msgstr "Срок действия вашей сессии истек. Пожалуйста, войдите в систему, чтобы продолжить."
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "По умолчанию - активный интерфейс точки доступа, обычно <code>wlan0</code>."
 
-#: ../includes/footer.php:23 ../templates/admin.php:18
-#: ../templates/login.php:30
-msgid "Login"
-msgstr "Вход в систему"
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "Имя шлюза"
 
-#: ../includes/provider.php:65
-#, php-format
-msgid "Expected %s binary not found at: %s"
-msgstr "Ожидаемый двоичный файл %s не найден по адресу: %s"
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "Имя вашего шлюза (доступно как переменная $gatewayname)"
 
-#: ../includes/provider.php:66
-#, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
-msgstr "Посетите <a href=\"%s\" target=\"_blank\">инструкцию по установке</a> %s'Linux CLI."
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "Адрес шлюза"
 
-#: ../includes/provider.php:70
-#, php-format
-msgid "Unable to execute %s binary found at: %s"
-msgstr "Невозможно выполнить двоичный файл %s , найденный по адресу: %s"
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "IP-адрес маршрутизатора. Оставьте пустым для автоматического определения"
 
-#: ../includes/provider.php:71
-msgid "Check that binary is executable and permissions exist in raspap.sudoers"
-msgstr "Проверьте, что двоичный файл исполняем и разрешения существуют в raspap.sudoers"
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Автоматически определяется по интерфейсу шлюза, если он не указан"
 
-#: ../includes/provider.php:119
-#, php-format
-msgid "Attempting to connect to %s"
-msgstr "Попытка подключения к %s"
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "Порт шлюза"
 
-#: ../includes/provider.php:318
-msgid "Select a country..."
-msgstr "Выберите страну..."
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Порт для HTTP-сервера Nodogsplash"
 
-#: ../includes/provider.php:387
-#, php-format
-msgid "Account information not available from %s's Linux CLI."
-msgstr "Информация об учетной записи, недоступная из %s'Linux CLI."
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
+msgid "Advanced settings"
+msgstr "Дополнительные настройки"
 
-#: ../includes/functions.php:1006
-msgid "Mem Use"
-msgstr "Использование памяти"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "Диапазон IP-адресов шлюза"
 
-#: ../includes/functions.php:1009
-msgid "CPU"
-msgstr "CPU"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "Диапазон IP-адресов для управления в нотации CIDR. Оставьте пустым для всех адресов"
 
-#: ../includes/restapi.php:59
-#, php-format
-msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
-msgstr "Документация по RestAPI доступна <a href=\"%s\" target=\"_blank\">здесь %s. </a>"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "По умолчанию: 0.0.0.0/0 (все адреса)"
 
-#: ../includes/system.php:67
-#, php-format
-msgid "Changing log limit size to %s KB"
-msgstr "Изменение предельного размера журнала на %s КБ"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "Уровень отладки"
 
-#: ../includes/system.php:86
-#, php-format
-msgid "Changing alert close timeout to %s ms"
-msgstr "Изменение таймаута закрытия предупреждения на %s мс."
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "Количество подробных записей в журнале, сообщаемых службой nodogsplash.service"
 
-#: ../includes/adblock.php:31
-msgid "Invalid custom IP address found on line "
-msgstr "В строке найден недопустимый пользовательский IP-адрес "
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - только ошибки"
 
-#: ../includes/adblock.php:35
-msgid "Invalid custom host found on line "
-msgstr "В строке найден недопустимый пользовательский хост "
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Ошибки, предупреждения, информация"
 
-#: ../includes/dashboard.php:72
-#, php-format
-msgid "%d WLAN %s"
-msgstr "%d WLAN %s"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Ошибки, предупреждения, информация, подробная информация"
 
-#: ../includes/dashboard.php:78
-#, php-format
-msgid "%d LAN %s"
-msgstr "%d LAN %s"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Ошибки, предупреждения, информация, подробная информация, отладка"
 
-#: ../templates/admin.php:7
-msgid "Authentication"
-msgstr "Аутентификация"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "Настройки брандмауэра"
 
-#: ../templates/admin.php:21 ../templates/admin/avatar.php:11
-msgid "Avatar"
-msgstr "Аватар"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "Разрешить весь трафик для аутентифицированных пользователей"
 
-#: ../templates/admin.php:47
-msgid "Update admin password"
-msgstr "Обновление пароля администратора"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "Если включено, аутентифицированные пользователи имеют неограниченный доступ"
 
-#: ../templates/admin.php:54
-msgid "Old password"
-msgstr "Старый пароль"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "Разрешить DNS для предварительно аутентифицированных пользователей"
 
-#: ../templates/admin.php:59
-msgid "Please enter your old password."
-msgstr "Пожалуйста, введите свой старый пароль."
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Требуется для разрешения клиентами доменных имен перед аутентификацией"
 
-#: ../templates/admin.php:66
-msgid "New password"
-msgstr "Новый пароль"
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:17
+msgid "Client"
+msgstr "Клиент"
 
-#: ../templates/admin.php:71
-msgid "Please enter a new password."
-msgstr "Пожалуйста, введите новый пароль."
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:21
+msgid "IP"
+msgstr "IP"
 
-#: ../templates/admin.php:78
-msgid "Repeat new password"
-msgstr "Повторите новый пароль"
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:22
+msgid "Token"
+msgstr "Токен"
 
-#: ../templates/admin.php:83
-msgid "Please re-enter your new password."
-msgstr "Пожалуйста, введите новый пароль еще раз."
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:23
+#: ../templates/wg/peers.php:73 ../templates/networking/diagnostics.php:34
+msgid "Download"
+msgstr "Скачать"
 
-#: ../templates/admin.php:91
-msgid "Save"
-msgstr "Сохранить"
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:24
+#: ../templates/networking/diagnostics.php:40
+msgid "Upload"
+msgstr "Загрузить"
 
-#: ../templates/admin.php:103
-msgid "Logout and enable limited user mode"
-msgstr "Выход из системы и включение режима ограниченного пользователя"
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:25
+msgid "Last activity"
+msgstr "Последнее действие"
 
-#: ../templates/admin.php:114
-msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
-msgstr "Это действие сохранит учетные данные ограниченного пользователя и приведет к выходу из системы текущего пользователя-администратора. Сохранить и включить режим ограниченных привилегий?"
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:26
+msgid "Session start"
+msgstr "Начало сессии"
 
-#: ../templates/admin.php:120
-msgid "Save and logout"
-msgstr "Сохранить и выйти из системы"
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:27
+msgid "Session end"
+msgstr "Конец сеанса"
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:35
+msgid "Deauthenticate"
+msgstr "Отменить аутентификацию"
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:44
+msgid "No active clients connected."
+msgstr "Активных подключенных клиентов нет."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:5
+#: ../templates/openvpn.php:46 ../templates/configure_client.php:21
+#: ../templates/openvpn/general.php:2
+msgid "Client settings"
+msgstr "Настройки клиента"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:9
+msgid "Maximum clients"
+msgstr "Максимум клиентов"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:11
+msgid "Maximum number of concurrent authenticated users"
+msgstr "Максимальное количество одновременно аутентифицированных пользователей"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:15
+msgid "Does not include users on the trusted MAC list"
+msgstr "Не включает пользователей из списка доверенных MAC-адресов"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:19
+msgid "Session timeout (minutes)"
+msgstr "Таймаут сеанса (минуты)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:21
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "Длительность сеанса по умолчанию в минутах. 0 = неограниченно"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:30
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "Таймаут простоя перед авторизацией (минуты)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:32
+msgid "Time before unauthenticated idle users are removed"
+msgstr "Время до удаления неаутентифицированных неработающих пользователей"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:39
+msgid "Auth idle timeout (minutes)"
+msgstr "Тайм-аут простоя (минуты)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:41
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "Время до того, как аутентифицированные неработающие пользователи будут деаутентифицированы"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:50
+msgid "Check interval (seconds)"
+msgstr "Интервал проверки (секунды)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:52
+msgid "How often to check client timeouts"
+msgstr "Как часто проверять тайм-ауты клиентов"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:59
+msgid "MAC address control"
+msgstr "Контроль MAC-адресов"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:63
+msgid "MAC mechanism"
+msgstr "Механизм MAC"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:65
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Block: MAC-адреса, занесенные в список block, блокируются. Разрешить: разрешены только MAC-адреса, внесенные в список разрешенных."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:68
+msgid "Block (blocklist mode)"
+msgstr "Блок (режим блок-листа)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:71
+msgid "Allow (allowlist mode)"
+msgstr "Разрешить (режим списка разрешений)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:79
+msgid "Blocked MAC list"
+msgstr "Список заблокированных MAC-адресов"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:81
+msgid "Comma-separated MAC addresses to block (used when mechanism is 'block')"
+msgstr "MAC-адреса для блокировки, разделенные запятыми (используется, когда механизм имеет значение 'block')"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:84
+#: ../plugins-available/Captive/templates/tabs/clients.php:95
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "Пример: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:90
+msgid "Allowed MAC list"
+msgstr "Список разрешенных MAC-адресов"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:92
+msgid "Comma-separated MAC addresses to allow (used when mechanism is 'allow')"
+msgstr "MAC-адреса, разделенные запятыми, чтобы разрешить (используется, когда механизм имеет значение 'allow')"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:101
+msgid "Trusted MAC list"
+msgstr "Список доверенных MAC-адресов"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:103
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "MAC-адреса, разделенные запятыми, которые полностью обходят аутентификацию"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:106
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "На эти устройства не распространяются правила аутентификации и брандмауэра"
+
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
+msgstr "Клиент Wi-Fi"
+
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "Ретранслятор"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "Tethering"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "Сотовая связь"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
+msgstr "Открытый доступ"
+
+#: ../templates/dashboard.php:49
+msgid "Local"
+msgstr "Местный"
+
+#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
+#: ../templates/wg/general.php:103 ../templates/wg/peers.php:38
+#: ../templates/dhcp/general.php:39 ../templates/dhcp/clients.php:20
+#: ../templates/dhcp/settings.php:39 ../templates/networking/general.php:13
+msgid "IP Address"
+msgstr "IP-адрес"
+
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "Netmask"
+
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "MAC-адрес"
+
+#: ../templates/dashboard.php:57 ../templates/dashboard.php:63
+#: ../templates/hostapd/basic.php:11
+msgid "SSID"
+msgstr "SSID"
+
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "AP"
+
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "Мостовая"
+
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "Adblock"
+
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "VPN"
+
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "Брандмауэр"
+
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
+
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2.4G"
+
+#: ../templates/dashboard.php:164 ../templates/system.php:40
+msgid "Information provided by raspap.sysinfo"
+msgstr "Информация предоставлена raspap.sysinfo"
 
 #: ../templates/adblock/stats.php:3
 msgid "Statistics"
@@ -1421,6 +1330,14 @@ msgstr "Выберите поставщика блокчейна"
 msgid "Update now"
 msgstr "Обновить сейчас"
 
+#: ../templates/adblock/logging.php:3 ../templates/openvpn.php:48
+#: ../templates/hostapd/logging.php:3 ../templates/adblock.php:47
+#: ../templates/dhcp.php:55 ../templates/openvpn/logging.php:3
+#: ../templates/hostapd.php:52 ../templates/wireguard.php:49
+#: ../templates/wg/logging.php:5 ../templates/dhcp/logging.php:3
+msgid "Logging"
+msgstr "Ведение журнала"
+
 #: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
 msgid "Custom blocklist"
 msgstr "Пользовательский блок-лист"
@@ -1441,261 +1358,33 @@ msgstr "<b>Пример IPv4:</b> 0.0.0.0 badhost.com"
 msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
 msgstr "Эта опция добавляет директиву <code>addn-hosts</code> в конфигурацию dnsmasq."
 
-#: ../templates/adblock/logging.php:3 ../templates/openvpn/logging.php:3
-#: ../templates/dhcp.php:55 ../templates/wireguard.php:49
-#: ../templates/hostapd.php:52 ../templates/hostapd/logging.php:3
-#: ../templates/adblock.php:47 ../templates/openvpn.php:48
-#: ../templates/dhcp/logging.php:3 ../templates/wg/logging.php:5
-msgid "Logging"
-msgstr "Ведение журнала"
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "Станции Wifi не найдены"
 
-#: ../templates/provider/general.php:2
-#, php-format
-msgid "%s settings"
-msgstr "%s настройки"
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Нажмите \"Rescan\" для поиска ближайших станций Wifi."
 
-#: ../templates/provider/general.php:9 ../templates/openvpn/general.php:8
-#: ../templates/wg/general.php:8
-msgid "IPv4 Address"
-msgstr "IPv4-адрес"
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Нажмите 'Reinitialize', чтобы принудительно повторно инициализировать <code>wpa_supplicant</code>."
 
-#: ../templates/provider/general.php:24
-msgid "Account details"
-msgstr "Детали счета"
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "Повторная инициализация"
 
-#: ../templates/provider/general.php:28
-msgid "My account"
-msgstr "Мой счет"
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "Подключено"
 
-#: ../templates/provider/general.php:36
-msgid "Server location"
-msgstr "Расположение сервера"
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "Известный"
 
-#: ../templates/provider/general.php:38
-msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
-msgstr "При выборе пункта <strong>Сохранить настройки</strong> будет установлено соединение с выбранной страной."
-
-#: ../templates/provider/general.php:41
-#, php-format
-msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
-msgstr "Выбрав <strong>Connect %s</strong>, вы подключитесь к рекомендуемому серверу."
-
-#: ../templates/provider/general.php:43
-msgid "Country"
-msgstr "Страна"
-
-#: ../templates/provider/status.php:3
-#, php-format
-msgid "%s status"
-msgstr "%s статус"
-
-#: ../templates/provider/status.php:5
-#, php-format
-msgid "Installed Linux CLI: <code>%s</code>"
-msgstr "Установлен Linux CLI: <code>%s</code>"
-
-#: ../templates/provider/status.php:6
-#, php-format
-msgid "Current <code>%s</code> connection status is displayed below."
-msgstr "Текущий <code>%s</code> Ниже отображается текущее состояние соединения."
-
-#: ../templates/openvpn/general.php:13
-msgid "Authentification Method"
-msgstr "Метод аутентификации"
-
-#: ../templates/openvpn/general.php:16
-msgid "Username and password"
-msgstr "Имя пользователя и пароль"
-
-#: ../templates/openvpn/general.php:20
-msgid "Certificates"
-msgstr "Сертификаты"
-
-#: ../templates/openvpn/general.php:26
-msgid "Enter username and password"
-msgstr "Введите имя пользователя и пароль"
-
-#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
-#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
-#: ../templates/login.php:22 ../templates/about.php:85
-msgid "Username"
-msgstr "Имя пользователя"
-
-#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
-#: ../templates/admin/login.php:21 ../templates/login.php:25
-#: ../app/lib/signprint.php:67
-msgid "Password"
-msgstr "Пароль"
-
-#: ../templates/openvpn/general.php:42
-msgid "Certificates in the configuration file"
-msgstr "Сертификаты в конфигурационном файле"
-
-#: ../templates/openvpn/general.php:44
-msgid "RaspAP supports certificates by including them in the configuration file."
-msgstr "RaspAP поддерживает сертификаты путем включения их в конфигурационный файл."
-
-#: ../templates/openvpn/general.php:47
-msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
-msgstr "Подписание сертификата центра сертификации (ЦС) (например, <code>ca.crt</code>): заключено в теги <code>&lt;ca> ... &lt;/ca></code> теги."
-
-#: ../templates/openvpn/general.php:48
-msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
-msgstr "Сертификат клиента (открытый ключ) (например, <code>client.crt</code>): заключен в теги <code>&lt;cert> ... &lt;/cert></code> тегами."
-
-#: ../templates/openvpn/general.php:49
-msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
-msgstr "Закрытый ключ сертификата клиента (например, <code>client.key</code>): заключен в теги <code>&lt;key> ... &lt;/key></code> тегами."
-
-#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
-msgid "Configuration File"
-msgstr "Файл конфигурации"
-
-#: ../templates/openvpn/general.php:62
-msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Выберите файл конфигурации OpenVPN (.ovpn)"
-
-#: ../templates/openvpn/logging.php:4
-msgid "Enable this option to log <code>openvpn</code> activity."
-msgstr "Включите эту опцию для ведения журнала активности <code>openvpn</code>."
-
-#: ../templates/openvpn/logging.php:8
-msgid "Enable logging"
-msgstr "Включить ведение журнала"
-
-#: ../templates/openvpn/logging.php:9 ../templates/hostapd/logging.php:10
-#: ../templates/dhcp/logging.php:13
-msgid "Clear log"
-msgstr "Очистить журнал"
-
-#: ../templates/openvpn/configs.php:4 ../templates/wireguard.php:48
-#: ../templates/openvpn.php:47 ../templates/wg/configs.php:4
-msgid "Configurations"
-msgstr "Конфигурации"
-
-#: ../templates/openvpn/configs.php:6
-msgid "Currently available OpenVPN client configurations are displayed below."
-msgstr "Ниже показаны доступные на данный момент конфигурации клиентов OpenVPN."
-
-#: ../templates/openvpn/configs.php:7
-msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
-msgstr "Активация конфигурации приведет к перезапуску службы <code>openvpn-client</code>."
-
-#: ../templates/dhcp.php:21
-msgid "Stop dnsmasq"
-msgstr "Остановите dnsmasq"
-
-#: ../templates/dhcp.php:24
-msgid "Restart dnsmasq"
-msgstr "Перезапустите dnsmasq"
-
-#: ../templates/dhcp.php:28
-msgid "Start dnsmasq"
-msgstr "Запустите dnsmasq"
-
-#: ../templates/dhcp.php:50 ../templates/networking.php:20
-#: ../templates/dhcp/summary.php:2
-msgid "Summary"
-msgstr "Резюме"
-
-#: ../templates/dhcp.php:51
-msgid "Server settings"
-msgstr "Настройки сервера"
-
-#: ../templates/dhcp.php:53
-msgid "Static Leases"
-msgstr "Статическая аренда"
-
-#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
-msgid "Client list"
-msgstr "Список клиентов"
-
-#: ../templates/dhcp.php:72
-msgid "Information provided by Dnsmasq"
-msgstr "Информация предоставлена Dnsmasq"
-
-#: ../templates/data_usage.php:7
-msgid "Data usage monitoring"
-msgstr "Мониторинг использования данных"
-
-#: ../templates/data_usage.php:14
-msgid "Hourly"
-msgstr "Почасовая оплата"
-
-#: ../templates/data_usage.php:15
-msgid "Daily"
-msgstr "Ежедневно"
-
-#: ../templates/data_usage.php:16
-msgid "Monthly"
-msgstr "Ежемесячно"
-
-#: ../templates/data_usage.php:23
-msgid "Hourly traffic amount"
-msgstr "Часовой объем трафика"
-
-#: ../templates/data_usage.php:24 ../templates/data_usage.php:43
-#: ../templates/data_usage.php:62
-msgid "interface"
-msgstr "интерфейс"
-
-#: ../templates/data_usage.php:32 ../templates/data_usage.php:51
-#: ../templates/data_usage.php:70
-#, php-format
-msgid "Loading %s bandwidth chart"
-msgstr "Загрузка %s диаграммы пропускной способности"
-
-#: ../templates/data_usage.php:32
-msgid "hourly"
-msgstr "почасовая"
-
-#: ../templates/data_usage.php:42
-msgid "Daily traffic amount"
-msgstr "Ежедневный объем трафика"
-
-#: ../templates/data_usage.php:51
-msgid "daily"
-msgstr "ежедневно"
-
-#: ../templates/data_usage.php:61
-msgid "Monthly traffic amount"
-msgstr "Ежемесячный объем трафика"
-
-#: ../templates/data_usage.php:70
-msgid "monthly"
-msgstr "ежемесячно"
-
-#: ../templates/data_usage.php:79
-msgid "Information provided by vnstat"
-msgstr "Информация предоставлена vnstat"
-
-#: ../templates/data_usage.php:86
-msgid "Send"
-msgstr "Отправить"
-
-#: ../templates/data_usage.php:87
-msgid "Receive"
-msgstr "Получить"
-
-#: ../templates/networking.php:22
-msgid "Devices"
-msgstr "Устройства"
-
-#: ../templates/networking.php:23
-msgid "Mobile Data"
-msgstr "Мобильные данные"
-
-#: ../templates/networking.php:24
-msgid "WLAN Routing"
-msgstr "Маршрутизация беспроводных локальных сетей"
-
-#: ../templates/networking.php:25
-msgid "Diagnostics"
-msgstr "Диагностика"
-
-#: ../templates/networking.php:41
-msgid "Information provided by /sys/class/net"
-msgstr "Информация, предоставленная /sys/class/net"
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "Поблизости"
 
 #: ../templates/wifi_stations/network.php:42
 msgid "Not configured"
@@ -1746,512 +1435,226 @@ msgstr "Эта беспроводная сеть требует входа в с
 msgid "Goto Webpage"
 msgstr "Перейти на веб-страницу"
 
-#: ../templates/wifi_stations/network.php:119 ../templates/hostapd.php:90
-#: ../templates/configure_client.php:65 ../templates/system.php:56
+#: ../templates/wifi_stations/network.php:119 ../templates/system.php:56
 #: ../templates/system.php:74 ../templates/system.php:109
 #: ../templates/system.php:127 ../templates/system.php:159
+#: ../templates/configure_client.php:65 ../templates/hostapd.php:90
 msgid "Close"
 msgstr "Закрыть"
 
-#: ../templates/wifi_stations.php:3
-msgid "No Wifi stations found"
-msgstr "Станции Wifi не найдены"
+#: ../templates/system.php:18
+msgid "Language"
+msgstr "Язык"
 
-#: ../templates/wifi_stations.php:4
-msgid "Click 'Rescan' to search for nearby Wifi stations."
-msgstr "Нажмите \"Rescan\" для поиска ближайших станций Wifi."
+#: ../templates/system.php:19
+msgid "Theme"
+msgstr "Тема"
 
-#: ../templates/wifi_stations.php:6
-msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
-msgstr "Нажмите 'Reinitialize', чтобы принудительно повторно инициализировать <code>wpa_supplicant</code>."
+#: ../templates/system.php:21
+msgid "Tools"
+msgstr "Инструменты"
 
-#: ../templates/wifi_stations.php:10
-msgid "Reinitialize"
-msgstr "Повторная инициализация"
-
-#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
-msgid "Connected"
-msgstr "Подключено"
-
-#: ../templates/wifi_stations.php:29
-msgid "Known"
-msgstr "Известный"
-
-#: ../templates/wifi_stations.php:40
-msgid "Nearby"
-msgstr "Поблизости"
-
-#: ../templates/wireguard.php:21
-msgid "Stop WireGuard"
-msgstr "Остановка WireGuard"
-
-#: ../templates/wireguard.php:25
-msgid "Start WireGuard"
-msgstr "Запустите WireGuard"
-
-#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
-msgid "Peer"
-msgstr "Сверстник"
-
-#: ../templates/wireguard.php:67
-msgid "Information provided by wireguard"
-msgstr "Информация предоставлена компанией wireguard"
-
-#: ../templates/wireguard.php:77
-msgid "Delete WireGuard configuration"
-msgstr "Удаление конфигурации WireGuard"
-
-#: ../templates/wireguard.php:80
-msgid "Delete this configuration? This cannot be undone."
-msgstr "Удалить эту конфигурацию? Это нельзя отменить."
-
-#: ../templates/wireguard.php:95
-msgid "Activate WireGuard configuration"
-msgstr "Активируйте конфигурацию WireGuard"
-
-#: ../templates/wireguard.php:98
-msgid "Activate this configuration? This will restart the wg-quick service."
-msgstr "Активировать эту конфигурацию? Это перезапустит службу wg-quick."
-
-#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
-msgid "Activate"
-msgstr "Активируйте"
-
-#: ../templates/networking/devices.php:3
-msgid "Network devices"
-msgstr "Сетевые устройства"
-
-#: ../templates/networking/devices.php:16
-msgid "Device"
-msgstr "Устройство"
-
-#: ../templates/networking/devices.php:17
-#: ../templates/networking/general.php:12 ../templates/hostapd/basic.php:5
-#: ../templates/configure_client.php:31 ../templates/dhcp/general.php:5
-#: ../templates/dhcp/summary.php:18 ../templates/dhcp/settings.php:5
-msgid "Interface"
-msgstr "Интерфейс"
-
-#: ../templates/networking/devices.php:19
-#: ../templates/dhcp/static_leases.php:16
-#: ../templates/dhcp/static_leases.php:33
-#: ../templates/dhcp/static_leases.php:64
-msgid "MAC address"
-msgstr "MAC-адрес"
-
-#: ../templates/networking/devices.php:20
-msgid "USB vid/pid"
-msgstr "USB vid/pid"
-
-#: ../templates/networking/devices.php:21
-msgid "Device type"
-msgstr "Тип устройства"
-
-#: ../templates/networking/general.php:3
-msgid "Internet connection"
-msgstr "Подключение к Интернету"
-
-#: ../templates/networking/general.php:13 ../templates/dashboard.php:54
-#: ../templates/dashboard.php:60 ../templates/dhcp/general.php:39
-#: ../templates/dhcp/clients.php:20 ../templates/dhcp/settings.php:39
-#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
-msgid "IP Address"
-msgstr "IP-адрес"
-
-#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:62
-msgid "Gateway"
-msgstr "Шлюз"
-
-#: ../templates/networking/general.php:15
-msgid "Internet Access"
-msgstr "Доступ в Интернет"
-
-#: ../templates/networking/general.php:53
-msgid "Routing table"
-msgstr "Таблица маршрутизации"
-
-#: ../templates/networking/general.php:57
-msgid "raw output"
-msgstr "необработанный выход"
-
-#: ../templates/networking/general.php:80
-msgid "Current settings"
-msgstr "Текущие настройки"
-
-#: ../templates/networking/wlanrouting.php:5
-msgid "Restart WLAN routing"
-msgstr "Перезапуск маршрутизации WLAN"
-
-#: ../templates/networking/wlanrouting.php:6
-msgid "Stop WLAN routing"
-msgstr "Остановить маршрутизацию WLAN"
-
-#: ../templates/networking/wlanrouting.php:8
-msgid "Start WLAN routing"
-msgstr "Запуск маршрутизации WLAN"
-
-#: ../templates/networking/wlanrouting.php:17
-msgid "Wireless LAN routing"
-msgstr "Маршрутизация беспроводных локальных сетей"
-
-#: ../templates/networking/wlanrouting.php:22
-msgid "routing"
-msgstr "маршрутизация"
-
-#: ../templates/networking/wlanrouting.php:27
-msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
-msgstr "Эта опция настраивает RaspAP на <b>маршрутизацию сетевого трафика с интерфейса беспроводного клиента (STA)</b> на другой доступный интерфейс."
-
-#: ../templates/networking/wlanrouting.php:29
-msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
-msgstr "Когда выбран выходной интерфейс, добавляются правила <code>iptables</code> для маршрутизации пакетов с использованием трансляции сетевых адресов (NAT). Это часто делается для совместного использования интернет-подключения из WLAN с устройствами на интерфейсах <code>eth0</code>, <code>usb0</code> или предсказуемом <code>enx</code>."
-
-#: ../templates/networking/wlanrouting.php:34
-msgid "Wireless client interface"
-msgstr "Интерфейс беспроводного клиента"
-
-#: ../templates/networking/wlanrouting.php:42
-msgid "Output interface"
-msgstr "Выходной интерфейс"
-
-#: ../templates/networking/wlanrouting.php:47
-msgid "Configure a static IP address and DHCP for output interface"
-msgstr "Настройка статического IP-адреса и DHCP для выходного интерфейса"
-
-#: ../templates/networking/diagnostics.php:3
-msgid "Speedtest"
-msgstr "Speedtest"
-
-#: ../templates/networking/diagnostics.php:8
-msgid "Selecting a server"
-msgstr "Выбор сервера"
-
-#: ../templates/networking/diagnostics.php:12
-msgid "Privacy"
-msgstr "Конфиденциальность"
-
-#: ../templates/networking/diagnostics.php:16
-msgid "Server"
-msgstr "Сервер"
-
-#: ../templates/networking/diagnostics.php:22
-msgid "Ping"
-msgstr "Пинг"
-
-#: ../templates/networking/diagnostics.php:24
-#: ../templates/networking/diagnostics.php:29
-msgid "ms"
-msgstr "мс"
-
-#: ../templates/networking/diagnostics.php:27
-msgid "Jitter"
-msgstr "Джиттер"
-
-#: ../templates/networking/diagnostics.php:37
-#: ../templates/networking/diagnostics.php:43
-msgid "Mbps"
-msgstr "Мбит/с"
-
-#: ../templates/networking/mobile.php:4
-msgid "Mobile data settings"
-msgstr "Настройки мобильных данных"
-
-#: ../templates/networking/mobile.php:8
-msgid "SIM card PIN number"
-msgstr "PIN-код SIM-карты"
-
-#: ../templates/networking/mobile.php:11
-msgid "APN Settings"
-msgstr "Настройки APN"
-
-#: ../templates/networking/mobile.php:13
-msgid "Access Point Name (APN)"
-msgstr "Имя точки доступа (APN)"
-
-#: ../templates/hostapd.php:20
-msgid "Start hotspot"
-msgstr "Запуск точки доступа"
-
-#: ../templates/hostapd.php:20
-msgid "Starting hotspot"
-msgstr "Запуск точки доступа"
-
-#: ../templates/hostapd.php:24
-msgid "Stop hotspot"
-msgstr "Остановить горячую точку"
-
-#: ../templates/hostapd.php:27
-msgid "Restart hotspot"
-msgstr "Перезапустите точку доступа"
-
-#: ../templates/hostapd.php:27
-msgid "Restarting hotspot"
-msgstr "Перезапуск точки доступа"
-
-#: ../templates/hostapd.php:70
-msgid "Information provided by hostapd"
-msgstr "Информация, предоставленная hostapd"
-
-#: ../templates/hostapd.php:84
-msgid "Executing RaspAP service start"
-msgstr "Выполнение запуска службы RaspAP"
-
-#: ../templates/restapi/general.php:12
-msgid "API Key"
-msgstr "Ключ API"
-
-#: ../templates/restapi/general.php:17
-msgid "Please provide a valid API key."
-msgstr "Пожалуйста, укажите действительный ключ API."
-
-#: ../templates/restapi/status.php:3
-msgid "RestAPI status"
-msgstr "Статус RestAPI"
-
-#: ../templates/restapi/status.php:4
-msgid "Current <code>restapi.service</code> status is displayed below."
-msgstr "Текущее состояние <code>службы restapi.service</code> отображается ниже."
-
-#: ../templates/system/plugins.php:3 ../templates/system.php:23
+#: ../templates/system.php:23 ../templates/system/plugins.php:3
 msgid "Plugins"
 msgstr "Плагины"
 
-#: ../templates/system/plugins.php:8
-msgid "The following user plugins are available to extend RaspAP's functionality."
-msgstr "Для расширения функциональности RaspAP доступны следующие пользовательские плагины."
+#: ../templates/system.php:50
+msgid "System reset"
+msgstr "Сброс системы"
 
-#: ../templates/system/plugins.php:12
-msgid "Choose <strong>Details</strong> for more information and to install a plugin."
-msgstr "Выберите <strong>\"Подробности\"</strong>, чтобы получить дополнительную информацию и установить плагин."
+#: ../templates/system.php:53
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr "Сброс настроек завершен. Перезапустите точку доступа, чтобы изменения вступили в силу."
 
-#: ../templates/system/advanced.php:9
-msgid "Web server port"
-msgstr "Порт веб-сервера"
+#: ../templates/system.php:53
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr "Сбросить RaspAP к начальной конфигурации? Это действие нельзя отменить."
 
-#: ../templates/system/advanced.php:15
-msgid "Web server bind address"
-msgstr "Адрес привязки веб-сервера"
+#: ../templates/system.php:57
+msgid "System reset in progress..."
+msgstr "Идет сброс системы..."
 
-#: ../templates/system/advanced.php:21
-msgid "Diagnostic log size limit (KB)"
-msgstr "Ограничение размера журнала диагностики (КБ)"
+#: ../templates/system.php:57
+msgid "Reset"
+msgstr "Сброс"
 
-#: ../templates/system/advanced.php:28
-msgid "SSL Certificate (HTTPS)"
-msgstr "SSL-сертификат (HTTPS)"
+#: ../templates/system.php:68
+msgid "System reboot"
+msgstr "Перезагрузка системы"
 
-#: ../templates/system/advanced.php:30
-#, php-format
-msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr "Для этой системы был создан SSL-сертификат. Чтобы загрузить и установить его на вашу систему, воспользуйтесь кнопкой ниже и <a href=\"%s\" target=\"_blank\">инструкциями</a> по установке сертификата на вашем устройстве."
+#: ../templates/system.php:71
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr "Перезагрузиться сейчас? Система будет временно недоступна."
 
-#: ../templates/system/advanced.php:31
-msgid "Download rootCA.pem"
-msgstr "Скачать файл rootCA.pem"
-
-#: ../templates/system/advanced.php:33
-#, php-format
-msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr "Чтобы установить SSL-сертификат и получить доступ к панели администрирования RaspAP по протоколу HTTPS, ознакомьтесь с <a href=\"%s\" target=\"_blank\">документацией</a>."
-
-#: ../templates/system/advanced.php:40
-msgid "Restart lighttpd"
-msgstr "Перезапустите lighttpd"
-
-#: ../templates/system/tools.php:3
-msgid "System tools"
-msgstr "Системные инструменты"
-
-#: ../templates/system/tools.php:10
-#, php-format
-msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
-msgstr "Чтобы создать <a href=\"%s\" target=\"_blank\">журнал отладки</a> системы, нажмите или коснитесь кнопки ниже."
-
-#: ../templates/system/tools.php:13
-msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
-msgstr "Информация отладочного журнала содержит версию RaspAP, текущее состояние и конфигурацию служб, связанных с AP, установленные системные пакеты, версию ядра Linux и сетевые данные. Никаких паролей или других конфиденциальных данных не содержится."
-
-#: ../templates/system/tools.php:18 ../templates/system.php:121
-msgid "Generate debug log"
-msgstr "Создание журнала отладки"
-
-#: ../templates/system/tools.php:24
-#, php-format
-msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "Чтобы <a href=\"%s\" target=\"_blank\">просмотреть адаптеры</a>, подключенные к этому устройству, нажмите или коснитесь кнопки ниже."
-
-#: ../templates/system/tools.php:27
-msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
-msgstr "Инструмент проверки адаптера позволяет получить подробную информацию о внешних устройствах WLAN, включая драйверы, поддерживаемые режимы и т. д."
-
-#: ../templates/system/tools.php:32 ../templates/system.php:138
-msgid "Inspect adapters"
-msgstr "Осмотрите адаптеры"
-
-#: ../templates/system/tools.php:38
-#, php-format
-msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
-msgstr "Чтобы вернуть RaspAP к <a href=\"%s\" target=\"_blank\">исходной конфигурации</a>, нажмите или коснитесь кнопки ниже."
-
-#: ../templates/system/tools.php:40
-msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
-msgstr "Восстанавливает все настройки служб точки доступа (AP) до значений по умолчанию. Это относится к hostapd, dhcpcd и dnsmasq."
-
-#: ../templates/system/tools.php:42
-msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
-msgstr "Пользовательские файлы для дополнительных компонентов, таких как блокировка рекламы, WireGuard или OpenVPN, останутся в системе."
-
-#: ../templates/system/tools.php:47
-msgid "Perform reset"
-msgstr "Выполните сброс"
-
-#: ../templates/system/theme.php:3
-msgid "Theme settings"
-msgstr "Настройки темы"
-
-#: ../templates/system/theme.php:8
-msgid "Select a theme"
-msgstr "Выберите тему"
-
-#: ../templates/system/theme.php:12
-msgid "Color"
-msgstr "Цвет"
-
-#: ../templates/system/theme.php:18
-msgid "Dark Mode"
-msgstr "Темный режим"
-
-#: ../templates/system/theme.php:25
-msgid "Use the dark mode from the current theme"
-msgstr "Используйте темный режим из текущей темы"
-
-#: ../templates/system/theme.php:28
-msgid "System Theme"
-msgstr "Системная тема"
-
-#: ../templates/system/theme.php:35
-msgid "Uses the color mode of your system"
-msgstr "Использует цветовой режим вашей системы"
-
-#: ../templates/system/theme.php:40
-msgid "Alert messages"
-msgstr "Предупреждающие сообщения"
-
-#: ../templates/system/theme.php:44
-msgid "Automatically close alerts after a specified timeout"
-msgstr "Автоматическое закрытие оповещений по истечении заданного времени"
-
-#: ../templates/system/theme.php:50
-msgid "Alert close timeout (milliseconds)"
-msgstr "Таймаут закрытия предупреждения (миллисекунды)"
-
-#: ../templates/system/basic.php:10
-msgid "System Information"
-msgstr "Информация о системе"
-
-#: ../templates/system/basic.php:23 ../templates/system.php:75
+#: ../templates/system.php:75 ../templates/system/basic.php:23
 msgid "Reboot"
 msgstr "Перезагрузка"
 
-#: ../templates/system/basic.php:27 ../templates/system.php:110
+#: ../templates/system.php:86
+msgid "Reconnecting"
+msgstr "Восстановление связи"
+
+#: ../templates/system.php:90
+msgid "The system is currently rebooting."
+msgstr "В данный момент система перезагружается."
+
+#: ../templates/system.php:91
+msgid "Attempting to reconnect in"
+msgstr "Попытка повторного подключения в"
+
+#: ../templates/system.php:103
+msgid "System shutdown"
+msgstr "Выключение системы"
+
+#: ../templates/system.php:106
+msgid "Shutdown now? The system will be unavailable."
+msgstr "Выключить сейчас? Система будет недоступна."
+
+#: ../templates/system.php:110 ../templates/system/basic.php:27
 msgid "Shutdown"
 msgstr "Выключение"
 
-#: ../templates/system/basic.php:36
-msgid "Hostname"
-msgstr "Имя хоста"
+#: ../templates/system.php:121 ../templates/system/tools.php:18
+msgid "Generate debug log"
+msgstr "Создание журнала отладки"
 
-#: ../templates/system/basic.php:40
-msgid "Pi Revision"
-msgstr "Pi Revision"
+#: ../templates/system.php:124
+msgid "Debug log generation in progress..."
+msgstr "Идет генерация журнала отладки..."
 
-#: ../templates/system/basic.php:44
-msgid "OS"
-msgstr "OS"
+#: ../templates/system.php:138 ../templates/system/tools.php:32
+msgid "Inspect adapters"
+msgstr "Осмотрите адаптеры"
 
-#: ../templates/system/basic.php:48
-msgid "Kernel"
-msgstr "Ядро"
+#: ../templates/system.php:157
+msgid "Adapter health check"
+msgstr "Проверка работоспособности адаптера"
 
-#: ../templates/system/basic.php:52
-msgid "Uptime"
-msgstr "Время работы"
+#: ../templates/system.php:194
+msgid "Plugin details"
+msgstr "Детали плагина"
 
-#: ../templates/system/basic.php:56
-msgid "System Time"
-msgstr "Системное время"
+#: ../templates/system.php:205
+msgid "Plugin docs"
+msgstr "Документация по плагинам"
 
-#: ../templates/system/basic.php:65
-msgid "Memory Used"
-msgstr "Используемая память"
+#: ../templates/system.php:209
+msgid "Version"
+msgstr "Версия"
 
-#: ../templates/system/basic.php:77
-msgid "Storage Used"
-msgstr "Используемое хранилище"
+#: ../templates/system.php:213
+msgid "Author"
+msgstr "Автор"
 
-#: ../templates/system/basic.php:89
-msgid "CPU Load"
-msgstr "Загрузка процессора"
+#: ../templates/system.php:217
+msgid "License"
+msgstr "Лицензия"
 
-#: ../templates/system/basic.php:101
-msgid "CPU Temp"
-msgstr "Температура процессора"
+#: ../templates/system.php:221
+msgid "Language locale"
+msgstr "Языковая локаль"
 
-#: ../templates/system/language.php:3
-msgid "Language settings"
-msgstr "Языковые настройки"
+#: ../templates/system.php:225
+msgid "Configuration files"
+msgstr "Конфигурационные файлы"
 
-#: ../templates/system/language.php:6
-msgid "Select a language"
-msgstr "Выберите язык"
+#: ../templates/system.php:229
+msgid "Signed Packages"
+msgstr "Подписанные пакеты"
 
-#: ../templates/provider.php:5
+#: ../templates/system.php:233
+msgid "Dependencies"
+msgstr "Зависимости"
+
+#: ../templates/system.php:237
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: ../templates/system.php:241
+msgid "Sudoers"
+msgstr "Судоверы"
+
+#: ../templates/system.php:245
+msgid "Non-privileged users"
+msgstr "Непривилегированные пользователи"
+
+#: ../templates/system.php:265
+msgid "Installing plugin"
+msgstr "Установка плагина"
+
+#: ../templates/system.php:268
+msgid "Plugin install completed."
+msgstr "Установка плагина завершена."
+
+#: ../templates/system.php:268
+msgid "Plugin installation in progress..."
+msgstr "Установка плагина продолжается..."
+
+#: ../templates/system.php:271 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "OK"
+
+#: ../templates/openvpn.php:20
+msgid "Start OpenVPN"
+msgstr "Запустите OpenVPN"
+
+#: ../templates/openvpn.php:24
+msgid "Stop OpenVPN"
+msgstr "Остановить OpenVPN"
+
+#: ../templates/openvpn.php:47 ../templates/openvpn/configs.php:4
+#: ../templates/wireguard.php:48 ../templates/wg/configs.php:4
+msgid "Configurations"
+msgstr "Конфигурации"
+
+#: ../templates/openvpn.php:65
+msgid "Information provided by openvpn"
+msgstr "Информация предоставлена openvpn"
+
+#: ../templates/openvpn.php:75
+msgid "Delete OpenVPN client"
+msgstr "Удаление клиента OpenVPN"
+
+#: ../templates/openvpn.php:78
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Удалить конфигурацию клиента? Это нельзя отменить."
+
+#: ../templates/openvpn.php:93
+msgid "Activate OpenVPN client"
+msgstr "Активируйте клиент OpenVPN"
+
+#: ../templates/openvpn.php:96
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Активировать конфигурацию клиента? Это перезапустит службу openvpn-client."
+
+#: ../templates/openvpn.php:100 ../templates/wireguard.php:102
+msgid "Activate"
+msgstr "Активируйте"
+
+#: ../templates/hostapd/basic.php:5 ../templates/configure_client.php:31
+#: ../templates/dhcp/general.php:5 ../templates/dhcp/summary.php:18
+#: ../templates/dhcp/settings.php:5 ../templates/networking/general.php:12
+#: ../templates/networking/devices.php:17
+msgid "Interface"
+msgstr "Интерфейс"
+
+#: ../templates/hostapd/basic.php:14
+msgid "Please provide a valid SSID."
+msgstr "Укажите действительный идентификатор SSID."
+
+#: ../templates/hostapd/basic.php:20
+msgid "Wireless Mode"
+msgstr "Беспроводной режим"
+
+#: ../templates/hostapd/basic.php:21
+msgid "Wireless standards which are not compatible with your adapter may be disabled"
+msgstr "Стандарты беспроводной связи, не совместимые с вашим адаптером, могут быть отключены"
+
+#: ../templates/hostapd/basic.php:24
 #, php-format
-msgid "Connect %s"
-msgstr "Подключайтесь %s"
-
-#: ../templates/provider.php:7
-#, php-format
-msgid "Disconnect %s"
-msgstr "Отключить %s"
-
-#: ../templates/provider.php:51
-#, php-format
-msgid "Information provided by %s"
-msgstr "Информация предоставлена сайтом %s"
-
-#: ../templates/hostapd/security.php:2
-msgid "Security settings"
-msgstr "Настройки безопасности"
-
-#: ../templates/hostapd/security.php:6
-msgid "Security type"
-msgstr "Тип безопасности"
-
-#: ../templates/hostapd/security.php:10
-msgid "Encryption Type"
-msgstr "Тип шифрования"
-
-#: ../templates/hostapd/security.php:14
-msgid "802.11w"
-msgstr "802.11w"
-
-#: ../templates/hostapd/security.php:15
-msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
-msgstr "Стандарт 802.11w распространяет надежную криптографическую защиту на определенный набор надежных кадров управления, включая кадры деаутентификации, дезассоциации и некоторые категории кадров управления действиями. Все вместе это известно как защита кадров управления (MFP)."
-
-#: ../templates/hostapd/security.php:19
-msgid "Pre-shared key (PSK)"
-msgstr "Предварительный ключ (PSK)"
-
-#: ../templates/hostapd/security.php:24
-msgid "Please provide a valid PSK."
-msgstr "Укажите действительный PSK."
-
-#: ../templates/hostapd/security.php:32
-#, php-format
-msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
-msgstr "Сканируйте этот QR-код напрямую или %s %sраспечатайте табличку%s для ваших пользователей."
+msgid "Based on the selected interface, 802.11%s is suggested."
+msgstr "На основе выбранного интерфейса предлагается 802.11%s."
 
 #: ../templates/hostapd/logging.php:4
 msgid "Enable this option to log <code>hostapd</code> activity."
@@ -2260,6 +1663,11 @@ msgstr "Включите эту опцию для регистрации акт�
 #: ../templates/hostapd/logging.php:9 ../templates/wg/logging.php:9
 msgid "Logfile output"
 msgstr "Вывод логфайла"
+
+#: ../templates/hostapd/logging.php:10 ../templates/openvpn/logging.php:9
+#: ../templates/dhcp/logging.php:13
+msgid "Clear log"
+msgstr "Очистить журнал"
 
 #: ../templates/hostapd/logging.php:15
 msgid "Log level"
@@ -2313,6 +1721,10 @@ msgstr "Пожалуйста, введите действительную сет
 #: ../templates/hostapd/advanced.php:58
 msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
 msgstr "Нотация CIDR (например, 24 для 255.255.255.0)"
+
+#: ../templates/hostapd/advanced.php:62 ../templates/networking/general.php:14
+msgid "Gateway"
+msgstr "Шлюз"
 
 #: ../templates/hostapd/advanced.php:71
 msgid "Your router's IP address"
@@ -2388,27 +1800,38 @@ msgstr "Настраивает параметр <code>max_num_sta</code> в host
 msgid "Country Code"
 msgstr "Код страны"
 
-#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
-#: ../templates/dashboard.php:63
-msgid "SSID"
-msgstr "SSID"
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "Настройки безопасности"
 
-#: ../templates/hostapd/basic.php:14
-msgid "Please provide a valid SSID."
-msgstr "Укажите действительный идентификатор SSID."
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "Тип безопасности"
 
-#: ../templates/hostapd/basic.php:20
-msgid "Wireless Mode"
-msgstr "Беспроводной режим"
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "Тип шифрования"
 
-#: ../templates/hostapd/basic.php:21
-msgid "Wireless standards which are not compatible with your adapter may be disabled"
-msgstr "Стандарты беспроводной связи, не совместимые с вашим адаптером, могут быть отключены"
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
 
-#: ../templates/hostapd/basic.php:24
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "Стандарт 802.11w распространяет надежную криптографическую защиту на определенный набор надежных кадров управления, включая кадры деаутентификации, дезассоциации и некоторые категории кадров управления действиями. Все вместе это известно как защита кадров управления (MFP)."
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "Предварительный ключ (PSK)"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "Укажите действительный PSK."
+
+#: ../templates/hostapd/security.php:32
 #, php-format
-msgid "Based on the selected interface, 802.11%s is suggested."
-msgstr "На основе выбранного интерфейса предлагается 802.11%s."
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Сканируйте этот QR-код напрямую или %s %sраспечатайте табличку%s для ваших пользователей."
 
 #: ../templates/configure_client.php:12
 msgid "Disconnected"
@@ -2433,6 +1856,327 @@ msgstr "Настройка клиента WiFi"
 #: ../templates/configure_client.php:62
 msgid "Configuring Wifi Client Interface..."
 msgstr "Настройка интерфейса клиента Wifi..."
+
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "Перезапустите блокировку рекламы"
+
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "Запуск блокировки рекламы"
+
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "Информация предоставлена adblock"
+
+#: ../templates/networking.php:20 ../templates/dhcp.php:50
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "Резюме"
+
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "Устройства"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "Мобильные данные"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "Маршрутизация беспроводных локальных сетей"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "Диагностика"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "Информация, предоставленная /sys/class/net"
+
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "Запустите службу RestAPI"
+
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "Остановите службу RestAPI"
+
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "Информация предоставлена сервисом restapi.service"
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "Остановите dnsmasq"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "Перезапустите dnsmasq"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "Запустите dnsmasq"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "Настройки сервера"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "Статическая аренда"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "Список клиентов"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "Информация предоставлена Dnsmasq"
+
+#: ../templates/openvpn/general.php:8 ../templates/provider/general.php:9
+#: ../templates/wg/general.php:8
+msgid "IPv4 Address"
+msgstr "IPv4-адрес"
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "Метод аутентификации"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "Имя пользователя и пароль"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "Сертификаты"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "Введите имя пользователя и пароль"
+
+#: ../templates/openvpn/general.php:30 ../templates/login.php:22
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/about.php:85 ../templates/networking/mobile.php:17
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "Сертификаты в конфигурационном файле"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP поддерживает сертификаты путем включения их в конфигурационный файл."
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Подписание сертификата центра сертификации (ЦС) (например, <code>ca.crt</code>): заключено в теги <code>&lt;ca> ... &lt;/ca></code> теги."
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Сертификат клиента (открытый ключ) (например, <code>client.crt</code>): заключен в теги <code>&lt;cert> ... &lt;/cert></code> тегами."
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Закрытый ключ сертификата клиента (например, <code>client.key</code>): заключен в теги <code>&lt;key> ... &lt;/key></code> тегами."
+
+#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
+msgid "Configuration File"
+msgstr "Файл конфигурации"
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Выберите файл конфигурации OpenVPN (.ovpn)"
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Ниже показаны доступные на данный момент конфигурации клиентов OpenVPN."
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Активация конфигурации приведет к перезапуску службы <code>openvpn-client</code>."
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Включите эту опцию для ведения журнала активности <code>openvpn</code>."
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "Включить ведение журнала"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "Информация о системе"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "Имя хоста"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "Pi Revision"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "OS"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "Ядро"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "Время работы"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "Системное время"
+
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "Используемая память"
+
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "Используемое хранилище"
+
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "Загрузка процессора"
+
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "Температура процессора"
+
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "Языковые настройки"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "Выберите язык"
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "Порт веб-сервера"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "Адрес привязки веб-сервера"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "Ограничение размера журнала диагностики (КБ)"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
+msgstr "SSL-сертификат (HTTPS)"
+
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr "Для этой системы был создан SSL-сертификат. Чтобы загрузить и установить его на вашу систему, воспользуйтесь кнопкой ниже и <a href=\"%s\" target=\"_blank\">инструкциями</a> по установке сертификата на вашем устройстве."
+
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
+msgstr "Скачать файл rootCA.pem"
+
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr "Чтобы установить SSL-сертификат и получить доступ к панели администрирования RaspAP по протоколу HTTPS, ознакомьтесь с <a href=\"%s\" target=\"_blank\">документацией</a>."
+
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "Перезапустите lighttpd"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "Для расширения функциональности RaspAP доступны следующие пользовательские плагины."
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Выберите <strong>\"Подробности\"</strong>, чтобы получить дополнительную информацию и установить плагин."
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "Системные инструменты"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "Чтобы создать <a href=\"%s\" target=\"_blank\">журнал отладки</a> системы, нажмите или коснитесь кнопки ниже."
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Информация отладочного журнала содержит версию RaspAP, текущее состояние и конфигурацию служб, связанных с AP, установленные системные пакеты, версию ядра Linux и сетевые данные. Никаких паролей или других конфиденциальных данных не содержится."
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Чтобы <a href=\"%s\" target=\"_blank\">просмотреть адаптеры</a>, подключенные к этому устройству, нажмите или коснитесь кнопки ниже."
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Инструмент проверки адаптера позволяет получить подробную информацию о внешних устройствах WLAN, включая драйверы, поддерживаемые режимы и т. д."
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "Чтобы вернуть RaspAP к <a href=\"%s\" target=\"_blank\">исходной конфигурации</a>, нажмите или коснитесь кнопки ниже."
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Восстанавливает все настройки служб точки доступа (AP) до значений по умолчанию. Это относится к hostapd, dhcpcd и dnsmasq."
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Пользовательские файлы для дополнительных компонентов, таких как блокировка рекламы, WireGuard или OpenVPN, останутся в системе."
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "Выполните сброс"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "Настройки темы"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "Выберите тему"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "Цвет"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "Темный режим"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "Используйте темный режим из текущей темы"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "Системная тема"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "Использует цветовой режим вашей системы"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "Предупреждающие сообщения"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Автоматическое закрытие оповещений по истечении заданного времени"
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "Таймаут закрытия предупреждения (миллисекунды)"
 
 #: ../templates/about/general.php:8
 msgid "RaspAP"
@@ -2474,6 +2218,51 @@ msgstr "эксклюзивные функции"
 #: ../templates/about/general.php:29 ../templates/about.php:22
 msgid "Insiders"
 msgstr "Инсайдеры"
+
+#: ../templates/login.php:13
+msgid "Administrator login"
+msgstr "Вход в систему администратора"
+
+#: ../templates/login.php:30 ../templates/admin.php:18
+#: ../includes/footer.php:23
+msgid "Login"
+msgstr "Вход в систему"
+
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "Забыли пароль"
+
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
+msgstr "Сканирование для получения помощи при входе в систему"
+
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "Запуск точки доступа"
+
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "Запуск точки доступа"
+
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "Остановить горячую точку"
+
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "Перезапустите точку доступа"
+
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "Перезапуск точки доступа"
+
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "Информация, предоставленная hostapd"
+
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "Выполнение запуска службы RaspAP"
 
 #: ../templates/admin/general.php:3
 msgid "Change password"
@@ -2520,6 +2309,10 @@ msgstr "Пожалуйста, введите пароль."
 msgid "Reset avatar"
 msgstr "Сбросить аватар"
 
+#: ../templates/admin/avatar.php:11 ../templates/admin.php:21
+msgid "Avatar"
+msgstr "Аватар"
+
 #: ../templates/admin/avatar.php:15
 msgid "Click or tap to upload a new user avatar."
 msgstr "Нажмите или коснитесь кнопки , чтобы загрузить новый аватар пользователя."
@@ -2528,271 +2321,290 @@ msgstr "Нажмите или коснитесь кнопки , чтобы за�
 msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
 msgstr "Принимаются файлы изображений типа <code>JPG, GIF или PNG</code>. Максимальный размер файла: 2 МБ."
 
-#: ../templates/restapi.php:21
-msgid "Start RestAPI service"
-msgstr "Запустите службу RestAPI"
-
-#: ../templates/restapi.php:25
-msgid "Stop RestAPI service"
-msgstr "Остановите службу RestAPI"
-
-#: ../templates/restapi.php:63
-msgid "Information provided by restapi.service"
-msgstr "Информация предоставлена сервисом restapi.service"
-
-#: ../templates/system.php:18
-msgid "Language"
-msgstr "Язык"
-
-#: ../templates/system.php:19
-msgid "Theme"
-msgstr "Тема"
-
-#: ../templates/system.php:21
-msgid "Tools"
-msgstr "Инструменты"
-
-#: ../templates/system.php:40 ../templates/dashboard.php:164
-msgid "Information provided by raspap.sysinfo"
-msgstr "Информация предоставлена raspap.sysinfo"
-
-#: ../templates/system.php:50
-msgid "System reset"
-msgstr "Сброс системы"
-
-#: ../templates/system.php:53
-msgid "Reset complete. Restart the hotspot for the changes to take effect."
-msgstr "Сброс настроек завершен. Перезапустите точку доступа, чтобы изменения вступили в силу."
-
-#: ../templates/system.php:53
-msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
-msgstr "Сбросить RaspAP к начальной конфигурации? Это действие нельзя отменить."
-
-#: ../templates/system.php:57
-msgid "System reset in progress..."
-msgstr "Идет сброс системы..."
-
-#: ../templates/system.php:57
-msgid "Reset"
-msgstr "Сброс"
-
-#: ../templates/system.php:68
-msgid "System reboot"
-msgstr "Перезагрузка системы"
-
-#: ../templates/system.php:71
-msgid "Reboot now? The system will be temporarily unavailable."
-msgstr "Перезагрузиться сейчас? Система будет временно недоступна."
-
-#: ../templates/system.php:86
-msgid "Reconnecting"
-msgstr "Восстановление связи"
-
-#: ../templates/system.php:90
-msgid "The system is currently rebooting."
-msgstr "В данный момент система перезагружается."
-
-#: ../templates/system.php:91
-msgid "Attempting to reconnect in"
-msgstr "Попытка повторного подключения в"
-
-#: ../templates/system.php:103
-msgid "System shutdown"
-msgstr "Выключение системы"
-
-#: ../templates/system.php:106
-msgid "Shutdown now? The system will be unavailable."
-msgstr "Выключить сейчас? Система будет недоступна."
-
-#: ../templates/system.php:124
-msgid "Debug log generation in progress..."
-msgstr "Идет генерация журнала отладки..."
-
-#: ../templates/system.php:157
-msgid "Adapter health check"
-msgstr "Проверка работоспособности адаптера"
-
-#: ../templates/system.php:194
-msgid "Plugin details"
-msgstr "Детали плагина"
-
-#: ../templates/system.php:205
-msgid "Plugin docs"
-msgstr "Документация по плагинам"
-
-#: ../templates/system.php:209
-msgid "Version"
-msgstr "Версия"
-
-#: ../templates/system.php:213
-msgid "Author"
-msgstr "Автор"
-
-#: ../templates/system.php:217
-msgid "License"
-msgstr "Лицензия"
-
-#: ../templates/system.php:221
-msgid "Language locale"
-msgstr "Языковая локаль"
-
-#: ../templates/system.php:225
-msgid "Configuration files"
-msgstr "Конфигурационные файлы"
-
-#: ../templates/system.php:229
-msgid "Signed Packages"
-msgstr "Подписанные пакеты"
-
-#: ../templates/system.php:233
-msgid "Dependencies"
-msgstr "Зависимости"
-
-#: ../templates/system.php:237
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#: ../templates/system.php:241
-msgid "Sudoers"
-msgstr "Судоверы"
-
-#: ../templates/system.php:245
-msgid "Non-privileged users"
-msgstr "Непривилегированные пользователи"
-
-#: ../templates/system.php:265
-msgid "Installing plugin"
-msgstr "Установка плагина"
-
-#: ../templates/system.php:268
-msgid "Plugin install completed."
-msgstr "Установка плагина завершена."
-
-#: ../templates/system.php:268
-msgid "Plugin installation in progress..."
-msgstr "Установка плагина продолжается..."
-
-#: ../templates/system.php:271 ../templates/about.php:56
-#: ../templates/about.php:57 ../templates/about.php:132
-msgid "OK"
-msgstr "OK"
-
-#: ../templates/adblock.php:20
-msgid "Restart Ad Blocking"
-msgstr "Перезапустите блокировку рекламы"
-
-#: ../templates/adblock.php:24
-msgid "Start Ad Blocking"
-msgstr "Запуск блокировки рекламы"
-
-#: ../templates/adblock.php:64
-msgid "Information provided by adblock"
-msgstr "Информация предоставлена adblock"
-
-#: ../templates/login.php:13
-msgid "Administrator login"
-msgstr "Вход в систему администратора"
-
-#: ../templates/login.php:31
-msgid "Forgot password"
-msgstr "Забыли пароль"
-
-#: ../templates/login.php:33
-msgid "Scan for Login Help"
-msgstr "Сканирование для получения помощи при входе в систему"
-
-#: ../templates/openvpn.php:20
-msgid "Start OpenVPN"
-msgstr "Запустите OpenVPN"
-
-#: ../templates/openvpn.php:24
-msgid "Stop OpenVPN"
-msgstr "Остановить OpenVPN"
-
-#: ../templates/openvpn.php:65
-msgid "Information provided by openvpn"
-msgstr "Информация предоставлена openvpn"
-
-#: ../templates/openvpn.php:75
-msgid "Delete OpenVPN client"
-msgstr "Удаление клиента OpenVPN"
-
-#: ../templates/openvpn.php:78
-msgid "Delete client configuration? This cannot be undone."
-msgstr "Удалить конфигурацию клиента? Это нельзя отменить."
-
-#: ../templates/openvpn.php:93
-msgid "Activate OpenVPN client"
-msgstr "Активируйте клиент OpenVPN"
-
-#: ../templates/openvpn.php:96
-msgid "Activate client configuration? This will restart the openvpn-client service."
-msgstr "Активировать конфигурацию клиента? Это перезапустит службу openvpn-client."
-
-#: ../templates/dashboard.php:24
-msgid "Ethernet"
-msgstr "Ethernet"
-
-#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
-msgid "WiFi Client"
-msgstr "Клиент Wi-Fi"
-
-#: ../templates/dashboard.php:28
-msgid "Repeater"
-msgstr "Ретранслятор"
-
-#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
-msgid "Tethering"
-msgstr "Tethering"
-
-#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
-msgid "Cellular"
-msgstr "Сотовая связь"
-
-#: ../templates/dashboard.php:48
-msgid "Public"
-msgstr "Открытый доступ"
-
-#: ../templates/dashboard.php:49
-msgid "Local"
-msgstr "Местный"
-
-#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
-msgid "Netmask"
-msgstr "Netmask"
-
-#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
-#: ../templates/dhcp/clients.php:19
-msgid "MAC Address"
-msgstr "MAC-адрес"
-
-#: ../templates/dashboard.php:75
-msgid "AP"
-msgstr "AP"
-
-#: ../templates/dashboard.php:83
-msgid "Bridged"
-msgstr "Мостовая"
-
-#: ../templates/dashboard.php:91
-msgid "Adblock"
-msgstr "Adblock"
-
-#: ../templates/dashboard.php:99
-msgid "VPN"
-msgstr "VPN"
-
-#: ../templates/dashboard.php:108
-msgid "Firewall"
-msgstr "Брандмауэр"
-
-#: ../templates/dashboard.php:114
-msgid "5G"
-msgstr "5G"
-
-#: ../templates/dashboard.php:115
-msgid "2.4G"
-msgstr "2.4G"
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "Вклад"
+
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "Проверка нового релиза продолжается..."
+
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "Доступен новый выпуск: Версия"
+
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "Установленная версия - это последняя версия."
+
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "Установить это обновление сейчас?"
+
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "Аутентификация на GitHub"
+
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Обновление Insiders требует аутентификации на GitHub."
+
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Ваши учетные данные будут отправлены на GitHub в безопасном режиме с использованием SSL. Однако будьте осторожны, если ваша установка RaspAP находится в WLAN, которую совместно используют недоверенные пользователи."
+
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "Токен персонального доступа"
+
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "Пожалуйста, укажите действительный токен."
+
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "Выполнить обновление"
+
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "Обновление в процессе"
+
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "Приложение находится в стадии обновления..."
+
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "Обновление конфигурации"
+
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "Обновление источников"
+
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "Установка обновлений пакетов"
+
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "Загрузка последних файлов"
+
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "Установка приложения"
+
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "Обновление завершено"
+
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Произошла ошибка. Проверьте журнал по адресу <code>/tmp/raspap_install.log</code>"
+
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "Успех. Обновите страницу, чтобы подтвердить новую версию."
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "Остановка WireGuard"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "Запустите WireGuard"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "Сверстник"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "Информация предоставлена компанией wireguard"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "Удаление конфигурации WireGuard"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "Удалить эту конфигурацию? Это нельзя отменить."
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "Активируйте конфигурацию WireGuard"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "Активировать эту конфигурацию? Это перезапустит службу wg-quick."
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s настройки"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "Детали счета"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "Мой счет"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "Расположение сервера"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "При выборе пункта <strong>Сохранить настройки</strong> будет установлено соединение с выбранной страной."
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Выбрав <strong>Connect %s</strong>, вы подключитесь к рекомендуемому серверу."
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "Страна"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s статус"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Установлен Linux CLI: <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Текущий <code>%s</code> Ниже отображается текущее состояние соединения."
+
+#: ../templates/wg/general.php:5
+msgid "Tunnel settings"
+msgstr "Настройки туннеля"
+
+#: ../templates/wg/general.php:12
+msgid "Configuration Method"
+msgstr "Метод конфигурации"
+
+#: ../templates/wg/general.php:15
+msgid "Upload file"
+msgstr "Загрузить файл"
+
+#: ../templates/wg/general.php:19
+msgid "Create manually"
+msgstr "Создать вручную"
+
+#: ../templates/wg/general.php:27
+msgid "Upload a WireGuard config"
+msgstr "Загрузка конфигурации WireGuard"
+
+#: ../templates/wg/general.php:29
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+msgstr "Эта опция загружает и устанавливает существующий файл WireGuard <code>.conf</code> на данном устройстве <code>.</code>"
+
+#: ../templates/wg/general.php:38
+msgid "Apply iptables rules to the selected interface"
+msgstr "Применить правила iptables к выбранному интерфейсу"
+
+#: ../templates/wg/general.php:39
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+msgstr "Рекомендуется, если вы хотите перенаправить сетевой трафик с интерфейса wg0 на клиентов, подключенных к нужному интерфейсу. По умолчанию используется активный интерфейс точки доступа."
+
+#: ../templates/wg/general.php:41
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+msgstr "Эта опция добавляет правила <strong>iptables</strong> <code>Postup</code> и <code>PostDown</code> для выбранного ниже интерфейса."
+
+#: ../templates/wg/general.php:50
+msgid "Enable kill switch"
+msgstr "Включить аварийный выключатель"
+
+#: ../templates/wg/general.php:51
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+msgstr "Рекомендуется, если вы хотите предотвратить поток незашифрованных пакетов через интерфейсы, не относящиеся к WireGuard."
+
+#: ../templates/wg/general.php:53
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+msgstr "Эта опция добавляет правила <strong>iptables</strong> <code>PostUp</code> и <code>PreDown</code> для настроенного интерфейса."
+
+#: ../templates/wg/general.php:62
+msgid "Select WireGuard configuration file (.conf)"
+msgstr "Выберите файл конфигурации WireGuard (.conf)."
+
+#: ../templates/wg/general.php:72
+msgid "Create a local WireGuard config"
+msgstr "Создайте локальную конфигурацию WireGuard"
+
+#: ../templates/wg/general.php:76
+msgid "Enable server"
+msgstr "Включить сервер"
+
+#: ../templates/wg/general.php:80
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+msgstr "Включите эту опцию для защиты сетевого трафика путем создания зашифрованного туннеля между RaspAP и настроенными аналогами."
+
+#: ../templates/wg/general.php:81
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+msgstr "Этот параметр создает новый файл WireGuard <code>.conf</code> на этом устройстве <code>.</code>"
+
+#: ../templates/wg/general.php:88
+msgid "Local public key"
+msgstr "Локальный открытый ключ"
+
+#: ../templates/wg/general.php:99 ../templates/wg/peers.php:31
+msgid "Local Port"
+msgstr "Местный порт"
+
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
+msgstr "Ниже показаны доступные на данный момент конфигурации файлов WireGuard."
+
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+msgstr "Активация конфигурации приведет к перезапуску службы <code>wg-quick</code>."
+
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+msgstr "Включите эту опцию, чтобы отобразить обновленный журнал отладки <code>wg-quick</code>."
+
+#: ../templates/wg/peers.php:10
+msgid "Enable peer"
+msgstr "Включить одноранговую сеть"
+
+#: ../templates/wg/peers.php:13
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+msgstr "Включите эту опцию для шифрования трафика путем создания туннеля между RaspAP и этим аналогом."
+
+#: ../templates/wg/peers.php:14
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+msgstr "Эта опция добавляет <code>файл client.conf</code> в конфигурацию WireGuard."
+
+#: ../templates/wg/peers.php:20
+msgid "Peer public key"
+msgstr "Открытый ключ коллеги"
+
+#: ../templates/wg/peers.php:45
+msgid "Endpoint address"
+msgstr "Адрес конечной точки"
+
+#: ../templates/wg/peers.php:52
+msgid "Allowed IPs"
+msgstr "Разрешенные IP-адреса"
+
+#: ../templates/wg/peers.php:59
+msgid "Persistent keepalive"
+msgstr "Постоянное обновление"
+
+#: ../templates/wg/peers.php:70
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr "Отсканируйте этот QR-код с помощью вашего клиента, чтобы подключиться к этому туннелю"
+
+#: ../templates/wg/peers.php:71
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr "или загрузите файл <code>client.conf</code> на ваше устройство."
 
 #: ../templates/dhcp/general.php:2 ../templates/dhcp/settings.php:2
 msgid "DHCP server settings"
@@ -2919,98 +2731,6 @@ msgstr "Укажите действительный интервал."
 msgid "Metric"
 msgstr "Метрика"
 
-#: ../templates/dhcp/summary.php:7
-msgid "Interface Configurations"
-msgstr "Настройки интерфейса"
-
-#: ../templates/dhcp/summary.php:19
-msgid "Static IP"
-msgstr "Статический IP-адрес"
-
-#: ../templates/dhcp/summary.php:20
-msgid "Subnet / Gateway"
-msgstr "Подсеть / Шлюз"
-
-#: ../templates/dhcp/summary.php:21
-msgid "Default Route"
-msgstr "Маршрут по умолчанию"
-
-#: ../templates/dhcp/summary.php:22
-msgid "Disable Hook"
-msgstr "Отключить хук"
-
-#: ../templates/dhcp/summary.php:23
-msgid "DHCP Range (lease)"
-msgstr "Диапазон DHCP (срок аренды)"
-
-#: ../templates/dhcp/summary.php:24
-msgid "DNS Servers"
-msgstr "DNS-серверы"
-
-#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
-msgid "Yes"
-msgstr "Да"
-
-#: ../templates/dhcp/summary.php:97
-msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr "В файлах dhcpcd.conf и dnsmasq.d не найдено никаких настроек для каких-либо интерфейсов."
-
-#: ../templates/dhcp/static_leases.php:5
-msgid "Static leases"
-msgstr "Статическая аренда"
-
-#: ../templates/dhcp/static_leases.php:7
-msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
-msgstr "Клиентам с определенным аппаратным MAC-адресом всегда может быть выделен один и тот же IP-адрес."
-
-#: ../templates/dhcp/static_leases.php:8
-msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
-msgstr "Эта опция добавляет записи о <code>dhcp-хостах</code> в конфигурацию dnsmasq."
-
-#: ../templates/dhcp/static_leases.php:19
-#: ../templates/dhcp/static_leases.php:36
-#: ../templates/dhcp/static_leases.php:67
-msgid "IP address"
-msgstr "IP-адрес"
-
-#: ../templates/dhcp/static_leases.php:22
-#: ../templates/dhcp/static_leases.php:39
-#: ../templates/dhcp/static_leases.php:70
-msgid "Optional comment"
-msgstr "Необязательный комментарий"
-
-#: ../templates/dhcp/static_leases.php:46
-msgid "Restrict access"
-msgstr "Ограничить доступ"
-
-#: ../templates/dhcp/static_leases.php:51
-msgid "Limit network access to static clients"
-msgstr "Ограничьте доступ к сети для статических клиентов"
-
-#: ../templates/dhcp/static_leases.php:54
-msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
-msgstr "Включите эту опцию, если хотите, чтобы RaspAP <b>игнорировал всех клиентов</b>, которые не указаны в списке статических аренд."
-
-#: ../templates/dhcp/static_leases.php:55
-msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
-msgstr "Эта опция добавляет <code>dhcp-ignore</code> в конфигурацию dnsmasq."
-
-#: ../templates/dhcp/clients.php:8
-msgid "Active DHCP leases"
-msgstr "Активные аренды DHCP"
-
-#: ../templates/dhcp/clients.php:18
-msgid "Expire time"
-msgstr "Время истечения"
-
-#: ../templates/dhcp/clients.php:21
-msgid "Host name"
-msgstr "Имя хоста"
-
-#: ../templates/dhcp/clients.php:22
-msgid "Client ID"
-msgstr "Идентификатор клиента"
-
 #: ../templates/dhcp/logging.php:4
 msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
 msgstr "Включите эти опции для регистрации активности <code>dhcpcd</code> и <code>dnsmasq</code>."
@@ -3060,6 +2780,105 @@ msgstr "Формат: "
 msgid "Choose a hosted server"
 msgstr "Выберите размещаемый сервер"
 
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
+msgstr "Настройки интерфейса"
+
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
+msgstr "Статический IP-адрес"
+
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
+msgstr "Подсеть / Шлюз"
+
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
+msgstr "Маршрут по умолчанию"
+
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
+msgstr "Отключить хук"
+
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
+msgstr "Диапазон DHCP (срок аренды)"
+
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
+msgstr "DNS-серверы"
+
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
+msgstr "Да"
+
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
+msgstr "В файлах dhcpcd.conf и dnsmasq.d не найдено никаких настроек для каких-либо интерфейсов."
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr "Статическая аренда"
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr "Клиентам с определенным аппаратным MAC-адресом всегда может быть выделен один и тот же IP-адрес."
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr "Эта опция добавляет записи о <code>dhcp-хостах</code> в конфигурацию dnsmasq."
+
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+#: ../templates/networking/devices.php:19
+msgid "MAC address"
+msgstr "MAC-адрес"
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr "IP-адрес"
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr "Необязательный комментарий"
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr "Ограничить доступ"
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr "Ограничьте доступ к сети для статических клиентов"
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr "Включите эту опцию, если хотите, чтобы RaspAP <b>игнорировал всех клиентов</b>, которые не указаны в списке статических аренд."
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr "Эта опция добавляет <code>dhcp-ignore</code> в конфигурацию dnsmasq."
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr "Активные аренды DHCP"
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr "Время истечения"
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
+msgstr "Имя хоста"
+
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr "Идентификатор клиента"
+
 #: ../templates/dhcp/settings.php:72
 msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
 msgstr "Включите эту опцию только в том случае, если хотите, чтобы ваше устройство использовало этот интерфейс в качестве основного канала выхода в Интернет."
@@ -3072,89 +2891,147 @@ msgstr "Эта команда включает или отключает пар�
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
 msgstr "Эта команда включает или отключает опцию <code>nohook wpa_supplicant</code> для данного интерфейса в файле dhcpcd.conf."
 
-#: ../templates/about.php:23
-msgid "Contributing"
-msgstr "Вклад"
+#: ../templates/restapi/general.php:12
+msgid "API Key"
+msgstr "Ключ API"
 
-#: ../templates/about.php:50
-msgid "New release check in progress..."
-msgstr "Проверка нового релиза продолжается..."
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "Пожалуйста, укажите действительный ключ API."
 
-#: ../templates/about.php:53
-msgid "A new release is available: Version"
-msgstr "Доступен новый выпуск: Версия"
+#: ../templates/restapi/status.php:3
+msgid "RestAPI status"
+msgstr "Статус RestAPI"
 
-#: ../templates/about.php:54
-msgid "Installed version is the latest release."
-msgstr "Установленная версия - это последняя версия."
+#: ../templates/restapi/status.php:4
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "Текущее состояние <code>службы restapi.service</code> отображается ниже."
 
-#: ../templates/about.php:55
-msgid "Install this update now?"
-msgstr "Установить это обновление сейчас?"
+#: ../templates/admin.php:7
+msgid "Authentication"
+msgstr "Аутентификация"
 
-#: ../templates/about.php:69
-msgid "GitHub authentication"
-msgstr "Аутентификация на GitHub"
+#: ../templates/admin.php:47
+msgid "Update admin password"
+msgstr "Обновление пароля администратора"
 
-#: ../templates/about.php:73
-msgid "Updating Insiders requires GitHub authentication."
-msgstr "Обновление Insiders требует аутентификации на GitHub."
+#: ../templates/admin.php:54
+msgid "Old password"
+msgstr "Старый пароль"
 
-#: ../templates/about.php:80
-msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
-msgstr "Ваши учетные данные будут отправлены на GitHub в безопасном режиме с использованием SSL. Однако будьте осторожны, если ваша установка RaspAP находится в WLAN, которую совместно используют недоверенные пользователи."
+#: ../templates/admin.php:59
+msgid "Please enter your old password."
+msgstr "Пожалуйста, введите свой старый пароль."
 
-#: ../templates/about.php:92
-msgid "Personal Access Token"
-msgstr "Токен персонального доступа"
+#: ../templates/admin.php:66
+msgid "New password"
+msgstr "Новый пароль"
 
-#: ../templates/about.php:98
-msgid "Please provide a valid token."
-msgstr "Пожалуйста, укажите действительный токен."
+#: ../templates/admin.php:71
+msgid "Please enter a new password."
+msgstr "Пожалуйста, введите новый пароль."
 
-#: ../templates/about.php:105
-msgid "Perform update"
-msgstr "Выполнить обновление"
+#: ../templates/admin.php:78
+msgid "Repeat new password"
+msgstr "Повторите новый пароль"
 
-#: ../templates/about.php:117
-msgid "Update in progress"
-msgstr "Обновление в процессе"
+#: ../templates/admin.php:83
+msgid "Please re-enter your new password."
+msgstr "Пожалуйста, введите новый пароль еще раз."
 
-#: ../templates/about.php:120
-msgid "Application is being updated..."
-msgstr "Приложение находится в стадии обновления..."
+#: ../templates/admin.php:91
+msgid "Save"
+msgstr "Сохранить"
 
-#: ../templates/about.php:121
-msgid "Configuring update"
-msgstr "Обновление конфигурации"
+#: ../templates/admin.php:103
+msgid "Logout and enable limited user mode"
+msgstr "Выход из системы и включение режима ограниченного пользователя"
 
-#: ../templates/about.php:122
-msgid "Updating sources"
-msgstr "Обновление источников"
+#: ../templates/admin.php:114
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr "Это действие сохранит учетные данные ограниченного пользователя и приведет к выходу из системы текущего пользователя-администратора. Сохранить и включить режим ограниченных привилегий?"
 
-#: ../templates/about.php:123
-msgid "Installing package updates"
-msgstr "Установка обновлений пакетов"
+#: ../templates/admin.php:120
+msgid "Save and logout"
+msgstr "Сохранить и выйти из системы"
 
-#: ../templates/about.php:124
-msgid "Downloading latest files"
-msgstr "Загрузка последних файлов"
+#: ../templates/data_usage.php:7
+msgid "Data usage monitoring"
+msgstr "Мониторинг использования данных"
 
-#: ../templates/about.php:125
-msgid "Installing application"
-msgstr "Установка приложения"
+#: ../templates/data_usage.php:14
+msgid "Hourly"
+msgstr "Почасовая оплата"
 
-#: ../templates/about.php:126
-msgid "Update complete"
-msgstr "Обновление завершено"
+#: ../templates/data_usage.php:15
+msgid "Daily"
+msgstr "Ежедневно"
 
-#: ../templates/about.php:128
-msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
-msgstr "Произошла ошибка. Проверьте журнал по адресу <code>/tmp/raspap_install.log</code>"
+#: ../templates/data_usage.php:16
+msgid "Monthly"
+msgstr "Ежемесячно"
 
-#: ../templates/about.php:129
-msgid "Success. Refresh this page to confirm the new version."
-msgstr "Успех. Обновите страницу, чтобы подтвердить новую версию."
+#: ../templates/data_usage.php:23
+msgid "Hourly traffic amount"
+msgstr "Часовой объем трафика"
+
+#: ../templates/data_usage.php:24 ../templates/data_usage.php:43
+#: ../templates/data_usage.php:62
+msgid "interface"
+msgstr "интерфейс"
+
+#: ../templates/data_usage.php:32 ../templates/data_usage.php:51
+#: ../templates/data_usage.php:70
+#, php-format
+msgid "Loading %s bandwidth chart"
+msgstr "Загрузка %s диаграммы пропускной способности"
+
+#: ../templates/data_usage.php:32
+msgid "hourly"
+msgstr "почасовая"
+
+#: ../templates/data_usage.php:42
+msgid "Daily traffic amount"
+msgstr "Ежедневный объем трафика"
+
+#: ../templates/data_usage.php:51
+msgid "daily"
+msgstr "ежедневно"
+
+#: ../templates/data_usage.php:61
+msgid "Monthly traffic amount"
+msgstr "Ежемесячный объем трафика"
+
+#: ../templates/data_usage.php:70
+msgid "monthly"
+msgstr "ежемесячно"
+
+#: ../templates/data_usage.php:79
+msgid "Information provided by vnstat"
+msgstr "Информация предоставлена vnstat"
+
+#: ../templates/data_usage.php:86
+msgid "Send"
+msgstr "Отправить"
+
+#: ../templates/data_usage.php:87
+msgid "Receive"
+msgstr "Получить"
+
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "Подключайтесь %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "Отключить %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "Информация предоставлена сайтом %s"
 
 #: ../templates/exception.php:6 ../templates/exception.php:17
 msgid "RaspAP Exception"
@@ -3164,129 +3041,275 @@ msgstr "Исключение RaspAP"
 msgid "An exception occurred"
 msgstr "Произошло исключение"
 
-#: ../templates/wg/peers.php:10
-msgid "Enable peer"
-msgstr "Включить одноранговую сеть"
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "Подключение к Интернету"
 
-#: ../templates/wg/peers.php:13
-msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
-msgstr "Включите эту опцию для шифрования трафика путем создания туннеля между RaspAP и этим аналогом."
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "Доступ в Интернет"
 
-#: ../templates/wg/peers.php:14
-msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
-msgstr "Эта опция добавляет <code>файл client.conf</code> в конфигурацию WireGuard."
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "Таблица маршрутизации"
 
-#: ../templates/wg/peers.php:20
-msgid "Peer public key"
-msgstr "Открытый ключ коллеги"
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "необработанный выход"
 
-#: ../templates/wg/peers.php:31 ../templates/wg/general.php:99
-msgid "Local Port"
-msgstr "Местный порт"
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "Текущие настройки"
 
-#: ../templates/wg/peers.php:45
-msgid "Endpoint address"
-msgstr "Адрес конечной точки"
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "Сетевые устройства"
 
-#: ../templates/wg/peers.php:52
-msgid "Allowed IPs"
-msgstr "Разрешенные IP-адреса"
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "Устройство"
 
-#: ../templates/wg/peers.php:59
-msgid "Persistent keepalive"
-msgstr "Постоянное обновление"
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
 
-#: ../templates/wg/peers.php:70
-msgid "Scan this QR code with your client to connect to this tunnel"
-msgstr "Отсканируйте этот QR-код с помощью вашего клиента, чтобы подключиться к этому туннелю"
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "Тип устройства"
 
-#: ../templates/wg/peers.php:71
-msgid "or download the <code>client.conf</code> file to your device."
-msgstr "или загрузите файл <code>client.conf</code> на ваше устройство."
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "Speedtest"
 
-#: ../templates/wg/general.php:5
-msgid "Tunnel settings"
-msgstr "Настройки туннеля"
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "Выбор сервера"
 
-#: ../templates/wg/general.php:12
-msgid "Configuration Method"
-msgstr "Метод конфигурации"
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "Конфиденциальность"
 
-#: ../templates/wg/general.php:15
-msgid "Upload file"
-msgstr "Загрузить файл"
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "Сервер"
 
-#: ../templates/wg/general.php:19
-msgid "Create manually"
-msgstr "Создать вручную"
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "Пинг"
 
-#: ../templates/wg/general.php:27
-msgid "Upload a WireGuard config"
-msgstr "Загрузка конфигурации WireGuard"
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "мс"
 
-#: ../templates/wg/general.php:29
-msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
-msgstr "Эта опция загружает и устанавливает существующий файл WireGuard <code>.conf</code> на данном устройстве <code>.</code>"
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "Джиттер"
 
-#: ../templates/wg/general.php:38
-msgid "Apply iptables rules to the selected interface"
-msgstr "Применить правила iptables к выбранному интерфейсу"
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "Мбит/с"
 
-#: ../templates/wg/general.php:39
-msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
-msgstr "Рекомендуется, если вы хотите перенаправить сетевой трафик с интерфейса wg0 на клиентов, подключенных к нужному интерфейсу. По умолчанию используется активный интерфейс точки доступа."
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "Перезапуск маршрутизации WLAN"
 
-#: ../templates/wg/general.php:41
-msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
-msgstr "Эта опция добавляет правила <strong>iptables</strong> <code>Postup</code> и <code>PostDown</code> для выбранного ниже интерфейса."
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "Остановить маршрутизацию WLAN"
 
-#: ../templates/wg/general.php:50
-msgid "Enable kill switch"
-msgstr "Включить аварийный выключатель"
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "Запуск маршрутизации WLAN"
 
-#: ../templates/wg/general.php:51
-msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
-msgstr "Рекомендуется, если вы хотите предотвратить поток незашифрованных пакетов через интерфейсы, не относящиеся к WireGuard."
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "Маршрутизация беспроводных локальных сетей"
 
-#: ../templates/wg/general.php:53
-msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
-msgstr "Эта опция добавляет правила <strong>iptables</strong> <code>PostUp</code> и <code>PreDown</code> для настроенного интерфейса."
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "маршрутизация"
 
-#: ../templates/wg/general.php:62
-msgid "Select WireGuard configuration file (.conf)"
-msgstr "Выберите файл конфигурации WireGuard (.conf)."
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Эта опция настраивает RaspAP на <b>маршрутизацию сетевого трафика с интерфейса беспроводного клиента (STA)</b> на другой доступный интерфейс."
 
-#: ../templates/wg/general.php:72
-msgid "Create a local WireGuard config"
-msgstr "Создайте локальную конфигурацию WireGuard"
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Когда выбран выходной интерфейс, добавляются правила <code>iptables</code> для маршрутизации пакетов с использованием трансляции сетевых адресов (NAT). Это часто делается для совместного использования интернет-подключения из WLAN с устройствами на интерфейсах <code>eth0</code>, <code>usb0</code> или предсказуемом <code>enx</code>."
 
-#: ../templates/wg/general.php:76
-msgid "Enable server"
-msgstr "Включить сервер"
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "Интерфейс беспроводного клиента"
 
-#: ../templates/wg/general.php:80
-msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
-msgstr "Включите эту опцию для защиты сетевого трафика путем создания зашифрованного туннеля между RaspAP и настроенными аналогами."
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "Выходной интерфейс"
 
-#: ../templates/wg/general.php:81
-msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
-msgstr "Этот параметр создает новый файл WireGuard <code>.conf</code> на этом устройстве <code>.</code>"
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Настройка статического IP-адреса и DHCP для выходного интерфейса"
 
-#: ../templates/wg/general.php:88
-msgid "Local public key"
-msgstr "Локальный открытый ключ"
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "Настройки мобильных данных"
 
-#: ../templates/wg/logging.php:6
-msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
-msgstr "Включите эту опцию, чтобы отобразить обновленный журнал отладки <code>wg-quick</code>."
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "PIN-код SIM-карты"
 
-#: ../templates/wg/configs.php:6
-msgid "Currently available WireGuard file configurations are displayed below."
-msgstr "Ниже показаны доступные на данный момент конфигурации файлов WireGuard."
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "Настройки APN"
 
-#: ../templates/wg/configs.php:7
-msgid "Activating a configuration will restart the <code>wg-quick</code> service."
-msgstr "Активация конфигурации приведет к перезапуску службы <code>wg-quick</code>."
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "Имя точки доступа (APN)"
+
+#: ../includes/dashboard.php:72
+#, php-format
+msgid "%d WLAN %s"
+msgstr "%d WLAN %s"
+
+#: ../includes/dashboard.php:78
+#, php-format
+msgid "%d LAN %s"
+msgstr "%d LAN %s"
+
+#: ../includes/system.php:67
+#, php-format
+msgid "Changing log limit size to %s KB"
+msgstr "Изменение предельного размера журнала на %s КБ"
+
+#: ../includes/system.php:86
+#, php-format
+msgid "Changing alert close timeout to %s ms"
+msgstr "Изменение таймаута закрытия предупреждения на %s мс."
+
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
+msgstr "В строке найден недопустимый пользовательский IP-адрес "
+
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
+msgstr "В строке найден недопустимый пользовательский хост "
+
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
+msgstr "не настроен"
+
+#: ../includes/networking.php:137
+#, php-format
+msgid "Attempting to enable routing between %s and %s interfaces"
+msgstr "Попытка включить маршрутизацию между интерфейсами %s и %s."
+
+#: ../includes/networking.php:147
+#, php-format
+msgid "Attempting to restart routing between %s and %s interfaces"
+msgstr "Попытка перезапустить маршрутизацию между интерфейсами %s и %s."
+
+#: ../includes/networking.php:151
+#, php-format
+msgid "Attempting to disable routing between %s and %s interfaces"
+msgstr "Попытка отключить маршрутизацию между интерфейсами %s и %s."
+
+#: ../includes/networking.php:252
+#, php-format
+msgid "DHCP configuration for %s enabled"
+msgstr "Настройка DHCP для %s включена"
+
+#: ../includes/networking.php:259
+#, php-format
+msgid "DHCP configuration for %s added"
+msgstr "Добавлена конфигурация DHCP для %s."
+
+#: ../includes/networking.php:265
+#, php-format
+msgid "DHCP configuration for %s updated"
+msgstr "Обновлена конфигурация DHCP для %s"
+
+#: ../includes/networking.php:271
+#, php-format
+msgid "No default DHCP configuration exists for the %s interface"
+msgstr "Для интерфейса %s не существует конфигурации DHCP по умолчанию."
+
+#: ../includes/networking.php:272
+#, php-format
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
+msgstr "Настройте статический IP и DHCP для этого интерфейса в настройках DHCP Server."
+
+#: ../includes/networking.php:294
+#, php-format
+msgid "Dnsmasq  configuration for %s added"
+msgstr "Добавлена настройка Dnsmasq для %s."
+
+#: ../includes/restapi.php:59
+#, php-format
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
+msgstr "Документация по RestAPI доступна <a href=\"%s\" target=\"_blank\">здесь %s. </a>"
+
+#: ../includes/functions.php:1006
+msgid "Mem Use"
+msgstr "Использование памяти"
+
+#: ../includes/functions.php:1009
+msgid "CPU"
+msgstr "CPU"
+
+#: ../includes/provider.php:65
+#, php-format
+msgid "Expected %s binary not found at: %s"
+msgstr "Ожидаемый двоичный файл %s не найден по адресу: %s"
+
+#: ../includes/provider.php:66
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
+msgstr "Посетите <a href=\"%s\" target=\"_blank\">инструкцию по установке</a> %s'Linux CLI."
+
+#: ../includes/provider.php:70
+#, php-format
+msgid "Unable to execute %s binary found at: %s"
+msgstr "Невозможно выполнить двоичный файл %s , найденный по адресу: %s"
+
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
+msgstr "Проверьте, что двоичный файл исполняем и разрешения существуют в raspap.sudoers"
+
+#: ../includes/provider.php:119
+#, php-format
+msgid "Attempting to connect to %s"
+msgstr "Попытка подключения к %s"
+
+#: ../includes/provider.php:318
+msgid "Select a country..."
+msgstr "Выберите страну..."
+
+#: ../includes/provider.php:387
+#, php-format
+msgid "Account information not available from %s's Linux CLI."
+msgstr "Информация об учетной записи, недоступная из %s'Linux CLI."
+
+#: ../includes/footer.php:6
+#, php-format
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+msgstr "Создано <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
+msgstr "Команда RaspAP"
+
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
+msgstr "Спасибо, что стали инсайдером"
+
+#: ../includes/footer.php:17
+msgid "Session Expired"
+msgstr "Сессия истекла"
+
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
+msgstr "Срок действия вашей сессии истек. Пожалуйста, войдите в систему, чтобы продолжить."
 
 #: ../ajax/networking/get_nl80211_band.php:37
 #, php-format
@@ -3307,24 +3330,3 @@ msgstr "Выбранный интерфейс (%s) поддерживает бе
 #, php-format
 msgid "The selected interface (%s) does not support wireless mode operation."
 msgstr "Выбранный интерфейс (%s) не поддерживает работу в беспроводном режиме."
-
-#: ../app/lib/signprint.php:20
-msgid "Printable Wi-Fi sign"
-msgstr "Печатный знак Wi-Fi"
-
-#: ../app/lib/signprint.php:37
-msgid "Wi-Fi Connect"
-msgstr "Wi-Fi Connect"
-
-#: ../app/lib/signprint.php:54
-msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
-msgstr "Чтобы подключиться с помощью телефона или планшета, отсканируйте QR-код выше с помощью приложения для камеры."
-
-#: ../app/lib/signprint.php:55
-msgid "For other devices, use the login credentials below."
-msgstr "Для других устройств используйте указанные ниже учетные данные."
-
-#: ../app/lib/signprint.php:65
-msgid "Network"
-msgstr "Сеть"
-

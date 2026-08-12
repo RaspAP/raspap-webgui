@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-07-05 23:13+0000\n"
+"POT-Creation-Date: 2026-08-12 13:31+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
@@ -17,78 +17,88 @@ msgstr ""
 "X-Crowdin-File: /master/locale/messages.pot\n"
 "X-Crowdin-File-ID: 12\n"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:594
-msgid "Installed"
-msgstr "Asennettu"
+#: ../app/lib/signprint.php:20
+msgid "Printable Wi-Fi sign"
+msgstr "Tulostettava Wi-Fi-kyltti"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:598
-msgid "Details"
-msgstr "Yksityiskohdat"
+#: ../app/lib/signprint.php:37
+msgid "Wi-Fi Connect"
+msgstr "Wi-Fi Connect"
 
-#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
-msgid "Dashboard"
-msgstr "Kojelauta"
+#: ../app/lib/signprint.php:54
+msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
+msgstr "Voit muodostaa yhteyden puhelimellasi tai tablet-laitteellasi skannaamalla yllä olevan QR-koodin kamerasovelluksella."
 
-#: ../src/RaspAP/UI/Sidebar.php:20 ../includes/functions.php:1003
-#: ../templates/hostapd.php:13
-msgid "Hotspot"
-msgstr "Hotspot"
+#: ../app/lib/signprint.php:55
+msgid "For other devices, use the login credentials below."
+msgstr "Käytä muita laitteita varten alla olevia kirjautumistietoja."
 
-#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
-msgid "DHCP Server"
-msgstr "DHCP-palvelin"
+#: ../app/lib/signprint.php:65
+msgid "Network"
+msgstr "Verkko"
 
-#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
-msgid "Ad Blocking"
-msgstr "Mainosten estäminen"
+#: ../app/lib/signprint.php:67 ../templates/openvpn/general.php:34
+#: ../templates/login.php:25 ../templates/admin/login.php:21
+#: ../templates/networking/mobile.php:21
+msgid "Password"
+msgstr "Salasana"
 
-#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/networking.php:8
-#: ../templates/dashboard.php:24 ../templates/dashboard.php:25
-msgid "Networking"
-msgstr "Verkostoituminen"
+#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
+#: ../includes/wifi_functions.php:281
+msgid "Signal strength"
+msgstr "Signaalin voimakkuus"
 
-#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
-msgid "WiFi client"
-msgstr "WiFi-asiakas"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
+msgid "WPA and WPA2"
+msgstr "WPA ja WPA2"
 
-#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
-msgid "OpenVPN"
-msgstr "OpenVPN"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:112
+msgid "WPA2 and WPA3-Personal (transitional mode)"
+msgstr "WPA2 ja WPA3-Personal (siirtymätila)"
 
-#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
-msgid "WireGuard"
-msgstr "WireGuard"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:114
+msgid "None"
+msgstr "Ei ole"
 
-#: ../src/RaspAP/UI/Sidebar.php:44
-msgid "Data usage"
-msgstr "Tietojen käyttö"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:124
+msgid "Disabled"
+msgstr "Vammaiset"
 
-#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
-msgid "RestAPI"
-msgstr "RestAPI"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:125
+msgid "Enabled (for supported clients)"
+msgstr "Käytössä (tuetuilla asiakkailla)"
 
-#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/system.php:7
-#: ../templates/dashboard.php:44 ../templates/dashboard.php:45
-msgid "System"
-msgstr "Järjestelmä"
+#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:126
+msgid "Required (for supported clients)"
+msgstr "Vaaditaan (tuetuille asiakkaille)"
 
-#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
-msgid "About RaspAP"
-msgstr "RaspAPista"
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+msgid "Invalid MAC address: "
+msgstr "Virheellinen MAC-osoite: "
 
-#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
-msgid "No MAC Address Found"
-msgstr "MAC-osoitetta ei löytynyt"
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+msgid "Duplicate IP address entered: "
+msgstr "Syötetty päällekkäinen IP-osoite: "
 
-#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
-msgid "No IPv6 Address Found"
-msgstr "IPv6-osoitetta ei löytynyt"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
+msgid "Verbose debugging"
+msgstr "Tarkka virheenkorjaus"
 
-#: ../src/RaspAP/UI/Dashboard.php:232
-msgid "client"
-msgid_plural "clients"
-msgstr[0] "asiakas"
-msgstr[1] "asiakkaat"
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
+msgid "Debugging"
+msgstr "Vianmääritys"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
+msgid "Informational"
+msgstr "Tietoa"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
+msgid "Notification"
+msgstr "Ilmoitus"
+
+#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
+msgid "Warning"
+msgstr "Varoitus"
 
 #: ../src/RaspAP/Networking/Hotspot/DhcpcdManager.php:128
 #, php-format
@@ -145,483 +155,78 @@ msgstr "Virheellinen metriikka-arvo, ei numero."
 msgid "DHCP configuration for %s updated."
 msgstr "DHCP-konfiguraatio osoitteessa %s päivitetty."
 
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
-msgid "Invalid MAC address: "
-msgstr "Virheellinen MAC-osoite: "
-
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
-msgid "Duplicate IP address entered: "
-msgstr "Syötetty päällekkäinen IP-osoite: "
-
-#: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
-#: ../includes/wifi_functions.php:281
-msgid "Signal strength"
-msgstr "Signaalin voimakkuus"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:40
-msgid "Verbose debugging"
-msgstr "Tarkka virheenkorjaus"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:41
-msgid "Debugging"
-msgstr "Vianmääritys"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:42
-msgid "Informational"
-msgstr "Tietoa"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:43
-msgid "Notification"
-msgstr "Ilmoitus"
-
-#: ../src/RaspAP/Networking/Hotspot/HostapdManager.php:44
-msgid "Warning"
-msgstr "Varoitus"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:111
-msgid "WPA and WPA2"
-msgstr "WPA ja WPA2"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:112
-msgid "WPA2 and WPA3-Personal (transitional mode)"
-msgstr "WPA2 ja WPA3-Personal (siirtymätila)"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:114
-msgid "None"
-msgstr "Ei ole"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:124
-msgid "Disabled"
-msgstr "Vammaiset"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:125
-msgid "Enabled (for supported clients)"
-msgstr "Käytössä (tuetuilla asiakkailla)"
-
-#: ../src/RaspAP/Networking/Hotspot/HotspotService.php:126
-msgid "Required (for supported clients)"
-msgstr "Vaaditaan (tuetuille asiakkaille)"
-
-#: ../plugins-available/Captive/Captive.php:70
-#: ../plugins-available/Captive/Captive.php:130
-msgid "Captive portal"
-msgstr "Captive-portaali"
-
-#: ../plugins-available/Captive/Captive.php:95
-#, php-format
-msgid "Attempting to start %s"
-msgstr "Yritetään käynnistää %s"
-
-#: ../plugins-available/Captive/Captive.php:99
-#, php-format
-msgid "Attempting to stop %s"
-msgstr "Yritys lopettaa %s"
-
-#: ../plugins-available/Captive/Captive.php:106
-#, php-format
-msgid "Client %s deauthenticated"
-msgstr "Asiakas %s on kirjautunut ulos"
-
-#: ../plugins-available/Captive/Captive.php:108
-#, php-format
-msgid "Failed to deauthenticate client %s"
-msgstr "Asiakkaan kirjautumisen purkaminen epäonnistui %s"
-
-#: ../plugins-available/Captive/Captive.php:111
-msgid "Invalid client MAC address"
-msgstr "Asiakkaan MAC-osoite ei kelpaa"
-
-#: ../plugins-available/Captive/Captive.php:131
-msgid "A captive portal plugin that implements nodogsplash"
-msgstr "Captive-portaali-lisäosa, joka toteuttaa nodogsplashin"
-
-#: ../plugins-available/Captive/Captive.php:132
-#: ../plugins-available/Tailscale/Tailscale.php:252
-#: ../plugins-available/Wireshark/Wireshark.php:185
-msgid "Bill Z"
-msgstr "Bill Z"
-
-#: ../plugins-available/Captive/Captive.php:538
-msgid "Portal settings saved successfully"
-msgstr "Portaalin asetukset tallennettu onnistuneesti"
-
-#: ../plugins-available/Captive/Captive.php:541
-#: ../plugins-available/Wireshark/Wireshark.php:248
-msgid "Error saving settings: "
-msgstr "Virhe asetusten tallentamisessa: "
-
-#: ../plugins-available/Captive/Captive.php:582
-msgid "Failed to execute ndsctl."
-msgstr "ndsctl:n suorittaminen epäonnistui."
-
-#: ../plugins-available/Captive/templates/main.php:3
-#: ../plugins-available/Tailscale/templates/main.php:16
-#: ../plugins-available/Wireshark/templates/main.php:3 ../templates/dhcp.php:3
-#: ../templates/wireguard.php:3 ../templates/networking/wlanrouting.php:3
-#: ../templates/networking/mobile.php:29 ../templates/hostapd.php:3
-#: ../templates/system/advanced.php:39 ../templates/system/theme.php:56
-#: ../templates/system/language.php:11 ../templates/provider.php:3
-#: ../templates/admin/general.php:2 ../templates/restapi.php:3
-#: ../templates/adblock.php:3 ../templates/openvpn.php:3
-msgid "Save settings"
-msgstr "Tallenna asetukset"
-
-#: ../plugins-available/Captive/templates/main.php:22
-msgid "Stop portal"
-msgstr "Pysäytä portaali"
-
-#: ../plugins-available/Captive/templates/main.php:26
-msgid "Start portal"
-msgstr "Käynnistä portaali"
-
-#: ../plugins-available/Captive/templates/main.php:48 ../templates/admin.php:20
-#: ../templates/hostapd.php:49 ../templates/system.php:17
-msgid "Basic"
-msgstr "Basic"
-
-#: ../plugins-available/Captive/templates/main.php:49
-msgid "Clients"
-msgstr "Asiakkaat"
-
-#: ../plugins-available/Captive/templates/main.php:50 ../templates/dhcp.php:52
-#: ../templates/hostapd.php:51 ../templates/system.php:20
-msgid "Advanced"
-msgstr "Edistynyt"
-
-#: ../plugins-available/Captive/templates/main.php:51
-#: ../plugins-available/Tailscale/templates/main.php:71
-#: ../includes/functions.php:1001 ../templates/wifi_stations/network.php:33
-#: ../templates/provider.php:36 ../templates/restapi.php:47
-msgid "Status"
-msgstr "Tila"
-
-#: ../plugins-available/Captive/templates/main.php:52
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
-msgid "Active clients"
-msgstr "Aktiiviset asiakkaat"
-
-#: ../plugins-available/Captive/templates/main.php:53
-#: ../plugins-available/Captive/templates/tabs/about.php:3
-#: ../plugins-available/Tailscale/templates/main.php:72
-#: ../plugins-available/Tailscale/templates/tabs/about.php:3
-#: ../plugins-available/Wireshark/templates/main.php:47
-#: ../plugins-available/Wireshark/templates/tabs/about.php:3
-#: ../templates/about.php:21
-msgid "About"
-msgstr "Tietoja"
-
-#: ../plugins-available/Captive/templates/main.php:79
-msgid "Information provided by nodogsplash"
-msgstr "nodogsplashin toimittamat tiedot"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Stop portal service"
-msgstr "Pysäytä portaalipalvelu"
-
-#: ../plugins-available/Captive/templates/main.php:90
-msgid "Start portal service"
-msgstr "Käynnistä portaalipalvelu"
-
-#: ../plugins-available/Captive/templates/main.php:95
-msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
-msgstr "Portaalipalvelun vaihtaminen häiritsee hetkellisesti asiakasliikennettä. Jatka valitsemalla <strong>Jatka</strong> jatkaaksesi."
-
-#: ../plugins-available/Captive/templates/main.php:99
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
-#: ../templates/admin.php:90 ../templates/admin.php:119
-#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
-#: ../templates/system.php:56 ../templates/system.php:74
-#: ../templates/system.php:109 ../templates/system.php:253
-#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
-#: ../templates/about.php:56 ../templates/about.php:104
-msgid "Cancel"
-msgstr "Peruuta"
-
-#: ../plugins-available/Captive/templates/main.php:100
-msgid "Proceed"
-msgstr "Jatka"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:6
-#: ../plugins-available/Tailscale/Tailscale.php:403
-#: ../plugins-available/Tailscale/templates/main.php:4
-#: ../templates/networking/devices.php:4 ../templates/networking/general.php:4
-#: ../templates/system/basic.php:63 ../templates/dashboard.php:12
-#: ../templates/dhcp/summary.php:9
-msgid "Refresh"
-msgstr "Päivitä"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:17
-msgid "Client"
-msgstr "Asiakas"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:21
-msgid "IP"
-msgstr "IP"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:22
-msgid "Token"
-msgstr "Tunnus"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:23
-#: ../templates/networking/diagnostics.php:34 ../templates/wg/peers.php:73
-msgid "Download"
-msgstr "Lataa"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:24
-#: ../templates/networking/diagnostics.php:40
-msgid "Upload"
-msgstr "Lataa"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:25
-msgid "Last activity"
-msgstr "Viimeisin toiminta"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:26
-msgid "Session start"
-msgstr "Istunnon alku"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:27
-msgid "Session end"
-msgstr "Istunnon päättyminen"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:35
-msgid "Deauthenticate"
-msgstr "Poista tunnistautuminen"
-
-#: ../plugins-available/Captive/templates/tabs/clientlist.php:44
-msgid "No active clients connected."
-msgstr "Yhteydessä olevia asiakkaita ei ole."
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:5
-#: ../templates/openvpn/general.php:2 ../templates/configure_client.php:21
-#: ../templates/openvpn.php:46
-msgid "Client settings"
-msgstr "Asiakkaan asetukset"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:9
-msgid "Maximum clients"
-msgstr "Enimmäisasiakkaat"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:11
-msgid "Maximum number of concurrent authenticated users"
-msgstr "Samanaikaisten todennettujen käyttäjien enimmäismäärä"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:15
-msgid "Does not include users on the trusted MAC list"
-msgstr "Ei sisällä luotettavien MAC-käyttäjien luettelossa olevia käyttäjiä."
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:19
-msgid "Session timeout (minutes)"
-msgstr "Istunnon aikakatkaisu (minuuttia)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:21
-msgid "Default session length in minutes. 0 = unlimited"
-msgstr "Istunnon oletuspituus minuutteina. 0 = rajoittamaton"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:30
-msgid "Pre-auth idle timeout (minutes)"
-msgstr "Automaatiota edeltävä tyhjäkäyntiaika (minuuttia)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:32
-msgid "Time before unauthenticated idle users are removed"
-msgstr "Aika ennen kuin tunnistamattomat joutokäyttäjät poistetaan."
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:39
-msgid "Auth idle timeout (minutes)"
-msgstr "Auth-tyhjäkäyntiaika (minuuttia)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:41
-msgid "Time before authenticated idle users are deauthenticated"
-msgstr "Aika ennen kuin todennettujen joutilaiden käyttäjien todennus poistetaan."
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:50
-msgid "Check interval (seconds)"
-msgstr "Tarkistusväli (sekuntia)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:52
-msgid "How often to check client timeouts"
-msgstr "Kuinka usein asiakkaan aikakatkaisut tarkistetaan"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:59
-msgid "MAC address control"
-msgstr "MAC-osoitteen valvonta"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:63
-msgid "MAC mechanism"
-msgstr "MAC-mekanismi"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:65
-msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
-msgstr "Esto: estolistalla olevat MAC:t estetään. Salli: vain sallitut MAC:t sallitaan."
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:68
-msgid "Block (blocklist mode)"
-msgstr "Esto (estoluettelotila)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:71
-msgid "Allow (allowlist mode)"
-msgstr "Salli (allowlist-tila)"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:79
-msgid "Blocked MAC list"
-msgstr "Estetty MAC-luettelo"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:81
-msgid "Comma-separated MAC addresses to block (used when mechanism is 'block')"
-msgstr "Pilkulla erotetut estettävät MAC-osoitteet (käytetään, kun mekanismi on \"block\")."
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:84
-#: ../plugins-available/Captive/templates/tabs/clients.php:95
-msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
-msgstr "Esimerkki: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:90
-msgid "Allowed MAC list"
-msgstr "Sallittu MAC-luettelo"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:92
-msgid "Comma-separated MAC addresses to allow (used when mechanism is 'allow')"
-msgstr "Pilkulla erotetut MAC-osoitteet, jotka sallitaan (käytetään, kun mekanismi on \"allow\")."
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:101
-msgid "Trusted MAC list"
-msgstr "Luotettujen MAC-käyttäjien luettelo"
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:103
-msgid "Comma-separated MAC addresses that bypass authentication entirely"
-msgstr "Pilkulla erotetut MAC-osoitteet, jotka ohittavat todennuksen kokonaan."
-
-#: ../plugins-available/Captive/templates/tabs/clients.php:106
-msgid "These devices are not subject to authentication or firewall rules"
-msgstr "Näihin laitteisiin ei sovelleta todennus- tai palomuurisääntöjä."
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:5
-#: ../templates/system/advanced.php:3 ../templates/hostapd/advanced.php:2
-msgid "Advanced settings"
-msgstr "Lisäasetukset"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:9
-msgid "Gateway IP range"
-msgstr "Yhdyskäytävän IP-alue"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:11
-msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
-msgstr "Hallittava IP-alue CIDR-muodossa. Jätä tyhjäksi kaikille osoitteille"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:15
-msgid "Default: 0.0.0.0/0 (all addresses)"
-msgstr "Oletusarvo: 0.0.0.0.0/0 (kaikki osoitteet)."
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:21
-msgid "Debug level"
-msgstr "Vianmääritystaso"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:23
-msgid "Amount of logging detail reported by the nodogsplash.service"
-msgstr "nodogsplash.service:n raportoimien lokitietojen määrä."
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:26
-msgid "0 - Errors only"
-msgstr "0 - Vain virheet"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:29
-msgid "1 - Errors, warnings, infos"
-msgstr "1 - Virheet, varoitukset, tiedotteet"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:32
-msgid "2 - Errors, warnings, infos, verbose"
-msgstr "2 - Virheet, varoitukset, tiedot, yleiskuvaus"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:35
-msgid "3 - Errors, warnings, infos, verbose, debug"
-msgstr "3 - Virheet, varoitukset, tiedot, sanallinen, virheenkorjaus, virheenkorjaus"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:41
-msgid "Firewall settings"
-msgstr "Palomuurin asetukset"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:49
-msgid "Allow all traffic for authenticated users"
-msgstr "Salli kaikki liikenne todennetuille käyttäjille"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:52
-msgid "When enabled, authenticated users have unrestricted access"
-msgstr "Kun tämä on käytössä, todennetuilla käyttäjillä on rajoittamaton pääsy."
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:63
-msgid "Allow DNS for pre-authenticated users"
-msgstr "DNS:n salliminen ennalta todennetuille käyttäjille"
-
-#: ../plugins-available/Captive/templates/tabs/advanced.php:66
-msgid "Required for clients to resolve domain names before authentication"
-msgstr "Tarvitaan, jotta asiakkaat voivat ratkaista verkkotunnukset ennen todennusta."
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:5
-#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
-#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
-#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
-msgid "Basic settings"
-msgstr "Perusasetukset"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:9
-msgid "Gateway interface"
-msgstr "Yhdyskäytävän käyttöliittymä"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:10
-msgid "Interface to be managed by the portal"
-msgstr "Portaalin hallinnoima käyttöliittymä"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:12
-msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
-msgstr "Oletusarvo on aktiivinen AP-liitäntä, yleensä <code>wlan0</code>."
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:16
-msgid "Gateway name"
-msgstr "Yhdyskäytävän nimi"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:18
-msgid "Name of your gateway (available as $gatewayname variable)"
-msgstr "Yhdyskäytävän nimi (käytettävissä muuttujana $gatewayname)."
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:27
-msgid "Gateway address"
-msgstr "Yhdyskäytävän osoite"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:29
-msgid "IP address of the router. Leave empty for auto-detection"
-msgstr "Reitittimen IP-osoite. Jätä tyhjäksi automaattista tunnistusta varten"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:33
-msgid "Auto-detected from gateway interface if not specified"
-msgstr "Tunnistetaan automaattisesti yhdyskäytäväliitännästä, jos sitä ei ole määritetty."
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:37
-msgid "Gateway port"
-msgstr "Yhdyskäytävän portti"
-
-#: ../plugins-available/Captive/templates/tabs/basic.php:39
-msgid "Port for Nodogsplash HTTP server"
-msgstr "Nodogsplash HTTP-palvelimen portti"
-
-#: ../plugins-available/Captive/templates/tabs/status.php:3
-msgid "Portal status"
-msgstr "Portaalin tila"
-
-#: ../plugins-available/Captive/templates/tabs/status.php:4
-msgid "Current <code>nodogsplash</code> status is displayed below."
-msgstr "Tämänhetkinen <code>nodogsplash-tila</code> näkyy alla."
-
-#: ../plugins-available/Captive/templates/tabs/about.php:5
-#: ../plugins-available/Tailscale/templates/tabs/about.php:5
-#: ../plugins-available/Wireshark/templates/tabs/about.php:5
-msgid "was created by"
-msgstr "on luonut"
-
-#: ../plugins-available/Captive/templates/tabs/about.php:8
-#: ../plugins-available/Tailscale/templates/tabs/about.php:8
-#: ../plugins-available/Wireshark/templates/tabs/about.php:8
-msgid "Plugin description"
-msgstr "Plugin kuvaus"
+#: ../src/RaspAP/UI/Sidebar.php:19 ../templates/dashboard.php:8
+msgid "Dashboard"
+msgstr "Kojelauta"
+
+#: ../src/RaspAP/UI/Sidebar.php:20 ../templates/hostapd.php:13
+#: ../includes/functions.php:1003
+msgid "Hotspot"
+msgstr "Hotspot"
+
+#: ../src/RaspAP/UI/Sidebar.php:23 ../templates/dhcp.php:14
+msgid "DHCP Server"
+msgstr "DHCP-palvelin"
+
+#: ../src/RaspAP/UI/Sidebar.php:26 ../templates/adblock.php:13
+msgid "Ad Blocking"
+msgstr "Mainosten estäminen"
+
+#: ../src/RaspAP/UI/Sidebar.php:29 ../templates/dashboard.php:24
+#: ../templates/dashboard.php:25 ../templates/networking.php:8
+msgid "Networking"
+msgstr "Verkostoituminen"
+
+#: ../src/RaspAP/UI/Sidebar.php:32 ../templates/configure_client.php:7
+msgid "WiFi client"
+msgstr "WiFi-asiakas"
+
+#: ../src/RaspAP/UI/Sidebar.php:35 ../templates/openvpn.php:13
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+#: ../src/RaspAP/UI/Sidebar.php:38 ../templates/wireguard.php:14
+msgid "WireGuard"
+msgstr "WireGuard"
+
+#: ../src/RaspAP/UI/Sidebar.php:44
+msgid "Data usage"
+msgstr "Tietojen käyttö"
+
+#: ../src/RaspAP/UI/Sidebar.php:47 ../templates/restapi.php:14
+msgid "RestAPI"
+msgstr "RestAPI"
+
+#: ../src/RaspAP/UI/Sidebar.php:50 ../templates/dashboard.php:44
+#: ../templates/dashboard.php:45 ../templates/system.php:7
+msgid "System"
+msgstr "Järjestelmä"
+
+#: ../src/RaspAP/UI/Sidebar.php:53 ../templates/about.php:12
+msgid "About RaspAP"
+msgstr "RaspAPista"
+
+#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+msgid "No MAC Address Found"
+msgstr "MAC-osoitetta ei löytynyt"
+
+#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+msgid "No IPv6 Address Found"
+msgstr "IPv6-osoitetta ei löytynyt"
+
+#: ../src/RaspAP/UI/Dashboard.php:232
+msgid "client"
+msgid_plural "clients"
+msgstr[0] "asiakas"
+msgstr[1] "asiakkaat"
+
+#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+msgid "Installed"
+msgstr "Asennettu"
+
+#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+msgid "Details"
+msgstr "Yksityiskohdat"
 
 #: ../plugins-available/Tailscale/Tailscale.php:52
 msgid "Tailscale VPN"
@@ -641,10 +246,25 @@ msgstr "Tutustu <a href=\"%s\" target=\"_blank\">asennusohjeisiin</a> tai asenna
 msgid "A Tailscale VPN exit node extension for RaspAP"
 msgstr "Tailscale VPN exit node -laajennus RaspAP:lle"
 
+#: ../plugins-available/Tailscale/Tailscale.php:252
+#: ../plugins-available/Wireshark/Wireshark.php:185
+#: ../plugins-available/Captive/Captive.php:133
+msgid "Bill Z"
+msgstr "Bill Z"
+
 #: ../plugins-available/Tailscale/Tailscale.php:400
 #: ../plugins-available/Tailscale/templates/main.php:44
 msgid "Start Tailscale"
 msgstr "Aloita Tailscale"
+
+#: ../plugins-available/Tailscale/Tailscale.php:403
+#: ../plugins-available/Tailscale/templates/main.php:4
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:6
+#: ../templates/dashboard.php:12 ../templates/system/basic.php:63
+#: ../templates/dhcp/summary.php:9 ../templates/networking/general.php:4
+#: ../templates/networking/devices.php:4
+msgid "Refresh"
+msgstr "Päivitä"
 
 #: ../plugins-available/Tailscale/Tailscale.php:406
 #, php-format
@@ -654,6 +274,101 @@ msgstr "Tailscale-kirjautumista ei pystytä hakemaan. Valitse <strong>%s</strong
 #: ../plugins-available/Tailscale/Tailscale.php:786
 msgid "Not connected: Login required."
 msgstr "Ei kytketty: Kirjautuminen vaaditaan."
+
+#: ../plugins-available/Tailscale/templates/main.php:7
+msgid "Back"
+msgstr "Takaisin"
+
+#: ../plugins-available/Tailscale/templates/main.php:10
+#: ../plugins-available/Tailscale/templates/main.php:13
+msgid "Next"
+msgstr "Seuraava"
+
+#: ../plugins-available/Tailscale/templates/main.php:16
+#: ../plugins-available/Wireshark/templates/main.php:3
+#: ../plugins-available/Captive/templates/main.php:3 ../templates/openvpn.php:3
+#: ../templates/adblock.php:3 ../templates/restapi.php:3
+#: ../templates/dhcp.php:3 ../templates/system/language.php:11
+#: ../templates/system/advanced.php:39 ../templates/system/theme.php:56
+#: ../templates/hostapd.php:3 ../templates/admin/general.php:2
+#: ../templates/wireguard.php:3 ../templates/provider.php:3
+#: ../templates/networking/wlanrouting.php:3
+#: ../templates/networking/mobile.php:29
+msgid "Save settings"
+msgstr "Tallenna asetukset"
+
+#: ../plugins-available/Tailscale/templates/main.php:19
+msgid "Revoke Exit Node"
+msgstr "Poistumissolmun peruuttaminen"
+
+#: ../plugins-available/Tailscale/templates/main.php:22
+#: ../templates/admin/general.php:4
+msgid "Logout"
+msgstr "Kirjaudu ulos"
+
+#: ../plugins-available/Tailscale/templates/main.php:25
+msgid "Stop Using Exit Node"
+msgstr "Lopeta Exit-solmun käyttö"
+
+#: ../plugins-available/Tailscale/templates/main.php:48
+msgid "Stop Tailscale"
+msgstr "Pysäytä Tailscale"
+
+#: ../plugins-available/Tailscale/templates/main.php:70
+#: ../plugins-available/Wireshark/templates/main.php:45
+#: ../templates/restapi.php:46 ../templates/wireguard.php:46
+#: ../templates/provider.php:35
+msgid "Settings"
+msgstr "Asetukset"
+
+#: ../plugins-available/Tailscale/templates/main.php:71
+#: ../plugins-available/Captive/templates/main.php:51
+#: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:47
+#: ../templates/provider.php:36 ../includes/functions.php:1001
+msgid "Status"
+msgstr "Tila"
+
+#: ../plugins-available/Tailscale/templates/main.php:72
+#: ../plugins-available/Tailscale/templates/tabs/about.php:3
+#: ../plugins-available/Wireshark/templates/main.php:47
+#: ../plugins-available/Wireshark/templates/tabs/about.php:3
+#: ../plugins-available/Captive/templates/main.php:53
+#: ../plugins-available/Captive/templates/tabs/about.php:3
+#: ../templates/about.php:21
+msgid "About"
+msgstr "Tietoja"
+
+#: ../plugins-available/Tailscale/templates/main.php:89
+#: ../plugins-available/Wireshark/templates/main.php:69
+msgid "Information provided by "
+msgstr "Tiedot toimittanut "
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:3
+msgid "Tailnet status"
+msgstr "Tailnetin tila"
+
+#: ../plugins-available/Tailscale/templates/tabs/status.php:4
+msgid "Current <code>tailnet</code> status is displayed below."
+msgstr "<code>Tailnetin</code> nykyinen tila näkyy alla."
+
+#: ../plugins-available/Tailscale/templates/tabs/basic.php:2
+#: ../plugins-available/Wireshark/templates/tabs/basic.php:2
+#: ../plugins-available/Captive/templates/tabs/basic.php:5
+#: ../templates/hostapd/basic.php:2 ../templates/admin/general.php:14
+msgid "Basic settings"
+msgstr "Perusasetukset"
+
+#: ../plugins-available/Tailscale/templates/tabs/about.php:5
+#: ../plugins-available/Wireshark/templates/tabs/about.php:5
+#: ../plugins-available/Captive/templates/tabs/about.php:5
+msgid "was created by"
+msgstr "on luonut"
+
+#: ../plugins-available/Tailscale/templates/tabs/about.php:8
+#: ../plugins-available/Wireshark/templates/tabs/about.php:8
+#: ../plugins-available/Captive/templates/tabs/about.php:8
+msgid "Plugin description"
+msgstr "Plugin kuvaus"
 
 #: ../plugins-available/Tailscale/templates/dialogs/active.php:1
 msgid "Exit node activated"
@@ -668,147 +383,6 @@ msgstr "Laite <code>%s</code> on kytketty osoitteeseen <code>%s</code> ja tarjoa
 #, php-format
 msgid "See the %s on how to use this exit node with your devices."
 msgstr "Katso osoitteesta %s , miten tätä poistumissolmua käytetään laitteiden kanssa."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
-msgid "Configure new exit node"
-msgstr "Uuden poistumissolmun määrittäminen"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
-#, php-format
-msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
-msgstr "Turvallisuussyistä sinun on hyväksyttävä poistumissolmun toiminto. Ensimmäinen askel on mainostaa <code>%s</code> poistumissolmuksi tailnetissäsi. Seuraavassa vaiheessa sallit tämän laitteen toimia poistumissolmuna."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
-#, php-format
-msgid "Advertise <code>%s</code> as an exit node"
-msgstr "Mainosta <code>%s</code> poistumissolmuna"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
-msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
-msgstr "Tämä määrittää Tailscalen tehokkaasti VPN:ksi, jolla voit peittää todellisen sijaintisi, käyttää alueellisesti rajoitettua sisältöä tai parantaa yksityisyyttä, kun muodostat yhteyden epäluotettavista verkoista."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
-msgid "This option lets Tailscale know your device is ready to route traffic."
-msgstr "Tämän vaihtoehdon avulla Tailscale tietää, että laitteesi on valmis reitittämään liikennettä."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
-msgid "Enable optimized UDP throughput"
-msgstr "Ota käyttöön optimoitu UDP:n läpäisykyky"
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
-msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
-msgstr "Suositellaan Tailscalen poistumissolmuja varten, joissa on Linux 6.2 tai uudempi ydin, ja tämä käyttää UDP:n yleistä vastaanoton offload (GRO) -lähetystä vähentääkseen suorittimen ylikuormitusta."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
-msgid "This option enables transport layer offloads for better performance."
-msgstr "Tämä vaihtoehto ottaa käyttöön siirtokerroksen kuormituksen suorituskyvyn parantamiseksi."
-
-#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
-msgid "Choose <strong>Next</strong> to continue."
-msgstr "Jatka valitsemalla <strong>Seuraava</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
-msgid "Using exit node"
-msgstr "Poistumissolmun käyttäminen"
-
-#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
-#, php-format
-msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
-msgstr "Laite <code>%s</code> on määritetty käyttämään poistumissolmua <code>%s</code>. Sillä on Tailscale MagicDNS -osoite. <code>%s</code>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
-msgid "Configure device"
-msgstr "Määritä laite"
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
-#, php-format
-msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
-msgstr "Laite <code>%s</code> on liitetty hännän verkkoon osoitteella <code>%s</code>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
-msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
-msgstr "Oletusarvoisesti Tailscale reitittää liikennettä vain niiden laitteiden välillä, joihin se on asennettu. Voit myös reitittää kaiken julkisen internet-liikenteesi määrittämällä jonkin verkkosi laitteen <strong>poistumissolmuksi</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
-msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
-msgstr "Kun reitität kaiken liikenteen poistumissolmun kautta, käytät käytännössä oletusreittejä (0.0.0.0.0/0, ::/0) samalla tavalla kuin käyttäessäsi tavallista VPN:ää."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
-msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
-msgstr "Voit määrittää tämän laitteen poistumissolmuksi tai käyttää toista poistumissolmua pyrstöverkossa."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
-msgid "Select an existing exit node on your tailnet"
-msgstr "Valitse olemassa oleva poistumissolmu häntäverkossasi."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
-msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
-msgstr "Tämä on tyypillinen kokoonpano, jos käytät laitetta esimerkiksi VPN-matkareitittimenä."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
-msgid "Configure this device as a new exit node"
-msgstr "Määritä tämä laite uudeksi poistumissolmuksi."
-
-#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
-msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
-msgstr "Kun määrität tämän laitteen poistumissolmuksi, takaverkkoon liitettyjen laitteiden julkinen internetliikenne ohjataan sen kautta."
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
-msgid "Login to Tailscale"
-msgstr "Kirjaudu sisään Tailscale-palveluun"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
-#, php-format
-msgid "To connect device %s to your tailnet, choose %s."
-msgstr "Jos haluat liittää laitteen %s takaverkkoon, valitse %s."
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
-msgid "Open Tailscale Login"
-msgstr "Avaa Tailscale Login"
-
-#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
-msgid "After logging in, choose <strong>Next</strong> to continue."
-msgstr "Kun olet kirjautunut sisään, jatka valitsemalla <strong>Seuraava</strong>."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
-msgid "Allow exit node"
-msgstr "Salli poistuminen solmusta"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
-#, php-format
-msgid "The device <code>%s</code> is pending approval as an exit node."
-msgstr "Laite <code>%s</code> odottaa hyväksyntää poistumissolmuksi."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
-msgid "Open Tailscale Machines"
-msgstr "Avoimet pyrstökoneet"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
-#, php-format
-msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
-msgstr "Etsi <code>%s</code> <strong>Exit Node</strong> -merkki koneluettelosta."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
-#, php-format
-msgid "From the %s icon menu of the exit node, open the %s panel."
-msgstr "Avaa poistumissolmun %s kuvakevalikosta %s -paneeli."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
-msgid "Edit route settings"
-msgstr "Muokkaa reittiasetuksia"
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
-msgid "Enable the <strong>Use as exit node</strong> option."
-msgstr "Ota käyttöön <strong>Käytä poistumissolmuna</strong> -vaihtoehto."
-
-#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
-#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
-msgid "Choose <strong>Next</strong> when you've completed these steps."
-msgstr "Valitse <strong>Seuraava</strong>, kun olet suorittanut nämä vaiheet."
 
 #: ../plugins-available/Tailscale/templates/dialogs/select.php:1
 msgid "Select an exit node"
@@ -873,6 +447,147 @@ msgstr "Valitse <strong>Seuraava</strong> määrittääksesi <code>%s</code> kä
 msgid "No exit nodes found on your tailnet. Choose <strong>Back</strong> to continue."
 msgstr "Poistumissolmuja ei löytynyt pyrstöverkostasi. Jatka valitsemalla <strong>Takaisin</strong>."
 
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:1
+msgid "Login to Tailscale"
+msgstr "Kirjaudu sisään Tailscale-palveluun"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#, php-format
+msgid "To connect device %s to your tailnet, choose %s."
+msgstr "Jos haluat liittää laitteen %s takaverkkoon, valitse %s."
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:2
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:4
+msgid "Open Tailscale Login"
+msgstr "Avaa Tailscale Login"
+
+#: ../plugins-available/Tailscale/templates/dialogs/auth.php:7
+msgid "After logging in, choose <strong>Next</strong> to continue."
+msgstr "Kun olet kirjautunut sisään, jatka valitsemalla <strong>Seuraava</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:1
+msgid "Using exit node"
+msgstr "Poistumissolmun käyttäminen"
+
+#: ../plugins-available/Tailscale/templates/dialogs/using.php:5
+#, php-format
+msgid "The device <code>%s</code> is configured to use exit node <code>%s</code>. It has the Tailscale MagicDNS address <code>%s</code>."
+msgstr "Laite <code>%s</code> on määritetty käyttämään poistumissolmua <code>%s</code>. Sillä on Tailscale MagicDNS -osoite. <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:1
+msgid "Configure new exit node"
+msgstr "Uuden poistumissolmun määrittäminen"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:3
+#, php-format
+msgid "For security reasons, you must opt in to enable exit node functionality. The first step is to advertise <code>%s</code> as an exit node in your tailnet. In the next step, you'll allow this device to be an exit node."
+msgstr "Turvallisuussyistä sinun on hyväksyttävä poistumissolmun toiminto. Ensimmäinen askel on mainostaa <code>%s</code> poistumissolmuksi tailnetissäsi. Seuraavassa vaiheessa sallit tämän laitteen toimia poistumissolmuna."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:10
+#, php-format
+msgid "Advertise <code>%s</code> as an exit node"
+msgstr "Mainosta <code>%s</code> poistumissolmuna"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:12
+msgid "This effectively configures Tailscale  as a VPN to mask your real location, access region-restricted content, or enhance privacy when connecting from untrusted networks."
+msgstr "Tämä määrittää Tailscalen tehokkaasti VPN:ksi, jolla voit peittää todellisen sijaintisi, käyttää alueellisesti rajoitettua sisältöä tai parantaa yksityisyyttä, kun muodostat yhteyden epäluotettavista verkoista."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:16
+msgid "This option lets Tailscale know your device is ready to route traffic."
+msgstr "Tämän vaihtoehdon avulla Tailscale tietää, että laitteesi on valmis reitittämään liikennettä."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:23
+msgid "Enable optimized UDP throughput"
+msgstr "Ota käyttöön optimoitu UDP:n läpäisykyky"
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:25
+msgid "Recommended for Tailscale exit nodes with Linux 6.2 or later kernels, this uses UDP generic receive offload (GRO) forwarding to reduce CPU overhead."
+msgstr "Suositellaan Tailscalen poistumissolmuja varten, joissa on Linux 6.2 tai uudempi ydin, ja tämä käyttää UDP:n yleistä vastaanoton offload (GRO) -lähetystä vähentääkseen suorittimen ylikuormitusta."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:29
+msgid "This option enables transport layer offloads for better performance."
+msgstr "Tämä vaihtoehto ottaa käyttöön siirtokerroksen kuormituksen suorituskyvyn parantamiseksi."
+
+#: ../plugins-available/Tailscale/templates/dialogs/exit.php:36
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:39
+msgid "Choose <strong>Next</strong> to continue."
+msgstr "Jatka valitsemalla <strong>Seuraava</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:1
+msgid "Configure device"
+msgstr "Määritä laite"
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:4
+#, php-format
+msgid "The device <code>%s</code> is connected to your tailnet with the address <code>%s</code>."
+msgstr "Laite <code>%s</code> on liitetty hännän verkkoon osoitteella <code>%s</code>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:8
+msgid "By default, Tailscale only routes traffic between the devices on which it's been installed. You can also route all your public internet traffic by configuring a device on your network as an <strong>exit node</strong>"
+msgstr "Oletusarvoisesti Tailscale reitittää liikennettä vain niiden laitteiden välillä, joihin se on asennettu. Voit myös reitittää kaiken julkisen internet-liikenteesi määrittämällä jonkin verkkosi laitteen <strong>poistumissolmuksi</strong>."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:10
+msgid "When you route all traffic through an exit node, you're effectively using default routes (0.0.0.0/0, ::/0), similar to how you would if you were using a typical VPN."
+msgstr "Kun reitität kaiken liikenteen poistumissolmun kautta, käytät käytännössä oletusreittejä (0.0.0.0.0/0, ::/0) samalla tavalla kuin käyttäessäsi tavallista VPN:ää."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:14
+msgid "You have the option of configuring this device as an exit node, or using another exit node in your tailnet."
+msgstr "Voit määrittää tämän laitteen poistumissolmuksi tai käyttää toista poistumissolmua pyrstöverkossa."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:21
+msgid "Select an existing exit node on your tailnet"
+msgstr "Valitse olemassa oleva poistumissolmu häntäverkossasi."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:23
+msgid "This is a typical configuration if you're using this device as a VPN travel router, for example."
+msgstr "Tämä on tyypillinen kokoonpano, jos käytät laitetta esimerkiksi VPN-matkareitittimenä."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:30
+msgid "Configure this device as a new exit node"
+msgstr "Määritä tämä laite uudeksi poistumissolmuksi."
+
+#: ../plugins-available/Tailscale/templates/dialogs/config.php:32
+msgid "By configuring this device as an exit node, public internet traffic from devices connected in your tailnet  will be routed through it."
+msgstr "Kun määrität tämän laitteen poistumissolmuksi, takaverkkoon liitettyjen laitteiden julkinen internetliikenne ohjataan sen kautta."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:1
+msgid "Allow exit node"
+msgstr "Salli poistuminen solmusta"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:3
+#, php-format
+msgid "The device <code>%s</code> is pending approval as an exit node."
+msgstr "Laite <code>%s</code> odottaa hyväksyntää poistumissolmuksi."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:7
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:7
+msgid "Open Tailscale Machines"
+msgstr "Avoimet pyrstökoneet"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:12
+#, php-format
+msgid "Locate the <code>%s</code> <strong>Exit Node</strong> badge in the machines list."
+msgstr "Etsi <code>%s</code> <strong>Exit Node</strong> -merkki koneluettelosta."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#, php-format
+msgid "From the %s icon menu of the exit node, open the %s panel."
+msgstr "Avaa poistumissolmun %s kuvakevalikosta %s -paneeli."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:13
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:13
+msgid "Edit route settings"
+msgstr "Muokkaa reittiasetuksia"
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:14
+msgid "Enable the <strong>Use as exit node</strong> option."
+msgstr "Ota käyttöön <strong>Käytä poistumissolmuna</strong> -vaihtoehto."
+
+#: ../plugins-available/Tailscale/templates/dialogs/approve.php:19
+#: ../plugins-available/Tailscale/templates/dialogs/subnet.php:19
+msgid "Choose <strong>Next</strong> when you've completed these steps."
+msgstr "Valitse <strong>Seuraava</strong>, kun olet suorittanut nämä vaiheet."
+
 #: ../plugins-available/Tailscale/templates/dialogs/subnet.php:1
 msgid "Approve subnet route"
 msgstr "Hyväksy aliverkon reitti"
@@ -896,51 +611,61 @@ msgstr "Avaa laitteen %s -kuvakevalikosta %s -paneeli."
 msgid "Check the IP range box that corresponds to the subnet route you want to advertise, then select <strong>Save</strong>."
 msgstr "Merkitse mainostettavaa aliverkon reittiä vastaava IP-alue -ruutu ja valitse sitten <strong>Tallenna</strong>."
 
-#: ../plugins-available/Tailscale/templates/main.php:7
-msgid "Back"
-msgstr "Takaisin"
+#: ../plugins-available/Wireshark/Wireshark.php:48
+msgid "Wireshark"
+msgstr "Wireshark"
 
-#: ../plugins-available/Tailscale/templates/main.php:10
-#: ../plugins-available/Tailscale/templates/main.php:13
-msgid "Next"
-msgstr "Seuraava"
+#: ../plugins-available/Wireshark/Wireshark.php:140
+#, php-format
+msgid "Attempting to start packet capture on %s"
+msgstr "Yritetään käynnistää pakettikaappaus osoitteessa %s."
 
-#: ../plugins-available/Tailscale/templates/main.php:19
-msgid "Revoke Exit Node"
-msgstr "Poistumissolmun peruuttaminen"
+#: ../plugins-available/Wireshark/Wireshark.php:143
+#, php-format
+msgid "TShark started with PID %s"
+msgstr "TShark käynnistyi PID:llä %s"
 
-#: ../plugins-available/Tailscale/templates/main.php:22
-#: ../templates/admin/general.php:4
-msgid "Logout"
-msgstr "Kirjaudu ulos"
+#: ../plugins-available/Wireshark/Wireshark.php:152
+#, php-format
+msgid "Attempting to stop packet capture on %s"
+msgstr "Yritän lopettaa pakettikaappauksen osoitteessa %s."
 
-#: ../plugins-available/Tailscale/templates/main.php:25
-msgid "Stop Using Exit Node"
-msgstr "Lopeta Exit-solmun käyttö"
+#: ../plugins-available/Wireshark/Wireshark.php:172
+#, php-format
+msgid "Expected tshark binary not found at: %s"
+msgstr "Odotettua tshark-binääritiedostoa ei löydy osoitteesta: %s"
 
-#: ../plugins-available/Tailscale/templates/main.php:48
-msgid "Stop Tailscale"
-msgstr "Pysäytä Tailscale"
+#: ../plugins-available/Wireshark/Wireshark.php:173
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Wireshark plugin."
+msgstr "Tutustu <a href=\"%s\" target=\"_blank\">asennusohjeisiin</a> tai asenna Wireshark-lisäosa uudelleen."
 
-#: ../plugins-available/Tailscale/templates/main.php:70
-#: ../plugins-available/Wireshark/templates/main.php:45
-#: ../templates/wireguard.php:46 ../templates/provider.php:35
-#: ../templates/restapi.php:46
-msgid "Settings"
-msgstr "Asetukset"
+#: ../plugins-available/Wireshark/Wireshark.php:184
+msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
+msgstr "Wireshark (TShark) CLI-pakettikaappaus RaspAP:lle."
 
-#: ../plugins-available/Tailscale/templates/main.php:89
-#: ../plugins-available/Wireshark/templates/main.php:69
-msgid "Information provided by "
-msgstr "Tiedot toimittanut "
+#: ../plugins-available/Wireshark/Wireshark.php:244
+msgid "TShark settings saved successfully"
+msgstr "TShark-asetukset tallennettu onnistuneesti"
 
-#: ../plugins-available/Tailscale/templates/tabs/status.php:3
-msgid "Tailnet status"
-msgstr "Tailnetin tila"
+#: ../plugins-available/Wireshark/Wireshark.php:248
+#: ../plugins-available/Captive/Captive.php:542
+msgid "Error saving settings: "
+msgstr "Virhe asetusten tallentamisessa: "
 
-#: ../plugins-available/Tailscale/templates/tabs/status.php:4
-msgid "Current <code>tailnet</code> status is displayed below."
-msgstr "<code>Tailnetin</code> nykyinen tila näkyy alla."
+#: ../plugins-available/Wireshark/Wireshark.php:649
+msgid "File not found"
+msgstr "Tiedostoa ei löydy"
+
+#: ../plugins-available/Wireshark/Wireshark.php:658
+#, php-format
+msgid "File \"%s\" deleted successfully"
+msgstr "Tiedosto \"%s\" poistettu onnistuneesti"
+
+#: ../plugins-available/Wireshark/Wireshark.php:661
+#, php-format
+msgid "Failed to delete file \"%s\""
+msgstr "Tiedoston \"%s \" poistaminen epäonnistui"
 
 #: ../plugins-available/Wireshark/templates/main.php:20
 msgid "Start capture"
@@ -954,57 +679,6 @@ msgstr "Pysäytä kaappaus"
 #: ../plugins-available/Wireshark/templates/tabs/capture.php:3
 msgid "Capture files"
 msgstr "Capture-tiedostot"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
-msgid "Capture files generated by <code>tshark</code> are displayed below."
-msgstr "Seuraavassa näytetään <code>tsharkin</code> tuottamat kaappaustiedostot."
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
-msgid "No capture files found in /tmp directory"
-msgstr "/tmp-hakemistosta ei löytynyt kaappaustiedostoja"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
-msgid "Filename"
-msgstr "Tiedostonimi"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
-msgid "Size"
-msgstr "Koko"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
-msgid "Modified"
-msgstr "Muutettu"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
-msgid "Actions"
-msgstr "Toimet"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
-msgid "Download file"
-msgstr "Lataa tiedosto"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
-msgid "Delete file"
-msgstr "Poista tiedosto"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
-#, php-format
-msgid "Total: %d file(s), %s"
-msgstr "Yhteensä: %d tiedosto(t), %s"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
-msgid "Confirm deletion"
-msgstr "Vahvista poisto"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
-msgid "Are you sure you want to delete this file?"
-msgstr "Haluatko varmasti poistaa tämän tiedoston?"
-
-#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
-#: ../templates/wifi_stations/network.php:100 ../templates/wireguard.php:84
-#: ../templates/openvpn.php:82
-msgid "Delete"
-msgstr "Poista"
 
 #: ../plugins-available/Wireshark/templates/tabs/basic.php:8
 msgid "Capture interface"
@@ -1131,257 +805,492 @@ msgstr "SSH"
 msgid "Exclude SSH"
 msgstr "SSH:n poissulkeminen"
 
-#: ../plugins-available/Wireshark/Wireshark.php:48
-msgid "Wireshark"
-msgstr "Wireshark"
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:4
+msgid "Capture files generated by <code>tshark</code> are displayed below."
+msgstr "Seuraavassa näytetään <code>tsharkin</code> tuottamat kaappaustiedostot."
 
-#: ../plugins-available/Wireshark/Wireshark.php:140
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:10
+msgid "No capture files found in /tmp directory"
+msgstr "/tmp-hakemistosta ei löytynyt kaappaustiedostoja"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:17
+msgid "Filename"
+msgstr "Tiedostonimi"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:18
+msgid "Size"
+msgstr "Koko"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:19
+msgid "Modified"
+msgstr "Muutettu"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:20
+msgid "Actions"
+msgstr "Toimet"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:38
+msgid "Download file"
+msgstr "Lataa tiedosto"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:47
+msgid "Delete file"
+msgstr "Poista tiedosto"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:64
 #, php-format
-msgid "Attempting to start packet capture on %s"
-msgstr "Yritetään käynnistää pakettikaappaus osoitteessa %s."
+msgid "Total: %d file(s), %s"
+msgstr "Yhteensä: %d tiedosto(t), %s"
 
-#: ../plugins-available/Wireshark/Wireshark.php:143
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:80
+msgid "Confirm deletion"
+msgstr "Vahvista poisto"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:85
+msgid "Are you sure you want to delete this file?"
+msgstr "Haluatko varmasti poistaa tämän tiedoston?"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:89
+#: ../plugins-available/Captive/templates/main.php:99
+#: ../templates/system.php:56 ../templates/system.php:74
+#: ../templates/system.php:109 ../templates/system.php:253
+#: ../templates/openvpn.php:81 ../templates/openvpn.php:99
+#: ../templates/about.php:56 ../templates/about.php:104
+#: ../templates/wireguard.php:83 ../templates/wireguard.php:101
+#: ../templates/admin.php:90 ../templates/admin.php:119
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: ../plugins-available/Wireshark/templates/tabs/capture.php:91
+#: ../templates/wifi_stations/network.php:100 ../templates/openvpn.php:82
+#: ../templates/wireguard.php:84
+msgid "Delete"
+msgstr "Poista"
+
+#: ../plugins-available/Captive/Captive.php:71
+#: ../plugins-available/Captive/Captive.php:131
+msgid "Captive portal"
+msgstr "Captive-portaali"
+
+#: ../plugins-available/Captive/Captive.php:96
 #, php-format
-msgid "TShark started with PID %s"
-msgstr "TShark käynnistyi PID:llä %s"
+msgid "Attempting to start %s"
+msgstr "Yritetään käynnistää %s"
 
-#: ../plugins-available/Wireshark/Wireshark.php:152
+#: ../plugins-available/Captive/Captive.php:100
 #, php-format
-msgid "Attempting to stop packet capture on %s"
-msgstr "Yritän lopettaa pakettikaappauksen osoitteessa %s."
+msgid "Attempting to stop %s"
+msgstr "Yritys lopettaa %s"
 
-#: ../plugins-available/Wireshark/Wireshark.php:172
+#: ../plugins-available/Captive/Captive.php:107
 #, php-format
-msgid "Expected tshark binary not found at: %s"
-msgstr "Odotettua tshark-binääritiedostoa ei löydy osoitteesta: %s"
+msgid "Client %s deauthenticated"
+msgstr "Asiakas %s on kirjautunut ulos"
 
-#: ../plugins-available/Wireshark/Wireshark.php:173
+#: ../plugins-available/Captive/Captive.php:109
 #, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Wireshark plugin."
-msgstr "Tutustu <a href=\"%s\" target=\"_blank\">asennusohjeisiin</a> tai asenna Wireshark-lisäosa uudelleen."
+msgid "Failed to deauthenticate client %s"
+msgstr "Asiakkaan kirjautumisen purkaminen epäonnistui %s"
 
-#: ../plugins-available/Wireshark/Wireshark.php:184
-msgid "A Wireshark (TShark) CLI packet capture for RaspAP"
-msgstr "Wireshark (TShark) CLI-pakettikaappaus RaspAP:lle."
+#: ../plugins-available/Captive/Captive.php:112
+msgid "Invalid client MAC address"
+msgstr "Asiakkaan MAC-osoite ei kelpaa"
 
-#: ../plugins-available/Wireshark/Wireshark.php:244
-msgid "TShark settings saved successfully"
-msgstr "TShark-asetukset tallennettu onnistuneesti"
+#: ../plugins-available/Captive/Captive.php:132
+msgid "A captive portal plugin that implements nodogsplash"
+msgstr "Captive-portaali-lisäosa, joka toteuttaa nodogsplashin"
 
-#: ../plugins-available/Wireshark/Wireshark.php:649
-msgid "File not found"
-msgstr "Tiedostoa ei löydy"
+#: ../plugins-available/Captive/Captive.php:539
+msgid "Portal settings saved successfully"
+msgstr "Portaalin asetukset tallennettu onnistuneesti"
 
-#: ../plugins-available/Wireshark/Wireshark.php:658
-#, php-format
-msgid "File \"%s\" deleted successfully"
-msgstr "Tiedosto \"%s\" poistettu onnistuneesti"
+#: ../plugins-available/Captive/Captive.php:583
+msgid "Failed to execute ndsctl."
+msgstr "ndsctl:n suorittaminen epäonnistui."
 
-#: ../plugins-available/Wireshark/Wireshark.php:661
-#, php-format
-msgid "Failed to delete file \"%s\""
-msgstr "Tiedoston \"%s \" poistaminen epäonnistui"
+#: ../plugins-available/Captive/templates/main.php:22
+msgid "Stop portal"
+msgstr "Pysäytä portaali"
 
-#: ../includes/networking.php:51 ../includes/networking.php:54
-msgid "not configured"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:26
+msgid "Start portal"
+msgstr "Käynnistä portaali"
 
-#: ../includes/networking.php:137
-#, php-format
-msgid "Attempting to enable routing between %s and %s interfaces"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:48
+#: ../templates/system.php:17 ../templates/hostapd.php:49
+#: ../templates/admin.php:20
+msgid "Basic"
+msgstr "Basic"
 
-#: ../includes/networking.php:147
-#, php-format
-msgid "Attempting to restart routing between %s and %s interfaces"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:49
+msgid "Clients"
+msgstr "Asiakkaat"
 
-#: ../includes/networking.php:151
-#, php-format
-msgid "Attempting to disable routing between %s and %s interfaces"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:50
+#: ../templates/system.php:20 ../templates/dhcp.php:52
+#: ../templates/hostapd.php:51
+msgid "Advanced"
+msgstr "Edistynyt"
 
-#: ../includes/networking.php:252
-#, php-format
-msgid "DHCP configuration for %s enabled"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:52
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:4
+msgid "Active clients"
+msgstr "Aktiiviset asiakkaat"
 
-#: ../includes/networking.php:259
-#, php-format
-msgid "DHCP configuration for %s added"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:79
+msgid "Information provided by nodogsplash"
+msgstr "nodogsplashin toimittamat tiedot"
 
-#: ../includes/networking.php:265
-#, php-format
-msgid "DHCP configuration for %s updated"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Stop portal service"
+msgstr "Pysäytä portaalipalvelu"
 
-#: ../includes/networking.php:271
-#, php-format
-msgid "No default DHCP configuration exists for the %s interface"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:90
+msgid "Start portal service"
+msgstr "Käynnistä portaalipalvelu"
 
-#: ../includes/networking.php:272
-#, php-format
-msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:95
+msgid "Changing the portal service will momentarily disrupt client traffic. Choose <strong>Proceed</strong> to continue."
+msgstr "Portaalipalvelun vaihtaminen häiritsee hetkellisesti asiakasliikennettä. Jatka valitsemalla <strong>Jatka</strong> jatkaaksesi."
 
-#: ../includes/networking.php:294
-#, php-format
-msgid "Dnsmasq  configuration for %s added"
-msgstr ""
+#: ../plugins-available/Captive/templates/main.php:100
+msgid "Proceed"
+msgstr "Jatka"
 
-#: ../includes/footer.php:6
-#, php-format
-msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/status.php:3
+msgid "Portal status"
+msgstr "Portaalin tila"
 
-#: ../includes/footer.php:6
-msgid "RaspAP Team"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/status.php:4
+msgid "Current <code>nodogsplash</code> status is displayed below."
+msgstr "Tämänhetkinen <code>nodogsplash-tila</code> näkyy alla."
 
-#: ../includes/footer.php:9
-msgid "Thanks for being an Insider"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/basic.php:9
+msgid "Gateway interface"
+msgstr "Yhdyskäytävän käyttöliittymä"
 
-#: ../includes/footer.php:17
-msgid "Session Expired"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/basic.php:10
+msgid "Interface to be managed by the portal"
+msgstr "Portaalin hallinnoima käyttöliittymä"
 
-#: ../includes/footer.php:20
-msgid "Your session has expired. Please login to continue."
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/basic.php:12
+msgid "Defaults to the active AP interface, typically <code>wlan0</code>"
+msgstr "Oletusarvo on aktiivinen AP-liitäntä, yleensä <code>wlan0</code>."
 
-#: ../includes/footer.php:23 ../templates/admin.php:18
-#: ../templates/login.php:30
-msgid "Login"
-msgstr "Kirjaudu sisään"
+#: ../plugins-available/Captive/templates/tabs/basic.php:16
+msgid "Gateway name"
+msgstr "Yhdyskäytävän nimi"
 
-#: ../includes/provider.php:65
-#, php-format
-msgid "Expected %s binary not found at: %s"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/basic.php:18
+msgid "Name of your gateway (available as $gatewayname variable)"
+msgstr "Yhdyskäytävän nimi (käytettävissä muuttujana $gatewayname)."
 
-#: ../includes/provider.php:66
-#, php-format
-msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/basic.php:27
+msgid "Gateway address"
+msgstr "Yhdyskäytävän osoite"
 
-#: ../includes/provider.php:70
-#, php-format
-msgid "Unable to execute %s binary found at: %s"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/basic.php:29
+msgid "IP address of the router. Leave empty for auto-detection"
+msgstr "Reitittimen IP-osoite. Jätä tyhjäksi automaattista tunnistusta varten"
 
-#: ../includes/provider.php:71
-msgid "Check that binary is executable and permissions exist in raspap.sudoers"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/basic.php:33
+msgid "Auto-detected from gateway interface if not specified"
+msgstr "Tunnistetaan automaattisesti yhdyskäytäväliitännästä, jos sitä ei ole määritetty."
 
-#: ../includes/provider.php:119
-#, php-format
-msgid "Attempting to connect to %s"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/basic.php:37
+msgid "Gateway port"
+msgstr "Yhdyskäytävän portti"
 
-#: ../includes/provider.php:318
-msgid "Select a country..."
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/basic.php:39
+msgid "Port for Nodogsplash HTTP server"
+msgstr "Nodogsplash HTTP-palvelimen portti"
 
-#: ../includes/provider.php:387
-#, php-format
-msgid "Account information not available from %s's Linux CLI."
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:5
+#: ../templates/hostapd/advanced.php:2 ../templates/system/advanced.php:3
+msgid "Advanced settings"
+msgstr "Lisäasetukset"
 
-#: ../includes/functions.php:1006
-msgid "Mem Use"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:9
+msgid "Gateway IP range"
+msgstr "Yhdyskäytävän IP-alue"
 
-#: ../includes/functions.php:1009
-msgid "CPU"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:11
+msgid "IP range to manage in CIDR notation. Leave empty for all addresses"
+msgstr "Hallittava IP-alue CIDR-muodossa. Jätä tyhjäksi kaikille osoitteille"
 
-#: ../includes/restapi.php:59
-#, php-format
-msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:15
+msgid "Default: 0.0.0.0/0 (all addresses)"
+msgstr "Oletusarvo: 0.0.0.0.0/0 (kaikki osoitteet)."
 
-#: ../includes/system.php:67
-#, php-format
-msgid "Changing log limit size to %s KB"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:21
+msgid "Debug level"
+msgstr "Vianmääritystaso"
 
-#: ../includes/system.php:86
-#, php-format
-msgid "Changing alert close timeout to %s ms"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:23
+msgid "Amount of logging detail reported by the nodogsplash.service"
+msgstr "nodogsplash.service:n raportoimien lokitietojen määrä."
 
-#: ../includes/adblock.php:31
-msgid "Invalid custom IP address found on line "
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:26
+msgid "0 - Errors only"
+msgstr "0 - Vain virheet"
 
-#: ../includes/adblock.php:35
-msgid "Invalid custom host found on line "
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:29
+msgid "1 - Errors, warnings, infos"
+msgstr "1 - Virheet, varoitukset, tiedotteet"
 
-#: ../includes/dashboard.php:72
-#, php-format
-msgid "%d WLAN %s"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:32
+msgid "2 - Errors, warnings, infos, verbose"
+msgstr "2 - Virheet, varoitukset, tiedot, yleiskuvaus"
 
-#: ../includes/dashboard.php:78
-#, php-format
-msgid "%d LAN %s"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:35
+msgid "3 - Errors, warnings, infos, verbose, debug"
+msgstr "3 - Virheet, varoitukset, tiedot, sanallinen, virheenkorjaus, virheenkorjaus"
 
-#: ../templates/admin.php:7
-msgid "Authentication"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:41
+msgid "Firewall settings"
+msgstr "Palomuurin asetukset"
 
-#: ../templates/admin.php:21 ../templates/admin/avatar.php:11
-msgid "Avatar"
-msgstr "Avatar"
+#: ../plugins-available/Captive/templates/tabs/advanced.php:49
+msgid "Allow all traffic for authenticated users"
+msgstr "Salli kaikki liikenne todennetuille käyttäjille"
 
-#: ../templates/admin.php:47
-msgid "Update admin password"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:52
+msgid "When enabled, authenticated users have unrestricted access"
+msgstr "Kun tämä on käytössä, todennetuilla käyttäjillä on rajoittamaton pääsy."
 
-#: ../templates/admin.php:54
-msgid "Old password"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:63
+msgid "Allow DNS for pre-authenticated users"
+msgstr "DNS:n salliminen ennalta todennetuille käyttäjille"
 
-#: ../templates/admin.php:59
-msgid "Please enter your old password."
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/advanced.php:66
+msgid "Required for clients to resolve domain names before authentication"
+msgstr "Tarvitaan, jotta asiakkaat voivat ratkaista verkkotunnukset ennen todennusta."
 
-#: ../templates/admin.php:66
-msgid "New password"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:17
+msgid "Client"
+msgstr "Asiakas"
 
-#: ../templates/admin.php:71
-msgid "Please enter a new password."
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:21
+msgid "IP"
+msgstr "IP"
 
-#: ../templates/admin.php:78
-msgid "Repeat new password"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:22
+msgid "Token"
+msgstr "Tunnus"
 
-#: ../templates/admin.php:83
-msgid "Please re-enter your new password."
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:23
+#: ../templates/wg/peers.php:73 ../templates/networking/diagnostics.php:34
+msgid "Download"
+msgstr "Lataa"
 
-#: ../templates/admin.php:91
-msgid "Save"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:24
+#: ../templates/networking/diagnostics.php:40
+msgid "Upload"
+msgstr "Lataa"
 
-#: ../templates/admin.php:103
-msgid "Logout and enable limited user mode"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:25
+msgid "Last activity"
+msgstr "Viimeisin toiminta"
 
-#: ../templates/admin.php:114
-msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:26
+msgid "Session start"
+msgstr "Istunnon alku"
 
-#: ../templates/admin.php:120
-msgid "Save and logout"
-msgstr ""
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:27
+msgid "Session end"
+msgstr "Istunnon päättyminen"
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:35
+msgid "Deauthenticate"
+msgstr "Poista tunnistautuminen"
+
+#: ../plugins-available/Captive/templates/tabs/clientlist.php:44
+msgid "No active clients connected."
+msgstr "Yhteydessä olevia asiakkaita ei ole."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:5
+#: ../templates/openvpn.php:46 ../templates/configure_client.php:21
+#: ../templates/openvpn/general.php:2
+msgid "Client settings"
+msgstr "Asiakkaan asetukset"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:9
+msgid "Maximum clients"
+msgstr "Enimmäisasiakkaat"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:11
+msgid "Maximum number of concurrent authenticated users"
+msgstr "Samanaikaisten todennettujen käyttäjien enimmäismäärä"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:15
+msgid "Does not include users on the trusted MAC list"
+msgstr "Ei sisällä luotettavien MAC-käyttäjien luettelossa olevia käyttäjiä."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:19
+msgid "Session timeout (minutes)"
+msgstr "Istunnon aikakatkaisu (minuuttia)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:21
+msgid "Default session length in minutes. 0 = unlimited"
+msgstr "Istunnon oletuspituus minuutteina. 0 = rajoittamaton"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:30
+msgid "Pre-auth idle timeout (minutes)"
+msgstr "Automaatiota edeltävä tyhjäkäyntiaika (minuuttia)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:32
+msgid "Time before unauthenticated idle users are removed"
+msgstr "Aika ennen kuin tunnistamattomat joutokäyttäjät poistetaan."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:39
+msgid "Auth idle timeout (minutes)"
+msgstr "Auth-tyhjäkäyntiaika (minuuttia)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:41
+msgid "Time before authenticated idle users are deauthenticated"
+msgstr "Aika ennen kuin todennettujen joutilaiden käyttäjien todennus poistetaan."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:50
+msgid "Check interval (seconds)"
+msgstr "Tarkistusväli (sekuntia)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:52
+msgid "How often to check client timeouts"
+msgstr "Kuinka usein asiakkaan aikakatkaisut tarkistetaan"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:59
+msgid "MAC address control"
+msgstr "MAC-osoitteen valvonta"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:63
+msgid "MAC mechanism"
+msgstr "MAC-mekanismi"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:65
+msgid "Block: blocklisted MACs are blocked. Allow: only allowlisted MACs are allowed"
+msgstr "Esto: estolistalla olevat MAC:t estetään. Salli: vain sallitut MAC:t sallitaan."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:68
+msgid "Block (blocklist mode)"
+msgstr "Esto (estoluettelotila)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:71
+msgid "Allow (allowlist mode)"
+msgstr "Salli (allowlist-tila)"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:79
+msgid "Blocked MAC list"
+msgstr "Estetty MAC-luettelo"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:81
+msgid "Comma-separated MAC addresses to block (used when mechanism is 'block')"
+msgstr "Pilkulla erotetut estettävät MAC-osoitteet (käytetään, kun mekanismi on \"block\")."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:84
+#: ../plugins-available/Captive/templates/tabs/clients.php:95
+msgid "Example: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+msgstr "Esimerkki: <code>00:11:22:33:44:55,AA:BB:CC:DD:EE:FF</code>"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:90
+msgid "Allowed MAC list"
+msgstr "Sallittu MAC-luettelo"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:92
+msgid "Comma-separated MAC addresses to allow (used when mechanism is 'allow')"
+msgstr "Pilkulla erotetut MAC-osoitteet, jotka sallitaan (käytetään, kun mekanismi on \"allow\")."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:101
+msgid "Trusted MAC list"
+msgstr "Luotettujen MAC-käyttäjien luettelo"
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:103
+msgid "Comma-separated MAC addresses that bypass authentication entirely"
+msgstr "Pilkulla erotetut MAC-osoitteet, jotka ohittavat todennuksen kokonaan."
+
+#: ../plugins-available/Captive/templates/tabs/clients.php:106
+msgid "These devices are not subject to authentication or firewall rules"
+msgstr "Näihin laitteisiin ei sovelleta todennus- tai palomuurisääntöjä."
+
+#: ../templates/dashboard.php:24
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
+msgid "WiFi Client"
+msgstr "WiFi-asiakasohjelma"
+
+#: ../templates/dashboard.php:28
+msgid "Repeater"
+msgstr "Toistin"
+
+#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
+msgid "Tethering"
+msgstr "Tethering"
+
+#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
+msgid "Cellular"
+msgstr "Cellular"
+
+#: ../templates/dashboard.php:48
+msgid "Public"
+msgstr "Julkinen"
+
+#: ../templates/dashboard.php:49
+msgid "Local"
+msgstr "Paikallinen"
+
+#: ../templates/dashboard.php:54 ../templates/dashboard.php:60
+#: ../templates/wg/general.php:103 ../templates/wg/peers.php:38
+#: ../templates/dhcp/general.php:39 ../templates/dhcp/clients.php:20
+#: ../templates/dhcp/settings.php:39 ../templates/networking/general.php:13
+msgid "IP Address"
+msgstr "IP-osoite"
+
+#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
+msgid "Netmask"
+msgstr "Verkkomerkki"
+
+#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
+#: ../templates/dhcp/clients.php:19
+msgid "MAC Address"
+msgstr "MAC-osoite"
+
+#: ../templates/dashboard.php:57 ../templates/dashboard.php:63
+#: ../templates/hostapd/basic.php:11
+msgid "SSID"
+msgstr "SSID"
+
+#: ../templates/dashboard.php:75
+msgid "AP"
+msgstr "AP"
+
+#: ../templates/dashboard.php:83
+msgid "Bridged"
+msgstr "Bridged"
+
+#: ../templates/dashboard.php:91
+msgid "Adblock"
+msgstr "Adblock"
+
+#: ../templates/dashboard.php:99
+msgid "VPN"
+msgstr "VPN"
+
+#: ../templates/dashboard.php:108
+msgid "Firewall"
+msgstr "Palomuuri"
+
+#: ../templates/dashboard.php:114
+msgid "5G"
+msgstr "5G"
+
+#: ../templates/dashboard.php:115
+msgid "2.4G"
+msgstr "2.4G"
+
+#: ../templates/dashboard.php:164 ../templates/system.php:40
+msgid "Information provided by raspap.sysinfo"
+msgstr "Raspap.sysinfo:n toimittamat tiedot"
 
 #: ../templates/adblock/stats.php:3
 msgid "Statistics"
@@ -1419,6 +1328,14 @@ msgstr "Valitse estoluettelon tarjoaja"
 msgid "Update now"
 msgstr "Päivitä nyt"
 
+#: ../templates/adblock/logging.php:3 ../templates/openvpn.php:48
+#: ../templates/hostapd/logging.php:3 ../templates/adblock.php:47
+#: ../templates/dhcp.php:55 ../templates/openvpn/logging.php:3
+#: ../templates/hostapd.php:52 ../templates/wireguard.php:49
+#: ../templates/wg/logging.php:5 ../templates/dhcp/logging.php:3
+msgid "Logging"
+msgstr "Kirjaaminen"
+
 #: ../templates/adblock/custom.php:3 ../templates/adblock.php:46
 msgid "Custom blocklist"
 msgstr "Mukautettu estoluettelo"
@@ -1439,261 +1356,33 @@ msgstr "<b>IPv4-esimerkki:</b> 0.0.0.0.0 badhost.com"
 msgid "This option adds an <code>addn-hosts</code> directive to the dnsmasq configuration."
 msgstr "Tämä vaihtoehto lisää dnsmasq-konfiguraatioon <code>addn-hosts-direktiivin</code>."
 
-#: ../templates/adblock/logging.php:3 ../templates/openvpn/logging.php:3
-#: ../templates/dhcp.php:55 ../templates/wireguard.php:49
-#: ../templates/hostapd.php:52 ../templates/hostapd/logging.php:3
-#: ../templates/adblock.php:47 ../templates/openvpn.php:48
-#: ../templates/dhcp/logging.php:3 ../templates/wg/logging.php:5
-msgid "Logging"
-msgstr "Kirjaaminen"
+#: ../templates/wifi_stations.php:3
+msgid "No Wifi stations found"
+msgstr "Wifi asemia ei löytynyt"
 
-#: ../templates/provider/general.php:2
-#, php-format
-msgid "%s settings"
-msgstr "%s asetukset"
+#: ../templates/wifi_stations.php:4
+msgid "Click 'Rescan' to search for nearby Wifi stations."
+msgstr "Etsi lähellä olevia Wifi-keskuksia napsauttamalla 'Rescan'."
 
-#: ../templates/provider/general.php:9 ../templates/openvpn/general.php:8
-#: ../templates/wg/general.php:8
-msgid "IPv4 Address"
-msgstr "IPv4-osoite"
+#: ../templates/wifi_stations.php:6
+msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
+msgstr "Napsauta 'Reinitialize', jos haluat pakottaa <code>wpa_supplicantin</code> alustamaan uudelleen."
 
-#: ../templates/provider/general.php:24
-msgid "Account details"
-msgstr "Tilin tiedot"
+#: ../templates/wifi_stations.php:10
+msgid "Reinitialize"
+msgstr "Alusta uudelleen"
 
-#: ../templates/provider/general.php:28
-msgid "My account"
-msgstr "Tilini"
+#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
+msgid "Connected"
+msgstr "Yhdistetty"
 
-#: ../templates/provider/general.php:36
-msgid "Server location"
-msgstr "Palvelimen sijainti"
+#: ../templates/wifi_stations.php:29
+msgid "Known"
+msgstr "Tunnettu"
 
-#: ../templates/provider/general.php:38
-msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
-msgstr "Valitsemalla <strong>Tallenna asetukset</strong> muodostetaan yhteys valittuun maahan."
-
-#: ../templates/provider/general.php:41
-#, php-format
-msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
-msgstr "Valitsemalla <strong>Connect %s</strong> muodostat yhteyden suositeltuun palvelimeen."
-
-#: ../templates/provider/general.php:43
-msgid "Country"
-msgstr "Maa"
-
-#: ../templates/provider/status.php:3
-#, php-format
-msgid "%s status"
-msgstr "%s tila"
-
-#: ../templates/provider/status.php:5
-#, php-format
-msgid "Installed Linux CLI: <code>%s</code>"
-msgstr "Asennettu Linux CLI: <code>%s</code>"
-
-#: ../templates/provider/status.php:6
-#, php-format
-msgid "Current <code>%s</code> connection status is displayed below."
-msgstr "Nykyinen <code>%s</code> yhteyden tila näkyy alla."
-
-#: ../templates/openvpn/general.php:13
-msgid "Authentification Method"
-msgstr "Todentamismenetelmä"
-
-#: ../templates/openvpn/general.php:16
-msgid "Username and password"
-msgstr "Käyttäjätunnus ja salasana"
-
-#: ../templates/openvpn/general.php:20
-msgid "Certificates"
-msgstr "Todistukset"
-
-#: ../templates/openvpn/general.php:26
-msgid "Enter username and password"
-msgstr "Syötä käyttäjätunnus ja salasana"
-
-#: ../templates/openvpn/general.php:30 ../templates/networking/mobile.php:17
-#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
-#: ../templates/login.php:22 ../templates/about.php:85
-msgid "Username"
-msgstr "Käyttäjätunnus"
-
-#: ../templates/openvpn/general.php:34 ../templates/networking/mobile.php:21
-#: ../templates/admin/login.php:21 ../templates/login.php:25
-#: ../app/lib/signprint.php:67
-msgid "Password"
-msgstr "Salasana"
-
-#: ../templates/openvpn/general.php:42
-msgid "Certificates in the configuration file"
-msgstr "Varmenteet asetustiedostossa"
-
-#: ../templates/openvpn/general.php:44
-msgid "RaspAP supports certificates by including them in the configuration file."
-msgstr "RaspAP tukee varmenteita sisällyttämällä ne määritystiedostoon."
-
-#: ../templates/openvpn/general.php:47
-msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
-msgstr "Allekirjoittava varmentajan (CA) varmenne (esim. <code>ca.crt</code>): <code>&lt;ca> ... &lt;/ca>-tagit</code>."
-
-#: ../templates/openvpn/general.php:48
-msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
-msgstr "Asiakasvarmenne (julkinen avain) (esim. <code>client.crt</code>): sisällä <code>&lt;cert> ... &lt;/cert>-tagit</code>."
-
-#: ../templates/openvpn/general.php:49
-msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
-msgstr "Asiakasvarmenteen yksityinen avain (esim. <code>client.key</code>): suljettu sisään <code>&lt;key> ... &lt;/key>-tagit</code>."
-
-#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
-msgid "Configuration File"
-msgstr "Konfiguraatiotiedosto"
-
-#: ../templates/openvpn/general.php:62
-msgid "Select OpenVPN configuration file (.ovpn)"
-msgstr "Valitse OpenVPN-konfiguraatiotiedosto (.ovpn)."
-
-#: ../templates/openvpn/logging.php:4
-msgid "Enable this option to log <code>openvpn</code> activity."
-msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lokata <code>openvpn-toiminnan</code>."
-
-#: ../templates/openvpn/logging.php:8
-msgid "Enable logging"
-msgstr "Ota lokitus käyttöön"
-
-#: ../templates/openvpn/logging.php:9 ../templates/hostapd/logging.php:10
-#: ../templates/dhcp/logging.php:13
-msgid "Clear log"
-msgstr "Tyhjennä loki"
-
-#: ../templates/openvpn/configs.php:4 ../templates/wireguard.php:48
-#: ../templates/openvpn.php:47 ../templates/wg/configs.php:4
-msgid "Configurations"
-msgstr "Kokoonpanot"
-
-#: ../templates/openvpn/configs.php:6
-msgid "Currently available OpenVPN client configurations are displayed below."
-msgstr "Tällä hetkellä käytettävissä olevat OpenVPN-asiakasmääritykset näkyvät alla."
-
-#: ../templates/openvpn/configs.php:7
-msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
-msgstr "Määrityksen aktivointi käynnistää <code>openvpn-client-palvelun</code> uudelleen."
-
-#: ../templates/dhcp.php:21
-msgid "Stop dnsmasq"
-msgstr "Pysäytä dnsmasq"
-
-#: ../templates/dhcp.php:24
-msgid "Restart dnsmasq"
-msgstr "Käynnistä dnsmasq uudelleen"
-
-#: ../templates/dhcp.php:28
-msgid "Start dnsmasq"
-msgstr "Käynnistä dnsmasq"
-
-#: ../templates/dhcp.php:50 ../templates/networking.php:20
-#: ../templates/dhcp/summary.php:2
-msgid "Summary"
-msgstr "Yhteenveto"
-
-#: ../templates/dhcp.php:51
-msgid "Server settings"
-msgstr "Palvelimen asetukset"
-
-#: ../templates/dhcp.php:53
-msgid "Static Leases"
-msgstr "Staattiset vuokrasopimukset"
-
-#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
-msgid "Client list"
-msgstr "Asiakasluettelo"
-
-#: ../templates/dhcp.php:72
-msgid "Information provided by Dnsmasq"
-msgstr "Dnsmasqin toimittamat tiedot"
-
-#: ../templates/data_usage.php:7
-msgid "Data usage monitoring"
-msgstr "Tietojen käytön seuranta"
-
-#: ../templates/data_usage.php:14
-msgid "Hourly"
-msgstr "Tuntikohtainen"
-
-#: ../templates/data_usage.php:15
-msgid "Daily"
-msgstr "Päivittäin"
-
-#: ../templates/data_usage.php:16
-msgid "Monthly"
-msgstr "Kuukausittain"
-
-#: ../templates/data_usage.php:23
-msgid "Hourly traffic amount"
-msgstr "Tuntiliikenteen määrä"
-
-#: ../templates/data_usage.php:24 ../templates/data_usage.php:43
-#: ../templates/data_usage.php:62
-msgid "interface"
-msgstr "rajapinta"
-
-#: ../templates/data_usage.php:32 ../templates/data_usage.php:51
-#: ../templates/data_usage.php:70
-#, php-format
-msgid "Loading %s bandwidth chart"
-msgstr "Ladataan %s kaistanleveyskaavio"
-
-#: ../templates/data_usage.php:32
-msgid "hourly"
-msgstr "tuntikohtaisesti"
-
-#: ../templates/data_usage.php:42
-msgid "Daily traffic amount"
-msgstr "Päivittäisen liikenteen määrä"
-
-#: ../templates/data_usage.php:51
-msgid "daily"
-msgstr "päivittäin"
-
-#: ../templates/data_usage.php:61
-msgid "Monthly traffic amount"
-msgstr "Kuukausittaisen liikenteen määrä"
-
-#: ../templates/data_usage.php:70
-msgid "monthly"
-msgstr "kuukausittain"
-
-#: ../templates/data_usage.php:79
-msgid "Information provided by vnstat"
-msgstr "vnstatin toimittamat tiedot"
-
-#: ../templates/data_usage.php:86
-msgid "Send"
-msgstr "Lähetä"
-
-#: ../templates/data_usage.php:87
-msgid "Receive"
-msgstr "Vastaanota"
-
-#: ../templates/networking.php:22
-msgid "Devices"
-msgstr "Laitteet"
-
-#: ../templates/networking.php:23
-msgid "Mobile Data"
-msgstr "Mobiilidata"
-
-#: ../templates/networking.php:24
-msgid "WLAN Routing"
-msgstr "WLAN-reititys"
-
-#: ../templates/networking.php:25
-msgid "Diagnostics"
-msgstr "Diagnostiikka"
-
-#: ../templates/networking.php:41
-msgid "Information provided by /sys/class/net"
-msgstr "/sys/class/netin toimittamat tiedot"
+#: ../templates/wifi_stations.php:40
+msgid "Nearby"
+msgstr "Lähellä"
 
 #: ../templates/wifi_stations/network.php:42
 msgid "Not configured"
@@ -1744,512 +1433,226 @@ msgstr ""
 msgid "Goto Webpage"
 msgstr ""
 
-#: ../templates/wifi_stations/network.php:119 ../templates/hostapd.php:90
-#: ../templates/configure_client.php:65 ../templates/system.php:56
+#: ../templates/wifi_stations/network.php:119 ../templates/system.php:56
 #: ../templates/system.php:74 ../templates/system.php:109
 #: ../templates/system.php:127 ../templates/system.php:159
+#: ../templates/configure_client.php:65 ../templates/hostapd.php:90
 msgid "Close"
 msgstr "Sulje"
 
-#: ../templates/wifi_stations.php:3
-msgid "No Wifi stations found"
-msgstr "Wifi asemia ei löytynyt"
+#: ../templates/system.php:18
+msgid "Language"
+msgstr ""
 
-#: ../templates/wifi_stations.php:4
-msgid "Click 'Rescan' to search for nearby Wifi stations."
-msgstr "Etsi lähellä olevia Wifi-keskuksia napsauttamalla 'Rescan'."
+#: ../templates/system.php:19
+msgid "Theme"
+msgstr ""
 
-#: ../templates/wifi_stations.php:6
-msgid "Click 'Reinitialize' to force reinitialize <code>wpa_supplicant</code>."
-msgstr "Napsauta 'Reinitialize', jos haluat pakottaa <code>wpa_supplicantin</code> alustamaan uudelleen."
+#: ../templates/system.php:21
+msgid "Tools"
+msgstr ""
 
-#: ../templates/wifi_stations.php:10
-msgid "Reinitialize"
-msgstr "Alusta uudelleen"
-
-#: ../templates/wifi_stations.php:18 ../templates/configure_client.php:12
-msgid "Connected"
-msgstr "Yhdistetty"
-
-#: ../templates/wifi_stations.php:29
-msgid "Known"
-msgstr "Tunnettu"
-
-#: ../templates/wifi_stations.php:40
-msgid "Nearby"
-msgstr "Lähellä"
-
-#: ../templates/wireguard.php:21
-msgid "Stop WireGuard"
-msgstr "Lopeta WireGuard"
-
-#: ../templates/wireguard.php:25
-msgid "Start WireGuard"
-msgstr "Käynnistä WireGuard"
-
-#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
-msgid "Peer"
-msgstr "Vertaiset"
-
-#: ../templates/wireguard.php:67
-msgid "Information provided by wireguard"
-msgstr "Wireguardin toimittamat tiedot"
-
-#: ../templates/wireguard.php:77
-msgid "Delete WireGuard configuration"
-msgstr "Poista WireGuard-konfiguraatio"
-
-#: ../templates/wireguard.php:80
-msgid "Delete this configuration? This cannot be undone."
-msgstr "Poista tämä kokoonpano? Tätä ei voi peruuttaa."
-
-#: ../templates/wireguard.php:95
-msgid "Activate WireGuard configuration"
-msgstr "Aktivoi WireGuard-konfiguraatio"
-
-#: ../templates/wireguard.php:98
-msgid "Activate this configuration? This will restart the wg-quick service."
-msgstr "Aktivoi tämä kokoonpano? Tämä käynnistää wg-quick-palvelun uudelleen."
-
-#: ../templates/wireguard.php:102 ../templates/openvpn.php:100
-msgid "Activate"
-msgstr "Aktivoi"
-
-#: ../templates/networking/devices.php:3
-msgid "Network devices"
-msgstr "Verkkolaitteet"
-
-#: ../templates/networking/devices.php:16
-msgid "Device"
-msgstr "Laite"
-
-#: ../templates/networking/devices.php:17
-#: ../templates/networking/general.php:12 ../templates/hostapd/basic.php:5
-#: ../templates/configure_client.php:31 ../templates/dhcp/general.php:5
-#: ../templates/dhcp/summary.php:18 ../templates/dhcp/settings.php:5
-msgid "Interface"
-msgstr "Liitäntä"
-
-#: ../templates/networking/devices.php:19
-#: ../templates/dhcp/static_leases.php:16
-#: ../templates/dhcp/static_leases.php:33
-#: ../templates/dhcp/static_leases.php:64
-msgid "MAC address"
-msgstr "MAC-osoite"
-
-#: ../templates/networking/devices.php:20
-msgid "USB vid/pid"
-msgstr "USB vid/pid"
-
-#: ../templates/networking/devices.php:21
-msgid "Device type"
-msgstr "Laitteen tyyppi"
-
-#: ../templates/networking/general.php:3
-msgid "Internet connection"
-msgstr "Internet-yhteys"
-
-#: ../templates/networking/general.php:13 ../templates/dashboard.php:54
-#: ../templates/dashboard.php:60 ../templates/dhcp/general.php:39
-#: ../templates/dhcp/clients.php:20 ../templates/dhcp/settings.php:39
-#: ../templates/wg/peers.php:38 ../templates/wg/general.php:103
-msgid "IP Address"
-msgstr "IP-osoite"
-
-#: ../templates/networking/general.php:14 ../templates/hostapd/advanced.php:62
-msgid "Gateway"
-msgstr "Gateway"
-
-#: ../templates/networking/general.php:15
-msgid "Internet Access"
-msgstr "Internet-yhteys"
-
-#: ../templates/networking/general.php:53
-msgid "Routing table"
-msgstr "Reititystaulukko"
-
-#: ../templates/networking/general.php:57
-msgid "raw output"
-msgstr "raakatulos"
-
-#: ../templates/networking/general.php:80
-msgid "Current settings"
-msgstr "Nykyiset asetukset"
-
-#: ../templates/networking/wlanrouting.php:5
-msgid "Restart WLAN routing"
-msgstr "Käynnistä WLAN-reititys uudelleen"
-
-#: ../templates/networking/wlanrouting.php:6
-msgid "Stop WLAN routing"
-msgstr "Pysäytä WLAN-reititys"
-
-#: ../templates/networking/wlanrouting.php:8
-msgid "Start WLAN routing"
-msgstr "Aloita WLAN-reititys"
-
-#: ../templates/networking/wlanrouting.php:17
-msgid "Wireless LAN routing"
-msgstr "Langattoman lähiverkon reititys"
-
-#: ../templates/networking/wlanrouting.php:22
-msgid "routing"
-msgstr "reititys"
-
-#: ../templates/networking/wlanrouting.php:27
-msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
-msgstr "Tämä vaihtoehto määrittää RaspAPin <b>reitittämään verkkoliikenteen langattoman asiakkaan (STA) liitännästä</b> toiseen käytettävissä olevaan liitäntään."
-
-#: ../templates/networking/wlanrouting.php:29
-msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
-msgstr "Kun ulostuloliitäntä on valittu, <code>iptables-säännöt</code> lisätään reitittämään paketteja NAT:n (network address translation) avulla. Näin tehdään usein, kun halutaan jakaa WLAN:n internet-yhteys <code>eth0-</code>, <code>usb0-</code> tai ennustettavan <code>enx-liitännän</code> laitteiden kanssa."
-
-#: ../templates/networking/wlanrouting.php:34
-msgid "Wireless client interface"
-msgstr "Langaton asiakasliittymä"
-
-#: ../templates/networking/wlanrouting.php:42
-msgid "Output interface"
-msgstr "Lähtöliitäntä"
-
-#: ../templates/networking/wlanrouting.php:47
-msgid "Configure a static IP address and DHCP for output interface"
-msgstr "Määritä staattinen IP-osoite ja DHCP ulostuloliitännälle."
-
-#: ../templates/networking/diagnostics.php:3
-msgid "Speedtest"
-msgstr "Speedtest"
-
-#: ../templates/networking/diagnostics.php:8
-msgid "Selecting a server"
-msgstr "Palvelimen valitseminen"
-
-#: ../templates/networking/diagnostics.php:12
-msgid "Privacy"
-msgstr "Yksityisyys"
-
-#: ../templates/networking/diagnostics.php:16
-msgid "Server"
-msgstr "Palvelin"
-
-#: ../templates/networking/diagnostics.php:22
-msgid "Ping"
-msgstr "Ping"
-
-#: ../templates/networking/diagnostics.php:24
-#: ../templates/networking/diagnostics.php:29
-msgid "ms"
-msgstr "ms"
-
-#: ../templates/networking/diagnostics.php:27
-msgid "Jitter"
-msgstr "Jitter"
-
-#: ../templates/networking/diagnostics.php:37
-#: ../templates/networking/diagnostics.php:43
-msgid "Mbps"
-msgstr "Mbps"
-
-#: ../templates/networking/mobile.php:4
-msgid "Mobile data settings"
-msgstr "Mobiilidata-asetukset"
-
-#: ../templates/networking/mobile.php:8
-msgid "SIM card PIN number"
-msgstr "SIM-kortin PIN-numero"
-
-#: ../templates/networking/mobile.php:11
-msgid "APN Settings"
-msgstr "APN-asetukset"
-
-#: ../templates/networking/mobile.php:13
-msgid "Access Point Name (APN)"
-msgstr "Yhteyspisteen nimi (APN)"
-
-#: ../templates/hostapd.php:20
-msgid "Start hotspot"
-msgstr "Käynnistä hotspot"
-
-#: ../templates/hostapd.php:20
-msgid "Starting hotspot"
-msgstr "Hotspotin käynnistäminen"
-
-#: ../templates/hostapd.php:24
-msgid "Stop hotspot"
-msgstr "Pysäytä hotspot"
-
-#: ../templates/hostapd.php:27
-msgid "Restart hotspot"
-msgstr "Käynnistä hotspot uudelleen"
-
-#: ../templates/hostapd.php:27
-msgid "Restarting hotspot"
-msgstr "Hotspotin uudelleenkäynnistäminen"
-
-#: ../templates/hostapd.php:70
-msgid "Information provided by hostapd"
-msgstr "hostapd:n toimittamat tiedot"
-
-#: ../templates/hostapd.php:84
-msgid "Executing RaspAP service start"
-msgstr "RaspAP-palvelun käynnistäminen"
-
-#: ../templates/restapi/general.php:12
-msgid "API Key"
-msgstr "API-avain"
-
-#: ../templates/restapi/general.php:17
-msgid "Please provide a valid API key."
-msgstr "Anna voimassa oleva API-avain."
-
-#: ../templates/restapi/status.php:3
-msgid "RestAPI status"
-msgstr "RestAPI-tila"
-
-#: ../templates/restapi/status.php:4
-msgid "Current <code>restapi.service</code> status is displayed below."
-msgstr "<code>Restapi.service-palvelun</code> nykyinen tila näkyy alla."
-
-#: ../templates/system/plugins.php:3 ../templates/system.php:23
+#: ../templates/system.php:23 ../templates/system/plugins.php:3
 msgid "Plugins"
 msgstr "Liitännäiset"
 
-#: ../templates/system/plugins.php:8
-msgid "The following user plugins are available to extend RaspAP's functionality."
-msgstr "RaspAPin toimintojen laajentamiseen on saatavilla seuraavat käyttäjäliitännäiset."
+#: ../templates/system.php:50
+msgid "System reset"
+msgstr ""
 
-#: ../templates/system/plugins.php:12
-msgid "Choose <strong>Details</strong> for more information and to install a plugin."
-msgstr "Valitse <strong>Tiedot</strong> saadaksesi lisätietoja ja asentaaksesi lisäosan."
+#: ../templates/system.php:53
+msgid "Reset complete. Restart the hotspot for the changes to take effect."
+msgstr ""
 
-#: ../templates/system/advanced.php:9
-msgid "Web server port"
-msgstr "Verkkopalvelimen portti"
+#: ../templates/system.php:53
+msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+msgstr ""
 
-#: ../templates/system/advanced.php:15
-msgid "Web server bind address"
-msgstr "Verkkopalvelimen sidottu osoite"
+#: ../templates/system.php:57
+msgid "System reset in progress..."
+msgstr ""
 
-#: ../templates/system/advanced.php:21
-msgid "Diagnostic log size limit (KB)"
-msgstr "Diagnoosilokin kokorajoitus (KB)"
+#: ../templates/system.php:57
+msgid "Reset"
+msgstr ""
 
-#: ../templates/system/advanced.php:28
-msgid "SSL Certificate (HTTPS)"
-msgstr "SSL-varmenne (HTTPS)"
+#: ../templates/system.php:68
+msgid "System reboot"
+msgstr ""
 
-#: ../templates/system/advanced.php:30
-#, php-format
-msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
-msgstr "Tälle järjestelmälle on luotu SSL-varmenne. Voit ladata ja asentaa sen järjestelmääsi alla olevan painikkeen avulla sekä noudattamalla <a href=\"%s\" target=\"_blank\">ohjeita</a> varmenteen asentamiseksi laitteellesi."
+#: ../templates/system.php:71
+msgid "Reboot now? The system will be temporarily unavailable."
+msgstr ""
 
-#: ../templates/system/advanced.php:31
-msgid "Download rootCA.pem"
-msgstr "Lataa rootCA.pem"
-
-#: ../templates/system/advanced.php:33
-#, php-format
-msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
-msgstr "SSL-varmenteen asentamiseksi ja RaspAP-hallintapaneeliin pääsemiseksi HTTPS-yhteyden kautta katso <a href=\"%s\" target=\"_blank\">ohjeet</a>."
-
-#: ../templates/system/advanced.php:40
-msgid "Restart lighttpd"
-msgstr "Käynnistä lighttpd uudelleen"
-
-#: ../templates/system/tools.php:3
-msgid "System tools"
-msgstr "Järjestelmätyökalut"
-
-#: ../templates/system/tools.php:10
-#, php-format
-msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
-msgstr "Voit luoda järjestelmän <a href=\"%s\" target=\"_blank\">vianmäärityslokin</a> napsauttamalla tai napauttamalla alla olevaa painiketta."
-
-#: ../templates/system/tools.php:13
-msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
-msgstr "Vianmäärityslokitiedot sisältävät RaspAP-version, AP:hen liittyvien palvelujen nykyisen tilan ja kokoonpanon, asennetut järjestelmäpaketit, Linux-ytimen version ja verkkotiedot. Salasanoja tai muita arkaluonteisia tietoja ei ole mukana."
-
-#: ../templates/system/tools.php:18 ../templates/system.php:121
-msgid "Generate debug log"
-msgstr "Luo vianmääritysloki"
-
-#: ../templates/system/tools.php:24
-#, php-format
-msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "Voit <a href=\"%s\" target=\"_blank\">tarkastaa</a> tähän laitteeseen liitetyt <a href=\" %s \" target=\"_blank\">sovittimet</a> napsauttamalla tai napauttamalla alla olevaa painiketta."
-
-#: ../templates/system/tools.php:27
-msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
-msgstr "Sovittimen tarkastustyökalu palauttaa tietoja ulkoisista WLAN-laitteista, kuten ajureista ja tuetuista tiloista."
-
-#: ../templates/system/tools.php:32 ../templates/system.php:138
-msgid "Inspect adapters"
-msgstr "Tarkasta sovittimet"
-
-#: ../templates/system/tools.php:38
-#, php-format
-msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
-msgstr "Voit palauttaa RaspAPin <a href=\"%s\" target=\"_blank\">alkuperäiseen kokoonpanoon</a> napsauttamalla tai napauttamalla alla olevaa painiketta."
-
-#: ../templates/system/tools.php:40
-msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
-msgstr "Palauttaa kaikki yhteyspisteen (AP) palveluasetukset oletusarvoihinsa. Tämä koskee hostapd:tä, dhcpcd:tä ja dnsmasq:tä."
-
-#: ../templates/system/tools.php:42
-msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
-msgstr "Valinnaisten komponenttien, kuten mainosten eston, WireGuardin tai OpenVPN:n, mukautetut tiedostot jäävät järjestelmään."
-
-#: ../templates/system/tools.php:47
-msgid "Perform reset"
-msgstr "Suorita nollaus"
-
-#: ../templates/system/theme.php:3
-msgid "Theme settings"
-msgstr "Teema-asetukset"
-
-#: ../templates/system/theme.php:8
-msgid "Select a theme"
-msgstr "Valitse teema"
-
-#: ../templates/system/theme.php:12
-msgid "Color"
-msgstr "Väri"
-
-#: ../templates/system/theme.php:18
-msgid "Dark Mode"
-msgstr "Tumma tila"
-
-#: ../templates/system/theme.php:25
-msgid "Use the dark mode from the current theme"
-msgstr "Käytä nykyisen teeman tummaa tilaa"
-
-#: ../templates/system/theme.php:28
-msgid "System Theme"
-msgstr "Järjestelmän teema"
-
-#: ../templates/system/theme.php:35
-msgid "Uses the color mode of your system"
-msgstr "Käyttää järjestelmän väritilaa"
-
-#: ../templates/system/theme.php:40
-msgid "Alert messages"
-msgstr "Hälytysviestit"
-
-#: ../templates/system/theme.php:44
-msgid "Automatically close alerts after a specified timeout"
-msgstr "Sulje hälytykset automaattisesti määritetyn aikakatkaisun jälkeen."
-
-#: ../templates/system/theme.php:50
-msgid "Alert close timeout (milliseconds)"
-msgstr "Hälytyksen sulkemisen aikakatkaisu (millisekuntia)"
-
-#: ../templates/system/basic.php:10
-msgid "System Information"
-msgstr "Järjestelmätiedot"
-
-#: ../templates/system/basic.php:23 ../templates/system.php:75
+#: ../templates/system.php:75 ../templates/system/basic.php:23
 msgid "Reboot"
 msgstr "Uudelleenkäynnistys"
 
-#: ../templates/system/basic.php:27 ../templates/system.php:110
+#: ../templates/system.php:86
+msgid "Reconnecting"
+msgstr "Yhteyden palauttaminen"
+
+#: ../templates/system.php:90
+msgid "The system is currently rebooting."
+msgstr "Järjestelmä käynnistyy parhaillaan uudelleen."
+
+#: ../templates/system.php:91
+msgid "Attempting to reconnect in"
+msgstr "Yritetään muodostaa yhteys uudelleen"
+
+#: ../templates/system.php:103
+msgid "System shutdown"
+msgstr ""
+
+#: ../templates/system.php:106
+msgid "Shutdown now? The system will be unavailable."
+msgstr ""
+
+#: ../templates/system.php:110 ../templates/system/basic.php:27
 msgid "Shutdown"
 msgstr "Sulkeminen"
 
-#: ../templates/system/basic.php:36
-msgid "Hostname"
-msgstr "Isäntänimi"
+#: ../templates/system.php:121 ../templates/system/tools.php:18
+msgid "Generate debug log"
+msgstr "Luo vianmääritysloki"
 
-#: ../templates/system/basic.php:40
-msgid "Pi Revision"
-msgstr "Piin tarkistus"
+#: ../templates/system.php:124
+msgid "Debug log generation in progress..."
+msgstr ""
 
-#: ../templates/system/basic.php:44
-msgid "OS"
-msgstr "OS"
+#: ../templates/system.php:138 ../templates/system/tools.php:32
+msgid "Inspect adapters"
+msgstr "Tarkasta sovittimet"
 
-#: ../templates/system/basic.php:48
-msgid "Kernel"
-msgstr "Ydin"
+#: ../templates/system.php:157
+msgid "Adapter health check"
+msgstr ""
 
-#: ../templates/system/basic.php:52
-msgid "Uptime"
-msgstr "Käyntiaika"
+#: ../templates/system.php:194
+msgid "Plugin details"
+msgstr ""
 
-#: ../templates/system/basic.php:56
-msgid "System Time"
-msgstr "Järjestelmän aika"
+#: ../templates/system.php:205
+msgid "Plugin docs"
+msgstr ""
 
-#: ../templates/system/basic.php:65
-msgid "Memory Used"
-msgstr "Käytetty muisti"
+#: ../templates/system.php:209
+msgid "Version"
+msgstr ""
 
-#: ../templates/system/basic.php:77
-msgid "Storage Used"
-msgstr "Käytetty varastointi"
+#: ../templates/system.php:213
+msgid "Author"
+msgstr ""
 
-#: ../templates/system/basic.php:89
-msgid "CPU Load"
-msgstr "CPU-kuormitus"
+#: ../templates/system.php:217
+msgid "License"
+msgstr ""
 
-#: ../templates/system/basic.php:101
-msgid "CPU Temp"
-msgstr "CPU-lämpötila"
+#: ../templates/system.php:221
+msgid "Language locale"
+msgstr ""
 
-#: ../templates/system/language.php:3
-msgid "Language settings"
-msgstr "Kieliasetukset"
+#: ../templates/system.php:225
+msgid "Configuration files"
+msgstr ""
 
-#: ../templates/system/language.php:6
-msgid "Select a language"
-msgstr "Valitse kieli"
+#: ../templates/system.php:229
+msgid "Signed Packages"
+msgstr ""
 
-#: ../templates/provider.php:5
+#: ../templates/system.php:233
+msgid "Dependencies"
+msgstr ""
+
+#: ../templates/system.php:237
+msgid "JavaScript"
+msgstr ""
+
+#: ../templates/system.php:241
+msgid "Sudoers"
+msgstr ""
+
+#: ../templates/system.php:245
+msgid "Non-privileged users"
+msgstr ""
+
+#: ../templates/system.php:265
+msgid "Installing plugin"
+msgstr ""
+
+#: ../templates/system.php:268
+msgid "Plugin install completed."
+msgstr ""
+
+#: ../templates/system.php:268
+msgid "Plugin installation in progress..."
+msgstr ""
+
+#: ../templates/system.php:271 ../templates/about.php:56
+#: ../templates/about.php:57 ../templates/about.php:132
+msgid "OK"
+msgstr "OK"
+
+#: ../templates/openvpn.php:20
+msgid "Start OpenVPN"
+msgstr "Käynnistä OpenVPN"
+
+#: ../templates/openvpn.php:24
+msgid "Stop OpenVPN"
+msgstr "Lopeta OpenVPN"
+
+#: ../templates/openvpn.php:47 ../templates/openvpn/configs.php:4
+#: ../templates/wireguard.php:48 ../templates/wg/configs.php:4
+msgid "Configurations"
+msgstr "Kokoonpanot"
+
+#: ../templates/openvpn.php:65
+msgid "Information provided by openvpn"
+msgstr "Openvpn:n toimittamat tiedot"
+
+#: ../templates/openvpn.php:75
+msgid "Delete OpenVPN client"
+msgstr "Poista OpenVPN-asiakasohjelma"
+
+#: ../templates/openvpn.php:78
+msgid "Delete client configuration? This cannot be undone."
+msgstr "Poista asiakaskonfiguraatio? Tätä ei voi peruuttaa."
+
+#: ../templates/openvpn.php:93
+msgid "Activate OpenVPN client"
+msgstr "Aktivoi OpenVPN-asiakasohjelma"
+
+#: ../templates/openvpn.php:96
+msgid "Activate client configuration? This will restart the openvpn-client service."
+msgstr "Aktivoi asiakkaan kokoonpano? Tämä käynnistää openvpn-client-palvelun uudelleen."
+
+#: ../templates/openvpn.php:100 ../templates/wireguard.php:102
+msgid "Activate"
+msgstr "Aktivoi"
+
+#: ../templates/hostapd/basic.php:5 ../templates/configure_client.php:31
+#: ../templates/dhcp/general.php:5 ../templates/dhcp/summary.php:18
+#: ../templates/dhcp/settings.php:5 ../templates/networking/general.php:12
+#: ../templates/networking/devices.php:17
+msgid "Interface"
+msgstr "Liitäntä"
+
+#: ../templates/hostapd/basic.php:14
+msgid "Please provide a valid SSID."
+msgstr "Anna voimassa oleva SSID-tunnus."
+
+#: ../templates/hostapd/basic.php:20
+msgid "Wireless Mode"
+msgstr "Langaton tila"
+
+#: ../templates/hostapd/basic.php:21
+msgid "Wireless standards which are not compatible with your adapter may be disabled"
+msgstr "Langattomat standardit, jotka eivät ole yhteensopivia sovittimesi kanssa, voidaan poistaa käytöstä."
+
+#: ../templates/hostapd/basic.php:24
 #, php-format
-msgid "Connect %s"
-msgstr "Yhdistä %s"
-
-#: ../templates/provider.php:7
-#, php-format
-msgid "Disconnect %s"
-msgstr "Katkaise yhteys %s"
-
-#: ../templates/provider.php:51
-#, php-format
-msgid "Information provided by %s"
-msgstr "Tiedot ovat peräisin osoitteesta %s"
-
-#: ../templates/hostapd/security.php:2
-msgid "Security settings"
-msgstr "Turvallisuusasetukset"
-
-#: ../templates/hostapd/security.php:6
-msgid "Security type"
-msgstr "Turvatyyppi"
-
-#: ../templates/hostapd/security.php:10
-msgid "Encryption Type"
-msgstr "Salaus tyyppi"
-
-#: ../templates/hostapd/security.php:14
-msgid "802.11w"
-msgstr "802.11w"
-
-#: ../templates/hostapd/security.php:15
-msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
-msgstr "802.11w laajentaa vahvan salakirjoitussuojan koskemaan valikoituja vankkoja hallintakehyksiä, kuten Deauthentication- ja Disassociation-kehyksiä sekä tiettyjä Action Management -kehysluokkia. Yhdessä tämä tunnetaan nimellä Management Frame Protection (MFP)."
-
-#: ../templates/hostapd/security.php:19
-msgid "Pre-shared key (PSK)"
-msgstr "Esijakautettu avain (PSK)"
-
-#: ../templates/hostapd/security.php:24
-msgid "Please provide a valid PSK."
-msgstr "Anna voimassa oleva PSK."
-
-#: ../templates/hostapd/security.php:32
-#, php-format
-msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
-msgstr "Skannaa tämä QR-koodi suoraan tai tulosta %s %smerkki%s käyttäjillesi."
+msgid "Based on the selected interface, 802.11%s is suggested."
+msgstr "Valitun liitännän perusteella ehdotetaan 802.11%s."
 
 #: ../templates/hostapd/logging.php:4
 msgid "Enable this option to log <code>hostapd</code> activity."
@@ -2258,6 +1661,11 @@ msgstr "Ota tämä vaihtoehto käyttöön, jos haluat kirjata <code>hostapd-toim
 #: ../templates/hostapd/logging.php:9 ../templates/wg/logging.php:9
 msgid "Logfile output"
 msgstr "Lokitiedoston tuloste"
+
+#: ../templates/hostapd/logging.php:10 ../templates/openvpn/logging.php:9
+#: ../templates/dhcp/logging.php:13
+msgid "Clear log"
+msgstr "Tyhjennä loki"
 
 #: ../templates/hostapd/logging.php:15
 msgid "Log level"
@@ -2311,6 +1719,10 @@ msgstr "Kirjoita kelvollinen verkkomerkki"
 #: ../templates/hostapd/advanced.php:58
 msgid "CIDR notation (e.g., 24 for 255.255.255.0)"
 msgstr "CIDR-merkintä (esim. 24 tarkoittaa 255.255.255.255.0)."
+
+#: ../templates/hostapd/advanced.php:62 ../templates/networking/general.php:14
+msgid "Gateway"
+msgstr "Gateway"
 
 #: ../templates/hostapd/advanced.php:71
 msgid "Your router's IP address"
@@ -2386,27 +1798,38 @@ msgstr "Määrittää hostapd:n <code>max_num_sta-vaihtoehdon</code>. Oletusarvo
 msgid "Country Code"
 msgstr "Maakoodi"
 
-#: ../templates/hostapd/basic.php:11 ../templates/dashboard.php:57
-#: ../templates/dashboard.php:63
-msgid "SSID"
-msgstr "SSID"
+#: ../templates/hostapd/security.php:2
+msgid "Security settings"
+msgstr "Turvallisuusasetukset"
 
-#: ../templates/hostapd/basic.php:14
-msgid "Please provide a valid SSID."
-msgstr "Anna voimassa oleva SSID-tunnus."
+#: ../templates/hostapd/security.php:6
+msgid "Security type"
+msgstr "Turvatyyppi"
 
-#: ../templates/hostapd/basic.php:20
-msgid "Wireless Mode"
-msgstr "Langaton tila"
+#: ../templates/hostapd/security.php:10
+msgid "Encryption Type"
+msgstr "Salaus tyyppi"
 
-#: ../templates/hostapd/basic.php:21
-msgid "Wireless standards which are not compatible with your adapter may be disabled"
-msgstr "Langattomat standardit, jotka eivät ole yhteensopivia sovittimesi kanssa, voidaan poistaa käytöstä."
+#: ../templates/hostapd/security.php:14
+msgid "802.11w"
+msgstr "802.11w"
 
-#: ../templates/hostapd/basic.php:24
+#: ../templates/hostapd/security.php:15
+msgid "802.11w extends strong cryptographic protection to a select set of robust management frames, including Deauthentication, Disassociation and certain categories of Action Management frames. Collectively, this is known as Management Frame Protection (MFP)."
+msgstr "802.11w laajentaa vahvan salakirjoitussuojan koskemaan valikoituja vankkoja hallintakehyksiä, kuten Deauthentication- ja Disassociation-kehyksiä sekä tiettyjä Action Management -kehysluokkia. Yhdessä tämä tunnetaan nimellä Management Frame Protection (MFP)."
+
+#: ../templates/hostapd/security.php:19
+msgid "Pre-shared key (PSK)"
+msgstr "Esijakautettu avain (PSK)"
+
+#: ../templates/hostapd/security.php:24
+msgid "Please provide a valid PSK."
+msgstr "Anna voimassa oleva PSK."
+
+#: ../templates/hostapd/security.php:32
 #, php-format
-msgid "Based on the selected interface, 802.11%s is suggested."
-msgstr "Valitun liitännän perusteella ehdotetaan 802.11%s."
+msgid "Scan this QR code directly or %s %sprint a sign%s for your users."
+msgstr "Skannaa tämä QR-koodi suoraan tai tulosta %s %smerkki%s käyttäjillesi."
 
 #: ../templates/configure_client.php:12
 msgid "Disconnected"
@@ -2431,6 +1854,327 @@ msgstr "WiFi-asiakkaan määrittäminen"
 #: ../templates/configure_client.php:62
 msgid "Configuring Wifi Client Interface..."
 msgstr "Wlan-asiakasliittymän määrittäminen..."
+
+#: ../templates/adblock.php:20
+msgid "Restart Ad Blocking"
+msgstr "Käynnistä mainosten esto uudelleen"
+
+#: ../templates/adblock.php:24
+msgid "Start Ad Blocking"
+msgstr "Aloita mainosten estäminen"
+
+#: ../templates/adblock.php:64
+msgid "Information provided by adblock"
+msgstr "Adblockin tarjoamat tiedot"
+
+#: ../templates/networking.php:20 ../templates/dhcp.php:50
+#: ../templates/dhcp/summary.php:2
+msgid "Summary"
+msgstr "Yhteenveto"
+
+#: ../templates/networking.php:22
+msgid "Devices"
+msgstr "Laitteet"
+
+#: ../templates/networking.php:23
+msgid "Mobile Data"
+msgstr "Mobiilidata"
+
+#: ../templates/networking.php:24
+msgid "WLAN Routing"
+msgstr "WLAN-reititys"
+
+#: ../templates/networking.php:25
+msgid "Diagnostics"
+msgstr "Diagnostiikka"
+
+#: ../templates/networking.php:41
+msgid "Information provided by /sys/class/net"
+msgstr "/sys/class/netin toimittamat tiedot"
+
+#: ../templates/restapi.php:21
+msgid "Start RestAPI service"
+msgstr "Käynnistä RestAPI-palvelu"
+
+#: ../templates/restapi.php:25
+msgid "Stop RestAPI service"
+msgstr "Lopeta RestAPI-palvelu"
+
+#: ../templates/restapi.php:63
+msgid "Information provided by restapi.service"
+msgstr "Restapi.service:n toimittamat tiedot"
+
+#: ../templates/dhcp.php:21
+msgid "Stop dnsmasq"
+msgstr "Pysäytä dnsmasq"
+
+#: ../templates/dhcp.php:24
+msgid "Restart dnsmasq"
+msgstr "Käynnistä dnsmasq uudelleen"
+
+#: ../templates/dhcp.php:28
+msgid "Start dnsmasq"
+msgstr "Käynnistä dnsmasq"
+
+#: ../templates/dhcp.php:51
+msgid "Server settings"
+msgstr "Palvelimen asetukset"
+
+#: ../templates/dhcp.php:53
+msgid "Static Leases"
+msgstr "Staattiset vuokrasopimukset"
+
+#: ../templates/dhcp.php:54 ../templates/dhcp/clients.php:2
+msgid "Client list"
+msgstr "Asiakasluettelo"
+
+#: ../templates/dhcp.php:72
+msgid "Information provided by Dnsmasq"
+msgstr "Dnsmasqin toimittamat tiedot"
+
+#: ../templates/openvpn/general.php:8 ../templates/provider/general.php:9
+#: ../templates/wg/general.php:8
+msgid "IPv4 Address"
+msgstr "IPv4-osoite"
+
+#: ../templates/openvpn/general.php:13
+msgid "Authentification Method"
+msgstr "Todentamismenetelmä"
+
+#: ../templates/openvpn/general.php:16
+msgid "Username and password"
+msgstr "Käyttäjätunnus ja salasana"
+
+#: ../templates/openvpn/general.php:20
+msgid "Certificates"
+msgstr "Todistukset"
+
+#: ../templates/openvpn/general.php:26
+msgid "Enter username and password"
+msgstr "Syötä käyttäjätunnus ja salasana"
+
+#: ../templates/openvpn/general.php:30 ../templates/login.php:22
+#: ../templates/admin/general.php:15 ../templates/admin/login.php:12
+#: ../templates/about.php:85 ../templates/networking/mobile.php:17
+msgid "Username"
+msgstr "Käyttäjätunnus"
+
+#: ../templates/openvpn/general.php:42
+msgid "Certificates in the configuration file"
+msgstr "Varmenteet asetustiedostossa"
+
+#: ../templates/openvpn/general.php:44
+msgid "RaspAP supports certificates by including them in the configuration file."
+msgstr "RaspAP tukee varmenteita sisällyttämällä ne määritystiedostoon."
+
+#: ../templates/openvpn/general.php:47
+msgid "Signing certification authority (CA) certificate (e.g. <code>ca.crt</code>): enclosed in <code>&lt;ca> ... &lt;/ca></code> tags."
+msgstr "Allekirjoittava varmentajan (CA) varmenne (esim. <code>ca.crt</code>): <code>&lt;ca> ... &lt;/ca>-tagit</code>."
+
+#: ../templates/openvpn/general.php:48
+msgid "Client certificate (public key) (e.g. <code>client.crt</code>): enclosed in <code>&lt;cert> ... &lt;/cert></code> tags."
+msgstr "Asiakasvarmenne (julkinen avain) (esim. <code>client.crt</code>): sisällä <code>&lt;cert> ... &lt;/cert>-tagit</code>."
+
+#: ../templates/openvpn/general.php:49
+msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
+msgstr "Asiakasvarmenteen yksityinen avain (esim. <code>client.key</code>): suljettu sisään <code>&lt;key> ... &lt;/key>-tagit</code>."
+
+#: ../templates/openvpn/general.php:59 ../templates/wg/general.php:59
+msgid "Configuration File"
+msgstr "Konfiguraatiotiedosto"
+
+#: ../templates/openvpn/general.php:62
+msgid "Select OpenVPN configuration file (.ovpn)"
+msgstr "Valitse OpenVPN-konfiguraatiotiedosto (.ovpn)."
+
+#: ../templates/openvpn/configs.php:6
+msgid "Currently available OpenVPN client configurations are displayed below."
+msgstr "Tällä hetkellä käytettävissä olevat OpenVPN-asiakasmääritykset näkyvät alla."
+
+#: ../templates/openvpn/configs.php:7
+msgid "Activating a configuration will restart the <code>openvpn-client</code> service."
+msgstr "Määrityksen aktivointi käynnistää <code>openvpn-client-palvelun</code> uudelleen."
+
+#: ../templates/openvpn/logging.php:4
+msgid "Enable this option to log <code>openvpn</code> activity."
+msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lokata <code>openvpn-toiminnan</code>."
+
+#: ../templates/openvpn/logging.php:8
+msgid "Enable logging"
+msgstr "Ota lokitus käyttöön"
+
+#: ../templates/system/basic.php:10
+msgid "System Information"
+msgstr "Järjestelmätiedot"
+
+#: ../templates/system/basic.php:36
+msgid "Hostname"
+msgstr "Isäntänimi"
+
+#: ../templates/system/basic.php:40
+msgid "Pi Revision"
+msgstr "Piin tarkistus"
+
+#: ../templates/system/basic.php:44
+msgid "OS"
+msgstr "OS"
+
+#: ../templates/system/basic.php:48
+msgid "Kernel"
+msgstr "Ydin"
+
+#: ../templates/system/basic.php:52
+msgid "Uptime"
+msgstr "Käyntiaika"
+
+#: ../templates/system/basic.php:56
+msgid "System Time"
+msgstr "Järjestelmän aika"
+
+#: ../templates/system/basic.php:65
+msgid "Memory Used"
+msgstr "Käytetty muisti"
+
+#: ../templates/system/basic.php:77
+msgid "Storage Used"
+msgstr "Käytetty varastointi"
+
+#: ../templates/system/basic.php:89
+msgid "CPU Load"
+msgstr "CPU-kuormitus"
+
+#: ../templates/system/basic.php:101
+msgid "CPU Temp"
+msgstr "CPU-lämpötila"
+
+#: ../templates/system/language.php:3
+msgid "Language settings"
+msgstr "Kieliasetukset"
+
+#: ../templates/system/language.php:6
+msgid "Select a language"
+msgstr "Valitse kieli"
+
+#: ../templates/system/advanced.php:9
+msgid "Web server port"
+msgstr "Verkkopalvelimen portti"
+
+#: ../templates/system/advanced.php:15
+msgid "Web server bind address"
+msgstr "Verkkopalvelimen sidottu osoite"
+
+#: ../templates/system/advanced.php:21
+msgid "Diagnostic log size limit (KB)"
+msgstr "Diagnoosilokin kokorajoitus (KB)"
+
+#: ../templates/system/advanced.php:28
+msgid "SSL Certificate (HTTPS)"
+msgstr "SSL-varmenne (HTTPS)"
+
+#: ../templates/system/advanced.php:30
+#, php-format
+msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
+msgstr "Tälle järjestelmälle on luotu SSL-varmenne. Voit ladata ja asentaa sen järjestelmääsi alla olevan painikkeen avulla sekä noudattamalla <a href=\"%s\" target=\"_blank\">ohjeita</a> varmenteen asentamiseksi laitteellesi."
+
+#: ../templates/system/advanced.php:31
+msgid "Download rootCA.pem"
+msgstr "Lataa rootCA.pem"
+
+#: ../templates/system/advanced.php:33
+#, php-format
+msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
+msgstr "SSL-varmenteen asentamiseksi ja RaspAP-hallintapaneeliin pääsemiseksi HTTPS-yhteyden kautta katso <a href=\"%s\" target=\"_blank\">ohjeet</a>."
+
+#: ../templates/system/advanced.php:40
+msgid "Restart lighttpd"
+msgstr "Käynnistä lighttpd uudelleen"
+
+#: ../templates/system/plugins.php:8
+msgid "The following user plugins are available to extend RaspAP's functionality."
+msgstr "RaspAPin toimintojen laajentamiseen on saatavilla seuraavat käyttäjäliitännäiset."
+
+#: ../templates/system/plugins.php:12
+msgid "Choose <strong>Details</strong> for more information and to install a plugin."
+msgstr "Valitse <strong>Tiedot</strong> saadaksesi lisätietoja ja asentaaksesi lisäosan."
+
+#: ../templates/system/tools.php:3
+msgid "System tools"
+msgstr "Järjestelmätyökalut"
+
+#: ../templates/system/tools.php:10
+#, php-format
+msgid "To generate a system <a href=\"%s\" target=\"_blank\">debug log</a>, click or tap the button below."
+msgstr "Voit luoda järjestelmän <a href=\"%s\" target=\"_blank\">vianmäärityslokin</a> napsauttamalla tai napauttamalla alla olevaa painiketta."
+
+#: ../templates/system/tools.php:13
+msgid "Debug log information contains the RaspAP version, current state and configuration of AP related services, installed system packages, Linux kernel version and networking details. No passwords or other sensitive data are included."
+msgstr "Vianmäärityslokitiedot sisältävät RaspAP-version, AP:hen liittyvien palvelujen nykyisen tilan ja kokoonpanon, asennetut järjestelmäpaketit, Linux-ytimen version ja verkkotiedot. Salasanoja tai muita arkaluonteisia tietoja ei ole mukana."
+
+#: ../templates/system/tools.php:24
+#, php-format
+msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
+msgstr "Voit <a href=\"%s\" target=\"_blank\">tarkastaa</a> tähän laitteeseen liitetyt <a href=\" %s \" target=\"_blank\">sovittimet</a> napsauttamalla tai napauttamalla alla olevaa painiketta."
+
+#: ../templates/system/tools.php:27
+msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
+msgstr "Sovittimen tarkastustyökalu palauttaa tietoja ulkoisista WLAN-laitteista, kuten ajureista ja tuetuista tiloista."
+
+#: ../templates/system/tools.php:38
+#, php-format
+msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
+msgstr "Voit palauttaa RaspAPin <a href=\"%s\" target=\"_blank\">alkuperäiseen kokoonpanoon</a> napsauttamalla tai napauttamalla alla olevaa painiketta."
+
+#: ../templates/system/tools.php:40
+msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
+msgstr "Palauttaa kaikki yhteyspisteen (AP) palveluasetukset oletusarvoihinsa. Tämä koskee hostapd:tä, dhcpcd:tä ja dnsmasq:tä."
+
+#: ../templates/system/tools.php:42
+msgid "Custom files for optional components such as Ad Blocking, WireGuard or OpenVPN will remain on the system."
+msgstr "Valinnaisten komponenttien, kuten mainosten eston, WireGuardin tai OpenVPN:n, mukautetut tiedostot jäävät järjestelmään."
+
+#: ../templates/system/tools.php:47
+msgid "Perform reset"
+msgstr "Suorita nollaus"
+
+#: ../templates/system/theme.php:3
+msgid "Theme settings"
+msgstr "Teema-asetukset"
+
+#: ../templates/system/theme.php:8
+msgid "Select a theme"
+msgstr "Valitse teema"
+
+#: ../templates/system/theme.php:12
+msgid "Color"
+msgstr "Väri"
+
+#: ../templates/system/theme.php:18
+msgid "Dark Mode"
+msgstr "Tumma tila"
+
+#: ../templates/system/theme.php:25
+msgid "Use the dark mode from the current theme"
+msgstr "Käytä nykyisen teeman tummaa tilaa"
+
+#: ../templates/system/theme.php:28
+msgid "System Theme"
+msgstr "Järjestelmän teema"
+
+#: ../templates/system/theme.php:35
+msgid "Uses the color mode of your system"
+msgstr "Käyttää järjestelmän väritilaa"
+
+#: ../templates/system/theme.php:40
+msgid "Alert messages"
+msgstr "Hälytysviestit"
+
+#: ../templates/system/theme.php:44
+msgid "Automatically close alerts after a specified timeout"
+msgstr "Sulje hälytykset automaattisesti määritetyn aikakatkaisun jälkeen."
+
+#: ../templates/system/theme.php:50
+msgid "Alert close timeout (milliseconds)"
+msgstr "Hälytyksen sulkemisen aikakatkaisu (millisekuntia)"
 
 #: ../templates/about/general.php:8
 msgid "RaspAP"
@@ -2472,6 +2216,51 @@ msgstr "yksinoikeusominaisuudet"
 #: ../templates/about/general.php:29 ../templates/about.php:22
 msgid "Insiders"
 msgstr "Sisäpiiriläiset"
+
+#: ../templates/login.php:13
+msgid "Administrator login"
+msgstr "Järjestelmänvalvojan kirjautuminen"
+
+#: ../templates/login.php:30 ../templates/admin.php:18
+#: ../includes/footer.php:23
+msgid "Login"
+msgstr "Kirjaudu sisään"
+
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "Unohditko salasanan"
+
+#: ../templates/login.php:33
+msgid "Scan for Login Help"
+msgstr "Etsi kirjautumisohjeita"
+
+#: ../templates/hostapd.php:20
+msgid "Start hotspot"
+msgstr "Käynnistä hotspot"
+
+#: ../templates/hostapd.php:20
+msgid "Starting hotspot"
+msgstr "Hotspotin käynnistäminen"
+
+#: ../templates/hostapd.php:24
+msgid "Stop hotspot"
+msgstr "Pysäytä hotspot"
+
+#: ../templates/hostapd.php:27
+msgid "Restart hotspot"
+msgstr "Käynnistä hotspot uudelleen"
+
+#: ../templates/hostapd.php:27
+msgid "Restarting hotspot"
+msgstr "Hotspotin uudelleenkäynnistäminen"
+
+#: ../templates/hostapd.php:70
+msgid "Information provided by hostapd"
+msgstr "hostapd:n toimittamat tiedot"
+
+#: ../templates/hostapd.php:84
+msgid "Executing RaspAP service start"
+msgstr "RaspAP-palvelun käynnistäminen"
 
 #: ../templates/admin/general.php:3
 msgid "Change password"
@@ -2518,6 +2307,10 @@ msgstr "Anna salasanasi."
 msgid "Reset avatar"
 msgstr "Nollaa avatar"
 
+#: ../templates/admin/avatar.php:11 ../templates/admin.php:21
+msgid "Avatar"
+msgstr "Avatar"
+
 #: ../templates/admin/avatar.php:15
 msgid "Click or tap to upload a new user avatar."
 msgstr "Lataa uusi käyttäjän avatar napsauttamalla tai napauttamalla sitä."
@@ -2526,271 +2319,290 @@ msgstr "Lataa uusi käyttäjän avatar napsauttamalla tai napauttamalla sitä."
 msgid "Image files of type <code>JPG, GIF or PNG</code> are accepted. Max file size: 2 MB."
 msgstr "<code>JPG-, GIF- tai PNG-tyyppiset</code> kuvatiedostot hyväksytään. Tiedoston enimmäiskoko: 2 MB."
 
-#: ../templates/restapi.php:21
-msgid "Start RestAPI service"
-msgstr "Käynnistä RestAPI-palvelu"
+#: ../templates/about.php:23
+msgid "Contributing"
+msgstr "Osallistuva"
 
-#: ../templates/restapi.php:25
-msgid "Stop RestAPI service"
-msgstr "Lopeta RestAPI-palvelu"
+#: ../templates/about.php:50
+msgid "New release check in progress..."
+msgstr "Uuden julkaisun tarkistus käynnissä..."
 
-#: ../templates/restapi.php:63
-msgid "Information provided by restapi.service"
-msgstr "Restapi.service:n toimittamat tiedot"
+#: ../templates/about.php:53
+msgid "A new release is available: Version"
+msgstr "Uusi julkaisu on saatavilla: Versio"
 
-#: ../templates/system.php:18
-msgid "Language"
+#: ../templates/about.php:54
+msgid "Installed version is the latest release."
+msgstr "Asennettu versio on uusin versio."
+
+#: ../templates/about.php:55
+msgid "Install this update now?"
+msgstr "Asenna tämä päivitys nyt?"
+
+#: ../templates/about.php:69
+msgid "GitHub authentication"
+msgstr "GitHub-todennus"
+
+#: ../templates/about.php:73
+msgid "Updating Insiders requires GitHub authentication."
+msgstr "Insiderien päivittäminen edellyttää GitHub-tunnistautumista."
+
+#: ../templates/about.php:80
+msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
+msgstr "Tunnuksesi lähetetään GitHubiin turvallisesti SSL:n avulla. Ole kuitenkin varovainen, jos RaspAP-asennuksesi on WLAN-verkossa, jota epäluotettavat käyttäjät käyttävät."
+
+#: ../templates/about.php:92
+msgid "Personal Access Token"
+msgstr "Henkilökohtainen käyttöoikeustunniste"
+
+#: ../templates/about.php:98
+msgid "Please provide a valid token."
+msgstr "Anna voimassa oleva tunnus."
+
+#: ../templates/about.php:105
+msgid "Perform update"
+msgstr "Suorita päivitys"
+
+#: ../templates/about.php:117
+msgid "Update in progress"
+msgstr "Päivitys käynnissä"
+
+#: ../templates/about.php:120
+msgid "Application is being updated..."
+msgstr "Hakemusta päivitetään..."
+
+#: ../templates/about.php:121
+msgid "Configuring update"
+msgstr "Päivityksen määrittäminen"
+
+#: ../templates/about.php:122
+msgid "Updating sources"
+msgstr "Lähteiden päivittäminen"
+
+#: ../templates/about.php:123
+msgid "Installing package updates"
+msgstr "Pakettipäivitysten asentaminen"
+
+#: ../templates/about.php:124
+msgid "Downloading latest files"
+msgstr "Uusimpien tiedostojen lataaminen"
+
+#: ../templates/about.php:125
+msgid "Installing application"
+msgstr "Sovelluksen asentaminen"
+
+#: ../templates/about.php:126
+msgid "Update complete"
+msgstr "Päivitys valmis"
+
+#: ../templates/about.php:128
+msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
+msgstr "Tapahtui virhe. Tarkista loki osoitteesta <code>/tmp/raspap_install.log.</code>"
+
+#: ../templates/about.php:129
+msgid "Success. Refresh this page to confirm the new version."
+msgstr "Menestys. Vahvista uusi versio päivittämällä tämä sivu."
+
+#: ../templates/wireguard.php:21
+msgid "Stop WireGuard"
+msgstr "Lopeta WireGuard"
+
+#: ../templates/wireguard.php:25
+msgid "Start WireGuard"
+msgstr "Käynnistä WireGuard"
+
+#: ../templates/wireguard.php:47 ../templates/wg/peers.php:5
+msgid "Peer"
+msgstr "Vertaiset"
+
+#: ../templates/wireguard.php:67
+msgid "Information provided by wireguard"
+msgstr "Wireguardin toimittamat tiedot"
+
+#: ../templates/wireguard.php:77
+msgid "Delete WireGuard configuration"
+msgstr "Poista WireGuard-konfiguraatio"
+
+#: ../templates/wireguard.php:80
+msgid "Delete this configuration? This cannot be undone."
+msgstr "Poista tämä kokoonpano? Tätä ei voi peruuttaa."
+
+#: ../templates/wireguard.php:95
+msgid "Activate WireGuard configuration"
+msgstr "Aktivoi WireGuard-konfiguraatio"
+
+#: ../templates/wireguard.php:98
+msgid "Activate this configuration? This will restart the wg-quick service."
+msgstr "Aktivoi tämä kokoonpano? Tämä käynnistää wg-quick-palvelun uudelleen."
+
+#: ../templates/provider/general.php:2
+#, php-format
+msgid "%s settings"
+msgstr "%s asetukset"
+
+#: ../templates/provider/general.php:24
+msgid "Account details"
+msgstr "Tilin tiedot"
+
+#: ../templates/provider/general.php:28
+msgid "My account"
+msgstr "Tilini"
+
+#: ../templates/provider/general.php:36
+msgid "Server location"
+msgstr "Palvelimen sijainti"
+
+#: ../templates/provider/general.php:38
+msgid "Choosing <strong>Save settings</strong> will connect to the selected country."
+msgstr "Valitsemalla <strong>Tallenna asetukset</strong> muodostetaan yhteys valittuun maahan."
+
+#: ../templates/provider/general.php:41
+#, php-format
+msgid "Choosing <strong>Connect %s</strong> will connect to a recommended server."
+msgstr "Valitsemalla <strong>Connect %s</strong> muodostat yhteyden suositeltuun palvelimeen."
+
+#: ../templates/provider/general.php:43
+msgid "Country"
+msgstr "Maa"
+
+#: ../templates/provider/status.php:3
+#, php-format
+msgid "%s status"
+msgstr "%s tila"
+
+#: ../templates/provider/status.php:5
+#, php-format
+msgid "Installed Linux CLI: <code>%s</code>"
+msgstr "Asennettu Linux CLI: <code>%s</code>"
+
+#: ../templates/provider/status.php:6
+#, php-format
+msgid "Current <code>%s</code> connection status is displayed below."
+msgstr "Nykyinen <code>%s</code> yhteyden tila näkyy alla."
+
+#: ../templates/wg/general.php:5
+msgid "Tunnel settings"
 msgstr ""
 
-#: ../templates/system.php:19
-msgid "Theme"
+#: ../templates/wg/general.php:12
+msgid "Configuration Method"
 msgstr ""
 
-#: ../templates/system.php:21
-msgid "Tools"
+#: ../templates/wg/general.php:15
+msgid "Upload file"
 msgstr ""
 
-#: ../templates/system.php:40 ../templates/dashboard.php:164
-msgid "Information provided by raspap.sysinfo"
-msgstr "Raspap.sysinfo:n toimittamat tiedot"
-
-#: ../templates/system.php:50
-msgid "System reset"
+#: ../templates/wg/general.php:19
+msgid "Create manually"
 msgstr ""
 
-#: ../templates/system.php:53
-msgid "Reset complete. Restart the hotspot for the changes to take effect."
+#: ../templates/wg/general.php:27
+msgid "Upload a WireGuard config"
 msgstr ""
 
-#: ../templates/system.php:53
-msgid "Reset RaspAP to its initial configuration? This action cannot be undone."
+#: ../templates/wg/general.php:29
+msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
 msgstr ""
 
-#: ../templates/system.php:57
-msgid "System reset in progress..."
+#: ../templates/wg/general.php:38
+msgid "Apply iptables rules to the selected interface"
 msgstr ""
 
-#: ../templates/system.php:57
-msgid "Reset"
+#: ../templates/wg/general.php:39
+msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
 msgstr ""
 
-#: ../templates/system.php:68
-msgid "System reboot"
+#: ../templates/wg/general.php:41
+msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
 msgstr ""
 
-#: ../templates/system.php:71
-msgid "Reboot now? The system will be temporarily unavailable."
+#: ../templates/wg/general.php:50
+msgid "Enable kill switch"
 msgstr ""
 
-#: ../templates/system.php:86
-msgid "Reconnecting"
-msgstr "Yhteyden palauttaminen"
-
-#: ../templates/system.php:90
-msgid "The system is currently rebooting."
-msgstr "Järjestelmä käynnistyy parhaillaan uudelleen."
-
-#: ../templates/system.php:91
-msgid "Attempting to reconnect in"
-msgstr "Yritetään muodostaa yhteys uudelleen"
-
-#: ../templates/system.php:103
-msgid "System shutdown"
+#: ../templates/wg/general.php:51
+msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
 msgstr ""
 
-#: ../templates/system.php:106
-msgid "Shutdown now? The system will be unavailable."
+#: ../templates/wg/general.php:53
+msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
 msgstr ""
 
-#: ../templates/system.php:124
-msgid "Debug log generation in progress..."
+#: ../templates/wg/general.php:62
+msgid "Select WireGuard configuration file (.conf)"
 msgstr ""
 
-#: ../templates/system.php:157
-msgid "Adapter health check"
+#: ../templates/wg/general.php:72
+msgid "Create a local WireGuard config"
 msgstr ""
 
-#: ../templates/system.php:194
-msgid "Plugin details"
+#: ../templates/wg/general.php:76
+msgid "Enable server"
 msgstr ""
 
-#: ../templates/system.php:205
-msgid "Plugin docs"
+#: ../templates/wg/general.php:80
+msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
 msgstr ""
 
-#: ../templates/system.php:209
-msgid "Version"
+#: ../templates/wg/general.php:81
+msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
 msgstr ""
 
-#: ../templates/system.php:213
-msgid "Author"
+#: ../templates/wg/general.php:88
+msgid "Local public key"
 msgstr ""
 
-#: ../templates/system.php:217
-msgid "License"
+#: ../templates/wg/general.php:99 ../templates/wg/peers.php:31
+msgid "Local Port"
 msgstr ""
 
-#: ../templates/system.php:221
-msgid "Language locale"
+#: ../templates/wg/configs.php:6
+msgid "Currently available WireGuard file configurations are displayed below."
 msgstr ""
 
-#: ../templates/system.php:225
-msgid "Configuration files"
+#: ../templates/wg/configs.php:7
+msgid "Activating a configuration will restart the <code>wg-quick</code> service."
 msgstr ""
 
-#: ../templates/system.php:229
-msgid "Signed Packages"
+#: ../templates/wg/logging.php:6
+msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
 msgstr ""
 
-#: ../templates/system.php:233
-msgid "Dependencies"
+#: ../templates/wg/peers.php:10
+msgid "Enable peer"
 msgstr ""
 
-#: ../templates/system.php:237
-msgid "JavaScript"
+#: ../templates/wg/peers.php:13
+msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
 msgstr ""
 
-#: ../templates/system.php:241
-msgid "Sudoers"
+#: ../templates/wg/peers.php:14
+msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
 msgstr ""
 
-#: ../templates/system.php:245
-msgid "Non-privileged users"
+#: ../templates/wg/peers.php:20
+msgid "Peer public key"
 msgstr ""
 
-#: ../templates/system.php:265
-msgid "Installing plugin"
+#: ../templates/wg/peers.php:45
+msgid "Endpoint address"
 msgstr ""
 
-#: ../templates/system.php:268
-msgid "Plugin install completed."
+#: ../templates/wg/peers.php:52
+msgid "Allowed IPs"
 msgstr ""
 
-#: ../templates/system.php:268
-msgid "Plugin installation in progress..."
+#: ../templates/wg/peers.php:59
+msgid "Persistent keepalive"
 msgstr ""
 
-#: ../templates/system.php:271 ../templates/about.php:56
-#: ../templates/about.php:57 ../templates/about.php:132
-msgid "OK"
-msgstr "OK"
+#: ../templates/wg/peers.php:70
+msgid "Scan this QR code with your client to connect to this tunnel"
+msgstr ""
 
-#: ../templates/adblock.php:20
-msgid "Restart Ad Blocking"
-msgstr "Käynnistä mainosten esto uudelleen"
-
-#: ../templates/adblock.php:24
-msgid "Start Ad Blocking"
-msgstr "Aloita mainosten estäminen"
-
-#: ../templates/adblock.php:64
-msgid "Information provided by adblock"
-msgstr "Adblockin tarjoamat tiedot"
-
-#: ../templates/login.php:13
-msgid "Administrator login"
-msgstr "Järjestelmänvalvojan kirjautuminen"
-
-#: ../templates/login.php:31
-msgid "Forgot password"
-msgstr "Unohditko salasanan"
-
-#: ../templates/login.php:33
-msgid "Scan for Login Help"
-msgstr "Etsi kirjautumisohjeita"
-
-#: ../templates/openvpn.php:20
-msgid "Start OpenVPN"
-msgstr "Käynnistä OpenVPN"
-
-#: ../templates/openvpn.php:24
-msgid "Stop OpenVPN"
-msgstr "Lopeta OpenVPN"
-
-#: ../templates/openvpn.php:65
-msgid "Information provided by openvpn"
-msgstr "Openvpn:n toimittamat tiedot"
-
-#: ../templates/openvpn.php:75
-msgid "Delete OpenVPN client"
-msgstr "Poista OpenVPN-asiakasohjelma"
-
-#: ../templates/openvpn.php:78
-msgid "Delete client configuration? This cannot be undone."
-msgstr "Poista asiakaskonfiguraatio? Tätä ei voi peruuttaa."
-
-#: ../templates/openvpn.php:93
-msgid "Activate OpenVPN client"
-msgstr "Aktivoi OpenVPN-asiakasohjelma"
-
-#: ../templates/openvpn.php:96
-msgid "Activate client configuration? This will restart the openvpn-client service."
-msgstr "Aktivoi asiakkaan kokoonpano? Tämä käynnistää openvpn-client-palvelun uudelleen."
-
-#: ../templates/dashboard.php:24
-msgid "Ethernet"
-msgstr "Ethernet"
-
-#: ../templates/dashboard.php:28 ../templates/dashboard.php:29
-msgid "WiFi Client"
-msgstr "WiFi-asiakasohjelma"
-
-#: ../templates/dashboard.php:28
-msgid "Repeater"
-msgstr "Toistin"
-
-#: ../templates/dashboard.php:32 ../templates/dashboard.php:33
-msgid "Tethering"
-msgstr "Tethering"
-
-#: ../templates/dashboard.php:36 ../templates/dashboard.php:37
-msgid "Cellular"
-msgstr "Cellular"
-
-#: ../templates/dashboard.php:48
-msgid "Public"
-msgstr "Julkinen"
-
-#: ../templates/dashboard.php:49
-msgid "Local"
-msgstr "Paikallinen"
-
-#: ../templates/dashboard.php:55 ../templates/dashboard.php:61
-msgid "Netmask"
-msgstr "Verkkomerkki"
-
-#: ../templates/dashboard.php:56 ../templates/dashboard.php:62
-#: ../templates/dhcp/clients.php:19
-msgid "MAC Address"
-msgstr "MAC-osoite"
-
-#: ../templates/dashboard.php:75
-msgid "AP"
-msgstr "AP"
-
-#: ../templates/dashboard.php:83
-msgid "Bridged"
-msgstr "Bridged"
-
-#: ../templates/dashboard.php:91
-msgid "Adblock"
-msgstr "Adblock"
-
-#: ../templates/dashboard.php:99
-msgid "VPN"
-msgstr "VPN"
-
-#: ../templates/dashboard.php:108
-msgid "Firewall"
-msgstr "Palomuuri"
-
-#: ../templates/dashboard.php:114
-msgid "5G"
-msgstr "5G"
-
-#: ../templates/dashboard.php:115
-msgid "2.4G"
-msgstr "2.4G"
+#: ../templates/wg/peers.php:71
+msgid "or download the <code>client.conf</code> file to your device."
+msgstr ""
 
 #: ../templates/dhcp/general.php:2 ../templates/dhcp/settings.php:2
 msgid "DHCP server settings"
@@ -2917,98 +2729,6 @@ msgstr ""
 msgid "Metric"
 msgstr ""
 
-#: ../templates/dhcp/summary.php:7
-msgid "Interface Configurations"
-msgstr "Liitäntäasetukset"
-
-#: ../templates/dhcp/summary.php:19
-msgid "Static IP"
-msgstr "Kiinteä IP-osoite"
-
-#: ../templates/dhcp/summary.php:20
-msgid "Subnet / Gateway"
-msgstr "Aliverkko / Yhdyskäytävä"
-
-#: ../templates/dhcp/summary.php:21
-msgid "Default Route"
-msgstr "Oletusreitti"
-
-#: ../templates/dhcp/summary.php:22
-msgid "Disable Hook"
-msgstr "Poista koukku käytöstä"
-
-#: ../templates/dhcp/summary.php:23
-msgid "DHCP Range (lease)"
-msgstr "DHCP-alue (vuokra-aika)"
-
-#: ../templates/dhcp/summary.php:24
-msgid "DNS Servers"
-msgstr "DNS-palvelimet"
-
-#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
-msgid "Yes"
-msgstr "Kyllä"
-
-#: ../templates/dhcp/summary.php:97
-msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
-msgstr "Tiedostoista dhcpcd.conf tai dnsmasq.d ei löytynyt minkään rajapinnan asetuksia."
-
-#: ../templates/dhcp/static_leases.php:5
-msgid "Static leases"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:7
-msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:8
-msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:19
-#: ../templates/dhcp/static_leases.php:36
-#: ../templates/dhcp/static_leases.php:67
-msgid "IP address"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:22
-#: ../templates/dhcp/static_leases.php:39
-#: ../templates/dhcp/static_leases.php:70
-msgid "Optional comment"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:46
-msgid "Restrict access"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:51
-msgid "Limit network access to static clients"
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:54
-msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
-msgstr ""
-
-#: ../templates/dhcp/static_leases.php:55
-msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
-msgstr ""
-
-#: ../templates/dhcp/clients.php:8
-msgid "Active DHCP leases"
-msgstr ""
-
-#: ../templates/dhcp/clients.php:18
-msgid "Expire time"
-msgstr ""
-
-#: ../templates/dhcp/clients.php:21
-msgid "Host name"
-msgstr ""
-
-#: ../templates/dhcp/clients.php:22
-msgid "Client ID"
-msgstr ""
-
 #: ../templates/dhcp/logging.php:4
 msgid "Enable these options to log <code>dhcpcd</code> and <code>dnsmasq</code> activity."
 msgstr ""
@@ -3058,6 +2778,105 @@ msgstr ""
 msgid "Choose a hosted server"
 msgstr ""
 
+#: ../templates/dhcp/summary.php:7
+msgid "Interface Configurations"
+msgstr "Liitäntäasetukset"
+
+#: ../templates/dhcp/summary.php:19
+msgid "Static IP"
+msgstr "Kiinteä IP-osoite"
+
+#: ../templates/dhcp/summary.php:20
+msgid "Subnet / Gateway"
+msgstr "Aliverkko / Yhdyskäytävä"
+
+#: ../templates/dhcp/summary.php:21
+msgid "Default Route"
+msgstr "Oletusreitti"
+
+#: ../templates/dhcp/summary.php:22
+msgid "Disable Hook"
+msgstr "Poista koukku käytöstä"
+
+#: ../templates/dhcp/summary.php:23
+msgid "DHCP Range (lease)"
+msgstr "DHCP-alue (vuokra-aika)"
+
+#: ../templates/dhcp/summary.php:24
+msgid "DNS Servers"
+msgstr "DNS-palvelimet"
+
+#: ../templates/dhcp/summary.php:55 ../templates/dhcp/summary.php:61
+msgid "Yes"
+msgstr "Kyllä"
+
+#: ../templates/dhcp/summary.php:97
+msgid "No configuration found in dhcpcd.conf or dnsmasq.d for any interfaces."
+msgstr "Tiedostoista dhcpcd.conf tai dnsmasq.d ei löytynyt minkään rajapinnan asetuksia."
+
+#: ../templates/dhcp/static_leases.php:5
+msgid "Static leases"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:7
+msgid "Clients with a particular hardware MAC address can always be allocated the same IP address."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:8
+msgid "This option adds <code>dhcp-host</code> entries to the dnsmasq configuration."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:16
+#: ../templates/dhcp/static_leases.php:33
+#: ../templates/dhcp/static_leases.php:64
+#: ../templates/networking/devices.php:19
+msgid "MAC address"
+msgstr "MAC-osoite"
+
+#: ../templates/dhcp/static_leases.php:19
+#: ../templates/dhcp/static_leases.php:36
+#: ../templates/dhcp/static_leases.php:67
+msgid "IP address"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:22
+#: ../templates/dhcp/static_leases.php:39
+#: ../templates/dhcp/static_leases.php:70
+msgid "Optional comment"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:46
+msgid "Restrict access"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:51
+msgid "Limit network access to static clients"
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:54
+msgid "Enable this option if you want RaspAP to <b>ignore any clients</b> which are not specified in the static leases list."
+msgstr ""
+
+#: ../templates/dhcp/static_leases.php:55
+msgid "This option adds <code>dhcp-ignore</code> to the dnsmasq configuration."
+msgstr ""
+
+#: ../templates/dhcp/clients.php:8
+msgid "Active DHCP leases"
+msgstr ""
+
+#: ../templates/dhcp/clients.php:18
+msgid "Expire time"
+msgstr ""
+
+#: ../templates/dhcp/clients.php:21
+msgid "Host name"
+msgstr ""
+
+#: ../templates/dhcp/clients.php:22
+msgid "Client ID"
+msgstr ""
+
 #: ../templates/dhcp/settings.php:72
 msgid "Enable this only if you want your device to use this interface as its primary route to the internet."
 msgstr "Ota tämä käyttöön vain, jos haluat, että laitteesi käyttää tätä rajapintaa ensisijaisena reittinä internetiin."
@@ -3070,89 +2889,147 @@ msgstr "Tämä kytkee tämän rajapinnan<code>gateway/nogateway</code> -asetukse
 msgid "This toggles the <code>nohook wpa_supplicant</code> option for this interface in the dhcpcd.conf file."
 msgstr "Tämä kytkee dhcpcd.conf-tiedostossa tämän rajapinnan <code>nohook-</code> asetuksen <code>wpa_supplicant</code> -vaihtoehdon päälle tai pois päältä."
 
-#: ../templates/about.php:23
-msgid "Contributing"
-msgstr "Osallistuva"
+#: ../templates/restapi/general.php:12
+msgid "API Key"
+msgstr "API-avain"
 
-#: ../templates/about.php:50
-msgid "New release check in progress..."
-msgstr "Uuden julkaisun tarkistus käynnissä..."
+#: ../templates/restapi/general.php:17
+msgid "Please provide a valid API key."
+msgstr "Anna voimassa oleva API-avain."
 
-#: ../templates/about.php:53
-msgid "A new release is available: Version"
-msgstr "Uusi julkaisu on saatavilla: Versio"
+#: ../templates/restapi/status.php:3
+msgid "RestAPI status"
+msgstr "RestAPI-tila"
 
-#: ../templates/about.php:54
-msgid "Installed version is the latest release."
-msgstr "Asennettu versio on uusin versio."
+#: ../templates/restapi/status.php:4
+msgid "Current <code>restapi.service</code> status is displayed below."
+msgstr "<code>Restapi.service-palvelun</code> nykyinen tila näkyy alla."
 
-#: ../templates/about.php:55
-msgid "Install this update now?"
-msgstr "Asenna tämä päivitys nyt?"
+#: ../templates/admin.php:7
+msgid "Authentication"
+msgstr ""
 
-#: ../templates/about.php:69
-msgid "GitHub authentication"
-msgstr "GitHub-todennus"
+#: ../templates/admin.php:47
+msgid "Update admin password"
+msgstr ""
 
-#: ../templates/about.php:73
-msgid "Updating Insiders requires GitHub authentication."
-msgstr "Insiderien päivittäminen edellyttää GitHub-tunnistautumista."
+#: ../templates/admin.php:54
+msgid "Old password"
+msgstr ""
 
-#: ../templates/about.php:80
-msgid "Your credentials will be sent to GitHub securely with SSL. However, use caution if your RaspAP install is on a WLAN shared by untrusted users."
-msgstr "Tunnuksesi lähetetään GitHubiin turvallisesti SSL:n avulla. Ole kuitenkin varovainen, jos RaspAP-asennuksesi on WLAN-verkossa, jota epäluotettavat käyttäjät käyttävät."
+#: ../templates/admin.php:59
+msgid "Please enter your old password."
+msgstr ""
 
-#: ../templates/about.php:92
-msgid "Personal Access Token"
-msgstr "Henkilökohtainen käyttöoikeustunniste"
+#: ../templates/admin.php:66
+msgid "New password"
+msgstr ""
 
-#: ../templates/about.php:98
-msgid "Please provide a valid token."
-msgstr "Anna voimassa oleva tunnus."
+#: ../templates/admin.php:71
+msgid "Please enter a new password."
+msgstr ""
 
-#: ../templates/about.php:105
-msgid "Perform update"
-msgstr "Suorita päivitys"
+#: ../templates/admin.php:78
+msgid "Repeat new password"
+msgstr ""
 
-#: ../templates/about.php:117
-msgid "Update in progress"
-msgstr "Päivitys käynnissä"
+#: ../templates/admin.php:83
+msgid "Please re-enter your new password."
+msgstr ""
 
-#: ../templates/about.php:120
-msgid "Application is being updated..."
-msgstr "Hakemusta päivitetään..."
+#: ../templates/admin.php:91
+msgid "Save"
+msgstr ""
 
-#: ../templates/about.php:121
-msgid "Configuring update"
-msgstr "Päivityksen määrittäminen"
+#: ../templates/admin.php:103
+msgid "Logout and enable limited user mode"
+msgstr ""
 
-#: ../templates/about.php:122
-msgid "Updating sources"
-msgstr "Lähteiden päivittäminen"
+#: ../templates/admin.php:114
+msgid "This action will save the limited user's credentials and logout the current admin user. Save and enable limited privilege mode?"
+msgstr ""
 
-#: ../templates/about.php:123
-msgid "Installing package updates"
-msgstr "Pakettipäivitysten asentaminen"
+#: ../templates/admin.php:120
+msgid "Save and logout"
+msgstr ""
 
-#: ../templates/about.php:124
-msgid "Downloading latest files"
-msgstr "Uusimpien tiedostojen lataaminen"
+#: ../templates/data_usage.php:7
+msgid "Data usage monitoring"
+msgstr "Tietojen käytön seuranta"
 
-#: ../templates/about.php:125
-msgid "Installing application"
-msgstr "Sovelluksen asentaminen"
+#: ../templates/data_usage.php:14
+msgid "Hourly"
+msgstr "Tuntikohtainen"
 
-#: ../templates/about.php:126
-msgid "Update complete"
-msgstr "Päivitys valmis"
+#: ../templates/data_usage.php:15
+msgid "Daily"
+msgstr "Päivittäin"
 
-#: ../templates/about.php:128
-msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
-msgstr "Tapahtui virhe. Tarkista loki osoitteesta <code>/tmp/raspap_install.log.</code>"
+#: ../templates/data_usage.php:16
+msgid "Monthly"
+msgstr "Kuukausittain"
 
-#: ../templates/about.php:129
-msgid "Success. Refresh this page to confirm the new version."
-msgstr "Menestys. Vahvista uusi versio päivittämällä tämä sivu."
+#: ../templates/data_usage.php:23
+msgid "Hourly traffic amount"
+msgstr "Tuntiliikenteen määrä"
+
+#: ../templates/data_usage.php:24 ../templates/data_usage.php:43
+#: ../templates/data_usage.php:62
+msgid "interface"
+msgstr "rajapinta"
+
+#: ../templates/data_usage.php:32 ../templates/data_usage.php:51
+#: ../templates/data_usage.php:70
+#, php-format
+msgid "Loading %s bandwidth chart"
+msgstr "Ladataan %s kaistanleveyskaavio"
+
+#: ../templates/data_usage.php:32
+msgid "hourly"
+msgstr "tuntikohtaisesti"
+
+#: ../templates/data_usage.php:42
+msgid "Daily traffic amount"
+msgstr "Päivittäisen liikenteen määrä"
+
+#: ../templates/data_usage.php:51
+msgid "daily"
+msgstr "päivittäin"
+
+#: ../templates/data_usage.php:61
+msgid "Monthly traffic amount"
+msgstr "Kuukausittaisen liikenteen määrä"
+
+#: ../templates/data_usage.php:70
+msgid "monthly"
+msgstr "kuukausittain"
+
+#: ../templates/data_usage.php:79
+msgid "Information provided by vnstat"
+msgstr "vnstatin toimittamat tiedot"
+
+#: ../templates/data_usage.php:86
+msgid "Send"
+msgstr "Lähetä"
+
+#: ../templates/data_usage.php:87
+msgid "Receive"
+msgstr "Vastaanota"
+
+#: ../templates/provider.php:5
+#, php-format
+msgid "Connect %s"
+msgstr "Yhdistä %s"
+
+#: ../templates/provider.php:7
+#, php-format
+msgid "Disconnect %s"
+msgstr "Katkaise yhteys %s"
+
+#: ../templates/provider.php:51
+#, php-format
+msgid "Information provided by %s"
+msgstr "Tiedot ovat peräisin osoitteesta %s"
 
 #: ../templates/exception.php:6 ../templates/exception.php:17
 msgid "RaspAP Exception"
@@ -3162,128 +3039,274 @@ msgstr "RaspAP Poikkeus"
 msgid "An exception occurred"
 msgstr ""
 
-#: ../templates/wg/peers.php:10
-msgid "Enable peer"
+#: ../templates/networking/general.php:3
+msgid "Internet connection"
+msgstr "Internet-yhteys"
+
+#: ../templates/networking/general.php:15
+msgid "Internet Access"
+msgstr "Internet-yhteys"
+
+#: ../templates/networking/general.php:53
+msgid "Routing table"
+msgstr "Reititystaulukko"
+
+#: ../templates/networking/general.php:57
+msgid "raw output"
+msgstr "raakatulos"
+
+#: ../templates/networking/general.php:80
+msgid "Current settings"
+msgstr "Nykyiset asetukset"
+
+#: ../templates/networking/devices.php:3
+msgid "Network devices"
+msgstr "Verkkolaitteet"
+
+#: ../templates/networking/devices.php:16
+msgid "Device"
+msgstr "Laite"
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
+
+#: ../templates/networking/devices.php:21
+msgid "Device type"
+msgstr "Laitteen tyyppi"
+
+#: ../templates/networking/diagnostics.php:3
+msgid "Speedtest"
+msgstr "Speedtest"
+
+#: ../templates/networking/diagnostics.php:8
+msgid "Selecting a server"
+msgstr "Palvelimen valitseminen"
+
+#: ../templates/networking/diagnostics.php:12
+msgid "Privacy"
+msgstr "Yksityisyys"
+
+#: ../templates/networking/diagnostics.php:16
+msgid "Server"
+msgstr "Palvelin"
+
+#: ../templates/networking/diagnostics.php:22
+msgid "Ping"
+msgstr "Ping"
+
+#: ../templates/networking/diagnostics.php:24
+#: ../templates/networking/diagnostics.php:29
+msgid "ms"
+msgstr "ms"
+
+#: ../templates/networking/diagnostics.php:27
+msgid "Jitter"
+msgstr "Jitter"
+
+#: ../templates/networking/diagnostics.php:37
+#: ../templates/networking/diagnostics.php:43
+msgid "Mbps"
+msgstr "Mbps"
+
+#: ../templates/networking/wlanrouting.php:5
+msgid "Restart WLAN routing"
+msgstr "Käynnistä WLAN-reititys uudelleen"
+
+#: ../templates/networking/wlanrouting.php:6
+msgid "Stop WLAN routing"
+msgstr "Pysäytä WLAN-reititys"
+
+#: ../templates/networking/wlanrouting.php:8
+msgid "Start WLAN routing"
+msgstr "Aloita WLAN-reititys"
+
+#: ../templates/networking/wlanrouting.php:17
+msgid "Wireless LAN routing"
+msgstr "Langattoman lähiverkon reititys"
+
+#: ../templates/networking/wlanrouting.php:22
+msgid "routing"
+msgstr "reititys"
+
+#: ../templates/networking/wlanrouting.php:27
+msgid "This option configures RaspAP to <b>route network traffic from your wireless client (STA) interface</b> to another available interface."
+msgstr "Tämä vaihtoehto määrittää RaspAPin <b>reitittämään verkkoliikenteen langattoman asiakkaan (STA) liitännästä</b> toiseen käytettävissä olevaan liitäntään."
+
+#: ../templates/networking/wlanrouting.php:29
+msgid "When an output interface is selected, <code>iptables</code> rules are added to route packets using network address translation (NAT). This is often done to share internet connectivity from a WLAN with devices on an <code>eth0</code>, <code>usb0</code> or predictable <code>enx</code> interface."
+msgstr "Kun ulostuloliitäntä on valittu, <code>iptables-säännöt</code> lisätään reitittämään paketteja NAT:n (network address translation) avulla. Näin tehdään usein, kun halutaan jakaa WLAN:n internet-yhteys <code>eth0-</code>, <code>usb0-</code> tai ennustettavan <code>enx-liitännän</code> laitteiden kanssa."
+
+#: ../templates/networking/wlanrouting.php:34
+msgid "Wireless client interface"
+msgstr "Langaton asiakasliittymä"
+
+#: ../templates/networking/wlanrouting.php:42
+msgid "Output interface"
+msgstr "Lähtöliitäntä"
+
+#: ../templates/networking/wlanrouting.php:47
+msgid "Configure a static IP address and DHCP for output interface"
+msgstr "Määritä staattinen IP-osoite ja DHCP ulostuloliitännälle."
+
+#: ../templates/networking/mobile.php:4
+msgid "Mobile data settings"
+msgstr "Mobiilidata-asetukset"
+
+#: ../templates/networking/mobile.php:8
+msgid "SIM card PIN number"
+msgstr "SIM-kortin PIN-numero"
+
+#: ../templates/networking/mobile.php:11
+msgid "APN Settings"
+msgstr "APN-asetukset"
+
+#: ../templates/networking/mobile.php:13
+msgid "Access Point Name (APN)"
+msgstr "Yhteyspisteen nimi (APN)"
+
+#: ../includes/dashboard.php:72
+#, php-format
+msgid "%d WLAN %s"
 msgstr ""
 
-#: ../templates/wg/peers.php:13
-msgid "Enable this option to encrypt traffic by creating a tunnel between RaspAP and this peer."
+#: ../includes/dashboard.php:78
+#, php-format
+msgid "%d LAN %s"
 msgstr ""
 
-#: ../templates/wg/peers.php:14
-msgid "This option adds <code>client.conf</code> to the WireGuard configuration."
+#: ../includes/system.php:67
+#, php-format
+msgid "Changing log limit size to %s KB"
 msgstr ""
 
-#: ../templates/wg/peers.php:20
-msgid "Peer public key"
+#: ../includes/system.php:86
+#, php-format
+msgid "Changing alert close timeout to %s ms"
 msgstr ""
 
-#: ../templates/wg/peers.php:31 ../templates/wg/general.php:99
-msgid "Local Port"
+#: ../includes/adblock.php:31
+msgid "Invalid custom IP address found on line "
 msgstr ""
 
-#: ../templates/wg/peers.php:45
-msgid "Endpoint address"
+#: ../includes/adblock.php:35
+msgid "Invalid custom host found on line "
 msgstr ""
 
-#: ../templates/wg/peers.php:52
-msgid "Allowed IPs"
+#: ../includes/networking.php:51 ../includes/networking.php:54
+msgid "not configured"
 msgstr ""
 
-#: ../templates/wg/peers.php:59
-msgid "Persistent keepalive"
+#: ../includes/networking.php:137
+#, php-format
+msgid "Attempting to enable routing between %s and %s interfaces"
 msgstr ""
 
-#: ../templates/wg/peers.php:70
-msgid "Scan this QR code with your client to connect to this tunnel"
+#: ../includes/networking.php:147
+#, php-format
+msgid "Attempting to restart routing between %s and %s interfaces"
 msgstr ""
 
-#: ../templates/wg/peers.php:71
-msgid "or download the <code>client.conf</code> file to your device."
+#: ../includes/networking.php:151
+#, php-format
+msgid "Attempting to disable routing between %s and %s interfaces"
 msgstr ""
 
-#: ../templates/wg/general.php:5
-msgid "Tunnel settings"
+#: ../includes/networking.php:252
+#, php-format
+msgid "DHCP configuration for %s enabled"
 msgstr ""
 
-#: ../templates/wg/general.php:12
-msgid "Configuration Method"
+#: ../includes/networking.php:259
+#, php-format
+msgid "DHCP configuration for %s added"
 msgstr ""
 
-#: ../templates/wg/general.php:15
-msgid "Upload file"
+#: ../includes/networking.php:265
+#, php-format
+msgid "DHCP configuration for %s updated"
 msgstr ""
 
-#: ../templates/wg/general.php:19
-msgid "Create manually"
+#: ../includes/networking.php:271
+#, php-format
+msgid "No default DHCP configuration exists for the %s interface"
 msgstr ""
 
-#: ../templates/wg/general.php:27
-msgid "Upload a WireGuard config"
+#: ../includes/networking.php:272
+#, php-format
+msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
 msgstr ""
 
-#: ../templates/wg/general.php:29
-msgid "This option uploads and installs an existing WireGuard <code>.conf</code> file on this device."
+#: ../includes/networking.php:294
+#, php-format
+msgid "Dnsmasq  configuration for %s added"
 msgstr ""
 
-#: ../templates/wg/general.php:38
-msgid "Apply iptables rules to the selected interface"
+#: ../includes/restapi.php:59
+#, php-format
+msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
 msgstr ""
 
-#: ../templates/wg/general.php:39
-msgid "Recommended if you wish to forward network traffic from the wg0 interface to clients connected on a desired interface. The active AP interface is the default."
+#: ../includes/functions.php:1006
+msgid "Mem Use"
 msgstr ""
 
-#: ../templates/wg/general.php:41
-msgid "This option adds <strong>iptables</strong> <code>Postup</code> and <code>PostDown</code> rules for the interface selected below."
+#: ../includes/functions.php:1009
+msgid "CPU"
 msgstr ""
 
-#: ../templates/wg/general.php:50
-msgid "Enable kill switch"
+#: ../includes/provider.php:65
+#, php-format
+msgid "Expected %s binary not found at: %s"
 msgstr ""
 
-#: ../templates/wg/general.php:51
-msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
+#: ../includes/provider.php:66
+#, php-format
+msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> for %s's Linux CLI."
 msgstr ""
 
-#: ../templates/wg/general.php:53
-msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
+#: ../includes/provider.php:70
+#, php-format
+msgid "Unable to execute %s binary found at: %s"
 msgstr ""
 
-#: ../templates/wg/general.php:62
-msgid "Select WireGuard configuration file (.conf)"
+#: ../includes/provider.php:71
+msgid "Check that binary is executable and permissions exist in raspap.sudoers"
 msgstr ""
 
-#: ../templates/wg/general.php:72
-msgid "Create a local WireGuard config"
+#: ../includes/provider.php:119
+#, php-format
+msgid "Attempting to connect to %s"
 msgstr ""
 
-#: ../templates/wg/general.php:76
-msgid "Enable server"
+#: ../includes/provider.php:318
+msgid "Select a country..."
 msgstr ""
 
-#: ../templates/wg/general.php:80
-msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
+#: ../includes/provider.php:387
+#, php-format
+msgid "Account information not available from %s's Linux CLI."
 msgstr ""
 
-#: ../templates/wg/general.php:81
-msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
+#: ../includes/footer.php:6
+#, php-format
+msgid "Created by the <a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
 msgstr ""
 
-#: ../templates/wg/general.php:88
-msgid "Local public key"
+#: ../includes/footer.php:6
+msgid "RaspAP Team"
 msgstr ""
 
-#: ../templates/wg/logging.php:6
-msgid "Enable this option to display an updated <code>wg-quick</code> debug log."
+#: ../includes/footer.php:9
+msgid "Thanks for being an Insider"
 msgstr ""
 
-#: ../templates/wg/configs.php:6
-msgid "Currently available WireGuard file configurations are displayed below."
+#: ../includes/footer.php:17
+msgid "Session Expired"
 msgstr ""
 
-#: ../templates/wg/configs.php:7
-msgid "Activating a configuration will restart the <code>wg-quick</code> service."
+#: ../includes/footer.php:20
+msgid "Your session has expired. Please login to continue."
 msgstr ""
 
 #: ../ajax/networking/get_nl80211_band.php:37
@@ -3305,24 +3328,3 @@ msgstr ""
 #, php-format
 msgid "The selected interface (%s) does not support wireless mode operation."
 msgstr ""
-
-#: ../app/lib/signprint.php:20
-msgid "Printable Wi-Fi sign"
-msgstr "Tulostettava Wi-Fi-kyltti"
-
-#: ../app/lib/signprint.php:37
-msgid "Wi-Fi Connect"
-msgstr "Wi-Fi Connect"
-
-#: ../app/lib/signprint.php:54
-msgid "To connect with your phone or tablet, scan the QR code above with your camera app."
-msgstr "Voit muodostaa yhteyden puhelimellasi tai tablet-laitteellasi skannaamalla yllä olevan QR-koodin kamerasovelluksella."
-
-#: ../app/lib/signprint.php:55
-msgid "For other devices, use the login credentials below."
-msgstr "Käytä muita laitteita varten alla olevia kirjautumistietoja."
-
-#: ../app/lib/signprint.php:65
-msgid "Network"
-msgstr "Verkko"
-
