@@ -4,8 +4,9 @@
 # @author billz
 # license: GNU General Public License v3.0
 
-# Exit on error
+# Exit on error, including pipe failures
 set -o errexit
+set -o pipefail
 
 readonly raspap_user="www-data"
 
@@ -166,19 +167,30 @@ case "$action" in
 
     # add repository GPG key if it doesn't already exist
     if [ ! -f "$keyring" ]; then
+        mkdir -p "$(dirname "$keyring")"
         echo "Downloading GPG key from $key_url..."
-        curl -fsSL "$key_url" | sudo tee "$keyring" > /dev/null || { echo "Error: Failed to download GPG key."; exit 1; }
+        curl -fsSL "$key_url" | tee "$keyring" > /dev/null || { echo "Error: Failed to download GPG key."; exit 1; }
     else
         echo "Repository GPG key already exists at $keyring"
     fi
 
     # add repository list if not present
     if [ ! -f "$list_file" ]; then
-        echo "Adding repository $repo to sources list"
-        curl -fsSL "$repo" | sudo tee "$list_file" > /dev/null || { echo "Error: Failed to add repository to sources list."; exit 1; }
-        update_required=1
+      echo "Adding repository $repo to sources list"
+      if [[ "$repo" =~ ^https?:// ]]; then
+        # URL — download and write to sources list
+        curl -fsSL "$repo" | tee "$list_file" > /dev/null || { echo "Error: Failed to add repository to sources list."; exit 1; }
+      else
+        # Local file path — ensure it exists then copy
+        if [ ! -f "$repo" ]; then
+          echo "Error: Repository file not found: $repo"
+          exit 1
+        fi
+        cp "$repo" "$list_file" || { echo "Error: Failed to copy repository file to sources list."; exit 1; }
+      fi
+      update_required=1
     else
-        echo "Repository already exists in sources list"
+      echo "Repository already exists in sources list"
     fi
 
     # update apt package list if required
@@ -199,7 +211,7 @@ case "$action" in
     echo "  config <source <destination>                Applies a config file"
     echo "  javascript <source> <destination>           Applies a JavaScript file"
     echo "  plugin <source> <destination>               Copies a plugin directory"
-    echo "  keys <key_url> <keyring> <repo> <sources>   Installs a GPG key for a third-party repo"
+    echo "  keys <key_url> <keyring> <repo> <sources>   Installs a GPG key; repo is a URL or local file path"
     exit 1
     ;;
 esac

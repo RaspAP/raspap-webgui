@@ -24,6 +24,7 @@ class PluginInstaller
     private $pluginsManifest;
     private $repoPublic;
     private $helperScriptPath;
+    private $pluginVarsPath;
 
     public function __construct()
     {
@@ -36,6 +37,7 @@ class PluginInstaller
         $this->pluginsManifest = '/plugins/manifest.json';
         $this->repoPublic = $this->getRepository();
         $this->helperScriptPath = RASPI_CONFIG.'/plugins/plugin_helper.sh';
+        $this->pluginVarsPath = $this->rootPath . '/config/plugin_vars.json';
     }
 
     // Returns a single instance of PluginInstaller
@@ -152,6 +154,7 @@ class PluginInstaller
         $tempFile = null;
         $extractDir = null;
         $pluginDir = null;
+        $tempRepoFiles = [];
 
         try {
             if ($installPath === 'plugins-available') {
@@ -181,6 +184,8 @@ class PluginInstaller
             }
 
             $manifest = $this->parseManifest($pluginDir);
+            $varMap = $this->loadVariableMap();
+            $manifest = $this->resolveManifestVariables($manifest, $varMap);
             $this->pluginName = preg_replace('/\s+/', '', $manifest['name']);
             $rollbackStack = []; // Store actions to rollback on failure
 
@@ -190,6 +195,33 @@ class PluginInstaller
                     $rollbackStack[] = 'removeSudoers';
                 }
                 if (!empty($manifest['keys'])) {
+                    foreach ($manifest['keys'] as &$keyEntry) {
+                        $repo = $keyEntry['repo'];
+                        if (strncmp($repo, 'http://', 7) !== 0 && strncmp($repo, 'https://', 8) !== 0) {
+                            if (strncmp($repo, '/', 1) !== 0) {
+                                $repo = $pluginDir . DIRECTORY_SEPARATOR . $repo;
+                            }
+                            $content = file_get_contents($repo);
+                            if ($content === false) {
+                                throw new \Exception("Failed to read repo file: $repo");
+                            }
+                            if (!empty($varMap)) {
+                                $content = str_replace(array_keys($varMap), array_values($varMap), $content);
+                            }
+                            $tmpBase = tempnam(sys_get_temp_dir(), 'plugin_repo_');
+                            if ($tmpBase === false) {
+                                throw new \Exception("Failed to create temp file for repo");
+                            }
+                            unlink($tmpBase);
+                            $tmpRepo = $tmpBase . '.list';
+                            if (file_put_contents($tmpRepo, $content) === false) {
+                                throw new \Exception("Failed to write temp repo file: $tmpRepo");
+                            }
+                            $tempRepoFiles[] = $tmpRepo;
+                            $keyEntry['repo'] = $tmpRepo;
+                        }
+                    }
+                    unset($keyEntry);
                     $this->installRepositoryKeys($manifest['keys']);
                     $rollbackStack[] = 'uninstallRepositoryKeys';
                 }
@@ -234,6 +266,11 @@ class PluginInstaller
             }
             if (isset($extractDir) && is_dir($extractDir)) {
                 $this->deleteDir($extractDir);
+            }
+            foreach ($tempRepoFiles as $tmpRepo) {
+                if (file_exists($tmpRepo)) {
+                    unlink($tmpRepo);
+                }
             }
         }
     }
@@ -498,6 +535,66 @@ class PluginInstaller
             throw new \Exception('Failed to parse manifest.json: ' . json_last_error_msg());
         }
         return $manifest;
+    }
+
+    /**
+     * Loads the token-to-system-value map from plugin_vars.json
+     *
+     * @return array flat map of token => resolved value
+     * @throws \Exception if a required key cannot be resolved
+     */
+    private function loadVariableMap(): array
+    {
+        if (!file_exists($this->pluginVarsPath)) {
+            return [];
+        }
+
+        $json = file_get_contents($this->pluginVarsPath);
+        $entries = json_decode($json, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE || !is_array($entries)) {
+            return [];
+        }
+
+        $map = [];
+        foreach ($entries as $token => $entry) {
+            $parsed = parse_ini_file($entry['file'], false, INI_SCANNER_RAW);
+            $key = $entry['key'];
+            if ($parsed === false || !isset($parsed[$key]) || $parsed[$key] === '') {
+                throw new \Exception(
+                    "Cannot resolve $token: $key not found in {$entry['file']}"
+                );
+            }
+            $map[$token] = $parsed[$key];
+        }
+        return $map;
+    }
+
+    /**
+     * Substitutes tokens in all string values of a manifest array
+     *
+     * @param array $manifest
+     * @param array $varMap pre-loaded variable map
+     * @return array manifest with tokens replaced
+     * @throws \Exception
+     */
+    private function resolveManifestVariables(array $manifest, array $varMap): array
+    {
+        if (empty($varMap)) {
+            return $manifest;
+        }
+
+        $walk = function ($value) use (&$walk, $varMap) {
+            if (is_string($value)) {
+                return str_replace(array_keys($varMap), array_values($varMap), $value);
+            }
+            if (is_array($value)) {
+                return array_map($walk, $value);
+            }
+            return $value;
+        };
+
+        return array_map($walk, $manifest);
     }
 
     /**

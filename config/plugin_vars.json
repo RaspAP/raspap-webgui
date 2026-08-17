@@ -1,0 +1,6 @@
+{
+  "REPLACEME_CODENAME": {
+    "file": "/etc/os-release",
+    "key": "VERSION_CODENAME"
+  }
+}
