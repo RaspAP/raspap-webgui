@@ -1,0 +1,17 @@
+[Unit]
+Description=Switchberry multi-port hardware PTP boundary clock
+After=network-online.target switchberry-apply-timing.service
+Wants=network-online.target switchberry-apply-timing.service
+Conflicts=ptp4l-switchberry-gm.service ptp4l-switchberry-client.service
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/ptp4l -f /etc/switchberry/ptp4l-switchberry-bc.conf -m
+Restart=on-failure
+RestartSec=2
+Nice=-10
+LimitRTPRIO=98
+LimitMEMLOCK=infinity
+
+[Install]
+WantedBy=multi-user.target

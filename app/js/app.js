@@ -31,6 +31,11 @@ import { initSystem_ajax} from "./ajax/system.js";
 import { initPlugins_ajax } from "./ajax/plugins.js";
 import { initAbout_ajax } from "./ajax/about.js";
 
+function importVersionedModule(path) {
+    const version = new URL(import.meta.url).searchParams.get('v');
+    return import(version ? `${path}?v=${encodeURIComponent(version)}` : path);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     console.info("RaspAP app.js initialized");
 
@@ -40,7 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
     switch (path) {
         case '/dashboard':
         case '/':
-            // initDashboard();
+            if (document.querySelector('[data-switchberry-dashboard]')) {
+                importVersionedModule('./ui/dashboard.js').then(({ initDashboard }) => initDashboard());
+            }
             break;
         case '/hostapd_conf':
             initHostapd();
@@ -83,6 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
         case '/login':
             initLogin();
+            break;
+        case '/switchberry':
+            importVersionedModule('./ui/switchberry.js').then(({ initSwitchberry }) => initSwitchberry());
             break;
         default:
             console.warn(`No initialization function defined for path: ${path}`);

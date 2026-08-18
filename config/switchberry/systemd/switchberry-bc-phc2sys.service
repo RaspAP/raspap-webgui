@@ -1,0 +1,17 @@
+[Unit]
+Description=Switchberry boundary-clock PHC to system clock synchronization
+After=ptp4l-switchberry-bc.service
+Requires=ptp4l-switchberry-bc.service
+Conflicts=switchberry-phc2sys.service
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/phc2sys -s /dev/ptp0 -c CLOCK_REALTIME -w -z /run/ptp4l-switchberry-bc -F 0 -m
+Restart=on-failure
+RestartSec=2
+Nice=-10
+LimitRTPRIO=98
+LimitMEMLOCK=infinity
+
+[Install]
+WantedBy=multi-user.target

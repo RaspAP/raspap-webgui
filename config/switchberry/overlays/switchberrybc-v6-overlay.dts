@@ -1,0 +1,184 @@
+// Switchberry V6 boundary-clock plane: KSZ9567 DSA/PTP plus V6 timing I/O.
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835";
+	#address-cells = <2>;
+	#size-cells = <1>;
+
+	fragment@0 {
+		target = <&genet>;
+		__overlay__ {
+			max-speed = <1000>;
+		};
+	};
+
+	fragment@1 {
+		target = <&spi0>;
+		__overlay__ {
+			status = "okay";
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			ksz9567: ethernet-switch@0 {
+				compatible = "microchip,ksz9567";
+				reg = <0>;
+				spi-max-frequency = <500000>;
+				status = "okay";
+
+				ports {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					port@0 {
+						reg = <0>;
+						label = "lan1";
+						phy-mode = "internal";
+					};
+					port@1 {
+						reg = <1>;
+						label = "lan2";
+						phy-mode = "internal";
+					};
+					port@2 {
+						reg = <2>;
+						label = "lan3";
+						phy-mode = "internal";
+					};
+					port@3 {
+						reg = <3>;
+						label = "lan4";
+						phy-mode = "internal";
+					};
+					port@4 {
+						reg = <4>;
+						label = "lan5";
+						phy-mode = "internal";
+					};
+					port@5 {
+						reg = <6>;
+						label = "lan6-sfp";
+						phy-mode = "rgmii";
+						fixed-link {
+							speed = <1000>;
+							full-duplex;
+							pause;
+						};
+					};
+					port@6 {
+						reg = <5>;
+						label = "cpu";
+						phy-mode = "rgmii-txid";
+						rx-internal-delay-ps = <2000>;
+						tx-internal-delay-ps = <2000>;
+						ethernet = <&genet>;
+						fixed-link {
+							speed = <1000>;
+							full-duplex;
+							pause;
+						};
+					};
+				};
+			};
+		};
+	};
+
+	fragment@2 {
+		target-path = "/";
+		__overlay__ {
+			mdio0: mdio {
+				compatible = "virtual,mdio-gpio";
+				gpios = <&gpio 4 0>, <&gpio 17 0>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+				status = "okay";
+
+				phy1: ethernet-phy@2 {
+					compatible = "ethernet-phy-ieee802.3-c22";
+					reg = <2>;
+				};
+			};
+		};
+	};
+
+	fragment@3 {
+		target-path = "/";
+		__overlay__ {
+			#address-cells = <2>;
+			#size-cells = <1>;
+			i2c_muxsel: i2c@9 {
+				reg = <0 9 0>;
+				compatible = "i2c-gpio";
+				gpios = <&gpio 27 2>, <&gpio 22 2>;
+				i2c-gpio,delay-us = <2>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				tca6424: gpio@23 {
+					compatible = "ti,tca6424";
+					reg = <0x23>;
+					gpio-controller;
+					#gpio-cells = <2>;
+					status = "okay";
+					gpio-line-names =
+						"SMA1_MUX_SEL0", "SMA1_MUX_SEL1",
+						"SMA2_MUX_SEL0", "SMA2_MUX_SEL1",
+						"SMA3_MUX_SEL0", "SMA3_MUX_SEL1",
+						"M2_MUX_SEL0", "M2_MUX_SEL1",
+						"KSZ_MUX_SEL0", "KSZ_MUX_SEL1",
+						"CM4_MUX_SEL0", "CM4_MUX_SEL1",
+						"DPLL_CLK0P_SEL", "DPLL_CLK1P_SEL",
+						"DPLL_CLK0N_SEL", "DPLL_CLK1N_SEL",
+						"DPLL_Q9P_SEL", "DPLL_Q10P_SEL";
+				};
+			};
+		};
+	};
+
+	fragment@4 {
+		target = <&gpio>;
+		__overlay__ {
+			spi_bitbang_pins: spi-bitbang-pins {
+				brcm,pins = <2 3 44 45>;
+				brcm,function = <0 0 0 0>;
+				brcm,pull = <0 0 0 0>;
+			};
+		};
+	};
+
+	fragment@5 {
+		target-path = "/";
+		__overlay__ {
+			spi_bitbang: spi-bitbang {
+				compatible = "spi-gpio";
+				pinctrl-names = "default";
+				pinctrl-0 = <&spi_bitbang_pins>;
+				status = "okay";
+				sck-gpios = <&gpio 3 0>;
+				mosi-gpios = <&gpio 44 0>;
+				miso-gpios = <&gpio 2 0>;
+				cs-gpios = <&gpio 45 1>;
+				num-chipselects = <1>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				spidev@0 {
+					compatible = "spidev";
+					reg = <0>;
+					spi-max-frequency = <1000000>;
+					status = "okay";
+				};
+			};
+		};
+	};
+
+	// dtparam=spi=on creates spidev0 by default. The DSA driver owns CS0 in
+	// boundary-clock mode, so suppress the competing userspace SPI device.
+	fragment@6 {
+		target = <&spidev0>;
+		__overlay__ {
+			status = "disabled";
+		};
+	};
+};
