@@ -7,9 +7,14 @@ require_once '../../includes/authenticate.php';
 require_once '../../includes/functions.php';
 
 if (isset($_POST['cfg_id'])) {
-    $ovpncfg_id = escapeshellcmd($_POST['cfg_id']);
-    $ovpncfg_files = pathinfo(RASPI_OPENVPN_CLIENT_LOGIN, PATHINFO_DIRNAME).'/'.$ovpncfg_id.'_*.conf';
-    exec("sudo rm $ovpncfg_files", $return);
+    $ovpncfg_id = $_POST['cfg_id'];
+    // Validate cfg_id: only allow alphanumeric, hyphens, underscores (prevent path traversal and argument injection)
+    if (!preg_match('/^[a-zA-Z0-9_-]+$/', $ovpncfg_id)) {
+        echo json_encode(['return' => 'Invalid configuration ID']);
+        exit;
+    }
+    $ovpncfg_dir = escapeshellarg(pathinfo(RASPI_OPENVPN_CLIENT_LOGIN, PATHINFO_DIRNAME));
+    exec("sudo rm " . $ovpncfg_dir . "/" . escapeshellarg($ovpncfg_id . "_*.conf"), $return);
     $jsonData = ['return'=>$return];
     echo json_encode($jsonData);
 }
