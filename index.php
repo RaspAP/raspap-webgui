@@ -128,6 +128,50 @@ initializeApp();
         </footer>
       </div>
     </div>
+
+    <div id="liveFormModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="liveFormModalTitle" aria-hidden="true"
+      data-bs-backdrop="static" data-bs-keyboard="false">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="height: 100%;">
+          <div class="modal-header">
+              <div class="modal-title" id="liveFormModalTitle">Submitting Live Form</div>
+          </div>
+
+          <div class="modal-body">
+            <div class="progress mb-3" style="height: 20px;">
+              <div id="liveFormModalProgressBar"
+                class="progress-bar progress-bar-striped progress-bar-animated"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+              <span id="liveFormModalCurrentMessage" class="flex-grow-1"></span>
+              <button class="btn btn-sm btn-outline-primary text-nowrap"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#liveFormModalCollapse"
+                  aria-expanded="false"
+                  aria-controls="liveFormModalCollapse"
+                >
+                Show Details
+              </button>
+            </div>
+
+            <div id="liveFormModalCollapse" class="collapse">
+              <div class="card card-body">
+                <pre id="liveFormModalMessageHistory" class="mb-0" style="height: 100px; overflow: auto;"></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer" style="display: none;"></div>
+        </div>
+      </div>
+    </div>
+
     <?php ob_end_flush(); ?>
     <!-- jQuery -->
     <script src="dist/jquery/jquery.min.js?v=<?= filemtime('dist/jquery/jquery.min.js'); ?>"></script>

@@ -3,6 +3,7 @@
 require_once 'includes/config.php';
 
 use RaspAP\Networking\Hotspot\WiFiManager;
+
 $wifi = new WiFiManager();
 $wifi->getWifiInterface();
 
@@ -12,33 +13,8 @@ $wifi->getWifiInterface();
 function DisplayOpenVPNConfig()
 {
     $status = new \RaspAP\Messages\StatusMessage;
-    if (!RASPI_MONITOR_ENABLED) {
-        if (isset($_POST['SaveOpenVPNSettings'])) {
-            if (isset($_POST['authUser'])) {
-                $authUser = strip_tags(trim($_POST['authUser']));
-            }
-            if (isset($_POST['authPassword'])) {
-                $authPassword = strip_tags(trim($_POST['authPassword']));
-            }
-            if (is_uploaded_file( $_FILES["customFile"]["tmp_name"])) {
-                $return = SaveOpenVPNConfig($status, $_FILES['customFile'], $authUser, $authPassword);
-            }
-        } elseif (isset($_POST['StartOpenVPN'])) {
-            $status->addMessage('Attempting to start OpenVPN', 'info');
-            exec('sudo /bin/systemctl start openvpn-client@client', $return);
-            exec('sudo /bin/systemctl enable openvpn-client@client', $return);
-            foreach ($return as $line) {
-                $status->addMessage($line, 'info');
-            }
-        } elseif (isset($_POST['StopOpenVPN'])) {
-            $status->addMessage('Attempting to stop OpenVPN', 'info');
-            exec('sudo /bin/systemctl stop openvpn-client@client', $return);
-            exec('sudo /bin/systemctl disable openvpn-client@client', $return);
-            foreach ($return as $line) {
-                $status->addMessage($line, 'info');
-            }
-        }
-    }
+
+    \RaspAP\UI\LiveForm::loadStatusMessages($status);
 
     exec('pidof openvpn', $openvpnstatus, $ovpn_return);
     $serviceStatus = ($ovpn_return === 0) ? "up" : "down";
@@ -56,14 +32,8 @@ function DisplayOpenVPNConfig()
     $conf_default =  empty($ret) ? "none" : $ret[0];
 
     $logEnable = 0;
-    if (!empty($_POST) && !isset($_POST['log-openvpn'])) {
-        $logOutput = "";
-        $f = @fopen("/tmp/openvpn.log", "r+");
-        if ($f !== false) {
-            ftruncate($f, 0);
-            fclose($f);
-        }
-    } elseif (isset($_POST['log-openvpn']) || filesize('/tmp/openvpn.log') >0) {
+    $logOutput = "";
+    if (file_exists('/tmp/openvpn.log') && filesize('/tmp/openvpn.log') > 0) {
         $logEnable = 1;
         exec("sudo /etc/raspap/openvpn/openvpnlog.sh", $logOutput);
         $logOutput = file_get_contents('/tmp/openvpn.log');
@@ -73,7 +43,6 @@ function DisplayOpenVPNConfig()
         "openvpn", compact(
             "status",
             "serviceStatus",
-            "openvpnstatus",
             "logEnable",
             "logOutput",
             "public_ip",

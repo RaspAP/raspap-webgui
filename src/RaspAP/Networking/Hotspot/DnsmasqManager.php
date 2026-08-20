@@ -13,6 +13,8 @@ declare(strict_types=1);
 namespace RaspAP\Networking\Hotspot;
 
 use RaspAP\Messages\StatusMessage;
+use function getDefaultNetValue;
+use function validateMac;
 
 class DnsmasqManager
 {
