@@ -30,11 +30,6 @@ readonly rulesv4="/etc/iptables/rules.v4"
 readonly blocklist_hosts="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
 readonly blocklist_domains="https://big.oisd.nl/dnsmasq"
 
-if [ "$insiders" == 1 ]; then
-    repo="RaspAP/raspap-insiders"
-    branch=${RASPAP_INSIDERS_LATEST}
-fi
-
 #Use ssh IF $ssh is set AND $username and $acctoken IS NOT set
 if [ -n "$username" ] && [ -n "$acctoken" ]; then
     git_source_url="https://${username}:${acctoken}@github.com/$repo"
@@ -275,10 +270,8 @@ function _install_dependencies() {
         sudo chmod +x /usr/local/bin/isoquery || _install_status 1 "Failed to set executable permissions on isoquery"
     fi
 
-    if [ "$insiders" == 1 ]; then
-        network_tools="curl dnsutils nmap"
-        echo "${network_tools} will be installed from the main deb sources list"
-    fi
+    network_tools="curl dnsutils nmap"
+    echo "${network_tools} will be installed from the main deb sources list"
 
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
@@ -651,11 +644,6 @@ function _download_latest_files() {
         echo "Temporary download destination $source_dir exists. Removing..."
         rm -rf "$source_dir"
     fi
-    if [ "$insiders" == 1 ] && [ "$ssh" != 1 ] && [[ -z "$username"  ||  -z "$acctoken" ]]; then
-        _install_status 3
-        _install_status 0 "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
-    fi
-
     git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url $source_dir || clone=false
     git -C $source_dir submodule update --remote plugins || clone=false
 
@@ -1073,34 +1061,25 @@ function _optimize_php() {
 
 # search for optional installation files names install_feature_*.sh
 function _install_extra_features() {
-    if [ "$insiders" == 1 ]; then
-        _install_log "Installing additional features (Insiders)"
-        for feature in $(ls $webroot_dir/installers/install_feature_*.sh) ; do
-           source $feature
-           f=$(basename $feature)
-           func="_${f%.*}"
-           if declare -f -F $func > /dev/null; then
-                $func || _install_status 1 "Unable to install feature ($func)"
-            else
-                _install_status 1 "Install file $f is missing install function $func"
-           fi
-       done
-    fi
+    _install_log "Installing additional features"
+    for feature in $(ls $webroot_dir/installers/install_feature_*.sh) ; do
+       source $feature
+       f=$(basename $feature)
+       func="_${f%.*}"
+       if declare -f -F $func > /dev/null; then
+            $func || _install_status 1 "Unable to install feature ($func)"
+        else
+            _install_status 1 "Install file $f is missing install function $func"
+       fi
+   done
 }
 
 function _install_complete() {
     _install_log "Installation completed"
-    if [ "$repo" == "RaspAP/raspap-insiders" ]; then
-        echo -e "${ANSI_RASPBERRY}"
-        echo "Thank you for supporting this project as an Insider!"
-        echo -e "${ANSI_RESET}"
-    else
-        echo "Join RaspAP Insiders for early access to exclusive features!"
-        echo -e "${ANSI_RASPBERRY}"
-        echo "> https://docs.raspap.com/insiders/"
-        echo "> https://github.com/sponsors/RaspAP/"
-        echo -e "${ANSI_RESET}"
-    fi
+    echo "Thank you for supporting this project!"
+    echo -e "${ANSI_RASPBERRY}"
+    echo "> https://github.com/sponsors/RaspAP/"
+    echo -e "${ANSI_RESET}"
     if [ "$assume_yes" == 0 ]; then
         # Prompt to reboot if wired ethernet (eth0) is connected.
         # With default_configuration this will create an active AP on restart.
