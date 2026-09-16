@@ -52,12 +52,13 @@ function DisplayWireGuardConfig()
     $wg_srvport = ($conf['ListenPort'] ?? '') === ''
         ? getDefaultNetValue('wireguard','server','ListenPort')
         : $conf['ListenPort'];
-    $wg_srvipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','server','Address') : $conf['Address'];
-    $wg_srvdns = ($conf['DNS'] == '') ? getDefaultNetValue('wireguard','server','DNS') : $conf['DNS'];
+    $wg_srvipaddress = ($conf['Address'] ?? '') === '' ? getDefaultNetValue('wireguard','server','Address') : $conf['Address'];
+    $wg_srvdns = ($conf['DNS'] ?? '') === '' ? getDefaultNetValue('wireguard','server','DNS') : $conf['DNS'];
     if (is_array($wg_srvdns)) {
         $wg_srvdns = implode(', ', $wg_srvdns);
     }
     $wg_peerpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-peer-public.key', $return);
+    $wg_senabled = false;
     if (sizeof($conf) >0) {
         $wg_senabled = true;
     }
@@ -65,11 +66,12 @@ function DisplayWireGuardConfig()
     // fetch client config
     exec('sudo cat '. RASPI_WIREGUARD_PATH.'client.conf', $preturn);
     $conf = ParseConfig($preturn, $parseFlag);
-    $wg_pipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','peer','Address') : $conf['Address'];
-    $wg_plistenport = ($conf['ListenPort'] == '') ? getDefaultNetValue('wireguard','peer','ListenPort') : $conf['ListenPort'];
-    $wg_pendpoint = ($conf['Endpoint'] == '') ? getDefaultNetValue('wireguard','peer','Endpoint') : $conf['Endpoint'];
-    $wg_pallowedips = ($conf['AllowedIPs'] == '') ? getDefaultNetValue('wireguard','peer','AllowedIPs') : $conf['AllowedIPs'];
-    $wg_pkeepalive = ($conf['PersistentKeepalive'] == '') ? getDefaultNetValue('wireguard','peer','PersistentKeepalive') : $conf['PersistentKeepalive'];
+    $wg_pipaddress = ($conf['Address'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','Address') : $conf['Address'];
+    $wg_plistenport = ($conf['ListenPort'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','ListenPort') : $conf['ListenPort'];
+    $wg_pendpoint = ($conf['Endpoint'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','Endpoint') : $conf['Endpoint'];
+    $wg_pallowedips = ($conf['AllowedIPs'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','AllowedIPs') : $conf['AllowedIPs'];
+    $wg_pkeepalive = ($conf['PersistentKeepalive'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','PersistentKeepalive') : $conf['PersistentKeepalive'];
+    $wg_penabled = false;
     if (sizeof($conf) >0) {
         $wg_penabled = true;
     }
@@ -213,12 +215,13 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
             }
         }
 
-        // Move processed file from /tmp and create symlink
-        $client_wg = RASPI_WIREGUARD_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'.conf';
+        // Sanitize, move processed file from /tmp and create symlink
+        $stem = preg_replace('/[^A-Za-z0-9\-_]/', '_', pathinfo($file['name'], PATHINFO_FILENAME));
+        $client_wg = RASPI_WIREGUARD_PATH.$stem.'.conf';
         chmod($tmp_wgconfig, 0644);
-        system("sudo mv $tmp_wgconfig $client_wg", $return);
+        system("sudo mv ".escapeshellarg($tmp_wgconfig)." ".escapeshellarg($client_wg), $return);
         system("sudo rm ".RASPI_WIREGUARD_CONFIG, $return);
-        system("sudo ln -s $client_wg ".RASPI_WIREGUARD_CONFIG, $return);
+        system("sudo ln -s ".escapeshellarg($client_wg)." ".RASPI_WIREGUARD_CONFIG, $return);
 
         if ($return ==0) {
             $status->addMessage('WireGuard configuration uploaded successfully', 'info');
