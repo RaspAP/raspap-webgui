@@ -255,10 +255,12 @@ function isAssoc($arr)
  * @param string $id:       $options is an associative array this should be the key
  * @param string $event:    onChange event (optional)
  * @param string $disabled  (optional)
+ * @param string $addclass  additonal classes for select (optional)
+ * @param string $placehold placeholder text (optional)
  */
-function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null)
+function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null, $addclass = null, $placehold = null)
 {
-    echo '<select class="form-select" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
+    echo '<select class="form-select ' .$addclass.'" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
     if (isset($id)) {
         echo ' id="' . htmlspecialchars($id, ENT_QUOTES) .'"';
     }
@@ -266,6 +268,9 @@ function SelectorOptions($name, $options, $selected = null, $id = null, $event =
         echo ' onChange="' . htmlspecialchars($event, ENT_QUOTES).'()"';
     }
     echo '>' , PHP_EOL;
+    if (isset($placehold)) {
+        echo '<option disabled selected>'.htmlspecialchars($placehold, ENT_QUOTES).'</option>'.PHP_EOL;
+    }
     foreach ($options as $opt => $label) {
         $select = '';
         $key = isAssoc($options) ? $opt : $label;
@@ -960,6 +965,24 @@ function getUserAvatar()
         $avatar .= '<i class="fas fa-user-circle text-muted fa-3x"></i>';
     }
     return $avatar;
+}
+
+/**
+ * Determines if a given interface name is configured with
+ * predictable naming
+ * @param string $interface
+ * @return boolean
+ */
+function isPredictableIfaceName($interface)
+{
+    $pattern = '/^(eth|en|wlan|wlp|eno)[0-9]+$/';
+    $enx_pattern = '/^enx|^wlx[0-9a-fA-F]{12}$/';
+    if (preg_match($pattern, $interface) ||
+        preg_match($enx_pattern, $interface)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /**

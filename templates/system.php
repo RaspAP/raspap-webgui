@@ -130,6 +130,62 @@
   </div>
 </div>
 
+<!-- modal inspect-adapters-->
+<div class="modal fade" id="adaptersModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="ModalLabel"><i class="fas fa-magnifying-glass me-2"></i><?php echo _("Inspect adapters"); ?></div>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="mb-3 col-md-6">
+            <label for="code">Choose a network interface to inspect</label>
+              <?php SelectorOptions('interface', $interfaces, null, 'cbxadpateriface', 'inspectInterface', null, null, 'Select an interface...'); ?>
+          </div>
+        </div>
+        <table class="table table-bordered table-hover mb-3">
+          <tbody id="adaptersTableBody">
+          </tbody>
+        </table>
+        <div id="adaptersButtons" class="d-flex flex-wrap gap-2">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <span id="healthcheck-status" class="check-hidden ms-2 mt-1"><i class="fas fa-check"></i></span>
+        <button class="btn btn btn-outline-primary mx-3" onclick="testAdapter()">
+          <i class="fa fa-stethoscope ms-1 me-2"></i><?php echo _("Adapter health check"); ?>
+        </button>
+        <button type="button" data-message="<?php echo _("Close"); ?>" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Close"); ?></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal test-adapter -->
+<div class="modal fade" id="adapterTestModal" tabindex="-1" role="dialog" aria-labelledby="adapterTestTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="adapterTestTitle"><i class="fas fa-stethoscope ms-1 me-2"></i></div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-sm table-bordered align-middle" id="adapterTestResults">
+          <thead class="table-light">
+            <tr>
+              <th>Check</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- modal install-plugin -->
 <div class="modal fade" id="install-user-plugin" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
