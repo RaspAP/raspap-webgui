@@ -16,14 +16,16 @@ import { initWireGuard } from "./ui/wg.js";
 import { initRestApi } from "./ui/restapi.js";
 import { initSystem } from "./ui/system.js";
 import { initAbout } from "./ui/about.js";
+import { initAuth } from "./ui/auth.js";
 import { initLogin } from "./ui/login.js";
 
 // ajax handlers
 import { initHostapd_ajax } from "./ajax/hostapd.js";
 import { initDHCP_ajax } from "./ajax/dhcp.js";
 import { initAdblock_ajax } from "./ajax/adblock.js";
-import { initWPA_ajax } from "./ajax/wpa.js"; 
+import { initWPA_ajax } from "./ajax/wpa.js";
 import { initNetworking_ajax } from "./ajax/networking.js";
+import { initAuth_ajax } from "./ajax/auth.js";
 import { initOpenVPN_ajax } from "./ajax/openvpn.js";
 import { initWireGuard_ajax } from "./ajax/wg.js";
 import { initSession_ajax } from "./ajax/session.js";
@@ -80,6 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
         case '/about':
             initAbout();
             initAbout_ajax();
+            break;
+        case '/auth_conf':
+            initAuth();
+            initAuth_ajax();
             break;
         case '/login':
             initLogin();

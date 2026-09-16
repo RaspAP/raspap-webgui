@@ -63,11 +63,12 @@ class HTTPAuth
      * Attempt to login a user with supplied credentials
      * @var string $user
      * @var string $pass
+     * @var string $role optional
      * return boolean
      */
-    public function login(string $user, string $pass)
+    public function login(string $user, string $pass, ?string $role = null)
     {
-        if ($this->isValidCredentials($user, $pass)) {
+        if ($this->isValidCredentials($user, $pass, $role)) {
             $_SESSION['user_id'] = $user;
             return true;
         }
@@ -109,38 +110,71 @@ class HTTPAuth
                 fclose($auth_details);
             }
         }
+        if (file_exists(RASPI_CONFIG . '/limited.auth')) {
+            if ($auth_details = fopen(RASPI_CONFIG . '/limited.auth', 'r')) {
+                $config['limited_user'] = trim(fgets($auth_details));
+                $config['limited_pass'] = trim(fgets($auth_details));
+                fclose($auth_details);
+            }
+        }
         return $config;
+    }
+
+    /*
+     * Gets the current non-privileged user setting
+     * return boolean $nonprivilegedBit
+     */
+    public function isNonPrivileged()
+    {
+        $nonprivilegedBit = 0;
+        $file = RASPI_CONFIG . '/raspap.auth';
+        if (file_exists($file)) {
+            $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            if (count($lines) == 3) {
+                $nonprivilegedBit = trim($lines[2]);
+            }
+        }
+        return $nonprivilegedBit;
     }
 
     /*
      * Validates a set of credentials
      * @var string $user
      * @var string $pass
+     * @var string $role optional
      * return boolean
      */
-    protected function isValidCredentials(string $user, string $pass)
+    protected function isValidCredentials(string $user, string $pass, ?string $role = null)
     {
-        return $this->validateUser($user) && $this->validatePassword($pass);
+        return $this->validateUser($user, $role) && $this->validatePassword($pass, $role);
     }
 
     /**
      * Validates a user
      *
      * @param string $user
+     * @param string $role optional
      */
-    protected function validateUser(string $user)
+    protected function validateUser(string $user, ?string $role = null)
     {
-        return $user == $this->auth_config['admin_user'];
+        if ($role === 'admin') {
+            return $user === $this->auth_config['admin_user'];
+        }
+        return $user == $this->auth_config['limited_user'];
     }
 
     /**
      * Validates a password
      *
      * @param string $pass
+     * @param string $role optional
      */
-    protected function validatePassword(string $pass)
+    protected function validatePassword(string $pass, ?string $role = null)
     {
-        return password_verify($pass, $this->auth_config['admin_pass']);
+        if ($role === 'admin') {
+            return password_verify($pass, $this->auth_config['admin_pass']);
+        }
+        return password_verify($pass, $this->auth_config['limited_pass']);
     }
 
 }

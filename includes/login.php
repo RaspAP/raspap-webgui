@@ -10,6 +10,7 @@ function DisplayLogin()
 {
     // initialize auth object
     $auth = new \RaspAP\Auth\HTTPAuth;
+    $role = !$auth->isNonPrivileged() ? 'admin' : null;
     $status = null;
     $redirectUrl = null;
 
@@ -20,7 +21,7 @@ function DisplayLogin()
             $username = $_POST['username'];
             $password = $_POST['password'];
             $redirectUrl = $_POST['redirect-url'];
-            if ($auth->login($username, $password)) {
+            if ($auth->login($username, $password, $role)) {
                 $config = $auth->getAuthConfig();
                 header('Location: ' . $redirectUrl);
                 die();

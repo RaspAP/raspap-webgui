@@ -943,6 +943,49 @@ function lightenColor($color, $percent)
     return sprintf("#%02x%02x%02x", $r, $g, $b);
 }
 
+/**
+ * Returns a custom user avatar or placeholder
+ * @return string $avatar
+ */
+function getUserAvatar()
+{
+    $userId = htmlspecialchars($_SESSION['user_id'] ?? null, ENT_QUOTES);
+    $avatarPath = $_COOKIE['avatar'] ?? null;
+
+    if ($avatarPath && file_exists($avatarPath)) {
+        $avatar = '<span class="text-muted small">' . $userId . '</span>';
+        $avatar .= '<img class="avatar topbar-avatar" src="' . $avatarPath . '">';
+    } else {
+        $avatar = '<span class="text-muted small">' . $userId . '</span>';
+        $avatar .= '<i class="fas fa-user-circle text-muted fa-3x"></i>';
+    }
+    return $avatar;
+}
+
+/**
+ * Sets a configuration option value
+ * @param string $option
+ * @param string $value
+ * @return boolean
+ */
+function setConfigurationOption($option, $value)
+{
+    $file = $_SERVER['DOCUMENT_ROOT'].'/includes/config.php';
+    $content = file_get_contents($file);
+    $pattern = "/define\('$option', (true|false)\);/";
+    if (preg_match($pattern, $content)) {
+        $replace = "define('$option', $value);";
+        $tmp = preg_replace($pattern, $replace, $content);
+        if (file_put_contents($file, $tmp) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
 function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cputemp_led, $cputemp)
 {
     ?>
