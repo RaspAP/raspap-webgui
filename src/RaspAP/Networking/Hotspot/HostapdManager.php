@@ -30,6 +30,22 @@ class HostapdManager
     }
 
     /**
+     * Returns available hostapd log levels
+     *
+     * @return array
+     */
+    public static function getLogLevels(): array
+    {
+        return [
+            0 => '0 - '._('Verbose debugging'),
+            1 => '1 - '._('Debugging'),
+            2 => '2 - '._('Informational'),
+            3 => '3 - '._('Notification'),
+            4 => '4 - '._('Warning')
+        ];
+    }
+
+    /**
      * Retrieves current hostapd config
      *
      * @return array
@@ -256,8 +272,11 @@ class HostapdManager
 
         // add logging configuration if enabled
         if (!empty($params['log_enable'])) {
+            // validate + sanitize log level (0-4)
+            $logLevel = isset($params['log_level']) ? (int)$params['log_level'] : 2;
+            $logLevel = max(0, min(4, $logLevel)); // clamp to valid range
             $config[] = 'logger_syslog=-1';
-            $config[] = 'logger_syslog_level=0';
+            $config[] = 'logger_syslog_level=' . $logLevel;
         }
 
         // optional additional user config
@@ -321,6 +340,7 @@ class HostapdManager
         }
 
         $logEnable = isset($post['logEnable']) ? 1 : 0;
+        $logLevel = isset($post['logLevel']) ? (int)$post['logLevel'] : 2;
         $effectiveWifiAPEnable = $bridgedEnable === 1 ? $prevWifiAPEnable : $wifiAPEnable;
 
         return [
@@ -328,7 +348,8 @@ class HostapdManager
             'BridgedDynamic' => $bridgedDynamic,
             'RepeaterEnable' => $repeaterEnable,
             'WifiAPEnable'   => $effectiveWifiAPEnable,
-            'LogEnable'      => $logEnable
+            'LogEnable'      => $logEnable,
+            'LogLevel'       => $logLevel
         ];
     }
 
@@ -446,6 +467,7 @@ class HostapdManager
         $cfg = [
             'WifiInterface'  => $apIface,
             'LogEnable'      => $states['LogEnable'] ?? false,
+            'LogLevel'       => $states['LogLevel'] ?? 2,
             'WifiAPEnable'   => $states['WifiAPEnable'] ?? false,
             'BridgedEnable'  => $states['BridgedEnable'] ?? false,
             'BridgedDynamic' => $states['BridgedDynamic'] ?? false,
