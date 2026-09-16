@@ -246,6 +246,9 @@ class HostapdManager
         $config[] = 'wpa_pairwise=' . ($params['wpa_pairwise'] ?? '');
         $config[] = 'country_code=' . ($params['country_code'] ?? '');
         $config[] = 'ignore_broadcast_ssid=' . ($params['hiddenSSID'] ?? 0);
+        if (!empty($params['apisolate'])) {
+            $config[] = 'ap_isolate=' . $params['apisolate'];
+        }
 
         if (!empty($params['max_num_sta'])) {
             $config[] = 'max_num_sta=' . (int)$params['max_num_sta'];
