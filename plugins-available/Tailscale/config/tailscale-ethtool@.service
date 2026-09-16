@@ -1,0 +1,12 @@
+[Unit]
+Description=Set ethtool options for %I (used by Tailscale)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/ethtool -K %I rx-udp-gro-forwarding on rx-gro-list off
+
+[Install]
+WantedBy=multi-user.target
+

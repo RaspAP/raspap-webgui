@@ -33,9 +33,7 @@ case "$action" in
   "packages")
     [ $# -lt 1 ] && { echo "Usage: $0 packages <apt_packages...>"; exit 1; }
 
-    echo "Installing APT packages..."
     for package in "$@"; do
-      echo "Installing package: $package"
       apt-get install -y "$package" || { echo "Error: Failed to install $package."; exit 1; }
     done
     echo "OK"
@@ -88,7 +86,7 @@ case "$action" in
 
     mkdir -p "$(dirname "$destination")"
     cp "$source" "$destination"
-    chown -R $raspap_user:$raspap_user "$destination"
+    chown -R "$raspap_user:$raspap_user" "$destination"
 
     echo "OK"
     ;;
