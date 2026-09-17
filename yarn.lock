@@ -2107,9 +2107,9 @@ ignore@^5.1.1:
   integrity sha512-MzbUSahkTW1u7JpKKjY7LCARd1fU5W2rLdxlM4kdkayuCwZImjkpluF9CM1aLewYJguPDqewLam18Y6AU69A8A==
 
 immutable@^3:
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.3.tgz#0a8d2494a94d4b2d4f0e99986e74dd25d1e9a859"
-  integrity sha512-AUY/VyX0E5XlibOmWt10uabJzam1zlYjwiEgQSDc5+UIkFNaF9WM0JxXKaNMGf+F/ffUF+7kRKXM9A7C0xXqMg==
+  version "3.8.4"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.4.tgz#af27c93537f09629c9d154a173cd55f7bfdc75fd"
+  integrity sha512-ZQv17KolYrYmsDoDB8N67zhIKsNi9mGYlk96y/yuxyAqJB2hLzSGSM7k/sB0/ZvO4kx27U9+fBeD/XlLGh/uXQ==
 
 in-publish@^2.0.0:
   version "2.0.1"
