@@ -1,0 +1,26 @@
+{
+  "name": "TShark",
+  "version": "v1.0.0",
+  "description": "A minimal Wireshark CLI packet analyzer for RaspAP",
+  "author": "Bill Z",
+  "author_uri": "https://github.com/billz",
+  "plugin_uri": "https://github.com/RaspAP/Wireshark",
+  "plugin_docs": "http://docs.raspap.com/Wireshark",
+  "license": "GPL-3.0",
+  "namespace": "RaspAP\\Plugins\\Wireshark",
+  "default_locale": "en_US",
+  "dependencies": {
+    "tshark": "4.4.7"
+  },
+  "icon": "ra-wireshark",
+  "install_path": "plugins-available",
+  "manifest_version": "1.0",
+  "sudoers": [
+    "www-data ALL=(ALL) NOPASSWD:/usr/bin/tshark *",
+    "www-data ALL=(ALL) NOPASSWD:/bin/cat /tmp/*.pcap",
+    "www-data ALL=(ALL) NOPASSWD:/bin/cat /tmp/*.pcapng",
+    "www-data ALL=(ALL) NOPASSWD:/bin/rm /tmp/*.pcap",
+    "www-data ALL=(ALL) NOPASSWD:/bin/rm /tmp/*.pcapng"
+  ]
+}
+

@@ -11,10 +11,25 @@
   </div>
 
   <div class="row">
+    <div class="form-group col-md-6 mb-3">
+        <label for="logLevel"><?php echo _("Log level"); ?></label>
+        <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Higher levels reduce log verbosity. Informational is recommended."); ?>"></i>
+        <select class="form-select" id="logLevel" name="logLevel">
+        <?php foreach ($logLevels as $value => $label): ?>
+          <option value="<?php echo $value; ?>"
+            <?php echo ($arrHostapdConf['LogLevel'] ?? 2) == $value ? 'selected' : ''; ?>>
+            <?php echo $label; ?>
+          </option>
+        <?php endforeach; ?>
+    </select>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="mb-3 col-md-8 mt-2">
       <?php
       if ($arrHostapdConf['LogEnable'] == 1) {
-          echo '<textarea class="logoutput text-secondary" id="hostapd-log">'.htmlspecialchars(implode("\n", $logOutput), ENT_QUOTES).'</textarea>';
+          echo '<textarea class="logoutput text-secondary" readonly id="hostapd-log">'.htmlspecialchars(implode("\n", $logOutput), ENT_QUOTES).'</textarea>';
       } else {
           echo '<textarea class="logoutput my-3"></textarea>';
       }
