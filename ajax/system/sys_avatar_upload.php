@@ -30,11 +30,14 @@ if (isset($_POST['csrf_token'])) {
                 if ($mime !== false && in_array(image_type_to_extension($mime, false), $allowedExtensions, true)) {
                     $fileName = hash("md5", uniqid()) . "." . $fileExtension;
                     $targetFile = rtrim(trim(IMAGE_DIR), '/') . '/' . $fileName;
-                    move_uploaded_file($fileUpload['tmp_name'], $targetFile);
-                    $response['status'] = 'ok';
-                    $response['message'] = "User avatar uploaded successfully";
-                    $response['uploaded'] = getAvatarUrl($fileName);
-                    setcookie("avatar", getAvatarUrl($fileName), time()+60*60*24*30, '/');
+                    if (move_uploaded_file($fileUpload['tmp_name'], $targetFile)) {
+                        $response['status'] = 'ok';
+                        $response['message'] = "User avatar uploaded successfully";
+                        $response['uploaded'] = getAvatarUrl($fileName);
+                        setcookie("avatar", getAvatarUrl($fileName), time()+60*60*24*30, '/');
+                    } else {
+                        $response['message'] = "Unable to save uploaded avatar, check permissions on " . IMAGE_DIR;
+                    }
                 } else {
                     $response['message'] = "Only files of type JPG, GIF and PNG are allowed";
                 }
