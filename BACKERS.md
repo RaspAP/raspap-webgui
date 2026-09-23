@@ -145,7 +145,7 @@ We're grateful to these sponsors who make this project sustainable. Your financi
 
 ## The Alumni Lounge
 
-The private Insiders repository hasn't gone away, but its purpose has changed. It's now the **Alumni Lounge**, a space for sponsors past, present, and future to talk with the RaspAP team directly, see roadmap discussions and UI mockups early, and weigh in before things go public. Current and former Insiders sponsors keep their access. If you're a new sponsor, reach out at [sponsors@raspap.com](mailto:sponsors@raspap.com) to be added.
+The private Insiders repository hasn't gone away, but its purpose has changed. It's now the **Alumni Lounge**, a space for sponsors past, present, and future to talk with the RaspAP team directly, see roadmap discussions and UI mockups early, and weigh in before things go public. Current and former Insiders sponsors keep their access. New sponsors are added automatically by GitHub. If you didn't receive an invite to the Lounge after sponsoring, drop a note to [sponsors@raspap.com](mailto:sponsors@raspap.com) to be added.
 
 ## Quarterly giving
 
