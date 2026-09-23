@@ -379,6 +379,28 @@ class Tailscale implements PluginInterface
     }
 
     /**
+     * Polls for an AuthURL after 'tailscale up', since tailscaled regenerates
+     * it via a round-trip to the coordination server that isn't complete by
+     * the time the 'up' command returns.
+     *
+     * @param int $timeoutSeconds
+     * @return string|null
+     */
+    private function waitForAuthURL(int $timeoutSeconds = 8): ?string
+    {
+        $deadline = microtime(true) + $timeoutSeconds;
+        do {
+            $loginUrl = $this->getTailscaleValue('AuthURL');
+            if ($loginUrl) {
+                return $loginUrl;
+            }
+            usleep(500000);
+        } while (microtime(true) < $deadline);
+
+        return null;
+    }
+
+    /**
      * Handles Tailscale state changes
      *
      * @param string $state
@@ -389,7 +411,7 @@ class Tailscale implements PluginInterface
     {
         if ($state === 'needs_login') {
             $this->setServiceStatus('up'); // Tailscale must be up to fetch AuthURL
-            $loginUrl = $this->getTailscaleValue('AuthURL');
+            $loginUrl = $this->waitForAuthURL();
             if ($loginUrl) {
                 ob_start();
                 include 'templates/dialogs/auth.php';
