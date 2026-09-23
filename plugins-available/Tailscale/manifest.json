@@ -1,0 +1,55 @@
+{
+  "name": "Tailscale VPN",
+  "version": "v1.1.0-beta",
+  "description": "A Tailscale VPN extension for RaspAP (Bullseye)",
+  "author": "Bill Z",
+  "author_uri": "https://github.com/billz",
+  "plugin_uri": "https://github.com/RaspAP/raspap-insiders",
+  "plugin_docs": "https://docs.raspap.com/tailscale",
+  "license": "GPL-3.0",
+  "namespace": "RaspAP\\Plugins\\Tailscale",
+  "configuration": [
+    {
+      "source": "config/tailscale-ethtool@.service",
+      "destination": "/etc/systemd/system/tailscale-ethtool@.service"
+    },
+    {
+      "source": "config/ts-optimize.sh",
+      "destination": "/etc/raspap/networking/ts-optimize.sh"
+    }
+  ],
+  "permissions": [
+    {
+      "file": "/etc/systemd/system/tailscale-ethtool@.service",
+      "owner": "root",
+      "group": "root",
+      "mode": "0644"
+    },
+    {
+      "file": "/etc/raspap/networking/ts-optimize.sh",
+      "owner": "www-data",
+      "group": "www-data",
+      "mode": "0755"
+    }
+  ],
+  "default_locale": "en_US",
+  "dependencies": {
+    "tailscale": "1.82.5"
+  },
+  "icon": "fas fa-t",
+  "install_path": "plugins-available",
+  "keys": [
+    {
+      "key_url": "https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg",
+      "keyring": "/usr/share/keyrings/tailscale-archive-keyring.gpg",
+      "repo": "https://pkgs.tailscale.com/stable/debian/bookworm.tailscale-keyring.list",
+      "sources": "/etc/apt/sources.list.d/tailscale.list"
+    }
+  ],
+  "manifest_version": "1.0",
+  "sudoers": [
+    "www-data ALL=(ALL) NOPASSWD:/usr/bin/tailscale *",
+    "www-data ALL=(ALL) NOPASSWD:/etc/raspap/networking/ts-optimize.sh"
+  ]
+}
+

@@ -53,7 +53,6 @@ OPTIONS:
 -u, --upgrade                       Upgrades an existing installation to the latest release version
 -d, --update                        Updates an existing installation to the latest release version
 -p, --path <path>                   Used with -d, --update, sets the existing install path
--i, --insiders                      Installs from the Insiders Edition (RaspAP/raspap-insiders)
 -m, --minwrite                      Configures a microSD card for minimum write operation
 -k, --check <flag>                  Sets the connectivity check flag (default is 1=perform check)
 -v, --version                       Outputs release info and exits
@@ -69,9 +68,6 @@ Examples:
 
     Invoke installer remotely, run non-interactively with option flags:
     curl -sL https://install.raspap.com | bash -s -- --yes --wireguard 1 --adblock 0
-
-    Invoke remotely, uprgrade an existing install to the Insiders Edition:
-    curl -sL https://install.raspap.com | bash -s -- --upgrade --insiders --name <name> --token <token>
 
     Invoke remotely, perform an unattended update to the latest release version:
     curl -sL https://install.raspap.com | bash -s -- --yes --update --path /var/www/html
@@ -106,7 +102,6 @@ function _parse_params() {
     restapi_option=1
     adblock_option=1
     wg_option=1
-    insiders=0
     ssh=0
     minwrite=0
     acctoken=""
@@ -160,9 +155,6 @@ function _parse_params() {
             ;;
             -u|--upgrade)
             upgrade=1
-            ;;
-            -i|--insiders)
-            insiders=1
             ;;
             -m|--minwrite)
             minwrite=1
@@ -264,14 +256,7 @@ function _get_release() {
         return 1
     fi
 
-    if [ "$insiders" == 1 ]; then
-        repo="RaspAP/raspap-insiders"
-        repo_common="RaspAP/raspap-webgui"
-        readonly RASPAP_INSIDERS_LATEST=$(curl -s "https://api.raspap.com/repos/RaspAP/raspap-insiders/releases/latest/" | grep -Po '"tag_name": "\K.*?(?=")')
-        readonly RASPAP_RELEASE="${RASPAP_INSIDERS_LATEST} Insiders"
-    else
-        readonly RASPAP_RELEASE="${RASPAP_LATEST}"
-    fi
+    readonly RASPAP_RELEASE="${RASPAP_LATEST}"
 }
 
 # Outputs a RaspAP Install log line

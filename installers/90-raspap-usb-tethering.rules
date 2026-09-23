@@ -1,0 +1,7 @@
+# RaspAP USB tethering udev rules
+#
+# Automatically enables NAT routing when a USB tethering interface appears
+# (eg., a phone with USB tethering enabled) and removes the rules
+# when the interface is disconnected
+SUBSYSTEM=="net", ACTION=="add",    KERNEL=="usb[0-9]", RUN+="/etc/raspap/networking/usb-tethering.sh add %k"
+SUBSYSTEM=="net", ACTION=="remove", KERNEL=="usb[0-9]", RUN+="/etc/raspap/networking/usb-tethering.sh remove %k"

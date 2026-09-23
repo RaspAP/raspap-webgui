@@ -1,35 +1,35 @@
 {
-  "info": "UDEV rules for different client types. $...$ expressions will be replaces automatically ($MAC$, $IDVENDOR$, $IDPRODUCT$, $DEVNAME$)",
+  "info": "UDEV rules for different client types. $...$ expressions are replaced automatically ($MAC$, $VID$, $PID$, $DEVNAME$)",
   "udev_rules_file": "/etc/udev/rules.d/80-raspap-net-devices.rules",
   "script_path": "/usr/local/sbin",
   "network_devices": [
     {
      "type": "eth", 
-     "type_info": "ethernet port", 
+     "type_info": "Ethernet adapter", 
      "clientid": 0,
-     "comment": "standard ethernet port",
+     "comment": "Standard ethernet adapter",
      "name_prefix": "eth",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", ATTR{address}==\"$MAC$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"eth\" "
+     "udev_rule": "SUBSYSTEM==\"net\", ATTR{address}==\"$MAC$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"$TYPE$\" "
     },
     {
      "type": "usb", 
-     "type_info": "usb network interface", 
+     "type_info": "USB network interface", 
      "clientid": 1,
-     "comment": "network interface - e.g. USB tethering of an Android phone ",
+     "comment": "USB tethering of a mobile handset",
      "name_prefix": "usb",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"eth\" "
+     "udev_rule": "SUBSYSTEM==\"net\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$VID$\", ATTRS{idProduct}==\"$PID$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"$TYPE$\" "
     },
     {
      "type": "wlan", 
-     "type_info": "wireless adapter", 
+     "type_info": "Wireless adapter", 
      "clientid": 2,
-     "comment": "standard wireless interface",
+     "comment": "Standard wireless interface",
      "name_prefix": "wlan",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", ATTR{address}==\"$MAC$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"wlan\" "
+     "udev_rule": "SUBSYSTEM==\"net\", ATTR{address}==\"$MAC$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"$TYPE$\" "
     },
     {
      "type": "ppp", 
-     "type_info": "mobile data modem", 
+     "type_info": "Mobile data modem", 
      "clientid": 3,
      "name_prefix": "ppp",
      "comment": "recognized mobile data modems are automatically named as ppp0-9. Renaming is not possible. Dialin service relies on the name",
@@ -42,7 +42,7 @@
      "comment": "Huawei mobile data device in router mode. Control via HTTP. Device is connecting via service",
      "name_prefix": "hilink",
      "default_ip": "192.168.8.1",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"hilink\", TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"start start_huawei_hilink@hilink%n.service\" "
+     "udev_rule": "SUBSYSTEM==\"net\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$VID$\", ATTRS{idProduct}==\"$PID$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"$TYPE$\", TAG+=\"systemd\", ENV{SYSTEMD_WANTS}=\"start start_huawei_hilink@hilink%n.service\" "
     },
     {
      "type": "phone", 
@@ -50,14 +50,28 @@
      "clientid": 5,
      "comment": "ethernet access provided by tethering from phone via USB",
      "name_prefix": "phone",
-     "udev_rule": "SUBSYSTEM==\"net\", ACTION==\"add\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$IDVENDOR$\", ATTRS{idProduct}==\"$IDPRODUCT$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"phone\" "
+     "udev_rule": "SUBSYSTEM==\"net\", SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"$VID$\", ATTRS{idProduct}==\"$PID$\", NAME=\"$DEVNAME$\", ENV{raspapType}=\"$TYPE$\" "
     },
     {
      "type": "tun", 
-     "type_info": "tunnel device", 
+     "type_info": "OpenVPN tunnel", 
      "clientid": -1,
-     "comment": "tunneling device used by OpenVPN",
+     "comment": "Tunneling device used by OpenVPN",
      "name_prefix": "tun"
+    },
+    {
+     "type": "wg", 
+     "type_info": "WireGuard tunnel", 
+     "clientid": -1,
+     "comment": "Tunneling device used by WireGuard",
+     "name_prefix": "wg"
+    },
+    {
+     "type": "docker", 
+     "type_info": "Network bridge", 
+     "clientid": -1,
+     "comment": "Network bridge used by Docker",
+     "name_prefix": "docker"
     }
   ]
 }

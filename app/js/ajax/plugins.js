@@ -1,5 +1,16 @@
 import { getCSRFToken } from "../helpers.js";
 
+function showPluginInstallError(errorMessage) {
+    var errorLog = '<textarea class="plugin-log text-secondary" readonly>' + errorMessage + '</textarea>';
+    $('#plugin-install-message')
+        .contents()
+        .first()
+        .replaceWith('An error occurred installing the plugin:');
+    $('#plugin-install-message').append(errorLog);
+    $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
+    $('#js-install-plugin-ok').removeAttr("disabled");
+}
+
 export function initPlugins_ajax() {
     console.info("RaspAP Plugins ajax module initialized");
 
@@ -28,7 +39,13 @@ export function initPlugins_ajax() {
                 },
                 function (data) {
                     setTimeout(function () {
-                        response = JSON.parse(data);
+                        var response;
+                        try {
+                            response = JSON.parse(data);
+                        } catch (e) {
+                            showPluginInstallError('An unexpected response was received from the server.');
+                            return;
+                        }
                         if (response === true) {
                             $('#plugin-install-message').contents().first().text(successText);
                             $('#plugin-install-message')
@@ -37,29 +54,18 @@ export function initPlugins_ajax() {
                                 .addClass('fas fa-check');
                             $('#js-install-plugin-ok').removeAttr("disabled");
                         } else {
-                            const errorMessage = jsonData.error || 'An unknown error occurred.';
-                            var errorLog = '<textarea class="plugin-log text-secondary" readonly>' + errorMessage + '</textarea>';
-                            $('#plugin-install-message')
-                                .contents()
-                                .first()
-                                .replaceWith('An error occurred installing the plugin:');
-                            $('#plugin-install-message').append(errorLog);
-                            $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
-                            $('#js-install-plugin-ok').removeAttr("disabled");
+                            showPluginInstallError((response && response.error) || 'An unknown error occurred.');
                         }
                     }, 200);
                 }
             ).fail(function (xhr) {
-                const jsonData = JSON.parse(xhr.responseText);
-                const errorMessage = jsonData.error || 'An unknown error occurred.';
-                $('#plugin-install-message')
-                    .contents()
-                    .first()
-                    .replaceWith('An error occurred installing the plugin:');
-                var errorLog = '<textarea class="plugin-log text-secondary" readonly>' + errorMessage + '</textarea>';
-                $('#plugin-install-message').append(errorLog);
-                $('#plugin-install-message').find('i').removeClass('fas fa-cog fa-spin link-secondary');
-                $('#js-install-plugin-ok').removeAttr("disabled");
+                var errorMessage;
+                try {
+                    errorMessage = JSON.parse(xhr.responseText).error;
+                } catch (e) {
+                    errorMessage = xhr.responseText;
+                }
+                showPluginInstallError(errorMessage || 'An unknown error occurred.');
             });
         } else if (pluginConfirm  === 'Get Insiders') {
             window.open('https://docs.raspap.com/insiders/', '_blank');

@@ -182,6 +182,8 @@ class HotspotService
             $validated['repeater']  = !empty($states['RepeaterEnable']);
             $validated['dualmode']  = !empty($states['DualAPEnable']);
             $validated['txpower']   = $post_data['txpower'];
+            $validated['log_enable'] = !empty($states['LogEnable']);
+            $validated['log_level']  = $states['LogLevel'] ?? 2;
 
             // add 802.11ax/be specific parameters if present
             if (in_array($validated['hw_mode'], ['ax', 'be'])) {

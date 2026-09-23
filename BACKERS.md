@@ -1,65 +1,162 @@
 <img width="465" alt="Insiders logo" src="https://i.imgur.com/62TMUy5.png">
 
-Development of RaspAP is made possible thanks to a sponsorware release model. This means that new features are first exclusively released to sponsors as part of **Insiders**. Read on to learn how sponsorship works, and how easy it is to get access to Insiders.
+RaspAP was developed for several years under a sponsorware model, where new features first landed exclusively in **Insiders** before merging into the public repo once a funding goal was met. That model has done its job. Every feature it funded is now part of RaspAP, available to everyone.
 
-## How sponsorship works
-New features first land in **Insiders**, which means that *sponsors will have access to them immediately*. Every feature is tied to a funding goal in monthly subscriptions. When a funding goal is hit, the features that are tied to it are merged back into the [public RaspAP repository](https://github.com/RaspAP/raspap-webgui) and released for general availability. Bugfixes and minor enhancements are always released simultaneously in both editions.
+## What changed
 
-Don't want to sponsor? No problem, RaspAP already has tons of features available, so chances are that most of your requirements are already satisfied. See the list of **exclusive features** to learn which features are currently only available to sponsors.
+All Insiders-exclusive features have been merged into the public repository. There's no longer a private edition or a funding goal standing between a feature and general availability. If you've been waiting on a feature to unlock, it's already yours. New features are now built straight into the main repo.
 
-## How to become a sponsor
-You can become a sponsor using your individual or organization's GitHub account. Just  pick any tier from $10/month and complete the checkout. Then, after a few hours, you will be added as a team member to the super-secret private GitHub repository containing the Insiders edition, which has all exclusive features. In addition, you get access to Insiders-only team discussions and content.
+## How to support RaspAP
 
-**Important**: If you're sponsoring [RaspAP](https://github.com/RaspAP/sponsors) through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account that should be added as a collaborator. 
+Sponsorship is now voluntary. It's a way to support ongoing development and maintenance, not a way to unlock anything. You can sponsor RaspAP through [GitHub Sponsors](https://github.com/sponsors/RaspAP) at any level. There's no tier structure to navigate and no feature list attached to it; it's simply a way to help keep the project moving if RaspAP has been useful to you.
 
-## Exclusive features
-The following features are currently available exclusively to sponsors. A tangible side benefit of sponsorship is that Insiders are able to help steer future development of RaspAP. This is done through your Insiders access to discussions, feature requests, issues and pull requests in the private GitHub repository.
+**Important**: If you're sponsoring [RaspAP](https://github.com/RaspAP/sponsors) through a GitHub organization, please send a short email to [sponsors@raspap.com](mailto:sponsors@raspap.com) with the name of your organization and the account to credit.
 
- ✅ [Network device management](https://docs.raspap.com/net-devices/)  
- ✅ [MAC address cloning](https://docs.raspap.com/net-devices/#changing-the-mac-address)  
- ✅ [Multiple WireGuard configs](https://docs.raspap.com/wireguard/#multiple-configs)  
- ✅ [Wireless LAN routing](https://docs.raspap.com/wlanrouting/)  
- ✅ [Custom user avatars](https://docs.raspap.com/authentication/#custom-user-avatars)  
- ✅ [WiFi repeater mode](https://docs.raspap.com/ap-basics/#wifi-repeater-mode)  
- ✅ [Limited privilege user role](https://docs.raspap.com/authentication/#limited-privilege-user-role)  
- ✅ [Tailscale VPN](https://docs.raspap.com/tailscale/)  
- ✅ [Inspect network adapters](https://docs.raspap.com/troubleshooting/#inspect-network-adapters)  
+## Our sponsors
 
-Look for the list above to grow as we add more exlcusive features. Have an idea or suggestion for a future enhancement? Start or join an [Insiders discussion](https://github.com/RaspAP/raspap-insiders/discussions) and let us know!
+We're grateful to these sponsors who make this project sustainable. Your financial support buys the maintainers of this project time — a very scarce resource — which is spent on the development of new features, bug fixes, stability improvements, issue triage and community support.
 
-## Funding targets
-Below is a list of funding targets. When a funding target is reached, the features that are tied to it are merged back into RaspAP and released to the public for general availability.
+<!-- SPONSORS_TABLE:START -->
+*Last updated: 2026-09-03 13:38 UTC*
 
-### $1,500 - 3rd Insiders Edition
-The **3rd Insiders Edition** includes the exclusive features listed above.
+<table>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/0pt3ch" title="0pt3ch">0pt3ch</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/11unoboks" title="11unoboks">11unoboks</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/7w6ym4wm97-dev" title="7w6ym4wm97-dev">7w6ym4wm97-dev</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/modembug" title="Aaron Labiosa">Aaron Labiosa</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/aaronwhite25" title="aaronwhite25">aaronwhite25</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/regenscheid" title="Andrew Regenscheid">Andrew Regensch...</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/andrew-provines" title="andrew-provines">andrew-provines</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/auajax" title="auajax">auajax</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/billporte" title="billporte">billporte</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/klausjunk" title="blickfang-digital">blickfang-digit...</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/CArnold98" title="CArnold98">CArnold98</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/CaverGuy42" title="CaverGuy42">CaverGuy42</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/ccrisinel" title="ccrisinel">ccrisinel</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/cnapier" title="cnapier">cnapier</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/cyrus104" title="cyrus104">cyrus104</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/DamianLettie" title="Damian Lettie">Damian Lettie</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/daniM774" title="daniM774">daniM774</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/ddykovv0" title="Dave">Dave</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/dcd-projectrose" title="DCD">DCD</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/Dustp115" title="Dustp115">Dustp115</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/dwilliamsr" title="dwilliamsr">dwilliamsr</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/eggrollstan" title="eggrollstan">eggrollstan</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/electricstarlive" title="Electric Star Live">Electric Star L...</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/ElkHair14GIT" title="ElkHair14GIT">ElkHair14GIT</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/eog2000" title="eog2000">eog2000</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/espenrud" title="espenrud">espenrud</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/farkey" title="farkey">farkey</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/feh123" title="feh123">feh123</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/tanohzana" title="Florian Adonis">Florian Adonis</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/Fredd-30" title="Frederic-Olivier DUCHEMIN">Frederic-Olivie...</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/gberndt" title="Glen Berndt">Glen Berndt</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/cookytime" title="Glen Cook">Glen Cook</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/gmasource" title="gmasource">gmasource</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/grenius" title="grenius">grenius</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/xhomesoftx" title="HomeSoft">HomeSoft</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/orasio" title="Horacio">Horacio</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/HurricaneBulgaria" title="HurricaneBulgaria">HurricaneBulgar...</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/Dooster15" title="Jack Holdsworth">Jack Holdsworth</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/jacoblogan1337" title="jacoblogan1337">jacoblogan1337</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/KingNahual" title="James Miller">James Miller</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/JHSNET" title="Jan Eelco  Hoekstra">Jan Eelco  Hoek...</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/JDawg2022" title="JDawg2022">JDawg2022</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/jeffdoering" title="jeffdoering">jeffdoering</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/Jazb" title="Jesús Zuleta">Jesús Zuleta</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/jimfigu" title="jimfigu">jimfigu</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/jkeilson" title="jkeilson">jkeilson</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/jmwudi" title="jmwudi">jmwudi</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/joeyperme" title="joeyperme">joeyperme</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/johncarterofmars" title="johncarterofmars">johncarterofmar...</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/Keeeeeeeks" title="Keeks">Keeks</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/kennywakeland" title="kenny wakeland">kenny wakeland</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/KrosTheProto" title="Kros The Protogen">Kros The Protog...</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/kunaron1" title="kunaron">kunaron</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/KuriGohan-Kamehameha" title="Kuri">Kuri</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/lbussy" title="Lee Bussy">Lee Bussy</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/lessellbray" title="lessellbray">lessellbray</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/LinuTuris2" title="LinuTuris2">LinuTuris2</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/tranlocquy" title="Loc Tran">Loc Tran</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/m-dindinger" title="m-dindinger">m-dindinger</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/M-RWOB" title="M-RWOB">M-RWOB</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/RBEGamer" title="Marcel Ochsendorf">Marcel Ochsendo...</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/cc2mm2ss" title="Martin">Martin</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/mavacpjm" title="mavacpjm">mavacpjm</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/mjones57575757" title="mjones57575757">mjones57575757</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/msf2105" title="msf2105">msf2105</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/tinkernerd" title="Nick Stull">Nick Stull</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/nwilde1590" title="nwilde1590">nwilde1590</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/oozman" title="Oozman">Oozman</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/orangedude27" title="orangedude27">orangedude27</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/pirish" title="Patrick Irish">Patrick Irish</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/patyho" title="patyho">patyho</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/PSU-Jedi" title="PSU-Jedi">PSU-Jedi</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/Ralf-J" title="Ralf-J">Ralf-J</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/ToddKimery" title="Ranger T">Ranger T</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/SittreP" title="SittreP">SittreP</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/solchjg" title="solchjg">solchjg</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/soleusllub" title="soleusllub">soleusllub</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/Teddy9712" title="Teddy9712">Teddy9712</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/thetravellor" title="thetravellor">thetravellor</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/tullochda" title="tullochda">tullochda</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/unawakened" title="unawakened">unawakened</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/visionik" title="Viz">Viz</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/vladzaharia" title="Vlad Zaharia">Vlad Zaharia</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/yinon-mitin" title="Yinon Mitin">Yinon Mitin</a></td>
+  </tr>
+  <tr>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/zpatten" title="Zachary Patten">Zachary Patten</a></td>
+    <td align="center" style="padding: 8px; font-size: 13px;"><a href="https://github.com/zap-net" title="ZAP!">ZAP!</a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+<!-- SPONSORS_TABLE:END -->
 
-### $500 - 1st Insiders Edition (completed)
-✅ Multiple OpenVPN client configs  
-✅ OpenVPN certificate authentication  
-✅ OpenVPN service logging  
-✅ Night mode toggle  
-✅ Restrict network to static clients  
-✅ WireGuard support  
-✅ Set AP transmit power  
+## The Alumni Lounge
 
-### $1,000 - 2nd Insiders Edition (completed)
-✅ Firewall settings  
-✅ WPA3-Personal AP security  
-✅ 802.11w Protected Management Frames  
-✅ Printable Wi-Fi signs  
-✅ Network diagnostics  
-✅ Dynamic DNS  
-✅ WireGuard kill switch  
-✅ NTP Service  
+The private Insiders repository hasn't gone away, but its purpose has changed. It's now the **Alumni Lounge**, a space for sponsors past, present, and future to talk with the RaspAP team directly, see roadmap discussions and UI mockups early, and weigh in before things go public. Current and former Insiders sponsors keep their access. New sponsors are added automatically by GitHub. If you didn't receive an invite to the Lounge after sponsoring, drop a note to [sponsors@raspap.com](mailto:sponsors@raspap.com) to be added.
 
 ## Quarterly giving
-Each quarter, 15% of all proceeds from Insiders are [donated directly to the Raspberry Pi Foundation](https://docs.raspap.com/insiders/#quarterly-giving). The Raspberry Pi Foundation is a UK-based charity that works to put the power of computing and digital making into the hands of people all over the world.
+
+Each quarter, **20%** of all sponsorship proceeds are [donated directly to the Raspberry Pi Foundation](https://docs.raspap.com/insiders/#quarterly-giving), up from 15%, as part of this transition. The Raspberry Pi Foundation is a UK-based charity that works to put the power of computing and digital making into the hands of people all over the world.
 
 [![Get involved with the Raspberry Pi Foundation](https://img.youtube.com/vi/dEzg92g1LHw/0.jpg)](https://www.youtube.com/watch?v=dEzg92g1LHw)
 
-When you become an Insider, not only do you support development of RaspAP but you also help inspire young people by harnessing the power of computing to solve problems and express themselves creatively.
+When you sponsor RaspAP, not only do you support development of the project but you also help inspire the next generation of makers through the Foundation's work.
 
 ## Frequently asked questions
+
 We've covered all you need to know [here](https://docs.raspap.com/insiders/#frequently-asked-questions).
 
 ### Terms

@@ -255,10 +255,12 @@ function isAssoc($arr)
  * @param string $id:       $options is an associative array this should be the key
  * @param string $event:    onChange event (optional)
  * @param string $disabled  (optional)
+ * @param string $addclass  additonal classes for select (optional)
+ * @param string $placehold placeholder text (optional)
  */
-function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null)
+function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null, $addclass = null, $placehold = null)
 {
-    echo '<select class="form-select" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
+    echo '<select class="form-select ' .$addclass.'" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
     if (isset($id)) {
         echo ' id="' . htmlspecialchars($id, ENT_QUOTES) .'"';
     }
@@ -266,6 +268,9 @@ function SelectorOptions($name, $options, $selected = null, $id = null, $event =
         echo ' onChange="' . htmlspecialchars($event, ENT_QUOTES).'()"';
     }
     echo '>' , PHP_EOL;
+    if (isset($placehold)) {
+        echo '<option disabled selected>'.htmlspecialchars($placehold, ENT_QUOTES).'</option>'.PHP_EOL;
+    }
     foreach ($options as $opt => $label) {
         $select = '';
         $key = isAssoc($options) ? $opt : $label;
@@ -941,6 +946,67 @@ function lightenColor($color, $percent)
     $b = round($b + (255 - $b) * $percent);
 
     return sprintf("#%02x%02x%02x", $r, $g, $b);
+}
+
+/**
+ * Returns a custom user avatar or placeholder
+ * @return string $avatar
+ */
+function getUserAvatar()
+{
+    $userId = htmlspecialchars($_SESSION['user_id'] ?? null, ENT_QUOTES);
+    $avatarPath = $_COOKIE['avatar'] ?? null;
+
+    if ($avatarPath && file_exists($avatarPath)) {
+        $avatar = '<span class="text-muted small">' . $userId . '</span>';
+        $avatar .= '<img class="avatar topbar-avatar" src="' . $avatarPath . '">';
+    } else {
+        $avatar = '<span class="text-muted small">' . $userId . '</span>';
+        $avatar .= '<i class="fas fa-user-circle text-muted fa-3x"></i>';
+    }
+    return $avatar;
+}
+
+/**
+ * Determines if a given interface name is configured with
+ * predictable naming
+ * @param string $interface
+ * @return boolean
+ */
+function isPredictableIfaceName($interface)
+{
+    $pattern = '/^(eth|en|wlan|wlp|eno)[0-9]+$/';
+    $enx_pattern = '/^enx|^wlx[0-9a-fA-F]{12}$/';
+    if (preg_match($pattern, $interface) ||
+        preg_match($enx_pattern, $interface)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Sets a configuration option value
+ * @param string $option
+ * @param string $value
+ * @return boolean
+ */
+function setConfigurationOption($option, $value)
+{
+    $file = $_SERVER['DOCUMENT_ROOT'].'/includes/config.php';
+    $content = file_get_contents($file);
+    $pattern = "/define\('$option', (true|false)\);/";
+    if (preg_match($pattern, $content)) {
+        $replace = "define('$option', $value);";
+        $tmp = preg_replace($pattern, $replace, $content);
+        if (file_put_contents($file, $tmp) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
 }
 
 function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cputemp_led, $cputemp)
