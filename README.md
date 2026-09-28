@@ -85,7 +85,7 @@ Please [read this](https://docs.raspap.com/issues/) before reporting an issue.
 
 ## Become a sponsor
 
-RaspAP is free software, but powered by _your_ support. If you find RaspAP useful for your personal or commercial projects, [become an sponsor](https://github.com/sponsors/RaspAP/) and get access to the Alumni Lounge where you can connect with the RaspAP team directly, see early UI mockups of new features, and help _steer future development_ of RaspAP.
+RaspAP is free software, but powered by _your_ support. If you find RaspAP useful for your personal or commercial projects, [become a sponsor](https://github.com/sponsors/RaspAP/) and get access to the private **Alumni Lounge** where you can connect with the RaspAP team directly, see early UI mockups of new features, and help _steer future development_ of RaspAP.
 
 ## WireGuard support
 
