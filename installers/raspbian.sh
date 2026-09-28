@@ -47,8 +47,6 @@ OPTIONS:
 -g, --tcp-bbr <value>               Used with -y, --yes, sets the TCP BBR congestion control algorithm option
 -r, --repo, --repository <name>     Overrides the default GitHub repo (RaspAP/raspap-webgui)
 -b, --branch <name>                 Overrides the default git branch (latest release)
--t, --token <accesstoken>           Specify a GitHub token to access a private repository
--n, --name <username>               Specify a GitHub username to access a private repository
 -x, --use-ssh                       Use ssh instead of https for git
 -u, --upgrade                       Upgrades an existing installation to the latest release version
 -d, --update                        Updates an existing installation to the latest release version
@@ -81,7 +79,6 @@ set -eo pipefail
 function _main() {
     # set defaults
     repo="RaspAP/raspap-webgui" # override with -r, --repo option
-    repo_common="$repo"
 
     _parse_params "$@"
     _setup_colors
@@ -104,7 +101,6 @@ function _parse_params() {
     wg_option=1
     ssh=0
     minwrite=0
-    acctoken=""
     path=""
     check=1
 
@@ -143,7 +139,6 @@ function _parse_params() {
             ;;
             -r|--repo|--repository)
             repo="$2"
-            repo_common="$repo"
             shift
             ;;
             -b|--branch)
@@ -161,14 +156,6 @@ function _parse_params() {
             ;;
             -x|--use-ssh)
             ssh=1
-            ;;
-            -t|--token)
-            acctoken="$2"
-            shift
-            ;;
-            -n|--name)
-            username="$2"
-            shift
             ;;
             -d|--update)
             update=1
@@ -246,7 +233,7 @@ function _get_release() {
     response=$(curl -s "https://$host/repos/$repo/releases/latest")
 
     if echo "$response" | grep -q 'API rate limit exceeded'; then
-        _install_status 1 "GitHub API rate limit exceeded. Try again later or use a GitHub token."
+        _install_status 1 "GitHub API rate limit exceeded. Try again later."
         return 1
     fi
     readonly RASPAP_LATEST=$(echo "$response" | grep -Po '"tag_name": "\K.*?(?=")')
@@ -338,30 +325,30 @@ function _load_installer() {
     if [ -z ${branch} ]; then
         branch=$RASPAP_LATEST
     fi
-    UPDATE_URL="https://raw.githubusercontent.com/$repo_common/$branch/"
+    UPDATE_URL="https://raw.githubusercontent.com/$repo/$branch/"
 
     if [ "${install_cert:-}" = 1 ]; then
         source="mkcert"
         component="mkcert"
-        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
+        wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _install_certificate || _install_status 1 "Unable to install certificate"
     elif [ "${minwrite}" = 1 ]; then
         source="minwrite"
         component="Minwrite"
-        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
+        wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _install_minwrite || _install_status 1 "Unable to execute minimal write install"
     elif [ "${uninstall}" = 1 ]; then
         source="uninstall"
         component="Uninstall"
-        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
+        wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         _remove_raspap || _install_status 1 "Unable to uninstall RaspAP"
     else
         source="common"
         component="Install"
-        wget "${header[@]}" -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
+        wget -q ${UPDATE_URL}installers/${source}.sh -O /tmp/raspap_${source}.sh
         source /tmp/raspap_${source}.sh && rm -f /tmp/raspap_${source}.sh
         if [ "$update" == 1 ]; then
             _update_raspap || _install_status 1 "Unable to update RaspAP"

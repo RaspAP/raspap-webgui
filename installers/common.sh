@@ -30,13 +30,10 @@ readonly rulesv4="/etc/iptables/rules.v4"
 readonly blocklist_hosts="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
 readonly blocklist_domains="https://big.oisd.nl/dnsmasq"
 
-#Use ssh IF $ssh is set AND $username and $acctoken IS NOT set
-if [ -n "$username" ] && [ -n "$acctoken" ]; then
-    git_source_url="https://${username}:${acctoken}@github.com/$repo"
-    ssh=0
-elif [ "$ssh" == 1 ]; then 
+# Use ssh if $ssh is set, otherwise https
+if [ "$ssh" == 1 ]; then
     git_source_url="git@github.com:$repo"
-else 
+else
     git_source_url="https://github.com/$repo"
 fi
 webroot_dir="/var/www/html"
