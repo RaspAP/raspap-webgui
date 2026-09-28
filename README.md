@@ -1,5 +1,5 @@
 ![RaspAP Hero](https://i.imgur.com/aNAG3Wa.jpeg)
-[![Release 3.5.5](https://img.shields.io/badge/release-v3.5.5-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Join Insiders](https://img.shields.io/static/v1?label=Insiders&message=%E2%9D%A4&logo=GitHub&color=ff69b4)](https://github.com/sponsors/RaspAP) [![Build Status](https://app.travis-ci.com/RaspAP/raspap-webgui.svg?branch=master)](https://app.travis-ci.com/RaspAP/raspap-webgui) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Reddit](https://img.shields.io/badge/%2Fr%2FRaspAP-e05d44?style=flat&logo=Reddit&logoColor=white&labelColor=e05d44&color=b14835)](https://reddit.com/r/RaspAP) [![Discord](https://img.shields.io/discord/642436993451819018?color=7289DA&label=Discord&logo=discord&style=flat)](https://discord.gg/KVAsaAR)
+[![Release 3.5.5](https://img.shields.io/badge/release-v3.5.5-green)](https://github.com/raspap/raspap-webgui/releases) [![Awesome](https://awesome.re/badge.svg)](https://github.com/thibmaek/awesome-raspberry-pi) [![Sponsors](https://img.shields.io/static/v1?label=Sponsors&message=%E2%9D%A4&logo=GitHub&color=ff69b4)](https://github.com/sponsors/RaspAP) [![Build Status](https://app.travis-ci.com/RaspAP/raspap-webgui.svg?branch=master)](https://app.travis-ci.com/RaspAP/raspap-webgui) [![Crowdin](https://badges.crowdin.net/raspap/localized.svg)](https://crowdin.com/project/raspap) [![Twitter URL](https://img.shields.io/twitter/url?label=%40RaspAP&logoColor=%23d8224c&url=https%3A%2F%2Ftwitter.com%2Frasp_ap)](https://twitter.com/rasp_ap) [![Reddit](https://img.shields.io/badge/%2Fr%2FRaspAP-e05d44?style=flat&logo=Reddit&logoColor=white&labelColor=e05d44&color=b14835)](https://reddit.com/r/RaspAP) [![Discord](https://img.shields.io/discord/642436993451819018?color=7289DA&label=Discord&logo=discord&style=flat)](https://discord.gg/KVAsaAR)
 
 RaspAP is feature-rich wireless router software that _just works_ on many popular [Debian-based devices](#supported-operating-systems), including the Raspberry Pi. Our [custom OS images](#pre-built-image), [Quick installer](#quick-installer) and [Docker container](#docker-support) create a known-good default configuration for all current Raspberry Pis with onboard wireless. A fully responsive, mobile-ready interface gives you control over the relevant services and networking options. Advanced DHCP settings, [WireGuard](https://docs.raspap.com/wireguard/), [Tailscale](https://docs.raspap.com/tailscale/) and [OpenVPN](https://docs.raspap.com/openvpn/) support, [SSL certificates](https://docs.raspap.com/ssl/), [ad blocking](#ad-blocking), security audits, [captive portal integration](https://docs.raspap.com/captive/), themes and [multilingual options](https://docs.raspap.com/translations/) are included.
 
@@ -18,7 +18,7 @@ We hope you enjoy using RaspAP as much as we do creating it. Tell us how you use
 ## Contents
 
  - [Quick start](#quick-start)
- - [Join Insiders](#join-insiders)
+ - [Become a sponsor](#become-a-sponsor)
  - [WireGuard support](#wireguard-support)
  - [OpenVPN support](#openvpn-support)
  - [VPN Provider support](#vpn-provider-support)
@@ -83,13 +83,9 @@ It's _strongly recommended_ that your first post-install action is to change the
 
 Please [read this](https://docs.raspap.com/issues/) before reporting an issue.
 
-## Join Insiders
+## Become a sponsor
 
-[<img src="https://github.com/user-attachments/assets/832f1f0d-517a-4d73-8b62-068cf1a2041d" width="320">](https://github.com/sponsors/RaspAP/)  
-
-RaspAP is free software, but powered by _your_ support. If you find RaspAP useful for your personal or commercial projects, [become an Insider](https://github.com/sponsors/RaspAP/) and get early access to [exclusive features](https://docs.raspap.com/insiders/#exclusive-features) in the [Insiders Edition](https://docs.raspap.com/insiders/).
-
-A tangible side benefit of sponsorship is that **Insiders** are able to help _steer future development of RaspAP_. This is done through Insiders' team access to discussions, feature requests, issues and more in the private GitHub repository.
+RaspAP is free software, but powered by _your_ support. If you find RaspAP useful for your personal or commercial projects, [become an sponsor](https://github.com/sponsors/RaspAP/) and get access to the Alumni Lounge where you can connect with the RaspAP team directly, see early UI mockups of new features, and help _steer future development_ of RaspAP.
 
 ## WireGuard support
 
@@ -198,9 +194,7 @@ This project exists thanks to all the awesome people who [contribute](CONTRIBUTI
 <a href="https://github.com/raspap/raspap-webgui/graphs/contributors"><img src="https://opencollective.com/raspap/contributors.svg?width=890&button=false" /></a>
 
 ### Financial Contributors
-Development of RaspAP is made possible thanks to a sponsorware release model. This means that new features are first exclusively released to sponsors as part of [**Insiders**](https://github.com/sponsors/RaspAP).
-
-Learn more about [how sponsorship works](https://docs.raspap.com/insiders/#how-sponsorship-works), and how easy it is to get access to Insiders.
+Development of RaspAP is made possible thanks to the generous contributions of our financial [backers](BACKERS.md).
 
 ## License
 See the [LICENSE](./LICENSE) file.
