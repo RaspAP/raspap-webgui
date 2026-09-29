@@ -1,3 +1,4 @@
+# UDEV Rules managed by RaspAP
+# This file contains persistent naming rules for network interfaces.
+# Automatically generated. Do not edit manually.
 SUBSYSTEM=="net", ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="14db", NAME="hilink%n",  TAG+="systemd", ENV{SYSTEMD_WANTS}="start start_huawei_hilink@hilink%n.service"
-
-

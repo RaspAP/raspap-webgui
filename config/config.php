@@ -36,6 +36,10 @@ define('RASPI_WIREGUARD_CONFIG', RASPI_WIREGUARD_PATH.'wg0.conf');
 define('RASPI_IPTABLES_CONF', RASPI_CONFIG.'/networking/iptables_rules.json');
 define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
+define('RASPI_CLIENT_CONFIG_PATH', RASPI_CONFIG.'/networking/client_udev_prototypes.json');
+define('RASPI_USER_UDEV_RULES', '/etc/udev/rules.d/80-raspap-net-devices.rules');
+define('RASPI_MOBILEDATA_CONFIG', RASPI_CONFIG.'/networking/mobiledata.ini');
+define('RASPI_WVDIAL_CONFIG', '/etc/wvdial.conf');
 define('RASPI_ACCESS_CHECK_IP', '1.1.1.1');
 define('RASPI_ACCESS_CHECK_DNS', 'one.one.one.one');
 

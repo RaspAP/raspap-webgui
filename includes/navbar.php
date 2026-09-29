@@ -23,9 +23,8 @@
     <?php endif; ?>
     <!-- Auth user -->
     <li>
-      <a class="d-flex flex-nowrap align-items-center gap-1" href="auth_conf">
-        <span class="text-muted small"><?php echo htmlspecialchars($_SESSION['user_id'] ?? '', ENT_QUOTES); ?></span>
-        <i class="fas fa-user-circle text-muted fa-3x"></i>
+      <a class="d-flex flex-nowrap align-items-center gap-2" href="auth_conf">
+        <?php echo getUserAvatar(); ?>
       </a>
     </li>
   </ul>

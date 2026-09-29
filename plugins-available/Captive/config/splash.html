@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="splash.css">
+
+<title>$gatewayname Hotspot Gateway.</title>
+
+<!--
+Content:
+Nodogsplash (NDS), by default, serves this splash page (splash.html)
+when a client device Captive Portal Detection (CPD) process
+attempts to send a port 80 request to the Internet.
+
+You may either embed css in this file or use a separate .css file
+in the same directory as this file, as demonstrated here.
+
+It should be noted when designing a custom splash page
+that for security reasons many CPD implementations:
+Immediately close the browser when the client has authenticated.
+Prohibit the use of href links.
+Prohibit downloading of external files
+(including .css and .js).
+Prohibit the execution of javascript.
+
+Authentication:
+A client is authenticated on submitting an HTTP form, method=get,
+passing $authaction, $tok and $redir.
+
+It is also possible to authenticate using an href link to
+$authtarget but be aware that many device Captive Portal Detection
+processes prohibit href links, so this method may not work with
+all client devices.
+
+Available variables:
+error_msg: $error_msg
+gatewayname: $gatewayname
+tok: $tok
+redir: $redir
+authaction: $authaction
+denyaction: $denyaction
+authtarget: $authtarget
+clientip: $clientip
+clientmac: $clientmac
+clientupload: $clientupload
+clientdownload: $clientdownload
+gatewaymac: $gatewaymac
+nclients: $nclients
+maxclients: $maxclients
+uptime: $uptime
+
+Additional variables for binauth that can be passed back via the HTTP GET,
+or appended to the query string of the authtarget link:
+username
+password
+-->
+
+</head>
+
+<body>
+<div class="container">
+  <div class="card">
+    <div class="header">
+      <img src="images/RaspAP-logo.svg" alt="RaspAP Logo" class="logo">
+      <h1>Welcome to $gatewayname</h1>
+    </div>
+    
+    <div class="content">
+      <p class="message">To access the internet, please click or tap the button below to continue.</p>
+      
+      <form method="GET" action="$authaction">
+        <input type="hidden" name="tok" value="$tok">
+        <input type="hidden" name="redir" value="$redir">
+        <!-- for binauth script
+        <div class="form-group">
+          <label>Name:</label>
+          <input type="text" name="username">
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input type="text" name="password">
+        </div>
+        -->
+        <button type="submit" class="btn-continue">Continue</button>
+      </form>
+    </div>
+    
+    <div class="footer">
+      <p>Copyright &copy; The Nodogsplash Contributors 2004-2023.<br>This software is released under the GNU GPL license.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
