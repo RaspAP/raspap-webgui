@@ -19,7 +19,7 @@ require_once 'app/lib/Parsedown.php';
         <div class="nav-tabs-wrapper">
           <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link active" href="#aboutgeneral" data-bs-toggle="tab"><?php echo _("About"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="#aboutsponsors" data-bs-toggle="tab"><?php echo _("Insiders"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#aboutsponsors" data-bs-toggle="tab"><?php echo _("Sponsors"); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="#aboutcontrib" data-bs-toggle="tab"><?php echo _("Contributing"); ?></a></li>
           </ul>
         </div>

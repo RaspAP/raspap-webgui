@@ -1,4 +1,3 @@
-<img width="465" alt="Insiders logo" src="https://i.imgur.com/62TMUy5.png">
 
 RaspAP was developed for several years under a sponsorware model, where new features first landed exclusively in **Insiders** before merging into the public repo once a funding goal was met. That model has done its job. Every feature it funded is now part of RaspAP, available to everyone.
 
