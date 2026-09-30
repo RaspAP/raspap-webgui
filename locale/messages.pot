@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RaspAP dev\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-09-29 01:34+0000\n"
+"POT-Creation-Date: 2026-09-30 02:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2388,11 +2388,11 @@ msgstr ""
 msgid "Duplicate IP address entered: "
 msgstr ""
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+#: ../src/RaspAP/Plugins/PluginInstaller.php:592
 msgid "Installed"
 msgstr ""
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+#: ../src/RaspAP/Plugins/PluginInstaller.php:596
 msgid "Details"
 msgstr ""
 

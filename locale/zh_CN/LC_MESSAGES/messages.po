@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-09-29 01:25+0000\n"
+"POT-Creation-Date: 2026-09-30 02:41+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2386,11 +2386,11 @@ msgstr "MAC 地址无效： "
 msgid "Duplicate IP address entered: "
 msgstr "输入了重复的 IP 地址： "
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+#: ../src/RaspAP/Plugins/PluginInstaller.php:592
 msgid "Installed"
 msgstr "已安装"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+#: ../src/RaspAP/Plugins/PluginInstaller.php:596
 msgid "Details"
 msgstr "详细信息"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-09-29 01:25+0000\n"
+"POT-Creation-Date: 2026-09-30 02:41+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
@@ -2386,11 +2386,11 @@ msgstr "無効なMACアドレス： "
 msgid "Duplicate IP address entered: "
 msgstr "入力されたIPアドレスが重複している： "
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:594
+#: ../src/RaspAP/Plugins/PluginInstaller.php:592
 msgid "Installed"
 msgstr "設置済み"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:598
+#: ../src/RaspAP/Plugins/PluginInstaller.php:596
 msgid "Details"
 msgstr "詳細"
 
