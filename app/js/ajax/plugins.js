@@ -67,9 +67,6 @@ export function initPlugins_ajax() {
                 }
                 showPluginInstallError(errorMessage || 'An unknown error occurred.');
             });
-        } else if (pluginConfirm  === 'Get Insiders') {
-            window.open('https://docs.raspap.com/insiders/', '_blank');
-            return;
         } else if (pluginConfirm === 'OK') {
             $("#install-user-plugin").modal('hide');
         }
