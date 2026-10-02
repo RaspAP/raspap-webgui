@@ -792,7 +792,7 @@ CONF;
                 if (strlen($passphrase) >= 8 && strlen($passphrase) <= 63) {
                     unset($wpa_passphrase);
                     unset($line);
-                    exec('wpa_passphrase '. $this->ssid2utf8(escapeshellarg($ssid)) . ' ' . escapeshellarg($passphrase), $wpa_passphrase);
+                    exec('wpa_passphrase '. escapeshellarg($this->ssid2utf8($ssid)) . ' ' . escapeshellarg($passphrase), $wpa_passphrase);
                     foreach ($wpa_passphrase as $line) {
                         if (preg_match('/^\s*}\s*$/', $line)) {
                             if (array_key_exists('priority', $network)) {

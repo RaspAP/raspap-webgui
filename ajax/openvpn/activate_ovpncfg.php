@@ -7,9 +7,14 @@ require_once '../../includes/authenticate.php';
 require_once '../../includes/functions.php';
 
 if (isset($_POST['cfg_id'])) {
-    $ovpncfg_id = escapeshellcmd($_POST['cfg_id']);
-    $ovpncfg_client = RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_client.conf';
-    $ovpncfg_login = RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_login.conf';
+    $ovpncfg_id = $_POST['cfg_id'];
+    if (!preg_match('/^[A-Za-z0-9_\-][A-Za-z0-9._\-]*$/D', $ovpncfg_id)) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Invalid configuration id']);
+        exit;
+    }
+    $ovpncfg_client = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_client.conf');
+    $ovpncfg_login = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_login.conf');
 
     // remove existing client config +login and symbolically link the selected one
     system("sudo rm ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
