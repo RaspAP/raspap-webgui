@@ -50,6 +50,11 @@
                    </small>
                  </ul>
                 </p>
+                <div class="mb-3 col-lg-12">
+                  <label for="keyPassword"><?php echo _("Private key password"); ?></label>
+                  <input type="password" class="form-control" name="keyPassword" id="keyPassword" autocomplete="new-password" aria-describedby="keyPasswordHelp" />
+                  <small id="keyPasswordHelp" class="form-text text-muted"><?php echo _("Optional. Required only if the private key in the configuration file is encrypted."); ?></small>
+                </div>
               </div>
            </div> <!-- panel -->
          </div> <!-- panel-group -->

@@ -20,8 +20,12 @@ function DisplayOpenVPNConfig()
             if (isset($_POST['authPassword'])) {
                 $authPassword = strip_tags(trim($_POST['authPassword']));
             }
+            $keyPassword = '';
+            if (isset($_POST['keyPassword'])) {
+                $keyPassword = trim($_POST['keyPassword']);
+            }
             if (is_uploaded_file( $_FILES["customFile"]["tmp_name"])) {
-                $return = SaveOpenVPNConfig($status, $_FILES['customFile'], $authUser, $authPassword);
+                $return = SaveOpenVPNConfig($status, $_FILES['customFile'], $authUser, $authPassword, $keyPassword);
             }
         } elseif (isset($_POST['StartOpenVPN'])) {
             $status->addMessage('Attempting to start OpenVPN', 'info');
@@ -87,25 +91,33 @@ function DisplayOpenVPNConfig()
 
 /**
  * Validates uploaded .ovpn file, adds auth-user-pass and
- * stores auth credentials in login.conf. Copies files from
- * tmp to OpenVPN
+ * stores auth credentials in login.conf. Optionally adds askpass
+ * and stores the private key password in keypass.conf.
+ * Copies files from tmp to OpenVPN
  *
  * @param  object $status
  * @param  object $file
  * @param  string $authUser
  * @param  string $authPassword
+ * @param  string $keyPassword
  * @return object $status
  */
-function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
+function SaveOpenVPNConfig($status, $file, $authUser, $authPassword, $keyPassword = '')
 {
     define('KB', 1024);
     $tmp_destdir = '/tmp/';
     $auth_flag = 0;
+    $keypass_flag = 0;
 
     try {
         // If undefined or multiple files, treat as invalid
         if (!isset($file['error']) || is_array($file['error'])) {
             throw new RuntimeException('Invalid parameters');
+        }
+
+        // OpenVPN reads only the first line of the askpass file
+        if (preg_match('/[\r\n]/', $keyPassword)) {
+            throw new RuntimeException('Private key password must not contain line breaks');
         }
 
         $upload = \RaspAP\Uploader\FileUpload::factory('ovpn',$tmp_destdir);
@@ -137,9 +149,34 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword)
             }
         }
 
-        // Set iptables rules and, optionally, auth-user-pass
+        // Store private key password if present, readable by owner only
+        if ($keyPassword !== '') {
+            $keypass_flag = 1;
+            $tmp_keypass = $tmp_destdir .'ovpn/keypass';
+            $umask = umask(0077);
+            $written = file_put_contents($tmp_keypass, $keyPassword .PHP_EOL);
+            umask($umask);
+            chmod($tmp_keypass, 0600);
+            $keypass_file = pathinfo($file['name'], PATHINFO_FILENAME).'_keypass.conf';
+            $client_keypass = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$keypass_file);
+            system("sudo mv $tmp_keypass $client_keypass", $return);
+            system("sudo rm ".RASPI_OPENVPN_CLIENT_KEYPASS, $rm_return);
+            system("sudo ln -s $client_keypass ".RASPI_OPENVPN_CLIENT_KEYPASS, $return);
+            if ($written === false || $return !=0) {
+                $status->addMessage('Unable to save private key password', 'danger');
+            }
+        }
+
+        // Set iptables rules and, optionally, auth-user-pass and askpass
         $tmp_ovpn = $results['full_path'];
-        exec("sudo /etc/raspap/openvpn/configauth.sh $tmp_ovpn $auth_flag " .$_SESSION['ap_interface'], $return);
+        $cmd = sprintf(
+            'sudo /etc/raspap/openvpn/configauth.sh %s %d %s %d',
+            escapeshellarg($tmp_ovpn),
+            $auth_flag,
+            escapeshellarg($_SESSION['ap_interface'] ?? ''),
+            $keypass_flag
+        );
+        exec($cmd, $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
