@@ -887,6 +887,50 @@ function checkReleaseVersion($installed, $latest) {
     return false;
 }
 
+/**
+ * Returns the update steps found in the installer log. Step 6 indicates
+ * the update completed and step 7 that the installer reported an error
+ *
+ * @param string $logFile
+ * @param int $since ignore a log last modified before this timestamp
+ * @return array
+ */
+function getUpdateLogStatus($logFile, $since = 0) {
+    $steps = [];
+    if (!is_readable($logFile) || filemtime($logFile) < $since) {
+        return $steps;
+    }
+    $searchStrings = [
+        'Configure update' => 1,
+        'Updating sources' => 2,
+        'Installing required packages' => 3,
+        'Cloning latest files' => 4,
+        'Installing application' => 5,
+        'Installation completed' => 6
+    ];
+    $handle = fopen($logFile, 'r');
+    if ($handle === false) {
+        return $steps;
+    }
+    while (($line = fgets($handle)) !== false) {
+        // installer errors are logged as "[ ✘ error ] message"
+        if (preg_match('/^\[[^\]]*\berror\b/', $line)) {
+            $steps[] = 7;
+            break;
+        }
+        foreach ($searchStrings as $searchString => $value) {
+            if (strpos($line, $searchString) !== false && !in_array($value, $steps)) {
+                $steps[] = $value;
+            }
+        }
+        if (in_array(6, $steps)) {
+            break;
+        }
+    }
+    fclose($handle);
+    return $steps;
+}
+
  /**
  * Returns logfile contents up to a maximum defined limit, in kilobytes
  *
