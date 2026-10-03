@@ -54,6 +54,7 @@ require_once 'app/lib/Parsedown.php';
           <div id="msgUpdate" data-message="<?php echo _("A new release is available: Version"); ?>"></div>
           <div id="msgLatest" data-message="<?php echo _("Installed version is the latest release."); ?>"></div>
           <div id="msgInstall" data-message="<?php echo _("Install this update now?"); ?>"></div>
+          <div id="msgCheckFailed" data-message="<?php echo _("Unable to check for updates. Verify your internet connection and try again."); ?>"></div>
           <button type="button" data-message="<?php echo _("OK"); ?>" id="js-check-dismiss" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
           <button type="submit" id="js-sys-check-update" class="btn btn-outline-primary collapse"><?php echo _("OK"); ?></button>
         </div>

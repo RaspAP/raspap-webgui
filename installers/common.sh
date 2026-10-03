@@ -69,6 +69,7 @@ function _install_raspap() {
 # The user is not prompted to install new RaspAP components.
 # The -y, --yes and -p, --path switches may be used for an unattended update.
 function _update_raspap() {
+    _detach_from_php_fpm
     _display_welcome
     _config_installation
     _update_system_packages
@@ -80,6 +81,29 @@ function _update_raspap() {
     _enable_network_activity_monitor
     _create_plugin_scripts
     _install_complete
+}
+
+# When an update is started from the web UI, the installer runs inside the
+# php-fpm service cgroup. Restarting php-fpm during the update (directly or
+# via apt) would kill the installer along with it, so relaunch the update as
+# a transient systemd unit and exit
+function _detach_from_php_fpm() {
+    local fpm_unit
+    fpm_unit=$(grep -oE 'php[0-9.]*-fpm\.service' /proc/self/cgroup 2>/dev/null) || return 0
+    if ! command -v systemd-run > /dev/null || [ ! -f "$0" ]; then
+        return 0
+    fi
+    # the update log must be written to the same /tmp that php-fpm reads
+    if [ "$(systemctl show -p PrivateTmp --value "$fpm_unit")" != "no" ]; then
+        return 0
+    fi
+    local args=(--update --yes --check 0 --repo "$repo" --branch "$branch")
+    if [ -n "$path" ]; then
+        args+=(--path "$path")
+    fi
+    echo "Relaunching update outside of $fpm_unit"
+    sudo systemd-run --unit=raspap-update --collect --quiet "$0" "${args[@]}" || _install_status 1 "Unable to start raspap-update.service"
+    exit 0
 }
 
 # Prompts user to set installation options
