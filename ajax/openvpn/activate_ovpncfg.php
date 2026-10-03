@@ -15,12 +15,15 @@ if (isset($_POST['cfg_id'])) {
     }
     $ovpncfg_client = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_client.conf');
     $ovpncfg_login = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_login.conf');
+    $ovpncfg_keypass = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_keypass.conf');
 
-    // remove existing client config +login and symbolically link the selected one
+    // remove existing client config, login + keypass and symbolically link the selected one
     system("sudo rm ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
     system("sudo ln -s $ovpncfg_client ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
     system("sudo rm ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
     system("sudo ln -s $ovpncfg_login ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
+    system("sudo rm ".RASPI_OPENVPN_CLIENT_KEYPASS, $return);
+    system("sudo ln -s $ovpncfg_keypass ".RASPI_OPENVPN_CLIENT_KEYPASS, $return);
 
     // restart service
     exec("sudo /bin/systemctl stop openvpn-client@client", $return);

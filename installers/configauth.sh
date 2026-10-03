@@ -1,8 +1,9 @@
 #!/bin/bash
 #
-# Updates openvpn client.conf with auth credentials,
-# adds iptables rules to forward traffic from tun0
-# to configured wireless interface
+# Updates openvpn client.conf with auth credentials and,
+# optionally, the private key password (askpass), adds
+# iptables rules to forward traffic from tun0 to configured
+# wireless interface
 # @author billz
 # license: GNU General Public License v3.0
 
@@ -16,6 +17,7 @@ set -o errtrace
 file=$1
 auth=$2
 interface=$3
+keypass=$4
 readonly rulesv4="/etc/iptables/rules.v4"
 
 if [ "$auth" = 1 ]; then
@@ -28,6 +30,12 @@ if [ "$auth" = 1 ]; then
         echo "Adding $line"
         sudo sed -i "$ a $line login.conf" $file
     fi
+fi
+
+if [ "$keypass" = 1 ]; then
+    echo "Enabling askpass in OpenVPN client.conf"
+    sudo sed -i '/^[[:space:]]*askpass\([[:space:]]\|$\)/d' "$file"
+    sudo sed -i '$ a askpass keypass.conf' "$file"
 fi
 
 # Configure NAT and forwarding with iptables

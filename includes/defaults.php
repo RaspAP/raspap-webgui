@@ -48,6 +48,7 @@ $defaults = [
     'RASPI_OPENVPN_CLIENT_PATH' => '/etc/openvpn/client/',
     'RASPI_OPENVPN_CLIENT_CONFIG' => '/etc/openvpn/client/client.conf',
     'RASPI_OPENVPN_CLIENT_LOGIN' => '/etc/openvpn/client/login.conf',
+    'RASPI_OPENVPN_CLIENT_KEYPASS' => '/etc/openvpn/client/keypass.conf',
     'RASPI_WIREGUARD_PATH' => '/etc/wireguard/',
     'RASPI_WIREGUARD_CONFIG' => RASPI_WIREGUARD_PATH.'wg0.conf',
     'RASPI_IPTABLES_CONF' => RASPI_CONFIG.'/networking/iptables_rules.json',
