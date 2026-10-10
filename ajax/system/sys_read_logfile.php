@@ -4,44 +4,22 @@ require_once '../../includes/autoload.php';
 require_once '../../includes/session.php';
 require_once '../../includes/config.php';
 require_once '../../includes/authenticate.php';
+require_once '../../includes/functions.php';
+
+// release the session lock so other requests are not blocked
+session_write_close();
 
 $logFile = '/tmp/raspap_install.log';
-$searchStrings = [
-    'Configure update' => 1,
-    'Updating sources' => 2,
-    'Installing required packages' => 3,
-    'Cloning latest files' => 4,
-    'Installing application' => 5,
-    'Installation completed' => 6,
-    'error' => 7
-];
-usleep(500);
+$since = (int)($_GET['since'] ?? 0);
 
-if (file_exists($logFile)) {
-    $handle = fopen($logFile, 'r');
+// check the installer before reading the log, so a run that finishes
+// in between is not reported as stopped
+$running = !empty(shell_exec("pgrep -f '/etc/raspap/system/[r]aspbian\.sh'"));
+$steps = getUpdateLogStatus($logFile, $since);
 
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
-            foreach ($searchStrings as $searchString => $value) {
-                if (strpos($line, $searchString) !== false) {
-                    echo $value .PHP_EOL;
-                    flush();
-                    ob_flush();
-                    if ($value === 6) {
-                        fclose($handle);
-                        exit();
-                    } elseif ($value === 7) {
-                        echo $line .PHP_EOL;
-                        fclose($handle);
-                        exit();
-                    }
-                }
-            }
-        }
-        fclose($handle);
-    } else {
-        echo json_encode("Unable to open file: $logFile");
-    }
-} else {
-    echo json_encode("File does not exist: $logFile");
+foreach ($steps as $step) {
+    echo $step .PHP_EOL;
+}
+if (!$running && !in_array(6, $steps) && !in_array(7, $steps)) {
+    echo "stopped" .PHP_EOL;
 }
