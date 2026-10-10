@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RaspAP dev\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-10-02 03:45+0000\n"
+"POT-Creation-Date: 2026-10-10 14:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1084,7 +1084,7 @@ msgid "or download the <code>client.conf</code> file to your device."
 msgstr ""
 
 #: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:46
-#: ../templates/provider.php:36 ../includes/functions.php:1020
+#: ../templates/provider.php:36 ../includes/functions.php:1064
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
 msgid "Status"
@@ -1229,7 +1229,7 @@ msgstr ""
 
 #: ../templates/wireguard.php:82 ../templates/wireguard.php:100
 #: ../templates/openvpn.php:79 ../templates/openvpn.php:97
-#: ../templates/about.php:57 ../templates/system.php:56
+#: ../templates/about.php:58 ../templates/system.php:56
 #: ../templates/system.php:74 ../templates/system.php:109
 #: ../templates/system.php:253 ../templates/admin.php:90
 #: ../templates/admin.php:119
@@ -1686,48 +1686,52 @@ msgstr ""
 msgid "Install this update now?"
 msgstr ""
 
-#: ../templates/about.php:57 ../templates/about.php:58
-#: ../templates/about.php:85 ../templates/system.php:271
+#: ../templates/about.php:57
+msgid "Unable to check for updates. Verify your internet connection and try again."
+msgstr ""
+
+#: ../templates/about.php:58 ../templates/about.php:59
+#: ../templates/about.php:86 ../templates/system.php:271
 msgid "OK"
 msgstr ""
 
-#: ../templates/about.php:70
+#: ../templates/about.php:71
 msgid "Update in progress"
 msgstr ""
 
-#: ../templates/about.php:73
+#: ../templates/about.php:74
 msgid "Application is being updated..."
 msgstr ""
 
-#: ../templates/about.php:74
+#: ../templates/about.php:75
 msgid "Configuring update"
 msgstr ""
 
-#: ../templates/about.php:75
+#: ../templates/about.php:76
 msgid "Updating sources"
 msgstr ""
 
-#: ../templates/about.php:76
+#: ../templates/about.php:77
 msgid "Installing package updates"
 msgstr ""
 
-#: ../templates/about.php:77
+#: ../templates/about.php:78
 msgid "Downloading latest files"
 msgstr ""
 
-#: ../templates/about.php:78
+#: ../templates/about.php:79
 msgid "Installing application"
 msgstr ""
 
-#: ../templates/about.php:79
+#: ../templates/about.php:80
 msgid "Update complete"
 msgstr ""
 
-#: ../templates/about.php:81
+#: ../templates/about.php:82
 msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 msgstr ""
 
-#: ../templates/about.php:82
+#: ../templates/about.php:83
 msgid "Success. Refresh this page to confirm the new version."
 msgstr ""
 
@@ -1783,7 +1787,7 @@ msgstr ""
 msgid "Information provided by %s"
 msgstr ""
 
-#: ../templates/hostapd.php:14 ../includes/functions.php:1022
+#: ../templates/hostapd.php:14 ../includes/functions.php:1066
 #: ../src/RaspAP/UI/Sidebar.php:19
 msgid "Hotspot"
 msgstr ""
@@ -2231,11 +2235,11 @@ msgstr ""
 msgid "Changing alert close timeout to %s ms"
 msgstr ""
 
-#: ../includes/functions.php:1025
+#: ../includes/functions.php:1069
 msgid "Mem Use"
 msgstr ""
 
-#: ../includes/functions.php:1028
+#: ../includes/functions.php:1072
 msgid "CPU"
 msgstr ""
 

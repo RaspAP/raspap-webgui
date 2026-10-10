@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-09-30 02:41+0000\n"
+"POT-Creation-Date: 2026-10-10 14:11+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
@@ -1083,7 +1083,7 @@ msgid "or download the <code>client.conf</code> file to your device."
 msgstr ""
 
 #: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:46
-#: ../templates/provider.php:36 ../includes/functions.php:1020
+#: ../templates/provider.php:36 ../includes/functions.php:1064
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
 msgid "Status"
@@ -1228,7 +1228,7 @@ msgstr "刪除此組態？無法撤銷。"
 
 #: ../templates/wireguard.php:82 ../templates/wireguard.php:100
 #: ../templates/openvpn.php:79 ../templates/openvpn.php:97
-#: ../templates/about.php:57 ../templates/system.php:56
+#: ../templates/about.php:58 ../templates/system.php:56
 #: ../templates/system.php:74 ../templates/system.php:109
 #: ../templates/system.php:253 ../templates/admin.php:90
 #: ../templates/admin.php:119
@@ -1685,48 +1685,52 @@ msgstr "安裝版本為最新版本。"
 msgid "Install this update now?"
 msgstr "現在就安裝此更新？"
 
-#: ../templates/about.php:57 ../templates/about.php:58
-#: ../templates/about.php:85 ../templates/system.php:271
+#: ../templates/about.php:57
+msgid "Unable to check for updates. Verify your internet connection and try again."
+msgstr ""
+
+#: ../templates/about.php:58 ../templates/about.php:59
+#: ../templates/about.php:86 ../templates/system.php:271
 msgid "OK"
 msgstr "OK"
 
-#: ../templates/about.php:70
+#: ../templates/about.php:71
 msgid "Update in progress"
 msgstr "更新中"
 
-#: ../templates/about.php:73
+#: ../templates/about.php:74
 msgid "Application is being updated..."
 msgstr "應用程式正在更新中..."
 
-#: ../templates/about.php:74
+#: ../templates/about.php:75
 msgid "Configuring update"
 msgstr "設定更新"
 
-#: ../templates/about.php:75
+#: ../templates/about.php:76
 msgid "Updating sources"
 msgstr "更新來源"
 
-#: ../templates/about.php:76
+#: ../templates/about.php:77
 msgid "Installing package updates"
 msgstr "安裝套件更新"
 
-#: ../templates/about.php:77
+#: ../templates/about.php:78
 msgid "Downloading latest files"
 msgstr "下載最新檔案"
 
-#: ../templates/about.php:78
+#: ../templates/about.php:79
 msgid "Installing application"
 msgstr "安裝應用程式"
 
-#: ../templates/about.php:79
+#: ../templates/about.php:80
 msgid "Update complete"
 msgstr "更新完成"
 
-#: ../templates/about.php:81
+#: ../templates/about.php:82
 msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 msgstr "發生錯誤。檢查<code>/tmp/raspap_install.log</code>中的日誌"
 
-#: ../templates/about.php:82
+#: ../templates/about.php:83
 msgid "Success. Refresh this page to confirm the new version."
 msgstr "成功。刷新此頁面以確認新版本。"
 
@@ -1782,7 +1786,7 @@ msgstr "断开 %s"
 msgid "Information provided by %s"
 msgstr "%s 提供的資訊"
 
-#: ../templates/hostapd.php:14 ../includes/functions.php:1022
+#: ../templates/hostapd.php:14 ../includes/functions.php:1066
 #: ../src/RaspAP/UI/Sidebar.php:19
 msgid "Hotspot"
 msgstr "熱點"
@@ -2230,11 +2234,11 @@ msgstr ""
 msgid "Changing alert close timeout to %s ms"
 msgstr ""
 
-#: ../includes/functions.php:1025
+#: ../includes/functions.php:1069
 msgid "Mem Use"
 msgstr ""
 
-#: ../includes/functions.php:1028
+#: ../includes/functions.php:1072
 msgid "CPU"
 msgstr ""
 

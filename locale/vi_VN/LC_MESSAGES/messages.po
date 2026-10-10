@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-09-30 02:41+0000\n"
+"POT-Creation-Date: 2026-10-10 14:11+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
@@ -1083,7 +1083,7 @@ msgid "or download the <code>client.conf</code> file to your device."
 msgstr "hoặc tải tệp <code>client.conf</code> về thiết bị của bạn."
 
 #: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:46
-#: ../templates/provider.php:36 ../includes/functions.php:1020
+#: ../templates/provider.php:36 ../includes/functions.php:1064
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
 msgid "Status"
@@ -1228,7 +1228,7 @@ msgstr "Xóa cấu hình này? Thao tác này không thể hoàn tác."
 
 #: ../templates/wireguard.php:82 ../templates/wireguard.php:100
 #: ../templates/openvpn.php:79 ../templates/openvpn.php:97
-#: ../templates/about.php:57 ../templates/system.php:56
+#: ../templates/about.php:58 ../templates/system.php:56
 #: ../templates/system.php:74 ../templates/system.php:109
 #: ../templates/system.php:253 ../templates/admin.php:90
 #: ../templates/admin.php:119
@@ -1685,48 +1685,52 @@ msgstr "Phiên bản đã cài đặt là phiên bản mới nhất."
 msgid "Install this update now?"
 msgstr "Bạn có muốn cài đặt bản cập nhật này ngay bây giờ không?"
 
-#: ../templates/about.php:57 ../templates/about.php:58
-#: ../templates/about.php:85 ../templates/system.php:271
+#: ../templates/about.php:57
+msgid "Unable to check for updates. Verify your internet connection and try again."
+msgstr ""
+
+#: ../templates/about.php:58 ../templates/about.php:59
+#: ../templates/about.php:86 ../templates/system.php:271
 msgid "OK"
 msgstr "Được rồi"
 
-#: ../templates/about.php:70
+#: ../templates/about.php:71
 msgid "Update in progress"
 msgstr "Đang cập nhật"
 
-#: ../templates/about.php:73
+#: ../templates/about.php:74
 msgid "Application is being updated..."
 msgstr "Ứng dụng đang được cập nhật..."
 
-#: ../templates/about.php:74
+#: ../templates/about.php:75
 msgid "Configuring update"
 msgstr "Cấu hình cập nhật"
 
-#: ../templates/about.php:75
+#: ../templates/about.php:76
 msgid "Updating sources"
 msgstr "Cập nhật nguồn"
 
-#: ../templates/about.php:76
+#: ../templates/about.php:77
 msgid "Installing package updates"
 msgstr "Cập nhật các gói phần mềm"
 
-#: ../templates/about.php:77
+#: ../templates/about.php:78
 msgid "Downloading latest files"
 msgstr "Tải xuống các tệp mới nhất"
 
-#: ../templates/about.php:78
+#: ../templates/about.php:79
 msgid "Installing application"
 msgstr "Cài đặt ứng dụng"
 
-#: ../templates/about.php:79
+#: ../templates/about.php:80
 msgid "Update complete"
 msgstr "Cập nhật hoàn tất"
 
-#: ../templates/about.php:81
+#: ../templates/about.php:82
 msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 msgstr "Đã xảy ra lỗi. Vui lòng kiểm tra tệp nhật ký tại <code>/tmp/raspap_install.log</code>"
 
-#: ../templates/about.php:82
+#: ../templates/about.php:83
 msgid "Success. Refresh this page to confirm the new version."
 msgstr "Thành công. Vui lòng làm mới trang này để xác nhận phiên bản mới."
 
@@ -1782,7 +1786,7 @@ msgstr "Ngắt kết nối %s"
 msgid "Information provided by %s"
 msgstr "Thông tin được cung cấp bởi %s"
 
-#: ../templates/hostapd.php:14 ../includes/functions.php:1022
+#: ../templates/hostapd.php:14 ../includes/functions.php:1066
 #: ../src/RaspAP/UI/Sidebar.php:19
 msgid "Hotspot"
 msgstr "Điểm phát sóng"
@@ -2230,11 +2234,11 @@ msgstr "Thay đổi giới hạn kích thước nhật ký thành %s KB"
 msgid "Changing alert close timeout to %s ms"
 msgstr "Thay đổi thời gian chờ đóng cảnh báo thành %s ms"
 
-#: ../includes/functions.php:1025
+#: ../includes/functions.php:1069
 msgid "Mem Use"
 msgstr "Dung lượng bộ nhớ"
 
-#: ../includes/functions.php:1028
+#: ../includes/functions.php:1072
 msgid "CPU"
 msgstr "Bộ xử lý"
 

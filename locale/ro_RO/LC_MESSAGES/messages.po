@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-09-30 02:41+0000\n"
+"POT-Creation-Date: 2026-10-10 14:11+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
@@ -1083,7 +1083,7 @@ msgid "or download the <code>client.conf</code> file to your device."
 msgstr ""
 
 #: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:46
-#: ../templates/provider.php:36 ../includes/functions.php:1020
+#: ../templates/provider.php:36 ../includes/functions.php:1064
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
 msgid "Status"
@@ -1228,7 +1228,7 @@ msgstr "Ștergeți această configurație? Acest lucru nu poate fi anulat."
 
 #: ../templates/wireguard.php:82 ../templates/wireguard.php:100
 #: ../templates/openvpn.php:79 ../templates/openvpn.php:97
-#: ../templates/about.php:57 ../templates/system.php:56
+#: ../templates/about.php:58 ../templates/system.php:56
 #: ../templates/system.php:74 ../templates/system.php:109
 #: ../templates/system.php:253 ../templates/admin.php:90
 #: ../templates/admin.php:119
@@ -1685,48 +1685,52 @@ msgstr "Versiunea instalată este cea mai recentă versiune."
 msgid "Install this update now?"
 msgstr "Instalați această actualizare acum?"
 
-#: ../templates/about.php:57 ../templates/about.php:58
-#: ../templates/about.php:85 ../templates/system.php:271
+#: ../templates/about.php:57
+msgid "Unable to check for updates. Verify your internet connection and try again."
+msgstr ""
+
+#: ../templates/about.php:58 ../templates/about.php:59
+#: ../templates/about.php:86 ../templates/system.php:271
 msgid "OK"
 msgstr "OK"
 
-#: ../templates/about.php:70
+#: ../templates/about.php:71
 msgid "Update in progress"
 msgstr "Actualizare în curs"
 
-#: ../templates/about.php:73
+#: ../templates/about.php:74
 msgid "Application is being updated..."
 msgstr "Aplicația este în curs de actualizare..."
 
-#: ../templates/about.php:74
+#: ../templates/about.php:75
 msgid "Configuring update"
 msgstr "Configurarea actualizării"
 
-#: ../templates/about.php:75
+#: ../templates/about.php:76
 msgid "Updating sources"
 msgstr "Actualizarea surselor"
 
-#: ../templates/about.php:76
+#: ../templates/about.php:77
 msgid "Installing package updates"
 msgstr "Instalarea actualizărilor pachetelor"
 
-#: ../templates/about.php:77
+#: ../templates/about.php:78
 msgid "Downloading latest files"
 msgstr "Descărcarea celor mai recente fișiere"
 
-#: ../templates/about.php:78
+#: ../templates/about.php:79
 msgid "Installing application"
 msgstr "Instalarea aplicației"
 
-#: ../templates/about.php:79
+#: ../templates/about.php:80
 msgid "Update complete"
 msgstr "Actualizare completă"
 
-#: ../templates/about.php:81
+#: ../templates/about.php:82
 msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 msgstr "A apărut o eroare. Verificați jurnalul la <code>/tmp/raspap_install.log</code>"
 
-#: ../templates/about.php:82
+#: ../templates/about.php:83
 msgid "Success. Refresh this page to confirm the new version."
 msgstr "Succes. Actualizați această pagină pentru a confirma noua versiune."
 
@@ -1782,7 +1786,7 @@ msgstr "Deconectați %s"
 msgid "Information provided by %s"
 msgstr "Informații furnizate de %s"
 
-#: ../templates/hostapd.php:14 ../includes/functions.php:1022
+#: ../templates/hostapd.php:14 ../includes/functions.php:1066
 #: ../src/RaspAP/UI/Sidebar.php:19
 msgid "Hotspot"
 msgstr "Hotspot"
@@ -2230,11 +2234,11 @@ msgstr ""
 msgid "Changing alert close timeout to %s ms"
 msgstr ""
 
-#: ../includes/functions.php:1025
+#: ../includes/functions.php:1069
 msgid "Mem Use"
 msgstr ""
 
-#: ../includes/functions.php:1028
+#: ../includes/functions.php:1072
 msgid "CPU"
 msgstr ""
 

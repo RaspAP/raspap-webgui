@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-09-30 02:41+0000\n"
+"POT-Creation-Date: 2026-10-10 14:11+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
@@ -1083,7 +1083,7 @@ msgid "or download the <code>client.conf</code> file to your device."
 msgstr "veya <code>client.conf</code> dosyasını cihazınıza indirin."
 
 #: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:46
-#: ../templates/provider.php:36 ../includes/functions.php:1020
+#: ../templates/provider.php:36 ../includes/functions.php:1064
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
 msgid "Status"
@@ -1228,7 +1228,7 @@ msgstr "Bu yapılandırma silinsin mi? Bu geri alınamaz."
 
 #: ../templates/wireguard.php:82 ../templates/wireguard.php:100
 #: ../templates/openvpn.php:79 ../templates/openvpn.php:97
-#: ../templates/about.php:57 ../templates/system.php:56
+#: ../templates/about.php:58 ../templates/system.php:56
 #: ../templates/system.php:74 ../templates/system.php:109
 #: ../templates/system.php:253 ../templates/admin.php:90
 #: ../templates/admin.php:119
@@ -1685,48 +1685,52 @@ msgstr "Yüklü sürüm en son sürümdür."
 msgid "Install this update now?"
 msgstr "Bu güncellemeyi şimdi mi yüklüyorsunuz?"
 
-#: ../templates/about.php:57 ../templates/about.php:58
-#: ../templates/about.php:85 ../templates/system.php:271
+#: ../templates/about.php:57
+msgid "Unable to check for updates. Verify your internet connection and try again."
+msgstr ""
+
+#: ../templates/about.php:58 ../templates/about.php:59
+#: ../templates/about.php:86 ../templates/system.php:271
 msgid "OK"
 msgstr "TAMAM."
 
-#: ../templates/about.php:70
+#: ../templates/about.php:71
 msgid "Update in progress"
 msgstr "Güncelleme devam ediyor"
 
-#: ../templates/about.php:73
+#: ../templates/about.php:74
 msgid "Application is being updated..."
 msgstr "Uygulama güncelleniyor..."
 
-#: ../templates/about.php:74
+#: ../templates/about.php:75
 msgid "Configuring update"
 msgstr "Güncellemeyi yapılandırma"
 
-#: ../templates/about.php:75
+#: ../templates/about.php:76
 msgid "Updating sources"
 msgstr "Kaynakların güncellenmesi"
 
-#: ../templates/about.php:76
+#: ../templates/about.php:77
 msgid "Installing package updates"
 msgstr "Paket güncellemelerini yükleme"
 
-#: ../templates/about.php:77
+#: ../templates/about.php:78
 msgid "Downloading latest files"
 msgstr "En son dosyaları indirme"
 
-#: ../templates/about.php:78
+#: ../templates/about.php:79
 msgid "Installing application"
 msgstr "Uygulama yükleme"
 
-#: ../templates/about.php:79
+#: ../templates/about.php:80
 msgid "Update complete"
 msgstr "Güncelleme tamamlandı"
 
-#: ../templates/about.php:81
+#: ../templates/about.php:82
 msgid "An error occurred. Check the log at <code>/tmp/raspap_install.log</code>"
 msgstr "Bir hata oluştu. <code>/tmp/raspap_install.log</code> adresindeki günlüğü kontrol edin"
 
-#: ../templates/about.php:82
+#: ../templates/about.php:83
 msgid "Success. Refresh this page to confirm the new version."
 msgstr "Başarılı. Yeni sürümü onaylamak için bu sayfayı yenileyin."
 
@@ -1782,7 +1786,7 @@ msgstr "Bağlantıyı kes %s"
 msgid "Information provided by %s"
 msgstr "%s tarafından sağlanan bilgiler"
 
-#: ../templates/hostapd.php:14 ../includes/functions.php:1022
+#: ../templates/hostapd.php:14 ../includes/functions.php:1066
 #: ../src/RaspAP/UI/Sidebar.php:19
 msgid "Hotspot"
 msgstr "Sıcak Nokta"
@@ -2230,11 +2234,11 @@ msgstr "Günlük sınır boyutunu %s KB olarak değiştirme"
 msgid "Changing alert close timeout to %s ms"
 msgstr "Uyarı kapatma zaman aşımını %s ms olarak değiştirme"
 
-#: ../includes/functions.php:1025
+#: ../includes/functions.php:1069
 msgid "Mem Use"
 msgstr "Mem Kullanımı"
 
-#: ../includes/functions.php:1028
+#: ../includes/functions.php:1072
 msgid "CPU"
 msgstr "CPU"
 
