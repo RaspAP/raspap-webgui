@@ -15,7 +15,12 @@ if (isset($_POST['cfg_id'])) {
     }
     $ovpncfg_client = RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_client.conf';
     $ovpncfg_login = RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_login.conf';
-    exec("sudo rm -f ".escapeshellarg($ovpncfg_client)." ".escapeshellarg($ovpncfg_login), $return);
+    $ovpncfg_keypass = RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_keypass.conf';
+    exec(
+        "sudo rm -f ".escapeshellarg($ovpncfg_client)." ".escapeshellarg($ovpncfg_login)
+        ." ".escapeshellarg($ovpncfg_keypass),
+        $return
+    );
     $jsonData = ['return'=>$return];
     echo json_encode($jsonData);
 }

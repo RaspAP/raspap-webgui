@@ -31,6 +31,7 @@ define('RASPI_WPA_CTRL_INTERFACE', '/var/run/wpa_supplicant');
 define('RASPI_OPENVPN_CLIENT_PATH', '/etc/openvpn/client/');
 define('RASPI_OPENVPN_CLIENT_CONFIG', '/etc/openvpn/client/client.conf');
 define('RASPI_OPENVPN_CLIENT_LOGIN', '/etc/openvpn/client/login.conf');
+define('RASPI_OPENVPN_CLIENT_KEYPASS', '/etc/openvpn/client/keypass.conf');
 define('RASPI_WIREGUARD_PATH', '/etc/wireguard/');
 define('RASPI_WIREGUARD_CONFIG', RASPI_WIREGUARD_PATH.'wg0.conf');
 define('RASPI_IPTABLES_CONF', RASPI_CONFIG.'/networking/iptables_rules.json');
