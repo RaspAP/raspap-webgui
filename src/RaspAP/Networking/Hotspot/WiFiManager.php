@@ -504,10 +504,10 @@ class WiFiManager
         $protocol = $network['protocol'] ?? 'WPA';
 
         // add network and get its ID
-        $netid = trim(shell_exec("sudo wpa_cli -i $iface add_network 2>&1"));
+        $netid = trim((string)shell_exec("sudo wpa_cli -i $iface add_network 2>&1"));
 
-        // validate network ID
-        if (!$netid || !is_numeric($netid)) {
+        // validate network ID; '0' is a valid ID (the first network)
+        if (!ctype_digit($netid)) {
             error_log("Failed to add network '{$network['ssid']}': Invalid network ID returned: '$netid'");
             return;
         }
