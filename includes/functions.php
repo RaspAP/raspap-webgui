@@ -790,12 +790,32 @@ class validation
 
 /* Resolves public IP address
  *
- * @return string $public_ip
+ * Queries each lookup service in turn and returns the first valid
+ * IP address, so a service that is down or blocked (e.g. by a DNS
+ * filter) does not leave the address empty. The last service is
+ * addressed by IP, so it does not depend on DNS at all; it returns
+ * key=value lines, of which the 'ip=' line is used.
+ *
+ * @return string $public_ip, or an empty string if no service answered
  */
 function get_public_ip()
 {
-    exec('wget --timeout=5 --tries=1 https://ipinfo.io/ip -qO -', $public_ip);
-    return $public_ip[0];
+    $services = [
+        'https://ipinfo.io/ip',
+        'https://ifconfig.me/ip',
+        'https://1.1.1.1/cdn-cgi/trace',
+    ];
+    foreach ($services as $service) {
+        $output = [];
+        exec('wget --timeout=5 --tries=1 -qO - ' . escapeshellarg($service) . ' 2>/dev/null', $output);
+        foreach ($output as $line) {
+            $public_ip = trim(preg_replace('/^ip=/', '', $line));
+            if (filter_var($public_ip, FILTER_VALIDATE_IP) !== false) {
+                return $public_ip;
+            }
+        }
+    }
+    return '';
 }
 
 // Load non default JS/ECMAScript in footer
