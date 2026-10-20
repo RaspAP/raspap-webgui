@@ -21,10 +21,13 @@ function DisplayWireGuardConfig()
         $optSrvEnable = isset($_POST['wgSrvEnable']) ? $_POST['wgSrvEnable'] : null;
         $optLogEnable = isset($_POST['wgLogEnable']) ? $_POST['wgLogEnable'] : null;
         $optKSwitch   = isset($_POST['wgKSwitch']) ? $_POST['wgKSwitch'] : null;
+        // NTP outside the tunnel is on by default; DNS is off by default
+        $optKSwitchNtp = (!isset($_POST['savewgsettings']) || isset($_POST['wgKSwitchNtp'])) ? 1 : null;
+        $optKSwitchDns = isset($_POST['wgKSwitchDns']) ? 1 : null;
         if (isset($_POST['savewgsettings']) && $optConf == 'manual' && $optSrvEnable == 1 ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['savewgsettings']) && $optConf == 'upload' && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
-            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optKSwitch, $optInterface);
+            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optKSwitch, $optInterface, $optKSwitchNtp, $optKSwitchDns);
         } elseif (isset($_POST['savewgsettings']) && isset($_POST['wg_penabled']) ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['startwg'])) {
@@ -110,6 +113,8 @@ function DisplayWireGuardConfig()
             "interfaces",
             "optRules",
             "optKSwitch",
+            "optKSwitchNtp",
+            "optKSwitchDns",
             "optLogEnable",
             "peer_id",
             "wg_srvpubkey",
@@ -140,9 +145,11 @@ function DisplayWireGuardConfig()
  * @param  boolean $optRules
  * @param  boolean $optKSwitch
  * @param  string $optInterface
+ * @param  boolean $optKSwitchNtp kill switch lets NTP pass outside the tunnel
+ * @param  boolean $optKSwitchDns kill switch lets DNS to the uplink resolvers pass outside the tunnel
  * @return object $status
  */
-function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface)
+function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface, $optKSwitchNtp = 1, $optKSwitchDns = null)
 {
     define('KB', 1024);
     $tmp_destdir = '/tmp/';
@@ -202,9 +209,18 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
                 }
                 $cidr_ip = strpos($ip_addr, '/') === false ? "$ip_addr/$cidr" : $ip_addr;
 
+                $ksOptions = [];
+                if (!empty($optKSwitchNtp)) {
+                    $ksOptions[] = '--allow-ntp';
+                }
+                if (!empty($optKSwitchDns)) {
+                    $ksOptions[] = '--allow-dns';
+                }
+
                 $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUpEx');
                 $rules[] = 'PreDown = '.getDefaultNetValue('wireguard','server','PreDown');
                 $rules = preg_replace('/%s/m', $cidr_ip, $rules);
+                $rules = preg_replace('/\s*%o/m', $ksOptions ? ' '.implode(' ', $ksOptions) : '', $rules);
             }
             if ((isset($rules) && count($rules) > 0)) {
                 $rules[] = '';

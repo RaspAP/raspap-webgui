@@ -265,7 +265,7 @@
       "DNS": [ "9.9.9.9" ],
       "PostUp": [ "iptables -A FORWARD -i wlan0 -o %i -j ACCEPT; iptables -A FORWARD -i %i -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -A POSTROUTING -o %i -j MASQUERADE" ],
       "PostDown": [ "iptables -D FORWARD -i wlan0 -o %i -j ACCEPT; iptables -D FORWARD -i %i -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -D POSTROUTING -o %i -j MASQUERADE" ],
-      "PostUpEx": [ "/etc/raspap/networking/wg-killswitch.sh up %i %s" ],
+      "PostUpEx": [ "/etc/raspap/networking/wg-killswitch.sh up %i %s %o" ],
       "PreDown": [ "/etc/raspap/networking/wg-killswitch.sh down %i" ]
     },
     "peer": {

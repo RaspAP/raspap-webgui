@@ -52,6 +52,20 @@
                     <p id="wg-description">
                       <small><?php echo _("This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."); ?></small>
                     </p>
+                    <div class="ms-4" id="wg-kswitch-options">
+                      <div class="form-check form-switch">
+                        <?php $checked = $optKSwitchNtp == 1 ? 'checked="checked"' : '' ?>
+                        <input class="form-check-input" id="chxwgkswitchntp" name="wgKSwitchNtp" type="checkbox" value="1" <?php echo $checked ?> />
+                        <label class="form-check-label" for="chxwgkswitchntp"><?php echo _("Allow NTP outside the tunnel"); ?></label>
+                        <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Lets the device set its clock while the tunnel is down. A WireGuard handshake fails when the clock is behind."); ?>"></i>
+                      </div>
+                      <div class="form-check form-switch">
+                        <?php $checked = $optKSwitchDns == 1 ? 'checked="checked"' : '' ?>
+                        <input class="form-check-input" id="chxwgkswitchdns" name="wgKSwitchDns" type="checkbox" value="1" <?php echo $checked ?> />
+                        <label class="form-check-label" for="chxwgkswitchdns"><?php echo _("Allow DNS to the uplink DNS servers outside the tunnel"); ?></label>
+                        <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Lets the device resolve names (for example NTP servers) while the tunnel is down. The DNS requests of this device go outside the tunnel. AP clients are not affected."); ?>"></i>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

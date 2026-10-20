@@ -5,17 +5,18 @@
 # Description: Blocks internet traffic of this device outside the WireGuard
 # tunnel. Called from the PostUp and PreDown rules of a WireGuard client
 # configuration. Local traffic is not blocked: private and link-local networks,
-# broadcast, multicast, DHCP and the AP subnet. NTP, and DNS to the resolvers in
-# /etc/resolv.conf, also stay outside the tunnel, so the clock can be set and
-# names can be resolved while the tunnel is down. A WireGuard handshake fails
-# when the clock is behind.
+# broadcast, multicast, DHCP and the AP subnet. Optionally, NTP and DNS to the
+# resolvers in /etc/resolv.conf stay outside the tunnel. A WireGuard handshake
+# fails when the clock is behind, and the clock can not be set through a tunnel
+# that is down.
 # License: GNU General Public License v3.0
 #
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.
 #
-# Usage: wg-killswitch.sh up <interface> [ap-subnet]
+# Usage: wg-killswitch.sh up <interface> [ap-subnet] [--allow-ntp] [--allow-dns]
 #        wg-killswitch.sh down <interface>
+#        wg-killswitch.sh migrate <config-file> ...
 
 set -o nounset
 
@@ -24,19 +25,32 @@ readonly chain6="RASPAP_KILLSWITCH6"
 # before the wg-quick rules (32764, 32765)
 readonly rule_pref="32700"
 readonly resolv_conf="/etc/resolv.conf"
+readonly self="/etc/raspap/networking/wg-killswitch.sh"
 
 usage() {
-    echo "Usage: $0 up <interface> [ap-subnet] | down <interface>" >&2
+    echo "Usage: $0 up <interface> [ap-subnet] [--allow-ntp] [--allow-dns]" >&2
+    echo "       $0 down <interface>" >&2
+    echo "       $0 migrate <config-file> ..." >&2
     exit 1
 }
 
-[ "$#" -ge 2 ] || usage
-action="$1"
-iface="$2"
-ap_subnet="${3:-}"
+# Removes the rule that older RaspAP versions added in PostUp:
+# iptables -I OUTPUT ! -o <if> -m mark ! --mark <mark> -m addrtype ! --dst-type LOCAL ! -d <subnet> -j REJECT
+# iptables -S prints it as:
+# -A OUTPUT ! -d <subnet> ! -o <if> -m mark ! --mark <mark> -m addrtype ! --dst-type LOCAL -j REJECT ...
+remove_legacy_rule() {
+    local iface="$1" rule
+    iptables -S OUTPUT 2>/dev/null |
+        grep -E -- "^-A OUTPUT (! -d [^ ]+ )?! -o $iface -m mark ! --mark [^ ]+ -m addrtype ! --dst-type LOCAL -j REJECT" |
+        while read -r rule; do
+            # shellcheck disable=SC2086
+            iptables ${rule/#-A/-D} 2>/dev/null || true
+        done
+}
 
 # Removes the chains and routing rules; also cleans up after an interrupted run
 cleanup() {
+    local iface="$1"
     while iptables -D OUTPUT -j "$chain4" 2>/dev/null; do :; done
     iptables -F "$chain4" 2>/dev/null || true
     iptables -X "$chain4" 2>/dev/null || true
@@ -45,6 +59,7 @@ cleanup() {
     ip6tables -X "$chain6" 2>/dev/null || true
     while ip -4 rule del pref "$rule_pref" 2>/dev/null; do :; done
     while ip -6 rule del pref "$rule_pref" 2>/dev/null; do :; done
+    remove_legacy_rule "$iface"
     return 0
 }
 
@@ -62,26 +77,45 @@ nameservers() {
     done
 }
 
-# Sends NTP, and DNS to the nameservers, through the main routing table, so
+# Sends NTP and/or DNS to the nameservers through the main routing table, so
 # that wg-quick does not route them into the tunnel. Not all iproute2 versions
 # support these selectors, so a failure only gives a warning.
 add_rules() {
     local family="$1" ns proto
-    ip "-$family" rule add pref "$rule_pref" ipproto udp dport 123 lookup main ||
-        echo "wg-killswitch: unable to add NTP rule (IPv$family)" >&2
-    for ns in $(nameservers "$family"); do
-        for proto in udp tcp; do
-            ip "-$family" rule add pref "$rule_pref" to "$ns" ipproto "$proto" dport 53 lookup main ||
-                echo "wg-killswitch: unable to add DNS rule for $ns" >&2
+    if [ "$allow_ntp" = 1 ]; then
+        ip "-$family" rule add pref "$rule_pref" ipproto udp dport 123 lookup main ||
+            echo "wg-killswitch: unable to add NTP rule (IPv$family)" >&2
+    fi
+    if [ "$allow_dns" = 1 ]; then
+        for ns in $(nameservers "$family"); do
+            for proto in udp tcp; do
+                ip "-$family" rule add pref "$rule_pref" to "$ns" ipproto "$proto" dport 53 lookup main ||
+                    echo "wg-killswitch: unable to add DNS rule for $ns" >&2
+            done
         done
-    done
+    fi
+}
+
+# Adds the exceptions for NTP and DNS to a chain
+add_exceptions() {
+    local cmd="$1" family="$2" ns proto
+    if [ "$allow_ntp" = 1 ]; then
+        "$cmd" -A "$3" -p udp --dport 123 -j RETURN
+    fi
+    if [ "$allow_dns" = 1 ]; then
+        for ns in $(nameservers "$family"); do
+            for proto in udp tcp; do
+                "$cmd" -A "$3" -d "$ns" -p "$proto" --dport 53 -j RETURN
+            done
+        done
+    fi
 }
 
 up() {
-    local fwmark ns proto net
+    local fwmark net
 
     set -o errexit
-    cleanup
+    cleanup "$iface"
     fwmark="$(wg show "$iface" fwmark 2>/dev/null || echo off)"
 
     # IPv4
@@ -96,12 +130,7 @@ up() {
         iptables -A "$chain4" -d "$net" -j RETURN
     done
     iptables -A "$chain4" -p udp --sport 67:68 --dport 67:68 -j RETURN
-    iptables -A "$chain4" -p udp --dport 123 -j RETURN
-    for ns in $(nameservers 4); do
-        for proto in udp tcp; do
-            iptables -A "$chain4" -d "$ns" -p "$proto" --dport 53 -j RETURN
-        done
-    done
+    add_exceptions iptables 4 "$chain4"
     iptables -A "$chain4" -j REJECT
     iptables -I OUTPUT -j "$chain4"
 
@@ -115,12 +144,7 @@ up() {
     for net in fe80::/10 fc00::/7 ff00::/8; do
         ip6tables -A "$chain6" -d "$net" -j RETURN
     done
-    ip6tables -A "$chain6" -p udp --dport 123 -j RETURN
-    for ns in $(nameservers 6); do
-        for proto in udp tcp; do
-            ip6tables -A "$chain6" -d "$ns" -p "$proto" --dport 53 -j RETURN
-        done
-    done
+    add_exceptions ip6tables 6 "$chain6"
     ip6tables -A "$chain6" -j REJECT
     ip6tables -I OUTPUT -j "$chain6"
     set +o errexit
@@ -129,12 +153,56 @@ up() {
     add_rules 6
 }
 
+# Replaces the kill switch rules of older RaspAP versions in a WireGuard
+# configuration with calls to this script. NTP stays outside the tunnel, as
+# for a new configuration. Other lines do not change. The original file is
+# kept as <file>.bak-killswitch.
+migrate() {
+    local conf legacy_up legacy_down
+    legacy_up='^PostUp = iptables -I OUTPUT ! -o %i -m mark ! --mark \$\(wg show %i fwmark\) -m addrtype ! --dst-type LOCAL ! -d ([^ ]+) -j REJECT$'
+    legacy_down='^PreDown = iptables -D OUTPUT ! -o %i -m mark ! --mark \$\(wg show %i fwmark\) -m addrtype ! --dst-type LOCAL ! -d ([^ ]+) -j REJECT$'
+    for conf in "$@"; do
+        if [ ! -f "$conf" ] || [ -L "$conf" ]; then
+            continue
+        fi
+        if ! grep -Eq "$legacy_up" "$conf"; then
+            continue
+        fi
+        cp -a "$conf" "$conf.bak-killswitch"
+        sed -E -i \
+            -e "s|$legacy_up|PostUp = $self up %i \\1 --allow-ntp|" \
+            -e "s|$legacy_down|PreDown = $self down %i|" \
+            "$conf"
+        echo "Migrated kill switch in $conf (backup: $conf.bak-killswitch)"
+    done
+}
+
+[ "$#" -ge 2 ] || usage
+action="$1"
+shift
+
 case "$action" in
     up)
+        iface="$1"
+        shift
+        ap_subnet=""
+        allow_ntp=0
+        allow_dns=0
+        for arg in "$@"; do
+            case "$arg" in
+                --allow-ntp) allow_ntp=1 ;;
+                --allow-dns) allow_dns=1 ;;
+                -*) usage ;;
+                *) ap_subnet="$arg" ;;
+            esac
+        done
         up
         ;;
     down)
-        cleanup
+        cleanup "$1"
+        ;;
+    migrate)
+        migrate "$@"
         ;;
     *)
         usage
