@@ -22,8 +22,8 @@ set -o nounset
 
 readonly chain4="RASPAP_KILLSWITCH"
 readonly chain6="RASPAP_KILLSWITCH6"
-# before the wg-quick rules (32764, 32765)
-readonly rule_pref="32700"
+# priority of the routing rules when wg-quick added no rules of its own
+readonly default_rule_pref="32700"
 readonly resolv_conf="/etc/resolv.conf"
 readonly self="/etc/raspap/networking/wg-killswitch.sh"
 
@@ -57,10 +57,38 @@ cleanup() {
     while ip6tables -D OUTPUT -j "$chain6" 2>/dev/null; do :; done
     ip6tables -F "$chain6" 2>/dev/null || true
     ip6tables -X "$chain6" 2>/dev/null || true
-    while ip -4 rule del pref "$rule_pref" 2>/dev/null; do :; done
-    while ip -6 rule del pref "$rule_pref" 2>/dev/null; do :; done
+    remove_rules 4
+    remove_rules 6
     remove_legacy_rule "$iface"
     return 0
+}
+
+# Removes the NTP and DNS routing rules of this script. They are found by
+# content, because their priority depends on the wg-quick rules.
+remove_rules() {
+    local family="$1" line
+    ip "-$family" rule show 2>/dev/null |
+        grep -E "ipproto (udp|tcp) dport (53|123) lookup main" |
+        while read -r line; do
+            # shellcheck disable=SC2086
+            ip "-$family" rule del pref ${line%%:*} ${line#*:} 2>/dev/null || true
+        done
+}
+
+# Prints the priority for the routing rules: one below the first rule that
+# wg-quick added. wg-quick adds its rules without a priority, so the kernel
+# puts them before the first existing rule (e.g. before the Tailscale rules at
+# 5210), not always at 32764 and 32765.
+rule_pref() {
+    local family="$1" pref
+    pref=$(ip "-$family" rule show 2>/dev/null |
+        awk '/suppress_prefixlength 0|not from all fwmark/ { sub(":", "", $1); print $1 }' |
+        sort -n | head -n 1)
+    if [ -n "$pref" ] && [ "$pref" -gt 1 ]; then
+        echo $((pref - 1))
+    else
+        echo "$default_rule_pref"
+    fi
 }
 
 # Prints the IPv4 or IPv6 nameservers from resolv.conf, without loopback addresses
@@ -81,15 +109,16 @@ nameservers() {
 # that wg-quick does not route them into the tunnel. Not all iproute2 versions
 # support these selectors, so a failure only gives a warning.
 add_rules() {
-    local family="$1" ns proto
+    local family="$1" ns proto pref
+    pref=$(rule_pref "$family")
     if [ "$allow_ntp" = 1 ]; then
-        ip "-$family" rule add pref "$rule_pref" ipproto udp dport 123 lookup main ||
+        ip "-$family" rule add pref "$pref" ipproto udp dport 123 lookup main ||
             echo "wg-killswitch: unable to add NTP rule (IPv$family)" >&2
     fi
     if [ "$allow_dns" = 1 ]; then
         for ns in $(nameservers "$family"); do
             for proto in udp tcp; do
-                ip "-$family" rule add pref "$rule_pref" to "$ns" ipproto "$proto" dport 53 lookup main ||
+                ip "-$family" rule add pref "$pref" to "$ns" ipproto "$proto" dport 53 lookup main ||
                     echo "wg-killswitch: unable to add DNS rule for $ns" >&2
             done
         done
