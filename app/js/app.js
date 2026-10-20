@@ -25,6 +25,7 @@ import { initDHCP_ajax } from "./ajax/dhcp.js";
 import { initAdblock_ajax } from "./ajax/adblock.js";
 import { initWPA_ajax } from "./ajax/wpa.js";
 import { initNetworking_ajax } from "./ajax/networking.js";
+import { initInternetAccess_ajax } from "./ajax/internetaccess.js";
 import { initAuth_ajax } from "./ajax/auth.js";
 import { initOpenVPN_ajax } from "./ajax/openvpn.js";
 import { initWireGuard_ajax } from "./ajax/wg.js";
@@ -32,7 +33,6 @@ import { initSession_ajax } from "./ajax/session.js";
 import { initSystem_ajax} from "./ajax/system.js";
 import { initPlugins_ajax } from "./ajax/plugins.js";
 import { initAbout_ajax } from "./ajax/about.js";
-import { initInternetAccess_ajax } from "./ajax/internetaccess.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     console.info("RaspAP app.js initialized");
