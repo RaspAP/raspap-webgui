@@ -52,7 +52,7 @@
                     <p id="wg-description">
                       <small><?php echo _("This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."); ?></small>
                     </p>
-                    <div class="ms-4" id="wg-kswitch-options">
+                    <div class="ms-4" id="wg-kswitch-options"<?php echo $optKSwitch == 1 ? '' : ' style="display: none;"' ?>>
                       <div class="form-check form-switch">
                         <?php $checked = $optKSwitchNtp == 1 ? 'checked="checked"' : '' ?>
                         <input class="form-check-input" id="chxwgkswitchntp" name="wgKSwitchNtp" type="checkbox" value="1" <?php echo $checked ?> />
