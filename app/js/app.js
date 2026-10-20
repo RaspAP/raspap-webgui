@@ -32,6 +32,7 @@ import { initSession_ajax } from "./ajax/session.js";
 import { initSystem_ajax} from "./ajax/system.js";
 import { initPlugins_ajax } from "./ajax/plugins.js";
 import { initAbout_ajax } from "./ajax/about.js";
+import { initInternetAccess_ajax } from "./ajax/internetaccess.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     console.info("RaspAP app.js initialized");
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         case '/network_conf':
             initNetworking();
             initNetworking_ajax();
+            initInternetAccess_ajax();
             break;
         case '/wpa_conf':
             initWPA_ajax();

@@ -23,7 +23,8 @@ function DisplayNetworkingConfig(&$extraFooterScripts)
     $arrHostapdConf = [];
     $arrRoutingConf = [];
     $staInterface = $_SESSION['wifi_client_interface'] ?? null;
-    $routeInfo = getRouteInfo(true);
+    // the access checks run after the page load (ajax/networking/get_internet_access.php)
+    $routeInfo = getRouteInfo(false);
     $routeInfoRaw = getRouteInfoRaw();
     $state = "disabled";
 

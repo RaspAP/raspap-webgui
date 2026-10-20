@@ -49,10 +49,7 @@ class DeviceStatus
             'signal' => '-100 dB (0%)'
         ];
 
-        exec("iwconfig $dev 2>/dev/null | grep -i mode", $modeCheck);
-        if (!empty($modeCheck) && stripos($modeCheck[0], 'master') !== false) {
-            $result['isAP'] = true;
-        }
+        $result['isAP'] = isAccessPoint($dev);
 
         exec("iw dev $dev link 2>/dev/null", $iwOutput);
         if (empty($iwOutput)) {
