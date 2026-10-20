@@ -27,6 +27,9 @@ readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_network="$raspap_dir/networking/"
 readonly raspap_router="/etc/lighttpd/conf-available/50-raspap-router.conf"
 readonly rulesv4="/etc/iptables/rules.v4"
+# Rules of the WireGuard kill switch are active only while the tunnel is up,
+# so they must not be saved: RASPAP_KILLSWITCH(6) and the rule of older versions
+readonly killswitch_rules='RASPAP_KILLSWITCH|^-A OUTPUT (! -d [^ ]+ )?! -o [^ ]+ -m mark ! --mark [^ ]+ -m addrtype ! --dst-type LOCAL -j REJECT'
 readonly blocklist_hosts="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
 readonly blocklist_domains="https://big.oisd.nl/dnsmasq"
 
@@ -938,7 +941,7 @@ function _configure_networking() {
     # Persist rules if added
     if [ "$added" = true ]; then
         echo "Persisting IP tables rules"
-        sudo iptables-save | sudo tee $rulesv4 > /dev/null || _install_status 1 "Unable to execute iptables-save"
+        sudo iptables-save | grep -v -E -- "$killswitch_rules" | sudo tee $rulesv4 > /dev/null || _install_status 1 "Unable to execute iptables-save"
     fi
 
     # Prompt to install RaspAP daemon

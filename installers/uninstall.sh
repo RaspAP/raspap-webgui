@@ -24,6 +24,9 @@ readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_network="/etc/systemd/network/"
 readonly rulesv4="/etc/iptables/rules.v4"
+# Rules of the WireGuard kill switch are active only while the tunnel is up,
+# so they must not be saved: RASPAP_KILLSWITCH(6) and the rule of older versions
+readonly killswitch_rules='RASPAP_KILLSWITCH|^-A OUTPUT (! -d [^ ]+ )?! -o [^ ]+ -m mark ! --mark [^ ]+ -m addrtype ! --dst-type LOCAL -j REJECT'
 webroot_dir="/var/www/html"
 
 # Determines host Linux distribution details
@@ -187,7 +190,7 @@ function _restore_networking() {
     # Persist rules if removed
     if [ "$removed" = true ]; then
         echo "Removing persistent iptables rules"
-        sudo iptables-save | sudo tee $rulesv4 > /dev/null || _install_error "Unable to execute iptables-save"
+        sudo iptables-save | grep -v -E -- "$killswitch_rules" | sudo tee $rulesv4 > /dev/null || _install_error "Unable to execute iptables-save"
     fi
     echo "Done."
     # Remove dnsmasq and bridge configs
