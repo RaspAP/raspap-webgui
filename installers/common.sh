@@ -618,6 +618,40 @@ function _install_wireguard_killswitch() {
     echo "Installing fake-hwclock and saving the time every 5 minutes"
     sudo apt-get install -y fake-hwclock || _install_status 1 "Unable to install fake-hwclock"
     echo "*/5 * * * * root /usr/sbin/fake-hwclock save" | sudo tee /etc/cron.d/raspap-fake-hwclock >/dev/null || _install_status 1 "Unable to add fake-hwclock cron job"
+
+    _install_ntp_fallback
+}
+
+# Add NTP servers by IP address as a fallback. When the WireGuard tunnel is
+# down and DNS goes through the tunnel, NTP server names do not resolve. The
+# kill switch can let NTP pass outside the tunnel, so the clock can then be
+# set from these servers.
+function _install_ntp_fallback() {
+    # time.cloudflare.com, see https://developers.cloudflare.com/time-services/ntp/usage/
+    local servers="162.159.200.1 162.159.200.123 2606:4700:f1::1 2606:4700:f1::123"
+    local server defaults
+
+    # systemd-timesyncd (default): uses the fallback servers in turn
+    if systemctl cat systemd-timesyncd.service > /dev/null 2>&1; then
+        echo "Adding NTP fallback servers for systemd-timesyncd"
+        # keep the default servers of the distribution first
+        defaults=$(sed -n 's/^#\?FallbackNTP=//p' /etc/systemd/timesyncd.conf 2>/dev/null | head -n 1)
+        sudo mkdir -p /etc/systemd/timesyncd.conf.d || _install_status 1 "Unable to create /etc/systemd/timesyncd.conf.d"
+        printf '[Time]\nFallbackNTP=%s\n' "$(echo $defaults $servers)" |
+            sudo tee /etc/systemd/timesyncd.conf.d/90-raspap.conf > /dev/null || _install_status 1 "Unable to add NTP fallback servers"
+        sudo systemctl try-restart systemd-timesyncd.service
+    fi
+
+    # ntpsec (e.g. NTP Server plugin): reads each .conf file in ntp.d after
+    # ntp.conf, so the plugin does not change these servers
+    if [ -d /etc/ntpsec ]; then
+        echo "Adding NTP fallback servers for ntpsec"
+        sudo mkdir -p /etc/ntpsec/ntp.d || _install_status 1 "Unable to create /etc/ntpsec/ntp.d"
+        for server in $servers; do
+            echo "server $server iburst"
+        done | sudo tee /etc/ntpsec/ntp.d/90-raspap-fallback.conf > /dev/null || _install_status 1 "Unable to add NTP fallback servers"
+        sudo systemctl try-restart ntpsec.service
+    fi
 }
 
 # Update the WireGuard kill switch of an existing installation: install the

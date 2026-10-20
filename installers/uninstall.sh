@@ -153,6 +153,7 @@ function _remove_raspap_directories() {
     sudo rm -rf "$webroot_dir"/* || _install_error "Unable to remove $webroot_dir"
     sudo rm -rf "$raspap_dir" || _install_error "Unable to remove $raspap_dir"
     sudo rm -f /etc/cron.d/raspap-fake-hwclock || _install_error "Unable to remove fake-hwclock cron job"
+    sudo rm -f /etc/systemd/timesyncd.conf.d/90-raspap.conf /etc/ntpsec/ntp.d/90-raspap-fallback.conf || _install_error "Unable to remove NTP fallback servers"
 }
 
 # Removes raspapd.service
