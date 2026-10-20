@@ -595,6 +595,18 @@ function _install_wireguard() {
         sudo ln -sf /usr/bin/true /usr/local/bin/resolvconf || _install_status 1 "Failed to apply resolvconf shim"
     fi
 
+    echo "Copying installers/wg-killswitch.sh to $raspap_network"
+    sudo cp "$webroot_dir/installers/wg-killswitch.sh" "$raspap_network" || _install_status 1 "Unable to copy wg-killswitch.sh"
+    sudo chown root:root "${raspap_network}wg-killswitch.sh" || _install_status 1 "Unable to change owner of wg-killswitch.sh"
+    sudo chmod 750 "${raspap_network}wg-killswitch.sh" || _install_status 1 "Unable to change permissions of wg-killswitch.sh"
+
+    # A WireGuard handshake fails when the clock is behind. Without a battery,
+    # the RTC of a Raspberry Pi does not keep the time when the power is off.
+    # fake-hwclock restores the last saved time at boot.
+    echo "Installing fake-hwclock and saving the time every 5 minutes"
+    sudo apt-get install -y fake-hwclock || _install_status 1 "Unable to install fake-hwclock"
+    echo "*/5 * * * * root /usr/sbin/fake-hwclock save" | sudo tee /etc/cron.d/raspap-fake-hwclock >/dev/null || _install_status 1 "Unable to add fake-hwclock cron job"
+
     echo "Enabling wg-quick@wg0"
     sudo systemctl enable wg-quick@wg0 || _install_status 1 "Failed to enable wg-quick service"
     echo "Enabling WireGuard management option"
