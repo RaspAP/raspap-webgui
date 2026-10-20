@@ -1016,6 +1016,11 @@ function _patch_system_files() {
     _install_log "Copying RaspAP install loader"
     sudo cp "$webroot_dir/installers/"raspbian.sh "$raspap_dir/system" || _install_status 1 "Unable to move application update script"
 
+    # www-data can run this script with sudo, so it must be in a directory that
+    # only root can change
+    _install_log "Copying RaspAP set time script to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/settime.sh" /usr/local/sbin/raspap-settime.sh || _install_status 1 "Unable to install set time script"
+
     # Set ownership and permissions
     sudo chown -c root:root "$raspap_dir/system/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/system/"*.sh || _install_status 1 "Unable to change file permissions"

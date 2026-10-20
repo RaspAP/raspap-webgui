@@ -32,6 +32,7 @@ import { initSession_ajax } from "./ajax/session.js";
 import { initSystem_ajax} from "./ajax/system.js";
 import { initPlugins_ajax } from "./ajax/plugins.js";
 import { initAbout_ajax } from "./ajax/about.js";
+import { initClock_ajax } from "./ajax/clock.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     console.info("RaspAP app.js initialized");
@@ -97,6 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --------- Global initialization ---------
     initSession_ajax();
     $(document).ajaxSend(setCSRFTokenHeader);
+    // warn when the device clock differs from the browser clock
+    if (path !== '/login') {
+        initClock_ajax();
+    }
     globalThis.getCookie = getCookie;
     globalThis.setCookie = setCookie;
     globalThis.disableValidation = disableValidation;
@@ -319,11 +324,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 10);
     });
 
-    // To auto-close Bootstrap alerts; time is in milliseconds
+    // To auto-close Bootstrap alerts; time is in milliseconds.
+    // Alerts with the class alert-persistent stay until the user closes them.
     const alertTimeout = parseInt(getCookie('alert_timeout'), 10);
     window.setTimeout(
         function() {
-            $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(".alert").not(".alert-persistent").fadeTo(500, 0).slideUp(500, function(){
                 $(this).remove();
             });
         },

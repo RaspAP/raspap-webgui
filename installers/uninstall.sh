@@ -152,6 +152,7 @@ function _remove_raspap_directories() {
     fi
     sudo rm -rf "$webroot_dir"/* || _install_error "Unable to remove $webroot_dir"
     sudo rm -rf "$raspap_dir" || _install_error "Unable to remove $raspap_dir"
+    sudo rm -f /usr/local/sbin/raspap-settime.sh || _install_error "Unable to remove raspap-settime.sh"
 }
 
 # Removes raspapd.service
