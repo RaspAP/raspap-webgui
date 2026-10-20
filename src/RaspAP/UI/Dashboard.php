@@ -10,6 +10,8 @@
 
 namespace RaspAP\UI;
 
+use RaspAP\System\Sysinfo;
+
 class Dashboard {
 
     private string $firewallConfig;
@@ -243,17 +245,19 @@ class Dashboard {
      * If the route uses a VPN interface, the physical uplink from the
      * main table's default route is returned instead; the VPN itself
      * is reported separately by Sysinfo::getActiveVpnInterface().
+     * If the main table has several default routes, the first one is
+     * used; ip lists them by ascending metric, so this is the route
+     * the kernel prefers.
      *
      * @return string
      */
     public function getConnectionInterface(): string
     {
-        $vpnInterfaces = ['wg0', 'tun0', 'tailscale0'];
         $interface = $this->getRouteDevice(shell_exec('ip -o route get 1.1.1.1 2>/dev/null'));
 
-        if (in_array($interface, $vpnInterfaces, true)) {
+        if (in_array($interface, Sysinfo::VPN_INTERFACES, true)) {
             $uplink = $this->getRouteDevice(shell_exec('ip -o route show table main default 2>/dev/null'));
-            if ($uplink !== '' && !in_array($uplink, $vpnInterfaces, true)) {
+            if ($uplink !== '' && !in_array($uplink, Sysinfo::VPN_INTERFACES, true)) {
                 return $uplink;
             }
         }
