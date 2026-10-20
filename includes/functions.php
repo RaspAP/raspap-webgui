@@ -794,7 +794,8 @@ class validation
  * IP address, so a service that is down or blocked (e.g. by a DNS
  * filter) does not leave the address empty. The last service is
  * addressed by IP, so it does not depend on DNS at all; it returns
- * key=value lines, of which the 'ip=' line is used.
+ * key=value lines, of which the 'ip=' line is used. A short timeout
+ * per service keeps the page load short when there is no connectivity.
  *
  * @return string $public_ip, or an empty string if no service answered
  */
@@ -807,7 +808,7 @@ function get_public_ip()
     ];
     foreach ($services as $service) {
         $output = [];
-        exec('wget --timeout=5 --tries=1 -qO - ' . escapeshellarg($service) . ' 2>/dev/null', $output);
+        exec('wget --timeout=2 --tries=1 -qO - ' . escapeshellarg($service) . ' 2>/dev/null', $output);
         foreach ($output as $line) {
             $public_ip = trim(preg_replace('/^ip=/', '', $line));
             if (filter_var($public_ip, FILTER_VALIDATE_IP) !== false) {
