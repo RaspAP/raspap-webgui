@@ -3,6 +3,7 @@
 require_once 'includes/config.php';
 
 use RaspAP\Networking\Hotspot\WiFiManager;
+use RaspAP\Networking\VpnConflict;
 $wifi = new WiFiManager();
 $wifi->getWifiInterface();
 
@@ -71,6 +72,11 @@ function DisplayOpenVPNConfig()
         $logEnable = 1;
         exec("sudo /etc/raspap/openvpn/openvpnlog.sh", $logOutput);
         $logOutput = file_get_contents('/tmp/openvpn.log');
+    }
+
+    $vpnWarning = (new VpnConflict())->getWarning();
+    if ($vpnWarning !== null) {
+        $status->addMessage($vpnWarning, 'warning');
     }
 
     echo renderTemplate(
