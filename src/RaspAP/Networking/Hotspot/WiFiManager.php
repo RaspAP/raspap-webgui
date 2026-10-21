@@ -759,9 +759,11 @@ CONF;
      *
      * @param array $networks array of network configurations
      * @param string $interface the network interface name
+     * @param bool $reconfigure apply the file with wpa_cli; false when
+     *             NetworkManager manages the interface
      * @return array Array with 'success' (bool) and 'message' (string)
      */
-    public function writeWpaSupplicant(array $networks, string $interface): array
+    public function writeWpaSupplicant(array $networks, string $interface, bool $reconfigure = true): array
     {
         $wpa_file = fopen('/tmp/wifidata', 'w');
         if (!$wpa_file) {
@@ -833,6 +835,9 @@ CONF;
         if ($ok) {
             system('sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval);
             if ($returnval == 0) {
+                if (!$reconfigure) {
+                    return ['success' => true, 'message' => 'Wifi settings updated successfully'];
+                }
                 exec('sudo wpa_cli -i ' . escapeshellarg($interface) . ' reconfigure', $reconfigure_out, $reconfigure_return);
                 if ($reconfigure_return == 0) {
                     return ['success' => true, 'message' => 'Wifi settings updated successfully'];
