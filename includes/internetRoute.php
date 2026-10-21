@@ -44,7 +44,7 @@ function getRouteInfo($checkAccess)
             // resolve the name of the gateway (if possible)
             unset($host);
             if ($prop[2] !== '-') {
-                exec('host ' . $prop[2] . ' | sed -rn "s/.*domain name pointer (.*)\./\1/p" | head -n 1', $host);
+                exec('host ' . escapeshellarg($prop[2]) . ' | sed -rn "s/.*domain name pointer (.*)\./\1/p" | head -n 1', $host);
             }
             $rInfo[$i]["gw-name"] = empty($host) ? "*" : $host[0];
             $rInfo[$i]["isAP"] = $isAP = isAccessPoint($dev);
@@ -142,10 +142,10 @@ function checkHTTPAccess($iface, $detectPortal=false) {
                         $ret="PORTAL " . $url;
                      }
                      else {
-                        exec('timeout 7 sudo nmap --script=broadcast-dhcp-discover -e ' . $iface . ' 2> /dev/null | sed -rn "s/.*Domain Name Server:\s*(([0-9]{1,3}\.){3}[0-9]{1,3}).*/\1/pi"', $nameserver);
+                        exec('timeout 7 sudo nmap --script=broadcast-dhcp-discover -e ' . escapeshellarg($iface) . ' 2> /dev/null | sed -rn "s/.*Domain Name Server:\s*(([0-9]{1,3}\.){3}[0-9]{1,3}).*/\1/pi"', $nameserver);
                         if ( !empty($nameserver) ) {
                            $nameserver=$nameserver[0];
-                           exec('host ' . $srv . ' ' . $nameserver . ' | sed -rn "s/.*has address ((([0-9]{1,3}\.){3}[0-9]{1,3})).*/\1/p"', $ip2);
+                           exec('host ' . escapeshellarg($srv) . ' ' . escapeshellarg($nameserver) . ' | sed -rn "s/.*has address ((([0-9]{1,3}\.){3}[0-9]{1,3})).*/\1/p"', $ip2);
                            if ( !empty($ip2) ) {
                               $ip2=$ip2[0];
                               $url=preg_replace("/" . $srv . "/",$ip2,$url);
