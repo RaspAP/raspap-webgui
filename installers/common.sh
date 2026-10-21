@@ -27,9 +27,6 @@ readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_network="$raspap_dir/networking/"
 readonly raspap_router="/etc/lighttpd/conf-available/50-raspap-router.conf"
 readonly rulesv4="/etc/iptables/rules.v4"
-# Rules of the WireGuard kill switch are active only while the tunnel is up,
-# so they must not be saved: RASPAP_KILLSWITCH(6) and the rule of older versions
-readonly killswitch_rules='RASPAP_KILLSWITCH|^-A OUTPUT (! -d [^ ]+ )?! -o [^ ]+ -m mark ! --mark [^ ]+ -m addrtype ! --dst-type LOCAL -j REJECT'
 readonly blocklist_hosts="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
 readonly blocklist_domains="https://big.oisd.nl/dnsmasq"
 
@@ -950,7 +947,8 @@ function _configure_networking() {
     # Persist rules if added
     if [ "$added" = true ]; then
         echo "Persisting IP tables rules"
-        sudo iptables-save | grep -v -E -- "$killswitch_rules" | sudo tee $rulesv4 > /dev/null || _install_status 1 "Unable to execute iptables-save"
+        # _patch_system_files installs the script later, so use the copy in the web root
+        sudo bash "$webroot_dir/installers/raspap-iptables-save.sh" || _install_status 1 "Unable to execute iptables-save"
     fi
 
     # Prompt to install RaspAP daemon
@@ -1065,6 +1063,11 @@ function _patch_system_files() {
     _install_log "Adding raspap.sudoers to ${raspap_sudoers}"
     sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
     sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
+
+    # The scripts that save iptables rules run as root, so the script that they
+    # call must be in a directory that only root can change
+    _install_log "Copying RaspAP iptables save script to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/raspap-iptables-save.sh" /usr/local/sbin/raspap-iptables-save.sh || _install_status 1 "Unable to install iptables save script"
 
     if [ ! -d "$raspap_dir/system" ]; then
         sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"

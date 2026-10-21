@@ -19,9 +19,6 @@ set -o errtrace
 # set -o xtrace
 
 readonly rulesv4="/etc/iptables/rules.v4"
-# Rules of the WireGuard kill switch are active only while the tunnel is up,
-# so they must not be saved: RASPAP_KILLSWITCH(6) and the rule of older versions
-readonly killswitch_rules='RASPAP_KILLSWITCH|^-A OUTPUT (! -d [^ ]+ )?! -o [^ ]+ -m mark ! --mark [^ ]+ -m addrtype ! --dst-type LOCAL -j REJECT'
 
 if [ "$#" -ne 3 ]; then
     echo "Usage: $0 <input> <output> <action>"
@@ -76,6 +73,6 @@ done
 # Persist rules if added
 if [ "$added" = true ]; then
     echo "Persisting IP tables rules"
-    sudo iptables-save | grep -v -E -- "$killswitch_rules" | sudo tee $rulesv4 > /dev/null || echo "Unable to execute iptables-save"
+    sudo /usr/local/sbin/raspap-iptables-save.sh || echo "Unable to execute iptables-save"
 fi
 

@@ -19,9 +19,6 @@ auth=$2
 interface=$3
 keypass=$4
 readonly rulesv4="/etc/iptables/rules.v4"
-# Rules of the WireGuard kill switch are active only while the tunnel is up,
-# so they must not be saved: RASPAP_KILLSWITCH(6) and the rule of older versions
-readonly killswitch_rules='RASPAP_KILLSWITCH|^-A OUTPUT (! -d [^ ]+ )?! -o [^ ]+ -m mark ! --mark [^ ]+ -m addrtype ! --dst-type LOCAL -j REJECT'
 
 if [ "$auth" = 1 ]; then
     echo "Enabling auth-user-pass in OpenVPN client.conf"
@@ -62,6 +59,6 @@ done
 
 if [ "$added" = true ]; then
     echo "Persisting IP tables rules"
-    sudo iptables-save | grep -v -E -- "$killswitch_rules" | sudo tee $rulesv4 > /dev/null
+    sudo /usr/local/sbin/raspap-iptables-save.sh
 fi
 
