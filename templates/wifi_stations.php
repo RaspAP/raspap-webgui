@@ -63,7 +63,12 @@
     <tbody>
     <?php foreach ($nmProfiles as $profile) : ?>
       <tr>
-        <td><?php echo htmlspecialchars($profile['ssidutf8'], ENT_QUOTES) ?></td>
+        <td>
+          <?php echo htmlspecialchars($profile['ssidutf8'], ENT_QUOTES) ?>
+          <?php if (!empty($profile['duplicate'])) : ?>
+            <br><small class="text-muted"><?php echo _("Same network as a RaspAP network") ?></small>
+          <?php endif ?>
+        </td>
         <td><?php echo $profile['autoconnect'] ? _("Yes") : _("No") ?></td>
         <td><?php echo (int)$profile['priority'] ?></td>
         <td>
