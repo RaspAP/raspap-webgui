@@ -76,6 +76,7 @@ function DisplayWPAConfig()
         $result = $wifi->reinitializeWPA($force_remove);
     } elseif (isset($_POST['client_settings'])) {
         $tmp_networks = $networks;
+        $nmDisconnect = false;
 
         foreach (array_keys($_POST) as $post) {
 
@@ -88,7 +89,8 @@ function DisplayWPAConfig()
             } elseif (preg_match('/disconnect(\d+)/', $post, $post_match)) {
                 $network = $tmp_networks[$_POST['ssid' . $post_match[1]]];
                 if ($nmMode) {
-                    $nm->disconnect($clientInterface);
+                    // after the sync below, because a reload can connect again
+                    $nmDisconnect = true;
                 } else {
                     $wifi->disconnectNetwork($clientInterface, $network['index']);
                 }
@@ -129,6 +131,9 @@ function DisplayWPAConfig()
                 if (!$nm->syncNetworks($clientInterface, $saved)) {
                     $status->addMessage('Unable to update the NetworkManager connections', 'danger');
                 }
+            }
+            if ($nmDisconnect && !$nm->disconnect($clientInterface)) {
+                $status->addMessage('NetworkManager could not disconnect the interface', 'danger');
             }
         } else {
             $status->addMessage($result['message'], 'danger');
