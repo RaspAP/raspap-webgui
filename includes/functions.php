@@ -849,6 +849,24 @@ function validateInterface($interface)
 }
 
 /**
+ * Prepares an ajax endpoint that returns JSON
+ *
+ * Accepts POST only, so the CSRF token is always verified. Releases the
+ * session lock, so a slow endpoint does not block other requests from
+ * the same session. Call this after authenticate.php.
+ */
+function initAsyncJsonEndpoint()
+{
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        header('Allow: POST');
+        exit;
+    }
+    session_write_close();
+    header('Content-Type: application/json');
+}
+
+/**
  * Returns ISO standard 2-letter country codes
  *
  * @param string $locale
@@ -1048,6 +1066,25 @@ function isPredictableIfaceName($interface)
     } else {
         return false;
     }
+}
+
+/**
+ * Checks if a wireless interface is in access point mode
+ *
+ * Uses iw first. The kernel does not give wireless extensions (iwconfig)
+ * to Wi-Fi 7 (MLO) devices, so iwconfig is only a fallback.
+ *
+ * @param string $interface
+ * @return boolean
+ */
+function isAccessPoint($interface)
+{
+    exec('iw dev ' . escapeshellarg($interface) . ' info 2>/dev/null', $iwInfo);
+    if (!empty($iwInfo)) {
+        return preg_grep('/^\s*type AP$/', $iwInfo) !== [];
+    }
+    exec('iwconfig ' . escapeshellarg($interface) . ' 2>/dev/null', $iwconfig);
+    return preg_grep('/mode:master/i', $iwconfig) !== [];
 }
 
 /**

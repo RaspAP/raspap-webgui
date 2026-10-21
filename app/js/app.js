@@ -25,6 +25,7 @@ import { initDHCP_ajax } from "./ajax/dhcp.js";
 import { initAdblock_ajax } from "./ajax/adblock.js";
 import { initWPA_ajax } from "./ajax/wpa.js";
 import { initNetworking_ajax } from "./ajax/networking.js";
+import { initInternetAccess_ajax } from "./ajax/internetaccess.js";
 import { initAuth_ajax } from "./ajax/auth.js";
 import { initOpenVPN_ajax } from "./ajax/openvpn.js";
 import { initWireGuard_ajax } from "./ajax/wg.js";
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         case '/network_conf':
             initNetworking();
             initNetworking_ajax();
+            initInternetAccess_ajax();
             break;
         case '/wpa_conf':
             initWPA_ajax();

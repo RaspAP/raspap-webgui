@@ -28,6 +28,13 @@ function getRouteInfo($checkAccess)
             }
         }
     }
+    // add the interface that internet traffic really uses, if it has no
+    // default route in the main table (for example WireGuard with wg-quick)
+    $path = getInternetPath();
+    $routeDevs = array_map(fn($route) => explode(' ', $route)[0], $routes ?? []);
+    if ($path !== null && !in_array($path['interface'], $routeDevs, true)) {
+        $routes[] = $path['interface'] . ' ' . $path['ip-address'] . ' -';
+    }
     if (!empty($routes)) {
         foreach ($routes as $i => $route) {
             $prop = explode(' ', $route);
@@ -36,28 +43,66 @@ function getRouteInfo($checkAccess)
             $rInfo[$i]["gateway"] = $prop[2];
             // resolve the name of the gateway (if possible)
             unset($host);
-            exec('host ' . $prop[2] . ' | sed -rn "s/.*domain name pointer (.*)\./\1/p" | head -n 1', $host);
+            if ($prop[2] !== '-') {
+                exec('host ' . escapeshellarg($prop[2]) . ' | sed -rn "s/.*domain name pointer (.*)\./\1/p" | head -n 1', $host);
+            }
             $rInfo[$i]["gw-name"] = empty($host) ? "*" : $host[0];
-            // check if AP
-            unset($isAP);
-            exec("iwconfig $dev 2> /dev/null | sed -rn 's/.*(mode:master).*/1/ip'", $isAP);
-            $isAP = !empty($isAP);
-            $rInfo[$i]["isAP"] = $isAP;
+            $rInfo[$i]["isAP"] = $isAP = isAccessPoint($dev);
+            $rInfo[$i]["path-interface"] = $path['interface'] ?? null;
+            $rInfo[$i]["in-use"] = ($dev === ($path['interface'] ?? null));
             if (isset($checkAccess) && $checkAccess && !$isAP) {
-                // check internet connectivity w/ and w/o DNS resolution
-                unset($okip);
-                exec('ping -W1 -c 1 -I ' . $prop[0] . ' ' . RASPI_ACCESS_CHECK_IP . ' |  sed -rn "s/.*icmp_seq=1.*time=.*/OK/p"', $okip);
-                $rInfo[$i]["access-ip"] = empty($okip) ? false : true;
-                unset($okdns);
-                exec('ping -W1 -c 1 -I ' . $prop[0] . ' ' . RASPI_ACCESS_CHECK_DNS . ' |  sed -rn "s/.*icmp_seq=1.*time=.*/OK/p"', $okdns);
-                $rInfo[$i]["access-dns"] = empty($okdns) ? false : true;
-                $rInfo[$i]["access-url"] = preg_match('/OK.*/',checkHTTPAccess($prop[0]));
+                $access = checkInternetAccess($dev);
+                $rInfo[$i]["access-ip"] = $access['ip'];
+                $rInfo[$i]["access-dns"] = $access['dns'];
+                $rInfo[$i]["access-url"] = $access['http'];
             }
         }
     } else {
         $rInfo = array("error" => "No route to the internet found");
     }
     return $rInfo;
+}
+
+/*
+ * Finds the interface that traffic to the internet uses
+ *
+ * ip route get follows the policy routing rules, so this also finds a VPN
+ * that has its default route in another table, for example wg-quick.
+ *
+ * @return array|null interface and source address, or null if no route
+ */
+function getInternetPath()
+{
+    exec('ip route get ' . escapeshellarg(RASPI_ACCESS_CHECK_IP) . ' 2>/dev/null', $output);
+    $output = implode(' ', $output);
+    if (!preg_match('/\bdev (\S+)/', $output, $dev)) {
+        return null;
+    }
+    preg_match('/\bsrc (\S+)/', $output, $src);
+    return [
+        'interface' => $dev[1],
+        'ip-address' => $src[1] ?? '-'
+    ];
+}
+
+/*
+ * Checks internet access through an interface, with and without DNS
+ * resolution, and with HTTP
+ *
+ * @param string $iface
+ * @return array booleans for ip, dns and http
+ */
+function checkInternetAccess($iface)
+{
+    $ping = 'ping -W1 -c 1 -I ' . escapeshellarg($iface) . ' ';
+    $okPattern = ' 2>/dev/null | sed -rn "s/.*icmp_seq=1.*time=.*/OK/p"';
+    exec($ping . escapeshellarg(RASPI_ACCESS_CHECK_IP) . $okPattern, $okip);
+    exec($ping . escapeshellarg(RASPI_ACCESS_CHECK_DNS) . $okPattern, $okdns);
+    return [
+        'ip' => !empty($okip),
+        'dns' => !empty($okdns),
+        'http' => (bool) preg_match('/OK.*/', checkHTTPAccess($iface))
+    ];
 }
 
 function detectCaptivePortal($iface) {
@@ -75,7 +120,7 @@ function detectCaptivePortal($iface) {
 function checkHTTPAccess($iface, $detectPortal=false) {
 
     $ret="FAILED no HTTP access";
-    exec('timeout 5 curl -is ' . RASPI_ACCESS_CHECK_URL . ' --interface ' . $iface, $rcurl);
+    exec('timeout 5 curl -is ' . RASPI_ACCESS_CHECK_URL . ' --interface ' . escapeshellarg($iface), $rcurl);
     if ( !empty($rcurl) && preg_match("/^HTTP\/[0-9\.]+ ([0-9]+)/m",$rcurl=implode("\n",$rcurl),$code) ) {
        $code = $code[1];
        if ( $code == 200 )  {
@@ -97,10 +142,10 @@ function checkHTTPAccess($iface, $detectPortal=false) {
                         $ret="PORTAL " . $url;
                      }
                      else {
-                        exec('timeout 7 sudo nmap --script=broadcast-dhcp-discover -e ' . $iface . ' 2> /dev/null | sed -rn "s/.*Domain Name Server:\s*(([0-9]{1,3}\.){3}[0-9]{1,3}).*/\1/pi"', $nameserver);
+                        exec('timeout 7 sudo nmap --script=broadcast-dhcp-discover -e ' . escapeshellarg($iface) . ' 2> /dev/null | sed -rn "s/.*Domain Name Server:\s*(([0-9]{1,3}\.){3}[0-9]{1,3}).*/\1/pi"', $nameserver);
                         if ( !empty($nameserver) ) {
                            $nameserver=$nameserver[0];
-                           exec('host ' . $srv . ' ' . $nameserver . ' | sed -rn "s/.*has address ((([0-9]{1,3}\.){3}[0-9]{1,3})).*/\1/p"', $ip2);
+                           exec('host ' . escapeshellarg($srv) . ' ' . escapeshellarg($nameserver) . ' | sed -rn "s/.*has address ((([0-9]{1,3}\.){3}[0-9]{1,3})).*/\1/p"', $ip2);
                            if ( !empty($ip2) ) {
                               $ip2=$ip2[0];
                               $url=preg_replace("/" . $srv . "/",$ip2,$url);
