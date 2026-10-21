@@ -38,6 +38,8 @@ if ($nm->isManaged($clientIface)) {
     foreach ($nm->listProfiles($clientIface) as $profile) {
         if (!$profile['raspap']) {
             $profile['ssidutf8'] = $wifi->ssid2utf8($profile['ssid']);
+            // the same network is also a RaspAP network
+            $profile['duplicate'] = !empty($networks[$profile['ssid']]['configured']);
             $nmProfiles[] = $profile;
         }
     }
