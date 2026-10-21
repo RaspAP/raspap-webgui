@@ -15,7 +15,9 @@ namespace RaspAP\Networking;
 
 class VpnConflict
 {
-    // seconds to wait for the resolution of an endpoint hostname
+    // seconds for all endpoint lookups together, so that a DNS server that
+    // does not reply (likely when the two tunnels break the routing) does
+    // not delay the page for long
     private const RESOLVE_TIMEOUT = 2;
 
     /**
@@ -33,10 +35,11 @@ class VpnConflict
         }
 
         $warning = _('WireGuard and OpenVPN are both set to send all traffic through their tunnel. Use only one of them at a time.');
-        $shared = array_values(array_intersect(
-            $this->resolveAll($wireguard['endpoints']),
-            $this->resolveAll($openvpn['endpoints'])
-        ));
+        $shared = $this->sharedEndpoints(
+            $wireguard['endpoints'],
+            $openvpn['endpoints'],
+            microtime(true) + self::RESOLVE_TIMEOUT
+        );
         if (!empty($shared)) {
             $warning .= ' ' . sprintf(
                 _('Both connect to the same server (%s), so one tunnel runs through the other.'),
@@ -123,48 +126,82 @@ class VpnConflict
     }
 
     /**
-     * Returns the IP addresses of a list of hosts. An IP address stays as it
-     * is; a hostname is resolved to its IPv4 and IPv6 addresses.
+     * Returns the endpoints that both tunnels use. The same hostname or IP
+     * address counts at once, without DNS. Otherwise the hostnames are
+     * resolved, and a shared IP address counts.
      *
-     * @param array $hosts
+     * @param array $first
+     * @param array $second
+     * @param float $deadline time (microtime) at which the lookups stop
      * @return array
      */
-    public function resolveAll(array $hosts): array
+    public function sharedEndpoints(array $first, array $second, float $deadline): array
+    {
+        $names = array_values(array_intersect(self::normalize($first), self::normalize($second)));
+        if (!empty($names)) {
+            return array_values(array_unique($names));
+        }
+        return array_values(array_intersect(
+            $this->resolveAll($first, $deadline),
+            $this->resolveAll($second, $deadline)
+        ));
+    }
+
+    /**
+     * Returns the IP addresses of a list of hosts. An IP address stays as it
+     * is. All hostnames are resolved with one getent call, which stops at the
+     * deadline.
+     *
+     * @param array $hosts
+     * @param float $deadline time (microtime) at which the lookup stops
+     * @return array
+     */
+    public function resolveAll(array $hosts, float $deadline): array
     {
         $ips = [];
-        foreach ($hosts as $host) {
-            foreach ($this->resolve($host) as $ip) {
-                $ips[] = $ip;
+        $names = [];
+        foreach (self::normalize($hosts) as $host) {
+            if (filter_var($host, FILTER_VALIDATE_IP) !== false) {
+                $ips[] = $host;
+            } else {
+                $names[] = escapeshellarg($host);
+            }
+        }
+        $remaining = $deadline - microtime(true);
+        if (!empty($names) && $remaining > 0.1) {
+            exec(sprintf('timeout %.1F getent ahosts %s 2>/dev/null', $remaining, implode(' ', $names)), $lines);
+            foreach ($lines as $line) {
+                $ip = strtok($line, " \t");
+                if ($ip !== false && filter_var($ip, FILTER_VALIDATE_IP) !== false) {
+                    $ips[] = inet_ntop(inet_pton($ip));
+                }
             }
         }
         return array_values(array_unique($ips));
     }
 
     /**
-     * Returns the IP addresses of one host, with a time limit, so that a
-     * DNS server that does not reply does not delay the page
+     * Returns the hosts in lowercase, without brackets and empty entries.
+     * IP addresses get their short form, so that equal addresses compare
+     * equal.
      *
-     * @param string $host
+     * @param array $hosts
      * @return array
      */
-    public function resolve(string $host): array
+    private static function normalize(array $hosts): array
     {
-        $host = trim($host, '[] ');
-        if ($host === '') {
-            return [];
-        }
-        if (filter_var($host, FILTER_VALIDATE_IP) !== false) {
-            return [inet_ntop(inet_pton($host))];
-        }
-        exec(sprintf('timeout %d getent ahosts %s 2>/dev/null', self::RESOLVE_TIMEOUT, escapeshellarg($host)), $lines);
-        $ips = [];
-        foreach ($lines as $line) {
-            $ip = strtok($line, " \t");
-            if ($ip !== false && filter_var($ip, FILTER_VALIDATE_IP) !== false) {
-                $ips[] = inet_ntop(inet_pton($ip));
+        $result = [];
+        foreach ($hosts as $host) {
+            $host = strtolower(trim((string)$host, "[] \t."));
+            if ($host === '') {
+                continue;
             }
+            if (filter_var($host, FILTER_VALIDATE_IP) !== false) {
+                $host = inet_ntop(inet_pton($host));
+            }
+            $result[] = $host;
         }
-        return array_values(array_unique($ips));
+        return array_values(array_unique($result));
     }
 
     /**
