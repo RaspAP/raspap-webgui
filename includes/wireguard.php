@@ -80,8 +80,6 @@ function DisplayWireGuardConfig()
     exec('ip link show wg0 2>/dev/null', $wgstatus, $wg_return);
     $serviceStatus = ($wg_return === 0) ? "up" : "down";
     $wg_state = ($wg_return === 0);
-    $public_ip = get_public_ip();
-
     // fetch uploaded file configs
     exec("sudo ls ".RASPI_WIREGUARD_PATH, $clist);
     $configs = preg_grep('/^((?!wg0).)*\.conf/', $clist);
@@ -106,7 +104,6 @@ function DisplayWireGuardConfig()
             "status",
             "wg_state",
             "serviceStatus",
-            "public_ip",
             "interfaces",
             "optRules",
             "optKSwitch",

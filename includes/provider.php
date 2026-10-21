@@ -86,8 +86,6 @@ function DisplayProviderConfig()
         // fetch provider log
         $providerLog = getProviderLog($id, $binPath, $country);
     }
-    $publicIP = get_public_ip();
-
     echo renderTemplate(
         "provider", compact(
             "status",
@@ -100,7 +98,6 @@ function DisplayProviderConfig()
             "countries",
             "country",
             "providerLog",
-            "publicIP",
             "ctlState"
         )
     );

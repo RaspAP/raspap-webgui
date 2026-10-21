@@ -819,6 +819,76 @@ function get_public_ip()
     return '';
 }
 
+/* Returns the public IP address, cached for a short time
+ *
+ * A successful lookup is kept in a cache file for all sessions. The
+ * cache is bound to the interface of the route to the internet, so the
+ * address is looked up again when that changes (e.g. when a VPN is
+ * connected). Without a safe cache directory the address is looked up
+ * every time.
+ *
+ * @param int $ttl cache lifetime in seconds
+ * @return string $public_ip, or an empty string if no service answered
+ */
+function get_public_ip_cached(int $ttl = 120): string
+{
+    require_once __DIR__ . '/internetRoute.php';
+    $iface = getInternetPath()['interface'] ?? '';
+    $cacheDir = get_public_ip_cache_dir();
+    $cacheFile = ($cacheDir !== null) ? $cacheDir . '/public-ip.json' : null;
+
+    if ($cacheFile !== null && is_file($cacheFile) && !is_link($cacheFile)) {
+        $cache = json_decode((string)file_get_contents($cacheFile), true);
+        $age = time() - (int)($cache['time'] ?? 0);
+        if (is_array($cache)
+            && ($cache['iface'] ?? null) === $iface
+            && filter_var($cache['ip'] ?? '', FILTER_VALIDATE_IP) !== false
+            && $age >= 0 && $age < $ttl
+        ) {
+            return $cache['ip'];
+        }
+    }
+
+    $public_ip = get_public_ip();
+    if ($cacheFile !== null && $public_ip !== '') {
+        // write to a temporary file first, so a reader never sees a
+        // partly written cache
+        $tmpFile = tempnam($cacheDir, 'ip');
+        if ($tmpFile !== false) {
+            $cache = ['ip' => $public_ip, 'iface' => $iface, 'time' => time()];
+            if (file_put_contents($tmpFile, json_encode($cache)) === false || !rename($tmpFile, $cacheFile)) {
+                @unlink($tmpFile);
+            }
+        }
+    }
+    return $public_ip;
+}
+
+/* Returns the directory for the public IP cache
+ *
+ * The directory is private to the user that runs PHP. If it is owned by
+ * another user, is a symlink or is accessible by other users, it is not
+ * used, so other local users can not change or replace the cache.
+ *
+ * @return string|null the directory, or null if there is no safe one
+ */
+function get_public_ip_cache_dir(): ?string
+{
+    if (!function_exists('posix_geteuid')) {
+        return null;
+    }
+    $uid = posix_geteuid();
+    $dir = sys_get_temp_dir() . '/raspap-' . $uid;
+    if (!file_exists($dir) && !is_link($dir) && !@mkdir($dir, 0700)) {
+        return null;
+    }
+    clearstatcache(true, $dir);
+    if (is_link($dir) || !is_dir($dir) || fileowner($dir) !== $uid || (fileperms($dir) & 0077) !== 0) {
+        return null;
+    }
+    return $dir;
+}
+
 // Load non default JS/ECMAScript in footer
 function loadFooterScripts($extraFooterScripts)
 {

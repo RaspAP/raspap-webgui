@@ -47,8 +47,6 @@ function DisplayOpenVPNConfig()
     exec('pidof openvpn', $openvpnstatus, $ovpn_return);
     $serviceStatus = ($ovpn_return === 0) ? "up" : "down";
     $auth = file(RASPI_OPENVPN_CLIENT_LOGIN, FILE_IGNORE_NEW_LINES);
-    $public_ip = get_public_ip();
-
     // parse client auth credentials
     if (!empty($auth)) {
         $auth = array_filter($auth, 'filter_comments');
@@ -80,7 +78,6 @@ function DisplayOpenVPNConfig()
             "openvpnstatus",
             "logEnable",
             "logOutput",
-            "public_ip",
             "authUser",
             "authPassword",
             "clients",
