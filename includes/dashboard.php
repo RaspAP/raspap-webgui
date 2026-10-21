@@ -31,7 +31,8 @@ function DisplayDashboard(): void
     $deviceImage = $dashboard->getDeviceImage($revision);
     $hostapd = $system->hostapdStatus();
     $adblock = $system->adBlockStatus();
-    $vpn = $system->getActiveVpnInterface();
+    $vpns = $system->getActiveVpnInterfaces();
+    $vpn = $vpns[0] ?? null;
     $frequency = $dashboard->getFrequencyBand($interface);
     $details = $dashboard->getInterfaceDetails($interface);
     $wireless = $dashboard->getWirelessDetails($interface);
@@ -85,6 +86,11 @@ function DisplayDashboard(): void
     $$varName = "active";
     $vpnStatus = $vpn ? "active" : "inactive";
     $vpnManaged = $vpn ? $dashboard->getVpnManaged($vpn) : null;
+    $vpnCount = count($vpns);
+    $vpnLabel = ($vpnCount > 1)
+        ? sprintf(ngettext('%d VPN', '%d VPNs', $vpnCount), $vpnCount)
+        : _('VPN');
+    $vpnTitle = implode(', ', $vpns);
     $firewallManaged = $firewallStatus = "";
     $firewallInstalled = (bool) array_filter($plugins, function($p) {
         return substr($p, -strlen('Firewall')) === 'Firewall';
@@ -108,6 +114,8 @@ function DisplayDashboard(): void
             "adblockStatus",
             "vpnStatus",
             "vpnManaged",
+            "vpnLabel",
+            "vpnTitle",
             "firewallUnavailable",
             "firewallStatus",
             "firewallManaged",
