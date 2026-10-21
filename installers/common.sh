@@ -1026,6 +1026,11 @@ function _patch_system_files() {
         sudo ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /etc/dhcp/dhclient-enter-hooks.d/
     fi
 
+    # www-data runs the NetworkManager WiFi client helper with sudo, so it must
+    # be in a directory that only root can change
+    _install_log "Copying RaspAP NetworkManager WiFi client helper to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/nm-wifi.sh" /usr/local/sbin/raspap-nm-wifi.sh || _install_status 1 "Unable to install NetworkManager WiFi client helper"
+
     _install_status 0
 }
 
