@@ -600,6 +600,7 @@ function _install_wireguard() {
     fi
 
     _install_wireguard_killswitch
+    _install_fake_hwclock
 
     echo "Enabling wg-quick@wg0"
     sudo systemctl enable wg-quick@wg0 || _install_status 1 "Failed to enable wg-quick service"
@@ -608,16 +609,24 @@ function _install_wireguard() {
     _install_status 0
 }
 
-# Install the WireGuard kill switch script and keep the clock across reboots
+# Install the WireGuard kill switch script
 function _install_wireguard_killswitch() {
     echo "Copying installers/wg-killswitch.sh to $raspap_network"
     sudo cp "$webroot_dir/installers/wg-killswitch.sh" "$raspap_network" || _install_status 1 "Unable to copy wg-killswitch.sh"
     sudo chown root:root "${raspap_network}wg-killswitch.sh" || _install_status 1 "Unable to change owner of wg-killswitch.sh"
     sudo chmod 750 "${raspap_network}wg-killswitch.sh" || _install_status 1 "Unable to change permissions of wg-killswitch.sh"
+}
 
-    # A WireGuard handshake fails when the clock is behind. Without a battery,
-    # the RTC of a Raspberry Pi does not keep the time when the power is off.
-    # fake-hwclock restores the last saved time at boot.
+# Keep the clock across reboots, so that the WireGuard handshake does not fail
+# because the clock is behind. fake-hwclock restores the last saved time at
+# boot. Called on install only, not on update.
+function _install_fake_hwclock() {
+    # An RTC with a battery keeps the time. The RTC of a Raspberry Pi 5
+    # (rpi-rtc) needs an optional battery, so it does not count.
+    if [ -e /sys/class/rtc/rtc0/name ] && ! grep -q "rpi-rtc" /sys/class/rtc/rtc0/name; then
+        echo "RTC found ($(cat /sys/class/rtc/rtc0/name)), fake-hwclock not installed"
+        return 0
+    fi
     echo "Installing fake-hwclock and saving the time every 5 minutes"
     sudo apt-get install -y fake-hwclock || _install_status 1 "Unable to install fake-hwclock"
     echo "*/5 * * * * root /usr/sbin/fake-hwclock save" | sudo tee /etc/cron.d/raspap-fake-hwclock >/dev/null || _install_status 1 "Unable to add fake-hwclock cron job"
