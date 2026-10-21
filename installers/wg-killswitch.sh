@@ -24,6 +24,9 @@ readonly chain4="RASPAP_KILLSWITCH"
 readonly chain6="RASPAP_KILLSWITCH6"
 # priority of the routing rules when wg-quick added no rules of its own
 readonly default_rule_pref="32700"
+# protocol tag of the routing rules of this script, so that cleanup only
+# deletes these rules and not the same rules of other tools
+readonly rule_proto="250"
 readonly resolv_conf="/etc/resolv.conf"
 readonly self="/etc/raspap/networking/wg-killswitch.sh"
 
@@ -63,15 +66,17 @@ cleanup() {
     return 0
 }
 
-# Removes the NTP and DNS routing rules of this script. They are found by
-# content, because their priority depends on the wg-quick rules.
+# Removes the NTP and DNS routing rules of this script. Their priority depends
+# on the wg-quick rules, so they are found by content. The kernel deletes a
+# rule only if its protocol tag is $rule_proto, so the same rules of other
+# tools stay.
 remove_rules() {
     local family="$1" line
     ip "-$family" rule show 2>/dev/null |
         grep -E "ipproto (udp|tcp) dport (53|123) lookup main" |
         while read -r line; do
             # shellcheck disable=SC2086
-            ip "-$family" rule del pref ${line%%:*} ${line#*:} 2>/dev/null || true
+            ip "-$family" rule del pref ${line%%:*} ${line#*:} protocol "$rule_proto" 2>/dev/null || true
         done
 }
 
@@ -112,13 +117,13 @@ add_rules() {
     local family="$1" ns proto pref
     pref=$(rule_pref "$family")
     if [ "$allow_ntp" = 1 ]; then
-        ip "-$family" rule add pref "$pref" ipproto udp dport 123 lookup main ||
+        ip "-$family" rule add pref "$pref" ipproto udp dport 123 lookup main protocol "$rule_proto" ||
             echo "wg-killswitch: unable to add NTP rule (IPv$family)" >&2
     fi
     if [ "$allow_dns" = 1 ]; then
         for ns in $(nameservers "$family"); do
             for proto in udp tcp; do
-                ip "-$family" rule add pref "$pref" to "$ns" ipproto "$proto" dport 53 lookup main ||
+                ip "-$family" rule add pref "$pref" to "$ns" ipproto "$proto" dport 53 lookup main protocol "$rule_proto" ||
                     echo "wg-killswitch: unable to add DNS rule for $ns" >&2
             done
         done
@@ -185,9 +190,10 @@ up() {
 # Replaces the kill switch rules of older RaspAP versions in a WireGuard
 # configuration with calls to this script. NTP stays outside the tunnel, as
 # for a new configuration. Other lines do not change. The original file is
-# kept as <file>.bak-killswitch.
+# kept as <name>.killswitch.bak. The name does not contain ".conf", so the
+# WireGuard page does not show the backup as a configuration.
 migrate() {
-    local conf legacy_up legacy_down
+    local conf backup legacy_up legacy_down
     legacy_up='^PostUp = iptables -I OUTPUT ! -o %i -m mark ! --mark \$\(wg show %i fwmark\) -m addrtype ! --dst-type LOCAL ! -d ([^ ]+) -j REJECT$'
     legacy_down='^PreDown = iptables -D OUTPUT ! -o %i -m mark ! --mark \$\(wg show %i fwmark\) -m addrtype ! --dst-type LOCAL ! -d ([^ ]+) -j REJECT$'
     for conf in "$@"; do
@@ -197,12 +203,13 @@ migrate() {
         if ! grep -Eq "$legacy_up" "$conf"; then
             continue
         fi
-        cp -a "$conf" "$conf.bak-killswitch"
+        backup="${conf%.conf}.killswitch.bak"
+        cp -a "$conf" "$backup"
         sed -E -i \
             -e "s|$legacy_up|PostUp = $self up %i \\1 --allow-ntp|" \
             -e "s|$legacy_down|PreDown = $self down %i|" \
             "$conf"
-        echo "Migrated kill switch in $conf (backup: $conf.bak-killswitch)"
+        echo "Migrated kill switch in $conf (backup: $backup)"
     done
 }
 
