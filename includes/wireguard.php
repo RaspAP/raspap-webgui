@@ -51,6 +51,18 @@ function DisplayWireGuardConfig()
     // fetch server config
     exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $return);
     $conf = ParseConfig($return, $parseFlag);
+
+    // show the kill switch settings of the active configuration, unless the
+    // user has just submitted them
+    if (!isset($_POST['savewgsettings'])) {
+        exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $wgConfig);
+        $ksSettings = getKillSwitchSettings($wgConfig);
+        if ($ksSettings !== null) {
+            $optKSwitch = 1;
+            $optKSwitchNtp = $ksSettings['ntp'] ? 1 : null;
+            $optKSwitchDns = $ksSettings['dns'] ? 1 : null;
+        }
+    }
     $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
     $wg_srvport = ($conf['ListenPort'] ?? '') === ''
         ? getDefaultNetValue('wireguard','server','ListenPort')
@@ -134,6 +146,29 @@ function DisplayWireGuardConfig()
             "log"
         )
     );
+}
+
+/**
+ * Reads the kill switch settings from the lines of a WireGuard configuration
+ *
+ * @param  array $lines
+ * @return array|null ntp and dns options, or null if there is no kill switch
+ */
+function getKillSwitchSettings(array $lines)
+{
+    foreach ($lines as $line) {
+        if (preg_match('/^\s*PostUp\s*=.*\bwg-killswitch\.sh\s+up\b(.*)$/', $line, $match)) {
+            return [
+                'ntp' => (bool) preg_match('/(^|\s)--allow-ntp(\s|$)/', $match[1]),
+                'dns' => (bool) preg_match('/(^|\s)--allow-dns(\s|$)/', $match[1])
+            ];
+        }
+        // kill switch rule of older versions, without NTP and DNS options
+        if (preg_match('/^\s*PostUp\s*=\s*iptables -I OUTPUT ! -o %i .*-j REJECT/', $line)) {
+            return ['ntp' => false, 'dns' => false];
+        }
+    }
+    return null;
 }
 
 /**
