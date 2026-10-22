@@ -73,6 +73,6 @@ done
 # Persist rules if added
 if [ "$added" = true ]; then
     echo "Persisting IP tables rules"
-    sudo iptables-save | sudo tee $rulesv4 > /dev/null || echo "Unable to execute iptables-save"
+    sudo /usr/local/sbin/raspap-iptables-save.sh || echo "Unable to execute iptables-save"
 fi
 

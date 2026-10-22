@@ -187,8 +187,9 @@ function _restore_networking() {
     # Persist rules if removed
     if [ "$removed" = true ]; then
         echo "Removing persistent iptables rules"
-        sudo iptables-save | sudo tee $rulesv4 > /dev/null || _install_error "Unable to execute iptables-save"
+        sudo bash "$webroot_dir/installers/raspap-iptables-save.sh" || _install_error "Unable to execute iptables-save"
     fi
+    sudo rm -f /usr/local/sbin/raspap-iptables-save.sh || _install_error "Unable to remove raspap-iptables-save.sh"
     echo "Done."
     # Remove dnsmasq and bridge configs
     echo "Removing 090_raspap.conf from dnsmasq"

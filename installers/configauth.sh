@@ -59,6 +59,6 @@ done
 
 if [ "$added" = true ]; then
     echo "Persisting IP tables rules"
-    sudo iptables-save | sudo tee $rulesv4 > /dev/null
+    sudo /usr/local/sbin/raspap-iptables-save.sh
 fi
 

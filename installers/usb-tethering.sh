@@ -16,7 +16,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 readonly RASPAP_CONFIG="/etc/raspap"
 readonly HOSTAPD_INI="${RASPAP_CONFIG}/hostapd.ini"
 readonly TOGGLE_ROUTING="${RASPAP_CONFIG}/networking/toggle-routing.sh"
-readonly RULES_V4="/etc/iptables/rules.v4"
 
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <add|remove> <interface>" >&2
@@ -38,7 +37,7 @@ case "$action" in
         iptables -t nat -D POSTROUTING -o "$iface" -j MASQUERADE 2>/dev/null || true
         iptables -D FORWARD -i "$iface" -o "$ap_iface" -m state --state RELATED,ESTABLISHED -j ACCEPT 2>/dev/null || true
         iptables -D FORWARD -i "$ap_iface" -o "$iface" -j ACCEPT 2>/dev/null || true
-        iptables-save | tee "$RULES_V4" > /dev/null 2>&1 || true
+        /usr/local/sbin/raspap-iptables-save.sh > /dev/null 2>&1 || true
         ;;
     *)
         echo "Invalid action '$action'. Use 'add' or 'remove'." >&2
