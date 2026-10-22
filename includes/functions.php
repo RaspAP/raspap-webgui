@@ -790,12 +790,103 @@ class validation
 
 /* Resolves public IP address
  *
- * @return string $public_ip
+ * Queries each lookup service in turn and returns the first valid
+ * IP address, so a service that is down or blocked (e.g. by a DNS
+ * filter) does not leave the address empty. The last service is
+ * addressed by IP, so it does not depend on DNS at all; it returns
+ * key=value lines, of which the 'ip=' line is used. A short timeout
+ * per service keeps the page load short when there is no connectivity.
+ *
+ * @return string $public_ip, or an empty string if no service answered
  */
 function get_public_ip()
 {
-    exec('wget --timeout=5 --tries=1 https://ipinfo.io/ip -qO -', $public_ip);
-    return $public_ip[0];
+    $services = [
+        'https://ipinfo.io/ip',
+        'https://ifconfig.me/ip',
+        'https://1.1.1.1/cdn-cgi/trace',
+    ];
+    foreach ($services as $service) {
+        $output = [];
+        exec('wget --timeout=2 --tries=1 -qO - ' . escapeshellarg($service) . ' 2>/dev/null', $output);
+        foreach ($output as $line) {
+            $public_ip = trim(preg_replace('/^ip=/', '', $line));
+            if (filter_var($public_ip, FILTER_VALIDATE_IP) !== false) {
+                return $public_ip;
+            }
+        }
+    }
+    return '';
+}
+
+/* Returns the public IP address, cached for a short time
+ *
+ * A successful lookup is kept in a cache file for all sessions. The
+ * cache is bound to the interface of the route to the internet, so the
+ * address is looked up again when that changes (e.g. when a VPN is
+ * connected). Without a safe cache directory the address is looked up
+ * every time.
+ *
+ * @param int $ttl cache lifetime in seconds
+ * @return string $public_ip, or an empty string if no service answered
+ */
+function get_public_ip_cached(int $ttl = 120): string
+{
+    require_once __DIR__ . '/internetRoute.php';
+    $iface = getInternetPath()['interface'] ?? '';
+    $cacheDir = get_public_ip_cache_dir();
+    $cacheFile = ($cacheDir !== null) ? $cacheDir . '/public-ip.json' : null;
+
+    if ($cacheFile !== null && is_file($cacheFile) && !is_link($cacheFile)) {
+        $cache = json_decode((string)file_get_contents($cacheFile), true);
+        $age = time() - (int)($cache['time'] ?? 0);
+        if (is_array($cache)
+            && ($cache['iface'] ?? null) === $iface
+            && filter_var($cache['ip'] ?? '', FILTER_VALIDATE_IP) !== false
+            && $age >= 0 && $age < $ttl
+        ) {
+            return $cache['ip'];
+        }
+    }
+
+    $public_ip = get_public_ip();
+    if ($cacheFile !== null && $public_ip !== '') {
+        // write to a temporary file first, so a reader never sees a
+        // partly written cache
+        $tmpFile = tempnam($cacheDir, 'ip');
+        if ($tmpFile !== false) {
+            $cache = ['ip' => $public_ip, 'iface' => $iface, 'time' => time()];
+            if (file_put_contents($tmpFile, json_encode($cache)) === false || !rename($tmpFile, $cacheFile)) {
+                @unlink($tmpFile);
+            }
+        }
+    }
+    return $public_ip;
+}
+
+/* Returns the directory for the public IP cache
+ *
+ * The directory is private to the user that runs PHP. If it is owned by
+ * another user, is a symlink or is accessible by other users, it is not
+ * used, so other local users can not change or replace the cache.
+ *
+ * @return string|null the directory, or null if there is no safe one
+ */
+function get_public_ip_cache_dir(): ?string
+{
+    if (!function_exists('posix_geteuid')) {
+        return null;
+    }
+    $uid = posix_geteuid();
+    $dir = sys_get_temp_dir() . '/raspap-' . $uid;
+    if (!file_exists($dir) && !is_link($dir) && !@mkdir($dir, 0700)) {
+        return null;
+    }
+    clearstatcache(true, $dir);
+    if (is_link($dir) || !is_dir($dir) || fileowner($dir) !== $uid || (fileperms($dir) & 0077) !== 0) {
+        return null;
+    }
+    return $dir;
 }
 
 // Load non default JS/ECMAScript in footer
@@ -825,6 +916,24 @@ function validateInterface($interface)
 
     // Check if the provided interface exists in the list
     return in_array($interface, $valid_interfaces, true);
+}
+
+/**
+ * Prepares an ajax endpoint that returns JSON
+ *
+ * Accepts POST only, so the CSRF token is always verified. Releases the
+ * session lock, so a slow endpoint does not block other requests from
+ * the same session. Call this after authenticate.php.
+ */
+function initAsyncJsonEndpoint()
+{
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        header('Allow: POST');
+        exit;
+    }
+    session_write_close();
+    header('Content-Type: application/json');
 }
 
 /**
@@ -1027,6 +1136,25 @@ function isPredictableIfaceName($interface)
     } else {
         return false;
     }
+}
+
+/**
+ * Checks if a wireless interface is in access point mode
+ *
+ * Uses iw first. The kernel does not give wireless extensions (iwconfig)
+ * to Wi-Fi 7 (MLO) devices, so iwconfig is only a fallback.
+ *
+ * @param string $interface
+ * @return boolean
+ */
+function isAccessPoint($interface)
+{
+    exec('iw dev ' . escapeshellarg($interface) . ' info 2>/dev/null', $iwInfo);
+    if (!empty($iwInfo)) {
+        return preg_grep('/^\s*type AP$/', $iwInfo) !== [];
+    }
+    exec('iwconfig ' . escapeshellarg($interface) . ' 2>/dev/null', $iwconfig);
+    return preg_grep('/mode:master/i', $iwconfig) !== [];
 }
 
 /**

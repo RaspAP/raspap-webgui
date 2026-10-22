@@ -25,10 +25,12 @@ import { initDHCP_ajax } from "./ajax/dhcp.js";
 import { initAdblock_ajax } from "./ajax/adblock.js";
 import { initWPA_ajax } from "./ajax/wpa.js";
 import { initNetworking_ajax } from "./ajax/networking.js";
+import { initInternetAccess_ajax } from "./ajax/internetaccess.js";
 import { initAuth_ajax } from "./ajax/auth.js";
 import { initOpenVPN_ajax } from "./ajax/openvpn.js";
 import { initWireGuard_ajax } from "./ajax/wg.js";
 import { initSession_ajax } from "./ajax/session.js";
+import { initPublicIP_ajax } from "./ajax/publicip.js";
 import { initSystem_ajax} from "./ajax/system.js";
 import { initPlugins_ajax } from "./ajax/plugins.js";
 import { initAbout_ajax } from "./ajax/about.js";
@@ -59,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         case '/network_conf':
             initNetworking();
             initNetworking_ajax();
+            initInternetAccess_ajax();
             break;
         case '/wpa_conf':
             initWPA_ajax();
@@ -100,6 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
     globalThis.getCookie = getCookie;
     globalThis.setCookie = setCookie;
     globalThis.disableValidation = disableValidation;
+    // public IP on the OpenVPN, WireGuard and VPN provider pages
+    initPublicIP_ajax();
 
     // Enable Bootstrap tooltips
     $('[data-bs-toggle="tooltip"]').tooltip()
