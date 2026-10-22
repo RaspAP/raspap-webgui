@@ -25,10 +25,11 @@ function DisplayWireGuardConfig()
         // NTP outside the tunnel is on by default; DNS is off by default
         $optKSwitchNtp = (!isset($_POST['savewgsettings']) || isset($_POST['wgKSwitchNtp'])) ? 1 : null;
         $optKSwitchDns = isset($_POST['wgKSwitchDns']) ? 1 : null;
+        $optKSwitchPortal = isset($_POST['wgKSwitchPortal']) ? 1 : null;
         if (isset($_POST['savewgsettings']) && $optConf == 'manual' && $optSrvEnable == 1 ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['savewgsettings']) && $optConf == 'upload' && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
-            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optKSwitch, $optInterface, $optKSwitchNtp, $optKSwitchDns);
+            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optKSwitch, $optInterface, $optKSwitchNtp, $optKSwitchDns, $optKSwitchPortal);
         } elseif (isset($_POST['savewgsettings']) && isset($_POST['wg_penabled']) ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['startwg'])) {
@@ -62,6 +63,7 @@ function DisplayWireGuardConfig()
             $optKSwitch = 1;
             $optKSwitchNtp = $ksSettings['ntp'] ? 1 : null;
             $optKSwitchDns = $ksSettings['dns'] ? 1 : null;
+            $optKSwitchPortal = $ksSettings['portal'] ? 1 : null;
         }
     }
     $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
@@ -130,6 +132,7 @@ function DisplayWireGuardConfig()
             "optKSwitch",
             "optKSwitchNtp",
             "optKSwitchDns",
+            "optKSwitchPortal",
             "optLogEnable",
             "peer_id",
             "wg_srvpubkey",
@@ -163,12 +166,13 @@ function getKillSwitchSettings(array $lines)
         if (preg_match('/^\s*PostUp\s*=.*\bwg-killswitch\.sh\s+up\b(.*)$/', $line, $match)) {
             return [
                 'ntp' => (bool) preg_match('/(^|\s)--allow-ntp(\s|$)/', $match[1]),
-                'dns' => (bool) preg_match('/(^|\s)--allow-dns(\s|$)/', $match[1])
+                'dns' => (bool) preg_match('/(^|\s)--allow-dns(\s|$)/', $match[1]),
+                'portal' => (bool) preg_match('/(^|\s)--allow-portal(\s|$)/', $match[1])
             ];
         }
         // kill switch rule of older versions, without NTP and DNS options
         if (preg_match('/^\s*PostUp\s*=\s*iptables -I OUTPUT ! -o %i .*-j REJECT/', $line)) {
-            return ['ntp' => false, 'dns' => false];
+            return ['ntp' => false, 'dns' => false, 'portal' => false];
         }
     }
     return null;
@@ -185,9 +189,10 @@ function getKillSwitchSettings(array $lines)
  * @param  string $optInterface
  * @param  boolean $optKSwitchNtp kill switch lets NTP pass outside the tunnel
  * @param  boolean $optKSwitchDns kill switch lets DNS to the uplink resolvers pass outside the tunnel
+ * @param  boolean $optKSwitchPortal AP clients can log in to a captive portal of the uplink
  * @return object $status
  */
-function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface, $optKSwitchNtp = 1, $optKSwitchDns = null)
+function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface, $optKSwitchNtp = 1, $optKSwitchDns = null, $optKSwitchPortal = null)
 {
     define('KB', 1024);
     $tmp_destdir = '/tmp/';
@@ -243,6 +248,9 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
                 }
                 if (!empty($optKSwitchDns)) {
                     $ksOptions[] = '--allow-dns';
+                }
+                if (!empty($optKSwitchPortal)) {
+                    $ksOptions[] = '--allow-portal';
                 }
 
                 $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUpEx');
