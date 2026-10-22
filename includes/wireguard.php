@@ -224,29 +224,19 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
             if (isset($optRules)) {
                 $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUp');
                 $rules[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
-                $rules = preg_replace('/wlan0/m', $optInterface, $rules);
+                // "ap" makes wg-forward.sh use the AP interface of the time the
+                // tunnel starts, so the rules follow a later change of the AP
+                $fwdIface = ($optInterface === null || $optInterface === ($_SESSION['ap_interface'] ?? null)) ? 'ap' : $optInterface;
+                if (!preg_match('/^[A-Za-z0-9_.-]{1,15}$/', $fwdIface)) {
+                    $fwdIface = 'ap';
+                }
+                $rules = preg_replace('/%a/m', $fwdIface, $rules);
+                // defaults.json of an older version, with inline iptables rules
+                $rules = preg_replace('/wlan0/m', $fwdIface === 'ap' ? ($_SESSION['ap_interface'] ?? 'wlan0') : $fwdIface, $rules);
             }
             if (isset($optKSwitch)) {
-                // Get ap static ip_addr from system config, fallback to default if undefined
-                $jsonData = json_decode(getNetConfig($optInterface), true);
-                $ip_addr = ($jsonData['StaticIP'] == '') ? getDefaultNetValue('dhcp', $optInterface, 'static ip_address') : $jsonData['StaticIP'];
-                $mask = ($jsonData['SubnetMask'] == '') ? getDefaultNetValue('dhcp', $optInterface, 'subnetmask') : $jsonData['SubnetMask'];
-
-                // if empty, try to detect IP/mask from system
-                if (empty($ip_addr) || empty($mask)) {
-                    $ipDetails = shell_exec("ip -4 -o addr show dev " . escapeshellarg($optInterface));
-                    if (preg_match('/inet (\d+\.\d+\.\d+\.\d+)\/(\d+)/', $ipDetails, $matches)) {
-                        $ip_addr = $matches[1];
-                        $cidr = $matches[2];
-                    } else {
-                        $ip_addr = '0.0.0.0';
-                        $cidr = '24';
-                    }
-                } else {
-                    $cidr = mask2cidr($mask);
-                }
-                $cidr_ip = strpos($ip_addr, '/') === false ? "$ip_addr/$cidr" : $ip_addr;
-
+                // wg-killswitch.sh finds the current AP subnet when the tunnel
+                // starts, so the configuration does not contain it
                 $ksOptions = [];
                 if (!empty($optKSwitchNtp)) {
                     $ksOptions[] = '--allow-ntp';
@@ -257,7 +247,8 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
 
                 $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUpEx');
                 $rules[] = 'PreDown = '.getDefaultNetValue('wireguard','server','PreDown');
-                $rules = preg_replace('/%s/m', $cidr_ip, $rules);
+                // defaults.json of an older version, with the AP subnet as %s
+                $rules = preg_replace('/\s*%s/m', '', $rules);
                 $rules = preg_replace('/\s*%o/m', $ksOptions ? ' '.implode(' ', $ksOptions) : '', $rules);
             }
             if ((isset($rules) && count($rules) > 0)) {
