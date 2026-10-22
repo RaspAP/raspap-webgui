@@ -1,0 +1,12 @@
+# Author: RaspAP
+
+[Unit]
+Description=Run the RaspAP captive portal check every minute
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1min
+AccuracySec=10s
+
+[Install]
+WantedBy=timers.target

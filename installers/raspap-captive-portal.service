@@ -1,0 +1,10 @@
+# Author: RaspAP
+
+[Unit]
+Description=RaspAP captive portal check for the WireGuard kill switch
+After=network-online.target wg-quick@wg0.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/raspap-captive-portal.sh check
+User=root
