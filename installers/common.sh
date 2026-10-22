@@ -1129,6 +1129,8 @@ function _patch_system_files() {
     _install_log "Copying RaspAP set time script to /usr/local/sbin"
     sudo install -o root -g root -m 755 "$webroot_dir/installers/settime.sh" /usr/local/sbin/raspap-settime.sh || _install_status 1 "Unable to install set time script"
 
+    _install_uplink_watchdog
+
     # Set ownership and permissions
     sudo chown -c root:root "$raspap_dir/system/"*.sh || _install_status 1 "Unable change owner and/or group"
     sudo chmod 750 "$raspap_dir/system/"*.sh || _install_status 1 "Unable to change file permissions"
@@ -1142,6 +1144,17 @@ function _patch_system_files() {
     _install_status 0
 }
 
+
+# Install the uplink watchdog. The timer runs as root and www-data can run
+# the script with sudo, so the script must be in a directory that only root
+# can change. The timer is off by default, and an update keeps its state.
+function _install_uplink_watchdog() {
+    _install_log "Copying RaspAP uplink watchdog to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/uplink-watchdog.sh" /usr/local/sbin/raspap-uplink-watchdog.sh || _install_status 1 "Unable to install uplink watchdog script"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-uplink-watchdog.service" /etc/systemd/system/raspap-uplink-watchdog.service || _install_status 1 "Unable to install raspap-uplink-watchdog.service"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-uplink-watchdog.timer" /etc/systemd/system/raspap-uplink-watchdog.timer || _install_status 1 "Unable to install raspap-uplink-watchdog.timer"
+    sudo systemctl daemon-reload
+}
 
 # Optimize configuration of php-cgi.
 function _optimize_php() {
