@@ -121,6 +121,7 @@ function DisplayWireGuardConfig()
     if ($vpnWarning !== null) {
         $status->addMessage($vpnWarning, 'warning');
     }
+    addCaptivePortalMessage($status);
 
     echo renderTemplate(
         "wireguard", compact(
