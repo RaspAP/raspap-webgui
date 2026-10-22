@@ -3,6 +3,7 @@
 require_once 'includes/config.php';
 
 use RaspAP\Networking\Hotspot\WiFiManager;
+use RaspAP\Networking\VpnConflict;
 
 $wifi = new WiFiManager();
 $wifi->getWifiInterface();
@@ -113,6 +114,11 @@ function DisplayWireGuardConfig()
     // fetch available interfaces
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     sort($interfaces);
+
+    $vpnWarning = (new VpnConflict())->getWarning();
+    if ($vpnWarning !== null) {
+        $status->addMessage($vpnWarning, 'warning');
+    }
 
     echo renderTemplate(
         "wireguard", compact(
