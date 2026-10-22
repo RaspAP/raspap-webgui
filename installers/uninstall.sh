@@ -239,6 +239,8 @@ function _remove_sudoers() {
     _install_log "Removing sudoers permissions"
     echo "Removing ${raspap_sudoers}" 
     sudo rm "$raspap_sudoers" || _install_error "Unable to remove $raspap_sudoers"
+    # the set time script that the sudoers file allowed
+    sudo rm -f /usr/local/sbin/raspap-settime.sh || _install_error "Unable to remove raspap-settime.sh"
     echo "Done."
 }
 

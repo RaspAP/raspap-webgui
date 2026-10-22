@@ -61,6 +61,7 @@ www-data ALL=(ALL) NOPASSWD:/etc/raspap/openvpn/configauth.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/openvpn/openvpnlog.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/system/debuglog.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/system/raspbian.sh
+www-data ALL=(ALL) NOPASSWD:/usr/local/sbin/raspap-settime.sh
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/networking/toggle-routing.sh
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /tmp/hostapd.log
 www-data ALL=(ALL) NOPASSWD:/bin/chmod o+r /var/log/dnsmasq.log
