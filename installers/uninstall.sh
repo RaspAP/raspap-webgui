@@ -152,6 +152,7 @@ function _remove_raspap_directories() {
     fi
     sudo rm -rf "$webroot_dir"/* || _install_error "Unable to remove $webroot_dir"
     sudo rm -rf "$raspap_dir" || _install_error "Unable to remove $raspap_dir"
+    sudo rm -f /etc/cron.d/raspap-fake-hwclock || _install_error "Unable to remove fake-hwclock cron job"
 }
 
 # Removes raspapd.service

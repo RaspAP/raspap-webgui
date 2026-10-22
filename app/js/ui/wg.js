@@ -13,6 +13,11 @@ export function initWireGuard() {
 
     $("#PanelManual").hide();
 
+    // show the kill switch options only when the kill switch is on
+    const toggleKSwitchOptions = () => $('#wg-kswitch-options').toggle($('#chxwgkswitch').is(':checked'));
+    $('#chxwgkswitch').on('change', toggleKSwitchOptions);
+    toggleKSwitchOptions();
+
     $('#wg-upload,#wg-manual').on('click', function (e) {
         if (this.id == 'wg-upload') {
             $('#PanelManual').hide();

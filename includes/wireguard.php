@@ -21,10 +21,13 @@ function DisplayWireGuardConfig()
         $optSrvEnable = isset($_POST['wgSrvEnable']) ? $_POST['wgSrvEnable'] : null;
         $optLogEnable = isset($_POST['wgLogEnable']) ? $_POST['wgLogEnable'] : null;
         $optKSwitch   = isset($_POST['wgKSwitch']) ? $_POST['wgKSwitch'] : null;
+        // NTP outside the tunnel is on by default; DNS is off by default
+        $optKSwitchNtp = (!isset($_POST['savewgsettings']) || isset($_POST['wgKSwitchNtp'])) ? 1 : null;
+        $optKSwitchDns = isset($_POST['wgKSwitchDns']) ? 1 : null;
         if (isset($_POST['savewgsettings']) && $optConf == 'manual' && $optSrvEnable == 1 ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['savewgsettings']) && $optConf == 'upload' && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
-            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optKSwitch, $optInterface);
+            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optKSwitch, $optInterface, $optKSwitchNtp, $optKSwitchDns);
         } elseif (isset($_POST['savewgsettings']) && isset($_POST['wg_penabled']) ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['startwg'])) {
@@ -48,6 +51,18 @@ function DisplayWireGuardConfig()
     // fetch server config
     exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $return);
     $conf = ParseConfig($return, $parseFlag);
+
+    // show the kill switch settings of the active configuration, unless the
+    // user has just submitted them
+    if (!isset($_POST['savewgsettings'])) {
+        exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $wgConfig);
+        $ksSettings = getKillSwitchSettings($wgConfig);
+        if ($ksSettings !== null) {
+            $optKSwitch = 1;
+            $optKSwitchNtp = $ksSettings['ntp'] ? 1 : null;
+            $optKSwitchDns = $ksSettings['dns'] ? 1 : null;
+        }
+    }
     $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
     $wg_srvport = ($conf['ListenPort'] ?? '') === ''
         ? getDefaultNetValue('wireguard','server','ListenPort')
@@ -110,6 +125,8 @@ function DisplayWireGuardConfig()
             "interfaces",
             "optRules",
             "optKSwitch",
+            "optKSwitchNtp",
+            "optKSwitchDns",
             "optLogEnable",
             "peer_id",
             "wg_srvpubkey",
@@ -132,6 +149,29 @@ function DisplayWireGuardConfig()
 }
 
 /**
+ * Reads the kill switch settings from the lines of a WireGuard configuration
+ *
+ * @param  array $lines
+ * @return array|null ntp and dns options, or null if there is no kill switch
+ */
+function getKillSwitchSettings(array $lines)
+{
+    foreach ($lines as $line) {
+        if (preg_match('/^\s*PostUp\s*=.*\bwg-killswitch\.sh\s+up\b(.*)$/', $line, $match)) {
+            return [
+                'ntp' => (bool) preg_match('/(^|\s)--allow-ntp(\s|$)/', $match[1]),
+                'dns' => (bool) preg_match('/(^|\s)--allow-dns(\s|$)/', $match[1])
+            ];
+        }
+        // kill switch rule of older versions, without NTP and DNS options
+        if (preg_match('/^\s*PostUp\s*=\s*iptables -I OUTPUT ! -o %i .*-j REJECT/', $line)) {
+            return ['ntp' => false, 'dns' => false];
+        }
+    }
+    return null;
+}
+
+/**
  * Validates uploaded .conf file, adds iptables post-up and
  * post-down rules.
  *
@@ -140,9 +180,11 @@ function DisplayWireGuardConfig()
  * @param  boolean $optRules
  * @param  boolean $optKSwitch
  * @param  string $optInterface
+ * @param  boolean $optKSwitchNtp kill switch lets NTP pass outside the tunnel
+ * @param  boolean $optKSwitchDns kill switch lets DNS to the uplink resolvers pass outside the tunnel
  * @return object $status
  */
-function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface)
+function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface, $optKSwitchNtp = 1, $optKSwitchDns = null)
 {
     define('KB', 1024);
     $tmp_destdir = '/tmp/';
@@ -202,9 +244,18 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
                 }
                 $cidr_ip = strpos($ip_addr, '/') === false ? "$ip_addr/$cidr" : $ip_addr;
 
+                $ksOptions = [];
+                if (!empty($optKSwitchNtp)) {
+                    $ksOptions[] = '--allow-ntp';
+                }
+                if (!empty($optKSwitchDns)) {
+                    $ksOptions[] = '--allow-dns';
+                }
+
                 $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUpEx');
                 $rules[] = 'PreDown = '.getDefaultNetValue('wireguard','server','PreDown');
                 $rules = preg_replace('/%s/m', $cidr_ip, $rules);
+                $rules = preg_replace('/\s*%o/m', $ksOptions ? ' '.implode(' ', $ksOptions) : '', $rules);
             }
             if ((isset($rules) && count($rules) > 0)) {
                 $rules[] = '';
