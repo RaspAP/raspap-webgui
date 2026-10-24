@@ -18,6 +18,9 @@ class WiFiManager
     private const MAX_RSSI = -55;
     const SECURITY_OPEN = 'OPEN';
 
+    // access points of this device, see ownAccessPoints()
+    private ?array $ownAccessPoints = null;
+
     public function knownWifiStations(&$networks)
     {
         // find currently configured networks
@@ -75,6 +78,98 @@ class WiFiManager
     }
 
     /**
+     * Returns the access points of this device, from the output of `iw dev`.
+     * The WiFi client must not connect to these networks: then the device
+     * connects to its own hotspot and has no uplink.
+     *
+     * @param array|null $iwOutput lines of `iw dev`, for tests; null runs `iw dev`
+     * @return array list of ['iface' => string, 'bssid' => string, 'ssid' => string]
+     */
+    public function ownAccessPoints(?array $iwOutput = null): array
+    {
+        if ($iwOutput === null) {
+            if ($this->ownAccessPoints !== null) {
+                return $this->ownAccessPoints;
+            }
+            exec('iw dev 2>/dev/null', $iwOutput);
+        }
+        $aps = [];
+        $current = null;
+        $commit = function () use (&$current, &$aps) {
+            if ($current !== null && $current['type'] === 'AP' && $current['bssid'] !== '') {
+                unset($current['type']);
+                $aps[] = $current;
+            }
+            $current = null;
+        };
+        foreach ($iwOutput as $line) {
+            $line = trim($line);
+            if (preg_match('/^Interface\s+(\S+)$/', $line, $match)) {
+                $commit();
+                $current = ['iface' => $match[1], 'bssid' => '', 'ssid' => '', 'type' => ''];
+            } elseif (preg_match('/^(phy#|Unnamed)/', $line)) {
+                $commit();
+            } elseif ($current !== null && preg_match('/^addr\s+([0-9a-fA-F:]{17})$/', $line, $match)) {
+                $current['bssid'] = strtolower($match[1]);
+            } elseif ($current !== null && preg_match('/^ssid\s+(.*)$/', $line, $match)) {
+                $current['ssid'] = $match[1];
+            } elseif ($current !== null && preg_match('/^type\s+(\S+)$/', $line, $match)) {
+                $current['type'] = $match[1];
+            }
+        }
+        $commit();
+        if (func_num_args() === 0) {
+            $this->ownAccessPoints = $aps;
+        }
+        return $aps;
+    }
+
+    /**
+     * Returns the access point of this device that sends this SSID, or null
+     *
+     * @param string $ssid SSID in the format of `iw` (non-ASCII bytes as \xNN)
+     * @return array|null ['iface' => string, 'bssid' => string, 'ssid' => string]
+     */
+    public function ownAccessPointBySsid(string $ssid): ?array
+    {
+        foreach ($this->ownAccessPoints() as $ap) {
+            if ($ap['ssid'] !== '' && $ap['ssid'] === $ssid) {
+                return $ap;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Finds the actions of a WiFi client page request that would connect the
+     * client to the hotspot of this device: "connect" (by network ID) and
+     * "update<n>" (add or update a network).
+     *
+     * @param array $post the POST data of the request
+     * @param array $networks the known networks, with their network IDs
+     * @return array POST key => access point (see ownAccessPoints())
+     */
+    public function ownHotspotActions(array $post, array $networks): array
+    {
+        $found = [];
+        if (isset($post['connect'])) {
+            $netid = intval($post['connect']);
+            foreach ($networks as $ssid => $network) {
+                if (($network['index'] ?? null) === $netid && ($ap = $this->ownAccessPointBySsid((string)$ssid)) !== null) {
+                    $found['connect'] = $ap;
+                }
+            }
+        }
+        foreach (array_keys($post) as $key) {
+            if (preg_match('/^update(\d+)$/', (string)$key, $match) && is_string($post['ssid' . $match[1]] ?? null) &&
+                ($ap = $this->ownAccessPointBySsid($post['ssid' . $match[1]])) !== null) {
+                $found[$key] = $ap;
+            }
+        }
+        return $found;
+    }
+
+    /**
      * Scans for nearby WiFi networks using `iw` and updates the reference array
      *
      * @param array $networks Reference to the array of known and discovered networks
@@ -114,8 +209,16 @@ class WiFiManager
         }
         $index++;
 
+        // an SSID is the own hotspot when one of its access points is an access
+        // point of this device. The client connects by SSID, so it can also
+        // choose the own access point when another one sends the same SSID.
+        $own = [];
+        foreach ($this->ownAccessPoints() as $ap) {
+            $own[$ap['bssid']] = $ap['iface'];
+        }
+
         $current = [];
-        $commitCurrent = function () use (&$current, &$networks, &$index) {
+        $commitCurrent = function () use (&$current, &$networks, &$index, $own) {
             if (empty($current['ssid'])) {
                 return;
             }
@@ -129,11 +232,15 @@ class WiFiManager
 
             $channel = ConvertToChannel($current['freq'] ?? 0);
             $rssi = $current['signal'] ?? -100;
+            $ownIface = $own[strtolower($current['bssid'] ?? '')] ?? null;
 
             // if network is saved
             if (array_key_exists($ssid, $networks)) {
                 $networks[$ssid]['visible'] = true;
                 $networks[$ssid]['channel'] = $channel;
+                if ($ownIface !== null) {
+                    $networks[$ssid]['own'] = $ownIface;
+                }
                 if (!isset($networks[$ssid]['RSSI']) || $networks[$ssid]['RSSI'] < $rssi) {
                     $networks[$ssid]['RSSI'] = $rssi;
                 }
@@ -149,6 +256,9 @@ class WiFiManager
                     'RSSI' => $rssi,
                     'index' => $index
                 ];
+                if ($ownIface !== null) {
+                    $networks[$ssid]['own'] = $ownIface;
+                }
                 $index++; // increment for next new network
             }
         };

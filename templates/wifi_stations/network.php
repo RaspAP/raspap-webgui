@@ -22,6 +22,8 @@ $network['visible'] = $network['visible'] ?? false;
 $network['channel'] = $network['channel'] ?? '';
 $network['protocol'] = $network['protocol'] ?? $wifi::SECURITY_OPEN;
 $network['passphrase'] = $network['passphrase'] ?? '';
+// the interface of this device that sends this network as its hotspot
+$network['own'] = $network['own'] ?? null;
 ?>
 <div class="card">
 	<div class="card-body">
@@ -30,6 +32,12 @@ $network['passphrase'] = $network['passphrase'] ?? '';
 			$network['ssid'] = "(unknown)";
 		} ?>
         <h5 class="card-title"><i class="fas fa-wifi me-2"></i><?php echo htmlspecialchars($network['ssidutf8'], ENT_QUOTES); ?></h5>
+		<?php if ($network['own']) { ?>
+			<div class="mb-2">
+				<span class="badge bg-secondary"><i class="fas fa-broadcast-tower me-1"></i><?php echo _("Own hotspot"); ?></span>
+				<small class="text-muted d-block mt-1"><?php echo htmlspecialchars(sprintf(_("This device sends this network on %s. The WiFi client can not use it as uplink."), $network['own']), ENT_QUOTES); ?></small>
+			</div>
+		<?php } ?>
 		<div class="info-item-wifi"><?php echo _("Status"); ?></div>
 		<div>
 			<?php if ($network['configured']) { ?>
@@ -76,7 +84,7 @@ $network['passphrase'] = $network['passphrase'] ?? '';
 		<div class="mb-3">
 			<div class="info-item-wifi mb-2"><?php echo _("Passphrase"); ?></div>
 			<div class="input-group">
-				<?php if ($network['protocol'] === $wifi::SECURITY_OPEN) { ?>
+				<?php if ($network['protocol'] === $wifi::SECURITY_OPEN || $network['own']) { ?>
 					<input type="password" disabled class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="" />
 				<?php } else { ?>
 					<input type="password" class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="<?php echo htmlspecialchars($network['passphrase']); ?>" data-bs-target="#update<?php echo $index ?>" data-colors="#ffd0d0,#d0ffd0">
@@ -87,13 +95,13 @@ $network['passphrase'] = $network['passphrase'] ?? '';
 
         <div class="btn-group btn-block d-flex">
             <?php if ($network['configured']) { ?>
-                <input type="submit" class="btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
+                <input type="submit" class="btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' || $network['own'] ? ' disabled' : '')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
                 <?php if ($network['connected']) { ?>
                     <button type="submit" class="btn btn-info" value="<?php echo $index?>" name="disconnect<?php echo $index ?>"><?php echo _("Disconnect"); ?></button>
                 <?php } else { ?>
-                    <button type="submit" class="btn btn-info" value="<?php echo $index?>" name="connect"><?php echo _("Connect"); ?></button>
+                    <button type="submit" class="btn btn-info" value="<?php echo $index?>" name="connect"<?php echo $network['own'] ? ' disabled' : '' ?>><?php echo _("Connect"); ?></button>
                 <?php } ?>
-            <?php } else { ?>
+            <?php } elseif (!$network['own']) { ?>
                 <input type="submit" class="btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" data-bs-toggle="modal" data-bs-target="#configureClientModal" />
             <?php } ?>
 			<?php if ($network['configured']) { ?>
