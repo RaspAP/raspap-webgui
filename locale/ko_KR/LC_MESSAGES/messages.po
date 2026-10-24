@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-10-10 14:11+0000\n"
+"POT-Creation-Date: 2026-10-24 02:54+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -203,7 +203,7 @@ msgstr "인터넷 연결"
 
 #: ../templates/networking/general.php:13 ../templates/dhcp/settings.php:39
 #: ../templates/dhcp/clients.php:20 ../templates/dashboard.php:54
-#: ../templates/dashboard.php:60 ../templates/wg/general.php:103
+#: ../templates/dashboard.php:60 ../templates/wg/general.php:117
 #: ../templates/wg/peers.php:38
 msgid "IP Address"
 msgstr "IP 주소"
@@ -216,15 +216,29 @@ msgstr "게이트웨이"
 msgid "Internet Access"
 msgstr "인터넷 액세스"
 
-#: ../templates/networking/general.php:53
+#: ../templates/networking/general.php:27
+msgid "Used for internet traffic"
+msgstr ""
+
+#: ../templates/networking/general.php:34
+#: ../templates/networking/general.php:52
+msgid "Access point"
+msgstr ""
+
+#: ../templates/networking/general.php:49
+#, php-format
+msgid "Internet traffic uses %s. A kill switch can block this check."
+msgstr ""
+
+#: ../templates/networking/general.php:64
 msgid "Routing table"
 msgstr "라우팅 테이블"
 
-#: ../templates/networking/general.php:57
+#: ../templates/networking/general.php:68
 msgid "raw output"
 msgstr "원시 출력"
 
-#: ../templates/networking/general.php:80
+#: ../templates/networking/general.php:91
 msgid "Current settings"
 msgstr "현재 설정"
 
@@ -915,10 +929,6 @@ msgstr "브릿지"
 msgid "Adblock"
 msgstr "광고 차단"
 
-#: ../templates/dashboard.php:99
-msgid "VPN"
-msgstr "VPN"
-
 #: ../templates/dashboard.php:108
 msgid "Firewall"
 msgstr "방화벽"
@@ -1005,39 +1015,55 @@ msgstr "암호화되지 않은 패킷이 와이어가드 이외의 인터페이�
 msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
 msgstr "이 옵션은 구성된 인터페이스에 대한 <strong>iptables</strong> <code>포스트업</code> 및 <code>프리다운</code> 규칙을 추가합니다."
 
-#: ../templates/wg/general.php:59 ../templates/openvpn/general.php:59
+#: ../templates/wg/general.php:59
+msgid "Allow NTP outside the tunnel"
+msgstr ""
+
+#: ../templates/wg/general.php:60
+msgid "Lets the device set its clock while the tunnel is down. A WireGuard handshake fails when the clock is behind."
+msgstr ""
+
+#: ../templates/wg/general.php:65
+msgid "Allow DNS to the uplink DNS servers outside the tunnel"
+msgstr ""
+
+#: ../templates/wg/general.php:66
+msgid "Lets the device resolve names (for example NTP servers) while the tunnel is down. The DNS requests of this device go outside the tunnel. AP clients are not affected."
+msgstr ""
+
+#: ../templates/wg/general.php:73 ../templates/openvpn/general.php:64
 msgid "Configuration File"
 msgstr "구성 파일"
 
-#: ../templates/wg/general.php:62
+#: ../templates/wg/general.php:76
 msgid "Select WireGuard configuration file (.conf)"
 msgstr "WireGuard 구성 파일(.conf)을 선택합니다."
 
-#: ../templates/wg/general.php:72
+#: ../templates/wg/general.php:86
 msgid "Create a local WireGuard config"
 msgstr "로컬 WireGuard 구성 만들기"
 
-#: ../templates/wg/general.php:76
+#: ../templates/wg/general.php:90
 msgid "Enable server"
 msgstr "서버 사용"
 
-#: ../templates/wg/general.php:80
+#: ../templates/wg/general.php:94
 msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
 msgstr "이 옵션을 활성화하면 RaspAP와 구성된 피어 간에 암호화된 터널을 생성하여 네트워크 트래픽을 보호할 수 있습니다."
 
-#: ../templates/wg/general.php:81
+#: ../templates/wg/general.php:95
 msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
 msgstr "이 설정은 이 장치에 새 WireGuard <code>.conf</code> 파일을 생성합니다."
 
-#: ../templates/wg/general.php:88
+#: ../templates/wg/general.php:102
 msgid "Local public key"
 msgstr "로컬 공개 키"
 
-#: ../templates/wg/general.php:99 ../templates/wg/peers.php:31
+#: ../templates/wg/general.php:113 ../templates/wg/peers.php:31
 msgid "Local Port"
 msgstr "로컬 포트"
 
-#: ../templates/wg/general.php:107
+#: ../templates/wg/general.php:121
 #: ../plugins-available/Wireshark/templates/tabs/basic.php:120
 msgid "DNS"
 msgstr "DNS"
@@ -1083,7 +1109,7 @@ msgid "or download the <code>client.conf</code> file to your device."
 msgstr "를 클릭하거나 <code>client.conf</code> 파일을 장치에 다운로드하세요."
 
 #: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:46
-#: ../templates/provider.php:36 ../includes/functions.php:1064
+#: ../templates/provider.php:36 ../includes/functions.php:1192
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
 msgid "Status"
@@ -1175,7 +1201,15 @@ msgstr "클라이언트 인증서(공개 키)(예: <code>client.crt</code>): <co
 msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
 msgstr "클라이언트 인증서의 개인 키(예: <code>client.key</code>): <code>&lt;key> ... &lt;/key></code> 태그."
 
-#: ../templates/openvpn/general.php:62
+#: ../templates/openvpn/general.php:54
+msgid "Private key password"
+msgstr ""
+
+#: ../templates/openvpn/general.php:56
+msgid "Optional. Required only if the private key in the configuration file is encrypted."
+msgstr ""
+
+#: ../templates/openvpn/general.php:67
 msgid "Select OpenVPN configuration file (.ovpn)"
 msgstr "OpenVPN 구성 파일(.ovpn)을 선택합니다."
 
@@ -1786,7 +1820,7 @@ msgstr "연결 해제 %s"
 msgid "Information provided by %s"
 msgstr "정보 제공: %s"
 
-#: ../templates/hostapd.php:14 ../includes/functions.php:1066
+#: ../templates/hostapd.php:14 ../includes/functions.php:1194
 #: ../src/RaspAP/UI/Sidebar.php:19
 msgid "Hotspot"
 msgstr "핫스팟"
@@ -2086,15 +2120,25 @@ msgstr "온라인에서 잘못된 사용자 지정 IP 주소가 발견되었습�
 msgid "Invalid custom host found on line "
 msgstr "온라인에서 잘못된 사용자 지정 호스트가 발견되었습니다. "
 
-#: ../includes/dashboard.php:72
+#: ../includes/dashboard.php:73
 #, php-format
 msgid "%d WLAN %s"
 msgstr "%d 무선랜 %s"
 
-#: ../includes/dashboard.php:78
+#: ../includes/dashboard.php:79
 #, php-format
 msgid "%d LAN %s"
 msgstr "%d LAN %s"
+
+#: ../includes/dashboard.php:91
+#, php-format
+msgid "%d VPN"
+msgid_plural "%d VPNs"
+msgstr[0] ""
+
+#: ../includes/dashboard.php:92
+msgid "VPN"
+msgstr "VPN"
 
 #: ../includes/restapi.php:59
 #, php-format
@@ -2122,71 +2166,71 @@ msgstr "세션 만료"
 msgid "Your session has expired. Please login to continue."
 msgstr "세션이 만료되었습니다. 계속하려면 로그인하세요."
 
-#: ../includes/networking.php:51 ../includes/networking.php:54
+#: ../includes/networking.php:52 ../includes/networking.php:55
 msgid "not configured"
 msgstr "구성되지 않음"
 
-#: ../includes/networking.php:136
+#: ../includes/networking.php:137
 #, php-format
 msgid "Attempting to enable routing between %s and %s interfaces"
 msgstr "%s 및 %s 인터페이스 간 라우팅을 사용하도록 설정하려고 합니다."
 
-#: ../includes/networking.php:146
+#: ../includes/networking.php:147
 #, php-format
 msgid "Attempting to restart routing between %s and %s interfaces"
 msgstr "%s 및 %s 인터페이스 간 라우팅을 다시 시작하려고 합니다."
 
-#: ../includes/networking.php:150
+#: ../includes/networking.php:151
 #, php-format
 msgid "Attempting to disable routing between %s and %s interfaces"
 msgstr "%s 및 %s 인터페이스 간 라우팅을 사용하지 않도록 설정하려고 합니다."
 
-#: ../includes/networking.php:252
+#: ../includes/networking.php:253
 #, php-format
 msgid "DHCP configuration for %s enabled"
 msgstr "%s 에 대한 DHCP 구성 사용"
 
-#: ../includes/networking.php:259
+#: ../includes/networking.php:260
 #, php-format
 msgid "DHCP configuration for %s added"
 msgstr "%s 에 대한 DHCP 구성 추가"
 
-#: ../includes/networking.php:265
+#: ../includes/networking.php:266
 #, php-format
 msgid "DHCP configuration for %s updated"
 msgstr "%s 에 대한 DHCP 구성 업데이트"
 
-#: ../includes/networking.php:271
+#: ../includes/networking.php:272
 #, php-format
 msgid "No default DHCP configuration exists for the %s interface"
 msgstr "%s 인터페이스에 대한 기본 DHCP 구성이 없습니다."
 
-#: ../includes/networking.php:272
+#: ../includes/networking.php:273
 #, php-format
 msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
 msgstr "DHCP 서버 설정에서 이 인터페이스에 대한 고정 IP 및 DHCP를 구성합니다."
 
-#: ../includes/networking.php:306
+#: ../includes/networking.php:307
 #, php-format
 msgid "DHCP configuration for %s removed"
 msgstr ""
 
-#: ../includes/networking.php:308
+#: ../includes/networking.php:309
 #, php-format
 msgid "Failed to remove DHCP configuration for %s"
 msgstr ""
 
-#: ../includes/networking.php:329
+#: ../includes/networking.php:330
 #, php-format
 msgid "Dnsmasq configuration for %s added"
 msgstr ""
 
-#: ../includes/networking.php:348
+#: ../includes/networking.php:349
 #, php-format
 msgid "Dnsmasq configuration for %s removed"
 msgstr ""
 
-#: ../includes/networking.php:350
+#: ../includes/networking.php:351
 #, php-format
 msgid "Failed to remove dnsmasq configuration for %s"
 msgstr ""
@@ -2210,16 +2254,16 @@ msgstr "%s 바이너리를 실행할 수 없습니다: %s"
 msgid "Check that binary is executable and permissions exist in raspap.sudoers"
 msgstr "바이너리가 실행 가능하고 raspap.sudoers에 권한이 있는지 확인합니다."
 
-#: ../includes/provider.php:119
+#: ../includes/provider.php:116
 #, php-format
 msgid "Attempting to connect to %s"
 msgstr "%s 에 연결을 시도 중입니다."
 
-#: ../includes/provider.php:322
+#: ../includes/provider.php:319
 msgid "Select a country..."
 msgstr "국가 선택..."
 
-#: ../includes/provider.php:391
+#: ../includes/provider.php:388
 #, php-format
 msgid "Account information not available from %s's Linux CLI."
 msgstr "%s의 Linux CLI에서 계정 정보를 사용할 수 없습니다."
@@ -2234,11 +2278,11 @@ msgstr "로그 제한 크기를 %s KB로 변경"
 msgid "Changing alert close timeout to %s ms"
 msgstr "알림 닫기 시간 초과를 %s ms로 변경"
 
-#: ../includes/functions.php:1069
+#: ../includes/functions.php:1197
 msgid "Mem Use"
 msgstr "메모리 사용"
 
-#: ../includes/functions.php:1072
+#: ../includes/functions.php:1200
 msgid "CPU"
 msgstr "CPU"
 
@@ -2266,18 +2310,27 @@ msgstr "네트워크"
 msgid "Data usage"
 msgstr "데이터 사용량"
 
-#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+#: ../src/RaspAP/UI/Dashboard.php:81 ../src/RaspAP/UI/Dashboard.php:101
 msgid "No MAC Address Found"
 msgstr "MAC 주소를 찾을 수 없음"
 
-#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+#: ../src/RaspAP/UI/Dashboard.php:84 ../src/RaspAP/UI/Dashboard.php:128
 msgid "No IPv6 Address Found"
 msgstr "IPv6 주소를 찾을 수 없음"
 
-#: ../src/RaspAP/UI/Dashboard.php:232
+#: ../src/RaspAP/UI/Dashboard.php:234
 msgid "client"
 msgid_plural "clients"
 msgstr[0] "클라이언트"
+
+#: ../src/RaspAP/Networking/VpnConflict.php:37
+msgid "WireGuard and OpenVPN are both set to send all traffic through their tunnel. Use only one of them at a time."
+msgstr ""
+
+#: ../src/RaspAP/Networking/VpnConflict.php:45
+#, php-format
+msgid "Both connect to the same server (%s), so one tunnel runs through the other."
+msgstr ""
 
 #: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
 msgid "Signal strength"

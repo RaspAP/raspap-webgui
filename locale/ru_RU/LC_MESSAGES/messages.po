@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-10-10 14:11+0000\n"
+"POT-Creation-Date: 2026-10-24 02:54+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
@@ -203,7 +203,7 @@ msgstr "Подключение к Интернету"
 
 #: ../templates/networking/general.php:13 ../templates/dhcp/settings.php:39
 #: ../templates/dhcp/clients.php:20 ../templates/dashboard.php:54
-#: ../templates/dashboard.php:60 ../templates/wg/general.php:103
+#: ../templates/dashboard.php:60 ../templates/wg/general.php:117
 #: ../templates/wg/peers.php:38
 msgid "IP Address"
 msgstr "IP-адрес"
@@ -216,15 +216,29 @@ msgstr "Шлюз"
 msgid "Internet Access"
 msgstr "Доступ в Интернет"
 
-#: ../templates/networking/general.php:53
+#: ../templates/networking/general.php:27
+msgid "Used for internet traffic"
+msgstr ""
+
+#: ../templates/networking/general.php:34
+#: ../templates/networking/general.php:52
+msgid "Access point"
+msgstr ""
+
+#: ../templates/networking/general.php:49
+#, php-format
+msgid "Internet traffic uses %s. A kill switch can block this check."
+msgstr ""
+
+#: ../templates/networking/general.php:64
 msgid "Routing table"
 msgstr "Таблица маршрутизации"
 
-#: ../templates/networking/general.php:57
+#: ../templates/networking/general.php:68
 msgid "raw output"
 msgstr "необработанный выход"
 
-#: ../templates/networking/general.php:80
+#: ../templates/networking/general.php:91
 msgid "Current settings"
 msgstr "Текущие настройки"
 
@@ -915,10 +929,6 @@ msgstr "Мостовая"
 msgid "Adblock"
 msgstr "Adblock"
 
-#: ../templates/dashboard.php:99
-msgid "VPN"
-msgstr "VPN"
-
 #: ../templates/dashboard.php:108
 msgid "Firewall"
 msgstr "Брандмауэр"
@@ -1005,39 +1015,55 @@ msgstr "Рекомендуется, если вы хотите предотвр�
 msgid "This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."
 msgstr "Эта опция добавляет правила <strong>iptables</strong> <code>PostUp</code> и <code>PreDown</code> для настроенного интерфейса."
 
-#: ../templates/wg/general.php:59 ../templates/openvpn/general.php:59
+#: ../templates/wg/general.php:59
+msgid "Allow NTP outside the tunnel"
+msgstr ""
+
+#: ../templates/wg/general.php:60
+msgid "Lets the device set its clock while the tunnel is down. A WireGuard handshake fails when the clock is behind."
+msgstr ""
+
+#: ../templates/wg/general.php:65
+msgid "Allow DNS to the uplink DNS servers outside the tunnel"
+msgstr ""
+
+#: ../templates/wg/general.php:66
+msgid "Lets the device resolve names (for example NTP servers) while the tunnel is down. The DNS requests of this device go outside the tunnel. AP clients are not affected."
+msgstr ""
+
+#: ../templates/wg/general.php:73 ../templates/openvpn/general.php:64
 msgid "Configuration File"
 msgstr "Файл конфигурации"
 
-#: ../templates/wg/general.php:62
+#: ../templates/wg/general.php:76
 msgid "Select WireGuard configuration file (.conf)"
 msgstr "Выберите файл конфигурации WireGuard (.conf)."
 
-#: ../templates/wg/general.php:72
+#: ../templates/wg/general.php:86
 msgid "Create a local WireGuard config"
 msgstr "Создайте локальную конфигурацию WireGuard"
 
-#: ../templates/wg/general.php:76
+#: ../templates/wg/general.php:90
 msgid "Enable server"
 msgstr "Включить сервер"
 
-#: ../templates/wg/general.php:80
+#: ../templates/wg/general.php:94
 msgid "Enable this option to secure network traffic by creating an encrypted tunnel between RaspAP and configured peers."
 msgstr "Включите эту опцию для защиты сетевого трафика путем создания зашифрованного туннеля между RaspAP и настроенными аналогами."
 
-#: ../templates/wg/general.php:81
+#: ../templates/wg/general.php:95
 msgid "This setting generates a new WireGuard <code>.conf</code> file on this device."
 msgstr "Этот параметр создает новый файл WireGuard <code>.conf</code> на этом устройстве <code>.</code>"
 
-#: ../templates/wg/general.php:88
+#: ../templates/wg/general.php:102
 msgid "Local public key"
 msgstr "Локальный открытый ключ"
 
-#: ../templates/wg/general.php:99 ../templates/wg/peers.php:31
+#: ../templates/wg/general.php:113 ../templates/wg/peers.php:31
 msgid "Local Port"
 msgstr "Местный порт"
 
-#: ../templates/wg/general.php:107
+#: ../templates/wg/general.php:121
 #: ../plugins-available/Wireshark/templates/tabs/basic.php:120
 msgid "DNS"
 msgstr "DNS"
@@ -1083,7 +1109,7 @@ msgid "or download the <code>client.conf</code> file to your device."
 msgstr "или загрузите файл <code>client.conf</code> на ваше устройство."
 
 #: ../templates/wifi_stations/network.php:33 ../templates/restapi.php:46
-#: ../templates/provider.php:36 ../includes/functions.php:1064
+#: ../templates/provider.php:36 ../includes/functions.php:1192
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
 msgid "Status"
@@ -1175,7 +1201,15 @@ msgstr "Сертификат клиента (открытый ключ) (нап�
 msgid "Private key of the client certificate (e.g. <code>client.key</code>): enclosed in <code>&lt;key> ... &lt;/key></code> tags."
 msgstr "Закрытый ключ сертификата клиента (например, <code>client.key</code>): заключен в теги <code>&lt;key> ... &lt;/key></code> тегами."
 
-#: ../templates/openvpn/general.php:62
+#: ../templates/openvpn/general.php:54
+msgid "Private key password"
+msgstr ""
+
+#: ../templates/openvpn/general.php:56
+msgid "Optional. Required only if the private key in the configuration file is encrypted."
+msgstr ""
+
+#: ../templates/openvpn/general.php:67
 msgid "Select OpenVPN configuration file (.ovpn)"
 msgstr "Выберите файл конфигурации OpenVPN (.ovpn)"
 
@@ -1786,7 +1820,7 @@ msgstr "Отключить %s"
 msgid "Information provided by %s"
 msgstr "Информация предоставлена сайтом %s"
 
-#: ../templates/hostapd.php:14 ../includes/functions.php:1066
+#: ../templates/hostapd.php:14 ../includes/functions.php:1194
 #: ../src/RaspAP/UI/Sidebar.php:19
 msgid "Hotspot"
 msgstr "Точка доступа"
@@ -2086,15 +2120,28 @@ msgstr "В строке найден недопустимый пользоват
 msgid "Invalid custom host found on line "
 msgstr "В строке найден недопустимый пользовательский хост "
 
-#: ../includes/dashboard.php:72
+#: ../includes/dashboard.php:73
 #, php-format
 msgid "%d WLAN %s"
 msgstr "%d WLAN %s"
 
-#: ../includes/dashboard.php:78
+#: ../includes/dashboard.php:79
 #, php-format
 msgid "%d LAN %s"
 msgstr "%d LAN %s"
+
+#: ../includes/dashboard.php:91
+#, php-format
+msgid "%d VPN"
+msgid_plural "%d VPNs"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: ../includes/dashboard.php:92
+msgid "VPN"
+msgstr "VPN"
 
 #: ../includes/restapi.php:59
 #, php-format
@@ -2122,71 +2169,71 @@ msgstr "Сессия истекла"
 msgid "Your session has expired. Please login to continue."
 msgstr "Срок действия вашей сессии истек. Пожалуйста, войдите в систему, чтобы продолжить."
 
-#: ../includes/networking.php:51 ../includes/networking.php:54
+#: ../includes/networking.php:52 ../includes/networking.php:55
 msgid "not configured"
 msgstr "не настроен"
 
-#: ../includes/networking.php:136
+#: ../includes/networking.php:137
 #, php-format
 msgid "Attempting to enable routing between %s and %s interfaces"
 msgstr "Попытка включить маршрутизацию между интерфейсами %s и %s."
 
-#: ../includes/networking.php:146
+#: ../includes/networking.php:147
 #, php-format
 msgid "Attempting to restart routing between %s and %s interfaces"
 msgstr "Попытка перезапустить маршрутизацию между интерфейсами %s и %s."
 
-#: ../includes/networking.php:150
+#: ../includes/networking.php:151
 #, php-format
 msgid "Attempting to disable routing between %s and %s interfaces"
 msgstr "Попытка отключить маршрутизацию между интерфейсами %s и %s."
 
-#: ../includes/networking.php:252
+#: ../includes/networking.php:253
 #, php-format
 msgid "DHCP configuration for %s enabled"
 msgstr "Настройка DHCP для %s включена"
 
-#: ../includes/networking.php:259
+#: ../includes/networking.php:260
 #, php-format
 msgid "DHCP configuration for %s added"
 msgstr "Добавлена конфигурация DHCP для %s."
 
-#: ../includes/networking.php:265
+#: ../includes/networking.php:266
 #, php-format
 msgid "DHCP configuration for %s updated"
 msgstr "Обновлена конфигурация DHCP для %s"
 
-#: ../includes/networking.php:271
+#: ../includes/networking.php:272
 #, php-format
 msgid "No default DHCP configuration exists for the %s interface"
 msgstr "Для интерфейса %s не существует конфигурации DHCP по умолчанию."
 
-#: ../includes/networking.php:272
+#: ../includes/networking.php:273
 #, php-format
 msgid "Configure a static IP and DHCP for this interface in DHCP Server settings"
 msgstr "Настройте статический IP и DHCP для этого интерфейса в настройках DHCP Server."
 
-#: ../includes/networking.php:306
+#: ../includes/networking.php:307
 #, php-format
 msgid "DHCP configuration for %s removed"
 msgstr ""
 
-#: ../includes/networking.php:308
+#: ../includes/networking.php:309
 #, php-format
 msgid "Failed to remove DHCP configuration for %s"
 msgstr ""
 
-#: ../includes/networking.php:329
+#: ../includes/networking.php:330
 #, php-format
 msgid "Dnsmasq configuration for %s added"
 msgstr ""
 
-#: ../includes/networking.php:348
+#: ../includes/networking.php:349
 #, php-format
 msgid "Dnsmasq configuration for %s removed"
 msgstr ""
 
-#: ../includes/networking.php:350
+#: ../includes/networking.php:351
 #, php-format
 msgid "Failed to remove dnsmasq configuration for %s"
 msgstr ""
@@ -2210,16 +2257,16 @@ msgstr "Невозможно выполнить двоичный файл %s , �
 msgid "Check that binary is executable and permissions exist in raspap.sudoers"
 msgstr "Проверьте, что двоичный файл исполняем и разрешения существуют в raspap.sudoers"
 
-#: ../includes/provider.php:119
+#: ../includes/provider.php:116
 #, php-format
 msgid "Attempting to connect to %s"
 msgstr "Попытка подключения к %s"
 
-#: ../includes/provider.php:322
+#: ../includes/provider.php:319
 msgid "Select a country..."
 msgstr "Выберите страну..."
 
-#: ../includes/provider.php:391
+#: ../includes/provider.php:388
 #, php-format
 msgid "Account information not available from %s's Linux CLI."
 msgstr "Информация об учетной записи, недоступная из %s'Linux CLI."
@@ -2234,11 +2281,11 @@ msgstr "Изменение предельного размера журнала 
 msgid "Changing alert close timeout to %s ms"
 msgstr "Изменение таймаута закрытия предупреждения на %s мс."
 
-#: ../includes/functions.php:1069
+#: ../includes/functions.php:1197
 msgid "Mem Use"
 msgstr "Использование памяти"
 
-#: ../includes/functions.php:1072
+#: ../includes/functions.php:1200
 msgid "CPU"
 msgstr "CPU"
 
@@ -2266,21 +2313,30 @@ msgstr "Сеть"
 msgid "Data usage"
 msgstr "Использование данных"
 
-#: ../src/RaspAP/UI/Dashboard.php:79 ../src/RaspAP/UI/Dashboard.php:99
+#: ../src/RaspAP/UI/Dashboard.php:81 ../src/RaspAP/UI/Dashboard.php:101
 msgid "No MAC Address Found"
 msgstr "MAC-адрес не найден"
 
-#: ../src/RaspAP/UI/Dashboard.php:82 ../src/RaspAP/UI/Dashboard.php:126
+#: ../src/RaspAP/UI/Dashboard.php:84 ../src/RaspAP/UI/Dashboard.php:128
 msgid "No IPv6 Address Found"
 msgstr "IPv6-адрес не найден"
 
-#: ../src/RaspAP/UI/Dashboard.php:232
+#: ../src/RaspAP/UI/Dashboard.php:234
 msgid "client"
 msgid_plural "clients"
 msgstr[0] "клиент"
 msgstr[1] "клиенты"
 msgstr[2] "клиенты"
 msgstr[3] "клиенты"
+
+#: ../src/RaspAP/Networking/VpnConflict.php:37
+msgid "WireGuard and OpenVPN are both set to send all traffic through their tunnel. Use only one of them at a time."
+msgstr ""
+
+#: ../src/RaspAP/Networking/VpnConflict.php:45
+#, php-format
+msgid "Both connect to the same server (%s), so one tunnel runs through the other."
+msgstr ""
 
 #: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
 msgid "Signal strength"
