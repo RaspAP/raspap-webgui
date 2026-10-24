@@ -14,7 +14,7 @@
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.
 #
-# Usage: wg-killswitch.sh up <interface> [ap-subnet] [--allow-ntp] [--allow-dns]
+# Usage: wg-killswitch.sh up <interface> [ap-subnet] [--allow-ntp] [--allow-dns] [--allow-portal]
 #        wg-killswitch.sh down <interface>
 #        wg-killswitch.sh migrate <config-file> ...
 
@@ -28,10 +28,14 @@ readonly default_rule_pref="32700"
 # deletes these rules and not the same rules of other tools
 readonly rule_proto="250"
 readonly resolv_conf="/etc/resolv.conf"
+# the only user whose HTTP requests (TCP port 80) go outside the tunnel with
+# --allow-portal: the captive portal probe of raspap-captive-portal.sh
+readonly probe_user="raspap-probe"
+readonly portal_helper="/usr/local/sbin/raspap-captive-portal.sh"
 readonly self="/etc/raspap/networking/wg-killswitch.sh"
 
 usage() {
-    echo "Usage: $0 up <interface> [ap-subnet] [--allow-ntp] [--allow-dns]" >&2
+    echo "Usage: $0 up <interface> [ap-subnet] [--allow-ntp] [--allow-dns] [--allow-portal]" >&2
     echo "       $0 down <interface>" >&2
     echo "       $0 migrate <config-file> ..." >&2
     exit 1
@@ -73,7 +77,7 @@ cleanup() {
 remove_rules() {
     local family="$1" line
     ip "-$family" rule show 2>/dev/null |
-        grep -E "ipproto (udp|tcp) dport (53|123) lookup main" |
+        grep -E "ipproto (udp|tcp) dport (53|123) lookup main|uidrange [0-9]+-[0-9]+ lookup main" |
         while read -r line; do
             # shellcheck disable=SC2086
             ip "-$family" rule del pref ${line%%:*} ${line#*:} protocol "$rule_proto" 2>/dev/null || true
@@ -120,6 +124,10 @@ add_rules() {
         ip "-$family" rule add pref "$pref" ipproto udp dport 123 lookup main protocol "$rule_proto" ||
             echo "wg-killswitch: unable to add NTP rule (IPv$family)" >&2
     fi
+    if [ "$allow_portal" = 1 ] && [ -n "$probe_uid" ]; then
+        ip "-$family" rule add pref "$pref" uidrange "$probe_uid-$probe_uid" lookup main protocol "$rule_proto" ||
+            echo "wg-killswitch: unable to add captive portal probe rule (IPv$family)" >&2
+    fi
     if [ "$allow_dns" = 1 ]; then
         for ns in $(nameservers "$family"); do
             for proto in udp tcp; do
@@ -135,6 +143,11 @@ add_exceptions() {
     local cmd="$1" family="$2" ns proto
     if [ "$allow_ntp" = 1 ]; then
         "$cmd" -A "$3" -p udp --dport 123 -j RETURN
+    fi
+    # a failure must not stop the kill switch before its REJECT rule
+    if [ "$allow_portal" = 1 ] && [ -n "$probe_uid" ]; then
+        "$cmd" -A "$3" -m owner --uid-owner "$probe_uid" -p tcp --dport 80 -j RETURN ||
+            echo "wg-killswitch: unable to add the captive portal probe exception" >&2
     fi
     if [ "$allow_dns" = 1 ]; then
         for ns in $(nameservers "$family"); do
@@ -224,18 +237,25 @@ case "$action" in
         ap_subnet=""
         allow_ntp=0
         allow_dns=0
+        allow_portal=0
         for arg in "$@"; do
             case "$arg" in
                 --allow-ntp) allow_ntp=1 ;;
                 --allow-dns) allow_dns=1 ;;
+                --allow-portal) allow_portal=1 ;;
                 -*) usage ;;
                 *) ap_subnet="$arg" ;;
             esac
         done
+        probe_uid="$(id -u "$probe_user" 2>/dev/null || true)"
         up
         ;;
     down)
         cleanup "$1"
+        # end the captive portal mode of the AP clients with the tunnel
+        if [ -x "$portal_helper" ]; then
+            "$portal_helper" off || true
+        fi
         ;;
     migrate)
         migrate "$@"

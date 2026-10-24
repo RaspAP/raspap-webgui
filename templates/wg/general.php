@@ -65,6 +65,12 @@
                         <label class="form-check-label" for="chxwgkswitchdns"><?php echo _("Allow DNS to the uplink DNS servers outside the tunnel"); ?></label>
                         <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Lets the device resolve names (for example NTP servers) while the tunnel is down. The DNS requests of this device go outside the tunnel. AP clients are not affected."); ?>"></i>
                       </div>
+                      <div class="form-check form-switch">
+                        <?php $checked = $optKSwitchPortal == 1 ? 'checked="checked"' : '' ?>
+                        <input class="form-check-input" id="chxwgkswitchportal" name="wgKSwitchPortal" type="checkbox" value="1" <?php echo $checked ?> />
+                        <label class="form-check-label" for="chxwgkswitchportal"><?php echo _("Allow captive portal login"); ?></label>
+                        <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("When the uplink network needs a login (for example in a hotel), AP clients can open the login page while the tunnel is down. Until the login, the HTTP and DNS requests of AP clients go outside the tunnel. HTTPS stays blocked."); ?>"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
