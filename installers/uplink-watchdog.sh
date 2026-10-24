@@ -100,12 +100,14 @@ gateway_alive() {
     esac
 }
 
-# NetworkManager manages the interface
+# NetworkManager runs and manages the interface. This is the same check as
+# nm_manages() in raspap-nm-wifi.sh.
 nm_managed() {
     local state
+    systemctl is-active --quiet NetworkManager.service || return 1
     command -v nmcli > /dev/null || return 1
-    state="$(nmcli -t -f DEVICE,STATE device 2>/dev/null | awk -F: -v d="$1" '$1 == d { print $2; exit }')"
-    [ -n "$state" ] && [ "$state" != "unmanaged" ]
+    state="$(nmcli -g GENERAL.STATE device show "$1" 2>/dev/null)" || return 1
+    [ -n "$state" ] && [[ "$state" != *unmanaged* ]]
 }
 
 # Connects the interface again. Returns 0 on success.
