@@ -241,6 +241,10 @@ class HostapdManager
                 $replaced = str_replace('{VHT_FREQ_IDX}', (string) $vht_freq_idx ?? '', $line);
                 $replaced = str_replace('{HE_FREQ_IDX}', (string) $he_freq_idx ?? '', $replaced);
                 $replaced = str_replace('{HT40_DIR}', (string) $ht40_dir ?? '', $replaced);
+                // 802.11n is defined with hw_mode=g; a 5 GHz channel needs hw_mode=a
+                if ($hwMode === 'n' && (int)$params['channel'] > 14 && trim($replaced) === 'hw_mode=g') {
+                    $replaced = 'hw_mode=a';
+                }
                 $config[] = $replaced;
             }
         }

@@ -87,6 +87,9 @@ export function initHostapd_ajax() {
                 selectableChannels = data.filter(item => item.MHz.toString().startsWith('5'));
             } else if (hw_mode === 'be') {
                 selectableChannels = data.filter(item => item.MHz.toString().startsWith('5'));
+            } else if (hw_mode === 'n') {
+                // 802.11n works on 2.4 and 5 GHz (not 6 GHz)
+                selectableChannels = data.filter(item => item.MHz < 5925);
             } else {
                 // hw_mode 'b', 'g', or default to 2.4GHz
                 selectableChannels = data.filter(item => item.MHz.toString().startsWith('24'));
