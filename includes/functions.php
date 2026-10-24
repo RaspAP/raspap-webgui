@@ -78,7 +78,7 @@ function getDefaultNetValue($svc,$iface,$key)
     if ($json === null) {
         return false;
     } else {
-        return $json[$svc][$iface][$key][0];
+        return $json[$svc][$iface][$key][0] ?? null;
     }
 }
 

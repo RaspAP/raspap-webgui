@@ -89,11 +89,14 @@ class DnsmasqManager
             $config[] = PHP_EOL;
             $this->scanConfigDir(SELF::CONF_DEFAULT,'uap0',$status);
         } elseif ($bridgedEnable !==1) {
-            $dhcp_range = ($syscfg['dhcp-range'] =='') ? getDefaultNetValue('dnsmasq',$iface,'dhcp-range') : $syscfg['dhcp-range'];
+            $dhcp_range = (($syscfg['dhcp-range'] ?? '') == '') ? getDefaultNetValue('dnsmasq',$iface,'dhcp-range') : $syscfg['dhcp-range'];
             $config = [ '# RaspAP '.$_POST['interface'].' configuration' ];
             $config[] = 'interface='.$_POST['interface'];
             $config[] = 'domain-needed';
-            $config[] = 'dhcp-range='.$dhcp_range;
+            // no default range for some interfaces (e.g. wlx*): an empty dhcp-range stops dnsmasq from starting
+            if (!empty($dhcp_range)) {
+                $config[] = 'dhcp-range='.$dhcp_range;
+            }
 
             // handle multiple dhcp-host + option entries
             if (!empty($syscfg['dhcp-host'])) {

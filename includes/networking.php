@@ -324,7 +324,10 @@ function saveDnsmasqConfig($outputInterface, $outputDefault, $status)
     $dhcp_range = ($syscfg['dhcp-range'] ?? '') == '' ? getDefaultNetValue('dnsmasq', $outputDefault, 'dhcp-range') : $syscfg['dhcp-range'];
     $cfg = [ '# RaspAP '.$outputInterface.' configuration' ];
     $cfg[] = 'interface='.$outputInterface;
-    $cfg[] = 'dhcp-range='.$dhcp_range;
+    // an empty dhcp-range stops dnsmasq from starting
+    if (!empty($dhcp_range)) {
+        $cfg[] = 'dhcp-range='.$dhcp_range;
+    }
     $cfg[] = PHP_EOL;
     $cfg = join(PHP_EOL, $cfg);
     $status->addMessage(sprintf(_('Dnsmasq configuration for %s added'), $outputInterface), 'success');
