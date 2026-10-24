@@ -303,7 +303,8 @@ function _install_dependencies() {
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $rsync_package $network_tools $ifconfig_package vnstat qrencode jq isoquery || _install_status 1 "Unable to install dependencies"
+    # iso-codes is only recommended by isoquery and not installed where APT::Install-Recommends is 0 (e.g. Armbian)
+    sudo apt-get install -y lighttpd git hostapd dnsmasq iptables-persistent $php_package $dhcpcd_package $iw_package $rsync_package $network_tools $ifconfig_package vnstat qrencode jq isoquery iso-codes || _install_status 1 "Unable to install dependencies"
 
     if [[ "$php_package" == *"-fpm" ]]; then
         _install_log "Enabling lighttpd fastcgi-php-fpm module for $php_package"
