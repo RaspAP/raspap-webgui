@@ -25,7 +25,11 @@ set -o pipefail
 
 readonly conn_dir="/etc/NetworkManager/system-connections"
 readonly prefix="raspap-wifi-"
-readonly marker="# Managed by RaspAP. Changes in the RaspAP web interface replace this file."
+readonly comment="# Managed by RaspAP. Changes in the RaspAP web interface replace this file."
+# NetworkManager removes comments when it writes a keyfile again (for example
+# after "nmcli connection modify"), but it keeps the keys of the [user]
+# section. Thus this key, not the comment, marks the files of this script.
+readonly marker_key="org.raspap.managed"
 readonly hostapd_conf="/etc/hostapd/hostapd.conf"
 readonly max_networks=64
 
@@ -101,11 +105,14 @@ list() {
 }
 
 # A keyfile that this script wrote: a regular file (not a symlink) owned by
-# root in the connection directory, with the marker on the first line
+# root in the connection directory, with the marker key in the [user] section
 is_ours() {
     local file="$1"
     [ -f "$file" ] && [ ! -L "$file" ] && [ "$(stat -c %u "$file")" = 0 ] &&
-        [ "$(head -n 1 "$file")" = "$marker" ]
+        awk -v key="$marker_key=1" '
+            /^\[/ { section = $0; next }
+            section == "[user]" && $0 == key { found = 1 }
+            END { exit !found }' "$file"
 }
 
 # Converts hex to the byte list of a NetworkManager keyfile, e.g. "52;61;"
@@ -163,7 +170,7 @@ sync() {
 
         tmp="$(mktemp "$conn_dir/.raspap.XXXXXX")" || die 1 "unable to create a file in $conn_dir"
         {
-            echo "$marker"
+            echo "$comment"
             echo "[connection]"
             echo "id=$name"
             echo "uuid=$uuid"
@@ -187,6 +194,9 @@ sync() {
             echo
             echo "[ipv6]"
             echo "method=auto"
+            echo
+            echo "[user]"
+            echo "$marker_key=1"
         } > "$tmp" || { rm -f "$tmp"; die 1 "unable to write $tmp"; }
         chmod 600 "$tmp"
         mv -f "$tmp" "$file" || { rm -f "$tmp"; die 1 "unable to write $file"; }
