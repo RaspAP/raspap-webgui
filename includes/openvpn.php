@@ -47,7 +47,9 @@ function DisplayOpenVPNConfig()
 
     exec('pidof openvpn', $openvpnstatus, $ovpn_return);
     $serviceStatus = ($ovpn_return === 0) ? "up" : "down";
-    $auth = file(RASPI_OPENVPN_CLIENT_LOGIN, FILE_IGNORE_NEW_LINES);
+    $auth = file_exists(RASPI_OPENVPN_CLIENT_LOGIN) ? file(RASPI_OPENVPN_CLIENT_LOGIN, FILE_IGNORE_NEW_LINES) : [];
+    $authUser = '';
+    $authPassword = '';
     // parse client auth credentials
     if (!empty($auth)) {
         $auth = array_filter($auth, 'filter_comments');
@@ -59,6 +61,7 @@ function DisplayOpenVPNConfig()
     $conf_default =  empty($ret) ? "none" : $ret[0];
 
     $logEnable = 0;
+    $logOutput = '';
     if (!empty($_POST) && !isset($_POST['log-openvpn'])) {
         $logOutput = "";
         $f = @fopen("/tmp/openvpn.log", "r+");
@@ -66,7 +69,7 @@ function DisplayOpenVPNConfig()
             ftruncate($f, 0);
             fclose($f);
         }
-    } elseif (isset($_POST['log-openvpn']) || filesize('/tmp/openvpn.log') >0) {
+    } elseif (isset($_POST['log-openvpn']) || (file_exists('/tmp/openvpn.log') && filesize('/tmp/openvpn.log') > 0)) {
         $logEnable = 1;
         exec("sudo /etc/raspap/openvpn/openvpnlog.sh", $logOutput);
         $logOutput = file_get_contents('/tmp/openvpn.log');
