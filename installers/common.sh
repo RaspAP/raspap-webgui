@@ -622,6 +622,8 @@ function _install_wireguard_killswitch() {
 # portal login". The timer runs as root, so the script must be in a directory
 # that only root can change. The probe runs as the system user raspap-probe,
 # the only user that the kill switch lets send HTTP requests outside the tunnel.
+# The installer does not start the timer: wg-killswitch.sh starts it when the
+# tunnel starts with the option, and stops it with the tunnel.
 function _install_captive_portal() {
     echo "Installing the captive portal helper"
     if ! id -u raspap-probe > /dev/null 2>&1; then
@@ -635,7 +637,6 @@ function _install_captive_portal() {
     sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-captive-portal.timer" /etc/systemd/system/raspap-captive-portal.timer ||
         _install_status 1 "Unable to install raspap-captive-portal.timer"
     sudo systemctl daemon-reload
-    sudo systemctl enable --now raspap-captive-portal.timer || _install_status 1 "Unable to enable raspap-captive-portal.timer"
 }
 
 # Keep the clock across reboots, so that the WireGuard handshake does not fail

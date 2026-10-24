@@ -1,12 +1,12 @@
 # Author: RaspAP
 
 [Unit]
-Description=Run the RaspAP captive portal check every minute
+Description=Run the RaspAP captive portal check every minute while the WireGuard tunnel is up
+# wg-killswitch.sh starts this timer with the option --allow-portal and stops
+# it with the tunnel. It has no [Install] section, so it is never enabled.
 
 [Timer]
-OnBootSec=1min
+OnActiveSec=30s
 OnUnitActiveSec=1min
 AccuracySec=10s
 
-[Install]
-WantedBy=timers.target

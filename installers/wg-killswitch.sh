@@ -33,6 +33,7 @@ readonly resolv_conf="/etc/resolv.conf"
 # --allow-portal: the captive portal probe of raspap-captive-portal.sh
 readonly probe_user="raspap-probe"
 readonly portal_helper="/usr/local/sbin/raspap-captive-portal.sh"
+readonly portal_timer="raspap-captive-portal.timer"
 readonly self="/etc/raspap/networking/wg-killswitch.sh"
 
 usage() {
@@ -271,10 +272,19 @@ case "$action" in
         done
         probe_uid="$(id -u "$probe_user" 2>/dev/null || true)"
         up
+        # the captive portal check runs only while a tunnel with this option is up
+        if [ "$allow_portal" = 1 ]; then
+            systemctl start --no-block "$portal_timer" 2>/dev/null ||
+                echo "wg-killswitch: unable to start $portal_timer" >&2
+        else
+            systemctl stop --no-block "$portal_timer" 2>/dev/null || true
+        fi
         ;;
     down)
         cleanup "$1"
-        # end the captive portal mode of the AP clients with the tunnel
+        # end the captive portal check and the captive portal mode of the AP
+        # clients with the tunnel
+        systemctl stop --no-block "$portal_timer" 2>/dev/null || true
         if [ -x "$portal_helper" ]; then
             "$portal_helper" off || true
         fi
