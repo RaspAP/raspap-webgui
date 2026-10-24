@@ -52,7 +52,8 @@ function suggestWifiHwMode(string $interface): string {
     $hasEHT = preg_match('/EHT\s+(?:Capabilities|MAC Capabilities|PHY Capabilities)/i', $text);
     $hasHE  = preg_match('/HE\s+(?:Capabilities|MAC Capabilities|PHY Capabilities)/i', $text);
     $hasVHT = preg_match('/VHT\s+Capabilities/i', $text);
-    $hasHT  = preg_match('/HT\s+(?:Capabilities|MCS rate indexes supported)/i', $text);
+    // iw prints "HT TX/RX MCS rate indexes supported" or "HT RX MCS rate indexes supported"
+    $hasHT  = preg_match('/\bHT\s+(?:(?:TX\/RX|RX|TX)\s+)?MCS rate indexes\b/i', $text);
 
     // --- Band / frequency detection ---
     $has24GHz = preg_match('/Band\s+1:|2412\s*MHz|2437\s*MHz|2462\s*MHz/i', $text);
@@ -112,7 +113,7 @@ function supportedModes(string $highestMode, bool $incl = true): array {
 
     $i = array_search($highestMode, $standardsCodes, true);
 
-    return $i === false ? $arr : array_slice($standardsCodes, 0, $incl ? $i + 1 : $i);
+    return $i === false ? [] : array_slice($standardsCodes, 0, $incl ? $i + 1 : $i);
 }
 
 echo json_encode($data, JSON_PRETTY_PRINT);
