@@ -125,15 +125,31 @@ class WiFiManager
     }
 
     /**
+     * Returns the bytes of an SSID. `iw` and the parser of wpa_supplicant.conf
+     * write bytes as \xNN: `iw` for non-ASCII bytes, a backslash, and a space at
+     * the start or the end; the parser for non-ASCII bytes only.
+     *
+     * @param string $ssid
+     * @return string
+     */
+    public static function ssidBytes(string $ssid): string
+    {
+        return preg_replace_callback('/\\\\x([0-9a-fA-F]{2})/', function ($m) {
+            return chr(hexdec($m[1]));
+        }, $ssid);
+    }
+
+    /**
      * Returns the access point of this device that sends this SSID, or null
      *
-     * @param string $ssid SSID in the format of `iw` (non-ASCII bytes as \xNN)
+     * @param string $ssid SSID in the format of `iw` or of wpa_supplicant.conf
      * @return array|null ['iface' => string, 'bssid' => string, 'ssid' => string]
      */
     public function ownAccessPointBySsid(string $ssid): ?array
     {
+        $bytes = self::ssidBytes($ssid);
         foreach ($this->ownAccessPoints() as $ap) {
-            if ($ap['ssid'] !== '' && $ap['ssid'] === $ssid) {
+            if ($ap['ssid'] !== '' && self::ssidBytes($ap['ssid']) === $bytes) {
                 return $ap;
             }
         }
@@ -141,32 +157,74 @@ class WiFiManager
     }
 
     /**
-     * Finds the actions of a WiFi client page request that would connect the
-     * client to the hotspot of this device: "connect" (by network ID) and
-     * "update<n>" (add or update a network).
+     * Finds the actions of a WiFi client page request for an SSID that an
+     * access point of this device sends: "connect" and "update<n>" (add or
+     * update a network). "shared" is true when the last scan also found an
+     * access point of a different device with this SSID, for example the
+     * upstream network of a repeater with the same SSID. Then the client can
+     * use the SSID, but it can also choose the own access point.
      *
      * @param array $post the POST data of the request
      * @param array $networks the known networks, with their network IDs
-     * @return array POST key => access point (see ownAccessPoints())
+     * @return array POST key => ['ap' => access point (see ownAccessPoints()), 'shared' => bool]
      */
     public function ownHotspotActions(array $post, array $networks): array
     {
-        $found = [];
+        $candidates = [];
         if (isset($post['connect'])) {
             $netid = intval($post['connect']);
-            foreach ($networks as $ssid => $network) {
-                if (($network['index'] ?? null) === $netid && ($ap = $this->ownAccessPointBySsid((string)$ssid)) !== null) {
-                    $found['connect'] = $ap;
+            // the card of the network sends its SSID with the same number
+            if (is_string($post['ssid' . $netid] ?? null)) {
+                $candidates['connect'] = $post['ssid' . $netid];
+            } else {
+                foreach ($networks as $ssid => $network) {
+                    if ((string)($network['index'] ?? '') === (string)$netid) {
+                        $candidates['connect'] = (string)$ssid;
+                    }
                 }
             }
         }
         foreach (array_keys($post) as $key) {
-            if (preg_match('/^update(\d+)$/', (string)$key, $match) && is_string($post['ssid' . $match[1]] ?? null) &&
-                ($ap = $this->ownAccessPointBySsid($post['ssid' . $match[1]])) !== null) {
-                $found[$key] = $ap;
+            if (preg_match('/^update(\d+)$/', (string)$key, $match) && is_string($post['ssid' . $match[1]] ?? null)) {
+                $candidates[$key] = $post['ssid' . $match[1]];
             }
         }
+
+        $found = [];
+        $shared = null;
+        foreach ($candidates as $key => $ssid) {
+            $ap = $this->ownAccessPointBySsid($ssid);
+            if ($ap === null) {
+                continue;
+            }
+            if ($shared === null) {
+                $shared = $this->sharedSsids();
+            }
+            $found[$key] = ['ap' => $ap, 'shared' => isset($shared[self::ssidBytes($ssid)])];
+        }
         return $found;
+    }
+
+    /**
+     * Returns the SSIDs (as bytes) of the own hotspot that the last scan also
+     * found on an access point of a different device. Uses the cached scan.
+     *
+     * @return array SSID bytes => true
+     */
+    protected function sharedSsids(): array
+    {
+        $shared = [];
+        if (empty($_SESSION['wifi_client_interface'])) {
+            return $shared;
+        }
+        $scan = [];
+        $this->nearbyWifiStations($scan);
+        foreach ($scan as $ssid => $network) {
+            if (!empty($network['own']) && !empty($network['otherBss'])) {
+                $shared[self::ssidBytes((string)$ssid)] = true;
+            }
+        }
+        return $shared;
     }
 
     /**
@@ -210,8 +268,9 @@ class WiFiManager
         $index++;
 
         // an SSID is the own hotspot when one of its access points is an access
-        // point of this device. The client connects by SSID, so it can also
-        // choose the own access point when another one sends the same SSID.
+        // point of this device. "otherBss" marks an SSID that an access point
+        // of a different device also sends (for example a repeater with the
+        // same SSID as its upstream network).
         $own = [];
         foreach ($this->ownAccessPoints() as $ap) {
             $own[$ap['bssid']] = $ap['iface'];
@@ -240,6 +299,8 @@ class WiFiManager
                 $networks[$ssid]['channel'] = $channel;
                 if ($ownIface !== null) {
                     $networks[$ssid]['own'] = $ownIface;
+                } else {
+                    $networks[$ssid]['otherBss'] = true;
                 }
                 if (!isset($networks[$ssid]['RSSI']) || $networks[$ssid]['RSSI'] < $rssi) {
                     $networks[$ssid]['RSSI'] = $rssi;
@@ -258,6 +319,8 @@ class WiFiManager
                 ];
                 if ($ownIface !== null) {
                     $networks[$ssid]['own'] = $ownIface;
+                } else {
+                    $networks[$ssid]['otherBss'] = true;
                 }
                 $index++; // increment for next new network
             }

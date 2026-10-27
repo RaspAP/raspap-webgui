@@ -37,12 +37,18 @@ function DisplayWPAConfig()
         $label = !empty($ifaceServices) ? $iface . ' (' . implode(', ', $ifaceServices) . ')' : $iface;
         $interfaces[$iface] = $label;
     }
-    // the WiFi client must not connect to the hotspot of this device
-    foreach ($wifi->ownHotspotActions($_POST, $networks) as $key => $ap) {
+    // the WiFi client must not connect to the hotspot of this device. When an
+    // access point of a different device also sends the SSID, only warn.
+    foreach ($wifi->ownHotspotActions($_POST, $networks) as $key => $hit) {
+        $ssid = htmlspecialchars($wifi->ssid2utf8($hit['ap']['ssid']), ENT_QUOTES);
+        if ($hit['shared']) {
+            $status->addMessage(sprintf(_('%s is also the hotspot of this device.'), $ssid), 'warning');
+            continue;
+        }
         // a form sends only the button that the user clicked, so the request
         // has no other action
         unset($_POST[$key], $_POST['client_settings']);
-        $status->addMessage(sprintf(_('%s is the hotspot of this device (%s). The WiFi client can not use it as uplink.'), htmlspecialchars($ap['ssid'], ENT_QUOTES), $ap['iface']), 'danger');
+        $status->addMessage(sprintf(_('%s is the hotspot of this device.'), $ssid), 'danger');
     }
     $initial_iface = $clientInterface = $_SESSION['wifi_client_interface'];
 
