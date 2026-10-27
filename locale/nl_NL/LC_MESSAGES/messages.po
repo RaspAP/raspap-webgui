@@ -3398,3 +3398,13 @@ msgstr "De geselecteerde interface (%s) ondersteunt de draadloze modus niet."
 #, php-format
 #~ msgid "Dnsmasq  configuration for %s added"
 #~ msgstr "Dnsmasq configuratie voor %s toegevoegd"
+
+#: ../includes/configure_client.php ../templates/wifi_stations/network.php
+#, php-format
+msgid "%s is also the hotspot of this device."
+msgstr "%s is ook de hotspot van dit apparaat."
+
+#: ../includes/configure_client.php
+#, php-format
+msgid "%s is the hotspot of this device."
+msgstr "%s is de hotspot van dit apparaat."
