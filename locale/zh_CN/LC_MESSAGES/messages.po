@@ -1631,7 +1631,7 @@ msgstr "生成调试日志"
 #: ../templates/system/tools.php:24
 #, php-format
 msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "要<a href=\"%s\" target=\"_blank\">检查</a>该设备上的<a href=\" %s \" target=\"_blank\">适配器</a>，请单击或点击下面的按钮。"
+msgstr "要检查该设备上的<a href=\"%s\" target=\"_blank\">适配器</a>，请单击或点击下面的按钮。"
 
 #: ../templates/system/tools.php:27
 msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
@@ -2143,7 +2143,7 @@ msgstr "虚拟专用网"
 #: ../includes/restapi.php:59
 #, php-format
 msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
-msgstr "可<a href=\"%s\" target=\"_blank\">在此处 </a>访问 RestAPI 文档<a href=\" %s \" target=\"_blank\"> %s</a>"
+msgstr "可<a href=\"%s\" target=\"_blank\">在此处 %s</a>访问 RestAPI 文档"
 
 #: ../includes/footer.php:6
 #, php-format

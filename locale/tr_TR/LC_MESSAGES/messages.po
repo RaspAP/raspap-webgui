@@ -2144,7 +2144,7 @@ msgstr "VPN"
 #: ../includes/restapi.php:59
 #, php-format
 msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
-msgstr "RestAPI dokümanlarına <a href=\"%s\" target=\"_blank\">buradan </a> erişebilirsiniz <a href=\" %s \" target=\"_blank\"> %s</a>"
+msgstr "RestAPI dokümanlarına <a href=\"%s\" target=\"_blank\">buradan %s</a> erişebilirsiniz"
 
 #: ../includes/footer.php:6
 #, php-format
