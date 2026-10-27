@@ -282,7 +282,7 @@ class WiFiManager
 
         // If session var is set leave it, if not try to find second interface
         // if trying to set interface then this can be skipped
-        if ($_SESSION['wifi_client_interface'] === null && !isset($_POST['wifiClientInterface'])) {
+        if (($_SESSION['wifi_client_interface'] ?? null) === null && !isset($_POST['wifiClientInterface'])) {
             exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'", $iface2);
             $client_iface = $_SESSION['wifi_client_interface'] = empty($iface2) ? $iface : trim($iface2[0]);    
         }

@@ -11,17 +11,25 @@ function DisplayProviderConfig()
     $status = new \RaspAP\Messages\StatusMessage;
 
     // set defaults
-    $id = $_SESSION["providerID"];
-    $binPath = getProviderValue($id, "bin_path");
-    $providerName = getProviderValue($id, "name");
-    $providerVersion = getProviderVersion($id, $binPath);
-    $installPage = getProviderValue($id, "install_page");
+    // the page can also open by its URL when no VPN provider is configured
+    $id = $_SESSION["providerID"] ?? null;
+    $hasProvider = !empty($id);
+    $binPath = $hasProvider ? getProviderValue($id, "bin_path") : '';
+    $providerName = $hasProvider ? getProviderValue($id, "name") : '';
+    $providerVersion = $hasProvider ? getProviderVersion($id, $binPath) : '';
+    $installPage = $hasProvider ? getProviderValue($id, "install_page") : '';
     $serviceStatus = 'down';
     $statusDisplay = 'down';
     $ctlState = '';
+    $accountInfo = [];
+    $accountLink = '';
+    $countries = [];
+    $country = '';
+    $providerLog = '';
+    $arg = '';
 
     // handle page actions
-    if (!RASPI_MONITOR_ENABLED) {
+    if (!RASPI_MONITOR_ENABLED && $hasProvider) {
         if (isset($_POST['SaveProviderSettings'])) {
             if (isset($_POST['country'])) {
                 $country = escapeshellarg(trim($_POST['country']));
@@ -35,7 +43,7 @@ function DisplayProviderConfig()
             $status->addMessage('Attempting to connect VPN provider', 'info');
             $cmd = getCliOverride($id, 'cmd_overrides', 'connect');
             $country = escapeshellarg(trim($_POST['country']));
-            if ($id = 4) { // AdGuard requires country argument on connect
+            if ($id == 4) { // AdGuard requires country argument on connect
                 $arg = escapeshellarg(trim($_POST['country']));
             }
             exec("sudo $binPath $cmd $arg", $return);
@@ -61,7 +69,11 @@ function DisplayProviderConfig()
         }
     }
 
-    if (!file_exists($binPath)) {
+    if (!$hasProvider) {
+        $status->addMessage(_('No VPN provider is configured'), 'warning');
+        $ctlState = 'disabled';
+        $providerVersion = 'not found';
+    } elseif (!file_exists($binPath)) {
         $status->addMessage(sprintf(_('Expected %s binary not found at: %s'), $providerName, $binPath), 'warning');
         $status->addMessage(sprintf(_('Visit the <a href="%s" target="_blank">installation instructions</a> for %s\'s Linux CLI.'), $installPage, $providerName), 'warning');
         $ctlState = 'disabled';

@@ -17,7 +17,7 @@
               <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
               <div class="btn-group" role="group">
                 <?php if (!RASPI_MONITOR_ENABLED) : ?>
-                  <?php if ($openvpnstatus[0] == 0) : ?>
+                  <?php if ($serviceStatus !== 'up') : ?>
                     <button type="submit" class="btn btn-sm btn-light" title="<?php echo _("Start OpenVPN"); ?>" name="StartOpenVPN" >
                       <i class="fas fa-play"></i>
                     </button>
