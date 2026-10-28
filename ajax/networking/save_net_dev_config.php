@@ -16,6 +16,10 @@ require_once '../../includes/session.php';
 require_once '../../src/RaspAP/Auth/HTTPAuth.php';
 require_once '../../includes/authenticate.php';
 require_once '../../includes/functions.php';
+require_once '../../includes/locale.php';
+
+// LOCALE_ROOT is relative to the web root, so bind the messages again
+bindtextdomain('messages', realpath(__DIR__ . '/../../locale'));
 
 header('Content-Type: application/json');
 
@@ -28,7 +32,7 @@ try {
     }
     $form = $_POST['arrFormData'];
 
-    if ($form['interface'] == 'mobiledata') {
+    if (($form['interface'] ?? '') === 'mobiledata') {
         $handler = new MobileDataHandler();
         $response = $handler->handle($form);
     } else {

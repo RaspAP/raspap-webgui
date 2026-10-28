@@ -33,8 +33,9 @@ function _install_feature_clients() {
     # udev rules/services to auto start mobile data services
     sudo cp "$webroot_dir/config/client_config/70-mobile-data-sticks.rules" "/etc/udev/rules.d/" || _install_status 1 "Unable to install client udev rules ($name)"
     sudo cp "$webroot_dir/config/client_config/80-raspap-net-devices.rules" "/etc/udev/rules.d/" || _install_status 1 "Unable to install client udev rules ($name)"
-    sudo chown $raspap_user:$raspap_user "/etc/udev/rules.d/70-mobile-data-sticks.rules" || _install_status 1 "Unable to set file permissions"
-    sudo chown $raspap_user:$raspap_user "/etc/udev/rules.d/80-raspap-net-devices.rules" || _install_status 1 "Unable to set file permissions"
+    # RaspAP changes the rules through raspap-udev-rules.sh, so root owns them
+    sudo chown root:root "/etc/udev/rules.d/70-mobile-data-sticks.rules" "/etc/udev/rules.d/80-raspap-net-devices.rules" || _install_status 1 "Unable to set file permissions"
+    sudo chmod 644 "/etc/udev/rules.d/70-mobile-data-sticks.rules" "/etc/udev/rules.d/80-raspap-net-devices.rules" || _install_status 1 "Unable to set file permissions"
     sudo cp "$webroot_dir/config/client_config/"*.service "/etc/systemd/system/" || _install_status 1 "Unable to install client startup services ($name)"
     # client configuration and udev rule templates
     sudo cp "$webroot_dir/config/client_udev_prototypes.json" "/etc/raspap/networking/" || _install_status 1 "Unable to install client configuration ($name)"
