@@ -110,9 +110,16 @@ uplink_domain() {
         out="$(awk '$1 == "search" || $1 == "domain" { print $2; exit }' /etc/resolv.conf 2>/dev/null)"
     fi
     out="${out%.}"
-    # 2 or more labels: a network must not send a top-level domain (for
-    # example "com") to its DNS server
-    valid_domain "$out" && [[ "$out" == *.* ]] && echo "$out"
+    out="${out,,}"
+    valid_domain "$out" && not_public_suffix "$out" && echo "$out"
+}
+
+# A network must not send a public suffix (for example "com" or "co.uk") to
+# its DNS server. psl uses the Public Suffix List (package psl, installed by
+# RaspAP). Without psl, no domain is accepted.
+not_public_suffix() {
+    command -v psl > /dev/null || return 1
+    [ "$(psl --is-public-suffix "$1" 2>/dev/null)" = "$1: 0" ]
 }
 
 valid_domain() {

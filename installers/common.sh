@@ -630,6 +630,8 @@ function _install_captive_portal() {
         sudo useradd --system --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin raspap-probe ||
             _install_status 1 "Unable to create the user raspap-probe"
     fi
+    # psl checks the DNS domain of the uplink against the Public Suffix List
+    sudo apt-get install -y psl || _install_status 1 "Unable to install psl"
     sudo install -o root -g root -m 755 "$webroot_dir/installers/captive-portal.sh" /usr/local/sbin/raspap-captive-portal.sh ||
         _install_status 1 "Unable to install the captive portal helper"
     sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-captive-portal.service" /etc/systemd/system/raspap-captive-portal.service ||
