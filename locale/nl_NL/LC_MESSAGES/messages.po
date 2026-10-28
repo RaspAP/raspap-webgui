@@ -1867,6 +1867,11 @@ msgstr "Inloggen als beheerder"
 msgid "Login"
 msgstr "Inloggen"
 
+#: ../includes/login.php ../includes/admin.php
+#, php-format
+msgid "Too many failed logins. Try again in %d minutes."
+msgstr "Te veel mislukte aanmeldingen. Probeer het over %d minuten opnieuw."
+
 #: ../templates/login.php:31
 msgid "Forgot password"
 msgstr "Wachtwoord vergeten"

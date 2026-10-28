@@ -20,6 +20,9 @@ $defaults = [
     'RASPI_DEBUG_LOG' => 'raspap_debug.log',
     'RASPI_LOG_SIZE_LIMIT' =>  64,
     'RASPI_SESSION_TIMEOUT' => 1440,
+    // failed logins before a lock, and the lock time in seconds
+    'RASPI_LOGIN_MAX_FAILURES' => 5,
+    'RASPI_LOGIN_LOCK_TIME' => 300,
     'RASPI_THEMES' => [
         "default" => [
             "name" => "RaspAP (default)",

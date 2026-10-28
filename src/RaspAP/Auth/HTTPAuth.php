@@ -69,6 +69,8 @@ class HTTPAuth
     public function login(string $user, string $pass, ?string $role = null)
     {
         if ($this->isValidCredentials($user, $pass, $role)) {
+            // a new session id, so a session id from before the login is not valid
+            session_regenerate_id(true);
             $_SESSION['user_id'] = $user;
             return true;
         }
