@@ -1277,10 +1277,30 @@ function addCaptivePortalMessage($status): void
             . $link;
         $until = (int)($portal['until'] ?? 0);
         if ($until > 0) {
-            $message .= ' ' . sprintf(_('The login is allowed until %s.'), date('H:i', $until))
+            $message .= ' ' . sprintf(_('The login is allowed until %s.'), formatSystemTime($until))
                 . ' <button type="button" class="btn btn-sm btn-outline-secondary ms-1 js-captive-portal" data-action="close">'
                 . _('End the login now') . '</button>';
         }
     }
     $status->addMessage($message, 'warning alert-persistent');
+}
+
+/**
+ * Formats a time in the time zone of the system. PHP uses UTC when
+ * date.timezone is not set, but the user expects the time of the device.
+ *
+ * @param int $timestamp
+ * @return string time as HH:MM
+ */
+function formatSystemTime(int $timestamp): string
+{
+    $zone = trim((string)@file_get_contents('/etc/timezone'));
+    if ($zone === '' && is_link('/etc/localtime')) {
+        $zone = preg_replace('#^.*/zoneinfo/#', '', (string)readlink('/etc/localtime'));
+    }
+    try {
+        return (new DateTime('@' . $timestamp))->setTimezone(new DateTimeZone($zone ?: date_default_timezone_get()))->format('H:i');
+    } catch (Exception $e) {
+        return date('H:i', $timestamp);
+    }
 }
