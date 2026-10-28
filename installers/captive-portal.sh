@@ -5,26 +5,30 @@
 # Description: Lets the clients of the access point log in to a captive portal
 # of the uplink (for example a hotel network) while the WireGuard tunnel and the
 # kill switch are active. A systemd timer runs "check" every minute:
-# - When the tunnel is up, the DNS names of the uplink domain (DHCP option 15)
-#   go to the DNS server of the uplink, so that a portal page with an internal
-#   name can load.
 # - The script pings two public servers through the tunnel. When they do not
-#   answer, it checks the uplink for a captive portal. The probe runs as the user raspap-probe, which
-#   is the only user that the kill switch lets out of the tunnel (TCP port 80).
-# - When it finds a portal, "portal mode" lets the HTTP (TCP port 80) and the
-#   DNS requests of the AP clients go to the uplink. The clients then show the
-#   login page of the portal themselves. HTTPS and other traffic stay blocked.
-# - When the uplink is free again (after the login), portal mode ends, and the
-#   tunnel connects again.
+#   answer, it checks the uplink for a captive portal. The probe runs as the
+#   user raspap-probe, which is the only user that the kill switch lets out of
+#   the tunnel (TCP port 80). Only a redirect, or a login page instead of the
+#   expected answer, counts as a portal.
+# - "Portal mode" lets the HTTP (TCP port 80) and the DNS requests of the AP
+#   clients go to the uplink. The clients then show the login page of the
+#   portal themselves. HTTPS and other traffic stay blocked. During portal
+#   mode, the DNS names of the uplink domain (DHCP option 15) also go to the
+#   DNS server of the uplink, so that a login page with an internal name loads.
+# - By default, portal mode starts only when the user clicks the button in the
+#   web interface ("open"). It then ends after 5 minutes. With the kill switch
+#   option --portal-auto, portal mode starts when the script finds a portal.
+# - Portal mode ends when the tunnel works again, when the uplink is free
+#   (after the login), or with "close".
 # The kill switch option --allow-portal turns this on. Without it, "check"
-# removes all changes of this script.
+# removes all changes of this script. "off" removes all changes, also at boot.
 # Installed as /usr/local/sbin/raspap-captive-portal.sh.
 # License: GNU General Public License v3.0
 #
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.
 #
-# Usage: raspap-captive-portal.sh check|status|off
+# Usage: raspap-captive-portal.sh check|status|open|close|off
 
 set -o nounset
 set -o pipefail
@@ -45,20 +49,30 @@ readonly ping_targets="1.1.1.1 9.9.9.9"
 readonly rule_proto="251"
 readonly comment="raspap-portal"
 readonly default_rule_pref="32700"
+# duration of portal mode after "open" (s)
+readonly open_window=300
 
 log() {
     logger -t raspap-captive-portal "$*" 2>/dev/null || true
 }
 
 usage() {
-    echo "Usage: $0 check|status|off" >&2
+    echo "Usage: $0 check|status|open|close|off" >&2
     exit 2
 }
 
-# The kill switch of the active tunnel has the option --allow-portal
+# The kill switch of the active tunnel has the option (--allow-portal)
+killswitch_option() {
+    grep -Eq '^[[:space:]]*PostUp[[:space:]]*=.*wg-killswitch\.sh[[:space:]]+up([[:space:]].*)?[[:space:]]'"$1"'([[:space:]]|$)' "$wg_conf" 2>/dev/null
+}
+
 enabled() {
-    systemctl is-active --quiet "wg-quick@$wg_iface.service" || return 1
-    grep -Eq '^[[:space:]]*PostUp[[:space:]]*=.*wg-killswitch\.sh[[:space:]]+up([[:space:]].*)?[[:space:]]--allow-portal([[:space:]]|$)' "$wg_conf" 2>/dev/null
+    systemctl is-active --quiet "wg-quick@$wg_iface.service" && killswitch_option --allow-portal
+}
+
+# portal mode starts without a click of the user (--portal-auto)
+automatic() {
+    killswitch_option --portal-auto
 }
 
 # The access point interface, from hostapd.conf
@@ -96,7 +110,9 @@ uplink_domain() {
         out="$(awk '$1 == "search" || $1 == "domain" { print $2; exit }' /etc/resolv.conf 2>/dev/null)"
     fi
     out="${out%.}"
-    valid_domain "$out" && echo "$out"
+    # 2 or more labels: a network must not send a top-level domain (for
+    # example "com") to its DNS server
+    valid_domain "$out" && [[ "$out" == *.* ]] && echo "$out"
 }
 
 valid_domain() {
@@ -130,10 +146,11 @@ probe() {
     if [[ "$status" =~ ^30[1278]$ ]] && [[ "$location" =~ ^https?://[A-Za-z0-9.-]+(:[0-9]{1,5})?(/[^[:space:]\"\'\<\>]*)?$ ]] &&
         [ "${#location}" -le 2048 ]; then
         echo "portal $location"
-    elif [ -n "$status" ]; then
-        # an answer, but not the expected one: a portal without a redirect
+    elif [ "$status" = "200" ]; then
+        # a login page instead of the expected answer: a portal without a redirect
         echo "portal -"
     else
+        # no answer, or an error (for example 403 from a filter): not a portal
         echo unknown
     fi
 }
@@ -146,11 +163,20 @@ rule_pref() {
     if [ -n "$pref" ] && [ "$pref" -gt 1 ]; then echo $((pref - 1)); else echo "$default_rule_pref"; fi
 }
 
+# Restarts dnsmasq if it runs. --no-block: "off" also runs at boot in
+# raspap-captive-portal-cleanup.service, which starts before dnsmasq. A
+# restart that waits for dnsmasq would then wait for itself.
+restart_dnsmasq() {
+    systemctl try-restart --no-block dnsmasq.service || true
+}
+
 # Writes the dnsmasq file and restarts dnsmasq when the content changes.
 # $1: uplink interface, $2: "portal" for portal mode, $3: portal URL or "-"
 write_dns() {
     local up="$1" mode="${2:-}" url="${3:--}" domain host ns content=""
-    domain="$(uplink_domain "$up" || true)"
+    # only during portal mode: outside the tunnel, the DNS of the uplink is
+    # necessary only for the login
+    [ "$mode" = "portal" ] && domain="$(uplink_domain "$up" || true)" || domain=""
     for ns in $(uplink_dns "$up"); do
         [ -n "$domain" ] && content+="server=/$domain/$ns"$'\n'
         if [ "$mode" = "portal" ]; then
@@ -171,7 +197,7 @@ write_dns() {
         else
             rm -f "$dns_conf"
         fi
-        systemctl try-restart dnsmasq.service
+        restart_dnsmasq
     fi
 }
 
@@ -203,10 +229,13 @@ portal_rules_off() {
     done
 }
 
+# $1: state, $2: uplink, $3: portal URL or "-", $4: end of portal mode
+# (epoch, 0 = no end)
 write_state() {
     mkdir -p "$state_dir"
     chmod 755 "$state_dir"
-    printf 'state=%s\nsince=%s\nuplink=%s\nurl=%s\n' "$1" "$(date +%s)" "${2:-}" "${3:--}" > "$state_file.tmp" &&
+    printf 'state=%s\nsince=%s\nuplink=%s\nurl=%s\nuntil=%s\nauto=%s\n' "$1" "$(date +%s)" "${2:-}" "${3:--}" "${4:-0}" \
+        "$(automatic && echo 1 || echo 0)" > "$state_file.tmp" &&
         chmod 644 "$state_file.tmp" && mv -f "$state_file.tmp" "$state_file"
 }
 
@@ -214,17 +243,43 @@ current_state() {
     sed -n 's/^state=\([a-z]*\)$/\1/p' "$state_file" 2>/dev/null | head -n 1
 }
 
+# a field of the state file: only digits, or a URL that matches the probe pattern
+state_field() {
+    case "$1" in
+        until) sed -n 's/^until=\([0-9]\{1,12\}\)$/\1/p' "$state_file" 2>/dev/null | head -n 1 ;;
+        url) sed -n 's/^url=\(https\{0,1\}:\/\/[A-Za-z0-9.-]*[^[:space:]]*\)$/\1/p' "$state_file" 2>/dev/null | head -n 1 ;;
+    esac
+}
+
+# Starts portal mode. $1: AP interface, $2: uplink, $3: URL or "-", $4: end (epoch, 0 = no end)
+portal_on() {
+    portal_rules_on "$1" "$2"
+    write_dns "$2" portal "$3"
+    write_state portal "$2" "$3" "$4"
+}
+
+# Ends portal mode. $1: uplink, $2: the new state, $3: reason for the log
+portal_end() {
+    local url="-"
+    log "portal mode off: $3"
+    portal_rules_off
+    write_dns "$1"
+    # the portal is still there: keep its URL for the link in the warning
+    [ "$2" = "detected" ] && url="$(state_field url)"
+    write_state "$2" "$1" "${url:--}"
+}
+
 off() {
     portal_rules_off
     if [ -f "$dns_conf" ]; then
         rm -f "$dns_conf"
-        systemctl try-restart dnsmasq.service
+        restart_dnsmasq
     fi
     rm -f "$state_file"
 }
 
 check() {
-    local ap up result url state
+    local ap up result url state until now
     if ! enabled; then
         [ -f "$state_file" ] || [ -f "$dns_conf" ] && off
         return 0
@@ -237,8 +292,19 @@ check() {
         return 0
     fi
     state="$(current_state)"
+    now="$(date +%s)"
 
-    if [ "$state" != "portal" ] && tunnel_works; then
+    if [ "$state" = "portal" ]; then
+        until="$(state_field until)"
+        if tunnel_works; then
+            portal_end "$up" free "the tunnel works again"
+            return 0
+        fi
+        if [ "${until:-0}" -gt 0 ] && [ "$now" -ge "$until" ]; then
+            portal_end "$up" detected "the time for the login is over"
+            return 0
+        fi
+    elif tunnel_works; then
         write_dns "$up"
         [ "$state" = "free" ] || write_state free "$up"
         return 0
@@ -248,25 +314,54 @@ check() {
     case "$result" in
         free)
             if [ "$state" = "portal" ]; then
-                log "uplink $up is free again, portal mode off"
-                portal_rules_off
+                portal_end "$up" free "the uplink $up is free again"
+            else
+                write_dns "$up"
+                write_state free "$up"
             fi
-            write_dns "$up"
-            write_state free "$up"
             ;;
         portal*)
             url="${result#portal }"
-            if [ "$state" != "portal" ]; then
+            if [ "$state" = "portal" ]; then
+                # keep the end of portal mode
+                write_dns "$up" portal "$url"
+                write_state portal "$up" "$url" "$(state_field until)"
+            elif automatic; then
                 log "captive portal on $up ($url), portal mode on"
-                portal_rules_on "$ap" "$up"
+                portal_on "$ap" "$up" "$url" 0
+            else
+                [ "$state" = "detected" ] || log "captive portal on $up ($url), waiting for the user"
+                write_dns "$up"
+                write_state detected "$up" "$url"
             fi
-            write_dns "$up" portal "$url"
-            write_state portal "$up" "$url"
             ;;
         *)
-            # no answer: no change
+            # no answer, or not a portal: no change
             ;;
     esac
+}
+
+# The user clicked "open" in the web interface: portal mode for $open_window s
+open() {
+    local ap up url
+    enabled || { echo "captive portal login is not enabled" >&2; return 1; }
+    ap="$(ap_iface)"
+    up="$(uplink_iface || true)"
+    if [ -z "$ap" ] || [ -z "$up" ]; then
+        echo "no access point or no uplink" >&2
+        return 1
+    fi
+    url="$(state_field url)"
+    log "portal mode on for $open_window s (user)"
+    portal_on "$ap" "$up" "${url:--}" $(($(date +%s) + open_window))
+}
+
+# The user clicked "close" in the web interface
+close() {
+    local up
+    [ "$(current_state)" = "portal" ] || return 0
+    up="$(uplink_iface || true)"
+    portal_end "$up" detected "closed by the user"
 }
 
 [ "$(id -u)" = 0 ] || { echo "$0: must run as root" >&2; exit 1; }
@@ -278,6 +373,8 @@ flock -w 30 9 || exit 1
 case "$1" in
     check) check ;;
     status) cat "$state_file" 2>/dev/null || echo "state=off" ;;
+    open) open ;;
+    close) close ;;
     off) off ;;
     *) usage ;;
 esac

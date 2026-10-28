@@ -160,10 +160,12 @@ function _remove_raspap_directories() {
 function _remove_raspap_service() {
     _install_log "Removing the captive portal helper"
     sudo systemctl disable --now raspap-captive-portal.timer 2> /dev/null || true
+    sudo systemctl disable raspap-captive-portal-cleanup.service 2> /dev/null || true
     if [ -x /usr/local/sbin/raspap-captive-portal.sh ]; then
         sudo /usr/local/sbin/raspap-captive-portal.sh off || true
     fi
-    sudo rm -f /etc/systemd/system/raspap-captive-portal.service /etc/systemd/system/raspap-captive-portal.timer /usr/local/sbin/raspap-captive-portal.sh ||
+    sudo rm -f /etc/systemd/system/raspap-captive-portal.service /etc/systemd/system/raspap-captive-portal.timer \
+        /etc/systemd/system/raspap-captive-portal-cleanup.service /usr/local/sbin/raspap-captive-portal.sh ||
         _install_error "Unable to remove the captive portal helper"
     if id -u raspap-probe > /dev/null 2>&1; then
         sudo userdel raspap-probe || _install_error "Unable to remove the user raspap-probe"

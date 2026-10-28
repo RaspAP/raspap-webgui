@@ -1229,7 +1229,7 @@ function callbackTimeout(callable $callback, int $interval)
 /**
  * Returns the state of the captive portal helper (raspap-captive-portal.sh)
  *
- * @return array|null state, uplink, url and since, or null if there is no state
+ * @return array|null state, uplink, url, since, until and auto, or null if there is no state
  */
 function getCaptivePortalState(): ?array
 {
@@ -1239,7 +1239,7 @@ function getCaptivePortalState(): ?array
     }
     $state = [];
     foreach (file($file, FILE_IGNORE_NEW_LINES) ?: [] as $line) {
-        if (preg_match('/^(state|uplink|url|since)=(.*)$/', $line, $m)) {
+        if (preg_match('/^(state|uplink|url|since|until|auto)=(.*)$/', $line, $m)) {
             $state[$m[1]] = $m[2];
         }
     }
@@ -1247,23 +1247,40 @@ function getCaptivePortalState(): ?array
 }
 
 /**
- * Adds a warning while the uplink has a captive portal that needs a login.
- * The warning stays until the user closes it.
+ * Adds a warning while the uplink has a captive portal. In the state
+ * "detected", the warning has a button that allows the login for 5 minutes.
+ * In portal mode, it has the link to the login page and a button that ends
+ * portal mode. The warning stays until the user closes it.
  *
  * @param object $status StatusMessage
  */
 function addCaptivePortalMessage($status): void
 {
     $portal = getCaptivePortalState();
-    if (($portal['state'] ?? '') !== 'portal') {
+    $state = $portal['state'] ?? '';
+    if ($state !== 'portal' && $state !== 'detected') {
         return;
     }
-    $message = _('The uplink network needs a login (captive portal). On a device that is connected to the hotspot, open a website that starts with http://. The login page of the network then opens. After the login, the VPN tunnel connects again.');
     $url = $portal['url'] ?? '-';
     // the URL comes from the portal, so it must match a strict pattern
+    $link = '';
     if (strlen($url) <= 2048 && preg_match('#^https?://[A-Za-z0-9.-]+(:[0-9]{1,5})?(/[^\s"\'<>]*)?$#', $url)) {
-        $message .= ' <a href="' . htmlspecialchars($url, ENT_QUOTES) . '" target="_blank" rel="noopener noreferrer">'
+        $link = ' <a href="' . htmlspecialchars($url, ENT_QUOTES) . '" target="_blank" rel="noopener noreferrer">'
             . _('Open the login page') . '</a>';
+    }
+    if ($state === 'detected') {
+        $message = _('The uplink network needs a login (captive portal). The VPN tunnel can not connect until the login.')
+            . ' <button type="button" class="btn btn-sm btn-warning ms-1 js-captive-portal" data-action="open">'
+            . _('Allow the login for 5 minutes') . '</button>';
+    } else {
+        $message = _('The uplink network needs a login (captive portal). On a device that is connected to the hotspot, open a website that starts with http://. The login page of the network then opens. After the login, the VPN tunnel connects again.')
+            . $link;
+        $until = (int)($portal['until'] ?? 0);
+        if ($until > 0) {
+            $message .= ' ' . sprintf(_('The login is allowed until %s.'), date('H:i', $until))
+                . ' <button type="button" class="btn btn-sm btn-outline-secondary ms-1 js-captive-portal" data-action="close">'
+                . _('End the login now') . '</button>';
+        }
     }
     $status->addMessage($message, 'warning alert-persistent');
 }

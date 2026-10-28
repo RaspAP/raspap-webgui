@@ -636,7 +636,11 @@ function _install_captive_portal() {
         _install_status 1 "Unable to install raspap-captive-portal.service"
     sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-captive-portal.timer" /etc/systemd/system/raspap-captive-portal.timer ||
         _install_status 1 "Unable to install raspap-captive-portal.timer"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-captive-portal-cleanup.service" /etc/systemd/system/raspap-captive-portal-cleanup.service ||
+        _install_status 1 "Unable to install raspap-captive-portal-cleanup.service"
     sudo systemctl daemon-reload
+    # removes portal mode at boot, for example after a power loss
+    sudo systemctl enable raspap-captive-portal-cleanup.service || _install_status 1 "Unable to enable raspap-captive-portal-cleanup.service"
 }
 
 # Keep the clock across reboots, so that the WireGuard handshake does not fail

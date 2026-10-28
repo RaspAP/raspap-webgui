@@ -26,10 +26,11 @@ function DisplayWireGuardConfig()
         $optKSwitchNtp = (!isset($_POST['savewgsettings']) || isset($_POST['wgKSwitchNtp'])) ? 1 : null;
         $optKSwitchDns = isset($_POST['wgKSwitchDns']) ? 1 : null;
         $optKSwitchPortal = isset($_POST['wgKSwitchPortal']) ? 1 : null;
+        $optKSwitchPortalAuto = ($optKSwitchPortal && isset($_POST['wgKSwitchPortalAuto'])) ? 1 : null;
         if (isset($_POST['savewgsettings']) && $optConf == 'manual' && $optSrvEnable == 1 ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['savewgsettings']) && $optConf == 'upload' && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
-            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optKSwitch, $optInterface, $optKSwitchNtp, $optKSwitchDns, $optKSwitchPortal);
+            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optKSwitch, $optInterface, $optKSwitchNtp, $optKSwitchDns, $optKSwitchPortal, $optKSwitchPortalAuto);
         } elseif (isset($_POST['savewgsettings']) && isset($_POST['wg_penabled']) ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['startwg'])) {
@@ -64,6 +65,7 @@ function DisplayWireGuardConfig()
             $optKSwitchNtp = $ksSettings['ntp'] ? 1 : null;
             $optKSwitchDns = $ksSettings['dns'] ? 1 : null;
             $optKSwitchPortal = $ksSettings['portal'] ? 1 : null;
+            $optKSwitchPortalAuto = $ksSettings['portalAuto'] ? 1 : null;
         }
     }
     $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
@@ -134,6 +136,7 @@ function DisplayWireGuardConfig()
             "optKSwitchNtp",
             "optKSwitchDns",
             "optKSwitchPortal",
+            "optKSwitchPortalAuto",
             "optLogEnable",
             "peer_id",
             "wg_srvpubkey",
@@ -168,12 +171,13 @@ function getKillSwitchSettings(array $lines)
             return [
                 'ntp' => (bool) preg_match('/(^|\s)--allow-ntp(\s|$)/', $match[1]),
                 'dns' => (bool) preg_match('/(^|\s)--allow-dns(\s|$)/', $match[1]),
-                'portal' => (bool) preg_match('/(^|\s)--allow-portal(\s|$)/', $match[1])
+                'portal' => (bool) preg_match('/(^|\s)--allow-portal(\s|$)/', $match[1]),
+                'portalAuto' => (bool) preg_match('/(^|\s)--portal-auto(\s|$)/', $match[1])
             ];
         }
         // kill switch rule of older versions, without NTP and DNS options
         if (preg_match('/^\s*PostUp\s*=\s*iptables -I OUTPUT ! -o %i .*-j REJECT/', $line)) {
-            return ['ntp' => false, 'dns' => false, 'portal' => false];
+            return ['ntp' => false, 'dns' => false, 'portal' => false, 'portalAuto' => false];
         }
     }
     return null;
@@ -191,9 +195,10 @@ function getKillSwitchSettings(array $lines)
  * @param  boolean $optKSwitchNtp kill switch lets NTP pass outside the tunnel
  * @param  boolean $optKSwitchDns kill switch lets DNS to the uplink resolvers pass outside the tunnel
  * @param  boolean $optKSwitchPortal AP clients can log in to a captive portal of the uplink
+ * @param  boolean $optKSwitchPortalAuto portal mode starts without a click of the user
  * @return object $status
  */
-function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface, $optKSwitchNtp = 1, $optKSwitchDns = null, $optKSwitchPortal = null)
+function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface, $optKSwitchNtp = 1, $optKSwitchDns = null, $optKSwitchPortal = null, $optKSwitchPortalAuto = null)
 {
     define('KB', 1024);
     $tmp_destdir = '/tmp/';
@@ -252,6 +257,9 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
                 }
                 if (!empty($optKSwitchPortal)) {
                     $ksOptions[] = '--allow-portal';
+                    if (!empty($optKSwitchPortalAuto)) {
+                        $ksOptions[] = '--portal-auto';
+                    }
                 }
 
                 $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUpEx');

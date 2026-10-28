@@ -14,7 +14,7 @@
 # You are not obligated to bundle the LICENSE file with your RaspAP projects as long
 # as you leave these references intact in the header comments of your source files.
 #
-# Usage: wg-killswitch.sh up <interface> [ap-subnet] [--allow-ntp] [--allow-dns] [--allow-portal]
+# Usage: wg-killswitch.sh up <interface> [ap-subnet] [--allow-ntp] [--allow-dns] [--allow-portal [--portal-auto]]
 #        wg-killswitch.sh down <interface>
 #        wg-killswitch.sh migrate <config-file> ...
 
@@ -37,7 +37,7 @@ readonly portal_timer="raspap-captive-portal.timer"
 readonly self="/etc/raspap/networking/wg-killswitch.sh"
 
 usage() {
-    echo "Usage: $0 up <interface> [ap-subnet] [--allow-ntp] [--allow-dns] [--allow-portal]" >&2
+    echo "Usage: $0 up <interface> [ap-subnet] [--allow-ntp] [--allow-dns] [--allow-portal [--portal-auto]]" >&2
     echo "       $0 down <interface>" >&2
     echo "       $0 migrate <config-file> ..." >&2
     exit 1
@@ -259,6 +259,8 @@ case "$action" in
                 --allow-ntp) allow_ntp=1 ;;
                 --allow-dns) allow_dns=1 ;;
                 --allow-portal) allow_portal=1 ;;
+                # read by raspap-captive-portal.sh from the configuration
+                --portal-auto) ;;
                 -*) usage ;;
                 *)
                     # an AP subnet of older configurations; other values are ignored
@@ -272,6 +274,10 @@ case "$action" in
         done
         probe_uid="$(id -u "$probe_user" 2>/dev/null || true)"
         up
+        # remove portal mode of an earlier tunnel (for example after a power loss)
+        if [ -x "$portal_helper" ]; then
+            "$portal_helper" off || true
+        fi
         # the captive portal check runs only while a tunnel with this option is up
         if [ "$allow_portal" = 1 ]; then
             systemctl start --no-block "$portal_timer" 2>/dev/null ||

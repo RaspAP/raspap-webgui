@@ -35,6 +35,7 @@ import { initSystem_ajax} from "./ajax/system.js";
 import { initPlugins_ajax } from "./ajax/plugins.js";
 import { initAbout_ajax } from "./ajax/about.js";
 import { initClock_ajax } from "./ajax/clock.js";
+import { initCaptivePortal_ajax } from "./ajax/captiveportal.js";
 import { initUplinkWatchdog_ajax } from "./ajax/uplinkwatchdog.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -102,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --------- Global initialization ---------
     initSession_ajax();
+    initCaptivePortal_ajax();
     $(document).ajaxSend(setCSRFTokenHeader);
     // warn when the device clock differs from the browser clock
     if (path !== '/login') {
