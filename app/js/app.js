@@ -35,6 +35,7 @@ import { initSystem_ajax} from "./ajax/system.js";
 import { initPlugins_ajax } from "./ajax/plugins.js";
 import { initAbout_ajax } from "./ajax/about.js";
 import { initClock_ajax } from "./ajax/clock.js";
+import { initUplinkWatchdog_ajax } from "./ajax/uplinkwatchdog.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     console.info("RaspAP app.js initialized");
@@ -66,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
         case '/wpa_conf':
             initWPA_ajax();
+            initUplinkWatchdog_ajax();
             break;
         case '/openvpn_conf':
             initOpenVPN();

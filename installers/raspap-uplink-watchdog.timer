@@ -1,0 +1,12 @@
+# Author: RaspAP
+
+[Unit]
+Description=Run the RaspAP uplink watchdog check every 30 seconds
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=30s
+AccuracySec=5s
+
+[Install]
+WantedBy=timers.target
