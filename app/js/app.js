@@ -216,30 +216,87 @@ document.addEventListener('DOMContentLoaded', () => {
     // Static Array method
     Array.range = (start, end) => Array.from({length: (end - start)}, (v, k) => k + start);
 
-    function updateActivityLED() {
-    const threshold_bytes = 300;
-    fetch('app/net_activity')
-        .then(res => res.text())
-        .then(data => {
-        const activity = parseInt(data.trim());
+    // Network activity LED. The monitor reports the bytes of the last 100 ms,
+    // so the poll interval is also 100 ms. The next poll starts after the
+    // previous fetch is complete. The polling stops while the tab is hidden,
+    // and it slows down when the value is not available.
+    function initActivityLED() {
         const leds = document.querySelectorAll('.hostapd-led');
+        const interval = 100;
+        const thresholdBytes = 300;
+        const maxFailures = 5;      // failures before the polling slows down
+        const maxBackoff = 30000;   // longest time between two polls (ms)
+        let timer = null;
+        let busy = false;
+        let failures = 0;
 
-        if (!isNaN(activity)) {
-            leds.forEach(led => {
-            if (activity > threshold_bytes) {
-                led.classList.add('led-pulse');
-                setTimeout(() => {
-                led.classList.remove('led-pulse');
-                }, 50);
-            } else {
-                led.classList.remove('led-pulse');
-            }
-            });
+        if (leds.length === 0) {
+            return;
         }
-        })
-        .catch(() => { /* ignore fetch errors */ });
+
+        function nextDelay() {
+            if (failures < maxFailures) {
+                return interval;
+            }
+            return Math.min(maxBackoff, 1000 * 2 ** (failures - maxFailures));
+        }
+
+        function schedule() {
+            clearTimeout(timer);
+            timer = document.hidden ? null : setTimeout(poll, nextDelay());
+        }
+
+        function poll() {
+            timer = null;
+            busy = true;
+            fetch('app/net_activity', { cache: 'no-store' })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error(res.status);
+                    }
+                    return res.text();
+                })
+                .then(data => {
+                    failures = 0;
+                    const activity = parseInt(data.trim(), 10);
+                    if (isNaN(activity)) {
+                        return;
+                    }
+                    leds.forEach(led => {
+                        if (activity > thresholdBytes) {
+                            led.classList.add('led-pulse');
+                            setTimeout(() => {
+                                led.classList.remove('led-pulse');
+                            }, 50);
+                        } else {
+                            led.classList.remove('led-pulse');
+                        }
+                    });
+                })
+                .catch(() => {
+                    failures++;
+                })
+                .finally(() => {
+                    busy = false;
+                    schedule();
+                });
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearTimeout(timer);
+                timer = null;
+            } else if (!busy) {
+                // poll at once when the tab is visible again
+                poll();
+            }
+        });
+
+        if (!document.hidden) {
+            poll();
+        }
     }
-    setInterval(updateActivityLED, 100);
+    initActivityLED();
 
     const systemModeToggle = $('.system-mode-toggle');
     const darkModeToggle = $('.dark-mode-toggle');
