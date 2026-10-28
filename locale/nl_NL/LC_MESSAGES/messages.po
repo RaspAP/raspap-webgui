@@ -1547,6 +1547,25 @@ msgstr "maandelijks"
 msgid "Information provided by vnstat"
 msgstr "Informatie geleverd door vnstat"
 
+#: ../templates/data_usage.php
+#, php-format
+msgid "vnstat has no statistics for %s."
+msgstr "vnstat heeft geen statistieken voor %s."
+
+#: ../templates/data_usage.php
+msgid "Start statistics"
+msgstr "Statistieken starten"
+
+#: ../templates/data_usage.php
+#, php-format
+msgid "vnstat records %s now. The first values show after a few minutes."
+msgstr "vnstat registreert %s nu. De eerste waarden verschijnen na een paar minuten."
+
+#: ../templates/data_usage.php
+#, php-format
+msgid "Unable to add %s to vnstat."
+msgstr "Kan %s niet aan vnstat toevoegen."
+
 #: ../templates/data_usage.php:86
 msgid "Send"
 msgstr "Stuur"

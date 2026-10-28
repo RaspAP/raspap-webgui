@@ -1166,6 +1166,7 @@ function _patch_system_files() {
     sudo install -o root -g root -m 755 "$webroot_dir/installers/settime.sh" /usr/local/sbin/raspap-settime.sh || _install_status 1 "Unable to install set time script"
 
     _install_uplink_watchdog
+    _install_vnstat_helper
 
     # Set ownership and permissions
     sudo chown -c root:root "$raspap_dir/system/"*.sh || _install_status 1 "Unable change owner and/or group"
@@ -1195,6 +1196,17 @@ function _install_uplink_watchdog() {
     sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-uplink-watchdog.service" /etc/systemd/system/raspap-uplink-watchdog.service || _install_status 1 "Unable to install raspap-uplink-watchdog.service"
     sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-uplink-watchdog.timer" /etc/systemd/system/raspap-uplink-watchdog.timer || _install_status 1 "Unable to install raspap-uplink-watchdog.timer"
     sudo systemctl daemon-reload
+}
+
+# vnstat adds only the interfaces that exist when it is installed. This helper
+# adds the interfaces that RaspAP configures, also on an update. www-data can
+# run it with sudo, so it must be in a directory that only root can change.
+function _install_vnstat_helper() {
+    _install_log "Copying RaspAP vnstat helper to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/vnstat.sh" /usr/local/sbin/raspap-vnstat.sh || _install_status 1 "Unable to install vnstat helper"
+    if command -v vnstat > /dev/null; then
+        sudo /usr/local/sbin/raspap-vnstat.sh sync || echo "Unable to add the interfaces to vnstat"
+    fi
 }
 
 # Optimize configuration of php-cgi.

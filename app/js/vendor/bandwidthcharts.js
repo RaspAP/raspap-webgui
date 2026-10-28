@@ -1,6 +1,9 @@
 (function($, _t) {
   "use strict";
 
+  // The chart that shows now. Chart.js keeps a chart until destroy().
+  var activeChart = null;
+
   /**
    * Create a Chart.js barchart.
    */
@@ -50,11 +53,37 @@
   }
 
   /**
+   * Show that vnstat has no statistics for the interface, with a button that
+   * adds the interface to vnstat.
+   */
+  function ShowNoData(placeholder, iface) {
+    var $alert = $('<div class="alert alert-info mt-3"></div>').text(_t['nodata'].replace('%s', iface));
+    var $button = $('<button type="button" class="btn btn-sm btn-outline-primary ms-2"></button>').text(_t['addinterface']);
+    $button.on('click', function() {
+      $button.prop('disabled', true);
+      $.post('ajax/bandwidth/add_interface.php', {
+        'inet': iface,
+        'csrf_token': $('meta[name=csrf_token]').attr('content')
+      }, null, 'json').done(function(data) {
+        $alert.text((data.added ? _t['added'] : _t['notadded']).replace('%s', iface));
+      }).fail(function() {
+        $alert.text(_t['notadded'].replace('%s', iface));
+      });
+    });
+    $alert.append($button);
+    $('#'+placeholder).empty().append($alert);
+  }
+
+  /**
    * Figure out which tab is selected and remove all existing charts and then
    * construct the proper barchart.
    */
   function ShowBandwidthChartHandler(e) {
     // Remove all chartjs charts
+    if (activeChart) {
+      activeChart.destroy();
+      activeChart = null;
+    }
     $('#divChartBandwidthhourly').empty();
     $('#divChartBandwidthdaily').empty();
     $('#divChartBandwidthmonthly').empty();
@@ -88,6 +117,7 @@
       });
       // Init. chart with label series
       var barchart = CreateChart('divChartBandwidth'+timeunit, labels);
+      activeChart = barchart;
       var dataRx = jsondata.map(function(e) {
         return e.rx;
       });
@@ -107,7 +137,10 @@
           { 'data': 'tx', "title": _t['send']+' '+datasizeunits.toUpperCase() }]
       });
     }).fail(function(xhr, textStatus) {
-      if (window.console) {
+      $('#divLoaderBandwidth'+timeunit).hide();
+      if (xhr.status === 404 && xhr.responseJSON && xhr.responseJSON.error === 'nodata') {
+        ShowNoData('divTableBandwidth'+timeunit, $('#cbxInterface'+timeunit+' option:selected').text());
+      } else if (window.console) {
         console.error('server error');
       } else {
         alert("server error");
@@ -136,7 +169,7 @@
   }
 
   $(document).ready(function() {
-    $('#tabbarBandwidth a[data-toggle="tab"]').on('shown.bs.tab', ShowBandwidthChartHandler);
+    $('#tabbarBandwidth a[data-bs-toggle="tab"]').on('shown.bs.tab', ShowBandwidthChartHandler);
     $('#cbxInterfacehourly').on('change', ShowBandwidthChartHandler);
     $('#cbxInterfacedaily').on('change', ShowBandwidthChartHandler);
     $('#cbxInterfacemonthly').on('change', ShowBandwidthChartHandler);
