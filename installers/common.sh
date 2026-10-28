@@ -1052,6 +1052,15 @@ function _configure_networking() {
     _install_status 0
  }
 
+# Prints the interface of the network activity monitor. servicestart.sh
+# starts the monitor for WifiInterface of hostapd.ini at boot, so use the same.
+function _network_activity_interface() {
+    local iface
+    iface="$(sed -n 's/^[[:space:]]*WifiInterface[[:space:]]*=[[:space:]]*//p' "$raspap_dir/hostapd.ini" 2>/dev/null | tail -n 1 | tr -d '[:space:]')"
+    [[ "$iface" =~ ^[A-Za-z0-9_.-]{1,15}$ ]] || iface="wlan0"
+    echo "$iface"
+}
+
 # Install and enable RaspAP network activity monitor
 function _enable_network_activity_monitor() {
     _install_log "Enabling RaspAP network activity monitor"
@@ -1065,10 +1074,21 @@ function _enable_network_activity_monitor() {
     echo "Copying raspap-network-activity@.service to /lib/systemd/system/"
     sudo cp $webroot_dir/installers/raspap-network-activity@.service /lib/systemd/system/ || _install_status 1 "Unable to move raspap-network-activity.service file"
     sudo systemctl daemon-reload
-    echo "Enabling raspap-network-activity@wlan0.service"
-    sudo systemctl enable raspap-network-activity@wlan0.service || _install_status 1 "Failed to enable raspap-network-activity.service"
-    echo "Starting raspap-network-activity@wlan0.service"
-    sudo systemctl start raspap-network-activity@wlan0.service || _install_status 1 "Failed to start raspap-network-activity.service"
+    local iface unit other
+    iface="$(_network_activity_interface)"
+    unit="raspap-network-activity@${iface}.service"
+    # all instances write /dev/shm/net_activity, so only one may run
+    for other in $( { systemctl list-units --all --plain --no-legend 'raspap-network-activity@*.service' | awk '{print $1}'
+                      ls /etc/systemd/system/multi-user.target.wants/ 2>/dev/null | grep '^raspap-network-activity@.*\.service$'; } | sort -u); do
+        [ "$other" = "$unit" ] && continue
+        echo "Disabling $other"
+        sudo systemctl disable --now "$other" || _install_status 1 "Failed to disable $other"
+    done
+    echo "Enabling $unit"
+    sudo systemctl enable "$unit" || _install_status 1 "Failed to enable $unit"
+    # a restart, so that a monitor that runs uses the new program
+    echo "Starting $unit"
+    sudo systemctl restart "$unit" || _install_status 1 "Failed to start $unit"
     sleep 0.5
     echo "Symlinking /dev/shm/net_activity to $webroot_dir/app/net_activity"
     sudo ln -sf /dev/shm/net_activity $webroot_dir/app/net_activity || _install_status 1 "Failed to link net_activity to ${webroot_dir}/app"
