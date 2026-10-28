@@ -18,6 +18,7 @@ function DisplayDashboard(): void
     $system = new Sysinfo();
     $dashboard = new Dashboard();
     $status = new StatusMessage();
+    addCaptivePortalMessage($status);
     $pluginManager = PluginManager::getInstance();
     $wifi = new WiFiManager();
 

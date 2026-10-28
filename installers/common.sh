@@ -615,6 +615,34 @@ function _install_wireguard_killswitch() {
 
     # on install and on update
     _install_ntp_fallback
+    _install_captive_portal
+}
+
+# Install the captive portal helper for the kill switch option "Allow captive
+# portal login". The timer runs as root, so the script must be in a directory
+# that only root can change. The probe runs as the system user raspap-probe,
+# the only user that the kill switch lets send HTTP requests outside the tunnel.
+# The installer does not start the timer: wg-killswitch.sh starts it when the
+# tunnel starts with the option, and stops it with the tunnel.
+function _install_captive_portal() {
+    echo "Installing the captive portal helper"
+    if ! id -u raspap-probe > /dev/null 2>&1; then
+        sudo useradd --system --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin raspap-probe ||
+            _install_status 1 "Unable to create the user raspap-probe"
+    fi
+    # psl checks the DNS domain of the uplink against the Public Suffix List
+    sudo apt-get install -y psl || _install_status 1 "Unable to install psl"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/captive-portal.sh" /usr/local/sbin/raspap-captive-portal.sh ||
+        _install_status 1 "Unable to install the captive portal helper"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-captive-portal.service" /etc/systemd/system/raspap-captive-portal.service ||
+        _install_status 1 "Unable to install raspap-captive-portal.service"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-captive-portal.timer" /etc/systemd/system/raspap-captive-portal.timer ||
+        _install_status 1 "Unable to install raspap-captive-portal.timer"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-captive-portal-cleanup.service" /etc/systemd/system/raspap-captive-portal-cleanup.service ||
+        _install_status 1 "Unable to install raspap-captive-portal-cleanup.service"
+    sudo systemctl daemon-reload
+    # removes portal mode at boot, for example after a power loss
+    sudo systemctl enable raspap-captive-portal-cleanup.service || _install_status 1 "Unable to enable raspap-captive-portal-cleanup.service"
 }
 
 # Keep the clock across reboots, so that the WireGuard handshake does not fail
