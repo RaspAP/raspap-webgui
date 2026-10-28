@@ -297,6 +297,9 @@ class WiFiManager
                 if ($old_iface && $old_iface !== $_POST['wifiClientInterface'] && validateInterface($old_iface)) {
                     exec("sudo wpa_cli -i $old_iface disconnect");
                     exec("sudo wpa_cli -i $old_iface disable_network all");
+                    // the NetworkManager connections of RaspAP stay on the old
+                    // interface otherwise, and connect it again
+                    (new \RaspAP\Networking\NetworkManagerClient())->purge($old_iface);
                     sleep(1);
                 }
 

@@ -1131,6 +1131,35 @@ msgstr "Beveiliging"
 msgid "Passphrase"
 msgstr "Passphrase"
 
+#: ../includes/configure_client.php
+#, php-format
+msgid "%s has no passphrase that NetworkManager can use. Enter the passphrase and click Update."
+msgstr "%s heeft geen passphrase die NetworkManager kan gebruiken. Voer de passphrase in en klik op Update."
+
+#: ../templates/wifi_stations.php
+msgid "Other NetworkManager connections"
+msgstr "Andere NetworkManager-verbindingen"
+
+#: ../templates/wifi_stations.php
+msgid "These connections were not created in RaspAP. RaspAP can connect to them, but does not change or delete them."
+msgstr "Deze verbindingen zijn niet in RaspAP gemaakt. RaspAP kan ermee verbinden, maar wijzigt of verwijdert ze niet."
+
+#: ../templates/wifi_stations.php
+msgid "Same network as a RaspAP network"
+msgstr "Hetzelfde netwerk als een RaspAP-netwerk"
+
+#: ../templates/wifi_stations.php
+msgid "Connect automatically"
+msgstr "Automatisch verbinden"
+
+#: ../templates/wifi_stations.php
+msgid "Priority"
+msgstr "Prioriteit"
+
+#: ../templates/wifi_stations.php
+msgid "No"
+msgstr "Nee"
+
 #: ../templates/wifi_stations/network.php:92
 msgid "Disconnect"
 msgstr "Ontkoppelen"

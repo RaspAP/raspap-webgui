@@ -19,6 +19,7 @@
 #        raspap-nm-wifi.sh sync <interface>    (networks on stdin, see sync())
 #        raspap-nm-wifi.sh up <interface> <connection-uuid>
 #        raspap-nm-wifi.sh disconnect <interface>
+#        raspap-nm-wifi.sh purge <interface>
 
 set -o nounset
 set -o pipefail
@@ -39,7 +40,7 @@ die() {
 }
 
 usage() {
-    die 2 "usage: $0 status|list|sync|disconnect <interface>, or up <interface> <uuid>"
+    die 2 "usage: $0 status|list|sync|disconnect|purge <interface>, or up <interface> <uuid>"
 }
 
 # A client interface: a valid name of an existing wireless interface that is
@@ -122,6 +123,33 @@ hex_to_bytelist() {
         out+="$((16#${hex:i:2}));"
     done
     printf '%s' "$out"
+}
+
+# Removes the RaspAP connections that are bound to the interface. Prints the
+# number of removed files.
+remove_bound() {
+    local iface="$1" file count=0
+    if [ -n "$iface" ]; then
+        for file in "$conn_dir/$prefix"*.nmconnection; do
+            [ -e "$file" ] || continue
+            is_ours "$file" || continue
+            grep -Fqx "interface-name=$iface" "$file" || continue
+            rm -f "$file" && count=$((count + 1))
+        done
+    fi
+    echo "$count"
+}
+
+# Removes the RaspAP connections of an interface that is no longer the WiFi
+# client interface: it became the access point interface, or the client
+# moved to a different interface. Otherwise NetworkManager can try to
+# connect the interface again, also when hostapd uses it.
+purge() {
+    local count
+    count="$(remove_bound "$1")"
+    if [ "$count" -gt 0 ] && systemctl is-active --quiet NetworkManager.service; then
+        nmcli connection reload || die 1 "nmcli connection reload failed"
+    fi
 }
 
 # Replaces the RaspAP connections with the networks on stdin. One network per
@@ -225,7 +253,12 @@ up() {
 [ "$#" -ge 2 ] || usage
 action="$1"
 iface="$2"
-check_iface "$iface"
+if [ "$action" = "purge" ]; then
+    # the interface can be the access point interface now, or not exist
+    [[ "$iface" =~ ^[A-Za-z0-9_.-]{1,15}$ ]] || die 2 "invalid interface name"
+else
+    check_iface "$iface"
+fi
 
 case "$action" in
     status)
@@ -247,6 +280,11 @@ case "$action" in
         [ "$#" -eq 3 ] || usage
         require_managed "$iface"
         up "$iface" "$3"
+        ;;
+    purge)
+        [ "$#" -eq 2 ] || usage
+        [ -d "$conn_dir" ] || exit 0
+        purge "$iface"
         ;;
     disconnect)
         [ "$#" -eq 2 ] || usage

@@ -86,10 +86,12 @@ class NetworkManagerClient
      *
      * @param string $iface
      * @param array $networks networks as read by WiFiManager::knownWifiStations()
+     * @param array|null $skipped gets the SSIDs that have no usable passphrase
      * @return bool
      */
-    public function syncNetworks(string $iface, array $networks): bool
+    public function syncNetworks(string $iface, array $networks, ?array &$skipped = null): bool
     {
+        $skipped = [];
         if (!$this->isManaged($iface)) {
             return false;
         }
@@ -100,20 +102,112 @@ class NetworkManagerClient
             }
             $bytes = self::ssidToBytes((string)$ssid);
             if ($bytes === '' || strlen($bytes) > 32) {
+                $skipped[] = (string)$ssid;
                 continue;
             }
             $priority = max(-999, min(999, (int)($network['priority'] ?? 0)));
             if (($network['protocol'] ?? '') === self::SECURITY_OPEN) {
                 $lines[] = implode("\t", [bin2hex($bytes), 'open', '-', $priority]);
             } else {
-                $psk = strtolower((string)($network['passkey'] ?? ''));
-                if (!preg_match('/^[0-9a-f]{64}$/', $psk)) {
+                $psk = self::pskFor($network, $bytes);
+                if ($psk === null) {
+                    $skipped[] = (string)$ssid;
                     continue;
                 }
                 $lines[] = implode("\t", [bin2hex($bytes), 'psk', $psk, $priority]);
             }
         }
         return $this->runHelper(['sync', $iface], implode("\n", $lines) . "\n") === 0;
+    }
+
+    /**
+     * Makes the RaspAP connections when a configured network has no RaspAP
+     * connection yet, for example networks of wpa_supplicant.conf from
+     * before NetworkManager managed the interface. Returns null when all
+     * configured networks have a connection.
+     *
+     * @param string $iface
+     * @param array $networks networks as read by WiFiManager::knownWifiStations()
+     * @param array|null $skipped gets the SSIDs that have no usable passphrase
+     * @return bool|null
+     */
+    public function ensureProfiles(string $iface, array $networks, ?array &$skipped = null): ?bool
+    {
+        $skipped = [];
+        if (!$this->isManaged($iface)) {
+            return null;
+        }
+        $have = [];
+        foreach ($this->listProfiles($iface) as $profile) {
+            if ($profile['raspap']) {
+                $have[self::ssidToBytes($profile['ssid'])] = true;
+            }
+        }
+        $missing = false;
+        foreach ($networks as $ssid => $network) {
+            $bytes = self::ssidToBytes((string)$ssid);
+            if (empty($network['configured']) || isset($have[$bytes])) {
+                continue;
+            }
+            // a network without a usable passphrase can not get a connection,
+            // so it does not start a sync on each page load
+            if (($network['protocol'] ?? '') !== self::SECURITY_OPEN && self::pskFor($network, $bytes) === null) {
+                $skipped[] = (string)$ssid;
+                continue;
+            }
+            $missing = true;
+        }
+        if ($missing) {
+            return $this->syncNetworks($iface, $networks, $skipped);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the PSK of a network as 64 hex digits, or null. A plaintext
+     * passphrase (quoted "psk" or the "#psk" comment of wpa_passphrase)
+     * gives the same PSK as wpa_passphrase: PBKDF2-SHA1 of the passphrase
+     * with the SSID as salt, 4096 rounds, 32 bytes.
+     *
+     * @param array $network
+     * @param string $ssidBytes
+     * @return string|null
+     */
+    public static function pskFor(array $network, string $ssidBytes): ?string
+    {
+        $psk = strtolower(trim((string)($network['passkey'] ?? '')));
+        if (preg_match('/^[0-9a-f]{64}$/', $psk)) {
+            return $psk;
+        }
+        $raw = trim((string)($network['passkey'] ?? ''));
+        if (strlen($raw) >= 2 && $raw[0] === '"' && substr($raw, -1) === '"') {
+            $passphrase = substr($raw, 1, -1);
+        } else {
+            $passphrase = (string)($network['passphrase'] ?? '');
+        }
+        // WPA passphrases have 8 to 63 printable ASCII characters
+        if (!preg_match('/^[\x20-\x7e]{8,63}$/', $passphrase)) {
+            return null;
+        }
+        return bin2hex(hash_pbkdf2('sha1', $passphrase, $ssidBytes, 4096, 32, true));
+    }
+
+    /**
+     * Removes the RaspAP connections that are bound to the interface, for
+     * example when the interface becomes the access point interface or the
+     * WiFi client moves to a different interface. The helper accepts the
+     * access point interface for this action only.
+     *
+     * @param string $iface
+     * @return bool
+     */
+    public function purge(string $iface): bool
+    {
+        if (!self::validInterface($iface) || !is_file(self::HELPER)) {
+            return false;
+        }
+        unset(self::$managed[$iface]);
+        return $this->runHelper(['purge', $iface]) === 0;
     }
 
     /**

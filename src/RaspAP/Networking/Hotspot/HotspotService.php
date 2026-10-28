@@ -195,6 +195,8 @@ class HotspotService
             // hostapd
             $config = $this->hostapd->buildConfig($validated, $status);
             $this->hostapd->saveConfig($config, $dualAPEnable, $validated['interface']);
+            // NetworkManager must not connect the AP interface as a WiFi client
+            (new \RaspAP\Networking\NetworkManagerClient())->purge($validated['interface']);
             $this->maybeSetRegDomain($post_data['country_code'], $status);
 
             $status->addMessage('WiFi hotspot settings saved.', 'success');

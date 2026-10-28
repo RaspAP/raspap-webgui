@@ -27,6 +27,11 @@ function DisplayWPAConfig()
     $wifi->knownWifiStations($networks);
     if (!$nmMode) {
         $wifi->setKnownStationsWPA($networks);
+    } elseif ($nm->ensureProfiles($_SESSION['wifi_client_interface'], $networks, $skipped) === false) {
+        // networks of wpa_supplicant.conf without a RaspAP connection yet
+        $status->addMessage('Unable to update the NetworkManager connections', 'danger');
+    } else {
+        addSkippedNetworkMessages($status, $skipped ?? []);
     }
     $wifi->connectedWifiStations($networks);
 
@@ -128,9 +133,10 @@ function DisplayWPAConfig()
                 // read the file again, for the PSKs that wpa_passphrase derived
                 $saved = [];
                 $wifi->knownWifiStations($saved);
-                if (!$nm->syncNetworks($clientInterface, $saved)) {
+                if (!$nm->syncNetworks($clientInterface, $saved, $skipped)) {
                     $status->addMessage('Unable to update the NetworkManager connections', 'danger');
                 }
+                addSkippedNetworkMessages($status, $skipped ?? []);
             }
             if ($nmDisconnect && !$nm->disconnect($clientInterface)) {
                 $status->addMessage('NetworkManager could not disconnect the interface', 'danger');
@@ -141,4 +147,20 @@ function DisplayWPAConfig()
     }
 
     echo renderTemplate("configure_client", compact("status", "hasConnection", "interfaces", "initial_iface", "nmMode"));
+}
+
+/**
+ * Adds a warning for each network that NetworkManager can not use, because
+ * wpa_supplicant.conf has no usable passphrase for it
+ *
+ * @param object $status
+ * @param array $skipped SSIDs
+ */
+function addSkippedNetworkMessages($status, array $skipped)
+{
+    foreach ($skipped as $ssid) {
+        // the network does not work until the user enters the passphrase, so
+        // the warning stays until the user closes it
+        $status->addMessage(sprintf(_('%s has no passphrase that NetworkManager can use. Enter the passphrase and click Update.'), htmlspecialchars(evalHexSequence($ssid), ENT_QUOTES)), 'warning alert-persistent');
+    }
 }
