@@ -68,12 +68,20 @@
           <?php if (!empty($profile['duplicate'])) : ?>
             <br><small class="text-muted"><?php echo _("Same network as a RaspAP network") ?></small>
           <?php endif ?>
+          <?php $ownOnly = !empty($profile['own']) && empty($profile['otherBss']); ?>
+          <?php if ($ownOnly) : ?>
+            <br><span class="badge bg-secondary"><i class="fas fa-broadcast-tower me-1"></i><?php echo htmlspecialchars(_("Access point") . ' ' . $profile['own'], ENT_QUOTES) ?></span>
+          <?php elseif (!empty($profile['own'])) : ?>
+            <br><small class="text-warning"><i class="fas fa-broadcast-tower me-1"></i><?php echo htmlspecialchars(sprintf(_("%s is also the hotspot of this device."), $profile['ssidutf8']), ENT_QUOTES) ?></small>
+          <?php endif ?>
         </td>
         <td><?php echo $profile['autoconnect'] ? _("Yes") : _("No") ?></td>
         <td><?php echo (int)$profile['priority'] ?></td>
         <td>
           <?php if ($profile['active']) : ?>
             <span class="text-success"><i class="fas fa-check me-1"></i><?php echo _("Connected") ?></span>
+          <?php elseif ($ownOnly) : ?>
+            <button type="button" class="btn btn-sm btn-info" disabled><?php echo _("Connect") ?></button>
           <?php else : ?>
             <button type="submit" class="btn btn-sm btn-info" name="nm_connect" value="<?php echo htmlspecialchars($profile['uuid'], ENT_QUOTES) ?>"><?php echo _("Connect") ?></button>
           <?php endif ?>
