@@ -71,7 +71,7 @@
                         <label class="form-check-label" for="chxwgkswitchportal"><?php echo _("Allow captive portal login"); ?></label>
                         <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("When the uplink network needs a login (for example in a hotel), AP clients can open the login page while the tunnel is down. The dashboard shows a button that allows the login for 5 minutes. During this time, the HTTP and DNS requests of AP clients go outside the tunnel. HTTPS stays blocked, so a login page that uses only HTTPS does not work."); ?>"></i>
                       </div>
-                      <div class="form-check form-switch ms-4">
+                      <div class="form-check form-switch ms-4" id="wg-kswitch-portal-auto"<?php echo $optKSwitchPortal == 1 ? '' : ' style="display: none;"' ?>>
                         <?php $checked = $optKSwitchPortalAuto == 1 ? 'checked="checked"' : '' ?>
                         <input class="form-check-input" id="chxwgkswitchportalauto" name="wgKSwitchPortalAuto" type="checkbox" value="1" <?php echo $checked ?> />
                         <label class="form-check-label" for="chxwgkswitchportalauto"><?php echo _("Allow the login automatically"); ?></label>

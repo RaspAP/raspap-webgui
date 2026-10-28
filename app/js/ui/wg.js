@@ -17,6 +17,10 @@ export function initWireGuard() {
     const toggleKSwitchOptions = () => $('#wg-kswitch-options').toggle($('#chxwgkswitch').is(':checked'));
     $('#chxwgkswitch').on('change', toggleKSwitchOptions);
     toggleKSwitchOptions();
+    // the automatic login is an option of the captive portal login
+    const togglePortalAuto = () => $('#wg-kswitch-portal-auto').toggle($('#chxwgkswitchportal').is(':checked'));
+    $('#chxwgkswitchportal').on('change', togglePortalAuto);
+    togglePortalAuto();
 
     $('#wg-upload,#wg-manual').on('click', function (e) {
         if (this.id == 'wg-upload') {
