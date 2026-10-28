@@ -1007,6 +1007,47 @@ msgstr "Deze optie voegt <strong>iptables</strong> <code>Postup</code> en <code>
 msgid "Enable kill switch"
 msgstr "Noodstopschakelaar inschakelen"
 
+#: ../templates/wg/general.php
+msgid "Allow captive portal login"
+msgstr "Inloggen bij captive portal toestaan"
+
+#: ../templates/wg/general.php
+msgid "When the uplink network needs a login (for example in a hotel), AP clients can open the login page while the tunnel is down. The dashboard shows a button that allows the login for 5 minutes. During this time, the HTTP and DNS requests of AP clients go outside the tunnel. HTTPS stays blocked, so a login page that uses only HTTPS does not work."
+msgstr "Als het uplink-netwerk om een login vraagt (bijvoorbeeld in een hotel), kunnen AP-clients de inlogpagina openen terwijl de tunnel niet actief is. Het dashboard toont een knop die inloggen 5 minuten toestaat. In die tijd gaan de HTTP- en DNS-verzoeken van AP-clients buiten de tunnel om. HTTPS blijft geblokkeerd, dus een inlogpagina die alleen HTTPS gebruikt werkt niet."
+
+#: ../templates/wg/general.php
+msgid "Allow the login automatically"
+msgstr "Inloggen automatisch toestaan"
+
+#: ../templates/wg/general.php
+msgid "Allows the login without a click when the device finds a captive portal, until the tunnel works again. A network that blocks the tunnel and shows a false login page can then see the HTTP and DNS requests of AP clients."
+msgstr "Staat inloggen zonder klik toe als het apparaat een captive portal vindt, totdat de tunnel weer werkt. Een netwerk dat de tunnel blokkeert en een valse inlogpagina toont, kan dan de HTTP- en DNS-verzoeken van AP-clients zien."
+
+#: ../includes/functions.php
+msgid "Open the login page"
+msgstr "Open de inlogpagina"
+
+#: ../includes/functions.php
+msgid "The uplink network needs a login (captive portal). The VPN tunnel can not connect until the login."
+msgstr "Het uplink-netwerk vraagt om in te loggen (captive portal). De VPN-tunnel kan pas verbinden na het inloggen."
+
+#: ../includes/functions.php
+msgid "Allow the login for 5 minutes"
+msgstr "Inloggen 5 minuten toestaan"
+
+#: ../includes/functions.php
+msgid "The uplink network needs a login (captive portal). On a device that is connected to the hotspot, open a website that starts with http://. The login page of the network then opens. After the login, the VPN tunnel connects again."
+msgstr "Het uplink-netwerk vraagt om in te loggen (captive portal). Open op een apparaat dat met de hotspot is verbonden een website die begint met http://. De inlogpagina van het netwerk opent dan. Na het inloggen maakt de VPN-tunnel weer verbinding."
+
+#: ../includes/functions.php
+#, php-format
+msgid "The login is allowed until %s."
+msgstr "Inloggen is toegestaan tot %s."
+
+#: ../includes/functions.php
+msgid "End the login now"
+msgstr "Inloggen nu beëindigen"
+
 #: ../templates/wg/general.php:51
 msgid "Recommended if you wish to prevent the flow of unencrypted packets through non-WireGuard interfaces."
 msgstr "Aanbevolen als u de stroom van niet-versleutelde pakketten door niet-WireGuard interfaces wilt voorkomen."
