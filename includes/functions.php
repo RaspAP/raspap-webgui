@@ -834,7 +834,7 @@ function get_public_ip_cached(int $ttl = 120): string
 {
     require_once __DIR__ . '/internetRoute.php';
     $iface = getInternetPath()['interface'] ?? '';
-    $cacheDir = get_public_ip_cache_dir();
+    $cacheDir = get_private_cache_dir();
     $cacheFile = ($cacheDir !== null) ? $cacheDir . '/public-ip.json' : null;
 
     if ($cacheFile !== null && is_file($cacheFile) && !is_link($cacheFile)) {
@@ -864,15 +864,16 @@ function get_public_ip_cached(int $ttl = 120): string
     return $public_ip;
 }
 
-/* Returns the directory for the public IP cache
+/* Returns a cache directory that is private to the user that runs PHP
  *
+ * Used for the public IP cache and the login help QR code.
  * The directory is private to the user that runs PHP. If it is owned by
  * another user, is a symlink or is accessible by other users, it is not
  * used, so other local users can not change or replace the cache.
  *
  * @return string|null the directory, or null if there is no safe one
  */
-function get_public_ip_cache_dir(): ?string
+function get_private_cache_dir(): ?string
 {
     if (!function_exists('posix_geteuid')) {
         return null;
