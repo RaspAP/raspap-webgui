@@ -78,6 +78,7 @@ function _update_raspap() {
     _download_latest_files
     _change_file_ownership
     _secure_raspap_directories
+    _secure_openvpn_client_files
     _patch_system_files
     _create_hostapd_scripts
     _update_openvpn_scripts
@@ -945,6 +946,19 @@ function _change_file_ownership() {
 
     _install_log "Changing file ownership in web root directory"
     sudo chown -R $raspap_user:$raspap_user "$webroot_dir" || _install_status 1 "Unable to change file ownership for '$webroot_dir'"
+}
+
+# Older versions saved the OpenVPN client configs and logins with mode 644, so
+# each local user could read the keys and the VPN password. Makes them
+# readable by their owner only. OpenVPN (root) and the web UI (owner) still
+# read them.
+function _secure_openvpn_client_files() {
+    local dir="/etc/openvpn/client"
+    if [ ! -d "$dir" ]; then
+        return 0
+    fi
+    sudo find "$dir" -maxdepth 1 -type f -name '*.conf' -perm /077 -exec chmod 600 {} + ||
+        _install_status 1 "Unable to change the mode of the OpenVPN client files"
 }
 
 # Check for existing configuration files
