@@ -609,9 +609,9 @@ function _install_wireguard() {
 # Install the WireGuard kill switch script
 function _install_wireguard_killswitch() {
     echo "Copying installers/wg-killswitch.sh to $raspap_network"
-    sudo cp "$webroot_dir/installers/wg-killswitch.sh" "$raspap_network" || _install_status 1 "Unable to copy wg-killswitch.sh"
-    sudo chown root:root "${raspap_network}wg-killswitch.sh" || _install_status 1 "Unable to change owner of wg-killswitch.sh"
-    sudo chmod 750 "${raspap_network}wg-killswitch.sh" || _install_status 1 "Unable to change permissions of wg-killswitch.sh"
+    sudo install -o root -g root -m 750 "$webroot_dir/installers/wg-killswitch.sh" "${raspap_network}wg-killswitch.sh" || _install_status 1 "Unable to install wg-killswitch.sh"
+    echo "Copying installers/wg-forward.sh to $raspap_network"
+    sudo install -o root -g root -m 750 "$webroot_dir/installers/wg-forward.sh" "${raspap_network}wg-forward.sh" || _install_status 1 "Unable to install wg-forward.sh"
 
     # on install and on update
     _install_ntp_fallback
@@ -694,6 +694,11 @@ function _update_wireguard() {
             $json = file_get_contents($file);
             $json = str_replace(sprintf($legacy, "I"), "/etc/raspap/networking/wg-killswitch.sh up %i %s %o", $json);
             $json = str_replace(sprintf($legacy, "D"), "/etc/raspap/networking/wg-killswitch.sh down %i", $json);
+            // the kill switch and the forwarding rules find the current AP when the tunnel starts
+            $json = str_replace("/etc/raspap/networking/wg-killswitch.sh up %i %s %o", "/etc/raspap/networking/wg-killswitch.sh up %i %o", $json);
+            $forward = "iptables -%1\$s FORWARD -i wlan0 -o %%i -j ACCEPT; iptables -%1\$s FORWARD -i %%i -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -%1\$s POSTROUTING -o %%i -j MASQUERADE";
+            $json = str_replace(sprintf($forward, "A"), "/etc/raspap/networking/wg-forward.sh up %i %a", $json);
+            $json = str_replace(sprintf($forward, "D"), "/etc/raspap/networking/wg-forward.sh down %i", $json);
             file_put_contents($file, $json) !== false || exit(1);
         ' -- "$defaults" || _install_status 1 "Unable to update $defaults"
     fi
@@ -701,6 +706,9 @@ function _update_wireguard() {
     echo "Migrating kill switch rules in WireGuard configurations"
     sudo find /etc/wireguard -maxdepth 1 -type f -name '*.conf' \
         -exec "${raspap_network}wg-killswitch.sh" migrate {} + || _install_status 1 "Unable to migrate WireGuard configurations"
+    echo "Migrating forwarding rules in WireGuard configurations"
+    sudo find /etc/wireguard -maxdepth 1 -type f -name '*.conf' \
+        -exec "${raspap_network}wg-forward.sh" migrate {} + || _install_status 1 "Unable to migrate WireGuard configurations"
     _install_status 0
 }
 

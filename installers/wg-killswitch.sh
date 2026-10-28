@@ -27,6 +27,7 @@ readonly default_rule_pref="32700"
 # protocol tag of the routing rules of this script, so that cleanup only
 # deletes these rules and not the same rules of other tools
 readonly rule_proto="250"
+readonly hostapd_conf="/etc/hostapd/hostapd.conf"
 readonly resolv_conf="/etc/resolv.conf"
 readonly self="/etc/raspap/networking/wg-killswitch.sh"
 
@@ -145,12 +146,24 @@ add_exceptions() {
     fi
 }
 
+# Prints the subnet of the access point interface of hostapd.conf, as it is
+# when the tunnel starts, for example 10.3.141.1/24
+current_ap_subnet() {
+    local ap
+    ap="$(sed -n 's/^interface=\([A-Za-z0-9_.-]\{1,15\}\)$/\1/p' "$hostapd_conf" 2>/dev/null | head -n 1)"
+    [ -n "$ap" ] || return 0
+    ip -4 -o addr show dev "$ap" 2>/dev/null | awk '{ print $4 }' | grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]{1,2}$' || true
+}
+
 up() {
-    local fwmark net
+    local fwmark net ap_nets
 
     set -o errexit
     cleanup "$iface"
     fwmark="$(wg show "$iface" fwmark 2>/dev/null || echo off)"
+    # the AP subnet of the command line (older configurations) and the
+    # current AP subnet, so that a change of the AP does not break the rules
+    ap_nets="$(printf '%s\n' "$ap_subnet" | grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}(/[0-9]{1,2})?$' || true) $(current_ap_subnet || true)"
 
     # IPv4
     iptables -N "$chain4"
@@ -160,8 +173,10 @@ up() {
         iptables -A "$chain4" -m mark --mark "$fwmark" -j RETURN
     fi
     iptables -A "$chain4" -m addrtype --dst-type LOCAL,BROADCAST,MULTICAST -j RETURN
-    for net in 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 169.254.0.0/16 $ap_subnet; do
-        iptables -A "$chain4" -d "$net" -j RETURN
+    for net in 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 169.254.0.0/16 $ap_nets; do
+        # the AP subnet can be in the argument and in hostapd.conf
+        iptables -C "$chain4" -d "$net" -j RETURN 2>/dev/null ||
+            iptables -A "$chain4" -d "$net" -j RETURN
     done
     iptables -A "$chain4" -p udp --sport 67:68 --dport 67:68 -j RETURN
     add_exceptions iptables 4 "$chain4"
@@ -229,7 +244,14 @@ case "$action" in
                 --allow-ntp) allow_ntp=1 ;;
                 --allow-dns) allow_dns=1 ;;
                 -*) usage ;;
-                *) ap_subnet="$arg" ;;
+                *)
+                    # an AP subnet of older configurations; other values are ignored
+                    if [[ "$arg" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}(/[0-9]{1,2})?$ ]]; then
+                        ap_subnet="$arg"
+                    else
+                        echo "wg-killswitch: ignoring argument $arg" >&2
+                    fi
+                    ;;
             esac
         done
         up
