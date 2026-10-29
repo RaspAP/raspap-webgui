@@ -43,7 +43,7 @@ function DisplayAuthConfig($username)
         $limiter = getLoginLimiter();
         $wait = $limiter->waitTime($client);
         if ($wait > 0) {
-            $status->addMessage(sprintf(_("Too many failed logins. Try again in %d minutes."), (int)ceil($wait / 60)), 'danger');
+            $status->addMessage(loginLockMessage($wait), 'danger');
         } elseif ($auth->login($user, $pass, 'admin')) {
             $limiter->success($client);
             $config = $auth->getAuthConfig();

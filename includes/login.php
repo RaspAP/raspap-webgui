@@ -25,7 +25,7 @@ function DisplayLogin()
             $limiter = getLoginLimiter();
             $wait = $limiter->waitTime($client);
             if ($wait > 0) {
-                $status = sprintf(_("Too many failed logins. Try again in %d minutes."), (int)ceil($wait / 60));
+                $status = loginLockMessage($wait);
             } elseif ($auth->login($username, $password, $role)) {
                 $limiter->success($client);
                 $config = $auth->getAuthConfig();

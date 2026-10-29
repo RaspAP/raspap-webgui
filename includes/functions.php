@@ -1114,6 +1114,22 @@ function getLoginLimiter(): \RaspAP\Auth\LoginLimiter
 }
 
 /**
+ * Returns the message for a client that must wait after failed logins
+ *
+ * @param int $wait the wait time in seconds
+ * @return string
+ */
+function loginLockMessage(int $wait): string
+{
+    $minutes = max(1, (int)ceil($wait / 60));
+    return sprintf(ngettext(
+        "Too many failed logins. Try again in %d minute.",
+        "Too many failed logins. Try again in %d minutes.",
+        $minutes
+    ), $minutes);
+}
+
+/**
  * Returns the path of the uploaded avatar from the avatar cookie
  *
  * The upload (ajax/system/sys_avatar_upload.php) sets the cookie to
