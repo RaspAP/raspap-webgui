@@ -31,14 +31,6 @@ import { initSystem_ajax} from "./ajax/system.js";
 import { initPlugins_ajax } from "./ajax/plugins.js";
 import { initAbout_ajax } from "./ajax/about.js";
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/app/js/sw.js')
-            .then(() => console.info('RaspAP service worker registered'))
-            .catch((err) => console.warn('Service worker registration failed:', err));
-    });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     console.info("RaspAP app.js initialized");
 
