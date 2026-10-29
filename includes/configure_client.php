@@ -53,7 +53,8 @@ function DisplayWPAConfig()
     }
     // the WiFi client must not connect to the hotspot of this device. When an
     // access point of a different device also sends the SSID, only warn.
-    foreach ($wifi->ownHotspotActions($_POST, $networks) as $key => $hit) {
+    $nmProfiles = ($nmMode && isset($_POST['nm_connect'])) ? $nm->listProfiles($_SESSION['wifi_client_interface']) : [];
+    foreach ($wifi->ownHotspotActions($_POST, $networks, $nmProfiles) as $key => $hit) {
         $ssid = htmlspecialchars($wifi->ssid2utf8($hit['ap']['ssid']), ENT_QUOTES);
         if ($hit['shared']) {
             $status->addMessage(sprintf(_('%s is also the hotspot of this device.'), $ssid), 'warning');
