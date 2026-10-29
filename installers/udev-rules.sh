@@ -55,7 +55,7 @@ write_file() {
 
 # A rule of RaspAP: keys and values of the prototypes only, separated by ", "
 valid_rule() {
-    local rule="$1" token
+    local rule="$1" token address=0 vendor=0 product=0 kernel=0
     local -a tokens
     [ "${#rule}" -le "$max_rule_length" ] || return 1
     [[ "$rule" =~ ^[A-Za-z0-9\ ,=+\"{}:%._@-]+$ ]] || return 1
@@ -69,15 +69,24 @@ valid_rule() {
             'ENV{SYSTEMD_WANTS}="start start_huawei_hilink@hilink%n.service"') ;;
             'ENV{SYSTEMD_WANTS}="start start_ppp0_device.service"') ;;
             *)
-                [[ "$token" =~ ^KERNEL==\"ttyUSB[0-9]\"$ ]] ||
-                [[ "$token" =~ ^ATTR\{address\}==\"[0-9a-f]{2}(:[0-9a-f]{2}){5}\"$ ]] ||
-                [[ "$token" =~ ^ATTRS\{id(Vendor|Product)\}==\"[0-9a-f]{4}\"$ ]] ||
-                [[ "$token" =~ ^NAME=\"[a-z0-9]{1,20}(%n)?\"$ ]] ||
-                [[ "$token" =~ ^ENV\{raspapType\}=\"[a-z]{1,16}\"$ ]] ||
-                return 1
+                if [[ "$token" =~ ^KERNEL==\"ttyUSB[0-9]\"$ ]]; then
+                    kernel=1
+                elif [[ "$token" =~ ^ATTR\{address\}==\"[0-9a-f]{2}(:[0-9a-f]{2}){5}\"$ ]]; then
+                    address=1
+                elif [[ "$token" =~ ^ATTRS\{idVendor\}==\"[0-9a-f]{4}\"$ ]]; then
+                    vendor=1
+                elif [[ "$token" =~ ^ATTRS\{idProduct\}==\"[0-9a-f]{4}\"$ ]]; then
+                    product=1
+                elif ! [[ "$token" =~ ^NAME=\"[a-z0-9]{1,20}(%n)?\"$ ]] &&
+                     ! [[ "$token" =~ ^ENV\{raspapType\}=\"[a-z]{1,16}\"$ ]]; then
+                    return 1
+                fi
                 ;;
         esac
     done
+    # the rule must match one device: a rule without a match key renames
+    # each device of the subsystem
+    [ "$address" = 1 ] || { [ "$vendor" = 1 ] && [ "$product" = 1 ]; } || [ "$kernel" = 1 ]
 }
 
 # Replaces the rules for a MAC address and the rules for a USB vendor and
