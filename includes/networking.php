@@ -136,7 +136,7 @@ function handleBtnActions($status)
             if (isset($_POST['outputInterface'])) {
                 $status->addMessage(sprintf(_('Attempting to enable routing between %s and %s interfaces'), $staInterface, $outputInterface), 'info');
                 saveWlanConfigOpt($status, $optConfigOutput, $outputInterface);
-                exec("sudo ".RASPI_CONFIG."/networking/toggle-routing.sh $staIfaceEscaped $outputIfaceEscaped add", $return);
+                exec("sudo /usr/local/sbin/raspap-toggle-routing.sh $staIfaceEscaped $outputIfaceEscaped add", $return);
                 foreach ($return as $line) {
                     $status->addMessage($line, 'info');
                 }
@@ -149,7 +149,7 @@ function handleBtnActions($status)
         } elseif (isset($_POST['StopWlanRouting'])) {
             if (isset($_POST['outputInterface'])) {
                 $status->addMessage(sprintf(_('Attempting to disable routing between %s and %s interfaces'), $staInterface, $outputInterface), 'info');
-                exec("sudo ".RASPI_CONFIG."/networking/toggle-routing.sh $staIfaceEscaped $outputIfaceEscaped delete", $return);
+                exec("sudo /usr/local/sbin/raspap-toggle-routing.sh $staIfaceEscaped $outputIfaceEscaped delete", $return);
                 foreach ($return as $line) {
                     $status->addMessage($line, 'info');
                 }
