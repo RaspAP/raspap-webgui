@@ -1631,7 +1631,7 @@ msgstr "Debug-Protokoll generieren"
 #: ../templates/system/tools.php:24
 #, php-format
 msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "Um <a href=\"%s\" target=\"_blank\">die</a> an dieses Gerät angeschlossenen <a href=\" %s \" target=\"_blank\">Adapter zu überprüfen</a>, klicken oder tippen Sie auf die Schaltfläche unten."
+msgstr "Um die an dieses Gerät angeschlossenen <a href=\"%s\" target=\"_blank\">Adapter zu überprüfen</a>, klicken oder tippen Sie auf die Schaltfläche unten."
 
 #: ../templates/system/tools.php:27
 msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."
@@ -2144,7 +2144,7 @@ msgstr "VPN"
 #: ../includes/restapi.php:59
 #, php-format
 msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
-msgstr "Die RestAPI-Dokumente sind <a href=\"%s\" target=\"_blank\">hier </a> zugänglich <a href=\" %s \" target=\"_blank\">: %s</a>"
+msgstr "Die RestAPI-Dokumente sind <a href=\"%s\" target=\"_blank\">hier %s</a> zugänglich"
 
 #: ../includes/footer.php:6
 #, php-format

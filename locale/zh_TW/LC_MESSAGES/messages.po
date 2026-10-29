@@ -1631,7 +1631,7 @@ msgstr "產生除錯記錄"
 #: ../templates/system/tools.php:24
 #, php-format
 msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "若要<a href=\"%s\" target=\"_blank\">檢視連</a>接到此裝置<a href=\" %s \" target=\"_blank\">的轉接器</a>，請按一下或點選下列按鈕。"
+msgstr "若要檢視連接到此裝置的<a href=\"%s\" target=\"_blank\">轉接器</a>，請按一下或點選下列按鈕。"
 
 #: ../templates/system/tools.php:27
 msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."

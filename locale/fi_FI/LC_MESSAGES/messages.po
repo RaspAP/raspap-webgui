@@ -1631,7 +1631,7 @@ msgstr "Luo vianmääritysloki"
 #: ../templates/system/tools.php:24
 #, php-format
 msgid "To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."
-msgstr "Voit <a href=\"%s\" target=\"_blank\">tarkastaa</a> tähän laitteeseen liitetyt <a href=\" %s \" target=\"_blank\">sovittimet</a> napsauttamalla tai napauttamalla alla olevaa painiketta."
+msgstr "Voit tarkastaa tähän laitteeseen liitetyt <a href=\"%s\" target=\"_blank\">sovittimet</a> napsauttamalla tai napauttamalla alla olevaa painiketta."
 
 #: ../templates/system/tools.php:27
 msgid "The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."

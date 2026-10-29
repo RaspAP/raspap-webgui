@@ -1644,7 +1644,7 @@ msgstr "Inspectați adaptoarele"
 #: ../templates/system/tools.php:38
 #, php-format
 msgid "To reset RaspAP to its <a href=\"%s\" target=\"_blank\">initial configuration</a>, click or tap the button below."
-msgstr "Pentru a reseta RaspAP la <a href=\"%s\" target=\"_blank\">configurația</a> sa <a href=\" %s \" target=\"_blank\">inițială</a>, faceți clic sau atingeți butonul de mai jos."
+msgstr "Pentru a reseta RaspAP la <a href=\"%s\" target=\"_blank\">configurația sa inițială</a>, faceți clic sau atingeți butonul de mai jos."
 
 #: ../templates/system/tools.php:40
 msgid "Restores all access point (AP) service settings to their default values. This applies to hostapd, dhcpcd and dnsmasq."
