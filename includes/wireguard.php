@@ -184,6 +184,55 @@ function getKillSwitchSettings(array $lines)
 }
 
 /**
+ * Keeps only the section headers and keys of a WireGuard configuration that
+ * wg-quick and wg setconf know and that run no commands. wg-quick executes
+ * the PreUp, PostUp, PreDown and PostDown hooks as root.
+ *
+ * Each key is parsed the way wg-quick does: the text after "#" is a comment,
+ * the key is the text before the first "=" without surrounding whitespace,
+ * and it is compared without case.
+ *
+ * @param  string $contents
+ * @param  array  $removed receives the keys of the removed lines
+ * @return string
+ */
+function sanitizeWireGuardConfig($contents, &$removed = [])
+{
+    $allowed = [
+        '', '[interface]', '[peer]',
+        // [Interface], wg-quick
+        'address', 'dns', 'mtu', 'table', 'saveconfig',
+        // [Interface], wg setconf
+        'privatekey', 'listenport', 'fwmark',
+        // [Peer], wg setconf
+        'publickey', 'presharedkey', 'allowedips', 'endpoint', 'persistentkeepalive'
+    ];
+    $removed = [];
+    $lines = explode("\n", $contents);
+    foreach ($lines as $i => $line) {
+        $stripped = explode('#', $line, 2)[0];
+        $key = strtolower(trim(explode('=', $stripped, 2)[0], " \t\n\r\v\f"));
+        if (!in_array($key, $allowed, true)) {
+            $removed[] = preg_replace('/[^A-Za-z0-9\[\]]/', '', substr($key, 0, 32));
+            unset($lines[$i]);
+        }
+    }
+    return implode("\n", $lines);
+}
+
+/**
+ * Checks that a value of the WireGuard form fits in one line of the
+ * configuration
+ *
+ * @param  string $value
+ * @return boolean
+ */
+function isWireGuardValue($value)
+{
+    return is_string($value) && !preg_match('/[\x00-\x1f\x7f#]/', $value);
+}
+
+/**
  * Validates uploaded .conf file, adds iptables post-up and
  * post-down rules.
  *
@@ -226,55 +275,62 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
         // Valid upload, get file contents
         $tmp_wgconfig = $results['full_path'];
         $tmp_contents = file_get_contents($tmp_wgconfig);
+        if ($tmp_contents === false || strpos($tmp_contents, "\0") !== false) {
+            unlink($tmp_wgconfig);
+            throw new RuntimeException('Invalid WireGuard configuration');
+        }
 
-        // Check for existing iptables rules
-        if ((isset($optRules) || isset($optKSwitch)) && preg_match('/PostUp|PostDown|PreDown/m',$tmp_contents)) {
-            $status->addMessage('Existing iptables rules found in WireGuard configuration - not added', 'info');
-        } else {
-            // Set rules from default config
-            if (isset($optRules)) {
-                $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUp');
-                $rules[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
-                // "ap" makes wg-forward.sh use the AP interface of the time the
-                // tunnel starts, so the rules follow a later change of the AP
-                $fwdIface = ($optInterface === null || $optInterface === ($_SESSION['ap_interface'] ?? null)) ? 'ap' : $optInterface;
-                if (!preg_match('/^[A-Za-z0-9_.-]{1,15}$/', $fwdIface)) {
-                    $fwdIface = 'ap';
-                }
-                $rules = preg_replace('/%a/m', $fwdIface, $rules);
-                // defaults.json of an older version, with inline iptables rules
-                $rules = preg_replace('/wlan0/m', $fwdIface === 'ap' ? ($_SESSION['ap_interface'] ?? 'wlan0') : $fwdIface, $rules);
-            }
-            if (isset($optKSwitch)) {
-                // wg-killswitch.sh finds the current AP subnet when the tunnel
-                // starts, so the configuration does not contain it
-                $ksOptions = [];
-                if (!empty($optKSwitchNtp)) {
-                    $ksOptions[] = '--allow-ntp';
-                }
-                if (!empty($optKSwitchDns)) {
-                    $ksOptions[] = '--allow-dns';
-                }
-                if (!empty($optKSwitchPortal)) {
-                    $ksOptions[] = '--allow-portal';
-                    if (!empty($optKSwitchPortalAuto)) {
-                        $ksOptions[] = '--portal-auto';
-                    }
-                }
+        // wg-quick runs PreUp, PostUp, PreDown and PostDown as root, so keep
+        // only the keys it knows that are no commands
+        $tmp_contents = sanitizeWireGuardConfig($tmp_contents, $removed);
+        if (count($removed) > 0) {
+            file_put_contents($tmp_wgconfig, $tmp_contents);
+            $status->addMessage('Removed from WireGuard configuration: '.implode(', ', array_unique($removed)), 'warning');
+        }
 
-                $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUpEx');
-                $rules[] = 'PreDown = '.getDefaultNetValue('wireguard','server','PreDown');
-                // defaults.json of an older version, with the AP subnet as %s
-                $rules = preg_replace('/\s*%s/m', '', $rules);
-                $rules = preg_replace('/\s*%o/m', $ksOptions ? ' '.implode(' ', $ksOptions) : '', $rules);
+        // Set rules from default config
+        if (isset($optRules)) {
+            $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUp');
+            $rules[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
+            // "ap" makes wg-forward.sh use the AP interface of the time the
+            // tunnel starts, so the rules follow a later change of the AP
+            $fwdIface = ($optInterface === null || $optInterface === ($_SESSION['ap_interface'] ?? null)) ? 'ap' : $optInterface;
+            if (!preg_match('/^[A-Za-z0-9_.-]{1,15}$/', $fwdIface)) {
+                $fwdIface = 'ap';
             }
-            if ((isset($rules) && count($rules) > 0)) {
-                $rules[] = '';
-                $rules = join(PHP_EOL, $rules);
-                $tmp_contents = preg_replace('/^\s*$/ms', $rules, $tmp_contents, 1);
-                file_put_contents($tmp_wgconfig, $tmp_contents);
-                $status->addMessage('iptables rules added to WireGuard configuration', 'info');
+            $rules = preg_replace('/%a/m', $fwdIface, $rules);
+            // defaults.json of an older version, with inline iptables rules
+            $rules = preg_replace('/wlan0/m', $fwdIface === 'ap' ? ($_SESSION['ap_interface'] ?? 'wlan0') : $fwdIface, $rules);
+        }
+        if (isset($optKSwitch)) {
+            // wg-killswitch.sh finds the current AP subnet when the tunnel
+            // starts, so the configuration does not contain it
+            $ksOptions = [];
+            if (!empty($optKSwitchNtp)) {
+                $ksOptions[] = '--allow-ntp';
             }
+            if (!empty($optKSwitchDns)) {
+                $ksOptions[] = '--allow-dns';
+            }
+            if (!empty($optKSwitchPortal)) {
+                $ksOptions[] = '--allow-portal';
+                if (!empty($optKSwitchPortalAuto)) {
+                    $ksOptions[] = '--portal-auto';
+                }
+            }
+
+            $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUpEx');
+            $rules[] = 'PreDown = '.getDefaultNetValue('wireguard','server','PreDown');
+            // defaults.json of an older version, with the AP subnet as %s
+            $rules = preg_replace('/\s*%s/m', '', $rules);
+            $rules = preg_replace('/\s*%o/m', $ksOptions ? ' '.implode(' ', $ksOptions) : '', $rules);
+        }
+        if ((isset($rules) && count($rules) > 0)) {
+            $rules[] = '';
+            $rules = join(PHP_EOL, $rules);
+            $tmp_contents = preg_replace('/^\s*$/ms', $rules, $tmp_contents, 1);
+            file_put_contents($tmp_wgconfig, $tmp_contents);
+            $status->addMessage('iptables rules added to WireGuard configuration', 'info');
         }
 
         // Sanitize, move processed file from /tmp and create symlink
@@ -309,6 +365,23 @@ function SaveWireGuardConfig($status)
     // Set defaults
     $good_input = true;
     $peer_id = 1;
+    // Each value becomes one line of a configuration that wg-quick runs as
+    // root, so no value may start a new line with a key like PostUp
+    $fields = ['wg_srvipaddress', 'wg_srvport', 'wg_srvdns', 'wg-peer', 'wg_pallowedips',
+        'wg_pkeepalive', 'wg_pipaddress', 'wg_plistenport', 'wg-server', 'wg_pendpoint'];
+    foreach ($fields as $field) {
+        if (isset($_POST[$field]) && !isWireGuardValue($_POST[$field])) {
+            $status->addMessage('Invalid value for '.$field, 'danger');
+            return false;
+        }
+    }
+    foreach (['wg-peer', 'wg-server'] as $field) {
+        if (isset($_POST[$field]) && $_POST[$field] !== '' &&
+            !preg_match('/^[A-Za-z0-9+\/]{42}[AEIMQUYcgkosw048]=$/D', $_POST[$field])) {
+            $status->addMessage('Invalid value for public key', 'danger');
+            $good_input = false;
+        }
+    }
     // Validate server input
     if ($_POST['wgSrvEnable'] == 1) {
         if (isset($_POST['wg_srvport'])) {
