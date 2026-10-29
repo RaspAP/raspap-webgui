@@ -14,8 +14,22 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-warning mb-3" name="debug-log" data-bs-toggle="modal" data-bs-target="#debugModal" />
+      <button type="button" class="btn btn-warning mb-3" name="debug-log" data-bs-toggle="modal" data-bs-target="#debugModal">
         <i class="fas fa-ambulance ms-1 me-2"></i><?php echo _("Generate debug log"); ?>
+      </button>
+
+      <div class="row">
+        <div class="mb-3 col-lg-8 col-md-8">
+          <label for="adapters">
+            <?php echo sprintf(_("To <a href=\"%s\" target=\"_blank\">inspect adapters</a> attached to this device, click or tap the button below."), "https://docs.raspap.com/get-started/troubleshooting/#inspect-network-adapters"); ;?>
+          </label>
+          <div class="small">
+          <?php echo _("The adapter inspection tool returns details about external WLAN devices including drivers, supported modes and so on."); ?>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-warning mb-3" name="inspect-adapters" data-bs-toggle="modal" data-bs-target="#adaptersModal">
+        <i class="fas fa-magnifying-glass ms-1 me-2"></i><?php echo _("Inspect adapters"); ?>
       </button>
 
       <div class="row">
@@ -29,7 +43,7 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-danger" name="system-reset" data-bs-toggle="modal" data-bs-target="#system-confirm-reset" />
+      <button type="button" class="btn btn-danger" name="system-reset" data-bs-toggle="modal" data-bs-target="#system-confirm-reset">
         <i class="fas fa-history ms-1 me-2"></i><?php echo _("Perform reset"); ?>
       </button>
 

@@ -18,6 +18,9 @@ class WiFiManager
     private const MAX_RSSI = -55;
     const SECURITY_OPEN = 'OPEN';
 
+    // access points of this device, see ownAccessPoints()
+    private ?array $ownAccessPoints = null;
+
     public function knownWifiStations(&$networks)
     {
         // find currently configured networks
@@ -33,8 +36,21 @@ class WiFiManager
                 } elseif ($lineArr = preg_split('/\s*=\s*/', trim($line), 2)) {
                     switch (strtolower($lineArr[0])) {
                     case 'ssid':
-                        $ssid = trim($lineArr[1], '"');
-                        $ssid = str_replace('P"','',$ssid);
+                        $val = $lineArr[1];
+                        if (substr($val, 0, 1) === '"' || substr($val, 0, 2) === 'P"') {
+                            $ssid = trim($val, '"');
+                            $ssid = str_replace('P"', '', $ssid);
+                        } elseif (ctype_xdigit($val) && (strlen($val) % 2 === 0)) {
+                            $binary = hex2bin($val);
+                            $ssid = ($binary !== false)
+                                ? preg_replace_callback('/[\x80-\xff]/', function ($m) {
+                                    return '\\x' . strtolower(bin2hex($m[0]));
+                                }, $binary)
+                                : $val;
+                        } else {
+                            $ssid = trim($val, '"');
+                            $ssid = str_replace('P"', '', $ssid);
+                        }
                         $network['ssid'] = $ssid;
                         $network['index'] = $this->getNetworkIdBySSID($ssid);
                         break;
@@ -59,6 +75,167 @@ class WiFiManager
                 }
             }
         }
+    }
+
+    /**
+     * Returns the access points of this device, from the output of `iw dev`.
+     * The WiFi client must not connect to these networks: then the device
+     * connects to its own hotspot and has no uplink.
+     *
+     * @param array|null $iwOutput lines of `iw dev`, for tests; null runs `iw dev`
+     * @return array list of ['iface' => string, 'bssid' => string, 'ssid' => string]
+     */
+    public function ownAccessPoints(?array $iwOutput = null): array
+    {
+        if ($iwOutput === null) {
+            if ($this->ownAccessPoints !== null) {
+                return $this->ownAccessPoints;
+            }
+            exec('iw dev 2>/dev/null', $iwOutput);
+        }
+        $aps = [];
+        $current = null;
+        $commit = function () use (&$current, &$aps) {
+            if ($current !== null && $current['type'] === 'AP' && $current['bssid'] !== '') {
+                unset($current['type']);
+                $aps[] = $current;
+            }
+            $current = null;
+        };
+        foreach ($iwOutput as $line) {
+            $line = trim($line);
+            if (preg_match('/^Interface\s+(\S+)$/', $line, $match)) {
+                $commit();
+                $current = ['iface' => $match[1], 'bssid' => '', 'ssid' => '', 'type' => ''];
+            } elseif (preg_match('/^(phy#|Unnamed)/', $line)) {
+                $commit();
+            } elseif ($current !== null && preg_match('/^addr\s+([0-9a-fA-F:]{17})$/', $line, $match)) {
+                $current['bssid'] = strtolower($match[1]);
+            } elseif ($current !== null && preg_match('/^ssid\s+(.*)$/', $line, $match)) {
+                $current['ssid'] = $match[1];
+            } elseif ($current !== null && preg_match('/^type\s+(\S+)$/', $line, $match)) {
+                $current['type'] = $match[1];
+            }
+        }
+        $commit();
+        if (func_num_args() === 0) {
+            $this->ownAccessPoints = $aps;
+        }
+        return $aps;
+    }
+
+    /**
+     * Returns the bytes of an SSID. `iw` and the parser of wpa_supplicant.conf
+     * write bytes as \xNN: `iw` for non-ASCII bytes, a backslash, and a space at
+     * the start or the end; the parser for non-ASCII bytes only.
+     *
+     * @param string $ssid
+     * @return string
+     */
+    public static function ssidBytes(string $ssid): string
+    {
+        return preg_replace_callback('/\\\\x([0-9a-fA-F]{2})/', function ($m) {
+            return chr(hexdec($m[1]));
+        }, $ssid);
+    }
+
+    /**
+     * Returns the access point of this device that sends this SSID, or null
+     *
+     * @param string $ssid SSID in the format of `iw` or of wpa_supplicant.conf
+     * @return array|null ['iface' => string, 'bssid' => string, 'ssid' => string]
+     */
+    public function ownAccessPointBySsid(string $ssid): ?array
+    {
+        $bytes = self::ssidBytes($ssid);
+        foreach ($this->ownAccessPoints() as $ap) {
+            if ($ap['ssid'] !== '' && self::ssidBytes($ap['ssid']) === $bytes) {
+                return $ap;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Finds the actions of a WiFi client page request for an SSID that an
+     * access point of this device sends: "connect", "update<n>" (add or
+     * update a network) and "nm_connect" (activate a NetworkManager
+     * connection that RaspAP did not create). "shared" is true when the last
+     * scan also found an access point of a different device with this SSID,
+     * for example the upstream network of a repeater with the same SSID. Then
+     * the client can use the SSID, but it can also choose the own access point.
+     *
+     * @param array $post the POST data of the request
+     * @param array $networks the known networks, with their network IDs
+     * @param array $nmProfiles the NetworkManager connections, see
+     *        NetworkManagerClient::listProfiles(). Needed for "nm_connect".
+     * @return array POST key => ['ap' => access point (see ownAccessPoints()), 'shared' => bool]
+     */
+    public function ownHotspotActions(array $post, array $networks, array $nmProfiles = []): array
+    {
+        $candidates = [];
+        if (isset($post['connect'])) {
+            $netid = intval($post['connect']);
+            // the card of the network sends its SSID with the same number
+            if (is_string($post['ssid' . $netid] ?? null)) {
+                $candidates['connect'] = $post['ssid' . $netid];
+            } else {
+                foreach ($networks as $ssid => $network) {
+                    if ((string)($network['index'] ?? '') === (string)$netid) {
+                        $candidates['connect'] = (string)$ssid;
+                    }
+                }
+            }
+        }
+        // "nm_connect" sends the UUID of the connection, not its SSID
+        if (is_string($post['nm_connect'] ?? null)) {
+            foreach ($nmProfiles as $profile) {
+                if (($profile['uuid'] ?? null) === $post['nm_connect'] && is_string($profile['ssid'] ?? null)) {
+                    $candidates['nm_connect'] = $profile['ssid'];
+                }
+            }
+        }
+        foreach (array_keys($post) as $key) {
+            if (preg_match('/^update(\d+)$/', (string)$key, $match) && is_string($post['ssid' . $match[1]] ?? null)) {
+                $candidates[$key] = $post['ssid' . $match[1]];
+            }
+        }
+
+        $found = [];
+        $shared = null;
+        foreach ($candidates as $key => $ssid) {
+            $ap = $this->ownAccessPointBySsid($ssid);
+            if ($ap === null) {
+                continue;
+            }
+            if ($shared === null) {
+                $shared = $this->sharedSsids();
+            }
+            $found[$key] = ['ap' => $ap, 'shared' => isset($shared[self::ssidBytes($ssid)])];
+        }
+        return $found;
+    }
+
+    /**
+     * Returns the SSIDs (as bytes) of the own hotspot that the last scan also
+     * found on an access point of a different device. Uses the cached scan.
+     *
+     * @return array SSID bytes => true
+     */
+    protected function sharedSsids(): array
+    {
+        $shared = [];
+        if (empty($_SESSION['wifi_client_interface'])) {
+            return $shared;
+        }
+        $scan = [];
+        $this->nearbyWifiStations($scan);
+        foreach ($scan as $ssid => $network) {
+            if (!empty($network['own']) && !empty($network['otherBss'])) {
+                $shared[self::ssidBytes((string)$ssid)] = true;
+            }
+        }
+        return $shared;
     }
 
     /**
@@ -101,8 +278,17 @@ class WiFiManager
         }
         $index++;
 
+        // an SSID is the own hotspot when one of its access points is an access
+        // point of this device. "otherBss" marks an SSID that an access point
+        // of a different device also sends (for example a repeater with the
+        // same SSID as its upstream network).
+        $own = [];
+        foreach ($this->ownAccessPoints() as $ap) {
+            $own[$ap['bssid']] = $ap['iface'];
+        }
+
         $current = [];
-        $commitCurrent = function () use (&$current, &$networks, &$index) {
+        $commitCurrent = function () use (&$current, &$networks, &$index, $own) {
             if (empty($current['ssid'])) {
                 return;
             }
@@ -116,11 +302,17 @@ class WiFiManager
 
             $channel = ConvertToChannel($current['freq'] ?? 0);
             $rssi = $current['signal'] ?? -100;
+            $ownIface = $own[strtolower($current['bssid'] ?? '')] ?? null;
 
             // if network is saved
             if (array_key_exists($ssid, $networks)) {
                 $networks[$ssid]['visible'] = true;
                 $networks[$ssid]['channel'] = $channel;
+                if ($ownIface !== null) {
+                    $networks[$ssid]['own'] = $ownIface;
+                } else {
+                    $networks[$ssid]['otherBss'] = true;
+                }
                 if (!isset($networks[$ssid]['RSSI']) || $networks[$ssid]['RSSI'] < $rssi) {
                     $networks[$ssid]['RSSI'] = $rssi;
                 }
@@ -136,6 +328,11 @@ class WiFiManager
                     'RSSI' => $rssi,
                     'index' => $index
                 ];
+                if ($ownIface !== null) {
+                    $networks[$ssid]['own'] = $ownIface;
+                } else {
+                    $networks[$ssid]['otherBss'] = true;
+                }
                 $index++; // increment for next new network
             }
         };
@@ -269,7 +466,7 @@ class WiFiManager
 
         // If session var is set leave it, if not try to find second interface
         // if trying to set interface then this can be skipped
-        if ($_SESSION['wifi_client_interface'] === null && !isset($_POST['wifiClientInterface'])) {
+        if (($_SESSION['wifi_client_interface'] ?? null) === null && !isset($_POST['wifiClientInterface'])) {
             exec("iw dev | awk '$1==\"Interface\" && $2!=\"$iface\" {print $2}'", $iface2);
             $client_iface = $_SESSION['wifi_client_interface'] = empty($iface2) ? $iface : trim($iface2[0]);    
         }
@@ -284,6 +481,9 @@ class WiFiManager
                 if ($old_iface && $old_iface !== $_POST['wifiClientInterface'] && validateInterface($old_iface)) {
                     exec("sudo wpa_cli -i $old_iface disconnect");
                     exec("sudo wpa_cli -i $old_iface disable_network all");
+                    // the NetworkManager connections of RaspAP stay on the old
+                    // interface otherwise, and connect it again
+                    (new \RaspAP\Networking\NetworkManagerClient())->purge($old_iface);
                     sleep(1);
                 }
 
@@ -461,6 +661,24 @@ class WiFiManager
     }
 
     /**
+     * Helper to convert an SSID to the correct wpa_cli set_network argument.
+     * Plain ASCII SSIDs are returned as a shell-escaped quoted string.
+     *
+     * @param string $ssid Internal SSID representation
+     * @return string Argument ready to append to a wpa_cli set_network ssid command
+     */
+    private function ssidToWpaCliArg(string $ssid): string
+    {
+        if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid)) {
+            $binary = preg_replace_callback('/\\\\x([0-9a-fA-F]{2})/', function ($m) {
+                return chr(hexdec($m[1]));
+            }, $ssid);
+            return bin2hex($binary);
+        }
+        return escapeshellarg('"' . $ssid . '"');
+    }
+
+    /**
      * Helper method to add a single network to wpa_supplicant
      *
      * @param array $network Network configuration
@@ -468,15 +686,15 @@ class WiFiManager
      */
     private function addWpaNetwork($network, $iface)
     {
-        $ssid = escapeshellarg('"' . $network['ssid'] . '"');
+        $ssid = $this->ssidToWpaCliArg($network['ssid']);
         $psk = escapeshellarg('"' . $network['passphrase'] . '"');
         $protocol = $network['protocol'] ?? 'WPA';
 
         // add network and get its ID
-        $netid = trim(shell_exec("sudo wpa_cli -i $iface add_network 2>&1"));
+        $netid = trim((string)shell_exec("sudo wpa_cli -i $iface add_network 2>&1"));
 
-        // validate network ID
-        if (!$netid || !is_numeric($netid)) {
+        // validate network ID; '0' is a valid ID (the first network)
+        if (!ctype_digit($netid)) {
             error_log("Failed to add network '{$network['ssid']}': Invalid network ID returned: '$netid'");
             return;
         }
@@ -694,7 +912,7 @@ CONF;
     public function updateNetwork(string $interface, string $ssid, string $passphrase, string $protocol = 'WPA'): ?int
     {
         $iface = escapeshellarg($interface);
-        $escapedSsid = escapeshellarg('"' . $ssid . '"');
+        $ssidArg = $this->ssidToWpaCliArg($ssid);
 
         $netid = shell_exec("sudo wpa_cli -i $iface add_network");
 
@@ -704,7 +922,7 @@ CONF;
 
         $netid = trim($netid);
         $commands = [
-            "sudo wpa_cli -i $iface set_network $netid ssid $escapedSsid"
+            "sudo wpa_cli -i $iface set_network $netid ssid $ssidArg"
         ];
 
         if ($protocol === self::SECURITY_OPEN) {
@@ -728,9 +946,11 @@ CONF;
      *
      * @param array $networks array of network configurations
      * @param string $interface the network interface name
+     * @param bool $reconfigure apply the file with wpa_cli; false when
+     *             NetworkManager manages the interface
      * @return array Array with 'success' (bool) and 'message' (string)
      */
-    public function writeWpaSupplicant(array $networks, string $interface): array
+    public function writeWpaSupplicant(array $networks, string $interface, bool $reconfigure = true): array
     {
         $wpa_file = fopen('/tmp/wifidata', 'w');
         if (!$wpa_file) {
@@ -744,7 +964,11 @@ CONF;
         foreach ($networks as $ssid => $network) {
             if ($network['protocol'] === self::SECURITY_OPEN) {
                 fwrite($wpa_file, "network={".PHP_EOL);
-                fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid)) {
+                    fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
+                } else {
+                    fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                }
                 fwrite($wpa_file, "\tkey_mgmt=NONE".PHP_EOL);
                 fwrite($wpa_file, "\tscan_ssid=1".PHP_EOL);
                 if (array_key_exists('priority', $network)) {
@@ -752,10 +976,12 @@ CONF;
                 }
                 fwrite($wpa_file, "}".PHP_EOL);
             } else {
-                if (strlen($network['passphrase']) >= 8 && strlen($network['passphrase']) <= 63) {
+                $passphrase = $network['passphrase'] ?? '';
+                $passkey    = $network['passkey'] ?? '';
+                if (strlen($passphrase) >= 8 && strlen($passphrase) <= 63) {
                     unset($wpa_passphrase);
                     unset($line);
-                    exec('wpa_passphrase '. $this->ssid2utf8(escapeshellarg($ssid)) . ' ' . escapeshellarg($network['passphrase']), $wpa_passphrase);
+                    exec('wpa_passphrase '. escapeshellarg($this->ssid2utf8($ssid)) . ' ' . escapeshellarg($passphrase), $wpa_passphrase);
                     foreach ($wpa_passphrase as $line) {
                         if (preg_match('/^\s*}\s*$/', $line)) {
                             if (array_key_exists('priority', $network)) {
@@ -763,17 +989,21 @@ CONF;
                             }
                             fwrite($wpa_file, $line.PHP_EOL);
                         } else {
-                            if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid) && strpos($line, "ssid=\"") !== false) {
+                            if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid) && preg_match('/^\s*ssid=/', $line)) {
                                 fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
                             } else {
                                 fwrite($wpa_file, $line.PHP_EOL);
                             }
                         }
                     }
-                } elseif (strlen($network['passphrase']) == 0 && strlen($network['passkey']) == 64) {
-                    $line = "\tpsk=" . $network['passkey'];
+                } elseif (strlen($passphrase) == 0 && strlen($passkey) == 64) {
+                    $line = "\tpsk=" . $passkey;
                     fwrite($wpa_file, "network={".PHP_EOL);
-                    fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                    if (preg_match('/\\\\x[0-9A-Fa-f]{2}/', $ssid)) {
+                        fwrite($wpa_file, "\tssid=P\"".$ssid."\"".PHP_EOL);
+                    } else {
+                        fwrite($wpa_file, "\tssid=\"".$ssid."\"".PHP_EOL);
+                    }
                     fwrite($wpa_file, $line.PHP_EOL);
                     if (array_key_exists('priority', $network)) {
                         fwrite($wpa_file, "\tpriority=".$network['priority'].PHP_EOL);
@@ -792,6 +1022,9 @@ CONF;
         if ($ok) {
             system('sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval);
             if ($returnval == 0) {
+                if (!$reconfigure) {
+                    return ['success' => true, 'message' => 'Wifi settings updated successfully'];
+                }
                 exec('sudo wpa_cli -i ' . escapeshellarg($interface) . ' reconfigure', $reconfigure_out, $reconfigure_return);
                 if ($reconfigure_return == 0) {
                     return ['success' => true, 'message' => 'Wifi settings updated successfully'];

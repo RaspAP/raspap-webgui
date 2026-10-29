@@ -22,7 +22,6 @@ class PluginInstaller
     private $refModules;
     private $rootPath;
     private $pluginsManifest;
-    private $repoPublic;
     private $helperScriptPath;
 
     public function __construct()
@@ -34,7 +33,6 @@ class PluginInstaller
         $this->refModules = '/refs/heads/master/.gitmodules';
         $this->rootPath = dirname(__DIR__, 3);
         $this->pluginsManifest = '/plugins/manifest.json';
-        $this->repoPublic = $this->getRepository();
         $this->helperScriptPath = RASPI_CONFIG.'/plugins/plugin_helper.sh';
     }
 
@@ -595,7 +593,7 @@ class PluginInstaller
             } elseif (!RASPI_MONITOR_ENABLED) {
                 $button = '<button type="button" class="btn btn-outline-primary btn-sm text-nowrap"
                     name="install-plugin" data-bs-toggle="modal" data-bs-target="#install-user-plugin"
-                    data-plugin-manifest="' .$manifest. '" data-repo-public="' .$this->repoPublic. '">' . _("Details") .'</button>';
+                    data-plugin-manifest="' .$manifest. '">' . _("Details") .'</button>';
             }
     
             $icon = htmlspecialchars($manifestData['icon'] ?? '');
@@ -615,26 +613,6 @@ class PluginInstaller
         }
         $html .= '</tbody></table>';
         return $html;
-    }
-
-    /**
-     * Determines remote repository of installed application
-     *
-     * @return boolean; true if public repo
-     */
-    public function getRepository(): bool
-    {
-        $output = [];
-        exec('git -C ' . escapeshellarg($this->rootPath) . ' remote -v', $output);
-
-        foreach ($output as $line) {
-            if (preg_match('#github\.com/RaspAP/(raspap-\w+)#', $line, $matches)) {
-                $repo = $matches[1];
-                $public = ($repo === 'raspap-webgui');
-                return $public;
-            }
-        }
-        return false;
     }
 }
 

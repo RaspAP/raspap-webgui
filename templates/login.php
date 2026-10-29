@@ -8,7 +8,7 @@
           <div class="col-12">
             <!-- branding -->
             <div class="text-center mb-3">
-              <img src="app/img/raspAP-logo.php" class="login-logo" alt="RaspAP logo" class="img-fluid" style="max-width: 100px;">
+              <?php renderBrandIcon(70, 70, 'login-logo', false); ?>
               <h2 class="login-brand"><?php echo htmlspecialchars(RASPI_BRAND_TEXT); ?></h2>
               <div class="mt-2 admin-login"><?php echo _("Administrator login") ?></div>
               <div class="text-center text-danger mt-1 mb-3"><?php echo $status ?></div>
@@ -29,7 +29,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary rounded-pill w-75 mt-4"><?php echo _("Login") ?></button>
                 <div class="small mt-2"><a href="https://docs.raspap.com/authentication/#restoring-defaults" target="_blank"><?php echo _("Forgot password") ?></a></div>
-                <img src="app/img/uri-qr-code.php?uri=https://docs.raspap.com/authentication/" class="figure-img img-fluid mt-5" alt="RaspAP docs" style="width:75px;">
+                <img src="app/img/uri-qr-code.php" class="figure-img img-fluid mt-5" alt="RaspAP docs" style="width:75px;">
                 <div><span class="small text-offwhite"><?= _('Scan for Login Help'); ?></span></div>
               </form>
             </div>

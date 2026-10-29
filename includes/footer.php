@@ -6,7 +6,7 @@
     <span class="ps-2"><?php echo sprintf(_('Created by the <a href="%s" target="_blank" rel="noopener">%s</a>'), 'https://github.com/RaspAP', _('RaspAP Team')); ?></span>
   </div>
   <div class="text-muted">
-    <i class="fas fa-heart heart"></i> <a href="https://docs.raspap.com/insiders" target="_blank" rel="noopener"><?php echo _("Get Insiders"); ?></a>
+    <i class="fas fa-heart heart"></i> <a href="https://docs.raspap.com/sponsor/" target="_blank" rel="noopener"><?php echo _("Get Insiders"); ?></a>
   </div>
 </div>
 

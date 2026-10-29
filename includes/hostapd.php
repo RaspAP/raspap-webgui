@@ -60,6 +60,7 @@ function DisplayHostAPDConfig()
 
     $txpower = $hotspot->getTxPower($interface);
     $arrHostapdConf = $hotspot->getHostapdIni();
+    $logLevels = $hostapd->getLogLevels();
     $logOutput = [];
 
     if (!RASPI_MONITOR_ENABLED) {
@@ -185,7 +186,8 @@ function DisplayHostAPDConfig()
             "arrHostapdConf",
             "operatingSystem",
             "countryCodes",
-            "logOutput"
+            "logOutput",
+            "logLevels"
         )
     );
 }

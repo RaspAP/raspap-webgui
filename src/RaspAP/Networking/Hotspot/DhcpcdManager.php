@@ -66,9 +66,11 @@ class DhcpcdManager
             $config[] = '# RaspAP br0 configuration';
             $config[] = 'denyinterfaces eth0 wlan0';
             $config[] = 'interface br0';
-            $config[] = 'static ip_address='.$bridgeConfig['staticIp'] . '/'. $bridgeConfig['netmask'];
-            $config[] = 'static routers='.$bridgeConfig['gateway'];
-            $config[] = 'static domain_name_servers='.$bridgeConfig['dns'];
+            if ($bridgeConfig !== null) {
+                $config[] = 'static ip_address='.$bridgeConfig['staticIp'] . '/'. $bridgeConfig['netmask'];
+                $config[] = 'static routers='.$bridgeConfig['gateway'];
+                $config[] = 'static domain_name_servers='.$bridgeConfig['dns'];
+            }
             $config[] = PHP_EOL;
         } elseif ($repeaterEnable) {
             $config = [
@@ -347,7 +349,7 @@ class DhcpcdManager
             $lines = explode(PHP_EOL, $matches[0]);
             foreach ($lines as $line) {
                 $line = trim($line);
-                if (preg_match('/^(interface|static|metric|nogateway|nohook)/', $line)) {
+                if (preg_match('/^(interface|static|metric|nogateway|gateway|nohook)/', $line)) {
                     $existing_config[] = $line;
                 }
             }
@@ -397,6 +399,12 @@ class DhcpcdManager
         // add metric if provided
         if (!empty($jsonData['Metric']) && !in_array('metric '.$jsonData['Metric'], $config)) {
             $config[] = 'metric '.$jsonData['Metric'];
+        }
+
+        // the AP interface must not add a default route to itself, unless
+        // the user turned on the default route for this interface
+        if (!in_array('gateway', $config, true) && !in_array('nogateway', $config, true)) {
+            $config[] = 'nogateway';
         }
         return $config;
     }

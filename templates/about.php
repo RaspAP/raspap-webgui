@@ -19,7 +19,7 @@ require_once 'app/lib/Parsedown.php';
         <div class="nav-tabs-wrapper">
           <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link active" href="#aboutgeneral" data-bs-toggle="tab"><?php echo _("About"); ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="#aboutsponsors" data-bs-toggle="tab"><?php echo _("Insiders"); ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="#aboutsponsors" data-bs-toggle="tab"><?php echo _("Sponsors"); ?></a></li>
             <li class="nav-item"><a class="nav-link" href="#aboutcontrib" data-bs-toggle="tab"><?php echo _("Contributing"); ?></a></li>
           </ul>
         </div>
@@ -54,6 +54,7 @@ require_once 'app/lib/Parsedown.php';
           <div id="msgUpdate" data-message="<?php echo _("A new release is available: Version"); ?>"></div>
           <div id="msgLatest" data-message="<?php echo _("Installed version is the latest release."); ?>"></div>
           <div id="msgInstall" data-message="<?php echo _("Install this update now?"); ?>"></div>
+          <div id="msgCheckFailed" data-message="<?php echo _("Unable to check for updates. Verify your internet connection and try again."); ?>"></div>
           <button type="button" data-message="<?php echo _("OK"); ?>" id="js-check-dismiss" class="btn btn-outline-secondary" data-bs-dismiss="modal"><?php echo _("Cancel"); ?></button>
           <button type="submit" id="js-sys-check-update" class="btn btn-outline-primary collapse"><?php echo _("OK"); ?></button>
         </div>

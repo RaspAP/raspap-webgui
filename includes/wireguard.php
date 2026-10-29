@@ -3,6 +3,7 @@
 require_once 'includes/config.php';
 
 use RaspAP\Networking\Hotspot\WiFiManager;
+use RaspAP\Networking\VpnConflict;
 
 $wifi = new WiFiManager();
 $wifi->getWifiInterface();
@@ -21,10 +22,15 @@ function DisplayWireGuardConfig()
         $optSrvEnable = isset($_POST['wgSrvEnable']) ? $_POST['wgSrvEnable'] : null;
         $optLogEnable = isset($_POST['wgLogEnable']) ? $_POST['wgLogEnable'] : null;
         $optKSwitch   = isset($_POST['wgKSwitch']) ? $_POST['wgKSwitch'] : null;
+        // NTP outside the tunnel is on by default; DNS is off by default
+        $optKSwitchNtp = (!isset($_POST['savewgsettings']) || isset($_POST['wgKSwitchNtp'])) ? 1 : null;
+        $optKSwitchDns = isset($_POST['wgKSwitchDns']) ? 1 : null;
+        $optKSwitchPortal = isset($_POST['wgKSwitchPortal']) ? 1 : null;
+        $optKSwitchPortalAuto = ($optKSwitchPortal && isset($_POST['wgKSwitchPortalAuto'])) ? 1 : null;
         if (isset($_POST['savewgsettings']) && $optConf == 'manual' && $optSrvEnable == 1 ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['savewgsettings']) && $optConf == 'upload' && is_uploaded_file($_FILES["wgFile"]["tmp_name"])) {
-            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optKSwitch, $optInterface);
+            SaveWireGuardUpload($status, $_FILES['wgFile'], $optRules, $optKSwitch, $optInterface, $optKSwitchNtp, $optKSwitchDns, $optKSwitchPortal, $optKSwitchPortalAuto);
         } elseif (isset($_POST['savewgsettings']) && isset($_POST['wg_penabled']) ) {
             SaveWireGuardConfig($status);
         } elseif (isset($_POST['startwg'])) {
@@ -48,16 +54,31 @@ function DisplayWireGuardConfig()
     // fetch server config
     exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $return);
     $conf = ParseConfig($return, $parseFlag);
+
+    // show the kill switch settings of the active configuration, unless the
+    // user has just submitted them
+    if (!isset($_POST['savewgsettings'])) {
+        exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $wgConfig);
+        $ksSettings = getKillSwitchSettings($wgConfig);
+        if ($ksSettings !== null) {
+            $optKSwitch = 1;
+            $optKSwitchNtp = $ksSettings['ntp'] ? 1 : null;
+            $optKSwitchDns = $ksSettings['dns'] ? 1 : null;
+            $optKSwitchPortal = $ksSettings['portal'] ? 1 : null;
+            $optKSwitchPortalAuto = $ksSettings['portalAuto'] ? 1 : null;
+        }
+    }
     $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
     $wg_srvport = ($conf['ListenPort'] ?? '') === ''
         ? getDefaultNetValue('wireguard','server','ListenPort')
         : $conf['ListenPort'];
-    $wg_srvipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','server','Address') : $conf['Address'];
-    $wg_srvdns = ($conf['DNS'] == '') ? getDefaultNetValue('wireguard','server','DNS') : $conf['DNS'];
+    $wg_srvipaddress = ($conf['Address'] ?? '') === '' ? getDefaultNetValue('wireguard','server','Address') : $conf['Address'];
+    $wg_srvdns = ($conf['DNS'] ?? '') === '' ? getDefaultNetValue('wireguard','server','DNS') : $conf['DNS'];
     if (is_array($wg_srvdns)) {
         $wg_srvdns = implode(', ', $wg_srvdns);
     }
     $wg_peerpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-peer-public.key', $return);
+    $wg_senabled = false;
     if (sizeof($conf) >0) {
         $wg_senabled = true;
     }
@@ -65,11 +86,12 @@ function DisplayWireGuardConfig()
     // fetch client config
     exec('sudo cat '. RASPI_WIREGUARD_PATH.'client.conf', $preturn);
     $conf = ParseConfig($preturn, $parseFlag);
-    $wg_pipaddress = ($conf['Address'] == '') ? getDefaultNetValue('wireguard','peer','Address') : $conf['Address'];
-    $wg_plistenport = ($conf['ListenPort'] == '') ? getDefaultNetValue('wireguard','peer','ListenPort') : $conf['ListenPort'];
-    $wg_pendpoint = ($conf['Endpoint'] == '') ? getDefaultNetValue('wireguard','peer','Endpoint') : $conf['Endpoint'];
-    $wg_pallowedips = ($conf['AllowedIPs'] == '') ? getDefaultNetValue('wireguard','peer','AllowedIPs') : $conf['AllowedIPs'];
-    $wg_pkeepalive = ($conf['PersistentKeepalive'] == '') ? getDefaultNetValue('wireguard','peer','PersistentKeepalive') : $conf['PersistentKeepalive'];
+    $wg_pipaddress = ($conf['Address'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','Address') : $conf['Address'];
+    $wg_plistenport = ($conf['ListenPort'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','ListenPort') : $conf['ListenPort'];
+    $wg_pendpoint = ($conf['Endpoint'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','Endpoint') : $conf['Endpoint'];
+    $wg_pallowedips = ($conf['AllowedIPs'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','AllowedIPs') : $conf['AllowedIPs'];
+    $wg_pkeepalive = ($conf['PersistentKeepalive'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','PersistentKeepalive') : $conf['PersistentKeepalive'];
+    $wg_penabled = false;
     if (sizeof($conf) >0) {
         $wg_penabled = true;
     }
@@ -78,8 +100,6 @@ function DisplayWireGuardConfig()
     exec('ip link show wg0 2>/dev/null', $wgstatus, $wg_return);
     $serviceStatus = ($wg_return === 0) ? "up" : "down";
     $wg_state = ($wg_return === 0);
-    $public_ip = get_public_ip();
-
     // fetch uploaded file configs
     exec("sudo ls ".RASPI_WIREGUARD_PATH, $clist);
     $configs = preg_grep('/^((?!wg0).)*\.conf/', $clist);
@@ -99,15 +119,24 @@ function DisplayWireGuardConfig()
     exec("ip -o link show | awk -F': ' '{print $2}'", $interfaces);
     sort($interfaces);
 
+    $vpnWarning = (new VpnConflict())->getWarning();
+    if ($vpnWarning !== null) {
+        $status->addMessage($vpnWarning, 'warning');
+    }
+    addCaptivePortalMessage($status);
+
     echo renderTemplate(
         "wireguard", compact(
             "status",
             "wg_state",
             "serviceStatus",
-            "public_ip",
             "interfaces",
             "optRules",
             "optKSwitch",
+            "optKSwitchNtp",
+            "optKSwitchDns",
+            "optKSwitchPortal",
+            "optKSwitchPortalAuto",
             "optLogEnable",
             "peer_id",
             "wg_srvpubkey",
@@ -130,6 +159,31 @@ function DisplayWireGuardConfig()
 }
 
 /**
+ * Reads the kill switch settings from the lines of a WireGuard configuration
+ *
+ * @param  array $lines
+ * @return array|null ntp and dns options, or null if there is no kill switch
+ */
+function getKillSwitchSettings(array $lines)
+{
+    foreach ($lines as $line) {
+        if (preg_match('/^\s*PostUp\s*=.*\bwg-killswitch\.sh\s+up\b(.*)$/', $line, $match)) {
+            return [
+                'ntp' => (bool) preg_match('/(^|\s)--allow-ntp(\s|$)/', $match[1]),
+                'dns' => (bool) preg_match('/(^|\s)--allow-dns(\s|$)/', $match[1]),
+                'portal' => (bool) preg_match('/(^|\s)--allow-portal(\s|$)/', $match[1]),
+                'portalAuto' => (bool) preg_match('/(^|\s)--portal-auto(\s|$)/', $match[1])
+            ];
+        }
+        // kill switch rule of older versions, without NTP and DNS options
+        if (preg_match('/^\s*PostUp\s*=\s*iptables -I OUTPUT ! -o %i .*-j REJECT/', $line)) {
+            return ['ntp' => false, 'dns' => false, 'portal' => false, 'portalAuto' => false];
+        }
+    }
+    return null;
+}
+
+/**
  * Validates uploaded .conf file, adds iptables post-up and
  * post-down rules.
  *
@@ -138,9 +192,13 @@ function DisplayWireGuardConfig()
  * @param  boolean $optRules
  * @param  boolean $optKSwitch
  * @param  string $optInterface
+ * @param  boolean $optKSwitchNtp kill switch lets NTP pass outside the tunnel
+ * @param  boolean $optKSwitchDns kill switch lets DNS to the uplink resolvers pass outside the tunnel
+ * @param  boolean $optKSwitchPortal AP clients can log in to a captive portal of the uplink
+ * @param  boolean $optKSwitchPortalAuto portal mode starts without a click of the user
  * @return object $status
  */
-function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface)
+function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface, $optKSwitchNtp = 1, $optKSwitchDns = null, $optKSwitchPortal = null, $optKSwitchPortalAuto = null)
 {
     define('KB', 1024);
     $tmp_destdir = '/tmp/';
@@ -177,32 +235,38 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
             if (isset($optRules)) {
                 $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUp');
                 $rules[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
-                $rules = preg_replace('/wlan0/m', $optInterface, $rules);
+                // "ap" makes wg-forward.sh use the AP interface of the time the
+                // tunnel starts, so the rules follow a later change of the AP
+                $fwdIface = ($optInterface === null || $optInterface === ($_SESSION['ap_interface'] ?? null)) ? 'ap' : $optInterface;
+                if (!preg_match('/^[A-Za-z0-9_.-]{1,15}$/', $fwdIface)) {
+                    $fwdIface = 'ap';
+                }
+                $rules = preg_replace('/%a/m', $fwdIface, $rules);
+                // defaults.json of an older version, with inline iptables rules
+                $rules = preg_replace('/wlan0/m', $fwdIface === 'ap' ? ($_SESSION['ap_interface'] ?? 'wlan0') : $fwdIface, $rules);
             }
             if (isset($optKSwitch)) {
-                // Get ap static ip_addr from system config, fallback to default if undefined
-                $jsonData = json_decode(getNetConfig($optInterface), true);
-                $ip_addr = ($jsonData['StaticIP'] == '') ? getDefaultNetValue('dhcp', $optInterface, 'static ip_address') : $jsonData['StaticIP'];
-                $mask = ($jsonData['SubnetMask'] == '') ? getDefaultNetValue('dhcp', $optInterface, 'subnetmask') : $jsonData['SubnetMask'];
-
-                // if empty, try to detect IP/mask from system
-                if (empty($ip_addr) || empty($mask)) {
-                    $ipDetails = shell_exec("ip -4 -o addr show dev " . escapeshellarg($optInterface));
-                    if (preg_match('/inet (\d+\.\d+\.\d+\.\d+)\/(\d+)/', $ipDetails, $matches)) {
-                        $ip_addr = $matches[1];
-                        $cidr = $matches[2];
-                    } else {
-                        $ip_addr = '0.0.0.0';
-                        $cidr = '24';
-                    }
-                } else {
-                    $cidr = mask2cidr($mask);
+                // wg-killswitch.sh finds the current AP subnet when the tunnel
+                // starts, so the configuration does not contain it
+                $ksOptions = [];
+                if (!empty($optKSwitchNtp)) {
+                    $ksOptions[] = '--allow-ntp';
                 }
-                $cidr_ip = strpos($ip_addr, '/') === false ? "$ip_addr/$cidr" : $ip_addr;
+                if (!empty($optKSwitchDns)) {
+                    $ksOptions[] = '--allow-dns';
+                }
+                if (!empty($optKSwitchPortal)) {
+                    $ksOptions[] = '--allow-portal';
+                    if (!empty($optKSwitchPortalAuto)) {
+                        $ksOptions[] = '--portal-auto';
+                    }
+                }
 
                 $rules[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUpEx');
                 $rules[] = 'PreDown = '.getDefaultNetValue('wireguard','server','PreDown');
-                $rules = preg_replace('/%s/m', $cidr_ip, $rules);
+                // defaults.json of an older version, with the AP subnet as %s
+                $rules = preg_replace('/\s*%s/m', '', $rules);
+                $rules = preg_replace('/\s*%o/m', $ksOptions ? ' '.implode(' ', $ksOptions) : '', $rules);
             }
             if ((isset($rules) && count($rules) > 0)) {
                 $rules[] = '';
@@ -213,12 +277,13 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
             }
         }
 
-        // Move processed file from /tmp and create symlink
-        $client_wg = RASPI_WIREGUARD_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'.conf';
+        // Sanitize, move processed file from /tmp and create symlink
+        $stem = preg_replace('/[^A-Za-z0-9\-_]/', '_', pathinfo($file['name'], PATHINFO_FILENAME));
+        $client_wg = RASPI_WIREGUARD_PATH.$stem.'.conf';
         chmod($tmp_wgconfig, 0644);
-        system("sudo mv $tmp_wgconfig $client_wg", $return);
+        system("sudo mv ".escapeshellarg($tmp_wgconfig)." ".escapeshellarg($client_wg), $return);
         system("sudo rm ".RASPI_WIREGUARD_CONFIG, $return);
-        system("sudo ln -s $client_wg ".RASPI_WIREGUARD_CONFIG, $return);
+        system("sudo ln -s ".escapeshellarg($client_wg)." ".RASPI_WIREGUARD_CONFIG, $return);
 
         if ($return ==0) {
             $status->addMessage('WireGuard configuration uploaded successfully', 'info');

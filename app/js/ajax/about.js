@@ -1,88 +1,130 @@
 import { getCSRFToken } from "../helpers.js";
 
-export function fetchUpdateResponse() {
-    const complete = 6;
-    const error = 7;
-    let phpFile = 'ajax/system/sys_read_logfile.php';
+const STEP_COMPLETE = 6;
+const STEP_ERROR = 7;
+const POLL_INTERVAL = 1000;
+// the installer restarts lighttpd and php-fpm, so tolerate a brief outage
+const MAX_POLL_FAILURES = 60;
+// the installer may briefly disappear while it relaunches itself
+const MAX_STOPPED_POLLS = 5;
 
+// sys_read_logfile.php returns one step number per line, plus "stopped"
+// if the installer is no longer running
+export function parseUpdateResponse(response) {
+    const lines = String(response).split(/\r?\n/).map(line => line.trim());
+    const steps = lines.filter(line => /^\d+$/.test(line)).map(Number);
+    return {
+        steps: steps,
+        complete: steps.includes(STEP_COMPLETE),
+        error: steps.includes(STEP_ERROR),
+        stopped: lines.includes('stopped')
+    };
+}
+
+function showUpdateResult(success) {
+    const msg = $(success ? '#successMsg' : '#errorMsg').data('message');
+    $('#updateMsg').after('<span class="small">' + msg + '</span>');
+    $('#updateMsg').addClass(success ? 'fa-check' : 'fa-times');
+    $('#updateMsg').removeClass('invisible');
+    $('#updateSync2').removeClass("fa-spin");
+    $('#updateOk').removeAttr('disabled');
+}
+
+export function fetchUpdateResponse(since, failures = 0, stoppedPolls = 0) {
     $.ajax({
-        url: phpFile,
+        url: 'ajax/system/sys_read_logfile.php',
         type: 'GET',
-        success: function(response) { 
-            for (let i = 1; i <= 6; i++) {
-                let divId = '#updateStep' + i;
-                if (response.includes(i.toString())) {
-                    $(divId).removeClass('invisible');
-                }
-            }
-            // check if the update is complete or if there's an error
-            if (response.includes(complete)) {
-                var successMsg = $('#successMsg').data('message');
-                $('#updateMsg').after('<span class="small">' + successMsg + '</span>');
-                $('#updateMsg').addClass('fa-check');
-                $('#updateMsg').removeClass('invisible');
-                $('#updateStep6').removeClass('invisible');
-                $('#updateSync2').removeClass("fa-spin");
-                $('#updateOk').removeAttr('disabled');
-            } else if (response.includes(error)) {
-                var errorMsg = $('#errorMsg').data('message');
-                $('#updateMsg').after('<span class="small">' + errorMsg + '</span>');
-                $('#updateMsg').addClass('fa-times');
-                $('#updateMsg').removeClass('invisible');
-                $('#updateSync2').removeClass("fa-spin");
-                $('#updateOk').removeAttr('disabled');
+        data: { since: since },
+        dataType: 'text',
+        cache: false,
+        success: function(response) {
+            const status = parseUpdateResponse(response);
+            status.steps.forEach(step => $('#updateStep' + step).removeClass('invisible'));
+
+            if (status.complete) {
+                showUpdateResult(true);
+            } else if (status.error) {
+                showUpdateResult(false);
+            } else if (status.stopped && stoppedPolls + 1 >= MAX_STOPPED_POLLS) {
+                console.error("Update stopped before completing");
+                showUpdateResult(false);
             } else {
-                setTimeout(fetchUpdateResponse, 500);
+                setTimeout(function() {
+                    fetchUpdateResponse(since, 0, status.stopped ? stoppedPolls + 1 : 0);
+                }, POLL_INTERVAL);
             }
         },
         error: function(xhr, status, error) {
-            console.error("AJAX Error:", error);
+            if (failures + 1 >= MAX_POLL_FAILURES) {
+                console.error("AJAX Error:", error);
+                showUpdateResult(false);
+            } else {
+                setTimeout(function() {
+                    fetchUpdateResponse(since, failures + 1, stoppedPolls);
+                }, POLL_INTERVAL * 2);
+            }
         }
     });
 }
 
 export function initAbout_ajax() {
     console.info("RaspAP About ajax module initialized");
-    
+
     $('#chkupdateModal').on('shown.bs.modal', function (e) {
-    var csrfToken = getCSRFToken();
-    $.post('ajax/system/sys_chk_update.php',{'csrf_token': csrfToken},function(data){
-            var response = JSON.parse(data);
-            var tag = response.tag;
-            var update = response.update;
-            var msg;
-            var msgUpdate = $('#msgUpdate').data('message');
-            var msgLatest = $('#msgLatest').data('message');
-            var msgInstall = $('#msgInstall').data('message');
-            var msgDismiss = $('#js-check-dismiss').data('message');
-            var faCheck = '<i class="fas fa-check ms-2"></i><br />';
-            $("#updateSync").removeClass("fa-spin");
-            if (update === true) {
-                msg = msgUpdate +' '+tag;
-                $("#msg-check-update").html(msg);
-                $("#msg-check-update").append(faCheck);
-                $("#msg-check-update").append("<p>"+msgInstall+"</p>");
-                $("#js-sys-check-update").removeClass("collapse");
-            } else {
-                msg = msgLatest;
-                let dismiss = $("#js-check-dismiss");
-                $("#msg-check-update").html(msg);
-                $("#msg-check-update").append(faCheck);
-                $("#js-sys-check-update").remove();
-                dismiss.text(msgDismiss);
-                dismiss.removeClass("btn-outline-secondary");
-                dismiss.addClass("btn-primary");
-            }
-        });
+        var csrfToken = getCSRFToken();
+        var faCheck = '<i class="fas fa-check ms-2"></i><br />';
+        var msgDismiss = $('#js-check-dismiss').data('message');
+        var dismiss = $("#js-check-dismiss");
+
+        $.post('ajax/system/sys_chk_update.php', {'csrf_token': csrfToken})
+            .done(function(data) {
+                var response;
+                try {
+                    response = JSON.parse(data);
+                } catch (e) {
+                    response = {error: true};
+                }
+                $("#updateSync").removeClass("fa-spin");
+                if (response.error) {
+                    $("#msg-check-update").html($('#msgCheckFailed').data('message'));
+                    $("#js-sys-check-update").addClass("collapse");
+                } else if (response.update === true) {
+                    $("#msg-check-update").html($('#msgUpdate').data('message') + ' ' + response.tag);
+                    $("#msg-check-update").append(faCheck);
+                    $("#msg-check-update").append("<p>" + $('#msgInstall').data('message') + "</p>");
+                    $("#js-sys-check-update").removeClass("collapse");
+                } else {
+                    $("#msg-check-update").html($('#msgLatest').data('message'));
+                    $("#msg-check-update").append(faCheck);
+                    $("#js-sys-check-update").remove();
+                    dismiss.text(msgDismiss);
+                    dismiss.removeClass("btn-outline-secondary");
+                    dismiss.addClass("btn-primary");
+                }
+            })
+            .fail(function() {
+                $("#updateSync").removeClass("fa-spin");
+                $("#msg-check-update").html($('#msgCheckFailed').data('message'));
+            });
     });
 
     $('#performUpdate').on('submit', function(event) {
         event.preventDefault();
         var csrfToken = getCSRFToken();
-        $.post('ajax/system/sys_perform_update.php',{
-            'csrf_token': csrfToken
-        })
         $('#chkupdateModal').modal('hide');
         $('#performupdateModal').modal('show');
+        $.post('ajax/system/sys_perform_update.php', {'csrf_token': csrfToken})
+            .done(function(data) {
+                var started;
+                try {
+                    started = JSON.parse(data).started;
+                } catch (e) {
+                    started = 0;
+                }
+                fetchUpdateResponse(started);
+            })
+            .fail(function() {
+                showUpdateResult(false);
+            });
     });
 }

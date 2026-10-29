@@ -1,6 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
   <!-- Navbar Brand-->
-  <a class="sidebar-brand-text navbar-brand ps-3" href="/">RaspAP</a>
+  <a class="sidebar-brand-text navbar-brand ps-3" href="/"><?php echo htmlspecialchars(RASPI_BRAND_TEXT); ?></a>
   <!-- Sidebar Toggle-->
   <button class="btn btn-link btn-lg order-1 order-lg-0 me-lg-auto py-2 px-3 bd-highlight" id="sidebarToggle" href="#!">
     <i class="fas fa-bars"></i>
@@ -23,9 +23,8 @@
     <?php endif; ?>
     <!-- Auth user -->
     <li>
-      <a class="d-flex flex-nowrap align-items-center gap-1" href="auth_conf">
-        <span class="text-muted small"><?php echo htmlspecialchars($_SESSION['user_id'] ?? '', ENT_QUOTES); ?></span>
-        <i class="fas fa-user-circle text-muted fa-3x"></i>
+      <a class="d-flex flex-nowrap align-items-center gap-2" href="auth_conf">
+        <?php echo getUserAvatar(); ?>
       </a>
     </li>
   </ul>

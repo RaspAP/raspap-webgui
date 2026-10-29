@@ -17,16 +17,14 @@
      <div class="col-md-8">
       <div class="mt-3">
         <?php echo sprintf(
-        _('RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s with immediate access to %8$s available to %9$s.'),
+        _('RaspAP is a co-creation of %1$s and %2$s with the contributions of our %3$s and %4$s. Learn more about joining the project as a %5$s, %6$s or %7$s.'),
         '<a href="https://github.com/billz">billz</a>',
         '<a href="https://github.com/sirlagz">SirLagz</a>',
         '<a href="https://github.com/raspap/raspap-webgui/graphs/contributors">' . _('developer community') . '</a>',
         '<a href="https://crowdin.com/project/raspap">' . _('language translators') . '</a>',
         '<a href="https://docs.raspap.com/#get-involved">' . _('code contributor') . '</a>',
         '<a href="https://docs.raspap.com/translations/">' . _('translator') . '</a>',
-        '<a href="https://github.com/sponsors/RaspAP">' . _('financial sponsor') . '</a>',
-        '<a href="https://docs.raspap.com/insiders/#whats-in-it-for-me">' . _('exclusive features') . '</a>',
-        '<strong>' . _('Insiders') . '</strong>'
+        '<a href="https://github.com/sponsors/RaspAP">' . _('financial sponsor') . '</a>'
         ); ?>
       </div>
       <div class="mt-3 project-links">

@@ -12,6 +12,11 @@ namespace RaspAP\System;
 
 class Sysinfo
 {
+    /**
+     * VPN interfaces recognized by RaspAP
+     */
+    public const VPN_INTERFACES = ['wg0', 'tun0', 'tailscale0'];
+
     public function hostname()
     {
         return shell_exec("hostname -f");
@@ -187,26 +192,36 @@ class Sysinfo
     /**
      * Determines if a VPN interface is active
      *
-     * @return string $interface
+     * @return string $interface, the first active VPN interface
      */
     public function getActiveVpnInterface(): ?string
     {
+        return $this->getActiveVpnInterfaces()[0] ?? null;
+    }
+
+    /**
+     * Returns all active VPN interfaces, in VPN_INTERFACES order
+     *
+     * @return array $interfaces
+     */
+    public function getActiveVpnInterfaces(): array
+    {
         $output = shell_exec('ip a 2>/dev/null');
         if (!$output) {
-            return null;
+            return [];
         }
-        $vpnInterfaces = ['wg0', 'tun0', 'tailscale0'];
+        $interfaces = [];
 
         // interface must have an 'UP' status and an IP address
-        foreach ($vpnInterfaces as $interface) {
+        foreach (self::VPN_INTERFACES as $interface) {
             if (strpos($output, "$interface:") !== false) {
                 if (preg_match("/\d+: $interface: .*<.*UP.*>/", $output) &&
                     preg_match("/inet\b.*$interface/", $output)) {
-                        return $interface;
+                        $interfaces[] = $interface;
                 }
             }
         }
-        return null;
+        return $interfaces;
     }
 }
 

@@ -20,25 +20,36 @@
             <tr><td colspan=5>No route to the internet found</td></tr>
             <?php else: ?>
               <?php foreach($routeInfo as $route): ?>
-                <tr>
-                  <td><?php echo $route['interface'] ?></td>
-                  <td><?php echo $route['ip-address'] ?></td>
-                  <td><?php echo $route['gateway'] ?><br><?php $route['gw-name'] ?></td>
+                <tr<?php if (!$route['isAP']): ?> class="js-internet-access" data-iface="<?php echo htmlspecialchars($route['interface'], ENT_QUOTES) ?>" data-in-use="<?php echo $route['in-use'] ? '1' : '0' ?>"<?php endif ?>>
+                  <td>
+                    <?php echo htmlspecialchars($route['interface'], ENT_QUOTES) ?>
+                    <?php if ($route['in-use']): ?>
+                      <br><small class="text-muted"><?php echo _("Used for internet traffic"); ?></small>
+                    <?php endif ?>
+                  </td>
+                  <td><?php echo htmlspecialchars($route['ip-address'], ENT_QUOTES) ?></td>
+                  <td><?php echo htmlspecialchars($route['gateway'], ENT_QUOTES) ?></td>
                   <?php if ($route['isAP']): ?>
                     <td>
-                      <p class="m-0">Access point</p>
+                      <p class="m-0"><?php echo _("Access point"); ?></p>
                     </td>
                   <?php else: ?>
                     <td>
-                      <p class="m-0"  data-bs-toggle="tooltip" data-bs-placement="left" title="<?php echo "ping ".RASPI_ACCESS_CHECK_IP ?>">
-                        <i class="fas <?php echo $route["access-ip"] ? "fa-check" : "fa-times"; ?>" ></i> <?php echo "IP" ?>
-                      </p>
-                      <p class="m-0" data-bs-toggle="tooltip" data-bs-placement="left" title="<?php echo "ping ".RASPI_ACCESS_CHECK_DNS ?>">
-                        <i class="fas <?php echo $route["access-dns"] ? "fa-check" : "fa-times"; ?>" ></i> <?php echo "DNS" ?>
-                      </p>
-                      <p class="m-0" data-bs-toggle="tooltip" data-bs-placement="left" title="<?php echo RASPI_ACCESS_CHECK_URL ?>">
-                        <i class="fas <?php echo $route["access-url"] ? "fa-check" : "fa-times"; ?>" ></i> <?php echo "HTTP" ?>
-                      </p>
+                      <div class="js-access-checks">
+                        <p class="m-0"  data-bs-toggle="tooltip" data-bs-placement="left" title="<?php echo "ping ".RASPI_ACCESS_CHECK_IP ?>">
+                          <i class="fas fa-circle-notch fa-spin js-access-ip"></i> <?php echo "IP" ?>
+                        </p>
+                        <p class="m-0" data-bs-toggle="tooltip" data-bs-placement="left" title="<?php echo "ping ".RASPI_ACCESS_CHECK_DNS ?>">
+                          <i class="fas fa-circle-notch fa-spin js-access-dns"></i> <?php echo "DNS" ?>
+                        </p>
+                        <p class="m-0" data-bs-toggle="tooltip" data-bs-placement="left" title="<?php echo RASPI_ACCESS_CHECK_URL ?>">
+                          <i class="fas fa-circle-notch fa-spin js-access-http"></i> <?php echo "HTTP" ?>
+                        </p>
+                        <?php if (!empty($route['path-interface']) && !$route['in-use']): ?>
+                          <p class="m-0 small text-muted js-access-hint d-none"><?php echo htmlspecialchars(sprintf(_("Internet traffic uses %s. A kill switch can block this check."), $route['path-interface']), ENT_QUOTES) ?></p>
+                        <?php endif ?>
+                      </div>
+                      <p class="m-0 d-none js-access-ap"><?php echo _("Access point"); ?></p>
                     </td>
                   <?php endif ?>
                 </tr>

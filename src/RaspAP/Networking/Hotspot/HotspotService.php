@@ -182,6 +182,8 @@ class HotspotService
             $validated['repeater']  = !empty($states['RepeaterEnable']);
             $validated['dualmode']  = !empty($states['DualAPEnable']);
             $validated['txpower']   = $post_data['txpower'];
+            $validated['log_enable'] = !empty($states['LogEnable']);
+            $validated['log_level']  = $states['LogLevel'] ?? 2;
 
             // add 802.11ax/be specific parameters if present
             if (in_array($validated['hw_mode'], ['ax', 'be'])) {
@@ -193,6 +195,8 @@ class HotspotService
             // hostapd
             $config = $this->hostapd->buildConfig($validated, $status);
             $this->hostapd->saveConfig($config, $dualAPEnable, $validated['interface']);
+            // NetworkManager must not connect the AP interface as a WiFi client
+            (new \RaspAP\Networking\NetworkManagerClient())->purge($validated['interface']);
             $this->maybeSetRegDomain($post_data['country_code'], $status);
 
             $status->addMessage('WiFi hotspot settings saved.', 'success');
@@ -338,19 +342,18 @@ class HotspotService
      */
     public function getRegDomain(): string
     {
-        $domain = shell_exec("iw reg get | grep -o 'country [A-Z]\{2\}' | awk 'NR==1{print $2}'");
+        exec('iw reg get', $output, $returnCode);
 
-        if ($domain === null) {
+        if ($returnCode !== 0) {
             throw new \RuntimeException('Failed to execute regulatory domain command');
         }
 
-        $domain = trim($domain);
-
-        if (empty($domain)) {
-            throw new \RuntimeException('Unable to determine regulatory domain');
+        foreach ($output as $line) {
+            if (preg_match('/^country\s+([A-Z]{2}):/', trim($line), $matches)) {
+                return $matches[1];
+            }
         }
-
-        return $domain;
+        return '';
     }
 
     /**

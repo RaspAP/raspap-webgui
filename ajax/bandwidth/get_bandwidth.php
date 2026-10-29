@@ -29,7 +29,11 @@ exec(
     $exitcodedaily
 );
 if ($exitcodedaily !== 0) {
-    exit('vnstat error');
+    // vnstat has no statistics for the interface. The page then offers to
+    // add the interface.
+    http_response_code(404);
+    header('Content-Type: application/json');
+    exit(json_encode(['error' => 'nodata']));
 }
 
 $jsonobj = json_decode($jsonstdoutvnstat[0], true);

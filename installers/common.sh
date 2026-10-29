@@ -30,18 +30,10 @@ readonly rulesv4="/etc/iptables/rules.v4"
 readonly blocklist_hosts="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
 readonly blocklist_domains="https://big.oisd.nl/dnsmasq"
 
-if [ "$insiders" == 1 ]; then
-    repo="RaspAP/raspap-insiders"
-    branch=${RASPAP_INSIDERS_LATEST}
-fi
-
-#Use ssh IF $ssh is set AND $username and $acctoken IS NOT set
-if [ -n "$username" ] && [ -n "$acctoken" ]; then
-    git_source_url="https://${username}:${acctoken}@github.com/$repo"
-    ssh=0
-elif [ "$ssh" == 1 ]; then 
+# Use ssh if $ssh is set, otherwise https
+if [ "$ssh" == 1 ]; then
     git_source_url="git@github.com:$repo"
-else 
+else
     git_source_url="https://github.com/$repo"
 fi
 webroot_dir="/var/www/html"
@@ -77,6 +69,7 @@ function _install_raspap() {
 # The user is not prompted to install new RaspAP components.
 # The -y, --yes and -p, --path switches may be used for an unattended update.
 function _update_raspap() {
+    _detach_from_php_fpm
     _display_welcome
     _config_installation
     _update_system_packages
@@ -85,9 +78,33 @@ function _update_raspap() {
     _download_latest_files
     _change_file_ownership
     _patch_system_files
+    _update_wireguard
     _enable_network_activity_monitor
     _create_plugin_scripts
     _install_complete
+}
+
+# When an update is started from the web UI, the installer runs inside the
+# php-fpm service cgroup. Restarting php-fpm during the update (directly or
+# via apt) would kill the installer along with it, so relaunch the update as
+# a transient systemd unit and exit
+function _detach_from_php_fpm() {
+    local fpm_unit
+    fpm_unit=$(grep -oE 'php[0-9.]*-fpm\.service' /proc/self/cgroup 2>/dev/null) || return 0
+    if ! command -v systemd-run > /dev/null || [ ! -f "$0" ]; then
+        return 0
+    fi
+    # the update log must be written to the same /tmp that php-fpm reads
+    if [ "$(systemctl show -p PrivateTmp --value "$fpm_unit")" != "no" ]; then
+        return 0
+    fi
+    local args=(--update --yes --check 0 --repo "$repo" --branch "$branch")
+    if [ -n "$path" ]; then
+        args+=(--path "$path")
+    fi
+    echo "Relaunching update outside of $fpm_unit"
+    sudo systemd-run --unit=raspap-update --collect --quiet "$0" "${args[@]}" || _install_status 1 "Unable to start raspap-update.service"
+    exit 0
 }
 
 # Prompts user to set installation options
@@ -275,10 +292,8 @@ function _install_dependencies() {
         sudo chmod +x /usr/local/bin/isoquery || _install_status 1 "Failed to set executable permissions on isoquery"
     fi
 
-    if [ "$insiders" == 1 ]; then
-        network_tools="curl dnsutils nmap"
-        echo "${network_tools} will be installed from the main deb sources list"
-    fi
+    network_tools="curl dnsutils nmap"
+    echo "${network_tools} will be installed from the main deb sources list"
 
     # Set dconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
@@ -581,10 +596,147 @@ function _install_wireguard() {
         sudo ln -sf /usr/bin/true /usr/local/bin/resolvconf || _install_status 1 "Failed to apply resolvconf shim"
     fi
 
+    _install_wireguard_killswitch
+    _install_fake_hwclock
+
     echo "Enabling wg-quick@wg0"
     sudo systemctl enable wg-quick@wg0 || _install_status 1 "Failed to enable wg-quick service"
     echo "Enabling WireGuard management option"
     sudo sed -i "s/\('RASPI_WIREGUARD_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"
+    _install_status 0
+}
+
+# Install the WireGuard kill switch script
+function _install_wireguard_killswitch() {
+    echo "Copying installers/wg-killswitch.sh to $raspap_network"
+    sudo install -o root -g root -m 750 "$webroot_dir/installers/wg-killswitch.sh" "${raspap_network}wg-killswitch.sh" || _install_status 1 "Unable to install wg-killswitch.sh"
+    echo "Copying installers/wg-forward.sh to $raspap_network"
+    sudo install -o root -g root -m 750 "$webroot_dir/installers/wg-forward.sh" "${raspap_network}wg-forward.sh" || _install_status 1 "Unable to install wg-forward.sh"
+
+    # on install and on update
+    _install_ntp_fallback
+    _install_captive_portal
+}
+
+# Install the captive portal helper for the kill switch option "Allow captive
+# portal login". The timer runs as root, so the script must be in a directory
+# that only root can change. The probe runs as the system user raspap-probe,
+# the only user that the kill switch lets send HTTP requests outside the tunnel.
+# The installer does not start the timer: wg-killswitch.sh starts it when the
+# tunnel starts with the option, and stops it with the tunnel.
+function _install_captive_portal() {
+    echo "Installing the captive portal helper"
+    if ! id -u raspap-probe > /dev/null 2>&1; then
+        sudo useradd --system --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin raspap-probe ||
+            _install_status 1 "Unable to create the user raspap-probe"
+    fi
+    # psl checks the DNS domain of the uplink against the Public Suffix List
+    sudo apt-get install -y psl || _install_status 1 "Unable to install psl"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/captive-portal.sh" /usr/local/sbin/raspap-captive-portal.sh ||
+        _install_status 1 "Unable to install the captive portal helper"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-captive-portal.service" /etc/systemd/system/raspap-captive-portal.service ||
+        _install_status 1 "Unable to install raspap-captive-portal.service"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-captive-portal.timer" /etc/systemd/system/raspap-captive-portal.timer ||
+        _install_status 1 "Unable to install raspap-captive-portal.timer"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-captive-portal-cleanup.service" /etc/systemd/system/raspap-captive-portal-cleanup.service ||
+        _install_status 1 "Unable to install raspap-captive-portal-cleanup.service"
+    sudo systemctl daemon-reload
+    # removes portal mode at boot, for example after a power loss
+    sudo systemctl enable raspap-captive-portal-cleanup.service || _install_status 1 "Unable to enable raspap-captive-portal-cleanup.service"
+}
+
+# Keep the clock across reboots, so that the WireGuard handshake does not fail
+# because the clock is behind. fake-hwclock restores the last saved time at
+# boot. Called on install only, not on update.
+function _install_fake_hwclock() {
+    # An RTC with a battery keeps the time. The RTC of a Raspberry Pi 5
+    # (rpi-rtc) needs an optional battery, so it does not count.
+    if [ -e /sys/class/rtc/rtc0/name ] && ! grep -q "rpi-rtc" /sys/class/rtc/rtc0/name; then
+        echo "RTC found ($(cat /sys/class/rtc/rtc0/name)), fake-hwclock not installed"
+        return 0
+    fi
+    echo "Installing fake-hwclock and saving the time every 5 minutes"
+    sudo apt-get install -y fake-hwclock || _install_status 1 "Unable to install fake-hwclock"
+    echo "*/5 * * * * root /usr/sbin/fake-hwclock save" | sudo tee /etc/cron.d/raspap-fake-hwclock >/dev/null || _install_status 1 "Unable to add fake-hwclock cron job"
+}
+
+# Add NTP servers by IP address. When the WireGuard tunnel is down and DNS goes
+# through the tunnel, NTP server names do not resolve. The kill switch can let
+# NTP pass outside the tunnel, so the clock can then be set from these servers.
+# For systemd-timesyncd they are fallback servers; for ntpsec they are extra
+# servers (see below).
+function _install_ntp_fallback() {
+    # time.cloudflare.com, see https://developers.cloudflare.com/time-services/ntp/usage/
+    local servers="162.159.200.1 162.159.200.123 2606:4700:f1::1 2606:4700:f1::123"
+    local server defaults
+
+    # systemd-timesyncd (default): uses the fallback servers in turn
+    if systemctl cat systemd-timesyncd.service > /dev/null 2>&1; then
+        echo "Adding NTP fallback servers for systemd-timesyncd"
+        # keep the default servers of the distribution first
+        defaults=$(sed -n 's/^#\?FallbackNTP=//p' /etc/systemd/timesyncd.conf 2>/dev/null | head -n 1)
+        sudo mkdir -p /etc/systemd/timesyncd.conf.d || _install_status 1 "Unable to create /etc/systemd/timesyncd.conf.d"
+        printf '[Time]\nFallbackNTP=%s\n' "$(echo $defaults $servers)" |
+            sudo tee /etc/systemd/timesyncd.conf.d/90-raspap.conf > /dev/null || _install_status 1 "Unable to add NTP fallback servers"
+        sudo systemctl try-restart systemd-timesyncd.service
+    fi
+
+    # ntpsec (e.g. NTP Server plugin): ntpd reads each .conf file in the ntp.d
+    # directory next to ntp.conf, after ntp.conf, without an includefile line
+    # (see FILES in ntpd(8)). Thus the plugin does not change these servers.
+    # ntpsec has no fallback-only option: ntpd uses these servers together with
+    # the servers in ntp.conf and selects the best sources. When the server
+    # names do not resolve, these servers are the only ones that work.
+    if [ -d /etc/ntpsec ]; then
+        echo "Adding NTP servers by IP address for ntpsec"
+        sudo mkdir -p /etc/ntpsec/ntp.d || _install_status 1 "Unable to create /etc/ntpsec/ntp.d"
+        {
+            echo "# Added by RaspAP: NTP servers by IP address (time.cloudflare.com)."
+            echo "# ntpd uses them together with the servers in ntp.conf. They keep"
+            echo "# the clock correct when the server names do not resolve."
+            for server in $servers; do
+                echo "server $server iburst"
+            done
+        } | sudo tee /etc/ntpsec/ntp.d/90-raspap-fallback.conf > /dev/null || _install_status 1 "Unable to add NTP fallback servers"
+        sudo systemctl try-restart ntpsec.service
+    fi
+}
+
+# Update the WireGuard kill switch of an existing installation: install the
+# script, update the kill switch rules in defaults.json and migrate the rules
+# of older versions in the WireGuard configurations. A running tunnel keeps
+# the old rule until it restarts.
+function _update_wireguard() {
+    if ! command -v wg-quick > /dev/null; then
+        return 0
+    fi
+    _install_log "Updating WireGuard kill switch"
+    _install_wireguard_killswitch
+
+    local defaults="${raspap_network}defaults.json"
+    if [ -f "$defaults" ]; then
+        echo "Updating kill switch rules in $defaults"
+        sudo php -r '
+            $file = $argv[1];
+            $legacy = "iptables -%s OUTPUT ! -o %%i -m mark ! --mark \$(wg show %%i fwmark) -m addrtype ! --dst-type LOCAL ! -d %%s -j REJECT";
+            $json = file_get_contents($file);
+            $json = str_replace(sprintf($legacy, "I"), "/etc/raspap/networking/wg-killswitch.sh up %i %s %o", $json);
+            $json = str_replace(sprintf($legacy, "D"), "/etc/raspap/networking/wg-killswitch.sh down %i", $json);
+            // the kill switch and the forwarding rules find the current AP when the tunnel starts
+            $json = str_replace("/etc/raspap/networking/wg-killswitch.sh up %i %s %o", "/etc/raspap/networking/wg-killswitch.sh up %i %o", $json);
+            $forward = "iptables -%1\$s FORWARD -i wlan0 -o %%i -j ACCEPT; iptables -%1\$s FORWARD -i %%i -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -%1\$s POSTROUTING -o %%i -j MASQUERADE";
+            $json = str_replace(sprintf($forward, "A"), "/etc/raspap/networking/wg-forward.sh up %i %a", $json);
+            $json = str_replace(sprintf($forward, "D"), "/etc/raspap/networking/wg-forward.sh down %i", $json);
+            file_put_contents($file, $json) !== false || exit(1);
+        ' -- "$defaults" || _install_status 1 "Unable to update $defaults"
+    fi
+
+    echo "Migrating kill switch rules in WireGuard configurations"
+    sudo find /etc/wireguard -maxdepth 1 -type f -name '*.conf' \
+        -exec "${raspap_network}wg-killswitch.sh" migrate {} + || _install_status 1 "Unable to migrate WireGuard configurations"
+    echo "Migrating forwarding rules in WireGuard configurations"
+    sudo find /etc/wireguard -maxdepth 1 -type f -name '*.conf' \
+        -exec "${raspap_network}wg-forward.sh" migrate {} + || _install_status 1 "Unable to migrate WireGuard configurations"
     _install_status 0
 }
 
@@ -631,6 +783,10 @@ function _install_restapi() {
     fi
     python3 -m pip install -r "$raspap_dir/api/requirements.txt" --break-system-packages || _install_status 1 " Unable to install pip modules"
    
+    # Run the service as the user that installed the pip modules
+    local restapi_user=$(id -un)
+    echo "Setting restapi service user to ${restapi_user}"
+    sudo sed -i "s/^User=.*/User=${restapi_user}/" $webroot_dir/installers/restapi.service || _install_status 1 "Unable to set restapi service user"
     echo "Setting permissions on restapi systemd unit control file"
     sudo chown -c root:root $webroot_dir/installers/restapi.service || _install_status 1 "Unable change owner and/or group"
     echo "Moving restapi systemd unit control file to /lib/systemd/system/"
@@ -651,11 +807,6 @@ function _download_latest_files() {
         echo "Temporary download destination $source_dir exists. Removing..."
         rm -rf "$source_dir"
     fi
-    if [ "$insiders" == 1 ] && [ "$ssh" != 1 ] && [[ -z "$username"  ||  -z "$acctoken" ]]; then
-        _install_status 3
-        _install_status 0 "Insiders please read this: https://docs.raspap.com/insiders/#authentication"
-    fi
-
     git clone --branch $branch --depth 1 --recurse-submodules -c advice.detachedHead=false $git_source_url $source_dir || clone=false
     git -C $source_dir submodule update --remote plugins || clone=false
 
@@ -877,7 +1028,8 @@ function _configure_networking() {
     # Persist rules if added
     if [ "$added" = true ]; then
         echo "Persisting IP tables rules"
-        sudo iptables-save | sudo tee $rulesv4 > /dev/null || _install_status 1 "Unable to execute iptables-save"
+        # _patch_system_files installs the script later, so use the copy in the web root
+        sudo bash "$webroot_dir/installers/raspap-iptables-save.sh" || _install_status 1 "Unable to execute iptables-save"
     fi
 
     # Prompt to install RaspAP daemon
@@ -900,6 +1052,15 @@ function _configure_networking() {
     _install_status 0
  }
 
+# Prints the interface of the network activity monitor. servicestart.sh
+# starts the monitor for WifiInterface of hostapd.ini at boot, so use the same.
+function _network_activity_interface() {
+    local iface
+    iface="$(sed -n 's/^[[:space:]]*WifiInterface[[:space:]]*=[[:space:]]*//p' "$raspap_dir/hostapd.ini" 2>/dev/null | tail -n 1 | tr -d '[:space:]')"
+    [[ "$iface" =~ ^[A-Za-z0-9_.-]{1,15}$ ]] || iface="wlan0"
+    echo "$iface"
+}
+
 # Install and enable RaspAP network activity monitor
 function _enable_network_activity_monitor() {
     _install_log "Enabling RaspAP network activity monitor"
@@ -913,10 +1074,21 @@ function _enable_network_activity_monitor() {
     echo "Copying raspap-network-activity@.service to /lib/systemd/system/"
     sudo cp $webroot_dir/installers/raspap-network-activity@.service /lib/systemd/system/ || _install_status 1 "Unable to move raspap-network-activity.service file"
     sudo systemctl daemon-reload
-    echo "Enabling raspap-network-activity@wlan0.service"
-    sudo systemctl enable raspap-network-activity@wlan0.service || _install_status 1 "Failed to enable raspap-network-activity.service"
-    echo "Starting raspap-network-activity@wlan0.service"
-    sudo systemctl start raspap-network-activity@wlan0.service || _install_status 1 "Failed to start raspap-network-activity.service"
+    local iface unit other
+    iface="$(_network_activity_interface)"
+    unit="raspap-network-activity@${iface}.service"
+    # all instances write /dev/shm/net_activity, so only one may run
+    for other in $( { systemctl list-units --all --plain --no-legend 'raspap-network-activity@*.service' | awk '{print $1}'
+                      ls /etc/systemd/system/multi-user.target.wants/ 2>/dev/null | grep '^raspap-network-activity@.*\.service$'; } | sort -u); do
+        [ "$other" = "$unit" ] && continue
+        echo "Disabling $other"
+        sudo systemctl disable --now "$other" || _install_status 1 "Failed to disable $other"
+    done
+    echo "Enabling $unit"
+    sudo systemctl enable "$unit" || _install_status 1 "Failed to enable $unit"
+    # a restart, so that a monitor that runs uses the new program
+    echo "Starting $unit"
+    sudo systemctl restart "$unit" || _install_status 1 "Failed to start $unit"
     sleep 0.5
     echo "Symlinking /dev/shm/net_activity to $webroot_dir/app/net_activity"
     sudo ln -sf /dev/shm/net_activity $webroot_dir/app/net_activity || _install_status 1 "Failed to link net_activity to ${webroot_dir}/app"
@@ -993,6 +1165,11 @@ function _patch_system_files() {
     sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
     sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
 
+    # The scripts that save iptables rules run as root, so the script that they
+    # call must be in a directory that only root can change
+    _install_log "Copying RaspAP iptables save script to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/raspap-iptables-save.sh" /usr/local/sbin/raspap-iptables-save.sh || _install_status 1 "Unable to install iptables save script"
+
     if [ ! -d "$raspap_dir/system" ]; then
         sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
     fi
@@ -1002,6 +1179,14 @@ function _patch_system_files() {
 
     _install_log "Copying RaspAP install loader"
     sudo cp "$webroot_dir/installers/"raspbian.sh "$raspap_dir/system" || _install_status 1 "Unable to move application update script"
+
+    # www-data can run this script with sudo, so it must be in a directory that
+    # only root can change
+    _install_log "Copying RaspAP set time script to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/settime.sh" /usr/local/sbin/raspap-settime.sh || _install_status 1 "Unable to install set time script"
+
+    _install_uplink_watchdog
+    _install_vnstat_helper
 
     # Set ownership and permissions
     sudo chown -c root:root "$raspap_dir/system/"*.sh || _install_status 1 "Unable change owner and/or group"
@@ -1013,9 +1198,36 @@ function _patch_system_files() {
         sudo ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /etc/dhcp/dhclient-enter-hooks.d/
     fi
 
+    # www-data runs the NetworkManager WiFi client helper with sudo, so it must
+    # be in a directory that only root can change
+    _install_log "Copying RaspAP NetworkManager WiFi client helper to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/nm-wifi.sh" /usr/local/sbin/raspap-nm-wifi.sh || _install_status 1 "Unable to install NetworkManager WiFi client helper"
+
     _install_status 0
 }
 
+
+# Install the uplink watchdog. The timer runs as root and www-data can run
+# the script with sudo, so the script must be in a directory that only root
+# can change. The timer is off by default, and an update keeps its state.
+function _install_uplink_watchdog() {
+    _install_log "Copying RaspAP uplink watchdog to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/uplink-watchdog.sh" /usr/local/sbin/raspap-uplink-watchdog.sh || _install_status 1 "Unable to install uplink watchdog script"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-uplink-watchdog.service" /etc/systemd/system/raspap-uplink-watchdog.service || _install_status 1 "Unable to install raspap-uplink-watchdog.service"
+    sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-uplink-watchdog.timer" /etc/systemd/system/raspap-uplink-watchdog.timer || _install_status 1 "Unable to install raspap-uplink-watchdog.timer"
+    sudo systemctl daemon-reload
+}
+
+# vnstat adds only the interfaces that exist when it is installed. This helper
+# adds the interfaces that RaspAP configures, also on an update. www-data can
+# run it with sudo, so it must be in a directory that only root can change.
+function _install_vnstat_helper() {
+    _install_log "Copying RaspAP vnstat helper to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/vnstat.sh" /usr/local/sbin/raspap-vnstat.sh || _install_status 1 "Unable to install vnstat helper"
+    if command -v vnstat > /dev/null; then
+        sudo /usr/local/sbin/raspap-vnstat.sh sync || echo "Unable to add the interfaces to vnstat"
+    fi
+}
 
 # Optimize configuration of php-cgi.
 function _optimize_php() {
@@ -1073,34 +1285,25 @@ function _optimize_php() {
 
 # search for optional installation files names install_feature_*.sh
 function _install_extra_features() {
-    if [ "$insiders" == 1 ]; then
-        _install_log "Installing additional features (Insiders)"
-        for feature in $(ls $webroot_dir/installers/install_feature_*.sh) ; do
-           source $feature
-           f=$(basename $feature)
-           func="_${f%.*}"
-           if declare -f -F $func > /dev/null; then
-                $func || _install_status 1 "Unable to install feature ($func)"
-            else
-                _install_status 1 "Install file $f is missing install function $func"
-           fi
-       done
-    fi
+    _install_log "Installing additional features"
+    for feature in $(ls $webroot_dir/installers/install_feature_*.sh) ; do
+       source $feature
+       f=$(basename $feature)
+       func="_${f%.*}"
+       if declare -f -F $func > /dev/null; then
+            $func || _install_status 1 "Unable to install feature ($func)"
+        else
+            _install_status 1 "Install file $f is missing install function $func"
+       fi
+   done
 }
 
 function _install_complete() {
     _install_log "Installation completed"
-    if [ "$repo" == "RaspAP/raspap-insiders" ]; then
-        echo -e "${ANSI_RASPBERRY}"
-        echo "Thank you for supporting this project as an Insider!"
-        echo -e "${ANSI_RESET}"
-    else
-        echo "Join RaspAP Insiders for early access to exclusive features!"
-        echo -e "${ANSI_RASPBERRY}"
-        echo "> https://docs.raspap.com/insiders/"
-        echo "> https://github.com/sponsors/RaspAP/"
-        echo -e "${ANSI_RESET}"
-    fi
+    echo "Thank you for supporting this project!"
+    echo -e "${ANSI_RASPBERRY}"
+    echo "> https://github.com/sponsors/RaspAP/"
+    echo -e "${ANSI_RESET}"
     if [ "$assume_yes" == 0 ]; then
         # Prompt to reboot if wired ethernet (eth0) is connected.
         # With default_configuration this will create an active AP on restart.

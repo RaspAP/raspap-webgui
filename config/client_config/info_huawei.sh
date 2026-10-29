@@ -75,7 +75,7 @@ case $opt in
       # try rssi: >-70dBm (100%) downto -100dBm (0%)
       res=$($script "rssi");
       if [ ! "$res" = "none" ]; then
-        if [[ ! $res =~ [-0-9\.]* ]]; then res="-120 dBm"; fi
+        if [[ ! $res =~ ^[-0-9\.]*$ ]]; then res="-120 dBm"; fi
         qual=${res//dBm/}
         qual=$(bc <<< "scale=0;res=$qual+0.5;res/1") # just round to next integer 
         if [ $qual -le -110 ]; then qual=0;

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="splash.css">
+
+<title>$gatewayname Hotspot Gateway Status</title>
+
+<!--
+Status:
+	The Status page is served to a client if they are already authenticated.
+	This may occur if the client user selects "Back" on the CPD browser
+	screen after they have successfully authenticated.
+
+	The same template variables are available as for the splash page.
+-->
+
+</head>
+
+<body>
+<div class="container">
+  <div class="card">
+    <div class="header">
+      <img src="images/RaspAP-logo.svg" alt="RaspAP Logo" class="logo">
+      <h1>$gatewayname Hotspot Gateway</h1>
+    </div>
+    
+    <div class="content">
+      <p class="message">You are already logged in and have access to the internet.</p>
+    </div>
+    
+    <div class="footer">
+      <p>Copyright &copy; The Nodogsplash Contributors 2004-2023.<br>This software is released under the GNU GPL license.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

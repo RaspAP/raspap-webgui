@@ -21,10 +21,9 @@ var hueb = new Huebee( elem, {
     hue0: 210
 });
 
-// Set custom color if defined
 var color = getCookie('color');
 if (color == null || color == '') {
-    color = '#2b8080';
+    color = elem.value || '#2b8080';
 }
 hueb.setColor(color);
 

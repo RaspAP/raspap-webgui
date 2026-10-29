@@ -22,7 +22,44 @@ Usage: raspap-network-monitor [interface]
 #include <stdint.h>
 
 #define TMPFILE "/dev/shm/net_activity"
+#define TMPFILE_NEW "/dev/shm/net_activity.new"
 #define POLL_INTERVAL_MS 100 // 100 milliseconds
+
+/*
+ * Writes the value to a new file and replaces TMPFILE with rename(). A reader
+ * (lighttpd) thus always gets a complete value. O_EXCL and O_NOFOLLOW make
+ * sure that the file is new, also in the world-writable /dev/shm.
+ * Returns 0 on success.
+ */
+int write_activity(unsigned long value) {
+    unlink(TMPFILE_NEW);
+    int fd = open(TMPFILE_NEW, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0644);
+    if (fd == -1) return -1;
+
+    int saved_errno;
+    FILE *out = fdopen(fd, "w");
+    if (!out) {
+        saved_errno = errno;
+        close(fd);
+        goto fail;
+    }
+    if (fprintf(out, "%lu\n", value) < 0) {
+        saved_errno = errno;
+        fclose(out);
+        goto fail;
+    }
+    if (fclose(out) != 0 || rename(TMPFILE_NEW, TMPFILE) != 0) {
+        saved_errno = errno;
+        goto fail;
+    }
+    return 0;
+
+fail:
+    // keep the errno of the failed call for perror(), not the errno of the cleanup
+    unlink(TMPFILE_NEW);
+    errno = saved_errno;
+    return -1;
+}
 
 unsigned long read_interface_bytes(const char *iface) {
     FILE *fp = fopen("/proc/net/dev", "r");
@@ -32,11 +69,11 @@ unsigned long read_interface_bytes(const char *iface) {
     unsigned long rx = 0, tx = 0;
 
     while (fgets(line, sizeof(line), fp)) {
-        if (strstr(line, iface)) {
+        // compare the full interface name, so that wlan1 does not match wlan10
+        char name[64];
+        if (sscanf(line, " %63[^:]:", name) == 1 && strcmp(name, iface) == 0) {
             char *ptr = strchr(line, ':');
-            if (ptr) {
-                sscanf(ptr + 1, "%lu %*u %*u %*u %*u %*u %*u %*u %lu", &rx, &tx);
-            }
+            sscanf(ptr + 1, "%lu %*u %*u %*u %*u %*u %*u %*u %lu", &rx, &tx);
             break;
         }
     }
@@ -73,6 +110,7 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
+    int write_failed = 0;
     struct pollfd fds;
     fds.fd = tfd;
     fds.events = POLLIN;
@@ -86,16 +124,20 @@ int main(int argc, char *argv[]) {
 
         if (fds.revents & POLLIN) {
             uint64_t expirations;
-            read(tfd, &expirations, sizeof(expirations)); // clear timer
+            if (read(tfd, &expirations, sizeof(expirations)) != sizeof(expirations)) { // clear timer
+                continue;
+            }
 
             unsigned long curr_total = read_interface_bytes(iface);
             unsigned long diff = (curr_total >= prev_total) ? (curr_total - prev_total) : 0;
             prev_total = curr_total;
 
-            FILE *out = fopen(TMPFILE, "w");
-            if (out) {
-                fprintf(out, "%lu\n", diff);
-                fclose(out);
+            // log only the first error of a series, not one error per 100 ms
+            if (write_activity(diff) != 0) {
+                if (!write_failed) perror("write " TMPFILE);
+                write_failed = 1;
+            } else {
+                write_failed = 0;
             }
         }
     }

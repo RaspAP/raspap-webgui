@@ -53,7 +53,7 @@ function handleCorePageAction(string $page, array &$extraFooterScripts): void
             DisplayTorProxyConfig();
             break;
         case "/auth_conf":
-            DisplayAuthConfig($_SESSION['user_id']);
+            DisplayAuthConfig($_SESSION['user_id'] ?? null);
             break;
         case "/save_hostapd_conf":
             SaveTORAndVPNConfig();

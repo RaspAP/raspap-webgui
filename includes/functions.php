@@ -255,10 +255,12 @@ function isAssoc($arr)
  * @param string $id:       $options is an associative array this should be the key
  * @param string $event:    onChange event (optional)
  * @param string $disabled  (optional)
+ * @param string $addclass  additonal classes for select (optional)
+ * @param string $placehold placeholder text (optional)
  */
-function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null)
+function SelectorOptions($name, $options, $selected = null, $id = null, $event = null, $disabled = null, $addclass = null, $placehold = null)
 {
-    echo '<select class="form-select" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
+    echo '<select class="form-select ' .$addclass.'" name="'.htmlspecialchars($name, ENT_QUOTES).'"';
     if (isset($id)) {
         echo ' id="' . htmlspecialchars($id, ENT_QUOTES) .'"';
     }
@@ -266,6 +268,9 @@ function SelectorOptions($name, $options, $selected = null, $id = null, $event =
         echo ' onChange="' . htmlspecialchars($event, ENT_QUOTES).'()"';
     }
     echo '>' , PHP_EOL;
+    if (isset($placehold)) {
+        echo '<option disabled selected>'.htmlspecialchars($placehold, ENT_QUOTES).'</option>'.PHP_EOL;
+    }
     foreach ($options as $opt => $label) {
         $select = '';
         $key = isAssoc($options) ? $opt : $label;
@@ -591,27 +596,52 @@ function getThemeOpt()
 
 function getColorOpt()
 {
+    $defaultColor = defined('RASPI_BRAND_COLOR') ? RASPI_BRAND_COLOR : '#2b8080';
+
     if (!isset($_COOKIE['color'])) {
-        $color = "#2b8080";
+        $color = $defaultColor;
     } else {
         $color = $_COOKIE['color'];
     }
 
     // Define the regex pattern for valid CSS color formats
     $colorPattern = "/^(" .
-        "#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})" . "|" .           // Hex colors (#RGB or #RRGGBB)
-        "rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)" . "|" .     // RGB format
-        "rgba\(\s*(?:\d{1,3}\s*,\s*){3}\s*(0|0\.\d+|1)\s*\)" . "|" . // RGBA format
-        "[a-zA-Z]+" .                                         // Named colors
+        "#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})" . "|" .           	// hex colors
+        "rgb\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}\s*\)" . "|" .     // RGB
+        "rgba\(\s*(?:\d{1,3}\s*,\s*){3}\s*(0|0\.\d+|1)\s*\)" . "|" . // RGBA
+        "[a-zA-Z]+" .                                         	// named colors
     ")$/i";
 
-    // Validate the color
     if (!preg_match($colorPattern, $color)) {
-        // Return a default color if validation fails
-        $color = "#2b8080";
+        // return default color if not valid
+        $color = $defaultColor;
     }
 
     return $color;
+}
+
+/**
+ * Renders brand icon (navbar, sidebar + login page)
+ * Set with RASPI_BRAND_ICON in config.php
+ */
+function renderBrandIcon($width = 70, $height = 70, $class = 'navbar-logo', $static = true)
+{
+    $icon = defined('RASPI_BRAND_ICON') ? trim(RASPI_BRAND_ICON) : '';
+    $class = htmlspecialchars($class, ENT_QUOTES, 'UTF-8');
+
+    if ($icon === '') {
+        $query = $static ? '?static=1' : '';
+        echo '<img src="app/img/raspAP-logo.php'.$query.'" class="'.$class.'" width="'.(int)$width.'" height="'.(int)$height.'">';
+        return;
+    }
+
+    // FontAwesome icon classes
+    if (preg_match('/^(fa[srlbdk]?|fa-\w+)\s+fa-[\w-]+/', $icon)) {
+        echo '<i class="'.htmlspecialchars($icon, ENT_QUOTES, 'UTF-8').' '.$class.'-icon" style="font-size: '.(int)$height.'px; color: var(--raspap-theme-color);"></i>';
+        return;
+    }
+
+    echo '<img src="'.htmlspecialchars($icon, ENT_QUOTES, 'UTF-8').'" class="'.$class.'" width="'.(int)$width.'" height="'.(int)$height.'">';
 }
 
 function getBridgedState()
@@ -760,12 +790,104 @@ class validation
 
 /* Resolves public IP address
  *
- * @return string $public_ip
+ * Queries each lookup service in turn and returns the first valid
+ * IP address, so a service that is down or blocked (e.g. by a DNS
+ * filter) does not leave the address empty. The last service is
+ * addressed by IP, so it does not depend on DNS at all; it returns
+ * key=value lines, of which the 'ip=' line is used. A short timeout
+ * per service keeps the page load short when there is no connectivity.
+ *
+ * @return string $public_ip, or an empty string if no service answered
  */
 function get_public_ip()
 {
-    exec('wget --timeout=5 --tries=1 https://ipinfo.io/ip -qO -', $public_ip);
-    return $public_ip[0];
+    $services = [
+        'https://ipinfo.io/ip',
+        'https://ifconfig.me/ip',
+        'https://1.1.1.1/cdn-cgi/trace',
+    ];
+    foreach ($services as $service) {
+        $output = [];
+        exec('wget --timeout=2 --tries=1 -qO - ' . escapeshellarg($service) . ' 2>/dev/null', $output);
+        foreach ($output as $line) {
+            $public_ip = trim(preg_replace('/^ip=/', '', $line));
+            if (filter_var($public_ip, FILTER_VALIDATE_IP) !== false) {
+                return $public_ip;
+            }
+        }
+    }
+    return '';
+}
+
+/* Returns the public IP address, cached for a short time
+ *
+ * A successful lookup is kept in a cache file for all sessions. The
+ * cache is bound to the interface of the route to the internet, so the
+ * address is looked up again when that changes (e.g. when a VPN is
+ * connected). Without a safe cache directory the address is looked up
+ * every time.
+ *
+ * @param int $ttl cache lifetime in seconds
+ * @return string $public_ip, or an empty string if no service answered
+ */
+function get_public_ip_cached(int $ttl = 120): string
+{
+    require_once __DIR__ . '/internetRoute.php';
+    $iface = getInternetPath()['interface'] ?? '';
+    $cacheDir = get_private_cache_dir();
+    $cacheFile = ($cacheDir !== null) ? $cacheDir . '/public-ip.json' : null;
+
+    if ($cacheFile !== null && is_file($cacheFile) && !is_link($cacheFile)) {
+        $cache = json_decode((string)file_get_contents($cacheFile), true);
+        $age = time() - (int)($cache['time'] ?? 0);
+        if (is_array($cache)
+            && ($cache['iface'] ?? null) === $iface
+            && filter_var($cache['ip'] ?? '', FILTER_VALIDATE_IP) !== false
+            && $age >= 0 && $age < $ttl
+        ) {
+            return $cache['ip'];
+        }
+    }
+
+    $public_ip = get_public_ip();
+    if ($cacheFile !== null && $public_ip !== '') {
+        // write to a temporary file first, so a reader never sees a
+        // partly written cache
+        $tmpFile = tempnam($cacheDir, 'ip');
+        if ($tmpFile !== false) {
+            $cache = ['ip' => $public_ip, 'iface' => $iface, 'time' => time()];
+            if (file_put_contents($tmpFile, json_encode($cache)) === false || !rename($tmpFile, $cacheFile)) {
+                @unlink($tmpFile);
+            }
+        }
+    }
+    return $public_ip;
+}
+
+/* Returns a cache directory that is private to the user that runs PHP
+ *
+ * Used for the public IP cache and the login help QR code.
+ * The directory is private to the user that runs PHP. If it is owned by
+ * another user, is a symlink or is accessible by other users, it is not
+ * used, so other local users can not change or replace the cache.
+ *
+ * @return string|null the directory, or null if there is no safe one
+ */
+function get_private_cache_dir(): ?string
+{
+    if (!function_exists('posix_geteuid')) {
+        return null;
+    }
+    $uid = posix_geteuid();
+    $dir = sys_get_temp_dir() . '/raspap-' . $uid;
+    if (!file_exists($dir) && !is_link($dir) && !@mkdir($dir, 0700)) {
+        return null;
+    }
+    clearstatcache(true, $dir);
+    if (is_link($dir) || !is_dir($dir) || fileowner($dir) !== $uid || (fileperms($dir) & 0077) !== 0) {
+        return null;
+    }
+    return $dir;
 }
 
 // Load non default JS/ECMAScript in footer
@@ -795,6 +917,24 @@ function validateInterface($interface)
 
     // Check if the provided interface exists in the list
     return in_array($interface, $valid_interfaces, true);
+}
+
+/**
+ * Prepares an ajax endpoint that returns JSON
+ *
+ * Accepts POST only, so the CSRF token is always verified. Releases the
+ * session lock, so a slow endpoint does not block other requests from
+ * the same session. Call this after authenticate.php.
+ */
+function initAsyncJsonEndpoint()
+{
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        header('Allow: POST');
+        exit;
+    }
+    session_write_close();
+    header('Content-Type: application/json');
 }
 
 /**
@@ -855,6 +995,50 @@ function checkReleaseVersion($installed, $latest) {
         }
     }
     return false;
+}
+
+/**
+ * Returns the update steps found in the installer log. Step 6 indicates
+ * the update completed and step 7 that the installer reported an error
+ *
+ * @param string $logFile
+ * @param int $since ignore a log last modified before this timestamp
+ * @return array
+ */
+function getUpdateLogStatus($logFile, $since = 0) {
+    $steps = [];
+    if (!is_readable($logFile) || filemtime($logFile) < $since) {
+        return $steps;
+    }
+    $searchStrings = [
+        'Configure update' => 1,
+        'Updating sources' => 2,
+        'Installing required packages' => 3,
+        'Cloning latest files' => 4,
+        'Installing application' => 5,
+        'Installation completed' => 6
+    ];
+    $handle = fopen($logFile, 'r');
+    if ($handle === false) {
+        return $steps;
+    }
+    while (($line = fgets($handle)) !== false) {
+        // installer errors are logged as "[ ✘ error ] message"
+        if (preg_match('/^\[[^\]]*\berror\b/', $line)) {
+            $steps[] = 7;
+            break;
+        }
+        foreach ($searchStrings as $searchString => $value) {
+            if (strpos($line, $searchString) !== false && !in_array($value, $steps)) {
+                $steps[] = $value;
+            }
+        }
+        if (in_array(6, $steps)) {
+            break;
+        }
+    }
+    fclose($handle);
+    return $steps;
 }
 
  /**
@@ -918,12 +1102,92 @@ function lightenColor($color, $percent)
     return sprintf("#%02x%02x%02x", $r, $g, $b);
 }
 
+/**
+ * Returns a custom user avatar or placeholder
+ * @return string $avatar
+ */
+function getUserAvatar()
+{
+    $userId = htmlspecialchars($_SESSION['user_id'] ?? null, ENT_QUOTES);
+    $avatarPath = $_COOKIE['avatar'] ?? null;
+
+    if ($avatarPath && file_exists($avatarPath)) {
+        $avatar = '<span class="text-muted small">' . $userId . '</span>';
+        $avatar .= '<img class="avatar topbar-avatar" src="' . $avatarPath . '">';
+    } else {
+        $avatar = '<span class="text-muted small">' . $userId . '</span>';
+        $avatar .= '<i class="fas fa-user-circle text-muted fa-3x"></i>';
+    }
+    return $avatar;
+}
+
+/**
+ * Determines if a given interface name is configured with
+ * predictable naming
+ * @param string $interface
+ * @return boolean
+ */
+function isPredictableIfaceName($interface)
+{
+    $pattern = '/^(eth|en|wlan|wlp|eno)[0-9]+$/';
+    $enx_pattern = '/^enx|^wlx[0-9a-fA-F]{12}$/';
+    if (preg_match($pattern, $interface) ||
+        preg_match($enx_pattern, $interface)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Checks if a wireless interface is in access point mode
+ *
+ * Uses iw first. The kernel does not give wireless extensions (iwconfig)
+ * to Wi-Fi 7 (MLO) devices, so iwconfig is only a fallback.
+ *
+ * @param string $interface
+ * @return boolean
+ */
+function isAccessPoint($interface)
+{
+    exec('iw dev ' . escapeshellarg($interface) . ' info 2>/dev/null', $iwInfo);
+    if (!empty($iwInfo)) {
+        return preg_grep('/^\s*type AP$/', $iwInfo) !== [];
+    }
+    exec('iwconfig ' . escapeshellarg($interface) . ' 2>/dev/null', $iwconfig);
+    return preg_grep('/mode:master/i', $iwconfig) !== [];
+}
+
+/**
+ * Sets a configuration option value
+ * @param string $option
+ * @param string $value
+ * @return boolean
+ */
+function setConfigurationOption($option, $value)
+{
+    $file = $_SERVER['DOCUMENT_ROOT'].'/includes/config.php';
+    $content = file_get_contents($file);
+    $pattern = "/define\('$option', (true|false)\);/";
+    if (preg_match($pattern, $content)) {
+        $replace = "define('$option', $value);";
+        $tmp = preg_replace($pattern, $replace, $content);
+        if (file_put_contents($file, $tmp) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
 function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cputemp_led, $cputemp)
 {
     ?>
     <div class="row g-0">
       <div class="col-4 ms-2 sidebar-brand-icon">
-        <img src="app/img/raspAP-logo.php?static=1" class="navbar-logo" width="70" height="70">
+        <?php renderBrandIcon(70, 70, 'navbar-logo'); ?>
       </div>
       <div class="col ml-2">
         <div class="ml-1 sb-status"><?php echo _("Status"); ?></div>
@@ -961,4 +1225,83 @@ function callbackTimeout(callable $callback, int $interval)
     }
 
     return $result;
+}
+
+/**
+ * Returns the state of the captive portal helper (raspap-captive-portal.sh)
+ *
+ * @return array|null state, uplink, url, since, until and auto, or null if there is no state
+ */
+function getCaptivePortalState(): ?array
+{
+    $file = '/run/raspap/captive-portal';
+    if (!is_file($file) || !is_readable($file)) {
+        return null;
+    }
+    $state = [];
+    foreach (file($file, FILE_IGNORE_NEW_LINES) ?: [] as $line) {
+        if (preg_match('/^(state|uplink|url|since|until|auto)=(.*)$/', $line, $m)) {
+            $state[$m[1]] = $m[2];
+        }
+    }
+    return isset($state['state']) ? $state : null;
+}
+
+/**
+ * Adds a warning while the uplink has a captive portal. In the state
+ * "detected", the warning has a button that allows the login for 5 minutes.
+ * In portal mode, it has the link to the login page and a button that ends
+ * portal mode. The warning stays until the user closes it.
+ *
+ * @param object $status StatusMessage
+ */
+function addCaptivePortalMessage($status): void
+{
+    $portal = getCaptivePortalState();
+    $state = $portal['state'] ?? '';
+    if ($state !== 'portal' && $state !== 'detected') {
+        return;
+    }
+    $url = $portal['url'] ?? '-';
+    // the URL comes from the portal, so it must match a strict pattern
+    $link = '';
+    if (strlen($url) <= 2048 && preg_match('#^https?://[A-Za-z0-9.-]+(:[0-9]{1,5})?(/[^\s"\'<>]*)?$#', $url)) {
+        $link = ' <a href="' . htmlspecialchars($url, ENT_QUOTES) . '" target="_blank" rel="noopener noreferrer">'
+            . _('Open the login page') . '</a>';
+    }
+    if ($state === 'detected') {
+        $message = _('The uplink network needs a login (captive portal). The VPN tunnel can not connect until the login.')
+            . ' <button type="button" class="btn btn-sm btn-warning ms-1 js-captive-portal" data-action="open">'
+            . _('Allow the login for 5 minutes') . '</button>';
+    } else {
+        $message = _('The uplink network needs a login (captive portal). On a device that is connected to the hotspot, open a website that starts with http://. The login page of the network then opens. After the login, the VPN tunnel connects again.')
+            . $link;
+        $until = (int)($portal['until'] ?? 0);
+        if ($until > 0) {
+            $message .= ' ' . sprintf(_('The login is allowed until %s.'), formatSystemTime($until))
+                . ' <button type="button" class="btn btn-sm btn-outline-secondary ms-1 js-captive-portal" data-action="close">'
+                . _('End the login now') . '</button>';
+        }
+    }
+    $status->addMessage($message, 'warning alert-persistent');
+}
+
+/**
+ * Formats a time in the time zone of the system. PHP uses UTC when
+ * date.timezone is not set, but the user expects the time of the device.
+ *
+ * @param int $timestamp
+ * @return string time as HH:MM
+ */
+function formatSystemTime(int $timestamp): string
+{
+    $zone = trim((string)@file_get_contents('/etc/timezone'));
+    if ($zone === '' && is_link('/etc/localtime')) {
+        $zone = preg_replace('#^.*/zoneinfo/#', '', (string)readlink('/etc/localtime'));
+    }
+    try {
+        return (new DateTime('@' . $timestamp))->setTimezone(new DateTimeZone($zone ?: date_default_timezone_get()))->format('H:i');
+    } catch (Exception $e) {
+        return date('H:i', $timestamp);
+    }
 }

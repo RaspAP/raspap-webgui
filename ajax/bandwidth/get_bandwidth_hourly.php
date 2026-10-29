@@ -39,7 +39,11 @@ if (filter_input(INPUT_GET, 'tu') == 'h') {
 
     exec(sprintf('vnstat -i %s --json h', escapeshellarg($interface)), $jsonstdoutvnstat, $exitcodedaily);
     if ($exitcodedaily !== 0) {
-        exit('vnstat error');
+        // vnstat has no statistics for the interface. The page then offers to
+        // add the interface.
+        http_response_code(404);
+        header('Content-Type: application/json');
+        exit(json_encode(['error' => 'nodata']));
     }
 
     $datasizeunits = filter_input(INPUT_GET, 'dsu');

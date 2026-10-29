@@ -137,13 +137,14 @@ class HostapdValidator
         $post['max_num_sta'] = $post['max_num_sta'] < 1 ? null : $post['max_num_sta'];
 
         // validate bridged mode static IP configuration
-        $bridgedEnable = !empty($post['bridgedEnable']);
+        $bridgedEnable  = !empty($post['bridgedEnable']);
+        $bridgedDynamic = !empty($post['bridgedDynamic']);
         $bridgeStaticIp = trim($post['bridgeStaticIp'] ?? '');
         $bridgeNetmask = trim($post['bridgeNetmask'] ?? '');
         $bridgeGateway = trim($post['bridgeGateway'] ?? '');
         $bridgeDNS = trim($post['bridgeDNS'] ?? '');
 
-        if ($bridgedEnable) {
+        if ($bridgedEnable && !$bridgedDynamic) {
             // validate static IP address
             if (!filter_var($bridgeStaticIp, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
                 $status->addMessage('Bridge static IP address must be a valid IPv4 address', 'danger');
@@ -212,14 +213,15 @@ class HostapdValidator
             'hw_mode'          => $post['hw_mode'],
             'country_code'     => $countryCode,
             'hiddenSSID'       => (int)$ignoreBroadcastSSID,
+            'apisolate'        => !empty($post['ap_isolate']) ? 1 : 0,
             'max_num_sta'      => $post['max_num_sta'],
             'beacon_interval'  => $post['beacon_interval'] ?? null,
             'disassoc_low_ack' => $post['disassoc_low_ackEnable'] ?? null,
             'bridge'           => ($post['bridgedEnable'] ?? false) ? 'br0' : null,
-            'bridgeStaticIp'   => ($post['bridgeStaticIp']),
-            'bridgeNetmask'    => ($post['bridgeNetmask']),
-            'bridgeGateway'    => ($post['bridgeGateway']),
-            'bridgeDNS'        => ($post['bridgeDNS']),
+            'bridgeStaticIp'   => $bridgedDynamic ? '' : ($post['bridgeStaticIp'] ?? ''),
+            'bridgeNetmask'    => $bridgedDynamic ? '' : ($post['bridgeNetmask'] ?? ''),
+            'bridgeGateway'    => $bridgedDynamic ? '' : ($post['bridgeGateway'] ?? ''),
+            'bridgeDNS'        => $bridgedDynamic ? '' : ($post['bridgeDNS'] ?? ''),
             'he_oper_chwidth'  => $post['he_oper_chwidth'] ?? null, // 802.11ax parameters
             'he_bss_color'     => $post['he_bss_color'] ?? null, // 802.11be parameters
             'eht_oper_chwidth' => $post['eht_oper_chwidth'] ?? null

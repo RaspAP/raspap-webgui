@@ -152,10 +152,24 @@ function _remove_raspap_directories() {
     fi
     sudo rm -rf "$webroot_dir"/* || _install_error "Unable to remove $webroot_dir"
     sudo rm -rf "$raspap_dir" || _install_error "Unable to remove $raspap_dir"
+    sudo rm -f /etc/cron.d/raspap-fake-hwclock || _install_error "Unable to remove fake-hwclock cron job"
+    sudo rm -f /etc/systemd/timesyncd.conf.d/90-raspap.conf /etc/ntpsec/ntp.d/90-raspap-fallback.conf || _install_error "Unable to remove NTP fallback servers"
 }
 
 # Removes raspapd.service
 function _remove_raspap_service() {
+    _install_log "Removing the captive portal helper"
+    sudo systemctl disable --now raspap-captive-portal.timer 2> /dev/null || true
+    sudo systemctl disable raspap-captive-portal-cleanup.service 2> /dev/null || true
+    if [ -x /usr/local/sbin/raspap-captive-portal.sh ]; then
+        sudo /usr/local/sbin/raspap-captive-portal.sh off || true
+    fi
+    sudo rm -f /etc/systemd/system/raspap-captive-portal.service /etc/systemd/system/raspap-captive-portal.timer \
+        /etc/systemd/system/raspap-captive-portal-cleanup.service /usr/local/sbin/raspap-captive-portal.sh ||
+        _install_error "Unable to remove the captive portal helper"
+    if id -u raspap-probe > /dev/null 2>&1; then
+        sudo userdel raspap-probe || _install_error "Unable to remove the user raspap-probe"
+    fi
     _install_log "Removing raspapd.service"
     if [ -f /lib/systemd/system/raspapd.service ]; then
         sudo rm /lib/systemd/system/raspapd.service || _install_error "Unable to remove raspap.service file"
@@ -186,8 +200,9 @@ function _restore_networking() {
     # Persist rules if removed
     if [ "$removed" = true ]; then
         echo "Removing persistent iptables rules"
-        sudo iptables-save | sudo tee $rulesv4 > /dev/null || _install_error "Unable to execute iptables-save"
+        sudo bash "$webroot_dir/installers/raspap-iptables-save.sh" || _install_error "Unable to execute iptables-save"
     fi
+    sudo rm -f /usr/local/sbin/raspap-iptables-save.sh || _install_error "Unable to remove raspap-iptables-save.sh"
     echo "Done."
     # Remove dnsmasq and bridge configs
     echo "Removing 090_raspap.conf from dnsmasq"
@@ -236,8 +251,18 @@ function _remove_installed_packages() {
 # Removes www-data from sudoers
 function _remove_sudoers() {
     _install_log "Removing sudoers permissions"
+    sudo rm -f /usr/local/sbin/raspap-nm-wifi.sh || _install_error "Unable to remove raspap-nm-wifi.sh"
     echo "Removing ${raspap_sudoers}" 
     sudo rm "$raspap_sudoers" || _install_error "Unable to remove $raspap_sudoers"
+    # the set time script that the sudoers file allowed
+    sudo rm -f /usr/local/sbin/raspap-settime.sh || _install_error "Unable to remove raspap-settime.sh"
+    # the uplink watchdog that the sudoers file allowed
+    sudo systemctl disable --now raspap-uplink-watchdog.timer 2> /dev/null || true
+    sudo rm -f /etc/systemd/system/raspap-uplink-watchdog.service /etc/systemd/system/raspap-uplink-watchdog.timer \
+        /usr/local/sbin/raspap-uplink-watchdog.sh /run/raspap/uplink-watchdog /run/raspap/uplink-watchdog.lock ||
+        _install_error "Unable to remove the uplink watchdog"
+    sudo rm -f /usr/local/sbin/raspap-vnstat.sh || _install_error "Unable to remove raspap-vnstat.sh"
+    sudo systemctl daemon-reload
     echo "Done."
 }
 

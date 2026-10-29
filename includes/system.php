@@ -152,6 +152,10 @@ function DisplaySystem(&$extraFooterScripts)
     $plugins = $pluginInstaller->getUserPlugins();
     $pluginsTable = $pluginInstaller->getHTMLPluginsTable($plugins);
 
+    // fetch network interfaces
+    exec("ip -o link show | awk -F': ' '{print $2}' | grep -E '^(eth|wlan|wlx|usb|ppp|ptpp)'", $interfaces);
+    sort($interfaces);
+
     echo renderTemplate("system", compact(
         "arrLocales",
         "status",
@@ -180,6 +184,7 @@ function DisplaySystem(&$extraFooterScripts)
         "selectedTheme",
         "logLimit",
         "pluginsTable",
+        "interfaces",
         "optAutoclose",
         "alertTimeout"
     ));

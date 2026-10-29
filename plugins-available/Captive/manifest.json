@@ -1,0 +1,54 @@
+{
+  "name": "Captive portal",
+  "version": "v1.0.0",
+  "description": "A Captive Portal add-on for RaspAP",
+  "author": "Bill Z",
+  "author_uri": "https://github.com/billz",
+  "plugin_uri": "https://github.com/RaspAP/",
+  "plugin_docs": "https://docs.raspap.com/features-insiders/captive/",
+  "license": "GPL-3.0",
+  "namespace": "RaspAP\\Plugins\\Captive",
+  "dpkgs": [
+        "nodogsplash_5.0.2-1_arm64.deb",
+        "nodogsplash_5.0.2-1_armhf.deb"
+  ],
+  "configuration": [
+    {
+      "source": "config/nodogsplash.conf",
+      "destination": "/etc/nodogsplash/"
+    },
+    {
+      "source": "config/splash.html",
+      "destination": "/etc/nodogsplash/htdocs/"
+    },
+    {
+      "source": "config/status.html",
+      "destination": "/etc/nodogsplash/htdocs/"
+    },
+    {
+      "source": "config/status.html",
+      "destination": "/etc/nodogsplash/htdocs/"
+    },
+    {
+      "source": "config/splash.css",
+      "destination": "/etc/nodogsplash/htdocs/"
+    },
+    {
+      "source": "config/RaspAP-logo.svg",
+      "destination": "/etc/nodogsplash/htdocs/images/"
+    }
+  ],
+  "default_locale": "en_US",
+  "dependencies": {
+    "libmicrohttpd-dev": "1.0.1-4",
+    "libjson-c-dev": "0.18+ds-1"
+  },
+  "icon": "fas fa-right-to-bracket",
+  "install_path": "plugins-available",
+  "manifest_version": "1.0",
+  "sudoers": [
+    "www-data ALL=(ALL) NOPASSWD:/bin/systemctl * nodogsplash.service",
+    "www-data ALL=(ALL) NOPASSWD:/bin/cp /tmp/nodogsplash.conf /etc/nodogsplash/nodogsplash.conf",
+    "www-data ALL=(ALL) NOPASSWD:/usr/bin/ndsctl *"
+  ]
+}
