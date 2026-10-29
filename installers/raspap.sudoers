@@ -103,7 +103,8 @@ www-data ALL=(ALL) NOPASSWD:/usr/bin/readlink /etc/wireguard/*.conf
 www-data ALL=(ALL) NOPASSWD:/usr/sbin/netplan
 www-data ALL=(ALL) NOPASSWD:/bin/truncate -s 0 /tmp/*.log,/bin/truncate -s 0 /var/log/dnsmasq.log
 www-data ALL=(ALL) NOPASSWD:/usr/bin/nmap --script=broadcast-dhcp-discover -e [a-zA-Z0-9]*
-www-data ALL=(ALL) NOPASSWD:/usr/bin/vnstat *
+www-data ALL=(ALL) NOPASSWD:/usr/local/sbin/raspap-vnstat.sh sync
+www-data ALL=(ALL) NOPASSWD:/usr/local/sbin/raspap-vnstat.sh add [a-zA-Z0-9]*
 www-data ALL=(ALL) NOPASSWD:/usr/sbin/visudo -cf *
 www-data ALL=(ALL) NOPASSWD:/etc/raspap/plugins/plugin_helper.sh
 www-data ALL=(ALL) NOPASSWD:/bin/systemctl start raspap-network-activity@*.service
