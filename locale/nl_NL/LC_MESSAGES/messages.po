@@ -218,17 +218,17 @@ msgstr "Toegang tot internet"
 
 #: ../templates/networking/general.php:27
 msgid "Used for internet traffic"
-msgstr ""
+msgstr "Gebruikt voor internetverkeer"
 
 #: ../templates/networking/general.php:34
 #: ../templates/networking/general.php:52
 msgid "Access point"
-msgstr ""
+msgstr "Toegangspunt"
 
 #: ../templates/networking/general.php:49
 #, php-format
 msgid "Internet traffic uses %s. A kill switch can block this check."
-msgstr ""
+msgstr "Internetverkeer gaat via %s. Een noodstopschakelaar kan deze controle blokkeren."
 
 #: ../templates/networking/general.php:64
 msgid "Routing table"
@@ -1058,19 +1058,19 @@ msgstr "Deze optie voegt <strong>iptables</strong> <code>PostUp</code> en <code>
 
 #: ../templates/wg/general.php:59
 msgid "Allow NTP outside the tunnel"
-msgstr ""
+msgstr "NTP buiten de tunnel toestaan"
 
 #: ../templates/wg/general.php:60
 msgid "Lets the device set its clock while the tunnel is down. A WireGuard handshake fails when the clock is behind."
-msgstr ""
+msgstr "Hiermee kan het apparaat de klok instellen terwijl de tunnel niet actief is. Een WireGuard-handshake mislukt als de klok achterloopt."
 
 #: ../templates/wg/general.php:65
 msgid "Allow DNS to the uplink DNS servers outside the tunnel"
-msgstr ""
+msgstr "DNS naar de DNS-servers van de uplink buiten de tunnel toestaan"
 
 #: ../templates/wg/general.php:66
 msgid "Lets the device resolve names (for example NTP servers) while the tunnel is down. The DNS requests of this device go outside the tunnel. AP clients are not affected."
-msgstr ""
+msgstr "Hiermee kan het apparaat namen opzoeken (bijvoorbeeld NTP-servers) terwijl de tunnel niet actief is. De DNS-verzoeken van dit apparaat gaan buiten de tunnel om. Dit heeft geen invloed op AP-clients."
 
 #: ../templates/wg/general.php:73 ../templates/openvpn/general.php:64
 msgid "Configuration File"
@@ -2204,8 +2204,8 @@ msgstr "%d LAN %s"
 #, php-format
 msgid "%d VPN"
 msgid_plural "%d VPNs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d VPN"
+msgstr[1] "%d VPN's"
 
 #: ../includes/dashboard.php:92
 msgid "VPN"
@@ -2397,12 +2397,12 @@ msgstr[1] "klanten"
 
 #: ../src/RaspAP/Networking/VpnConflict.php:37
 msgid "WireGuard and OpenVPN are both set to send all traffic through their tunnel. Use only one of them at a time."
-msgstr ""
+msgstr "WireGuard en OpenVPN zijn allebei ingesteld om al het verkeer door hun tunnel te sturen. Gebruik er maar één tegelijk."
 
 #: ../src/RaspAP/Networking/VpnConflict.php:45
 #, php-format
 msgid "Both connect to the same server (%s), so one tunnel runs through the other."
-msgstr ""
+msgstr "Beide maken verbinding met dezelfde server (%s), dus de ene tunnel loopt door de andere."
 
 #: ../src/RaspAP/Networking/Hotspot/WiFiManager.php:378
 msgid "Signal strength"
