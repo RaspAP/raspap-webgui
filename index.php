@@ -95,7 +95,10 @@ initializeApp();
     <link rel="shortcut icon" href="/app/icons/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/app/icons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="RaspAP" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#ffffff">
+    <link rel="manifest" href="/app/site.webmanifest" />
   </head>
 
   <body class="sb-nav-fixed">
@@ -156,4 +159,3 @@ initializeApp();
     <?php loadFooterScripts($extraFooterScripts); ?>
   </body>
 </html>
-
