@@ -40,6 +40,19 @@ if ($nm->isManaged($clientIface)) {
             $profile['ssidutf8'] = $wifi->ssid2utf8($profile['ssid']);
             // the same network is also a RaspAP network
             $profile['duplicate'] = !empty($networks[$profile['ssid']]['configured']);
+            // the hotspot of this device, and if an access point of a
+            // different device also sends this SSID
+            $ownAp = $wifi->ownAccessPointBySsid($profile['ssid']);
+            $profile['own'] = $ownAp['iface'] ?? null;
+            $profile['otherBss'] = false;
+            if ($ownAp !== null) {
+                $bytes = WiFiManager::ssidBytes($profile['ssid']);
+                foreach ($networks as $netSsid => $network) {
+                    if (!empty($network['otherBss']) && WiFiManager::ssidBytes((string)$netSsid) === $bytes) {
+                        $profile['otherBss'] = true;
+                    }
+                }
+            }
             $nmProfiles[] = $profile;
         }
     }

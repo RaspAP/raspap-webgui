@@ -158,17 +158,20 @@ class WiFiManager
 
     /**
      * Finds the actions of a WiFi client page request for an SSID that an
-     * access point of this device sends: "connect" and "update<n>" (add or
-     * update a network). "shared" is true when the last scan also found an
-     * access point of a different device with this SSID, for example the
-     * upstream network of a repeater with the same SSID. Then the client can
-     * use the SSID, but it can also choose the own access point.
+     * access point of this device sends: "connect", "update<n>" (add or
+     * update a network) and "nm_connect" (activate a NetworkManager
+     * connection that RaspAP did not create). "shared" is true when the last
+     * scan also found an access point of a different device with this SSID,
+     * for example the upstream network of a repeater with the same SSID. Then
+     * the client can use the SSID, but it can also choose the own access point.
      *
      * @param array $post the POST data of the request
      * @param array $networks the known networks, with their network IDs
+     * @param array $nmProfiles the NetworkManager connections, see
+     *        NetworkManagerClient::listProfiles(). Needed for "nm_connect".
      * @return array POST key => ['ap' => access point (see ownAccessPoints()), 'shared' => bool]
      */
-    public function ownHotspotActions(array $post, array $networks): array
+    public function ownHotspotActions(array $post, array $networks, array $nmProfiles = []): array
     {
         $candidates = [];
         if (isset($post['connect'])) {
@@ -181,6 +184,14 @@ class WiFiManager
                     if ((string)($network['index'] ?? '') === (string)$netid) {
                         $candidates['connect'] = (string)$ssid;
                     }
+                }
+            }
+        }
+        // "nm_connect" sends the UUID of the connection, not its SSID
+        if (is_string($post['nm_connect'] ?? null)) {
+            foreach ($nmProfiles as $profile) {
+                if (($profile['uuid'] ?? null) === $post['nm_connect'] && is_string($profile['ssid'] ?? null)) {
+                    $candidates['nm_connect'] = $profile['ssid'];
                 }
             }
         }

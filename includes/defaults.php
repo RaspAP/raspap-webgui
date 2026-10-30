@@ -62,6 +62,9 @@ $defaults = [
     'RASPI_ACCESS_CHECK_IP' => '1.1.1.1',
     'RASPI_ACCESS_CHECK_DNS' => 'one.one.one.one',
 
+    // Login help page, shown as a QR code on the login page
+    'RASPI_LOGIN_HELP_URL' => 'https://docs.raspap.com/authentication/',
+
     // Captive portal detection - returns 204 or 200 is successful
     'RASPI_ACCESS_CHECK_URL' => 'http://detectportal.firefox.com',
     'RASPI_ACCESS_CHECK_URL_CODE' => 200,

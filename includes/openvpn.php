@@ -96,6 +96,112 @@ function DisplayOpenVPNConfig()
 }
 
 /**
+ * Splits a line of an OpenVPN configuration into its tokens the way
+ * OpenVPN does: whitespace separates tokens, a token in double quotes may
+ * contain backslash escapes, one in single quotes is literal, and "#" or
+ * ";" at the start of a token begins a comment
+ *
+ * @param  string $line
+ * @return array
+ */
+function tokenizeOpenVPNLine($line)
+{
+    $tokens = [];
+    $token = null;
+    $quote = null;
+    $len = strlen($line);
+    for ($i = 0; $i < $len; $i++) {
+        $c = $line[$i];
+        if ($quote === null && $c === '\\' && $i + 1 < $len) {
+            // between tokens, an escaped space is still whitespace
+            if ($token !== null || strpos(" \t\r\n\v\f", $line[$i + 1]) === false) {
+                $token .= $line[$i + 1];
+            }
+            $i++;
+        } elseif ($quote === '"' && $c === '\\' && $i + 1 < $len) {
+            $token .= $line[++$i];
+        } elseif ($quote !== null) {
+            if ($c === $quote) {
+                $quote = null;
+            } else {
+                $token .= $c;
+            }
+        } elseif ($c === '"' || $c === "'") {
+            $quote = $c;
+            $token .= '';
+        } elseif (strpos(" \t\r\n\v\f", $c) !== false) {
+            if ($token !== null) {
+                $tokens[] = $token;
+                $token = null;
+            }
+        } elseif ($token === null && ($c === '#' || $c === ';')) {
+            break;
+        } else {
+            $token .= $c;
+        }
+    }
+    if ($token !== null) {
+        $tokens[] = $token;
+    }
+    return $tokens;
+}
+
+/**
+ * Removes the options of an OpenVPN configuration that run programs, load
+ * code, write files as root or send local files to a server. OpenVPN of the
+ * client runs as root, so an uploaded configuration must not bring them.
+ *
+ * @param  string $contents
+ * @param  array  $removed receives the names of the removed options
+ * @return string
+ */
+function sanitizeOpenVPNConfig($contents, &$removed = [])
+{
+    $denied = [
+        // programs
+        'up', 'down', 'route-up', 'route-pre-down', 'ipchange', 'tls-verify',
+        'auth-user-pass-verify', 'client-connect', 'client-disconnect',
+        'client-crresponse', 'learn-address', 'iproute', 'script-security',
+        // code
+        'plugin', 'engine', 'providers', 'pkcs11-providers',
+        // files written as root, or another configuration file
+        'config', 'cd', 'chroot', 'tmp-dir', 'log', 'log-append', 'status',
+        'writepid', 'replay-persist', 'tls-export-cert', 'ifconfig-pool-persist',
+        'management', 'management-client-user', 'management-client-group'
+    ];
+    $removed = [];
+    $lines = explode("\n", $contents);
+    foreach ($lines as $i => $line) {
+        // compare without case, the leading "--" and whitespace: a backslash
+        // before a space does not start a token for OpenVPN
+        $tokens = array_map(function ($token) {
+            $ws = " \t\r\n\v\f";
+            return strtolower(trim(preg_replace('/^--/', '', trim($token, $ws)), $ws));
+        }, tokenizeOpenVPNLine($line));
+        // "setenv opt" makes OpenVPN parse the rest as an option
+        while (count($tokens) > 2 && $tokens[0] === 'setenv' && $tokens[1] === 'opt') {
+            $tokens = array_slice($tokens, 2);
+        }
+        if (count($tokens) === 0) {
+            continue;
+        }
+        $name = $tokens[0];
+        $args = count($tokens) - 1;
+        $drop = in_array($name, $denied, true)
+            || strpos($name, 'management-') === 0
+            // these send the file they name to the server or proxy
+            || ($name === 'auth-user-pass' && $args > 0)
+            || ($name === 'http-proxy' && $args > 2 && !in_array($tokens[3], ['auto', 'auto-nct'], true))
+            || ($name === 'socks-proxy' && $args > 2);
+        if ($drop) {
+            $removed[] = preg_replace('/[^a-z0-9-]/', '', substr($name, 0, 32));
+            unset($lines[$i]);
+        }
+    }
+    return implode("\n", $lines);
+}
+
+/**
  * Validates uploaded .ovpn file, adds auth-user-pass and
  * stores auth credentials in login.conf. Optionally adds askpass
  * and stores the private key password in keypass.conf.
@@ -139,6 +245,18 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword, $keyPasswor
             throw new RuntimeException($results['errors'][0]);
         }
 
+        $tmp_ovpn = $results['full_path'];
+        $tmp_contents = file_get_contents($tmp_ovpn);
+        if ($tmp_contents === false || strpos($tmp_contents, "\0") !== false) {
+            unlink($tmp_ovpn);
+            throw new RuntimeException('Invalid OpenVPN configuration');
+        }
+        $tmp_contents = sanitizeOpenVPNConfig($tmp_contents, $removed);
+        if (count($removed) > 0) {
+            file_put_contents($tmp_ovpn, $tmp_contents);
+            $status->addMessage('Removed from OpenVPN configuration: '.implode(', ', array_unique($removed)), 'warning');
+        }
+
         // Good file upload, update auth credentials if present
         if (!empty($authUser) && !empty($authPassword)) {
             $auth_flag = 1;
@@ -174,7 +292,6 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword, $keyPasswor
         }
 
         // Set iptables rules and, optionally, auth-user-pass and askpass
-        $tmp_ovpn = $results['full_path'];
         $cmd = sprintf(
             'sudo /etc/raspap/openvpn/configauth.sh %s %d %s %d',
             escapeshellarg($tmp_ovpn),
