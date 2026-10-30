@@ -13,10 +13,10 @@ function _install_feature_wlanrouting() {
     _install_log "$name"
     _install_log "Configuring Wireless LAN routing support"
 
-    echo "Copying installers/toggle-routing.sh to $raspap_network"
-    sudo cp $webroot_dir/installers/toggle-routing.sh $raspap_network || _install_status 1 "Unable to move toggle-routing.sh script"
-    sudo chown -c root:root "$raspap_network/"*.sh || _install_status 1 "Unable change owner and/or group"
-    sudo chmod 750 "$raspap_network/"*.sh || _install_status 1 "Unable to change file permissions"
+    # www-data can run this script with sudo, so it must be in a directory that
+    # only root can change
+    echo "Copying installers/toggle-routing.sh to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/toggle-routing.sh" /usr/local/sbin/raspap-toggle-routing.sh || _install_status 1 "Unable to install toggle-routing.sh script"
     _install_status 0
 }
 

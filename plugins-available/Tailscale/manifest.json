@@ -15,7 +15,7 @@
     },
     {
       "source": "config/ts-optimize.sh",
-      "destination": "/etc/raspap/networking/ts-optimize.sh"
+      "destination": "/usr/local/sbin/raspap-ts-optimize.sh"
     }
   ],
   "permissions": [
@@ -26,9 +26,9 @@
       "mode": "0644"
     },
     {
-      "file": "/etc/raspap/networking/ts-optimize.sh",
-      "owner": "www-data",
-      "group": "www-data",
+      "file": "/usr/local/sbin/raspap-ts-optimize.sh",
+      "owner": "root",
+      "group": "root",
       "mode": "0755"
     }
   ],
@@ -49,7 +49,7 @@
   "manifest_version": "1.0",
   "sudoers": [
     "www-data ALL=(ALL) NOPASSWD:/usr/bin/tailscale *",
-    "www-data ALL=(ALL) NOPASSWD:/etc/raspap/networking/ts-optimize.sh"
+    "www-data ALL=(ALL) NOPASSWD:/usr/local/sbin/raspap-ts-optimize.sh"
   ]
 }
 

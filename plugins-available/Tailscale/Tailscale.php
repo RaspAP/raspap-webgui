@@ -766,7 +766,7 @@ class Tailscale implements PluginInterface
      */
     public function optimizeUDP(): bool
     {
-        $script = RASPI_CONFIG.'/networking/ts-optimize.sh';
+        $script = '/usr/local/sbin/raspap-ts-optimize.sh';
         $cmd = escapeshellcmd("sudo {$script}");
         exec($cmd, $output, $exitCode);
 
