@@ -680,11 +680,11 @@ function validateCidr($cidr)
         return false;
     }
     $ip = $parts[0];
-    $netmask = intval($parts[1]);
-
-    if($netmask < 0) {
+    if(!preg_match('/^[0-9]{1,3}$/D', $parts[1])) {
         return false;
     }
+    $netmask = intval($parts[1]);
+
     if(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
         return $netmask <= 32;
     }

@@ -15,7 +15,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 readonly RASPAP_CONFIG="/etc/raspap"
 readonly HOSTAPD_INI="${RASPAP_CONFIG}/hostapd.ini"
-readonly TOGGLE_ROUTING="${RASPAP_CONFIG}/networking/toggle-routing.sh"
+readonly TOGGLE_ROUTING="/usr/local/sbin/raspap-toggle-routing.sh"
 
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <add|remove> <interface>" >&2

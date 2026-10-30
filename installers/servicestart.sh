@@ -140,5 +140,11 @@ if [ "${config[WifiAPEnable]}" = 1 ]; then
     wpa_cli -i ${config[WifiManaged]} reassociate
 fi
 
+# statistics on the data usage page for the interfaces of RaspAP. After the
+# VPN start, because the helper adds only the interfaces that exist.
+if [ -x /usr/local/sbin/raspap-vnstat.sh ]; then
+    /usr/local/sbin/raspap-vnstat.sh sync
+fi
+
 echo "RaspAP service start DONE"
 

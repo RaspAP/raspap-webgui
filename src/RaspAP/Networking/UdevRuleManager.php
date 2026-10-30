@@ -12,6 +12,9 @@ namespace RaspAP\Networking;
 
 class UdevRuleManager
 {
+    // the root helper that changes the rules file, see installers/udev-rules.sh
+    public const HELPER = '/usr/local/sbin/raspap-udev-rules.sh';
+
     private string $udevFile;
 
     public function __construct(string $udevFile)
@@ -38,66 +41,39 @@ class UdevRuleManager
     }
 
     /**
-     * Initializes a new udev rule file with a descriptive header
+     * Makes the rule file with its header, when it does not exist
      */
     public function initializeRuleFile(): void
     {
         if (file_exists($this->udevFile)) {
             return;
         }
-
-        $tmpFile = '/tmp/raspap-net-device.rules';
-        file_put_contents($tmpFile, $this->getHeader() . PHP_EOL);
-        exec("sudo /bin/cp " . escapeshellarg($tmpFile) . " " . escapeshellarg($this->udevFile));
-        unlink($tmpFile);
+        $this->runHelper(['init']);
     }
 
-    public function save(string $rule): void
+    /**
+     * Replaces the rules for a MAC address, and the rules for a USB vendor
+     * and product ID, with a new rule. The helper accepts only the keys and
+     * values of the prototype rules. When it refuses the rule, the file
+     * does not change.
+     *
+     * @param string $mac
+     * @param string $vid
+     * @param string $pid
+     * @param string $rule
+     * @return bool
+     */
+    public function replaceRules(string $mac, string $vid, string $pid, string $rule): bool
     {
-        // read existing rules
-        $existingRules = file_exists($this->udevFile)
-            ? file($this->udevFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)
-            : [];
-
-        // extract rules, skipping comments
-        $filteredRules = array_filter($existingRules, function ($line) {
-            return strncmp(ltrim($line), '#', 1) !== 0;
-        });
-
-        // check if rule already exists
-        if (in_array(trim($rule), $filteredRules, true)) {
-            return;
-        }
-
-        $filteredRules[] = trim($rule);
-
-        // rebuild file with header
-        $newContents = $this->getHeader() . PHP_EOL . implode(PHP_EOL, $filteredRules) . PHP_EOL;
-
-        file_put_contents($this->udevFile, $newContents);
-    }
-
-    public function deleteExistingRules(string $mac, string $vid = '', string $pid = ''): void
-    {
-        // Restrict to hex characters before embedding in shell/sed patterns
-        $mac = preg_replace('/[^0-9a-f:]/i', '', $mac);
-        $vid = preg_replace('/[^0-9a-f]/i', '', $vid);
-        $pid = preg_replace('/[^0-9a-f]/i', '', $pid);
-
-        // Delete by VID/PID
-        if (!empty($vid) && !empty($pid)) {
-            $pattern1 = sprintf('^.*ATTRS{idVendor}==\"%s\".*ATTRS{idProduct}==\"%s\".*$', $vid, $pid);
-            $pattern2 = sprintf('^.*ATTRS{idProduct}==\"%s\".*ATTRS{idVendor}==\"%s\".*$', $pid, $vid);
-
-            exec("sudo sed -i '/$pattern1/Id' " . escapeshellarg($this->udevFile));
-            exec("sudo sed -i '/$pattern2/Id' " . escapeshellarg($this->udevFile));
-        }
-
-        // delete by MAC address
-        if (!empty($mac)) {
-            $pattern = sprintf('^.*%s.*$', preg_quote($mac, '/'));
-            exec("sudo sed -i '/$pattern/d' " . escapeshellarg($this->udevFile));
-        }
+        $mac = strtolower($mac);
+        $vid = strtolower($vid);
+        $pid = strtolower($pid);
+        return $this->runHelper([
+            'replace',
+            preg_match('/^[0-9a-f]{2}(:[0-9a-f]{2}){5}$/', $mac) ? $mac : '-',
+            preg_match('/^[0-9a-f]{4}$/', $vid) ? $vid : '-',
+            preg_match('/^[0-9a-f]{4}$/', $pid) ? $pid : '-',
+        ], trim($rule) . "\n") === 0;
     }
 
     public function loadRules(): array
@@ -137,15 +113,30 @@ class UdevRuleManager
     }
  
     /**
-     * Returns the standardized file header for udev rules
+     * Runs the helper with sudo, without a shell, and returns its exit code
+     *
+     * @param array $args
+     * @param string|null $stdin
+     * @return int
      */
-    private function getHeader(): string
+    private function runHelper(array $args, ?string $stdin = null): int
     {
-        return <<<EOL
-# UDEV Rules managed by RaspAP
-# This file contains persistent naming rules for network interfaces.
-# Automatically generated. Do not edit manually.
-EOL;
+        $descriptors = [0 => ['pipe', 'r'], 1 => ['file', '/dev/null', 'w'], 2 => ['pipe', 'w']];
+        $proc = proc_open(array_merge(['sudo', self::HELPER], $args), $descriptors, $pipes);
+        if (!is_resource($proc)) {
+            return -1;
+        }
+        if ($stdin !== null) {
+            fwrite($pipes[0], $stdin);
+        }
+        fclose($pipes[0]);
+        $error = stream_get_contents($pipes[2]);
+        fclose($pipes[2]);
+        $return = proc_close($proc);
+        if ($return !== 0 && $error !== '') {
+            error_log('UdevRuleManager: ' . trim($error));
+        }
+        return $return;
     }
 }
 

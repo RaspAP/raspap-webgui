@@ -13,10 +13,10 @@ function _install_feature_usbtethering() {
     _install_log "$name"
     _install_log "Configuring USB tethering support"
 
-    echo "Copying installers/usb-tethering.sh to $raspap_network"
-    sudo cp $webroot_dir/installers/usb-tethering.sh $raspap_network || _install_status 1 "Unable to copy usb-tethering.sh"
-    sudo chown -c root:root "$raspap_network/usb-tethering.sh" || _install_status 1 "Unable to change owner"
-    sudo chmod 750 "$raspap_network/usb-tethering.sh" || _install_status 1 "Unable to change file permissions"
+    # udev runs this script as root, so it must be in a directory that only
+    # root can change
+    echo "Copying installers/usb-tethering.sh to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/usb-tethering.sh" /usr/local/sbin/raspap-usb-tethering.sh || _install_status 1 "Unable to install usb-tethering.sh"
 
     echo "Installing udev rule 90-raspap-usb-tethering.rules"
     sudo cp $webroot_dir/installers/90-raspap-usb-tethering.rules /etc/udev/rules.d/ || _install_status 1 "Unable to copy udev rules"
