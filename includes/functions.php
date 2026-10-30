@@ -1103,17 +1103,61 @@ function lightenColor($color, $percent)
 }
 
 /**
+ * Returns the limit for failed logins (RASPI_LOGIN_MAX_FAILURES and
+ * RASPI_LOGIN_LOCK_TIME), with the counts in the private cache directory
+ *
+ * @return \RaspAP\Auth\LoginLimiter
+ */
+function getLoginLimiter(): \RaspAP\Auth\LoginLimiter
+{
+    return new \RaspAP\Auth\LoginLimiter(get_private_cache_dir(), RASPI_LOGIN_MAX_FAILURES, RASPI_LOGIN_LOCK_TIME);
+}
+
+/**
+ * Returns the message for a client that must wait after failed logins
+ *
+ * @param int $wait the wait time in seconds
+ * @return string
+ */
+function loginLockMessage(int $wait): string
+{
+    $minutes = max(1, (int)ceil($wait / 60));
+    return sprintf(ngettext(
+        "Too many failed logins. Try again in %d minute.",
+        "Too many failed logins. Try again in %d minutes.",
+        $minutes
+    ), $minutes);
+}
+
+/**
+ * Returns the path of the uploaded avatar from the avatar cookie
+ *
+ * The upload (ajax/system/sys_avatar_upload.php) sets the cookie to
+ * app/img/avatars/<name>.<ext>. Other values are not used.
+ *
+ * @return string|null the path, or null if there is no valid avatar
+ */
+function getAvatarPath(): ?string
+{
+    $path = $_COOKIE['avatar'] ?? null;
+    if (!is_string($path) || !preg_match('#^app/img/avatars/[A-Za-z0-9_-]+\.[A-Za-z0-9]{1,5}$#', $path)) {
+        return null;
+    }
+    return file_exists($path) ? $path : null;
+}
+
+/**
  * Returns a custom user avatar or placeholder
  * @return string $avatar
  */
 function getUserAvatar()
 {
-    $userId = htmlspecialchars($_SESSION['user_id'] ?? null, ENT_QUOTES);
-    $avatarPath = $_COOKIE['avatar'] ?? null;
+    $userId = htmlspecialchars($_SESSION['user_id'] ?? '', ENT_QUOTES);
+    $avatarPath = getAvatarPath();
 
-    if ($avatarPath && file_exists($avatarPath)) {
+    if ($avatarPath !== null) {
         $avatar = '<span class="text-muted small">' . $userId . '</span>';
-        $avatar .= '<img class="avatar topbar-avatar" src="' . $avatarPath . '">';
+        $avatar .= '<img class="avatar topbar-avatar" src="' . htmlspecialchars($avatarPath, ENT_QUOTES) . '">';
     } else {
         $avatar = '<span class="text-muted small">' . $userId . '</span>';
         $avatar .= '<i class="fas fa-user-circle text-muted fa-3x"></i>';

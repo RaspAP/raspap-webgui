@@ -8,10 +8,11 @@ function DisplayAuthConfig($username)
     $key = 'RASPI_MONITOR_ENABLED';
     $avatar = '';
 
-    if (!file_exists($_COOKIE['avatar'] ?? '')) {
+    $avatarPath = getAvatarPath();
+    if ($avatarPath === null) {
         $avatar = '<span class="embed-avatar"><i class="fa fa-user-circle avatar-placeholder"></i></span>';
     } else {
-        $avatar = '<span class="embed-avatar" style="background-image: url(\''. $_COOKIE['avatar'] . '\'"></span>';
+        $avatar = '<span class="embed-avatar" style="background-image: url(\''. htmlspecialchars($avatarPath, ENT_QUOTES) . '\'"></span>';
     }
 
     if (isset($_POST['authchangepw'])) {
@@ -38,12 +39,19 @@ function DisplayAuthConfig($username)
     } elseif (isset($_POST['authlogin'])) {
         $user = trim($_POST['username']);
         $pass = trim($_POST['password']);
-        if ($auth->login($user, $pass, 'admin')) {
+        $client = $_SERVER['REMOTE_ADDR'] ?? '';
+        $limiter = getLoginLimiter();
+        $wait = $limiter->waitTime($client);
+        if ($wait > 0) {
+            $status->addMessage(loginLockMessage($wait), 'danger');
+        } elseif ($auth->login($user, $pass, 'admin')) {
+            $limiter->success($client);
             $config = $auth->getAuthConfig();
             updateAdminCredentials(null, null, 0, $config, $status);
             $return = setConfigurationOption($key, 'false');
             $_SESSION['user_id'] = $user;
         } else {
+            $limiter->failure($client);
             $status->addMessage('Admin login failed. Please try again.', 'danger');
         }
     } elseif (isset($_POST['authlogout'])) {

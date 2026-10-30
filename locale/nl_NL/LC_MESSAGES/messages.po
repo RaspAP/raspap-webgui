@@ -1961,6 +1961,16 @@ msgstr "Stop OpenVPN"
 msgid "Configurations"
 msgstr "Configuraties"
 
+#: ../includes/functions.php
+#, php-format
+msgid "Too many failed logins. Try again in %d minute."
+msgid_plural "Too many failed logins. Try again in %d minutes."
+msgstr[0] "Te veel mislukte aanmeldingen. Probeer het over %d minuut opnieuw."
+msgstr[1] "Te veel mislukte aanmeldingen. Probeer het over %d minuten opnieuw."
+
+#: ../templates/login.php:31
+msgid "Forgot password"
+msgstr "Wachtwoord vergeten"
 #: ../templates/openvpn.php:63
 msgid "Information provided by openvpn"
 msgstr "Informatie verstrekt door openvpn"
