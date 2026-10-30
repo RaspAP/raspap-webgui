@@ -77,6 +77,7 @@ function _update_raspap() {
     _check_for_old_configs
     _download_latest_files
     _change_file_ownership
+    _secure_raspap_directories
     _patch_system_files
     _update_wireguard
     _enable_network_activity_monitor
@@ -339,14 +340,72 @@ function _create_raspap_directories() {
     # Create a directory to store networking configs
     echo "Creating $raspap_dir/networking"
     sudo mkdir -p "$raspap_dir/networking"
-    echo "Changing file ownership of $raspap_dir"
-    sudo chown -R $raspap_user:$raspap_user "$raspap_dir" || _install_status 1 "Unable to change file ownership for '$raspap_dir'"
+    echo "Changing file ownership of $raspap_dir/backups"
+    sudo chown -R $raspap_user:$raspap_user "$raspap_dir/backups" || _install_status 1 "Unable to change file ownership for '$raspap_dir/backups'"
+    _secure_raspap_directories
+}
+
+# www-data can run the scripts in the subdirectories of $raspap_dir with sudo.
+# The owner of a directory can rename or delete its entries, so only root may
+# own these directories and $raspap_dir. The web interface keeps its own
+# files in $raspap_dir and its networking directory, so www-data may create
+# files there, and the sticky bit keeps it from renaming or deleting the
+# entries of root. All script directories are created, also for features
+# that are not installed, so that www-data cannot create one of them
+function _secure_raspap_directories() {
+    echo "Securing the script directories of $raspap_dir"
+    local dir
+    for dir in hostapd lighttpd openvpn system adblock plugins; do
+        sudo mkdir -p "$raspap_dir/$dir" || _install_status 1 "Unable to create directory '$raspap_dir/$dir'"
+        sudo chown root:root "$raspap_dir/$dir" || _install_status 1 "Unable to change owner of '$raspap_dir/$dir'"
+        sudo chmod 755 "$raspap_dir/$dir" || _install_status 1 "Unable to change permissions of '$raspap_dir/$dir'"
+        sudo find "$raspap_dir/$dir" -mindepth 1 -exec chown root:root {} + -exec chmod go-w {} + || _install_status 1 "Unable to change owner of the files in '$raspap_dir/$dir'"
+    done
+    for dir in "$raspap_dir" "$raspap_dir/networking"; do
+        sudo chown root:$raspap_user "$dir" || _install_status 1 "Unable to change owner of '$dir'"
+        sudo chmod 1775 "$dir" || _install_status 1 "Unable to change permissions of '$dir'"
+    done
+    # the REST API service runs the code of this directory
+    if [ -d "$raspap_dir/api" ]; then
+        sudo chown -R root:root "$raspap_dir/api" || _install_status 1 "Unable to change owner of '$raspap_dir/api'"
+    fi
+
+    # Older versions installed these scripts in the networking directory,
+    # which www-data can change
+    if [ -e "$raspap_dir/networking/toggle-routing.sh" ]; then
+        echo "Moving toggle-routing.sh to /usr/local/sbin"
+        sudo install -o root -g root -m 755 "$webroot_dir/installers/toggle-routing.sh" /usr/local/sbin/raspap-toggle-routing.sh || _install_status 1 "Unable to install toggle-routing.sh script"
+        sudo rm -f "$raspap_dir/networking/toggle-routing.sh"
+    fi
+    if [ -e "$raspap_dir/networking/usb-tethering.sh" ]; then
+        echo "Moving usb-tethering.sh to /usr/local/sbin"
+        sudo install -o root -g root -m 755 "$webroot_dir/installers/usb-tethering.sh" /usr/local/sbin/raspap-usb-tethering.sh || _install_status 1 "Unable to install usb-tethering.sh"
+        sudo cp "$webroot_dir/installers/90-raspap-usb-tethering.rules" /etc/udev/rules.d/ || _install_status 1 "Unable to copy udev rules"
+        sudo udevadm control --reload-rules || _install_status 1 "Unable to reload udev rules"
+        sudo rm -f "$raspap_dir/networking/usb-tethering.sh"
+    fi
+    # the Tailscale plugin installed this script owned by www-data
+    local ts_old="$raspap_dir/networking/ts-optimize.sh"
+    local ts_new="/usr/local/sbin/raspap-ts-optimize.sh"
+    if [ -e "$ts_old" ]; then
+        echo "Moving ts-optimize.sh to /usr/local/sbin"
+        sudo install -o root -g root -m 755 "$webroot_dir/plugins-available/Tailscale/config/ts-optimize.sh" "$ts_new" || _install_status 1 "Unable to install ts-optimize.sh"
+        sudo rm -f "$ts_old"
+    fi
+    local file tmp
+    for file in $(sudo grep -rlF "$ts_old" /etc/sudoers.d/ 2>/dev/null); do
+        tmp=$(mktemp) || _install_status 1 "Unable to update $file"
+        sudo sed "s|$ts_old|$ts_new|g" "$file" > "$tmp" || _install_status 1 "Unable to update $file"
+        sudo visudo -cqf "$tmp" || _install_status 1 "Unable to update $file"
+        sudo install -o root -g root -m 0440 "$tmp" "$file" || _install_status 1 "Unable to update $file"
+        rm -f "$tmp"
+    done
 }
 
 # Generate hostapd logging and service control scripts
 function _create_hostapd_scripts() {
     _install_log "Creating hostapd logging & control scripts"
-    sudo mkdir $raspap_dir/hostapd || _install_status 1 "Unable to create directory '$raspap_dir/hostapd'"
+    sudo mkdir -p $raspap_dir/hostapd || _install_status 1 "Unable to create directory '$raspap_dir/hostapd'"
 
     # Copy service control shell scripts
     sudo cp "$webroot_dir/installers/"servicestart.sh "$raspap_dir/hostapd" || _install_status 1 "Unable to move service control scripts"
@@ -372,7 +431,7 @@ function _create_plugin_scripts() {
 # Generate lighttpd service control scripts
 function _create_lighttpd_scripts() {
     _install_log "Creating lighttpd control scripts"
-    sudo mkdir $raspap_dir/lighttpd || _install_status 1 "Unable to create directory '$raspap_dir/lighttpd"
+    sudo mkdir -p $raspap_dir/lighttpd || _install_status 1 "Unable to create directory '$raspap_dir/lighttpd"
 
     # Copy service control shell scripts
     echo "Copying configport.sh to $raspap_dir/lighttpd"
@@ -754,7 +813,7 @@ function _install_openvpn() {
 # Generate openvpn logging and auth control scripts
 function _create_openvpn_scripts() {
     _install_log "Creating OpenVPN control scripts"
-    sudo mkdir $raspap_dir/openvpn || _install_status 1 "Unable to create directory '$raspap_dir/openvpn'"
+    sudo mkdir -p $raspap_dir/openvpn || _install_status 1 "Unable to create directory '$raspap_dir/openvpn'"
 
     # Copy service auth control and logging scripts
     sudo cp "$webroot_dir/installers/"configauth.sh "$raspap_dir/openvpn" || _install_status 1 "Unable to move auth control script"
@@ -770,6 +829,8 @@ function _create_openvpn_scripts() {
 function _install_restapi() {
     _install_log "Installing and enabling RestAPI"
     sudo mv "$webroot_dir/api" "$raspap_dir/api"  || _install_status 1 "Unable to move api folder"
+    # the web root, and so the code of the API, is owned by www-data
+    sudo chown -R root:root "$raspap_dir/api" || _install_status 1 "Unable to change owner of api folder"
 
     if ! command -v python3 &> /dev/null; then
         echo "Python is not installed. Installing Python..."
@@ -1171,7 +1232,7 @@ function _patch_system_files() {
     sudo install -o root -g root -m 755 "$webroot_dir/installers/raspap-iptables-save.sh" /usr/local/sbin/raspap-iptables-save.sh || _install_status 1 "Unable to install iptables save script"
 
     if [ ! -d "$raspap_dir/system" ]; then
-        sudo mkdir $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
+        sudo mkdir -p $raspap_dir/system || _install_status 1 "Unable to create directory '$raspap_dir/system'"
     fi
 
     _install_log "Copying RaspAP debug log control script"
