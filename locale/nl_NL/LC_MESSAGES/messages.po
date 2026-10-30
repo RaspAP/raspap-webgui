@@ -362,6 +362,36 @@ msgstr "Het ontkoppelen van de client is mislukt %s"
 msgid "Invalid client MAC address"
 msgstr "Ongeldig MAC-adres van de client"
 
+#: ../src/RaspAP/Networking/NetDeviceHandler.php
+msgid "Unknown device"
+msgstr "Onbekend apparaat"
+
+#: ../src/RaspAP/Networking/NetDeviceHandler.php
+msgid "Invalid USB vendor or product ID"
+msgstr "Ongeldige USB-fabrikant- of product-ID"
+
+#: ../src/RaspAP/Networking/NetDeviceHandler.php
+msgid "Invalid MAC address"
+msgstr "Ongeldig MAC-adres"
+
+#: ../src/RaspAP/Networking/NetDeviceHandler.php
+#, php-format
+msgid "Unable to save the udev rule for device %s"
+msgstr "Kan de udev-regel voor apparaat %s niet opslaan"
+
+#: ../src/RaspAP/Networking/NetDeviceHandler.php
+#, php-format
+msgid "Address changed for device %s. New MAC address: %s"
+msgstr "Adres gewijzigd voor apparaat %s. Nieuw MAC-adres: %s"
+
+#: ../src/RaspAP/Networking/NetDeviceHandler.php
+#, php-format
+msgid "Settings changed for device %s. Changes will take effect after reconnecting the device."
+msgstr "Instellingen gewijzigd voor apparaat %s. De wijzigingen worden actief nadat het apparaat opnieuw is verbonden."
+
+#: ../templates/networking/devices.php:20
+msgid "USB vid/pid"
+msgstr "USB vid/pid"
 #: ../plugins-available/Captive/Captive.php:132
 msgid "A captive portal plugin that implements nodogsplash"
 msgstr "Een captive portal plugin die nodogsplash implementeert"

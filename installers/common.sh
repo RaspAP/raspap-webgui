@@ -1264,6 +1264,16 @@ function _patch_system_files() {
     _install_log "Copying RaspAP NetworkManager WiFi client helper to /usr/local/sbin"
     sudo install -o root -g root -m 755 "$webroot_dir/installers/nm-wifi.sh" /usr/local/sbin/raspap-nm-wifi.sh || _install_status 1 "Unable to install NetworkManager WiFi client helper"
 
+    # www-data changes the udev rules of network devices through this helper.
+    # The rules files belong to root.
+    _install_log "Copying RaspAP udev rules helper to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/udev-rules.sh" /usr/local/sbin/raspap-udev-rules.sh || _install_status 1 "Unable to install udev rules helper"
+    for rules in /etc/udev/rules.d/70-mobile-data-sticks.rules /etc/udev/rules.d/80-raspap-net-devices.rules; do
+        if [ -f "$rules" ]; then
+            sudo chown root:root "$rules" && sudo chmod 644 "$rules" || _install_status 1 "Unable to set permissions of $rules"
+        fi
+    done
+
     _install_status 0
 }
 
