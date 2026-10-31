@@ -24,7 +24,7 @@
                 <button type="button" class="btn btn-outline-success <?php echo $btn_class; ?> js-activate-openvpn-client" data-record-id="<?php echo htmlspecialchars($client, ENT_QUOTES); ?>" data-bs-toggle="modal" data-bs-target="#ovpn-confirm-activate" /><i class="far fa-check-circle"></i></button>
               </div>
               <div class="col-md-auto col-xs-2">
-                <button type="button" class="btn btn-outline-danger js-remove-openvpn-client" data-record-id="<?php echo htmlspecialchars($client, ENT_QUOTES); ?>" data-bs-toggle="modal" data-bs-target="#ovpn-confirm-delete" /><i class="far fa-trash-alt"></i></button>
+                <button type="button" class="btn btn-outline-danger js-remove-openvpn-client" <?php echo $btn_class === "active" ? "disabled" : ""; ?> data-record-id="<?php echo htmlspecialchars($client, ENT_QUOTES); ?>" data-bs-toggle="modal" data-bs-target="#ovpn-confirm-delete" /><i class="far fa-trash-alt"></i></button>
               </div>
             </div><!-- ./row openvpn-client -->
           <?php endforeach ?>

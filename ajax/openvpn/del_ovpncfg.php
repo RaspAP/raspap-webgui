@@ -16,11 +16,19 @@ if (isset($_POST['cfg_id'])) {
     $ovpncfg_client = RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_client.conf';
     $ovpncfg_login = RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_login.conf';
     $ovpncfg_keypass = RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_keypass.conf';
-    exec(
-        "sudo rm -f ".escapeshellarg($ovpncfg_client)." ".escapeshellarg($ovpncfg_login)
-        ." ".escapeshellarg($ovpncfg_keypass),
-        $return
-    );
+
+    // the active configuration stays, client.conf links to it
+    if (basename((string)@readlink(RASPI_OPENVPN_CLIENT_CONFIG)) === basename($ovpncfg_client)) {
+        http_response_code(409);
+        echo json_encode(['return' => 1]);
+        exit;
+    }
+
+    // raspap.sudoers allows rm without options. The login and keypass files
+    // are optional, so only the client file decides the result.
+    exec("sudo rm ".escapeshellarg($ovpncfg_client)." 2>/dev/null", $output, $return);
+    exec("sudo rm ".escapeshellarg($ovpncfg_login)." 2>/dev/null");
+    exec("sudo rm ".escapeshellarg($ovpncfg_keypass)." 2>/dev/null");
     $jsonData = ['return'=>$return];
     echo json_encode($jsonData);
 }
