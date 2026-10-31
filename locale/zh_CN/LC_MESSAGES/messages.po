@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-10-30 00:08+0000\n"
+"POT-Creation-Date: 2026-10-31 02:57+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -400,7 +400,7 @@ msgstr "高级"
 
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
-#: ../includes/functions.php:1193 ../templates/restapi.php:46
+#: ../includes/functions.php:1237 ../templates/restapi.php:46
 #: ../templates/wifi_stations/network.php:48 ../templates/provider.php:36
 msgid "Status"
 msgstr "现状"
@@ -1024,7 +1024,7 @@ msgstr "所选接口 (%s) 不支持无线模式操作。"
 msgid "Dashboard"
 msgstr "仪表板"
 
-#: ../src/RaspAP/UI/Sidebar.php:19 ../includes/functions.php:1195
+#: ../src/RaspAP/UI/Sidebar.php:19 ../includes/functions.php:1239
 #: ../templates/hostapd.php:14
 msgid "Hotspot"
 msgstr "热点"
@@ -1203,6 +1203,33 @@ msgstr "通知"
 msgid "Warning"
 msgstr "警告"
 
+#: ../src/RaspAP/Networking/NetDeviceHandler.php:44
+msgid "Unknown device"
+msgstr ""
+
+#: ../src/RaspAP/Networking/NetDeviceHandler.php:51
+msgid "Invalid USB vendor or product ID"
+msgstr ""
+
+#: ../src/RaspAP/Networking/NetDeviceHandler.php:57
+msgid "Invalid MAC address"
+msgstr ""
+
+#: ../src/RaspAP/Networking/NetDeviceHandler.php:85
+#, php-format
+msgid "Unable to save the udev rule for device %s"
+msgstr ""
+
+#: ../src/RaspAP/Networking/NetDeviceHandler.php:98
+#, php-format
+msgid "Address changed for device %s. New MAC address: %s"
+msgstr ""
+
+#: ../src/RaspAP/Networking/NetDeviceHandler.php:99
+#, php-format
+msgid "Settings changed for device %s. Changes will take effect after reconnecting the device."
+msgstr ""
+
 #: ../src/RaspAP/Networking/VpnConflict.php:37
 msgid "WireGuard and OpenVPN are both set to send all traffic through their tunnel. Use only one of them at a time."
 msgstr ""
@@ -1279,36 +1306,42 @@ msgstr "登录"
 msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
 msgstr "可<a href=\"%s\" target=\"_blank\">在此处 %s</a>访问 RestAPI 文档"
 
-#: ../includes/functions.php:1198
+#: ../includes/functions.php:1126
+#, php-format
+msgid "Too many failed logins. Try again in %d minute."
+msgid_plural "Too many failed logins. Try again in %d minutes."
+msgstr[0] ""
+
+#: ../includes/functions.php:1242
 msgid "Mem Use"
 msgstr "内存使用"
 
-#: ../includes/functions.php:1201
+#: ../includes/functions.php:1245
 msgid "CPU"
 msgstr "CPU"
 
-#: ../includes/functions.php:1270
+#: ../includes/functions.php:1314
 msgid "Open the login page"
 msgstr ""
 
-#: ../includes/functions.php:1273
+#: ../includes/functions.php:1317
 msgid "The uplink network needs a login (captive portal). The VPN tunnel can not connect until the login."
 msgstr ""
 
-#: ../includes/functions.php:1275
+#: ../includes/functions.php:1319
 msgid "Allow the login for 5 minutes"
 msgstr ""
 
-#: ../includes/functions.php:1277
+#: ../includes/functions.php:1321
 msgid "The uplink network needs a login (captive portal). On a device that is connected to the hotspot, open a website that starts with http://. The login page of the network then opens. After the login, the VPN tunnel connects again."
 msgstr ""
 
-#: ../includes/functions.php:1281
+#: ../includes/functions.php:1325
 #, php-format
 msgid "The login is allowed until %s."
 msgstr ""
 
-#: ../includes/functions.php:1283
+#: ../includes/functions.php:1327
 msgid "End the login now"
 msgstr ""
 
