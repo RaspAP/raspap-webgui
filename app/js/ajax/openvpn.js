@@ -20,6 +20,9 @@ export function initOpenVPN_ajax() {
         $.post('ajax/openvpn/del_ovpncfg.php',{'cfg_id':cfg_id, 'csrf_token': csrfToken},function(data){
             let jsonData = JSON.parse(data);
             $("#ovpn-confirm-delete").modal('hide');
+            if (jsonData.return !== 0) {
+                return;
+            }
             var row = $(document.getElementById("openvpn-client-row-" + cfg_id));
             row.fadeOut( "slow", function() {
                 row.remove();
