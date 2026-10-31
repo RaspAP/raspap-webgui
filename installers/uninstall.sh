@@ -200,7 +200,13 @@ function _restore_networking() {
     # Persist rules if removed
     if [ "$removed" = true ]; then
         echo "Removing persistent iptables rules"
-        sudo bash "$webroot_dir/installers/raspap-iptables-save.sh" || _install_error "Unable to execute iptables-save"
+        # the loader fetches this file from the latest release, so the web root
+        # of an older version may not have the script
+        if [ -f "$webroot_dir/installers/raspap-iptables-save.sh" ]; then
+            sudo bash "$webroot_dir/installers/raspap-iptables-save.sh" || _install_error "Unable to execute iptables-save"
+        else
+            sudo iptables-save | sudo tee $rulesv4 > /dev/null || _install_error "Unable to execute iptables-save"
+        fi
     fi
     sudo rm -f /usr/local/sbin/raspap-iptables-save.sh || _install_error "Unable to remove raspap-iptables-save.sh"
     echo "Done."
