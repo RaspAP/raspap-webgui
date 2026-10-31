@@ -2333,10 +2333,6 @@ msgstr "Lokale openbare sleutel"
 msgid "Administrator login"
 msgstr "Inloggen als beheerder"
 
-#: ../templates/login.php:31
-msgid "Forgot password"
-msgstr "Wachtwoord vergeten"
-
 #: ../templates/login.php:33
 msgid "Scan for Login Help"
 msgstr "Scan voor hulp bij het inloggen"
@@ -3087,10 +3083,6 @@ msgstr "Netwerkapparaten"
 #: ../templates/networking/devices.php:16
 msgid "Device"
 msgstr "Apparaat"
-
-#: ../templates/networking/devices.php:20
-msgid "USB vid/pid"
-msgstr "USB vid/pid"
 
 #: ../templates/networking/devices.php:21
 msgid "Device type"
