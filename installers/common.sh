@@ -79,6 +79,8 @@ function _update_raspap() {
     _change_file_ownership
     _secure_raspap_directories
     _patch_system_files
+    _create_hostapd_scripts
+    _update_openvpn_scripts
     _update_wireguard
     _enable_network_activity_monitor
     _create_plugin_scripts
@@ -823,6 +825,15 @@ function _create_openvpn_scripts() {
     sudo chmod 750 "$raspap_dir/openvpn/"*.sh || _install_status 1 "Unable to change file permissions"
 
     _install_status 0
+}
+
+# Update the OpenVPN control scripts of an existing installation. The script
+# directory exists on all installations, so check for the script itself.
+function _update_openvpn_scripts() {
+    if [ ! -f "$raspap_dir/openvpn/configauth.sh" ]; then
+        return 0
+    fi
+    _create_openvpn_scripts
 }
 
 # Install and enable RestAPI configuration option
