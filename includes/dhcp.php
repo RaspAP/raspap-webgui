@@ -103,8 +103,10 @@ function DisplayDHCPConfig()
     count($log_dhcp) > 0 ? $conf['log-dhcp'] = true : false ;
     count($log_queries) > 0 ? $conf['log-queries'] = true : false ;
 
-    exec('sudo /bin/chmod o+r '.RASPI_DHCPCD_LOG);
-    $logdata = getLogLimited(RASPI_DHCPCD_LOG);
+    // the log is not readable for other users, the helper reads it
+    $limit = (int)($_SESSION['log_limit'] ?? RASPI_LOG_SIZE_LIMIT) * 1024;
+    exec('sudo /usr/local/sbin/raspap-logs.sh read dnsmasq '.max(1, $limit), $logLines);
+    $logdata = getLogLimited('', implode("\n", $logLines));
 
     echo renderTemplate(
         "dhcp", compact(

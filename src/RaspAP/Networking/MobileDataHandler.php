@@ -59,25 +59,22 @@ class MobileDataHandler implements NetworkHandler
      */
     private function updateDialerConfig(array $cfg): void
     {
-        $replacements = [
-            'Init1 = AT\+CPIN=".*"' => 'Init1 = AT+CPIN="' . $cfg['pin'] . '"',
-            'Init3 = AT\+CGDCONT=1,"IP",".*"' => 'Init3 = AT+CGDCONT=1,"IP","' . $cfg['apn'] . '"',
-            '^Username = .*' => 'Username = ' . $cfg['apn_user'],
-            '^Password = .*' => 'Password = ' . $cfg['apn_pw']
-        ];
-
-        foreach ($replacements as $pattern => $replacement) {
-            if (trim($replacement) !== '') {
-                $cmd = sprintf(
-                    'sudo /bin/sed -i -E %s %s',
-                    escapeshellarg("s|$pattern|$replacement|"),
-                    escapeshellarg($this->cfgFile)
-                );
-                exec($cmd, $output, $return);
-                if ($return !== 0) {
-                    error_log("Failed to execute: $cmd\nOutput: " . implode("\n", $output));
-                }
-            }
+        // the helper changes the PIN, the APN and the login lines of
+        // wvdial.conf. The values go on stdin, one per line, so the
+        // password is not on the command line.
+        $values = [$cfg['pin'], $cfg['apn'], $cfg['apn_user'], $cfg['apn_pw']];
+        $descriptors = [0 => ['pipe', 'r'], 1 => ['file', '/dev/null', 'w'], 2 => ['pipe', 'w']];
+        $proc = proc_open(['sudo', '/usr/local/sbin/raspap-net.sh', 'wvdial'], $descriptors, $pipes);
+        if (!is_resource($proc)) {
+            error_log('Unable to run raspap-net.sh wvdial');
+            return;
+        }
+        fwrite($pipes[0], implode("\n", array_map('strval', $values)) . "\n");
+        fclose($pipes[0]);
+        $error = (string)stream_get_contents($pipes[2]);
+        fclose($pipes[2]);
+        if (proc_close($proc) !== 0) {
+            error_log('Failed to update ' . $this->cfgFile . ': ' . trim($error));
         }
     }
 }

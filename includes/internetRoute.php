@@ -142,7 +142,7 @@ function checkHTTPAccess($iface, $detectPortal=false) {
                         $ret="PORTAL " . $url;
                      }
                      else {
-                        exec('timeout 7 sudo nmap --script=broadcast-dhcp-discover -e ' . escapeshellarg($iface) . ' 2> /dev/null | sed -rn "s/.*Domain Name Server:\s*(([0-9]{1,3}\.){3}[0-9]{1,3}).*/\1/pi"', $nameserver);
+                        exec('timeout 7 sudo /usr/local/sbin/raspap-net.sh dhcp-discover ' . escapeshellarg($iface) . ' 2> /dev/null | sed -rn "s/.*Domain Name Server:\s*(([0-9]{1,3}\.){3}[0-9]{1,3}).*/\1/pi"', $nameserver);
                         if ( !empty($nameserver) ) {
                            $nameserver=$nameserver[0];
                            exec('host ' . escapeshellarg($srv) . ' ' . escapeshellarg($nameserver) . ' | sed -rn "s/.*has address ((([0-9]{1,3}\.){3}[0-9]{1,3})).*/\1/p"', $ip2);

@@ -106,10 +106,10 @@ function DisplayWireGuardConfig()
     exec("sudo readlink ".RASPI_WIREGUARD_CONFIG." | xargs basename", $ret);
     $conf_default = empty($ret) ? "none" : $ret[0];
 
-    // fetch wg log
-    exec('sudo chmod o+r /tmp/wireguard.log');
-    if (file_exists('/tmp/wireguard.log')) {
-        $log = file_get_contents('/tmp/wireguard.log');
+    // fetch wg log, saved in the private directory of the web server user
+    $logFile = wireGuardLogFile();
+    if ($logFile !== null && file_exists($logFile)) {
+        $log = file_get_contents($logFile);
     } else {
         $log = '';
     }
@@ -519,9 +519,26 @@ function CheckWireGuardLog( $opt, $status )
 {
    // handle log option
     if ( $opt == "1") {
-        exec("sudo journalctl --identifier wg-quick > /tmp/wireguard.log");
-        $status->addMessage('WireGuard debug log updated', 'success');
+        exec('sudo /usr/local/sbin/raspap-logs.sh wireguard', $output, $return);
+        $logFile = wireGuardLogFile();
+        if ($return === 0 && $logFile !== null && file_put_contents($logFile, implode("\n", $output)."\n") !== false) {
+            $status->addMessage('WireGuard debug log updated', 'success');
+        } else {
+            $status->addMessage('Unable to update the WireGuard debug log', 'danger');
+        }
     }
     return $status;
+}
+
+/**
+ * Returns the file of the WireGuard debug log, in the private directory of
+ * the web server user, or null
+ *
+ * @return string|null
+ */
+function wireGuardLogFile()
+{
+    $dir = get_private_cache_dir();
+    return $dir === null ? null : $dir.'/wireguard.log';
 }
 

@@ -366,7 +366,7 @@ class HotspotService
     public function setRegDomain(string $country_code, StatusMessage $status): bool
     {
         $country_code = escapeshellarg($country_code);
-        exec("sudo iw reg set $country_code", $output, $result);
+        exec("sudo /usr/local/sbin/raspap-net.sh reg $country_code", $output, $result);
         if ($result !== 0) {
             return false;
         } else {
@@ -413,7 +413,7 @@ class HotspotService
             ];
         }
 
-        $cmd = sprintf('sudo journalctl -u hostapd.service -n %d --no-pager 2>&1', $lines);
+        $cmd = sprintf('sudo /usr/local/sbin/raspap-logs.sh hostapd %d 2>&1', $lines);
         exec($cmd, $output, $status);
 
         return [

@@ -1285,6 +1285,13 @@ function _patch_system_files() {
         fi
     done
 
+    # www-data runs ip, iw and nmap, changes wvdial.conf, and reads and clears
+    # the service logs through these helpers. They must be in a directory that
+    # only root can change.
+    _install_log "Copying RaspAP network tools and log helpers to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/net.sh" /usr/local/sbin/raspap-net.sh || _install_status 1 "Unable to install network tools helper"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/logs.sh" /usr/local/sbin/raspap-logs.sh || _install_status 1 "Unable to install log helper"
+
     _install_status 0
 }
 

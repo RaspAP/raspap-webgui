@@ -86,15 +86,14 @@ function DisplayAdBlockConfig()
         $adblock_custom_content = '';
     }
     $adblock_log = '';
-    exec('sudo chmod o+r '.RASPI_DHCPCD_LOG);
-    $handle = fopen(RASPI_DHCPCD_LOG, "r");
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
+    // the log is not readable for other users, the helper reads it
+    exec('sudo /usr/local/sbin/raspap-logs.sh read dnsmasq', $logLines, $logReturn);
+    if ($logReturn === 0) {
+        foreach ($logLines as $line) {
             if (preg_match('/(is 0.0.0.0)|(using only locally-known addresses)/', $line)) {
-                $adblock_log .= $line;
+                $adblock_log .= $line.PHP_EOL;
             }
         }
-        fclose($handle);
     } else {
         $adblock_log = "Unable to open log file";
     }

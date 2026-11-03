@@ -87,10 +87,10 @@ class NetDeviceHandler
 
         $macAddrChanged = false;
         if ($mac !== $newMac) {
-            exec("sudo ip link set " . escapeshellarg($dev) . " down");
+            exec("sudo /usr/local/sbin/raspap-net.sh link " . escapeshellarg($dev) . " down");
             sleep(1);
-            exec("sudo ip link set " . escapeshellarg($dev) . " address " . escapeshellarg($newMac));
-            exec("sudo ip link set " . escapeshellarg($dev) . " up");
+            exec("sudo /usr/local/sbin/raspap-net.sh link " . escapeshellarg($dev) . " address " . escapeshellarg($newMac));
+            exec("sudo /usr/local/sbin/raspap-net.sh link " . escapeshellarg($dev) . " up");
             $macAddrChanged = true;
         }
 

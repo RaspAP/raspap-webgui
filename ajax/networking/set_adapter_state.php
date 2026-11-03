@@ -27,7 +27,7 @@ if (!in_array($state, ['up', 'down', 'cycle'])) {
 
 if ($state === 'cycle') {
     // bring down first
-    exec("sudo ip link set $interface down 2>/dev/null", $downOutput, $downStatus);
+    exec("sudo /usr/local/sbin/raspap-net.sh link $interface down 2>/dev/null", $downOutput, $downStatus);
     if ($downStatus !== 0) {
         http_response_code(500);
         echo json_encode(['error' => 'Failed to bring adapter down']);
@@ -37,7 +37,7 @@ if ($state === 'cycle') {
     $state = 'up';
 }
 
-exec("sudo ip link set $interface $state 2>/dev/null", $output, $status);
+exec("sudo /usr/local/sbin/raspap-net.sh link $interface $state 2>/dev/null", $output, $status);
 if ($status !== 0) {
     http_response_code(500);
     echo json_encode(['error' => 'Failed to change adapter state']);

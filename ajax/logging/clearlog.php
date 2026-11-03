@@ -7,12 +7,20 @@ require_once '../../includes/authenticate.php';
 require_once '../../includes/functions.php';
 
 if (isset($_POST['logfile'])) {
-    $logfile = escapeshellarg($_POST['logfile']);
-    $valid = '/(\/var\/log|\/tmp)/';
+    // the logs that the web interface can clear
+    $logs = [
+        '/var/log/dnsmasq.log' => 'dnsmasq',
+        '/tmp/hostapd.log' => 'hostapd',
+        '/tmp/openvpn.log' => 'openvpn'
+    ];
+    $name = is_string($_POST['logfile']) ? ($logs[$_POST['logfile']] ?? null) : null;
 
-    if (preg_match($valid, $logfile)) {
+    if ($name !== null) {
         // truncate requested log file
-        exec("sudo truncate -s 0 $logfile", $return);
+        exec("sudo /usr/local/sbin/raspap-logs.sh clear $name", $return, $status);
+        if ($status !== 0) {
+            $return = 1;
+        }
     } else {
         $return = 1;
     }
