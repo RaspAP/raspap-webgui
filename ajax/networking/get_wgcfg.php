@@ -6,5 +6,5 @@ require_once '../../includes/config.php';
 require_once '../../includes/authenticate.php';
 
 // fetch wg client.conf
-exec('sudo cat '. RASPI_WIREGUARD_PATH.'client.conf', $return);
+$return = \RaspAP\Networking\VpnFile::readLines('wireguard', 'client.conf');
 echo implode(PHP_EOL,$return);

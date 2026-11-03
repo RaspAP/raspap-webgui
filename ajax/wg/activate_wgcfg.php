@@ -15,12 +15,10 @@ if (isset($_POST['cfg_id'])) {
         echo json_encode(['error' => 'Invalid configuration id']);
         exit;
     }
-    $wg_conf = RASPI_WIREGUARD_PATH.$wgcfg_id.'.conf';
 
-    // remove existing wg config and symbolically link the selected one
-    system("sudo rm ".RASPI_WIREGUARD_CONFIG, $return);
-    system("sudo ln -s ".escapeshellarg($wg_conf)." ".RASPI_WIREGUARD_CONFIG, $return);
-    
+    // link wg0.conf to the selected config
+    \RaspAP\Networking\VpnFile::run(['wireguard', 'activate', $wgcfg_id]);
+
     // restart service
     exec('sudo /bin/systemctl stop wg-quick@wg0', $return);
     sleep(1);

@@ -60,7 +60,7 @@ class VpnConflict
         if (!$this->serviceInUse('wg-quick@wg0')) {
             return null;
         }
-        exec('sudo cat ' . RASPI_WIREGUARD_CONFIG . ' 2>/dev/null', $lines);
+        $lines = VpnFile::readLines('wireguard', 'wg0.conf');
         $fullTunnel = false;
         $endpoints = [];
         foreach ($lines as $line) {
@@ -89,9 +89,7 @@ class VpnConflict
         if (!$this->serviceInUse('openvpn-client@client')) {
             return null;
         }
-        $lines = is_readable(RASPI_OPENVPN_CLIENT_CONFIG)
-            ? file(RASPI_OPENVPN_CLIENT_CONFIG, FILE_IGNORE_NEW_LINES)
-            : [];
+        $lines = VpnFile::readLines('openvpn', 'client');
         $fullTunnel = false;
         $endpoints = [];
         foreach ($lines as $line) {

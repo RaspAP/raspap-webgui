@@ -263,6 +263,7 @@ function _remove_sudoers() {
     sudo rm "$raspap_sudoers" || _install_error "Unable to remove $raspap_sudoers"
     # the set time script that the sudoers file allowed
     sudo rm -f /usr/local/sbin/raspap-settime.sh || _install_error "Unable to remove raspap-settime.sh"
+    sudo rm -f /usr/local/sbin/raspap-vpn-file.sh || _install_error "Unable to remove raspap-vpn-file.sh"
     # the uplink watchdog that the sudoers file allowed
     sudo systemctl disable --now raspap-uplink-watchdog.timer 2> /dev/null || true
     sudo rm -f /etc/systemd/system/raspap-uplink-watchdog.service /etc/systemd/system/raspap-uplink-watchdog.timer \

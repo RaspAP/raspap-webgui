@@ -15,8 +15,7 @@ if (isset($_POST['cfg_id'])) {
         echo json_encode(['return' => 1]);
         exit;
     }
-    $wgcfg_file = RASPI_WIREGUARD_PATH .$wgcfg_id. '.conf';
-    exec("sudo rm ".escapeshellarg($wgcfg_file), $return);
+    $return = \RaspAP\Networking\VpnFile::run(['wireguard', 'remove', $wgcfg_id]) === null ? 1 : 0;
     $jsonData = ['return'=>$return];
     echo json_encode($jsonData);
 }

@@ -4,6 +4,7 @@ require_once 'includes/config.php';
 
 use RaspAP\Networking\Hotspot\WiFiManager;
 use RaspAP\Networking\VpnConflict;
+use RaspAP\Networking\VpnFile;
 
 $wifi = new WiFiManager();
 $wifi->getWifiInterface();
@@ -52,14 +53,13 @@ function DisplayWireGuardConfig()
     }
 
     // fetch server config
-    exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $return);
+    $return = VpnFile::readLines('wireguard', 'wg0.conf');
     $conf = ParseConfig($return, $parseFlag);
 
     // show the kill switch settings of the active configuration, unless the
     // user has just submitted them
     if (!isset($_POST['savewgsettings'])) {
-        exec('sudo cat '. RASPI_WIREGUARD_CONFIG, $wgConfig);
-        $ksSettings = getKillSwitchSettings($wgConfig);
+        $ksSettings = getKillSwitchSettings($return);
         if ($ksSettings !== null) {
             $optKSwitch = 1;
             $optKSwitchNtp = $ksSettings['ntp'] ? 1 : null;
@@ -68,7 +68,7 @@ function DisplayWireGuardConfig()
             $optKSwitchPortalAuto = $ksSettings['portalAuto'] ? 1 : null;
         }
     }
-    $wg_srvpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
+    $wg_srvpubkey = trim((string)VpnFile::run(['wireguard', 'read', 'wg-server-public.key']));
     $wg_srvport = ($conf['ListenPort'] ?? '') === ''
         ? getDefaultNetValue('wireguard','server','ListenPort')
         : $conf['ListenPort'];
@@ -77,14 +77,14 @@ function DisplayWireGuardConfig()
     if (is_array($wg_srvdns)) {
         $wg_srvdns = implode(', ', $wg_srvdns);
     }
-    $wg_peerpubkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-peer-public.key', $return);
+    $wg_peerpubkey = trim((string)VpnFile::run(['wireguard', 'read', 'wg-peer-public.key']));
     $wg_senabled = false;
     if (sizeof($conf) >0) {
         $wg_senabled = true;
     }
 
     // fetch client config
-    exec('sudo cat '. RASPI_WIREGUARD_PATH.'client.conf', $preturn);
+    $preturn = VpnFile::readLines('wireguard', 'client.conf');
     $conf = ParseConfig($preturn, $parseFlag);
     $wg_pipaddress = ($conf['Address'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','Address') : $conf['Address'];
     $wg_plistenport = ($conf['ListenPort'] ?? '') === '' ? getDefaultNetValue('wireguard','peer','ListenPort') : $conf['ListenPort'];
@@ -101,10 +101,10 @@ function DisplayWireGuardConfig()
     $serviceStatus = ($wg_return === 0) ? "up" : "down";
     $wg_state = ($wg_return === 0);
     // fetch uploaded file configs
-    exec("sudo ls ".RASPI_WIREGUARD_PATH, $clist);
+    $clist = preg_split('/\n/', (string)VpnFile::run(['wireguard', 'list']), -1, PREG_SPLIT_NO_EMPTY);
     $configs = preg_grep('/^((?!wg0).)*\.conf/', $clist);
-    exec("sudo readlink ".RASPI_WIREGUARD_CONFIG." | xargs basename", $ret);
-    $conf_default = empty($ret) ? "none" : $ret[0];
+    $active = trim((string)VpnFile::run(['wireguard', 'active']));
+    $conf_default = $active === '' ? "none" : $active;
 
     // fetch wg log
     exec('sudo chmod o+r /tmp/wireguard.log');
@@ -250,8 +250,6 @@ function isWireGuardValue($value)
 function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterface, $optKSwitchNtp = 1, $optKSwitchDns = null, $optKSwitchPortal = null, $optKSwitchPortalAuto = null)
 {
     define('KB', 1024);
-    $tmp_destdir = '/tmp/';
-    $auth_flag = 0;
 
     try {
         // If undefined or multiple files, treat as invalid
@@ -259,7 +257,12 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
             throw new RuntimeException('Invalid parameters');
         }
 
-        $upload = \RaspAP\Uploader\FileUpload::factory('wg',$tmp_destdir);
+        // the upload stays in the private directory of the web server user
+        $tmp_destdir = get_private_cache_dir();
+        if ($tmp_destdir === null) {
+            throw new RuntimeException('Unable to save WireGuard configuration');
+        }
+        $upload = \RaspAP\Uploader\FileUpload::factory('wg',$tmp_destdir.'/');
         $upload->set_max_file_size(64*KB);
         $upload->set_allowed_mime_types(array('text/plain'));
         $upload->file($file);
@@ -275,8 +278,8 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
         // Valid upload, get file contents
         $tmp_wgconfig = $results['full_path'];
         $tmp_contents = file_get_contents($tmp_wgconfig);
+        unlink($tmp_wgconfig);
         if ($tmp_contents === false || strpos($tmp_contents, "\0") !== false) {
-            unlink($tmp_wgconfig);
             throw new RuntimeException('Invalid WireGuard configuration');
         }
 
@@ -284,7 +287,6 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
         // only the keys it knows that are no commands
         $tmp_contents = sanitizeWireGuardConfig($tmp_contents, $removed);
         if (count($removed) > 0) {
-            file_put_contents($tmp_wgconfig, $tmp_contents);
             $status->addMessage('Removed from WireGuard configuration: '.implode(', ', array_unique($removed)), 'warning');
         }
 
@@ -329,22 +331,20 @@ function SaveWireGuardUpload($status, $file, $optRules, $optKSwitch, $optInterfa
             $rules[] = '';
             $rules = join(PHP_EOL, $rules);
             $tmp_contents = preg_replace('/^\s*$/ms', $rules, $tmp_contents, 1);
-            file_put_contents($tmp_wgconfig, $tmp_contents);
             $status->addMessage('iptables rules added to WireGuard configuration', 'info');
         }
 
-        // Sanitize, move processed file from /tmp and create symlink
+        // Install the processed file and link wg0.conf to it. The helper
+        // checks the options again, because it runs as root.
         $stem = preg_replace('/[^A-Za-z0-9\-_]/', '_', pathinfo($file['name'], PATHINFO_FILENAME));
-        $client_wg = RASPI_WIREGUARD_PATH.$stem.'.conf';
-        chmod($tmp_wgconfig, 0644);
-        system("sudo mv ".escapeshellarg($tmp_wgconfig)." ".escapeshellarg($client_wg), $return);
-        system("sudo rm ".RASPI_WIREGUARD_CONFIG, $return);
-        system("sudo ln -s ".escapeshellarg($client_wg)." ".RASPI_WIREGUARD_CONFIG, $return);
-
-        if ($return ==0) {
+        if ($stem === 'wg0') {
+            throw new RuntimeException('Invalid WireGuard configuration name');
+        }
+        if (VpnFile::run(['wireguard', 'install', $stem], $tmp_contents) !== null &&
+            VpnFile::run(['wireguard', 'activate', $stem]) !== null) {
             $status->addMessage('WireGuard configuration uploaded successfully', 'info');
         } else {
-            $status->addMessage('Unable to save WireGuard configuration', 'danger');
+            $status->addMessage('Unable to save WireGuard configuration: '.VpnFile::$lastError, 'danger');
         }
         return $status;
 
@@ -446,13 +446,14 @@ function SaveWireGuardConfig($status)
         // server (wg0.conf)
         if ($_POST['wgSrvEnable'] == 1) {
             // fetch server private key from filesytem
-            $wg_srvprivkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-server-private.key', $return);
+            $wg_srvprivkey = trim((string)VpnFile::run(['wireguard', 'read', 'wg-server-private.key']));
             $config[] = '[Interface]';
             $config[] = 'Address = '.$_POST['wg_srvipaddress'];
             $config[] = 'ListenPort = '.$_POST['wg_srvport'];
             $config[] = 'DNS = '.$_POST['wg_srvdns'];
             $config[] = 'PrivateKey = '.$wg_srvprivkey;
-            $config[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUp');
+            // "ap": wg-forward.sh uses the AP interface of the time the tunnel starts
+            $config[] = 'PostUp = '.str_replace('%a', 'ap', getDefaultNetValue('wireguard','server','PostUp'));
             $config[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
             $config[] = '';
             $config[] = '[Peer]';
@@ -464,18 +465,16 @@ function SaveWireGuardConfig($status)
             $config[] = '';
             $config = join(PHP_EOL, $config);
 
-            file_put_contents("/tmp/wgdata", $config);
-            system('sudo cp /tmp/wgdata '.RASPI_WIREGUARD_CONFIG, $return);
+            $ok = VpnFile::run(['wireguard', 'install', 'wg0'], $config) !== null;
         } else {
             # remove selected conf + keys
-            system('sudo rm '. RASPI_WIREGUARD_PATH .'wg-server-private.key', $return);
-            system('sudo rm '. RASPI_WIREGUARD_PATH .'wg-server-public.key', $return);
-            system('sudo rm '. RASPI_WIREGUARD_CONFIG, $return);
+            $ok = VpnFile::run(['wireguard', 'remove-keys', 'wg-server']) !== null &&
+                VpnFile::run(['wireguard', 'remove', 'wg0']) !== null;
         }
         // client1 (client.conf)
         if ($_POST['wg_penabled'] == 1) {
             // fetch peer private key from filesystem 
-            $wg_peerprivkey = exec('sudo cat '. RASPI_WIREGUARD_PATH .'wg-peer-private.key', $return);
+            $wg_peerprivkey = trim((string)VpnFile::run(['wireguard', 'read', 'wg-peer-private.key']));
             $config = [];
             $config[] = '[Interface]';
             $config[] = 'Address = '.trim($_POST['wg_pipaddress']);
@@ -491,22 +490,17 @@ function SaveWireGuardConfig($status)
             }
             $config[] = '';
             $config = join(PHP_EOL, $config);
-            file_put_contents("/tmp/wgdata", $config);
-            system('sudo cp /tmp/wgdata '.RASPI_WIREGUARD_PATH.'client.conf', $return);
+            $ok = VpnFile::run(['wireguard', 'install', 'client'], $config) !== null && $ok;
         } else {
             # remove selected conf + keys
-            system('sudo rm '. RASPI_WIREGUARD_PATH .'wg-peer-private.key', $return);
-            system('sudo rm '. RASPI_WIREGUARD_PATH .'wg-peer-public.key', $return);
-            system('sudo rm '. RASPI_WIREGUARD_PATH.'client.conf', $return);
+            $ok = VpnFile::run(['wireguard', 'remove-keys', 'wg-peer']) !== null &&
+                VpnFile::run(['wireguard', 'remove', 'client']) !== null && $ok;
         }
 
-        foreach ($return as $line) {
-            $status->addMessage($line, 'info');
-        }
-        if ($return == 0) {
+        if ($ok) {
             $status->addMessage('WireGuard configuration updated successfully', 'success');
         } else {
-            $status->addMessage('WireGuard configuration failed to be updated', 'danger');
+            $status->addMessage('WireGuard configuration failed to be updated: '.VpnFile::$lastError, 'danger');
         }
     }
 }

@@ -8,7 +8,7 @@ require_once '../../includes/authenticate.php';
 require_once '../../includes/defaults.php';
 require_once '../../includes/functions.php';
 
-exec("sudo cat " .RASPI_WIREGUARD_PATH.'client.conf', $return);
+$return = \RaspAP\Networking\VpnFile::readLines('wireguard', 'client.conf');
 $peer_conf = implode(PHP_EOL,$return);
 $peer_conf.= PHP_EOL;
 $command = "qrencode -t svg -m 0 -o - " . mb_escapeshellarg($peer_conf);

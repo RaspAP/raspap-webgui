@@ -950,13 +950,16 @@ function _change_file_ownership() {
 }
 
 # Older versions saved the OpenVPN client configs and logins with mode 644, so
-# each local user could read the keys and the VPN password. Makes them
-# readable by their owner only. OpenVPN (root) and the web UI (owner) still
-# read them. The same for the login files of the web UI (password hashes).
+# each local user could read the keys and the VPN password, and owned by
+# www-data, so the web server user could change a config that OpenVPN runs as
+# root. Makes them owned by root and readable by root only. The web UI reads
+# and changes them with raspap-vpn-file.sh. The same mode for the login files
+# of the web UI (password hashes).
 function _secure_openvpn_client_files() {
     local dir="/etc/openvpn/client" file
     if [ -d "$dir" ]; then
-        sudo find "$dir" -maxdepth 1 -type f -name '*.conf' -perm /077 -exec chmod 600 {} + ||
+        sudo find "$dir" -maxdepth 1 -type f -name '*.conf' \( -perm /077 -o ! -user root -o ! -group root \) \
+            -exec chown root:root {} + -exec chmod 600 {} + ||
             _install_status 1 "Unable to change the mode of the OpenVPN client files"
     fi
     for file in "$raspap_dir/raspap.auth" "$raspap_dir/limited.auth"; do
@@ -964,6 +967,14 @@ function _secure_openvpn_client_files() {
             sudo chmod 600 "$file" || _install_status 1 "Unable to change the mode of $file"
         fi
     done
+}
+
+# The web interface installs, reads and removes the WireGuard and OpenVPN
+# client files with this helper (content on stdin, no file in /tmp). www-data
+# can run it with sudo, so it must be in a directory that only root can change.
+function _install_vpn_file_helper() {
+    _install_log "Copying RaspAP VPN file helper to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/vpn-file.sh" /usr/local/sbin/raspap-vpn-file.sh || _install_status 1 "Unable to install the VPN file helper"
 }
 
 # Check for existing configuration files
@@ -1285,6 +1296,7 @@ function _patch_system_files() {
     _install_log "Copying RaspAP set time script to /usr/local/sbin"
     sudo install -o root -g root -m 755 "$webroot_dir/installers/settime.sh" /usr/local/sbin/raspap-settime.sh || _install_status 1 "Unable to install set time script"
 
+    _install_vpn_file_helper
     _install_uplink_watchdog
     _install_vnstat_helper
 

@@ -9,22 +9,14 @@ require_once '../../includes/functions.php';
 
 if (isset($_POST['cfg_id'])) {
     $ovpncfg_id = $_POST['cfg_id'];
-    if (!preg_match('/^[A-Za-z0-9_\-][A-Za-z0-9._\-]*$/D', $ovpncfg_id)) {
+    if (!preg_match('/^[A-Za-z0-9_()][A-Za-z0-9 ._()-]{0,99}$/D', $ovpncfg_id)) {
         http_response_code(400);
         echo json_encode(['error' => 'Invalid configuration id']);
         exit;
     }
-    $ovpncfg_client = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_client.conf');
-    $ovpncfg_login = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_login.conf');
-    $ovpncfg_keypass = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$ovpncfg_id.'_keypass.conf');
 
-    // remove existing client config, login + keypass and symbolically link the selected one
-    system("sudo rm ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
-    system("sudo ln -s $ovpncfg_client ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
-    system("sudo rm ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
-    system("sudo ln -s $ovpncfg_login ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
-    system("sudo rm ".RASPI_OPENVPN_CLIENT_KEYPASS, $return);
-    system("sudo ln -s $ovpncfg_keypass ".RASPI_OPENVPN_CLIENT_KEYPASS, $return);
+    // link client.conf, login.conf and keypass.conf to the files of the selected config
+    \RaspAP\Networking\VpnFile::run(['openvpn', 'activate', $ovpncfg_id]);
 
     // restart service
     exec("sudo /bin/systemctl stop openvpn-client@client", $return);

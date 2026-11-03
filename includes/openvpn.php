@@ -4,6 +4,7 @@ require_once 'includes/config.php';
 
 use RaspAP\Networking\Hotspot\WiFiManager;
 use RaspAP\Networking\VpnConflict;
+use RaspAP\Networking\VpnFile;
 $wifi = new WiFiManager();
 $wifi->getWifiInterface();
 
@@ -47,7 +48,7 @@ function DisplayOpenVPNConfig()
 
     exec('pidof openvpn', $openvpnstatus, $ovpn_return);
     $serviceStatus = ($ovpn_return === 0) ? "up" : "down";
-    $auth = file_exists(RASPI_OPENVPN_CLIENT_LOGIN) ? file(RASPI_OPENVPN_CLIENT_LOGIN, FILE_IGNORE_NEW_LINES) : [];
+    $auth = VpnFile::readLines('openvpn', 'login');
     $authUser = '';
     $authPassword = '';
     // parse client auth credentials
@@ -57,8 +58,9 @@ function DisplayOpenVPNConfig()
         $authPassword = next($auth);
     }
     $clients = preg_grep('/_client.(conf)$/', scandir(pathinfo(RASPI_OPENVPN_CLIENT_CONFIG, PATHINFO_DIRNAME)));
-    exec("readlink ".RASPI_OPENVPN_CLIENT_CONFIG." | xargs basename", $ret);
-    $conf_default =  empty($ret) ? "none" : $ret[0];
+    // a config name can contain spaces, so no "xargs basename"
+    $active = basename((string)@readlink(RASPI_OPENVPN_CLIENT_CONFIG));
+    $conf_default = $active === '' ? "none" : $active;
 
     $logEnable = 0;
     $logOutput = '';
@@ -202,10 +204,25 @@ function sanitizeOpenVPNConfig($contents, &$removed = [])
 }
 
 /**
+ * Sets an option that names a file in an OpenVPN configuration: removes the
+ * lines of the option and adds "<option> <file>" at the end
+ *
+ * @param  string $contents
+ * @param  string $option auth-user-pass or askpass
+ * @param  string $file
+ * @return string
+ */
+function setOpenVPNFileOption($contents, $option, $file)
+{
+    $contents = preg_replace('/^[ \t]*'.preg_quote($option, '/').'([ \t].*)?\r?$\n?/m', '', $contents);
+    return rtrim($contents, "\r\n")."\n".$option.' '.$file."\n";
+}
+
+/**
  * Validates uploaded .ovpn file, adds auth-user-pass and
  * stores auth credentials in login.conf. Optionally adds askpass
  * and stores the private key password in keypass.conf.
- * Copies files from tmp to OpenVPN
+ * Installs the files with the root helper raspap-vpn-file.sh
  *
  * @param  object $status
  * @param  object $file
@@ -217,9 +234,6 @@ function sanitizeOpenVPNConfig($contents, &$removed = [])
 function SaveOpenVPNConfig($status, $file, $authUser, $authPassword, $keyPassword = '')
 {
     define('KB', 1024);
-    $tmp_destdir = '/tmp/';
-    $auth_flag = 0;
-    $keypass_flag = 0;
 
     try {
         // If undefined or multiple files, treat as invalid
@@ -232,7 +246,12 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword, $keyPasswor
             throw new RuntimeException('Private key password must not contain line breaks');
         }
 
-        $upload = \RaspAP\Uploader\FileUpload::factory('ovpn',$tmp_destdir);
+        // the upload stays in the private directory of the web server user
+        $tmp_destdir = get_private_cache_dir();
+        if ($tmp_destdir === null) {
+            throw new RuntimeException('Unable to save OpenVPN client config');
+        }
+        $upload = \RaspAP\Uploader\FileUpload::factory('ovpn',$tmp_destdir.'/');
         $upload->set_max_file_size(64*KB);
         $upload->set_allowed_mime_types(array('ovpn' => 'text/plain'));
         $upload->file($file);
@@ -247,77 +266,54 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword, $keyPasswor
 
         $tmp_ovpn = $results['full_path'];
         $tmp_contents = file_get_contents($tmp_ovpn);
+        unlink($tmp_ovpn);
         if ($tmp_contents === false || strpos($tmp_contents, "\0") !== false) {
-            unlink($tmp_ovpn);
             throw new RuntimeException('Invalid OpenVPN configuration');
         }
         $tmp_contents = sanitizeOpenVPNConfig($tmp_contents, $removed);
         if (count($removed) > 0) {
-            file_put_contents($tmp_ovpn, $tmp_contents);
             $status->addMessage('Removed from OpenVPN configuration: '.implode(', ', array_unique($removed)), 'warning');
         }
+        // the name of the files in /etc/openvpn/client, as raspap-vpn-file.sh allows it
+        $name = preg_replace('/[^A-Za-z0-9 ._()-]/', '_', pathinfo($file['name'], PATHINFO_FILENAME));
+        $name = substr(ltrim($name, ' .-'), 0, 100);
+        if ($name === '') {
+            throw new RuntimeException('Invalid OpenVPN configuration name');
+        }
 
-        // Good file upload, update auth credentials if present, readable by owner only
+        // Good file upload, update auth credentials if present
         if (!empty($authUser) && !empty($authPassword)) {
-            $auth_flag = 1;
-            $tmp_authdata = $tmp_destdir .'ovpn/authdata';
+            $tmp_contents = setOpenVPNFileOption($tmp_contents, 'auth-user-pass', 'login.conf');
             $auth = $authUser .PHP_EOL . $authPassword .PHP_EOL;
-            $umask = umask(0077);
-            file_put_contents($tmp_authdata, $auth);
-            umask($umask);
-            chmod($tmp_authdata, 0600);
-            $client_auth = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_login.conf');
-            system("sudo mv $tmp_authdata $client_auth", $return);
-            system("sudo rm ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
-            system("sudo ln -s $client_auth ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
-            if ($return !=0) {
+            if (VpnFile::run(['openvpn', 'install', $name, 'login'], $auth) === null) {
                 $status->addMessage('Unable to save client auth credentials', 'danger');
             }
         }
 
-        // Store private key password if present, readable by owner only
+        // Store private key password if present
         if ($keyPassword !== '') {
-            $keypass_flag = 1;
-            $tmp_keypass = $tmp_destdir .'ovpn/keypass';
-            $umask = umask(0077);
-            $written = file_put_contents($tmp_keypass, $keyPassword .PHP_EOL);
-            umask($umask);
-            chmod($tmp_keypass, 0600);
-            $keypass_file = pathinfo($file['name'], PATHINFO_FILENAME).'_keypass.conf';
-            $client_keypass = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$keypass_file);
-            system("sudo mv $tmp_keypass $client_keypass", $return);
-            system("sudo rm ".RASPI_OPENVPN_CLIENT_KEYPASS, $rm_return);
-            system("sudo ln -s $client_keypass ".RASPI_OPENVPN_CLIENT_KEYPASS, $return);
-            if ($written === false || $return !=0) {
+            $tmp_contents = setOpenVPNFileOption($tmp_contents, 'askpass', 'keypass.conf');
+            if (VpnFile::run(['openvpn', 'install', $name, 'keypass'], $keyPassword .PHP_EOL) === null) {
                 $status->addMessage('Unable to save private key password', 'danger');
             }
         }
 
-        // Set iptables rules and, optionally, auth-user-pass and askpass
+        // Set iptables rules
         $cmd = sprintf(
-            'sudo /etc/raspap/openvpn/configauth.sh %s %d %s %d',
-            escapeshellarg($tmp_ovpn),
-            $auth_flag,
-            escapeshellarg($_SESSION['ap_interface'] ?? ''),
-            $keypass_flag
+            'sudo /etc/raspap/openvpn/configauth.sh %s',
+            escapeshellarg($_SESSION['ap_interface'] ?? '')
         );
         exec($cmd, $return);
         foreach ($return as $line) {
             $status->addMessage($line, 'info');
         }
 
-        // Move uploaded ovpn config from /tmp and create symlink. The config
-        // can contain keys, so it is readable by owner only
-        $client_ovpn = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_client.conf');
-        chmod($tmp_ovpn, 0600);
-        system("sudo mv $tmp_ovpn $client_ovpn", $return);
-        system("sudo rm ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
-        system("sudo ln -s $client_ovpn ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
-
-        if ($return ==0) {
+        // Install the ovpn config and link client.conf to it. The helper
+        // checks the options again, because it runs as root.
+        if (VpnFile::run(['openvpn', 'install', $name, 'client'], $tmp_contents) !== null) {
             $status->addMessage('OpenVPN client.conf uploaded successfully', 'info');
         } else {
-            $status->addMessage('Unable to save OpenVPN client config', 'danger');
+            $status->addMessage('Unable to save OpenVPN client config: '.VpnFile::$lastError, 'danger');
         }
 
         return $status;
