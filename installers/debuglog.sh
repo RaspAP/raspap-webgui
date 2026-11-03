@@ -84,7 +84,12 @@ function _parse_params() {
             writelog=1
             ;;
             -i|--install)
-            install_dir="$2"
+            install_dir="${2-}"
+            # www-data runs this script with sudo: accept a plain directory path only
+            if ! [[ "$install_dir" =~ ^/[A-Za-z0-9._/-]+$ ]] || [ ! -d "$install_dir" ]; then
+                echo "Invalid install directory" >&2
+                exit 2
+            fi
             shift
             ;;
             -*|--*)
@@ -170,8 +175,8 @@ function _raspap_info() {
     local hostapd_ini="Not present"
     local provider_ini="Not present"
 
-    if [ -f ${install_dir}/includes/defaults.php ]; then
-        version=$(grep "RASPI_VERSION" $install_dir/includes/defaults.php | awk -F"'" '{print $4}')
+    if [ -f "${install_dir}/includes/defaults.php" ]; then
+        version=$(grep "RASPI_VERSION" "$install_dir/includes/defaults.php" | awk -F"'" '{print $4}')
     fi
     if [ -f ${RASPAP_HOSTAPD} ]; then
         hostapd_ini=$(cat ${RASPAP_HOSTAPD})

@@ -29,6 +29,14 @@ input="$1"
 output="$2"
 action="$3"
 
+# www-data runs this script with sudo, so it checks the interface names
+for iface in "$input" "$output"; do
+    if ! [[ "$iface" =~ ^[A-Za-z0-9_.-]{1,15}$ ]]; then
+        echo "Invalid interface name: $iface" >&2
+        exit 1
+    fi
+done
+
 case "$3" in
     "add")
         action="A"
