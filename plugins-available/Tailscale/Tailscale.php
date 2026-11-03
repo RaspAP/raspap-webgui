@@ -839,19 +839,36 @@ class Tailscale implements PluginInterface
      * @note Plugins should avoid use of $_SESSION vars as these are
      * super globals that may conflict with other user plugins.
      */
+    /**
+     * Returns the file for the plugin data, in the private cache directory of
+     * the web server user, or null when there is no such directory
+     */
+    private static function dataFile(): ?string
+    {
+        if (!function_exists('get_private_cache_dir')) {
+            return null;
+        }
+        $dir = get_private_cache_dir();
+        return $dir === null ? null : $dir . '/plugin__' . self::getName() . '.data';
+    }
+
     public function persistData()
     {
-        $serialized = serialize($this);
-        file_put_contents("/tmp/plugin__{$this->getName()}.data", $serialized);
+        $file = self::dataFile();
+        if ($file !== null) {
+            file_put_contents($file, serialize($this), LOCK_EX);
+        }
     }
 
     // Static method to load persisted data
     public static function loadData(): ?self
     {
-        $filePath = "/tmp/plugin__".self::getName() .".data";
-        if (file_exists($filePath)) {
-            $data = file_get_contents($filePath);
-            return unserialize($data);
+        // only an object of this class: another local user can not prepare
+        // the file, and no other class is created from it
+        $file = self::dataFile();
+        if ($file !== null && is_file($file) && !is_link($file)) {
+            $data = unserialize((string)file_get_contents($file), ['allowed_classes' => [self::class]]);
+            return $data instanceof self ? $data : null;
         }
         return null;
     }
