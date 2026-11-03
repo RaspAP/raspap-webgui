@@ -104,9 +104,12 @@ function DisplayAuthConfig($username)
  */
 function updateCredentials($username = null, $password = null, $filePath, $role, $config, $status, $nonprivenabled = null)
 {
+    // the file contains the password hash, so it is readable by its owner only
     if (!file_exists($filePath)) {
+        $umask = umask(0077);
         $tmpauth = fopen($filePath, 'w');
         fclose($tmpauth);
+        umask($umask);
     }
 
     $lines = file($filePath, FILE_IGNORE_NEW_LINES);
@@ -136,6 +139,7 @@ function updateCredentials($username = null, $password = null, $filePath, $role,
 
     // Write updated credentials
     if ($fhandle = fopen($filePath, 'w')) {
+        chmod($filePath, 0600);
         fwrite($fhandle, $auth_username . PHP_EOL);
         fwrite($fhandle, $auth_password_hash . PHP_EOL);
         if ($role === 'Admin') {
