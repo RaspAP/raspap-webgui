@@ -849,8 +849,23 @@ function _restapi_key() {
     key=$(od -An -N16 -tx1 /dev/urandom | tr -d ' \n')
     { sudo grep -v '^RASPAP_API_KEY=' "$env_file" 2>/dev/null; echo "RASPAP_API_KEY=$key"; } |
         sudo tee "$env_file.new" > /dev/null || _install_status 1 "Unable to write the RestAPI key"
-    sudo chmod 644 "$env_file.new"
+    sudo chown root:$raspap_user "$env_file.new"
+    sudo chmod 640 "$env_file.new"
     sudo mv "$env_file.new" "$env_file" || _install_status 1 "Unable to write the RestAPI key"
+}
+
+# Only root and the web UI read the key in .env. systemd gives it to the
+# service, also when the service runs as a user that can not read .env.
+function _restapi_env_access() {
+    local env_file="$raspap_dir/api/.env"
+    if [ -f "$env_file" ] && [ ! -L "$env_file" ]; then
+        sudo chgrp $raspap_user "$env_file" || _install_status 1 "Unable to change the group of $env_file"
+        sudo chmod 640 "$env_file" || _install_status 1 "Unable to change the mode of $env_file"
+    fi
+    sudo mkdir -p /etc/systemd/system/restapi.service.d || _install_status 1 "Unable to create the restapi.service drop-in directory"
+    printf '[Service]\nEnvironmentFile=-%s\n' "$env_file" |
+        sudo tee /etc/systemd/system/restapi.service.d/raspap-env.conf > /dev/null || _install_status 1 "Unable to write the restapi.service drop-in"
+    sudo systemctl daemon-reload
 }
 
 # Copies the RestAPI code of the update to $raspap_dir/api, and makes a key
@@ -864,6 +879,7 @@ function _update_restapi() {
         sudo cp -r "$webroot_dir/api/." "$raspap_dir/api/" || _install_status 1 "Unable to copy the RestAPI files"
     fi
     _restapi_key
+    _restapi_env_access
     sudo systemctl try-restart restapi.service
     _install_status 0
 }
@@ -897,6 +913,7 @@ function _install_restapi() {
     sudo mv $webroot_dir/installers/restapi.service /lib/systemd/system/ || _install_status 1 "Unable to move restapi.service file"
     sudo systemctl daemon-reload
     _restapi_key
+    _restapi_env_access
     sudo systemctl enable restapi.service || _install_status 1 "Failed to enable restapi.service"
     echo "Enabling RestAPI management option"
     sudo sed -i "s/\('RASPI_RESTAPI_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"

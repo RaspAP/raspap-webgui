@@ -5,7 +5,12 @@ from fastapi import Security, HTTPException
 from starlette.status import HTTP_403_FORBIDDEN
 from dotenv import load_dotenv
 
-load_dotenv()
+# systemd passes the key from .env (EnvironmentFile), so the service can read
+# it also when it can not read .env itself
+try:
+    load_dotenv()
+except OSError:
+    pass
 
 # Without a key in .env, the API refuses each request. The installer makes a
 # key, and the RestAPI page of the web interface can change it.
