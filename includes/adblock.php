@@ -37,14 +37,12 @@ function DisplayAdBlockConfig()
                         }
                     }
                 }
-                file_put_contents("/tmp/dnsmasq_custom", $_POST['adblock-custom-hosts'].PHP_EOL);
-                system("sudo cp /tmp/dnsmasq_custom " .RASPI_ADBLOCK_LISTPATH .'custom.txt', $return);
+                $return = \RaspAP\System\ConfigFile::install('adblock-custom', null, $_POST['adblock-custom-hosts'].PHP_EOL) ? 0 : 1;
                 $config.= 'addn-hosts=' .RASPI_ADBLOCK_LISTPATH .'custom.txt'.PHP_EOL;
             }
 
             if (empty($errors)) {
-                file_put_contents("/tmp/dnsmasqdata", $config);
-                system('sudo cp /tmp/dnsmasqdata '.RASPI_ADBLOCK_CONFIG, $return);
+                $return = \RaspAP\System\ConfigFile::install('dnsmasq', 'adblock', (string)$config) ? 0 : 1;
                 if ($return == 0) {
                     $status->addMessage('Adblock configuration updated successfully', 'success');
                 } else {

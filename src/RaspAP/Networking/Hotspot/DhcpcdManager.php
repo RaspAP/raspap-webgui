@@ -17,7 +17,6 @@ use RaspAP\Messages\StatusMessage;
 class DhcpcdManager
 {
     private const CONF_DEFAULT = RASPI_DHCPCD_CONFIG;
-    private const CONF_TMP     = '/tmp/dhcpddata';
 
     /**
      * Builds a dhcpcd config for an interface
@@ -266,12 +265,7 @@ class DhcpcdManager
      */
     public function saveConfig(string $config, string $iface, StatusMessage $status): bool
     {
-        if (file_put_contents(self::CONF_TMP, $config) === false) {
-            throw new \RuntimeException("Failed to write temporary dhcpcd config");
-        }
-
-        exec(sprintf('sudo cp %s %s', escapeshellarg(self::CONF_TMP), escapeshellarg(self::CONF_DEFAULT)), $o, $rc);
-        if ($rc !== 0) {
+        if (!\RaspAP\System\ConfigFile::install('dhcpcd', null, $config)) {
             $status->addMessage('Unable to save DHCP configuration.', 'danger');
             return false;
         }
@@ -289,17 +283,11 @@ class DhcpcdManager
     public function remove(string $iface, StatusMessage $status): bool
     {
         $configFile = SELF::CONF_DEFAULT;
-        $tempFile = SELF::CONF_TMP;
 
         $dhcp_cfg = file_get_contents($configFile);
         $modified_cfg = preg_replace('/^#\sRaspAP\s'.$iface.'\s.*?(?=\s*^\s*$)([\s]+)/ms', '', $dhcp_cfg, 1);
         if ($modified_cfg !== $dhcp_cfg) {
-            file_put_contents($tempFile, $modified_cfg);
-
-            $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));
-            exec($cmd, $output, $result);
-
-            if ($result == 0) {
+            if (\RaspAP\System\ConfigFile::install('dhcpcd', null, $modified_cfg)) {
                 $status->addMessage('DHCP configuration for '.$iface.'  removed', 'success');
                 return true;
             } else {

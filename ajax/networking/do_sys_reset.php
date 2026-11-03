@@ -8,20 +8,18 @@ require_once '../../includes/functions.php';
 
 $return = 0;
 $path = "../../config";
+// the default files, installed through the config file helper
 $configs = array(
-    array("src" => $path .'/hostapd.conf', "tmp" => "/tmp/hostapddata", "dest" => RASPI_HOSTAPD_CONFIG),
-    array("src" => $path .'/dhcpcd.conf', "tmp" => "/tmp/dhcpddata", "dest" => RASPI_DHCPCD_CONFIG),
-    array("src" => $path .'/090_wlan0.conf', "tmp" => "/tmp/dnsmasqdata", "dest" => RASPI_DNSMASQ_PREFIX.'wlan0.conf'),
-    array("src" => $path .'/090_raspap.conf', "tmp" => "/tmp/dnsmasqdata", "dest" => RASPI_DNSMASQ_PREFIX.'raspap.conf'),
+    array("src" => $path .'/hostapd.conf', "kind" => "hostapd", "name" => null),
+    array("src" => $path .'/dhcpcd.conf', "kind" => "dhcpcd", "name" => null),
+    array("src" => $path .'/090_wlan0.conf', "kind" => "dnsmasq", "name" => "wlan0"),
+    array("src" => $path .'/090_raspap.conf', "kind" => "dnsmasq", "name" => "raspap"),
 );
 
 foreach ($configs as $config) {
-    try {
-        $tmp = file_get_contents($config["src"]);
-        file_put_contents($config["tmp"], $tmp);
-        system("sudo cp ".$config["tmp"]. " ".$config["dest"]);
-    } catch (Exception $e) {
-        $return = $e->getCode();
+    $content = file_get_contents($config["src"]);
+    if ($content === false || !\RaspAP\System\ConfigFile::install($config["kind"], $config["name"], $content)) {
+        $return = 1;
     }
 }
 $jsonData = ['return'=>$return];

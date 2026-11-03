@@ -19,7 +19,6 @@ class HostapdManager
 {
     private const CONF_DEFAULT = RASPI_HOSTAPD_CONFIG;
     private const CONF_PATH_PREFIX = '/etc/hostapd/hostapd-';
-    private const CONF_TMP = '/tmp/hostapddata';
 
     /** @var HostapdValidator */
     private $validator;
@@ -297,16 +296,8 @@ class HostapdManager
      */
     public function saveConfig(string $config, bool $dualMode, string $iface, bool $restart = false): bool
     {
-        $configFile = $this->resolveConfigPath($iface, $dualMode); 
-        $tempFile   = SELF::CONF_TMP;
-
-
-        if (file_put_contents($tempFile, $config) === false) {
-            throw new \RuntimeException("Failed to write temp hostapd config");
-        }
-
-        exec(sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile)), $o, $status);
-        if ($status !== 0) {
+        // hostapd.conf, or hostapd-<iface>.conf in dual mode (see resolveConfigPath())
+        if (!\RaspAP\System\ConfigFile::install('hostapd', $dualMode ? $iface : null, $config)) {
             throw new \RuntimeException("Failed to apply new hostapd config");
         }
 

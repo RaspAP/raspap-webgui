@@ -18,7 +18,6 @@ class DnsmasqManager
 {
     private const CONF_DEFAULT = '/etc/dnsmasq.d/';
     private const CONF_SUFFIX = '.conf';
-    private const CONF_TMP = '/tmp/dnsmasqdata';
     private const CONF_RASPAP = '090_raspap';
 
     /**
@@ -221,13 +220,9 @@ class DnsmasqManager
     public function saveConfig(array $config, string $iface): bool
     {
         $configFile = RASPI_DNSMASQ_PREFIX . $iface . SELF::CONF_SUFFIX;
-        $tempFile = SELF::CONF_TMP; 
 
         $config = join(PHP_EOL, $config);
-        file_put_contents($tempFile, $config);
-        $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));
-        exec($cmd, $output, $status);
-        if ($status !== 0) {
+        if (!\RaspAP\System\ConfigFile::install('dnsmasq', $iface, $config)) {
             throw new \RuntimeException("Failed to copy temp config to $configFile");
             return false;
         }
@@ -250,13 +245,10 @@ class DnsmasqManager
     public function saveConfigDefault(array $config): bool
     {
         $configFile = SELF::CONF_DEFAULT . SELF::CONF_RASPAP . SELF::CONF_SUFFIX;
-        $tempFile = SELF::CONF_TMP; 
 
         $config = join(PHP_EOL, $config);
-        file_put_contents($tempFile, $config);
-        $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));
-        exec($cmd, $output, $status);
-        if ($status !== 0) {
+        // the helper adds the prefix 090_ itself
+        if (!\RaspAP\System\ConfigFile::install('dnsmasq', 'raspap', $config)) {
             throw new \RuntimeException("Failed to copy temp config to $configFile");
             return false;
         }
@@ -307,8 +299,7 @@ class DnsmasqManager
      */
     public function remove(string $iface, StatusMessage $status): bool
     {
-        system('sudo rm '.RASPI_DNSMASQ_PREFIX.$iface.'.conf', $result);
-        if ($result == 0) {
+        if (\RaspAP\System\ConfigFile::remove('dnsmasq', $iface)) {
             $status->addMessage('Dnsmasq configuration for '.$iface.' removed.', 'success');
             return true;
         } else {
@@ -330,7 +321,10 @@ class DnsmasqManager
         $syscnf = preg_grep('~\.(conf)$~', scandir($dir_conf));
         foreach ($syscnf as $cnf) {
             if ($cnf !== '090_adblock.conf' && !preg_match('/.*_'.$interface.'.conf/', $cnf)) {
-                system('sudo rm /etc/dnsmasq.d/'.$cnf, $result);
+                // only the files of RaspAP (090_<name>.conf) can be removed
+                if (preg_match('/^090_(.+)\.conf$/', $cnf, $m)) {
+                    \RaspAP\System\ConfigFile::remove('dnsmasq', $m[1]);
+                }
                 return true;
             }
         }

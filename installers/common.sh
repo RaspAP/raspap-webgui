@@ -945,6 +945,8 @@ function _change_file_ownership() {
 
     _install_log "Changing file ownership in web root directory"
     sudo chown -R $raspap_user:$raspap_user "$webroot_dir" || _install_status 1 "Unable to change file ownership for '$webroot_dir'"
+    # www-data writes as the owner. Other users and groups must not change the code.
+    sudo chmod -R go-w "$webroot_dir" || _install_status 1 "Unable to change file permissions for '$webroot_dir'"
 }
 
 # Check for existing configuration files
@@ -1259,6 +1261,7 @@ function _patch_system_files() {
 
     _install_uplink_watchdog
     _install_vnstat_helper
+    _install_config_file_helper
 
     # Set ownership and permissions
     sudo chown -c root:root "$raspap_dir/system/"*.sh || _install_status 1 "Unable change owner and/or group"
@@ -1298,6 +1301,14 @@ function _install_uplink_watchdog() {
     sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-uplink-watchdog.service" /etc/systemd/system/raspap-uplink-watchdog.service || _install_status 1 "Unable to install raspap-uplink-watchdog.service"
     sudo install -o root -g root -m 644 "$webroot_dir/installers/raspap-uplink-watchdog.timer" /etc/systemd/system/raspap-uplink-watchdog.timer || _install_status 1 "Unable to install raspap-uplink-watchdog.timer"
     sudo systemctl daemon-reload
+}
+
+# The web interface installs the configuration files of hostapd, dhcpcd and
+# dnsmasq with this helper (content on stdin, no file in /tmp). www-data can
+# run it with sudo, so it must be in a directory that only root can change.
+function _install_config_file_helper() {
+    _install_log "Copying RaspAP config file helper to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/config-file.sh" /usr/local/sbin/raspap-config-file.sh || _install_status 1 "Unable to install the config file helper"
 }
 
 # vnstat adds only the interfaces that exist when it is installed. This helper

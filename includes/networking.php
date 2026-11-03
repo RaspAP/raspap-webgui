@@ -265,8 +265,7 @@ function saveDHCPConfigEx($outputInterface, $outputDefault, $status)
             $dhcp_cfg = preg_replace('/^#\sRaspAP\s'.$outputInterface.'\s.*?(?=\s*^\s*$)/ms', $cfg, $dhcp_cfg, 1);
             $status->addMessage(sprintf(_('DHCP configuration for %s updated'), $outputInterface), 'success');
         }
-        file_put_contents("/tmp/dhcpddata", $dhcp_cfg);
-        system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
+        $return = \RaspAP\System\ConfigFile::install('dhcpcd', null, $dhcp_cfg) ? 0 : 1;
         return $return;
     } else {
         $status->addMessage(sprintf(_('No default DHCP configuration exists for the %s interface'), $outputInterface), 'warning');
@@ -301,8 +300,7 @@ function removeDHCPConfig($outputInterface, $status)
     if ($updated === $dhcp_cfg) {
         return;
     }
-    file_put_contents("/tmp/dhcpddata", $updated);
-    system('sudo cp /tmp/dhcpddata '.RASPI_DHCPCD_CONFIG, $return);
+    $return = \RaspAP\System\ConfigFile::install('dhcpcd', null, $updated) ? 0 : 1;
     if ($return === 0) {
         $status->addMessage(sprintf(_('DHCP configuration for %s removed'), $outputInterface), 'success');
     } else {
@@ -328,8 +326,7 @@ function saveDnsmasqConfig($outputInterface, $outputDefault, $status)
     $cfg[] = PHP_EOL;
     $cfg = join(PHP_EOL, $cfg);
     $status->addMessage(sprintf(_('Dnsmasq configuration for %s added'), $outputInterface), 'success');
-    file_put_contents("/tmp/dnsmasqdata", $cfg);
-    system('sudo cp /tmp/dnsmasqdata '.RASPI_DNSMASQ_PREFIX.$outputInterface.'.conf', $return);
+    $return = \RaspAP\System\ConfigFile::install('dnsmasq', $outputInterface, $cfg) ? 0 : 1;
 }
 
 /**
