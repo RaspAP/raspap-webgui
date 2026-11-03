@@ -24,7 +24,7 @@ class WiFiManager
     public function knownWifiStations(&$networks)
     {
         // find currently configured networks
-        exec(' sudo cat ' . RASPI_WPA_SUPPLICANT_CONFIG, $known_return);
+        $known_return = explode("\n", WiFiHelper::run(['config', 'read']));
         foreach ($known_return as $line) {
             if (preg_match('/network\s*=/', $line)) {
                 $network = array('visible' => false, 'configured' => true, 'connected' => false, 'index' => null);
@@ -253,14 +253,14 @@ class WiFiManager
             deleteCache($cacheKey);
         }
 
-        $iface = escapeshellarg($_SESSION['wifi_client_interface']);
+        $iface = $_SESSION['wifi_client_interface'];
 
         $scan_results = cache(
             $cacheKey,
             function () use ($iface) {
-                $stdout = shell_exec("sudo iw dev $iface scan");
+                $stdout = WiFiHelper::run(['scan', $iface], null, $code);
                 sleep(1);
-                if ($stdout === null) {
+                if ($code !== 0 || $stdout === '') {
                     return [];
                 }
                 return preg_split("/\n/", $stdout);
@@ -384,8 +384,7 @@ class WiFiManager
         $connected_ssid = null;
         $iface = $_SESSION['wifi_client_interface'];
         
-        $cmd = "sudo wpa_cli -i $iface status";
-        $status_output = shell_exec($cmd);
+        $status_output = WiFiHelper::wpa($iface, 'status');
 
         if ($status_output === null || empty($status_output)) {
             error_log("WiFiManager::connectedWifiStations: wpa_cli command failed or returned no output");
@@ -479,8 +478,8 @@ class WiFiManager
                 // clean up connections on old interface before switching
                 $old_iface = $_SESSION['wifi_client_interface'];
                 if ($old_iface && $old_iface !== $_POST['wifiClientInterface'] && validateInterface($old_iface)) {
-                    exec("sudo wpa_cli -i $old_iface disconnect");
-                    exec("sudo wpa_cli -i $old_iface disable_network all");
+                    WiFiHelper::wpa($old_iface, 'disconnect');
+                    WiFiHelper::wpa($old_iface, 'disable_network', 'all');
                     // the NetworkManager connections of RaspAP stay on the old
                     // interface otherwise, and connect it again
                     (new \RaspAP\Networking\NetworkManagerClient())->purge($old_iface);
@@ -513,14 +512,11 @@ class WiFiManager
     {
         $iface = $_SESSION['wifi_client_interface'];
         if ($force == true) {
-            $cmd = "sudo rm -f /var/run/wpa_supplicant/" . $iface;
-            $result = shell_exec($cmd);
-            $cmd = "sudo /sbin/wpa_supplicant -i $iface -c /etc/wpa_supplicant/wpa_supplicant.conf -B 2>&1";
-            $result = shell_exec($cmd);
+            // removes the old socket in /var/run/wpa_supplicant/ and starts wpa_supplicant
+            $result = WiFiHelper::run(['start', $iface, 'force']);
             sleep(2);
         }
-        $cmd = "sudo wpa_cli -i $iface reconfigure";
-        $result = shell_exec($cmd);
+        $result = WiFiHelper::wpa($iface, 'reconfigure');
         sleep(1);
         return $result;
     }
@@ -581,10 +577,10 @@ class WiFiManager
     {
         $this->ensureWpaSupplicant();
 
-        $iface = escapeshellarg($_SESSION['wifi_client_interface']);
-        $output = shell_exec("sudo wpa_cli -i $iface list_networks 2>&1");
+        $iface = $_SESSION['wifi_client_interface'];
+        $output = WiFiHelper::run(['wpa', $iface, 'list_networks'], null, $code);
 
-        if ($output === null) {
+        if ($code === -1) {
             throw new \Exception("Failed to execute wpa_cli command - command returned null");
         }
 
@@ -593,16 +589,14 @@ class WiFiManager
             error_log("wpa_supplicant not available for interface, attempting to start it");
 
             // try starting wpa_supplicant for this interface
-            $unescapedIface = trim($iface, "'\"");
-            $startCmd = "sudo /sbin/wpa_supplicant -i $unescapedIface -c /etc/wpa_supplicant/wpa_supplicant.conf -B 2>&1";
-            $startResult = shell_exec($startCmd);
+            $startResult = WiFiHelper::run(['start', $iface]);
             sleep(2);
 
             // retry
-            $output = shell_exec("sudo wpa_cli -i $iface list_networks 2>&1");
+            $output = WiFiHelper::wpa($iface, 'list_networks');
 
             // if it still fails, throw an exception
-            if ($output === null || strpos($output, 'Failed to connect') !== false) {
+            if (strpos($output, 'Failed to connect') !== false) {
                 throw new \Exception("Failed to start wpa_supplicant for interface: " . trim($startResult ?? 'unknown error'));
             }
         }
@@ -662,7 +656,8 @@ class WiFiManager
 
     /**
      * Helper to convert an SSID to the correct wpa_cli set_network argument.
-     * Plain ASCII SSIDs are returned as a shell-escaped quoted string.
+     * Plain ASCII SSIDs are returned as a quoted string, without shell escapes:
+     * WiFiHelper gives the arguments to the helper without a shell.
      *
      * @param string $ssid Internal SSID representation
      * @return string Argument ready to append to a wpa_cli set_network ssid command
@@ -675,23 +670,23 @@ class WiFiManager
             }, $ssid);
             return bin2hex($binary);
         }
-        return escapeshellarg('"' . $ssid . '"');
+        return '"' . $ssid . '"';
     }
 
     /**
      * Helper method to add a single network to wpa_supplicant
      *
      * @param array $network Network configuration
-     * @param string $iface Escaped shell argument for interface
+     * @param string $iface Interface name
      */
     private function addWpaNetwork($network, $iface)
     {
         $ssid = $this->ssidToWpaCliArg($network['ssid']);
-        $psk = escapeshellarg('"' . $network['passphrase'] . '"');
+        $psk = '"' . $network['passphrase'] . '"';
         $protocol = $network['protocol'] ?? 'WPA';
 
         // add network and get its ID
-        $netid = trim((string)shell_exec("sudo wpa_cli -i $iface add_network 2>&1"));
+        $netid = trim(WiFiHelper::wpa($iface, 'add_network'));
 
         // validate network ID; '0' is a valid ID (the first network)
         if (!ctype_digit($netid)) {
@@ -701,24 +696,24 @@ class WiFiManager
 
         // prepare command based on protocol
         $commands = [
-            "sudo wpa_cli -i $iface set_network $netid ssid $ssid",
+            ['set_network', $netid, 'ssid', $ssid],
         ];
 
         if ($protocol === self::SECURITY_OPEN) {
-            $commands[] = "sudo wpa_cli -i $iface set_network $netid key_mgmt NONE";
+            $commands[] = ['set_network', $netid, 'key_mgmt', 'NONE'];
         } else {
-            $commands[] = "sudo wpa_cli -i $iface set_network $netid psk $psk";
+            $commands[] = ['set_network', $netid, 'psk', $psk];
         }
 
-        $commands[] = "sudo wpa_cli -i $iface enable_network $netid";
+        $commands[] = ['enable_network', $netid];
 
         // execute commands, checking errors
         foreach ($commands as $cmd) {
-            $result = shell_exec("$cmd 2>&1");
-            if ($result === null || strpos($result, 'FAIL') !== false) {
-                error_log("Command failed: $cmd - Result: " . ($result ?? 'null'));
+            $result = WiFiHelper::run(array_merge(['wpa', $iface], $cmd), null, $code);
+            if ($code !== 0 || $result === '' || strpos($result, 'FAIL') !== false) {
+                error_log("Command failed: wpa_cli {$cmd[0]} {$cmd[1]} - Result: " . $result);
                 // remove the failed network
-                shell_exec("sudo wpa_cli -i $iface remove_network $netid 2>&1");
+                WiFiHelper::wpa($iface, 'remove_network', $netid);
                 return;
             }
             usleep(1000);
@@ -734,10 +729,7 @@ class WiFiManager
      * @return integer id or null
      */
     public function getNetworkIdBySSID($ssid) {
-        $iface = escapeshellarg($_SESSION['wifi_client_interface']);
-        $cmd = "sudo wpa_cli -i $iface list_networks";
-        $output = [];
-        exec($cmd, $output);
+        $output = explode("\n", trim(WiFiHelper::wpa($_SESSION['wifi_client_interface'], 'list_networks')));
         array_shift($output);
 
         foreach ($output as $line) {
@@ -776,25 +768,11 @@ class WiFiManager
             return;
         }
 
-        $contents = <<<CONF
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-CONF;
-
-        $tmpFile = tempnam(sys_get_temp_dir(), 'wpa_conf_');
-        if ($tmpFile === false) {
-            throw new \RuntimeException("Failed to create temporary file for wpa_supplicant.conf");
-        }
-
-        file_put_contents($tmpFile, $contents);
-        chmod($tmpFile, 0600);
-
-        $cmd = escapeshellcmd("sudo cp $tmpFile $confPath");
-        exec($cmd, $output, $exitCode);
-        unlink($tmpFile);
+        // the helper writes the minimal file (ctrl_interface, update_config)
+        $output = WiFiHelper::run(['config', 'create'], null, $exitCode);
 
         if ($exitCode !== 0) {
-            throw new \RuntimeException("Failed to initialize wpa_supplicant.conf:  " . implode("\n", $output));
+            throw new \RuntimeException("Failed to initialize wpa_supplicant.conf:  " . $output);
         }
     }
 
@@ -846,20 +824,16 @@ CONF;
      */
     public function connectToNetwork(string $interface, int $netid): bool
     {
-        $iface = escapeshellarg($interface);
+        $selectResult = WiFiHelper::run(['wpa', $interface, 'select_network', $netid], null, $code);
 
-        $cmd = "sudo wpa_cli -i $iface select_network $netid";
-        $selectResult = shell_exec($cmd);
-
-        if ($selectResult === null || trim($selectResult) === "FAIL") {
+        if ($code !== 0 || trim($selectResult) === "FAIL") {
             return false;
         }
         sleep(3);
 
-        $cmd = "sudo wpa_cli -i $iface reassociate";
-        $reassociateResult = shell_exec($cmd);
+        $reassociateResult = WiFiHelper::wpa($interface, 'reassociate');
 
-        if ($reassociateResult !== null) {
+        if ($reassociateResult !== '') {
             $trimmed = trim($reassociateResult);
             if ($trimmed === "FAIL") {
                 return false;
@@ -878,10 +852,8 @@ CONF;
      */
     public function deleteNetwork(string $interface, int $netid): void
     {
-        $iface = escapeshellarg($interface);
-
-        exec("sudo wpa_cli -i $iface disconnect $netid");
-        exec("sudo wpa_cli -i $iface remove_network $netid");
+        WiFiHelper::wpa($interface, 'disconnect', (string)$netid);
+        WiFiHelper::wpa($interface, 'remove_network', (string)$netid);
     }
 
     /**
@@ -893,10 +865,8 @@ CONF;
      */
     public function disconnectNetwork(string $interface, int $netid): void
     {
-        $iface = escapeshellarg($interface);
-
-        exec("sudo wpa_cli -i $iface disconnect $netid");
-        exec("sudo wpa_cli -i $iface remove_network $netid");
+        WiFiHelper::wpa($interface, 'disconnect', (string)$netid);
+        WiFiHelper::wpa($interface, 'remove_network', (string)$netid);
         sleep(2);
     }
 
@@ -911,31 +881,29 @@ CONF;
      */
     public function updateNetwork(string $interface, string $ssid, string $passphrase, string $protocol = 'WPA'): ?int
     {
-        $iface = escapeshellarg($interface);
         $ssidArg = $this->ssidToWpaCliArg($ssid);
 
-        $netid = shell_exec("sudo wpa_cli -i $iface add_network");
+        $netid = WiFiHelper::wpa($interface, 'add_network');
 
-        if ($netid === null || !is_numeric(trim($netid))) {
+        if (!ctype_digit(trim($netid))) {
             return null;
         }
 
         $netid = trim($netid);
         $commands = [
-            "sudo wpa_cli -i $iface set_network $netid ssid $ssidArg"
+            ['set_network', $netid, 'ssid', $ssidArg]
         ];
 
         if ($protocol === self::SECURITY_OPEN) {
-            $commands[] = "sudo wpa_cli -i $iface set_network $netid key_mgmt NONE";
+            $commands[] = ['set_network', $netid, 'key_mgmt', 'NONE'];
         } else {
-            $escapedPsk = escapeshellarg('"' . $passphrase . '"');
-            $commands[] = "sudo wpa_cli -i $iface set_network $netid psk $escapedPsk";
+            $commands[] = ['set_network', $netid, 'psk', '"' . $passphrase . '"'];
         }
 
-        $commands[] = "sudo wpa_cli -i $iface enable_network $netid";
+        $commands[] = ['enable_network', $netid];
 
         foreach ($commands as $cmd) {
-            exec($cmd);
+            WiFiHelper::run(array_merge(['wpa', $interface], $cmd));
         }
 
         return (int)$netid;
@@ -952,7 +920,8 @@ CONF;
      */
     public function writeWpaSupplicant(array $networks, string $interface, bool $reconfigure = true): array
     {
-        $wpa_file = fopen('/tmp/wifidata', 'w');
+        // the new file stays in memory, the helper gets it on stdin
+        $wpa_file = fopen('php://memory', 'w+');
         if (!$wpa_file) {
             return ['success' => false, 'message' => 'Failed to update wifi settings'];
         }
@@ -1017,21 +986,24 @@ CONF;
             }
         }
 
+        rewind($wpa_file);
+        $contents = (string)stream_get_contents($wpa_file);
         fclose($wpa_file);
 
         if ($ok) {
-            system('sudo cp /tmp/wifidata ' . RASPI_WPA_SUPPLICANT_CONFIG, $returnval);
+            $output = WiFiHelper::run(['config', 'install'], $contents, $returnval);
             if ($returnval == 0) {
                 if (!$reconfigure) {
                     return ['success' => true, 'message' => 'Wifi settings updated successfully'];
                 }
-                exec('sudo wpa_cli -i ' . escapeshellarg($interface) . ' reconfigure', $reconfigure_out, $reconfigure_return);
+                WiFiHelper::run(['wpa', $interface, 'reconfigure'], null, $reconfigure_return);
                 if ($reconfigure_return == 0) {
                     return ['success' => true, 'message' => 'Wifi settings updated successfully'];
                 } else {
                     return ['success' => false, 'message' => 'Wifi settings updated but cannot restart (cannot execute "wpa_cli reconfigure")'];
                 }
             } else {
+                error_log('WiFiManager: ' . trim($output));
                 return ['success' => false, 'message' => 'Wifi settings failed to be updated'];
             }
         }

@@ -257,6 +257,7 @@ function _remove_installed_packages() {
 # Removes www-data from sudoers
 function _remove_sudoers() {
     _install_log "Removing sudoers permissions"
+    sudo rm -f /usr/local/sbin/raspap-wifi.sh || _install_error "Unable to remove raspap-wifi.sh"
     sudo rm -f /usr/local/sbin/raspap-nm-wifi.sh || _install_error "Unable to remove raspap-nm-wifi.sh"
     sudo rm -f /usr/local/sbin/raspap-udev-rules.sh || _install_error "Unable to remove raspap-udev-rules.sh"
     echo "Removing ${raspap_sudoers}" 

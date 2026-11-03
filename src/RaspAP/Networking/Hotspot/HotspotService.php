@@ -293,11 +293,11 @@ class HotspotService
         }
 
         if ($dbm === 'auto') {
-            exec('sudo /sbin/iw dev ' . escapeshellarg($iface) . ' set txpower auto', $return);
+            WiFiHelper::run(['txpower', $iface, 'auto']);
             $status->addMessage('Setting transmit power to auto.', 'success');
         } else {
             $sdBm = (int)$dbm * 100;
-            exec('sudo /sbin/iw dev ' . escapeshellarg($iface) . ' set txpower fixed ' . $sdBm, $return);
+            WiFiHelper::run(['txpower', $iface, (string)$sdBm]);
             $status->addMessage('Setting transmit power to ' . $dbm . ' dBm.', 'success');
         }
         return true;

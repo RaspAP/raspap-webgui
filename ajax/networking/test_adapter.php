@@ -41,8 +41,8 @@ foreach ($ethtoolOut as $line) {
 }
 
 // scan for networks
-exec("sudo iw dev $interface scan 2>/dev/null | grep SSID", $scanOutput, $scanStatus);
-$result['can_scan'] = count($scanOutput) > 0;
+$scan = \RaspAP\Networking\Hotspot\WiFiHelper::run(['scan', $interface], null, $scanStatus);
+$result['can_scan'] = $scanStatus === 0 && strpos($scan, 'SSID') !== false;
 
 // ip assigned?
 exec("ip -4 addr show $interface 2>/dev/null | grep inet", $ipOut);

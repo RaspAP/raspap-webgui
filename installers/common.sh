@@ -1275,6 +1275,12 @@ function _patch_system_files() {
     _install_log "Copying RaspAP NetworkManager WiFi client helper to /usr/local/sbin"
     sudo install -o root -g root -m 755 "$webroot_dir/installers/nm-wifi.sh" /usr/local/sbin/raspap-nm-wifi.sh || _install_status 1 "Unable to install NetworkManager WiFi client helper"
 
+    # www-data runs wpa_cli, wpa_supplicant and iw through this helper, and
+    # installs wpa_supplicant.conf with it. It must be in a directory that only
+    # root can change.
+    _install_log "Copying RaspAP WiFi helper to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/wifi.sh" /usr/local/sbin/raspap-wifi.sh || _install_status 1 "Unable to install WiFi helper"
+
     # www-data changes the udev rules of network devices through this helper.
     # The rules files belong to root.
     _install_log "Copying RaspAP udev rules helper to /usr/local/sbin"
