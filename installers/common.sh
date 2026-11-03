@@ -1234,8 +1234,14 @@ function _patch_system_files() {
 
     # Create sudoers
     _install_log "Adding raspap.sudoers to ${raspap_sudoers}"
-    sudo cp "$webroot_dir/installers/raspap.sudoers" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
-    sudo chmod 0440 $raspap_sudoers || _install_status 1 "Unable to change file permissions for $raspap_sudoers"
+    # The web update may run the installer only for this web root. Check the
+    # file before it replaces the rules, because an invalid file breaks sudo.
+    local sudoers_tmp
+    sudoers_tmp=$(mktemp) || _install_status 1 "Unable to create a temporary file"
+    sed "s#--path /var/www/html\$#--path ${webroot_dir}#" "$webroot_dir/installers/raspap.sudoers" > "$sudoers_tmp" || _install_status 1 "Unable to prepare raspap.sudoers"
+    sudo visudo -cqf "$sudoers_tmp" || _install_status 1 "Invalid raspap.sudoers"
+    sudo install -o root -g root -m 0440 "$sudoers_tmp" $raspap_sudoers || _install_status 1 "Unable to apply raspap.sudoers to $raspap_sudoers"
+    rm -f "$sudoers_tmp"
 
     # The scripts that save iptables rules run as root, so the script that they
     # call must be in a directory that only root can change

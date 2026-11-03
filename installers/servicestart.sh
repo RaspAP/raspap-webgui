@@ -30,6 +30,10 @@ case $key in
     shift
     shift
     ;;
+    *)
+    echo "Unknown option: $key" >&2
+    exit 2
+    ;;
 esac
 done
 set -- "${positional[@]}"
@@ -51,6 +55,28 @@ if [ -z "$interface" ]; then
         interface="wlan0"
         echo "Interface not provided and not found in config. Defaulting to: $interface"
     fi
+fi
+
+# www-data runs this script with sudo, and the values go into commands and
+# into the unit file of raspapd, so check them before a service changes
+valid_iface() {
+    [[ "$1" =~ ^[A-Za-z0-9_.-]{1,15}$ ]]
+}
+if ! valid_iface "$interface"; then
+    echo "Invalid interface name: $interface" >&2
+    exit 2
+fi
+if [ -n "${seconds}" ] && ! [[ "${seconds}" =~ ^[0-9]{1,3}$ ]]; then
+    echo "Invalid number of seconds: ${seconds}" >&2
+    exit 2
+fi
+if [ -n "${action}" ] && [ "${action}" != "stop" ]; then
+    echo "Invalid action: ${action}" >&2
+    exit 2
+fi
+if [ -n "${config[WifiManaged]}" ] && ! valid_iface "${config[WifiManaged]}"; then
+    echo "Invalid WifiManaged interface in $CONFIGFILE, ignored" >&2
+    config[WifiManaged]=""
 fi
 
 echo "Stopping network services..."
@@ -110,7 +136,7 @@ else
             fi
 
             echo "Adding uap0 interface to ${config[WifiManaged]}"
-            iw dev ${config[WifiManaged]} interface add uap0 type __ap
+            iw dev "${config[WifiManaged]}" interface add uap0 type __ap
             # Bring up uap0 interface
             ifconfig uap0 up
         fi
@@ -137,7 +163,7 @@ fi
 if [ "${config[WifiAPEnable]}" = 1 ]; then
     echo "Reassociating wifi client interface..."
     sleep "${seconds}"
-    wpa_cli -i ${config[WifiManaged]} reassociate
+    wpa_cli -i "${config[WifiManaged]}" reassociate
 fi
 
 # statistics on the data usage page for the interfaces of RaspAP. After the
