@@ -57,8 +57,9 @@ function DisplayOpenVPNConfig()
         $authPassword = next($auth);
     }
     $clients = preg_grep('/_client.(conf)$/', scandir(pathinfo(RASPI_OPENVPN_CLIENT_CONFIG, PATHINFO_DIRNAME)));
-    exec("readlink ".RASPI_OPENVPN_CLIENT_CONFIG." | xargs basename", $ret);
-    $conf_default =  empty($ret) ? "none" : $ret[0];
+    // a config name can contain a space, so PHP reads the link
+    $active = basename((string)@readlink(RASPI_OPENVPN_CLIENT_CONFIG));
+    $conf_default = $active === '' ? "none" : $active;
 
     $logEnable = 0;
     $logOutput = '';
@@ -245,6 +246,15 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword, $keyPasswor
             throw new RuntimeException($results['errors'][0]);
         }
 
+        // the name of the files in /etc/openvpn/client. activate_ovpncfg.php
+        // and del_ovpncfg.php accept the same characters.
+        $name = preg_replace('/[^A-Za-z0-9 ._()-]/', '_', pathinfo($file['name'], PATHINFO_FILENAME));
+        $name = substr(ltrim($name, ' .-'), 0, 100);
+        if ($name === '') {
+            unlink($results['full_path']);
+            throw new RuntimeException('Invalid OpenVPN configuration name');
+        }
+
         $tmp_ovpn = $results['full_path'];
         $tmp_contents = file_get_contents($tmp_ovpn);
         if ($tmp_contents === false || strpos($tmp_contents, "\0") !== false) {
@@ -266,7 +276,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword, $keyPasswor
             file_put_contents($tmp_authdata, $auth);
             umask($umask);
             chmod($tmp_authdata, 0600);
-            $client_auth = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_login.conf');
+            $client_auth = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$name.'_login.conf');
             system("sudo mv $tmp_authdata $client_auth", $return);
             system("sudo rm ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
             system("sudo ln -s $client_auth ".RASPI_OPENVPN_CLIENT_LOGIN, $return);
@@ -283,7 +293,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword, $keyPasswor
             $written = file_put_contents($tmp_keypass, $keyPassword .PHP_EOL);
             umask($umask);
             chmod($tmp_keypass, 0600);
-            $keypass_file = pathinfo($file['name'], PATHINFO_FILENAME).'_keypass.conf';
+            $keypass_file = $name.'_keypass.conf';
             $client_keypass = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$keypass_file);
             system("sudo mv $tmp_keypass $client_keypass", $return);
             system("sudo rm ".RASPI_OPENVPN_CLIENT_KEYPASS, $rm_return);
@@ -308,7 +318,7 @@ function SaveOpenVPNConfig($status, $file, $authUser, $authPassword, $keyPasswor
 
         // Move uploaded ovpn config from /tmp and create symlink. The config
         // can contain keys, so it is readable by owner only
-        $client_ovpn = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.pathinfo($file['name'], PATHINFO_FILENAME).'_client.conf');
+        $client_ovpn = escapeshellarg(RASPI_OPENVPN_CLIENT_PATH.$name.'_client.conf');
         chmod($tmp_ovpn, 0600);
         system("sudo mv $tmp_ovpn $client_ovpn", $return);
         system("sudo rm ".RASPI_OPENVPN_CLIENT_CONFIG, $return);
