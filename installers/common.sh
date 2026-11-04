@@ -83,6 +83,7 @@ function _update_raspap() {
     _create_hostapd_scripts
     _update_openvpn_scripts
     _update_wireguard
+    _update_restapi
     _enable_network_activity_monitor
     _create_plugin_scripts
     _install_complete
@@ -837,6 +838,53 @@ function _update_openvpn_scripts() {
     _create_openvpn_scripts
 }
 
+# Makes a random RestAPI key when .env has no key. Without a key, the API
+# refuses each request.
+function _restapi_key() {
+    local env_file="$raspap_dir/api/.env"
+    if sudo grep -qE '^RASPAP_API_KEY=.+' "$env_file" 2>/dev/null; then
+        return 0
+    fi
+    echo "Creating a RestAPI key"
+    local key
+    key=$(od -An -N16 -tx1 /dev/urandom | tr -d ' \n')
+    { sudo grep -v '^RASPAP_API_KEY=' "$env_file" 2>/dev/null; echo "RASPAP_API_KEY=$key"; } |
+        sudo tee "$env_file.new" > /dev/null || _install_status 1 "Unable to write the RestAPI key"
+    sudo chown root:$raspap_user "$env_file.new"
+    sudo chmod 640 "$env_file.new"
+    sudo mv "$env_file.new" "$env_file" || _install_status 1 "Unable to write the RestAPI key"
+}
+
+# Only root and the web UI read the key in .env. systemd gives it to the
+# service, also when the service runs as a user that can not read .env.
+function _restapi_env_access() {
+    local env_file="$raspap_dir/api/.env"
+    if [ -f "$env_file" ] && [ ! -L "$env_file" ]; then
+        sudo chgrp $raspap_user "$env_file" || _install_status 1 "Unable to change the group of $env_file"
+        sudo chmod 640 "$env_file" || _install_status 1 "Unable to change the mode of $env_file"
+    fi
+    sudo mkdir -p /etc/systemd/system/restapi.service.d || _install_status 1 "Unable to create the restapi.service drop-in directory"
+    printf '[Service]\nEnvironmentFile=-%s\n' "$env_file" |
+        sudo tee /etc/systemd/system/restapi.service.d/raspap-env.conf > /dev/null || _install_status 1 "Unable to write the restapi.service drop-in"
+    sudo systemctl daemon-reload
+}
+
+# Copies the RestAPI code of the update to $raspap_dir/api, and makes a key
+# when there is none. Only when the RestAPI is installed. .env stays.
+function _update_restapi() {
+    if [ ! -d "$raspap_dir/api" ]; then
+        return 0
+    fi
+    _install_log "Updating RestAPI"
+    if [ -d "$webroot_dir/api" ]; then
+        sudo cp -r "$webroot_dir/api/." "$raspap_dir/api/" || _install_status 1 "Unable to copy the RestAPI files"
+    fi
+    _restapi_key
+    _restapi_env_access
+    sudo systemctl try-restart restapi.service
+    _install_status 0
+}
+
 # Install and enable RestAPI configuration option
 function _install_restapi() {
     _install_log "Installing and enabling RestAPI"
@@ -865,6 +913,8 @@ function _install_restapi() {
     echo "Moving restapi systemd unit control file to /lib/systemd/system/"
     sudo mv $webroot_dir/installers/restapi.service /lib/systemd/system/ || _install_status 1 "Unable to move restapi.service file"
     sudo systemctl daemon-reload
+    _restapi_key
+    _restapi_env_access
     sudo systemctl enable restapi.service || _install_status 1 "Failed to enable restapi.service"
     echo "Enabling RestAPI management option"
     sudo sed -i "s/\('RASPI_RESTAPI_ENABLED', \)false/\1true/g" "$webroot_dir/includes/config.php" || _install_status 1 "Unable to modify config.php"

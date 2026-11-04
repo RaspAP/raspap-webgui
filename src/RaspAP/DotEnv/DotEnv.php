@@ -72,7 +72,23 @@ class DotEnv
             // if key doesn't exist, append it
             $content .= "$key=$value\n";
         }
-        file_put_contents("/tmp/.env", $content);
+        // The key is a secret, and another local user must not prepare the
+        // temporary file, so create it new, readable by owner and group only
+        $tmpFile = '/tmp/.env';
+        if (file_exists($tmpFile) && !is_link($tmpFile) && function_exists('posix_geteuid') && fileowner($tmpFile) === posix_geteuid()) {
+            unlink($tmpFile);
+        }
+        $umask = umask(0027);
+        $handle = @fopen($tmpFile, 'x');
+        umask($umask);
+        if ($handle === false) {
+            throw new \Exception("Unable to create $tmpFile");
+        }
+        $written = fwrite($handle, $content);
+        fclose($handle);
+        if ($written !== strlen($content)) {
+            throw new \Exception("Unable to write $tmpFile");
+        }
         system('sudo mv /tmp/.env '.$this->envFile, $result);
         if ($result !== 0) {
             throw new \Exception("Unable to move .env file: ". $this->envFile);
