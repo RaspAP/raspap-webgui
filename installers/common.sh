@@ -902,12 +902,17 @@ function _install_restapi() {
         sudo apt install python3-pip -y
         
     fi
-    python3 -m pip install -r "$raspap_dir/api/requirements.txt" --break-system-packages || _install_status 1 " Unable to install pip modules"
-   
-    # Run the service as the user that installed the pip modules
-    local restapi_user=$(id -un)
-    echo "Setting restapi service user to ${restapi_user}"
-    sudo sed -i "s/^User=.*/User=${restapi_user}/" $webroot_dir/installers/restapi.service || _install_status 1 "Unable to set restapi service user"
+    # system-wide, so that the service user raspap-api can import the modules
+    sudo python3 -m pip install -r "$raspap_dir/api/requirements.txt" --break-system-packages || _install_status 1 " Unable to install pip modules"
+
+    # The service runs as the system user raspap-api, not as root or the user
+    # that installs RaspAP
+    if ! id raspap-api > /dev/null 2>&1; then
+        sudo useradd --system --user-group --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin raspap-api ||
+            _install_status 1 "Unable to create the user raspap-api"
+    fi
+    echo "Setting restapi service user to raspap-api"
+    sudo sed -i "s/^User=.*/User=raspap-api/" $webroot_dir/installers/restapi.service || _install_status 1 "Unable to set restapi service user"
     echo "Setting permissions on restapi systemd unit control file"
     sudo chown -c root:root $webroot_dir/installers/restapi.service || _install_status 1 "Unable change owner and/or group"
     echo "Moving restapi systemd unit control file to /lib/systemd/system/"

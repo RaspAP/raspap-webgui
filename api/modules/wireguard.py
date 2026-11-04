@@ -8,7 +8,8 @@ def configs():
 def client_config_names():
     config_names_list = []
     output = subprocess.run('''ls /etc/wireguard/ | grep -v "^wg0.conf$"''', shell=True, capture_output=True, text=True).stdout.strip()
-    lines = output.split("\n")
+    # empty when the service user can not read /etc/wireguard
+    lines = output.split("\n") if output else []
     for client in lines:
         config_names_dict ={'config':client}
         config_names_list.append(config_names_dict)
@@ -17,7 +18,8 @@ def client_config_names():
 def client_config_active():
     output = subprocess.run('''ls -al  /etc/wireguard/ | grep "wg0.conf -"''', shell=True, capture_output=True, text=True).stdout.strip()
     active_config = output.split("/etc/wireguard/")
-    return(active_config[1])
+    # empty without an active config, or when the service user can not read /etc/wireguard
+    return active_config[1] if len(active_config) > 1 else ""
 
 #TODO: where is the logfile??
 #TODO: is service connected?
