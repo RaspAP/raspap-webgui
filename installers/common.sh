@@ -78,6 +78,7 @@ function _update_raspap() {
     _download_latest_files
     _change_file_ownership
     _secure_raspap_directories
+    _secure_openvpn_client_files
     _patch_system_files
     _create_hostapd_scripts
     _update_openvpn_scripts
@@ -919,12 +920,13 @@ function _download_latest_files() {
 
     if [ "$update" == 1 ]; then
         _install_log "Applying existing configuration to ${webroot_dir}/includes"
-        sudo mv /tmp/config.php $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
+        sudo mv "$old_config_dir/config.php" $webroot_dir/includes  || _install_status 1 "Unable to move config.php to ${webroot_dir}/includes"
 
-        if [ -f /tmp/raspap.auth ]; then
+        if [ -f "$old_config_dir/raspap.auth" ]; then
             _install_log "Applying existing authentication file to ${raspap_dir}"
-            sudo mv /tmp/raspap.auth $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
+            sudo mv "$old_config_dir/raspap.auth" $raspap_dir || _install_status 1 "Unable to restore authentification credentials file to ${raspap_dir}"
         fi
+        sudo rmdir "$old_config_dir" 2>/dev/null || true
     else
         echo "Copying primary RaspAP config to ${webroot_dir}/includes/config.php"
         if [ ! -f "$webroot_dir/includes/config.php" ]; then
@@ -947,14 +949,34 @@ function _change_file_ownership() {
     sudo chown -R $raspap_user:$raspap_user "$webroot_dir" || _install_status 1 "Unable to change file ownership for '$webroot_dir'"
 }
 
+# Older versions saved the OpenVPN client configs and logins with mode 644, so
+# each local user could read the keys and the VPN password. Makes them
+# readable by their owner only. OpenVPN (root) and the web UI (owner) still
+# read them. The same for the login files of the web UI (password hashes).
+function _secure_openvpn_client_files() {
+    local dir="/etc/openvpn/client" file
+    if [ -d "$dir" ]; then
+        sudo find "$dir" -maxdepth 1 -type f -name '*.conf' -perm /077 -exec chmod 600 {} + ||
+            _install_status 1 "Unable to change the mode of the OpenVPN client files"
+    fi
+    for file in "$raspap_dir/raspap.auth" "$raspap_dir/limited.auth"; do
+        if [ -f "$file" ] && [ ! -L "$file" ]; then
+            sudo chmod 600 "$file" || _install_status 1 "Unable to change the mode of $file"
+        fi
+    done
+}
+
 # Check for existing configuration files
 function _check_for_old_configs() {
     if [ "$update" == 1 ]; then
-        _install_log "Moving existing configuration to /tmp"
-        sudo mv $webroot_dir/includes/config.php /tmp || _install_status 1 "Unable to move config.php to /tmp"
+        # a private directory: other local users can not put files there that
+        # the update then installs as config.php or raspap.auth
+        old_config_dir=$(sudo mktemp -d /tmp/raspap-update.XXXXXX) || _install_status 1 "Unable to create a temporary directory"
+        _install_log "Moving existing configuration to $old_config_dir"
+        sudo mv $webroot_dir/includes/config.php "$old_config_dir/" || _install_status 1 "Unable to move config.php to $old_config_dir"
        if [ -f $raspap_dir/raspap.auth ]; then
-            _install_log "Moving existing raspap.auth file to /tmp"
-            sudo mv $raspap_dir/raspap.auth /tmp || _install_status 1 "Unable to backup raspap.auth to /tmp"
+            _install_log "Moving existing raspap.auth file to $old_config_dir"
+            sudo mv $raspap_dir/raspap.auth "$old_config_dir/" || _install_status 1 "Unable to backup raspap.auth to $old_config_dir"
         fi
     else
         _install_log "Checking for existing configs"
