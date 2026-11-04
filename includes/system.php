@@ -38,6 +38,10 @@ function DisplaySystem(&$extraFooterScripts)
 
     if (!RASPI_MONITOR_ENABLED) {
         if (isset($_POST['SaveServerSettings'])) {
+            // configport.sh reads its arguments by position, so an empty
+            // value is passed as an empty argument
+            $serverPort = "''";
+            $serverBind = "''";
             // Validate server port
             if (isset($_POST['serverPort'])) {
                 if (strlen($_POST['serverPort']) > 4 || !is_numeric($_POST['serverPort'])) {
