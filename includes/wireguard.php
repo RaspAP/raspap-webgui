@@ -452,8 +452,10 @@ function SaveWireGuardConfig($status)
             $config[] = 'ListenPort = '.$_POST['wg_srvport'];
             $config[] = 'DNS = '.$_POST['wg_srvdns'];
             $config[] = 'PrivateKey = '.$wg_srvprivkey;
-            $config[] = 'PostUp = '.getDefaultNetValue('wireguard','server','PostUp');
-            $config[] = 'PostDown = '.getDefaultNetValue('wireguard','server','PostDown');
+            // wg-quick does not replace %a. "ap" makes wg-forward.sh use the
+            // AP interface of the time the tunnel starts.
+            $config[] = 'PostUp = '.str_replace('%a', 'ap', getDefaultNetValue('wireguard','server','PostUp'));
+            $config[] = 'PostDown = '.str_replace('%a', 'ap', getDefaultNetValue('wireguard','server','PostDown'));
             $config[] = '';
             $config[] = '[Peer]';
             $config[] = 'PublicKey = '.$_POST['wg-peer'];
