@@ -52,11 +52,25 @@ class HTTPAuth
     {
         if (!$this->isLogged()) {
             $redirectUrl = $_SERVER['REQUEST_URI'];
-            if (strpos($redirectUrl, '/login') === false) {
+            if (!$this->isLoginRoute()) {
                 header('Location: /login?action=' . urlencode($redirectUrl));
                 exit();
             }
         }
+    }
+
+    /*
+     * Determines if the current request targets the login route.
+     *
+     * The check is on the request path only, never the query string, so a
+     * value such as "?x=/login" cannot keep an unauthenticated request from
+     * being redirected to the login page.
+     * return boolean
+     */
+    private function isLoginRoute(): bool
+    {
+        $path = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '';
+        return basename(rtrim($path, '/')) === 'login';
     }
 
     /*
@@ -91,7 +105,7 @@ class HTTPAuth
         setcookie('locale', $locale, time() + (86400 * 30), '/', '', false, true);
         $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
         $redirectUrl = $_SERVER['REQUEST_URI'];
-        if (strpos($redirectUrl, '/login') === false) {
+        if (!$this->isLoginRoute()) {
             header('Location: ' . $basePath . '/login?action=' . urlencode(basename($redirectUrl)));
             exit();
         }
