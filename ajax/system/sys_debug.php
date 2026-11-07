@@ -5,6 +5,8 @@ require_once '../../includes/session.php';
 require_once '../../includes/config.php';
 require_once '../../includes/authenticate.php';
 
+\RaspAP\Tokens\CSRF::requirePost();
+
 $root = getenv("DOCUMENT_ROOT");
 exec('sudo '.RASPI_CONFIG.'/system/debuglog.sh -i '.$root, $return);
 

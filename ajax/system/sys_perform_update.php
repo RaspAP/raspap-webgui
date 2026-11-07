@@ -5,6 +5,8 @@ require_once '../../includes/session.php';
 require_once '../../includes/config.php';
 require_once '../../includes/authenticate.php';
 
+\RaspAP\Tokens\CSRF::requirePost();
+
 // release the session lock so progress polling is not blocked
 session_write_close();
 

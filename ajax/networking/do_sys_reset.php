@@ -6,6 +6,8 @@ require_once '../../includes/session.php';
 require_once '../../includes/authenticate.php';
 require_once '../../includes/functions.php';
 
+\RaspAP\Tokens\CSRF::requirePost();
+
 $return = 0;
 $path = "../../config";
 $configs = array(
