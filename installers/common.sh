@@ -895,15 +895,15 @@ function _install_restapi() {
     if ! command -v python3 &> /dev/null; then
         echo "Python is not installed. Installing Python..."
         sudo apt update
-        sudo apt install -y python3 python3-pip
+        sudo apt install -y python3
         echo "Python installed successfully."
-    else
-        echo "Python is already installed."
-        sudo apt install python3-pip -y
-        
     fi
-    # system-wide, so that the service user raspap-api can import the modules
-    sudo python3 -m pip install -r "$raspap_dir/api/requirements.txt" --break-system-packages || _install_status 1 " Unable to install pip modules"
+    # python3-venv has ensurepip, which python3 -m venv needs on Debian
+    sudo apt install -y python3-venv || _install_status 1 "Unable to install python3-venv"
+    # The modules go into a venv, not into the system Python. The venv belongs
+    # to root, so the service user raspap-api can run it, but not change it.
+    sudo python3 -m venv "$raspap_dir/api/venv" || _install_status 1 "Unable to create the RestAPI venv"
+    sudo "$raspap_dir/api/venv/bin/pip" install -r "$raspap_dir/api/requirements.txt" || _install_status 1 "Unable to install pip modules"
 
     # The service runs as the system user raspap-api, not as root or the user
     # that installs RaspAP
