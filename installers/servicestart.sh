@@ -30,6 +30,10 @@ case $key in
     shift
     shift
     ;;
+    *)
+    echo "Unknown option: $key" >&2
+    exit 2
+    ;;
 esac
 done
 set -- "${positional[@]}"

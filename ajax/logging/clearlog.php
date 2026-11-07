@@ -6,13 +6,13 @@ require_once '../../includes/config.php';
 require_once '../../includes/authenticate.php';
 require_once '../../includes/functions.php';
 
-if (isset($_POST['logfile'])) {
-    $logfile = escapeshellarg($_POST['logfile']);
-    $valid = '/(\/var\/log|\/tmp)/';
+// the logs that the web interface can clear
+$logfiles = ['/tmp/hostapd.log', '/tmp/openvpn.log', '/var/log/dnsmasq.log'];
 
-    if (preg_match($valid, $logfile)) {
+if (isset($_POST['logfile'])) {
+    if (in_array($_POST['logfile'], $logfiles, true)) {
         // truncate requested log file
-        exec("sudo truncate -s 0 $logfile", $return);
+        exec('sudo truncate -s 0 '.escapeshellarg($_POST['logfile']), $return);
     } else {
         $return = 1;
     }

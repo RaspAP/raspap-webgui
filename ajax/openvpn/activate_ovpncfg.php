@@ -9,7 +9,7 @@ require_once '../../includes/functions.php';
 
 if (isset($_POST['cfg_id'])) {
     $ovpncfg_id = $_POST['cfg_id'];
-    if (!preg_match('/^[A-Za-z0-9_\-][A-Za-z0-9._\-]*$/D', $ovpncfg_id)) {
+    if (!preg_match('/^[A-Za-z0-9_()][A-Za-z0-9 ._()-]{0,99}$/D', $ovpncfg_id)) {
         http_response_code(400);
         echo json_encode(['error' => 'Invalid configuration id']);
         exit;
