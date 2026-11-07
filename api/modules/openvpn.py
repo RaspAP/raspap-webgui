@@ -26,16 +26,19 @@ def client_login_names():
 def client_config_active():
     output = subprocess.run('''ls -al  /etc/openvpn/client/ | grep "client.conf -"''', shell=True, capture_output=True, text=True).stdout.strip()
     active_config = output.split("/etc/openvpn/client/")
-    return(active_config[1])
+    # empty without an active config
+    return active_config[1] if len(active_config) > 1 else ""
 
 def client_login_active():
     output = subprocess.run('''ls -al  /etc/openvpn/client/ | grep "login.conf -"''', shell=True, capture_output=True, text=True).stdout.strip()
     active_config = output.split("/etc/openvpn/client/")
-    return(active_config[1])
+    # empty without an active login
+    return active_config[1] if len(active_config) > 1 else ""
 
 def client_config_list(client_config):
     output = subprocess.run(["cat", f"/etc/openvpn/client/{client_config}"], capture_output=True, text=True).stdout.strip()
-    return output.split('\n')
+    # empty when the service user can not read the file (mode 600)
+    return output.split('\n') if output else []
 
 #TODO: where is the logfile??
 #TODO: is service connected?

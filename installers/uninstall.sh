@@ -269,6 +269,12 @@ function _remove_sudoers() {
         /usr/local/sbin/raspap-uplink-watchdog.sh /run/raspap/uplink-watchdog /run/raspap/uplink-watchdog.lock ||
         _install_error "Unable to remove the uplink watchdog"
     sudo rm -f /usr/local/sbin/raspap-vnstat.sh || _install_error "Unable to remove raspap-vnstat.sh"
+    sudo systemctl disable --now restapi.service 2> /dev/null || true
+    sudo rm -rf /lib/systemd/system/restapi.service /etc/systemd/system/restapi.service.d ||
+        _install_error "Unable to remove the RestAPI service"
+    if id raspap-api > /dev/null 2>&1; then
+        sudo userdel raspap-api || _install_error "Unable to remove the user raspap-api"
+    fi
     sudo systemctl daemon-reload
     echo "Done."
 }
