@@ -224,6 +224,12 @@
       "static domain_name_servers": [ "1.1.1.1 8.8.8.8" ],
       "subnetmask": [ "255.255.255.0" ]
     },
+    "wlx": {
+      "static ip_address": [ "10.5.141.1" ],
+      "static routers": [ "10.5.141.1" ],
+      "static domain_name_servers": [ "1.1.1.1 8.8.8.8" ],
+      "subnetmask": [ "255.255.255.0" ]
+    },
     "options": {
       "# RaspAP default configuration": null,
       "hostname": null,
@@ -256,6 +262,9 @@
     },
     "enx": {
       "dhcp-range": [ "192.168.60.50,192.168.60.150,12h" ]
+    },
+    "wlx": {
+      "dhcp-range": [ "10.5.141.50,10.5.141.254,255.255.255.0,12h" ]
     }
   },
   "wireguard": {
