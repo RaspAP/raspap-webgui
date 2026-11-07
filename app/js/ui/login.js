@@ -5,6 +5,7 @@ export function initLogin() {
     const redirectUrl = $('#redirect-url').val() || params.get('action') || '/';
     $('#modal-admin-login').modal('show');
     $('#redirect-url').val(redirectUrl);
-    $('#username').focus();
-    $('#username').addClass("focusedInput");
+    const $first = $('#newpass').length ? $('#newpass') : $('#username');
+    $first.focus();
+    $first.addClass("focusedInput");
 }

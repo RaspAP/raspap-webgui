@@ -13,9 +13,18 @@ function DisplayLogin()
     $role = !$auth->isNonPrivileged() ? 'admin' : null;
     $status = null;
     $redirectUrl = null;
+    $changeRequired = RASPI_AUTH_ENABLED && $auth->isPasswordChangeRequired();
 
     // handle page action
-    if (RASPI_AUTH_ENABLED) {
+    if ($changeRequired) {
+        if (isset($_POST['change-pass'])) {
+            $status = changeDefaultPassword(
+                $auth,
+                (string)($_POST['newpass'] ?? ''),
+                (string)($_POST['newpassagain'] ?? '')
+            );
+        }
+    } elseif (RASPI_AUTH_ENABLED) {
         if (isset($_POST['login-auth'])) {
             // authenticate user
             $username = (string)($_POST['username'] ?? '');
@@ -41,9 +50,40 @@ function DisplayLogin()
     echo renderTemplate(
         "login", compact(
             "status",
-            "redirectUrl"
+            "redirectUrl",
+            "changeRequired"
         )
     );
+}
+
+/**
+ * Replaces the default admin password, then goes to the dashboard
+ *
+ * @param \RaspAP\Auth\HTTPAuth $auth
+ * @param string $newpass
+ * @param string $newpassagain
+ * @return string error message
+ */
+function changeDefaultPassword(\RaspAP\Auth\HTTPAuth $auth, string $newpass, string $newpassagain): string
+{
+    // 8 characters at least, which also rules out the default password
+    if (strlen($newpass) < 8) {
+        return _("The new password must have at least 8 characters");
+    }
+    if ($newpass !== $newpassagain) {
+        return _("New passwords do not match");
+    }
+    $messages = new \RaspAP\Messages\StatusMessage;
+    updateAdminCredentials(null, $newpass, null, $auth->getAuthConfig(), $messages);
+
+    // read the file again to confirm that the new password was saved
+    $saved = (new \RaspAP\Auth\HTTPAuth)->getAuthConfig();
+    if (!password_verify($newpass, $saved['admin_pass'])) {
+        return _("Failed to save the new password");
+    }
+    $auth->passwordChanged();
+    header('Location: /');
+    die();
 }
 
 /**

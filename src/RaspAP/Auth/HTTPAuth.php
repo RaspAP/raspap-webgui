@@ -30,6 +30,19 @@ class HTTPAuth
         'admin_pass' => '$2y$10$YKIyWAmnQLtiJAy6QgHQ.eCpY4m.HCEbiHaTgN6.acNC6bDElzt.i'
     );
 
+    /**
+     * Default admin password, in plain text
+     */
+    public const DEFAULT_ADMIN_PASS = 'secret';
+
+    /**
+     * Scripts a user may still reach before they change the default password
+     */
+    private const PASSWORD_CHANGE_ALLOWED = array(
+        'ajax/auth/admin_logout.php',
+        'ajax/session/do_check_session.php',
+    );
+
     // Constructor
     public function __construct()
     {
@@ -73,6 +86,66 @@ class HTTPAuth
         return basename(rtrim($path, '/')) === 'login';
     }
 
+    /*        
+     * Determines if the admin password is still the default one
+     * return boolean
+     */
+    public function isDefaultPassword(): bool
+    {
+        return password_verify(self::DEFAULT_ADMIN_PASS, $this->auth_config['admin_pass']);
+    }
+
+    /*
+     * Determines if the logged in user must change the default password.
+     * The check runs once per login session, since password_verify() is slow.
+     * return boolean
+     */
+    public function isPasswordChangeRequired(): bool
+    {
+        if (!$this->isLogged()) {
+            return false;
+        }
+        if (!isset($_SESSION['password_change_required'])) {
+            $_SESSION['password_change_required'] = !$this->isNonPrivileged() && $this->isDefaultPassword();
+        }
+        return $_SESSION['password_change_required'];
+    }
+
+    /*
+     * Marks the default password as changed for this session
+     */
+    public function passwordChanged(): void
+    {
+        session_regenerate_id(true);
+        $_SESSION['password_change_required'] = false;
+    }
+
+    /*
+     * Sends a user who must change the default password to the login page.
+     * Other requests (ajax endpoints, QR codes) are refused.
+     */
+    public function enforcePasswordChange(): void
+    {
+        if (!$this->isPasswordChangeRequired()) {
+            return;
+        }
+        $script = ltrim($_SERVER['SCRIPT_NAME'] ?? '', '/');
+        if ($script === 'index.php') {
+            if (($_SERVER['PATH_INFO'] ?? '') !== '/login') {
+                header('Location: /login');
+                exit();
+            }
+            return;
+        }
+        if (in_array($script, self::PASSWORD_CHANGE_ALLOWED, true)) {
+            return;
+        }
+        http_response_code(403);
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Password change required']);
+        exit();
+    }
+
     /*
      * Attempt to login a user with supplied credentials
      * @var string $user
@@ -86,6 +159,8 @@ class HTTPAuth
             // a new session id, so a session id from before the login is not valid
             session_regenerate_id(true);
             $_SESSION['user_id'] = $user;
+            // check for the default password again on the next request
+            unset($_SESSION['password_change_required']);
             return true;
         }
         return false;
