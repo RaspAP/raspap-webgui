@@ -791,7 +791,11 @@ function _update_wireguard() {
             $forward = "iptables -%1\$s FORWARD -i wlan0 -o %%i -j ACCEPT; iptables -%1\$s FORWARD -i %%i -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -t nat -%1\$s POSTROUTING -o %%i -j MASQUERADE";
             $json = str_replace(sprintf($forward, "A"), "/etc/raspap/networking/wg-forward.sh up %i %a", $json);
             $json = str_replace(sprintf($forward, "D"), "/etc/raspap/networking/wg-forward.sh down %i", $json);
-            file_put_contents($file, $json) !== false || exit(1);
+            // r+ opens the file without O_CREAT. The file belongs to www-data in a
+            // sticky directory, so with fs.protected_regular=2 (Debian procps) the
+            // kernel refuses an open with O_CREAT (file_put_contents) also for root.
+            $fh = fopen($file, "r+");
+            ($fh !== false && ftruncate($fh, 0) && fwrite($fh, $json) === strlen($json) && fclose($fh)) || exit(1);
         ' -- "$defaults" || _install_status 1 "Unable to update $defaults"
     fi
 
