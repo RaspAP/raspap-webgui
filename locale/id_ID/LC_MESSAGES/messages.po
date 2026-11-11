@@ -1847,7 +1847,7 @@ msgstr "Informasi yang disediakan oleh Dnsmasq"
 
 #: ../templates/login.php:14
 msgid "Set a new password"
-msgstr ""
+msgstr "Atur kata sandi baru"
 
 #: ../templates/login.php:14
 msgid "Administrator login"
@@ -1855,7 +1855,7 @@ msgstr "Login administrator"
 
 #: ../templates/login.php:16
 msgid "Please choose a new password to continue."
-msgstr ""
+msgstr "Silakan pilih kata sandi baru untuk melanjutkan."
 
 #: ../templates/login.php:28 ../templates/admin.php:66
 msgid "New password"

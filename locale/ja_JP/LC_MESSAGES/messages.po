@@ -1847,7 +1847,7 @@ msgstr "Dnsmasqによる情報提供"
 
 #: ../templates/login.php:14
 msgid "Set a new password"
-msgstr ""
+msgstr "新しいパスワードを設定"
 
 #: ../templates/login.php:14
 msgid "Administrator login"
@@ -1855,7 +1855,7 @@ msgstr "管理者ログイン"
 
 #: ../templates/login.php:16
 msgid "Please choose a new password to continue."
-msgstr ""
+msgstr "続行するには新しいパスワードを選択してください。"
 
 #: ../templates/login.php:28 ../templates/admin.php:66
 msgid "New password"
