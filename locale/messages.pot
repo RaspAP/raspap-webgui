@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RaspAP dev\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-11-07 02:39+0000\n"
+"POT-Creation-Date: 2026-11-11 23:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ../includes/login.php:71
+msgid "The new password must have at least 8 characters"
+msgstr ""
+
+#: ../includes/login.php:74
+msgid "New passwords do not match"
+msgstr ""
+
+#: ../includes/login.php:82
+msgid "Failed to save the new password"
+msgstr ""
 
 #: ../includes/networking.php:52 ../includes/networking.php:55
 msgid "not configured"
@@ -72,17 +84,17 @@ msgstr ""
 msgid "Failed to remove DHCP configuration for %s"
 msgstr ""
 
-#: ../includes/networking.php:330
+#: ../includes/networking.php:333
 #, php-format
 msgid "Dnsmasq configuration for %s added"
 msgstr ""
 
-#: ../includes/networking.php:349
+#: ../includes/networking.php:352
 #, php-format
 msgid "Dnsmasq configuration for %s removed"
 msgstr ""
 
-#: ../includes/networking.php:351
+#: ../includes/networking.php:354
 #, php-format
 msgid "Failed to remove dnsmasq configuration for %s"
 msgstr ""
@@ -171,7 +183,7 @@ msgstr ""
 msgid "Your session has expired. Please login to continue."
 msgstr ""
 
-#: ../includes/footer.php:23 ../templates/login.php:30
+#: ../includes/footer.php:23 ../templates/login.php:61
 #: ../templates/admin.php:18
 msgid "Login"
 msgstr ""
@@ -181,14 +193,14 @@ msgstr ""
 msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
 msgstr ""
 
-#: ../includes/functions.php:1126
+#: ../includes/functions.php:1131
 #, php-format
 msgid "Too many failed logins. Try again in %d minute."
 msgid_plural "Too many failed logins. Try again in %d minutes."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/functions.php:1237
+#: ../includes/functions.php:1242
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
 #: ../templates/wifi_stations/network.php:48 ../templates/provider.php:36
@@ -196,41 +208,41 @@ msgstr[1] ""
 msgid "Status"
 msgstr ""
 
-#: ../includes/functions.php:1239 ../src/RaspAP/UI/Sidebar.php:19
+#: ../includes/functions.php:1244 ../src/RaspAP/UI/Sidebar.php:19
 #: ../templates/hostapd.php:14
 msgid "Hotspot"
 msgstr ""
 
-#: ../includes/functions.php:1242
+#: ../includes/functions.php:1247
 msgid "Mem Use"
 msgstr ""
 
-#: ../includes/functions.php:1245
+#: ../includes/functions.php:1250
 msgid "CPU"
 msgstr ""
 
-#: ../includes/functions.php:1314
+#: ../includes/functions.php:1319
 msgid "Open the login page"
 msgstr ""
 
-#: ../includes/functions.php:1317
+#: ../includes/functions.php:1322
 msgid "The uplink network needs a login (captive portal). The VPN tunnel can not connect until the login."
 msgstr ""
 
-#: ../includes/functions.php:1319
+#: ../includes/functions.php:1324
 msgid "Allow the login for 5 minutes"
 msgstr ""
 
-#: ../includes/functions.php:1321
+#: ../includes/functions.php:1326
 msgid "The uplink network needs a login (captive portal). On a device that is connected to the hotspot, open a website that starts with http://. The login page of the network then opens. After the login, the VPN tunnel connects again."
 msgstr ""
 
-#: ../includes/functions.php:1325
+#: ../includes/functions.php:1330
 #, php-format
 msgid "The login is allowed until %s."
 msgstr ""
 
-#: ../includes/functions.php:1327
+#: ../includes/functions.php:1332
 msgid "End the login now"
 msgstr ""
 
@@ -470,11 +482,11 @@ msgstr ""
 msgid "DHCP configuration for %s updated."
 msgstr ""
 
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:293
 msgid "Invalid MAC address: "
 msgstr ""
 
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:296
 msgid "Duplicate IP address entered: "
 msgstr ""
 
@@ -1760,13 +1772,13 @@ msgstr ""
 msgid "Enter username and password"
 msgstr ""
 
-#: ../templates/openvpn/general.php:30 ../templates/login.php:22
+#: ../templates/openvpn/general.php:30 ../templates/login.php:51
 #: ../templates/admin/login.php:12 ../templates/admin/general.php:15
 #: ../templates/networking/mobile.php:17
 msgid "Username"
 msgstr ""
 
-#: ../templates/openvpn/general.php:34 ../templates/login.php:25
+#: ../templates/openvpn/general.php:34 ../templates/login.php:54
 #: ../templates/admin/login.php:21 ../templates/networking/mobile.php:21
 #: ../app/lib/signprint.php:65
 msgid "Password"
@@ -1837,15 +1849,35 @@ msgstr ""
 msgid "Information provided by Dnsmasq"
 msgstr ""
 
-#: ../templates/login.php:13
+#: ../templates/login.php:14
+msgid "Set a new password"
+msgstr ""
+
+#: ../templates/login.php:14
 msgid "Administrator login"
 msgstr ""
 
-#: ../templates/login.php:31
+#: ../templates/login.php:16
+msgid "Please choose a new password to continue."
+msgstr ""
+
+#: ../templates/login.php:28 ../templates/admin.php:66
+msgid "New password"
+msgstr ""
+
+#: ../templates/login.php:34 ../templates/admin.php:78
+msgid "Repeat new password"
+msgstr ""
+
+#: ../templates/login.php:41
+msgid "Save password"
+msgstr ""
+
+#: ../templates/login.php:62
 msgid "Forgot password"
 msgstr ""
 
-#: ../templates/login.php:33
+#: ../templates/login.php:64
 msgid "Scan for Login Help"
 msgstr ""
 
@@ -2029,16 +2061,8 @@ msgstr ""
 msgid "Please enter your old password."
 msgstr ""
 
-#: ../templates/admin.php:66
-msgid "New password"
-msgstr ""
-
 #: ../templates/admin.php:71
 msgid "Please enter a new password."
-msgstr ""
-
-#: ../templates/admin.php:78
-msgid "Repeat new password"
 msgstr ""
 
 #: ../templates/admin.php:83
@@ -2630,6 +2654,14 @@ msgstr ""
 
 #: ../templates/dhcp/logging.php:12
 msgid "Log DNS queries"
+msgstr ""
+
+#: ../templates/dhcp/logging.php:17
+msgid "Include client IP address"
+msgstr ""
+
+#: ../templates/dhcp/logging.php:18
+msgid "Prefix each logged DNS query with the IP address of the requesting client."
 msgstr ""
 
 #: ../templates/dhcp/advanced.php:3

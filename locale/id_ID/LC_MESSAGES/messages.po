@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-11-07 02:38+0000\n"
+"POT-Creation-Date: 2026-11-11 23:37+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
@@ -16,6 +16,18 @@ msgstr ""
 "X-Crowdin-Language: id\n"
 "X-Crowdin-File: /master/locale/messages.pot\n"
 "X-Crowdin-File-ID: 12\n"
+
+#: ../includes/login.php:71
+msgid "The new password must have at least 8 characters"
+msgstr ""
+
+#: ../includes/login.php:74
+msgid "New passwords do not match"
+msgstr ""
+
+#: ../includes/login.php:82
+msgid "Failed to save the new password"
+msgstr ""
 
 #: ../includes/networking.php:52 ../includes/networking.php:55
 msgid "not configured"
@@ -71,17 +83,17 @@ msgstr ""
 msgid "Failed to remove DHCP configuration for %s"
 msgstr ""
 
-#: ../includes/networking.php:330
+#: ../includes/networking.php:333
 #, php-format
 msgid "Dnsmasq configuration for %s added"
 msgstr ""
 
-#: ../includes/networking.php:349
+#: ../includes/networking.php:352
 #, php-format
 msgid "Dnsmasq configuration for %s removed"
 msgstr ""
 
-#: ../includes/networking.php:351
+#: ../includes/networking.php:354
 #, php-format
 msgid "Failed to remove dnsmasq configuration for %s"
 msgstr ""
@@ -170,7 +182,7 @@ msgstr "Sesi Berakhir"
 msgid "Your session has expired. Please login to continue."
 msgstr "Sesi Anda telah kedaluwarsa. Silakan masuk untuk melanjutkan."
 
-#: ../includes/footer.php:23 ../templates/login.php:30
+#: ../includes/footer.php:23 ../templates/login.php:61
 #: ../templates/admin.php:18
 msgid "Login"
 msgstr "Masuk"
@@ -180,13 +192,13 @@ msgstr "Masuk"
 msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
 msgstr "Dokumen RestAPI dapat diakses <a href=\"%s\" target=\"_blank\">di sini %s</a>"
 
-#: ../includes/functions.php:1126
+#: ../includes/functions.php:1131
 #, php-format
 msgid "Too many failed logins. Try again in %d minute."
 msgid_plural "Too many failed logins. Try again in %d minutes."
 msgstr[0] ""
 
-#: ../includes/functions.php:1237
+#: ../includes/functions.php:1242
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
 #: ../templates/wifi_stations/network.php:48 ../templates/provider.php:36
@@ -194,41 +206,41 @@ msgstr[0] ""
 msgid "Status"
 msgstr "Status"
 
-#: ../includes/functions.php:1239 ../src/RaspAP/UI/Sidebar.php:19
+#: ../includes/functions.php:1244 ../src/RaspAP/UI/Sidebar.php:19
 #: ../templates/hostapd.php:14
 msgid "Hotspot"
 msgstr "Hotspot"
 
-#: ../includes/functions.php:1242
+#: ../includes/functions.php:1247
 msgid "Mem Use"
 msgstr "Mem Gunakan"
 
-#: ../includes/functions.php:1245
+#: ../includes/functions.php:1250
 msgid "CPU"
 msgstr "CPU"
 
-#: ../includes/functions.php:1314
+#: ../includes/functions.php:1319
 msgid "Open the login page"
 msgstr ""
 
-#: ../includes/functions.php:1317
+#: ../includes/functions.php:1322
 msgid "The uplink network needs a login (captive portal). The VPN tunnel can not connect until the login."
 msgstr ""
 
-#: ../includes/functions.php:1319
+#: ../includes/functions.php:1324
 msgid "Allow the login for 5 minutes"
 msgstr ""
 
-#: ../includes/functions.php:1321
+#: ../includes/functions.php:1326
 msgid "The uplink network needs a login (captive portal). On a device that is connected to the hotspot, open a website that starts with http://. The login page of the network then opens. After the login, the VPN tunnel connects again."
 msgstr ""
 
-#: ../includes/functions.php:1325
+#: ../includes/functions.php:1330
 #, php-format
 msgid "The login is allowed until %s."
 msgstr ""
 
-#: ../includes/functions.php:1327
+#: ../includes/functions.php:1332
 msgid "End the login now"
 msgstr ""
 
@@ -466,11 +478,11 @@ msgstr "Nilai metrik tidak valid, bukan angka."
 msgid "DHCP configuration for %s updated."
 msgstr "Konfigurasi DHCP untuk %s diperbarui."
 
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:293
 msgid "Invalid MAC address: "
 msgstr "Alamat MAC tidak valid: "
 
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:296
 msgid "Duplicate IP address entered: "
 msgstr "Alamat IP duplikat yang dimasukkan: "
 
@@ -1756,13 +1768,13 @@ msgstr "Sertifikat"
 msgid "Enter username and password"
 msgstr "Masukkan nama pengguna dan kata sandi"
 
-#: ../templates/openvpn/general.php:30 ../templates/login.php:22
+#: ../templates/openvpn/general.php:30 ../templates/login.php:51
 #: ../templates/admin/login.php:12 ../templates/admin/general.php:15
 #: ../templates/networking/mobile.php:17
 msgid "Username"
 msgstr "Nama pengguna"
 
-#: ../templates/openvpn/general.php:34 ../templates/login.php:25
+#: ../templates/openvpn/general.php:34 ../templates/login.php:54
 #: ../templates/admin/login.php:21 ../templates/networking/mobile.php:21
 #: ../app/lib/signprint.php:65
 msgid "Password"
@@ -1833,15 +1845,35 @@ msgstr "Daftar klien"
 msgid "Information provided by Dnsmasq"
 msgstr "Informasi yang disediakan oleh Dnsmasq"
 
-#: ../templates/login.php:13
+#: ../templates/login.php:14
+msgid "Set a new password"
+msgstr ""
+
+#: ../templates/login.php:14
 msgid "Administrator login"
 msgstr "Login administrator"
 
-#: ../templates/login.php:31
+#: ../templates/login.php:16
+msgid "Please choose a new password to continue."
+msgstr ""
+
+#: ../templates/login.php:28 ../templates/admin.php:66
+msgid "New password"
+msgstr "Kata sandi baru"
+
+#: ../templates/login.php:34 ../templates/admin.php:78
+msgid "Repeat new password"
+msgstr "Ulangi kata sandi baru"
+
+#: ../templates/login.php:41
+msgid "Save password"
+msgstr ""
+
+#: ../templates/login.php:62
 msgid "Forgot password"
 msgstr "Lupa kata sandi"
 
-#: ../templates/login.php:33
+#: ../templates/login.php:64
 msgid "Scan for Login Help"
 msgstr "Pindai untuk Bantuan Masuk"
 
@@ -2025,17 +2057,9 @@ msgstr "Kata sandi lama"
 msgid "Please enter your old password."
 msgstr "Masukkan kata sandi lama Anda."
 
-#: ../templates/admin.php:66
-msgid "New password"
-msgstr "Kata sandi baru"
-
 #: ../templates/admin.php:71
 msgid "Please enter a new password."
 msgstr "Masukkan kata sandi baru."
-
-#: ../templates/admin.php:78
-msgid "Repeat new password"
-msgstr "Ulangi kata sandi baru"
 
 #: ../templates/admin.php:83
 msgid "Please re-enter your new password."
@@ -2627,6 +2651,14 @@ msgstr "Mencatat permintaan DHCP"
 #: ../templates/dhcp/logging.php:12
 msgid "Log DNS queries"
 msgstr "Mencatat permintaan DNS"
+
+#: ../templates/dhcp/logging.php:17
+msgid "Include client IP address"
+msgstr ""
+
+#: ../templates/dhcp/logging.php:18
+msgid "Prefix each logged DNS query with the IP address of the requesting client."
+msgstr ""
 
 #: ../templates/dhcp/advanced.php:3
 msgid "Advanced Settings"

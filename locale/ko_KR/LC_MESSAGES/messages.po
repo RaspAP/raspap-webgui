@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: raspap\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-11-07 02:38+0000\n"
+"POT-Creation-Date: 2026-11-11 23:37+0000\n"
 "PO-Revision-Date: 2026-07-05 23:45\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
@@ -16,6 +16,18 @@ msgstr ""
 "X-Crowdin-Language: ko\n"
 "X-Crowdin-File: /master/locale/messages.pot\n"
 "X-Crowdin-File-ID: 12\n"
+
+#: ../includes/login.php:71
+msgid "The new password must have at least 8 characters"
+msgstr ""
+
+#: ../includes/login.php:74
+msgid "New passwords do not match"
+msgstr ""
+
+#: ../includes/login.php:82
+msgid "Failed to save the new password"
+msgstr ""
 
 #: ../includes/networking.php:52 ../includes/networking.php:55
 msgid "not configured"
@@ -71,17 +83,17 @@ msgstr ""
 msgid "Failed to remove DHCP configuration for %s"
 msgstr ""
 
-#: ../includes/networking.php:330
+#: ../includes/networking.php:333
 #, php-format
 msgid "Dnsmasq configuration for %s added"
 msgstr ""
 
-#: ../includes/networking.php:349
+#: ../includes/networking.php:352
 #, php-format
 msgid "Dnsmasq configuration for %s removed"
 msgstr ""
 
-#: ../includes/networking.php:351
+#: ../includes/networking.php:354
 #, php-format
 msgid "Failed to remove dnsmasq configuration for %s"
 msgstr ""
@@ -170,7 +182,7 @@ msgstr "세션 만료"
 msgid "Your session has expired. Please login to continue."
 msgstr "세션이 만료되었습니다. 계속하려면 로그인하세요."
 
-#: ../includes/footer.php:23 ../templates/login.php:30
+#: ../includes/footer.php:23 ../templates/login.php:61
 #: ../templates/admin.php:18
 msgid "Login"
 msgstr "로그인"
@@ -180,13 +192,13 @@ msgstr "로그인"
 msgid "RestAPI docs are accessible <a href=\"%s\" target=\"_blank\">here %s</a>"
 msgstr "RestAPI 문서는 <a href=\"%s\" target=\"_blank\">여기 %s</a>에서 액세스할 수 있습니다"
 
-#: ../includes/functions.php:1126
+#: ../includes/functions.php:1131
 #, php-format
 msgid "Too many failed logins. Try again in %d minute."
 msgid_plural "Too many failed logins. Try again in %d minutes."
 msgstr[0] ""
 
-#: ../includes/functions.php:1237
+#: ../includes/functions.php:1242
 #: ../plugins-available/Captive/templates/main.php:51
 #: ../plugins-available/Tailscale/templates/main.php:71
 #: ../templates/wifi_stations/network.php:48 ../templates/provider.php:36
@@ -194,41 +206,41 @@ msgstr[0] ""
 msgid "Status"
 msgstr "상태"
 
-#: ../includes/functions.php:1239 ../src/RaspAP/UI/Sidebar.php:19
+#: ../includes/functions.php:1244 ../src/RaspAP/UI/Sidebar.php:19
 #: ../templates/hostapd.php:14
 msgid "Hotspot"
 msgstr "핫스팟"
 
-#: ../includes/functions.php:1242
+#: ../includes/functions.php:1247
 msgid "Mem Use"
 msgstr "메모리 사용"
 
-#: ../includes/functions.php:1245
+#: ../includes/functions.php:1250
 msgid "CPU"
 msgstr "CPU"
 
-#: ../includes/functions.php:1314
+#: ../includes/functions.php:1319
 msgid "Open the login page"
 msgstr ""
 
-#: ../includes/functions.php:1317
+#: ../includes/functions.php:1322
 msgid "The uplink network needs a login (captive portal). The VPN tunnel can not connect until the login."
 msgstr ""
 
-#: ../includes/functions.php:1319
+#: ../includes/functions.php:1324
 msgid "Allow the login for 5 minutes"
 msgstr ""
 
-#: ../includes/functions.php:1321
+#: ../includes/functions.php:1326
 msgid "The uplink network needs a login (captive portal). On a device that is connected to the hotspot, open a website that starts with http://. The login page of the network then opens. After the login, the VPN tunnel connects again."
 msgstr ""
 
-#: ../includes/functions.php:1325
+#: ../includes/functions.php:1330
 #, php-format
 msgid "The login is allowed until %s."
 msgstr ""
 
-#: ../includes/functions.php:1327
+#: ../includes/functions.php:1332
 msgid "End the login now"
 msgstr ""
 
@@ -466,11 +478,11 @@ msgstr "숫자가 아닌 잘못된 메트릭 값입니다."
 msgid "DHCP configuration for %s updated."
 msgstr "%s 에 대한 DHCP 구성이 업데이트되었습니다."
 
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:289
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:293
 msgid "Invalid MAC address: "
 msgstr "잘못된 MAC 주소입니다: "
 
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:292
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:296
 msgid "Duplicate IP address entered: "
 msgstr "중복된 IP 주소를 입력했습니다: "
 
@@ -1756,13 +1768,13 @@ msgstr "인증서"
 msgid "Enter username and password"
 msgstr "사용자 이름과 비밀번호 입력"
 
-#: ../templates/openvpn/general.php:30 ../templates/login.php:22
+#: ../templates/openvpn/general.php:30 ../templates/login.php:51
 #: ../templates/admin/login.php:12 ../templates/admin/general.php:15
 #: ../templates/networking/mobile.php:17
 msgid "Username"
 msgstr "사용자 이름"
 
-#: ../templates/openvpn/general.php:34 ../templates/login.php:25
+#: ../templates/openvpn/general.php:34 ../templates/login.php:54
 #: ../templates/admin/login.php:21 ../templates/networking/mobile.php:21
 #: ../app/lib/signprint.php:65
 msgid "Password"
@@ -1833,15 +1845,35 @@ msgstr "고객 목록"
 msgid "Information provided by Dnsmasq"
 msgstr "Dnsmasq에서 제공한 정보"
 
-#: ../templates/login.php:13
+#: ../templates/login.php:14
+msgid "Set a new password"
+msgstr ""
+
+#: ../templates/login.php:14
 msgid "Administrator login"
 msgstr "관리자 로그인"
 
-#: ../templates/login.php:31
+#: ../templates/login.php:16
+msgid "Please choose a new password to continue."
+msgstr ""
+
+#: ../templates/login.php:28 ../templates/admin.php:66
+msgid "New password"
+msgstr "새 비밀번호"
+
+#: ../templates/login.php:34 ../templates/admin.php:78
+msgid "Repeat new password"
+msgstr "새 비밀번호 반복하기"
+
+#: ../templates/login.php:41
+msgid "Save password"
+msgstr ""
+
+#: ../templates/login.php:62
 msgid "Forgot password"
 msgstr "비밀번호 찾기"
 
-#: ../templates/login.php:33
+#: ../templates/login.php:64
 msgid "Scan for Login Help"
 msgstr "로그인 도움말 검색"
 
@@ -2025,17 +2057,9 @@ msgstr "이전 비밀번호"
 msgid "Please enter your old password."
 msgstr "기존 비밀번호를 입력하세요."
 
-#: ../templates/admin.php:66
-msgid "New password"
-msgstr "새 비밀번호"
-
 #: ../templates/admin.php:71
 msgid "Please enter a new password."
 msgstr "새 비밀번호를 입력하세요."
-
-#: ../templates/admin.php:78
-msgid "Repeat new password"
-msgstr "새 비밀번호 반복하기"
 
 #: ../templates/admin.php:83
 msgid "Please re-enter your new password."
@@ -2627,6 +2651,14 @@ msgstr "DHCP 요청 로그"
 #: ../templates/dhcp/logging.php:12
 msgid "Log DNS queries"
 msgstr "DNS 쿼리 로그"
+
+#: ../templates/dhcp/logging.php:17
+msgid "Include client IP address"
+msgstr ""
+
+#: ../templates/dhcp/logging.php:18
+msgid "Prefix each logged DNS query with the IP address of the requesting client."
+msgstr ""
 
 #: ../templates/dhcp/advanced.php:3
 msgid "Advanced Settings"
