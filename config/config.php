@@ -57,6 +57,7 @@ define("RASPI_5GHZ_CHANNEL_MAX", 192);
 
 // Enable basic authentication for the web admin.
 define('RASPI_AUTH_ENABLED', true);
+define('RASPI_AUTH_GRACE_LOGINS', 3);
 
 // Optional services, set to true to enable.
 define('RASPI_WIFICLIENT_ENABLED', true);

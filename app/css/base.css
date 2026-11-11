@@ -353,6 +353,27 @@ button.btn i:not([class*="service-status"]) {
   min-width: 330px;
 }
 
+/* equal top and bottom rows keep the inputs in the middle of the screen */
+.login-layout {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  min-height: 100%;
+}
+
+.login-layout .login-top {
+  align-self: end;
+}
+
+/* the form's two parts are rows of the grid */
+.login-layout .login-form {
+  display: contents;
+}
+
+.login-layout .login-bottom {
+  align-self: start;
+  padding-bottom: 1.5rem;
+}
+
 .login-brand {
   color: var(--raspap-theme-color);
   filter: brightness(150%);
