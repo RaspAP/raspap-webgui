@@ -204,7 +204,8 @@ class DnsmasqManager
             $config[] = "log-dhcp";
         }
         if (($post_data['log-queries'] ?? '') == "1") {
-          $config[] = "log-queries";
+            // "extra" prefixes each logged query with the requesting client's IP address
+            $config[] = ($post_data['log-queries-extra'] ?? '') == "1" ? "log-queries=extra" : "log-queries";
         }
         $config[] = PHP_EOL;
 
