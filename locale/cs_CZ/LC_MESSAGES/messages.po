@@ -1856,7 +1856,7 @@ msgstr "Informace poskytnuté Dnsmasq"
 
 #: ../templates/login.php:14
 msgid "Set a new password"
-msgstr ""
+msgstr "Nastavte nové heslo"
 
 #: ../templates/login.php:14
 msgid "Administrator login"
@@ -1864,7 +1864,7 @@ msgstr "Přihlášení správce"
 
 #: ../templates/login.php:16
 msgid "Please choose a new password to continue."
-msgstr ""
+msgstr "Chcete-li pokračovat, zvolte prosím nové heslo."
 
 #: ../templates/login.php:28 ../templates/admin.php:66
 msgid "New password"
