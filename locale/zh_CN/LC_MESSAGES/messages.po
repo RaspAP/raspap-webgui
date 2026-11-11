@@ -1847,7 +1847,7 @@ msgstr "信息由 Dnsmasq 提供"
 
 #: ../templates/login.php:14
 msgid "Set a new password"
-msgstr ""
+msgstr "设置新密码"
 
 #: ../templates/login.php:14
 msgid "Administrator login"
@@ -1855,7 +1855,7 @@ msgstr "管理员登录"
 
 #: ../templates/login.php:16
 msgid "Please choose a new password to continue."
-msgstr ""
+msgstr "请选择一个新密码以继续。"
 
 #: ../templates/login.php:28 ../templates/admin.php:66
 msgid "New password"

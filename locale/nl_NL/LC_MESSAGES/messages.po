@@ -1850,7 +1850,7 @@ msgstr "Informatie verstrekt door Dnsmasq"
 
 #: ../templates/login.php:14
 msgid "Set a new password"
-msgstr ""
+msgstr "Stel een nieuw wachtwoord in"
 
 #: ../templates/login.php:14
 msgid "Administrator login"
@@ -1858,7 +1858,7 @@ msgstr "Inloggen als beheerder"
 
 #: ../templates/login.php:16
 msgid "Please choose a new password to continue."
-msgstr ""
+msgstr "Kies een nieuw wachtwoord om door te gaan."
 
 #: ../templates/login.php:28 ../templates/admin.php:66
 msgid "New password"

@@ -1853,7 +1853,7 @@ msgstr "Informații furnizate de Dnsmasq"
 
 #: ../templates/login.php:14
 msgid "Set a new password"
-msgstr ""
+msgstr "Setați o parolă nouă"
 
 #: ../templates/login.php:14
 msgid "Administrator login"
@@ -1861,7 +1861,7 @@ msgstr "Autentificare administrator"
 
 #: ../templates/login.php:16
 msgid "Please choose a new password to continue."
-msgstr ""
+msgstr "Vă rugăm să alegeți o parolă nouă pentru a continua."
 
 #: ../templates/login.php:28 ../templates/admin.php:66
 msgid "New password"
