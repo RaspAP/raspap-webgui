@@ -43,6 +43,12 @@ class HTTPAuth
         'ajax/session/do_check_session.php',
     );
 
+    /**
+     * Counts admin logins with the default password, for the grace logins.
+     * Kept in RASPI_CONFIG, not /tmp, so a reboot does not reset it.
+     */
+    private const DEFAULT_LOGINS_FILE = 'raspap.logins';
+
     // Constructor
     public function __construct()
     {
@@ -106,9 +112,44 @@ class HTTPAuth
             return false;
         }
         if (!isset($_SESSION['password_change_required'])) {
-            $_SESSION['password_change_required'] = !$this->isNonPrivileged() && $this->isDefaultPassword();
+            $_SESSION['password_change_required'] = !$this->isNonPrivileged()
+                && $this->isDefaultPassword()
+                && $this->graceLoginsLeft() === 0;
         }
         return $_SESSION['password_change_required'];
+    }
+
+    /*
+     * Gets the number of admin logins allowed with the default password
+     * before the change is required (RASPI_AUTH_GRACE_LOGINS in config.php).
+     * Without the setting there are none, so the first login requires it.
+     * return int
+     */
+    public function graceLogins(): int
+    {
+        return defined('RASPI_AUTH_GRACE_LOGINS') ? max(0, (int)RASPI_AUTH_GRACE_LOGINS) : 0;
+    }
+
+    /*
+     * Gets the number of grace logins left, counting the current login.
+     * An unreadable or invalid counter leaves none, so the change is required.
+     * return int
+     */
+    public function graceLoginsLeft(): int
+    {
+        $limit = $this->graceLogins();
+        if ($limit === 0) {
+            return 0;
+        }
+        $file = self::defaultLoginsFile();
+        if (!file_exists($file)) {
+            return 0; // logins are counted at login, so a missing counter is a failed write
+        }
+        $count = @file_get_contents($file);
+        if ($count === false || !ctype_digit(trim($count))) {
+            return 0;
+        }
+        return max(0, $limit - (int)trim($count) + 1);
     }
 
     /*
@@ -118,6 +159,48 @@ class HTTPAuth
     {
         session_regenerate_id(true);
         $_SESSION['password_change_required'] = false;
+        self::clearDefaultLoginCount();
+    }
+
+    /*
+     * Removes the default password login counter, so a later reset to the
+     * default password starts with the full number of grace logins
+     */
+    public static function clearDefaultLoginCount(): void
+    {
+        $file = self::defaultLoginsFile();
+        if (file_exists($file)) {
+            @unlink($file);
+        }
+    }
+
+    private static function defaultLoginsFile(): string
+    {
+        return RASPI_CONFIG . '/' . self::DEFAULT_LOGINS_FILE;
+    }
+
+    /*
+     * Adds an admin login with the default password to the counter
+     * return boolean false if the counter could not be updated
+     */
+    private function recordDefaultLogin(): bool
+    {
+        $fp = @fopen(self::defaultLoginsFile(), 'c+');
+        if ($fp === false) {
+            return false;
+        }
+        $saved = false;
+        if (flock($fp, LOCK_EX)) {
+            $count = trim((string)stream_get_contents($fp));
+            if ($count === '' || ctype_digit($count)) {
+                $count = (string)((int)$count + 1);
+                $saved = ftruncate($fp, 0) && rewind($fp)
+                    && fwrite($fp, $count) === strlen($count) && fflush($fp);
+            }
+            flock($fp, LOCK_UN);
+        }
+        fclose($fp);
+        return $saved;
     }
 
     /*
@@ -161,6 +244,15 @@ class HTTPAuth
             $_SESSION['user_id'] = $user;
             // check for the default password again on the next request
             unset($_SESSION['password_change_required']);
+            if ($role === 'admin' && $this->graceLogins() > 0) {
+                // the plain text check avoids a second slow password_verify()
+                if (!hash_equals(self::DEFAULT_ADMIN_PASS, $pass)) {
+                    self::clearDefaultLoginCount();
+                } elseif (!$this->recordDefaultLogin()) {
+                    // fail closed: without a counter, no grace logins
+                    $_SESSION['password_change_required'] = true;
+                }
+            }
             return true;
         }
         return false;

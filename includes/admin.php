@@ -165,6 +165,9 @@ function updateCredentials($username = null, $password = null, $filePath, $role,
  */
 function updateAdminCredentials($username = null, $password = null, $nonprivenabled = null, $config, $status)
 {
+    if ($password !== null) {
+        \RaspAP\Auth\HTTPAuth::clearDefaultLoginCount();
+    }
     return updateCredentials($username, $password, RASPI_ADMIN_DETAILS, 'Admin', $config, $status, $nonprivenabled);
 }
 
