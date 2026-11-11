@@ -68,6 +68,9 @@ function cidr2mask($cidr)
  * Returns a default (fallback) value for the selected service, interface & setting
  * from /etc/raspap/networking/defaults.json
  *
+ * Interfaces with a predictable name based on the MAC address (enx<mac>,
+ * wlx<mac>) use the defaults of their prefix when they have no own entry.
+ *
  * @param string $svc
  * @param string $iface
  * @return string $value
@@ -77,9 +80,11 @@ function getDefaultNetValue($svc,$iface,$key)
     $json = json_decode(file_get_contents(RASPI_CONFIG_NETWORK), true);
     if ($json === null) {
         return false;
-    } else {
-        return $json[$svc][$iface][$key][0];
     }
+    if (!isset($json[$svc][$iface]) && preg_match('/^(enx|wlx)[0-9a-fA-F]{12}$/', (string)$iface)) {
+        $iface = substr($iface, 0, 3);
+    }
+    return $json[$svc][$iface][$key][0] ?? null;
 }
 
 /**
