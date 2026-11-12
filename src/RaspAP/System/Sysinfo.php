@@ -19,7 +19,7 @@ class Sysinfo
 
     public function hostname()
     {
-        return shell_exec("hostname -f");
+        return trim((string) shell_exec("hostname -f"));
     }
 
     public function uptime()

@@ -41,6 +41,7 @@ class Tailscale implements PluginInterface
     private bool $pendingNode;
     private bool $pendingSubnet;
     private bool $usingNode;
+    private string $exitNodeAddress = '';
 
     public function __construct(string $pluginPath, string $pluginName)
     {
@@ -237,8 +238,7 @@ class Tailscale implements PluginInterface
                 $status->addMessage(sprintf(_('Expected tailscale binary not found at: %s'), $this->binPath), 'warning');
                 $status->addMessage(sprintf(_('Visit the <a href="%s" target="_blank">installation instructions</a> or reinstall the Tailscale plugin.'), $installPage), 'warning');
             } else {
-                $hostname = $this->hostname;
-                $state = $this->getLoginStatus($hostname);
+                $state = $this->getLoginStatus();
                 $result = $this->handleStateChange($state, $status);
                 $content = $result['content'];
                 $status = $result['status'];
@@ -302,47 +302,17 @@ class Tailscale implements PluginInterface
     /**
      * Resolves Tailscale login status from JSON output
      *
-     * @param string $hostname
      * @return string
      */
-    public function getLoginStatus(string $hostname): string
+    public function getLoginStatus(): string
     {
         $cmd = 'sudo ' . escapeshellcmd($this->binPath) . ' status --json';
         $response = shell_exec($cmd);
 
-        if (!$response) {
-            return 'needs_login';
-        }
+        $data = json_decode((string) $response, true);
 
-        $data = json_decode($response, true);
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            return 'needs_login';
-        }
-
-        if (!empty($data['BackendState'])) {
-            if ($data['BackendState'] == "NeedsLogin") {
-                return "needs_login";
-            }
-        }
-
-        // check if local machine is being queried
-        if (!empty($data['Self']['HostName']) && $data['Self']['HostName'] === $hostname) {
-            if (!empty($data['Self']['ExitNodeOption'])) {
-                return 'logged_in_exit_node';
-            }
-            return 'logged_in';
-        }
-
-        // check peers
-        if (!empty($data['Peer']) && is_array($data['Peer'])) {
-            foreach ($data['Peer'] as $peer) {
-                if (!empty($peer['HostName']) && $peer['HostName'] === $hostname) {
-                    if (!empty($peer['ExitNode'])) {
-                        return 'logged_in_exit_node';
-                    }
-                    return 'logged_in';
-                }
-            }
+        if (($data['BackendState'] ?? null) === 'Running' && !empty($data['Self'])) {
+            return !empty($data['Self']['ExitNodeOption']) ? 'logged_in_exit_node' : 'logged_in';
         }
         return 'needs_login';
     }
@@ -411,6 +381,9 @@ class Tailscale implements PluginInterface
     {
         if ($state === 'needs_login') {
             $this->setServiceStatus('up'); // Tailscale must be up to fetch AuthURL
+            $state = $this->getLoginStatus();
+        }
+        if ($state === 'needs_login') {
             $loginUrl = $this->waitForAuthURL();
             if ($loginUrl) {
                 ob_start();
@@ -522,7 +495,7 @@ class Tailscale implements PluginInterface
     {
         $cmd = escapeshellcmd($this->binPath). ' ip --4';
         $response = shell_exec($cmd);
-        return trim($response); 
+        return trim($response);
     }
 
     /**
@@ -622,7 +595,7 @@ class Tailscale implements PluginInterface
     public function advertiseExitNode(): bool
     {
         $cmd = 'sudo ' .escapeshellcmd($this->binPath). ' up --advertise-exit-node';
-        exec($cmd, $exitCode);
+        exec($cmd, $output, $exitCode);
 
         // the tailscale CLI initiates the request silently and requires manual approval via the admin console.
         // this pending state is inferred with a flag here.
@@ -640,13 +613,13 @@ class Tailscale implements PluginInterface
     public function revokeExitNode(?string $ipv4address = null): bool
     {
         $cmd = 'sudo ' . escapeshellcmd($this->binPath) . ' set --advertise-exit-node=false';
-        exec($cmd, $exitCode);
+        exec($cmd, $output, $exitCode);
         usleep(100000); // sleep 100ms
 
         $cmd = 'sudo ' . escapeshellcmd($this->binPath) . ' up';
-        exec($cmd, $exitCode);
+        exec($cmd, $output, $exitCode);
 
-        return $exitCode === 0; 
+        return $exitCode === 0;
     }
 
     /**
@@ -670,7 +643,7 @@ class Tailscale implements PluginInterface
         ): ?string
     {
         $cmd = 'sudo ' . escapeshellcmd($this->binPath) . ' up';
-        
+
         if ($ipv4address !== null) {
             $cmd .= ' --exit-node=' . escapeshellarg($ipv4address);
 
@@ -863,4 +836,3 @@ class Tailscale implements PluginInterface
     }
 
 }
-
