@@ -595,7 +595,7 @@ class Tailscale implements PluginInterface
     public function advertiseExitNode(): bool
     {
         $cmd = 'sudo ' .escapeshellcmd($this->binPath). ' up --advertise-exit-node';
-        exec($cmd, $exitCode);
+        exec($cmd, $output, $exitCode);
 
         // the tailscale CLI initiates the request silently and requires manual approval via the admin console.
         // this pending state is inferred with a flag here.
@@ -613,11 +613,11 @@ class Tailscale implements PluginInterface
     public function revokeExitNode(?string $ipv4address = null): bool
     {
         $cmd = 'sudo ' . escapeshellcmd($this->binPath) . ' set --advertise-exit-node=false';
-        exec($cmd, $exitCode);
+        exec($cmd, $output, $exitCode);
         usleep(100000); // sleep 100ms
 
         $cmd = 'sudo ' . escapeshellcmd($this->binPath) . ' up';
-        exec($cmd, $exitCode);
+        exec($cmd, $output, $exitCode);
 
         return $exitCode === 0;
     }
