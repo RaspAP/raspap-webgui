@@ -1086,6 +1086,7 @@ function _default_configuration() {
 
         echo "Copying config/hostapd.conf to /etc/hostapd/hostapd.conf"
         sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
+        _set_hostapd_country /etc/hostapd/hostapd.conf
 
         echo "Copying config/090_raspap.conf to $raspap_default"
         sudo cp $webroot_dir/config/090_raspap.conf $raspap_default || _install_status 1 "Unable to move dnsmasq default configuration file"
@@ -1136,6 +1137,38 @@ function _default_configuration() {
     else
         _install_log "Copying defaults.json to $raspap_network"
         sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
+    fi
+}
+
+# Outputs the WiFi country configured for the system (e.g. with Raspberry Pi Imager
+# or raspi-config), read from cfg80211.ieee80211_regdom on the kernel command line
+# or else the global regulatory domain reported by iw
+function _get_wifi_country() {
+    local cmdline="${1:-/proc/cmdline}"
+    local country
+
+    country=$(grep -o 'cfg80211\.ieee80211_regdom=[^[:space:]]*' "$cmdline" 2>/dev/null | head -n 1 | cut -d= -f2) || true
+    if [ -z "$country" ] && command -v iw > /dev/null; then
+        country=$(iw reg get 2>/dev/null | sed -n 's/^country \([^:]*\):.*/\1/p' | head -n 1) || true
+    fi
+    country=${country^^}
+    # 00 (world) and 99 (unset) are not countries
+    if [[ "$country" =~ ^[A-Z]{2}$ ]]; then
+        echo "$country"
+    fi
+}
+
+# Sets the hostapd country_code to the WiFi country configured for the system
+function _set_hostapd_country() {
+    local hostapd_conf="$1"
+    local country
+
+    country=$(_get_wifi_country)
+    if [ -n "$country" ]; then
+        echo "Setting hostapd country_code to $country"
+        sudo sed -i "s/^country_code=.*/country_code=$country/" "$hostapd_conf" || _install_status 1 "Unable to set country_code in $hostapd_conf"
+    else
+        echo "WiFi country not set for this system, keeping default hostapd country_code"
     fi
 }
 
