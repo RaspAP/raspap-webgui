@@ -166,3 +166,96 @@
     </div><!-- /.card -->
   </div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
+
+<?php if (!empty($switchberrySupported)): ?>
+<div class="row mt-3" data-switchberry-dashboard>
+  <div class="col-lg-12">
+    <div class="card shadow switchberry-dashboard-card">
+      <div class="card-header page-card-header">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+          <div>
+            <i class="fas fa-clock fa-fw me-2"></i>
+            <?php echo _("Switchberry timing"); ?>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span id="switchberry-dashboard-updated" class="small opacity-75"><?php echo _("Loading live timing state…"); ?></span>
+            <button type="button" id="switchberry-dashboard-refresh" class="btn btn-primary btn-sm" title="<?php echo _("Refresh timing state"); ?>">
+              <i class="fas fa-sync-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div id="switchberry-dashboard-error" class="alert alert-warning d-none" role="alert"></div>
+
+        <div class="row g-3">
+          <div class="col-sm-6 col-xl-3">
+            <a class="switchberry-timing-tile tone-primary" data-switchberry-tile="ptp" href="/switchberry#switchberry-ptp">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <span class="switchberry-timing-icon"><i class="fas fa-network-wired"></i></span>
+                <span id="switchberry-dashboard-ptp-badge" class="badge text-bg-secondary">—</span>
+              </div>
+              <div class="small text-uppercase text-muted fw-semibold mb-1"><?php echo _("PTP clock"); ?></div>
+              <div id="switchberry-dashboard-ptp-title" class="h5 mb-1"><?php echo _("Loading…"); ?></div>
+              <div id="switchberry-dashboard-ptp-detail" class="small mb-1">—</div>
+              <div id="switchberry-dashboard-ptp-note" class="small text-muted text-truncate">—</div>
+            </a>
+          </div>
+
+          <div class="col-sm-6 col-xl-3">
+            <a class="switchberry-timing-tile tone-secondary" data-switchberry-tile="clockmatrix" href="/switchberry#switchberry-clockmatrix">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <span class="switchberry-timing-icon"><i class="fas fa-wave-square"></i></span>
+                <span id="switchberry-dashboard-clockmatrix-badge" class="badge text-bg-secondary">—</span>
+              </div>
+              <div class="small text-uppercase text-muted fw-semibold mb-1"><?php echo _("ClockMatrix"); ?></div>
+              <div id="switchberry-dashboard-clockmatrix-title" class="h5 mb-1"><?php echo _("Loading…"); ?></div>
+              <div id="switchberry-dashboard-clockmatrix-detail" class="small mb-1">—</div>
+              <div id="switchberry-dashboard-clockmatrix-note" class="small text-muted text-truncate">—</div>
+            </a>
+          </div>
+
+          <div class="col-sm-6 col-xl-3">
+            <a class="switchberry-timing-tile tone-secondary" data-switchberry-tile="gnss" href="/switchberry#switchberry-gnss">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <span class="switchberry-timing-icon"><i class="fas fa-satellite-dish"></i></span>
+                <span id="switchberry-dashboard-gnss-badge" class="badge text-bg-secondary">—</span>
+              </div>
+              <div class="small text-uppercase text-muted fw-semibold mb-1"><?php echo _("GNSS"); ?></div>
+              <div id="switchberry-dashboard-gnss-title" class="h5 mb-1"><?php echo _("Loading…"); ?></div>
+              <div id="switchberry-dashboard-gnss-detail" class="small mb-1">—</div>
+              <div id="switchberry-dashboard-gnss-note" class="small text-muted text-truncate">—</div>
+            </a>
+          </div>
+
+          <div class="col-sm-6 col-xl-3">
+            <a class="switchberry-timing-tile tone-secondary" data-switchberry-tile="timing" href="/switchberry#switchberry-overview">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <span class="switchberry-timing-icon"><i class="fas fa-stopwatch"></i></span>
+                <span id="switchberry-dashboard-timing-badge" class="badge text-bg-secondary">—</span>
+              </div>
+              <div class="small text-uppercase text-muted fw-semibold mb-1"><?php echo _("Timing path"); ?></div>
+              <div id="switchberry-dashboard-timing-title" class="h5 mb-1"><?php echo _("Loading…"); ?></div>
+              <div id="switchberry-dashboard-timing-detail" class="small mb-1">—</div>
+              <div id="switchberry-dashboard-timing-note" class="small text-muted text-truncate">—</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="switchberry-reference-strip mt-3">
+          <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-2">
+            <div class="small fw-semibold text-nowrap"><i class="fas fa-random me-2"></i><?php echo _("Active references"); ?></div>
+            <div id="switchberry-dashboard-references" class="d-flex flex-wrap gap-2">
+              <span class="badge rounded-pill text-bg-light border text-dark"><?php echo _("Loading…"); ?></span>
+            </div>
+            <a class="btn btn-outline-primary btn-sm ms-lg-auto text-nowrap" href="/switchberry">
+              <?php echo _("Open timing console"); ?> <i class="fas fa-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php endif; ?>
