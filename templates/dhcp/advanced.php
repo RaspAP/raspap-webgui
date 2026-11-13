@@ -3,6 +3,18 @@
   <h4 class="mt-3"><?php echo _("Advanced Settings"); ?></h4>
   <div class="row">
     <div class="col-md-6">
+      <h5><?php echo _("DNS server") ?></h5>
+      <div class="input-group">
+        <div class="form-check form-switch">
+          <input class="form-check-input" id="disable-dns" type="checkbox" name="disable-dns" value="1" <?php echo !empty($conf['disable-dns']) ? ' checked="checked"' : '' ?> aria-describedby="disable-dns-description">
+          <label class="form-check-label" for="disable-dns"><?php echo _("Disable DNS server (DHCP only)") ?></label>
+        </div>
+        <p id="disable-dns-description">
+          <small><?php echo _("Enable this option to let <b>another DNS server on this device</b>, such as Pi-hole, use port 53. The DHCP server keeps running and gives clients the DNS servers set on the <b>Server settings</b> tab. Ad blocking and DNS query logging need the dnsmasq DNS server.") ?></small>
+          <br><small class="text-muted"><?php echo _("This option adds <code>port=0</code> to the dnsmasq configuration.") ?></small>
+        </p>
+      </div>
+
       <h5><?php echo _("Upstream DNS servers") ?></h5>
       <div class="input-group">
         <input type="hidden" name="no-resolv" value="0">
