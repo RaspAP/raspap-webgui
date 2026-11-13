@@ -202,6 +202,11 @@ class DnsmasqManager
         $config[] = 'log-facility='. RASPI_DHCPCD_LOG;
         $config[] = 'conf-dir=/etc/dnsmasq.d';
 
+        // port=0 turns off the DNS server, so another one (e.g. Pi-hole) can use port 53
+        if (($post_data['disable-dns'] ?? '') == "1") {
+            $config[] = 'port=0';
+        }
+
         // handle log option
         if (($post_data['log-dhcp'] ?? '') == "1") {
             $config[] = "log-dhcp";
@@ -284,6 +289,11 @@ class DnsmasqManager
     {
         $errors = [];
         $encounteredIPs = [];
+
+        // with port=0, dnsmasq no longer gives DHCP clients its own address as their DNS server
+        if (($post_data['disable-dns'] ?? '') == "1" && empty($post_data['DNS1'])) {
+            $errors[] = _('A DNS server for the DHCP clients is required when the dnsmasq DNS server is disabled');
+        }
 
         if (isset($post_data["static_leases"]["mac"])) {
             for ($i=0; $i < count($post_data["static_leases"]["mac"]); $i++) {

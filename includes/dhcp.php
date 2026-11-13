@@ -82,6 +82,7 @@ function DisplayDHCPConfig()
     $log_dhcp = (preg_grep('/log-dhcp/', $return));
     $log_queries = (preg_grep('/log-queries/', $return));
     $log_queries_extra = (preg_grep('/^\s*log-queries\s*=\s*extra\b/', $return));
+    $disable_dns = (preg_grep('/^\s*port\s*=\s*0\s*$/', $return));
     $conf = ParseConfig($return);
     exec('cat '. RASPI_DNSMASQ_PREFIX.$ap_iface.'.conf', $return);
     $conf = array_merge(ParseConfig($return));
@@ -104,6 +105,7 @@ function DisplayDHCPConfig()
     count($log_dhcp) > 0 ? $conf['log-dhcp'] = true : false ;
     count($log_queries) > 0 ? $conf['log-queries'] = true : false ;
     count($log_queries_extra) > 0 ? $conf['log-queries-extra'] = true : false ;
+    count($disable_dns) > 0 ? $conf['disable-dns'] = true : false ;
 
     exec('sudo /bin/chmod o+r '.RASPI_DHCPCD_LOG);
     $logdata = getLogLimited(RASPI_DHCPCD_LOG);
