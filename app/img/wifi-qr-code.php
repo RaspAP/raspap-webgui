@@ -1,14 +1,12 @@
 <?php
 
+require_once '../../includes/autoload.php';
+require_once '../../includes/CSRF.php';
+require_once '../../includes/session.php';
 require_once '../../includes/config.php';
+require_once '../../includes/authenticate.php';
 require_once '../../includes/defaults.php';
 require_once '../../includes/functions.php';
-
-// prevent direct file access
-if (!isset($_SERVER['HTTP_REFERER'])) {
-    header('HTTP/1.0 403 Forbidden');
-    exit;
-}
 
 $hostapd = parse_ini_file(RASPI_HOSTAPD_CONFIG, false, INI_SCANNER_RAW);
 
@@ -55,6 +53,5 @@ header("Content-Length: $content_length");
 header("Last-Modified: $last_modified");
 header("Content-Disposition: attachment; filename=\"qr.svg\"");
 header("ETag: \"$etag\"");
-header("X-QR-Code-Content: $data");
 echo $svg;
 

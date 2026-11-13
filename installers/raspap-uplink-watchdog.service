@@ -1,0 +1,10 @@
+# Author: RaspAP
+
+[Unit]
+Description=RaspAP uplink watchdog check
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/raspap-uplink-watchdog.sh check
+User=root

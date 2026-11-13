@@ -85,4 +85,8 @@
 var t = new Array();
 t['send'] = '<?php echo addslashes(_('Send')); ?>';
 t['receive'] = '<?php echo addslashes(_('Receive')); ?>';
+t['nodata'] = '<?php echo addslashes(_('vnstat has no statistics for %s.')); ?>';
+t['addinterface'] = '<?php echo addslashes(_('Start statistics')); ?>';
+t['added'] = '<?php echo addslashes(_('vnstat records %s now. The first values show after a few minutes.')); ?>';
+t['notadded'] = '<?php echo addslashes(_('Unable to add %s to vnstat.')); ?>';
 </script>

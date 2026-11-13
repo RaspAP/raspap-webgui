@@ -91,12 +91,12 @@
                     <span><?php echo _('Adblock'); ?></span>
                   </div>
                 </a>
-                <a href="<?php echo $vpnManaged; ?>">
+                <a href="<?php echo $vpnManaged; ?>" title="<?php echo htmlspecialchars($vpnTitle, ENT_QUOTES); ?>">
                   <div class="status-item <?php echo $vpnStatus; ?>">
                     <div>
                       <i class="fas fa-shield-alt fa-2x"></i>
                     </div>
-                    <span><?php echo _('VPN'); ?></span>
+                    <span><?php echo htmlspecialchars($vpnLabel, ENT_QUOTES); ?></span>
                   </div>
                 </a>
                 <?php echo $firewallManaged; ?>

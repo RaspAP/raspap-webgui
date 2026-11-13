@@ -49,6 +49,25 @@ class CSRF
     }
 
     /**
+     * Requires the request to use POST, so a state-changing endpoint is
+     * covered by the CSRF token check (validateRequest() only validates the
+     * unsafe methods). A GET or other method is refused with 405, which
+     * stops a cross-site request from triggering the action with no token.
+     *
+     * @return void
+     */
+    public static function requirePost(): void
+    {
+        if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+            http_response_code(405);
+            header('Allow: POST');
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'Method not allowed']);
+            exit();
+        }
+    }
+
+    /**
      * Validates a CSRF Request
      *
      * @return bool

@@ -349,8 +349,32 @@ button.btn i:not([class*="service-status"]) {
   align-items: center;
 }
 
+/* fixed width, so long text wraps instead of widening the inputs */
 #modal-admin-login .modal-body {
-  min-width: 330px;
+  width: 330px;
+  max-width: 100%;
+}
+
+/* equal top and bottom rows keep the inputs in the middle of the screen */
+.login-layout {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  min-height: 100%;
+}
+
+.login-layout .login-top {
+  align-self: end;
+  text-wrap: balance;
+}
+
+/* the form's two parts are rows of the grid */
+.login-layout .login-form {
+  display: contents;
+}
+
+.login-layout .login-bottom {
+  align-self: start;
+  padding-bottom: 1.5rem;
 }
 
 .login-brand {

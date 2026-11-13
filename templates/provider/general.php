@@ -9,7 +9,7 @@
                <i class="fas fa-globe-americas me-1"></i><?php echo _("IPv4 Address"); ?>
              </div>
              <div class="info-value col-4">
-               <?php echo htmlspecialchars($publicIP, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($publicIP); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ms-2"></i></a>
+               <span class="js-public-ip"><i class="fas fa-circle-notch fa-spin"></i></span><a class="js-public-ip-link text-gray-500 d-none" href="#" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ms-2"></i></a>
              </div>
            </div>
          </div>

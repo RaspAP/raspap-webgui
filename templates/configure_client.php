@@ -36,6 +36,16 @@
             </form>
           </div>
         </div>
+        <div class="row mt-3 d-none js-uplink-watchdog">
+          <div class="col-md-6">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="chxuplinkwatchdog" />
+              <label class="form-check-label" for="chxuplinkwatchdog"><?php echo _("Reconnect when the uplink stops working"); ?></label>
+              <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Checks the gateway of the WiFi client uplink every 30 seconds. When the gateway does not answer 3 times in a series, the client connects to the network again. At most one reconnect in 10 minutes."); ?>"></i>
+            </div>
+            <small class="text-muted js-uplink-watchdog-status"></small>
+          </div>
+        </div>
         <form method="POST" action="wpa_conf" name="wpa_conf_form">
           <?php echo \RaspAP\Tokens\CSRF::hiddenField(); ?>
           <div class="row" id="wpaConf">

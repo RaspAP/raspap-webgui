@@ -6,7 +6,7 @@
         <div class="col-lg-12 mt-2">
           <div class="row mt-3 mb-2">
             <div class="info-item col-3"><?php echo _("IPv4 Address"); ?></div>
-            <div class="info-value col-4"><?php echo htmlspecialchars($public_ip, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($public_ip); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ms-2"></i></a></div>
+            <div class="info-value col-4"><span class="js-public-ip"><i class="fas fa-circle-notch fa-spin"></i></span><a class="js-public-ip-link text-gray-500 d-none" href="#" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ms-2"></i></a></div>
           </div>
         </div>
         <h5><?php echo _("Configuration Method"); ?></h5>
@@ -52,6 +52,32 @@
                     <p id="wg-description">
                       <small><?php echo _("This option adds <strong>iptables</strong> <code>PostUp</code> and <code>PreDown</code> rules for the configured interface."); ?></small>
                     </p>
+                    <div class="ms-4" id="wg-kswitch-options"<?php echo $optKSwitch == 1 ? '' : ' style="display: none;"' ?>>
+                      <div class="form-check form-switch">
+                        <?php $checked = $optKSwitchNtp == 1 ? 'checked="checked"' : '' ?>
+                        <input class="form-check-input" id="chxwgkswitchntp" name="wgKSwitchNtp" type="checkbox" value="1" <?php echo $checked ?> />
+                        <label class="form-check-label" for="chxwgkswitchntp"><?php echo _("Allow NTP outside the tunnel"); ?></label>
+                        <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Lets the device set its clock while the tunnel is down. A WireGuard handshake fails when the clock is behind."); ?>"></i>
+                      </div>
+                      <div class="form-check form-switch">
+                        <?php $checked = $optKSwitchDns == 1 ? 'checked="checked"' : '' ?>
+                        <input class="form-check-input" id="chxwgkswitchdns" name="wgKSwitchDns" type="checkbox" value="1" <?php echo $checked ?> />
+                        <label class="form-check-label" for="chxwgkswitchdns"><?php echo _("Allow DNS to the uplink DNS servers outside the tunnel"); ?></label>
+                        <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Lets the device resolve names (for example NTP servers) while the tunnel is down. The DNS requests of this device go outside the tunnel. AP clients are not affected."); ?>"></i>
+                      </div>
+                      <div class="form-check form-switch">
+                        <?php $checked = $optKSwitchPortal == 1 ? 'checked="checked"' : '' ?>
+                        <input class="form-check-input" id="chxwgkswitchportal" name="wgKSwitchPortal" type="checkbox" value="1" <?php echo $checked ?> />
+                        <label class="form-check-label" for="chxwgkswitchportal"><?php echo _("Allow captive portal login"); ?></label>
+                        <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("When the uplink network needs a login (for example in a hotel), AP clients can open the login page while the tunnel is down. The dashboard shows a button that allows the login for 5 minutes. During this time, the HTTP and DNS requests of AP clients go outside the tunnel. HTTPS stays blocked, so a login page that uses only HTTPS does not work."); ?>"></i>
+                      </div>
+                      <div class="form-check form-switch ms-4" id="wg-kswitch-portal-auto"<?php echo $optKSwitchPortal == 1 ? '' : ' style="display: none;"' ?>>
+                        <?php $checked = $optKSwitchPortalAuto == 1 ? 'checked="checked"' : '' ?>
+                        <input class="form-check-input" id="chxwgkswitchportalauto" name="wgKSwitchPortalAuto" type="checkbox" value="1" <?php echo $checked ?> />
+                        <label class="form-check-label" for="chxwgkswitchportalauto"><?php echo _("Allow the login automatically"); ?></label>
+                        <i class="fas fa-question-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="auto" title="<?php echo _("Allows the login without a click when the device finds a captive portal, until the tunnel works again. A network that blocks the tunnel and shows a false login page can then see the HTTP and DNS requests of AP clients."); ?>"></i>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

@@ -22,7 +22,9 @@ function DisplayRestAPI()
         if (isset($_POST['SaveAPIsettings'])) {
             if (isset($_POST['txtapikey'])) {
                 $apiKey = trim($_POST['txtapikey']);
-                if (strlen($apiKey) == 0) {
+                // systemd reads each line of .env as a variable for the
+                // service, so the key is one word of plain characters
+                if (!preg_match('/^[A-Za-z0-9._~+\/=-]{8,128}$/', $apiKey)) {
                     $status->addMessage('Please enter a valid API key', 'danger');
                 } else {
                     $return = saveAPISettings($status, $apiKey, $dotenv);

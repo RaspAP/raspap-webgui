@@ -213,6 +213,7 @@ class HostapdValidator
             'hw_mode'          => $post['hw_mode'],
             'country_code'     => $countryCode,
             'hiddenSSID'       => (int)$ignoreBroadcastSSID,
+            'apisolate'        => !empty($post['ap_isolate']) ? 1 : 0,
             'max_num_sta'      => $post['max_num_sta'],
             'beacon_interval'  => $post['beacon_interval'] ?? null,
             'disassoc_low_ack' => $post['disassoc_low_ackEnable'] ?? null,

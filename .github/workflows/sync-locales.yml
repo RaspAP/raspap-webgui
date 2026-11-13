@@ -1,0 +1,43 @@
+name: Sync locale files
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - master
+    paths:
+      - '**/*.php'
+  workflow_dispatch:
+
+jobs:
+  sync-locales:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install gettext
+        run: sudo apt-get install -y gettext
+
+      - name: Extract translations
+        run: |
+          cd locale
+          bash extract_translations.sh
+
+      - name: Commit locale changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add locale/
+          if ! git diff --quiet || ! git diff --staged --quiet; then
+            git commit -m "Translations: update locale files [skip ci]"
+            git fetch origin master
+            git merge -X ours origin/master
+            git push origin master
+          else
+            echo "No changes to commit"
+          fi

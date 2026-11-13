@@ -31,11 +31,16 @@ define('RASPI_WPA_CTRL_INTERFACE', '/var/run/wpa_supplicant');
 define('RASPI_OPENVPN_CLIENT_PATH', '/etc/openvpn/client/');
 define('RASPI_OPENVPN_CLIENT_CONFIG', '/etc/openvpn/client/client.conf');
 define('RASPI_OPENVPN_CLIENT_LOGIN', '/etc/openvpn/client/login.conf');
+define('RASPI_OPENVPN_CLIENT_KEYPASS', '/etc/openvpn/client/keypass.conf');
 define('RASPI_WIREGUARD_PATH', '/etc/wireguard/');
 define('RASPI_WIREGUARD_CONFIG', RASPI_WIREGUARD_PATH.'wg0.conf');
 define('RASPI_IPTABLES_CONF', RASPI_CONFIG.'/networking/iptables_rules.json');
 define('RASPI_TORPROXY_CONFIG', '/etc/tor/torrc');
 define('RASPI_LIGHTTPD_CONFIG', '/etc/lighttpd/lighttpd.conf');
+define('RASPI_CLIENT_CONFIG_PATH', RASPI_CONFIG.'/networking/client_udev_prototypes.json');
+define('RASPI_USER_UDEV_RULES', '/etc/udev/rules.d/80-raspap-net-devices.rules');
+define('RASPI_MOBILEDATA_CONFIG', RASPI_CONFIG.'/networking/mobiledata.ini');
+define('RASPI_WVDIAL_CONFIG', '/etc/wvdial.conf');
 define('RASPI_ACCESS_CHECK_IP', '1.1.1.1');
 define('RASPI_ACCESS_CHECK_DNS', 'one.one.one.one');
 
@@ -52,6 +57,7 @@ define("RASPI_5GHZ_CHANNEL_MAX", 192);
 
 // Enable basic authentication for the web admin.
 define('RASPI_AUTH_ENABLED', true);
+define('RASPI_AUTH_GRACE_LOGINS', 3);
 
 // Optional services, set to true to enable.
 define('RASPI_WIFICLIENT_ENABLED', true);

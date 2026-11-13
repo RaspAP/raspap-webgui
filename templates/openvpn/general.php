@@ -6,7 +6,7 @@
          <div class="col-lg-12 mt-2 mb-2">
            <div class="row ms-1">
             <div class="info-item col-3"><?php echo _("IPv4 Address"); ?></div>
-            <div class="info-value col-4"><?php echo htmlspecialchars($public_ip, ENT_QUOTES); ?><a class="text-gray-500" href="https://ipapi.co/<?php echo($public_ip); ?>" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ms-2"></i></a></div>
+            <div class="info-value col-4"><span class="js-public-ip"><i class="fas fa-circle-notch fa-spin"></i></span><a class="js-public-ip-link text-gray-500 d-none" href="#" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt ms-2"></i></a></div>
            </div>
          </div>
       </div>
@@ -50,6 +50,11 @@
                    </small>
                  </ul>
                 </p>
+                <div class="mb-3 col-lg-12">
+                  <label for="keyPassword"><?php echo _("Private key password"); ?></label>
+                  <input type="password" class="form-control" name="keyPassword" id="keyPassword" autocomplete="new-password" aria-describedby="keyPasswordHelp" />
+                  <small id="keyPasswordHelp" class="form-text text-muted"><?php echo _("Optional. Required only if the private key in the configuration file is encrypted."); ?></small>
+                </div>
               </div>
            </div> <!-- panel -->
          </div> <!-- panel-group -->

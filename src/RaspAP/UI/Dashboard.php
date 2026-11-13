@@ -10,6 +10,8 @@
 
 namespace RaspAP\UI;
 
+use RaspAP\System\Sysinfo;
+
 class Dashboard {
 
     private string $firewallConfig;
@@ -233,14 +235,45 @@ class Dashboard {
     }
 
     /*
-     * Determines the device's primary connection interface by
-     * trying to ping a well-known public IP (Cloudflare DNS).
+     * Determines the device's primary connection interface from the
+     * route to a well-known public IP (Cloudflare DNS).
+     *
+     * The interface is taken from the 'dev' field rather than a fixed
+     * column, as the layout of 'ip route get' varies: routes without a
+     * gateway omit 'via', and policy routing adds 'table <id>' (e.g. a
+     * wg-quick full tunnel: "1.1.1.1 dev wg0 table 51820 src ...").
+     * If the route uses a VPN interface, the physical uplink from the
+     * main table's default route is returned instead; the VPN itself
+     * is reported separately by Sysinfo::getActiveVpnInterface().
+     * If the main table has several default routes, the first one is
+     * used; ip lists them by ascending metric, so this is the route
+     * the kernel prefers.
      *
      * @return string
      */
     public function getConnectionInterface(): string
     {
-        return trim(shell_exec("ip -o route get 1.1.1.1 | awk 'NR==1 {print $5}'"));
+        $interface = $this->getRouteDevice(shell_exec('ip -o route get 1.1.1.1 2>/dev/null'));
+
+        if (in_array($interface, Sysinfo::VPN_INTERFACES, true)) {
+            $uplink = $this->getRouteDevice(shell_exec('ip -o route show table main default 2>/dev/null'));
+            if ($uplink !== '' && !in_array($uplink, Sysinfo::VPN_INTERFACES, true)) {
+                return $uplink;
+            }
+        }
+        return $interface;
+    }
+
+    /*
+     * Returns the interface following 'dev' in the first line of
+     * 'ip route' output, or an empty string if there is none
+     *
+     * @param string|null $output
+     * @return string
+     */
+    private function getRouteDevice(?string $output): string
+    {
+        return preg_match('/\bdev\s+(\S+)/', (string)$output, $matches) ? $matches[1] : '';
     }
 
     /*

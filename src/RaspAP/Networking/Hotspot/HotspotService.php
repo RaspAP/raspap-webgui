@@ -182,6 +182,8 @@ class HotspotService
             $validated['repeater']  = !empty($states['RepeaterEnable']);
             $validated['dualmode']  = !empty($states['DualAPEnable']);
             $validated['txpower']   = $post_data['txpower'];
+            $validated['log_enable'] = !empty($states['LogEnable']);
+            $validated['log_level']  = $states['LogLevel'] ?? 2;
 
             // add 802.11ax/be specific parameters if present
             if (in_array($validated['hw_mode'], ['ax', 'be'])) {
@@ -193,6 +195,8 @@ class HotspotService
             // hostapd
             $config = $this->hostapd->buildConfig($validated, $status);
             $this->hostapd->saveConfig($config, $dualAPEnable, $validated['interface']);
+            // NetworkManager must not connect the AP interface as a WiFi client
+            (new \RaspAP\Networking\NetworkManagerClient())->purge($validated['interface']);
             $this->maybeSetRegDomain($post_data['country_code'], $status);
 
             $status->addMessage('WiFi hotspot settings saved.', 'success');

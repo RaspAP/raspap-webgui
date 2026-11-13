@@ -46,3 +46,49 @@
 	<?php endforeach ?>
 </div>
 <?php endif ?>
+
+<?php if (!empty($nmProfiles)): ?>
+<h4 class="h-underlined my-3"><?php echo _("Other NetworkManager connections") ?></h4>
+<p class="small text-muted"><?php echo _("These connections were not created in RaspAP. RaspAP can connect to them, but does not change or delete them.") ?></p>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><?php echo _("SSID") ?></th>
+        <th><?php echo _("Connect automatically") ?></th>
+        <th><?php echo _("Priority") ?></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($nmProfiles as $profile) : ?>
+      <tr>
+        <td>
+          <?php echo htmlspecialchars($profile['ssidutf8'], ENT_QUOTES) ?>
+          <?php if (!empty($profile['duplicate'])) : ?>
+            <br><small class="text-muted"><?php echo _("Same network as a RaspAP network") ?></small>
+          <?php endif ?>
+          <?php $ownOnly = !empty($profile['own']) && empty($profile['otherBss']); ?>
+          <?php if ($ownOnly) : ?>
+            <br><span class="badge bg-secondary"><i class="fas fa-broadcast-tower me-1"></i><?php echo htmlspecialchars(_("Access point") . ' ' . $profile['own'], ENT_QUOTES) ?></span>
+          <?php elseif (!empty($profile['own'])) : ?>
+            <br><small class="text-warning"><i class="fas fa-broadcast-tower me-1"></i><?php echo htmlspecialchars(sprintf(_("%s is also the hotspot of this device."), $profile['ssidutf8']), ENT_QUOTES) ?></small>
+          <?php endif ?>
+        </td>
+        <td><?php echo $profile['autoconnect'] ? _("Yes") : _("No") ?></td>
+        <td><?php echo (int)$profile['priority'] ?></td>
+        <td>
+          <?php if ($profile['active']) : ?>
+            <span class="text-success"><i class="fas fa-check me-1"></i><?php echo _("Connected") ?></span>
+          <?php elseif ($ownOnly) : ?>
+            <button type="button" class="btn btn-sm btn-info" disabled><?php echo _("Connect") ?></button>
+          <?php else : ?>
+            <button type="submit" class="btn btn-sm btn-info" name="nm_connect" value="<?php echo htmlspecialchars($profile['uuid'], ENT_QUOTES) ?>"><?php echo _("Connect") ?></button>
+          <?php endif ?>
+        </td>
+      </tr>
+    <?php endforeach ?>
+    </tbody>
+  </table>
+</div>
+<?php endif ?>

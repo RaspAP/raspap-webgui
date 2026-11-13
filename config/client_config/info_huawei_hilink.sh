@@ -82,13 +82,17 @@ else
         ;;
         operator|fullname)
           key="fullname"
+          key2="numeric"
         ;;
         *)
           key="device"
         ;;
       esac
       if [ -z "$key" ]; then result="none"; fi
-      result=$(echo "$infos" | sed -rn 's/'$key'=\"([^ \s]*)\"/\1/ip')
+      result=$(echo "$infos" | sed -rn 's/'$key'=\"(.*)\"/\1/ip')
+      if [ -z "$result" ] && [ ! -z $key2 ]; then
+         result=$(echo "$infos" | sed -rn 's/'$key2'=\"(.*)\"/\1/ip')
+      fi
       if [ -z "$result" ]; then result="none"; fi
 fi
 echo -n "$result"

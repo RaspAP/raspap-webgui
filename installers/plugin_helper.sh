@@ -6,6 +6,7 @@
 
 # Exit on error
 set -o errexit
+set -o pipefail
 
 readonly raspap_user="www-data"
 
@@ -33,9 +34,7 @@ case "$action" in
   "packages")
     [ $# -lt 1 ] && { echo "Usage: $0 packages <apt_packages...>"; exit 1; }
 
-    echo "Installing APT packages..."
     for package in "$@"; do
-      echo "Installing package: $package"
       apt-get install -y "$package" || { echo "Error: Failed to install $package."; exit 1; }
     done
     echo "OK"
@@ -88,7 +87,7 @@ case "$action" in
 
     mkdir -p "$(dirname "$destination")"
     cp "$source" "$destination"
-    chown -R $raspap_user:$raspap_user "$destination"
+    chown -R "$raspap_user:$raspap_user" "$destination"
 
     echo "OK"
     ;;
@@ -164,18 +163,19 @@ case "$action" in
     repo="$3"
     list_file="$4"
 
-    # add repository GPG key if it doesn't already exist
-    if [ ! -f "$keyring" ]; then
+    # add repository GPG key if it doesn't already exist (a 0-byte file counts as missing,
+    # since that's what a failed download leaves behind)
+    if [ ! -s "$keyring" ]; then
         echo "Downloading GPG key from $key_url..."
-        curl -fsSL "$key_url" | sudo tee "$keyring" > /dev/null || { echo "Error: Failed to download GPG key."; exit 1; }
+        curl -fsSL "$key_url" | sudo tee "$keyring" > /dev/null || { echo "Error: Failed to download GPG key."; sudo rm -f "$keyring"; exit 1; }
     else
         echo "Repository GPG key already exists at $keyring"
     fi
 
     # add repository list if not present
-    if [ ! -f "$list_file" ]; then
+    if [ ! -s "$list_file" ]; then
         echo "Adding repository $repo to sources list"
-        curl -fsSL "$repo" | sudo tee "$list_file" > /dev/null || { echo "Error: Failed to add repository to sources list."; exit 1; }
+        curl -fsSL "$repo" | sudo tee "$list_file" > /dev/null || { echo "Error: Failed to add repository to sources list."; sudo rm -f "$list_file"; exit 1; }
         update_required=1
     else
         echo "Repository already exists in sources list"

@@ -1,0 +1,32 @@
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 160 352 450"
+   xml:space="preserve"
+   id="svg2"
+   version="1.1">
+<style>
+    .wave {
+      opacity: 0.4;
+      animation: pulse 1.8s infinite;
+    }
+    .wave1 { animation-delay: 0.3s; }
+    .wave2 { animation-delay: 0.6s; }
+    @keyframes pulse {
+      0%   { opacity: 0.4; }
+      20%  { opacity: 1; }
+      60%  { opacity: 0.4; }
+      100% { opacity: 0.4; }
+    }
+</style>
+  <!-- inner solid circle -->
+  <circle cx="128" cy="384" r="60" fill="#2b8080"/>
+  <!-- outer ring -->
+  <circle cx="128" cy="384" r="100" fill="none" stroke="#2b8080" stroke-width="25"/>
+  <!-- arcs -->
+  <path class="wave wave1" d="M128 234 A 150 150 0 0 1 278 384" fill="none" stroke="#2b8080" stroke-width="25"/>
+  <path class="wave wave2" d="M128 184 A 200 200 0 0 1 328 384" fill="none" stroke="#2b8080" stroke-width="25"/>
+</svg>

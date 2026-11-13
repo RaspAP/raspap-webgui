@@ -22,6 +22,12 @@ $network['visible'] = $network['visible'] ?? false;
 $network['channel'] = $network['channel'] ?? '';
 $network['protocol'] = $network['protocol'] ?? $wifi::SECURITY_OPEN;
 $network['passphrase'] = $network['passphrase'] ?? '';
+// the interface of this device that sends this network as its hotspot, and
+// if an access point of a different device also sends this SSID
+$network['own'] = $network['own'] ?? null;
+$network['otherBss'] = $network['otherBss'] ?? false;
+// the own hotspot only: the client can not use this network
+$ownOnly = $network['own'] && !$network['otherBss'];
 ?>
 <div class="card">
 	<div class="card-body">
@@ -30,6 +36,15 @@ $network['passphrase'] = $network['passphrase'] ?? '';
 			$network['ssid'] = "(unknown)";
 		} ?>
         <h5 class="card-title"><i class="fas fa-wifi me-2"></i><?php echo htmlspecialchars($network['ssidutf8'], ENT_QUOTES); ?></h5>
+		<?php if ($ownOnly) { ?>
+			<div class="mb-2">
+				<span class="badge bg-secondary"><i class="fas fa-broadcast-tower me-1"></i><?php echo htmlspecialchars(_("Access point") . ' ' . $network['own'], ENT_QUOTES); ?></span>
+			</div>
+		<?php } elseif ($network['own']) { ?>
+			<div class="mb-2 small text-warning">
+				<i class="fas fa-broadcast-tower me-1"></i><?php echo htmlspecialchars(sprintf(_("%s is also the hotspot of this device."), $network['ssidutf8']), ENT_QUOTES); ?>
+			</div>
+		<?php } ?>
 		<div class="info-item-wifi"><?php echo _("Status"); ?></div>
 		<div>
 			<?php if ($network['configured']) { ?>
@@ -76,7 +91,7 @@ $network['passphrase'] = $network['passphrase'] ?? '';
 		<div class="mb-3">
 			<div class="info-item-wifi mb-2"><?php echo _("Passphrase"); ?></div>
 			<div class="input-group">
-				<?php if ($network['protocol'] === $wifi::SECURITY_OPEN) { ?>
+				<?php if ($network['protocol'] === $wifi::SECURITY_OPEN || $ownOnly) { ?>
 					<input type="password" disabled class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="" />
 				<?php } else { ?>
 					<input type="password" class="form-control" aria-describedby="passphrase" name="passphrase<?php echo $index ?>" value="<?php echo htmlspecialchars($network['passphrase']); ?>" data-bs-target="#update<?php echo $index ?>" data-colors="#ffd0d0,#d0ffd0">
@@ -87,13 +102,13 @@ $network['passphrase'] = $network['passphrase'] ?? '';
 
         <div class="btn-group btn-block d-flex">
             <?php if ($network['configured']) { ?>
-                <input type="submit" class="btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' ? ' disabled' : '')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
+                <input type="submit" class="btn btn-warning" value="<?php echo _("Update"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>"<?php echo ($network['protocol'] === 'Open' || $ownOnly ? ' disabled' : '')?> data-bs-toggle="modal" data-bs-target="#configureClientModal" />
                 <?php if ($network['connected']) { ?>
                     <button type="submit" class="btn btn-info" value="<?php echo $index?>" name="disconnect<?php echo $index ?>"><?php echo _("Disconnect"); ?></button>
                 <?php } else { ?>
-                    <button type="submit" class="btn btn-info" value="<?php echo $index?>" name="connect"><?php echo _("Connect"); ?></button>
+                    <button type="submit" class="btn btn-info" value="<?php echo $index?>" name="connect"<?php echo $ownOnly ? ' disabled' : '' ?>><?php echo _("Connect"); ?></button>
                 <?php } ?>
-            <?php } else { ?>
+            <?php } elseif (!$ownOnly) { ?>
                 <input type="submit" class="btn btn-info" value="<?php echo _("Add"); ?>" id="update<?php echo $index ?>" name="update<?php echo $index ?>" data-bs-toggle="modal" data-bs-target="#configureClientModal" />
             <?php } ?>
 			<?php if ($network['configured']) { ?>

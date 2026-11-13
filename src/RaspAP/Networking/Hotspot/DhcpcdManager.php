@@ -349,7 +349,7 @@ class DhcpcdManager
             $lines = explode(PHP_EOL, $matches[0]);
             foreach ($lines as $line) {
                 $line = trim($line);
-                if (preg_match('/^(interface|static|metric|nogateway|nohook)/', $line)) {
+                if (preg_match('/^(interface|static|metric|nogateway|gateway|nohook)/', $line)) {
                     $existing_config[] = $line;
                 }
             }
@@ -399,6 +399,12 @@ class DhcpcdManager
         // add metric if provided
         if (!empty($jsonData['Metric']) && !in_array('metric '.$jsonData['Metric'], $config)) {
             $config[] = 'metric '.$jsonData['Metric'];
+        }
+
+        // the AP interface must not add a default route to itself, unless
+        // the user turned on the default route for this interface
+        if (!in_array('gateway', $config, true) && !in_array('nogateway', $config, true)) {
+            $config[] = 'nogateway';
         }
         return $config;
     }

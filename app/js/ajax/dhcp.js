@@ -14,6 +14,14 @@ export function initDHCP_ajax() {
             });
     });
 
+    // The client IP option only applies while DNS query logging is enabled
+    $(document).on("change", "#log-queries", function() {
+        $("#log-queries-extra").prop("disabled", !this.checked);
+        if (!this.checked) {
+            $("#log-queries-extra").prop("checked", false);
+        }
+    });
+
     /*
     Populates the DHCP server form fields
     Option toggles are set dynamically depending on the loaded configuration

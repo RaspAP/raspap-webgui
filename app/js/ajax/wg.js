@@ -33,7 +33,7 @@ export function initWireGuard_ajax() {
         var parentGroup = $(this).closest('.input-group');
         var entity_pub = parentGroup.find('input[type="text"]');
         var updated = entity_pub.attr('name')+"-pubkey-status";
-        var csrfToken = $('meta[name="csrf_token"]').attr('content');
+        var csrfToken = getCSRFToken();
         $.post('ajax/networking/get_wgkey.php',{'entity':entity_pub.attr('name'), 'csrf_token': csrfToken},function(data){
             var jsonData = JSON.parse(data);
             entity_pub.val(jsonData.pubkey);

@@ -1,0 +1,17 @@
+# Author: RaspAP
+
+[Unit]
+Description=Remove the RaspAP captive portal changes of the last boot
+# a power loss in portal mode leaves the DNS file of portal mode, which
+# dnsmasq must not read at boot
+DefaultDependencies=no
+After=local-fs.target
+Before=dnsmasq.service network-pre.target
+Wants=network-pre.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/raspap-captive-portal.sh off
+
+[Install]
+WantedBy=multi-user.target

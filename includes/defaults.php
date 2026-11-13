@@ -9,7 +9,7 @@ $defaults = [
     'RASPI_BRAND_TITLE' => RASPI_BRAND_TEXT.' Admin Panel',
     'RASPI_BRAND_ICON' => '',
     'RASPI_BRAND_COLOR' => '#2b8080',
-    'RASPI_VERSION' => '3.5.5',
+    'RASPI_VERSION' => '3.5.10',
     'RASPI_CONFIG_NETWORK' => RASPI_CONFIG.'/networking/defaults.json',
     'RASPI_CONFIG_PROVIDERS' => 'config/vpn-providers.json',
     'RASPI_CONFIG_API' => RASPI_CONFIG.'/api',
@@ -20,6 +20,8 @@ $defaults = [
     'RASPI_DEBUG_LOG' => 'raspap_debug.log',
     'RASPI_LOG_SIZE_LIMIT' =>  64,
     'RASPI_SESSION_TIMEOUT' => 1440,
+    'RASPI_LOGIN_MAX_FAILURES' => 5,
+    'RASPI_LOGIN_LOCK_TIME' => 300,
     'RASPI_THEMES' => [
         "default" => [
             "name" => "RaspAP (default)",
@@ -48,14 +50,22 @@ $defaults = [
     'RASPI_OPENVPN_CLIENT_PATH' => '/etc/openvpn/client/',
     'RASPI_OPENVPN_CLIENT_CONFIG' => '/etc/openvpn/client/client.conf',
     'RASPI_OPENVPN_CLIENT_LOGIN' => '/etc/openvpn/client/login.conf',
+    'RASPI_OPENVPN_CLIENT_KEYPASS' => '/etc/openvpn/client/keypass.conf',
     'RASPI_WIREGUARD_PATH' => '/etc/wireguard/',
     'RASPI_WIREGUARD_CONFIG' => RASPI_WIREGUARD_PATH.'wg0.conf',
     'RASPI_IPTABLES_CONF' => RASPI_CONFIG.'/networking/iptables_rules.json',
     'RASPI_TORPROXY_ENABLED' => false,
     'RASPI_TORPROXY_CONFIG' => '/etc/tor/torrc',
     'RASPI_LIGHTTPD_CONFIG' => '/etc/lighttpd/lighttpd.conf',
+    'RASPI_CLIENT_CONFIG_PATH' => RASPI_CONFIG.'/networking/client_udev_prototypes.json',
+    'RASPI_USER_UDEV_RULES' => '/etc/udev/rules.d/80-raspap-net-devices.rules',
+    'RASPI_MOBILEDATA_CONFIG' => RASPI_CONFIG.'/networking/mobiledata.ini',
+    'RASPI_WVDIAL_CONFIG' => '/etc/wvdial.conf',
     'RASPI_ACCESS_CHECK_IP' => '1.1.1.1',
     'RASPI_ACCESS_CHECK_DNS' => 'one.one.one.one',
+
+    // Login help page, shown as a QR code on the login page
+    'RASPI_LOGIN_HELP_URL' => 'https://docs.raspap.com/authentication/',
 
     // Captive portal detection - returns 204 or 200 is successful
     'RASPI_ACCESS_CHECK_URL' => 'http://detectportal.firefox.com',

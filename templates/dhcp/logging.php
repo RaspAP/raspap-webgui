@@ -12,6 +12,11 @@
     <label class="form-check-label align-middle" for="log-queries"><?php echo _("Log DNS queries") ?></label>
     <input type="button" class="btn btn-outline-warning btn-sm align-top ms-4" id="js-cleardnsmasq-log" value="<?php echo _("Clear log"); ?>" />
   </div>
+  <div class="form-check form-switch ms-4">
+    <input class="form-check-input" id="log-queries-extra" type="checkbox" name="log-queries-extra" value="1" <?php echo !empty($conf['log-queries-extra']) ? ' checked="checked"' : "" ?> <?php echo empty($conf['log-queries']) ? ' disabled' : "" ?> aria-describedby="log-queries-extra-help">
+    <label class="form-check-label" for="log-queries-extra"><?php echo _("Include client IP address") ?></label>
+    <div class="form-text" id="log-queries-extra-help"><?php echo _("Prefix each logged DNS query with the IP address of the requesting client.") ?></div>
+  </div>
 
   <div class="row">
     <div class="mb-3 col-md-8 mt-2">

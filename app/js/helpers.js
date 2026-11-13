@@ -57,6 +57,13 @@ export function getCSRFToken() {
     return $('meta[name=csrf_token]').attr('content');
 }
 
+// Loads data from an ajax endpoint after the page load, so a slow lookup
+// does not delay the page. Sends the CSRF token and expects JSON.
+// Returns a jQuery promise.
+export function loadAsync(url, data = {}) {
+    return $.post(url, Object.assign({'csrf_token': getCSRFToken()}, data), null, 'json');
+}
+
 export function formatProperty(prop) {
     if (Array.isArray(prop)) {
         if (typeof prop[0] === 'object') {

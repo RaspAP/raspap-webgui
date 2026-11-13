@@ -8,15 +8,8 @@ export function initSystem() {
         $(this).data('button', button);
         var manifestData = button.data('plugin-manifest');
         var installed = button.data('plugin-installed') || false;
-        var repoPublic = button.data('repo-public') || false;
-        var installPath = manifestData.install_path;
 
-        if (!installed && repoPublic && installPath === 'plugins-available') {
-            const insidersHTML = 'Available with <i class="fas fa-heart heart me-1"></i><a href="https://docs.raspap.com/insiders" target="_blank" rel="noopener">Insiders</a>';
-            $('#plugin-additional').html(insidersHTML);
-        } else {
-            $('#plugin-additional').empty();
-        }
+        $('#plugin-additional').empty();
         if (manifestData) {
             $('#plugin-docs').html(manifestData.plugin_docs
                 ? `<a href="${manifestData.plugin_docs}" target="_blank">${manifestData.plugin_docs}</a>`
@@ -39,8 +32,6 @@ export function initSystem() {
         }
         if (installed) {
             $('#js-install-plugin-confirm').html('OK');
-        } else if (!installed && repoPublic && installPath == 'plugins-available') {
-            $('#js-install-plugin-confirm').html('Get Insiders');
         } else {
             $('#js-install-plugin-confirm').html('Install now');
         }

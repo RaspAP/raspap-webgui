@@ -129,7 +129,8 @@ class CSRFTokenizer {
     protected function ensureSession()
     {
         if (session_status() == PHP_SESSION_NONE) {
-            session_start();
+            // starts the session with the cookie settings of session.php
+            require_once __DIR__ . '/../../../includes/session.php';
         }
     } 
 }
