@@ -31,6 +31,21 @@ case "$action" in
     echo "OK"
     ;;
 
+  "remove_sudoers")
+    [ $# -ne 1 ] && { echo "Usage: $0 remove_sudoers <plugin_name>"; exit 1; }
+    plugin_name="$1"
+
+    # accept only a plugin name, never a path or RaspAP's own sudoers file
+    if [[ ! "$plugin_name" =~ ^[A-Za-z0-9_-]+$ ]] || [ "$plugin_name" = "raspap" ]; then
+        echo "Error: Invalid plugin name: $plugin_name"
+        exit 1
+    fi
+
+    rm -f "/etc/sudoers.d/090_${plugin_name}" || { echo "Error: Failed to remove sudoers for $plugin_name."; exit 1; }
+
+    echo "OK"
+    ;;
+
   "packages")
     [ $# -lt 1 ] && { echo "Usage: $0 packages <apt_packages...>"; exit 1; }
 
@@ -194,6 +209,7 @@ case "$action" in
     echo "Usage: $0 <action> [parameters...]"
     echo "Actions:"
     echo "  sudoers <file>                              Install a sudoers file"
+    echo "  remove_sudoers <plugin_name>                Remove a plugin's sudoers file"
     echo "  packages <packages>                         Install aptitude package(s)"
     echo "  user <name> <password>                      Add user non-interactively"
     echo "  config <source <destination>                Applies a config file"

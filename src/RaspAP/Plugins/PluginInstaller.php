@@ -15,6 +15,7 @@ namespace RaspAP\Plugins;
 class PluginInstaller
 {
     private static $instance = null;
+    private $pluginPath;
     private $pluginName;
     private $manifestRaw;
     private $tempSudoers;
@@ -24,14 +25,14 @@ class PluginInstaller
     private $pluginsManifest;
     private $helperScriptPath;
 
-    public function __construct()
+    public function __construct(?string $rootPath = null)
     {
         $this->pluginPath = 'plugins';
         $this->manifestRaw = '/blob/master/manifest.json?raw=true';
         $this->tempSudoers = '/tmp/090_';
         $this->destSudoers = '/etc/sudoers.d/';
         $this->refModules = '/refs/heads/master/.gitmodules';
-        $this->rootPath = dirname(__DIR__, 3);
+        $this->rootPath = $rootPath ?? dirname(__DIR__, 3);
         $this->pluginsManifest = '/plugins/manifest.json';
         $this->helperScriptPath = RASPI_CONFIG.'/plugins/plugin_helper.sh';
     }
@@ -53,18 +54,7 @@ class PluginInstaller
     public function getUserPlugins()
     {
         try {
-            $manifestPath = $this->rootPath . $this->pluginsManifest;
-            if (!file_exists($manifestPath)) {
-                throw new \Exception("Manifest file not found at " . $manifestPath);
-            }
-
-            // decode manifest file contents
-            $manifestContents = file_get_contents($manifestPath);
-            $manifestData = json_decode($manifestContents, true);
-
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \Exception("Error parsing manifest.json: " . json_last_error_msg());
-            }
+            $manifestData = $this->getManifestData();
 
             // fetch installed plugins
             $installedPlugins = $this->getPlugins();
@@ -96,6 +86,29 @@ class PluginInstaller
             error_log("An error occurred: " . $e->getMessage());
             throw $e; // re-throw to global ExceptionHandler
         }
+    }
+
+    /**
+     * Returns the decoded contents of the available plugins manifest.json file
+     *
+     * @return array $manifestData
+     * @throws \Exception
+     */
+    private function getManifestData(): array
+    {
+        $manifestPath = $this->rootPath . $this->pluginsManifest;
+        if (!file_exists($manifestPath)) {
+            throw new \Exception("Manifest file not found at " . $manifestPath);
+        }
+
+        // decode manifest file contents
+        $manifestContents = file_get_contents($manifestPath);
+        $manifestData = json_decode($manifestContents, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception("Error parsing manifest.json: " . json_last_error_msg());
+        }
+        return $manifestData;
     }
 
     /**
@@ -233,6 +246,87 @@ class PluginInstaller
             if (isset($extractDir) && is_dir($extractDir)) {
                 $this->deleteDir($extractDir);
             }
+        }
+    }
+
+    /**
+     * Uninstalls a plugin by removing what installPlugin() added to RaspAP:
+     * the plugin files (or the symlink to plugins-available), its JavaScript
+     * files and its sudoers file. Packages, repository keys, users and
+     * configuration files are kept, because other software may use them
+     *
+     * @param string $namespace plugin namespace, as given in the manifest
+     * @return boolean
+     * @throws \Exception
+     */
+    public function uninstallPlugin(string $namespace): bool
+    {
+        $manifest = null;
+        foreach ($this->getManifestData() as $pluginManifest) {
+            foreach ($pluginManifest as $plugin) {
+                if (($plugin['namespace'] ?? null) === $namespace) {
+                    $manifest = $plugin;
+                    break 2;
+                }
+            }
+        }
+        if ($manifest === null) {
+            throw new \Exception("Plugin '$namespace' not found in the plugins manifest");
+        }
+
+        // the PluginManager loads a plugin from plugins/<class name>
+        if (!preg_match('/^RaspAP\\\\Plugins\\\\(\w+)$/', $namespace, $matches)) {
+            throw new \Exception("Invalid plugin namespace '$namespace'");
+        }
+        $pluginDir = $this->rootPath . '/' . $this->pluginPath . '/' . $matches[1];
+        $this->pluginName = preg_replace('/\s+/', '', $manifest['name']);
+
+        if (!is_link($pluginDir) && !is_dir($pluginDir)) {
+            throw new \Exception("Plugin '$this->pluginName' is not installed");
+        }
+
+        // remove the sudo rights first, so a failure keeps the plugin as it is
+        if (!empty($manifest['sudoers'])) {
+            $this->removeSudoers($this->pluginName);
+        }
+
+        if (is_link($pluginDir)) {
+            if (!unlink($pluginDir)) {
+                throw new \Exception("Failed to remove the symlink to '$this->pluginName'");
+            }
+        } else {
+            $this->deleteDir($pluginDir);
+            if (file_exists($pluginDir)) {
+                throw new \Exception("Failed to remove the files of '$this->pluginName'");
+            }
+        }
+
+        if (!empty($manifest['javascript'])) {
+            foreach ((array) $manifest['javascript'] as $js) {
+                $jsFile = $this->rootPath . '/app/js/plugins/' . basename($js);
+                if (file_exists($jsFile) && !unlink($jsFile)) {
+                    throw new \Exception("Failed to remove JavaScript file: $jsFile");
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Removes a plugin's sudoers file from /etc/sudoers.d/
+     *
+     * @param string $pluginName
+     */
+    protected function removeSudoers(string $pluginName): void
+    {
+        $cmd = sprintf(
+            'sudo %s remove_sudoers %s',
+            escapeshellarg($this->helperScriptPath),
+            escapeshellarg($pluginName)
+        );
+        exec($cmd . ' 2>&1', $output, $return);
+        if ($return !== 0) {
+            throw new \Exception('Plugin helper failed to remove sudoers: ' . implode("\n", $output));
         }
     }
 
@@ -560,7 +654,8 @@ class PluginInstaller
         $items = array_diff(scandir($dir), ['.', '..']);
         foreach ($items as $item) {
             $itemPath = $dir . DIRECTORY_SEPARATOR . $item;
-            is_dir($itemPath) ? $this->deleteDir($itemPath) : unlink($itemPath);
+            // remove a symlink itself, never the directory it points to
+            (is_dir($itemPath) && !is_link($itemPath)) ? $this->deleteDir($itemPath) : unlink($itemPath);
         }
         rmdir($dir);
     }

@@ -35,6 +35,7 @@ export function initSystem() {
         } else {
             $('#js-install-plugin-confirm').html('Install now');
         }
+        $('#js-uninstall-plugin').toggleClass('d-none', !installed);
     });
 
     $('#js-install-plugin-ok').on('click', function (e) {
