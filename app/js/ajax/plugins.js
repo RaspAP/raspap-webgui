@@ -95,8 +95,7 @@ export function initPlugins_ajax() {
 
     $('#js-uninstall-plugin-confirm').on('click', function (e) {
         var pluginNamespace = $('#uninstall-user-plugin').data('plugin-namespace');
-        var successHtml = $('#plugin-uninstall-message').attr('data-message');
-        var successText = $('<div>').text(successHtml).text();
+        var successText = $('#plugin-uninstall-message').attr('data-message');
 
         $('#plugin-uninstall-confirm').addClass('d-none');
         $('#plugin-uninstall-message').removeClass('d-none');
@@ -106,7 +105,7 @@ export function initPlugins_ajax() {
         loadAsync('ajax/plugins/do_plugin_uninstall.php', {'plugin_namespace': pluginNamespace})
             .done(function (response) {
                 if (response === true) {
-                    $('#plugin-uninstall-message').contents().first().replaceWith(successText);
+                    $('#plugin-uninstall-message').contents().first().replaceWith(document.createTextNode(successText));
                     $('#plugin-uninstall-message')
                         .find('i')
                         .removeClass('fas fa-cog fa-spin link-secondary')
