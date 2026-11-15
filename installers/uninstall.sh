@@ -263,6 +263,8 @@ function _remove_sudoers() {
     sudo rm "$raspap_sudoers" || _install_error "Unable to remove $raspap_sudoers"
     # the set time script that the sudoers file allowed
     sudo rm -f /usr/local/sbin/raspap-settime.sh || _install_error "Unable to remove raspap-settime.sh"
+    # the web interface access script that the sudoers file allowed
+    sudo rm -f /usr/local/sbin/raspap-webaccess.sh || _install_error "Unable to remove raspap-webaccess.sh"
     # the uplink watchdog that the sudoers file allowed
     sudo systemctl disable --now raspap-uplink-watchdog.timer 2> /dev/null || true
     sudo rm -f /etc/systemd/system/raspap-uplink-watchdog.service /etc/systemd/system/raspap-uplink-watchdog.timer \
@@ -284,6 +286,8 @@ function _remove_lighttpd_config() {
     sudo unlink "/etc/lighttpd/conf-enabled/50-raspap-router.conf" || _install_error "Unable to unlink lighttpd config"
     echo "Removing 50-raspap-router.conf from /etc/lighttpd/conf-available/"
     sudo rm "/etc/lighttpd/conf-available/50-raspap-router.conf" || _install_error "Unable to remove lighttpd config"
+    echo "Removing 51-raspap-access.conf from /etc/lighttpd/"
+    sudo rm -f "/etc/lighttpd/conf-enabled/51-raspap-access.conf" "/etc/lighttpd/conf-available/51-raspap-access.conf" || _install_error "Unable to remove lighttpd config"
     sudo systemctl restart lighttpd.service || _install_status 1 "Unable to restart lighttpd"
     echo "Done."
 }
