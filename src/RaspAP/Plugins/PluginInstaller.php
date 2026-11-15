@@ -250,10 +250,11 @@ class PluginInstaller
     }
 
     /**
-     * Uninstalls a plugin by removing what installPlugin() added to RaspAP:
-     * the plugin files (or the symlink to plugins-available), its JavaScript
-     * files and its sudoers file. Packages, repository keys, users and
-     * configuration files are kept, because other software may use them
+     * Uninstalls a plugin by stopping its services and removing what
+     * installPlugin() added to RaspAP: the plugin files (or the symlink to
+     * plugins-available), its JavaScript files and its sudoers file. Packages,
+     * repository keys, users and configuration files are kept, because other
+     * software may use them
      *
      * @param string $namespace plugin namespace, as given in the manifest
      * @return boolean
@@ -261,16 +262,16 @@ class PluginInstaller
      */
     public function uninstallPlugin(string $namespace): bool
     {
-        $manifest = null;
+        $known = false;
         foreach ($this->getManifestData() as $pluginManifest) {
             foreach ($pluginManifest as $plugin) {
                 if (($plugin['namespace'] ?? null) === $namespace) {
-                    $manifest = $plugin;
+                    $known = true;
                     break 2;
                 }
             }
         }
-        if ($manifest === null) {
+        if (!$known) {
             throw new \Exception("Plugin '$namespace' not found in the plugins manifest");
         }
 
@@ -279,13 +280,18 @@ class PluginInstaller
             throw new \Exception("Invalid plugin namespace '$namespace'");
         }
         $pluginDir = $this->rootPath . '/' . $this->pluginPath . '/' . $matches[1];
-        $this->pluginName = preg_replace('/\s+/', '', $manifest['name']);
 
         if (!is_link($pluginDir) && !is_dir($pluginDir)) {
-            throw new \Exception("Plugin '$this->pluginName' is not installed");
+            throw new \Exception("Plugin '$matches[1]' is not installed");
         }
 
-        // remove the sudo rights first, so a failure keeps the plugin as it is
+        // like installPlugin(), use the manifest of the installed plugin
+        $manifest = $this->parseManifest($pluginDir);
+        $this->pluginName = preg_replace('/\s+/', '', $manifest['name']);
+
+        // stop the services while the sudo rights exist, then remove those
+        // before anything else, so a failure keeps the plugin as it is
+        $this->stopServices($this->getPluginServices($manifest));
         if (!empty($manifest['sudoers'])) {
             $this->removeSudoers($this->pluginName);
         }
@@ -310,6 +316,50 @@ class PluginInstaller
             }
         }
         return true;
+    }
+
+    /**
+     * Returns the systemd services of a plugin: those listed under the
+     * optional 'services' key of its manifest, and those its sudoers rules
+     * let www-data control with systemctl
+     *
+     * @param array $manifest
+     * @return array $services
+     */
+    private function getPluginServices(array $manifest): array
+    {
+        $services = array_filter((array) ($manifest['services'] ?? []), 'is_string');
+        foreach ((array) ($manifest['sudoers'] ?? []) as $rule) {
+            if (is_string($rule) && strpos($rule, '/systemctl') !== false) {
+                preg_match_all('/[A-Za-z0-9_.-]+(?:@[A-Za-z0-9_.-]+)?\.service/', $rule, $matches);
+                $services = array_merge($services, $matches[0]);
+            }
+        }
+        // a template unit such as name@.service is not a service
+        $services = array_filter($services, function ($service) {
+            return substr($service, -9) !== '@.service';
+        });
+        return array_values(array_unique($services));
+    }
+
+    /**
+     * Stops and disables services with the plugin helper
+     *
+     * @param array $services
+     */
+    protected function stopServices(array $services): void
+    {
+        foreach ($services as $service) {
+            $cmd = sprintf(
+                'sudo %s stop_service %s',
+                escapeshellarg($this->helperScriptPath),
+                escapeshellarg($service)
+            );
+            exec($cmd . ' 2>&1', $output, $return);
+            if ($return !== 0) {
+                throw new \Exception("Plugin helper failed to stop $service: " . implode("\n", $output));
+            }
+        }
     }
 
     /**

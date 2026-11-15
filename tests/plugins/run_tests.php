@@ -28,7 +28,17 @@ function check($name, $condition, $detail = '')
 class TestPluginInstaller extends PluginInstaller
 {
     public $removedSudoers = [];
+    public $stoppedServices = [];
     public $failSudoers = false;
+    public $failServices = false;
+
+    protected function stopServices(array $services): void
+    {
+        if ($this->failServices) {
+            throw new \Exception('Plugin helper failed to stop a service');
+        }
+        $this->stoppedServices = array_merge($this->stoppedServices, $services);
+    }
 
     protected function removeSudoers(string $pluginName): void
     {
@@ -90,6 +100,17 @@ file_put_contents("$tmp/root/plugins/manifest.json", json_encode(['plugins' => [
         'install_path' => 'plugins',
     ],
     [
+        'name' => 'Wireshark',
+        'namespace' => 'RaspAP\\Plugins\\Wireshark',
+        'install_path' => 'plugins-available',
+        'sudoers' => ['www-data ALL=(ALL) NOPASSWD:/usr/bin/tshark *'],
+    ],
+    [
+        'name' => 'Captive portal',
+        'namespace' => 'RaspAP\\Plugins\\Captive',
+        'install_path' => 'plugins-available',
+    ],
+    [
         'name' => 'NTP Server',
         'namespace' => 'RaspAP\\Plugins\\NTPServer',
         'install_path' => 'plugins',
@@ -110,9 +131,37 @@ file_put_contents("$tmp/root/app/js/plugins/Firewall.js", "// Firewall\n");
 file_put_contents("$outside/keep.txt", "keep\n");
 symlink($outside, "$tmp/root/plugins/DynDNS/templates/outside");
 
+// the manifest of an installed plugin names the plugin, which can differ from
+// its entry in plugins/manifest.json
+$installedManifests = [
+    'DynDNS' => ['name' => 'DynDNS', 'sudoers' => ['www-data ALL=(ALL) NOPASSWD:/bin/systemctl start ddclient.service'],
+        'javascript' => ['templates/app/js/DynDNS.js']],
+    'Tailscale' => ['name' => 'Tailscale VPN', 'sudoers' => ['www-data ALL=(ALL) NOPASSWD:/usr/bin/tailscale *'],
+        'services' => ['tailscaled.service']],
+    'Notes' => ['name' => 'Notes'],
+    'Captive' => ['name' => 'Captive portal', 'sudoers' => [
+        'www-data ALL=(ALL) NOPASSWD:/bin/systemctl * nodogsplash.service',
+        'www-data ALL=(ALL) NOPASSWD:/usr/bin/ndsctl *',
+        'www-data ALL=(ALL) NOPASSWD:/bin/systemctl start tailscale-ethtool@.service']],
+    'Wireshark' => ['name' => 'TShark', 'sudoers' => ['www-data ALL=(ALL) NOPASSWD:/usr/bin/tshark *']],
+];
+file_put_contents("$tmp/root/plugins/DynDNS/manifest.json", json_encode($installedManifests['DynDNS']));
+file_put_contents("$tmp/root/plugins/Notes/manifest.json", json_encode($installedManifests['Notes']));
+file_put_contents("$tmp/root/plugins-available/Tailscale/manifest.json", json_encode($installedManifests['Tailscale']));
+mkdir("$tmp/root/plugins-available/Captive");
+file_put_contents("$tmp/root/plugins-available/Captive/manifest.json", json_encode($installedManifests['Captive']));
+file_put_contents("$tmp/root/plugins-available/Captive/Captive.php",
+    "<?php namespace RaspAP\\Plugins\\Captive; class Captive {}\n");
+symlink("$tmp/root/plugins-available/Captive", "$tmp/root/plugins/Captive");
+mkdir("$tmp/root/plugins-available/Wireshark");
+file_put_contents("$tmp/root/plugins-available/Wireshark/manifest.json", json_encode($installedManifests['Wireshark']));
+file_put_contents("$tmp/root/plugins-available/Wireshark/Wireshark.php",
+    "<?php namespace RaspAP\\Plugins\\Wireshark; class Wireshark {}\n");
+symlink("$tmp/root/plugins-available/Wireshark", "$tmp/root/plugins/Wireshark");
+
 // the PluginManager loads the installed plugins, and getPlugins() reads
 // the plugins directory relative to the web root
-foreach (['DynDNS', 'Notes', 'Tailscale'] as $plugin) {
+foreach (['DynDNS', 'Notes', 'Tailscale', 'Captive', 'Wireshark'] as $plugin) {
     require_once "$tmp/root/plugins/$plugin/$plugin.php";
 }
 chdir("$tmp/root");
@@ -125,7 +174,7 @@ $installed = [];
 foreach ($installer->getUserPlugins() as $plugin) {
     $installed[$plugin['manifest']['name']] = $plugin['installed'];
 }
-check('lists every plugin of the manifest', count($installed) === 4);
+check('lists every plugin of the manifest', count($installed) === 6);
 check('reports the installed plugins',
     $installed['DynDNS'] && $installed['Tailscale VPN'] && $installed['Notes']
     && !$installed['NTP Server']);
@@ -140,6 +189,14 @@ check('keeps the plugin files when the sudoers file is not removed',
     file_exists("$tmp/root/plugins/DynDNS/DynDNS.php") && file_exists("$tmp/root/app/js/plugins/DynDNS.js"));
 $installer->failSudoers = false;
 
+$installer->failServices = true;
+$result = uninstall($installer, 'RaspAP\\Plugins\\DynDNS');
+check('reports a failure to stop a service',
+    $result === 'Plugin helper failed to stop a service', var_export($result, true));
+check('keeps the plugin files when a service is not stopped',
+    file_exists("$tmp/root/plugins/DynDNS/DynDNS.php") && $installer->removedSudoers === []);
+$installer->failServices = false;
+
 $result = uninstall($installer, 'RaspAP\\Plugins\\DynDNS');
 check('uninstalls a plugin copied to plugins/', $result === true, var_export($result, true));
 check('removes the plugin directory', !file_exists("$tmp/root/plugins/DynDNS"));
@@ -150,11 +207,14 @@ check('removes the plugin sudoers file', $installer->removedSudoers === ['DynDNS
     implode(',', $installer->removedSudoers));
 
 $installer->removedSudoers = [];
+$installer->stoppedServices = [];
 $result = uninstall($installer, 'RaspAP\\Plugins\\Tailscale');
 check('uninstalls a plugin linked from plugins-available', $result === true, var_export($result, true));
 check('removes the symlink in plugins/',
     !file_exists("$tmp/root/plugins/Tailscale") && !is_link("$tmp/root/plugins/Tailscale"));
 check('keeps the plugin in plugins-available', file_exists("$tmp/root/plugins-available/Tailscale/Tailscale.php"));
+check('stops the services listed in the manifest', $installer->stoppedServices === ['tailscaled.service'],
+    implode(',', $installer->stoppedServices));
 check('removes the sudoers file named like on install', $installer->removedSudoers === ['TailscaleVPN'],
     implode(',', $installer->removedSudoers));
 
@@ -163,6 +223,18 @@ $result = uninstall($installer, 'RaspAP\\Plugins\\Notes');
 check('uninstalls a plugin without sudoers', $result === true, var_export($result, true));
 check('does not call the plugin helper without sudoers', $installer->removedSudoers === []);
 
+$installer->removedSudoers = [];
+$result = uninstall($installer, 'RaspAP\\Plugins\\Wireshark');
+check('removes the sudoers file named by the manifest of the installed plugin',
+    $result === true && $installer->removedSudoers === ['TShark'], implode(',', $installer->removedSudoers));
+
+$installer->stoppedServices = [];
+$result = uninstall($installer, 'RaspAP\\Plugins\\Captive');
+check('stops the services its sudoers rules control',
+    $result === true && $installer->stoppedServices === ['nodogsplash.service'],
+    implode(',', $installer->stoppedServices));
+
+$installer->removedSudoers = [];
 $result = uninstall($installer, 'RaspAP\\Plugins\\NTPServer');
 check('refuses a plugin that is not installed',
     $result === "Plugin 'NTPServer' is not installed", var_export($result, true));

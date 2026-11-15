@@ -287,7 +287,7 @@
       <div class="modal-body">
         <div id="plugin-uninstall-confirm">
           <p><?php echo sprintf(_("Uninstall the %s plugin?"), '<strong id="plugin-uninstall-name"></strong>'); ?></p>
-          <p class="small mb-0"><?php echo _("The plugin files, its JavaScript files and its sudoers rules are removed. Packages, repository keys, users and configuration files that the plugin installed are kept."); ?></p>
+          <p class="small mb-0"><?php echo _("The plugin's services are stopped and disabled, and its files, JavaScript files and sudoers rules are removed. Packages, repository keys, users and configuration files that the plugin installed are kept."); ?></p>
         </div>
         <div class="col-md-12 mb-3 mt-1 d-none" data-message="<?php echo _("Plugin uninstall completed."); ?>" id="plugin-uninstall-message"><?php echo _("Plugin uninstall in progress..."); ?><i class="fas fa-cog fa-spin link-secondary ms-2"></i></div>
       </div>
