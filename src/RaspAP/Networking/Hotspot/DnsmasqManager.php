@@ -246,11 +246,7 @@ class DnsmasqManager
             return false;
         }
 
-        // reload dnsmasq to apply changes
-        exec('sudo systemctl reload dnsmasq.service', $output, $status);
-        if ($status !== 0) {
-            throw new \RuntimeException("Failed to reload dnsmasq service");
-        }
+        $this->applyChanges(false);
 
         return true;
     }
@@ -278,14 +274,28 @@ class DnsmasqManager
             return false;
         }
 
-        // reload dnsmasq to apply changes, restart if the DNS port changed
-        $action = $portChanged ? 'restart' : 'reload';
+        $this->applyChanges($portChanged);
+
+        return true;
+    }
+
+    /**
+     * Applies saved changes to the dnsmasq service
+     *
+     * Reloads the service, or restarts it when forced or when it is not
+     * running, as systemd refuses to reload an inactive unit.
+     *
+     * @param bool $forceRestart
+     * @throws \RuntimeException
+     */
+    private function applyChanges(bool $forceRestart): void
+    {
+        exec('systemctl is-active --quiet dnsmasq.service', $output, $status);
+        $action = ($forceRestart || $status !== 0) ? 'restart' : 'reload';
         exec('sudo systemctl ' . $action . ' dnsmasq.service', $output, $status);
         if ($status !== 0) {
             throw new \RuntimeException("Failed to $action dnsmasq service");
         }
-
-        return true;
     }
 
     /**

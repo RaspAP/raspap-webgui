@@ -156,9 +156,17 @@ function saveDHCPConfig($status)
         $errors = $dnsmasq->validate($_POST);
         if (empty($errors)) {
             $config = $dnsmasq->buildConfigEx($iface, $_POST);
-            $return = $dnsmasq->saveConfig($config, $iface);
+            try {
+                $dnsmasq->saveConfig($config, $iface);
+            } catch (\RuntimeException $e) {
+                $status->addMessage($e->getMessage(), 'danger');
+            }
             $config = $dnsmasq->buildDefault($_POST);
-            $return = $dnsmasq->saveConfigDefault($config);
+            try {
+                $dnsmasq->saveConfigDefault($config);
+            } catch (\RuntimeException $e) {
+                $status->addMessage($e->getMessage(), 'danger');
+            }
         } else {
             foreach ($errors as $error) {
                 $status->addMessage($error, 'danger');
