@@ -1141,13 +1141,13 @@ function _default_configuration() {
 }
 
 # Outputs the WiFi country configured for the system (e.g. with Raspberry Pi Imager
-# or raspi-config), read from cfg80211.ieee80211_regdom on the kernel command line
+# or raspi-config), read from the last cfg80211.ieee80211_regdom on the kernel command line
 # or else the global regulatory domain reported by iw
 function _get_wifi_country() {
     local cmdline="${1:-/proc/cmdline}"
     local country
 
-    country=$(grep -o 'cfg80211\.ieee80211_regdom=[^[:space:]]*' "$cmdline" 2>/dev/null | head -n 1 | cut -d= -f2) || true
+    country=$(grep -o 'cfg80211\.ieee80211_regdom=[^[:space:]]*' "$cmdline" 2>/dev/null | tail -n 1 | cut -d= -f2) || true
     if [ -z "$country" ] && command -v iw > /dev/null; then
         country=$(iw reg get 2>/dev/null | sed -n 's/^country \([^:]*\):.*/\1/p' | head -n 1) || true
     fi

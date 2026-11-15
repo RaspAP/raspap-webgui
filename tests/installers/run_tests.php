@@ -66,6 +66,10 @@ $args = cmdline($tmp, 'console=tty1 cfg80211.ieee80211_regdom=nl');
 [$out, $status] = runInstaller($tmp, "_get_wifi_country $args");
 check('lowercase country is uppercased', $status === 0 && $out === 'NL', "output '$out'");
 
+$args = cmdline($tmp, 'cfg80211.ieee80211_regdom=US console=tty1 cfg80211.ieee80211_regdom=AE');
+[$out, $status] = runInstaller($tmp, "_get_wifi_country $args");
+check('the last regulatory domain on the command line wins', $status === 0 && $out === 'AE', "output '$out'");
+
 $args = cmdline($tmp, 'console=tty1 rootwait');
 [$out, $status] = runInstaller($tmp, "_get_wifi_country $args", $iwGlobal('DE'));
 check('falls back to the global regulatory domain from iw',
