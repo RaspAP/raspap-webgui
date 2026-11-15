@@ -1,17 +1,21 @@
 name: Sync locale files
 
 on:
-  pull_request:
-    types: [closed]
+  # push, not pull_request: runs for PRs from forks get a read-only token
+  push:
     branches:
       - master
     paths:
       - '**/*.php'
   workflow_dispatch:
 
+# merges in quick succession would otherwise race to push to master
+concurrency:
+  group: sync-locales
+  cancel-in-progress: false
+
 jobs:
   sync-locales:
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write
