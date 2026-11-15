@@ -1241,13 +1241,13 @@ function renderStatus($hostapd_led, $hostapd_status, $memused_led, $memused, $cp
       <div class="col ml-2">
         <div class="ml-1 sb-status"><?php echo _("Status"); ?></div>
         <div class="info-item-xs"><span class="icon">
-          <i class="fas fa-circle hostapd-led <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
+          <i class="fas fa-fw fa-circle hostapd-led <?php echo ($hostapd_led); ?>"></i></span> <?php echo _("Hotspot").' '. _($hostapd_status); ?>
         </div>
         <div class="info-item-xs"><span class="icon">
-          <i class="fas fa-circle <?php echo ($memused_led); ?>"></i></span> <?php echo _("Mem Use").': '. htmlspecialchars(strval($memused), ENT_QUOTES); ?>%
+          <i class="fas fa-fw fa-memory <?php echo ($memused_led); ?>"></i></span> <?php echo _("Mem Use").': '. htmlspecialchars(strval($memused), ENT_QUOTES); ?>%
         </div>
         <div class="info-item-xs"><span class="icon">
-          <i class="fas fa-circle <?php echo ($cputemp_led); ?>"></i></span> <?php echo _("CPU").': '. htmlspecialchars($cputemp, ENT_QUOTES); ?>°C
+          <i class="fas fa-fw fa-microchip <?php echo ($cputemp_led); ?>"></i></span> <?php echo _("CPU").': '. htmlspecialchars($cputemp, ENT_QUOTES); ?>°C
         </div>
       </div>
     </div>
