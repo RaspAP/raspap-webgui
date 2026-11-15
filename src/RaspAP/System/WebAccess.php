@@ -7,7 +7,8 @@
  *              networks. lighttpd answers requests from other addresses with
  *              "403 Forbidden", so the web interface is not reachable from
  *              the WAN. The rules are kept in 51-raspap-access.conf of
- *              lighttpd, which the root helper raspap-webaccess.sh writes.
+ *              lighttpd, which the root helper raspap-webaccess.sh writes. This class
+ *              does all the validation of the networks.
  *              Loopback addresses always have access.
  * @license     https://github.com/raspap/raspap-webgui/blob/master/LICENSE
  */
@@ -21,7 +22,7 @@ class WebAccess
     public const MAX_NETWORKS = 16;
 
     /**
-     * Networks that always have access. raspap-webaccess.sh writes the same list.
+     * Networks that always have access. apply() adds them to the list.
      */
     public const LOOPBACK = ['127.0.0.0/8', '::1'];
 
@@ -111,7 +112,7 @@ class WebAccess
         if (empty($networks)) {
             $args = 'clear';
         } else {
-            $args = 'allow ' . implode(' ', array_map('escapeshellarg', $networks));
+            $args = 'allow ' . implode(' ', array_map('escapeshellarg', array_merge(self::LOOPBACK, $networks)));
         }
         exec('sudo ' . self::HELPER . ' ' . $args . ' 2>&1', $output, $return);
         return $return === 0;

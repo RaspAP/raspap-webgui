@@ -6,11 +6,13 @@
 #
 # Allows access to the web interface only from a list of client networks, so
 # that it is not reachable from the WAN. lighttpd answers requests from other
-# addresses with "403 Forbidden". Loopback addresses always have access. The
-# rules are kept in 51-raspap-access.conf of lighttpd. If lighttpd rejects the
-# new configuration, the previous one stays. lighttpd uses the new settings
-# after a restart. The web interface validates the networks as well; this
-# script makes sure that only addresses get into the lighttpd configuration.
+# addresses with "403 Forbidden". The rules are kept in 51-raspap-access.conf
+# of lighttpd. The web interface (RaspAP\System\WebAccess) parses and limits
+# the networks and adds the loopback addresses. This script only refuses
+# characters that are not part of an address, so that nothing else gets into
+# the lighttpd configuration, and lets lighttpd check the result. If lighttpd
+# rejects the new configuration, the previous one stays. lighttpd uses the new
+# settings after a restart.
 # Installed as /usr/local/sbin/raspap-webaccess.sh.
 #
 # Usage: raspap-webaccess.sh allow <network> [<network> ...]
@@ -22,33 +24,12 @@ set -o nounset
 readonly lighttpd_conf="/etc/lighttpd/lighttpd.conf"
 readonly access_conf="/etc/lighttpd/conf-available/51-raspap-access.conf"
 readonly access_link="/etc/lighttpd/conf-enabled/51-raspap-access.conf"
-readonly loopback=("127.0.0.0/8" "::1")
-readonly max_networks=16
 # copy of the previous configuration while a change is checked
 backup=""
 
 usage() {
     echo "Usage: $0 allow <network> [<network> ...] | clear" >&2
     exit 2
-}
-
-# Returns 0 for an IPv4 or IPv6 address with an optional prefix length
-valid_network() {
-    local addr="${1%%/*}" max octet
-    if [[ "$addr" =~ ^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$ ]]; then
-        for octet in "${BASH_REMATCH[@]:1}"; do
-            (( 10#$octet <= 255 )) || return 1
-        done
-        max=32
-    elif [[ "$addr" =~ ^[0-9A-Fa-f:.]*:[0-9A-Fa-f:.]*$ ]]; then
-        max=128
-    else
-        return 1
-    fi
-    if [[ "$1" == */* ]]; then
-        [[ "${1#*/}" =~ ^[0-9]{1,3}$ ]] && (( 10#${1#*/} <= max )) || return 1
-    fi
-    return 0
 }
 
 # Writes the lighttpd rules: requests from outside of all networks are denied
@@ -78,19 +59,18 @@ restore() {
 
 allow() {
     local network tmp
-    if [ "$#" -eq 0 ] || [ "$#" -gt "$max_networks" ]; then
-        echo "Enter 1 to $max_networks networks" >&2
-        exit 1
+    if [ "$#" -eq 0 ]; then
+        usage
     fi
     for network in "$@"; do
-        if ! valid_network "$network"; then
+        if [[ ! "$network" =~ ^[0-9A-Fa-f:.]+(/[0-9]{1,3})?$ ]]; then
             echo "Invalid network: $network" >&2
             exit 1
         fi
     done
 
     tmp=$(mktemp "$access_conf.XXXXXX") || exit 1
-    if ! write_conf "${loopback[@]}" "$@" > "$tmp" || ! chmod 644 "$tmp"; then
+    if ! write_conf "$@" > "$tmp" || ! chmod 644 "$tmp"; then
         rm -f "$tmp"
         exit 1
     fi
