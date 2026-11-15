@@ -10,7 +10,7 @@
           <label class="form-check-label" for="disable-dns"><?php echo _("Disable DNS server (DHCP only)") ?></label>
         </div>
         <p id="disable-dns-description">
-          <small><?php echo _("Enable this option to let <b>another DNS server on this device</b>, such as Pi-hole, use port 53. The DHCP server keeps running and gives clients the DNS servers set on the <b>Server settings</b> tab. Ad blocking and DNS query logging need the dnsmasq DNS server.") ?></small>
+          <small><?php echo _("Enable this option to let <b>another DNS server on this device</b>, such as Pi-hole, use port 53. The DHCP server keeps running and gives clients the DNS servers set on the <b>Server settings</b> tab, or this interface's own address if none is set. Ad blocking and DNS query logging need the dnsmasq DNS server.") ?></small>
           <br><small class="text-muted"><?php echo _("This option adds <code>port=0</code> to the dnsmasq configuration.") ?></small>
         </p>
       </div>
