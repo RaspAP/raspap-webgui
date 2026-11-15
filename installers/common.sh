@@ -1339,6 +1339,11 @@ function _patch_system_files() {
     _install_log "Copying RaspAP set time script to /usr/local/sbin"
     sudo install -o root -g root -m 755 "$webroot_dir/installers/settime.sh" /usr/local/sbin/raspap-settime.sh || _install_status 1 "Unable to install set time script"
 
+    # www-data runs this script with sudo, so it must be in a directory that
+    # only root can change
+    _install_log "Copying RaspAP web interface access script to /usr/local/sbin"
+    sudo install -o root -g root -m 755 "$webroot_dir/installers/webaccess.sh" /usr/local/sbin/raspap-webaccess.sh || _install_status 1 "Unable to install web interface access script"
+
     _install_uplink_watchdog
     _install_vnstat_helper
 

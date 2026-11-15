@@ -3,6 +3,8 @@
 require_once 'includes/functions.php';
 require_once 'config.php';
 
+use RaspAP\System\WebAccess;
+
 /**
  *
  */
@@ -71,11 +73,30 @@ function DisplaySystem(&$extraFooterScripts)
                     $status->addMessage(sprintf(_('Changing log limit size to %s KB'), $_SESSION['log_limit']), 'info');
                 }
             }
+            // Validate allowed networks
+            $allowNetworks = null;
+            if (isset($_POST['serverAllow'])) {
+                $allowNetworks = WebAccess::parseNetworks((string)$_POST['serverAllow']);
+                if ($allowNetworks === null) {
+                    $status->addMessage(sprintf(_('Invalid value for allowed networks (at most %d IP addresses or networks in CIDR notation)'), WebAccess::MAX_NETWORKS), 'danger');
+                    $good_input = false;
+                } elseif (!empty($allowNetworks) && !WebAccess::allows($allowNetworks, $_SERVER['REMOTE_ADDR'] ?? '')) {
+                    // the restriction would lock out the user after a restart of lighttpd
+                    $status->addMessage(sprintf(_('Your address %s is not in the allowed networks'), htmlspecialchars($_SERVER['REMOTE_ADDR'] ?? '', ENT_QUOTES)), 'danger');
+                    $good_input = false;
+                }
+            }
             // Save settings
             if ($good_input) {
                 exec("sudo /etc/raspap/lighttpd/configport.sh $serverPort $serverBind " .RASPI_LIGHTTPD_CONFIG. " ".$_SERVER['SERVER_NAME'], $return);
                 foreach ($return as $line) {
                     $status->addMessage($line, 'info');
+                }
+                if ($allowNetworks !== null && $allowNetworks !== WebAccess::readNetworks()) {
+                    $result = WebAccess::apply($allowNetworks, $output);
+                    foreach ($output as $line) {
+                        $status->addMessage(htmlspecialchars($line, ENT_QUOTES), $result ? 'info' : 'danger');
+                    }
                 }
             }
         } elseif (isset($_POST['savethemeSettings'])) {
@@ -108,6 +129,7 @@ function DisplaySystem(&$extraFooterScripts)
     } else {
         $serverBind = '';
     }
+    $serverAllow = implode(', ', WebAccess::readNetworks());
 
     // define locales
     $arrLocales = getLocales();
@@ -165,6 +187,7 @@ function DisplaySystem(&$extraFooterScripts)
         "status",
         "serverPort",
         "serverBind",
+        "serverAllow",
         "hostname",
         "uptime",
         "systime",

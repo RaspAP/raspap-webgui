@@ -18,6 +18,13 @@
     </div>
     <div class="row">
       <div class="mb-3 col-md-6">
+        <label for="serverAllow"><?php echo _("Allowed networks") ;?></label>
+        <input type="text" class="form-control" id="serverAllow" name="serverAllow" placeholder="10.3.141.0/24" aria-describedby="serverAllowHelp" value="<?php echo htmlspecialchars($serverAllow, ENT_QUOTES); ?>" />
+        <div class="form-text" id="serverAllowHelp"><?php echo _("Allow access to the web interface only from these IP addresses or networks in CIDR notation, separated by commas. Other clients get a \"403 Forbidden\" response. Leave empty to allow access from all networks.") ?></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-md-6">
         <label for="code"><?php echo _("Diagnostic log size limit (KB)") ;?></label>
         <input type="text" class="form-control" name="logLimit" value="<?php echo htmlspecialchars($logLimit, ENT_QUOTES); ?>" />
       </div>
