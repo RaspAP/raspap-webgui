@@ -174,8 +174,13 @@ class DnsmasqManager
         foreach (($post_data['server'] ?? []) as $server) {
             $config[] = "server=$server";
         }
-        if (!empty($post_data['DNS1'])) {
-            $dnsOption = "dhcp-option=6," . $post_data['DNS1'];
+        // with the DNS server disabled, DNS1 falls back to the interface's own address
+        $dns1 = $post_data['DNS1'] ?? '';
+        if (empty($dns1) && ($post_data['disable-dns'] ?? '') == "1") {
+            $dns1 = $post_data['StaticIP'] ?? '';
+        }
+        if (!empty($dns1)) {
+            $dnsOption = "dhcp-option=6," . $dns1;
             if (!empty($post_data['DNS2'])) {
                 $dnsOption .= ',' . $post_data['DNS2'];
             }
@@ -201,6 +206,11 @@ class DnsmasqManager
         $config[] = '# RaspAP default config';
         $config[] = 'log-facility='. RASPI_DHCPCD_LOG;
         $config[] = 'conf-dir=/etc/dnsmasq.d';
+
+        // port=0 turns off the DNS server, so another one (e.g. Pi-hole) can use port 53
+        if (($post_data['disable-dns'] ?? '') == "1") {
+            $config[] = 'port=0';
+        }
 
         // handle log option
         if (($post_data['log-dhcp'] ?? '') == "1") {
@@ -236,11 +246,7 @@ class DnsmasqManager
             return false;
         }
 
-        // reload dnsmasq to apply changes
-        exec('sudo systemctl reload dnsmasq.service', $output, $status);
-        if ($status !== 0) {
-            throw new \RuntimeException("Failed to reload dnsmasq service");
-        }
+        $this->applyChanges(false);
 
         return true;
     }
@@ -256,6 +262,9 @@ class DnsmasqManager
         $configFile = SELF::CONF_DEFAULT . SELF::CONF_RASPAP . SELF::CONF_SUFFIX;
         $tempFile = SELF::CONF_TMP; 
 
+        // dnsmasq only reads its port at startup, so a change needs a restart
+        $portChanged = $this->isDnsDisabled($configFile) !== in_array('port=0', $config);
+
         $config = join(PHP_EOL, $config);
         file_put_contents($tempFile, $config);
         $cmd = sprintf('sudo cp %s %s', escapeshellarg($tempFile), escapeshellarg($configFile));
@@ -265,13 +274,40 @@ class DnsmasqManager
             return false;
         }
 
-        // reload dnsmasq to apply changes
-        exec('sudo systemctl reload dnsmasq.service', $output, $status);
-        if ($status !== 0) {
-            throw new \RuntimeException("Failed to reload dnsmasq service");
-        }
+        $this->applyChanges($portChanged);
 
         return true;
+    }
+
+    /**
+     * Applies saved changes to the dnsmasq service
+     *
+     * Reloads the service, or restarts it when forced or when it is not
+     * running, as systemd refuses to reload an inactive unit.
+     *
+     * @param bool $forceRestart
+     * @throws \RuntimeException
+     */
+    private function applyChanges(bool $forceRestart): void
+    {
+        exec('systemctl is-active --quiet dnsmasq.service', $output, $status);
+        $action = ($forceRestart || $status !== 0) ? 'restart' : 'reload';
+        exec('sudo systemctl ' . $action . ' dnsmasq.service', $output, $status);
+        if ($status !== 0) {
+            throw new \RuntimeException("Failed to $action dnsmasq service");
+        }
+    }
+
+    /**
+     * Checks whether a dnsmasq config file disables the DNS server (port=0)
+     *
+     * @param string $configFile
+     * @return bool
+     */
+    private function isDnsDisabled(string $configFile): bool
+    {
+        $contents = @file_get_contents($configFile);
+        return $contents !== false && preg_match('/^\s*port\s*=\s*0\s*$/m', $contents) === 1;
     }
 
     /**
@@ -284,6 +320,12 @@ class DnsmasqManager
     {
         $errors = [];
         $encounteredIPs = [];
+
+        // with port=0, dnsmasq no longer gives DHCP clients its own address as their DNS server.
+        // DNS1 falls back to the interface's static IP, so one of them must be set
+        if (($post_data['disable-dns'] ?? '') == "1" && empty($post_data['DNS1']) && empty($post_data['StaticIP'])) {
+            $errors[] = _('A DNS server for the DHCP clients is required when the dnsmasq DNS server is disabled');
+        }
 
         if (isset($post_data["static_leases"]["mac"])) {
             for ($i=0; $i < count($post_data["static_leases"]["mac"]); $i++) {
