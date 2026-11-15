@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.2.1\n"
 "Report-Msgid-Bugs-To: Bill Zimmerman <billzimmerman@gmail.com>\n"
-"POT-Creation-Date: 2026-11-11 23:37+0000\n"
+"POT-Creation-Date: 2026-11-15 20:57+0000\n"
 "PO-Revision-Date: 2025-10-25 08:35+0000\n"
 "Last-Translator: Bill Zimmerman <billzimmerman@gmail.com>\n"
 "Language-Team: \n"
@@ -100,12 +100,22 @@ msgstr ""
 msgid "Failed to remove dnsmasq configuration for %s"
 msgstr ""
 
-#: ../includes/system.php:71
+#: ../includes/system.php:73
 #, php-format
 msgid "Changing log limit size to %s KB"
 msgstr "Changing log limit size to %s KB"
 
-#: ../includes/system.php:90
+#: ../includes/system.php:81
+#, php-format
+msgid "Invalid value for allowed networks (at most %d IP addresses or networks in CIDR notation)"
+msgstr ""
+
+#: ../includes/system.php:85
+#, php-format
+msgid "Your address %s is not in the allowed networks"
+msgstr ""
+
+#: ../includes/system.php:111
 #, php-format
 msgid "Changing alert close timeout to %s ms"
 msgstr ""
@@ -276,11 +286,11 @@ msgstr "Invalid custom IP address found on line "
 msgid "Invalid custom host found on line "
 msgstr "Invalid custom host found on line "
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:592
+#: ../src/RaspAP/Plugins/PluginInstaller.php:737
 msgid "Installed"
 msgstr "Installed"
 
-#: ../src/RaspAP/Plugins/PluginInstaller.php:596
+#: ../src/RaspAP/Plugins/PluginInstaller.php:741
 msgid "Details"
 msgstr "Details"
 
@@ -483,11 +493,15 @@ msgstr "Invalid metric value, not a number."
 msgid "DHCP configuration for %s updated."
 msgstr "DHCP configuration for %s updated."
 
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:293
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:327
+msgid "A DNS server for the DHCP clients is required when the dnsmasq DNS server is disabled"
+msgstr ""
+
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:335
 msgid "Invalid MAC address: "
 msgstr ""
 
-#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:296
+#: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:338
 msgid "Duplicate IP address entered: "
 msgstr ""
 
@@ -764,7 +778,7 @@ msgstr "Are you sure you want to delete this file?"
 #: ../templates/about.php:58 ../templates/admin.php:90
 #: ../templates/admin.php:119 ../templates/system.php:56
 #: ../templates/system.php:74 ../templates/system.php:109
-#: ../templates/system.php:253
+#: ../templates/system.php:256 ../templates/system.php:295
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -784,7 +798,7 @@ msgstr "Delete"
 #: ../templates/networking/mobile.php:29
 #: ../templates/networking/wlanrouting.php:3
 #: ../templates/system/language.php:11 ../templates/system/theme.php:56
-#: ../templates/system/advanced.php:39
+#: ../templates/system/advanced.php:46
 msgid "Save settings"
 msgstr "Save settings"
 
@@ -959,7 +973,7 @@ msgstr ""
 
 #: ../plugins-available/Captive/templates/tabs/clientlist.php:6
 #: ../plugins-available/Tailscale/templates/main.php:4
-#: ../plugins-available/Tailscale/Tailscale.php:425
+#: ../plugins-available/Tailscale/Tailscale.php:398
 #: ../templates/dhcp/summary.php:9 ../templates/dashboard.php:12
 #: ../templates/networking/devices.php:4 ../templates/networking/general.php:4
 #: ../templates/system/basic.php:63
@@ -1432,7 +1446,7 @@ msgid "Stop Using Exit Node"
 msgstr ""
 
 #: ../plugins-available/Tailscale/templates/main.php:44
-#: ../plugins-available/Tailscale/Tailscale.php:422
+#: ../plugins-available/Tailscale/Tailscale.php:395
 msgid "Start Tailscale"
 msgstr "Start Tailscale"
 
@@ -1440,16 +1454,16 @@ msgstr "Start Tailscale"
 msgid "Stop Tailscale"
 msgstr "Stop Tailscale"
 
-#: ../plugins-available/Tailscale/Tailscale.php:52
+#: ../plugins-available/Tailscale/Tailscale.php:53
 msgid "Tailscale VPN"
 msgstr "Tailscale VPN"
 
-#: ../plugins-available/Tailscale/Tailscale.php:237
+#: ../plugins-available/Tailscale/Tailscale.php:238
 #, php-format
 msgid "Expected tailscale binary not found at: %s"
 msgstr ""
 
-#: ../plugins-available/Tailscale/Tailscale.php:238
+#: ../plugins-available/Tailscale/Tailscale.php:239
 #, php-format
 msgid "Visit the <a href=\"%s\" target=\"_blank\">installation instructions</a> or reinstall the Tailscale plugin."
 msgstr ""
@@ -1458,12 +1472,12 @@ msgstr ""
 msgid "A Tailscale VPN exit node extension for RaspAP"
 msgstr "A Tailscale VPN exit node extension for RaspAP"
 
-#: ../plugins-available/Tailscale/Tailscale.php:428
+#: ../plugins-available/Tailscale/Tailscale.php:401
 #, php-format
 msgid "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
 msgstr "Unable to retrieve Tailscale login. Choose <strong>%s</strong> to continue."
 
-#: ../plugins-available/Tailscale/Tailscale.php:808
+#: ../plugins-available/Tailscale/Tailscale.php:781
 msgid "Not connected: Login required."
 msgstr "Not connected: Login required."
 
@@ -1963,7 +1977,8 @@ msgid "Unable to check for updates. Verify your internet connection and try agai
 msgstr ""
 
 #: ../templates/about.php:58 ../templates/about.php:59
-#: ../templates/about.php:86 ../templates/system.php:271
+#: ../templates/about.php:86 ../templates/system.php:274
+#: ../templates/system.php:297
 msgid "OK"
 msgstr ""
 
@@ -2226,17 +2241,46 @@ msgstr ""
 msgid "Non-privileged users"
 msgstr "Non-privileged users"
 
-#: ../templates/system.php:265
+#: ../templates/system.php:254
+msgid "Uninstall"
+msgstr ""
+
+#: ../templates/system.php:268
 msgid "Installing plugin"
 msgstr "Installing plugin"
 
-#: ../templates/system.php:268
+#: ../templates/system.php:271
 msgid "Plugin install completed."
 msgstr "Plugin install completed."
 
-#: ../templates/system.php:268
+#: ../templates/system.php:271
 msgid "Plugin installation in progress..."
 msgstr "Plugin installation in progress..."
+
+#: ../templates/system.php:285
+msgid "Uninstall plugin"
+msgstr ""
+
+#: ../templates/system.php:289
+#, php-format
+msgid "Uninstall the %s plugin?"
+msgstr ""
+
+#: ../templates/system.php:290
+msgid "The plugin's services are stopped and disabled, and its files, JavaScript files and sudoers rules are removed. Packages, repository keys, users and configuration files that the plugin installed are kept."
+msgstr ""
+
+#: ../templates/system.php:292
+msgid "Plugin uninstall completed."
+msgstr ""
+
+#: ../templates/system.php:292
+msgid "Plugin uninstall in progress..."
+msgstr ""
+
+#: ../templates/system.php:296
+msgid "Uninstall now"
+msgstr ""
 
 #: ../templates/configure_client.php:12 ../templates/wifi_stations.php:18
 #: ../templates/wifi_stations.php:82
@@ -2670,35 +2714,51 @@ msgid "Advanced Settings"
 msgstr ""
 
 #: ../templates/dhcp/advanced.php:6
+msgid "DNS server"
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:10
+msgid "Disable DNS server (DHCP only)"
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:13
+msgid "Enable this option to let <b>another DNS server on this device</b>, such as Pi-hole, use port 53. The DHCP server keeps running and gives clients the DNS servers set on the <b>Server settings</b> tab, or this interface's own address if none is set. Ad blocking and DNS query logging need the dnsmasq DNS server."
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:14
+msgid "This option adds <code>port=0</code> to the dnsmasq configuration."
+msgstr ""
+
+#: ../templates/dhcp/advanced.php:18
 msgid "Upstream DNS servers"
 msgstr "Upstream DNS servers"
 
-#: ../templates/dhcp/advanced.php:11
+#: ../templates/dhcp/advanced.php:23
 msgid "Only ever query DNS servers configured below"
 msgstr "Only ever query DNS servers configured below"
 
-#: ../templates/dhcp/advanced.php:14
+#: ../templates/dhcp/advanced.php:26
 msgid "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
 msgstr "Enable this option if you want RaspAP to <b>send DNS queries to the servers configured below exclusively</b>. By default RaspAP also uses its upstream DHCP server's name servers."
 
-#: ../templates/dhcp/advanced.php:15
+#: ../templates/dhcp/advanced.php:27
 msgid "This option adds <code>no-resolv</code> to the dnsmasq configuration."
 msgstr "This option adds <code>no-resolv</code> to the dnsmasq configuration."
 
-#: ../templates/dhcp/advanced.php:29
+#: ../templates/dhcp/advanced.php:41
 msgid "Add upstream DNS server"
 msgstr "Add upstream DNS server"
 
-#: ../templates/dhcp/advanced.php:31
+#: ../templates/dhcp/advanced.php:43
 #, php-format
 msgid "e.g. %s"
 msgstr ""
 
-#: ../templates/dhcp/advanced.php:36
+#: ../templates/dhcp/advanced.php:48
 msgid "Format: "
 msgstr ""
 
-#: ../templates/dhcp/advanced.php:41
+#: ../templates/dhcp/advanced.php:53
 msgid "Choose a hosted server"
 msgstr "Choose a hosted server"
 
@@ -3217,28 +3277,36 @@ msgid "Web server bind address"
 msgstr "Web server bind address"
 
 #: ../templates/system/advanced.php:21
+msgid "Allowed networks"
+msgstr ""
+
+#: ../templates/system/advanced.php:23
+msgid "Allow access to the web interface only from these IP addresses or networks in CIDR notation, separated by commas. Other clients get a \"403 Forbidden\" response. Leave empty to allow access from all networks."
+msgstr ""
+
+#: ../templates/system/advanced.php:28
 msgid "Diagnostic log size limit (KB)"
 msgstr "Diagnostic log size limit (KB)"
 
-#: ../templates/system/advanced.php:28
+#: ../templates/system/advanced.php:35
 msgid "SSL Certificate (HTTPS)"
 msgstr ""
 
-#: ../templates/system/advanced.php:30
+#: ../templates/system/advanced.php:37
 #, php-format
 msgid "An SSL Certificate has been created for this system. To download and install it on your system, use the button below and the <a href=\"%s\" target=\"_blank\">documentation</a> to install the certificate on your device."
 msgstr ""
 
-#: ../templates/system/advanced.php:31
+#: ../templates/system/advanced.php:38
 msgid "Download rootCA.pem"
 msgstr ""
 
-#: ../templates/system/advanced.php:33
+#: ../templates/system/advanced.php:40
 #, php-format
 msgid "To install an SSL Certificate and access the RaspAP Admin Panel via HTTPS, please refer to the <a href=\"%s\" target=\"_blank\">documentation</a>."
 msgstr ""
 
-#: ../templates/system/advanced.php:40
+#: ../templates/system/advanced.php:47
 msgid "Restart lighttpd"
 msgstr ""
 
