@@ -100,7 +100,7 @@ button > i.fas {
 }
 
 .heart {
-  color: #e63946;
+  color: #c96198;
   animation: heart 1000ms infinite;
 }
 @keyframes heart {
