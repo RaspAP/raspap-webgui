@@ -846,19 +846,19 @@ msgstr "Geavanceerde instellingen"
 
 #: ../templates/dhcp/advanced.php:6
 msgid "DNS server"
-msgstr ""
+msgstr "DNS-server"
 
 #: ../templates/dhcp/advanced.php:10
 msgid "Disable DNS server (DHCP only)"
-msgstr ""
+msgstr "DNS-server uitschakelen (alleen DHCP)"
 
 #: ../templates/dhcp/advanced.php:13
 msgid "Enable this option to let <b>another DNS server on this device</b>, such as Pi-hole, use port 53. The DHCP server keeps running and gives clients the DNS servers set on the <b>Server settings</b> tab, or this interface's own address if none is set. Ad blocking and DNS query logging need the dnsmasq DNS server."
-msgstr ""
+msgstr "Schakel deze optie in om <b>een andere DNS-server op dit apparaat</b>, zoals Pi-hole, poort 53 te laten gebruiken. De DHCP-server blijft actief en geeft clients de DNS-servers die zijn ingesteld op het tabblad <b>Serverinstellingen</b>, of het eigen adres van deze interface als er geen is ingesteld. Advertentieblokkering en het loggen van DNS-query's vereisen de DNS-server van dnsmasq."
 
 #: ../templates/dhcp/advanced.php:14
 msgid "This option adds <code>port=0</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "Deze optie voegt <code>port=0</code> toe aan de dnsmasq-configuratie."
 
 #: ../templates/dhcp/advanced.php:18
 msgid "Upstream DNS servers"
@@ -1386,7 +1386,7 @@ msgstr "Niet-geprivilegieerde gebruikers"
 
 #: ../templates/system.php:254
 msgid "Uninstall"
-msgstr ""
+msgstr "Verwijderen"
 
 #: ../templates/system.php:268
 msgid "Installing plugin"
@@ -1402,28 +1402,28 @@ msgstr "Plugin installatie bezig..."
 
 #: ../templates/system.php:285
 msgid "Uninstall plugin"
-msgstr ""
+msgstr "Plugin verwijderen"
 
 #: ../templates/system.php:289
 #, php-format
 msgid "Uninstall the %s plugin?"
-msgstr ""
+msgstr "De plugin %s verwijderen?"
 
 #: ../templates/system.php:290
 msgid "The plugin's services are stopped and disabled, and its files, JavaScript files and sudoers rules are removed. Packages, repository keys, users and configuration files that the plugin installed are kept."
-msgstr ""
+msgstr "De services van de plugin worden gestopt en uitgeschakeld, en de bestanden, JavaScript-bestanden en sudoers-regels worden verwijderd. Pakketten, repositorysleutels, gebruikers en configuratiebestanden die de plugin heeft geïnstalleerd, blijven behouden."
 
 #: ../templates/system.php:292
 msgid "Plugin uninstall completed."
-msgstr ""
+msgstr "Verwijderen van plugin voltooid."
 
 #: ../templates/system.php:292
 msgid "Plugin uninstall in progress..."
-msgstr ""
+msgstr "Plugin wordt verwijderd..."
 
 #: ../templates/system.php:296
 msgid "Uninstall now"
-msgstr ""
+msgstr "Nu verwijderen"
 
 #: ../templates/adblock.php:13 ../src/RaspAP/UI/Sidebar.php:25
 msgid "Ad Blocking"
@@ -1459,11 +1459,11 @@ msgstr "Webserver bindend adres"
 
 #: ../templates/system/advanced.php:21
 msgid "Allowed networks"
-msgstr ""
+msgstr "Toegestane netwerken"
 
 #: ../templates/system/advanced.php:23
 msgid "Allow access to the web interface only from these IP addresses or networks in CIDR notation, separated by commas. Other clients get a \"403 Forbidden\" response. Leave empty to allow access from all networks."
-msgstr ""
+msgstr "Sta toegang tot de webinterface alleen toe vanaf deze IP-adressen of netwerken in CIDR-notatie, gescheiden door komma's. Andere clients krijgen het antwoord \"403 Forbidden\". Laat leeg om toegang vanaf alle netwerken toe te staan."
 
 #: ../templates/system/advanced.php:28
 msgid "Diagnostic log size limit (KB)"
@@ -3194,7 +3194,7 @@ msgstr "Vereist (voor ondersteunde klanten)"
 
 #: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:327
 msgid "A DNS server for the DHCP clients is required when the dnsmasq DNS server is disabled"
-msgstr ""
+msgstr "Er is een DNS-server voor de DHCP-clients vereist wanneer de DNS-server van dnsmasq is uitgeschakeld"
 
 #: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:335
 msgid "Invalid MAC address: "
@@ -3430,12 +3430,12 @@ msgstr "Logboeklimiet wijzigen naar %s KB"
 #: ../includes/system.php:81
 #, php-format
 msgid "Invalid value for allowed networks (at most %d IP addresses or networks in CIDR notation)"
-msgstr ""
+msgstr "Ongeldige waarde voor toegestane netwerken (maximaal %d IP-adressen of netwerken in CIDR-notatie)"
 
 #: ../includes/system.php:85
 #, php-format
 msgid "Your address %s is not in the allowed networks"
-msgstr ""
+msgstr "Uw adres %s valt niet binnen de toegestane netwerken"
 
 #: ../includes/system.php:111
 #, php-format
