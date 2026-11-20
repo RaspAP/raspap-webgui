@@ -52,6 +52,7 @@ require_once 'includes/openvpn.php';
 require_once 'includes/wireguard.php';
 require_once 'includes/provider.php';
 require_once 'includes/restapi.php';
+require_once 'includes/switchberry.php';
 
 initializeApp();
 ?>
@@ -156,4 +157,3 @@ initializeApp();
     <?php loadFooterScripts($extraFooterScripts); ?>
   </body>
 </html>
-
