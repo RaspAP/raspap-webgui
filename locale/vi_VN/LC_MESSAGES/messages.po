@@ -846,19 +846,19 @@ msgstr "Cài đặt nâng cao"
 
 #: ../templates/dhcp/advanced.php:6
 msgid "DNS server"
-msgstr ""
+msgstr "Máy chủ DNS"
 
 #: ../templates/dhcp/advanced.php:10
 msgid "Disable DNS server (DHCP only)"
-msgstr ""
+msgstr "Tắt máy chủ DNS (chỉ DHCP)"
 
 #: ../templates/dhcp/advanced.php:13
 msgid "Enable this option to let <b>another DNS server on this device</b>, such as Pi-hole, use port 53. The DHCP server keeps running and gives clients the DNS servers set on the <b>Server settings</b> tab, or this interface's own address if none is set. Ad blocking and DNS query logging need the dnsmasq DNS server."
-msgstr ""
+msgstr "Bật tùy chọn này để cho phép <b>một máy chủ DNS khác trên thiết bị này</b>, chẳng hạn như Pi-hole, sử dụng cổng 53. Máy chủ DHCP vẫn tiếp tục chạy và cấp cho máy khách các máy chủ DNS được đặt trong thẻ <b>Cài đặt máy chủ</b>, hoặc chính địa chỉ của giao diện này nếu chưa đặt máy chủ nào. Tính năng chặn quảng cáo và ghi nhật ký truy vấn DNS cần máy chủ DNS của dnsmasq."
 
 #: ../templates/dhcp/advanced.php:14
 msgid "This option adds <code>port=0</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "Tùy chọn này thêm <code>port=0</code> vào cấu hình dnsmasq."
 
 #: ../templates/dhcp/advanced.php:18
 msgid "Upstream DNS servers"
@@ -1386,7 +1386,7 @@ msgstr "Người dùng không có quyền truy cập đặc quyền"
 
 #: ../templates/system.php:254
 msgid "Uninstall"
-msgstr ""
+msgstr "Gỡ cài đặt"
 
 #: ../templates/system.php:268
 msgid "Installing plugin"
@@ -1402,28 +1402,28 @@ msgstr "Đang cài đặt plugin..."
 
 #: ../templates/system.php:285
 msgid "Uninstall plugin"
-msgstr ""
+msgstr "Gỡ cài đặt plugin"
 
 #: ../templates/system.php:289
 #, php-format
 msgid "Uninstall the %s plugin?"
-msgstr ""
+msgstr "Gỡ cài đặt plugin %s?"
 
 #: ../templates/system.php:290
 msgid "The plugin's services are stopped and disabled, and its files, JavaScript files and sudoers rules are removed. Packages, repository keys, users and configuration files that the plugin installed are kept."
-msgstr ""
+msgstr "Các dịch vụ của plugin sẽ bị dừng và vô hiệu hóa, đồng thời các tệp, tệp JavaScript và quy tắc sudoers của plugin sẽ bị xóa. Các gói, khóa kho lưu trữ, người dùng và tệp cấu hình do plugin cài đặt sẽ được giữ lại."
 
 #: ../templates/system.php:292
 msgid "Plugin uninstall completed."
-msgstr ""
+msgstr "Đã gỡ cài đặt plugin xong."
 
 #: ../templates/system.php:292
 msgid "Plugin uninstall in progress..."
-msgstr ""
+msgstr "Đang gỡ cài đặt plugin..."
 
 #: ../templates/system.php:296
 msgid "Uninstall now"
-msgstr ""
+msgstr "Gỡ cài đặt ngay"
 
 #: ../templates/adblock.php:13 ../src/RaspAP/UI/Sidebar.php:25
 msgid "Ad Blocking"
@@ -1459,11 +1459,11 @@ msgstr "Địa chỉ kết nối của máy chủ web"
 
 #: ../templates/system/advanced.php:21
 msgid "Allowed networks"
-msgstr ""
+msgstr "Mạng được phép"
 
 #: ../templates/system/advanced.php:23
 msgid "Allow access to the web interface only from these IP addresses or networks in CIDR notation, separated by commas. Other clients get a \"403 Forbidden\" response. Leave empty to allow access from all networks."
-msgstr ""
+msgstr "Chỉ cho phép truy cập giao diện web từ các địa chỉ IP hoặc mạng theo ký hiệu CIDR này, phân cách bằng dấu phẩy. Các máy khách khác sẽ nhận phản hồi \"403 Forbidden\". Để trống để cho phép truy cập từ mọi mạng."
 
 #: ../templates/system/advanced.php:28
 msgid "Diagnostic log size limit (KB)"
@@ -3194,7 +3194,7 @@ msgstr "Bắt buộc (đối với các khách hàng được hỗ trợ)"
 
 #: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:327
 msgid "A DNS server for the DHCP clients is required when the dnsmasq DNS server is disabled"
-msgstr ""
+msgstr "Cần có máy chủ DNS cho các máy khách DHCP khi máy chủ DNS của dnsmasq bị tắt"
 
 #: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:335
 msgid "Invalid MAC address: "
@@ -3428,12 +3428,12 @@ msgstr "Thay đổi giới hạn kích thước nhật ký thành %s KB"
 #: ../includes/system.php:81
 #, php-format
 msgid "Invalid value for allowed networks (at most %d IP addresses or networks in CIDR notation)"
-msgstr ""
+msgstr "Giá trị mạng được phép không hợp lệ (tối đa %d địa chỉ IP hoặc mạng theo ký hiệu CIDR)"
 
 #: ../includes/system.php:85
 #, php-format
 msgid "Your address %s is not in the allowed networks"
-msgstr ""
+msgstr "Địa chỉ %s của bạn không nằm trong các mạng được phép"
 
 #: ../includes/system.php:111
 #, php-format

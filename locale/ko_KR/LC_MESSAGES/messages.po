@@ -846,19 +846,19 @@ msgstr "고급 설정"
 
 #: ../templates/dhcp/advanced.php:6
 msgid "DNS server"
-msgstr ""
+msgstr "DNS 서버"
 
 #: ../templates/dhcp/advanced.php:10
 msgid "Disable DNS server (DHCP only)"
-msgstr ""
+msgstr "DNS 서버 비활성화 (DHCP 전용)"
 
 #: ../templates/dhcp/advanced.php:13
 msgid "Enable this option to let <b>another DNS server on this device</b>, such as Pi-hole, use port 53. The DHCP server keeps running and gives clients the DNS servers set on the <b>Server settings</b> tab, or this interface's own address if none is set. Ad blocking and DNS query logging need the dnsmasq DNS server."
-msgstr ""
+msgstr "이 옵션을 활성화하면 Pi-hole 같은 <b>이 장치의 다른 DNS 서버</b>가 포트 53을 사용할 수 있습니다. DHCP 서버는 계속 실행되며 <b>서버 설정</b> 탭에서 지정한 DNS 서버를 클라이언트에 제공하고, 지정된 서버가 없으면 이 인터페이스의 자체 주소를 제공합니다. 광고 차단과 DNS 쿼리 로그에는 dnsmasq DNS 서버가 필요합니다."
 
 #: ../templates/dhcp/advanced.php:14
 msgid "This option adds <code>port=0</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "이 옵션은 dnsmasq 설정에 <code>port=0</code>을 추가합니다."
 
 #: ../templates/dhcp/advanced.php:18
 msgid "Upstream DNS servers"
@@ -1386,7 +1386,7 @@ msgstr "권한이 없는 사용자"
 
 #: ../templates/system.php:254
 msgid "Uninstall"
-msgstr ""
+msgstr "제거"
 
 #: ../templates/system.php:268
 msgid "Installing plugin"
@@ -1402,28 +1402,28 @@ msgstr "플러그인 설치 진행 중..."
 
 #: ../templates/system.php:285
 msgid "Uninstall plugin"
-msgstr ""
+msgstr "플러그인 제거"
 
 #: ../templates/system.php:289
 #, php-format
 msgid "Uninstall the %s plugin?"
-msgstr ""
+msgstr "%s 플러그인을 제거하시겠습니까?"
 
 #: ../templates/system.php:290
 msgid "The plugin's services are stopped and disabled, and its files, JavaScript files and sudoers rules are removed. Packages, repository keys, users and configuration files that the plugin installed are kept."
-msgstr ""
+msgstr "플러그인의 서비스가 중지 및 비활성화되고, 플러그인 파일, JavaScript 파일 및 sudoers 규칙이 제거됩니다. 플러그인이 설치한 패키지, 저장소 키, 사용자 및 설정 파일은 유지됩니다."
 
 #: ../templates/system.php:292
 msgid "Plugin uninstall completed."
-msgstr ""
+msgstr "플러그인 제거가 완료되었습니다."
 
 #: ../templates/system.php:292
 msgid "Plugin uninstall in progress..."
-msgstr ""
+msgstr "플러그인 제거 진행 중..."
 
 #: ../templates/system.php:296
 msgid "Uninstall now"
-msgstr ""
+msgstr "지금 제거"
 
 #: ../templates/adblock.php:13 ../src/RaspAP/UI/Sidebar.php:25
 msgid "Ad Blocking"
@@ -1459,11 +1459,11 @@ msgstr "웹 서버 바인드 주소"
 
 #: ../templates/system/advanced.php:21
 msgid "Allowed networks"
-msgstr ""
+msgstr "허용된 네트워크"
 
 #: ../templates/system/advanced.php:23
 msgid "Allow access to the web interface only from these IP addresses or networks in CIDR notation, separated by commas. Other clients get a \"403 Forbidden\" response. Leave empty to allow access from all networks."
-msgstr ""
+msgstr "이 IP 주소 또는 CIDR 표기 네트워크(쉼표로 구분)에서만 웹 인터페이스 접근을 허용합니다. 다른 클라이언트는 \"403 Forbidden\" 응답을 받습니다. 모든 네트워크에서 접근을 허용하려면 비워 두십시오."
 
 #: ../templates/system/advanced.php:28
 msgid "Diagnostic log size limit (KB)"
@@ -3194,7 +3194,7 @@ msgstr "필수(지원되는 클라이언트의 경우)"
 
 #: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:327
 msgid "A DNS server for the DHCP clients is required when the dnsmasq DNS server is disabled"
-msgstr ""
+msgstr "dnsmasq DNS 서버를 비활성화하면 DHCP 클라이언트용 DNS 서버가 필요합니다"
 
 #: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:335
 msgid "Invalid MAC address: "
@@ -3428,12 +3428,12 @@ msgstr "로그 제한 크기를 %s KB로 변경"
 #: ../includes/system.php:81
 #, php-format
 msgid "Invalid value for allowed networks (at most %d IP addresses or networks in CIDR notation)"
-msgstr ""
+msgstr "허용된 네트워크 값이 잘못되었습니다 (IP 주소 또는 CIDR 표기 네트워크 최대 %d개)"
 
 #: ../includes/system.php:85
 #, php-format
 msgid "Your address %s is not in the allowed networks"
-msgstr ""
+msgstr "사용자의 주소 %s이(가) 허용된 네트워크에 없습니다"
 
 #: ../includes/system.php:111
 #, php-format

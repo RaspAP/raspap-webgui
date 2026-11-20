@@ -846,19 +846,19 @@ msgstr "高级设置"
 
 #: ../templates/dhcp/advanced.php:6
 msgid "DNS server"
-msgstr ""
+msgstr "DNS 服务器"
 
 #: ../templates/dhcp/advanced.php:10
 msgid "Disable DNS server (DHCP only)"
-msgstr ""
+msgstr "禁用 DNS 服务器（仅 DHCP）"
 
 #: ../templates/dhcp/advanced.php:13
 msgid "Enable this option to let <b>another DNS server on this device</b>, such as Pi-hole, use port 53. The DHCP server keeps running and gives clients the DNS servers set on the <b>Server settings</b> tab, or this interface's own address if none is set. Ad blocking and DNS query logging need the dnsmasq DNS server."
-msgstr ""
+msgstr "启用此选项后，<b>本设备上的其他 DNS 服务器</b>（如 Pi-hole）即可使用 53 端口。DHCP 服务器继续运行，并向客户端分配 <b>服务器设置</b> 选项卡中设置的 DNS 服务器；如未设置，则分配此接口自身的地址。广告屏蔽和 DNS 查询日志需要 dnsmasq DNS 服务器。"
 
 #: ../templates/dhcp/advanced.php:14
 msgid "This option adds <code>port=0</code> to the dnsmasq configuration."
-msgstr ""
+msgstr "此选项会在 dnsmasq 配置中添加 <code>port=0</code>。"
 
 #: ../templates/dhcp/advanced.php:18
 msgid "Upstream DNS servers"
@@ -1386,7 +1386,7 @@ msgstr "非特权用户"
 
 #: ../templates/system.php:254
 msgid "Uninstall"
-msgstr ""
+msgstr "卸载"
 
 #: ../templates/system.php:268
 msgid "Installing plugin"
@@ -1402,28 +1402,28 @@ msgstr "插件安装中..."
 
 #: ../templates/system.php:285
 msgid "Uninstall plugin"
-msgstr ""
+msgstr "卸载插件"
 
 #: ../templates/system.php:289
 #, php-format
 msgid "Uninstall the %s plugin?"
-msgstr ""
+msgstr "卸载 %s 插件？"
 
 #: ../templates/system.php:290
 msgid "The plugin's services are stopped and disabled, and its files, JavaScript files and sudoers rules are removed. Packages, repository keys, users and configuration files that the plugin installed are kept."
-msgstr ""
+msgstr "插件的服务将被停止并禁用，其文件、JavaScript 文件和 sudoers 规则将被删除。插件安装的软件包、软件源密钥、用户和配置文件将保留。"
 
 #: ../templates/system.php:292
 msgid "Plugin uninstall completed."
-msgstr ""
+msgstr "插件卸载完成。"
 
 #: ../templates/system.php:292
 msgid "Plugin uninstall in progress..."
-msgstr ""
+msgstr "插件卸载中..."
 
 #: ../templates/system.php:296
 msgid "Uninstall now"
-msgstr ""
+msgstr "立即卸载"
 
 #: ../templates/adblock.php:13 ../src/RaspAP/UI/Sidebar.php:25
 msgid "Ad Blocking"
@@ -1459,11 +1459,11 @@ msgstr "网络服务器绑定地址"
 
 #: ../templates/system/advanced.php:21
 msgid "Allowed networks"
-msgstr ""
+msgstr "允许的网络"
 
 #: ../templates/system/advanced.php:23
 msgid "Allow access to the web interface only from these IP addresses or networks in CIDR notation, separated by commas. Other clients get a \"403 Forbidden\" response. Leave empty to allow access from all networks."
-msgstr ""
+msgstr "仅允许从这些 IP 地址或 CIDR 表示法的网络（以逗号分隔）访问网页界面。其他客户端将收到 \"403 Forbidden\" 响应。留空则允许从所有网络访问。"
 
 #: ../templates/system/advanced.php:28
 msgid "Diagnostic log size limit (KB)"
@@ -3194,7 +3194,7 @@ msgstr "要求（针对受支持客户）"
 
 #: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:327
 msgid "A DNS server for the DHCP clients is required when the dnsmasq DNS server is disabled"
-msgstr ""
+msgstr "禁用 dnsmasq DNS 服务器时，必须为 DHCP 客户端指定 DNS 服务器"
 
 #: ../src/RaspAP/Networking/Hotspot/DnsmasqManager.php:335
 msgid "Invalid MAC address: "
@@ -3428,12 +3428,12 @@ msgstr "将日志限制大小更改为 %s KB"
 #: ../includes/system.php:81
 #, php-format
 msgid "Invalid value for allowed networks (at most %d IP addresses or networks in CIDR notation)"
-msgstr ""
+msgstr "允许的网络值无效（最多 %d 个 IP 地址或 CIDR 表示法的网络）"
 
 #: ../includes/system.php:85
 #, php-format
 msgid "Your address %s is not in the allowed networks"
-msgstr ""
+msgstr "您的地址 %s 不在允许的网络中"
 
 #: ../includes/system.php:111
 #, php-format
