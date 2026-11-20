@@ -223,6 +223,12 @@ class HostapdManager
         $modeSettings = getDefaultNetOpts('hostapd', 'modes', $hwMode);
         $settings = $modeSettings[$hwMode]['settings'] ?? [];
 
+        // the 802.11ax/be presets target 5 GHz; adapt them for a 2.4 GHz channel
+        $channel = (int)$params['channel'];
+        if (in_array($hwMode, ['ax', 'be']) && $channel >= 1 && $channel <= 14) {
+            $settings = $this->adaptSettingsFor24GHz($settings);
+        }
+
         // extract channel width from settings to calculate center frequency
         $chwidth = $this->extractChannelWidth($settings, $hwMode);
 
@@ -496,6 +502,52 @@ class HostapdManager
     {
         $configs = glob('/etc/hostapd/hostapd-*.conf');
         return is_array($configs) ? count($configs) : 0;
+    }
+
+    /**
+     * Adapts 802.11ax/be mode settings for a 2.4 GHz channel
+     *
+     * The ax and be presets are written for 5 GHz (hw_mode=a, 802.11ac and
+     * 80/160 MHz widths), which hostapd rejects on a 2.4 GHz channel. This
+     * switches to hw_mode=g, drops the VHT and 6 GHz settings and the center
+     * frequency indices, and runs HE/EHT at 20 MHz, as in 802.11n mode.
+     *
+     * @param array $settings mode settings array
+     * @return array adapted settings
+     */
+    private function adaptSettingsFor24GHz(array $settings): array
+    {
+        $dropKeys = [
+            'ieee80211ac',
+            'require_vht',
+            'vht_capab',
+            'vht_oper_chwidth',
+            'vht_oper_centr_freq_seg0_idx',
+            'he_oper_centr_freq_seg0_idx',
+            'eht_oper_centr_freq_seg0_idx',
+        ];
+        $adapted = [];
+
+        foreach ($settings as $line) {
+            if (!is_string($line)) {
+                continue;
+            }
+            $key = trim(explode('=', $line, 2)[0]);
+
+            if (in_array($key, $dropKeys, true) || strpos($key, 'he_6ghz_') === 0) {
+                continue;
+            }
+            if ($key === 'hw_mode') {
+                $line = 'hw_mode=g';
+            } elseif ($key === 'he_oper_chwidth' || $key === 'eht_oper_chwidth') {
+                $line = $key . '=0';
+            } elseif ($key === 'ht_capab') {
+                $line = str_replace('[{HT40_DIR}]', '', $line);
+            }
+            $adapted[] = $line;
+        }
+
+        return $adapted;
     }
 
     /**
