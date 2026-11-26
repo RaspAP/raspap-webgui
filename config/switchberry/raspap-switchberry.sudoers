@@ -1,0 +1,35 @@
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl detect
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl status
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl configure
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl restart
+www-data ALL=(root) NOPASSWD:/usr/local/sbin/raspap-switchberryctl reboot
+
+Cmnd_Alias SWITCHBERRY_PORTS = \
+    /usr/local/sbin/raspap-switchberryctl port enable 1, \
+    /usr/local/sbin/raspap-switchberryctl port disable 1, \
+    /usr/local/sbin/raspap-switchberryctl port enable 2, \
+    /usr/local/sbin/raspap-switchberryctl port disable 2, \
+    /usr/local/sbin/raspap-switchberryctl port enable 3, \
+    /usr/local/sbin/raspap-switchberryctl port disable 3, \
+    /usr/local/sbin/raspap-switchberryctl port enable 4, \
+    /usr/local/sbin/raspap-switchberryctl port disable 4, \
+    /usr/local/sbin/raspap-switchberryctl port enable 5, \
+    /usr/local/sbin/raspap-switchberryctl port disable 5
+
+Cmnd_Alias SWITCHBERRY_CLOCKMATRIX = \
+    /usr/local/sbin/raspap-switchberryctl clockmatrix 5 normal, \
+    /usr/local/sbin/raspap-switchberryctl clockmatrix 5 freerun, \
+    /usr/local/sbin/raspap-switchberryctl clockmatrix 5 holdover, \
+    /usr/local/sbin/raspap-switchberryctl clockmatrix 5 reacquire, \
+    /usr/local/sbin/raspap-switchberryctl clockmatrix 6 normal, \
+    /usr/local/sbin/raspap-switchberryctl clockmatrix 6 freerun, \
+    /usr/local/sbin/raspap-switchberryctl clockmatrix 6 holdover, \
+    /usr/local/sbin/raspap-switchberryctl clockmatrix 6 reacquire
+
+Cmnd_Alias SWITCHBERRY_GNSS = \
+    /usr/local/sbin/raspap-switchberryctl gnss restart, \
+    /usr/local/sbin/raspap-switchberryctl gnss hotstart, \
+    /usr/local/sbin/raspap-switchberryctl gnss warmstart, \
+    /usr/local/sbin/raspap-switchberryctl gnss coldstart
+
+www-data ALL=(root) NOPASSWD: SWITCHBERRY_PORTS, SWITCHBERRY_CLOCKMATRIX, SWITCHBERRY_GNSS
