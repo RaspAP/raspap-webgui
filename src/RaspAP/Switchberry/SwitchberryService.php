@@ -173,16 +173,34 @@ class SwitchberryService
 
         $decoded = json_decode(trim((string) $stdout), true);
         if (!is_array($decoded)) {
+            $this->logControllerStderr('returned invalid data', (string) $stderr, $exitCode);
             return [
                 'ok' => false,
-                'error' => trim((string) $stderr) ?: 'The Switchberry controller returned invalid data',
+                'error' => 'The Switchberry controller returned invalid data. Check the system log for details.',
                 'exit_code' => $exitCode
             ];
         }
+        if ($exitCode !== 0) {
+            $this->logControllerStderr('command failed', (string) $stderr, $exitCode);
+        }
         if ($exitCode !== 0 && empty($decoded['error'])) {
             $decoded['ok'] = false;
-            $decoded['error'] = trim((string) $stderr) ?: 'Switchberry controller command failed';
+            $decoded['error'] = 'Switchberry controller command failed. Check the system log for details.';
         }
         return $decoded;
+    }
+
+    /**
+     * Keep command diagnostics in the server log instead of exposing them in a status banner.
+     */
+    private function logControllerStderr(string $context, string $stderr, int $exitCode): void
+    {
+        $details = trim((string) preg_replace('/[\x00-\x1F\x7F]/', ' ', $stderr));
+        if ($details === '') {
+            return;
+        }
+
+        $details = substr($details, 0, 2048);
+        error_log(sprintf('RaspAP Switchberry controller %s (exit %d): %s', $context, $exitCode, $details));
     }
 }

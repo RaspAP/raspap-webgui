@@ -310,11 +310,17 @@ function switchberryPostNullableEnum(string $name, array $allowed): ?string
 function switchberryAddResultMessage(StatusMessage $messages, array $result): void
 {
     if (!empty($result['ok'])) {
-        $messages->addMessage((string) ($result['message'] ?? 'Switchberry action completed'), 'success');
+        $messages->addMessage(
+            htmlspecialchars((string) ($result['message'] ?? 'Switchberry action completed'), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'),
+            'success'
+        );
         foreach (($result['warnings'] ?? []) as $warning) {
-            $messages->addMessage((string) $warning, 'warning');
+            $messages->addMessage(htmlspecialchars((string) $warning, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), 'warning');
         }
         return;
     }
-    $messages->addMessage((string) ($result['error'] ?? 'Switchberry action failed'), 'danger');
+    $messages->addMessage(
+        htmlspecialchars((string) ($result['error'] ?? 'Switchberry action failed'), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'),
+        'danger'
+    );
 }
