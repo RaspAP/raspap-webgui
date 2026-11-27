@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             if (!button.data("__toggle-with-initial")) {
-                $("i", button).removeClass("fas fa-eye").addClass(button.attr("data-toggle-with")); 
+                $("i", button).removeClass("fas fa-eye").addClass(button.attr("data-toggle-with"));
             }
 
             if (field.attr("type") === "password") {
@@ -327,10 +327,10 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             if (useSystem) setLightMode(true);
             setCookie('system_color_scheme', 'light', 365);
-            
+
         }
     });
-    
+
     systemModeToggle.on('click', function() {
         const systemColorScheme = preferredColorScheme.matches ? 'dark' : 'light';
         // update cookie for PHP context
